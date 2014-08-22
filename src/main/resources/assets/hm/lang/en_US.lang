@@ -1,0 +1,56 @@
+#en_US.lang by joshie ;)
+hm.tab.main=Harvest Moon
+
+#Crops
+hm.crop.giant=Giant
+hm.crop.giant.format=%G %C
+hm.crop.seeds.format.standard=%C %S
+hm.crop.seeds.format.giant=%G %C %S
+hm.crop.seeds=Seeds
+hm.crop.turnip=Turnip
+hm.crop.potato=Potato
+hm.crop.cucumber=Cucumber
+hm.crop.strawberry=Strawberry
+hm.crop.cabbage=Cabbage
+hm.crop.flower.moondrop=Moondrop Flower
+hm.crop.toyflower=Toyflower
+hm.crop.tomato=Tomato
+hm.crop.onion=Onion
+hm.crop.corn=Corn
+hm.crop.pumpkin=Pumpkin
+hm.crop.pineapple=Pineapple
+hm.crop.flower.pinkcat=Pinkcat Flower
+hm.crop.eggplant=Eggplant
+hm.crop.carrot=Carrot
+hm.crop.potato.sweet=Sweet Potato
+hm.crop.spinach=Spinach
+hm.crop.pepper.green=Green Pepper
+hm.crop.flower.magic=Magic Flower
+
+#General Items
+hm.general.feather.blue=Blue Feather
+
+#Meals
+hm.meal.level=Restores
+hm.meal.sat=Fills
+hm.meal.stamina=Stamina
+hm.meal.fatigue=Fatigue
+hm.meal.fry.stir=Stir Fry
+hm.meal.rice.fried=Fried Rice
+hm.meal.pancakes.savoury=Savoury Pancake
+
+#Sizeables
+hm.sizeable.format=%S %P
+hm.sizeable.small=Small
+hm.sizeable.medium=Medium
+hm.sizeable.large=Large
+hm.sizeable.egg=Egg
+hm.sizeable.milk=Milk
+hm.sizeable.wool=Wool
+hm.sizeable.fish=Fish
+
+#Seasons
+hm.season.spring=Spring
+hm.season.summer=Summer
+hm.season.autumn=Autumn
+hm.season.winter=Winter

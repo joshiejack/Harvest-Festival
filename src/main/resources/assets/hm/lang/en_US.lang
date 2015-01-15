@@ -54,3 +54,104 @@ hm.season.spring=Spring
 hm.season.summer=Summer
 hm.season.autumn=Autumn
 hm.season.winter=Winter
+
+# NPC Names
+## NOTE FOR TRANSLATORS, READ
+# For the Harvest Goddess, use the name that is used by the Harvest Moon Games
+# in your own language, as for the other characters, name them whatever you like!
+# can be your friends, yourself, hints at famous people in your language or whatever
+# the names don't need to be the same.
+hm.npc.goddess.name=Harvest Goddess
+hm.npc.katlin.name=Granny Katlin
+hm.npc.daniel.name=Danieru
+hm.npc.cloe.name=Cloe
+hm.npc.liara.name=Liara
+hm.npc.jade.name=Jade
+hm.npc.jenni.name=Jenni
+hm.npc.jamie.name=Mayor Jeimmi
+hm.npc.abi.name=Abii
+hm.npc.tiberius.name=Tiberius
+hm.npc.jacob.name=Jakob
+hm.npc.fenn.name=Suirenji
+hm.npc.jim.name=Jim
+hm.npc.brandon.name=Brandon
+hm.npc.thomas.name=Tomas
+
+## NOTE FOR TRANSLATORS, READ
+# When translating these, do not directly translate, just come up with your own
+# funny, or generic greetings related to each character, things that work best
+# in your own language, as these are just generic, do translate the quests
+# semi-literally though, as they are important so the user knows what to do,
+# but take liberty there to, just make sure the user still knows what they
+# have to do in order to complete the quest in question.
+#Key-Codes for conversations
+# $ = Money - Player has
+# ♥ = Player's Romantic Interest
+# ❤ = Entity's Romantic Interest
+# Þ = Player
+# ℇ = The Entity
+#Conversations
+#Generic Greetings - Children
+hm.npc.generic.child.greeting1=WOW you're really tall!
+hm.npc.generic.child.greeting2=Do you wanna play with me?
+hm.npc.generic.child.greeting3=Have you heard of Minecraft? It's my favourite game!
+
+#Generic Greetings - Adults/Elders
+hm.npc.generic.adult.greeting1=What do you need? I'm here to help.
+hm.npc.generic.adult.greeting2=It's been a long time since I last saw you! How have you been?
+
+#Generic Greetings - Male
+hm.npc.generic.male.greeting1=Hey, how's it hanging?
+
+#Generic Greetings - Female
+hm.npc.generic.female.greeting1=Hello Þ! I hope you're feeling well! It's such a beautiful day isn't it?
+
+#Brandon Greetings
+hm.npc.brandon.greeting1=Whenever I'm down in the mines, I can't help but get excited when I come across some diamonds.
+hm.npc.brandon.greeting2=I don't know about you, but I've got insomnia everynight, can never get to sleep, can always hear dang crickets.
+hm.npc.brandon.greeting3=What's your favourite ice cream? Mine's Vanilla Plus. At least it used to be, until someone else stole it...
+hm.npc.brandon.greeting4=Do you ever get tired of mining? I never do. I'm always willing to trade if you ever get tired.
+hm.npc.brandon.greeting5=I'll never understand why people are afraid of the dark. There's nothing better than mining without seeing where you are going.
+hm.npc.brandon.greeting6=The other day when I was in the mines, I heard and saw this strange fire like creature. I wonder what it was?
+
+#Danieuru Greetings
+hm.npc.daniel.greeting1=I've always loved tinkering around since I was a child.
+hm.npc.daniel.greeting2=Tools really are my passion, They are a Hardcore Expansion to my life.
+hm.npc.daniel.greeting3=People call me crazy around here for believing in Dragons. They'll see them when they reach The End, and they'll no longer call me a fool.
+hm.npc.daniel.greeting4=If I could do anything other than playing with tools, I'd be a dragon slayer.
+hm.npc.daniel.greeting5=Did you know that I used to be an olympic sprinter back in my youth? I was better than everyone else in Minecraftia.
+hm.npc.daniel.greeting6=Males, Females? Don't bother me, I like them all. Variety is the spice of life.
+
+#Jenni Greeting
+hm.npc.jenni.greeting1=Hey my good friend, make sure to come to me if you need any general goods!
+hm.npc.jenni.greeting2=As much as I love my customers, I love my art so much more.
+hm.npc.jenni.greeting3=Don't tell anybody but I'm secretly a huge fan of Belly Dancing.
+hm.npc.jenni.greeting4=Sometimes I wish I would open on Sundays, but then I remember how much I love a good lay in.
+hm.npc.jenni.greeting5=Granny Katlin sure makes a mean soup!
+hm.npc.jenni.greeting6=My prices are the best in the town, noone can beat ol' jenni's bargains.
+
+#Jim Greeting
+hm.npc.jim.greeting1=What's your favourite animal? Mine's the fox, the spiteful buggers.
+hm.npc.jim.greeting2=Remember you can always come see me, if you want your animals to have babies!
+hm.npc.jim.greeting3=Lately I've been tweaking how much I feed my chickens, it's been an educational experience.
+hm.npc.jim.greeting4=You know, this world is ridiculous sometimes, just the otherday I saw a squirrel attack a bench.
+hm.npc.jim.greeting5=Have you ever noticed how some countries, add 'u' to all their words, It's crazy if you ask me.
+hm.npc.jim.greeting6=Life could not be better, when I'm out on the saddle.
+
+#Liara Greeting
+hm.npc.liara.greeting1=I really love this weather, perfect time to bake a cake!
+hm.npc.liara.greeting2=Cooking is what I enjoy the most! I love seeing the smile on someone's face as they take their first bite of my delicious dishes!
+hm.npc.liara.greeting3=Are you feeling hungry? I'm always hungry, no wonder I like to cook so much.
+hm.npc.liara.greeting4=Make sure to drop by the café on Tuesdays, there's always something special.
+hm.npc.liara.greeting5=Food makes the world go round, and it makes me giddy.
+hm.npc.liara.greeting6=There's nothing like a good ol piece of a chocolate to make a girl happy.
+
+#Tiberius Greeting
+hm.npc.tiberius.greeting1=Time is a fascinating thing, one second it's going slow then the next hour it's passing by faster than light!
+hm.npc.tiberius.greeting2=When I was a child my favourite nursery rhyme was hickory dickory dock.
+hm.npc.tiberius.greeting3=What time is it?
+hm.npc.tiberius.greeting4=My favourite season is spring, as that's when a new year starts!
+hm.npc.tiberius.greeting5=I've never understood why some people are afraid of blood, I had a friend who delved in to Sanguimancy, he almost took over the world, shame he was caught redhanded before he got away with it. I guess it's just not the time for it.
+
+###Quests
+## Cow Tutorial

@@ -17,53 +17,69 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "1.0"
-group= "com.yourname.modid" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "modid"
+// define the properties file
+ext.configFile = file "build.properties"
+
+configFile.withReader {
+    // read config.  it shall from now on be referenced as simply config or as project.config
+    def prop = new Properties()
+    prop.load(it)
+    project.ext.config = new ConfigSlurper().parse prop
+}
+
+buildnumber = ""
+if (System.getenv().BUILD_NUMBER) {
+    buildnumber = "-" + System.getenv().BUILD_NUMBER
+}
+
+version = config.minecraft_version + "-" + config.mod_version + buildnumber
+group= "com.github.joshie.harvest-moon" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "Harvest Moon"
+
+dependencies {
+    compile fileTree(dir: 'libs', include: '*.jar')
+}
 
 minecraft {
-    version = "1.7.10-10.13.1.1210-new"
+    version = config.minecraft_version + "-" + config.forge_version
     assetDir = "eclipse/assets"
 }
 
-dependencies {
-    // you may put jars on which you depend on in ./libs
-    // or you may define them like so..
-    //compile "some.group:artifact:version:classifier"
-    //compile "some.group:artifact:version"
-      
-    // real examples
-    //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
-    //compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
-
-    // for more info...
-    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
-    // http://www.gradle.org/docs/current/userguide/dependency_management.html
-
-}
-
-processResources
-{
-    // this will ensure that this task is redone when the versions change.
-    inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
-
+processResources {
     // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
-                
-        // replace version and mcversion
-        expand 'version':project.version, 'mcversion':project.minecraft.version
+        include '**/*.info'
+        include '**/*.properties'
+
+        expand ([
+            'modid': project.archivesBaseName,
+            'mod_version': project.config.mod_version,
+            'minecraft_version': project.config.minecraft_version
+        ])
     }
-        
+
     // copy everything else, thats not the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
+        exclude '**/*build.properties'
+        exclude '**/todolist.txt'
     }
 }
 
 jar {
-        manifest {
-        attributes 'FMLAT': 'harvestmoon_at.cfg'
-    }
+    archiveName="Harvest Moon-" + config.minecraft_version + "-" + config.mod_version + buildnumber + ".jar"
+}
+
+task sourceJar(type: Jar) {
+    archiveName="Harvest Moon-" + config.minecraft_version + "-" + config.mod_version + buildnumber + "-src.jar"
+    from sourceSets.main.java
+}
+
+task deobfJar(type: Jar) {
+    archiveName="Harvest Moon-" + config.minecraft_version + "-" + config.mod_version + buildnumber + "-deobf.jar"
+    from sourceSets.main.output
+}
+
+artifacts {
+    archives deobfJar
+    archives sourceJar
 }

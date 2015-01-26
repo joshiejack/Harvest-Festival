@@ -35,11 +35,6 @@ dependencies {
     compile fileTree(dir: 'libs', include: '*.jar')
 }
 
-minecraft {
-    version = config.minecraft_version + "-" + config.forge_version
-    assetDir = "eclipse/assets"
-}
-
 processResources {
     inputs.property "version", project.version
     inputs.property "mcversion", project.minecraft.version

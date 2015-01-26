@@ -1,0 +1,16 @@
+[
+{
+  "modid": "HarvestMoon",
+  "name": "Harvest Moon - Friends of Minecraft",
+  "description": "A Mod inspired by the Harvest Moon series of games",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "http://harvest.joshiejack.uk",
+  "updateUrl": "",
+  "authors": ["joshie"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

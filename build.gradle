@@ -17,24 +17,19 @@ buildscript {
 
 apply plugin: 'forge'
 
-// define the properties file
-ext.configFile = file "build.properties"
-
-configFile.withReader {
-    // read config.  it shall from now on be referenced as simply config or as project.config
-    def prop = new Properties()
-    prop.load(it)
-    project.ext.config = new ConfigSlurper().parse prop
-}
-
-buildnumber = ""
+ext.buildnumber=""
 if (System.getenv().BUILD_NUMBER) {
-    buildnumber = "-" + System.getenv().BUILD_NUMBER
+    ext.buildnumber="-" + System.getenv().BUILD_NUMBER
 }
 
-version = config.minecraft_version + "-" + config.mod_version + buildnumber
-group= "com.github.joshie.harvest-moon" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+version = "${minecraft_version}-${mod_version}${buildnumber}"
+group= "uk.joshiejack.harvest" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "Harvest Moon"
+
+minecraft {
+    version = "${minecraft_version}-${forge_version}"
+    runDir = "eclipse"
+}
 
 dependencies {
     compile fileTree(dir: 'libs', include: '*.jar')
@@ -46,37 +41,40 @@ minecraft {
 }
 
 processResources {
-    // replace stuff in mcmod.info, nothing else
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+    
     from(sourceSets.main.resources.srcDirs) {
         include '**/*.info'
         include '**/*.properties'
 
-        expand ([
-            'modid': project.archivesBaseName,
-            'mod_version': project.config.mod_version,
-            'minecraft_version': project.config.minecraft_version
-        ])
+        expand 'version': project.version, 'mcversion': project.minecraft.version
     }
 
-    // copy everything else, thats not the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
-        exclude '**/*build.properties'
-        exclude '**/todolist.txt'
+        exclude '**/*.info'
+        exclude '**/*.properties'
+        exclude '**/*todolist.txt'
     }
 }
 
 jar {
-    archiveName="Harvest Moon-" + config.minecraft_version + "-" + config.mod_version + buildnumber + ".jar"
+    manifest {
+        attributes 'FMLAT': 'harvestmoon_at.cfg'
+    }
 }
 
 task sourceJar(type: Jar) {
-    archiveName="Harvest Moon-" + config.minecraft_version + "-" + config.mod_version + buildnumber + "-src.jar"
-    from sourceSets.main.java
+    from sourceSets.main.allSource
+    classifier = 'src'
 }
 
 task deobfJar(type: Jar) {
-    archiveName="Harvest Moon-" + config.minecraft_version + "-" + config.mod_version + buildnumber + "-deobf.jar"
+    manifest {
+        attributes 'FMLAT': 'harvestmoon_at.cfg'
+    }
     from sourceSets.main.output
+    classifier = 'dev'
 }
 
 artifacts {

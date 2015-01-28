@@ -1,13 +1,18 @@
+//WORKING ON THESE THINGS MYSELF
 Things to get Functioning:
 • Fridge + Kitchen + Extra stuff combo + Getting cooking working correctly)
+• Gui for the fridge
+• Gui for the shipping bin
 • Shipping bin with GUI
 • Harder Animal Breeding (Assign sexes, limit when you can breed them).
 
 Other things to do (AFTER EVERYTHING ELSE)
 • Bunch of Config Options
 
+
+//NEED HELP WITH THINGS BELOW THIS POINT
 Buildings: TODO
-(Make the buildings using vanilla only blocks, and send me the save)
+Info: (Make the buildings using vanilla only blocks, and send me the save)
 • Harvest Goddess
 • Animal Barn (Sells you Animals)
 • Cafe
@@ -20,6 +25,7 @@ Buildings: TODO
 • Miners Hut
 
 Quests: TODO
+Info: (Coding see joshie.harvestmoon.quests.*)
 • Tutorial Quests
 • Quests for turning cursed tools to Blessed
 • Quests for upgrading tools
@@ -28,6 +34,7 @@ Quests: TODO
 • Fun side quests
 
 Rendering: TODO
+Info: (Coding see joshie.harvestmoon.crops.render.*)
 • All crops and their stages
 • Steamer
 • Oven
@@ -41,9 +48,7 @@ Rendering: TODO
 Textures: TODO
 
 GUI
-• Better way of display ing season/day/year/gold
-• Gui for the fridge
-• Gui for the shipping bin
+• Better graphic for displaying season/day/year/gold
 
 -- Tool Icons in the following materials:
 -Basic, Copper, Silver, Gold, Mystril, Cursed, Blessed, Mythic (+Wood, Stone, Iron, Gold, Diamond for config option)
@@ -67,7 +72,6 @@ GUI
 • General Store Owner
 • Miner
 • Fisherman
-
 
 -- Crop Icons (Crops and Seeds)
 • Magic Flower

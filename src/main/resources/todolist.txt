@@ -7,6 +7,7 @@ Other things to do (AFTER EVERYTHING ELSE)
 • Bunch of Config Options
 
 Buildings: TODO
+(Make the buildings using vanilla only blocks, and send me the save)
 • Harvest Goddess
 • Animal Barn (Sells you Animals)
 • Cafe

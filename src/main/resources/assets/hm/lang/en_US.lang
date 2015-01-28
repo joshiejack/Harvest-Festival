@@ -49,6 +49,45 @@ hm.sizeable.milk=Milk
 hm.sizeable.wool=Wool
 hm.sizeable.fish=Fish
 
+#Tools
+#Hoe
+hm.hoe.basic=Hoe
+hm.hoe.copper=Copper Hoe
+hm.hoe.silver=Silver Hoe
+hm.hoe.gold=Gold Hoe
+hm.hoe.mystril=Mystril Hoe
+hm.hoe.cursed=Cursed Hoe
+hm.hoe.blessed=Blessed Hoe
+hm.hoe.mythic=Mythic Hoe
+#Sickle
+hm.sickle.basic=Sickle
+hm.sickle.copper=Copper Sickle
+hm.sickle.silver=Silver Sickle
+hm.sickle.gold=Gold Sickle
+hm.sickle.mystril=Mystril Sickle
+hm.sickle.cursed=Cursed Sickle
+hm.sickle.blessed=Blessed Sickle
+hm.sickle.mythic=Mythic Sickle
+#Watering Can
+hm.wateringcan.basic=Watering Can
+hm.wateringcan.copper=Copper Watering Can
+hm.wateringcan.silver=Silver Watering Can
+hm.wateringcan.gold=Gold Watering Can
+hm.wateringcan.mystril=Mystril Watering Can
+hm.wateringcan.cursed=Cursed Watering Can
+hm.wateringcan.blessed=Blessed Watering Can
+hm.wateringcan.mythic=Mythic Watering Can
+
+#Blocks
+hm.general.block.shipping=Shipment Box
+hm.general.block.fridge=Fridge
+hm.general.block.kitchen=Kitchen Counter
+hm.general.block.pot=Cooking Pot
+hm.general.block.pan.frying=Frying Pan
+hm.general.block.mixer=Food Mixer
+hm.general.block.oven=Oven
+hm.general.block.steamer=Steamer
+
 #Seasons
 hm.season.spring=Spring
 hm.season.summer=Summer

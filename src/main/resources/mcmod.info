@@ -1,7 +1,7 @@
 [
 {
   "modid": "HarvestMoon",
-  "name": "Harvest Moon - Friends of Minecraft",
+  "name": "Harvest Moon",
   "description": "A Mod inspired by the Harvest Moon series of games",
   "version": "${version}",
   "mcversion": "${mcversion}",

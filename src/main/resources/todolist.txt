@@ -1,0 +1,123 @@
+Things to get Functioning:
+• Fridge + Kitchen + Extra stuff combo + Getting cooking working correctly)
+• Shipping bin with GUI
+• Harder Animal Breeding (Assign sexes, limit when you can breed them).
+
+Other things to do (AFTER EVERYTHING ELSE)
+• Bunch of Config Options
+
+Buildings: TODO
+• Harvest Goddess
+• Animal Barn (Sells you Animals)
+• Cafe
+• Seed Shop
+• Blacksmith
+• Church
+• Townhall
+• General Store
+• Fishing Hut
+• Miners Hut
+
+Quests: TODO
+• Tutorial Quests
+• Quests for turning cursed tools to Blessed
+• Quests for upgrading tools
+• Quests for buying more kitchen tools
+• Quests for growing certain amounts of stuff etc.
+• Fun side quests
+
+Rendering: TODO
+• All crops and their stages
+• Steamer
+• Oven
+• Mixer
+• Frying Pan
+• Cooking Pot
+• 'Kitchen' (Counter)
+• Fridge
+• Shipping Bin
+
+Textures: TODO
+
+GUI
+• Better way of display ing season/day/year/gold
+• Gui for the fridge
+• Gui for the shipping bin
+
+-- Tool Icons in the following materials:
+-Basic, Copper, Silver, Gold, Mystril, Cursed, Blessed, Mythic (+Wood, Stone, Iron, Gold, Diamond for config option)
+• Hoes
+• Sickles
+• Watering Cans
+
+-- NPC Skins + SpawnThemIcon
+• Harvest Goddess
+• Animal Farm Owner
+• Cafe Owner
+• Seed Shop Owner
+• Blacksmith
+• Priest
+• Child of Seed Shop Owner
+• Granny that works in Cafe
+• Mayor
+• Mayors daughter (teenager)
+• Mayors daughter (child)
+• Clockworker
+• General Store Owner
+• Miner
+• Fisherman
+
+
+-- Crop Icons (Crops and Seeds)
+• Magic Flower
+• Green Pepper
+• Spinach
+• Sweet Potato
+• Carrot
+• Eggplant
+• Pinkcat
+• Pineapple
+• Pumpkin
+• Corn
+• Onion
+• Tomato
+• Toyflower
+• Moondrop Flower
+• Cabbage
+• Strawberry
+• Cucumber
+• Potato
+• Turnip
+
+-- Food Icons
+• Stir Fry
+• Fried Rice
+• Savoury Pancake
+• (A whole bunch of other foods from friends of mineral town).
+
+-- General Items
+• Cow Milker
+• Animal Brush
+• Animal Medicine
+• Chicken Feed
+
+-- Animal Treats
+• Cow Treat
+• Sheep Treat
+• Chicken Treat
+• Horse Treat
+• Pig Treat
+• Cat Treat
+• Dog Treat
+• Other Animal Treat
+
+-- Animal Products
+• Large Ball of Wool
+• Medium Ball of Wool
+• Small Ball of Wool
+• Large Chicken Egg
+• Medium Chicken Egg
+• Small Chicken Egg
+• Large Bottle of Milk
+• Medium Bottle of Milk
+• Small Bottle of Milk

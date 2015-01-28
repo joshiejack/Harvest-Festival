@@ -11,13 +11,13 @@ import net.minecraft.block.Block;
 
 public class HMBlocks {
     public static Block crops;
-    public static Block shipping;
+    public static Block tiles;
     public static Block soil;
     public static Block withered;
 
     public static void init() {
         crops = new BlockCrop().setBlockName("crops.block");
-        shipping = new BlockGeneral().setBlockName("general.block");
+        tiles = new BlockGeneral().setBlockName("general.block");
         soil = new BlockSoil().setHardness(0.6F).setStepSound(soundTypeGravel).setBlockName("farmland").setBlockTextureName("farmland");
         withered = new BlockWithered().setBlockName("crops.withered");
 

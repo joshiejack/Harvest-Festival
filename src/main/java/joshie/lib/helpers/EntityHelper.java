@@ -3,8 +3,6 @@ package joshie.lib.helpers;
 import java.util.List;
 import java.util.UUID;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.server.FMLServerHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -12,11 +10,11 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.DimensionManager;
+import cpw.mods.fml.common.FMLCommonHandler;
 
 public class EntityHelper {
     //Whether the entity is currently in water or not

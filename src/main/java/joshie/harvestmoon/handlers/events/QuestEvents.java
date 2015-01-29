@@ -1,22 +1,15 @@
 package joshie.harvestmoon.handlers.events;
 
-import static joshie.harvestmoon.helpers.QuestHelper.*;
+import static joshie.harvestmoon.helpers.QuestHelper.getCurrentQuest;
 
 import java.util.HashSet;
 
-import joshie.harvestmoon.helpers.SizeableHelper;
-import joshie.harvestmoon.lib.SizeableMeta;
-import joshie.harvestmoon.lib.SizeableMeta.Size;
 import joshie.harvestmoon.quests.Quest;
-import joshie.lib.helpers.ItemHelper;
-import net.minecraft.entity.passive.EntityChicken;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import static joshie.harvestmoon.HarvestMoon.handler;
 
 public class QuestEvents {
     @SubscribeEvent(priority = EventPriority.HIGH)

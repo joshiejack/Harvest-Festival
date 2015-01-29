@@ -22,6 +22,7 @@ public class BlockWithered extends BlockHMBase {
         super(Material.plants);
         setBlockUnbreakable();
         setStepSound(Block.soundTypeGrass);
+        setCreativeTab(null);
     }
 
     @Override

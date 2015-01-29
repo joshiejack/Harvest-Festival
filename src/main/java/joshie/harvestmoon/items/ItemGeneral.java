@@ -5,7 +5,6 @@ import static joshie.harvestmoon.helpers.AnimalHelper.canProduceProduct;
 import static joshie.harvestmoon.helpers.AnimalHelper.feed;
 import static joshie.harvestmoon.helpers.AnimalHelper.setProducedProduct;
 import joshie.harvestmoon.helpers.SizeableHelper;
-import joshie.harvestmoon.lib.CropMeta;
 import joshie.harvestmoon.lib.SizeableMeta;
 import joshie.harvestmoon.lib.SizeableMeta.Size;
 import net.minecraft.entity.EntityLivingBase;

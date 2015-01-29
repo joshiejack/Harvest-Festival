@@ -2,7 +2,6 @@ package joshie.harvestmoon.items;
 
 import static joshie.harvestmoon.HarvestMoon.handler;
 import joshie.harvestmoon.entities.AnimalData;
-import joshie.harvestmoon.init.HMNPCs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;

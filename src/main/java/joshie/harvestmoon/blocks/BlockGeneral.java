@@ -2,11 +2,9 @@ package joshie.harvestmoon.blocks;
 
 import static joshie.harvestmoon.helpers.ShippingHelper.addForShipping;
 import joshie.harvestmoon.HarvestMoon;
-import joshie.harvestmoon.HarvestTab;
 import joshie.harvestmoon.handlers.GuiHandler;
 import joshie.harvestmoon.lib.RenderIds;
 import joshie.harvestmoon.util.IShippable;
-import joshie.lib.base.BlockBaseMeta;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;

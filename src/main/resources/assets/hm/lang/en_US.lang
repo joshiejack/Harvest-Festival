@@ -1,6 +1,9 @@
 #en_US.lang by joshie ;)
 hm.tab.main=Harvest Moon
 
+#Buildings
+hm.structures.pond=[SPAWN] Harvest Goddess Pond
+
 #Cheat Items
 hm.cheat.coord.setter=[BuildingGen] Coordinate Setter
 hm.cheat.code.generator=[BuildingGen] Code Generator
@@ -33,6 +36,10 @@ hm.crop.flower.magic=Magic Flower
 
 #General Items
 hm.general.item.feather.blue=Blue Feather
+hm.general.item.milker=Milker
+hm.general.item.brush=Animal Brush
+hm.general.item.medicine=Animal Medicine
+hm.general.item.feed=Chicken Feed
 
 #Meals
 hm.meal.level=Restores
@@ -81,6 +88,17 @@ hm.wateringcan.mystril=Mystril Watering Can
 hm.wateringcan.cursed=Cursed Watering Can
 hm.wateringcan.blessed=Blessed Watering Can
 hm.wateringcan.mythic=Mythic Watering Can
+
+#Treats
+hm.treat.cow=Cow Treat
+hm.treat.sheep=Sheep Treat
+hm.treat.chicken=Chicken Treat
+hm.treat.horse=Horse Treat
+hm.treat.pig=Pig Treat
+hm.treat.cat=Cat Treat
+hm.treat.dog=Dog Treat
+hm.treat.other=Animal Treat
+
 
 #Blocks
 hm.general.block.shipping=Shipment Box

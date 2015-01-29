@@ -15,6 +15,10 @@ public abstract class Building {
     protected int[] offsetY;
     protected int[] offsetZ;
     private String name;
+    
+    public String getName() {
+        return name;
+    }
 
     public Building setName(String name) {
         this.name = name;

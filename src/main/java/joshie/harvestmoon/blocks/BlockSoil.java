@@ -1,7 +1,6 @@
 package joshie.harvestmoon.blocks;
 
 import static joshie.harvestmoon.helpers.CropHelper.removeFarmland;
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFarmland;
 import net.minecraft.world.Explosion;
@@ -10,6 +9,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.util.ForgeDirection;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class BlockSoil extends BlockFarmland {
     public BlockSoil() {

@@ -108,7 +108,7 @@ public abstract class ItemBaseTool extends ItemBaseSingle {
     public void registerIcons(IIconRegister register) {
         icons = new IIcon[ToolTier.values().length];
         for (int i = 0; i < icons.length; i++) {
-            icons[i] = register.registerIcon(path + getUnlocalizedName() + "_" + ToolTier.values()[i].name().toLowerCase());
+            icons[i] = register.registerIcon(path + getUnlocalizedName().replace("item.", "") + "_" + ToolTier.values()[i].name().toLowerCase());
         }
     }
 

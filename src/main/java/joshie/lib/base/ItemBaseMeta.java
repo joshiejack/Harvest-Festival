@@ -38,13 +38,13 @@ public abstract class ItemBaseMeta extends Item implements IHasMetaItem {
 
     @Override
     public String getUnlocalizedName() {
-        return mod + "." + super.getUnlocalizedName().replace("item.", "").replace("_", ".");
+        return mod + "." + super.getUnlocalizedName().replace("item.", "");
     }
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
         String name = getName(stack).replaceAll("(.)([A-Z])", "$1$2").toLowerCase();
-        return Text.localize(getUnlocalizedName() + "." + name);
+        return Text.localize(getUnlocalizedName() + "." + name.replace("_", "."));
     }
 
     public String getName(ItemStack stack) {

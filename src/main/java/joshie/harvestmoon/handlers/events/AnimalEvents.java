@@ -4,7 +4,6 @@ import static joshie.harvestmoon.HarvestMoon.handler;
 import static joshie.harvestmoon.helpers.AnimalHelper.feed;
 import static joshie.harvestmoon.network.PacketHandler.sendToServer;
 import joshie.harvestmoon.helpers.RelationsHelper;
-import joshie.harvestmoon.init.HMItems;
 import joshie.harvestmoon.network.PacketSyncCanProduce;
 import joshie.harvestmoon.network.PacketSyncRelations;
 import net.minecraft.entity.passive.EntityAnimal;

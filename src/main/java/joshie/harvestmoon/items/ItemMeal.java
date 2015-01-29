@@ -8,7 +8,6 @@ import java.util.List;
 import joshie.harvestmoon.cooking.FoodRegistry;
 import joshie.harvestmoon.cooking.Meal;
 import joshie.harvestmoon.cooking.Recipe;
-import joshie.harvestmoon.lib.CropMeta;
 import joshie.harvestmoon.util.Translate;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;

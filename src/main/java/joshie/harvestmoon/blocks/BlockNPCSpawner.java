@@ -1,7 +1,5 @@
 package joshie.harvestmoon.blocks;
 
-import joshie.harvestmoon.HarvestTab;
-import joshie.lib.base.BlockBaseMeta;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import cpw.mods.fml.relauncher.Side;

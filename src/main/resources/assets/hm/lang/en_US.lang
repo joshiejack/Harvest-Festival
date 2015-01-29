@@ -1,6 +1,13 @@
 #en_US.lang by joshie ;)
 hm.tab.main=Harvest Moon
 
+#Buildings
+hm.structures.pond=[SPAWN] Harvest Goddess Pond
+
+#Cheat Items
+hm.cheat.coord.setter=[BuildingGen] Coordinate Setter
+hm.cheat.code.generator=[BuildingGen] Code Generator
+
 #Crops
 hm.crop.giant=Giant
 hm.crop.giant.format=%G %C
@@ -28,7 +35,11 @@ hm.crop.pepper.green=Green Pepper
 hm.crop.flower.magic=Magic Flower
 
 #General Items
-hm.general.feather.blue=Blue Feather
+hm.general.item.feather.blue=Blue Feather
+hm.general.item.milker=Milker
+hm.general.item.brush=Animal Brush
+hm.general.item.medicine=Animal Medicine
+hm.general.item.feed=Chicken Feed
 
 #Meals
 hm.meal.level=Restores
@@ -48,6 +59,56 @@ hm.sizeable.egg=Egg
 hm.sizeable.milk=Milk
 hm.sizeable.wool=Wool
 hm.sizeable.fish=Fish
+
+#Tools
+#Hoe
+hm.hoe.basic=Hoe
+hm.hoe.copper=Copper Hoe
+hm.hoe.silver=Silver Hoe
+hm.hoe.gold=Gold Hoe
+hm.hoe.mystril=Mystril Hoe
+hm.hoe.cursed=Cursed Hoe
+hm.hoe.blessed=Blessed Hoe
+hm.hoe.mythic=Mythic Hoe
+#Sickle
+hm.sickle.basic=Sickle
+hm.sickle.copper=Copper Sickle
+hm.sickle.silver=Silver Sickle
+hm.sickle.gold=Gold Sickle
+hm.sickle.mystril=Mystril Sickle
+hm.sickle.cursed=Cursed Sickle
+hm.sickle.blessed=Blessed Sickle
+hm.sickle.mythic=Mythic Sickle
+#Watering Can
+hm.wateringcan.basic=Watering Can
+hm.wateringcan.copper=Copper Watering Can
+hm.wateringcan.silver=Silver Watering Can
+hm.wateringcan.gold=Gold Watering Can
+hm.wateringcan.mystril=Mystril Watering Can
+hm.wateringcan.cursed=Cursed Watering Can
+hm.wateringcan.blessed=Blessed Watering Can
+hm.wateringcan.mythic=Mythic Watering Can
+
+#Treats
+hm.treat.cow=Cow Treat
+hm.treat.sheep=Sheep Treat
+hm.treat.chicken=Chicken Treat
+hm.treat.horse=Horse Treat
+hm.treat.pig=Pig Treat
+hm.treat.cat=Cat Treat
+hm.treat.dog=Dog Treat
+hm.treat.other=Animal Treat
+
+
+#Blocks
+hm.general.block.shipping=Shipment Box
+hm.general.block.fridge=Fridge
+hm.general.block.kitchen=Kitchen Counter
+hm.general.block.pot=Cooking Pot
+hm.general.block.pan.frying=Frying Pan
+hm.general.block.mixer=Food Mixer
+hm.general.block.oven=Oven
+hm.general.block.steamer=Steamer
 
 #Seasons
 hm.season.spring=Spring

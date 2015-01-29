@@ -5,7 +5,6 @@ import java.util.HashMap;
 import joshie.harvestmoon.entities.EntityNPC;
 import joshie.harvestmoon.entities.NPC;
 import joshie.harvestmoon.init.HMNPCs;
-import joshie.harvestmoon.lib.CropMeta;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;

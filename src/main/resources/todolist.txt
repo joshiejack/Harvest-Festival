@@ -46,14 +46,15 @@ Info: (Coding see joshie.harvestmoon.crops.render.*)
 • Shipping Bin
 
 Textures: TODO
+//See texture_names.txt for names of textures if you want :P
 
 GUI
 • Better graphic for displaying season/day/year/gold
 
 -- Tool Icons in the following materials:
 -Basic, Copper, Silver, Gold, Mystril, Cursed, Blessed, Mythic (+Wood, Stone, Iron, Gold, Diamond for config option)
+//See the Sickles for an idea of how to match them up
 • Hoes
-• Sickles
 • Watering Cans
 
 -- NPC Skins + SpawnThemIcon

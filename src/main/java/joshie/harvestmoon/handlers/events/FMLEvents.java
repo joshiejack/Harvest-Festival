@@ -2,7 +2,6 @@ package joshie.harvestmoon.handlers.events;
 
 import static joshie.harvestmoon.HarvestMoon.handler;
 import static joshie.harvestmoon.network.PacketHandler.sendToClient;
-import static joshie.lib.helpers.ServerHelper.getWorld;
 import joshie.harvestmoon.network.PacketSetCalendar;
 import joshie.harvestmoon.player.PlayerDataServer;
 import net.minecraft.entity.player.EntityPlayer;

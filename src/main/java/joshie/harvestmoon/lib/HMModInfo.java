@@ -6,6 +6,7 @@ public class HMModInfo {
     public static final String MODID = "HarvestMoon";
     public static final String MODNAME = "Harvest Moon";
     public static final String MODPATH = "hm";
+    public static final String JAVAPATH = "joshie.harvestmoon.";
     
     public static final String CROPPATH = "hm:crops/";
     public static final String MEALPATH = "hm:meals/";

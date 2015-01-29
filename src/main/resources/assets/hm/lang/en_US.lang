@@ -1,6 +1,10 @@
 #en_US.lang by joshie ;)
 hm.tab.main=Harvest Moon
 
+#Cheat Items
+hm.cheat.coord.setter=[BuildingGen] Coordinate Setter
+hm.cheat.code.generator=[BuildingGen] Code Generator
+
 #Crops
 hm.crop.giant=Giant
 hm.crop.giant.format=%G %C
@@ -28,7 +32,7 @@ hm.crop.pepper.green=Green Pepper
 hm.crop.flower.magic=Magic Flower
 
 #General Items
-hm.general.feather.blue=Blue Feather
+hm.general.item.feather.blue=Blue Feather
 
 #Meals
 hm.meal.level=Restores

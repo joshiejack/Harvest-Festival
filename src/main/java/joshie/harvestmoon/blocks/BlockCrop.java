@@ -7,7 +7,6 @@ import java.util.Random;
 
 import joshie.harvestmoon.crops.render.RenderCrop;
 import joshie.harvestmoon.lib.RenderIds;
-import joshie.lib.base.BlockBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -27,6 +26,7 @@ public class BlockCrop extends BlockHMBase implements IPlantable {
         super(Material.plants);
         setBlockUnbreakable();
         setStepSound(Block.soundTypeGrass);
+        setCreativeTab(null);
     }
 
     @Override

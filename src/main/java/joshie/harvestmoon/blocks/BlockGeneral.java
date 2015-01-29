@@ -4,6 +4,7 @@ import static joshie.harvestmoon.helpers.ShippingHelper.addForShipping;
 import joshie.harvestmoon.HarvestMoon;
 import joshie.harvestmoon.HarvestTab;
 import joshie.harvestmoon.handlers.GuiHandler;
+import joshie.harvestmoon.lib.RenderIds;
 import joshie.harvestmoon.util.IShippable;
 import joshie.lib.base.BlockBaseMeta;
 import net.minecraft.block.material.Material;
@@ -27,6 +28,21 @@ public class BlockGeneral extends BlockHMBaseMeta {
 
     public BlockGeneral() {
         super(Material.wood);
+    }
+    
+    @Override
+    public boolean renderAsNormalBlock() {
+        return false;
+    }
+
+    @Override
+    public boolean isOpaqueCube() {
+        return false;
+    }
+    
+    @Override
+    public int getRenderType() {
+        return RenderIds.ALL;
     }
 
     @Override

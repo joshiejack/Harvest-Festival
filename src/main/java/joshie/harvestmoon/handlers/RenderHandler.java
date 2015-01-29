@@ -19,7 +19,7 @@ public class RenderHandler implements ISimpleBlockRenderingHandler {
     private static final HashMap<String, RenderCrop> crops = new HashMap();
     private static final HashMap<String, RenderBase> renders = new HashMap();
 
-    public static void register(String string, Class clazz) {
+    public static void registerCrop(String string, Class clazz) {
         try {
             crops.put(string, (RenderCrop) clazz.newInstance());
         } catch (Exception e) {}
@@ -53,7 +53,6 @@ public class RenderHandler implements ISimpleBlockRenderingHandler {
                 return false;
             }
         } else {
-
             String data = Block.blockRegistry.getNameForObject(block) + ":" + world.getBlockMetadata(x, y, z);
             if (renders.get(data) != null) return renders.get(data).render(renderer, world, x, y, z);
             else return false;

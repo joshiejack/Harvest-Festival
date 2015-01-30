@@ -73,11 +73,12 @@ public class ItemSized extends ItemHMMeta implements IShippable, IRateable {
     @SideOnly(Side.CLIENT)
     @Override
     public void registerIcons(IIconRegister register) {
+        String path = this.path != null ? this.path : mod + ":";
         icons = new IIcon[getMetaCount() * 3];
         for (int i = 0; i < icons.length; i += 3) {
-            icons[i] = register.registerIcon(getName(new ItemStack(this, 1, i / 3)) + "_small");
-            icons[i + 1] = register.registerIcon(getName(new ItemStack(this, 1, i / 3)) + "_medium");
-            icons[i + 2] = register.registerIcon(getName(new ItemStack(this, 1, i / 3)) + "_large");
+            icons[i] = register.registerIcon(path + getName(new ItemStack(this, 1, i / 3)) + "_small");
+            icons[i + 1] = register.registerIcon(path + getName(new ItemStack(this, 1, i / 3)) + "_medium");
+            icons[i + 2] = register.registerIcon(path + getName(new ItemStack(this, 1, i / 3)) + "_large");
         }
     }
 

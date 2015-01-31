@@ -61,7 +61,7 @@ public class HMSavedData extends WorldSavedData {
             NBTTagCompound tag = tag_list_players.getCompoundTagAt(i);
             PlayerDataServer data = new PlayerDataServer();
             data.readFromNBT(tag);
-            UUID uuid = new UUID(tag.getLong("UUIDMost"), tag.getLong("UUIDLeast"));
+            UUID uuid = new UUID(tag.getLong("Root-UUIDMost"), tag.getLong("Root-UUIDLeast"));
             players.put(uuid, data);
         }
     }
@@ -84,6 +84,8 @@ public class HMSavedData extends WorldSavedData {
         for (Map.Entry<UUID, PlayerDataServer> entry : players.entrySet()) {
             if (entry.getKey() != null && entry.getValue() != null) {
                 NBTTagCompound tag = new NBTTagCompound();
+                tag.setLong("Root-UUIDMost", entry.getKey().getMostSignificantBits());
+                tag.setLong("Root-UUIDLeast", entry.getKey().getLeastSignificantBits());
                 entry.getValue().writeToNBT(tag);
                 tag_list_players.appendTag(tag);
             }

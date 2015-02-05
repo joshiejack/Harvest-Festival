@@ -1,7 +1,6 @@
 package joshie.harvestmoon.blocks.render;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import joshie.harvestmoon.blocks.tiles.TileFryingPan;
 import joshie.lib.util.EntityFakeItem;
@@ -38,14 +37,14 @@ public class SpecialRendererFryingPan extends TileEntitySpecialRenderer {
 
             int max = ingredients.size();
             for (int i = 0; i < max; i++) {
-                renderIngredient(tile.getWorldObj(), ingredients.get(i), max, i);
+                renderIngredient(tile.getWorldObj(), ingredients.get(i), max, i, pan.getRotation());
             }
 
             GL11.glPopMatrix();
         }
     }
 
-    void renderIngredient(World world, ItemStack stack, int max, int id) {
+    void renderIngredient(World world, ItemStack stack, int max, int id, float rotation) {
         EntityFakeItem entityitem = new EntityFakeItem(world, 0.0D, 0.0D, 0.0D, stack);
         GL11.glPushMatrix();
         GL11.glTranslatef(0.5F, -0.125F, 0.5F);
@@ -53,7 +52,7 @@ public class SpecialRendererFryingPan extends TileEntitySpecialRenderer {
         if (!(stack.getItem() instanceof ItemBlock)) {
             GL11.glRotatef(-90, 1F, 0F, 0F);
             if (id < 8) {
-                GL11.glRotatef(id * 45, 0F, 0F, 1F);
+                GL11.glRotatef((id * 45) + rotation, 0F, 0F, 1F);
                 GL11.glTranslatef(0.5F, 0F, 0.5F);
             } else {
                GL11.glTranslatef(0.0F, -0.1F, 0.5F);

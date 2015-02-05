@@ -10,8 +10,10 @@ import joshie.harvestmoon.lib.RenderIds;
 import joshie.harvestmoon.network.PacketCropRequest;
 import joshie.harvestmoon.network.PacketHandler;
 import joshie.harvestmoon.util.RenderBase;
+import joshie.lib.util.IFaceable;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
@@ -54,8 +56,12 @@ public class RenderHandler implements ISimpleBlockRenderingHandler {
             }
         } else {
             String data = Block.blockRegistry.getNameForObject(block) + ":" + world.getBlockMetadata(x, y, z);
-            if (renders.get(data) != null) return renders.get(data).render(renderer, world, x, y, z);
-            else return false;
+            if (renders.get(data) != null) {
+                TileEntity tile = world.getTileEntity(x, y, z);
+                if (tile instanceof IFaceable) {
+                    return renders.get(data).setFacing(((IFaceable) tile).getFacing()).render(renderer, world, x, y, z);
+                } else return renders.get(data).render(renderer, world, x, y, z);
+            } else return false;
         }
     }
 

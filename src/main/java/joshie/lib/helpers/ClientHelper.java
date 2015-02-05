@@ -3,7 +3,7 @@ package joshie.lib.helpers;
 import java.awt.Dimension;
 import java.awt.Point;
 
-import joshie.harvestmoon.network.PacketLocation;
+import joshie.harvestmoon.network.AbstractPacketLocation;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -127,7 +127,7 @@ public class ClientHelper {
         return FMLClientHandler.instance().getCurrentLanguage();
     }
 
-    public static TileEntity getTile(PacketLocation message) {
+    public static TileEntity getTile(AbstractPacketLocation message) {
         return getWorld().getTileEntity(message.x, message.y, message.z);
     }
 }

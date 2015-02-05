@@ -32,6 +32,11 @@ public abstract class RenderBase {
 
     public RenderBase() {}
 
+    public RenderBase setFacing(ForgeDirection dir) {
+        this.dir = dir;
+        return this;
+    }
+
     //World Based Rendering
     public boolean render(RenderBlocks render, IBlockAccess world, int x, int y, int z) {
         isItem = false;

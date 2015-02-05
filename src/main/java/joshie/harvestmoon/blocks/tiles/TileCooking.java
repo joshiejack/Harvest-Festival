@@ -7,19 +7,24 @@ import joshie.harvestmoon.cooking.Utensil;
 import joshie.harvestmoon.network.PacketHandler;
 import joshie.harvestmoon.network.PacketSyncCooking;
 import joshie.lib.helpers.StackHelper;
+import joshie.lib.util.IFaceable;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.util.ForgeDirection;
+import cpw.mods.fml.common.network.simpleimpl.IMessage;
 
-public abstract class TileCooking extends TileEntity {
+public abstract class TileCooking extends TileEntity implements IFaceable {
     public static short COOK_TIMER = 100;
     private boolean cooking;
     private short cookTimer = 0;
     private ArrayList<ItemStack> ingredients = new ArrayList();
     private ArrayList<ItemStack> seasonings = new ArrayList();
     private ItemStack result;
+    private ForgeDirection orientation;
+    private float rotation;
 
     public TileCooking() {}
 
@@ -51,7 +56,22 @@ public abstract class TileCooking extends TileEntity {
     }
 
     @Override
+    public void setFacing(ForgeDirection dir) {
+        orientation = dir;
+    }
+
+    @Override
+    public ForgeDirection getFacing() {
+        return orientation;
+    }
+    
+    public float getRotation() {
+        return rotation;
+    }
+
+    @Override
     public void updateEntity() {
+        //If we are server side perform the actions
         if (!worldObj.isRemote) {
             if (cooking) {
                 cookTimer++;
@@ -69,6 +89,9 @@ public abstract class TileCooking extends TileEntity {
                     this.markDirty();
                 }
             }
+        } else if (cooking) { //If we are client side render some particles
+            rotation += worldObj.rand.nextFloat();
+            worldObj.spawnParticle("smoke", xCoord + 0.5D + +worldObj.rand.nextFloat() - worldObj.rand.nextFloat() / 2, yCoord + 0.5D + worldObj.rand.nextFloat() - worldObj.rand.nextFloat() / 2, zCoord + 0.5D + +worldObj.rand.nextFloat() - worldObj.rand.nextFloat() / 2, 0, 0, 0);
         }
     }
 
@@ -113,9 +136,13 @@ public abstract class TileCooking extends TileEntity {
         this.result = result;
     }
 
+    public IMessage getPacket() {
+        return new PacketSyncCooking(worldObj.provider.dimensionId, xCoord, yCoord, zCoord, orientation, cooking, ingredients, seasonings, result);
+    }
+
     @Override
     public Packet getDescriptionPacket() {
-        return PacketHandler.getPacket(new PacketSyncCooking(worldObj.provider.dimensionId, xCoord, yCoord, zCoord, cooking, ingredients, seasonings, result));
+        return PacketHandler.getPacket(getPacket());
     }
 
     @Override
@@ -123,7 +150,7 @@ public abstract class TileCooking extends TileEntity {
         super.markDirty();
 
         if (!worldObj.isRemote) {
-            PacketHandler.sendAround(new PacketSyncCooking(worldObj.provider.dimensionId, xCoord, yCoord, zCoord, cooking, ingredients, seasonings, result), worldObj.provider.dimensionId, xCoord, yCoord, zCoord);
+            PacketHandler.sendAround(getPacket(), this);
         }
     }
 

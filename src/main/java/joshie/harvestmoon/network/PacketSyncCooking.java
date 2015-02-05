@@ -8,20 +8,22 @@ import joshie.harvestmoon.blocks.tiles.TileCooking;
 import joshie.lib.helpers.ClientHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
-public class PacketSyncCooking extends PacketLocation implements IMessageHandler<PacketSyncCooking, IMessage> {
+public class PacketSyncCooking extends AbstractPacketOrientation implements IMessageHandler<PacketSyncCooking, IMessage> {
     private boolean isCooking, hasResult;
     private int iIngredient, iSeasoning;
     private ArrayList<ItemStack> ingredients, seasonings;
     private ItemStack result;
 
     public PacketSyncCooking() {}
-    public PacketSyncCooking(int dim, int x, int y, int z, boolean isCooking, ArrayList<ItemStack> ingredients, ArrayList<ItemStack> seasonings, ItemStack result) {
-        super(dim, x, y, z);
+
+    public PacketSyncCooking(int dim, int x, int y, int z, ForgeDirection dir, boolean isCooking, ArrayList<ItemStack> ingredients, ArrayList<ItemStack> seasonings, ItemStack result) {
+        super(dim, x, y, z, dir);
         this.isCooking = isCooking;
         this.hasResult = result != null;
         this.iIngredient = ingredients.size();
@@ -82,19 +84,13 @@ public class PacketSyncCooking extends PacketLocation implements IMessageHandler
     }
 
     @Override
-    public IMessage onMessage(PacketSyncCooking message, MessageContext ctx) {           
+    public IMessage onMessage(PacketSyncCooking message, MessageContext ctx) {
+        super.onMessage(message, ctx);
         TileEntity tile = ClientHelper.getTile(message);
         if (tile instanceof TileCooking) {
-            if(!tile.getWorldObj().isRemote) {
-                System.out.println("I AM A SERVER HANDLING A PACKET WTF?" + message.result);
-            } else {
-                System.out.println("I AM A CLIENT HANDLING A PACKET");
-            }
-            
-            
             ((TileCooking) tile).setFromPacket(message.isCooking, message.ingredients, message.seasonings, message.result);
         }
-        
+
         return null;
     }
 }

@@ -6,15 +6,15 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 
-public abstract class PacketLocation implements IMessage {
+public abstract class AbstractPacketLocation implements IMessage {
     protected int dim;
     public int x;
     public int y;
     public int z;
 
-    public PacketLocation() {}
+    public AbstractPacketLocation() {}
 
-    public PacketLocation(int dim, int x, int y, int z) {
+    public AbstractPacketLocation(int dim, int x, int y, int z) {
         this.dim = dim;
         this.x = x;
         this.y = y;

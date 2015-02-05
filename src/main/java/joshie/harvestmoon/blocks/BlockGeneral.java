@@ -14,9 +14,12 @@ import joshie.harvestmoon.blocks.tiles.TileSteamer;
 import joshie.harvestmoon.handlers.GuiHandler;
 import joshie.harvestmoon.lib.RenderIds;
 import joshie.harvestmoon.util.IShippable;
+import joshie.lib.helpers.DirectionHelper;
 import joshie.lib.helpers.ItemHelper;
+import joshie.lib.util.IFaceable;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -113,6 +116,14 @@ public class BlockGeneral extends BlockHMBaseMeta {
             }
 
             return false;
+        }
+    }
+
+    @Override
+    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
+        TileEntity tile = world.getTileEntity(x, y, z);
+        if (tile instanceof IFaceable) {
+            ((IFaceable) tile).setFacing(DirectionHelper.getFacingFromEntity(entity));
         }
     }
 

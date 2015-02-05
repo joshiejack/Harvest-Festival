@@ -4,6 +4,7 @@ import static joshie.harvestmoon.Configuration.PACKET_DISTANCE;
 import static joshie.harvestmoon.lib.HMModInfo.MODID;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.Packet;
+import net.minecraft.tileentity.TileEntity;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
@@ -36,5 +37,9 @@ public class PacketHandler {
 
     public static Packet getPacket(IMessage packet) {
         return INSTANCE.getPacketFrom(packet);
+    }
+
+    public static void sendAround(IMessage packet, TileEntity tile) {
+        sendAround(packet, tile.getWorldObj().provider.dimensionId, tile.xCoord, tile.yCoord, tile.zCoord);
     }
 }

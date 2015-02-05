@@ -1,6 +1,6 @@
 package joshie.harvestmoon.gui;
 
-import joshie.harvestmoon.blocks.TileFridge;
+import joshie.harvestmoon.blocks.tiles.TileFridge;
 import net.minecraft.entity.player.InventoryPlayer;
 
 public class ContainerCooking extends ContainerBase {

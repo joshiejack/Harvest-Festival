@@ -31,7 +31,7 @@ public class SavedRecipe {
             String name = tag.getString("ItemName");
             int damage = tag.getInteger("ItemDamage");
             SafeStack stack = new SafeStack(name, damage);
-            ingredients.add(FoodRegistry.getIngredient(stack));
+            ingredients.add(FoodRegistry.getIngredient(stack.getItem()));
         }
 
         // Ingredients
@@ -41,7 +41,7 @@ public class SavedRecipe {
             String name = tag.getString("ItemName");
             int damage = tag.getInteger("ItemDamage");
             SafeStack stack = new SafeStack(name, damage);
-            seasonings.add(FoodRegistry.getSeasoning(stack));
+            seasonings.add(FoodRegistry.getSeasoning(stack.getItem()));
         }
     }
 

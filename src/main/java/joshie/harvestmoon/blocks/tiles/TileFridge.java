@@ -1,4 +1,4 @@
-package joshie.harvestmoon.blocks;
+package joshie.harvestmoon.blocks.tiles;
 
 import net.minecraft.tileentity.TileEntity;
 

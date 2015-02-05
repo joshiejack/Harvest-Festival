@@ -3,6 +3,7 @@ package joshie.harvestmoon.network;
 import static joshie.harvestmoon.Configuration.PACKET_DISTANCE;
 import static joshie.harvestmoon.lib.HMModInfo.MODID;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.network.Packet;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
@@ -16,7 +17,7 @@ public class PacketHandler {
     public static void registerPacket(Class clazz, Side side) {
         INSTANCE.registerMessage(clazz, clazz, id++, side);
     }
-    
+
     public static void sendToEveryone(IMessage packet) {
         INSTANCE.sendToAll(packet);
     }
@@ -31,5 +32,9 @@ public class PacketHandler {
 
     public static void sendToServer(IMessage packet) {
         INSTANCE.sendToServer(packet);
+    }
+
+    public static Packet getPacket(IMessage packet) {
+        return INSTANCE.getPacketFrom(packet);
     }
 }

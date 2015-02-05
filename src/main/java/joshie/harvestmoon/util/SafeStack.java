@@ -3,8 +3,9 @@ package joshie.harvestmoon.util;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
+import scala.Immutable;
 
-public class SafeStack {
+public class SafeStack implements Immutable {
     public String item;
     public int damage;
 
@@ -23,7 +24,7 @@ public class SafeStack {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(Object obj) {        
         if (this == obj)
             return true;
         if (obj == null)
@@ -42,7 +43,7 @@ public class SafeStack {
     }
     
     @Override
-    public int hashCode() {
+    public int hashCode() {        
         final int prime = 31;
         int result = 1;
         result = prime * result + damage;

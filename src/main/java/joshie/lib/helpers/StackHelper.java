@@ -136,4 +136,40 @@ public class StackHelper {
             return 0;
         }
     }
+    
+    public static NBTTagCompound writeItemStackToNBT(NBTTagCompound tag, ItemStack stack) {
+        if (tag == null) {
+            tag = new NBTTagCompound();
+        }
+
+        tag.setString("Name", Item.itemRegistry.getNameForObject(stack.getItem()));
+        tag.setInteger("Count", (byte) stack.stackSize);
+        tag.setInteger("Damage", (short) stack.getItemDamage());
+
+        if (stack.stackTagCompound != null) {
+            tag.setTag("tag", stack.stackTagCompound);
+        }
+
+        return tag;
+    }
+
+    public static ItemStack getItemStackFromNBT(NBTTagCompound tag) {
+        if (tag == null) {
+            tag = new NBTTagCompound();
+        }
+
+        Item item = (Item) Item.itemRegistry.getObject(tag.getString("Name"));
+        int count = tag.getInteger("Count");
+        int damage = tag.getInteger("Damage");
+        if (damage < 0) {
+            damage = 0;
+        }
+
+        ItemStack stack = new ItemStack(item, count, damage);
+        if (tag.hasKey("tag", 10)) {
+            stack.stackTagCompound = tag.getCompoundTag("tag");
+        }
+
+        return stack;
+    }
 }

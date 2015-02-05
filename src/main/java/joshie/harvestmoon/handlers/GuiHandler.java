@@ -1,6 +1,6 @@
 package joshie.harvestmoon.handlers;
 
-import joshie.harvestmoon.blocks.TileFridge;
+import joshie.harvestmoon.blocks.tiles.TileFridge;
 import joshie.harvestmoon.entities.EntityNPC;
 import joshie.harvestmoon.gui.ContainerCooking;
 import joshie.harvestmoon.gui.ContainerNPC;

@@ -2,14 +2,26 @@ package joshie.harvestmoon.blocks;
 
 import static joshie.harvestmoon.helpers.ShippingHelper.addForShipping;
 import joshie.harvestmoon.HarvestMoon;
+import joshie.harvestmoon.blocks.items.ItemBlockGeneral;
+import joshie.harvestmoon.blocks.tiles.TileCooking;
+import joshie.harvestmoon.blocks.tiles.TileFridge;
+import joshie.harvestmoon.blocks.tiles.TileFryingPan;
+import joshie.harvestmoon.blocks.tiles.TileKitchen;
+import joshie.harvestmoon.blocks.tiles.TileMixer;
+import joshie.harvestmoon.blocks.tiles.TileOven;
+import joshie.harvestmoon.blocks.tiles.TilePot;
+import joshie.harvestmoon.blocks.tiles.TileSteamer;
 import joshie.harvestmoon.handlers.GuiHandler;
 import joshie.harvestmoon.lib.RenderIds;
 import joshie.harvestmoon.util.IShippable;
+import joshie.lib.helpers.ItemHelper;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -27,7 +39,7 @@ public class BlockGeneral extends BlockHMBaseMeta {
     public BlockGeneral() {
         super(Material.wood);
     }
-    
+
     @Override
     public boolean renderAsNormalBlock() {
         return false;
@@ -37,10 +49,28 @@ public class BlockGeneral extends BlockHMBaseMeta {
     public boolean isOpaqueCube() {
         return false;
     }
-    
+
     @Override
     public int getRenderType() {
         return RenderIds.ALL;
+    }
+
+    @Override
+    public void setBlockBoundsBasedOnState(IBlockAccess block, int x, int y, int z) {
+        int meta = block.getBlockMetadata(x, y, z);
+        switch (meta) {
+            case FRYING_PAN:
+                setBlockBounds(0F, 0F, 0F, 1F, 0.25F, 1F);
+                break;
+            default:
+                setBlockBounds(0F, 0F, 0F, 1F, 1F, 1F);
+                break;
+        }
+    }
+
+    @Override
+    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
+        return AxisAlignedBB.getBoundingBox(x + minX, y + minY, z + minZ, x + maxX, y + maxY, z + maxZ);
     }
 
     @Override
@@ -60,21 +90,57 @@ public class BlockGeneral extends BlockHMBaseMeta {
                 } else return false;
             } else return false;
         } else if (meta == FRIDGE) {
-            return true;
-        } else if (meta == FRIDGE) {
             player.openGui(HarvestMoon.instance, GuiHandler.COOKING, world, x, y, z);
             return true;
-        } else return false;
+        } else {
+            TileEntity tile = world.getTileEntity(x, y, z);
+            if (tile instanceof TileCooking) {
+                TileCooking cooking = (TileCooking) tile;
+                ItemStack held = player.getCurrentEquippedItem();
+                if (!cooking.canAddItems()) {
+                    if (!player.inventory.addItemStackToInventory(cooking.getStored())) {
+                        if (!world.isRemote) {
+                            ItemHelper.spawnItem(world, x, y + 1, z, cooking.getStored());
+                        }
+                    }
+
+                    cooking.clear();
+                } else if (held != null && !(held.getItem() instanceof ItemBlockGeneral)) {
+                    if (cooking.addIngredient(held) || cooking.addSeasoning(held)) {
+                        player.inventory.decrStackSize(player.inventory.currentItem, 1);
+                    }
+                }
+            }
+
+            return false;
+        }
     }
 
     @Override
     public boolean hasTileEntity(int meta) {
-        return meta == FRIDGE;
+        return meta != SHIPPING;
     }
 
     @Override
     public TileEntity createTileEntity(World world, int meta) {
-        return meta == FRIDGE ? new TileFridge() : null;
+        switch (meta) {
+            case FRIDGE:
+                return new TileFridge();
+            case KITCHEN:
+                return new TileKitchen();
+            case POT:
+                return new TilePot();
+            case FRYING_PAN:
+                return new TileFryingPan();
+            case MIXER:
+                return new TileMixer();
+            case OVEN:
+                return new TileOven();
+            case STEAMER:
+                return new TileSteamer();
+            default:
+                return null;
+        }
     }
 
     @SideOnly(Side.CLIENT)

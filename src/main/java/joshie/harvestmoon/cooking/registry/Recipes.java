@@ -24,5 +24,7 @@ public class Recipes {
         FoodRegistry.addRecipe(new Recipe(new Ingredient[] { riceball, oil, egg }, new Meal("rice.fried", 40, -1, 2, 0.35F, 32)).setRequiredTool(FRYING_PAN).setOptionalIngredients(carrot, onion, bamboo_shoot, green_pepper, fish));
         FoodRegistry.addRecipe(new Recipe(new Ingredient[] { flour, cabbage, oil, egg }, new Meal("pancakes.savoury", 50, -1, 3, 0.3F, 24)).setRequiredTool(FRYING_PAN).setOptionalIngredients(onion));
 
+        //Test Rectipe
+        FoodRegistry.addRecipe(new Recipe(new Ingredient[] { carrot, fish }, new Meal("test.recipe", 100, -3, 3, 0.15F, 32)).setRequiredTool(FRYING_PAN).setOptionalIngredients(egg));
     }
 }

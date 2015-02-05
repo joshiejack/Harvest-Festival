@@ -1,6 +1,6 @@
 package joshie.harvestmoon.gui;
 
-import joshie.harvestmoon.blocks.TileFridge;
+import joshie.harvestmoon.blocks.tiles.TileFridge;
 import joshie.harvestmoon.gui.feature.FeatureButton;
 import joshie.harvestmoon.gui.feature.FeatureButton.Button;
 import net.minecraft.entity.player.InventoryPlayer;

@@ -7,7 +7,7 @@ import joshie.harvestmoon.cooking.registry.ICookingComponent;
 import joshie.harvestmoon.util.SafeStack;
 
 public enum Utensil implements ICookingComponent {
-    KITCHEN(4000), POT(1000), FRYING_PAN(1200), MIXER(1200), OVEN(2500), STEAM(2000);
+    KITCHEN(4000), POT(1000), FRYING_PAN(1200), MIXER(1200), OVEN(2500), STEAMER(2000);
     
     public Set<SafeStack> keys = new HashSet();
     public int cost;

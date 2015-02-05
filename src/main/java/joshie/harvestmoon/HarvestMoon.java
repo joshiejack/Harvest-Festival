@@ -22,6 +22,7 @@ import joshie.harvestmoon.network.PacketCropRequest;
 import joshie.harvestmoon.network.PacketHandler;
 import joshie.harvestmoon.network.PacketSetCalendar;
 import joshie.harvestmoon.network.PacketSyncCanProduce;
+import joshie.harvestmoon.network.PacketSyncCooking;
 import joshie.harvestmoon.network.PacketSyncCrop;
 import joshie.harvestmoon.network.PacketSyncGold;
 import joshie.harvestmoon.network.PacketSyncRelations;
@@ -33,6 +34,7 @@ import joshie.harvestmoon.network.quests.PacketQuestSetCurrent;
 import joshie.harvestmoon.network.quests.PacketQuestSetStage;
 import joshie.harvestmoon.network.quests.PacketQuestStart;
 import joshie.harvestmoon.util.WorldDestroyer;
+import joshie.lib.util.EntityFakeItem;
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
@@ -44,6 +46,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid = MODID, name = MODNAME)
@@ -94,6 +97,7 @@ public class HarvestMoon {
         PacketHandler.registerPacket(PacketSyncRelations.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketSyncRelations.class, Side.SERVER);
         PacketHandler.registerPacket(PacketSyncStats.class, Side.CLIENT);
+        PacketHandler.registerPacket(PacketSyncCooking.class, Side.CLIENT);
 
         //Quest Packets
         PacketHandler.registerPacket(PacketQuestSetAvailable.class, Side.CLIENT);

@@ -3,12 +3,14 @@ package joshie.lib.helpers;
 import java.awt.Dimension;
 import java.awt.Point;
 
+import joshie.harvestmoon.network.PacketLocation;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.ResourceLocation;
@@ -85,7 +87,7 @@ public class ClientHelper {
     public static boolean isSneakingPressed() {
         return GameSettings.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindSneak);
     }
-    
+
     public static boolean isSprintingPressed() {
         return GameSettings.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindSprint);
     }
@@ -97,11 +99,11 @@ public class ClientHelper {
     public static boolean isJumpPressed() {
         return GameSettings.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindJump);
     }
-    
+
     public static boolean isShiftPressed() {
         return Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT);
     }
-    
+
     //Mouse Helper
     public static Point getMouse(GuiContainer container) {
         Minecraft mc = getMinecraft();
@@ -114,7 +116,7 @@ public class ClientHelper {
         Point relMouse = new Point(mousepos.x - guiLeft, mousepos.y - guiTop);
         return relMouse;
     }
-    
+
     //Binds a texture
     public static void bindTexture(ResourceLocation texture) {
         getMinecraft().getTextureManager().bindTexture(texture);
@@ -123,5 +125,9 @@ public class ClientHelper {
     //returns the lang currently in use
     public static String getLang() {
         return FMLClientHandler.instance().getCurrentLanguage();
+    }
+
+    public static TileEntity getTile(PacketLocation message) {
+        return getWorld().getTileEntity(message.x, message.y, message.z);
     }
 }

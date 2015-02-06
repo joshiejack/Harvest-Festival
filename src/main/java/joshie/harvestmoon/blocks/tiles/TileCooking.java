@@ -23,7 +23,7 @@ public abstract class TileCooking extends TileEntity implements IFaceable {
     private ArrayList<ItemStack> ingredients = new ArrayList();
     private ArrayList<ItemStack> seasonings = new ArrayList();
     private ItemStack result;
-    private ForgeDirection orientation;
+    private ForgeDirection orientation = ForgeDirection.NORTH;
     private float rotation;
 
     public TileCooking() {}
@@ -157,6 +157,7 @@ public abstract class TileCooking extends TileEntity implements IFaceable {
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
+        orientation = ForgeDirection.getOrientation(nbt.getInteger("Orientation"));
         cooking = nbt.getBoolean("IsCooking");
         cookTimer = nbt.getShort("CookingTimer");
         if (nbt.hasKey("IngredientsInside")) {
@@ -181,6 +182,7 @@ public abstract class TileCooking extends TileEntity implements IFaceable {
     @Override
     public void writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
+        nbt.setInteger("Orientation", orientation.ordinal());
         nbt.setBoolean("IsCooking", cooking);
         nbt.setShort("CookingTimer", cookTimer);
         //Write out the saved Ingredients

@@ -7,6 +7,7 @@ import java.util.List;
 import joshie.harvestmoon.cooking.registry.ICookingComponent;
 import joshie.harvestmoon.init.HMItems;
 import joshie.harvestmoon.items.ItemMeal;
+import joshie.harvestmoon.util.HMStack;
 import joshie.harvestmoon.util.SafeStack;
 import joshie.harvestmoon.util.WildStack;
 import net.minecraft.item.ItemStack;
@@ -50,8 +51,20 @@ public class FoodRegistry {
         return recipes;
     }
 
+    public static SafeStack getSafeStackType(ItemStack stack) {
+        if (stack.getItem() == HMItems.crops || stack.getItem() == HMItems.sized) {
+            return new HMStack(stack);
+        } else if (stack.getItemDamage() == OreDictionary.WILDCARD_VALUE) {
+            return new WildStack(stack);
+        } else return new SafeStack(stack);
+    }
+
+    public static void register(SafeStack safe, ICookingComponent component) {
+        FoodRegistry.registry.put(safe, component.addKey(safe));
+    }
+
     public static void register(ItemStack stack, ICookingComponent component) {
-        SafeStack safe = stack.getItemDamage() == OreDictionary.WILDCARD_VALUE ? new WildStack(stack) : new SafeStack(stack);
+        SafeStack safe = getSafeStackType(stack);
         FoodRegistry.registry.put(safe, component.addKey(safe));
     }
 
@@ -63,22 +76,23 @@ public class FoodRegistry {
         return Seasoning.seasonings.get(string);
     }
 
-    public static Ingredient getIngredient(ItemStack stack) {
+    public static ICookingComponent getCookingComponent(ItemStack stack) {
         ICookingComponent result = registry.get(new SafeStack(stack));
         if (result == null) result = registry.get(new WildStack(stack));
-        return (Ingredient) result;
+        if (result == null) result = registry.get(new HMStack(stack));
+        return result;
+    }
+
+    public static Ingredient getIngredient(ItemStack stack) {
+        return (Ingredient) getCookingComponent(stack);
     }
 
     public static Utensil getUtensil(ItemStack stack) {
-        ICookingComponent result = registry.get(new SafeStack(stack));
-        if (result == null) result = registry.get(new WildStack(stack));
-        return (Utensil) result;
+        return (Utensil) getCookingComponent(stack);
     }
 
     public static Seasoning getSeasoning(ItemStack stack) {
-        ICookingComponent result = registry.get(new SafeStack(stack));
-        if (result == null) result = registry.get(new WildStack(stack));
-        return (Seasoning) result;
+        return (Seasoning) getCookingComponent(stack);
     }
 
     public static void addEquivalent(String string, ICookingComponent component) {

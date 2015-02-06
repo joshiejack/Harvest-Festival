@@ -37,6 +37,10 @@ public class SizeableHelper {
         return getInternalMeta(meta) % 100;
     }
     
+    public static SizeableMeta getSizeableFromStack(ItemStack stack) {
+        return SizeableMeta.values()[getType(stack.getItemDamage())];
+    }
+    
     public static Size getSize(int meta) {
         int size = Math.max(0, meta / 10000);
         return Size.values()[Math.min(2, size)];

@@ -22,7 +22,7 @@ public class ItemBlockGeneral extends ItemBlockBase {
             case BlockGeneral.POT:
                 return "pot";
             case BlockGeneral.FRYING_PAN:
-                return "pan.frying";
+                return "frying.pan";
             case BlockGeneral.MIXER:
                 return "mixer";
             case BlockGeneral.OVEN:

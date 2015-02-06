@@ -4,7 +4,7 @@ import static joshie.harvestmoon.HarvestMoon.handler;
 import static joshie.harvestmoon.lib.HMModInfo.JAVAPATH;
 import joshie.harvestmoon.blocks.BlockGeneral;
 import joshie.harvestmoon.blocks.items.ItemBlockGeneral;
-import joshie.harvestmoon.blocks.render.RenderPanFrying;
+import joshie.harvestmoon.blocks.render.RenderFryingPan;
 import joshie.harvestmoon.blocks.render.SpecialRendererFryingPan;
 import joshie.harvestmoon.blocks.tiles.TileFryingPan;
 import joshie.harvestmoon.crops.Crop;
@@ -42,7 +42,7 @@ public class ClientProxy extends CommonProxy {
         for (int i = 0; i < general.getMetaCount(); i++) {
             try {
                 String name = sanitizeGeneral(item.getName(new ItemStack(general, 1, i)));
-                RenderHandler.register(general, i, Class.forName(JAVAPATH + "blocks.render." + name));
+                RenderHandler.register(general, i, Class.forName(JAVAPATH + "blocks.render.Render" + name));
             } catch (Exception e) {}
         }
 
@@ -51,13 +51,12 @@ public class ClientProxy extends CommonProxy {
         FMLCommonHandler.instance().bus().register(new RenderEvents());
         MinecraftForge.EVENT_BUS.register(new RenderEvents());
         ClientRegistry.bindTileEntitySpecialRenderer(TileFryingPan.class, new SpecialRendererFryingPan());
-        RenderHandler.register(HMBlocks.tiles, BlockGeneral.FRYING_PAN, RenderPanFrying.class);
         RenderingRegistry.registerEntityRenderingHandler(EntityNPC.class, new RenderNPC());
         RenderingRegistry.registerEntityRenderingHandler(EntityFakeItem.class, new RenderFakeItem());
     }
 
     private String sanitizeGeneral(String name) {
-        name = name.replace(".", "");
+        name = name.replace(".", " ");
         name = WordUtils.capitalize(name);
         return name.replace(" ", "");
     }

@@ -65,6 +65,9 @@ public class BlockGeneral extends BlockHMBaseMeta {
             case FRYING_PAN:
                 setBlockBounds(0F, 0F, 0F, 1F, 0.25F, 1F);
                 break;
+            case POT:
+                setBlockBounds(0F, 0F, 0F, 1F, 0.75F, 1F);
+                break;
             default:
                 setBlockBounds(0F, 0F, 0F, 1F, 1F, 1F);
                 break;

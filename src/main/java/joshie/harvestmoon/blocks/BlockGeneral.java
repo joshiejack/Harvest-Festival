@@ -11,12 +11,14 @@ import joshie.harvestmoon.blocks.tiles.TileMixer;
 import joshie.harvestmoon.blocks.tiles.TileOven;
 import joshie.harvestmoon.blocks.tiles.TilePot;
 import joshie.harvestmoon.blocks.tiles.TileSteamer;
+import joshie.harvestmoon.config.Cooking;
 import joshie.harvestmoon.handlers.GuiHandler;
 import joshie.harvestmoon.lib.RenderIds;
 import joshie.harvestmoon.util.IShippable;
 import joshie.lib.helpers.DirectionHelper;
 import joshie.lib.helpers.ItemHelper;
 import joshie.lib.util.IFaceable;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
@@ -24,6 +26,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
@@ -38,6 +41,7 @@ public class BlockGeneral extends BlockHMBaseMeta {
     public static final int MIXER = 5;
     public static final int OVEN = 6;
     public static final int STEAMER = 7;
+    public static final int FRIDGE_TOP = 8;
 
     public BlockGeneral() {
         super(Material.wood);
@@ -68,6 +72,12 @@ public class BlockGeneral extends BlockHMBaseMeta {
             case POT:
                 setBlockBounds(0F, 0F, 0F, 1F, 0.75F, 1F);
                 break;
+            case FRIDGE:
+                setBlockBounds(0F, 0F, 0F, 1F, 2F, 1F);
+                break;
+            case FRIDGE_TOP:
+                setBlockBounds(0F, -1F, 0F, 1F, 1F, 1F);
+                break;
             default:
                 setBlockBounds(0F, 0F, 0F, 1F, 1F, 1F);
                 break;
@@ -95,7 +105,7 @@ public class BlockGeneral extends BlockHMBaseMeta {
                     return addForShipping(player, held);
                 } else return false;
             } else return false;
-        } else if (meta == FRIDGE) {
+        } else if (meta == FRIDGE || meta == FRIDGE_TOP) {
             player.openGui(HarvestMoon.instance, GuiHandler.COOKING, world, x, y, z);
             return true;
         } else {
@@ -131,8 +141,40 @@ public class BlockGeneral extends BlockHMBaseMeta {
     }
 
     @Override
+    public void onBlockAdded(World world, int x, int y, int z) {
+        TileEntity tile = world.getTileEntity(x, y, z);
+        if (tile instanceof TileFridge) {
+            world.setBlock(x, y + 1, z, this, FRIDGE_TOP, 2);
+        }
+    }
+
+    @Override
+    public void onBlockExploded(World world, int x, int y, int z, Explosion explosion) {
+        int meta = world.getBlockMetadata(x, y, z);
+        if (meta == FRIDGE_TOP) {
+            world.setBlockToAir(x, y - 1, z);
+        } else if (meta == FRIDGE) {
+            world.setBlockToAir(x, y + 1, z);
+        }
+    }
+
+    @Override
+    public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
+        if (meta == FRIDGE_TOP) {
+            world.setBlockToAir(x, y - 1, z);
+        } else if (meta == FRIDGE) {
+            world.setBlockToAir(x, y + 1, z);
+        }
+    }
+
+    @Override
+    public int damageDropped(int meta) {
+        return meta == FRIDGE_TOP ? FRIDGE : super.damageDropped(meta);
+    }
+
+    @Override
     public boolean hasTileEntity(int meta) {
-        return meta != SHIPPING;
+        return meta != SHIPPING && meta != FRIDGE_TOP;
     }
 
     @Override
@@ -166,5 +208,10 @@ public class BlockGeneral extends BlockHMBaseMeta {
     @Override
     public int getMetaCount() {
         return 8;
+    }
+
+    @Override
+    public boolean isActive(int meta) {
+        return meta == STEAMER ? Cooking.ENABLE_STEAMER : true;
     }
 }

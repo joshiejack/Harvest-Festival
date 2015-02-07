@@ -103,6 +103,7 @@ hm.treat.other=Animal Treat
 #Blocks
 hm.general.block.shipping=Shipment Box
 hm.general.block.fridge=Fridge
+hm.general.block.fridge.top=Fridge
 hm.general.block.kitchen=Kitchen Counter
 hm.general.block.pot=Cooking Pot
 hm.general.block.frying.pan=Frying Pan

@@ -29,6 +29,8 @@ public class ItemBlockGeneral extends ItemBlockBase {
                 return "oven";
             case BlockGeneral.STEAMER:
                 return "steamer";
+            case BlockGeneral.FRIDGE_TOP:
+                return "fridge.top";
             default:
                 return "invalid";
         }

@@ -9,7 +9,7 @@ import org.lwjgl.opengl.GL11;
 public class RenderSteamer extends RenderBase {
     @Override
     public void renderBlock() {
-        setTexture(Blocks.snow);
+        setTexture(Blocks.iron_block);
         if (dir == ForgeDirection.WEST || isItem()) {
             renderBlock(0.135D, 0.0D, 0.875D, 0.185D, 0.05D, 0.925D);
             renderBlock(0.25D, 0.9D, 0.61D, 0.459D, 0.95D, 0.82D);

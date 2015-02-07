@@ -16,7 +16,7 @@ public class CodeGeneratorRendering {
             builder.append("import net.minecraft.init.Blocks;\n");
             builder.append("import net.minecraftforge.common.util.ForgeDirection;\n\n");
             builder.append("import org.lwjgl.opengl.GL11;\n\n");
-            builder.append("public class RenderSteamer extends RenderBase {\n");
+            builder.append("public class RenderFridge extends RenderBase {\n");
             builder.append("    @Override\n");
             builder.append("    public void renderBlock() {\n");
             

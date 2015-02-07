@@ -10,12 +10,22 @@ import org.apache.commons.io.FileUtils;
 public class CodeGeneratorRendering {
     public void getCode() {
         try {
+            StringBuilder builder = new StringBuilder();
+            builder.append("package joshie.harvestmoon.blocks.render;\n\n");
+            builder.append("import joshie.harvestmoon.util.RenderBase;\n");
+            builder.append("import net.minecraft.init.Blocks;\n");
+            builder.append("import net.minecraftforge.common.util.ForgeDirection;\n\n");
+            builder.append("import org.lwjgl.opengl.GL11;\n\n");
+            builder.append("public class RenderSteamer extends RenderBase {\n");
+            builder.append("    @Override\n");
+            builder.append("    public void renderBlock() {\n");
+            
             String input = FileUtils.readFileToString(new File("render-input.txt"));
-            StringBuilder builder = new StringBuilder("if (dir == ForgeDirection.WEST || isItem()) {");
+            builder.append("        if (dir == ForgeDirection.WEST || isItem()) {\n");
             builder.append(input);
-            builder.append("\n}\n else if (dir == ForgeDirection.NORTH) {");
+            builder.append("\n        } else if (dir == ForgeDirection.NORTH) {");
             builder.append("\n" + input.replaceAll("\\((.*),\\s(.*),\\s(.*),\\s(.*),\\s(.*),\\s(.*)\\)", "\\($3, $2, $1, $6, $5, $4\\)"));
-            builder.append("\n}\n else if (dir == ForgeDirection.EAST) {");
+            builder.append("\n        } else if (dir == ForgeDirection.EAST) {");
 
             //Remove RenderBlock and ); and spaces
             StringBuilder second = new StringBuilder("");
@@ -42,7 +52,6 @@ public class CodeGeneratorRendering {
 
                 String trimmed = s.replace("renderBlock(", "").replace(")", "");
                 Double value = Double.parseDouble(trimmed); //Convert the internal to a double
-                System.out.println(round + " - " + pos + " - " + value);
 
                 switch (pos) {
                     case 0:
@@ -69,7 +78,7 @@ public class CodeGeneratorRendering {
 
                 if (pos == 6) {
                     //Now that we have all six numbers of this sequence filled out, we should fix them
-                    StringBuilder append = new StringBuilder("\nrenderBlock(");
+                    StringBuilder append = new StringBuilder("\n           renderBlock(");
                     append.append("" + df.format((1D - four)) + "D, ");
                     append.append("" + two + "D, ");
                     append.append("" + three + "D, ");
@@ -85,9 +94,11 @@ public class CodeGeneratorRendering {
             }
 
             builder.append(second);
-            builder.append("\n}\n else if (dir == ForgeDirection.SOUTH) {");
-            builder.append("\n" + second.toString().replaceAll("\\((.*),\\s(.*),\\s(.*),\\s(.*),\\s(.*),\\s(.*)\\)", "\\($3, $2, $1, $6, $5, $4\\)"));
-            builder.append("\n}");
+            builder.append("\n        } else if (dir == ForgeDirection.SOUTH) {");
+            builder.append(second.toString().replaceAll("\\((.*),\\s(.*),\\s(.*),\\s(.*),\\s(.*),\\s(.*)\\)", "\\($3, $2, $1, $6, $5, $4\\)"));
+            builder.append("\n        }\n");
+            builder.append("    }\n");
+            builder.append("}\n");
 
             //now that we have done WEST and NORTH
 

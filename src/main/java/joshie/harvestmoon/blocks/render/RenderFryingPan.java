@@ -38,18 +38,18 @@ public class RenderFryingPan extends RenderBase {
             renderBlock(-0.45D, 0.2D, 0.45D, -0.2D, 0.235D, 0.55D);
             renderBlock(-0.75D, 0.235D, 0.45D, -0.3D, 0.285D, 0.55D);
             renderBlock(-0.85D, 0.23D, 0.43D, -0.75D, 0.29D, 0.57D);
-        } else if (dir == ForgeDirection.EAST) {
-            renderBlock(1D, 0.125D, 0.45D, 1.25D, 0.2D, 0.55D);
-            renderBlock(1.25D, 0.155D, 0.45D, 1.35D, 0.2D, 0.55D);
-            renderBlock(1.2D, 0.2D, 0.45D, 1.45D, 0.235D, 0.55D);
-            renderBlock(1.3D, 0.235D, 0.45D, 1.75D, 0.285D, 0.55D);
-            renderBlock(1.75D, 0.23D, 0.43D, 1.85D, 0.29D, 0.57D);
         } else if (dir == ForgeDirection.NORTH || isItem()) {
             renderBlock(0.45D, 0.125D, -0.25D, 0.55D, 0.2D, 0D);
             renderBlock(0.45D, 0.155D, -0.35D, 0.55D, 0.2D, -0.25D);
             renderBlock(0.45D, 0.2D, -0.45D, 0.55D, 0.235D, -0.2D);
             renderBlock(0.45D, 0.235D, -0.75D, 0.55D, 0.285D, -0.3D);
             renderBlock(0.43D, 0.23D, -0.85D, 0.57D, 0.29D, -0.75D);
+        } else if (dir == ForgeDirection.EAST) {
+            renderBlock(1D, 0.125D, 0.45D, 1.25D, 0.2D, 0.55D);
+            renderBlock(1.25D, 0.155D, 0.45D, 1.35D, 0.2D, 0.55D);
+            renderBlock(1.2D, 0.2D, 0.45D, 1.45D, 0.235D, 0.55D);
+            renderBlock(1.3D, 0.235D, 0.45D, 1.75D, 0.285D, 0.55D);
+            renderBlock(1.75D, 0.23D, 0.43D, 1.85D, 0.29D, 0.57D);
         } else if (dir == ForgeDirection.SOUTH) {
             renderBlock(0.45D, 0.125D, 1D, 0.55D, 0.2D, 1.25D);
             renderBlock(0.45D, 0.155D, 1.25D, 0.55D, 0.2D, 1.35D);

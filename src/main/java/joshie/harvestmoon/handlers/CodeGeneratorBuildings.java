@@ -1,18 +1,19 @@
 package joshie.harvestmoon.handlers;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 
-public class BuildingCodeGenerator {
+public class CodeGeneratorBuildings {
     private static final HashMap<String, String> names = new HashMap();
 
     private World world;
     private int x1, y1, z1, x2, y2, z2;
 
-    public BuildingCodeGenerator(World world, int xStart, int yStart, int zStart, int xEnd, int yEnd, int zEnd) {
+    public CodeGeneratorBuildings(World world, int xStart, int yStart, int zStart, int xEnd, int yEnd, int zEnd) {
         this.world = world;
         this.x1 = xStart < xEnd ? xStart : xEnd;
         this.x2 = xStart < xEnd ? xEnd : xStart;
@@ -76,9 +77,14 @@ public class BuildingCodeGenerator {
             ret.add("offsetY = new int[" + i + "];");
             ret.add("offsetZ = new int[" + i + "];");
 
-            for (String s : ret) {
-                System.out.println(s);
-            }
+            try {
+                PrintWriter writer = new PrintWriter("building-generator.log", "UTF-8");
+                for (String s : ret) {
+                    writer.println(s);
+                }
+                
+                writer.close();
+            } catch (Exception e) { e.printStackTrace(); }
         }
     }
 }

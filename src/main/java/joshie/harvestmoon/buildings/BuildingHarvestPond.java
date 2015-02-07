@@ -877,34 +877,4 @@ public class BuildingHarvestPond extends Building {
         offsetY[172] = 3;
         offsetZ[172] = 6;
     }
-
-    @Override
-    public boolean generate(World world, int xCoord, int yCoord, int zCoord) {
-        if (!world.isRemote) {
-            boolean n1 = world.rand.nextBoolean();
-            boolean n2 = world.rand.nextBoolean();
-            boolean swap = world.rand.nextBoolean();
-            //foundation(world, x, y, z, xWidth, zWidth);
-            for (int i = 0; i < offsetX.length; i++) {
-                int y = offsetY[i];
-                int x = n1 ? -offsetX[i] : offsetX[i];
-                int z = n2 ? -offsetZ[i] : offsetZ[i];
-                if (swap) {
-                    int xClone = x; //Create a copy of X
-                    x = z; //Set x to z
-                    z = xClone; //Set z to the old value of x
-                }
-
-                Block block = blocks[i];
-                int meta = metas[i];
-                if (meta == 0) {
-                    world.setBlock(xCoord + x, yCoord + y, zCoord + z, block);
-                } else {
-                    world.setBlock(xCoord + x, yCoord + y, zCoord + z, block, meta, 2);
-                }
-            }
-        }
-
-        return true;
-    }
 }

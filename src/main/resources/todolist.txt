@@ -1,118 +1,119 @@
 //WORKING ON THESE THINGS MYSELF
 Things to get Functioning:
-• Fridge + Kitchen + Extra stuff combo + Getting cooking working correctly)
-• Gui for the fridge
-• Gui for the shipping bin
-• Shipping bin with GUI
-• Harder Animal Breeding (Assign sexes, limit when you can breed them).
+â€¢ Fridge + Kitchen + Extra stuff combo + Getting cooking working correctly)
+â€¢ Gui for the fridge
+â€¢ Gui for the shipping bin
+â€¢ Shipping bin with GUI
+â€¢ Harder Animal Breeding (Assign sexes, limit when you can breed them).
 
 Other things to do (AFTER EVERYTHING ELSE)
-• Bunch of Config Options
+â€¢ Bunch of Config Options
 
 
 //NEED HELP WITH THINGS BELOW THIS POINT
 Buildings: TODO (Got someone working these)
 Info: (Make the buildings using vanilla only blocks, and send me the save)
-• Harvest Goddess
-• Animal Barn (Sells you Animals)
-• Cafe
-• Seed Shop
-• Blacksmith
-• Church
-• Townhall
-• General Store
-• Fishing Hut
-• Miners Hut
+â€¢ Harvest Goddess
+â€¢ Animal Barn (Sells you Animals) âœ“ 
+â€¢ Cafe 
+â€¢ Seed Shop âœ“ 
+â€¢ Blacksmith âœ“ 
+â€¢ Church âœ“ 
+â€¢ Townhall
+â€¢ General Store
+â€¢ Fishing Hut âœ“ 
+â€¢ Miners Hut âœ“ 
+â€¢ Miners Hill âœ“ 
 
 Quests: TODO
 Info: (Coding see joshie.harvestmoon.quests.*)
-• Tutorial Quests
-• Quests for turning cursed tools to Blessed
-• Quests for upgrading tools
-• Quests for buying more kitchen tools
-• Quests for growing certain amounts of stuff etc.
-• Fun side quests
+â€¢ Tutorial Quests
+â€¢ Quests for turning cursed tools to Blessed
+â€¢ Quests for upgrading tools
+â€¢ Quests for buying more kitchen tools
+â€¢ Quests for growing certain amounts of stuff etc.
+â€¢ Fun side quests
 
 Rendering: TODO
 Info: (Coding see joshie.harvestmoon.crops.render.*)
-• All crops and their stages
+â€¢ All crops and their stages
 
 Textures: TODO
 //See texture_names.txt for names of textures if you want :P
 
 GUI
-• Better graphic for displaying season/day/year/gold
+â€¢ Better graphic for displaying season/day/year/gold
 
 -- Tool Icons in the following materials:
 -Basic, Copper, Silver, Gold, Mystril, Cursed, Blessed, Mythic (+Wood, Stone, Iron, Gold, Diamond for config option)
 //See the Sickles for an idea of how to match them up, Also some of the watering cans are done, see the items for that
-• Hoes
-• Watering Cans
+â€¢ Hoes
+â€¢ Watering Cans
 
 -- NPC Skins + SpawnThemIcon
-• Harvest Goddess
-• Animal Farm Owner
-• Cafe Owner
-• Seed Shop Owner
-• Blacksmith
-• Priest
-• Child of Seed Shop Owner
-• Granny that works in Cafe
-• Mayor
-• Mayors daughter (teenager)
-• Mayors daughter (child)
-• Clockworker
-• General Store Owner
-• Miner
-• Fisherman
+â€¢ Harvest Goddess
+â€¢ Animal Farm Owner
+â€¢ Cafe Owner
+â€¢ Seed Shop Owner
+â€¢ Blacksmith
+â€¢ Priest
+â€¢ Child of Seed Shop Owner
+â€¢ Granny that works in Cafe
+â€¢ Mayor
+â€¢ Mayors daughter (teenager)
+â€¢ Mayors daughter (child)
+â€¢ Clockworker
+â€¢ General Store Owner
+â€¢ Miner
+â€¢ Fisherman
 
 -- Crop Icons (Crops and Seeds)
-• Magic Flower
-• Green Pepper
-• Spinach
-• Sweet Potato
-• Carrot
-• Eggplant
-• Pinkcat
-• Pineapple
-• Pumpkin
-• Corn
-• Onion
-• Tomato
-• Toyflower
-• Moondrop Flower
-• Cabbage
-• Strawberry
-• Cucumber
-• Potato
-• Turnip
+â€¢ Magic Flower
+â€¢ Green Pepper
+â€¢ Spinach
+â€¢ Sweet Potato
+â€¢ Carrot
+â€¢ Eggplant
+â€¢ Pinkcat
+â€¢ Pineapple
+â€¢ Pumpkin
+â€¢ Corn
+â€¢ Onion
+â€¢ Tomato
+â€¢ Toyflower
+â€¢ Moondrop Flower
+â€¢ Cabbage
+â€¢ Strawberry
+â€¢ Cucumber
+â€¢ Potato
+â€¢ Turnip
 
 -- Food Icons
-• Stir Fry
-• Fried Rice
-• Savoury Pancake
-• (A whole bunch of other foods from friends of mineral town).
+â€¢ Stir Fry
+â€¢ Fried Rice
+â€¢ Savoury Pancake
+â€¢ (A whole bunch of other foods from friends of mineral town).
 
 -- General Items
-• Cow Milker
-• Animal Medicine
-• Chicken Feed
+â€¢ Cow Milker
+â€¢ Animal Medicine
+â€¢ Chicken Feed
 
 -- Animal Treats
-• Cow Treat
-• Sheep Treat
-• Chicken Treat
-• Horse Treat
-• Pig Treat
-• Cat Treat
-• Dog Treat
-• Other Animal Treat
+â€¢ Cow Treat
+â€¢ Sheep Treat
+â€¢ Chicken Treat
+â€¢ Horse Treat
+â€¢ Pig Treat
+â€¢ Cat Treat
+â€¢ Dog Treat
+â€¢ Other Animal Treat
 
 -- Animal Products
-• Large Chicken Egg
-• Medium Chicken Egg
-• Small Chicken Egg
+â€¢ Large Chicken Egg
+â€¢ Medium Chicken Egg
+â€¢ Small Chicken Egg
 
 -- Blocks (See texture_names for details, these textures are used as part in a isbrh render)
-• Fridge
-• Kitchen Counter
+â€¢ Fridge
+â€¢ Kitchen Counter

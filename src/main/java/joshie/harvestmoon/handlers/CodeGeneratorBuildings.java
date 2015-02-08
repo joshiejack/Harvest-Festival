@@ -13,6 +13,7 @@ import net.minecraft.entity.item.EntityItemFrame;
 import net.minecraft.entity.item.EntityPainting;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntitySign;
 import net.minecraft.world.World;
 
 public class CodeGeneratorBuildings {
@@ -70,8 +71,14 @@ public class CodeGeneratorBuildings {
                         if (!block.isAir(world, x1 + x, y1 + y, z1 + z) || air || entityList.size() > 0) {
                             int meta = world.getBlockMetadata(x1 + x, y1 + y, z1 + z);
                             TileEntity tile = world.getTileEntity(x1 + x, y1 + y, z1 + z);
-                            if(tile instanceof IFaceable) {
+                            if (tile instanceof IFaceable) {
                                 ret.add(PlaceableHelper.getPlaceableIFaceableString((IFaceable) tile, block, meta, x, y, z));
+                            } else if (tile instanceof TileEntitySign) {
+                                String[] text = ((TileEntitySign) tile).signText;
+                                if (block == Blocks.standing_sign) {
+                                    ret.add(PlaceableHelper.getFloorSignString(text, block, meta, x, y, z));
+                                } else ret.add(PlaceableHelper.getWallSignString(text, block, meta, x, y, z));
+                            } else if (block == Blocks.standing_sign) {
 
                             } else {
                                 ret.add(PlaceableHelper.getPlaceableBlockString(block, meta, x, y, z));

@@ -96,6 +96,16 @@ public class PlaceableHelper {
     public static String getPlaceableIFaceableString(IFaceable tile, Block block, int meta, int x, int y, int z) {
         return "list.add(new PlaceableIFaceable" + "(HMBlocks.tiles, " + meta + ", " + x + ", " + y + ", " + z + ", ForgeDirection." + tile.getFacing() + "));";
     }
+    
+    public static String getFloorSignString(String[] sign, Block block, int meta, int x, int y, int z) {
+        String text = "new String[] { \"" + sign[0] + "\", \"" + sign[1] + "\", \"" + sign[2] + "\", \"" + sign[3] + "\" } ";
+        return "list.add(new PlaceableSignFloor" + "(Blocks.standing_sign, " + meta + ", " + x + ", " + y + ", " + z + ", " + text + "));";
+    }
+    
+    public static String getWallSignString(String[] sign, Block block, int meta, int x, int y, int z) {
+        String text = "new String[] { \"" + sign[0] + "\", \"" + sign[1] + "\", \"" + sign[2] + "\", \"" + sign[3] + "\" } ";
+        return "list.add(new PlaceableSignWall" + "(Blocks.wall_sign, " + meta + ", " + x + ", " + y + ", " + z + ", " + text + "));";
+    }
 
     public static String getPlaceableBlockString(Block block, int meta, int x, int y, int z) {
         String print = getBestGuessName(new ItemStack(block));

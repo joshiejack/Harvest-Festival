@@ -117,3 +117,9 @@ GUI
 -- Blocks (See texture_names for details, these textures are used as part in a isbrh render)
 • Fridge
 • Kitchen Counter
+
+-- How to get the village
+• Build a fitting house
+• Realtor will move in after a certain amount of time
+• You lead the realtor to the spot you want your village in (lead to fence, maybe?)
+• For a certain amount of resources you can buy yourself each building

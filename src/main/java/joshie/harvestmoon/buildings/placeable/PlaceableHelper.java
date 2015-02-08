@@ -95,6 +95,7 @@ public class PlaceableHelper {
         String print = getBestGuessName(new ItemStack(block));
         if (block == Blocks.wooden_door) print = "Blocks.wooden_door";
         if (block == Blocks.iron_door) print = "Blocks.iron_door";
+        if (block == Blocks.standing_sign) print = "Blocks.standing_sign";
         return "list.add(new Placeable" + getPrefixString(block) + "(" + print + ", " + meta + ", " + x + ", " + y + ", " + z + "));";
     }
 

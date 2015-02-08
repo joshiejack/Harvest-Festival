@@ -142,7 +142,7 @@ public class PlaceableTrapDoor extends PlaceableBlock {
                     meta = 13;
                 }
             } else if (swap) {
-                meta = 15;
+                meta = 12;
             }
         } else if (meta == 15) {
             if (n1) {

@@ -1,10 +1,10 @@
 package joshie.harvestmoon.blocks.render;
 
-import org.lwjgl.opengl.GL11;
-
 import joshie.harvestmoon.util.RenderBase;
 import net.minecraft.init.Blocks;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import org.lwjgl.opengl.GL11;
 
 public class RenderFryingPan extends RenderBase {
     @Override

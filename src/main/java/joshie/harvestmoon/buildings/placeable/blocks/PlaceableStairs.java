@@ -1,7 +1,14 @@
-package joshie.harvestmoon.buildings.meta;
+package joshie.harvestmoon.buildings.placeable.blocks;
 
-public class MetaStairs {
-    public static int getMetaData(boolean n1, boolean n2, boolean swap, int meta) {
+import net.minecraft.block.Block;
+
+public class PlaceableStairs extends PlaceableBlock {
+    public PlaceableStairs(Block block, int meta, int offsetX, int offsetY, int offsetZ) {
+        super(block, meta, offsetX, offsetY, offsetZ);
+    }
+
+    @Override
+    protected int getMetaData(boolean n1, boolean n2, boolean swap) {
         if (meta == 0) {
             if (n1) {
                 return swap ? 3 : 1;

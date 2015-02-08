@@ -2,11 +2,10 @@ package joshie.harvestmoon.handlers;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-import joshie.harvestmoon.buildings.data.EntityData;
+import joshie.harvestmoon.buildings.placeable.blocks.PlaceableHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItemFrame;
@@ -15,7 +14,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 
 public class CodeGeneratorBuildings {
-    private static final HashMap<String, String> names = new HashMap();
 
     private World world;
     private int x1, y1, z1, x2, y2, z2;
@@ -68,33 +66,21 @@ public class CodeGeneratorBuildings {
 
                         Block block = world.getBlock(x1 + x, y1 + y, z1 + z);
                         if (!block.isAir(world, x1 + x, y1 + y, z1 + z) || air || entityList.size() > 0) {
-                            String name = Block.blockRegistry.getNameForObject(block).replace("minecraft:", "");
-                            String print = "Blocks." + name;
-                            if (names.containsKey(name)) {
-                                print = names.get(name);
-                            }
-
                             int meta = world.getBlockMetadata(x1 + x, y1 + y, z1 + z);
-                            ret.add("blocks[" + i + "] = " + print + ";");
-                            ret.add("metas[" + i + "] = " + meta + ";");
-                            ret.add("offsetX[" + i + "] = " + x + ";");
-                            ret.add("offsetY[" + i + "] = " + y + ";");
-                            ret.add("offsetZ[" + i + "] = " + z + ";");
+                            ret.add(PlaceableHelper.getPlaceableBlockString(block, meta, x, y, z));
 
                             //Entities
                             if (entityList.size() > 0) {
                                 int l = 0;
-                                ret.add("tempArray = new ArrayList();");
+                                ret.add("temp = new ArrayList();");
                                 for (Entity e : entityList) {
                                     if (!all.contains(e)) {
-                                        ret.add(EntityData.getStringFor(e, e.getClass().getSimpleName()));
+                                        ret.add(PlaceableHelper.getPlaceableEntityString(e, x, y, z));
                                         all.add(e);
                                     }
 
                                     l++;
                                 }
-
-                                ret.add("entities[" + i + "] = tempArray;");
                             }
 
                             i++;
@@ -104,16 +90,7 @@ public class CodeGeneratorBuildings {
             }
 
             ArrayList<String> build = new ArrayList();
-
-            build.add("blocks = new Block[" + i + "];");
-            build.add("metas = new int[" + i + "];");
-            build.add("offsetX = new int[" + i + "];");
-            build.add("offsetY = new int[" + i + "];");
-            build.add("offsetZ = new int[" + i + "];");
-            if (all.size() > 0) {
-                build.add("entities = new ArrayList[" + i + "];");
-            }
-            
+            build.add("list = new ArrayList();");
             build.addAll(ret);
 
             try {

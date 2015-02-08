@@ -1,9 +1,6 @@
 package joshie.harvestmoon.network;
 
 import io.netty.buffer.ByteBuf;
-import joshie.lib.helpers.ClientHelper;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 
 public abstract class AbstractPacketLocation implements IMessage {

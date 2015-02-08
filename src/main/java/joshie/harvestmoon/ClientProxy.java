@@ -4,7 +4,6 @@ import static joshie.harvestmoon.HarvestMoon.handler;
 import static joshie.harvestmoon.lib.HMModInfo.JAVAPATH;
 import joshie.harvestmoon.blocks.BlockGeneral;
 import joshie.harvestmoon.blocks.items.ItemBlockGeneral;
-import joshie.harvestmoon.blocks.render.RenderFryingPan;
 import joshie.harvestmoon.blocks.render.SpecialRendererFryingPan;
 import joshie.harvestmoon.blocks.tiles.TileFryingPan;
 import joshie.harvestmoon.crops.Crop;

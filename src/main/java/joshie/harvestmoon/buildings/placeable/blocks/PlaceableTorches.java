@@ -1,7 +1,19 @@
-package joshie.harvestmoon.buildings.meta;
+package joshie.harvestmoon.buildings.placeable.blocks;
 
-public class MetaTorch {
-    public static int getMetaData(boolean n1, boolean n2, boolean swap, int meta) {
+import net.minecraft.block.Block;
+
+public class PlaceableTorches extends PlaceableBlock {
+    public PlaceableTorches(Block block, int meta, int offsetX, int offsetY, int offsetZ) {
+        super(block, meta, offsetX, offsetY, offsetZ);
+    }
+
+    @Override
+    protected boolean canPlace(PlacementStage stage) {
+        return stage == PlacementStage.TORCHES;
+    }
+
+    @Override
+    protected int getMetaData(boolean n1, boolean n2, boolean swap) {
         if (meta == 1) {
             if (n1) {
                 meta = 2;

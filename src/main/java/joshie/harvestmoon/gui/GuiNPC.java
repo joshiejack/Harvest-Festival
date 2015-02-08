@@ -51,6 +51,13 @@ public class GuiNPC extends GuiBase {
             name_texture = new ResourceLocation(HMModInfo.MODPATH + ":lang/en_US/" + npc.getNPC().getUnlocalizedName() + ".png");
         }
     }
+    
+    @Override
+    public void updateScreen() {
+        super.updateScreen();
+        
+        
+    }
 
     @Override
     public void drawBackground(int x, int y) {

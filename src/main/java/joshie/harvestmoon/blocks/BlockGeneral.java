@@ -3,6 +3,7 @@ package joshie.harvestmoon.blocks;
 import static joshie.harvestmoon.helpers.ShippingHelper.addForShipping;
 import joshie.harvestmoon.HarvestMoon;
 import joshie.harvestmoon.blocks.items.ItemBlockGeneral;
+import joshie.harvestmoon.blocks.render.ExtraIcons;
 import joshie.harvestmoon.blocks.tiles.TileCooking;
 import joshie.harvestmoon.blocks.tiles.TileFridge;
 import joshie.harvestmoon.blocks.tiles.TileFryingPan;
@@ -202,7 +203,7 @@ public class BlockGeneral extends BlockHMBaseMeta {
     @SideOnly(Side.CLIENT)
     @Override
     public void registerBlockIcons(IIconRegister register) {
-        return;
+        ExtraIcons.registerBlockIcons(register);
     }
 
     @Override

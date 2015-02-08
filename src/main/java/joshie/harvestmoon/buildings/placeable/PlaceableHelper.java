@@ -19,6 +19,7 @@ import net.minecraft.block.BlockPumpkin;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.BlockTorch;
 import net.minecraft.block.BlockTrapDoor;
+import net.minecraft.block.BlockVine;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -55,8 +56,6 @@ public class PlaceableHelper {
          * Item Frames
          * Painting
          * Signs
-         * Vines
-         * Gates
          * Lily Pads
          * Bed
          * Skulls
@@ -84,6 +83,8 @@ public class PlaceableHelper {
             return "Pumpkin";
         } else if (block instanceof BlockTrapDoor) {
             return "TrapDoor";
+        } else if (block instanceof BlockVine) {
+            return "Vine";
         } else return "Block";
     }
 

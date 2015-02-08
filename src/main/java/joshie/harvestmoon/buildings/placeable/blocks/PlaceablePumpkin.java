@@ -34,7 +34,7 @@ public class PlaceablePumpkin extends PlaceableBlock {
                     meta = 0;
                 }
             } else if (swap) {
-                meta = 3;
+                meta = 2;
             }
         } else if (meta == 3) {
             if (n1) {

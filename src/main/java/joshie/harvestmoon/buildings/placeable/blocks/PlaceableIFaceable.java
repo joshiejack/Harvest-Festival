@@ -48,7 +48,7 @@ public class PlaceableIFaceable extends PlaceableBlock {
                     dir = SOUTH;
                 }
             } else if (swap) {
-                dir = EAST;
+                dir = NORTH;
             }
         } else if (dir == EAST) {
             if(n1) {

@@ -32,9 +32,9 @@ public abstract class Building {
             //boolean n2 = world.rand.nextBoolean();
             //boolean swap = world.rand.nextBoolean();
 
-            boolean n1 = false;
+            boolean n1 = true;
             boolean n2 = false;
-            boolean swap = true;
+            boolean swap = false;
 
             //foundation(world, x, y, z, xWidth, zWidth);
             /** First loop we place solid blocks **/

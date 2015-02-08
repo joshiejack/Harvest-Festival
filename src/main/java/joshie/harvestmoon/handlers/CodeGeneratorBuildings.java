@@ -6,11 +6,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 import joshie.harvestmoon.buildings.placeable.PlaceableHelper;
+import joshie.lib.util.IFaceable;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItemFrame;
 import net.minecraft.entity.item.EntityPainting;
 import net.minecraft.init.Blocks;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 public class CodeGeneratorBuildings {
@@ -67,7 +69,13 @@ public class CodeGeneratorBuildings {
                         Block block = world.getBlock(x1 + x, y1 + y, z1 + z);
                         if (!block.isAir(world, x1 + x, y1 + y, z1 + z) || air || entityList.size() > 0) {
                             int meta = world.getBlockMetadata(x1 + x, y1 + y, z1 + z);
-                            ret.add(PlaceableHelper.getPlaceableBlockString(block, meta, x, y, z));
+                            TileEntity tile = world.getTileEntity(x1 + x, y1 + y, z1 + z);
+                            if(tile instanceof IFaceable) {
+                                ret.add(PlaceableHelper.getPlaceableIFaceableString((IFaceable) tile, block, meta, x, y, z));
+
+                            } else {
+                                ret.add(PlaceableHelper.getPlaceableBlockString(block, meta, x, y, z));
+                            }
 
                             //Entities
                             if (entityList.size() > 0) {

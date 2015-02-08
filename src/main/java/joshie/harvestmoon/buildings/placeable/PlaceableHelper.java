@@ -5,6 +5,7 @@ import java.util.HashMap;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceableEntity;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceableItemFrame;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceablePainting;
+import joshie.lib.util.IFaceable;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockAnvil;
 import net.minecraft.block.BlockButton;
@@ -56,7 +57,6 @@ public class PlaceableHelper {
          * Doors
          * Vines
          * Gates
-         * IFaceable
          * Jack o Lanterns
          * Lily Pads
          * Bed
@@ -82,6 +82,10 @@ public class PlaceableHelper {
         } else if (block instanceof BlockFurnace || block instanceof BlockLadder || block instanceof BlockEnderChest) {
             return "Furnace";
         } else return "Block";
+    }
+    
+    public static String getPlaceableIFaceableString(IFaceable tile, Block block, int meta, int x, int y, int z) {
+        return "list.add(new PlaceableIFaceable" + "(HMBlocks.tiles, " + meta + ", " + x + ", " + y + ", " + z + ", ForgeDirection." + tile.getFacing() + "));";
     }
 
     public static String getPlaceableBlockString(Block block, int meta, int x, int y, int z) {

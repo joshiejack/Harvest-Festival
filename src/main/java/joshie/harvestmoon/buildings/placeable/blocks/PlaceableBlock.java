@@ -29,18 +29,10 @@ public class PlaceableBlock extends Placeable {
     @Override
     public void place(World world, int x, int y, int z, boolean n1, boolean n2, boolean swap) {
         int meta = getMetaData(n1, n2, swap);
-        
-        System.out.println("RETURNED META = " + meta);
-        
-        
-        
         if (meta == 0) {
-            System.out.println("Setting block @ " + x + " - " + y + " - " + z + " to " + block + " : " + meta);
             world.setBlock(x, y, z, block);
         } else {
-            System.out.println("Setting block @ " + x + " - " + y + " - " + z + " to " + block + " : " + meta);
             world.setBlock(x, y, z, block, meta, 2);
-            world.setBlockMetadataWithNotify(x, y, z, meta, 2);
         }
     }
 }

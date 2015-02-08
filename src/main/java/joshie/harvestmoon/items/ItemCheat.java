@@ -11,11 +11,12 @@ public class ItemCheat extends ItemHMMeta {
     private static final int COORD_SETTER = 0;
     private static final int CODE_GENERATOR = 1;
     private static final int RENDER_GENERATOR = 2;
+    private static final int META_CHECKER = 3;
     private static int x1, x2, y1, y2, z1, z2;
 
     @Override
     public int getMetaCount() {
-        return 3;
+        return 4;
     }
 
     @Override
@@ -41,6 +42,10 @@ public class ItemCheat extends ItemHMMeta {
             new CodeGeneratorBuildings(world, x1, y1, z1, x2, y2, z2).getCode(player.isSneaking());
         } else if (damage == RENDER_GENERATOR) {
             new CodeGeneratorRendering().getCode();
+        } else if (damage == META_CHECKER) {
+            if(world.isRemote) {
+                ClientHelper.addToChat("Metadata: " + world.getBlockMetadata(xCoord, yCoord, zCoord));
+            }
         }
 
         return false;
@@ -55,6 +60,8 @@ public class ItemCheat extends ItemHMMeta {
                 return "code_generator";
             case RENDER_GENERATOR:
                 return "render_generator";
+            case META_CHECKER:
+                return "meta_checker";
             default:
                 return "invalid";
         }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import joshie.harvestmoon.buildings.data.EntityData;
 import joshie.harvestmoon.buildings.meta.MetaHelper;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockTorch;
 import net.minecraft.world.World;
 
 public abstract class Building {
@@ -37,7 +38,11 @@ public abstract class Building {
         if (!world.isRemote) {
             boolean n1 = world.rand.nextBoolean();
             boolean n2 = world.rand.nextBoolean();
-            boolean swap = world.rand.nextBoolean(); 
+            boolean swap = world.rand.nextBoolean();
+            
+            //boolean n1 = true;
+            //boolean n2 = true;
+            //boolean swap = false;
 
             //foundation(world, x, y, z, xWidth, zWidth);
             /** First loop we place solid blocks **/
@@ -52,6 +57,7 @@ public abstract class Building {
                 }
 
                 Block block = blocks[i];
+                if (block instanceof BlockTorch) continue;
                 int meta = MetaHelper.convert(block, metas[i], n1, n2, swap);
 
                 if (meta == 0) {
@@ -75,6 +81,15 @@ public abstract class Building {
                 }
 
                 //TODO: Adjust certain blocks for metadata
+                Block block = blocks[i];
+                if (block instanceof BlockTorch) {
+                    int meta = MetaHelper.convert(block, metas[i], n1, n2, swap);
+                    if (meta == 0) {
+                        world.setBlock(xCoord + x, yCoord + y, zCoord + z, block);
+                    } else {
+                        world.setBlock(xCoord + x, yCoord + y, zCoord + z, block, meta, 2);
+                    }
+                }
 
                 //Adjust the entities position accordingly, and then spawn them.
                 if (entities != null) {

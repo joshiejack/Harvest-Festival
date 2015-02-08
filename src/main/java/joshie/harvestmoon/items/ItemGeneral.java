@@ -67,8 +67,8 @@ public class ItemGeneral extends ItemHMMeta {
             } else if (metadata == MILKER && animal instanceof EntityCow) {
                 if (canProduceProduct(animal)) {
                     ItemStack product = SizeableHelper.getSizeable(player, animal, SizeableMeta.MILK, Size.SMALL);
-                    if (!player.inventory.addItemStackToInventory(stack)) {
-                        player.dropPlayerItemWithRandomChoice(stack, false);
+                    if (!player.inventory.addItemStackToInventory(product)) {
+                        player.dropPlayerItemWithRandomChoice(product, false);
                     }
 
                     setProducedProduct(animal);

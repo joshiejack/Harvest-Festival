@@ -40,9 +40,9 @@ public class PacketQuestSetStage implements IMessage, IMessageHandler<PacketQues
     @Override
     public IMessage onMessage(PacketQuestSetStage message, MessageContext ctx) {
         if (message.isSenderClient) {
-            handler.getServer().getPlayerData(ctx.getServerHandler().playerEntity).getQuests().setStage(quest, message.stage);
+            handler.getServer().getPlayerData(ctx.getServerHandler().playerEntity).getQuests().setStage(message.quest, message.stage);
         } else {
-            handler.getClient().getPlayerData().getQuests().setStage(quest, message.stage);
+            handler.getClient().getPlayerData().getQuests().setStage(message.quest, message.stage);
         }
 
         return null;

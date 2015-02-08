@@ -25,7 +25,7 @@ public class QuestsClientside {
         if (current != null) {
             for (Quest q : current) {
                 if (q.equals(quest)) {
-                    return quest;
+                    return q;
                 }
             }
         }

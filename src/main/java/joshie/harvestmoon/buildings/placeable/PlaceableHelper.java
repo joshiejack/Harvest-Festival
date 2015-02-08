@@ -15,9 +15,12 @@ import net.minecraft.block.BlockFenceGate;
 import net.minecraft.block.BlockFurnace;
 import net.minecraft.block.BlockLadder;
 import net.minecraft.block.BlockLever;
+import net.minecraft.block.BlockPumpkin;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.BlockTorch;
+import net.minecraft.block.BlockTrapDoor;
 import net.minecraft.entity.Entity;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -27,7 +30,7 @@ public class PlaceableHelper {
     private static final HashMap<String, String> names = new HashMap();
 
     public static String getBestGuessName(ItemStack stack) {
-        if (stack.getItem() instanceof ItemBlock) {
+        if (stack.getItem() != null && stack.getItem() instanceof ItemBlock) {
             Block block = Block.getBlockFromItem(stack.getItem());
             String name = Block.blockRegistry.getNameForObject(block).replace("minecraft:", "");
             String print = "Blocks." + name;
@@ -36,7 +39,7 @@ public class PlaceableHelper {
             }
 
             return print;
-        } else {
+        } else if (stack.getItem() != null) {
             String name = Item.itemRegistry.getNameForObject(stack.getItem()).replace("minecraft:", "");
             String print = "Items." + name;
             if (names.containsKey(name)) {
@@ -44,7 +47,7 @@ public class PlaceableHelper {
             }
 
             return print;
-        }
+        } else return "//TODO: ITEM NAME";
     }
 
     /** TODO:
@@ -52,12 +55,8 @@ public class PlaceableHelper {
          * Item Frames
          * Painting
          * Signs
-         * Trapdoors
-         * Pumpkins
-         * Doors
          * Vines
          * Gates
-         * Jack o Lanterns
          * Lily Pads
          * Bed
          * Skulls
@@ -81,15 +80,21 @@ public class PlaceableHelper {
             return "Anvil";
         } else if (block instanceof BlockFurnace || block instanceof BlockLadder || block instanceof BlockEnderChest) {
             return "Furnace";
+        } else if (block instanceof BlockPumpkin) {
+            return "Pumpkin";
+        } else if (block instanceof BlockTrapDoor) {
+            return "TrapDoor";
         } else return "Block";
     }
-    
+
     public static String getPlaceableIFaceableString(IFaceable tile, Block block, int meta, int x, int y, int z) {
         return "list.add(new PlaceableIFaceable" + "(HMBlocks.tiles, " + meta + ", " + x + ", " + y + ", " + z + ", ForgeDirection." + tile.getFacing() + "));";
     }
 
     public static String getPlaceableBlockString(Block block, int meta, int x, int y, int z) {
         String print = getBestGuessName(new ItemStack(block));
+        if (block == Blocks.wooden_door) print = "Blocks.wooden_door";
+        if (block == Blocks.iron_door) print = "Blocks.iron_door";
         return "list.add(new Placeable" + getPrefixString(block) + "(" + print + ", " + meta + ", " + x + ", " + y + ", " + z + "));";
     }
 

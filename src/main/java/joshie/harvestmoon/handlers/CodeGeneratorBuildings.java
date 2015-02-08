@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-import joshie.harvestmoon.buildings.placeable.blocks.PlaceableHelper;
+import joshie.harvestmoon.buildings.placeable.PlaceableHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItemFrame;

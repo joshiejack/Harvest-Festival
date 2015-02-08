@@ -1,6 +1,6 @@
 package joshie.harvestmoon.buildings.placeable.entities;
 
-import joshie.harvestmoon.buildings.placeable.blocks.PlaceableHelper;
+import joshie.harvestmoon.buildings.placeable.PlaceableHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItemFrame;
 import net.minecraft.item.ItemStack;

@@ -1,4 +1,4 @@
-package joshie.harvestmoon.buildings.placeable.blocks;
+package joshie.harvestmoon.buildings.placeable;
 
 import java.util.HashMap;
 
@@ -37,16 +37,18 @@ public class PlaceableHelper {
             return print;
         }
     }
+    
+    public static String getPrefixString(Block block) {
+        if(block instanceof BlockStairs) {
+            return "Stairs";
+        } else if (block instanceof BlockTorch) {
+            return "Torches";
+        } else return "Block";
+    }
 
     public static String getPlaceableBlockString(Block block, int meta, int x, int y, int z) {
         String print = getBestGuessName(new ItemStack(block));
-        if (block instanceof BlockStairs) {
-            return "list.add(new PlaceableStairs(" + print + ", " + meta + ", " + x + ", " + y + ", " + z + "));";
-        } else if (block instanceof BlockTorch) {
-            return "list.add(new PlaceableTorches(" + print + ", " + meta + ", " + x + ", " + y + ", " + z + "));";
-        }
-
-        return "list.add(new PlaceableBlock(" + print + ", " + meta + ", " + x + ", " + y + ", " + z + "));";
+        return "list.add(new Placeable" + getPrefixString(block) + "(" + print + ", " + meta + ", " + x + ", " + y + ", " + z + "));";
     }
 
     public static String getPlaceableEntityString(Entity entity, int x, int y, int z) {

@@ -11,7 +11,7 @@ Other things to do (AFTER EVERYTHING ELSE)
 
 
 //NEED HELP WITH THINGS BELOW THIS POINT
-Buildings: TODO
+Buildings: TODO (Got someone working these)
 Info: (Make the buildings using vanilla only blocks, and send me the save)
 • Harvest Goddess
 • Animal Barn (Sells you Animals)
@@ -36,14 +36,6 @@ Info: (Coding see joshie.harvestmoon.quests.*)
 Rendering: TODO
 Info: (Coding see joshie.harvestmoon.crops.render.*)
 • All crops and their stages
-• Steamer
-• Oven
-• Mixer
-• Frying Pan
-• Cooking Pot
-• 'Kitchen' (Counter)
-• Fridge
-• Shipping Bin
 
 Textures: TODO
 //See texture_names.txt for names of textures if you want :P
@@ -53,7 +45,7 @@ GUI
 
 -- Tool Icons in the following materials:
 -Basic, Copper, Silver, Gold, Mystril, Cursed, Blessed, Mythic (+Wood, Stone, Iron, Gold, Diamond for config option)
-//See the Sickles for an idea of how to match them up
+//See the Sickles for an idea of how to match them up, Also some of the watering cans are done, see the items for that
 • Hoes
 • Watering Cans
 
@@ -103,7 +95,6 @@ GUI
 
 -- General Items
 • Cow Milker
-• Animal Brush
 • Animal Medicine
 • Chicken Feed
 
@@ -118,12 +109,10 @@ GUI
 • Other Animal Treat
 
 -- Animal Products
-• Large Ball of Wool
-• Medium Ball of Wool
-• Small Ball of Wool
 • Large Chicken Egg
 • Medium Chicken Egg
 • Small Chicken Egg
-• Large Bottle of Milk
-• Medium Bottle of Milk
-• Small Bottle of Milk
+
+-- Blocks (See texture_names for details, these textures are used as part in a isbrh render)
+• Fridge
+• Kitchen Counter

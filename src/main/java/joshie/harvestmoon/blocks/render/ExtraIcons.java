@@ -28,5 +28,9 @@ public class ExtraIcons {
         COUNTER_FRONT = register.registerIcon(HMModInfo.MODPATH + ":counter_front");
         COUNTER_SIDE = register.registerIcon(HMModInfo.MODPATH + ":counter_side");
         COUNTER_SURFACE = register.registerIcon(HMModInfo.MODPATH + ":counter_surface");
+        FRIDGE_BACK = register.registerIcon(HMModInfo.MODPATH + ":fridge_back");
+        FRIDGE_SIDE = register.registerIcon(HMModInfo.MODPATH + ":fridge_sides");
+        FRIDGE_TOP = register.registerIcon(HMModInfo.MODPATH + ":fridge_upper_door");
+        FRIDGE_BOTTOM = register.registerIcon(HMModInfo.MODPATH + ":fridge_lower_door");
     }
 }

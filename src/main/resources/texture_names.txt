@@ -85,3 +85,12 @@ items/wateringcan_silver.png
 items/wool_large.png //Ball of Wool (From a sheep not kniting stuff)
 items/wool_medium.png //Ball of Wool (From a sheep not kniting stuff)
 items/wool_small.png //Ball of Wool (From a sheep not kniting stuff)
+
+blocks/generic/metal.png
+blocks/counter_front.png
+blocks/counter_surface.png
+blocks/counter_side.png
+blocks/fridge_back.png
+blocks/fridge_sides.png
+blocks/fridge_upper_door.png
+blocks/fridge_lower_door.png

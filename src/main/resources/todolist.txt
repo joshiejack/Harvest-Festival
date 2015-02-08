@@ -122,4 +122,4 @@ GUI
 • Build a fitting house
 • Realtor will move in after a certain amount of time
 • You lead the realtor to the spot you want your village in (lead to fence, maybe?)
-• For a certain amount of resources you can buy yourself each building
+• For a certain amount of resources you can buy yourself each building, to assign a building, mark a spot (lead to fence, maybe?)

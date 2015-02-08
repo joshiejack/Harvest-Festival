@@ -15,7 +15,9 @@ import net.minecraft.block.BlockFenceGate;
 import net.minecraft.block.BlockFurnace;
 import net.minecraft.block.BlockLadder;
 import net.minecraft.block.BlockLever;
+import net.minecraft.block.BlockLog;
 import net.minecraft.block.BlockPumpkin;
+import net.minecraft.block.BlockQuartz;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.BlockTorch;
 import net.minecraft.block.BlockTrapDoor;
@@ -52,14 +54,15 @@ public class PlaceableHelper {
     }
 
     /** TODO:
+         * Wall Mounted Sign
+         * Floor Mounted Sign
+         * Trip wire
          * Item Frames
          * Painting
-         * Signs
          * Lily Pads
          * Bed
          * Skulls
          * Pistons
-         * Tripwire
          * Dispenser
          * Dropper
          */
@@ -83,6 +86,10 @@ public class PlaceableHelper {
             return "TrapDoor";
         } else if (block instanceof BlockVine) {
             return "Vine";
+        } else if (block instanceof BlockLog) {
+            return "Log";
+        } else if (block instanceof BlockQuartz) {
+            return "Pillar";
         } else return "Block";
     }
 
@@ -95,6 +102,12 @@ public class PlaceableHelper {
         if (block == Blocks.wooden_door) print = "Blocks.wooden_door";
         if (block == Blocks.iron_door) print = "Blocks.iron_door";
         if (block == Blocks.standing_sign) print = "Blocks.standing_sign";
+        if (block == Blocks.air) print = "Blocks.air";
+        if (block == Blocks.wall_sign) print = "Blocks.wall_sign";
+        if (block == Blocks.flower_pot) print = "Blocks.flower_pot";
+        if (print.contains("TODO")) {
+            System.out.println(block);
+        }
         return "list.add(new Placeable" + getPrefixString(block) + "(" + print + ", " + meta + ", " + x + ", " + y + ", " + z + "));";
     }
 

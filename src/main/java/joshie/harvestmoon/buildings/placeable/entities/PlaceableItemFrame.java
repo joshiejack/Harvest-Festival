@@ -6,25 +6,24 @@ import net.minecraft.entity.item.EntityItemFrame;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class PlaceableItemFrame extends PlaceableEntity {
+public class PlaceableItemFrame extends PlaceableHanging {
     private ItemStack stack;
     private int rotation;
-    private int facing;
 
     public PlaceableItemFrame() {
-        super(0, 0, 0);
+        super(0, 0, 0, 0);
     }
 
     public PlaceableItemFrame(ItemStack stack, int rotation, int facing, int offsetX, int offsetY, int offsetZ) {
-        super(offsetX, offsetY, offsetZ);
+        super(facing, offsetX, offsetY, offsetZ);
         this.stack = stack;
         this.rotation = rotation;
-        this.facing = facing;
     }
 
     @Override
-    public Entity getEntity(World world, int x, int y, int z) {
-        EntityItemFrame frame = new EntityItemFrame(world, x, y, z, facing);
+    public Entity getEntity(World world, int x, int y, int z, boolean n1, boolean n2, boolean swap) {
+        int facing = getFacing(n1, n2, swap);
+        EntityItemFrame frame = new EntityItemFrame(world, getX(x, facing), y, getZ(z, facing), facing);
         frame.setDisplayedItem(stack);
         frame.setItemRotation(rotation);
         return frame;
@@ -36,7 +35,7 @@ public class PlaceableItemFrame extends PlaceableEntity {
         }
 
         String name = PlaceableHelper.getBestGuessName(stack);
-        return "new Itemstack(" + name + ", 1, " + stack.getItemDamage() + ");";
+        return "new ItemStack(" + name + ", 1, " + stack.getItemDamage() + ")";
     }
 
     @Override

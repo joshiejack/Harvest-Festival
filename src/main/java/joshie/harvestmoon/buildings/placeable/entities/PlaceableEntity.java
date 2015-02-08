@@ -9,12 +9,12 @@ public abstract class PlaceableEntity extends Placeable {
         super(offsetX, offsetY, offsetZ);
     }
     
-    public abstract Entity getEntity(World world, int x, int y, int z);    
+    public abstract Entity getEntity(World world, int x, int y, int z, boolean n1, boolean n2, boolean swap);    
     public abstract String getStringFor(Entity e, int x, int y, int z);
     
     
     @Override
     public void place(World world, int x, int y, int z, boolean n1, boolean n2, boolean swap) {
-        world.spawnEntityInWorld(getEntity(world, x, y, z));
+        world.spawnEntityInWorld(getEntity(world, x, y, z, n1, n2, swap));
     }
 }

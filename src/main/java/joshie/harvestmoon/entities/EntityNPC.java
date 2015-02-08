@@ -30,6 +30,11 @@ public class EntityNPC extends EntityVillager implements IEntityAdditionalSpawnD
         super(world);
         this.npc = npc;
     }
+    
+    public EntityNPC(World world, NPC npc, double x, double y, double z) {
+        this(world, npc);
+        this.setPosition(x, y, z);
+    }
 
     public ResourceLocation getSkin() {
         return new ResourceLocation(HMModInfo.MODPATH + ":" + "textures/entity/" + npc.getUnlocalizedName() + ".png");

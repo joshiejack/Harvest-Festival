@@ -43,6 +43,7 @@ public class BlockGeneral extends BlockHMBaseMeta {
     public static final int OVEN = 6;
     public static final int STEAMER = 7;
     public static final int FRIDGE_TOP = 8;
+    public static final int RURAL_CHEST = 9;
 
     public BlockGeneral() {
         super(Material.wood);
@@ -208,7 +209,7 @@ public class BlockGeneral extends BlockHMBaseMeta {
 
     @Override
     public int getMetaCount() {
-        return 8;
+        return 9;
     }
 
     @Override

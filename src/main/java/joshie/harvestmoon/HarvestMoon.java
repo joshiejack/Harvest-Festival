@@ -2,6 +2,10 @@ package joshie.harvestmoon;
 
 import static joshie.harvestmoon.lib.HMModInfo.MODID;
 import static joshie.harvestmoon.lib.HMModInfo.MODNAME;
+import static joshie.harvestmoon.lib.HMModInfo.MODPATH;
+
+import java.io.File;
+
 import joshie.harvestmoon.buildings.HMBuildings;
 import joshie.harvestmoon.commands.CommandHandler;
 import joshie.harvestmoon.handlers.CommonHandler;
@@ -36,6 +40,10 @@ import joshie.harvestmoon.network.quests.PacketQuestSetStage;
 import joshie.harvestmoon.network.quests.PacketQuestStart;
 import joshie.harvestmoon.util.WorldDestroyer;
 import net.minecraftforge.common.MinecraftForge;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -55,11 +63,16 @@ public class HarvestMoon {
     @SidedProxy(clientSide = "joshie.harvestmoon.ClientProxy", serverSide = "joshie.harvestmoon.CommonProxy")
     public static CommonProxy proxy;
 
+    public static final Logger logger = LogManager.getLogger(MODNAME);
+    
     @Instance(MODID)
     public static HarvestMoon instance;
+    public static File root;
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+        root = new File(event.getModConfigurationDirectory() + File.separator + MODPATH);
+        HMConfiguration.init();
         HMBuildings.init();
         HMCrops.init();
         HMNPCs.init();

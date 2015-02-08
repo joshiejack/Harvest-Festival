@@ -1,6 +1,6 @@
 package joshie.harvestmoon.network;
 
-import static joshie.harvestmoon.Configuration.PACKET_DISTANCE;
+import static joshie.harvestmoon.HMConfiguration.PACKET_DISTANCE;
 import static joshie.harvestmoon.lib.HMModInfo.MODID;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.Packet;

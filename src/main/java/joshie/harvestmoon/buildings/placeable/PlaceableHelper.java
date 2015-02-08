@@ -52,7 +52,6 @@ public class PlaceableHelper {
     }
 
     /** TODO:
-         * Anvil
          * Item Frames
          * Painting
          * Signs
@@ -60,7 +59,6 @@ public class PlaceableHelper {
          * Bed
          * Skulls
          * Pistons
-         * Redstone Torch
          * Tripwire
          * Dispenser
          * Dropper

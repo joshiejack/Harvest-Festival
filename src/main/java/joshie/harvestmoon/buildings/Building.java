@@ -28,13 +28,13 @@ public abstract class Building {
 
     public boolean generate(World world, int xCoord, int yCoord, int zCoord) {
         if (!world.isRemote) {
-            boolean n1 = world.rand.nextBoolean();
-            boolean n2 = world.rand.nextBoolean();
-            boolean swap = world.rand.nextBoolean();
+            // boolean n1 = world.rand.nextBoolean();
+            //boolean n2 = world.rand.nextBoolean();
+            //boolean swap = world.rand.nextBoolean();
 
-            //boolean n1 = true;
-            //boolean n2 = true;
-            //boolean swap = false;
+            boolean n1 = false;
+            boolean n2 = false;
+            boolean swap = true;
 
             //foundation(world, x, y, z, xWidth, zWidth);
             /** First loop we place solid blocks **/

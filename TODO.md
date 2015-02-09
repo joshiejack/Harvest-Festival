@@ -43,20 +43,16 @@
 # Texturing of many things
 List of some of the things:
 //Crops: Item and Seed bag form.
-* Magic Flower
 * Green Pepper
 * Spinach
 * Sweet Potato
 * Carrot
 * Eggplant
-* Pinkcat
 * Pineapple
 * Pumpkin
-*  Corn
+* Corn
 * Onion
 * Tomato
-* Toyflower
-* Moondrop Flower
 * Cabbage
 * Strawberry
 * Cucumber

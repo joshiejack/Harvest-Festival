@@ -60,9 +60,9 @@ public class CodeGeneratorBuildings {
             Set all = new HashSet();
             boolean hasAFrame = false;
             int i = 0;
-            for (int x = 0; x <= x2 - x1; x++) {
-                for (int z = 0; z <= z2 - z1; z++) {
-                    for (int y = 0; y <= y2 - y1; y++) {
+            for (int y = 0; y <= y2 - y1; y++) {
+                for (int x = 0; x <= x2 - x1; x++) {
+                    for (int z = 0; z <= z2 - z1; z++) {
                         Set<Entity> entityList = new HashSet();
                         entityList.addAll(getEntities(EntityPainting.class, x1 + x, y1 + y, z1 + z));
                         entityList.addAll(getEntities(EntityItemFrame.class, x1 + x, y1 + y, z1 + z));

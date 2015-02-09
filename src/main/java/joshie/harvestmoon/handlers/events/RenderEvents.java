@@ -20,6 +20,7 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 
@@ -32,6 +33,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class RenderEvents {    
+    private static final ResourceLocation COIN_TEXTURE = new ResourceLocation("hm", "textures/gui/gui_elements.png");
+    
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void renderTick(TickEvent.RenderTickEvent event) {
@@ -83,29 +86,23 @@ public class RenderEvents {
 
             GL11.glPushMatrix();
             GL11.glEnable(GL11.GL_BLEND);
-            GL11.glScalef(0.5F, 0.5F, 0.5F);
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
             mc.renderEngine.bindTexture(getClientSeason().getTexture());
-
-            int x = (int) (event.resolution.getScaledWidth() * 3.35 + 10);
-            int y = (int) event.resolution.getScaledHeight() - event.resolution.getScaledHeight() - 40;
             mc.ingameGUI.drawTexturedModalRect(0, 0, 0, 0, 256, 256);
 
+            //Enlarge the Day
             GL11.glPushMatrix();
-            GL11.glScalef(1.8F, 1.8F, 1.8F);
-            mc.fontRenderer.drawString(getClientSeason().getLocalized() + " " + getClientDay(), 5, 4, 0);
+            GL11.glScalef(1.4F, 1.4F, 1.4F);
+            mc.fontRenderer.drawStringWithShadow(getClientSeason().getLocalized() + " " + getClientDay(), 30, 8, 0xFFFFFFFF);
             GL11.glPopMatrix();
 
-            GL11.glPushMatrix();
-            GL11.glScalef(1.5F, 1.5F, 1.5F);
-            mc.fontRenderer.drawString("Year " + getClientYear(), 8, 15, 0);
-            GL11.glPopMatrix();
-
-            GL11.glPushMatrix();
-            GL11.glScalef(1.2F, 1.2F, 1.2F);
-            mc.fontRenderer.drawString(NumberFormat.getNumberInstance(Locale.US).format(handler.getClient().getPlayerData().getGold()), 9, 36, 0);
-            GL11.glPopMatrix();
+            mc.fontRenderer.drawStringWithShadow("Year " + getClientYear(), 45, 25, 0xFFFFFFFF);
+            mc.getTextureManager().bindTexture(COIN_TEXTURE);
+            String text = NumberFormat.getNumberInstance(Locale.US).format(handler.getClient().getPlayerData().getGold());
+            int width = event.resolution.getScaledWidth();
+            mc.ingameGUI.drawTexturedModalRect(width - mc.fontRenderer.getStringWidth(text) - 20, 2, 244, 0, 12, 12);
+            mc.fontRenderer.drawStringWithShadow(text, width - mc.fontRenderer.getStringWidth(text) - 5, 5, 0xFFFFFFFF);
 
             GL11.glDisable(GL11.GL_BLEND);
             GL11.glPopMatrix();

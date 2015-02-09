@@ -1,4 +1,4 @@
-//inaps buildings and stuff
+# inaps buildings and stuff
 - [ ] Harvest Goddess
 - [x] Animal Barn (Sells you Animals)
 - [ ] Cafe 
@@ -18,7 +18,7 @@
 * For a certain amount of resources you can buy yourself each building, to assign a building, mark a spot (lead to fence, maybe?)
 
 
-//joshie stuff, feel to help with any!
+# joshie stuff, feel to help with any!
 - [ ] Crop Rendering
 - [ ] NPC Builder Quests for Materials and will build you things. Hands you a plot marker to place roughly where you want the building built.
 - [ ] Spawning the Harvest Goddess and the NPC Builder
@@ -38,7 +38,8 @@
 - [ ] Quests to unlock Mixer, Frying Pan and Pot for purchase
 
 
-Texturing of many things, List of some of the things:
+# Texturing of many things
+List of some of the things:
 //Crops: Item and Seed bag form.
 * Magic Flower
 * Green Pepper

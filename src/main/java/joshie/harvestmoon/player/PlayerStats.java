@@ -10,7 +10,7 @@ public class PlayerStats implements IData {
     private double stamina = 1000;
     private double fatigue;
     private int gold;
-    
+
     public PlayerDataServer master;
     public PlayerStats(PlayerDataServer master) {
         this.master = master;
@@ -20,7 +20,11 @@ public class PlayerStats implements IData {
         this.stamina = 1000;
         this.fatigue = 0;
     }
-    
+
+    public CalendarDate getBirthday() {
+        return birthday;
+    }
+
     public void affectStats(double stamina, double fatigue) {
         this.stamina += stamina;
         this.fatigue += fatigue;

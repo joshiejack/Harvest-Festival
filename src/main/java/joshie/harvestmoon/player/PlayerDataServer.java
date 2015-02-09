@@ -10,6 +10,7 @@ import joshie.harvestmoon.cooking.SavedRecipe;
 import joshie.harvestmoon.crops.CropData;
 import joshie.harvestmoon.entities.NPC;
 import joshie.harvestmoon.helpers.generic.EntityHelper;
+import joshie.harvestmoon.network.PacketSyncBirthday;
 import joshie.harvestmoon.network.PacketSyncGold;
 import joshie.harvestmoon.network.PacketSyncStats;
 import joshie.harvestmoon.util.IData;
@@ -127,6 +128,7 @@ public class PlayerDataServer implements IData {
     }
 
     public void syncPlayerStats() {
+        sendToClient(new PacketSyncBirthday(playerStats.getBirthday()), getAndCreatePlayer());
         sendToClient(new PacketSyncGold(playerStats.getGold()), getAndCreatePlayer());
         sendToClient(new PacketSyncStats(playerStats.getStamina(), playerStats.getFatigue()), getAndCreatePlayer());
     }

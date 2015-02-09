@@ -3,6 +3,7 @@ package joshie.harvestmoon.init;
 import joshie.harvestmoon.network.PacketCropRequest;
 import joshie.harvestmoon.network.PacketHandler;
 import joshie.harvestmoon.network.PacketSetCalendar;
+import joshie.harvestmoon.network.PacketSyncBirthday;
 import joshie.harvestmoon.network.PacketSyncCanProduce;
 import joshie.harvestmoon.network.PacketSyncCooking;
 import joshie.harvestmoon.network.PacketSyncCrop;
@@ -19,7 +20,7 @@ import joshie.harvestmoon.network.quests.PacketQuestStart;
 import cpw.mods.fml.relauncher.Side;
 
 public class HMPackets {
-    public static void init () {
+    public static void init() {
         //General Packets
         PacketHandler.registerPacket(PacketCropRequest.class, Side.SERVER);
         PacketHandler.registerPacket(PacketSetCalendar.class, Side.CLIENT);
@@ -33,6 +34,7 @@ public class HMPackets {
         PacketHandler.registerPacket(PacketSyncStats.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketSyncCooking.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketSyncOrientation.class, Side.CLIENT);
+        PacketHandler.registerPacket(PacketSyncBirthday.class, Side.CLIENT);
 
         //Quest Packets
         PacketHandler.registerPacket(PacketQuestSetAvailable.class, Side.CLIENT);

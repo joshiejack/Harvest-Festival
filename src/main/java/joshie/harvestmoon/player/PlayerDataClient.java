@@ -3,6 +3,8 @@ package joshie.harvestmoon.player;
 import java.util.HashMap;
 import java.util.UUID;
 
+import joshie.harvestmoon.calendar.CalendarDate;
+import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.entities.EntityNPC;
 import joshie.harvestmoon.entities.NPC;
 import joshie.harvestmoon.util.Translate;
@@ -13,6 +15,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class PlayerDataClient {
     //Questing
+    private CalendarDate birthday = new CalendarDate();
     private QuestsClientside quests = new QuestsClientside();
     private HashMap<UUID, Short> entity_relations = new HashMap();
     private HashMap<NPC, Short> npc_relations = new HashMap();
@@ -88,5 +91,9 @@ public class PlayerDataClient {
     public void setStats(double stamina, double fatigue) {
         this.stamina = stamina;
         this.fatigue = fatigue;
+    }
+
+    public void setBirthday(int day, Season season, int year) {
+        this.birthday = new CalendarDate(day, season, year);
     }
 }

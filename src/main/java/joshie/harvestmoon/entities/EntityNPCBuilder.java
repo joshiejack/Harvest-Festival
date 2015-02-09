@@ -2,7 +2,6 @@ package joshie.harvestmoon.entities;
 
 import joshie.harvestmoon.buildings.Building;
 import joshie.harvestmoon.buildings.BuildingStage;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
@@ -42,15 +41,6 @@ public class EntityNPCBuilder extends EntityNPC {
         }
 
         return false;
-    }
-
-    @Override
-    public boolean interact(EntityPlayer player) {
-        if (building == null) {
-            return startBuilding(Building.getBuilding("test"), (int) player.posX, (int) player.posY - 1, (int) player.posZ);
-        } else {
-            return super.interact(player);
-        }
     }
 
     @Override

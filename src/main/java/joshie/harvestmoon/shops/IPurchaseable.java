@@ -7,7 +7,7 @@ import net.minecraft.world.World;
 
 public interface IPurchaseable {
     /** Whether this player can purchase this product or not, on this date/time **/
-    public boolean canBuy(World world, PlayerDataServer player, CalendarDate calendar);
+    public boolean canBuy(World world, CalendarDate playersBirthday, CalendarDate dat);
     
     /** The cost of this product **/
     public int getCost();

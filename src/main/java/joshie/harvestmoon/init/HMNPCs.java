@@ -38,10 +38,12 @@ public class HMNPCs {
     public static NPC mayor; //Married to priest
     public static NPC daughter_1; //Daughter of Mayor and Priest
     public static NPC daughter_2; //Daughter of Mayor and Priest
-    public static NPC clock_worker; //The postie
+    public static NPC clock_worker; //The clock worker
     public static NPC gs_owner; //Owner of general store
     public static NPC miner; //Works in the mines
     public static NPC fisherman; //Fisherman
+    public static NPC milkmaid; //Works in the Barn, Milking Cows
+    public static NPC builder; //Builds stuff for the players
 
     public static void init() {
         goddess = register(new NPC("goddess", FEMALE, ADULT));
@@ -59,5 +61,7 @@ public class HMNPCs {
         gs_owner = register(new NPC("jenni", FEMALE, ADULT));
         miner = register(new NPC("brandon", MALE, ADULT));
         fisherman = register(new NPC("jacob", MALE, ADULT));
+        milkmaid = register(new NPC("candice", FEMALE, ADULT));
+        builder = register(new NPC("inap", MALE, ADULT).setIsBuilder());
     }
 }

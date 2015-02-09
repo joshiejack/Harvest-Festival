@@ -15,9 +15,9 @@ public class PurchaseableCropSeeds implements IPurchaseable {
     }
 
     @Override
-    public boolean canBuy(World world, PlayerDataServer player, CalendarDate calendar) {
-        if (calendar.getSeason() != crop.getSeason()) return false;
-        return calendar.getSeason() == crop.getSeason();
+    public boolean canBuy(World world, CalendarDate playersBirthday, CalendarDate date) {
+        if (date.getSeason() != crop.getSeason()) return false;
+        return date.getSeason() == crop.getSeason();
     }
 
     @Override

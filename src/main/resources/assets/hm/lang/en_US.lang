@@ -139,6 +139,8 @@ hm.npc.fenn.name=Suirenji
 hm.npc.jim.name=Jim
 hm.npc.brandon.name=Brandon
 hm.npc.thomas.name=Tomas
+hm.npc.candice.name=Candice
+hm.npc.inap.name=Yulif
 
 ## NOTE FOR TRANSLATORS, READ
 # When translating these, do not directly translate, just come up with your own
@@ -215,6 +217,19 @@ hm.npc.tiberius.greeting2=When I was a child my favourite nursery rhyme was hick
 hm.npc.tiberius.greeting3=What time is it?
 hm.npc.tiberius.greeting4=My favourite season is spring, as that's when a new year starts!
 hm.npc.tiberius.greeting5=I've never understood why some people are afraid of blood, I had a friend who delved in to Sanguimancy, he almost took over the world, shame he was caught redhanded before he got away with it. I guess it's just not the time for it.
+
+#Candice Greeting
+hm.npc.candice.greeting1=Do you know what I love about milking the most? Sharing it with friends, like Jenni! Sometimes we just get it all over us. So it's nice to have a helping hand to clean up the mess.
+hm.npc.candice.greeting2=Some people can just be real cows!
+hm.npc.candice.greeting3=Where the heck am I? What is this world?
+hm.npc.candice.greeting4=Come over here, I have something in my eye.
+
+#Inap greeting
+hm.npc.inap.greeting1=Building stuff is so time consuming, when will I get a break?
+hm.npc.inap.greeting2=People treat me like a slave, no rest for the builder!
+hm.npc.inap.greeting3=Have you seen Jim? Isn't he just?
+hm.npc.inap.greeting4=I am tired of all this hard work, When will you appreciate my buildings?
+hm.npc.inap.greeting5=I am tired of wandering around, I am dying right now.
 
 ###Quests
 ## Cow Tutorial

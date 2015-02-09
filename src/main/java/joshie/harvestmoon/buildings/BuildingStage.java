@@ -62,6 +62,7 @@ public class BuildingStage {
         xCoord = nbt.getInteger("BuildingX");
         yCoord = nbt.getInteger("BuildingY");
         zCoord = nbt.getInteger("BuildingZ");
+        stage = PlacementStage.values()[nbt.getInteger("Stage")];
     }
 
     public void writeToNBT(NBTTagCompound nbt) {
@@ -73,5 +74,6 @@ public class BuildingStage {
         nbt.setInteger("BuildingX", xCoord);
         nbt.setInteger("BuildingY", yCoord);
         nbt.setInteger("BuildingZ", zCoord);
+        nbt.setInteger("Stage", stage.ordinal());
     }
 }

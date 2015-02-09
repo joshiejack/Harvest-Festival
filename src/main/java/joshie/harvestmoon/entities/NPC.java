@@ -101,11 +101,11 @@ public class NPC {
         return shop;
     }
 
-    public EntityNPC getEntity(World world) {
+    public EntityNPC getEntity(World world, int x, int y, int z) {
         if (isBuilder()) {
             return new EntityNPCBuilder(world, this);
         } else if (shop != null) {
-            return new EntityNPCShopkeeper(world, this);
+            return new EntityNPCShopkeeper(world, this).setWorkLocation(x, y, z);
         } else return new EntityNPC(world, this);
     }
 

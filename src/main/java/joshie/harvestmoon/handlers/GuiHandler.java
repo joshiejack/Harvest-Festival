@@ -1,7 +1,6 @@
 package joshie.harvestmoon.handlers;
 
 import joshie.harvestmoon.entities.EntityNPC;
-import joshie.harvestmoon.entities.EntityNPCShopkeeper;
 import joshie.harvestmoon.gui.ContainerNPC;
 import joshie.harvestmoon.gui.ContainerNPCShop;
 import joshie.harvestmoon.gui.GuiNPC;
@@ -18,7 +17,7 @@ public class GuiHandler implements IGuiHandler {
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
         switch (ID) {
             case NPC:       return new ContainerNPC((EntityNPC) world.getEntityByID(x), player.inventory);
-            case SHOP:       return new ContainerNPCShop((EntityNPCShopkeeper) world.getEntityByID(x), player.inventory);
+            case SHOP:       return new ContainerNPCShop((EntityNPC) world.getEntityByID(x), player.inventory);
             default:        return null;
         }
     }
@@ -27,7 +26,7 @@ public class GuiHandler implements IGuiHandler {
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
         switch (ID) {
             case NPC:       return new GuiNPC((EntityNPC) world.getEntityByID(x), player);
-            case SHOP:       return new GuiNPCShop((EntityNPCShopkeeper) world.getEntityByID(x), player);
+            case SHOP:       return new GuiNPCShop((EntityNPC) world.getEntityByID(x), player);
             default:        return null;
         }
     }

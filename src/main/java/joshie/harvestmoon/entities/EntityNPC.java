@@ -19,7 +19,14 @@ import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 public class EntityNPC extends EntityVillager implements IEntityAdditionalSpawnData {
     public InventoryNPC inventory = new InventoryNPC(this);
     protected NPC npc;
+    protected double homeX, homeY, homeZ;
     protected EntityNPC lover;
+
+    public EntityNPC(EntityNPC entity) {
+        this(entity.worldObj, entity.npc, entity.homeX, entity.homeY, entity.homeZ);
+        inventory = entity.inventory;
+        lover = entity.lover;
+    }
 
     public EntityNPC(World world) {
         this(world, HMNPCs.goddess);
@@ -32,7 +39,16 @@ public class EntityNPC extends EntityVillager implements IEntityAdditionalSpawnD
 
     public EntityNPC(World world, NPC npc, double x, double y, double z) {
         this(world, npc);
-        this.setPosition(x, y, z);
+        setPosition(x, y, z);
+    }
+
+    @Override
+    public void setPosition(double x, double y, double z) {
+        super.setPosition(x, y, z);
+
+        homeX = x;
+        homeY = y;
+        homeZ = z;
     }
 
     public ResourceLocation getSkin() {
@@ -62,6 +78,22 @@ public class EntityNPC extends EntityVillager implements IEntityAdditionalSpawnD
     }
 
     @Override
+    public void setDead() {
+        if (!worldObj.isRemote) {
+            EntityNPC clone = new EntityNPC(this);
+            worldObj.spawnEntityInWorld(clone);
+            for (int i = 0; i < 20; ++i) {
+                double d2 = this.rand.nextGaussian() * 0.02D;
+                double d0 = this.rand.nextGaussian() * 0.02D;
+                double d1 = this.rand.nextGaussian() * 0.02D;
+                clone.worldObj.spawnParticle("explode", clone.posX + (double) (clone.rand.nextFloat() * clone.width * 2.0F) - (double) clone.width, clone.posY + (double) (clone.rand.nextFloat() * clone.height), clone.posZ + (double) (clone.rand.nextFloat() * clone.width * 2.0F) - (double) clone.width, d2, d0, d1);
+            }
+        }
+
+        super.setDead();
+    }
+
+    @Override
     public boolean interact(EntityPlayer player) {
         ItemStack held = player.inventory.getCurrentItem();
         boolean flag = held != null && held.getItem() == Items.spawn_egg;
@@ -83,6 +115,9 @@ public class EntityNPC extends EntityVillager implements IEntityAdditionalSpawnD
         super.readEntityFromNBT(nbt);
         inventory.readFromNBT(nbt.getTagList("Inventory", 10));
         npc = HMNPCs.get(nbt.getString("NPC"));
+        homeX = nbt.getDouble("HomeX");
+        homeY = nbt.getDouble("HomeY");
+        homeZ = nbt.getDouble("HomeZ");
     }
 
     @Override
@@ -92,6 +127,10 @@ public class EntityNPC extends EntityVillager implements IEntityAdditionalSpawnD
         if (npc != null) {
             nbt.setString("NPC", npc.getUnlocalizedName());
         }
+
+        nbt.setDouble("HomeX", homeX);
+        nbt.setDouble("HomeY", homeY);
+        nbt.setDouble("HomeZ", homeZ);
     }
 
     @Override

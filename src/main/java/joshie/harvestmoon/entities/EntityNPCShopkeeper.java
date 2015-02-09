@@ -8,7 +8,16 @@ import net.minecraft.world.World;
 public class EntityNPCShopkeeper extends EntityNPC {
     private ShopInventory shop;
     private boolean isWorking;
-    private int shopX, shopY, shopZ;
+    private double shopX, shopY, shopZ;
+
+    public EntityNPCShopkeeper(EntityNPCShopkeeper entity) {
+        super(entity);
+        shop = entity.shop;
+        isWorking = entity.isWorking;
+        shopX = entity.shopX;
+        shopY = entity.shopY;
+        shopZ = entity.shopZ;
+    }
 
     public EntityNPCShopkeeper(World world) {
         super(world);
@@ -45,18 +54,18 @@ public class EntityNPCShopkeeper extends EntityNPC {
         super.readEntityFromNBT(nbt);
         shop = npc.getShop();
         isWorking = nbt.getBoolean("IsWorking");
-        shopX = nbt.getInteger("ShopX");
-        shopY = nbt.getInteger("ShopY");
-        shopZ = nbt.getInteger("ShopZ");
+        shopX = nbt.getDouble("ShopX");
+        shopY = nbt.getDouble("ShopY");
+        shopZ = nbt.getDouble("ShopZ");
     }
 
     @Override
     public void writeEntityToNBT(NBTTagCompound nbt) {
         super.writeEntityToNBT(nbt);
         nbt.setBoolean("IsWorking", isWorking);
-        nbt.setInteger("ShopX", shopX);
-        nbt.setInteger("ShopY", shopY);
-        nbt.setInteger("ShopZ", shopZ);
+        nbt.setDouble("ShopX", shopX);
+        nbt.setDouble("ShopY", shopY);
+        nbt.setDouble("ShopZ", shopZ);
     }
 
     @Override

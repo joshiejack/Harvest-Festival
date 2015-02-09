@@ -36,7 +36,7 @@ public class BlockSoil extends BlockFarmland {
 
     @Override
     public boolean canSustainPlant(IBlockAccess world, int x, int y, int z, ForgeDirection direction, IPlantable plantable) {
-        EnumPlantType type = plantable.getPlantType(world, x, y + 1, z);
+        EnumPlantType type = plantable.getPlantType(world, x, y, z);
         return type == EnumPlantType.Crop || type == EnumPlantType.Plains;
     }
 

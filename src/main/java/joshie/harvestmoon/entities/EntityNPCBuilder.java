@@ -9,10 +9,15 @@ import net.minecraft.world.World;
 public class EntityNPCBuilder extends EntityNPC {
     private BuildingStage building;
 
-    public EntityNPCBuilder (World world) {
+    public EntityNPCBuilder(EntityNPCBuilder entity) {
+        super(entity);
+        building = entity.building;
+    }
+
+    public EntityNPCBuilder(World world) {
         super(world);
     }
-    
+
     public EntityNPCBuilder(World world, NPC npc) {
         super(world, npc);
     }
@@ -22,7 +27,7 @@ public class EntityNPCBuilder extends EntityNPC {
         if (building == null) {
             super.updateAITick();
         } else {
-            if (!worldObj.isRemote) {                
+            if (!worldObj.isRemote) {
                 building = building.build(worldObj);
                 if (building.isFinished()) {
                     building = null;
@@ -35,14 +40,14 @@ public class EntityNPCBuilder extends EntityNPC {
         if (!worldObj.isRemote) {
             this.building = new BuildingStage(building, x, y, z, worldObj.rand);
         }
-        
+
         return false;
     }
 
     @Override
     public boolean interact(EntityPlayer player) {
         if (building == null) {
-            return startBuilding(Building.getBuilding("test"), (int)player.posX, (int)player.posY - 1, (int)player.posZ);
+            return startBuilding(Building.getBuilding("test"), (int) player.posX, (int) player.posY - 1, (int) player.posZ);
         } else {
             return super.interact(player);
         }

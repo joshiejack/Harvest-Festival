@@ -24,15 +24,15 @@ import cpw.mods.fml.common.FMLCommonHandler;
 public class GuiNPC extends GuiBase {
     private static ResourceLocation name_texture;
 
-    private EntityPlayer player;
-    private EntityNPC npc;
+    protected EntityPlayer player;
+    protected EntityNPC npc;
 
     private static final int MAX_LINES_PER_PAGE = 3;
-    private String[][] script; //This is an array of [page][line], with line ALWAYS beign a length of MAX_LINES ^
-    private int page; //Current page displayed
-    private int line; //Current lines displayed
-    private double character; //A ticker, Determines what character we should be displaying
-    private boolean finished; //Whether the text has finished displaying
+    protected String[][] script; //This is an array of [page][line], with line ALWAYS beign a length of MAX_LINES ^
+    protected int page; //Current page displayed
+    protected int line; //Current lines displayed
+    protected double character; //A ticker, Determines what character we should be displaying
+    protected boolean finished; //Whether the text has finished displaying
 
     public GuiNPC(EntityNPC npc, EntityPlayer player) {
         super(new ContainerNPC(npc, player.inventory), "chat", 0);
@@ -74,18 +74,18 @@ public class GuiNPC extends GuiBase {
     private String format(String string) {
         PlayerDataClient data = handler.getClient().getPlayerData();
         string = string.replace("<BR>", SystemUtils.LINE_SEPARATOR);
-        string = string.replace("Ãž", player.getDisplayName());
-        string = string.replace("â„‡", npc.getNPC().getUnlocalizedName());
+        string = string.replace("Þ", player.getDisplayName());
+        string = string.replace("ℇ¡", npc.getNPC().getUnlocalizedName());
         string = string.replace("$", "" + data.getGold());
 
         if (npc.getLover() != null) {
-            string = string.replace("â�¤", npc.getLover().getNPC().getUnlocalizedName());
-        } else string = string.replace("â�¤", Translate.translate("nolover"));
+            string = string.replace("❤", npc.getLover().getNPC().getUnlocalizedName());
+        } else string = string.replace("❤", Translate.translate("nolover"));
 
-        return string.replace("â™¥", data.getLover());
+        return string.replace("♥", data.getLover());
     }
 
-    private void drawLines() {
+    protected void drawLines() {
         //Set the text to finished if we've reached the last line
         if (!finished) {
             if (line >= 2) {
@@ -185,7 +185,11 @@ public class GuiNPC extends GuiBase {
             line = 0; //Reset the line we are currently reading
             page++; //Reset the page we are currently reading
         } else {
-            player.closeScreen();
+            endChat();
         }
+    }
+    
+    public void endChat() {
+        player.closeScreen();
     }
 }

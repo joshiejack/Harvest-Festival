@@ -1,10 +1,10 @@
-package joshie.lib.base;
+package joshie.harvestmoon.base;
 
 import java.util.List;
 import java.util.Random;
 
-import joshie.lib.util.IHasMetaBlock;
-import joshie.lib.util.IHasMetaItem;
+import joshie.harvestmoon.util.generic.IHasMetaBlock;
+import joshie.harvestmoon.util.generic.IHasMetaItem;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;

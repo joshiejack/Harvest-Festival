@@ -57,7 +57,7 @@ public class ItemHoe extends ItemBaseTool {
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
         if (!player.canPlayerEdit(x, y, z, side, stack)) return false;
         else {
-            ForgeDirection front = joshie.lib.helpers.DirectionHelper.getFacingFromEntity(player);
+            ForgeDirection front = joshie.harvestmoon.helpers.generic.DirectionHelper.getFacingFromEntity(player);
             Block initial = world.getBlock(x, y, z);
             if (!(world.getBlock(x, y + 1, z).isAir(world, x, y + 1, z) && (initial == Blocks.grass || initial == Blocks.dirt))) {
                 return false;

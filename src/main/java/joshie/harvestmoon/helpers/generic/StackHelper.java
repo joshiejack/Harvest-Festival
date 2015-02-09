@@ -1,4 +1,4 @@
-package joshie.lib.helpers;
+package joshie.harvestmoon.helpers.generic;
 
 import java.util.List;
 

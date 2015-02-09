@@ -5,10 +5,10 @@ import static joshie.harvestmoon.network.PacketHandler.sendToClient;
 import java.util.UUID;
 
 import joshie.harvestmoon.entities.NPC;
+import joshie.harvestmoon.helpers.generic.EntityHelper;
 import joshie.harvestmoon.init.HMNPCs;
 import joshie.harvestmoon.network.PacketSyncRelations;
 import joshie.harvestmoon.util.IData;
-import joshie.lib.helpers.EntityHelper;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 

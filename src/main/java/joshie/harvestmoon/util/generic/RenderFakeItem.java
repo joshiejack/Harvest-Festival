@@ -1,4 +1,4 @@
-package joshie.lib.util;
+package joshie.harvestmoon.util.generic;
 
 import java.util.Random;
 

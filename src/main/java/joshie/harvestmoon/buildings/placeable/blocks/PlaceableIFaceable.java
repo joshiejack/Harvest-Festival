@@ -2,7 +2,7 @@ package joshie.harvestmoon.buildings.placeable.blocks;
 
 import joshie.harvestmoon.network.PacketHandler;
 import joshie.harvestmoon.network.PacketSyncOrientation;
-import joshie.lib.util.IFaceable;
+import joshie.harvestmoon.util.generic.IFaceable;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;

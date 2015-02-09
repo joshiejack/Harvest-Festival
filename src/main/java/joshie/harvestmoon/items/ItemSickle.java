@@ -65,7 +65,7 @@ public class ItemSickle extends ItemBaseTool {
     public boolean onBreakSpeedUpdate(EntityPlayer player, ItemStack stack, World world, int x, int y, int z) {
         if (!player.canPlayerEdit(x, y, z, 0, stack)) return false;
         else {
-            ForgeDirection front = joshie.lib.helpers.DirectionHelper.getFacingFromEntity(player);
+            ForgeDirection front = joshie.harvestmoon.helpers.generic.DirectionHelper.getFacingFromEntity(player);
             Block initial = world.getBlock(x, y + 1, z);
             if (!(initial instanceof BlockCrop)) {
                 return false;

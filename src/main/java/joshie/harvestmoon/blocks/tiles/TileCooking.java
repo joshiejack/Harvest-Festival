@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 import joshie.harvestmoon.cooking.FoodRegistry;
 import joshie.harvestmoon.cooking.Utensil;
+import joshie.harvestmoon.helpers.generic.StackHelper;
 import joshie.harvestmoon.network.PacketHandler;
 import joshie.harvestmoon.network.PacketSyncCooking;
-import joshie.lib.helpers.StackHelper;
-import joshie.lib.util.IFaceable;
+import joshie.harvestmoon.util.generic.IFaceable;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;

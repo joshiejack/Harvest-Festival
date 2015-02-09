@@ -1,6 +1,6 @@
-package joshie.lib.base;
+package joshie.harvestmoon.base;
 
-import joshie.lib.util.Text;
+import joshie.harvestmoon.util.generic.Text;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -9,28 +9,27 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public abstract class ItemBaseDamageable extends Item {
+public abstract class ItemBaseSingle extends Item {
     protected String mod;
     protected String path;
-    
-    public ItemBaseDamageable(String mod, CreativeTabs tab, int dmg) {
+
+    public ItemBaseSingle(String mod, CreativeTabs tab) {
         setCreativeTab(tab);
         setMaxStackSize(1);
-        setMaxDamage(dmg);
         this.mod = mod;
     }
-    
+
     public void setTextureFolder(String thePath) {
         this.path = thePath;
     }
-    
+
     @Override
     public Item setUnlocalizedName(String name) {
         super.setUnlocalizedName(name);
         GameRegistry.registerItem(this, name.replace(".", "_"));
         return this;
     }
-    
+
     @Override
     public String getUnlocalizedName() {
         return mod + "." + super.getUnlocalizedName().replace("item.", "").replace("_", ".");
@@ -40,7 +39,7 @@ public abstract class ItemBaseDamageable extends Item {
     public String getItemStackDisplayName(ItemStack stack) {
         return Text.localize(getUnlocalizedName());
     }
-    
+
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister iconRegister) {

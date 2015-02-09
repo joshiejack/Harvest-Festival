@@ -1,4 +1,4 @@
-package joshie.lib.util;
+package joshie.harvestmoon.util.generic;
 
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;

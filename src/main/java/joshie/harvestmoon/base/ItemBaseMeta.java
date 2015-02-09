@@ -1,9 +1,9 @@
-package joshie.lib.base;
+package joshie.harvestmoon.base;
 
 import java.util.List;
 
-import joshie.lib.util.IHasMetaItem;
-import joshie.lib.util.Text;
+import joshie.harvestmoon.util.generic.IHasMetaItem;
+import joshie.harvestmoon.util.generic.Text;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;

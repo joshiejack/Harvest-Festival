@@ -49,7 +49,7 @@ public class PacketSyncCrop implements IMessage, IMessageHandler<PacketSyncCrop,
     @Override
     public IMessage onMessage(PacketSyncCrop msg, MessageContext ctx) {
         handler.getClient().getCropTracker().sync(msg.isRemoval, msg.location, msg.data);
-        joshie.lib.helpers.ClientHelper.refresh(msg.location.dimension, msg.location.x, msg.location.y, msg.location.z);
+        joshie.harvestmoon.helpers.generic.ClientHelper.refresh(msg.location.dimension, msg.location.x, msg.location.y, msg.location.z);
 
         return null;
     }

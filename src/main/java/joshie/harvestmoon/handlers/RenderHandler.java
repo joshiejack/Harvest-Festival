@@ -10,7 +10,7 @@ import joshie.harvestmoon.lib.RenderIds;
 import joshie.harvestmoon.network.PacketCropRequest;
 import joshie.harvestmoon.network.PacketHandler;
 import joshie.harvestmoon.util.RenderBase;
-import joshie.lib.util.IFaceable;
+import joshie.harvestmoon.util.generic.IFaceable;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.tileentity.TileEntity;
@@ -44,14 +44,14 @@ public class RenderHandler implements ISimpleBlockRenderingHandler {
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
         if (block instanceof BlockCrop) {
-            String name = handler.getClient().getCropTracker().getCropName(joshie.lib.helpers.ClientHelper.getWorld(), x, y, z);
+            String name = handler.getClient().getCropTracker().getCropName(joshie.harvestmoon.helpers.generic.ClientHelper.getWorld(), x, y, z);
             if (name != null) {
                 RenderBase render = crops.get(name);
                 if (render != null) {
                     return render.render(renderer, world, x, y, z);
                 } else return false;
             } else {
-                PacketHandler.sendToServer(new PacketCropRequest(joshie.lib.helpers.ClientHelper.getWorld(), x, y, z));
+                PacketHandler.sendToServer(new PacketCropRequest(joshie.harvestmoon.helpers.generic.ClientHelper.getWorld(), x, y, z));
                 return false;
             }
         } else {

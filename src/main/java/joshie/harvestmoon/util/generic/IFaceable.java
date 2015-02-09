@@ -1,4 +1,4 @@
-package joshie.lib.util;
+package joshie.harvestmoon.util.generic;
 
 import net.minecraftforge.common.util.ForgeDirection;
 

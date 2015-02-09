@@ -138,7 +138,7 @@ public class ItemWateringCan extends ItemBaseTool implements IFluidContainerItem
             return fill(stack, new FluidStack(FluidRegistry.WATER, 128), true) > 0;
         } else {
 
-            ForgeDirection front = joshie.lib.helpers.DirectionHelper.getFacingFromEntity(player);
+            ForgeDirection front = joshie.harvestmoon.helpers.generic.DirectionHelper.getFacingFromEntity(player);
             Block initial = world.getBlock(x, y, z);
             if (!(initial instanceof BlockSoil)) {
                 return false;

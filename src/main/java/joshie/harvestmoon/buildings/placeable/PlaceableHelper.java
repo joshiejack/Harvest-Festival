@@ -5,7 +5,7 @@ import java.util.HashMap;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceableEntity;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceableItemFrame;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceablePainting;
-import joshie.lib.util.IFaceable;
+import joshie.harvestmoon.util.generic.IFaceable;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockAnvil;
 import net.minecraft.block.BlockButton;

@@ -16,8 +16,8 @@ public abstract class RenderCrop extends RenderBase {
     private int stage;
 
     public boolean render(RenderBlocks render, IBlockAccess world, int x, int y, int z) {
-        this.isGiant = handler.getClient().getCropTracker().isCropGiant(joshie.lib.helpers.ClientHelper.getWorld(), x, y, z);
-        this.stage = handler.getClient().getCropTracker().getCropStage(joshie.lib.helpers.ClientHelper.getWorld(), x, y, z);
+        this.isGiant = handler.getClient().getCropTracker().isCropGiant(joshie.harvestmoon.helpers.generic.ClientHelper.getWorld(), x, y, z);
+        this.stage = handler.getClient().getCropTracker().getCropStage(joshie.harvestmoon.helpers.generic.ClientHelper.getWorld(), x, y, z);
         return super.render(render, world, x, y, z);
     }
 

@@ -1,4 +1,4 @@
-package joshie.lib.helpers;
+package joshie.harvestmoon.helpers.generic;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;

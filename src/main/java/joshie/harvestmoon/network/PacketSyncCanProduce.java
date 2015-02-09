@@ -55,7 +55,7 @@ public class PacketSyncCanProduce implements IMessage, IMessageHandler<PacketSyn
                 sendToClient(new PacketSyncCanProduce(message.id, false, canProduceProduct((EntityAnimal) entity)), player);
             }
         } else {
-            Entity entity = joshie.lib.helpers.ClientHelper.getWorld().getEntityByID(message.id);
+            Entity entity = joshie.harvestmoon.helpers.generic.ClientHelper.getWorld().getEntityByID(message.id);
             if (entity instanceof EntityAnimal) {
                 handler.getClient().getAnimalTracker().setCanProduceProduct((EntityAnimal) entity, message.canProduce);
             }

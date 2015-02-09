@@ -2,7 +2,7 @@ package joshie.harvestmoon.items;
 
 import joshie.harvestmoon.handlers.CodeGeneratorBuildings;
 import joshie.harvestmoon.handlers.CodeGeneratorRendering;
-import joshie.lib.helpers.ClientHelper;
+import joshie.harvestmoon.helpers.generic.ClientHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;

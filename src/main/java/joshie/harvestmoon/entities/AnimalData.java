@@ -10,8 +10,8 @@ import static joshie.harvestmoon.entities.AnimalData.AnimalType.OTHER;
 import static joshie.harvestmoon.entities.AnimalData.AnimalType.PIG;
 import static joshie.harvestmoon.entities.AnimalData.AnimalType.SHEEP;
 import static joshie.harvestmoon.helpers.SizeableHelper.getSizeable;
+import static joshie.harvestmoon.helpers.generic.ItemHelper.spawnByEntity;
 import static joshie.harvestmoon.network.PacketHandler.sendToEveryone;
-import static joshie.lib.helpers.ItemHelper.spawnByEntity;
 
 import java.util.Random;
 import java.util.UUID;
@@ -117,7 +117,7 @@ public class AnimalData implements IData {
     /** May return null **/
     public EntityAnimal getAndCreateAnimal() {
         if (animal == null) {
-            animal = (EntityAnimal) joshie.lib.helpers.EntityHelper.getAnimalFromUUID(dimension, a_uuid);
+            animal = (EntityAnimal) joshie.harvestmoon.helpers.generic.EntityHelper.getAnimalFromUUID(dimension, a_uuid);
         }
 
         return animal;
@@ -127,7 +127,7 @@ public class AnimalData implements IData {
     public EntityPlayerMP getAndCreateOwner() {
         if (o_uuid != null) {
             if (owner == null) {
-                owner = joshie.lib.helpers.EntityHelper.getPlayerFromUUID(o_uuid);
+                owner = joshie.harvestmoon.helpers.generic.EntityHelper.getPlayerFromUUID(o_uuid);
             }
 
             return owner;

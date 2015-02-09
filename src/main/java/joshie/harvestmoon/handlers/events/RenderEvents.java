@@ -42,7 +42,7 @@ public class RenderEvents {
         GuiScreen gui = mc.currentScreen;
         if (gui instanceof GuiContainer && mc.thePlayer.inventory.getItemStack() == null) {
             GuiContainer container = (GuiContainer) gui;
-            Point mouse = joshie.lib.helpers.ClientHelper.getMouse(container);
+            Point mouse = joshie.harvestmoon.helpers.generic.ClientHelper.getMouse(container);
 
             GL11.glPushMatrix();
             GL11.glPushAttrib(1048575);
@@ -76,7 +76,7 @@ public class RenderEvents {
     @SubscribeEvent
     public void onRenderOverlay(RenderGameOverlayEvent.Pre event) {
         if(event.type == ElementType.CROSSHAIRS) {
-            if(joshie.lib.helpers.ClientHelper.getPlayer().openContainer instanceof ContainerNPC) {
+            if(joshie.harvestmoon.helpers.generic.ClientHelper.getPlayer().openContainer instanceof ContainerNPC) {
                 event.setCanceled(true);
             }
         } else if (event.type == ElementType.HOTBAR) {

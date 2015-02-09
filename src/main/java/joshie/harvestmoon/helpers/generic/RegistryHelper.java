@@ -1,7 +1,7 @@
-package joshie.lib.helpers;
+package joshie.harvestmoon.helpers.generic;
 
-import joshie.lib.util.IHasMetaBlock;
-import joshie.lib.util.Library;
+import joshie.harvestmoon.util.generic.IHasMetaBlock;
+import joshie.harvestmoon.util.generic.Library;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;

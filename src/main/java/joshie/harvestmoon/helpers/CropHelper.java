@@ -2,8 +2,8 @@ package joshie.harvestmoon.helpers;
 
 import static joshie.harvestmoon.HarvestMoon.handler;
 import joshie.harvestmoon.crops.Crop;
+import joshie.harvestmoon.helpers.generic.ItemHelper;
 import joshie.harvestmoon.init.HMBlocks;
-import joshie.lib.helpers.ItemHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;

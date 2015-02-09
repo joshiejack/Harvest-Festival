@@ -1,8 +1,8 @@
-package joshie.lib.base;
+package joshie.harvestmoon.base;
 
-import joshie.lib.util.IHasMetaBlock;
-import joshie.lib.util.IHasMetaItem;
-import joshie.lib.util.Text;
+import joshie.harvestmoon.util.generic.IHasMetaBlock;
+import joshie.harvestmoon.util.generic.IHasMetaItem;
+import joshie.harvestmoon.util.generic.Text;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;

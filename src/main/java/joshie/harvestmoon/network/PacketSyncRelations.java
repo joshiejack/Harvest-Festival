@@ -92,7 +92,7 @@ public class PacketSyncRelations implements IMessage, IMessageHandler<PacketSync
             }
         } else {
             if (message.isEntityPacket) {
-                Entity entity = joshie.lib.helpers.ClientHelper.getWorld().getEntityByID(message.id);
+                Entity entity = joshie.harvestmoon.helpers.generic.ClientHelper.getWorld().getEntityByID(message.id);
                 if (entity != null) {
                     handler.getClient().getPlayerData().setRelationship(entity.getPersistentID(), message.value);
 

@@ -1,4 +1,4 @@
-package joshie.lib.helpers;
+package joshie.harvestmoon.helpers.generic;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;

@@ -48,7 +48,7 @@ public class AnimalTrackerServer implements IData {
 
     //Kills an animal
     private void kill(int dimension, UUID uuid) {
-        EntityAnimal animal = joshie.lib.helpers.EntityHelper.getAnimalFromUUID(dimension, uuid);
+        EntityAnimal animal = joshie.harvestmoon.helpers.generic.EntityHelper.getAnimalFromUUID(dimension, uuid);
         if (animal != null) {
             animal.attackEntityFrom(natural_causes, 1000F);
         }

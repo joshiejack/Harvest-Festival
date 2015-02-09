@@ -1,8 +1,8 @@
 package joshie.harvestmoon.network;
 
 import io.netty.buffer.ByteBuf;
-import joshie.lib.helpers.ClientHelper;
-import joshie.lib.util.IFaceable;
+import joshie.harvestmoon.helpers.generic.ClientHelper;
+import joshie.harvestmoon.util.generic.IFaceable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;

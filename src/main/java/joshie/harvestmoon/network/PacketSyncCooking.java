@@ -5,7 +5,7 @@ import io.netty.buffer.ByteBuf;
 import java.util.ArrayList;
 
 import joshie.harvestmoon.blocks.tiles.TileCooking;
-import joshie.lib.helpers.ClientHelper;
+import joshie.harvestmoon.helpers.generic.ClientHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;

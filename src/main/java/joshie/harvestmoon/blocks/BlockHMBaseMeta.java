@@ -1,8 +1,8 @@
 package joshie.harvestmoon.blocks;
 
 import joshie.harvestmoon.HarvestTab;
+import joshie.harvestmoon.base.BlockBaseMeta;
 import joshie.harvestmoon.lib.HMModInfo;
-import joshie.lib.base.BlockBaseMeta;
 import net.minecraft.block.material.Material;
 
 public abstract class BlockHMBaseMeta extends BlockBaseMeta {

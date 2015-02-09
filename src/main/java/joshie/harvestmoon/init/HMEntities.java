@@ -3,7 +3,7 @@ package joshie.harvestmoon.init;
 import joshie.harvestmoon.HarvestMoon;
 import joshie.harvestmoon.entities.EntityNPC;
 import joshie.harvestmoon.entities.EntityNPCBuilder;
-import joshie.lib.util.EntityFakeItem;
+import joshie.harvestmoon.util.generic.EntityFakeItem;
 import cpw.mods.fml.common.registry.EntityRegistry;
 
 public class HMEntities {

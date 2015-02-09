@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import joshie.harvestmoon.util.Translate;
-import joshie.lib.util.Text;
+import joshie.harvestmoon.util.generic.Text;
 
 public class NPC {
     public static enum Gender {

@@ -12,7 +12,7 @@ import joshie.harvestmoon.network.quests.PacketQuestCompleted;
 import joshie.harvestmoon.network.quests.PacketQuestDecreaseHeld;
 import joshie.harvestmoon.player.PlayerDataServer;
 import joshie.harvestmoon.quests.Quest;
-import joshie.lib.util.IdiotException;
+import joshie.harvestmoon.util.generic.IdiotException;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.play.server.S2FPacketSetSlot;

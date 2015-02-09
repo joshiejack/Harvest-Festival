@@ -1,6 +1,6 @@
 package joshie.harvestmoon.init;
 
-import static joshie.lib.helpers.RegistryHelper.registerTiles;
+import static joshie.harvestmoon.helpers.generic.RegistryHelper.registerTiles;
 import static net.minecraft.block.Block.soundTypeGravel;
 import joshie.harvestmoon.blocks.BlockCrop;
 import joshie.harvestmoon.blocks.BlockGeneral;

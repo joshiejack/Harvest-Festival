@@ -1,7 +1,7 @@
 package joshie.harvestmoon.calendar;
 
 import static joshie.harvestmoon.lib.HMModInfo.MODPATH;
-import joshie.lib.util.Text;
+import joshie.harvestmoon.util.generic.Text;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 

@@ -1,6 +1,6 @@
-package joshie.lib.base;
+package joshie.harvestmoon.base;
 
-import joshie.lib.util.IHasMetaBlock;
+import joshie.harvestmoon.util.generic.IHasMetaBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;

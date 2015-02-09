@@ -1,7 +1,7 @@
 package joshie.harvestmoon.network;
 
 import static joshie.harvestmoon.HarvestMoon.handler;
-import static joshie.lib.helpers.ServerHelper.getWorld;
+import static joshie.harvestmoon.helpers.generic.ServerHelper.getWorld;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;

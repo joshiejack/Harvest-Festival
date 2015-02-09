@@ -43,7 +43,7 @@ public class PacketSetCalendar implements IMessage, IMessageHandler<PacketSetCal
         //Refresh all Blocks in Render range
         //If the seasons are not the same, and neither the current or past season is/was spring, re-render the client
         if(previous != message.season && previous != Season.SPRING && message.season != Season.SPRING) {
-            joshie.lib.helpers.ClientHelper.refresh();
+            joshie.harvestmoon.helpers.generic.ClientHelper.refresh();
         }
 
         return null;

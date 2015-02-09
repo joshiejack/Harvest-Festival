@@ -1,4 +1,4 @@
-package joshie.lib.util;
+package joshie.harvestmoon.util.generic;
 
 public class IdiotException extends RuntimeException {
     public IdiotException() {

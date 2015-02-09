@@ -19,7 +19,7 @@ public class FeatureButton extends Feature {
         int pos = 0;
         for (Button note : buttons) {
             if (mouseX >= -21 && mouseX <= 0 && mouseY >= 8 + 23 * pos && mouseY <= 8 + 23 * pos + 21) {
-                tooltip.add(joshie.lib.util.Text.RED + Translate.translate("tab." + note.unlocalized));
+                tooltip.add(joshie.harvestmoon.util.generic.Text.RED + Translate.translate("tab." + note.unlocalized));
                 for (int i = 0; i < 5; i++) {
                     addLine("notification", i, note.toString(), tooltip);
                 }

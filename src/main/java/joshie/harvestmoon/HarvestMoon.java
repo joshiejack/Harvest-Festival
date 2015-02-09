@@ -18,6 +18,7 @@ import joshie.harvestmoon.init.HMItems;
 import joshie.harvestmoon.init.HMNPCs;
 import joshie.harvestmoon.init.HMPackets;
 import joshie.harvestmoon.init.HMQuests;
+import joshie.harvestmoon.init.HMShops;
 import joshie.harvestmoon.util.WorldDestroyer;
 
 import org.apache.logging.log4j.LogManager;
@@ -58,6 +59,7 @@ public class HarvestMoon {
         HMQuests.init();
         HMPackets.init();
         HMHandlers.init();
+        HMShops.init();
         proxy.init();
     }
 

@@ -47,19 +47,31 @@ public class HMIngredients {
 
     private static void addIngredients() {
         bamboo_shoot = new Ingredient(2, -1, 1, 0.025F, 4);
-        cabbage = new Ingredient(3, -3, 1, 0.05F, 8);
-        carrot = new Ingredient(2, -2, 1, 0.035F, 6);
-        egg = new Ingredient(6, 0, 0, 0.075F, 10);
-        eggplant = new Ingredient(2, -3, 1, 0.05F, 8);
+        egg = new Ingredient(6, 0, 0, 0.075F, 10);   
         fish = new Ingredient(5, -5, 2, 0.1F, 16);
         flour = new Ingredient(0, 0, 0, 0.1F, 4);
-        green_pepper = new Ingredient(4, -2, 1, 0.03F, 12);
         matsutake_mushroom = new Ingredient(3, -1, 1, 0.025F, 10);
-        onion = new Ingredient(2, -2, 1, 0.03F, 8);
         oil = new Ingredient(0, -2, 0, 0F, 2);
         riceball = new Ingredient(6, -3, 1, 0.085F, 16); 
         
         //TODO: Stats for the ingredients I added.
+        turnip = new Ingredient(2, -1, 1, 0.033F, 8);
+        potato = new Ingredient(5, -1, 1, 0.08F, 16);
+        cucumber = new Ingredient(3, -1, 1, 0.02F, 4);
+        strawberry = new Ingredient(3, -2, 1, 0.025F, 8);
+        cabbage = new Ingredient(3, -3, 1, 0.05F, 8);
+        tomato = new Ingredient(2, -1, 1, 0.035F, 10);
+        onion = new Ingredient(2, -2, 1, 0.03F, 8);
+        corn = new Ingredient(5, -3, 1, 0.0375F, 16);
+        pumpkin = new Ingredient(4, -1, 2, 0.06F, 16);
+        pineapple = new Ingredient(3, -3, 1, 0.055F, 16);
+        eggplant = new Ingredient(2, -3, 1, 0.05F, 8);
+        carrot = new Ingredient(2, -2, 1, 0.035F, 6);
+        sweet_potato = new Ingredient(6, -2, 1, 0.04F, 16);
+        spinach = new Ingredient(3, -4, 1, 0.022F, 8);
+        green_pepper = new Ingredient(4, -2, 1, 0.03F, 12);
+        watermelon = new Ingredient(1, -1, 1, 0.05F, 4);
+        wheat = new Ingredient(6, -3, 1, 0.0275F, 16);
     }
 
     private static void assignIngredients() {

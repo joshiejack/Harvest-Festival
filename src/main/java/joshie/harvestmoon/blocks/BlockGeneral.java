@@ -1,7 +1,6 @@
 package joshie.harvestmoon.blocks;
 
 import static joshie.harvestmoon.helpers.ShippingHelper.addForShipping;
-import joshie.harvestmoon.HarvestMoon;
 import joshie.harvestmoon.blocks.items.ItemBlockGeneral;
 import joshie.harvestmoon.blocks.render.ExtraIcons;
 import joshie.harvestmoon.blocks.tiles.TileCooking;
@@ -14,7 +13,6 @@ import joshie.harvestmoon.blocks.tiles.TilePot;
 import joshie.harvestmoon.blocks.tiles.TileRuralChest;
 import joshie.harvestmoon.blocks.tiles.TileSteamer;
 import joshie.harvestmoon.config.Cooking;
-import joshie.harvestmoon.handlers.GuiHandler;
 import joshie.harvestmoon.helpers.generic.DirectionHelper;
 import joshie.harvestmoon.helpers.generic.ItemHelper;
 import joshie.harvestmoon.lib.RenderIds;
@@ -109,7 +107,6 @@ public class BlockGeneral extends BlockHMBaseMeta {
                 } else return false;
             } else return false;
         } else if (meta == FRIDGE || meta == FRIDGE_TOP) {
-            player.openGui(HarvestMoon.instance, GuiHandler.COOKING, world, x, y, z);
             return true;
         } else {
             TileEntity tile = world.getTileEntity(x, y, z);

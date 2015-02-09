@@ -41,11 +41,8 @@ public class ItemNPCSpawner extends ItemHMMeta {
     @Override
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int xCoord, int yCoord, int zCoord, int side, float hitX, float hitY, float hitZ) {
         if (!world.isRemote && stack.getItemDamage() < getMetaCount()) {
-            EntityNPC entity = null;
             NPC npc = getNPC(stack.getItemDamage());
-            if (npc.isBuilder()) {
-                entity = new EntityNPCBuilder(world, npc);
-            } else entity = new EntityNPC(world, npc);
+            EntityNPC entity = npc.getEntity(world);
             entity.setPosition(xCoord, yCoord, zCoord);
             world.spawnEntityInWorld(entity);
         }

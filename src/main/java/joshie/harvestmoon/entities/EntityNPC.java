@@ -2,7 +2,6 @@ package joshie.harvestmoon.entities;
 
 import io.netty.buffer.ByteBuf;
 import joshie.harvestmoon.HarvestMoon;
-import joshie.harvestmoon.handlers.GuiHandler;
 import joshie.harvestmoon.init.HMNPCs;
 import joshie.harvestmoon.lib.HMModInfo;
 import net.minecraft.entity.passive.EntityVillager;
@@ -19,8 +18,8 @@ import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 
 public class EntityNPC extends EntityVillager implements IEntityAdditionalSpawnData {
     public InventoryNPC inventory = new InventoryNPC(this);
-    private NPC npc;
-    private EntityNPC lover;
+    protected NPC npc;
+    protected EntityNPC lover;
 
     public EntityNPC(World world) {
         this(world, HMNPCs.goddess);
@@ -30,7 +29,7 @@ public class EntityNPC extends EntityVillager implements IEntityAdditionalSpawnD
         super(world);
         this.npc = npc;
     }
-    
+
     public EntityNPC(World world, NPC npc, double x, double y, double z) {
         this(world, npc);
         this.setPosition(x, y, z);
@@ -69,7 +68,7 @@ public class EntityNPC extends EntityVillager implements IEntityAdditionalSpawnD
 
         if (!flag && isEntityAlive() && !isTrading() && !isChild() && !player.isSneaking()) {
             if (!worldObj.isRemote) {
-                player.openGui(HarvestMoon.instance, GuiHandler.NPC, worldObj, getEntityId(), 0, 0);
+                player.openGui(HarvestMoon.instance, npc.getGuiID(worldObj), worldObj, getEntityId(), 0, 0);
                 setCustomer(player);
             }
 
@@ -90,7 +89,7 @@ public class EntityNPC extends EntityVillager implements IEntityAdditionalSpawnD
     public void writeEntityToNBT(NBTTagCompound nbt) {
         super.writeEntityToNBT(nbt);
         nbt.setTag("Inventory", inventory.writeToNBT(new NBTTagList()));
-        if(npc != null) {
+        if (npc != null) {
             nbt.setString("NPC", npc.getUnlocalizedName());
         }
     }

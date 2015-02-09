@@ -7,8 +7,11 @@ import static joshie.harvestmoon.entities.NPC.Gender.MALE;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import joshie.harvestmoon.handlers.GuiHandler;
+import joshie.harvestmoon.shops.ShopInventory;
 import joshie.harvestmoon.util.Translate;
 import joshie.harvestmoon.util.generic.Text;
+import net.minecraft.world.World;
 
 public class NPC {
     public static enum Gender {
@@ -26,6 +29,7 @@ public class NPC {
     private Age age;
     private Gender gender;
     private boolean isBuilder;
+    private ShopInventory shop;
 
     public NPC(String name, Gender gender, Age age) {
         this.name = name;
@@ -74,18 +78,39 @@ public class NPC {
 
         Collections.shuffle(greetings);
     }
-    
+
     public NPC setIsBuilder() {
         isBuilder = true;
+        return this;
+    }
+
+    public NPC setShop(ShopInventory inventory) {
+        shop = inventory;
         return this;
     }
 
     public boolean isChild() {
         return age == CHILD;
     }
-    
+
     public boolean isBuilder() {
         return isBuilder;
+    }
+
+    public ShopInventory getShop() {
+        return shop;
+    }
+
+    public EntityNPC getEntity(World world) {
+        if (isBuilder()) {
+            return new EntityNPCBuilder(world, this);
+        } else if (shop != null) {
+            return new EntityNPCShopkeeper(world, this);
+        } else return new EntityNPC(world, this);
+    }
+
+    public int getGuiID(World world) {
+        return shop != null && shop.isOpen(world) ? GuiHandler.SHOP : GuiHandler.NPC;
     }
 
     //Return the name of this character

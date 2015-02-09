@@ -9,6 +9,7 @@ import joshie.harvestmoon.blocks.tiles.TileFryingPan;
 import joshie.harvestmoon.crops.Crop;
 import joshie.harvestmoon.entities.EntityNPC;
 import joshie.harvestmoon.entities.EntityNPCBuilder;
+import joshie.harvestmoon.entities.EntityNPCShopkeeper;
 import joshie.harvestmoon.entities.RenderNPC;
 import joshie.harvestmoon.handlers.RenderHandler;
 import joshie.harvestmoon.handlers.events.RenderEvents;
@@ -53,6 +54,7 @@ public class HMClientProxy extends HMCommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileFryingPan.class, new SpecialRendererFryingPan());
         RenderingRegistry.registerEntityRenderingHandler(EntityNPC.class, new RenderNPC());
         RenderingRegistry.registerEntityRenderingHandler(EntityNPCBuilder.class, new RenderNPC());
+        RenderingRegistry.registerEntityRenderingHandler(EntityNPCShopkeeper.class, new RenderNPC());
         RenderingRegistry.registerEntityRenderingHandler(EntityFakeItem.class, new RenderFakeItem());
     }
 

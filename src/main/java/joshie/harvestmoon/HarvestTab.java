@@ -10,9 +10,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class HarvestTab extends CreativeTabs {
     public static HarvestTab hm = new HarvestTab("main");
-    //public static HarvestTab crops = new HarvestTab("crops");
-    //public static HarvestTab seeds = new HarvestTab("seeds");
-    public ItemStack icon = new ItemStack(Items.wheat_seeds);
+    public ItemStack icon = new ItemStack(Items.golden_hoe);
 
     public HarvestTab(String label) {
         super(label);

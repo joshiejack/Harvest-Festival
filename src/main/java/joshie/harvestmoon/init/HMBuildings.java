@@ -1,4 +1,7 @@
-package joshie.harvestmoon.buildings;
+package joshie.harvestmoon.init;
+
+import joshie.harvestmoon.buildings.Building;
+import joshie.harvestmoon.buildings.BuildingTest;
 
 public class HMBuildings {
     public static void init() {

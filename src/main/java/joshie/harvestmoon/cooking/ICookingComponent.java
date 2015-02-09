@@ -1,4 +1,4 @@
-package joshie.harvestmoon.cooking.registry;
+package joshie.harvestmoon.cooking;
 
 import joshie.harvestmoon.util.SafeStack;
 

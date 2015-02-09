@@ -26,7 +26,7 @@ import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
 
-public class ClientProxy extends CommonProxy {
+public class HMClientProxy extends HMCommonProxy {
     @Override
     public void init() {
         handler.resetClient();

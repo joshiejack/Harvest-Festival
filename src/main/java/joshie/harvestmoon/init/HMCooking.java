@@ -1,13 +1,14 @@
 package joshie.harvestmoon.init;
 
-import joshie.harvestmoon.cooking.registry.Ingredients;
-import joshie.harvestmoon.cooking.registry.Recipes;
-import joshie.harvestmoon.cooking.registry.Seasonings;
+import joshie.harvestmoon.init.cooking.HMFryingPanRecipes;
+import joshie.harvestmoon.init.cooking.HMIngredients;
+import joshie.harvestmoon.init.cooking.HMSeasonings;
+
 
 public class HMCooking {
     public static void init() {
-        Ingredients.init();
-        Seasonings.init();
-        Recipes.init();
+        HMIngredients.init();
+        HMSeasonings.init();
+        HMFryingPanRecipes.init();
     }
 }

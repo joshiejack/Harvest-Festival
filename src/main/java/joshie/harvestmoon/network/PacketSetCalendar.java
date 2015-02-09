@@ -20,13 +20,7 @@ public class PacketSetCalendar implements IMessage, IMessageHandler<PacketSetCal
         this.season = date.getSeason();
         this.year = date.getYear();
     }
-    
-    public PacketSetCalendar(int day, Season season, int year) {
-        this.day = day;
-        this.season = season;
-        this.year = year;
-    }
-    
+
     @Override
     public void toBytes(ByteBuf buf) {
         buf.writeByte(day);

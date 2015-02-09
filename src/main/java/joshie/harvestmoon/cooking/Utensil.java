@@ -3,7 +3,6 @@ package joshie.harvestmoon.cooking;
 import java.util.HashSet;
 import java.util.Set;
 
-import joshie.harvestmoon.cooking.registry.ICookingComponent;
 import joshie.harvestmoon.util.SafeStack;
 
 public enum Utensil implements ICookingComponent {

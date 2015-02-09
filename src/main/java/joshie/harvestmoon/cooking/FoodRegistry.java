@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import joshie.harvestmoon.cooking.registry.ICookingComponent;
 import joshie.harvestmoon.init.HMItems;
 import joshie.harvestmoon.items.ItemMeal;
 import joshie.harvestmoon.util.HMStack;
@@ -66,10 +65,6 @@ public class FoodRegistry {
     public static void register(ItemStack stack, ICookingComponent component) {
         SafeStack safe = getSafeStackType(stack);
         FoodRegistry.registry.put(safe, component.addKey(safe));
-    }
-
-    public static Ingredient getIngredient(String string) {
-        return Ingredient.ingredients.get(string);
     }
 
     public static Seasoning getSeasoning(String string) {

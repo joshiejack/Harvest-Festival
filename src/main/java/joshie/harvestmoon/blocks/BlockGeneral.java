@@ -11,6 +11,7 @@ import joshie.harvestmoon.blocks.tiles.TileKitchen;
 import joshie.harvestmoon.blocks.tiles.TileMixer;
 import joshie.harvestmoon.blocks.tiles.TileOven;
 import joshie.harvestmoon.blocks.tiles.TilePot;
+import joshie.harvestmoon.blocks.tiles.TileRuralChest;
 import joshie.harvestmoon.blocks.tiles.TileSteamer;
 import joshie.harvestmoon.config.Cooking;
 import joshie.harvestmoon.handlers.GuiHandler;
@@ -196,6 +197,8 @@ public class BlockGeneral extends BlockHMBaseMeta {
                 return new TileOven();
             case STEAMER:
                 return new TileSteamer();
+            case RURAL_CHEST:
+                return new TileRuralChest();
             default:
                 return null;
         }

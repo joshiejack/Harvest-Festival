@@ -2,8 +2,6 @@ package joshie.harvestmoon.cooking;
 
 import java.util.List;
 
-import joshie.harvestmoon.cooking.registry.ICookingComponent;
-
 public class Recipe {
     public final Meal result;
     private final Ingredient[] requiredIngredients;

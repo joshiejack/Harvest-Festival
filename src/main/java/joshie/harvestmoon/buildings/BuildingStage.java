@@ -7,6 +7,8 @@ import joshie.harvestmoon.buildings.placeable.Placeable.PlacementStage;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
+/** This data is used by the BuilderNPC, 
+ * to know their current progress through a building project **/
 public class BuildingStage {
     private Building building;
     private boolean n1, n2, swap;

@@ -49,7 +49,7 @@ public class HMCrops {
         eggplant = new Crop("eggplant", AUTUMN, 120, 80, 10, 7, CropMeta.EGGPLANT);
         carrot = new Crop("carrot", AUTUMN, 300, 120, 8, 0, CropMeta.CARROT);
         sweet_potato = new Crop("potato_sweet", AUTUMN, 300, 120, 6, 4, CropMeta.SWEET_POTATO);
-        spinach = new Crop("spinach", AUTUMN, 200, 80, 6, 0, CropMeta.SPINICH);
+        spinach = new Crop("spinach", AUTUMN, 200, 80, 6, 0, CropMeta.SPINACH);
         green_pepper = new Crop("pepper_green", AUTUMN, 150, 40, 8, 2, CropMeta.GREEN_PEPPER);
         magic_flower = new Crop("flower_magic", AUTUMN, 0, 200, 10, 0, CropMeta.MAGIC_FLOWER);
     }

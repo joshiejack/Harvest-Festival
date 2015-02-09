@@ -1,6 +1,6 @@
 package joshie.harvestmoon;
 
-public class CommonProxy {
+public class HMCommonProxy {
     public void init() {
         return;
     }

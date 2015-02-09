@@ -31,24 +31,6 @@ public class CodeGeneratorBuildings {
         this.z2 = zStart < zEnd ? zEnd : zStart;
     }
 
-    public ArrayList<String> getArea(boolean air) {
-        ArrayList<String> ret = new ArrayList();
-        for (int y = 0; y <= y2 - y1; y++) {
-            for (int x = 0; x <= x2 - x1; x++) {
-                for (int z = 0; z <= z2 - z1; z++) {
-                    Block block = world.getBlock(x1 + x, y1 + y, z1 + z);
-                    if (!block.isAir(world, x1 + x, y1 + y, z1 + z) || air) {
-                        String print = Block.blockRegistry.getNameForObject(block);
-                        int meta = world.getBlockMetadata(x1 + x, y1 + y, z1 + z);
-                        ret.add(x + "," + y + "," + z + "," + print + "," + meta);
-                    }
-                }
-            }
-        }
-
-        return ret;
-    }
-
     public ArrayList<Entity> getEntities(Class clazz, int x, int y, int z) {
         return (ArrayList<Entity>) world.getEntitiesWithinAABB(clazz, Blocks.stone.getCollisionBoundingBoxFromPool(world, x, y, z));
     }

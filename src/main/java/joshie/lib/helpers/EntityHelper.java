@@ -17,38 +17,6 @@ import net.minecraftforge.common.DimensionManager;
 import cpw.mods.fml.common.FMLCommonHandler;
 
 public class EntityHelper {
-    //Whether the entity is currently in water or not
-    public static boolean isInWater(EntityLivingBase entity) {
-        double d0 = entity.posY - 0.35F;
-        int i = MathHelper.floor_double(entity.posX);
-        int j = MathHelper.floor_float(MathHelper.floor_double(d0));
-        int k = MathHelper.floor_double(entity.posZ);
-        Block block = entity.worldObj.getBlock(i, j, k);
-        if (block != null && block.getMaterial() == Material.water) {
-            double filled = 1;
-            if (filled < 0) {
-                filled *= -1;
-                return d0 > j + (1 - filled);
-            } else return d0 < j + filled;
-        } else return false;
-    }
-
-    //Whether the entity is in air
-    public static boolean isInAir(EntityLivingBase entity) {
-        double d0 = entity.posY - 0.35F;
-        int i = MathHelper.floor_double(entity.posX);
-        int j = MathHelper.floor_float(MathHelper.floor_double(d0));
-        int k = MathHelper.floor_double(entity.posZ);
-        Block block = entity.worldObj.getBlock(i, j, k);
-        if (block != null && block.getMaterial() == Material.air) {
-            double filled = 1;
-            if (filled < 0) {
-                filled *= -1;
-                return d0 > j + (1 - filled);
-            } else return d0 < j + filled;
-        } else return false;
-    }
-
     //Loops through all the animals in the specified dimension id
     public static EntityAnimal getAnimalFromUUID(int dimension, UUID uuid) {
         World world = ServerHelper.getWorld(dimension);

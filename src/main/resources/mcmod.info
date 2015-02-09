@@ -5,10 +5,10 @@
   "description": "A Mod inspired by the Harvest Moon series of games",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "http://harvest.joshiejack.uk",
+  "url": "http://joshiejack.uk/harvest",
   "updateUrl": "",
   "authors": ["joshie"],
-  "credits": "",
+  "credits": "Sickle Textures > Schist; Milk, Watering Cans, Wool, Bush > VapourDrive, Seasons HUD > CyanideX",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []

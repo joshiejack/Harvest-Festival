@@ -22,6 +22,16 @@ public abstract class Building {
         return this;
     }
 
+    public static Building getBuilding(String string) {
+        for (Building b : buildings) {
+            if (b.getName().equals(string)) {
+                return b;
+            }
+        }
+
+        return null;
+    }
+
     public Building init() {
         return this;
     }
@@ -33,7 +43,7 @@ public abstract class Building {
             boolean swap = world.rand.nextBoolean();
 
             //boolean n1 = true;
-           // boolean n2 = false;
+            // boolean n2 = false;
             //boolean swap = true;
 
             //foundation(world, x, y, z, xWidth, zWidth);

@@ -54,12 +54,7 @@ public class PlaceableHelper {
     }
 
     /** TODO:
-         * Wall Mounted Sign
-         * Floor Mounted Sign
          * Trip wire
-         * Item Frames
-         * Painting
-         * Lily Pads
          * Bed
          * Skulls
          * Pistons
@@ -115,9 +110,6 @@ public class PlaceableHelper {
         if (block == Blocks.air) print = "Blocks.air";
         if (block == Blocks.wall_sign) print = "Blocks.wall_sign";
         if (block == Blocks.flower_pot) print = "Blocks.flower_pot";
-        if (print.contains("TODO")) {
-            System.out.println(block);
-        }
         return "list.add(new Placeable" + getPrefixString(block) + "(" + print + ", " + meta + ", " + x + ", " + y + ", " + z + "));";
     }
 

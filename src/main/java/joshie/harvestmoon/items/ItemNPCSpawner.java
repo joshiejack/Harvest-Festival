@@ -3,6 +3,7 @@ package joshie.harvestmoon.items;
 import java.util.HashMap;
 
 import joshie.harvestmoon.entities.EntityNPC;
+import joshie.harvestmoon.entities.EntityNPCBuilder;
 import joshie.harvestmoon.entities.NPC;
 import joshie.harvestmoon.init.HMNPCs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,7 +20,7 @@ public class ItemNPCSpawner extends ItemHMMeta {
             meta++;
         }
     }
-    
+
     @Override
     public int getMetaCount() {
         return HMNPCs.getNPCs().size();
@@ -40,9 +41,13 @@ public class ItemNPCSpawner extends ItemHMMeta {
     @Override
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int xCoord, int yCoord, int zCoord, int side, float hitX, float hitY, float hitZ) {
         if (!world.isRemote && stack.getItemDamage() < getMetaCount()) {
-            EntityNPC npc = new EntityNPC(world, getNPC(stack.getItemDamage()));
-            npc.setPosition(xCoord, yCoord, zCoord);
-            world.spawnEntityInWorld(npc);
+            EntityNPC entity = null;
+            NPC npc = getNPC(stack.getItemDamage());
+            if (npc.isBuilder()) {
+                entity = new EntityNPCBuilder(world, npc);
+            } else entity = new EntityNPC(world, npc);
+            entity.setPosition(xCoord, yCoord, zCoord);
+            world.spawnEntityInWorld(entity);
         }
 
         return false;

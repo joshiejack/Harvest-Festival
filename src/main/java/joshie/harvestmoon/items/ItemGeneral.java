@@ -7,12 +7,14 @@ import static joshie.harvestmoon.helpers.AnimalHelper.setProducedProduct;
 import joshie.harvestmoon.helpers.SizeableHelper;
 import joshie.harvestmoon.lib.SizeableMeta;
 import joshie.harvestmoon.lib.SizeableMeta.Size;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 public class ItemGeneral extends ItemHMMeta {
     public static final int BLUE_FEATHER = 0;

@@ -33,8 +33,8 @@ public class CodeGeneratorBuildings {
 
     public ArrayList<String> getArea(boolean air) {
         ArrayList<String> ret = new ArrayList();
-        for (int x = 0; x <= x2 - x1; x++) {
-            for (int y = 0; y <= y2 - y1; y++) {
+        for (int y = 0; y <= y2 - y1; y++) {
+            for (int x = 0; x <= x2 - x1; x++) {
                 for (int z = 0; z <= z2 - z1; z++) {
                     Block block = world.getBlock(x1 + x, y1 + y, z1 + z);
                     if (!block.isAir(world, x1 + x, y1 + y, z1 + z) || air) {

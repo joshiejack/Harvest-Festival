@@ -35,6 +35,6 @@ public abstract class Placeable {
     public abstract void place(World world, int x, int y, int z, boolean n1, boolean n2, boolean swap);
 
     public static enum PlacementStage {
-        BLOCKS, TORCHES, ENTITIES;
+        BLOCKS, TORCHES, ENTITIES, FINISHED;
     }
 }

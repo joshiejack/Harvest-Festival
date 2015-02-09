@@ -21,7 +21,7 @@ public class ItemBuilding extends ItemHMMeta {
 
     @Override
     public String getName(ItemStack stack) {
-        if(stack.getItemDamage() >= Building.buildings.size()) return "invalid";
+        if (stack.getItemDamage() >= Building.buildings.size()) return "invalid";
         Building building = Building.buildings.get(stack.getItemDamage());
         if (building != null) {
             return building.getName();

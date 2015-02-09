@@ -25,6 +25,7 @@ public class NPC {
 
     private Age age;
     private Gender gender;
+    private boolean isBuilder;
 
     public NPC(String name, Gender gender, Age age) {
         this.name = name;
@@ -73,9 +74,18 @@ public class NPC {
 
         Collections.shuffle(greetings);
     }
+    
+    public NPC setIsBuilder() {
+        isBuilder = true;
+        return this;
+    }
 
     public boolean isChild() {
         return age == CHILD;
+    }
+    
+    public boolean isBuilder() {
+        return isBuilder;
     }
 
     //Return the name of this character

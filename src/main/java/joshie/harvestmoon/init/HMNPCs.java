@@ -17,7 +17,7 @@ public class HMNPCs {
     public static Collection<NPC> getNPCs() {
         return npcs.values();
     }
-    
+
     public static NPC get(String string) {
         return npcs.get(string);
     }
@@ -48,7 +48,7 @@ public class HMNPCs {
         animal_owner = register(new NPC("jim", MALE, ADULT));
         cafe_owner = register(new NPC("liara", FEMALE, ADULT));
         seed_owner = register(new NPC("jade", FEMALE, ADULT));
-        tool_owner = register(new NPC("daniel", MALE, ADULT));
+        tool_owner = register(new NPC("daniel", MALE, ADULT).setIsBuilder());
         priest = register(new NPC("thomas", MALE, ELDER));
         seed_child = register(new NPC("fenn", MALE, CHILD));
         cafe_granny = register(new NPC("katlin", FEMALE, ELDER));

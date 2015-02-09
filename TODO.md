@@ -36,6 +36,8 @@
 - [ ] Blacksmith Upgrade Tool Quests
 - [ ] Priest, Bless Tool Quest
 - [ ] Quests to unlock Mixer, Frying Pan and Pot for purchase
+- [ ] Display units for shops
+- [ ] Force NPCs to shop mode
 
 
 # Texturing of many things

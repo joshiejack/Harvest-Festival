@@ -29,10 +29,6 @@ public class BuildingStage {
     }
 
     public BuildingStage build(World world) {
-        Placeable block = building.list.get(index);        
-        block.place(world, xCoord, yCoord, zCoord, n1, n2, swap, stage);
-        index++;
-
         if (index >= building.list.size()) {
             if (stage == PlacementStage.BLOCKS) {
                 stage = PlacementStage.TORCHES;
@@ -44,6 +40,10 @@ public class BuildingStage {
                 stage = PlacementStage.FINISHED;
                 index = 0;
             }
+        } else {
+            Placeable block = building.list.get(index);        
+            block.place(world, xCoord, yCoord, zCoord, n1, n2, swap, stage);
+            index++;
         }
 
         return this;

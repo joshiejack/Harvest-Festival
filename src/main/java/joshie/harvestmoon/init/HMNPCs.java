@@ -45,6 +45,7 @@ public class HMNPCs {
     public static NPC fisherman; //Fisherman
     public static NPC milkmaid; //Works in the Barn, Milking Cows
     public static NPC builder; //Builds stuff for the players
+    public static NPC poultry; //Poultry Farm Owner
 
     public static void init() {
         goddess = register(new NPCGoddess("goddess", FEMALE, ADULT));
@@ -64,5 +65,6 @@ public class HMNPCs {
         fisherman = register(new NPC("jacob", MALE, ADULT));
         milkmaid = register(new NPC("candice", FEMALE, ADULT));
         builder = register(new NPC("inap", MALE, ADULT).setIsBuilder());
+        poultry = register(new NPC("ondra", MALE, ADULT));
     }
 }

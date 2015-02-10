@@ -154,6 +154,7 @@ hm.npc.brandon.name=Brandon
 hm.npc.thomas.name=Tomas
 hm.npc.candice.name=Candice
 hm.npc.inap.name=Yulif
+hm.npc.ondra.name=Ondra
 
 ## NOTE FOR TRANSLATORS, READ
 # When translating these, do not directly translate, just come up with your own
@@ -243,6 +244,13 @@ hm.npc.inap.greeting2=People treat me like a slave, no rest for the builder!
 hm.npc.inap.greeting3=Have you seen Jim? Isn't he just?
 hm.npc.inap.greeting4=I am tired of all this hard work, When will you appreciate my buildings?
 hm.npc.inap.greeting5=I am tired of wandering around, I am dying right now.
+
+#Ondra greeting
+hm.npc.ondra.greeting1=I sure love plucking chickens!
+hm.npc.ondra.greeting2=I am so tired, working with chickens is such hard work!
+hm.npc.ondra.greeting3=From this forward, I hope I can sleep better.
+hm.npc.ondra.greeting4=Most chicken handlers hate foxes, I love them. They're so furry, like me!
+hm.npc.ondra.greeting5=Cluck, Cluck, Cluck Clucking. When will these chicks shut up!
 
 ###Quests
 ## Cow Tutorial

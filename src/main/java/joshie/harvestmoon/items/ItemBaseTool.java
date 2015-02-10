@@ -2,6 +2,7 @@ package joshie.harvestmoon.items;
 
 import java.util.List;
 
+import joshie.harvestmoon.config.Tools;
 import joshie.harvestmoon.util.Translate;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -15,7 +16,18 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public abstract class ItemBaseTool extends ItemBaseSingle {
     protected static enum ToolTier {
-        BASIC, COPPER, SILVER, GOLD, MYSTRIL, CURSED, BLESSED, MYTHIC;
+        BASIC("WOOD"), COPPER("GOLD"), SILVER("STONE"), GOLD("IRON"), MYSTRIL("DIAMOND"), CURSED, BLESSED, MYTHIC;
+
+        private String alt;
+
+        private ToolTier() {}
+        private ToolTier(String alt) {
+            this.alt = alt;
+        }
+
+        public String getName() {
+            return Tools.USE_VANILLA_MATERIALS && alt != null ? alt : name();
+        }
     }
 
     private IIcon[] icons;
@@ -25,17 +37,17 @@ public abstract class ItemBaseTool extends ItemBaseSingle {
         setMaxDamage(8);
         setMaxStackSize(1);
     }
-    
+
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
         return Translate.translate(super.getUnlocalizedName().replace("item.", "") + "." + getTier(stack).name().toLowerCase());
     }
-    
+
     @Override
     public boolean showDurabilityBar(ItemStack stack) {
         return false;
     }
-    
+
     protected ToolTier getTier(ItemStack stack) {
         int safe = Math.min(Math.max(0, stack.getItemDamage()), (ToolTier.values().length - 1));
         return ToolTier.values()[safe];
@@ -108,7 +120,7 @@ public abstract class ItemBaseTool extends ItemBaseSingle {
     public void registerIcons(IIconRegister register) {
         icons = new IIcon[ToolTier.values().length];
         for (int i = 0; i < icons.length; i++) {
-            icons[i] = register.registerIcon(path + getUnlocalizedName().replace("item.", "") + "_" + ToolTier.values()[i].name().toLowerCase());
+            icons[i] = register.registerIcon(path + getUnlocalizedName().replace("item.", "") + "_" + ToolTier.values()[i].getName().toLowerCase());
         }
     }
 

@@ -88,6 +88,19 @@ hm.wateringcan.mystril=Mystril Watering Can
 hm.wateringcan.cursed=Cursed Watering Can
 hm.wateringcan.blessed=Blessed Watering Can
 hm.wateringcan.mythic=Mythic Watering Can
+#Vanilla config option
+hm.hoe.wood=Wooden Hoe
+hm.hoe.stone=Stone Hoe
+hm.hoe.iron=Iron Hoe
+hm.hoe.diamond=Diamond Hoe
+hm.sickle.wood=Wooden Sickle
+hm.sickle.stone=Stone Sickle
+hm.sickle.iron=Iron Sickle
+hm.sickle.diamond=Diamond Sickle
+hm.wateringcan.wood=Wooden Watering Can
+hm.wateringcan.stone=Stone Watering Can
+hm.wateringcan.iron=Iron Watering Can
+hm.wateringcan.diamond=Diamond Watering Can
 
 #Treats
 hm.treat.cow=Cow Treat

@@ -21,8 +21,9 @@
 # joshie stuff, feel to help with any!
 - [ ] Crop Rendering
 - [ ] NPC Builder Quests for Materials and will build you things. Hands you a plot marker to place roughly where you want the building built.
-- [ ] Spawning the Harvest Goddess and the NPC Builder
-- [ ] Harder Animal Breeding
+- [x] Spawning the Harvest Goddess
+- [ ] Spawning the NPC Builder
+- [ ] Egg Nest, Miracle Potions for Breeding
 - [ ] Shipping Bin, Oven, Mixer Renders
 - [ ] Add Knife, Rolling Pin and Renders
 - [ ] Kitchen Machines, Render items in them, and animations

@@ -10,6 +10,7 @@ import java.util.Collection;
 import java.util.HashMap;
 
 import joshie.harvestmoon.entities.npc.NPC;
+import joshie.harvestmoon.entities.npc.NPCGoddess;
 
 public class HMNPCs {
     private static HashMap<String, NPC> npcs = new HashMap();
@@ -46,7 +47,7 @@ public class HMNPCs {
     public static NPC builder; //Builds stuff for the players
 
     public static void init() {
-        goddess = register(new NPC("goddess", FEMALE, ADULT));
+        goddess = register(new NPCGoddess("goddess", FEMALE, ADULT));
         animal_owner = register(new NPC("jim", MALE, ADULT));
         cafe_owner = register(new NPC("liara", FEMALE, ADULT));
         seed_owner = register(new NPC("jade", FEMALE, ADULT));

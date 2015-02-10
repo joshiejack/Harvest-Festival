@@ -6,7 +6,7 @@ import static joshie.harvestmoon.network.PacketHandler.sendToServer;
 
 import java.util.HashSet;
 
-import joshie.harvestmoon.entities.NPC;
+import joshie.harvestmoon.entities.npc.NPC;
 import joshie.harvestmoon.network.PacketSyncGold;
 import joshie.harvestmoon.network.quests.PacketQuestCompleted;
 import joshie.harvestmoon.network.quests.PacketQuestDecreaseHeld;

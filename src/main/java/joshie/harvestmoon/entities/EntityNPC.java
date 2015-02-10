@@ -2,6 +2,7 @@ package joshie.harvestmoon.entities;
 
 import io.netty.buffer.ByteBuf;
 import joshie.harvestmoon.HarvestMoon;
+import joshie.harvestmoon.entities.npc.NPC;
 import joshie.harvestmoon.init.HMNPCs;
 import joshie.harvestmoon.lib.HMModInfo;
 import net.minecraft.entity.passive.EntityVillager;
@@ -79,7 +80,7 @@ public class EntityNPC extends EntityVillager implements IEntityAdditionalSpawnD
 
     @Override
     public void setDead() {
-        if (!worldObj.isRemote) {
+        if (!worldObj.isRemote && npc.respawns()) {
             EntityNPC clone = new EntityNPC(this);
             worldObj.spawnEntityInWorld(clone);
             for (int i = 0; i < 20; ++i) {

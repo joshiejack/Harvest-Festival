@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import joshie.harvestmoon.entities.EntityNPC;
-import joshie.harvestmoon.entities.NPC;
+import joshie.harvestmoon.entities.npc.NPC;
 import joshie.harvestmoon.util.IData;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;

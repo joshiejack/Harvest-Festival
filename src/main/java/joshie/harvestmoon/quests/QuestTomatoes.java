@@ -8,7 +8,7 @@ import static joshie.harvestmoon.helpers.QuestHelper.takeHeldStack;
 import java.util.HashSet;
 
 import joshie.harvestmoon.entities.EntityNPC;
-import joshie.harvestmoon.entities.NPC;
+import joshie.harvestmoon.entities.npc.NPC;
 import joshie.harvestmoon.helpers.CropHelper;
 import joshie.harvestmoon.init.HMCrops;
 import joshie.harvestmoon.init.HMItems;

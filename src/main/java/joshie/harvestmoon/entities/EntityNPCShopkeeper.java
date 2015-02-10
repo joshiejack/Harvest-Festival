@@ -1,6 +1,7 @@
 package joshie.harvestmoon.entities;
 
 import io.netty.buffer.ByteBuf;
+import joshie.harvestmoon.entities.npc.NPC;
 import joshie.harvestmoon.shops.ShopInventory;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;

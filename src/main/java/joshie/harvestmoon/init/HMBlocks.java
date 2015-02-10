@@ -3,6 +3,7 @@ package joshie.harvestmoon.init;
 import static joshie.harvestmoon.helpers.generic.RegistryHelper.registerTiles;
 import static net.minecraft.block.Block.soundTypeGravel;
 import joshie.harvestmoon.blocks.BlockCrop;
+import joshie.harvestmoon.blocks.BlockFlower;
 import joshie.harvestmoon.blocks.BlockGeneral;
 import joshie.harvestmoon.blocks.BlockSoil;
 import joshie.harvestmoon.blocks.BlockWithered;
@@ -17,12 +18,14 @@ import net.minecraft.block.Block;
 
 public class HMBlocks {
     public static Block crops;
+    public static Block flowers;
     public static Block tiles;
     public static Block soil;
     public static Block withered;
 
     public static void init() {
         crops = new BlockCrop().setBlockName("crops.block");
+        flowers = new BlockFlower().setBlockName("flowers.block");
         tiles = new BlockGeneral().setBlockName("general.block");
         soil = new BlockSoil().setHardness(0.6F).setStepSound(soundTypeGravel).setBlockName("farmland").setBlockTextureName("farmland");
         withered = new BlockWithered().setBlockName("crops.withered");

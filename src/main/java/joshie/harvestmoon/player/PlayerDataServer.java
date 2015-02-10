@@ -8,7 +8,7 @@ import java.util.UUID;
 
 import joshie.harvestmoon.cooking.SavedRecipe;
 import joshie.harvestmoon.crops.CropData;
-import joshie.harvestmoon.entities.NPC;
+import joshie.harvestmoon.entities.npc.NPC;
 import joshie.harvestmoon.helpers.generic.EntityHelper;
 import joshie.harvestmoon.network.PacketSyncBirthday;
 import joshie.harvestmoon.network.PacketSyncGold;

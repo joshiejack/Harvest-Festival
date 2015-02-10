@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import joshie.harvestmoon.entities.EntityNPC;
 import joshie.harvestmoon.entities.EntityNPCBuilder;
-import joshie.harvestmoon.entities.NPC;
+import joshie.harvestmoon.entities.npc.NPC;
 import joshie.harvestmoon.init.HMNPCs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

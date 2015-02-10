@@ -1,15 +1,15 @@
 package joshie.harvestmoon.init;
 
-import static joshie.harvestmoon.entities.NPC.Age.ADULT;
-import static joshie.harvestmoon.entities.NPC.Age.CHILD;
-import static joshie.harvestmoon.entities.NPC.Age.ELDER;
-import static joshie.harvestmoon.entities.NPC.Gender.FEMALE;
-import static joshie.harvestmoon.entities.NPC.Gender.MALE;
+import static joshie.harvestmoon.entities.npc.NPC.Age.ADULT;
+import static joshie.harvestmoon.entities.npc.NPC.Age.CHILD;
+import static joshie.harvestmoon.entities.npc.NPC.Age.ELDER;
+import static joshie.harvestmoon.entities.npc.NPC.Gender.FEMALE;
+import static joshie.harvestmoon.entities.npc.NPC.Gender.MALE;
 
 import java.util.Collection;
 import java.util.HashMap;
 
-import joshie.harvestmoon.entities.NPC;
+import joshie.harvestmoon.entities.npc.NPC;
 
 public class HMNPCs {
     private static HashMap<String, NPC> npcs = new HashMap();

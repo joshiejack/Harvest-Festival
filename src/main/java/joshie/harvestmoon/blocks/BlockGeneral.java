@@ -200,20 +200,20 @@ public class BlockGeneral extends BlockHMBaseMeta {
                 return null;
         }
     }
-
-    @SideOnly(Side.CLIENT)
+    
     @Override
-    public void registerBlockIcons(IIconRegister register) {
-        ExtraIcons.registerBlockIcons(register);
+    public boolean isActive(int meta) {
+        return meta == STEAMER ? Cooking.ENABLE_STEAMER : true;
     }
-
+    
     @Override
     public int getMetaCount() {
         return 9;
     }
 
+    @SideOnly(Side.CLIENT)
     @Override
-    public boolean isActive(int meta) {
-        return meta == STEAMER ? Cooking.ENABLE_STEAMER : true;
+    public void registerBlockIcons(IIconRegister register) {
+        ExtraIcons.registerBlockIcons(register);
     }
 }

@@ -32,5 +32,7 @@ public class ContainerNPC extends ContainerBase {
         if (!player.worldObj.isRemote) {
             handler.getServer().getPlayerData(player).setTalkedTo(npc.getNPC());
         }
+        
+        npc.getNPC().onContainerClosed(player, npc);
     }
 }

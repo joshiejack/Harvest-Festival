@@ -4,7 +4,7 @@ import static cpw.mods.fml.common.network.ByteBufUtils.readUTF8String;
 import static cpw.mods.fml.common.network.ByteBufUtils.writeUTF8String;
 import static joshie.harvestmoon.HarvestMoon.handler;
 import io.netty.buffer.ByteBuf;
-import joshie.harvestmoon.entities.NPC;
+import joshie.harvestmoon.entities.npc.NPC;
 import joshie.harvestmoon.init.HMNPCs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;

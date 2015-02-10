@@ -8,7 +8,7 @@ import io.netty.buffer.ByteBuf;
 import java.util.HashSet;
 
 import joshie.harvestmoon.entities.EntityNPC;
-import joshie.harvestmoon.entities.NPC;
+import joshie.harvestmoon.entities.npc.NPC;
 import joshie.harvestmoon.helpers.SizeableHelper;
 import joshie.harvestmoon.helpers.ToolHelper;
 import joshie.harvestmoon.helpers.generic.ItemHelper;

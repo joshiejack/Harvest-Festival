@@ -1,16 +1,20 @@
-package joshie.harvestmoon.entities;
+package joshie.harvestmoon.entities.npc;
 
-import static joshie.harvestmoon.entities.NPC.Age.CHILD;
-import static joshie.harvestmoon.entities.NPC.Gender.FEMALE;
-import static joshie.harvestmoon.entities.NPC.Gender.MALE;
+import static joshie.harvestmoon.entities.npc.NPC.Age.CHILD;
+import static joshie.harvestmoon.entities.npc.NPC.Gender.FEMALE;
+import static joshie.harvestmoon.entities.npc.NPC.Gender.MALE;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
+import joshie.harvestmoon.entities.EntityNPC;
+import joshie.harvestmoon.entities.EntityNPCBuilder;
+import joshie.harvestmoon.entities.EntityNPCShopkeeper;
 import joshie.harvestmoon.handlers.GuiHandler;
 import joshie.harvestmoon.shops.ShopInventory;
 import joshie.harvestmoon.util.Translate;
 import joshie.harvestmoon.util.generic.Text;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
 public class NPC {
@@ -134,6 +138,14 @@ public class NPC {
         } else last = 0;
 
         return greetings.get(last);
+    }
+    
+    public boolean respawns() {
+        return true;
+    }
+
+    public void onContainerClosed(EntityPlayer player, EntityNPC npc) {
+        return;
     }
 
     @Override

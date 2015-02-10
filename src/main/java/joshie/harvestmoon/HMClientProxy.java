@@ -12,6 +12,7 @@ import joshie.harvestmoon.entities.EntityNPCBuilder;
 import joshie.harvestmoon.entities.EntityNPCShopkeeper;
 import joshie.harvestmoon.entities.RenderNPC;
 import joshie.harvestmoon.handlers.RenderHandler;
+import joshie.harvestmoon.handlers.events.GeneralEvents;
 import joshie.harvestmoon.handlers.events.RenderEvents;
 import joshie.harvestmoon.init.HMBlocks;
 import joshie.harvestmoon.lib.RenderIds;

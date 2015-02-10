@@ -20,6 +20,8 @@ import joshie.harvestmoon.init.HMPackets;
 import joshie.harvestmoon.init.HMQuests;
 import joshie.harvestmoon.init.HMShops;
 import joshie.harvestmoon.util.WorldDestroyer;
+import net.minecraft.world.EnumDifficulty;
+import net.minecraftforge.common.util.EnumHelper;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

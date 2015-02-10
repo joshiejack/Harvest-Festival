@@ -8,6 +8,7 @@ import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.entities.EntityNPC;
 import joshie.harvestmoon.handlers.ServerHandler;
 import joshie.harvestmoon.init.HMNPCs;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.gui.GuiSelectWorld;
 import net.minecraft.item.ItemStack;
@@ -26,13 +27,13 @@ public class GeneralEvents {
     public void onItemExpire(ItemExpireEvent event) {
         World world = event.entityItem.worldObj;
         if (!world.isRemote) {
-            if (event.entityItem.isInWater()) {
+            if (event.entityItem.isInsideOfMaterial(Material.water)) {
                 ItemStack stack = event.entityItem.getEntityItem();
                 if (stack != null) {
                     if (stack.getItem() instanceof ItemBlockFlower) {
                         if (stack.getItemDamage() == BlockFlower.GODDESS) {
                             EntityNPC goddess = HMNPCs.goddess.getEntity(world, (int) event.entityItem.posX, (int) event.entityItem.posY, (int) event.entityItem.posZ);
-                            goddess.setPosition((int) event.entityItem.posX, (int) event.entityItem.posY, (int) event.entityItem.posZ);
+                            goddess.setPosition((int) event.entityItem.posX, (int) event.entityItem.posY + 1, (int) event.entityItem.posZ);
                             world.spawnEntityInWorld(goddess);
                         }
                     }

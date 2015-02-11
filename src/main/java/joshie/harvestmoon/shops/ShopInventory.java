@@ -67,7 +67,7 @@ public class ShopInventory {
         if (hours == null) return false;
         else {
             long daytime = world.getWorldTime() % 24000;
-            long time = (daytime / 100);
+            long time = (daytime / 10);
             return time >= hours.open && time <= hours.close;
         }
     }

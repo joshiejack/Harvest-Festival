@@ -40,7 +40,9 @@
 - [ ] Quests to unlock Mixer, Frying Pan and Pot for purchase
 - [ ] Display units for shops
 - [ ] Force NPCs to shop mode
-- [ ] Make Stamina and Fatigue affect you. (Stamina, drops to 0. When tt's 0 you get effects, and fatigue builds up. When fatigue hits -255 you pass out (die/go back to bed, keep inventory).
+- [x] Stamina and Fatigue operational (you gain from using tools)
+- [x] Pass out when your fatigue reaches 255
+- [ ] Add effects when your stamina reaches zero, Slower movement.
 - [ ] Re-texture animals to fit the Harvest Moon Game (e.g. cow)
 
 # Texturing of many things

@@ -1,5 +1,7 @@
 #en_US.lang by joshie ;)
 hm.tab.main=Harvest Moon
+hm.mode.true=Harvest Moon was set to easy mode!
+hm.mode.false=Harvest Moon was set to hard mode!
 
 #Buildings
 hm.structures.pond=[SPAWN] Harvest Goddess Pond

@@ -29,6 +29,9 @@ archivesBaseName = "Harvest Moon"
 minecraft {
     version = "${minecraft_version}-${forge_version}"
     runDir = "eclipse"
+    
+    replace "@VERSION@", "${mod_version}"
+    replaceIn "HMModInfo.java"
 }
 
 dependencies {

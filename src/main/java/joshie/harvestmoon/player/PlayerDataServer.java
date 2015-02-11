@@ -148,6 +148,11 @@ public class PlayerDataServer implements IData {
         playerStats.addGold(gold);
         handler.getServer().markDirty();
     }
+    
+    public void setGold(int gold) {
+        playerStats.setGold(gold);
+        handler.getServer().markDirty();
+    }
 
     public int getGold() {
         return playerStats.getGold();

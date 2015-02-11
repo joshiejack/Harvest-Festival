@@ -14,6 +14,7 @@ public class PlayerStats implements IData {
     private int gold;
 
     public PlayerDataServer master;
+
     public PlayerStats(PlayerDataServer master) {
         this.master = master;
     }
@@ -22,21 +23,25 @@ public class PlayerStats implements IData {
         return birthday;
     }
 
-    public void affectStats(double stamina, double fatigue) {        
+    public void affectStats(double stamina, double fatigue) {
         this.stamina += stamina;
         this.fatigue += fatigue;
-        
-        if(this.stamina >= staminaMax) {
+
+        if (this.stamina >= staminaMax) {
             this.stamina = staminaMax;
         }
-        
-        if(this.fatigue <= fatigueMin) {
+
+        if (this.fatigue <= fatigueMin) {
             this.fatigue = fatigueMin;
         }
     }
 
     public void addGold(int gold) {
         this.gold += gold;
+    }
+
+    public void setGold(int gold) {
+        this.gold = gold;
     }
 
     public boolean setBirthday() {

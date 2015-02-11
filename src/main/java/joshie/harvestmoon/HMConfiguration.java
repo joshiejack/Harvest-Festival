@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Level;
 
 public class HMConfiguration {
     public static final int PACKET_DISTANCE = 172;
+    public static boolean EASY_MODE = false;
 
     public static void init() {
         initConfig("Calendar");

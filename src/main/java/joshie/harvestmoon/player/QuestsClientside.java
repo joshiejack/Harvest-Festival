@@ -7,6 +7,7 @@ import java.util.HashSet;
 import joshie.harvestmoon.entities.EntityNPC;
 import joshie.harvestmoon.network.quests.PacketQuestStart;
 import joshie.harvestmoon.quests.Quest;
+import joshie.harvestmoon.shops.ShopInventory;
 import net.minecraft.entity.player.EntityPlayer;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -57,7 +58,12 @@ public class QuestsClientside {
     }
 
     //Returns a single lined script
-    public String getScript(EntityPlayer player, EntityNPC npc) {        
+    public String getScript(EntityPlayer player, EntityNPC npc) {      
+        ShopInventory shop = npc.getNPC().getShop();
+        if(shop != null && shop.isOpen(player.worldObj)) {
+            return shop.getWelcome();
+        }
+        
         if (current != null) {
             for (Quest q : current) {
                 if (q.handlesScript(npc.getNPC())) {

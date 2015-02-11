@@ -40,7 +40,7 @@ public class NPC {
         this.gender = gender;
         this.age = age;
 
-        for (int i = 1; i < 32; i++) {
+        for (int i = 1; i <= 32; i++) {
             String key = "hm.npc." + name + ".greeting" + i;
             String greeting = Text.localize(key);
             if (!greeting.equals(key)) {

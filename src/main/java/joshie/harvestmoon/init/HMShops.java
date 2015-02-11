@@ -13,7 +13,7 @@ public class HMShops {
 
     private static void seedShop() {
         /** Register all crop seeds to the seed shop **/
-        seed_shop = new ShopInventory();
+        seed_shop = new ShopInventory("seeds", 1);
         for (Crop crop : Crop.crops) {
             seed_shop.add(new PurchaseableCropSeeds(crop));
         }

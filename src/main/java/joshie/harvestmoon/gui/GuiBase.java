@@ -38,7 +38,7 @@ public abstract class GuiBase extends GuiContainer {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int x, int y) {
-        drawForeground();
+        drawForeground(x, y);
         if (hasInventory) {
             fontRendererObj.drawString(getName(), getX(), nameHeight, 4210752);
             fontRendererObj.drawString(I18n.format("container.inventory"), 8, ySize - 96 + inventOffset, 4210752);
@@ -72,7 +72,7 @@ public abstract class GuiBase extends GuiContainer {
         return 46;
     }
 
-    public void drawForeground() {
+    public void drawForeground(int x, int y) {
         return;
     }
 

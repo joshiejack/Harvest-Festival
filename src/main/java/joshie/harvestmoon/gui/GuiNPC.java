@@ -51,20 +51,11 @@ public class GuiNPC extends GuiBase {
             name_texture = new ResourceLocation(HMModInfo.MODPATH + ":lang/en_US/" + npc.getNPC().getUnlocalizedName() + ".png");
         }
     }
-    
-    @Override
-    public void updateScreen() {
-        super.updateScreen();
-        
-        
-    }
 
     @Override
     public void drawBackground(int x, int y) {
         GL11.glPushMatrix();
         GL11.glEnable(GL11.GL_BLEND);
-        //GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-        //GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         mc.renderEngine.bindTexture(name_texture);
         drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
         GL11.glDisable(GL11.GL_BLEND);
@@ -72,10 +63,11 @@ public class GuiNPC extends GuiBase {
     }
 
     private String format(String string) {
+        if(string == null) return "FORGOT SOME TEXT DUMBASS";
         PlayerDataClient data = handler.getClient().getPlayerData();
         string = string.replace("<BR>", SystemUtils.LINE_SEPARATOR);
         string = string.replace("Þ", player.getDisplayName());
-        string = string.replace("ℇ¡", npc.getNPC().getUnlocalizedName());
+        string = string.replace("ℇ", npc.getNPC().getUnlocalizedName());
         string = string.replace("$", "" + data.getGold());
 
         if (npc.getLover() != null) {
@@ -135,7 +127,7 @@ public class GuiNPC extends GuiBase {
     }
 
     @Override
-    public void drawForeground() {
+    public void drawForeground(int x, int y) {
         if (npc == null) {
             player.closeScreen();
             HashSet<Quest> quests = QuestHelper.getCurrentQuest(player);

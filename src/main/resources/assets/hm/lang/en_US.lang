@@ -252,5 +252,8 @@ hm.npc.ondra.greeting3=From this day forward, I hope I can sleep better.
 hm.npc.ondra.greeting4=Most chicken handlers hate foxes, I love them. They're so furry, like me!
 hm.npc.ondra.greeting5=Cluck, Cluck, Cluck Clucking. When will these chicks just shut the Cluck up!
 
+###Shop greetings
+hm.shop.seeds.greeting1=Welcome, I am a great seller of seeds, how may I help you?
+
 ###Quests
 ## Cow Tutorial

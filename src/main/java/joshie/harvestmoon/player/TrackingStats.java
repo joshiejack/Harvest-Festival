@@ -53,9 +53,9 @@ public class TrackingStats implements IData {
             NBTTagCompound tag = sold.getCompoundTagAt(i);
             String name = tag.getString("ItemName");
             int damage = tag.getShort("ItemDamage");
-            int sell = tag.getInteger("SellValue");
+            long sell = tag.getLong("SellValue");
             int amount = tag.getInteger("Amount");
-            sellTracker.add(new SellStack(name, damage, sell, amount));
+            sellTracker.add(new SellStack(name, damage, amount, sell));
         }
     }
 
@@ -80,7 +80,7 @@ public class TrackingStats implements IData {
             NBTTagCompound tag = new NBTTagCompound();
             tag.setString("ItemName", stack.item);
             tag.setShort("ItemDamage", (short) stack.damage);
-            tag.setInteger("SellValue", stack.sell);
+            tag.setLong("SellValue", stack.sell);
             tag.setInteger("Amount", stack.amount);
             sold.appendTag(tag);
         }

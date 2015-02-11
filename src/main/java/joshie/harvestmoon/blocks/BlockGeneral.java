@@ -97,7 +97,7 @@ public class BlockGeneral extends BlockHMBaseMeta {
         else if (meta == SHIPPING && player.getCurrentEquippedItem() != null) {
             ItemStack held = player.getCurrentEquippedItem();
             if (held.getItem() instanceof IShippable) {
-                int sell = ((IShippable) held.getItem()).getSellValue(held);
+                long sell = ((IShippable) held.getItem()).getSellValue(held);
                 if (sell > 0) {
                     if (!player.capabilities.isCreativeMode) {
                         player.inventory.decrStackSize(player.inventory.currentItem, 1);

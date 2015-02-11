@@ -32,11 +32,11 @@ public class ItemCrop extends ItemHMMeta implements IShippable, IRateable {
     }
 
     @Override
-    public int getSellValue(ItemStack stack) {
+    public long getSellValue(ItemStack stack) {
         Crop crop = getCropFromStack(stack);
         boolean isGiant = isGiant(stack.getItemDamage());
         double quality = 1 + (getCropQuality(stack.getItemDamage()) * SELL_QUALITY_MODIFIER);
-        int ret = (int) quality * crop.getSellValue();
+        long ret = (int) quality * crop.getSellValue();
         return isGiant? ret * 10: ret;
     }
 

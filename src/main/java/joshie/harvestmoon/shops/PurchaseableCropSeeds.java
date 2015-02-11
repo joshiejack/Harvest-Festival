@@ -24,7 +24,7 @@ public class PurchaseableCropSeeds implements IPurchaseable {
     }
 
     @Override
-    public int getCost() {
+    public long getCost() {
         return crop.getSeedCost();
     }
 

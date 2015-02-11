@@ -19,7 +19,7 @@ public class ShippingStats implements IData {
     }
     
     public boolean addForShipping(ItemStack stack) {
-        int sell = 0 ;
+        long sell = 0 ;
         if(stack.getItem() instanceof IShippable) {
             sell = ((IShippable) stack.getItem()).getSellValue(stack);
         }
@@ -59,9 +59,9 @@ public class ShippingStats implements IData {
             NBTTagCompound tag = shipped.getCompoundTagAt(i);
             String name = tag.getString("ItemName");
             int damage = tag.getShort("ItemDamage");
-            int sell = tag.getInteger("SellValue");
+            long sell = tag.getInteger("SellValue");
             int amount = tag.getInteger("Amount");
-            toBeShipped.add(new SellStack(name, damage, sell, amount));
+            toBeShipped.add(new SellStack(name, damage, amount, sell));
         }
     }
     
@@ -73,7 +73,7 @@ public class ShippingStats implements IData {
             NBTTagCompound tag = new NBTTagCompound();
             tag.setString("ItemName", stack.item);
             tag.setShort("ItemDamage", (short) stack.damage);
-            tag.setInteger("SellValue", stack.sell);
+            tag.setLong("SellValue", stack.sell);
             tag.setInteger("Amount", stack.amount);
             shipped.appendTag(tag);
         }

@@ -30,10 +30,10 @@ public class ItemSized extends ItemHMMeta implements IShippable, IRateable {
     }
 
     @Override
-    public int getSellValue(ItemStack stack) {
+    public long getSellValue(ItemStack stack) {
         SizeableMeta meta = SizeableMeta.values()[getType(stack.getItemDamage())];
         double quality = 1 + (getQuality(stack.getItemDamage()) * SELL_QUALITY_MODIFIER);
-        return (int) quality * meta.getSellValue(getSize(stack.getItemDamage()));
+        return (long) quality * meta.getSellValue(getSize(stack.getItemDamage()));
     }
 
     @Override

@@ -63,7 +63,7 @@ public class GuiNPCShop extends GuiNPC {
         for (IPurchaseable purchaseable : shop.getContents()) {
             if (purchaseable.canBuy(player.worldObj, PlayerHelper.getBirthday(player), CalendarHelper.getClientDate())) {
                 ItemStack display = purchaseable.getProduct();
-                int cost = purchaseable.getCost();
+                long cost = purchaseable.getCost();
                 mc.renderEngine.bindTexture(shelve_texture);
                 drawTexturedModalRect(x + 30, y + 41 + (index * 37), 0, 0, 160, 32);
                 int xOffset = 0;
@@ -128,7 +128,7 @@ public class GuiNPCShop extends GuiNPC {
             for (IPurchaseable purchaseable : shop.getContents()) {
                 if (purchaseable.canBuy(player.worldObj, PlayerHelper.getBirthday(player), CalendarHelper.getClientDate())) {
                     ItemStack display = purchaseable.getProduct();
-                    int cost = purchaseable.getCost();
+                    long cost = purchaseable.getCost();
                     int xOffset = 0;
                     int posY = 41 + (index * 37);
                     int posX = 168;

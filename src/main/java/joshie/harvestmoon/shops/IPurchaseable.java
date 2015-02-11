@@ -9,7 +9,7 @@ public interface IPurchaseable {
     public boolean canBuy(World world, CalendarDate playersBirthday, CalendarDate dat);
     
     /** The cost of this product **/
-    public int getCost();
+    public long getCost();
     
     /** The product **/
     public ItemStack getProduct();

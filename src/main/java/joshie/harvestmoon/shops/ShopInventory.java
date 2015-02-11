@@ -14,11 +14,13 @@ import cpw.mods.fml.common.FMLCommonHandler;
 public class ShopInventory {
     private HashSet<IPurchaseable> contents = new HashSet();
     protected ArrayList<String> greetings = new ArrayList();
+    private ResourceLocation shop_overlay;
     private int resourceY;
     private String name;
     protected int last;
 
     public ShopInventory(String name, int resourceY) {
+        this.shop_overlay = new ResourceLocation(HMModInfo.MODPATH + ":textures/gui/shops/" + name + ".png");
         this.resourceY = resourceY;
         for (int i = 1; i < 32; i++) {
             String key = "hm.shop." + name + ".greeting" + i;
@@ -68,5 +70,9 @@ public class ShopInventory {
         } else last = 0;
 
         return greetings.get(last);
+    }
+
+    public ResourceLocation getOverlay() {
+        return shop_overlay;
     }
 }

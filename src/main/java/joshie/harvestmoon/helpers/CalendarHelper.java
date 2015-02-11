@@ -3,7 +3,9 @@ package joshie.harvestmoon.helpers;
 import static joshie.harvestmoon.HarvestMoon.handler;
 import joshie.harvestmoon.calendar.CalendarDate;
 import joshie.harvestmoon.calendar.Season;
+import joshie.harvestmoon.calendar.Weekday;
 import joshie.harvestmoon.config.Calendar;
+import net.minecraft.world.World;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -31,6 +33,10 @@ public class CalendarHelper {
     
     public static CalendarDate getServerDate() {
         return handler.getServer().getCalendar().getDate();
+    }
+
+    public static Weekday getWeekday(World world) {
+        return world.isRemote? getClientDate().getWeekday(): getServerDate().getWeekday();
     }
     
     public static void setDate(int day, Season season, int year) {

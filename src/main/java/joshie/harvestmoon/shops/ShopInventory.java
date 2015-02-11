@@ -2,9 +2,12 @@ package joshie.harvestmoon.shops;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
+import joshie.harvestmoon.calendar.Weekday;
+import joshie.harvestmoon.helpers.CalendarHelper;
 import joshie.harvestmoon.lib.HMModInfo;
 import joshie.harvestmoon.util.generic.Text;
 import net.minecraft.client.Minecraft;
@@ -17,6 +20,7 @@ public class ShopInventory {
     private HashSet<IPurchaseable> contents = new HashSet();
     protected ArrayList<String> greetings = new ArrayList();
     private ResourceLocation shop_overlay;
+    private HashMap<Weekday, OpeningHours> open = new HashMap();
     private int resourceY;
     private String name;
     protected int last;
@@ -46,7 +50,7 @@ public class ShopInventory {
 
         return shop_texture;
     }
-    
+
     public Set<IPurchaseable> getContents() {
         return contents;
     }
@@ -58,12 +62,25 @@ public class ShopInventory {
 
     /** Whether or not the shop is currently open at this time or season **/
     public boolean isOpen(World world) {
-        return true;
+        Weekday day = CalendarHelper.getWeekday(world);
+        OpeningHours hours = open.get(day);
+        if (hours == null) return false;
+        else {
+            long daytime = world.getWorldTime() % 24000;
+            long time = (daytime / 100);
+            return time >= hours.open && time <= hours.close;
+        }
+    }
+    
+    public ShopInventory addOpening(Weekday day, int opening, int closing) {
+        open.put(day, new OpeningHours(opening, closing));
+        return this;
     }
 
-    public void add(IPurchaseable item) {
+    public ShopInventory addItem(IPurchaseable item) {
         this.contents.add(item);
         this.registers.add(item);
+        return this;
     }
 
     /** Return the welcome message for this shop **/
@@ -81,5 +98,20 @@ public class ShopInventory {
 
     public ResourceLocation getOverlay() {
         return shop_overlay;
+    }
+
+    /** The integers in here are as follows
+     *  100 = 1 AM
+     *  250 = 2:30am
+     *  1800 = 6PM
+     *  etc. */
+    private static class OpeningHours {
+        private int open;
+        private int close;
+
+        public OpeningHours(int open, int close) {
+            this.open = open;
+            this.close = close;
+        }
     }
 }

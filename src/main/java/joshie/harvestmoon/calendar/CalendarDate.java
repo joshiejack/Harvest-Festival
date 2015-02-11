@@ -1,5 +1,6 @@
 package joshie.harvestmoon.calendar;
 
+import joshie.harvestmoon.helpers.CalendarHelper;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class CalendarDate {
@@ -50,6 +51,10 @@ public class CalendarDate {
 
     public int getYear() {
         return year;
+    }
+    
+    public Weekday getWeekday() {
+        return Weekday.values()[CalendarHelper.getTotalDays(this) % 7];
     }
 
     public void readFromNBT(NBTTagCompound nbt) {

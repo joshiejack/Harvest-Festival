@@ -65,9 +65,7 @@ public class PlayerDataServer implements IData {
     public void newDay() {
         int gold = shippingStats.newDay();
         playerStats.addGold(gold);
-        playerStats.newDay();
         sendToClient(new PacketSyncGold(playerStats.getGold()), getAndCreatePlayer());
-        sendToClient(new PacketSyncStats(playerStats.getStamina(), playerStats.getFatigue()), getAndCreatePlayer());
         relationStats.newDay();
         handler.getServer().markDirty();
     }
@@ -127,6 +125,14 @@ public class PlayerDataServer implements IData {
         }
     }
 
+    public double getStamina() {
+        return playerStats.getStamina();
+    }
+
+    public double getFatigue() {
+        return playerStats.getFatigue();
+    }
+
     public void affectStats(double stamina, double fatigue) {
         playerStats.affectStats(stamina, fatigue);
         handler.getServer().markDirty();
@@ -135,7 +141,7 @@ public class PlayerDataServer implements IData {
     public void syncPlayerStats() {
         sendToClient(new PacketSyncBirthday(playerStats.getBirthday()), getAndCreatePlayer());
         sendToClient(new PacketSyncGold(playerStats.getGold()), getAndCreatePlayer());
-        sendToClient(new PacketSyncStats(playerStats.getStamina(), playerStats.getFatigue()), getAndCreatePlayer());
+        sendToClient(new PacketSyncStats(playerStats.getStamina(), playerStats.getFatigue(), playerStats.getStaminaMax(), playerStats.getFatigueMin()), getAndCreatePlayer());
     }
 
     public void addGold(int gold) {

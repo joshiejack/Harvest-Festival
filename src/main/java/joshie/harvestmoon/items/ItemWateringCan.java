@@ -1,6 +1,7 @@
 package joshie.harvestmoon.items;
 
 import joshie.harvestmoon.blocks.BlockSoil;
+import joshie.harvestmoon.helpers.PlayerHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -154,6 +155,7 @@ public class ItemWateringCan extends ItemBaseTool implements IFluidContainerItem
                                 if (BlockSoil.hydrate(world, x2, y2, z2)) {
                                     displayParticle(world, x2, y2, z2, "splash");
                                     playSound(world, x2, y2, z2, "game.neutral.swim");
+                                    PlayerHelper.performTask(player, getExhaustionRate(stack));
                                     if (!player.capabilities.isCreativeMode) {
                                         drain(stack, 1, true);
                                     }

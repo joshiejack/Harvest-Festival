@@ -3,6 +3,7 @@ package joshie.harvestmoon.items;
 import static joshie.harvestmoon.helpers.CropHelper.destroyCrop;
 import static net.minecraft.block.Block.soundTypeGrass;
 import joshie.harvestmoon.blocks.BlockCrop;
+import joshie.harvestmoon.helpers.PlayerHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -83,6 +84,7 @@ public class ItemSickle extends ItemBaseTool {
 
                         displayParticle(world, x2, y + 1, z2, "blockcrack_31_1");
                         playSound(world, x2, y + 1, z2, soundTypeGrass.soundName);
+                        PlayerHelper.performTask(player, getExhaustionRate(stack));
                     }
                 }
             }

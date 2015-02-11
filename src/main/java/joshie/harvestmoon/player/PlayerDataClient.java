@@ -19,6 +19,8 @@ public class PlayerDataClient {
     private QuestsClientside quests = new QuestsClientside();
     private HashMap<UUID, Short> entity_relations = new HashMap();
     private HashMap<NPC, Short> npc_relations = new HashMap();
+    private double staminaMax = 100D;
+    private double fatigueMin = 0D;
     private double stamina;
     private double fatigue;
     private int gold;
@@ -86,11 +88,21 @@ public class PlayerDataClient {
     public void affectStats(double stamina, double fatigue) {
         this.stamina += stamina;
         this.fatigue += fatigue;
+
+        if (this.stamina >= staminaMax) {
+            this.stamina = staminaMax;
+        }
+
+        if (this.fatigue <= fatigueMin) {
+            this.fatigue = fatigueMin;
+        }
     }
 
-    public void setStats(double stamina, double fatigue) {
+    public void setStats(double stamina, double fatigue, double staminaMax, double fatigueMin) {
         this.stamina = stamina;
         this.fatigue = fatigue;
+        this.staminaMax = staminaMax;
+        this.fatigueMin = fatigueMin;
     }
 
     public void setBirthday(int day, Season season, int year) {

@@ -1,6 +1,7 @@
 package joshie.harvestmoon.items;
 
 import static joshie.harvestmoon.helpers.CropHelper.addFarmland;
+import joshie.harvestmoon.helpers.PlayerHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -71,6 +72,7 @@ public class ItemHoe extends ItemBaseTool {
                     if (world.getBlock(x, y + 1, z).isAir(world, x, y + 1, z) && (block == Blocks.grass || block == Blocks.dirt)) {
                         displayParticle(world, x2, y, z2, "blockcrack_3_0");
                         playSound(world, x2, y, z2, Blocks.farmland.stepSound.getStepResourcePath());
+                        PlayerHelper.performTask(player, getExhaustionRate(stack));
                         if (!world.isRemote) {
                             changed = true;
                             addFarmland(world, x2, y, z2);

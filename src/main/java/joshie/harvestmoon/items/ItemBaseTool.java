@@ -21,6 +21,7 @@ public abstract class ItemBaseTool extends ItemBaseSingle {
         private String alt;
 
         private ToolTier() {}
+
         private ToolTier(String alt) {
             this.alt = alt;
         }
@@ -56,6 +57,29 @@ public abstract class ItemBaseTool extends ItemBaseSingle {
     public abstract int getFront(ItemStack stack);
 
     public abstract int getSides(ItemStack stack);
+
+    public double getExhaustionRate(ItemStack stack) {
+        ToolTier tier = getTier(stack);
+        switch (tier) {
+            case BASIC:
+                return 0.5D;
+            case COPPER:
+                return 1D;
+            case SILVER:
+            case GOLD:
+                return 1.5D;
+            case MYSTRIL:
+                return 2D;
+            case CURSED:
+                return 10D;
+            case BLESSED:
+                return 2.5D;
+            case MYTHIC:
+                return 3D;
+            default:
+                return 0;
+        }
+    }
 
     protected int getXMinus(ItemStack stack, ForgeDirection facing, int x) {
         if (facing == ForgeDirection.NORTH) {

@@ -7,8 +7,10 @@ import net.minecraft.nbt.NBTTagCompound;
 
 public class PlayerStats implements IData {
     private CalendarDate birthday = new CalendarDate();
-    private double stamina = 1000;
-    private double fatigue;
+    private double staminaMax = 100D;
+    private double fatigueMin = 0D;
+    private double stamina = 100D;
+    private double fatigue = 0D;
     private int gold;
 
     public PlayerDataServer master;
@@ -16,18 +18,21 @@ public class PlayerStats implements IData {
         this.master = master;
     }
 
-    public void newDay() {
-        this.stamina = 1000;
-        this.fatigue = 0;
-    }
-
     public CalendarDate getBirthday() {
         return birthday;
     }
 
-    public void affectStats(double stamina, double fatigue) {
+    public void affectStats(double stamina, double fatigue) {        
         this.stamina += stamina;
         this.fatigue += fatigue;
+        
+        if(this.stamina >= staminaMax) {
+            this.stamina = staminaMax;
+        }
+        
+        if(this.fatigue <= fatigueMin) {
+            this.fatigue = fatigueMin;
+        }
     }
 
     public void addGold(int gold) {
@@ -53,12 +58,22 @@ public class PlayerStats implements IData {
         return fatigue;
     }
 
+    public double getStaminaMax() {
+        return staminaMax;
+    }
+
+    public double getFatigueMin() {
+        return fatigueMin;
+    }
+
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         birthday.readFromNBT(nbt);
         stamina = nbt.getDouble("Stamina");
         fatigue = nbt.getDouble("Fatigue");
         gold = nbt.getInteger("Gold");
+        staminaMax = nbt.getDouble("StaminaMax");
+        fatigueMin = nbt.getDouble("FatigueMin");
     }
 
     @Override
@@ -66,5 +81,8 @@ public class PlayerStats implements IData {
         birthday.writeToNBT(nbt);
         nbt.setDouble("Stamina", stamina);
         nbt.setDouble("Fatigue", fatigue);
+        nbt.setInteger("Gold", gold);
+        nbt.setDouble("StaminaMax", staminaMax);
+        nbt.setDouble("FatigueMin", fatigueMin);
     }
 }

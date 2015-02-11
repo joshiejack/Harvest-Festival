@@ -7,21 +7,21 @@ import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 public class PacketSyncGold implements IMessage, IMessageHandler<PacketSyncGold, IMessage> {
-    private int gold;
+    private long gold;
     
     public PacketSyncGold() {}
-    public PacketSyncGold(int gold) {
+    public PacketSyncGold(long gold) {
         this.gold = gold;
     }
 
     @Override
     public void toBytes(ByteBuf buf) {
-        buf.writeInt(gold);
+        buf.writeLong(gold);
     }
 
     @Override
     public void fromBytes(ByteBuf buf) {
-        gold = buf.readInt();
+        gold = buf.readLong();
     }
     
     @Override

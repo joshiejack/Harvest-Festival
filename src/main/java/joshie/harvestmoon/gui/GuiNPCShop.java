@@ -86,7 +86,7 @@ public class GuiNPCShop extends GuiNPC {
         }
     }
 
-    private void drawCoinage(int x, int y, int gold) {
+    private void drawCoinage(int x, int y, long gold) {
         mc.renderEngine.bindTexture(number_texture);
         int width = 0;
         int pos = 0;

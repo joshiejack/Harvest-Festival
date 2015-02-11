@@ -11,7 +11,7 @@ public class PlayerStats implements IData {
     private double fatigueMin = 0D;
     private double stamina = 100D;
     private double fatigue = 0D;
-    private int gold;
+    private long gold;
 
     public PlayerDataServer master;
 
@@ -36,11 +36,11 @@ public class PlayerStats implements IData {
         }
     }
 
-    public void addGold(int gold) {
+    public void addGold(long gold) {
         this.gold += gold;
     }
 
-    public void setGold(int gold) {
+    public void setGold(long gold) {
         this.gold = gold;
     }
 
@@ -51,7 +51,7 @@ public class PlayerStats implements IData {
         } else return false;
     }
 
-    public int getGold() {
+    public long getGold() {
         return gold;
     }
 
@@ -76,7 +76,7 @@ public class PlayerStats implements IData {
         birthday.readFromNBT(nbt);
         stamina = nbt.getDouble("Stamina");
         fatigue = nbt.getDouble("Fatigue");
-        gold = nbt.getInteger("Gold");
+        gold = nbt.getLong("Gold");
         staminaMax = nbt.getDouble("StaminaMax");
         fatigueMin = nbt.getDouble("FatigueMin");
     }
@@ -86,7 +86,7 @@ public class PlayerStats implements IData {
         birthday.writeToNBT(nbt);
         nbt.setDouble("Stamina", stamina);
         nbt.setDouble("Fatigue", fatigue);
-        nbt.setInteger("Gold", gold);
+        nbt.setLong("Gold", gold);
         nbt.setDouble("StaminaMax", staminaMax);
         nbt.setDouble("FatigueMin", fatigueMin);
     }

@@ -6,8 +6,8 @@ import net.minecraft.item.ItemStack;
 
 public class ShopHelper {
     /** This should only be ever called server ide **/
-    public static void purchase(EntityPlayer player, ItemStack product, int cost) {
-        int player_gold = PlayerHelper.getGold(player);
+    public static void purchase(EntityPlayer player, ItemStack product, long cost) {
+        long player_gold = PlayerHelper.getGold(player);
         if (player_gold - cost >= 0) {
             PlayerHelper.adjustGold(player, -cost);
             ItemHelper.addToPlayerInventory(player, product);

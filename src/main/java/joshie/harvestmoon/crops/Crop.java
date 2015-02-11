@@ -58,14 +58,14 @@ public class Crop {
     /** This is how much the seed costs in the store.
      * If the seed isn't purchasable return 0
      * @return the cost in gold */
-    public int getSeedCost() {
+    public long getSeedCost() {
         return cost;
     }
     
     /** This is how much this crop well sell for at level 1.
      * If this crop cannot be sold return 0
      * @return the sell value in gold */
-    public int getSellValue() {
+    public long getSellValue() {
         return sell;
     }
     

@@ -10,24 +10,24 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 public class PacketGoldCommand implements IMessage, IMessageHandler<PacketGoldCommand, IMessage> {
     private boolean set;
-    private int gold;
+    private long gold;
 
     public PacketGoldCommand() {}
 
-    public PacketGoldCommand(int gold, boolean set) {
+    public PacketGoldCommand(long gold, boolean set) {
         this.gold = gold;
         this.set = set;
     }
 
     @Override
     public void toBytes(ByteBuf buf) {
-        buf.writeInt(gold);
+        buf.writeLong(gold);
         buf.writeBoolean(set);
     }
 
     @Override
     public void fromBytes(ByteBuf buf) {
-        gold = buf.readInt();
+        gold = buf.readLong();
         set = buf.readBoolean();
     }
 

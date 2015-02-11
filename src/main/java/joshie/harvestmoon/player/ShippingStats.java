@@ -38,8 +38,8 @@ public class ShippingStats implements IData {
         return sell >= 0;
     }
 
-    public int newDay() {
-        int sold = 0;
+    public long newDay() {
+        long sold = 0;
         Iterator<SellStack> forSale = toBeShipped.iterator();
         while (forSale.hasNext()) {
             SellStack stack = forSale.next();

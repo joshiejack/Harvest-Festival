@@ -63,7 +63,7 @@ public class PlayerDataServer implements IData {
 
     //The world is the world that this player is currently in
     public void newDay() {
-        int gold = shippingStats.newDay();
+        long gold = shippingStats.newDay();
         playerStats.addGold(gold);
         sendToClient(new PacketSyncGold(playerStats.getGold()), getAndCreatePlayer());
         relationStats.newDay();
@@ -144,17 +144,17 @@ public class PlayerDataServer implements IData {
         sendToClient(new PacketSyncStats(playerStats.getStamina(), playerStats.getFatigue(), playerStats.getStaminaMax(), playerStats.getFatigueMin()), getAndCreatePlayer());
     }
 
-    public void addGold(int gold) {
+    public void addGold(long gold) {
         playerStats.addGold(gold);
         handler.getServer().markDirty();
     }
     
-    public void setGold(int gold) {
+    public void setGold(long gold) {
         playerStats.setGold(gold);
         handler.getServer().markDirty();
     }
 
-    public int getGold() {
+    public long getGold() {
         return playerStats.getGold();
     }
 

@@ -50,7 +50,7 @@ public class QuestHelper {
     }
 
     /************************** REWARDS *****************************/
-    public static void rewardGold(EntityPlayer player, int amount) {
+    public static void rewardGold(EntityPlayer player, long amount) {
         if (player.worldObj.isRemote) {
             throw new IdiotException("Joshie shouldn't be rewarding anyone with gold client side");
         } else {

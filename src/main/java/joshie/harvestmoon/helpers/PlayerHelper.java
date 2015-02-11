@@ -62,13 +62,13 @@ public class PlayerHelper {
         } else return handler.getServer().getPlayerData(player).getBirthday();
     }
 
-    public static int getGold(EntityPlayer player) {
+    public static long getGold(EntityPlayer player) {
         if (player.worldObj.isRemote) {
             return handler.getClient().getPlayerData().getGold();
         } else return handler.getServer().getPlayerData(player).getGold();
     }
 
-    public static void adjustGold(EntityPlayer player, int gold) {
+    public static void adjustGold(EntityPlayer player, long gold) {
         if (!player.worldObj.isRemote) {
             handler.getServer().getPlayerData(player).addGold(gold);
             PacketHandler.sendToClient(new PacketSyncGold(getGold(player)), (EntityPlayerMP) player);

@@ -23,7 +23,7 @@ public class PlayerDataClient {
     private double fatigueMin = 0D;
     private double stamina;
     private double fatigue;
-    private int gold;
+    private long gold;
 
     public QuestsClientside getQuests() {
         return quests;
@@ -64,16 +64,16 @@ public class PlayerDataClient {
         return Translate.translate("nolover");
     }
 
-    public int getGold() {
+    public long getGold() {
         return gold;
     }
 
-    public boolean addGold(int amount) {
+    public boolean addGold(long amount) {
         gold += amount;
         return true;
     }
 
-    public void setGold(int gold) {
+    public void setGold(long gold) {
         this.gold = gold;
     }
 

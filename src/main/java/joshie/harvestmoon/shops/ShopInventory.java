@@ -12,6 +12,7 @@ import joshie.harvestmoon.lib.HMModInfo;
 import joshie.harvestmoon.util.generic.Text;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.FMLCommonHandler;
 
@@ -20,7 +21,7 @@ public class ShopInventory {
     private HashSet<IPurchaseable> contents = new HashSet();
     protected ArrayList<String> greetings = new ArrayList();
     private ResourceLocation shop_overlay;
-    private HashMap<Weekday, OpeningHours> open = new HashMap();
+    private HashMap<EnumDifficulty, OpeningSettings> open = new HashMap();
     private int resourceY;
     private String name;
     protected int last;
@@ -63,7 +64,7 @@ public class ShopInventory {
     /** Whether or not the shop is currently open at this time or season **/
     public boolean isOpen(World world) {
         Weekday day = CalendarHelper.getWeekday(world);
-        OpeningHours hours = open.get(day);
+        OpeningHours hours = open.get(world.difficultySetting).opening.get(day);
         if (hours == null) return false;
         else {
             long daytime = world.getWorldTime() % 24000;
@@ -71,9 +72,12 @@ public class ShopInventory {
             return time >= hours.open && time <= hours.close;
         }
     }
-    
-    public ShopInventory addOpening(Weekday day, int opening, int closing) {
-        open.put(day, new OpeningHours(opening, closing));
+
+    public ShopInventory addOpening(EnumDifficulty difficulty, Weekday day, int opening, int closing) {
+        OpeningHours hours = new OpeningHours(opening, closing);
+        OpeningSettings settings = open.get(difficulty) == null ? new OpeningSettings() : open.get(difficulty);
+        settings.opening.put(day, hours);
+        open.put(difficulty, settings);
         return this;
     }
 
@@ -98,6 +102,10 @@ public class ShopInventory {
 
     public ResourceLocation getOverlay() {
         return shop_overlay;
+    }
+
+    private static class OpeningSettings {
+        private HashMap<Weekday, OpeningHours> opening = new HashMap();
     }
 
     /** The integers in here are as follows

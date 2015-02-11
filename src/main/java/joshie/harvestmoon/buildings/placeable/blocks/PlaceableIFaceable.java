@@ -1,5 +1,9 @@
 package joshie.harvestmoon.buildings.placeable.blocks;
 
+import static net.minecraftforge.common.util.ForgeDirection.EAST;
+import static net.minecraftforge.common.util.ForgeDirection.NORTH;
+import static net.minecraftforge.common.util.ForgeDirection.SOUTH;
+import static net.minecraftforge.common.util.ForgeDirection.WEST;
 import joshie.harvestmoon.network.PacketHandler;
 import joshie.harvestmoon.network.PacketSyncOrientation;
 import joshie.harvestmoon.util.generic.IFaceable;
@@ -7,7 +11,6 @@ import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-import static net.minecraftforge.common.util.ForgeDirection.*;
 
 public class PlaceableIFaceable extends PlaceableBlock {
     private ForgeDirection dir;

@@ -22,6 +22,7 @@ public class Crop {
     protected int sell;
     protected int stages;
     protected int regrow;
+    protected int year;
     protected CropMeta meta;
     
     public Crop() {}
@@ -33,8 +34,9 @@ public class Crop {
      * @param sell how much this sells for
      * @param stages how many stages this crop has
      * @param regrow the stage this returns to once harvested
+     * @param year the year in which this crop can be purchased
      * @param meta the crop meta value for dropping the correct item  */
-    public Crop(String unlocalized, Season season, int cost, int sell, int stages, int regrow, CropMeta meta) {
+    public Crop(String unlocalized, Season season, int cost, int sell, int stages, int regrow, int year, CropMeta meta) {
         this.unlocalized = unlocalized;
         this.season = season;
         this.cost = cost;
@@ -42,6 +44,7 @@ public class Crop {
         this.stages = stages;
         this.regrow = regrow;
         this.meta = meta;
+        this.year = year;
         
         crops.add(this);
     }
@@ -71,6 +74,11 @@ public class Crop {
      * @return the stage */
     public int getStages() {
         return stages;
+    }
+    
+    /** The year in which this crop can be purchased **/
+    public int getPurchaseYear() {
+        return year;
     }
     
     /** Returns the type of withering this plant will produce **/

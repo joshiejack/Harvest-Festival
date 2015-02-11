@@ -1,7 +1,7 @@
 package joshie.harvestmoon.player;
 
-import static joshie.harvestmoon.HarvestMoon.handler;
 import joshie.harvestmoon.calendar.CalendarDate;
+import joshie.harvestmoon.helpers.CalendarHelper;
 import joshie.harvestmoon.util.IData;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -36,7 +36,7 @@ public class PlayerStats implements IData {
 
     public boolean setBirthday() {
         if (!birthday.isSet()) {
-            birthday = handler.getServer().getCalendar().getDate();
+            birthday = new CalendarDate(CalendarHelper.getServerDate());
             return true;
         } else return false;
     }

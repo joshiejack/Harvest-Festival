@@ -1,6 +1,5 @@
 package joshie.harvestmoon.buildings.placeable.blocks;
 
-import joshie.harvestmoon.buildings.placeable.Placeable.PlacementStage;
 import net.minecraft.block.Block;
 
 public class PlaceableAnvil extends PlaceableBlock {

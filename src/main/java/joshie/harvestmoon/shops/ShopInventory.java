@@ -3,6 +3,7 @@ package joshie.harvestmoon.shops;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Set;
 
 import joshie.harvestmoon.lib.HMModInfo;
 import joshie.harvestmoon.util.generic.Text;
@@ -12,6 +13,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.common.FMLCommonHandler;
 
 public class ShopInventory {
+    public static final ArrayList<IPurchaseable> registers = new ArrayList();
     private HashSet<IPurchaseable> contents = new HashSet();
     protected ArrayList<String> greetings = new ArrayList();
     private ResourceLocation shop_overlay;
@@ -44,6 +46,10 @@ public class ShopInventory {
 
         return shop_texture;
     }
+    
+    public Set<IPurchaseable> getContents() {
+        return contents;
+    }
 
     /** Returns the y Coordinate of this shop on the texture **/
     public int getResourceY() {
@@ -57,6 +63,7 @@ public class ShopInventory {
 
     public void add(IPurchaseable item) {
         this.contents.add(item);
+        this.registers.add(item);
     }
 
     /** Return the welcome message for this shop **/

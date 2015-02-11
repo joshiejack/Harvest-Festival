@@ -5,6 +5,7 @@ import static joshie.harvestmoon.network.PacketHandler.sendToEveryone;
 
 import java.util.List;
 
+import joshie.harvestmoon.config.Calendar;
 import joshie.harvestmoon.network.PacketSetCalendar;
 import joshie.harvestmoon.util.IData;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,7 +13,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 
 public class CalendarServer implements IData {
-    public static final int DAYS_PER_SEASON = 30;
     private boolean loaded = false;
 
     private CalendarDate date = new CalendarDate(0, Season.SPRING, 1);
@@ -32,7 +32,7 @@ public class CalendarServer implements IData {
         Season season = date.getSeason();
         int year = date.getYear();
 
-        if (day < DAYS_PER_SEASON) {
+        if (day < Calendar.DAYS_PER_SEASON) {
             day++;
         } else {
             season = getNextSeason();

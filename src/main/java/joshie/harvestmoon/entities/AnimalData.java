@@ -16,7 +16,7 @@ import static joshie.harvestmoon.network.PacketHandler.sendToEveryone;
 import java.util.Random;
 import java.util.UUID;
 
-import joshie.harvestmoon.calendar.CalendarServer;
+import joshie.harvestmoon.config.Calendar;
 import joshie.harvestmoon.helpers.RelationsHelper;
 import joshie.harvestmoon.lib.SizeableMeta;
 import joshie.harvestmoon.lib.SizeableMeta.Size;
@@ -42,7 +42,7 @@ public class AnimalData implements IData {
 
     //Enum of animal types
     public static enum AnimalType {
-        COW(12 * (CalendarServer.DAYS_PER_SEASON * 4), 20 * (CalendarServer.DAYS_PER_SEASON * 4), 1), SHEEP(8 * (CalendarServer.DAYS_PER_SEASON * 4), 12 * (CalendarServer.DAYS_PER_SEASON * 4), 7), CHICKEN(3 * (CalendarServer.DAYS_PER_SEASON * 4), 10 * (CalendarServer.DAYS_PER_SEASON * 4), 1), HORSE(20 * (CalendarServer.DAYS_PER_SEASON * 4), 30 * (CalendarServer.DAYS_PER_SEASON * 4), 0), PIG(6 * (CalendarServer.DAYS_PER_SEASON * 4), 10 * (CalendarServer.DAYS_PER_SEASON * 4), 0), CAT(10 * (CalendarServer.DAYS_PER_SEASON * 4), 20 * (CalendarServer.DAYS_PER_SEASON * 4), 0), DOG(9 * (CalendarServer.DAYS_PER_SEASON * 4), 16 * (CalendarServer.DAYS_PER_SEASON * 4), 0), OTHER(5 * (CalendarServer.DAYS_PER_SEASON * 4), 10 * (CalendarServer.DAYS_PER_SEASON * 4), 0);
+        COW(12 * (Calendar.DAYS_PER_SEASON * 4), 20 * (Calendar.DAYS_PER_SEASON * 4), 1), SHEEP(8 * (Calendar.DAYS_PER_SEASON * 4), 12 * (Calendar.DAYS_PER_SEASON * 4), 7), CHICKEN(3 * (Calendar.DAYS_PER_SEASON * 4), 10 * (Calendar.DAYS_PER_SEASON * 4), 1), HORSE(20 * (Calendar.DAYS_PER_SEASON * 4), 30 * (Calendar.DAYS_PER_SEASON * 4), 0), PIG(6 * (Calendar.DAYS_PER_SEASON * 4), 10 * (Calendar.DAYS_PER_SEASON * 4), 0), CAT(10 * (Calendar.DAYS_PER_SEASON * 4), 20 * (Calendar.DAYS_PER_SEASON * 4), 0), DOG(9 * (Calendar.DAYS_PER_SEASON * 4), 16 * (Calendar.DAYS_PER_SEASON * 4), 0), OTHER(5 * (Calendar.DAYS_PER_SEASON * 4), 10 * (Calendar.DAYS_PER_SEASON * 4), 0);
 
         private final int min;
         private final int max;

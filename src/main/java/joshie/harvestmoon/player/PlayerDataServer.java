@@ -6,6 +6,7 @@ import static joshie.harvestmoon.network.PacketHandler.sendToClient;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import joshie.harvestmoon.calendar.CalendarDate;
 import joshie.harvestmoon.cooking.SavedRecipe;
 import joshie.harvestmoon.crops.CropData;
 import joshie.harvestmoon.entities.npc.NPC;
@@ -114,6 +115,10 @@ public class PlayerDataServer implements IData {
         boolean ret = shippingStats.addForShipping(stack);
         handler.getServer().markDirty();
         return ret;
+    }
+
+    public CalendarDate getBirthday() {
+        return playerStats.getBirthday();
     }
 
     public void setBirthday() {

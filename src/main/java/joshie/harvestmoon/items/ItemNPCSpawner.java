@@ -3,7 +3,6 @@ package joshie.harvestmoon.items;
 import java.util.HashMap;
 
 import joshie.harvestmoon.entities.EntityNPC;
-import joshie.harvestmoon.entities.EntityNPCBuilder;
 import joshie.harvestmoon.entities.npc.NPC;
 import joshie.harvestmoon.init.HMNPCs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -46,7 +45,6 @@ public class ItemNPCSpawner extends ItemHMMeta {
             NPC npc = getNPC(stack.getItemDamage());
             EntityNPC entity = npc.getEntity(world, xCoord, yCoord, zCoord);
             
-            System.out.println(entity);
             entity.setPosition(xCoord, yCoord, zCoord);
             world.spawnEntityInWorld(entity);
         }

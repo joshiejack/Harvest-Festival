@@ -2,8 +2,8 @@ package joshie.harvestmoon.shops;
 
 import joshie.harvestmoon.calendar.CalendarDate;
 import joshie.harvestmoon.crops.Crop;
+import joshie.harvestmoon.helpers.CalendarHelper;
 import joshie.harvestmoon.init.HMItems;
-import joshie.harvestmoon.player.PlayerDataServer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -17,7 +17,10 @@ public class PurchaseableCropSeeds implements IPurchaseable {
     @Override
     public boolean canBuy(World world, CalendarDate playersBirthday, CalendarDate date) {
         if (date.getSeason() != crop.getSeason()) return false;
-        return date.getSeason() == crop.getSeason();
+        if (!crop.canPurchase()) return false;       
+        if (CalendarHelper.getYearsPassed(playersBirthday, date) >= crop.getPurchaseYear()) {
+            return date.getSeason() == crop.getSeason();
+        } else return false;
     }
 
     @Override

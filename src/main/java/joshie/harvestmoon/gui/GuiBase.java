@@ -23,8 +23,8 @@ public abstract class GuiBase extends GuiContainer {
     private static ResourceLocation TEXTURE;
     private int nameHeight = 5;
     private int inventOffset = 3;
-    private int mouseX = 0;
-    private int mouseY = 0;
+    protected int mouseX = 0;
+    protected int mouseY = 0;
     private ArrayList<String> tooltip = new ArrayList<String>();
     protected ArrayList<Feature> features = new ArrayList<Feature>();
 

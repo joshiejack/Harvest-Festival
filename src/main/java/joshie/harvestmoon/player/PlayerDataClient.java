@@ -96,4 +96,8 @@ public class PlayerDataClient {
     public void setBirthday(int day, Season season, int year) {
         this.birthday = new CalendarDate(day, season, year);
     }
+
+    public CalendarDate getBirthday() {
+        return birthday;
+    }
 }

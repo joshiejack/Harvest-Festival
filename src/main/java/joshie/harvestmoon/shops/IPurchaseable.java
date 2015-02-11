@@ -1,7 +1,6 @@
 package joshie.harvestmoon.shops;
 
 import joshie.harvestmoon.calendar.CalendarDate;
-import joshie.harvestmoon.player.PlayerDataServer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 

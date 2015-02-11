@@ -1,7 +1,6 @@
 package joshie.harvestmoon.buildings.placeable.blocks;
 
 import net.minecraft.block.Block;
-import net.minecraft.world.World;
 
 public class PlaceableFurnace extends PlaceableBlock {
     public PlaceableFurnace(Block block, int meta, int offsetX, int offsetY, int offsetZ) {

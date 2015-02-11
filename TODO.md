@@ -39,7 +39,7 @@
 - [ ] Priest, Bless Tool Quest
 - [ ] Quests to unlock Mixer, Frying Pan and Pot for purchase
 - [ ] Display units for shops
-- [ ] Force NPCs to shop mode
+- [x] Force NPCs to shop mode
 - [x] Stamina and Fatigue operational (you gain from using tools)
 - [x] Pass out when your fatigue reaches 255
 - [ ] Add effects when your stamina reaches zero, Slower movement.

@@ -89,7 +89,7 @@ public class BlockSoil extends BlockFarmland {
     @SideOnly(Side.CLIENT)
     @Override
     public IIcon getIcon(int side, int meta) {
-        return mine_icon;
+        return meta == MINE_HOE? mine_icon: super.getIcon(side, meta);
     }
 
     @SideOnly(Side.CLIENT)

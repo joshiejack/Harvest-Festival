@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import joshie.harvestmoon.calendar.Weekday;
+import joshie.harvestmoon.config.Calendar;
 import joshie.harvestmoon.helpers.CalendarHelper;
 import joshie.harvestmoon.lib.HMModInfo;
 import joshie.harvestmoon.util.generic.Text;
@@ -67,9 +68,9 @@ public class ShopInventory {
         OpeningHours hours = open.get(world.difficultySetting).opening.get(day);
         if (hours == null) return false;
         else {
-            long daytime = world.getWorldTime() % 24000;
-            long time = (daytime / 10);
-            return time >= hours.open && time <= hours.close;
+            long daytime = world.getWorldTime() % Calendar.TICKS_PER_DAY;
+            long time = (daytime / 10);            
+            return time >= (hours.open / Calendar.TICKS_PER_DAY) && time <= (hours.close / Calendar.TICKS_PER_DAY);
         }
     }
 
@@ -109,9 +110,9 @@ public class ShopInventory {
     }
 
     /** The integers in here are as follows
-     *  100 = 1 AM
-     *  250 = 2:30am
-     *  1800 = 6PM
+     *  1000 = 1 AM
+     *  2500 = 2:30am
+     *  18000 = 6PM
      *  etc. */
     private static class OpeningHours {
         private int open;

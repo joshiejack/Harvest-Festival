@@ -22,4 +22,8 @@ public class ConfigHelper {
     public static int getInteger(String name, int dft) {
         return config.get(name, name, dft).getInt();
     }
+    
+    public static long getLong(String name, long dft) {
+        return Long.parseLong(config.get(name, name, "" + dft).getString());
+    }
 }

@@ -1,5 +1,6 @@
 package joshie.harvestmoon.helpers.generic;
 
+import joshie.harvestmoon.config.Calendar;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
@@ -24,9 +25,9 @@ public class ItemHelper {
         }
     }
     
-    //Items Spawned by entities last 24 hours
+    //Items Spawned by entities last 1 day
     public static void spawnByEntity(Entity entity, ItemStack stack) {
-        spawnItem(entity.worldObj, entity.posX, entity.posY, entity.posZ, stack, false, 24000, 0, 0);
+        spawnItem(entity.worldObj, entity.posX, entity.posY, entity.posZ, stack, false, (int)Calendar.TICKS_PER_DAY, 0, 0);
     }
 
     public static void spawnItem(World world, int x, int y, int z, ItemStack stack, boolean random) {

@@ -29,17 +29,17 @@ public class HMShops {
         }
 
         /* Peaceful Opening Hours */
-        seed_shop.addOpening(PEACEFUL, MONDAY, 0, 2400).addOpening(PEACEFUL, TUESDAY, 0, 2400).addOpening(PEACEFUL, WEDNESDAY, 0, 2400);
-        seed_shop.addOpening(PEACEFUL, THURSDAY, 0, 2400).addOpening(PEACEFUL, FRIDAY, 0, 2400).addOpening(PEACEFUL, SATURDAY, 0, 2400);
+        seed_shop.addOpening(PEACEFUL, MONDAY, 0, 24000).addOpening(PEACEFUL, TUESDAY, 0, 24000).addOpening(PEACEFUL, WEDNESDAY, 0, 24000);
+        seed_shop.addOpening(PEACEFUL, THURSDAY, 0, 24000).addOpening(PEACEFUL, FRIDAY, 0, 24000).addOpening(PEACEFUL, SATURDAY, 0, 24000);
         /* Easy Opening Hours */
-        seed_shop.addOpening(EASY, MONDAY, 500, 2200).addOpening(EASY, TUESDAY, 500, 2200).addOpening(EASY, WEDNESDAY, 500, 2200);
-        seed_shop.addOpening(EASY, THURSDAY, 500, 2200).addOpening(EASY, FRIDAY, 500, 2200).addOpening(EASY, SATURDAY, 900, 2100);
+        seed_shop.addOpening(EASY, MONDAY, 5000, 22000).addOpening(EASY, TUESDAY, 5000, 22000).addOpening(EASY, WEDNESDAY, 5000, 22000);
+        seed_shop.addOpening(EASY, THURSDAY, 5000, 22000).addOpening(EASY, FRIDAY, 5000, 22000).addOpening(EASY, SATURDAY, 9000, 21000);
         /* Normal Opening Hours */
-        seed_shop.addOpening(NORMAL, MONDAY, 600, 1900).addOpening(NORMAL, TUESDAY, 600, 1900).addOpening(NORMAL, THURSDAY, 600, 1900);
-        seed_shop.addOpening(NORMAL, FRIDAY, 600, 1900).addOpening(NORMAL, SATURDAY, 1000, 1800);
+        seed_shop.addOpening(NORMAL, MONDAY, 6000, 19000).addOpening(NORMAL, TUESDAY, 600, 19000).addOpening(NORMAL, THURSDAY, 600, 19000);
+        seed_shop.addOpening(NORMAL, FRIDAY, 6000, 19000).addOpening(NORMAL, SATURDAY, 10000, 18000);
         /* Hard Opening Hours */
-        seed_shop.addOpening(HARD, MONDAY, 900, 1700).addOpening(HARD, TUESDAY, 900, 1700).addOpening(HARD, THURSDAY, 900, 1700);
-        seed_shop.addOpening(HARD, FRIDAY, 900, 1700).addOpening(HARD, SATURDAY, 1100, 1500);
+        seed_shop.addOpening(HARD, MONDAY, 9000, 17000).addOpening(HARD, TUESDAY, 9000, 17000).addOpening(HARD, THURSDAY, 9000, 17000);
+        seed_shop.addOpening(HARD, FRIDAY, 9000, 17000).addOpening(HARD, SATURDAY, 11000, 15000);
         HMNPCs.seed_owner.setShop(seed_shop);
     }
 }

@@ -2,6 +2,7 @@ package joshie.harvestmoon.handlers.events;
 
 import static joshie.harvestmoon.HarvestMoon.handler;
 import static joshie.harvestmoon.network.PacketHandler.sendToClient;
+import joshie.harvestmoon.config.Calendar;
 import joshie.harvestmoon.network.PacketSetCalendar;
 import joshie.harvestmoon.player.PlayerDataServer;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,7 +31,7 @@ public class FMLEvents {
     public void onTick(ServerTickEvent event) {
         if (event.phase != Phase.START) return;
         World world = MinecraftServer.getServer().getEntityWorld();
-        if (world.getWorldTime() % 24000L == 1) {
+        if (world.getWorldTime() % Calendar.TICKS_PER_DAY == 1) {
             handler.getServer().getCalendar().newDay();
         }
     }

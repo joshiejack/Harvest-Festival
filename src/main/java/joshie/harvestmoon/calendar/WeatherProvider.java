@@ -3,6 +3,7 @@ package joshie.harvestmoon.calendar;
 import static joshie.harvestmoon.HarvestMoon.handler;
 import static joshie.harvestmoon.helpers.CalendarHelper.getClientSeason;
 import static joshie.harvestmoon.helpers.CalendarHelper.getSeason;
+import joshie.harvestmoon.config.Calendar;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -124,10 +125,10 @@ public class WeatherProvider extends WorldProviderSurface {
     @Override
     public float calculateCelestialAngle(long worldTime, float partialTicks) {
         Season season = handler.getServer() != null ? getSeason() : Season.SPRING;
-        int time = (int) (worldTime % 24000L);
+        int time = (int) (worldTime % Calendar.TICKS_PER_DAY);
         double fac = season.getLengthFactor();
         float chylex = (float) (clamp(0, 1000D, time) + 11000D * (clamp(0, 11000D, time - 1000D) / 11000D) * fac + clamp(0, 1000D, time - 12000D) + 11000D * (clamp(0, 11000D, time - 12000D) / 11000D) * (2 - fac));
-        float angle = (chylex / 24000) - 0.25F;
+        float angle = (chylex / Calendar.TICKS_PER_DAY) - 0.25F;
         return angle + season.getAngleOffset();
     }
 

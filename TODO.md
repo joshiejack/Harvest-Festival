@@ -21,6 +21,10 @@
 
 # joshie stuff, feel to help with any!
 - [ ] Crop Rendering
+- [ ] Allow you to grow grass
+- [ ] Sheep and Cows will munch on grass to regain hunger
+- [ ] Add Trough for Feeding, Cows and Sheep
+- [ ] Add item to start tracking animals, only track animals that have been tagged (config option).
 - [ ] NPC Builder Quests for Materials and will build you things. Hands you a plot marker to place roughly where you want the building built.
 - [x] Spawning the Harvest Goddess
 - [ ] Spawning the NPC Builder

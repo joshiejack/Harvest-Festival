@@ -13,6 +13,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.WorldSavedData;
+import net.minecraftforge.common.UsernameCache;
 
 public class HMSavedData extends WorldSavedData {
     public static final String DATA_NAME = "HM-Data";
@@ -38,7 +39,7 @@ public class HMSavedData extends WorldSavedData {
     public CropTrackerServer getCropTracker() {
         return crops;
     }
-    
+
     public MineTrackerServer getMineTracker() {
         return mines;
     }
@@ -48,11 +49,24 @@ public class HMSavedData extends WorldSavedData {
         if (players.containsKey(uuid)) {
             return players.get(uuid);
         } else {
-            PlayerDataServer data = new PlayerDataServer(player);
-            players.put(uuid, data);
+            //If this UUID was not found, Search the username cache for this players username
+            String name = player.getCommandSenderName();
+            for (Map.Entry<UUID, String> entry : UsernameCache.getMap().entrySet()) {
+                if (entry.getValue().equals(name)) {
+                    uuid = entry.getKey();
+                    break;
+                }
+            }
 
-            markDirty();
-            return players.get(uuid);
+            if (players.containsKey(uuid)) {
+                return players.get(uuid);
+            } else {
+                PlayerDataServer data = new PlayerDataServer(player);
+                players.put(uuid, data);
+
+                markDirty();
+                return players.get(uuid);
+            }
         }
     }
 
@@ -86,7 +100,7 @@ public class HMSavedData extends WorldSavedData {
         NBTTagCompound tag_crops = new NBTTagCompound();
         crops.writeToNBT(tag_crops);
         nbt.setTag("CropTracker", tag_crops);
-        
+
         NBTTagCompound tag_mines = new NBTTagCompound();
         mines.writeToNBT(tag_mines);
         nbt.setTag("MineTracker", tag_mines);

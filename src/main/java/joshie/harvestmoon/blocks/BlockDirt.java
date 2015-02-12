@@ -11,8 +11,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockDirt extends BlockHMBaseMeta {
-    /** Normal height = 12 floors, y91 = On a hill = 17 floors **/
-    public static int MAXIMUM_FLOORS = 20;
+    /** Normal height = 12 floors, y91 = On a hill = 17 floors, On an extreme hills = y120 = 23 floors **/
+    public static int MAXIMUM_FLOORS = 23;
     public static final int ALL_FLOORS = 0;
     public static final int MULTIPLE_OF_5 = 1;
     public static final int MULTIPLE_OF_10 = 2;

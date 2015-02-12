@@ -9,10 +9,10 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class CropTrackerClient {
-    private HashMap<CropLocation, CropData> crops = new HashMap();
+    private HashMap<WorldLocation, CropData> crops = new HashMap();
 
-    private CropLocation getKey(World world, int x, int y, int z) {
-        return new CropLocation(world.provider.dimensionId, x, y, z);
+    private WorldLocation getKey(World world, int x, int y, int z) {
+        return new WorldLocation(world.provider.dimensionId, x, y, z);
     }
 
     public boolean isCropGiant(World world, int x, int y, int z) {
@@ -29,7 +29,7 @@ public class CropTrackerClient {
     }
 
     public ItemStack harvest(World world, int x, int y, int z) {
-        CropLocation key = new CropLocation(world.provider.dimensionId, x, y, z);
+        WorldLocation key = new WorldLocation(world.provider.dimensionId, x, y, z);
         CropData data = crops.get(key);
         if (data == null) return null;
         else {
@@ -44,7 +44,7 @@ public class CropTrackerClient {
         }
     }
 
-    public void sync(boolean isRemoval, CropLocation location, CropData data) {
+    public void sync(boolean isRemoval, WorldLocation location, CropData data) {
         if (isRemoval) {
             crops.remove(location);
         } else crops.put(location, data);

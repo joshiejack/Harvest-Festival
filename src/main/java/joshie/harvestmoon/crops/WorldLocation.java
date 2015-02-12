@@ -4,23 +4,23 @@ import io.netty.buffer.ByteBuf;
 import joshie.harvestmoon.util.IData;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class CropLocation implements IData {
+public class WorldLocation implements IData {
     private final int prime = 31;
     public int dimension;
     public int x;
     public int y;
     public int z;
 
-    public CropLocation() {}
+    public WorldLocation() {}
 
-    public CropLocation(int dimension, int x, int y, int z) {
+    public WorldLocation(int dimension, int x, int y, int z) {
         this.dimension = dimension;
         this.x = x;
         this.y = y;
         this.z = z;
     }
 
-    public CropLocation(CropLocation location) {
+    public WorldLocation(WorldLocation location) {
         this.dimension = location.dimension;
         this.x = location.x;
         this.y = location.y;
@@ -32,7 +32,7 @@ public class CropLocation implements IData {
         if (this == obj) return true;
         if (obj == null) return false;
         if (getClass() != obj.getClass()) return false;
-        CropLocation other = (CropLocation) obj;
+        WorldLocation other = (WorldLocation) obj;
         if (dimension != other.dimension) return false;
         if (x != other.x) return false;
         if (y != other.y) return false;

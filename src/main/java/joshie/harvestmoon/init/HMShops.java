@@ -24,6 +24,10 @@ public class HMShops {
     private static void seedShop() {
         /* Register all crop seeds to the seed shop */
         seed_shop = new ShopInventory("seeds", 1);
+        for (Crop crop : Crop.crops) {
+            seed_shop.addItem(new PurchaseableCropSeeds(crop));
+        }
+
         /* Peaceful Opening Hours */
         seed_shop.addOpening(PEACEFUL, MONDAY, 0, 2400).addOpening(PEACEFUL, TUESDAY, 0, 2400).addOpening(PEACEFUL, WEDNESDAY, 0, 2400);
         seed_shop.addOpening(PEACEFUL, THURSDAY, 0, 2400).addOpening(PEACEFUL, FRIDAY, 0, 2400).addOpening(PEACEFUL, SATURDAY, 0, 2400);
@@ -36,10 +40,6 @@ public class HMShops {
         /* Hard Opening Hours */
         seed_shop.addOpening(HARD, MONDAY, 900, 1700).addOpening(HARD, TUESDAY, 900, 1700).addOpening(HARD, THURSDAY, 900, 1700);
         seed_shop.addOpening(HARD, FRIDAY, 900, 1700).addOpening(HARD, SATURDAY, 1100, 1500);
-        for (Crop crop : Crop.crops) {
-            seed_shop.addItem(new PurchaseableCropSeeds(crop));
-        }
-
         HMNPCs.seed_owner.setShop(seed_shop);
     }
 }

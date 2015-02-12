@@ -2,6 +2,7 @@ package joshie.harvestmoon.items;
 
 import static joshie.harvestmoon.helpers.CropHelper.addFarmland;
 import joshie.harvestmoon.helpers.PlayerHelper;
+import joshie.harvestmoon.init.HMBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -60,7 +61,7 @@ public class ItemHoe extends ItemBaseTool {
         else {
             ForgeDirection front = joshie.harvestmoon.helpers.generic.DirectionHelper.getFacingFromEntity(player);
             Block initial = world.getBlock(x, y, z);
-            if (!(world.getBlock(x, y + 1, z).isAir(world, x, y + 1, z) && (initial == Blocks.grass || initial == Blocks.dirt))) {
+            if (!(world.getBlock(x, y + 1, z).isAir(world, x, y + 1, z) && (initial == Blocks.grass || initial == Blocks.dirt || initial == HMBlocks.dirt))) {
                 return false;
             }
 
@@ -69,13 +70,17 @@ public class ItemHoe extends ItemBaseTool {
             for (int x2 = getXMinus(stack, front, x); x2 <= getXPlus(stack, front, x); x2++) {
                 for (int z2 = getZMinus(stack, front, z); z2 <= getZPlus(stack, front, z); z2++) {
                     Block block = world.getBlock(x2, y, z2);
-                    if (world.getBlock(x, y + 1, z).isAir(world, x, y + 1, z) && (block == Blocks.grass || block == Blocks.dirt)) {
-                        displayParticle(world, x2, y, z2, "blockcrack_3_0");
-                        playSound(world, x2, y, z2, Blocks.farmland.stepSound.getStepResourcePath());
-                        PlayerHelper.performTask(player, getExhaustionRate(stack));
-                        if (!world.isRemote) {
-                            changed = true;
-                            addFarmland(world, x2, y, z2);
+                    if (world.getBlock(x, y + 1, z).isAir(world, x, y + 1, z)) {
+                        if ((block == Blocks.grass || block == Blocks.dirt)) {
+                            displayParticle(world, x2, y, z2, "blockcrack_3_0");
+                            playSound(world, x2, y, z2, Blocks.farmland.stepSound.getStepResourcePath());
+                            PlayerHelper.performTask(player, getExhaustionRate(stack));
+                            if (!world.isRemote) {
+                                changed = true;
+                                addFarmland(world, x2, y, z2);
+                            }
+                        } else if (block == HMBlocks.dirt) { //Otherwise if it's mine flooring
+                            
                         }
                     }
                 }

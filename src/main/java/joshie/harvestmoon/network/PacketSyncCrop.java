@@ -3,25 +3,25 @@ package joshie.harvestmoon.network;
 import static joshie.harvestmoon.HarvestMoon.handler;
 import io.netty.buffer.ByteBuf;
 import joshie.harvestmoon.crops.CropData;
-import joshie.harvestmoon.crops.CropLocation;
+import joshie.harvestmoon.crops.WorldLocation;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 public class PacketSyncCrop implements IMessage, IMessageHandler<PacketSyncCrop, IMessage> {
     private boolean isRemoval;
-    private CropLocation location;
+    private WorldLocation location;
     private CropData data;
 
     public PacketSyncCrop() {}
 
-    public PacketSyncCrop(CropLocation location, CropData data) {
+    public PacketSyncCrop(WorldLocation location, CropData data) {
         this.isRemoval = false;
         this.location = location;
         this.data = data;
     }
 
-    public PacketSyncCrop(CropLocation location) {
+    public PacketSyncCrop(WorldLocation location) {
         this.isRemoval = true;
         this.location = location;
     }
@@ -38,7 +38,7 @@ public class PacketSyncCrop implements IMessage, IMessageHandler<PacketSyncCrop,
     @Override
     public void fromBytes(ByteBuf buf) {
         isRemoval = buf.readBoolean();
-        location = new CropLocation();
+        location = new WorldLocation();
         location.fromBytes(buf);
         if (!isRemoval) {
             data = new CropData();

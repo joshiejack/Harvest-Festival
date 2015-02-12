@@ -27,6 +27,6 @@ public abstract class ItemBlockBase extends ItemBlock implements IHasMetaItem {
     public String getItemStackDisplayName(ItemStack stack) {
         String unlocalized = field_150939_a.getUnlocalizedName().replace("tile.", "").replace("_", ".");
         String name = getName(stack).replaceAll("(.)([A-Z])", "$1$2").toLowerCase();
-        return Text.localize(unlocalized + "." + name);
+        return Text.localize(unlocalized + "." + name.replace("_", "."));
     }
 }

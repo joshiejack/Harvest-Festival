@@ -27,26 +27,26 @@ import net.minecraft.world.World;
 //Handles the Data for the crops rather than using TE Data
 public class CropTrackerServer implements IData {
     private CalendarDate rain;
-    private HashMap<CropLocation, CropData> cropData = new HashMap();
-    private HashSet<CropLocation> farmland = new HashSet();
+    private HashMap<WorldLocation, CropData> cropData = new HashMap();
+    private HashSet<WorldLocation> farmland = new HashSet();
 
-    private CropLocation getKey(World world, int x, int y, int z) {
-        return new CropLocation(world.provider.dimensionId, x, y, z);
+    private WorldLocation getKey(World world, int x, int y, int z) {
+        return new WorldLocation(world.provider.dimensionId, x, y, z);
     }
 
     //Set the crop at this location to be withered
-    private void setWithered(CropLocation location, WitherType type) {
+    private void setWithered(WorldLocation location, WitherType type) {
         getWorld(location.dimension).setBlock(location.x, location.y, location.z, HMBlocks.withered, type.ordinal(), 2);
         //Lets the clients know that this crop was destroyed
         sendToEveryone(new PacketSyncCrop(location));
     }
 
     public boolean newDay() {
-        Iterator<Map.Entry<CropLocation, CropData>> iter = cropData.entrySet().iterator();
+        Iterator<Map.Entry<WorldLocation, CropData>> iter = cropData.entrySet().iterator();
         while (iter.hasNext()) {
-            Map.Entry<CropLocation, CropData> entry = iter.next();
+            Map.Entry<WorldLocation, CropData> entry = iter.next();
             CropData data = entry.getValue();
-            CropLocation location = entry.getKey();
+            WorldLocation location = entry.getKey();
             WitherType wither = data.newDay();
             if (wither != WitherType.NONE) {
                 iter.remove();
@@ -57,9 +57,9 @@ public class CropTrackerServer implements IData {
         }
 
         //Dehydrate the farmland
-        Iterator<CropLocation> it = farmland.iterator();
+        Iterator<WorldLocation> it = farmland.iterator();
         while (it.hasNext()) {
-            CropLocation location = it.next();
+            WorldLocation location = it.next();
             if (!BlockSoil.dehydrate(getWorld(location.dimension), location.x, location.y, location.z)) {
                 it.remove();
                 //Remove it from the loop ^, and then dehyrate the bitch
@@ -72,7 +72,7 @@ public class CropTrackerServer implements IData {
 
     public void doRain() {
         if (!handler.getServer().getCalendar().getDate().equals(rain)) {
-            for (CropLocation location : farmland) {
+            for (WorldLocation location : farmland) {
                 BlockSoil.hydrate(getWorld(location.dimension), location.x, location.y, location.z);
             }
         }
@@ -80,7 +80,7 @@ public class CropTrackerServer implements IData {
 
     //Sends an update packet
     public void sendUpdateToClient(EntityPlayerMP player, World world, int x, int y, int z) {
-        CropLocation key = getKey(world, x, y, z);
+        WorldLocation key = getKey(world, x, y, z);
         CropData data = cropData.get(key);
         if (data == null) {
             sendToClient(new PacketSyncCrop(key), player);
@@ -89,7 +89,7 @@ public class CropTrackerServer implements IData {
 
     //Removes a crop at the location, PLAYER CAN BE NULL
     public boolean destroy(EntityPlayer player, World world, int x, int y, int z) {
-        CropLocation key = getKey(world, x, y, z);
+        WorldLocation key = getKey(world, x, y, z);
         cropData.remove(key);
         sendToEveryone(new PacketSyncCrop(key));
         handler.getServer().markDirty();
@@ -107,7 +107,7 @@ public class CropTrackerServer implements IData {
 
     //Plants a crop at the location, PLAYER CAN BE NULL
     public boolean plant(EntityPlayer player, World world, int x, int y, int z, Crop crop, int quality) {
-        CropLocation key = getKey(world, x, y, z);
+        WorldLocation key = getKey(world, x, y, z);
         CropData data = new CropData(crop, quality);
         world.setBlock(x, y, z, HMBlocks.crops);
         if (BlockSoil.isHydrated(world, x, y - 1, z)) {
@@ -122,7 +122,7 @@ public class CropTrackerServer implements IData {
 
     //Harvests a crop at the location, PLAYER CAN BE NULL
     public ItemStack harvest(EntityPlayer player, World world, int x, int y, int z) {
-        CropLocation key = getKey(world, x, y, z);
+        WorldLocation key = getKey(world, x, y, z);
         CropData data = cropData.get(key);
         if (data == null) return null;
         else {
@@ -159,7 +159,7 @@ public class CropTrackerServer implements IData {
         NBTTagList crops = nbt.getTagList("CropData", 10);
         for (int i = 0; i < crops.tagCount(); i++) {
             NBTTagCompound tag = crops.getCompoundTagAt(i);
-            CropLocation location = new CropLocation();
+            WorldLocation location = new WorldLocation();
             location.readFromNBT(tag);
             CropData data = new CropData();
             data.readFromNBT(tag);
@@ -170,7 +170,7 @@ public class CropTrackerServer implements IData {
         NBTTagList farm = nbt.getTagList("Farmland", 10);
         for (int i = 0; i < farm.tagCount(); i++) {
             NBTTagCompound tag = farm.getCompoundTagAt(i);
-            CropLocation location = new CropLocation();
+            WorldLocation location = new WorldLocation();
             location.readFromNBT(tag);
             farmland.add(location);
         }
@@ -179,7 +179,7 @@ public class CropTrackerServer implements IData {
     @Override
     public void writeToNBT(NBTTagCompound nbt) {
         NBTTagList crops = new NBTTagList();
-        for (Map.Entry<CropLocation, CropData> entry : cropData.entrySet()) {
+        for (Map.Entry<WorldLocation, CropData> entry : cropData.entrySet()) {
             NBTTagCompound tag = new NBTTagCompound();
             entry.getKey().writeToNBT(tag);
             entry.getValue().writeToNBT(tag);
@@ -190,7 +190,7 @@ public class CropTrackerServer implements IData {
 
         //Farmland
         NBTTagList farm = new NBTTagList();
-        for (CropLocation location : farmland) {
+        for (WorldLocation location : farmland) {
             NBTTagCompound tag = new NBTTagCompound();
             location.writeToNBT(tag);
             farm.appendTag(tag);

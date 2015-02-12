@@ -127,6 +127,9 @@ hm.general.block.oven=Oven
 hm.general.block.steamer=Steamer
 hm.general.block.chest=Rural Chest
 
+hm.dirt.mine.floor=Mine Floor
+hm.stone.mine.wall=Mine Wall
+
 #Seasons
 hm.season.spring=Spring
 hm.season.summer=Summer

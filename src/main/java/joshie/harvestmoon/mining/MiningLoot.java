@@ -21,7 +21,7 @@ public class MiningLoot {
         for (LootChance l : lootList) {
             if (l.canPlayerObtain(player)) {
                 if (rand.nextDouble() <= l.chance) {
-                    ItemHelper.spawnItem(world, x, y + 0.25D, z, l.stack);
+                    ItemHelper.spawnItem(world, x, y + 0.25D, z, l.stack.copy());
                     break;
                 }
             }

@@ -5,8 +5,8 @@
 - [x] Seed Shop
 - [x] Blacksmith
 - [x] Church
-- [ ] Townhall
-- [ ] General Store
+- [x] Townhall
+- [x] General Store
 - [x] Fishing Hut 
 - [x] Miners Hut 
 - [x] Miners Hill

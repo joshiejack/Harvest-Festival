@@ -43,7 +43,8 @@
 - [x] Force NPCs to shop mode
 - [x] Stamina and Fatigue operational (you gain from using tools)
 - [x] Pass out when your fatigue reaches 255
-- [ ] Add effects when your stamina reaches zero, Slower movement.
+- [ ] Add effects when your stamina reaches zero, Slower movement. 
+- [ ] Add blurry vision when about to pass out from fatigue
 - [ ] Re-texture animals to fit the Harvest Moon Game (e.g. cow)
 
 # Texturing of many things

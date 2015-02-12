@@ -5,6 +5,7 @@ import static joshie.harvestmoon.lib.HMModInfo.MODPATH;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFarmland;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
@@ -19,7 +20,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockSoil extends BlockFarmland {
     private IIcon mine_icon;
     public static final int MINE_HOE = 15;
-    
+
     public BlockSoil() {
         super();
         setTickRandomly(false);
@@ -46,6 +47,12 @@ public class BlockSoil extends BlockFarmland {
     public boolean canSustainPlant(IBlockAccess world, int x, int y, int z, ForgeDirection direction, IPlantable plantable) {
         EnumPlantType type = plantable.getPlantType(world, x, y, z);
         return type == EnumPlantType.Crop || type == EnumPlantType.Plains;
+    }
+
+    @Override
+    public void onFallenUpon(World world, int x, int y, int z, Entity entity, float f) {
+        if (world.getBlockMetadata(x, y, z) == MINE_HOE) return; //No turning to dirt!
+        else super.onFallenUpon(world, x, y, z, entity, f);
     }
 
     public static boolean hydrate(World world, int x, int y, int z) {
@@ -78,7 +85,7 @@ public class BlockSoil extends BlockFarmland {
     public static boolean isHydrated(World world, int x, int y, int z) {
         return world.getBlock(x, y, z) instanceof BlockSoil && world.getBlockMetadata(x, y, z) == 7;
     }
-    
+
     @SideOnly(Side.CLIENT)
     @Override
     public IIcon getIcon(int side, int meta) {

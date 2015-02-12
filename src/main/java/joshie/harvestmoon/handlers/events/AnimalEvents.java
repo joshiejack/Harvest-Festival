@@ -3,6 +3,7 @@ package joshie.harvestmoon.handlers.events;
 import static joshie.harvestmoon.HarvestMoon.handler;
 import static joshie.harvestmoon.helpers.AnimalHelper.feed;
 import static joshie.harvestmoon.network.PacketHandler.sendToServer;
+import joshie.harvestmoon.config.Animals;
 import joshie.harvestmoon.helpers.RelationsHelper;
 import joshie.harvestmoon.network.PacketSyncCanProduce;
 import joshie.harvestmoon.network.PacketSyncRelations;
@@ -16,9 +17,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingSpawnEvent.CheckSpawn;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
+import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
@@ -75,7 +78,7 @@ public class AnimalEvents {
             }
         }
     }
-    
+
     //If it's a food item
     public boolean isFood(Item item) {
         return item == Items.wheat || item == Items.carrot;
@@ -89,12 +92,12 @@ public class AnimalEvents {
             EntityAnimal animal = (EntityAnimal) event.target;
             if (held != null) {
                 Item item = held.getItem();
-                if(item == Items.bucket || item == Items.glass_bottle || item == Items.wheat_seeds) {
+                if (item == Items.bucket || item == Items.glass_bottle || item == Items.wheat_seeds) {
                     event.setCanceled(true);
-                } else if(isFood(item) && !(animal instanceof EntityChicken)) {
+                } else if (isFood(item) && !(animal instanceof EntityChicken)) {
                     feed(player, animal);
                     event.setCanceled(true);
-                } 
+                }
             } else {
                 if (animal instanceof EntityChicken) {
                     animal.ridingEntity = player;
@@ -104,6 +107,15 @@ public class AnimalEvents {
                 if (!player.worldObj.isRemote) {
                     handler.getServer().getPlayerData(player).setTalkedTo(animal);
                 }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void onSpawnAttempt(CheckSpawn event) {
+        if (!Animals.CAN_SPAWN) {
+            if (event.entity instanceof EntityAnimal) {
+                event.setResult(Result.DENY);
             }
         }
     }

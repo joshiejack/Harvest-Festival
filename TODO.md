@@ -10,7 +10,7 @@
 - [x] Fishing Hut 
 - [x] Miners Hut 
 - [x] Miners Hill
-- [ ] Poultry Farm
+- [x] Poultry Farm
 
 # How to get the village
 * Build a fitting house

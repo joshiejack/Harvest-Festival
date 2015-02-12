@@ -1,8 +1,10 @@
 package joshie.harvestmoon.items;
 
 import static joshie.harvestmoon.helpers.CropHelper.addFarmland;
+import joshie.harvestmoon.blocks.BlockSoil;
 import joshie.harvestmoon.helpers.PlayerHelper;
 import joshie.harvestmoon.init.HMBlocks;
+import joshie.harvestmoon.mining.MiningLoot;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -71,16 +73,17 @@ public class ItemHoe extends ItemBaseTool {
                 for (int z2 = getZMinus(stack, front, z); z2 <= getZPlus(stack, front, z); z2++) {
                     Block block = world.getBlock(x2, y, z2);
                     if (world.getBlock(x, y + 1, z).isAir(world, x, y + 1, z)) {
-                        if ((block == Blocks.grass || block == Blocks.dirt)) {
-                            displayParticle(world, x2, y, z2, "blockcrack_3_0");
-                            playSound(world, x2, y, z2, Blocks.farmland.stepSound.getStepResourcePath());
-                            PlayerHelper.performTask(player, getExhaustionRate(stack));
-                            if (!world.isRemote) {
+                        displayParticle(world, x2, y, z2, "blockcrack_3_0");
+                        playSound(world, x2, y, z2, Blocks.farmland.stepSound.getStepResourcePath());
+                        PlayerHelper.performTask(player, getExhaustionRate(stack));
+                        if (!world.isRemote) {
+                            if ((block == Blocks.grass || block == Blocks.dirt)) {
                                 changed = true;
                                 addFarmland(world, x2, y, z2);
+                            } else if (block == HMBlocks.dirt) { //Otherwise if it's mine flooring
+                                MiningLoot.getLoot(world, x2, y, z2, player, world.getBlockMetadata(x2, y, z2));
+                                world.setBlock(x2, y, z2, HMBlocks.soil, BlockSoil.MINE_HOE, 2);
                             }
-                        } else if (block == HMBlocks.dirt) { //Otherwise if it's mine flooring
-                            
                         }
                     }
                 }

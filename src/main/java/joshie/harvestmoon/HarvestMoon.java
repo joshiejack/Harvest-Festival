@@ -15,6 +15,7 @@ import joshie.harvestmoon.init.HMCrops;
 import joshie.harvestmoon.init.HMEntities;
 import joshie.harvestmoon.init.HMHandlers;
 import joshie.harvestmoon.init.HMItems;
+import joshie.harvestmoon.init.HMMining;
 import joshie.harvestmoon.init.HMNPCs;
 import joshie.harvestmoon.init.HMPackets;
 import joshie.harvestmoon.init.HMQuests;
@@ -60,6 +61,7 @@ public class HarvestMoon {
         HMPackets.init();
         HMHandlers.init();
         HMShops.init();
+        HMMining.init();
         proxy.init();
     }
 

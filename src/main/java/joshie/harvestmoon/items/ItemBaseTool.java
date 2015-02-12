@@ -15,7 +15,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public abstract class ItemBaseTool extends ItemBaseSingle {
-    protected static enum ToolTier {
+    public static enum ToolTier {
         BASIC("WOOD"), COPPER("GOLD"), SILVER("STONE"), GOLD("IRON"), MYSTRIL("DIAMOND"), CURSED, BLESSED, MYTHIC;
 
         private String alt;

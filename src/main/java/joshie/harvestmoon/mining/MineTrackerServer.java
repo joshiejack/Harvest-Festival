@@ -27,12 +27,12 @@ public class MineTrackerServer implements IData {
         return new MineLocation(world.provider.dimensionId, x, y, z, level, name);
     }
 
-    public boolean newDay() {
+    public boolean newDay() {        
         Iterator<MineBlockLocation> it = mineBlocks.iterator();
         while (it.hasNext()) {
             MineBlockLocation location = it.next();
             int level = location.getLevel();
-            if (level > 0) {
+            if (level >= 0) {
                 World world = getWorld(location.dimension);
                 ArrayList<Integer> metas = BlockDirt.getMeta(level);
                 int meta = metas.get(world.rand.nextInt(metas.size()));

@@ -19,9 +19,9 @@ import net.minecraft.item.ItemStack;
 
 public class HMMining {
     public static void init() {
-        MiningLoot.registerLoot(ALL_FLOORS, new ItemStack(HMItems.general, 1, JUNK_ORE), 40D);
-        MiningLoot.registerLoot(ALL_FLOORS, new ItemStack(HMItems.general, 1, COPPER_ORE), 20D);
-        MiningLoot.registerLoot(ALL_FLOORS, new ItemStack(HMItems.general, 1, SILVER_ORE), 10D);
+        MiningLoot.registerLoot(ALL_FLOORS, new ItemStack(HMItems.general, 1, JUNK_ORE), 30D);
+        MiningLoot.registerLoot(ALL_FLOORS, new ItemStack(HMItems.general, 1, COPPER_ORE), 15D);
+        MiningLoot.registerLoot(ALL_FLOORS, new ItemStack(HMItems.general, 1, SILVER_ORE), 7.5D);
         MiningLoot.registerLoot(GOLD_FLOOR, new ItemStack(HMItems.general, 1, GOLD_ORE), 5D);
         MiningLoot.registerLoot(MYSTRIL_FLOOR, new ItemStack(HMItems.general, 1, MYSTRIL_ORE), 1D);
         MiningLoot.registerLoot(MYTHIC_FLOOR, new LootMythic(new ItemStack(HMItems.general, 1, MYTHIC_STONE), 1D));

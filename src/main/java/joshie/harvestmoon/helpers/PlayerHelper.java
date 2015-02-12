@@ -15,11 +15,12 @@ public class PlayerHelper {
 
     /** Should always be called client and server side **/
     public static void performTask(EntityPlayer player, double amount) {
+        if (player.capabilities.isCreativeMode) return; //If the player is in creative don't exhaust them
         double stamina = getStamina(player);
         double fatigue = getFatigue(player);
         boolean affectFatigue = false;
         boolean affectStamina = false;
-                
+
         if (stamina >= 1) {
             affectStamina = true;
         } else if (fatigue < 255) {
@@ -29,13 +30,13 @@ public class PlayerHelper {
             if (!player.worldObj.isRemote) {
                 MinecraftServer.getServer().getConfigurationManager().respawnPlayer((EntityPlayerMP) player, player.worldObj.provider.dimensionId, true);
             }
-            
+
             fatigue = -fatigue + 100;
             stamina = -stamina + 20;
             affectStats(player, stamina, fatigue);
         }
-                
-        affectStats(player, affectStamina? -amount: 0D, affectFatigue? amount: 0D);
+
+        affectStats(player, affectStamina ? -amount : 0D, affectFatigue ? amount : 0D);
     }
 
     public static double getStamina(EntityPlayer player) {

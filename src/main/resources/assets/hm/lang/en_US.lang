@@ -126,6 +126,8 @@ hm.general.block.mixer=Food Mixer
 hm.general.block.oven=Oven
 hm.general.block.steamer=Steamer
 hm.general.block.chest=Rural Chest
+hm.general.block.knife=Knife
+hm.general.block.rolling.pin=Rolling Pin
 
 hm.dirt.mine.floor=Mine Floor
 hm.stone.mine.wall=Mine Wall

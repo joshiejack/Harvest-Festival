@@ -7,9 +7,11 @@ import joshie.harvestmoon.blocks.tiles.TileCooking;
 import joshie.harvestmoon.blocks.tiles.TileFridge;
 import joshie.harvestmoon.blocks.tiles.TileFryingPan;
 import joshie.harvestmoon.blocks.tiles.TileKitchen;
+import joshie.harvestmoon.blocks.tiles.TileKnife;
 import joshie.harvestmoon.blocks.tiles.TileMixer;
 import joshie.harvestmoon.blocks.tiles.TileOven;
 import joshie.harvestmoon.blocks.tiles.TilePot;
+import joshie.harvestmoon.blocks.tiles.TileRollingPin;
 import joshie.harvestmoon.blocks.tiles.TileRuralChest;
 import joshie.harvestmoon.blocks.tiles.TileSteamer;
 import joshie.harvestmoon.config.Cooking;
@@ -43,6 +45,8 @@ public class BlockGeneral extends BlockHMBaseMeta {
     public static final int STEAMER = 7;
     public static final int FRIDGE_TOP = 8;
     public static final int RURAL_CHEST = 9;
+    public static final int KNIFE = 10;
+    public static final int ROLLING_PIN = 11;
 
     public BlockGeneral() {
         super(Material.wood);
@@ -196,6 +200,10 @@ public class BlockGeneral extends BlockHMBaseMeta {
                 return new TileSteamer();
             case RURAL_CHEST:
                 return new TileRuralChest();
+            case KNIFE:
+                return new TileKnife();
+            case ROLLING_PIN:
+                return new TileRollingPin();
             default:
                 return null;
         }
@@ -203,12 +211,12 @@ public class BlockGeneral extends BlockHMBaseMeta {
     
     @Override
     public boolean isActive(int meta) {
-        return meta == STEAMER ? Cooking.ENABLE_STEAMER : true;
+        return meta == STEAMER ? Cooking.ENABLE_STEAMER : meta == FRIDGE_TOP? false : true;
     }
     
     @Override
     public int getMetaCount() {
-        return 9;
+        return 12;
     }
 
     @SideOnly(Side.CLIENT)

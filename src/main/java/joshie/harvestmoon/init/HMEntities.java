@@ -13,7 +13,7 @@ public class HMEntities {
         EntityRegistry.registerModEntity(EntityNPC.class, "NPC", 0, HarvestMoon.instance, 80, 3, true);
         EntityRegistry.registerModEntity(EntityFakeItem.class, "FakeItem", 1, HarvestMoon.instance, 80, 3, false);
         EntityRegistry.registerModEntity(EntityNPCBuilder.class, "NPCBuilder", 2, HarvestMoon.instance, 80, 3, true);
-        EntityRegistry.registerModEntity(EntityNPCShopkeeper.class, "NPCShopkeeper", 2, HarvestMoon.instance, 80, 3, true);
-        EntityRegistry.registerModEntity(EntityNPCMiner.class, "NPCMiner", 2, HarvestMoon.instance, 80, 3, true);
+        EntityRegistry.registerModEntity(EntityNPCShopkeeper.class, "NPCShopkeeper", 3, HarvestMoon.instance, 80, 3, true);
+        EntityRegistry.registerModEntity(EntityNPCMiner.class, "NPCMiner", 4, HarvestMoon.instance, 80, 3, true);
     }
 }

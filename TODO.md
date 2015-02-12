@@ -25,8 +25,8 @@
 - [x] Spawning the Harvest Goddess
 - [ ] Spawning the NPC Builder
 - [ ] Egg Nest, Miracle Potions for Breeding
-- [ ] Shipping Bin, Oven, Mixer Renders
-- [ ] Add Knife, Rolling Pin and Renders
+- [ ] Shipping Bin, Oven, Mixer, Knife, Rolling Pin Renders
+- [x] Add Knife, Rolling Pin
 - [ ] Kitchen Machines, Render items in them, and animations
 - [ ] Fridge Universal, Upgradable Inventory, Inventory Tab for Fridge
 - [ ] Recipe Book, When you have it in your inventory. It will ask to save new recipes you learn.
@@ -34,7 +34,8 @@
 - [ ] 5 Million Configuration Options
 - [ ] Confirmation screens for NPC Chats
 - [ ] Tutorial Quests
-- [ ] Add Ores
+- [x] Add Ores
+- [x] Add Mining NPC
 - [ ] Blacksmith Upgrade Tool Quests
 - [ ] Priest, Bless Tool Quest
 - [ ] Quests to unlock Mixer, Frying Pan and Pot for purchase
@@ -42,7 +43,8 @@
 - [x] Force NPCs to shop mode
 - [x] Stamina and Fatigue operational (you gain from using tools)
 - [x] Pass out when your fatigue reaches 255
-- [ ] Add effects when your stamina reaches zero, Slower movement.
+- [ ] Add effects when your stamina reaches zero, Slower movement, Hunger drops quicker. 
+- [ ] Add blurry vision when about to pass out from fatigue, Occasional headaches.
 - [ ] Re-texture animals to fit the Harvest Moon Game (e.g. cow)
 
 # Texturing of many things

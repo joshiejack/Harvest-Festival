@@ -1,4 +1,4 @@
-package joshie.harvestmoon.entities;
+package joshie.harvestmoon.animals;
 
 import java.util.HashMap;
 import java.util.UUID;

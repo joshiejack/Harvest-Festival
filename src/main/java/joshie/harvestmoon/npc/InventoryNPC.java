@@ -1,4 +1,4 @@
-package joshie.harvestmoon.entities;
+package joshie.harvestmoon.npc;
 
 import java.util.concurrent.Callable;
 

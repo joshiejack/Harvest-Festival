@@ -6,9 +6,9 @@ import io.netty.buffer.ByteBuf;
 
 import java.util.HashSet;
 
-import joshie.harvestmoon.entities.EntityNPC;
-import joshie.harvestmoon.entities.npc.NPC;
 import joshie.harvestmoon.network.quests.PacketQuestSetStage;
+import joshie.harvestmoon.npc.EntityNPC;
+import joshie.harvestmoon.npc.NPC;
 import joshie.harvestmoon.util.Translate;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;

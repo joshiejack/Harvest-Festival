@@ -4,8 +4,8 @@ import static joshie.harvestmoon.HarvestMoon.handler;
 
 import java.util.HashSet;
 
-import joshie.harvestmoon.entities.EntityNPC;
 import joshie.harvestmoon.helpers.QuestHelper;
+import joshie.harvestmoon.npc.EntityNPC;
 import joshie.harvestmoon.quests.Quest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;

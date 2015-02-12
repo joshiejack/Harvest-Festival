@@ -6,9 +6,9 @@ import static joshie.harvestmoon.helpers.RelationsHelper.getRelationshipValue;
 import java.util.Arrays;
 import java.util.HashSet;
 
-import joshie.harvestmoon.entities.EntityNPC;
 import joshie.harvestmoon.helpers.QuestHelper;
 import joshie.harvestmoon.lib.HMModInfo;
+import joshie.harvestmoon.npc.EntityNPC;
 import joshie.harvestmoon.player.PlayerDataClient;
 import joshie.harvestmoon.quests.Quest;
 import joshie.harvestmoon.util.Translate;

@@ -1,4 +1,4 @@
-package joshie.harvestmoon.entities;
+package joshie.harvestmoon.animals;
 
 import static joshie.harvestmoon.HarvestMoon.handler;
 

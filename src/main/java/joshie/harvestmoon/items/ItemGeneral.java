@@ -20,10 +20,16 @@ public class ItemGeneral extends ItemHMMeta {
     public static final int BRUSH = 2;
     public static final int MEDICINE = 3;
     public static final int CHICKEN_FEED = 4;
+    public static final int JUNK_ORE = 5;
+    public static final int COPPER_ORE = 6;
+    public static final int SILVER_ORE = 7;
+    public static final int GOLD_ORE = 8;
+    public static final int MYSTRIL_ORE = 9;
+    public static final int MYTHIC_STONE = 10;
 
     @Override
     public int getMetaCount() {
-        return 5;
+        return 11;
     }
 
     @Override
@@ -39,6 +45,18 @@ public class ItemGeneral extends ItemHMMeta {
                 return "medicine";
             case CHICKEN_FEED:
                 return "feed";
+            case JUNK_ORE:
+                return "ore_junk";
+            case COPPER_ORE:
+                return "ore_copper";
+            case SILVER_ORE:
+                return "ore_silver";
+            case GOLD_ORE:
+                return "ore_gold";
+            case MYSTRIL_ORE:
+                return "ore_mystril";
+            case MYTHIC_STONE:
+                return "stone_mythic";
             default:
                 return "invalid";
         }

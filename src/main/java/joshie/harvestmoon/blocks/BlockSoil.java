@@ -2,7 +2,6 @@ package joshie.harvestmoon.blocks;
 
 import static joshie.harvestmoon.helpers.CropHelper.removeFarmland;
 import static joshie.harvestmoon.lib.HMModInfo.MODPATH;
-import joshie.harvestmoon.init.HMBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFarmland;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -64,7 +63,6 @@ public class BlockSoil extends BlockFarmland {
         Block block = world.getBlock(x, y + 1, z);
         int meta = world.getBlockMetadata(x, y, z);
         if (meta == MINE_HOE) {
-            world.setBlock(x, y, z, HMBlocks.stone);
             return true;
         } else if (block instanceof IPlantable && world.getBlock(x, y, z).canSustainPlant(world, x, y, z, ForgeDirection.UP, (IPlantable) block)) {
             world.setBlockMetadataWithNotify(x, y, z, 0, 2);

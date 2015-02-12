@@ -1,8 +1,7 @@
-package joshie.harvestmoon.entities;
+package joshie.harvestmoon.npc;
 
 import io.netty.buffer.ByteBuf;
 import joshie.harvestmoon.HarvestMoon;
-import joshie.harvestmoon.entities.npc.NPC;
 import joshie.harvestmoon.init.HMNPCs;
 import joshie.harvestmoon.lib.HMModInfo;
 import net.minecraft.entity.passive.EntityVillager;

@@ -12,6 +12,18 @@ public abstract class Placeable {
         this.offsetY = offsetY;
         this.offsetZ = offsetZ;
     }
+    
+    public int getX() {
+        return offsetX;
+    }
+    
+    public int getY() {
+        return offsetY;
+    }
+    
+    public int getZ() {
+        return offsetZ;
+    }
 
     protected boolean canPlace(PlacementStage stage) {
         return stage == PlacementStage.BLOCKS;

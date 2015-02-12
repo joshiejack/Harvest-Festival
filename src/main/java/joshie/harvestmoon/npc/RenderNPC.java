@@ -1,4 +1,4 @@
-package joshie.harvestmoon.entities;
+package joshie.harvestmoon.npc;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.model.ModelBiped;

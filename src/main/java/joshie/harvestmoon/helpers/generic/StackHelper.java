@@ -21,7 +21,7 @@ import org.lwjgl.opengl.GL12;
 
 public class StackHelper {
     private final static RenderItem itemRenderer = new RenderItem();
-    
+
     public static void drawStack(ItemStack stack, int left, int top, float size) {
         GL11.glDisable(GL11.GL_ALPHA_TEST);
         GL11.glPushMatrix();
@@ -40,8 +40,7 @@ public class StackHelper {
         GL11.glPopMatrix();
         GL11.glEnable(GL11.GL_ALPHA_TEST);
     }
-    
-    
+
     public static void renderStack(Minecraft mc, RenderBlocks blockRenderer, RenderItem itemRenderer, ItemStack stack, int x, int y) {
         if (stack != null && stack.getItem() != null) {
             try {
@@ -54,7 +53,7 @@ public class StackHelper {
                 if (!ForgeHooksClient.renderInventoryItem(blockRenderer, mc.getTextureManager(), stack, itemRenderer.renderWithColor, itemRenderer.zLevel, x, y)) {
                     itemRenderer.renderItemIntoGUI(mc.fontRenderer, mc.getTextureManager(), stack, x, y, false);
                 }
-                
+
                 RenderHelper.disableStandardItemLighting();
                 GL11.glPopMatrix();
                 GL11.glDisable(GL11.GL_LIGHTING);
@@ -62,8 +61,8 @@ public class StackHelper {
             } catch (Exception e) {}
         }
     }
-    
-    public static ItemStack getStackFromString(String str) {        
+
+    public static ItemStack getStackFromString(String str) {
         return getStackFromArray(str.trim().split(" "));
     }
 
@@ -72,27 +71,27 @@ public class StackHelper {
         if (stack.getHasSubtypes() || stack.hasTagCompound()) {
             str = str + " " + stack.getItemDamage();
         }
-        
+
         if (stack.hasTagCompound()) {
             str = str + " " + stack.stackTagCompound.toString();
         }
 
         return str;
     }
-    
+
     public static String getStringFromObject(Object object) {
-        if(object instanceof Item) {
-            return getStringFromStack(new ItemStack((Item)object));
-        } else if(object instanceof Block) {
-            return getStringFromStack(new ItemStack((Block)object));
+        if (object instanceof Item) {
+            return getStringFromStack(new ItemStack((Item) object));
+        } else if (object instanceof Block) {
+            return getStringFromStack(new ItemStack((Block) object));
         } else if (object instanceof ItemStack) {
-            return getStringFromStack((ItemStack)object);
+            return getStringFromStack((ItemStack) object);
         } else if (object instanceof String) {
-            return (String)object;
+            return (String) object;
         } else if (object instanceof List) {
-           return getStringFromStack((ItemStack) ((List)object).get(0));
+            return getStringFromStack((ItemStack) ((List) object).get(0));
         } else return "";
-    } 
+    }
 
     public static boolean matches(String str, ItemStack stack) {
         return getStringFromStack(stack).equals(str);
@@ -104,7 +103,7 @@ public class StackHelper {
         if (str.length > 1) {
             meta = parseInt(str[1]);
         }
-        
+
         ItemStack stack = new ItemStack(item, 1, meta);
         if (str.length > 2) {
             String s = formatNBT(str, 2).getUnformattedText();
@@ -158,19 +157,21 @@ public class StackHelper {
             return 0;
         }
     }
-    
+
     public static NBTTagCompound writeItemStackToNBT(NBTTagCompound tag, ItemStack stack) {
         if (tag == null) {
             tag = new NBTTagCompound();
         }
 
-        tag.setString("Name", Item.itemRegistry.getNameForObject(stack.getItem()));
-        tag.setInteger("Count", (byte) stack.stackSize);
-        tag.setInteger("Damage", (short) stack.getItemDamage());
+        try {
+            tag.setString("Name", Item.itemRegistry.getNameForObject(stack.getItem()));
+            tag.setInteger("Count", (byte) stack.stackSize);
+            tag.setInteger("Damage", (short) stack.getItemDamage());
 
-        if (stack.stackTagCompound != null) {
-            tag.setTag("tag", stack.stackTagCompound);
-        }
+            if (stack.stackTagCompound != null) {
+                tag.setTag("tag", stack.stackTagCompound);
+            }
+        } catch (Exception e) {}
 
         return tag;
     }

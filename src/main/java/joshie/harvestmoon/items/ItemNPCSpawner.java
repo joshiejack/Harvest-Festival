@@ -2,9 +2,9 @@ package joshie.harvestmoon.items;
 
 import java.util.HashMap;
 
-import joshie.harvestmoon.entities.EntityNPC;
-import joshie.harvestmoon.entities.npc.NPC;
 import joshie.harvestmoon.init.HMNPCs;
+import joshie.harvestmoon.npc.EntityNPC;
+import joshie.harvestmoon.npc.NPC;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;

@@ -1,14 +1,14 @@
-package joshie.harvestmoon.entities;
+package joshie.harvestmoon.animals;
 
 import static joshie.harvestmoon.HarvestMoon.handler;
-import static joshie.harvestmoon.entities.AnimalData.AnimalType.CAT;
-import static joshie.harvestmoon.entities.AnimalData.AnimalType.CHICKEN;
-import static joshie.harvestmoon.entities.AnimalData.AnimalType.COW;
-import static joshie.harvestmoon.entities.AnimalData.AnimalType.DOG;
-import static joshie.harvestmoon.entities.AnimalData.AnimalType.HORSE;
-import static joshie.harvestmoon.entities.AnimalData.AnimalType.OTHER;
-import static joshie.harvestmoon.entities.AnimalData.AnimalType.PIG;
-import static joshie.harvestmoon.entities.AnimalData.AnimalType.SHEEP;
+import static joshie.harvestmoon.animals.AnimalData.AnimalType.CAT;
+import static joshie.harvestmoon.animals.AnimalData.AnimalType.CHICKEN;
+import static joshie.harvestmoon.animals.AnimalData.AnimalType.COW;
+import static joshie.harvestmoon.animals.AnimalData.AnimalType.DOG;
+import static joshie.harvestmoon.animals.AnimalData.AnimalType.HORSE;
+import static joshie.harvestmoon.animals.AnimalData.AnimalType.OTHER;
+import static joshie.harvestmoon.animals.AnimalData.AnimalType.PIG;
+import static joshie.harvestmoon.animals.AnimalData.AnimalType.SHEEP;
 import static joshie.harvestmoon.helpers.SizeableHelper.getSizeable;
 import static joshie.harvestmoon.helpers.generic.ItemHelper.spawnByEntity;
 import static joshie.harvestmoon.network.PacketHandler.sendToEveryone;

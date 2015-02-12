@@ -4,8 +4,8 @@ import static joshie.harvestmoon.network.PacketHandler.sendToServer;
 
 import java.util.HashSet;
 
-import joshie.harvestmoon.entities.EntityNPC;
 import joshie.harvestmoon.network.quests.PacketQuestStart;
+import joshie.harvestmoon.npc.EntityNPC;
 import joshie.harvestmoon.quests.Quest;
 import joshie.harvestmoon.shops.ShopInventory;
 import net.minecraft.entity.player.EntityPlayer;

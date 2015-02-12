@@ -47,6 +47,7 @@ public class CalendarServer implements IData {
 
         handler.getServer().getAnimalTracker().newDay();
         handler.getServer().getCropTracker().newDay();
+        handler.getServer().getMineTracker().newDay();
 
         //Loop through all the players and do stuff related to them, Pass the world that the player is in
         for (EntityPlayer player : (List<EntityPlayer>) MinecraftServer.getServer().getConfigurationManager().playerEntityList) {

@@ -1,12 +1,12 @@
 package joshie.harvestmoon.gui;
 
-import joshie.harvestmoon.entities.EntityNPC;
 import joshie.harvestmoon.helpers.CalendarHelper;
 import joshie.harvestmoon.helpers.PlayerHelper;
 import joshie.harvestmoon.helpers.generic.StackHelper;
 import joshie.harvestmoon.lib.HMModInfo;
 import joshie.harvestmoon.network.PacketHandler;
 import joshie.harvestmoon.network.PacketPurchaseItem;
+import joshie.harvestmoon.npc.EntityNPC;
 import joshie.harvestmoon.shops.IPurchaseable;
 import joshie.harvestmoon.shops.ShopInventory;
 import net.minecraft.entity.player.EntityPlayer;
@@ -39,7 +39,7 @@ public class GuiNPCShop extends GuiNPC {
 
     @Override
     public void drawBackground(int x, int y) {
-        if (!welcome) super.drawBackground(x, y);
+        if (!welcome || shop_overlay == null) super.drawBackground(x, y);
         else {
             y += 20; //Add 20
 

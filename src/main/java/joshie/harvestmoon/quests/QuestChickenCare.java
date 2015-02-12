@@ -6,14 +6,14 @@ import io.netty.buffer.ByteBuf;
 
 import java.util.HashSet;
 
-import joshie.harvestmoon.entities.EntityNPC;
-import joshie.harvestmoon.entities.npc.NPC;
 import joshie.harvestmoon.helpers.SizeableHelper;
 import joshie.harvestmoon.helpers.generic.ItemHelper;
 import joshie.harvestmoon.init.HMNPCs;
 import joshie.harvestmoon.init.HMQuests;
 import joshie.harvestmoon.lib.SizeableMeta;
 import joshie.harvestmoon.lib.SizeableMeta.Size;
+import joshie.harvestmoon.npc.EntityNPC;
+import joshie.harvestmoon.npc.NPC;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;

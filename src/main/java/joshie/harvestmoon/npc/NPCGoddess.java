@@ -1,6 +1,5 @@
-package joshie.harvestmoon.entities.npc;
+package joshie.harvestmoon.npc;
 
-import joshie.harvestmoon.entities.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
 
 public class NPCGoddess extends NPC {

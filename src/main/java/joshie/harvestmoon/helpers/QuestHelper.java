@@ -6,10 +6,10 @@ import static joshie.harvestmoon.network.PacketHandler.sendToServer;
 
 import java.util.HashSet;
 
-import joshie.harvestmoon.entities.npc.NPC;
 import joshie.harvestmoon.network.PacketSyncGold;
 import joshie.harvestmoon.network.quests.PacketQuestCompleted;
 import joshie.harvestmoon.network.quests.PacketQuestDecreaseHeld;
+import joshie.harvestmoon.npc.NPC;
 import joshie.harvestmoon.player.PlayerDataServer;
 import joshie.harvestmoon.quests.Quest;
 import joshie.harvestmoon.util.generic.IdiotException;

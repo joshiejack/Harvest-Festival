@@ -7,14 +7,15 @@ import joshie.harvestmoon.blocks.items.ItemBlockGeneral;
 import joshie.harvestmoon.blocks.render.SpecialRendererFryingPan;
 import joshie.harvestmoon.blocks.tiles.TileFryingPan;
 import joshie.harvestmoon.crops.Crop;
-import joshie.harvestmoon.entities.EntityNPC;
-import joshie.harvestmoon.entities.EntityNPCBuilder;
-import joshie.harvestmoon.entities.EntityNPCShopkeeper;
-import joshie.harvestmoon.entities.RenderNPC;
 import joshie.harvestmoon.handlers.RenderHandler;
 import joshie.harvestmoon.handlers.events.RenderEvents;
 import joshie.harvestmoon.init.HMBlocks;
 import joshie.harvestmoon.lib.RenderIds;
+import joshie.harvestmoon.npc.EntityNPC;
+import joshie.harvestmoon.npc.EntityNPCBuilder;
+import joshie.harvestmoon.npc.EntityNPCMiner;
+import joshie.harvestmoon.npc.EntityNPCShopkeeper;
+import joshie.harvestmoon.npc.RenderNPC;
 import joshie.harvestmoon.util.generic.EntityFakeItem;
 import joshie.harvestmoon.util.generic.RenderFakeItem;
 import net.minecraft.item.Item;
@@ -55,6 +56,7 @@ public class HMClientProxy extends HMCommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityNPC.class, new RenderNPC());
         RenderingRegistry.registerEntityRenderingHandler(EntityNPCBuilder.class, new RenderNPC());
         RenderingRegistry.registerEntityRenderingHandler(EntityNPCShopkeeper.class, new RenderNPC());
+        RenderingRegistry.registerEntityRenderingHandler(EntityNPCMiner.class, new RenderNPC());
         RenderingRegistry.registerEntityRenderingHandler(EntityFakeItem.class, new RenderFakeItem());
     }
 

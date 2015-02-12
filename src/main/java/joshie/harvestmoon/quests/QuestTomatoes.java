@@ -7,12 +7,12 @@ import static joshie.harvestmoon.helpers.QuestHelper.takeHeldStack;
 
 import java.util.HashSet;
 
-import joshie.harvestmoon.entities.EntityNPC;
-import joshie.harvestmoon.entities.npc.NPC;
 import joshie.harvestmoon.helpers.CropHelper;
 import joshie.harvestmoon.init.HMCrops;
 import joshie.harvestmoon.init.HMItems;
 import joshie.harvestmoon.init.HMNPCs;
+import joshie.harvestmoon.npc.EntityNPC;
+import joshie.harvestmoon.npc.NPC;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;

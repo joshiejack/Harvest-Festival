@@ -5,8 +5,8 @@ import java.util.UUID;
 
 import joshie.harvestmoon.calendar.CalendarDate;
 import joshie.harvestmoon.calendar.Season;
-import joshie.harvestmoon.entities.EntityNPC;
-import joshie.harvestmoon.entities.npc.NPC;
+import joshie.harvestmoon.npc.EntityNPC;
+import joshie.harvestmoon.npc.NPC;
 import joshie.harvestmoon.util.Translate;
 import net.minecraft.entity.EntityLivingBase;
 import cpw.mods.fml.relauncher.Side;

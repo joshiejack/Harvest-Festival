@@ -1,15 +1,12 @@
-package joshie.harvestmoon.entities.npc;
+package joshie.harvestmoon.npc;
 
-import static joshie.harvestmoon.entities.npc.NPC.Age.CHILD;
-import static joshie.harvestmoon.entities.npc.NPC.Gender.FEMALE;
-import static joshie.harvestmoon.entities.npc.NPC.Gender.MALE;
+import static joshie.harvestmoon.npc.NPC.Age.CHILD;
+import static joshie.harvestmoon.npc.NPC.Gender.FEMALE;
+import static joshie.harvestmoon.npc.NPC.Gender.MALE;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-import joshie.harvestmoon.entities.EntityNPC;
-import joshie.harvestmoon.entities.EntityNPCBuilder;
-import joshie.harvestmoon.entities.EntityNPCShopkeeper;
 import joshie.harvestmoon.handlers.GuiHandler;
 import joshie.harvestmoon.shops.ShopInventory;
 import joshie.harvestmoon.util.Translate;
@@ -33,6 +30,7 @@ public class NPC {
     private Age age;
     private Gender gender;
     private boolean isBuilder;
+    private boolean isMiner;
     private ShopInventory shop;
 
     public NPC(String name, Gender gender, Age age) {
@@ -88,6 +86,11 @@ public class NPC {
         return this;
     }
 
+    public NPC setIsMiner() {
+        isMiner = true;
+        return this;
+    }
+
     public NPC setShop(ShopInventory inventory) {
         shop = inventory;
         return this;
@@ -101,6 +104,10 @@ public class NPC {
         return isBuilder;
     }
 
+    public boolean isMiner() {
+        return isMiner;
+    }
+
     public ShopInventory getShop() {
         return shop;
     }
@@ -108,6 +115,8 @@ public class NPC {
     public EntityNPC getEntity(World world, int x, int y, int z) {
         if (isBuilder()) {
             return new EntityNPCBuilder(world, this);
+        } else if (isMiner()) {
+            return new EntityNPCMiner(world, this);
         } else if (shop != null) {
             return new EntityNPCShopkeeper(world, this).setWorkLocation(x, y, z);
         } else return new EntityNPC(world, this);
@@ -139,7 +148,7 @@ public class NPC {
 
         return greetings.get(last);
     }
-    
+
     public boolean respawns() {
         return true;
     }

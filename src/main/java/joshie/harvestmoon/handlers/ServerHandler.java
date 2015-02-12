@@ -3,9 +3,10 @@ package joshie.harvestmoon.handlers;
 import java.util.List;
 
 import joshie.harvestmoon.HMSavedData;
+import joshie.harvestmoon.animals.AnimalTrackerServer;
 import joshie.harvestmoon.calendar.CalendarServer;
 import joshie.harvestmoon.crops.CropTrackerServer;
-import joshie.harvestmoon.entities.AnimalTrackerServer;
+import joshie.harvestmoon.mining.MineTrackerServer;
 import joshie.harvestmoon.player.PlayerDataServer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -36,6 +37,11 @@ public class ServerHandler {
     //Returns the serverside crop tracker
     public CropTrackerServer getCropTracker() {
         return data.getCropTracker();
+    }
+    
+    //Returns the serverside mines tracker
+    public MineTrackerServer getMineTracker() {
+        return data.getMineTracker();
     }
 
     //Marks the data as having changed

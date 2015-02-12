@@ -1,8 +1,7 @@
-package joshie.harvestmoon.entities;
+package joshie.harvestmoon.npc;
 
 import joshie.harvestmoon.buildings.Building;
 import joshie.harvestmoon.buildings.BuildingStage;
-import joshie.harvestmoon.entities.npc.NPC;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 

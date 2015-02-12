@@ -1,10 +1,10 @@
 package joshie.harvestmoon.handlers;
 
-import joshie.harvestmoon.entities.EntityNPC;
 import joshie.harvestmoon.gui.ContainerNPC;
 import joshie.harvestmoon.gui.ContainerNPCShop;
 import joshie.harvestmoon.gui.GuiNPC;
 import joshie.harvestmoon.gui.GuiNPCShop;
+import joshie.harvestmoon.npc.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;

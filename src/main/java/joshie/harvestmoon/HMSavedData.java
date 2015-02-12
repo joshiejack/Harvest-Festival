@@ -4,9 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import joshie.harvestmoon.animals.AnimalTrackerServer;
 import joshie.harvestmoon.calendar.CalendarServer;
 import joshie.harvestmoon.crops.CropTrackerServer;
-import joshie.harvestmoon.entities.AnimalTrackerServer;
+import joshie.harvestmoon.mining.MineTrackerServer;
 import joshie.harvestmoon.player.PlayerDataServer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
@@ -19,6 +20,7 @@ public class HMSavedData extends WorldSavedData {
     private CalendarServer calendar = new CalendarServer();
     private AnimalTrackerServer animals = new AnimalTrackerServer();
     private CropTrackerServer crops = new CropTrackerServer();
+    private MineTrackerServer mines = new MineTrackerServer();
     private HashMap<UUID, PlayerDataServer> players = new HashMap();
 
     public HMSavedData(String string) {
@@ -35,6 +37,10 @@ public class HMSavedData extends WorldSavedData {
 
     public CropTrackerServer getCropTracker() {
         return crops;
+    }
+    
+    public MineTrackerServer getMineTracker() {
+        return mines;
     }
 
     public PlayerDataServer getPlayerData(EntityPlayerMP player) {
@@ -55,6 +61,7 @@ public class HMSavedData extends WorldSavedData {
         calendar.readFromNBT(nbt.getCompoundTag("Calendar"));
         animals.readFromNBT(nbt.getCompoundTag("AnimalTracker"));
         crops.readFromNBT(nbt.getCompoundTag("CropTracker"));
+        mines.readFromNBT(nbt.getCompoundTag("MineTracker"));
 
         NBTTagList tag_list_players = nbt.getTagList("PlayerTracker", 10);
         for (int i = 0; i < tag_list_players.tagCount(); i++) {
@@ -79,6 +86,10 @@ public class HMSavedData extends WorldSavedData {
         NBTTagCompound tag_crops = new NBTTagCompound();
         crops.writeToNBT(tag_crops);
         nbt.setTag("CropTracker", tag_crops);
+        
+        NBTTagCompound tag_mines = new NBTTagCompound();
+        mines.writeToNBT(tag_mines);
+        nbt.setTag("MineTracker", tag_mines);
 
         NBTTagList tag_list_players = new NBTTagList();
         for (Map.Entry<UUID, PlayerDataServer> entry : players.entrySet()) {

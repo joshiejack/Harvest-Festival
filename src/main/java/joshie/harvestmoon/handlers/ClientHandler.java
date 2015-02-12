@@ -1,8 +1,8 @@
 package joshie.harvestmoon.handlers;
 
+import joshie.harvestmoon.animals.AnimalTrackerClient;
 import joshie.harvestmoon.calendar.CalendarClient;
 import joshie.harvestmoon.crops.CropTrackerClient;
-import joshie.harvestmoon.entities.AnimalTrackerClient;
 import joshie.harvestmoon.player.PlayerDataClient;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

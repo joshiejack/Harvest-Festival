@@ -1,16 +1,16 @@
 package joshie.harvestmoon.init;
 
-import static joshie.harvestmoon.entities.npc.NPC.Age.ADULT;
-import static joshie.harvestmoon.entities.npc.NPC.Age.CHILD;
-import static joshie.harvestmoon.entities.npc.NPC.Age.ELDER;
-import static joshie.harvestmoon.entities.npc.NPC.Gender.FEMALE;
-import static joshie.harvestmoon.entities.npc.NPC.Gender.MALE;
+import static joshie.harvestmoon.npc.NPC.Age.ADULT;
+import static joshie.harvestmoon.npc.NPC.Age.CHILD;
+import static joshie.harvestmoon.npc.NPC.Age.ELDER;
+import static joshie.harvestmoon.npc.NPC.Gender.FEMALE;
+import static joshie.harvestmoon.npc.NPC.Gender.MALE;
 
 import java.util.Collection;
 import java.util.HashMap;
 
-import joshie.harvestmoon.entities.npc.NPC;
-import joshie.harvestmoon.entities.npc.NPCGoddess;
+import joshie.harvestmoon.npc.NPC;
+import joshie.harvestmoon.npc.NPCGoddess;
 
 public class HMNPCs {
     private static HashMap<String, NPC> npcs = new HashMap();
@@ -61,7 +61,7 @@ public class HMNPCs {
         daughter_2 = register(new NPC("abi", FEMALE, CHILD));
         clock_worker = register(new NPC("tiberius", MALE, ADULT));
         gs_owner = register(new NPC("jenni", FEMALE, ADULT));
-        miner = register(new NPC("brandon", MALE, ADULT));
+        miner = register(new NPC("brandon", MALE, ADULT).setIsMiner());
         fisherman = register(new NPC("jacob", MALE, ADULT));
         milkmaid = register(new NPC("candice", FEMALE, ADULT));
         builder = register(new NPC("inap", MALE, ADULT).setIsBuilder());

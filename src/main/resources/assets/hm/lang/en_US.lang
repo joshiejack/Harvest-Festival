@@ -42,6 +42,20 @@ hm.general.item.milker=Milker
 hm.general.item.brush=Animal Brush
 hm.general.item.medicine=Animal Medicine
 hm.general.item.feed=Chicken Feed
+hm.general.item.ore.junk=Junk Ore
+hm.general.item.ore.copper=Copper Ore
+hm.general.item.ore.silver=Silver Ore
+hm.general.item.ore.gold=Gold Ore
+hm.general.item.ore.mystril=Mystril Ore
+hm.general.item.stone.mythic=Mythic Stone
+hm.general.item.shoot.bamboo=Bamboo Shoot
+hm.general.item.flour=Flour
+hm.general.item.mushroom.matsutake=Matsutake Mushroom
+hm.general.item.oil=Cooking Oil
+hm.general.item.riceball=Riceball
+hm.general.item.knife=Knife
+hm.general.item.rolling.pin=Rolling Pin
+hm.general.item.whisk=Whisk
 
 #Meals
 hm.meal.level=Restores
@@ -61,6 +75,12 @@ hm.sizeable.egg=Egg
 hm.sizeable.milk=Milk
 hm.sizeable.wool=Wool
 hm.sizeable.fish=Fish
+hm.sizeable.cheese=Cheese
+hm.sizeable.yoghurt=Yoghurt
+hm.sizeable.mayonnaise=Mayonnaise
+hm.sizeable.matsutake=Matsutake Mushroom
+hm.sizeable.toadstool=Toadstool
+hm.sizeable.yarn=Yarn
 
 #Tools
 #Hoe
@@ -126,8 +146,9 @@ hm.general.block.mixer=Food Mixer
 hm.general.block.oven=Oven
 hm.general.block.steamer=Steamer
 hm.general.block.chest=Rural Chest
-hm.general.block.knife=Knife
-hm.general.block.rolling.pin=Rolling Pin
+hm.general.block.baking=Baking Tray
+hm.general.block.chopping.board=Chopping Board
+hm.general.block.mixing.bowl=Mixing Bowl
 
 hm.dirt.mine.floor=Mine Floor
 hm.stone.mine.wall=Mine Wall

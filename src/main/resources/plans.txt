@@ -1,34 +1,37 @@
 Stage 1 (0.5)
-• Crops
-• Cooking
-• Calendar/Seasons
-• Some General Items
-• Shopping
-• Animals
-• Mining
-• Tools
-• Buildings
-• Relationships
-• Harvest Goddess
-• Add Brushes, and Talk to Animals
+â€¢ Crops
+â€¢ Cooking
+â€¢ Calendar/Seasons
+â€¢ Some General Items
+â€¢ Shopping
+â€¢ Animals
+â€¢ Mining
+â€¢ Tools
+â€¢ Buildings
+â€¢ Relationships
+â€¢ Harvest Goddess
+â€¢ Add Brushes, and Talk to Animals
 
 Stage 2 (0.6)
-• Gathering
-• Farm Equipment
-• More General Items
+â€¢ Gathering
+â€¢ Farm Equipment
+â€¢ More General Items
 
 Stage 3 (0.7)
-• Fishing
-• Jewels, Emeralds, Gems
+â€¢ Fishing
+â€¢ Jewels, Emeralds, Gems
 
 Stage 4 (0.8)
-• Harvest Sprite
-• Power Berries
-• TV Shopping
+â€¢ Harvest Sprite
+â€¢ Power Berries
+â€¢ TV Shopping
 
 Stage 5 (0.9)
-• Events
-• Festivals
+â€¢ Events
+â€¢ Festivals
+
+Stage 6 (1.0)
+â€¢ Minetweaker Support
 
 Potential Names
-Rustic Days – Grand Harvest – Harvest Festival – It’s a Good Life , Farmcraft,  Back to Nature, Harvesture, Harvest Culture, Mooncraft
+Rustic Days â€“ Grand Harvest â€“ Harvest Festival â€“ Itâ€™s a Good Life , Farmcraft,  Back to Nature, Harvesture, Harvest Culture, Mooncraft

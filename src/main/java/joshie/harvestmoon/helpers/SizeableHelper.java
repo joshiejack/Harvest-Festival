@@ -2,7 +2,7 @@ package joshie.harvestmoon.helpers;
 
 import java.util.Random;
 
-import joshie.harvestmoon.config.Overrides;
+import joshie.harvestmoon.HarvestOverride;
 import joshie.harvestmoon.init.HMItems;
 import joshie.harvestmoon.lib.SizeableMeta;
 import joshie.harvestmoon.lib.SizeableMeta.Size;
@@ -22,7 +22,7 @@ public class SizeableHelper {
         if (rand.nextInt(chance) == 0) size = Size.LARGE;
         else if (rand.nextInt(chance2) == 0) size = Size.MEDIUM;
         ItemStack sizeable = getSizeable(relationship, SizeableMeta.EGG, size);
-        if (Overrides.EGG) {
+        if (HarvestOverride.config.egg) {
             return new ItemStack(Items.egg, 1, sizeable.getItemDamage());
         } else return sizeable;
     }

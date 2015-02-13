@@ -45,6 +45,7 @@ public class ItemCheat extends ItemHMMeta {
         } else if (damage == META_CHECKER) {
             if(world.isRemote) {
                 ClientHelper.addToChat("Metadata: " + world.getBlockMetadata(xCoord, yCoord, zCoord));
+                ClientHelper.addToChat("" + world.getBlock(xCoord, yCoord, zCoord).getClass());
             }
         }
 

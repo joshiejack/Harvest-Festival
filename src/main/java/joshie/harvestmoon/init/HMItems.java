@@ -1,5 +1,8 @@
 package joshie.harvestmoon.init;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+
 import joshie.harvestmoon.items.ItemBuilding;
 import joshie.harvestmoon.items.ItemCheat;
 import joshie.harvestmoon.items.ItemCrop;
@@ -13,15 +16,13 @@ import joshie.harvestmoon.items.ItemSized;
 import joshie.harvestmoon.items.ItemSizedEgg;
 import joshie.harvestmoon.items.ItemTreat;
 import joshie.harvestmoon.items.ItemWateringCan;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import cpw.mods.fml.common.registry.ExistingSubstitutionException;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.GameRegistry.Type;
 
-public class HMItems {
-    //Overriden Items
-    public static Item egg;
-    
+public class HMItems {   
     public static Item crops;
     public static Item seeds;
     public static Item general;
@@ -54,12 +55,6 @@ public class HMItems {
         wateringcan = new ItemWateringCan().setUnlocalizedName("wateringcan");
 
         cheat = new ItemCheat().setUnlocalizedName("cheat");
-        
-        try {
-            egg = new ItemSizedEgg().setUnlocalizedName("egg").setTextureName("egg");
-            GameRegistry.addSubstitutionAlias("minecraft:egg", Type.ITEM, egg);
-        } catch (ExistingSubstitutionException e) {
-            e.printStackTrace();
-        }
     }
+
 }

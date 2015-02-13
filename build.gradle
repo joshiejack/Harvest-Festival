@@ -59,6 +59,8 @@ processResources {
 jar {
     manifest {
         attributes 'FMLAT': 'harvestmoon_at.cfg'
+        attributes 'FMLCorePlugin': 'joshie.harvestmoon.HarvestMoon'
+        attributes 'FMLCorePluginContainsFMLMod': 'true'
     }
 }
 
@@ -70,6 +72,8 @@ task sourceJar(type: Jar) {
 task deobfJar(type: Jar) {
     manifest {
         attributes 'FMLAT': 'harvestmoon_at.cfg'
+        attributes 'FMLCorePlugin': 'joshie.harvestmoon.HarvestMoon'
+        attributes 'FMLCorePluginContainsFMLMod': 'true'
     }
     from sourceSets.main.output
     classifier = 'dev'

@@ -18,7 +18,6 @@ public class HMConfiguration {
         initConfig("Calendar");
         initConfig("Client");
         initConfig("Cooking");
-        initConfig("Overrides");
         initConfig("Shops");
         initConfig("Tools");
     }

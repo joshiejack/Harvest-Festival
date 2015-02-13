@@ -8,7 +8,6 @@ import joshie.harvestmoon.blocks.render.SpecialRendererFryingPan;
 import joshie.harvestmoon.blocks.tiles.TileFryingPan;
 import joshie.harvestmoon.crops.Crop;
 import joshie.harvestmoon.handlers.RenderHandler;
-import joshie.harvestmoon.handlers.events.OverrideEvents;
 import joshie.harvestmoon.handlers.events.RenderEvents;
 import joshie.harvestmoon.init.HMBlocks;
 import joshie.harvestmoon.lib.RenderIds;
@@ -53,7 +52,6 @@ public class HMClientProxy extends HMCommonProxy {
         RenderingRegistry.registerBlockHandler(new RenderHandler());
         FMLCommonHandler.instance().bus().register(new RenderEvents());
         MinecraftForge.EVENT_BUS.register(new RenderEvents());
-        MinecraftForge.EVENT_BUS.register(new OverrideEvents());
         ClientRegistry.bindTileEntitySpecialRenderer(TileFryingPan.class, new SpecialRendererFryingPan());
         RenderingRegistry.registerEntityRenderingHandler(EntityNPC.class, new RenderNPC());
         RenderingRegistry.registerEntityRenderingHandler(EntityNPCBuilder.class, new RenderNPC());

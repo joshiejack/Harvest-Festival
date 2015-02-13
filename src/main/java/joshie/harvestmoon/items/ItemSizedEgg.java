@@ -32,7 +32,7 @@ public class ItemSizedEgg extends ItemEgg implements IShippable, IRateable {
     private IIcon[] icons;
 
     public ItemSizedEgg() {
-        setCreativeTab(HarvestTab.hm);
+        //setCreativeTab(HarvestTab.hm);
     }
 
     @Override

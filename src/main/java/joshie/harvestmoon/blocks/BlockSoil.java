@@ -27,13 +27,6 @@ public class BlockSoil extends BlockFarmland {
     }
 
     @Override
-    public BlockSoil setBlockName(String name) {
-        super.setBlockName(name);
-        GameRegistry.registerBlock(this, "soil");
-        return this;
-    }
-
-    @Override
     public void breakBlock(World world, int x, int y, int z, Block block, int side) {
         removeFarmland(world, x, y, z);
     }

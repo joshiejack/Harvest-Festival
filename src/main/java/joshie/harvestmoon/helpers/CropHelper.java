@@ -5,6 +5,7 @@ import joshie.harvestmoon.crops.Crop;
 import joshie.harvestmoon.helpers.generic.ItemHelper;
 import joshie.harvestmoon.init.HMBlocks;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -48,7 +49,7 @@ public class CropHelper {
     
     public static void addFarmland(World world, int x, int y, int z) {
         if (!world.isRemote) {
-            world.setBlock(x, y, z, HMBlocks.soil);
+            world.setBlock(x, y, z, Blocks.farmland);
             handler.getServer().getCropTracker().addFarmland(world, x, y, z);
         }
     }

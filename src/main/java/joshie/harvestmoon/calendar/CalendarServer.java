@@ -55,7 +55,6 @@ public class CalendarServer implements IData {
         }
 
         loaded = true;
-
         handler.getServer().markDirty();
         return true;
     }

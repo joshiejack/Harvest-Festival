@@ -43,7 +43,9 @@ public class FoodRegistry {
             }
         }
 
-        return Meal.BURNT;
+        ItemStack burnt = Meal.BURNT.copy();
+        burnt.setItemDamage(utensil.ordinal());
+        return burnt;
     }
 
     public static ArrayList<Recipe> getRecipes() {

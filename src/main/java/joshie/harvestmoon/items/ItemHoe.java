@@ -82,7 +82,7 @@ public class ItemHoe extends ItemBaseTool {
                                 addFarmland(world, x2, y, z2);
                             } else if (block == HMBlocks.dirt) { //Otherwise if it's mine flooring
                                 MiningLoot.getLoot(world, x2, y, z2, player, world.getBlockMetadata(x2, y, z2));
-                                world.setBlock(x2, y, z2, HMBlocks.soil, BlockSoil.MINE_HOE, 2);
+                                world.setBlock(x2, y, z2, Blocks.farmland, BlockSoil.MINE_HOE, 2);
                             }
                         }
                     }

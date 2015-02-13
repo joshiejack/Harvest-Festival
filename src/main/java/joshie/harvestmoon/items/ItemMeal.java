@@ -8,6 +8,7 @@ import java.util.List;
 import joshie.harvestmoon.cooking.FoodRegistry;
 import joshie.harvestmoon.cooking.Meal;
 import joshie.harvestmoon.cooking.Recipe;
+import joshie.harvestmoon.cooking.Utensil;
 import joshie.harvestmoon.util.Translate;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -35,7 +36,10 @@ public class ItemMeal extends ItemHMMeta {
     public String getItemStackDisplayName(ItemStack stack) {
         if (stack.hasTagCompound()) {
             return Translate.translate("meal." + stack.stackTagCompound.getString("FoodName"));
-        } else return super.getItemStackDisplayName(stack);
+        } else {
+            int meta = Math.min(Utensil.values().length - 1, stack.getItemDamage());
+            return Translate.translate("meal.burnt." + Utensil.values()[meta].name().replace("_", ".").toLowerCase());
+        }
     }
 
     @SideOnly(Side.CLIENT)

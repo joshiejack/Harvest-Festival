@@ -8,6 +8,7 @@ import joshie.harvestmoon.blocks.render.SpecialRendererFryingPan;
 import joshie.harvestmoon.blocks.tiles.TileFryingPan;
 import joshie.harvestmoon.crops.Crop;
 import joshie.harvestmoon.handlers.RenderHandler;
+import joshie.harvestmoon.handlers.events.OverrideEvents;
 import joshie.harvestmoon.handlers.events.RenderEvents;
 import joshie.harvestmoon.init.HMBlocks;
 import joshie.harvestmoon.lib.RenderIds;
@@ -30,7 +31,7 @@ import cpw.mods.fml.common.FMLCommonHandler;
 
 public class HMClientProxy extends HMCommonProxy {
     @Override
-    public void init() {
+    public void preInit() {
         handler.resetClient();
 
         for (Crop crop : Crop.crops) {
@@ -52,6 +53,7 @@ public class HMClientProxy extends HMCommonProxy {
         RenderingRegistry.registerBlockHandler(new RenderHandler());
         FMLCommonHandler.instance().bus().register(new RenderEvents());
         MinecraftForge.EVENT_BUS.register(new RenderEvents());
+        MinecraftForge.EVENT_BUS.register(new OverrideEvents());
         ClientRegistry.bindTileEntitySpecialRenderer(TileFryingPan.class, new SpecialRendererFryingPan());
         RenderingRegistry.registerEntityRenderingHandler(EntityNPC.class, new RenderNPC());
         RenderingRegistry.registerEntityRenderingHandler(EntityNPCBuilder.class, new RenderNPC());
@@ -59,6 +61,7 @@ public class HMClientProxy extends HMCommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityNPCMiner.class, new RenderNPC());
         RenderingRegistry.registerEntityRenderingHandler(EntityFakeItem.class, new RenderFakeItem());
     }
+
 
     private String sanitizeGeneral(String name) {
         name = name.replace(".", " ");

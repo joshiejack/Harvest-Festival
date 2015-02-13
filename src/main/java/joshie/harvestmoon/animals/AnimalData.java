@@ -9,7 +9,7 @@ import static joshie.harvestmoon.animals.AnimalData.AnimalType.HORSE;
 import static joshie.harvestmoon.animals.AnimalData.AnimalType.OTHER;
 import static joshie.harvestmoon.animals.AnimalData.AnimalType.PIG;
 import static joshie.harvestmoon.animals.AnimalData.AnimalType.SHEEP;
-import static joshie.harvestmoon.helpers.SizeableHelper.getSizeable;
+import static joshie.harvestmoon.helpers.SizeableHelper.getEgg;
 import static joshie.harvestmoon.helpers.generic.ItemHelper.spawnByEntity;
 import static joshie.harvestmoon.network.PacketHandler.sendToEveryone;
 
@@ -18,8 +18,6 @@ import java.util.UUID;
 
 import joshie.harvestmoon.config.Calendar;
 import joshie.harvestmoon.helpers.RelationsHelper;
-import joshie.harvestmoon.lib.SizeableMeta;
-import joshie.harvestmoon.lib.SizeableMeta.Size;
 import joshie.harvestmoon.network.PacketSyncCanProduce;
 import joshie.harvestmoon.util.IData;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -217,7 +215,7 @@ public class AnimalData implements IData {
                     } else if (type == CHICKEN) { //Or if it's a chicken, make it lay an egg
                         EntityPlayer player = handler.getServer().getAnimalTracker().getOwner(entity);
                         if (entity != null && player != null) {
-                            ItemStack egg = getSizeable(player, entity, SizeableMeta.EGG, Size.LARGE);
+                            ItemStack egg = getEgg(player, entity);
                             entity.playSound("mob.chicken.plop", 1.0F, (entity.worldObj.rand.nextFloat() - entity.worldObj.rand.nextFloat()) * 0.2F + 1.0F);
                             spawnByEntity(entity, egg);
                         }

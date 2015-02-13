@@ -1,5 +1,5 @@
 # inaps buildings and stuff
-- [ ] Harvest Goddess
+- [x] Harvest Goddess
 - [x] Animal Barn (Sells you Animals)
 - [x] Café 
 - [x] Seed Shop
@@ -28,6 +28,7 @@
 - [ ] NPC Builder Quests for Materials and will build you things. Hands you a plot marker to place roughly where you want the building built.
 - [x] Spawning the Harvest Goddess
 - [ ] Spawning the NPC Builder
+- [ ] ChestGenHooks for Item Frames
 - [ ] Egg Nest, Miracle Potions for Breeding
 - [ ] Shipping Bin, Oven, Mixer, Knife, Rolling Pin Renders
 - [x] Add Knife, Rolling Pin

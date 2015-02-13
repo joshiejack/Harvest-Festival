@@ -6,11 +6,13 @@ import net.minecraft.item.ItemStack;
 
 public class ShopHelper {
     /** This should only be ever called server ide **/
-    public static void purchase(EntityPlayer player, ItemStack product, long cost) {
+    public static void purchase(EntityPlayer player, ItemStack[] products, long cost) {
         long player_gold = PlayerHelper.getGold(player);
         if (player_gold - cost >= 0) {
             PlayerHelper.adjustGold(player, -cost);
-            ItemHelper.addToPlayerInventory(player, product);
+            for (ItemStack product : products) {
+                ItemHelper.addToPlayerInventory(player, product);
+            }
         }
     }
 }

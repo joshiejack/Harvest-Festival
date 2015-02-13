@@ -29,7 +29,7 @@ public class PurchaseableCropSeeds implements IPurchaseable {
     }
 
     @Override
-    public ItemStack getProduct() {
-        return new ItemStack(HMItems.seeds, 1, crop.getCropMeta());
+    public ItemStack[] getProducts() {
+        return new ItemStack[] { new ItemStack(HMItems.seeds, 1, crop.getCropMeta()) };
     }
 }

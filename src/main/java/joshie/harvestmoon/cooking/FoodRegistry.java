@@ -14,7 +14,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class FoodRegistry {
     private static HashMap<String, ArrayList<ICookingComponent>> equivalents = new HashMap();
-    private static HashMap<SafeStack, ICookingComponent> registry = new HashMap();
+    private static HashMap<SafeStack, ArrayList<ICookingComponent>> registry = new HashMap();
     private static final ArrayList<Recipe> recipes = new ArrayList();
 
     public static void addRecipe(Recipe recipe) {
@@ -24,12 +24,12 @@ public class FoodRegistry {
     public static ItemStack getResult(Utensil utensil, ArrayList<ItemStack> iStacks, ArrayList<ItemStack> sStacks) {
         ArrayList<Ingredient> ingredients = new ArrayList();
         for (ItemStack stack : iStacks) {
-            ingredients.add(getIngredient(stack));
+            ingredients.addAll(getIngredients(stack));
         }
 
         ArrayList<Seasoning> seasonings = new ArrayList();
         for (ItemStack stack : sStacks) {
-            seasonings.add(getSeasoning(stack));
+            seasonings.addAll(getSeasonings(stack));
         }
 
         return getResult(utensil, ingredients, seasonings);
@@ -58,46 +58,54 @@ public class FoodRegistry {
         } else return new SafeStack(stack);
     }
 
+    private static ArrayList<ICookingComponent> getComponents(SafeStack safe) {
+        ArrayList<ICookingComponent> components = FoodRegistry.registry.get(safe);
+        return components == null ? new ArrayList() : components;
+    }
+
     public static void register(SafeStack safe, ICookingComponent component) {
-        FoodRegistry.registry.put(safe, component.addKey(safe));
+        ArrayList<ICookingComponent> components = getComponents(safe);
+        components.add(component);
+        FoodRegistry.registry.put(safe, components);
     }
 
     public static void register(ItemStack stack, ICookingComponent component) {
         SafeStack safe = getSafeStackType(stack);
-        FoodRegistry.registry.put(safe, component.addKey(safe));
+        ArrayList<ICookingComponent> components = getComponents(safe);
+        components.add(component);
+        FoodRegistry.registry.put(safe, components);
     }
 
-    public static Seasoning getSeasoning(String string) {
-        return Seasoning.seasonings.get(string);
-    }
-
-    public static ICookingComponent getCookingComponent(ItemStack stack) {
-        ICookingComponent result = registry.get(new SafeStack(stack));
+    public static ArrayList<ICookingComponent> getCookingComponents(ItemStack stack) {
+        ArrayList<ICookingComponent> result = registry.get(new SafeStack(stack));
         if (result == null) result = registry.get(new WildStack(stack));
         if (result == null) result = registry.get(new HMStack(stack));
         return result;
     }
 
-    public static Ingredient getIngredient(ItemStack stack) {
-        return (Ingredient) getCookingComponent(stack);
+    public static ArrayList<Ingredient> getIngredients(ItemStack stack) {
+        ArrayList<ICookingComponent> components = getCookingComponents(stack);
+        if (components == null) return null;
+        ArrayList<Ingredient> ingredients = new ArrayList();
+        for (ICookingComponent c : components) {
+            if (c instanceof Ingredient) {
+                ingredients.add((Ingredient) c);
+            }
+        }
+
+        return ingredients.size() > 0 ? ingredients : null;
     }
 
-    public static Utensil getUtensil(ItemStack stack) {
-        return (Utensil) getCookingComponent(stack);
-    }
+    public static ArrayList<Seasoning> getSeasonings(ItemStack stack) {
+        ArrayList<ICookingComponent> components = getCookingComponents(stack);
+        if (components == null) return null;
+        ArrayList<Seasoning> seasonings = new ArrayList();
+        for (ICookingComponent c : components) {
+            if (c instanceof Seasoning) {
+                seasonings.add((Seasoning) c);
+            }
+        }
 
-    public static Seasoning getSeasoning(ItemStack stack) {
-        return (Seasoning) getCookingComponent(stack);
-    }
-
-    public static void addEquivalent(String string, ICookingComponent component) {
-        ArrayList<ICookingComponent> list = equivalents.get(string);
-        if (list == null) list = new ArrayList();
-        list.add(component);
-        equivalents.put(string, list);
-    }
-
-    public static ArrayList<ICookingComponent> getEquivalents(String name) {
-        return equivalents.get(name);
+        return seasonings.size() > 0 ? seasonings : null;
     }
 }

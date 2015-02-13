@@ -11,6 +11,6 @@ public interface IPurchaseable {
     /** The cost of this product **/
     public long getCost();
     
-    /** The product **/
-    public ItemStack getProduct();
+    /** The product(s) that were purchased **/
+    public ItemStack[] getProducts();
 }

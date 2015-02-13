@@ -13,6 +13,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 
@@ -25,10 +26,17 @@ public abstract class TileCooking extends TileEntity implements IFaceable {
     private ItemStack result;
     private ForgeDirection orientation = ForgeDirection.NORTH;
     private float rotation;
+    protected Utensil utensil;
 
     public TileCooking() {}
 
-    public abstract Utensil getUtensil();
+    public Utensil getUtensil() {
+        return Utensil.KITCHEN;
+    }
+
+    public Utensil getUtensil(World world, int x, int y, int z) {
+        return getUtensil();
+    }
 
     public boolean hasPrerequisites() {
         return true;
@@ -39,7 +47,7 @@ public abstract class TileCooking extends TileEntity implements IFaceable {
     }
 
     public ItemStack getStored() {
-        return result;
+        return result != null? result.copy(): result;
     }
 
     public ArrayList<ItemStack> getIngredients() {
@@ -64,19 +72,36 @@ public abstract class TileCooking extends TileEntity implements IFaceable {
     public ForgeDirection getFacing() {
         return orientation;
     }
-    
+
     public float getRotation() {
         return rotation;
     }
 
+    public void animate(Utensil utensil) {
+        rotation += worldObj.rand.nextFloat();
+        worldObj.spawnParticle("smoke", xCoord + 0.5D + +worldObj.rand.nextFloat() - worldObj.rand.nextFloat() / 2, yCoord + 0.5D + worldObj.rand.nextFloat() - worldObj.rand.nextFloat() / 2, zCoord + 0.5D + +worldObj.rand.nextFloat() - worldObj.rand.nextFloat() / 2, 0, 0, 0);
+    }
+
+    public short getCookingTime(Utensil utensil) {
+        return COOK_TIMER;
+    }
+
+    public void updateUtensil() {
+        if (worldObj.getWorldTime() % 20 == 0) {
+            utensil = getUtensil(worldObj, xCoord, yCoord + 1, zCoord);
+        }
+    }
+
     @Override
     public void updateEntity() {
+        //Update the utensil every second
+        updateUtensil();
         //If we are server side perform the actions
         if (!worldObj.isRemote) {
             if (cooking) {
                 cookTimer++;
-                if (cookTimer >= COOK_TIMER) {
-                    result = FoodRegistry.getResult(getUtensil(), ingredients, seasonings);
+                if (cookTimer >= getCookingTime(utensil)) {
+                    result = FoodRegistry.getResult(utensil, ingredients, seasonings);
                     cooking = false;
                     ingredients = new ArrayList();
                     seasonings = new ArrayList();
@@ -89,17 +114,14 @@ public abstract class TileCooking extends TileEntity implements IFaceable {
                     this.markDirty();
                 }
             }
-        } else if (cooking) { //If we are client side render some particles
-            rotation += worldObj.rand.nextFloat();
-            worldObj.spawnParticle("smoke", xCoord + 0.5D + +worldObj.rand.nextFloat() - worldObj.rand.nextFloat() / 2, yCoord + 0.5D + worldObj.rand.nextFloat() - worldObj.rand.nextFloat() / 2, zCoord + 0.5D + +worldObj.rand.nextFloat() - worldObj.rand.nextFloat() / 2, 0, 0, 0);
-        }
+        } else if (cooking) animate(utensil);
     }
 
     //Returns true if this was a valid ingredient to add
     public boolean addIngredient(ItemStack stack) {
         if (ingredients.size() >= 9) return false;
         if (!hasPrerequisites()) return false;
-        if (FoodRegistry.getIngredient(stack) == null) return false;
+        if (FoodRegistry.getIngredients(stack) == null) return false;
         else {
             if (worldObj.isRemote) return true;
             ItemStack clone = stack.copy();
@@ -115,7 +137,7 @@ public abstract class TileCooking extends TileEntity implements IFaceable {
     //Returns true if this was a valid seasoning to add
     public boolean addSeasoning(ItemStack stack) {
         if (!hasPrerequisites()) return false;
-        if (FoodRegistry.getSeasoning(stack) == null) return false;
+        if (FoodRegistry.getSeasonings(stack) == null) return false;
         else {
             if (worldObj.isRemote) return true;
             ItemStack clone = stack.copy();

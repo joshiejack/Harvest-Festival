@@ -3,11 +3,9 @@ package joshie.harvestmoon.player;
 import static joshie.harvestmoon.HarvestMoon.handler;
 import static joshie.harvestmoon.network.PacketHandler.sendToClient;
 
-import java.util.ArrayList;
 import java.util.UUID;
 
 import joshie.harvestmoon.calendar.CalendarDate;
-import joshie.harvestmoon.cooking.SavedRecipe;
 import joshie.harvestmoon.crops.CropData;
 import joshie.harvestmoon.helpers.generic.EntityHelper;
 import joshie.harvestmoon.network.PacketSyncBirthday;
@@ -20,10 +18,8 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 
 public class PlayerDataServer implements IData {
-    private ArrayList<SavedRecipe> savedRecipes = new ArrayList();
     private QuestStats questStats;
     private RelationStats relationStats;
     private ShippingStats shippingStats;
@@ -175,15 +171,6 @@ public class PlayerDataServer implements IData {
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         uuid = new UUID(nbt.getLong("UUIDMost"), nbt.getLong("UUIDLeast"));
-        
-        //Read in the SavedRecipes
-        NBTTagList recipes = nbt.getTagList("SavedRecipes", 10);
-        for (int i = 0; i < recipes.tagCount(); i++) {
-            NBTTagCompound tag = recipes.getCompoundTagAt(i);
-            SavedRecipe recipe = new SavedRecipe();
-            recipe.readFromNBT(tag);
-            savedRecipes.add(recipe);
-        }
 
         //Read in the Basic Data Stuffs
         playerStats.readFromNBT(nbt);
@@ -197,16 +184,6 @@ public class PlayerDataServer implements IData {
     public void writeToNBT(NBTTagCompound nbt) {
         nbt.setLong("UUIDMost", uuid.getMostSignificantBits());
         nbt.setLong("UUIDLeast", uuid.getLeastSignificantBits());
-        
-        //Saving the SavedRecipes
-        NBTTagList recipes = new NBTTagList();
-        for (SavedRecipe recipe : savedRecipes) {
-            NBTTagCompound tag = new NBTTagCompound();
-            recipe.writeToNBT(tag);
-            recipes.appendTag(tag);
-        }
-
-        nbt.setTag("SavedRecipes", recipes);
 
         //Write the basic data to disk
         playerStats.writeToNBT(nbt);

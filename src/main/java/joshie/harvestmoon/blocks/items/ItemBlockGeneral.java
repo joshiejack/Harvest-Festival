@@ -33,6 +33,12 @@ public class ItemBlockGeneral extends ItemBlockBase {
                 return "fridge.top";
             case BlockGeneral.RURAL_CHEST:
                 return "chest";
+            case BlockGeneral.BAKING_GLASS:
+                return "baking";
+            case BlockGeneral.CHOPPING_BOARD:
+                return "chopping_board";
+            case BlockGeneral.MIXING_BOWL:
+                return "mixing_bowl";
             default:
                 return "invalid";
         }

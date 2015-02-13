@@ -7,14 +7,13 @@ import joshie.harvestmoon.blocks.tiles.TileCooking;
 import joshie.harvestmoon.blocks.tiles.TileFridge;
 import joshie.harvestmoon.blocks.tiles.TileFryingPan;
 import joshie.harvestmoon.blocks.tiles.TileKitchen;
-import joshie.harvestmoon.blocks.tiles.TileKnife;
 import joshie.harvestmoon.blocks.tiles.TileMixer;
 import joshie.harvestmoon.blocks.tiles.TileOven;
 import joshie.harvestmoon.blocks.tiles.TilePot;
-import joshie.harvestmoon.blocks.tiles.TileRollingPin;
 import joshie.harvestmoon.blocks.tiles.TileRuralChest;
 import joshie.harvestmoon.blocks.tiles.TileSteamer;
 import joshie.harvestmoon.config.Cooking;
+import joshie.harvestmoon.helpers.ToolHelper;
 import joshie.harvestmoon.helpers.generic.DirectionHelper;
 import joshie.harvestmoon.helpers.generic.ItemHelper;
 import joshie.harvestmoon.lib.RenderIds;
@@ -45,11 +44,12 @@ public class BlockGeneral extends BlockHMBaseMeta {
     public static final int STEAMER = 7;
     public static final int FRIDGE_TOP = 8;
     public static final int RURAL_CHEST = 9;
-    public static final int KNIFE = 10;
-    public static final int ROLLING_PIN = 11;
+    public static final int CHOPPING_BOARD = 10;
+    public static final int MIXING_BOWL = 11;
+    public static final int BAKING_GLASS = 12;
 
     public BlockGeneral() {
-        super(Material.wood);
+        super(Material.piston);
     }
 
     @Override
@@ -112,6 +112,29 @@ public class BlockGeneral extends BlockHMBaseMeta {
             } else return false;
         } else if (meta == FRIDGE || meta == FRIDGE_TOP) {
             return true;
+        } else if (meta == KITCHEN || meta == CHOPPING_BOARD || meta == MIXING_BOWL || meta == BAKING_GLASS) {
+            ItemStack held = player.getCurrentEquippedItem();
+            TileEntity tile = null;
+            if (meta == KITCHEN) tile = world.getTileEntity(x, y, z);
+            else tile = world.getTileEntity(x, y - 1, z);
+            if (!(tile instanceof TileKitchen)) return false;
+            if (meta == KITCHEN && held == null) {
+                tile.updateEntity();
+                return true;
+            } else if (held != null) {
+                if (meta == CHOPPING_BOARD && ToolHelper.isKnife(held)) {
+                    tile.updateEntity();
+                    return true;
+                } else if (meta == MIXING_BOWL && ToolHelper.isWhisk(held)) {
+                    tile.updateEntity();
+                    return true;
+                } else if (meta == BAKING_GLASS && ToolHelper.isRollingPin(held)) {
+                    tile.updateEntity();
+                    return true;
+                }
+            }
+
+            return false;
         } else {
             TileEntity tile = world.getTileEntity(x, y, z);
             if (tile instanceof TileCooking) {
@@ -128,6 +151,7 @@ public class BlockGeneral extends BlockHMBaseMeta {
                 } else if (held != null && !(held.getItem() instanceof ItemBlockGeneral)) {
                     if (cooking.addIngredient(held) || cooking.addSeasoning(held)) {
                         player.inventory.decrStackSize(player.inventory.currentItem, 1);
+                        return true;
                     }
                 }
             }
@@ -200,23 +224,19 @@ public class BlockGeneral extends BlockHMBaseMeta {
                 return new TileSteamer();
             case RURAL_CHEST:
                 return new TileRuralChest();
-            case KNIFE:
-                return new TileKnife();
-            case ROLLING_PIN:
-                return new TileRollingPin();
             default:
                 return null;
         }
     }
-    
+
     @Override
     public boolean isActive(int meta) {
-        return meta == STEAMER ? Cooking.ENABLE_STEAMER : meta == FRIDGE_TOP? false : true;
+        return meta == STEAMER ? Cooking.ENABLE_STEAMER : meta == FRIDGE_TOP ? false : true;
     }
-    
+
     @Override
     public int getMetaCount() {
-        return 12;
+        return 13;
     }
 
     @SideOnly(Side.CLIENT)

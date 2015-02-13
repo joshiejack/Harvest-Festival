@@ -12,4 +12,16 @@ public class ToolHelper {
     public static boolean isBrush(ItemStack stack) {
         return stack.getItem() == HMItems.general && stack.getItemDamage() == ItemGeneral.BRUSH;
     }
+
+    public static boolean isKnife(ItemStack stack) {
+        return stack.getItem() == HMItems.general && stack.getItemDamage() == ItemGeneral.KNIFE;
+    }
+
+    public static boolean isRollingPin(ItemStack stack) {
+        return stack.getItem() == HMItems.general && stack.getItemDamage() == ItemGeneral.ROLLING_PIN;
+    }
+
+    public static boolean isWhisk(ItemStack stack) {
+        return stack.getItem() == HMItems.general && stack.getItemDamage() == ItemGeneral.WHISK;
+    }
 }

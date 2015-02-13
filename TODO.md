@@ -1,5 +1,5 @@
 # inaps buildings and stuff
-- [ ] Harvest Goddess
+- [x] Harvest Goddess
 - [x] Animal Barn (Sells you Animals)
 - [x] Café 
 - [x] Seed Shop

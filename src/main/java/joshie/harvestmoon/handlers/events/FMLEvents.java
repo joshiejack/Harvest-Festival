@@ -32,7 +32,12 @@ public class FMLEvents {
         if (event.phase != Phase.START) return;
         World world = MinecraftServer.getServer().getEntityWorld();
         if (world.getWorldTime() % Calendar.TICKS_PER_DAY == 1) {
-            handler.getServer().getCalendar().newDay();
+            (new Thread("HM Calendar Thread") {
+                @Override
+                public void run() {
+                    handler.getServer().getCalendar().newDay();
+                }
+            }).start();
         }
     }
 }

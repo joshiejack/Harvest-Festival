@@ -39,6 +39,12 @@ public class ItemBlockGeneral extends ItemBlockBase {
                 return "chopping_board";
             case BlockGeneral.MIXING_BOWL:
                 return "mixing_bowl";
+            case BlockGeneral.NEST:
+                return "nest";
+            case BlockGeneral.TROUGH:
+                return "trough";
+            case BlockGeneral.DISPLAY:
+                return "display";
             default:
                 return "invalid";
         }

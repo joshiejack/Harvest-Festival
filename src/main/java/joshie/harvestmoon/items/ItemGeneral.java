@@ -40,7 +40,7 @@ public class ItemGeneral extends ItemHMMeta {
 
     @Override
     public int getMetaCount() {
-        return 23;
+        return 22;
     }
 
     @Override

@@ -47,6 +47,9 @@ public class BlockGeneral extends BlockHMBaseMeta {
     public static final int CHOPPING_BOARD = 10;
     public static final int MIXING_BOWL = 11;
     public static final int BAKING_GLASS = 12;
+    public static final int NEST = 13;
+    public static final int TROUGH = 14;
+    public static final int DISPLAY = 15;
 
     public BlockGeneral() {
         super(Material.piston);
@@ -236,7 +239,7 @@ public class BlockGeneral extends BlockHMBaseMeta {
 
     @Override
     public int getMetaCount() {
-        return 13;
+        return 16;
     }
 
     @SideOnly(Side.CLIENT)

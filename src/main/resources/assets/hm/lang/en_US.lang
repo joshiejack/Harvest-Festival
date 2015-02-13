@@ -6,9 +6,11 @@ hm.mode.false=Harvest Moon was set to hard mode!
 #Buildings
 hm.structures.pond=[SPAWN] Harvest Goddess Pond
 
-#Cheat Items
+#Cheat Items (Translators don't bother tranlating these, I just use them to help with dev)
 hm.cheat.coord.setter=[BuildingGen] Coordinate Setter
 hm.cheat.code.generator=[BuildingGen] Code Generator
+hm.cheat.render.generator=[RenderGen] Rotation Generator
+hm.cheat.meta.checker=[Helper] Meta Checker
 
 #Crops
 hm.crop.giant=Giant
@@ -56,6 +58,10 @@ hm.general.item.riceball=Riceball
 hm.general.item.knife=Knife
 hm.general.item.rolling.pin=Rolling Pin
 hm.general.item.whisk=Whisk
+hm.general.item.whisked.egg=Whisked Egg
+hm.general.item.potato.slices=Potato Slices
+hm.general.item.butter=Butter
+hm.general.item.salt=Salt
 
 #Meals
 hm.meal.level=Restores
@@ -65,6 +71,13 @@ hm.meal.fatigue=Fatigue
 hm.meal.fry.stir=Stir Fry
 hm.meal.rice.fried=Fried Rice
 hm.meal.pancakes.savoury=Savoury Pancake
+hm.meal.fries.french=French Fries
+hm.meal.popcorn=Popcorn
+hm.meal.cornflakes=Cornflakes
+hm.meal.egg.scrambled=Scrambled Eggs
+hm.meal.omelet=Omelette
+hm.meal.omelet.rice=Omurice
+
 
 #Sizeables
 hm.sizeable.format=%S %P
@@ -80,6 +93,7 @@ hm.sizeable.yoghurt=Yoghurt
 hm.sizeable.mayonnaise=Mayonnaise
 hm.sizeable.matsutake=Matsutake Mushroom
 hm.sizeable.toadstool=Toadstool
+hm.sizeable.shiitake=Shiitake Mushroom
 hm.sizeable.yarn=Yarn
 
 #Tools
@@ -149,6 +163,11 @@ hm.general.block.chest=Rural Chest
 hm.general.block.baking=Baking Tray
 hm.general.block.chopping.board=Chopping Board
 hm.general.block.mixing.bowl=Mixing Bowl
+hm.general.block.nest=Incubator
+hm.general.block.trough=Food Trough
+hm.general.block.display=Shelves
+
+hm.flowers.block.goddess=Goddess Flower
 
 hm.dirt.mine.floor=Mine Floor
 hm.stone.mine.wall=Mine Wall

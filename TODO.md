@@ -1,4 +1,4 @@
-# inaps buildings and stuff
+# Inap's Building Project:
 - [x] Harvest Goddess
 - [x] Animal Barn (Sells you Animals)
 - [x] Café 
@@ -25,7 +25,7 @@
 * For a certain amount of resources you can buy yourself each building, to assign a building, mark a spot (lead to fence, maybe?)
 
 
-# joshie stuff, feel to help with any!
+# Joshie's Coding Stuff, feel free to help with any!
 - [ ] Crop Rendering
 - [ ] Allow you to grow grass
 - [ ] Sheep and Cows will munch on grass to regain hunger
@@ -57,7 +57,7 @@
 - [ ] Add blurry vision when about to pass out from fatigue, Occasional headaches.
 - [ ] Re-texture animals to fit the Harvest Moon Game (e.g. cow)
 
-# Texturing of many things
+# Texturing Project:
 List of some of the things:
 //Crops: Item and Seed bag form.
 * Green Pepper

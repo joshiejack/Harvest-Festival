@@ -42,9 +42,8 @@ public class ItemSizedEgg extends ItemEgg implements IShippable, IRateable {
 
     @Override
     public long getSellValue(ItemStack stack) {
-        SizeableMeta meta = SizeableMeta.EGG;
         double quality = 1 + (getQuality(stack.getItemDamage()) * SELL_QUALITY_MODIFIER);
-        return (long) quality * meta.getSellValue(getSize(stack.getItemDamage()));
+        return (long) quality * SizeableMeta.EGG.getSellValue(getSize(stack.getItemDamage()));
     }
 
     @Override
@@ -60,16 +59,15 @@ public class ItemSizedEgg extends ItemEgg implements IShippable, IRateable {
 
     @Override
     public int getRating(ItemStack stack) {
-        int quality = SizeableHelper.getQuality(stack.getItemDamage());
-        return quality / 10;
+        return SizeableHelper.getQuality(stack.getItemDamage()) / 10;
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public IIcon getIconFromDamage(int damage) {
-        int meta = SizeableHelper.getSize(damage).ordinal() + (getType(damage) * 3);
-        if (meta < icons.length && icons[meta] != null) {
-            return icons[meta];
+        int size = SizeableHelper.getSize(damage).ordinal();
+        if (size < icons.length && icons[size] != null) {
+            return icons[size];
         } else return icons[0];
     }
 

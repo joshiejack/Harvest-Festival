@@ -14,58 +14,59 @@
 - [x] Clockmaker's House
 
  ## Building Stuff
- - [ ] Custom Loot Hooks
+ - [ ] Custom Loot Hooks -> Name of the Hook, (Item that is inside the Container in the schematic), [Content]
 
    ### Barn
-   - [ ] BarnPenFrame
+   - [ ] BarnPenFrame, (Lead), [Wheat, Carrot, Lead, Carrot on a Stick ; Animal Brush, Animal Medicine, Animal Food, Animal Treats]
 
    ### Blacksmith
-   - [ ] BlacksmithTowerFrame
-   - [ ] BlacksmithTowerChest
-   - [ ] BlacksmithTowerFurnace
+   - [ ] BlacksmithTowerFrame (Iron Sword) [Iron Tools]
+   - [ ] BlacksmithTowerChest (Iron Ingot) [Iron Ingot, Coal, Lava Bucket, Leather]
+   - [ ] BlacksmithTowerFurnace (Coal) [Coal, Charcoal]
 
    ### Church
-   - [ ] ChurchAltarFrame
+   - [ ] ChurchAltarFrame (Bottle o' Enchanting) [Book, Gold Nugget, Gold Ingot, Bottle o' Enchanting, Regeneration Potion, Glistering Melon]
 
    ### Fishing Hut
-   - [ ] FishingHutHouseFrame
-   - [ ] FishingHutEntryChest
+   - [ ] FishingHutHouseFrame (Raw Salmon) [Fishing Rod (If Mariculture is installed : Reed Fishing Rod), Leather Boots, Potion of Wather Breathing]
+   - [ ] FishingHutEntryChest (Fishing Rod) [All Fish Types, If Mariculture is installed : Bait, Cooked Fish]
 
    ### Poultry Farm
-   - [ ] PoultryFarmCornerFrame
-   - [ ] PoultryFarmCornerChest
+   - [ ] PoultryFarmCornerFrame (Wheat) [Wheat, Seeds]
+   - [ ] PoultryFarmCornerChest (Wheat Seed) [Chicken Treat, Chicken Feed, Eggs]
 
    ### Mining Hut
-   - [ ] MiningHutRightWingFrame
-   - [ ] MiningHutLeftWingChest
-   - [ ] MiningHutLeftWingFurnace
+   - [ ] MiningHutRightWingFrame (Iron Ore) [Mining Tools, Torches]
+   - [ ] MiningHutLeftWingChest (Stone) [Stone, Ores]
+   - [ ] MiningHutLeftWingFurnace (Charcoal) [Coal, Charcoal]
 
    ### Cafe
-   - [ ] CafeKitchenFrame
-   - [ ] CafeKitchenChest
-   - [ ] CafeKitchenFurnace
+   - [ ] CafeKitchenFrame (Mushroom Stew) [Mushroom Stew, Cooked Meat, Cake, Pumpkin Pie, Baked Potato, Bread]
+   - [ ] CafeKitchenChest (Chest) [Flour, Sugar, Apple, Bowl, Cocoa Beans]
+   - [ ] CafeKitchenFurnace (Stick) [Coal, Charcoal]
 
    ### Town Hall
-   - [ ] TownHallHallFrame
-   - [ ] TownHallMasterBedroomMayorFrame
-   - [ ] TownHallMasterBedroomPriestFrame
-   - [ ] TownHallBedroomChildFrame
-   - [ ] TownHallBedroomTeenagerFrame
-   - [ ] TownHallPassageChest
-   - [ ] TownHallBedroomTeenagerChest
+   - [ ] TownHallHallFrame (Paper) [Sign, Paper]
+   - [ ] TownHallMasterBedroomPriestFrame (Book and Quill) [Book and Quill, Book, Ink, Emerald]
+   - [ ] TownHallMasterBedroomMayorFrame (Glistering Melon) [Strength Potion, idk joshie - you give ideas!]
+   - [ ] TownHallBedroomChildFrame (Carrot) [Sugar, Saddle, Carrot, Low Horse Armour]
+   - [ ] TownHallBedroomTeenagerFrame (Book) [Book, Paper, Ink]
+   - [ ] TownHallPassageChest (Cobweb) [Planks, Carpet, Cobweb, Leaves]
+   - [ ] TownHallBedroomTeenagerChest (Feather) [Fruits]
 
    ### Market
-   - [ ] MarketEntryFrame
-   - [ ] MarketBedroomFrame
-   - [ ] MarketBedroomChest
-   - [ ] MarketBasementChest
+   - [ ] MarketEntryFrame (Item Frame) [Joshie, enter what can be sold!]
+   - [ ] MarketBedroomFrame (Pink Tulip) [Book, Paper, Ink]
+   - [ ] MarketBedroomChest (Dandelion) [Food]
+   - [ ] MarketBasementChest (Mossy Cobblestone) [Storage : joshie, you decide!]
 
    ### Tiberius' House
-   - [ ] TiberiusCraftingFrame
-   - [ ] TiberiusBedroomFrame
+   - [ ] TiberiusCraftingFrame (Crafting Table) [Redstone, Gold Nugget, Gold Ingot, Clock]
+   - [ ] TiberiusBedroomChest (Painting) [Food]
 
  - [ ] Varieties of Houses/Schematics
  - [ ] Lifting them up the ground, clearing away any ground
+ - [ ] Calculate a schematic's cost
 
 # How to get the village
 * Build a fitting house

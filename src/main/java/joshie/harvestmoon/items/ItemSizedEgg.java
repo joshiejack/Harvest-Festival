@@ -6,7 +6,9 @@ import static joshie.harvestmoon.helpers.SizeableHelper.getType;
 
 import java.util.List;
 
+import joshie.harvestmoon.HarvestTab;
 import joshie.harvestmoon.helpers.SizeableHelper;
+import joshie.harvestmoon.lib.HMModInfo;
 import joshie.harvestmoon.lib.SizeableMeta;
 import joshie.harvestmoon.lib.SizeableMeta.Size;
 import joshie.harvestmoon.util.IRateable;
@@ -14,24 +16,33 @@ import joshie.harvestmoon.util.IShippable;
 import joshie.harvestmoon.util.Translate;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemEgg;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.World;
 
 import org.apache.commons.lang3.StringUtils;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemSized extends ItemHMMeta implements IShippable, IRateable {
+public class ItemSizedEgg extends ItemEgg implements IShippable, IRateable {
+    private IIcon[] icons;
+
+    public ItemSizedEgg() {
+        setCreativeTab(HarvestTab.hm);
+    }
+
     @Override
-    public int getMetaCount() {
-        return SizeableMeta.values().length;
+    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
+        return stack; //Do Sweet! nothing No cheaty eggs!
     }
 
     @Override
     public long getSellValue(ItemStack stack) {
-        SizeableMeta meta = SizeableMeta.values()[getType(stack.getItemDamage())];
+        SizeableMeta meta = SizeableMeta.EGG;
         double quality = 1 + (getQuality(stack.getItemDamage()) * SELL_QUALITY_MODIFIER);
         return (long) quality * meta.getSellValue(getSize(stack.getItemDamage()));
     }
@@ -39,11 +50,9 @@ public class ItemSized extends ItemHMMeta implements IShippable, IRateable {
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
         Size sizeof = getSize(stack.getItemDamage());
-        int sizeable = getType(stack.getItemDamage());
-        SizeableMeta sized = SizeableMeta.values()[sizeable < SizeableMeta.values().length ? sizeable : 0];
         String text = Translate.translate("sizeable.format");
         String size = Translate.translate("sizeable." + sizeof.name().toLowerCase());
-        String name = Translate.translate("sizeable." + sized.name().toLowerCase());
+        String name = Translate.translate("sizeable.egg");
         text = StringUtils.replace(text, "%S", size);
         text = StringUtils.replace(text, "%P", name);
         return text;
@@ -64,7 +73,6 @@ public class ItemSized extends ItemHMMeta implements IShippable, IRateable {
         } else return icons[0];
     }
 
-    @Override
     public String getName(ItemStack stack) {
         SizeableMeta meta = SizeableMeta.values()[getType(stack.getItemDamage())];
         return meta.name().toLowerCase();
@@ -73,27 +81,19 @@ public class ItemSized extends ItemHMMeta implements IShippable, IRateable {
     @SideOnly(Side.CLIENT)
     @Override
     public void registerIcons(IIconRegister register) {
-        String path = this.path != null ? this.path : mod + ":";
-        icons = new IIcon[getMetaCount() * 3];
-        for (int i = 0; i < icons.length; i += 3) {
-            icons[i] = register.registerIcon(path + getName(new ItemStack(this, 1, i / 3)) + "_small");
-            icons[i + 1] = register.registerIcon(path + getName(new ItemStack(this, 1, i / 3)) + "_medium");
-            icons[i + 2] = register.registerIcon(path + getName(new ItemStack(this, 1, i / 3)) + "_large");
-        }
+        icons = new IIcon[3];
+        icons[0] = register.registerIcon(HMModInfo.MODPATH + ":egg_small");
+        icons[1] = register.registerIcon(HMModInfo.MODPATH + ":egg_medium");
+        icons[2] = register.registerIcon(HMModInfo.MODPATH + ":egg_large");
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public void getSubItems(Item item, CreativeTabs tab, List list) {
-        for (int i = 0; i < getMetaCount(); i++) {
-            for (int j = 0; j < 100; j += 100) {
-                SizeableMeta meta = SizeableHelper.getSizeableFromStack(new ItemStack(item, 1, (j * 100) + i));
-                if(meta != SizeableMeta.EGG) {
-                    list.add(new ItemStack(item, 1, (j * 100) + i));
-                    list.add(new ItemStack(item, 1, 10000 + (j * 100) + i));
-                    list.add(new ItemStack(item, 1, 20000 + (j * 100) + i));
-                }
-            }
+        for (int j = 0; j < 100; j += 100) {
+            list.add(new ItemStack(item, 1, (j * 100)));
+            list.add(new ItemStack(item, 1, 10000 + (j * 100)));
+            list.add(new ItemStack(item, 1, 20000 + (j * 100)));
         }
     }
 }

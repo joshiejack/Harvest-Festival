@@ -15,28 +15,36 @@
 
  ## Building Stuff
  - [ ] Custom Loot Hooks
+
    ### Barn
    - [ ] BarnPenFrame
+
    ### Blacksmith
    - [ ] BlacksmithTowerFrame
    - [ ] BlacksmithTowerChest
    - [ ] BlacksmithTowerFurnace
+
    ### Church
    - [ ] ChurchAltarFrame
+
    ### Fishing Hut
    - [ ] FishingHutHouseFrame
    - [ ] FishingHutEntryChest
+
    ### Poultry Farm
    - [ ] PoultryFarmCornerFrame
    - [ ] PoultryFarmCornerChest
+
    ### Mining Hut
    - [ ] MiningHutRightWingFrame
    - [ ] MiningHutLeftWingChest
    - [ ] MiningHutLeftWingFurnace
+
    ### Cafe
    - [ ] CafeKitchenFrame
    - [ ] CafeKitchenChest
    - [ ] CafeKitchenFurnace
+
    ### Town Hall
    - [ ] TownHallHallFrame
    - [ ] TownHallMasterBedroomMayorFrame
@@ -45,14 +53,17 @@
    - [ ] TownHallBedroomTeenagerFrame
    - [ ] TownHallPassageChest
    - [ ] TownHallBedroomTeenagerChest
+
    ### Market
    - [ ] MarketEntryFrame
    - [ ] MarketBedroomFrame
    - [ ] MarketBedroomChest
    - [ ] MarketBasementChest
+
    ### Tiberius' House
    - [ ] TiberiusCraftingFrame
    - [ ] TiberiusBedroomFrame
+
  - [ ] Varieties of Houses/Schematics
  - [ ] Lifting them up the ground, clearing away any ground
 

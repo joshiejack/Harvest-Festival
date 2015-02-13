@@ -64,8 +64,8 @@ public class PacketSyncCooking extends AbstractPacketOrientation implements IMes
         hasResult = buf.readBoolean();
         iIngredient = buf.readInt();
         iSeasoning = buf.readInt();
-        ingredients = new ArrayList();
-        seasonings = new ArrayList();
+        ingredients = new ArrayList(20);
+        seasonings = new ArrayList(20);
         if (iIngredient > 0) {
             for (int i = 0; i < iIngredient; i++) {
                 ingredients.add(ByteBufUtils.readItemStack(buf));

@@ -23,7 +23,7 @@ public class NPC {
         CHILD, ADULT, ELDER;
     }
 
-    protected ArrayList<String> greetings = new ArrayList();
+    protected ArrayList<String> greetings = new ArrayList(32);
     protected String name;
     protected int last;
 

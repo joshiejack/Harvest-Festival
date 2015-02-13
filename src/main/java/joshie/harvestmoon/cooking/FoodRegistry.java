@@ -15,19 +15,19 @@ import net.minecraftforge.oredict.OreDictionary;
 public class FoodRegistry {
     private static HashMap<String, ArrayList<ICookingComponent>> equivalents = new HashMap();
     private static HashMap<SafeStack, ArrayList<ICookingComponent>> registry = new HashMap();
-    private static final ArrayList<Recipe> recipes = new ArrayList();
+    private static final ArrayList<Recipe> recipes = new ArrayList(250);
 
     public static void addRecipe(Recipe recipe) {
         recipes.add(recipe);
     }
 
     public static ItemStack getResult(Utensil utensil, ArrayList<ItemStack> iStacks, ArrayList<ItemStack> sStacks) {
-        ArrayList<Ingredient> ingredients = new ArrayList();
+        ArrayList<Ingredient> ingredients = new ArrayList(20);
         for (ItemStack stack : iStacks) {
             ingredients.addAll(getIngredients(stack));
         }
 
-        ArrayList<Seasoning> seasonings = new ArrayList();
+        ArrayList<Seasoning> seasonings = new ArrayList(20);
         for (ItemStack stack : sStacks) {
             seasonings.addAll(getSeasonings(stack));
         }
@@ -60,7 +60,7 @@ public class FoodRegistry {
 
     private static ArrayList<ICookingComponent> getComponents(SafeStack safe) {
         ArrayList<ICookingComponent> components = FoodRegistry.registry.get(safe);
-        return components == null ? new ArrayList() : components;
+        return components == null ? new ArrayList(20) : components;
     }
 
     public static void register(SafeStack safe, ICookingComponent component) {
@@ -86,7 +86,7 @@ public class FoodRegistry {
     public static ArrayList<Ingredient> getIngredients(ItemStack stack) {
         ArrayList<ICookingComponent> components = getCookingComponents(stack);
         if (components == null) return null;
-        ArrayList<Ingredient> ingredients = new ArrayList();
+        ArrayList<Ingredient> ingredients = new ArrayList(20);
         for (ICookingComponent c : components) {
             if (c instanceof Ingredient) {
                 ingredients.add((Ingredient) c);
@@ -99,7 +99,7 @@ public class FoodRegistry {
     public static ArrayList<Seasoning> getSeasonings(ItemStack stack) {
         ArrayList<ICookingComponent> components = getCookingComponents(stack);
         if (components == null) return null;
-        ArrayList<Seasoning> seasonings = new ArrayList();
+        ArrayList<Seasoning> seasonings = new ArrayList(20);
         for (ICookingComponent c : components) {
             if (c instanceof Seasoning) {
                 seasonings.add((Seasoning) c);

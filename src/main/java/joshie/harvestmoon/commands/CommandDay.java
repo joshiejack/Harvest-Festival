@@ -1,11 +1,25 @@
 package joshie.harvestmoon.commands;
 
 import static joshie.harvestmoon.HarvestMoon.handler;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import joshie.harvestmoon.config.Calendar;
 import joshie.harvestmoon.network.PacketHandler;
 import joshie.harvestmoon.network.PacketSetCalendar;
 import net.minecraft.command.ICommandSender;
 
 public class CommandDay extends CommandBase {
+    private static List days;
+
+    static {
+        days = new ArrayList(Calendar.DAYS_PER_SEASON);
+        for (int i = 1; i <= Calendar.DAYS_PER_SEASON; i++) {
+            days.add("" + i);
+        }
+    }
+
     @Override
     public String getCommandName() {
         return "day";
@@ -22,5 +36,10 @@ public class CommandDay extends CommandBase {
         try {
             PacketHandler.sendToServer(new PacketSetCalendar(handler.getClient().getCalendar().getDate().setDay(Integer.parseInt(parameters[0]))));
         } catch (NumberFormatException e) {}
+    }
+
+    @Override
+    public List addTabCompletionOptions(ICommandSender sender, String[] parameters) {
+        return days;
     }
 }

@@ -24,12 +24,7 @@ public abstract class CommandBase implements ICommand {
 
     @Override
     public List addTabCompletionOptions(ICommandSender sender, String[] parameters) {
-        ArrayList<String> string = new ArrayList();
-        for(int i = 0; i < Byte.MAX_VALUE; i++) {
-            string.add("" + i);
-        }
-
-        return string;
+        return new ArrayList();
     }
 
     @Override

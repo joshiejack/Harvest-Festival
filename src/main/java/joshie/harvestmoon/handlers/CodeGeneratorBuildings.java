@@ -86,7 +86,7 @@ public class CodeGeneratorBuildings {
             }
 
             ArrayList<String> build = new ArrayList();
-            build.add("list = new ArrayList();");
+            build.add("list = new ArrayList( "+ i + " );");
             build.addAll(ret);
 
             try {

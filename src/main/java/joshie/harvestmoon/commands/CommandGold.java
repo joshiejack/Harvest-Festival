@@ -1,10 +1,14 @@
 package joshie.harvestmoon.commands;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import joshie.harvestmoon.config.Calendar;
 import joshie.harvestmoon.network.PacketGoldCommand;
 import joshie.harvestmoon.network.PacketHandler;
 import net.minecraft.command.ICommandSender;
 
-public class CommandGold extends CommandBase {
+public class CommandGold extends CommandBase {    
     @Override
     public String getCommandName() {
         return "gold";

@@ -3,7 +3,6 @@ package joshie.harvestmoon.player;
 import static joshie.harvestmoon.HarvestMoon.handler;
 import static joshie.harvestmoon.network.PacketHandler.sendToClient;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 
 import joshie.harvestmoon.init.HMQuests;
@@ -75,8 +74,6 @@ public class QuestStats implements IData {
     }
 
     public void syncQuests() {
-        //Build a list of all available quests
-        ArrayList<String> available = new ArrayList();
         for (Quest quest : HMQuests.getQuests().values()) {
             syncQuest(quest);
         }

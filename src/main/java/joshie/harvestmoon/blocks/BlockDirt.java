@@ -31,7 +31,7 @@ public class BlockDirt extends BlockHMBaseMeta {
     private static final Random rand = new Random();
 
     public static ArrayList<Integer> getMeta(int level) {
-        ArrayList<Integer> metas = new ArrayList();
+        ArrayList<Integer> metas = new ArrayList(16);
         metas.add(ALL_FLOORS);
         if (level % 5 == 0) metas.add(MULTIPLE_OF_5);
         if (level % 10 == 0) metas.add(MULTIPLE_OF_10);

@@ -13,7 +13,7 @@ import org.apache.commons.lang3.text.WordUtils;
 
 
 public class Crop {
-    public static final ArrayList<Crop> crops = new ArrayList();
+    public static final ArrayList<Crop> crops = new ArrayList(30);
         
     //CropData
     protected String unlocalized;

@@ -7,7 +7,7 @@ import joshie.harvestmoon.buildings.placeable.Placeable.PlacementStage;
 import net.minecraft.world.World;
 
 public abstract class Building {
-    public static final ArrayList<Building> buildings = new ArrayList();
+    public static final ArrayList<Building> buildings = new ArrayList(50);
 
     //List of all placeable elements
     protected ArrayList<Placeable> list;

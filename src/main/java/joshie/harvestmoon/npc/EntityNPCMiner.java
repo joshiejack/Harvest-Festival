@@ -19,7 +19,7 @@ public class EntityNPCMiner extends EntityNPC {
     private int mineY;
     private int mineZ;
     private int mineLevel;
-    private ArrayList<PlaceableBlock> instructions = new ArrayList();
+    private ArrayList<PlaceableBlock> instructions = new ArrayList(500);
     private int index;
 
     public EntityNPCMiner(EntityNPCMiner entity) {
@@ -56,7 +56,7 @@ public class EntityNPCMiner extends EntityNPC {
         boolean longX = world.rand.nextBoolean();
         int mineXSize = world.rand.nextInt(longX ? 9 : 5) + 2;
         int mineZSize = world.rand.nextInt(longX ? 5 : 9) + 2;
-        instructions = new ArrayList();
+        instructions = new ArrayList(500);
         index = 0;
         /* Build the list */
 
@@ -117,7 +117,7 @@ public class EntityNPCMiner extends EntityNPC {
                 //LETS BUILD
                 if (index >= instructions.size()) {
                     isMining = false;
-                    instructions = new ArrayList();
+                    instructions = new ArrayList(500);
                     HarvestMoon.handler.getServer().getMineTracker().newDay();
                     HarvestMoon.handler.getServer().markDirty();
                 } else {

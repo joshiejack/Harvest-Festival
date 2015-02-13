@@ -11,6 +11,11 @@
 - [x] Miners Hut 
 - [x] Miners Hill
 - [x] Poultry Farm
+- [x] Clockmaker's House
+ ## Building Stuff
+ - [ ] ChestGenHooks for Item Frames
+ - [ ] Varieties of Houses/Schematics
+ - [ ] Lifting them up the ground, clearing away any ground
 
 # How to get the village
 * Build a fitting house
@@ -28,7 +33,6 @@
 - [ ] NPC Builder Quests for Materials and will build you things. Hands you a plot marker to place roughly where you want the building built.
 - [x] Spawning the Harvest Goddess
 - [ ] Spawning the NPC Builder
-- [ ] ChestGenHooks for Item Frames
 - [ ] Egg Nest, Miracle Potions for Breeding
 - [ ] Shipping Bin, Oven, Mixer, Knife, Rolling Pin Renders
 - [x] Add Knife, Rolling Pin

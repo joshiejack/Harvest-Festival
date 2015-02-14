@@ -12,8 +12,8 @@
 - [x] Miners Hill
 - [x] Poultry Farm
 - [x] Clockmaker's House
-- [ ] Builders Hut
-- [ ] Coat them in bedrock!
+- [x] Carpenter's House
+- [ ] Use Schematic Meta-Blocks to define the inside/outside
 
  ## Building Stuff
  - [ ] Custom Loot Hooks -> Name of the Hook, (Item that is inside the Container in the schematic), [Content]
@@ -62,9 +62,14 @@
    - [ ] MarketBedroomChest (Dandelion) [Food]
    - [ ] MarketBasementChest (Mossy Cobblestone) [Storage : joshie, you decide!]
 
-   ### Tiberius' House
-   - [ ] TiberiusCraftingFrame (Crafting Table) [Redstone, Gold Nugget, Gold Ingot, Clock]
-   - [ ] TiberiusBedroomChest (Painting) [Food]
+   ### Clockworker's House
+   - [ ] ClockworkerCraftingFrame (Crafting Table) [Redstone, Gold Nugget, Gold Ingot, Clock]
+   - [ ] ClockworkerBedroomChest (Painting) [Food]
+   
+   ### Carpenter's House
+   - [ ] CarpenterEntryFrame (Stone Axe) [Redstone, Gold Nugget, Gold Ingot, Clock]
+   - [ ] CarpenterYulifChest (Spruce Sapling) [Wood, Axe, Food]
+   - [ ] CarpenterJadeChest (Poppy) [Flowers, Seeds, Vegetation, Food]
 
  - [ ] Varieties of Houses/Schematics
  - [x] Lifting them up the ground, clearing away any ground

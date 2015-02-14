@@ -65,8 +65,8 @@
    - [ ] TiberiusBedroomChest (Painting) [Food]
 
  - [ ] Varieties of Houses/Schematics
- - [ ] Lifting them up the ground, clearing away any ground
- - [ ] Calculate a schematic's cost
+ - [x] Lifting them up the ground, clearing away any ground
+ - [x] Calculate a schematic's cost
 
 # How to get the village
 * Build a fitting house

@@ -12,6 +12,8 @@
 - [x] Miners Hill
 - [x] Poultry Farm
 - [x] Clockmaker's House
+- [ ] Builders Hut
+- [ ] Coat them in bedrock!
 
  ## Building Stuff
  - [ ] Custom Loot Hooks -> Name of the Hook, (Item that is inside the Container in the schematic), [Content]

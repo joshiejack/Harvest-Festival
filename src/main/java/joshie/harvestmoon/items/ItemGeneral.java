@@ -139,8 +139,9 @@ public class ItemGeneral extends ItemHMMeta {
                 feed(player, animal);
             } else if (metadata == MIRACLE && !(living instanceof EntityChicken)) {
                 if (!living.worldObj.isRemote) {
-                    AnimalHelper.impregnate(player, animal);
-                    stack.stackSize--;
+                    if (AnimalHelper.impregnate(player, animal)) {
+                        stack.stackSize--;
+                    }
                 }
             }
         }

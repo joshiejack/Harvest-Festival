@@ -45,6 +45,7 @@
 - [x] Spawning the Harvest Goddess
 - [x] Add Ores
 - [x] Add Mining NPC
+
 ### Tediousnessess
 - [ ] More Meals and Recipes
 - [ ] Register my items/blocks as gift types

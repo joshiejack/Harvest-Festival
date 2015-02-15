@@ -16,7 +16,6 @@ import net.minecraft.item.ItemStack;
 public class GiftsInap extends Gifts {
     @Override
     public GiftQuality getValue(ItemStack stack) {
-        //If we are strength two potion!
         if (stack.getItem() == Items.melon) {
             return AWESOME;
         }

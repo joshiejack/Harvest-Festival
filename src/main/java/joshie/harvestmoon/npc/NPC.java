@@ -47,7 +47,7 @@ public class NPC {
 
         String gift = StringUtils.capitalize(name);
         try {
-            gifts = (Gifts) Class.forName("Gifts" + gift).newInstance();
+            gifts = (Gifts) Class.forName("joshie.harvestmoon.npc.gift.Gifts" + gift).newInstance();
         } catch (Exception e) {}
 
         for (int i = 0; i < 6; i++) {
@@ -56,7 +56,7 @@ public class NPC {
             if (!translated.equals(key)) {
                 thanks.add(translated);
             } else {
-                key = "hm.nc.generic" + age.name() + ".gift." + GiftQuality.values()[i].name().toLowerCase();
+                key = "hm.npc.generic." + age.name().toLowerCase() + ".gift." + GiftQuality.values()[i].name().toLowerCase();
                 translated = Text.localize(key);
                 thanks.add(translated);
             }

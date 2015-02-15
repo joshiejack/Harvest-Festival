@@ -11,6 +11,8 @@ import java.util.HashMap;
 
 import joshie.harvestmoon.npc.NPC;
 import joshie.harvestmoon.npc.NPCGoddess;
+import joshie.harvestmoon.npc.gift.GiftsJim;
+import joshie.harvestmoon.npc.gift.GiftsLiara;
 
 public class HMNPCs {
     private static HashMap<String, NPC> npcs = new HashMap();

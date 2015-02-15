@@ -9,6 +9,7 @@ import joshie.harvestmoon.npc.EntityNPC;
 import joshie.harvestmoon.quests.Quest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.item.ItemStack;
 
 public class ContainerNPCGift extends ContainerBase {
     //The Fridge CAN be null
@@ -30,11 +31,11 @@ public class ContainerNPCGift extends ContainerBase {
         }
 
         if (!player.worldObj.isRemote) {
-            handler.getServer().getPlayerData(player).setTalkedTo(npc.getNPC());
+            ItemStack gift = player.getCurrentEquippedItem();
+            handler.getServer().getPlayerData(player).setGifted(npc.getNPC(), npc.getNPC().getGiftValue(gift).getRelationPoints());
+            player.inventory.decrStackSize(player.inventory.currentItem, 1);
         }
-        
-        System.out.println("CALLED THE CONTAINER NPC GIFT EVEN THOUGH CLIENTSIDE SPAWNED A DIFFERENT ONE?");
-        
+
         npc.getNPC().onContainerClosed(player, npc);
     }
 }

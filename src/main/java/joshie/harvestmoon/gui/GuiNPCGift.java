@@ -1,18 +1,18 @@
 package joshie.harvestmoon.gui;
 
-import joshie.harvestmoon.helpers.GiftingHelper;
 import joshie.harvestmoon.npc.EntityNPC;
+import joshie.harvestmoon.npc.gift.Gifts.GiftQuality;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
 public class GuiNPCGift extends GuiNPC {
     private ItemStack gift;
-    private int value;
+    private GiftQuality value;
 
     public GuiNPCGift(EntityNPC npc, EntityPlayer player) {
         super(npc, player);
         gift = player.getCurrentEquippedItem();
-        value = GiftingHelper.getValue(npc.getNPC(), player, gift);
+        value = npc.getNPC().getGiftValue(gift);
     }
 
     @Override

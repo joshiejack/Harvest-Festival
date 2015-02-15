@@ -1,6 +1,5 @@
 package joshie.harvestmoon.npc;
 
-import static joshie.harvestmoon.HarvestMoon.handler;
 import static joshie.harvestmoon.npc.NPC.Age.CHILD;
 import static joshie.harvestmoon.npc.NPC.Gender.FEMALE;
 import static joshie.harvestmoon.npc.NPC.Gender.MALE;
@@ -9,11 +8,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import joshie.harvestmoon.handlers.GuiHandler;
+import joshie.harvestmoon.npc.gift.Gifts;
+import joshie.harvestmoon.npc.gift.Gifts.GiftQuality;
 import joshie.harvestmoon.shops.ShopInventory;
 import joshie.harvestmoon.util.Translate;
 import joshie.harvestmoon.util.generic.Text;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
+import org.apache.commons.lang3.StringUtils;
 
 public class NPC {
     public static enum Gender {
@@ -31,6 +35,7 @@ public class NPC {
 
     private Age age;
     private Gender gender;
+    private Gifts gifts;
     private boolean isBuilder;
     private boolean isMiner;
     private ShopInventory shop;
@@ -40,13 +45,18 @@ public class NPC {
         this.gender = gender;
         this.age = age;
 
+        String gift = StringUtils.capitalize(name);
+        try {
+            gifts = (Gifts) Class.forName("Gifts" + gift).newInstance();
+        } catch (Exception e) {}
+
         for (int i = 0; i < 6; i++) {
-            String key = "hm.npc." + name + ".gift." + Thanks.values()[i].name().toLowerCase();
+            String key = "hm.npc." + name + ".gift." + GiftQuality.values()[i].name().toLowerCase();
             String translated = Text.localize(key);
             if (!translated.equals(key)) {
                 thanks.add(translated);
             } else {
-                key = "hm.nc.generic" + age.name() + ".gift." + Thanks.values()[i].name().toLowerCase();
+                key = "hm.nc.generic" + age.name() + ".gift." + GiftQuality.values()[i].name().toLowerCase();
                 translated = Text.localize(key);
                 thanks.add(translated);
             }
@@ -163,9 +173,12 @@ public class NPC {
         return greetings.get(last);
     }
 
-    public String getThanks(int value) {
-        Thanks thanks = Thanks.get(value);
-        return null;
+    public GiftQuality getGiftValue(ItemStack stack) {
+        return gifts.getValue(stack);
+    }
+
+    public String getThanks(GiftQuality value) {
+        return thanks.get(value.ordinal());
     }
 
     public boolean respawns() {
@@ -187,27 +200,5 @@ public class NPC {
     @Override
     public int hashCode() {
         return name.hashCode();
-    }
-
-    private static enum Thanks {
-        AWESOME(800, 1000), GOOD(500, 800), DECENT(300, 500), DISLIKE(-500, 300), BAD(-800, -500), TERRIBLE(-1000, -800);
-
-        private final int min;
-        private final int max;
-
-        private Thanks(int min, int max) {
-            this.min = min;
-            this.max = max;
-        }
-
-        public static Thanks get(int value) {
-            for (Thanks thanks : Thanks.values()) {
-                if (value >= thanks.min && value < thanks.max) {
-                    return thanks;
-                }
-            }
-
-            return DECENT;
-        }
     }
 }

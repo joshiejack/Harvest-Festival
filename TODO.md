@@ -19,8 +19,8 @@
 - [x] Calculate a schematic's cost
 - 
 # Joshie's Coding Stuff, feel free to help with any!
-### Coding
-##Features
+## Coding
+###Features
 - [ ] Grass Crop
 - [ ] Cows and Sheep eat Grass automatically
 - [ ] Trough, Autofeeds surrounding Cows and Sheep
@@ -45,7 +45,7 @@
 - [x] Spawning the Harvest Goddess
 - [x] Add Ores
 - [x] Add Mining NPC
-## Tediousnessess
+### Tediousnessess
 - [ ] More Meals and Recipes
 - [ ] Register my items/blocks as gift types
 - [ ] 5 Million configs

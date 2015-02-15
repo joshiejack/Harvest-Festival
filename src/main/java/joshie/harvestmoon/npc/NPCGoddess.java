@@ -1,10 +1,12 @@
 package joshie.harvestmoon.npc;
 
+import joshie.harvestmoon.calendar.CalendarDate;
+import joshie.harvestmoon.calendar.Season;
 import net.minecraft.entity.player.EntityPlayer;
 
 public class NPCGoddess extends NPC {
     public NPCGoddess(String name, Gender gender, Age age) {
-        super(name, gender, age);
+        super(name, gender, age, new CalendarDate(8, Season.SPRING, 1));
     }
 
     @Override

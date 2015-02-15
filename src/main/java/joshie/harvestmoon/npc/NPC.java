@@ -7,6 +7,7 @@ import static joshie.harvestmoon.npc.NPC.Gender.MALE;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import joshie.harvestmoon.calendar.CalendarDate;
 import joshie.harvestmoon.handlers.GuiHandler;
 import joshie.harvestmoon.npc.gift.Gifts;
 import joshie.harvestmoon.npc.gift.Gifts.GiftQuality;
@@ -39,8 +40,9 @@ public class NPC {
     private boolean isBuilder;
     private boolean isMiner;
     private ShopInventory shop;
+    private CalendarDate birthday;
 
-    public NPC(String name, Gender gender, Age age) {
+    public NPC(String name, Gender gender, Age age, CalendarDate birthday) {
         this.name = name;
         this.gender = gender;
         this.age = age;

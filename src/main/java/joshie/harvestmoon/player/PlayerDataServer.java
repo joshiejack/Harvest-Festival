@@ -1,6 +1,6 @@
 package joshie.harvestmoon.player;
 
-import static joshie.harvestmoon.HarvestMoon.handler;
+import static joshie.harvestmoon.helpers.ServerHelper.markDirty;
 import static joshie.harvestmoon.network.PacketHandler.sendToClient;
 
 import java.util.UUID;
@@ -37,7 +37,7 @@ public class PlayerDataServer implements IData {
         playerStats = new PlayerStats(this);
         trackingStats = new TrackingStats(this);
     }
-    
+
     public PlayerDataServer(EntityPlayerMP player) {
         this.player = player;
         this.uuid = player.getPersistentID();
@@ -50,7 +50,7 @@ public class PlayerDataServer implements IData {
 
     //Pass the world that this player is currently in
     public EntityPlayerMP getAndCreatePlayer() {
-        if(player == null) {
+        if (player == null) {
             player = EntityHelper.getPlayerFromUUID(uuid);
         }
 
@@ -63,18 +63,18 @@ public class PlayerDataServer implements IData {
         playerStats.addGold(gold);
         sendToClient(new PacketSyncGold(playerStats.getGold()), getAndCreatePlayer());
         relationStats.newDay();
-        handler.getServer().markDirty();
+        markDirty();
     }
 
     public void setTalkedTo(EntityLivingBase living) {
         relationStats.setTalkedTo(living);
     }
-    
+
     //Sets this player as talked to
     public void setTalkedTo(NPC npc) {
         relationStats.setTalkedTo(npc);
     }
-    
+
     //Sets this player as gifted
     public void setGifted(NPC npc, int value) {
         relationStats.setGifted(npc, value);
@@ -112,7 +112,7 @@ public class PlayerDataServer implements IData {
 
     public boolean addForShipping(ItemStack stack) {
         boolean ret = shippingStats.addForShipping(stack);
-        handler.getServer().markDirty();
+        markDirty();
         return ret;
     }
 
@@ -122,7 +122,7 @@ public class PlayerDataServer implements IData {
 
     public void setBirthday() {
         if (playerStats.setBirthday()) {
-            handler.getServer().markDirty();
+            markDirty();
         }
     }
 
@@ -136,7 +136,7 @@ public class PlayerDataServer implements IData {
 
     public void affectStats(double stamina, double fatigue) {
         playerStats.affectStats(stamina, fatigue);
-        handler.getServer().markDirty();
+        markDirty();
     }
 
     public void syncPlayerStats() {
@@ -147,12 +147,12 @@ public class PlayerDataServer implements IData {
 
     public void addGold(long gold) {
         playerStats.addGold(gold);
-        handler.getServer().markDirty();
+        markDirty();
     }
-    
+
     public void setGold(long gold) {
         playerStats.setGold(gold);
-        handler.getServer().markDirty();
+        markDirty();
     }
 
     public long getGold() {
@@ -161,12 +161,12 @@ public class PlayerDataServer implements IData {
 
     public void addSold(SellStack stack) {
         trackingStats.addSold(stack);
-        handler.getServer().markDirty();
+        markDirty();
     }
 
     public void onHarvested(CropData data) {
         trackingStats.onHarvested(data);
-        handler.getServer().markDirty();
+        markDirty();
     }
 
     public QuestStats getQuests() {

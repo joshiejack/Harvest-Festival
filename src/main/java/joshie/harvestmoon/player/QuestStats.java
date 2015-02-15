@@ -1,6 +1,6 @@
 package joshie.harvestmoon.player;
 
-import static joshie.harvestmoon.HarvestMoon.handler;
+import static joshie.harvestmoon.helpers.ServerHelper.markDirty;
 import static joshie.harvestmoon.network.PacketHandler.sendToClient;
 
 import java.util.HashSet;
@@ -48,7 +48,7 @@ public class QuestStats implements IData {
                 current.add(quest);
                 syncQuest(q);
             } catch (Exception e) {}
-            
+
             return true;
         } else return false;
     }
@@ -59,7 +59,7 @@ public class QuestStats implements IData {
             q.setStage(stage);
         }
 
-        handler.getServer().markDirty();
+        markDirty();
     }
 
     //Quests should always REMOVE from the current quests, and add to the finished quests THEMSELVES
@@ -82,21 +82,21 @@ public class QuestStats implements IData {
     public void syncQuest(Quest quest) {
         //Check if the quest can be complete
         //If the quest isn't finished, do stuff
-        if(!finished.contains(quest)) {
+        if (!finished.contains(quest)) {
             //If the quest is in the currently active list, mark it as current
-            if(current.contains(quest)) {
+            if (current.contains(quest)) {
                 //Send a packet, fetching the actual quest details that are saved, so we're update to date on the info
                 sendToClient(new PacketQuestSetCurrent(getAQuest(quest)), master.getAndCreatePlayer());
             } else {
                 //Now the quests aren't in the current list has been determined, let's determine whether this quest is valid for being collected
                 //If the quest can be started, we should send it to client to be added to the available list
-                if(quest.canStart(master.getAndCreatePlayer(), current, finished)) {
+                if (quest.canStart(master.getAndCreatePlayer(), current, finished)) {
                     sendToClient(new PacketQuestSetAvailable(quest), master.getAndCreatePlayer());
                 }
             }
         }
 
-        handler.getServer().markDirty();
+        markDirty();
     }
 
     @Override

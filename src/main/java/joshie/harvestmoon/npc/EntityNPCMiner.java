@@ -1,10 +1,12 @@
 package joshie.harvestmoon.npc;
 
+import static joshie.harvestmoon.helpers.ServerHelper.markDirty;
+
 import java.util.ArrayList;
 
-import joshie.harvestmoon.HarvestMoon;
 import joshie.harvestmoon.buildings.placeable.Placeable.PlacementStage;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableBlock;
+import joshie.harvestmoon.helpers.MineHelper;
 import joshie.harvestmoon.init.HMBlocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -43,7 +45,7 @@ public class EntityNPCMiner extends EntityNPC {
 
     @Override
     public boolean interact(EntityPlayer player) {
-        HarvestMoon.handler.getServer().getMineTracker().addMineLevel(worldObj, (int) player.posX, (int) player.posY, (int) player.posZ, player.getDisplayName(), this);
+        MineHelper.getServerTracker().addMineLevel(worldObj, (int) player.posX, (int) player.posY, (int) player.posZ, player.getDisplayName(), this);
         return true;
     }
 
@@ -118,8 +120,8 @@ public class EntityNPCMiner extends EntityNPC {
                 if (index >= instructions.size()) {
                     isMining = false;
                     instructions = new ArrayList(500);
-                    HarvestMoon.handler.getServer().getMineTracker().newDay();
-                    HarvestMoon.handler.getServer().markDirty();
+                    MineHelper.newDay();
+                    markDirty();
                 } else {
                     PlaceableBlock block = instructions.get(index);
                     Material material = worldObj.getBlock(mineX + block.getX(), mineY + block.getY(), mineZ + block.getZ()).getMaterial();
@@ -141,7 +143,7 @@ public class EntityNPCMiner extends EntityNPC {
                     if (!sideCanSee) {
                         block.place(worldObj, mineX, mineY, mineZ, false, false, false, PlacementStage.BLOCKS);
                         if (block.getBlock() == HMBlocks.dirt) {
-                            HarvestMoon.handler.getServer().getMineTracker().addMineBlock(worldObj, mineX + block.getX(), mineY + block.getY(), mineZ + block.getZ(), mineLevel);
+                            MineHelper.getServerTracker().addMineBlock(worldObj, mineX + block.getX(), mineY + block.getY(), mineZ + block.getZ(), mineLevel);
                         }
                     }
 

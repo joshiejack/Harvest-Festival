@@ -1,10 +1,9 @@
 package joshie.harvestmoon.gui;
 
-import static joshie.harvestmoon.HarvestMoon.handler;
-
 import java.util.HashSet;
 
 import joshie.harvestmoon.helpers.QuestHelper;
+import joshie.harvestmoon.helpers.RelationsHelper;
 import joshie.harvestmoon.npc.EntityNPC;
 import joshie.harvestmoon.quests.Quest;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,7 +28,7 @@ public class ContainerNPCShop extends ContainerBase {
         }
 
         if (!player.worldObj.isRemote) {
-            handler.getServer().getPlayerData(player).setTalkedTo(npc.getNPC());
+            RelationsHelper.setTalkedTo(player, npc);
         }
     }
 }

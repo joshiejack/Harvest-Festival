@@ -2,6 +2,7 @@ package joshie.harvestmoon.util.generic;
 
 import java.util.Random;
 
+import joshie.harvestmoon.helpers.generic.MCClientHelper;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -168,7 +169,7 @@ public class RenderFakeItem extends Render {
         Tessellator tessellator = Tessellator.instance;
 
         if (par2Icon == null) {
-            TextureManager texturemanager = Minecraft.getMinecraft().getTextureManager();
+            TextureManager texturemanager = MCClientHelper.getMinecraft().getTextureManager();
             ResourceLocation resourcelocation = texturemanager.getResourceLocation(par1EntityItem.getEntityItem().getItemSpriteNumber());
             par2Icon = ((TextureMap) texturemanager.getTexture(resourcelocation)).getAtlasSprite("missingno");
         }
@@ -322,7 +323,7 @@ public class RenderFakeItem extends Render {
             par2TextureManager.bindTexture(resourcelocation);
 
             if (object == null) {
-                object = ((TextureMap) Minecraft.getMinecraft().getTextureManager().getTexture(resourcelocation)).getAtlasSprite("missingno");
+                object = ((TextureMap) MCClientHelper.getMinecraft().getTextureManager().getTexture(resourcelocation)).getAtlasSprite("missingno");
             }
 
             i1 = par3ItemStack.getItem().getColorFromItemStack(par3ItemStack, 0);

@@ -6,7 +6,6 @@ import static joshie.harvestmoon.helpers.SizeableHelper.getType;
 
 import java.util.List;
 
-import joshie.harvestmoon.HarvestTab;
 import joshie.harvestmoon.helpers.SizeableHelper;
 import joshie.harvestmoon.lib.HMModInfo;
 import joshie.harvestmoon.lib.SizeableMeta;

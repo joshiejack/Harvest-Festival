@@ -1,9 +1,9 @@
 package joshie.harvestmoon.items;
 
-import static joshie.harvestmoon.HarvestMoon.handler;
 import static joshie.harvestmoon.helpers.AnimalHelper.canProduceProduct;
 import static joshie.harvestmoon.helpers.AnimalHelper.feed;
 import static joshie.harvestmoon.helpers.AnimalHelper.setProducedProduct;
+import joshie.harvestmoon.helpers.AnimalHelper;
 import joshie.harvestmoon.helpers.SizeableHelper;
 import joshie.harvestmoon.lib.SizeableMeta;
 import joshie.harvestmoon.lib.SizeableMeta.Size;
@@ -102,9 +102,7 @@ public class ItemGeneral extends ItemHMMeta {
             int metadata = stack.getItemDamage();
             if (metadata == BRUSH && !(living instanceof EntityChicken)) {
                 if (!player.worldObj.isRemote) {
-                    if (handler.getServer().getAnimalTracker().setCleaned(animal)) {
-                        handler.getServer().getPlayerData(player).affectRelationship(animal, 25);
-                    }
+                    AnimalHelper.clean(player, animal);
                 } else {
                     for (int j = 0; j < 30D; j++) {
                         double d7 = (animal.posY - 0.5D) + animal.worldObj.rand.nextFloat();
@@ -128,7 +126,7 @@ public class ItemGeneral extends ItemHMMeta {
                 return true;
             } else if (metadata == MEDICINE) {
                 if (!player.worldObj.isRemote) {
-                    if (handler.getServer().getAnimalTracker().heal(animal)) {
+                    if (AnimalHelper.heal(animal)) {
                         stack.stackSize--;
                     }
                 }

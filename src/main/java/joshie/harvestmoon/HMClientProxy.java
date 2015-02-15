@@ -1,6 +1,5 @@
 package joshie.harvestmoon;
 
-import static joshie.harvestmoon.HarvestMoon.handler;
 import static joshie.harvestmoon.lib.HMModInfo.JAVAPATH;
 import joshie.harvestmoon.blocks.BlockGeneral;
 import joshie.harvestmoon.blocks.items.ItemBlockGeneral;
@@ -9,6 +8,7 @@ import joshie.harvestmoon.blocks.tiles.TileFryingPan;
 import joshie.harvestmoon.crops.Crop;
 import joshie.harvestmoon.handlers.RenderHandler;
 import joshie.harvestmoon.handlers.events.RenderEvents;
+import joshie.harvestmoon.helpers.ClientHelper;
 import joshie.harvestmoon.init.HMBlocks;
 import joshie.harvestmoon.lib.RenderIds;
 import joshie.harvestmoon.npc.EntityNPC;
@@ -31,7 +31,7 @@ import cpw.mods.fml.common.FMLCommonHandler;
 public class HMClientProxy extends HMCommonProxy {
     @Override
     public void preInit() {
-        handler.resetClient();
+        ClientHelper.resetClient();
 
         for (Crop crop : Crop.crops) {
             try {

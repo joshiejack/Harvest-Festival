@@ -1,8 +1,5 @@
 package joshie.harvestmoon.init;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
-
 import joshie.harvestmoon.items.ItemBuilding;
 import joshie.harvestmoon.items.ItemCheat;
 import joshie.harvestmoon.items.ItemCrop;
@@ -13,14 +10,9 @@ import joshie.harvestmoon.items.ItemNPCSpawner;
 import joshie.harvestmoon.items.ItemSeeds;
 import joshie.harvestmoon.items.ItemSickle;
 import joshie.harvestmoon.items.ItemSized;
-import joshie.harvestmoon.items.ItemSizedEgg;
 import joshie.harvestmoon.items.ItemTreat;
 import joshie.harvestmoon.items.ItemWateringCan;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import cpw.mods.fml.common.registry.ExistingSubstitutionException;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.GameRegistry.Type;
 
 public class HMItems {   
     public static Item crops;

@@ -1,9 +1,10 @@
 package joshie.harvestmoon.network;
 
-import static joshie.harvestmoon.HarvestMoon.handler;
 import io.netty.buffer.ByteBuf;
 import joshie.harvestmoon.crops.CropData;
 import joshie.harvestmoon.crops.WorldLocation;
+import joshie.harvestmoon.helpers.ClientHelper;
+import joshie.harvestmoon.helpers.generic.MCClientHelper;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
@@ -48,8 +49,8 @@ public class PacketSyncCrop implements IMessage, IMessageHandler<PacketSyncCrop,
 
     @Override
     public IMessage onMessage(PacketSyncCrop msg, MessageContext ctx) {
-        handler.getClient().getCropTracker().sync(msg.isRemoval, msg.location, msg.data);
-        joshie.harvestmoon.helpers.generic.ClientHelper.refresh(msg.location.dimension, msg.location.x, msg.location.y, msg.location.z);
+        ClientHelper.getCropTracker().sync(msg.isRemoval, msg.location, msg.data);
+        MCClientHelper.refresh(msg.location.dimension, msg.location.x, msg.location.y, msg.location.z);
 
         return null;
     }

@@ -1,10 +1,9 @@
 package joshie.harvestmoon.commands;
 
-import static joshie.harvestmoon.HarvestMoon.handler;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import joshie.harvestmoon.helpers.CalendarHelper;
 import joshie.harvestmoon.network.PacketHandler;
 import joshie.harvestmoon.network.PacketSetCalendar;
 import net.minecraft.command.ICommandSender;
@@ -33,7 +32,7 @@ public class CommandYear extends CommandBase {
     public void processCommand(ICommandSender sender, String[] parameters) {
         if (parameters == null || parameters.length != 1) return;
         try {
-            PacketHandler.sendToServer(new PacketSetCalendar(handler.getClient().getCalendar().getDate().setYear(Integer.parseInt(parameters[0]))));
+            PacketHandler.sendToServer(new PacketSetCalendar(CalendarHelper.getClientDate().setYear(Integer.parseInt(parameters[0]))));
         } catch (NumberFormatException e) {}
     }
 

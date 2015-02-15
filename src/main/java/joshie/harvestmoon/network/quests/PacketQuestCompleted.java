@@ -2,8 +2,9 @@ package joshie.harvestmoon.network.quests;
 
 import static cpw.mods.fml.common.network.ByteBufUtils.readUTF8String;
 import static cpw.mods.fml.common.network.ByteBufUtils.writeUTF8String;
-import static joshie.harvestmoon.HarvestMoon.handler;
 import io.netty.buffer.ByteBuf;
+import joshie.harvestmoon.helpers.QuestHelper;
+import joshie.harvestmoon.helpers.generic.MCClientHelper;
 import joshie.harvestmoon.init.HMQuests;
 import joshie.harvestmoon.quests.Quest;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
@@ -36,9 +37,9 @@ public class PacketQuestCompleted implements IMessage, IMessageHandler<PacketQue
     @Override
     public IMessage onMessage(PacketQuestCompleted message, MessageContext ctx) {
         if (message.isSenderClient) {
-            handler.getServer().getPlayerData(ctx.getServerHandler().playerEntity).getQuests().markCompleted(message.quest);
+            QuestHelper.markCompleted(ctx.getServerHandler().playerEntity, message.quest);
         } else {
-            handler.getClient().getPlayerData().getQuests().markCompleted(message.quest);
+            QuestHelper.markCompleted(MCClientHelper.getPlayer(), message.quest);
         }
 
         return null;

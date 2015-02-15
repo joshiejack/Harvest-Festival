@@ -1,6 +1,6 @@
 package joshie.harvestmoon.animals;
 
-import static joshie.harvestmoon.HarvestMoon.handler;
+import static joshie.harvestmoon.helpers.ServerHelper.markDirty;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -16,7 +16,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.DamageSource;
-
 //Handles the Data for the crops rather than using TE Data
 public class AnimalTrackerServer implements IData {
     private DamageSource natural_causes = new DamageSource("natural").setDamageBypassesArmor();
@@ -32,7 +31,7 @@ public class AnimalTrackerServer implements IData {
             animalData.put(animal.getPersistentID(), data);
         }
 
-        handler.getServer().markDirty();
+        markDirty();
         return data;
     }
 
@@ -57,7 +56,7 @@ public class AnimalTrackerServer implements IData {
     //Called when an animal dies
     public void onDeath(EntityAnimal animal) {
         animalData.remove(animal.getPersistentID());
-        handler.getServer().markDirty();
+        markDirty();
     }
 
     //Loops through all the animal, and 'ticks' them for their new day

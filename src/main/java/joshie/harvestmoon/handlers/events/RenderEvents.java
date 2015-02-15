@@ -1,6 +1,5 @@
 package joshie.harvestmoon.handlers.events;
 
-import static joshie.harvestmoon.HarvestMoon.handler;
 import static joshie.harvestmoon.helpers.CalendarHelper.getClientDay;
 import static joshie.harvestmoon.helpers.CalendarHelper.getClientSeason;
 import static joshie.harvestmoon.helpers.CalendarHelper.getClientYear;
@@ -12,7 +11,9 @@ import java.util.List;
 import java.util.Locale;
 
 import joshie.harvestmoon.gui.ContainerNPC;
+import joshie.harvestmoon.helpers.ClientHelper;
 import joshie.harvestmoon.helpers.RatingHelper;
+import joshie.harvestmoon.helpers.generic.MCClientHelper;
 import joshie.harvestmoon.util.IRateable;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
@@ -38,11 +39,11 @@ public class RenderEvents {
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void renderTick(TickEvent.RenderTickEvent event) {
-        Minecraft mc = Minecraft.getMinecraft();
+        Minecraft mc = MCClientHelper.getMinecraft();
         GuiScreen gui = mc.currentScreen;
         if (gui instanceof GuiContainer && mc.thePlayer.inventory.getItemStack() == null) {
             GuiContainer container = (GuiContainer) gui;
-            Point mouse = joshie.harvestmoon.helpers.generic.ClientHelper.getMouse(container);
+            Point mouse = joshie.harvestmoon.helpers.generic.MCClientHelper.getMouse(container);
 
             GL11.glPushMatrix();
             GL11.glPushAttrib(1048575);
@@ -76,11 +77,11 @@ public class RenderEvents {
     @SubscribeEvent
     public void onRenderOverlay(RenderGameOverlayEvent.Pre event) {
         if(event.type == ElementType.CROSSHAIRS) {
-            if(joshie.harvestmoon.helpers.generic.ClientHelper.getPlayer().openContainer instanceof ContainerNPC) {
+            if(joshie.harvestmoon.helpers.generic.MCClientHelper.getPlayer().openContainer instanceof ContainerNPC) {
                 event.setCanceled(true);
             }
         } else if (event.type == ElementType.HOTBAR) {
-            Minecraft mc = Minecraft.getMinecraft();
+            Minecraft mc = MCClientHelper.getMinecraft();
             mc.ingameGUI.remainingHighlightTicks = 0;
             mc.mcProfiler.startSection("calendarHUD");
 
@@ -99,7 +100,7 @@ public class RenderEvents {
 
             mc.fontRenderer.drawStringWithShadow("Year " + getClientYear(), 45, 25, 0xFFFFFFFF);
             mc.getTextureManager().bindTexture(COIN_TEXTURE);
-            String text = NumberFormat.getNumberInstance(Locale.US).format(handler.getClient().getPlayerData().getGold());
+            String text = NumberFormat.getNumberInstance(Locale.US).format(ClientHelper.getPlayerData().getGold());
             int width = event.resolution.getScaledWidth();
             mc.ingameGUI.drawTexturedModalRect(width - mc.fontRenderer.getStringWidth(text) - 20, 2, 244, 0, 12, 12);
             mc.fontRenderer.drawStringWithShadow(text, width - mc.fontRenderer.getStringWidth(text) - 5, 5, 0xFFFFFFFF);

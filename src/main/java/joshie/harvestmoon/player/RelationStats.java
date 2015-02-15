@@ -1,6 +1,6 @@
 package joshie.harvestmoon.player;
 
-import static joshie.harvestmoon.HarvestMoon.handler;
+import static joshie.harvestmoon.helpers.ServerHelper.markDirty;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -52,7 +52,7 @@ public class RelationStats implements IData {
         if (!talkedTo.contains(relate)) {
             affectRelationship(relate, 100);
             talkedTo.add(relate);
-            handler.getServer().markDirty();
+            markDirty();
         }
     }
 
@@ -63,7 +63,7 @@ public class RelationStats implements IData {
         if (!gifted.contains(relate)) {
             affectRelationship(relate, value);
             gifted.add(relate);
-            handler.getServer().markDirty();
+            markDirty();
         }
     }
 
@@ -73,7 +73,7 @@ public class RelationStats implements IData {
         Relatable relate = getRelatable(object);
         int relation = getRelationship(relate) + amount;
         relations.put(relate, (short) relation);
-        handler.getServer().markDirty();
+        markDirty();
         relate.sendPacket(master.getAndCreatePlayer(), relation, true);
         return true;
     }
@@ -91,7 +91,7 @@ public class RelationStats implements IData {
     public boolean removeRelations(Object object) {
         Relatable relate = getRelatable(object);
         relations.remove(relate);
-        handler.getServer().markDirty();
+        markDirty();
         return true;
     }
 
@@ -113,7 +113,7 @@ public class RelationStats implements IData {
             relatable.readFromNBT(tag);
             talkedTo.add(relatable);
         }
-        
+
         NBTTagList gift = nbt.getTagList("Gifted", 10);
         for (int i = 0; i < gift.tagCount(); i++) {
             NBTTagCompound tag = gift.getCompoundTagAt(i);
@@ -155,7 +155,7 @@ public class RelationStats implements IData {
         nbt.setTag("TalkedTo", talked);
 
         //////////////////////////////////////////////////////////////////////////
-        
+
         NBTTagList gift = new NBTTagList();
         for (Relatable r : gifted) {
             NBTTagCompound tag = new NBTTagCompound();

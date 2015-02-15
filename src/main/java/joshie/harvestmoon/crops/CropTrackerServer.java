@@ -1,7 +1,6 @@
 package joshie.harvestmoon.crops;
-
-import static joshie.harvestmoon.HarvestMoon.handler;
-import static joshie.harvestmoon.helpers.generic.ServerHelper.getWorld;
+import static joshie.harvestmoon.helpers.ServerHelper.markDirty;
+import static joshie.harvestmoon.helpers.generic.MCServerHelper.getWorld;
 import static joshie.harvestmoon.network.PacketHandler.sendToClient;
 import static joshie.harvestmoon.network.PacketHandler.sendToEveryone;
 
@@ -13,6 +12,8 @@ import java.util.Map;
 import joshie.harvestmoon.blocks.BlockSoil;
 import joshie.harvestmoon.calendar.CalendarDate;
 import joshie.harvestmoon.crops.CropData.WitherType;
+import joshie.harvestmoon.helpers.CalendarHelper;
+import joshie.harvestmoon.helpers.CropHelper;
 import joshie.harvestmoon.init.HMBlocks;
 import joshie.harvestmoon.network.PacketSyncCrop;
 import joshie.harvestmoon.util.IData;
@@ -71,7 +72,7 @@ public class CropTrackerServer implements IData {
     }
 
     public void doRain() {
-        if (!handler.getServer().getCalendar().getDate().equals(rain)) {
+        if (!CalendarHelper.getServerDate().equals(rain)) {
             for (WorldLocation location : farmland) {
                 BlockSoil.hydrate(getWorld(location.dimension), location.x, location.y, location.z);
             }
@@ -92,7 +93,7 @@ public class CropTrackerServer implements IData {
         WorldLocation key = getKey(world, x, y, z);
         cropData.remove(key);
         sendToEveryone(new PacketSyncCrop(key));
-        handler.getServer().markDirty();
+        markDirty();
         return world.setBlockToAir(x, y, z);
     }
 
@@ -101,7 +102,7 @@ public class CropTrackerServer implements IData {
         CropData data = cropData.get(getKey(world, x, y, z));
         if (data != null) {
             data.setHydrated();
-            handler.getServer().markDirty();
+            markDirty();
         }
     }
 
@@ -116,7 +117,7 @@ public class CropTrackerServer implements IData {
 
         cropData.put(key, data);
         sendToEveryone(new PacketSyncCrop(key, data));
-        handler.getServer().markDirty();
+        markDirty();
         return true;
     }
 
@@ -135,10 +136,10 @@ public class CropTrackerServer implements IData {
                 } else sendToEveryone(new PacketSyncCrop(key));
 
                 if (player != null) {
-                    handler.getServer().getPlayerData(player).onHarvested(data);
+                    CropHelper.onHarvested(player, data);
                 }
 
-                handler.getServer().markDirty();
+                markDirty();
                 return ret;
             } else return null;
         }
@@ -146,12 +147,12 @@ public class CropTrackerServer implements IData {
 
     public void addFarmland(World world, int x, int y, int z) {
         farmland.add(getKey(world, x, y, z));
-        handler.getServer().markDirty();
+        markDirty();
     }
 
     public void removeFarmland(World world, int x, int y, int z) {
         farmland.remove(getKey(world, x, y, z));
-        handler.getServer().markDirty();
+        markDirty();
     }
 
     @Override

@@ -2,8 +2,9 @@ package joshie.harvestmoon.network;
 
 import static cpw.mods.fml.common.network.ByteBufUtils.readUTF8String;
 import static cpw.mods.fml.common.network.ByteBufUtils.writeUTF8String;
-import static joshie.harvestmoon.HarvestMoon.handler;
 import io.netty.buffer.ByteBuf;
+import joshie.harvestmoon.helpers.ClientHelper;
+import joshie.harvestmoon.helpers.PlayerHelper;
 import joshie.harvestmoon.init.HMNPCs;
 import joshie.harvestmoon.npc.NPC;
 import net.minecraft.entity.Entity;
@@ -69,7 +70,7 @@ public class PacketSyncRelations implements IMessage, IMessageHandler<PacketSync
             id = buf.readInt();
         } else {
             npc = HMNPCs.get(readUTF8String(buf));
-            if(npc == null) {
+            if (npc == null) {
                 npc = HMNPCs.goddess;
             }
         }
@@ -87,14 +88,14 @@ public class PacketSyncRelations implements IMessage, IMessageHandler<PacketSync
             EntityPlayerMP player = ctx.getServerHandler().playerEntity;
             Entity entity = player.worldObj.getEntityByID(message.id);
             if (entity instanceof EntityLivingBase) {
-                int relationship = handler.getServer().getPlayerData(player).getRelationship((EntityLivingBase) entity);
+                int relationship = PlayerHelper.getData(player).getRelationship((EntityLivingBase) entity);
                 PacketHandler.sendToClient(new PacketSyncRelations(entity.getEntityId(), relationship, false), player);
             }
         } else {
             if (message.isEntityPacket) {
-                Entity entity = joshie.harvestmoon.helpers.generic.ClientHelper.getWorld().getEntityByID(message.id);
+                Entity entity = joshie.harvestmoon.helpers.generic.MCClientHelper.getWorld().getEntityByID(message.id);
                 if (entity != null) {
-                    handler.getClient().getPlayerData().setRelationship(entity.getPersistentID(), message.value);
+                    ClientHelper.getPlayerData().setRelationship(entity.getPersistentID(), message.value);
 
                     if (message.doParticles) {
                         for (int j = 0; j < 3D; j++) {
@@ -106,7 +107,7 @@ public class PacketSyncRelations implements IMessage, IMessageHandler<PacketSync
                     }
                 }
             } else {
-                handler.getClient().getPlayerData().setRelationship(message.npc, message.value);
+                ClientHelper.getPlayerData().setRelationship(message.npc, message.value);
             }
         }
 

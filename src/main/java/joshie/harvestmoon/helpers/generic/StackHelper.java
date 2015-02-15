@@ -32,7 +32,7 @@ public class StackHelper {
         GL11.glEnable(GL11.GL_LIGHTING);
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
         RenderHelper.enableGUIStandardItemLighting();
-        Minecraft mc = ClientHelper.getMinecraft();
+        Minecraft mc = MCClientHelper.getMinecraft();
         itemRenderer.renderItemAndEffectIntoGUI(mc.fontRenderer, mc.getTextureManager(), stack, (int) (left / size), (int) (top / size));
         itemRenderer.renderItemOverlayIntoGUI(mc.fontRenderer, mc.getTextureManager(), stack, (int) (left / size), (int) (top / size));
         RenderHelper.disableStandardItemLighting();

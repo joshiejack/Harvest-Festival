@@ -1,7 +1,7 @@
 package joshie.harvestmoon.network;
 
 import io.netty.buffer.ByteBuf;
-import joshie.harvestmoon.helpers.generic.ClientHelper;
+import joshie.harvestmoon.helpers.generic.MCClientHelper;
 import joshie.harvestmoon.util.generic.IFaceable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -31,11 +31,11 @@ public abstract class AbstractPacketOrientation extends AbstractPacketLocation {
     }
 
     public IMessage onMessage(AbstractPacketOrientation message, MessageContext ctx) {
-        EntityPlayer player = ClientHelper.getPlayer();
-        TileEntity tile = ClientHelper.getTile(message);
+        EntityPlayer player = MCClientHelper.getPlayer();
+        TileEntity tile = MCClientHelper.getTile(message);
         if (tile instanceof IFaceable) {
             ((IFaceable) player.worldObj.getTileEntity(message.x, message.y, message.z)).setFacing(message.dir);
-            ClientHelper.updateRender(message.x, message.y, message.z);
+            MCClientHelper.updateRender(message.x, message.y, message.z);
         }
 
         return null;

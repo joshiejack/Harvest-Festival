@@ -1,7 +1,7 @@
 package joshie.harvestmoon.crops.render;
 
-import static joshie.harvestmoon.HarvestMoon.handler;
 import static joshie.harvestmoon.lib.HMModInfo.CROPPATH;
+import joshie.harvestmoon.helpers.ClientHelper;
 import joshie.harvestmoon.util.RenderBase;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -16,8 +16,8 @@ public abstract class RenderCrop extends RenderBase {
     private int stage;
 
     public boolean render(RenderBlocks render, IBlockAccess world, int x, int y, int z) {
-        this.isGiant = handler.getClient().getCropTracker().isCropGiant(joshie.harvestmoon.helpers.generic.ClientHelper.getWorld(), x, y, z);
-        this.stage = handler.getClient().getCropTracker().getCropStage(joshie.harvestmoon.helpers.generic.ClientHelper.getWorld(), x, y, z);
+        this.isGiant = ClientHelper.getCropTracker().isCropGiant(joshie.harvestmoon.helpers.generic.MCClientHelper.getWorld(), x, y, z);
+        this.stage = ClientHelper.getCropTracker().getCropStage(joshie.harvestmoon.helpers.generic.MCClientHelper.getWorld(), x, y, z);
         return super.render(render, world, x, y, z);
     }
 

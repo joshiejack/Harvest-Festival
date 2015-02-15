@@ -1,8 +1,8 @@
 package joshie.harvestmoon.network;
 
-import static joshie.harvestmoon.HarvestMoon.handler;
-import static joshie.harvestmoon.helpers.generic.ServerHelper.getWorld;
+import static joshie.harvestmoon.helpers.generic.MCServerHelper.getWorld;
 import io.netty.buffer.ByteBuf;
+import joshie.harvestmoon.helpers.CropHelper;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
@@ -38,7 +38,7 @@ public class PacketCropRequest implements IMessage, IMessageHandler<PacketCropRe
 
     @Override
     public IMessage onMessage(PacketCropRequest msg, MessageContext ctx) {
-        handler.getServer().getCropTracker().sendUpdateToClient(ctx.getServerHandler().playerEntity, getWorld(msg.dimension), msg.x, msg.y, msg.z);
+        CropHelper.getServerTracker().sendUpdateToClient(ctx.getServerHandler().playerEntity, getWorld(msg.dimension), msg.x, msg.y, msg.z);
 
         return null;
     }

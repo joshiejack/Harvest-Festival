@@ -1,6 +1,5 @@
 package joshie.harvestmoon.animals;
 
-import static joshie.harvestmoon.HarvestMoon.handler;
 import static joshie.harvestmoon.animals.AnimalData.AnimalType.CAT;
 import static joshie.harvestmoon.animals.AnimalData.AnimalType.CHICKEN;
 import static joshie.harvestmoon.animals.AnimalData.AnimalType.COW;
@@ -17,6 +16,7 @@ import java.util.Random;
 import java.util.UUID;
 
 import joshie.harvestmoon.config.Calendar;
+import joshie.harvestmoon.helpers.AnimalHelper;
 import joshie.harvestmoon.helpers.RelationsHelper;
 import joshie.harvestmoon.network.PacketSyncCanProduce;
 import joshie.harvestmoon.util.IData;
@@ -213,7 +213,7 @@ public class AnimalData implements IData {
                             entity.eatGrassBonus();
                         }
                     } else if (type == CHICKEN) { //Or if it's a chicken, make it lay an egg
-                        EntityPlayer player = handler.getServer().getAnimalTracker().getOwner(entity);
+                        EntityPlayer player = AnimalHelper.getOwner(entity);
                         if (entity != null && player != null) {
                             ItemStack egg = getEgg(player, entity);
                             entity.playSound("mob.chicken.plop", 1.0F, (entity.worldObj.rand.nextFloat() - entity.worldObj.rand.nextFloat()) * 0.2F + 1.0F);
@@ -299,7 +299,7 @@ public class AnimalData implements IData {
             AnimalType type = dmg < AnimalType.values().length ? AnimalType.values()[dmg] : OTHER;
             if (type == this.type) {
                 treated = true;
-                handler.getServer().getPlayerData(player).affectRelationship(getAndCreateAnimal(), 1000);
+                RelationsHelper.affectRelations(player, getAndCreateAnimal(), 1000);
             }
         }
     }

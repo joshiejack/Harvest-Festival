@@ -1,6 +1,5 @@
 package joshie.harvestmoon.helpers;
 
-import static joshie.harvestmoon.HarvestMoon.handler;
 import joshie.harvestmoon.calendar.CalendarDate;
 import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.calendar.Weekday;
@@ -13,26 +12,26 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class CalendarHelper {
     @SideOnly(Side.CLIENT)
     public static int getClientDay() {
-        return handler.getClient().getCalendar().getDate().getDay();
+        return ClientHelper.getCalendar().getDate().getDay();
     }
     
     @SideOnly(Side.CLIENT)
     public static Season getClientSeason() {
-        return handler.getClient().getCalendar().getDate().getSeason();
+        return ClientHelper.getCalendar().getDate().getSeason();
     }
     
     @SideOnly(Side.CLIENT)
     public static int getClientYear() {
-        return handler.getClient().getCalendar().getDate().getYear();
+        return ClientHelper.getCalendar().getDate().getYear();
     }
     
     @SideOnly(Side.CLIENT)
     public static CalendarDate getClientDate() {
-        return handler.getClient().getCalendar().getDate();
+        return ClientHelper.getCalendar().getDate();
     }
     
     public static CalendarDate getServerDate() {
-        return handler.getServer().getCalendar().getDate();
+        return ServerHelper.getCalendar().getDate();
     }
 
     public static Weekday getWeekday(World world) {
@@ -41,16 +40,16 @@ public class CalendarHelper {
     
     public static void setDate(int day, Season season, int year) {
         if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
-            handler.getClient().getCalendar().getDate().setDay(day).setSeason(season).setYear(year);
+            ClientHelper.getCalendar().getDate().setDay(day).setSeason(season).setYear(year);
         } else {
-            handler.getServer().getCalendar().setDate(day, season, year);
+            ServerHelper.getCalendar().setDate(day, season, year);
         }
     }
     
     public static Season getSeason() {
         if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
-            return handler.getClient().getCalendar().getDate().getSeason();
-        } else return handler.getServer().getCalendar().getDate().getSeason();
+            return ClientHelper.getCalendar().getDate().getSeason();
+        } else return ServerHelper.getCalendar().getDate().getSeason();
     }
     
     public static int getTotalDays(CalendarDate date) {
@@ -69,5 +68,9 @@ public class CalendarHelper {
         int birthday_years = birthday_total_days / one_year;
                 
         return years_passed - birthday_years;
+    }
+
+    public static void newDay() {
+        ServerHelper.getCalendar().newDay();
     }
 }

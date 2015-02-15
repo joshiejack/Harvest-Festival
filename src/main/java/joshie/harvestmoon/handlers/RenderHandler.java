@@ -1,11 +1,10 @@
 package joshie.harvestmoon.handlers;
 
-import static joshie.harvestmoon.HarvestMoon.handler;
-
 import java.util.HashMap;
 
 import joshie.harvestmoon.blocks.BlockCrop;
 import joshie.harvestmoon.crops.render.RenderCrop;
+import joshie.harvestmoon.helpers.ClientHelper;
 import joshie.harvestmoon.lib.RenderIds;
 import joshie.harvestmoon.network.PacketCropRequest;
 import joshie.harvestmoon.network.PacketHandler;
@@ -44,14 +43,14 @@ public class RenderHandler implements ISimpleBlockRenderingHandler {
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
         if (block instanceof BlockCrop) {
-            String name = handler.getClient().getCropTracker().getCropName(joshie.harvestmoon.helpers.generic.ClientHelper.getWorld(), x, y, z);
+            String name = ClientHelper.getCropTracker().getCropName(joshie.harvestmoon.helpers.generic.MCClientHelper.getWorld(), x, y, z);
             if (name != null) {
                 RenderBase render = crops.get(name);
                 if (render != null) {
                     return render.render(renderer, world, x, y, z);
                 } else return false;
             } else {
-                PacketHandler.sendToServer(new PacketCropRequest(joshie.harvestmoon.helpers.generic.ClientHelper.getWorld(), x, y, z));
+                PacketHandler.sendToServer(new PacketCropRequest(joshie.harvestmoon.helpers.generic.MCClientHelper.getWorld(), x, y, z));
                 return false;
             }
         } else {

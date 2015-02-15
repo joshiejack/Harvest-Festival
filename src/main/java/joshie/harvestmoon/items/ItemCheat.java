@@ -2,7 +2,7 @@ package joshie.harvestmoon.items;
 
 import joshie.harvestmoon.handlers.CodeGeneratorBuildings;
 import joshie.harvestmoon.handlers.CodeGeneratorRendering;
-import joshie.harvestmoon.helpers.generic.ClientHelper;
+import joshie.harvestmoon.helpers.generic.MCClientHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -28,14 +28,14 @@ public class ItemCheat extends ItemHMMeta {
                 y2 = yCoord;
                 z2 = zCoord;
                 if (world.isRemote) {
-                    ClientHelper.addToChat("Setting Second Coordinates to " + x2 + " " + y2 + " " + z2);
+                    MCClientHelper.addToChat("Setting Second Coordinates to " + x2 + " " + y2 + " " + z2);
                 }
             } else {
                 x1 = xCoord;
                 y1 = yCoord;
                 z1 = zCoord;
                 if (world.isRemote) {
-                    ClientHelper.addToChat("Setting First Coordinates to " + x1 + " " + y1 + " " + z1);
+                    MCClientHelper.addToChat("Setting First Coordinates to " + x1 + " " + y1 + " " + z1);
                 }
             }
         } else if (damage == CODE_GENERATOR) {
@@ -44,8 +44,8 @@ public class ItemCheat extends ItemHMMeta {
             new CodeGeneratorRendering().getCode();
         } else if (damage == META_CHECKER) {
             if(world.isRemote) {
-                ClientHelper.addToChat("Metadata: " + world.getBlockMetadata(xCoord, yCoord, zCoord));
-                ClientHelper.addToChat("" + world.getBlock(xCoord, yCoord, zCoord).getClass());
+                MCClientHelper.addToChat("Metadata: " + world.getBlockMetadata(xCoord, yCoord, zCoord));
+                MCClientHelper.addToChat("" + world.getBlock(xCoord, yCoord, zCoord).getClass());
             }
         }
 

@@ -1,9 +1,9 @@
 package joshie.harvestmoon.helpers;
 
-import static joshie.harvestmoon.HarvestMoon.handler;
 import joshie.harvestmoon.crops.Crop;
+import joshie.harvestmoon.crops.CropData;
+import joshie.harvestmoon.crops.CropTrackerServer;
 import joshie.harvestmoon.helpers.generic.ItemHelper;
-import joshie.harvestmoon.init.HMBlocks;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 public class CropHelper {
     public static boolean destroyCrop(EntityPlayer player, World world, int x, int y, int z) {
         if(!world.isRemote) {
-            return handler.getServer().getCropTracker().destroy(player, world, x, y, z);
+            return getServerTracker().destroy(player, world, x, y, z);
         }
         
         return true;
@@ -20,13 +20,13 @@ public class CropHelper {
     
     public static void hydrate(World world, int x, int y, int z) {
         if(!world.isRemote) {
-            handler.getServer().getCropTracker().hydrate(world, x, y, z);
+            getServerTracker().hydrate(world, x, y, z);
         }
     }
     
     public static boolean plantCrop(EntityPlayer player, World world, int x, int y, int z, Crop crop, int quality) {
         if(!world.isRemote) {
-            return handler.getServer().getCropTracker().plant(player, world, x, y, z, crop, quality);
+            return getServerTracker().plant(player, world, x, y, z, crop, quality);
         }
         
         return true;
@@ -35,9 +35,9 @@ public class CropHelper {
     public static boolean harvestCrop(EntityPlayer player, World world, int x, int y, int z) {
         ItemStack stack = null;
         if(world.isRemote) {
-            stack = handler.getClient().getCropTracker().harvest(world, x, y, z);
+            stack = ClientHelper.getCropTracker().harvest(world, x, y, z);
         } else {
-            stack = handler.getServer().getCropTracker().harvest(player, world, x, y, z);
+            stack = getServerTracker().harvest(player, world, x, y, z);
         }
         
         if(stack != null) {
@@ -50,13 +50,13 @@ public class CropHelper {
     public static void addFarmland(World world, int x, int y, int z) {
         if (!world.isRemote) {
             world.setBlock(x, y, z, Blocks.farmland);
-            handler.getServer().getCropTracker().addFarmland(world, x, y, z);
+            getServerTracker().addFarmland(world, x, y, z);
         }
     }
     
     public static void removeFarmland(World world, int x, int y, int z) {
         if (!world.isRemote) {
-            handler.getServer().getCropTracker().removeFarmland(world, x, y, z);
+            getServerTracker().removeFarmland(world, x, y, z);
         }
     }
 
@@ -101,5 +101,17 @@ public class CropHelper {
     /** Whether this crop is a giant crop or small **/
     public static boolean isGiant(int meta) {
         return ((int) (meta / 16000)) == 1;
+    }
+
+    public static void onHarvested(EntityPlayer player, CropData data) {
+        ServerHelper.getPlayerData(player).onHarvested(data);
+    }
+
+    public static CropTrackerServer getServerTracker() {
+        return ServerHelper.getCropTracker();
+    }
+
+    public static void newDay() {
+        ServerHelper.getCropTracker().newDay();
     }
 }

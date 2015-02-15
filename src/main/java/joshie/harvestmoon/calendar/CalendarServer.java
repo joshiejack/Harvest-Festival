@@ -1,11 +1,15 @@
 package joshie.harvestmoon.calendar;
 
-import static joshie.harvestmoon.HarvestMoon.handler;
+import static joshie.harvestmoon.helpers.ServerHelper.markDirty;
 import static joshie.harvestmoon.network.PacketHandler.sendToEveryone;
 
 import java.util.List;
 
 import joshie.harvestmoon.config.Calendar;
+import joshie.harvestmoon.helpers.AnimalHelper;
+import joshie.harvestmoon.helpers.CropHelper;
+import joshie.harvestmoon.helpers.MineHelper;
+import joshie.harvestmoon.helpers.PlayerHelper;
 import joshie.harvestmoon.network.PacketSetCalendar;
 import joshie.harvestmoon.util.IData;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,7 +27,7 @@ public class CalendarServer implements IData {
 
     public void setDate(int day, Season season, int year) {
         date.setDay(day).setSeason(season).setYear(year);
-        handler.getServer().markDirty();
+        markDirty();
     }
 
     //Increases the day
@@ -45,17 +49,17 @@ public class CalendarServer implements IData {
         date.setDay(day).setSeason(season).setYear(year);
         sendToEveryone(new PacketSetCalendar(date));
 
-        handler.getServer().getAnimalTracker().newDay();
-        handler.getServer().getCropTracker().newDay();
-        handler.getServer().getMineTracker().newDay();
+        AnimalHelper.newDay();
+        CropHelper.newDay();
+        MineHelper.newDay();
 
         //Loop through all the players and do stuff related to them, Pass the world that the player is in
         for (EntityPlayer player : (List<EntityPlayer>) MinecraftServer.getServer().getConfigurationManager().playerEntityList) {
-            handler.getServer().getPlayerData(player).newDay();
+            PlayerHelper.getData(player).newDay();
         }
 
         loaded = true;
-        handler.getServer().markDirty();
+        markDirty();
         return true;
     }
 

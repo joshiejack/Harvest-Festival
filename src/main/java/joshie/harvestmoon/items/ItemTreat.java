@@ -1,7 +1,7 @@
 package joshie.harvestmoon.items;
 
-import static joshie.harvestmoon.HarvestMoon.handler;
 import joshie.harvestmoon.animals.AnimalData;
+import joshie.harvestmoon.helpers.AnimalHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
@@ -24,7 +24,7 @@ public class ItemTreat extends ItemHMMeta {
     public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer player, EntityLivingBase living) {
         if (living instanceof EntityAnimal) {
             if (!living.worldObj.isRemote) {
-                handler.getServer().getAnimalTracker().treat(stack, player, (EntityAnimal) living);
+                AnimalHelper.treat(stack, player, living);
             }
 
             stack.stackSize--;

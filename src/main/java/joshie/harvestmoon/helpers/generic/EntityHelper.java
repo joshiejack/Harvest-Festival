@@ -16,7 +16,7 @@ import cpw.mods.fml.common.FMLCommonHandler;
 public class EntityHelper {
     //Loops through all the animals in the specified dimension id
     public static EntityAnimal getAnimalFromUUID(int dimension, UUID uuid) {
-        World world = ServerHelper.getWorld(dimension);
+        World world = MCServerHelper.getWorld(dimension);
         for (int i = 0; i < world.loadedEntityList.size(); i++) {
             Entity entity = (Entity) world.loadedEntityList.get(i);
             if (entity instanceof EntityAnimal) {

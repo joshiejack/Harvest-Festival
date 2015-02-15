@@ -1,8 +1,8 @@
 package joshie.harvestmoon.quests;
 
-import static joshie.harvestmoon.HarvestMoon.handler;
 import static joshie.harvestmoon.helpers.AnimalHelper.canProduceProduct;
 import static joshie.harvestmoon.helpers.QuestHelper.completeQuest;
+import static joshie.harvestmoon.helpers.ServerHelper.markDirty;
 import io.netty.buffer.ByteBuf;
 
 import java.util.HashSet;
@@ -60,7 +60,7 @@ public class QuestCowCare extends Quest {
                                 increaseStage(player);
                             }
 
-                            handler.getServer().markDirty();
+                            markDirty();
                         }
                     }
                 }

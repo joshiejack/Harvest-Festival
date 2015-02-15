@@ -1,7 +1,7 @@
 package joshie.harvestmoon.quests;
 
-import static joshie.harvestmoon.HarvestMoon.handler;
 import static joshie.harvestmoon.helpers.QuestHelper.completeQuest;
+import static joshie.harvestmoon.helpers.ServerHelper.markDirty;
 import io.netty.buffer.ByteBuf;
 
 import java.util.HashSet;
@@ -22,7 +22,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-
 public class QuestChickenCare extends Quest {
     private boolean hasThrown;
     private boolean hasFed;
@@ -44,7 +43,7 @@ public class QuestChickenCare extends Quest {
                             increaseStage(player);
                         }
 
-                        handler.getServer().markDirty();
+                        markDirty();
                     }
                 }
             }
@@ -62,7 +61,7 @@ public class QuestChickenCare extends Quest {
                         increaseStage(player);
                     }
 
-                    handler.getServer().markDirty();
+                    markDirty();
                 }
             }
         }

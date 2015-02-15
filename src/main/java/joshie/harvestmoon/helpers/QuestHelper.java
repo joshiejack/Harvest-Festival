@@ -1,6 +1,5 @@
 package joshie.harvestmoon.helpers;
 
-import static joshie.harvestmoon.HarvestMoon.handler;
 import static joshie.harvestmoon.network.PacketHandler.sendToClient;
 import static joshie.harvestmoon.network.PacketHandler.sendToServer;
 
@@ -20,10 +19,10 @@ import net.minecraft.network.play.server.S2FPacketSetSlot;
 public class QuestHelper {
     public static void completeQuest(EntityPlayer player, Quest quest) {
         if (player.worldObj.isRemote) {
-            handler.getClient().getPlayerData().getQuests().markCompleted(quest);
+            ClientHelper.getPlayerData().getQuests().markCompleted(quest);
             sendToServer(new PacketQuestCompleted(quest, true));
         } else {
-            handler.getServer().getPlayerData(player).getQuests().markCompleted(quest);
+            ServerHelper.getPlayerData(player).getQuests().markCompleted(quest);
             sendToServer(new PacketQuestCompleted(quest, false));
         }
     }
@@ -41,9 +40,9 @@ public class QuestHelper {
     public static HashSet<Quest> getCurrentQuest(EntityPlayer player) {
         HashSet<Quest> quest = null;
         if (player.worldObj.isRemote) {
-            quest = handler.getClient().getPlayerData().getQuests().getCurrent();
+            quest = ClientHelper.getPlayerData().getQuests().getCurrent();
         } else {
-            quest = handler.getServer().getPlayerData(player).getQuests().getCurrent();
+            quest = ServerHelper.getPlayerData(player).getQuests().getCurrent();
         }
 
         return quest;
@@ -54,7 +53,7 @@ public class QuestHelper {
         if (player.worldObj.isRemote) {
             throw new IdiotException("Joshie shouldn't be rewarding anyone with gold client side");
         } else {
-            PlayerDataServer data = handler.getServer().getPlayerData(player);
+            PlayerDataServer data = ServerHelper.getPlayerData(player);
             data.addGold(100);
             sendToClient(new PacketSyncGold(data.getGold()), (EntityPlayerMP) player);
         }
@@ -64,7 +63,37 @@ public class QuestHelper {
         if (player.worldObj.isRemote) {
             throw new IdiotException("Joshie shouldn't be rewarding anyone with gold client side");
         } else {
-            handler.getServer().getPlayerData(player).affectRelationship(npc, amount);
+            ServerHelper.getPlayerData(player).affectRelationship(npc, amount);
+        }
+    }
+
+    public static void markCompleted(EntityPlayer player, Quest quest) {
+        if (!player.worldObj.isRemote) {
+            ServerHelper.getPlayerData(player).getQuests().markCompleted(quest);
+        } else ClientHelper.getPlayerData().getQuests().markCompleted(quest);
+    }
+
+    public static void markAvailable(EntityPlayer player, Quest quest) {
+        if (!player.worldObj.isRemote) {
+
+        } else ClientHelper.getPlayerData().getQuests().setAvailable(quest);
+    }
+
+    public static void markAsCurrent(EntityPlayer player, Quest quest) {
+        if (!player.worldObj.isRemote) {
+
+        } else ClientHelper.getPlayerData().getQuests().addAsCurrent(quest);
+    }
+
+    public static void setQuestStage(EntityPlayer player, Quest quest, int stage) {
+        if (!player.worldObj.isRemote) {
+            ServerHelper.getPlayerData(player).getQuests().setStage(quest, stage);
+        } else ClientHelper.getPlayerData().getQuests().setStage(quest, stage);
+    }
+
+    public static void startQuest(EntityPlayer player, Quest quest) {
+        if (!player.worldObj.isRemote) {
+            ServerHelper.getPlayerData(player).getQuests().startQuest(quest);
         }
     }
 }

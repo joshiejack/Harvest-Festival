@@ -1,12 +1,11 @@
 package joshie.harvestmoon.gui;
 
-import static joshie.harvestmoon.HarvestMoon.handler;
-
 import java.util.HashSet;
 
 import joshie.harvestmoon.calendar.CalendarDate;
 import joshie.harvestmoon.helpers.CalendarHelper;
 import joshie.harvestmoon.helpers.QuestHelper;
+import joshie.harvestmoon.helpers.RelationsHelper;
 import joshie.harvestmoon.npc.EntityNPC;
 import joshie.harvestmoon.npc.NPC;
 import joshie.harvestmoon.quests.Quest;
@@ -43,7 +42,7 @@ public class ContainerNPCGift extends ContainerBase {
                 points *= 5;
             }
 
-            handler.getServer().getPlayerData(player).setGifted(npc.getNPC(), points);
+            RelationsHelper.setGifted(player, npc.getNPC(), points);
             player.inventory.decrStackSize(player.inventory.currentItem, 1);
         }
 

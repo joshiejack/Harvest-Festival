@@ -1,7 +1,7 @@
 package joshie.harvestmoon.mining;
 
-import static joshie.harvestmoon.HarvestMoon.handler;
-import static joshie.harvestmoon.helpers.generic.ServerHelper.getWorld;
+import static joshie.harvestmoon.helpers.ServerHelper.markDirty;
+import static joshie.harvestmoon.helpers.generic.MCServerHelper.getWorld;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -14,7 +14,6 @@ import joshie.harvestmoon.util.IData;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
-
 public class MineTrackerServer implements IData {
     private HashSet<MineBlockLocation> mineBlocks = new HashSet();
     private HashSet<MineLocation> mineLocation = new HashSet();
@@ -45,7 +44,7 @@ public class MineTrackerServer implements IData {
 
     public void addMineBlock(World world, int x, int y, int z, int level) {
         mineBlocks.add(getKey(world, x, y, z, level));
-        handler.getServer().markDirty();
+        markDirty();
     }
 
     /** Call this to add a new mine at the location under the following name **/
@@ -65,7 +64,7 @@ public class MineTrackerServer implements IData {
         } else location.addLevel();
 
         npc.startBuild(world, x, y, z, location.getLevel());
-        handler.getServer().markDirty();
+        markDirty();
     }
 
     @Override

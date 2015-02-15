@@ -1,9 +1,10 @@
 package joshie.harvestmoon.network;
 
-import static joshie.harvestmoon.HarvestMoon.handler;
 import static joshie.harvestmoon.helpers.AnimalHelper.canProduceProduct;
 import static joshie.harvestmoon.network.PacketHandler.sendToClient;
 import io.netty.buffer.ByteBuf;
+import joshie.harvestmoon.helpers.ClientHelper;
+import joshie.harvestmoon.helpers.generic.MCClientHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -55,9 +56,9 @@ public class PacketSyncCanProduce implements IMessage, IMessageHandler<PacketSyn
                 sendToClient(new PacketSyncCanProduce(message.id, false, canProduceProduct((EntityAnimal) entity)), player);
             }
         } else {
-            Entity entity = joshie.harvestmoon.helpers.generic.ClientHelper.getWorld().getEntityByID(message.id);
+            Entity entity = MCClientHelper.getWorld().getEntityByID(message.id);
             if (entity instanceof EntityAnimal) {
-                handler.getClient().getAnimalTracker().setCanProduceProduct((EntityAnimal) entity, message.canProduce);
+                ClientHelper.getAnimalTracker().setCanProduceProduct((EntityAnimal) entity, message.canProduce);
             }
         }
 

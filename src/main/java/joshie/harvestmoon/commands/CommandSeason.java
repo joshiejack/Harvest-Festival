@@ -1,11 +1,10 @@
 package joshie.harvestmoon.commands;
 
-import static joshie.harvestmoon.HarvestMoon.handler;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import joshie.harvestmoon.calendar.Season;
+import joshie.harvestmoon.helpers.CalendarHelper;
 import joshie.harvestmoon.network.PacketHandler;
 import joshie.harvestmoon.network.PacketSetCalendar;
 import net.minecraft.command.ICommandSender;
@@ -38,7 +37,7 @@ public class CommandSeason extends CommandBase {
         if (parameters == null || parameters.length != 1) return;
         for (Season s : Season.values()) {
             if (StringUtils.equalsIgnoreCase(s.name(), parameters[0])) {
-                PacketHandler.sendToServer(new PacketSetCalendar(handler.getClient().getCalendar().getDate().setSeason(s)));
+                PacketHandler.sendToServer(new PacketSetCalendar(CalendarHelper.getClientDate().setSeason(s)));
                 break;
             }
         }

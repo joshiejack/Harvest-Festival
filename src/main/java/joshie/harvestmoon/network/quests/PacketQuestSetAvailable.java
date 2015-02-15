@@ -2,8 +2,9 @@ package joshie.harvestmoon.network.quests;
 
 import static cpw.mods.fml.common.network.ByteBufUtils.readUTF8String;
 import static cpw.mods.fml.common.network.ByteBufUtils.writeUTF8String;
-import static joshie.harvestmoon.HarvestMoon.handler;
 import io.netty.buffer.ByteBuf;
+import joshie.harvestmoon.helpers.QuestHelper;
+import joshie.harvestmoon.helpers.generic.MCClientHelper;
 import joshie.harvestmoon.init.HMQuests;
 import joshie.harvestmoon.quests.Quest;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
@@ -31,7 +32,7 @@ public class PacketQuestSetAvailable implements IMessage, IMessageHandler<Packet
 
     @Override
     public IMessage onMessage(PacketQuestSetAvailable message, MessageContext ctx) {
-        handler.getClient().getPlayerData().getQuests().setAvailable(message.quest);
+        QuestHelper.markAvailable(MCClientHelper.getPlayer(), message.quest);
         return null;
     }
 }

@@ -1,6 +1,5 @@
 package joshie.harvestmoon.network;
 
-import static joshie.harvestmoon.HarvestMoon.handler;
 import io.netty.buffer.ByteBuf;
 import joshie.harvestmoon.helpers.PlayerHelper;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -35,8 +34,7 @@ public class PacketGoldCommand implements IMessage, IMessageHandler<PacketGoldCo
     public IMessage onMessage(PacketGoldCommand message, MessageContext ctx) {
         EntityPlayerMP player = ctx.getServerHandler().playerEntity;
         if (message.set) {
-            handler.getServer().getPlayerData(player).setGold(message.gold);
-            PacketHandler.sendToClient(new PacketSyncGold(PlayerHelper.getGold(player)), (EntityPlayerMP) player);
+            PlayerHelper.setGold(player, gold);
         } else PlayerHelper.adjustGold(player, message.gold);
 
         return null;

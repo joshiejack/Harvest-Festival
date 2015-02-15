@@ -1,9 +1,5 @@
 package joshie.harvestmoon.commands;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import joshie.harvestmoon.config.Calendar;
 import joshie.harvestmoon.network.PacketGoldCommand;
 import joshie.harvestmoon.network.PacketHandler;
 import net.minecraft.command.ICommandSender;

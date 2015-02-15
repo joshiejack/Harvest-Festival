@@ -1,9 +1,9 @@
 package joshie.harvestmoon.handlers.events;
 
-import static joshie.harvestmoon.HarvestMoon.handler;
 import static joshie.harvestmoon.helpers.AnimalHelper.feed;
 import static joshie.harvestmoon.network.PacketHandler.sendToServer;
 import joshie.harvestmoon.config.Animals;
+import joshie.harvestmoon.helpers.AnimalHelper;
 import joshie.harvestmoon.helpers.RelationsHelper;
 import joshie.harvestmoon.network.PacketSyncCanProduce;
 import joshie.harvestmoon.network.PacketSyncRelations;
@@ -51,11 +51,7 @@ public class AnimalEvents {
     public void onEntityDeath(LivingDeathEvent event) {
         if (event.entity instanceof EntityAnimal) {
             RelationsHelper.removeRelations(event.entityLiving);
-            if (!event.entity.worldObj.isRemote) {
-                handler.getServer().getAnimalTracker().onDeath((EntityAnimal) event.entityLiving);
-            } else {
-                handler.getClient().getAnimalTracker().onDeath((EntityAnimal) event.entityLiving);
-            }
+            AnimalHelper.onDeath((EntityAnimal) event.entityLiving);
         }
     }
 
@@ -71,9 +67,7 @@ public class AnimalEvents {
                 chicken.rotationYaw = player.rotationYaw;
                 chicken.moveFlying(0F, 1.0F, 1.25F);
                 if (!player.worldObj.isRemote) {
-                    if (handler.getServer().getAnimalTracker().setThrown(chicken)) {
-                        handler.getServer().getPlayerData(player).affectRelationship(chicken, 25);
-                    }
+                    AnimalHelper.throwChicken(player, chicken);
                 }
             }
         }
@@ -103,10 +97,8 @@ public class AnimalEvents {
                     animal.ridingEntity = player;
                     player.riddenByEntity = animal;
                 }
-
-                if (!player.worldObj.isRemote) {
-                    handler.getServer().getPlayerData(player).setTalkedTo(animal);
-                }
+                
+                RelationsHelper.setTalkedTo(player, animal);
             }
         }
     }

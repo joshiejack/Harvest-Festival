@@ -1,9 +1,10 @@
 package joshie.harvestmoon.network;
 
-import static joshie.harvestmoon.HarvestMoon.handler;
 import io.netty.buffer.ByteBuf;
 import joshie.harvestmoon.calendar.CalendarDate;
 import joshie.harvestmoon.calendar.Season;
+import joshie.harvestmoon.helpers.PlayerHelper;
+import joshie.harvestmoon.helpers.generic.MCClientHelper;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
@@ -36,7 +37,7 @@ public class PacketSyncBirthday implements IMessage, IMessageHandler<PacketSyncB
 
     @Override
     public IMessage onMessage(PacketSyncBirthday message, MessageContext ctx) {
-        handler.getClient().getPlayerData().setBirthday(message.day, message.season, message.year);
+        PlayerHelper.setBirthday(MCClientHelper.getPlayer(), message.day, message.season, message.year);
 
         return null;
     }

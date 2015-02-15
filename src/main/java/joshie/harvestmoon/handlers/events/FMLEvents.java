@@ -1,8 +1,9 @@
 package joshie.harvestmoon.handlers.events;
 
-import static joshie.harvestmoon.HarvestMoon.handler;
 import static joshie.harvestmoon.network.PacketHandler.sendToClient;
 import joshie.harvestmoon.config.Calendar;
+import joshie.harvestmoon.helpers.CalendarHelper;
+import joshie.harvestmoon.helpers.PlayerHelper;
 import joshie.harvestmoon.network.PacketSetCalendar;
 import joshie.harvestmoon.player.PlayerDataServer;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,11 +18,11 @@ import cpw.mods.fml.common.gameevent.TickEvent.ServerTickEvent;
 public class FMLEvents {
     @SubscribeEvent
     public void onPlayerLogin(PlayerLoggedInEvent event) {
-        handler.getServer().getPlayerData(event.player).setBirthday();
         EntityPlayer player = event.player;
         if (player instanceof EntityPlayerMP) {
-            sendToClient(new PacketSetCalendar(handler.getServer().getCalendar().getDate()), (EntityPlayerMP) player);
-            PlayerDataServer data = handler.getServer().getPlayerData(player);
+            PlayerHelper.setBirthday(player, 0, null, 0);
+            sendToClient(new PacketSetCalendar(CalendarHelper.getServerDate()), (EntityPlayerMP) player);
+            PlayerDataServer data = PlayerHelper.getData(player);
             data.syncPlayerStats();
             data.getQuests().syncQuests();
         }
@@ -35,7 +36,7 @@ public class FMLEvents {
             (new Thread("HM Calendar Thread") {
                 @Override
                 public void run() {
-                    handler.getServer().getCalendar().newDay();
+                    CalendarHelper.newDay();
                 }
             }).start();
         }

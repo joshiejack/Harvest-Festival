@@ -24,15 +24,17 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class ClientHelper {
-    /** Returns the client Minecraft instance **/
+public class MCClientHelper {
     public static Minecraft getMinecraft() {
         return FMLClientHandler.instance().getClient();
     }
 
-    /** Returns the client player **/
     public static EntityPlayer getPlayer() {
         return getMinecraft().thePlayer;
+    }
+    
+    public static World getWorld() {
+        return getPlayer().worldObj;
     }
 
     /** Client Side get Held Item **/
@@ -58,11 +60,6 @@ public class ClientHelper {
         getMinecraft().renderGlobal.markBlockRangeForRenderUpdate((int) player.posX - 176, 0, (int) player.posZ - 176, (int) player.posX + 176, 256, (int) player.posZ + 176);
     }
 
-    /** Returns the world the player is in **/
-    public static World getWorld() {
-        return getMinecraft().theWorld;
-    }
-
     /** Returns the dimension the player is in **/
     public static int getDimension() {
         return getWorld().provider.dimensionId;
@@ -85,19 +82,19 @@ public class ClientHelper {
 
     //Keybindings
     public static boolean isSneakingPressed() {
-        return GameSettings.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindSneak);
+        return GameSettings.isKeyDown(getMinecraft().gameSettings.keyBindSneak);
     }
 
     public static boolean isSprintingPressed() {
-        return GameSettings.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindSprint);
+        return GameSettings.isKeyDown(getMinecraft().gameSettings.keyBindSprint);
     }
 
     public static boolean isForwardPressed() {
-        return GameSettings.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindForward);
+        return GameSettings.isKeyDown(getMinecraft().gameSettings.keyBindForward);
     }
 
     public static boolean isJumpPressed() {
-        return GameSettings.isKeyDown(Minecraft.getMinecraft().gameSettings.keyBindJump);
+        return GameSettings.isKeyDown(getMinecraft().gameSettings.keyBindJump);
     }
 
     public static boolean isShiftPressed() {

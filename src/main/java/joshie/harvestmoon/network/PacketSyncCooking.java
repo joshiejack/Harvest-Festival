@@ -5,7 +5,7 @@ import io.netty.buffer.ByteBuf;
 import java.util.ArrayList;
 
 import joshie.harvestmoon.blocks.tiles.TileCooking;
-import joshie.harvestmoon.helpers.generic.ClientHelper;
+import joshie.harvestmoon.helpers.generic.MCClientHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -86,7 +86,7 @@ public class PacketSyncCooking extends AbstractPacketOrientation implements IMes
     @Override
     public IMessage onMessage(PacketSyncCooking message, MessageContext ctx) {
         super.onMessage(message, ctx);
-        TileEntity tile = ClientHelper.getTile(message);
+        TileEntity tile = MCClientHelper.getTile(message);
         if (tile instanceof TileCooking) {
             ((TileCooking) tile).setFromPacket(message.isCooking, message.ingredients, message.seasonings, message.result);
         }

@@ -3,8 +3,8 @@ package joshie.harvestmoon.gui.feature;
 import java.util.List;
 
 import joshie.harvestmoon.gui.GuiBase;
+import joshie.harvestmoon.helpers.generic.MCClientHelper;
 import joshie.harvestmoon.lib.HMModInfo;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.util.StatCollector;
 
@@ -12,7 +12,7 @@ public class Feature {
     private TextureManager tm;
 
     public Feature() {
-        tm = Minecraft.getMinecraft().renderEngine;
+        tm = MCClientHelper.getMinecraft().renderEngine;
     }
 
     public void draw(GuiBase gui, int x, int y, int mouseX, int mouseY) {

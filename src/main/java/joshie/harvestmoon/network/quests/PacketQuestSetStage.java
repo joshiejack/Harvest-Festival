@@ -2,8 +2,9 @@ package joshie.harvestmoon.network.quests;
 
 import static cpw.mods.fml.common.network.ByteBufUtils.readUTF8String;
 import static cpw.mods.fml.common.network.ByteBufUtils.writeUTF8String;
-import static joshie.harvestmoon.HarvestMoon.handler;
 import io.netty.buffer.ByteBuf;
+import joshie.harvestmoon.helpers.QuestHelper;
+import joshie.harvestmoon.helpers.generic.MCClientHelper;
 import joshie.harvestmoon.init.HMQuests;
 import joshie.harvestmoon.quests.Quest;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
@@ -40,9 +41,9 @@ public class PacketQuestSetStage implements IMessage, IMessageHandler<PacketQues
     @Override
     public IMessage onMessage(PacketQuestSetStage message, MessageContext ctx) {
         if (message.isSenderClient) {
-            handler.getServer().getPlayerData(ctx.getServerHandler().playerEntity).getQuests().setStage(message.quest, message.stage);
+            QuestHelper.setQuestStage(ctx.getServerHandler().playerEntity, message.quest, message.stage);
         } else {
-            handler.getClient().getPlayerData().getQuests().setStage(message.quest, message.stage);
+            QuestHelper.setQuestStage(MCClientHelper.getPlayer(), message.quest, message.stage);
         }
 
         return null;

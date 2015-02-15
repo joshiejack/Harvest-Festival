@@ -1,7 +1,7 @@
 package joshie.harvestmoon.network;
 
 import io.netty.buffer.ByteBuf;
-import joshie.harvestmoon.helpers.generic.ClientHelper;
+import joshie.harvestmoon.helpers.generic.MCClientHelper;
 import joshie.harvestmoon.init.mode.EasyMode;
 import joshie.harvestmoon.init.mode.HardMode;
 import joshie.harvestmoon.util.Translate;
@@ -42,7 +42,7 @@ public class PacketSetDifficulty implements IMessage, IMessageHandler<PacketSetD
         
         if (isClient) {
             PacketHandler.sendToEveryone(new PacketSetDifficulty(easy, false));
-        } else ClientHelper.addToChat(Translate.translate("mode." + easy));
+        } else MCClientHelper.addToChat(Translate.translate("mode." + easy));
 
         return null;
     }

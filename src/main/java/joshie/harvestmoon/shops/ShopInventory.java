@@ -9,6 +9,7 @@ import java.util.Set;
 import joshie.harvestmoon.calendar.Weekday;
 import joshie.harvestmoon.config.Calendar;
 import joshie.harvestmoon.helpers.CalendarHelper;
+import joshie.harvestmoon.helpers.generic.MCClientHelper;
 import joshie.harvestmoon.lib.HMModInfo;
 import joshie.harvestmoon.util.generic.Text;
 import net.minecraft.client.Minecraft;
@@ -45,7 +46,7 @@ public class ShopInventory {
     public ResourceLocation getResource() {
         ResourceLocation shop_texture = new ResourceLocation(HMModInfo.MODPATH + ":lang/" + FMLCommonHandler.instance().getCurrentLanguage() + "/shops.png");
         try {
-            Minecraft.getMinecraft().renderEngine.getTexture(shop_texture).loadTexture(Minecraft.getMinecraft().getResourceManager());
+            MCClientHelper.getMinecraft().renderEngine.getTexture(shop_texture).loadTexture(Minecraft.getMinecraft().getResourceManager());
         } catch (Exception e) {
             shop_texture = new ResourceLocation(HMModInfo.MODPATH + ":lang/en_US/shops.png");
         }

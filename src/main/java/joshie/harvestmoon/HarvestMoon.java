@@ -7,7 +7,6 @@ import static joshie.harvestmoon.lib.HMModInfo.MODPATH;
 import java.io.File;
 import java.util.Map;
 
-import joshie.harvestmoon.handlers.CommonHandler;
 import joshie.harvestmoon.init.HMBlocks;
 import joshie.harvestmoon.init.HMBuildings;
 import joshie.harvestmoon.init.HMCommands;
@@ -40,8 +39,6 @@ import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
 
 @Mod(modid = MODID, name = MODNAME)
 public class HarvestMoon implements IFMLLoadingPlugin {
-    public static CommonHandler handler = new CommonHandler();
-
     @SidedProxy(clientSide = "joshie.harvestmoon.HMClientProxy", serverSide = "joshie.harvestmoon.HMCommonProxy")
     public static HMCommonProxy proxy;
 

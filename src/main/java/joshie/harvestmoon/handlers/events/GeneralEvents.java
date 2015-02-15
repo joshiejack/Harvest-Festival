@@ -1,11 +1,11 @@
 package joshie.harvestmoon.handlers.events;
 
-import static joshie.harvestmoon.HarvestMoon.handler;
 import static joshie.harvestmoon.helpers.CalendarHelper.getSeason;
 import joshie.harvestmoon.blocks.BlockFlower;
 import joshie.harvestmoon.blocks.items.ItemBlockFlower;
 import joshie.harvestmoon.calendar.Season;
-import joshie.harvestmoon.handlers.ServerHandler;
+import joshie.harvestmoon.helpers.ClientHelper;
+import joshie.harvestmoon.helpers.ServerHelper;
 import joshie.harvestmoon.init.HMNPCs;
 import joshie.harvestmoon.npc.EntityNPC;
 import net.minecraft.block.material.Material;
@@ -46,7 +46,7 @@ public class GeneralEvents {
     public void onLoad(WorldEvent.Load event) {
         if (event.world.provider.dimensionId == 0) {
             if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
-                handler.setServer(new ServerHandler(event.world));
+                ServerHelper.setServer(event.world);
             }
         }
     }
@@ -55,9 +55,10 @@ public class GeneralEvents {
     @SubscribeEvent
     public void onOpenGUI(GuiOpenEvent event) {
         if (event.gui instanceof GuiSelectWorld || event.gui instanceof GuiMultiplayer) {
-            handler.resetClient();
+            ClientHelper.resetClient();
         }
     }
+
     @SubscribeEvent
     public void getFoliageColor(GetFoliageColor event) {
         if (getSeason() == Season.AUTUMN) {

@@ -1,9 +1,10 @@
 package joshie.harvestmoon.calendar;
 
-import static joshie.harvestmoon.HarvestMoon.handler;
 import static joshie.harvestmoon.helpers.CalendarHelper.getClientSeason;
 import static joshie.harvestmoon.helpers.CalendarHelper.getSeason;
 import joshie.harvestmoon.config.Calendar;
+import joshie.harvestmoon.helpers.CropHelper;
+import joshie.harvestmoon.helpers.ServerHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -124,7 +125,7 @@ public class WeatherProvider extends WorldProviderSurface {
     //Cheers to chylex for a bunch of the maths on this one ;D
     @Override
     public float calculateCelestialAngle(long worldTime, float partialTicks) {
-        Season season = handler.getServer() != null ? getSeason() : Season.SPRING;
+        Season season = ServerHelper.isSet() ? getSeason() : Season.SPRING;
         int time = (int) (worldTime % Calendar.TICKS_PER_DAY);
         double fac = season.getLengthFactor();
         float chylex = (float) (clamp(0, 1000D, time) + 11000D * (clamp(0, 11000D, time - 1000D) / 11000D) * fac + clamp(0, 1000D, time - 12000D) + 11000D * (clamp(0, 11000D, time - 12000D) / 11000D) * (2 - fac));
@@ -168,7 +169,7 @@ public class WeatherProvider extends WorldProviderSurface {
         if (!worldObj.provider.hasNoSky) {
             if (!worldObj.isRemote) {
                 if(worldObj.isRaining()) {
-                    handler.getServer().getCropTracker().doRain();
+                    CropHelper.getServerTracker().doRain();
                 }
                 
                 Season season = getSeason();

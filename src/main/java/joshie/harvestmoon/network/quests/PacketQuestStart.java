@@ -2,8 +2,8 @@ package joshie.harvestmoon.network.quests;
 
 import static cpw.mods.fml.common.network.ByteBufUtils.readUTF8String;
 import static cpw.mods.fml.common.network.ByteBufUtils.writeUTF8String;
-import static joshie.harvestmoon.HarvestMoon.handler;
 import io.netty.buffer.ByteBuf;
+import joshie.harvestmoon.helpers.QuestHelper;
 import joshie.harvestmoon.init.HMQuests;
 import joshie.harvestmoon.quests.Quest;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
@@ -31,7 +31,7 @@ public class PacketQuestStart implements IMessage, IMessageHandler<PacketQuestSt
 
     @Override
     public IMessage onMessage(PacketQuestStart message, MessageContext ctx) {
-        handler.getServer().getPlayerData(ctx.getServerHandler().playerEntity).getQuests().startQuest(message.quest);
+        QuestHelper.startQuest(ctx.getServerHandler().playerEntity, message.quest);
         return null;
     }
 }

@@ -1,9 +1,11 @@
 package joshie.harvestmoon.helpers;
 
-import static joshie.harvestmoon.HarvestMoon.handler;
 import joshie.harvestmoon.calendar.CalendarDate;
+import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.network.PacketHandler;
 import joshie.harvestmoon.network.PacketSyncGold;
+import joshie.harvestmoon.player.PlayerDataClient;
+import joshie.harvestmoon.player.PlayerDataServer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
@@ -41,38 +43,59 @@ public class PlayerHelper {
 
     public static double getStamina(EntityPlayer player) {
         if (player.worldObj.isRemote) {
-            return handler.getClient().getPlayerData().getStamina();
-        } else return handler.getServer().getPlayerData(player).getStamina();
+            return ClientHelper.getPlayerData().getStamina();
+        } else return ServerHelper.getPlayerData(player).getStamina();
     }
 
     public static double getFatigue(EntityPlayer player) {
         if (player.worldObj.isRemote) {
-            return handler.getClient().getPlayerData().getFatigue();
-        } else return handler.getServer().getPlayerData(player).getFatigue();
+            return ClientHelper.getPlayerData().getFatigue();
+        } else return ServerHelper.getPlayerData(player).getFatigue();
     }
 
     public static void affectStats(EntityPlayer player, double stamina, double fatigue) {
         if (player.worldObj.isRemote) {
-            handler.getClient().getPlayerData().affectStats(stamina, fatigue);
-        } else handler.getServer().getPlayerData(player).affectStats(stamina, fatigue);
+            ClientHelper.getPlayerData().affectStats(stamina, fatigue);
+        } else ServerHelper.getPlayerData(player).affectStats(stamina, fatigue);
     }
 
     public static CalendarDate getBirthday(EntityPlayer player) {
         if (player.worldObj.isRemote) {
-            return handler.getClient().getPlayerData().getBirthday();
-        } else return handler.getServer().getPlayerData(player).getBirthday();
+            return ClientHelper.getPlayerData().getBirthday();
+        } else return ServerHelper.getPlayerData(player).getBirthday();
     }
 
     public static long getGold(EntityPlayer player) {
         if (player.worldObj.isRemote) {
-            return handler.getClient().getPlayerData().getGold();
-        } else return handler.getServer().getPlayerData(player).getGold();
+            return ClientHelper.getPlayerData().getGold();
+        } else return ServerHelper.getPlayerData(player).getGold();
     }
 
     public static void adjustGold(EntityPlayer player, long gold) {
         if (!player.worldObj.isRemote) {
-            handler.getServer().getPlayerData(player).addGold(gold);
+            ServerHelper.getPlayerData(player).addGold(gold);
             PacketHandler.sendToClient(new PacketSyncGold(getGold(player)), (EntityPlayerMP) player);
         }
+    }
+
+    public static void setGold(EntityPlayer player, long gold) {
+        if (!player.worldObj.isRemote) {
+            ServerHelper.getPlayerData(player).setGold(gold);
+            PacketHandler.sendToClient(new PacketSyncGold(PlayerHelper.getGold(player)), (EntityPlayerMP) player);
+        }
+    }
+
+    public static void setBirthday(EntityPlayer player, int day, Season season, int year) {
+        if (!player.worldObj.isRemote) {
+            ServerHelper.getPlayerData(player).setBirthday();
+        } else ClientHelper.getPlayerData().setBirthday(day, season, year);
+    }
+
+    public static PlayerDataServer getData(EntityPlayer player) {
+        return ServerHelper.getPlayerData(player);
+    }
+
+    public static PlayerDataClient getData() {
+        return ClientHelper.getPlayerData();
     }
 }

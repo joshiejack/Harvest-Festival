@@ -1,7 +1,7 @@
 package joshie.harvestmoon.network;
 
-import static joshie.harvestmoon.HarvestMoon.handler;
 import io.netty.buffer.ByteBuf;
+import joshie.harvestmoon.helpers.ClientHelper;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
@@ -26,7 +26,7 @@ public class PacketSyncGold implements IMessage, IMessageHandler<PacketSyncGold,
     
     @Override
     public IMessage onMessage(PacketSyncGold message, MessageContext ctx) {        
-        handler.getClient().getPlayerData().setGold(message.gold);
+        ClientHelper.getPlayerData().setGold(message.gold);
 
         return null;
     }

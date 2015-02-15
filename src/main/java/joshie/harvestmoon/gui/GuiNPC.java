@@ -1,11 +1,11 @@
 package joshie.harvestmoon.gui;
 
-import static joshie.harvestmoon.HarvestMoon.handler;
 import static joshie.harvestmoon.helpers.RelationsHelper.getRelationshipValue;
 
 import java.util.Arrays;
 import java.util.HashSet;
 
+import joshie.harvestmoon.helpers.PlayerHelper;
 import joshie.harvestmoon.helpers.QuestHelper;
 import joshie.harvestmoon.lib.HMModInfo;
 import joshie.harvestmoon.npc.EntityNPC;
@@ -64,7 +64,7 @@ public class GuiNPC extends GuiBase {
 
     private String format(String string) {
         if(string == null) return "FORGOT SOME TEXT DUMBASS";
-        PlayerDataClient data = handler.getClient().getPlayerData();
+        PlayerDataClient data = PlayerHelper.getData();
         string = string.replace("<BR>", SystemUtils.LINE_SEPARATOR);
         string = string.replace("Þ", player.getDisplayName());
         string = string.replace("ℇ", npc.getNPC().getUnlocalizedName());
@@ -168,7 +168,7 @@ public class GuiNPC extends GuiBase {
     }
     
     protected String getScript() {
-        return handler.getClient().getPlayerData().getQuests().getScript(player, npc);
+        return PlayerHelper.getData().getQuests().getScript(player, npc);
     }
 
     @Override

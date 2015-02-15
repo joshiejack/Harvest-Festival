@@ -74,6 +74,11 @@ public class PlayerDataServer implements IData {
     public void setTalkedTo(NPC npc) {
         relationStats.setTalkedTo(npc);
     }
+    
+    //Sets this player as gifted
+    public void setGifted(NPC npc, int value) {
+        relationStats.setGifted(npc, value);
+    }
 
     //Affecting Entity Relations
     public boolean affectRelationship(EntityLivingBase living, int amount) {

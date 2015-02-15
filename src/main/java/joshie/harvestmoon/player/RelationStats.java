@@ -16,6 +16,7 @@ import net.minecraft.nbt.NBTTagList;
 
 public class RelationStats implements IData {
     private HashMap<Relatable, Short> relations = new HashMap();
+    private HashSet<Relatable> gifted = new HashSet();
     private HashSet<Relatable> talkedTo = new HashSet();
     private HashSet<Relatable> marriedTo = new HashSet();
 
@@ -27,9 +28,10 @@ public class RelationStats implements IData {
 
     public void newDay() {
         talkedTo = new HashSet();
+        gifted = new HashSet();
     }
 
-    public Relatable getRelatable(Object object) {        
+    public Relatable getRelatable(Object object) {
         if (object instanceof EntityNPC) {
             return new Relatable(((EntityNPC) object).getNPC());
         } else if (object instanceof EntityLivingBase) {
@@ -54,9 +56,20 @@ public class RelationStats implements IData {
         }
     }
 
+    /** Accepts EntityLivingBase, EntityNPC, NPC or UUID
+     * Set this entity as having been gifted today **/
+    public void setGifted(Object object, int value) {
+        Relatable relate = getRelatable(object);
+        if (!gifted.contains(relate)) {
+            affectRelationship(relate, value);
+            gifted.add(relate);
+            handler.getServer().markDirty();
+        }
+    }
+
     /** Accepts EntityLivingBase, EntityNPC, NPC or UUID, 
      * Affect this entities relationship with the player **/
-    public boolean affectRelationship(Object object, int amount) {        
+    public boolean affectRelationship(Object object, int amount) {
         Relatable relate = getRelatable(object);
         int relation = getRelationship(relate) + amount;
         relations.put(relate, (short) relation);
@@ -100,6 +113,14 @@ public class RelationStats implements IData {
             relatable.readFromNBT(tag);
             talkedTo.add(relatable);
         }
+        
+        NBTTagList gift = nbt.getTagList("Gifted", 10);
+        for (int i = 0; i < gift.tagCount(); i++) {
+            NBTTagCompound tag = gift.getCompoundTagAt(i);
+            Relatable relatable = new Relatable();
+            relatable.readFromNBT(tag);
+            gifted.add(relatable);
+        }
 
         NBTTagList married = nbt.getTagList("MarriedTo", 10);
         for (int i = 0; i < married.tagCount(); i++) {
@@ -132,6 +153,17 @@ public class RelationStats implements IData {
         }
 
         nbt.setTag("TalkedTo", talked);
+
+        //////////////////////////////////////////////////////////////////////////
+        
+        NBTTagList gift = new NBTTagList();
+        for (Relatable r : gifted) {
+            NBTTagCompound tag = new NBTTagCompound();
+            r.writeToNBT(tag);
+            gift.appendTag(tag);
+        }
+
+        nbt.setTag("Gifted", gift);
 
         //////////////////////////////////////////////////////////////////////////
 

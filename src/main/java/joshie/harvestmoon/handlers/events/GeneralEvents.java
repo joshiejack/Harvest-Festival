@@ -58,7 +58,6 @@ public class GeneralEvents {
             handler.resetClient();
         }
     }
-
     @SubscribeEvent
     public void getFoliageColor(GetFoliageColor event) {
         if (getSeason() == Season.AUTUMN) {

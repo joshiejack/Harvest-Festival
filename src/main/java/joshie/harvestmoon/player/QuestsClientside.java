@@ -90,6 +90,6 @@ public class QuestsClientside {
             }
         }
 
-        return npc.getNPC().getScript();
+        return npc.getNPC().getGreeting();
     }
 }

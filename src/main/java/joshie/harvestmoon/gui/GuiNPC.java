@@ -142,7 +142,7 @@ public class GuiNPC extends GuiBase {
 
         //If lines hasn't been initilised, get yourself a new passage
         if (script == null) {
-            String[] original = WordUtils.wrap(format(handler.getClient().getPlayerData().getQuests().getScript(player, npc)), 39).split(SystemUtils.LINE_SEPARATOR);
+            String[] original = WordUtils.wrap(format(getScript()), 39).split(SystemUtils.LINE_SEPARATOR);
             if (original != null) {
                 int size = original.length / MAX_LINES_PER_PAGE;
                 boolean isRemainder = original.length % MAX_LINES_PER_PAGE == 0;
@@ -165,6 +165,10 @@ public class GuiNPC extends GuiBase {
         } else {
             drawLines();
         }
+    }
+    
+    protected String getScript() {
+        return handler.getClient().getPlayerData().getQuests().getScript(player, npc);
     }
 
     @Override

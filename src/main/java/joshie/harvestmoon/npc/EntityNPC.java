@@ -98,9 +98,9 @@ public class EntityNPC extends EntityVillager implements IEntityAdditionalSpawnD
         ItemStack held = player.inventory.getCurrentItem();
         boolean flag = held != null && held.getItem() == Items.spawn_egg;
 
-        if (!flag && isEntityAlive() && !isTrading() && !isChild() && !player.isSneaking()) {
+        if (!flag && isEntityAlive() && !isTrading() && !isChild()) {
             if (!worldObj.isRemote) {
-                player.openGui(HarvestMoon.instance, npc.getGuiID(worldObj), worldObj, getEntityId(), 0, 0);
+                player.openGui(HarvestMoon.instance, npc.getGuiID(worldObj, player.isSneaking() && held != null), worldObj, getEntityId(), 0, 0);
                 setCustomer(player);
             }
 

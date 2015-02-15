@@ -33,11 +33,15 @@ public class HMOverrides {
 
     private static void overrideShapedOre(ShapedOreRecipe recipe, Item fix) {
         Object[] original = recipe.getInput();
-        Object[] clone = new ItemStack[original.length];
+        Object[] clone = new Object[original.length];
         for (int i = 0; i < original.length; i++) {
             boolean hasChanged = false;
             Object o = original[i];
-            if (o == null || !(o instanceof ItemStack)) clone[i] = o;
+            if (o == null || !(o instanceof ItemStack)) {
+                clone[i] = o;
+                continue;
+            }
+            
             ItemStack stack = (ItemStack) o;
             Item item = stack.getItem();
             if (item == fix) {
@@ -55,10 +59,15 @@ public class HMOverrides {
     private static void overrideShapeless(ShapelessRecipes recipe, Item fix) {
         ArrayList<ItemStack> original = (ArrayList<ItemStack>) recipe.recipeItems;
         ArrayList<ItemStack> clone = new ArrayList(original.size());
+        while (clone.size() < original.size()) clone.add(null);
         for (int i = 0; i < original.size(); i++) {
             boolean hasChanged = false;
             ItemStack stack = original.get(i);
-            if (stack == null) clone.set(i, null);
+            if (stack == null) {
+                clone.set(i, null);
+                continue;
+            }
+            
             Item item = stack.getItem();
             if (item == fix) {
                 ItemStack stack2 = new ItemStack(fix, 1, OreDictionary.WILDCARD_VALUE);
@@ -79,7 +88,11 @@ public class HMOverrides {
         for (int i = 0; i < original.length; i++) {
             boolean hasChanged = false;
             ItemStack stack = original[i];
-            if (stack == null) clone[i] = null;
+            if (stack == null) {
+                clone[i] = null;
+                continue;
+            }
+            
             Item item = stack.getItem();
             if (item == fix) {
                 clone[i] = new ItemStack(fix, 1, OreDictionary.WILDCARD_VALUE);

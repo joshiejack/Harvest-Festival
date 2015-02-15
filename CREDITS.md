@@ -26,9 +26,10 @@ http://opengameart.org/content/lpc-farming-tilesets-magic-animations-and-ui-elem
 ### Other Textures
 Sickle Textures > Schist; 
 Milk, Watering Cans, Wool, Bush > VapourDrive
+Mine Materials > VapourDrive
 Seasons HUD > CyanideX
 
 ## Buildings
 Harvest Goddess Pond - http://www.planetminecraft.com/project/waterfall-pond-d/
-
+Tree for Harvest Goddess Pond - http://www.planetminecraft.com/project/custom-tree-pack-vol2-tropical-forest/
 

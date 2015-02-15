@@ -4,8 +4,11 @@ import static joshie.harvestmoon.HarvestMoon.handler;
 
 import java.util.HashSet;
 
+import joshie.harvestmoon.calendar.CalendarDate;
+import joshie.harvestmoon.helpers.CalendarHelper;
 import joshie.harvestmoon.helpers.QuestHelper;
 import joshie.harvestmoon.npc.EntityNPC;
+import joshie.harvestmoon.npc.NPC;
 import joshie.harvestmoon.quests.Quest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -32,7 +35,15 @@ public class ContainerNPCGift extends ContainerBase {
 
         if (!player.worldObj.isRemote) {
             ItemStack gift = player.getCurrentEquippedItem();
-            handler.getServer().getPlayerData(player).setGifted(npc.getNPC(), npc.getNPC().getGiftValue(gift).getRelationPoints());
+            NPC theNpc = npc.getNPC();
+            int points = theNpc.getGiftValue(gift).getRelationPoints();
+            CalendarDate today = CalendarHelper.getServerDate();
+            CalendarDate birthday = theNpc.getBirthday();
+            if (today.getSeason() == birthday.getSeason() && today.getDay() == birthday.getDay()) {
+                points *= 5;
+            }
+
+            handler.getServer().getPlayerData(player).setGifted(npc.getNPC(), points);
             player.inventory.decrStackSize(player.inventory.currentItem, 1);
         }
 

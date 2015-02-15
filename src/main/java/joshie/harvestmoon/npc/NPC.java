@@ -138,6 +138,10 @@ public class NPC {
         return shop;
     }
 
+    public CalendarDate getBirthday() {
+        return birthday;
+    }
+
     public EntityNPC getEntity(World world, int x, int y, int z) {
         if (isBuilder()) {
             return new EntityNPCBuilder(world, this);

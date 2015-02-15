@@ -11,6 +11,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.common.util.FakePlayer;
 import cpw.mods.fml.common.FMLCommonHandler;
 
 public class EntityHelper {
@@ -56,5 +57,8 @@ public class EntityHelper {
     
         return null;
     }
-
+    
+    public static boolean isFakePlayer(EntityPlayer player) {
+        return player instanceof FakePlayer || player.getCommandSenderName().equals("CoFH") || player.getCommandSenderName().startsWith("[Thaumcraft");
+    }
 }

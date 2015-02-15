@@ -56,6 +56,12 @@ public class BlockDirt extends BlockHMBaseMeta {
 
     public BlockDirt() {
         super(Material.ground);
+        setHardness(1F);
+    }
+    
+    @Override
+    public String getToolType(int meta) {
+        return "shovel";
     }
 
     @Override

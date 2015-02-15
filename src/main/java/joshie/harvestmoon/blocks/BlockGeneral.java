@@ -53,6 +53,7 @@ public class BlockGeneral extends BlockHMBaseMeta {
 
     public BlockGeneral() {
         super(Material.piston);
+        setHardness(2.5F);
     }
 
     @Override

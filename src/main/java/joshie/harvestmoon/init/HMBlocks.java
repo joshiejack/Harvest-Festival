@@ -1,5 +1,6 @@
 package joshie.harvestmoon.init;
 
+import static net.minecraft.block.Block.*;
 import static joshie.harvestmoon.helpers.generic.RegistryHelper.registerTiles;
 import joshie.harvestmoon.blocks.BlockCrop;
 import joshie.harvestmoon.blocks.BlockDirt;
@@ -25,12 +26,12 @@ public class HMBlocks {
     public static Block withered;
 
     public static void init() {
-        crops = new BlockCrop().setBlockName("crops.block");
-        dirt = new BlockDirt().setBlockName("dirt");
-        flowers = new BlockFlower().setBlockName("flowers.block");
-        tiles = new BlockGeneral().setBlockName("general.block");
-        stone = new BlockStone().setBlockName("stone");
-        withered = new BlockWithered().setBlockName("crops.withered");
+        crops = new BlockCrop().setStepSound(soundTypeGrass).setBlockName("crops.block");
+        dirt = new BlockDirt().setStepSound(soundTypeGravel).setBlockName("dirt");
+        flowers = new BlockFlower().setStepSound(soundTypeGrass).setBlockName("flowers.block");
+        tiles = new BlockGeneral().setStepSound(soundTypeMetal).setBlockName("general.block");
+        stone = new BlockStone().setStepSound(soundTypePiston).setBlockName("stone");
+        withered = new BlockWithered().setStepSound(soundTypeGrass).setBlockName("crops.withered");
 
         registerTiles("HM", TileFridge.class, TileFryingPan.class, TileKitchen.class, TileMixer.class, TileOven.class, TilePot.class, TileSteamer.class);
     }

@@ -80,7 +80,6 @@ public class BlockCrop extends BlockHMBase implements IPlantable {
 
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister register) {
-        super.registerBlockIcons(register);
         RenderCrop.registerIcons(register);
     }
 

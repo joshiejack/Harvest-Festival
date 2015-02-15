@@ -11,6 +11,7 @@ public class HMModInfo {
     public static final String CROPPATH = "hm:crops/";
     public static final String MEALPATH = "hm:meals/";
     public static final String SEEDPATH = "hm:seeds/";
+    public static final String TREATPATH = "hm:treats/";
     public static final String VERSION = "@VERSION@";
     
     public static final ResourceLocation elements = new ResourceLocation(MODPATH, "textures/gui/gui_elements.png");

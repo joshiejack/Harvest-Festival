@@ -109,6 +109,10 @@ public class AnimalTrackerServer implements IData {
         getAndCreateData(animal).treat(stack, player);
     }
 
+    public boolean impregnate(EntityAnimal animal) {
+        return getAndCreateData(animal).impregnate();
+    }
+
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         NBTTagList animals = nbt.getTagList("AnimalData", 10);

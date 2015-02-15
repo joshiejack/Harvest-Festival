@@ -37,10 +37,11 @@ public class ItemGeneral extends ItemHMMeta {
     public static final int POTATO_SLICES = 19;
     public static final int BUTTER = 20;
     public static final int SALT = 21;
+    public static final int MIRACLE = 22;
 
     @Override
     public int getMetaCount() {
-        return 22;
+        return 23;
     }
 
     @Override
@@ -90,6 +91,8 @@ public class ItemGeneral extends ItemHMMeta {
                 return "salt";
             case WHISKED_EGG:
                 return "whisked_egg";
+            case MIRACLE:
+                return "miracle_potion";
             default:
                 return "invalid";
         }
@@ -134,6 +137,11 @@ public class ItemGeneral extends ItemHMMeta {
                 return true;
             } else if (metadata == CHICKEN_FEED && animal instanceof EntityChicken) {
                 feed(player, animal);
+            } else if (metadata == MIRACLE && !(living instanceof EntityChicken)) {
+                if (!living.worldObj.isRemote) {
+                    AnimalHelper.impregnate(player, animal);
+                    stack.stackSize--;
+                }
             }
         }
 

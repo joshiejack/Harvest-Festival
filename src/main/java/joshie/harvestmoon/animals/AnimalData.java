@@ -15,11 +15,13 @@ import static joshie.harvestmoon.network.PacketHandler.sendToEveryone;
 import java.util.Random;
 import java.util.UUID;
 
+import joshie.harvestmoon.config.Animals;
 import joshie.harvestmoon.config.Calendar;
 import joshie.harvestmoon.helpers.AnimalHelper;
 import joshie.harvestmoon.helpers.RelationsHelper;
 import joshie.harvestmoon.network.PacketSyncCanProduce;
 import joshie.harvestmoon.util.IData;
+import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityCow;
@@ -87,6 +89,10 @@ public class AnimalData implements IData {
     private int numProductsProduced = 0; //The number of products this animal has produced today (resets each day)
     private boolean thrown; //Whether this animal has been thrown or not today, only affects chickens
     private boolean treated; //Whether this animal has had it's treat for today
+
+    //Pregnancy Test
+    private boolean isPregnant;
+    private int daysPregnant;
 
     public AnimalData() {}
 
@@ -226,6 +232,17 @@ public class AnimalData implements IData {
                 sendToEveryone(new PacketSyncCanProduce(entity.getEntityId(), false, canProduce()));
             }
 
+            //Stage 4 Pregnancy time!
+            if (isPregnant) {
+                daysPregnant++;
+
+                if (daysPregnant >= Animals.PREGNANCY_TIMER) {
+                    isPregnant = false;
+                    daysPregnant = 0;
+                    giveBirth();
+                }
+            }
+
             return true;
         } else return false;
     }
@@ -316,6 +333,34 @@ public class AnimalData implements IData {
         } else return false;
     }
 
+    public boolean impregnate() {
+        EntityAnimal animal = getAndCreateAnimal();
+        if (animal.getAge() < 0) return false;
+        if (isPregnant) return false;
+        daysPregnant = 0;
+        isPregnant = true;
+        return true;
+    }
+
+    public void giveBirth() {
+        EntityAnimal animal = getAndCreateAnimal();
+        int count = 1;
+        //Chance for litters up to 5
+        for (int i = 0; i < (Animals.MAX_LITTER_SIZE - 1); i++) {
+            if (rand.nextDouble() * 100 <= Animals.LITTER_EXTRA_CHANCE) {
+                count++;
+            }
+        }
+
+        //Lay that litter!
+        for (int i = 0; i < count; i++) {
+            EntityAgeable baby = animal.createChild(animal);
+            baby.setGrowingAge(-(24000 * Animals.AGING_TIMER));
+            baby.setLocationAndAngles(animal.posX, animal.posY, animal.posZ, 0.0F, 0.0F);
+            animal.worldObj.spawnEntityInWorld(baby);
+        }
+    }
+
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         if (nbt.hasKey("Owner-UUIDMost")) {
@@ -338,6 +383,9 @@ public class AnimalData implements IData {
             maxProductsPerDay = nbt.getByte("NumProducts");
             numProductsProduced = nbt.getByte("ProductsProduced");
         }
+
+        isPregnant = nbt.getBoolean("IsPregnant");
+        daysPregnant = nbt.getInteger("DaysPregnant");
     }
 
     @Override
@@ -365,5 +413,8 @@ public class AnimalData implements IData {
             nbt.setByte("NumProducts", (byte) maxProductsPerDay);
             nbt.setByte("ProductsProduced", (byte) numProductsProduced);
         }
+
+        nbt.setBoolean("IsPregnant", isPregnant);
+        nbt.setInteger("DaysPregnant", daysPregnant);
     }
 }

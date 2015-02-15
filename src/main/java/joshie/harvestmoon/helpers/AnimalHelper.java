@@ -66,4 +66,11 @@ public class AnimalHelper {
     public static void newDay() {
         ServerHelper.getAnimalTracker().newDay();
     }
+
+    public static boolean impregnate(EntityPlayer player, EntityAnimal animal) {
+        if (ServerHelper.getAnimalTracker().impregnate(animal)) {
+            ServerHelper.getPlayerData(player).affectRelationship(animal, 200);
+            return true;
+        } else return false;
+    }
 }

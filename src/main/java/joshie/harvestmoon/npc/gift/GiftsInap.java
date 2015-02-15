@@ -1,8 +1,8 @@
 package joshie.harvestmoon.npc.gift;
 
-import static joshie.harvestmoon.npc.gift.Gifts.GiftQuality.AWESOME;
-import static joshie.harvestmoon.npc.gift.Gifts.GiftQuality.DECENT;
-import static joshie.harvestmoon.npc.gift.Gifts.GiftQuality.GOOD;
+import static joshie.harvestmoon.npc.gift.Gifts.Quality.AWESOME;
+import static joshie.harvestmoon.npc.gift.Gifts.Quality.DECENT;
+import static joshie.harvestmoon.npc.gift.Gifts.Quality.GOOD;
 import joshie.harvestmoon.crops.Crop;
 import joshie.harvestmoon.helpers.CropHelper;
 import joshie.harvestmoon.init.HMCrops;
@@ -15,7 +15,7 @@ import net.minecraft.item.ItemStack;
 
 public class GiftsInap extends Gifts {
     @Override
-    public GiftQuality getValue(ItemStack stack) {
+    public Quality getQuality(ItemStack stack) {
         if (stack.getItem() == Items.melon) {
             return AWESOME;
         }
@@ -31,6 +31,14 @@ public class GiftsInap extends Gifts {
 
         if (stack.getItem() == HMItems.general && stack.getItemDamage() == ItemGeneral.BAMBOO_SHOOT) {
             return GOOD;
+        }
+
+        if (is(stack, Category.CONSTRUCTION)) {
+            return Quality.GOOD;
+        }
+
+        if (is(stack, Category.FARMING)) {
+            return Quality.BAD;
         }
 
         return DECENT;

@@ -38,6 +38,7 @@ public class ItemGeneral extends ItemHMMeta {
     public static final int BUTTER = 20;
     public static final int SALT = 21;
     public static final int MIRACLE = 22;
+    public static final int CHOCOLATE = 23;
 
     @Override
     public int getMetaCount() {
@@ -93,6 +94,8 @@ public class ItemGeneral extends ItemHMMeta {
                 return "whisked_egg";
             case MIRACLE:
                 return "miracle_potion";
+            case CHOCOLATE:
+                return "chocolate";
             default:
                 return "invalid";
         }

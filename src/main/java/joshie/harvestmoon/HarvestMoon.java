@@ -13,6 +13,8 @@ import joshie.harvestmoon.init.HMCommands;
 import joshie.harvestmoon.init.HMCooking;
 import joshie.harvestmoon.init.HMCrops;
 import joshie.harvestmoon.init.HMEntities;
+import joshie.harvestmoon.init.HMGiftBlocks;
+import joshie.harvestmoon.init.HMGiftItems;
 import joshie.harvestmoon.init.HMHandlers;
 import joshie.harvestmoon.init.HMItems;
 import joshie.harvestmoon.init.HMMining;
@@ -69,6 +71,8 @@ public class HarvestMoon implements IFMLLoadingPlugin {
         HMHandlers.init();
         HMShops.init();
         HMMining.init();
+        HMGiftBlocks.init();
+        HMGiftItems.init();
         proxy.preInit();
     }
 

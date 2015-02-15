@@ -1,13 +1,13 @@
 package joshie.harvestmoon.gui;
 
 import joshie.harvestmoon.npc.EntityNPC;
-import joshie.harvestmoon.npc.gift.Gifts.GiftQuality;
+import joshie.harvestmoon.npc.gift.Gifts.Quality;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
 public class GuiNPCGift extends GuiNPC {
     private ItemStack gift;
-    private GiftQuality value;
+    private Quality value;
 
     public GuiNPCGift(EntityNPC npc, EntityPlayer player) {
         super(npc, player);

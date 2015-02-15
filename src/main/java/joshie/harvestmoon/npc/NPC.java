@@ -10,7 +10,7 @@ import java.util.Collections;
 import joshie.harvestmoon.calendar.CalendarDate;
 import joshie.harvestmoon.handlers.GuiHandler;
 import joshie.harvestmoon.npc.gift.Gifts;
-import joshie.harvestmoon.npc.gift.Gifts.GiftQuality;
+import joshie.harvestmoon.npc.gift.Gifts.Quality;
 import joshie.harvestmoon.shops.ShopInventory;
 import joshie.harvestmoon.util.Translate;
 import joshie.harvestmoon.util.generic.Text;
@@ -53,12 +53,12 @@ public class NPC {
         } catch (Exception e) {}
 
         for (int i = 0; i < 6; i++) {
-            String key = "hm.npc." + name + ".gift." + GiftQuality.values()[i].name().toLowerCase();
+            String key = "hm.npc." + name + ".gift." + Quality.values()[i].name().toLowerCase();
             String translated = Text.localize(key);
             if (!translated.equals(key)) {
                 thanks.add(translated);
             } else {
-                key = "hm.npc.generic." + age.name().toLowerCase() + ".gift." + GiftQuality.values()[i].name().toLowerCase();
+                key = "hm.npc.generic." + age.name().toLowerCase() + ".gift." + Quality.values()[i].name().toLowerCase();
                 translated = Text.localize(key);
                 thanks.add(translated);
             }
@@ -179,11 +179,11 @@ public class NPC {
         return greetings.get(last);
     }
 
-    public GiftQuality getGiftValue(ItemStack stack) {
-        return gifts.getValue(stack);
+    public Quality getGiftValue(ItemStack stack) {
+        return gifts.getQuality(stack);
     }
 
-    public String getThanks(GiftQuality value) {
+    public String getThanks(Quality value) {
         return thanks.get(value.ordinal());
     }
 

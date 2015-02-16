@@ -3,6 +3,7 @@ package joshie.harvestmoon.init;
 import static joshie.harvestmoon.calendar.Season.AUTUMN;
 import static joshie.harvestmoon.calendar.Season.SPRING;
 import static joshie.harvestmoon.calendar.Season.SUMMER;
+import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.crops.Crop;
 import joshie.harvestmoon.lib.CropMeta;
 
@@ -22,6 +23,7 @@ public class HMCrops {
     public static Crop sweet_potato;
     public static Crop spinach;
     public static Crop green_pepper;
+    public static Crop grass;
     
     public static void init() {
         //Spring Crops
@@ -44,5 +46,8 @@ public class HMCrops {
         sweet_potato = new Crop("potato_sweet", AUTUMN, 300, 120, 6, 4, 0, CropMeta.SWEET_POTATO);
         spinach = new Crop("spinach", AUTUMN, 200, 80, 6, 0, 3, CropMeta.SPINACH);
         green_pepper = new Crop("pepper_green", AUTUMN, 150, 40, 8, 2, 8, CropMeta.GREEN_PEPPER);
+        
+        //All Season Grass
+        grass = new Crop("grass", new Season[] { SPRING, SUMMER, AUTUMN }, 500, 0, 11, 0, 0, CropMeta.GRASS);
     }
 }

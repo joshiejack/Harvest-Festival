@@ -9,6 +9,7 @@ import static joshie.harvestmoon.lib.HMModInfo.SEEDPATH;
 
 import java.util.List;
 
+import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.crops.Crop;
 import joshie.harvestmoon.helpers.CropHelper;
 import joshie.harvestmoon.init.HMBlocks;
@@ -45,7 +46,9 @@ public class ItemSeeds extends ItemHMMeta implements IRateable {
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean debug) {
         Crop crop = CropHelper.getCropFromStack(stack);
         int quality = getCropQuality(stack.getItemDamage());
-        list.add(crop.getSeason().getLocalized());
+        for (Season season: crop.getSeasons()) {
+            list.add(season.getLocalized());
+        }
     }
 
     @Override

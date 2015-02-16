@@ -23,20 +23,17 @@ hm.crop.potato=Potato
 hm.crop.cucumber=Cucumber
 hm.crop.strawberry=Strawberry
 hm.crop.cabbage=Cabbage
-hm.crop.flower.moondrop=Moondrop Flower
-hm.crop.toyflower=Toyflower
 hm.crop.tomato=Tomato
 hm.crop.onion=Onion
 hm.crop.corn=Corn
 hm.crop.pumpkin=Pumpkin
 hm.crop.pineapple=Pineapple
-hm.crop.flower.pinkcat=Pinkcat Flower
 hm.crop.eggplant=Eggplant
 hm.crop.carrot=Carrot
 hm.crop.potato.sweet=Sweet Potato
 hm.crop.spinach=Spinach
 hm.crop.pepper.green=Green Pepper
-hm.crop.flower.magic=Magic Flower
+hm.crop.grass=Grass
 
 #General Items
 hm.general.item.feather.blue=Blue Feather

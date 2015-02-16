@@ -17,7 +17,7 @@ public class Crop {
         
     //CropData
     protected String unlocalized;
-    protected Season season;
+    protected Season[] seasons;
     protected int cost;
     protected int sell;
     protected int stages;
@@ -37,8 +37,12 @@ public class Crop {
      * @param year the year in which this crop can be purchased
      * @param meta the crop meta value for dropping the correct item  */
     public Crop(String unlocalized, Season season, int cost, int sell, int stages, int regrow, int year, CropMeta meta) {
+        this(unlocalized, new Season[] { season }, cost, sell, stages, regrow, year, meta);
+    }
+    
+    public Crop(String unlocalized, Season[] seasons, int cost, int sell, int stages, int regrow, int year, CropMeta meta) {
         this.unlocalized = unlocalized;
-        this.season = season;
+        this.seasons = seasons;
         this.cost = cost;
         this.sell = sell;
         this.stages = stages;
@@ -51,8 +55,8 @@ public class Crop {
     
     /** This is the season this crop survives in 
      * @return the season that is valid for this crop */
-    public Season getSeason() {
-        return season;
+    public Season[] getSeasons() {
+        return seasons;
     }
     
     /** This is how much the seed costs in the store.

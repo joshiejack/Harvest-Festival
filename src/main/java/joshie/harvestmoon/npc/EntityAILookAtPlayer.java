@@ -15,9 +15,11 @@ public class EntityAILookAtPlayer extends EntityAIWatchClosest {
      * Returns whether the EntityAIBase should begin execution.
      */
     public boolean shouldExecute() {
-        if (npc.isTalking()) {
+        if (npc != null && npc.isTalking()) {
             closestEntity = npc.getTalkingTo();
-            return true;
+            if (closestEntity == null) {
+                return false;
+            } else return true;
         } else {
             return false;
         }

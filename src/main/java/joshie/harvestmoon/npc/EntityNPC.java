@@ -6,6 +6,7 @@ import joshie.harvestmoon.init.HMNPCs;
 import joshie.harvestmoon.lib.HMModInfo;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
 import net.minecraft.entity.ai.EntityAIMoveIndoors;
 import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
@@ -14,9 +15,7 @@ import net.minecraft.entity.ai.EntityAIRestrictOpenDoor;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.ai.EntityAIWatchClosest2;
 import net.minecraft.entity.monster.EntityZombie;
-import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -62,8 +61,8 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
         this.tasks.addTask(4, new EntityAIOpenDoor(this, true));
         this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 0.6D));
         this.tasks.addTask(8, new EntityAIPlay(this, 0.32D));
-        this.tasks.addTask(9, new EntityAIWatchClosest2(this, EntityPlayer.class, 3.0F, 1.0F));
-        this.tasks.addTask(9, new EntityAIWatchClosest2(this, EntityVillager.class, 5.0F, 0.02F));
+        this.tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 3.0F, 1.0F));
+        this.tasks.addTask(9, new EntityAIWatchClosest(this, EntityNPC.class, 5.0F, 0.02F));
         this.tasks.addTask(9, new EntityAIWander(this, 0.6D));
         this.tasks.addTask(10, new EntityAIWatchClosest(this, EntityLiving.class, 8.0F));
     }
@@ -71,6 +70,18 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
     public EntityNPC(World world, NPC npc, double x, double y, double z) {
         this(world, npc);
         setPosition(x, y, z);
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.5D);
+    }
+
+    @Override
+    protected void entityInit() {
+        super.entityInit();
+        this.dataWatcher.addObject(16, Integer.valueOf(0));
     }
 
     @Override
@@ -153,8 +164,7 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
     public boolean interact(EntityPlayer player) {
         ItemStack held = player.inventory.getCurrentItem();
         boolean flag = held != null && held.getItem() == Items.spawn_egg;
-
-        if (!flag && isEntityAlive() && !isTalking() && !isChild()) {
+        if (!flag && isEntityAlive()) {
             if (!worldObj.isRemote) {
                 player.openGui(HarvestMoon.instance, npc.getGuiID(worldObj, player.isSneaking() && held != null), worldObj, getEntityId(), 0, 0);
                 setTalking(player);

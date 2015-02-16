@@ -48,6 +48,7 @@ public class NPC {
         this.gender = gender;
         this.age = age;
         this.height = 1F;
+        this.birthday = birthday;
 
         String gift = StringUtils.capitalize(name);
         try {

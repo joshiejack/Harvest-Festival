@@ -50,7 +50,7 @@ public class HMNPCs {
     public static NPC poultry; //Poultry Farm Owner
 
     public static void init() {
-        goddess = register(new NPCGoddess("goddess", FEMALE, ADULT).setHeight(1.05F));
+        goddess = register(new NPCGoddess("goddess", FEMALE, ADULT).setHeight(1.1F));
         animal_owner = register(new NPC("jim", MALE, ADULT, new CalendarDate(26, Season.SPRING, 1)));
         cafe_owner = register(new NPC("liara", FEMALE, ADULT, new CalendarDate(17, Season.SPRING, 1)));
         seed_owner = register(new NPC("jade", FEMALE, ADULT, new CalendarDate(14, Season.SPRING, 1)));

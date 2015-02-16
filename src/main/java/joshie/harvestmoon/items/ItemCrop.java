@@ -25,7 +25,7 @@ public class ItemCrop extends ItemHMMeta implements IShippable, IRateable {
         setCreativeTab(HarvestTab.hm);
         setTextureFolder(CROPPATH);
     }
-    
+
     @Override
     public int getMetaCount() {
         return CropMeta.values().length;
@@ -34,40 +34,46 @@ public class ItemCrop extends ItemHMMeta implements IShippable, IRateable {
     @Override
     public long getSellValue(ItemStack stack) {
         Crop crop = getCropFromStack(stack);
+        if (crop.isStatic()) return 0;
         boolean isGiant = isGiant(stack.getItemDamage());
         double quality = 1 + (getCropQuality(stack.getItemDamage()) * SELL_QUALITY_MODIFIER);
         long ret = (int) quality * crop.getSellValue();
-        return isGiant? ret * 10: ret;
+        return isGiant ? ret * 10 : ret;
     }
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        return getCropFromStack(stack).getCropName(isGiant(stack.getItemDamage()));
+        return getCropFromStack(stack).getCropName(true, isGiant(stack.getItemDamage()));
     }
 
     @Override
     public int getRating(ItemStack stack) {
-        int quality = getCropQuality(stack.getItemDamage());        
-        return quality / 10;
+        Crop crop = getCropFromStack(stack);
+        if (crop.isStatic()) return -1;
+        else return getCropQuality(stack.getItemDamage()) / 10;
     }
-    
+
     @SideOnly(Side.CLIENT)
     @Override
-    public IIcon getIconFromDamage(int damage) {        
+    public IIcon getIconFromDamage(int damage) {
         return icons[getCropType(damage)];
     }
-    
+
     @Override
     public String getName(ItemStack stack) {
         return getCropFromStack(stack).getUnlocalizedName();
     }
-    
+
     @SideOnly(Side.CLIENT)
     @Override
     public void getSubItems(Item item, CreativeTabs tab, List list) {
         for (int i = 0; i < getMetaCount(); i++) {
-            for (int j = 0; j < 100; j+=100) {
-                list.add(new ItemStack(item, 1, (j * 100) + i));
+            for (int j = 0; j < 100; j += 100) {
+                ItemStack stack = new ItemStack(item, 1, (j * 100) + i);
+                Crop crop = getCropFromStack(stack);
+                if ((crop.isStatic() && j == 0) || !crop.isStatic()) {
+                    list.add(stack);
+                }
             }
         }
     }

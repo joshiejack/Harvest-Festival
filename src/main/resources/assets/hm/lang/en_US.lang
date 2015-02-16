@@ -33,7 +33,8 @@ hm.crop.carrot=Carrot
 hm.crop.potato.sweet=Sweet Potato
 hm.crop.spinach=Spinach
 hm.crop.pepper.green=Green Pepper
-hm.crop.grass=Grass
+hm.crop.grass.block=Grass
+hm.crop.grass.item=Fodder
 
 #General Items
 hm.general.item.feather.blue=Blue Feather

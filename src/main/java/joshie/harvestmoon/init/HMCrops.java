@@ -48,6 +48,6 @@ public class HMCrops {
         green_pepper = new Crop("pepper_green", AUTUMN, 150, 40, 8, 2, 8, CropMeta.GREEN_PEPPER);
         
         //All Season Grass
-        grass = new Crop("grass", new Season[] { SPRING, SUMMER, AUTUMN }, 500, 0, 11, 0, 0, CropMeta.GRASS);
+        grass = new Crop("grass", new Season[] { SPRING, SUMMER, AUTUMN }, 500, 0, 11, 0, 0, CropMeta.GRASS).setIsStatic().setHasAlternativeName();
     }
 }

@@ -33,9 +33,9 @@ import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class RenderEvents {    
+public class RenderEvents {
     private static final ResourceLocation COIN_TEXTURE = new ResourceLocation("hm", "textures/gui/gui_elements.png");
-    
+
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void renderTick(TickEvent.RenderTickEvent event) {
@@ -63,7 +63,9 @@ public class RenderEvents {
                         ArrayList<String> tooltip = new ArrayList();
                         stack.getItem().addInformation(stack, mc.thePlayer, tooltip, false);
                         int rating = ((IRateable) stack.getItem()).getRating(stack);
-                        RatingHelper.drawStarRating(gui, k, l + 17 + (12 * tooltip.size()), rating, mc.fontRenderer);
+                        if (rating >= 0) {
+                            RatingHelper.drawStarRating(gui, k, l + 17 + (12 * tooltip.size()), rating, mc.fontRenderer);
+                        }
                     }
                 }
             }
@@ -72,12 +74,12 @@ public class RenderEvents {
             GL11.glPopMatrix();
         }
     }
-    
+
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void onRenderOverlay(RenderGameOverlayEvent.Pre event) {
-        if(event.type == ElementType.CROSSHAIRS) {
-            if(joshie.harvestmoon.helpers.generic.MCClientHelper.getPlayer().openContainer instanceof ContainerNPC) {
+        if (event.type == ElementType.CROSSHAIRS) {
+            if (joshie.harvestmoon.helpers.generic.MCClientHelper.getPlayer().openContainer instanceof ContainerNPC) {
                 event.setCanceled(true);
             }
         } else if (event.type == ElementType.HOTBAR) {

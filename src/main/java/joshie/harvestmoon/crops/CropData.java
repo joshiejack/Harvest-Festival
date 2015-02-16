@@ -83,8 +83,13 @@ public class CropData implements IData {
     public ItemStack harvest() {
         if (stage == crop.getStages()) {
             int cropMeta = crop.getCropMeta();
-            int cropQuality = ((this.quality - 1) * 100);
-            int cropSize = isGiantCrop ? 16000 : 0;
+            int cropQuality = 0;
+            int cropSize = 0;
+            if (!crop.isStatic()) {
+                cropQuality = ((this.quality - 1) * 100);
+                cropSize = isGiantCrop ? 16000 : 0;
+            }
+
             if (crop.getRegrowStage() > 0) {
                 stage = crop.getRegrowStage();
             }

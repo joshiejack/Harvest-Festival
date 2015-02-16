@@ -11,12 +11,13 @@ import net.minecraft.util.StatCollector;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.WordUtils;
 
-
 public class Crop {
     public static final ArrayList<Crop> crops = new ArrayList(30);
-        
+
     //CropData
     protected String unlocalized;
+    protected boolean alternativeName;
+    protected boolean isStatic;
     protected Season[] seasons;
     protected int cost;
     protected int sell;
@@ -24,9 +25,9 @@ public class Crop {
     protected int regrow;
     protected int year;
     protected CropMeta meta;
-    
+
     public Crop() {}
-    
+
     /** Constructor for crop
      * @param unlocalized name, works as the uuid
      * @param season the season this crop grows in
@@ -39,7 +40,7 @@ public class Crop {
     public Crop(String unlocalized, Season season, int cost, int sell, int stages, int regrow, int year, CropMeta meta) {
         this(unlocalized, new Season[] { season }, cost, sell, stages, regrow, year, meta);
     }
-    
+
     public Crop(String unlocalized, Season[] seasons, int cost, int sell, int stages, int regrow, int year, CropMeta meta) {
         this.unlocalized = unlocalized;
         this.seasons = seasons;
@@ -49,139 +50,159 @@ public class Crop {
         this.regrow = regrow;
         this.meta = meta;
         this.year = year;
-        
+        this.isStatic = false;
+        this.alternativeName = false;
+
         crops.add(this);
     }
-    
+
+    public Crop setHasAlternativeName() {
+        this.alternativeName = true;
+        return this;
+    }
+
+    public Crop setIsStatic() {
+        this.isStatic = true;
+        return this;
+    }
+
     /** This is the season this crop survives in 
      * @return the season that is valid for this crop */
     public Season[] getSeasons() {
         return seasons;
     }
-    
+
     /** This is how much the seed costs in the store.
      * If the seed isn't purchasable return 0
      * @return the cost in gold */
     public long getSeedCost() {
         return cost;
     }
-    
+
     /** This is how much this crop well sell for at level 1.
      * If this crop cannot be sold return 0
      * @return the sell value in gold */
     public long getSellValue() {
         return sell;
     }
-    
+
     /** Return how many stages this crop has.
      * A return value of 0, means the crop is instantly grown.
      * @return the stage */
     public int getStages() {
         return stages;
     }
-    
+
     /** The year in which this crop can be purchased **/
     public int getPurchaseYear() {
         return year;
     }
-    
+
     /** Returns the type of withering this plant will produce **/
     public final WitherType getWitherType(int stage) {
-        if(isSeed(stage)) return WitherType.SEED;
+        if (isSeed(stage)) return WitherType.SEED;
         else if (isGrowing(stage)) return WitherType.GROWING;
-        else if(isGrown(stage)) return WitherType.GROWN;
+        else if (isGrown(stage)) return WitherType.GROWN;
         else return WitherType.NONE;
     }
-    
 
     /** Whether this crop is considered a seed at this stage **/
     public boolean isSeed(int stage) {
         return stage == 0;
     }
-    
+
     /** Whether this crop is considered growing at this stage **/
     public boolean isGrowing(int stage) {
-        if(getRegrowStage() > 0) {
+        if (getRegrowStage() > 0) {
             return stage < getRegrowStage();
         } else return stage < getStages() && stage > 0;
     }
-    
+
     /** Whether this crop is considered grown this stage **/
     public boolean isGrown(int stage) {
-        if(getRegrowStage() > 0) {
+        if (getRegrowStage() > 0) {
             return stage >= getRegrowStage();
         } else return stage == getStages();
     }
-    
+
+    /** Return true if this crop doesn't have quality/larger sizes **/
+    public boolean isStatic() {
+        return false;
+    }
+
     /** Return the stage that the plant returns to when it's harvested.
      * A return value of 0, means the crop is destroyed.
      * @return the stage */
     public int getRegrowStage() {
         return regrow;
     }
-    
+
     /** This is called to get the drop of this crop once it's ready for harvest 
      * @return the CropMeta that this crop should drop */
     public int getCropMeta() {
         return meta.ordinal();
     }
-    
+
     /** This is called when bringing up the list of crops for sale 
      * @param shop The shop that is currently open
      * @return whether this item can be purchased in this shop or not */
     public boolean canPurchase() {
         return getSeedCost() > 0;
     }
-    
+
     /** Gets the unlocalized name for this crop
      * @return unlocalized name */
     public String getUnlocalizedName() {
         return unlocalized;
     }
-    
+
     /** Returns a render appropriate name
      * return render name */
     public final String getRenderName() {
         return "Render" + WordUtils.capitalize(getUnlocalizedName(), '_').replace("_", "");
     }
-    
+
     /** Gets the localized crop name for this crop
      * @param stack 
      * @return crop name */
-    public final String getCropName(boolean isGiant) {
-        String name = Translate.translate("crop." + StringUtils.replace(getUnlocalizedName(), "_", "."));
+    public final String getCropName(boolean isItem, boolean isGiant) {
+        String suffix = alternativeName ? ((isItem) ? ".item" : ".block") : "";
+        String name = Translate.translate("crop." + StringUtils.replace(getUnlocalizedName(), "_", ".") + suffix);
         if (!isGiant) {
             return name;
         } else {
             String text = Translate.translate("crop.giant.format");
-            String giant = Translate.translate("crop.giant");            
-            text = StringUtils.replace(text, "%G", giant);
+            if (!isStatic()) {
+                String giant = Translate.translate("crop.giant");
+                text = StringUtils.replace(text, "%G", giant);
+            } else text = StringUtils.replace(text, " %G", "");
+
             text = StringUtils.replace(text, "%C", name);
             return text;
         }
     }
-    
+
     /** Gets the localized seed name for this crop
      * @return seed name */
     public final String getSeedsName(boolean isGiant) {
         String name = Translate.translate("crop." + StringUtils.replace(getUnlocalizedName(), "_", "."));
         String seeds = Translate.translate("crop.seeds");
         String text = Translate.translate("crop.seeds.format.standard");
-        if(isGiant) {
+        if (isGiant) {
             text = StatCollector.translateToLocal("hm.crop.seeds.format.giant");
             text = StringUtils.replace(text, "%G", Translate.translate("crop.giant"));
         }
-        
+
         text = StringUtils.replace(text, "%C", name);
         text = StringUtils.replace(text, "%S", seeds);
         return text;
     }
-    
+
     @Override
     public boolean equals(Object o) {
         return unlocalized.equals(o);
     }
-    
+
     @Override
     public int hashCode() {
         return unlocalized.hashCode();

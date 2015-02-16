@@ -1,5 +1,6 @@
 package joshie.harvestmoon.npc;
 
+import joshie.harvestmoon.init.HMNPCs;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.entity.RendererLivingEntity;
 import net.minecraft.entity.Entity;
@@ -70,7 +71,7 @@ public class RenderNPC extends RendererLivingEntity {
         }
 
         GL11.glScalef(1F, npc.getNPC().getHeight(), 1F);
-        GL11.glTranslatef(0F, npc.getNPC().getHeight() - 1F, 0F);
+        GL11.glTranslatef(0F, npc.getNPC().getOffset(), 0F);
 
         GL11.glColor3f(1.0F, 1.0F, 1.0F);
         modelBipedMain.heldItemRight = 0;

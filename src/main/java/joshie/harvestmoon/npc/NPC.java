@@ -37,6 +37,7 @@ public class NPC {
     private Age age;
     private Gender gender;
     private float height;
+    private float offset;
     private Gifts gifts;
     private boolean isBuilder;
     private boolean isMiner;
@@ -120,8 +121,9 @@ public class NPC {
         return this;
     }
     
-    public NPC setHeight(float height) {
+    public NPC setHeight(float height, float offset) {
         this.height = height;
+        this.offset = offset;
         return this;
     }
 
@@ -136,6 +138,10 @@ public class NPC {
 
     public float getHeight() {
         return height;
+    }
+    
+    public float getOffset() {
+        return offset;
     }
 
     public boolean isBuilder() {

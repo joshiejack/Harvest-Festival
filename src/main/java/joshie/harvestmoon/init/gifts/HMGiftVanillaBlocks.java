@@ -1,4 +1,4 @@
-package joshie.harvestmoon.init;
+package joshie.harvestmoon.init.gifts;
 
 import static joshie.harvestmoon.npc.gift.Gifts.assignWild;
 import static joshie.harvestmoon.npc.gift.Gifts.Category.ANIMALS;
@@ -19,9 +19,9 @@ import static joshie.harvestmoon.npc.gift.Gifts.Category.TECHNOLOGY;
 import static joshie.harvestmoon.npc.gift.Gifts.Category.TOOLS;
 import static joshie.harvestmoon.npc.gift.Gifts.Category.WATER;
 import static net.minecraft.init.Blocks.*;
-public class HMGiftBlocks {
+
+public class HMGiftVanillaBlocks {
     public static void init() {
-        /** assignWild all them blocks D= **/
         assignWild(stone, MINING, CHEAP, CONSTRUCTION);
         assignWild(grass, NATURE);
         assignWild(dirt, CHEAP);

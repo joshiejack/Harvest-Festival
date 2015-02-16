@@ -20,7 +20,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
@@ -28,7 +27,6 @@ import net.minecraft.world.World;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 
 public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnData {
-    public InventoryNPC inventory = new InventoryNPC(this);
     protected NPC npc;
     protected double homeX, homeY, homeZ;
     protected EntityNPC lover;
@@ -37,7 +35,6 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
 
     public EntityNPC(EntityNPC entity) {
         this(entity.worldObj, entity.npc, entity.homeX, entity.homeY, entity.homeZ);
-        inventory = entity.inventory;
         lover = entity.lover;
     }
 
@@ -76,12 +73,6 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.5D);
-    }
-
-    @Override
-    protected void entityInit() {
-        super.entityInit();
-        this.dataWatcher.addObject(16, Integer.valueOf(0));
     }
 
     @Override
@@ -179,7 +170,6 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
     @Override
     public void readEntityFromNBT(NBTTagCompound nbt) {
         super.readEntityFromNBT(nbt);
-        inventory.readFromNBT(nbt.getTagList("Inventory", 10));
         npc = HMNPCs.get(nbt.getString("NPC"));
         homeX = nbt.getDouble("HomeX");
         homeY = nbt.getDouble("HomeY");
@@ -189,7 +179,6 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
     @Override
     public void writeEntityToNBT(NBTTagCompound nbt) {
         super.writeEntityToNBT(nbt);
-        nbt.setTag("Inventory", inventory.writeToNBT(new NBTTagList()));
         if (npc != null) {
             nbt.setString("NPC", npc.getUnlocalizedName());
         }

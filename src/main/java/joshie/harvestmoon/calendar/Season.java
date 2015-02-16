@@ -1,9 +1,12 @@
 package joshie.harvestmoon.calendar;
 
 import static joshie.harvestmoon.lib.HMModInfo.MODPATH;
+import static joshie.harvestmoon.util.generic.Text.BRIGHT_GREEN;
+import static joshie.harvestmoon.util.generic.Text.INDIGO;
+import static joshie.harvestmoon.util.generic.Text.ORANGE;
+import static joshie.harvestmoon.util.generic.Text.YELLOW;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
-import static joshie.harvestmoon.util.generic.Text.*;
 public enum Season {    
     SPRING("spring", 168000, 12000, 1, 1, 0x87CEFA, 0.6082D, 0.01F, 1850L, BRIGHT_GREEN), //Flower
     SUMMER("summer", 250000, 5000, 0, 3, 7972863, 0.1D, 0.0011F, 0L, YELLOW), //Sun

@@ -1,109 +1,112 @@
 package joshie.harvestmoon.mining;
 
 import static joshie.harvestmoon.helpers.ServerHelper.markDirty;
-import static joshie.harvestmoon.helpers.generic.MCServerHelper.getWorld;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
+import java.util.Map;
 
-import joshie.harvestmoon.blocks.BlockDirt;
-import joshie.harvestmoon.init.HMBlocks;
+import joshie.harvestmoon.buildings.placeable.blocks.PlaceableBlock;
+import joshie.harvestmoon.crops.WorldLocation;
 import joshie.harvestmoon.npc.EntityNPCMiner;
 import joshie.harvestmoon.util.IData;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
+
 public class MineTrackerServer implements IData {
-    private HashSet<MineBlockLocation> mineBlocks = new HashSet();
-    private HashSet<MineLocation> mineLocation = new HashSet();
+    public static HashMap<WorldLocation, MineData> map = new HashMap(); // Block > Mine and Level Mappings
+    public static HashSet<Mine> mines = new HashSet(); //List of all mines in the world, for iteration purposes
 
-    private MineBlockLocation getKey(World world, int x, int y, int z, int level) {
-        return new MineBlockLocation(world.provider.dimensionId, x, y, z, level);
-    }
-
-    private MineLocation getKey(World world, int x, int y, int z, int level, String name) {
-        return new MineLocation(world.provider.dimensionId, x, y, z, level, name);
-    }
-
-    public boolean newDay() {        
-        Iterator<MineBlockLocation> it = mineBlocks.iterator();
-        while (it.hasNext()) {
-            MineBlockLocation location = it.next();
-            int level = location.getLevel();
-            if (level >= 0) {
-                World world = getWorld(location.dimension);
-                ArrayList<Integer> metas = BlockDirt.getMeta(level);
-                int meta = metas.get(world.rand.nextInt(metas.size()));
-                world.setBlock(location.x, location.y, location.z, HMBlocks.dirt, meta, 2);
-            }
+    public boolean newDay() {
+        for (Mine mine : mines) {
+            mine.newDay();
         }
 
         return true;
     }
 
-    public void addMineBlock(World world, int x, int y, int z, int level) {
-        mineBlocks.add(getKey(world, x, y, z, level));
+    private WorldLocation getKey(World world, int x, int y, int z) {
+        return new WorldLocation(world.provider.dimensionId, x, y, z);
+    }
+
+    public void addToMine(World world, int x, int y, int z, EntityNPCMiner npc, String name) {
+        WorldLocation key = getKey(world, x, y, z);
+        MineData data = map.get(key);
+        if (data == null) {
+            data = new MineData(name);
+            map.put(key, data);
+        }
+
+        int level = data.getMine().addLevel();
+        markDirty();
+
+        npc.startBuild(world, x, y, z, level);
+    }
+
+    public void completeMine(World world, int x, int y, int z, ArrayList<PlaceableBlock> blocks) {
+        WorldLocation key = getKey(world, x, y, z);
+        MineData data = map.get(key);
+        data.getMine().complete(world, x, y, z, blocks);
         markDirty();
     }
 
-    /** Call this to add a new mine at the location under the following name **/
-    public void addMineLevel(World world, int x, int y, int z, String name, EntityNPCMiner npc) {
-        MineLocation key = getKey(world, x, y, z, 0, name);
-        MineLocation location = null;
-        for (MineLocation local : mineLocation) {
-            if (local.equals(key)) {
-                location = local;
-                break;
-            }
+    public void destroyLevel(World world, int x, int y, int z) {        
+        WorldLocation key = getKey(world, x, y, z);
+        MineData data = map.get(key);
+        if (data == null || data.getLevel() == null) {
+            return;
+        } else {
+            data.getLevel().destroy();
+            markDirty();
         }
-
-        if (location == null) {
-            location = key;
-            mineLocation.add(location);
-        } else location.addLevel();
-
-        npc.startBuild(world, x, y, z, location.getLevel());
-        markDirty();
     }
 
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
-        NBTTagList mineBlock = nbt.getTagList("MineBlocks", 10);
-        for (int i = 0; i < mineBlock.tagCount(); i++) {
-            NBTTagCompound tag = mineBlock.getCompoundTagAt(i);
-            MineBlockLocation location = new MineBlockLocation();
-            location.readFromNBT(tag);
-            mineBlocks.add(location);
+        //Read in the mine data
+        NBTTagList mine = nbt.getTagList("Mines", 10);
+        for (int i = 0; i < mine.tagCount(); i++) {
+            NBTTagCompound tag = mine.getCompoundTagAt(i);
+            Mine m = new Mine();
+            m.readFromNBT(tag);
+            mines.add(m);
         }
 
-        NBTTagList locations = nbt.getTagList("MineLocations", 10);
-        for (int i = 0; i < locations.tagCount(); i++) {
-            NBTTagCompound tag = locations.getCompoundTagAt(i);
-            MineLocation location = new MineLocation();
+        //Now that we have loaded in the Mine Data itself, we can add in the shortcut mappings
+        NBTTagList mapping = nbt.getTagList("MineMappings", 10);
+        for (int i = 0; i < mapping.tagCount(); i++) {
+            NBTTagCompound tag = mapping.getCompoundTagAt(i);
+            WorldLocation location = new WorldLocation();
             location.readFromNBT(tag);
-            mineLocation.add(location);
+            MineData data = new MineData();
+            data.readFromNBT(tag);
+            map.put(location, data);
         }
     }
 
     @Override
     public void writeToNBT(NBTTagCompound nbt) {
-        NBTTagList mineBlock = new NBTTagList();
-        for (MineBlockLocation location : mineBlocks) {
+        //Save the mine data
+        NBTTagList mine = new NBTTagList();
+        for (Mine m : mines) {
             NBTTagCompound tag = new NBTTagCompound();
-            location.writeToNBT(tag);
-            mineBlock.appendTag(tag);
+            m.writeToNBT(tag);
+            mine.appendTag(tag);
         }
 
-        nbt.setTag("MineBlocks", mineBlock);
+        nbt.setTag("Mines", mine);
 
-        NBTTagList locations = new NBTTagList();
-        for (MineLocation location : mineLocation) {
+        //Now Saves the mappings
+        NBTTagList mapping = new NBTTagList();
+        for (Map.Entry<WorldLocation, MineData> entry : map.entrySet()) {
             NBTTagCompound tag = new NBTTagCompound();
-            location.writeToNBT(tag);
-            locations.appendTag(tag);
+            entry.getKey().writeToNBT(tag);
+            entry.getValue().writeToNBT(tag);
+            mapping.appendTag(tag);
         }
 
-        nbt.setTag("MineLocations", locations);
+        nbt.setTag("MineMappings", mapping);
     }
 }

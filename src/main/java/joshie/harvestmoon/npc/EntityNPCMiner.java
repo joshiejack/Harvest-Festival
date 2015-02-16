@@ -22,6 +22,7 @@ public class EntityNPCMiner extends EntityNPC {
     private int mineZ;
     private int mineLevel;
     private ArrayList<PlaceableBlock> instructions = new ArrayList(500);
+    private ArrayList<PlaceableBlock> completed = new ArrayList(500);
     private int index;
 
     public EntityNPCMiner(EntityNPCMiner entity) {
@@ -45,7 +46,7 @@ public class EntityNPCMiner extends EntityNPC {
 
     @Override
     public boolean interact(EntityPlayer player) {
-        MineHelper.getServerTracker().addMineLevel(worldObj, (int) player.posX, (int) player.posY, (int) player.posZ, player.getDisplayName(), this);
+        MineHelper.getServerTracker().addToMine(worldObj, (int) player.posX, (int) player.posY, (int) player.posZ, this, player.getDisplayName());
         return true;
     }
 
@@ -59,6 +60,7 @@ public class EntityNPCMiner extends EntityNPC {
         int mineXSize = world.rand.nextInt(longX ? 9 : 5) + 2;
         int mineZSize = world.rand.nextInt(longX ? 5 : 9) + 2;
         instructions = new ArrayList(500);
+        completed = new ArrayList(500);
         index = 0;
         /* Build the list */
 
@@ -119,6 +121,8 @@ public class EntityNPCMiner extends EntityNPC {
                 //LETS BUILD
                 if (index >= instructions.size()) {
                     isMining = false;
+                    MineHelper.complete(worldObj, mineX, mineY, mineZ, completed);
+                    completed = new ArrayList(500);
                     instructions = new ArrayList(500);
                     MineHelper.newDay();
                     markDirty();
@@ -142,9 +146,7 @@ public class EntityNPCMiner extends EntityNPC {
 
                     if (!sideCanSee) {
                         block.place(worldObj, mineX, mineY, mineZ, false, false, false, PlacementStage.BLOCKS);
-                        if (block.getBlock() == HMBlocks.dirt) {
-                            MineHelper.getServerTracker().addMineBlock(worldObj, mineX + block.getX(), mineY + block.getY(), mineZ + block.getZ(), mineLevel);
-                        }
+                        completed.add(block);
                     }
 
                     index++;

@@ -2,6 +2,7 @@ package joshie.harvestmoon.blocks;
 
 import java.util.List;
 
+import joshie.harvestmoon.helpers.MineHelper;
 import joshie.harvestmoon.helpers.generic.EntityHelper;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -32,6 +33,13 @@ public class BlockStone extends BlockHMBaseMeta {
     @Override
     public int getMetaCount() {
         return 1;
+    }
+    
+    @Override
+    public void onBlockDestroyedByPlayer(World world, int x, int y, int z, int side) {
+        if(world.rand.nextInt(3) == 0) {
+            MineHelper.caveIn(world, x, y, z);
+        }
     }
 
     @SideOnly(Side.CLIENT)

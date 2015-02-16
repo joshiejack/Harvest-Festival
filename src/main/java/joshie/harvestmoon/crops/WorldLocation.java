@@ -5,7 +5,7 @@ import joshie.harvestmoon.util.IData;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class WorldLocation implements IData {
-    private final int prime = 31;
+    protected final int prime = 31;
     public int dimension;
     public int x;
     public int y;
@@ -31,7 +31,7 @@ public class WorldLocation implements IData {
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null) return false;
-        if (getClass() != obj.getClass()) return false;
+        if ((!(obj instanceof WorldLocation))) return false;
         WorldLocation other = (WorldLocation) obj;
         if (dimension != other.dimension) return false;
         if (x != other.x) return false;
@@ -67,7 +67,7 @@ public class WorldLocation implements IData {
         if (dimension != 0) {
             tag.setByte("Dimension", (byte) dimension);
         }
-        
+
         tag.setInteger("X", x);
         tag.setInteger("Y", y);
         tag.setInteger("Z", z);

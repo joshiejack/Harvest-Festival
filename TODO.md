@@ -1,7 +1,7 @@
 # Inap's Building Project:
 - [x] Harvest Goddess
 - [x] Animal Barn (Sells you Animals)
-- [x] CafÃ© 
+- [x] Café
 - [x] Seed Shop
 - [x] Blacksmith
 - [x] Church

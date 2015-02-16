@@ -50,7 +50,7 @@ public class CodeGeneratorBuildings {
                         entityList.addAll(getEntities(EntityItemFrame.class, x1 + x, y1 + y, z1 + z));
 
                         Block block = world.getBlock(x1 + x, y1 + y, z1 + z);
-                        if (!block.isAir(world, x1 + x, y1 + y, z1 + z) || air || entityList.size() > 0) {
+                        if (block != Blocks.air || air || entityList.size() > 0) {
                             int meta = world.getBlockMetadata(x1 + x, y1 + y, z1 + z);
                             TileEntity tile = world.getTileEntity(x1 + x, y1 + y, z1 + z);
                             if (tile instanceof IFaceable) {
@@ -60,10 +60,10 @@ public class CodeGeneratorBuildings {
                                 if (block == Blocks.standing_sign) {
                                     ret.add(PlaceableHelper.getFloorSignString(text, block, meta, x, y, z));
                                 } else ret.add(PlaceableHelper.getWallSignString(text, block, meta, x, y, z));
-                            } else if (block == Blocks.standing_sign) {
-
                             } else {
-                                ret.add(PlaceableHelper.getPlaceableBlockString(block, meta, x, y, z));
+                                String text = PlaceableHelper.getPlaceableBlockString(block, meta, x, y, z);
+                                text = text.replace("schematicmetablocks:blockImplicitAir", "air");
+                                ret.add(text);
                             }
 
                             //Entities
@@ -86,7 +86,7 @@ public class CodeGeneratorBuildings {
             }
 
             ArrayList<String> build = new ArrayList();
-            build.add("list = new ArrayList( "+ i + " );");
+            build.add("list = new ArrayList("+ i + ");");
             build.addAll(ret);
 
             try {

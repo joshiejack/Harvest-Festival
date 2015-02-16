@@ -13,11 +13,12 @@ public class BuildingStage {
     private Building building;
     private boolean n1, n2, swap;
     private PlacementStage stage;
-    private int index, xCoord, yCoord, zCoord;
+    private int subType, index, xCoord, yCoord, zCoord;
 
     public BuildingStage() {}
-    public BuildingStage(Building building, int x, int y, int z, Random rand) {
+    public BuildingStage(Building building, int subType, int x, int y, int z, Random rand) {
         this.building = building;
+        this.subType = subType;
         this.n1 = rand.nextBoolean();
         this.n2 = rand.nextBoolean();
         this.swap = rand.nextBoolean();
@@ -29,7 +30,7 @@ public class BuildingStage {
     }
 
     public BuildingStage build(World world) {
-        if (index >= building.list.size()) {
+        if (index >= building.getSubList(subType).size()) {
             if (stage == PlacementStage.BLOCKS) {
                 stage = PlacementStage.TORCHES;
                 index = 0;
@@ -41,7 +42,7 @@ public class BuildingStage {
                 index = 0;
             }
         } else {
-            Placeable block = building.list.get(index);        
+            Placeable block = building.getSubList(subType).get(index);
             block.place(world, xCoord, yCoord, zCoord, n1, n2, swap, stage);
             index++;
         }
@@ -55,6 +56,7 @@ public class BuildingStage {
 
     public void readFromNBT(NBTTagCompound nbt) {
         building = Building.getBuilding(nbt.getString("CurrentlyBuilding"));
+        subType = nbt.getInteger("SubType");
         n1 = nbt.getBoolean("North1");
         n2 = nbt.getBoolean("North2");
         swap = nbt.getBoolean("Swap");
@@ -67,6 +69,7 @@ public class BuildingStage {
 
     public void writeToNBT(NBTTagCompound nbt) {
         nbt.setString("CurrentlyBuilding", building.getName());
+        nbt.setInteger("SubType", subType);
         nbt.setBoolean("North1", n1);
         nbt.setBoolean("North2", n2);
         nbt.setBoolean("Swap", swap);

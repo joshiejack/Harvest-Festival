@@ -2,7 +2,9 @@ package joshie.harvestmoon.buildings.placeable.blocks;
 
 import joshie.harvestmoon.buildings.placeable.Placeable;
 import joshie.harvestmoon.helpers.generic.StackHelper;
+import joshie.harvestmoon.init.HMBlocks;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;

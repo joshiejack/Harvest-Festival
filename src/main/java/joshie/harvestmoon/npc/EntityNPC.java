@@ -46,7 +46,7 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
         super(world);
         this.npc = npc;
 
-        this.setSize(0.6F, 1.8F);
+        this.setSize(0.6F, (1.8F * npc.getHeight()));
         this.getNavigator().setBreakDoors(true);
         this.getNavigator().setAvoidsWater(true);
         this.tasks.addTask(0, new EntityAISwimming(this));
@@ -133,6 +133,11 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
 
     public boolean isPlaying() {
         return isPlaying;
+    }
+    
+    @Override
+    public boolean isChild() {
+        return npc.isChild();
     }
 
     @Override

@@ -15,7 +15,7 @@ public class ItemBuilding extends ItemHMMeta {
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
         Building building = Building.buildings.get(stack.getItemDamage());
         if (building != null) {
-            return building.generate(world, x, y, z);
+            return building.getRandom().generate(world, x, y, z);
         } else return false;
     }
 

@@ -36,6 +36,7 @@ public class NPC {
 
     private Age age;
     private Gender gender;
+    private float height;
     private Gifts gifts;
     private boolean isBuilder;
     private boolean isMiner;
@@ -46,6 +47,7 @@ public class NPC {
         this.name = name;
         this.gender = gender;
         this.age = age;
+        this.height = 1F;
 
         String gift = StringUtils.capitalize(name);
         try {
@@ -116,6 +118,11 @@ public class NPC {
         isMiner = true;
         return this;
     }
+    
+    public NPC setHeight(float height) {
+        this.height = height;
+        return this;
+    }
 
     public NPC setShop(ShopInventory inventory) {
         shop = inventory;
@@ -124,6 +131,10 @@ public class NPC {
 
     public boolean isChild() {
         return age == CHILD;
+    }
+
+    public float getHeight() {
+        return height;
     }
 
     public boolean isBuilder() {

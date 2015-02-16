@@ -37,7 +37,7 @@ public class EntityNPCBuilder extends EntityNPC {
 
     public boolean startBuilding(Building building, int x, int y, int z) {
         if (!worldObj.isRemote) {
-            this.building = new BuildingStage(building, x, y, z, worldObj.rand);
+            this.building = new BuildingStage(building, building.random(worldObj.rand), x, y, z, worldObj.rand);
         }
 
         return false;

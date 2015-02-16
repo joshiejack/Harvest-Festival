@@ -59,10 +59,10 @@ public class HarvestMoon implements IFMLLoadingPlugin {
     public void preInit(FMLPreInitializationEvent event) {
         root = new File(event.getModConfigurationDirectory() + File.separator + MODPATH);
         HMConfiguration.init();
-        HMBuildings.init();
         HMCrops.init();
         HMNPCs.init();
         HMBlocks.init();
+        HMBuildings.init();
         HMItems.init();
         HMCooking.init();
         HMEntities.init();

@@ -60,6 +60,7 @@ public class RenderNPC extends RendererLivingEntity {
 
     //Renders the Entity
     private void doRender(EntityNPC npc, double x, double y, double z, float pitch, float yaw) {
+        GL11.glPushMatrix();
         if (npc.getNPC().isChild()) {
             modelBipedMain.isChild = true;
             mainModel.isChild = true;
@@ -67,6 +68,9 @@ public class RenderNPC extends RendererLivingEntity {
                 renderPassModel.isChild = true;
             }
         }
+
+        GL11.glScalef(1F, npc.getNPC().getHeight(), 1F);
+        GL11.glTranslatef(0F, npc.getNPC().getHeight() - 1F, 0F);
 
         GL11.glColor3f(1.0F, 1.0F, 1.0F);
         modelBipedMain.heldItemRight = 0;
@@ -76,5 +80,6 @@ public class RenderNPC extends RendererLivingEntity {
         modelBipedMain.aimedBow = false;
         modelBipedMain.isSneak = false;
         modelBipedMain.heldItemRight = 0;
+        GL11.glPopMatrix();
     }
 }

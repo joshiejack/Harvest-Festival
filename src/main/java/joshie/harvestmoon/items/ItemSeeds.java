@@ -47,7 +47,7 @@ public class ItemSeeds extends ItemHMMeta implements IRateable {
         Crop crop = CropHelper.getCropFromStack(stack);
         int quality = getCropQuality(stack.getItemDamage());
         for (Season season: crop.getSeasons()) {
-            list.add(season.getLocalized());
+            list.add(season.getTextColor() + season.getLocalized());
         }
     }
 
@@ -82,8 +82,9 @@ public class ItemSeeds extends ItemHMMeta implements IRateable {
 
     @Override
     public int getRating(ItemStack stack) {
-        int quality = getCropQuality(stack.getItemDamage());
-        return quality / 10;
+        Crop crop = getCropFromStack(stack);
+        if (crop.isStatic()) return -1;
+        else return getCropQuality(stack.getItemDamage()) / 10;
     }
 
     @SideOnly(Side.CLIENT)

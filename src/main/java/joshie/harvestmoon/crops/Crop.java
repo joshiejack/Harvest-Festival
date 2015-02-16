@@ -127,7 +127,7 @@ public class Crop {
 
     /** Return true if this crop doesn't have quality/larger sizes **/
     public boolean isStatic() {
-        return false;
+        return isStatic;
     }
 
     /** Return the stage that the plant returns to when it's harvested.
@@ -185,7 +185,8 @@ public class Crop {
     /** Gets the localized seed name for this crop
      * @return seed name */
     public final String getSeedsName(boolean isGiant) {
-        String name = Translate.translate("crop." + StringUtils.replace(getUnlocalizedName(), "_", "."));
+        String suffix = alternativeName ? ".block" : "";
+        String name = Translate.translate("crop." + StringUtils.replace(getUnlocalizedName(), "_", ".") + suffix);
         String seeds = Translate.translate("crop.seeds");
         String text = Translate.translate("crop.seeds.format.standard");
         if (isGiant) {

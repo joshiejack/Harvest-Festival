@@ -35,8 +35,8 @@
 - [ ] Rural Chests, With Inventories
 - [ ] Display Units, With Inventories
 - [ ] Make mines have the potential to collapse (spawn cobble and gravel).
-- [ ] Add effects when your stamina reaches zero, Slower movement, Hunger drops quicker. 
-- [ ] Add blurry vision when about to pass out from fatigue, Occasional headaches.
+- [x] Add effects when your stamina reaches zero, Slower movement, Hunger drops quicker. 
+- [x] Add blurry vision when about to pass out from fatigue, Occasional headaches.
 - [ ] Finish Shop GUI, Add Scroll, make it's height scale to gui size.
 - [x] Force NPCs to shop mode
 - [x] Stamina and Fatigue operational (you gain from using tools)

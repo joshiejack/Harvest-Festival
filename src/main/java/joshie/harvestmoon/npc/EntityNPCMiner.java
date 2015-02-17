@@ -156,6 +156,16 @@ public class EntityNPCMiner extends EntityNPC {
     }
 
     @Override
+    public void setDead() {
+        if (!worldObj.isRemote && npc.respawns()) {
+            EntityNPCMiner clone = new EntityNPCMiner(this);
+            worldObj.spawnEntityInWorld(clone);
+        }
+
+        isDead = true;
+    }
+
+    @Override
     public void readEntityFromNBT(NBTTagCompound nbt) {
         super.readEntityFromNBT(nbt);
         isMining = nbt.getBoolean("IsMining");

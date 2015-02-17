@@ -143,17 +143,11 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
     @Override
     public void setDead() {
         if (!worldObj.isRemote && npc.respawns()) {
-            EntityNPC clone = npc.getClone(this);
+            EntityNPC clone = new EntityNPC(this);
             worldObj.spawnEntityInWorld(clone);
-            for (int i = 0; i < 20; ++i) {
-                double d2 = this.rand.nextGaussian() * 0.02D;
-                double d0 = this.rand.nextGaussian() * 0.02D;
-                double d1 = this.rand.nextGaussian() * 0.02D;
-                clone.worldObj.spawnParticle("explode", clone.posX + (double) (clone.rand.nextFloat() * clone.width * 2.0F) - (double) clone.width, clone.posY + (double) (clone.rand.nextFloat() * clone.height), clone.posZ + (double) (clone.rand.nextFloat() * clone.width * 2.0F) - (double) clone.width, d2, d0, d1);
-            }
         }
 
-        super.setDead();
+        isDead = true;
     }
 
     @Override

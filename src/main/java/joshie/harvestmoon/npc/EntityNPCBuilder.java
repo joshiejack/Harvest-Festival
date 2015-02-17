@@ -50,6 +50,16 @@ public class EntityNPCBuilder extends EntityNPC {
 
         return false;
     }
+    
+    @Override
+    public void setDead() {
+        if (!worldObj.isRemote && npc.respawns()) {
+            EntityNPCBuilder clone = new EntityNPCBuilder(this);
+            worldObj.spawnEntityInWorld(clone);
+        }
+
+        isDead = true;
+    }
 
     @Override
     public void readEntityFromNBT(NBTTagCompound nbt) {

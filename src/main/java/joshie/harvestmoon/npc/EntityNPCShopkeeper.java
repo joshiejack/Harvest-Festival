@@ -50,6 +50,16 @@ public class EntityNPCShopkeeper extends EntityNPC {
     }
 
     @Override
+    public void setDead() {
+        if (!worldObj.isRemote && npc.respawns()) {
+            EntityNPCShopkeeper clone = new EntityNPCShopkeeper(this);
+            worldObj.spawnEntityInWorld(clone);
+        }
+
+        isDead = true;
+    }
+
+    @Override
     public void readEntityFromNBT(NBTTagCompound nbt) {
         super.readEntityFromNBT(nbt);
         shop = npc.getShop();

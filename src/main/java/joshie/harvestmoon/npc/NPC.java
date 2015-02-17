@@ -170,16 +170,6 @@ public class NPC {
         } else return new EntityNPC(world, this);
     }
 
-    public EntityNPC getClone(EntityNPC entity) {
-        if (isBuilder()) {
-            return new EntityNPCBuilder((EntityNPCBuilder) entity);
-        } else if (isMiner()) {
-            return new EntityNPCMiner((EntityNPCMiner) entity);
-        } else if (shop != null) {
-            return new EntityNPCShopkeeper((EntityNPCShopkeeper) entity);
-        } else return new EntityNPC(entity);
-    }
-
     public int getGuiID(World world, boolean isSneaking) {
         return shop != null && shop.isOpen(world) ? GuiHandler.SHOP : (isSneaking) ? GuiHandler.GIFT : GuiHandler.NPC;
     }

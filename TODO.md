@@ -21,9 +21,9 @@
 # Joshie's Coding Stuff, feel free to help with any!
 ## Coding
 ###Features
-- [ ] Grass Crop
+- [x] Grass Crop
 - [ ] Cows and Sheep eat Grass automatically
-- [ ] Trough, Autofeeds surrounding Cows and Sheep
+- [x] Trough, Autofeeds surrounding Cows and Sheep
 - [ ] Only purchased animals should be added to the animal tracker (default)
 - [ ] Config to enable tracking on all animals
 - [ ] Config to enable tracking on nametagged animals only

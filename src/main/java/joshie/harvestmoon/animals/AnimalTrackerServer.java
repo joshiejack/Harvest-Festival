@@ -2,11 +2,15 @@ package joshie.harvestmoon.animals;
 
 import static joshie.harvestmoon.helpers.ServerHelper.markDirty;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.UUID;
 
+import joshie.harvestmoon.crops.WorldLocation;
+import joshie.harvestmoon.init.HMBlocks;
 import joshie.harvestmoon.util.IData;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityChicken;
@@ -16,12 +20,21 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.DamageSource;
+import net.minecraft.world.World;
+import net.minecraftforge.common.DimensionManager;
+
 //Handles the Data for the crops rather than using TE Data
 public class AnimalTrackerServer implements IData {
     private DamageSource natural_causes = new DamageSource("natural").setDamageBypassesArmor();
 
     //Key is the animal, Value is the Player
     private HashMap<UUID, AnimalData> animalData = new HashMap();
+    private HashSet<WorldLocation> troughs = new HashSet();
+
+    //Gets a Location key
+    private WorldLocation getKey(World world, int x, int y, int z) {
+        return new WorldLocation(world.provider.dimensionId, x, y, z);
+    }
 
     //Returns a new instanceof this animal
     private AnimalData getAndCreateData(EntityAnimal animal) {
@@ -61,6 +74,15 @@ public class AnimalTrackerServer implements IData {
 
     //Loops through all the animal, and 'ticks' them for their new day
     public boolean newDay() {
+        //Grab all the troughs in the world and set the animals around them to be fed
+        for (WorldLocation trough : troughs) {
+            World world = DimensionManager.getWorld(trough.dimension);
+            ArrayList<EntityAnimal> animals = (ArrayList<EntityAnimal>) world.getEntitiesWithinAABB(EntityAnimal.class, HMBlocks.tiles.getCollisionBoundingBoxFromPool(world, trough.x, trough.y, trough.z).expand(16D, 16D, 16D));
+            for (EntityAnimal animal : animals) {
+                setFed(animal);
+            }
+        }
+
         Iterator<Map.Entry<UUID, AnimalData>> iter = animalData.entrySet().iterator();
         while (iter.hasNext()) {
             Map.Entry<UUID, AnimalData> entry = iter.next();
@@ -72,6 +94,16 @@ public class AnimalTrackerServer implements IData {
         }
 
         return true;
+    }
+
+    public void addTrough(World world, int x, int y, int z) {
+        troughs.add(getKey(world, x, y, z));
+        markDirty();
+    }
+
+    public void removeTrough(World world, int x, int y, int z) {
+        troughs.remove(getKey(world, x, y, z));
+        markDirty();
     }
 
     //Whether this animal can produce any products or not
@@ -123,6 +155,14 @@ public class AnimalTrackerServer implements IData {
             data.readFromNBT(tag);
             animalData.put(id, data);
         }
+
+        NBTTagList trough = nbt.getTagList("Troughs", 10);
+        for (int i = 0; i < trough.tagCount(); i++) {
+            NBTTagCompound tag = trough.getCompoundTagAt(i);
+            WorldLocation location = new WorldLocation();
+            location.readFromNBT(tag);
+            troughs.add(location);
+        }
     }
 
     @Override
@@ -137,5 +177,14 @@ public class AnimalTrackerServer implements IData {
         }
 
         nbt.setTag("AnimalData", animals);
+
+        NBTTagList trough = new NBTTagList();
+        for (WorldLocation location : troughs) {
+            NBTTagCompound tag = new NBTTagCompound();
+            location.writeToNBT(tag);
+            trough.appendTag(tag);
+        }
+
+        nbt.setTag("Troughs", trough);
     }
 }

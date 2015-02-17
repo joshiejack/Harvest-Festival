@@ -5,6 +5,7 @@ import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 public class AnimalHelper {
     /** Call Server Side Only **/
@@ -75,5 +76,29 @@ public class AnimalHelper {
             ServerHelper.getPlayerData(player).affectRelationship(animal, 200);
             return true;
         } else return false;
+    }
+
+    public static boolean addEgg(World world, int x, int y, int z) {
+        return ServerHelper.getAnimalTracker().addEgg(world, x, y, z);
+    }
+
+    public static boolean addFodder(World world, int x, int y, int z) {
+        return ServerHelper.getAnimalTracker().addFodder(world, x, y, z);
+    }
+
+    public static void addNest(World world, int x, int y, int z) {
+        ServerHelper.getAnimalTracker().addNest(world, x, y, z);
+    }
+
+    public static void addTrough(World world, int x, int y, int z) {
+        ServerHelper.getAnimalTracker().addTrough(world, x, y, z);
+    }
+
+    public static void removeNest(World world, int x, int y, int z) {
+        ServerHelper.getAnimalTracker().removeNest(world, x, y, z);
+    }
+
+    public static void removeTrough(World world, int x, int y, int z) {
+        ServerHelper.getAnimalTracker().removeTrough(world, x, y, z);
     }
 }

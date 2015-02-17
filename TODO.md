@@ -8,7 +8,7 @@
 - [ ] Config to enable tracking on all animals
 - [ ] Config to enable tracking on nametagged animals only
 - [ ] Add Plot Marker for buildings
-- [ ] Make the nest functional, hatching eggs
+- [x] Make the nest functional, hatching eggs
 - [ ] Universal Fridge inventory
 - [ ] Recipe Book
 - [ ] Confirmation Screens for NPCs

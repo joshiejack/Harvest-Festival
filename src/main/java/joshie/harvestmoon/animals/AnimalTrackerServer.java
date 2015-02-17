@@ -165,6 +165,18 @@ public class AnimalTrackerServer implements IData {
         return false;
     }
 
+    public boolean addFodder(World world, int x, int y, int z) {
+        ValueLocation value = getKey(world, x, y, z);
+        for (ValueLocation v : troughs) {
+            if (v == value) {
+                v.incr();
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public void removeNest(World world, int x, int y, int z) {
         nests.remove(getKey(world, x, y, z));
         markDirty();

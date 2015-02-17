@@ -1,6 +1,7 @@
 package joshie.harvestmoon.blocks;
 
 import static joshie.harvestmoon.helpers.ShippingHelper.addForShipping;
+import joshie.harvestmoon.animals.AnimalType;
 import joshie.harvestmoon.blocks.items.ItemBlockGeneral;
 import joshie.harvestmoon.blocks.render.ExtraIcons;
 import joshie.harvestmoon.blocks.tiles.TileCooking;
@@ -13,9 +14,12 @@ import joshie.harvestmoon.blocks.tiles.TilePot;
 import joshie.harvestmoon.blocks.tiles.TileRuralChest;
 import joshie.harvestmoon.blocks.tiles.TileSteamer;
 import joshie.harvestmoon.config.Cooking;
+import joshie.harvestmoon.cooking.FoodRegistry;
+import joshie.harvestmoon.helpers.AnimalHelper;
 import joshie.harvestmoon.helpers.ToolHelper;
 import joshie.harvestmoon.helpers.generic.DirectionHelper;
 import joshie.harvestmoon.helpers.generic.ItemHelper;
+import joshie.harvestmoon.init.cooking.HMIngredients;
 import joshie.harvestmoon.lib.RenderIds;
 import joshie.harvestmoon.util.IShippable;
 import joshie.harvestmoon.util.generic.IFaceable;
@@ -116,6 +120,26 @@ public class BlockGeneral extends BlockHMBaseMeta {
             } else return false;
         } else if (meta == FRIDGE || meta == FRIDGE_TOP) {
             return true;
+        } else if (meta == NEST) {
+            ItemStack held = player.getCurrentEquippedItem();
+            if (held != null && FoodRegistry.getIngredients(held).contains(HMIngredients.egg)) {
+                if (AnimalHelper.addEgg(world, x, y, z)) {
+                    player.inventory.decrStackSize(player.inventory.currentItem, 1);
+                    return true;
+                }
+            }
+
+            return false;
+        } else if (meta == TROUGH) {
+            ItemStack held = player.getCurrentEquippedItem();
+            if (held != null && AnimalType.COW.canEat(held)) {
+                if (AnimalHelper.addFodder(world, x, y, z)) {
+                    player.inventory.decrStackSize(player.inventory.currentItem, 1);
+                    return true;
+                }
+            }
+
+            return false;
         } else if (meta == KITCHEN || meta == CHOPPING_BOARD || meta == MIXING_BOWL || meta == BAKING_GLASS) {
             ItemStack held = player.getCurrentEquippedItem();
             TileEntity tile = null;
@@ -178,6 +202,13 @@ public class BlockGeneral extends BlockHMBaseMeta {
         if (tile instanceof TileFridge) {
             world.setBlock(x, y + 1, z, this, FRIDGE_TOP, 2);
         }
+
+        int meta = world.getBlockMetadata(x, y, z);
+        if (meta == NEST) {
+            AnimalHelper.addNest(world, x, y, z);
+        } else if (meta == TROUGH) {
+            AnimalHelper.addTrough(world, x, y, z);
+        }
     }
 
     @Override
@@ -187,6 +218,10 @@ public class BlockGeneral extends BlockHMBaseMeta {
             world.setBlockToAir(x, y - 1, z);
         } else if (meta == FRIDGE) {
             world.setBlockToAir(x, y + 1, z);
+        } else if (meta == NEST) {
+            AnimalHelper.removeNest(world, x, y, z);
+        } else if (meta == TROUGH) {
+            AnimalHelper.removeTrough(world, x, y, z);
         }
     }
 
@@ -196,6 +231,10 @@ public class BlockGeneral extends BlockHMBaseMeta {
             world.setBlockToAir(x, y - 1, z);
         } else if (meta == FRIDGE) {
             world.setBlockToAir(x, y + 1, z);
+        } else if (meta == NEST) {
+            AnimalHelper.removeNest(world, x, y, z);
+        } else if (meta == TROUGH) {
+            AnimalHelper.removeTrough(world, x, y, z);
         }
     }
 

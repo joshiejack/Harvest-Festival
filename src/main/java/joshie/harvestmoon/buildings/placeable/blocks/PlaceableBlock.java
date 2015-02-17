@@ -10,7 +10,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 public class PlaceableBlock extends Placeable {
-    private Block block;
+    protected Block block;
     protected int meta;
 
     public PlaceableBlock() {

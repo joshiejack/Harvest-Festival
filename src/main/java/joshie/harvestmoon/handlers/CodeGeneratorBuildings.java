@@ -52,6 +52,7 @@ public class CodeGeneratorBuildings {
                         Block block = world.getBlock(x1 + x, y1 + y, z1 + z);
                         if ((block != Blocks.air || air || entityList.size() > 0) && block != Blocks.end_stone) {
                             int meta = world.getBlockMetadata(x1 + x, y1 + y, z1 + z);
+                            if (block == Blocks.double_plant && meta >= 8) continue;
                             TileEntity tile = world.getTileEntity(x1 + x, y1 + y, z1 + z);
                             if (tile instanceof IFaceable) {
                                 ret.add(PlaceableHelper.getPlaceableIFaceableString((IFaceable) tile, block, meta, x, y, z));

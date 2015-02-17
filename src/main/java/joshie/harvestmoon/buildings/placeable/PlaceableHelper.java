@@ -10,6 +10,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockAnvil;
 import net.minecraft.block.BlockButton;
 import net.minecraft.block.BlockDoor;
+import net.minecraft.block.BlockDoublePlant;
 import net.minecraft.block.BlockEnderChest;
 import net.minecraft.block.BlockFenceGate;
 import net.minecraft.block.BlockFurnace;
@@ -92,6 +93,8 @@ public class PlaceableHelper {
             return "Log";
         } else if (block instanceof BlockQuartz) {
             return "Pillar";
+        } else if (block instanceof BlockDoublePlant) {
+            return "DoublePlant";
         } else return "Block";
     }
 

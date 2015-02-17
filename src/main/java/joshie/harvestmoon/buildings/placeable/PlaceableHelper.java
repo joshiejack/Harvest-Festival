@@ -15,6 +15,7 @@ import net.minecraft.block.BlockFenceGate;
 import net.minecraft.block.BlockFurnace;
 import net.minecraft.block.BlockLadder;
 import net.minecraft.block.BlockLever;
+import net.minecraft.block.BlockLilyPad;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.BlockPumpkin;
 import net.minecraft.block.BlockQuartz;
@@ -65,16 +66,22 @@ public class PlaceableHelper {
     public static String getPrefixString(Block block) {
         if (block instanceof BlockStairs) {
             return "Stairs";
-        } else if (block instanceof BlockTorch || block instanceof BlockLever || block instanceof BlockButton) {
+        } else if (block instanceof BlockTorch || block instanceof BlockLever) {
             return "Torches";
+        } else if (block instanceof BlockButton) {
+            return "Button";
         } else if (block instanceof BlockDoor) {
             return "Door";
+        } else if (block instanceof BlockLilyPad) {
+            return "Lilypad";
         } else if (block instanceof BlockFenceGate) {
             return "Gate";
         } else if (block instanceof BlockAnvil) {
             return "Anvil";
-        } else if (block instanceof BlockFurnace || block instanceof BlockLadder || block instanceof BlockEnderChest) {
+        } else if (block instanceof BlockFurnace || block instanceof BlockEnderChest) {
             return "Furnace";
+        } else if (block instanceof BlockLadder) {
+            return "Ladder";
         } else if (block instanceof BlockPumpkin) {
             return "Pumpkin";
         } else if (block instanceof BlockTrapDoor) {
@@ -91,12 +98,12 @@ public class PlaceableHelper {
     public static String getPlaceableIFaceableString(IFaceable tile, Block block, int meta, int x, int y, int z) {
         return "list.add(new PlaceableIFaceable" + "(HMBlocks.tiles, " + meta + ", " + x + ", " + y + ", " + z + ", ForgeDirection." + tile.getFacing() + "));";
     }
-    
+
     public static String getFloorSignString(String[] sign, Block block, int meta, int x, int y, int z) {
         String text = "new String[] { \"" + sign[0] + "\", \"" + sign[1] + "\", \"" + sign[2] + "\", \"" + sign[3] + "\" } ";
         return "list.add(new PlaceableSignFloor" + "(Blocks.standing_sign, " + meta + ", " + x + ", " + y + ", " + z + ", " + text + "));";
     }
-    
+
     public static String getWallSignString(String[] sign, Block block, int meta, int x, int y, int z) {
         String text = "new String[] { \"" + sign[0] + "\", \"" + sign[1] + "\", \"" + sign[2] + "\", \"" + sign[3] + "\" } ";
         return "list.add(new PlaceableSignWall" + "(Blocks.wall_sign, " + meta + ", " + x + ", " + y + ", " + z + ", " + text + "));";
@@ -110,6 +117,7 @@ public class PlaceableHelper {
         if (block == Blocks.air) print = "Blocks.air";
         if (block == Blocks.wall_sign) print = "Blocks.wall_sign";
         if (block == Blocks.flower_pot) print = "Blocks.flower_pot";
+        if (block == Blocks.cauldron) print = "Blocks.cauldron";
         return "list.add(new Placeable" + getPrefixString(block) + "(" + print + ", " + meta + ", " + x + ", " + y + ", " + z + "));";
     }
 

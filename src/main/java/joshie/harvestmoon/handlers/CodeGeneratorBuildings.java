@@ -63,6 +63,7 @@ public class CodeGeneratorBuildings {
                             } else {
                                 String text = PlaceableHelper.getPlaceableBlockString(block, meta, x, y, z);
                                 text = text.replace("schematicmetablocks:blockImplicitAir", "air");
+                                text = text.replace("schematicmetablocks:blockInteriorAirMarker", "air");
                                 ret.add(text);
                             }
 

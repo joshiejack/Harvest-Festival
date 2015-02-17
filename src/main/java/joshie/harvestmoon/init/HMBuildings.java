@@ -4,7 +4,9 @@ import joshie.harvestmoon.buildings.Building;
 import joshie.harvestmoon.buildings.carpenter.BuildingCarpenter;
 
 public class HMBuildings {
+    public static Building carpenter;
+
     public static void init() {
-        Building.buildings.add(new Building().setName("carpenter").add(new BuildingCarpenter()));
+        carpenter = Building.register(new Building().setName("carpenter").add(new BuildingCarpenter()));
     }
 }

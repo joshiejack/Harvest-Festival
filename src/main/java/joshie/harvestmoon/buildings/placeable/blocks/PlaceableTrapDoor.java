@@ -6,7 +6,7 @@ public class PlaceableTrapDoor extends PlaceableBlock {
     public PlaceableTrapDoor(Block block, int meta, int offsetX, int offsetY, int offsetZ) {
         super(block, meta, offsetX, offsetY, offsetZ);
     }
-    
+
     @Override
     protected boolean canPlace(PlacementStage stage) {
         return stage == PlacementStage.TORCHES;
@@ -39,7 +39,7 @@ public class PlaceableTrapDoor extends PlaceableBlock {
                     meta = 1;
                 }
             } else if (swap) {
-                meta = 3;
+                meta = 0;
             }
         } else if (meta == 3) {
             if (n1) {
@@ -49,42 +49,6 @@ public class PlaceableTrapDoor extends PlaceableBlock {
                 }
             } else if (swap) {
                 meta = 1;
-            }
-        } else if (meta == 4) {
-            if (n2) {
-                meta = 5;
-                if (swap) {
-                    meta = 7;
-                }
-            } else if (swap) {
-                meta = 6;
-            }
-        } else if (meta == 5) {
-            if (n2) {
-                meta = 4;
-                if (swap) {
-                    meta = 6;
-                }
-            } else if (swap) {
-                meta = 7;
-            }
-        } else if (meta == 6) {
-            if (n1) {
-                meta = 7;
-                if (swap) {
-                    meta = 5;
-                }
-            } else if (swap) {
-                meta = 7;
-            }
-        } else if (meta == 7) {
-            if (n1) {
-                meta = 6;
-                if (swap) {
-                    meta = 4;
-                }
-            } else if (swap) {
-                meta = 5;
             }
         } else if (meta == 8) {
             if (n2) {
@@ -111,7 +75,7 @@ public class PlaceableTrapDoor extends PlaceableBlock {
                     meta = 9;
                 }
             } else if (swap) {
-                meta = 11;
+                meta = 8;
             }
         } else if (meta == 11) {
             if (n1) {
@@ -157,6 +121,42 @@ public class PlaceableTrapDoor extends PlaceableBlock {
                 }
             } else if (swap) {
                 meta = 13;
+            }
+        } else if (meta == 4) {
+            if (n2) {
+                meta = 5;
+                if (swap) {
+                    meta = 7;
+                }
+            } else if (swap) {
+                meta = 6;
+            }
+        } else if (meta == 5) {
+            if (n2) {
+                meta = 4;
+                if (swap) {
+                    meta = 6;
+                }
+            } else if (swap) {
+                meta = 7;
+            }
+        } else if (meta == 6) {
+            if (n1) {
+                meta = 7;
+                if (swap) {
+                    meta = 5;
+                }
+            } else if (swap) {
+                meta = 4;
+            }
+        } else if (meta == 7) {
+            if (n1) {
+                meta = 6;
+                if (swap) {
+                    meta = 4;
+                }
+            } else if (swap) {
+                meta = 5;
             }
         }
 

@@ -15,6 +15,11 @@ public class Building {
     protected ArrayList<Placeable> list;
     private String name;
     private boolean isVariant;
+    
+    public static Building register(Building building) {
+        buildings.add(building);
+        return building;
+    }
 
     public ArrayList<Placeable> getSubList(int subType) {
         return subTypes.get(subType).list;
@@ -72,20 +77,26 @@ public class Building {
             boolean n1 = world.rand.nextBoolean();
             boolean n2 = world.rand.nextBoolean();
             boolean swap = world.rand.nextBoolean();
+            
+            //boolean n1 = true;
+            //boolean n2 = false;
+            //boolean swap = true;
+            
+            yCoord++;
 
             /** First loop we place solid blocks **/
             for (Placeable block : list) {
                 block.place(world, xCoord, yCoord, zCoord, n1, n2, swap, PlacementStage.BLOCKS);
             }
 
-            /** Second loop we place torch/ladders etc **/
-            for (Placeable block : list) {
-                block.place(world, xCoord, yCoord, zCoord, n1, n2, swap, PlacementStage.TORCHES);
-            }
-
-            /** Third loop we place entities etc. **/
+            /** Second loop we place entities etc. **/
             for (Placeable block : list) {
                 block.place(world, xCoord, yCoord, zCoord, n1, n2, swap, PlacementStage.ENTITIES);
+            }
+
+            /** First loop we place torch/ladders etc **/
+            for (Placeable block : list) {
+                block.place(world, xCoord, yCoord, zCoord, n1, n2, swap, PlacementStage.TORCHES);
             }
         }
 

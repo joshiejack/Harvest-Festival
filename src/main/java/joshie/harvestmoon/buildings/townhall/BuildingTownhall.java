@@ -353,9 +353,9 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableDoublePlant(Blocks.double_plant, 4, 0, 1, 8));
         list.add(new PlaceableDoublePlant(Blocks.double_plant, 4, 0, 1, 9));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 0, 0, 1, 10));
-        list.add(new PlaceableBlock(Blocks.double_plant, 4, 0, 1, 11));
-        list.add(new PlaceableBlock(Blocks.double_plant, 4, 0, 1, 12));
-        list.add(new PlaceableBlock(Blocks.double_plant, 4, 0, 1, 13));
+        list.add(new PlaceableDoublePlant(Blocks.double_plant, 4, 0, 1, 11));
+        list.add(new PlaceableDoublePlant(Blocks.double_plant, 4, 0, 1, 12));
+        list.add(new PlaceableDoublePlant(Blocks.double_plant, 4, 0, 1, 13));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 0, 0, 1, 14));
         list.add(new PlaceableDoublePlant(Blocks.double_plant, 4, 0, 1, 15));
         list.add(new PlaceableDoublePlant(Blocks.double_plant, 4, 0, 1, 16));

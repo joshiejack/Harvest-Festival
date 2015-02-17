@@ -9,6 +9,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.UUID;
 
+import joshie.harvestmoon.config.Animals;
 import joshie.harvestmoon.crops.WorldLocation;
 import joshie.harvestmoon.init.HMBlocks;
 import joshie.harvestmoon.util.IData;
@@ -29,11 +30,12 @@ public class AnimalTrackerServer implements IData {
 
     //Key is the animal, Value is the Player
     private HashMap<UUID, AnimalData> animalData = new HashMap();
-    private HashSet<WorldLocation> troughs = new HashSet();
+    private HashSet<ValueLocation> troughs = new HashSet();
+    private HashSet<ValueLocation> nests = new HashSet();
 
     //Gets a Location key
-    private WorldLocation getKey(World world, int x, int y, int z) {
-        return new WorldLocation(world.provider.dimensionId, x, y, z);
+    private ValueLocation getKey(World world, int x, int y, int z) {
+        return new ValueLocation(world.provider.dimensionId, x, y, z);
     }
 
     //Returns a new instanceof this animal
@@ -75,13 +77,34 @@ public class AnimalTrackerServer implements IData {
     //Loops through all the animal, and 'ticks' them for their new day
     public boolean newDay() {
         //Grab all the troughs in the world and set the animals around them to be fed
-        for (WorldLocation trough : troughs) {
+        for (ValueLocation trough : troughs) {
+            if (trough.getValue() <= 0) continue;
             World world = DimensionManager.getWorld(trough.dimension);
             ArrayList<EntityAnimal> animals = (ArrayList<EntityAnimal>) world.getEntitiesWithinAABB(EntityAnimal.class, HMBlocks.tiles.getCollisionBoundingBoxFromPool(world, trough.x, trough.y, trough.z).expand(16D, 16D, 16D));
             for (EntityAnimal animal : animals) {
+                if (trough.getValue() <= 0) break;
                 if (AnimalType.getType(animal).eatsGrass()) {
                     setFed(animal);
+                    trough.decr();
                 }
+            }
+        }
+
+        //Hatch nest if they have passed 4 days of nesting
+        for (ValueLocation nest : nests) {
+            if (nest.getValue() <= 0) continue;
+            if (nest.getValue() < Animals.CHICKEN_TIMER) {
+                nest.incr();
+                continue;
+            }
+
+            if (nest.getValue() >= Animals.CHICKEN_TIMER) {
+                World world = DimensionManager.getWorld(nest.dimension);
+                EntityChicken baby = new EntityChicken(world).createChild(new EntityChicken(world));
+                baby.setGrowingAge(-(12000 * Animals.AGING_TIMER));
+                baby.setLocationAndAngles(nest.x, nest.y, nest.z, 0.0F, 0.0F);
+                baby.worldObj.spawnEntityInWorld(baby);
+                nest.reset();
             }
         }
 
@@ -103,8 +126,47 @@ public class AnimalTrackerServer implements IData {
         markDirty();
     }
 
+    public boolean addFood(World world, int x, int y, int z, int amount) {
+        ValueLocation value = getKey(world, x, y, z);
+        for (ValueLocation v : troughs) {
+            if (v == value) {
+                for (int i = 0; i < amount; i++) {
+                    v.incr();
+                }
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public void removeTrough(World world, int x, int y, int z) {
         troughs.remove(getKey(world, x, y, z));
+        markDirty();
+    }
+
+    public void addNest(World world, int x, int y, int z) {
+        nests.add(getKey(world, x, y, z));
+        markDirty();
+    }
+
+    public boolean addEgg(World world, int x, int y, int z) {
+        ValueLocation value = getKey(world, x, y, z);
+        for (ValueLocation v : nests) {
+            if (v == value) {
+                if (v.getValue() <= 0) {
+                    v.incr();
+                    return true;
+                } else return false;
+            }
+        }
+
+        return false;
+    }
+
+    public void removeNest(World world, int x, int y, int z) {
+        nests.remove(getKey(world, x, y, z));
         markDirty();
     }
 
@@ -161,9 +223,17 @@ public class AnimalTrackerServer implements IData {
         NBTTagList trough = nbt.getTagList("Troughs", 10);
         for (int i = 0; i < trough.tagCount(); i++) {
             NBTTagCompound tag = trough.getCompoundTagAt(i);
-            WorldLocation location = new WorldLocation();
+            ValueLocation location = new ValueLocation();
             location.readFromNBT(tag);
             troughs.add(location);
+        }
+
+        NBTTagList nest = nbt.getTagList("Nests", 10);
+        for (int i = 0; i < nest.tagCount(); i++) {
+            NBTTagCompound tag = nest.getCompoundTagAt(i);
+            ValueLocation location = new ValueLocation();
+            location.readFromNBT(tag);
+            nests.add(location);
         }
     }
 
@@ -180,6 +250,7 @@ public class AnimalTrackerServer implements IData {
 
         nbt.setTag("AnimalData", animals);
 
+        //Animal Troughs
         NBTTagList trough = new NBTTagList();
         for (WorldLocation location : troughs) {
             NBTTagCompound tag = new NBTTagCompound();
@@ -188,5 +259,15 @@ public class AnimalTrackerServer implements IData {
         }
 
         nbt.setTag("Troughs", trough);
+
+        //Chicken Nests
+        NBTTagList nest = new NBTTagList();
+        for (WorldLocation location : nests) {
+            NBTTagCompound tag = new NBTTagCompound();
+            location.writeToNBT(tag);
+            nest.appendTag(tag);
+        }
+
+        nbt.setTag("Nests", nest);
     }
 }

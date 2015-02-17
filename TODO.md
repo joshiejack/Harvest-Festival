@@ -1,23 +1,3 @@
-# Inap's Building Project:
-- [x] Harvest Goddess
-- [x] Animal Barn (Sells you Animals)
-- [x] Café
-- [x] Seed Shop
-- [x] Blacksmith
-- [x] Church
-- [x] Townhall
-- [x] General Store
-- [x] Fishing Hut 
-- [x] Miners Hut 
-- [x] Miners Hill
-- [x] Poultry Farm
-- [x] Clockmaker's House
-- [x] Carpenter's House
-- [ ] Use Schematic Meta-Blocks to define the inside/outside
-- [ ] Varieties of Houses/Schematics
-- [x] Lifting them up the ground, clearing away any ground
-- [x] Calculate a schematic's cost
-- 
 # Joshie's Coding Stuff, feel free to help with any!
 ## Coding
 ###Features

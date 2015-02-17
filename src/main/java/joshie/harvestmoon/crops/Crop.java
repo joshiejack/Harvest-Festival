@@ -2,6 +2,7 @@ package joshie.harvestmoon.crops;
 
 import java.util.ArrayList;
 
+import joshie.harvestmoon.animals.AnimalType.FoodType;
 import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.crops.CropData.WitherType;
 import joshie.harvestmoon.lib.CropMeta;
@@ -24,6 +25,7 @@ public class Crop {
     protected int stages;
     protected int regrow;
     protected int year;
+    protected FoodType foodType;
     protected CropMeta meta;
 
     public Crop() {}
@@ -52,6 +54,7 @@ public class Crop {
         this.year = year;
         this.isStatic = false;
         this.alternativeName = false;
+        this.foodType = FoodType.VEGETABLE;
 
         crops.add(this);
     }
@@ -63,6 +66,11 @@ public class Crop {
 
     public Crop setIsStatic() {
         this.isStatic = true;
+        return this;
+    }
+    
+    public Crop setFoodType(FoodType foodType) {
+        this.foodType = foodType;
         return this;
     }
 
@@ -148,6 +156,11 @@ public class Crop {
      * @return whether this item can be purchased in this shop or not */
     public boolean canPurchase() {
         return getSeedCost() > 0;
+    }
+
+    /** The type of animal food this is **/
+    public FoodType getFoodType() {
+        return foodType;
     }
 
     /** Gets the unlocalized name for this crop

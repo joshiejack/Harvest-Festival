@@ -1,22 +1,27 @@
 package joshie.harvestmoon.crops;
+
 import static joshie.harvestmoon.helpers.ServerHelper.markDirty;
 import static joshie.harvestmoon.helpers.generic.MCServerHelper.getWorld;
 import static joshie.harvestmoon.network.PacketHandler.sendToClient;
 import static joshie.harvestmoon.network.PacketHandler.sendToEveryone;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 
+import joshie.harvestmoon.animals.AnimalType;
 import joshie.harvestmoon.blocks.BlockSoil;
 import joshie.harvestmoon.calendar.CalendarDate;
 import joshie.harvestmoon.crops.CropData.WitherType;
+import joshie.harvestmoon.helpers.AnimalHelper;
 import joshie.harvestmoon.helpers.CalendarHelper;
 import joshie.harvestmoon.helpers.CropHelper;
 import joshie.harvestmoon.init.HMBlocks;
 import joshie.harvestmoon.network.PacketSyncCrop;
 import joshie.harvestmoon.util.IData;
+import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
@@ -48,6 +53,18 @@ public class CropTrackerServer implements IData {
             Map.Entry<WorldLocation, CropData> entry = iter.next();
             CropData data = entry.getValue();
             WorldLocation location = entry.getKey();
+
+            //Feed surrounding animals with grass
+            if (data.isEdible()) {
+                World world = getWorld(location.dimension);
+                ArrayList<EntityAnimal> animals = (ArrayList<EntityAnimal>) world.getEntitiesWithinAABB(EntityAnimal.class, HMBlocks.tiles.getCollisionBoundingBoxFromPool(world, location.x, location.y, location.z).expand(16D, 16D, 16D));
+                for (EntityAnimal animal : animals) {
+                    if (AnimalType.getType(animal).eatsGrass()) {
+                        AnimalHelper.feed(null, animal);
+                    }
+                }
+            }
+
             WitherType wither = data.newDay();
             if (wither != WitherType.NONE) {
                 iter.remove();

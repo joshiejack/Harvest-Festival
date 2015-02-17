@@ -2,6 +2,7 @@ package joshie.harvestmoon.handlers.events;
 
 import static joshie.harvestmoon.helpers.AnimalHelper.feed;
 import static joshie.harvestmoon.network.PacketHandler.sendToServer;
+import joshie.harvestmoon.animals.AnimalType;
 import joshie.harvestmoon.config.Animals;
 import joshie.harvestmoon.helpers.AnimalHelper;
 import joshie.harvestmoon.helpers.RelationsHelper;
@@ -74,8 +75,8 @@ public class AnimalEvents {
     }
 
     //If it's a food item
-    public boolean isFood(Item item) {
-        return item == Items.wheat || item == Items.carrot;
+    public boolean isFood(EntityAnimal animal, ItemStack item) {
+        return AnimalType.getType(animal).canEat(item);
     }
 
     @SubscribeEvent
@@ -88,7 +89,7 @@ public class AnimalEvents {
                 Item item = held.getItem();
                 if (item == Items.bucket || item == Items.glass_bottle || item == Items.wheat_seeds) {
                     event.setCanceled(true);
-                } else if (isFood(item) && !(animal instanceof EntityChicken)) {
+                } else if (isFood(animal, held)) {
                     feed(player, animal);
                     event.setCanceled(true);
                 }

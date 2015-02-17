@@ -4,13 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import joshie.harvestmoon.helpers.SafeStackHelper;
 import joshie.harvestmoon.init.HMItems;
 import joshie.harvestmoon.items.ItemMeal;
-import joshie.harvestmoon.util.HMStack;
 import joshie.harvestmoon.util.SafeStack;
-import joshie.harvestmoon.util.WildStack;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class FoodRegistry {
     private static HashMap<String, ArrayList<ICookingComponent>> equivalents = new HashMap();
@@ -52,14 +50,6 @@ public class FoodRegistry {
         return recipes;
     }
 
-    public static SafeStack getSafeStackType(ItemStack stack) {
-        if (stack.getItem() == HMItems.crops || stack.getItem() == HMItems.sized) {
-            return new HMStack(stack);
-        } else if (stack.getItemDamage() == OreDictionary.WILDCARD_VALUE) {
-            return new WildStack(stack);
-        } else return new SafeStack(stack);
-    }
-
     private static ArrayList<ICookingComponent> getComponents(SafeStack safe) {
         ArrayList<ICookingComponent> components = FoodRegistry.registry.get(safe);
         return components == null ? new ArrayList(20) : components;
@@ -72,17 +62,14 @@ public class FoodRegistry {
     }
 
     public static void register(ItemStack stack, ICookingComponent component) {
-        SafeStack safe = getSafeStackType(stack);
+        SafeStack safe = SafeStackHelper.getSafeStackType(stack);
         ArrayList<ICookingComponent> components = getComponents(safe);
         components.add(component);
         FoodRegistry.registry.put(safe, components);
     }
 
     public static ArrayList<ICookingComponent> getCookingComponents(ItemStack stack) {
-        ArrayList<ICookingComponent> result = registry.get(new SafeStack(stack));
-        if (result == null) result = registry.get(new WildStack(stack));
-        if (result == null) result = registry.get(new HMStack(stack));
-        return result;
+        return (ArrayList<ICookingComponent>) SafeStackHelper.getResult(stack, registry);
     }
 
     public static ArrayList<Ingredient> getIngredients(ItemStack stack) {

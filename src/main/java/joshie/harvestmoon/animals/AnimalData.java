@@ -1,13 +1,8 @@
 package joshie.harvestmoon.animals;
 
-import static joshie.harvestmoon.animals.AnimalData.AnimalType.CAT;
-import static joshie.harvestmoon.animals.AnimalData.AnimalType.CHICKEN;
-import static joshie.harvestmoon.animals.AnimalData.AnimalType.COW;
-import static joshie.harvestmoon.animals.AnimalData.AnimalType.DOG;
-import static joshie.harvestmoon.animals.AnimalData.AnimalType.HORSE;
-import static joshie.harvestmoon.animals.AnimalData.AnimalType.OTHER;
-import static joshie.harvestmoon.animals.AnimalData.AnimalType.PIG;
-import static joshie.harvestmoon.animals.AnimalData.AnimalType.SHEEP;
+import static joshie.harvestmoon.animals.AnimalType.CHICKEN;
+import static joshie.harvestmoon.animals.AnimalType.OTHER;
+import static joshie.harvestmoon.animals.AnimalType.SHEEP;
 import static joshie.harvestmoon.helpers.SizeableHelper.getEgg;
 import static joshie.harvestmoon.helpers.generic.ItemHelper.spawnByEntity;
 import static joshie.harvestmoon.network.PacketHandler.sendToEveryone;
@@ -16,20 +11,12 @@ import java.util.Random;
 import java.util.UUID;
 
 import joshie.harvestmoon.config.Animals;
-import joshie.harvestmoon.config.Calendar;
 import joshie.harvestmoon.helpers.AnimalHelper;
 import joshie.harvestmoon.helpers.RelationsHelper;
 import joshie.harvestmoon.network.PacketSyncCanProduce;
 import joshie.harvestmoon.util.IData;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.passive.EntityChicken;
-import net.minecraft.entity.passive.EntityCow;
-import net.minecraft.entity.passive.EntityHorse;
-import net.minecraft.entity.passive.EntityOcelot;
-import net.minecraft.entity.passive.EntityPig;
-import net.minecraft.entity.passive.EntitySheep;
-import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -39,33 +26,6 @@ import net.minecraft.potion.PotionEffect;
 
 public class AnimalData implements IData {
     private static final Random rand = new Random();
-
-    //Enum of animal types
-    public static enum AnimalType {
-        COW(12 * (Calendar.DAYS_PER_SEASON * 4), 20 * (Calendar.DAYS_PER_SEASON * 4), 1), SHEEP(8 * (Calendar.DAYS_PER_SEASON * 4), 12 * (Calendar.DAYS_PER_SEASON * 4), 7), CHICKEN(3 * (Calendar.DAYS_PER_SEASON * 4), 10 * (Calendar.DAYS_PER_SEASON * 4), 1), HORSE(20 * (Calendar.DAYS_PER_SEASON * 4), 30 * (Calendar.DAYS_PER_SEASON * 4), 0), PIG(6 * (Calendar.DAYS_PER_SEASON * 4), 10 * (Calendar.DAYS_PER_SEASON * 4), 0), CAT(10 * (Calendar.DAYS_PER_SEASON * 4), 20 * (Calendar.DAYS_PER_SEASON * 4), 0), DOG(9 * (Calendar.DAYS_PER_SEASON * 4), 16 * (Calendar.DAYS_PER_SEASON * 4), 0), OTHER(5 * (Calendar.DAYS_PER_SEASON * 4), 10 * (Calendar.DAYS_PER_SEASON * 4), 0);
-
-        private final int min;
-        private final int max;
-        private final int days;
-
-        private AnimalType(int min, int max, int days) {
-            this.min = min;
-            this.max = max;
-            this.days = days;
-        }
-
-        public int getMin() {
-            return min;
-        }
-
-        public int getMax() {
-            return max;
-        }
-
-        public int getDays() {
-            return days;
-        }
-    }
 
     private EntityAnimal animal;
     private EntityPlayerMP owner;
@@ -99,23 +59,7 @@ public class AnimalData implements IData {
     public AnimalData(EntityAnimal animal) {
         this.animal = animal;
         this.a_uuid = animal.getPersistentID();
-        if (animal instanceof EntityChicken) {
-            this.type = CHICKEN;
-        } else if (animal instanceof EntitySheep) {
-            this.type = SHEEP;
-        } else if (animal instanceof EntityCow) {
-            this.type = COW;
-        } else if (animal instanceof EntityPig) {
-            this.type = PIG;
-        } else if (animal instanceof EntityHorse) {
-            this.type = HORSE;
-        } else if (animal instanceof EntityOcelot) {
-            this.type = CAT;
-        } else if (animal instanceof EntityWolf) {
-            this.type = DOG;
-        } else {
-            this.type = OTHER;
-        }
+        this.type = AnimalType.getType(animal);
     }
 
     /** May return null **/
@@ -379,7 +323,7 @@ public class AnimalData implements IData {
         isSick = nbt.getBoolean("IsSick");
         dimension = nbt.getInteger("Dimension");
         if (type == CHICKEN) thrown = nbt.getBoolean("Thrown");
-        if (type.days > 0) {
+        if (type.getDays() > 0) {
             maxProductsPerDay = nbt.getByte("NumProducts");
             numProductsProduced = nbt.getByte("ProductsProduced");
         }
@@ -409,7 +353,7 @@ public class AnimalData implements IData {
         }
 
         if (type == CHICKEN) nbt.setBoolean("Thrown", thrown);
-        if (type.days > 0) {
+        if (type.getDays() > 0) {
             nbt.setByte("NumProducts", (byte) maxProductsPerDay);
             nbt.setByte("ProductsProduced", (byte) numProductsProduced);
         }

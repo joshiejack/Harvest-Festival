@@ -7,6 +7,7 @@ import static joshie.harvestmoon.lib.HMModInfo.MODPATH;
 import java.io.File;
 import java.util.Map;
 
+import joshie.harvestmoon.init.HMAnimals;
 import joshie.harvestmoon.init.HMBlocks;
 import joshie.harvestmoon.init.HMBuildings;
 import joshie.harvestmoon.init.HMCommands;
@@ -71,6 +72,7 @@ public class HarvestMoon implements IFMLLoadingPlugin {
         HMShops.init();
         HMMining.init();
         HMGifts.init();
+        HMAnimals.init();
         proxy.preInit();
     }
 

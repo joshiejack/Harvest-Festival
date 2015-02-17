@@ -79,6 +79,10 @@ public class CropData implements IData {
     public boolean doesRegrow() {
         return crop.getRegrowStage() > 0;
     }
+    
+    public boolean isEdible() {
+        return crop.isStatic();
+    }
 
     public ItemStack harvest() {
         if (stage == crop.getStages()) {

@@ -49,8 +49,8 @@ public class CalendarServer implements IData {
         date.setDay(day).setSeason(season).setYear(year);
         sendToEveryone(new PacketSetCalendar(date));
 
-        AnimalHelper.newDay();
         CropHelper.newDay();
+        AnimalHelper.newDay();
         MineHelper.newDay();
 
         //Loop through all the players and do stuff related to them, Pass the world that the player is in

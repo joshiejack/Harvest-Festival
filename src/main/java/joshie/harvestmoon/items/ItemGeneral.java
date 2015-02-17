@@ -138,8 +138,6 @@ public class ItemGeneral extends ItemHMMeta {
                 }
 
                 return true;
-            } else if (metadata == CHICKEN_FEED && animal instanceof EntityChicken) {
-                feed(player, animal);
             } else if (metadata == MIRACLE && !(living instanceof EntityChicken)) {
                 if (!living.worldObj.isRemote) {
                     if (AnimalHelper.impregnate(player, animal)) {

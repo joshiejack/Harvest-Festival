@@ -26,11 +26,14 @@ public class AnimalHelper {
         }
     }
 
-    /** Causes the player to feed the animal, affecting it's relationship **/
+    /** Causes the player to feed the animal, affecting it's relationship 
+     * @param b **/
     public static void feed(EntityPlayer player, EntityAnimal animal) {
-        if (!player.worldObj.isRemote) {
+        if (!animal.worldObj.isRemote) {
             if (ServerHelper.getAnimalTracker().setFed(animal)) {
-                ServerHelper.getPlayerData(player).affectRelationship(animal, 5);
+                if (player != null) {
+                    ServerHelper.getPlayerData(player).affectRelationship(animal, 5);
+                }
             }
         }
     }

@@ -22,7 +22,7 @@
 ## Coding
 ###Features
 - [x] Grass Crop
-- [ ] Cows and Sheep eat Grass automatically
+- [ ] Cows and Sheep eat Grass crops automatically
 - [x] Trough, Autofeeds surrounding Cows and Sheep
 - [ ] Only purchased animals should be added to the animal tracker (default)
 - [ ] Config to enable tracking on all animals

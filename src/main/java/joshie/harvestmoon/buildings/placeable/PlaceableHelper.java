@@ -118,6 +118,9 @@ public class PlaceableHelper {
         if (block == Blocks.wall_sign) print = "Blocks.wall_sign";
         if (block == Blocks.flower_pot) print = "Blocks.flower_pot";
         if (block == Blocks.cauldron) print = "Blocks.cauldron";
+        if (block == Blocks.reeds) print = "Blocks.reeds";
+        if (block == Blocks.cake) print = "Blocks.cake";
+        if (print.equals("//TODO: ITEM NAME")) System.out.println(block);
         return "list.add(new Placeable" + getPrefixString(block) + "(" + print + ", " + meta + ", " + x + ", " + y + ", " + z + "));";
     }
 

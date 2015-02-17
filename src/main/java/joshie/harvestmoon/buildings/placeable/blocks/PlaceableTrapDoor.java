@@ -16,147 +16,99 @@ public class PlaceableTrapDoor extends PlaceableBlock {
     protected int getMetaData(boolean n1, boolean n2, boolean swap) {
         if (meta == 0) {
             if (n2) {
-                meta = 1;
-                if (swap) {
-                    meta = 3;
-                }
+                return swap ? 3 : 1;
             } else if (swap) {
-                meta = 2;
+                return 2;
             }
         } else if (meta == 1) {
             if (n2) {
-                meta = 0;
-                if (swap) {
-                    meta = 2;
-                }
+                return swap ? 2 : 0;
             } else if (swap) {
-                meta = 3;
+                return 3;
             }
         } else if (meta == 2) {
             if (n1) {
-                meta = 3;
-                if (swap) {
-                    meta = 1;
-                }
+                return swap ? 1 : 3;
             } else if (swap) {
-                meta = 0;
+                return 0;
             }
         } else if (meta == 3) {
             if (n1) {
-                meta = 2;
-                if (swap) {
-                    meta = 0;
-                }
+                return swap ? 0 : 2;
             } else if (swap) {
-                meta = 1;
+                return 1;
             }
         } else if (meta == 8) {
             if (n2) {
-                meta = 9;
-                if (swap) {
-                    meta = 11;
-                }
+                return swap ? 11 : 9;
             } else if (swap) {
-                meta = 10;
+                return 10;
             }
         } else if (meta == 9) {
             if (n2) {
-                meta = 8;
-                if (swap) {
-                    meta = 10;
-                }
+                return swap ? 10 : 8;
             } else if (swap) {
-                meta = 11;
+                return 11;
             }
         } else if (meta == 10) {
             if (n1) {
-                meta = 11;
-                if (swap) {
-                    meta = 9;
-                }
+                return swap ? 9 : 11;
             } else if (swap) {
-                meta = 8;
+                return 8;
             }
         } else if (meta == 11) {
             if (n1) {
-                meta = 10;
-                if (swap) {
-                    meta = 8;
-                }
+                return swap ? 8 : 10;
             } else if (swap) {
-                meta = 9;
+                return 9;
             }
         } else if (meta == 12) {
             if (n2) {
-                meta = 13;
-                if (swap) {
-                    meta = 15;
-                }
+                return swap ? 15 : 13;
             } else if (swap) {
-                meta = 14;
+                return 14;
             }
         } else if (meta == 13) {
             if (n2) {
-                meta = 12;
-                if (swap) {
-                    meta = 14;
-                }
+                return swap ? 14 : 12;
             } else if (swap) {
-                meta = 15;
+                return 15;
             }
         } else if (meta == 14) {
             if (n1) {
-                meta = 15;
-                if (swap) {
-                    meta = 13;
-                }
+                return swap ? 13 : 15;
             } else if (swap) {
-                meta = 12;
+                return 12;
             }
         } else if (meta == 15) {
             if (n1) {
-                meta = 14;
-                if (swap) {
-                    meta = 12;
-                }
+                return swap ? 12 : 14;
             } else if (swap) {
-                meta = 13;
+                return 13;
             }
         } else if (meta == 4) {
             if (n2) {
-                meta = 5;
-                if (swap) {
-                    meta = 7;
-                }
+                return swap ? 7 : 5;
             } else if (swap) {
-                meta = 6;
+                return 6;
             }
         } else if (meta == 5) {
             if (n2) {
-                meta = 4;
-                if (swap) {
-                    meta = 6;
-                }
+                return swap ? 6 : 4;
             } else if (swap) {
-                meta = 7;
+                return 7;
             }
         } else if (meta == 6) {
             if (n1) {
-                meta = 7;
-                if (swap) {
-                    meta = 5;
-                }
+                return swap ? 5 : 7;
             } else if (swap) {
-                meta = 4;
+                return 4;
             }
         } else if (meta == 7) {
             if (n1) {
-                meta = 6;
-                if (swap) {
-                    meta = 4;
-                }
+                return swap ? 4 : 6;
             } else if (swap) {
-                meta = 5;
+                return 5;
             }
         }
 

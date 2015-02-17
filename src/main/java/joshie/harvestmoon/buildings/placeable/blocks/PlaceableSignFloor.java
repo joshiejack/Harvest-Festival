@@ -13,42 +13,30 @@ public class PlaceableSignFloor extends PlaceableSignWall {
     protected int getMetaData(boolean n1, boolean n2, boolean swap) {
         if (meta == 8) {
             if (n2) {
-                meta = 0;
-                if (swap) {
-                    meta = 12;
-                }
+                return swap ? 12 : 0;
             } else if (swap) {
-                meta = 4;
+                return 4;
             }
         } else if (meta == 0) {
             if (n2) {
-                meta = 8;
-                if (swap) {
-                    meta = 4;
-                }
+                return swap ? 4 : 8;
             } else if (swap) {
-                meta = 12;
+                return 12;
             }
         } else if (meta == 4) {
             if (n1) {
-                meta = 12;
-                if (swap) {
-                    meta = 0;
-                }
+                return swap ? 0 : 12;
             } else if (swap) {
-                meta = 8;
+                return 8;
             }
         } else if (meta == 12) {
             if (n1) {
-                meta = 4;
-                if (swap) {
-                    meta = 8;
-                }
+                return swap ? 8 : 4;
             } else if (swap) {
-                meta = 0;
+                return 0;
             }
         }
-        
+
         return meta;
     }
 }

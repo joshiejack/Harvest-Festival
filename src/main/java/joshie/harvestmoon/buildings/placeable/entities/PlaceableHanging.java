@@ -1,6 +1,5 @@
 package joshie.harvestmoon.buildings.placeable.entities;
 
-
 public abstract class PlaceableHanging extends PlaceableEntity {
     private int facing;
 
@@ -16,39 +15,27 @@ public abstract class PlaceableHanging extends PlaceableEntity {
     public int getFacing(boolean n1, boolean n2, boolean swap) {
         if (facing == 0) {
             if (n2) {
-                facing = 2;
-                if (swap) {
-                    facing = 1;
-                }
+                return swap ? 1 : 2;
             } else if (swap) {
-                facing = 3;
+                return 3;
             }
         } else if (facing == 1) {
             if (n1) {
-                facing = 3;
-                if (swap) {
-                    facing = 0;
-                }
+                return swap ? 0 : 3;
             } else if (swap) {
-                facing = 2;
+                return 2;
             }
         } else if (facing == 2) {
             if (n2) {
-                facing = 0;
-                if (swap) {
-                    facing = 3;
-                }
+                return swap ? 3 : 0;
             } else if (swap) {
-                facing = 1;
+                return 1;
             }
         } else if (facing == 3) {
             if (n1) {
-                facing = 1;
-                if (swap) {
-                    facing = 2;
-                }
+                return swap ? 2 : 1;
             } else if (swap) {
-                facing = 0;
+                return 0;
             }
         }
 

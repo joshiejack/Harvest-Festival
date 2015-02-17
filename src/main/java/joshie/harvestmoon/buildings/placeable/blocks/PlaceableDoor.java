@@ -11,75 +11,51 @@ public class PlaceableDoor extends PlaceableBlock {
     protected int getMetaData(boolean n1, boolean n2, boolean swap) {
         if (meta == 1) {
             if (n2) {
-                meta = 3;
-                if (swap) {
-                    meta = 2;
-                }
+                return swap ? 2 : 3;
             } else if (swap) {
-                meta = 0;
+                return 0;
             }
         } else if (meta == 3) {
             if (n2) {
-                meta = 1;
-                if (swap) {
-                    meta = 0;
-                }
+                return swap ? 0 : 1;
             } else if (swap) {
-                meta = 2;
+                return 2;
             }
         } else if (meta == 0) {
             if (n1) {
-                meta = 2;
-                if (swap) {
-                    meta = 3;
-                }
+                return swap ? 3 : 2;
             } else if (swap) {
-                meta = 2;
+                return 1;
             }
         } else if (meta == 2) {
             if (n1) {
-                meta = 0;
-                if (swap) {
-                    meta = 1;
-                }
+                return swap ? 1 : 0;
             } else if (swap) {
-                meta = 3;
+                return 3;
             }
         } else if (meta == 5) {
             if (n2) {
-                meta = 7;
-                if (swap) {
-                    meta = 6;
-                }
+                return swap ? 6 : 7;
             } else if (swap) {
-                meta = 4;
+                return 4;
             }
         } else if (meta == 7) {
             if (n2) {
-                meta = 5;
-                if (swap) {
-                    meta = 4;
-                }
+                return swap ? 4 : 5;
             } else if (swap) {
-                meta = 6;
+                return 6;
             }
         } else if (meta == 4) {
             if (n1) {
-                meta = 6;
-                if (swap) {
-                    meta = 7;
-                }
+                return swap ? 7 : 6;
             } else if (swap) {
-                meta = 6;
+                return 5;
             }
         } else if (meta == 6) {
             if (n1) {
-                meta = 4;
-                if (swap) {
-                    meta = 5;
-                }
+                return swap ? 5 : 4;
             } else if (swap) {
-                meta = 7;
+                return 7;
             }
         }
 

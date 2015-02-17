@@ -11,39 +11,27 @@ public class PlaceableFurnace extends PlaceableBlock {
     protected int getMetaData(boolean n1, boolean n2, boolean swap) {
         if (meta == 1) {
             if (n1) {
-                meta = 5;
-                if (swap) {
-                    meta = 3;
-                }
+                return swap ? 3 : 5;
             } else if (swap) {
-                meta = 4;
+                return 4;
             }
         } else if (meta == 3) {
             if (n2) {
-                meta = 2;
-                if (swap) {
-                    meta = 4;
-                }
+                return swap ? 4 : 2;
             } else if (swap) {
-                meta = 5;
+                return 5;
             }
         } else if (meta == 4) {
             if (n1) {
-                meta = 3;
-                if (swap) {
-                    meta = 5;
-                }
+                return swap ? 5 : 3;
             } else if (swap) {
-                meta = 2;
+                return 2;
             }
         } else if (meta == 5) {
             if (n1) {
-                meta = 4;
-                if (swap) {
-                    meta = 2;
-                }
+                return swap ? 2 : 4;
             } else if (swap) {
-                meta = 3;
+                return 3;
             }
         }
 

@@ -12,9 +12,6 @@ import net.minecraft.world.World;
 public class PlaceableBlock extends Placeable {
     private Block block;
     protected int meta;
-    private int offsetX;
-    private int offsetY;
-    private int offsetZ;
 
     public PlaceableBlock() {
         super(0, 0, 0);

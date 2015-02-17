@@ -15,10 +15,11 @@ public class Building {
     protected ArrayList<Placeable> list;
     private String name;
     private boolean isVariant;
-    
-    public static Building register(Building building) {
-        buildings.add(building);
-        return building;
+
+    public static Building register(String string, Building... buildings) {
+        Building toRegister = new Building().setName(string).add(buildings);
+        Building.buildings.add(toRegister);
+        return toRegister;
     }
 
     public ArrayList<Placeable> getSubList(int subType) {
@@ -72,17 +73,12 @@ public class Building {
         return null;
     }
 
+    //TODO: LilyPad/Tripwire Hooks????????????
     public boolean generate(World world, int xCoord, int yCoord, int zCoord) {
         if (!world.isRemote) {
             boolean n1 = world.rand.nextBoolean();
             boolean n2 = world.rand.nextBoolean();
             boolean swap = world.rand.nextBoolean();
-            
-            //boolean n1 = true;
-            //boolean n2 = false;
-            //boolean swap = true;
-            
-            yCoord++;
 
             /** First loop we place solid blocks **/
             for (Placeable block : list) {

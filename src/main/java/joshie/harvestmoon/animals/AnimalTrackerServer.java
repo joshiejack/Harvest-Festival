@@ -80,7 +80,7 @@ public class AnimalTrackerServer implements IData {
         for (ValueLocation trough : troughs) {
             if (trough.getValue() <= 0) continue;
             World world = DimensionManager.getWorld(trough.dimension);
-            ArrayList<EntityAnimal> animals = (ArrayList<EntityAnimal>) world.getEntitiesWithinAABB(EntityAnimal.class, HMBlocks.tiles.getCollisionBoundingBoxFromPool(world, trough.x, trough.y, trough.z).expand(16D, 16D, 16D));
+            ArrayList<EntityAnimal> animals = (ArrayList<EntityAnimal>) world.getEntitiesWithinAABB(EntityAnimal.class, HMBlocks.cookware.getCollisionBoundingBoxFromPool(world, trough.x, trough.y, trough.z).expand(16D, 16D, 16D));
             for (EntityAnimal animal : animals) {
                 if (trough.getValue() <= 0) break;
                 if (AnimalType.getType(animal).eatsGrass()) {

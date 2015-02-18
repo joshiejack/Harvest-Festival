@@ -5,7 +5,8 @@ import static joshie.harvestmoon.helpers.generic.RegistryHelper.registerTiles;
 import joshie.harvestmoon.blocks.BlockCrop;
 import joshie.harvestmoon.blocks.BlockDirt;
 import joshie.harvestmoon.blocks.BlockFlower;
-import joshie.harvestmoon.blocks.BlockGeneral;
+import joshie.harvestmoon.blocks.BlockCookware;
+import joshie.harvestmoon.blocks.BlockWood;
 import joshie.harvestmoon.blocks.BlockStone;
 import joshie.harvestmoon.blocks.BlockWithered;
 import joshie.harvestmoon.blocks.tiles.TileCooking;
@@ -20,18 +21,20 @@ import joshie.harvestmoon.blocks.tiles.TileSteamer;
 import net.minecraft.block.Block;
 
 public class HMBlocks {
+    public static Block cookware;
     public static Block crops;
     public static Block dirt;
     public static Block flowers;
     public static Block stone;
-    public static Block tiles;
     public static Block withered;
+    public static Block woodmachines;
 
     public static void init() {
         crops = new BlockCrop().setStepSound(soundTypeGrass).setBlockName("crops.block");
         dirt = new BlockDirt().setStepSound(soundTypeGravel).setBlockName("dirt");
         flowers = new BlockFlower().setStepSound(soundTypeGrass).setBlockName("flowers.block");
-        tiles = new BlockGeneral().setStepSound(soundTypeMetal).setBlockName("general.block");
+        cookware = new BlockCookware().setStepSound(soundTypeMetal).setBlockName("cookware");
+        woodmachines = new BlockWood().setStepSound(soundTypeWood).setBlockName("general.block");
         stone = new BlockStone().setStepSound(soundTypePiston).setBlockName("stone");
         withered = new BlockWithered().setStepSound(soundTypeGrass).setBlockName("crops.withered");
 

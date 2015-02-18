@@ -90,9 +90,14 @@ public class Building {
                 block.place(world, xCoord, yCoord, zCoord, n1, n2, swap, PlacementStage.ENTITIES);
             }
 
-            /** First loop we place torch/ladders etc **/
+            /** Third loop we place torch/ladders etc **/
             for (Placeable block : list) {
                 block.place(world, xCoord, yCoord, zCoord, n1, n2, swap, PlacementStage.TORCHES);
+            }
+            
+            /** Fourth loop we place NPCs **/
+            for (Placeable block : list) {
+                block.place(world, xCoord, yCoord, zCoord, n1, n2, swap, PlacementStage.NPC);
             }
         }
 

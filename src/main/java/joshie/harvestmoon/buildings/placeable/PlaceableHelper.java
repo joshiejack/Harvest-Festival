@@ -2,9 +2,12 @@ package joshie.harvestmoon.buildings.placeable;
 
 import java.util.HashMap;
 
+import joshie.harvestmoon.blocks.BlockWood;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceableEntity;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceableItemFrame;
+import joshie.harvestmoon.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceablePainting;
+import joshie.harvestmoon.init.HMBlocks;
 import joshie.harvestmoon.util.generic.IFaceable;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockAnvil;
@@ -13,17 +16,20 @@ import net.minecraft.block.BlockDoor;
 import net.minecraft.block.BlockDoublePlant;
 import net.minecraft.block.BlockEnderChest;
 import net.minecraft.block.BlockFenceGate;
+import net.minecraft.block.BlockFlowerPot;
 import net.minecraft.block.BlockFurnace;
 import net.minecraft.block.BlockLadder;
 import net.minecraft.block.BlockLever;
 import net.minecraft.block.BlockLilyPad;
 import net.minecraft.block.BlockLog;
+import net.minecraft.block.BlockMushroom;
 import net.minecraft.block.BlockPumpkin;
 import net.minecraft.block.BlockQuartz;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.BlockTorch;
 import net.minecraft.block.BlockTrapDoor;
 import net.minecraft.block.BlockVine;
+import net.minecraft.block.BlockWeb;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -95,11 +101,21 @@ public class PlaceableHelper {
             return "Pillar";
         } else if (block instanceof BlockDoublePlant) {
             return "DoublePlant";
+        } else if (block instanceof BlockWeb) {
+            return "Web";
+        } else if (block instanceof BlockFlowerPot) {
+            return "FlowerPot";
+        } else if (block instanceof BlockMushroom) {
+            return "Mushroom";
         } else return "Block";
     }
 
     public static String getPlaceableIFaceableString(IFaceable tile, Block block, int meta, int x, int y, int z) {
-        return "list.add(new PlaceableIFaceable" + "(HMBlocks.tiles, " + meta + ", " + x + ", " + y + ", " + z + ", ForgeDirection." + tile.getFacing() + "));";
+        if ((block == HMBlocks.cookware || block == HMBlocks.woodmachines) && meta == 9) {
+            meta = BlockWood.RURAL_CHEST;
+        }
+
+        return "list.add(new PlaceableIFaceable" + "(HMBlocks.woodmachines, " + meta + ", " + x + ", " + y + ", " + z + ", ForgeDirection." + tile.getFacing() + "));";
     }
 
     public static String getFloorSignString(String[] sign, Block block, int meta, int x, int y, int z) {
@@ -124,6 +140,7 @@ public class PlaceableHelper {
         if (block == Blocks.reeds) print = "Blocks.reeds";
         if (block == Blocks.cake) print = "Blocks.cake";
         if (print.equals("//TODO: ITEM NAME")) System.out.println(block);
+
         return "list.add(new Placeable" + getPrefixString(block) + "(" + print + ", " + meta + ", " + x + ", " + y + ", " + z + "));";
     }
 
@@ -134,5 +151,9 @@ public class PlaceableHelper {
     static {
         entities.put("EntityItemFrame", new PlaceableItemFrame());
         entities.put("EntityPainting", new PlaceablePainting());
+        entities.put("EntityNPC", new PlaceableNPC());
+        entities.put("EntityNPCBuilder", new PlaceableNPC());
+        entities.put("EntityNPCMiner", new PlaceableNPC());
+        entities.put("EntityNPCShopkeeper", new PlaceableNPC());
     }
 }

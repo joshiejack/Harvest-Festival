@@ -6,6 +6,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 import joshie.harvestmoon.buildings.placeable.PlaceableHelper;
+import joshie.harvestmoon.npc.EntityNPC;
+import joshie.harvestmoon.npc.EntityNPCBuilder;
+import joshie.harvestmoon.npc.EntityNPCMiner;
+import joshie.harvestmoon.npc.EntityNPCShopkeeper;
 import joshie.harvestmoon.util.generic.IFaceable;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -48,6 +52,10 @@ public class CodeGeneratorBuildings {
                         Set<Entity> entityList = new HashSet();
                         entityList.addAll(getEntities(EntityPainting.class, x1 + x, y1 + y, z1 + z));
                         entityList.addAll(getEntities(EntityItemFrame.class, x1 + x, y1 + y, z1 + z));
+                        entityList.addAll(getEntities(EntityNPC.class, x1 + x, y1 + y, z1 + z));
+                        entityList.addAll(getEntities(EntityNPCBuilder.class, x1 + x, y1 + y, z1 + z));
+                        entityList.addAll(getEntities(EntityNPCMiner.class, x1 + x, y1 + y, z1 + z));
+                        entityList.addAll(getEntities(EntityNPCShopkeeper.class, x1 + x, y1 + y, z1 + z));
 
                         Block block = world.getBlock(x1 + x, y1 + y, z1 + z);
                         if ((block != Blocks.air || air || entityList.size() > 0) && block != Blocks.end_stone) {

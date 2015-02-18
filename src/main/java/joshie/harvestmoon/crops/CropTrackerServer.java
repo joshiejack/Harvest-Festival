@@ -57,7 +57,7 @@ public class CropTrackerServer implements IData {
             //Feed surrounding animals with grass
             if (data.isEdible()) {
                 World world = getWorld(location.dimension);
-                ArrayList<EntityAnimal> animals = (ArrayList<EntityAnimal>) world.getEntitiesWithinAABB(EntityAnimal.class, HMBlocks.tiles.getCollisionBoundingBoxFromPool(world, location.x, location.y, location.z).expand(16D, 16D, 16D));
+                ArrayList<EntityAnimal> animals = (ArrayList<EntityAnimal>) world.getEntitiesWithinAABB(EntityAnimal.class, HMBlocks.cookware.getCollisionBoundingBoxFromPool(world, location.x, location.y, location.z).expand(16D, 16D, 16D));
                 for (EntityAnimal animal : animals) {
                     if (AnimalType.getType(animal).eatsGrass()) {
                         AnimalHelper.feed(null, animal);

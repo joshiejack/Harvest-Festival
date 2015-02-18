@@ -16,6 +16,7 @@ public class BuildingStage {
     private int subType, index, xCoord, yCoord, zCoord;
 
     public BuildingStage() {}
+
     public BuildingStage(Building building, int subType, int x, int y, int z, Random rand) {
         this.building = building;
         this.subType = subType;
@@ -38,6 +39,9 @@ public class BuildingStage {
                 stage = PlacementStage.ENTITIES;
                 index = 0;
             } else if (stage == PlacementStage.ENTITIES) {
+                stage = PlacementStage.NPC;
+                index = 0;
+            } else if (stage == PlacementStage.NPC) {
                 stage = PlacementStage.FINISHED;
                 index = 0;
             }

@@ -39,7 +39,7 @@ public class EntityNPCBuilder extends EntityNPC {
 
     @Override
     public boolean interact(EntityPlayer player) {
-        startBuilding(HMBuildings.townhall, (int) player.posX, (int) player.posY, (int) player.posZ);
+        startBuilding(HMBuildings.supermarket, (int) player.posX, (int) player.posY, (int) player.posZ);
         return true;
     }
 

@@ -12,9 +12,9 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
 public class BlockPreview extends BlockHMBaseMeta {
-    public static final int N1_T__N2_T__SWAP_F = 0;
+    public static final int N1_T__N2_F__SWAP_F = 0;
     public static final int N1_T__N2_T__SWAP_T = 1;
-    public static final int N1_T__N2_F__SWAP_F = 2;
+    public static final int N1_T__N2_T__SWAP_F = 2;
     public static final int N1_T__N2_F__SWAP_T = 3;
     public static final int N1_F__N2_F__SWAP_F = 4;
     public static final int N1_F__N2_F__SWAP_T = 5;
@@ -26,7 +26,7 @@ public class BlockPreview extends BlockHMBaseMeta {
     }
 
     public static boolean getN2FromMeta(int meta) {
-        return meta <= 1 || meta >= 7;
+        return meta == 1 || meta == 2 || meta >= 7;
     }
 
     public static boolean getSwapFromMeta(int meta) {
@@ -74,8 +74,6 @@ public class BlockPreview extends BlockHMBaseMeta {
             if (meta < 7) {
                 meta++;
             } else meta = 0;
-            
-            
             return world.setBlockMetadataWithNotify(x, y, z, meta, 2);
         } else return false;
     }

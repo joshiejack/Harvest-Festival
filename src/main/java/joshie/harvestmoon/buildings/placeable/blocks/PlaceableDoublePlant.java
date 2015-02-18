@@ -7,6 +7,11 @@ public class PlaceableDoublePlant extends PlaceableBlock {
     public PlaceableDoublePlant(Block block, int meta, int offsetX, int offsetY, int offsetZ) {
         super(block, meta, offsetX, offsetY, offsetZ);
     }
+    
+    @Override
+    public boolean canPlace(PlacementStage stage) {
+        return stage == PlacementStage.TORCHES;
+    }
 
     @Override
     public void place(World world, int x, int y, int z, boolean n1, boolean n2, boolean swap) {

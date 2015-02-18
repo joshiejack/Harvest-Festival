@@ -228,9 +228,9 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 3, 4, 7));
         list.add(new PlaceableVine(Blocks.vine, 1, 3, 4, 8));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 3, 3, 4, 9));
-        list.add(new PlaceableIFaceable(HMBlocks.tiles, 9, 3, 4, 10, ForgeDirection.SOUTH));
+        list.add(new PlaceableIFaceable(HMBlocks.cookware, 9, 3, 4, 10, ForgeDirection.SOUTH));
         list.add(new PlaceableBlock(Blocks.air, 0, 3, 4, 11));
-        list.add(new PlaceableIFaceable(HMBlocks.tiles, 9, 3, 4, 12, ForgeDirection.NORTH));
+        list.add(new PlaceableIFaceable(HMBlocks.cookware, 9, 3, 4, 12, ForgeDirection.NORTH));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 2, 3, 4, 13));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 3, 4, 4, 1));
         list.add(new PlaceableBlock(Blocks.planks, 5, 4, 4, 2));
@@ -254,9 +254,9 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 4, 7));
         list.add(new PlaceableVine(Blocks.vine, 1, 5, 4, 8));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 3, 5, 4, 9));
-        list.add(new PlaceableIFaceable(HMBlocks.tiles, 9, 5, 4, 10, ForgeDirection.SOUTH));
+        list.add(new PlaceableIFaceable(HMBlocks.cookware, 9, 5, 4, 10, ForgeDirection.SOUTH));
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 4, 11));
-        list.add(new PlaceableIFaceable(HMBlocks.tiles, 9, 5, 4, 12, ForgeDirection.NORTH));
+        list.add(new PlaceableIFaceable(HMBlocks.cookware, 9, 5, 4, 12, ForgeDirection.NORTH));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 2, 5, 4, 13));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 3, 6, 4, 1));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 4, 2));
@@ -1573,9 +1573,9 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableBlock(Blocks.wooden_slab, 9, 9, 14, 14));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 9, 10, 14, 0));
         list.add(new PlaceableBlock(Blocks.stained_hardened_clay, 6, 10, 14, 1));
-        list.add(new PlaceableIFaceable(HMBlocks.tiles, 9, 10, 14, 2, ForgeDirection.WEST));
+        list.add(new PlaceableIFaceable(HMBlocks.cookware, 9, 10, 14, 2, ForgeDirection.WEST));
         list.add(new PlaceableBlock(Blocks.fence, 0, 10, 14, 3));
-        list.add(new PlaceableIFaceable(HMBlocks.tiles, 9, 10, 14, 4, ForgeDirection.WEST));
+        list.add(new PlaceableIFaceable(HMBlocks.cookware, 9, 10, 14, 4, ForgeDirection.WEST));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 0, 10, 14, 5));
         list.add(new PlaceableBlock(Blocks.leaves, 12, 10, 14, 6));
         list.add(new PlaceableBlock(Blocks.bookshelf, 0, 10, 14, 7));
@@ -2119,7 +2119,7 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 5, 7, 18, 6));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 5, 7, 18, 7));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 5, 7, 18, 8));
-        list.add(new PlaceableIFaceable(HMBlocks.tiles, 9, 7, 18, 9, ForgeDirection.EAST));
+        list.add(new PlaceableIFaceable(HMBlocks.cookware, 9, 7, 18, 9, ForgeDirection.EAST));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 5, 7, 18, 10));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 5, 7, 18, 11));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 5, 7, 18, 12));

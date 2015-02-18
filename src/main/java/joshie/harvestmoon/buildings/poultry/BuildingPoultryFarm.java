@@ -148,7 +148,7 @@ public class BuildingPoultryFarm extends Building {
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 13, 5, 1, 8));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 12, 6, 1, 0));
         list.add(new PlaceableBlock(Blocks.stained_hardened_clay, 1, 6, 1, 1));
-        list.add(new PlaceableIFaceable(HMBlocks.tiles, 9, 6, 1, 2, ForgeDirection.SOUTH));
+        list.add(new PlaceableIFaceable(HMBlocks.cookware, 9, 6, 1, 2, ForgeDirection.SOUTH));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 1, 3));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 1, 4));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 1, 5));

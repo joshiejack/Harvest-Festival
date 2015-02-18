@@ -1,8 +1,8 @@
 package joshie.harvestmoon;
 
 import static joshie.harvestmoon.lib.HMModInfo.JAVAPATH;
-import joshie.harvestmoon.blocks.BlockGeneral;
-import joshie.harvestmoon.blocks.items.ItemBlockGeneral;
+import joshie.harvestmoon.base.ItemBlockBase;
+import joshie.harvestmoon.blocks.BlockHMBaseMeta;
 import joshie.harvestmoon.blocks.render.SpecialRendererFryingPan;
 import joshie.harvestmoon.blocks.tiles.TileFryingPan;
 import joshie.harvestmoon.crops.Crop;
@@ -18,6 +18,7 @@ import joshie.harvestmoon.npc.EntityNPCShopkeeper;
 import joshie.harvestmoon.npc.RenderNPC;
 import joshie.harvestmoon.util.generic.EntityFakeItem;
 import joshie.harvestmoon.util.generic.RenderFakeItem;
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
@@ -39,14 +40,8 @@ public class HMClientProxy extends HMCommonProxy {
             } catch (Exception e) {}
         }
 
-        BlockGeneral general = ((BlockGeneral) HMBlocks.tiles);
-        ItemBlockGeneral item = (ItemBlockGeneral) Item.getItemFromBlock(general);
-        for (int i = 0; i < general.getMetaCount(); i++) {
-            try {
-                String name = sanitizeGeneral(item.getName(new ItemStack(general, 1, i)));
-                RenderHandler.register(general, i, Class.forName(JAVAPATH + "blocks.render.Render" + name));
-            } catch (Exception e) {}
-        }
+        registerRenders(HMBlocks.cookware);
+        registerRenders(HMBlocks.woodmachines);
 
         RenderIds.ALL = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(new RenderHandler());
@@ -60,6 +55,16 @@ public class HMClientProxy extends HMCommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityFakeItem.class, new RenderFakeItem());
     }
 
+    private void registerRenders(Block b) {
+        BlockHMBaseMeta block = (BlockHMBaseMeta) b;
+        ItemBlockBase item = (ItemBlockBase) Item.getItemFromBlock(block);
+        for (int i = 0; i < block.getMetaCount(); i++) {
+            try {
+                String name = sanitizeGeneral(item.getName(new ItemStack(block, 1, i)));
+                RenderHandler.register(block, i, Class.forName(JAVAPATH + "blocks.render.Render" + name));
+            } catch (Exception e) {}
+        }
+    }
 
     private String sanitizeGeneral(String name) {
         name = name.replace(".", " ");

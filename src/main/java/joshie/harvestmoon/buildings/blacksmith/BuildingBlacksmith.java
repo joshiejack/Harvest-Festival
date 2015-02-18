@@ -126,7 +126,7 @@ public class BuildingBlacksmith extends Building {
         list.add(new PlaceableBlock(Blocks.double_stone_slab, 0, 5, 2, 5));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 1, 5, 2, 6));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 0, 5, 2, 7));
-        list.add(new PlaceableIFaceable(HMBlocks.tiles, 9, 5, 2, 8, ForgeDirection.WEST));
+        list.add(new PlaceableIFaceable(HMBlocks.cookware, 9, 5, 2, 8, ForgeDirection.WEST));
         list.add(new PlaceableBlock(Blocks.cobblestone_wall, 0, 5, 2, 9));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 3, 5, 2, 11));
         list.add(new PlaceableBlock(Blocks.cobblestone_wall, 0, 6, 2, 1));

@@ -336,7 +336,7 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.stonebrick, 0, 2, 2, 9));
         list.add(new PlaceableTorches(Blocks.lever, 11, 2, 2, 10));
         list.add(new PlaceableBlock(Blocks.cake, 2, 2, 2, 11));
-        list.add(new PlaceableIFaceable(HMBlocks.tiles, 9, 2, 2, 12, ForgeDirection.NORTH));
+        list.add(new PlaceableIFaceable(HMBlocks.cookware, 9, 2, 2, 12, ForgeDirection.NORTH));
         list.add(new PlaceableBlock(Blocks.glass_pane, 0, 2, 2, 13));
         list.add(new PlaceableBlock(Blocks.glass_pane, 0, 3, 2, 1));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 0, 3, 2, 2));

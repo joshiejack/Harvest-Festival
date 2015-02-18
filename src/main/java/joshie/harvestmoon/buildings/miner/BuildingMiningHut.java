@@ -125,7 +125,7 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableBlock(Blocks.stained_hardened_clay, 7, 2, 1, 6));
         list.add(new PlaceableBlock(Blocks.stained_hardened_clay, 7, 2, 1, 7));
         list.add(new PlaceableBlock(Blocks.fence, 0, 2, 1, 8));
-        list.add(new PlaceableIFaceable(HMBlocks.tiles, 9, 2, 1, 9, ForgeDirection.EAST));
+        list.add(new PlaceableIFaceable(HMBlocks.cookware, 9, 2, 1, 9, ForgeDirection.EAST));
         list.add(new PlaceableBlock(Blocks.stained_hardened_clay, 7, 2, 1, 10));
         list.add(new PlaceableBlock(Blocks.fence, 0, 2, 1, 11));
         list.add(new PlaceableBlock(Blocks.fence, 0, 3, 1, 4));
@@ -145,7 +145,7 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 4, 1, 8));
         list.add(new PlaceableBlock(Blocks.air, 0, 4, 1, 9));
         list.add(new PlaceableBlock(Blocks.air, 0, 4, 1, 10));
-        list.add(new PlaceableIFaceable(HMBlocks.tiles, 9, 4, 1, 11, ForgeDirection.NORTH));
+        list.add(new PlaceableIFaceable(HMBlocks.cookware, 9, 4, 1, 11, ForgeDirection.NORTH));
         list.add(new PlaceableLog(Blocks.log, 1, 4, 1, 12));
         list.add(new PlaceableButton(Blocks.wooden_button, 3, 4, 1, 13));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 2, 5, 1, 2));

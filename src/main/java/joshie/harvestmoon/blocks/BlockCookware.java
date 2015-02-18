@@ -2,7 +2,7 @@ package joshie.harvestmoon.blocks;
 
 import static joshie.harvestmoon.helpers.ShippingHelper.addForShipping;
 import joshie.harvestmoon.animals.AnimalType;
-import joshie.harvestmoon.blocks.items.ItemBlockGeneral;
+import joshie.harvestmoon.blocks.items.ItemBlockCookware;
 import joshie.harvestmoon.blocks.render.ExtraIcons;
 import joshie.harvestmoon.blocks.tiles.TileCooking;
 import joshie.harvestmoon.blocks.tiles.TileFridge;
@@ -37,8 +37,8 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockGeneral extends BlockHMBaseMeta {
-    public static final int SHIPPING = 0;
+public class BlockCookware extends BlockHMBaseMeta {
+    public static final int FRIDGE_TOP = 0;
     public static final int FRIDGE = 1;
     public static final int KITCHEN = 2;
     public static final int POT = 3;
@@ -46,16 +46,11 @@ public class BlockGeneral extends BlockHMBaseMeta {
     public static final int MIXER = 5;
     public static final int OVEN = 6;
     public static final int STEAMER = 7;
-    public static final int FRIDGE_TOP = 8;
-    public static final int RURAL_CHEST = 9;
-    public static final int CHOPPING_BOARD = 10;
-    public static final int MIXING_BOWL = 11;
-    public static final int BAKING_GLASS = 12;
-    public static final int NEST = 13;
-    public static final int TROUGH = 14;
-    public static final int DISPLAY = 15;
+    public static final int CHOPPING_BOARD = 8;
+    public static final int MIXING_BOWL = 10;
+    public static final int BAKING_GLASS = 11;
 
-    public BlockGeneral() {
+    public BlockCookware() {
         super(Material.piston);
         setHardness(2.5F);
     }
@@ -106,40 +101,8 @@ public class BlockGeneral extends BlockHMBaseMeta {
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
         int meta = world.getBlockMetadata(x, y, z);
         if (player.isSneaking()) return false;
-        else if (meta == SHIPPING && player.getCurrentEquippedItem() != null) {
-            ItemStack held = player.getCurrentEquippedItem();
-            if (held.getItem() instanceof IShippable) {
-                long sell = ((IShippable) held.getItem()).getSellValue(held);
-                if (sell > 0) {
-                    if (!player.capabilities.isCreativeMode) {
-                        player.inventory.decrStackSize(player.inventory.currentItem, 1);
-                    }
-
-                    return addForShipping(player, held);
-                } else return false;
-            } else return false;
-        } else if (meta == FRIDGE || meta == FRIDGE_TOP) {
+        else if (meta == FRIDGE || meta == FRIDGE_TOP) {
             return true;
-        } else if (meta == NEST) {
-            ItemStack held = player.getCurrentEquippedItem();
-            if (held != null && FoodRegistry.getIngredients(held).contains(HMIngredients.egg)) {
-                if (AnimalHelper.addEgg(world, x, y, z)) {
-                    player.inventory.decrStackSize(player.inventory.currentItem, 1);
-                    return true;
-                }
-            }
-
-            return false;
-        } else if (meta == TROUGH) {
-            ItemStack held = player.getCurrentEquippedItem();
-            if (held != null && AnimalType.COW.canEat(held)) {
-                if (AnimalHelper.addFodder(world, x, y, z)) {
-                    player.inventory.decrStackSize(player.inventory.currentItem, 1);
-                    return true;
-                }
-            }
-
-            return false;
         } else if (meta == KITCHEN || meta == CHOPPING_BOARD || meta == MIXING_BOWL || meta == BAKING_GLASS) {
             ItemStack held = player.getCurrentEquippedItem();
             TileEntity tile = null;
@@ -176,7 +139,7 @@ public class BlockGeneral extends BlockHMBaseMeta {
                     }
 
                     cooking.clear();
-                } else if (held != null && !(held.getItem() instanceof ItemBlockGeneral)) {
+                } else if (held != null && !(held.getItem() instanceof ItemBlockCookware)) {
                     if (cooking.addIngredient(held) || cooking.addSeasoning(held)) {
                         player.inventory.decrStackSize(player.inventory.currentItem, 1);
                         return true;
@@ -202,13 +165,6 @@ public class BlockGeneral extends BlockHMBaseMeta {
         if (tile instanceof TileFridge) {
             world.setBlock(x, y + 1, z, this, FRIDGE_TOP, 2);
         }
-
-        int meta = world.getBlockMetadata(x, y, z);
-        if (meta == NEST) {
-            AnimalHelper.addNest(world, x, y, z);
-        } else if (meta == TROUGH) {
-            AnimalHelper.addTrough(world, x, y, z);
-        }
     }
 
     @Override
@@ -218,10 +174,6 @@ public class BlockGeneral extends BlockHMBaseMeta {
             world.setBlockToAir(x, y - 1, z);
         } else if (meta == FRIDGE) {
             world.setBlockToAir(x, y + 1, z);
-        } else if (meta == NEST) {
-            AnimalHelper.removeNest(world, x, y, z);
-        } else if (meta == TROUGH) {
-            AnimalHelper.removeTrough(world, x, y, z);
         }
     }
 
@@ -231,10 +183,6 @@ public class BlockGeneral extends BlockHMBaseMeta {
             world.setBlockToAir(x, y - 1, z);
         } else if (meta == FRIDGE) {
             world.setBlockToAir(x, y + 1, z);
-        } else if (meta == NEST) {
-            AnimalHelper.removeNest(world, x, y, z);
-        } else if (meta == TROUGH) {
-            AnimalHelper.removeTrough(world, x, y, z);
         }
     }
 
@@ -245,7 +193,7 @@ public class BlockGeneral extends BlockHMBaseMeta {
 
     @Override
     public boolean hasTileEntity(int meta) {
-        return meta != SHIPPING && meta != FRIDGE_TOP;
+        return meta != FRIDGE_TOP;
     }
 
     @Override
@@ -265,8 +213,6 @@ public class BlockGeneral extends BlockHMBaseMeta {
                 return new TileOven();
             case STEAMER:
                 return new TileSteamer();
-            case RURAL_CHEST:
-                return new TileRuralChest();
             default:
                 return null;
         }

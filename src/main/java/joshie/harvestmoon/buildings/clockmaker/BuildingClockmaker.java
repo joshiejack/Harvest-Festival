@@ -429,7 +429,7 @@ public class BuildingClockmaker extends Building {
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 3, 5, 5, 7));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 13, 6, 5, 0));
         list.add(new PlaceableBlock(Blocks.hardened_clay, 0, 6, 5, 1));
-        list.add(new PlaceableIFaceable(HMBlocks.tiles, 9, 6, 5, 2, ForgeDirection.SOUTH));
+        list.add(new PlaceableIFaceable(HMBlocks.cookware, 9, 6, 5, 2, ForgeDirection.SOUTH));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 5, 3));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 5, 4));
         list.add(new PlaceableBlock(Blocks.cauldron, 3, 6, 5, 5));

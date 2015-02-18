@@ -13,7 +13,6 @@
 - [ ] Recipe Book
 - [x] Confirmation Screens for NPCs
 - [x] Rural Chests, With Inventories
-- [ ] Display Units, With Inventories
 - [x] Make mines have the potential to collapse (spawn cobble and gravel).
 - [x] Add effects when your stamina reaches zero, Slower movement, Hunger drops quicker. 
 - [x] Add blurry vision when about to pass out from fatigue, Occasional headaches.

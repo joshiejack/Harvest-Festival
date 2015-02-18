@@ -27,8 +27,7 @@ public class BlockWood extends BlockHMBaseMeta {
     public static final int RURAL_CHEST = 1;
     public static final int NEST = 2;
     public static final int TROUGH = 3;
-    public static final int DISPLAY = 4;
-    
+
     public static final int OLD_RURAL_CHEST = 9;
 
     public BlockWood() {
@@ -169,6 +168,6 @@ public class BlockWood extends BlockHMBaseMeta {
 
     @Override
     public int getMetaCount() {
-        return 5;
+        return 4;
     }
 }

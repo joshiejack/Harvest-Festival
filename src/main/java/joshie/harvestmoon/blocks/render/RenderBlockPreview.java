@@ -11,21 +11,6 @@ import net.minecraft.client.renderer.RenderBlocks;
 public class RenderBlockPreview extends RenderBase {
     public static RenderBlocks renderer = new RenderBlocks();
 
-    public static Building preview;
-    
-    public static int[] getAdjustedCoordinates(PlaceableBlock block, boolean n1, boolean n2, boolean swap) {
-        int yCoord = block.getY();
-        int xCoord = n1 ? -block.getX() : block.getX();
-        int zCoord = n2 ? -block.getZ() : block.getZ();
-        if (swap) {
-            int xClone = xCoord; //Create a copy of X
-            xCoord = zCoord; //Set x to z
-            zCoord = xClone; //Set z to the old value of x
-        }
-        
-        return new int[] { xCoord, yCoord, zCoord };
-    }
-
     @Override
     public void renderBlock() {
         if (!isItem()) {
@@ -34,24 +19,24 @@ public class RenderBlockPreview extends RenderBase {
             boolean n2 = BlockPreview.getN2FromMeta(meta);
             boolean swap = BlockPreview.getSwapFromMeta(meta);
             TileMarker marker = (TileMarker) world.getTileEntity(x, y, z);
-            preview = marker.getBuilding();
+            Building preview = marker.getBuilding();
             if (preview == null) return;
-            
+
             renderer.blockAccess = preview.getBlockAccess(x, y, z, n1, n2, swap);
-            
+
             for (Placeable placeable : preview.getList()) {
                 if (placeable instanceof PlaceableBlock) {
                     PlaceableBlock block = (PlaceableBlock) placeable;
-                    int xCoord = n1? -block.getX(): block.getX();
+                    int xCoord = n1 ? -block.getX() : block.getX();
                     int yCoord = block.getY();
-                    int zCoord = n2? -block.getZ(): block.getZ();
-                    
+                    int zCoord = n2 ? -block.getZ() : block.getZ();
+
                     if (swap) {
                         int xClone = xCoord; //Create a copy of X
                         xCoord = zCoord; //Set x to z
                         zCoord = xClone; //Set z to the old value of x
                     }
-                    
+
                     renderer.renderBlockAllFaces(block.getBlock(), x + xCoord, y + yCoord, z + zCoord);
                 }
             }

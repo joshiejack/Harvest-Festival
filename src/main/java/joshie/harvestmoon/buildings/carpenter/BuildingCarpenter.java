@@ -25,6 +25,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public class BuildingCarpenter extends Building {
     public BuildingCarpenter() {
+        super(-1);
         list = new ArrayList(370);
         list.add(new PlaceableBlock(Blocks.planks, 5, 0, 0, 1));
         list.add(new PlaceableBlock(Blocks.planks, 5, 0, 0, 5));

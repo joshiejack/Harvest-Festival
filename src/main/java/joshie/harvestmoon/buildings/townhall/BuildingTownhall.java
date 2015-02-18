@@ -25,6 +25,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public class BuildingTownhall extends Building {
     public BuildingTownhall() {
+        super(-1);
         list = new ArrayList(3306);
         init1();
         init2();

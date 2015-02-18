@@ -3,6 +3,7 @@ package joshie.harvestmoon.init;
 import joshie.harvestmoon.buildings.BuildingGroup;
 import joshie.harvestmoon.buildings.barn.BuildingBarn;
 import joshie.harvestmoon.buildings.blacksmith.BuildingBlacksmith;
+import joshie.harvestmoon.buildings.cafe.BuildingCafe;
 import joshie.harvestmoon.buildings.carpenter.BuildingCarpenter;
 import joshie.harvestmoon.buildings.church.BuildingChurch;
 import joshie.harvestmoon.buildings.clockmaker.BuildingClockmaker;
@@ -25,6 +26,7 @@ import net.minecraftforge.common.ChestGenHooks;
 public class HMBuildings {
     public static BuildingGroup barn;
     public static BuildingGroup blacksmith;
+    public static BuildingGroup cafe;
     public static BuildingGroup carpenter;
     public static BuildingGroup church;
     public static BuildingGroup clockmaker;
@@ -41,6 +43,7 @@ public class HMBuildings {
     public static void init() {
         barn = BuildingGroup.register("barn", new BuildingBarn());
         blacksmith = BuildingGroup.register("blacksmith", new BuildingBlacksmith());
+        cafe = BuildingGroup.register("cafe", new BuildingCafe());
         carpenter = BuildingGroup.register("carpenter", new BuildingCarpenter());
         church = BuildingGroup.register("church", new BuildingChurch());
         clockmaker = BuildingGroup.register("clockmaker", new BuildingClockmaker());

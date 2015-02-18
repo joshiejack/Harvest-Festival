@@ -19,6 +19,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public class BuildingMiningHut extends Building {
     public BuildingMiningHut() {
+        super(-1);
         list = new ArrayList(554);
         list.add(new PlaceableBlock(Blocks.stonebrick, 0, 1, 0, 8));
         list.add(new PlaceableLog(Blocks.log, 1, 1, 0, 9));

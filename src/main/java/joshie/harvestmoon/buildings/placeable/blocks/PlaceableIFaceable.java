@@ -8,16 +8,25 @@ import joshie.harvestmoon.network.PacketHandler;
 import joshie.harvestmoon.network.PacketSyncOrientation;
 import joshie.harvestmoon.util.generic.IFaceable;
 import net.minecraft.block.Block;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.util.ForgeDirection;
 
 public class PlaceableIFaceable extends PlaceableBlock {
     private ForgeDirection dir;
+    private String chestType;
 
     public PlaceableIFaceable(Block block, int meta, int offsetX, int offsetY, int offsetZ, ForgeDirection dir) {
         super(block, meta, offsetX, offsetY, offsetZ);
         this.dir = dir;
+    }
+
+    public PlaceableIFaceable(Block block, int meta, int offsetX, int offsetY, int offsetZ, ForgeDirection dir, String chestType) {
+        this(block, meta, offsetX, offsetY, offsetZ, dir);
+        this.chestType = chestType;
     }
 
     @Override
@@ -75,6 +84,10 @@ public class PlaceableIFaceable extends PlaceableBlock {
             ForgeDirection orientation = getFacing(n1, n2, swap);
             ((IFaceable) tile).setFacing(orientation);
             PacketHandler.sendAround(new PacketSyncOrientation(world.provider.dimensionId, x, y, z, orientation), tile);
+        }
+
+        if (chestType != null && tile instanceof IInventory) {
+            WeightedRandomChestContent.generateChestContents(world.rand, ChestGenHooks.getItems(chestType, world.rand), (IInventory)tile, 10);
         }
     }
 }

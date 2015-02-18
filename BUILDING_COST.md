@@ -12,10 +12,8 @@ Barn:
 
 Blacksmith:
 
-* 160 Stonebrick          (2,5 Stacks)
-* 32 Stone                (0,5 Stacks)
+* 244 Stone               (3,5 Stacks)
 * 32 Logs                 (0,5 Stacks)
-* 32 Cobblestone          (0,5 Stacks)
 * 16 Iron                 (0,25 Stacks)
 * 6 Leather 
 * 2 Lava Buckets (return) 
@@ -26,7 +24,7 @@ Blacksmith:
 Church:
 
 * 160 Logs                (2,5 Stacks)
-* 128 Stonebrick          (2,0 Stacks)
+* 128 Stone               (2,0 Stacks)
 * 32 Book                 (0,5 Stacks)
 * 16 Red Wool             (0,25 Stacks)
 * 8 Iron                  (0,125 Stacks)
@@ -52,7 +50,7 @@ Poultry Farm:
 * 160 Logs                (2,5 Stacks)
 * 64 Wheat                (1,0 Stacks)
 * 16 Orange Hardened Clay (0,25 Stacks)
-* 16 Cobblestone          (0,25 Stacks)
+* 16 Stone                (0,25 Stacks)
 * 8 Iron                  (0,125 Stacks)
 * 6 Leather
 
@@ -61,8 +59,7 @@ Poultry Farm:
 Miner's Hut + Hill:
 
 * 96 Logs                 (1,5 Stacks)
-* 64 Stonebrick           (1,0 Stacks)
-* 32 Cobblestone          (0,5 Stacks)
+* 96 Stone                (1,5 Stacks)
 * 16 Gray Hardened Clay   (0,25 Stacks)
 * 8 Iron                  (0,125 Stacks)
 * 8 Leather               (0,125 Stacks)
@@ -72,11 +69,10 @@ Miner's Hut + Hill:
 Cafe:                                        
                                    
 * 320 Logs                (5,0 Stacks)
-* 128 Stonebrick          (2,0 Stacks)
+* 160 Stone               (2,5 Stacks)
 * 64 Red Hardened Clay    (1,0 Stacks)
 * 32 Glass                (0,5 Stacks)
 * 32 Bricks               (0,5 Stacks)
-* 32 Cobblestone          (0,5 Stacks)
 * 16 Leather              (0,25 Stacks)
 * 16 Iron                 (0,25 Stacks)
 * 16 Red Carpet           (0,25 Stacks)
@@ -86,7 +82,7 @@ Cafe:
 Town Hall:
 
 * 768 Logs                (12,0 Stacks)
-* 256 Stonebrick          (4,0 Stacks)
+* 256 Stone               (4,0 Stacks)
 * 48 Glass                (0,75 Stacks)
 * 24 Black Stained Clay   
 * 32 Books                (0,5 Stacks)
@@ -99,7 +95,7 @@ Town Hall:
 Market:
 
 * 512 Logs                (8,0 Stacks)
-* 320 Stone Bricks        (5,0 Stacks)
+* 320 Stone               (5,0 Stacks)
 * 32 Glass                (0,5 Stacks)
 * 32 Leather              (0,5 Stacks)
 * 24 Iron
@@ -112,9 +108,8 @@ Market:
 Clockworker's House:
 
 * 192 Logs                (3,0 Stacks)
-* 96 Stonebrick           (3,0 Stacks)
+* 112 Stone               (3,25 Stacks)
 * 48 Hardened Clay
-* 16 Cobblestone          (0,25 Stacks)
 * 8 Leather               (0,125 Stacks)
 * 8 Iron                  (0,125 Stacks)
 * 4 Gold

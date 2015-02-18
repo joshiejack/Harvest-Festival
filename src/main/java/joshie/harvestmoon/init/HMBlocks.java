@@ -18,6 +18,7 @@ import joshie.harvestmoon.blocks.tiles.TileCooking;
 import joshie.harvestmoon.blocks.tiles.TileFridge;
 import joshie.harvestmoon.blocks.tiles.TileFryingPan;
 import joshie.harvestmoon.blocks.tiles.TileKitchen;
+import joshie.harvestmoon.blocks.tiles.TileMarker;
 import joshie.harvestmoon.blocks.tiles.TileMixer;
 import joshie.harvestmoon.blocks.tiles.TileOven;
 import joshie.harvestmoon.blocks.tiles.TilePot;
@@ -45,7 +46,7 @@ public class HMBlocks {
         stone = new BlockStone().setStepSound(soundTypePiston).setBlockName("stone");
         withered = new BlockWithered().setStepSound(soundTypeGrass).setBlockName("crops.withered");
 
-        registerTiles("HM", TileCooking.class, TileFridge.class, TileFryingPan.class, TileKitchen.class, 
+        registerTiles("HM", TileCooking.class, TileFridge.class, TileFryingPan.class, TileKitchen.class, TileMarker.class, 
                             TileMixer.class, TileOven.class, TilePot.class, TileRuralChest.class, TileSteamer.class);
     }
 }

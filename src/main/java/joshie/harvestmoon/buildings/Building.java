@@ -12,13 +12,19 @@ public class Building {
     //List of all placeable elements
     protected ArrayList<Placeable> list;
     private PreviewBlock preview;
+    private int index;
 
     public IBlockAccess getBlockAccess(int worldX, int worldY, int worldZ, boolean n1, boolean n2, boolean swap) {
         return preview.setCoordinatesAndDirection(worldX, worldY, worldZ, n1, n2, swap);
     }
+    
+    public int getInt() {
+        return index;
+    }
 
-    public void init() {
+    public void init(int index) {
         preview = new PreviewBlock(list);
+        this.index = index;
     }
 
     public int getSize() {

@@ -1,7 +1,13 @@
 package joshie.harvestmoon.blocks;
 
+import joshie.harvestmoon.blocks.tiles.TileMarker;
+import joshie.harvestmoon.buildings.BuildingGroup;
 import joshie.harvestmoon.lib.RenderIds;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
@@ -58,6 +64,39 @@ public class BlockPreview extends BlockHMBaseMeta {
 
     @Override
     public int getMetaCount() {
-        return 8;
+        return BuildingGroup.groups.size();
+    }
+    
+    @Override
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
+        if (!player.isSneaking()) {
+            int meta = world.getBlockMetadata(x, y, z);
+            if (meta < 7) {
+                meta++;
+            } else meta = 0;
+            
+            
+            return world.setBlockMetadataWithNotify(x, y, z, meta, 2);
+        } else return false;
+    }
+
+    @Override
+    public boolean hasTileEntity(int meta) {
+        return true;
+    }
+
+    @Override
+    public TileEntity createTileEntity(World world, int meta) {
+        return new TileMarker();
+    }
+
+    @Override
+    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase player, ItemStack stack) {
+        if (stack.getItemDamage() >= BuildingGroup.groups.size()) return;
+        BuildingGroup group = BuildingGroup.groups.get(stack.getItemDamage());
+        if (group != null) {
+            TileMarker marker = (TileMarker) world.getTileEntity(x, y, z);
+            marker.setBuilding(group, group.getRandom());
+        }
     }
 }

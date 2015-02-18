@@ -12,9 +12,11 @@ public class BuildingGroup {
 
     public static BuildingGroup register(String string, Building... buildingsList) {
         BuildingGroup toRegister = new BuildingGroup().setName(string);
+        int index = 0;
         for (Building building : buildingsList) {
-            building.init();
+            building.init(index);
             toRegister.buildings.add(building);
+            index++;
         }
 
         BuildingGroup.groups.add(toRegister);

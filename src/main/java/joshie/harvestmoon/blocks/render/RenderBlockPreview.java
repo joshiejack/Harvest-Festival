@@ -1,10 +1,10 @@
 package joshie.harvestmoon.blocks.render;
 
 import joshie.harvestmoon.blocks.BlockPreview;
+import joshie.harvestmoon.blocks.tiles.TileMarker;
 import joshie.harvestmoon.buildings.Building;
 import joshie.harvestmoon.buildings.placeable.Placeable;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableBlock;
-import joshie.harvestmoon.init.HMBuildings;
 import joshie.harvestmoon.util.RenderBase;
 import net.minecraft.client.renderer.RenderBlocks;
 
@@ -33,7 +33,8 @@ public class RenderBlockPreview extends RenderBase {
             boolean n1 = BlockPreview.getN1FromMeta(meta);
             boolean n2 = BlockPreview.getN2FromMeta(meta);
             boolean swap = BlockPreview.getSwapFromMeta(meta);
-            preview = HMBuildings.carpenter.getBuilding(0);
+            TileMarker marker = (TileMarker) world.getTileEntity(x, y, z);
+            preview = marker.getBuilding();
             if (preview == null) return;
             
             renderer.blockAccess = preview.getBlockAccess(x, y, z, n1, n2, swap);

@@ -1,6 +1,7 @@
 package joshie.harvestmoon.init;
 
 import joshie.harvestmoon.commands.CommandDay;
+import joshie.harvestmoon.commands.CommandFreeze;
 import joshie.harvestmoon.commands.CommandGold;
 import joshie.harvestmoon.commands.CommandMode;
 import joshie.harvestmoon.commands.CommandSeason;
@@ -17,6 +18,7 @@ public class HMCommands {
             manager.registerCommand(new CommandYear());
             manager.registerCommand(new CommandGold());
             manager.registerCommand(new CommandMode());
+            manager.registerCommand(new CommandFreeze());
         }
     }
 }

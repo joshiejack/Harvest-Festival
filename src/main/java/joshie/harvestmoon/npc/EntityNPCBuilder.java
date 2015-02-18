@@ -1,9 +1,7 @@
 package joshie.harvestmoon.npc;
 
-import joshie.harvestmoon.buildings.BuildingGroup;
+import joshie.harvestmoon.buildings.Building;
 import joshie.harvestmoon.buildings.BuildingStage;
-import joshie.harvestmoon.init.HMBuildings;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
@@ -37,20 +35,14 @@ public class EntityNPCBuilder extends EntityNPC {
         }
     }
 
-    @Override
-    public boolean interact(EntityPlayer player) {
-        startBuilding(HMBuildings.supermarket, (int) player.posX, (int) player.posY, (int) player.posZ);
-        return true;
-    }
-
-    public boolean startBuilding(BuildingGroup building, int x, int y, int z) {
+    public boolean startBuilding(Building building, int x, int y, int z, boolean n1, boolean n2, boolean swap) {
         if (!worldObj.isRemote) {
-            this.building = new BuildingStage(building, building.random(worldObj.rand), x, y, z, worldObj.rand);
+            this.building = new BuildingStage(building.getGroup(), building.getInt(), x, y, z, n1, n2, swap);
         }
 
         return false;
     }
-    
+
     @Override
     public void setDead() {
         if (!worldObj.isRemote && npc.respawns()) {

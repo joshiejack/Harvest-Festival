@@ -1,19 +1,24 @@
 package joshie.harvestmoon.blocks.tiles;
 
+import java.util.UUID;
+
 import joshie.harvestmoon.buildings.Building;
 import joshie.harvestmoon.buildings.BuildingGroup;
 import joshie.harvestmoon.crops.WorldLocation;
+import joshie.harvestmoon.helpers.generic.EntityHelper;
 import joshie.harvestmoon.network.PacketHandler;
 import joshie.harvestmoon.network.PacketSyncMarker;
+import joshie.harvestmoon.npc.EntityNPCBuilder;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 
-public class TileMarker extends TileEntity {  
+public class TileMarker extends TileEntity {
     private BuildingGroup group;
     private Building building;
-    
+    private EntityNPCBuilder builder;
+
     @Override
     public boolean canUpdate() {
         return false;
@@ -24,11 +29,19 @@ public class TileMarker extends TileEntity {
         this.building = building;
         this.markDirty();
     }
+    
+    public void setBuilder(EntityNPCBuilder entity) {
+        this.builder = entity;
+    }
+    
+    public EntityNPCBuilder getBuilder() {
+        return builder;
+    }
 
     public Building getBuilding() {
         return building;
     }
-    
+
     public IMessage getPacket() {
         return new PacketSyncMarker(new WorldLocation(worldObj.provider.dimensionId, xCoord, yCoord, zCoord), group, building);
     }
@@ -43,6 +56,10 @@ public class TileMarker extends TileEntity {
         super.readFromNBT(nbt);
         group = BuildingGroup.getGroup(nbt.getString("Group"));
         building = group.getBuilding(nbt.getInteger("Type"));
+        if (nbt.hasKey("UUIDMost")) {
+            UUID uuid = new UUID(nbt.getLong("UUIDMost"), nbt.getLong("UUIDLeast"));
+            builder = (EntityNPCBuilder) EntityHelper.getBuilderFromUUID(nbt.getInteger("UUIDDim"), uuid);
+        }
     }
 
     @Override
@@ -50,5 +67,10 @@ public class TileMarker extends TileEntity {
         super.writeToNBT(nbt);
         nbt.setString("Group", group.getName());
         nbt.setInteger("Type", building.getInt());
+        nbt.setInteger("UUIDDim", worldObj.provider.dimensionId);
+        if (builder != null) {
+            nbt.setLong("UUIDMost", builder.getPersistentID().getMostSignificantBits());
+            nbt.setLong("UUIDLeast", builder.getPersistentID().getLeastSignificantBits());
+        }
     }
 }

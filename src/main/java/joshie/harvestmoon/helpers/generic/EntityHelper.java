@@ -3,6 +3,7 @@ package joshie.harvestmoon.helpers.generic;
 import java.util.List;
 import java.util.UUID;
 
+import joshie.harvestmoon.npc.EntityNPCBuilder;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -23,6 +24,20 @@ public class EntityHelper {
             if (entity instanceof EntityAnimal) {
                 if (entity.getPersistentID().equals(uuid)) {
                     return (EntityAnimal) entity;
+                }
+            }
+        }
+    
+        return null;
+    }
+    
+    public static EntityNPCBuilder getBuilderFromUUID(int dimension, UUID uuid) {
+        World world = MCServerHelper.getWorld(dimension);
+        for (int i = 0; i < world.loadedEntityList.size(); i++) {
+            Entity entity = (Entity) world.loadedEntityList.get(i);
+            if (entity instanceof EntityNPCBuilder) {
+                if (entity.getPersistentID().equals(uuid)) {
+                    return (EntityNPCBuilder) entity;
                 }
             }
         }

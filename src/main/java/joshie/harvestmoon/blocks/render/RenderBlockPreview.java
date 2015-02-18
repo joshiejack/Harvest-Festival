@@ -37,7 +37,7 @@ public class RenderBlockPreview extends RenderBase {
                         zCoord = xClone; //Set z to the old value of x
                     }
 
-                    renderer.renderBlockAllFaces(block.getBlock(), x + xCoord, y + yCoord, z + zCoord);
+                    renderer.renderBlockAllFaces(block.getBlock(), x + xCoord, y  + yCoord + preview.getOffsetY(), z + zCoord);
                 }
             }
         }

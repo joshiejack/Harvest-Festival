@@ -12,19 +12,36 @@ public class Building {
     //List of all placeable elements
     protected ArrayList<Placeable> list;
     private PreviewBlock preview;
+    private BuildingGroup group;
     private int index;
+    private int offsetY;
+
+    public Building() {}
+
+    public Building(int offsetY) {
+        this.offsetY = offsetY;
+    }
 
     public IBlockAccess getBlockAccess(int worldX, int worldY, int worldZ, boolean n1, boolean n2, boolean swap) {
         return preview.setCoordinatesAndDirection(worldX, worldY, worldZ, n1, n2, swap);
     }
-    
+
+    public BuildingGroup getGroup() {
+        return group;
+    }
+
     public int getInt() {
         return index;
     }
 
-    public void init(int index) {
-        preview = new PreviewBlock(list);
+    public int getOffsetY() {
+        return offsetY;
+    }
+
+    public void init(BuildingGroup group, int index) {
+        preview = new PreviewBlock(this, list);
         this.index = index;
+        this.group = group;
     }
 
     public int getSize() {

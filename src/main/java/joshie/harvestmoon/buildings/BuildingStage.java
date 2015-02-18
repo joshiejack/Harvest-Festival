@@ -16,17 +16,16 @@ public class BuildingStage {
     private int subType, index, xCoord, yCoord, zCoord;
 
     public BuildingStage() {}
-
-    public BuildingStage(BuildingGroup building, int subType, int x, int y, int z, Random rand) {
+    public BuildingStage(BuildingGroup building, int subType, int x, int y, int z, boolean n1, boolean n2, boolean swap) {
         this.building = building;
         this.subType = subType;
-        this.n1 = rand.nextBoolean();
-        this.n2 = rand.nextBoolean();
-        this.swap = rand.nextBoolean();
+        this.n1 = n1;
+        this.n2 = n2;
+        this.swap = swap;
         this.stage = PlacementStage.BLOCKS;
         this.index = 0;
         this.xCoord = x;
-        this.yCoord = y;
+        this.yCoord = y + building.getBuilding(subType).getOffsetY();
         this.zCoord = z;
     }
 

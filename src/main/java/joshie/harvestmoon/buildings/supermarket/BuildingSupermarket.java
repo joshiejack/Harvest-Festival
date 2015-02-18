@@ -25,6 +25,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public class BuildingSupermarket extends Building {
     public BuildingSupermarket() {
+        super(-10);
         list = new ArrayList(2291);
         list.add(new PlaceableBlock(Blocks.sandstone, 0, 4, 0, 8));
         list.add(new PlaceableBlock(Blocks.sandstone, 0, 5, 0, 7));

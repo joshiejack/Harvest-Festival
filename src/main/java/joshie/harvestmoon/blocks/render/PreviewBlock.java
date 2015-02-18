@@ -3,6 +3,7 @@ package joshie.harvestmoon.blocks.render;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import joshie.harvestmoon.buildings.Building;
 import joshie.harvestmoon.buildings.placeable.Placeable;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvestmoon.crops.WorldLocation;
@@ -18,8 +19,10 @@ public class PreviewBlock implements IBlockAccess {
     private HashMap<WorldLocation, PlaceableBlock> blocks = new HashMap();
     private int previewX, previewY, previewZ; //The world location of the BASE BLOCK
     private boolean n1, n2, swap; //Which direction is this building facing?
+    private Building building;
 
-    public PreviewBlock(ArrayList<Placeable> list) {
+    public PreviewBlock(Building building, ArrayList<Placeable> list) {
+        this.building = building;
         for (Placeable p : list) {
             if (p instanceof PlaceableBlock) {
                 PlaceableBlock block = (PlaceableBlock) p;
@@ -42,7 +45,7 @@ public class PreviewBlock implements IBlockAccess {
     public Block getBlock(int worldX, int worldY, int worldZ) {
         //This is calling for a blocks metadata at a certain world position
         int trueX = worldX - previewX; //The real x value is the world value, minus the position
-        int trueY = worldY - previewY; //The real y value is the world value, minus the height of the current block
+        int trueY = worldY - previewY - building.getOffsetY(); //The real y value is the world value, minus the height of the current block
         int trueZ = worldZ - previewZ;
 
         if (!swap) {
@@ -86,7 +89,7 @@ public class PreviewBlock implements IBlockAccess {
     public int getBlockMetadata(int worldX, int worldY, int worldZ) {
         //This is calling for a blocks metadata at a certain world position
         int trueX = worldX - previewX; //The real x value is the world value, minus the position
-        int trueY = worldY - previewY; //The real y value is the world value, minus the height of the current block
+        int trueY = worldY - previewY - building.getOffsetY(); //The real y value is the world value, minus the height of the current block
         int trueZ = worldZ - previewZ;
 
         if (!swap) {

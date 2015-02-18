@@ -2,7 +2,9 @@ package joshie.harvestmoon.blocks;
 
 import joshie.harvestmoon.blocks.tiles.TileMarker;
 import joshie.harvestmoon.buildings.BuildingGroup;
+import joshie.harvestmoon.init.HMNPCs;
 import joshie.harvestmoon.lib.RenderIds;
+import joshie.harvestmoon.npc.EntityNPCBuilder;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,9 +14,9 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
 public class BlockPreview extends BlockHMBaseMeta {
-    public static final int N1_T__N2_F__SWAP_F = 0;
+    public static final int N1_T__N2_T__SWAP_F = 0;
     public static final int N1_T__N2_T__SWAP_T = 1;
-    public static final int N1_T__N2_T__SWAP_F = 2;
+    public static final int N1_T__N2_F__SWAP_F = 2;
     public static final int N1_T__N2_F__SWAP_T = 3;
     public static final int N1_F__N2_F__SWAP_F = 4;
     public static final int N1_F__N2_F__SWAP_T = 5;
@@ -26,7 +28,7 @@ public class BlockPreview extends BlockHMBaseMeta {
     }
 
     public static boolean getN2FromMeta(int meta) {
-        return meta == 1 || meta == 2 || meta >= 7;
+        return meta <= 1 || meta >= 6;
     }
 
     public static boolean getSwapFromMeta(int meta) {
@@ -66,7 +68,7 @@ public class BlockPreview extends BlockHMBaseMeta {
     public int getMetaCount() {
         return BuildingGroup.groups.size();
     }
-    
+
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
         if (!player.isSneaking()) {
@@ -75,7 +77,25 @@ public class BlockPreview extends BlockHMBaseMeta {
                 meta++;
             } else meta = 0;
             return world.setBlockMetadataWithNotify(x, y, z, meta, 2);
-        } else return false;
+        } else {
+            int meta = world.getBlockMetadata(x, y, z);
+            TileMarker marker = (TileMarker) world.getTileEntity(x, y, z);
+            EntityNPCBuilder builder = marker.getBuilder();
+            if (builder == null) {
+                builder = (EntityNPCBuilder) HMNPCs.builder.getEntity(world, x, y, z);
+            }
+
+            builder.setPosition(x, y, z);
+            
+            if (!world.isRemote) {
+                world.spawnEntityInWorld(builder);
+            }
+            
+            builder.startBuilding(marker.getBuilding(), x, y, z, getN1FromMeta(meta), getN2FromMeta(meta), getSwapFromMeta(meta));
+            world.setBlockToAir(x, y, z);
+
+            return true;
+        }
     }
 
     @Override

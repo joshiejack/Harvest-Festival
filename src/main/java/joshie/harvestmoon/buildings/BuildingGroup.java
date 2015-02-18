@@ -14,7 +14,7 @@ public class BuildingGroup {
         BuildingGroup toRegister = new BuildingGroup().setName(string);
         int index = 0;
         for (Building building : buildingsList) {
-            building.init(index);
+            building.init(toRegister, index);
             toRegister.buildings.add(building);
             index++;
         }

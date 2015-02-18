@@ -15,31 +15,53 @@ import joshie.harvestmoon.shops.PurchaseableCropSeeds;
 import joshie.harvestmoon.shops.ShopInventory;
 
 public class HMShops {
-    public static ShopInventory seed_shop;
+    public static ShopInventory barn;
+    public static ShopInventory cafe;
+    public static ShopInventory poultry;
+    public static ShopInventory supermarket;
 
     public static void init() {
-        seedShop();
+        barn();
+        cafe();
+        poultry();
+        supermarket();
+    }
+    
+    private static void barn() {
+        barn = new ShopInventory("barn", 67);
+        HMNPCs.animal_owner.setShop(barn);
+    }
+    
+    private static void cafe() {
+        barn = new ShopInventory("cafe", 100);
+        HMNPCs.cafe_owner.setShop(cafe);
+    }
+    
+    private static void poultry() {
+        barn = new ShopInventory("poultry", 34);
+        HMNPCs.poultry.setShop(poultry);
     }
 
-    private static void seedShop() {
+    private static void supermarket() {
         /* Register all crop seeds to the seed shop */
-        seed_shop = new ShopInventory("seeds", 1);
+        supermarket = new ShopInventory("seeds", 166);
         for (Crop crop : Crop.crops) {
-            seed_shop.addItem(new PurchaseableCropSeeds(crop));
+            supermarket.addItem(new PurchaseableCropSeeds(crop));
         }
 
         /* Peaceful Opening Hours */
-        seed_shop.addOpening(PEACEFUL, MONDAY, 0, 24000).addOpening(PEACEFUL, TUESDAY, 0, 24000).addOpening(PEACEFUL, WEDNESDAY, 0, 24000);
-        seed_shop.addOpening(PEACEFUL, THURSDAY, 0, 24000).addOpening(PEACEFUL, FRIDAY, 0, 24000).addOpening(PEACEFUL, SATURDAY, 0, 24000);
+        supermarket.addOpening(PEACEFUL, MONDAY, 0, 24000).addOpening(PEACEFUL, TUESDAY, 0, 24000).addOpening(PEACEFUL, WEDNESDAY, 0, 24000);
+        supermarket.addOpening(PEACEFUL, THURSDAY, 0, 24000).addOpening(PEACEFUL, FRIDAY, 0, 24000).addOpening(PEACEFUL, SATURDAY, 0, 24000);
         /* Easy Opening Hours */
-        seed_shop.addOpening(EASY, MONDAY, 5000, 22000).addOpening(EASY, TUESDAY, 5000, 22000).addOpening(EASY, WEDNESDAY, 5000, 22000);
-        seed_shop.addOpening(EASY, THURSDAY, 5000, 22000).addOpening(EASY, FRIDAY, 5000, 22000).addOpening(EASY, SATURDAY, 9000, 21000);
+        supermarket.addOpening(EASY, MONDAY, 5000, 22000).addOpening(EASY, TUESDAY, 5000, 22000).addOpening(EASY, WEDNESDAY, 5000, 22000);
+        supermarket.addOpening(EASY, THURSDAY, 5000, 22000).addOpening(EASY, FRIDAY, 5000, 22000).addOpening(EASY, SATURDAY, 9000, 21000);
         /* Normal Opening Hours */
-        seed_shop.addOpening(NORMAL, MONDAY, 6000, 19000).addOpening(NORMAL, TUESDAY, 600, 19000).addOpening(NORMAL, THURSDAY, 600, 19000);
-        seed_shop.addOpening(NORMAL, FRIDAY, 6000, 19000).addOpening(NORMAL, SATURDAY, 10000, 18000);
+        supermarket.addOpening(NORMAL, MONDAY, 6000, 19000).addOpening(NORMAL, TUESDAY, 600, 19000).addOpening(NORMAL, THURSDAY, 600, 19000);
+        supermarket.addOpening(NORMAL, FRIDAY, 6000, 19000).addOpening(NORMAL, SATURDAY, 10000, 18000);
         /* Hard Opening Hours */
-        seed_shop.addOpening(HARD, MONDAY, 9000, 17000).addOpening(HARD, TUESDAY, 9000, 17000).addOpening(HARD, THURSDAY, 9000, 17000);
-        seed_shop.addOpening(HARD, FRIDAY, 9000, 17000).addOpening(HARD, SATURDAY, 11000, 15000);
-        HMNPCs.seed_owner.setShop(seed_shop);
+        supermarket.addOpening(HARD, MONDAY, 9000, 17000).addOpening(HARD, TUESDAY, 9000, 17000).addOpening(HARD, THURSDAY, 9000, 17000);
+        supermarket.addOpening(HARD, FRIDAY, 9000, 17000).addOpening(HARD, SATURDAY, 11000, 15000);
+        
+        HMNPCs.gs_owner.setShop(supermarket);
     }
 }

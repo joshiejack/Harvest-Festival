@@ -34,14 +34,14 @@ public class HMNPCs {
     public static NPC animal_owner; // Owner of the Animal Barn
     public static NPC cafe_owner; // Owner of the Cafe
     public static NPC cafe_granny;// Granny of Café Owner
-    public static NPC seed_owner; // Owner of Seed Store
-    public static NPC seed_child; // Seed Owners Child
+    public static NPC seed_owner; // Sister of Yulif
     public static NPC tool_owner; // Blacksmith
     public static NPC priest; //Married to mayor
     public static NPC mayor; //Married to priest
     public static NPC daughter_1; //Daughter of Mayor and Priest
     public static NPC daughter_2; //Daughter of Mayor and Priest
     public static NPC clock_worker; //The clock worker
+    public static NPC clockmaker_child; // Clockmakers Child
     public static NPC gs_owner; //Owner of general store
     public static NPC miner; //Works in the mines
     public static NPC fisherman; //Fisherman
@@ -56,7 +56,7 @@ public class HMNPCs {
         seed_owner = register(new NPC("jade", FEMALE, ADULT, new CalendarDate(14, Season.SPRING, 1)));
         daughter_1 = register(new NPC("cloe", FEMALE, ADULT, new CalendarDate(3, Season.SPRING, 1)));
         priest = register(new NPC("thomas", MALE, ELDER, new CalendarDate(9, Season.SUMMER, 1)));
-        seed_child = register(new NPC("fenn", MALE, CHILD, new CalendarDate(25, Season.SUMMER, 1)));
+        clockmaker_child = register(new NPC("fenn", MALE, CHILD, new CalendarDate(25, Season.SUMMER, 1)));
         cafe_granny = register(new NPC("katlin", FEMALE, ELDER, new CalendarDate(12, Season.SUMMER, 1)));
         mayor = register(new NPC("jamie", FEMALE, ELDER, new CalendarDate(8, Season.SUMMER, 1)));
         builder = register(new NPC("inap", MALE, ADULT, new CalendarDate(19, Season.SUMMER, 1)).setIsBuilder());

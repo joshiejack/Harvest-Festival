@@ -29,7 +29,7 @@ public class RenderHandler implements ISimpleBlockRenderingHandler {
     public static void register(Block block, int meta, Class clazz) {
         try {
             renders.put(Block.blockRegistry.getNameForObject(block) + ":" + meta, (RenderBase) clazz.newInstance());
-        } catch (Exception e) {}
+        } catch (Exception e) { e.printStackTrace(); }
     }
 
     @Override
@@ -53,8 +53,8 @@ public class RenderHandler implements ISimpleBlockRenderingHandler {
                 PacketHandler.sendToServer(new PacketCropRequest(joshie.harvestmoon.helpers.generic.MCClientHelper.getWorld(), x, y, z));
                 return false;
             }
-        } else {
-            String data = Block.blockRegistry.getNameForObject(block) + ":" + world.getBlockMetadata(x, y, z);
+        } else {            
+            String data = Block.blockRegistry.getNameForObject(block) + ":" + world.getBlockMetadata(x, y, z);            
             if (renders.get(data) != null) {
                 TileEntity tile = world.getTileEntity(x, y, z);
                 if (tile instanceof IFaceable) {

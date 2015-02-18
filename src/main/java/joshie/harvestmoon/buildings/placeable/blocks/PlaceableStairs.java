@@ -8,7 +8,7 @@ public class PlaceableStairs extends PlaceableBlock {
     }
 
     @Override
-    protected int getMetaData(boolean n1, boolean n2, boolean swap) {
+    public int getMetaData(boolean n1, boolean n2, boolean swap) {
         if (meta == 0) {
             if (n1) {
                 return swap ? 3 : 1;

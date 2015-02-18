@@ -225,7 +225,7 @@ public class BlockCookware extends BlockHMBaseMeta {
 
     @Override
     public int getMetaCount() {
-        return 16;
+        return 12;
     }
 
     @SideOnly(Side.CLIENT)

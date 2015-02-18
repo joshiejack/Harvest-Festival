@@ -13,7 +13,7 @@ public class PlaceableAnvil extends PlaceableBlock {
     }
 
     @Override
-    protected int getMetaData(boolean n1, boolean n2, boolean swap) {
+    public int getMetaData(boolean n1, boolean n2, boolean swap) {
         if (meta == 3) {
             if (n2) {
                 return swap ? 0 : 1;

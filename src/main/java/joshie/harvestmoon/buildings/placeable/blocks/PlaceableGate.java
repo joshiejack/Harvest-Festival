@@ -8,7 +8,7 @@ public class PlaceableGate extends PlaceableBlock {
     }
 
     @Override
-    protected int getMetaData(boolean n1, boolean n2, boolean swap) {
+    public int getMetaData(boolean n1, boolean n2, boolean swap) {
         if (meta == 0) {
             if (n2) {
                 return swap ? 1 : 2;

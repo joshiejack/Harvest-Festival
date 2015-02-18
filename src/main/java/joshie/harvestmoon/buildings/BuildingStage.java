@@ -10,14 +10,14 @@ import net.minecraft.world.World;
 /** This data is used by the BuilderNPC, 
  * to know their current progress through a building project **/
 public class BuildingStage {
-    private Building building;
+    private BuildingGroup building;
     private boolean n1, n2, swap;
     private PlacementStage stage;
     private int subType, index, xCoord, yCoord, zCoord;
 
     public BuildingStage() {}
 
-    public BuildingStage(Building building, int subType, int x, int y, int z, Random rand) {
+    public BuildingStage(BuildingGroup building, int subType, int x, int y, int z, Random rand) {
         this.building = building;
         this.subType = subType;
         this.n1 = rand.nextBoolean();
@@ -31,7 +31,7 @@ public class BuildingStage {
     }
 
     public BuildingStage build(World world) {
-        if (index >= building.getSubList(subType).size()) {
+        if (index >= building.getBuilding(subType).getSize()) {
             if (stage == PlacementStage.BLOCKS) {
                 stage = PlacementStage.TORCHES;
                 index = 0;
@@ -46,7 +46,7 @@ public class BuildingStage {
                 index = 0;
             }
         } else {
-            Placeable block = building.getSubList(subType).get(index);
+            Placeable block = building.getBuilding(subType).get(index);
             block.place(world, xCoord, yCoord, zCoord, n1, n2, swap, stage);
             index++;
         }
@@ -59,7 +59,7 @@ public class BuildingStage {
     }
 
     public void readFromNBT(NBTTagCompound nbt) {
-        building = Building.getBuilding(nbt.getString("CurrentlyBuilding"));
+        building = BuildingGroup.getGroup(nbt.getString("CurrentlyBuilding"));
         subType = nbt.getInteger("SubType");
         n1 = nbt.getBoolean("North1");
         n2 = nbt.getBoolean("North2");

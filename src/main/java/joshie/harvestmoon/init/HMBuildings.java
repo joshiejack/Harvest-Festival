@@ -1,6 +1,6 @@
 package joshie.harvestmoon.init;
 
-import joshie.harvestmoon.buildings.Building;
+import joshie.harvestmoon.buildings.BuildingGroup;
 import joshie.harvestmoon.buildings.barn.BuildingBarn;
 import joshie.harvestmoon.buildings.blacksmith.BuildingBlacksmith;
 import joshie.harvestmoon.buildings.carpenter.BuildingCarpenter;
@@ -23,35 +23,35 @@ import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraftforge.common.ChestGenHooks;
 
 public class HMBuildings {
-    public static Building barn;
-    public static Building blacksmith;
-    public static Building carpenter;
-    public static Building church;
-    public static Building clockmaker;
-    public static Building fishingHole;
-    public static Building fishingHut;
-    public static Building goddessPond;
-    public static Building miningHill;
-    public static Building miningHut;
-    public static Building poultryFarm;
-    public static Building supermarket;
-    public static Building townhall;
+    public static BuildingGroup barn;
+    public static BuildingGroup blacksmith;
+    public static BuildingGroup carpenter;
+    public static BuildingGroup church;
+    public static BuildingGroup clockmaker;
+    public static BuildingGroup fishingHole;
+    public static BuildingGroup fishingHut;
+    public static BuildingGroup goddessPond;
+    public static BuildingGroup miningHill;
+    public static BuildingGroup miningHut;
+    public static BuildingGroup poultryFarm;
+    public static BuildingGroup supermarket;
+    public static BuildingGroup townhall;
 
     //TODO: Fix Furnace Rotations, Ladders
     public static void init() {
-        barn = Building.register("barn", new BuildingBarn());
-        blacksmith = Building.register("blacksmith", new BuildingBlacksmith());
-        carpenter = Building.register("carpenter", new BuildingCarpenter());
-        church = Building.register("church", new BuildingChurch());
-        clockmaker = Building.register("clockmaker", new BuildingClockmaker());
-        fishingHole = Building.register("fishingHole", new BuildingFishingHole());
-        fishingHut = Building.register("fishingHut", new BuildingFishingHut());
-        goddessPond = Building.register("goddessPond", new BuildingGoddess());
-        miningHill = Building.register("miningHill", new BuildingMiningHill());
-        miningHut = Building.register("miningHut", new BuildingMiningHut());
-        poultryFarm = Building.register("poultryFarm", new BuildingPoultryFarm());
-        supermarket = Building.register("supermarket", new BuildingSupermarket());
-        townhall = Building.register("townhall", new BuildingTownhall());
+        barn = BuildingGroup.register("barn", new BuildingBarn());
+        blacksmith = BuildingGroup.register("blacksmith", new BuildingBlacksmith());
+        carpenter = BuildingGroup.register("carpenter", new BuildingCarpenter());
+        church = BuildingGroup.register("church", new BuildingChurch());
+        clockmaker = BuildingGroup.register("clockmaker", new BuildingClockmaker());
+        fishingHole = BuildingGroup.register("fishingHole", new BuildingFishingHole());
+        fishingHut = BuildingGroup.register("fishingHut", new BuildingFishingHut());
+        goddessPond = BuildingGroup.register("goddessPond", new BuildingGoddess());
+        miningHill = BuildingGroup.register("miningHill", new BuildingMiningHill());
+        miningHut = BuildingGroup.register("miningHut", new BuildingMiningHut());
+        poultryFarm = BuildingGroup.register("poultryFarm", new BuildingPoultryFarm());
+        supermarket = BuildingGroup.register("supermarket", new BuildingSupermarket());
+        townhall = BuildingGroup.register("townhall", new BuildingTownhall());
 
         //Chest generations for Jade Chest
         ChestGenHooks.addItem(VillageStrings.JADE_CHEST, new WeightedRandomChestContent(new ItemStack(Items.apple), 1, 1, 8));

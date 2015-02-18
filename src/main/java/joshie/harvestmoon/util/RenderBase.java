@@ -24,14 +24,14 @@ public abstract class RenderBase {
     public int x, y, z;
     public IIcon icon;
     public Block block;
-    public boolean isItem;
     public int brightness = -1;
     public float rgb_red = 1.0F;
     public float rgb_green = 1.0F;
     public float rgb_blue = 1.0F;
+    private boolean isItem;
 
     public RenderBase() {}
-
+    
     public RenderBase setFacing(ForgeDirection dir) {
         this.dir = dir;
         return this;

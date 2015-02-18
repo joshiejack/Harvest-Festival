@@ -8,7 +8,7 @@ public class PlaceablePillar extends PlaceableBlock {
     }
 
     @Override
-    protected int getMetaData(boolean n1, boolean n2, boolean swap) {
+    public int getMetaData(boolean n1, boolean n2, boolean swap) {
         if (swap) {
             if (meta == 3 || meta == 4) {
                 return meta == 3 ? 4 : 3;

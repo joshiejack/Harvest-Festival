@@ -2,9 +2,7 @@ package joshie.harvestmoon.buildings.placeable.blocks;
 
 import joshie.harvestmoon.buildings.placeable.Placeable;
 import joshie.harvestmoon.helpers.generic.StackHelper;
-import joshie.harvestmoon.init.HMBlocks;
 import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
@@ -22,12 +20,12 @@ public class PlaceableBlock extends Placeable {
         this.block = block;
         this.meta = meta;
     }
-
+    
     public Block getBlock() {
         return block;
     }
 
-    protected int getMetaData(boolean n1, boolean n2, boolean swap) {
+    public int getMetaData(boolean n1, boolean n2, boolean swap) {
         return meta;
     }
 

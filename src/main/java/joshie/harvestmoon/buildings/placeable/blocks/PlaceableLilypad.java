@@ -13,7 +13,7 @@ public class PlaceableLilypad extends PlaceableBlock {
     }
 
     @Override
-    protected int getMetaData(boolean n1, boolean n2, boolean swap) {
+    public int getMetaData(boolean n1, boolean n2, boolean swap) {
         //TODO:
 
         return meta;

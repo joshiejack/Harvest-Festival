@@ -1,6 +1,6 @@
 package joshie.harvestmoon.npc;
 
-import joshie.harvestmoon.buildings.Building;
+import joshie.harvestmoon.buildings.BuildingGroup;
 import joshie.harvestmoon.buildings.BuildingStage;
 import joshie.harvestmoon.init.HMBuildings;
 import net.minecraft.entity.player.EntityPlayer;
@@ -43,7 +43,7 @@ public class EntityNPCBuilder extends EntityNPC {
         return true;
     }
 
-    public boolean startBuilding(Building building, int x, int y, int z) {
+    public boolean startBuilding(BuildingGroup building, int x, int y, int z) {
         if (!worldObj.isRemote) {
             this.building = new BuildingStage(building, building.random(worldObj.rand), x, y, z, worldObj.rand);
         }

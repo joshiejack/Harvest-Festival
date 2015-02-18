@@ -3,6 +3,7 @@ package joshie.harvestmoon;
 import static joshie.harvestmoon.lib.HMModInfo.JAVAPATH;
 import joshie.harvestmoon.base.ItemBlockBase;
 import joshie.harvestmoon.blocks.BlockHMBaseMeta;
+import joshie.harvestmoon.blocks.render.RenderBlockPreview;
 import joshie.harvestmoon.blocks.render.SpecialRendererFryingPan;
 import joshie.harvestmoon.blocks.tiles.TileFryingPan;
 import joshie.harvestmoon.crops.Crop;
@@ -53,6 +54,9 @@ public class HMClientProxy extends HMCommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityNPCShopkeeper.class, new RenderNPC());
         RenderingRegistry.registerEntityRenderingHandler(EntityNPCMiner.class, new RenderNPC());
         RenderingRegistry.registerEntityRenderingHandler(EntityFakeItem.class, new RenderFakeItem());
+        for (int i = 0; i < 8; i++) {
+            RenderHandler.register(HMBlocks.preview, i, RenderBlockPreview.class);
+        }
     }
 
     private void registerRenders(Block b) {

@@ -9,7 +9,7 @@ import org.lwjgl.opengl.GL11;
 public class RenderFryingPan extends RenderBase {
     @Override
     public void renderBlock() {
-        if (isItem) {
+        if (isItem()) {
             GL11.glScalef(0.9F, 0.9F, 0.9F);
             GL11.glTranslatef(-0.2F, 0.65F, 0.5F);
         }

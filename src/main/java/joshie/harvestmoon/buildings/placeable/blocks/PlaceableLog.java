@@ -8,7 +8,7 @@ public class PlaceableLog extends PlaceableBlock {
     }
 
     @Override
-    protected int getMetaData(boolean n1, boolean n2, boolean swap) {
+    public int getMetaData(boolean n1, boolean n2, boolean swap) {
         if (swap) {
             if (meta == 7 || meta == 11) {
                 return meta == 7 ? 11 : 7;

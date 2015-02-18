@@ -1,76 +1,36 @@
 package joshie.harvestmoon.buildings;
 
 import java.util.ArrayList;
-import java.util.Random;
 
+import joshie.harvestmoon.blocks.render.PreviewBlock;
 import joshie.harvestmoon.buildings.placeable.Placeable;
 import joshie.harvestmoon.buildings.placeable.Placeable.PlacementStage;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class Building {
-    public static final ArrayList<Building> buildings = new ArrayList(50);
-    private ArrayList<Building> subTypes = new ArrayList();
-
     //List of all placeable elements
     protected ArrayList<Placeable> list;
-    private String name;
-    private boolean isVariant;
+    private PreviewBlock preview;
 
-    public static Building register(String string, Building... buildings) {
-        Building toRegister = new Building().setName(string).add(buildings);
-        Building.buildings.add(toRegister);
-        return toRegister;
+    public IBlockAccess getBlockAccess(int worldX, int worldY, int worldZ, boolean n1, boolean n2, boolean swap) {
+        return preview.setCoordinatesAndDirection(worldX, worldY, worldZ, n1, n2, swap);
     }
 
-    public ArrayList<Placeable> getSubList(int subType) {
-        return subTypes.get(subType).list;
+    public void init() {
+        preview = new PreviewBlock(list);
     }
 
-    public Building add(Building... buildings) {
-        for (Building building : buildings) {
-            subTypes.add(building);
-        }
-
-        return this;
+    public int getSize() {
+        return list.size();
     }
 
-    /** Returns a random sub building **/
-    public int random(Random rand) {
-        if (subTypes.size() == 0 || subTypes.size() == 1) return 0;
-        return rand.nextInt(subTypes.size());
+    public Placeable get(int index) {
+        return list.get(index);
     }
 
-    public Building getRandom() {
-        if (subTypes.size() == 0) return null;
-        else return subTypes.get(new Random().nextInt(subTypes.size()));
-    }
-
-    public boolean isVariant() {
-        return isVariant;
-    }
-
-    public Building setIsVariant() {
-        isVariant = true;
-        return this;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Building setName(String name) {
-        this.name = name;
-        return this;
-    }
-
-    public static Building getBuilding(String string) {
-        for (Building b : buildings) {
-            if (b.getName().equals(string)) {
-                return b;
-            }
-        }
-
-        return null;
+    public ArrayList<Placeable> getList() {
+        return list;
     }
 
     //TODO: LilyPad/Tripwire Hooks????????????
@@ -94,7 +54,7 @@ public class Building {
             for (Placeable block : list) {
                 block.place(world, xCoord, yCoord, zCoord, n1, n2, swap, PlacementStage.TORCHES);
             }
-            
+
             /** Fourth loop we place NPCs **/
             for (Placeable block : list) {
                 block.place(world, xCoord, yCoord, zCoord, n1, n2, swap, PlacementStage.NPC);
@@ -102,15 +62,5 @@ public class Building {
         }
 
         return true;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        return name.equals(o);
-    }
-
-    @Override
-    public int hashCode() {
-        return name.hashCode();
     }
 }

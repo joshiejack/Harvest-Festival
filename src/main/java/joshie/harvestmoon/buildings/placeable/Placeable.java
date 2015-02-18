@@ -1,5 +1,6 @@
 package joshie.harvestmoon.buildings.placeable;
 
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public abstract class Placeable {

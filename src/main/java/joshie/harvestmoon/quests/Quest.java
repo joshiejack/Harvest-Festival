@@ -149,4 +149,8 @@ public class Quest {
     public void onClosedChat(EntityPlayer player, EntityNPC npc) {}
 
     public void onRightClickBlock(EntityPlayer player, World world, int x, int y, int z, int side) {}
+
+    public void confirm(EntityPlayer player, EntityNPC npc) {}
+
+    public void cancel(EntityPlayer player, EntityNPC npc) {}
 }

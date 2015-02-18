@@ -22,6 +22,7 @@ import org.lwjgl.opengl.GL11;
 import cpw.mods.fml.common.FMLCommonHandler;
 
 public class GuiNPC extends GuiBase {
+    private static final ResourceLocation gui = new ResourceLocation(HMModInfo.MODPATH + ":textures/gui/gui_elements.png");
     private static ResourceLocation name_texture;
 
     protected EntityPlayer player;
@@ -33,6 +34,8 @@ public class GuiNPC extends GuiBase {
     protected int line; //Current lines displayed
     protected double character; //A ticker, Determines what character we should be displaying
     protected boolean finished; //Whether the text has finished displaying
+    protected boolean hasConfirmation; //Whether this page of the script has a cofnrimation screen
+    protected boolean selectedBottom; //True if Yes is Selected, False if no is Selected
 
     public GuiNPC(EntityNPC npc, EntityPlayer player) {
         super(new ContainerNPC(npc, player.inventory), "chat", 0);
@@ -63,7 +66,7 @@ public class GuiNPC extends GuiBase {
     }
 
     private String format(String string) {
-        if(string == null) return "FORGOT SOME TEXT DUMBASS";
+        if (string == null) return "FORGOT SOME TEXT DUMBASS";
         PlayerDataClient data = PlayerHelper.getData();
         string = string.replace("<BR>", SystemUtils.LINE_SEPARATOR);
         string = string.replace("Þ", player.getDisplayName());
@@ -89,6 +92,11 @@ public class GuiNPC extends GuiBase {
         for (int i = 0; i < line; i++) {
             String text = script[page][i];
             if (text != null) {
+                if (text.startsWith("@")) {
+                    text = text.replace("@", "     ");
+                    hasConfirmation = true;
+                }
+
                 fontRendererObj.drawStringWithShadow(text, 22, 158 + (i * 10), 0xFFFFFF);
             }
         }
@@ -98,6 +106,10 @@ public class GuiNPC extends GuiBase {
             if (script[page][line] != null) {
                 //Convert the next line in to a char array
                 char[] todisplay = script[page][line].toCharArray();
+                if (new String("" + todisplay[0]).equals("@")) {
+                    character = todisplay.length;
+                }
+
                 if (character < todisplay.length) { //If the current position of the char array, is less than it's maximum
                     character += 0.2D; //Increase the tick, slowly
                 }
@@ -111,7 +123,7 @@ public class GuiNPC extends GuiBase {
                 }
 
                 //Draw the characters as we go.
-                fontRendererObj.drawStringWithShadow(new String(fordisplay), 22, 158 + (line * 10), 0xFFFFFF);
+                fontRendererObj.drawStringWithShadow( new String(fordisplay), 22, 158 + (line * 10), 0xFFFFFF);
 
                 //Now if we have completed the entire array, let's reset the position and increase the line
                 if (fordisplay.length >= todisplay.length) {
@@ -138,7 +150,16 @@ public class GuiNPC extends GuiBase {
             }
         }
 
+        mc.renderEngine.bindTexture(gui);
         drawHeart(getRelationshipValue(npc, player) + Short.MAX_VALUE);
+
+        if (hasConfirmation) {
+            if (!selectedBottom) {
+                drawTexturedModalRect(20, 169, 0, 32, 19, 8);
+            } else {
+                drawTexturedModalRect(20, 179, 0, 32, 19, 8);
+            }
+        }
 
         //If lines hasn't been initilised, get yourself a new passage
         if (script == null) {
@@ -166,13 +187,43 @@ public class GuiNPC extends GuiBase {
             drawLines();
         }
     }
-    
+
     protected String getScript() {
         return PlayerHelper.getData().getQuests().getScript(player, npc);
     }
 
     @Override
-    protected void onMouseClick(int mouseX, int mouseY) {
+    protected void keyTyped(char character, int key) {
+        if (character == 'w' || key == 200) {
+            selectedBottom = false;
+        }
+
+        if (character == 's' || key == 208) {
+            selectedBottom = true;
+        }
+
+        if (key == 28) {
+            select();
+        }
+        
+        super.keyTyped(character, key);
+    }
+
+    private void select() {
+        HashSet<Quest> quests = QuestHelper.getCurrentQuest(player);
+        for (Quest quest : quests) {
+            if (quest != null) {
+                if (!selectedBottom) {
+                    quest.confirm(player, npc);
+                } else quest.cancel(player, npc);
+
+                hasConfirmation = false;
+                nextChat();
+            }
+        }
+    }
+
+    protected void nextChat() {
         if (!finished) {
             finished = true;
             line = 3;
@@ -184,7 +235,24 @@ public class GuiNPC extends GuiBase {
             endChat();
         }
     }
-    
+
+    @Override
+    protected void onMouseClick(int mouseX, int mouseY) {
+        //Confirm
+        if (hasConfirmation) {
+            if (mouseY >= 168 && mouseY <= 176) {
+                selectedBottom = false;
+                select();
+            }
+
+            //Cancel
+            if (mouseY >= 178 && mouseY <= 186) {
+                selectedBottom = true;
+                select();
+            }
+        } else nextChat();
+    }
+
     public void endChat() {
         player.closeScreen();
     }

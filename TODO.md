@@ -7,14 +7,14 @@
 - [ ] Only purchased animals should be added to the animal tracker (default)
 - [ ] Config to enable tracking on all animals
 - [ ] Config to enable tracking on nametagged animals only
-- [ ] Add Plot Marker for buildings
+- [x] Add Plot Marker for buildings
 - [x] Make the nest functional, hatching eggs
 - [ ] Universal Fridge inventory
 - [ ] Recipe Book
-- [ ] Confirmation Screens for NPCs
-- [ ] Rural Chests, With Inventories
+- [x] Confirmation Screens for NPCs
+- [x] Rural Chests, With Inventories
 - [ ] Display Units, With Inventories
-- [ ] Make mines have the potential to collapse (spawn cobble and gravel).
+- [x] Make mines have the potential to collapse (spawn cobble and gravel).
 - [x] Add effects when your stamina reaches zero, Slower movement, Hunger drops quicker. 
 - [x] Add blurry vision when about to pass out from fatigue, Occasional headaches.
 - [ ] Finish Shop GUI, Add Scroll, make it's height scale to gui size.

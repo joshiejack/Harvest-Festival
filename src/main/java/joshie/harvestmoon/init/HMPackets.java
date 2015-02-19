@@ -11,6 +11,7 @@ import joshie.harvestmoon.network.PacketSyncBirthday;
 import joshie.harvestmoon.network.PacketSyncCanProduce;
 import joshie.harvestmoon.network.PacketSyncCooking;
 import joshie.harvestmoon.network.PacketSyncCrop;
+import joshie.harvestmoon.network.PacketSyncFridge;
 import joshie.harvestmoon.network.PacketSyncGold;
 import joshie.harvestmoon.network.PacketSyncMarker;
 import joshie.harvestmoon.network.PacketSyncOrientation;
@@ -46,6 +47,7 @@ public class HMPackets {
         PacketHandler.registerPacket(PacketSetDifficulty.class, Side.SERVER);
         PacketHandler.registerPacket(PacketFreeze.class, Side.SERVER);
         PacketHandler.registerPacket(PacketSyncMarker.class, Side.CLIENT);
+        PacketHandler.registerPacket(PacketSyncFridge.class, Side.CLIENT);
         
         //Quest Packets
         PacketHandler.registerPacket(PacketQuestSetAvailable.class, Side.CLIENT);

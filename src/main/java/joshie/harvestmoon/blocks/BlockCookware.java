@@ -1,6 +1,7 @@
 package joshie.harvestmoon.blocks;
 
 import static joshie.harvestmoon.helpers.ShippingHelper.addForShipping;
+import joshie.harvestmoon.HarvestMoon;
 import joshie.harvestmoon.animals.AnimalType;
 import joshie.harvestmoon.blocks.items.ItemBlockCookware;
 import joshie.harvestmoon.blocks.render.ExtraIcons;
@@ -15,6 +16,7 @@ import joshie.harvestmoon.blocks.tiles.TileRuralChest;
 import joshie.harvestmoon.blocks.tiles.TileSteamer;
 import joshie.harvestmoon.config.Cooking;
 import joshie.harvestmoon.cooking.FoodRegistry;
+import joshie.harvestmoon.handlers.GuiHandler;
 import joshie.harvestmoon.helpers.AnimalHelper;
 import joshie.harvestmoon.helpers.ToolHelper;
 import joshie.harvestmoon.helpers.generic.DirectionHelper;
@@ -102,6 +104,7 @@ public class BlockCookware extends BlockHMBaseMeta {
         int meta = world.getBlockMetadata(x, y, z);
         if (player.isSneaking()) return false;
         else if (meta == FRIDGE || meta == FRIDGE_TOP) {
+            player.openGui(HarvestMoon.instance, GuiHandler.FRIDGE, world, x, y, z);
             return true;
         } else if (meta == KITCHEN || meta == CHOPPING_BOARD || meta == MIXING_BOWL || meta == BAKING_GLASS) {
             ItemStack held = player.getCurrentEquippedItem();

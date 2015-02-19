@@ -5,6 +5,7 @@ import joshie.harvestmoon.config.Calendar;
 import joshie.harvestmoon.helpers.CalendarHelper;
 import joshie.harvestmoon.helpers.PlayerHelper;
 import joshie.harvestmoon.network.PacketSetCalendar;
+import joshie.harvestmoon.network.PacketSyncFridge;
 import joshie.harvestmoon.player.PlayerDataServer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -25,6 +26,7 @@ public class FMLEvents {
             PlayerDataServer data = PlayerHelper.getData(player);
             data.syncPlayerStats();
             data.getQuests().syncQuests();
+            sendToClient(new PacketSyncFridge(PlayerHelper.getFridge(player)), (EntityPlayerMP) player);
         }
     }
 

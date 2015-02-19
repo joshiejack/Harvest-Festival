@@ -1,5 +1,7 @@
 package joshie.harvestmoon.player;
 
+import java.util.HashSet;
+
 import joshie.harvestmoon.calendar.CalendarDate;
 import joshie.harvestmoon.helpers.CalendarHelper;
 import joshie.harvestmoon.util.IData;

@@ -123,7 +123,7 @@ public class GuiNPC extends GuiBase {
                 }
 
                 //Draw the characters as we go.
-                fontRendererObj.drawStringWithShadow( new String(fordisplay), 22, 158 + (line * 10), 0xFFFFFF);
+                fontRendererObj.drawStringWithShadow(new String(fordisplay), 22, 158 + (line * 10), 0xFFFFFF);
 
                 //Now if we have completed the entire array, let's reset the position and increase the line
                 if (fordisplay.length >= todisplay.length) {
@@ -135,7 +135,10 @@ public class GuiNPC extends GuiBase {
     }
 
     private void drawHeart(int value) {
-
+        GL11.glColor4f(1F, 1F, 1F, 1F);
+        int xPos = (int) ((((double)value / (Short.MAX_VALUE * 2))) * 7);
+        drawTexturedModalRect(240, 130, 0, 0, 25, 25);
+        drawTexturedModalRect(240, 130, 25 + (25 * xPos), 0, 25, 25);
     }
 
     @Override
@@ -151,7 +154,9 @@ public class GuiNPC extends GuiBase {
         }
 
         mc.renderEngine.bindTexture(gui);
-        drawHeart(getRelationshipValue(npc, player) + Short.MAX_VALUE);
+        if (npc.getNPC().isMarriageCandidate()) {
+            drawHeart(getRelationshipValue(npc, player));
+        }
 
         if (hasConfirmation) {
             if (!selectedBottom) {
@@ -205,7 +210,7 @@ public class GuiNPC extends GuiBase {
         if (key == 28) {
             select();
         }
-        
+
         super.keyTyped(character, key);
     }
 

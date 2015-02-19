@@ -1,4 +1,4 @@
-Stage 1 (0.5)
+Stage 1 (0.5.0)
 * Crops
 * Cooking
 * Calendar/Seasons
@@ -12,21 +12,24 @@ Stage 1 (0.5)
 * Harvest Goddess
 * Add Brushes, and Talk to Animals
 
-Stage 2 (0.6)
+Stage 1.1 (0.5.1)
+* Recipe Book
+
+Stage 2 (0.6.0)
 * Gathering
 * Farm Equipment
 * More General Items
 
-Stage 3 (0.7)
+Stage 3 (0.7.0)
 * Fishing
 * Jewels, Emeralds, Gems
 
-Stage 4 (0.8)
+Stage 4 (0.8.0)
 * Harvest Sprite
 * Power Berries
 * TV Shopping
 
-Stage 5 (0.9)
+Stage 5 (0.9.0)
 * Events
 * Festivals
 

@@ -19,12 +19,21 @@ public class PlayerDataClient {
     private QuestsClientside quests = new QuestsClientside();
     private HashMap<UUID, Short> entity_relations = new HashMap();
     private HashMap<NPC, Short> npc_relations = new HashMap();
+    private FridgeContents fridge;
     private double staminaMax = 100D;
     private double fatigueMin = 0D;
     private double stamina;
     private double fatigue;
     private long gold;
 
+    public FridgeContents getFridge() {
+        return fridge;
+    }
+
+    public void setFridge(FridgeContents fridge) {
+        this.fridge = fridge;
+    }
+    
     public QuestsClientside getQuests() {
         return quests;
     }

@@ -94,6 +94,12 @@ public class RelationStats implements IData {
         markDirty();
         return true;
     }
+    
+    public boolean setMarried(Object object) {
+        Relatable relate = getRelatable(object);
+        markDirty();
+        return marriedTo.add(relate);
+    }
 
     @Override
     public void readFromNBT(NBTTagCompound nbt) {

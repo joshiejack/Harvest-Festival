@@ -24,4 +24,8 @@ public class ToolHelper {
     public static boolean isWhisk(ItemStack stack) {
         return stack.getItem() == HMItems.general && stack.getItemDamage() == ItemGeneral.WHISK;
     }
+
+    public static boolean isBlueFeather(ItemStack stack) {
+        return stack.getItem() == HMItems.general && stack.getItemDamage() == ItemGeneral.BLUE_FEATHER;
+    }
 }

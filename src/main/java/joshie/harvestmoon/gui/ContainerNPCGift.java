@@ -1,11 +1,14 @@
 package joshie.harvestmoon.gui;
 
+import static joshie.harvestmoon.helpers.RelationsHelper.getRelationshipValue;
+
 import java.util.HashSet;
 
 import joshie.harvestmoon.calendar.CalendarDate;
 import joshie.harvestmoon.helpers.CalendarHelper;
 import joshie.harvestmoon.helpers.QuestHelper;
 import joshie.harvestmoon.helpers.RelationsHelper;
+import joshie.harvestmoon.helpers.ToolHelper;
 import joshie.harvestmoon.npc.EntityNPC;
 import joshie.harvestmoon.npc.NPC;
 import joshie.harvestmoon.quests.Quest;
@@ -40,6 +43,13 @@ public class ContainerNPCGift extends ContainerBase {
             CalendarDate birthday = theNpc.getBirthday();
             if (today.getSeason() == birthday.getSeason() && today.getDay() == birthday.getDay()) {
                 points *= 5;
+            }
+
+            if (ToolHelper.isBlueFeather(gift)) {
+                int relationship = getRelationshipValue(npc, player);
+                if (relationship >= joshie.harvestmoon.config.NPC.MARRIAGE_REQUIREMENT) {
+                    RelationsHelper.setMarried(npc, player);
+                }
             }
 
             RelationsHelper.setGifted(player, npc.getNPC(), points);

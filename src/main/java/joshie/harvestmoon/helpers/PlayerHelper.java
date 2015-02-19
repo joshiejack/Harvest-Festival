@@ -6,6 +6,7 @@ import joshie.harvestmoon.calendar.CalendarDate;
 import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.network.PacketHandler;
 import joshie.harvestmoon.network.PacketSyncGold;
+import joshie.harvestmoon.player.FridgeContents;
 import joshie.harvestmoon.player.PlayerDataClient;
 import joshie.harvestmoon.player.PlayerDataServer;
 import net.minecraft.entity.player.EntityPlayer;
@@ -117,5 +118,9 @@ public class PlayerHelper {
 
     public static PlayerDataClient getData() {
         return ClientHelper.getPlayerData();
+    }
+
+    public static FridgeContents getFridge(EntityPlayer player) {
+        return !player.worldObj.isRemote? getData(player).getFridge(): ClientHelper.getPlayerData().getFridge();
     }
 }

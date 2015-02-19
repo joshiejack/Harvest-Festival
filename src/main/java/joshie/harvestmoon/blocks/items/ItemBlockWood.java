@@ -23,8 +23,6 @@ public class ItemBlockWood extends ItemBlockBase {
                 return "nest";
             case BlockWood.TROUGH:
                 return "trough";
-            case BlockWood.DISPLAY:
-                return "display";
             default:
                 return "invalid";
         }

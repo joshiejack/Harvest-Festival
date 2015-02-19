@@ -1,14 +1,17 @@
 package joshie.harvestmoon.handlers;
 
 import joshie.harvestmoon.blocks.tiles.TileRuralChest;
+import joshie.harvestmoon.gui.ContainerFridge;
 import joshie.harvestmoon.gui.ContainerNPC;
 import joshie.harvestmoon.gui.ContainerNPCGift;
 import joshie.harvestmoon.gui.ContainerNPCShop;
 import joshie.harvestmoon.gui.ContainerRuralChest;
+import joshie.harvestmoon.gui.GuiFridge;
 import joshie.harvestmoon.gui.GuiNPC;
 import joshie.harvestmoon.gui.GuiNPCGift;
 import joshie.harvestmoon.gui.GuiNPCShop;
 import joshie.harvestmoon.gui.GuiRuralChest;
+import joshie.harvestmoon.helpers.PlayerHelper;
 import joshie.harvestmoon.npc.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -19,6 +22,7 @@ public class GuiHandler implements IGuiHandler {
     public static final int NPC = 0;
     public static final int SHOP = 1;
     public static final int GIFT = 2;
+    public static final int FRIDGE = 3;
 
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
@@ -31,6 +35,7 @@ public class GuiHandler implements IGuiHandler {
             case NPC:       return new ContainerNPC((EntityNPC) world.getEntityByID(x), player.inventory);
             case SHOP:      return new ContainerNPCShop((EntityNPC) world.getEntityByID(x), player.inventory);
             case GIFT:      return new ContainerNPCGift((EntityNPC) world.getEntityByID(x), player.inventory);
+            case FRIDGE:    return new ContainerFridge(player.inventory, PlayerHelper.getFridge(player));
             default:        return null;
         }
     }
@@ -46,6 +51,7 @@ public class GuiHandler implements IGuiHandler {
             case NPC:       return new GuiNPC((EntityNPC) world.getEntityByID(x), player);
             case SHOP:      return new GuiNPCShop((EntityNPC) world.getEntityByID(x), player);
             case GIFT:      return new GuiNPCGift((EntityNPC) world.getEntityByID(x), player);
+            case FRIDGE:    return new GuiFridge(player.inventory, PlayerHelper.getFridge(player));
             default:        return null;
         }
     }

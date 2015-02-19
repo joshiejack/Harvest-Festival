@@ -11,6 +11,7 @@ import joshie.harvestmoon.helpers.generic.EntityHelper;
 import joshie.harvestmoon.network.PacketSyncBirthday;
 import joshie.harvestmoon.network.PacketSyncGold;
 import joshie.harvestmoon.network.PacketSyncStats;
+import joshie.harvestmoon.npc.EntityNPC;
 import joshie.harvestmoon.npc.NPC;
 import joshie.harvestmoon.util.IData;
 import joshie.harvestmoon.util.SellStack;
@@ -18,6 +19,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.common.DimensionManager;
 
 public class PlayerDataServer implements IData {
     private QuestStats questStats;
@@ -25,6 +27,7 @@ public class PlayerDataServer implements IData {
     private ShippingStats shippingStats;
     private PlayerStats playerStats;
     private TrackingStats trackingStats;
+    private FridgeContents fridge;
 
     //References to the player and uuid this refers to
     private EntityPlayerMP player; //No Direct calling, it's a cache value
@@ -36,6 +39,7 @@ public class PlayerDataServer implements IData {
         shippingStats = new ShippingStats(this);
         playerStats = new PlayerStats(this);
         trackingStats = new TrackingStats(this);
+        fridge = new FridgeContents(DimensionManager.getWorld(0));
     }
 
     public PlayerDataServer(EntityPlayerMP player) {
@@ -46,6 +50,7 @@ public class PlayerDataServer implements IData {
         shippingStats = new ShippingStats(this);
         playerStats = new PlayerStats(this);
         trackingStats = new TrackingStats(this);
+        fridge = new FridgeContents(player.worldObj);
     }
 
     //Pass the world that this player is currently in
@@ -116,6 +121,10 @@ public class PlayerDataServer implements IData {
         return ret;
     }
 
+    public FridgeContents getFridge() {
+        return fridge;
+    }
+
     public CalendarDate getBirthday() {
         return playerStats.getBirthday();
     }
@@ -124,6 +133,10 @@ public class PlayerDataServer implements IData {
         if (playerStats.setBirthday()) {
             markDirty();
         }
+    }
+    
+    public boolean setMarried(EntityNPC npc) {
+        return relationStats.setMarried(npc);
     }
 
     public double getStamina() {
@@ -183,6 +196,7 @@ public class PlayerDataServer implements IData {
         relationStats.readFromNBT(nbt);
         shippingStats.readFromNBT(nbt);
         trackingStats.readFromNBT(nbt);
+        fridge.readFromNBT(nbt);
     }
 
     @Override
@@ -196,5 +210,6 @@ public class PlayerDataServer implements IData {
         questStats.writeToNBT(nbt);
         shippingStats.writeToNBT(nbt);
         trackingStats.writeToNBT(nbt);
+        fridge.writeToNBT(nbt);
     }
 }

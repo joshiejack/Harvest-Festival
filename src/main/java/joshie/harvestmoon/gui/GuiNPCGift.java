@@ -1,5 +1,7 @@
 package joshie.harvestmoon.gui;
 
+import static joshie.harvestmoon.helpers.RelationsHelper.getRelationshipValue;
+import joshie.harvestmoon.helpers.ToolHelper;
 import joshie.harvestmoon.npc.EntityNPC;
 import joshie.harvestmoon.npc.gift.Gifts.Quality;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,6 +19,11 @@ public class GuiNPCGift extends GuiNPC {
 
     @Override
     public String getScript() {
-        return npc.getNPC().getThanks(value);
+        if (ToolHelper.isBlueFeather(gift)) {
+            int relationship = getRelationshipValue(npc, player);
+            if (relationship >= joshie.harvestmoon.config.NPC.MARRIAGE_REQUIREMENT && npc.getNPC().isMarriageCandidate()) {
+                return npc.getNPC().getAcceptProposal();
+            } else return npc.getNPC().getRejectProposal();
+        } else return npc.getNPC().getThanks(value);
     }
 }

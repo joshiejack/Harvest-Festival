@@ -1,5 +1,6 @@
 package joshie.harvestmoon.npc;
 
+import static joshie.harvestmoon.npc.NPC.Age.ADULT;
 import static joshie.harvestmoon.npc.NPC.Age.CHILD;
 import static joshie.harvestmoon.npc.NPC.Gender.FEMALE;
 import static joshie.harvestmoon.npc.NPC.Gender.MALE;
@@ -31,6 +32,8 @@ public class NPC {
 
     protected ArrayList<String> greetings = new ArrayList(32);
     protected ArrayList<String> thanks = new ArrayList(6);
+    protected String accept = "WHAT?";
+    protected String reject = "NO!";
     protected String name;
     protected int last;
 
@@ -56,8 +59,13 @@ public class NPC {
             gifts = (Gifts) Class.forName("joshie.harvestmoon.npc.gift.Gifts" + gift).newInstance();
         } catch (Exception e) {}
 
+        String key = "hm.npc." + name + ".accept";
+        accept = Text.localize(key);
+        key = "hm.npc." + name + ".reject";
+        reject = Text.localize(key);
+
         for (int i = 0; i < 6; i++) {
-            String key = "hm.npc." + name + ".gift." + Quality.values()[i].name().toLowerCase();
+            key = "hm.npc." + name + ".gift." + Quality.values()[i].name().toLowerCase();
             String translated = Text.localize(key);
             if (!translated.equals(key)) {
                 thanks.add(translated);
@@ -69,7 +77,7 @@ public class NPC {
         }
 
         for (int i = 1; i <= 32; i++) {
-            String key = "hm.npc." + name + ".greeting" + i;
+            key = "hm.npc." + name + ".greeting" + i;
             String greeting = Text.localize(key);
             if (!greeting.equals(key)) {
                 greetings.add(greeting);
@@ -120,7 +128,7 @@ public class NPC {
         isMiner = true;
         return this;
     }
-    
+
     public NPC setHeight(float height, float offset) {
         this.height = height;
         this.offset = offset;
@@ -136,10 +144,14 @@ public class NPC {
         return age == CHILD;
     }
 
+    public boolean isMarriageCandidate() {
+        return age == ADULT;
+    }
+
     public float getHeight() {
         return height;
     }
-    
+
     public float getOffset() {
         return offset;
     }
@@ -203,6 +215,14 @@ public class NPC {
 
     public String getThanks(Quality value) {
         return thanks.get(value.ordinal());
+    }
+
+    public String getAcceptProposal() {
+        return accept;
+    }
+
+    public String getRejectProposal() {
+        return reject;
     }
 
     public boolean respawns() {

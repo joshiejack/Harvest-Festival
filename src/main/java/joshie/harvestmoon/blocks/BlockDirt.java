@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import joshie.harvestmoon.config.General;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -80,6 +82,10 @@ public class BlockDirt extends BlockHMBaseMeta {
     @SideOnly(Side.CLIENT)
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, List list) {
-        return;
+        if (General.DEBUG_MODE) {
+            for (int i = 0; i < 16; i++) {
+                list.add(new ItemStack(item, 1, i));
+            }
+        }
     }
 }

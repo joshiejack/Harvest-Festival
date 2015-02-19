@@ -2,6 +2,7 @@ package joshie.harvestmoon.buildings.placeable;
 
 import java.util.HashMap;
 
+import joshie.harvestmoon.HarvestMoon;
 import joshie.harvestmoon.blocks.BlockWood;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceableEntity;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceableItemFrame;
@@ -35,6 +36,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+
+import org.apache.logging.log4j.Level;
 
 public class PlaceableHelper {
     public static HashMap<String, PlaceableEntity> entities = new HashMap();
@@ -139,7 +142,7 @@ public class PlaceableHelper {
         if (block == Blocks.cauldron) print = "Blocks.cauldron";
         if (block == Blocks.reeds) print = "Blocks.reeds";
         if (block == Blocks.cake) print = "Blocks.cake";
-        if (print.equals("//TODO: ITEM NAME")) System.out.println(block);
+        if (print.equals("//TODO: ITEM NAME")) HarvestMoon.logger.log(Level.INFO, block);
 
         return "list.add(new Placeable" + getPrefixString(block) + "(" + print + ", " + meta + ", " + x + ", " + y + ", " + z + "));";
     }

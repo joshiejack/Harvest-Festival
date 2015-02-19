@@ -1,17 +1,24 @@
 package joshie.harvestmoon.blocks;
 
+import java.util.List;
+
 import joshie.harvestmoon.blocks.tiles.TileMarker;
 import joshie.harvestmoon.buildings.BuildingGroup;
+import joshie.harvestmoon.config.General;
 import joshie.harvestmoon.init.HMNPCs;
 import joshie.harvestmoon.lib.RenderIds;
 import joshie.harvestmoon.npc.EntityNPCBuilder;
 import net.minecraft.block.material.Material;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockPreview extends BlockHMBaseMeta {
     public static final int N1_T__N2_T__SWAP_F = 0;
@@ -86,11 +93,11 @@ public class BlockPreview extends BlockHMBaseMeta {
             }
 
             builder.setPosition(x, y, z);
-            
+
             if (!world.isRemote) {
                 world.spawnEntityInWorld(builder);
             }
-            
+
             builder.startBuilding(marker.getBuilding(), x, y, z, getN1FromMeta(meta), getN2FromMeta(meta), getSwapFromMeta(meta));
             world.setBlockToAir(x, y, z);
 
@@ -115,6 +122,16 @@ public class BlockPreview extends BlockHMBaseMeta {
         if (group != null) {
             TileMarker marker = (TileMarker) world.getTileEntity(x, y, z);
             marker.setBuilding(group, group.getRandom());
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void getSubBlocks(Item item, CreativeTabs tab, List list) {
+        if (General.DEBUG_MODE) {
+            for (int i = 0; i < 8; i++) {
+                list.add(new ItemStack(item, 1, i));
+            }
         }
     }
 }

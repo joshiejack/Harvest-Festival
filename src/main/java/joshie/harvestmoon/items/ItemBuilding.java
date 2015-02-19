@@ -27,4 +27,9 @@ public class ItemBuilding extends ItemHMMeta {
             return group.getName();
         } else return "invalid";
     }
+    
+    @Override
+    public String getItemStackDisplayName(ItemStack stack) {
+        return "[SPAWN] " + super.getItemStackDisplayName(stack); 
+    }
 }

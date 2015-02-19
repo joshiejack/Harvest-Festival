@@ -4,7 +4,20 @@ hm.mode.true=Harvest Moon was set to easy mode!
 hm.mode.false=Harvest Moon was set to hard mode!
 
 #Buildings
-hm.structures.pond=[SPAWN] Harvest Goddess Pond
+hm.structures.barn=Animal Ranch
+hm.structures.blacksmith=Blacksmith
+hm.structures.cafe=Cafe
+hm.structures.carpenter=Carpenter
+hm.structures.church=Church
+hm.structures.clockmaker=Clockmaker
+hm.structures.fishinghole=Fishing Hole
+hm.structures.fishinghut=Fishing Hut
+hm.structures.goddesspond=Goddess Pond
+hm.structures.mininghill=Mining Hill
+hm.structures.mininghut=Mining Hut
+hm.structures.poultryfarm=Poultry Farm
+hm.structures.supermarket=General Store
+hm.structures.townhall=Townhall
 
 #Cheat Items (Translators don't bother tranlating these, I just use them to help with dev)
 hm.cheat.coord.setter=[BuildingGen] Coordinate Setter
@@ -60,6 +73,7 @@ hm.general.item.whisked.egg=Whisked Egg
 hm.general.item.potato.slices=Potato Slices
 hm.general.item.butter=Butter
 hm.general.item.salt=Salt
+hm.general.item.miracle.potion=Miracle Potion
 
 #Meals
 hm.meal.level=Restores
@@ -146,24 +160,23 @@ hm.treat.cat=Cat Treat
 hm.treat.dog=Dog Treat
 hm.treat.other=Animal Treat
 
-
 #Blocks
+hm.cookware.fridge=Fridge
+hm.cookware.fridge.top=Fridge
+hm.cookware.kitchen=Kitchen Counter
+hm.cookware.pot=Cooking Pot
+hm.cookware.frying.pan=Frying Pan
+hm.cookware.mixer=Food Mixer
+hm.cookware.oven=Oven
+hm.cookware.chopping.board=Chopping Board
+hm.cookware.mixing.bowl=Mixing Bowl
+hm.cookware.baking=Baking Tray
+hm.cookware.steamer=Steamer
+
 hm.general.block.shipping=Shipment Box
-hm.general.block.fridge=Fridge
-hm.general.block.fridge.top=Fridge
-hm.general.block.kitchen=Kitchen Counter
-hm.general.block.pot=Cooking Pot
-hm.general.block.frying.pan=Frying Pan
-hm.general.block.mixer=Food Mixer
-hm.general.block.oven=Oven
-hm.general.block.steamer=Steamer
 hm.general.block.chest=Rural Chest
-hm.general.block.baking=Baking Tray
-hm.general.block.chopping.board=Chopping Board
-hm.general.block.mixing.bowl=Mixing Bowl
 hm.general.block.nest=Incubator
 hm.general.block.trough=Food Trough
-hm.general.block.display=Shelves
 
 hm.flowers.block.goddess=Goddess Flower
 
@@ -277,7 +290,6 @@ hm.npc.jenni.greeting3=Don't tell anybody but I'm secretly a huge fan of Belly D
 hm.npc.jenni.greeting4=Sometimes I wish I would open on Sundays, but then I remember how much I love a good lay in.
 hm.npc.jenni.greeting5=Granny Katlin sure makes a mean soup!
 hm.npc.jenni.greeting6=My prices are the best in the town, noone can beat ol' jenni's bargains.
-hm.npc.jenni.greeting7=Do you want to fuck me? <BR>@Yes<BR>@No
 
 #Jim
 hm.npc.jim.greeting1=What's your favourite animal? Mine's the fox, the spiteful buggers.

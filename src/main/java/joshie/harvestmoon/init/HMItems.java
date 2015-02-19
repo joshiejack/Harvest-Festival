@@ -1,5 +1,6 @@
 package joshie.harvestmoon.init;
 
+import joshie.harvestmoon.config.General;
 import joshie.harvestmoon.items.ItemBuilding;
 import joshie.harvestmoon.items.ItemCheat;
 import joshie.harvestmoon.items.ItemCrop;
@@ -14,7 +15,7 @@ import joshie.harvestmoon.items.ItemTreat;
 import joshie.harvestmoon.items.ItemWateringCan;
 import net.minecraft.item.Item;
 
-public class HMItems {   
+public class HMItems {
     public static Item crops;
     public static Item seeds;
     public static Item general;
@@ -37,7 +38,6 @@ public class HMItems {
         general = new ItemGeneral().setUnlocalizedName("general.item");
         meal = new ItemMeal().setUnlocalizedName("meal");
         sized = new ItemSized().setUnlocalizedName("sizeable");
-        structures = new ItemBuilding().setUnlocalizedName("structures");
         spawner = new ItemNPCSpawner().setUnlocalizedName("spawner");
         treats = new ItemTreat().setUnlocalizedName("treat");
 
@@ -46,7 +46,10 @@ public class HMItems {
         sickle = new ItemSickle().setUnlocalizedName("sickle");
         wateringcan = new ItemWateringCan().setUnlocalizedName("wateringcan");
 
-        cheat = new ItemCheat().setUnlocalizedName("cheat");
+        if (General.DEBUG_MODE) {
+            cheat = new ItemCheat().setUnlocalizedName("cheat");
+            structures = new ItemBuilding().setUnlocalizedName("structures");
+        }
     }
 
 }

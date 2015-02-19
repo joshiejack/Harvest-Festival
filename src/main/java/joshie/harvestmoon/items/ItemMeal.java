@@ -5,6 +5,7 @@ import static joshie.harvestmoon.lib.HMModInfo.MEALPATH;
 
 import java.util.List;
 
+import joshie.harvestmoon.config.General;
 import joshie.harvestmoon.cooking.FoodRegistry;
 import joshie.harvestmoon.cooking.Meal;
 import joshie.harvestmoon.cooking.Recipe;
@@ -31,7 +32,7 @@ public class ItemMeal extends ItemHMMeta {
     public int getMetaCount() {
         return 1;
     }
-    
+
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
         if (stack.hasTagCompound()) {
@@ -45,11 +46,13 @@ public class ItemMeal extends ItemHMMeta {
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean debug) {
-        if (stack.hasTagCompound() && debug) {
-            list.add(Translate.translate("meal.level") + " : " + stack.stackTagCompound.getInteger("FoodLevel"));
-            list.add(Translate.translate("meal.sat") + " : " + stack.stackTagCompound.getFloat("FoodSaturation"));
-            list.add(Translate.translate("meal.stamina") + " : " + stack.stackTagCompound.getInteger("FoodStamina"));
-            list.add(Translate.translate("meal.fatigue") + " : " + stack.stackTagCompound.getInteger("FoodFatigue"));
+        if (General.DEBUG_MODE) {
+            if (stack.hasTagCompound()) {
+                list.add(Translate.translate("meal.level") + " : " + stack.stackTagCompound.getInteger("FoodLevel"));
+                list.add(Translate.translate("meal.sat") + " : " + stack.stackTagCompound.getFloat("FoodSaturation"));
+                list.add(Translate.translate("meal.stamina") + " : " + stack.stackTagCompound.getInteger("FoodStamina"));
+                list.add(Translate.translate("meal.fatigue") + " : " + stack.stackTagCompound.getInteger("FoodFatigue"));
+            }
         }
     }
 

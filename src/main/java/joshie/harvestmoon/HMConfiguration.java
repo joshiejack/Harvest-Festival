@@ -14,6 +14,7 @@ public class HMConfiguration {
     public static boolean EASY_MODE = false;
 
     public static void init() {
+        initConfig("General");
         initConfig("Animals");
         initConfig("Calendar");
         initConfig("Client");

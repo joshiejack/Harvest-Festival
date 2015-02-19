@@ -49,8 +49,8 @@ public class BlockCookware extends BlockHMBaseMeta {
     public static final int OVEN = 6;
     public static final int STEAMER = 7;
     public static final int CHOPPING_BOARD = 8;
-    public static final int MIXING_BOWL = 10;
-    public static final int BAKING_GLASS = 11;
+    public static final int MIXING_BOWL = 9;
+    public static final int BAKING_GLASS = 10;
 
     public BlockCookware() {
         super(Material.piston);
@@ -228,7 +228,7 @@ public class BlockCookware extends BlockHMBaseMeta {
 
     @Override
     public int getMetaCount() {
-        return 12;
+        return 11;
     }
 
     @SideOnly(Side.CLIENT)

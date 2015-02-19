@@ -21,12 +21,14 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class BlockWood extends BlockHMBaseMeta {
     public static final int SHIPPING = 0;
     public static final int RURAL_CHEST = 1;
     public static final int NEST = 2;
     public static final int TROUGH = 3;
+    public static final int TROUGH_2 = 4;
 
     public static final int OLD_RURAL_CHEST = 9;
 
@@ -114,9 +116,19 @@ public class BlockWood extends BlockHMBaseMeta {
 
     @Override
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
+        ForgeDirection dir = DirectionHelper.getFacingFromEntity(entity);
+        int meta = stack.getItemDamage();
         TileEntity tile = world.getTileEntity(x, y, z);
         if (tile instanceof IFaceable) {
-            ((IFaceable) tile).setFacing(DirectionHelper.getFacingFromEntity(entity));
+            ((IFaceable) tile).setFacing(dir);
+        }
+
+        if (meta == TROUGH || meta == TROUGH_2) {
+            if (dir == ForgeDirection.WEST || dir == ForgeDirection.EAST) {
+                world.setBlockMetadataWithNotify(x, y, z, TROUGH_2, 2);
+            } else if (dir == ForgeDirection.NORTH || dir == ForgeDirection.SOUTH) {
+                world.setBlockMetadataWithNotify(x, y, z, TROUGH, 2);
+            }
         }
     }
 
@@ -167,7 +179,12 @@ public class BlockWood extends BlockHMBaseMeta {
     }
 
     @Override
+    public boolean isActive(int meta) {
+        return meta != TROUGH_2;
+    }
+
+    @Override
     public int getMetaCount() {
-        return 4;
+        return 5;
     }
 }

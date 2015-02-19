@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
+import joshie.harvestmoon.blocks.BlockDirt.FloorType;
 import joshie.harvestmoon.helpers.generic.ItemHelper;
 import joshie.harvestmoon.mining.loot.LootChance;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,11 +12,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class MiningLoot {
-    private static HashMap<Integer, Loot> loots = new HashMap();
+    private static HashMap<FloorType, Loot> loots = new HashMap();
     private static Random rand = new Random();
 
     public static void getLoot(World world, int x, int y, int z, EntityPlayer player, int meta) {
-        Loot loot = loots.get(meta);
+        Loot loot = loots.get(FloorType.values()[meta]);
         if (loot == null) return;
         ArrayList<LootChance> lootList = loot.loot;
         for (LootChance l : lootList) {
@@ -28,13 +29,13 @@ public class MiningLoot {
         }
     }
 
-    public static void registerLoot(int meta, ItemStack stack, double chance) {
+    public static void registerLoot(FloorType meta, ItemStack stack, double chance) {
         Loot loot = loots.get(meta) != null ? loots.get(meta) : new Loot();
         loot.loot.add(new LootChance(stack, chance));
         loots.put(meta, loot);
     }
 
-    public static void registerLoot(int meta, LootChance chance) {
+    public static void registerLoot(FloorType meta, LootChance chance) {
         Loot loot = loots.get(meta) != null ? loots.get(meta) : new Loot();
         loot.loot.add(chance);
         loots.put(meta, loot);

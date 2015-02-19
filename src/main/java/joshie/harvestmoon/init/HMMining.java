@@ -1,10 +1,10 @@
 package joshie.harvestmoon.init;
 
-import static joshie.harvestmoon.blocks.BlockDirt.ALL_FLOORS;
-import static joshie.harvestmoon.blocks.BlockDirt.CURSED_FLOOR;
-import static joshie.harvestmoon.blocks.BlockDirt.GOLD_FLOOR;
-import static joshie.harvestmoon.blocks.BlockDirt.MYSTRIL_FLOOR;
-import static joshie.harvestmoon.blocks.BlockDirt.MYTHIC_FLOOR;
+import static joshie.harvestmoon.blocks.BlockDirt.FloorType.ALL_FLOORS;
+import static joshie.harvestmoon.blocks.BlockDirt.FloorType.CURSED_FLOOR;
+import static joshie.harvestmoon.blocks.BlockDirt.FloorType.GOLD_FLOOR;
+import static joshie.harvestmoon.blocks.BlockDirt.FloorType.MYSTRIL_FLOOR;
+import static joshie.harvestmoon.blocks.BlockDirt.FloorType.MYTHIC_FLOOR;
 import static joshie.harvestmoon.items.ItemGeneral.COPPER_ORE;
 import static joshie.harvestmoon.items.ItemGeneral.GOLD_ORE;
 import static joshie.harvestmoon.items.ItemGeneral.JUNK_ORE;

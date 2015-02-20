@@ -11,7 +11,7 @@ import net.minecraft.item.ItemStack;
 public abstract class Gifts {
 
     private static HashMap<SafeStack, Category[]> gifts = new HashMap();;
-    
+
     public Quality getQuality(ItemStack stack) {
         return Quality.DECENT;
     }
@@ -27,23 +27,18 @@ public abstract class Gifts {
         return false;
     }
 
-    public static void assign(ItemStack stack, Category... category) {
-        gifts.put(new SafeStack(stack), category);
-    }
-
-    public static void assignWild(ItemStack stack, Category... category) {
-        gifts.put(new WildStack(stack), category);
-    }
-
-    public static void assignWild(Object item, Category... category) {
+    public static void assign(Object item, Category... category) {
         if (item instanceof Item) {
-            assignWild(new ItemStack((Item) item), category);
-        } else assignWild(new ItemStack((Block) item), category);
+            gifts.put(new WildStack(new ItemStack((Item) item)), category);
+        } else if (item instanceof Block) {
+            gifts.put(new WildStack(new ItemStack((Block) item)), category);
+        } else {
+            gifts.put(new SafeStack((ItemStack) item), category);
+        }
     }
 
     public static enum Category {
-        CUTE, SCARY, MINING, NATURE, ANIMALS, COOKING, TOOLS, WATER, PRETTY, CHEAP, FARMING, 
-        CONSTRUCTION, RARE, GIRLY, KNITTING, TECHNOLOGY, DANGER, BATTLE;
+        CUTE, SCARY, MINING, NATURE, ANIMALS, COOKING, TOOLS, WATER, PRETTY, CHEAP, FARMING, CONSTRUCTION, RARE, GIRLY, KNITTING, TECHNOLOGY, DANGER, BATTLE;
     }
 
     public static enum Quality {

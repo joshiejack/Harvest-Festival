@@ -44,7 +44,7 @@ public class HMShops {
 
     private static void supermarket() {
         /* Register all crop seeds to the seed shop */
-        supermarket = new ShopInventory("seeds", 166);
+        supermarket = new ShopInventory("general", 166);
         for (Crop crop : Crop.crops) {
             supermarket.addItem(new PurchaseableCropSeeds(crop));
         }

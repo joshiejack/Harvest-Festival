@@ -6,16 +6,26 @@ import joshie.harvestmoon.animals.AnimalType.FoodType;
 import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.crops.CropData.WitherType;
 import joshie.harvestmoon.lib.CropMeta;
+import joshie.harvestmoon.lib.HMModInfo;
 import joshie.harvestmoon.util.Translate;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.WordUtils;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 public class Crop {
     public static final ArrayList<Crop> crops = new ArrayList(30);
 
     //CropData
+    @SideOnly(Side.CLIENT)
+    protected IIcon[] stageIcons;
+    @SideOnly(Side.CLIENT)
+    protected IIcon giantIcon;
     protected String unlocalized;
     protected boolean alternativeName;
     protected boolean isStatic;
@@ -68,7 +78,7 @@ public class Crop {
         this.isStatic = true;
         return this;
     }
-    
+
     public Crop setFoodType(FoodType foodType) {
         this.foodType = foodType;
         return this;
@@ -210,6 +220,20 @@ public class Crop {
         text = StringUtils.replace(text, "%C", name);
         text = StringUtils.replace(text, "%S", seeds);
         return text;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public IIcon getIcon(int stage, boolean isGiantCrop) {
+        return isGiantCrop && stage == getStages() ? giantIcon : stageIcons[Math.max(0, stage - 1)];
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IIconRegister register) {
+        giantIcon = register.registerIcon(HMModInfo.CROPPATH + unlocalized + "/stage_giant");
+        stageIcons = new IIcon[getStages()];
+        for (int i = 0; i < getStages(); i++) {
+            stageIcons[i] = register.registerIcon(HMModInfo.CROPPATH + unlocalized + "/stage_" + i);
+        }
     }
 
     @Override

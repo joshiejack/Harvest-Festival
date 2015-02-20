@@ -10,6 +10,7 @@ import joshie.harvestmoon.init.HMItems;
 import joshie.harvestmoon.util.IData;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.IIcon;
 
 public class CropData implements IData {
     private static final Random rand = new Random();
@@ -82,6 +83,10 @@ public class CropData implements IData {
     
     public boolean isEdible() {
         return crop.isStatic();
+    }
+    
+    public IIcon getIcon() {
+        return crop.getIcon(stage, isGiantCrop);
     }
 
     public ItemStack harvest() {

@@ -5,14 +5,16 @@ import static joshie.harvestmoon.helpers.CropHelper.harvestCrop;
 
 import java.util.Random;
 
-import joshie.harvestmoon.crops.render.RenderCrop;
-import joshie.harvestmoon.lib.RenderIds;
+import joshie.harvestmoon.crops.Crop;
+import joshie.harvestmoon.helpers.CropHelper;
+import joshie.harvestmoon.helpers.generic.MCClientHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
@@ -41,7 +43,13 @@ public class BlockCrop extends BlockHMBase implements IPlantable {
 
     @Override
     public int getRenderType() {
-        return RenderIds.ALL;
+        return 6;
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
+        return CropHelper.getIconForCrop(MCClientHelper.getWorld(), x, y, z);
     }
 
     @Override
@@ -80,7 +88,9 @@ public class BlockCrop extends BlockHMBase implements IPlantable {
 
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister register) {
-        RenderCrop.registerIcons(register);
+        for (Crop crop : Crop.crops) {
+            crop.registerIcons(register);
+        }
     }
 
     @Override

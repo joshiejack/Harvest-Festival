@@ -2,12 +2,16 @@ package joshie.harvestmoon.helpers;
 
 import joshie.harvestmoon.crops.Crop;
 import joshie.harvestmoon.crops.CropData;
+import joshie.harvestmoon.crops.CropTrackerClient;
 import joshie.harvestmoon.crops.CropTrackerServer;
 import joshie.harvestmoon.helpers.generic.ItemHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class CropHelper {
     public static boolean destroyCrop(EntityPlayer player, World world, int x, int y, int z) {
@@ -16,6 +20,11 @@ public class CropHelper {
         }
         
         return true;
+    }
+    
+    @SideOnly(Side.CLIENT)
+    public static IIcon getIconForCrop(World world, int x, int y, int z) {
+        return getClientTracker().getIconForCrop(world, x, y, z);
     }
     
     public static void hydrate(World world, int x, int y, int z) {
@@ -109,6 +118,10 @@ public class CropHelper {
 
     public static CropTrackerServer getServerTracker() {
         return ServerHelper.getCropTracker();
+    }
+    
+    public static CropTrackerClient getClientTracker() {
+        return ClientHelper.getCropTracker();
     }
 
     public static void newDay() {

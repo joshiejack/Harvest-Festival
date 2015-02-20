@@ -6,7 +6,6 @@ import joshie.harvestmoon.blocks.BlockHMBaseMeta;
 import joshie.harvestmoon.blocks.render.RenderBlockPreview;
 import joshie.harvestmoon.blocks.render.SpecialRendererFryingPan;
 import joshie.harvestmoon.blocks.tiles.TileFryingPan;
-import joshie.harvestmoon.crops.Crop;
 import joshie.harvestmoon.handlers.RenderHandler;
 import joshie.harvestmoon.handlers.events.RenderEvents;
 import joshie.harvestmoon.helpers.ClientHelper;
@@ -34,12 +33,6 @@ public class HMClientProxy extends HMCommonProxy {
     @Override
     public void preInit() {
         ClientHelper.resetClient();
-
-        for (Crop crop : Crop.crops) {
-            try {
-                RenderHandler.registerCrop(crop.getUnlocalizedName(), Class.forName(JAVAPATH + "crops.render." + crop.getRenderName()));
-            } catch (Exception e) {}
-        }
 
         registerRenders(HMBlocks.cookware);
         registerRenders(HMBlocks.woodmachines);

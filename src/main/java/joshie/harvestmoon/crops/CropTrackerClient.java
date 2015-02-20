@@ -3,6 +3,7 @@ package joshie.harvestmoon.crops;
 import java.util.HashMap;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -21,6 +22,10 @@ public class CropTrackerClient {
 
     public int getCropStage(World world, int x, int y, int z) {
         return crops.get(getKey(world, x, y, z)).getStage();
+    }
+    
+    public IIcon getIconForCrop(World world, int x, int y, int z) {
+        return crops.get(getKey(world, x, y, z)).getIcon();
     }
 
     public String getCropName(World world, int x, int y, int z) {

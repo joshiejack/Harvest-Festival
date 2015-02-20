@@ -1,44 +1,18 @@
 # To-Do Stuff, feel free to help with any!
-## Coding
-### Features
-- [x] Grass Crop
-- [x] Cows and Sheep eat Grass crops automatically
-- [x] Trough, Autofeeds surrounding Cows and Sheep
-- [x] Add Plot Marker for buildings
-- [x] Make the nest functional, hatching eggs
-- [ ] Universal Fridge inventory
-- [x] Confirmation Screens for NPCs
-- [x] Rural Chests, With Inventories
-- [x] Make mines have the potential to collapse (spawn cobble and gravel).
-- [x] Add effects when your stamina reaches zero, Slower movement, Hunger drops quicker. 
-- [x] Add blurry vision when about to pass out from fatigue, Occasional headaches.
-- [ ] Finish Shop GUI, Add Scroll, make it's height scale to gui size.
-- [x] Force NPCs to shop mode
-- [x] Stamina and Fatigue operational (you gain from using tools)
-- [x] Pass out when your fatigue reaches 255
-- [x] Add Knife, Rolling Pin
-- [x] Miracle potions functioning
-- [x] Spawning the Harvest Goddess
-- [x] Add Ores
-- [x] Add Mining NPC
-
 ### Tediousnessess
 - [ ] More Meals and Recipes
 - [ ] Register my items/blocks as gift types
 - [ ] 5 Million configs
 
 ### Rendering
-- [ ] Crops
 - [ ] Shipping Bin
 - [ ] Oven
 - [ ] Mixer
 - [ ] Mixing Bowl
 - [ ] Chopping Board
 - [ ] Baking thing
-- [ ] Nest
+- [ ] Incubator
 - [ ] Rural Chest
-- [ ] Trough
-- [ ] Display Unit
 - [ ] Render Items in Kitchen things and Animations
 
 ### Questing
@@ -83,19 +57,224 @@
 
 ## Aesthetics 
 ###Textures
+- [ ] blocks/barn.png
+- [ ] blocks/blacksmith.png
+- [ ] blocks/cafe.png
+- [ ] blocks/carpenter.png
+- [ ] blocks/chest.png
+- [ ] blocks/church.png
+- [ ] blocks/clockmaker.png
+- [ ] blocks/crops/cabbage/stage_0.png
+- [ ] blocks/crops/cabbage/stage_1.png
+- [ ] blocks/crops/cabbage/stage_10.png
+- [ ] blocks/crops/cabbage/stage_11.png
+- [ ] blocks/crops/cabbage/stage_12.png
+- [ ] blocks/crops/cabbage/stage_13.png
+- [ ] blocks/crops/cabbage/stage_14.png
+- [ ] blocks/crops/cabbage/stage_2.png
+- [ ] blocks/crops/cabbage/stage_3.png
+- [ ] blocks/crops/cabbage/stage_4.png
+- [ ] blocks/crops/cabbage/stage_5.png
+- [ ] blocks/crops/cabbage/stage_6.png
+- [ ] blocks/crops/cabbage/stage_7.png
+- [ ] blocks/crops/cabbage/stage_8.png
+- [ ] blocks/crops/cabbage/stage_9.png
+- [ ] blocks/crops/cabbage/stage_giant.png
+- [ ] blocks/crops/carrot/stage_0.png
+- [ ] blocks/crops/carrot/stage_1.png
+- [ ] blocks/crops/carrot/stage_2.png
+- [ ] blocks/crops/carrot/stage_3.png
+- [ ] blocks/crops/carrot/stage_4.png
+- [ ] blocks/crops/carrot/stage_5.png
+- [ ] blocks/crops/carrot/stage_6.png
+- [ ] blocks/crops/carrot/stage_7.png
+- [ ] blocks/crops/carrot/stage_giant.png
+- [ ] blocks/crops/corn/stage_0.png
+- [ ] blocks/crops/corn/stage_1.png
+- [ ] blocks/crops/corn/stage_10.png
+- [ ] blocks/crops/corn/stage_11.png
+- [ ] blocks/crops/corn/stage_12.png
+- [ ] blocks/crops/corn/stage_13.png
+- [ ] blocks/crops/corn/stage_14.png
+- [ ] blocks/crops/corn/stage_2.png
+- [ ] blocks/crops/corn/stage_3.png
+- [ ] blocks/crops/corn/stage_4.png
+- [ ] blocks/crops/corn/stage_5.png
+- [ ] blocks/crops/corn/stage_6.png
+- [ ] blocks/crops/corn/stage_7.png
+- [ ] blocks/crops/corn/stage_8.png
+- [ ] blocks/crops/corn/stage_9.png
+- [ ] blocks/crops/corn/stage_giant.png
+- [ ] blocks/crops/cucumber/stage_0.png
+- [ ] blocks/crops/cucumber/stage_1.png
+- [ ] blocks/crops/cucumber/stage_2.png
+- [ ] blocks/crops/cucumber/stage_3.png
+- [ ] blocks/crops/cucumber/stage_4.png
+- [ ] blocks/crops/cucumber/stage_5.png
+- [ ] blocks/crops/cucumber/stage_6.png
+- [ ] blocks/crops/cucumber/stage_7.png
+- [ ] blocks/crops/cucumber/stage_8.png
+- [ ] blocks/crops/cucumber/stage_9.png
+- [ ] blocks/crops/cucumber/stage_giant.png
+- [ ] blocks/crops/eggplant/stage_0.png
+- [ ] blocks/crops/eggplant/stage_1.png
+- [ ] blocks/crops/eggplant/stage_2.png
+- [ ] blocks/crops/eggplant/stage_3.png
+- [ ] blocks/crops/eggplant/stage_4.png
+- [ ] blocks/crops/eggplant/stage_5.png
+- [ ] blocks/crops/eggplant/stage_6.png
+- [ ] blocks/crops/eggplant/stage_7.png
+- [ ] blocks/crops/eggplant/stage_8.png
+- [ ] blocks/crops/eggplant/stage_9.png
+- [ ] blocks/crops/eggplant/stage_giant.png
+- [ ] blocks/crops/grass/stage_0.png
+- [ ] blocks/crops/grass/stage_1.png
+- [ ] blocks/crops/grass/stage_10.png
+- [ ] blocks/crops/grass/stage_2.png
+- [ ] blocks/crops/grass/stage_3.png
+- [ ] blocks/crops/grass/stage_4.png
+- [ ] blocks/crops/grass/stage_5.png
+- [ ] blocks/crops/grass/stage_6.png
+- [ ] blocks/crops/grass/stage_7.png
+- [ ] blocks/crops/grass/stage_8.png
+- [ ] blocks/crops/grass/stage_9.png
+- [ ] blocks/crops/grass/stage_giant.png
+- [ ] blocks/crops/onion/stage_0.png
+- [ ] blocks/crops/onion/stage_1.png
+- [ ] blocks/crops/onion/stage_2.png
+- [ ] blocks/crops/onion/stage_3.png
+- [ ] blocks/crops/onion/stage_4.png
+- [ ] blocks/crops/onion/stage_5.png
+- [ ] blocks/crops/onion/stage_6.png
+- [ ] blocks/crops/onion/stage_7.png
+- [ ] blocks/crops/onion/stage_giant.png
+- [ ] blocks/crops/pepper_green/stage_0.png
+- [ ] blocks/crops/pepper_green/stage_1.png
+- [ ] blocks/crops/pepper_green/stage_2.png
+- [ ] blocks/crops/pepper_green/stage_3.png
+- [ ] blocks/crops/pepper_green/stage_4.png
+- [ ] blocks/crops/pepper_green/stage_5.png
+- [ ] blocks/crops/pepper_green/stage_6.png
+- [ ] blocks/crops/pepper_green/stage_7.png
+- [ ] blocks/crops/pepper_green/stage_giant.png
+- [ ] blocks/crops/pineapple/stage_0.png
+- [ ] blocks/crops/pineapple/stage_1.png
+- [ ] blocks/crops/pineapple/stage_10.png
+- [ ] blocks/crops/pineapple/stage_11.png
+- [ ] blocks/crops/pineapple/stage_12.png
+- [ ] blocks/crops/pineapple/stage_13.png
+- [ ] blocks/crops/pineapple/stage_14.png
+- [ ] blocks/crops/pineapple/stage_15.png
+- [ ] blocks/crops/pineapple/stage_16.png
+- [ ] blocks/crops/pineapple/stage_17.png
+- [ ] blocks/crops/pineapple/stage_18.png
+- [ ] blocks/crops/pineapple/stage_19.png
+- [ ] blocks/crops/pineapple/stage_2.png
+- [ ] blocks/crops/pineapple/stage_20.png
+- [ ] blocks/crops/pineapple/stage_3.png
+- [ ] blocks/crops/pineapple/stage_4.png
+- [ ] blocks/crops/pineapple/stage_5.png
+- [ ] blocks/crops/pineapple/stage_6.png
+- [ ] blocks/crops/pineapple/stage_7.png
+- [ ] blocks/crops/pineapple/stage_8.png
+- [ ] blocks/crops/pineapple/stage_9.png
+- [ ] blocks/crops/pineapple/stage_giant.png
+- [ ] blocks/crops/potato/stage_0.png
+- [ ] blocks/crops/potato/stage_1.png
+- [ ] blocks/crops/potato/stage_2.png
+- [ ] blocks/crops/potato/stage_3.png
+- [ ] blocks/crops/potato/stage_4.png
+- [ ] blocks/crops/potato/stage_5.png
+- [ ] blocks/crops/potato/stage_6.png
+- [ ] blocks/crops/potato/stage_7.png
+- [ ] blocks/crops/potato/stage_giant.png
+- [ ] blocks/crops/potato_sweet/stage_0.png
+- [ ] blocks/crops/potato_sweet/stage_1.png
+- [ ] blocks/crops/potato_sweet/stage_2.png
+- [ ] blocks/crops/potato_sweet/stage_3.png
+- [ ] blocks/crops/potato_sweet/stage_4.png
+- [ ] blocks/crops/potato_sweet/stage_5.png
+- [ ] blocks/crops/potato_sweet/stage_giant.png
+- [ ] blocks/crops/pumpkin/stage_0.png
+- [ ] blocks/crops/pumpkin/stage_1.png
+- [ ] blocks/crops/pumpkin/stage_10.png
+- [ ] blocks/crops/pumpkin/stage_11.png
+- [ ] blocks/crops/pumpkin/stage_12.png
+- [ ] blocks/crops/pumpkin/stage_13.png
+- [ ] blocks/crops/pumpkin/stage_14.png
+- [ ] blocks/crops/pumpkin/stage_2.png
+- [ ] blocks/crops/pumpkin/stage_3.png
+- [ ] blocks/crops/pumpkin/stage_4.png
+- [ ] blocks/crops/pumpkin/stage_5.png
+- [ ] blocks/crops/pumpkin/stage_6.png
+- [ ] blocks/crops/pumpkin/stage_7.png
+- [ ] blocks/crops/pumpkin/stage_8.png
+- [ ] blocks/crops/pumpkin/stage_9.png
+- [ ] blocks/crops/pumpkin/stage_giant.png
+- [ ] blocks/crops/spinach/stage_0.png
+- [ ] blocks/crops/spinach/stage_1.png
+- [ ] blocks/crops/spinach/stage_2.png
+- [ ] blocks/crops/spinach/stage_3.png
+- [ ] blocks/crops/spinach/stage_4.png
+- [ ] blocks/crops/spinach/stage_5.png
+- [ ] blocks/crops/spinach/stage_giant.png
+- [ ] blocks/crops/strawberry/stage_0.png
+- [ ] blocks/crops/strawberry/stage_1.png
+- [ ] blocks/crops/strawberry/stage_2.png
+- [ ] blocks/crops/strawberry/stage_3.png
+- [ ] blocks/crops/strawberry/stage_4.png
+- [ ] blocks/crops/strawberry/stage_5.png
+- [ ] blocks/crops/strawberry/stage_6.png
+- [ ] blocks/crops/strawberry/stage_7.png
+- [ ] blocks/crops/strawberry/stage_8.png
+- [ ] blocks/crops/strawberry/stage_giant.png
+- [ ] blocks/crops/tomato/stage_0.png
+- [ ] blocks/crops/tomato/stage_1.png
+- [ ] blocks/crops/tomato/stage_2.png
+- [ ] blocks/crops/tomato/stage_3.png
+- [ ] blocks/crops/tomato/stage_4.png
+- [ ] blocks/crops/tomato/stage_5.png
+- [ ] blocks/crops/tomato/stage_6.png
+- [ ] blocks/crops/tomato/stage_7.png
+- [ ] blocks/crops/tomato/stage_8.png
+- [ ] blocks/crops/tomato/stage_9.png
+- [ ] blocks/crops/tomato/stage_giant.png
+- [ ] blocks/crops/turnip/stage_0.png
+- [ ] blocks/crops/turnip/stage_1.png
+- [ ] blocks/crops/turnip/stage_2.png
+- [ ] blocks/crops/turnip/stage_3.png
+- [ ] blocks/crops/turnip/stage_4.png
+- [ ] blocks/crops/turnip/stage_giant.png
+- [ ] blocks/fishingHole.png
+- [ ] blocks/fishingHut.png
 - [ ] blocks/fridge_back.png
 - [ ] blocks/fridge_lower_door.png
 - [ ] blocks/fridge_sides.png
 - [ ] blocks/fridge_upper_door.png
 - [ ] blocks/goddess.png
+- [ ] blocks/goddessPond.png
+- [ ] blocks/miningHill.png
+- [ ] blocks/miningHut.png
+- [ ] blocks/nest.png
+- [ ] blocks/poultryFarm.png
+- [ ] blocks/shipping.png
+- [ ] blocks/supermarket.png
+- [ ] blocks/townhall.png
+- [ ] blocks/trough.png
+- [ ] blocks/trough2.png
 - [ ] blocks/withered_growing.png
 - [ ] blocks/withered_grown.png
 - [ ] blocks/withered_seeds.png
-- [ ] blocks/rural_chest.png
+- [ ] items/barn.png
+- [ ] items/blacksmith.png
 - [ ] items/butter.png
+- [ ] items/cafe.png
+- [ ] items/carpenter.png
 - [ ] items/cheese_large.png
 - [ ] items/cheese_medium.png
 - [ ] items/cheese_small.png
+- [ ] items/church.png
+- [ ] items/clockmaker.png
 - [ ] items/code_generator.png
 - [ ] items/coord_setter.png
 - [ ] items/crops/cabbage.png
@@ -118,7 +297,10 @@
 - [ ] items/egg_medium.png
 - [ ] items/egg_small.png
 - [ ] items/feed.png
+- [ ] items/fishingHole.png
+- [ ] items/fishingHut.png
 - [ ] items/flour.png
+- [ ] items/goddessPond.png
 - [ ] items/hoe_basic.png
 - [ ] items/hoe_blessed.png
 - [ ] items/hoe_copper.png
@@ -147,7 +329,10 @@
 - [ ] items/medicine.png
 - [ ] items/meta_checker.png
 - [ ] items/milker.png
+- [ ] items/miningHill.png
+- [ ] items/miningHut.png
 - [ ] items/miracle_potion.png
+- [ ] items/name.png
 - [ ] items/oil.png
 - [ ] items/ore_copper.png
 - [ ] items/ore_gold.png
@@ -155,6 +340,7 @@
 - [ ] items/ore_mystril.png
 - [ ] items/ore_silver.png
 - [ ] items/potato_slices.png
+- [ ] items/poultryFarm.png
 - [ ] items/render_generator.png
 - [ ] items/riceball.png
 - [ ] items/rolling_pin.png
@@ -180,14 +366,16 @@
 - [ ] items/shiitake_small.png
 - [ ] items/shoot_bamboo.png
 - [ ] items/stone_mythic.png
-- [ ] items/test.png
+- [ ] items/supermarket.png
 - [ ] items/toadstool_large.png
 - [ ] items/toadstool_medium.png
 - [ ] items/toadstool_small.png
+- [ ] items/townhall.png
 - [ ] items/treats/cat.png
 - [ ] items/treats/chicken.png
-- [ ] items/treats/horse.png
 - [ ] items/treats/cow.png
+- [ ] items/treats/dog.png
+- [ ] items/treats/horse.png
 - [ ] items/treats/other.png
 - [ ] items/treats/pig.png
 - [ ] items/treats/sheep.png

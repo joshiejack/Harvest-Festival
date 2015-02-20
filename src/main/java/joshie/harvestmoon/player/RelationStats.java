@@ -45,6 +45,12 @@ public class RelationStats implements IData {
         } else return null;
     }
 
+    public void sync() {
+        for (Relatable relatable : relations.keySet()) {
+            relatable.sendPacket(master.getAndCreatePlayer(), relations.get(relatable), false);
+        }
+    }
+
     /** Accepts EntityLivingBase, EntityNPC, NPC or UUID
      * Set this entity as having been talked to today **/
     public void setTalkedTo(Object object) {
@@ -94,7 +100,7 @@ public class RelationStats implements IData {
         markDirty();
         return true;
     }
-    
+
     public boolean setMarried(Object object) {
         Relatable relate = getRelatable(object);
         markDirty();

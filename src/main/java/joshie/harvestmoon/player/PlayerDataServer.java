@@ -7,8 +7,10 @@ import java.util.UUID;
 
 import joshie.harvestmoon.calendar.CalendarDate;
 import joshie.harvestmoon.crops.CropData;
+import joshie.harvestmoon.helpers.PlayerHelper;
 import joshie.harvestmoon.helpers.generic.EntityHelper;
 import joshie.harvestmoon.network.PacketSyncBirthday;
+import joshie.harvestmoon.network.PacketSyncFridge;
 import joshie.harvestmoon.network.PacketSyncGold;
 import joshie.harvestmoon.network.PacketSyncStats;
 import joshie.harvestmoon.npc.EntityNPC;
@@ -156,6 +158,8 @@ public class PlayerDataServer implements IData {
         sendToClient(new PacketSyncBirthday(playerStats.getBirthday()), getAndCreatePlayer());
         sendToClient(new PacketSyncGold(playerStats.getGold()), getAndCreatePlayer());
         sendToClient(new PacketSyncStats(playerStats.getStamina(), playerStats.getFatigue(), playerStats.getStaminaMax(), playerStats.getFatigueMin()), getAndCreatePlayer());
+        sendToClient(new PacketSyncFridge(fridge), (EntityPlayerMP) getAndCreatePlayer());
+        relationStats.sync();
     }
 
     public void addGold(long gold) {

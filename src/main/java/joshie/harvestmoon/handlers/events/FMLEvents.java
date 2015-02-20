@@ -26,7 +26,6 @@ public class FMLEvents {
             PlayerDataServer data = PlayerHelper.getData(player);
             data.syncPlayerStats();
             data.getQuests().syncQuests();
-            sendToClient(new PacketSyncFridge(PlayerHelper.getFridge(player)), (EntityPlayerMP) player);
         }
     }
 

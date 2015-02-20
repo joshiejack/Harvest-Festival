@@ -18,7 +18,7 @@ import net.minecraft.item.ItemStack;
 
 public class BuildingBarn extends Building {
     public BuildingBarn() {
-        super(-1);
+        offsetY = - 1;
         list = new ArrayList(523);
         list.add(new PlaceableLog(Blocks.log, 1, 1, 0, 1));
         list.add(new PlaceableBlock(Blocks.planks, 1, 1, 0, 2));

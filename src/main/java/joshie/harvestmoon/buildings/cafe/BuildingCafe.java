@@ -24,7 +24,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public class BuildingCafe extends Building {
     public BuildingCafe() {
-        super(-1);
+        offsetY = - 1;
         list = new ArrayList(1296);
         list.add(new PlaceableBlock(Blocks.planks, 5, 0, 0, 1));
         list.add(new PlaceableBlock(Blocks.planks, 5, 0, 0, 5));

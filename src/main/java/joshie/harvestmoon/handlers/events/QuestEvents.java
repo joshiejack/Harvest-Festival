@@ -24,10 +24,10 @@ public class QuestEvents {
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public void onRightClickGround(PlayerInteractEvent event) {
-        HashSet<Quest> quests = getCurrentQuest(event.entityPlayer);
-        for (Quest quest : quests) {
-            if (quest != null) {
-                if (event.action == Action.RIGHT_CLICK_BLOCK) {
+        if (event.action == Action.RIGHT_CLICK_BLOCK) {
+            HashSet<Quest> quests = getCurrentQuest(event.entityPlayer);
+            for (Quest quest : quests) {
+                if (quest != null) {
                     quest.onRightClickBlock(event.entityPlayer, event.world, event.x, event.y, event.z, event.face);
                 }
             }

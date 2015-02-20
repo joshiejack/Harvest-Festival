@@ -26,7 +26,7 @@ public abstract class Placeable {
         return offsetZ;
     }
 
-    protected boolean canPlace(PlacementStage stage) {
+    public boolean canPlace(PlacementStage stage) {
         return stage == PlacementStage.BLOCKS;
     }
 

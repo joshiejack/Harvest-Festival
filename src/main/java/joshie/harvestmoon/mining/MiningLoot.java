@@ -1,7 +1,7 @@
 package joshie.harvestmoon.mining;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Random;
 
 import joshie.harvestmoon.blocks.BlockDirt.FloorType;
@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class MiningLoot {
-    private static HashMap<FloorType, Loot> loots = new HashMap();
+    private static EnumMap<FloorType, Loot> loots = new EnumMap(FloorType.class);
     private static Random rand = new Random();
 
     public static void getLoot(World world, int x, int y, int z, EntityPlayer player, int meta) {

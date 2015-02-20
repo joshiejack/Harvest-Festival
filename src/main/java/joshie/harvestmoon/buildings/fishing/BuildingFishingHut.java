@@ -23,7 +23,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public class BuildingFishingHut extends Building {
     public BuildingFishingHut() {
-        super(-1);
+        offsetY = -1;
         list = new ArrayList(345);
         list.add(new PlaceableBlock(Blocks.planks, 5, 2, 0, 1));
         list.add(new PlaceableBlock(Blocks.planks, 5, 2, 0, 5));

@@ -1,7 +1,5 @@
 package joshie.harvestmoon.buildings;
 
-import java.util.Random;
-
 import joshie.harvestmoon.buildings.placeable.Placeable;
 import joshie.harvestmoon.buildings.placeable.Placeable.PlacementStage;
 import net.minecraft.nbt.NBTTagCompound;
@@ -16,6 +14,7 @@ public class BuildingStage {
     private int subType, index, xCoord, yCoord, zCoord;
 
     public BuildingStage() {}
+
     public BuildingStage(BuildingGroup building, int subType, int x, int y, int z, boolean n1, boolean n2, boolean swap) {
         this.building = building;
         this.subType = subType;
@@ -45,12 +44,23 @@ public class BuildingStage {
                 index = 0;
             }
         } else {
-            Placeable block = building.getBuilding(subType).get(index);
-            block.place(world, xCoord, yCoord, zCoord, n1, n2, swap, stage);
-            index++;
+            while (index < building.getBuilding(subType).getSize()) {
+                Placeable block = building.getBuilding(subType).get(index);
+                if (block.canPlace(stage)) {
+                    block.place(world, xCoord, yCoord, zCoord, n1, n2, swap, stage);
+                    index++;
+                    return this;
+                }
+
+                index++;
+            }
         }
 
         return this;
+    }
+
+    public long getTickTime() {
+        return building.getBuilding(subType).getTickTime();
     }
 
     public boolean isFinished() {

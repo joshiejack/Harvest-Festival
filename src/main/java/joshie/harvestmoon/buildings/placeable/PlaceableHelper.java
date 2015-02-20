@@ -61,17 +61,8 @@ public class PlaceableHelper {
             }
 
             return print;
-        } else return "//TODO: ITEM NAME";
+        } else return "//ITEM NAME";
     }
-
-    /** TODO:
-         * Trip wire
-         * Bed
-         * Skulls
-         * Pistons
-         * Dispenser
-         * Dropper
-         */
 
     public static String getPrefixString(Block block) {
         if (block instanceof BlockStairs) {
@@ -142,7 +133,7 @@ public class PlaceableHelper {
         if (block == Blocks.cauldron) print = "Blocks.cauldron";
         if (block == Blocks.reeds) print = "Blocks.reeds";
         if (block == Blocks.cake) print = "Blocks.cake";
-        if (print.equals("//TODO: ITEM NAME")) HarvestMoon.logger.log(Level.INFO, block);
+        if (print.equals("//ITEM NAME")) HarvestMoon.logger.log(Level.INFO, block);
 
         return "list.add(new Placeable" + getPrefixString(block) + "(" + print + ", " + meta + ", " + x + ", " + y + ", " + z + "));";
     }

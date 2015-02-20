@@ -14,12 +14,13 @@ public class Building {
     private PreviewBlock preview;
     private BuildingGroup group;
     private int index;
-    private int offsetY;
+    protected int offsetY;
+    protected int tickTime = 20;
 
     public Building() {}
 
-    public Building(int offsetY) {
-        this.offsetY = offsetY;
+    public long getTickTime() {
+        return tickTime;
     }
 
     public IBlockAccess getBlockAccess(int worldX, int worldY, int worldZ, boolean n1, boolean n2, boolean swap) {
@@ -56,7 +57,7 @@ public class Building {
         return list;
     }
 
-    //TODO: LilyPad/Tripwire Hooks????????????
+    //TODO: LilyPad/Tripwire Hooks, Levers, Doors, Furnaces, Ladders, ItemFrame Loot????????????
     public boolean generate(World world, int xCoord, int yCoord, int zCoord) {
         if (!world.isRemote) {
             boolean n1 = world.rand.nextBoolean();

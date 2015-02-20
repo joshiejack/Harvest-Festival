@@ -10,7 +10,7 @@ import net.minecraft.init.Blocks;
 
 public class BuildingMiningHill extends Building {
     public BuildingMiningHill() {
-        super(-4);
+        offsetY = -4;
         list = new ArrayList(765);
         list.add(new PlaceableBlock(Blocks.stone, 0, 1, 0, 6));
         list.add(new PlaceableBlock(Blocks.stone, 0, 1, 0, 7));

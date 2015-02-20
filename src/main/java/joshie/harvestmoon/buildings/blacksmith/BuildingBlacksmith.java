@@ -21,7 +21,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public class BuildingBlacksmith extends Building {
     public BuildingBlacksmith() {
-        super(-2);
+        offsetY = - 2;
         list = new ArrayList(383);
         list.add(new PlaceableBlock(Blocks.stonebrick, 0, 2, 0, 10));
         list.add(new PlaceableBlock(Blocks.stonebrick, 0, 5, 0, 10));

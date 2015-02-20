@@ -11,7 +11,7 @@ public abstract class PlaceableEntity extends Placeable {
     }
     
     @Override
-    protected boolean canPlace(PlacementStage stage) {
+    public boolean canPlace(PlacementStage stage) {
         return stage == PlacementStage.ENTITIES;
     }
     

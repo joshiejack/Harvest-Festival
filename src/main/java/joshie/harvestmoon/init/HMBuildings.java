@@ -39,7 +39,6 @@ public class HMBuildings {
     public static BuildingGroup supermarket;
     public static BuildingGroup townhall;
 
-    //TODO: Fix Furnace Rotations, Ladders
     public static void init() {
         barn = BuildingGroup.register("barn", new BuildingBarn());
         blacksmith = BuildingGroup.register("blacksmith", new BuildingBlacksmith());

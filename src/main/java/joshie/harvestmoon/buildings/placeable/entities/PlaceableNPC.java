@@ -21,7 +21,7 @@ public class PlaceableNPC extends PlaceableEntity {
 
 
     @Override
-    protected boolean canPlace(PlacementStage stage) {
+    public boolean canPlace(PlacementStage stage) {
         return stage == PlacementStage.NPC;
     }
 

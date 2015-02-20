@@ -129,7 +129,7 @@ public class BlockPreview extends BlockHMBaseMeta {
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, List list) {
         if (General.DEBUG_MODE) {
-            for (int i = 0; i < 8; i++) {
+            for (int i = 0; i < getMetaCount(); i++) {
                 list.add(new ItemStack(item, 1, i));
             }
         }

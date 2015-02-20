@@ -8,7 +8,7 @@ public class PlaceableTrapDoor extends PlaceableBlock {
     }
 
     @Override
-    protected boolean canPlace(PlacementStage stage) {
+    public boolean canPlace(PlacementStage stage) {
         return stage == PlacementStage.TORCHES;
     }
 

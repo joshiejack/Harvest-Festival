@@ -7,6 +7,7 @@ import net.minecraft.world.World;
 
 public class EntityNPCBuilder extends EntityNPC {
     private BuildingStage building;
+    private int tick;
 
     public EntityNPCBuilder(EntityNPCBuilder entity) {
         super(entity);
@@ -27,10 +28,14 @@ public class EntityNPCBuilder extends EntityNPC {
             super.updateAITick();
         } else {
             if (!worldObj.isRemote) {
-                building = building.build(worldObj);
-                if (building.isFinished()) {
-                    building = null;
+                if (tick % building.getTickTime() == 0) {
+                    building = building.build(worldObj);
+                    if (building.isFinished()) {
+                        building = null;
+                    }
                 }
+                
+                tick++;
             }
         }
     }

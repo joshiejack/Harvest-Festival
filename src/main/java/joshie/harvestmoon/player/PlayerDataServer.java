@@ -7,7 +7,6 @@ import java.util.UUID;
 
 import joshie.harvestmoon.calendar.CalendarDate;
 import joshie.harvestmoon.crops.CropData;
-import joshie.harvestmoon.helpers.PlayerHelper;
 import joshie.harvestmoon.helpers.generic.EntityHelper;
 import joshie.harvestmoon.network.PacketSyncBirthday;
 import joshie.harvestmoon.network.PacketSyncFridge;
@@ -29,6 +28,7 @@ public class PlayerDataServer implements IData {
     private ShippingStats shippingStats;
     private PlayerStats playerStats;
     private TrackingStats trackingStats;
+    private FriendTracker friends;
     private FridgeContents fridge;
 
     //References to the player and uuid this refers to
@@ -41,6 +41,7 @@ public class PlayerDataServer implements IData {
         shippingStats = new ShippingStats(this);
         playerStats = new PlayerStats(this);
         trackingStats = new TrackingStats(this);
+        friends = new FriendTracker(this);
         fridge = new FridgeContents(DimensionManager.getWorld(0));
     }
 
@@ -52,6 +53,7 @@ public class PlayerDataServer implements IData {
         shippingStats = new ShippingStats(this);
         playerStats = new PlayerStats(this);
         trackingStats = new TrackingStats(this);
+        friends = new FriendTracker(this);
         fridge = new FridgeContents(player.worldObj);
     }
 
@@ -115,6 +117,10 @@ public class PlayerDataServer implements IData {
     //Remove Relations for NPCs
     public boolean removeRelations(NPC npc) {
         return relationStats.removeRelations(npc);
+    }
+
+    public boolean isOnlineOrFriendsAre() {
+        return friends.getFriends().size() > 0;
     }
 
     public boolean addForShipping(ItemStack stack) {
@@ -200,6 +206,7 @@ public class PlayerDataServer implements IData {
         relationStats.readFromNBT(nbt);
         shippingStats.readFromNBT(nbt);
         trackingStats.readFromNBT(nbt);
+        friends.readFromNBT(nbt);
         fridge.readFromNBT(nbt);
     }
 
@@ -214,6 +221,7 @@ public class PlayerDataServer implements IData {
         questStats.writeToNBT(nbt);
         shippingStats.writeToNBT(nbt);
         trackingStats.writeToNBT(nbt);
+        friends.writeToNBT(nbt);
         fridge.writeToNBT(nbt);
     }
 }

@@ -52,25 +52,27 @@ public class CropTrackerServer implements IData {
         while (iter.hasNext()) {
             Map.Entry<WorldLocation, CropData> entry = iter.next();
             CropData data = entry.getValue();
-            WorldLocation location = entry.getKey();
-
-            //Feed surrounding animals with grass
-            if (data.isEdible()) {
-                World world = getWorld(location.dimension);
-                ArrayList<EntityAnimal> animals = (ArrayList<EntityAnimal>) world.getEntitiesWithinAABB(EntityAnimal.class, HMBlocks.cookware.getCollisionBoundingBoxFromPool(world, location.x, location.y, location.z).expand(16D, 16D, 16D));
-                for (EntityAnimal animal : animals) {
-                    if (AnimalType.getType(animal).eatsGrass()) {
-                        AnimalHelper.feed(null, animal);
+            if (data.canGrow()) {
+                WorldLocation location = entry.getKey();
+    
+                //Feed surrounding animals with grass
+                if (data.isEdible()) {
+                    World world = getWorld(location.dimension);
+                    ArrayList<EntityAnimal> animals = (ArrayList<EntityAnimal>) world.getEntitiesWithinAABB(EntityAnimal.class, HMBlocks.cookware.getCollisionBoundingBoxFromPool(world, location.x, location.y, location.z).expand(16D, 16D, 16D));
+                    for (EntityAnimal animal : animals) {
+                        if (AnimalType.getType(animal).eatsGrass()) {
+                            AnimalHelper.feed(null, animal);
+                        }
                     }
                 }
-            }
-
-            WitherType wither = data.newDay();
-            if (wither != WitherType.NONE) {
-                iter.remove();
-                setWithered(location, wither);
-            } else { //Send a packet with the new data to the clients
-                sendToEveryone(new PacketSyncCrop(location, data));
+    
+                WitherType wither = data.newDay();
+                if (wither != WitherType.NONE) {
+                    iter.remove();
+                    setWithered(location, wither);
+                } else { //Send a packet with the new data to the clients
+                    sendToEveryone(new PacketSyncCrop(location, data));
+                }
             }
         }
 
@@ -126,7 +128,7 @@ public class CropTrackerServer implements IData {
     //Plants a crop at the location, PLAYER CAN BE NULL
     public boolean plant(EntityPlayer player, World world, int x, int y, int z, Crop crop, int quality) {
         WorldLocation key = getKey(world, x, y, z);
-        CropData data = new CropData(crop, quality);
+        CropData data = new CropData(player, crop, quality);
         world.setBlock(x, y, z, HMBlocks.crops);
         if (BlockSoil.isHydrated(world, x, y - 1, z)) {
             data.setHydrated();

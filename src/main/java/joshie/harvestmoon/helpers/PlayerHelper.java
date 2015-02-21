@@ -1,9 +1,11 @@
 package joshie.harvestmoon.helpers;
 
 import java.util.Random;
+import java.util.UUID;
 
 import joshie.harvestmoon.calendar.CalendarDate;
 import joshie.harvestmoon.calendar.Season;
+import joshie.harvestmoon.helpers.generic.EntityHelper;
 import joshie.harvestmoon.network.PacketHandler;
 import joshie.harvestmoon.network.PacketSyncGold;
 import joshie.harvestmoon.player.FridgeContents;
@@ -115,6 +117,10 @@ public class PlayerHelper {
     public static PlayerDataServer getData(EntityPlayer player) {
         return ServerHelper.getPlayerData(player);
     }
+    
+    public static PlayerDataServer getData(UUID uuid) {
+        return ServerHelper.getPlayerData(uuid);
+    }
 
     public static PlayerDataClient getData() {
         return ClientHelper.getPlayerData();
@@ -122,5 +128,13 @@ public class PlayerHelper {
 
     public static FridgeContents getFridge(EntityPlayer player) {
         return !player.worldObj.isRemote? getData(player).getFridge(): ClientHelper.getPlayerData().getFridge();
+    }
+
+    public static boolean isOnlineOrFriendsAre(UUID owner) {
+        PlayerDataServer data = getData(owner);
+        if (data == null) return false;
+        else {
+            return data.isOnlineOrFriendsAre();
+        }
     }
 }

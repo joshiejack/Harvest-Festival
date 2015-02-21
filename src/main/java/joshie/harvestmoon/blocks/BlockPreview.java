@@ -9,6 +9,7 @@ import joshie.harvestmoon.init.HMNPCs;
 import joshie.harvestmoon.lib.RenderIds;
 import joshie.harvestmoon.npc.EntityNPCBuilder;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -133,5 +134,11 @@ public class BlockPreview extends BlockHMBaseMeta {
                 list.add(new ItemStack(item, 1, i));
             }
         }
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerBlockIcons(IIconRegister iconRegister) {
+        return;
     }
 }

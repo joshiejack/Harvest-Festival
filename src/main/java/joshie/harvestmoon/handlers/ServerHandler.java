@@ -1,6 +1,7 @@
 package joshie.harvestmoon.handlers;
 
 import java.util.List;
+import java.util.UUID;
 
 import joshie.harvestmoon.HMSavedData;
 import joshie.harvestmoon.animals.AnimalTrackerServer;
@@ -52,6 +53,10 @@ public class ServerHandler {
     //Returns the server side player data for this player
     public PlayerDataServer getPlayerData(EntityPlayer player) {
         return data.getPlayerData((EntityPlayerMP) player);
+    }
+
+    public PlayerDataServer getPlayerData(UUID uuid) {
+        return data.getPlayerData(uuid);
     }
 
     //Removes all relations

@@ -1,5 +1,7 @@
 package joshie.harvestmoon.helpers;
 
+import java.util.UUID;
+
 import joshie.harvestmoon.crops.Crop;
 import joshie.harvestmoon.crops.CropData;
 import joshie.harvestmoon.crops.CropTrackerClient;

@@ -57,13 +57,7 @@
 
 ## Aesthetics 
 ###Textures
-- [ ] blocks/barn.png
-- [ ] blocks/blacksmith.png
-- [ ] blocks/cafe.png
-- [ ] blocks/carpenter.png
 - [ ] blocks/chest.png
-- [ ] blocks/church.png
-- [ ] blocks/clockmaker.png
 - [ ] blocks/crops/cabbage/stage_0.png
 - [ ] blocks/crops/cabbage/stage_1.png
 - [ ] blocks/crops/cabbage/stage_10.png
@@ -245,21 +239,13 @@
 - [ ] blocks/crops/turnip/stage_3.png
 - [ ] blocks/crops/turnip/stage_4.png
 - [ ] blocks/crops/turnip/stage_giant.png
-- [ ] blocks/fishingHole.png
-- [ ] blocks/fishingHut.png
 - [ ] blocks/fridge_back.png
 - [ ] blocks/fridge_lower_door.png
 - [ ] blocks/fridge_sides.png
 - [ ] blocks/fridge_upper_door.png
 - [ ] blocks/goddess.png
-- [ ] blocks/goddessPond.png
-- [ ] blocks/miningHill.png
-- [ ] blocks/miningHut.png
 - [ ] blocks/nest.png
-- [ ] blocks/poultryFarm.png
 - [ ] blocks/shipping.png
-- [ ] blocks/supermarket.png
-- [ ] blocks/townhall.png
 - [ ] blocks/trough.png
 - [ ] blocks/trough2.png
 - [ ] blocks/withered_growing.png

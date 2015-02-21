@@ -5,9 +5,13 @@ import static joshie.harvestmoon.helpers.CropHelper.getCropFromOrdinal;
 import io.netty.buffer.ByteBuf;
 
 import java.util.Random;
+import java.util.UUID;
 
+import joshie.harvestmoon.helpers.CropHelper;
+import joshie.harvestmoon.helpers.PlayerHelper;
 import joshie.harvestmoon.init.HMItems;
 import joshie.harvestmoon.util.IData;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
@@ -19,6 +23,7 @@ public class CropData implements IData {
         SEED, GROWING, GROWN, NONE;
     }
 
+    private UUID owner; //The owners uuid
     private Crop crop; //The Crop Type of this plant
     private int stage; //The stage it is currently at
     private int quality; //The quality of this crop
@@ -28,7 +33,7 @@ public class CropData implements IData {
 
     public CropData() {}
 
-    public CropData(Crop crop, int quality) {
+    public CropData(EntityPlayer owner, Crop crop, int quality) {
         this.crop = crop;
         this.quality = quality;
         this.stage = 1;
@@ -89,6 +94,10 @@ public class CropData implements IData {
         return crop.getIcon(stage, isGiantCrop);
     }
 
+    public boolean canGrow() {
+        return PlayerHelper.isOnlineOrFriendsAre(owner);
+    }
+
     public ItemStack harvest() {
         if (stage == crop.getStages()) {
             int cropMeta = crop.getCropMeta();
@@ -119,6 +128,7 @@ public class CropData implements IData {
         isGiantCrop = nbt.getBoolean("IsGiant");
         isFertilized = nbt.getBoolean("IsFertilized");
         daysWithoutWater = nbt.getShort("DaysWithoutWater");
+        owner = new UUID(nbt.getLong("Farmer-UUIDMost"), nbt.getLong("Farmer-UUIDLeast"));
     }
 
     @Override
@@ -129,6 +139,8 @@ public class CropData implements IData {
         nbt.setBoolean("IsGiant", isGiantCrop);
         nbt.setBoolean("IsFertilized", isFertilized);
         nbt.setShort("DaysWithoutWater", (short) daysWithoutWater);
+        nbt.setLong("Farmer-UUIDMost", owner.getMostSignificantBits());
+        nbt.setLong("Farmer-UUIDLeast", owner.getLeastSignificantBits());
     }
 
     /* Packet Based */

@@ -70,6 +70,10 @@ public class HMSavedData extends WorldSavedData {
         }
     }
 
+    public PlayerDataServer getPlayerData(UUID uuid) {
+        return players.get(uuid);
+    }
+
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         calendar.readFromNBT(nbt.getCompoundTag("Calendar"));

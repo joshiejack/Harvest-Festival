@@ -1,5 +1,7 @@
 package joshie.harvestmoon.helpers;
 
+import java.util.UUID;
+
 import joshie.harvestmoon.animals.AnimalTrackerServer;
 import joshie.harvestmoon.calendar.CalendarServer;
 import joshie.harvestmoon.crops.CropTrackerServer;
@@ -43,6 +45,10 @@ public class ServerHelper {
 
     static PlayerDataServer getPlayerData(EntityPlayer player) {
         return theServer.getPlayerData(player);
+    }
+
+    static PlayerDataServer getPlayerData(UUID uuid) {
+        return theServer.getPlayerData(uuid);
     }
 
     static void removeAllRelations(EntityLivingBase entity) {

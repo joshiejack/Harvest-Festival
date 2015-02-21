@@ -14,6 +14,7 @@ Stage 1 (0.5.0)
 
 Stage 1.1 (0.5.1)
 * Recipe Book
+* Team System managed by Letters
 
 Stage 2 (0.6.0)
 * Gathering

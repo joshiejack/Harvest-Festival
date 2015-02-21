@@ -1,8 +1,7 @@
-package joshie.harvestmoon.buildings.carpenter;
+package joshie.harvestmoon.buildings;
 
 import java.util.ArrayList;
 
-import joshie.harvestmoon.buildings.Building;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableButton;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableDoor;
@@ -17,7 +16,7 @@ import joshie.harvestmoon.buildings.placeable.entities.PlaceableItemFrame;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceablePainting;
 import joshie.harvestmoon.init.HMBlocks;
-import joshie.harvestmoon.lib.VillageStrings;
+import joshie.harvestmoon.lib.LootStrings;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -157,7 +156,7 @@ public class BuildingCarpenter extends Building {
         list.add(new PlaceableItemFrame(new ItemStack(Blocks.trapdoor, 1, 0), 0, 0, 4, 2, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 4, 2, 3));
         list.add(new PlaceableBlock(Blocks.air, 0, 4, 2, 4));
-        list.add(new PlaceableItemFrame(new ItemStack(Items.stone_axe, 1, 0), 0, 2, 4, 2, 4));
+        list.add(new PlaceableItemFrame(new ItemStack(Items.stone_axe, 1, 0), 0, 2, 4, 2, 4, LootStrings.CARPENTER_FRAME));
         list.add(new PlaceableLog(Blocks.log, 1, 4, 2, 5));
         list.add(new PlaceableButton(Blocks.wooden_button, 3, 4, 2, 6));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 2, 5, 2, 1));
@@ -248,9 +247,9 @@ public class BuildingCarpenter extends Building {
         list.add(new PlaceableBlock(Blocks.fence, 0, 1, 4, 6));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 12, 2, 4, 0));
         list.add(new PlaceableLog(Blocks.log, 5, 2, 4, 1));
-        list.add(new PlaceableIFaceable(HMBlocks.woodmachines, 1, 2, 4, 2, ForgeDirection.EAST, VillageStrings.JADE_CHEST));
+        list.add(new PlaceableIFaceable(HMBlocks.woodmachines, 1, 2, 4, 2, ForgeDirection.EAST, LootStrings.JADE_CHEST));
         list.add(new PlaceableBlock(Blocks.air, 0, 2, 4, 3));
-        list.add(new PlaceableIFaceable(HMBlocks.woodmachines, 1, 2, 4, 4, ForgeDirection.EAST, VillageStrings.YULIF_CHEST));
+        list.add(new PlaceableIFaceable(HMBlocks.woodmachines, 1, 2, 4, 4, ForgeDirection.EAST, LootStrings.YULIF_CHEST));
         list.add(new PlaceableLog(Blocks.log, 5, 2, 4, 5));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 13, 2, 4, 6));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 12, 3, 4, 0));

@@ -7,7 +7,9 @@ import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 public class PacketFreeze implements IMessage, IMessageHandler<PacketFreeze, IMessage> {
-    public PacketFreeze() {}
+    public PacketFreeze() {
+        System.out.println("CONSTRUCT");
+    }
 
     @Override
     public void toBytes(ByteBuf buf) {}
@@ -17,7 +19,7 @@ public class PacketFreeze implements IMessage, IMessageHandler<PacketFreeze, IMe
 
     @Override
     public IMessage onMessage(PacketFreeze message, MessageContext ctx) {
-        NPC.FREEZE_NPC = !NPC.FREEZE_NPC;
+        NPC.FREEZE_NPC = true;
         return null;
     }
 }

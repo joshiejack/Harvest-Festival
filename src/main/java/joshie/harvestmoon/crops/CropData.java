@@ -32,11 +32,11 @@ public class CropData implements IData {
     private int daysWithoutWater; //The number of days this crop has gone without water
 
     public CropData() {}
-
     public CropData(EntityPlayer owner, Crop crop, int quality) {
         this.crop = crop;
         this.quality = quality;
         this.stage = 1;
+        this.owner = owner.getPersistentID();
     }
 
     public WitherType newDay() {

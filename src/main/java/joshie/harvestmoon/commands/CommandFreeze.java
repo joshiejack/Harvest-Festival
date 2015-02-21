@@ -20,11 +20,8 @@ public class CommandFreeze extends CommandBase {
 
     @Override
     public void processCommand(ICommandSender sender, String[] parameters) {
-        if (parameters == null || parameters.length != 1) return;
-        try {
-            PacketHandler.sendToServer(new PacketFreeze());
-            NPC.FREEZE_NPC = !NPC.FREEZE_NPC;
-        } catch (NumberFormatException e) {}
+        PacketHandler.sendToServer(new PacketFreeze());
+        NPC.FREEZE_NPC = !NPC.FREEZE_NPC;
     }
 
     @Override

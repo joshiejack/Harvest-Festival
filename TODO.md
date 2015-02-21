@@ -45,15 +45,6 @@
 - [ ] TownHallBedroomTeenagerFrame (Book) [Book, Paper, Ink]
 - [ ] TownHallPassageChest (Cobweb) [Planks, Carpet, Cobweb, Leaves]
 - [ ] TownHallBedroomTeenagerChest (Feather) [Fruits]
-- [ ] MarketEntryFrame (Item Frame) [Joshie, enter what can be sold!]
-- [ ] MarketBedroomFrame (Pink Tulip) [Book, Paper, Ink]
-- [ ] MarketBedroomChest (Dandelion) [Food]
-- [ ] MarketBasementChest (Mossy Cobblestone) [Storage : joshie, you decide!]
-- [ ] ClockworkerCraftingFrame (Crafting Table) [Redstone, Gold Nugget, Gold Ingot, Clock]
-- [ ] ClockworkerBedroomChest (Painting) [Food]
-- [ ] CarpenterEntryFrame (Stone Axe) [Redstone, Gold Nugget, Gold Ingot, Clock]
-- [ ] CarpenterYulifChest (Spruce Sapling) [Wood, Axe, Food]
-- [ ] CarpenterJadeChest (Poppy) [Flowers, Seeds, Vegetation, Food]
 
 ## Aesthetics 
 ###Textures

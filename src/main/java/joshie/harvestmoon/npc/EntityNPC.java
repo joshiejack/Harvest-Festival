@@ -43,9 +43,9 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
     }
 
     @Override
-    public void onEntityUpdate() {
+    public void onUpdate() {
         if (!joshie.harvestmoon.config.NPC.FREEZE_NPC) {
-            super.onEntityUpdate();
+            super.onUpdate();
         }
     }
 
@@ -155,8 +155,8 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
     @Override
     public void setDead() {
         if (!worldObj.isRemote && npc.respawns() && !isDead) {
-            EntityNPC clone = new EntityNPC(this);
-            worldObj.spawnEntityInWorld(clone);
+            //EntityNPC clone = new EntityNPC(this);
+            //worldObj.spawnEntityInWorld(clone);
         }
 
         isDead = true;

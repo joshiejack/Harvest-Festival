@@ -1,20 +1,23 @@
-package joshie.harvestmoon.buildings.clockmaker;
+package joshie.harvestmoon.buildings;
 
 import java.util.ArrayList;
 
-import joshie.harvestmoon.buildings.Building;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableButton;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableDoor;
+import joshie.harvestmoon.buildings.placeable.blocks.PlaceableFlowerPot;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableIFaceable;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableLog;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableSignWall;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableStairs;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableTorches;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableTrapDoor;
+import joshie.harvestmoon.buildings.placeable.blocks.PlaceableWeb;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceableItemFrame;
+import joshie.harvestmoon.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceablePainting;
 import joshie.harvestmoon.init.HMBlocks;
+import joshie.harvestmoon.lib.LootStrings;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -23,7 +26,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 public class BuildingClockmaker extends Building {
     public BuildingClockmaker() {
         offsetY = - 1;
-        list = new ArrayList(820);
+        list = new ArrayList(828);
         list.add(new PlaceableBlock(Blocks.planks, 5, 0, 0, 1));
         list.add(new PlaceableBlock(Blocks.planks, 5, 0, 0, 6));
         list.add(new PlaceableBlock(Blocks.planks, 5, 1, 0, 0));
@@ -140,6 +143,7 @@ public class BuildingClockmaker extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 1, 3));
         list.add(new PlaceableItemFrame(null, 0, 0, 6, 1, 3));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 1, 4));
+        list.add(new PlaceableNPC("tiberius", 6, 1, 4));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 6, 6, 1, 5));
         list.add(new PlaceableBlock(Blocks.hardened_clay, 0, 6, 1, 6));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 13, 6, 1, 7));
@@ -207,14 +211,14 @@ public class BuildingClockmaker extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 2, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 2, 3));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 2, 4));
-        list.add(new PlaceableBlock(Blocks.flower_pot, 2, 6, 2, 5));
+        list.add(new PlaceableFlowerPot(Blocks.flower_pot, 2, 6, 2, 5));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 2, 6, 2, 6));
         list.add(new PlaceableBlock(Blocks.stained_glass, 14, 7, 2, 1));
         list.add(new PlaceableBlock(Blocks.carpet, 14, 7, 2, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 2, 3));
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 2, 4));
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 2, 5));
-        list.add(new PlaceableItemFrame(new ItemStack(Blocks.crafting_table, 1, 0), 0, 2, 7, 2, 5));
+        list.add(new PlaceableItemFrame(new ItemStack(Blocks.crafting_table, 1, 0), 0, 2, 7, 2, 5, LootStrings.CLOCKMAKER_FRAME));
         list.add(new PlaceableBlock(Blocks.stained_glass, 14, 7, 2, 6));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 3, 8, 2, 1));
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 2, 2));
@@ -281,7 +285,7 @@ public class BuildingClockmaker extends Building {
         list.add(new PlaceableButton(Blocks.wooden_button, 4, 7, 3, 5));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 7, 7, 3, 6));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 7, 8, 3, 1));
-        list.add(new PlaceableBlock(Blocks.web, 0, 8, 3, 2));
+        list.add(new PlaceableWeb(Blocks.web, 0, 8, 3, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 3, 3));
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 3, 4));
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 3, 5));
@@ -295,8 +299,10 @@ public class BuildingClockmaker extends Building {
         list.add(new PlaceableLog(Blocks.log, 1, 9, 3, 6));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 7, 9, 3, 7));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 5, 10, 3, 1));
+        list.add(new PlaceableBlock(Blocks.air, 0, 10, 3, 2));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 15, 10, 3, 3));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 15, 10, 3, 4));
+        list.add(new PlaceableBlock(Blocks.air, 0, 10, 3, 5));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 5, 10, 3, 6));
         list.add(new PlaceableBlock(Blocks.fence, 0, 0, 4, 1));
         list.add(new PlaceableButton(Blocks.stone_button, 2, 0, 4, 2));
@@ -409,7 +415,7 @@ public class BuildingClockmaker extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 3, 5, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 3, 5, 3));
         list.add(new PlaceableBlock(Blocks.air, 0, 3, 5, 4));
-        list.add(new PlaceableBlock(Blocks.web, 0, 3, 5, 5));
+        list.add(new PlaceableWeb(Blocks.web, 0, 3, 5, 5));
         list.add(new PlaceableBlock(Blocks.hardened_clay, 0, 3, 5, 6));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 13, 3, 5, 7));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 13, 4, 5, 0));
@@ -430,8 +436,9 @@ public class BuildingClockmaker extends Building {
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 3, 5, 5, 7));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 13, 6, 5, 0));
         list.add(new PlaceableBlock(Blocks.hardened_clay, 0, 6, 5, 1));
-        list.add(new PlaceableIFaceable(HMBlocks.cookware, 9, 6, 5, 2, ForgeDirection.SOUTH));
+        list.add(new PlaceableIFaceable(HMBlocks.woodmachines, 1, 6, 5, 2, ForgeDirection.SOUTH, LootStrings.CLOCKMAKER_CHEST));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 5, 3));
+        list.add(new PlaceableNPC("fenn", 6, 5, 3));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 5, 4));
         list.add(new PlaceableBlock(Blocks.cauldron, 3, 6, 5, 5));
         list.add(new PlaceableBlock(Blocks.hardened_clay, 0, 6, 5, 6));
@@ -585,7 +592,7 @@ public class BuildingClockmaker extends Building {
         list.add(new PlaceableBlock(Blocks.stonebrick, 0, 6, 7, 1));
         list.add(new PlaceableBlock(Blocks.cobblestone_wall, 0, 6, 7, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 7, 3));
-        list.add(new PlaceableBlock(Blocks.web, 0, 6, 7, 4));
+        list.add(new PlaceableWeb(Blocks.web, 0, 6, 7, 4));
         list.add(new PlaceableBlock(Blocks.cobblestone_wall, 0, 6, 7, 5));
         list.add(new PlaceableBlock(Blocks.stonebrick, 1, 6, 7, 6));
         list.add(new PlaceableBlock(Blocks.stained_glass, 14, 7, 7, 1));
@@ -609,6 +616,10 @@ public class BuildingClockmaker extends Building {
         list.add(new PlaceableLog(Blocks.log, 1, 9, 7, 6));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 7, 9, 7, 7));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 5, 10, 7, 1));
+        list.add(new PlaceableBlock(Blocks.air, 0, 10, 7, 2));
+        list.add(new PlaceableBlock(Blocks.air, 0, 10, 7, 3));
+        list.add(new PlaceableBlock(Blocks.air, 0, 10, 7, 4));
+        list.add(new PlaceableBlock(Blocks.air, 0, 10, 7, 5));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 5, 10, 7, 6));
         list.add(new PlaceableBlock(Blocks.fence, 0, 0, 8, 1));
         list.add(new PlaceableButton(Blocks.stone_button, 2, 0, 8, 2));
@@ -711,7 +722,7 @@ public class BuildingClockmaker extends Building {
         list.add(new PlaceableBlock(Blocks.wooden_slab, 5, 2, 9, 0));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 2, 2, 9, 1));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 7, 2, 9, 2));
-        list.add(new PlaceableBlock(Blocks.web, 0, 2, 9, 3));
+        list.add(new PlaceableWeb(Blocks.web, 0, 2, 9, 3));
         list.add(new PlaceableBlock(Blocks.air, 0, 2, 9, 4));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 6, 2, 9, 5));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 3, 2, 9, 6));
@@ -754,7 +765,7 @@ public class BuildingClockmaker extends Building {
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 2, 7, 9, 1));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 7, 7, 9, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 9, 3));
-        list.add(new PlaceableBlock(Blocks.web, 0, 7, 9, 4));
+        list.add(new PlaceableWeb(Blocks.web, 0, 7, 9, 4));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 6, 7, 9, 5));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 3, 7, 9, 6));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 5, 7, 9, 7));
@@ -776,6 +787,8 @@ public class BuildingClockmaker extends Building {
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 3, 9, 9, 7));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 2, 10, 9, 1));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 7, 10, 9, 2));
+        list.add(new PlaceableBlock(Blocks.air, 0, 10, 9, 3));
+        list.add(new PlaceableBlock(Blocks.air, 0, 10, 9, 4));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 6, 10, 9, 5));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 3, 10, 9, 6));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 2, 0, 10, 2));

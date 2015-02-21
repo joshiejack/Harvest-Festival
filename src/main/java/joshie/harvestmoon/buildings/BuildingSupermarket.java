@@ -1,23 +1,28 @@
-package joshie.harvestmoon.buildings.supermarket;
+package joshie.harvestmoon.buildings;
 
 import java.util.ArrayList;
 
-import joshie.harvestmoon.buildings.Building;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableButton;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableDoor;
+import joshie.harvestmoon.buildings.placeable.blocks.PlaceableDoublePlant;
+import joshie.harvestmoon.buildings.placeable.blocks.PlaceableFlowerPot;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableGate;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableIFaceable;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableLilypad;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableLog;
+import joshie.harvestmoon.buildings.placeable.blocks.PlaceableMushroom;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableSignWall;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableStairs;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableTorches;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableTrapDoor;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableVine;
+import joshie.harvestmoon.buildings.placeable.blocks.PlaceableWeb;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceableItemFrame;
+import joshie.harvestmoon.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceablePainting;
 import joshie.harvestmoon.init.HMBlocks;
+import joshie.harvestmoon.lib.LootStrings;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -28,7 +33,7 @@ public class BuildingSupermarket extends Building {
         offsetY = -10;
         tickTime = 5; //Place a block every 5 ticks
         
-        list = new ArrayList(2291);
+        list = new ArrayList(2298);
         list.add(new PlaceableBlock(Blocks.sandstone, 0, 4, 0, 8));
         list.add(new PlaceableBlock(Blocks.sandstone, 0, 5, 0, 7));
         list.add(new PlaceableBlock(Blocks.sandstone, 0, 5, 0, 8));
@@ -98,7 +103,7 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableBlock(Blocks.stonebrick, 0, 4, 3, 4));
         list.add(new PlaceableBlock(Blocks.stonebrick, 0, 4, 3, 5));
         list.add(new PlaceableBlock(Blocks.leaves, 15, 4, 3, 6));
-        list.add(new PlaceableBlock(Blocks.red_mushroom, 0, 4, 3, 7));
+        list.add(new PlaceableMushroom(Blocks.red_mushroom, 0, 4, 3, 7));
         list.add(new PlaceableBlock(Blocks.water, 8, 4, 3, 8));
         list.add(new PlaceableBlock(Blocks.stonebrick, 0, 4, 3, 9));
         list.add(new PlaceableBlock(Blocks.stonebrick, 0, 4, 3, 10));
@@ -110,7 +115,7 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableBlock(Blocks.stonebrick, 3, 5, 3, 3));
         list.add(new PlaceableBlock(Blocks.stonebrick, 2, 5, 3, 4));
         list.add(new PlaceableBlock(Blocks.stonebrick, 0, 5, 3, 5));
-        list.add(new PlaceableBlock(Blocks.brown_mushroom, 0, 5, 3, 6));
+        list.add(new PlaceableMushroom(Blocks.brown_mushroom, 0, 5, 3, 6));
         list.add(new PlaceableLilypad(Blocks.waterlily, 0, 5, 3, 7));
         list.add(new PlaceableVine(Blocks.vine, 1, 5, 3, 8));
         list.add(new PlaceableBlock(Blocks.stonebrick, 0, 5, 3, 9));
@@ -125,7 +130,7 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableBlock(Blocks.stonebrick, 0, 6, 3, 5));
         list.add(new PlaceableBlock(Blocks.reeds, 0, 6, 3, 6));
         list.add(new PlaceableBlock(Blocks.reeds, 0, 6, 3, 7));
-        list.add(new PlaceableBlock(Blocks.double_plant, 1, 6, 3, 8));
+        list.add(new PlaceableDoublePlant(Blocks.double_plant, 1, 6, 3, 8));
         list.add(new PlaceableBlock(Blocks.stonebrick, 1, 6, 3, 9));
         list.add(new PlaceableBlock(Blocks.stonebrick, 0, 6, 3, 10));
         list.add(new PlaceableBlock(Blocks.stonebrick, 0, 6, 3, 11));
@@ -216,7 +221,7 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 2, 2, 4, 5));
         list.add(new PlaceableBlock(Blocks.grass, 0, 2, 4, 6));
         list.add(new PlaceableBlock(Blocks.tallgrass, 1, 2, 4, 7));
-        list.add(new PlaceableBlock(Blocks.double_plant, 3, 2, 4, 8));
+        list.add(new PlaceableDoublePlant(Blocks.double_plant, 3, 2, 4, 8));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 3, 2, 4, 9));
         list.add(new PlaceableBlock(Blocks.fence, 0, 2, 4, 10));
         list.add(new PlaceableBlock(Blocks.leaves, 7, 2, 4, 11));
@@ -224,16 +229,16 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 2, 2, 4, 13));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 3, 3, 4, 1));
         list.add(new PlaceableBlock(Blocks.fence, 0, 3, 4, 2));
-        list.add(new PlaceableBlock(Blocks.flower_pot, 0, 3, 4, 3));
+        list.add(new PlaceableFlowerPot(Blocks.flower_pot, 0, 3, 4, 3));
         list.add(new PlaceableBlock(Blocks.fence, 0, 3, 4, 4));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 2, 3, 4, 5));
         list.add(new PlaceableBlock(Blocks.red_flower, 3, 3, 4, 6));
         list.add(new PlaceableBlock(Blocks.air, 0, 3, 4, 7));
         list.add(new PlaceableVine(Blocks.vine, 1, 3, 4, 8));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 3, 3, 4, 9));
-        list.add(new PlaceableIFaceable(HMBlocks.cookware, 9, 3, 4, 10, ForgeDirection.SOUTH));
+        list.add(new PlaceableIFaceable(HMBlocks.woodmachines, 1, 3, 4, 10, ForgeDirection.SOUTH, LootStrings.MARKET_BASEMENT_CHESTS));
         list.add(new PlaceableBlock(Blocks.air, 0, 3, 4, 11));
-        list.add(new PlaceableIFaceable(HMBlocks.cookware, 9, 3, 4, 12, ForgeDirection.NORTH));
+        list.add(new PlaceableIFaceable(HMBlocks.woodmachines, 1, 3, 4, 12, ForgeDirection.NORTH, LootStrings.MARKET_BASEMENT_CHESTS));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 2, 3, 4, 13));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 3, 4, 4, 1));
         list.add(new PlaceableBlock(Blocks.planks, 5, 4, 4, 2));
@@ -257,9 +262,9 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 4, 7));
         list.add(new PlaceableVine(Blocks.vine, 1, 5, 4, 8));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 3, 5, 4, 9));
-        list.add(new PlaceableIFaceable(HMBlocks.cookware, 9, 5, 4, 10, ForgeDirection.SOUTH));
+        list.add(new PlaceableIFaceable(HMBlocks.woodmachines, 1, 5, 4, 10, ForgeDirection.SOUTH, LootStrings.MARKET_BASEMENT_CHESTS));
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 4, 11));
-        list.add(new PlaceableIFaceable(HMBlocks.cookware, 9, 5, 4, 12, ForgeDirection.NORTH));
+        list.add(new PlaceableIFaceable(HMBlocks.woodmachines, 1, 5, 4, 12, ForgeDirection.NORTH, LootStrings.MARKET_BASEMENT_CHESTS));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 2, 5, 4, 13));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 3, 6, 4, 1));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 4, 2));
@@ -268,7 +273,6 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 2, 6, 4, 5));
         list.add(new PlaceableBlock(Blocks.reeds, 0, 6, 4, 6));
         list.add(new PlaceableBlock(Blocks.reeds, 0, 6, 4, 7));
-        list.add(new PlaceableBlock(Blocks.double_plant, 8, 6, 4, 8));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 3, 6, 4, 9));
         list.add(new PlaceableBlock(Blocks.fence, 0, 6, 4, 10));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 4, 11));
@@ -360,7 +364,6 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableBlock(Blocks.red_flower, 1, 2, 5, 6));
         list.add(new PlaceableTorches(Blocks.torch, 1, 2, 5, 7));
         list.add(new PlaceableItemFrame(new ItemStack(Blocks.trapdoor, 1, 0), 0, 3, 2, 5, 7));
-        list.add(new PlaceableBlock(Blocks.double_plant, 9, 2, 5, 8));
         list.add(new PlaceableLog(Blocks.log, 5, 2, 5, 9));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 5, 2, 5, 10));
         list.add(new PlaceableTorches(Blocks.torch, 1, 2, 5, 11));
@@ -446,7 +449,7 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableButton(Blocks.stone_button, 4, 8, 5, 12));
         list.add(new PlaceableLog(Blocks.log, 5, 8, 5, 13));
         list.add(new PlaceableLog(Blocks.log, 5, 9, 5, 1));
-        list.add(new PlaceableBlock(Blocks.flower_pot, 0, 9, 5, 2));
+        list.add(new PlaceableFlowerPot(Blocks.flower_pot, 0, 9, 5, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 9, 5, 3));
         list.add(new PlaceableBlock(Blocks.air, 0, 9, 5, 4));
         list.add(new PlaceableBlock(Blocks.air, 0, 9, 5, 5));
@@ -456,7 +459,7 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 9, 5, 9));
         list.add(new PlaceableBlock(Blocks.air, 0, 9, 5, 10));
         list.add(new PlaceableBlock(Blocks.air, 0, 9, 5, 11));
-        list.add(new PlaceableBlock(Blocks.flower_pot, 7, 9, 5, 12));
+        list.add(new PlaceableFlowerPot(Blocks.flower_pot, 7, 9, 5, 12));
         list.add(new PlaceableLog(Blocks.log, 5, 9, 5, 13));
         list.add(new PlaceableLog(Blocks.log, 5, 10, 5, 1));
         list.add(new PlaceableButton(Blocks.stone_button, 3, 10, 5, 2));
@@ -525,7 +528,7 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 7, 3, 6, 9));
         list.add(new PlaceableBlock(Blocks.leaves, 15, 3, 6, 10));
         list.add(new PlaceableBlock(Blocks.air, 0, 3, 6, 11));
-        list.add(new PlaceableBlock(Blocks.web, 0, 3, 6, 12));
+        list.add(new PlaceableWeb(Blocks.web, 0, 3, 6, 12));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 6, 3, 6, 13));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 7, 4, 6, 1));
         list.add(new PlaceableBlock(Blocks.air, 0, 4, 6, 2));
@@ -580,7 +583,7 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 6, 7, 6, 12));
         list.add(new PlaceableLog(Blocks.log, 1, 7, 6, 13));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 7, 8, 6, 1));
-        list.add(new PlaceableBlock(Blocks.web, 0, 8, 6, 2));
+        list.add(new PlaceableWeb(Blocks.web, 0, 8, 6, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 6, 3));
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 6, 4));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 5, 8, 6, 5));
@@ -610,7 +613,7 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableVine(Blocks.vine, 0, 10, 6, 4));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 4, 10, 6, 5));
         list.add(new PlaceableVine(Blocks.vine, 0, 10, 6, 6));
-        list.add(new PlaceableBlock(Blocks.web, 0, 10, 6, 7));
+        list.add(new PlaceableWeb(Blocks.web, 0, 10, 6, 7));
         list.add(new PlaceableVine(Blocks.vine, 0, 10, 6, 8));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 4, 10, 6, 9));
         list.add(new PlaceableBlock(Blocks.air, 0, 10, 6, 10));
@@ -918,7 +921,6 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableBlock(Blocks.stonebrick, 1, 11, 9, 12));
         list.add(new PlaceableLog(Blocks.log, 1, 11, 9, 13));
         list.add(new PlaceableBlock(Blocks.planks, 5, 11, 9, 14));
-        list.add(new PlaceableBlock(Blocks.stone, 0, 12, 9, 0));
         list.add(new PlaceableBlock(Blocks.planks, 5, 12, 9, 1));
         list.add(new PlaceableBlock(Blocks.planks, 5, 12, 9, 5));
         list.add(new PlaceableBlock(Blocks.planks, 5, 12, 9, 9));
@@ -973,9 +975,9 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 0, 5, 10, 13));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 2, 6, 10, 0));
         list.add(new PlaceableLog(Blocks.log, 1, 6, 10, 1));
-        list.add(new PlaceableGate(Blocks.fence_gate, 1, 6, 10, 2));
+        list.add(new PlaceableGate(Blocks.fence_gate, 3, 6, 10, 2));
         list.add(new PlaceableBlock(Blocks.fence, 0, 6, 10, 3));
-        list.add(new PlaceableGate(Blocks.fence_gate, 1, 6, 10, 4));
+        list.add(new PlaceableGate(Blocks.fence_gate, 3, 6, 10, 4));
         list.add(new PlaceableLog(Blocks.log, 1, 6, 10, 5));
         list.add(new PlaceableBlock(Blocks.stained_hardened_clay, 6, 6, 10, 6));
         list.add(new PlaceableBlock(Blocks.stained_hardened_clay, 6, 6, 10, 7));
@@ -1072,6 +1074,7 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 15, 12, 10, 8));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 1, 12, 10, 9));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 15, 12, 10, 10));
+        list.add(new PlaceableBlock(Blocks.air, 0, 12, 10, 11));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 15, 12, 10, 12));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 1, 12, 10, 13));
         list.add(new PlaceableTorches(Blocks.lever, 10, 0, 11, 1));
@@ -1127,6 +1130,8 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 11, 4));
         list.add(new PlaceableButton(Blocks.wooden_button, 1, 7, 11, 5));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 7, 7, 11, 6));
+        list.add(new PlaceableBlock(Blocks.air, 0, 7, 11, 7));
+        list.add(new PlaceableNPC("jenni", 7, 11, 7));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 7, 7, 11, 8));
         list.add(new PlaceableButton(Blocks.wooden_button, 1, 7, 11, 9));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 7, 7, 11, 10));
@@ -1141,9 +1146,9 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableBlock(Blocks.stone_pressure_plate, 0, 8, 11, 7));
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 11, 8));
         list.add(new PlaceableBlock(Blocks.fence, 0, 8, 11, 9));
-        list.add(new PlaceableBlock(Blocks.flower_pot, 2, 8, 11, 10));
-        list.add(new PlaceableBlock(Blocks.flower_pot, 2, 8, 11, 11));
-        list.add(new PlaceableBlock(Blocks.flower_pot, 1, 8, 11, 12));
+        list.add(new PlaceableFlowerPot(Blocks.flower_pot, 2, 8, 11, 10));
+        list.add(new PlaceableFlowerPot(Blocks.flower_pot, 2, 8, 11, 11));
+        list.add(new PlaceableFlowerPot(Blocks.flower_pot, 1, 8, 11, 12));
         list.add(new PlaceableBlock(Blocks.glass, 0, 8, 11, 13));
         list.add(new PlaceableBlock(Blocks.glass, 0, 9, 11, 1));
         list.add(new PlaceableBlock(Blocks.air, 0, 9, 11, 2));
@@ -1188,6 +1193,9 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableTorches(Blocks.lever, 9, 12, 11, 1));
         list.add(new PlaceableTorches(Blocks.lever, 9, 12, 11, 5));
         list.add(new PlaceableTorches(Blocks.lever, 9, 12, 11, 9));
+        list.add(new PlaceableBlock(Blocks.air, 0, 12, 11, 10));
+        list.add(new PlaceableBlock(Blocks.air, 0, 12, 11, 11));
+        list.add(new PlaceableBlock(Blocks.air, 0, 12, 11, 12));
         list.add(new PlaceableTorches(Blocks.lever, 9, 12, 11, 13));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 4, 0, 12, 1));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 4, 0, 12, 5));
@@ -1242,16 +1250,16 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 12, 4));
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 12, 5));
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 12, 6));
-        list.add(new PlaceableItemFrame(new ItemStack(Items.item_frame, 1, 0), 0, 3, 7, 12, 6));
+        list.add(new PlaceableItemFrame(new ItemStack(Items.item_frame, 1, 0), 0, 3, 7, 12, 6, LootStrings.MARKET_ENTRY_FRAME));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 7, 7, 12, 7));
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 12, 8));
-        list.add(new PlaceableItemFrame(new ItemStack(Items.item_frame, 1, 0), 0, 3, 7, 12, 8));
+        list.add(new PlaceableItemFrame(new ItemStack(Items.item_frame, 1, 0), 0, 3, 7, 12, 8, LootStrings.MARKET_ENTRY_FRAME));
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 12, 9));
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 12, 10));
-        list.add(new PlaceableItemFrame(new ItemStack(Items.item_frame, 1, 0), 0, 3, 7, 12, 10));
+        list.add(new PlaceableItemFrame(new ItemStack(Items.item_frame, 1, 0), 0, 3, 7, 12, 10, LootStrings.MARKET_ENTRY_FRAME));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 15, 7, 12, 11));
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 12, 12));
-        list.add(new PlaceableItemFrame(new ItemStack(Items.item_frame, 1, 0), 0, 3, 7, 12, 12));
+        list.add(new PlaceableItemFrame(new ItemStack(Items.item_frame, 1, 0), 0, 3, 7, 12, 12, LootStrings.MARKET_ENTRY_FRAME));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 7, 7, 12, 13));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 2, 8, 12, 1));
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 12, 2));
@@ -1313,6 +1321,9 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 5, 12, 12, 1));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 5, 12, 12, 5));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 5, 12, 12, 9));
+        list.add(new PlaceableBlock(Blocks.air, 0, 12, 12, 10));
+        list.add(new PlaceableBlock(Blocks.air, 0, 12, 12, 11));
+        list.add(new PlaceableBlock(Blocks.air, 0, 12, 12, 12));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 5, 12, 12, 13));
         list.add(new PlaceableBlock(Blocks.fence, 0, 0, 13, 1));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 14, 0, 13, 2));
@@ -1561,7 +1572,7 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableBlock(Blocks.wooden_slab, 9, 8, 14, 14));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 9, 9, 14, 0));
         list.add(new PlaceableBlock(Blocks.stained_hardened_clay, 6, 9, 14, 1));
-        list.add(new PlaceableVine(Blocks.vine, 6, 9, 14, 2));
+        list.add(new PlaceableVine(Blocks.vine, 4, 9, 14, 2));
         list.add(new PlaceableBlock(Blocks.carpet, 12, 9, 14, 3));
         list.add(new PlaceableBlock(Blocks.carpet, 12, 9, 14, 4));
         list.add(new PlaceableBlock(Blocks.air, 0, 9, 14, 5));
@@ -1576,9 +1587,9 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableBlock(Blocks.wooden_slab, 9, 9, 14, 14));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 9, 10, 14, 0));
         list.add(new PlaceableBlock(Blocks.stained_hardened_clay, 6, 10, 14, 1));
-        list.add(new PlaceableIFaceable(HMBlocks.cookware, 9, 10, 14, 2, ForgeDirection.WEST));
+        list.add(new PlaceableIFaceable(HMBlocks.woodmachines, 1, 10, 14, 2, ForgeDirection.WEST, LootStrings.MARKET_BEDROOM_CHESTS));
         list.add(new PlaceableBlock(Blocks.fence, 0, 10, 14, 3));
-        list.add(new PlaceableIFaceable(HMBlocks.cookware, 9, 10, 14, 4, ForgeDirection.WEST));
+        list.add(new PlaceableIFaceable(HMBlocks.woodmachines, 1, 10, 14, 4, ForgeDirection.WEST, LootStrings.MARKET_BEDROOM_CHESTS));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 0, 10, 14, 5));
         list.add(new PlaceableBlock(Blocks.leaves, 12, 10, 14, 6));
         list.add(new PlaceableBlock(Blocks.bookshelf, 0, 10, 14, 7));
@@ -1687,12 +1698,12 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 7, 7, 15, 5));
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 15, 6));
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 15, 7));
-        list.add(new PlaceableItemFrame(new ItemStack(Blocks.red_flower, 1, 7), 0, 3, 7, 15, 7));
+        list.add(new PlaceableItemFrame(new ItemStack(Blocks.red_flower, 1, 7), 0, 3, 7, 15, 7, LootStrings.MARKET_BEDROOM_FRAME));
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 15, 8));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 7, 7, 15, 9));
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 15, 10));
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 15, 11));
-        list.add(new PlaceableBlock(Blocks.flower_pot, 7, 7, 15, 12));
+        list.add(new PlaceableFlowerPot(Blocks.flower_pot, 7, 7, 15, 12));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 3, 7, 15, 13));
         list.add(new PlaceableBlock(Blocks.iron_bars, 0, 7, 15, 14));
         list.add(new PlaceableBlock(Blocks.iron_bars, 0, 8, 15, 0));
@@ -1703,6 +1714,7 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 15, 5));
         list.add(new PlaceableVine(Blocks.vine, 4, 8, 15, 6));
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 15, 7));
+        list.add(new PlaceableNPC("candice", 8, 15, 7));
         list.add(new PlaceableVine(Blocks.vine, 1, 8, 15, 8));
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 15, 9));
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 15, 10));
@@ -1733,12 +1745,12 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableBlock(Blocks.wooden_slab, 1, 10, 15, 4));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 14, 10, 15, 5));
         list.add(new PlaceableBlock(Blocks.leaves, 12, 10, 15, 6));
-        list.add(new PlaceableBlock(Blocks.flower_pot, 3, 10, 15, 7));
+        list.add(new PlaceableFlowerPot(Blocks.flower_pot, 3, 10, 15, 7));
         list.add(new PlaceableBlock(Blocks.bookshelf, 0, 10, 15, 8));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 6, 10, 15, 9));
         list.add(new PlaceableBlock(Blocks.air, 0, 10, 15, 10));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 14, 10, 15, 11));
-        list.add(new PlaceableBlock(Blocks.flower_pot, 0, 10, 15, 12));
+        list.add(new PlaceableFlowerPot(Blocks.flower_pot, 0, 10, 15, 12));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 3, 10, 15, 13));
         list.add(new PlaceableBlock(Blocks.iron_bars, 0, 10, 15, 14));
         list.add(new PlaceableTorches(Blocks.lever, 4, 11, 15, 0));
@@ -1806,7 +1818,9 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableBlock(Blocks.wooden_slab, 13, 5, 16, 6));
         list.add(new PlaceableVine(Blocks.vine, 8, 5, 16, 7));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 4, 5, 16, 9));
+        list.add(new PlaceableBlock(Blocks.air, 0, 5, 16, 10));
         list.add(new PlaceableVine(Blocks.vine, 8, 5, 16, 11));
+        list.add(new PlaceableBlock(Blocks.air, 0, 5, 16, 12));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 4, 5, 16, 13));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 6, 6, 16, 0));
         list.add(new PlaceableLog(Blocks.log, 1, 6, 16, 1));
@@ -1824,7 +1838,7 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableLog(Blocks.log, 1, 6, 16, 13));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 7, 6, 16, 14));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 6, 7, 16, 1));
-        list.add(new PlaceableBlock(Blocks.web, 0, 7, 16, 2));
+        list.add(new PlaceableWeb(Blocks.web, 0, 7, 16, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 16, 3));
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 16, 4));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 5, 7, 16, 5));
@@ -1873,7 +1887,7 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 4, 10, 16, 5));
         list.add(new PlaceableBlock(Blocks.leaves, 12, 10, 16, 6));
         list.add(new PlaceableBlock(Blocks.air, 0, 10, 16, 7));
-        list.add(new PlaceableBlock(Blocks.web, 0, 10, 16, 8));
+        list.add(new PlaceableWeb(Blocks.web, 0, 10, 16, 8));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 4, 10, 16, 9));
         list.add(new PlaceableBlock(Blocks.air, 0, 10, 16, 10));
         list.add(new PlaceableBlock(Blocks.air, 0, 10, 16, 11));
@@ -2118,11 +2132,11 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 5, 7, 18, 2));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 5, 7, 18, 3));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 5, 7, 18, 4));
-        list.add(new PlaceableBlock(Blocks.flower_pot, 0, 7, 18, 5));
+        list.add(new PlaceableFlowerPot(Blocks.flower_pot, 0, 7, 18, 5));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 5, 7, 18, 6));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 5, 7, 18, 7));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 5, 7, 18, 8));
-        list.add(new PlaceableIFaceable(HMBlocks.cookware, 9, 7, 18, 9, ForgeDirection.EAST));
+        list.add(new PlaceableIFaceable(HMBlocks.woodmachines, 1, 7, 18, 9, ForgeDirection.EAST));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 5, 7, 18, 10));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 5, 7, 18, 11));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 5, 7, 18, 12));
@@ -2139,11 +2153,11 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableBlock(Blocks.carpet, 12, 8, 18, 9));
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 18, 10));
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 18, 11));
-        list.add(new PlaceableBlock(Blocks.web, 0, 8, 18, 12));
+        list.add(new PlaceableWeb(Blocks.web, 0, 8, 18, 12));
         list.add(new PlaceableBlock(Blocks.glass_pane, 0, 8, 18, 13));
         list.add(new PlaceableBlock(Blocks.glass_pane, 0, 9, 18, 1));
         list.add(new PlaceableBlock(Blocks.air, 0, 9, 18, 2));
-        list.add(new PlaceableBlock(Blocks.web, 0, 9, 18, 3));
+        list.add(new PlaceableWeb(Blocks.web, 0, 9, 18, 3));
         list.add(new PlaceableBlock(Blocks.air, 0, 9, 18, 4));
         list.add(new PlaceableBlock(Blocks.leaves, 12, 9, 18, 5));
         list.add(new PlaceableBlock(Blocks.air, 0, 9, 18, 6));
@@ -2152,7 +2166,7 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableBlock(Blocks.carpet, 12, 9, 18, 9));
         list.add(new PlaceableBlock(Blocks.air, 0, 9, 18, 10));
         list.add(new PlaceableBlock(Blocks.air, 0, 9, 18, 11));
-        list.add(new PlaceableBlock(Blocks.flower_pot, 3, 9, 18, 12));
+        list.add(new PlaceableFlowerPot(Blocks.flower_pot, 3, 9, 18, 12));
         list.add(new PlaceableBlock(Blocks.glass_pane, 0, 9, 18, 13));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 4, 10, 18, 0));
         list.add(new PlaceableLog(Blocks.log, 5, 10, 18, 1));
@@ -2163,7 +2177,7 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 4, 10, 18, 6));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 4, 10, 18, 7));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 4, 10, 18, 8));
-        list.add(new PlaceableBlock(Blocks.web, 0, 10, 18, 9));
+        list.add(new PlaceableWeb(Blocks.web, 0, 10, 18, 9));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 4, 10, 18, 10));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 4, 10, 18, 11));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 4, 10, 18, 12));

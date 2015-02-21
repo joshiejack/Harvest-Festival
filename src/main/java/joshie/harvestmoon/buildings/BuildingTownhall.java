@@ -1,8 +1,7 @@
-package joshie.harvestmoon.buildings.townhall;
+package joshie.harvestmoon.buildings;
 
 import java.util.ArrayList;
 
-import joshie.harvestmoon.buildings.Building;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableButton;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableDoor;

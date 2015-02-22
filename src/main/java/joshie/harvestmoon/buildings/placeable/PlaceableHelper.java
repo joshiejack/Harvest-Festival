@@ -17,6 +17,7 @@ import net.minecraft.block.BlockDoor;
 import net.minecraft.block.BlockDoublePlant;
 import net.minecraft.block.BlockEnderChest;
 import net.minecraft.block.BlockFenceGate;
+import net.minecraft.block.BlockFlower;
 import net.minecraft.block.BlockFlowerPot;
 import net.minecraft.block.BlockFurnace;
 import net.minecraft.block.BlockLadder;
@@ -101,6 +102,8 @@ public class PlaceableHelper {
             return "FlowerPot";
         } else if (block instanceof BlockMushroom) {
             return "Mushroom";
+        } else if (block instanceof BlockFlower) {
+            return "Flower";
         } else return "Block";
     }
 

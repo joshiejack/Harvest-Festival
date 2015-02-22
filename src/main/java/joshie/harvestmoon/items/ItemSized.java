@@ -6,7 +6,7 @@ import static joshie.harvestmoon.helpers.SizeableHelper.getType;
 
 import java.util.List;
 
-import joshie.harvestmoon.HarvestOverride;
+import joshie.harvestmoon.HMConfiguration;
 import joshie.harvestmoon.api.IRateable;
 import joshie.harvestmoon.api.IShippable;
 import joshie.harvestmoon.helpers.SizeableHelper;
@@ -89,7 +89,7 @@ public class ItemSized extends ItemHMMeta implements IShippable, IRateable {
         for (int i = 0; i < getMetaCount(); i++) {
             for (int j = 0; j < 100; j += 100) {
                 SizeableMeta meta = SizeableHelper.getSizeableFromStack(new ItemStack(item, 1, (j * 100) + i));
-                if(meta != SizeableMeta.EGG || !HarvestOverride.config.egg) {
+                if(meta != SizeableMeta.EGG || !HMConfiguration.overrides.egg) {
                     list.add(new ItemStack(item, 1, (j * 100) + i));
                     list.add(new ItemStack(item, 1, 10000 + (j * 100) + i));
                     list.add(new ItemStack(item, 1, 20000 + (j * 100) + i));

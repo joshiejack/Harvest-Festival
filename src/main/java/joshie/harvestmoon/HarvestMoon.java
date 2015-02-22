@@ -107,7 +107,9 @@ public class HarvestMoon implements IFMLLoadingPlugin {
     }
 
     @Override
-    public void injectData(Map<String, Object> data) {}
+    public void injectData(Map<String, Object> data) {
+        HarvestOverride.isObfuscated = ((Boolean) data.get("runtimeDeobfuscationEnabled"));
+    }
 
     @Override
     public String getAccessTransformerClass() {

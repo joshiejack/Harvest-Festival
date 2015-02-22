@@ -9,6 +9,7 @@ import java.util.List;
 
 import joshie.harvestmoon.asm.EggTransformer;
 import joshie.harvestmoon.asm.ITransformer;
+import joshie.harvestmoon.config.Overrides;
 import net.minecraft.launchwrapper.IClassTransformer;
 
 import org.apache.commons.io.FileUtils;
@@ -28,8 +29,8 @@ public class HarvestOverride implements IClassTransformer {
     private static final int EGG = 0;
     private static final int SNOW = 1;
     private static final int FARMLAND = 2;
-    public static OverrideConfig config;
-    private static boolean isObfuscated = false;
+    
+    static boolean isObfuscated = false;
     private static List<ITransformer> transformers = new ArrayList();
     static {
         transformers.add(new EggTransformer());
@@ -40,28 +41,22 @@ public class HarvestOverride implements IClassTransformer {
         File file = new File("config/hm/override.json");
         if (!file.exists()) {
             try {
-                config = new OverrideConfig();
+                HMConfiguration.overrides = new Overrides();
                 Writer writer = new OutputStreamWriter(new FileOutputStream(file), "UTF-8");
-                writer.write(gson.toJson(config));
+                writer.write(gson.toJson(HMConfiguration.overrides));
                 writer.close(); //Write the default json to file
             } catch (Exception e) {}
         } else {
             try {
-                config = gson.fromJson(FileUtils.readFileToString(file), OverrideConfig.class);
+                HMConfiguration.overrides = gson.fromJson(FileUtils.readFileToString(file), Overrides.class);
             } catch (Exception e) {}
         }
 
         for (int i = 0; i < transformers.size(); i++) {
-            if (!transformers.get(i).isActive(config)) {
+            if (!transformers.get(i).isActive(HMConfiguration.overrides)) {
                 transformers.remove(i);
             }
         }
-    }
-
-    public static class OverrideConfig {
-        public boolean egg = true;
-        public boolean snow = true;
-        public boolean farmland = true;
     }
 
     @Override
@@ -80,7 +75,7 @@ public class HarvestOverride implements IClassTransformer {
         String registerItems = !name.equals(transformedName) ? "l" : "registerItems";
         if (name.equals("net.minecraft.item.Item") || name.equals("net.minecraft.block.Block")) {
             for (MethodNode method : classNode.methods) {
-                if (!config.egg && method.name.equals("registerItems") && method.desc.equals("()V")) {
+                if (!HMConfiguration.overrides.egg && method.name.equals("registerItems") && method.desc.equals("()V")) {
                     for (int j = 0; j < method.instructions.size(); j++) {
                         AbstractInsnNode instruction = method.instructions.get(j);
                         if (instruction.getType() == AbstractInsnNode.LDC_INSN) {
@@ -100,7 +95,7 @@ public class HarvestOverride implements IClassTransformer {
                         AbstractInsnNode instruction = method.instructions.get(j);
                         if (instruction.getType() == AbstractInsnNode.LDC_INSN) {
                             LdcInsnNode ldcInstruction = (LdcInsnNode) instruction;
-                            if (config.snow && ldcInstruction.cst.equals("snow_layer")) {
+                            if (HMConfiguration.overrides.snow && ldcInstruction.cst.equals("snow_layer")) {
                                 if (!overridden[SNOW]) {
                                     ((TypeInsnNode) method.instructions.get(j + 1)).desc = "joshie/harvestmoon/blocks/BlockSnowSheet";
                                     ((MethodInsnNode) method.instructions.get(j + 3)).owner = "joshie/harvestmoon/blocks/BlockSnowSheet";
@@ -108,7 +103,7 @@ public class HarvestOverride implements IClassTransformer {
                                     overridden[SNOW] = true;
 
                                 }
-                            } else if (config.farmland && ldcInstruction.cst.equals("wheat")) {
+                            } else if (HMConfiguration.overrides.farmland && ldcInstruction.cst.equals("wheat")) {
                                 if (!overridden[FARMLAND]) {
                                     ((TypeInsnNode) method.instructions.get(j + 11)).desc = "joshie/harvestmoon/blocks/BlockSoil";
                                     ((MethodInsnNode) method.instructions.get(j + 13)).owner = "joshie/harvestmoon/blocks/BlockSoil";
@@ -126,19 +121,4 @@ public class HarvestOverride implements IClassTransformer {
         classNode.accept(writer);
         return writer.toByteArray();
     }
-
-    /** Helper
-     *                                 for (int i = 0; i < 32; i++) {
-                                    AbstractInsnNode node2 = method.instructions.get(j + i);
-                                    if (node2 instanceof TypeInsnNode) {
-                                        System.out.println("snow - type " + i + " " + ((TypeInsnNode) node2).desc);
-                                    }
-
-                                    if (node2 instanceof MethodInsnNode) {
-                                        System.out.println("snow - method desc " + i + " " + ((MethodInsnNode) node2).desc);
-                                        System.out.println("snow - method name " + i + " " + ((MethodInsnNode) node2).name);
-                                        System.out.println("snow - method owner " + i + " " + ((MethodInsnNode) node2).owner);
-                                    }
-                                }
-     */
 }

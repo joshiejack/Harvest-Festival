@@ -30,24 +30,24 @@ public class HMNPCs {
         return npc;
     }
 
-    public static NPC goddess; //The Goddess
-    public static NPC animal_owner; // Owner of the Animal Barn
-    public static NPC cafe_owner; // Owner of the Cafe
-    public static NPC cafe_granny;// Granny of Café Owner
-    public static NPC seed_owner; // Sister of Yulif
-    public static NPC tool_owner; // Blacksmith
-    public static NPC priest; //Married to mayor
-    public static NPC mayor; //Married to priest
-    public static NPC daughter_1; //Daughter of Mayor and Priest
-    public static NPC daughter_2; //Daughter of Mayor and Priest
-    public static NPC clock_worker; //The clock worker
-    public static NPC clockmaker_child; // Clockmakers Child
-    public static NPC gs_owner; //Owner of general store
-    public static NPC miner; //Works in the mines
-    public static NPC fisherman; //Fisherman
-    public static NPC milkmaid; //Works in the Barn, Milking Cows
-    public static NPC builder; //Builds stuff for the players
-    public static NPC poultry; //Poultry Farm Owner
+    public static NPC goddess; //The Goddess                        (SPAWN)
+    public static NPC animal_owner; // Owner of the Animal Barn     (BARN)
+    public static NPC cafe_owner; // Owner of the Cafe              (CAFE)
+    public static NPC cafe_granny;// Granny of Café Owner           (CAFE)
+    public static NPC seed_owner; // Sister of Yulif                (CARPENTER)
+    public static NPC tool_owner; // Blacksmith                     (BLACKSMITH)
+    public static NPC priest; //Married to mayor                    (CHURCH)
+    public static NPC mayor; //Married to priest                    (TOWNHALL)
+    public static NPC daughter_1; //Daughter of Mayor and Priest    (TOWNHALL)
+    public static NPC daughter_2; //Daughter of Mayor and Priest    (TOWNHALL)
+    public static NPC clock_worker; //The clock worker              (CLOCKWORKERS)
+    public static NPC clockmaker_child; // Clockmakers Child        (CLOCKWORKERS)
+    public static NPC gs_owner; //Owner of general store            (GENERAL STORE)
+    public static NPC miner; //Works in the mines                   (MINING HUT)
+    public static NPC fisherman; //Fisherman                        (FISHING HUT)
+    public static NPC milkmaid; //Works in the Barn, Milking Cows   (GENERAL STORE)
+    public static NPC builder; //Builds stuff for the players       (SPAWN)
+    public static NPC poultry; //Poultry Farm Owner                 (POULTRY FARM)
 
     public static void init() {
         goddess = register(new NPCGoddess("goddess", FEMALE, ADULT).setHeight(1.2F, 0.35F));

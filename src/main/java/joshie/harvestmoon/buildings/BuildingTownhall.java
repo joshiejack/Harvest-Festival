@@ -6,6 +6,7 @@ import joshie.harvestmoon.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableButton;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableDoor;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableDoublePlant;
+import joshie.harvestmoon.buildings.placeable.blocks.PlaceableFlowerPot;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableIFaceable;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableLadder;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableLog;
@@ -14,9 +15,12 @@ import joshie.harvestmoon.buildings.placeable.blocks.PlaceableStairs;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableTorches;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableTrapDoor;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableVine;
+import joshie.harvestmoon.buildings.placeable.blocks.PlaceableWeb;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceableItemFrame;
+import joshie.harvestmoon.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceablePainting;
 import joshie.harvestmoon.init.HMBlocks;
+import joshie.harvestmoon.lib.LootStrings;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -25,7 +29,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 public class BuildingTownhall extends Building {
     public BuildingTownhall() {
         offsetY = -1;
-        list = new ArrayList(3306);
+        list = new ArrayList(3365);
         init1();
         init2();
     }
@@ -465,6 +469,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 1, 17));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 8, 5, 1, 18));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 0, 5, 1, 19));
+        list.add(new PlaceableBlock(Blocks.air, 0, 5, 1, 20));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 2, 6, 1, 0));
         list.add(new PlaceableLog(Blocks.log, 1, 6, 1, 1));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 7, 6, 1, 2));
@@ -492,7 +497,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 1, 3));
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 1, 4));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 1, 7, 1, 5));
-        list.add(new PlaceableBlock(Blocks.flower_pot, 4, 7, 1, 6));
+        list.add(new PlaceableFlowerPot(Blocks.flower_pot, 4, 7, 1, 6));
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 1, 7));
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 1, 8));
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 1, 9));
@@ -500,7 +505,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 1, 11));
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 1, 12));
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 1, 13));
-        list.add(new PlaceableBlock(Blocks.flower_pot, 3, 7, 1, 14));
+        list.add(new PlaceableFlowerPot(Blocks.flower_pot, 3, 7, 1, 14));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 1, 7, 1, 15));
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 1, 16));
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 1, 17));
@@ -608,6 +613,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableDoublePlant(Blocks.double_plant, 4, 12, 1, 15));
         list.add(new PlaceableDoublePlant(Blocks.double_plant, 4, 12, 1, 16));
         list.add(new PlaceableDoublePlant(Blocks.double_plant, 4, 12, 1, 17));
+        list.add(new PlaceableBlock(Blocks.air, 0, 12, 1, 18));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 1, 12, 1, 19));
         list.add(new PlaceableDoublePlant(Blocks.double_plant, 4, 13, 1, 5));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 2, 13, 1, 6));
@@ -620,6 +626,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 13, 1, 13));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 3, 13, 1, 14));
         list.add(new PlaceableDoublePlant(Blocks.double_plant, 4, 13, 1, 15));
+        list.add(new PlaceableBlock(Blocks.air, 0, 14, 1, 5));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 0, 14, 1, 6));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 6, 14, 1, 7));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 0, 14, 1, 8));
@@ -645,6 +652,8 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableLog(Blocks.log, 1, 16, 1, 7));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 3, 16, 1, 8));
         list.add(new PlaceableDoublePlant(Blocks.double_plant, 4, 16, 1, 9));
+        list.add(new PlaceableBlock(Blocks.air, 0, 16, 1, 10));
+        list.add(new PlaceableBlock(Blocks.air, 0, 16, 1, 11));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 2, 16, 1, 12));
         list.add(new PlaceableLog(Blocks.log, 1, 16, 1, 13));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 3, 16, 1, 14));
@@ -745,6 +754,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.fence, 0, 5, 2, 8));
         list.add(new PlaceableBlock(Blocks.fence, 0, 5, 2, 9));
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 2, 10));
+        list.add(new PlaceableNPC("jamie", 5, 2, 10));
         list.add(new PlaceableBlock(Blocks.fence, 0, 5, 2, 11));
         list.add(new PlaceableBlock(Blocks.fence, 0, 5, 2, 12));
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 2, 13));
@@ -754,12 +764,13 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 2, 17));
         list.add(new PlaceableTorches(Blocks.torch, 4, 5, 2, 18));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 3, 5, 2, 19));
+        list.add(new PlaceableBlock(Blocks.air, 0, 5, 2, 20));
         list.add(new PlaceableButton(Blocks.stone_button, 4, 6, 2, 0));
         list.add(new PlaceableLog(Blocks.log, 1, 6, 2, 1));
         list.add(new PlaceableBlock(Blocks.fence, 0, 6, 2, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 2, 3));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 2, 4));
-        list.add(new PlaceableItemFrame(new ItemStack(Items.paper, 1, 0), 0, 2, 6, 2, 4));
+        list.add(new PlaceableItemFrame(new ItemStack(Items.paper, 1, 0), 0, 2, 6, 2, 4, LootStrings.TOWNHALL_HALL_FRAME));
         list.add(new PlaceableLog(Blocks.log, 1, 6, 2, 5));
         list.add(new PlaceableTorches(Blocks.torch, 3, 6, 2, 6));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 2, 7));
@@ -772,7 +783,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableTorches(Blocks.torch, 4, 6, 2, 14));
         list.add(new PlaceableLog(Blocks.log, 1, 6, 2, 15));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 2, 16));
-        list.add(new PlaceableItemFrame(new ItemStack(Items.paper, 1, 0), 0, 0, 6, 2, 16));
+        list.add(new PlaceableItemFrame(new ItemStack(Items.paper, 1, 0), 0, 0, 6, 2, 16, LootStrings.TOWNHALL_HALL_FRAME));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 2, 17));
         list.add(new PlaceableBlock(Blocks.fence, 0, 6, 2, 18));
         list.add(new PlaceableLog(Blocks.log, 1, 6, 2, 19));
@@ -886,6 +897,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 12, 2, 12));
         list.add(new PlaceableBlock(Blocks.air, 0, 12, 2, 13));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 3, 12, 2, 14));
+        list.add(new PlaceableBlock(Blocks.air, 0, 12, 2, 18));
         list.add(new PlaceableButton(Blocks.stone_button, 1, 12, 2, 19));
         list.add(new PlaceableBlock(Blocks.glass, 0, 13, 2, 6));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 4, 13, 2, 7));
@@ -896,6 +908,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 13, 2, 12));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 13, 13, 2, 13));
         list.add(new PlaceableBlock(Blocks.glass, 0, 13, 2, 14));
+        list.add(new PlaceableBlock(Blocks.air, 0, 14, 2, 5));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 2, 14, 2, 6));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 1, 14, 2, 7));
         list.add(new PlaceableVine(Blocks.vine, 8, 14, 2, 8));
@@ -918,14 +931,32 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableButton(Blocks.stone_button, 3, 15, 2, 15));
         list.add(new PlaceableTorches(Blocks.torch, 1, 16, 2, 6));
         list.add(new PlaceableLog(Blocks.log, 1, 16, 2, 7));
+        list.add(new PlaceableBlock(Blocks.air, 0, 16, 2, 8));
+        list.add(new PlaceableBlock(Blocks.air, 0, 16, 2, 10));
+        list.add(new PlaceableBlock(Blocks.air, 0, 16, 2, 11));
+        list.add(new PlaceableBlock(Blocks.air, 0, 16, 2, 12));
         list.add(new PlaceableLog(Blocks.log, 1, 16, 2, 13));
         list.add(new PlaceableTorches(Blocks.torch, 1, 16, 2, 14));
         list.add(new PlaceableButton(Blocks.stone_button, 1, 17, 2, 7));
         list.add(new PlaceableButton(Blocks.stone_button, 1, 17, 2, 13));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 4, 0, 3, 1));
+        list.add(new PlaceableBlock(Blocks.air, 0, 0, 3, 2));
+        list.add(new PlaceableBlock(Blocks.air, 0, 0, 3, 3));
+        list.add(new PlaceableBlock(Blocks.air, 0, 0, 3, 4));
+        list.add(new PlaceableBlock(Blocks.air, 0, 0, 3, 5));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 4, 0, 3, 6));
+        list.add(new PlaceableBlock(Blocks.air, 0, 0, 3, 7));
+        list.add(new PlaceableBlock(Blocks.air, 0, 0, 3, 8));
+        list.add(new PlaceableBlock(Blocks.air, 0, 0, 3, 9));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 4, 0, 3, 10));
+        list.add(new PlaceableBlock(Blocks.air, 0, 0, 3, 11));
+        list.add(new PlaceableBlock(Blocks.air, 0, 0, 3, 12));
+        list.add(new PlaceableBlock(Blocks.air, 0, 0, 3, 13));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 4, 0, 3, 14));
+        list.add(new PlaceableBlock(Blocks.air, 0, 0, 3, 15));
+        list.add(new PlaceableBlock(Blocks.air, 0, 0, 3, 16));
+        list.add(new PlaceableBlock(Blocks.air, 0, 0, 3, 17));
+        list.add(new PlaceableBlock(Blocks.air, 0, 0, 3, 18));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 4, 0, 3, 19));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 6, 1, 3, 0));
         list.add(new PlaceableLog(Blocks.log, 1, 1, 3, 1));
@@ -948,6 +979,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 4, 1, 3, 18));
         list.add(new PlaceableLog(Blocks.log, 1, 1, 3, 19));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 7, 1, 3, 20));
+        list.add(new PlaceableBlock(Blocks.air, 0, 2, 3, 0));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 6, 2, 3, 1));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 5, 2, 3, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 2, 3, 3));
@@ -967,6 +999,8 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 2, 3, 17));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 5, 2, 3, 18));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 7, 2, 3, 19));
+        list.add(new PlaceableBlock(Blocks.air, 0, 2, 3, 20));
+        list.add(new PlaceableBlock(Blocks.air, 0, 3, 3, 0));
         list.add(new PlaceableBlock(Blocks.glass, 0, 3, 3, 1));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 13, 3, 3, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 3, 3, 3));
@@ -986,6 +1020,8 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 3, 3, 17));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 13, 3, 3, 18));
         list.add(new PlaceableBlock(Blocks.glass, 0, 3, 3, 19));
+        list.add(new PlaceableBlock(Blocks.air, 0, 3, 3, 20));
+        list.add(new PlaceableBlock(Blocks.air, 0, 4, 3, 0));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 6, 4, 3, 1));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 13, 4, 3, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 4, 3, 3));
@@ -1005,6 +1041,8 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 4, 3, 17));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 13, 4, 3, 18));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 7, 4, 3, 19));
+        list.add(new PlaceableBlock(Blocks.air, 0, 4, 3, 20));
+        list.add(new PlaceableBlock(Blocks.air, 0, 5, 3, 0));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 6, 5, 3, 1));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 5, 5, 3, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 3, 3));
@@ -1024,6 +1062,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 3, 17));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 5, 5, 3, 18));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 7, 5, 3, 19));
+        list.add(new PlaceableBlock(Blocks.air, 0, 5, 3, 20));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 6, 6, 3, 0));
         list.add(new PlaceableLog(Blocks.log, 1, 6, 3, 1));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 3, 6, 3, 2));
@@ -1045,6 +1084,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 2, 6, 3, 18));
         list.add(new PlaceableLog(Blocks.log, 1, 6, 3, 19));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 7, 6, 3, 20));
+        list.add(new PlaceableBlock(Blocks.air, 0, 7, 3, 0));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 6, 7, 3, 1));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 5, 7, 3, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 3, 3));
@@ -1064,6 +1104,8 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 3, 17));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 5, 7, 3, 18));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 7, 7, 3, 19));
+        list.add(new PlaceableBlock(Blocks.air, 0, 7, 3, 20));
+        list.add(new PlaceableBlock(Blocks.air, 0, 8, 3, 0));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 6, 8, 3, 1));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 13, 8, 3, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 3, 3));
@@ -1083,6 +1125,8 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 3, 17));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 13, 8, 3, 18));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 7, 8, 3, 19));
+        list.add(new PlaceableBlock(Blocks.air, 0, 8, 3, 20));
+        list.add(new PlaceableBlock(Blocks.air, 0, 9, 3, 0));
         list.add(new PlaceableBlock(Blocks.glass, 0, 9, 3, 1));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 13, 9, 3, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 9, 3, 3));
@@ -1102,6 +1146,8 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 9, 3, 17));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 13, 9, 3, 18));
         list.add(new PlaceableBlock(Blocks.glass, 0, 9, 3, 19));
+        list.add(new PlaceableBlock(Blocks.air, 0, 9, 3, 20));
+        list.add(new PlaceableBlock(Blocks.air, 0, 10, 3, 0));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 6, 10, 3, 1));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 5, 10, 3, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 10, 3, 3));
@@ -1121,6 +1167,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 10, 3, 17));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 5, 10, 3, 18));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 7, 10, 3, 19));
+        list.add(new PlaceableBlock(Blocks.air, 0, 10, 3, 20));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 6, 11, 3, 0));
         list.add(new PlaceableLog(Blocks.log, 1, 11, 3, 1));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 5, 11, 3, 2));
@@ -1143,6 +1190,10 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableLog(Blocks.log, 1, 11, 3, 19));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 7, 11, 3, 20));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 5, 12, 3, 1));
+        list.add(new PlaceableBlock(Blocks.air, 0, 12, 3, 2));
+        list.add(new PlaceableBlock(Blocks.air, 0, 12, 3, 3));
+        list.add(new PlaceableBlock(Blocks.air, 0, 12, 3, 4));
+        list.add(new PlaceableBlock(Blocks.air, 0, 12, 3, 5));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 6, 12, 3, 6));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 4, 12, 3, 7));
         list.add(new PlaceableBlock(Blocks.air, 0, 12, 3, 8));
@@ -1152,7 +1203,12 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 12, 3, 12));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 13, 12, 3, 13));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 7, 12, 3, 14));
+        list.add(new PlaceableBlock(Blocks.air, 0, 12, 3, 15));
+        list.add(new PlaceableBlock(Blocks.air, 0, 12, 3, 16));
+        list.add(new PlaceableBlock(Blocks.air, 0, 12, 3, 17));
+        list.add(new PlaceableBlock(Blocks.air, 0, 12, 3, 18));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 5, 12, 3, 19));
+        list.add(new PlaceableBlock(Blocks.air, 0, 13, 3, 5));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 6, 13, 3, 6));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 1, 13, 3, 7));
         list.add(new PlaceableBlock(Blocks.air, 0, 13, 3, 8));
@@ -1162,6 +1218,8 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 13, 3, 12));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 1, 13, 3, 13));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 7, 13, 3, 14));
+        list.add(new PlaceableBlock(Blocks.air, 0, 13, 3, 15));
+        list.add(new PlaceableBlock(Blocks.air, 0, 14, 3, 5));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 6, 14, 3, 6));
         list.add(new PlaceableVine(Blocks.vine, 8, 14, 3, 7));
         list.add(new PlaceableVine(Blocks.vine, 8, 14, 3, 8));
@@ -1171,6 +1229,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 14, 3, 12));
         list.add(new PlaceableBlock(Blocks.air, 0, 14, 3, 13));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 7, 14, 3, 14));
+        list.add(new PlaceableBlock(Blocks.air, 0, 14, 3, 15));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 6, 15, 3, 5));
         list.add(new PlaceableLog(Blocks.log, 1, 15, 3, 6));
         list.add(new PlaceableBlock(Blocks.stonebrick, 0, 15, 3, 7));
@@ -1185,6 +1244,9 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 6, 16, 3, 6));
         list.add(new PlaceableLog(Blocks.log, 1, 16, 3, 7));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 7, 16, 3, 8));
+        list.add(new PlaceableBlock(Blocks.air, 0, 16, 3, 9));
+        list.add(new PlaceableBlock(Blocks.air, 0, 16, 3, 10));
+        list.add(new PlaceableBlock(Blocks.air, 0, 16, 3, 11));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 6, 16, 3, 12));
         list.add(new PlaceableLog(Blocks.log, 1, 16, 3, 13));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 7, 16, 3, 14));
@@ -1465,9 +1527,6 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 13, 4, 8));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 13, 13, 4, 9));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 13, 13, 4, 10));
-    }
-
-    public void init2() {
         list.add(new PlaceableBlock(Blocks.wooden_slab, 13, 13, 4, 11));
         list.add(new PlaceableBlock(Blocks.air, 0, 13, 4, 12));
         list.add(new PlaceableBlock(Blocks.air, 0, 13, 4, 13));
@@ -1535,7 +1594,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 5, 2, 5, 1));
         list.add(new PlaceableBlock(Blocks.bookshelf, 0, 2, 5, 2));
         list.add(new PlaceableBlock(Blocks.bookshelf, 0, 2, 5, 3));
-        list.add(new PlaceableIFaceable(HMBlocks.cookware, 9, 2, 5, 4, ForgeDirection.EAST));
+        list.add(new PlaceableIFaceable(HMBlocks.woodmachines, 1, 2, 5, 4, ForgeDirection.EAST, LootStrings.TOWNHALL_TEENAGER_CHEST));
         list.add(new PlaceableLog(Blocks.log, 1, 2, 5, 5));
         list.add(new PlaceableBlock(Blocks.fence, 0, 2, 5, 6));
         list.add(new PlaceableBlock(Blocks.air, 0, 2, 5, 7));
@@ -1554,7 +1613,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 6, 3, 5, 1));
         list.add(new PlaceableBlock(Blocks.bookshelf, 0, 3, 5, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 3, 5, 3));
-        list.add(new PlaceableSignWall(Blocks.wall_sign, 4, 3, 5, 4, new String[] { "", "", "", "" }));
+        list.add(new PlaceableSignWall(Blocks.wall_sign, 4, 3, 5, 4, new String[] { "", "", "", "" } ));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 1, 3, 5, 5));
         list.add(new PlaceableBlock(Blocks.fence, 0, 3, 5, 6));
         list.add(new PlaceableBlock(Blocks.air, 0, 3, 5, 7));
@@ -1592,6 +1651,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 4, 5, 5, 1));
         list.add(new PlaceableBlock(Blocks.carpet, 1, 5, 5, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 5, 3));
+        list.add(new PlaceableNPC("cloe", 5, 5, 3));
         list.add(new PlaceableBlock(Blocks.bookshelf, 0, 5, 5, 4));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 0, 5, 5, 5));
         list.add(new PlaceableBlock(Blocks.fence, 0, 5, 5, 6));
@@ -1625,6 +1685,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.fence, 0, 6, 5, 14));
         list.add(new PlaceableLog(Blocks.log, 1, 6, 5, 15));
         list.add(new PlaceableBlock(Blocks.fence, 0, 6, 5, 16));
+        list.add(new PlaceableBlock(Blocks.air, 0, 6, 5, 17));
         list.add(new PlaceableBlock(Blocks.fence, 0, 6, 5, 18));
         list.add(new PlaceableLog(Blocks.log, 1, 6, 5, 19));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 3, 6, 5, 20));
@@ -1653,7 +1714,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 5, 4));
         list.add(new PlaceableDoor(Blocks.wooden_door, 1, 8, 5, 5));
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 5, 6));
-        list.add(new PlaceableIFaceable(HMBlocks.cookware, 9, 8, 5, 7, ForgeDirection.NORTH));
+        list.add(new PlaceableIFaceable(HMBlocks.woodmachines, 1, 8, 5, 7, ForgeDirection.NORTH));
         list.add(new PlaceableBlock(Blocks.fence, 0, 8, 5, 8));
         list.add(new PlaceableBlock(Blocks.fence, 0, 8, 5, 9));
         list.add(new PlaceableBlock(Blocks.fence, 0, 8, 5, 10));
@@ -1697,6 +1758,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.wooden_slab, 13, 10, 5, 10));
         list.add(new PlaceableBlock(Blocks.air, 0, 10, 5, 11));
         list.add(new PlaceableDoor(Blocks.wooden_door, 3, 10, 5, 12));
+        list.add(new PlaceableBlock(Blocks.air, 0, 10, 5, 13));
         list.add(new PlaceableBlock(Blocks.fence, 0, 10, 5, 14));
         list.add(new PlaceableLog(Blocks.log, 1, 10, 5, 15));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 3, 10, 5, 16));
@@ -1726,7 +1788,6 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 3, 11, 5, 20));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 1, 12, 5, 1));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 5, 12, 5, 6));
-        list.add(new PlaceableBlock(Blocks.air, 0, 12, 5, 7));
         list.add(new PlaceableBlock(Blocks.fence, 0, 12, 5, 8));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 0, 12, 5, 9));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 0, 12, 5, 10));
@@ -1815,15 +1876,18 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableLog(Blocks.log, 1, 2, 6, 15));
         list.add(new PlaceableBlock(Blocks.carpet, 0, 2, 6, 16));
         list.add(new PlaceableBlock(Blocks.carpet, 0, 2, 6, 17));
-        list.add(new PlaceableItemFrame(new ItemStack(Items.carrot, 1, 0), 0, 3, 2, 6, 17));
+        list.add(new PlaceableItemFrame(new ItemStack(Items.carrot, 1, 0), 0, 3, 2, 6, 17, LootStrings.TOWNHALL_CHILD_FRAME));
         list.add(new PlaceableBlock(Blocks.carpet, 0, 2, 6, 18));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 3, 2, 6, 19));
         list.add(new PlaceableBlock(Blocks.glass, 0, 3, 6, 1));
-        list.add(new PlaceableBlock(Blocks.web, 0, 3, 6, 2));
+        list.add(new PlaceableWeb(Blocks.web, 0, 3, 6, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 3, 6, 3));
         list.add(new PlaceableBlock(Blocks.air, 0, 3, 6, 4));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 1, 3, 6, 5));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 5, 3, 6, 6));
+    }
+
+    public void init2() {
         list.add(new PlaceableBlock(Blocks.air, 0, 3, 6, 7));
         list.add(new PlaceableBlock(Blocks.air, 0, 3, 6, 8));
         list.add(new PlaceableBlock(Blocks.air, 0, 3, 6, 9));
@@ -1841,7 +1905,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 4, 6, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 4, 6, 3));
         list.add(new PlaceableBlock(Blocks.air, 0, 4, 6, 4));
-        list.add(new PlaceableItemFrame(new ItemStack(Items.book, 1, 0), 0, 2, 4, 6, 4));
+        list.add(new PlaceableItemFrame(new ItemStack(Items.book, 1, 0), 0, 2, 4, 6, 4, LootStrings.TOWNHALL_TEENAGER_FRAME));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 3, 4, 6, 5));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 5, 4, 6, 6));
         list.add(new PlaceableBlock(Blocks.air, 0, 4, 6, 7));
@@ -1853,12 +1917,14 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 4, 6, 13));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 5, 4, 6, 14));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 2, 4, 6, 15));
-        list.add(new PlaceableBlock(Blocks.flower_pot, 3, 4, 6, 18));
+        list.add(new PlaceableBlock(Blocks.air, 0, 4, 6, 16));
+        list.add(new PlaceableBlock(Blocks.air, 0, 4, 6, 17));
+        list.add(new PlaceableFlowerPot(Blocks.flower_pot, 3, 4, 6, 18));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 3, 4, 6, 19));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 2, 5, 6, 1));
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 6, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 6, 3));
-        list.add(new PlaceableBlock(Blocks.flower_pot, 7, 5, 6, 4));
+        list.add(new PlaceableFlowerPot(Blocks.flower_pot, 7, 5, 6, 4));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 0, 5, 6, 5));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 5, 5, 6, 6));
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 6, 7));
@@ -1870,6 +1936,9 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 6, 13));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 5, 5, 6, 14));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 0, 5, 6, 15));
+        list.add(new PlaceableBlock(Blocks.air, 0, 5, 6, 16));
+        list.add(new PlaceableBlock(Blocks.air, 0, 5, 6, 17));
+        list.add(new PlaceableBlock(Blocks.air, 0, 5, 6, 18));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 3, 5, 6, 19));
         list.add(new PlaceableLog(Blocks.log, 1, 6, 6, 1));
         list.add(new PlaceableTorches(Blocks.torch, 5, 6, 6, 2));
@@ -1887,6 +1956,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.wooden_slab, 5, 6, 6, 14));
         list.add(new PlaceableLog(Blocks.log, 1, 6, 6, 15));
         list.add(new PlaceableBlock(Blocks.fence, 0, 6, 6, 16));
+        list.add(new PlaceableBlock(Blocks.air, 0, 6, 6, 17));
         list.add(new PlaceableBlock(Blocks.fence, 0, 6, 6, 18));
         list.add(new PlaceableLog(Blocks.log, 1, 6, 6, 19));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 2, 7, 6, 1));
@@ -1902,9 +1972,10 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 6, 11));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 5, 7, 6, 12));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 5, 7, 6, 13));
-        list.add(new PlaceableBlock(Blocks.flower_pot, 7, 7, 6, 14));
+        list.add(new PlaceableFlowerPot(Blocks.flower_pot, 7, 7, 6, 14));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 2, 7, 6, 15));
         list.add(new PlaceableTorches(Blocks.torch, 3, 7, 6, 16));
+        list.add(new PlaceableBlock(Blocks.air, 0, 7, 6, 17));
         list.add(new PlaceableTorches(Blocks.torch, 4, 7, 6, 18));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 3, 7, 6, 19));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 2, 8, 6, 1));
@@ -1922,6 +1993,8 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 6, 13));
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 6, 14));
         list.add(new PlaceableDoor(Blocks.wooden_door, 8, 8, 6, 15));
+        list.add(new PlaceableBlock(Blocks.air, 0, 8, 6, 16));
+        list.add(new PlaceableBlock(Blocks.air, 0, 8, 6, 17));
         list.add(new PlaceableBlock(Blocks.leaves2, 13, 8, 6, 18));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 3, 8, 6, 19));
         list.add(new PlaceableBlock(Blocks.glass, 0, 9, 6, 1));
@@ -1939,10 +2012,13 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.fence, 0, 9, 6, 13));
         list.add(new PlaceableBlock(Blocks.air, 0, 9, 6, 14));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 2, 9, 6, 15));
+        list.add(new PlaceableBlock(Blocks.air, 0, 9, 6, 16));
+        list.add(new PlaceableBlock(Blocks.air, 0, 9, 6, 17));
+        list.add(new PlaceableBlock(Blocks.air, 0, 9, 6, 18));
         list.add(new PlaceableBlock(Blocks.glass, 0, 9, 6, 19));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 2, 10, 6, 1));
         list.add(new PlaceableBlock(Blocks.air, 0, 10, 6, 2));
-        list.add(new PlaceableBlock(Blocks.flower_pot, 0, 10, 6, 3));
+        list.add(new PlaceableFlowerPot(Blocks.flower_pot, 0, 10, 6, 3));
         list.add(new PlaceableTorches(Blocks.torch, 5, 10, 6, 4));
         list.add(new PlaceableLog(Blocks.log, 1, 10, 6, 5));
         list.add(new PlaceableBlock(Blocks.fence, 0, 10, 6, 6));
@@ -1954,13 +2030,14 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 10, 6, 11));
         list.add(new PlaceablePainting("Kebab", 3, 10, 6, 11));
         list.add(new PlaceableDoor(Blocks.wooden_door, 8, 10, 6, 12));
+        list.add(new PlaceableBlock(Blocks.air, 0, 10, 6, 13));
         list.add(new PlaceableBlock(Blocks.fence, 0, 10, 6, 14));
         list.add(new PlaceableLog(Blocks.log, 1, 10, 6, 15));
         list.add(new PlaceableVine(Blocks.vine, 12, 10, 6, 16));
-        list.add(new PlaceableItemFrame(new ItemStack(Items.carrot, 1, 0), 0, 1, 10, 6, 16));
+        list.add(new PlaceableItemFrame(new ItemStack(Items.carrot, 1, 0), 0, 1, 10, 6, 16, LootStrings.TOWNHALL_CHILD_FRAME));
         list.add(new PlaceableBlock(Blocks.carpet, 2, 10, 6, 17));
         list.add(new PlaceableBlock(Blocks.air, 0, 10, 6, 18));
-        list.add(new PlaceableItemFrame(new ItemStack(Items.carrot, 1, 0), 0, 1, 10, 6, 18));
+        list.add(new PlaceableItemFrame(new ItemStack(Items.carrot, 1, 0), 0, 1, 10, 6, 18, LootStrings.TOWNHALL_CHILD_FRAME));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 3, 10, 6, 19));
         list.add(new PlaceableButton(Blocks.stone_button, 4, 11, 6, 0));
         list.add(new PlaceableLog(Blocks.log, 1, 11, 6, 1));
@@ -1985,7 +2062,6 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableButton(Blocks.stone_button, 3, 11, 6, 20));
         list.add(new PlaceableButton(Blocks.stone_button, 1, 12, 6, 1));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 2, 12, 6, 6));
-        list.add(new PlaceableBlock(Blocks.air, 0, 12, 6, 7));
         list.add(new PlaceableTorches(Blocks.torch, 5, 12, 6, 8));
         list.add(new PlaceableBlock(Blocks.air, 0, 12, 6, 9));
         list.add(new PlaceableBlock(Blocks.air, 0, 12, 6, 10));
@@ -2005,12 +2081,12 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 2, 14, 6, 6));
         list.add(new PlaceableBlock(Blocks.bookshelf, 0, 14, 6, 7));
         list.add(new PlaceableBlock(Blocks.air, 0, 14, 6, 8));
-        list.add(new PlaceableItemFrame(new ItemStack(Items.writable_book, 1, 0), 0, 1, 14, 6, 8));
+        list.add(new PlaceableItemFrame(new ItemStack(Items.writable_book, 1, 0), 0, 1, 14, 6, 8, LootStrings.TOWNHALL_MASTER_PRIEST_FRAME));
         list.add(new PlaceableBlock(Blocks.air, 0, 14, 6, 9));
         list.add(new PlaceableBlock(Blocks.air, 0, 14, 6, 10));
         list.add(new PlaceableBlock(Blocks.air, 0, 14, 6, 11));
         list.add(new PlaceableBlock(Blocks.air, 0, 14, 6, 12));
-        list.add(new PlaceableItemFrame(new ItemStack(Items.speckled_melon, 1, 0), 0, 1, 14, 6, 12));
+        list.add(new PlaceableItemFrame(new ItemStack(Items.speckled_melon, 1, 0), 0, 1, 14, 6, 12, LootStrings.TOWNHALL_MASTER_MAYOR_FRAME));
         list.add(new PlaceableBlock(Blocks.air, 0, 14, 6, 13));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 3, 14, 6, 14));
         list.add(new PlaceableButton(Blocks.stone_button, 4, 15, 6, 5));
@@ -2094,6 +2170,8 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 3, 7, 14));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 1, 3, 7, 15));
         list.add(new PlaceableBlock(Blocks.air, 0, 3, 7, 16));
+        list.add(new PlaceableBlock(Blocks.air, 0, 3, 7, 17));
+        list.add(new PlaceableNPC("abi", 3, 7, 17));
         list.add(new PlaceableBlock(Blocks.air, 0, 3, 7, 18));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 7, 3, 7, 19));
         list.add(new PlaceableBlock(Blocks.glass, 0, 4, 7, 1));
@@ -2113,6 +2191,8 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 4, 7, 14));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 2, 4, 7, 15));
         list.add(new PlaceableTorches(Blocks.torch, 3, 4, 7, 16));
+        list.add(new PlaceableBlock(Blocks.air, 0, 4, 7, 17));
+        list.add(new PlaceableBlock(Blocks.air, 0, 4, 7, 18));
         list.add(new PlaceableBlock(Blocks.glass, 0, 4, 7, 19));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 6, 5, 7, 1));
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 7, 2));
@@ -2130,6 +2210,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 7, 14));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 0, 5, 7, 15));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 13, 5, 7, 16));
+        list.add(new PlaceableBlock(Blocks.air, 0, 5, 7, 17));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 13, 5, 7, 18));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 7, 5, 7, 19));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 6, 6, 7, 0));
@@ -2169,6 +2250,8 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 7, 13));
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 7, 14));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 1, 7, 7, 15));
+        list.add(new PlaceableBlock(Blocks.air, 0, 7, 7, 16));
+        list.add(new PlaceableBlock(Blocks.air, 0, 7, 7, 17));
         list.add(new PlaceableVine(Blocks.vine, 3, 7, 7, 18));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 7, 7, 7, 19));
         list.add(new PlaceableBlock(Blocks.glass, 0, 8, 7, 1));
@@ -2187,6 +2270,8 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 7, 13));
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 7, 14));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 2, 8, 7, 15));
+        list.add(new PlaceableBlock(Blocks.air, 0, 8, 7, 16));
+        list.add(new PlaceableBlock(Blocks.air, 0, 8, 7, 17));
         list.add(new PlaceableBlock(Blocks.leaves2, 13, 8, 7, 18));
         list.add(new PlaceableBlock(Blocks.glass, 0, 8, 7, 19));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 6, 9, 7, 1));
@@ -2204,10 +2289,13 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.wooden_slab, 1, 9, 7, 13));
         list.add(new PlaceableBlock(Blocks.air, 0, 9, 7, 14));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 0, 9, 7, 15));
+        list.add(new PlaceableBlock(Blocks.air, 0, 9, 7, 16));
+        list.add(new PlaceableBlock(Blocks.air, 0, 9, 7, 17));
+        list.add(new PlaceableBlock(Blocks.air, 0, 9, 7, 18));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 7, 9, 7, 19));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 6, 10, 7, 1));
         list.add(new PlaceableBlock(Blocks.air, 0, 10, 7, 2));
-        list.add(new PlaceablePainting("Pool", 1, 10, 7, 2));
+        list.add(new PlaceablePainting("Sunset", 1, 10, 7, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 10, 7, 3));
         list.add(new PlaceableBlock(Blocks.air, 0, 10, 7, 4));
         list.add(new PlaceableLog(Blocks.log, 1, 10, 7, 5));
@@ -2223,6 +2311,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableLog(Blocks.log, 1, 10, 7, 15));
         list.add(new PlaceableVine(Blocks.vine, 12, 10, 7, 16));
         list.add(new PlaceableTorches(Blocks.torch, 2, 10, 7, 17));
+        list.add(new PlaceableBlock(Blocks.air, 0, 10, 7, 18));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 7, 10, 7, 19));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 6, 11, 7, 0));
         list.add(new PlaceableLog(Blocks.log, 1, 11, 7, 1));
@@ -2337,7 +2426,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableLog(Blocks.log, 5, 2, 8, 1));
         list.add(new PlaceableBlock(Blocks.air, 0, 2, 8, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 2, 8, 3));
-        list.add(new PlaceableBlock(Blocks.web, 0, 2, 8, 4));
+        list.add(new PlaceableWeb(Blocks.web, 0, 2, 8, 4));
         list.add(new PlaceableLog(Blocks.log, 1, 2, 8, 5));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 7, 2, 8, 6));
         list.add(new PlaceableBlock(Blocks.air, 0, 2, 8, 7));
@@ -2452,6 +2541,8 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 8, 13));
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 8, 14));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 1, 7, 8, 15));
+        list.add(new PlaceableBlock(Blocks.air, 0, 7, 8, 16));
+        list.add(new PlaceableBlock(Blocks.air, 0, 7, 8, 17));
         list.add(new PlaceableVine(Blocks.vine, 3, 7, 8, 18));
         list.add(new PlaceableLog(Blocks.log, 5, 7, 8, 19));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 5, 7, 8, 20));
@@ -2471,6 +2562,8 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 8, 13));
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 8, 14));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 2, 8, 8, 15));
+        list.add(new PlaceableBlock(Blocks.air, 0, 8, 8, 16));
+        list.add(new PlaceableBlock(Blocks.air, 0, 8, 8, 17));
         list.add(new PlaceableLadder(Blocks.ladder, 2, 8, 8, 18));
         list.add(new PlaceableLog(Blocks.log, 5, 8, 8, 19));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 5, 8, 8, 20));
@@ -2490,6 +2583,9 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 5, 9, 8, 13));
         list.add(new PlaceableBlock(Blocks.air, 0, 9, 8, 14));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 0, 9, 8, 15));
+        list.add(new PlaceableBlock(Blocks.air, 0, 9, 8, 16));
+        list.add(new PlaceableBlock(Blocks.air, 0, 9, 8, 17));
+        list.add(new PlaceableBlock(Blocks.air, 0, 9, 8, 18));
         list.add(new PlaceableLog(Blocks.log, 5, 9, 8, 19));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 5, 9, 8, 20));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 4, 10, 8, 0));
@@ -2512,7 +2608,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableLog(Blocks.log, 1, 10, 8, 15));
         list.add(new PlaceableVine(Blocks.vine, 12, 10, 8, 16));
         list.add(new PlaceableVine(Blocks.vine, 8, 10, 8, 17));
-        list.add(new PlaceableBlock(Blocks.web, 0, 10, 8, 18));
+        list.add(new PlaceableWeb(Blocks.web, 0, 10, 8, 18));
         list.add(new PlaceableLog(Blocks.log, 5, 10, 8, 19));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 5, 10, 8, 20));
         list.add(new PlaceableBlock(Blocks.fence, 0, 11, 8, 0));
@@ -2569,11 +2665,11 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 4, 14, 8, 5));
         list.add(new PlaceableLog(Blocks.log, 5, 14, 8, 6));
         list.add(new PlaceableTorches(Blocks.torch, 5, 14, 8, 7));
-        list.add(new PlaceableBlock(Blocks.flower_pot, 2, 14, 8, 8));
+        list.add(new PlaceableFlowerPot(Blocks.flower_pot, 2, 14, 8, 8));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 1, 14, 8, 9));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 1, 14, 8, 10));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 1, 14, 8, 11));
-        list.add(new PlaceableBlock(Blocks.flower_pot, 2, 14, 8, 12));
+        list.add(new PlaceableFlowerPot(Blocks.flower_pot, 2, 14, 8, 12));
         list.add(new PlaceableTorches(Blocks.torch, 5, 14, 8, 13));
         list.add(new PlaceableLog(Blocks.log, 5, 14, 8, 14));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 5, 14, 8, 15));
@@ -2725,8 +2821,8 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.wooden_slab, 5, 5, 9, 20));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 2, 6, 9, 0));
         list.add(new PlaceableBlock(Blocks.stonebrick, 2, 6, 9, 1));
-        list.add(new PlaceableBlock(Blocks.web, 0, 6, 9, 2));
-        list.add(new PlaceableBlock(Blocks.flower_pot, 2, 6, 9, 3));
+        list.add(new PlaceableWeb(Blocks.web, 0, 6, 9, 2));
+        list.add(new PlaceableFlowerPot(Blocks.flower_pot, 2, 6, 9, 3));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 9, 4));
         list.add(new PlaceableLog(Blocks.log, 1, 6, 9, 5));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 9, 6));
@@ -2739,9 +2835,9 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 9, 13));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 9, 14));
         list.add(new PlaceableLog(Blocks.log, 1, 6, 9, 15));
-        list.add(new PlaceableIFaceable(HMBlocks.cookware, 9, 6, 9, 16, ForgeDirection.SOUTH));
+        list.add(new PlaceableIFaceable(HMBlocks.woodmachines, 1, 6, 9, 16, ForgeDirection.SOUTH, LootStrings.TOWNHALL_PASSAGE_CHEST));
         list.add(new PlaceableTorches(Blocks.torch, 5, 6, 9, 17));
-        list.add(new PlaceableBlock(Blocks.flower_pot, 0, 6, 9, 18));
+        list.add(new PlaceableFlowerPot(Blocks.flower_pot, 0, 6, 9, 18));
         list.add(new PlaceableBlock(Blocks.stonebrick, 0, 6, 9, 19));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 3, 6, 9, 20));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 5, 7, 9, 0));
@@ -2760,6 +2856,8 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 9, 13));
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 9, 14));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 1, 7, 9, 15));
+        list.add(new PlaceableBlock(Blocks.air, 0, 7, 9, 16));
+        list.add(new PlaceableBlock(Blocks.air, 0, 7, 9, 17));
         list.add(new PlaceableVine(Blocks.vine, 1, 7, 9, 18));
         list.add(new PlaceableBlock(Blocks.stonebrick, 0, 7, 9, 19));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 5, 7, 9, 20));
@@ -2779,7 +2877,9 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 9, 13));
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 9, 14));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 2, 8, 9, 15));
-        list.add(new PlaceableBlock(Blocks.web, 0, 8, 9, 16));
+        list.add(new PlaceableWeb(Blocks.web, 0, 8, 9, 16));
+        list.add(new PlaceableBlock(Blocks.air, 0, 8, 9, 17));
+        list.add(new PlaceableBlock(Blocks.air, 0, 8, 9, 18));
         list.add(new PlaceableBlock(Blocks.stonebrick, 2, 8, 9, 19));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 5, 8, 9, 20));
         list.add(new PlaceableBlock(Blocks.planks, 5, 9, 9, 0));
@@ -2984,6 +3084,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 5, 5, 10, 18));
         list.add(new PlaceableBlock(Blocks.stonebrick, 1, 5, 10, 19));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 5, 5, 10, 20));
+        list.add(new PlaceableBlock(Blocks.air, 0, 6, 10, 0));
         list.add(new PlaceableBlock(Blocks.stonebrick, 2, 6, 10, 1));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 10, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 10, 3));
@@ -3001,7 +3102,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableLog(Blocks.log, 1, 6, 10, 15));
         list.add(new PlaceableVine(Blocks.vine, 4, 6, 10, 16));
         list.add(new PlaceableVine(Blocks.vine, 0, 6, 10, 17));
-        list.add(new PlaceableBlock(Blocks.web, 0, 6, 10, 18));
+        list.add(new PlaceableWeb(Blocks.web, 0, 6, 10, 18));
         list.add(new PlaceableBlock(Blocks.stonebrick, 1, 6, 10, 19));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 4, 7, 10, 0));
         list.add(new PlaceableBlock(Blocks.stonebrick, 0, 7, 10, 1));
@@ -3113,13 +3214,16 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 7, 15, 10, 7));
         list.add(new PlaceableBlock(Blocks.stonebrick, 0, 15, 10, 8));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 7, 15, 10, 9));
-        list.add(new PlaceableBlock(Blocks.flower_pot, 0, 15, 10, 10));
+        list.add(new PlaceableFlowerPot(Blocks.flower_pot, 0, 15, 10, 10));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 6, 15, 10, 11));
         list.add(new PlaceableBlock(Blocks.stonebrick, 2, 15, 10, 12));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 6, 15, 10, 13));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 3, 15, 10, 14));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 2, 16, 10, 7));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 7, 16, 10, 8));
+        list.add(new PlaceableBlock(Blocks.air, 0, 16, 10, 9));
+        list.add(new PlaceableBlock(Blocks.air, 0, 16, 10, 10));
+        list.add(new PlaceableBlock(Blocks.air, 0, 16, 10, 11));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 6, 16, 10, 12));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 3, 16, 10, 13));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 5, 3, 11, 1));
@@ -3247,6 +3351,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 3, 15, 11, 13));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 2, 16, 11, 8));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 7, 16, 11, 9));
+        list.add(new PlaceableBlock(Blocks.air, 0, 16, 11, 10));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 6, 16, 11, 11));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 3, 16, 11, 12));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 5, 5, 12, 1));

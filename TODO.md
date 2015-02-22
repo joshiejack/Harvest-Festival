@@ -35,16 +35,6 @@
 - [ ] MiningHutRightWingFrame (Iron Ore) [Mining Tools, Torches]
 - [ ] MiningHutLeftWingChest (Stone) [Stone, Ores]
 - [ ] MiningHutLeftWingFurnace (Charcoal) [Coal, Charcoal]
-- [ ] CafeKitchenFrame (Mushroom Stew) [Mushroom Stew, Cooked Meat, Cake, Pumpkin Pie, Baked Potato, Bread]
-- [ ] CafeKitchenChest (Chest) [Flour, Sugar, Apple, Bowl, Cocoa Beans]
-- [ ] CafeKitchenFurnace (Stick) [Coal, Charcoal]
-- [ ] TownHallHallFrame (Paper) [Sign, Paper]
-- [ ] TownHallMasterBedroomPriestFrame (Book and Quill) [Book and Quill, Book, Ink, Emerald]
-- [ ] TownHallMasterBedroomMayorFrame (Glistering Melon) [Strength Potion, idk joshie - you give ideas!]
-- [ ] TownHallBedroomChildFrame (Carrot) [Sugar, Saddle, Carrot, Low Horse Armour]
-- [ ] TownHallBedroomTeenagerFrame (Book) [Book, Paper, Ink]
-- [ ] TownHallPassageChest (Cobweb) [Planks, Carpet, Cobweb, Leaves]
-- [ ] TownHallBedroomTeenagerChest (Feather) [Fruits]
 
 ## Aesthetics 
 ###Textures

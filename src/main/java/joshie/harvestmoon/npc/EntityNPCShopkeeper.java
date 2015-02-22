@@ -44,7 +44,7 @@ public class EntityNPCShopkeeper extends EntityNPC {
             }
 
             super.updateAITick();
-        } else if (!shop.isOpen(worldObj)) {
+        } else if (worldObj.getWorldTime() % 200 == 0 && !shop.isOpen(worldObj)) {
             isWorking = false;
         }
     }

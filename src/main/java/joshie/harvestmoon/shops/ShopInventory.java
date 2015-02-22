@@ -69,9 +69,10 @@ public class ShopInventory {
         OpeningHours hours = open.get(world.difficultySetting).opening.get(day);
         if (hours == null) return false;
         else {
-            long daytime = world.getWorldTime() % Calendar.TICKS_PER_DAY;
-            long time = (daytime / 10);            
-            return time >= (hours.open / Calendar.TICKS_PER_DAY) && time <= (hours.close / Calendar.TICKS_PER_DAY);
+            long daytime = world.getWorldTime() % Calendar.TICKS_PER_DAY; //0-23999 by default      
+            int scaledOpening = (int) ((hours.open / 24000D) * Calendar.TICKS_PER_DAY);
+            int scaledClosing = (int) ((hours.close / 24000D) * Calendar.TICKS_PER_DAY);
+            return daytime >= scaledOpening && daytime <= scaledClosing;
         }
     }
 

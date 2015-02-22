@@ -111,8 +111,8 @@ public class CropData implements IData {
             if (crop.getRegrowStage() > 0) {
                 stage = crop.getRegrowStage();
             }
-
-            return new ItemStack(HMItems.crops, 1, cropSize + cropMeta + cropQuality);
+            
+            return crop.getItemStack(cropSize, cropMeta, cropQuality);
         } else return null;
     }
 

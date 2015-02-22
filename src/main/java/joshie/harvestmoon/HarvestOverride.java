@@ -9,6 +9,7 @@ import java.util.List;
 
 import joshie.harvestmoon.asm.EggTransformer;
 import joshie.harvestmoon.asm.ITransformer;
+import joshie.harvestmoon.asm.SeedFoodTransformer;
 import joshie.harvestmoon.config.Overrides;
 import net.minecraft.launchwrapper.IClassTransformer;
 
@@ -34,6 +35,7 @@ public class HarvestOverride implements IClassTransformer {
     private static List<ITransformer> transformers = new ArrayList();
     static {
         transformers.add(new EggTransformer());
+        transformers.add(new SeedFoodTransformer());
 
         GsonBuilder builder = new GsonBuilder().setPrettyPrinting();
         Gson gson = builder.create();

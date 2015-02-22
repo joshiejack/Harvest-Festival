@@ -5,10 +5,13 @@ import java.util.ArrayList;
 import joshie.harvestmoon.animals.AnimalType.FoodType;
 import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.crops.CropData.WitherType;
+import joshie.harvestmoon.init.HMItems;
 import joshie.harvestmoon.lib.CropMeta;
 import joshie.harvestmoon.lib.HMModInfo;
 import joshie.harvestmoon.util.Translate;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 
@@ -29,6 +32,7 @@ public class Crop {
     protected String unlocalized;
     protected boolean alternativeName;
     protected boolean isStatic;
+    protected Item vanillaItem;
     protected Season[] seasons;
     protected int cost;
     protected int sell;
@@ -82,6 +86,16 @@ public class Crop {
     public Crop setFoodType(FoodType foodType) {
         this.foodType = foodType;
         return this;
+    }
+    
+    public Crop setVanillaItem(Item item) {
+        this.vanillaItem = item;
+        return this;
+    }
+    
+    /** Return true if this crop uses an item other than HMCrop item **/
+    public boolean isVanilla() {
+        return vanillaItem != null;
     }
 
     /** This is the season this crop survives in 
@@ -171,6 +185,14 @@ public class Crop {
     /** The type of animal food this is **/
     public FoodType getFoodType() {
         return foodType;
+    }
+
+    public ItemStack getItemStack(int cropSize, int cropMeta, int cropQuality) {
+        if (vanillaItem != null) {
+            return new ItemStack(vanillaItem, 1, cropSize + cropQuality);
+        }
+        
+        return new ItemStack(HMItems.crops, 1, cropSize + cropMeta + cropQuality);
     }
 
     /** Gets the unlocalized name for this crop

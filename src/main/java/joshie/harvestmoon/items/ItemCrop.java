@@ -71,6 +71,7 @@ public class ItemCrop extends ItemHMMeta implements IShippable, IRateable {
             for (int j = 0; j < 100; j += 100) {
                 ItemStack stack = new ItemStack(item, 1, (j * 100) + i);
                 Crop crop = getCropFromStack(stack);
+                if (crop.isVanilla()) continue;
                 if ((crop.isStatic() && j == 0) || !crop.isStatic()) {
                     list.add(stack);
                 }

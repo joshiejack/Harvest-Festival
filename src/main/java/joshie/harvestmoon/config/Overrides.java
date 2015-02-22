@@ -5,4 +5,6 @@ public class Overrides {
     public boolean egg = true;
     public boolean snow = true;
     public boolean farmland = true;
+    public boolean potato = true;
+    public boolean carrot = true;
 }

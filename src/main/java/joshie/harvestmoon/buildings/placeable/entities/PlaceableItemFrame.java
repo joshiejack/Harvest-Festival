@@ -35,12 +35,16 @@ public class PlaceableItemFrame extends PlaceableHanging {
         EntityItemFrame frame = new EntityItemFrame(world, getX(x, facing), y, getZ(z, facing), facing);
         ItemStack loot = null;
         if (chestType != null) {
-            WeightedRandomChestContent chest = (WeightedRandomChestContent) WeightedRandom.getRandomItem(world.rand, ChestGenHooks.getItems(chestType, world.rand));
-            while (loot == null) {
-                ItemStack[] stacks = ChestGenHooks.generateStacks(world.rand, chest.theItemId, chest.theMinimumChanceToGenerateItem, chest.theMaximumChanceToGenerateItem);
-                if (stacks != null && stacks.length >= 1) {
-                    loot = stacks[0].copy();
+            try {
+                WeightedRandomChestContent chest = (WeightedRandomChestContent) WeightedRandom.getRandomItem(world.rand, ChestGenHooks.getItems(chestType, world.rand));
+                while (loot == null) {
+                    ItemStack[] stacks = ChestGenHooks.generateStacks(world.rand, chest.theItemId, chest.theMinimumChanceToGenerateItem, chest.theMaximumChanceToGenerateItem);
+                    if (stacks != null && stacks.length >= 1) {
+                        loot = stacks[0].copy();
+                    }
                 }
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
             }
         }
 

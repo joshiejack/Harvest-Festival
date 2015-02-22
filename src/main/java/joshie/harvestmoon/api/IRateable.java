@@ -1,4 +1,4 @@
-package joshie.harvestmoon.util;
+package joshie.harvestmoon.api;
 
 import net.minecraft.item.ItemStack;
 

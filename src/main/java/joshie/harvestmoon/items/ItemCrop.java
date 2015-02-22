@@ -9,10 +9,10 @@ import static joshie.harvestmoon.lib.HMModInfo.CROPPATH;
 import java.util.List;
 
 import joshie.harvestmoon.HarvestTab;
+import joshie.harvestmoon.api.IRateable;
+import joshie.harvestmoon.api.IShippable;
 import joshie.harvestmoon.crops.Crop;
 import joshie.harvestmoon.lib.CropMeta;
-import joshie.harvestmoon.util.IRateable;
-import joshie.harvestmoon.util.IShippable;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

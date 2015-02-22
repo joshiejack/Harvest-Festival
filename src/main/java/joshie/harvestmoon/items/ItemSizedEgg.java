@@ -6,12 +6,13 @@ import static joshie.harvestmoon.helpers.SizeableHelper.getType;
 
 import java.util.List;
 
+import joshie.harvestmoon.api.IRateable;
+import joshie.harvestmoon.api.IShippable;
+import joshie.harvestmoon.asm.EggTransformer;
 import joshie.harvestmoon.helpers.SizeableHelper;
 import joshie.harvestmoon.lib.HMModInfo;
 import joshie.harvestmoon.lib.SizeableMeta;
 import joshie.harvestmoon.lib.SizeableMeta.Size;
-import joshie.harvestmoon.util.IRateable;
-import joshie.harvestmoon.util.IShippable;
 import joshie.harvestmoon.util.Translate;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -41,8 +42,7 @@ public class ItemSizedEgg extends ItemEgg implements IShippable, IRateable {
 
     @Override
     public long getSellValue(ItemStack stack) {
-        double quality = 1 + (getQuality(stack.getItemDamage()) * SELL_QUALITY_MODIFIER);
-        return (long) quality * SizeableMeta.EGG.getSellValue(getSize(stack.getItemDamage()));
+        return EggTransformer.getSellValue(stack);
     }
 
     @Override

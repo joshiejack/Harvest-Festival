@@ -1,5 +1,6 @@
 package joshie.harvestmoon.buildings.placeable;
 
+import net.minecraft.init.Blocks;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -30,7 +31,7 @@ public abstract class Placeable {
         return stage == PlacementStage.BLOCKS;
     }
 
-    public void place(World world, int xCoord, int yCoord, int zCoord, boolean n1, boolean n2, boolean swap, PlacementStage stage) {
+    public boolean place(World world, int xCoord, int yCoord, int zCoord, boolean n1, boolean n2, boolean swap, PlacementStage stage) {
         if (canPlace(stage)) {
             int y = offsetY;
             int x = n1 ? -offsetX : offsetX;
@@ -40,12 +41,12 @@ public abstract class Placeable {
                 x = z; //Set x to z
                 z = xClone; //Set z to the old value of x
             }
-
-            place(world, xCoord + x, yCoord + y, zCoord + z, n1, n2, swap);
-        }
+            
+            return place(world, xCoord + x, yCoord + y, zCoord + z, n1, n2, swap);
+        } else return false;
     }
 
-    public abstract void place(World world, int x, int y, int z, boolean n1, boolean n2, boolean swap);
+    public abstract boolean place(World world, int x, int y, int z, boolean n1, boolean n2, boolean swap);
 
     public static enum PlacementStage {
         BLOCKS, ENTITIES, TORCHES, NPC, FINISHED;

@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import joshie.harvestmoon.api.IRateable;
 import joshie.harvestmoon.gui.ContainerNPC;
 import joshie.harvestmoon.helpers.ClientHelper;
 import joshie.harvestmoon.helpers.RatingHelper;
 import joshie.harvestmoon.helpers.generic.MCClientHelper;
-import joshie.harvestmoon.util.IRateable;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;

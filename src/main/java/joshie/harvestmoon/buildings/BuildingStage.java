@@ -46,8 +46,7 @@ public class BuildingStage {
         } else {
             while (index < building.getBuilding(subType).getSize()) {
                 Placeable block = building.getBuilding(subType).get(index);
-                if (block.canPlace(stage)) {
-                    block.place(world, xCoord, yCoord, zCoord, n1, n2, swap, stage);
+                if (block.place(world, xCoord, yCoord, zCoord, n1, n2, swap, stage)) {
                     index++;
                     return this;
                 }

@@ -20,7 +20,7 @@ public abstract class PlaceableEntity extends Placeable {
     
     
     @Override
-    public void place(World world, int x, int y, int z, boolean n1, boolean n2, boolean swap) {
-        world.spawnEntityInWorld(getEntity(world, x, y, z, n1, n2, swap));
+    public boolean place(World world, int x, int y, int z, boolean n1, boolean n2, boolean swap) {
+        return world.spawnEntityInWorld(getEntity(world, x, y, z, n1, n2, swap));
     }
 }

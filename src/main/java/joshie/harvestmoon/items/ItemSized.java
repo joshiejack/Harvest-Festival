@@ -7,11 +7,11 @@ import static joshie.harvestmoon.helpers.SizeableHelper.getType;
 import java.util.List;
 
 import joshie.harvestmoon.HarvestOverride;
+import joshie.harvestmoon.api.IRateable;
+import joshie.harvestmoon.api.IShippable;
 import joshie.harvestmoon.helpers.SizeableHelper;
 import joshie.harvestmoon.lib.SizeableMeta;
 import joshie.harvestmoon.lib.SizeableMeta.Size;
-import joshie.harvestmoon.util.IRateable;
-import joshie.harvestmoon.util.IShippable;
 import joshie.harvestmoon.util.Translate;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;

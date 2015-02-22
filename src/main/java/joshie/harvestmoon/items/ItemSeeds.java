@@ -9,12 +9,12 @@ import static joshie.harvestmoon.lib.HMModInfo.SEEDPATH;
 
 import java.util.List;
 
+import joshie.harvestmoon.api.IRateable;
 import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.crops.Crop;
 import joshie.harvestmoon.helpers.CropHelper;
 import joshie.harvestmoon.init.HMBlocks;
 import joshie.harvestmoon.lib.CropMeta;
-import joshie.harvestmoon.util.IRateable;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;

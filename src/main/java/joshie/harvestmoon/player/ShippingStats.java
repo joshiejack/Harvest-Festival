@@ -3,8 +3,8 @@ package joshie.harvestmoon.player;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import joshie.harvestmoon.api.IShippable;
 import joshie.harvestmoon.util.IData;
-import joshie.harvestmoon.util.IShippable;
 import joshie.harvestmoon.util.SellStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

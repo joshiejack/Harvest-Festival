@@ -4,7 +4,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.util.ArrayList;
+import java.util.List;
 
+import joshie.harvestmoon.asm.EggTransformer;
+import joshie.harvestmoon.asm.ITransformer;
 import net.minecraft.launchwrapper.IClassTransformer;
 
 import org.apache.commons.io.FileUtils;
@@ -25,8 +29,11 @@ public class HarvestOverride implements IClassTransformer {
     private static final int SNOW = 1;
     private static final int FARMLAND = 2;
     public static OverrideConfig config;
-
+    private static boolean isObfuscated = false;
+    private static List<ITransformer> transformers = new ArrayList();
     static {
+        transformers.add(new EggTransformer());
+
         GsonBuilder builder = new GsonBuilder().setPrettyPrinting();
         Gson gson = builder.create();
 
@@ -43,6 +50,12 @@ public class HarvestOverride implements IClassTransformer {
                 config = gson.fromJson(FileUtils.readFileToString(file), OverrideConfig.class);
             } catch (Exception e) {}
         }
+
+        for (int i = 0; i < transformers.size(); i++) {
+            if (!transformers.get(i).isActive(config)) {
+                transformers.remove(i);
+            }
+        }
     }
 
     public static class OverrideConfig {
@@ -53,6 +66,12 @@ public class HarvestOverride implements IClassTransformer {
 
     @Override
     public byte[] transform(String name, String transformedName, byte[] data) {
+        for (ITransformer t : transformers) {
+            if (name.equals(t.getClass(isObfuscated))) {
+                return t.transform(data, isObfuscated);
+            }
+        }
+
         ClassNode classNode = new ClassNode();
         ClassReader classReader = new ClassReader(data);
         classReader.accept(classNode, 0);
@@ -61,7 +80,7 @@ public class HarvestOverride implements IClassTransformer {
         String registerItems = !name.equals(transformedName) ? "l" : "registerItems";
         if (name.equals("net.minecraft.item.Item") || name.equals("net.minecraft.block.Block")) {
             for (MethodNode method : classNode.methods) {
-                if (config.egg && method.name.equals("registerItems") && method.desc.equals("()V")) {
+                if (!config.egg && method.name.equals("registerItems") && method.desc.equals("()V")) {
                     for (int j = 0; j < method.instructions.size(); j++) {
                         AbstractInsnNode instruction = method.instructions.get(j);
                         if (instruction.getType() == AbstractInsnNode.LDC_INSN) {

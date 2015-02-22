@@ -38,4 +38,4 @@ Stage 6 (1.0)
 * Minetweaker Support
 
 Potential Names
-Grand Harvest, Harvest Festival
+Grand Harvest, Harvest Festival, Farm Story

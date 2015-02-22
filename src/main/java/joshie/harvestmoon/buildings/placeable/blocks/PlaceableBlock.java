@@ -3,6 +3,7 @@ package joshie.harvestmoon.buildings.placeable.blocks;
 import joshie.harvestmoon.buildings.placeable.Placeable;
 import joshie.harvestmoon.helpers.generic.StackHelper;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
@@ -35,12 +36,17 @@ public class PlaceableBlock extends Placeable {
     }
 
     @Override
-    public void place(World world, int x, int y, int z, boolean n1, boolean n2, boolean swap) {
+    public boolean place(World world, int x, int y, int z, boolean n1, boolean n2, boolean swap) {
+        if (block == Blocks.air && world.getBlock(x, y, z) == Blocks.air) {
+            return false;
+            
+        }
+        
         int meta = getMetaData(n1, n2, swap);
         if (meta == 0) {
-            world.setBlock(x, y, z, block);
+            return world.setBlock(x, y, z, block);
         } else {
-            world.setBlock(x, y, z, block, meta, 2);
+            return world.setBlock(x, y, z, block, meta, 2);
         }
     }
 

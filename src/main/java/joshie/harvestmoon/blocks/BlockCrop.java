@@ -9,6 +9,7 @@ import joshie.harvestmoon.config.Crops;
 import joshie.harvestmoon.crops.Crop;
 import joshie.harvestmoon.helpers.CropHelper;
 import joshie.harvestmoon.helpers.generic.MCClientHelper;
+import joshie.harvestmoon.lib.RenderIds;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -47,7 +48,7 @@ public class BlockCrop extends BlockHMBase implements IPlantable {
 
     @Override
     public int getRenderType() {
-        return 6;
+        return RenderIds.CROPS;
     }
 
     //Only called if crops are set to tick randomly

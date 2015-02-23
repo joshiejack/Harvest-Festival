@@ -6,7 +6,9 @@ import static joshie.harvestmoon.calendar.Season.SUMMER;
 import joshie.harvestmoon.HMConfiguration;
 import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.crops.Crop;
+import joshie.harvestmoon.crops.CropSeedFood;
 import joshie.harvestmoon.lib.CropMeta;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 
 public class HMCrops {
@@ -30,7 +32,7 @@ public class HMCrops {
     public static void init() {
         //Spring Crops
         turnip = new Crop("turnip", SPRING, 120, 60, 5, 0, 0, CropMeta.TURNIP);
-        potato = new Crop("potato", SPRING, 150, 80, 8, 0, 0, CropMeta.POTATO);
+        potato = new CropSeedFood("potato", SPRING, 150, 80, 0, CropMeta.POTATO, Blocks.potatoes);
         cucumber = new Crop("cucumber", SPRING, 200, 60, 10, 5, 0, CropMeta.CUCUMBER);
         strawberry = new Crop("strawberry", SPRING, 150, 30, 9, 7, 3, CropMeta.STRAWBERRY);
         cabbage = new Crop("cabbage", SPRING, 500, 250, 15, 0, 8, CropMeta.CABBAGE);
@@ -44,7 +46,7 @@ public class HMCrops {
 
         //Autumn Crops
         eggplant = new Crop("eggplant", AUTUMN, 120, 80, 10, 7, 0, CropMeta.EGGPLANT);
-        carrot = new Crop("carrot", AUTUMN, 300, 120, 8, 0, 0, CropMeta.CARROT);
+        carrot = new CropSeedFood("carrot", AUTUMN, 300, 120, 0, CropMeta.CARROT, Blocks.carrots);
         sweet_potato = new Crop("potato_sweet", AUTUMN, 300, 120, 6, 4, 0, CropMeta.SWEET_POTATO);
         spinach = new Crop("spinach", AUTUMN, 200, 80, 6, 0, 3, CropMeta.SPINACH);
         green_pepper = new Crop("pepper_green", AUTUMN, 150, 40, 8, 2, 8, CropMeta.GREEN_PEPPER);

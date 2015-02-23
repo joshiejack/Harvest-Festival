@@ -2,6 +2,9 @@ package joshie.harvestmoon.crops;
 
 import java.util.HashMap;
 
+import joshie.harvestmoon.network.PacketCropRequest;
+import joshie.harvestmoon.network.PacketHandler;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
@@ -23,8 +26,15 @@ public class CropTrackerClient {
     public int getCropStage(World world, int x, int y, int z) {
         return crops.get(getKey(world, x, y, z)).getStage();
     }
-    
+
     public IIcon getIconForCrop(World world, int x, int y, int z) {
+        WorldLocation location = getKey(world, x, y, z);
+        CropData data = crops.get(location);
+        if (data == null) { //If we don't have the crop loaded in the cache, request the data for it.
+            PacketHandler.sendToServer(new PacketCropRequest(world, x, y, z));
+            return Blocks.stone.getIcon(0, 0);
+        }
+
         return crops.get(getKey(world, x, y, z)).getIcon();
     }
 

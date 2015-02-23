@@ -50,7 +50,7 @@ public class CropHelper {
         }
         
         if(stack != null) {
-            ItemHelper.addToPlayerInventory(player, stack);
+            ItemHelper.spawnItem(world, x, y, z, stack);
         }
         
         return stack != null;

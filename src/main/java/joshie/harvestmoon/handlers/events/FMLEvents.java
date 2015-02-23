@@ -5,7 +5,6 @@ import joshie.harvestmoon.config.Calendar;
 import joshie.harvestmoon.helpers.CalendarHelper;
 import joshie.harvestmoon.helpers.PlayerHelper;
 import joshie.harvestmoon.network.PacketSetCalendar;
-import joshie.harvestmoon.network.PacketSyncFridge;
 import joshie.harvestmoon.player.PlayerDataServer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -31,7 +30,7 @@ public class FMLEvents {
 
     @SubscribeEvent
     public void onTick(ServerTickEvent event) {
-        if (event.phase != Phase.START) return;
+        if (event.phase != Phase.END) return;
         World world = MinecraftServer.getServer().getEntityWorld();
         if (world.getWorldTime() % Calendar.TICKS_PER_DAY == 1) {
             (new Thread("HM Calendar Thread") {

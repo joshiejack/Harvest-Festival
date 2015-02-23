@@ -115,20 +115,7 @@ public class BlockCookware extends BlockHMBaseMeta {
             if (meta == KITCHEN && held == null) {
                 tile.updateEntity();
                 return true;
-            } else if (held != null) {
-                if (meta == CHOPPING_BOARD && ToolHelper.isKnife(held)) {
-                    tile.updateEntity();
-                    return true;
-                } else if (meta == MIXING_BOWL && ToolHelper.isWhisk(held)) {
-                    tile.updateEntity();
-                    return true;
-                } else if (meta == BAKING_GLASS && ToolHelper.isRollingPin(held)) {
-                    tile.updateEntity();
-                    return true;
-                }
-            }
-
-            return false;
+            } else return false;
         } else {
             TileEntity tile = world.getTileEntity(x, y, z);
             if (tile instanceof TileCooking) {

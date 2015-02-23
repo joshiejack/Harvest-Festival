@@ -16,5 +16,6 @@ public enum CropMeta {
     SWEET_POTATO,
     SPINACH,
     GREEN_PEPPER, 
-    GRASS;
+    GRASS,
+    WHEAT;
 }

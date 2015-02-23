@@ -19,6 +19,7 @@ public class HMRecipeFixes {
         fixRecipes(Items.egg);
         fixRecipes(Items.carrot);
         fixRecipes(Items.potato);
+        fixRecipes(Items.wheat);
     }
 
     public static void fixRecipes(Item fix) {

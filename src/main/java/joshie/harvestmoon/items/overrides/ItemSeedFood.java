@@ -25,6 +25,8 @@ public class ItemSeedFood {
             crop = HMCrops.carrot;
         } else if (item == Items.potato && HMConfiguration.vanilla.POTATO_OVERRIDE) {
             crop = HMCrops.potato;
+        } else if (item == Items.wheat && HMConfiguration.vanilla.WHEAT_OVERRIDE) {
+            crop = HMCrops.wheat;
         }
 
         return crop;

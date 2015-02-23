@@ -12,6 +12,7 @@ import java.util.List;
 import joshie.harvestmoon.asm.EggTransformer;
 import joshie.harvestmoon.asm.ITransformer;
 import joshie.harvestmoon.asm.SeedFoodTransformer;
+import joshie.harvestmoon.asm.WheatTransformer;
 import joshie.harvestmoon.config.Vanilla;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -29,6 +30,7 @@ import org.objectweb.asm.tree.TypeInsnNode;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
 public class HMOverride implements IClassTransformer {
     private static final int EGG = 0;
     private static final int SNOW = 1;
@@ -39,6 +41,7 @@ public class HMOverride implements IClassTransformer {
     static {
         transformers.add(new EggTransformer());
         transformers.add(new SeedFoodTransformer());
+        transformers.add(new WheatTransformer());
 
         GsonBuilder builder = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping();
         Gson gson = builder.create();
@@ -75,9 +78,11 @@ public class HMOverride implements IClassTransformer {
 
         if (vanilla.CARROT_BLOCK_DISABLE_TICKING) Blocks.carrots.setTickRandomly(false);
         if (vanilla.POTATO_BLOCK_DISABLE_TICKING) Blocks.potatoes.setTickRandomly(false);
+        if (vanilla.WHEAT_BLOCK_DISABLE_TICKING) Blocks.wheat.setTickRandomly(false);
         if (vanilla.MOVE_OVERRIDE_TAB) {
             if (vanilla.CARROT_OVERRIDE) Items.carrot.setCreativeTab(HarvestTab.tabGeneral);
             if (vanilla.POTATO_OVERRIDE) Items.potato.setCreativeTab(HarvestTab.tabGeneral);
+            if (vanilla.WHEAT_OVERRIDE) Items.wheat.setCreativeTab(HarvestTab.tabGeneral);
         }
     }
 

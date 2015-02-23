@@ -51,11 +51,6 @@ public class HarvestMoon implements IFMLLoadingPlugin {
     public static File root;
 
     @EventHandler
-    public void onConstruction(FMLLoadCompleteEvent event) {
-        HMRecipeFixes.init();
-    }
-
-    @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         root = new File(event.getModConfigurationDirectory() + File.separator + MODPATH);
         HMOverride.init();
@@ -85,6 +80,11 @@ public class HarvestMoon implements IFMLLoadingPlugin {
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         WorldDestroyer.replaceWorldProvider();
+    }
+
+    @EventHandler
+    public void onLoadComplete(FMLLoadCompleteEvent event) {
+        HMRecipeFixes.init();
     }
 
     @EventHandler

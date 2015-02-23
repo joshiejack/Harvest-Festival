@@ -7,6 +7,7 @@ import joshie.harvestmoon.HMConfiguration;
 import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.crops.Crop;
 import joshie.harvestmoon.crops.CropSeedFood;
+import joshie.harvestmoon.crops.CropWheat;
 import joshie.harvestmoon.lib.CropMeta;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -28,6 +29,7 @@ public class HMCrops {
     public static Crop spinach;
     public static Crop green_pepper;
     public static Crop grass;
+    public static Crop wheat;
 
     public static void init() {
         //Spring Crops
@@ -51,9 +53,11 @@ public class HMCrops {
         spinach = new Crop("spinach", AUTUMN, 200, 80, 6, 0, 3, CropMeta.SPINACH);
         green_pepper = new Crop("pepper_green", AUTUMN, 150, 40, 8, 2, 8, CropMeta.GREEN_PEPPER);
 
-        //All Season Grass
+        //All Seasons
         grass = new Crop("grass", new Season[] { SPRING, SUMMER, AUTUMN }, 500, 0, 11, 0, 0, CropMeta.GRASS).setIsStatic().setHasAlternativeName();
+        wheat = new CropWheat("wheat", new Season[] { SPRING, SUMMER, AUTUMN }, 150, 100, 0, CropMeta.WHEAT, Blocks.wheat);
         if (HMConfiguration.vanilla.POTATO_OVERRIDE) potato.setVanillaItem(Items.potato);
         if (HMConfiguration.vanilla.CARROT_OVERRIDE) carrot.setVanillaItem(Items.carrot);
+        if (HMConfiguration.vanilla.WHEAT_OVERRIDE) wheat.setVanillaItem(Items.wheat);
     }
 }

@@ -12,9 +12,10 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class CropWheat extends Crop {
     public Block block;
 
-    /** Defaults to 8 stages of growth, with no regrowing */
-    public CropWheat(String unlocalized, Season[] season, int cost, int sell, int year, CropMeta meta, Block block) {
-        super(unlocalized, season, cost, sell, 28, 0, year, meta);
+    /** Defaults to 8 stages of growth, with no regrowing 
+     * @param color */
+    public CropWheat(String unlocalized, Season[] season, int cost, int sell, int year, CropMeta meta, Block block, int color) {
+        super(unlocalized, season, cost, sell, 28, 0, year, meta, color);
         this.block = block;
     }
 

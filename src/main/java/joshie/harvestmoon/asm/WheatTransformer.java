@@ -35,12 +35,11 @@ public class WheatTransformer implements ITransformer {
         classReader.accept(node, 0);
 
         //Remove all Instructions from the onItemUse Method
-        boolean found = false;
         Iterator<MethodNode> methods = node.methods.iterator();
-        while (methods.hasNext()) {
+        labelTop: while (methods.hasNext()) {
             MethodNode m = methods.next();
             if ((m.name.equals(name) && m.desc.equals(desc))) {
-                for (int j = 0; j < m.instructions.size() && !found; j++) {
+                for (int j = 0; j < m.instructions.size(); j++) {
                     AbstractInsnNode instruction = m.instructions.get(j);
                     if (instruction.getType() == AbstractInsnNode.LDC_INSN) {
                         LdcInsnNode ldcInstruction = (LdcInsnNode) instruction;
@@ -53,23 +52,7 @@ public class WheatTransformer implements ITransformer {
                             ((MethodInsnNode) m.instructions.get(j + 7)).owner = "joshie/harvestmoon/items/overrides/ItemWheat";
                             ((MethodInsnNode) m.instructions.get(j + 9)).desc = "(Ljava/lang/String;)Ljoshie/harvestmoon/items/overrides/ItemWheat;";
                             ((MethodInsnNode) m.instructions.get(j + 9)).owner = "joshie/harvestmoon/items/overrides/ItemWheat";
-                            //((MethodInsnNode) m.instructions.get(j + 3)).owner = "joshie/harvestmoon/items/overrides/ItemWheat";
-                           // ((MethodInsnNode) m.instructions.get(j + 5)).owner = "joshie/harvestmoon/items/overrides/ItemWheat";
-                            //((MethodInsnNode) m.instructions.get(j + 7)).owner = "joshie/harvestmoon/items/overrides/ItemWheat";
-                            //((MethodInsnNode) m.instructions.get(j + 9)).owner = "joshie/harvestmoon/items/overrides/ItemWheat";
-                            
-                            for (int i = 0; i < 32; i++) {
-                                AbstractInsnNode n = m.instructions.get(j + i);
-                                if (n instanceof TypeInsnNode) {
-                                    System.out.println(i + "" + ((TypeInsnNode)n).desc);
-                                } else if (n instanceof MethodInsnNode) {
-                                    System.out.println(i + " Desc " + ((MethodInsnNode)n).desc);
-                                    System.out.println(i + " Name " + ((MethodInsnNode)n).name);
-                                    System.out.println(i + " Owner " + ((MethodInsnNode)n).owner);
-                                }
-                            }
-
-                            found = true;
+                            break labelTop;
                         }
                     }
                 }

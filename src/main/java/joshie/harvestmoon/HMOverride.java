@@ -83,6 +83,7 @@ public class HMOverride implements IClassTransformer {
             if (vanilla.CARROT_OVERRIDE) Items.carrot.setCreativeTab(HarvestTab.tabGeneral);
             if (vanilla.POTATO_OVERRIDE) Items.potato.setCreativeTab(HarvestTab.tabGeneral);
             if (vanilla.WHEAT_OVERRIDE) Items.wheat.setCreativeTab(HarvestTab.tabGeneral);
+            if (vanilla.EGG_OVERRIDE) Items.egg.setCreativeTab(HarvestTab.tabGeneral);
         }
     }
 

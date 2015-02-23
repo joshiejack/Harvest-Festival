@@ -16,18 +16,27 @@ import joshie.harvestmoon.crops.Crop;
 import joshie.harvestmoon.helpers.CropHelper;
 import joshie.harvestmoon.init.HMBlocks;
 import joshie.harvestmoon.lib.CropMeta;
+import joshie.harvestmoon.lib.HMModInfo;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import org.lwjgl.opengl.GL11;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemSeeds extends ItemHMMeta implements IRateable {
+    IIcon seed_bag_body;
+    IIcon seed_bag_neck;
+
     public ItemSeeds() {
         setTextureFolder(SEEDPATH);
     }
@@ -94,10 +103,38 @@ public class ItemSeeds extends ItemHMMeta implements IRateable {
         else return getCropQuality(stack.getItemDamage()) / 10;
     }
 
-    @SideOnly(Side.CLIENT)
+    @Override
+    public boolean requiresMultipleRenderPasses() {
+        return true;
+    }
+
+    @Override
+    public IIcon getIconFromDamageForRenderPass(int damage, int pass) {
+        int cropMeta = getCropType(damage);
+        if (pass == 1) return seed_bag_body;
+        else if (pass == 2) return seed_bag_neck;
+        else {
+            Crop crop = CropHelper.getCropFromOrdinal(cropMeta);
+            return crop.getItemStack(0, cropMeta, 0).getIconIndex();
+        }
+    }
+
     @Override
     public IIcon getIconFromDamage(int damage) {
-        return icons[getCropType(damage)];
+        return seed_bag_body;
+    }
+
+    @Override
+    public int getColorFromItemStack(ItemStack stack, int pass) {
+        Crop crop = CropHelper.getCropFromStack(stack);
+        if (pass == 1) return crop.getColor();
+        else if (pass == 2) return 0xFFFFFF;
+        else return super.getColorFromItemStack(stack, pass);
+    }
+
+    @Override
+    public int getRenderPasses(int metadata) {
+        return 3;
     }
 
     @Override
@@ -113,5 +150,12 @@ public class ItemSeeds extends ItemHMMeta implements IRateable {
                 list.add(new ItemStack(item, 1, (j * 110) + i));
             }
         }
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void registerIcons(IIconRegister register) {
+        seed_bag_body = register.registerIcon(HMModInfo.MODPATH + ":seed_bag_body");
+        seed_bag_neck = register.registerIcon(HMModInfo.MODPATH + ":seed_bag_neck");
     }
 }

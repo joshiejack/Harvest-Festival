@@ -183,7 +183,6 @@ public class NPC {
     }
 
     public int getGuiID(World world, boolean isSneaking) {
-        System.out.println(shop.isOpen(world));
         return shop != null && shop.isOpen(world) ? GuiHandler.SHOP : (isSneaking) ? GuiHandler.GIFT : GuiHandler.NPC;
     }
 

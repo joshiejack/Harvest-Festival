@@ -39,6 +39,7 @@ public class Crop {
     protected int stages;
     protected int regrow;
     protected int year;
+    protected int bag_color;
     protected FoodType foodType;
     protected CropMeta meta;
 
@@ -53,11 +54,11 @@ public class Crop {
      * @param regrow the stage this returns to once harvested
      * @param year the year in which this crop can be purchased
      * @param meta the crop meta value for dropping the correct item  */
-    public Crop(String unlocalized, Season season, int cost, int sell, int stages, int regrow, int year, CropMeta meta) {
-        this(unlocalized, new Season[] { season }, cost, sell, stages, regrow, year, meta);
+    public Crop(String unlocalized, Season season, int cost, int sell, int stages, int regrow, int year, CropMeta meta, int color) {
+        this(unlocalized, new Season[] { season }, cost, sell, stages, regrow, year, meta, color);
     }
 
-    public Crop(String unlocalized, Season[] seasons, int cost, int sell, int stages, int regrow, int year, CropMeta meta) {
+    public Crop(String unlocalized, Season[] seasons, int cost, int sell, int stages, int regrow, int year, CropMeta meta, int color) {
         this.unlocalized = unlocalized;
         this.seasons = seasons;
         this.cost = cost;
@@ -69,6 +70,7 @@ public class Crop {
         this.isStatic = false;
         this.alternativeName = false;
         this.foodType = FoodType.VEGETABLE;
+        this.bag_color = color;
 
         crops.add(this);
     }
@@ -180,6 +182,11 @@ public class Crop {
      * @return whether this item can be purchased in this shop or not */
     public boolean canPurchase() {
         return getSeedCost() > 0;
+    }
+
+    /** Return the colour of the seed bag **/
+    public int getColor() {
+        return bag_color;
     }
 
     /** The type of animal food this is **/

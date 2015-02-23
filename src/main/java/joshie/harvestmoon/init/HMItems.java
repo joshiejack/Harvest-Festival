@@ -38,7 +38,6 @@ public class HMItems {
         general = new ItemGeneral().setUnlocalizedName("general.item");
         meal = new ItemMeal().setUnlocalizedName("meal");
         sized = new ItemSized().setUnlocalizedName("sizeable");
-        spawner = new ItemNPCSpawner().setUnlocalizedName("spawner");
         treats = new ItemTreat().setUnlocalizedName("treat");
 
         /* Tools **/
@@ -48,6 +47,7 @@ public class HMItems {
 
         if (General.DEBUG_MODE) {
             cheat = new ItemCheat().setUnlocalizedName("cheat");
+            spawner = new ItemNPCSpawner().setUnlocalizedName("spawner");
             structures = new ItemBuilding().setUnlocalizedName("structures");
         }
     }

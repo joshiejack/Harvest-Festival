@@ -8,6 +8,7 @@ import java.util.Random;
 import java.util.UUID;
 
 import joshie.harvestmoon.config.Crops;
+import joshie.harvestmoon.helpers.PlayerHelper;
 import joshie.harvestmoon.util.IData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -101,8 +102,7 @@ public class CropData implements IData {
     }
 
     public boolean canGrow() {
-        return true;
-        //return PlayerHelper.isOnlineOrFriendsAre(owner);
+        return PlayerHelper.isOnlineOrFriendsAre(owner);
     }
 
     public ItemStack harvest() {

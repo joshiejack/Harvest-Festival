@@ -19,9 +19,9 @@ import joshie.harvestmoon.init.HMHandlers;
 import joshie.harvestmoon.init.HMItems;
 import joshie.harvestmoon.init.HMMining;
 import joshie.harvestmoon.init.HMNPCs;
-import joshie.harvestmoon.init.HMOverrides;
 import joshie.harvestmoon.init.HMPackets;
 import joshie.harvestmoon.init.HMQuests;
+import joshie.harvestmoon.init.HMRecipeFixes;
 import joshie.harvestmoon.init.HMShops;
 import joshie.harvestmoon.util.WorldDestroyer;
 
@@ -52,12 +52,13 @@ public class HarvestMoon implements IFMLLoadingPlugin {
 
     @EventHandler
     public void onConstruction(FMLLoadCompleteEvent event) {
-        HMOverrides.init();
+        HMRecipeFixes.init();
     }
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         root = new File(event.getModConfigurationDirectory() + File.separator + MODPATH);
+        HMOverride.init();
         HMConfiguration.init();
         HMCrops.init();
         HMNPCs.init();
@@ -93,7 +94,7 @@ public class HarvestMoon implements IFMLLoadingPlugin {
 
     @Override
     public String[] getASMTransformerClass() {
-        return new String[] { HarvestOverride.class.getName() };
+        return new String[] { HMOverride.class.getName() };
     }
 
     @Override
@@ -108,7 +109,7 @@ public class HarvestMoon implements IFMLLoadingPlugin {
 
     @Override
     public void injectData(Map<String, Object> data) {
-        HarvestOverride.isObfuscated = ((Boolean) data.get("runtimeDeobfuscationEnabled"));
+        HMOverride.isObfuscated = ((Boolean) data.get("runtimeDeobfuscationEnabled"));
     }
 
     @Override

@@ -1,12 +1,13 @@
 package joshie.harvestmoon.shops;
 
 import joshie.harvestmoon.calendar.CalendarDate;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public interface IPurchaseable {
     /** Whether this player can purchase this product or not, on this date/time **/
-    public boolean canBuy(World world, CalendarDate playersBirthday, CalendarDate dat);
+    public boolean canBuy(World world, EntityPlayer player);
     
     /** The cost of this product **/
     public long getCost();

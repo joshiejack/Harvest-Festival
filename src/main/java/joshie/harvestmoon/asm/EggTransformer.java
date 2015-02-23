@@ -5,10 +5,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import joshie.harvestmoon.config.Overrides;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
+import joshie.harvestmoon.HMConfiguration;
+import joshie.harvestmoon.config.Vanilla;
 
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
@@ -23,8 +21,8 @@ import org.objectweb.asm.tree.VarInsnNode;
 
 public class EggTransformer implements ITransformer {
     @Override
-    public boolean isActive(Overrides config) {
-        return config.egg;
+    public boolean isActive(Vanilla config) {
+        return config.EGG_OVERRIDE;
     }
 
     @Override
@@ -122,33 +120,37 @@ public class EggTransformer implements ITransformer {
 
     @Override
     public byte[] transform(byte[] data, boolean isObfuscated) {
-        String name = isObfuscated ? "a" : "onItemRightClick";
-        String desc = "(Lnet/minecraft/item/ItemStack;Lnet/minecraft/world/World;Lnet/minecraft/entity/player/EntityPlayer;)Lnet/minecraft/item/ItemStack;";
-
         //Implements the Interfaces ~ Thanks to BluSunrize!!! :D
-        ClassNode node = new ClassNode();
-        ClassReader classReader = new ClassReader(injectMethods(injectInterfaces(data)));
-        classReader.accept(node, 0);
+        byte[] modified = injectMethods(injectInterfaces(data));
+        if (!HMConfiguration.vanilla.EGG_DISABLE_THROWING) return modified;
+        else {
+            String name = isObfuscated ? "a" : "onItemRightClick";
+            String desc = "(Lnet/minecraft/item/ItemStack;Lnet/minecraft/world/World;Lnet/minecraft/entity/player/EntityPlayer;)Lnet/minecraft/item/ItemStack;";
+            
+            ClassNode node = new ClassNode();
+            ClassReader classReader = new ClassReader(modified);
+            classReader.accept(node, 0);
 
-        //Remove the instructions from onRightClick for the ItemEgg
-        Iterator<MethodNode> methods = node.methods.iterator();
-        while (methods.hasNext()) {
-            MethodNode m = methods.next();
-            if ((m.name.equals(name) && m.desc.equals(desc))) {
-                Iterator<AbstractInsnNode> iter = m.instructions.iterator();
-                while (iter.hasNext()) {
-                    AbstractInsnNode insn = iter.next();
-                    m.instructions.remove(insn);
+            //Remove the instructions from onRightClick for the ItemEgg
+            Iterator<MethodNode> methods = node.methods.iterator();
+            while (methods.hasNext()) {
+                MethodNode m = methods.next();
+                if ((m.name.equals(name) && m.desc.equals(desc))) {
+                    Iterator<AbstractInsnNode> iter = m.instructions.iterator();
+                    while (iter.hasNext()) {
+                        AbstractInsnNode insn = iter.next();
+                        m.instructions.remove(insn);
+                    }
+
+                    //return stack
+                    m.instructions.add(new VarInsnNode(Opcodes.ALOAD, 1));
+                    m.instructions.add(new InsnNode(Opcodes.ARETURN));
                 }
-                
-                //return stack
-                m.instructions.add(new VarInsnNode(Opcodes.ALOAD, 1));
-                m.instructions.add(new InsnNode(Opcodes.ARETURN));
             }
-        }
 
-        ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS);
-        node.accept(writer);
-        return writer.toByteArray();
+            ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS);
+            node.accept(writer);
+            return writer.toByteArray();
+        }
     }
 }

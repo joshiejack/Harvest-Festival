@@ -7,9 +7,7 @@ import io.netty.buffer.ByteBuf;
 import java.util.Random;
 import java.util.UUID;
 
-import joshie.harvestmoon.helpers.CropHelper;
-import joshie.harvestmoon.helpers.PlayerHelper;
-import joshie.harvestmoon.init.HMItems;
+import joshie.harvestmoon.config.Crops;
 import joshie.harvestmoon.util.IData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -32,6 +30,7 @@ public class CropData implements IData {
     private int daysWithoutWater; //The number of days this crop has gone without water
 
     public CropData() {}
+
     public CropData(EntityPlayer owner, Crop crop, int quality) {
         this.crop = crop;
         this.quality = quality;
@@ -44,11 +43,12 @@ public class CropData implements IData {
         if (daysWithoutWater > 2) {
             return crop.getWitherType(stage);
         } else { //Stage 2: Now that we know, it has been watered, Update it's stage
-            if (stage < crop.getStages()) {
-                stage++;
+            //If we aren't ticking randomly, Then increase the stage and quality
+            if (!Crops.ALWAYS_GROW) {
+                grow();
             }
-
-            //Stage 3, If it's been fertilized, increase it's quality
+            
+            //If it's fertilized increase it's quality
             if (isFertilized && quality < 100) {
                 quality++;
                 //Stage 4, Random chance of a giant crop being born
@@ -56,11 +56,10 @@ public class CropData implements IData {
                     isGiantCrop = true;
                 }
             }
-        }
 
-        //Stage 5, Reset the giant if conditions are invalid
-        if (!isFertilized || daysWithoutWater > 0) {
-            isGiantCrop = false;
+            if (!isFertilized || daysWithoutWater > 0) {
+                isGiantCrop = false;
+            }
         }
 
         //Stage 6, Reset the water counter and fertilising
@@ -68,6 +67,13 @@ public class CropData implements IData {
         isFertilized = false;
 
         return NONE;
+    }
+
+    public void grow() {
+        //Increase the stage of this crop
+        if (stage < crop.getStages()) {
+            stage++;
+        }
     }
 
     public String getName() {
@@ -85,17 +91,18 @@ public class CropData implements IData {
     public boolean doesRegrow() {
         return crop.getRegrowStage() > 0;
     }
-    
+
     public boolean isEdible() {
         return crop.isStatic();
     }
-    
+
     public IIcon getIcon() {
         return crop.getIcon(stage, isGiantCrop);
     }
 
     public boolean canGrow() {
-        return PlayerHelper.isOnlineOrFriendsAre(owner);
+        return true;
+        //return PlayerHelper.isOnlineOrFriendsAre(owner);
     }
 
     public ItemStack harvest() {
@@ -111,7 +118,7 @@ public class CropData implements IData {
             if (crop.getRegrowStage() > 0) {
                 stage = crop.getRegrowStage();
             }
-            
+
             return crop.getItemStack(cropSize, cropMeta, cropQuality);
         } else return null;
     }

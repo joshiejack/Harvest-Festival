@@ -22,7 +22,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemCrop extends ItemHMMeta implements IShippable, IRateable {
     public ItemCrop() {
-        setCreativeTab(HarvestTab.hm);
+        setCreativeTab(HarvestTab.tabGeneral);
         setTextureFolder(CROPPATH);
     }
 

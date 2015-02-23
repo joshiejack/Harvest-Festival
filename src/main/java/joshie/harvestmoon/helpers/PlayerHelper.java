@@ -5,7 +5,6 @@ import java.util.UUID;
 
 import joshie.harvestmoon.calendar.CalendarDate;
 import joshie.harvestmoon.calendar.Season;
-import joshie.harvestmoon.helpers.generic.EntityHelper;
 import joshie.harvestmoon.network.PacketHandler;
 import joshie.harvestmoon.network.PacketSyncGold;
 import joshie.harvestmoon.player.FridgeContents;
@@ -136,5 +135,11 @@ public class PlayerHelper {
         else {
             return data.isOnlineOrFriendsAre();
         }
+    }
+
+    public static boolean isElligibleToMarry(EntityPlayer player) {
+        if (player.worldObj.isRemote) {
+            return getData().canMarry();
+        } else return getData(player.getPersistentID()).canMarry();
     }
 }

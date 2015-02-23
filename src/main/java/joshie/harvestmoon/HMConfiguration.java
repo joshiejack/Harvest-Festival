@@ -3,7 +3,7 @@ package joshie.harvestmoon;
 import java.io.File;
 import java.lang.reflect.Method;
 
-import joshie.harvestmoon.config.Overrides;
+import joshie.harvestmoon.config.Vanilla;
 import joshie.harvestmoon.helpers.generic.ConfigHelper;
 import joshie.harvestmoon.lib.HMModInfo;
 import net.minecraftforge.common.config.Configuration;
@@ -13,7 +13,7 @@ import org.apache.logging.log4j.Level;
 public class HMConfiguration {
     public static final int PACKET_DISTANCE = 172;
     public static boolean EASY_MODE = false;
-    public static Overrides overrides;
+    public static Vanilla vanilla;
 
     public static void init() {
         initConfig("General");

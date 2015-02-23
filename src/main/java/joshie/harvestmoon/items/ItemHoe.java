@@ -74,22 +74,32 @@ public class ItemHoe extends ItemBaseTool {
                     Block block = world.getBlock(x2, y, z2);
                     if (world.getBlock(x, y + 1, z).isAir(world, x, y + 1, z)) {
                         changed = true;
-                        displayParticle(world, x2, y, z2, "blockcrack_3_0");
-                        playSound(world, x2, y, z2, Blocks.farmland.stepSound.getStepResourcePath());
-                        PlayerHelper.performTask(player, getExhaustionRate(stack));
-                        if (!world.isRemote) {
-                            if ((block == Blocks.grass || block == Blocks.dirt)) {
+
+                        if ((block == Blocks.grass || block == Blocks.dirt)) {
+                            doParticles(stack, player, world, x2, y, z2);
+                            if (!world.isRemote) {
                                 addFarmland(world, x2, y, z2);
-                            } else if (block == HMBlocks.dirt) { //Otherwise if it's mine flooring
+                                world.notifyBlockChange(x2, y, z2, Blocks.farmland);
+                            }
+                        } else if (block == HMBlocks.dirt) { //Otherwise if it's mine flooring
+                            doParticles(stack, player, world, x2, y, z2);
+                            if (!world.isRemote) {
                                 MiningLoot.getLoot(world, x2, y, z2, player, world.getBlockMetadata(x2, y, z2));
                                 world.setBlock(x2, y, z2, Blocks.farmland, BlockSoil.MINE_HOE, 2);
                             }
                         }
+
                     }
                 }
             }
 
             return changed;
         }
+    }
+
+    private void doParticles(ItemStack stack, EntityPlayer player, World world, int x, int y, int z) {
+        displayParticle(world, x, y, z, "blockcrack_3_0");
+        playSound(world, x, y, z, Blocks.farmland.stepSound.getStepResourcePath());
+        PlayerHelper.performTask(player, getExhaustionRate(stack));
     }
 }

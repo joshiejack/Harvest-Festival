@@ -5,6 +5,7 @@ import static joshie.harvestmoon.helpers.CropHelper.harvestCrop;
 
 import java.util.Random;
 
+import joshie.harvestmoon.config.Crops;
 import joshie.harvestmoon.crops.Crop;
 import joshie.harvestmoon.helpers.CropHelper;
 import joshie.harvestmoon.helpers.generic.MCClientHelper;
@@ -29,6 +30,9 @@ public class BlockCrop extends BlockHMBase implements IPlantable {
         setBlockUnbreakable();
         setStepSound(Block.soundTypeGrass);
         setCreativeTab(null);
+        setBlockBounds(0F, 0F, 0F, 1F, 0.25F, 1F);
+        setTickRandomly(Crops.ALWAYS_GROW);
+        disableStats();
     }
 
     @Override
@@ -44,6 +48,61 @@ public class BlockCrop extends BlockHMBase implements IPlantable {
     @Override
     public int getRenderType() {
         return 6;
+    }
+
+    //Only called if crops are set to tick randomly
+    @Override
+    public void updateTick(World world, int x, int y, int z, Random rand) {
+        if (!world.isRemote) {
+            if (world.getBlockLightValue(x, y + 1, z) >= 9) {
+                float chance = getGrowthChance(world, x, y, z);
+                if (rand.nextInt((int) (25.0F / chance) + 1) == 0) {
+                    //We are Growing!
+                    CropHelper.grow(world, x, y, z);
+                }
+            }
+        }
+    }
+
+    private float getGrowthChance(World world, int x, int y, int z) {
+        float f = 1.0F;
+        Block block = world.getBlock(x, y, z - 1);
+        Block block1 = world.getBlock(x, y, z + 1);
+        Block block2 = world.getBlock(x - 1, y, z);
+        Block block3 = world.getBlock(x + 1, y, z);
+        Block block4 = world.getBlock(x - 1, y, z - 1);
+        Block block5 = world.getBlock(x + 1, y, z - 1);
+        Block block6 = world.getBlock(x + 1, y, z + 1);
+        Block block7 = world.getBlock(x - 1, y, z + 1);
+        boolean xTrue = block2 == this || block3 == this;
+        boolean zTrue = block == this || block1 == this;
+        boolean cornerTrue = block4 == this || block5 == this || block6 == this || block7 == this;
+
+        for (int l = x - 1; l <= x + 1; ++l) {
+            for (int i1 = z - 1; i1 <= z + 1; ++i1) {
+                float f1 = 0.0F;
+
+                if (world.getBlock(l, y - 1, i1).canSustainPlant(world, l, y - 1, i1, ForgeDirection.UP, this)) {
+                    f1 = 1.0F;
+
+                    if (world.getBlock(l, y - 1, i1).isFertile(world, l, y - 1, i1)) {
+                        f1 = 3.0F;
+                    }
+                }
+
+                if (l != x || i1 != z) {
+                    f1 /= 4.0F;
+                }
+
+                f += f1;
+            }
+        }
+
+        if (cornerTrue || xTrue && zTrue) {
+            f /= 2.0F;
+        }
+
+        return f;
     }
 
     @SideOnly(Side.CLIENT)
@@ -78,12 +137,6 @@ public class BlockCrop extends BlockHMBase implements IPlantable {
     @Override
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
         return null;
-    }
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public boolean canCollideCheck(int side, boolean boat) {
-        return false;
     }
 
     @SideOnly(Side.CLIENT)

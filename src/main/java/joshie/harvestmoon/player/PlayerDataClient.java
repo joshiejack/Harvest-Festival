@@ -68,6 +68,17 @@ public class PlayerDataClient {
         return true;
     }
 
+    public boolean canMarry() {
+        for (NPC npc: npc_relations.keySet()) {
+            int value = npc_relations.get(npc);
+            if (value >= joshie.harvestmoon.config.NPC.MARRIAGE_REQUIREMENT) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+
     //Returns the name of your current lover
     public String getLover() {
         return Translate.translate("nolover");

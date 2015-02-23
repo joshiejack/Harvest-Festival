@@ -14,9 +14,11 @@ import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
-public class HMOverrides {
+public class HMRecipeFixes {
     public static void init() {
         fixRecipes(Items.egg);
+        fixRecipes(Items.carrot);
+        fixRecipes(Items.potato);
     }
 
     public static void fixRecipes(Item fix) {

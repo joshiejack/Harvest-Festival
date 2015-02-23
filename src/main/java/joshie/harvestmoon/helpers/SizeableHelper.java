@@ -22,7 +22,7 @@ public class SizeableHelper {
         if (rand.nextInt(chance) == 0) size = Size.LARGE;
         else if (rand.nextInt(chance2) == 0) size = Size.MEDIUM;
         ItemStack sizeable = getSizeable(relationship, SizeableMeta.EGG, size);
-        if (HMConfiguration.overrides.egg) {
+        if (HMConfiguration.vanilla.EGG_OVERRIDE) {
             return new ItemStack(Items.egg, 1, sizeable.getItemDamage());
         } else return sizeable;
     }

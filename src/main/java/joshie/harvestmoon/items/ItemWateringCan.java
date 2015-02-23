@@ -1,5 +1,6 @@
 package joshie.harvestmoon.items;
 
+import joshie.harvestmoon.blocks.BlockCrop;
 import joshie.harvestmoon.blocks.BlockSoil;
 import joshie.harvestmoon.helpers.PlayerHelper;
 import net.minecraft.block.Block;
@@ -141,7 +142,7 @@ public class ItemWateringCan extends ItemBaseTool implements IFluidContainerItem
 
             ForgeDirection front = joshie.harvestmoon.helpers.generic.DirectionHelper.getFacingFromEntity(player);
             Block initial = world.getBlock(x, y, z);
-            if (!(initial instanceof BlockSoil)) {
+            if (!(initial instanceof BlockSoil) && (!(initial instanceof BlockCrop))) {
                 return false;
             }
 
@@ -151,6 +152,10 @@ public class ItemWateringCan extends ItemBaseTool implements IFluidContainerItem
                     for (int z2 = getZMinus(stack, front, z); z2 <= getZPlus(stack, front, z); z2++) {
                         if (getCapacity(stack) > 0) {
                             Block block = world.getBlock(x2, y2, z2);
+                            if (block instanceof BlockCrop) {
+                                block = world.getBlock(x2, y2 - 1, z2);
+                            }
+
                             if (block instanceof BlockSoil) {
                                 if (BlockSoil.hydrate(world, x2, y2, z2)) {
                                     displayParticle(world, x2, y2, z2, "splash");

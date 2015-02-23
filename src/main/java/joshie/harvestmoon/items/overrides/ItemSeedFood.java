@@ -21,9 +21,9 @@ public class ItemSeedFood {
     private static Crop getCrop(ItemStack stack) {
         Crop crop = null;
         Item item = stack.getItem();
-        if (item == Items.carrot && HMConfiguration.overrides.carrot) {
+        if (item == Items.carrot && HMConfiguration.vanilla.CARROT_OVERRIDE) {
             crop = HMCrops.carrot;
-        } else if (item == Items.potato && HMConfiguration.overrides.potato) {
+        } else if (item == Items.potato && HMConfiguration.vanilla.POTATO_OVERRIDE) {
             crop = HMCrops.potato;
         }
 

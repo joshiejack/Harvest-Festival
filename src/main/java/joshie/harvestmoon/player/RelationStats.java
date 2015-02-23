@@ -107,6 +107,17 @@ public class RelationStats implements IData {
         return marriedTo.add(relate);
     }
 
+    public boolean canMarry() {
+        for (Relatable npc: relations.keySet()) {
+            int value = relations.get(npc);
+            if (value >= joshie.harvestmoon.config.NPC.MARRIAGE_REQUIREMENT) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         NBTTagList relationships = nbt.getTagList("Relationships", 10);

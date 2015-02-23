@@ -11,6 +11,7 @@ import java.util.List;
 
 import joshie.harvestmoon.api.IRateable;
 import joshie.harvestmoon.calendar.Season;
+import joshie.harvestmoon.config.Crops;
 import joshie.harvestmoon.crops.Crop;
 import joshie.harvestmoon.helpers.CropHelper;
 import joshie.harvestmoon.init.HMBlocks;
@@ -30,7 +31,7 @@ public class ItemSeeds extends ItemHMMeta implements IRateable {
     public ItemSeeds() {
         setTextureFolder(SEEDPATH);
     }
-    
+
     @Override
     public int getMetaCount() {
         return CropMeta.values().length;
@@ -46,7 +47,7 @@ public class ItemSeeds extends ItemHMMeta implements IRateable {
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean debug) {
         Crop crop = CropHelper.getCropFromStack(stack);
         int quality = getCropQuality(stack.getItemDamage());
-        for (Season season: crop.getSeasons()) {
+        for (Season season : crop.getSeasons()) {
             list.add(season.getTextColor() + season.getLocalized());
         }
     }
@@ -58,20 +59,26 @@ public class ItemSeeds extends ItemHMMeta implements IRateable {
         } else {
             Crop crop = CropHelper.getCropFromStack(stack);
             int quality = CropHelper.getCropQuality(stack.getItemDamage());
-            boolean hasPlanted = false;
             int y = yCoord;
-            for (int x = xCoord - 1; x <= xCoord + 1; x++) {
+            int planted = 0;
+            labelTop: for (int x = xCoord - 1; x <= xCoord + 1; x++) {
                 for (int z = zCoord - 1; z <= zCoord + 1; z++) {
                     if (player.canPlayerEdit(x, y, z, side, stack) && player.canPlayerEdit(x, y + 1, z, side, stack)) {
                         if (world.getBlock(x, y, z).canSustainPlant(world, x, y, z, ForgeDirection.UP, (IPlantable) HMBlocks.crops) && world.isAirBlock(x, y + 1, z)) {
                             plantCrop(player, world, x, y + 1, z, crop, quality);
-                            hasPlanted = true;
+                            planted++;
+
+                            if (Crops.ALWAYS_GROW) {
+                                if (planted >= 2) {
+                                    break labelTop;
+                                }
+                            }
                         }
                     }
                 }
             }
-            
-            if (hasPlanted) {
+
+            if (planted > 0) {
                 --stack.stackSize;
                 return true;
             } else {

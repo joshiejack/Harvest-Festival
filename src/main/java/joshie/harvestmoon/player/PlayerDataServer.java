@@ -146,6 +146,10 @@ public class PlayerDataServer implements IData {
     public boolean setMarried(EntityNPC npc) {
         return relationStats.setMarried(npc);
     }
+    
+    public boolean canMarry() {
+        return relationStats.canMarry();
+    }
 
     public double getStamina() {
         return playerStats.getStamina();

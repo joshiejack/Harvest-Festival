@@ -51,7 +51,7 @@ public class HMCrops {
 
         //All Season Grass
         grass = new Crop("grass", new Season[] { SPRING, SUMMER, AUTUMN }, 500, 0, 11, 0, 0, CropMeta.GRASS).setIsStatic().setHasAlternativeName();
-        if (HMConfiguration.overrides.potato) potato.setVanillaItem(Items.potato);
-        if (HMConfiguration.overrides.carrot) carrot.setVanillaItem(Items.carrot);
+        if (HMConfiguration.vanilla.POTATO_OVERRIDE) potato.setVanillaItem(Items.potato);
+        if (HMConfiguration.vanilla.CARROT_OVERRIDE) carrot.setVanillaItem(Items.carrot);
     }
 }

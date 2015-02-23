@@ -1,7 +1,5 @@
 package joshie.harvestmoon.helpers;
 
-import java.util.UUID;
-
 import joshie.harvestmoon.crops.Crop;
 import joshie.harvestmoon.crops.CropData;
 import joshie.harvestmoon.crops.CropTrackerClient;
@@ -128,5 +126,9 @@ public class CropHelper {
 
     public static void newDay() {
         ServerHelper.getCropTracker().newDay();
+    }
+
+    public static void grow(World world, int x, int y, int z) {
+        getServerTracker().grow(world, x, y, z);
     }
 }

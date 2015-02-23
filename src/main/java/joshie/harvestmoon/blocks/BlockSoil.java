@@ -2,6 +2,7 @@ package joshie.harvestmoon.blocks;
 
 import static joshie.harvestmoon.helpers.CropHelper.removeFarmland;
 import static joshie.harvestmoon.lib.HMModInfo.MODPATH;
+import joshie.harvestmoon.helpers.CropHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFarmland;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -51,7 +52,7 @@ public class BlockSoil extends BlockFarmland {
         int meta = world.getBlockMetadata(x, y, z);
         boolean ret = meta == 7 ? false : world.setBlockMetadataWithNotify(x, y, z, 7, 2);
         if (ret) {
-            hydrate(world, x, y + 1, z);
+            CropHelper.hydrate(world, x, y + 1, z);
         }
 
         return ret;

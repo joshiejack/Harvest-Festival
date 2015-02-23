@@ -37,7 +37,7 @@ public class BlockWithered extends BlockHMBase {
 
     @Override
     public int getRenderType() {
-        return RenderIds.ALL;
+        return 6;
     }
 
     @Override

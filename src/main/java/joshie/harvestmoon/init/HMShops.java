@@ -11,8 +11,12 @@ import static net.minecraft.world.EnumDifficulty.HARD;
 import static net.minecraft.world.EnumDifficulty.NORMAL;
 import static net.minecraft.world.EnumDifficulty.PEACEFUL;
 import joshie.harvestmoon.crops.Crop;
+import joshie.harvestmoon.items.ItemGeneral;
+import joshie.harvestmoon.shops.Purchaseable;
+import joshie.harvestmoon.shops.PurchaseableBlueFeather;
 import joshie.harvestmoon.shops.PurchaseableCropSeeds;
 import joshie.harvestmoon.shops.ShopInventory;
+import net.minecraft.item.ItemStack;
 
 public class HMShops {
     public static ShopInventory barn;
@@ -48,6 +52,11 @@ public class HMShops {
         for (Crop crop : Crop.crops) {
             supermarket.addItem(new PurchaseableCropSeeds(crop));
         }
+        
+        supermarket.addItem(new Purchaseable(100, new ItemStack(HMItems.general, 1, ItemGeneral.CHOCOLATE)));
+        supermarket.addItem(new Purchaseable(50, new ItemStack(HMItems.general, 1, ItemGeneral.OIL)));
+        supermarket.addItem(new Purchaseable(100, new ItemStack(HMItems.general, 1, ItemGeneral.RICEBALL)));
+        supermarket.addItem(new PurchaseableBlueFeather(1000, new ItemStack(HMItems.general, 1, ItemGeneral.BLUE_FEATHER)));
 
         /* Peaceful Opening Hours */
         supermarket.addOpening(PEACEFUL, MONDAY, 0, 24000).addOpening(PEACEFUL, TUESDAY, 0, 24000).addOpening(PEACEFUL, WEDNESDAY, 0, 24000);

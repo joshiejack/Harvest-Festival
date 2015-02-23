@@ -33,6 +33,10 @@ public class CalendarHelper {
     public static CalendarDate getServerDate() {
         return ServerHelper.getCalendar().getDate();
     }
+    
+    public static CalendarDate getData(World world) {
+        return world.isRemote? getClientDate(): getServerDate();
+    }
 
     public static Weekday getWeekday(World world) {
         return world.isRemote? getClientDate().getWeekday(): getServerDate().getWeekday();

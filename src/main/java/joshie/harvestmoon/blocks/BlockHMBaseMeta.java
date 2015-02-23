@@ -7,7 +7,7 @@ import net.minecraft.block.material.Material;
 
 public abstract class BlockHMBaseMeta extends BlockBaseMeta {
     protected BlockHMBaseMeta(Material material) {
-        super(material, HMModInfo.MODPATH, HarvestTab.hm);
+        super(material, HMModInfo.MODPATH, HarvestTab.tabGeneral);
     }
     
     @Override

@@ -1,6 +1,7 @@
 package joshie.harvestmoon.handlers.events;
 
 import static joshie.harvestmoon.helpers.CropHelper.addFarmland;
+import joshie.harvestmoon.HMConfiguration;
 import joshie.harvestmoon.items.ItemSickle;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -13,6 +14,11 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 public class ToolEvents {
     @SubscribeEvent
     public void onUseHoe(UseHoeEvent event) {
+        if (HMConfiguration.vanilla.HOES_ARE_USELESS) {
+            event.setCanceled(true);
+            return;
+        }
+        
         World world = event.world;
         int x = event.x;
         int y = event.y;

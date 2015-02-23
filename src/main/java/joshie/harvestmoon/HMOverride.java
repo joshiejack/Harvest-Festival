@@ -1,5 +1,7 @@
 package joshie.harvestmoon;
 
+import static joshie.harvestmoon.HMConfiguration.vanilla;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
@@ -10,7 +12,9 @@ import java.util.List;
 import joshie.harvestmoon.asm.EggTransformer;
 import joshie.harvestmoon.asm.ITransformer;
 import joshie.harvestmoon.asm.SeedFoodTransformer;
-import joshie.harvestmoon.config.Overrides;
+import joshie.harvestmoon.config.Vanilla;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.launchwrapper.IClassTransformer;
 
 import org.apache.commons.io.FileUtils;
@@ -25,39 +29,55 @@ import org.objectweb.asm.tree.TypeInsnNode;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
-public class HarvestOverride implements IClassTransformer {
+public class HMOverride implements IClassTransformer {
     private static final int EGG = 0;
     private static final int SNOW = 1;
     private static final int FARMLAND = 2;
-    
+
     static boolean isObfuscated = false;
     private static List<ITransformer> transformers = new ArrayList();
     static {
         transformers.add(new EggTransformer());
         transformers.add(new SeedFoodTransformer());
 
-        GsonBuilder builder = new GsonBuilder().setPrettyPrinting();
+        GsonBuilder builder = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping();
         Gson gson = builder.create();
 
-        File file = new File("config/hm/override.json");
+        File file = new File("config/hm/vanilla.json");
         if (!file.exists()) {
             try {
-                HMConfiguration.overrides = new Overrides();
+                HMConfiguration.vanilla = new Vanilla();
                 Writer writer = new OutputStreamWriter(new FileOutputStream(file), "UTF-8");
-                writer.write(gson.toJson(HMConfiguration.overrides));
+                writer.write(gson.toJson(HMConfiguration.vanilla));
                 writer.close(); //Write the default json to file
             } catch (Exception e) {}
         } else {
             try {
-                HMConfiguration.overrides = gson.fromJson(FileUtils.readFileToString(file), Overrides.class);
+                HMConfiguration.vanilla = gson.fromJson(FileUtils.readFileToString(file), Vanilla.class);
             } catch (Exception e) {}
         }
 
         for (int i = 0; i < transformers.size(); i++) {
-            if (!transformers.get(i).isActive(HMConfiguration.overrides)) {
+            if (!transformers.get(i).isActive(HMConfiguration.vanilla)) {
                 transformers.remove(i);
             }
+        }
+    }
+
+    public static void init() {
+        if (HMConfiguration.vanilla.HOES_HIDDEN) {
+            Items.wooden_hoe.setCreativeTab(null);
+            Items.stone_hoe.setCreativeTab(null);
+            Items.iron_hoe.setCreativeTab(null);
+            Items.diamond_hoe.setCreativeTab(null);
+            Items.golden_hoe.setCreativeTab(null);
+        }
+
+        if (vanilla.CARROT_BLOCK_DISABLE_TICKING) Blocks.carrots.setTickRandomly(false);
+        if (vanilla.POTATO_BLOCK_DISABLE_TICKING) Blocks.potatoes.setTickRandomly(false);
+        if (vanilla.MOVE_OVERRIDE_TAB) {
+            if (vanilla.CARROT_OVERRIDE) Items.carrot.setCreativeTab(HarvestTab.tabGeneral);
+            if (vanilla.POTATO_OVERRIDE) Items.potato.setCreativeTab(HarvestTab.tabGeneral);
         }
     }
 
@@ -77,27 +97,12 @@ public class HarvestOverride implements IClassTransformer {
         String registerItems = !name.equals(transformedName) ? "l" : "registerItems";
         if (name.equals("net.minecraft.item.Item") || name.equals("net.minecraft.block.Block")) {
             for (MethodNode method : classNode.methods) {
-                if (!HMConfiguration.overrides.egg && method.name.equals("registerItems") && method.desc.equals("()V")) {
+                if (method.name.equals("registerBlocks") && method.desc.equals("()V")) {
                     for (int j = 0; j < method.instructions.size(); j++) {
                         AbstractInsnNode instruction = method.instructions.get(j);
                         if (instruction.getType() == AbstractInsnNode.LDC_INSN) {
                             LdcInsnNode ldcInstruction = (LdcInsnNode) instruction;
-                            if (ldcInstruction.cst.equals("egg")) {
-                                if (!overridden[EGG]) {
-                                    ((TypeInsnNode) method.instructions.get(j + 1)).desc = "joshie/harvestmoon/items/ItemSizedEgg";
-                                    ((MethodInsnNode) method.instructions.get(j + 3)).owner = "joshie/harvestmoon/items/ItemSizedEgg";
-                                    ((MethodInsnNode) method.instructions.get(j + 5)).owner = "joshie/harvestmoon/items/ItemSizedEgg";
-                                    overridden[EGG] = true;
-                                }
-                            }
-                        }
-                    }
-                } else if (method.name.equals("registerBlocks") && method.desc.equals("()V")) {
-                    for (int j = 0; j < method.instructions.size(); j++) {
-                        AbstractInsnNode instruction = method.instructions.get(j);
-                        if (instruction.getType() == AbstractInsnNode.LDC_INSN) {
-                            LdcInsnNode ldcInstruction = (LdcInsnNode) instruction;
-                            if (HMConfiguration.overrides.snow && ldcInstruction.cst.equals("snow_layer")) {
+                            if (HMConfiguration.vanilla.SNOW_OVERRIDE && ldcInstruction.cst.equals("snow_layer")) {
                                 if (!overridden[SNOW]) {
                                     ((TypeInsnNode) method.instructions.get(j + 1)).desc = "joshie/harvestmoon/blocks/BlockSnowSheet";
                                     ((MethodInsnNode) method.instructions.get(j + 3)).owner = "joshie/harvestmoon/blocks/BlockSnowSheet";
@@ -105,7 +110,7 @@ public class HarvestOverride implements IClassTransformer {
                                     overridden[SNOW] = true;
 
                                 }
-                            } else if (HMConfiguration.overrides.farmland && ldcInstruction.cst.equals("wheat")) {
+                            } else if (HMConfiguration.vanilla.FARMLAND_OVERRIDE && ldcInstruction.cst.equals("wheat")) {
                                 if (!overridden[FARMLAND]) {
                                     ((TypeInsnNode) method.instructions.get(j + 11)).desc = "joshie/harvestmoon/blocks/BlockSoil";
                                     ((MethodInsnNode) method.instructions.get(j + 13)).owner = "joshie/harvestmoon/blocks/BlockSoil";

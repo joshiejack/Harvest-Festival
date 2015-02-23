@@ -5,7 +5,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import joshie.harvestmoon.config.Overrides;
+import joshie.harvestmoon.HMConfiguration;
+import joshie.harvestmoon.config.Vanilla;
 
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
@@ -19,15 +20,15 @@ import org.objectweb.asm.tree.MethodNode;
 
 public class SeedFoodTransformer implements ITransformer {
     @Override
-    public boolean isActive(Overrides config) {
-        return config.potato || config.carrot;
+    public boolean isActive(Vanilla config) {
+        return config.POTATO_OVERRIDE || config.CARROT_OVERRIDE;
     }
 
     @Override
     public String getClass(boolean isObfuscated) {
-        return isObfuscated? "adv": "net.minecraft.item.ItemSeedFood";
+        return isObfuscated ? "adv" : "net.minecraft.item.ItemSeedFood";
     }
-    
+
     public byte[] injectInterfaces(byte[] data) {
         ClassReader cr = new ClassReader(data);
         ClassWriter cw = new ClassWriter(cr, 0);
@@ -98,31 +99,35 @@ public class SeedFoodTransformer implements ITransformer {
 
     @Override
     public byte[] transform(byte[] data, boolean isObfuscated) {
-        String name = isObfuscated ? "a" : "onItemUse";
-        String desc = "(Lnet/minecraft/item/ItemStack;Lnet/minecraft/entity/player/EntityPlayer;Lnet/minecraft/world/World;IIIIFFF)Z";
-        
-        ClassNode node = new ClassNode();
-        ClassReader classReader = new ClassReader(injectMethods(injectInterfaces(data)));
-        classReader.accept(node, 0);
+        byte[] modified = injectMethods(injectInterfaces(data));
+        if (!HMConfiguration.vanilla.CARROT_POTATO_DISABLE_PLANTING) return modified;
+        else {
+            String name = isObfuscated ? "a" : "onItemUse";
+            String desc = "(Lnet/minecraft/item/ItemStack;Lnet/minecraft/entity/player/EntityPlayer;Lnet/minecraft/world/World;IIIIFFF)Z";
 
-        //Remove all Instructions from the onItemUse Method
-        Iterator<MethodNode> methods = node.methods.iterator();
-        while (methods.hasNext()) {
-            MethodNode m = methods.next();
-            if ((m.name.equals(name) && m.desc.equals(desc))) {
-                Iterator<AbstractInsnNode> iter = m.instructions.iterator();
-                while (iter.hasNext()) {
-                    m.instructions.remove(iter.next());
+            ClassNode node = new ClassNode();
+            ClassReader classReader = new ClassReader(injectMethods(injectInterfaces(data)));
+            classReader.accept(node, 0);
+
+            //Remove all Instructions from the onItemUse Method
+            Iterator<MethodNode> methods = node.methods.iterator();
+            while (methods.hasNext()) {
+                MethodNode m = methods.next();
+                if ((m.name.equals(name) && m.desc.equals(desc))) {
+                    Iterator<AbstractInsnNode> iter = m.instructions.iterator();
+                    while (iter.hasNext()) {
+                        m.instructions.remove(iter.next());
+                    }
+
+                    //Return false
+                    m.instructions.add(new InsnNode(Opcodes.ICONST_0));
+                    m.instructions.add(new InsnNode(Opcodes.IRETURN));
                 }
-                
-                //Return false
-                m.instructions.add(new InsnNode(Opcodes.ICONST_0));
-                m.instructions.add(new InsnNode(Opcodes.IRETURN));
             }
+
+            ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS);
+            node.accept(writer);
+            return writer.toByteArray();
         }
-        
-        ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS);
-        node.accept(writer);
-        return writer.toByteArray();
     }
 }

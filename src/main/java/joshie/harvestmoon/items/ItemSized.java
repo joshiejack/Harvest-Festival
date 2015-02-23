@@ -89,7 +89,7 @@ public class ItemSized extends ItemHMMeta implements IShippable, IRateable {
         for (int i = 0; i < getMetaCount(); i++) {
             for (int j = 0; j < 100; j += 100) {
                 SizeableMeta meta = SizeableHelper.getSizeableFromStack(new ItemStack(item, 1, (j * 100) + i));
-                if(meta != SizeableMeta.EGG || !HMConfiguration.overrides.egg) {
+                if(meta != SizeableMeta.EGG || !HMConfiguration.vanilla.EGG_OVERRIDE) {
                     list.add(new ItemStack(item, 1, (j * 100) + i));
                     list.add(new ItemStack(item, 1, 10000 + (j * 100) + i));
                     list.add(new ItemStack(item, 1, 20000 + (j * 100) + i));

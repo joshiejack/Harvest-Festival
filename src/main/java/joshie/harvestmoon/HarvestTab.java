@@ -9,7 +9,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class HarvestTab extends CreativeTabs {
-    public static HarvestTab hm = new HarvestTab("main");
+    public static HarvestTab tabGeneral = new HarvestTab("main");
     public ItemStack icon = new ItemStack(Items.golden_hoe);
 
     public HarvestTab(String label) {
@@ -30,5 +30,9 @@ public class HarvestTab extends CreativeTabs {
     @Override
     public Item getTabIconItem() {
         return icon.getItem();
+    }
+
+    public void setStack(ItemStack stack) {
+        this.icon = stack;
     }
 }

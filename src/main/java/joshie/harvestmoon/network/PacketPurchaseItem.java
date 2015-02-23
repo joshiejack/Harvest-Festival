@@ -1,8 +1,6 @@
 package joshie.harvestmoon.network;
 
 import io.netty.buffer.ByteBuf;
-import joshie.harvestmoon.helpers.CalendarHelper;
-import joshie.harvestmoon.helpers.PlayerHelper;
 import joshie.harvestmoon.helpers.ShopHelper;
 import joshie.harvestmoon.shops.IPurchaseable;
 import joshie.harvestmoon.shops.ShopInventory;
@@ -39,7 +37,7 @@ public class PacketPurchaseItem implements IMessage, IMessageHandler<PacketPurch
     public IMessage onMessage(PacketPurchaseItem message, MessageContext ctx) {        
         EntityPlayer player = ctx.getServerHandler().playerEntity;
         IPurchaseable purchaseable = ShopInventory.registers.get(message.purchaseable_id);
-        if(purchaseable.canBuy(player.worldObj, PlayerHelper.getBirthday(player), CalendarHelper.getServerDate())) {
+        if(purchaseable.canBuy(player.worldObj, player)) {
             ShopHelper.purchase(player, purchaseable.getProducts(), purchaseable.getCost());
         }
         

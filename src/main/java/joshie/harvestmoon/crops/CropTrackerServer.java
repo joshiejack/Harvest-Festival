@@ -54,7 +54,6 @@ public class CropTrackerServer implements IData {
             CropData data = entry.getValue();
             if (data.canGrow()) {
                 WorldLocation location = entry.getKey();
-    
                 //Feed surrounding animals with grass
                 if (data.isEdible()) {
                     World world = getWorld(location.dimension);
@@ -65,7 +64,7 @@ public class CropTrackerServer implements IData {
                         }
                     }
                 }
-    
+
                 WitherType wither = data.newDay();
                 if (wither != WitherType.NONE) {
                     iter.remove();
@@ -105,6 +104,16 @@ public class CropTrackerServer implements IData {
         if (data == null) {
             sendToClient(new PacketSyncCrop(key), player);
         } else sendToClient(new PacketSyncCrop(key, data), player);
+    }
+
+    //Causes a growth of the crop at this location, Notifies the clients
+    public void grow(World world, int x, int y, int z) {
+        WorldLocation location = getKey(world, x, y, z);
+        CropData data = cropData.get(location);
+        if (data != null) {
+            data.grow();
+            sendToEveryone(new PacketSyncCrop(location, data));
+        }
     }
 
     //Removes a crop at the location, PLAYER CAN BE NULL

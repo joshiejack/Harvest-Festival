@@ -20,7 +20,7 @@ import cpw.mods.fml.common.FMLCommonHandler;
 
 public class ShopInventory {
     public static final ArrayList<IPurchaseable> registers = new ArrayList();
-    private HashSet<IPurchaseable> contents = new HashSet();
+    private ArrayList<IPurchaseable> contents = new ArrayList();
     protected ArrayList<String> greetings = new ArrayList();
     private ResourceLocation shop_overlay;
     private HashMap<EnumDifficulty, OpeningSettings> open = new HashMap();
@@ -54,7 +54,7 @@ public class ShopInventory {
         return shop_texture;
     }
 
-    public Set<IPurchaseable> getContents() {
+    public ArrayList<IPurchaseable> getContents() {
         return contents;
     }
 

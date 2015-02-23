@@ -6,6 +6,6 @@ import joshie.harvestmoon.lib.HMModInfo;
 
 public abstract class ItemHMMeta extends ItemBaseMeta {
     public ItemHMMeta() {
-        super(HMModInfo.MODPATH, HarvestTab.hm);
+        super(HMModInfo.MODPATH, HarvestTab.tabGeneral);
     }
 }

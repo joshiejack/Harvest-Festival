@@ -26,23 +26,22 @@ public class ItemGeneral extends ItemHMMeta {
     public static final int GOLD_ORE = 8;
     public static final int MYSTRIL_ORE = 9;
     public static final int MYTHIC_STONE = 10;
-    public static final int BAMBOO_SHOOT = 11;
-    public static final int FLOUR = 12;
-    public static final int OIL = 13;
-    public static final int RICEBALL = 14;
-    public static final int WHISKED_EGG = 15;
-    public static final int KNIFE = 16;
-    public static final int ROLLING_PIN = 17;
-    public static final int WHISK = 18;
-    public static final int POTATO_SLICES = 19;
-    public static final int BUTTER = 20;
-    public static final int SALT = 21;
-    public static final int MIRACLE = 22;
-    public static final int CHOCOLATE = 23;
+    public static final int FLOUR = 11;
+    public static final int OIL = 12;
+    public static final int RICEBALL = 13;
+    public static final int WHISKED_EGG = 14;
+    public static final int KNIFE = 15;
+    public static final int ROLLING_PIN = 16;
+    public static final int WHISK = 17;
+    public static final int POTATO_SLICES = 18;
+    public static final int BUTTER = 19;
+    public static final int SALT = 20;
+    public static final int MIRACLE = 21;
+    public static final int CHOCOLATE = 22;
 
     @Override
     public int getMetaCount() {
-        return 24;
+        return 23;
     }
 
     @Override
@@ -70,8 +69,6 @@ public class ItemGeneral extends ItemHMMeta {
                 return "ore_mystril";
             case MYTHIC_STONE:
                 return "stone_mythic";
-            case BAMBOO_SHOOT:
-                return "shoot_bamboo";
             case FLOUR:
                 return "flour";
             case OIL:

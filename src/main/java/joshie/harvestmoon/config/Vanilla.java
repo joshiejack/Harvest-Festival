@@ -47,5 +47,4 @@ public class Vanilla {
     public boolean HOES_ARE_USELESS = true;
     @SerializedName("Hoes > Hide")
     public boolean HOES_HIDDEN = true;
-
 }

@@ -8,11 +8,13 @@ public enum SizeableMeta {
     MATSUTAKE(350, 500, 800), TOADSTOOL(100, 130, 160), SHIITAKE(50, 80, 120);
 
     private int small, medium, large;
+    private boolean enabled;
 
     private SizeableMeta(int small, int medium, int large) {
         this.small = small;
         this.medium = medium;
         this.large = large;
+        this.enabled = true;
     }
 
     public int getSellValue(Size size) {

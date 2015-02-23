@@ -27,7 +27,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ItemSized extends ItemHMMeta implements IShippable, IRateable {
     @Override
     public int getMetaCount() {
-        return SizeableMeta.values().length;
+        return 4; //Only enable the sizeables for 0.5
     }
 
     @Override

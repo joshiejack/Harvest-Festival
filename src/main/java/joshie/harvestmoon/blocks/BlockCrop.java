@@ -54,12 +54,14 @@ public class BlockCrop extends BlockHMBase implements IPlantable {
     //Only called if crops are set to tick randomly
     @Override
     public void updateTick(World world, int x, int y, int z, Random rand) {
-        if (!world.isRemote) {
-            if (world.getBlockLightValue(x, y + 1, z) >= 9) {
-                float chance = getGrowthChance(world, x, y, z);
-                if (rand.nextInt((int) (25.0F / chance) + 1) == 0) {
-                    //We are Growing!
-                    CropHelper.grow(world, x, y, z);
+        if (Crops.ALWAYS_GROW) {
+            if (!world.isRemote) {
+                if (world.getBlockLightValue(x, y + 1, z) >= 9) {
+                    float chance = getGrowthChance(world, x, y, z);
+                    if (rand.nextInt((int) (25.0F / chance) + 1) == 0) {
+                        //We are Growing!
+                        CropHelper.grow(world, x, y, z);
+                    }
                 }
             }
         }

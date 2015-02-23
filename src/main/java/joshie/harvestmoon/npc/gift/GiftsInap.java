@@ -7,7 +7,6 @@ import joshie.harvestmoon.crops.Crop;
 import joshie.harvestmoon.helpers.CropHelper;
 import joshie.harvestmoon.init.HMCrops;
 import joshie.harvestmoon.init.HMItems;
-import joshie.harvestmoon.items.ItemGeneral;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -27,10 +26,6 @@ public class GiftsInap extends Gifts {
         if (stack.getItem() == HMItems.crops) {
             Crop crop = CropHelper.getCropFromStack(stack);
             return crop == HMCrops.corn || crop == HMCrops.pineapple ? GOOD : DECENT;
-        }
-
-        if (stack.getItem() == HMItems.general && stack.getItemDamage() == ItemGeneral.BAMBOO_SHOOT) {
-            return GOOD;
         }
 
         if (is(stack, Category.CONSTRUCTION)) {

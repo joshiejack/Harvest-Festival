@@ -18,11 +18,9 @@ public class HMIngredients {
     public static Ingredient whisked_egg;
     
     /** Other stuff **/
-    public static Ingredient bamboo_shoot;
     public static Ingredient egg;
     public static Ingredient fish;
     public static Ingredient flour;
-    public static Ingredient matsutake_mushroom;
     public static Ingredient oil;
     public static Ingredient riceball;
     public static Ingredient milk;
@@ -64,11 +62,9 @@ public class HMIngredients {
         butter = new Ingredient("butter", 6, -1, 0, 0.01F, 6);
         whisked_egg = new Ingredient("egg_whisked", 5, 0, 0, 0.07F, 4);
         
-        bamboo_shoot = new Ingredient("shoot_bamboo", 2, -1, 1, 0.025F, 4);
         egg = new Ingredient("egg", 6, 0, 0, 0.075F, 10);   
         fish = new Ingredient("fish", 5, -5, 2, 0.1F, 16);
         flour = new Ingredient("flour", 0, 0, 0, 0.1F, 4);
-        matsutake_mushroom = new Ingredient("mushroom_matustake", 3, -1, 1, 0.025F, 10).assign(mushroom);
         oil = new Ingredient("oil", 0, -2, 0, 0F, 2);
         riceball = new Ingredient("riceball", 6, -3, 1, 0.085F, 16); 
         mayonnaise = new Ingredient("mayonnaise", 6, -1, 1, 0.8F, 8);
@@ -101,7 +97,6 @@ public class HMIngredients {
         register(new ItemStack(HMItems.general, 1, ItemGeneral.BUTTER), butter);
         register(new ItemStack(HMItems.general, 1, ItemGeneral.WHISKED_EGG), whisked_egg);
         
-        register(new ItemStack(HMItems.general, 1, ItemGeneral.BAMBOO_SHOOT), bamboo_shoot);
         register(new ItemStack(HMItems.general, 1, ItemGeneral.FLOUR), flour);
         register(new ItemStack(HMItems.general, 1, ItemGeneral.OIL), oil);
         register(new ItemStack(HMItems.general, 1, ItemGeneral.RICEBALL), riceball);
@@ -135,7 +130,6 @@ public class HMIngredients {
         register(new ItemStack(HMItems.sized, 1, SizeableMeta.MILK.ordinal()), milk);
         register(new ItemStack(Items.milk_bucket, 1, OreDictionary.WILDCARD_VALUE), milk);
         register(new ItemStack(HMItems.sized, 1, SizeableMeta.MAYONNAISE.ordinal()), mayonnaise);
-        register(new ItemStack(HMItems.sized, 1, SizeableMeta.MATSUTAKE.ordinal()), matsutake_mushroom);
         
         register(new ItemStack(Blocks.brown_mushroom, 1, OreDictionary.WILDCARD_VALUE), mushroom);
         register(new ItemStack(Blocks.red_mushroom, 1, OreDictionary.WILDCARD_VALUE), mushroom);

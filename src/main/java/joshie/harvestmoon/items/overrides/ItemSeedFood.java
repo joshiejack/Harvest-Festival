@@ -1,13 +1,13 @@
 package joshie.harvestmoon.items.overrides;
 
-import static joshie.harvestmoon.helpers.CropHelper.getCropQuality;
-import static joshie.harvestmoon.helpers.CropHelper.isGiant;
+import static joshie.harvestmoon.core.helpers.CropHelper.getCropQuality;
+import static joshie.harvestmoon.core.helpers.CropHelper.isGiant;
 
 import java.util.List;
 
-import joshie.harvestmoon.HMConfiguration;
-import joshie.harvestmoon.api.IShippable;
+import joshie.harvestmoon.api.interfaces.IShippable;
 import joshie.harvestmoon.crops.Crop;
+import joshie.harvestmoon.init.HMConfiguration;
 import joshie.harvestmoon.init.HMCrops;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;

@@ -1,6 +1,5 @@
 package joshie.harvestmoon.npc;
 
-import joshie.harvestmoon.init.HMNPCs;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.entity.RendererLivingEntity;
 import net.minecraft.entity.Entity;

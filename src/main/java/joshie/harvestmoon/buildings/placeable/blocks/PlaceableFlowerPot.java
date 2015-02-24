@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 
 
 public class PlaceableFlowerPot extends PlaceableBlock {
-    public boolean canCactus;
+    private boolean canCactus;
     
     public PlaceableFlowerPot(Block block, int meta, int offsetX, int offsetY, int offsetZ) {
         super(block, meta, offsetX, offsetY, offsetZ);
@@ -76,7 +76,11 @@ public class PlaceableFlowerPot extends PlaceableBlock {
             block = Blocks.brown_mushroom;
             break;
         case 9:
-            block = Blocks.cactus;
+            if (canCactus) {
+                block = Blocks.cactus;
+            } else block = Blocks.sapling;
+            
+            meta = 5;
             break;
         case 10:
             block = Blocks.deadbush;

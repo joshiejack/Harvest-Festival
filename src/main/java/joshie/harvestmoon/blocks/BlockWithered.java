@@ -1,10 +1,9 @@
 package joshie.harvestmoon.blocks;
 
-import static joshie.harvestmoon.lib.HMModInfo.MODPATH;
+import static joshie.harvestmoon.core.lib.HMModInfo.MODPATH;
 
 import java.util.Random;
 
-import joshie.harvestmoon.lib.RenderIds;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;

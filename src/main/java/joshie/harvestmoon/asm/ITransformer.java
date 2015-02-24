@@ -1,9 +1,6 @@
 package joshie.harvestmoon.asm;
 
-import joshie.harvestmoon.config.Vanilla;
-
-import org.objectweb.asm.ClassReader;
-import org.objectweb.asm.tree.ClassNode;
+import joshie.harvestmoon.core.config.Vanilla;
 
 public interface ITransformer {
     public boolean isActive(Vanilla config);

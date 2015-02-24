@@ -2,9 +2,9 @@ package joshie.harvestmoon.blocks;
 
 import java.util.List;
 
-import joshie.harvestmoon.config.General;
-import joshie.harvestmoon.helpers.MineHelper;
-import joshie.harvestmoon.helpers.generic.EntityHelper;
+import joshie.harvestmoon.core.config.General;
+import joshie.harvestmoon.core.helpers.MineHelper;
+import joshie.harvestmoon.core.helpers.generic.EntityHelper;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;

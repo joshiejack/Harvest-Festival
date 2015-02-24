@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
+import joshie.harvestmoon.core.util.IData;
+import joshie.harvestmoon.core.util.SellStack;
 import joshie.harvestmoon.crops.CropData;
-import joshie.harvestmoon.util.IData;
-import joshie.harvestmoon.util.SellStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
@@ -14,10 +14,7 @@ public class TrackingStats implements IData {
     private HashMap<CropData, Integer> cropTracker = new HashMap(); //How many of this crop has been Harvested
     private HashSet<SellStack> sellTracker = new HashSet(); //What has been sold so far
     
-    public PlayerDataServer master;
-    public TrackingStats(PlayerDataServer master) {
-        this.master = master;
-    }
+    public TrackingStats(PlayerDataServer master) {}
     
     public void onHarvested(CropData data) {
         cropTracker.put(data, cropTracker.get(data) != null ? cropTracker.get(data) + 1 : 0);

@@ -12,9 +12,9 @@ import static joshie.harvestmoon.items.ItemGeneral.MYSTRIL_ORE;
 import static joshie.harvestmoon.items.ItemGeneral.MYTHIC_STONE;
 import static joshie.harvestmoon.items.ItemGeneral.SILVER_ORE;
 import joshie.harvestmoon.items.ItemBaseTool.ToolTier;
+import joshie.harvestmoon.mining.LootCursed;
+import joshie.harvestmoon.mining.LootMythic;
 import joshie.harvestmoon.mining.MiningLoot;
-import joshie.harvestmoon.mining.loot.LootCursed;
-import joshie.harvestmoon.mining.loot.LootMythic;
 import net.minecraft.item.ItemStack;
 
 public class HMMining {

@@ -8,8 +8,9 @@ import joshie.harvestmoon.buildings.placeable.entities.PlaceableEntity;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceableItemFrame;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceablePainting;
+import joshie.harvestmoon.core.lib.HMModInfo;
+import joshie.harvestmoon.core.util.generic.IFaceable;
 import joshie.harvestmoon.init.HMBlocks;
-import joshie.harvestmoon.util.generic.IFaceable;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockAnvil;
 import net.minecraft.block.BlockButton;
@@ -112,7 +113,7 @@ public class PlaceableHelper {
             meta = BlockWood.RURAL_CHEST;
         }
 
-        return "list.add(new PlaceableIFaceable" + "(HMBlocks.woodmachines, " + meta + ", " + x + ", " + y + ", " + z + ", ForgeDirection." + tile.getFacing() + "));";
+        return "list.add(new PlaceableIFaceable" + "(" + HMModInfo.BLOCKSNAME + ".woodmachines, " + meta + ", " + x + ", " + y + ", " + z + ", ForgeDirection." + tile.getFacing() + "));";
     }
 
     public static String getFloorSignString(String[] sign, Block block, int meta, int x, int y, int z) {

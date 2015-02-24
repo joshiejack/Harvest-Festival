@@ -1,14 +1,14 @@
 package joshie.harvestmoon.player;
 
-import static joshie.harvestmoon.network.PacketHandler.sendToClient;
+import static joshie.harvestmoon.core.network.PacketHandler.sendToClient;
 
 import java.util.UUID;
 
-import joshie.harvestmoon.helpers.generic.EntityHelper;
+import joshie.harvestmoon.core.helpers.generic.EntityHelper;
+import joshie.harvestmoon.core.network.PacketSyncRelations;
+import joshie.harvestmoon.core.util.IData;
 import joshie.harvestmoon.init.HMNPCs;
-import joshie.harvestmoon.network.PacketSyncRelations;
 import joshie.harvestmoon.npc.NPC;
-import joshie.harvestmoon.util.IData;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 

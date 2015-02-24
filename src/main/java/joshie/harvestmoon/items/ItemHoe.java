@@ -1,8 +1,8 @@
 package joshie.harvestmoon.items;
 
-import static joshie.harvestmoon.helpers.CropHelper.addFarmland;
+import static joshie.harvestmoon.core.helpers.CropHelper.addFarmland;
 import joshie.harvestmoon.blocks.BlockSoil;
-import joshie.harvestmoon.helpers.PlayerHelper;
+import joshie.harvestmoon.core.helpers.PlayerHelper;
 import joshie.harvestmoon.init.HMBlocks;
 import joshie.harvestmoon.mining.MiningLoot;
 import net.minecraft.block.Block;
@@ -61,7 +61,7 @@ public class ItemHoe extends ItemBaseTool {
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
         if (!player.canPlayerEdit(x, y, z, side, stack)) return false;
         else {
-            ForgeDirection front = joshie.harvestmoon.helpers.generic.DirectionHelper.getFacingFromEntity(player);
+            ForgeDirection front = joshie.harvestmoon.core.helpers.generic.DirectionHelper.getFacingFromEntity(player);
             Block initial = world.getBlock(x, y, z);
             if (!(world.getBlock(x, y + 1, z).isAir(world, x, y + 1, z) && (initial == Blocks.grass || initial == Blocks.dirt || initial == HMBlocks.dirt))) {
                 return false;

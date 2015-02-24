@@ -1,7 +1,7 @@
 package joshie.harvestmoon.blocks.items;
 
-import joshie.harvestmoon.base.ItemBlockBase;
 import joshie.harvestmoon.blocks.BlockCookware;
+import joshie.harvestmoon.core.util.base.ItemBlockBase;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 

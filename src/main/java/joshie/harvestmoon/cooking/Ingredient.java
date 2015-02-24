@@ -2,7 +2,7 @@ package joshie.harvestmoon.cooking;
 
 import java.util.HashSet;
 
-import joshie.harvestmoon.api.ICookingComponent;
+import joshie.harvestmoon.api.interfaces.ICookingComponent;
 
 public class Ingredient implements ICookingComponent {
     private HashSet<Ingredient> equivalents = new HashSet();

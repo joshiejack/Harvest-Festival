@@ -1,6 +1,6 @@
 package joshie.harvestmoon.blocks.render;
 
-import joshie.harvestmoon.util.RenderBase;
+import joshie.harvestmoon.core.util.RenderBase;
 import net.minecraft.init.Blocks;
 import net.minecraftforge.common.util.ForgeDirection;
 

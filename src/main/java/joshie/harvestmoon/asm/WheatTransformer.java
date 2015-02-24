@@ -2,7 +2,8 @@ package joshie.harvestmoon.asm;
 
 import java.util.Iterator;
 
-import joshie.harvestmoon.config.Vanilla;
+import joshie.harvestmoon.core.config.Vanilla;
+import joshie.harvestmoon.core.lib.HMModInfo;
 
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
@@ -44,14 +45,14 @@ public class WheatTransformer implements ITransformer {
                     if (instruction.getType() == AbstractInsnNode.LDC_INSN) {
                         LdcInsnNode ldcInstruction = (LdcInsnNode) instruction;
                         if (ldcInstruction.cst.equals("wheat")) {
-                            ((TypeInsnNode) m.instructions.get(j + 1)).desc = "joshie/harvestmoon/items/overrides/ItemWheat";
-                            ((MethodInsnNode) m.instructions.get(j + 3)).owner = "joshie/harvestmoon/items/overrides/ItemWheat";
-                            ((MethodInsnNode) m.instructions.get(j + 5)).desc = "(Ljava/lang/String;)Ljoshie/harvestmoon/items/overrides/ItemWheat;";
-                            ((MethodInsnNode) m.instructions.get(j + 5)).owner = "joshie/harvestmoon/items/overrides/ItemWheat";
-                            ((MethodInsnNode) m.instructions.get(j + 7)).desc = "(Lnet/minecraft/creativetab/CreativeTabs;)Ljoshie/harvestmoon/items/overrides/ItemWheat;";
-                            ((MethodInsnNode) m.instructions.get(j + 7)).owner = "joshie/harvestmoon/items/overrides/ItemWheat";
-                            ((MethodInsnNode) m.instructions.get(j + 9)).desc = "(Ljava/lang/String;)Ljoshie/harvestmoon/items/overrides/ItemWheat;";
-                            ((MethodInsnNode) m.instructions.get(j + 9)).owner = "joshie/harvestmoon/items/overrides/ItemWheat";
+                            ((TypeInsnNode) m.instructions.get(j + 1)).desc = HMModInfo.ASMPATH + "items/overrides/ItemWheat";
+                            ((MethodInsnNode) m.instructions.get(j + 3)).owner = HMModInfo.ASMPATH + "items/overrides/ItemWheat";
+                            ((MethodInsnNode) m.instructions.get(j + 5)).desc = "(Ljava/lang/String;)L" + HMModInfo.ASMPATH + "items/overrides/ItemWheat;";
+                            ((MethodInsnNode) m.instructions.get(j + 5)).owner = HMModInfo.ASMPATH + "items/overrides/ItemWheat";
+                            ((MethodInsnNode) m.instructions.get(j + 7)).desc = "(Lnet/minecraft/creativetab/CreativeTabs;)L" + HMModInfo.ASMPATH + "items/overrides/ItemWheat;";
+                            ((MethodInsnNode) m.instructions.get(j + 7)).owner = HMModInfo.ASMPATH + "items/overrides/ItemWheat";
+                            ((MethodInsnNode) m.instructions.get(j + 9)).desc = "(Ljava/lang/String;)L" + HMModInfo.ASMPATH + "items/overrides/ItemWheat;";
+                            ((MethodInsnNode) m.instructions.get(j + 9)).owner = HMModInfo.ASMPATH + "items/overrides/ItemWheat";
                             break labelTop;
                         }
                     }

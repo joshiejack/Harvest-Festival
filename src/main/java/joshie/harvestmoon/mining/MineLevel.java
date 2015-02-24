@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableBlock;
+import joshie.harvestmoon.core.util.IData;
 import joshie.harvestmoon.init.HMBlocks;
-import joshie.harvestmoon.util.IData;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;

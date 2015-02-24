@@ -1,8 +1,8 @@
 package joshie.harvestmoon.items;
 
-import joshie.harvestmoon.handlers.CodeGeneratorBuildings;
-import joshie.harvestmoon.handlers.CodeGeneratorRendering;
-import joshie.harvestmoon.helpers.generic.MCClientHelper;
+import joshie.harvestmoon.core.handlers.CodeGeneratorBuildings;
+import joshie.harvestmoon.core.handlers.CodeGeneratorRendering;
+import joshie.harvestmoon.core.helpers.generic.MCClientHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;

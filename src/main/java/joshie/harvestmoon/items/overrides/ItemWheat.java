@@ -2,8 +2,8 @@ package joshie.harvestmoon.items.overrides;
 
 import java.util.List;
 
-import joshie.harvestmoon.api.IRateable;
-import joshie.harvestmoon.api.IShippable;
+import joshie.harvestmoon.api.interfaces.IRateable;
+import joshie.harvestmoon.api.interfaces.IShippable;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

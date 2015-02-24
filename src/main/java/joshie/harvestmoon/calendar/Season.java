@@ -1,10 +1,11 @@
 package joshie.harvestmoon.calendar;
 
-import static joshie.harvestmoon.lib.HMModInfo.MODPATH;
-import static joshie.harvestmoon.util.generic.Text.BRIGHT_GREEN;
-import static joshie.harvestmoon.util.generic.Text.INDIGO;
-import static joshie.harvestmoon.util.generic.Text.ORANGE;
-import static joshie.harvestmoon.util.generic.Text.YELLOW;
+import static joshie.harvestmoon.core.lib.HMModInfo.MODPATH;
+import static joshie.harvestmoon.core.util.generic.Text.BRIGHT_GREEN;
+import static joshie.harvestmoon.core.util.generic.Text.INDIGO;
+import static joshie.harvestmoon.core.util.generic.Text.ORANGE;
+import static joshie.harvestmoon.core.util.generic.Text.YELLOW;
+import joshie.harvestmoon.core.lib.HMModInfo;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 
@@ -73,7 +74,7 @@ public enum Season {
     }
 
     public String getLocalized() {
-        return StatCollector.translateToLocal("hm.season." + name().toLowerCase());
+        return StatCollector.translateToLocal(HMModInfo.MODPATH + ".season." + name().toLowerCase());
     }
 
     public String getTextColor() {

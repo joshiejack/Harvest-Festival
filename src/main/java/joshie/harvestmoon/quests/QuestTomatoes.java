@@ -1,13 +1,13 @@
 package joshie.harvestmoon.quests;
 
-import static joshie.harvestmoon.helpers.QuestHelper.completeQuest;
-import static joshie.harvestmoon.helpers.QuestHelper.rewardGold;
-import static joshie.harvestmoon.helpers.QuestHelper.rewardRelations;
-import static joshie.harvestmoon.helpers.QuestHelper.takeHeldStack;
+import static joshie.harvestmoon.core.helpers.QuestHelper.completeQuest;
+import static joshie.harvestmoon.core.helpers.QuestHelper.rewardGold;
+import static joshie.harvestmoon.core.helpers.QuestHelper.rewardRelations;
+import static joshie.harvestmoon.core.helpers.QuestHelper.takeHeldStack;
 
 import java.util.HashSet;
 
-import joshie.harvestmoon.helpers.CropHelper;
+import joshie.harvestmoon.core.helpers.CropHelper;
 import joshie.harvestmoon.init.HMCrops;
 import joshie.harvestmoon.init.HMItems;
 import joshie.harvestmoon.init.HMNPCs;

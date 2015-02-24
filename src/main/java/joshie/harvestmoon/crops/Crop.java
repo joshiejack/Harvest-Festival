@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 import joshie.harvestmoon.animals.AnimalType.FoodType;
 import joshie.harvestmoon.calendar.Season;
+import joshie.harvestmoon.core.lib.CropMeta;
+import joshie.harvestmoon.core.lib.HMModInfo;
+import joshie.harvestmoon.core.util.Translate;
 import joshie.harvestmoon.crops.CropData.WitherType;
 import joshie.harvestmoon.init.HMItems;
-import joshie.harvestmoon.lib.CropMeta;
-import joshie.harvestmoon.lib.HMModInfo;
-import joshie.harvestmoon.util.Translate;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -242,7 +242,7 @@ public class Crop {
         String seeds = Translate.translate("crop.seeds");
         String text = Translate.translate("crop.seeds.format.standard");
         if (isGiant) {
-            text = StatCollector.translateToLocal("hm.crop.seeds.format.giant");
+            text = StatCollector.translateToLocal(HMModInfo.MODPATH + ".crop.seeds.format.giant");
             text = StringUtils.replace(text, "%G", Translate.translate("crop.giant"));
         }
 

@@ -4,9 +4,9 @@ import java.util.List;
 
 import joshie.harvestmoon.blocks.tiles.TileMarker;
 import joshie.harvestmoon.buildings.BuildingGroup;
-import joshie.harvestmoon.config.General;
+import joshie.harvestmoon.core.config.General;
+import joshie.harvestmoon.core.lib.RenderIds;
 import joshie.harvestmoon.init.HMNPCs;
-import joshie.harvestmoon.lib.RenderIds;
 import joshie.harvestmoon.npc.EntityNPCBuilder;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;

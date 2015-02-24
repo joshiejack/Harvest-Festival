@@ -1,11 +1,11 @@
 package joshie.harvestmoon.init;
 
 import joshie.harvestmoon.HarvestMoon;
+import joshie.harvestmoon.core.util.generic.EntityFakeItem;
 import joshie.harvestmoon.npc.EntityNPC;
 import joshie.harvestmoon.npc.EntityNPCBuilder;
 import joshie.harvestmoon.npc.EntityNPCMiner;
 import joshie.harvestmoon.npc.EntityNPCShopkeeper;
-import joshie.harvestmoon.util.generic.EntityFakeItem;
 import cpw.mods.fml.common.registry.EntityRegistry;
 
 public class HMEntities {

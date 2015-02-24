@@ -1,6 +1,6 @@
 package joshie.harvestmoon.calendar;
 
-import joshie.harvestmoon.helpers.CalendarHelper;
+import joshie.harvestmoon.core.helpers.CalendarHelper;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class CalendarDate {

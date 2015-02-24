@@ -3,8 +3,8 @@ package joshie.harvestmoon.player;
 import java.util.HashSet;
 import java.util.UUID;
 
-import joshie.harvestmoon.helpers.generic.EntityHelper;
-import joshie.harvestmoon.util.IData;
+import joshie.harvestmoon.core.helpers.generic.EntityHelper;
+import joshie.harvestmoon.core.util.IData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;

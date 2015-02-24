@@ -3,7 +3,7 @@ package joshie.harvestmoon.blocks;
 import java.util.Random;
 
 import joshie.harvestmoon.calendar.Season;
-import joshie.harvestmoon.helpers.CalendarHelper;
+import joshie.harvestmoon.core.helpers.CalendarHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSnow;
 import net.minecraft.entity.Entity;

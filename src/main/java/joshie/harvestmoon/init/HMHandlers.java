@@ -1,12 +1,12 @@
 package joshie.harvestmoon.init;
 
 import joshie.harvestmoon.HarvestMoon;
-import joshie.harvestmoon.handlers.GuiHandler;
-import joshie.harvestmoon.handlers.events.AnimalEvents;
-import joshie.harvestmoon.handlers.events.FMLEvents;
-import joshie.harvestmoon.handlers.events.GeneralEvents;
-import joshie.harvestmoon.handlers.events.QuestEvents;
-import joshie.harvestmoon.handlers.events.ToolEvents;
+import joshie.harvestmoon.core.handlers.GuiHandler;
+import joshie.harvestmoon.core.handlers.events.AnimalEvents;
+import joshie.harvestmoon.core.handlers.events.FMLEvents;
+import joshie.harvestmoon.core.handlers.events.GeneralEvents;
+import joshie.harvestmoon.core.handlers.events.QuestEvents;
+import joshie.harvestmoon.core.handlers.events.ToolEvents;
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.NetworkRegistry;

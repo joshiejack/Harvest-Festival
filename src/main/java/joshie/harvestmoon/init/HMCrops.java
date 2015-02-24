@@ -3,12 +3,11 @@ package joshie.harvestmoon.init;
 import static joshie.harvestmoon.calendar.Season.AUTUMN;
 import static joshie.harvestmoon.calendar.Season.SPRING;
 import static joshie.harvestmoon.calendar.Season.SUMMER;
-import joshie.harvestmoon.HMConfiguration;
 import joshie.harvestmoon.calendar.Season;
+import joshie.harvestmoon.core.lib.CropMeta;
 import joshie.harvestmoon.crops.Crop;
 import joshie.harvestmoon.crops.CropSeedFood;
 import joshie.harvestmoon.crops.CropWheat;
-import joshie.harvestmoon.lib.CropMeta;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 

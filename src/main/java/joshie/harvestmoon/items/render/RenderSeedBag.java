@@ -1,6 +1,6 @@
 package joshie.harvestmoon.items.render;
 
-import joshie.harvestmoon.helpers.generic.MCClientHelper;
+import joshie.harvestmoon.core.helpers.generic.MCClientHelper;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureManager;

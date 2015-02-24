@@ -1,9 +1,9 @@
 package joshie.harvestmoon.items;
 
-import static joshie.harvestmoon.helpers.CropHelper.destroyCrop;
+import static joshie.harvestmoon.core.helpers.CropHelper.destroyCrop;
 import static net.minecraft.block.Block.soundTypeGrass;
 import joshie.harvestmoon.blocks.BlockCrop;
-import joshie.harvestmoon.helpers.PlayerHelper;
+import joshie.harvestmoon.core.helpers.PlayerHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -66,7 +66,7 @@ public class ItemSickle extends ItemBaseTool {
     public boolean onBreakSpeedUpdate(EntityPlayer player, ItemStack stack, World world, int x, int y, int z) {
         if (!player.canPlayerEdit(x, y, z, 0, stack)) return false;
         else {
-            ForgeDirection front = joshie.harvestmoon.helpers.generic.DirectionHelper.getFacingFromEntity(player);
+            ForgeDirection front = joshie.harvestmoon.core.helpers.generic.DirectionHelper.getFacingFromEntity(player);
             Block initial = world.getBlock(x, y + 1, z);
             if (!(initial instanceof BlockCrop)) {
                 return false;

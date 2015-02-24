@@ -1,8 +1,9 @@
 package joshie.harvestmoon.blocks.tiles;
 
-import joshie.harvestmoon.network.PacketHandler;
-import joshie.harvestmoon.network.PacketSyncOrientation;
-import joshie.harvestmoon.util.generic.IFaceable;
+import joshie.harvestmoon.core.lib.HMModInfo;
+import joshie.harvestmoon.core.network.PacketHandler;
+import joshie.harvestmoon.core.network.PacketSyncOrientation;
+import joshie.harvestmoon.core.util.generic.IFaceable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -82,7 +83,7 @@ public class TileRuralChest extends TileEntity implements IFaceable, IInventory 
 
     @Override
     public String getInventoryName() {
-        return "hm.general.block.chest";
+        return HMModInfo.MODPATH + ".general.block.chest";
     }
 
     @Override

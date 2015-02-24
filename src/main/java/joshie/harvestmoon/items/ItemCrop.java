@@ -1,18 +1,18 @@
 package joshie.harvestmoon.items;
 
-import static joshie.harvestmoon.helpers.CropHelper.getCropFromStack;
-import static joshie.harvestmoon.helpers.CropHelper.getCropQuality;
-import static joshie.harvestmoon.helpers.CropHelper.getCropType;
-import static joshie.harvestmoon.helpers.CropHelper.isGiant;
-import static joshie.harvestmoon.lib.HMModInfo.CROPPATH;
+import static joshie.harvestmoon.core.helpers.CropHelper.getCropFromStack;
+import static joshie.harvestmoon.core.helpers.CropHelper.getCropQuality;
+import static joshie.harvestmoon.core.helpers.CropHelper.getCropType;
+import static joshie.harvestmoon.core.helpers.CropHelper.isGiant;
+import static joshie.harvestmoon.core.lib.HMModInfo.CROPPATH;
 
 import java.util.List;
 
-import joshie.harvestmoon.HarvestTab;
-import joshie.harvestmoon.api.IRateable;
-import joshie.harvestmoon.api.IShippable;
+import joshie.harvestmoon.api.interfaces.IRateable;
+import joshie.harvestmoon.api.interfaces.IShippable;
+import joshie.harvestmoon.core.HMTab;
+import joshie.harvestmoon.core.lib.CropMeta;
 import joshie.harvestmoon.crops.Crop;
-import joshie.harvestmoon.lib.CropMeta;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -22,7 +22,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemCrop extends ItemHMMeta implements IShippable, IRateable {
     public ItemCrop() {
-        setCreativeTab(HarvestTab.tabGeneral);
+        setCreativeTab(HMTab.tabGeneral);
         setTextureFolder(CROPPATH);
     }
 

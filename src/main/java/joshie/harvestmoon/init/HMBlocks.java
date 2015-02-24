@@ -1,6 +1,6 @@
 package joshie.harvestmoon.init;
 
-import static joshie.harvestmoon.helpers.generic.RegistryHelper.registerTiles;
+import static joshie.harvestmoon.core.helpers.generic.RegistryHelper.registerTiles;
 import static net.minecraft.block.Block.soundTypeGrass;
 import static net.minecraft.block.Block.soundTypeGravel;
 import static net.minecraft.block.Block.soundTypeMetal;
@@ -24,6 +24,7 @@ import joshie.harvestmoon.blocks.tiles.TileOven;
 import joshie.harvestmoon.blocks.tiles.TilePot;
 import joshie.harvestmoon.blocks.tiles.TileRuralChest;
 import joshie.harvestmoon.blocks.tiles.TileSteamer;
+import joshie.harvestmoon.core.lib.HMModInfo;
 import net.minecraft.block.Block;
 
 public class HMBlocks {
@@ -46,7 +47,7 @@ public class HMBlocks {
         stone = new BlockStone().setStepSound(soundTypePiston).setBlockName("stone");
         withered = new BlockWithered().setStepSound(soundTypeGrass).setBlockName("crops.withered");
 
-        registerTiles("HM", TileCooking.class, TileFridge.class, TileFryingPan.class, TileKitchen.class, TileMarker.class, 
+        registerTiles(HMModInfo.CAPNAME, TileCooking.class, TileFridge.class, TileFryingPan.class, TileKitchen.class, TileMarker.class, 
                             TileMixer.class, TileOven.class, TilePot.class, TileRuralChest.class, TileSteamer.class);
     }
 }

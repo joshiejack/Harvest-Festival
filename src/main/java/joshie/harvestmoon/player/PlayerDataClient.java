@@ -5,9 +5,9 @@ import java.util.UUID;
 
 import joshie.harvestmoon.calendar.CalendarDate;
 import joshie.harvestmoon.calendar.Season;
+import joshie.harvestmoon.core.util.Translate;
 import joshie.harvestmoon.npc.EntityNPC;
 import joshie.harvestmoon.npc.NPC;
-import joshie.harvestmoon.util.Translate;
 import net.minecraft.entity.EntityLivingBase;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -71,7 +71,7 @@ public class PlayerDataClient {
     public boolean canMarry() {
         for (NPC npc: npc_relations.keySet()) {
             int value = npc_relations.get(npc);
-            if (value >= joshie.harvestmoon.config.NPC.MARRIAGE_REQUIREMENT) {
+            if (value >= joshie.harvestmoon.core.config.NPC.MARRIAGE_REQUIREMENT) {
                 return true;
             }
         }

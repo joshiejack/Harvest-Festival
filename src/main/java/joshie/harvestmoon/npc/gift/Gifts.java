@@ -2,8 +2,8 @@ package joshie.harvestmoon.npc.gift;
 
 import java.util.HashMap;
 
-import joshie.harvestmoon.util.SafeStack;
-import joshie.harvestmoon.util.WildStack;
+import joshie.harvestmoon.core.util.SafeStack;
+import joshie.harvestmoon.core.util.WildStack;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

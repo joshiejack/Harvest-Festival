@@ -1,7 +1,7 @@
 package joshie.harvestmoon.crops;
 
 import io.netty.buffer.ByteBuf;
-import joshie.harvestmoon.util.IData;
+import joshie.harvestmoon.core.util.IData;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class WorldLocation implements IData {

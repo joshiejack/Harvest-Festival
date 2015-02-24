@@ -2,8 +2,8 @@ package joshie.harvestmoon.npc;
 
 import io.netty.buffer.ByteBuf;
 import joshie.harvestmoon.HarvestMoon;
+import joshie.harvestmoon.core.lib.HMModInfo;
 import joshie.harvestmoon.init.HMNPCs;
-import joshie.harvestmoon.lib.HMModInfo;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -44,7 +44,7 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
 
     @Override
     public void onUpdate() {
-        if (!joshie.harvestmoon.config.NPC.FREEZE_NPC) {
+        if (!joshie.harvestmoon.core.config.NPC.FREEZE_NPC) {
             super.onUpdate();
         }
     }

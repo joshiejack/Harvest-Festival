@@ -1,8 +1,8 @@
 package joshie.harvestmoon.blocks.items;
 
-import joshie.harvestmoon.base.ItemBlockBase;
 import joshie.harvestmoon.buildings.BuildingGroup;
-import joshie.harvestmoon.util.generic.Text;
+import joshie.harvestmoon.core.util.base.ItemBlockBase;
+import joshie.harvestmoon.core.util.generic.Text;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;

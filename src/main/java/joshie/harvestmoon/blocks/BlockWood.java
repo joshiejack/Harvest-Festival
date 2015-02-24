@@ -1,16 +1,16 @@
 package joshie.harvestmoon.blocks;
 
-import static joshie.harvestmoon.helpers.ShippingHelper.addForShipping;
+import static joshie.harvestmoon.core.helpers.ShippingHelper.addForShipping;
 import joshie.harvestmoon.HarvestMoon;
 import joshie.harvestmoon.animals.AnimalType;
-import joshie.harvestmoon.api.IShippable;
+import joshie.harvestmoon.api.interfaces.IShippable;
 import joshie.harvestmoon.blocks.tiles.TileRuralChest;
 import joshie.harvestmoon.cooking.FoodRegistry;
-import joshie.harvestmoon.helpers.AnimalHelper;
-import joshie.harvestmoon.helpers.generic.DirectionHelper;
+import joshie.harvestmoon.core.helpers.AnimalHelper;
+import joshie.harvestmoon.core.helpers.generic.DirectionHelper;
+import joshie.harvestmoon.core.lib.RenderIds;
+import joshie.harvestmoon.core.util.generic.IFaceable;
 import joshie.harvestmoon.init.cooking.HMIngredients;
-import joshie.harvestmoon.lib.RenderIds;
-import joshie.harvestmoon.util.generic.IFaceable;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;

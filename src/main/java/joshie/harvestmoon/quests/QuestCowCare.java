@@ -1,21 +1,21 @@
 package joshie.harvestmoon.quests;
 
-import static joshie.harvestmoon.helpers.AnimalHelper.canProduceProduct;
-import static joshie.harvestmoon.helpers.QuestHelper.completeQuest;
-import static joshie.harvestmoon.helpers.ServerHelper.markDirty;
+import static joshie.harvestmoon.core.helpers.AnimalHelper.canProduceProduct;
+import static joshie.harvestmoon.core.helpers.QuestHelper.completeQuest;
+import static joshie.harvestmoon.core.helpers.ServerHelper.markDirty;
 import io.netty.buffer.ByteBuf;
 
 import java.util.HashSet;
 
-import joshie.harvestmoon.helpers.SizeableHelper;
-import joshie.harvestmoon.helpers.ToolHelper;
-import joshie.harvestmoon.helpers.generic.ItemHelper;
+import joshie.harvestmoon.core.helpers.SizeableHelper;
+import joshie.harvestmoon.core.helpers.ToolHelper;
+import joshie.harvestmoon.core.helpers.generic.ItemHelper;
+import joshie.harvestmoon.core.lib.SizeableMeta;
+import joshie.harvestmoon.core.lib.SizeableMeta.Size;
 import joshie.harvestmoon.init.HMItems;
 import joshie.harvestmoon.init.HMNPCs;
 import joshie.harvestmoon.init.HMQuests;
 import joshie.harvestmoon.items.ItemGeneral;
-import joshie.harvestmoon.lib.SizeableMeta;
-import joshie.harvestmoon.lib.SizeableMeta.Size;
 import joshie.harvestmoon.npc.EntityNPC;
 import joshie.harvestmoon.npc.NPC;
 import net.minecraft.entity.Entity;

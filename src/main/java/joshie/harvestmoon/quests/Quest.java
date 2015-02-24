@@ -1,15 +1,15 @@
 package joshie.harvestmoon.quests;
 
-import static joshie.harvestmoon.network.PacketHandler.sendToClient;
-import static joshie.harvestmoon.network.PacketHandler.sendToServer;
+import static joshie.harvestmoon.core.network.PacketHandler.sendToClient;
+import static joshie.harvestmoon.core.network.PacketHandler.sendToServer;
 import io.netty.buffer.ByteBuf;
 
 import java.util.HashSet;
 
-import joshie.harvestmoon.network.quests.PacketQuestSetStage;
+import joshie.harvestmoon.core.network.quests.PacketQuestSetStage;
+import joshie.harvestmoon.core.util.Translate;
 import joshie.harvestmoon.npc.EntityNPC;
 import joshie.harvestmoon.npc.NPC;
-import joshie.harvestmoon.util.Translate;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;

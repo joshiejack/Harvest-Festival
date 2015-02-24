@@ -2,8 +2,8 @@ package joshie.harvestmoon.items;
 
 import java.util.List;
 
-import joshie.harvestmoon.config.Tools;
-import joshie.harvestmoon.util.Translate;
+import joshie.harvestmoon.core.config.Tools;
+import joshie.harvestmoon.core.util.Translate;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;

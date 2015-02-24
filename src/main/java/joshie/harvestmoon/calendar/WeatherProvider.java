@@ -1,10 +1,10 @@
 package joshie.harvestmoon.calendar;
 
-import static joshie.harvestmoon.helpers.CalendarHelper.getClientSeason;
-import static joshie.harvestmoon.helpers.CalendarHelper.getSeason;
-import joshie.harvestmoon.config.Calendar;
-import joshie.harvestmoon.helpers.CropHelper;
-import joshie.harvestmoon.helpers.ServerHelper;
+import static joshie.harvestmoon.core.helpers.CalendarHelper.getClientSeason;
+import static joshie.harvestmoon.core.helpers.CalendarHelper.getSeason;
+import joshie.harvestmoon.core.config.Calendar;
+import joshie.harvestmoon.core.helpers.CropHelper;
+import joshie.harvestmoon.core.helpers.ServerHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;

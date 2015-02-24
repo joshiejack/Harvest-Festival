@@ -3,15 +3,14 @@ package joshie.harvestmoon.shops;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
 
+import joshie.harvestmoon.api.interfaces.IPurchaseable;
 import joshie.harvestmoon.calendar.Weekday;
-import joshie.harvestmoon.config.Calendar;
-import joshie.harvestmoon.helpers.CalendarHelper;
-import joshie.harvestmoon.helpers.generic.MCClientHelper;
-import joshie.harvestmoon.lib.HMModInfo;
-import joshie.harvestmoon.util.generic.Text;
+import joshie.harvestmoon.core.config.Calendar;
+import joshie.harvestmoon.core.helpers.CalendarHelper;
+import joshie.harvestmoon.core.helpers.generic.MCClientHelper;
+import joshie.harvestmoon.core.lib.HMModInfo;
+import joshie.harvestmoon.core.util.generic.Text;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.EnumDifficulty;
@@ -32,7 +31,7 @@ public class ShopInventory {
         this.shop_overlay = new ResourceLocation(HMModInfo.MODPATH + ":textures/gui/shops/" + name + ".png");
         this.resourceY = resourceY;
         for (int i = 1; i < 32; i++) {
-            String key = "hm.shop." + name + ".greeting" + i;
+            String key = HMModInfo.MODPATH + ".shop." + name + ".greeting" + i;
             String greeting = Text.localize(key);
             if (!greeting.equals(key)) {
                 greetings.add(greeting);

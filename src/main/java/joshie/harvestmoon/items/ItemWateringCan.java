@@ -2,7 +2,7 @@ package joshie.harvestmoon.items;
 
 import joshie.harvestmoon.blocks.BlockCrop;
 import joshie.harvestmoon.blocks.BlockSoil;
-import joshie.harvestmoon.helpers.PlayerHelper;
+import joshie.harvestmoon.core.helpers.PlayerHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -140,7 +140,7 @@ public class ItemWateringCan extends ItemBaseTool implements IFluidContainerItem
             return fill(stack, new FluidStack(FluidRegistry.WATER, 128), true) > 0;
         } else {
 
-            ForgeDirection front = joshie.harvestmoon.helpers.generic.DirectionHelper.getFacingFromEntity(player);
+            ForgeDirection front = joshie.harvestmoon.core.helpers.generic.DirectionHelper.getFacingFromEntity(player);
             Block initial = world.getBlock(x, y, z);
             if (!(initial instanceof BlockSoil) && (!(initial instanceof BlockCrop))) {
                 return false;

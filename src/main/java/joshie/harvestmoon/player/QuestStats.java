@@ -1,15 +1,15 @@
 package joshie.harvestmoon.player;
 
-import static joshie.harvestmoon.helpers.ServerHelper.markDirty;
-import static joshie.harvestmoon.network.PacketHandler.sendToClient;
+import static joshie.harvestmoon.core.helpers.ServerHelper.markDirty;
+import static joshie.harvestmoon.core.network.PacketHandler.sendToClient;
 
 import java.util.HashSet;
 
+import joshie.harvestmoon.core.network.quests.PacketQuestSetAvailable;
+import joshie.harvestmoon.core.network.quests.PacketQuestSetCurrent;
+import joshie.harvestmoon.core.util.IData;
 import joshie.harvestmoon.init.HMQuests;
-import joshie.harvestmoon.network.quests.PacketQuestSetAvailable;
-import joshie.harvestmoon.network.quests.PacketQuestSetCurrent;
 import joshie.harvestmoon.quests.Quest;
-import joshie.harvestmoon.util.IData;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;

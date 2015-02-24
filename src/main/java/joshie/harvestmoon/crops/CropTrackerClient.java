@@ -2,8 +2,8 @@ package joshie.harvestmoon.crops;
 
 import java.util.HashMap;
 
-import joshie.harvestmoon.network.PacketCropRequest;
-import joshie.harvestmoon.network.PacketHandler;
+import joshie.harvestmoon.core.network.PacketCropRequest;
+import joshie.harvestmoon.core.network.PacketHandler;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;

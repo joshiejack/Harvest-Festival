@@ -1,6 +1,6 @@
 package joshie.harvestmoon.blocks.render;
 
-import joshie.harvestmoon.util.RenderBase;
+import joshie.harvestmoon.core.util.RenderBase;
 
 public class RenderShipping extends RenderBase {
     @Override

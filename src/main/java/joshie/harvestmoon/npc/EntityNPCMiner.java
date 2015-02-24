@@ -1,12 +1,12 @@
 package joshie.harvestmoon.npc;
 
-import static joshie.harvestmoon.helpers.ServerHelper.markDirty;
+import static joshie.harvestmoon.core.helpers.ServerHelper.markDirty;
 
 import java.util.ArrayList;
 
 import joshie.harvestmoon.buildings.placeable.Placeable.PlacementStage;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableBlock;
-import joshie.harvestmoon.helpers.MineHelper;
+import joshie.harvestmoon.core.helpers.MineHelper;
 import joshie.harvestmoon.init.HMBlocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;

@@ -4,10 +4,10 @@ import joshie.harvestmoon.init.HMItems;
 import net.minecraft.item.ItemStack;
 
 public class Meal {
-    public static int lastMeta;
-    public static final ItemStack BURNT = new ItemStack(HMItems.meal);
-    public static double hunger_modifier = 1.0D;
-    public static double saturation_modifier = 1.0D;
+    private static int lastMeta;
+    static final ItemStack BURNT = new ItemStack(HMItems.meal);
+    private static double hunger_modifier = 1.0D;
+    private static double saturation_modifier = 1.0D;
     
     public String unlocalized;
     public int stamina = 0;

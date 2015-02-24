@@ -5,8 +5,7 @@ import java.util.EnumMap;
 import java.util.Random;
 
 import joshie.harvestmoon.blocks.BlockDirt.FloorType;
-import joshie.harvestmoon.helpers.generic.ItemHelper;
-import joshie.harvestmoon.mining.loot.LootChance;
+import joshie.harvestmoon.core.helpers.generic.ItemHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;

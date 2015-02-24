@@ -4,10 +4,10 @@ import java.util.UUID;
 
 import joshie.harvestmoon.buildings.Building;
 import joshie.harvestmoon.buildings.BuildingGroup;
+import joshie.harvestmoon.core.helpers.generic.EntityHelper;
+import joshie.harvestmoon.core.network.PacketHandler;
+import joshie.harvestmoon.core.network.PacketSyncMarker;
 import joshie.harvestmoon.crops.WorldLocation;
-import joshie.harvestmoon.helpers.generic.EntityHelper;
-import joshie.harvestmoon.network.PacketHandler;
-import joshie.harvestmoon.network.PacketSyncMarker;
 import joshie.harvestmoon.npc.EntityNPCBuilder;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;

@@ -2,9 +2,9 @@ package joshie.harvestmoon.animals;
 
 import java.util.HashMap;
 
-import joshie.harvestmoon.config.Calendar;
-import joshie.harvestmoon.helpers.SafeStackHelper;
-import joshie.harvestmoon.util.SafeStack;
+import joshie.harvestmoon.core.config.Calendar;
+import joshie.harvestmoon.core.helpers.SafeStackHelper;
+import joshie.harvestmoon.core.util.SafeStack;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityCow;

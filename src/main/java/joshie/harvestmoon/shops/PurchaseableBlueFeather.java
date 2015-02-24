@@ -1,7 +1,6 @@
 package joshie.harvestmoon.shops;
 
-import joshie.harvestmoon.calendar.CalendarDate;
-import joshie.harvestmoon.helpers.PlayerHelper;
+import joshie.harvestmoon.api.interfaces.IPurchaseable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;

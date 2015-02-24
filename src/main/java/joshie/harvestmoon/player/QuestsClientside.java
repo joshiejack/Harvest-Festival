@@ -1,10 +1,10 @@
 package joshie.harvestmoon.player;
 
-import static joshie.harvestmoon.network.PacketHandler.sendToServer;
+import static joshie.harvestmoon.core.network.PacketHandler.sendToServer;
 
 import java.util.HashSet;
 
-import joshie.harvestmoon.network.quests.PacketQuestStart;
+import joshie.harvestmoon.core.network.quests.PacketQuestStart;
 import joshie.harvestmoon.npc.EntityNPC;
 import joshie.harvestmoon.quests.Quest;
 import joshie.harvestmoon.shops.ShopInventory;

@@ -1,8 +1,8 @@
 package joshie.harvestmoon.items;
 
-import static joshie.harvestmoon.lib.HMModInfo.MODPATH;
-import joshie.harvestmoon.HarvestTab;
-import joshie.harvestmoon.util.Translate;
+import static joshie.harvestmoon.core.lib.HMModInfo.MODPATH;
+import joshie.harvestmoon.core.HMTab;
+import joshie.harvestmoon.core.util.Translate;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -11,7 +11,7 @@ public class ItemBaseSingle extends Item {
     protected String path = MODPATH + ":";
     
     public ItemBaseSingle() {
-        setCreativeTab(HarvestTab.tabGeneral);
+        setCreativeTab(HMTab.tabGeneral);
     }
     
     public void setTextureFolder(String path) {

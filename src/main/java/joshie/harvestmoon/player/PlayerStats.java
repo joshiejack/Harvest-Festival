@@ -1,10 +1,8 @@
 package joshie.harvestmoon.player;
 
-import java.util.HashSet;
-
 import joshie.harvestmoon.calendar.CalendarDate;
-import joshie.harvestmoon.helpers.CalendarHelper;
-import joshie.harvestmoon.util.IData;
+import joshie.harvestmoon.core.helpers.CalendarHelper;
+import joshie.harvestmoon.core.util.IData;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class PlayerStats implements IData {
@@ -14,12 +12,8 @@ public class PlayerStats implements IData {
     private double stamina = 100D;
     private double fatigue = 0D;
     private long gold;
-
-    public PlayerDataServer master;
-
-    public PlayerStats(PlayerDataServer master) {
-        this.master = master;
-    }
+    
+    public PlayerStats(PlayerDataServer master) {}
 
     public CalendarDate getBirthday() {
         return birthday;

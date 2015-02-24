@@ -3,6 +3,7 @@ package joshie.harvestmoon.npc.gift;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
+@SuppressWarnings("ucd")
 public class GiftsAbi extends Gifts {
     @Override
     public Quality getQuality(ItemStack stack) {

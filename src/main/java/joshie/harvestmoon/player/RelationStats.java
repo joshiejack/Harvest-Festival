@@ -1,15 +1,15 @@
 package joshie.harvestmoon.player;
 
-import static joshie.harvestmoon.helpers.ServerHelper.markDirty;
+import static joshie.harvestmoon.core.helpers.ServerHelper.markDirty;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.UUID;
 
+import joshie.harvestmoon.core.util.IData;
 import joshie.harvestmoon.npc.EntityNPC;
 import joshie.harvestmoon.npc.NPC;
-import joshie.harvestmoon.util.IData;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -110,7 +110,7 @@ public class RelationStats implements IData {
     public boolean canMarry() {
         for (Relatable npc: relations.keySet()) {
             int value = relations.get(npc);
-            if (value >= joshie.harvestmoon.config.NPC.MARRIAGE_REQUIREMENT) {
+            if (value >= joshie.harvestmoon.core.config.NPC.MARRIAGE_REQUIREMENT) {
                 return true;
             }
         }

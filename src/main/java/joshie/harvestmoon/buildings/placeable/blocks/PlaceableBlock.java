@@ -1,7 +1,7 @@
 package joshie.harvestmoon.buildings.placeable.blocks;
 
 import joshie.harvestmoon.buildings.placeable.Placeable;
-import joshie.harvestmoon.helpers.generic.StackHelper;
+import joshie.harvestmoon.core.helpers.generic.StackHelper;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;

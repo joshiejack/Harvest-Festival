@@ -1,8 +1,8 @@
 package joshie.harvestmoon.player;
 
 import joshie.harvestmoon.cooking.FoodRegistry;
-import joshie.harvestmoon.helpers.ServerHelper;
-import joshie.harvestmoon.util.IData;
+import joshie.harvestmoon.core.helpers.ServerHelper;
+import joshie.harvestmoon.core.util.IData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;

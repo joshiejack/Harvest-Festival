@@ -2,10 +2,10 @@ package joshie.harvestmoon.blocks.items;
 
 import java.util.List;
 
-import joshie.harvestmoon.base.ItemBlockBase;
 import joshie.harvestmoon.blocks.BlockDirt.FloorType;
-import joshie.harvestmoon.config.General;
-import joshie.harvestmoon.util.generic.Text;
+import joshie.harvestmoon.core.config.General;
+import joshie.harvestmoon.core.util.base.ItemBlockBase;
+import joshie.harvestmoon.core.util.generic.Text;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

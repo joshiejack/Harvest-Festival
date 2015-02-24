@@ -1,16 +1,16 @@
 package joshie.harvestmoon.items.overrides;
 
-import static joshie.harvestmoon.helpers.SizeableHelper.getQuality;
-import static joshie.harvestmoon.helpers.SizeableHelper.getSize;
+import static joshie.harvestmoon.core.helpers.SizeableHelper.getQuality;
+import static joshie.harvestmoon.core.helpers.SizeableHelper.getSize;
 
 import java.util.List;
 
-import joshie.harvestmoon.api.IShippable;
-import joshie.harvestmoon.helpers.SizeableHelper;
-import joshie.harvestmoon.lib.HMModInfo;
-import joshie.harvestmoon.lib.SizeableMeta;
-import joshie.harvestmoon.lib.SizeableMeta.Size;
-import joshie.harvestmoon.util.Translate;
+import joshie.harvestmoon.api.interfaces.IShippable;
+import joshie.harvestmoon.core.helpers.SizeableHelper;
+import joshie.harvestmoon.core.lib.HMModInfo;
+import joshie.harvestmoon.core.lib.SizeableMeta;
+import joshie.harvestmoon.core.lib.SizeableMeta.Size;
+import joshie.harvestmoon.core.util.Translate;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;

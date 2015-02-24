@@ -2,16 +2,16 @@ package joshie.harvestmoon.buildings;
 
 import java.util.ArrayList;
 
-import joshie.harvestmoon.blocks.render.PreviewBlock;
 import joshie.harvestmoon.buildings.placeable.Placeable;
 import joshie.harvestmoon.buildings.placeable.Placeable.PlacementStage;
+import joshie.harvestmoon.core.util.BlockAccessPreview;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class Building {
     //List of all placeable elements
     protected ArrayList<Placeable> list;
-    private PreviewBlock preview;
+    private BlockAccessPreview preview;
     private BuildingGroup group;
     private int index;
     protected int offsetY;
@@ -40,7 +40,7 @@ public class Building {
     }
 
     public void init(BuildingGroup group, int index) {
-        preview = new PreviewBlock(this, list);
+        preview = new BlockAccessPreview(this, list);
         this.index = index;
         this.group = group;
     }

@@ -1,8 +1,8 @@
 package joshie.harvestmoon.blocks;
 
-import static joshie.harvestmoon.helpers.CropHelper.removeFarmland;
-import static joshie.harvestmoon.lib.HMModInfo.MODPATH;
-import joshie.harvestmoon.helpers.CropHelper;
+import static joshie.harvestmoon.core.helpers.CropHelper.removeFarmland;
+import static joshie.harvestmoon.core.lib.HMModInfo.MODPATH;
+import joshie.harvestmoon.core.helpers.CropHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFarmland;
 import net.minecraft.client.renderer.texture.IIconRegister;

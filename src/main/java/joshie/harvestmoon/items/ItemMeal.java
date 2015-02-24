@@ -1,16 +1,16 @@
 package joshie.harvestmoon.items;
 
-import static joshie.harvestmoon.helpers.PlayerHelper.affectStats;
-import static joshie.harvestmoon.lib.HMModInfo.MEALPATH;
+import static joshie.harvestmoon.core.helpers.PlayerHelper.affectStats;
+import static joshie.harvestmoon.core.lib.HMModInfo.MEALPATH;
 
 import java.util.List;
 
-import joshie.harvestmoon.config.General;
 import joshie.harvestmoon.cooking.FoodRegistry;
 import joshie.harvestmoon.cooking.Meal;
 import joshie.harvestmoon.cooking.Recipe;
 import joshie.harvestmoon.cooking.Utensil;
-import joshie.harvestmoon.util.Translate;
+import joshie.harvestmoon.core.config.General;
+import joshie.harvestmoon.core.util.Translate;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;

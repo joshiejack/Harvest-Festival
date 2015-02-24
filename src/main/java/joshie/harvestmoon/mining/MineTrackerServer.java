@@ -1,6 +1,6 @@
 package joshie.harvestmoon.mining;
 
-import static joshie.harvestmoon.helpers.ServerHelper.markDirty;
+import static joshie.harvestmoon.core.helpers.ServerHelper.markDirty;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,9 +8,9 @@ import java.util.HashSet;
 import java.util.Map;
 
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableBlock;
+import joshie.harvestmoon.core.util.IData;
 import joshie.harvestmoon.crops.WorldLocation;
 import joshie.harvestmoon.npc.EntityNPCMiner;
-import joshie.harvestmoon.util.IData;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;

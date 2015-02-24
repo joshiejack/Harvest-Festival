@@ -1,6 +1,6 @@
 package joshie.harvestmoon.init;
 
-import joshie.harvestmoon.config.General;
+import joshie.harvestmoon.core.config.General;
 import joshie.harvestmoon.items.ItemBuilding;
 import joshie.harvestmoon.items.ItemCheat;
 import joshie.harvestmoon.items.ItemCrop;

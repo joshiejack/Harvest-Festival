@@ -1,6 +1,7 @@
 package joshie.harvestmoon.blocks.render;
 
-import joshie.harvestmoon.util.RenderBase;
+import joshie.harvestmoon.core.util.ExtraIcons;
+import joshie.harvestmoon.core.util.RenderBase;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import org.lwjgl.opengl.GL11;

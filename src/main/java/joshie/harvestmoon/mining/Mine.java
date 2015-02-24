@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableBlock;
-import joshie.harvestmoon.util.IData;
+import joshie.harvestmoon.core.util.IData;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 
 public class Mine implements IData {
-    public List<MineLevel> levels = new ArrayList();
+    private List<MineLevel> levels = new ArrayList();
     private String name;
 
     public String getName() {

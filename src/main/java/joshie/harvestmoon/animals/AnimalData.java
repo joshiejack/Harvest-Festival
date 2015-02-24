@@ -3,18 +3,18 @@ package joshie.harvestmoon.animals;
 import static joshie.harvestmoon.animals.AnimalType.CHICKEN;
 import static joshie.harvestmoon.animals.AnimalType.OTHER;
 import static joshie.harvestmoon.animals.AnimalType.SHEEP;
-import static joshie.harvestmoon.helpers.SizeableHelper.getEgg;
-import static joshie.harvestmoon.helpers.generic.ItemHelper.spawnByEntity;
-import static joshie.harvestmoon.network.PacketHandler.sendToEveryone;
+import static joshie.harvestmoon.core.helpers.SizeableHelper.getEgg;
+import static joshie.harvestmoon.core.helpers.generic.ItemHelper.spawnByEntity;
+import static joshie.harvestmoon.core.network.PacketHandler.sendToEveryone;
 
 import java.util.Random;
 import java.util.UUID;
 
-import joshie.harvestmoon.config.Animals;
-import joshie.harvestmoon.helpers.AnimalHelper;
-import joshie.harvestmoon.helpers.RelationsHelper;
-import joshie.harvestmoon.network.PacketSyncCanProduce;
-import joshie.harvestmoon.util.IData;
+import joshie.harvestmoon.core.config.Animals;
+import joshie.harvestmoon.core.helpers.AnimalHelper;
+import joshie.harvestmoon.core.helpers.RelationsHelper;
+import joshie.harvestmoon.core.network.PacketSyncCanProduce;
+import joshie.harvestmoon.core.util.IData;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
@@ -65,7 +65,7 @@ public class AnimalData implements IData {
     /** May return null **/
     public EntityAnimal getAndCreateAnimal() {
         if (animal == null) {
-            animal = (EntityAnimal) joshie.harvestmoon.helpers.generic.EntityHelper.getAnimalFromUUID(dimension, a_uuid);
+            animal = (EntityAnimal) joshie.harvestmoon.core.helpers.generic.EntityHelper.getAnimalFromUUID(dimension, a_uuid);
         }
 
         return animal;
@@ -75,7 +75,7 @@ public class AnimalData implements IData {
     public EntityPlayerMP getAndCreateOwner() {
         if (o_uuid != null) {
             if (owner == null) {
-                owner = joshie.harvestmoon.helpers.generic.EntityHelper.getPlayerFromUUID(o_uuid);
+                owner = joshie.harvestmoon.core.helpers.generic.EntityHelper.getPlayerFromUUID(o_uuid);
             }
 
             return owner;

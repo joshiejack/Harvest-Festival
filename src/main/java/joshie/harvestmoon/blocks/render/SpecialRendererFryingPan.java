@@ -3,7 +3,7 @@ package joshie.harvestmoon.blocks.render;
 import java.util.ArrayList;
 
 import joshie.harvestmoon.blocks.tiles.TileFryingPan;
-import joshie.harvestmoon.util.generic.EntityFakeItem;
+import joshie.harvestmoon.core.util.generic.EntityFakeItem;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemBlock;

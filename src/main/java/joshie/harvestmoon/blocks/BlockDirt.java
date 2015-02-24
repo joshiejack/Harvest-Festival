@@ -1,11 +1,27 @@
 package joshie.harvestmoon.blocks;
 
-import static joshie.harvestmoon.blocks.BlockDirt.FloorType.*;
+import static joshie.harvestmoon.blocks.BlockDirt.FloorType.ALL_FLOORS;
+import static joshie.harvestmoon.blocks.BlockDirt.FloorType.BELOW_15;
+import static joshie.harvestmoon.blocks.BlockDirt.FloorType.BERRY_FLOOR;
+import static joshie.harvestmoon.blocks.BlockDirt.FloorType.CURSED_FLOOR;
+import static joshie.harvestmoon.blocks.BlockDirt.FloorType.ENDS_IN_8;
+import static joshie.harvestmoon.blocks.BlockDirt.FloorType.ENDS_IN_9;
+import static joshie.harvestmoon.blocks.BlockDirt.FloorType.GODDESS_FLOOR;
+import static joshie.harvestmoon.blocks.BlockDirt.FloorType.GOLD_FLOOR;
+import static joshie.harvestmoon.blocks.BlockDirt.FloorType.LAST_FLOOR;
+import static joshie.harvestmoon.blocks.BlockDirt.FloorType.MULTIPLE_OF_10;
+import static joshie.harvestmoon.blocks.BlockDirt.FloorType.MULTIPLE_OF_2;
+import static joshie.harvestmoon.blocks.BlockDirt.FloorType.MULTIPLE_OF_3;
+import static joshie.harvestmoon.blocks.BlockDirt.FloorType.MULTIPLE_OF_5;
+import static joshie.harvestmoon.blocks.BlockDirt.FloorType.MYSTRIL_FLOOR;
+import static joshie.harvestmoon.blocks.BlockDirt.FloorType.MYTHIC_FLOOR;
+import static joshie.harvestmoon.blocks.BlockDirt.FloorType.NON_MULTIPLE_OF_5;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import joshie.harvestmoon.config.General;
+import joshie.harvestmoon.core.config.General;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -17,7 +33,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockDirt extends BlockHMBaseMeta {
     /** Normal height = 12 floors, y91 = On a hill = 17 floors, On an extreme hills = y120 = 23 floors **/
-    public static int MAXIMUM_FLOORS = 23;
+    private static int MAXIMUM_FLOORS = 23;
     
     public static enum FloorType {
         ALL_FLOORS,

@@ -1,8 +1,8 @@
 package joshie.harvestmoon.blocks.tiles;
 
-import joshie.harvestmoon.network.PacketHandler;
-import joshie.harvestmoon.network.PacketSyncOrientation;
-import joshie.harvestmoon.util.generic.IFaceable;
+import joshie.harvestmoon.core.network.PacketHandler;
+import joshie.harvestmoon.core.network.PacketSyncOrientation;
+import joshie.harvestmoon.core.util.generic.IFaceable;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;

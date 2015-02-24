@@ -2,10 +2,10 @@ package joshie.harvestmoon.init.cooking;
 
 import static joshie.harvestmoon.cooking.FoodRegistry.register;
 import joshie.harvestmoon.cooking.Ingredient;
+import joshie.harvestmoon.core.lib.CropMeta;
+import joshie.harvestmoon.core.lib.SizeableMeta;
 import joshie.harvestmoon.init.HMItems;
 import joshie.harvestmoon.items.ItemGeneral;
-import joshie.harvestmoon.lib.CropMeta;
-import joshie.harvestmoon.lib.SizeableMeta;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;

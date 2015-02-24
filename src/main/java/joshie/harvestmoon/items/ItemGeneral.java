@@ -1,12 +1,11 @@
 package joshie.harvestmoon.items;
 
-import static joshie.harvestmoon.helpers.AnimalHelper.canProduceProduct;
-import static joshie.harvestmoon.helpers.AnimalHelper.feed;
-import static joshie.harvestmoon.helpers.AnimalHelper.setProducedProduct;
-import joshie.harvestmoon.helpers.AnimalHelper;
-import joshie.harvestmoon.helpers.SizeableHelper;
-import joshie.harvestmoon.lib.SizeableMeta;
-import joshie.harvestmoon.lib.SizeableMeta.Size;
+import static joshie.harvestmoon.core.helpers.AnimalHelper.canProduceProduct;
+import static joshie.harvestmoon.core.helpers.AnimalHelper.setProducedProduct;
+import joshie.harvestmoon.core.helpers.AnimalHelper;
+import joshie.harvestmoon.core.helpers.SizeableHelper;
+import joshie.harvestmoon.core.lib.SizeableMeta;
+import joshie.harvestmoon.core.lib.SizeableMeta.Size;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityChicken;

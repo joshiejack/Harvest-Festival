@@ -1,6 +1,6 @@
 package joshie.harvestmoon.calendar;
 
-import static joshie.harvestmoon.helpers.CalendarHelper.getClientSeason;
+import static joshie.harvestmoon.core.helpers.CalendarHelper.getClientSeason;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.EntityRenderer;

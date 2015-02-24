@@ -1,8 +1,8 @@
 package joshie.harvestmoon.crops;
 
 import joshie.harvestmoon.calendar.Season;
-import joshie.harvestmoon.lib.CropMeta;
-import joshie.harvestmoon.lib.HMModInfo;
+import joshie.harvestmoon.core.lib.CropMeta;
+import joshie.harvestmoon.core.lib.HMModInfo;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;

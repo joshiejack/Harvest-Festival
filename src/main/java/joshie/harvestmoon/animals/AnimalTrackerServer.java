@@ -1,6 +1,6 @@
 package joshie.harvestmoon.animals;
 
-import static joshie.harvestmoon.helpers.ServerHelper.markDirty;
+import static joshie.harvestmoon.core.helpers.ServerHelper.markDirty;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,10 +9,10 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.UUID;
 
-import joshie.harvestmoon.config.Animals;
+import joshie.harvestmoon.core.config.Animals;
+import joshie.harvestmoon.core.util.IData;
 import joshie.harvestmoon.crops.WorldLocation;
 import joshie.harvestmoon.init.HMBlocks;
-import joshie.harvestmoon.util.IData;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
@@ -62,7 +62,7 @@ public class AnimalTrackerServer implements IData {
 
     //Kills an animal
     private void kill(int dimension, UUID uuid) {
-        EntityAnimal animal = joshie.harvestmoon.helpers.generic.EntityHelper.getAnimalFromUUID(dimension, uuid);
+        EntityAnimal animal = joshie.harvestmoon.core.helpers.generic.EntityHelper.getAnimalFromUUID(dimension, uuid);
         if (animal != null) {
             animal.attackEntityFrom(natural_causes, 1000F);
         }

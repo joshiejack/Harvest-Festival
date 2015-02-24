@@ -1,15 +1,15 @@
 package joshie.harvestmoon.blocks;
 
-import static joshie.harvestmoon.helpers.CropHelper.destroyCrop;
-import static joshie.harvestmoon.helpers.CropHelper.harvestCrop;
+import static joshie.harvestmoon.core.helpers.CropHelper.destroyCrop;
+import static joshie.harvestmoon.core.helpers.CropHelper.harvestCrop;
 
 import java.util.Random;
 
-import joshie.harvestmoon.config.Crops;
+import joshie.harvestmoon.core.config.Crops;
+import joshie.harvestmoon.core.helpers.CropHelper;
+import joshie.harvestmoon.core.helpers.generic.MCClientHelper;
+import joshie.harvestmoon.core.lib.RenderIds;
 import joshie.harvestmoon.crops.Crop;
-import joshie.harvestmoon.helpers.CropHelper;
-import joshie.harvestmoon.helpers.generic.MCClientHelper;
-import joshie.harvestmoon.lib.RenderIds;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;

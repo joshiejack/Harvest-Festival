@@ -1,8 +1,8 @@
 package joshie.harvestmoon.items;
 
 import joshie.harvestmoon.animals.AnimalType;
-import joshie.harvestmoon.helpers.AnimalHelper;
-import joshie.harvestmoon.lib.HMModInfo;
+import joshie.harvestmoon.core.helpers.AnimalHelper;
+import joshie.harvestmoon.core.lib.HMModInfo;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityAnimal;

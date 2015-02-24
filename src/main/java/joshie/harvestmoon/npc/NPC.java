@@ -9,12 +9,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import joshie.harvestmoon.calendar.CalendarDate;
-import joshie.harvestmoon.handlers.GuiHandler;
+import joshie.harvestmoon.core.handlers.GuiHandler;
+import joshie.harvestmoon.core.lib.HMModInfo;
+import joshie.harvestmoon.core.util.Translate;
+import joshie.harvestmoon.core.util.generic.Text;
 import joshie.harvestmoon.npc.gift.Gifts;
 import joshie.harvestmoon.npc.gift.Gifts.Quality;
 import joshie.harvestmoon.shops.ShopInventory;
-import joshie.harvestmoon.util.Translate;
-import joshie.harvestmoon.util.generic.Text;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -30,7 +31,7 @@ public class NPC {
         CHILD, ADULT, ELDER;
     }
 
-    protected ArrayList<String> greetings = new ArrayList(32);
+    protected ArrayList<String> greetings = new ArrayList(128);
     protected ArrayList<String> thanks = new ArrayList(6);
     protected String accept = "WHAT?";
     protected String reject = "NO!";
@@ -56,28 +57,28 @@ public class NPC {
 
         String gift = StringUtils.capitalize(name);
         try {
-            gifts = (Gifts) Class.forName("joshie.harvestmoon.npc.gift.Gifts" + gift).newInstance();
+            gifts = (Gifts) Class.forName(HMModInfo.JAVAPATH + "npc.gift.Gifts" + gift).newInstance();
         } catch (Exception e) {}
 
-        String key = "hm.npc." + name + ".accept";
+        String key = HMModInfo.MODPATH + ".npc." + name + ".accept";
         accept = Text.localize(key);
-        key = "hm.npc." + name + ".reject";
+        key = HMModInfo.MODPATH + ".npc." + name + ".reject";
         reject = Text.localize(key);
 
         for (int i = 0; i < 6; i++) {
-            key = "hm.npc." + name + ".gift." + Quality.values()[i].name().toLowerCase();
+            key = HMModInfo.MODPATH + ".npc." + name + ".gift." + Quality.values()[i].name().toLowerCase();
             String translated = Text.localize(key);
             if (!translated.equals(key)) {
                 thanks.add(translated);
             } else {
-                key = "hm.npc.generic." + age.name().toLowerCase() + ".gift." + Quality.values()[i].name().toLowerCase();
+                key = HMModInfo.MODPATH + ".npc.generic." + age.name().toLowerCase() + ".gift." + Quality.values()[i].name().toLowerCase();
                 translated = Text.localize(key);
                 thanks.add(translated);
             }
         }
 
         for (int i = 1; i <= 32; i++) {
-            key = "hm.npc." + name + ".greeting" + i;
+            key = HMModInfo.MODPATH + ".npc." + name + ".greeting" + i;
             String greeting = Text.localize(key);
             if (!greeting.equals(key)) {
                 greetings.add(greeting);
@@ -85,14 +86,14 @@ public class NPC {
 
             //Adding Generic Child Greetings
             if (age == CHILD) {
-                key = "hm.npc.generic.child.greeting" + i;
+                key = HMModInfo.MODPATH + ".npc.generic.child.greeting" + i;
                 greeting = Text.localize(key);
                 if (!greeting.equals(key)) {
                     greetings.add(greeting);
                 }
             } else {
                 //Add Generic Adult Greetings
-                key = "hm.npc.generic.adult.greeting" + i;
+                key = HMModInfo.MODPATH + ".npc.generic.adult.greeting" + i;
                 greeting = Text.localize(key);
                 if (!greeting.equals(key)) {
                     greetings.add(greeting);
@@ -100,14 +101,14 @@ public class NPC {
 
                 if (gender == MALE) {
                     //Add Generic Male Greetings
-                    key = "hm.npc.generic.male.greeting" + i;
+                    key = HMModInfo.MODPATH + ".npc.generic.male.greeting" + i;
                     greeting = Text.localize(key);
                     if (!greeting.equals(key)) {
                         greetings.add(greeting);
                     }
                 } else if (gender == FEMALE) {
                     //Add Generic Female Greetings
-                    key = "hm.npc.generic.female.greeting" + i;
+                    key = HMModInfo.MODPATH + ".npc.generic.female.greeting" + i;
                     greeting = Text.localize(key);
                     if (!greeting.equals(key)) {
                         greetings.add(greeting);

@@ -1,7 +1,7 @@
 package joshie.harvestmoon.mining;
 
+import joshie.harvestmoon.core.util.IData;
 import joshie.harvestmoon.crops.WorldLocation;
-import joshie.harvestmoon.util.IData;
 
 public abstract class MineBlock extends WorldLocation implements IData {
     public MineBlock() {}

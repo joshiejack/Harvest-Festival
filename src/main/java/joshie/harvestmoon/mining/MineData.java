@@ -1,6 +1,6 @@
 package joshie.harvestmoon.mining;
 
-import joshie.harvestmoon.util.IData;
+import joshie.harvestmoon.core.util.IData;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class MineData implements IData {

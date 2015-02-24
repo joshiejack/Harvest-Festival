@@ -1,12 +1,11 @@
 package joshie.harvestmoon.mining;
 
-import static joshie.harvestmoon.helpers.generic.MCServerHelper.getWorld;
+import static joshie.harvestmoon.core.helpers.generic.MCServerHelper.getWorld;
 
 import java.util.ArrayList;
 
 import joshie.harvestmoon.blocks.BlockDirt;
 import joshie.harvestmoon.init.HMBlocks;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 public class MineFloor extends MineBlock {

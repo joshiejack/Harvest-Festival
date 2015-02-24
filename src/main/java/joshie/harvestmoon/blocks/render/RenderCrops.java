@@ -1,7 +1,7 @@
 package joshie.harvestmoon.blocks.render;
 
+import joshie.harvestmoon.core.lib.RenderIds;
 import joshie.harvestmoon.init.HMBlocks;
-import joshie.harvestmoon.lib.RenderIds;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;

@@ -1,8 +1,8 @@
 package joshie.harvestmoon.blocks.render;
 
 import joshie.harvestmoon.blocks.BlockWood;
+import joshie.harvestmoon.core.util.RenderBase;
 import joshie.harvestmoon.init.HMBlocks;
-import joshie.harvestmoon.util.RenderBase;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 

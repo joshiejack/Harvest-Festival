@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import joshie.harvestmoon.api.ICookingComponent;
 import joshie.harvestmoon.helpers.SafeStackHelper;
 import joshie.harvestmoon.init.HMItems;
 import joshie.harvestmoon.items.ItemMeal;

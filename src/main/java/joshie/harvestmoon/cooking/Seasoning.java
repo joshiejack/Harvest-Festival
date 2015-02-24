@@ -2,6 +2,8 @@ package joshie.harvestmoon.cooking;
 
 import java.util.HashSet;
 
+import joshie.harvestmoon.api.ICookingComponent;
+
 public class Seasoning implements ICookingComponent {
     private HashSet<Seasoning> equivalents = new HashSet();
     private String unlocalized;

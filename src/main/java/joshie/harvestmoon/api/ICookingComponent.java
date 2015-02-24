@@ -1,4 +1,4 @@
-package joshie.harvestmoon.cooking;
+package joshie.harvestmoon.api;
 
 
 public interface ICookingComponent {    

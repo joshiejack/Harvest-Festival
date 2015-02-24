@@ -56,6 +56,14 @@ processResources {
     }
 }
 
+runClient {
+    jvmArgs '-Dfml.coreMods.load=joshie.harvestmoon.HarvestMoon'
+}
+
+runServer {
+    jvmArgs '-Dfml.coreMods.load=joshie.harvestmoon.HarvestMoon'
+}
+
 jar {
     manifest {
         attributes 'FMLAT': 'harvestmoon_at.cfg'

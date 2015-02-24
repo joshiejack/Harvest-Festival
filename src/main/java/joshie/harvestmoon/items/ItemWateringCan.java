@@ -1,9 +1,10 @@
 package joshie.harvestmoon.items;
 
 import joshie.harvestmoon.blocks.BlockCrop;
-import joshie.harvestmoon.blocks.BlockSoil;
+import joshie.harvestmoon.core.helpers.CropHelper;
 import joshie.harvestmoon.core.helpers.PlayerHelper;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -142,7 +143,7 @@ public class ItemWateringCan extends ItemBaseTool implements IFluidContainerItem
 
             ForgeDirection front = joshie.harvestmoon.core.helpers.generic.DirectionHelper.getFacingFromEntity(player);
             Block initial = world.getBlock(x, y, z);
-            if (!(initial instanceof BlockSoil) && (!(initial instanceof BlockCrop))) {
+            if (!(initial instanceof BlockFarmland) && (!(initial instanceof BlockCrop))) {
                 return false;
             }
 
@@ -156,8 +157,8 @@ public class ItemWateringCan extends ItemBaseTool implements IFluidContainerItem
                                 block = world.getBlock(x2, y2 - 1, z2);
                             }
 
-                            if (block instanceof BlockSoil) {
-                                if (BlockSoil.hydrate(world, x2, y2, z2)) {
+                            if (block instanceof BlockFarmland) {
+                                if (CropHelper.hydrate(world, x2, y2, z2)) {
                                     displayParticle(world, x2, y2, z2, "splash");
                                     playSound(world, x2, y2, z2, "game.neutral.swim");
                                     PlayerHelper.performTask(player, getExhaustionRate(stack));

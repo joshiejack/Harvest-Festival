@@ -1,4 +1,4 @@
-package joshie.harvestmoon.items.overrides;
+package joshie.harvestmoon.asm.overrides;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package joshie.harvestmoon.asm;
+package joshie.harvestmoon.asm.transformers;
 
 import joshie.harvestmoon.core.config.Vanilla;
 

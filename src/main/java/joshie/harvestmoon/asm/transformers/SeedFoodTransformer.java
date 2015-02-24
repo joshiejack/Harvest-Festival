@@ -1,4 +1,4 @@
-package joshie.harvestmoon.asm;
+package joshie.harvestmoon.asm.transformers;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -57,7 +57,7 @@ public class SeedFoodTransformer implements ITransformer {
         MethodVisitor mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, "(Lnet/minecraft/item/ItemStack;)J", null, null);
         mv.visitCode();
         mv.visitVarInsn(Opcodes.ALOAD, 1);
-        mv.visitMethodInsn(Opcodes.INVOKESTATIC, HMModInfo.ASMPATH + "items/overrides/ItemSeedFood", name, "(Lnet/minecraft/item/ItemStack;)J", false);
+        mv.visitMethodInsn(Opcodes.INVOKESTATIC, HMModInfo.ASMPATH + "asm/overrides/ItemSeedFood", name, "(Lnet/minecraft/item/ItemStack;)J", false);
         mv.visitInsn(Opcodes.LRETURN);
         mv.visitMaxs(2, 1);
         mv.visitEnd();
@@ -67,7 +67,7 @@ public class SeedFoodTransformer implements ITransformer {
         mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, "(Lnet/minecraft/item/ItemStack;)I", null, null);
         mv.visitCode();
         mv.visitVarInsn(Opcodes.ALOAD, 1);
-        mv.visitMethodInsn(Opcodes.INVOKESTATIC, HMModInfo.ASMPATH + "items/overrides/ItemSeedFood", name, "(Lnet/minecraft/item/ItemStack;)I", false);
+        mv.visitMethodInsn(Opcodes.INVOKESTATIC, HMModInfo.ASMPATH + "asm/overrides/ItemSeedFood", name, "(Lnet/minecraft/item/ItemStack;)I", false);
         mv.visitInsn(Opcodes.IRETURN);
         mv.visitMaxs(2, 1);
         mv.visitEnd();
@@ -77,7 +77,7 @@ public class SeedFoodTransformer implements ITransformer {
         mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, "(Lnet/minecraft/item/ItemStack;)Ljava/lang/String;", null, null);
         mv.visitCode();
         mv.visitVarInsn(Opcodes.ALOAD, 1);
-        mv.visitMethodInsn(Opcodes.INVOKESTATIC, HMModInfo.ASMPATH + "items/overrides/ItemSeedFood", name, "(Lnet/minecraft/item/ItemStack;)Ljava/lang/String;", false);
+        mv.visitMethodInsn(Opcodes.INVOKESTATIC, HMModInfo.ASMPATH + "asm/overrides/ItemSeedFood", name, "(Lnet/minecraft/item/ItemStack;)Ljava/lang/String;", false);
         mv.visitInsn(Opcodes.ARETURN);
         mv.visitMaxs(2, 1);
         mv.visitEnd();
@@ -89,7 +89,7 @@ public class SeedFoodTransformer implements ITransformer {
         mv.visitVarInsn(Opcodes.ALOAD, 1);
         mv.visitVarInsn(Opcodes.ALOAD, 2);
         mv.visitVarInsn(Opcodes.ALOAD, 3);
-        mv.visitMethodInsn(Opcodes.INVOKESTATIC, HMModInfo.ASMPATH + "items/overrides/ItemSeedFood", name, "(Lnet/minecraft/item/Item;Lnet/minecraft/creativetab/CreativeTabs;Ljava/util/List;)V", false);
+        mv.visitMethodInsn(Opcodes.INVOKESTATIC, HMModInfo.ASMPATH + "asm/overrides/ItemSeedFood", name, "(Lnet/minecraft/item/Item;Lnet/minecraft/creativetab/CreativeTabs;Ljava/util/List;)V", false);
         mv.visitInsn(Opcodes.RETURN);
         mv.visitMaxs(4, 1);
         mv.visitEnd();

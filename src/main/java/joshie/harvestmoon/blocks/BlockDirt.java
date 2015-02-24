@@ -2,12 +2,12 @@ package joshie.harvestmoon.blocks;
 
 import static joshie.harvestmoon.blocks.BlockDirt.FloorType.ALL_FLOORS;
 import static joshie.harvestmoon.blocks.BlockDirt.FloorType.BELOW_15;
-import static joshie.harvestmoon.blocks.BlockDirt.FloorType.BERRY_FLOOR;
 import static joshie.harvestmoon.blocks.BlockDirt.FloorType.CURSED_FLOOR;
 import static joshie.harvestmoon.blocks.BlockDirt.FloorType.ENDS_IN_8;
 import static joshie.harvestmoon.blocks.BlockDirt.FloorType.ENDS_IN_9;
 import static joshie.harvestmoon.blocks.BlockDirt.FloorType.GODDESS_FLOOR;
 import static joshie.harvestmoon.blocks.BlockDirt.FloorType.GOLD_FLOOR;
+import static joshie.harvestmoon.blocks.BlockDirt.FloorType.HOED;
 import static joshie.harvestmoon.blocks.BlockDirt.FloorType.LAST_FLOOR;
 import static joshie.harvestmoon.blocks.BlockDirt.FloorType.MULTIPLE_OF_10;
 import static joshie.harvestmoon.blocks.BlockDirt.FloorType.MULTIPLE_OF_2;
@@ -28,36 +28,37 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockDirt extends BlockHMBaseMeta {
     /** Normal height = 12 floors, y91 = On a hill = 17 floors, On an extreme hills = y120 = 23 floors **/
     private static int MAXIMUM_FLOORS = 23;
-    
+
     public static enum FloorType {
-        ALL_FLOORS,
-        MULTIPLE_OF_5,
-        MULTIPLE_OF_10,
-        MULTIPLE_OF_3,
-        MULTIPLE_OF_2,
-        ENDS_IN_8,
-        ENDS_IN_9,
-        LAST_FLOOR,
-        MYSTRIL_FLOOR,
-        GOLD_FLOOR,
-        MYTHIC_FLOOR,
-        CURSED_FLOOR,
-        NON_MULTIPLE_OF_5,
-        BELOW_15,
-        GODDESS_FLOOR,
-        BERRY_FLOOR;
+        ALL_FLOORS, 
+        MULTIPLE_OF_5, 
+        MULTIPLE_OF_10, 
+        MULTIPLE_OF_3, 
+        MULTIPLE_OF_2, 
+        ENDS_IN_8, 
+        ENDS_IN_9, 
+        LAST_FLOOR, 
+        MYSTRIL_FLOOR, 
+        GOLD_FLOOR, 
+        MYTHIC_FLOOR, 
+        CURSED_FLOOR, 
+        NON_MULTIPLE_OF_5, 
+        BELOW_15, 
+        GODDESS_FLOOR, 
+        HOED;
     }
-    
+
     private static final Random rand = new Random();
 
     public static ArrayList<Integer> getMeta(int level) {
-        ArrayList<Integer> metas = new ArrayList(16);
+        ArrayList<Integer> metas = new ArrayList(15);
         metas.add(ALL_FLOORS.ordinal());
         if (level % 5 == 0) metas.add(MULTIPLE_OF_5.ordinal());
         if (level % 10 == 0) metas.add(MULTIPLE_OF_10.ordinal());
@@ -73,18 +74,34 @@ public class BlockDirt extends BlockHMBaseMeta {
         if (level % 5 != 0) metas.add(NON_MULTIPLE_OF_5.ordinal());
         if (level > 15) metas.add(BELOW_15.ordinal());
         if (level == 16 || level == 14) metas.add(GODDESS_FLOOR.ordinal());
-        if (level == 15) metas.add(BERRY_FLOOR.ordinal());
         return metas;
     }
 
     public BlockDirt() {
         super(Material.ground);
-        setHardness(1F);
     }
-    
+
+    @Override
+    public boolean isOpaqueCube() {
+        return false;
+    }
+
+    @Override
+    public boolean renderAsNormalBlock() {
+        return false;
+    }
+
     @Override
     public String getToolType(int meta) {
         return "shovel";
+    }
+
+    @Override
+    public void setBlockBoundsBasedOnState(IBlockAccess block, int x, int y, int z) {
+        int meta = block.getBlockMetadata(x, y, z);
+        if (meta == HOED.ordinal()) {
+            setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.9375F, 1.0F);
+        }
     }
 
     @Override

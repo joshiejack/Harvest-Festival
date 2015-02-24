@@ -1,4 +1,4 @@
-package joshie.harvestmoon.core.util;
+package joshie.harvestmoon.blocks;
 
 import joshie.harvestmoon.core.lib.HMModInfo;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -7,7 +7,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class ExtraIcons {
+public class BlockIcons {
     /** Generic Material Icons **/
     public static IIcon METALLIC;
     
@@ -19,6 +19,9 @@ public class ExtraIcons {
     public static IIcon FRIDGE_SIDE;
     public static IIcon FRIDGE_TOP;
     public static IIcon FRIDGE_BOTTOM;
+    
+    /** Soil Icons **/
+    public static IIcon MINE_HOED;
 
     public static void registerBlockIcons(IIconRegister register) {
         /** Generic Material Icons **/
@@ -32,5 +35,8 @@ public class ExtraIcons {
         FRIDGE_SIDE = register.registerIcon(HMModInfo.MODPATH + ":fridge_sides");
         FRIDGE_TOP = register.registerIcon(HMModInfo.MODPATH + ":fridge_upper_door");
         FRIDGE_BOTTOM = register.registerIcon(HMModInfo.MODPATH + ":fridge_lower_door");
+        
+        /** Mine Hoed */
+        MINE_HOED = register.registerIcon(HMModInfo.MODPATH + ":mine_hoe");
     }
 }

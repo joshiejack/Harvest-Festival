@@ -19,4 +19,5 @@ public class HMModInfo {
     
     public static final ResourceLocation elements = new ResourceLocation(MODPATH, "textures/gui/gui_elements.png");
     public static ResourceLocation stars = new ResourceLocation(MODPATH, "textures/gui/gui_stars.png");
+    public static final int FARMLAND_MINE_HOED_META = 15;
 }

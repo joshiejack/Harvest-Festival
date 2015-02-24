@@ -1,4 +1,4 @@
-package joshie.harvestmoon.items.overrides;
+package joshie.harvestmoon.asm.overrides;
 
 import static joshie.harvestmoon.core.helpers.SizeableHelper.getQuality;
 import static joshie.harvestmoon.core.helpers.SizeableHelper.getSize;

@@ -1,4 +1,4 @@
-package joshie.harvestmoon.blocks;
+package joshie.harvestmoon.asm.overrides;
 
 import java.util.Random;
 

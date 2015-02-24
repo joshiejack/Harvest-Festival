@@ -12,7 +12,6 @@ import java.util.Iterator;
 import java.util.Map;
 
 import joshie.harvestmoon.animals.AnimalType;
-import joshie.harvestmoon.blocks.BlockSoil;
 import joshie.harvestmoon.calendar.CalendarDate;
 import joshie.harvestmoon.core.helpers.AnimalHelper;
 import joshie.harvestmoon.core.helpers.CalendarHelper;
@@ -79,7 +78,7 @@ public class CropTrackerServer implements IData {
         Iterator<WorldLocation> it = farmland.iterator();
         while (it.hasNext()) {
             WorldLocation location = it.next();
-            if (!BlockSoil.dehydrate(getWorld(location.dimension), location.x, location.y, location.z)) {
+            if (!CropHelper.dehydrate(getWorld(location.dimension), location.x, location.y, location.z)) {
                 it.remove();
                 //Remove it from the loop ^, and then dehyrate the bitch
                 getWorld(location.dimension).setBlock(location.x, location.y, location.z, Blocks.dirt);
@@ -92,7 +91,7 @@ public class CropTrackerServer implements IData {
     public void doRain() {
         if (!CalendarHelper.getServerDate().equals(rain)) {
             for (WorldLocation location : farmland) {
-                BlockSoil.hydrate(getWorld(location.dimension), location.x, location.y, location.z);
+                CropHelper.hydrate(getWorld(location.dimension), location.x, location.y, location.z);
             }
         }
     }
@@ -139,7 +138,7 @@ public class CropTrackerServer implements IData {
         WorldLocation key = getKey(world, x, y, z);
         CropData data = new CropData(player, crop, quality);
         world.setBlock(x, y, z, HMBlocks.crops);
-        if (BlockSoil.isHydrated(world, x, y - 1, z)) {
+        if (CropHelper.isHydrated(world, x, y - 1, z)) {
             data.setHydrated();
         }
 

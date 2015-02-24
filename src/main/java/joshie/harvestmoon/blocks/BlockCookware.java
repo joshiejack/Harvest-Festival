@@ -15,7 +15,6 @@ import joshie.harvestmoon.core.handlers.GuiHandler;
 import joshie.harvestmoon.core.helpers.generic.DirectionHelper;
 import joshie.harvestmoon.core.helpers.generic.ItemHelper;
 import joshie.harvestmoon.core.lib.RenderIds;
-import joshie.harvestmoon.core.util.ExtraIcons;
 import joshie.harvestmoon.core.util.generic.IFaceable;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -213,6 +212,6 @@ public class BlockCookware extends BlockHMBaseMeta {
     @SideOnly(Side.CLIENT)
     @Override
     public void registerBlockIcons(IIconRegister register) {
-        ExtraIcons.registerBlockIcons(register);
+        BlockIcons.registerBlockIcons(register);
     }
 }

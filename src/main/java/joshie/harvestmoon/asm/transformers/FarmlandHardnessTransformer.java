@@ -1,34 +1,30 @@
-package joshie.harvestmoon.asm;
+package joshie.harvestmoon.asm.transformers;
 
 import java.util.Iterator;
 
 import joshie.harvestmoon.core.config.Vanilla;
-import joshie.harvestmoon.core.lib.HMModInfo;
 
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.tree.AbstractInsnNode;
 import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.LdcInsnNode;
-import org.objectweb.asm.tree.MethodInsnNode;
 import org.objectweb.asm.tree.MethodNode;
-import org.objectweb.asm.tree.TypeInsnNode;
 
-public class WheatTransformer implements ITransformer {
+public class FarmlandHardnessTransformer implements ITransformer {
     @Override
     public boolean isActive(Vanilla config) {
-        return config.WHEAT_OVERRIDE;
+        return config.FARMLAND_OVERRIDE;
     }
 
     @Override
     public String getClass(boolean isObfuscated) {
-        return isObfuscated ? "adb" : "net.minecraft.item.Item";
+        return isObfuscated ? "aji" : "net.minecraft.block.Block";
     }
 
     @Override
     public byte[] transform(byte[] data, boolean isObfuscated) {
-        byte[] modified = data;
-        String name = isObfuscated ? "l" : "registerItems";
+        String name = isObfuscated ? "p" : "registerBlocks";
         String desc = "()V";
 
         ClassNode node = new ClassNode();
@@ -45,14 +41,7 @@ public class WheatTransformer implements ITransformer {
                     if (instruction.getType() == AbstractInsnNode.LDC_INSN) {
                         LdcInsnNode ldcInstruction = (LdcInsnNode) instruction;
                         if (ldcInstruction.cst.equals("wheat")) {
-                            ((TypeInsnNode) m.instructions.get(j + 1)).desc = HMModInfo.ASMPATH + "items/overrides/ItemWheat";
-                            ((MethodInsnNode) m.instructions.get(j + 3)).owner = HMModInfo.ASMPATH + "items/overrides/ItemWheat";
-                            ((MethodInsnNode) m.instructions.get(j + 5)).desc = "(Ljava/lang/String;)L" + HMModInfo.ASMPATH + "items/overrides/ItemWheat;";
-                            ((MethodInsnNode) m.instructions.get(j + 5)).owner = HMModInfo.ASMPATH + "items/overrides/ItemWheat";
-                            ((MethodInsnNode) m.instructions.get(j + 7)).desc = "(Lnet/minecraft/creativetab/CreativeTabs;)L" + HMModInfo.ASMPATH + "items/overrides/ItemWheat;";
-                            ((MethodInsnNode) m.instructions.get(j + 7)).owner = HMModInfo.ASMPATH + "items/overrides/ItemWheat";
-                            ((MethodInsnNode) m.instructions.get(j + 9)).desc = "(Ljava/lang/String;)L" + HMModInfo.ASMPATH + "items/overrides/ItemWheat;";
-                            ((MethodInsnNode) m.instructions.get(j + 9)).owner = HMModInfo.ASMPATH + "items/overrides/ItemWheat";
+                            ((LdcInsnNode) m.instructions.get(j + 14)).cst = -1.0F;
                             break labelTop;
                         }
                     }

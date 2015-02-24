@@ -1,7 +1,7 @@
 package joshie.harvestmoon.items;
 
 import static joshie.harvestmoon.core.helpers.CropHelper.addFarmland;
-import joshie.harvestmoon.blocks.BlockSoil;
+import joshie.harvestmoon.blocks.BlockDirt.FloorType;
 import joshie.harvestmoon.core.helpers.PlayerHelper;
 import joshie.harvestmoon.init.HMBlocks;
 import joshie.harvestmoon.mining.MiningLoot;
@@ -81,11 +81,11 @@ public class ItemHoe extends ItemBaseTool {
                                 addFarmland(world, x2, y, z2);
                                 world.notifyBlockChange(x2, y, z2, Blocks.farmland);
                             }
-                        } else if (block == HMBlocks.dirt) { //Otherwise if it's mine flooring
+                        } else if (block == HMBlocks.dirt && world.getBlockMetadata(x2, y, z2) != FloorType.HOED.ordinal()) { //Otherwise if it's mine flooring
                             doParticles(stack, player, world, x2, y, z2);
                             if (!world.isRemote) {
                                 MiningLoot.getLoot(world, x2, y, z2, player, world.getBlockMetadata(x2, y, z2));
-                                world.setBlock(x2, y, z2, Blocks.farmland, BlockSoil.MINE_HOE, 2);
+                                world.setBlock(x2, y, z2, HMBlocks.dirt, FloorType.HOED.ordinal(), 2);
                             }
                         }
 

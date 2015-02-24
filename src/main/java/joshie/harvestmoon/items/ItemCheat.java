@@ -1,5 +1,6 @@
 package joshie.harvestmoon.items;
 
+import joshie.harvestmoon.core.handlers.ChunkTester;
 import joshie.harvestmoon.core.handlers.CodeGeneratorBuildings;
 import joshie.harvestmoon.core.handlers.CodeGeneratorRendering;
 import joshie.harvestmoon.core.helpers.generic.MCClientHelper;
@@ -12,11 +13,12 @@ public class ItemCheat extends ItemHMMeta {
     private static final int CODE_GENERATOR = 1;
     private static final int RENDER_GENERATOR = 2;
     private static final int META_CHECKER = 3;
+    private static final int CHUNK_TESTER = 4;
     private static int x1, x2, y1, y2, z1, z2;
 
     @Override
     public int getMetaCount() {
-        return 4;
+        return 5;
     }
 
     @Override
@@ -47,6 +49,8 @@ public class ItemCheat extends ItemHMMeta {
                 MCClientHelper.addToChat("Metadata: " + world.getBlockMetadata(xCoord, yCoord, zCoord));
                 MCClientHelper.addToChat("" + world.getBlock(xCoord, yCoord, zCoord).getClass());
             }
+        } else if (damage == CHUNK_TESTER) {
+            ChunkTester.activate(world, xCoord, yCoord, zCoord);
         }
 
         return false;
@@ -63,6 +67,8 @@ public class ItemCheat extends ItemHMMeta {
                 return "render_generator";
             case META_CHECKER:
                 return "meta_checker";
+            case CHUNK_TESTER:
+                return "chunk_tester";
             default:
                 return "invalid";
         }

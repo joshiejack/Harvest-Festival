@@ -1,15 +1,20 @@
 package joshie.harvestmoon.core.helpers;
 
 import joshie.harvestmoon.core.helpers.generic.ItemHelper;
+import joshie.harvestmoon.core.lib.HMModInfo;
 import joshie.harvestmoon.crops.Crop;
 import joshie.harvestmoon.crops.CropData;
 import joshie.harvestmoon.crops.CropTrackerClient;
 import joshie.harvestmoon.crops.CropTrackerServer;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockFarmland;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -27,10 +32,38 @@ public class CropHelper {
         return getClientTracker().getIconForCrop(world, x, y, z);
     }
     
-    public static void hydrate(World world, int x, int y, int z) {
-        if(!world.isRemote) {
-            getServerTracker().hydrate(world, x, y, z);
+    public static boolean hydrate(World world, int x, int y, int z) {
+        int meta = world.getBlockMetadata(x, y, z);
+        boolean ret = meta == 7 ? false : world.setBlockMetadataWithNotify(x, y, z, 7, 2);
+        if (ret) {
+            if(!world.isRemote) {
+                getServerTracker().hydrate(world, x, y + 1, z);
+            }
         }
+        
+        return ret;
+    }
+    
+
+    //Returns false if the soil is no longer farmland
+    public static boolean dehydrate(World world, int x, int y, int z) {
+        Block block = world.getBlock(x, y + 1, z);
+        int meta = world.getBlockMetadata(x, y, z);
+        if (meta == HMModInfo.FARMLAND_MINE_HOED_META) {
+            return true;
+        } else if (block instanceof IPlantable && world.getBlock(x, y, z).canSustainPlant(world, x, y, z, ForgeDirection.UP, (IPlantable) block)) {
+            world.setBlockMetadataWithNotify(x, y, z, 0, 2);
+            return true;
+        } else if (meta == 7) {
+            world.setBlockMetadataWithNotify(x, y, z, 0, 2);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean isHydrated(World world, int x, int y, int z) {
+        return world.getBlock(x, y, z) instanceof BlockFarmland && world.getBlockMetadata(x, y, z) == 7;
     }
     
     public static boolean plantCrop(EntityPlayer player, World world, int x, int y, int z, Crop crop, int quality) {
@@ -63,6 +96,7 @@ public class CropHelper {
         }
     }
     
+    /** DO NOT RENAME */
     public static void removeFarmland(World world, int x, int y, int z) {
         if (!world.isRemote) {
             getServerTracker().removeFarmland(world, x, y, z);

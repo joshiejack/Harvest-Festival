@@ -3,9 +3,9 @@ import static joshie.harvestmoon.core.helpers.generic.ConfigHelper.getBoolean;
 import net.minecraftforge.common.config.Configuration;
 
 public class General {
-    public static boolean DEBUG_MODE;
+    public static boolean DEBUG_MODE = true;
     
     public static void init (Configuration config) {
-        DEBUG_MODE = getBoolean("Enable Debug Mode", false);
+        //DEBUG_MODE = getBoolean("Enable Debug Mode", false);
     }
 }

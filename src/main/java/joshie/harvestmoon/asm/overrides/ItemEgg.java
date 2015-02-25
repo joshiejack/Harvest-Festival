@@ -5,7 +5,7 @@ import static joshie.harvestmoon.core.helpers.SizeableHelper.getSize;
 
 import java.util.List;
 
-import joshie.harvestmoon.api.interfaces.IShippable;
+import joshie.harvestmoon.core.config.General;
 import joshie.harvestmoon.core.helpers.SizeableHelper;
 import joshie.harvestmoon.core.lib.HMModInfo;
 import joshie.harvestmoon.core.lib.SizeableMeta;
@@ -26,7 +26,7 @@ public class ItemEgg {
     public static IIcon[] icons;
     
     public static long getSellValue(ItemStack stack) {
-        double quality = 1 + (getQuality(stack.getItemDamage()) * IShippable.SELL_QUALITY_MODIFIER);
+        double quality = 1 + (getQuality(stack.getItemDamage()) * General.SELL_QUALITY_MODIFIER);
         return (long) quality * SizeableMeta.EGG.getSellValue(getSize(stack.getItemDamage()));
     }
     

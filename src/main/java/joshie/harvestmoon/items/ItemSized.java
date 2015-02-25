@@ -8,6 +8,7 @@ import java.util.List;
 
 import joshie.harvestmoon.api.interfaces.IRateable;
 import joshie.harvestmoon.api.interfaces.IShippable;
+import joshie.harvestmoon.core.config.General;
 import joshie.harvestmoon.core.helpers.SizeableHelper;
 import joshie.harvestmoon.core.lib.SizeableMeta;
 import joshie.harvestmoon.core.lib.SizeableMeta.Size;
@@ -33,7 +34,7 @@ public class ItemSized extends ItemHMMeta implements IShippable, IRateable {
     @Override
     public long getSellValue(ItemStack stack) {
         SizeableMeta meta = SizeableMeta.values()[getType(stack.getItemDamage())];
-        double quality = 1 + (getQuality(stack.getItemDamage()) * SELL_QUALITY_MODIFIER);
+        double quality = 1 + (getQuality(stack.getItemDamage()) * General.SELL_QUALITY_MODIFIER);
         return (long) quality * meta.getSellValue(getSize(stack.getItemDamage()));
     }
 

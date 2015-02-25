@@ -5,7 +5,7 @@ import static joshie.harvestmoon.core.helpers.CropHelper.isGiant;
 
 import java.util.List;
 
-import joshie.harvestmoon.api.interfaces.IShippable;
+import joshie.harvestmoon.core.config.General;
 import joshie.harvestmoon.crops.Crop;
 import joshie.harvestmoon.init.HMConfiguration;
 import joshie.harvestmoon.init.HMCrops;
@@ -36,7 +36,7 @@ public class ItemSeedFood {
         Crop crop = getCrop(stack);
         if (crop == null || crop.isStatic()) return 0;
         boolean isGiant = isGiant(stack.getItemDamage());
-        double quality = 1 + (getCropQuality(stack.getItemDamage()) * IShippable.SELL_QUALITY_MODIFIER);
+        double quality = 1 + (getCropQuality(stack.getItemDamage()) * General.SELL_QUALITY_MODIFIER);
         long ret = (int) quality * crop.getSellValue();
         return (int) (isGiant ? ret * 10 : ret);
     }

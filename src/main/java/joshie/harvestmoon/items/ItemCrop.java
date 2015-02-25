@@ -11,6 +11,7 @@ import java.util.List;
 import joshie.harvestmoon.api.interfaces.IRateable;
 import joshie.harvestmoon.api.interfaces.IShippable;
 import joshie.harvestmoon.core.HMTab;
+import joshie.harvestmoon.core.config.General;
 import joshie.harvestmoon.core.lib.CropMeta;
 import joshie.harvestmoon.crops.Crop;
 import net.minecraft.creativetab.CreativeTabs;
@@ -36,7 +37,7 @@ public class ItemCrop extends ItemHMMeta implements IShippable, IRateable {
         Crop crop = getCropFromStack(stack);
         if (crop.isStatic()) return 0;
         boolean isGiant = isGiant(stack.getItemDamage());
-        double quality = 1 + (getCropQuality(stack.getItemDamage()) * SELL_QUALITY_MODIFIER);
+        double quality = 1 + (getCropQuality(stack.getItemDamage()) * General.SELL_QUALITY_MODIFIER);
         long ret = (int) quality * crop.getSellValue();
         return isGiant ? ret * 10 : ret;
     }

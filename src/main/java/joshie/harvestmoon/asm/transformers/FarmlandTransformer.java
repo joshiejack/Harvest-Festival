@@ -49,6 +49,21 @@ public class FarmlandTransformer implements ITransformer {
         mv.visitMaxs(4, 7);
         mv.visitEnd();
 
+        //Return the relative block hardness
+        name = "getPlayerRelativeBlockHardness";
+        mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, "(Lnet/minecraft/entity/player/EntityPlayer;Lnet/minecraft/world/World;III)F", null, null);
+        mv.visitCode();
+        mv.visitVarInsn(Opcodes.ALOAD, 0);
+        mv.visitVarInsn(Opcodes.ALOAD, 1);
+        mv.visitVarInsn(Opcodes.ALOAD, 2);
+        mv.visitVarInsn(Opcodes.ILOAD, 3);
+        mv.visitVarInsn(Opcodes.ILOAD, 4);
+        mv.visitVarInsn(Opcodes.ILOAD, 5);
+        mv.visitMethodInsn(Opcodes.INVOKESTATIC, HMModInfo.ASMPATH + "asm/overrides/BlockFarmland", name, "(Lnet/minecraft/block/Block;Lnet/minecraft/entity/player/EntityPlayer;Lnet/minecraft/world/World;III)F", false);
+        mv.visitInsn(Opcodes.FRETURN);
+        mv.visitMaxs(5, 6);
+        mv.visitEnd();
+
         cr.accept(cw, 0);
         return cw.toByteArray();
     }

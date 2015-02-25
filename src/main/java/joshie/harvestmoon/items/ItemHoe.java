@@ -100,6 +100,6 @@ public class ItemHoe extends ItemBaseTool {
     private void doParticles(ItemStack stack, EntityPlayer player, World world, int x, int y, int z) {
         displayParticle(world, x, y, z, "blockcrack_3_0");
         playSound(world, x, y, z, Blocks.farmland.stepSound.getStepResourcePath());
-        PlayerHelper.performTask(player, getExhaustionRate(stack));
+        PlayerHelper.performTask(player, stack, getExhaustionRate(stack));
     }
 }

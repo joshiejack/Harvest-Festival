@@ -12,6 +12,7 @@ import joshie.harvestmoon.player.PlayerDataClient;
 import joshie.harvestmoon.player.PlayerDataServer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.server.MinecraftServer;
@@ -20,11 +21,13 @@ public class PlayerHelper {
     private static final Random rand = new Random();
 
     public static void performTask(EntityPlayer player) {
-        performTask(player, 1D);
+        performTask(player, player.getCurrentEquippedItem(), 1D);
     }
 
     /** Should always be called client and server side **/
-    public static void performTask(EntityPlayer player, double amount) {
+    public static void performTask(EntityPlayer player, ItemStack stack, double amount) {
+        ToolHelper.levelTool(stack);
+        
         if (player.capabilities.isCreativeMode) return; //If the player is in creative don't exhaust them
         double stamina = getStamina(player);
         double fatigue = getFatigue(player);

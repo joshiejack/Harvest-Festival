@@ -84,7 +84,7 @@ public class ItemSickle extends ItemBaseTool {
 
                         displayParticle(world, x2, y + 1, z2, "blockcrack_31_1");
                         playSound(world, x2, y + 1, z2, soundTypeGrass.soundName);
-                        PlayerHelper.performTask(player, getExhaustionRate(stack));
+                        PlayerHelper.performTask(player, stack, getExhaustionRate(stack));
                     }
                 }
             }

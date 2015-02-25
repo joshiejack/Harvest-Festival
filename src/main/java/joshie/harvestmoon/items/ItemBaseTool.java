@@ -2,10 +2,13 @@ package joshie.harvestmoon.items;
 
 import java.util.List;
 
+import joshie.harvestmoon.api.interfaces.ILevelable;
+import joshie.harvestmoon.api.interfaces.ITiered;
 import joshie.harvestmoon.core.config.Tools;
 import joshie.harvestmoon.core.util.Translate;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -14,7 +17,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public abstract class ItemBaseTool extends ItemBaseSingle {
+public abstract class ItemBaseTool extends ItemBaseSingle implements ILevelable, ITiered {
     public static enum ToolTier {
         BASIC("WOOD"), COPPER("GOLD"), SILVER("STONE"), GOLD("IRON"), MYSTRIL("DIAMOND"), CURSED, BLESSED, MYTHIC;
 
@@ -49,14 +52,28 @@ public abstract class ItemBaseTool extends ItemBaseSingle {
         return false;
     }
 
-    protected ToolTier getTier(ItemStack stack) {
+    @Override
+    public int getLevel(ItemStack stack) {
+        if (!stack.hasTagCompound()) {
+            return 0;
+        }
+
+        return (int) stack.getTagCompound().getDouble("Level");
+    }
+
+    @Override
+    public ToolTier getTier(ItemStack stack) {
         int safe = Math.min(Math.max(0, stack.getItemDamage()), (ToolTier.values().length - 1));
         return ToolTier.values()[safe];
     }
 
-    public abstract int getFront(ItemStack stack);
+    public int getFront(ItemStack stack) {
+        return 0;
+    }
 
-    public abstract int getSides(ItemStack stack);
+    public int getSides(ItemStack stack) {
+        return 0;
+    }
 
     public double getExhaustionRate(ItemStack stack) {
         ToolTier tier = getTier(stack);
@@ -76,6 +93,28 @@ public abstract class ItemBaseTool extends ItemBaseSingle {
                 return 2.5D;
             case MYTHIC:
                 return 3D;
+            default:
+                return 0;
+        }
+    }
+
+    public double getLevelIncrease(ItemStack stack) {
+        ToolTier tier = getTier(stack);
+        switch (tier) {
+            case BASIC:
+                return 0.39215682745098D;
+            case COPPER:
+                return 0.196078431372549D;
+            case SILVER:
+            case GOLD:
+                return 0.130718954248366D;
+            case MYSTRIL:
+                return 0.0980392156862745D;
+            case CURSED:
+            case BLESSED:
+                return 0.0784313725490196D;
+            case MYTHIC:
+                return 0.0392156862745098D;
             default:
                 return 0;
         }
@@ -131,6 +170,18 @@ public abstract class ItemBaseTool extends ItemBaseSingle {
 
     protected void playSound(World world, int x, int y, int z, String sound) {
         world.playSoundEffect((double) ((float) x + 0.5F), (double) ((float) y + 0.5F), (double) ((float) z + 0.5F), sound, world.rand.nextFloat() * 0.25F + 0.75F, world.rand.nextFloat() * 1.0F + 0.5F);
+    }
+
+    protected void dropBlockAsItem(World world, int x, int y, int z, ItemStack stack) {
+        if (!world.isRemote && world.getGameRules().getGameRuleBooleanValue("doTileDrops") && !world.restoringBlockSnapshots) {
+            float f = 0.7F;
+            double d0 = (double) (world.rand.nextFloat() * f) + (double) (1.0F - f) * 0.5D;
+            double d1 = (double) (world.rand.nextFloat() * f) + (double) (1.0F - f) * 0.5D;
+            double d2 = (double) (world.rand.nextFloat() * f) + (double) (1.0F - f) * 0.5D;
+            EntityItem entityitem = new EntityItem(world, (double) x + d0, (double) y + d1, (double) z + d2, stack);
+            entityitem.delayBeforeCanPickup = 10;
+            world.spawnEntityInWorld(entityitem);
+        }
     }
 
     @SideOnly(Side.CLIENT)

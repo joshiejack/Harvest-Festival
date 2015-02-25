@@ -31,7 +31,7 @@ public class HMItems {
     public static Item hoe;
     public static Item sickle;
     public static Item wateringcan;
-
+    
     public static void init() {
         crops = new ItemCrop().setUnlocalizedName("crops.item");
         seeds = new ItemSeeds().setUnlocalizedName("crops.seeds");

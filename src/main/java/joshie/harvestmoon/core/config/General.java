@@ -4,7 +4,7 @@ import net.minecraftforge.common.config.Configuration;
 
 public class General {
     public static double SELL_QUALITY_MODIFIER;
-    public static boolean DEBUG_MODE = false;
+    public static boolean DEBUG_MODE = true;
     
     public static void init (Configuration config) {
         //DEBUG_MODE = getBoolean("Enable Debug Mode", false);

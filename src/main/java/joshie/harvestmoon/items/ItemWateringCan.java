@@ -161,7 +161,7 @@ public class ItemWateringCan extends ItemBaseTool implements IFluidContainerItem
                                 if (CropHelper.hydrate(world, x2, y2, z2)) {
                                     displayParticle(world, x2, y2, z2, "splash");
                                     playSound(world, x2, y2, z2, "game.neutral.swim");
-                                    PlayerHelper.performTask(player, getExhaustionRate(stack));
+                                    PlayerHelper.performTask(player, stack, getExhaustionRate(stack));
                                     if (!player.capabilities.isCreativeMode) {
                                         drain(stack, 1, true);
                                     }

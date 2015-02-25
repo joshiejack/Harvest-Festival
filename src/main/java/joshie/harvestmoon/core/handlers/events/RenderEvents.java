@@ -10,19 +10,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import joshie.harvestmoon.api.interfaces.ILevelable;
 import joshie.harvestmoon.api.interfaces.IRateable;
+import joshie.harvestmoon.api.interfaces.ITiered;
 import joshie.harvestmoon.core.gui.ContainerNPC;
 import joshie.harvestmoon.core.helpers.ClientHelper;
 import joshie.harvestmoon.core.helpers.RatingHelper;
+import joshie.harvestmoon.core.helpers.ToolLevelHelper;
 import joshie.harvestmoon.core.helpers.generic.MCClientHelper;
 import joshie.harvestmoon.core.lib.HMModInfo;
+import joshie.harvestmoon.items.ItemBaseTool.ToolTier;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 
@@ -52,7 +55,10 @@ public class RenderEvents {
                 Slot slot = (Slot) slots.get(o);
                 //Mouse is hovering over this slot
                 ItemStack stack = slot.getStack();
-                if (stack != null && stack.getItem() instanceof IRateable) {
+                if (stack == null) continue;
+                boolean isRateable = stack.getItem() instanceof IRateable;
+                boolean isLevelable = stack.getItem() instanceof ILevelable;
+                if (isRateable || isLevelable) {
                     if (mouse.x >= slot.xDisplayPosition - 1 && mouse.x <= slot.xDisplayPosition + 16 && mouse.y >= slot.yDisplayPosition - 1 && mouse.y <= slot.yDisplayPosition + 16) {
                         final ScaledResolution scaledresolution = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
                         int i = scaledresolution.getScaledWidth();
@@ -61,9 +67,19 @@ public class RenderEvents {
                         final int l = j - Mouse.getY() * j / mc.displayHeight - 1;
                         ArrayList<String> tooltip = new ArrayList();
                         stack.getItem().addInformation(stack, mc.thePlayer, tooltip, false);
-                        int rating = ((IRateable) stack.getItem()).getRating(stack);
-                        if (rating >= 0) {
-                            RatingHelper.drawStarRating(gui, k, l + 17 + (12 * tooltip.size()), rating, mc.fontRenderer);
+                        if (isRateable) {
+                            int rating = ((IRateable) stack.getItem()).getRating(stack);
+                            if (rating >= 0) {
+                                RatingHelper.drawStarRating(gui, k, l + 17 + (12 * tooltip.size()), rating, mc.fontRenderer);
+                            }
+                        } else if (isLevelable) {
+                            ToolTier tier = ToolTier.BASIC;
+                            int level = ((ILevelable) stack.getItem()).getLevel(stack);
+                            if (stack.getItem() instanceof ITiered) {
+                                tier = ((ITiered) stack.getItem()).getTier(stack);
+                            }
+
+                            ToolLevelHelper.drawToolProgress(gui, k, l + 17 + (12 * tooltip.size()), tier, level, mc.fontRenderer);
                         }
                     }
                 }

@@ -26,6 +26,7 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.client.GuiIngameForge;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 
@@ -46,6 +47,11 @@ public class RenderEvents {
         if (gui instanceof GuiContainer && mc.thePlayer.inventory.getItemStack() == null) {
             GuiContainer container = (GuiContainer) gui;
             Point mouse = joshie.harvestmoon.core.helpers.generic.MCClientHelper.getMouse(container);
+            final ScaledResolution scaledresolution = ((GuiIngameForge)mc.ingameGUI).getResolution();
+            int i = scaledresolution.getScaledWidth();
+            int j = scaledresolution.getScaledHeight();
+            final int k = Mouse.getX() * i / mc.displayWidth;
+            final int l = j - Mouse.getY() * j / mc.displayHeight - 1;
 
             GL11.glPushMatrix();
             GL11.glPushAttrib(1048575);
@@ -60,11 +66,6 @@ public class RenderEvents {
                 boolean isLevelable = stack.getItem() instanceof ILevelable;
                 if (isRateable || isLevelable) {
                     if (mouse.x >= slot.xDisplayPosition - 1 && mouse.x <= slot.xDisplayPosition + 16 && mouse.y >= slot.yDisplayPosition - 1 && mouse.y <= slot.yDisplayPosition + 16) {
-                        final ScaledResolution scaledresolution = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
-                        int i = scaledresolution.getScaledWidth();
-                        int j = scaledresolution.getScaledHeight();
-                        final int k = Mouse.getX() * i / mc.displayWidth;
-                        final int l = j - Mouse.getY() * j / mc.displayHeight - 1;
                         ArrayList<String> tooltip = new ArrayList();
                         stack.getItem().addInformation(stack, mc.thePlayer, tooltip, false);
                         if (isRateable) {

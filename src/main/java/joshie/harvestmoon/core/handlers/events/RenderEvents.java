@@ -70,7 +70,7 @@ public class RenderEvents {
                         if (isRateable) {
                             int rating = ((IRateable) stack.getItem()).getRating(stack);
                             if (rating >= 0) {
-                                int y = tooltip.size() == 0? 0: 2 + (10 * tooltip.size());
+                                int y = tooltip.size() <= 1? 10: 2 + (10 * tooltip.size());
                                 RatingHelper.drawStarRating(gui, k, l + 7 + y, rating, mc.fontRenderer);
                             }
                         } else if (isLevelable) {

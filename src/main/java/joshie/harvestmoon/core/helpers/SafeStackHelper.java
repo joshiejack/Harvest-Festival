@@ -2,6 +2,7 @@ package joshie.harvestmoon.core.helpers;
 
 import java.util.HashMap;
 
+import joshie.harvestmoon.api.interfaces.ICropProvider;
 import joshie.harvestmoon.core.util.HMStack;
 import joshie.harvestmoon.core.util.SafeStack;
 import joshie.harvestmoon.core.util.WildStack;
@@ -11,7 +12,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class SafeStackHelper {
     public static SafeStack getSafeStackType(ItemStack stack) {
-        if (stack.getItem() == HMItems.crops || stack.getItem() == HMItems.sized) {
+        if (stack.getItem() instanceof ICropProvider || stack.getItem() == HMItems.sized) {
             return new HMStack(stack);
         } else if (stack.getItemDamage() == OreDictionary.WILDCARD_VALUE) {
             return new WildStack(stack);

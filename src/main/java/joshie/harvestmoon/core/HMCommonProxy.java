@@ -1,5 +1,6 @@
 package joshie.harvestmoon.core;
 
+import joshie.harvestmoon.core.handlers.api.HMApiHandler;
 import joshie.harvestmoon.init.HMAnimals;
 import joshie.harvestmoon.init.HMBlocks;
 import joshie.harvestmoon.init.HMBuildings;
@@ -19,6 +20,7 @@ import joshie.harvestmoon.init.HMShops;
 
 public class HMCommonProxy {
     public void preInit() {
+        HMApiHandler.init();
         HMOverride.init();
         HMConfiguration.init();
         HMCrops.init();
@@ -37,6 +39,6 @@ public class HMCommonProxy {
         HMAnimals.init();
         HMTab.init();
     }
-    
+
     public void init() {}
 }

@@ -108,15 +108,15 @@ public class HMBuildings {
         }
 
         //Townhall Teenager Chest
-        ChestGenHooks.addItem(LootStrings.TOWNHALL_TEENAGER_CHEST, new WeightedRandomChestContent(new ItemStack(HMItems.crops, 1, HMCrops.pineapple.getCropMeta()), 1, 1, 1));
-        ChestGenHooks.addItem(LootStrings.TOWNHALL_TEENAGER_CHEST, new WeightedRandomChestContent(new ItemStack(HMItems.crops, 1, HMCrops.strawberry.getCropMeta()), 2, 3, 5));
+        ChestGenHooks.addItem(LootStrings.TOWNHALL_TEENAGER_CHEST, new WeightedRandomChestContent(HMCrops.pineapple.getCropStack(), 1, 1, 1));
+        ChestGenHooks.addItem(LootStrings.TOWNHALL_TEENAGER_CHEST, new WeightedRandomChestContent(HMCrops.strawberry.getCropStack(), 2, 3, 5));
         ChestGenHooks.addItem(LootStrings.TOWNHALL_TEENAGER_CHEST, new WeightedRandomChestContent(new ItemStack(Items.apple), 1, 3, 10));
         ChestGenHooks.addItem(LootStrings.TOWNHALL_TEENAGER_CHEST, new WeightedRandomChestContent(new ItemStack(Items.melon), 7, 11, 8));
 
         //Market Entry
-        ChestGenHooks.addItem(LootStrings.MARKET_ENTRY_FRAME, new WeightedRandomChestContent(new ItemStack(HMItems.seeds, 1, HMCrops.turnip.getCropMeta()), 1, 1, 10));
-        ChestGenHooks.addItem(LootStrings.MARKET_ENTRY_FRAME, new WeightedRandomChestContent(new ItemStack(HMItems.seeds, 1, HMCrops.potato.getCropMeta()), 1, 1, 5));
-        ChestGenHooks.addItem(LootStrings.MARKET_ENTRY_FRAME, new WeightedRandomChestContent(new ItemStack(HMItems.seeds, 1, HMCrops.cucumber.getCropMeta()), 1, 1, 1));
+        ChestGenHooks.addItem(LootStrings.MARKET_ENTRY_FRAME, new WeightedRandomChestContent(HMCrops.turnip.getSeedStack(), 1, 1, 10));
+        ChestGenHooks.addItem(LootStrings.MARKET_ENTRY_FRAME, new WeightedRandomChestContent(HMCrops.potato.getSeedStack(), 1, 1, 5));
+        ChestGenHooks.addItem(LootStrings.MARKET_ENTRY_FRAME, new WeightedRandomChestContent(HMCrops.cucumber.getSeedStack(), 1, 1, 1));
 
         //Market Bedroom Frame
         ChestGenHooks.addItem(LootStrings.MARKET_BEDROOM_FRAME, new WeightedRandomChestContent(new ItemStack(Items.book), 1, 1, 3));
@@ -158,8 +158,8 @@ public class HMBuildings {
         ChestGenHooks.addItem(LootStrings.JADE_CHEST, new WeightedRandomChestContent(new ItemStack(Blocks.red_flower), 1, 3, 15));
         ChestGenHooks.addItem(LootStrings.JADE_CHEST, new WeightedRandomChestContent(new ItemStack(Blocks.yellow_flower), 1, 2, 10));
         for (Crop crop : Crop.crops) {
-            ChestGenHooks.addItem(LootStrings.JADE_CHEST, new WeightedRandomChestContent(new ItemStack(HMItems.seeds, 1, crop.getCropMeta()), 1, 1, 3));
-            ChestGenHooks.addItem(LootStrings.JADE_CHEST, new WeightedRandomChestContent(new ItemStack(HMItems.crops, 1, crop.getCropMeta()), 2, 3, 5));
+            ChestGenHooks.addItem(LootStrings.JADE_CHEST, new WeightedRandomChestContent(crop.getSeedStack(), 1, 1, 3));
+            ChestGenHooks.addItem(LootStrings.JADE_CHEST, new WeightedRandomChestContent(crop.getCropStack(), 2, 3, 5));
         }
 
         //Chest generations for Yulif Chest

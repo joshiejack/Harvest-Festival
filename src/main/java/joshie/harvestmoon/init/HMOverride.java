@@ -2,10 +2,6 @@ package joshie.harvestmoon.init;
 
 import static joshie.harvestmoon.init.HMConfiguration.vanilla;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,13 +13,9 @@ import joshie.harvestmoon.asm.transformers.SeedFoodTransformer;
 import joshie.harvestmoon.asm.transformers.SnowTransformer;
 import joshie.harvestmoon.asm.transformers.WheatTransformer;
 import joshie.harvestmoon.core.HMTab;
-import joshie.harvestmoon.core.config.Vanilla;
-import joshie.harvestmoon.core.lib.HMModInfo;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.launchwrapper.IClassTransformer;
-
-import org.apache.commons.io.FileUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -46,20 +38,7 @@ public class HMOverride implements IClassTransformer {
         GsonBuilder builder = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping();
         Gson gson = builder.create();
 
-        File file = new File("config/" + HMModInfo.MODPATH + "/vanilla.json");
-        if (!file.exists()) {
-            try {
-                HMConfiguration.vanilla = new Vanilla();
-                Writer writer = new OutputStreamWriter(new FileOutputStream(file), "UTF-8");
-                writer.write(gson.toJson(HMConfiguration.vanilla));
-                writer.close(); //Write the default json to file
-            } catch (Exception e) {}
-        } else {
-            try {
-                HMConfiguration.vanilla = gson.fromJson(FileUtils.readFileToString(file), Vanilla.class);
-            } catch (Exception e) {}
-        }
-
+        HMConfiguration.initASM(gson);
         for (int i = 0; i < transformers.size(); i++) {
             if (!transformers.get(i).isActive(HMConfiguration.vanilla)) {
                 transformers.remove(i);

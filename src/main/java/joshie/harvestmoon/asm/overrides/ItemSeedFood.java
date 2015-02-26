@@ -18,7 +18,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemSeedFood {
-    private static Crop getCrop(ItemStack stack) {
+    public static Crop getCrop(ItemStack stack) {
         Crop crop = null;
         Item item = stack.getItem();
         if (item == Items.carrot && HMConfiguration.vanilla.CARROT_OVERRIDE) {

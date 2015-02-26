@@ -39,7 +39,7 @@ public class QuestTomatoes extends Quest {
         } else if(player.getCurrentEquippedItem() != null) {              
             ItemStack held = player.getCurrentEquippedItem();
             if(held.stackSize >= 10) {
-                if(held.getItem() == HMItems.crops && CropHelper.getCropFromStack(held) == HMCrops.tomato) {
+                if(HMCrops.tomato.matches(held)) {
                     takeHeldStack(player, 10);
                     completeQuest(player, this);
                     return getLocalized("finish");

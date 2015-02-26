@@ -1,7 +1,6 @@
 package joshie.harvestmoon.crops;
 
 import joshie.harvestmoon.calendar.Season;
-import joshie.harvestmoon.core.lib.CropMeta;
 import joshie.harvestmoon.core.lib.HMModInfo;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -14,8 +13,8 @@ public class CropWheat extends Crop {
 
     /** Defaults to 8 stages of growth, with no regrowing 
      * @param color */
-    public CropWheat(String unlocalized, Season[] season, int cost, int sell, int year, CropMeta meta, Block block, int color) {
-        super(unlocalized, season, cost, sell, 28, 0, year, meta, color);
+    public CropWheat(String unlocalized, Season[] season, int cost, int sell, int year, Block block, int color) {
+        super(unlocalized, season, cost, sell, 28, 0, year, color);
         this.block = block;
     }
 

@@ -12,6 +12,7 @@ import java.util.Map;
 import joshie.harvestmoon.core.HMCommonProxy;
 import joshie.harvestmoon.core.util.WorldDestroyer;
 import joshie.harvestmoon.init.HMCommands;
+import joshie.harvestmoon.init.HMConfiguration;
 import joshie.harvestmoon.init.HMOverride;
 import joshie.harvestmoon.init.HMRecipeFixes;
 
@@ -58,6 +59,7 @@ public class HarvestMoon implements IFMLLoadingPlugin {
 
     @EventHandler
     public void onLoadComplete(FMLLoadCompleteEvent event) {
+        HMConfiguration.clear();
         HMRecipeFixes.init();
     }
 

@@ -2,17 +2,25 @@ package joshie.harvestmoon.asm.overrides;
 
 import java.util.List;
 
+import joshie.harvestmoon.api.interfaces.ICropProvider;
 import joshie.harvestmoon.api.interfaces.IRateable;
 import joshie.harvestmoon.api.interfaces.IShippable;
+import joshie.harvestmoon.crops.Crop;
+import joshie.harvestmoon.init.HMCrops;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemWheat extends Item implements IRateable, IShippable {
+public class ItemWheat extends Item implements IRateable, IShippable, ICropProvider {
     public ItemWheat() {
 
+    }
+    
+    @Override
+    public Crop getCrop(ItemStack stack) {
+        return ItemSeedFood.getCrop(stack);
     }
 
     @Override

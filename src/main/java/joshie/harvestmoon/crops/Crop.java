@@ -3,11 +3,12 @@ package joshie.harvestmoon.crops;
 import java.util.ArrayList;
 
 import joshie.harvestmoon.animals.AnimalType.FoodType;
+import joshie.harvestmoon.api.interfaces.ICrop;
 import joshie.harvestmoon.calendar.Season;
-import joshie.harvestmoon.core.lib.CropMeta;
 import joshie.harvestmoon.core.lib.HMModInfo;
 import joshie.harvestmoon.core.util.Translate;
 import joshie.harvestmoon.crops.CropData.WitherType;
+import joshie.harvestmoon.init.HMConfiguration;
 import joshie.harvestmoon.init.HMItems;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
@@ -16,12 +17,13 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.text.WordUtils;
+
+import com.google.gson.annotations.Expose;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class Crop {
+public class Crop implements ICrop {
     public static final ArrayList<Crop> crops = new ArrayList(30);
 
     //CropData
@@ -29,10 +31,11 @@ public class Crop {
     protected IIcon[] stageIcons;
     @SideOnly(Side.CLIENT)
     protected IIcon giantIcon;
+    @Expose
     protected String unlocalized;
     protected boolean alternativeName;
     protected boolean isStatic;
-    protected Item vanillaItem;
+    protected Item item;
     protected Season[] seasons;
     protected int cost;
     protected int sell;
@@ -41,7 +44,7 @@ public class Crop {
     protected int year;
     protected int bag_color;
     protected FoodType foodType;
-    protected CropMeta meta;
+    protected int ordinal;
 
     public Crop() {}
 
@@ -54,24 +57,23 @@ public class Crop {
      * @param regrow the stage this returns to once harvested
      * @param year the year in which this crop can be purchased
      * @param meta the crop meta value for dropping the correct item  */
-    public Crop(String unlocalized, Season season, int cost, int sell, int stages, int regrow, int year, CropMeta meta, int color) {
-        this(unlocalized, new Season[] { season }, cost, sell, stages, regrow, year, meta, color);
+    public Crop(String unlocalized, Season season, int cost, int sell, int stages, int regrow, int year, int color) {
+        this(unlocalized, new Season[] { season }, cost, sell, stages, regrow, year, color);
     }
 
-    public Crop(String unlocalized, Season[] seasons, int cost, int sell, int stages, int regrow, int year, CropMeta meta, int color) {
+    public Crop(String unlocalized, Season[] seasons, int cost, int sell, int stages, int regrow, int year, int color) {
         this.unlocalized = unlocalized;
         this.seasons = seasons;
         this.cost = cost;
         this.sell = sell;
         this.stages = stages;
         this.regrow = regrow;
-        this.meta = meta;
         this.year = year;
         this.isStatic = false;
         this.alternativeName = false;
         this.foodType = FoodType.VEGETABLE;
         this.bag_color = color;
-
+        this.ordinal = HMConfiguration.addCropMapping(this); //Fetch the meta value of this crop
         crops.add(this);
     }
 
@@ -89,15 +91,15 @@ public class Crop {
         this.foodType = foodType;
         return this;
     }
-    
-    public Crop setVanillaItem(Item item) {
-        this.vanillaItem = item;
+
+    public Crop setItem(Item item) {
+        this.item = item;
         return this;
     }
-    
+
     /** Return true if this crop uses an item other than HMCrop item **/
-    public boolean isVanilla() {
-        return vanillaItem != null;
+    public boolean hasItemAssigned() {
+        return item != null;
     }
 
     /** This is the season this crop survives in 
@@ -173,8 +175,8 @@ public class Crop {
 
     /** This is called to get the drop of this crop once it's ready for harvest 
      * @return the CropMeta that this crop should drop */
-    public int getCropMeta() {
-        return meta.ordinal();
+    int getCropMeta() {
+        return ordinal;
     }
 
     /** This is called when bringing up the list of crops for sale 
@@ -194,24 +196,28 @@ public class Crop {
         return foodType;
     }
 
-    public ItemStack getItemStack(int cropSize, int cropMeta, int cropQuality) {
-        if (vanillaItem != null) {
-            return new ItemStack(vanillaItem, 1, cropSize + cropQuality);
-        }
-        
-        return new ItemStack(HMItems.crops, 1, cropSize + cropMeta + cropQuality);
+    public ItemStack getItemStack(int cropSize, int cropQuality) {
+        return new ItemStack(item, 1, cropSize + cropQuality);
+    }
+
+    @Override
+    public ItemStack getSeedStack() {
+        return new ItemStack(HMItems.seeds, 1, getCropMeta());
+    }
+
+    @Override
+    public ItemStack getCropStack() {
+        return new ItemStack(item);
+    }
+
+    public boolean matches(ItemStack stack) {
+        return (stack.getItem() == getCropStack().getItem());
     }
 
     /** Gets the unlocalized name for this crop
      * @return unlocalized name */
     public String getUnlocalizedName() {
         return unlocalized;
-    }
-
-    /** Returns a render appropriate name
-     * return render name */
-    public final String getRenderName() {
-        return "Render" + WordUtils.capitalize(getUnlocalizedName(), '_').replace("_", "");
     }
 
     /** Gets the localized crop name for this crop

@@ -19,7 +19,7 @@ public class HMAnimals {
         registerFoodsAsType(FoodType.VEGETABLE, Items.carrot);
 
         for (Crop crop : Crop.crops) {
-            registerFoodAsType(new ItemStack(HMItems.crops, 1, crop.getCropMeta()), crop.getFoodType());
+            registerFoodAsType(crop.getCropStack(), crop.getFoodType());
         }
 
         registerFoodAsType(new ItemStack(HMItems.general, 1, ItemGeneral.CHICKEN_FEED), FoodType.SEED);

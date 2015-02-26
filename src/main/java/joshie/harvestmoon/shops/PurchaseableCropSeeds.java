@@ -6,7 +6,6 @@ import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.core.helpers.CalendarHelper;
 import joshie.harvestmoon.core.helpers.PlayerHelper;
 import joshie.harvestmoon.crops.Crop;
-import joshie.harvestmoon.init.HMItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -44,6 +43,6 @@ public class PurchaseableCropSeeds implements IPurchaseable {
 
     @Override
     public ItemStack[] getProducts() {
-        return new ItemStack[] { new ItemStack(HMItems.seeds, 1, crop.getCropMeta()) };
+        return new ItemStack[] { crop.getSeedStack() };
     }
 }

@@ -39,6 +39,6 @@ public class HMTab extends CreativeTabs {
     }
 
     public static void init() {
-        HMTab.tabGeneral.setStack(new ItemStack(HMItems.crops, 1, HMCrops.tomato.getCropMeta()));
+        HMTab.tabGeneral.setStack(HMCrops.tomato.getCropStack());
     }
 }

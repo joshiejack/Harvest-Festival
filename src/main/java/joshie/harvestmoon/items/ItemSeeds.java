@@ -1,8 +1,6 @@
 package joshie.harvestmoon.items;
 
-import static joshie.harvestmoon.core.helpers.CropHelper.getCropFromStack;
 import static joshie.harvestmoon.core.helpers.CropHelper.getCropQuality;
-import static joshie.harvestmoon.core.helpers.CropHelper.getCropType;
 import static joshie.harvestmoon.core.helpers.CropHelper.isGiant;
 import static joshie.harvestmoon.core.helpers.CropHelper.plantCrop;
 import static joshie.harvestmoon.core.lib.HMModInfo.SEEDPATH;
@@ -13,7 +11,6 @@ import joshie.harvestmoon.api.interfaces.IRateable;
 import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.core.config.Crops;
 import joshie.harvestmoon.core.helpers.CropHelper;
-import joshie.harvestmoon.core.lib.CropMeta;
 import joshie.harvestmoon.core.lib.HMModInfo;
 import joshie.harvestmoon.crops.Crop;
 import joshie.harvestmoon.init.HMBlocks;
@@ -39,18 +36,18 @@ public class ItemSeeds extends ItemHMMeta implements IRateable {
 
     @Override
     public int getMetaCount() {
-        return CropMeta.values().length;
+        return Crop.crops.size();
     }
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        return CropHelper.getCropFromStack(stack).getSeedsName(isGiant(stack.getItemDamage()));
+        return CropHelper.getCropFromOrdinal(stack.getItemDamage()).getSeedsName(isGiant(stack.getItemDamage()));
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean debug) {
-        Crop crop = CropHelper.getCropFromStack(stack);
+        Crop crop = CropHelper.getCropFromOrdinal(stack.getItemDamage());
         int quality = getCropQuality(stack.getItemDamage());
         for (Season season : crop.getSeasons()) {
             list.add(season.getTextColor() + season.getLocalized());
@@ -62,7 +59,7 @@ public class ItemSeeds extends ItemHMMeta implements IRateable {
         if (side != 1) {
             return false;
         } else {
-            Crop crop = CropHelper.getCropFromStack(stack);
+            Crop crop = CropHelper.getCropFromOrdinal(stack.getItemDamage());
             int quality = CropHelper.getCropQuality(stack.getItemDamage());
             int y = yCoord;
             int planted = 0;
@@ -94,7 +91,7 @@ public class ItemSeeds extends ItemHMMeta implements IRateable {
 
     @Override
     public int getRating(ItemStack stack) {
-        Crop crop = getCropFromStack(stack);
+        Crop crop = CropHelper.getCropFromOrdinal(stack.getItemDamage());
         if (crop.isStatic()) return -1;
         else return getCropQuality(stack.getItemDamage()) / 10;
     }
@@ -106,12 +103,11 @@ public class ItemSeeds extends ItemHMMeta implements IRateable {
 
     @Override
     public IIcon getIconFromDamageForRenderPass(int damage, int pass) {
-        int cropMeta = getCropType(damage);
         if (pass == 1) return seed_bag_body;
         else if (pass == 2) return seed_bag_neck;
         else {
-            Crop crop = CropHelper.getCropFromOrdinal(cropMeta);
-            return crop.getItemStack(0, cropMeta, 0).getIconIndex();
+            Crop crop = CropHelper.getCropFromDamage(damage);
+            return crop.getCropStack().getIconIndex();
         }
     }
 
@@ -122,7 +118,7 @@ public class ItemSeeds extends ItemHMMeta implements IRateable {
 
     @Override
     public int getColorFromItemStack(ItemStack stack, int pass) {
-        Crop crop = CropHelper.getCropFromStack(stack);
+        Crop crop = CropHelper.getCropFromDamage(stack.getItemDamage());
         if (pass == 1) return crop.getColor();
         else if (pass == 2) return 0xFFFFFF;
         else return super.getColorFromItemStack(stack, pass);
@@ -135,7 +131,7 @@ public class ItemSeeds extends ItemHMMeta implements IRateable {
 
     @Override
     public String getName(ItemStack stack) {
-        return getCropFromStack(stack).getUnlocalizedName();
+        return CropHelper.getCropFromOrdinal(stack.getItemDamage()).getUnlocalizedName();
     }
 
     @SideOnly(Side.CLIENT)

@@ -1,5 +1,6 @@
 package joshie.harvestmoon.core.util;
 
+import joshie.harvestmoon.api.interfaces.ICropProvider;
 import joshie.harvestmoon.core.helpers.CropHelper;
 import joshie.harvestmoon.core.helpers.SizeableHelper;
 import joshie.harvestmoon.core.lib.SizeableMeta;
@@ -14,7 +15,7 @@ public class HMStack extends SafeStack {
     public HMStack(ItemStack stack) {
         super(stack);
 
-        if (stack.getItem() == HMItems.crops) {
+        if (stack.getItem() instanceof ICropProvider) {
             crop = CropHelper.getCropFromStack(stack);
         } else if (stack.getItem() == HMItems.sized) {
             sized = SizeableHelper.getSizeableFromStack(stack);

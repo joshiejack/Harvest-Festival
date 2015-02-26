@@ -20,9 +20,8 @@ public interface ICrop {
      * @param       true if we are asking for the crops item name, 
      *              false if we are asking for it's block name
      *              
-     * @param       whether the crop is giant or not
      * @return      the localized name*/
-    public String getCropName(boolean isItem, boolean isGiant);
+    public String getCropName(boolean isItem);
 
     /** Returns how much this crop will sell for at 0.5 start
      * @return      money gained from selling*/

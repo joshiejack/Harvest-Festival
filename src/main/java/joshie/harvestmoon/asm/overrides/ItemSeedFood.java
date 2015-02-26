@@ -1,11 +1,11 @@
 package joshie.harvestmoon.asm.overrides;
 
 import static joshie.harvestmoon.core.helpers.CropHelper.getCropQuality;
-import static joshie.harvestmoon.core.helpers.CropHelper.isGiant;
 
 import java.util.List;
 
 import joshie.harvestmoon.api.crops.ICrop;
+import joshie.harvestmoon.core.config.Crops;
 import joshie.harvestmoon.core.config.General;
 import joshie.harvestmoon.init.HMConfiguration;
 import joshie.harvestmoon.init.HMCrops;
@@ -35,10 +35,8 @@ public class ItemSeedFood {
     public static long getSellValue(ItemStack stack) {
         ICrop crop = getCrop(stack);
         if (crop == null || crop.isStatic()) return 0;
-        boolean isGiant = isGiant(stack.getItemDamage());
         double quality = 1 + (getCropQuality(stack.getItemDamage()) * General.SELL_QUALITY_MODIFIER);
-        long ret = (int) quality * crop.getSellValue();
-        return (int) (isGiant ? ret * 10 : ret);
+        return (long) (quality * crop.getSellValue());
     }
 
     public static int getRating(ItemStack stack) {
@@ -50,13 +48,13 @@ public class ItemSeedFood {
     public static String getItemStackDisplayName(ItemStack stack) {
         ICrop crop = getCrop(stack);
         if (crop == null) return ("" + StatCollector.translateToLocal(stack.getItem().getUnlocalizedNameInefficiently(stack) + ".name")).trim();
-        else return crop.getCropName(true, isGiant(stack.getItemDamage()));
+        else return crop.getCropName(true);
     }
 
     @SideOnly(Side.CLIENT)
     public static void getSubItems(Item item, CreativeTabs tab, List list) {
         if (getCrop(new ItemStack(item)) != null) {
-            for (int j = 0; j < 100; j += 100) {
+            for (int j = 0; j < 100; j += Crops.CROP_QUALITY_LOOP) {
                 list.add(new ItemStack(item, 1, (j * 100)));
             }
         } else list.add(new ItemStack(item, 1, 0));

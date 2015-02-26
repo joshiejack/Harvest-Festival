@@ -14,7 +14,6 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import net.minecraft.util.StatCollector;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -29,8 +28,6 @@ public class Crop implements ICrop {
     //CropData
     @SideOnly(Side.CLIENT)
     protected IIcon[] stageIcons;
-    @SideOnly(Side.CLIENT)
-    protected IIcon giantIcon;
     @Expose
     protected String unlocalized;
     protected boolean alternativeName;
@@ -196,8 +193,8 @@ public class Crop implements ICrop {
         return foodType;
     }
 
-    public ItemStack getItemStack(int cropSize, int cropQuality) {
-        return new ItemStack(item, 1, cropSize + cropQuality);
+    public ItemStack getItemStack(int cropQuality) {
+        return new ItemStack(item, 1, cropQuality);
     }
 
     @Override
@@ -223,48 +220,30 @@ public class Crop implements ICrop {
     /** Gets the localized crop name for this crop
      * @param stack 
      * @return crop name */
-    public final String getCropName(boolean isItem, boolean isGiant) {
+    public final String getCropName(boolean isItem) {
         String suffix = alternativeName ? ((isItem) ? ".item" : ".block") : "";
-        String name = Translate.translate("crop." + StringUtils.replace(getUnlocalizedName(), "_", ".") + suffix);
-        if (!isGiant) {
-            return name;
-        } else {
-            String text = Translate.translate("crop.giant.format");
-            if (!isStatic()) {
-                String giant = Translate.translate("crop.giant");
-                text = StringUtils.replace(text, "%G", giant);
-            } else text = StringUtils.replace(text, " %G", "");
-
-            text = StringUtils.replace(text, "%C", name);
-            return text;
-        }
+        return Translate.translate("crop." + StringUtils.replace(getUnlocalizedName(), "_", ".") + suffix);
     }
 
     /** Gets the localized seed name for this crop
      * @return seed name */
-    public final String getSeedsName(boolean isGiant) {
+    public final String getSeedsName() {
         String suffix = alternativeName ? ".block" : "";
         String name = Translate.translate("crop." + StringUtils.replace(getUnlocalizedName(), "_", ".") + suffix);
         String seeds = Translate.translate("crop.seeds");
         String text = Translate.translate("crop.seeds.format.standard");
-        if (isGiant) {
-            text = StatCollector.translateToLocal(HMModInfo.MODPATH + ".crop.seeds.format.giant");
-            text = StringUtils.replace(text, "%G", Translate.translate("crop.giant"));
-        }
-
         text = StringUtils.replace(text, "%C", name);
         text = StringUtils.replace(text, "%S", seeds);
         return text;
     }
 
     @SideOnly(Side.CLIENT)
-    public IIcon getIcon(int stage, boolean isGiantCrop) {
-        return isGiantCrop && stage == getStages() ? giantIcon : stageIcons[Math.max(0, stage - 1)];
+    public IIcon getIcon(int stage) {
+        return stageIcons[Math.max(0, stage - 1)];
     }
 
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister register) {
-        giantIcon = register.registerIcon(HMModInfo.CROPPATH + unlocalized + "/stage_giant");
         stageIcons = new IIcon[getStages()];
         for (int i = 0; i < getStages(); i++) {
             stageIcons[i] = register.registerIcon(HMModInfo.CROPPATH + unlocalized + "/stage_" + i);

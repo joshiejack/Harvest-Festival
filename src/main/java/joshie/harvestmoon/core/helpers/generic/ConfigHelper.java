@@ -27,6 +27,10 @@ public class ConfigHelper {
         return config.get(name, name, dft).getInt();
     }
     
+    public static int getInteger(String name, int dft, String comment) {
+        return config.get(name, name, dft, comment).getInt();
+    }
+    
     public static double getDouble(String name, double dft) {
         return config.get(name, name, dft).getDouble();
     }

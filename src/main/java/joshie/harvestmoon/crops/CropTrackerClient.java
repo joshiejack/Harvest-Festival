@@ -19,10 +19,6 @@ public class CropTrackerClient {
         return new WorldLocation(world.provider.dimensionId, x, y, z);
     }
 
-    public boolean isCropGiant(World world, int x, int y, int z) {
-        return crops.get(getKey(world, x, y, z)).isGiant();
-    }
-
     public int getCropStage(World world, int x, int y, int z) {
         return crops.get(getKey(world, x, y, z)).getStage();
     }

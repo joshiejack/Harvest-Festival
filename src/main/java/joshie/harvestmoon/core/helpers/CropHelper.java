@@ -115,22 +115,12 @@ public class CropHelper {
 
     /** @return returns the Quality of this crop **/
     public static int getCropQuality(int meta) {
-        return (int) Math.ceil(getInternalMeta(meta) / 100);
+        return (int) Math.ceil(meta / 100);
     }
 
     /** @return Returns the CropMeta for this crop **/
     private static int getCropType(int meta) {
-        return getInternalMeta(meta) % 100;
-    }
-
-    /** @return Returns a value of metadata, removing the the size data **/
-    private static int getInternalMeta(int meta) {
-        return meta % 16000;
-    }
-
-    /** Whether this crop is a giant crop or small **/
-    public static boolean isGiant(int meta) {
-        return ((int) (meta / 16000)) == 1;
+        return meta % 100;
     }
 
     public static void onHarvested(EntityPlayer player, CropData data) {

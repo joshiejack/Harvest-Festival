@@ -1,7 +1,6 @@
 package joshie.harvestmoon.items;
 
 import static joshie.harvestmoon.core.helpers.CropHelper.getCropQuality;
-import static joshie.harvestmoon.core.helpers.CropHelper.isGiant;
 import static joshie.harvestmoon.core.lib.HMModInfo.CROPPATH;
 
 import java.util.List;
@@ -11,6 +10,7 @@ import joshie.harvestmoon.api.core.IShippable;
 import joshie.harvestmoon.api.crops.ICrop;
 import joshie.harvestmoon.api.crops.ICropProvider;
 import joshie.harvestmoon.core.HMTab;
+import joshie.harvestmoon.core.config.Crops;
 import joshie.harvestmoon.core.config.General;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -36,10 +36,8 @@ public class ItemCrop extends ItemHMMeta implements IShippable, IRateable, ICrop
     @Override
     public long getSellValue(ItemStack stack) {
         if (crop.isStatic()) return 0;
-        boolean isGiant = isGiant(stack.getItemDamage());
         double quality = 1 + (getCropQuality(stack.getItemDamage()) * General.SELL_QUALITY_MODIFIER);
-        long ret = (int) quality * crop.getSellValue();
-        return isGiant ? ret * 10 : ret;
+        return (long) (quality * crop.getSellValue());
     }
 
     @Override
@@ -49,7 +47,7 @@ public class ItemCrop extends ItemHMMeta implements IShippable, IRateable, ICrop
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        return crop.getCropName(true, isGiant(stack.getItemDamage()));
+        return crop.getCropName(true);
     }
 
     @Override
@@ -72,7 +70,7 @@ public class ItemCrop extends ItemHMMeta implements IShippable, IRateable, ICrop
     @SideOnly(Side.CLIENT)
     @Override
     public void getSubItems(Item item, CreativeTabs tab, List list) {
-        for (int j = 0; j < 100; j += 100) {
+        for (int j = 0; j < 100; j += Crops.CROP_QUALITY_LOOP) {
             ItemStack stack = new ItemStack(item, 1, (j * 100));
             if ((crop.isStatic() && j == 0) || !crop.isStatic()) {
                 list.add(stack);

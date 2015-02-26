@@ -2,7 +2,6 @@ package joshie.harvestmoon.core;
 
 import static joshie.harvestmoon.core.lib.HMModInfo.MODPATH;
 import joshie.harvestmoon.init.HMCrops;
-import joshie.harvestmoon.init.HMItems;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;

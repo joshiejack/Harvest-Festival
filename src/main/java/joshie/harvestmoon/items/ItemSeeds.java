@@ -1,7 +1,6 @@
 package joshie.harvestmoon.items;
 
 import static joshie.harvestmoon.core.helpers.CropHelper.getCropQuality;
-import static joshie.harvestmoon.core.helpers.CropHelper.isGiant;
 import static joshie.harvestmoon.core.helpers.CropHelper.plantCrop;
 import static joshie.harvestmoon.core.lib.HMModInfo.SEEDPATH;
 
@@ -41,13 +40,13 @@ public class ItemSeeds extends ItemHMMeta implements IRateable {
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        return CropHelper.getCropFromOrdinal(stack.getItemDamage()).getSeedsName(isGiant(stack.getItemDamage()));
+        return CropHelper.getCropFromDamage(stack.getItemDamage()).getSeedsName();
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean debug) {
-        Crop crop = CropHelper.getCropFromOrdinal(stack.getItemDamage());
+        Crop crop = CropHelper.getCropFromDamage(stack.getItemDamage());
         int quality = getCropQuality(stack.getItemDamage());
         for (Season season : crop.getSeasons()) {
             list.add(season.getTextColor() + season.getLocalized());
@@ -59,7 +58,7 @@ public class ItemSeeds extends ItemHMMeta implements IRateable {
         if (side != 1) {
             return false;
         } else {
-            Crop crop = CropHelper.getCropFromOrdinal(stack.getItemDamage());
+            Crop crop = CropHelper.getCropFromDamage(stack.getItemDamage());
             int quality = CropHelper.getCropQuality(stack.getItemDamage());
             int y = yCoord;
             int planted = 0;
@@ -91,7 +90,9 @@ public class ItemSeeds extends ItemHMMeta implements IRateable {
 
     @Override
     public int getRating(ItemStack stack) {
-        Crop crop = CropHelper.getCropFromOrdinal(stack.getItemDamage());
+        System.out.println(getCropQuality(stack.getItemDamage()));
+        
+        Crop crop = CropHelper.getCropFromDamage(stack.getItemDamage());
         if (crop.isStatic()) return -1;
         else return getCropQuality(stack.getItemDamage()) / 10;
     }
@@ -138,8 +139,8 @@ public class ItemSeeds extends ItemHMMeta implements IRateable {
     @Override
     public void getSubItems(Item item, CreativeTabs tab, List list) {
         for (int i = 0; i < getMetaCount(); i++) {
-            for (int j = 0; j < 110; j += 110) {
-                list.add(new ItemStack(item, 1, (j * 110) + i));
+            for (int j = 0; j < 100; j += Crops.CROP_QUALITY_LOOP) {
+                list.add(new ItemStack(item, 1, (j * 100) + i));
             }
         }
     }

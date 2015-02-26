@@ -18,13 +18,22 @@ public class CropRegistry implements ICropRegistry {
     }
 
     @Override
-    public ICrop registerCrop(String unlocalized, ISeason season, int cost, int sell, int stages, int regrow, int year, int color) {
-        return new Crop(unlocalized, new Season[] { getSeasonFromISeasons(season) }, cost, sell, stages, regrow, year, color);
+    public ICrop registerCrop(String unlocalized, int cost, int sell, int stages, int regrow, int year, int color, ISeason... seasons) {
+        return new Crop(unlocalized, getSeasonsFromISeasons(seasons), cost, sell, stages, regrow, year, color);
     }
 
     @Override
     public ICrop registerCrop(ICrop crop) {
         return crop;
+    }
+
+    private Season[] getSeasonsFromISeasons(ISeason[] iSeasons) {
+        Season[] seasons = new Season[iSeasons.length];
+        for (int i = 0; i < seasons.length; i++) {
+            seasons[i] = getSeasonFromISeasons(iSeasons[i]);
+        }
+
+        return seasons;
     }
 
     private Season getSeasonFromISeasons(ISeason season) {

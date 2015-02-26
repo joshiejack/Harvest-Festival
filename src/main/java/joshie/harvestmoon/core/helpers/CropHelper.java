@@ -115,7 +115,7 @@ public class CropHelper {
 
     /** @return returns the Quality of this crop **/
     public static int getCropQuality(int meta) {
-        return (int) Math.ceil(meta / 100);
+        return 1 + (int) Math.ceil(meta / 100);
     }
 
     /** @return Returns the CropMeta for this crop **/

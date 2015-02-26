@@ -103,7 +103,7 @@ public class CropData implements IData {
                 stage = crop.getRegrowStage();
             }
 
-            return crop.getItemStack(cropQuality);
+            return crop.getCropStackForQuality(cropQuality);
         } else return null;
     }
 

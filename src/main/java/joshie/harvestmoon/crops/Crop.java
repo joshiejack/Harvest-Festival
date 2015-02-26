@@ -4,10 +4,11 @@ import java.util.ArrayList;
 
 import joshie.harvestmoon.animals.AnimalType.FoodType;
 import joshie.harvestmoon.api.crops.ICrop;
+import joshie.harvestmoon.api.crops.ICropIIconHandler;
 import joshie.harvestmoon.calendar.Season;
-import joshie.harvestmoon.core.lib.HMModInfo;
 import joshie.harvestmoon.core.util.Translate;
 import joshie.harvestmoon.crops.CropData.WitherType;
+import joshie.harvestmoon.crops.icons.IIconHandlerDefault;
 import joshie.harvestmoon.init.HMConfiguration;
 import joshie.harvestmoon.init.HMItems;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -27,7 +28,7 @@ public class Crop implements ICrop {
 
     //CropData
     @SideOnly(Side.CLIENT)
-    protected IIcon[] stageIcons;
+    protected ICropIIconHandler iconHandler;
     @Expose
     protected String unlocalized;
     protected boolean alternativeName;
@@ -71,14 +72,17 @@ public class Crop implements ICrop {
         this.foodType = FoodType.VEGETABLE;
         this.bag_color = color;
         this.ordinal = HMConfiguration.addCropMapping(this); //Fetch the meta value of this crop
+        this.iconHandler = new IIconHandlerDefault(this);
         crops.add(this);
     }
 
+    @Override
     public Crop setHasAlternativeName() {
         this.alternativeName = true;
         return this;
     }
 
+    @Override
     public Crop setIsStatic() {
         this.isStatic = true;
         return this;
@@ -89,8 +93,15 @@ public class Crop implements ICrop {
         return this;
     }
 
-    public Crop setItem(Item item) {
+    @Override
+    public ICrop setItem(Item item) {
         this.item = item;
+        return this;
+    }
+
+    @Override
+    public ICrop setCropIconHandler(ICropIIconHandler handler) {
+        this.iconHandler = handler;
         return this;
     }
 
@@ -193,8 +204,8 @@ public class Crop implements ICrop {
         return foodType;
     }
 
-    public ItemStack getItemStack(int cropQuality) {
-        return new ItemStack(item, 1, cropQuality);
+    public ItemStack getCropStackForQuality(int quality) {
+        return new ItemStack(item, 1, quality);
     }
 
     @Override
@@ -207,12 +218,14 @@ public class Crop implements ICrop {
         return new ItemStack(item);
     }
 
+    @Override
     public boolean matches(ItemStack stack) {
         return (stack.getItem() == getCropStack().getItem());
     }
 
     /** Gets the unlocalized name for this crop
      * @return unlocalized name */
+    @Override
     public String getUnlocalizedName() {
         return unlocalized;
     }
@@ -239,15 +252,12 @@ public class Crop implements ICrop {
 
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int stage) {
-        return stageIcons[Math.max(0, stage - 1)];
+        return iconHandler.getIconForStage(stage);
     }
 
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister register) {
-        stageIcons = new IIcon[getStages()];
-        for (int i = 0; i < getStages(); i++) {
-            stageIcons[i] = register.registerIcon(HMModInfo.CROPPATH + unlocalized + "/stage_" + i);
-        }
+        iconHandler.registerIcons(register);
     }
 
     @Override

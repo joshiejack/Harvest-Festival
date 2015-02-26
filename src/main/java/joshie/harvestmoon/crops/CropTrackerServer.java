@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 
+import joshie.harvestmoon.HarvestMoon;
 import joshie.harvestmoon.animals.AnimalType;
 import joshie.harvestmoon.calendar.CalendarDate;
 import joshie.harvestmoon.core.helpers.AnimalHelper;
@@ -28,6 +29,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
+
+import org.apache.logging.log4j.Level;
 
 //Handles the Data for the crops rather than using TE Data
 public class CropTrackerServer implements IData {
@@ -135,6 +138,8 @@ public class CropTrackerServer implements IData {
 
     //Plants a crop at the location, PLAYER CAN BE NULL
     public boolean plant(EntityPlayer player, World world, int x, int y, int z, Crop crop, int quality) {
+        HarvestMoon.logger.log(Level.INFO, "Planted " + crop.getCropName(false) + " @ " + x + " - " + y + " - " + z + " with quality of " + quality);
+        
         WorldLocation key = getKey(world, x, y, z);
         CropData data = new CropData(player, crop, quality);
         world.setBlock(x, y, z, HMBlocks.crops);

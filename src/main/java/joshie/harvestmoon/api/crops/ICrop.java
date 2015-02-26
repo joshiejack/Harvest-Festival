@@ -12,6 +12,11 @@ public interface ICrop {
      *  @return     the itemstack for this crop as an item **/
     public ItemStack getCropStack();
 
+    /** Return this crop in item form, with stats adjust for quality
+     *  @param      the quality the stack should be adjust for
+     *  @return     the itemstack */
+    public ItemStack getCropStackForQuality(int quality);
+
     /** Returns the unlocalized name for this crop
      *  @return      the unlocalize name **/
     public String getUnlocalizedName();
@@ -27,19 +32,38 @@ public interface ICrop {
      * @return      money gained from selling*/
     public long getSellValue();
 
+    /** Returns how many stages this crop has 
+     * @return      the total number of stages*/
+    public int getStages();
+
     /** Whether this crop is always the same
      * 
      * @return      true if the crop has a quality/rating, false if it does not.*/
     public boolean isStatic();
-
-    /** Associates this crop with the item
-     * @param       item of this crop
-     * @return      the instance*/
-    public ICrop setItem(Item item);
 
     /** Returns true when the itemstack matches this crop
      * 
      * @param       the itemstack
      * @return      whether the passed in stack is this crop */
     public boolean matches(ItemStack stack);
+
+    /** Associates this crop with the item
+     * @param       item of this crop
+     * @return      the instance*/
+    public ICrop setItem(Item item);
+
+    /** Associates this crop with this VisualHandler
+     * @param       item of this crop
+     * @return      the instance*/
+    public ICrop setCropIconHandler(ICropIIconHandler handler);
+
+    /** If if you call this when creating a crop,
+     *  it will use a different name for it's block and item form.
+     * @return      the ICrop */
+    public ICrop setHasAlternativeName();
+
+    /** If you call this when creating a crop
+     *  It will have quality to it/rating to it.
+     * @return      theICop */
+    public ICrop setIsStatic();
 }

@@ -66,13 +66,12 @@ public class RenderEvents {
                     boolean isRateable = stack.getItem() instanceof IRateable;
                     boolean isLevelable = stack.getItem() instanceof ILevelable;
                     if (isRateable || isLevelable) {
-                        ArrayList<String> tooltip = new ArrayList();
-                        stack.getItem().addInformation(stack, mc.thePlayer, tooltip, false);
+                        ArrayList<String> tooltip = (ArrayList<String>) stack.getTooltip(mc.thePlayer, false);
                         if (isRateable) {
                             int rating = ((IRateable) stack.getItem()).getRating(stack);
                             if (rating >= 0) {
                                 int y = tooltip.size() == 0? 0: 2 + (10 * tooltip.size());
-                                RatingHelper.drawStarRating(gui, k, l + 17 + y, rating, mc.fontRenderer);
+                                RatingHelper.drawStarRating(gui, k, l + 7 + y, rating, mc.fontRenderer);
                             }
                         } else if (isLevelable) {
                             ToolTier tier = ToolTier.BASIC;
@@ -82,7 +81,7 @@ public class RenderEvents {
                             }
 
                             int y = tooltip.size() == 0? 0: 2 + (10 * tooltip.size());
-                            ToolLevelHelper.drawToolProgress(gui, k, l + 17 + y, tier, level, mc.fontRenderer);
+                            ToolLevelHelper.drawToolProgress(gui, k, l + 5 + y, tier, level, mc.fontRenderer);
                         }
                     }
                 }

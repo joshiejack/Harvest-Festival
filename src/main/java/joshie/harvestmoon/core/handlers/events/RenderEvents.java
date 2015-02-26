@@ -47,7 +47,7 @@ public class RenderEvents {
         if (gui instanceof GuiContainer && mc.thePlayer.inventory.getItemStack() == null) {
             GuiContainer container = (GuiContainer) gui;
             Point mouse = joshie.harvestmoon.core.helpers.generic.MCClientHelper.getMouse(container);
-            final ScaledResolution scaledresolution = ((GuiIngameForge)mc.ingameGUI).getResolution();
+            final ScaledResolution scaledresolution = ((GuiIngameForge) mc.ingameGUI).getResolution();
             int i = scaledresolution.getScaledWidth();
             int j = scaledresolution.getScaledHeight();
             final int k = Mouse.getX() * i / mc.displayWidth;
@@ -59,13 +59,13 @@ public class RenderEvents {
             List slots = mc.thePlayer.openContainer.inventorySlots;
             for (int o = 0; o < slots.size(); o++) {
                 Slot slot = (Slot) slots.get(o);
-                //Mouse is hovering over this slot
-                ItemStack stack = slot.getStack();
-                if (stack == null) continue;
-                boolean isRateable = stack.getItem() instanceof IRateable;
-                boolean isLevelable = stack.getItem() instanceof ILevelable;
-                if (isRateable || isLevelable) {
-                    if (mouse.x >= slot.xDisplayPosition - 1 && mouse.x <= slot.xDisplayPosition + 16 && mouse.y >= slot.yDisplayPosition - 1 && mouse.y <= slot.yDisplayPosition + 16) {
+                if (mouse.x >= slot.xDisplayPosition - 1 && mouse.x <= slot.xDisplayPosition + 16 && mouse.y >= slot.yDisplayPosition - 1 && mouse.y <= slot.yDisplayPosition + 16) {
+                    //Mouse is hovering over this slot
+                    ItemStack stack = slot.getStack();
+                    if (stack == null) continue;
+                    boolean isRateable = stack.getItem() instanceof IRateable;
+                    boolean isLevelable = stack.getItem() instanceof ILevelable;
+                    if (isRateable || isLevelable) {
                         ArrayList<String> tooltip = new ArrayList();
                         stack.getItem().addInformation(stack, mc.thePlayer, tooltip, false);
                         if (isRateable) {

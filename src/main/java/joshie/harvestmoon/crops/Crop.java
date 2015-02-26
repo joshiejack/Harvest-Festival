@@ -3,7 +3,7 @@ package joshie.harvestmoon.crops;
 import java.util.ArrayList;
 
 import joshie.harvestmoon.animals.AnimalType.FoodType;
-import joshie.harvestmoon.api.interfaces.ICrop;
+import joshie.harvestmoon.api.crops.ICrop;
 import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.core.lib.HMModInfo;
 import joshie.harvestmoon.core.util.Translate;

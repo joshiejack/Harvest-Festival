@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import joshie.harvestmoon.api.interfaces.ILevelable;
-import joshie.harvestmoon.api.interfaces.IRateable;
-import joshie.harvestmoon.api.interfaces.ITiered;
+import joshie.harvestmoon.api.core.ILevelable;
+import joshie.harvestmoon.api.core.IRateable;
+import joshie.harvestmoon.api.core.ITiered;
 import joshie.harvestmoon.core.gui.ContainerNPC;
 import joshie.harvestmoon.core.helpers.ClientHelper;
 import joshie.harvestmoon.core.helpers.RatingHelper;
@@ -71,7 +71,8 @@ public class RenderEvents {
                         if (isRateable) {
                             int rating = ((IRateable) stack.getItem()).getRating(stack);
                             if (rating >= 0) {
-                                RatingHelper.drawStarRating(gui, k, l + 17 + (12 * tooltip.size()), rating, mc.fontRenderer);
+                                int y = tooltip.size() == 0? 0: 2 + (10 * tooltip.size());
+                                RatingHelper.drawStarRating(gui, k, l + 17 + y, rating, mc.fontRenderer);
                             }
                         } else if (isLevelable) {
                             ToolTier tier = ToolTier.BASIC;
@@ -80,7 +81,8 @@ public class RenderEvents {
                                 tier = ((ITiered) stack.getItem()).getTier(stack);
                             }
 
-                            ToolLevelHelper.drawToolProgress(gui, k, l + 17 + (12 * tooltip.size()), tier, level, mc.fontRenderer);
+                            int y = tooltip.size() == 0? 0: 2 + (10 * tooltip.size());
+                            ToolLevelHelper.drawToolProgress(gui, k, l + 17 + y, tier, level, mc.fontRenderer);
                         }
                     }
                 }

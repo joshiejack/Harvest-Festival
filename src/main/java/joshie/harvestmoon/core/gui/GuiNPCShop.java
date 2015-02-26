@@ -1,6 +1,6 @@
 package joshie.harvestmoon.core.gui;
 
-import joshie.harvestmoon.api.interfaces.IPurchaseable;
+import joshie.harvestmoon.api.core.IPurchaseable;
 import joshie.harvestmoon.core.helpers.PlayerHelper;
 import joshie.harvestmoon.core.helpers.generic.StackHelper;
 import joshie.harvestmoon.core.lib.HMModInfo;

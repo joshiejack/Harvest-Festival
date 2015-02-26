@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 
-import joshie.harvestmoon.api.interfaces.IPurchaseable;
+import joshie.harvestmoon.api.core.IPurchaseable;
 import joshie.harvestmoon.calendar.Weekday;
 import joshie.harvestmoon.core.config.Calendar;
 import joshie.harvestmoon.core.helpers.CalendarHelper;

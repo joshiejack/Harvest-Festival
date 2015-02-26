@@ -1,4 +1,4 @@
-package joshie.harvestmoon.api.interfaces;
+package joshie.harvestmoon.api.core;
 
 import joshie.harvestmoon.calendar.CalendarDate;
 import net.minecraft.entity.player.EntityPlayer;

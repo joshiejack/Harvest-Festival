@@ -2,8 +2,8 @@ package joshie.harvestmoon.items;
 
 import java.util.List;
 
-import joshie.harvestmoon.api.interfaces.ILevelable;
-import joshie.harvestmoon.api.interfaces.ITiered;
+import joshie.harvestmoon.api.core.ILevelable;
+import joshie.harvestmoon.api.core.ITiered;
 import joshie.harvestmoon.core.config.Tools;
 import joshie.harvestmoon.core.util.Translate;
 import net.minecraft.client.renderer.texture.IIconRegister;

@@ -39,8 +39,8 @@ public class EggTransformer implements ITransformer {
             public void visit(int version, int access, String name, String signature, String superName, String[] interfaces) {
                 Set<String> intf = new HashSet();
                 intf.addAll(Arrays.asList(interfaces));
-                intf.add(HMModInfo.ASMPATH + "api/interfaces/IShippable");
-                intf.add(HMModInfo.ASMPATH + "api/interfaces/IRateable");
+                intf.add(HMModInfo.ASMPATH + "api/core/IShippable");
+                intf.add(HMModInfo.ASMPATH + "api/core/IRateable");
                 super.visit(version, access, name, signature, superName, intf.toArray(new String[0]));
             }
         };

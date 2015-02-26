@@ -1,6 +1,5 @@
 package joshie.harvestmoon.core.helpers;
 
-import joshie.harvestmoon.api.interfaces.ICropProvider;
 import joshie.harvestmoon.core.helpers.generic.ItemHelper;
 import joshie.harvestmoon.core.lib.HMModInfo;
 import joshie.harvestmoon.crops.Crop;
@@ -104,11 +103,6 @@ public class CropHelper {
         }
     }
 
-    /** Returns the crop based on it's stack **/
-    public static Crop getCropFromStack(ItemStack stack) {
-        return stack.getItem() instanceof ICropProvider ? ((ICropProvider) stack.getItem()).getCrop(stack) : null;
-    }
-    
     public static Crop getCropFromDamage(int damage) {
         int ordinal = getCropType(damage);
         return getCropFromOrdinal(ordinal);

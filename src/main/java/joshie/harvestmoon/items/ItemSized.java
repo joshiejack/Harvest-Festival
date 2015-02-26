@@ -6,8 +6,8 @@ import static joshie.harvestmoon.core.helpers.SizeableHelper.getType;
 
 import java.util.List;
 
-import joshie.harvestmoon.api.interfaces.IRateable;
-import joshie.harvestmoon.api.interfaces.IShippable;
+import joshie.harvestmoon.api.core.IRateable;
+import joshie.harvestmoon.api.core.IShippable;
 import joshie.harvestmoon.core.config.General;
 import joshie.harvestmoon.core.helpers.SizeableHelper;
 import joshie.harvestmoon.core.lib.SizeableMeta;

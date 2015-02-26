@@ -5,8 +5,8 @@ import static joshie.harvestmoon.core.helpers.CropHelper.isGiant;
 
 import java.util.List;
 
+import joshie.harvestmoon.api.crops.ICrop;
 import joshie.harvestmoon.core.config.General;
-import joshie.harvestmoon.crops.Crop;
 import joshie.harvestmoon.init.HMConfiguration;
 import joshie.harvestmoon.init.HMCrops;
 import net.minecraft.creativetab.CreativeTabs;
@@ -18,8 +18,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemSeedFood {
-    public static Crop getCrop(ItemStack stack) {
-        Crop crop = null;
+    public static ICrop getCrop(ItemStack stack) {
+        ICrop crop = null;
         Item item = stack.getItem();
         if (item == Items.carrot && HMConfiguration.vanilla.CARROT_OVERRIDE) {
             crop = HMCrops.carrot;
@@ -33,7 +33,7 @@ public class ItemSeedFood {
     }
 
     public static long getSellValue(ItemStack stack) {
-        Crop crop = getCrop(stack);
+        ICrop crop = getCrop(stack);
         if (crop == null || crop.isStatic()) return 0;
         boolean isGiant = isGiant(stack.getItemDamage());
         double quality = 1 + (getCropQuality(stack.getItemDamage()) * General.SELL_QUALITY_MODIFIER);
@@ -42,13 +42,13 @@ public class ItemSeedFood {
     }
 
     public static int getRating(ItemStack stack) {
-        Crop crop = getCrop(stack);
+        ICrop crop = getCrop(stack);
         if (crop == null || crop.isStatic()) return -1;
         else return getCropQuality(stack.getItemDamage()) / 10;
     }
 
     public static String getItemStackDisplayName(ItemStack stack) {
-        Crop crop = getCrop(stack);
+        ICrop crop = getCrop(stack);
         if (crop == null) return ("" + StatCollector.translateToLocal(stack.getItem().getUnlocalizedNameInefficiently(stack) + ".name")).trim();
         else return crop.getCropName(true, isGiant(stack.getItemDamage()));
     }

@@ -1,6 +1,6 @@
 package joshie.harvestmoon.shops;
 
-import joshie.harvestmoon.api.interfaces.IPurchaseable;
+import joshie.harvestmoon.api.core.IPurchaseable;
 import joshie.harvestmoon.calendar.CalendarDate;
 import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.core.helpers.CalendarHelper;

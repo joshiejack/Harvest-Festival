@@ -6,12 +6,12 @@ import static joshie.harvestmoon.core.lib.HMModInfo.CROPPATH;
 
 import java.util.List;
 
-import joshie.harvestmoon.api.interfaces.ICropProvider;
-import joshie.harvestmoon.api.interfaces.IRateable;
-import joshie.harvestmoon.api.interfaces.IShippable;
+import joshie.harvestmoon.api.core.IRateable;
+import joshie.harvestmoon.api.core.IShippable;
+import joshie.harvestmoon.api.crops.ICrop;
+import joshie.harvestmoon.api.crops.ICropProvider;
 import joshie.harvestmoon.core.HMTab;
 import joshie.harvestmoon.core.config.General;
-import joshie.harvestmoon.crops.Crop;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -20,9 +20,9 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemCrop extends ItemHMMeta implements IShippable, IRateable, ICropProvider {
-    private Crop crop;
+    private ICrop crop;
 
-    public ItemCrop(Crop crop) {
+    public ItemCrop(ICrop crop) {
         setCreativeTab(HMTab.tabGeneral);
         setTextureFolder(CROPPATH);
         this.crop = crop;
@@ -43,7 +43,7 @@ public class ItemCrop extends ItemHMMeta implements IShippable, IRateable, ICrop
     }
 
     @Override
-    public Crop getCrop(ItemStack stack) {
+    public ICrop getCrop(ItemStack stack) {
         return crop;
     }
 

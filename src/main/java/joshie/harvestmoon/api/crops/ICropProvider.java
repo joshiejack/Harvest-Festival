@@ -1,6 +1,5 @@
-package joshie.harvestmoon.api.interfaces;
+package joshie.harvestmoon.api.crops;
 
-import joshie.harvestmoon.crops.Crop;
 import net.minecraft.item.ItemStack;
 
 /** Items that implement this interface can supply a crop item **/
@@ -10,5 +9,5 @@ public interface ICropProvider {
      *  
      *  @param  stack   the item
      *  @return         the crop that it is providing **/
-    Crop getCrop(ItemStack stack);
+    ICrop getCrop(ItemStack stack);
 }

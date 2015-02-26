@@ -1,7 +1,7 @@
 package joshie.harvestmoon.core.network;
 
 import io.netty.buffer.ByteBuf;
-import joshie.harvestmoon.api.interfaces.IPurchaseable;
+import joshie.harvestmoon.api.core.IPurchaseable;
 import joshie.harvestmoon.core.helpers.ShopHelper;
 import joshie.harvestmoon.shops.ShopInventory;
 import net.minecraft.entity.player.EntityPlayer;

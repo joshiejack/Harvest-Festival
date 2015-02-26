@@ -2,29 +2,29 @@ package joshie.harvestmoon.core.handlers.api;
 
 import joshie.harvestmoon.api.Calendar;
 import joshie.harvestmoon.api.Calendar.ISeason;
-import joshie.harvestmoon.api.interfaces.ICrop;
+import joshie.harvestmoon.api.crops.ICrop;
 import joshie.harvestmoon.api.registry.ICropRegistry;
 import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.crops.Crop;
 
-public class CropRegistry implements ICropRegistry {    
+public class CropRegistry implements ICropRegistry {
     @Override
-    public ICrop registerCrop(String unlocalized, ISeason season, int cost, int sell, int stages, int regrow, int year, int color) {
-        return registerCrop(unlocalized, new ISeason[] { season }, cost, sell, stages, regrow, year, color);
-    }
-
-    @Override
-    public ICrop registerCrop(String unlocalized, ISeason[] seasons, int cost, int sell, int stages, int regrow, int year, int color) {
-        return new Crop(unlocalized, ISeasonToSeasons(seasons), cost, sell, stages, regrow, year, color);
-    }
-
-    private Season[] ISeasonToSeasons(ISeason[] iSeasons) {
-        Season[] seasons = new Season[iSeasons.length];
-        for (int i = 0; i < seasons.length; i++) {
-            seasons[i] = getSeasonFromISeasons(iSeasons[i]);
+    public ICrop getCrop(String unlocalized) {
+        for (Crop crop : Crop.crops) {
+            if (crop.getUnlocalizedName().equals(unlocalized)) return crop;
         }
 
-        return seasons;
+        return null;
+    }
+
+    @Override
+    public ICrop registerCrop(String unlocalized, ISeason season, int cost, int sell, int stages, int regrow, int year, int color) {
+        return new Crop(unlocalized, new Season[] { getSeasonFromISeasons(season) }, cost, sell, stages, regrow, year, color);
+    }
+
+    @Override
+    public ICrop registerCrop(ICrop crop) {
+        return crop;
     }
 
     private Season getSeasonFromISeasons(ISeason season) {

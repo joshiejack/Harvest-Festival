@@ -3,7 +3,7 @@ package joshie.harvestmoon.blocks;
 import static joshie.harvestmoon.core.helpers.ShippingHelper.addForShipping;
 import joshie.harvestmoon.HarvestMoon;
 import joshie.harvestmoon.animals.AnimalType;
-import joshie.harvestmoon.api.interfaces.IShippable;
+import joshie.harvestmoon.api.core.IShippable;
 import joshie.harvestmoon.blocks.tiles.TileRuralChest;
 import joshie.harvestmoon.cooking.FoodRegistry;
 import joshie.harvestmoon.core.helpers.AnimalHelper;

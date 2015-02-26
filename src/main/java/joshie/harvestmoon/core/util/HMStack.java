@@ -1,22 +1,21 @@
 package joshie.harvestmoon.core.util;
 
-import joshie.harvestmoon.api.interfaces.ICropProvider;
-import joshie.harvestmoon.core.helpers.CropHelper;
+import joshie.harvestmoon.api.crops.ICrop;
+import joshie.harvestmoon.api.crops.ICropProvider;
 import joshie.harvestmoon.core.helpers.SizeableHelper;
 import joshie.harvestmoon.core.lib.SizeableMeta;
-import joshie.harvestmoon.crops.Crop;
 import joshie.harvestmoon.init.HMItems;
 import net.minecraft.item.ItemStack;
 
 public class HMStack extends SafeStack {
-    private Crop crop;
+    private ICrop crop;
     private SizeableMeta sized;
 
     public HMStack(ItemStack stack) {
         super(stack);
 
         if (stack.getItem() instanceof ICropProvider) {
-            crop = CropHelper.getCropFromStack(stack);
+            crop = ((ICropProvider) stack.getItem()).getCrop(stack);
         } else if (stack.getItem() == HMItems.sized) {
             sized = SizeableHelper.getSizeableFromStack(stack);
         }

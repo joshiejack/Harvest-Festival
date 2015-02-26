@@ -38,9 +38,9 @@ public class SeedFoodTransformer implements ITransformer {
             public void visit(int version, int access, String name, String signature, String superName, String[] interfaces) {
                 Set<String> intf = new HashSet();
                 intf.addAll(Arrays.asList(interfaces));
-                intf.add(HMModInfo.ASMPATH + "api/interfaces/IShippable");
-                intf.add(HMModInfo.ASMPATH + "api/interfaces/IRateable");
-                intf.add(HMModInfo.ASMPATH + "api/interfaces/ICropProvider");
+                intf.add(HMModInfo.ASMPATH + "api/core/IShippable");
+                intf.add(HMModInfo.ASMPATH + "api/core/IRateable");
+                intf.add(HMModInfo.ASMPATH + "api/crops/ICropProvider");
                 super.visit(version, access, name, signature, superName, intf.toArray(new String[0]));
             }
         };
@@ -72,13 +72,13 @@ public class SeedFoodTransformer implements ITransformer {
         mv.visitInsn(Opcodes.IRETURN);
         mv.visitMaxs(2, 1);
         mv.visitEnd();
-        
+
         //Crop Provider
         name = "getCrop";
-        mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, "(Lnet/minecraft/item/ItemStack;)Ljoshie/harvestmoon/crops/Crop;", null, null);
+        mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, "(Lnet/minecraft/item/ItemStack;)L" + HMModInfo.ASMPATH + "api/crops/ICrop;", null, null);
         mv.visitCode();
         mv.visitVarInsn(Opcodes.ALOAD, 1);
-        mv.visitMethodInsn(Opcodes.INVOKESTATIC, HMModInfo.ASMPATH + "asm/overrides/ItemSeedFood", name, "(Lnet/minecraft/item/ItemStack;)Ljoshie/harvestmoon/crops/Crop;", false);
+        mv.visitMethodInsn(Opcodes.INVOKESTATIC, HMModInfo.ASMPATH + "asm/overrides/ItemSeedFood", name, "(Lnet/minecraft/item/ItemStack;)L" + HMModInfo.ASMPATH + "api/crops/ICrop;", false);
         mv.visitInsn(Opcodes.ARETURN);
         mv.visitMaxs(1, 2);
         mv.visitEnd();

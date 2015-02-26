@@ -7,7 +7,7 @@ import static joshie.harvestmoon.core.lib.HMModInfo.SEEDPATH;
 
 import java.util.List;
 
-import joshie.harvestmoon.api.interfaces.IRateable;
+import joshie.harvestmoon.api.core.IRateable;
 import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.core.config.Crops;
 import joshie.harvestmoon.core.helpers.CropHelper;

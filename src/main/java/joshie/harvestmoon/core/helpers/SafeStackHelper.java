@@ -2,7 +2,7 @@ package joshie.harvestmoon.core.helpers;
 
 import java.util.HashMap;
 
-import joshie.harvestmoon.api.interfaces.ICropProvider;
+import joshie.harvestmoon.api.crops.ICropProvider;
 import joshie.harvestmoon.core.util.HMStack;
 import joshie.harvestmoon.core.util.SafeStack;
 import joshie.harvestmoon.core.util.WildStack;

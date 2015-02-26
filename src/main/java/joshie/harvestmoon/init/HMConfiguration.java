@@ -84,16 +84,13 @@ public class HMConfiguration {
 
     /** Creates the crops json file **/
     public static int addCropMapping(Crop crop) {
-        System.out.println("CROP" + crop.getUnlocalizedName());
         Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().excludeFieldsWithoutExposeAnnotation().create();
         if (HMConfiguration.mappings == null) {
             /** If mappings is null, load it from the config **/
             HMConfiguration.mappings = getMappings(gson);
         }
 
-        System.out.println("About to call GeTID for " + crop.getUnlocalizedName());
         Integer id = HMConfiguration.mappings.getID(crop); //The crops ID
-
         //Now that we have the ID for this crop type. We should update the mappings json
         File file = new File("config/" + HMModInfo.MODPATH + "/crop_mappings.json");
         try {

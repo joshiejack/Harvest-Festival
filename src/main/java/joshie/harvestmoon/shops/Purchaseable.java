@@ -1,6 +1,6 @@
 package joshie.harvestmoon.shops;
 
-import joshie.harvestmoon.api.interfaces.IPurchaseable;
+import joshie.harvestmoon.api.core.IPurchaseable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;

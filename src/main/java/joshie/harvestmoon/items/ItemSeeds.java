@@ -90,8 +90,6 @@ public class ItemSeeds extends ItemHMMeta implements IRateable {
 
     @Override
     public int getRating(ItemStack stack) {
-        System.out.println(getCropQuality(stack.getItemDamage()));
-        
         Crop crop = CropHelper.getCropFromDamage(stack.getItemDamage());
         if (crop.isStatic()) return -1;
         else return getCropQuality(stack.getItemDamage()) / 10;

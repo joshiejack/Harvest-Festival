@@ -7,7 +7,9 @@ import io.netty.buffer.ByteBuf;
 import java.util.Random;
 import java.util.UUID;
 
+import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.core.config.Crops;
+import joshie.harvestmoon.core.helpers.CalendarHelper;
 import joshie.harvestmoon.core.helpers.PlayerHelper;
 import joshie.harvestmoon.core.util.IData;
 import net.minecraft.entity.player.EntityPlayer;
@@ -38,9 +40,17 @@ public class CropData implements IData {
         this.owner = owner.getPersistentID();
     }
 
+    private boolean isWrongSeason() {
+        for (Season season : crop.getSeasons()) {
+            if (CalendarHelper.getSeason() == season) return false;
+        }
+
+        return true;
+    }
+
     public WitherType newDay() {
         //Stage 1, Check how long the plant has been without water, If it's more than 2 days kill it, decrease it's quality if it's not been watered as well
-        if (daysWithoutWater > 2) {
+        if (daysWithoutWater > 2 || isWrongSeason()) {
             return crop.getWitherType(stage);
         } else { //Stage 2: Now that we know, it has been watered, Update it's stage
             //If we aren't ticking randomly, Then increase the stage and quality

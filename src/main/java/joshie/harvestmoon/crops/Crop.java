@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 import joshie.harvestmoon.animals.AnimalType.FoodType;
 import joshie.harvestmoon.api.crops.ICrop;
-import joshie.harvestmoon.api.crops.ICropIIconHandler;
+import joshie.harvestmoon.api.crops.ICropIconHandler;
 import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.core.util.Translate;
 import joshie.harvestmoon.crops.CropData.WitherType;
-import joshie.harvestmoon.crops.icons.IIconHandlerDefault;
+import joshie.harvestmoon.crops.icons.IconHandlerDefault;
 import joshie.harvestmoon.init.HMConfiguration;
 import joshie.harvestmoon.init.HMItems;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -28,7 +28,7 @@ public class Crop implements ICrop {
 
     //CropData
     @SideOnly(Side.CLIENT)
-    protected ICropIIconHandler iconHandler;
+    protected ICropIconHandler iconHandler;
     @Expose
     protected String unlocalized;
     protected boolean alternativeName;
@@ -72,7 +72,7 @@ public class Crop implements ICrop {
         this.foodType = FoodType.VEGETABLE;
         this.bag_color = color;
         this.ordinal = HMConfiguration.addCropMapping(this); //Fetch the meta value of this crop
-        this.iconHandler = new IIconHandlerDefault(this);
+        this.iconHandler = new IconHandlerDefault(this);
         crops.add(this);
     }
 
@@ -100,7 +100,7 @@ public class Crop implements ICrop {
     }
 
     @Override
-    public ICrop setCropIconHandler(ICropIIconHandler handler) {
+    public ICrop setCropIconHandler(ICropIconHandler handler) {
         this.iconHandler = handler;
         return this;
     }

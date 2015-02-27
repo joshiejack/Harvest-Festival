@@ -5,8 +5,9 @@ import static joshie.harvestmoon.calendar.Season.SPRING;
 import static joshie.harvestmoon.calendar.Season.SUMMER;
 import joshie.harvestmoon.api.HMApi;
 import joshie.harvestmoon.api.crops.ICrop;
-import joshie.harvestmoon.crops.icons.IIconHandlerSeedFood;
-import joshie.harvestmoon.crops.icons.IIconHandlerWheat;
+import joshie.harvestmoon.crops.icons.IconHandlerSeedFood;
+import joshie.harvestmoon.crops.icons.IconHandlerTurnip;
+import joshie.harvestmoon.crops.icons.IconHandlerWheat;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 
@@ -31,8 +32,8 @@ public class HMCrops {
 
     public static void init() {
         //Spring Crops
-        turnip = HMApi.CROPS.registerCrop("turnip", 120, 60, 5, 0, 0, 0xEDE1B5, SPRING);
-        potato = HMApi.CROPS.registerCrop("potato", 150, 80, 8, 0, 0, 0x8D782A, SPRING).setCropIconHandler(new IIconHandlerSeedFood(Blocks.potatoes));
+        turnip = HMApi.CROPS.registerCrop("turnip", 120, 60, 5, 0, 0, 0xEDE1B5, SPRING).setCropIconHandler(new IconHandlerTurnip());
+        potato = HMApi.CROPS.registerCrop("potato", 150, 80, 8, 0, 0, 0x8D782A, SPRING).setCropIconHandler(new IconHandlerSeedFood(Blocks.potatoes));
         cucumber = HMApi.CROPS.registerCrop("cucumber", 200, 60, 10, 5, 0, 0x137B27, SPRING);
         strawberry = HMApi.CROPS.registerCrop("strawberry", 150, 30, 9, 7, 3, 0xA42F14, SPRING);
         cabbage = HMApi.CROPS.registerCrop("cabbage", 500, 250, 15, 0, 8, 0x8DF146, SPRING);
@@ -46,14 +47,14 @@ public class HMCrops {
 
         //Autumn Crops
         eggplant = HMApi.CROPS.registerCrop("eggplant", 120, 80, 10, 7, 0, 0x9F61C8, AUTUMN);
-        carrot = HMApi.CROPS.registerCrop("carrot", 300, 120, 8, 0, 0, 0xF79316, AUTUMN).setCropIconHandler(new IIconHandlerSeedFood(Blocks.carrots));
+        carrot = HMApi.CROPS.registerCrop("carrot", 300, 120, 8, 0, 0, 0xF79316, AUTUMN).setCropIconHandler(new IconHandlerSeedFood(Blocks.carrots));
         sweet_potato = HMApi.CROPS.registerCrop("potato_sweet", 300, 120, 6, 4, 0, 0xCD1A8B, AUTUMN);
         spinach = HMApi.CROPS.registerCrop("spinach", 200, 80, 6, 0, 3, 0x30B028, AUTUMN);
         green_pepper = HMApi.CROPS.registerCrop("pepper_green", 150, 40, 8, 2, 8, 0x1F5F12, AUTUMN);
 
         //All Seasons
         grass = HMApi.CROPS.registerCrop("grass", 500, 0, 11, 0, 0, 0x006633, SPRING, SUMMER, AUTUMN).setIsStatic().setHasAlternativeName();
-        wheat = HMApi.CROPS.registerCrop("wheat", 150, 100, 28, 0, 0, 0x8C8C00, SPRING, SUMMER, AUTUMN).setCropIconHandler(new IIconHandlerWheat());
+        wheat = HMApi.CROPS.registerCrop("wheat", 150, 100, 28, 0, 0, 0x8C8C00, SPRING, SUMMER, AUTUMN).setCropIconHandler(new IconHandlerWheat());
         if (HMConfiguration.vanilla.POTATO_OVERRIDE) potato.setItem(Items.potato);
         if (HMConfiguration.vanilla.CARROT_OVERRIDE) carrot.setItem(Items.carrot);
         if (HMConfiguration.vanilla.WHEAT_OVERRIDE) wheat.setItem(Items.wheat);

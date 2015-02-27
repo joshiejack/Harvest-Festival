@@ -7,16 +7,20 @@ import java.util.Random;
 
 import joshie.harvestmoon.core.config.Crops;
 import joshie.harvestmoon.core.helpers.CropHelper;
+import joshie.harvestmoon.core.helpers.DigFXHelper;
 import joshie.harvestmoon.core.helpers.generic.MCClientHelper;
 import joshie.harvestmoon.core.lib.RenderIds;
 import joshie.harvestmoon.crops.Crop;
 import net.minecraft.block.Block;
+import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
@@ -25,7 +29,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockCrop extends BlockHMBase implements IPlantable {
+public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
     public BlockCrop() {
         super(Material.plants);
         setBlockUnbreakable();
@@ -119,6 +123,31 @@ public class BlockCrop extends BlockHMBase implements IPlantable {
         return null;
     }
 
+    @SideOnly(Side.CLIENT)
+    @Override
+    public boolean addHitEffects(World world, MovingObjectPosition target, EffectRenderer effectRenderer) {
+        DigFXHelper.addBlockHitEffects(world, target.blockX, target.blockY, target.blockZ, target.sideHit, effectRenderer);
+        return true;
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public boolean addDestroyEffects(World world, int x, int y, int z, int meta, EffectRenderer effectRenderer) {
+        byte b0 = 4;
+        for (int i1 = 0; i1 < b0; ++i1) {
+            for (int j1 = 0; j1 < b0; ++j1) {
+                for (int k1 = 0; k1 < b0; ++k1) {
+                    double d0 = (double) x + ((double) i1 + 0.5D) / (double) b0;
+                    double d1 = (double) y + ((double) j1 + 0.5D) / (double) b0;
+                    double d2 = (double) z + ((double) k1 + 0.5D) / (double) b0;
+                    effectRenderer.addEffect((new EntityCropDigFX(world, d0, d1, d2, d0 - (double) x - 0.5D, d1 - (double) y - 0.5D, d2 - (double) z - 0.5D, world.getBlock(x, y, z), meta)).applyColourMultiplier(x, y, z));
+                }
+            }
+        }
+
+        return true;
+    }
+
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
         if (player.isSneaking()) return false;
@@ -162,5 +191,27 @@ public class BlockCrop extends BlockHMBase implements IPlantable {
     @Override
     public int getPlantMetadata(IBlockAccess world, int x, int y, int z) {
         return 0;
+    }
+
+    //Can Apply Bonemeal (Not Fully Grown)
+    @Override
+    public boolean func_149851_a(World world, int x, int y, int z, boolean isRemote) {
+        if (Crops.ENABLE_BONEMEAL) {
+            return !CropHelper.canHarvest(world, x, y, z);
+        } else return false;
+    }
+
+    /* Only called server side **/
+    //Whether the bonemeal has been used and we should call the function below to make the plant grow
+    @Override
+    public boolean func_149852_a(World world, Random rand, int x, int y, int z) {
+        return true;
+    }
+
+    /* Only called server side **/
+    //Apply the bonemeal and grow!
+    @Override
+    public void func_149853_b(World world, Random rand, int x, int y, int z) {
+        CropHelper.grow(world, x, y, z);
     }
 }

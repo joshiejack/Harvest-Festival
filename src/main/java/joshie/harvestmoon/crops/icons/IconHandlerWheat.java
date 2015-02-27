@@ -1,7 +1,7 @@
 package joshie.harvestmoon.crops.icons;
 
 import joshie.harvestmoon.api.crops.ICrop;
-import joshie.harvestmoon.api.crops.ICropIIconHandler;
+import joshie.harvestmoon.api.crops.ICropIconHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Blocks;
@@ -9,10 +9,10 @@ import net.minecraft.util.IIcon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class IIconHandlerWheat implements ICropIIconHandler {
+public class IconHandlerWheat implements ICropIconHandler {
     private Block block;
 
-    public IIconHandlerWheat() {
+    public IconHandlerWheat() {
         block = Blocks.wheat;
     }
 

@@ -55,6 +55,13 @@ public class CropTrackerClient {
         }
     }
 
+    public boolean canHarvest(World world, int x, int y, int z) {
+        WorldLocation key = new WorldLocation(world.provider.dimensionId, x, y, z);
+        CropData data = crops.get(key);
+        if (data == null) return false;
+        return data.harvest() != null;
+    }
+
     public void sync(boolean isRemoval, WorldLocation location, CropData data) {
         if (isRemoval) {
             crops.remove(location);

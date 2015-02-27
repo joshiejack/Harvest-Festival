@@ -139,7 +139,7 @@ public class CropTrackerServer implements IData {
     //Plants a crop at the location, PLAYER CAN BE NULL
     public boolean plant(EntityPlayer player, World world, int x, int y, int z, Crop crop, int quality) {
         HarvestMoon.logger.log(Level.INFO, "Planted " + crop.getCropName(false) + " @ " + x + " - " + y + " - " + z + " with quality of " + quality);
-        
+
         WorldLocation key = getKey(world, x, y, z);
         CropData data = new CropData(player, crop, quality);
         world.setBlock(x, y, z, HMBlocks.crops);
@@ -175,6 +175,13 @@ public class CropTrackerServer implements IData {
                 return ret;
             } else return null;
         }
+    }
+
+    public boolean canHarvest(World world, int x, int y, int z) {
+        WorldLocation key = new WorldLocation(world.provider.dimensionId, x, y, z);
+        CropData data = cropData.get(key);
+        if (data == null) return false;
+        return data.harvest() != null;
     }
 
     public void addFarmland(World world, int x, int y, int z) {

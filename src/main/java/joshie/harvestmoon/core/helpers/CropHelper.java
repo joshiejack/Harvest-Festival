@@ -89,6 +89,12 @@ public class CropHelper {
         return stack != null;
     }
 
+    public static boolean canHarvest(World world, int x, int y, int z) {
+        if (!world.isRemote) {
+            return getServerTracker().canHarvest(world, x, y, z);
+        } else return ClientHelper.getCropTracker().canHarvest(world, x, y, z);
+    }
+
     public static void addFarmland(World world, int x, int y, int z) {
         if (!world.isRemote) {
             world.setBlock(x, y, z, Blocks.farmland);

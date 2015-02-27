@@ -21,7 +21,6 @@ import net.minecraftforge.oredict.OreDictionary;
 import org.apache.commons.lang3.text.WordUtils;
 
 public class HMItems {
-    //public static Item crops;
     public static Item seeds;
     public static Item general;
     public static Item meal;
@@ -38,13 +37,7 @@ public class HMItems {
     public static Item wateringcan;
 
     public static void init() {
-        //crops = new ItemCrop().setUnlocalizedName("crops.item");
-        seeds = new ItemSeeds().setUnlocalizedName("crops.seeds");
-        general = new ItemGeneral().setUnlocalizedName("general.item");
-        meal = new ItemMeal().setUnlocalizedName("meal");
-        sized = new ItemSized().setUnlocalizedName("sizeable");
-        treats = new ItemTreat().setUnlocalizedName("treat");
-
+        //Add a new crop item for things that do not have an item yet :D
         for (Crop crop : Crop.crops) {
             if (!crop.hasItemAssigned()) {
                 crop.setItem(new ItemCrop(crop).setUnlocalizedName("crop." + crop.getUnlocalizedName()));
@@ -54,6 +47,12 @@ public class HMItems {
             }
         }
 
+        seeds = new ItemSeeds().setUnlocalizedName("crops.seeds");
+        general = new ItemGeneral().setUnlocalizedName("general.item");
+        meal = new ItemMeal().setUnlocalizedName("meal");
+        sized = new ItemSized().setUnlocalizedName("sizeable");
+        treats = new ItemTreat().setUnlocalizedName("treat");
+        
         /* Tools **/
         hoe = new ItemHoe().setUnlocalizedName("hoe");
         sickle = new ItemSickle().setUnlocalizedName("sickle");

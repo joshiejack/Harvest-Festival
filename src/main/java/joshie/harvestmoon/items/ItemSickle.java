@@ -67,7 +67,7 @@ public class ItemSickle extends ItemBaseTool {
         if (!player.canPlayerEdit(x, y, z, 0, stack)) return false;
         else {
             ForgeDirection front = joshie.harvestmoon.core.helpers.generic.DirectionHelper.getFacingFromEntity(player);
-            Block initial = world.getBlock(x, y + 1, z);
+            Block initial = world.getBlock(x, y, z);
             if (!(initial instanceof BlockCrop)) {
                 return false;
             }
@@ -76,14 +76,14 @@ public class ItemSickle extends ItemBaseTool {
             boolean changed = false;
             for (int x2 = getXMinus(stack, front, x); x2 <= getXPlus(stack, front, x); x2++) {
                 for (int z2 = getZMinus(stack, front, z); z2 <= getZPlus(stack, front, z); z2++) {
-                    Block block = world.getBlock(x2, y + 1, z2);
+                    Block block = world.getBlock(x2, y, z2);
                     if (block instanceof BlockCrop) {
                         if (!world.isRemote) {
-                            destroyCrop(player, world, x2, y + 1, z2);
+                            destroyCrop(player, world, x2, y, z2);
                         }
 
-                        displayParticle(world, x2, y + 1, z2, "blockcrack_31_1");
-                        playSound(world, x2, y + 1, z2, soundTypeGrass.soundName);
+                        displayParticle(world, x2, y, z2, "blockcrack_31_1");
+                        playSound(world, x2, y, z2, soundTypeGrass.soundName);
                         PlayerHelper.performTask(player, stack, getExhaustionRate(stack));
                     }
                 }

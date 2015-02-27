@@ -2,14 +2,17 @@ package joshie.harvestmoon.core;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.UUID;
 
 import joshie.harvestmoon.animals.AnimalTrackerServer;
 import joshie.harvestmoon.calendar.CalendarServer;
+import joshie.harvestmoon.core.helpers.generic.EntityHelper;
 import joshie.harvestmoon.core.lib.HMModInfo;
 import joshie.harvestmoon.crops.CropTrackerServer;
 import joshie.harvestmoon.mining.MineTrackerServer;
 import joshie.harvestmoon.player.PlayerDataServer;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -72,7 +75,21 @@ public class HMSavedData extends WorldSavedData {
     }
 
     public PlayerDataServer getPlayerData(UUID uuid) {
-        return players.get(uuid);
+        if (players.containsKey(uuid)) {
+            return players.get(uuid);
+        } else {
+            EntityPlayer player = EntityHelper.getPlayerFromUUID(uuid);
+            if (player == null) return null;
+            for (Entry<UUID, String> entry : UsernameCache.getMap().entrySet()) {
+                if (entry.getValue().equals(player.getDisplayName())) {
+                    if (players.containsKey(entry.getKey())) {
+                        return players.get(entry.getKey());
+                    }
+                }
+            }
+        }
+
+        return null;
     }
 
     @Override

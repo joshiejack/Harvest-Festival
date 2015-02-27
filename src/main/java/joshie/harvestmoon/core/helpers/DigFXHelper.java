@@ -6,6 +6,7 @@ import joshie.harvestmoon.blocks.EntityCropDigFX;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.particle.EffectRenderer;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 public class DigFXHelper {
@@ -13,6 +14,7 @@ public class DigFXHelper {
 
     public static void addBlockHitEffects(World world, int x, int y, int z, int side, EffectRenderer effect) {
         Block block = world.getBlock(x, y, z);
+        IIcon icon = CropHelper.getIconForCrop(world, (int) x, (int) y, (int) z);
         if (block.getMaterial() != Material.air) {
             float f = 0.1F;
             double d0 = (double) x + rand.nextDouble() * (block.getBlockBoundsMaxX() - block.getBlockBoundsMinX() - (double) (f * 2.0F)) + (double) f + block.getBlockBoundsMinX();
@@ -43,7 +45,7 @@ public class DigFXHelper {
                 d0 = (double) x + block.getBlockBoundsMaxX() + (double) f;
             }
 
-            effect.addEffect((new EntityCropDigFX(world, d0, d1, d2, 0.0D, 0.0D, 0.0D, block, world.getBlockMetadata(x, y, z))).applyColourMultiplier(x, y, z).multiplyVelocity(0.2F).multipleParticleScaleBy(0.6F));
+            effect.addEffect((new EntityCropDigFX(icon, world, d0, d1, d2, x, y, z, block, world.getBlockMetadata(x, y, z))).applyColourMultiplier(x, y, z).multiplyVelocity(0.2F).multipleParticleScaleBy(0.6F));
         }
     }
 }

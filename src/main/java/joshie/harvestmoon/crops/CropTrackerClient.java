@@ -17,7 +17,7 @@ public class CropTrackerClient {
     private HashMap<WorldLocation, CropData> crops = new HashMap();
 
     private WorldLocation getKey(World world, int x, int y, int z) {
-        return new WorldLocation(world.provider.dimensionId, x, y, z);
+        return new WorldLocation(world.provider.dimensionId, x, y - 1, z);
     }
 
     public int getCropStage(World world, int x, int y, int z) {

@@ -40,16 +40,19 @@ public class ItemSeeds extends ItemHMMeta implements IRateable {
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        return CropHelper.getCropFromDamage(stack.getItemDamage()).getSeedsName();
+        Crop crop = CropHelper.getCropFromDamage(stack.getItemDamage());
+        return (crop == null) ? "Bloody Useless Seeds" : crop.getSeedsName();
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean debug) {
         Crop crop = CropHelper.getCropFromDamage(stack.getItemDamage());
-        int quality = getCropQuality(stack.getItemDamage());
-        for (Season season : crop.getSeasons()) {
-            list.add(season.getTextColor() + season.getLocalized());
+        if (crop != null) {
+            int quality = getCropQuality(stack.getItemDamage());
+            for (Season season : crop.getSeasons()) {
+                list.add(season.getTextColor() + season.getLocalized());
+            }
         }
     }
 
@@ -61,12 +64,11 @@ public class ItemSeeds extends ItemHMMeta implements IRateable {
             Crop crop = CropHelper.getCropFromDamage(stack.getItemDamage());
             int quality = CropHelper.getCropQuality(stack.getItemDamage());
             int planted = 0;
-            
+
             if (player.isSneaking()) {
                 planted = plantSeedAt(player, stack, world, xCoord, yCoord, zCoord, side, crop, quality, planted);
             } else {
-                labelTop: 
-                for (int x = xCoord - 1; x <= xCoord + 1; x++) {
+                labelTop: for (int x = xCoord - 1; x <= xCoord + 1; x++) {
                     for (int z = zCoord - 1; z <= zCoord + 1; z++) {
                         planted = plantSeedAt(player, stack, world, x, yCoord, z, side, crop, quality, planted);
                         if (planted < 0) {
@@ -108,7 +110,7 @@ public class ItemSeeds extends ItemHMMeta implements IRateable {
     @Override
     public int getRating(ItemStack stack) {
         Crop crop = CropHelper.getCropFromDamage(stack.getItemDamage());
-        if (crop.isStatic()) return -1;
+        if (crop == null || crop.isStatic()) return -1;
         else return getCropQuality(stack.getItemDamage()) / 10;
     }
 
@@ -123,7 +125,7 @@ public class ItemSeeds extends ItemHMMeta implements IRateable {
         else if (pass == 2) return seed_bag_neck;
         else {
             Crop crop = CropHelper.getCropFromDamage(damage);
-            return crop.getCropStack().getIconIndex();
+            return crop == null ? seed_bag_neck : crop.getCropStack().getIconIndex();
         }
     }
 
@@ -135,7 +137,7 @@ public class ItemSeeds extends ItemHMMeta implements IRateable {
     @Override
     public int getColorFromItemStack(ItemStack stack, int pass) {
         Crop crop = CropHelper.getCropFromDamage(stack.getItemDamage());
-        if (pass == 1) return crop.getColor();
+        if (pass == 1 && crop != null) return crop.getColor();
         else if (pass == 2) return 0xFFFFFF;
         else return super.getColorFromItemStack(stack, pass);
     }

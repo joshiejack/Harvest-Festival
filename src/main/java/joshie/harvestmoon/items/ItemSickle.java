@@ -1,9 +1,9 @@
 package joshie.harvestmoon.items;
 
-import static joshie.harvestmoon.core.helpers.CropHelper.destroyCrop;
 import static net.minecraft.block.Block.soundTypeGrass;
 import joshie.harvestmoon.api.crops.IBreakCrops;
 import joshie.harvestmoon.blocks.BlockCrop;
+import joshie.harvestmoon.core.helpers.CropHelper;
 import joshie.harvestmoon.core.helpers.PlayerHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -81,7 +81,8 @@ public class ItemSickle extends ItemBaseTool implements IBreakCrops {
                     Block block = world.getBlock(x2, y, z2);
                     if (block instanceof BlockCrop) {
                         if (!world.isRemote) {
-                            destroyCrop(player, world, x2, y, z2);
+                            world.setBlockToAir(x2, y, z2);
+                            CropHelper.notifyFarmlandOfCropRemoval(world, x, y, z);
                         }
 
                         displayParticle(world, x2, y, z2, "blockcrack_31_1");

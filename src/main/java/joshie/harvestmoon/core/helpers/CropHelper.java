@@ -1,6 +1,5 @@
 package joshie.harvestmoon.core.helpers;
 
-import joshie.harvestmoon.api.crops.ICrop;
 import joshie.harvestmoon.core.helpers.generic.ItemHelper;
 import joshie.harvestmoon.core.lib.HMModInfo;
 import joshie.harvestmoon.crops.Crop;
@@ -21,17 +20,13 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class CropHelper {
-    public static boolean destroyCrop(EntityPlayer player, World world, int x, int y, int z) {
-        if (!world.isRemote) {
-            return getServerTracker().destroy(player, world, x, y, z);
-        }
-
-        return true;
-    }
-
     @SideOnly(Side.CLIENT)
     public static IIcon getIconForCrop(World world, int x, int y, int z) {
         return getClientTracker().getIconForCrop(world, x, y, z);
+    }
+    
+    public static void notifyFarmlandOfCropRemoval(World world, int x, int y, int z) {
+        getServerTracker().removeCrop(world, x, y, z);
     }
 
     public static boolean hydrate(World world, int x, int y, int z) {

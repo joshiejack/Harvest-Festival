@@ -16,7 +16,8 @@ import org.objectweb.asm.Opcodes;
 public class PamTransformer implements ITransformer {
     @Override
     public boolean isActive(Vanilla config) {
-        return config.OVERRIDE_HARVESTCRAFT;
+        return false; //TODO: Harvestcraft Plugin
+        //return config.OVERRIDE_HARVESTCRAFT;
     }
 
     @Override

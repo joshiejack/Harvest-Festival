@@ -24,6 +24,7 @@ public class CropData implements IData {
         SEED, GROWING, GROWN, NONE;
     }
 
+    private boolean isReal; //Is true if there actually is a plant here, rather than a placeholder
     private UUID owner; //The owners uuid
     private Crop crop; //The Crop Type of this plant
     private int stage; //The stage it is currently at
@@ -32,12 +33,12 @@ public class CropData implements IData {
     private int daysWithoutWater; //The number of days this crop has gone without water
 
     public CropData() {}
-
     public CropData(EntityPlayer owner, Crop crop, int quality) {
         this.crop = crop;
         this.quality = quality;
         this.stage = 1;
         this.owner = owner.getPersistentID();
+        this.isReal = true;
     }
 
     private boolean isWrongSeason() {
@@ -69,6 +70,11 @@ public class CropData implements IData {
         isFertilized = false;
 
         return NONE;
+    }
+
+    //Called when the crop that was on this farmland is destroyed
+    public void clear() {
+        this.isReal = false;
     }
 
     public void grow() {
@@ -107,7 +113,7 @@ public class CropData implements IData {
     }
 
     public boolean canGrow() {
-        return PlayerHelper.isOnlineOrFriendsAre(owner);
+        return isReal && PlayerHelper.isOnlineOrFriendsAre(owner);
     }
 
     public ItemStack harvest() {
@@ -131,7 +137,8 @@ public class CropData implements IData {
 
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
-        crop = getCropFromOrdinal(nbt.getByte("CropMeta"));
+        isReal = nbt.getBoolean("IsReal");
+        crop = getCropFromOrdinal(nbt.getShort("CropMeta"));
         stage = nbt.getByte("CurrentStage");
         quality = nbt.getByte("CropQuality");
         isFertilized = nbt.getBoolean("IsFertilized");
@@ -141,28 +148,38 @@ public class CropData implements IData {
 
     @Override
     public void writeToNBT(NBTTagCompound nbt) {
-        nbt.setByte("CropMeta", (byte) crop.getCropMeta());
-        nbt.setByte("CurrentStage", (byte) stage);
-        nbt.setByte("CropQuality", (byte) quality);
-        nbt.setBoolean("IsFertilized", isFertilized);
-        nbt.setShort("DaysWithoutWater", (short) daysWithoutWater);
-        nbt.setLong("Farmer-UUIDMost", owner.getMostSignificantBits());
-        nbt.setLong("Farmer-UUIDLeast", owner.getLeastSignificantBits());
+        if (crop != null) {
+            nbt.setBoolean("IsReal", isReal);
+            nbt.setShort("CropMeta", (short) crop.getCropMeta());
+            nbt.setByte("CurrentStage", (byte) stage);
+            nbt.setByte("CropQuality", (byte) quality);
+            nbt.setBoolean("IsFertilized", isFertilized);
+            nbt.setShort("DaysWithoutWater", (short) daysWithoutWater);
+            nbt.setLong("Farmer-UUIDMost", owner.getMostSignificantBits());
+            nbt.setLong("Farmer-UUIDLeast", owner.getLeastSignificantBits());
+        }
     }
 
     /* Packet Based */
     public void toBytes(ByteBuf buf) {
-        buf.writeByte(crop.getCropMeta());
-        buf.writeByte(stage);
-        buf.writeByte(quality);
-        buf.writeBoolean(isFertilized);
+        if (crop != null) {
+            buf.writeBoolean(true);
+            buf.writeShort(crop.getCropMeta());
+            buf.writeByte(stage);
+            buf.writeByte(quality);
+            buf.writeBoolean(isFertilized);
+        }
+        
+        buf.writeBoolean(false);
     }
 
     public void fromBytes(ByteBuf buf) {
-        crop = getCropFromOrdinal(buf.readByte());
-        stage = buf.readByte();
-        quality = buf.readByte();
-        isFertilized = buf.readBoolean();
+        if (buf.readBoolean()) {
+            crop = getCropFromOrdinal(buf.readShort());
+            stage = buf.readByte();
+            quality = buf.readByte();
+            isFertilized = buf.readBoolean();
+        }
     }
 
     @Override

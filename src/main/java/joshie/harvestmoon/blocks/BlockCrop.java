@@ -1,6 +1,5 @@
 package joshie.harvestmoon.blocks;
 
-import static joshie.harvestmoon.core.helpers.CropHelper.destroyCrop;
 import static joshie.harvestmoon.core.helpers.CropHelper.harvestCrop;
 
 import java.util.Random;
@@ -142,6 +141,7 @@ public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
     @SideOnly(Side.CLIENT)
     @Override
     public boolean addDestroyEffects(World world, int x, int y, int z, int meta, EffectRenderer effectRenderer) {
+        IIcon icon = CropHelper.getIconForCrop(world, (int) x, (int) y, (int) z);
         byte b0 = 4;
         for (int i1 = 0; i1 < b0; ++i1) {
             for (int j1 = 0; j1 < b0; ++j1) {
@@ -149,7 +149,7 @@ public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
                     double d0 = (double) x + ((double) i1 + 0.5D) / (double) b0;
                     double d1 = (double) y + ((double) j1 + 0.5D) / (double) b0;
                     double d2 = (double) z + ((double) k1 + 0.5D) / (double) b0;
-                    effectRenderer.addEffect((new EntityCropDigFX(world, d0, d1, d2, d0 - (double) x - 0.5D, d1 - (double) y - 0.5D, d2 - (double) z - 0.5D, world.getBlock(x, y, z), meta)).applyColourMultiplier(x, y, z));
+                    effectRenderer.addEffect((new EntityCropDigFX(icon, world, d0, d1, d2, d0 - (double) x - 0.5D, d1 - (double) y - 0.5D, d2 - (double) z - 0.5D, world.getBlock(x, y, z), meta)).applyColourMultiplier(x, y, z));
                 }
             }
         }
@@ -170,9 +170,15 @@ public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
         if (!world.isRemote) {
             Block block = world.getBlock(x, y - 1, z);
             if (!block.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, this)) {
-                destroyCrop(null, world, x, y, z);
+                world.setBlockToAir(x, y, z);
+                //CropHelper.notifyFarmlandOfCropRemoval(world, x, y, z);
             }
         }
+    }
+
+    @Override
+    public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
+        CropHelper.notifyFarmlandOfCropRemoval(world, x, y, z);
     }
 
     @Override

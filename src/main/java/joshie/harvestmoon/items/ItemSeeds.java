@@ -60,19 +60,19 @@ public class ItemSeeds extends ItemHMMeta implements IRateable {
         } else {
             Crop crop = CropHelper.getCropFromDamage(stack.getItemDamage());
             int quality = CropHelper.getCropQuality(stack.getItemDamage());
-            int y = yCoord;
             int planted = 0;
-            labelTop: for (int x = xCoord - 1; x <= xCoord + 1; x++) {
-                for (int z = zCoord - 1; z <= zCoord + 1; z++) {
-                    if (player.canPlayerEdit(x, y, z, side, stack) && player.canPlayerEdit(x, y + 1, z, side, stack)) {
-                        if (world.getBlock(x, y, z).canSustainPlant(world, x, y, z, ForgeDirection.UP, (IPlantable) HMBlocks.crops) && world.isAirBlock(x, y + 1, z)) {
-                            plantCrop(player, world, x, y + 1, z, crop, quality);
-                            planted++;
-
+            
+            if (player.isSneaking()) {
+                planted = plantSeedAt(player, stack, world, xCoord, yCoord, zCoord, side, crop, quality, planted);
+            } else {
+                labelTop: 
+                for (int x = xCoord - 1; x <= xCoord + 1; x++) {
+                    for (int z = zCoord - 1; z <= zCoord + 1; z++) {
+                        planted = plantSeedAt(player, stack, world, x, yCoord, z, side, crop, quality, planted);
+                        if (planted < 0) {
                             if (Crops.ALWAYS_GROW) {
-                                if (planted >= 2) {
-                                    break labelTop;
-                                }
+                                planted = 2;
+                                break labelTop;
                             }
                         }
                     }
@@ -86,6 +86,23 @@ public class ItemSeeds extends ItemHMMeta implements IRateable {
                 return false;
             }
         }
+    }
+
+    private int plantSeedAt(EntityPlayer player, ItemStack stack, World world, int x, int y, int z, int side, Crop crop, int quality, int planted) {
+        if (player.canPlayerEdit(x, y, z, side, stack) && player.canPlayerEdit(x, y + 1, z, side, stack)) {
+            if (world.getBlock(x, y, z).canSustainPlant(world, x, y, z, ForgeDirection.UP, (IPlantable) HMBlocks.crops) && world.isAirBlock(x, y + 1, z)) {
+                plantCrop(player, world, x, y + 1, z, crop, quality);
+                planted++;
+
+                if (Crops.ALWAYS_GROW) {
+                    if (planted >= 2) {
+                        return -1;
+                    }
+                }
+            }
+        }
+
+        return planted;
     }
 
     @Override

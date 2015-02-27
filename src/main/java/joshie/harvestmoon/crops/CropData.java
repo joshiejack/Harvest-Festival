@@ -86,6 +86,14 @@ public class CropData implements IData {
         return stage;
     }
 
+    public int getQuality() {
+        return quality;
+    }
+
+    public Crop getCrop() {
+        return crop;
+    }
+
     public boolean doesRegrow() {
         return crop.getRegrowStage() > 0;
     }

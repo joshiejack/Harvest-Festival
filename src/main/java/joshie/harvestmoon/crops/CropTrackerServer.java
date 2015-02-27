@@ -21,6 +21,7 @@ import joshie.harvestmoon.core.network.PacketSyncCrop;
 import joshie.harvestmoon.core.util.IData;
 import joshie.harvestmoon.crops.CropData.WitherType;
 import joshie.harvestmoon.init.HMBlocks;
+import joshie.harvestmoon.init.HMItems;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -175,6 +176,15 @@ public class CropTrackerServer implements IData {
                 return ret;
             } else return null;
         }
+    }
+
+    public ItemStack getStackForCrop(World world, int x, int y, int z) {
+        WorldLocation key = getKey(world, x, y, z);
+        CropData data = cropData.get(key);
+        if (data == null) return new ItemStack(Blocks.cactus); //Because why not?
+        ItemStack seeds = new ItemStack(HMItems.seeds);
+        seeds.setItemDamage(data.getCrop().getCropMeta() + ((data.getQuality() - 1) * 100));
+        return seeds;
     }
 
     public boolean canHarvest(World world, int x, int y, int z) {

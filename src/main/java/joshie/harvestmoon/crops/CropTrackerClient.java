@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import joshie.harvestmoon.core.network.PacketCropRequest;
 import joshie.harvestmoon.core.network.PacketHandler;
+import joshie.harvestmoon.init.HMItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -32,6 +33,15 @@ public class CropTrackerClient {
         }
 
         return crops.get(getKey(world, x, y, z)).getIcon();
+    }
+
+    public ItemStack getStackForCrop(World world, int x, int y, int z) {
+        WorldLocation key = getKey(world, x, y, z);
+        CropData data = crops.get(key);
+        if (data == null) return new ItemStack(Blocks.cactus); //Because why not?
+        ItemStack seeds = new ItemStack(HMItems.seeds);
+        seeds.setItemDamage(data.getCrop().getCropMeta() + ((data.getQuality() - 1) * 100));
+        return seeds;
     }
 
     public String getCropName(World world, int x, int y, int z) {

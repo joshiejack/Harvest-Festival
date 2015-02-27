@@ -180,6 +180,11 @@ public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
         return null;
     }
 
+    @Override
+    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player) {
+        return CropHelper.getStackForCrop(world, x, y, z);
+    }
+
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister register) {
         for (Crop crop : Crop.crops) {

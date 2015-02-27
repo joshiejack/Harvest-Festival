@@ -89,6 +89,12 @@ public class CropHelper {
         return stack != null;
     }
 
+    public static ItemStack getStackForCrop(World world, int x, int y, int z) {
+        if (!world.isRemote) {
+            return getServerTracker().getStackForCrop(world, x, y, z);
+        } else return ClientHelper.getCropTracker().getStackForCrop(world, x, y, z);
+    }
+
     public static boolean canHarvest(World world, int x, int y, int z) {
         if (!world.isRemote) {
             return getServerTracker().canHarvest(world, x, y, z);

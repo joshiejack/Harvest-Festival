@@ -5,6 +5,7 @@ import static joshie.harvestmoon.core.helpers.CropHelper.harvestCrop;
 
 import java.util.Random;
 
+import joshie.harvestmoon.api.crops.IBreakCrops;
 import joshie.harvestmoon.core.config.Crops;
 import joshie.harvestmoon.core.helpers.CropHelper;
 import joshie.harvestmoon.core.helpers.DigFXHelper;
@@ -18,6 +19,7 @@ import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
@@ -69,6 +71,13 @@ public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
                 }
             }
         }
+    }
+
+    @Override
+    public float getPlayerRelativeBlockHardness(EntityPlayer player, World world, int x, int y, int z) {
+        ItemStack held = player.getCurrentEquippedItem();
+        if (held == null || (!(held.getItem() instanceof IBreakCrops))) return super.getPlayerRelativeBlockHardness(player, world, x, y, z);
+        return ((IBreakCrops) held.getItem()).getStrengthVSCrops(player, world, x, y, z, held);
     }
 
     private float getGrowthChance(World world, int x, int y, int z) {

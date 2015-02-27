@@ -2,6 +2,7 @@ package joshie.harvestmoon.items;
 
 import static joshie.harvestmoon.core.helpers.CropHelper.destroyCrop;
 import static net.minecraft.block.Block.soundTypeGrass;
+import joshie.harvestmoon.api.crops.IBreakCrops;
 import joshie.harvestmoon.blocks.BlockCrop;
 import joshie.harvestmoon.core.helpers.PlayerHelper;
 import net.minecraft.block.Block;
@@ -12,7 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class ItemSickle extends ItemBaseTool {
+public class ItemSickle extends ItemBaseTool implements IBreakCrops {
     @Override
     public int getFront(ItemStack stack) {
         ToolTier tier = getTier(stack);
@@ -63,13 +64,14 @@ public class ItemSickle extends ItemBaseTool {
         return (block != Blocks.grass && block.getMaterial() == Material.grass) || block.getMaterial() == Material.leaves || block.getMaterial() == Material.vine ? 10F : func_150893_a(stack, block);
     }
 
-    public boolean onBreakSpeedUpdate(EntityPlayer player, ItemStack stack, World world, int x, int y, int z) {
-        if (!player.canPlayerEdit(x, y, z, 0, stack)) return false;
+    @Override
+    public float getStrengthVSCrops(EntityPlayer player, World world, int x, int y, int z, ItemStack stack) {
+        if (!player.canPlayerEdit(x, y, z, 0, stack)) return 0F;
         else {
             ForgeDirection front = joshie.harvestmoon.core.helpers.generic.DirectionHelper.getFacingFromEntity(player);
             Block initial = world.getBlock(x, y, z);
             if (!(initial instanceof BlockCrop)) {
-                return false;
+                return 0F;
             }
 
             //Facing North, We Want East and West to be 1, left * this.left
@@ -88,8 +90,8 @@ public class ItemSickle extends ItemBaseTool {
                     }
                 }
             }
-
-            return changed;
         }
+
+        return 1F;
     }
 }

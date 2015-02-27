@@ -5,6 +5,7 @@ import static joshie.harvestmoon.calendar.Season.SPRING;
 import static joshie.harvestmoon.calendar.Season.SUMMER;
 import joshie.harvestmoon.api.HMApi;
 import joshie.harvestmoon.api.crops.ICrop;
+import joshie.harvestmoon.crops.icons.IconHandlerCorn;
 import joshie.harvestmoon.crops.icons.IconHandlerCucumber;
 import joshie.harvestmoon.crops.icons.IconHandlerPineapple;
 import joshie.harvestmoon.crops.icons.IconHandlerSeedFood;
@@ -44,7 +45,7 @@ public class HMCrops {
         //Summer Crops
         tomato = HMApi.CROPS.registerCrop("tomato", 200, 60, 10, 7, 0, 0xF23B0C, SUMMER).setCropIconHandler(new IconHandlerTomato());
         onion = HMApi.CROPS.registerCrop("onion", 150, 80, 8, 0, 0, 0xF3B073, SUMMER);
-        corn = HMApi.CROPS.registerCrop("corn", 300, 100, 15, 12, 0, 0xF8E048, SUMMER);
+        corn = HMApi.CROPS.registerCrop("corn", 300, 100, 15, 12, 0, 0xF8E048, SUMMER).setCropIconHandler(new IconHandlerCorn());
         pumpkin = HMApi.CROPS.registerCrop("pumpkin", 500, 250, 15, 0, 3, 0x54971E, SUMMER);
         pineapple = HMApi.CROPS.registerCrop("pineapple", 1000, 500, 21, 5, 8, 0xEECD33, SUMMER).setCropIconHandler(new IconHandlerPineapple());
 

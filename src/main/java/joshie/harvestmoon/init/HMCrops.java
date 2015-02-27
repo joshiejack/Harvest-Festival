@@ -6,6 +6,7 @@ import static joshie.harvestmoon.calendar.Season.SUMMER;
 import joshie.harvestmoon.api.HMApi;
 import joshie.harvestmoon.api.crops.ICrop;
 import joshie.harvestmoon.crops.icons.IconHandlerSeedFood;
+import joshie.harvestmoon.crops.icons.IconHandlerTomato;
 import joshie.harvestmoon.crops.icons.IconHandlerTurnip;
 import joshie.harvestmoon.crops.icons.IconHandlerWheat;
 import net.minecraft.init.Blocks;
@@ -39,7 +40,7 @@ public class HMCrops {
         cabbage = HMApi.CROPS.registerCrop("cabbage", 500, 250, 15, 0, 8, 0x8DF146, SPRING);
 
         //Summer Crops
-        tomato = HMApi.CROPS.registerCrop("tomato", 200, 60, 10, 7, 0, 0xF23B0C, SUMMER);
+        tomato = HMApi.CROPS.registerCrop("tomato", 200, 60, 10, 7, 0, 0xF23B0C, SUMMER).setCropIconHandler(new IconHandlerTomato());
         onion = HMApi.CROPS.registerCrop("onion", 150, 80, 8, 0, 0, 0xF3B073, SUMMER);
         corn = HMApi.CROPS.registerCrop("corn", 300, 100, 15, 12, 0, 0xF8E048, SUMMER);
         pumpkin = HMApi.CROPS.registerCrop("pumpkin", 500, 250, 15, 0, 3, 0x54971E, SUMMER);

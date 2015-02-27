@@ -103,7 +103,7 @@ public class CropData implements IData {
     }
 
     public ItemStack harvest() {
-        if (stage == crop.getStages()) {
+        if (stage >= crop.getStages()) {
             int cropQuality = 0;
             if (!crop.isStatic()) {
                 cropQuality = ((this.quality - 1) * 100);

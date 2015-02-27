@@ -164,9 +164,9 @@ public class CropTrackerServer implements IData {
                 if (!data.doesRegrow()) {
                     cropData.remove(key);
                     world.setBlockToAir(x, y, z);
-                    sendToEveryone(new PacketSyncCrop(key, data));
-                } else sendToEveryone(new PacketSyncCrop(key));
+                }
 
+                sendToEveryone(new PacketSyncCrop(key, data));
                 if (player != null) {
                     CropHelper.onHarvested(player, data);
                 }

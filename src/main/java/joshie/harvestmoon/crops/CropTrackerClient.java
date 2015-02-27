@@ -28,7 +28,7 @@ public class CropTrackerClient {
         CropData data = crops.get(location);
         if (data == null) { //If we don't have the crop loaded in the cache, request the data for it.
             PacketHandler.sendToServer(new PacketCropRequest(world, x, y, z));
-            return Blocks.stone.getIcon(0, 0);
+            return Blocks.obsidian.getIcon(0, 0);
         }
 
         return crops.get(getKey(world, x, y, z)).getIcon();

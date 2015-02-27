@@ -26,7 +26,11 @@ public interface ICrop {
      *              false if we are asking for it's block name
      *              
      * @return      the localized name*/
-    public String getCropName(boolean isItem);
+    public String getLocalizedName(boolean isItem);
+    
+    /** Returns the localized name for this seed 
+     * @return      the localized name for this crop as seeds*/
+    public String getSeedsName();
 
     /** Returns how much this crop will sell for at 0.5 start
      * @return      money gained from selling*/

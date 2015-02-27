@@ -1,5 +1,6 @@
 package joshie.harvestmoon.core.helpers;
 
+import joshie.harvestmoon.api.crops.ICrop;
 import joshie.harvestmoon.core.helpers.generic.ItemHelper;
 import joshie.harvestmoon.core.lib.HMModInfo;
 import joshie.harvestmoon.crops.Crop;

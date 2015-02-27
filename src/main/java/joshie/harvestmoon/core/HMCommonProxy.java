@@ -1,6 +1,7 @@
 package joshie.harvestmoon.core;
 
 import joshie.harvestmoon.core.handlers.api.HMApiHandler;
+import joshie.harvestmoon.core.util.WorldDestroyer;
 import joshie.harvestmoon.init.HMAnimals;
 import joshie.harvestmoon.init.HMBlocks;
 import joshie.harvestmoon.init.HMBuildings;
@@ -17,12 +18,14 @@ import joshie.harvestmoon.init.HMOverride;
 import joshie.harvestmoon.init.HMPackets;
 import joshie.harvestmoon.init.HMQuests;
 import joshie.harvestmoon.init.HMShops;
+import joshie.harvestmoon.plugins.HMPlugins;
 
 public class HMCommonProxy {
     public void preInit() {
         HMApiHandler.init();
         HMOverride.init();
         HMConfiguration.init();
+        HMPlugins.preInit();
         HMCrops.init();
         HMNPCs.init();
         HMBlocks.init();
@@ -36,9 +39,17 @@ public class HMCommonProxy {
         HMShops.init();
         HMMining.init();
         HMGifts.init();
-        HMAnimals.init();
+        HMAnimals.preInit();
         HMTab.init();
     }
 
-    public void init() {}
+    public void init() {
+        HMPlugins.init();
+        HMAnimals.init();
+    }
+
+    public void postInit() {
+        HMPlugins.postInit();
+        WorldDestroyer.replaceWorldProvider();
+    }
 }

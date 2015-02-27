@@ -36,6 +36,8 @@ import cpw.mods.fml.common.FMLCommonHandler;
 public class HMClientProxy extends HMCommonProxy {
     @Override
     public void init() {
+        super.init();
+        
         ClientHelper.resetClient();
 
         registerRenders(HMBlocks.cookware);

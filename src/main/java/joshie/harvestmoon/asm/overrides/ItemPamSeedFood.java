@@ -3,33 +3,37 @@ package joshie.harvestmoon.asm.overrides;
 import static joshie.harvestmoon.core.helpers.CropHelper.getCropQuality;
 
 import java.util.List;
+import java.util.WeakHashMap;
 
 import joshie.harvestmoon.api.crops.ICrop;
 import joshie.harvestmoon.core.config.Crops;
 import joshie.harvestmoon.core.config.General;
-import joshie.harvestmoon.init.HMConfiguration;
-import joshie.harvestmoon.init.HMCrops;
+import joshie.harvestmoon.plugins.harvestcraft.HarvestCraft;
+import joshie.harvestmoon.plugins.harvestcraft.HarvestCraftCrop;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemSeedFood {
+public class ItemPamSeedFood {
+    private static WeakHashMap<String, HarvestCraftCrop> cache = new WeakHashMap();
+    public static boolean isLoaded = false;
+
     public static ICrop getCrop(ItemStack stack) {
-        ICrop crop = null;
-        Item item = stack.getItem();
-        if (item == Items.carrot && HMConfiguration.vanilla.CARROT_OVERRIDE) {
-            crop = HMCrops.carrot;
-        } else if (item == Items.potato && HMConfiguration.vanilla.POTATO_OVERRIDE) {
-            crop = HMCrops.potato;
-        } else if (item == Items.wheat && HMConfiguration.vanilla.WHEAT_OVERRIDE) {
-            crop = HMCrops.wheat;
+        String unlocalized = stack.getUnlocalizedName();
+        if (cache.containsKey(unlocalized)) {
+            return cache.get(unlocalized);
+        } else {
+            for (HarvestCraftCrop crop : HarvestCraft.crops) {
+                if (crop.matches(stack)) {
+                    cache.put(unlocalized, crop);
+                    return crop;
+                }
+            }
         }
 
-        return crop;
+        return null;
     }
 
     public static long getSellValue(ItemStack stack) {
@@ -43,12 +47,6 @@ public class ItemSeedFood {
         ICrop crop = getCrop(stack);
         if (crop == null || crop.isStatic()) return -1;
         else return getCropQuality(stack.getItemDamage()) / 10;
-    }
-
-    public static String getItemStackDisplayName(ItemStack stack) {
-        ICrop crop = getCrop(stack);
-        if (crop == null) return ("" + StatCollector.translateToLocal(stack.getItem().getUnlocalizedNameInefficiently(stack) + ".name")).trim();
-        else return crop.getLocalizedName(true);
     }
 
     @SideOnly(Side.CLIENT)

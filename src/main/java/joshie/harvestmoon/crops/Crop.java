@@ -233,14 +233,14 @@ public class Crop implements ICrop {
     /** Gets the localized crop name for this crop
      * @param stack 
      * @return crop name */
-    public final String getCropName(boolean isItem) {
+    public String getLocalizedName(boolean isItem) {
         String suffix = alternativeName ? ((isItem) ? ".item" : ".block") : "";
         return Translate.translate("crop." + StringUtils.replace(getUnlocalizedName(), "_", ".") + suffix);
     }
 
     /** Gets the localized seed name for this crop
      * @return seed name */
-    public final String getSeedsName() {
+    public String getSeedsName() {
         String suffix = alternativeName ? ".block" : "";
         String name = Translate.translate("crop." + StringUtils.replace(getUnlocalizedName(), "_", ".") + suffix);
         String seeds = Translate.translate("crop.seeds");

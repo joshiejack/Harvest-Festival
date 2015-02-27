@@ -9,6 +9,7 @@ import joshie.harvestmoon.asm.transformers.EggTransformer;
 import joshie.harvestmoon.asm.transformers.FarmlandHardnessTransformer;
 import joshie.harvestmoon.asm.transformers.FarmlandTransformer;
 import joshie.harvestmoon.asm.transformers.ITransformer;
+import joshie.harvestmoon.asm.transformers.PamTransformer;
 import joshie.harvestmoon.asm.transformers.SeedFoodTransformer;
 import joshie.harvestmoon.asm.transformers.SnowTransformer;
 import joshie.harvestmoon.asm.transformers.WheatTransformer;
@@ -34,6 +35,8 @@ public class HMOverride implements IClassTransformer {
         transformers.add(new FarmlandTransformer());
         transformers.add(new FarmlandHardnessTransformer());
         transformers.add(new SnowTransformer());
+        //TODO: Future Plugins
+        //transformers.add(new PamTransformer());
 
         GsonBuilder builder = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping();
         Gson gson = builder.create();

@@ -54,7 +54,7 @@ public class HarvestMoon implements IFMLLoadingPlugin {
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        WorldDestroyer.replaceWorldProvider();
+        proxy.postInit();
     }
 
     @EventHandler

@@ -139,7 +139,7 @@ public class CropTrackerServer implements IData {
 
     //Plants a crop at the location, PLAYER CAN BE NULL
     public boolean plant(EntityPlayer player, World world, int x, int y, int z, Crop crop, int quality) {
-        HarvestMoon.logger.log(Level.INFO, "Planted " + crop.getCropName(false) + " @ " + x + " - " + y + " - " + z + " with quality of " + quality);
+        HarvestMoon.logger.log(Level.INFO, "Planted " + crop.getLocalizedName(false) + " @ " + x + " - " + y + " - " + z + " with quality of " + quality);
 
         WorldLocation key = getKey(world, x, y, z);
         CropData data = new CropData(player, crop, quality);

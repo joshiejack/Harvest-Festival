@@ -47,7 +47,7 @@ public class ItemCrop extends ItemHMMeta implements IShippable, IRateable, ICrop
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        return crop.getCropName(true);
+        return crop.getLocalizedName(true);
     }
 
     @Override

@@ -1,19 +1,26 @@
 package joshie.harvestmoon.init;
 
+import static joshie.harvestmoon.core.lib.HMModInfo.MODNAME;
 import static joshie.harvestmoon.init.HMConfiguration.vanilla;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import joshie.harvestmoon.asm.transformers.EggTransformer;
 import joshie.harvestmoon.asm.transformers.FarmlandHardnessTransformer;
 import joshie.harvestmoon.asm.transformers.FarmlandTransformer;
 import joshie.harvestmoon.asm.transformers.ITransformer;
-import joshie.harvestmoon.asm.transformers.PamTransformer;
 import joshie.harvestmoon.asm.transformers.SeedFoodTransformer;
 import joshie.harvestmoon.asm.transformers.SnowTransformer;
 import joshie.harvestmoon.asm.transformers.WheatTransformer;
 import joshie.harvestmoon.core.HMTab;
+import joshie.harvestmoon.crops.CropData;
+import joshie.harvestmoon.crops.WorldLocation;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.launchwrapper.IClassTransformer;
@@ -26,6 +33,13 @@ public class HMOverride implements IClassTransformer {
     private static final int SNOW = 1;
     private static final int FARMLAND = 2;
 
+    private static HashMap<WorldLocation, CropData> locationMap = new HashMap();
+    private static HashMap<String, CropData> stringMap = new HashMap();
+    private static HashMap<String, CropData> builderMap = new HashMap();
+    private static HashMap<Integer, CropData> integerMap = new HashMap();
+
+    public static final Logger logger = LogManager.getLogger("ttt");
+    
     public static boolean isObfuscated = false;
     private static List<ITransformer> transformers = new ArrayList();
     static {

@@ -15,6 +15,10 @@ public class PlaceableBlock extends Placeable {
     public PlaceableBlock() {
         super(0, 0, 0);
     }
+    
+    public PlaceableBlock(int x, int y, int z) {
+        super(x, y, z);
+    }
 
     public PlaceableBlock(Block block, int meta, int offsetX, int offsetY, int offsetZ) {
         super(offsetX, offsetY, offsetZ);
@@ -66,5 +70,27 @@ public class PlaceableBlock extends Placeable {
         tag.setInteger("X", offsetX);
         tag.setInteger("Y", offsetY);
         tag.setInteger("Z", offsetZ);
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if ((!(obj instanceof PlaceableBlock))) return false;
+        PlaceableBlock other = (PlaceableBlock) obj;
+        if (offsetX != other.offsetX) return false;
+        if (offsetY != other.offsetY) return false;
+        if (offsetZ != other.offsetZ) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int prime = 31;
+        int result = 1;
+        result = prime * result + offsetX;
+        result = prime * result + offsetY;
+        result = prime * result + offsetZ;
+        return result;
     }
 }

@@ -5,7 +5,7 @@ import joshie.harvestmoon.core.util.IData;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class WorldLocation implements IData {
-    protected final int prime = 31;
+    protected final static int prime = 31;
     public int dimension;
     public int x;
     public int y;

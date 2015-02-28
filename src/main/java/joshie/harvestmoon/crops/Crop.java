@@ -33,6 +33,7 @@ public class Crop implements ICrop {
     protected String unlocalized;
     protected boolean alternativeName;
     protected boolean isStatic;
+    protected boolean requiresSickle;
     protected Item item;
     protected Season[] seasons;
     protected int cost;
@@ -77,19 +78,14 @@ public class Crop implements ICrop {
     }
 
     @Override
-    public Crop setHasAlternativeName() {
+    public ICrop setHasAlternativeName() {
         this.alternativeName = true;
         return this;
     }
 
     @Override
-    public Crop setIsStatic() {
+    public ICrop setIsStatic() {
         this.isStatic = true;
-        return this;
-    }
-
-    public Crop setFoodType(FoodType foodType) {
-        this.foodType = foodType;
         return this;
     }
 
@@ -102,6 +98,17 @@ public class Crop implements ICrop {
     @Override
     public ICrop setCropIconHandler(ICropIconHandler handler) {
         this.iconHandler = handler;
+        return this;
+    }
+
+    @Override
+    public ICrop setRequiresSickle() {
+        this.requiresSickle = true;
+        return this;
+    }
+    
+    public Crop setFoodType(FoodType foodType) {
+        this.foodType = foodType;
         return this;
     }
 
@@ -183,8 +190,14 @@ public class Crop implements ICrop {
 
     /** This is called to get the drop of this crop once it's ready for harvest 
      * @return the CropMeta that this crop should drop */
-    int getCropMeta() {
+    @Override
+    public int getCropMeta() {
         return ordinal;
+    }
+
+    @Override
+    public boolean requiresSickle() {
+        return requiresSickle;
     }
 
     /** This is called when bringing up the list of crops for sale 
@@ -216,6 +229,11 @@ public class Crop implements ICrop {
     @Override
     public ItemStack getCropStack() {
         return new ItemStack(item);
+    }
+    
+    @Override
+    public ICropIconHandler getCropHandler() {
+        return iconHandler;
     }
 
     @Override

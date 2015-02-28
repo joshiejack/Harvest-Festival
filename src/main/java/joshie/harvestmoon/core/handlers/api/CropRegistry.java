@@ -1,10 +1,13 @@
 package joshie.harvestmoon.core.handlers.api;
 
+import net.minecraft.world.World;
 import joshie.harvestmoon.api.Calendar;
 import joshie.harvestmoon.api.Calendar.ISeason;
 import joshie.harvestmoon.api.crops.ICrop;
+import joshie.harvestmoon.api.crops.ICropData;
 import joshie.harvestmoon.api.registry.ICropRegistry;
 import joshie.harvestmoon.calendar.Season;
+import joshie.harvestmoon.core.helpers.CropHelper;
 import joshie.harvestmoon.crops.Crop;
 
 public class CropRegistry implements ICropRegistry {
@@ -15,6 +18,11 @@ public class CropRegistry implements ICropRegistry {
         }
 
         return null;
+    }
+
+    @Override
+    public ICropData getCropAtLocation(World world, int x, int y, int z) {
+        return CropHelper.getCropAtLocation(world, x, y, z);
     }
 
     @Override

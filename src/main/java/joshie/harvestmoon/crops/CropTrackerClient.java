@@ -2,6 +2,7 @@ package joshie.harvestmoon.crops;
 
 import java.util.HashMap;
 
+import joshie.harvestmoon.api.crops.ICropData;
 import joshie.harvestmoon.core.network.PacketCropRequest;
 import joshie.harvestmoon.core.network.PacketHandler;
 import joshie.harvestmoon.init.HMItems;
@@ -33,6 +34,15 @@ public class CropTrackerClient {
         }
 
         return crops.get(getKey(world, x, y, z)).getIcon();
+    }
+    
+    public ICropData getCropAtLocation(World world, int x, int y, int z) {
+        CropData data = crops.get(getKey(world, x, y, z));
+        if (data == null) {
+            PacketHandler.sendToServer(new PacketCropRequest(world, x, y, z));
+        }
+        
+        return data;
     }
 
     public ItemStack getStackForCrop(World world, int x, int y, int z) {

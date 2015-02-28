@@ -81,8 +81,7 @@ public class ItemSickle extends ItemBaseTool implements IBreakCrops {
                     Block block = world.getBlock(x2, y, z2);
                     if (block instanceof BlockCrop) {
                         if (!world.isRemote) {
-                            world.setBlockToAir(x2, y, z2);
-                            CropHelper.notifyFarmlandOfCropRemoval(world, x, y, z);
+                            block.removedByPlayer(world, player, x2, y, z2, true);
                         }
 
                         displayParticle(world, x2, y, z2, "blockcrack_31_1");

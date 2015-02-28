@@ -39,11 +39,20 @@ public interface ICrop {
     /** Returns how many stages this crop has 
      * @return      the total number of stages*/
     public int getStages();
+    
+    /** The meta damage for seeds **/
+    public int getCropMeta();
+    
+    /** Returns the handler this crop uses **/
+    public ICropIconHandler getCropHandler();
 
     /** Whether this crop is always the same
      * 
      * @return      true if the crop has a quality/rating, false if it does not.*/
     public boolean isStatic();
+    
+    /** Whether this crop requires a sickle to be harvested **/
+    public boolean requiresSickle();
 
     /** Returns true when the itemstack matches this crop
      * 
@@ -70,4 +79,8 @@ public interface ICrop {
      *  It will have quality to it/rating to it.
      * @return      theICop */
     public ICrop setIsStatic();
+    
+    /** If you call this when creating a crop
+     *  It will require a sickle to be harvested  */
+    public ICrop setRequiresSickle();
 }

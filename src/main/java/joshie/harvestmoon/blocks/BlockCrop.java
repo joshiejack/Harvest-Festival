@@ -4,7 +4,10 @@ import static joshie.harvestmoon.core.helpers.CropHelper.harvestCrop;
 
 import java.util.Random;
 
+import joshie.harvestmoon.api.HMApi;
 import joshie.harvestmoon.api.crops.IBreakCrops;
+import joshie.harvestmoon.api.crops.ICrop;
+import joshie.harvestmoon.api.crops.ICropData;
 import joshie.harvestmoon.core.config.Crops;
 import joshie.harvestmoon.core.helpers.CropHelper;
 import joshie.harvestmoon.core.helpers.DigFXHelper;
@@ -17,6 +20,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
@@ -75,7 +79,7 @@ public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
     @Override
     public float getPlayerRelativeBlockHardness(EntityPlayer player, World world, int x, int y, int z) {
         ItemStack held = player.getCurrentEquippedItem();
-        if (held == null || (!(held.getItem() instanceof IBreakCrops))) return super.getPlayerRelativeBlockHardness(player, world, x, y, z);
+        if (held == null || (!(held.getItem() instanceof IBreakCrops))) return 0.75F;
         return ((IBreakCrops) held.getItem()).getStrengthVSCrops(player, world, x, y, z, held);
     }
 
@@ -123,7 +127,8 @@ public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
     @SideOnly(Side.CLIENT)
     @Override
     public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
-        return CropHelper.getIconForCrop(MCClientHelper.getWorld(), x, y, z);
+        ICropData data = HMApi.CROPS.getCropAtLocation(MCClientHelper.getWorld(), x, y, z);
+        return data != null ? data.getCrop().getCropHandler().getIconForStage(data.getStage()) : Blocks.wheat.getIcon(0, 0);
     }
 
     @Override
@@ -161,7 +166,10 @@ public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
         if (player.isSneaking()) return false;
         else {
-            return harvestCrop(player, world, x, y, z);
+            ICropData data = HMApi.CROPS.getCropAtLocation(world, x, y, z);
+            if (data == null || data.getCrop().requiresSickle()) {
+                return false;
+            } else return harvestCrop(player, world, x, y, z);
         }
     }
 
@@ -174,6 +182,20 @@ public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
                 //CropHelper.notifyFarmlandOfCropRemoval(world, x, y, z);
             }
         }
+    }
+
+    @Override
+    public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z, boolean willHarvest) {
+        ICropData data = HMApi.CROPS.getCropAtLocation(world, x, y, z);
+        if (data == null) return super.removedByPlayer(world, player, x, y, z, willHarvest);
+
+        ICrop crop = data.getCrop();
+        boolean isSickle = player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof IBreakCrops;
+        if (isSickle || !crop.requiresSickle()) {
+            harvestCrop(player, world, x, y, z);
+        }
+
+        return world.setBlockToAir(x, y, z);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package joshie.harvestmoon.core.helpers;
 
+import joshie.harvestmoon.api.crops.ICropData;
 import joshie.harvestmoon.core.helpers.generic.ItemHelper;
 import joshie.harvestmoon.core.lib.HMModInfo;
 import joshie.harvestmoon.crops.Crop;
@@ -27,6 +28,12 @@ public class CropHelper {
     
     public static void notifyFarmlandOfCropRemoval(World world, int x, int y, int z) {
         getServerTracker().removeCrop(world, x, y, z);
+    }
+    
+    public static ICropData getCropAtLocation(World world, int x, int y, int z) {
+        if (!world.isRemote) {
+            return getServerTracker().getCropAtLocation(world, x, y, z);
+        } else return getClientTracker().getCropAtLocation(world, x, y, z);
     }
 
     public static boolean hydrate(World world, int x, int y, int z) {

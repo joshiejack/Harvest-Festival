@@ -7,7 +7,6 @@ import joshie.harvestmoon.buildings.Building;
 import joshie.harvestmoon.buildings.placeable.Placeable;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvestmoon.core.helpers.generic.MCClientHelper;
-import joshie.harvestmoon.crops.WorldLocation;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
@@ -16,7 +15,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.util.ForgeDirection;
 
 public class BlockAccessPreview implements IBlockAccess {
-    private HashMap<WorldLocation, PlaceableBlock> blocks = new HashMap();
+    private HashMap<PlaceableBlock, PlaceableBlock> blocks = new HashMap();
     private int previewX, previewY, previewZ; //The world location of the BASE BLOCK
     private boolean n1, n2, swap; //Which direction is this building facing?
     private Building building;
@@ -26,7 +25,7 @@ public class BlockAccessPreview implements IBlockAccess {
         for (Placeable p : list) {
             if (p instanceof PlaceableBlock) {
                 PlaceableBlock block = (PlaceableBlock) p;
-                blocks.put(new WorldLocation(0, p.getX(), p.getY(), p.getZ()), block);
+                blocks.put(block, block);
             }
         }
     }
@@ -71,7 +70,7 @@ public class BlockAccessPreview implements IBlockAccess {
             }
         }
 
-        PlaceableBlock block = blocks.get(new WorldLocation(0, trueX, trueY, trueZ));
+        PlaceableBlock block = blocks.get(new PlaceableBlock(trueX, trueY, trueZ));
         return block == null ? Blocks.air : block.getBlock();
     }
 
@@ -115,7 +114,7 @@ public class BlockAccessPreview implements IBlockAccess {
             }
         }
 
-        PlaceableBlock block = blocks.get(new WorldLocation(0, trueX, trueY, trueZ));
+        PlaceableBlock block = blocks.get(new PlaceableBlock(trueX, trueY, trueZ));
         return block == null ? 0 : block.getMetaData(n1, n2, swap);
     }
 

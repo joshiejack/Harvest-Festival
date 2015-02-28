@@ -7,6 +7,8 @@ import io.netty.buffer.ByteBuf;
 import java.util.Random;
 import java.util.UUID;
 
+import joshie.harvestmoon.api.crops.ICrop;
+import joshie.harvestmoon.api.crops.ICropData;
 import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.core.config.Crops;
 import joshie.harvestmoon.core.helpers.CalendarHelper;
@@ -17,7 +19,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 
-public class CropData implements IData {
+public class CropData implements IData, ICropData {
     private static final Random rand = new Random();
 
     public static enum WitherType {
@@ -33,11 +35,12 @@ public class CropData implements IData {
     private int daysWithoutWater; //The number of days this crop has gone without water
 
     public CropData() {}
+
     public CropData(EntityPlayer owner, Crop crop, int quality) {
         this.crop = crop;
         this.quality = quality;
         this.stage = 1;
-        this.owner = owner.getPersistentID();
+        //this.owner = owner.getPersistentID();
         this.isReal = true;
     }
 
@@ -88,16 +91,18 @@ public class CropData implements IData {
         return crop.getUnlocalizedName();
     }
 
+    @Override
     public int getStage() {
         return stage;
     }
 
-    public int getQuality() {
-        return quality;
+    @Override
+    public ICrop getCrop() {
+        return crop;
     }
 
-    public Crop getCrop() {
-        return crop;
+    public int getQuality() {
+        return quality;
     }
 
     public boolean doesRegrow() {
@@ -143,7 +148,10 @@ public class CropData implements IData {
         quality = nbt.getByte("CropQuality");
         isFertilized = nbt.getBoolean("IsFertilized");
         daysWithoutWater = nbt.getShort("DaysWithoutWater");
-        owner = new UUID(nbt.getLong("Farmer-UUIDMost"), nbt.getLong("Farmer-UUIDLeast"));
+
+        if (nbt.hasKey("Farmer-UUIDMost")) {
+            owner = new UUID(nbt.getLong("Farmer-UUIDMost"), nbt.getLong("Farmer-UUIDLeast"));
+        }
     }
 
     @Override
@@ -155,8 +163,11 @@ public class CropData implements IData {
             nbt.setByte("CropQuality", (byte) quality);
             nbt.setBoolean("IsFertilized", isFertilized);
             nbt.setShort("DaysWithoutWater", (short) daysWithoutWater);
-            nbt.setLong("Farmer-UUIDMost", owner.getMostSignificantBits());
-            nbt.setLong("Farmer-UUIDLeast", owner.getLeastSignificantBits());
+
+            if (owner != null) {
+                nbt.setLong("Farmer-UUIDMost", owner.getMostSignificantBits());
+                nbt.setLong("Farmer-UUIDLeast", owner.getLeastSignificantBits());
+            }
         }
     }
 
@@ -169,7 +180,7 @@ public class CropData implements IData {
             buf.writeByte(quality);
             buf.writeBoolean(isFertilized);
         }
-        
+
         buf.writeBoolean(false);
     }
 

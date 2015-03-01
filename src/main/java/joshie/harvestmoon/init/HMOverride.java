@@ -1,15 +1,10 @@
 package joshie.harvestmoon.init;
 
-import static joshie.harvestmoon.core.lib.HMModInfo.MODNAME;
 import static joshie.harvestmoon.init.HMConfiguration.vanilla;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import joshie.harvestmoon.asm.transformers.EggTransformer;
 import joshie.harvestmoon.asm.transformers.FarmlandHardnessTransformer;
@@ -24,6 +19,9 @@ import joshie.harvestmoon.crops.WorldLocation;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.launchwrapper.IClassTransformer;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -79,8 +77,8 @@ public class HMOverride implements IClassTransformer {
             if (vanilla.CARROT_OVERRIDE) Items.carrot.setCreativeTab(HMTab.tabGeneral);
             if (vanilla.POTATO_OVERRIDE) Items.potato.setCreativeTab(HMTab.tabGeneral);
             if (vanilla.WHEAT_OVERRIDE) Items.wheat.setCreativeTab(HMTab.tabGeneral);
-            if (vanilla.EGG_OVERRIDE) Items.egg.setCreativeTab(HMTab.tabGeneral);
             if (vanilla.FARMLAND_OVERRIDE) Blocks.farmland.setTickRandomly(false);
+            if (vanilla.EGG_OVERRIDE) Items.egg.setCreativeTab(HMTab.tabGeneral).setHasSubtypes(true);
         }
     }
 

@@ -3,7 +3,7 @@ package joshie.harvestmoon.plugins;
 import java.util.ArrayList;
 
 import joshie.harvestmoon.HarvestMoon;
-import joshie.harvestmoon.plugins.harvestcraft.HarvestCraft;
+import joshie.harvestmoon.plugins.bettersleeping.BetterSleeping;
 
 import org.apache.logging.log4j.Level;
 
@@ -14,16 +14,20 @@ public class HMPlugins {
 
     public static abstract class Plugin {
         public String modid;
+
         public Plugin() {}
 
         public abstract void preInit();
+
         public abstract void init();
+
         public abstract void postInit();
     }
 
     static {
         //TODO: Future version
         //add("harvestcraft", HarvestCraft.class);
+        add("bettersleeping", BetterSleeping.class);
     }
 
     private static void add(String modid, Class clazz) {

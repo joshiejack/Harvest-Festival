@@ -11,6 +11,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
+import net.minecraftforge.common.DimensionManager;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.Phase;
@@ -34,12 +35,20 @@ public class FMLEvents {
         if (event.phase != Phase.END) return;
         World world = MinecraftServer.getServer().getEntityWorld();
         if (world.getWorldTime() % Calendar.TICKS_PER_DAY == 1) {
-            (new Thread(HMModInfo.CAPNAME + " Calendar Thread") {
-                @Override
-                public void run() {
+            newDay();
+        }
+    }
+
+    public static void newDay() {
+        (new Thread(HMModInfo.CAPNAME + " Calendar Thread") {
+            @Override
+            public void run() {
+                int daysPassed = CalendarHelper.getTotalDays(CalendarHelper.getServerDate());
+                int serverDays = (int) Math.floor(DimensionManager.getWorld(0).getWorldTime() / Calendar.TICKS_PER_DAY);
+                if (daysPassed <= serverDays) {
                     CalendarHelper.newDay();
                 }
-            }).start();
-        }
+            }
+        }).start();
     }
 }

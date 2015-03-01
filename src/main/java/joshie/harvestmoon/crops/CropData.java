@@ -1,6 +1,7 @@
 package joshie.harvestmoon.crops;
 
 import static joshie.harvestmoon.core.helpers.CropHelper.getCropFromOrdinal;
+import static joshie.harvestmoon.core.network.PacketHandler.sendToEveryone;
 import static joshie.harvestmoon.crops.CropData.WitherType.NONE;
 import io.netty.buffer.ByteBuf;
 
@@ -12,12 +13,14 @@ import joshie.harvestmoon.api.crops.ICropData;
 import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.core.config.Crops;
 import joshie.harvestmoon.core.helpers.CalendarHelper;
-import joshie.harvestmoon.core.helpers.PlayerHelper;
+import joshie.harvestmoon.core.network.PacketSyncCrop;
 import joshie.harvestmoon.core.util.IData;
+import joshie.harvestmoon.plugins.agricraft.AgriCraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
+import net.minecraftforge.common.DimensionManager;
 
 public class CropData implements IData, ICropData {
     private static final Random rand = new Random();
@@ -33,15 +36,24 @@ public class CropData implements IData, ICropData {
     private int quality; //The quality of this crop
     private boolean isFertilized; //Whether this crop is currently fertilized
     private int daysWithoutWater; //The number of days this crop has gone without water
+    private WorldLocation location;
 
     public CropData() {}
 
-    public CropData(EntityPlayer owner, Crop crop, int quality) {
+    public CropData(WorldLocation location) {
+        this.location = location;
+    }
+
+    public CropData(EntityPlayer owner, Crop crop, int quality, WorldLocation location) {
         this.crop = crop;
         this.quality = quality;
         this.stage = 1;
-        //this.owner = owner.getPersistentID();
+        if (owner != null) {
+            this.owner = owner.getPersistentID();
+        }
+
         this.isReal = true;
+        this.location = location;
     }
 
     private boolean isWrongSeason() {
@@ -50,6 +62,10 @@ public class CropData implements IData, ICropData {
         }
 
         return true;
+    }
+
+    public boolean isReal() {
+        return isReal;
     }
 
     public WitherType newDay() {
@@ -72,12 +88,38 @@ public class CropData implements IData, ICropData {
         daysWithoutWater++;
         isFertilized = false;
 
+        //If AgriCraft is loaded, set the blocks metadata accordingly
+        if(AgriCraft.IS_LOADED) {
+            //Stage 7, Set the metadata to 7 if fully grown
+            if (stage >= crop.getStages()) {
+                //Set the Crop Metadata to 7, when it has fully grown
+                setCropMetaData(location, 7);
+            } else {
+                setCropMetaData(location, 0);
+            }
+        }
+
         return NONE;
     }
 
+    public void setCropMetaData(WorldLocation location, int meta) {
+        DimensionManager.getWorld(location.dimension).setBlockMetadataWithNotify(location.x, location.y + 1, location.z, meta, 2);
+    }
+
     //Called when the crop that was on this farmland is destroyed
+    @Override
     public void clear() {
-        this.isReal = false;
+        this.isReal = false;        
+        sendToEveryone(new PacketSyncCrop(location, this));
+    }
+
+    @Override
+    public void regrow() {
+        if (crop.getRegrowStage() > 0) {
+            stage = crop.getRegrowStage();
+        }
+
+        sendToEveryone(new PacketSyncCrop(location, this));
     }
 
     public void grow() {
@@ -101,6 +143,7 @@ public class CropData implements IData, ICropData {
         return crop;
     }
 
+    @Override
     public int getQuality() {
         return quality;
     }
@@ -118,7 +161,9 @@ public class CropData implements IData, ICropData {
     }
 
     public boolean canGrow() {
-        return isReal && PlayerHelper.isOnlineOrFriendsAre(owner);
+        //TODO: Fix PlayHelperifOn...
+        //(PlayerHelper.isOnlineOrFriendsAre(owner));
+        return isReal;
     }
 
     public ItemStack harvest() {
@@ -128,9 +173,7 @@ public class CropData implements IData, ICropData {
                 cropQuality = ((this.quality - 1) * 100);
             }
 
-            if (crop.getRegrowStage() > 0) {
-                stage = crop.getRegrowStage();
-            }
+            regrow();
 
             return crop.getCropStackForQuality(cropQuality);
         } else return null;
@@ -175,6 +218,7 @@ public class CropData implements IData, ICropData {
     public void toBytes(ByteBuf buf) {
         if (crop != null) {
             buf.writeBoolean(true);
+            buf.writeBoolean(isReal);
             buf.writeShort(crop.getCropMeta());
             buf.writeByte(stage);
             buf.writeByte(quality);
@@ -186,6 +230,7 @@ public class CropData implements IData, ICropData {
 
     public void fromBytes(ByteBuf buf) {
         if (buf.readBoolean()) {
+            isReal = buf.readBoolean();
             crop = getCropFromOrdinal(buf.readShort());
             stage = buf.readByte();
             quality = buf.readByte();

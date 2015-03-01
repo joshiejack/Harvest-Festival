@@ -42,7 +42,7 @@ public class PacketSyncCrop implements IMessage, IMessageHandler<PacketSyncCrop,
         location = new WorldLocation();
         location.fromBytes(buf);
         if (!isRemoval) {
-            data = new CropData();
+            data = new CropData(location);
             data.fromBytes(buf);
         }
     }

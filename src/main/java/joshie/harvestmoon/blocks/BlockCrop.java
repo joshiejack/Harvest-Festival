@@ -128,7 +128,7 @@ public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
     @Override
     public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
         ICropData data = HMApi.CROPS.getCropAtLocation(MCClientHelper.getWorld(), x, y, z);
-        return data != null ? data.getCrop().getCropHandler().getIconForStage(data.getStage()) : Blocks.wheat.getIcon(0, 0);
+        return data != null && data.getCrop() != null ? data.getCrop().getCropHandler().getIconForStage(data.getStage()) : Blocks.wheat.getIcon(0, 0);
     }
 
     @Override
@@ -239,7 +239,7 @@ public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
     @Override
     public boolean func_149851_a(World world, int x, int y, int z, boolean isRemote) {
         if (Crops.ENABLE_BONEMEAL) {
-            return !CropHelper.canHarvest(world, x, y, z);
+            return CropHelper.canBonemeal(world, x, y, z);
         } else return false;
     }
 

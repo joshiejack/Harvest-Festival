@@ -184,6 +184,7 @@ public class Crop implements ICrop {
     /** Return the stage that the plant returns to when it's harvested.
      * A return value of 0, means the crop is destroyed.
      * @return the stage */
+    @Override
     public int getRegrowStage() {
         return regrow;
     }

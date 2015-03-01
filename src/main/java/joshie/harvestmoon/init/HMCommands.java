@@ -3,6 +3,7 @@ package joshie.harvestmoon.init;
 import joshie.harvestmoon.core.commands.CommandDay;
 import joshie.harvestmoon.core.commands.CommandFreeze;
 import joshie.harvestmoon.core.commands.CommandGold;
+import joshie.harvestmoon.core.commands.CommandNewDay;
 import joshie.harvestmoon.core.commands.CommandSeason;
 import joshie.harvestmoon.core.commands.CommandYear;
 import net.minecraft.command.ICommandManager;
@@ -17,6 +18,7 @@ public class HMCommands {
             manager.registerCommand(new CommandYear());
             manager.registerCommand(new CommandGold());
             manager.registerCommand(new CommandFreeze());
+            manager.registerCommand(new CommandNewDay());
         }
     }
 }

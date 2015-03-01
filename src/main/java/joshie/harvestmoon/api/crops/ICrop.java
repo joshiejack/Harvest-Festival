@@ -42,6 +42,9 @@ public interface ICrop {
     
     /** The meta damage for seeds **/
     public int getCropMeta();
+
+    /** The stage this crop regrows **/
+    public int getRegrowStage();
     
     /** Returns the handler this crop uses **/
     public ICropIconHandler getCropHandler();

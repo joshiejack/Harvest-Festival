@@ -1,15 +1,20 @@
 package joshie.harvestmoon.items;
 
-import joshie.harvestmoon.blocks.BlockCrop;
+import java.lang.reflect.Field;
+
 import joshie.harvestmoon.core.helpers.CropHelper;
 import joshie.harvestmoon.core.helpers.PlayerHelper;
+import joshie.harvestmoon.core.network.PacketHandler;
+import joshie.harvestmoon.core.network.PacketWateringCan;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.multiplayer.PlayerControllerMP;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
@@ -135,44 +140,66 @@ public class ItemWateringCan extends ItemBaseTool implements IFluidContainerItem
         } else return stack;
     }
 
+    private static Field handler;
+
+    static {
+        try {
+            handler = PlayerControllerMP.class.getDeclaredField("netClientHandler"); //TODO: Obfuscated
+        } catch (Exception e) {}
+    }
+
+    @Override
+    public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
+        if (!world.isRemote) return false;
+        else {
+            onItemUse(stack, player, world, x, y, z, side, hitX, hitY, hitZ);
+            PacketHandler.sendToServer(new PacketWateringCan(stack, world, x, y, z));
+            return true;
+        }
+    }
+
+    private boolean hydrate(EntityPlayer player, ItemStack stack, World world, int x, int y, int z) {
+        if (CropHelper.hydrate(world, x, y, z)) {
+            displayParticle(world, x, y, z, "splash");
+            playSound(world, x, y, z, "game.neutral.swim");
+            PlayerHelper.performTask(player, stack, getExhaustionRate(stack));
+            if (!player.capabilities.isCreativeMode) {
+                drain(stack, 1, true);
+            }
+
+            return true;
+        } else return false;
+    }
+
     @Override
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
         if (world.getBlock(x, y, z).getMaterial() == Material.water) {
             return fill(stack, new FluidStack(FluidRegistry.WATER, 128), true) > 0;
         } else {
-
             ForgeDirection front = joshie.harvestmoon.core.helpers.generic.DirectionHelper.getFacingFromEntity(player);
             Block initial = world.getBlock(x, y, z);
-            if (!(initial instanceof BlockFarmland) && (!(initial instanceof BlockCrop))) {
+            if (!(initial instanceof BlockFarmland) && (!(initial instanceof IPlantable))) {
                 return false;
             }
 
+            boolean watered = false;
             //Facing North, We Want East and West to be 1, left * this.left
             for (int y2 = y - 1; y2 <= y; y2++) {
                 for (int x2 = getXMinus(stack, front, x); x2 <= getXPlus(stack, front, x); x2++) {
                     for (int z2 = getZMinus(stack, front, z); z2 <= getZPlus(stack, front, z); z2++) {
                         if (getCapacity(stack) > 0) {
                             Block block = world.getBlock(x2, y2, z2);
-                            if (block instanceof BlockCrop) {
-                                block = world.getBlock(x2, y2 - 1, z2);
+                            if (block instanceof IPlantable) {
+                                watered = hydrate(player, stack, world, x2, y2 - 1, z2);
+                            } else if (block instanceof BlockFarmland) {
+                                watered = hydrate(player, stack, world, x2, y2, z2);
                             }
-
-                            if (block instanceof BlockFarmland) {
-                                if (CropHelper.hydrate(world, x2, y2, z2)) {
-                                    displayParticle(world, x2, y2, z2, "splash");
-                                    playSound(world, x2, y2, z2, "game.neutral.swim");
-                                    PlayerHelper.performTask(player, stack, getExhaustionRate(stack));
-                                    if (!player.capabilities.isCreativeMode) {
-                                        drain(stack, 1, true);
-                                    }
-                                }
-                            }
-                        } else return false;
+                        }
                     }
                 }
             }
 
-            return false;
+            return watered;
         }
     }
 }

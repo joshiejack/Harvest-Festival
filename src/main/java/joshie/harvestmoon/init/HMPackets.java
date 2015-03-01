@@ -4,6 +4,7 @@ import joshie.harvestmoon.core.network.PacketCropRequest;
 import joshie.harvestmoon.core.network.PacketFreeze;
 import joshie.harvestmoon.core.network.PacketGoldCommand;
 import joshie.harvestmoon.core.network.PacketHandler;
+import joshie.harvestmoon.core.network.PacketNewDay;
 import joshie.harvestmoon.core.network.PacketPurchaseItem;
 import joshie.harvestmoon.core.network.PacketSetCalendar;
 import joshie.harvestmoon.core.network.PacketSyncBirthday;
@@ -16,6 +17,7 @@ import joshie.harvestmoon.core.network.PacketSyncMarker;
 import joshie.harvestmoon.core.network.PacketSyncOrientation;
 import joshie.harvestmoon.core.network.PacketSyncRelations;
 import joshie.harvestmoon.core.network.PacketSyncStats;
+import joshie.harvestmoon.core.network.PacketWateringCan;
 import joshie.harvestmoon.core.network.quests.PacketQuestCompleted;
 import joshie.harvestmoon.core.network.quests.PacketQuestDecreaseHeld;
 import joshie.harvestmoon.core.network.quests.PacketQuestSetAvailable;
@@ -45,6 +47,8 @@ public class HMPackets {
         PacketHandler.registerPacket(PacketFreeze.class, Side.SERVER);
         PacketHandler.registerPacket(PacketSyncMarker.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketSyncFridge.class, Side.CLIENT);
+        PacketHandler.registerPacket(PacketNewDay.class, Side.SERVER);
+        PacketHandler.registerPacket(PacketWateringCan.class, Side.SERVER);
         
         //Quest Packets
         PacketHandler.registerPacket(PacketQuestSetAvailable.class, Side.CLIENT);

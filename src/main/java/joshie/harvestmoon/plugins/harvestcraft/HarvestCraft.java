@@ -25,6 +25,7 @@ public class HarvestCraft extends Plugin {
     @Override
     public void postInit() {
         ItemPamSeedFood.isLoaded = true;
+        crops = null; //Clear out the cache
     }
 
     private void addCrop(String unlocalized, int stages, int regrow, int color, Season... seasons) {

@@ -2,6 +2,7 @@ package joshie.harvestmoon.core.config;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Set;
 
 import joshie.harvestmoon.crops.Crop;
 
@@ -53,5 +54,9 @@ public class Mappings {
 
     public Crop getCrop(int ordinal) {
         return crops.get(ordinal);
+    }
+    
+    public Set<Integer> getMappings() {
+        return crops.keySet();
     }
 }

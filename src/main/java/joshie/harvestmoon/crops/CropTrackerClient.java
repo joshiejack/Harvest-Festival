@@ -28,20 +28,20 @@ public class CropTrackerClient {
     public IIcon getIconForCrop(World world, int x, int y, int z) {
         WorldLocation location = getKey(world, x, y, z);
         CropData data = crops.get(location);
-        if (data == null) { //If we don't have the crop loaded in the cache, request the data for it.
+        if (data == null || !data.isReal()) { //If we don't have the crop loaded in the cache, request the data for it.
             PacketHandler.sendToServer(new PacketCropRequest(world, x, y, z));
-            return Blocks.obsidian.getIcon(0, 0);
+            return Blocks.stone.getIcon(0, 0);
         }
 
         return crops.get(getKey(world, x, y, z)).getIcon();
     }
-    
+
     public ICropData getCropAtLocation(World world, int x, int y, int z) {
         CropData data = crops.get(getKey(world, x, y, z));
         if (data == null) {
             PacketHandler.sendToServer(new PacketCropRequest(world, x, y, z));
         }
-        
+
         return data;
     }
 
@@ -60,8 +60,9 @@ public class CropTrackerClient {
     }
 
     public ItemStack harvest(World world, int x, int y, int z) {
-        WorldLocation key = new WorldLocation(world.provider.dimensionId, x, y, z);
+        WorldLocation key = getKey(world, x, y, z);
         CropData data = crops.get(key);
+        
         if (data == null) return null;
         else {
             ItemStack ret = data.harvest();
@@ -75,11 +76,11 @@ public class CropTrackerClient {
         }
     }
 
-    public boolean canHarvest(World world, int x, int y, int z) {
+    public boolean canBonemeal(World world, int x, int y, int z) {
         WorldLocation key = new WorldLocation(world.provider.dimensionId, x, y, z);
         CropData data = crops.get(key);
         if (data == null) return false;
-        return data.harvest() != null;
+        return data.getStage() < data.getCrop().getStages();
     }
 
     public void sync(boolean isRemoval, WorldLocation location, CropData data) {

@@ -132,8 +132,7 @@ public class CropTrackerServer implements IData {
     //Plants a crop at the location, PLAYER CAN BE NULL
     public boolean plant(EntityPlayer player, World world, int x, int y, int z, Crop crop, int quality) {
         WorldLocation key = getCropKey(world, x, y, z);
-        CropData data = new CropData(player, crop, quality);
-        world.setBlock(x, y, z, HMBlocks.crops);
+        CropData data = new CropData(player, crop, quality, key);
         if (CropHelper.isHydrated(world, x, y - 1, z)) {
             data.setHydrated();
         }
@@ -184,11 +183,11 @@ public class CropTrackerServer implements IData {
         return seeds;
     }
 
-    public boolean canHarvest(World world, int x, int y, int z) {
-        WorldLocation key = new WorldLocation(world.provider.dimensionId, x, y, z);
+    public boolean canBonemeal(World world, int x, int y, int z) {
+        WorldLocation key = getCropKey(world, x, y, z);
         CropData data = cropData.get(key);
         if (data == null) return false;
-        return data.harvest() != null;
+        return data.getStage() < data.getCrop().getStages();
     }
 
     public ICropData getCropAtLocation(World world, int x, int y, int z) {
@@ -196,7 +195,7 @@ public class CropTrackerServer implements IData {
     }
 
     public void addFarmland(World world, int x, int y, int z) {
-        cropData.put(getFarmlandKey(world, x, y, z), new CropData());
+        cropData.put(getFarmlandKey(world, x, y, z), new CropData(getFarmlandKey(world, x, y, z)));
         markDirty();
     }
 
@@ -212,7 +211,7 @@ public class CropTrackerServer implements IData {
             NBTTagCompound tag = crops.getCompoundTagAt(i);
             WorldLocation location = new WorldLocation();
             location.readFromNBT(tag);
-            CropData data = new CropData();
+            CropData data = new CropData(location);
             data.readFromNBT(tag);
             cropData.put(location, data);
         }

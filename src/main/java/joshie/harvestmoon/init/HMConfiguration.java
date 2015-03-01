@@ -12,6 +12,7 @@ import joshie.harvestmoon.core.config.Vanilla;
 import joshie.harvestmoon.core.helpers.generic.ConfigHelper;
 import joshie.harvestmoon.core.lib.HMModInfo;
 import joshie.harvestmoon.crops.Crop;
+import joshie.harvestmoon.plugins.HMPlugins;
 import net.minecraftforge.common.config.Configuration;
 
 import org.apache.commons.io.FileUtils;
@@ -35,6 +36,7 @@ public class HMConfiguration {
         initConfig("NPC");
         initConfig("Shops");
         initConfig("Tools");
+        HMPlugins.loadConfigs();
     }
 
     public static void initConfig(String name) {

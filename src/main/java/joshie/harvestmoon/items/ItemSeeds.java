@@ -2,38 +2,58 @@ package joshie.harvestmoon.items;
 
 import static joshie.harvestmoon.core.helpers.CropHelper.getCropQuality;
 import static joshie.harvestmoon.core.helpers.CropHelper.plantCrop;
-import static joshie.harvestmoon.core.lib.HMModInfo.SEEDPATH;
 
 import java.util.List;
 
 import joshie.harvestmoon.api.core.IRateable;
 import joshie.harvestmoon.calendar.Season;
+import joshie.harvestmoon.core.HMTab;
 import joshie.harvestmoon.core.config.Crops;
 import joshie.harvestmoon.core.helpers.CropHelper;
 import joshie.harvestmoon.core.lib.HMModInfo;
 import joshie.harvestmoon.crops.Crop;
 import joshie.harvestmoon.init.HMBlocks;
+import joshie.harvestmoon.init.HMConfiguration;
+import joshie.harvestmoon.plugins.agricraft.HMAgricraftOverride;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import com.InfinityRaider.AgriCraft.farming.CropOverride;
+import com.InfinityRaider.AgriCraft.farming.GrowthRequirement;
+import com.InfinityRaider.AgriCraft.farming.ICropOverridingSeed;
+import com.InfinityRaider.AgriCraft.tileentity.TileEntityCrop;
+
+import cpw.mods.fml.common.Optional;
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemSeeds extends ItemHMMeta implements IRateable {
+@Optional.Interface(modid = "AgriCraft", iface = "com.InfinityRaider.AgriCraft.farming.ICropOverridingSeed")
+public class ItemSeeds extends net.minecraft.item.ItemSeeds implements IRateable, ICropOverridingSeed {
     private IIcon seed_bag_body;
     private IIcon seed_bag_neck;
 
     public ItemSeeds() {
-        setTextureFolder(SEEDPATH);
+        super(HMBlocks.crops, Blocks.farmland);
+        setCreativeTab(HMTab.tabGeneral);
+        setHasSubtypes(true);
     }
 
     @Override
+    public Item setUnlocalizedName(String name) {
+        super.setUnlocalizedName(name);
+        GameRegistry.registerItem(this, name.replace(".", "_"));
+        return this;
+    }
+
     public int getMetaCount() {
         return Crop.crops.size();
     }
@@ -94,6 +114,10 @@ public class ItemSeeds extends ItemHMMeta implements IRateable {
         if (player.canPlayerEdit(x, y, z, side, stack) && player.canPlayerEdit(x, y + 1, z, side, stack)) {
             if (world.getBlock(x, y, z).canSustainPlant(world, x, y, z, ForgeDirection.UP, (IPlantable) HMBlocks.crops) && world.isAirBlock(x, y + 1, z)) {
                 plantCrop(player, world, x, y + 1, z, crop, quality);
+                if (!world.isRemote) {
+                    world.setBlock(x, y + 1, z, HMBlocks.crops);
+                }
+
                 planted++;
 
                 if (Crops.ALWAYS_GROW) {
@@ -147,7 +171,6 @@ public class ItemSeeds extends ItemHMMeta implements IRateable {
         return 3;
     }
 
-    @Override
     public String getName(ItemStack stack) {
         return CropHelper.getCropFromOrdinal(stack.getItemDamage()).getUnlocalizedName();
     }
@@ -155,10 +178,13 @@ public class ItemSeeds extends ItemHMMeta implements IRateable {
     @SideOnly(Side.CLIENT)
     @Override
     public void getSubItems(Item item, CreativeTabs tab, List list) {
-        for (int i = 0; i < getMetaCount(); i++) {
-            for (int j = 0; j < 100; j += Crops.CROP_QUALITY_LOOP) {
-                list.add(new ItemStack(item, 1, (j * 100) + i));
-            }
+        for (Integer i : HMConfiguration.mappings.getMappings()) {
+            Crop crop = HMConfiguration.mappings.getCrop(i);
+            if (!crop.isStatic()) {
+                for (int j = 0; j < 100; j += Crops.CROP_QUALITY_LOOP) {
+                    list.add(new ItemStack(item, 1, (j * 100) + i));
+                }
+            } else list.add(new ItemStack(item, 1, i));
         }
     }
 
@@ -167,5 +193,24 @@ public class ItemSeeds extends ItemHMMeta implements IRateable {
     public void registerIcons(IIconRegister register) {
         seed_bag_body = register.registerIcon(HMModInfo.MODPATH + ":seed_bag_body");
         seed_bag_neck = register.registerIcon(HMModInfo.MODPATH + ":seed_bag_neck");
+    }
+
+    //Agricraft
+    @Optional.Method(modid = "AgriCraft")
+    @Override
+    public CropOverride getOverride(TileEntityCrop crop) {
+        return HMAgricraftOverride.getCropOverride(crop);
+    }
+
+    @Optional.Method(modid = "AgriCraft")
+    @Override
+    public boolean hasGrowthRequirement() {
+        return false;
+    }
+
+    @Optional.Method(modid = "AgriCraft")
+    @Override
+    public GrowthRequirement getGrowthRequirement() {
+        return null;
     }
 }

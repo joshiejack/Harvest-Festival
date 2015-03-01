@@ -40,7 +40,7 @@ public class HMBuildings {
     public static BuildingGroup supermarket;
     public static BuildingGroup townhall;
 
-    public static void init() {
+    public static void preInit() {
         barn = BuildingGroup.register("barn", new BuildingBarn());
         blacksmith = BuildingGroup.register("blacksmith", new BuildingBlacksmith());
         cafe = BuildingGroup.register("cafe", new BuildingCafe());
@@ -55,7 +55,9 @@ public class HMBuildings {
         poultryFarm = BuildingGroup.register("poultryFarm", new BuildingPoultryFarm());
         supermarket = BuildingGroup.register("supermarket", new BuildingSupermarket());
         townhall = BuildingGroup.register("townhall", new BuildingTownhall());
+    }
 
+    public static void init() {
         //Cafe Frame
         ChestGenHooks.addItem(LootStrings.CAFE_FRAME, new WeightedRandomChestContent(new ItemStack(Items.mushroom_stew), 1, 1, 10));
         ChestGenHooks.addItem(LootStrings.CAFE_FRAME, new WeightedRandomChestContent(new ItemStack(Items.cooked_beef), 1, 3, 15));

@@ -2,7 +2,6 @@ package joshie.harvestmoon.core.helpers;
 
 import joshie.harvestmoon.api.crops.ICropData;
 import joshie.harvestmoon.core.helpers.generic.ItemHelper;
-import joshie.harvestmoon.core.lib.HMModInfo;
 import joshie.harvestmoon.crops.Crop;
 import joshie.harvestmoon.crops.CropData;
 import joshie.harvestmoon.crops.CropTrackerClient;
@@ -36,7 +35,7 @@ public class CropHelper {
         } else return getClientTracker().getCropAtLocation(world, x, y, z);
     }
 
-    public static boolean hydrate(World world, int x, int y, int z) {
+    public static boolean hydrate(World world, int x, int y, int z) {        
         int meta = world.getBlockMetadata(x, y, z);
         boolean ret = meta == 7 ? false : world.setBlockMetadataWithNotify(x, y, z, 7, 2);
         if (ret) {
@@ -48,13 +47,11 @@ public class CropHelper {
         return ret;
     }
 
-    //Returns false if the soil is no longer farmland
+    //Returns false if the soil is no longer farmland and should be converted to dirt
     public static boolean dehydrate(World world, int x, int y, int z) {
-        Block block = world.getBlock(x, y + 1, z);
+        Block crop = world.getBlock(x, y + 1, z);
         int meta = world.getBlockMetadata(x, y, z);
-        if (meta == HMModInfo.FARMLAND_MINE_HOED_META) {
-            return true;
-        } else if (block instanceof IPlantable && world.getBlock(x, y, z).canSustainPlant(world, x, y, z, ForgeDirection.UP, (IPlantable) block)) {
+        if (crop instanceof IPlantable && world.getBlock(x, y, z).canSustainPlant(world, x, y, z, ForgeDirection.UP, (IPlantable) crop)) {
             world.setBlockMetadataWithNotify(x, y, z, 0, 2);
             return true;
         } else if (meta == 7) {
@@ -62,7 +59,7 @@ public class CropHelper {
             return true;
         } else {
             return false;
-        }
+        } 
     }
 
     public static boolean isHydrated(World world, int x, int y, int z) {
@@ -88,7 +85,7 @@ public class CropHelper {
         if (stack != null) {
             ItemHelper.spawnItem(world, x, y, z, stack);
         }
-
+        
         return stack != null;
     }
 
@@ -98,10 +95,10 @@ public class CropHelper {
         } else return ClientHelper.getCropTracker().getStackForCrop(world, x, y, z);
     }
 
-    public static boolean canHarvest(World world, int x, int y, int z) {
+    public static boolean canBonemeal(World world, int x, int y, int z) {
         if (!world.isRemote) {
-            return getServerTracker().canHarvest(world, x, y, z);
-        } else return ClientHelper.getCropTracker().canHarvest(world, x, y, z);
+            return getServerTracker().canBonemeal(world, x, y, z);
+        } else return ClientHelper.getCropTracker().canBonemeal(world, x, y, z);
     }
 
     public static void addFarmland(World world, int x, int y, int z) {

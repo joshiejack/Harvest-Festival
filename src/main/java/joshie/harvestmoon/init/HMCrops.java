@@ -42,7 +42,8 @@ public class HMCrops {
     public static ICrop green_pepper;
     public static ICrop grass;
     public static ICrop wheat;
-
+    //TODO: Add Vanilla Melon
+    
     public static void init() {
         //Spring Crops
         turnip = HMApi.CROPS.registerCrop("turnip", 120, 60, 5, 0, 0, 0xEDE1B5, SPRING).setCropIconHandler(new IconHandlerTurnip());

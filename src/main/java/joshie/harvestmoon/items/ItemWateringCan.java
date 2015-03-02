@@ -1,7 +1,5 @@
 package joshie.harvestmoon.items;
 
-import java.lang.reflect.Field;
-
 import joshie.harvestmoon.core.helpers.CropHelper;
 import joshie.harvestmoon.core.helpers.PlayerHelper;
 import joshie.harvestmoon.core.network.PacketHandler;
@@ -9,10 +7,10 @@ import joshie.harvestmoon.core.network.PacketWateringCan;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.multiplayer.PlayerControllerMP;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -135,17 +133,8 @@ public class ItemWateringCan extends ItemBaseTool implements IFluidContainerItem
 
     @Override
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-        if (player.isInWater()) {
-            return fill(stack, new FluidStack(FluidRegistry.WATER, 128), true) > 0 ? stack : stack;
-        } else return stack;
-    }
-
-    private static Field handler;
-
-    static {
-        try {
-            handler = PlayerControllerMP.class.getDeclaredField("netClientHandler"); //TODO: Obfuscated
-        } catch (Exception e) {}
+        attemptToFill(world, player, stack);
+        return stack;
     }
 
     @Override
@@ -171,10 +160,27 @@ public class ItemWateringCan extends ItemBaseTool implements IFluidContainerItem
         } else return false;
     }
 
+    private boolean attemptToFill(World world, EntityPlayer player, ItemStack stack) {
+        MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(world, player, true);
+        if (movingobjectposition != null) {
+            if (movingobjectposition.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) {
+                int posX = movingobjectposition.blockX;
+                int posY = movingobjectposition.blockY;
+                int posZ = movingobjectposition.blockZ;
+                Block block = world.getBlock(posX, posY, posZ);
+                if (block.getMaterial() == Material.water) {
+                    return fill(stack, new FluidStack(FluidRegistry.WATER, 128), true) > 0;
+                }
+            }
+        }
+
+        return false;
+    }
+
     @Override
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
-        if (world.getBlock(x, y, z).getMaterial() == Material.water) {
-            return fill(stack, new FluidStack(FluidRegistry.WATER, 128), true) > 0;
+        if (attemptToFill(world, player, stack)) {
+            return true;
         } else {
             ForgeDirection front = joshie.harvestmoon.core.helpers.generic.DirectionHelper.getFacingFromEntity(player);
             Block initial = world.getBlock(x, y, z);

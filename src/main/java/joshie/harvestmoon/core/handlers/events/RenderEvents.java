@@ -66,7 +66,7 @@ public class RenderEvents {
                     boolean isRateable = stack.getItem() instanceof IRateable;
                     boolean isLevelable = stack.getItem() instanceof ILevelable;
                     if (isRateable || isLevelable) {
-                        ArrayList<String> tooltip = (ArrayList<String>) stack.getTooltip(mc.thePlayer, false);
+                        ArrayList<String> tooltip = (ArrayList<String>) stack.getTooltip(mc.thePlayer, mc.gameSettings.advancedItemTooltips);
                         if (isRateable) {
                             int rating = ((IRateable) stack.getItem()).getRating(stack);
                             if (rating >= 0) {

@@ -3,7 +3,6 @@ package joshie.harvestmoon.items;
 import static net.minecraft.block.Block.soundTypeGrass;
 import joshie.harvestmoon.api.crops.IBreakCrops;
 import joshie.harvestmoon.blocks.BlockCrop;
-import joshie.harvestmoon.core.helpers.CropHelper;
 import joshie.harvestmoon.core.helpers.PlayerHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

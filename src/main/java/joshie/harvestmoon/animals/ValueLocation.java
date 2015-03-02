@@ -1,6 +1,6 @@
 package joshie.harvestmoon.animals;
 
-import joshie.harvestmoon.crops.WorldLocation;
+import joshie.harvestmoon.api.WorldLocation;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class ValueLocation extends WorldLocation {

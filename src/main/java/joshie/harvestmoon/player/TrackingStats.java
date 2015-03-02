@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
+import joshie.harvestmoon.api.crops.ICropData;
 import joshie.harvestmoon.core.util.IData;
 import joshie.harvestmoon.core.util.SellStack;
 import joshie.harvestmoon.crops.CropData;
@@ -11,12 +12,12 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
 public class TrackingStats implements IData {
-    private HashMap<CropData, Integer> cropTracker = new HashMap(); //How many of this crop has been Harvested
+    private HashMap<ICropData, Integer> cropTracker = new HashMap(); //How many of this crop has been Harvested
     private HashSet<SellStack> sellTracker = new HashSet(); //What has been sold so far
     
     public TrackingStats(PlayerDataServer master) {}
     
-    public void onHarvested(CropData data) {
+    public void onHarvested(ICropData data) {
         cropTracker.put(data, cropTracker.get(data) != null ? cropTracker.get(data) + 1 : 0);
     }
 
@@ -38,7 +39,7 @@ public class TrackingStats implements IData {
         NBTTagList crops = nbt.getTagList("CropsHarvested", 10);
         for (int i = 0; i < crops.tagCount(); i++) {
             NBTTagCompound tag = crops.getCompoundTagAt(i);
-            CropData data = new CropData();
+            ICropData data = new CropData();
             data.readFromNBT(tag);
             int amount = nbt.getInteger("Amount");
             cropTracker.put(data, amount);
@@ -60,7 +61,7 @@ public class TrackingStats implements IData {
     public void writeToNBT(NBTTagCompound nbt) {
         //Saving the CropsHarvested
         NBTTagList crops = new NBTTagList();
-        for (Map.Entry<CropData, Integer> entry : cropTracker.entrySet()) {
+        for (Map.Entry<ICropData, Integer> entry : cropTracker.entrySet()) {
             NBTTagCompound tag = new NBTTagCompound();
             entry.getKey().writeToNBT(tag);
             tag.setInteger("Amount", entry.getValue());

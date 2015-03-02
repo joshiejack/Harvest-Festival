@@ -111,7 +111,6 @@ public class ItemSeeds extends net.minecraft.item.ItemSeeds implements IRateable
 
     private int plantSeedAt(EntityPlayer player, ItemStack stack, World world, int x, int y, int z, int side, Crop crop, int quality, int planted) {
         if (player.canPlayerEdit(x, y, z, side, stack) && player.canPlayerEdit(x, y + 1, z, side, stack)) {
-            System.out.println(crop.getSoilHandler() + " HANDLER");
             if (crop.getSoilHandler().canSustainPlant(world, x, y + 1, z, (IPlantable) HMBlocks.crops) && world.isAirBlock(x, y + 1, z)) {
                 plantCrop(player, world, x, y + 1, z, crop, quality);
                 if (!world.isRemote) {

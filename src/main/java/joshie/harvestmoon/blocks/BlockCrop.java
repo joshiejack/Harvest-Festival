@@ -14,12 +14,14 @@ import joshie.harvestmoon.core.helpers.DigFXHelper;
 import joshie.harvestmoon.core.helpers.generic.MCClientHelper;
 import joshie.harvestmoon.core.lib.RenderIds;
 import joshie.harvestmoon.crops.Crop;
+import joshie.harvestmoon.init.HMItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
@@ -34,6 +36,10 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
+    public static final int FRESH = 0;
+    public static final int WITHERED = 1;
+    public static final int GROWN = 7;
+
     public BlockCrop() {
         super(Material.plants);
         setBlockUnbreakable();
@@ -64,6 +70,8 @@ public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
     public void updateTick(World world, int x, int y, int z, Random rand) {
         if (Crops.ALWAYS_GROW) {
             if (!world.isRemote) {
+                int meta = world.getBlockMetadata(x, y, z);
+                if (meta == WITHERED) return; //If withered do nothing
                 if (world.getBlockLightValue(x, y + 1, z) >= 9) {
                     float chance = getGrowthChance(world, x, y, z);
                     if (rand.nextInt((int) (25.0F / chance) + 1) == 0) {
@@ -73,13 +81,6 @@ public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
                 }
             }
         }
-    }
-
-    @Override
-    public float getPlayerRelativeBlockHardness(EntityPlayer player, World world, int x, int y, int z) {
-        ItemStack held = player.getCurrentEquippedItem();
-        if (held == null || (!(held.getItem() instanceof IBreakCrops))) return 0.75F;
-        return ((IBreakCrops) held.getItem()).getStrengthVSCrops(player, world, x, y, z, held);
     }
 
     private float getGrowthChance(World world, int x, int y, int z) {
@@ -123,6 +124,15 @@ public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
         return f;
     }
 
+    @Override
+    //Return 0.75F if the plant isn't withered, otherwise, unbreakable!!!
+    public float getPlayerRelativeBlockHardness(EntityPlayer player, World world, int x, int y, int z) {
+        int meta = world.getBlockMetadata(x, y, z);
+        ItemStack held = player.getCurrentEquippedItem();
+        if (held == null || (!(held.getItem() instanceof IBreakCrops))) return meta == WITHERED ? 0 : 0.75F;
+        return ((IBreakCrops) held.getItem()).getStrengthVSCrops(player, world, x, y, z, held);
+    }
+
     @SideOnly(Side.CLIENT)
     @Override
     public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
@@ -162,6 +172,9 @@ public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
+        int meta = world.getBlockMetadata(x, y, z);
+        if (meta == WITHERED) return false; //If Withered with suck!
+
         if (player.isSneaking()) return false;
         else {
             ICropData data = HMApi.CROPS.getCropAtLocation(world, x, y, z);
@@ -184,6 +197,9 @@ public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
 
     @Override
     public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z, boolean willHarvest) {
+        int meta = world.getBlockMetadata(x, y, z);
+        if (meta == WITHERED) return world.setBlockToAir(x, y, z); //JUST KILL IT IF WITHERED
+
         ICropData data = HMApi.CROPS.getCropAtLocation(world, x, y, z);
         if (data == null) return super.removedByPlayer(world, player, x, y, z, willHarvest);
 
@@ -198,7 +214,7 @@ public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
 
     @Override
     public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
-        CropHelper.notifyFarmlandOfCropRemoval(world, x, y, z);
+        CropHelper.removeCrop(world, x, y, z);
     }
 
     @Override
@@ -208,10 +224,24 @@ public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
 
     @Override
     public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player) {
-        return CropHelper.getStackForCrop(world, x, y, z);
+        int meta = world.getBlockMetadata(x, y, z);
+        if (meta == WITHERED) return new ItemStack(Blocks.deadbush); //It's Dead soo???
+
+        ICropData data = HMApi.CROPS.getCropAtLocation(world, x, y, z);
+        ItemStack seeds = new ItemStack(HMItems.seeds);
+        seeds.setItemDamage(data.getCrop().getCropMeta() + ((data.getQuality() - 1) * 100));
+        return seeds;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
+        int meta = world.getBlockMetadata(x, y, z);
+        return meta == WITHERED ? 0x333333 : super.colorMultiplier(world, x, y, z); //Darken the dead shit
     }
 
     @SideOnly(Side.CLIENT)
+    @Override
     public void registerBlockIcons(IIconRegister register) {
         for (Crop crop : Crop.crops) {
             crop.registerIcons(register);
@@ -236,6 +266,9 @@ public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
     //Can Apply Bonemeal (Not Fully Grown)
     @Override
     public boolean func_149851_a(World world, int x, int y, int z, boolean isRemote) {
+        int meta = world.getBlockMetadata(x, y, z);
+        if (meta == WITHERED) return false; //It's dead it can't grow...
+
         if (Crops.ENABLE_BONEMEAL) {
             return CropHelper.canBonemeal(world, x, y, z);
         } else return false;

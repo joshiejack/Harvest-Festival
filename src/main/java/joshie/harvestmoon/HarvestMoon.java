@@ -10,7 +10,6 @@ import java.io.File;
 import java.util.Map;
 
 import joshie.harvestmoon.core.HMCommonProxy;
-import joshie.harvestmoon.core.util.WorldDestroyer;
 import joshie.harvestmoon.init.HMCommands;
 import joshie.harvestmoon.init.HMConfiguration;
 import joshie.harvestmoon.init.HMOverride;

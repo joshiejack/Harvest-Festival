@@ -1,12 +1,19 @@
 package joshie.harvestmoon.asm.transformers;
 
+import java.util.Iterator;
+
 import joshie.harvestmoon.core.config.Vanilla;
 import joshie.harvestmoon.core.lib.HMModInfo;
 
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
+import org.objectweb.asm.tree.AbstractInsnNode;
+import org.objectweb.asm.tree.ClassNode;
+import org.objectweb.asm.tree.InsnNode;
+import org.objectweb.asm.tree.MethodInsnNode;
+import org.objectweb.asm.tree.MethodNode;
+import org.objectweb.asm.tree.VarInsnNode;
 
 public class FarmlandTransformer implements ITransformer {
     @Override
@@ -19,57 +26,38 @@ public class FarmlandTransformer implements ITransformer {
         return isObfuscated ? "aky" : "net.minecraft.block.BlockFarmland";
     }
 
-    public byte[] injectMethods(byte[] data) {
-        ClassReader cr = new ClassReader(data);
-        ClassWriter cw = new ClassWriter(cr, 0);
-
-        //Redirection for breakBlock to RemoveFarmland
-        String name = "breakBlock";
-        MethodVisitor mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, "(Lnet/minecraft/world/World;IIILnet/minecraft/block/Block;I)V", null, null);
-        mv.visitCode();
-        mv.visitVarInsn(Opcodes.ALOAD, 1);
-        mv.visitVarInsn(Opcodes.ILOAD, 2);
-        mv.visitVarInsn(Opcodes.ILOAD, 3);
-        mv.visitVarInsn(Opcodes.ILOAD, 4);
-        mv.visitMethodInsn(Opcodes.INVOKESTATIC, HMModInfo.ASMPATH + "core/helpers/CropHelper", "removeFarmland", "(Lnet/minecraft/world/World;III)V", false);
-        mv.visitInsn(Opcodes.RETURN);
-        mv.visitMaxs(4, 7);
-        mv.visitEnd();
-
-        //Redirection for onBlockDestroyed to RemoveFarmland
-        name = "onBlockDestroyedByExplosion";
-        mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, "(Lnet/minecraft/world/World;IIILnet/minecraft/world/Explosion;)V", null, null);
-        mv.visitCode();
-        mv.visitVarInsn(Opcodes.ALOAD, 1);
-        mv.visitVarInsn(Opcodes.ILOAD, 2);
-        mv.visitVarInsn(Opcodes.ILOAD, 3);
-        mv.visitVarInsn(Opcodes.ILOAD, 4);
-        mv.visitMethodInsn(Opcodes.INVOKESTATIC, HMModInfo.ASMPATH + "core/helpers/CropHelper", "removeFarmland", "(Lnet/minecraft/world/World;III)V", false);
-        mv.visitInsn(Opcodes.RETURN);
-        mv.visitMaxs(4, 7);
-        mv.visitEnd();
-
-        //Return the relative block hardness
-        name = "getPlayerRelativeBlockHardness";
-        mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, "(Lnet/minecraft/entity/player/EntityPlayer;Lnet/minecraft/world/World;III)F", null, null);
-        mv.visitCode();
-        mv.visitVarInsn(Opcodes.ALOAD, 0);
-        mv.visitVarInsn(Opcodes.ALOAD, 1);
-        mv.visitVarInsn(Opcodes.ALOAD, 2);
-        mv.visitVarInsn(Opcodes.ILOAD, 3);
-        mv.visitVarInsn(Opcodes.ILOAD, 4);
-        mv.visitVarInsn(Opcodes.ILOAD, 5);
-        mv.visitMethodInsn(Opcodes.INVOKESTATIC, HMModInfo.ASMPATH + "asm/overrides/BlockFarmland", name, "(Lnet/minecraft/block/Block;Lnet/minecraft/entity/player/EntityPlayer;Lnet/minecraft/world/World;III)F", false);
-        mv.visitInsn(Opcodes.FRETURN);
-        mv.visitMaxs(5, 6);
-        mv.visitEnd();
-
-        cr.accept(cw, 0);
-        return cw.toByteArray();
-    }
-
     @Override
     public byte[] transform(byte[] data, boolean isObfuscated) {
-        return injectMethods(data);
+        String name = isObfuscated ? "a" : "updateTick";
+        String desc = "(Lnet/minecraft/world/World;IIILjava/util/Random;)V";
+        
+        ClassNode node = new ClassNode();
+        ClassReader classReader = new ClassReader(data);
+        classReader.accept(node, 0);
+
+        //Remove the instructions from onRightClick for the ItemEgg
+        Iterator<MethodNode> methods = node.methods.iterator();
+        while (methods.hasNext()) {
+            MethodNode m = methods.next();
+            if ((m.name.equals(name) && m.desc.equals(desc))) {
+                Iterator<AbstractInsnNode> iter = m.instructions.iterator();
+                while (iter.hasNext()) {
+                    AbstractInsnNode insn = iter.next();
+                    m.instructions.remove(insn);
+                }
+
+                //return stack
+                m.instructions.add(new VarInsnNode(Opcodes.ALOAD, 1));
+                m.instructions.add(new VarInsnNode(Opcodes.ILOAD, 2));
+                m.instructions.add(new VarInsnNode(Opcodes.ILOAD, 3));
+                m.instructions.add(new VarInsnNode(Opcodes.ILOAD, 4));
+                m.instructions.add(new MethodInsnNode(Opcodes.INVOKESTATIC, HMModInfo.ASMPATH + "asm/overrides/BlockFarmland", "tick", "(Lnet/minecraft/world/World;III)V", false));
+                m.instructions.add(new InsnNode(Opcodes.RETURN));
+            }
+        }
+
+        ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS);
+        node.accept(writer);
+        return writer.toByteArray();
     }
 }

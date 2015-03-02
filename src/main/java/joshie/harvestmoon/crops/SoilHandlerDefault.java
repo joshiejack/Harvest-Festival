@@ -1,4 +1,4 @@
-package joshie.harvestmoon.crops.soil;
+package joshie.harvestmoon.crops;
 
 import joshie.harvestmoon.api.crops.ISoilHandler;
 import joshie.harvestmoon.init.HMBlocks;
@@ -10,6 +10,12 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public class SoilHandlerDefault implements ISoilHandler, IPlantable {
     private EnumPlantType plantable;
+    private Block block;
+
+    public SoilHandlerDefault(final EnumPlantType type, Block block) {
+        this(type);
+        this.block = block;
+    }
 
     public SoilHandlerDefault(final EnumPlantType type) {
         this.plantable = type;
@@ -17,7 +23,10 @@ public class SoilHandlerDefault implements ISoilHandler, IPlantable {
 
     @Override
     public boolean canSustainPlant(IBlockAccess access, int x, int y, int z, IPlantable plantable) {
-        return access.getBlock(x, y - 1, z).canSustainPlant(access, x, y, z, ForgeDirection.UP, this);
+        Block below = access.getBlock(x, y - 1, z);
+        if (block != null) {
+            return below == block && below.canSustainPlant(access, x, y, z, ForgeDirection.UP, this);
+        } else return below.canSustainPlant(access, x, y, z, ForgeDirection.UP, this);
     }
 
     @Override

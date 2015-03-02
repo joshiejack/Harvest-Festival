@@ -5,10 +5,8 @@ import static joshie.harvestmoon.core.helpers.generic.ConfigHelper.getBoolean;
 import java.util.ArrayList;
 
 import joshie.harvestmoon.api.HMApi;
-import joshie.harvestmoon.api.crops.ICrop;
-import joshie.harvestmoon.api.crops.ISoilHandler;
 import joshie.harvestmoon.calendar.Season;
-import joshie.harvestmoon.crops.soil.SoilHandlers;
+import joshie.harvestmoon.crops.SoilHandlers;
 import joshie.harvestmoon.plugins.HMPlugins;
 import joshie.harvestmoon.plugins.HMPlugins.Plugin;
 import net.minecraft.item.Item;
@@ -47,8 +45,8 @@ public class AgriCraft extends Plugin {
         addCrop("TulipWhite", 7, 1, 0xFFFFFF, Season.SPRING);
         addCrop("Daisy", 7, 1, 0xFFFFBF, Season.SPRING);
 
-        addCrop("ShroomRed", 7, 1, 0xB28500, Season.WINTER);
-        addCrop("ShroomBrown", 7, 1, 0xD90000, Season.WINTER);
+        addCrop("ShroomRed", 7, 1, 0xB28500, Season.WINTER).setSoilRequirements(SoilHandlers.mushroom).setNoWaterRequirements();
+        addCrop("ShroomBrown", 7, 1, 0xD90000, Season.WINTER).setSoilRequirements(SoilHandlers.mushroom).setNoWaterRequirements();
     }
 
     @Override

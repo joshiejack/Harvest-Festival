@@ -8,7 +8,6 @@ import joshie.harvestmoon.core.helpers.generic.ConfigHelper;
 import joshie.harvestmoon.core.lib.HMModInfo;
 import joshie.harvestmoon.plugins.agricraft.AgriCraft;
 import joshie.harvestmoon.plugins.bettersleeping.BetterSleeping;
-import joshie.harvestmoon.plugins.harvestcraft.HarvestCraft;
 import net.minecraftforge.common.config.Configuration;
 
 import org.apache.logging.log4j.Level;

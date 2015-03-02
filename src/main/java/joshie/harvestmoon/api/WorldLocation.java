@@ -1,10 +1,9 @@
-package joshie.harvestmoon.crops;
+package joshie.harvestmoon.api;
 
 import io.netty.buffer.ByteBuf;
-import joshie.harvestmoon.core.util.IData;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class WorldLocation implements IData {
+public class WorldLocation {
     protected final static int prime = 31;
     public int dimension;
     public int x;
@@ -51,8 +50,6 @@ public class WorldLocation implements IData {
     }
 
     /* NBT BASED SAVING */
-
-    @Override
     public void readFromNBT(NBTTagCompound tag) {
         if (tag.hasKey("Dimension")) {
             dimension = tag.getByte("Dimension");
@@ -62,7 +59,6 @@ public class WorldLocation implements IData {
         z = tag.getInteger("Z");
     }
 
-    @Override
     public void writeToNBT(NBTTagCompound tag) {
         if (dimension != 0) {
             tag.setByte("Dimension", (byte) dimension);

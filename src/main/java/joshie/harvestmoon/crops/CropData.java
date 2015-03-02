@@ -2,19 +2,19 @@ package joshie.harvestmoon.crops;
 
 import static joshie.harvestmoon.core.helpers.CropHelper.getCropFromOrdinal;
 import static joshie.harvestmoon.core.network.PacketHandler.sendToEveryone;
-import static joshie.harvestmoon.crops.CropData.WitherType.NONE;
 import io.netty.buffer.ByteBuf;
 
 import java.util.Random;
 import java.util.UUID;
 
+import joshie.harvestmoon.api.WorldLocation;
 import joshie.harvestmoon.api.crops.ICrop;
 import joshie.harvestmoon.api.crops.ICropData;
 import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.core.config.Crops;
 import joshie.harvestmoon.core.helpers.CalendarHelper;
+import joshie.harvestmoon.core.helpers.SeasonHelper;
 import joshie.harvestmoon.core.network.PacketSyncCrop;
-import joshie.harvestmoon.core.util.IData;
 import joshie.harvestmoon.init.HMCrops;
 import joshie.harvestmoon.plugins.HMPlugins;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,16 +23,12 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.common.DimensionManager;
 
-public class CropData implements IData, ICropData {
+public class CropData implements ICropData {
     private static final Random rand = new Random();
-
-    public static enum WitherType {
-        SEED, GROWING, GROWN, NONE;
-    }
 
     private boolean isReal; //Is true if there actually is a plant here, rather than a placeholder
     private UUID owner; //The owners uuid
-    private Crop crop; //The Crop Type of this plant
+    private ICrop crop; //The Crop Type of this plant
     private int stage; //The stage it is currently at
     private int quality; //The quality of this crop
     private boolean isFertilized; //Whether this crop is currently fertilized
@@ -57,9 +53,22 @@ public class CropData implements IData, ICropData {
         this.isReal = true;
         this.location = location;
     }
+    
+    @Override
+    public ICropData setCrop(EntityPlayer owner, ICrop crop, int quality, int stage) {
+        this.crop = crop;
+        this.quality = quality;
+        this.stage = stage;
+        this.isReal = true;
+        if (owner != null) {
+            this.owner = owner.getPersistentID();
+        }
+        
+        return this;
+    }
 
     private boolean isWrongSeason() {
-        for (Season season : crop.getSeasons()) {
+        for (Season season : SeasonHelper.getSeasonsFromISeasons(crop.getSeasons())) {
             if (CalendarHelper.getSeason() == season) return false;
         }
 
@@ -70,10 +79,11 @@ public class CropData implements IData, ICropData {
         return isReal;
     }
 
-    public WitherType newDay() {
+    //Returns false if the crop was withered
+    public boolean newDay() {
         //Stage 1, Check how long the plant has been without water, If it's more than 2 days kill it, decrease it's quality if it's not been watered as well
         if ((crop.requiresWater() && daysWithoutWater > 2) || isWrongSeason()) {
-            return crop.getWitherType(stage);
+            return false;
         } else { //Stage 2: Now that we know, it has been watered, Update it's stage
             //If we aren't ticking randomly, Then increase the stage and quality
             if (!Crops.ALWAYS_GROW) {
@@ -101,7 +111,7 @@ public class CropData implements IData, ICropData {
             }
         }
 
-        return NONE;
+        return true;
     }
 
     public void setCropMetaData(WorldLocation location, int meta) {
@@ -116,14 +126,6 @@ public class CropData implements IData, ICropData {
     }
 
     @Override
-    public void regrow() {
-        if (crop.getRegrowStage() > 0) {
-            stage = crop.getRegrowStage();
-        }
-
-        sendToEveryone(new PacketSyncCrop(location, this));
-    }
-
     public void grow() {
         //Increase the stage of this crop
         if (stage < crop.getStages()) {
@@ -133,6 +135,11 @@ public class CropData implements IData, ICropData {
 
     public String getName() {
         return crop.getUnlocalizedName();
+    }
+
+    @Override
+    public WorldLocation getLocation() {
+        return location;
     }
 
     @Override
@@ -155,32 +162,24 @@ public class CropData implements IData, ICropData {
         return getCrop().getCropHandler().getIconForStage(getStage());
     }
 
-    public boolean doesRegrow() {
-        return crop.getRegrowStage() > 0;
-    }
-
-    public boolean isEdible() {
-        return crop.isStatic();
-    }
-
-    public IIcon getIcon() {
-        return crop.getIcon(stage);
-    }
-
     public boolean canGrow() {
         //TODO: Fix PlayHelperifOn...
         //(PlayerHelper.isOnlineOrFriendsAre(owner));
         return isReal;
     }
-
-    public ItemStack harvest() {
+    
+    public ItemStack harvest(EntityPlayer player, boolean doHarvest) {
         if (stage >= crop.getStages()) {
             int cropQuality = 0;
             if (!crop.isStatic()) {
                 cropQuality = ((this.quality - 1) * 100);
             }
 
-            regrow();
+            if (doHarvest) {
+                if (crop.getRegrowStage() > 0) {
+                    stage = crop.getRegrowStage();
+                }
+            }
 
             return crop.getCropStackForQuality(cropQuality);
         } else return null;

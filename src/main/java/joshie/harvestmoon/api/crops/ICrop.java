@@ -1,5 +1,6 @@
 package joshie.harvestmoon.api.crops;
 
+import joshie.harvestmoon.api.Calendar.ISeason;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -45,6 +46,9 @@ public interface ICrop {
 
     /** The stage this crop regrows **/
     public int getRegrowStage();
+
+    /** The seasons this crop can grow in **/
+    public ISeason[] getSeasons();
     
     /** Returns the render handler this crop uses **/
     public ICropRenderHandler getCropHandler();
@@ -62,6 +66,9 @@ public interface ICrop {
     
     /** Whether this crop requires water to grow **/
     public boolean requiresWater();
+    
+    /** Returns true if this crop can be eaten by animals (While growing) **/
+    public boolean isEdible();
 
     /** Returns true when the itemstack matches this crop
      * 
@@ -102,4 +109,8 @@ public interface ICrop {
      *  So you can specify whether this crop is allowed to be placed
      *  on this type of soil or whatever. */
     public ICrop setSoilRequirements(ISoilHandler handler);
+
+    /** Setting this to true means, animals will consume the crop
+     *  while it is growing  */
+    public ICrop setIsEdible();
 }

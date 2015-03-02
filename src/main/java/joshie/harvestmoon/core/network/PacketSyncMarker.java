@@ -1,11 +1,11 @@
 package joshie.harvestmoon.core.network;
 
 import io.netty.buffer.ByteBuf;
+import joshie.harvestmoon.api.WorldLocation;
 import joshie.harvestmoon.blocks.tiles.TileMarker;
 import joshie.harvestmoon.buildings.Building;
 import joshie.harvestmoon.buildings.BuildingGroup;
 import joshie.harvestmoon.core.helpers.generic.MCClientHelper;
-import joshie.harvestmoon.crops.WorldLocation;
 import net.minecraft.tileentity.TileEntity;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;

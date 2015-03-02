@@ -3,7 +3,6 @@ package joshie.harvestmoon.init;
 import static joshie.harvestmoon.init.HMConfiguration.vanilla;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import joshie.harvestmoon.asm.transformers.EggTransformer;
@@ -14,14 +13,9 @@ import joshie.harvestmoon.asm.transformers.SeedFoodTransformer;
 import joshie.harvestmoon.asm.transformers.SnowTransformer;
 import joshie.harvestmoon.asm.transformers.WheatTransformer;
 import joshie.harvestmoon.core.HMTab;
-import joshie.harvestmoon.crops.CropData;
-import joshie.harvestmoon.crops.WorldLocation;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.launchwrapper.IClassTransformer;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -31,22 +25,15 @@ public class HMOverride implements IClassTransformer {
     private static final int SNOW = 1;
     private static final int FARMLAND = 2;
 
-    private static HashMap<WorldLocation, CropData> locationMap = new HashMap();
-    private static HashMap<String, CropData> stringMap = new HashMap();
-    private static HashMap<String, CropData> builderMap = new HashMap();
-    private static HashMap<Integer, CropData> integerMap = new HashMap();
-
-    public static final Logger logger = LogManager.getLogger("ttt");
-    
     public static boolean isObfuscated = false;
     private static List<ITransformer> transformers = new ArrayList();
     static {
         transformers.add(new EggTransformer());
         transformers.add(new SeedFoodTransformer());
         transformers.add(new WheatTransformer());
-        transformers.add(new FarmlandTransformer());
         transformers.add(new FarmlandHardnessTransformer());
         transformers.add(new SnowTransformer());
+        transformers.add(new FarmlandTransformer());
         //TODO: Future Plugins
         //transformers.add(new PamTransformer());
 
@@ -77,7 +64,6 @@ public class HMOverride implements IClassTransformer {
             if (vanilla.CARROT_OVERRIDE) Items.carrot.setCreativeTab(HMTab.tabGeneral);
             if (vanilla.POTATO_OVERRIDE) Items.potato.setCreativeTab(HMTab.tabGeneral);
             if (vanilla.WHEAT_OVERRIDE) Items.wheat.setCreativeTab(HMTab.tabGeneral);
-            if (vanilla.FARMLAND_OVERRIDE) Blocks.farmland.setTickRandomly(false);
             if (vanilla.EGG_OVERRIDE) Items.egg.setCreativeTab(HMTab.tabGeneral).setHasSubtypes(true);
         }
     }

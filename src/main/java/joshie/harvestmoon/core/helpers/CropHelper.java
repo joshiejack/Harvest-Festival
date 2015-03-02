@@ -1,42 +1,38 @@
 package joshie.harvestmoon.core.helpers;
 
+import joshie.harvestmoon.api.crops.ICrop;
 import joshie.harvestmoon.api.crops.ICropData;
 import joshie.harvestmoon.core.helpers.generic.ItemHelper;
 import joshie.harvestmoon.crops.Crop;
 import joshie.harvestmoon.crops.CropData;
 import joshie.harvestmoon.crops.CropTrackerClient;
+import joshie.harvestmoon.crops.CropTrackerCommon;
 import joshie.harvestmoon.crops.CropTrackerServer;
 import joshie.harvestmoon.init.HMConfiguration;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFarmland;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.util.ForgeDirection;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
-public class CropHelper {   
-    public static void notifyFarmlandOfCropRemoval(World world, int x, int y, int z) {
-        getServerTracker().removeCrop(world, x, y, z);
+public class CropHelper {
+    public static void removeCrop(World world, int x, int y, int z) {
+        getTracker(world).removeCrop(world, x, y, z);
     }
-    
+
     public static ICropData getCropAtLocation(World world, int x, int y, int z) {
         if (!world.isRemote) {
             return getServerTracker().getCropDataForLocation(world, x, y, z);
         } else return getClientTracker().getCropDataForLocation(world, x, y, z);
     }
 
-    public static boolean hydrate(World world, int x, int y, int z) {        
+    public static boolean hydrate(World world, int x, int y, int z) {
         int meta = world.getBlockMetadata(x, y, z);
         boolean ret = meta == 7 ? false : world.setBlockMetadataWithNotify(x, y, z, 7, 2);
         if (ret) {
-            if (!world.isRemote) {
-                getServerTracker().hydrate(world, x, y + 1, z);
-            }
+            getTracker(world).hydrate(world, x, y + 1, z);
         }
 
         return ret;
@@ -45,8 +41,10 @@ public class CropHelper {
     //Returns false if the soil is no longer farmland and should be converted to dirt
     public static boolean dehydrate(World world, int x, int y, int z) {
         Block crop = world.getBlock(x, y + 1, z);
+        Block farmland = world.getBlock(x, y, z);
         int meta = world.getBlockMetadata(x, y, z);
-        if (crop instanceof IPlantable && world.getBlock(x, y, z).canSustainPlant(world, x, y, z, ForgeDirection.UP, (IPlantable) crop)) {
+        if (!(farmland instanceof BlockFarmland)) return true;
+        else if (crop instanceof IPlantable && farmland.canSustainPlant(world, x, y, z, ForgeDirection.UP, (IPlantable) crop)) {
             world.setBlockMetadataWithNotify(x, y, z, 0, 2);
             return true;
         } else if (meta == 7) {
@@ -54,7 +52,7 @@ public class CropHelper {
             return true;
         } else {
             return false;
-        } 
+        }
     }
 
     public static boolean isHydrated(World world, int x, int y, int z) {
@@ -62,52 +60,27 @@ public class CropHelper {
     }
 
     public static boolean plantCrop(EntityPlayer player, World world, int x, int y, int z, Crop crop, int quality) {
-        if (!world.isRemote) {
-            return getServerTracker().plant(player, world, x, y, z, crop, quality);
-        }
+        return getTracker(world).plantCrop(player, world, x, y, z, crop, quality, 1);
+    }
 
-        return true;
+    public static void plantCrop(Object object, World world, int x, int y, int z, ICrop crop, int quality, int regrowStage) {
+        // TODO Auto-generated method stub
+
     }
 
     public static boolean harvestCrop(EntityPlayer player, World world, int x, int y, int z) {
-        ItemStack stack = null;
-        if (world.isRemote) {
-            stack = ClientHelper.getCropTracker().harvest(world, x, y, z);
-        } else {
-            stack = getServerTracker().harvest(player, world, x, y, z);
+        ItemStack stack = getTracker(world).harvest(player, world, x, y, z);
+        if (!world.isRemote && stack != null) {
+            ItemHelper.dropBlockAsItem(world, x, y, z, stack);
         }
 
-        if (stack != null) {
-            ItemHelper.spawnItem(world, x, y, z, stack);
-        }
-        
         return stack != null;
-    }
-
-    public static ItemStack getStackForCrop(World world, int x, int y, int z) {
-        if (!world.isRemote) {
-            return getServerTracker().getStackForCrop(world, x, y, z);
-        } else return ClientHelper.getCropTracker().getStackForCrop(world, x, y, z);
     }
 
     public static boolean canBonemeal(World world, int x, int y, int z) {
         if (!world.isRemote) {
             return getServerTracker().canBonemeal(world, x, y, z);
         } else return ClientHelper.getCropTracker().canBonemeal(world, x, y, z);
-    }
-
-    public static void addFarmland(World world, int x, int y, int z) {
-        if (!world.isRemote) {
-            world.setBlock(x, y, z, Blocks.farmland);
-            getServerTracker().addFarmland(world, x, y, z);
-        }
-    }
-
-    /** DO NOT RENAME OR DELETE, CALL VIA ASM */
-    public static void removeFarmland(World world, int x, int y, int z) {
-        if (!world.isRemote) {
-            getServerTracker().removeFarmland(world, x, y, z);
-        }
     }
 
     public static Crop getCropFromDamage(int damage) {
@@ -132,6 +105,10 @@ public class CropHelper {
 
     public static void onHarvested(EntityPlayer player, CropData data) {
         ServerHelper.getPlayerData(player).onHarvested(data);
+    }
+
+    public static CropTrackerCommon getTracker(World world) {
+        return world.isRemote ? getClientTracker() : getServerTracker();
     }
 
     public static CropTrackerServer getServerTracker() {

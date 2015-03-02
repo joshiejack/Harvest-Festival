@@ -20,7 +20,11 @@ public class RenderCrops implements ISimpleBlockRenderingHandler {
         if (block == HMBlocks.crops) {
             Tessellator tessellator = Tessellator.instance;
             tessellator.setBrightness(block.getMixedBrightnessForBlock(renderer.blockAccess, x, y, z));
-            tessellator.setColorOpaque_F(1.0F, 1.0F, 1.0F);
+            int l = block.colorMultiplier(world, x, y, z);
+            float f = (float) (l >> 16 & 255) / 255.0F;
+            float f1 = (float) (l >> 8 & 255) / 255.0F;
+            float f2 = (float) (l & 255) / 255.0F;
+            tessellator.setColorOpaque_F(f, f1, f2);
             IIcon iicon = renderer.getBlockIcon(block, world, x, y, z, 0);
             return renderCrops(iicon, (double) x, (double) ((float) y - 0.0625F), (double) z);
         } else return false;

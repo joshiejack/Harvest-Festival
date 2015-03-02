@@ -12,7 +12,6 @@ import joshie.harvestmoon.blocks.BlockDirt;
 import joshie.harvestmoon.blocks.BlockFlower;
 import joshie.harvestmoon.blocks.BlockPreview;
 import joshie.harvestmoon.blocks.BlockStone;
-import joshie.harvestmoon.blocks.BlockWithered;
 import joshie.harvestmoon.blocks.BlockWood;
 import joshie.harvestmoon.blocks.tiles.TileCooking;
 import joshie.harvestmoon.blocks.tiles.TileFridge;
@@ -34,7 +33,6 @@ public class HMBlocks {
     public static Block flowers;
     public static Block preview;
     public static Block stone;
-    public static Block withered;
     public static Block woodmachines;
 
     public static void init() {
@@ -45,7 +43,6 @@ public class HMBlocks {
         woodmachines = new BlockWood().setStepSound(soundTypeWood).setBlockName("general.block");
         preview = new BlockPreview().setBlockName("preview");
         stone = new BlockStone().setStepSound(soundTypePiston).setBlockName("stone");
-        withered = new BlockWithered().setStepSound(soundTypeGrass).setBlockName("crops.withered");
 
         registerTiles(HMModInfo.CAPNAME, TileCooking.class, TileFridge.class, TileFryingPan.class, TileKitchen.class, TileMarker.class, 
                             TileMixer.class, TileOven.class, TilePot.class, TileRuralChest.class, TileSteamer.class);

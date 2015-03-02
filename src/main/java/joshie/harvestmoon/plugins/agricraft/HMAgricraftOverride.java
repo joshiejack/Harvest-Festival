@@ -84,9 +84,9 @@ public class HMAgricraftOverride extends CropOverride {
         ICrop crop = cropData.getCrop();
         int quality = cropData.getQuality();
         if (cropData.getCrop().getRegrowStage() > 0) {
-            cropData.regrow();
+            CropHelper.plantCrop(null, world, x, y, z, crop, quality, crop.getRegrowStage());
         } else {
-            cropData.clear();
+            CropHelper.removeCrop(world, x, y, z);
             this.crop.clearPlant();
         }
 
@@ -108,11 +108,11 @@ public class HMAgricraftOverride extends CropOverride {
                 drops.add(new ItemStack(AgriCraft.crops, 1));
                 if (crop.hasPlant()) {
                     if (AgriCraft.blockCrops.isMature(world, x, y, z)) {
-                        drops.add(CropHelper.getStackForCrop(world, x, y, z));
+                        drops.add(HMApi.CROPS.getCropAtLocation(world, x, y, z).harvest(null, false));
                     }
                 }
-
-                CropHelper.notifyFarmlandOfCropRemoval(world, x, y, z);
+                
+                CropHelper.removeCrop(world, x, y, z);
             }
 
             for (ItemStack drop : drops) {

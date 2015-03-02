@@ -1,10 +1,11 @@
 package joshie.harvestmoon.core.network;
 
 import io.netty.buffer.ByteBuf;
+import joshie.harvestmoon.api.WorldLocation;
+import joshie.harvestmoon.api.crops.ICropData;
 import joshie.harvestmoon.core.helpers.ClientHelper;
 import joshie.harvestmoon.core.helpers.generic.MCClientHelper;
 import joshie.harvestmoon.crops.CropData;
-import joshie.harvestmoon.crops.WorldLocation;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
@@ -12,11 +13,11 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 public class PacketSyncCrop implements IMessage, IMessageHandler<PacketSyncCrop, IMessage> {
     private boolean isRemoval;
     private WorldLocation location;
-    private CropData data;
+    private ICropData data;
 
     public PacketSyncCrop() {}
 
-    public PacketSyncCrop(WorldLocation location, CropData data) {
+    public PacketSyncCrop(WorldLocation location, ICropData data) {
         this.isRemoval = false;
         this.location = location;
         this.data = data;

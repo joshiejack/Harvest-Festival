@@ -8,9 +8,7 @@ import joshie.harvestmoon.api.crops.ICropRenderHandler;
 import joshie.harvestmoon.api.crops.ISoilHandler;
 import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.core.util.Translate;
-import joshie.harvestmoon.crops.CropData.WitherType;
 import joshie.harvestmoon.crops.icons.IconHandlerDefault;
-import joshie.harvestmoon.crops.soil.SoilHandlers;
 import joshie.harvestmoon.init.HMConfiguration;
 import joshie.harvestmoon.init.HMItems;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -39,6 +37,7 @@ public class Crop implements ICrop {
     protected boolean alternativeName;
     protected boolean isStatic;
     protected boolean requiresSickle;
+    protected boolean isEdible;
     protected Item item;
     protected Season[] seasons;
     protected int cost;
@@ -130,6 +129,12 @@ public class Crop implements ICrop {
         this.soilHandler = handler;
         return this;
     }
+    
+    @Override
+    public ICrop setIsEdible() {
+        this.isEdible = true;
+        return this;
+    }
 
     /** Return true if this crop uses an item other than HMCrop item **/
     public boolean hasItemAssigned() {
@@ -166,14 +171,6 @@ public class Crop implements ICrop {
     /** The year in which this crop can be purchased **/
     public int getPurchaseYear() {
         return year;
-    }
-
-    /** Returns the type of withering this plant will produce **/
-    public final WitherType getWitherType(int stage) {
-        if (isSeed(stage)) return WitherType.SEED;
-        else if (isGrowing(stage)) return WitherType.GROWING;
-        else if (isGrown(stage)) return WitherType.GROWN;
-        else return WitherType.NONE;
     }
 
     /** Whether this crop is considered a seed at this stage **/
@@ -223,6 +220,11 @@ public class Crop implements ICrop {
     @Override
     public boolean requiresWater() {
         return needsWatering;
+    }
+
+    @Override
+    public boolean isEdible() {
+        return isEdible;
     }
 
     @Override

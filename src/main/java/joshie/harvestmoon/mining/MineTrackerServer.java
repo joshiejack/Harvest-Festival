@@ -7,9 +7,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
+import joshie.harvestmoon.api.WorldLocation;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvestmoon.core.util.IData;
-import joshie.harvestmoon.crops.WorldLocation;
 import joshie.harvestmoon.npc.EntityNPCMiner;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;

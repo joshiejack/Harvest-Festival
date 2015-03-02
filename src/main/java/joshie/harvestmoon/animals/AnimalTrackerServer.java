@@ -9,9 +9,9 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.UUID;
 
+import joshie.harvestmoon.api.WorldLocation;
 import joshie.harvestmoon.core.config.Animals;
 import joshie.harvestmoon.core.util.IData;
-import joshie.harvestmoon.crops.WorldLocation;
 import joshie.harvestmoon.init.HMBlocks;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityChicken;

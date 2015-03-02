@@ -18,6 +18,7 @@ import joshie.harvestmoon.calendar.Weekday;
 import joshie.harvestmoon.core.helpers.AnimalHelper;
 import joshie.harvestmoon.core.helpers.CalendarHelper;
 import joshie.harvestmoon.core.helpers.CropHelper;
+import joshie.harvestmoon.core.helpers.TrackingHelper;
 import joshie.harvestmoon.core.network.PacketSyncCrop;
 import joshie.harvestmoon.core.util.IData;
 import joshie.harvestmoon.init.HMBlocks;
@@ -138,13 +139,13 @@ public class CropTrackerServer extends CropTrackerCommon implements IData {
         ICropData data = getCropDataForLocation(world, x, y, z);
         ItemStack harvest = data.harvest(player, true);
         if (harvest != null) {
-            if (data.getCrop().getRegrowStage() < 0) {
+            if (data.getCrop().getRegrowStage() <= 0) {
                 removeCrop(world, x, y, z);
                 world.setBlockToAir(x, y, z);
             }
 
             if (player != null) {
-                CropHelper.onHarvested(player, (CropData) data);
+                TrackingHelper.onHarvested(player, data);
             }
 
             markDirty();

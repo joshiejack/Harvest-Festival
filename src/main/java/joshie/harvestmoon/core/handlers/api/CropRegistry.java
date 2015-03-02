@@ -7,16 +7,13 @@ import joshie.harvestmoon.api.crops.ICropHandler;
 import joshie.harvestmoon.core.helpers.CropHelper;
 import joshie.harvestmoon.core.helpers.SeasonHelper;
 import joshie.harvestmoon.crops.Crop;
+import joshie.harvestmoon.init.HMConfiguration;
 import net.minecraft.world.World;
 
 public class CropRegistry implements ICropHandler {
     @Override
     public ICrop getCrop(String unlocalized) {
-        for (Crop crop : Crop.crops) {
-            if (crop.getUnlocalizedName().equals(unlocalized)) return crop;
-        }
-
-        return null;
+        return HMConfiguration.mappings.getCrop(unlocalized);
     }
 
     @Override

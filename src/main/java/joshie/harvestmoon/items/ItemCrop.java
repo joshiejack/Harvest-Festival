@@ -1,6 +1,5 @@
 package joshie.harvestmoon.items;
 
-import static joshie.harvestmoon.core.helpers.CropHelper.getCropQuality;
 import static joshie.harvestmoon.core.lib.HMModInfo.CROPPATH;
 
 import java.util.List;
@@ -12,6 +11,7 @@ import joshie.harvestmoon.api.crops.ICropProvider;
 import joshie.harvestmoon.core.HMTab;
 import joshie.harvestmoon.core.config.Crops;
 import joshie.harvestmoon.core.config.General;
+import joshie.harvestmoon.core.helpers.CropHelper;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -36,7 +36,7 @@ public class ItemCrop extends ItemHMMeta implements IShippable, IRateable, ICrop
     @Override
     public long getSellValue(ItemStack stack) {
         if (crop.isStatic()) return 0;
-        double quality = 1 + (getCropQuality(stack.getItemDamage()) * General.SELL_QUALITY_MODIFIER);
+        double quality = (1 + CropHelper.getCropQualityFromDamage(stack.getItemDamage())) * General.SELL_QUALITY_MODIFIER;
         return (long) (quality * crop.getSellValue());
     }
 
@@ -53,7 +53,7 @@ public class ItemCrop extends ItemHMMeta implements IShippable, IRateable, ICrop
     @Override
     public int getRating(ItemStack stack) {
         if (crop.isStatic()) return -1;
-        else return getCropQuality(stack.getItemDamage()) / 10;
+        else return CropHelper.getCropQualityFromDamage(stack.getItemDamage()) / 10;
     }
 
     @SideOnly(Side.CLIENT)

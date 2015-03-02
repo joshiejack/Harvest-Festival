@@ -7,8 +7,9 @@ import joshie.harvestmoon.api.HMApi;
 import joshie.harvestmoon.api.crops.ICrop;
 import joshie.harvestmoon.api.crops.ICropData;
 import joshie.harvestmoon.core.helpers.CropHelper;
+import joshie.harvestmoon.core.helpers.SeedHelper;
 import joshie.harvestmoon.core.helpers.generic.ItemHelper;
-import joshie.harvestmoon.crops.Crop;
+import joshie.harvestmoon.init.HMCrops;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -111,7 +112,7 @@ public class HMAgricraftOverride extends CropOverride {
                         drops.add(HMApi.CROPS.getCropAtLocation(world, x, y, z).harvest(null, false));
                     }
                 }
-                
+
                 CropHelper.removeCrop(world, x, y, z);
             }
 
@@ -124,9 +125,18 @@ public class HMAgricraftOverride extends CropOverride {
     @Override
     public void onSeedPlanted(EntityPlayer player) {
         if (!world.isRemote) {
-            Crop crop = CropHelper.getCropFromDamage(this.crop.seedMeta);
-            int quality = CropHelper.getCropQuality(this.crop.seedMeta);
-            CropHelper.plantCrop(player, world, x, y, z, crop, quality);
+            ICrop theCrop = HMCrops.null_crop;
+            int quality = 0;
+            if (player != null) {
+                theCrop = SeedHelper.getCropFromSeed(player.getCurrentEquippedItem());
+                quality = SeedHelper.getQualityFromSeed(player.getCurrentEquippedItem());
+            }
+
+            if (theCrop != HMCrops.null_crop) {
+                CropHelper.plantCrop(player, world, x, y, z, theCrop, quality, 1);
+            } else {
+                crop.clearPlant();
+            }
         }
     }
 

@@ -11,10 +11,10 @@ import joshie.harvestmoon.api.crops.ICropData;
 import joshie.harvestmoon.core.config.Crops;
 import joshie.harvestmoon.core.helpers.CropHelper;
 import joshie.harvestmoon.core.helpers.DigFXHelper;
+import joshie.harvestmoon.core.helpers.SeedHelper;
 import joshie.harvestmoon.core.helpers.generic.MCClientHelper;
 import joshie.harvestmoon.core.lib.RenderIds;
 import joshie.harvestmoon.crops.Crop;
-import joshie.harvestmoon.init.HMItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
@@ -228,9 +228,7 @@ public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
         if (meta == WITHERED) return new ItemStack(Blocks.deadbush); //It's Dead soo???
 
         ICropData data = HMApi.CROPS.getCropAtLocation(world, x, y, z);
-        ItemStack seeds = new ItemStack(HMItems.seeds);
-        seeds.setItemDamage(data.getCrop().getCropMeta() + ((data.getQuality() - 1) * 100));
-        return seeds;
+        return SeedHelper.getSeedsFromCropWithQuality(data.getCrop(), ((data.getQuality() - 1) * 100));
     }
 
     @Override
@@ -243,8 +241,8 @@ public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
     @SideOnly(Side.CLIENT)
     @Override
     public void registerBlockIcons(IIconRegister register) {
-        for (Crop crop : Crop.crops) {
-            crop.registerIcons(register);
+        for (ICrop crop : Crop.crops) {
+            crop.getCropHandler().registerIcons(register);
         }
     }
 

@@ -1,5 +1,6 @@
 package joshie.harvestmoon.api.crops;
 
+import joshie.harvestmoon.api.AnimalFoodType;
 import joshie.harvestmoon.api.Calendar.ISeason;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -40,12 +41,24 @@ public interface ICrop {
     /** Returns how many stages this crop has 
      * @return      the total number of stages*/
     public int getStages();
-    
-    /** The meta damage for seeds **/
-    public int getCropMeta();
 
     /** The stage this crop regrows **/
     public int getRegrowStage();
+
+    /** The colour of the seed bag */
+    public int getColor();
+    
+    /** The year this seed becomes available for purchase **/
+    public int getPurchaseYear();
+
+    /** How much this seed costs **/
+    public long getSeedCost();
+
+    /** Whether this seed is for sale at all **/
+    public boolean canPurchase();
+
+    /** Returns the type of animal food this crop is **/
+    public AnimalFoodType getFoodType();
 
     /** The seasons this crop can grow in **/
     public ISeason[] getSeasons();
@@ -69,6 +82,9 @@ public interface ICrop {
     
     /** Returns true if this crop can be eaten by animals (While growing) **/
     public boolean isEdible();
+    
+    /** Whether or not an item was assigned to this crop yet **/
+    public boolean hasItemAssigned();
 
     /** Returns true when the itemstack matches this crop
      * 

@@ -2,6 +2,7 @@ package joshie.harvestmoon.animals;
 
 import java.util.HashMap;
 
+import joshie.harvestmoon.api.AnimalFoodType;
 import joshie.harvestmoon.core.config.Calendar;
 import joshie.harvestmoon.core.helpers.SafeStackHelper;
 import joshie.harvestmoon.core.util.SafeStack;
@@ -18,21 +19,21 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 public enum AnimalType {
-    COW(12 * (Calendar.DAYS_PER_SEASON * 4), 20 * (Calendar.DAYS_PER_SEASON * 4), 1, FoodType.GRASS), 
-    SHEEP(8 * (Calendar.DAYS_PER_SEASON * 4), 12 * (Calendar.DAYS_PER_SEASON * 4), 7, FoodType.GRASS), 
-    CHICKEN(3 * (Calendar.DAYS_PER_SEASON * 4), 10 * (Calendar.DAYS_PER_SEASON * 4), 1, FoodType.SEED), 
-    HORSE(20 * (Calendar.DAYS_PER_SEASON * 4), 30 * (Calendar.DAYS_PER_SEASON * 4), 0, FoodType.GRASS, FoodType.VEGETABLE, FoodType.FRUIT), 
-    PIG(6 * (Calendar.DAYS_PER_SEASON * 4), 10 * (Calendar.DAYS_PER_SEASON * 4), 0, FoodType.VEGETABLE, FoodType.FRUIT), 
-    CAT(10 * (Calendar.DAYS_PER_SEASON * 4), 20 * (Calendar.DAYS_PER_SEASON * 4), 0, FoodType.FISH, FoodType.CHICKEN), 
-    DOG(9 * (Calendar.DAYS_PER_SEASON * 4), 16 * (Calendar.DAYS_PER_SEASON * 4), 0, FoodType.REDMEAT, FoodType.CHICKEN), 
+    COW(12 * (Calendar.DAYS_PER_SEASON * 4), 20 * (Calendar.DAYS_PER_SEASON * 4), 1, AnimalFoodType.GRASS), 
+    SHEEP(8 * (Calendar.DAYS_PER_SEASON * 4), 12 * (Calendar.DAYS_PER_SEASON * 4), 7, AnimalFoodType.GRASS), 
+    CHICKEN(3 * (Calendar.DAYS_PER_SEASON * 4), 10 * (Calendar.DAYS_PER_SEASON * 4), 1, AnimalFoodType.SEED), 
+    HORSE(20 * (Calendar.DAYS_PER_SEASON * 4), 30 * (Calendar.DAYS_PER_SEASON * 4), 0, AnimalFoodType.GRASS, AnimalFoodType.VEGETABLE, AnimalFoodType.FRUIT), 
+    PIG(6 * (Calendar.DAYS_PER_SEASON * 4), 10 * (Calendar.DAYS_PER_SEASON * 4), 0, AnimalFoodType.VEGETABLE, AnimalFoodType.FRUIT), 
+    CAT(10 * (Calendar.DAYS_PER_SEASON * 4), 20 * (Calendar.DAYS_PER_SEASON * 4), 0, AnimalFoodType.FISH, AnimalFoodType.CHICKEN), 
+    DOG(9 * (Calendar.DAYS_PER_SEASON * 4), 16 * (Calendar.DAYS_PER_SEASON * 4), 0, AnimalFoodType.REDMEAT, AnimalFoodType.CHICKEN), 
     OTHER(5 * (Calendar.DAYS_PER_SEASON * 4), 10 * (Calendar.DAYS_PER_SEASON * 4), 0);
 
     private final int min;
     private final int max;
     private final int days;
-    private final FoodType[] types;
+    private final AnimalFoodType[] types;
 
-    private AnimalType(int min, int max, int days, FoodType... types) {
+    private AnimalType(int min, int max, int days, AnimalFoodType... types) {
         this.min = min;
         this.max = max;
         this.days = days;
@@ -52,8 +53,8 @@ public enum AnimalType {
     }
 
     public boolean eatsGrass() {
-        for (FoodType type : types) {
-            if (type == FoodType.GRASS) return true;
+        for (AnimalFoodType type : types) {
+            if (type == AnimalFoodType.GRASS) return true;
         }
 
         return false;
@@ -79,31 +80,27 @@ public enum AnimalType {
         }
     }
 
-    private static HashMap<SafeStack, FoodType> registry = new HashMap();
+    private static HashMap<SafeStack, AnimalFoodType> registry = new HashMap();
     
-    public static void registerFoodsAsType(FoodType type, Item... items) {
+    public static void registerFoodsAsType(AnimalFoodType type, Item... items) {
         for (Item item: items) {
             registerFoodAsType(new ItemStack(item, 1, OreDictionary.WILDCARD_VALUE), type);
         }
     }
     
-    public static void registerFoodAsType(ItemStack stack, FoodType type) {
+    public static void registerFoodAsType(ItemStack stack, AnimalFoodType type) {
         registry.put(SafeStackHelper.getSafeStackType(stack), type);
     }
 
     public boolean canEat(ItemStack stack) {
-        FoodType type = (FoodType) SafeStackHelper.getResult(stack, registry);
+        AnimalFoodType type = (AnimalFoodType) SafeStackHelper.getResult(stack, registry);
         if (type == null) return false;
         else {
-            for (FoodType t : types) {
+            for (AnimalFoodType t : types) {
                 if (type == t) return true;
             }
         }
 
         return false;
-    }
-
-    public static enum FoodType {
-        REDMEAT, CHICKEN, FISH, SEED, VEGETABLE, FRUIT, GRASS;
     }
 }

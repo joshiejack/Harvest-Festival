@@ -2,19 +2,17 @@ package joshie.harvestmoon.crops;
 
 import java.util.ArrayList;
 
-import joshie.harvestmoon.animals.AnimalType.FoodType;
+import joshie.harvestmoon.api.AnimalFoodType;
 import joshie.harvestmoon.api.crops.ICrop;
 import joshie.harvestmoon.api.crops.ICropRenderHandler;
 import joshie.harvestmoon.api.crops.ISoilHandler;
 import joshie.harvestmoon.calendar.Season;
+import joshie.harvestmoon.core.helpers.SeedHelper;
 import joshie.harvestmoon.core.util.Translate;
 import joshie.harvestmoon.crops.icons.IconHandlerDefault;
 import joshie.harvestmoon.init.HMConfiguration;
-import joshie.harvestmoon.init.HMItems;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -24,7 +22,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class Crop implements ICrop {
-    public static final ArrayList<Crop> crops = new ArrayList(30);
+    public static final ArrayList<ICrop> crops = new ArrayList(30);
 
     //CropData
     @SideOnly(Side.CLIENT)
@@ -46,8 +44,7 @@ public class Crop implements ICrop {
     protected int regrow;
     protected int year;
     protected int bag_color;
-    protected FoodType foodType;
-    protected int ordinal;
+    protected AnimalFoodType foodType;
 
     public Crop() {}
 
@@ -74,12 +71,12 @@ public class Crop implements ICrop {
         this.year = year;
         this.isStatic = false;
         this.alternativeName = false;
-        this.foodType = FoodType.VEGETABLE;
+        this.foodType = AnimalFoodType.VEGETABLE;
         this.bag_color = color;
-        this.ordinal = HMConfiguration.addCropMapping(this); //Fetch the meta value of this crop
         this.iconHandler = new IconHandlerDefault(this);
         this.soilHandler = SoilHandlers.farmland;
         this.needsWatering = true;
+        HMConfiguration.mappings.addCrop(this);
         crops.add(this);
     }
 
@@ -113,7 +110,7 @@ public class Crop implements ICrop {
         return this;
     }
 
-    public Crop setFoodType(FoodType foodType) {
+    public Crop setFoodType(AnimalFoodType foodType) {
         this.foodType = foodType;
         return this;
     }
@@ -129,7 +126,7 @@ public class Crop implements ICrop {
         this.soilHandler = handler;
         return this;
     }
-    
+
     @Override
     public ICrop setIsEdible() {
         this.isEdible = true;
@@ -205,13 +202,6 @@ public class Crop implements ICrop {
         return regrow;
     }
 
-    /** This is called to get the drop of this crop once it's ready for harvest 
-     * @return the CropMeta that this crop should drop */
-    @Override
-    public int getCropMeta() {
-        return ordinal;
-    }
-
     @Override
     public boolean requiresSickle() {
         return requiresSickle;
@@ -245,7 +235,7 @@ public class Crop implements ICrop {
     }
 
     /** The type of animal food this is **/
-    public FoodType getFoodType() {
+    public AnimalFoodType getFoodType() {
         return foodType;
     }
 
@@ -255,7 +245,7 @@ public class Crop implements ICrop {
 
     @Override
     public ItemStack getSeedStack() {
-        return new ItemStack(HMItems.seeds, 1, getCropMeta());
+        return SeedHelper.getSeedsFromCrop(this);
     }
 
     @Override
@@ -298,16 +288,6 @@ public class Crop implements ICrop {
         text = StringUtils.replace(text, "%C", name);
         text = StringUtils.replace(text, "%S", seeds);
         return text;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public IIcon getIcon(int stage) {
-        return iconHandler.getIconForStage(stage);
-    }
-
-    @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister register) {
-        iconHandler.registerIcons(register);
     }
 
     @Override

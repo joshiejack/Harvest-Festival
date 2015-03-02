@@ -50,7 +50,7 @@ public class PacketSyncCrop implements IMessage, IMessageHandler<PacketSyncCrop,
 
     @Override
     public IMessage onMessage(PacketSyncCrop msg, MessageContext ctx) {
-        ClientHelper.getCropTracker().sync(msg.isRemoval, msg.location, msg.data);
+        ClientHelper.getCropTracker().updateClient(msg.isRemoval, msg.location, msg.data);
         MCClientHelper.refresh(msg.location.dimension, msg.location.x, msg.location.y, msg.location.z);
 
         return null;

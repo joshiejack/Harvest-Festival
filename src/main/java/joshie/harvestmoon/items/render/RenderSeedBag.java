@@ -29,7 +29,7 @@ public class RenderSeedBag implements IItemRenderer {
         Item item = stack.getItem();
         int damage = stack.getItemDamage();
 
-        IIcon iicon = item.getIconFromDamageForRenderPass(damage, pass);
+        IIcon iicon = item.getIcon(stack, pass, MCClientHelper.getPlayer(), stack, 1);
         if (iicon == null) {
             GL11.glPopMatrix();
             return;

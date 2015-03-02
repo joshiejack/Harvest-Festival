@@ -1,19 +1,19 @@
 package joshie.harvestmoon.items;
 
-import static joshie.harvestmoon.core.helpers.CropHelper.getCropQuality;
 import static joshie.harvestmoon.core.helpers.CropHelper.plantCrop;
 
 import java.util.List;
 
 import joshie.harvestmoon.api.core.IRateable;
+import joshie.harvestmoon.api.crops.ICrop;
 import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.core.HMTab;
 import joshie.harvestmoon.core.config.Crops;
-import joshie.harvestmoon.core.helpers.CropHelper;
+import joshie.harvestmoon.core.helpers.SeasonHelper;
+import joshie.harvestmoon.core.helpers.SeedHelper;
 import joshie.harvestmoon.core.lib.HMModInfo;
 import joshie.harvestmoon.crops.Crop;
 import joshie.harvestmoon.init.HMBlocks;
-import joshie.harvestmoon.init.HMConfiguration;
 import joshie.harvestmoon.plugins.agricraft.HMAgricraftOverride;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -59,17 +59,22 @@ public class ItemSeeds extends net.minecraft.item.ItemSeeds implements IRateable
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        Crop crop = CropHelper.getCropFromDamage(stack.getItemDamage());
+        if (!stack.hasTagCompound()) {
+            return "Corrupted Seeds, Yo!";
+        }
+
+        ICrop crop = SeedHelper.getCropFromSeed(stack);
         return (crop == null) ? "Bloody Useless Seeds" : crop.getSeedsName();
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean debug) {
-        Crop crop = CropHelper.getCropFromDamage(stack.getItemDamage());
+        if (!stack.hasTagCompound()) return;
+        ICrop crop = SeedHelper.getCropFromSeed(stack);
         if (crop != null) {
-            int quality = getCropQuality(stack.getItemDamage());
-            for (Season season : crop.getSeasons()) {
+            int quality = SeedHelper.getQualityFromSeed(stack);
+            for (Season season : SeasonHelper.getSeasonsFromISeasons(crop.getSeasons())) {
                 list.add(season.getTextColor() + season.getLocalized());
             }
         }
@@ -77,11 +82,11 @@ public class ItemSeeds extends net.minecraft.item.ItemSeeds implements IRateable
 
     @Override
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int xCoord, int yCoord, int zCoord, int side, float hitX, float hitY, float hitZ) {
-        if (side != 1) {
+        if (side != 1 || !stack.hasTagCompound()) {
             return false;
         } else {
-            Crop crop = CropHelper.getCropFromDamage(stack.getItemDamage());
-            int quality = CropHelper.getCropQuality(stack.getItemDamage());
+            ICrop crop = SeedHelper.getCropFromSeed(stack);
+            int quality = SeedHelper.getQualityFromSeed(stack);
             int planted = 0;
 
             if (player.isSneaking()) {
@@ -109,10 +114,10 @@ public class ItemSeeds extends net.minecraft.item.ItemSeeds implements IRateable
         }
     }
 
-    private int plantSeedAt(EntityPlayer player, ItemStack stack, World world, int x, int y, int z, int side, Crop crop, int quality, int planted) {
+    private int plantSeedAt(EntityPlayer player, ItemStack stack, World world, int x, int y, int z, int side, ICrop crop, int quality, int planted) {
         if (player.canPlayerEdit(x, y, z, side, stack) && player.canPlayerEdit(x, y + 1, z, side, stack)) {
             if (crop.getSoilHandler().canSustainPlant(world, x, y + 1, z, (IPlantable) HMBlocks.crops) && world.isAirBlock(x, y + 1, z)) {
-                plantCrop(player, world, x, y + 1, z, crop, quality);
+                plantCrop(player, world, x, y + 1, z, crop, quality, 1);
                 if (!world.isRemote) {
                     world.setBlock(x, y + 1, z, HMBlocks.crops);
                 }
@@ -132,9 +137,10 @@ public class ItemSeeds extends net.minecraft.item.ItemSeeds implements IRateable
 
     @Override
     public int getRating(ItemStack stack) {
-        Crop crop = CropHelper.getCropFromDamage(stack.getItemDamage());
+        if (!stack.hasTagCompound()) return 0;
+        ICrop crop = SeedHelper.getCropFromSeed(stack);
         if (crop == null || crop.isStatic()) return -1;
-        else return getCropQuality(stack.getItemDamage()) / 10;
+        else return SeedHelper.getQualityFromSeed(stack) / 10;
     }
 
     @Override
@@ -143,13 +149,15 @@ public class ItemSeeds extends net.minecraft.item.ItemSeeds implements IRateable
     }
 
     @Override
-    public IIcon getIconFromDamageForRenderPass(int damage, int pass) {
+    public IIcon getIcon(ItemStack stack, int pass, EntityPlayer player, ItemStack usingItem, int useRemaining) {
+        if (!stack.hasTagCompound()) return seed_bag_body;
         if (pass == 1) return seed_bag_body;
         else if (pass == 2) return seed_bag_neck;
         else {
-            Crop crop = CropHelper.getCropFromDamage(damage);
+            ICrop crop = SeedHelper.getCropFromSeed(stack);
             return crop == null ? seed_bag_neck : crop.getCropStack().getIconIndex();
         }
+
     }
 
     @Override
@@ -159,7 +167,8 @@ public class ItemSeeds extends net.minecraft.item.ItemSeeds implements IRateable
 
     @Override
     public int getColorFromItemStack(ItemStack stack, int pass) {
-        Crop crop = CropHelper.getCropFromDamage(stack.getItemDamage());
+        if (!stack.hasTagCompound()) return super.getColorFromItemStack(stack, pass);
+        ICrop crop = SeedHelper.getCropFromSeed(stack);
         if (pass == 1 && crop != null) return crop.getColor();
         else if (pass == 2) return 0xFFFFFF;
         else return super.getColorFromItemStack(stack, pass);
@@ -170,20 +179,15 @@ public class ItemSeeds extends net.minecraft.item.ItemSeeds implements IRateable
         return 3;
     }
 
-    public String getName(ItemStack stack) {
-        return CropHelper.getCropFromOrdinal(stack.getItemDamage()).getUnlocalizedName();
-    }
-
     @SideOnly(Side.CLIENT)
     @Override
     public void getSubItems(Item item, CreativeTabs tab, List list) {
-        for (Integer i : HMConfiguration.mappings.getMappings()) {
-            Crop crop = HMConfiguration.mappings.getCrop(i);
+        for (ICrop crop : Crop.crops) {
             if (!crop.isStatic()) {
                 for (int j = 0; j < 100; j += Crops.CROP_QUALITY_LOOP) {
-                    list.add(new ItemStack(item, 1, (j * 100) + i));
+                    list.add(SeedHelper.getSeedsFromCropWithQuality(crop, j));
                 }
-            } else list.add(new ItemStack(item, 1, i));
+            } else list.add(SeedHelper.getSeedsFromCrop(crop));
         }
     }
 

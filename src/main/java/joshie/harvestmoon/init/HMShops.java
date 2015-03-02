@@ -10,6 +10,7 @@ import static net.minecraft.world.EnumDifficulty.EASY;
 import static net.minecraft.world.EnumDifficulty.HARD;
 import static net.minecraft.world.EnumDifficulty.NORMAL;
 import static net.minecraft.world.EnumDifficulty.PEACEFUL;
+import joshie.harvestmoon.api.crops.ICrop;
 import joshie.harvestmoon.crops.Crop;
 import joshie.harvestmoon.items.ItemGeneral;
 import joshie.harvestmoon.shops.Purchaseable;
@@ -49,7 +50,7 @@ public class HMShops {
     private static void supermarket() {
         /* Register all crop seeds to the seed shop */
         supermarket = new ShopInventory("general", 166);
-        for (Crop crop : Crop.crops) {
+        for (ICrop crop : Crop.crops) {
             supermarket.addItem(new PurchaseableCropSeeds(crop));
         }
         

@@ -1,6 +1,5 @@
 package joshie.harvestmoon.crops;
 
-import static joshie.harvestmoon.core.helpers.CropHelper.getCropFromOrdinal;
 import static joshie.harvestmoon.core.network.PacketHandler.sendToEveryone;
 import io.netty.buffer.ByteBuf;
 
@@ -15,6 +14,7 @@ import joshie.harvestmoon.core.config.Crops;
 import joshie.harvestmoon.core.helpers.CalendarHelper;
 import joshie.harvestmoon.core.helpers.SeasonHelper;
 import joshie.harvestmoon.core.network.PacketSyncCrop;
+import joshie.harvestmoon.init.HMConfiguration;
 import joshie.harvestmoon.init.HMCrops;
 import joshie.harvestmoon.plugins.HMPlugins;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,6 +22,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.common.DimensionManager;
+import cpw.mods.fml.common.network.ByteBufUtils;
 
 public class CropData implements ICropData {
     private static final Random rand = new Random();
@@ -169,6 +170,7 @@ public class CropData implements ICropData {
     }
     
     public ItemStack harvest(EntityPlayer player, boolean doHarvest) {
+        if (crop == null) return null;
         if (stage >= crop.getStages()) {
             int cropQuality = 0;
             if (!crop.isStatic()) {
@@ -192,7 +194,7 @@ public class CropData implements ICropData {
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         isReal = nbt.getBoolean("IsReal");
-        crop = getCropFromOrdinal(nbt.getShort("CropMeta"));
+        crop = HMConfiguration.mappings.getCrop(nbt.getString("CropUnlocalized"));
         stage = nbt.getByte("CurrentStage");
         quality = nbt.getByte("CropQuality");
         isFertilized = nbt.getBoolean("IsFertilized");
@@ -207,7 +209,7 @@ public class CropData implements ICropData {
     public void writeToNBT(NBTTagCompound nbt) {
         if (crop != null) {
             nbt.setBoolean("IsReal", isReal);
-            nbt.setShort("CropMeta", (short) crop.getCropMeta());
+            nbt.setString("CropMeta", crop.getUnlocalizedName());
             nbt.setByte("CurrentStage", (byte) stage);
             nbt.setByte("CropQuality", (byte) quality);
             nbt.setBoolean("IsFertilized", isFertilized);
@@ -225,7 +227,7 @@ public class CropData implements ICropData {
         if (crop != null) {
             buf.writeBoolean(true);
             buf.writeBoolean(isReal);
-            buf.writeShort(crop.getCropMeta());
+            ByteBufUtils.writeUTF8String(buf, crop.getUnlocalizedName());
             buf.writeByte(stage);
             buf.writeByte(quality);
             buf.writeBoolean(isFertilized);
@@ -237,7 +239,7 @@ public class CropData implements ICropData {
     public void fromBytes(ByteBuf buf) {
         if (buf.readBoolean()) {
             isReal = buf.readBoolean();
-            crop = getCropFromOrdinal(buf.readShort());
+            crop = HMConfiguration.mappings.getCrop(ByteBufUtils.readUTF8String(buf));
             stage = buf.readByte();
             quality = buf.readByte();
             isFertilized = buf.readBoolean();

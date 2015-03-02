@@ -1,5 +1,6 @@
 package joshie.harvestmoon.init;
 
+import joshie.harvestmoon.api.crops.ICrop;
 import joshie.harvestmoon.core.config.General;
 import joshie.harvestmoon.crops.Crop;
 import joshie.harvestmoon.items.ItemBuilding;
@@ -38,7 +39,7 @@ public class HMItems {
 
     public static void init() {
         //Add a new crop item for things that do not have an item yet :D
-        for (Crop crop : Crop.crops) {
+        for (ICrop crop : Crop.crops) {
             if (!crop.hasItemAssigned()) {
                 crop.setItem(new ItemCrop(crop).setUnlocalizedName("crop." + crop.getUnlocalizedName()));
                 ItemStack clone = crop.getCropStack().copy();

@@ -4,11 +4,9 @@ import joshie.harvestmoon.api.crops.ICrop;
 import joshie.harvestmoon.api.crops.ICropData;
 import joshie.harvestmoon.core.helpers.generic.ItemHelper;
 import joshie.harvestmoon.crops.Crop;
-import joshie.harvestmoon.crops.CropData;
 import joshie.harvestmoon.crops.CropTrackerClient;
 import joshie.harvestmoon.crops.CropTrackerCommon;
 import joshie.harvestmoon.crops.CropTrackerServer;
-import joshie.harvestmoon.init.HMConfiguration;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFarmland;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,16 +16,7 @@ import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.util.ForgeDirection;
 
 public class CropHelper {
-    public static void removeCrop(World world, int x, int y, int z) {
-        getTracker(world).removeCrop(world, x, y, z);
-    }
-
-    public static ICropData getCropAtLocation(World world, int x, int y, int z) {
-        if (!world.isRemote) {
-            return getServerTracker().getCropDataForLocation(world, x, y, z);
-        } else return getClientTracker().getCropDataForLocation(world, x, y, z);
-    }
-
+    //Converts the soil to hydrated soil
     public static boolean hydrate(World world, int x, int y, int z) {
         int meta = world.getBlockMetadata(x, y, z);
         boolean ret = meta == 7 ? false : world.setBlockMetadataWithNotify(x, y, z, 7, 2);
@@ -55,19 +44,32 @@ public class CropHelper {
         }
     }
 
+    //Returns whether the farmland is hydrated
     public static boolean isHydrated(World world, int x, int y, int z) {
         return world.getBlock(x, y, z) instanceof BlockFarmland && world.getBlockMetadata(x, y, z) == 7;
     }
 
+    //Fetch the crop data at this location
+    public static ICropData getCropAtLocation(World world, int x, int y, int z) {
+        return getTracker(world).getCropDataForLocation(world, x, y, z);
+    }
+
+    //Remove the crop data at this location
+    public static void removeCrop(World world, int x, int y, int z) {
+        getTracker(world).removeCrop(world, x, y, z);
+    }
+
+    //Set some crop data at this location
     public static boolean plantCrop(EntityPlayer player, World world, int x, int y, int z, Crop crop, int quality) {
-        return getTracker(world).plantCrop(player, world, x, y, z, crop, quality, 1);
+        return plantCrop(player, world, x, y, z, crop, quality, 1);
     }
 
-    public static void plantCrop(Object object, World world, int x, int y, int z, ICrop crop, int quality, int regrowStage) {
-        // TODO Auto-generated method stub
-
+    //Set some crop data at this location
+    public static boolean plantCrop(EntityPlayer player, World world, int x, int y, int z, ICrop crop, int quality, int regrowStage) {
+        return getTracker(world).plantCrop(player, world, x, y, z, crop, quality, regrowStage);
     }
 
+    //Harvests the crop at this location
     public static boolean harvestCrop(EntityPlayer player, World world, int x, int y, int z) {
         ItemStack stack = getTracker(world).harvest(player, world, x, y, z);
         if (!world.isRemote && stack != null) {
@@ -77,34 +79,13 @@ public class CropHelper {
         return stack != null;
     }
 
+    //Whether or not you can bonemeal this location
     public static boolean canBonemeal(World world, int x, int y, int z) {
-        if (!world.isRemote) {
-            return getServerTracker().canBonemeal(world, x, y, z);
-        } else return ClientHelper.getCropTracker().canBonemeal(world, x, y, z);
+        return getTracker(world).canBonemeal(world, x, y, z);
     }
 
-    public static Crop getCropFromDamage(int damage) {
-        int ordinal = getCropType(damage);
-        return getCropFromOrdinal(ordinal);
-    }
-
-    /** Returns a crop based on it's ordinal **/
-    public static Crop getCropFromOrdinal(int ordinal) {
-        return HMConfiguration.mappings.getCrop(ordinal);
-    }
-
-    /** @return returns the Quality of this crop **/
-    public static int getCropQuality(int meta) {
+    public static int getCropQualityFromDamage(int meta) {
         return 1 + (int) Math.ceil(meta / 100);
-    }
-
-    /** @return Returns the CropMeta for this crop **/
-    private static int getCropType(int meta) {
-        return meta % 100;
-    }
-
-    public static void onHarvested(EntityPlayer player, CropData data) {
-        ServerHelper.getPlayerData(player).onHarvested(data);
     }
 
     public static CropTrackerCommon getTracker(World world) {

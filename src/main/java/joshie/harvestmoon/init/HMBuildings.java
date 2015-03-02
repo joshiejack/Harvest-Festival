@@ -1,5 +1,6 @@
 package joshie.harvestmoon.init;
 
+import joshie.harvestmoon.api.crops.ICrop;
 import joshie.harvestmoon.buildings.BuildingBarn;
 import joshie.harvestmoon.buildings.BuildingBlacksmith;
 import joshie.harvestmoon.buildings.BuildingCafe;
@@ -159,7 +160,7 @@ public class HMBuildings {
         ChestGenHooks.addItem(LootStrings.JADE_CHEST, new WeightedRandomChestContent(new ItemStack(Items.carrot), 1, 1, 8));
         ChestGenHooks.addItem(LootStrings.JADE_CHEST, new WeightedRandomChestContent(new ItemStack(Blocks.red_flower), 1, 3, 15));
         ChestGenHooks.addItem(LootStrings.JADE_CHEST, new WeightedRandomChestContent(new ItemStack(Blocks.yellow_flower), 1, 2, 10));
-        for (Crop crop : Crop.crops) {
+        for (ICrop crop : Crop.crops) {
             ChestGenHooks.addItem(LootStrings.JADE_CHEST, new WeightedRandomChestContent(crop.getSeedStack(), 1, 1, 3));
             ChestGenHooks.addItem(LootStrings.JADE_CHEST, new WeightedRandomChestContent(crop.getCropStack(), 2, 3, 5));
         }

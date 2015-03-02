@@ -1,13 +1,12 @@
 package joshie.harvestmoon.asm.overrides;
 
-import static joshie.harvestmoon.core.helpers.CropHelper.getCropQuality;
-
 import java.util.List;
 import java.util.WeakHashMap;
 
 import joshie.harvestmoon.api.crops.ICrop;
 import joshie.harvestmoon.core.config.Crops;
 import joshie.harvestmoon.core.config.General;
+import joshie.harvestmoon.core.helpers.CropHelper;
 import joshie.harvestmoon.plugins.harvestcraft.HarvestCraft;
 import joshie.harvestmoon.plugins.harvestcraft.HarvestCraftCrop;
 import net.minecraft.creativetab.CreativeTabs;
@@ -39,14 +38,14 @@ public class ItemPamSeedFood {
     public static long getSellValue(ItemStack stack) {
         ICrop crop = getCrop(stack);
         if (crop == null || crop.isStatic()) return 0;
-        double quality = 1 + (getCropQuality(stack.getItemDamage()) * General.SELL_QUALITY_MODIFIER);
+        double quality = (1 + CropHelper.getCropQualityFromDamage(stack.getItemDamage()) * General.SELL_QUALITY_MODIFIER);
         return (long) (quality * crop.getSellValue());
     }
 
     public static int getRating(ItemStack stack) {
         ICrop crop = getCrop(stack);
         if (crop == null || crop.isStatic()) return -1;
-        else return getCropQuality(stack.getItemDamage()) / 10;
+        else return CropHelper.getCropQualityFromDamage(stack.getItemDamage()) / 10;
     }
 
     @SideOnly(Side.CLIENT)

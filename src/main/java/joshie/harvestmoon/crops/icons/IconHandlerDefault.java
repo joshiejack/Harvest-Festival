@@ -1,6 +1,6 @@
 package joshie.harvestmoon.crops.icons;
 
-import joshie.harvestmoon.api.crops.ICropIconHandler;
+import joshie.harvestmoon.api.crops.ICropRenderHandler;
 import joshie.harvestmoon.core.lib.HMModInfo;
 import joshie.harvestmoon.crops.Crop;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -8,7 +8,7 @@ import net.minecraft.util.IIcon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class IconHandlerDefault implements ICropIconHandler {
+public class IconHandlerDefault implements ICropRenderHandler {
     protected IIcon[] stageIcons;
     protected Crop crop;
 

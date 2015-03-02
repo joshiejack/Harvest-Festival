@@ -4,11 +4,13 @@ import java.util.ArrayList;
 
 import joshie.harvestmoon.animals.AnimalType.FoodType;
 import joshie.harvestmoon.api.crops.ICrop;
-import joshie.harvestmoon.api.crops.ICropIconHandler;
+import joshie.harvestmoon.api.crops.ICropRenderHandler;
+import joshie.harvestmoon.api.crops.ISoilHandler;
 import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.core.util.Translate;
 import joshie.harvestmoon.crops.CropData.WitherType;
 import joshie.harvestmoon.crops.icons.IconHandlerDefault;
+import joshie.harvestmoon.crops.soil.SoilHandlers;
 import joshie.harvestmoon.init.HMConfiguration;
 import joshie.harvestmoon.init.HMItems;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -28,9 +30,12 @@ public class Crop implements ICrop {
 
     //CropData
     @SideOnly(Side.CLIENT)
-    protected ICropIconHandler iconHandler;
+    protected ICropRenderHandler iconHandler;
     @Expose
     protected String unlocalized;
+
+    protected ISoilHandler soilHandler;
+    protected boolean needsWatering;
     protected boolean alternativeName;
     protected boolean isStatic;
     protected boolean requiresSickle;
@@ -74,6 +79,8 @@ public class Crop implements ICrop {
         this.bag_color = color;
         this.ordinal = HMConfiguration.addCropMapping(this); //Fetch the meta value of this crop
         this.iconHandler = new IconHandlerDefault(this);
+        this.soilHandler = SoilHandlers.farmland;
+        this.needsWatering = true;
         crops.add(this);
     }
 
@@ -96,7 +103,7 @@ public class Crop implements ICrop {
     }
 
     @Override
-    public ICrop setCropIconHandler(ICropIconHandler handler) {
+    public ICrop setCropIconHandler(ICropRenderHandler handler) {
         this.iconHandler = handler;
         return this;
     }
@@ -106,9 +113,21 @@ public class Crop implements ICrop {
         this.requiresSickle = true;
         return this;
     }
-    
+
     public Crop setFoodType(FoodType foodType) {
         this.foodType = foodType;
+        return this;
+    }
+
+    @Override
+    public ICrop setNoWaterRequirements() {
+        this.needsWatering = false;
+        return this;
+    }
+
+    @Override
+    public ICrop setSoilRequirements(ISoilHandler handler) {
+        this.soilHandler = handler;
         return this;
     }
 
@@ -201,6 +220,16 @@ public class Crop implements ICrop {
         return requiresSickle;
     }
 
+    @Override
+    public boolean requiresWater() {
+        return needsWatering;
+    }
+
+    @Override
+    public ISoilHandler getSoilHandler() {
+        return soilHandler;
+    }
+
     /** This is called when bringing up the list of crops for sale 
      * @param shop The shop that is currently open
      * @return whether this item can be purchased in this shop or not */
@@ -231,9 +260,9 @@ public class Crop implements ICrop {
     public ItemStack getCropStack() {
         return new ItemStack(item);
     }
-    
+
     @Override
-    public ICropIconHandler getCropHandler() {
+    public ICropRenderHandler getCropHandler() {
         return iconHandler;
     }
 

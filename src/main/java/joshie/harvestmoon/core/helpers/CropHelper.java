@@ -19,20 +19,15 @@ import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class CropHelper {
-    @SideOnly(Side.CLIENT)
-    public static IIcon getIconForCrop(World world, int x, int y, int z) {
-        return getClientTracker().getIconForCrop(world, x, y, z);
-    }
-    
+public class CropHelper {   
     public static void notifyFarmlandOfCropRemoval(World world, int x, int y, int z) {
         getServerTracker().removeCrop(world, x, y, z);
     }
     
     public static ICropData getCropAtLocation(World world, int x, int y, int z) {
         if (!world.isRemote) {
-            return getServerTracker().getCropAtLocation(world, x, y, z);
-        } else return getClientTracker().getCropAtLocation(world, x, y, z);
+            return getServerTracker().getCropDataForLocation(world, x, y, z);
+        } else return getClientTracker().getCropDataForLocation(world, x, y, z);
     }
 
     public static boolean hydrate(World world, int x, int y, int z) {        

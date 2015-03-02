@@ -1,10 +1,10 @@
 package joshie.harvestmoon.api;
 
-import joshie.harvestmoon.api.registry.ICookingRegistry;
-import joshie.harvestmoon.api.registry.ICropRegistry;
+import joshie.harvestmoon.api.cooking.ICookingHandler;
+import joshie.harvestmoon.api.crops.ICropHandler;
 
 /** These are filled by HarvestMoon when it is loaded **/
 public class HMApi {
-    public static ICropRegistry CROPS = null;
-    public static ICookingRegistry COOKING = null;
+    public static ICropHandler CROPS = null;
+    public static ICookingHandler COOKING = null;
 }

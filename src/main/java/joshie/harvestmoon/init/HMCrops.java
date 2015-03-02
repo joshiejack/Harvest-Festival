@@ -5,12 +5,14 @@ import static joshie.harvestmoon.calendar.Season.SPRING;
 import static joshie.harvestmoon.calendar.Season.SUMMER;
 import joshie.harvestmoon.api.HMApi;
 import joshie.harvestmoon.api.crops.ICrop;
+import joshie.harvestmoon.crops.CropNull;
 import joshie.harvestmoon.crops.icons.IconHandlerCabbage;
 import joshie.harvestmoon.crops.icons.IconHandlerCorn;
 import joshie.harvestmoon.crops.icons.IconHandlerCucumber;
 import joshie.harvestmoon.crops.icons.IconHandlerEggplant;
 import joshie.harvestmoon.crops.icons.IconHandlerGrass;
 import joshie.harvestmoon.crops.icons.IconHandlerGreenPepper;
+import joshie.harvestmoon.crops.icons.IconHandlerNull;
 import joshie.harvestmoon.crops.icons.IconHandlerOnion;
 import joshie.harvestmoon.crops.icons.IconHandlerPineapple;
 import joshie.harvestmoon.crops.icons.IconHandlerPumpkin;
@@ -25,6 +27,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 
 public class HMCrops {
+    public static ICrop null_crop; //Dummy crop
+
     public static ICrop turnip;
     public static ICrop potato;
     public static ICrop cucumber;
@@ -42,9 +46,12 @@ public class HMCrops {
     public static ICrop green_pepper;
     public static ICrop grass;
     public static ICrop wheat;
+
     //TODO: Add Vanilla Melon
-    
+
     public static void init() {
+        null_crop = HMApi.CROPS.registerCrop(new CropNull().setCropIconHandler(new IconHandlerNull()));
+
         //Spring Crops
         turnip = HMApi.CROPS.registerCrop("turnip", 120, 60, 5, 0, 0, 0xEDE1B5, SPRING).setCropIconHandler(new IconHandlerTurnip());
         potato = HMApi.CROPS.registerCrop("potato", 150, 80, 8, 0, 0, 0x8D782A, SPRING).setCropIconHandler(new IconHandlerSeedFood(Blocks.potatoes));

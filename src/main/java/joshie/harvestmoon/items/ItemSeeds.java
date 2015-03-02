@@ -24,7 +24,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.common.util.ForgeDirection;
 
 import com.InfinityRaider.AgriCraft.farming.CropOverride;
 import com.InfinityRaider.AgriCraft.farming.GrowthRequirement;
@@ -112,7 +111,8 @@ public class ItemSeeds extends net.minecraft.item.ItemSeeds implements IRateable
 
     private int plantSeedAt(EntityPlayer player, ItemStack stack, World world, int x, int y, int z, int side, Crop crop, int quality, int planted) {
         if (player.canPlayerEdit(x, y, z, side, stack) && player.canPlayerEdit(x, y + 1, z, side, stack)) {
-            if (world.getBlock(x, y, z).canSustainPlant(world, x, y, z, ForgeDirection.UP, (IPlantable) HMBlocks.crops) && world.isAirBlock(x, y + 1, z)) {
+            System.out.println(crop.getSoilHandler() + " HANDLER");
+            if (crop.getSoilHandler().canSustainPlant(world, x, y + 1, z, (IPlantable) HMBlocks.crops) && world.isAirBlock(x, y + 1, z)) {
                 plantCrop(player, world, x, y + 1, z, crop, quality);
                 if (!world.isRemote) {
                     world.setBlock(x, y + 1, z, HMBlocks.crops);

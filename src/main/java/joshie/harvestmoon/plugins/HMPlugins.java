@@ -121,4 +121,6 @@ public class HMPlugins {
         //Clear out the plugins as we should no longer need them loaded
         plugins = null;
     }
+
+    public static boolean AGRICRAFT_LOADED = false;
 }

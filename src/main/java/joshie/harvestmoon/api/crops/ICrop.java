@@ -46,8 +46,11 @@ public interface ICrop {
     /** The stage this crop regrows **/
     public int getRegrowStage();
     
-    /** Returns the handler this crop uses **/
-    public ICropIconHandler getCropHandler();
+    /** Returns the render handler this crop uses **/
+    public ICropRenderHandler getCropHandler();
+    
+    /** Return the soil handler for this crop **/
+    public ISoilHandler getSoilHandler();
 
     /** Whether this crop is always the same
      * 
@@ -56,6 +59,9 @@ public interface ICrop {
     
     /** Whether this crop requires a sickle to be harvested **/
     public boolean requiresSickle();
+    
+    /** Whether this crop requires water to grow **/
+    public boolean requiresWater();
 
     /** Returns true when the itemstack matches this crop
      * 
@@ -71,7 +77,7 @@ public interface ICrop {
     /** Associates this crop with this VisualHandler
      * @param       item of this crop
      * @return      the instance*/
-    public ICrop setCropIconHandler(ICropIconHandler handler);
+    public ICrop setCropIconHandler(ICropRenderHandler handler);
 
     /** If if you call this when creating a crop,
      *  it will use a different name for it's block and item form.
@@ -86,4 +92,14 @@ public interface ICrop {
     /** If you call this when creating a crop
      *  It will require a sickle to be harvested  */
     public ICrop setRequiresSickle();
+    
+    /** If you call this when creating a crop, 
+     *  It will not need to be watered **/
+    public ICrop setNoWaterRequirements();
+    
+    /** If you call this when creating a crop,
+     *  The handler will called when trying to plant the crop,
+     *  So you can specify whether this crop is allowed to be placed
+     *  on this type of soil or whatever. */
+    public ICrop setSoilRequirements(ISoilHandler handler);
 }

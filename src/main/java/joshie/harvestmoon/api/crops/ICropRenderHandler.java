@@ -4,7 +4,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
 
 /** This is for grabbing the icons for different crops in block form **/
-public interface ICropIconHandler {
+public interface ICropRenderHandler {
     /** This should return the relevant icon for this crops growth stage
      * 
      * @param       the stage this crop is at

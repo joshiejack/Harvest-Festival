@@ -1,5 +1,9 @@
 package joshie.harvestmoon.api.crops;
 
+import net.minecraft.util.IIcon;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 public interface ICropData {
     /** Return the crop itself **/
     public ICrop getCrop();
@@ -15,4 +19,8 @@ public interface ICropData {
 
     /** Wipes out the data for this crop **/
     public void clear();
+    
+    /** Returns the icon for the crop **/
+    @SideOnly(Side.CLIENT)
+    public IIcon getCropIcon();
 }

@@ -20,7 +20,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
@@ -127,8 +126,7 @@ public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
     @SideOnly(Side.CLIENT)
     @Override
     public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
-        ICropData data = HMApi.CROPS.getCropAtLocation(MCClientHelper.getWorld(), x, y, z);
-        return data != null && data.getCrop() != null ? data.getCrop().getCropHandler().getIconForStage(data.getStage()) : Blocks.wheat.getIcon(0, 0);
+        return HMApi.CROPS.getCropAtLocation(MCClientHelper.getWorld(), x, y, z).getCropIcon();
     }
 
     @Override
@@ -146,7 +144,7 @@ public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
     @SideOnly(Side.CLIENT)
     @Override
     public boolean addDestroyEffects(World world, int x, int y, int z, int meta, EffectRenderer effectRenderer) {
-        IIcon icon = CropHelper.getIconForCrop(world, (int) x, (int) y, (int) z);
+        IIcon icon = HMApi.CROPS.getCropAtLocation(world, x, y, z).getCropIcon();
         byte b0 = 4;
         for (int i1 = 0; i1 < b0; ++i1) {
             for (int j1 = 0; j1 < b0; ++j1) {
@@ -177,9 +175,9 @@ public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
     public void onNeighborBlockChange(World world, int x, int y, int z, Block blockz) {
         if (!world.isRemote) {
             Block block = world.getBlock(x, y - 1, z);
-            if (!block.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, this)) {
+            ICrop crop = HMApi.CROPS.getCropAtLocation(world, x, y, z).getCrop();
+            if (!crop.getSoilHandler().canSustainPlant(world, x, y, z, this)) {
                 world.setBlockToAir(x, y, z);
-                //CropHelper.notifyFarmlandOfCropRemoval(world, x, y, z);
             }
         }
     }

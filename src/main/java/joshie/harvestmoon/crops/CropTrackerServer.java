@@ -6,7 +6,6 @@ import static joshie.harvestmoon.core.network.PacketHandler.sendToClient;
 import static joshie.harvestmoon.core.network.PacketHandler.sendToEveryone;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -31,17 +30,8 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 
 //Handles the Data for the crops rather than using TE Data
-public class CropTrackerServer implements IData {
+public class CropTrackerServer extends CropTrackerCommon implements IData {
     private CalendarDate rain;
-    private HashMap<WorldLocation, CropData> cropData = new HashMap();
-
-    private WorldLocation getFarmlandKey(World world, int x, int y, int z) {
-        return new WorldLocation(world.provider.dimensionId, x, y, z);
-    }
-
-    private WorldLocation getCropKey(World world, int x, int y, int z) {
-        return new WorldLocation(world.provider.dimensionId, x, y - 1, z);
-    }
 
     //Set the crop at this location to be withered
     private void setWithered(WorldLocation location, WitherType type) {
@@ -51,8 +41,7 @@ public class CropTrackerServer implements IData {
     }
 
     public boolean newDay() {
-        Iterator<Map.Entry<WorldLocation, CropData>> iter = cropData.entrySet().iterator();
-
+        Iterator<Map.Entry<WorldLocation, CropData>> iter = crops.entrySet().iterator();
         while (iter.hasNext()) {
             Map.Entry<WorldLocation, CropData> entry = iter.next();
             CropData data = entry.getValue();
@@ -80,13 +69,14 @@ public class CropTrackerServer implements IData {
         }
 
         //Dehydrate the farmland
-        Iterator<WorldLocation> it = cropData.keySet().iterator();
+        Iterator<WorldLocation> it = crops.keySet().iterator();
         while (it.hasNext()) {
             WorldLocation location = it.next();
-            if (!CropHelper.dehydrate(getWorld(location.dimension), location.x, location.y, location.z)) {
+            World world = getWorld(location.dimension);
+            if (!CropHelper.dehydrate(world, location.x, location.y - 1, location.z)) {
                 it.remove();
-                //Remove it from the loop ^, and then dehyrate the bitch
-                getWorld(location.dimension).setBlock(location.x, location.y, location.z, Blocks.dirt);
+                //Remove it from the loop ^, and then dehydrate the bitch
+                world.setBlock(location.x, location.y - 1, location.z, Blocks.dirt);
             }
         }
 
@@ -95,7 +85,7 @@ public class CropTrackerServer implements IData {
 
     public void doRain() {
         if (!CalendarHelper.getServerDate().equals(rain)) {
-            for (WorldLocation location : cropData.keySet()) {
+            for (WorldLocation location : crops.keySet()) {
                 CropHelper.hydrate(getWorld(location.dimension), location.x, location.y, location.z);
             }
         }
@@ -104,7 +94,7 @@ public class CropTrackerServer implements IData {
     //Sends an update packet
     public void sendUpdateToClient(EntityPlayerMP player, World world, int x, int y, int z) {
         WorldLocation key = getCropKey(world, x, y, z);
-        CropData data = cropData.get(key);
+        CropData data = crops.get(key);
         if (data == null) {
             sendToClient(new PacketSyncCrop(key), player);
         } else sendToClient(new PacketSyncCrop(key, data), player);
@@ -113,7 +103,7 @@ public class CropTrackerServer implements IData {
     //Causes a growth of the crop at this location, Notifies the clients
     public void grow(World world, int x, int y, int z) {
         WorldLocation location = getCropKey(world, x, y, z);
-        CropData data = cropData.get(location);
+        CropData data = crops.get(location);
         if (data != null) {
             data.grow();
             sendToEveryone(new PacketSyncCrop(location, data));
@@ -122,7 +112,7 @@ public class CropTrackerServer implements IData {
 
     //Marks this plant as hydrated for the day
     public void hydrate(World world, int x, int y, int z) {
-        CropData data = cropData.get(getCropKey(world, x, y, z));
+        CropData data = crops.get(getCropKey(world, x, y, z));
         if (data != null) {
             data.setHydrated();
             markDirty();
@@ -137,7 +127,7 @@ public class CropTrackerServer implements IData {
             data.setHydrated();
         }
 
-        cropData.put(key, data);
+        crops.put(key, data);
         sendToEveryone(new PacketSyncCrop(key, data));
         markDirty();
         return true;
@@ -146,7 +136,7 @@ public class CropTrackerServer implements IData {
     //Harvests a crop at the location, PLAYER CAN BE NULL
     public ItemStack harvest(EntityPlayer player, World world, int x, int y, int z) {
         WorldLocation key = getCropKey(world, x, y, z);
-        CropData data = cropData.get(key);
+        CropData data = crops.get(key);
         if (data == null) return null;
         else {
             ItemStack ret = data.harvest();
@@ -169,14 +159,14 @@ public class CropTrackerServer implements IData {
 
     public void removeCrop(World world, int x, int y, int z) {
         WorldLocation key = getCropKey(world, x, y, z);
-        CropData data = cropData.get(key);
+        CropData data = crops.get(key);
         if (data == null) return;
         else data.clear();
     }
 
     public ItemStack getStackForCrop(World world, int x, int y, int z) {
         WorldLocation key = getCropKey(world, x, y, z);
-        CropData data = cropData.get(key);
+        CropData data = crops.get(key);
         if (data == null) return new ItemStack(Blocks.cactus); //Because why not?
         ItemStack seeds = new ItemStack(HMItems.seeds);
         seeds.setItemDamage(data.getCrop().getCropMeta() + ((data.getQuality() - 1) * 100));
@@ -185,22 +175,22 @@ public class CropTrackerServer implements IData {
 
     public boolean canBonemeal(World world, int x, int y, int z) {
         WorldLocation key = getCropKey(world, x, y, z);
-        CropData data = cropData.get(key);
+        CropData data = crops.get(key);
         if (data == null) return false;
         return data.getStage() < data.getCrop().getStages();
     }
 
     public ICropData getCropAtLocation(World world, int x, int y, int z) {
-        return cropData.get(getCropKey(world, x, y, z));
+        return crops.get(getCropKey(world, x, y, z));
     }
 
     public void addFarmland(World world, int x, int y, int z) {
-        cropData.put(getFarmlandKey(world, x, y, z), new CropData(getFarmlandKey(world, x, y, z)));
+        crops.put(getFarmlandKey(world, x, y, z), new CropData(getFarmlandKey(world, x, y, z)));
         markDirty();
     }
 
     public void removeFarmland(World world, int x, int y, int z) {
-        cropData.remove(getFarmlandKey(world, x, y, z));
+        crops.remove(getFarmlandKey(world, x, y, z));
         markDirty();
     }
 
@@ -213,14 +203,14 @@ public class CropTrackerServer implements IData {
             location.readFromNBT(tag);
             CropData data = new CropData(location);
             data.readFromNBT(tag);
-            cropData.put(location, data);
+            this.crops.put(location, data);
         }
     }
 
     @Override
     public void writeToNBT(NBTTagCompound nbt) {
         NBTTagList crops = new NBTTagList();
-        for (Map.Entry<WorldLocation, CropData> entry : cropData.entrySet()) {
+        for (Map.Entry<WorldLocation, CropData> entry : this.crops.entrySet()) {
             NBTTagCompound tag = new NBTTagCompound();
             entry.getKey().writeToNBT(tag);
             entry.getValue().writeToNBT(tag);

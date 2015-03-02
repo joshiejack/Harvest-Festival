@@ -5,12 +5,12 @@ import joshie.harvestmoon.api.Calendar;
 import joshie.harvestmoon.api.Calendar.ISeason;
 import joshie.harvestmoon.api.crops.ICrop;
 import joshie.harvestmoon.api.crops.ICropData;
-import joshie.harvestmoon.api.registry.ICropRegistry;
+import joshie.harvestmoon.api.crops.ICropHandler;
 import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.core.helpers.CropHelper;
 import joshie.harvestmoon.crops.Crop;
 
-public class CropRegistry implements ICropRegistry {
+public class CropRegistry implements ICropHandler {
     @Override
     public ICrop getCrop(String unlocalized) {
         for (Crop crop : Crop.crops) {

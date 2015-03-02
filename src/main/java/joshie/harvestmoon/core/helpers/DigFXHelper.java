@@ -2,6 +2,7 @@ package joshie.harvestmoon.core.helpers;
 
 import java.util.Random;
 
+import joshie.harvestmoon.api.HMApi;
 import joshie.harvestmoon.blocks.EntityCropDigFX;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -14,7 +15,7 @@ public class DigFXHelper {
 
     public static void addBlockHitEffects(World world, int x, int y, int z, int side, EffectRenderer effect) {
         Block block = world.getBlock(x, y, z);
-        IIcon icon = CropHelper.getIconForCrop(world, (int) x, (int) y, (int) z);
+        IIcon icon = HMApi.CROPS.getCropAtLocation(world, x, y, z).getCropIcon();
         if (block.getMaterial() != Material.air) {
             float f = 0.1F;
             double d0 = (double) x + rand.nextDouble() * (block.getBlockBoundsMaxX() - block.getBlockBoundsMinX() - (double) (f * 2.0F)) + (double) f + block.getBlockBoundsMinX();

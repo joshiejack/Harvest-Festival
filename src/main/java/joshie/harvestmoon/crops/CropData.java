@@ -15,7 +15,8 @@ import joshie.harvestmoon.core.config.Crops;
 import joshie.harvestmoon.core.helpers.CalendarHelper;
 import joshie.harvestmoon.core.network.PacketSyncCrop;
 import joshie.harvestmoon.core.util.IData;
-import joshie.harvestmoon.plugins.agricraft.AgriCraft;
+import joshie.harvestmoon.init.HMCrops;
+import joshie.harvestmoon.plugins.HMPlugins;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -42,6 +43,7 @@ public class CropData implements IData, ICropData {
 
     public CropData(WorldLocation location) {
         this.location = location;
+        this.crop = (Crop) HMCrops.null_crop;
     }
 
     public CropData(EntityPlayer owner, Crop crop, int quality, WorldLocation location) {
@@ -70,7 +72,7 @@ public class CropData implements IData, ICropData {
 
     public WitherType newDay() {
         //Stage 1, Check how long the plant has been without water, If it's more than 2 days kill it, decrease it's quality if it's not been watered as well
-        if (daysWithoutWater > 2 || isWrongSeason()) {
+        if ((crop.requiresWater() && daysWithoutWater > 2) || isWrongSeason()) {
             return crop.getWitherType(stage);
         } else { //Stage 2: Now that we know, it has been watered, Update it's stage
             //If we aren't ticking randomly, Then increase the stage and quality
@@ -89,7 +91,7 @@ public class CropData implements IData, ICropData {
         isFertilized = false;
 
         //If AgriCraft is loaded, set the blocks metadata accordingly
-        if(AgriCraft.IS_LOADED) {
+        if(HMPlugins.AGRICRAFT_LOADED) {
             //Stage 7, Set the metadata to 7 if fully grown
             if (stage >= crop.getStages()) {
                 //Set the Crop Metadata to 7, when it has fully grown
@@ -140,12 +142,17 @@ public class CropData implements IData, ICropData {
 
     @Override
     public ICrop getCrop() {
-        return crop;
+        return crop != null? crop: HMCrops.null_crop;
     }
 
     @Override
     public int getQuality() {
         return quality;
+    }
+
+    @Override
+    public IIcon getCropIcon() {
+        return getCrop().getCropHandler().getIconForStage(getStage());
     }
 
     public boolean doesRegrow() {

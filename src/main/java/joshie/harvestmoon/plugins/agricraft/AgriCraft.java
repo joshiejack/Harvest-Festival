@@ -5,7 +5,11 @@ import static joshie.harvestmoon.core.helpers.generic.ConfigHelper.getBoolean;
 import java.util.ArrayList;
 
 import joshie.harvestmoon.api.HMApi;
+import joshie.harvestmoon.api.crops.ICrop;
+import joshie.harvestmoon.api.crops.ISoilHandler;
 import joshie.harvestmoon.calendar.Season;
+import joshie.harvestmoon.crops.soil.SoilHandlers;
+import joshie.harvestmoon.plugins.HMPlugins;
 import joshie.harvestmoon.plugins.HMPlugins.Plugin;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
@@ -16,11 +20,9 @@ import com.InfinityRaider.AgriCraft.blocks.BlockCrop;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class AgriCraft extends Plugin {
-    public static boolean DISABLE_TICKING;
-    public static boolean IS_LOADED = false;
-    
     public static ArrayList<AgriCraftCrop> cropsList = new ArrayList();
-    
+    public static boolean DISABLE_TICKING;
+
     public static BlockCrop blockCrops;
     public static Item crops;
 
@@ -31,9 +33,9 @@ public class AgriCraft extends Plugin {
 
     @Override
     public void preInit() {
-        IS_LOADED = true;
-        addCrop("Cactus", 7, 1, 0x00B22D, Season.SUMMER);
-        
+        HMPlugins.AGRICRAFT_LOADED = true;
+        addCrop("Cactus", 7, 1, 0x00B22D, Season.SUMMER).setSoilRequirements(SoilHandlers.sand).setNoWaterRequirements();
+
         addCrop("Sugarcane", 7, 1, 0x83B651, Season.SPRING);
         addCrop("Dandelion", 7, 1, 0xFFFF00, Season.SPRING);
         addCrop("Poppy", 7, 1, 0x8C0000, Season.SPRING);
@@ -44,7 +46,7 @@ public class AgriCraft extends Plugin {
         addCrop("TulipPink", 7, 1, 0xFF99FF, Season.SPRING);
         addCrop("TulipWhite", 7, 1, 0xFFFFFF, Season.SPRING);
         addCrop("Daisy", 7, 1, 0xFFFFBF, Season.SPRING);
-        
+
         addCrop("ShroomRed", 7, 1, 0xB28500, Season.WINTER);
         addCrop("ShroomBrown", 7, 1, 0xD90000, Season.WINTER);
     }
@@ -53,12 +55,12 @@ public class AgriCraft extends Plugin {
     public void init() {
         blockCrops = (BlockCrop) GameRegistry.findBlock("AgriCraft", "crops");
         crops = GameRegistry.findItem("AgriCraft", "cropsItem");
-        
+
         if (DISABLE_TICKING) {
             GameRegistry.findBlock("AgriCraft", "crops").setTickRandomly(false);
             MinecraftForge.EVENT_BUS.register(this);
         }
-        
+
         for (AgriCraftCrop crop : cropsList) {
             crop.loadItem();
         }
@@ -66,8 +68,10 @@ public class AgriCraft extends Plugin {
 
     @Override
     public void postInit() {}
-    
-    private void addCrop(String unlocalized, int stages, int regrow, int color, Season... seasons) {
-        cropsList.add((AgriCraftCrop) HMApi.CROPS.registerCrop(new AgriCraftCrop(unlocalized, stages, regrow, color, seasons)));
+
+    private AgriCraftCrop addCrop(String unlocalized, int stages, int regrow, int color, Season... seasons) {
+        AgriCraftCrop crop = (AgriCraftCrop) HMApi.CROPS.registerCrop(new AgriCraftCrop(unlocalized, stages, regrow, color, seasons));
+        cropsList.add((AgriCraftCrop) crop);
+        return crop;
     }
 }

@@ -75,7 +75,7 @@ public class EggTransformer implements ITransformer {
         mv.visitEnd();
 
         //Display Name Override
-        name = isObfuscated? "n" : "getItemStackDisplayName";
+        name = isObfuscated? "func_77653_i" : "getItemStackDisplayName";
         mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, "(Lnet/minecraft/item/ItemStack;)Ljava/lang/String;", null, null);
         mv.visitCode();
         mv.visitVarInsn(Opcodes.ALOAD, 1);
@@ -85,7 +85,7 @@ public class EggTransformer implements ITransformer {
         mv.visitEnd();
 
         //Get Item Icon Override
-        name = isObfuscated? "b" : "getIconFromDamage";
+        name = isObfuscated? "func_77617_a" : "getIconFromDamage";
         mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, "(I)Lnet/minecraft/util/IIcon;", null, null);
         mv.visitCode();
         mv.visitVarInsn(Opcodes.ILOAD, 1);
@@ -95,7 +95,7 @@ public class EggTransformer implements ITransformer {
         mv.visitEnd();
 
         //Register Icons
-        name = isObfuscated? "a" : "registerIcons";
+        name = isObfuscated? "func_94581_a" : "registerIcons";
         mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, "(Lnet/minecraft/client/renderer/texture/IIconRegister;)V", null, null);
         mv.visitCode();
         mv.visitVarInsn(Opcodes.ALOAD, 1);
@@ -105,7 +105,7 @@ public class EggTransformer implements ITransformer {
         mv.visitEnd();
         
         //Get Sub Items
-        name = isObfuscated? "a" : "getSubItems";
+        name = isObfuscated? "func_150895_a" : "getSubItems";
         mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, "(Lnet/minecraft/item/Item;Lnet/minecraft/creativetab/CreativeTabs;Ljava/util/List;)V", null, null);
         mv.visitCode();
         mv.visitVarInsn(Opcodes.ALOAD, 1);
@@ -114,7 +114,7 @@ public class EggTransformer implements ITransformer {
         mv.visitMethodInsn(Opcodes.INVOKESTATIC, HMModInfo.ASMPATH + "asm/overrides/ItemEgg", "getSubItems", "(Lnet/minecraft/item/Item;Lnet/minecraft/creativetab/CreativeTabs;Ljava/util/List;)V", false);
         mv.visitInsn(Opcodes.RETURN);
         mv.visitMaxs(4, 1);
-        mv.visitEnd();
+        mv.visitEnd(); 
 
         cr.accept(cw, 0);
         return cw.toByteArray();
@@ -126,7 +126,7 @@ public class EggTransformer implements ITransformer {
         byte[] modified = injectMethods(isObfuscated, injectInterfaces(data));
         if (!HMConfiguration.vanilla.EGG_DISABLE_THROWING) return modified;
         else {
-            String name = isObfuscated ? "a" : "onItemRightClick";
+            String name = isObfuscated ? "func_77659_a" : "onItemRightClick";
             String desc = "(Lnet/minecraft/item/ItemStack;Lnet/minecraft/world/World;Lnet/minecraft/entity/player/EntityPlayer;)Lnet/minecraft/item/ItemStack;";
             
             ClassNode node = new ClassNode();

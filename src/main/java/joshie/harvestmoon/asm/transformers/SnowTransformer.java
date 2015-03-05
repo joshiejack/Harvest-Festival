@@ -31,7 +31,7 @@ public class SnowTransformer implements ITransformer {
 
         boolean[] overridden = new boolean[3];
         topLabel: for (MethodNode method : classNode.methods) {
-            if (method.name.equals("registerBlocks") && method.desc.equals("()V")) {
+            if ((method.name.equals("registerBlocks") || method.name.equals("func_149671_p")) && method.desc.equals("()V")) {
                 for (int j = 0; j < method.instructions.size(); j++) {
                     AbstractInsnNode instruction = method.instructions.get(j);
                     if (instruction.getType() == AbstractInsnNode.LDC_INSN) {

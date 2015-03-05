@@ -84,7 +84,7 @@ public class SeedFoodTransformer implements ITransformer {
         mv.visitEnd();
 
         //Display Name Override
-        name = isObfuscated? "n" : "getItemStackDisplayName";
+        name = isObfuscated? "func_77653_i" : "getItemStackDisplayName";
         mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, "(Lnet/minecraft/item/ItemStack;)Ljava/lang/String;", null, null);
         mv.visitCode();
         mv.visitVarInsn(Opcodes.ALOAD, 1);
@@ -94,7 +94,7 @@ public class SeedFoodTransformer implements ITransformer {
         mv.visitEnd();
 
         //Get Sub Items
-        name = isObfuscated? "a" : "getSubItems";
+        name = isObfuscated? "func_150895_a" : "getSubItems";
         mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, "(Lnet/minecraft/item/Item;Lnet/minecraft/creativetab/CreativeTabs;Ljava/util/List;)V", null, null);
         mv.visitCode();
         mv.visitVarInsn(Opcodes.ALOAD, 1);
@@ -103,7 +103,7 @@ public class SeedFoodTransformer implements ITransformer {
         mv.visitMethodInsn(Opcodes.INVOKESTATIC, HMModInfo.ASMPATH + "asm/overrides/ItemSeedFood", "getSubItems", "(Lnet/minecraft/item/Item;Lnet/minecraft/creativetab/CreativeTabs;Ljava/util/List;)V", false);
         mv.visitInsn(Opcodes.RETURN);
         mv.visitMaxs(4, 1);
-        mv.visitEnd();
+        mv.visitEnd(); 
 
         cr.accept(cw, 0);
         return cw.toByteArray();
@@ -114,7 +114,7 @@ public class SeedFoodTransformer implements ITransformer {
         byte[] modified = injectMethods(isObfuscated, injectInterfaces(data));
         if (!HMConfiguration.vanilla.CARROT_POTATO_DISABLE_PLANTING) return modified;
         else {
-            String name = isObfuscated ? "a" : "onItemUse";
+            String name = isObfuscated ? "func_77648_a" : "onItemUse";
             String desc = "(Lnet/minecraft/item/ItemStack;Lnet/minecraft/entity/player/EntityPlayer;Lnet/minecraft/world/World;IIIIFFF)Z";
 
             ClassNode node = new ClassNode();

@@ -24,7 +24,7 @@ public class FarmlandHardnessTransformer implements ITransformer {
 
     @Override
     public byte[] transform(byte[] data, boolean isObfuscated) {
-        String name = isObfuscated ? "p" : "registerBlocks";
+        String name = isObfuscated ? "func_149671_p" : "registerBlocks";
         String desc = "()V";
 
         ClassNode node = new ClassNode();

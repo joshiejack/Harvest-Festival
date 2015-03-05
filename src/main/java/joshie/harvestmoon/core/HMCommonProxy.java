@@ -14,16 +14,16 @@ import joshie.harvestmoon.init.HMHandlers;
 import joshie.harvestmoon.init.HMItems;
 import joshie.harvestmoon.init.HMMining;
 import joshie.harvestmoon.init.HMNPCs;
-import joshie.harvestmoon.init.HMOverride;
 import joshie.harvestmoon.init.HMPackets;
 import joshie.harvestmoon.init.HMQuests;
 import joshie.harvestmoon.init.HMShops;
+import joshie.harvestmoon.init.HMVanilla;
 import joshie.harvestmoon.plugins.HMPlugins;
 
 public class HMCommonProxy {
     public void preInit() {
         HMApiHandler.init();
-        HMOverride.init();
+        HMVanilla.init();
         HMConfiguration.init();
         HMPlugins.preInit();
         HMCrops.init();

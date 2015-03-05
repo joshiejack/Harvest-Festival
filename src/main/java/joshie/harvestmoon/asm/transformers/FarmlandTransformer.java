@@ -28,7 +28,7 @@ public class FarmlandTransformer implements ITransformer {
 
     @Override
     public byte[] transform(byte[] data, boolean isObfuscated) {
-        String name = isObfuscated ? "a" : "updateTick";
+        String name = isObfuscated ? "func_149674_a" : "updateTick";
         String desc = "(Lnet/minecraft/world/World;IIILjava/util/Random;)V";
         
         ClassNode node = new ClassNode();

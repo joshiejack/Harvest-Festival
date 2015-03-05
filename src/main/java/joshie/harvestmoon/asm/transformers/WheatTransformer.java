@@ -28,7 +28,7 @@ public class WheatTransformer implements ITransformer {
     @Override
     public byte[] transform(byte[] data, boolean isObfuscated) {
         byte[] modified = data;
-        String name = isObfuscated ? "l" : "registerItems";
+        String name = isObfuscated ? "func_150900_l" : "registerItems";
         String desc = "()V";
 
         ClassNode node = new ClassNode();

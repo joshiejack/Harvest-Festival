@@ -59,7 +59,6 @@ public class ItemCheat extends ItemHMMeta {
                 WorldLocation location = TownHelper.getLocationFor(player, HMBuildings.supermarket, Town.SUPERMARKET_BEDROOM);
                 if (location != null) {
                     player.setPositionAndUpdate(location.x + 0.5D, location.y + 0D, location.z + 0.5D);
-                    System.out.println(location.y);
                 }
             }
         }

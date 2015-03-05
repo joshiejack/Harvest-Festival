@@ -1,4 +1,14 @@
 # To-Do Stuff, feel free to help with any!
+- Finish Crop System
+- Finish Shipping System
+- Finish Cooking System
+- Finish Mining System
+- Finish Building/Town System
+- Finish Loot Gen System
+- Finish Animal System
+- Finish Shop System
+
+
 ### Tediousnessess
 - [ ] More Meals and Recipes
 - [ ] Register my items/blocks as gift types
@@ -196,13 +206,11 @@
 - [ ] items/butter.png
 - [ ] items/cafe.png
 - [ ] items/church.png
-- [ ] items/crops/eggplant.png
 - [ ] items/crops/grass.png
 - [ ] items/crops/pepper_green.png
 - [ ] items/crops/pineapple.png
 - [ ] items/crops/potato_sweet.png
 - [ ] items/crops/pumpkin.png
-- [ ] items/crops/spinach.png
 - [ ] items/egg_large.png
 - [ ] items/egg_medium.png
 - [ ] items/egg_small.png
@@ -242,7 +250,6 @@
 - [ ] items/treats/other.png
 - [ ] items/treats/pig.png
 - [ ] items/treats/sheep.png
-- [ ] items/wateringcan_cursed.png
 - [ ] items/whisked_egg.png
 
 ### Others

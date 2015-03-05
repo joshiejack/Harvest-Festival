@@ -86,6 +86,9 @@ public interface ICrop {
     /** Whether or not an item was assigned to this crop yet **/
     public boolean hasItemAssigned();
 
+    /** Whether the crop is double tall at this stage **/
+    public boolean isDouble(int stage);
+
     /** Returns true when the itemstack matches this crop
      * 
      * @param       the itemstack
@@ -129,4 +132,7 @@ public interface ICrop {
     /** Setting this to true means, animals will consume the crop
      *  while it is growing  */
     public ICrop setIsEdible();
+    
+    /** Sets the stage at which this crop becomes double tall **/
+    public ICrop setBecomesDouble(int doubleStage);
 }

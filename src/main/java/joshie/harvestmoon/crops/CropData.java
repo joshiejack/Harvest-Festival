@@ -9,12 +9,15 @@ import java.util.UUID;
 import joshie.harvestmoon.api.WorldLocation;
 import joshie.harvestmoon.api.crops.ICrop;
 import joshie.harvestmoon.api.crops.ICropData;
+import joshie.harvestmoon.api.crops.ICropRenderHandler.PlantSection;
+import joshie.harvestmoon.blocks.BlockCrop;
 import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.core.config.Crops;
 import joshie.harvestmoon.core.helpers.CalendarHelper;
 import joshie.harvestmoon.core.helpers.SeasonHelper;
 import joshie.harvestmoon.core.helpers.UUIDHelper;
 import joshie.harvestmoon.core.network.PacketSyncCrop;
+import joshie.harvestmoon.init.HMBlocks;
 import joshie.harvestmoon.init.HMConfiguration;
 import joshie.harvestmoon.init.HMCrops;
 import joshie.harvestmoon.plugins.HMPlugins;
@@ -117,7 +120,7 @@ public class CropData implements ICropData {
     }
 
     public void setCropMetaData(WorldLocation location, int meta) {
-        DimensionManager.getWorld(location.dimension).setBlockMetadataWithNotify(location.x, location.y + 1, location.z, meta, 2);
+        DimensionManager.getWorld(location.dimension).setBlockMetadataWithNotify(location.x, location.y, location.z, meta, 2);
     }
 
     //Called when the crop that was on this farmland is destroyed
@@ -132,6 +135,11 @@ public class CropData implements ICropData {
         //Increase the stage of this crop
         if (stage < crop.getStages()) {
             stage++;
+        }
+        
+        //If the crop has become double add in the new block
+        if (crop.isDouble(stage)) {
+            DimensionManager.getWorld(location.dimension).setBlock(location.x, location.y + 1, location.z, HMBlocks.crops, BlockCrop.FRESH_DOUBLE, 2);
         }
     }
 
@@ -160,8 +168,8 @@ public class CropData implements ICropData {
     }
 
     @Override
-    public IIcon getCropIcon() {
-        return getCrop().getCropHandler().getIconForStage(getStage());
+    public IIcon getCropIcon(PlantSection section) {
+        return getCrop().getCropHandler().getIconForStage(section, getStage());
     }
 
     public boolean canGrow() {
@@ -210,7 +218,7 @@ public class CropData implements ICropData {
     public void writeToNBT(NBTTagCompound nbt) {
         if (crop != null) {
             nbt.setBoolean("IsReal", isReal);
-            nbt.setString("CropMeta", crop.getUnlocalizedName());
+            nbt.setString("CropUnlocalized", crop.getUnlocalizedName());
             nbt.setByte("CurrentStage", (byte) stage);
             nbt.setByte("CropQuality", (byte) quality);
             nbt.setBoolean("IsFertilized", isFertilized);

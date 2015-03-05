@@ -1,7 +1,5 @@
 package joshie.harvestmoon.crops.icons;
 
-import joshie.harvestmoon.api.crops.ICrop;
-import joshie.harvestmoon.api.crops.ICropRenderHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Blocks;
@@ -9,7 +7,7 @@ import net.minecraft.util.IIcon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class IconHandlerWheat implements ICropRenderHandler {
+public class IconHandlerWheat extends AbstractIconHandler {
     private Block block;
 
     public IconHandlerWheat() {
@@ -18,7 +16,7 @@ public class IconHandlerWheat implements ICropRenderHandler {
 
     @SideOnly(Side.CLIENT)
     @Override
-    public IIcon getIconForStage(int stage) {
+    public IIcon getIconForStage(PlantSection section, int stage) {
         if (stage <= 2) return block.getIcon(0, 0);
         if (stage <= 5) return block.getIcon(0, 1);
         if (stage <= 9) return block.getIcon(0, 2);

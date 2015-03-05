@@ -25,8 +25,8 @@ public class SoilHandlerDefault implements ISoilHandler, IPlantable {
     public boolean canSustainPlant(IBlockAccess access, int x, int y, int z, IPlantable plantable) {
         Block below = access.getBlock(x, y - 1, z);
         if (block != null) {
-            return below == block && below.canSustainPlant(access, x, y, z, ForgeDirection.UP, this);
-        } else return below.canSustainPlant(access, x, y, z, ForgeDirection.UP, this);
+            return below == block && below.canSustainPlant(access, x, y - 1, z, ForgeDirection.UP, this);
+        } else return below.canSustainPlant(access, x, y - 1, z, ForgeDirection.UP, this);
     }
 
     @Override

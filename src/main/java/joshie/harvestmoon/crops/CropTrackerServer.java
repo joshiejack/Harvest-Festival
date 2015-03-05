@@ -115,8 +115,9 @@ public class CropTrackerServer extends CropTrackerCommon implements IData {
     //Causes a growth of the crop at this location, Notifies the clients
     public void grow(World world, int x, int y, int z) {
         ICropData data = getCropDataForLocation(world, x, y, z);
-        int stage = data.getStage() + 1;
-        plantCrop(null, world, x, y, z, data.getCrop(), data.getQuality(), stage);
+        data.grow();
+        sendToEveryone(new PacketSyncCrop(data.getLocation(), data));
+        markDirty();
     }
 
     @Override
@@ -175,7 +176,7 @@ public class CropTrackerServer extends CropTrackerCommon implements IData {
 
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
-        NBTTagList crops = nbt.getTagList("CropData", 10);
+        NBTTagList crops = nbt.getTagList("CropData", 10);        
         for (int i = 0; i < crops.tagCount(); i++) {
             NBTTagCompound tag = crops.getCompoundTagAt(i);
             WorldLocation location = new WorldLocation();

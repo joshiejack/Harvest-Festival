@@ -37,7 +37,7 @@ public class PacketCropRequest implements IMessage, IMessageHandler<PacketCropRe
     }
 
     @Override
-    public IMessage onMessage(PacketCropRequest msg, MessageContext ctx) {        
+    public IMessage onMessage(PacketCropRequest msg, MessageContext ctx) {     
         CropHelper.getServerTracker().sendUpdateToClient(ctx.getServerHandler().playerEntity, getWorld(msg.dimension), msg.x, msg.y, msg.z);
 
         return null;

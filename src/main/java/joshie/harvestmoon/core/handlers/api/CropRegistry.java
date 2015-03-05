@@ -4,6 +4,8 @@ import joshie.harvestmoon.api.Calendar.ISeason;
 import joshie.harvestmoon.api.crops.ICrop;
 import joshie.harvestmoon.api.crops.ICropData;
 import joshie.harvestmoon.api.crops.ICropHandler;
+import joshie.harvestmoon.api.crops.ICropRenderHandler.PlantSection;
+import joshie.harvestmoon.blocks.BlockCrop;
 import joshie.harvestmoon.core.helpers.CropHelper;
 import joshie.harvestmoon.core.helpers.SeasonHelper;
 import joshie.harvestmoon.crops.Crop;
@@ -18,7 +20,8 @@ public class CropRegistry implements ICropHandler {
 
     @Override
     public ICropData getCropAtLocation(World world, int x, int y, int z) {
-        return CropHelper.getCropAtLocation(world, x, y, z);
+        PlantSection section = BlockCrop.getSection(world, x, y, z);
+        return section == PlantSection.BOTTOM ? CropHelper.getCropAtLocation(world, x, y, z) : CropHelper.getCropAtLocation(world, x, y - 1, z);
     }
 
     @Override

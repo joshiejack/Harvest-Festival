@@ -6,6 +6,7 @@ import java.util.WeakHashMap;
 import joshie.harvestmoon.api.HMApi;
 import joshie.harvestmoon.api.crops.ICrop;
 import joshie.harvestmoon.api.crops.ICropData;
+import joshie.harvestmoon.blocks.BlockCrop;
 import joshie.harvestmoon.core.helpers.CropHelper;
 import joshie.harvestmoon.core.helpers.SeedHelper;
 import joshie.harvestmoon.core.helpers.generic.ItemHelper;
@@ -150,7 +151,7 @@ public class HMAgricraftOverride extends CropOverride {
         ICropData data = CropHelper.getCropAtLocation(world, x, y, z);
         if (data == null) return net.minecraft.init.Blocks.obsidian.getIcon(0, 0);
         else {
-            return data.getCrop().getCropHandler().getIconForStage(data.getStage());
+            return data.getCrop().getCropHandler().getIconForStage(BlockCrop.getSection(world, x, y, z), data.getStage());
         }
     }
 

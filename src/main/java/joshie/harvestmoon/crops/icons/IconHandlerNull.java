@@ -1,13 +1,12 @@
 package joshie.harvestmoon.crops.icons;
 
-import joshie.harvestmoon.api.crops.ICropRenderHandler;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IIcon;
 
-public class IconHandlerNull implements ICropRenderHandler {
+public class IconHandlerNull extends AbstractIconHandler {
     @Override
-    public IIcon getIconForStage(int stage) {
+    public IIcon getIconForStage(PlantSection section, int stage) {
         return Blocks.air.getIcon(0, 0);
     }
 

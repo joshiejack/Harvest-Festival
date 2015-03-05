@@ -2,6 +2,7 @@ package joshie.harvestmoon.api.crops;
 
 import io.netty.buffer.ByteBuf;
 import joshie.harvestmoon.api.WorldLocation;
+import joshie.harvestmoon.api.crops.ICropRenderHandler.PlantSection;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -42,9 +43,10 @@ public interface ICropData {
      * @return true if the crop survived without withering, false if it is withered */
     public boolean newDay();
     
-    /** Returns the icon for the crop **/
+    /** Returns the icon for the crop
+     *  @param      whether it's the top half or bottom half of the crop **/
     @SideOnly(Side.CLIENT)
-    public IIcon getCropIcon();
+    public IIcon getCropIcon(PlantSection section);
 
     /** Returns the ItemStack that would be harvested
      *  @param          The player harvesting

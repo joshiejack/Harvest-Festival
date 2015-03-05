@@ -74,7 +74,7 @@ public class HMCrops {
         green_pepper = HMApi.CROPS.registerCrop("pepper_green", 150, 40, 8, 2, 8, 0x1F5F12, AUTUMN).setCropIconHandler(new IconHandlerGreenPepper());
 
         //All Seasons
-        grass = HMApi.CROPS.registerCrop("grass", 500, 0, 11, 0, 0, 0x006633, SPRING, SUMMER, AUTUMN).setIsStatic().setHasAlternativeName().setRequiresSickle().setCropIconHandler(new IconHandlerGrass());
+        grass = HMApi.CROPS.registerCrop("grass", 500, 0, 11, 0, 0, 0x006633, SPRING, SUMMER, AUTUMN).setBecomesDouble(6).setIsStatic().setHasAlternativeName().setRequiresSickle().setCropIconHandler(new IconHandlerGrass());
         wheat = HMApi.CROPS.registerCrop("wheat", 150, 100, 28, 0, 0, 0x8C8C00, SPRING, SUMMER, AUTUMN).setRequiresSickle().setCropIconHandler(new IconHandlerWheat());
         if (HMConfiguration.vanilla.POTATO_OVERRIDE) potato.setItem(Items.potato);
         if (HMConfiguration.vanilla.CARROT_OVERRIDE) carrot.setItem(Items.carrot);

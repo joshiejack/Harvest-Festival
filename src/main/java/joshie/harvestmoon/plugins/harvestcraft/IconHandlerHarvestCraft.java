@@ -1,11 +1,11 @@
 package joshie.harvestmoon.plugins.harvestcraft;
 
-import joshie.harvestmoon.api.crops.ICropRenderHandler;
+import joshie.harvestmoon.crops.icons.AbstractIconHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
 
-public class IconHandlerHarvestCraft implements ICropRenderHandler {
+public class IconHandlerHarvestCraft extends AbstractIconHandler {
     private Block block;
     private int maxStages;
 
@@ -15,7 +15,7 @@ public class IconHandlerHarvestCraft implements ICropRenderHandler {
     }
 
     @Override
-    public IIcon getIconForStage(int stage) {
+    public IIcon getIconForStage(PlantSection section, int stage) {
         return block.getIcon(0, (int) (((double) stage / maxStages) * 7));
     }
 

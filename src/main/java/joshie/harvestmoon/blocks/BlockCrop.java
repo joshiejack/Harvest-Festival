@@ -8,6 +8,7 @@ import joshie.harvestmoon.api.HMApi;
 import joshie.harvestmoon.api.crops.IBreakCrops;
 import joshie.harvestmoon.api.crops.ICrop;
 import joshie.harvestmoon.api.crops.ICropData;
+import joshie.harvestmoon.api.crops.ICropRenderHandler.PlantSection;
 import joshie.harvestmoon.core.config.Crops;
 import joshie.harvestmoon.core.helpers.CropHelper;
 import joshie.harvestmoon.core.helpers.DigFXHelper;
@@ -38,6 +39,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
     public static final int FRESH = 0;
     public static final int WITHERED = 1;
+    public static final int FRESH_DOUBLE = 2;
+    public static final int WITHERED_DOUBLE = 3;
     public static final int GROWN = 7;
 
     public BlockCrop() {
@@ -63,6 +66,13 @@ public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
     @Override
     public int getRenderType() {
         return RenderIds.CROPS;
+    }
+
+    @Override
+    public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {
+        if (world.getBlock(x, y + 1, z) == this) {
+            setBlockBounds(0F, 0F, 0F, 1F, 1F, 1F);
+        } else setBlockBounds(0F, 0F, 0F, 1F, 0.25F, 1F);
     }
 
     //Only called if crops are set to tick randomly
@@ -125,6 +135,19 @@ public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
     }
 
     @Override
+    public boolean canSustainPlant(IBlockAccess world, int x, int y, int z, ForgeDirection direction, IPlantable plantable) {
+        Block block = world.getBlock(x, y + 1, z);
+        int aboveMeta = world.getBlockMetadata(x, y + 1, z);
+        int thisMeta = world.getBlockMetadata(x, y, z);
+        if (block == this) {
+            if (thisMeta == FRESH) return aboveMeta == FRESH_DOUBLE;
+            else if (thisMeta == WITHERED) return aboveMeta == WITHERED_DOUBLE;
+        }
+
+        return false;
+    }
+
+    @Override
     //Return 0.75F if the plant isn't withered, otherwise, unbreakable!!!
     public float getPlayerRelativeBlockHardness(EntityPlayer player, World world, int x, int y, int z) {
         int meta = world.getBlockMetadata(x, y, z);
@@ -133,10 +156,20 @@ public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
         return ((IBreakCrops) held.getItem()).getStrengthVSCrops(player, world, x, y, z, held);
     }
 
+    public static PlantSection getSection(IBlockAccess world, int x, int y, int z) {
+        int meta = world.getBlockMetadata(x, y, z);
+        PlantSection section = PlantSection.BOTTOM;
+        if (meta == WITHERED_DOUBLE || meta == FRESH_DOUBLE) {
+            section = PlantSection.TOP;
+        }
+
+        return section;
+    }
+
     @SideOnly(Side.CLIENT)
     @Override
     public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
-        return HMApi.CROPS.getCropAtLocation(MCClientHelper.getWorld(), x, y, z).getCropIcon();
+        return HMApi.CROPS.getCropAtLocation(MCClientHelper.getWorld(), x, y, z).getCropIcon(BlockCrop.getSection(world, x, y, z));
     }
 
     @Override
@@ -154,7 +187,7 @@ public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
     @SideOnly(Side.CLIENT)
     @Override
     public boolean addDestroyEffects(World world, int x, int y, int z, int meta, EffectRenderer effectRenderer) {
-        IIcon icon = HMApi.CROPS.getCropAtLocation(world, x, y, z).getCropIcon();
+        IIcon icon = HMApi.CROPS.getCropAtLocation(world, x, y, z).getCropIcon(getSection(world, x, y, z));
         byte b0 = 4;
         for (int i1 = 0; i1 < b0; ++i1) {
             for (int j1 = 0; j1 < b0; ++j1) {
@@ -173,14 +206,21 @@ public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
         int meta = world.getBlockMetadata(x, y, z);
-        if (meta == WITHERED) return false; //If Withered with suck!
+        if (meta == WITHERED || meta == WITHERED_DOUBLE) return false; //If Withered with suck!
 
         if (player.isSneaking()) return false;
         else {
+            PlantSection section = getSection(world, x, y, z);
             ICropData data = HMApi.CROPS.getCropAtLocation(world, x, y, z);
             if (data == null || data.getCrop().requiresSickle()) {
                 return false;
-            } else return harvestCrop(player, world, x, y, z);
+            } else {
+                if (section == PlantSection.BOTTOM) {
+                    return harvestCrop(player, world, x, y, z);
+                } else {
+                    return harvestCrop(player, world, x, y - 1, z);
+                }
+            }
         }
     }
 
@@ -198,15 +238,20 @@ public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
     @Override
     public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z, boolean willHarvest) {
         int meta = world.getBlockMetadata(x, y, z);
-        if (meta == WITHERED) return world.setBlockToAir(x, y, z); //JUST KILL IT IF WITHERED
+        if (meta == WITHERED || meta == WITHERED_DOUBLE) return world.setBlockToAir(x, y, z); //JUST KILL IT IF WITHERED
 
+        PlantSection section = getSection(world, x, y, z);
         ICropData data = HMApi.CROPS.getCropAtLocation(world, x, y, z);
-        if (data == null) return super.removedByPlayer(world, player, x, y, z, willHarvest);
+        if (data == null) {
+            return super.removedByPlayer(world, player, x, y, z, willHarvest);
+        }
 
         ICrop crop = data.getCrop();
         boolean isSickle = player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() instanceof IBreakCrops;
         if (isSickle || !crop.requiresSickle()) {
-            harvestCrop(player, world, x, y, z);
+            if (section == PlantSection.BOTTOM) {
+                harvestCrop(player, world, x, y, z);
+            } else harvestCrop(player, world, x, y - 1, z);
         }
 
         return world.setBlockToAir(x, y, z);
@@ -214,7 +259,11 @@ public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
 
     @Override
     public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
-        CropHelper.removeCrop(world, x, y, z);
+        if (meta == FRESH || meta == WITHERED) {
+            CropHelper.removeCrop(world, x, y, z);
+        } else if (meta == FRESH_DOUBLE || meta == WITHERED_DOUBLE) {
+            world.setBlockToAir(x, y - 1, z);
+        }
     }
 
     @Override

@@ -44,6 +44,7 @@ public class Crop implements ICrop {
     protected int regrow;
     protected int year;
     protected int bag_color;
+    protected int doubleStage;
     protected AnimalFoodType foodType;
 
     public Crop() {}
@@ -76,6 +77,7 @@ public class Crop implements ICrop {
         this.iconHandler = new IconHandlerDefault(this);
         this.soilHandler = SoilHandlers.farmland;
         this.needsWatering = true;
+        this.doubleStage = Integer.MAX_VALUE;
         HMConfiguration.mappings.addCrop(this);
         crops.add(this);
     }
@@ -130,6 +132,12 @@ public class Crop implements ICrop {
     @Override
     public ICrop setIsEdible() {
         this.isEdible = true;
+        return this;
+    }
+
+    @Override
+    public ICrop setBecomesDouble(int doubleStage) {
+        this.doubleStage = doubleStage;
         return this;
     }
 
@@ -215,6 +223,11 @@ public class Crop implements ICrop {
     @Override
     public boolean isEdible() {
         return isEdible;
+    }
+
+    @Override
+    public boolean isDouble(int stage) {
+        return stage == doubleStage;
     }
 
     @Override

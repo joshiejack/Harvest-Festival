@@ -1,6 +1,5 @@
 package joshie.harvestmoon.crops.icons;
 
-import joshie.harvestmoon.api.crops.ICropRenderHandler;
 import joshie.harvestmoon.core.lib.HMModInfo;
 import joshie.harvestmoon.crops.Crop;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -8,8 +7,7 @@ import net.minecraft.util.IIcon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class IconHandlerDefault implements ICropRenderHandler {
-    protected IIcon[] stageIcons;
+public class IconHandlerDefault extends AbstractIconHandler {
     protected Crop crop;
 
     public IconHandlerDefault(Crop crop) {
@@ -17,7 +15,7 @@ public class IconHandlerDefault implements ICropRenderHandler {
     }
 
     @SideOnly(Side.CLIENT)
-    public IIcon getIconForStage(int stage) {
+    public IIcon getIconForStage(PlantSection section, int stage) {
         return stageIcons[Math.max(0, stage - 1)];
     }
 

@@ -1,5 +1,8 @@
 package joshie.harvestmoon.blocks.render;
 
+import joshie.harvestmoon.api.HMApi;
+import joshie.harvestmoon.api.crops.ICropData;
+import joshie.harvestmoon.core.helpers.generic.MCClientHelper;
 import joshie.harvestmoon.core.lib.RenderIds;
 import joshie.harvestmoon.init.HMBlocks;
 import net.minecraft.block.Block;
@@ -18,6 +21,11 @@ public class RenderCrops implements ISimpleBlockRenderingHandler {
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
         if (block == HMBlocks.crops) {
+            ICropData crop = HMApi.CROPS.getCropAtLocation(MCClientHelper.getWorld(), x, y, z);
+            if (crop.getCrop().getCropHandler().doCustomRender(renderer, world, x, y, z, block)) {
+                return true;
+            }
+            
             Tessellator tessellator = Tessellator.instance;
             tessellator.setBrightness(block.getMixedBrightnessForBlock(renderer.blockAccess, x, y, z));
             int l = block.colorMultiplier(world, x, y, z);

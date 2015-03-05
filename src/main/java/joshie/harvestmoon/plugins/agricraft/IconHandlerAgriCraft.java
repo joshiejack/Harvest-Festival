@@ -1,12 +1,13 @@
 package joshie.harvestmoon.plugins.agricraft;
 
-import joshie.harvestmoon.api.crops.ICropRenderHandler;
+import joshie.harvestmoon.api.crops.ICropRenderHandler.PlantSection;
+import joshie.harvestmoon.crops.icons.AbstractIconHandler;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
 
 import com.InfinityRaider.AgriCraft.blocks.BlockModPlant;
 
-public class IconHandlerAgriCraft implements ICropRenderHandler {
+public class IconHandlerAgriCraft extends AbstractIconHandler {
     private BlockModPlant block;
     private int maxStages;
 
@@ -16,7 +17,7 @@ public class IconHandlerAgriCraft implements ICropRenderHandler {
     }
 
     @Override
-    public IIcon getIconForStage(int stage) {
+    public IIcon getIconForStage(PlantSection section, int stage) {
         return block.getIcon(0, (int) (((double) stage / maxStages) * 7));
     }
 

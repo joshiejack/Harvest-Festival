@@ -7,9 +7,13 @@ import static joshie.harvestmoon.npc.NPC.Gender.MALE;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.UUID;
 
+import joshie.harvestmoon.api.WorldLocation;
+import joshie.harvestmoon.buildings.BuildingGroup;
 import joshie.harvestmoon.calendar.CalendarDate;
 import joshie.harvestmoon.core.handlers.GuiHandler;
+import joshie.harvestmoon.core.helpers.TownHelper;
 import joshie.harvestmoon.core.lib.HMModInfo;
 import joshie.harvestmoon.core.util.Translate;
 import joshie.harvestmoon.core.util.generic.Text;
@@ -47,6 +51,8 @@ public class NPC {
     private boolean isMiner;
     private ShopInventory shop;
     private CalendarDate birthday;
+    private BuildingGroup home;
+    private String home_location;
 
     public NPC(String name, Gender gender, Age age, CalendarDate birthday) {
         this.name = name;
@@ -141,6 +147,12 @@ public class NPC {
         return this;
     }
 
+    public NPC setHome(BuildingGroup group, String home_location) {
+        this.home = group;
+        this.home_location = home_location;
+        return this;
+    }
+
     public boolean isChild() {
         return age == CHILD;
     }
@@ -173,14 +185,14 @@ public class NPC {
         return birthday;
     }
 
-    public EntityNPC getEntity(World world, int x, int y, int z) {
+    public EntityNPC getEntity(UUID owning_player, World world) {
         if (isBuilder()) {
-            return new EntityNPCBuilder(world, this);
+            return new EntityNPCBuilder(owning_player, world, this);
         } else if (isMiner()) {
-            return new EntityNPCMiner(world, this);
+            return new EntityNPCMiner(owning_player, world, this);
         } else if (shop != null) {
-            return new EntityNPCShopkeeper(world, this).setWorkLocation(x, y, z);
-        } else return new EntityNPC(world, this);
+            return new EntityNPCShopkeeper(owning_player, world, this);
+        } else return new EntityNPC(owning_player, world, this);
     }
 
     public int getGuiID(World world, boolean isSneaking) {
@@ -195,6 +207,17 @@ public class NPC {
     //Returns the localized name of this character
     public String getLocalizedName() {
         return Translate.translate("npc." + getUnlocalizedName() + ".name");
+    }
+
+    public int getBedtime() {
+        return isChild()? 19000: 23000;
+    }
+
+    /** CAN AND WILL RETURN NULL, IF THE UUID COULD NOT BE FOUND **/
+    public WorldLocation getHomeLocation(EntityNPC entity) {
+        UUID owner_uuid = entity.owning_player;
+        if (home == null || home_location == null) return null;
+        return TownHelper.getLocationFor(owner_uuid, home, home_location);
     }
 
     //Returns the script that this character should at this point

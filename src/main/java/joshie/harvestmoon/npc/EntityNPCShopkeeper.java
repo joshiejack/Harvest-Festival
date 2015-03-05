@@ -1,6 +1,9 @@
 package joshie.harvestmoon.npc;
 
 import io.netty.buffer.ByteBuf;
+
+import java.util.UUID;
+
 import joshie.harvestmoon.shops.ShopInventory;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
@@ -8,31 +11,20 @@ import net.minecraft.world.World;
 public class EntityNPCShopkeeper extends EntityNPC {
     private ShopInventory shop;
     private boolean isWorking;
-    private double shopX, shopY, shopZ;
 
-    public EntityNPCShopkeeper(EntityNPCShopkeeper entity) {
-        super(entity);
+    public EntityNPCShopkeeper(UUID owning_player, EntityNPCShopkeeper entity) {
+        super(owning_player, entity);
         shop = entity.shop;
         isWorking = entity.isWorking;
-        shopX = entity.shopX;
-        shopY = entity.shopY;
-        shopZ = entity.shopZ;
     }
 
     public EntityNPCShopkeeper(World world) {
         super(world);
     }
 
-    public EntityNPCShopkeeper(World world, NPC npc) {
-        super(world, npc);
+    public EntityNPCShopkeeper(UUID owning_player, World world, NPC npc) {
+        super(owning_player, world, npc);
         shop = npc.getShop();
-    }
-
-    public EntityNPCShopkeeper setWorkLocation(int x, int y, int z) {
-        this.shopX = x;
-        this.shopY = y;
-        this.shopZ = z;
-        return this;
     }
 
     @Override
@@ -40,7 +32,7 @@ public class EntityNPCShopkeeper extends EntityNPC {
         if (!isWorking) {
             if (shop.isOpen(worldObj)) {
                 isWorking = true;
-                setPosition(shopX, shopY, shopZ);
+                //setPosition(shopX, shopY, shopZ);
             }
 
             super.updateAITick();
@@ -52,7 +44,7 @@ public class EntityNPCShopkeeper extends EntityNPC {
     @Override
     public void setDead() {
         if (!worldObj.isRemote && npc.respawns()) {
-            EntityNPCShopkeeper clone = new EntityNPCShopkeeper(this);
+            EntityNPCShopkeeper clone = new EntityNPCShopkeeper(owning_player, this);
             worldObj.spawnEntityInWorld(clone);
         }
 
@@ -64,18 +56,12 @@ public class EntityNPCShopkeeper extends EntityNPC {
         super.readEntityFromNBT(nbt);
         shop = npc.getShop();
         isWorking = nbt.getBoolean("IsWorking");
-        shopX = nbt.getDouble("ShopX");
-        shopY = nbt.getDouble("ShopY");
-        shopZ = nbt.getDouble("ShopZ");
     }
 
     @Override
     public void writeEntityToNBT(NBTTagCompound nbt) {
         super.writeEntityToNBT(nbt);
         nbt.setBoolean("IsWorking", isWorking);
-        nbt.setDouble("ShopX", shopX);
-        nbt.setDouble("ShopY", shopY);
-        nbt.setDouble("ShopZ", shopZ);
     }
 
     @Override

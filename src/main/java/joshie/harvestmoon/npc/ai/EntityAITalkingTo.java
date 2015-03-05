@@ -1,5 +1,6 @@
-package joshie.harvestmoon.npc;
+package joshie.harvestmoon.npc.ai;
 
+import joshie.harvestmoon.npc.EntityNPC;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;

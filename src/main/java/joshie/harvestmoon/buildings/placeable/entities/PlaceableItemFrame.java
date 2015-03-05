@@ -1,5 +1,7 @@
 package joshie.harvestmoon.buildings.placeable.entities;
 
+import java.util.UUID;
+
 import joshie.harvestmoon.buildings.placeable.PlaceableHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItemFrame;
@@ -30,7 +32,7 @@ public class PlaceableItemFrame extends PlaceableHanging {
     }
 
     @Override
-    public Entity getEntity(World world, int x, int y, int z, boolean n1, boolean n2, boolean swap) {
+    public Entity getEntity(UUID uuid, World world, int x, int y, int z, boolean n1, boolean n2, boolean swap) {
         int facing = getFacing(n1, n2, swap);
         EntityItemFrame frame = new EntityItemFrame(world, getX(x, facing), y, getZ(z, facing), facing);
         ItemStack loot = null;

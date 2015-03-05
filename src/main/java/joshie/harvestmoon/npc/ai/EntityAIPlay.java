@@ -1,8 +1,9 @@
-package joshie.harvestmoon.npc;
+package joshie.harvestmoon.npc.ai;
 
 import java.util.Iterator;
 import java.util.List;
 
+import joshie.harvestmoon.npc.EntityNPC;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.RandomPositionGenerator;

@@ -1,7 +1,8 @@
 package joshie.harvestmoon.buildings.placeable;
 
-import net.minecraft.init.Blocks;
-import net.minecraft.world.IBlockAccess;
+import java.util.UUID;
+
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
 public abstract class Placeable {
@@ -31,7 +32,7 @@ public abstract class Placeable {
         return stage == PlacementStage.BLOCKS;
     }
 
-    public boolean place(World world, int xCoord, int yCoord, int zCoord, boolean n1, boolean n2, boolean swap, PlacementStage stage) {
+    public boolean place(UUID owner, World world, int xCoord, int yCoord, int zCoord, boolean n1, boolean n2, boolean swap, PlacementStage stage) {
         if (canPlace(stage)) {
             int y = offsetY;
             int x = n1 ? -offsetX : offsetX;
@@ -42,11 +43,11 @@ public abstract class Placeable {
                 z = xClone; //Set z to the old value of x
             }
             
-            return place(world, xCoord + x, yCoord + y, zCoord + z, n1, n2, swap);
+            return place(owner, world, xCoord + x, yCoord + y, zCoord + z, n1, n2, swap);
         } else return false;
     }
 
-    public abstract boolean place(World world, int x, int y, int z, boolean n1, boolean n2, boolean swap);
+    public abstract boolean place(UUID owner, World world, int x, int y, int z, boolean n1, boolean n2, boolean swap);
 
     public static enum PlacementStage {
         BLOCKS, ENTITIES, TORCHES, NPC, FINISHED;

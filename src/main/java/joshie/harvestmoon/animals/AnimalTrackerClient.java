@@ -3,6 +3,7 @@ package joshie.harvestmoon.animals;
 import java.util.HashMap;
 import java.util.UUID;
 
+import joshie.harvestmoon.core.helpers.UUIDHelper;
 import net.minecraft.entity.passive.EntityAnimal;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -12,19 +13,19 @@ public class AnimalTrackerClient {
     private HashMap<UUID, Boolean> canProduce = new HashMap();
 
     public boolean canProduceProduct(EntityAnimal animal) {
-        Boolean can = canProduce.get(animal.getPersistentID());
+        Boolean can = canProduce.get(UUIDHelper.getEntityUUID(animal));
         if (can == null) {
-            canProduce.put(animal.getPersistentID(), true);
+            canProduce.put(UUIDHelper.getEntityUUID(animal), true);
         }
 
         return can == null ? true : can;
     }
 
     public void setCanProduceProduct(EntityAnimal animal, boolean value) {
-        canProduce.put(animal.getPersistentID(), value);
+        canProduce.put(UUIDHelper.getEntityUUID(animal), value);
     }
 
     public void onDeath(EntityAnimal animal) {
-        canProduce.remove(animal.getPersistentID());
+        canProduce.remove(UUIDHelper.getEntityUUID(animal));
     }
 }

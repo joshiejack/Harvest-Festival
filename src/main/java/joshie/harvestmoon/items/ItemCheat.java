@@ -1,9 +1,12 @@
 package joshie.harvestmoon.items;
 
-import joshie.harvestmoon.core.handlers.ChunkTester;
+import joshie.harvestmoon.api.WorldLocation;
 import joshie.harvestmoon.core.handlers.CodeGeneratorBuildings;
 import joshie.harvestmoon.core.handlers.CodeGeneratorRendering;
+import joshie.harvestmoon.core.helpers.TownHelper;
 import joshie.harvestmoon.core.helpers.generic.MCClientHelper;
+import joshie.harvestmoon.init.HMBuildings;
+import joshie.harvestmoon.player.Town;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -51,7 +54,14 @@ public class ItemCheat extends ItemHMMeta {
                 MCClientHelper.addToChat("" + world.getBlock(xCoord, yCoord, zCoord).getClass());
             }
         } else if (damage == CHUNK_TESTER) {
-            ChunkTester.activate(world, xCoord, yCoord, zCoord);
+            //ChunkTester.activate(world, xCoord, yCoord, zCoord);
+            if (!world.isRemote) {
+                WorldLocation location = TownHelper.getLocationFor(player, HMBuildings.supermarket, Town.SUPERMARKET_BEDROOM);
+                if (location != null) {
+                    player.setPositionAndUpdate(location.x + 0.5D, location.y + 0D, location.z + 0.5D);
+                    System.out.println(location.y);
+                }
+            }
         }
 
         return false;

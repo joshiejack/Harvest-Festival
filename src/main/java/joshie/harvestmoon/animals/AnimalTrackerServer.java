@@ -11,6 +11,7 @@ import java.util.UUID;
 
 import joshie.harvestmoon.api.WorldLocation;
 import joshie.harvestmoon.core.config.Animals;
+import joshie.harvestmoon.core.helpers.UUIDHelper;
 import joshie.harvestmoon.core.util.IData;
 import joshie.harvestmoon.init.HMBlocks;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -40,10 +41,10 @@ public class AnimalTrackerServer implements IData {
 
     //Returns a new instanceof this animal
     private AnimalData getAndCreateData(EntityAnimal animal) {
-        AnimalData data = animalData.get(animal.getPersistentID());
+        AnimalData data = animalData.get(UUIDHelper.getEntityUUID(animal));
         if (data == null) {
             data = new AnimalData(animal);
-            animalData.put(animal.getPersistentID(), data);
+            animalData.put(UUIDHelper.getEntityUUID(animal), data);
         }
 
         markDirty();
@@ -70,7 +71,7 @@ public class AnimalTrackerServer implements IData {
 
     //Called when an animal dies
     public void onDeath(EntityAnimal animal) {
-        animalData.remove(animal.getPersistentID());
+        animalData.remove(UUIDHelper.getEntityUUID(animal));
         markDirty();
     }
 

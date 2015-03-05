@@ -1,14 +1,21 @@
 package joshie.harvestmoon.npc;
 
 import io.netty.buffer.ByteBuf;
+
+import java.util.UUID;
+
 import joshie.harvestmoon.HarvestMoon;
 import joshie.harvestmoon.core.lib.HMModInfo;
 import joshie.harvestmoon.init.HMNPCs;
+import joshie.harvestmoon.npc.ai.EntityAIGoHome;
+import joshie.harvestmoon.npc.ai.EntityAILookAtPlayer;
+import joshie.harvestmoon.npc.ai.EntityAIPlay;
+import joshie.harvestmoon.npc.ai.EntityAITalkingTo;
+import joshie.harvestmoon.npc.ai.EntityAITeleportHome;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
-import net.minecraft.entity.ai.EntityAIMoveIndoors;
 import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
 import net.minecraft.entity.ai.EntityAIOpenDoor;
 import net.minecraft.entity.ai.EntityAIRestrictOpenDoor;
@@ -28,18 +35,19 @@ import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 
 public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnData {
     protected NPC npc;
-    protected double homeX, homeY, homeZ;
     protected EntityNPC lover;
     private EntityPlayer talkingTo;
     private boolean isPlaying;
+    protected UUID owning_player;
+    public int lastTeleport;
 
-    public EntityNPC(EntityNPC entity) {
-        this(entity.worldObj, entity.npc, entity.homeX, entity.homeY, entity.homeZ);
+    public EntityNPC(UUID owning_player, EntityNPC entity) {
+        this(owning_player, entity.worldObj, entity.npc);
         lover = entity.lover;
     }
 
     public EntityNPC(World world) {
-        this(world, HMNPCs.goddess);
+        this(null, world, HMNPCs.goddess);
     }
 
     @Override
@@ -49,10 +57,11 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
         }
     }
 
-    public EntityNPC(World world, NPC npc) {
+    public EntityNPC(UUID owning_player, World world, NPC npc) {
         super(world);
         this.npc = npc;
 
+        this.owning_player = owning_player;
         this.setSize(0.6F, (1.8F * npc.getHeight()));
         this.getNavigator().setBreakDoors(true);
         this.getNavigator().setAvoidsWater(true);
@@ -60,7 +69,8 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
         this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityZombie.class, 8.0F, 0.6D, 0.6D));
         this.tasks.addTask(1, new EntityAITalkingTo(this));
         this.tasks.addTask(1, new EntityAILookAtPlayer(this));
-        this.tasks.addTask(2, new EntityAIMoveIndoors(this));
+        this.tasks.addTask(2, new EntityAITeleportHome(this));
+        this.tasks.addTask(2, new EntityAIGoHome(this));
         this.tasks.addTask(3, new EntityAIRestrictOpenDoor(this));
         this.tasks.addTask(4, new EntityAIOpenDoor(this, true));
         this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 0.6D));
@@ -69,11 +79,6 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
         this.tasks.addTask(9, new EntityAIWatchClosest(this, EntityNPC.class, 5.0F, 0.02F));
         this.tasks.addTask(9, new EntityAIWander(this, 0.6D));
         this.tasks.addTask(10, new EntityAIWatchClosest(this, EntityLiving.class, 8.0F));
-    }
-
-    public EntityNPC(World world, NPC npc, double x, double y, double z) {
-        this(world, npc);
-        setPosition(x, y, z);
     }
 
     @Override
@@ -85,15 +90,6 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
     @Override
     public boolean isAIEnabled() {
         return true;
-    }
-
-    @Override
-    public void setPosition(double x, double y, double z) {
-        super.setPosition(x, y, z);
-
-        homeX = x;
-        homeY = y;
-        homeZ = z;
     }
 
     public ResourceLocation getSkin() {
@@ -115,6 +111,10 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
 
     @Override
     protected void updateEntityActionState() {
+        if (this.lastTeleport > 0) {
+            this.lastTeleport--;
+        }
+        
         if (!isTalking()) {
             super.updateEntityActionState();
         } else {
@@ -146,7 +146,7 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
     public boolean isChild() {
         return npc.isChild();
     }
-    
+
     @Override
     public boolean canDespawn() {
         return false;
@@ -155,8 +155,8 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
     @Override
     public void setDead() {
         if (!worldObj.isRemote && npc.respawns() && !isDead) {
-            //EntityNPC clone = new EntityNPC(this);
-            //worldObj.spawnEntityInWorld(clone);
+            EntityNPC clone = new EntityNPC(owning_player, this);
+            worldObj.spawnEntityInWorld(clone);
         }
 
         isDead = true;
@@ -182,9 +182,7 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
     public void readEntityFromNBT(NBTTagCompound nbt) {
         super.readEntityFromNBT(nbt);
         npc = HMNPCs.get(nbt.getString("NPC"));
-        homeX = nbt.getDouble("HomeX");
-        homeY = nbt.getDouble("HomeY");
-        homeZ = nbt.getDouble("HomeZ");
+        owning_player = new UUID(nbt.getLong("Owner-UUIDMost"), nbt.getLong("Owner-UUIDLeast"));
     }
 
     @Override
@@ -194,9 +192,10 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
             nbt.setString("NPC", npc.getUnlocalizedName());
         }
 
-        nbt.setDouble("HomeX", homeX);
-        nbt.setDouble("HomeY", homeY);
-        nbt.setDouble("HomeZ", homeZ);
+        if (owning_player != null) {
+            nbt.setLong("Owner-UUIDMost", owning_player.getMostSignificantBits());
+            nbt.setLong("Owner-UUIDLeast", owning_player.getLeastSignificantBits());
+        }
     }
 
     @Override
@@ -225,6 +224,6 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
 
     @Override
     public EntityAgeable createChild(EntityAgeable ageable) {
-        return new EntityNPC(worldObj, HMNPCs.goddess);
+        return new EntityNPC(owning_player, worldObj, HMNPCs.goddess);
     }
 }

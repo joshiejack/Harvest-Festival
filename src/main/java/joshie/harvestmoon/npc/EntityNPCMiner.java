@@ -3,6 +3,7 @@ package joshie.harvestmoon.npc;
 import static joshie.harvestmoon.core.helpers.ServerHelper.markDirty;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import joshie.harvestmoon.buildings.placeable.Placeable.PlacementStage;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableBlock;
@@ -25,8 +26,8 @@ public class EntityNPCMiner extends EntityNPC {
     private ArrayList<PlaceableBlock> completed = new ArrayList(500);
     private int index;
 
-    public EntityNPCMiner(EntityNPCMiner entity) {
-        super(entity);
+    public EntityNPCMiner(UUID owning_player, EntityNPCMiner entity) {
+        super(owning_player, entity);
         isMining = entity.isMining;
         mineX = entity.mineX;
         mineY = entity.mineY;
@@ -40,8 +41,8 @@ public class EntityNPCMiner extends EntityNPC {
         super(world);
     }
 
-    public EntityNPCMiner(World world, NPC npc) {
-        super(world, npc);
+    public EntityNPCMiner(UUID owning_player, World world, NPC npc) {
+        super(owning_player, world, npc);
     }
 
     @Override
@@ -145,7 +146,7 @@ public class EntityNPCMiner extends EntityNPC {
                     else if (!canPlaceBlock(x, y + 1, z - 1)) sideCanSee = true;
 
                     if (!sideCanSee) {
-                        block.place(worldObj, mineX, mineY, mineZ, false, false, false, PlacementStage.BLOCKS);
+                        block.place(owning_player, worldObj, mineX, mineY, mineZ, false, false, false, PlacementStage.BLOCKS);
                         completed.add(block);
                     }
 
@@ -158,7 +159,7 @@ public class EntityNPCMiner extends EntityNPC {
     @Override
     public void setDead() {
         if (!worldObj.isRemote && npc.respawns()) {
-            EntityNPCMiner clone = new EntityNPCMiner(this);
+            EntityNPCMiner clone = new EntityNPCMiner(owning_player, this);
             worldObj.spawnEntityInWorld(clone);
         }
 

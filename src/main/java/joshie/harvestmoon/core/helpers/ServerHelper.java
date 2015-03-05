@@ -47,6 +47,7 @@ public class ServerHelper {
         return theServer.getPlayerData(player);
     }
 
+    /** CAN AND WILL RETURN NULL, IF THE UUID COULD NOT BE FOUND **/
     static PlayerDataServer getPlayerData(UUID uuid) {
         return theServer.getPlayerData(uuid);
     }

@@ -1,5 +1,7 @@
 package joshie.harvestmoon.buildings.placeable.entities;
 
+import java.util.UUID;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityPainting;
 import net.minecraft.world.World;
@@ -19,7 +21,7 @@ public class PlaceablePainting extends PlaceableHanging {
     }
 
     @Override
-    public Entity getEntity(World world, int x, int y, int z, boolean n1, boolean n2, boolean swap) {
+    public Entity getEntity(UUID uuid, World world, int x, int y, int z, boolean n1, boolean n2, boolean swap) {
         int facing = getFacing(n1, n2, swap);
         return new EntityPainting(world, getX(x, facing), y, getZ(z, facing), facing, painting);
     }

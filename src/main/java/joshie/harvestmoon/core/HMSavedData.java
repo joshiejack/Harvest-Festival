@@ -2,11 +2,11 @@ package joshie.harvestmoon.core;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.UUID;
 
 import joshie.harvestmoon.animals.AnimalTrackerServer;
 import joshie.harvestmoon.calendar.CalendarServer;
+import joshie.harvestmoon.core.helpers.UUIDHelper;
 import joshie.harvestmoon.core.helpers.generic.EntityHelper;
 import joshie.harvestmoon.core.lib.HMModInfo;
 import joshie.harvestmoon.crops.CropTrackerServer;
@@ -49,7 +49,7 @@ public class HMSavedData extends WorldSavedData {
     }
 
     public PlayerDataServer getPlayerData(EntityPlayerMP player) {
-        UUID uuid = player.getPersistentID();
+        UUID uuid = UUIDHelper.getPlayerUUID(player);
         if (players.containsKey(uuid)) {
             return players.get(uuid);
         } else {
@@ -74,22 +74,15 @@ public class HMSavedData extends WorldSavedData {
         }
     }
 
+    /** CAN AND WILL RETURN NULL, IF THE UUID COULD NOT BE FOUND **/
     public PlayerDataServer getPlayerData(UUID uuid) {
         if (players.containsKey(uuid)) {
             return players.get(uuid);
         } else {
             EntityPlayer player = EntityHelper.getPlayerFromUUID(uuid);
             if (player == null) return null;
-            for (Entry<UUID, String> entry : UsernameCache.getMap().entrySet()) {
-                if (entry.getValue().equals(player.getDisplayName())) {
-                    if (players.containsKey(entry.getKey())) {
-                        return players.get(entry.getKey());
-                    }
-                }
-            }
+            else return getPlayerData((EntityPlayerMP) player);
         }
-
-        return null;
     }
 
     @Override

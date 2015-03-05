@@ -5,6 +5,7 @@ import java.util.List;
 import joshie.harvestmoon.blocks.tiles.TileMarker;
 import joshie.harvestmoon.buildings.BuildingGroup;
 import joshie.harvestmoon.core.config.General;
+import joshie.harvestmoon.core.helpers.UUIDHelper;
 import joshie.harvestmoon.core.lib.RenderIds;
 import joshie.harvestmoon.init.HMNPCs;
 import joshie.harvestmoon.npc.EntityNPCBuilder;
@@ -90,7 +91,7 @@ public class BlockPreview extends BlockHMBaseMeta {
             TileMarker marker = (TileMarker) world.getTileEntity(x, y, z);
             EntityNPCBuilder builder = marker.getBuilder();
             if (builder == null) {
-                builder = (EntityNPCBuilder) HMNPCs.builder.getEntity(world, x, y, z);
+                builder = (EntityNPCBuilder) HMNPCs.builder.getEntity(UUIDHelper.getPlayerUUID(player), world);
             }
 
             builder.setPosition(x, y, z);
@@ -99,7 +100,7 @@ public class BlockPreview extends BlockHMBaseMeta {
                 world.spawnEntityInWorld(builder);
             }
 
-            builder.startBuilding(marker.getBuilding(), x, y, z, getN1FromMeta(meta), getN2FromMeta(meta), getSwapFromMeta(meta));
+            builder.startBuilding(marker.getBuilding(), x, y, z, getN1FromMeta(meta), getN2FromMeta(meta), getSwapFromMeta(meta), UUIDHelper.getPlayerUUID(player));
             world.setBlockToAir(x, y, z);
 
             return true;

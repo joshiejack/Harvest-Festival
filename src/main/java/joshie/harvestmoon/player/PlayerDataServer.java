@@ -5,8 +5,12 @@ import static joshie.harvestmoon.core.network.PacketHandler.sendToClient;
 
 import java.util.UUID;
 
+import joshie.harvestmoon.api.WorldLocation;
 import joshie.harvestmoon.api.crops.ICropData;
+import joshie.harvestmoon.buildings.BuildingGroup;
+import joshie.harvestmoon.buildings.BuildingStage;
 import joshie.harvestmoon.calendar.CalendarDate;
+import joshie.harvestmoon.core.helpers.UUIDHelper;
 import joshie.harvestmoon.core.helpers.generic.EntityHelper;
 import joshie.harvestmoon.core.network.PacketSyncBirthday;
 import joshie.harvestmoon.core.network.PacketSyncFridge;
@@ -16,10 +20,12 @@ import joshie.harvestmoon.core.util.IData;
 import joshie.harvestmoon.core.util.SellStack;
 import joshie.harvestmoon.npc.EntityNPC;
 import joshie.harvestmoon.npc.NPC;
+import joshie.harvestmoon.player.Town.TownBuilding;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
 
 public class PlayerDataServer implements IData {
@@ -30,6 +36,7 @@ public class PlayerDataServer implements IData {
     private TrackingStats trackingStats;
     private FriendTracker friends;
     private FridgeContents fridge;
+    private Town town;
 
     //References to the player and uuid this refers to
     private EntityPlayerMP player; //No Direct calling, it's a cache value
@@ -43,11 +50,12 @@ public class PlayerDataServer implements IData {
         trackingStats = new TrackingStats(this);
         friends = new FriendTracker(this);
         fridge = new FridgeContents(DimensionManager.getWorld(0));
+        town = new Town(this);
     }
 
     public PlayerDataServer(EntityPlayerMP player) {
         this.player = player;
-        this.uuid = player.getPersistentID();
+        this.uuid = UUIDHelper.getPlayerUUID(player);
         questStats = new QuestStats(this);
         relationStats = new RelationStats(this);
         shippingStats = new ShippingStats(this);
@@ -55,6 +63,7 @@ public class PlayerDataServer implements IData {
         trackingStats = new TrackingStats(this);
         friends = new FriendTracker(this);
         fridge = new FridgeContents(player.worldObj);
+        town = new Town(this);
     }
 
     //Pass the world that this player is currently in
@@ -142,11 +151,11 @@ public class PlayerDataServer implements IData {
             markDirty();
         }
     }
-    
+
     public boolean setMarried(EntityNPC npc) {
         return relationStats.setMarried(npc);
     }
-    
+
     public boolean canMarry() {
         return relationStats.canMarry();
     }
@@ -200,6 +209,17 @@ public class PlayerDataServer implements IData {
         return questStats;
     }
 
+    public void addBuilding(World world, BuildingStage building) {
+        town.addBuilding(world, building);
+        markDirty();
+    }
+
+    public WorldLocation getCoordinatesFor(BuildingGroup group, String npc_location) {
+        TownBuilding building = town.buildings.get(group.getName());
+        if (building == null) return null;
+        return building.getRealCoordinatesFor(npc_location);
+    }
+
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         uuid = new UUID(nbt.getLong("UUIDMost"), nbt.getLong("UUIDLeast"));
@@ -212,6 +232,7 @@ public class PlayerDataServer implements IData {
         trackingStats.readFromNBT(nbt);
         friends.readFromNBT(nbt);
         fridge.readFromNBT(nbt);
+        town.readFromNBT(nbt);
     }
 
     @Override
@@ -227,5 +248,6 @@ public class PlayerDataServer implements IData {
         trackingStats.writeToNBT(nbt);
         friends.writeToNBT(nbt);
         fridge.writeToNBT(nbt);
+        town.writeToNBT(nbt);
     }
 }

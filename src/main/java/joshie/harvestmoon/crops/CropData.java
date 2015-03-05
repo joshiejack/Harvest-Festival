@@ -13,6 +13,7 @@ import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.core.config.Crops;
 import joshie.harvestmoon.core.helpers.CalendarHelper;
 import joshie.harvestmoon.core.helpers.SeasonHelper;
+import joshie.harvestmoon.core.helpers.UUIDHelper;
 import joshie.harvestmoon.core.network.PacketSyncCrop;
 import joshie.harvestmoon.init.HMConfiguration;
 import joshie.harvestmoon.init.HMCrops;
@@ -48,7 +49,7 @@ public class CropData implements ICropData {
         this.quality = quality;
         this.stage = 1;
         if (owner != null) {
-            this.owner = owner.getPersistentID();
+            this.owner = UUIDHelper.getPlayerUUID(owner);
         }
 
         this.isReal = true;
@@ -62,7 +63,7 @@ public class CropData implements ICropData {
         this.stage = stage;
         this.isReal = true;
         if (owner != null) {
-            this.owner = owner.getPersistentID();
+            this.owner = UUIDHelper.getPlayerUUID(owner);
         }
         
         return this;

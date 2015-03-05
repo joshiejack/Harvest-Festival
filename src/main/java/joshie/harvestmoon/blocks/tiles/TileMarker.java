@@ -5,6 +5,7 @@ import java.util.UUID;
 import joshie.harvestmoon.api.WorldLocation;
 import joshie.harvestmoon.buildings.Building;
 import joshie.harvestmoon.buildings.BuildingGroup;
+import joshie.harvestmoon.core.helpers.UUIDHelper;
 import joshie.harvestmoon.core.helpers.generic.EntityHelper;
 import joshie.harvestmoon.core.network.PacketHandler;
 import joshie.harvestmoon.core.network.PacketSyncMarker;
@@ -69,8 +70,8 @@ public class TileMarker extends TileEntity {
         nbt.setInteger("Type", building.getInt());
         nbt.setInteger("UUIDDim", worldObj.provider.dimensionId);
         if (builder != null) {
-            nbt.setLong("UUIDMost", builder.getPersistentID().getMostSignificantBits());
-            nbt.setLong("UUIDLeast", builder.getPersistentID().getLeastSignificantBits());
+            nbt.setLong("UUIDMost", UUIDHelper.getEntityUUID(builder).getMostSignificantBits());
+            nbt.setLong("UUIDLeast", UUIDHelper.getEntityUUID(builder).getLeastSignificantBits());
         }
     }
 }

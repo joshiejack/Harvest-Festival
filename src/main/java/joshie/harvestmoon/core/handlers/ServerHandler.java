@@ -55,6 +55,7 @@ public class ServerHandler {
         return data.getPlayerData((EntityPlayerMP) player);
     }
 
+    /** CAN AND WILL RETURN NULL, IF THE UUID COULD NOT BE FOUND **/
     public PlayerDataServer getPlayerData(UUID uuid) {
         return data.getPlayerData(uuid);
     }

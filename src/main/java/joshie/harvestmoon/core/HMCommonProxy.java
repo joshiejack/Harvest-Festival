@@ -27,7 +27,7 @@ public class HMCommonProxy {
         HMConfiguration.init();
         HMPlugins.preInit();
         HMCrops.init();
-        HMNPCs.init();
+        HMNPCs.preInit();
         HMBlocks.init();
         HMBuildings.preInit();
         HMItems.init();
@@ -47,6 +47,7 @@ public class HMCommonProxy {
         HMPlugins.init();
         HMAnimals.init();
         HMBuildings.init();
+        HMNPCs.init();
     }
 
     public void postInit() {

@@ -32,7 +32,7 @@ public class GeneralEvents {
                 if (stack != null) {
                     if (stack.getItem() instanceof ItemBlockFlower) {
                         if (stack.getItemDamage() == BlockFlower.GODDESS) {
-                            EntityNPC goddess = HMNPCs.goddess.getEntity(world, (int) event.entityItem.posX, (int) event.entityItem.posY, (int) event.entityItem.posZ);
+                            EntityNPC goddess = HMNPCs.goddess.getEntity(null, world);
                             goddess.setPosition((int) event.entityItem.posX, (int) event.entityItem.posY + 1, (int) event.entityItem.posZ);
                             world.spawnEntityInWorld(goddess);
                         }

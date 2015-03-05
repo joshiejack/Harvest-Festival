@@ -6,7 +6,6 @@ import java.util.HashMap;
 
 import joshie.harvestmoon.api.core.IPurchaseable;
 import joshie.harvestmoon.calendar.Weekday;
-import joshie.harvestmoon.core.config.Calendar;
 import joshie.harvestmoon.core.helpers.CalendarHelper;
 import joshie.harvestmoon.core.helpers.generic.MCClientHelper;
 import joshie.harvestmoon.core.lib.HMModInfo;
@@ -68,9 +67,9 @@ public class ShopInventory {
         OpeningHours hours = open.get(world.difficultySetting).opening.get(day);
         if (hours == null) return false;
         else {
-            long daytime = world.getWorldTime() % Calendar.TICKS_PER_DAY; //0-23999 by default      
-            int scaledOpening = (int) ((hours.open / 24000D) * Calendar.TICKS_PER_DAY);
-            int scaledClosing = (int) ((hours.close / 24000D) * Calendar.TICKS_PER_DAY);
+            long daytime = CalendarHelper.getTime(world); //0-23999 by default      
+            int scaledOpening = CalendarHelper.getScaledTime(hours.open);
+            int scaledClosing = CalendarHelper.getScaledTime(hours.close);
             return daytime >= scaledOpening && daytime <= scaledClosing;
         }
     }

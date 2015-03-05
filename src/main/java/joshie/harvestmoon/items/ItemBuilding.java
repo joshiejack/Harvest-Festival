@@ -1,6 +1,7 @@
 package joshie.harvestmoon.items;
 
 import joshie.harvestmoon.buildings.BuildingGroup;
+import joshie.harvestmoon.core.helpers.UUIDHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -15,7 +16,7 @@ public class ItemBuilding extends ItemHMMeta {
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
         BuildingGroup group = BuildingGroup.groups.get(stack.getItemDamage());
         if (group != null) {
-            return group.getRandom().generate(world, x, y, z);
+            return group.getRandom().generate(UUIDHelper.getPlayerUUID(player), world, x, y, z);
         } else return false;
     }
 

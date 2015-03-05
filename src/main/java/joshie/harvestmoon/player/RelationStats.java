@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.UUID;
 
+import joshie.harvestmoon.core.helpers.UUIDHelper;
 import joshie.harvestmoon.core.util.IData;
 import joshie.harvestmoon.npc.EntityNPC;
 import joshie.harvestmoon.npc.NPC;
@@ -35,7 +36,7 @@ public class RelationStats implements IData {
         if (object instanceof EntityNPC) {
             return new Relatable(((EntityNPC) object).getNPC());
         } else if (object instanceof EntityLivingBase) {
-            return new Relatable(((EntityLivingBase) object).getPersistentID());
+            return new Relatable(UUIDHelper.getEntityUUID(((EntityLivingBase) object)));
         } else if (object instanceof NPC) {
             return new Relatable((NPC) object);
         } else if (object instanceof UUID) {

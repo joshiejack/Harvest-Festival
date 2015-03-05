@@ -23,6 +23,7 @@ import joshie.harvestmoon.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceablePainting;
 import joshie.harvestmoon.core.lib.LootStrings;
 import joshie.harvestmoon.init.HMBlocks;
+import joshie.harvestmoon.player.Town;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -1131,7 +1132,8 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableButton(Blocks.wooden_button, 1, 7, 11, 5));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 7, 7, 11, 6));
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 11, 7));
-        list.add(new PlaceableNPC("jenni", 7, 11, 7));
+        list.add(new PlaceableNPC("jenni", 7, 10, 7));
+        npc_offsets.put(Town.SUPERMARKET_TILL, new PlaceableNPC("", 7, 10, 7));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 7, 7, 11, 8));
         list.add(new PlaceableButton(Blocks.wooden_button, 1, 7, 11, 9));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 7, 7, 11, 10));
@@ -1714,7 +1716,8 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 15, 5));
         list.add(new PlaceableVine(Blocks.vine, 4, 8, 15, 6));
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 15, 7));
-        list.add(new PlaceableNPC("candice", 8, 15, 7));
+        list.add(new PlaceableNPC("candice", 8, 14, 7));
+        npc_offsets.put(Town.SUPERMARKET_BEDROOM, new PlaceableNPC("", 8, 14, 7));
         list.add(new PlaceableVine(Blocks.vine, 1, 8, 15, 8));
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 15, 9));
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 15, 10));

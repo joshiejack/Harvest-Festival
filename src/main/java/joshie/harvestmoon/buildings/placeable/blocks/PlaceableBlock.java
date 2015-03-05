@@ -1,5 +1,7 @@
 package joshie.harvestmoon.buildings.placeable.blocks;
 
+import java.util.UUID;
+
 import joshie.harvestmoon.buildings.placeable.Placeable;
 import joshie.harvestmoon.core.helpers.generic.StackHelper;
 import net.minecraft.block.Block;
@@ -40,7 +42,7 @@ public class PlaceableBlock extends Placeable {
     }
 
     @Override
-    public boolean place(World world, int x, int y, int z, boolean n1, boolean n2, boolean swap) {
+    public boolean place(UUID uuid, World world, int x, int y, int z, boolean n1, boolean n2, boolean swap) {
         if (block == Blocks.air && world.getBlock(x, y, z) == Blocks.air) {
             return false;
             

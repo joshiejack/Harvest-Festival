@@ -13,6 +13,7 @@ import java.util.UUID;
 import joshie.harvestmoon.core.config.Animals;
 import joshie.harvestmoon.core.helpers.AnimalHelper;
 import joshie.harvestmoon.core.helpers.RelationsHelper;
+import joshie.harvestmoon.core.helpers.UUIDHelper;
 import joshie.harvestmoon.core.network.PacketSyncCanProduce;
 import joshie.harvestmoon.core.util.IData;
 import net.minecraft.entity.EntityAgeable;
@@ -58,7 +59,7 @@ public class AnimalData implements IData {
 
     public AnimalData(EntityAnimal animal) {
         this.animal = animal;
-        this.a_uuid = animal.getPersistentID();
+        this.a_uuid = UUIDHelper.getEntityUUID(animal);
         this.type = AnimalType.getType(animal);
     }
 
@@ -209,7 +210,7 @@ public class AnimalData implements IData {
     //Sets the owner of this animal
     public void setOwner(EntityPlayerMP player) {
         this.owner = player;
-        this.o_uuid = player.getPersistentID();
+        this.o_uuid = UUIDHelper.getPlayerUUID(player);
     }
 
     public int getDimension() {

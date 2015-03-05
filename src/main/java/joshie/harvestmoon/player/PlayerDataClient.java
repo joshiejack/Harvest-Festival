@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import joshie.harvestmoon.calendar.CalendarDate;
 import joshie.harvestmoon.calendar.Season;
+import joshie.harvestmoon.core.helpers.UUIDHelper;
 import joshie.harvestmoon.core.util.Translate;
 import joshie.harvestmoon.npc.EntityNPC;
 import joshie.harvestmoon.npc.NPC;
@@ -40,7 +41,7 @@ public class PlayerDataClient {
 
     public int getRelationship(EntityLivingBase living) {
         if (living instanceof EntityNPC) return getRelationship(((EntityNPC) living).getNPC());
-        Short ret = entity_relations.get(living.getPersistentID());
+        Short ret = entity_relations.get(UUIDHelper.getEntityUUID(living));
         return ret == null ? 0 : ret;
     }
 
@@ -59,7 +60,7 @@ public class PlayerDataClient {
 
     public boolean removeRelations(EntityLivingBase living) {
         if (living instanceof EntityNPC) return removeRelations(((EntityNPC) living).getNPC());
-        entity_relations.remove(living.getPersistentID());
+        entity_relations.remove(UUIDHelper.getEntityUUID(living));
         return true;
     }
 

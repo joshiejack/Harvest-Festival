@@ -2,6 +2,7 @@ package joshie.harvestmoon.items;
 
 import java.util.HashMap;
 
+import joshie.harvestmoon.core.helpers.UUIDHelper;
 import joshie.harvestmoon.init.HMNPCs;
 import joshie.harvestmoon.npc.EntityNPC;
 import joshie.harvestmoon.npc.NPC;
@@ -41,8 +42,7 @@ public class ItemNPCSpawner extends ItemHMMeta {
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int xCoord, int yCoord, int zCoord, int side, float hitX, float hitY, float hitZ) {
         if (!world.isRemote && stack.getItemDamage() < getMetaCount()) {            
             NPC npc = getNPC(stack.getItemDamage());
-            EntityNPC entity = npc.getEntity(world, xCoord, yCoord, zCoord);
-            
+            EntityNPC entity = npc.getEntity(UUIDHelper.getPlayerUUID(player), world);
             entity.setPosition(xCoord + 0.5, yCoord + 1, zCoord + 0.5);
             world.spawnEntityInWorld(entity);
         }

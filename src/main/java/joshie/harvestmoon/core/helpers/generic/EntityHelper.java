@@ -3,6 +3,7 @@ package joshie.harvestmoon.core.helpers.generic;
 import java.util.List;
 import java.util.UUID;
 
+import joshie.harvestmoon.core.helpers.UUIDHelper;
 import joshie.harvestmoon.npc.EntityNPCBuilder;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -22,7 +23,7 @@ public class EntityHelper {
         for (int i = 0; i < world.loadedEntityList.size(); i++) {
             Entity entity = (Entity) world.loadedEntityList.get(i);
             if (entity instanceof EntityAnimal) {
-                if (entity.getPersistentID().equals(uuid)) {
+                if (UUIDHelper.getEntityUUID(entity).equals(uuid)) {
                     return (EntityAnimal) entity;
                 }
             }
@@ -36,7 +37,7 @@ public class EntityHelper {
         for (int i = 0; i < world.loadedEntityList.size(); i++) {
             Entity entity = (Entity) world.loadedEntityList.get(i);
             if (entity instanceof EntityNPCBuilder) {
-                if (entity.getPersistentID().equals(uuid)) {
+                if (UUIDHelper.getEntityUUID(entity).equals(uuid)) {
                     return (EntityNPCBuilder) entity;
                 }
             }
@@ -51,7 +52,7 @@ public class EntityHelper {
             for (int i = 0; i < world.loadedEntityList.size(); i++) {
                 Entity entity = (Entity) world.loadedEntityList.get(i);
                 if (entity instanceof EntityLivingBase) {
-                    if (entity.getPersistentID().equals(uuid)) {
+                    if (UUIDHelper.getEntityUUID(entity).equals(uuid)) {
                         return entity.getEntityId();
                     }
                 }
@@ -63,9 +64,11 @@ public class EntityHelper {
 
     /** Gets the player from the uuid **/
     public static EntityPlayerMP getPlayerFromUUID(UUID uuid) {
+        System.out.println("UUID SEARCH FOR " + uuid);
+        
         //Loops through every single player
         for (EntityPlayer player : (List<EntityPlayer>) FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().playerEntityList) {
-            if (player.getPersistentID().equals(uuid)) {
+            if (UUIDHelper.getPlayerUUID(player).equals(uuid)) {
                 return (EntityPlayerMP) player;
             }
         }

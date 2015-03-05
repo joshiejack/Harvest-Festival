@@ -1,21 +1,26 @@
 package joshie.harvestmoon.buildings;
 
+import java.util.UUID;
+
 import joshie.harvestmoon.buildings.placeable.Placeable;
 import joshie.harvestmoon.buildings.placeable.Placeable.PlacementStage;
+import joshie.harvestmoon.core.helpers.PlayerHelper;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 /** This data is used by the BuilderNPC, 
  * to know their current progress through a building project **/
 public class BuildingStage {
-    private BuildingGroup building;
-    private boolean n1, n2, swap;
-    private PlacementStage stage;
-    private int subType, index, xCoord, yCoord, zCoord;
+    public UUID owner;
+    public BuildingGroup building;
+    public boolean n1, n2, swap;
+    public PlacementStage stage;
+    public int subType, index, xCoord, yCoord, zCoord;
 
     public BuildingStage() {}
 
-    public BuildingStage(BuildingGroup building, int subType, int x, int y, int z, boolean n1, boolean n2, boolean swap) {
+    public BuildingStage(UUID uuid, BuildingGroup building, int subType, int x, int y, int z, boolean n1, boolean n2, boolean swap) {
+        this.owner = uuid;
         this.building = building;
         this.subType = subType;
         this.n1 = n1;
@@ -42,11 +47,13 @@ public class BuildingStage {
             } else if (stage == PlacementStage.NPC) {
                 stage = PlacementStage.FINISHED;
                 index = 0;
+
+                PlayerHelper.addBuilding(world, this);
             }
         } else {
             while (index < building.getBuilding(subType).getSize()) {
                 Placeable block = building.getBuilding(subType).get(index);
-                if (block.place(world, xCoord, yCoord, zCoord, n1, n2, swap, stage)) {
+                if (block.place(owner, world, xCoord, yCoord, zCoord, n1, n2, swap, stage)) {
                     index++;
                     return this;
                 }
@@ -72,11 +79,15 @@ public class BuildingStage {
         n1 = nbt.getBoolean("North1");
         n2 = nbt.getBoolean("North2");
         swap = nbt.getBoolean("Swap");
-        index = nbt.getInteger("Index");
         xCoord = nbt.getInteger("BuildingX");
         yCoord = nbt.getInteger("BuildingY");
         zCoord = nbt.getInteger("BuildingZ");
-        stage = PlacementStage.values()[nbt.getInteger("Stage")];
+
+        if (nbt.hasKey("Owner-UUIDMost")) {
+            index = nbt.getInteger("Index");
+            stage = PlacementStage.values()[nbt.getInteger("Stage")];
+            owner = new UUID(nbt.getLong("Owner-UUIDMost"), nbt.getLong("Owner-UUIDLeast"));
+        }
     }
 
     public void writeToNBT(NBTTagCompound nbt) {
@@ -85,10 +96,15 @@ public class BuildingStage {
         nbt.setBoolean("North1", n1);
         nbt.setBoolean("North2", n2);
         nbt.setBoolean("Swap", swap);
-        nbt.setInteger("Index", index);
         nbt.setInteger("BuildingX", xCoord);
         nbt.setInteger("BuildingY", yCoord);
         nbt.setInteger("BuildingZ", zCoord);
-        nbt.setInteger("Stage", stage.ordinal());
+
+        if (owner != null) {
+            nbt.setInteger("Stage", stage.ordinal());
+            nbt.setInteger("Index", index);
+            nbt.setLong("Owner-UUIDMost", owner.getMostSignificantBits());
+            nbt.setLong("Owner-UUIDLeast", owner.getLeastSignificantBits());
+        }
     }
 }

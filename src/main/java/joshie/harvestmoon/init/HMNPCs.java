@@ -13,6 +13,7 @@ import joshie.harvestmoon.calendar.CalendarDate;
 import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.npc.NPC;
 import joshie.harvestmoon.npc.NPCGoddess;
+import joshie.harvestmoon.player.Town;
 
 public class HMNPCs {
     private static HashMap<String, NPC> npcs = new HashMap();
@@ -49,7 +50,7 @@ public class HMNPCs {
     public static NPC builder; //Builds stuff for the players       (SPAWN)
     public static NPC poultry; //Poultry Farm Owner                 (POULTRY FARM)
 
-    public static void init() {
+    public static void preInit() {
         goddess = register(new NPCGoddess("goddess", FEMALE, ADULT).setHeight(1.2F, 0.35F));
         animal_owner = register(new NPC("jim", MALE, ADULT, new CalendarDate(26, Season.SPRING, 1)));
         cafe_owner = register(new NPC("liara", FEMALE, ADULT, new CalendarDate(17, Season.SPRING, 1)));
@@ -68,5 +69,9 @@ public class HMNPCs {
         fisherman = register(new NPC("jacob", MALE, ADULT, new CalendarDate(28, Season.AUTUMN, 1)));
         milkmaid = register(new NPC("candice", FEMALE, ADULT, new CalendarDate(5, Season.AUTUMN, 1)));
         poultry = register(new NPC("ondra", MALE, ADULT, new CalendarDate(16, Season.AUTUMN, 1)));
+    }
+
+    public static void init() {
+        milkmaid.setHome(HMBuildings.supermarket, Town.SUPERMARKET_BEDROOM);
     }
 }

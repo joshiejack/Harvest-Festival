@@ -5,6 +5,7 @@ import static cpw.mods.fml.common.network.ByteBufUtils.writeUTF8String;
 import io.netty.buffer.ByteBuf;
 import joshie.harvestmoon.core.helpers.ClientHelper;
 import joshie.harvestmoon.core.helpers.PlayerHelper;
+import joshie.harvestmoon.core.helpers.UUIDHelper;
 import joshie.harvestmoon.init.HMNPCs;
 import joshie.harvestmoon.npc.NPC;
 import net.minecraft.entity.Entity;
@@ -95,7 +96,7 @@ public class PacketSyncRelations implements IMessage, IMessageHandler<PacketSync
             if (message.isEntityPacket) {
                 Entity entity = joshie.harvestmoon.core.helpers.generic.MCClientHelper.getWorld().getEntityByID(message.id);
                 if (entity != null) {
-                    ClientHelper.getPlayerData().setRelationship(entity.getPersistentID(), message.value);
+                    ClientHelper.getPlayerData().setRelationship(UUIDHelper.getEntityUUID(entity), message.value);
 
                     if (message.doParticles) {
                         for (int j = 0; j < 3D; j++) {

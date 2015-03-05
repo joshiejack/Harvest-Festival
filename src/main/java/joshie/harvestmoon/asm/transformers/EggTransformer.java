@@ -49,11 +49,12 @@ public class EggTransformer implements ITransformer {
         return cw.toByteArray();
     }
 
-    public byte[] injectMethods(byte[] data) {
+    public byte[] injectMethods(boolean isObfuscated, byte[] data) {
         ClassReader cr = new ClassReader(data);
         ClassWriter cw = new ClassWriter(cr, 0);
 
         //Sellable Sell Value
+
         String name = "getSellValue";
         MethodVisitor mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, "(Lnet/minecraft/item/ItemStack;)J", null, null);
         mv.visitCode();
@@ -74,43 +75,43 @@ public class EggTransformer implements ITransformer {
         mv.visitEnd();
 
         //Display Name Override
-        name = "getItemStackDisplayName";
+        name = isObfuscated? "n" : "getItemStackDisplayName";
         mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, "(Lnet/minecraft/item/ItemStack;)Ljava/lang/String;", null, null);
         mv.visitCode();
         mv.visitVarInsn(Opcodes.ALOAD, 1);
-        mv.visitMethodInsn(Opcodes.INVOKESTATIC, HMModInfo.ASMPATH + "asm/overrides/ItemEgg", name, "(Lnet/minecraft/item/ItemStack;)Ljava/lang/String;", false);
+        mv.visitMethodInsn(Opcodes.INVOKESTATIC, HMModInfo.ASMPATH + "asm/overrides/ItemEgg", "getItemStackDisplayName", "(Lnet/minecraft/item/ItemStack;)Ljava/lang/String;", false);
         mv.visitInsn(Opcodes.ARETURN);
         mv.visitMaxs(2, 1);
         mv.visitEnd();
 
         //Get Item Icon Override
-        name = "getIconFromDamage";
+        name = isObfuscated? "b" : "getIconFromDamage";
         mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, "(I)Lnet/minecraft/util/IIcon;", null, null);
         mv.visitCode();
         mv.visitVarInsn(Opcodes.ILOAD, 1);
-        mv.visitMethodInsn(Opcodes.INVOKESTATIC, HMModInfo.ASMPATH + "asm/overrides/ItemEgg", name, "(I)Lnet/minecraft/util/IIcon;", false);
+        mv.visitMethodInsn(Opcodes.INVOKESTATIC, HMModInfo.ASMPATH + "asm/overrides/ItemEgg", "getIconFromDamage", "(I)Lnet/minecraft/util/IIcon;", false);
         mv.visitInsn(Opcodes.ARETURN);
         mv.visitMaxs(2, 1);
         mv.visitEnd();
 
         //Register Icons
-        name = "registerIcons";
+        name = isObfuscated? "a" : "registerIcons";
         mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, "(Lnet/minecraft/client/renderer/texture/IIconRegister;)V", null, null);
         mv.visitCode();
         mv.visitVarInsn(Opcodes.ALOAD, 1);
-        mv.visitMethodInsn(Opcodes.INVOKESTATIC, HMModInfo.ASMPATH + "asm/overrides/ItemEgg", name, "(Lnet/minecraft/client/renderer/texture/IIconRegister;)V", false);
+        mv.visitMethodInsn(Opcodes.INVOKESTATIC, HMModInfo.ASMPATH + "asm/overrides/ItemEgg", "registerIcons", "(Lnet/minecraft/client/renderer/texture/IIconRegister;)V", false);
         mv.visitInsn(Opcodes.RETURN);
         mv.visitMaxs(2, 1);
         mv.visitEnd();
-
+        
         //Get Sub Items
-        name = "getSubItems";
+        name = isObfuscated? "a" : "getSubItems";
         mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, "(Lnet/minecraft/item/Item;Lnet/minecraft/creativetab/CreativeTabs;Ljava/util/List;)V", null, null);
         mv.visitCode();
         mv.visitVarInsn(Opcodes.ALOAD, 1);
         mv.visitVarInsn(Opcodes.ALOAD, 2);
         mv.visitVarInsn(Opcodes.ALOAD, 3);
-        mv.visitMethodInsn(Opcodes.INVOKESTATIC, HMModInfo.ASMPATH + "asm/overrides/ItemEgg", name, "(Lnet/minecraft/item/Item;Lnet/minecraft/creativetab/CreativeTabs;Ljava/util/List;)V", false);
+        mv.visitMethodInsn(Opcodes.INVOKESTATIC, HMModInfo.ASMPATH + "asm/overrides/ItemEgg", "getSubItems", "(Lnet/minecraft/item/Item;Lnet/minecraft/creativetab/CreativeTabs;Ljava/util/List;)V", false);
         mv.visitInsn(Opcodes.RETURN);
         mv.visitMaxs(4, 1);
         mv.visitEnd();
@@ -122,7 +123,7 @@ public class EggTransformer implements ITransformer {
     @Override
     public byte[] transform(byte[] data, boolean isObfuscated) {
         //Implements the Interfaces ~ Thanks to BluSunrize!!! :D
-        byte[] modified = injectMethods(injectInterfaces(data));
+        byte[] modified = injectMethods(isObfuscated, injectInterfaces(data));
         if (!HMConfiguration.vanilla.EGG_DISABLE_THROWING) return modified;
         else {
             String name = isObfuscated ? "a" : "onItemRightClick";

@@ -233,10 +233,10 @@ hm.npc.ondra.name=Ondra
 #Conversations
 #Generic - Children
 hm.npc.generic.child.greeting1=WOW you're really tall!
-hm.npc.generic.child.greeting2=Do you wanna play with me?
+hm.npc.generic.child.greeting2=Do you want to play catch with me?
 hm.npc.generic.child.greeting3=Have you heard of Minecraft? It's my favourite game!
-hm.npc.generic.child.greeting4=INAP CAN ADD LANG HERE IF HE WANTS OR DELETE
-hm.npc.generic.child.greeting5=INAP CAN ADD LANG HERE IF HE WANTS OR DELETE
+hm.npc.generic.child.greeting4=Good day!
+hm.npc.generic.child.greeting5=My parents told me not to talk to strangers...!
 hm.npc.generic.child.greeting6=INAP CAN ADD LANG HERE IF HE WANTS OR DELETE
 hm.npc.generic.child.greeting7=INAP CAN ADD LANG HERE IF HE WANTS OR DELETE
 hm.npc.generic.child.greeting8=INAP CAN ADD LANG HERE IF HE WANTS OR DELETE
@@ -268,9 +268,9 @@ hm.npc.generic.child.greeting32=INAP CAN ADD LANG HERE IF HE WANTS OR DELETE
 #Generic - Adults/Elders
 hm.npc.generic.adult.greeting1=What do you need? I'm here to help.
 hm.npc.generic.adult.greeting2=It's been a long time since I last saw you! How have you been?
-hm.npc.generic.adult.greeting3=INAP CAN ADD LANG HERE IF HE WANTS OR DELETE
-hm.npc.generic.adult.greeting4=INAP CAN ADD LANG HERE IF HE WANTS OR DELETE
-hm.npc.generic.adult.greeting5=INAP CAN ADD LANG HERE IF HE WANTS OR DELETE
+hm.npc.generic.adult.greeting3=Great weather, eh?
+hm.npc.generic.adult.greeting4=What an awful weather!
+hm.npc.generic.adult.greeting5=Where you looking at?!
 hm.npc.generic.adult.greeting6=INAP CAN ADD LANG HERE IF HE WANTS OR DELETE
 hm.npc.generic.adult.greeting7=INAP CAN ADD LANG HERE IF HE WANTS OR DELETE
 hm.npc.generic.adult.greeting8=INAP CAN ADD LANG HERE IF HE WANTS OR DELETE
@@ -301,7 +301,7 @@ hm.npc.generic.adult.greeting32=INAP CAN ADD LANG HERE IF HE WANTS OR DELETE
 
 #Generic - Male
 hm.npc.generic.male.greeting1=Hey, how's it hanging?
-hm.npc.generic.male.greeting2=INAP CAN ADD LANG HERE IF HE WANTS OR DELETE
+hm.npc.generic.male.greeting2=Want to have a beer?
 hm.npc.generic.male.greeting3=INAP CAN ADD LANG HERE IF HE WANTS OR DELETE
 hm.npc.generic.male.greeting4=INAP CAN ADD LANG HERE IF HE WANTS OR DELETE
 hm.npc.generic.male.greeting5=INAP CAN ADD LANG HERE IF HE WANTS OR DELETE
@@ -392,11 +392,11 @@ hm.npc.generic.adult.gift.bad=Are trying to insult me?
 hm.npc.generic.adult.gift.terrible=You should be caned for giving me such a terrible gift.
 
 #Goddess
-hm.npc.goddess.greeting1=INAP CAN ADD LANG HERE IF HE WANTS OR DELETE
-hm.npc.goddess.greeting2=INAP CAN ADD LANG HERE IF HE WANTS OR DELETE
-hm.npc.goddess.greeting3=INAP CAN ADD LANG HERE IF HE WANTS OR DELETE
-hm.npc.goddess.greeting4=INAP CAN ADD LANG HERE IF HE WANTS OR DELETE
-hm.npc.goddess.greeting5=INAP CAN ADD LANG HERE IF HE WANTS OR DELETE
+hm.npc.goddess.greeting1=Who are you, stranger?
+hm.npc.goddess.greeting2=What a great day to farm!
+hm.npc.goddess.greeting3=Do you need anything else, kid?
+hm.npc.goddess.greeting4=Don't dally around, I cannot stay for long.
+hm.npc.goddess.greeting5=What do you need?
 hm.npc.goddess.greeting6=INAP CAN ADD LANG HERE IF HE WANTS OR DELETE
 hm.npc.goddess.greeting7=INAP CAN ADD LANG HERE IF HE WANTS OR DELETE
 hm.npc.goddess.greeting8=INAP CAN ADD LANG HERE IF HE WANTS OR DELETE
@@ -461,7 +461,7 @@ hm.npc.katlin.greeting32=INAP CAN ADD LANG HERE IF HE WANTS OR DELETE
 
 #Danieuru/chylex
 hm.npc.daniel.greeting1=I've always loved tinkering around since I was a child.
-hm.npc.daniel.greeting2=Tools really are my passion, They are a Hardcore Expansion to my life.
+hm.npc.daniel.greeting2=Tools really are my passion, they are a Hardcore Expansion to my life.
 hm.npc.daniel.greeting3=People call me crazy around here for believing in Dragons. They'll see them when they reach The End, and they'll no longer call me a fool.
 hm.npc.daniel.greeting4=If I could do anything other than playing with tools, I'd be a dragon slayer.
 hm.npc.daniel.greeting5=Did you know that I used to be an olympic sprinter back in my youth? I was better than everyone else in Minecraftia.

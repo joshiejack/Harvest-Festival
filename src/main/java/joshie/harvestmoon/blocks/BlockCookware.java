@@ -39,9 +39,6 @@ public class BlockCookware extends BlockHMBaseMeta {
     public static final int MIXER = 5;
     public static final int OVEN = 6;
     public static final int STEAMER = 7;
-    public static final int CHOPPING_BOARD = 8;
-    public static final int MIXING_BOWL = 9;
-    public static final int BAKING_GLASS = 10;
 
     public BlockCookware() {
         super(Material.piston);
@@ -97,7 +94,7 @@ public class BlockCookware extends BlockHMBaseMeta {
         else if (meta == FRIDGE || meta == FRIDGE_TOP) {
             player.openGui(HarvestMoon.instance, GuiHandler.FRIDGE, world, x, y, z);
             return true;
-        } else if (meta == KITCHEN || meta == CHOPPING_BOARD || meta == MIXING_BOWL || meta == BAKING_GLASS) {
+        } else if (meta == KITCHEN) {
             ItemStack held = player.getCurrentEquippedItem();
             TileEntity tile = null;
             if (meta == KITCHEN) tile = world.getTileEntity(x, y, z);
@@ -206,7 +203,7 @@ public class BlockCookware extends BlockHMBaseMeta {
 
     @Override
     public int getMetaCount() {
-        return 11;
+        return 8;
     }
 
     @SideOnly(Side.CLIENT)

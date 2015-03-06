@@ -18,6 +18,8 @@ import joshie.harvestmoon.mining.MiningLoot;
 import net.minecraft.item.ItemStack;
 
 public class HMMining {
+    
+    
     public static void init() {
         MiningLoot.registerLoot(ALL_FLOORS, new ItemStack(HMItems.general, 1, JUNK_ORE), 30D);
         MiningLoot.registerLoot(ALL_FLOORS, new ItemStack(HMItems.general, 1, COPPER_ORE), 15D);

@@ -1,15 +1,12 @@
 package joshie.harvestmoon.mining;
 
 import static joshie.harvestmoon.core.helpers.generic.MCServerHelper.getWorld;
-
-import java.util.ArrayList;
-
-import joshie.harvestmoon.blocks.BlockDirt;
 import joshie.harvestmoon.init.HMBlocks;
 import net.minecraft.world.World;
 
 public class MineFloor extends MineBlock {
     public MineFloor() {}
+
     public MineFloor(int dim, int x, int y, int z) {
         super(dim, x, y, z);
     }
@@ -22,8 +19,7 @@ public class MineFloor extends MineBlock {
     @Override
     public void newDay(int level) {
         World world = getWorld(dimension);
-        ArrayList<Integer> metas = BlockDirt.getMeta(level);
-        int meta = metas.get(world.rand.nextInt(metas.size()));
+        int meta = world.rand.nextInt(13) <= 10 ? 0 : world.rand.nextInt(16);
         world.setBlock(x, y, z, HMBlocks.dirt, meta, 2);
     }
 }

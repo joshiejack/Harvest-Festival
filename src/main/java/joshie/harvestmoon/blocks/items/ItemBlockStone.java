@@ -12,11 +12,6 @@ public class ItemBlockStone extends ItemBlockBase {
 
     @Override
     public String getName(ItemStack stack) {
-        switch (stack.getItemDamage()) {
-            case BlockStone.CAVE_WALL:
-                return "mine_wall";
-            default:
-                return "invalid";
-        }
+        return "mine_wall";
     }
 }

@@ -5,6 +5,7 @@ import static joshie.harvestmoon.core.helpers.ServerHelper.markDirty;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import joshie.harvestmoon.blocks.BlockStone;
 import joshie.harvestmoon.buildings.placeable.Placeable.PlacementStage;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvestmoon.core.helpers.MineHelper;
@@ -75,23 +76,23 @@ public class EntityNPCMiner extends EntityNPC {
         //Walls
         for (int x = -mineXSize - 1; x <= mineXSize + 1; x++) {
             for (int y = -8; y < -3; y++) {
-                instructions.add(new PlaceableBlock(HMBlocks.stone, 0, x, y - (level * 5), -mineZSize - 1));
-                instructions.add(new PlaceableBlock(HMBlocks.stone, 0, x, y - (level * 5), mineZSize + 1));
+                instructions.add(new PlaceableBlock(HMBlocks.stone, BlockStone.getRandomMeta(world.rand), x, y - (level * 5), -mineZSize - 1));
+                instructions.add(new PlaceableBlock(HMBlocks.stone, BlockStone.getRandomMeta(world.rand), x, y - (level * 5), mineZSize + 1));
             }
         }
 
         //Walls Two
         for (int z = -mineZSize - 1; z <= mineZSize + 1; z++) {
             for (int y = -8; y < -3; y++) {
-                instructions.add(new PlaceableBlock(HMBlocks.stone, 0, -mineXSize - 1, y - (level * 5), z));
-                instructions.add(new PlaceableBlock(HMBlocks.stone, 0, mineXSize + 1, y - (level * 5), z));
+                instructions.add(new PlaceableBlock(HMBlocks.stone, BlockStone.getRandomMeta(world.rand), -mineXSize - 1, y - (level * 5), z));
+                instructions.add(new PlaceableBlock(HMBlocks.stone, BlockStone.getRandomMeta(world.rand), mineXSize + 1, y - (level * 5), z));
             }
         }
 
         //Ceiling
         for (int x = -mineXSize; x <= mineXSize; x++) {
             for (int z = -mineZSize; z <= mineZSize; z++) {
-                instructions.add(new PlaceableBlock(HMBlocks.stone, 0, x, -4 - (level * 5), z)); //Add the block to this list
+                instructions.add(new PlaceableBlock(HMBlocks.stone, BlockStone.getRandomMeta(world.rand), x, -4 - (level * 5), z)); //Add the block to this list
             }
         }
 

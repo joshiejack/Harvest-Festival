@@ -8,6 +8,7 @@ import joshie.harvestmoon.core.helpers.generic.MCClientHelper;
 import joshie.harvestmoon.init.HMBuildings;
 import joshie.harvestmoon.player.Town;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -56,9 +57,13 @@ public class ItemCheat extends ItemHMMeta {
         } else if (damage == CHUNK_TESTER) {
             //ChunkTester.activate(world, xCoord, yCoord, zCoord);
             if (!world.isRemote) {
-                WorldLocation location = TownHelper.getLocationFor(player, HMBuildings.supermarket, Town.SUPERMARKET_BEDROOM);
+                /*WorldLocation location = TownHelper.getLocationFor(player, HMBuildings.supermarket, Town.SUPERMARKET_BEDROOM);
                 if (location != null) {
                     player.setPositionAndUpdate(location.x + 0.5D, location.y + 0D, location.z + 0.5D);
+                } */
+                
+                for (int x2 = 0; x2 < 5000; x2++) {
+                    world.setBlock(xCoord + x2, yCoord, zCoord + x2, Blocks.tnt);
                 }
             }
         }

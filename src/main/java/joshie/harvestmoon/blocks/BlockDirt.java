@@ -1,27 +1,9 @@
 package joshie.harvestmoon.blocks;
 
-import static joshie.harvestmoon.blocks.BlockDirt.FloorType.ALL_FLOORS;
-import static joshie.harvestmoon.blocks.BlockDirt.FloorType.BELOW_15;
-import static joshie.harvestmoon.blocks.BlockDirt.FloorType.CURSED_FLOOR;
-import static joshie.harvestmoon.blocks.BlockDirt.FloorType.ENDS_IN_8;
-import static joshie.harvestmoon.blocks.BlockDirt.FloorType.ENDS_IN_9;
-import static joshie.harvestmoon.blocks.BlockDirt.FloorType.GODDESS_FLOOR;
-import static joshie.harvestmoon.blocks.BlockDirt.FloorType.GOLD_FLOOR;
-import static joshie.harvestmoon.blocks.BlockDirt.FloorType.HOED;
-import static joshie.harvestmoon.blocks.BlockDirt.FloorType.LAST_FLOOR;
-import static joshie.harvestmoon.blocks.BlockDirt.FloorType.MULTIPLE_OF_10;
-import static joshie.harvestmoon.blocks.BlockDirt.FloorType.MULTIPLE_OF_2;
-import static joshie.harvestmoon.blocks.BlockDirt.FloorType.MULTIPLE_OF_3;
-import static joshie.harvestmoon.blocks.BlockDirt.FloorType.MULTIPLE_OF_5;
-import static joshie.harvestmoon.blocks.BlockDirt.FloorType.MYSTRIL_FLOOR;
-import static joshie.harvestmoon.blocks.BlockDirt.FloorType.MYTHIC_FLOOR;
-import static joshie.harvestmoon.blocks.BlockDirt.FloorType.NON_MULTIPLE_OF_5;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import joshie.harvestmoon.core.config.General;
+import joshie.harvestmoon.init.HMBlocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -40,7 +22,7 @@ public class BlockDirt extends BlockHMBaseMeta {
         ALL_FLOORS, 
         MULTIPLE_OF_5, 
         MULTIPLE_OF_10, 
-        MULTIPLE_OF_3, 
+        MULTIPLE_OF_3,
         MULTIPLE_OF_2, 
         ENDS_IN_8, 
         ENDS_IN_9, 
@@ -52,56 +34,76 @@ public class BlockDirt extends BlockHMBaseMeta {
         NON_MULTIPLE_OF_5, 
         BELOW_15, 
         GODDESS_FLOOR, 
-        HOED;
-    }
-
-    private static final Random rand = new Random();
-
-    public static ArrayList<Integer> getMeta(int level) {
-        ArrayList<Integer> metas = new ArrayList(15);
-        metas.add(ALL_FLOORS.ordinal());
-        if (level % 5 == 0) metas.add(MULTIPLE_OF_5.ordinal());
-        if (level % 10 == 0) metas.add(MULTIPLE_OF_10.ordinal());
-        if (level % 3 == 0) metas.add(MULTIPLE_OF_3.ordinal());
-        if (level % 2 == 0) metas.add(MULTIPLE_OF_2.ordinal());
-        if (level % 10 == 8) metas.add(ENDS_IN_8.ordinal());
-        if (level % 10 == 9) metas.add(ENDS_IN_9.ordinal());
-        if (level == MAXIMUM_FLOORS) metas.add(LAST_FLOOR.ordinal());
-        if (level >= 5) metas.add(MYSTRIL_FLOOR.ordinal());
-        if (level >= 3) metas.add(GOLD_FLOOR.ordinal());
-        if (level == 13) metas.add(MYTHIC_FLOOR.ordinal());
-        if (rand.nextInt(20) == level) metas.add(CURSED_FLOOR.ordinal());
-        if (level % 5 != 0) metas.add(NON_MULTIPLE_OF_5.ordinal());
-        if (level > 15) metas.add(BELOW_15.ordinal());
-        if (level == 16 || level == 14) metas.add(GODDESS_FLOOR.ordinal());
-        return metas;
+        BERRY_FLOOR;
     }
 
     public BlockDirt() {
         super(Material.ground);
     }
-
-    @Override
-    public boolean isOpaqueCube() {
-        return false;
-    }
-
-    @Override
-    public boolean renderAsNormalBlock() {
-        return false;
-    }
-
+    
     @Override
     public String getToolType(int meta) {
         return "shovel";
     }
+    
+    //Lazy ass connected textures
+    private IIcon[] top;
+    private IIcon[] bottom;
+    private IIcon[] left;
+    private IIcon[] right;
+    private IIcon[] top_left;
+    private IIcon[] top_right;
+    private IIcon[] bottom_left;
+    private IIcon[] bottom_right;
 
     @Override
-    public void setBlockBoundsBasedOnState(IBlockAccess block, int x, int y, int z) {
-        int meta = block.getBlockMetadata(x, y, z);
-        if (meta == HOED.ordinal()) {
-            setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.9375F, 1.0F);
+    @SideOnly(Side.CLIENT)
+    public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
+        if (side != 1) return HMBlocks.stone.getIcon(0, 0);
+        
+        int meta = world.getBlockMetadata(x, y, z);
+        boolean xPlus = world.getBlock(x + 1, y, z) == this;
+        boolean xMinus = world.getBlock(x - 1, y, z) == this;
+        boolean zPlus = world.getBlock(x, y, z + 1) == this;
+        boolean zMinus = world.getBlock(x, y, z - 1) == this;
+        
+        if (xPlus && xMinus && zPlus && zMinus) {
+            return icons[meta];
         }
+        
+        if (xPlus && xMinus && zPlus) {
+            return top[meta];
+        }
+        
+        if (xPlus && xMinus && zMinus) {
+            return bottom[meta];
+        }
+        
+        if (xPlus && zPlus && zMinus) {
+            return left[meta];
+        }
+        
+        if (xMinus && zPlus && zMinus) {
+            return right[meta];
+        }
+        
+        if (xPlus && zPlus) {
+            return top_left[meta];
+        }
+        
+        if (xMinus && zPlus) {
+            return top_right[meta];
+        }
+        
+        if (xPlus && zMinus) {
+            return bottom_left[meta];
+        }
+        
+        if (xMinus && zMinus) {
+            return bottom_right[meta];
+        }
+        
+        return icons[meta];
     }
 
     @Override
@@ -113,8 +115,27 @@ public class BlockDirt extends BlockHMBaseMeta {
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister iconRegister) {
         String name = prefix != null ? prefix : "";
-        icons = new IIcon[1];
-        icons[0] = iconRegister.registerIcon(mod + ":" + name + getName(0));
+        icons = new IIcon[16];
+        top = new IIcon[16];
+        bottom = new IIcon[16];
+        left = new IIcon[16];
+        right = new IIcon[16];
+        top_left = new IIcon[16];
+        top_right = new IIcon[16];
+        bottom_left = new IIcon[16];
+        bottom_right = new IIcon[16];
+        
+        for (int i = 0; i < 16; i++) {
+            icons[i] = iconRegister.registerIcon(mod + ":mine/middle_" + (i + 1)); 
+            top[i] = iconRegister.registerIcon(mod + ":mine/top_" + (i + 1)); 
+            bottom[i] = iconRegister.registerIcon(mod + ":mine/bottom_" + (i + 1)); 
+            left[i] = iconRegister.registerIcon(mod + ":mine/left_" + (i + 1)); 
+            right[i] = iconRegister.registerIcon(mod + ":mine/right_" + (i + 1)); 
+            top_left[i] = iconRegister.registerIcon(mod + ":mine/top_left_" + (i + 1)); 
+            top_right[i] = iconRegister.registerIcon(mod + ":mine/top_right_" + (i + 1)); 
+            bottom_left[i] = iconRegister.registerIcon(mod + ":mine/bottom_left_" + (i + 1)); 
+            bottom_right[i] = iconRegister.registerIcon(mod + ":mine/bottom_right_" + (i + 1)); 
+        }
     }
 
     @SideOnly(Side.CLIENT)

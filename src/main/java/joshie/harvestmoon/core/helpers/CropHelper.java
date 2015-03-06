@@ -88,7 +88,7 @@ public class CropHelper {
         return 1 + (int) Math.ceil(meta / 100);
     }
 
-    public static CropTrackerCommon getTracker(World world) {
+    private static CropTrackerCommon getTracker(World world) {
         return world.isRemote ? getClientTracker() : getServerTracker();
     }
 

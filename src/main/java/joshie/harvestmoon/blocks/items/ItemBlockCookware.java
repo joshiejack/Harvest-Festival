@@ -29,12 +29,6 @@ public class ItemBlockCookware extends ItemBlockBase {
                 return "steamer";
             case BlockCookware.FRIDGE_TOP:
                 return "fridge.top";
-            case BlockCookware.BAKING_GLASS:
-                return "baking";
-            case BlockCookware.CHOPPING_BOARD:
-                return "chopping_board";
-            case BlockCookware.MIXING_BOWL:
-                return "mixing_bowl";
             default:
                 return "invalid";
         }

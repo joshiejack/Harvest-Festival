@@ -43,6 +43,7 @@ public class AnimalData implements IData {
 
     private boolean sickCheck; //Whether to check if the animal is sick
     private boolean isSick; //Whether the animal is sick or not
+    private boolean isBaby; //Whether this animal is considered a baby
 
     //Product based stuff
     private int daysPassed; //How many days have passed so far
@@ -61,6 +62,7 @@ public class AnimalData implements IData {
         this.animal = animal;
         this.a_uuid = UUIDHelper.getEntityUUID(animal);
         this.type = AnimalType.getType(animal);
+        this.isBaby = animal.isChild();
     }
 
     /** May return null **/
@@ -186,6 +188,15 @@ public class AnimalData implements IData {
                     daysPregnant = 0;
                     giveBirth();
                 }
+            }
+            
+            //Stage 5 Growth time!
+            if (isBaby) {
+                if (!animal.isChild()) {
+                    isBaby = false;
+                }
+                
+                animal.addGrowth(1200);
             }
 
             return true;
@@ -322,6 +333,7 @@ public class AnimalData implements IData {
         treated = nbt.getBoolean("Treated");
         sickCheck = nbt.getBoolean("CheckIfSick");
         isSick = nbt.getBoolean("IsSick");
+        isBaby = nbt.getBoolean("IsBaby");
         dimension = nbt.getInteger("Dimension");
         if (type == CHICKEN) thrown = nbt.getBoolean("Thrown");
         if (type.getDays() > 0) {
@@ -347,8 +359,10 @@ public class AnimalData implements IData {
         nbt.setByte("DaysNotFed", (byte) daysNotFed);
         nbt.setByte("DaysPassed", (byte) daysPassed);
         nbt.setBoolean("Treated", treated);
-        nbt.setBoolean("IsSick", isSick);
         nbt.setBoolean("CheckIfSick", sickCheck);
+        nbt.setBoolean("IsSick", isSick);
+        nbt.setBoolean("IsBaby", isBaby);
+        
         if (animal != null) {
             nbt.setInteger("Dimension", animal.worldObj.provider.dimensionId);
         }

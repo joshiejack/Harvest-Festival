@@ -59,6 +59,21 @@ public class HMBuildings {
     }
 
     public static void init() {
+        //Mining Frame
+        ChestGenHooks.addItem(LootStrings.MINING_FRAME, new WeightedRandomChestContent(new ItemStack(Items.stone_pickaxe), 1, 1, 20));
+        ChestGenHooks.addItem(LootStrings.MINING_FRAME, new WeightedRandomChestContent(new ItemStack(Items.iron_pickaxe), 1, 1, 5));
+        ChestGenHooks.addItem(LootStrings.MINING_FRAME, new WeightedRandomChestContent(new ItemStack(Items.golden_pickaxe), 1, 1, 3));
+        ChestGenHooks.addItem(LootStrings.MINING_FRAME, new WeightedRandomChestContent(new ItemStack(Blocks.torch), 7, 21, 10));
+        ChestGenHooks.addItem(LootStrings.MINING_FRAME, new WeightedRandomChestContent(new ItemStack(Blocks.tnt), 2, 3, 4));
+        
+        //Mining Chest
+        ChestGenHooks.addItem(LootStrings.MINING_CHEST, new WeightedRandomChestContent(new ItemStack(Blocks.iron_ore), 1, 3, 10));
+        ChestGenHooks.addItem(LootStrings.MINING_CHEST, new WeightedRandomChestContent(new ItemStack(Blocks.diamond_ore), 1, 1, 1));
+        ChestGenHooks.addItem(LootStrings.MINING_CHEST, new WeightedRandomChestContent(new ItemStack(Blocks.gold_ore), 1, 2, 3));
+        ChestGenHooks.addItem(LootStrings.MINING_CHEST, new WeightedRandomChestContent(new ItemStack(Blocks.coal_ore), 2, 7, 10));
+        ChestGenHooks.addItem(LootStrings.MINING_CHEST, new WeightedRandomChestContent(new ItemStack(Blocks.lapis_ore), 1, 3, 5));
+        ChestGenHooks.addItem(LootStrings.MINING_CHEST, new WeightedRandomChestContent(new ItemStack(Blocks.stone), 7, 21, 10));
+        
         //Cafe Frame
         ChestGenHooks.addItem(LootStrings.CAFE_FRAME, new WeightedRandomChestContent(new ItemStack(Items.mushroom_stew), 1, 1, 10));
         ChestGenHooks.addItem(LootStrings.CAFE_FRAME, new WeightedRandomChestContent(new ItemStack(Items.cooked_beef), 1, 3, 15));

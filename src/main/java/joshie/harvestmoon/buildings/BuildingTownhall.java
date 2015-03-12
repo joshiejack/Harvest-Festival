@@ -21,6 +21,7 @@ import joshie.harvestmoon.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceablePainting;
 import joshie.harvestmoon.core.lib.LootStrings;
 import joshie.harvestmoon.init.HMBlocks;
+import joshie.harvestmoon.player.Town;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -755,6 +756,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.fence, 0, 5, 2, 9));
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 2, 10));
         list.add(new PlaceableNPC("jamie", 5, 2, 10));
+        npc_offsets.put(Town.TOWNHALL_STAGE, new PlaceableNPC("", 5, 2, 10));
         list.add(new PlaceableBlock(Blocks.fence, 0, 5, 2, 11));
         list.add(new PlaceableBlock(Blocks.fence, 0, 5, 2, 12));
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 2, 13));
@@ -1652,6 +1654,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.carpet, 1, 5, 5, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 5, 3));
         list.add(new PlaceableNPC("cloe", 5, 5, 3));
+        npc_offsets.put(Town.CLOE_BEDROOM, new PlaceableNPC("", 5, 5, 3));
         list.add(new PlaceableBlock(Blocks.bookshelf, 0, 5, 5, 4));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 0, 5, 5, 5));
         list.add(new PlaceableBlock(Blocks.fence, 0, 5, 5, 6));
@@ -2172,6 +2175,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 3, 7, 16));
         list.add(new PlaceableBlock(Blocks.air, 0, 3, 7, 17));
         list.add(new PlaceableNPC("abi", 3, 7, 17));
+        npc_offsets.put(Town.ABI_BEDROOM, new PlaceableNPC("", 3, 7, 17));
         list.add(new PlaceableBlock(Blocks.air, 0, 3, 7, 18));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 7, 3, 7, 19));
         list.add(new PlaceableBlock(Blocks.glass, 0, 4, 7, 1));

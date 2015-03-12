@@ -17,6 +17,7 @@ import joshie.harvestmoon.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceablePainting;
 import joshie.harvestmoon.core.lib.LootStrings;
 import joshie.harvestmoon.init.HMBlocks;
+import joshie.harvestmoon.player.Town;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -207,6 +208,7 @@ public class BuildingCarpenter extends Building {
         list.add(new PlaceableBlock(Blocks.wooden_slab, 1, 4, 3, 2));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 1, 4, 3, 3));
         list.add(new PlaceableNPC("jade", 4, 3, 3));
+        npc_offsets.put(Town.CARPENTER_UPSTAIRS, new PlaceableNPC("", 4, 3, 3));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 1, 4, 3, 4));
         list.add(new PlaceableLog(Blocks.log, 1, 4, 3, 5));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 7, 4, 3, 6));

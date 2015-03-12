@@ -19,6 +19,7 @@ import joshie.harvestmoon.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceablePainting;
 import joshie.harvestmoon.core.lib.LootStrings;
 import joshie.harvestmoon.init.HMBlocks;
+import joshie.harvestmoon.player.Town;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -395,6 +396,7 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableLadder(Blocks.ladder, 3, 5, 2, 10));
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 2, 11));
         list.add(new PlaceableNPC("katlin", 5, 2, 11));
+        npc_offsets.put(Town.CAFE_KITCHEN, new PlaceableNPC("", 5, 2, 11));
         list.add(new PlaceableBlock(Blocks.cobblestone_wall, 0, 5, 2, 12));
         list.add(new PlaceableLog(Blocks.log, 1, 5, 2, 13));
         list.add(new PlaceableButton(Blocks.wooden_button, 3, 5, 2, 14));
@@ -842,6 +844,7 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 5, 6));
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 5, 7));
         list.add(new PlaceableNPC("liara", 5, 5, 7));
+        npc_offsets.put(Town.CAFE_TILL, new PlaceableNPC("", 5, 5, 7));
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 5, 8));
         list.add(new PlaceableLog(Blocks.log, 1, 5, 5, 9));
         list.add(new PlaceableBlock(Blocks.stained_hardened_clay, 14, 5, 5, 10));

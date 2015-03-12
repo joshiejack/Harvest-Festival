@@ -46,6 +46,7 @@ public class HMIngredients {
 
     public static Ingredient watermelon;
     public static Ingredient wheat;
+    public static Ingredient bread;
 
     public static void init() {
         addFoodCategories();
@@ -90,6 +91,7 @@ public class HMIngredients {
         //Vanilla Crops
         watermelon = new Ingredient("watermelon", 1, -1, 1, 0.05F, 4);
         wheat = new Ingredient("wheat", 6, -3, 1, 0.0275F, 16);
+        bread = new Ingredient("bread", 8, -6, 3, 0.06F, 24);
     }
 
     private static void assignIngredients() {
@@ -123,7 +125,8 @@ public class HMIngredients {
         register(new ItemStack(Items.wheat, 1, OreDictionary.WILDCARD_VALUE), wheat);
         register(new ItemStack(Items.melon, 1, OreDictionary.WILDCARD_VALUE), watermelon);
         register(new ItemStack(Blocks.melon_block, 1, OreDictionary.WILDCARD_VALUE), watermelon);
-
+        register(new ItemStack(Items.bread, 1, OreDictionary.WILDCARD_VALUE), bread);
+        
         register(new ItemStack(HMItems.sized, 1, SizeableMeta.EGG.ordinal()), egg);
         register(new ItemStack(Items.egg, 1, OreDictionary.WILDCARD_VALUE), egg);
         register(new ItemStack(Items.fish, 1, OreDictionary.WILDCARD_VALUE), fish);

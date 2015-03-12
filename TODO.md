@@ -36,15 +36,11 @@
 - [ ] BarnPenFrame, (Lead), [Wheat, Carrot, Lead, Carrot on a Stick ; Animal Brush, Animal Medicine, Animal Food, Animal Treats]
 - [ ] BlacksmithTowerFrame (Iron Sword) [Iron Tools]
 - [ ] BlacksmithTowerChest (Iron Ingot) [Iron Ingot, Coal, Lava Bucket, Leather]
-- [ ] BlacksmithTowerFurnace (Coal) [Coal, Charcoal]
 - [ ] ChurchAltarFrame (Bottle o' Enchanting) [Book, Gold Nugget, Gold Ingot, Bottle o' Enchanting, Regeneration Potion, Glistering Melon]
 - [ ] FishingHutHouseFrame (Raw Salmon) [Fishing Rod (If Mariculture is installed : Reed Fishing Rod), Leather Boots, Potion of Wather Breathing]
 - [ ] FishingHutEntryChest (Fishing Rod) [All Fish Types, If Mariculture is installed : Bait, Cooked Fish]
 - [ ] PoultryFarmCornerFrame (Wheat) [Wheat, Seeds]
 - [ ] PoultryFarmCornerChest (Wheat Seed) [Chicken Treat, Chicken Feed, Eggs]
-- [ ] MiningHutRightWingFrame (Iron Ore) [Mining Tools, Torches]
-- [ ] MiningHutLeftWingChest (Stone) [Stone, Ores]
-- [ ] MiningHutLeftWingFurnace (Charcoal) [Coal, Charcoal]
 
 ## Aesthetics 
 ###Textures

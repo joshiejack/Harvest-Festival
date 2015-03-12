@@ -18,6 +18,7 @@ import joshie.harvestmoon.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceablePainting;
 import joshie.harvestmoon.core.lib.LootStrings;
 import joshie.harvestmoon.init.HMBlocks;
+import joshie.harvestmoon.player.Town;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -144,6 +145,7 @@ public class BuildingClockmaker extends Building {
         list.add(new PlaceableItemFrame(null, 0, 0, 6, 1, 3));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 1, 4));
         list.add(new PlaceableNPC("tiberius", 6, 1, 4));
+        npc_offsets.put(Town.CLOCKMAKER_DOWNSTAIRS, new PlaceableNPC("", 6, 1, 4));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 6, 6, 1, 5));
         list.add(new PlaceableBlock(Blocks.hardened_clay, 0, 6, 1, 6));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 13, 6, 1, 7));
@@ -439,6 +441,7 @@ public class BuildingClockmaker extends Building {
         list.add(new PlaceableIFaceable(HMBlocks.woodmachines, 1, 6, 5, 2, ForgeDirection.SOUTH, LootStrings.CLOCKMAKER_CHEST));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 5, 3));
         list.add(new PlaceableNPC("fenn", 6, 5, 3));
+        npc_offsets.put(Town.CLOCKMAKER_UPSTAIRS, new PlaceableNPC("", 6, 5, 3));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 5, 4));
         list.add(new PlaceableBlock(Blocks.cauldron, 3, 6, 5, 5));
         list.add(new PlaceableBlock(Blocks.hardened_clay, 0, 6, 5, 6));

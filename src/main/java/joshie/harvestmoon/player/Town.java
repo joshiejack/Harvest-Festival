@@ -66,6 +66,15 @@ public class Town implements IData {
 
     public static final String SUPERMARKET_TILL = "jennihome";
     public static final String SUPERMARKET_BEDROOM = "candicehome";
+    public static final String CLOE_BEDROOM = "cloehome";
+    public static final String ABI_BEDROOM = "abihome";
+    public static final String TOWNHALL_STAGE = "jamihome";
+    public static final String CLOCKMAKER_DOWNSTAIRS = "tiberiushome";
+    public static final String CLOCKMAKER_UPSTAIRS = "fennhome";
+    public static final String CARPENTER_UPSTAIRS = "jadehome";
+    public static final String CAFE_KITCHEN = "katlinhome";
+    public static final String CAFE_TILL = "liarahome";
+    public static final String MINING_HUT = "brandonhome";
 
     @Override
     public void readFromNBT(NBTTagCompound nbt) {

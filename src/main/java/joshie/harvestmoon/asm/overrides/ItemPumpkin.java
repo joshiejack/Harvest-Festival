@@ -8,15 +8,20 @@ import joshie.harvestmoon.api.core.IShippable;
 import joshie.harvestmoon.api.crops.ICrop;
 import joshie.harvestmoon.api.crops.ICropProvider;
 import joshie.harvestmoon.core.lib.CreativeSort;
+import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemWheat extends Item implements IRateable, IShippable, ICropProvider, ICreativeSorted {
-    public ItemWheat() {}
-    
+public class ItemPumpkin extends ItemBlock implements IRateable, IShippable, ICropProvider, ICreativeSorted {
+    public ItemPumpkin(Block block) {
+        super(block);
+        setHasSubtypes(true);
+    }
+
     @Override
     public int getSortValue(ItemStack stack) {
         return CreativeSort.CROPS;
@@ -26,22 +31,7 @@ public class ItemWheat extends Item implements IRateable, IShippable, ICropProvi
     public ICrop getCrop(ItemStack stack) {
         return ItemSeedFood.getCrop(stack);
     }
-
-    @Override
-    public ItemWheat setUnlocalizedName(String string) {
-        return (ItemWheat) super.setUnlocalizedName(string);
-    }
-
-    @Override
-    public ItemWheat setCreativeTab(CreativeTabs tab) {
-        return (ItemWheat) super.setCreativeTab(tab);
-    }
-
-    @Override
-    public ItemWheat setTextureName(String name) {
-        return (ItemWheat) super.setTextureName(name);
-    }
-
+    
     @Override
     public long getSellValue(ItemStack stack) {
         return ItemSeedFood.getSellValue(stack);

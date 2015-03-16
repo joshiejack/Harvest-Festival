@@ -2,9 +2,11 @@ package joshie.harvestmoon.items;
 
 import java.util.List;
 
+import joshie.harvestmoon.api.core.ICreativeSorted;
 import joshie.harvestmoon.api.core.ILevelable;
 import joshie.harvestmoon.api.core.ITiered;
 import joshie.harvestmoon.core.config.Tools;
+import joshie.harvestmoon.core.lib.CreativeSort;
 import joshie.harvestmoon.core.util.Translate;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -16,7 +18,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public abstract class ItemBaseTool extends ItemBaseSingle implements ILevelable, ITiered {
+public abstract class ItemBaseTool extends ItemBaseSingle implements ILevelable, ITiered, ICreativeSorted {
     public static enum ToolTier {
         BASIC("WOOD"), COPPER("GOLD"), SILVER("STONE"), GOLD("IRON"), MYSTRIL("DIAMOND"), CURSED, BLESSED, MYTHIC;
 
@@ -39,6 +41,11 @@ public abstract class ItemBaseTool extends ItemBaseSingle implements ILevelable,
     public ItemBaseTool() {
         setMaxDamage(8);
         setMaxStackSize(1);
+    }
+    
+    @Override
+    public int getSortValue(ItemStack stack) {
+        return CreativeSort.TOOLS + getTier(stack).ordinal();
     }
 
     @Override

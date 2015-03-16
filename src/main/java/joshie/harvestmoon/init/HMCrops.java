@@ -25,6 +25,7 @@ import joshie.harvestmoon.crops.icons.IconHandlerTurnip;
 import joshie.harvestmoon.crops.icons.IconHandlerWheat;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 
 public class HMCrops {
     public static ICrop null_crop; //Dummy crop
@@ -79,5 +80,6 @@ public class HMCrops {
         if (HMConfiguration.vanilla.POTATO_OVERRIDE) potato.setItem(Items.potato);
         if (HMConfiguration.vanilla.CARROT_OVERRIDE) carrot.setItem(Items.carrot);
         if (HMConfiguration.vanilla.WHEAT_OVERRIDE) wheat.setItem(Items.wheat);
+        if (HMConfiguration.vanilla.PUMPKIN_OVERRIDE) pumpkin.setItem(Item.getItemFromBlock(Blocks.pumpkin));
     }
 }

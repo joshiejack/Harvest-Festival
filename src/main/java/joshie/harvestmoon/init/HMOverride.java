@@ -7,6 +7,7 @@ import joshie.harvestmoon.asm.transformers.EggTransformer;
 import joshie.harvestmoon.asm.transformers.FarmlandHardnessTransformer;
 import joshie.harvestmoon.asm.transformers.FarmlandTransformer;
 import joshie.harvestmoon.asm.transformers.ITransformer;
+import joshie.harvestmoon.asm.transformers.PumpkinTransformer;
 import joshie.harvestmoon.asm.transformers.SeedFoodTransformer;
 import joshie.harvestmoon.asm.transformers.SnowTransformer;
 import joshie.harvestmoon.asm.transformers.WheatTransformer;
@@ -29,6 +30,7 @@ public class HMOverride implements IClassTransformer {
         transformers.add(new FarmlandHardnessTransformer());
         transformers.add(new SnowTransformer());
         transformers.add(new FarmlandTransformer());
+        transformers.add(new PumpkinTransformer());
         //TODO: Future Plugins
         //transformers.add(new PamTransformer());
 

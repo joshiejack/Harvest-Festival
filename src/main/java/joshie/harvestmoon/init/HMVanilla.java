@@ -4,6 +4,7 @@ import static joshie.harvestmoon.init.HMConfiguration.vanilla;
 import joshie.harvestmoon.core.HMTab;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 
 public class HMVanilla {
     public static void init() {
@@ -18,11 +19,16 @@ public class HMVanilla {
         if (vanilla.CARROT_BLOCK_DISABLE_TICKING) Blocks.carrots.setTickRandomly(false);
         if (vanilla.POTATO_BLOCK_DISABLE_TICKING) Blocks.potatoes.setTickRandomly(false);
         if (vanilla.WHEAT_BLOCK_DISABLE_TICKING) Blocks.wheat.setTickRandomly(false);
+        if (vanilla.PUMPKIN_BLOCK_DISABLE_TICKING) Blocks.pumpkin_stem.setTickRandomly(false);
         if (vanilla.MOVE_OVERRIDE_TAB) {
             if (vanilla.CARROT_OVERRIDE) Items.carrot.setCreativeTab(HMTab.tabGeneral);
             if (vanilla.POTATO_OVERRIDE) Items.potato.setCreativeTab(HMTab.tabGeneral);
             if (vanilla.WHEAT_OVERRIDE) Items.wheat.setCreativeTab(HMTab.tabGeneral);
             if (vanilla.EGG_OVERRIDE) Items.egg.setCreativeTab(HMTab.tabGeneral).setHasSubtypes(true);
+            if (vanilla.PUMPKIN_OVERRIDE) {
+                Blocks.pumpkin.setCreativeTab(HMTab.tabGeneral);
+                Item.getItemFromBlock(Blocks.pumpkin).setHasSubtypes(true);
+            }
         }
     }
 }

@@ -6,10 +6,12 @@ import static joshie.harvestmoon.core.helpers.SizeableHelper.getType;
 
 import java.util.List;
 
+import joshie.harvestmoon.api.core.ICreativeSorted;
 import joshie.harvestmoon.api.core.IRateable;
 import joshie.harvestmoon.api.core.IShippable;
 import joshie.harvestmoon.core.config.General;
 import joshie.harvestmoon.core.helpers.SizeableHelper;
+import joshie.harvestmoon.core.lib.CreativeSort;
 import joshie.harvestmoon.core.lib.SizeableMeta;
 import joshie.harvestmoon.core.lib.SizeableMeta.Size;
 import joshie.harvestmoon.core.util.Translate;
@@ -25,10 +27,15 @@ import org.apache.commons.lang3.StringUtils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemSized extends ItemHMMeta implements IShippable, IRateable {
+public class ItemSized extends ItemHMMeta implements IShippable, IRateable, ICreativeSorted {
     @Override
     public int getMetaCount() {
         return 4; //Only enable the sizeables for 0.5
+    }
+    
+    @Override
+    public int getSortValue(ItemStack stack) {
+        return CreativeSort.SIZEABLE + getType(stack.getItemDamage());
     }
 
     @Override

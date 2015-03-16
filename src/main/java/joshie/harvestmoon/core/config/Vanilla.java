@@ -32,6 +32,12 @@ public class Vanilla {
     @SerializedName("Wheat Block > Disable Ticking")
     public boolean WHEAT_BLOCK_DISABLE_TICKING = true;
     
+    /* Pumpkin Options */
+    @SerializedName("Pumpkin > Enable Override")
+    public boolean PUMPKIN_OVERRIDE = true;
+    @SerializedName("Pumpkin Block > Disable Ticking")
+    public boolean PUMPKIN_BLOCK_DISABLE_TICKING = true;
+    
     /* Harvestcraft Options */
     //TODO: Future Plugins
    //@SerializedName("Harvestcraft > Enable Override")

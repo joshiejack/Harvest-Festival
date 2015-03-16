@@ -4,6 +4,7 @@ import static joshie.harvestmoon.core.helpers.CropHelper.plantCrop;
 
 import java.util.List;
 
+import joshie.harvestmoon.api.core.ICreativeSorted;
 import joshie.harvestmoon.api.core.IRateable;
 import joshie.harvestmoon.api.crops.ICrop;
 import joshie.harvestmoon.calendar.Season;
@@ -11,6 +12,7 @@ import joshie.harvestmoon.core.HMTab;
 import joshie.harvestmoon.core.config.Crops;
 import joshie.harvestmoon.core.helpers.SeasonHelper;
 import joshie.harvestmoon.core.helpers.SeedHelper;
+import joshie.harvestmoon.core.lib.CreativeSort;
 import joshie.harvestmoon.core.lib.HMModInfo;
 import joshie.harvestmoon.crops.Crop;
 import joshie.harvestmoon.init.HMBlocks;
@@ -36,7 +38,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @Optional.Interface(modid = "AgriCraft", iface = "com.InfinityRaider.AgriCraft.farming.ICropOverridingSeed")
-public class ItemSeeds extends net.minecraft.item.ItemSeeds implements IRateable, ICropOverridingSeed {
+public class ItemSeeds extends net.minecraft.item.ItemSeeds implements IRateable, ICropOverridingSeed, ICreativeSorted {
     private IIcon seed_bag_body;
     private IIcon seed_bag_neck;
 
@@ -44,6 +46,11 @@ public class ItemSeeds extends net.minecraft.item.ItemSeeds implements IRateable
         super(HMBlocks.crops, Blocks.farmland);
         setCreativeTab(HMTab.tabGeneral);
         setHasSubtypes(true);
+    }
+    
+    @Override
+    public int getSortValue(ItemStack stack) {
+        return CreativeSort.SEEDS;
     }
 
     @Override

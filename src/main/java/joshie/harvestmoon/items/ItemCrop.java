@@ -4,6 +4,7 @@ import static joshie.harvestmoon.core.lib.HMModInfo.CROPPATH;
 
 import java.util.List;
 
+import joshie.harvestmoon.api.core.ICreativeSorted;
 import joshie.harvestmoon.api.core.IRateable;
 import joshie.harvestmoon.api.core.IShippable;
 import joshie.harvestmoon.api.crops.ICrop;
@@ -12,6 +13,7 @@ import joshie.harvestmoon.core.HMTab;
 import joshie.harvestmoon.core.config.Crops;
 import joshie.harvestmoon.core.config.General;
 import joshie.harvestmoon.core.helpers.CropHelper;
+import joshie.harvestmoon.core.lib.CreativeSort;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -19,7 +21,7 @@ import net.minecraft.util.IIcon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemCrop extends ItemHMMeta implements IShippable, IRateable, ICropProvider {
+public class ItemCrop extends ItemHMMeta implements IShippable, IRateable, ICropProvider, ICreativeSorted {
     private ICrop crop;
 
     public ItemCrop(ICrop crop) {
@@ -31,6 +33,11 @@ public class ItemCrop extends ItemHMMeta implements IShippable, IRateable, ICrop
     @Override
     public int getMetaCount() {
         return 1;
+    }
+
+    @Override
+    public int getSortValue(ItemStack stack) {
+        return CreativeSort.CROPS;
     }
 
     @Override

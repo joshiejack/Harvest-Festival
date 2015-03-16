@@ -6,9 +6,11 @@ import joshie.harvestmoon.api.crops.ICrop;
 import joshie.harvestmoon.core.config.Crops;
 import joshie.harvestmoon.core.config.General;
 import joshie.harvestmoon.core.helpers.CropHelper;
+import joshie.harvestmoon.core.lib.CreativeSort;
 import joshie.harvestmoon.init.HMConfiguration;
 import joshie.harvestmoon.init.HMCrops;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -26,6 +28,8 @@ public class ItemSeedFood {
             crop = HMCrops.potato;
         } else if (item == Items.wheat && HMConfiguration.vanilla.WHEAT_OVERRIDE) {
             crop = HMCrops.wheat;
+        } else if (item == Item.getItemFromBlock(Blocks.pumpkin) && HMConfiguration.vanilla.PUMPKIN_OVERRIDE) {
+            crop = HMCrops.pumpkin;
         }
 
         return crop;
@@ -48,6 +52,10 @@ public class ItemSeedFood {
         ICrop crop = getCrop(stack);
         if (crop == null) return ("" + StatCollector.translateToLocal(stack.getItem().getUnlocalizedNameInefficiently(stack) + ".name")).trim();
         else return crop.getLocalizedName(true);
+    }
+    
+    public static int getSortValue() {
+        return CreativeSort.CROPS;
     }
 
     @SideOnly(Side.CLIENT)

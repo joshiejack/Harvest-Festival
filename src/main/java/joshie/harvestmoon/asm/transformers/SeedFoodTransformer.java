@@ -41,6 +41,7 @@ public class SeedFoodTransformer implements ITransformer {
                 intf.add(HMModInfo.ASMPATH + "api/core/IShippable");
                 intf.add(HMModInfo.ASMPATH + "api/core/IRateable");
                 intf.add(HMModInfo.ASMPATH + "api/crops/ICropProvider");
+                intf.add(HMModInfo.ASMPATH + "api/core/ICreativeSorted");
                 super.visit(version, access, name, signature, superName, intf.toArray(new String[0]));
             }
         };
@@ -81,6 +82,15 @@ public class SeedFoodTransformer implements ITransformer {
         mv.visitMethodInsn(Opcodes.INVOKESTATIC, HMModInfo.ASMPATH + "asm/overrides/ItemSeedFood", name, "(Lnet/minecraft/item/ItemStack;)L" + HMModInfo.ASMPATH + "api/crops/ICrop;", false);
         mv.visitInsn(Opcodes.ARETURN);
         mv.visitMaxs(1, 2);
+        mv.visitEnd();
+        
+        //Creative Sort
+        name = "getSortValue";
+        mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, "(Lnet/minecraft/item/ItemStack;)I", null, null);
+        mv.visitCode();
+        mv.visitMethodInsn(Opcodes.INVOKESTATIC, HMModInfo.ASMPATH + "asm/overrides/ItemSeedFood", name, "()I", false);
+        mv.visitInsn(Opcodes.IRETURN);
+        mv.visitMaxs(1, 1);
         mv.visitEnd();
 
         //Display Name Override

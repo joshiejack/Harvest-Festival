@@ -7,6 +7,7 @@ import java.util.List;
 
 import joshie.harvestmoon.core.config.General;
 import joshie.harvestmoon.core.helpers.SizeableHelper;
+import joshie.harvestmoon.core.lib.CreativeSort;
 import joshie.harvestmoon.core.lib.HMModInfo;
 import joshie.harvestmoon.core.lib.SizeableMeta;
 import joshie.harvestmoon.core.lib.SizeableMeta.Size;
@@ -32,6 +33,10 @@ public class ItemEgg {
     
     public static int getRating(ItemStack stack) {
         return SizeableHelper.getQuality(stack.getItemDamage()) / 10;
+    }
+    
+    public static int getSortValue() {
+        return CreativeSort.SIZEABLE;
     }
     
     public static String getItemStackDisplayName(ItemStack stack) {

@@ -9,10 +9,12 @@ import static joshie.harvestmoon.core.lib.HMModInfo.VERSION;
 import java.io.File;
 import java.util.Map;
 
+import joshie.harvestmoon.api.HMApi;
 import joshie.harvestmoon.core.HMCommonProxy;
-import joshie.harvestmoon.init.HMCommands;
 import joshie.harvestmoon.init.HMOverride;
 import joshie.harvestmoon.init.HMRecipeFixes;
+import net.minecraft.command.ICommandManager;
+import net.minecraft.command.ServerCommandManager;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -62,7 +64,10 @@ public class HarvestMoon implements IFMLLoadingPlugin {
 
     @EventHandler
     public void onServerStarting(FMLServerStartingEvent event) {
-        HMCommands.init(event.getServer().getCommandManager());
+        ICommandManager manager = event.getServer().getCommandManager();
+        if (manager instanceof ServerCommandManager) {
+            ((ServerCommandManager) manager).registerCommand(HMApi.COMMANDS);
+        }
     }
 
     @Override

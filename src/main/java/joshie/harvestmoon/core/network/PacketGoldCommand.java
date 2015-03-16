@@ -34,7 +34,7 @@ public class PacketGoldCommand implements IMessage, IMessageHandler<PacketGoldCo
     public IMessage onMessage(PacketGoldCommand message, MessageContext ctx) {
         EntityPlayerMP player = ctx.getServerHandler().playerEntity;
         if (message.set) {
-            PlayerHelper.setGold(player, gold);
+            PlayerHelper.setGold(player, message.gold);
         } else PlayerHelper.adjustGold(player, message.gold);
 
         return null;

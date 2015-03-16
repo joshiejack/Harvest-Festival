@@ -10,6 +10,7 @@ public class HMModInfo {
     public static final String CAPNAME = "HM";
     public static final String BLOCKSNAME = "HMBlocks";
     public static final String ASMPATH = "joshie/harvestmoon/";
+    public static final String COMMANDNAME = "hm";
     
     public static final String CROPPATH = "hm:crops/";
     public static final String MEALPATH = "hm:meals/";

@@ -3,6 +3,9 @@ hm.tab.main=Harvest Moon
 hm.mode.true=Harvest Moon was set to easy mode!
 hm.mode.false=Harvest Moon was set to hard mode!
 
+#Commands
+hm.commands.help.header=--- Showing hm help page %d of %d (/hm help <page>) ---
+
 #Buildings
 hm.structures.barn=Animal Ranch
 hm.structures.blacksmith=Blacksmith

@@ -1,24 +1,22 @@
 package joshie.harvestmoon.init;
 
-import joshie.harvestmoon.core.commands.CommandDay;
-import joshie.harvestmoon.core.commands.CommandFreeze;
-import joshie.harvestmoon.core.commands.CommandGold;
-import joshie.harvestmoon.core.commands.CommandNewDay;
-import joshie.harvestmoon.core.commands.CommandSeason;
-import joshie.harvestmoon.core.commands.CommandYear;
-import net.minecraft.command.ICommandManager;
-import net.minecraft.command.ServerCommandManager;
+import joshie.harvestmoon.api.HMApi;
+import joshie.harvestmoon.core.commands.HMCommandDay;
+import joshie.harvestmoon.core.commands.HMCommandGold;
+import joshie.harvestmoon.core.commands.HMCommandHelp;
+import joshie.harvestmoon.core.commands.HMCommandNewDay;
+import joshie.harvestmoon.core.commands.HMCommandSeason;
+import joshie.harvestmoon.core.commands.HMCommandYear;
+import net.minecraftforge.common.MinecraftForge;
 
-public class HMCommands {
-    public static void init(ICommandManager iCommand) {
-        if(iCommand instanceof ServerCommandManager) {
-            ServerCommandManager manager = ((ServerCommandManager)iCommand);
-            manager.registerCommand(new CommandDay());
-            manager.registerCommand(new CommandSeason());
-            manager.registerCommand(new CommandYear());
-            manager.registerCommand(new CommandGold());
-            manager.registerCommand(new CommandFreeze());
-            manager.registerCommand(new CommandNewDay());
-        }
+public class HMCommands {    
+    public static void preInit() {
+        MinecraftForge.EVENT_BUS.register(HMApi.COMMANDS);
+        HMApi.COMMANDS.registerCommand(new HMCommandHelp());
+        HMApi.COMMANDS.registerCommand(new HMCommandGold());
+        HMApi.COMMANDS.registerCommand(new HMCommandSeason());
+        HMApi.COMMANDS.registerCommand(new HMCommandDay());
+        HMApi.COMMANDS.registerCommand(new HMCommandYear());
+        HMApi.COMMANDS.registerCommand(new HMCommandNewDay());
     }
 }

@@ -5,6 +5,7 @@ import joshie.harvestmoon.core.util.WorldDestroyer;
 import joshie.harvestmoon.init.HMAnimals;
 import joshie.harvestmoon.init.HMBlocks;
 import joshie.harvestmoon.init.HMBuildings;
+import joshie.harvestmoon.init.HMCommands;
 import joshie.harvestmoon.init.HMConfiguration;
 import joshie.harvestmoon.init.HMCooking;
 import joshie.harvestmoon.init.HMCrops;
@@ -41,6 +42,7 @@ public class HMCommonProxy {
         HMGifts.init();
         HMAnimals.preInit();
         HMTab.init();
+        HMCommands.preInit();
     }
 
     public void init() {

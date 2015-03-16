@@ -64,7 +64,7 @@ public interface ICrop {
     public ISeason[] getSeasons();
     
     /** Returns the render handler this crop uses **/
-    public ICropRenderHandler getCropHandler();
+    public ICropRenderHandler getCropRenderHandler();
     
     /** Return the soil handler for this crop **/
     public ISoilHandler getSoilHandler();
@@ -135,4 +135,7 @@ public interface ICrop {
     
     /** Sets the stage at which this crop becomes double tall **/
     public ICrop setBecomesDouble(int doubleStage);
+    
+    /** Associates this crop with this drop handler **/
+    public ICrop setDropHandler(IDropHandler handler);
 }

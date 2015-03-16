@@ -291,7 +291,7 @@ public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
     @Override
     public void registerBlockIcons(IIconRegister register) {
         for (ICrop crop : Crop.crops) {
-            crop.getCropHandler().registerIcons(register);
+            crop.getCropRenderHandler().registerIcons(register);
         }
     }
 

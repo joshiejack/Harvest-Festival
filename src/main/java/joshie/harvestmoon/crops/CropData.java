@@ -169,7 +169,7 @@ public class CropData implements ICropData {
 
     @Override
     public IIcon getCropIcon(PlantSection section) {
-        return getCrop().getCropHandler().getIconForStage(section, getStage());
+        return getCrop().getCropRenderHandler().getIconForStage(section, getStage());
     }
 
     public boolean canGrow() {

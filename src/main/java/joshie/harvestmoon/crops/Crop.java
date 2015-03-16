@@ -1,10 +1,12 @@
 package joshie.harvestmoon.crops;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import joshie.harvestmoon.api.AnimalFoodType;
 import joshie.harvestmoon.api.crops.ICrop;
 import joshie.harvestmoon.api.crops.ICropRenderHandler;
+import joshie.harvestmoon.api.crops.IDropHandler;
 import joshie.harvestmoon.api.crops.ISoilHandler;
 import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.core.helpers.SeedHelper;
@@ -23,6 +25,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class Crop implements ICrop {
     public static final ArrayList<ICrop> crops = new ArrayList(30);
+    private static final Random rand = new Random();
 
     //CropData
     @SideOnly(Side.CLIENT)
@@ -31,6 +34,7 @@ public class Crop implements ICrop {
     protected String unlocalized;
 
     protected ISoilHandler soilHandler;
+    protected IDropHandler dropHandler;
     protected boolean needsWatering;
     protected boolean alternativeName;
     protected boolean isStatic;
@@ -78,6 +82,7 @@ public class Crop implements ICrop {
         this.soilHandler = SoilHandlers.farmland;
         this.needsWatering = true;
         this.doubleStage = Integer.MAX_VALUE;
+        this.dropHandler = null;
         HMConfiguration.mappings.addCrop(this);
         crops.add(this);
     }
@@ -138,6 +143,12 @@ public class Crop implements ICrop {
     @Override
     public ICrop setBecomesDouble(int doubleStage) {
         this.doubleStage = doubleStage;
+        return this;
+    }
+
+    @Override
+    public ICrop setDropHandler(IDropHandler handler) {
+        this.dropHandler = handler;
         return this;
     }
 
@@ -253,6 +264,11 @@ public class Crop implements ICrop {
     }
 
     public ItemStack getCropStackForQuality(int quality) {
+        if (dropHandler != null) {
+            ItemStack ret = dropHandler.getDrop(rand, item, quality);
+            if (ret != null) return ret;
+        }
+        
         return new ItemStack(item, 1, quality);
     }
 
@@ -267,7 +283,7 @@ public class Crop implements ICrop {
     }
 
     @Override
-    public ICropRenderHandler getCropHandler() {
+    public ICropRenderHandler getCropRenderHandler() {
         return iconHandler;
     }
 

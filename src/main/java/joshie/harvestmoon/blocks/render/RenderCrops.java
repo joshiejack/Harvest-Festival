@@ -22,7 +22,7 @@ public class RenderCrops implements ISimpleBlockRenderingHandler {
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
         if (block == HMBlocks.crops) {
             ICropData crop = HMApi.CROPS.getCropAtLocation(MCClientHelper.getWorld(), x, y, z);
-            if (crop.getCrop().getCropHandler().doCustomRender(renderer, world, x, y, z, block)) {
+            if (crop.getCrop().getCropRenderHandler().doCustomRender(renderer, world, x, y, z, block)) {
                 return true;
             }
             

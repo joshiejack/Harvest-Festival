@@ -151,7 +151,7 @@ public class HMAgricraftOverride extends CropOverride {
         ICropData data = CropHelper.getCropAtLocation(world, x, y, z);
         if (data == null) return net.minecraft.init.Blocks.obsidian.getIcon(0, 0);
         else {
-            return data.getCrop().getCropHandler().getIconForStage(BlockCrop.getSection(world, x, y, z), data.getStage());
+            return data.getCrop().getCropRenderHandler().getIconForStage(BlockCrop.getSection(world, x, y, z), data.getStage());
         }
     }
 

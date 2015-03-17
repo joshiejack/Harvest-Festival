@@ -25,6 +25,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
 import cpw.mods.fml.common.network.ByteBufUtils;
 
@@ -141,6 +142,34 @@ public class CropData implements ICropData {
         if (crop.isDouble(stage)) {
             DimensionManager.getWorld(location.dimension).setBlock(location.x, location.y + 1, location.z, HMBlocks.crops, BlockCrop.FRESH_DOUBLE, 2);
         }
+        
+        //If the crop grows a block to the side
+        if (crop.growsToSide() != null) {
+            if (stage == crop.getStages()) {
+                if (!attemptToGrowToSide()) {
+                    stage--; //If we failed to grow, decrease the growth stage
+                }
+            }
+        }
+    }
+    
+    private boolean attemptToGrowToSide() {
+        World world = DimensionManager.getWorld(location.dimension);
+        int x = location.x;
+        int y = location.y;
+        int z = location.z;
+        
+        if (world.getBlock(x + 1, y, z).isAir(world, x + 1, y, z)) { //If it's air, then let's grow some shit
+            return world.setBlock(x + 1, y, z, crop.growsToSide(), 0, 2); //0 = x-
+        } else if (world.getBlock(x, y, z - 1).isAir(world, x, y, z - 1)) {
+            return world.setBlock(x, y, z - 1, crop.growsToSide(), 1, 2); //1 = z+
+        } else if (world.getBlock(x, y, z + 1).isAir(world, x, y, z + 1)) {
+            return world.setBlock(x, y, z + 1, crop.growsToSide(), 2, 2); //2 = z-
+        } else if (world.getBlock(x - 1, y, z).isAir(world, x - 1, y, z)) {
+            return world.setBlock(x - 1, y, z, crop.growsToSide(), 2, 2); //3 = x-
+        }
+        
+        return false;
     }
 
     public String getName() {

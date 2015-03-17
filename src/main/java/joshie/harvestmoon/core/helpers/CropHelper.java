@@ -60,7 +60,7 @@ public class CropHelper {
     }
 
     //Set some crop data at this location
-    public static boolean plantCrop(EntityPlayer player, World world, int x, int y, int z, Crop crop, int quality) {
+    public static boolean plantCrop(EntityPlayer player, World world, int x, int y, int z, ICrop crop, int quality) {
         return plantCrop(player, world, x, y, z, crop, quality, 1);
     }
 

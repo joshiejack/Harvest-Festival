@@ -2,6 +2,7 @@ package joshie.harvestmoon.api.crops;
 
 import joshie.harvestmoon.api.AnimalFoodType;
 import joshie.harvestmoon.api.Calendar.ISeason;
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -89,6 +90,10 @@ public interface ICrop {
     /** Whether the crop is double tall at this stage **/
     public boolean isDouble(int stage);
 
+    /** Whether this crop grows to the side when it is fully grown
+     *  Pumpkins and Melons. Returns the block that grows, otherwise returns null */
+    public Block growsToSide();
+
     /** Returns true when the itemstack matches this crop
      * 
      * @param       the itemstack
@@ -138,4 +143,7 @@ public interface ICrop {
     
     /** Associates this crop with this drop handler **/
     public ICrop setDropHandler(IDropHandler handler);
+    
+    /** Sets that this crop grows to the side (pumpkins and melons) **/
+    public ICrop setGrowsToSide(Block block);
 }

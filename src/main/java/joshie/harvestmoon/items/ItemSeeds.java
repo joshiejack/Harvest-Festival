@@ -47,7 +47,7 @@ public class ItemSeeds extends net.minecraft.item.ItemSeeds implements IRateable
         setCreativeTab(HMTab.tabGeneral);
         setHasSubtypes(true);
     }
-    
+
     @Override
     public int getSortValue(ItemStack stack) {
         return CreativeSort.SEEDS;
@@ -101,7 +101,10 @@ public class ItemSeeds extends net.minecraft.item.ItemSeeds implements IRateable
             } else {
                 labelTop: for (int x = xCoord - 1; x <= xCoord + 1; x++) {
                     for (int z = zCoord - 1; z <= zCoord + 1; z++) {
-                        planted = plantSeedAt(player, stack, world, x, yCoord, z, side, crop, quality, planted);
+                        if (crop.growsToSide() == null || !((x == xCoord && z == zCoord))) {
+                            planted = plantSeedAt(player, stack, world, x, yCoord, z, side, crop, quality, planted);
+                        }
+                        
                         if (planted < 0) {
                             if (Crops.ALWAYS_GROW) {
                                 planted = 2;

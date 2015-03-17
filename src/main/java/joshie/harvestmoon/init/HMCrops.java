@@ -6,7 +6,9 @@ import static joshie.harvestmoon.calendar.Season.SUMMER;
 import joshie.harvestmoon.api.HMApi;
 import joshie.harvestmoon.api.crops.ICrop;
 import joshie.harvestmoon.crops.CropNull;
+import joshie.harvestmoon.crops.DropMelon;
 import joshie.harvestmoon.crops.DropPotato;
+import joshie.harvestmoon.crops.icons.IconHandlerBlock;
 import joshie.harvestmoon.crops.icons.IconHandlerCabbage;
 import joshie.harvestmoon.crops.icons.IconHandlerCorn;
 import joshie.harvestmoon.crops.icons.IconHandlerCucumber;
@@ -16,7 +18,6 @@ import joshie.harvestmoon.crops.icons.IconHandlerGreenPepper;
 import joshie.harvestmoon.crops.icons.IconHandlerNull;
 import joshie.harvestmoon.crops.icons.IconHandlerOnion;
 import joshie.harvestmoon.crops.icons.IconHandlerPineapple;
-import joshie.harvestmoon.crops.icons.IconHandlerPumpkin;
 import joshie.harvestmoon.crops.icons.IconHandlerSeedFood;
 import joshie.harvestmoon.crops.icons.IconHandlerSpinach;
 import joshie.harvestmoon.crops.icons.IconHandlerStrawberry;
@@ -48,6 +49,7 @@ public class HMCrops {
     public static ICrop green_pepper;
     public static ICrop grass;
     public static ICrop wheat;
+    public static ICrop watermelon;
 
     //TODO: Add Vanilla Melon
 
@@ -65,7 +67,7 @@ public class HMCrops {
         tomato = HMApi.CROPS.registerCrop("tomato", 200, 60, 10, 7, 0, 0xF23B0C, SUMMER).setCropIconHandler(new IconHandlerTomato());
         onion = HMApi.CROPS.registerCrop("onion", 150, 80, 8, 0, 0, 0xF3B073, SUMMER).setCropIconHandler(new IconHandlerOnion());
         corn = HMApi.CROPS.registerCrop("corn", 300, 100, 15, 12, 0, 0xF8E048, SUMMER).setCropIconHandler(new IconHandlerCorn());
-        pumpkin = HMApi.CROPS.registerCrop("pumpkin", 500, 250, 15, 0, 3, 0x54971E, SUMMER).setCropIconHandler(new IconHandlerPumpkin());
+        pumpkin = HMApi.CROPS.registerCrop("pumpkin", 500, 125, 15, 0, 3, 0x54971E, SUMMER).setGrowsToSide(Blocks.pumpkin).setCropIconHandler(new IconHandlerBlock(Blocks.pumpkin));
         pineapple = HMApi.CROPS.registerCrop("pineapple", 1000, 500, 21, 5, 8, 0xEECD33, SUMMER).setCropIconHandler(new IconHandlerPineapple());
 
         //Autumn Crops
@@ -78,9 +80,11 @@ public class HMCrops {
         //All Seasons
         grass = HMApi.CROPS.registerCrop("grass", 500, 0, 11, 0, 0, 0x006633, SPRING, SUMMER, AUTUMN).setBecomesDouble(6).setIsStatic().setHasAlternativeName().setRequiresSickle().setCropIconHandler(new IconHandlerGrass());
         wheat = HMApi.CROPS.registerCrop("wheat", 150, 100, 28, 0, 0, 0x8C8C00, SPRING, SUMMER, AUTUMN).setRequiresSickle().setCropIconHandler(new IconHandlerWheat());
+        watermelon = HMApi.CROPS.registerCrop("watermelon", 250, 25, 11, 0, 3, 0xFF73FF, SUMMER).setDropHandler(new DropMelon()).setGrowsToSide(Blocks.melon_block).setCropIconHandler(new IconHandlerBlock(Blocks.melon_block));
         if (HMConfiguration.vanilla.POTATO_OVERRIDE) potato.setItem(Items.potato);
         if (HMConfiguration.vanilla.CARROT_OVERRIDE) carrot.setItem(Items.carrot);
         if (HMConfiguration.vanilla.WHEAT_OVERRIDE) wheat.setItem(Items.wheat);
         if (HMConfiguration.vanilla.PUMPKIN_OVERRIDE) pumpkin.setItem(Item.getItemFromBlock(Blocks.pumpkin));
+        if (HMConfiguration.vanilla.WATERMELON_OVERRIDE) watermelon.setItem(Items.melon);
     }
 }

@@ -54,7 +54,7 @@ public class PlayerHelper {
         } else {
             //If the players fatigue > 255, Make them faint
             if (!player.worldObj.isRemote) {
-                MinecraftServer.getServer().getConfigurationManager().respawnPlayer((EntityPlayerMP) player, player.worldObj.provider.dimensionId, true);
+               // MinecraftServer.getServer().getConfigurationManager().respawnPlayer((EntityPlayerMP) player, player.worldObj.provider.dimensionId, true);
             }
 
             player.addPotionEffect(new PotionEffect(Potion.blindness.id, 500, 1, true));

@@ -38,6 +38,12 @@ public class Vanilla {
     @SerializedName("Pumpkin Block > Disable Ticking")
     public boolean PUMPKIN_BLOCK_DISABLE_TICKING = true;
     
+    /* Watermelon Options */
+    @SerializedName("Watermelon > Enable Override")
+    public boolean WATERMELON_OVERRIDE = true;
+    @SerializedName("Watermelon Block > Disable Ticking")
+    public boolean WATERMELON_BLOCK_DISABLE_TICKING = true;
+    
     /* Harvestcraft Options */
     //TODO: Future Plugins
    //@SerializedName("Harvestcraft > Enable Override")

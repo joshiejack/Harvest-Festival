@@ -48,7 +48,7 @@ public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
         setBlockUnbreakable();
         setStepSound(Block.soundTypeGrass);
         setCreativeTab(null);
-        setBlockBounds(0F, 0F, 0F, 1F, 0.25F, 1F);
+        setBlockBounds(0F, 0F, 0F, 1F, 0.5F, 1F);
         setTickRandomly(Crops.ALWAYS_GROW);
         disableStats();
     }
@@ -72,7 +72,7 @@ public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
     public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {
         if (world.getBlock(x, y + 1, z) == this) {
             setBlockBounds(0F, 0F, 0F, 1F, 1F, 1F);
-        } else setBlockBounds(0F, 0F, 0F, 1F, 0.25F, 1F);
+        } else setBlockBounds(0F, 0F, 0F, 1F, 0.5F, 1F);
     }
 
     //Only called if crops are set to tick randomly
@@ -152,7 +152,13 @@ public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
     public float getPlayerRelativeBlockHardness(EntityPlayer player, World world, int x, int y, int z) {
         int meta = world.getBlockMetadata(x, y, z);
         ItemStack held = player.getCurrentEquippedItem();
-        if (held == null || (!(held.getItem() instanceof IBreakCrops))) return meta == WITHERED ? 0 : 0.75F;
+        ICropData crop = HMApi.CROPS.getCropAtLocation(world, x, y, z); 
+        if(crop.getCrop().growsToSide() != null && crop.getStage() == crop.getCrop().getStages()) {
+            return 0F; //If the crop is fully grown, and grows to the side. Make it immune to destruction.
+        }
+        
+        //If this crop is withered return 0
+        if (held == null || (!(held.getItem() instanceof IBreakCrops))) return meta == WITHERED? 0 : 0.75F;
         return ((IBreakCrops) held.getItem()).getStrengthVSCrops(player, world, x, y, z, held);
     }
 
@@ -212,7 +218,7 @@ public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
         else {
             PlantSection section = getSection(world, x, y, z);
             ICropData data = HMApi.CROPS.getCropAtLocation(world, x, y, z);
-            if (data == null || data.getCrop().requiresSickle()) {
+            if (data == null || data.getCrop().requiresSickle() || data.getCrop().growsToSide() != null) {
                 return false;
             } else {
                 if (section == PlantSection.BOTTOM) {

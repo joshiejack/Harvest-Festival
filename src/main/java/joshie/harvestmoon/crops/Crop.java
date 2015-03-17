@@ -13,6 +13,7 @@ import joshie.harvestmoon.core.helpers.SeedHelper;
 import joshie.harvestmoon.core.util.Translate;
 import joshie.harvestmoon.crops.icons.IconHandlerDefault;
 import joshie.harvestmoon.init.HMConfiguration;
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -35,6 +36,7 @@ public class Crop implements ICrop {
 
     protected ISoilHandler soilHandler;
     protected IDropHandler dropHandler;
+    protected Block growsToSide;
     protected boolean needsWatering;
     protected boolean alternativeName;
     protected boolean isStatic;
@@ -83,6 +85,7 @@ public class Crop implements ICrop {
         this.needsWatering = true;
         this.doubleStage = Integer.MAX_VALUE;
         this.dropHandler = null;
+        this.growsToSide = null;
         HMConfiguration.mappings.addCrop(this);
         crops.add(this);
     }
@@ -151,6 +154,13 @@ public class Crop implements ICrop {
         this.dropHandler = handler;
         return this;
     }
+    
+    @Override
+    public ICrop setGrowsToSide(Block block) {
+        this.growsToSide = block;
+        return this;
+    }
+
 
     /** Return true if this crop uses an item other than HMCrop item **/
     public boolean hasItemAssigned() {
@@ -239,6 +249,11 @@ public class Crop implements ICrop {
     @Override
     public boolean isDouble(int stage) {
         return stage == doubleStage;
+    }
+
+    @Override
+    public Block growsToSide() {
+        return growsToSide;
     }
 
     @Override

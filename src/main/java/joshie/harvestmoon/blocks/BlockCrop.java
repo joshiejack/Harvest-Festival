@@ -69,10 +69,10 @@ public class BlockCrop extends BlockHMBase implements IPlantable, IGrowable {
     }
 
     @Override
-    public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {
-        if (world.getBlock(x, y + 1, z) == this) {
-            setBlockBounds(0F, 0F, 0F, 1F, 1F, 1F);
-        } else setBlockBounds(0F, 0F, 0F, 1F, 0.5F, 1F);
+    public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {        
+        PlantSection section = getSection(world, x, y, z);
+        ICropData data = HMApi.CROPS.getCropAtLocation(MCClientHelper.getWorld(), x, y, z);
+        data.getCrop().getCropRenderHandler().setBlockBoundsBasedOnStage(this, section, data.getCrop(), data.getStage());
     }
 
     //Only called if crops are set to tick randomly

@@ -1,8 +1,8 @@
 package joshie.harvestmoon.crops.icons;
 
 import joshie.harvestmoon.api.HMApi;
+import joshie.harvestmoon.api.crops.ICrop;
 import joshie.harvestmoon.core.helpers.generic.MCClientHelper;
-import joshie.harvestmoon.init.HMBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStem;
 import net.minecraft.client.renderer.EntityRenderer;
@@ -44,11 +44,11 @@ public class IconHandlerBlock extends AbstractIconHandler {
 
         int meta = getMetaDataFromStage(stage);
         tessellator.setColorOpaque_F(f, f1, f2);
-        double maxY = (double)((float)(meta * 2 + 2) / 16.0F);
-        float f3 = 0.125F;
-        block.setBlockBounds(0.5F - f3, 0.0F, 0.5F - f3, 0.5F + f3, (float)maxY, 0.5F + f);
+        //double maxY = (double)((float)(meta * 2 + 2) / 16.0F);
+        //float f3 = 0.125F;
+        //block.setBlockBounds(0.5F - f3, 0.0F, 0.5F - f3, 0.5F + f3, (float)maxY, 0.5F + f);
         renderer.setRenderBoundsFromBlock(block);
-        
+
         int stemState = -1;
         if (stage == 15) {
             if (world.getBlock(x - 1, y, z) == this.block) {
@@ -61,7 +61,7 @@ public class IconHandlerBlock extends AbstractIconHandler {
                 stemState = 3;
             }
         }
-                
+
         if (stemState < 0) {
             renderer.renderBlockStemSmall(blockstem, meta, renderer.renderMaxY, (double) x, (double) ((float) y - 0.0625F), (double) z);
         } else {
@@ -88,6 +88,13 @@ public class IconHandlerBlock extends AbstractIconHandler {
         } else {
             return 6;
         }
+    }
+
+    @Override
+    public void setBlockBoundsBasedOnStage(Block block, PlantSection section, ICrop crop, int stage) {
+        double maxY = (double) ((float) (getMetaDataFromStage(stage) * 2 + 2) / 16.0F);
+        float f = 0.125F;
+        block.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, (float) maxY, 0.5F + f);
     }
 
     @SideOnly(Side.CLIENT)

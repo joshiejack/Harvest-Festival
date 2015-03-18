@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import joshie.harvestmoon.api.HMApi;
 import joshie.harvestmoon.api.crops.ICropData;
 import joshie.harvestmoon.core.helpers.CropHelper;
+import joshie.harvestmoon.init.HMCrops;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
@@ -25,6 +26,11 @@ public class CropEvents {
                 crop = HMApi.CROPS.getCropAtLocation(event.world, event.x, event.y, event.z - 1);
             } else if (event.blockMetadata == 3) {
                 crop = HMApi.CROPS.getCropAtLocation(event.world, event.x + 1, event.y, event.z);
+            }
+            
+            if (crop == null || crop.getCrop() == HMCrops.null_crop) { //If the crop failed to find, grab the pumpkin itself
+                crop = HMApi.CROPS.getCropAtLocation(event.world, event.x, event.y, event.z);
+                System.out.println("HUH?");
             }
                         
             if (crop != null) {

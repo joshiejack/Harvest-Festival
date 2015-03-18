@@ -130,6 +130,7 @@ public class CropTrackerServer extends CropTrackerCommon implements IData {
         data.setCrop(player, crop, quality, stage);
 
         crops.put(data.getLocation(), data);
+        System.out.println("planted" + data.getCrop().getLocalizedName(true));
         sendToEveryone(new PacketSyncCrop(data.getLocation(), data));
         markDirty();
         return true;

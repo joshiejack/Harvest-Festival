@@ -30,7 +30,6 @@ public class CropEvents {
             
             if (crop == null || crop.getCrop() == HMCrops.null_crop) { //If the crop failed to find, grab the pumpkin itself
                 crop = HMApi.CROPS.getCropAtLocation(event.world, event.x, event.y, event.z);
-                System.out.println("HUH?");
             }
                         
             if (crop != null) {

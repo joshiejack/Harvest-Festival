@@ -60,7 +60,6 @@ public class ItemPumpkin extends ItemBlock implements IRateable, IShippable, ICr
         if (world.getBlock(x, y, z) == field_150939_a) {
             field_150939_a.onBlockPlacedBy(world, x, y, z, player, stack);
             field_150939_a.onPostBlockPlaced(world, x, y, z, metadata);
-            System.out.println("I PLACE");
             CropHelper.plantCrop(player, world, x, y, z, HMCrops.pumpkin, 1 - CropHelper.getCropQualityFromDamage(stack.getItemDamage()));
         }
 

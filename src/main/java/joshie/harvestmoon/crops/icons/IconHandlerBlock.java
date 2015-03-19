@@ -50,7 +50,7 @@ public class IconHandlerBlock extends AbstractIconHandler {
         renderer.setRenderBoundsFromBlock(block);
 
         int stemState = -1;
-        if (stage == 15) {
+        if ((this.block == Blocks.pumpkin && stage == 15) || (this.block == Blocks.melon_block && stage == 11)) {
             if (world.getBlock(x - 1, y, z) == this.block) {
                 stemState = 0;
             } else if (world.getBlock(x + 1, y, z) == this.block) {

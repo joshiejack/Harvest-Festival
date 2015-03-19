@@ -47,7 +47,7 @@ public class IconHandlerGrass extends AbstractIconHandler {
             f2 = f5;
         }
 
-        //tessellator.setColorOpaque_F(f, f1, f2);
+        tessellator.setColorOpaque_F(f, f1, f2);
         double d1 = (double) x;
         double d2 = (double) y;
         double d0 = (double) z;

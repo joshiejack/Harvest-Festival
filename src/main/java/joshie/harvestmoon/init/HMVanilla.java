@@ -22,18 +22,14 @@ public class HMVanilla {
         if (vanilla.PUMPKIN_BLOCK_DISABLE_TICKING) Blocks.pumpkin_stem.setTickRandomly(false);
         if (vanilla.WATERMELON_BLOCK_DISABLE_TICKING) Blocks.melon_stem.setTickRandomly(false);
         if (vanilla.MOVE_OVERRIDE_TAB) {
-            if (vanilla.CARROT_OVERRIDE) Items.carrot.setCreativeTab(HMTab.tabGeneral);
-            if (vanilla.POTATO_OVERRIDE) Items.potato.setCreativeTab(HMTab.tabGeneral);
-            if (vanilla.WHEAT_OVERRIDE) Items.wheat.setCreativeTab(HMTab.tabGeneral);
+            if (vanilla.CARROT_OVERRIDE) Items.carrot.setCreativeTab(HMTab.tabGeneral).setHasSubtypes(true);
+            if (vanilla.POTATO_OVERRIDE) Items.potato.setCreativeTab(HMTab.tabGeneral).setHasSubtypes(true);
+            if (vanilla.WHEAT_OVERRIDE) Items.wheat.setCreativeTab(HMTab.tabGeneral).setHasSubtypes(true);
+            if (vanilla.WATERMELON_OVERRIDE) Items.melon.setCreativeTab(HMTab.tabGeneral).setHasSubtypes(true);
             if (vanilla.EGG_OVERRIDE) Items.egg.setCreativeTab(HMTab.tabGeneral).setHasSubtypes(true);
             if (vanilla.PUMPKIN_OVERRIDE) {
                 Blocks.pumpkin.setCreativeTab(HMTab.tabGeneral);
                 Item.getItemFromBlock(Blocks.pumpkin).setHasSubtypes(true);
-            }
-            
-            if (vanilla.WATERMELON_OVERRIDE) {
-                Items.melon.setCreativeTab(HMTab.tabGeneral);
-                Items.melon.setHasSubtypes(true);
             }
         }
     }

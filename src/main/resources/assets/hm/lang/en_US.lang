@@ -29,8 +29,6 @@ hm.cheat.render.generator=[RenderGen] Rotation Generator
 hm.cheat.meta.checker=[Helper] Meta Checker
 
 #Crops
-hm.crop.giant=Giant
-hm.crop.giant.format=%G %C
 hm.crop.seeds.format.standard=%C %S
 hm.crop.seeds.format.giant=%G %C %S
 hm.crop.seeds=Seeds
@@ -52,6 +50,7 @@ hm.crop.pepper.green=Green Pepper
 hm.crop.grass.block=Grass
 hm.crop.grass.item=Fodder
 hm.crop.wheat=Wheat
+hm.crop.watermelon=Watermelon
 
 #General Items
 hm.general.item.feather.blue=Blue Feather

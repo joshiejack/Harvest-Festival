@@ -30,6 +30,8 @@ public class ItemSeedFood {
             crop = HMCrops.wheat;
         } else if (item == Item.getItemFromBlock(Blocks.pumpkin) && HMConfiguration.vanilla.PUMPKIN_OVERRIDE) {
             crop = HMCrops.pumpkin;
+        } else if (item == Items.melon && HMConfiguration.vanilla.WATERMELON_OVERRIDE) {
+            crop = HMCrops.watermelon;
         }
 
         return crop;

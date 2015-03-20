@@ -22,7 +22,6 @@ public abstract class TileCooking extends TileEntity implements IFaceable {
     private boolean cooking;
     private short cookTimer = 0;
     private ArrayList<ItemStack> ingredients = new ArrayList();
-    private ArrayList<ItemStack> seasonings = new ArrayList();
     private ItemStack result;
     private ForgeDirection orientation = ForgeDirection.NORTH;
     private float rotation;
@@ -52,10 +51,6 @@ public abstract class TileCooking extends TileEntity implements IFaceable {
 
     public ArrayList<ItemStack> getIngredients() {
         return ingredients;
-    }
-
-    public ArrayList<ItemStack> getSeasonings() {
-        return seasonings;
     }
 
     //reset everything ready for the next cooking batch
@@ -101,10 +96,9 @@ public abstract class TileCooking extends TileEntity implements IFaceable {
             if (cooking) {
                 cookTimer++;
                 if (cookTimer >= getCookingTime(utensil)) {
-                    result = FoodRegistry.getResult(utensil, ingredients, seasonings);
+                    result = FoodRegistry.getResult(utensil, ingredients);
                     cooking = false;
                     ingredients = new ArrayList();
-                    seasonings = new ArrayList();
                     cookTimer = 0;
                     this.markDirty();
                 }
@@ -134,32 +128,15 @@ public abstract class TileCooking extends TileEntity implements IFaceable {
         }
     }
 
-    //Returns true if this was a valid seasoning to add
-    public boolean addSeasoning(ItemStack stack) {
-        if (!hasPrerequisites()) return false;
-        if (FoodRegistry.getSeasonings(stack) == null) return false;
-        else {
-            if (worldObj.isRemote) return true;
-            ItemStack clone = stack.copy();
-            clone.stackSize = 1;
-            this.seasonings.add(clone);
-            this.cooking = true;
-            this.cookTimer = Short.MIN_VALUE;
-            this.markDirty();
-            return true;
-        }
-    }
-
     //Called Clientside to update the client
-    public void setFromPacket(boolean isCooking, ArrayList<ItemStack> ingredients, ArrayList<ItemStack> seasonings, ItemStack result) {
+    public void setFromPacket(boolean isCooking, ArrayList<ItemStack> ingredients, ItemStack result) {
         this.cooking = isCooking;
         this.ingredients = ingredients;
-        this.seasonings = seasonings;
         this.result = result;
     }
 
     public IMessage getPacket() {
-        return new PacketSyncCooking(worldObj.provider.dimensionId, xCoord, yCoord, zCoord, orientation, cooking, ingredients, seasonings, result);
+        return new PacketSyncCooking(worldObj.provider.dimensionId, xCoord, yCoord, zCoord, orientation, cooking, ingredients, result);
     }
 
     @Override
@@ -189,13 +166,6 @@ public abstract class TileCooking extends TileEntity implements IFaceable {
             }
         }
 
-        if (nbt.hasKey("SeasoningsInside")) {
-            NBTTagList ss = nbt.getTagList("SeasoningsInside", 10);
-            for (int i = 0; i < ss.tagCount(); i++) {
-                seasonings.add(StackHelper.getItemStackFromNBT(ss.getCompoundTagAt(i)));
-            }
-        }
-
         if (nbt.hasKey("Count")) {
             result = StackHelper.getItemStackFromNBT(nbt);
         }
@@ -215,16 +185,6 @@ public abstract class TileCooking extends TileEntity implements IFaceable {
             }
 
             nbt.setTag("IngredientsInside", is);
-        }
-
-        //Write out the saved Seasonings
-        if (seasonings.size() > 0) {
-            NBTTagList ss = new NBTTagList();
-            for (ItemStack seasoning : seasonings) {
-                ss.appendTag(StackHelper.writeItemStackToNBT(new NBTTagCompound(), seasoning));
-            }
-
-            nbt.setTag("SeasoningsInside", ss);
         }
 
         if (result != null) {

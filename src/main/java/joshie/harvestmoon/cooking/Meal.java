@@ -88,13 +88,6 @@ public class Meal {
         return this;
     }
     
-    public Meal addSeasoning(Seasoning seasoning) {
-        this.saturation += seasoning.saturation;
-        this.stamina += seasoning.stamina;
-        this.saturation = Math.min(saturation_cap, this.saturation);
-        return this;
-    }
-    
     public Meal addIngredient(Ingredient ingredient) {
         this.eatTime += ingredient.eatTime;
         this.stamina += ingredient.stamina;

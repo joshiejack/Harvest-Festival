@@ -9,8 +9,6 @@ public class Recipe {
     //Optional Extras
     private Utensil requiredTool;
     private Ingredient[] optionalIngredients;
-    private Seasoning[] requiredSeasonings;
-    private Seasoning[] optionalSeasonings;
 
     public Recipe(Ingredient[] ingredients, Meal result) {
         this.requiredIngredients = ingredients;
@@ -24,16 +22,6 @@ public class Recipe {
 
     public Recipe setRequiredTool(Utensil tool) {
         this.requiredTool = tool;
-        return this;
-    }
-
-    public Recipe setRequiredSeasonings(Seasoning... seasoning) {
-        this.requiredSeasonings = seasoning;
-        return this;
-    }
-
-    public Recipe setOptionalSeasonings(Seasoning... seasoning) {
-        this.optionalSeasonings = seasoning;
         return this;
     }
 
@@ -54,25 +42,6 @@ public class Recipe {
         return false;
     }
 
-    private boolean recipeHasThisSeasoning(Seasoning seasoning) {
-        //First we check if the Required Seasonings have this ingredient in them
-        if (requiredSeasonings != null) {
-            for (Seasoning s : requiredSeasonings) {
-                if (s.isEqual(seasoning)) return true;
-            }
-        }
-
-        //Second we check if the Optional Seasonings have this seasoning in them
-        if (optionalSeasonings != null) {
-            for (Seasoning s : optionalSeasonings) {
-                if (s.isEqual(seasoning)) return true;
-            }
-        }
-
-        //Since this seasoning couldn't be found in required or optional, you should screw the meal up
-        return false;
-    }
-
     private boolean ingredientListContains(List<Ingredient> ingredients, Ingredient required) {
         //Now we should loop through all the ingredient passed in
         for (Ingredient passed : ingredients) {
@@ -82,34 +51,16 @@ public class Recipe {
         return false; //We did not find the item, therefore we return false
     }
 
-    private boolean seasoningListContains(List<Seasoning> seasonings, Seasoning required) {
-        for (Seasoning passed : seasonings) {
-            if (required.isEqual(passed)) return true;
-        }
-
-        return false;
-    }
-
-    public Meal getMeal(Utensil utensil, List<Ingredient> ingredients, List<Seasoning> seasonings) {
+    public Meal getMeal(Utensil utensil, List<Ingredient> ingredients) {
         if (ingredients == null || ingredients.size() < 1 || utensil != requiredTool) return null; //If we have no utensils, or not enough recipes remove them all
 
         /** Step one.
-         *  Validate that all supplied Ingredients are Allowed in this Meal.
-         */
+         *  Validate that all supplied Ingredients are Allowed in this Meal.*/
         for (Ingredient ingredient : ingredients) { //Loop through all the ingredients to CHECK if the recipe allow this type of food in to it
             if (!recipeHasThisIngredient(ingredient)) return null; //If the recipe DOES not contain this ingredient then we should return null.
         }
 
         /** Step two.
-         *  Validate that all supplied seasonings are allowed in this meal
-         */
-        if (seasonings != null) {
-            for (Seasoning seasoning : seasonings) { //This is a clone of the ingredient method.
-                if (!recipeHasThisSeasoning(seasoning)) return null;
-            }
-        }
-
-        /** Step three.
          *  Now that we know that all the ingredients are valid ingredients for this recipe.
          *  We need to actually check that we HAVE all of the required ingredients.
          */
@@ -118,30 +69,12 @@ public class Recipe {
             if (!ingredientListContains(ingredients, required)) return null;
         }
 
-        /** Step four
-         *  Perform the same task for requiredSeasonings. If we need to check them
-         */
-        if (requiredSeasonings != null) {
-            for (Seasoning required : requiredSeasonings) { //Loop through the required seasonings
-                //If the seasonings list does NOT contain this item we should return null
-                if (!seasoningListContains(seasonings, required)) return null;
-            }
-        }
-
         /** Final step is to build the meal **/
         Meal meal = new Meal(result);
         if (optionalIngredients != null) { //Loop through optional ingredients
             for (Ingredient optional : optionalIngredients) {
                 if (ingredientListContains(ingredients, optional)) { //If the optional ingredients list has this item
                     meal.addIngredient(optional);
-                }
-            }
-        }
-
-        if (optionalSeasonings != null) { //Loop through optional ingredients
-            for (Seasoning optional : optionalSeasonings) {
-                if (seasoningListContains(seasonings, optional)) { //If the optional ingredients list has this item
-                    meal.addSeasoning(optional);
                 }
             }
         }
@@ -155,13 +88,6 @@ public class Recipe {
         if (optionalIngredients != null) {
             for (Ingredient i : optionalIngredients) {
                 meal.addIngredient(i);
-            }
-        }
-
-        //Add the bonuses for having the optional seasonings to this meal
-        if (optionalSeasonings != null) {
-            for (Seasoning s : optionalSeasonings) {
-                meal.addSeasoning(s);
             }
         }
 

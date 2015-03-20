@@ -3,6 +3,7 @@ package joshie.harvestmoon.init.cooking;
 import static joshie.harvestmoon.cooking.FoodRegistry.register;
 import joshie.harvestmoon.cooking.Ingredient;
 import joshie.harvestmoon.core.lib.SizeableMeta;
+import joshie.harvestmoon.init.HMCooking;
 import joshie.harvestmoon.init.HMCrops;
 import joshie.harvestmoon.init.HMItems;
 import joshie.harvestmoon.items.ItemGeneral;
@@ -12,6 +13,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class HMIngredients {
+    /** Seasonings **/
+    public static Ingredient salt;
+    public static Ingredient sugar;
+    
     /** Created **/
     public static Ingredient potato_slices;
     public static Ingredient butter;
@@ -59,6 +64,9 @@ public class HMIngredients {
     }
 
     private static void addIngredients() {
+        salt = new Ingredient("salt", 0, 0, 0, 0.01F, 0);
+        sugar = new Ingredient("sugar", 1, 0, 0, 0F, 0);
+        
         potato_slices = new Ingredient("potato_slices", 3, -2, 1, 0.05F, 4);
         butter = new Ingredient("butter", 6, -1, 0, 0.01F, 6);
         whisked_egg = new Ingredient("egg_whisked", 5, 0, 0, 0.07F, 4);
@@ -66,7 +74,7 @@ public class HMIngredients {
         egg = new Ingredient("egg", 6, 0, 0, 0.075F, 10);   
         fish = new Ingredient("fish", 5, -5, 2, 0.1F, 16);
         flour = new Ingredient("flour", 0, 0, 0, 0.1F, 4);
-        oil = new Ingredient("oil", 0, -2, 0, 0F, 2);
+        oil = new Ingredient("oil", 0, -2, 0, 0F, 2).setFluid(HMCooking.cookingOil);
         riceball = new Ingredient("riceball", 6, -3, 1, 0.085F, 16); 
         mayonnaise = new Ingredient("mayonnaise", 6, -1, 1, 0.8F, 8);
         milk = new Ingredient("milk", 5, -2, 0, 0.04F, 6);
@@ -95,6 +103,9 @@ public class HMIngredients {
     }
 
     private static void assignIngredients() {
+        register(new ItemStack(HMItems.general, 1, ItemGeneral.SALT), salt);
+        register(new ItemStack(Items.sugar, 1, OreDictionary.WILDCARD_VALUE), sugar);
+        
         register(new ItemStack(HMItems.general, 1, ItemGeneral.POTATO_SLICES), potato_slices);
         register(new ItemStack(HMItems.general, 1, ItemGeneral.BUTTER), butter);
         register(new ItemStack(HMItems.general, 1, ItemGeneral.WHISKED_EGG), whisked_egg);

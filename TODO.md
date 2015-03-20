@@ -1,5 +1,4 @@
 # To-Do Stuff, feel free to help with any!
-- Finish Crop System
 - Finish Shipping System
 - Finish Cooking System
 - Finish Mining System

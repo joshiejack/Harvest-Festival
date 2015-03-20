@@ -3,6 +3,8 @@ package joshie.harvestmoon.blocks.render;
 import java.util.ArrayList;
 
 import joshie.harvestmoon.blocks.tiles.TileFryingPan;
+import joshie.harvestmoon.cooking.FoodRegistry;
+import joshie.harvestmoon.cooking.Ingredient;
 import joshie.harvestmoon.core.util.generic.EntityFakeItem;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -10,6 +12,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.Fluid;
 
 import org.lwjgl.opengl.GL11;
 
@@ -23,7 +26,6 @@ public class SpecialRendererFryingPan extends TileEntitySpecialRenderer {
         TileFryingPan pan = (TileFryingPan) tile;
         if (pan != null) {
             ArrayList<ItemStack> ingredients = pan.getIngredients();
-            ArrayList<ItemStack> seasonings = pan.getSeasonings();
             ItemStack result = pan.getStored();
             GL11.glPushMatrix();
             float offsetX = (float) (x - 0.2F);
@@ -45,24 +47,34 @@ public class SpecialRendererFryingPan extends TileEntitySpecialRenderer {
     }
 
     void renderIngredient(World world, ItemStack stack, int max, int id, float rotation) {
-        EntityFakeItem entityitem = new EntityFakeItem(world, 0.0D, 0.0D, 0.0D, stack);
-        GL11.glPushMatrix();
-        GL11.glTranslatef(0.5F, -0.125F, 0.5F);
-        GL11.glScalef(0.5F, 0.5F, 0.5F);
-        if (!(stack.getItem() instanceof ItemBlock)) {
-            GL11.glRotatef(-90, 1F, 0F, 0F);
-            if (id < 8) {
-                GL11.glRotatef((id * 45) + rotation, 0F, 0F, 1F);
-                GL11.glTranslatef(0.5F, 0F, 0.5F);
-            } else {
-               GL11.glTranslatef(0.0F, -0.1F, 0.5F);
-            }
+        ArrayList<Ingredient> ingredients = FoodRegistry.getIngredients(stack);
+        Ingredient ingredient = ingredients.get(0);
+        if (ingredient.getFluid() != null) {
+            renderFluid(ingredient.getFluid());
         } else {
-            GL11.glRotatef(90, 0F, 1F, 0F);
-        }
+            EntityFakeItem entityitem = new EntityFakeItem(world, 0.0D, 0.0D, 0.0D, stack);
+            GL11.glPushMatrix();
+            GL11.glTranslatef(0.5F, -0.125F, 0.5F);
+            GL11.glScalef(0.5F, 0.5F, 0.5F);
+            if (!(stack.getItem() instanceof ItemBlock)) {
+                GL11.glRotatef(-90, 1F, 0F, 0F);
+                if (id < 8) {
+                    GL11.glRotatef((id * 45) + rotation, 0F, 0F, 1F);
+                    GL11.glTranslatef(0.5F, 0F, 0.5F);
+                } else {
+                    GL11.glTranslatef(0.0F, -0.1F, 0.5F);
+                }
+            } else {
+                GL11.glRotatef(90, 0F, 1F, 0F);
+            }
 
-        RenderManager.instance.renderEntityWithPosYaw(entityitem, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F);
-        GL11.glPopMatrix();
+            RenderManager.instance.renderEntityWithPosYaw(entityitem, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F);
+            GL11.glPopMatrix();
+        }
+    }
+
+    private void renderFluid(Fluid fluid) {
+
     }
 
     void renderResult(World world, ItemStack stack) {

@@ -118,7 +118,7 @@ public class BlockCookware extends BlockHMBaseMeta {
 
                     cooking.clear();
                 } else if (held != null && !(held.getItem() instanceof ItemBlockCookware)) {
-                    if (cooking.addIngredient(held) || cooking.addSeasoning(held)) {
+                    if (cooking.addIngredient(held)) {
                         player.inventory.decrStackSize(player.inventory.currentItem, 1);
                         return true;
                     }

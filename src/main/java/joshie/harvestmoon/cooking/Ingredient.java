@@ -3,6 +3,7 @@ package joshie.harvestmoon.cooking;
 import java.util.HashSet;
 
 import joshie.harvestmoon.api.core.ICookingComponent;
+import net.minecraftforge.fluids.Fluid;
 
 public class Ingredient implements ICookingComponent {
     private HashSet<Ingredient> equivalents = new HashSet();
@@ -12,6 +13,7 @@ public class Ingredient implements ICookingComponent {
     public int hunger;
     public float saturation;
     public int eatTime;
+    public Fluid fluid;
 
     /**@param stamina - how much this restored stamina
      * @param fatigue - how much this adds to fatigue
@@ -38,6 +40,15 @@ public class Ingredient implements ICookingComponent {
     public Ingredient assign(ICookingComponent ingredient) {
         ingredient.add(this);
         return this;
+    }
+    
+    public Ingredient setFluid(Fluid fluid) {
+        this.fluid = fluid;
+        return this;
+    }
+
+    public Fluid getFluid() {
+        return fluid;
     }
 
     @Override

@@ -336,7 +336,11 @@ public class Crop implements ICrop {
 
     @Override
     public boolean equals(Object o) {
-        return unlocalized.equals(o);
+        if (!(o instanceof ICrop)) {
+            return false;
+        }
+        
+        return getUnlocalizedName().equals(((ICrop)o).getUnlocalizedName());
     }
 
     @Override

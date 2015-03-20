@@ -2,6 +2,7 @@ package joshie.harvestmoon.core.gui;
 
 import java.util.Random;
 
+import joshie.harvestmoon.api.HMApi;
 import joshie.harvestmoon.cooking.FoodRegistry;
 import joshie.harvestmoon.player.FridgeContents;
 import net.minecraft.entity.player.EntityPlayer;
@@ -51,7 +52,7 @@ public class ContainerFridge extends ContainerBase {
 
             if (slotID < size) {
                 if (!mergeItemStack(stack, size, high, true)) return null;
-            } else if ((FoodRegistry.getIngredients(stack) != null)) {
+            } else if (HMApi.COOKING.getCookingComponents(stack).size() > 0) {
                 if (!mergeItemStack(stack, 0, storage.getSizeInventory(), false)) return null;
             } else if (slotID >= size && slotID < low) {
                 if (!mergeItemStack(stack, low, high, false)) return null;

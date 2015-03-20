@@ -110,9 +110,9 @@ public class BlockCookware extends BlockHMBaseMeta {
                 TileCooking cooking = (TileCooking) tile;
                 ItemStack held = player.getCurrentEquippedItem();
                 if (!cooking.canAddItems()) {
-                    if (!player.inventory.addItemStackToInventory(cooking.getStored())) {
+                    if (!player.inventory.addItemStackToInventory(cooking.getResult())) {
                         if (!world.isRemote) {
-                            ItemHelper.spawnItem(world, x, y + 1, z, cooking.getStored());
+                            ItemHelper.spawnItem(world, x, y + 1, z, cooking.getResult());
                         }
                     }
 

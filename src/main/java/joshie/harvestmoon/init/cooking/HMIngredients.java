@@ -1,8 +1,8 @@
 package joshie.harvestmoon.init.cooking;
 
-import static joshie.harvestmoon.cooking.FoodRegistry.register;
+import joshie.harvestmoon.api.HMApi;
+import joshie.harvestmoon.api.cooking.ICookingComponent;
 import joshie.harvestmoon.cooking.Ingredient;
-import joshie.harvestmoon.core.lib.SizeableMeta;
 import joshie.harvestmoon.init.HMCooking;
 import joshie.harvestmoon.init.HMCrops;
 import joshie.harvestmoon.init.HMItems;
@@ -14,44 +14,44 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class HMIngredients {
     /** Seasonings **/
-    public static Ingredient salt;
-    public static Ingredient sugar;
+    public static ICookingComponent salt;
+    public static ICookingComponent sugar;
     
     /** Created **/
-    public static Ingredient potato_slices;
-    public static Ingredient butter;
-    public static Ingredient whisked_egg;
+    public static ICookingComponent potato_slices;
+    public static ICookingComponent butter;
+    public static ICookingComponent whisked_egg;
     
     /** Other stuff **/
-    public static Ingredient egg;
-    public static Ingredient fish;
-    public static Ingredient flour;
-    public static Ingredient oil;
-    public static Ingredient riceball;
-    public static Ingredient milk;
-    public static Ingredient mayonnaise;
-    public static Ingredient mushroom;
+    public static ICookingComponent egg;
+    public static ICookingComponent fish;
+    public static ICookingComponent flour;
+    public static ICookingComponent oil;
+    public static ICookingComponent riceball;
+    public static ICookingComponent milk;
+    public static ICookingComponent mayonnaise;
+    public static ICookingComponent mushroom;
 
     /** Crops **/
-    public static Ingredient turnip;
-    public static Ingredient potato;
-    public static Ingredient cucumber;
-    public static Ingredient strawberry;
-    public static Ingredient cabbage;
-    public static Ingredient tomato;
-    public static Ingredient onion;
-    public static Ingredient corn;
-    public static Ingredient pumpkin;
-    public static Ingredient pineapple;
-    public static Ingredient eggplant;
-    public static Ingredient carrot;
-    public static Ingredient sweet_potato;
-    public static Ingredient spinach;
-    public static Ingredient green_pepper;
+    public static ICookingComponent turnip;
+    public static ICookingComponent potato;
+    public static ICookingComponent cucumber;
+    public static ICookingComponent strawberry;
+    public static ICookingComponent cabbage;
+    public static ICookingComponent tomato;
+    public static ICookingComponent onion;
+    public static ICookingComponent corn;
+    public static ICookingComponent pumpkin;
+    public static ICookingComponent pineapple;
+    public static ICookingComponent eggplant;
+    public static ICookingComponent carrot;
+    public static ICookingComponent sweet_potato;
+    public static ICookingComponent spinach;
+    public static ICookingComponent green_pepper;
 
-    public static Ingredient watermelon;
-    public static Ingredient wheat;
-    public static Ingredient bread;
+    public static ICookingComponent watermelon;
+    public static ICookingComponent wheat;
+    public static ICookingComponent bread;
 
     public static void init() {
         addFoodCategories();
@@ -77,7 +77,7 @@ public class HMIngredients {
         oil = new Ingredient("oil", 0, -2, 0, 0F, 2).setFluid(HMCooking.cookingOil);
         riceball = new Ingredient("riceball", 6, -3, 1, 0.085F, 16); 
         mayonnaise = new Ingredient("mayonnaise", 6, -1, 1, 0.8F, 8);
-        milk = new Ingredient("milk", 5, -2, 0, 0.04F, 6);
+        milk = new Ingredient("milk", 5, -2, 0, 0.04F, 6).setFluid(HMCooking.milk);
         
         //HM Crops
         turnip = new Ingredient("turnip", 2, -1, 1, 0.033F, 8);
@@ -103,49 +103,49 @@ public class HMIngredients {
     }
 
     private static void assignIngredients() {
-        register(new ItemStack(HMItems.general, 1, ItemGeneral.SALT), salt);
-        register(new ItemStack(Items.sugar, 1, OreDictionary.WILDCARD_VALUE), sugar);
+        HMApi.COOKING.register(new ItemStack(HMItems.general, 1, ItemGeneral.SALT), salt);
+        HMApi.COOKING.register(new ItemStack(Items.sugar, 1, OreDictionary.WILDCARD_VALUE), sugar);
         
-        register(new ItemStack(HMItems.general, 1, ItemGeneral.POTATO_SLICES), potato_slices);
-        register(new ItemStack(HMItems.general, 1, ItemGeneral.BUTTER), butter);
-        register(new ItemStack(HMItems.general, 1, ItemGeneral.WHISKED_EGG), whisked_egg);
+        HMApi.COOKING.register(new ItemStack(HMItems.general, 1, ItemGeneral.POTATO_SLICES), potato_slices);
+        HMApi.COOKING.register(new ItemStack(HMItems.general, 1, ItemGeneral.BUTTER), butter);
+        HMApi.COOKING.register(new ItemStack(HMItems.general, 1, ItemGeneral.WHISKED_EGG), whisked_egg);
         
-        register(new ItemStack(HMItems.general, 1, ItemGeneral.FLOUR), flour);
-        register(new ItemStack(HMItems.general, 1, ItemGeneral.OIL), oil);
-        register(new ItemStack(HMItems.general, 1, ItemGeneral.RICEBALL), riceball);
+        HMApi.COOKING.register(new ItemStack(HMItems.general, 1, ItemGeneral.FLOUR), flour);
+        HMApi.COOKING.register(new ItemStack(HMItems.general, 1, ItemGeneral.OIL), oil);
+        HMApi.COOKING.register(new ItemStack(HMItems.general, 1, ItemGeneral.RICEBALL), riceball);
         
-        register(HMCrops.turnip.getCropStack(), turnip);
-        register(HMCrops.potato.getCropStack(), potato);
-        register(new ItemStack(Items.potato, 1, OreDictionary.WILDCARD_VALUE), potato);
-        register(HMCrops.cucumber.getCropStack(), cucumber);
-        register(HMCrops.strawberry.getCropStack(), strawberry);
-        register(HMCrops.cabbage.getCropStack(), cabbage);
-        register(HMCrops.tomato.getCropStack(), tomato);
-        register(HMCrops.onion.getCropStack(), onion);
-        register(HMCrops.corn.getCropStack(), corn);
-        register(HMCrops.pumpkin.getCropStack(), pumpkin);
-        register(new ItemStack(Blocks.pumpkin, 1, OreDictionary.WILDCARD_VALUE), pumpkin);
-        register(HMCrops.pineapple.getCropStack(), pineapple);
-        register(HMCrops.eggplant.getCropStack(), eggplant);
-        register(HMCrops.carrot.getCropStack(), carrot);
-        register(new ItemStack(Items.carrot, 1, OreDictionary.WILDCARD_VALUE), carrot);
-        register(HMCrops.sweet_potato.getCropStack(), sweet_potato);
-        register(HMCrops.spinach.getCropStack(), spinach);
-        register(HMCrops.green_pepper.getCropStack(), green_pepper);
+        HMApi.COOKING.register(HMCrops.turnip.getCropStack(), turnip);
+        HMApi.COOKING.register(HMCrops.potato.getCropStack(), potato);
+        HMApi.COOKING.register(new ItemStack(Items.potato, 1, OreDictionary.WILDCARD_VALUE), potato);
+        HMApi.COOKING.register(HMCrops.cucumber.getCropStack(), cucumber);
+        HMApi.COOKING.register(HMCrops.strawberry.getCropStack(), strawberry);
+        HMApi.COOKING.register(HMCrops.cabbage.getCropStack(), cabbage);
+        HMApi.COOKING.register(HMCrops.tomato.getCropStack(), tomato);
+        HMApi.COOKING.register(HMCrops.onion.getCropStack(), onion);
+        HMApi.COOKING.register(HMCrops.corn.getCropStack(), corn);
+        HMApi.COOKING.register(HMCrops.pumpkin.getCropStack(), pumpkin);
+        HMApi.COOKING.register(new ItemStack(Blocks.pumpkin, 1, OreDictionary.WILDCARD_VALUE), pumpkin);
+        HMApi.COOKING.register(HMCrops.pineapple.getCropStack(), pineapple);
+        HMApi.COOKING.register(HMCrops.eggplant.getCropStack(), eggplant);
+        HMApi.COOKING.register(HMCrops.carrot.getCropStack(), carrot);
+        HMApi.COOKING.register(new ItemStack(Items.carrot, 1, OreDictionary.WILDCARD_VALUE), carrot);
+        HMApi.COOKING.register(HMCrops.sweet_potato.getCropStack(), sweet_potato);
+        HMApi.COOKING.register(HMCrops.spinach.getCropStack(), spinach);
+        HMApi.COOKING.register(HMCrops.green_pepper.getCropStack(), green_pepper);
         
-        register(new ItemStack(Items.wheat, 1, OreDictionary.WILDCARD_VALUE), wheat);
-        register(new ItemStack(Items.melon, 1, OreDictionary.WILDCARD_VALUE), watermelon);
-        register(new ItemStack(Blocks.melon_block, 1, OreDictionary.WILDCARD_VALUE), watermelon);
-        register(new ItemStack(Items.bread, 1, OreDictionary.WILDCARD_VALUE), bread);
+        HMApi.COOKING.register(new ItemStack(Items.wheat, 1, OreDictionary.WILDCARD_VALUE), wheat);
+        HMApi.COOKING.register(new ItemStack(Items.melon, 1, OreDictionary.WILDCARD_VALUE), watermelon);
+        HMApi.COOKING.register(new ItemStack(Blocks.melon_block, 1, OreDictionary.WILDCARD_VALUE), watermelon);
+        HMApi.COOKING.register(new ItemStack(Items.bread, 1, OreDictionary.WILDCARD_VALUE), bread);
         
-        register(new ItemStack(HMItems.sized, 1, SizeableMeta.EGG.ordinal()), egg);
-        register(new ItemStack(Items.egg, 1, OreDictionary.WILDCARD_VALUE), egg);
-        register(new ItemStack(Items.fish, 1, OreDictionary.WILDCARD_VALUE), fish);
-        register(new ItemStack(HMItems.sized, 1, SizeableMeta.MILK.ordinal()), milk);
-        register(new ItemStack(Items.milk_bucket, 1, OreDictionary.WILDCARD_VALUE), milk);
-        register(new ItemStack(HMItems.sized, 1, SizeableMeta.MAYONNAISE.ordinal()), mayonnaise);
+        HMApi.COOKING.register(new ItemStack(HMItems.egg), egg);
+        HMApi.COOKING.register(new ItemStack(Items.egg, 1, OreDictionary.WILDCARD_VALUE), egg);
+        HMApi.COOKING.register(new ItemStack(Items.fish, 1, OreDictionary.WILDCARD_VALUE), fish);
+        HMApi.COOKING.register(new ItemStack(HMItems.milk), milk);
+        HMApi.COOKING.register(new ItemStack(Items.milk_bucket, 1, OreDictionary.WILDCARD_VALUE), milk);
+        HMApi.COOKING.register(new ItemStack(HMItems.mayonnaise), mayonnaise);
         
-        register(new ItemStack(Blocks.brown_mushroom, 1, OreDictionary.WILDCARD_VALUE), mushroom);
-        register(new ItemStack(Blocks.red_mushroom, 1, OreDictionary.WILDCARD_VALUE), mushroom);
+        HMApi.COOKING.register(new ItemStack(Blocks.brown_mushroom, 1, OreDictionary.WILDCARD_VALUE), mushroom);
+        HMApi.COOKING.register(new ItemStack(Blocks.red_mushroom, 1, OreDictionary.WILDCARD_VALUE), mushroom);
     }
 }

@@ -5,12 +5,13 @@ import static joshie.harvestmoon.core.helpers.SizeableHelper.getSize;
 
 import java.util.List;
 
+import joshie.harvestmoon.api.core.ISizeable;
+import joshie.harvestmoon.api.core.ISizeable.Size;
 import joshie.harvestmoon.core.config.General;
 import joshie.harvestmoon.core.helpers.SizeableHelper;
 import joshie.harvestmoon.core.lib.CreativeSort;
 import joshie.harvestmoon.core.lib.HMModInfo;
 import joshie.harvestmoon.core.lib.SizeableMeta;
-import joshie.harvestmoon.core.lib.SizeableMeta.Size;
 import joshie.harvestmoon.core.util.Translate;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -47,6 +48,10 @@ public class ItemEgg {
         text = StringUtils.replace(text, "%S", size);
         text = StringUtils.replace(text, "%P", name);
         return text;
+    }
+    
+    public static ISizeable getSizeable(ItemStack stack) {
+        return SizeableMeta.EGG;
     }
     
     @SideOnly(Side.CLIENT)

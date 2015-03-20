@@ -3,9 +3,9 @@ package joshie.harvestmoon.blocks;
 import static joshie.harvestmoon.core.helpers.ShippingHelper.addForShipping;
 import joshie.harvestmoon.HarvestMoon;
 import joshie.harvestmoon.animals.AnimalType;
+import joshie.harvestmoon.api.HMApi;
 import joshie.harvestmoon.api.core.IShippable;
 import joshie.harvestmoon.blocks.tiles.TileRuralChest;
-import joshie.harvestmoon.cooking.FoodRegistry;
 import joshie.harvestmoon.core.helpers.AnimalHelper;
 import joshie.harvestmoon.core.helpers.generic.DirectionHelper;
 import joshie.harvestmoon.core.lib.RenderIds;
@@ -93,7 +93,7 @@ public class BlockWood extends BlockHMBaseMeta {
             return true;
         } else if (meta == NEST) {
             ItemStack held = player.getCurrentEquippedItem();
-            if (held != null && FoodRegistry.getIngredients(held).contains(HMIngredients.egg)) {
+            if (held != null && HMApi.COOKING.getCookingComponents(held).contains(HMIngredients.egg)) {
                 if (AnimalHelper.addEgg(world, x, y, z)) {
                     player.inventory.decrStackSize(player.inventory.currentItem, 1);
                     return true;

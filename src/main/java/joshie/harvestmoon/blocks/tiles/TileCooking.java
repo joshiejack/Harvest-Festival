@@ -2,7 +2,8 @@ package joshie.harvestmoon.blocks.tiles;
 
 import java.util.ArrayList;
 
-import joshie.harvestmoon.cooking.FoodRegistry;
+import joshie.harvestmoon.api.HMApi;
+import joshie.harvestmoon.api.cooking.IUtensil;
 import joshie.harvestmoon.cooking.Utensil;
 import joshie.harvestmoon.core.helpers.generic.StackHelper;
 import joshie.harvestmoon.core.network.PacketHandler;
@@ -25,15 +26,15 @@ public abstract class TileCooking extends TileEntity implements IFaceable {
     private ItemStack result;
     private ForgeDirection orientation = ForgeDirection.NORTH;
     private float rotation;
-    protected Utensil utensil;
+    protected IUtensil utensil;
 
     public TileCooking() {}
 
-    public Utensil getUtensil() {
+    public IUtensil getUtensil() {
         return Utensil.KITCHEN;
     }
 
-    public Utensil getUtensil(World world, int x, int y, int z) {
+    public IUtensil getUtensil(World world, int x, int y, int z) {
         return getUtensil();
     }
 
@@ -45,7 +46,7 @@ public abstract class TileCooking extends TileEntity implements IFaceable {
         return result == null;
     }
 
-    public ItemStack getStored() {
+    public ItemStack getResult() {
         return result != null? result.copy(): result;
     }
 
@@ -72,12 +73,12 @@ public abstract class TileCooking extends TileEntity implements IFaceable {
         return rotation;
     }
 
-    public void animate(Utensil utensil) {
+    public void animate(IUtensil utensil) {
         rotation += worldObj.rand.nextFloat();
         worldObj.spawnParticle("smoke", xCoord + 0.5D + +worldObj.rand.nextFloat() - worldObj.rand.nextFloat() / 2, yCoord + 0.5D + worldObj.rand.nextFloat() - worldObj.rand.nextFloat() / 2, zCoord + 0.5D + +worldObj.rand.nextFloat() - worldObj.rand.nextFloat() / 2, 0, 0, 0);
     }
 
-    public short getCookingTime(Utensil utensil) {
+    public short getCookingTime(IUtensil utensil) {
         return COOK_TIMER;
     }
 
@@ -96,7 +97,7 @@ public abstract class TileCooking extends TileEntity implements IFaceable {
             if (cooking) {
                 cookTimer++;
                 if (cookTimer >= getCookingTime(utensil)) {
-                    result = FoodRegistry.getResult(utensil, ingredients);
+                    result = HMApi.COOKING.getResult(utensil, ingredients);
                     cooking = false;
                     ingredients = new ArrayList();
                     cookTimer = 0;
@@ -115,7 +116,7 @@ public abstract class TileCooking extends TileEntity implements IFaceable {
     public boolean addIngredient(ItemStack stack) {
         if (ingredients.size() >= 9) return false;
         if (!hasPrerequisites()) return false;
-        if (FoodRegistry.getIngredients(stack) == null) return false;
+        if (HMApi.COOKING.getCookingComponents(stack).size() < 1) return false;
         else {
             if (worldObj.isRemote) return true;
             ItemStack clone = stack.copy();

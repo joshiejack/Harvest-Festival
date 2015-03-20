@@ -1,17 +1,17 @@
 package joshie.harvestmoon.npc.gift;
 
-import static joshie.harvestmoon.npc.gift.Gifts.Quality.*;
-import joshie.harvestmoon.core.helpers.SizeableHelper;
-import joshie.harvestmoon.core.lib.SizeableMeta;
+import static joshie.harvestmoon.npc.gift.Gifts.Quality.AWESOME;
+import static joshie.harvestmoon.npc.gift.Gifts.Quality.BAD;
+import static joshie.harvestmoon.npc.gift.Gifts.Quality.DECENT;
+import static joshie.harvestmoon.npc.gift.Gifts.Quality.GOOD;
 import joshie.harvestmoon.init.HMItems;
 import net.minecraft.item.ItemStack;
 
 public class GiftsKatlin extends Gifts {
     @Override
     public Quality getQuality(ItemStack stack) {
-        if (stack.getItem() == HMItems.sized) {
-            SizeableMeta meta = SizeableHelper.getSizeableFromStack(stack);
-            return meta == SizeableMeta.YARN ? AWESOME : GOOD;
+        if (stack.getItem() == HMItems.yarn) {
+            return AWESOME;
         }
         
         if(is(stack, Category.KNITTING)) {

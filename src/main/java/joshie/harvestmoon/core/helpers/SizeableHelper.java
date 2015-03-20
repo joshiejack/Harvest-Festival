@@ -2,8 +2,8 @@ package joshie.harvestmoon.core.helpers;
 
 import java.util.Random;
 
+import joshie.harvestmoon.api.core.ISizeable.Size;
 import joshie.harvestmoon.core.lib.SizeableMeta;
-import joshie.harvestmoon.core.lib.SizeableMeta.Size;
 import joshie.harvestmoon.init.HMConfiguration;
 import joshie.harvestmoon.init.HMItems;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -34,30 +34,19 @@ public class SizeableHelper {
 
     public static ItemStack getSizeable(int relationship, SizeableMeta meta, Size size) {
         double quality = 1D + (relationship / RelationsHelper.ADJUSTED_MAX) * 99;
-        return new ItemStack(HMItems.sized, 1, getDamage(meta, (int) quality, size));
+        return new ItemStack(HMItems.sized.get(meta), 1, getDamage((int) quality, size));
     }
 
     /** Converts the meta, quality and size of a product to the proper meta data **/
-    public static int getDamage(SizeableMeta meta, int quality, Size size) {
+    public static int getDamage(int quality, Size size) {
         int sizeableSize = getSize(size);
-        int sizeableMeta = meta.ordinal();
         int sizeableQuality = ((quality - 1) * 100);
-
-        return sizeableSize + sizeableMeta + sizeableQuality;
+        return sizeableSize + sizeableQuality;
     }
 
     /** @return returns the Quality of this sizeable, Returns a vlue between 0-109 **/
     public static int getQuality(int meta) {
         return (int) Math.ceil(getInternalMeta(meta) / 100);
-    }
-
-    /** @return Returns the SizeableMeta for this sizeable, returns a value between 0-90 **/
-    public static int getType(int meta) {
-        return getInternalMeta(meta) % 100;
-    }
-
-    public static SizeableMeta getSizeableFromStack(ItemStack stack) {
-        return SizeableMeta.values()[getType(stack.getItemDamage())];
     }
 
     public static Size getSize(int meta) {

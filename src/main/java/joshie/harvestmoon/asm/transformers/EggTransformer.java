@@ -42,6 +42,7 @@ public class EggTransformer implements ITransformer {
                 intf.add(HMModInfo.ASMPATH + "api/core/IShippable");
                 intf.add(HMModInfo.ASMPATH + "api/core/IRateable");
                 intf.add(HMModInfo.ASMPATH + "api/core/ICreativeSorted");
+                intf.add(HMModInfo.ASMPATH + "api/core/ISizedProvider");
                 super.visit(version, access, name, signature, superName, intf.toArray(new String[0]));
             }
         };
@@ -82,6 +83,16 @@ public class EggTransformer implements ITransformer {
         mv.visitMethodInsn(Opcodes.INVOKESTATIC, HMModInfo.ASMPATH + "asm/overrides/ItemEgg", name, "()I", false);
         mv.visitInsn(Opcodes.IRETURN);
         mv.visitMaxs(1, 1);
+        mv.visitEnd();
+        
+       //Crop Provider
+        name = "getSizeable";
+        mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, "(Lnet/minecraft/item/ItemStack;)L" + HMModInfo.ASMPATH + "api/core/ISizeable;", null, null);
+        mv.visitCode();
+        mv.visitVarInsn(Opcodes.ALOAD, 1);
+        mv.visitMethodInsn(Opcodes.INVOKESTATIC, HMModInfo.ASMPATH + "asm/overrides/ItemEgg", name, "(Lnet/minecraft/item/ItemStack;)L" + HMModInfo.ASMPATH + "api/core/ISizeable;", false);
+        mv.visitInsn(Opcodes.ARETURN);
+        mv.visitMaxs(1, 2);
         mv.visitEnd();
 
         //Display Name Override

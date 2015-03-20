@@ -1,7 +1,10 @@
 package joshie.harvestmoon.init;
 
+import java.util.EnumMap;
+
 import joshie.harvestmoon.api.crops.ICrop;
 import joshie.harvestmoon.core.config.General;
+import joshie.harvestmoon.core.lib.SizeableMeta;
 import joshie.harvestmoon.crops.Crop;
 import joshie.harvestmoon.items.ItemBuilding;
 import joshie.harvestmoon.items.ItemCheat;
@@ -22,15 +25,19 @@ import net.minecraftforge.oredict.OreDictionary;
 import org.apache.commons.lang3.text.WordUtils;
 
 public class HMItems {
+    public static EnumMap<SizeableMeta, Item> sized = new EnumMap(SizeableMeta.class);
     public static Item seeds;
     public static Item general;
     public static Item meal;
-    public static Item sized;
     public static Item structures;
     public static Item spawner;
     public static Item treats;
-
     public static Item cheat;
+    
+    public static Item egg;
+    public static Item milk;
+    public static Item mayonnaise;
+    public static Item yarn;
 
     //Tool Items
     public static Item hoe;
@@ -47,11 +54,22 @@ public class HMItems {
                 OreDictionary.registerOre("crop" + WordUtils.capitalizeFully(crop.getUnlocalizedName().replace("_", "")), clone);
             }
         }
+        
+        for (SizeableMeta size: SizeableMeta.values()) {
+            if (size.isVanilla() || size.ordinal() >= SizeableMeta.YOGHURT.ordinal()) continue;
+            else {
+                sized.put(size, new ItemSized(size).setUnlocalizedName(size.name().toLowerCase()));
+            }
+        }
+        
+        egg = sized.get(SizeableMeta.EGG);
+        milk = sized.get(SizeableMeta.MILK);
+        mayonnaise = sized.get(SizeableMeta.MAYONNAISE);
+        yarn = sized.get(SizeableMeta.YARN);
 
         seeds = new ItemSeeds().setUnlocalizedName("crops.seeds");
         general = new ItemGeneral().setUnlocalizedName("general.item");
         meal = new ItemMeal().setUnlocalizedName("meal");
-        sized = new ItemSized().setUnlocalizedName("sizeable");
         treats = new ItemTreat().setUnlocalizedName("treat");
         
         /* Tools **/

@@ -2,9 +2,8 @@ package joshie.harvestmoon.blocks.render;
 
 import java.util.ArrayList;
 
+import joshie.harvestmoon.api.HMApi;
 import joshie.harvestmoon.blocks.tiles.TileFryingPan;
-import joshie.harvestmoon.cooking.FoodRegistry;
-import joshie.harvestmoon.cooking.Ingredient;
 import joshie.harvestmoon.core.util.generic.EntityFakeItem;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -26,7 +25,7 @@ public class SpecialRendererFryingPan extends TileEntitySpecialRenderer {
         TileFryingPan pan = (TileFryingPan) tile;
         if (pan != null) {
             ArrayList<ItemStack> ingredients = pan.getIngredients();
-            ItemStack result = pan.getStored();
+            ItemStack result = pan.getResult();
             GL11.glPushMatrix();
             float offsetX = (float) (x - 0.2F);
             float offsetY = (float) (y - 0F);
@@ -39,7 +38,11 @@ public class SpecialRendererFryingPan extends TileEntitySpecialRenderer {
 
             int max = ingredients.size();
             for (int i = 0; i < max; i++) {
-                renderIngredient(tile.getWorldObj(), ingredients.get(i), max, i, pan.getRotation());
+                ItemStack ingredient = ingredients.get(i);
+                Fluid fluid = HMApi.COOKING.getFluid(ingredient);
+                if (fluid != null) {
+                    renderFluid(fluid);
+                } else renderIngredient(tile.getWorldObj(), ingredient, max, i, pan.getRotation());
             }
 
             GL11.glPopMatrix();
@@ -47,30 +50,24 @@ public class SpecialRendererFryingPan extends TileEntitySpecialRenderer {
     }
 
     void renderIngredient(World world, ItemStack stack, int max, int id, float rotation) {
-        ArrayList<Ingredient> ingredients = FoodRegistry.getIngredients(stack);
-        Ingredient ingredient = ingredients.get(0);
-        if (ingredient.getFluid() != null) {
-            renderFluid(ingredient.getFluid());
-        } else {
-            EntityFakeItem entityitem = new EntityFakeItem(world, 0.0D, 0.0D, 0.0D, stack);
-            GL11.glPushMatrix();
-            GL11.glTranslatef(0.5F, -0.125F, 0.5F);
-            GL11.glScalef(0.5F, 0.5F, 0.5F);
-            if (!(stack.getItem() instanceof ItemBlock)) {
-                GL11.glRotatef(-90, 1F, 0F, 0F);
-                if (id < 8) {
-                    GL11.glRotatef((id * 45) + rotation, 0F, 0F, 1F);
-                    GL11.glTranslatef(0.5F, 0F, 0.5F);
-                } else {
-                    GL11.glTranslatef(0.0F, -0.1F, 0.5F);
-                }
+        EntityFakeItem entityitem = new EntityFakeItem(world, 0.0D, 0.0D, 0.0D, stack);
+        GL11.glPushMatrix();
+        GL11.glTranslatef(0.5F, -0.125F, 0.5F);
+        GL11.glScalef(0.5F, 0.5F, 0.5F);
+        if (!(stack.getItem() instanceof ItemBlock)) {
+            GL11.glRotatef(-90, 1F, 0F, 0F);
+            if (id < 8) {
+                GL11.glRotatef((id * 45) + rotation, 0F, 0F, 1F);
+                GL11.glTranslatef(0.5F, 0F, 0.5F);
             } else {
-                GL11.glRotatef(90, 0F, 1F, 0F);
+                GL11.glTranslatef(0.0F, -0.1F, 0.5F);
             }
-
-            RenderManager.instance.renderEntityWithPosYaw(entityitem, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F);
-            GL11.glPopMatrix();
+        } else {
+            GL11.glRotatef(90, 0F, 1F, 0F);
         }
+
+        RenderManager.instance.renderEntityWithPosYaw(entityitem, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F);
+        GL11.glPopMatrix();
     }
 
     private void renderFluid(Fluid fluid) {

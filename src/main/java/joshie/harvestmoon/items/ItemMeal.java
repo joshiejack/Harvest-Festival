@@ -3,11 +3,11 @@ package joshie.harvestmoon.items;
 import static joshie.harvestmoon.core.helpers.PlayerHelper.affectStats;
 import static joshie.harvestmoon.core.lib.HMModInfo.MEALPATH;
 
+import java.util.HashMap;
 import java.util.List;
 
-import joshie.harvestmoon.cooking.FoodRegistry;
-import joshie.harvestmoon.cooking.Meal;
-import joshie.harvestmoon.cooking.Recipe;
+import joshie.harvestmoon.api.HMApi;
+import joshie.harvestmoon.api.cooking.IMeal;
 import joshie.harvestmoon.cooking.Utensil;
 import joshie.harvestmoon.core.config.General;
 import joshie.harvestmoon.core.util.Translate;
@@ -27,6 +27,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemMeal extends ItemHMMeta {
+    private HashMap<String, IIcon> iconMap = new HashMap();
+
     //Irrelevant since we overwrite them, but it needs it specified
     @Override
     public int getMetaCount() {
@@ -96,38 +98,49 @@ public class ItemMeal extends ItemHMMeta {
     }
 
     //Apply all the relevant information about this meal to the meal stack
-    public static ItemStack cook(ItemStack stack, Meal meal) {
+    public static ItemStack cook(ItemStack stack, IMeal meal) {
         stack.setTagCompound(new NBTTagCompound());
-        stack.stackTagCompound.setString("FoodName", meal.unlocalized);
-        stack.stackTagCompound.setInteger("FoodLevel", meal.hunger);
-        stack.stackTagCompound.setFloat("FoodSaturation", meal.saturation);
-        stack.stackTagCompound.setInteger("FoodStamina", meal.stamina);
-        stack.stackTagCompound.setInteger("FoodFatigue", meal.fatigue);
-        stack.stackTagCompound.setBoolean("IsDrink", meal.isLiquid);
-        stack.stackTagCompound.setInteger("EatTime", meal.eatTime);
-        stack.setItemDamage(meal.meta);
-
+        stack.stackTagCompound.setString("FoodName", meal.getUnlocalizedName());
+        stack.stackTagCompound.setInteger("FoodLevel", meal.getHunger());
+        stack.stackTagCompound.setFloat("FoodSaturation", meal.getSaturation());
+        stack.stackTagCompound.setInteger("FoodStamina", meal.getStamina());
+        stack.stackTagCompound.setInteger("FoodFatigue", meal.getFatigue());
+        stack.stackTagCompound.setBoolean("IsDrink", meal.isDrink());
+        stack.stackTagCompound.setInteger("EatTime", meal.getEatTime());
         return stack;
+    }
+
+    @Override
+    public IIcon getIconFromDamage(int damge) {
+        return itemIcon;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public IIcon getIconIndex(ItemStack stack) {
+        if (!stack.hasTagCompound()) {
+            return itemIcon;
+        }
+
+        String key = stack.getTagCompound().getString("FoodName");
+        IIcon icon = iconMap.get(key);
+        return icon != null ? icon : itemIcon;
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public void registerIcons(IIconRegister register) {
         itemIcon = register.registerIcon(MEALPATH + "burnt");
-        icons = new IIcon[FoodRegistry.getRecipes().size()];
-        for (Recipe recipe : FoodRegistry.getRecipes()) {
-            String key = recipe.result.unlocalized;
-            if (icons[recipe.result.meta] == null) {
-                icons[recipe.result.meta] = register.registerIcon(MEALPATH + StringUtils.replace(key, ".", "_"));
-            }
+        for (IMeal meal : HMApi.COOKING.getMeals()) {
+            String key = meal.getUnlocalizedName();
+            iconMap.put(key, register.registerIcon(MEALPATH + StringUtils.replace(key, ".", "_")));
         }
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs creative, List list) {
-        for (Recipe recipe : FoodRegistry.getRecipes()) {
-            list.add(cook(new ItemStack(item), recipe.getBestMeal()));
+        for (IMeal meal : HMApi.COOKING.getMeals()) {
+            list.add(cook(new ItemStack(item), meal));
         }
     }
 }

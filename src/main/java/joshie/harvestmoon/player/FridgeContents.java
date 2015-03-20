@@ -1,5 +1,6 @@
 package joshie.harvestmoon.player;
 
+import joshie.harvestmoon.api.HMApi;
 import joshie.harvestmoon.cooking.FoodRegistry;
 import joshie.harvestmoon.core.helpers.ServerHelper;
 import joshie.harvestmoon.core.util.IData;
@@ -112,7 +113,7 @@ public class FridgeContents implements IInventory, IData {
 
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack stack) {
-        return FoodRegistry.getIngredients(stack) != null;
+        return HMApi.COOKING.getCookingComponents(stack).size() > 0;
     }
 
     @Override

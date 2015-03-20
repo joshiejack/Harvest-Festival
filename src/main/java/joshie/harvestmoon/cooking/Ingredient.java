@@ -2,7 +2,7 @@ package joshie.harvestmoon.cooking;
 
 import java.util.HashSet;
 
-import joshie.harvestmoon.api.core.ICookingComponent;
+import joshie.harvestmoon.api.cooking.ICookingComponent;
 import net.minecraftforge.fluids.Fluid;
 
 public class Ingredient implements ICookingComponent {
@@ -31,22 +31,24 @@ public class Ingredient implements ICookingComponent {
     }
 
     @Override
-    public Ingredient add(ICookingComponent component) {
+    public ICookingComponent add(ICookingComponent component) {
         equivalents.add((Ingredient) component);
         return this;
     }
 
     @Override
-    public Ingredient assign(ICookingComponent ingredient) {
+    public ICookingComponent assign(ICookingComponent ingredient) {
         ingredient.add(this);
         return this;
     }
     
-    public Ingredient setFluid(Fluid fluid) {
+    @Override
+    public ICookingComponent setFluid(Fluid fluid) {
         this.fluid = fluid;
         return this;
     }
 
+    @Override
     public Fluid getFluid() {
         return fluid;
     }
@@ -54,6 +56,31 @@ public class Ingredient implements ICookingComponent {
     @Override
     public String getUnlocalizedName() {
         return unlocalized;
+    }
+
+    @Override
+    public int getEatTime() {
+        return eatTime;
+    }
+
+    @Override
+    public int getStamina() {
+        return stamina;
+    }
+
+    @Override
+    public int getFatigue() {
+        return fatigue;
+    }
+
+    @Override
+    public int getHunger() {
+        return hunger;
+    }
+
+    @Override
+    public float getSaturation() {
+        return saturation;
     }
 
     /** This should return true if the passed in ingredient is the same as this one **/

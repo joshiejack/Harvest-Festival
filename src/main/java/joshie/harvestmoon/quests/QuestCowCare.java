@@ -7,11 +7,11 @@ import io.netty.buffer.ByteBuf;
 
 import java.util.HashSet;
 
+import joshie.harvestmoon.api.core.ISizeable.Size;
 import joshie.harvestmoon.core.helpers.SizeableHelper;
 import joshie.harvestmoon.core.helpers.ToolHelper;
 import joshie.harvestmoon.core.helpers.generic.ItemHelper;
 import joshie.harvestmoon.core.lib.SizeableMeta;
-import joshie.harvestmoon.core.lib.SizeableMeta.Size;
 import joshie.harvestmoon.init.HMItems;
 import joshie.harvestmoon.init.HMNPCs;
 import joshie.harvestmoon.init.HMQuests;

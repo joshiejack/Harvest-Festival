@@ -1,5 +1,6 @@
 package joshie.harvestmoon.blocks.tiles;
 
+import joshie.harvestmoon.api.cooking.IUtensil;
 import joshie.harvestmoon.blocks.BlockCookware;
 import joshie.harvestmoon.cooking.Utensil;
 import joshie.harvestmoon.init.HMBlocks;
@@ -7,7 +8,7 @@ import net.minecraft.block.Block;
 
 public class TileSteamer extends TileCooking {
     @Override
-    public Utensil getUtensil() {
+    public IUtensil getUtensil() {
         return Utensil.STEAMER;
     }
 

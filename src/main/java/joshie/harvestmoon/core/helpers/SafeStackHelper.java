@@ -26,10 +26,6 @@ public class SafeStackHelper {
         Collection list = map.get(new SafeStack(stack));
         if (list.size() < 1) list = map.get(new WildStack(stack));
         if (list.size() < 1) list = map.get(new HMStack(stack));
-        
-        System.out.println(list.size());
-        
-        
         return list;
     }
     

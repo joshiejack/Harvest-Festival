@@ -336,6 +336,7 @@ public class Crop implements ICrop {
 
     @Override
     public boolean equals(Object o) {
+        if (o == this) return true;
         if (!(o instanceof ICrop)) {
             return false;
         }

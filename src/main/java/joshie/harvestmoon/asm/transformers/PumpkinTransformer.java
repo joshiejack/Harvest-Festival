@@ -12,6 +12,7 @@ import net.minecraft.item.Item;
 
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.AbstractInsnNode;
 import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.LdcInsnNode;
@@ -19,7 +20,6 @@ import org.objectweb.asm.tree.MethodInsnNode;
 import org.objectweb.asm.tree.MethodNode;
 import org.objectweb.asm.tree.VarInsnNode;
 
-import com.sun.xml.internal.ws.org.objectweb.asm.Opcodes;
 
 public class PumpkinTransformer implements ITransformer {
     @Override
@@ -59,7 +59,7 @@ public class PumpkinTransformer implements ITransformer {
                             m.instructions.insert(m.instructions.get(j + 124), new VarInsnNode(Opcodes.ASTORE, 1));
                             m.instructions.insert(m.instructions.get(j + 124), new MethodInsnNode(Opcodes.INVOKESTATIC, HMModInfo.ASMPATH + "asm/transformers/PumpkinTransformer", "registerPumpkin", "(Ljava/util/HashSet;)Ljava/util/HashSet;", false));
                             m.instructions.insert(m.instructions.get(j + 124), new VarInsnNode(Opcodes.ALOAD, 1));
-                            break;
+                            break labelTop;
                         }
                     }
                 }

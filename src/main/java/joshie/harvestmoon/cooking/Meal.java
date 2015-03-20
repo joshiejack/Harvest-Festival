@@ -146,6 +146,7 @@ public class Meal implements IMeal {
     
     @Override
     public boolean equals(Object o) {
+        if (o == this) return true;
         if (!(o instanceof IMeal)) {
             return false;
         }

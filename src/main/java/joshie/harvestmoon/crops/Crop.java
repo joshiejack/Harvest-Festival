@@ -281,7 +281,9 @@ public class Crop implements ICrop {
     public ItemStack getCropStackForQuality(int quality) {
         if (dropHandler != null) {
             ItemStack ret = dropHandler.getDrop(rand, item, quality);
-            if (ret != null) return ret;
+            if (ret != null) {
+                return ret;
+            }
         }
         
         return new ItemStack(item, 1, quality);

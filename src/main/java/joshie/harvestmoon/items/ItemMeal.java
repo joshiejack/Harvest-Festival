@@ -22,12 +22,14 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.text.WordUtils;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemMeal extends ItemHMMeta {
     private HashMap<String, IIcon> iconMap = new HashMap();
+    private IIcon[] burnt;
 
     //Irrelevant since we overwrite them, but it needs it specified
     @Override
@@ -111,25 +113,31 @@ public class ItemMeal extends ItemHMMeta {
     }
 
     @Override
-    public IIcon getIconFromDamage(int damge) {
-        return itemIcon;
+    public IIcon getIconFromDamage(int damage) {
+        int meta = Math.max(0, Math.min(Utensil.values().length - 1, damage));
+        return burnt[meta];
     }
 
     @SideOnly(Side.CLIENT)
     public IIcon getIconIndex(ItemStack stack) {
         if (!stack.hasTagCompound()) {
-            return itemIcon;
+            return getIconFromDamage(stack.getItemDamage());
         }
 
         String key = stack.getTagCompound().getString("FoodName");
         IIcon icon = iconMap.get(key);
-        return icon != null ? icon : itemIcon;
+        return icon != null ? icon : getIconFromDamage(stack.getItemDamage());
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public void registerIcons(IIconRegister register) {
         itemIcon = register.registerIcon(MEALPATH + "burnt");
+        burnt = new IIcon[Utensil.values().length];
+        for (Utensil u : Utensil.values()) {
+            burnt[u.ordinal()] = register.registerIcon(MEALPATH + "burnt" + WordUtils.capitalize(u.name()));
+        }
+
         for (IMeal meal : HMApi.COOKING.getMeals()) {
             String key = meal.getUnlocalizedName();
             iconMap.put(key, register.registerIcon(MEALPATH + StringUtils.replace(key, ".", "_")));

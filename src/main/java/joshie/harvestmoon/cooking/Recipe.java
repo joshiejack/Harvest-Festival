@@ -40,10 +40,12 @@ public class Recipe implements IMealRecipe {
         return this;
     }
 
-    private boolean recipeHasThisIngredient(ICookingComponent ingredient) {
+    private boolean recipeHasThisIngredient(ICookingComponent ingredient) {        
         //First we check if the Required Ingredients have this ingredient in them
         for (ICookingComponent i : requiredIngredients) {
-            if (i.isEqual(ingredient)) return true;
+            if (i.isEqual(ingredient)) {
+                return true;
+            }
         }
 
         //Second we check if the Optional Ingredients have this ingredient in them
@@ -69,13 +71,13 @@ public class Recipe implements IMealRecipe {
     @Override
     public IMeal getMeal(IUtensil utensil, HashSet<ICookingComponent> ingredients) {
         if (ingredients == null || ingredients.size() < 1 || utensil != requiredTool) return null; //If we have no utensils, or not enough recipes remove them all
-
+               
         /** Step one.
          *  Validate that all supplied Ingredients are Allowed in this Meal.*/
         for (ICookingComponent ingredient : ingredients) { //Loop through all the ingredients to CHECK if the recipe allow this type of food in to it
             if (!recipeHasThisIngredient(ingredient)) return null; //If the recipe DOES not contain this ingredient then we should return null.
         }
-
+        
         /** Step two.
          *  Now that we know that all the ingredients are valid ingredients for this recipe.
          *  We need to actually check that we HAVE all of the required ingredients.
@@ -84,7 +86,7 @@ public class Recipe implements IMealRecipe {
             //If the ingredients list does NOT contain this item we should return null
             if (!ingredientListContains(ingredients, required)) return null;
         }
-
+        
         /** Final step is to build the meal **/
         IMeal meal = new Meal(result);
         if (optionalIngredients != null) { //Loop through optional ingredients

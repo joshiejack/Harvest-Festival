@@ -8,7 +8,9 @@ public class MealStack extends SafeStack {
     
     public MealStack(ItemStack stack) {
         super(stack);
-        mealname = ((IMealProvider)(stack.getItem())).getMealName(stack);
+        if (stack.getItem() instanceof IMealProvider) {
+            mealname = ((IMealProvider)(stack.getItem())).getMealName(stack);
+        }
     }
 
     @Override
@@ -23,8 +25,8 @@ public class MealStack extends SafeStack {
         if (this == obj) return true;
         if (getClass() != obj.getClass()) return false;
         MealStack other = (MealStack) obj;
-        if (mealname == null) {
-            if (other.mealname != null) return false;
+        if (mealname == null || other.mealname == null) {
+            return false;
         } else if (!mealname.equals(other.mealname)) return false;
         return true;
     }

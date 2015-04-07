@@ -14,6 +14,7 @@ public class Ingredient implements ICookingComponent {
     public float saturation;
     public int eatTime;
     public Fluid fluid;
+    public boolean isCategory;
 
     /**@param stamina - how much this restored stamina
      * @param fatigue - how much this adds to fatigue
@@ -29,16 +30,28 @@ public class Ingredient implements ICookingComponent {
         this.eatTime = eatTime;
         equivalents.add(this);
     }
+    
+    public Ingredient(String unlocalized) {
+        this.unlocalized = unlocalized;
+        this.isCategory = true;
+        equivalents.add(this);
+    }
 
     @Override
-    public ICookingComponent add(ICookingComponent component) {
-        equivalents.add((Ingredient) component);
+    public ICookingComponent add(ICookingComponent... components) {
+        for (ICookingComponent component: components) {
+            equivalents.add((Ingredient) component);
+        }
+        
         return this;
     }
 
     @Override
-    public ICookingComponent assign(ICookingComponent ingredient) {
-        ingredient.add(this);
+    public ICookingComponent assign(ICookingComponent... ingredient) {
+        for (ICookingComponent c: ingredient) {
+            c.add(this);
+        }
+
         return this;
     }
     
@@ -47,7 +60,7 @@ public class Ingredient implements ICookingComponent {
         this.fluid = fluid;
         return this;
     }
-
+    
     @Override
     public Fluid getFluid() {
         return fluid;
@@ -82,7 +95,7 @@ public class Ingredient implements ICookingComponent {
     public float getSaturation() {
         return saturation;
     }
-
+    
     /** This should return true if the passed in ingredient is the same as this one **/
     @Override
     public boolean isEqual(ICookingComponent ingredient) {

@@ -10,6 +10,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class HMIngredients {
+    /** Categories **/
+    public static ICookingComponent mushroom;
+    public static ICookingComponent juice_vegetable;
+    public static ICookingComponent salad_ingredient;
+    public static ICookingComponent sandwich_ingredient;
+    public static ICookingComponent sashimi_vegetable;
+    
     /** Seasonings **/
     public static ICookingComponent salt;
     public static ICookingComponent sugar;
@@ -31,11 +38,6 @@ public class HMIngredients {
     public static ICookingComponent riceball;
     public static ICookingComponent milk;
     public static ICookingComponent mayonnaise;
-    public static ICookingComponent mushroom;
-    public static ICookingComponent juice_vegetable;
-    public static ICookingComponent salad_ingredient;
-    public static ICookingComponent sandwich_ingredient;
-    public static ICookingComponent sashimi_vegetable;
 
     /** Crops **/
     public static ICookingComponent turnip;
@@ -58,13 +60,15 @@ public class HMIngredients {
     public static ICookingComponent watermelon;
     public static ICookingComponent wheat;
     public static ICookingComponent bread;
+    public static ICookingComponent red_mushroom;
+    public static ICookingComponent brown_mushroom;
 
     public static void addIngredients() {
-        mushroom = new Ingredient("mushroom", 2, -1, 1, 0.02F, 8);
-        juice_vegetable = new Ingredient("vegetable_juice", 3, -2, 1, 0.01F, 4);
-        salad_ingredient = new Ingredient("salad_ingredient", 3, -3, 2, 0.05F, 8);
-        sandwich_ingredient = new Ingredient("sandwich_ingredient", 2, -4, 1, 0.075F, 6);
-        sashimi_vegetable = new Ingredient("sashimi_vegetable", 2, -2, 1, 0.1F, 8);
+        mushroom = new Ingredient("mushroom");
+        juice_vegetable = new Ingredient("vegetable_juice");
+        salad_ingredient = new Ingredient("salad_ingredient");
+        sandwich_ingredient = new Ingredient("sandwich_ingredient");
+        sashimi_vegetable = new Ingredient("sashimi_vegetable");
 
         salt = new Ingredient("salt", 0, 0, 0, 0.01F, 0);
         sugar = new Ingredient("sugar", 1, 0, 0, 0F, 0);
@@ -80,6 +84,8 @@ public class HMIngredients {
         riceball = new Ingredient("riceball", 6, -3, 1, 0.085F, 16);
         mayonnaise = new Ingredient("mayonnaise", 6, -1, 1, 0.8F, 8);
         milk = new Ingredient("milk", 5, -2, 0, 0.04F, 6).setFluid(HMCooking.cookingMilk);
+        red_mushroom = new Ingredient("mushroom_red", 2, -1, 1, 0.02F, 8);
+        brown_mushroom = new Ingredient("mushroom_brown", 2, -1, 1, 0.02F, 8);
 
         //HM Crops
         turnip = new Ingredient("turnip", 2, -1, 1, 0.033F, 8);
@@ -108,6 +114,13 @@ public class HMIngredients {
         sashimi = new Ingredient("sashimi", 11, -2, 2, 0.07F, 10);
         scrambled_egg = new Ingredient("egg.scrambled", 20, -1, 1, 0.05F, 6);
         cookies = new Ingredient("cookies", 15, -2, 1, 0.03F, 4);
+        
+        //Add ingredients to the categories
+        mushroom.add(red_mushroom, brown_mushroom);
+        juice_vegetable.add(turnip, cucumber, cabbage, tomato, onion, carrot, spinach, green_pepper);
+        salad_ingredient.add(cucumber, carrot, tomato, cabbage, brown_mushroom);
+        sandwich_ingredient.add(cucumber, tomato, mayonnaise, brown_mushroom, boiled_egg);
+        sashimi_vegetable.add(cucumber, tomato, onion, eggplant);
     }
 
     public static void assignIngredients() {
@@ -150,46 +163,16 @@ public class HMIngredients {
         HMApi.COOKING.register(new ItemStack(HMItems.milk), milk);
         HMApi.COOKING.register(new ItemStack(Items.milk_bucket, 1, OreDictionary.WILDCARD_VALUE), milk);
         HMApi.COOKING.register(new ItemStack(HMItems.mayonnaise), mayonnaise);
-
-        //Mushrooms
-        HMApi.COOKING.register(new ItemStack(Blocks.brown_mushroom, 1, OreDictionary.WILDCARD_VALUE), mushroom);
-        HMApi.COOKING.register(new ItemStack(Blocks.red_mushroom, 1, OreDictionary.WILDCARD_VALUE), mushroom);
-        //Juice Vegetables
-        HMApi.COOKING.register(HMCrops.turnip.getCropStack(), juice_vegetable);
-        HMApi.COOKING.register(HMCrops.cucumber.getCropStack(), juice_vegetable);
-        HMApi.COOKING.register(HMCrops.cabbage.getCropStack(), juice_vegetable);
-        HMApi.COOKING.register(HMCrops.tomato.getCropStack(), juice_vegetable);
-        HMApi.COOKING.register(HMCrops.onion.getCropStack(), juice_vegetable);
-        HMApi.COOKING.register(HMCrops.carrot.getCropStack(), juice_vegetable);
-        HMApi.COOKING.register(new ItemStack(Items.carrot, 1, OreDictionary.WILDCARD_VALUE), juice_vegetable);
-        HMApi.COOKING.register(HMCrops.spinach.getCropStack(), juice_vegetable);
-        HMApi.COOKING.register(HMCrops.green_pepper.getCropStack(), juice_vegetable);
-        //Salad Ingredients
-        HMApi.COOKING.register(HMCrops.cucumber.getCropStack(), salad_ingredient);
-        HMApi.COOKING.register(HMCrops.carrot.getCropStack(), salad_ingredient);
-        HMApi.COOKING.register(new ItemStack(Items.carrot, 1, OreDictionary.WILDCARD_VALUE), salad_ingredient);
-        HMApi.COOKING.register(HMCrops.tomato.getCropStack(), salad_ingredient);
-        HMApi.COOKING.register(HMCrops.cabbage.getCropStack(), salad_ingredient);
-        HMApi.COOKING.register(new ItemStack(Blocks.brown_mushroom, 1, OreDictionary.WILDCARD_VALUE), salad_ingredient);
-        HMApi.COOKING.register(new ItemStack(Blocks.red_mushroom, 1, OreDictionary.WILDCARD_VALUE), salad_ingredient);
-        //Sandwich Ingredients
-        HMApi.COOKING.register(HMCrops.cucumber.getCropStack(), sandwich_ingredient);
-        HMApi.COOKING.register(HMCrops.tomato.getCropStack(), sandwich_ingredient);
-        HMApi.COOKING.register(new ItemStack(HMItems.mayonnaise), sandwich_ingredient);
-        HMApi.COOKING.register(new ItemStack(Blocks.brown_mushroom, 1, OreDictionary.WILDCARD_VALUE), sandwich_ingredient);
-        HMApi.COOKING.register(new ItemStack(Blocks.red_mushroom, 1, OreDictionary.WILDCARD_VALUE), sandwich_ingredient);
-        HMApi.COOKING.register(HMApi.COOKING.getMeal("egg.boiled"), sandwich_ingredient);
-        //Sashimi Veggies
-        HMApi.COOKING.register(HMCrops.cucumber.getCropStack(), sashimi_vegetable);
-        HMApi.COOKING.register(HMCrops.tomato.getCropStack(), sashimi_vegetable);
-        HMApi.COOKING.register(HMCrops.onion.getCropStack(), sashimi_vegetable);
-        HMApi.COOKING.register(HMCrops.eggplant.getCropStack(), sashimi_vegetable);
-
+        
         //Meal Ingredients
         HMApi.COOKING.register(HMApi.COOKING.getMeal("butter"), butter);
         HMApi.COOKING.register(HMApi.COOKING.getMeal("egg.boiled"), boiled_egg);
         HMApi.COOKING.register(HMApi.COOKING.getMeal("sashimi"), sashimi);
         HMApi.COOKING.register(HMApi.COOKING.getMeal("egg.scrambled"), scrambled_egg);
         HMApi.COOKING.register(HMApi.COOKING.getMeal("cookies"), cookies);
+
+        //Mushrooms
+        HMApi.COOKING.register(new ItemStack(Blocks.brown_mushroom, 1, OreDictionary.WILDCARD_VALUE), brown_mushroom);
+        HMApi.COOKING.register(new ItemStack(Blocks.red_mushroom, 1, OreDictionary.WILDCARD_VALUE), red_mushroom);
     }
 }

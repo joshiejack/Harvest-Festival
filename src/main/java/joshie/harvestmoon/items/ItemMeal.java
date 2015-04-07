@@ -4,10 +4,14 @@ import static joshie.harvestmoon.core.helpers.PlayerHelper.affectStats;
 import static joshie.harvestmoon.core.lib.HMModInfo.MEALPATH;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 import joshie.harvestmoon.api.HMApi;
 import joshie.harvestmoon.api.cooking.IMeal;
+import joshie.harvestmoon.api.cooking.IMealProvider;
+import joshie.harvestmoon.api.cooking.IMealRecipe;
+import joshie.harvestmoon.api.core.ICreativeSorted;
 import joshie.harvestmoon.cooking.Utensil;
 import joshie.harvestmoon.core.config.General;
 import joshie.harvestmoon.core.util.Translate;
@@ -27,7 +31,7 @@ import org.apache.commons.lang3.text.WordUtils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemMeal extends ItemHMMeta {
+public class ItemMeal extends ItemHMMeta implements IMealProvider, ICreativeSorted {
     private HashMap<String, IIcon> iconMap = new HashMap();
     private IIcon[] burnt;
 
@@ -113,6 +117,12 @@ public class ItemMeal extends ItemHMMeta {
     }
 
     @Override
+    public String getMealName(ItemStack stack) {
+        if (!stack.hasTagCompound()) return "burnt";
+        return stack.stackTagCompound.getString("FoodName");
+    }
+
+    @Override
     public IIcon getIconFromDamage(int damage) {
         int meta = Math.max(0, Math.min(Utensil.values().length - 1, damage));
         return burnt[meta];
@@ -147,8 +157,17 @@ public class ItemMeal extends ItemHMMeta {
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs creative, List list) {
-        for (IMeal meal : HMApi.COOKING.getMeals()) {
-            list.add(cook(new ItemStack(item), meal));
+        HashSet<IMeal> added = new HashSet();
+        for (IMealRecipe recipe : HMApi.COOKING.getRecipes()) {
+            IMeal best = recipe.getBestMeal();
+            if (added.add(best)) {
+                list.add(cook(new ItemStack(item), best));
+            }
         }
+    }
+
+    @Override
+    public int getSortValue(ItemStack stack) {
+        return 100;
     }
 }

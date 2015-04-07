@@ -1,6 +1,6 @@
 # To-Do Stuff, feel free to help with any!
-- Finish Shipping System
 - Finish Cooking System
+- Finish Shipping System
 - Finish Mining System
 - Finish Building/Town System
 - Finish Loot Gen System

@@ -1,7 +1,13 @@
 package joshie.harvestmoon.api.cooking;
 
+import net.minecraft.item.ItemStack;
+
 
 public interface IMeal {
+    /** Marks the meal as a drink 
+     * @return **/
+    IMeal setIsDrink();
+    
     /** @return     the unlocalized name, must be unique*/
     String getUnlocalizedName();
 
@@ -33,4 +39,7 @@ public interface IMeal {
      *  @param      the cooking component we're adding as an ingredient
      *  @return     the adjusted meal **/
     IMeal addIngredient(ICookingComponent optional);
+
+    /** Returns the itemstack for this meal **/
+    ItemStack cook(IMeal meal);
 }

@@ -28,16 +28,13 @@ public class ItemGeneral extends ItemHMMeta {
     public static final int FLOUR = 11;
     public static final int OIL = 12;
     public static final int RICEBALL = 13;
-    public static final int WHISKED_EGG = 14;
-    public static final int POTATO_SLICES = 15;
-    public static final int BUTTER = 16;
-    public static final int SALT = 17;
-    public static final int MIRACLE = 18;
-    public static final int CHOCOLATE = 19;
+    public static final int SALT = 14;
+    public static final int MIRACLE = 15;
+    public static final int CHOCOLATE = 16;
 
     @Override
     public int getMetaCount() {
-        return 20;
+        return 17;
     }
 
     @Override
@@ -71,14 +68,8 @@ public class ItemGeneral extends ItemHMMeta {
                 return "oil";
             case RICEBALL:
                 return "riceball";
-            case POTATO_SLICES:
-                return "potato_slices";
-            case BUTTER:
-                return "butter";
             case SALT:
                 return "salt";
-            case WHISKED_EGG:
-                return "whisked_egg";
             case MIRACLE:
                 return "miracle_potion";
             case CHOCOLATE:

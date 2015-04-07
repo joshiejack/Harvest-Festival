@@ -3,6 +3,7 @@ package joshie.harvestmoon.cooking;
 import joshie.harvestmoon.api.cooking.ICookingComponent;
 import joshie.harvestmoon.api.cooking.IMeal;
 import joshie.harvestmoon.init.HMItems;
+import joshie.harvestmoon.items.ItemMeal;
 import net.minecraft.item.ItemStack;
 
 public class Meal implements IMeal {
@@ -41,7 +42,9 @@ public class Meal implements IMeal {
         this.saturation_cap = meal.getSaturationCap();
     }
     
-    public Meal setDrink() {
+
+    @Override
+    public IMeal setIsDrink() {
         this.isLiquid = true;
         return this;
     }
@@ -142,6 +145,11 @@ public class Meal implements IMeal {
         this.hunger = Math.min(hunger_cap, this.hunger);
         this.saturation = Math.min(saturation_cap, this.saturation);
         return this;
+    }
+
+    @Override
+    public ItemStack cook(IMeal meal) {
+        return ItemMeal.cook(new ItemStack(HMItems.meal), meal);
     }
     
     @Override

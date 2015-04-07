@@ -1,7 +1,8 @@
 package joshie.harvestmoon.plugins.agricraft;
 
 import java.util.ArrayList;
-import java.util.WeakHashMap;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 
 import joshie.harvestmoon.api.HMApi;
 import joshie.harvestmoon.api.crops.ICrop;
@@ -19,10 +20,12 @@ import net.minecraft.world.World;
 
 import com.InfinityRaider.AgriCraft.farming.CropOverride;
 import com.InfinityRaider.AgriCraft.tileentity.TileEntityCrop;
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
 
 public class HMAgricraftOverride extends CropOverride {
-    private static final WeakHashMap<Integer, CropOverride> server_cache = new WeakHashMap();
-    private static final WeakHashMap<Integer, CropOverride> client_cache = new WeakHashMap();
+    private static Cache<Integer, CropOverride> client_cache = CacheBuilder.newBuilder().maximumSize(1000).build();
+    private static Cache<Integer, CropOverride> server_cache = CacheBuilder.newBuilder().maximumSize(32000).build();
 
     private TileEntityCrop crop;
     private World world;
@@ -48,15 +51,17 @@ public class HMAgricraftOverride extends CropOverride {
         return result;
     }
 
-    public static CropOverride getOverride(TileEntityCrop crop, WeakHashMap<Integer, CropOverride> map) {
-        int key = getKey(crop.getWorldObj(), crop.xCoord, crop.yCoord, crop.zCoord);
-        CropOverride override = map.get(key);
-        if (override != null) {
-            return override;
-        } else {
-            override = new HMAgricraftOverride(crop);
-            map.put(key, override);
-            return override;
+    public static CropOverride getOverride(final TileEntityCrop crop, Cache<Integer, CropOverride> cache) {
+        try {
+            final int key = getKey(crop.getWorldObj(), crop.xCoord, crop.yCoord, crop.zCoord);
+            return cache.get(key, new Callable<CropOverride>() {
+                @Override
+                public CropOverride call() {
+                    return new HMAgricraftOverride(crop);
+                }
+            });
+        } catch (ExecutionException e) {
+            return null; //Return null on failure
         }
     }
 

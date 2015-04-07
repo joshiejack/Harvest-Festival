@@ -32,6 +32,13 @@ public class Recipe implements IMealRecipe {
         this.requiredTool = tool;
         return this;
     }
+    
+
+    @Override
+    public IMealRecipe setIsDrink() {
+        this.result.setIsDrink();
+        return this;
+    }
 
     private boolean recipeHasThisIngredient(ICookingComponent ingredient) {
         //First we check if the Required Ingredients have this ingredient in them
@@ -106,13 +113,5 @@ public class Recipe implements IMealRecipe {
         }
 
         return meal;
-    }
-    
-    /** Subclasses **/
-    public static class FryingPanRecipe extends Recipe {
-        public FryingPanRecipe(ICookingComponent[] ingredients, IMeal result) {
-            super(ingredients, result);
-            setRequiredTool(Utensil.FRYING_PAN);
-        }
     }
 }

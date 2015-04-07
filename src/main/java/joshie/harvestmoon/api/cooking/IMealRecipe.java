@@ -28,4 +28,7 @@ public interface IMealRecipe {
      * @param       the utensil
      * @return      the meal  */
     public IMealRecipe setRequiredTool(IUtensil tool);
+
+    /** Marks the meal as something you drink, not eat **/
+    public IMealRecipe setIsDrink();
 }

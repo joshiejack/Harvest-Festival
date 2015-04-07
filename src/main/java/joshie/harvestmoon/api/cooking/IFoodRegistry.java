@@ -12,6 +12,11 @@ public interface IFoodRegistry {
      *  @param      the itemstack
      *  @param      the component **/
     public void register(ItemStack stack, ICookingComponent component);
+    
+    /** Registers a special recipe handler, called before the normal
+     *  recipes are ever processed
+     * @param handler */
+    public void registerRecipeHandler(ISpecialRecipeHandler handler);
 
     /** Returns a set of all the components this stack provides
      * 
@@ -43,8 +48,9 @@ public interface IFoodRegistry {
     public IUtensil getUtensil(String unlocalized);
 
     /** Add a recipe for cooking a meal
-     *  @param      the recipe */
-    public void addRecipe(IMealRecipe recipe);
+     *  @param      the recipe 
+     * @return */
+    public IMealRecipe addRecipe(IMealRecipe recipe);
 
     /** Returns a resulting itemstack for the ingredients input
      * @param fluid 
@@ -60,4 +66,8 @@ public interface IFoodRegistry {
     /** Returns a list of all the unique meals
      *  @return     the meals */
     public Set<IMeal> getMeals();
+
+    /** Returns a copy of this meal, with it's best stats
+     *  Can and will return null if it was not found. **/
+    public ItemStack getMeal(String string);
 }

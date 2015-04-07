@@ -10,7 +10,7 @@ import joshie.harvestmoon.core.helpers.AnimalHelper;
 import joshie.harvestmoon.core.helpers.generic.DirectionHelper;
 import joshie.harvestmoon.core.lib.RenderIds;
 import joshie.harvestmoon.core.util.generic.IFaceable;
-import joshie.harvestmoon.init.cooking.HMIngredients;
+import joshie.harvestmoon.init.HMIngredients;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;

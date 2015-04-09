@@ -2,7 +2,6 @@ package joshie.harvestmoon.init;
 
 import joshie.harvestmoon.api.HMApi;
 import joshie.harvestmoon.api.cooking.ICookingComponent;
-import joshie.harvestmoon.cooking.Ingredient;
 import joshie.harvestmoon.items.ItemGeneral;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -64,56 +63,60 @@ public class HMIngredients {
     public static ICookingComponent brown_mushroom;
 
     public static void addIngredients() {
-        mushroom = new Ingredient("mushroom");
-        juice_vegetable = new Ingredient("vegetable_juice");
-        salad_ingredient = new Ingredient("salad_ingredient");
-        sandwich_ingredient = new Ingredient("sandwich_ingredient");
-        sashimi_vegetable = new Ingredient("sashimi_vegetable");
+        //Categories
+        mushroom = HMApi.COOKING.newCategory("mushroom");
+        juice_vegetable = HMApi.COOKING.newCategory("vegetable_juice");
+        salad_ingredient = HMApi.COOKING.newCategory("salad_ingredient");
+        sandwich_ingredient = HMApi.COOKING.newCategory("sandwich_ingredient");
+        sashimi_vegetable = HMApi.COOKING.newCategory("sashimi_vegetable");
 
-        salt = new Ingredient("salt", 0, 0, 0, 0.01F, 0);
-        sugar = new Ingredient("sugar", 1, 0, 0, 0F, 0);
+        //Seasonings
+        salt = HMApi.COOKING.newIngredient("salt", 0, 0, 0, 0.01F, 0);
+        sugar = HMApi.COOKING.newIngredient("sugar", 1, 0, 0, 0F, 0);
 
-        butter = new Ingredient("butter", 6, -1, 0, 0.01F, 6);
+        //Store Bought
+        chocolate = HMApi.COOKING.newIngredient("chocolate", 5, -10, 1, 0.05F, 4);
+        flour = HMApi.COOKING.newIngredient("flour", 0, 0, 0, 0.1F, 4);
+        oil = HMApi.COOKING.newIngredient("oil", 0, -2, 0, 0F, 2).setFluid(HMCooking.cookingOil);
+        riceball = HMApi.COOKING.newIngredient("riceball", 6, -3, 1, 0.085F, 16);
 
-        apple = new Ingredient("apple", 2, -1, 1, 0.015F, 6);
-        chocolate = new Ingredient("chocolate", 5, -10, 1, 0.05F, 4);
-        egg = new Ingredient("egg", 6, 0, 0, 0.075F, 10);
-        fish = new Ingredient("fish", 5, -5, 2, 0.1F, 16);
-        flour = new Ingredient("flour", 0, 0, 0, 0.1F, 4);
-        oil = new Ingredient("oil", 0, -2, 0, 0F, 2).setFluid(HMCooking.cookingOil);
-        riceball = new Ingredient("riceball", 6, -3, 1, 0.085F, 16);
-        mayonnaise = new Ingredient("mayonnaise", 6, -1, 1, 0.8F, 8);
-        milk = new Ingredient("milk", 5, -2, 0, 0.04F, 6).setFluid(HMCooking.cookingMilk);
-        red_mushroom = new Ingredient("mushroom_red", 2, -1, 1, 0.02F, 8);
-        brown_mushroom = new Ingredient("mushroom_brown", 2, -1, 1, 0.02F, 8);
+        //HM Sizeables
+        egg = HMApi.COOKING.newIngredient("egg", 6, 0, 0, 0.075F, 10);
+        mayonnaise = HMApi.COOKING.newIngredient("mayonnaise", 6, -1, 1, 0.8F, 8);
+        milk = HMApi.COOKING.newIngredient("milk", 5, -2, 0, 0.04F, 6).setFluid(HMCooking.cookingMilk);
 
         //HM Crops
-        turnip = new Ingredient("turnip", 2, -1, 1, 0.033F, 8);
-        potato = new Ingredient("potato", 5, -1, 1, 0.08F, 16);
-        cucumber = new Ingredient("cucumber", 3, -1, 1, 0.02F, 4);
-        strawberry = new Ingredient("strawberry", 3, -2, 1, 0.025F, 8);
-        cabbage = new Ingredient("cabbage", 3, -3, 1, 0.05F, 8);
-        tomato = new Ingredient("tomato", 2, -1, 1, 0.035F, 10);
-        onion = new Ingredient("onion", 2, -2, 1, 0.03F, 8);
-        corn = new Ingredient("corn", 5, -3, 1, 0.0375F, 16);
-        pumpkin = new Ingredient("pumpkin", 4, -1, 2, 0.06F, 16);
-        pineapple = new Ingredient("pineapple", 3, -3, 1, 0.055F, 16);
-        eggplant = new Ingredient("eggplant", 2, -3, 1, 0.05F, 8);
-        carrot = new Ingredient("carrot", 2, -2, 1, 0.035F, 6);
-        sweet_potato = new Ingredient("potato_sweet", 6, -2, 1, 0.04F, 16);
-        spinach = new Ingredient("spinach", 3, -4, 1, 0.022F, 8);
-        green_pepper = new Ingredient("pepper_green", 4, -2, 1, 0.03F, 12);
+        turnip = HMApi.COOKING.newIngredient("turnip", 2, -1, 1, 0.033F, 8);
+        potato = HMApi.COOKING.newIngredient("potato", 5, -1, 1, 0.08F, 16);
+        cucumber = HMApi.COOKING.newIngredient("cucumber", 3, -1, 1, 0.02F, 4);
+        strawberry = HMApi.COOKING.newIngredient("strawberry", 3, -2, 1, 0.025F, 8);
+        cabbage = HMApi.COOKING.newIngredient("cabbage", 3, -3, 1, 0.05F, 8);
+        tomato = HMApi.COOKING.newIngredient("tomato", 2, -1, 1, 0.035F, 10);
+        onion = HMApi.COOKING.newIngredient("onion", 2, -2, 1, 0.03F, 8);
+        corn = HMApi.COOKING.newIngredient("corn", 5, -3, 1, 0.0375F, 16);
+        pumpkin = HMApi.COOKING.newIngredient("pumpkin", 4, -1, 2, 0.06F, 16);
+        pineapple = HMApi.COOKING.newIngredient("pineapple", 3, -3, 1, 0.055F, 16);
+        eggplant = HMApi.COOKING.newIngredient("eggplant", 2, -3, 1, 0.05F, 8);
+        carrot = HMApi.COOKING.newIngredient("carrot", 2, -2, 1, 0.035F, 6);
+        sweet_potato = HMApi.COOKING.newIngredient("potato_sweet", 6, -2, 1, 0.04F, 16);
+        spinach = HMApi.COOKING.newIngredient("spinach", 3, -4, 1, 0.022F, 8);
+        green_pepper = HMApi.COOKING.newIngredient("pepper_green", 4, -2, 1, 0.03F, 12);
 
-        //Vanilla Crops
-        watermelon = new Ingredient("watermelon", 1, -1, 1, 0.05F, 4);
-        wheat = new Ingredient("wheat", 6, -3, 1, 0.0275F, 16);
-        bread = new Ingredient("bread", 8, -6, 3, 0.06F, 24);
+        //Vanilla Stuff
+        apple = HMApi.COOKING.newIngredient("apple", 2, -1, 1, 0.015F, 6);
+        bread = HMApi.COOKING.newIngredient("bread", 8, -6, 3, 0.06F, 24);
+        fish = HMApi.COOKING.newIngredient("fish", 5, -5, 2, 0.1F, 16);
+        watermelon = HMApi.COOKING.newIngredient("watermelon", 1, -1, 1, 0.05F, 4);
+        wheat = HMApi.COOKING.newIngredient("wheat", 6, -3, 1, 0.0275F, 16);
+        red_mushroom = HMApi.COOKING.newIngredient("mushroom_red", 2, -1, 1, 0.02F, 8);
+        brown_mushroom = HMApi.COOKING.newIngredient("mushroom_brown", 2, -1, 1, 0.02F, 8);
 
         //Meals
-        boiled_egg = new Ingredient("egg.boiled", 10, -1, 2, 0.06F, 8);
-        sashimi = new Ingredient("sashimi", 11, -2, 2, 0.07F, 10);
-        scrambled_egg = new Ingredient("egg.scrambled", 20, -1, 1, 0.05F, 6);
-        cookies = new Ingredient("cookies", 15, -2, 1, 0.03F, 4);
+        butter = HMApi.COOKING.newIngredient("butter", 6, -1, 0, 0.01F, 6);
+        boiled_egg = HMApi.COOKING.newIngredient("egg.boiled", 10, -1, 2, 0.06F, 8);
+        sashimi = HMApi.COOKING.newIngredient("sashimi", 11, -2, 2, 0.07F, 10);
+        scrambled_egg = HMApi.COOKING.newIngredient("egg.scrambled", 20, -1, 1, 0.05F, 6);
+        cookies = HMApi.COOKING.newIngredient("cookies", 15, -2, 1, 0.03F, 4);
         
         //Add ingredients to the categories
         mushroom.add(red_mushroom, brown_mushroom);

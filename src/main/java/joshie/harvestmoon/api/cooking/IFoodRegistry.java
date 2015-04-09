@@ -32,6 +32,27 @@ public interface IFoodRegistry {
      *  @param      the unlocalized name of the component
      *  @return     the cooking component  */
     public ICookingComponent getComponent(String unlocalized);
+    
+    /** Creates a new cooking category, e.g. "fruit"
+     *  To add things to this category, simple call 
+     *  newCategory("fruit").add(apple, banana, pineapple);
+     *  You could recreate this with the newIngredient
+     *  by setting stats to 0, but this is for convenience.
+     * @param       unlocalized name
+     * @return      the component
+     */
+    public ICookingComponent newCategory(String unlocalized);
+    
+    /** Creates a new ingredient type for usage in cooking
+     *  @param      the unlocalised name, this needs to be unique 
+     *          The food stats are how much this ingredient affects recipes
+     *          when it gets added to them as optional ingredients;
+     *  @param      the stamina this ingredient restores
+     *  @param      the fatigue this ingredient adds (use negative to remove fatigue)
+     *  @param      the hunger (vanilla) this ingredient fills
+     *  @param      the saturation (vanilla) this ingredient fills
+     *  @param      the eatTimer, this is how many ticks extra this adds to eating time **/  
+    public ICookingComponent newIngredient(String unlocalised, int stamina, int fatigue, int hunger, float saturation, int eatTimer);
 
     /** Returns a fluid for this ingredient if it's valid
      *  This is called by the client when rendering, to determine how to rend the item.

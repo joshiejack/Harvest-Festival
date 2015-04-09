@@ -52,6 +52,16 @@ public class FoodRegistry implements IFoodRegistry {
     public ICookingComponent getComponent(String unlocalized) {
         return components.get(unlocalized);
     }
+    
+    @Override
+    public ICookingComponent newCategory(String unlocalized) {
+        return new Ingredient(unlocalized);
+    }
+    
+    @Override
+    public ICookingComponent newIngredient(String unlocalized, int stamina, int fatigue, int hunger, float saturation, int eatTimer) {
+        return new Ingredient(unlocalized, stamina, fatigue, hunger, saturation, eatTimer);
+    }
 
     @Override
     public Fluid getFluid(ItemStack ingredient) {

@@ -14,7 +14,6 @@ public class Ingredient implements ICookingComponent {
     public float saturation;
     public int eatTime;
     public Fluid fluid;
-    public boolean isCategory;
 
     /**@param stamina - how much this restored stamina
      * @param fatigue - how much this adds to fatigue
@@ -33,7 +32,6 @@ public class Ingredient implements ICookingComponent {
     
     public Ingredient(String unlocalized) {
         this.unlocalized = unlocalized;
-        this.isCategory = true;
         equivalents.add(this);
     }
 

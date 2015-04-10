@@ -8,6 +8,11 @@ hm.check.lead=On lead after purchase.
 #Commands
 hm.commands.help.header=--- Showing hm help page %d of %d (/hm help <page>) ---
 
+#Animals
+hm.animal.chicken=Chicken
+hm.animal.cow=Cow
+hm.animal.sheep=Sheep
+
 #Buildings
 hm.structures.barn=Animal Ranch
 hm.structures.blacksmith=Blacksmith

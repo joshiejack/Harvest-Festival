@@ -27,6 +27,7 @@ import org.apache.commons.lang3.text.WordUtils;
 
 public class HMItems {
     public static EnumMap<SizeableMeta, Item> sized = new EnumMap(SizeableMeta.class);
+    public static ItemAnimal animal;
     public static Item seeds;
     public static Item general;
     public static Item meal;
@@ -34,7 +35,6 @@ public class HMItems {
     public static Item spawner;
     public static Item treats;
     public static Item cheat;
-    public static Item animal;
     
     public static Item egg;
     public static Item milk;
@@ -69,11 +69,11 @@ public class HMItems {
         mayonnaise = sized.get(SizeableMeta.MAYONNAISE);
         yarn = sized.get(SizeableMeta.YARN);
 
+        animal = (ItemAnimal) new ItemAnimal().setUnlocalizedName("animal");
         seeds = new ItemSeeds().setUnlocalizedName("crops.seeds");
         general = new ItemGeneral().setUnlocalizedName("general.item");
         meal = new ItemMeal().setUnlocalizedName("meal");
         treats = new ItemTreat().setUnlocalizedName("treat");
-        animal = new ItemAnimal().setUnlocalizedName("animal");
         
         /* Tools **/
         hoe = new ItemHoe().setUnlocalizedName("hoe");

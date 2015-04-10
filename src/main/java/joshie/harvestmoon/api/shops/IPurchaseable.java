@@ -2,7 +2,6 @@ package joshie.harvestmoon.api.shops;
 
 import java.util.List;
 
-import joshie.harvestmoon.calendar.CalendarDate;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -14,8 +13,13 @@ public interface IPurchaseable {
     /** The cost of this product **/
     public long getCost();
     
-    /** The product(s) that were purchased **/
-    public ItemStack[] getProducts();
+    /** This is the itemstack that gets displayed in the shop view **/
+    public ItemStack getDisplayStack();
+    
+    /** Called whenever this item is purchased
+     *  @param      the player purchasing the item
+     *  @return     return true if the gui should close after a purchase **/
+    public boolean onPurchased(EntityPlayer player);
 
     /** Display tooltip for this item **/
     public void addTooltip(List list);

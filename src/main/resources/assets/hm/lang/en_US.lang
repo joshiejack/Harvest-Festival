@@ -2,6 +2,8 @@
 hm.tab.main=Harvest Moon
 hm.mode.true=Harvest Moon was set to easy mode!
 hm.mode.false=Harvest Moon was set to hard mode!
+hm.check.head=On head after purchase.
+hm.check.lead=On lead after purchase.
 
 #Commands
 hm.commands.help.header=--- Showing hm help page %d of %d (/hm help <page>) ---

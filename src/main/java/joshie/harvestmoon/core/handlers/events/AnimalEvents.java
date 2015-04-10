@@ -2,12 +2,18 @@ package joshie.harvestmoon.core.handlers.events;
 
 import static joshie.harvestmoon.core.helpers.AnimalHelper.feed;
 import static joshie.harvestmoon.core.network.PacketHandler.sendToServer;
+
+import java.util.HashSet;
+
 import joshie.harvestmoon.animals.AnimalType;
 import joshie.harvestmoon.core.config.Animals;
 import joshie.harvestmoon.core.helpers.AnimalHelper;
 import joshie.harvestmoon.core.helpers.RelationsHelper;
+import joshie.harvestmoon.core.network.PacketDismountChicken;
+import joshie.harvestmoon.core.network.PacketHandler;
 import joshie.harvestmoon.core.network.PacketSyncCanProduce;
 import joshie.harvestmoon.core.network.PacketSyncRelations;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityCow;
@@ -55,21 +61,25 @@ public class AnimalEvents {
             AnimalHelper.onDeath((EntityAnimal) event.entityLiving);
         }
     }
+    
+    private HashSet<Entity> mounted = new HashSet();
 
     @SubscribeEvent
     public void onRightClickGround(PlayerInteractEvent event) {
-        if (event.action == Action.RIGHT_CLICK_BLOCK) {
+        if (event.action != Action.LEFT_CLICK_BLOCK && event.entityPlayer.worldObj.isRemote) {
             EntityPlayer player = event.entityPlayer;
             if (player.riddenByEntity instanceof EntityChicken) {
+                if (mounted.contains(player.riddenByEntity)) {
+                    mounted.remove(player.riddenByEntity);
+                    return;
+                }
+                
                 EntityChicken chicken = (EntityChicken) player.riddenByEntity;
-                chicken.ridingEntity = null;
-                player.riddenByEntity = null;
+                chicken.mountEntity(null);
                 chicken.rotationPitch = player.rotationPitch;
                 chicken.rotationYaw = player.rotationYaw;
                 chicken.moveFlying(0F, 1.0F, 1.25F);
-                if (!player.worldObj.isRemote) {
-                    AnimalHelper.throwChicken(player, chicken);
-                }
+                PacketHandler.sendToServer(new PacketDismountChicken());
             }
         }
     }
@@ -95,10 +105,12 @@ public class AnimalEvents {
                 }
             } else {
                 if (animal instanceof EntityChicken) {
-                    animal.ridingEntity = player;
-                    player.riddenByEntity = animal;
+                    if (animal.ridingEntity == null) {
+                        animal.mountEntity(player);
+                        mounted.add(animal);
+                    }
                 }
-                
+
                 RelationsHelper.setTalkedTo(player, animal);
             }
         }

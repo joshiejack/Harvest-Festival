@@ -8,16 +8,19 @@ import joshie.harvestmoon.calendar.CalendarDate;
 import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.core.helpers.CalendarHelper;
 import joshie.harvestmoon.core.helpers.PlayerHelper;
+import joshie.harvestmoon.core.helpers.generic.ItemHelper;
 import joshie.harvestmoon.core.util.generic.Text;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class PurchaseableCropSeeds implements IPurchaseable {
+    private ItemStack product;
     private ICrop crop;
 
     public PurchaseableCropSeeds(ICrop crop) {
         this.crop = crop;
+        this.product = crop.getSeedStack();
     }
 
     private boolean isCorrectSeason(CalendarDate date) {
@@ -45,8 +48,8 @@ public class PurchaseableCropSeeds implements IPurchaseable {
     }
 
     @Override
-    public ItemStack[] getProducts() {
-        return new ItemStack[] { crop.getSeedStack() };
+    public ItemStack getDisplayStack() {
+        return product;
     }
     
     @Override
@@ -55,5 +58,12 @@ public class PurchaseableCropSeeds implements IPurchaseable {
         for (Season season : crop.getSeasons()) {
             list.add(season.getTextColor() + season.getLocalized());
         }
+    }
+
+    @Override
+    public boolean onPurchased(EntityPlayer player) {
+        ItemHelper.addToPlayerInventory(player, product.copy());
+        
+        return false;
     }
 }

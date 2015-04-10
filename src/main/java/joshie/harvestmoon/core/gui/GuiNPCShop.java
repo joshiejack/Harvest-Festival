@@ -69,7 +69,7 @@ public class GuiNPCShop extends GuiNPC {
             if (index > 9) break;
             IPurchaseable purchaseable = contents.get(i);
             if (purchaseable.canBuy(player.worldObj, player)) {
-                ItemStack display = purchaseable.getProducts()[0];
+                ItemStack display = purchaseable.getDisplayStack();
                 long cost = purchaseable.getCost();
                 mc.renderEngine.bindTexture(shelve_texture);
                 int indexPercent = index % 2;

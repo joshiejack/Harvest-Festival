@@ -1,11 +1,13 @@
 package joshie.harvestmoon.core;
 
 import static joshie.harvestmoon.core.lib.HMModInfo.JAVAPATH;
+import joshie.harvestmoon.animals.ChickenRenderFix;
 import joshie.harvestmoon.blocks.BlockHMBaseMeta;
 import joshie.harvestmoon.blocks.render.RenderCrops;
 import joshie.harvestmoon.blocks.render.RenderPreview;
 import joshie.harvestmoon.blocks.render.SpecialRendererFryingPan;
 import joshie.harvestmoon.blocks.tiles.TileFryingPan;
+import joshie.harvestmoon.core.config.Client;
 import joshie.harvestmoon.core.handlers.RenderHandler;
 import joshie.harvestmoon.core.handlers.events.RenderEvents;
 import joshie.harvestmoon.core.helpers.ClientHelper;
@@ -15,6 +17,7 @@ import joshie.harvestmoon.core.util.generic.EntityFakeItem;
 import joshie.harvestmoon.core.util.generic.RenderFakeItem;
 import joshie.harvestmoon.init.HMBlocks;
 import joshie.harvestmoon.init.HMItems;
+import joshie.harvestmoon.items.render.RenderItemAnimal;
 import joshie.harvestmoon.items.render.RenderSeedBag;
 import joshie.harvestmoon.npc.EntityNPC;
 import joshie.harvestmoon.npc.EntityNPCBuilder;
@@ -50,6 +53,7 @@ public class HMClientProxy extends HMCommonProxy {
         FMLCommonHandler.instance().bus().register(new RenderEvents());
         MinecraftForge.EVENT_BUS.register(new RenderEvents());
         MinecraftForgeClient.registerItemRenderer(HMItems.seeds, new RenderSeedBag());
+        MinecraftForgeClient.registerItemRenderer(HMItems.animal, new RenderItemAnimal());
         ClientRegistry.bindTileEntitySpecialRenderer(TileFryingPan.class, new SpecialRendererFryingPan());
         RenderingRegistry.registerEntityRenderingHandler(EntityNPC.class, new RenderNPC());
         RenderingRegistry.registerEntityRenderingHandler(EntityNPCBuilder.class, new RenderNPC());
@@ -58,6 +62,10 @@ public class HMClientProxy extends HMCommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityFakeItem.class, new RenderFakeItem());
         for (int i = 0; i < 8; i++) {
             RenderHandler.register(HMBlocks.preview, i, RenderPreview.class);
+        }
+        
+        if (Client.CHICKEN_OFFSET_FIX) {
+            MinecraftForge.EVENT_BUS.register(new ChickenRenderFix());
         }
     }
 

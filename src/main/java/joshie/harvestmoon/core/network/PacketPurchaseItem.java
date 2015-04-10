@@ -38,7 +38,9 @@ public class PacketPurchaseItem implements IMessage, IMessageHandler<PacketPurch
         EntityPlayer player = ctx.getServerHandler().playerEntity;
         IPurchaseable purchaseable = ShopInventory.registers.get(message.purchaseable_id);
         if(purchaseable.canBuy(player.worldObj, player)) {
-            ShopHelper.purchase(player, purchaseable.getProducts(), purchaseable.getCost());
+            if(ShopHelper.purchase(player, purchaseable, purchaseable.getCost())) {
+                player.closeScreen();
+            }
         }
         
         return null;

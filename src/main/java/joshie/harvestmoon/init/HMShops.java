@@ -7,7 +7,6 @@ import static joshie.harvestmoon.api.core.Weekday.SUNDAY;
 import static joshie.harvestmoon.api.core.Weekday.THURSDAY;
 import static joshie.harvestmoon.api.core.Weekday.TUESDAY;
 import static joshie.harvestmoon.api.core.Weekday.WEDNESDAY;
-import static net.minecraft.world.EnumDifficulty.HARD;
 import joshie.harvestmoon.api.HMApi;
 import joshie.harvestmoon.api.crops.ICrop;
 import joshie.harvestmoon.api.shops.IShop;
@@ -15,6 +14,7 @@ import joshie.harvestmoon.items.ItemAnimal;
 import joshie.harvestmoon.items.ItemGeneral;
 import joshie.harvestmoon.shops.PurchaseableBlueFeather;
 import joshie.harvestmoon.shops.PurchaseableCropSeeds;
+import joshie.harvestmoon.shops.PurchaseableEntity;
 import joshie.harvestmoon.shops.ShopInventoryGui;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -47,8 +47,8 @@ public class HMShops {
         
         barn.addItem(20, HMCrops.grass.getCropStack());
         barn.addItem(1000, new ItemStack(HMItems.general, 1, ItemGeneral.MEDICINE));
-        barn.addItem(4000, new ItemStack(HMItems.animal, 1, ItemAnimal.SHEEP));
-        barn.addItem(5000, new ItemStack(HMItems.animal, 1, ItemAnimal.COW));
+        barn.addItem(new PurchaseableEntity("Sheep", 4000, new ItemStack(HMItems.animal, 1, ItemAnimal.SHEEP), true));
+        barn.addItem(new PurchaseableEntity("Cow", 5000, new ItemStack(HMItems.animal, 1, ItemAnimal.COW), true));
         barn.addItem(3000, new ItemStack(HMItems.general, 1, ItemGeneral.MIRACLE));
         barn.addOpening(MONDAY, 10000, 15000).addOpening(TUESDAY, 10000, 15000).addOpening(WEDNESDAY, 10000, 15000);
         barn.addOpening(THURSDAY, 10000, 15000).addOpening(FRIDAY, 10000, 15000).addOpening(SATURDAY, 10000, 15000);
@@ -88,7 +88,7 @@ public class HMShops {
             poultry.setGuiOverlay(new ShopInventoryGui(34));
         }
         
-        poultry.addItem(1500, new ItemStack(HMItems.animal, 1, ItemAnimal.CHICKEN));
+        poultry.addItem(new PurchaseableEntity("Chicken", 1500, new ItemStack(HMItems.animal, 1, ItemAnimal.CHICKEN), false));
         poultry.addItem(1000, new ItemStack(HMItems.general, 1, ItemGeneral.MEDICINE));
         poultry.addItem(10, new ItemStack(HMItems.general, 1, ItemGeneral.CHICKEN_FEED));
         poultry.addOpening(MONDAY, 11000, 16000).addOpening(TUESDAY, 11000, 16000).addOpening(WEDNESDAY, 11000, 16000);

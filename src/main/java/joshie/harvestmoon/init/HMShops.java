@@ -112,7 +112,7 @@ public class HMShops {
         supermarket.addItem(100, new ItemStack(HMItems.general, 1, ItemGeneral.RICEBALL));
         supermarket.addItem(25, new ItemStack(HMItems.general, 1, ItemGeneral.SALT));
         supermarket.addItem(new PurchaseableBlueFeather(1000, new ItemStack(HMItems.general, 1, ItemGeneral.BLUE_FEATHER)));
-        supermarket.addOpening(HARD, MONDAY, 9000, 17000).addOpening(HARD, TUESDAY, 9000, 17000).addOpening(HARD, THURSDAY, 9000, 17000);
-        supermarket.addOpening(HARD, FRIDAY, 9000, 17000).addOpening(HARD, SATURDAY, 11000, 15000);
+        supermarket.addOpening(MONDAY, 9000, 17000).addOpening(TUESDAY, 9000, 17000).addOpening(THURSDAY, 9000, 17000);
+        supermarket.addOpening(FRIDAY, 9000, 17000).addOpening(SATURDAY, 11000, 15000);
     }
 }

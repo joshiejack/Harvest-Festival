@@ -5,6 +5,7 @@ import java.util.List;
 
 import joshie.harvestmoon.api.shops.IPurchaseable;
 import joshie.harvestmoon.api.shops.IShop;
+import joshie.harvestmoon.api.shops.IShopGuiOverlay;
 import joshie.harvestmoon.core.helpers.PlayerHelper;
 import joshie.harvestmoon.core.helpers.generic.StackHelper;
 import joshie.harvestmoon.core.lib.HMModInfo;
@@ -21,15 +22,27 @@ public class GuiNPCShop extends GuiNPC {
     private static final ResourceLocation gui_texture = new ResourceLocation(HMModInfo.MODPATH, "textures/gui/shop.png");
     private static final ResourceLocation number_texture = new ResourceLocation(HMModInfo.MODPATH, "lang/en_US/shops.png");
     private static final ResourceLocation shelve_texture = new ResourceLocation(HMModInfo.MODPATH, "textures/gui/shop_extra.png");
-    private IShop shop;
+    private List<IPurchaseable> contents;
+    private IShopGuiOverlay overlay;
     private boolean welcome;
     private int start;
 
     public GuiNPCShop(EntityNPC npc, EntityPlayer player) {
         super(npc, player);
 
-        shop = npc.getNPC().getShop();
+        IShop shop = npc.getNPC().getShop();
         if (shop == null || !shop.isOpen(player.worldObj)) player.closeScreen();
+        overlay = shop.getGuiOverlay();
+        contents = new ArrayList();
+        for (IPurchaseable purchaseable: shop.getContents()) {
+            if (purchaseable.canBuy(player.worldObj, player)) {
+                contents.add(purchaseable);
+            }
+        }
+    }
+    
+    public void setStart(int i) {
+        start = Math.max(0, Math.min(contents.size() - 10, i));
     }
 
     @Override
@@ -42,7 +55,7 @@ public class GuiNPCShop extends GuiNPC {
             GL11.glEnable(GL11.GL_BLEND);
             mc.renderEngine.bindTexture(gui_texture);
             drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
-            shop.getGuiOverlay().renderOverlay(this, x, y, xSize, ySize);
+            overlay.renderOverlay(this, x, y, xSize, ySize);
             drawCoinage(x, y, PlayerHelper.getGold(player));
             drawShelves(x, y);
             GL11.glDisable(GL11.GL_BLEND);
@@ -52,8 +65,9 @@ public class GuiNPCShop extends GuiNPC {
 
     private void drawShelves(int x, int y) {
         int index = 0;
-        for (int i = start; i < shop.getContents().size(); i++) {
-            IPurchaseable purchaseable = shop.getContents().get(i);
+        for (int i = start; i < contents.size(); i++) {
+            if (index > 9) break;
+            IPurchaseable purchaseable = contents.get(i);
             if (purchaseable.canBuy(player.worldObj, player)) {
                 ItemStack display = purchaseable.getProducts()[0];
                 long cost = purchaseable.getCost();
@@ -129,13 +143,28 @@ public class GuiNPCShop extends GuiNPC {
     public void endChat() {
         welcome = true;
     }
+    
+    @Override
+    protected void keyTyped(char character, int key) {
+        if (key == 208 || character == 's') {
+            setStart(start + 2);
+        }
+        
+        if (key == 200 || character == 'w') {
+            setStart(start - 2);
+        }
+
+        super.keyTyped(character, key);
+    }
 
     @Override
     protected void onMouseClick(int x, int y) {
         if (!welcome) super.onMouseClick(x, y);
         else {            
             int index = 0;
-            for (IPurchaseable purchaseable : shop.getContents()) {
+            for (int i = start; i < contents.size(); i++) {
+                if (index > 9) break;
+                IPurchaseable purchaseable = contents.get(i);
                 if (purchaseable.canBuy(player.worldObj, player)) {
                     long cost = purchaseable.getCost();
                     int indexPercent = index % 2;
@@ -156,6 +185,18 @@ public class GuiNPCShop extends GuiNPC {
             }
         }
     }
+    
+    @Override
+    public void handleMouseInput() {
+        super.handleMouseInput();
+        
+        if (mouseWheel != 0) {
+            if (mouseWheel < 0)
+            setStart(start + 2);
+            else setStart(start - 2);
+        }
+    }
+    
 
     private static enum Number {
         ZERO(1, 9), 

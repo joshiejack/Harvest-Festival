@@ -197,7 +197,7 @@ public class GuiNPC extends GuiBase {
     }
 
     @Override
-    protected void keyTyped(char character, int key) {
+    protected void keyTyped(char character, int key) {        
         if (character == 'w' || key == 200) {
             selectedBottom = false;
         }

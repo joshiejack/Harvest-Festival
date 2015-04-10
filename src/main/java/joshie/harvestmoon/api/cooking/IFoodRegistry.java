@@ -88,7 +88,10 @@ public interface IFoodRegistry {
      *  @return     the meals */
     public Set<IMeal> getMeals();
 
+    /** Returns a default copy of this meal **/
+    public ItemStack getMeal(String string);
+    
     /** Returns a copy of this meal, with it's best stats
      *  Can and will return null if it was not found. **/
-    public ItemStack getMeal(String string);
+    public ItemStack getBestMeal(String string);
 }

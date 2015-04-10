@@ -162,11 +162,11 @@ public class HMIngredients {
         HMApi.COOKING.register(new ItemStack(HMItems.milk), milk);
         HMApi.COOKING.register(new ItemStack(Items.milk_bucket, 1, OreDictionary.WILDCARD_VALUE), milk);
         HMApi.COOKING.register(new ItemStack(HMItems.mayonnaise), mayonnaise);
-        HMApi.COOKING.register(HMApi.COOKING.getMeal("butter"), butter);
-        HMApi.COOKING.register(HMApi.COOKING.getMeal("egg.boiled"), boiled_egg);
-        HMApi.COOKING.register(HMApi.COOKING.getMeal("sashimi"), sashimi);
-        HMApi.COOKING.register(HMApi.COOKING.getMeal("egg.scrambled"), scrambled_egg);
-        HMApi.COOKING.register(HMApi.COOKING.getMeal("cookies"), cookies);
+        HMApi.COOKING.register(HMApi.COOKING.getBestMeal("butter"), butter);
+        HMApi.COOKING.register(HMApi.COOKING.getBestMeal("egg.boiled"), boiled_egg);
+        HMApi.COOKING.register(HMApi.COOKING.getBestMeal("sashimi"), sashimi);
+        HMApi.COOKING.register(HMApi.COOKING.getBestMeal("egg.scrambled"), scrambled_egg);
+        HMApi.COOKING.register(HMApi.COOKING.getBestMeal("cookies"), cookies);
         HMApi.COOKING.register(new ItemStack(Blocks.brown_mushroom, 1, OreDictionary.WILDCARD_VALUE), brown_mushroom);
         HMApi.COOKING.register(new ItemStack(Blocks.red_mushroom, 1, OreDictionary.WILDCARD_VALUE), red_mushroom);
     }

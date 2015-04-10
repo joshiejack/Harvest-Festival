@@ -1,5 +1,7 @@
 package joshie.harvestmoon.api.crops;
 
+import java.util.Collection;
+
 import joshie.harvestmoon.calendar.Season;
 import net.minecraft.world.World;
 
@@ -12,4 +14,7 @@ public interface ICropHandler {
     
     /** Will NEVER return null, however it may have an instance of 'null_crop' **/
     public ICropData getCropAtLocation(World world, int x, int y, int z);
+
+    /** Returns a collection of all registered crops **/
+    public Collection<ICrop> getCrops();
 }

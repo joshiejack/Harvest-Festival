@@ -1,5 +1,7 @@
 package joshie.harvestmoon.core.handlers.api;
 
+import java.util.Collection;
+
 import joshie.harvestmoon.api.crops.ICrop;
 import joshie.harvestmoon.api.crops.ICropData;
 import joshie.harvestmoon.api.crops.ICropHandler;
@@ -7,7 +9,6 @@ import joshie.harvestmoon.api.crops.ICropRenderHandler.PlantSection;
 import joshie.harvestmoon.blocks.BlockCrop;
 import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.core.helpers.CropHelper;
-import joshie.harvestmoon.core.helpers.SeasonHelper;
 import joshie.harvestmoon.crops.Crop;
 import joshie.harvestmoon.init.HMConfiguration;
 import net.minecraft.world.World;
@@ -32,5 +33,10 @@ public class CropRegistry implements ICropHandler {
     @Override
     public ICrop registerCrop(ICrop crop) {
         return crop;
+    }
+
+    @Override
+    public Collection<ICrop> getCrops() {
+        return Crop.crops;
     }
 }

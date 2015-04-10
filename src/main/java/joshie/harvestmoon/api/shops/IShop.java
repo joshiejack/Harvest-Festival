@@ -28,11 +28,15 @@ public interface IShop {
     public IShop addItem(long cost, ItemStack... stack);
     
     /** Add some opening hours for this shop, based on difficulty, and day of the week
+     *  No point in adding peaceful hours. Shops are always open 24 hours in peaceful.
      *  @param      the difficulty
      *  @param      the day of the week
      *  @param      the opening time (0-24000)
      *  @param      the closing time (0-24000) **/
     public IShop addOpening(EnumDifficulty difficulty, Weekday day, int opening, int closing);
+    
+    /** Hours, auto adjusts based on difficulty instead of manually adding **/
+    public IShop addOpening(Weekday day, int opening, int closing);
     
     /** Return the welcome message for this shop **/
     public String getWelcome();

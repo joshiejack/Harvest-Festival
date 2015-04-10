@@ -24,6 +24,7 @@ public abstract class GuiBase extends GuiContainer {
     protected int mouseX = 0;
     protected int mouseY = 0;
     private ArrayList<String> tooltip = new ArrayList<String>();
+    protected int mouseWheel;
 
     public GuiBase(ContainerBase container, String texture, int yOffset) {
         super(container);
@@ -156,6 +157,7 @@ public abstract class GuiBase extends GuiContainer {
 
         mouseX = x - guiLeft;
         mouseY = y - guiTop;
+        mouseWheel = Mouse.getDWheel();
 
         super.handleMouseInput();
     }

@@ -6,6 +6,7 @@ import joshie.harvestmoon.api.crops.ICrop;
 import joshie.harvestmoon.core.config.General;
 import joshie.harvestmoon.core.lib.SizeableMeta;
 import joshie.harvestmoon.crops.Crop;
+import joshie.harvestmoon.items.ItemAnimal;
 import joshie.harvestmoon.items.ItemBuilding;
 import joshie.harvestmoon.items.ItemCheat;
 import joshie.harvestmoon.items.ItemCrop;
@@ -33,6 +34,7 @@ public class HMItems {
     public static Item spawner;
     public static Item treats;
     public static Item cheat;
+    public static Item animal;
     
     public static Item egg;
     public static Item milk;
@@ -71,6 +73,7 @@ public class HMItems {
         general = new ItemGeneral().setUnlocalizedName("general.item");
         meal = new ItemMeal().setUnlocalizedName("meal");
         treats = new ItemTreat().setUnlocalizedName("treat");
+        animal = new ItemAnimal().setUnlocalizedName("animal");
         
         /* Tools **/
         hoe = new ItemHoe().setUnlocalizedName("hoe");

@@ -96,10 +96,21 @@ public class FoodRegistry implements IFoodRegistry {
     
 
     @Override
-    public ItemStack getMeal(String string) {
+    public ItemStack getBestMeal(String string) {
         for (IMealRecipe recipe: getRecipes()) {
             if (recipe.getBestMeal().getUnlocalizedName().equals(string)) {
                 return recipe.getBestMeal().cook(recipe.getBestMeal());
+            }
+        }
+        
+        return null;
+    }
+
+    @Override
+    public ItemStack getMeal(String string) {
+        for (IMealRecipe recipe: getRecipes()) {
+            if (recipe.getBestMeal().getUnlocalizedName().equals(string)) {
+                return recipe.getBestMeal().cook(recipe.getMeal());
             }
         }
         

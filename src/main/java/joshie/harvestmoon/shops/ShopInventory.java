@@ -81,6 +81,7 @@ public class ShopInventory implements IShop {
     /** Whether or not the shop is currently open at this time or season **/
     @Override
     public boolean isOpen(World world) {
+        if (world.difficultySetting == EnumDifficulty.PEACEFUL) return true;
         Weekday day = CalendarHelper.getWeekday(world);
         OpeningHours hours = open.get(world.difficultySetting).opening.get(day);
         if (hours == null) return false;
@@ -98,6 +99,27 @@ public class ShopInventory implements IShop {
         OpeningSettings settings = open.get(difficulty) == null ? new OpeningSettings() : open.get(difficulty);
         settings.opening.put(day, hours);
         open.put(difficulty, settings);
+        return this;
+    }
+    
+    public int fix(int i) {
+        return Math.min(24000, Math.max(0, i));
+    }
+    
+    @Override
+    public IShop addOpening(Weekday day, int opening, int closing) {
+        OpeningHours hard = new OpeningHours(opening, closing);
+        OpeningHours normal = new OpeningHours(fix(opening - 3000), fix(closing + 2000));
+        OpeningHours easy = new OpeningHours(fix(opening - 4000), fix(closing + 5000));
+        OpeningSettings hSettings = open.get(EnumDifficulty.HARD) == null? new OpeningSettings() : open.get(EnumDifficulty.HARD);
+        OpeningSettings nSettings = open.get(EnumDifficulty.NORMAL) == null? new OpeningSettings() : open.get(EnumDifficulty.NORMAL);
+        OpeningSettings eSettings = open.get(EnumDifficulty.EASY) == null? new OpeningSettings() : open.get(EnumDifficulty.EASY);
+        hSettings.opening.put(day, hard);
+        nSettings.opening.put(day, normal);
+        eSettings.opening.put(day, easy);
+        open.put(EnumDifficulty.HARD, hSettings);
+        open.put(EnumDifficulty.NORMAL, nSettings);
+        open.put(EnumDifficulty.EASY, eSettings);
         return this;
     }
 

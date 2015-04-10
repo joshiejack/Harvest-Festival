@@ -5,6 +5,7 @@ import java.util.List;
 import joshie.harvestmoon.blocks.tiles.TileMarker;
 import joshie.harvestmoon.buildings.BuildingGroup;
 import joshie.harvestmoon.core.config.General;
+import joshie.harvestmoon.core.helpers.NPCHelper;
 import joshie.harvestmoon.core.helpers.UUIDHelper;
 import joshie.harvestmoon.core.lib.RenderIds;
 import joshie.harvestmoon.init.HMNPCs;
@@ -91,7 +92,7 @@ public class BlockPreview extends BlockHMBaseMeta {
             TileMarker marker = (TileMarker) world.getTileEntity(x, y, z);
             EntityNPCBuilder builder = marker.getBuilder();
             if (builder == null) {
-                builder = (EntityNPCBuilder) HMNPCs.builder.getEntity(UUIDHelper.getPlayerUUID(player), world);
+                builder = (EntityNPCBuilder) NPCHelper.getEntityForNPC(UUIDHelper.getPlayerUUID(player), world, HMNPCs.builder);
             }
 
             builder.setPosition(x, y, z);

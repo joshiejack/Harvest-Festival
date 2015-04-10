@@ -1,7 +1,7 @@
 package joshie.harvestmoon.core.helpers;
 
+import joshie.harvestmoon.api.npc.INPC;
 import joshie.harvestmoon.npc.EntityNPC;
-import joshie.harvestmoon.npc.NPC;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 
@@ -40,7 +40,7 @@ public class RelationsHelper {
         }
     }
 
-    public static void setGifted(EntityPlayer player, NPC npc, int points) {
+    public static void setGifted(EntityPlayer player, INPC npc, int points) {
         ServerHelper.getPlayerData(player).setGifted(npc, points);
     }
 

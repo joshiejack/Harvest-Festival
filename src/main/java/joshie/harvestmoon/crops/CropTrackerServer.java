@@ -11,10 +11,10 @@ import java.util.Map;
 
 import joshie.harvestmoon.animals.AnimalType;
 import joshie.harvestmoon.api.WorldLocation;
+import joshie.harvestmoon.api.core.Weekday;
 import joshie.harvestmoon.api.crops.ICrop;
 import joshie.harvestmoon.api.crops.ICropData;
 import joshie.harvestmoon.calendar.CalendarDate;
-import joshie.harvestmoon.calendar.Weekday;
 import joshie.harvestmoon.core.helpers.AnimalHelper;
 import joshie.harvestmoon.core.helpers.CalendarHelper;
 import joshie.harvestmoon.core.helpers.CropHelper;

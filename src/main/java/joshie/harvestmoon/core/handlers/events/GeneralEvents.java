@@ -5,6 +5,7 @@ import joshie.harvestmoon.blocks.BlockFlower;
 import joshie.harvestmoon.blocks.items.ItemBlockFlower;
 import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.core.helpers.ClientHelper;
+import joshie.harvestmoon.core.helpers.NPCHelper;
 import joshie.harvestmoon.core.helpers.ServerHelper;
 import joshie.harvestmoon.init.HMNPCs;
 import joshie.harvestmoon.npc.EntityNPC;
@@ -32,7 +33,7 @@ public class GeneralEvents {
                 if (stack != null) {
                     if (stack.getItem() instanceof ItemBlockFlower) {
                         if (stack.getItemDamage() == BlockFlower.GODDESS) {
-                            EntityNPC goddess = HMNPCs.goddess.getEntity(null, world);
+                            EntityNPC goddess = NPCHelper.getEntityForNPC(null, world, HMNPCs.goddess);
                             goddess.setPosition((int) event.entityItem.posX, (int) event.entityItem.posY + 1, (int) event.entityItem.posZ);
                             world.spawnEntityInWorld(goddess);
                         }

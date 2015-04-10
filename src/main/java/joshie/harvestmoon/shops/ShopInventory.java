@@ -3,32 +3,34 @@ package joshie.harvestmoon.shops;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 
-import joshie.harvestmoon.api.core.IPurchaseable;
-import joshie.harvestmoon.calendar.Weekday;
+import joshie.harvestmoon.api.core.Weekday;
+import joshie.harvestmoon.api.shops.IPurchaseable;
+import joshie.harvestmoon.api.shops.IShop;
+import joshie.harvestmoon.api.shops.IShopGuiOverlay;
 import joshie.harvestmoon.core.helpers.CalendarHelper;
 import joshie.harvestmoon.core.helpers.generic.MCClientHelper;
 import joshie.harvestmoon.core.lib.HMModInfo;
 import joshie.harvestmoon.core.util.generic.Text;
 import net.minecraft.client.Minecraft;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
-public class ShopInventory {
+public class ShopInventory implements IShop {
     public static final ArrayList<IPurchaseable> registers = new ArrayList();
     private ArrayList<IPurchaseable> contents = new ArrayList();
     protected ArrayList<String> greetings = new ArrayList();
-    private ResourceLocation shop_overlay;
     private HashMap<EnumDifficulty, OpeningSettings> open = new HashMap();
-    private int resourceY;
     private String name;
     protected int last;
 
-    public ShopInventory(String name, int resourceY) {
-        this.shop_overlay = new ResourceLocation(HMModInfo.MODPATH + ":textures/gui/shops/" + name + ".png");
-        this.resourceY = resourceY;
+    public ShopInventory(String name) {
         for (int i = 1; i < 32; i++) {
             String key = HMModInfo.MODPATH + ".shop." + name + ".greeting" + i;
             String greeting = Text.localize(key);
@@ -38,8 +40,27 @@ public class ShopInventory {
         }
 
         Collections.shuffle(greetings);
+        
+        if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
+            overlay = new ShopInventoryGui(0);
+        }
     }
-
+    
+    @SideOnly(Side.CLIENT)
+    public IShopGuiOverlay overlay;
+    
+    @SideOnly(Side.CLIENT)
+    public IShop setGuiOverlay(IShopGuiOverlay overlay) {
+        this.overlay = overlay;
+        return this;
+    }
+    
+    @SideOnly(Side.CLIENT)
+    @Override
+    public IShopGuiOverlay getGuiOverlay() {
+        return overlay;
+    }
+    
     /** Returns the location of the shops name **/
     public ResourceLocation getResource() {
         ResourceLocation shop_texture = new ResourceLocation(HMModInfo.MODPATH + ":lang/" + FMLCommonHandler.instance().getCurrentLanguage() + "/shops.png");
@@ -52,16 +73,13 @@ public class ShopInventory {
         return shop_texture;
     }
 
-    public ArrayList<IPurchaseable> getContents() {
+    @Override
+    public List<IPurchaseable> getContents() {
         return contents;
     }
 
-    /** Returns the y Coordinate of this shop on the texture **/
-    public int getResourceY() {
-        return resourceY;
-    }
-
     /** Whether or not the shop is currently open at this time or season **/
+    @Override
     public boolean isOpen(World world) {
         Weekday day = CalendarHelper.getWeekday(world);
         OpeningHours hours = open.get(world.difficultySetting).opening.get(day);
@@ -74,7 +92,8 @@ public class ShopInventory {
         }
     }
 
-    public ShopInventory addOpening(EnumDifficulty difficulty, Weekday day, int opening, int closing) {
+    @Override
+    public IShop addOpening(EnumDifficulty difficulty, Weekday day, int opening, int closing) {
         OpeningHours hours = new OpeningHours(opening, closing);
         OpeningSettings settings = open.get(difficulty) == null ? new OpeningSettings() : open.get(difficulty);
         settings.opening.put(day, hours);
@@ -82,13 +101,20 @@ public class ShopInventory {
         return this;
     }
 
-    public ShopInventory addItem(IPurchaseable item) {
+    @Override
+    public IShop addItem(IPurchaseable item) {
         this.contents.add(item);
         this.registers.add(item);
         return this;
     }
+    
+    @Override
+    public IShop addItem(long cost, ItemStack... items) {
+        return addItem(new Purchaseable(cost, items));
+    }
 
     /** Return the welcome message for this shop **/
+    @Override
     public String getWelcome() {
         if (greetings.size() == 0) {
             return "JOSHIE IS STOOPID AND FORGOT WELCOME LANG";
@@ -99,10 +125,6 @@ public class ShopInventory {
         } else last = 0;
 
         return greetings.get(last);
-    }
-
-    public ResourceLocation getOverlay() {
-        return shop_overlay;
     }
 
     private static class OpeningSettings {

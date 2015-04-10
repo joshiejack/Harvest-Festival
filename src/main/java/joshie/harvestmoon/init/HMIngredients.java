@@ -129,13 +129,11 @@ public class HMIngredients {
     public static void assignIngredients() {
         HMApi.COOKING.register(new ItemStack(HMItems.general, 1, ItemGeneral.SALT), salt);
         HMApi.COOKING.register(new ItemStack(Items.sugar, 1, OreDictionary.WILDCARD_VALUE), sugar);
-
         HMApi.COOKING.register(new ItemStack(Items.apple, 1, OreDictionary.WILDCARD_VALUE), apple);
         HMApi.COOKING.register(new ItemStack(HMItems.general, 1, ItemGeneral.CHOCOLATE), chocolate);
         HMApi.COOKING.register(new ItemStack(HMItems.general, 1, ItemGeneral.FLOUR), flour);
         HMApi.COOKING.register(new ItemStack(HMItems.general, 1, ItemGeneral.OIL), oil);
         HMApi.COOKING.register(new ItemStack(HMItems.general, 1, ItemGeneral.RICEBALL), riceball);
-
         HMApi.COOKING.register(HMCrops.turnip.getCropStack(), turnip);
         HMApi.COOKING.register(HMCrops.potato.getCropStack(), potato);
         HMApi.COOKING.register(new ItemStack(Items.potato, 1, OreDictionary.WILDCARD_VALUE), potato);
@@ -154,27 +152,21 @@ public class HMIngredients {
         HMApi.COOKING.register(HMCrops.sweet_potato.getCropStack(), sweet_potato);
         HMApi.COOKING.register(HMCrops.spinach.getCropStack(), spinach);
         HMApi.COOKING.register(HMCrops.green_pepper.getCropStack(), green_pepper);
-
         HMApi.COOKING.register(new ItemStack(Items.wheat, 1, OreDictionary.WILDCARD_VALUE), wheat);
         HMApi.COOKING.register(new ItemStack(Items.melon, 1, OreDictionary.WILDCARD_VALUE), watermelon);
         HMApi.COOKING.register(new ItemStack(Blocks.melon_block, 1, OreDictionary.WILDCARD_VALUE), watermelon);
         HMApi.COOKING.register(new ItemStack(Items.bread, 1, OreDictionary.WILDCARD_VALUE), bread);
-
         HMApi.COOKING.register(new ItemStack(HMItems.egg), egg);
         HMApi.COOKING.register(new ItemStack(Items.egg, 1, OreDictionary.WILDCARD_VALUE), egg);
         HMApi.COOKING.register(new ItemStack(Items.fish, 1, OreDictionary.WILDCARD_VALUE), fish);
         HMApi.COOKING.register(new ItemStack(HMItems.milk), milk);
         HMApi.COOKING.register(new ItemStack(Items.milk_bucket, 1, OreDictionary.WILDCARD_VALUE), milk);
         HMApi.COOKING.register(new ItemStack(HMItems.mayonnaise), mayonnaise);
-        
-        //Meal Ingredients
         HMApi.COOKING.register(HMApi.COOKING.getMeal("butter"), butter);
         HMApi.COOKING.register(HMApi.COOKING.getMeal("egg.boiled"), boiled_egg);
         HMApi.COOKING.register(HMApi.COOKING.getMeal("sashimi"), sashimi);
         HMApi.COOKING.register(HMApi.COOKING.getMeal("egg.scrambled"), scrambled_egg);
         HMApi.COOKING.register(HMApi.COOKING.getMeal("cookies"), cookies);
-
-        //Mushrooms
         HMApi.COOKING.register(new ItemStack(Blocks.brown_mushroom, 1, OreDictionary.WILDCARD_VALUE), brown_mushroom);
         HMApi.COOKING.register(new ItemStack(Blocks.red_mushroom, 1, OreDictionary.WILDCARD_VALUE), red_mushroom);
     }

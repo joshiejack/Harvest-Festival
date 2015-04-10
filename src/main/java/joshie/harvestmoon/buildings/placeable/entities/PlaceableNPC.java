@@ -2,14 +2,15 @@ package joshie.harvestmoon.buildings.placeable.entities;
 
 import java.util.UUID;
 
-import joshie.harvestmoon.init.HMNPCs;
+import joshie.harvestmoon.api.HMApi;
+import joshie.harvestmoon.api.npc.INPC;
+import joshie.harvestmoon.core.helpers.NPCHelper;
 import joshie.harvestmoon.npc.EntityNPC;
-import joshie.harvestmoon.npc.NPC;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
 
 public class PlaceableNPC extends PlaceableEntity {
-    private NPC npc;
+    private INPC npc;
 
     public PlaceableNPC() {
         super(0, 0, 0);
@@ -18,7 +19,7 @@ public class PlaceableNPC extends PlaceableEntity {
     public PlaceableNPC(String npc, int offsetX, int offsetY, int offsetZ) {
         super(offsetX, offsetY, offsetZ);
 
-        this.npc = HMNPCs.get(npc);
+        this.npc = HMApi.NPC.get(npc);
     }
 
 
@@ -29,7 +30,7 @@ public class PlaceableNPC extends PlaceableEntity {
 
     @Override
     public Entity getEntity(UUID uuid, World world, int x, int y, int z, boolean n1, boolean n2, boolean swap) {
-        EntityNPC entity = npc.getEntity(uuid, world);
+        EntityNPC entity = NPCHelper.getEntityForNPC(uuid, world, npc);
         entity.setPosition(x + 0.5, y + 0.5, z + 0.5);
         return entity;
     }

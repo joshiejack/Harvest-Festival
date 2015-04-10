@@ -6,10 +6,10 @@ import io.netty.buffer.ByteBuf;
 
 import java.util.HashSet;
 
+import joshie.harvestmoon.api.npc.INPC;
 import joshie.harvestmoon.core.network.quests.PacketQuestSetStage;
 import joshie.harvestmoon.core.util.Translate;
 import joshie.harvestmoon.npc.EntityNPC;
-import joshie.harvestmoon.npc.NPC;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -66,7 +66,7 @@ public class Quest {
         
         //Loops through all the active quests, if any of the quests contain npcs that are used by this quest, we can not start it
         for (Quest a : active) {
-            for(NPC npc: getNPCs()) {
+            for(INPC npc: getNPCs()) {
                 if(a.handlesScript(npc)) {
                     return false;
                 }
@@ -77,7 +77,7 @@ public class Quest {
     }
     
     //Return a list of all the npcs involved in this quest
-    public NPC[] getNPCs() {
+    public INPC[] getNPCs() {
         return null;
     }
 
@@ -89,8 +89,8 @@ public class Quest {
     /** Exposed to quest_stage */
     //Return true if the script will determine, thisNPC's script at the current stage   
     @SideOnly(Side.CLIENT)
-    public boolean handlesScript(NPC npc) {
-        for(NPC n: getNPCs()) {
+    public boolean handlesScript(INPC npc) {
+        for(INPC n: getNPCs()) {
             if(n.equals(npc)) {
                 return true;
             }

@@ -5,6 +5,7 @@ import static joshie.harvestmoon.core.helpers.ServerHelper.markDirty;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import joshie.harvestmoon.api.npc.INPC;
 import joshie.harvestmoon.blocks.BlockStone;
 import joshie.harvestmoon.buildings.placeable.Placeable.PlacementStage;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableBlock;
@@ -42,7 +43,7 @@ public class EntityNPCMiner extends EntityNPC {
         super(world);
     }
 
-    public EntityNPCMiner(UUID owning_player, World world, NPC npc) {
+    public EntityNPCMiner(UUID owning_player, World world, INPC npc) {
         super(owning_player, world, npc);
     }
 

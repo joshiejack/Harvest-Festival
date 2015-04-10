@@ -1,57 +1,66 @@
 package joshie.harvestmoon.init;
 
-import static joshie.harvestmoon.calendar.Weekday.FRIDAY;
-import static joshie.harvestmoon.calendar.Weekday.MONDAY;
-import static joshie.harvestmoon.calendar.Weekday.SATURDAY;
-import static joshie.harvestmoon.calendar.Weekday.THURSDAY;
-import static joshie.harvestmoon.calendar.Weekday.TUESDAY;
-import static joshie.harvestmoon.calendar.Weekday.WEDNESDAY;
+import static joshie.harvestmoon.api.core.Weekday.FRIDAY;
+import static joshie.harvestmoon.api.core.Weekday.MONDAY;
+import static joshie.harvestmoon.api.core.Weekday.SATURDAY;
+import static joshie.harvestmoon.api.core.Weekday.THURSDAY;
+import static joshie.harvestmoon.api.core.Weekday.TUESDAY;
+import static joshie.harvestmoon.api.core.Weekday.WEDNESDAY;
 import static net.minecraft.world.EnumDifficulty.EASY;
 import static net.minecraft.world.EnumDifficulty.HARD;
 import static net.minecraft.world.EnumDifficulty.NORMAL;
 import static net.minecraft.world.EnumDifficulty.PEACEFUL;
-import joshie.harvestmoon.api.crops.ICrop;
-import joshie.harvestmoon.crops.Crop;
+import joshie.harvestmoon.api.HMApi;
+import joshie.harvestmoon.api.shops.IShop;
 import joshie.harvestmoon.items.ItemGeneral;
 import joshie.harvestmoon.shops.Purchaseable;
 import joshie.harvestmoon.shops.PurchaseableBlueFeather;
-import joshie.harvestmoon.shops.PurchaseableCropSeeds;
-import joshie.harvestmoon.shops.ShopInventory;
+import joshie.harvestmoon.shops.ShopInventoryGui;
 import net.minecraft.item.ItemStack;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.relauncher.Side;
 
 public class HMShops {
-    public static ShopInventory barn;
-    public static ShopInventory cafe;
-    public static ShopInventory poultry;
-    public static ShopInventory supermarket;
+    public static IShop barn;
+    public static IShop cafe;
+    public static IShop poultry;
+    public static IShop supermarket;
+    public static boolean isClient;
 
     public static void init() {
         barn();
         cafe();
         poultry();
         supermarket();
+        
+        isClient = FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT;
     }
     
     private static void barn() {
-        barn = new ShopInventory("barn", 67);
-        HMNPCs.animal_owner.setShop(barn);
+        barn = HMApi.SHOPS.newShop("barn", HMNPCs.animal_owner);
+        if (isClient) {
+            barn.setGuiOverlay(new ShopInventoryGui(67));
+        }
     }
     
     private static void cafe() {
-        barn = new ShopInventory("cafe", 100);
-        HMNPCs.cafe_owner.setShop(cafe);
+        cafe = HMApi.SHOPS.newShop("cafe", HMNPCs.cafe_owner);
+        if (isClient) {
+            cafe.setGuiOverlay(new ShopInventoryGui(100));
+        }
     }
     
     private static void poultry() {
-        barn = new ShopInventory("poultry", 34);
-        HMNPCs.poultry.setShop(poultry);
+        poultry = HMApi.SHOPS.newShop("poultry", HMNPCs.poultry);
+        if (isClient) {
+            poultry.setGuiOverlay(new ShopInventoryGui(34));
+        }
     }
 
     private static void supermarket() {
-        /* Register all crop seeds to the seed shop */
-        supermarket = new ShopInventory("general", 166);
-        for (ICrop crop : Crop.crops) {
-            supermarket.addItem(new PurchaseableCropSeeds(crop));
+        supermarket = HMApi.SHOPS.newShop("general", HMNPCs.gs_owner);
+        if (isClient) {
+            supermarket.setGuiOverlay(new ShopInventoryGui(166));
         }
         
         supermarket.addItem(new Purchaseable(100, new ItemStack(HMItems.general, 1, ItemGeneral.CHOCOLATE)));
@@ -71,7 +80,5 @@ public class HMShops {
         /* Hard Opening Hours */
         supermarket.addOpening(HARD, MONDAY, 9000, 17000).addOpening(HARD, TUESDAY, 9000, 17000).addOpening(HARD, THURSDAY, 9000, 17000);
         supermarket.addOpening(HARD, FRIDAY, 9000, 17000).addOpening(HARD, SATURDAY, 11000, 15000);
-        
-        HMNPCs.gs_owner.setShop(supermarket);
     }
 }

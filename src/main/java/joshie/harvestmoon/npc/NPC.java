@@ -9,24 +9,25 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.UUID;
 
-import joshie.harvestmoon.api.WorldLocation;
-import joshie.harvestmoon.buildings.BuildingGroup;
+import joshie.harvestmoon.api.buildings.IBuildingGroup;
+import joshie.harvestmoon.api.core.IDate;
+import joshie.harvestmoon.api.npc.INPC;
+import joshie.harvestmoon.api.shops.IShop;
 import joshie.harvestmoon.calendar.CalendarDate;
 import joshie.harvestmoon.core.handlers.GuiHandler;
-import joshie.harvestmoon.core.helpers.TownHelper;
 import joshie.harvestmoon.core.lib.HMModInfo;
 import joshie.harvestmoon.core.util.Translate;
 import joshie.harvestmoon.core.util.generic.Text;
 import joshie.harvestmoon.npc.gift.Gifts;
 import joshie.harvestmoon.npc.gift.Gifts.Quality;
-import joshie.harvestmoon.shops.ShopInventory;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class NPC {
+public class NPC implements INPC {
     public static enum Gender {
         MALE, FEMALE;
     }
@@ -49,10 +50,11 @@ public class NPC {
     private Gifts gifts;
     private boolean isBuilder;
     private boolean isMiner;
-    private ShopInventory shop;
+    private IShop shop;
     private CalendarDate birthday;
-    private BuildingGroup home;
+    private IBuildingGroup home;
     private String home_location;
+    private boolean doesRespawn;
 
     public NPC(String name, Gender gender, Age age, CalendarDate birthday) {
         this.name = name;
@@ -60,6 +62,7 @@ public class NPC {
         this.age = age;
         this.height = 1F;
         this.birthday = birthday;
+        this.doesRespawn = true;
 
         String gift = StringUtils.capitalize(name);
         try {
@@ -126,101 +129,103 @@ public class NPC {
         Collections.shuffle(greetings);
     }
 
+    @Override
     public NPC setIsBuilder() {
         isBuilder = true;
         return this;
     }
 
+    @Override
     public NPC setIsMiner() {
         isMiner = true;
         return this;
     }
 
-    public NPC setHeight(float height, float offset) {
+    @Override
+    public INPC setHeight(float height, float offset) {
         this.height = height;
         this.offset = offset;
         return this;
     }
 
-    public NPC setShop(ShopInventory inventory) {
-        shop = inventory;
+    @Override
+    public INPC setShop(IShop shop) {
+        this.shop = shop;
         return this;
     }
 
-    public NPC setHome(BuildingGroup group, String home_location) {
+    @Override
+    public INPC setHome(IBuildingGroup group, String home_location) {
         this.home = group;
         this.home_location = home_location;
         return this;
     }
+    
+    @Override
+    public INPC setNoRespawn() {
+        this.doesRespawn = false;
+        return this;
+    }
 
+    @Override
     public boolean isChild() {
         return age == CHILD;
     }
 
+    @Override
     public boolean isMarriageCandidate() {
         return age == ADULT;
     }
 
+    @Override
     public float getHeight() {
         return height;
     }
 
+    @Override
     public float getOffset() {
         return offset;
     }
 
+    @Override
     public boolean isBuilder() {
         return isBuilder;
     }
 
+    @Override
     public boolean isMiner() {
         return isMiner;
     }
 
-    public ShopInventory getShop() {
+    @Override
+    public IShop getShop() {
         return shop;
     }
 
-    public CalendarDate getBirthday() {
+    @Override
+    public IDate getBirthday() {
         return birthday;
     }
 
-    public EntityNPC getEntity(UUID owning_player, World world) {
-        if (isBuilder()) {
-            return new EntityNPCBuilder(owning_player, world, this);
-        } else if (isMiner()) {
-            return new EntityNPCMiner(owning_player, world, this);
-        } else if (shop != null) {
-            return new EntityNPCShopkeeper(owning_player, world, this);
-        } else return new EntityNPC(owning_player, world, this);
-    }
-
-    public int getGuiID(World world, boolean isSneaking) {
-        return shop != null && shop.isOpen(world) ? GuiHandler.SHOP : (isSneaking) ? GuiHandler.GIFT : GuiHandler.NPC;
-    }
-
     //Return the name of this character
+    @Override
     public String getUnlocalizedName() {
         return name;
     }
 
     //Returns the localized name of this character
+    @Override
     public String getLocalizedName() {
         return Translate.translate("npc." + getUnlocalizedName() + ".name");
     }
 
+    @Override
     public int getBedtime() {
         return isChild()? 19000: 23000;
     }
 
-    /** CAN AND WILL RETURN NULL, IF THE UUID COULD NOT BE FOUND **/
-    public WorldLocation getHomeLocation(EntityNPC entity) {
-        UUID owner_uuid = entity.owning_player;
-        if (home == null || home_location == null) return null;
-        return TownHelper.getLocationFor(owner_uuid, home, home_location);
-    }
-
     //Returns the script that this character should at this point
+    @Override
     public String getGreeting() {
         if (greetings.size() == 0) {
             return "JOSHIE IS STOOPID AND FORGOT WELCOME LANG";
@@ -233,14 +238,17 @@ public class NPC {
         return greetings.get(last);
     }
 
+    @Override
     public Quality getGiftValue(ItemStack stack) {
         return gifts.getQuality(stack);
     }
 
+    @Override
     public String getThanks(Quality value) {
         return thanks.get(value.ordinal());
     }
 
+    @Override
     public String getAcceptProposal() {
         return accept;
     }
@@ -249,8 +257,19 @@ public class NPC {
         return reject;
     }
 
+    @Override
     public boolean respawns() {
-        return true;
+        return doesRespawn;
+    }
+
+    @Override
+    public IBuildingGroup getHomeGroup() {
+        return home;
+    }
+
+    @Override
+    public String getHomeLocation() {
+        return home_location;
     }
 
     public void onContainerClosed(EntityPlayer player, EntityNPC npc) {

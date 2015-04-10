@@ -4,6 +4,7 @@ import static joshie.harvestmoon.core.network.PacketHandler.sendToServer;
 
 import java.util.HashSet;
 
+import joshie.harvestmoon.api.shops.IShop;
 import joshie.harvestmoon.core.network.quests.PacketQuestStart;
 import joshie.harvestmoon.npc.EntityNPC;
 import joshie.harvestmoon.quests.Quest;
@@ -59,7 +60,7 @@ public class QuestsClientside {
 
     //Returns a single lined script
     public String getScript(EntityPlayer player, EntityNPC npc) {      
-        ShopInventory shop = npc.getNPC().getShop();
+        IShop shop = npc.getNPC().getShop();
         if(shop != null && shop.isOpen(player.worldObj)) {
             return shop.getWelcome();
         }

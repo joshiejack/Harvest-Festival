@@ -4,6 +4,7 @@ import java.util.HashSet;
 
 import joshie.harvestmoon.core.helpers.QuestHelper;
 import joshie.harvestmoon.core.helpers.RelationsHelper;
+import joshie.harvestmoon.init.HMNPCs;
 import joshie.harvestmoon.npc.EntityNPC;
 import joshie.harvestmoon.quests.Quest;
 import net.minecraft.entity.player.EntityPlayer;
@@ -32,6 +33,8 @@ public class ContainerNPC extends ContainerBase {
             RelationsHelper.setTalkedTo(player, npc);
         }
         
-        npc.getNPC().onContainerClosed(player, npc);
+        if (npc.getNPC() == HMNPCs.goddess) {
+            npc.setDead();
+        }
     }
 }

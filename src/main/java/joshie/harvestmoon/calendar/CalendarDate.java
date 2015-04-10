@@ -1,9 +1,11 @@
 package joshie.harvestmoon.calendar;
 
+import joshie.harvestmoon.api.core.IDate;
+import joshie.harvestmoon.api.core.Weekday;
 import joshie.harvestmoon.core.helpers.CalendarHelper;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class CalendarDate {
+public class CalendarDate implements IDate {
     private int day;
     private Season season;
     private int year;
@@ -45,6 +47,7 @@ public class CalendarDate {
         return day;
     }
 
+    @Override
     public Season getSeason() {
         return season;
     }

@@ -2,6 +2,7 @@ package joshie.harvestmoon.npc.ai;
 
 import joshie.harvestmoon.api.WorldLocation;
 import joshie.harvestmoon.core.helpers.CalendarHelper;
+import joshie.harvestmoon.core.helpers.NPCHelper;
 import joshie.harvestmoon.npc.EntityNPC;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.util.MathHelper;
@@ -15,7 +16,7 @@ public class EntityAITeleportHome extends EntityAIBase {
 
     public EntityAITeleportHome(EntityNPC npc) {
         entity = npc;
-        home = entity.getNPC().getHomeLocation(entity);
+        home = NPCHelper.getHomeForEntity(entity);
         setMutexBits(1);
     }
 

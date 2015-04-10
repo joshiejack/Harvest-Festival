@@ -1,11 +1,11 @@
 package joshie.harvestmoon.core.handlers.api;
 
-import joshie.harvestmoon.api.Calendar.ISeason;
 import joshie.harvestmoon.api.crops.ICrop;
 import joshie.harvestmoon.api.crops.ICropData;
 import joshie.harvestmoon.api.crops.ICropHandler;
 import joshie.harvestmoon.api.crops.ICropRenderHandler.PlantSection;
 import joshie.harvestmoon.blocks.BlockCrop;
+import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.core.helpers.CropHelper;
 import joshie.harvestmoon.core.helpers.SeasonHelper;
 import joshie.harvestmoon.crops.Crop;
@@ -25,8 +25,8 @@ public class CropRegistry implements ICropHandler {
     }
 
     @Override
-    public ICrop registerCrop(String unlocalized, int cost, int sell, int stages, int regrow, int year, int color, ISeason... seasons) {
-        return new Crop(unlocalized, SeasonHelper.getSeasonsFromISeasons(seasons), cost, sell, stages, regrow, year, color);
+    public ICrop registerCrop(String unlocalized, int cost, int sell, int stages, int regrow, int year, int color, Season... seasons) {
+        return new Crop(unlocalized, seasons, cost, sell, stages, regrow, year, color);
     }
 
     @Override

@@ -4,13 +4,13 @@ import static joshie.harvestmoon.core.helpers.RelationsHelper.getRelationshipVal
 
 import java.util.HashSet;
 
-import joshie.harvestmoon.calendar.CalendarDate;
+import joshie.harvestmoon.api.core.IDate;
+import joshie.harvestmoon.api.npc.INPC;
 import joshie.harvestmoon.core.helpers.CalendarHelper;
 import joshie.harvestmoon.core.helpers.QuestHelper;
 import joshie.harvestmoon.core.helpers.RelationsHelper;
 import joshie.harvestmoon.core.helpers.ToolHelper;
 import joshie.harvestmoon.npc.EntityNPC;
-import joshie.harvestmoon.npc.NPC;
 import joshie.harvestmoon.quests.Quest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -37,10 +37,10 @@ public class ContainerNPCGift extends ContainerBase {
 
         if (!player.worldObj.isRemote) {
             ItemStack gift = player.getCurrentEquippedItem();
-            NPC theNpc = npc.getNPC();
+            INPC theNpc = npc.getNPC();
             int points = theNpc.getGiftValue(gift).getRelationPoints();
-            CalendarDate today = CalendarHelper.getServerDate();
-            CalendarDate birthday = theNpc.getBirthday();
+            IDate today = CalendarHelper.getServerDate();
+            IDate birthday = theNpc.getBirthday();
             if (today.getSeason() == birthday.getSeason() && today.getDay() == birthday.getDay()) {
                 points *= 5;
             }
@@ -55,7 +55,5 @@ public class ContainerNPCGift extends ContainerBase {
             RelationsHelper.setGifted(player, npc.getNPC(), points);
             player.inventory.decrStackSize(player.inventory.currentItem, 1);
         }
-
-        npc.getNPC().onContainerClosed(player, npc);
     }
 }

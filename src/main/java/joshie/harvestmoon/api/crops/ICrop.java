@@ -1,7 +1,7 @@
 package joshie.harvestmoon.api.crops;
 
 import joshie.harvestmoon.api.AnimalFoodType;
-import joshie.harvestmoon.api.Calendar.ISeason;
+import joshie.harvestmoon.calendar.Season;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -62,7 +62,7 @@ public interface ICrop {
     public AnimalFoodType getFoodType();
 
     /** The seasons this crop can grow in **/
-    public ISeason[] getSeasons();
+    public Season[] getSeasons();
     
     /** Returns the render handler this crop uses **/
     public ICropRenderHandler getCropRenderHandler();

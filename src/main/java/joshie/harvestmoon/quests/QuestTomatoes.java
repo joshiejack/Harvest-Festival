@@ -7,10 +7,10 @@ import static joshie.harvestmoon.core.helpers.QuestHelper.takeHeldStack;
 
 import java.util.HashSet;
 
+import joshie.harvestmoon.api.npc.INPC;
 import joshie.harvestmoon.init.HMCrops;
 import joshie.harvestmoon.init.HMNPCs;
 import joshie.harvestmoon.npc.EntityNPC;
-import joshie.harvestmoon.npc.NPC;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -25,8 +25,8 @@ public class QuestTomatoes extends Quest {
     }
     
     @Override
-    public NPC[] getNPCs() {
-        return new NPC[] { HMNPCs.goddess };
+    public INPC[] getNPCs() {
+        return new INPC[] { HMNPCs.goddess };
     }
     
     @Override

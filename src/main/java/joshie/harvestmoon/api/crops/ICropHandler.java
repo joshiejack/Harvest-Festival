@@ -1,10 +1,10 @@
 package joshie.harvestmoon.api.crops;
 
-import joshie.harvestmoon.api.Calendar.ISeason;
+import joshie.harvestmoon.calendar.Season;
 import net.minecraft.world.World;
 
 public interface ICropHandler {
-    public ICrop registerCrop(String unlocalized, int cost, int sell, int stages, int regrow, int year, int color, ISeason... seasons);
+    public ICrop registerCrop(String unlocalized, int cost, int sell, int stages, int regrow, int year, int color, Season... seasons);
 
     public ICrop registerCrop(ICrop crop);
 

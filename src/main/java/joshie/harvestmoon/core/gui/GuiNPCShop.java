@@ -1,13 +1,13 @@
 package joshie.harvestmoon.core.gui;
 
-import joshie.harvestmoon.api.core.IPurchaseable;
+import joshie.harvestmoon.api.shops.IPurchaseable;
+import joshie.harvestmoon.api.shops.IShop;
 import joshie.harvestmoon.core.helpers.PlayerHelper;
 import joshie.harvestmoon.core.helpers.generic.StackHelper;
 import joshie.harvestmoon.core.lib.HMModInfo;
 import joshie.harvestmoon.core.network.PacketHandler;
 import joshie.harvestmoon.core.network.PacketPurchaseItem;
 import joshie.harvestmoon.npc.EntityNPC;
-import joshie.harvestmoon.shops.ShopInventory;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -18,27 +18,20 @@ public class GuiNPCShop extends GuiNPC {
     private static final ResourceLocation gui_texture = new ResourceLocation(HMModInfo.MODPATH, "textures/gui/shop.png");
     private static final ResourceLocation number_texture = new ResourceLocation(HMModInfo.MODPATH, "lang/en_US/shops.png");
     private static final ResourceLocation shelve_texture = new ResourceLocation(HMModInfo.MODPATH, "textures/gui/shop_extra.png");
-    private static ResourceLocation name_texture;
-    private static ResourceLocation shop_overlay;
-    private ShopInventory shop;
+    private IShop shop;
     private boolean welcome;
-    private int resourceY;
     private int start;
 
     public GuiNPCShop(EntityNPC npc, EntityPlayer player) {
         super(npc, player);
 
         shop = npc.getNPC().getShop();
-        if (shop != null && shop.isOpen(player.worldObj)) {
-            shop_overlay = shop.getOverlay();
-            name_texture = shop.getResource();
-            resourceY = shop.getResourceY();
-        } else player.closeScreen();
+        if (shop == null || !shop.isOpen(player.worldObj)) player.closeScreen();
     }
 
     @Override
     public void drawBackground(int x, int y) {
-        if (!welcome || shop_overlay == null) super.drawBackground(x, y);
+        if (!welcome) super.drawBackground(x, y);
         else {
             y += 20; //Add 20
 
@@ -46,10 +39,7 @@ public class GuiNPCShop extends GuiNPC {
             GL11.glEnable(GL11.GL_BLEND);
             mc.renderEngine.bindTexture(gui_texture);
             drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
-            mc.renderEngine.bindTexture(shop_overlay);
-            drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
-            mc.renderEngine.bindTexture(name_texture);
-            drawTexturedModalRect(x + 20, y + 5, 1, resourceY, 254, 32);
+            shop.getGuiOverlay().renderOverlay(this, x, y, xSize, ySize);
             drawCoinage(x, y, PlayerHelper.getGold(player));
             drawShelves(x, y);
             GL11.glDisable(GL11.GL_BLEND);
@@ -155,7 +145,17 @@ public class GuiNPCShop extends GuiNPC {
     }
 
     private static enum Number {
-        ZERO(1, 9), ONE(11, 7), TWO(19, 9), THREE(29, 8), FOUR(38, 9), FIVE(48, 8), SIX(57, 9), SEVEN(67, 8), EIGHT(76, 8), NINE(85, 9), COMMA(95, 4);
+        ZERO(1, 9), 
+        ONE(11, 7), 
+        TWO(19, 9), 
+        THREE(29, 8), 
+        FOUR(38, 9), 
+        FIVE(48, 8), 
+        SIX(57, 9), 
+        SEVEN(67, 8), 
+        EIGHT(76, 8), 
+        NINE(85, 9), 
+        COMMA(95, 4);
 
         private final int xStart;
         private final int width;

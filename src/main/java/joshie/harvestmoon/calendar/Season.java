@@ -5,12 +5,11 @@ import static joshie.harvestmoon.core.util.generic.Text.BRIGHT_GREEN;
 import static joshie.harvestmoon.core.util.generic.Text.INDIGO;
 import static joshie.harvestmoon.core.util.generic.Text.ORANGE;
 import static joshie.harvestmoon.core.util.generic.Text.YELLOW;
-import joshie.harvestmoon.api.Calendar.ISeason;
 import joshie.harvestmoon.core.lib.HMModInfo;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 
-public enum Season implements ISeason {
+public enum Season {
     SPRING("spring", 168000, 12000, 1, 1, 0x87CEFA, 0.6082D, 0.01F, 1850L, BRIGHT_GREEN, 0x00D900), //Flower
     SUMMER("summer", 250000, 5000, 0, 3, 7972863, 0.1D, 0.0011F, 0L, YELLOW, 0xFFFF4D), //Sun
     AUTUMN("autumn", 120000, 13000, 3, 2, 0x8CBED6, 1.0D, -0.0325F, 2400L, ORANGE, 0x8C4600), // Autumn Leaf

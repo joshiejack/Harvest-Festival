@@ -2,6 +2,7 @@ package joshie.harvestmoon.npc;
 
 import java.util.UUID;
 
+import joshie.harvestmoon.api.npc.INPC;
 import joshie.harvestmoon.buildings.Building;
 import joshie.harvestmoon.buildings.BuildingStage;
 import net.minecraft.nbt.NBTTagCompound;
@@ -20,7 +21,7 @@ public class EntityNPCBuilder extends EntityNPC {
         super(world);
     }
 
-    public EntityNPCBuilder(UUID owning_player, World world, NPC npc) {
+    public EntityNPCBuilder(UUID owning_player, World world, INPC npc) {
         super(owning_player, world, npc);
     }
 

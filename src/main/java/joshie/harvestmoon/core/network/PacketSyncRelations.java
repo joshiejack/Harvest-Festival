@@ -3,11 +3,12 @@ package joshie.harvestmoon.core.network;
 import static cpw.mods.fml.common.network.ByteBufUtils.readUTF8String;
 import static cpw.mods.fml.common.network.ByteBufUtils.writeUTF8String;
 import io.netty.buffer.ByteBuf;
+import joshie.harvestmoon.api.HMApi;
+import joshie.harvestmoon.api.npc.INPC;
 import joshie.harvestmoon.core.helpers.ClientHelper;
 import joshie.harvestmoon.core.helpers.PlayerHelper;
 import joshie.harvestmoon.core.helpers.UUIDHelper;
 import joshie.harvestmoon.init.HMNPCs;
-import joshie.harvestmoon.npc.NPC;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -16,7 +17,7 @@ import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 public class PacketSyncRelations implements IMessage, IMessageHandler<PacketSyncRelations, IMessage> {
-    private NPC npc;
+    private INPC npc;
     private boolean isEntityPacket;
     private boolean doParticles;
     private boolean isSenderClient;
@@ -39,7 +40,7 @@ public class PacketSyncRelations implements IMessage, IMessageHandler<PacketSync
         this.doParticles = doParticles;
     }
 
-    public PacketSyncRelations(NPC npc, int value, boolean doParticles) {
+    public PacketSyncRelations(INPC npc, int value, boolean doParticles) {
         this.isSenderClient = false;
         this.isEntityPacket = false;
         this.npc = npc;
@@ -70,7 +71,7 @@ public class PacketSyncRelations implements IMessage, IMessageHandler<PacketSync
         if (isEntityPacket) {
             id = buf.readInt();
         } else {
-            npc = HMNPCs.get(readUTF8String(buf));
+            npc = HMApi.NPC.get(readUTF8String(buf));
             if (npc == null) {
                 npc = HMNPCs.goddess;
             }

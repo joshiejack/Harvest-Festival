@@ -14,7 +14,6 @@ import joshie.harvestmoon.blocks.BlockCrop;
 import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.core.config.Crops;
 import joshie.harvestmoon.core.helpers.CalendarHelper;
-import joshie.harvestmoon.core.helpers.SeasonHelper;
 import joshie.harvestmoon.core.helpers.UUIDHelper;
 import joshie.harvestmoon.core.network.PacketSyncCrop;
 import joshie.harvestmoon.init.HMBlocks;
@@ -74,7 +73,7 @@ public class CropData implements ICropData {
     }
 
     private boolean isWrongSeason() {
-        for (Season season : SeasonHelper.getSeasonsFromISeasons(crop.getSeasons())) {
+        for (Season season : crop.getSeasons()) {
             if (CalendarHelper.getSeason() == season) return false;
         }
 

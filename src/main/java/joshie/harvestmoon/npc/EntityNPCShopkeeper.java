@@ -4,12 +4,14 @@ import io.netty.buffer.ByteBuf;
 
 import java.util.UUID;
 
+import joshie.harvestmoon.api.npc.INPC;
+import joshie.harvestmoon.api.shops.IShop;
 import joshie.harvestmoon.shops.ShopInventory;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 public class EntityNPCShopkeeper extends EntityNPC {
-    private ShopInventory shop;
+    private IShop shop;
     private boolean isWorking;
 
     public EntityNPCShopkeeper(UUID owning_player, EntityNPCShopkeeper entity) {
@@ -22,7 +24,7 @@ public class EntityNPCShopkeeper extends EntityNPC {
         super(world);
     }
 
-    public EntityNPCShopkeeper(UUID owning_player, World world, NPC npc) {
+    public EntityNPCShopkeeper(UUID owning_player, World world, INPC npc) {
         super(owning_player, world, npc);
         shop = npc.getShop();
     }

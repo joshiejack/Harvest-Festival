@@ -3,7 +3,9 @@ package joshie.harvestmoon.buildings;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class BuildingGroup {
+import joshie.harvestmoon.api.buildings.IBuildingGroup;
+
+public class BuildingGroup implements IBuildingGroup {
     public static final ArrayList<BuildingGroup> groups = new ArrayList(50);
     private ArrayList<Building> buildings = new ArrayList();
 

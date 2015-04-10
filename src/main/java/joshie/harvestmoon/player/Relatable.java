@@ -4,17 +4,17 @@ import static joshie.harvestmoon.core.network.PacketHandler.sendToClient;
 
 import java.util.UUID;
 
+import joshie.harvestmoon.api.HMApi;
+import joshie.harvestmoon.api.npc.INPC;
 import joshie.harvestmoon.core.helpers.generic.EntityHelper;
 import joshie.harvestmoon.core.network.PacketSyncRelations;
 import joshie.harvestmoon.core.util.IData;
-import joshie.harvestmoon.init.HMNPCs;
-import joshie.harvestmoon.npc.NPC;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class Relatable implements IData {
     private UUID uuid;
-    private NPC npc;
+    private INPC npc;
 
     public Relatable() {}
     
@@ -23,7 +23,7 @@ public class Relatable implements IData {
         this.npc = null;
     }
 
-    public Relatable(NPC npc) {
+    public Relatable(INPC npc) {
         this.npc = npc;
         this.uuid = null;
     }
@@ -62,7 +62,7 @@ public class Relatable implements IData {
         if(isUUID) {
             uuid = new UUID(nbt.getLong("UUIDMost"), nbt.getLong("UUIDLeast"));
         } else {
-            npc = HMNPCs.get(nbt.getString("NPC"));
+            npc = HMApi.NPC.get(nbt.getString("NPC"));
         }
     }
 

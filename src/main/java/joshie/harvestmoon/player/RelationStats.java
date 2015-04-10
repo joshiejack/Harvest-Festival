@@ -7,10 +7,10 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.UUID;
 
+import joshie.harvestmoon.api.npc.INPC;
 import joshie.harvestmoon.core.helpers.UUIDHelper;
 import joshie.harvestmoon.core.util.IData;
 import joshie.harvestmoon.npc.EntityNPC;
-import joshie.harvestmoon.npc.NPC;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -37,8 +37,8 @@ public class RelationStats implements IData {
             return new Relatable(((EntityNPC) object).getNPC());
         } else if (object instanceof EntityLivingBase) {
             return new Relatable(UUIDHelper.getEntityUUID(((EntityLivingBase) object)));
-        } else if (object instanceof NPC) {
-            return new Relatable((NPC) object);
+        } else if (object instanceof INPC) {
+            return new Relatable((INPC) object);
         } else if (object instanceof UUID) {
             return new Relatable((UUID) object);
         } else if (object instanceof Relatable) {
@@ -63,7 +63,7 @@ public class RelationStats implements IData {
         }
     }
 
-    /** Accepts EntityLivingBase, EntityNPC, NPC or UUID
+    /** Accepts EntityLivingBase, EntityNPC, INPC or UUID
      * Set this entity as having been gifted today **/
     public void setGifted(Object object, int value) {
         Relatable relate = getRelatable(object);
@@ -74,7 +74,7 @@ public class RelationStats implements IData {
         }
     }
 
-    /** Accepts EntityLivingBase, EntityNPC, NPC or UUID, 
+    /** Accepts EntityLivingBase, EntityNPC, INPC or UUID, 
      * Affect this entities relationship with the player **/
     public boolean affectRelationship(Object object, int amount) {
         Relatable relate = getRelatable(object);
@@ -85,7 +85,7 @@ public class RelationStats implements IData {
         return true;
     }
 
-    /** Accepts EntityLivingBase, EntityNPC, NPC or UUID
+    /** Accepts EntityLivingBase, EntityNPC, INPC or UUID
      * Returns the current relationship value of this entity **/
     public int getRelationship(Object object) {
         Relatable relate = getRelatable(object);

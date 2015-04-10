@@ -7,13 +7,13 @@ import io.netty.buffer.ByteBuf;
 import java.util.HashSet;
 
 import joshie.harvestmoon.api.core.ISizeable.Size;
+import joshie.harvestmoon.api.npc.INPC;
 import joshie.harvestmoon.core.helpers.SizeableHelper;
 import joshie.harvestmoon.core.helpers.generic.ItemHelper;
 import joshie.harvestmoon.core.lib.SizeableMeta;
 import joshie.harvestmoon.init.HMNPCs;
 import joshie.harvestmoon.init.HMQuests;
 import joshie.harvestmoon.npc.EntityNPC;
-import joshie.harvestmoon.npc.NPC;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
@@ -76,8 +76,8 @@ public class QuestChickenCare extends Quest {
     }
 
     @Override
-    public NPC[] getNPCs() {
-        return new NPC[] { HMNPCs.animal_owner };
+    public INPC[] getNPCs() {
+        return new INPC[] { HMNPCs.animal_owner };
     }
 
     @Override

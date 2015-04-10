@@ -6,8 +6,9 @@ import static joshie.harvestmoon.core.network.PacketHandler.sendToClient;
 import java.util.UUID;
 
 import joshie.harvestmoon.api.WorldLocation;
+import joshie.harvestmoon.api.buildings.IBuildingGroup;
 import joshie.harvestmoon.api.crops.ICropData;
-import joshie.harvestmoon.buildings.BuildingGroup;
+import joshie.harvestmoon.api.npc.INPC;
 import joshie.harvestmoon.buildings.BuildingStage;
 import joshie.harvestmoon.calendar.CalendarDate;
 import joshie.harvestmoon.core.helpers.UUIDHelper;
@@ -89,12 +90,12 @@ public class PlayerDataServer implements IData {
     }
 
     //Sets this player as talked to
-    public void setTalkedTo(NPC npc) {
+    public void setTalkedTo(INPC npc) {
         relationStats.setTalkedTo(npc);
     }
 
     //Sets this player as gifted
-    public void setGifted(NPC npc, int value) {
+    public void setGifted(INPC npc, int value) {
         relationStats.setGifted(npc, value);
     }
 
@@ -104,7 +105,7 @@ public class PlayerDataServer implements IData {
     }
 
     //Affecting NPC Relations
-    public boolean affectRelationship(NPC npc, int amount) {
+    public boolean affectRelationship(INPC npc, int amount) {
         return relationStats.affectRelationship(npc, amount);
     }
 
@@ -214,8 +215,8 @@ public class PlayerDataServer implements IData {
         markDirty();
     }
 
-    public WorldLocation getCoordinatesFor(BuildingGroup group, String npc_location) {
-        TownBuilding building = town.buildings.get(group.getName());
+    public WorldLocation getCoordinatesFor(IBuildingGroup home, String npc_location) {
+        TownBuilding building = town.buildings.get(home.getName());
         if (building == null) return null;
         return building.getRealCoordinatesFor(npc_location);
     }

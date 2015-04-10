@@ -5,11 +5,11 @@ import static joshie.harvestmoon.core.network.PacketHandler.sendToServer;
 
 import java.util.HashSet;
 
+import joshie.harvestmoon.api.npc.INPC;
 import joshie.harvestmoon.core.network.PacketSyncGold;
 import joshie.harvestmoon.core.network.quests.PacketQuestCompleted;
 import joshie.harvestmoon.core.network.quests.PacketQuestDecreaseHeld;
 import joshie.harvestmoon.core.util.generic.IdiotException;
-import joshie.harvestmoon.npc.NPC;
 import joshie.harvestmoon.player.PlayerDataServer;
 import joshie.harvestmoon.quests.Quest;
 import net.minecraft.entity.player.EntityPlayer;
@@ -59,7 +59,7 @@ public class QuestHelper {
         }
     }
 
-    public static void rewardRelations(EntityPlayer player, NPC npc, int amount) {
+    public static void rewardRelations(EntityPlayer player, INPC npc, int amount) {
         if (player.worldObj.isRemote) {
             throw new IdiotException("Joshie shouldn't be rewarding anyone with gold client side");
         } else {

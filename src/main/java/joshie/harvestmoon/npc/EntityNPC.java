@@ -5,6 +5,9 @@ import io.netty.buffer.ByteBuf;
 import java.util.UUID;
 
 import joshie.harvestmoon.HarvestMoon;
+import joshie.harvestmoon.api.HMApi;
+import joshie.harvestmoon.api.npc.INPC;
+import joshie.harvestmoon.core.helpers.NPCHelper;
 import joshie.harvestmoon.core.lib.HMModInfo;
 import joshie.harvestmoon.init.HMNPCs;
 import joshie.harvestmoon.npc.ai.EntityAIGoHome;
@@ -34,11 +37,11 @@ import net.minecraft.world.World;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 
 public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnData {
-    protected NPC npc;
+    protected INPC npc;
     protected EntityNPC lover;
     private EntityPlayer talkingTo;
     private boolean isPlaying;
-    protected UUID owning_player;
+    public UUID owning_player;
     public int lastTeleport;
 
     public EntityNPC(UUID owning_player, EntityNPC entity) {
@@ -57,7 +60,7 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
         }
     }
 
-    public EntityNPC(UUID owning_player, World world, NPC npc) {
+    public EntityNPC(UUID owning_player, World world, INPC npc) {
         super(world);
         this.npc = npc;
 
@@ -96,7 +99,7 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
         return new ResourceLocation(HMModInfo.MODPATH + ":" + "textures/entity/" + npc.getUnlocalizedName() + ".png");
     }
 
-    public NPC getNPC() {
+    public INPC getNPC() {
         return npc;
     }
 
@@ -168,7 +171,7 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
         boolean flag = held != null && held.getItem() == Items.spawn_egg;
         if (!flag && isEntityAlive()) {
             if (!worldObj.isRemote) {
-                player.openGui(HarvestMoon.instance, npc.getGuiID(worldObj, player.isSneaking() && held != null), worldObj, getEntityId(), 0, 0);
+                player.openGui(HarvestMoon.instance, NPCHelper.getGuiIDForNPC(npc, worldObj, player.isSneaking() && held != null), worldObj, getEntityId(), 0, 0);
                 setTalking(player);
             }
 
@@ -181,7 +184,7 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
     @Override
     public void readEntityFromNBT(NBTTagCompound nbt) {
         super.readEntityFromNBT(nbt);
-        npc = HMNPCs.get(nbt.getString("NPC"));
+        npc = HMApi.NPC.get(nbt.getString("NPC"));
         owning_player = new UUID(nbt.getLong("Owner-UUIDMost"), nbt.getLong("Owner-UUIDLeast"));
     }
 
@@ -216,7 +219,7 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
             name[i] = buf.readChar();
         }
 
-        npc = HMNPCs.get(new String(name));
+        npc = HMApi.NPC.get(new String(name));
         if (npc == null) {
             npc = HMNPCs.goddess;
         }

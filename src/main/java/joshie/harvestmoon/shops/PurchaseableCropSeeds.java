@@ -1,12 +1,11 @@
 package joshie.harvestmoon.shops;
 
-import joshie.harvestmoon.api.core.IPurchaseable;
 import joshie.harvestmoon.api.crops.ICrop;
+import joshie.harvestmoon.api.shops.IPurchaseable;
 import joshie.harvestmoon.calendar.CalendarDate;
 import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.core.helpers.CalendarHelper;
 import joshie.harvestmoon.core.helpers.PlayerHelper;
-import joshie.harvestmoon.core.helpers.SeasonHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -19,7 +18,7 @@ public class PurchaseableCropSeeds implements IPurchaseable {
     }
 
     private boolean isCorrectSeason(CalendarDate date) {
-        for (Season season : SeasonHelper.getSeasonsFromISeasons(crop.getSeasons())) {
+        for (Season season : crop.getSeasons()) {
             if (season == date.getSeason()) return true;
         }
 

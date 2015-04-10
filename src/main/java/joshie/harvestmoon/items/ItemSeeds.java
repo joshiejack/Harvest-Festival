@@ -10,7 +10,6 @@ import joshie.harvestmoon.api.crops.ICrop;
 import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.core.HMTab;
 import joshie.harvestmoon.core.config.Crops;
-import joshie.harvestmoon.core.helpers.SeasonHelper;
 import joshie.harvestmoon.core.helpers.SeedHelper;
 import joshie.harvestmoon.core.lib.CreativeSort;
 import joshie.harvestmoon.core.lib.HMModInfo;
@@ -81,7 +80,7 @@ public class ItemSeeds extends net.minecraft.item.ItemSeeds implements IRateable
         ICrop crop = SeedHelper.getCropFromSeed(stack);
         if (crop != null) {
             int quality = SeedHelper.getQualityFromSeed(stack);
-            for (Season season : SeasonHelper.getSeasonsFromISeasons(crop.getSeasons())) {
+            for (Season season : crop.getSeasons()) {
                 list.add(season.getTextColor() + season.getLocalized());
             }
         }

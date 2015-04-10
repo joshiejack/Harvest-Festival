@@ -34,7 +34,7 @@ public class ShopInventoryGui implements IShopGuiOverlay {
         }
         
         gui.mc.renderEngine.bindTexture(getResource());
-        gui.drawTexturedModalRect(x + 20, y + 5, 1, resourceY, 254, 32);
+        gui.drawTexturedModalRect(x + 20, y + 5, 1, resourceY + 1, 254, 32);
     }
 
     /** Returns the location of the shops name **/

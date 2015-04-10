@@ -11,7 +11,7 @@ public class ShopHelper {
         if (player_gold - cost >= 0) {
             PlayerHelper.adjustGold(player, -cost);
             for (ItemStack product : products) {
-                ItemHelper.addToPlayerInventory(player, product);
+                ItemHelper.addToPlayerInventory(player, product.copy());
             }
         }
     }

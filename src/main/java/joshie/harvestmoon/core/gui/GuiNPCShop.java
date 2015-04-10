@@ -1,5 +1,8 @@
 package joshie.harvestmoon.core.gui;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import joshie.harvestmoon.api.shops.IPurchaseable;
 import joshie.harvestmoon.api.shops.IShop;
 import joshie.harvestmoon.core.helpers.PlayerHelper;
@@ -66,6 +69,12 @@ public class GuiNPCShop extends GuiNPC {
                 int xOffset = 0;
                 int posY = 41 + percent37;
                 int posX = 98 + percent99;
+                
+                if (mouseY >= posY + 23 && mouseY <= posY + 46 && mouseX >= posX - 63 && mouseX <= posX - 41) {
+                    List list = new ArrayList();
+                    purchaseable.addTooltip(list);
+                    addTooltip(list);
+                }
 
                 if (mouseY >= posY + 20 && mouseY <= posY + 52 && mouseX >= posX && mouseX <= posX + 32) {
                     xOffset = 32;
@@ -122,15 +131,19 @@ public class GuiNPCShop extends GuiNPC {
     }
 
     @Override
-    protected void onMouseClick(int mouseX, int mouseY) {
-        if (!welcome) super.onMouseClick(mouseX, mouseY);
-        else {
+    protected void onMouseClick(int x, int y) {
+        if (!welcome) super.onMouseClick(x, y);
+        else {            
             int index = 0;
             for (IPurchaseable purchaseable : shop.getContents()) {
                 if (purchaseable.canBuy(player.worldObj, player)) {
                     long cost = purchaseable.getCost();
-                    int posY = 41 + (index * 37);
-                    int posX = 168;
+                    int indexPercent = index % 2;
+                    int indexDivide = index / 2;
+                    int percent99 = indexPercent * 99;
+                    int percent37 = indexDivide * 37;
+                    int posY = 41 + percent37;
+                    int posX = 98 + percent99;
 
                     if (PlayerHelper.getGold(player) - purchaseable.getCost() >= 0) {
                         if (mouseY >= posY + 20 && mouseY <= posY + 52 && mouseX >= posX && mouseX <= posX + 32) {

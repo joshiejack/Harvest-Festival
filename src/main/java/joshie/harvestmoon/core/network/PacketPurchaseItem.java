@@ -13,7 +13,7 @@ public class PacketPurchaseItem implements IMessage, IMessageHandler<PacketPurch
     private int purchaseable_id;
     
     public PacketPurchaseItem() {}
-    public PacketPurchaseItem(IPurchaseable purchaseable) {
+    public PacketPurchaseItem(IPurchaseable purchaseable) {        
         for(int i = 0; i < ShopInventory.registers.size(); i++) {
             IPurchaseable purchase = ShopInventory.registers.get(i);
             if(purchase.equals(purchaseable)) {

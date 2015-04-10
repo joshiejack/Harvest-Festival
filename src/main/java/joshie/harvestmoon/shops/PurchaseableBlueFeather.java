@@ -1,6 +1,10 @@
 package joshie.harvestmoon.shops;
 
+import java.util.List;
+
 import joshie.harvestmoon.api.shops.IPurchaseable;
+import joshie.harvestmoon.core.util.Translate;
+import joshie.harvestmoon.core.util.generic.Text;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -28,5 +32,11 @@ public class PurchaseableBlueFeather implements IPurchaseable {
     @Override
     public ItemStack[] getProducts() {
         return stacks;
+    }
+
+    @Override
+    public void addTooltip(List list) {
+        list.add(Text.WHITE + stacks[0].getDisplayName());
+        list.add(Translate.translate("marriage"));
     }
 }

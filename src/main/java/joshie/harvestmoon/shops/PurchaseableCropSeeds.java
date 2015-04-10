@@ -1,11 +1,14 @@
 package joshie.harvestmoon.shops;
 
+import java.util.List;
+
 import joshie.harvestmoon.api.crops.ICrop;
 import joshie.harvestmoon.api.shops.IPurchaseable;
 import joshie.harvestmoon.calendar.CalendarDate;
 import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.core.helpers.CalendarHelper;
 import joshie.harvestmoon.core.helpers.PlayerHelper;
+import joshie.harvestmoon.core.util.generic.Text;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -44,5 +47,13 @@ public class PurchaseableCropSeeds implements IPurchaseable {
     @Override
     public ItemStack[] getProducts() {
         return new ItemStack[] { crop.getSeedStack() };
+    }
+    
+    @Override
+    public void addTooltip(List list) {
+        list.add(Text.WHITE + crop.getSeedsName());
+        for (Season season : crop.getSeasons()) {
+            list.add(season.getTextColor() + season.getLocalized());
+        }
     }
 }

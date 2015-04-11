@@ -7,11 +7,9 @@ import static joshie.harvestmoon.core.lib.HMModInfo.MODPATH;
 import static joshie.harvestmoon.core.lib.HMModInfo.VERSION;
 
 import java.io.File;
-import java.util.Map;
 
 import joshie.harvestmoon.api.HMApi;
 import joshie.harvestmoon.core.HMCommonProxy;
-import joshie.harvestmoon.init.HMOverride;
 import joshie.harvestmoon.init.HMRecipeFixes;
 import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
@@ -28,10 +26,9 @@ import cpw.mods.fml.common.event.FMLLoadCompleteEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
-import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
 
 @Mod(modid = MODID, name = MODNAME, version = VERSION)
-public class HarvestMoon implements IFMLLoadingPlugin {
+public class HarvestMoon {
     @SidedProxy(clientSide = JAVAPATH + "core.HMClientProxy", serverSide = JAVAPATH + "core.HMCommonProxy")
     public static HMCommonProxy proxy;
 
@@ -68,30 +65,5 @@ public class HarvestMoon implements IFMLLoadingPlugin {
         if (manager instanceof ServerCommandManager) {
             ((ServerCommandManager) manager).registerCommand(HMApi.COMMANDS);
         }
-    }
-
-    @Override
-    public String[] getASMTransformerClass() {
-        return new String[] { HMOverride.class.getName() };
-    }
-
-    @Override
-    public String getModContainerClass() {
-        return null;
-    }
-
-    @Override
-    public String getSetupClass() {
-        return null;
-    }
-
-    @Override
-    public void injectData(Map<String, Object> data) {
-        HMOverride.isObfuscated = ((Boolean) data.get("runtimeDeobfuscationEnabled"));
-    }
-
-    @Override
-    public String getAccessTransformerClass() {
-        return null;
     }
 }

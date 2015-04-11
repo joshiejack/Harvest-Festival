@@ -2,6 +2,7 @@ package joshie.harvestmoon.init;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import joshie.harvestmoon.asm.transformers.EggTransformer;
 import joshie.harvestmoon.asm.transformers.FarmlandHardnessTransformer;
@@ -17,7 +18,9 @@ import net.minecraft.launchwrapper.IClassTransformer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-public class HMOverride implements IClassTransformer {
+import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
+
+public class HMOverride implements IFMLLoadingPlugin, IClassTransformer {
     private static final int EGG = 0;
     private static final int SNOW = 1;
     private static final int FARMLAND = 2;
@@ -57,5 +60,31 @@ public class HMOverride implements IClassTransformer {
         }
 
         return modified;
+    }
+    
+
+    @Override
+    public String[] getASMTransformerClass() {
+        return new String[] { HMOverride.class.getName() };
+    }
+
+    @Override
+    public String getModContainerClass() {
+        return null;
+    }
+
+    @Override
+    public String getSetupClass() {
+        return null;
+    }
+
+    @Override
+    public void injectData(Map<String, Object> data) {
+        HMOverride.isObfuscated = ((Boolean) data.get("runtimeDeobfuscationEnabled"));
+    }
+
+    @Override
+    public String getAccessTransformerClass() {
+        return null;
     }
 }

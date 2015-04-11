@@ -68,17 +68,17 @@ processResources {
 }
 
 runClient {
-    jvmArgs '-Dfml.coreMods.load=joshie.harvestmoon.HarvestMoon'
+    jvmArgs '-Dfml.coreMods.load=joshie.harvestmoon.init.HMOverride'
 }
 
 runServer {
-    jvmArgs '-Dfml.coreMods.load=joshie.harvestmoon.HarvestMoon'
+    jvmArgs '-Dfml.coreMods.load=joshie.harvestmoon.init.HMOverride'
 }
 
 jar {
     manifest {
         attributes 'FMLAT': 'harvestmoon_at.cfg'
-        attributes 'FMLCorePlugin': 'joshie.harvestmoon.HarvestMoon'
+        attributes 'FMLCorePlugin': 'joshie.harvestmoon.init.HMOverride'
         attributes 'FMLCorePluginContainsFMLMod': 'true'
     }
 }
@@ -91,7 +91,7 @@ task sourceJar(type: Jar) {
 task deobfJar(type: Jar) {
     manifest {
         attributes 'FMLAT': 'harvestmoon_at.cfg'
-        attributes 'FMLCorePlugin': 'joshie.harvestmoon.HarvestMoon'
+        attributes 'FMLCorePlugin': 'joshie.harvestmoon.init.HMOverride'
         attributes 'FMLCorePluginContainsFMLMod': 'true'
     }
     from sourceSets.main.output

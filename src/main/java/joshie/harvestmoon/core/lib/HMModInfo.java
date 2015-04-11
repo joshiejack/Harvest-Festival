@@ -12,6 +12,7 @@ public class HMModInfo {
     public static final String ASMPATH = "joshie/harvestmoon/";
     public static final String COMMANDNAME = "hm";
     
+    public static final String BUILDINGPATH = "hm:buildings/";
     public static final String CROPPATH = "hm:crops/";
     public static final String MEALPATH = "hm:meals/";
     public static final String SEEDPATH = "hm:seeds/";

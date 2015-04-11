@@ -23,6 +23,6 @@ public class ItemAnimal extends ItemHMMeta {
 
     @Override
     public int getMetaCount() {
-        return 3;
+        return 0;
     }
 }

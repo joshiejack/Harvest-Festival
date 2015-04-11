@@ -8,6 +8,7 @@ import joshie.harvestmoon.blocks.render.RenderPreview;
 import joshie.harvestmoon.blocks.render.SpecialRendererFryingPan;
 import joshie.harvestmoon.blocks.tiles.TileFryingPan;
 import joshie.harvestmoon.core.config.Client;
+import joshie.harvestmoon.core.config.General;
 import joshie.harvestmoon.core.handlers.RenderHandler;
 import joshie.harvestmoon.core.handlers.events.RenderEvents;
 import joshie.harvestmoon.core.helpers.ClientHelper;
@@ -17,6 +18,7 @@ import joshie.harvestmoon.core.util.generic.EntityFakeItem;
 import joshie.harvestmoon.core.util.generic.RenderFakeItem;
 import joshie.harvestmoon.init.HMBlocks;
 import joshie.harvestmoon.init.HMItems;
+import joshie.harvestmoon.items.render.RenderBuilding;
 import joshie.harvestmoon.items.render.RenderItemAnimal;
 import joshie.harvestmoon.items.render.RenderSeedBag;
 import joshie.harvestmoon.npc.EntityNPC;
@@ -66,6 +68,10 @@ public class HMClientProxy extends HMCommonProxy {
         
         if (Client.CHICKEN_OFFSET_FIX) {
             MinecraftForge.EVENT_BUS.register(new ChickenRenderFix());
+        }
+        
+        if (General.DEBUG_MODE) {
+            //MinecraftForgeClient.registerItemRenderer(HMItems.structures, new RenderBuilding());
         }
     }
 

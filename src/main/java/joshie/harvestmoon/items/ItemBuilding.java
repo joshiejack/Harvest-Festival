@@ -1,5 +1,6 @@
 package joshie.harvestmoon.items;
 
+import static joshie.harvestmoon.core.lib.HMModInfo.CROPPATH;
 import joshie.harvestmoon.buildings.BuildingGroup;
 import joshie.harvestmoon.core.helpers.UUIDHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -7,6 +8,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class ItemBuilding extends ItemHMMeta {
+    public ItemBuilding() {
+        setTextureFolder(CROPPATH);
+    }
+    
     @Override
     public int getMetaCount() {
         return BuildingGroup.groups.size();

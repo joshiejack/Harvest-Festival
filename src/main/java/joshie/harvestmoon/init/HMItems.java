@@ -16,7 +16,6 @@ import joshie.harvestmoon.items.ItemMeal;
 import joshie.harvestmoon.items.ItemNPCSpawner;
 import joshie.harvestmoon.items.ItemSeeds;
 import joshie.harvestmoon.items.ItemSickle;
-import joshie.harvestmoon.items.ItemSized;
 import joshie.harvestmoon.items.ItemTreat;
 import joshie.harvestmoon.items.ItemWateringCan;
 import net.minecraft.item.Item;
@@ -58,9 +57,9 @@ public class HMItems {
         }
         
         for (SizeableMeta size: SizeableMeta.values()) {
-            if (size.isVanilla() || size.ordinal() >= SizeableMeta.YOGHURT.ordinal()) continue;
+            if (size.ordinal() >= SizeableMeta.YOGHURT.ordinal()) continue;
             else {
-                sized.put(size, new ItemSized(size).setUnlocalizedName(size.name().toLowerCase()));
+                sized.put(size, size.getOrCreateStack());
             }
         }
         

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import joshie.harvestmoon.api.HMApi;
 import joshie.harvestmoon.buildings.placeable.PlaceableHelper;
 import joshie.harvestmoon.core.util.generic.IFaceable;
 import joshie.harvestmoon.npc.EntityNPC;
@@ -17,6 +18,7 @@ import net.minecraft.entity.item.EntityItemFrame;
 import net.minecraft.entity.item.EntityPainting;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntitySign;
 import net.minecraft.world.World;
 
@@ -58,6 +60,22 @@ public class CodeGeneratorBuildings {
                         entityList.addAll(getEntities(EntityNPCShopkeeper.class, x1 + x, y1 + y, z1 + z));
 
                         Block block = world.getBlock(x1 + x, y1 + y, z1 + z);
+                        if (block == Blocks.chest) {
+                            TileEntityChest chest = (TileEntityChest) world.getTileEntity(x1 + x, y1 + y, z1 + z);
+                            String name = chest.getInventoryName();
+                            String field = name;
+                            if (name.startsWith("npc.")) {
+                                field = name.replace("npc.", "");
+                                ret.add(PlaceableHelper.getPlaceableEntityString(new EntityNPC(null, world, HMApi.NPC.get(field)), x, y, z));
+                            }
+                            
+                            String text = "npc_offsets.put(Town." + field.toUpperCase() + ", new PlaceableNPC(\"\", " + x + ", " + y + ", " + z + "));";
+                            ret.add(text);
+                            String air2 = PlaceableHelper.getPlaceableBlockString(Blocks.air, 0, x, y, z);
+                            ret.add(air2);
+                            continue;
+                        }
+                        
                         if ((block != Blocks.air || air || entityList.size() > 0) && block != Blocks.end_stone) {
                             int meta = world.getBlockMetadata(x1 + x, y1 + y, z1 + z);
                             if (block == Blocks.double_plant && meta >= 8) continue;

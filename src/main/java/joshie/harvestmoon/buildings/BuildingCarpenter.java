@@ -26,7 +26,8 @@ import net.minecraftforge.common.util.ForgeDirection;
 public class BuildingCarpenter extends Building {
     public BuildingCarpenter() {
         offsetY = - 1;
-        list = new ArrayList(370);
+        offsetY = -1;
+        list = new ArrayList(373);
         list.add(new PlaceableBlock(Blocks.planks, 5, 0, 0, 1));
         list.add(new PlaceableBlock(Blocks.planks, 5, 0, 0, 5));
         list.add(new PlaceableBlock(Blocks.planks, 5, 1, 0, 0));
@@ -102,7 +103,7 @@ public class BuildingCarpenter extends Building {
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 2, 4, 1, 0));
         list.add(new PlaceableLog(Blocks.log, 1, 4, 1, 1));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 9, 4, 1, 2));
-        list.add(new PlaceableBlock(Blocks.air, 0, 4, 1, 3));
+        npc_offsets.put(Town.CARPENTER_DOWNSTAIRS, new PlaceableNPC("", 4, 1, 3));
         list.add(new PlaceableBlock(Blocks.crafting_table, 0, 4, 1, 4));
         list.add(new PlaceableLog(Blocks.log, 1, 4, 1, 5));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 3, 4, 1, 6));
@@ -130,6 +131,7 @@ public class BuildingCarpenter extends Building {
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 3, 7, 1, 6));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 1, 8, 1, 1));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 15, 8, 1, 2));
+        npc_offsets.put(Town.CARPENTER_DOOR, new PlaceableNPC("", 8, 1, 3));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 15, 8, 1, 4));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 1, 8, 1, 5));
         list.add(new PlaceableButton(Blocks.wooden_button, 2, 0, 2, 1));
@@ -178,6 +180,9 @@ public class BuildingCarpenter extends Building {
         list.add(new PlaceableLog(Blocks.log, 1, 7, 2, 5));
         list.add(new PlaceableButton(Blocks.wooden_button, 3, 7, 2, 6));
         list.add(new PlaceableButton(Blocks.wooden_button, 1, 8, 2, 1));
+        list.add(new PlaceableBlock(Blocks.air, 0, 8, 2, 2));
+        list.add(new PlaceableBlock(Blocks.air, 0, 8, 2, 3));
+        list.add(new PlaceableBlock(Blocks.air, 0, 8, 2, 4));
         list.add(new PlaceableButton(Blocks.wooden_button, 1, 8, 2, 5));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 4, 0, 3, 1));
         list.add(new PlaceableButton(Blocks.wooden_button, 2, 0, 3, 3));
@@ -207,8 +212,6 @@ public class BuildingCarpenter extends Building {
         list.add(new PlaceableLog(Blocks.log, 1, 4, 3, 1));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 1, 4, 3, 2));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 1, 4, 3, 3));
-        list.add(new PlaceableNPC("jade", 4, 3, 3));
-        npc_offsets.put(Town.CARPENTER_UPSTAIRS, new PlaceableNPC("", 4, 3, 3));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 1, 4, 3, 4));
         list.add(new PlaceableLog(Blocks.log, 1, 4, 3, 5));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 7, 4, 3, 6));
@@ -234,7 +237,9 @@ public class BuildingCarpenter extends Building {
         list.add(new PlaceableLog(Blocks.log, 1, 7, 3, 5));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 7, 7, 3, 6));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 5, 8, 3, 1));
+        list.add(new PlaceableBlock(Blocks.air, 0, 8, 3, 2));
         list.add(new PlaceableButton(Blocks.wooden_button, 1, 8, 3, 3));
+        list.add(new PlaceableBlock(Blocks.air, 0, 8, 3, 4));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 5, 8, 3, 5));
         list.add(new PlaceableBlock(Blocks.fence, 0, 0, 4, 1));
         list.add(new PlaceableButton(Blocks.wooden_button, 2, 0, 4, 2));
@@ -264,7 +269,8 @@ public class BuildingCarpenter extends Building {
         list.add(new PlaceableBlock(Blocks.fence, 0, 4, 4, 0));
         list.add(new PlaceableBlock(Blocks.planks, 3, 4, 4, 1));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 5, 4, 4, 2));
-        list.add(new PlaceableBlock(Blocks.air, 0, 4, 4, 3));
+        list.add(new PlaceableNPC("jade", 4, 4, 3));
+        npc_offsets.put(Town.JADE, new PlaceableNPC("", 4, 4, 3));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 4, 4, 4, 4));
         list.add(new PlaceableBlock(Blocks.planks, 3, 4, 4, 5));
         list.add(new PlaceableBlock(Blocks.fence, 0, 4, 4, 6));

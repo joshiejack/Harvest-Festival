@@ -3,6 +3,9 @@ package joshie.harvestmoon.core.lib;
 import joshie.harvestmoon.api.core.ISizeable;
 import joshie.harvestmoon.core.helpers.SizeableHelper;
 import joshie.harvestmoon.init.HMConfiguration;
+import joshie.harvestmoon.items.ItemSized;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public enum SizeableMeta implements ISizeable {
@@ -38,5 +41,13 @@ public enum SizeableMeta implements ISizeable {
     @Override
     public Size getSize(ItemStack stack) {
         return SizeableHelper.getSize(stack.getItemDamage());
+    }
+
+    public Item getOrCreateStack() {
+        if (this == EGG && isVanilla()) {
+            return Items.egg;
+        }
+        
+        return new ItemSized(this).setUnlocalizedName(name().toLowerCase());
     }
 }

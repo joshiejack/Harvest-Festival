@@ -1,5 +1,6 @@
 package joshie.harvestmoon.init;
 
+import joshie.harvestmoon.animals.AnimalType;
 import joshie.harvestmoon.api.crops.ICrop;
 import joshie.harvestmoon.buildings.BuildingBarn;
 import joshie.harvestmoon.buildings.BuildingBlacksmith;
@@ -59,6 +60,15 @@ public class HMBuildings {
     }
 
     public static void init() {
+        //Poultry Frame
+        ChestGenHooks.addItem(LootStrings.POULTRY_FRAME, new WeightedRandomChestContent(HMCrops.wheat.getCropStack(), 3, 9, 5));
+        ChestGenHooks.addItem(LootStrings.POULTRY_FRAME, new WeightedRandomChestContent(HMCrops.wheat.getSeedStack(), 1, 3, 1));
+                
+        //Poultry Chest
+        ChestGenHooks.addItem(LootStrings.POULTRY_CHEST, new WeightedRandomChestContent(new ItemStack(HMItems.general, 1, ItemGeneral.CHICKEN_FEED), 8, 24, 10));
+        ChestGenHooks.addItem(LootStrings.POULTRY_CHEST, new WeightedRandomChestContent(new ItemStack(HMItems.treats, 1, AnimalType.CHICKEN.ordinal()), 1, 2, 5));
+        ChestGenHooks.addItem(LootStrings.POULTRY_CHEST, new WeightedRandomChestContent(new ItemStack(HMItems.egg, 1, 0), 1, 2, 5));
+        
         //Mining Frame
         ChestGenHooks.addItem(LootStrings.MINING_FRAME, new WeightedRandomChestContent(new ItemStack(Items.stone_pickaxe), 1, 1, 20));
         ChestGenHooks.addItem(LootStrings.MINING_FRAME, new WeightedRandomChestContent(new ItemStack(Items.iron_pickaxe), 1, 1, 5));

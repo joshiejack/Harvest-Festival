@@ -43,24 +43,24 @@ public class HMNPCs implements INPCRegistry {
         return register(new NPC(unlocalised, gender, age, new CalendarDate(dayOfBirth, seasonOfBirth, 1)));
     }
 
-    public static INPC goddess; //The Goddess                        (SPAWN)
+    public static INPC goddess; //The Goddess                        (SPAWN) - done
     public static INPC animal_owner; // Owner of the Animal Barn     (BARN)
-    public static INPC cafe_owner; // Owner of the Cafe              (CAFE)
-    public static INPC cafe_granny;// Granny of Café Owner           (CAFE)
-    public static INPC seed_owner; // Sister of Yulif                (CARPENTER)
+    public static INPC cafe_owner; // Owner of the Cafe              (CAFE) - done
+    public static INPC cafe_granny;// Granny of Café Owner           (CAFE) - done
+    public static INPC seed_owner; // Sister of Yulif                (CARPENTER) - done
     public static INPC tool_owner; // Blacksmith                     (BLACKSMITH)
     public static INPC priest; //Married to mayor                    (CHURCH)
-    public static INPC mayor; //Married to priest                    (TOWNHALL)
-    public static INPC daughter_1; //Daughter of Mayor and Priest    (TOWNHALL)
-    public static INPC daughter_2; //Daughter of Mayor and Priest    (TOWNHALL)
-    public static INPC clock_worker; //The clock worker              (CLOCKWORKERS)
-    public static INPC clockmaker_child; // Clockmakers Child        (CLOCKWORKERS)
-    public static INPC gs_owner; //Owner of general store            (GENERAL STORE)
-    public static INPC miner; //Works in the mines                   (MINING HUT)
+    public static INPC mayor; //Married to priest                    (TOWNHALL) - done
+    public static INPC daughter_1; //Daughter of Mayor and Priest    (TOWNHALL) - done
+    public static INPC daughter_2; //Daughter of Mayor and Priest    (TOWNHALL) - done
+    public static INPC clock_worker; //The clock worker              (CLOCKWORKERS) - done
+    public static INPC clockmaker_child; // Clockmakers Child        (CLOCKWORKERS) - done
+    public static INPC gs_owner; //Owner of general store            (GENERAL STORE) - done
+    public static INPC miner; //Works in the mines                   (MINING HUT) - done
     public static INPC fisherman; //Fisherman                        (FISHING HUT)
-    public static INPC milkmaid; //Works in the Barn, Milking Cows   (GENERAL STORE)
+    public static INPC milkmaid; //Works in the Barn, Milking Cows   (GENERAL STORE) - done
     public static INPC builder; //Builds stuff for the players       (SPAWN)
-    public static INPC poultry; //Poultry Farm Owner                 (POULTRY FARM)
+    public static INPC poultry; //Poultry Farm Owner                 (POULTRY FARM) - done
 
     public static void preInit() {
         goddess = HMApi.NPC.register("goddess", FEMALE, ADULT, 8, Season.SPRING).setHeight(1.2F, 0.35F);

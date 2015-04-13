@@ -110,7 +110,6 @@
 - [ ] items/meals/toast.png
 - [ ] items/meals/toast_french.png
 - [ ] items/meals/turnip_pickled.png
-- [ ] items/milker.png
 - [ ] items/oil.png
 - [ ] items/ore_copper.png
 - [ ] items/ore_gold.png

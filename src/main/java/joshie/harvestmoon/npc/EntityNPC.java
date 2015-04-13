@@ -68,20 +68,23 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
         this.setSize(0.6F, (1.8F * npc.getHeight()));
         this.getNavigator().setBreakDoors(true);
         this.getNavigator().setAvoidsWater(true);
-        this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityZombie.class, 8.0F, 0.6D, 0.6D));
-        this.tasks.addTask(1, new EntityAITalkingTo(this));
-        this.tasks.addTask(1, new EntityAILookAtPlayer(this));
-        this.tasks.addTask(2, new EntityAITeleportHome(this));
-        this.tasks.addTask(2, new EntityAIGoHome(this));
-        this.tasks.addTask(3, new EntityAIRestrictOpenDoor(this));
-        this.tasks.addTask(4, new EntityAIOpenDoor(this, true));
-        this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 0.6D));
-        this.tasks.addTask(8, new EntityAIPlay(this, 0.32D));
-        this.tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 3.0F, 1.0F));
-        this.tasks.addTask(9, new EntityAIWatchClosest(this, EntityNPC.class, 5.0F, 0.02F));
-        this.tasks.addTask(9, new EntityAIWander(this, 0.6D));
-        this.tasks.addTask(10, new EntityAIWatchClosest(this, EntityLiving.class, 8.0F));
+
+        if (owning_player != null) {
+            this.tasks.addTask(0, new EntityAISwimming(this));
+            this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityZombie.class, 8.0F, 0.6D, 0.6D));
+            this.tasks.addTask(1, new EntityAITalkingTo(this));
+            this.tasks.addTask(1, new EntityAILookAtPlayer(this));
+            this.tasks.addTask(2, new EntityAITeleportHome(this));
+            this.tasks.addTask(2, new EntityAIGoHome(this));
+            this.tasks.addTask(3, new EntityAIRestrictOpenDoor(this));
+            this.tasks.addTask(4, new EntityAIOpenDoor(this, true));
+            this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 0.6D));
+            this.tasks.addTask(8, new EntityAIPlay(this, 0.32D));
+            this.tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 3.0F, 1.0F));
+            this.tasks.addTask(9, new EntityAIWatchClosest(this, EntityNPC.class, 5.0F, 0.02F));
+            this.tasks.addTask(9, new EntityAIWander(this, 0.6D));
+            this.tasks.addTask(10, new EntityAIWatchClosest(this, EntityLiving.class, 8.0F));
+        }
     }
 
     @Override
@@ -117,7 +120,7 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
         if (this.lastTeleport > 0) {
             this.lastTeleport--;
         }
-        
+
         if (!isTalking()) {
             super.updateEntityActionState();
         } else {

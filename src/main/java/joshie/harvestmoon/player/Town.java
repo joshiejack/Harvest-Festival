@@ -80,6 +80,20 @@ public class Town implements IData {
     public static final String CARPENTER_DOWNSTAIRS = "yulifhome";
     public static final String CARPENTER_DOOR = "carpenterfrontdoor";
     public static final String JADE = "jadehome";
+    public static final String TIBERIUS = "tiberiushome";
+    public static final String FENN = "fennhome";
+    public static final String CANDICE = "candicehome";
+    public static final String MARKET_TILL = "marketwork";
+    public static final String MARKET_STOREFRONT = "marketfront";
+    public static final String JENNI = "jennihome";
+    public static final String TOWNHALL_RIGHT_WING = "townhallrightwing";
+    public static final String JAMIE = "mayorhome";
+    public static final String CLOE = "cloehome";
+    public static final String ABI = "abihome";
+    public static final String TOWNHALL_ADULT_BEDROOM = "tomashome";
+    public static final String TOWNHALL_ENTRANCE = "townhallentrance";
+    public static final String TOWNHALL_CENTRE = "townhallcentre";
+    public static final String TOWNHALL_LEFT_WING = "townhallleftwing";
 
     @Override
     public void readFromNBT(NBTTagCompound nbt) {

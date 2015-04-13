@@ -125,8 +125,4 @@
 - [ ] items/treats/horse.png
 - [ ] items/treats/other.png
 - [ ] items/treats/pig.png
-<<<<<<< HEAD
 - [ ] items/treats/sheep.png
-=======
-- [ ] items/treats/sheep.png
->>>>>>> origin/master

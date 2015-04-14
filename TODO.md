@@ -2,14 +2,10 @@
 - Finish Cooking System
 - Finish Shipping System
 - Finish Mining System
-- Finish Building/Town System
-- Finish Loot Gen System
 - Finish Animal System
 - Finish Shop System
 
-
 ### Tediousnessess
-- [ ] More Meals and Recipes
 - [ ] Register my items/blocks as gift types
 - [ ] 5 Million configs
 
@@ -30,12 +26,6 @@
 - [ ] Blacksmith Upgrade Tool Quests
 - [ ] Priest Bless Tools Quests
 - [ ] Unlock Mixer, Frying Pan, Pot, Oven for purchase quests
-
-### Loot Hooks
-- [ ] BarnPenFrame, (Lead), [Wheat, Carrot, Lead, Carrot on a Stick ; Animal Brush, Animal Medicine, Animal Food, Animal Treats]
-- [ ] BlacksmithTowerFrame (Iron Sword) [Iron Tools]
-- [ ] BlacksmithTowerChest (Iron Ingot) [Iron Ingot, Coal, Lava Bucket, Leather]
-- [ ] ChurchAltarFrame (Bottle o' Enchanting) [Book, Gold Nugget, Gold Ingot, Bottle o' Enchanting, Regeneration Potion, Glistering Melon]
 
 ## Aesthetics 
 ###Textures

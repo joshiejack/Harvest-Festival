@@ -60,11 +60,41 @@ public class HMBuildings {
     }
 
     public static void init() {
+        //Barn Frame
+        ChestGenHooks.addItem(LootStrings.BARN_FRAME, new WeightedRandomChestContent(new ItemStack(Items.wheat), 3, 7, 10));
+        ChestGenHooks.addItem(LootStrings.BARN_FRAME, new WeightedRandomChestContent(new ItemStack(Items.carrot), 3, 7, 10));
+        ChestGenHooks.addItem(LootStrings.BARN_FRAME, new WeightedRandomChestContent(new ItemStack(Items.lead), 1, 1, 8));
+        ChestGenHooks.addItem(LootStrings.BARN_FRAME, new WeightedRandomChestContent(new ItemStack(Items.carrot_on_a_stick), 1, 1, 1));
+        ChestGenHooks.addItem(LootStrings.BARN_FRAME, new WeightedRandomChestContent(new ItemStack(HMItems.general, 1, ItemGeneral.BRUSH), 1, 1, 3));
+        ChestGenHooks.addItem(LootStrings.BARN_FRAME, new WeightedRandomChestContent(new ItemStack(HMItems.general, 1, ItemGeneral.MEDICINE), 1, 3, 1));
+        ChestGenHooks.addItem(LootStrings.BARN_FRAME, new WeightedRandomChestContent(HMCrops.grass.getCropStack(), 1, 1, 6));
+        
+        //Blacksmith Frame
+        ChestGenHooks.addItem(LootStrings.BLACKSMITH_FRAME, new WeightedRandomChestContent(new ItemStack(Items.iron_axe), 1, 1, 10));
+        ChestGenHooks.addItem(LootStrings.BLACKSMITH_FRAME, new WeightedRandomChestContent(new ItemStack(Items.iron_sword), 1, 1, 3));
+        ChestGenHooks.addItem(LootStrings.BLACKSMITH_FRAME, new WeightedRandomChestContent(new ItemStack(Items.iron_shovel), 1, 1, 6));
+        ChestGenHooks.addItem(LootStrings.BLACKSMITH_FRAME, new WeightedRandomChestContent(new ItemStack(Items.iron_pickaxe), 1, 1, 1));
+        
+        //Blacksmith Chest
+        ChestGenHooks.addItem(LootStrings.BLACKSMITH_CHEST, new WeightedRandomChestContent(new ItemStack(Items.iron_ingot), 2, 5, 4));
+        ChestGenHooks.addItem(LootStrings.BLACKSMITH_CHEST, new WeightedRandomChestContent(new ItemStack(Items.lava_bucket), 1, 2, 2));
+        ChestGenHooks.addItem(LootStrings.BLACKSMITH_CHEST, new WeightedRandomChestContent(new ItemStack(Items.coal), 3, 33, 6));
+        ChestGenHooks.addItem(LootStrings.BLACKSMITH_CHEST, new WeightedRandomChestContent(new ItemStack(Items.leather), 13, 64, 10));
+        
+        //Church Frame
+        ChestGenHooks.addItem(LootStrings.CHURCH_FRAME, new WeightedRandomChestContent(new ItemStack(Items.book), 3, 9, 10));
+        ChestGenHooks.addItem(LootStrings.CHURCH_FRAME, new WeightedRandomChestContent(new ItemStack(Items.gold_ingot), 1, 7, 2));
+        ChestGenHooks.addItem(LootStrings.CHURCH_FRAME, new WeightedRandomChestContent(new ItemStack(Items.gold_nugget), 1, 15, 8));
+        ChestGenHooks.addItem(LootStrings.CHURCH_FRAME, new WeightedRandomChestContent(new ItemStack(Items.experience_bottle), 1, 7, 10));
+        ChestGenHooks.addItem(LootStrings.CHURCH_FRAME, new WeightedRandomChestContent(new ItemStack(Items.speckled_melon), 1, 3, 3));
+        ChestGenHooks.addItem(LootStrings.CHURCH_FRAME, new WeightedRandomChestContent(new ItemStack(Items.potionitem, 1, 8193), 1, 1, 1));
+        
+        //Fishing Frame
         ChestGenHooks.addItem(LootStrings.FISHING_FRAME, new WeightedRandomChestContent(new ItemStack(Items.fishing_rod), 1, 1, 10));
         ChestGenHooks.addItem(LootStrings.FISHING_FRAME, new WeightedRandomChestContent(new ItemStack(Items.leather_boots), 1, 1, 5));
         ChestGenHooks.addItem(LootStrings.FISHING_FRAME, new WeightedRandomChestContent(new ItemStack(Items.potionitem, 1, 8269), 1, 1, 1));
                 
-        //Poultry Chest
+        //Fishing Chest
         ChestGenHooks.addItem(LootStrings.FISHING_CHEST, new WeightedRandomChestContent(new ItemStack(Items.fish, 1, 0), 3, 33, 10));
         ChestGenHooks.addItem(LootStrings.FISHING_CHEST, new WeightedRandomChestContent(new ItemStack(Items.fish, 1, 1), 2, 22, 10));
         ChestGenHooks.addItem(LootStrings.FISHING_CHEST, new WeightedRandomChestContent(new ItemStack(Items.fish, 1, 3), 1, 11, 5));

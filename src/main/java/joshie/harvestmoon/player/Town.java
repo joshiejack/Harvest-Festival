@@ -92,6 +92,12 @@ public class Town implements IData {
     public static final String ONDRA = "ondrahome";
     public static final String FISHING_POND = "fishingpond";
     public static final String JACOB = "jacobhome";
+    public static final String THOMAS = "thomaswork";
+    public static final String CHURCH_FRONT = "churchfront";
+    public static final String DANIEL = "danielhome";
+    public static final String BLACKSMITH_FRONT = "blacksmithfront";
+    public static final String JIM = "jimhome";
+    public static final String GODDESS = "goddesspond";
 
     @Override
     public void readFromNBT(NBTTagCompound nbt) {

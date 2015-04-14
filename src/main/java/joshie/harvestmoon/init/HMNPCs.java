@@ -48,8 +48,8 @@ public class HMNPCs implements INPCRegistry {
     public static INPC cafe_owner; // Owner of the Cafe              (CAFE) - done
     public static INPC cafe_granny;// Granny of Café Owner           (CAFE) - done
     public static INPC seed_owner; // Sister of Yulif                (CARPENTER) - done
-    public static INPC tool_owner; // Blacksmith                     (BLACKSMITH)
-    public static INPC priest; //Married to mayor                    (CHURCH)
+    public static INPC tool_owner; // Blacksmith                     (BLACKSMITH) - done
+    public static INPC priest; //Married to mayor                    (CHURCH) - done
     public static INPC mayor; //Married to priest                    (TOWNHALL) - done
     public static INPC daughter_1; //Daughter of Mayor and Priest    (TOWNHALL) - done
     public static INPC daughter_2; //Daughter of Mayor and Priest    (TOWNHALL) - done
@@ -57,9 +57,9 @@ public class HMNPCs implements INPCRegistry {
     public static INPC clockmaker_child; // Clockmakers Child        (CLOCKWORKERS) - done
     public static INPC gs_owner; //Owner of general store            (GENERAL STORE) - done
     public static INPC miner; //Works in the mines                   (MINING HUT) - done
-    public static INPC fisherman; //Fisherman                        (FISHING HUT)
+    public static INPC fisherman; //Fisherman                        (FISHING HUT) - done
     public static INPC milkmaid; //Works in the Barn, Milking Cows   (GENERAL STORE) - done
-    public static INPC builder; //Builds stuff for the players       (SPAWN)
+    public static INPC builder; //Builds stuff for the players       (SPAWN) - done
     public static INPC poultry; //Poultry Farm Owner                 (POULTRY FARM) - done
 
     public static void preInit() {
@@ -84,6 +84,7 @@ public class HMNPCs implements INPCRegistry {
     }
 
     public static void init() {
+        animal_owner.setHome(HMBuildings.barn, Town.JIM);
         milkmaid.setHome(HMBuildings.supermarket, Town.CANDICE);
     }
 }

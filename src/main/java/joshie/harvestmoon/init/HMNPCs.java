@@ -84,6 +84,6 @@ public class HMNPCs implements INPCRegistry {
     }
 
     public static void init() {
-        milkmaid.setHome(HMBuildings.supermarket, Town.SUPERMARKET_BEDROOM);
+        milkmaid.setHome(HMBuildings.supermarket, Town.CANDICE);
     }
 }

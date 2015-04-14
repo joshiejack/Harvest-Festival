@@ -63,19 +63,6 @@ public class Town implements IData {
             nbt.setInteger("Dimension", dimension);
         }
     }
-
-    public static final String SUPERMARKET_TILL = "jennihome";
-    public static final String SUPERMARKET_BEDROOM = "candicehome";
-    public static final String CLOE_BEDROOM = "cloehome";
-    public static final String ABI_BEDROOM = "abihome";
-    public static final String TOWNHALL_STAGE = "jamihome";
-    public static final String CLOCKMAKER_DOWNSTAIRS = "tiberiushome";
-    public static final String CLOCKMAKER_UPSTAIRS = "fennhome";
-    public static final String CAFE_KITCHEN = "katlinhome";
-    public static final String CAFE_TILL = "liarahome";
-    public static final String MINING_HUT = "brandonhome";
-    public static final String POULTRY_FARM = "ondrahome";
-    public static final String FISHING_POND = "fishingpond";
     
     public static final String CARPENTER_DOWNSTAIRS = "yulifhome";
     public static final String CARPENTER_DOOR = "carpenterfrontdoor";
@@ -94,6 +81,17 @@ public class Town implements IData {
     public static final String TOWNHALL_ENTRANCE = "townhallentrance";
     public static final String TOWNHALL_CENTRE = "townhallcentre";
     public static final String TOWNHALL_LEFT_WING = "townhallleftwing";
+    public static final String LIARA = "liarahome";
+    public static final String KATLIN = "katlinhome";
+    public static final String CAFE_FRONT = "cafefront";
+    public static final String CAFE_TILL = "cafetill";
+    public static final String MINE_ENTRANCE = "mineentrance";
+    public static final String MINER_FRONT = "mininghutfront";
+    public static final String MINER_GRAVEL = "mininghutgravel";
+    public static final String BRANDON = "brandonhome";
+    public static final String ONDRA = "ondrahome";
+    public static final String FISHING_POND = "fishingpond";
+    public static final String JACOB = "jacobhome";
 
     @Override
     public void readFromNBT(NBTTagCompound nbt) {

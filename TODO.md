@@ -36,8 +36,6 @@
 - [ ] BlacksmithTowerFrame (Iron Sword) [Iron Tools]
 - [ ] BlacksmithTowerChest (Iron Ingot) [Iron Ingot, Coal, Lava Bucket, Leather]
 - [ ] ChurchAltarFrame (Bottle o' Enchanting) [Book, Gold Nugget, Gold Ingot, Bottle o' Enchanting, Regeneration Potion, Glistering Melon]
-- [ ] FishingHutHouseFrame (Raw Salmon) [Fishing Rod (If Mariculture is installed : Reed Fishing Rod), Leather Boots, Potion of Wather Breathing]
-- [ ] FishingHutEntryChest (Fishing Rod) [All Fish Types, If Mariculture is installed : Bait, Cooked Fish]
 
 ## Aesthetics 
 ###Textures

@@ -60,6 +60,16 @@ public class HMBuildings {
     }
 
     public static void init() {
+        ChestGenHooks.addItem(LootStrings.FISHING_FRAME, new WeightedRandomChestContent(new ItemStack(Items.fishing_rod), 1, 1, 10));
+        ChestGenHooks.addItem(LootStrings.FISHING_FRAME, new WeightedRandomChestContent(new ItemStack(Items.leather_boots), 1, 1, 5));
+        ChestGenHooks.addItem(LootStrings.FISHING_FRAME, new WeightedRandomChestContent(new ItemStack(Items.potionitem, 1, 8269), 1, 1, 1));
+                
+        //Poultry Chest
+        ChestGenHooks.addItem(LootStrings.FISHING_CHEST, new WeightedRandomChestContent(new ItemStack(Items.fish, 1, 0), 3, 33, 10));
+        ChestGenHooks.addItem(LootStrings.FISHING_CHEST, new WeightedRandomChestContent(new ItemStack(Items.fish, 1, 1), 2, 22, 10));
+        ChestGenHooks.addItem(LootStrings.FISHING_CHEST, new WeightedRandomChestContent(new ItemStack(Items.fish, 1, 3), 1, 11, 5));
+        ChestGenHooks.addItem(LootStrings.FISHING_CHEST, new WeightedRandomChestContent(new ItemStack(Items.fish, 1, 2), 1, 3, 1));
+        
         //Poultry Frame
         ChestGenHooks.addItem(LootStrings.POULTRY_FRAME, new WeightedRandomChestContent(HMCrops.wheat.getCropStack(), 3, 9, 5));
         ChestGenHooks.addItem(LootStrings.POULTRY_FRAME, new WeightedRandomChestContent(HMCrops.wheat.getSeedStack(), 1, 3, 1));

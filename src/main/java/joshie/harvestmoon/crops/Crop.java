@@ -120,7 +120,8 @@ public class Crop implements ICrop {
         return this;
     }
 
-    public Crop setFoodType(AnimalFoodType foodType) {
+    @Override
+    public ICrop setAnimalFoodType(AnimalFoodType foodType) {
         this.foodType = foodType;
         return this;
     }

@@ -23,7 +23,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 public class BuildingMiningHut extends Building {
     public BuildingMiningHut() {
         offsetY = -1;
-        list = new ArrayList(571);
+        list = new ArrayList(551);
         list.add(new PlaceableBlock(Blocks.stonebrick, 0, 1, 0, 8));
         list.add(new PlaceableLog(Blocks.log, 1, 1, 0, 9));
         list.add(new PlaceableBlock(Blocks.planks, 5, 1, 0, 10));
@@ -147,6 +147,8 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 4, 1, 6));
         list.add(new PlaceableBlock(Blocks.air, 0, 4, 1, 7));
         list.add(new PlaceableBlock(Blocks.air, 0, 4, 1, 8));
+        list.add(new PlaceableNPC("brandon", 4, 1, 9));
+        npc_offsets.put(Town.BRANDON, new PlaceableNPC("", 4, 1, 9));
         list.add(new PlaceableBlock(Blocks.air, 0, 4, 1, 9));
         list.add(new PlaceableBlock(Blocks.air, 0, 4, 1, 10));
         list.add(new PlaceableIFaceable(HMBlocks.woodmachines, 1, 4, 1, 11, ForgeDirection.NORTH, LootStrings.MINING_CHEST));
@@ -193,8 +195,6 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 7, 8, 1, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 1, 3));
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 1, 4));
-        list.add(new PlaceableNPC("brandon", 8, 1, 4));
-        npc_offsets.put(Town.MINING_HUT, new PlaceableNPC("", 8, 1, 4));
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 1, 5));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 5, 8, 1, 6));
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 1, 7));
@@ -206,14 +206,14 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableLog(Blocks.log, 1, 9, 1, 1));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 7, 9, 1, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 9, 1, 3));
+        npc_offsets.put(Town.MINER_GRAVEL, new PlaceableNPC("", 9, 1, 4));
         list.add(new PlaceableBlock(Blocks.air, 0, 9, 1, 4));
         list.add(new PlaceableBlock(Blocks.gravel, 0, 9, 1, 5));
         list.add(new PlaceableBlock(Blocks.gravel, 0, 9, 1, 6));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 3, 9, 1, 7));
         list.add(new PlaceableBlock(Blocks.air, 0, 9, 1, 8));
+        npc_offsets.put(Town.MINER_FRONT, new PlaceableNPC("", 9, 1, 9));
         list.add(new PlaceableBlock(Blocks.air, 0, 9, 1, 9));
-        list.add(new PlaceableBlock(Blocks.air, 0, 9, 1, 10));
-        list.add(new PlaceableBlock(Blocks.air, 0, 9, 1, 11));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 2, 10, 1, 1));
         list.add(new PlaceableBlock(Blocks.stained_hardened_clay, 7, 10, 1, 2));
         list.add(new PlaceableBlock(Blocks.gravel, 0, 10, 1, 3));
@@ -222,8 +222,6 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableBlock(Blocks.gravel, 0, 10, 1, 6));
         list.add(new PlaceableBlock(Blocks.gravel, 0, 10, 1, 7));
         list.add(new PlaceableLog(Blocks.log, 1, 10, 1, 8));
-        list.add(new PlaceableBlock(Blocks.air, 0, 10, 1, 9));
-        list.add(new PlaceableBlock(Blocks.air, 0, 10, 1, 10));
         list.add(new PlaceableBlock(Blocks.fence, 0, 11, 1, 2));
         list.add(new PlaceableBlock(Blocks.stained_hardened_clay, 7, 11, 1, 3));
         list.add(new PlaceableBlock(Blocks.gravel, 0, 11, 1, 4));
@@ -231,7 +229,6 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableBlock(Blocks.stained_hardened_clay, 7, 11, 1, 6));
         list.add(new PlaceableBlock(Blocks.stained_hardened_clay, 7, 11, 1, 7));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 1, 11, 1, 8));
-        list.add(new PlaceableBlock(Blocks.air, 0, 11, 1, 9));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 1, 12, 1, 3));
         list.add(new PlaceableLog(Blocks.log, 1, 12, 1, 4));
         list.add(new PlaceableBlock(Blocks.stained_hardened_clay, 7, 12, 1, 5));
@@ -329,7 +326,6 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableTorches(Blocks.torch, 2, 9, 2, 8));
         list.add(new PlaceableItemFrame(new ItemStack(Blocks.trapdoor, 1, 0), 0, 1, 9, 2, 8));
         list.add(new PlaceableBlock(Blocks.air, 0, 9, 2, 9));
-        list.add(new PlaceableBlock(Blocks.air, 0, 9, 2, 10));
         list.add(new PlaceableBlock(Blocks.stonebrick, 2, 10, 2, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 10, 2, 3));
         list.add(new PlaceableBlock(Blocks.air, 0, 10, 2, 4));
@@ -337,7 +333,6 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableBlock(Blocks.gravel, 0, 10, 2, 6));
         list.add(new PlaceableBlock(Blocks.gravel, 0, 10, 2, 7));
         list.add(new PlaceableLog(Blocks.log, 1, 10, 2, 8));
-        list.add(new PlaceableBlock(Blocks.air, 0, 10, 2, 9));
         list.add(new PlaceableTorches(Blocks.torch, 5, 11, 2, 2));
         list.add(new PlaceableBlock(Blocks.stonebrick, 2, 11, 2, 3));
         list.add(new PlaceableBlock(Blocks.gravel, 0, 11, 2, 4));
@@ -348,8 +343,6 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableBlock(Blocks.stonebrick, 0, 12, 2, 5));
         list.add(new PlaceableTorches(Blocks.torch, 5, 12, 2, 6));
         list.add(new PlaceableTorches(Blocks.torch, 5, 12, 2, 7));
-        list.add(new PlaceableBlock(Blocks.air, 0, 1, 3, 6));
-        list.add(new PlaceableBlock(Blocks.air, 0, 1, 3, 7));
         list.add(new PlaceableBlock(Blocks.stonebrick, 0, 1, 3, 8));
         list.add(new PlaceableLog(Blocks.log, 1, 1, 3, 9));
         list.add(new PlaceableBlock(Blocks.stonebrick, 0, 2, 3, 6));
@@ -357,8 +350,6 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableBlock(Blocks.iron_bars, 0, 2, 3, 8));
         list.add(new PlaceableBlock(Blocks.iron_bars, 0, 2, 3, 9));
         list.add(new PlaceableBlock(Blocks.stonebrick, 0, 2, 3, 10));
-        list.add(new PlaceableBlock(Blocks.air, 0, 2, 3, 11));
-        list.add(new PlaceableBlock(Blocks.air, 0, 3, 3, 4));
         list.add(new PlaceableLog(Blocks.log, 1, 3, 3, 5));
         list.add(new PlaceableBlock(Blocks.iron_bars, 0, 3, 3, 6));
         list.add(new PlaceableBlock(Blocks.iron_bars, 0, 3, 3, 7));
@@ -366,7 +357,6 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 3, 3, 9));
         list.add(new PlaceableBlock(Blocks.iron_bars, 0, 3, 3, 10));
         list.add(new PlaceableBlock(Blocks.stonebrick, 0, 3, 3, 11));
-        list.add(new PlaceableBlock(Blocks.air, 0, 4, 3, 3));
         list.add(new PlaceableBlock(Blocks.stonebrick, 0, 4, 3, 4));
         list.add(new PlaceableBlock(Blocks.iron_bars, 0, 4, 3, 5));
         list.add(new PlaceableBlock(Blocks.air, 0, 4, 3, 6));
@@ -386,7 +376,6 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 3, 10));
         list.add(new PlaceableBlock(Blocks.iron_bars, 0, 5, 3, 11));
         list.add(new PlaceableBlock(Blocks.stonebrick, 1, 5, 3, 12));
-        list.add(new PlaceableBlock(Blocks.air, 0, 6, 3, 1));
         list.add(new PlaceableBlock(Blocks.stonebrick, 0, 6, 3, 2));
         list.add(new PlaceableBlock(Blocks.iron_bars, 0, 6, 3, 3));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 3, 4));
@@ -397,7 +386,6 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 3, 9));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 3, 10));
         list.add(new PlaceableBlock(Blocks.stonebrick, 0, 6, 3, 11));
-        list.add(new PlaceableBlock(Blocks.air, 0, 7, 3, 1));
         list.add(new PlaceableBlock(Blocks.stonebrick, 2, 7, 3, 2));
         list.add(new PlaceableBlock(Blocks.iron_bars, 0, 7, 3, 3));
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 3, 4));
@@ -436,7 +424,6 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 10, 3, 7));
         list.add(new PlaceableLog(Blocks.log, 1, 10, 3, 8));
         list.add(new PlaceableButton(Blocks.wooden_button, 3, 10, 3, 9));
-        list.add(new PlaceableBlock(Blocks.air, 0, 11, 3, 2));
         list.add(new PlaceableBlock(Blocks.stonebrick, 0, 11, 3, 3));
         list.add(new PlaceableBlock(Blocks.iron_bars, 0, 11, 3, 4));
         list.add(new PlaceableBlock(Blocks.gravel, 0, 11, 3, 5));
@@ -444,8 +431,6 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableBlock(Blocks.stonebrick, 0, 11, 3, 7));
         list.add(new PlaceableLog(Blocks.log, 1, 12, 3, 4));
         list.add(new PlaceableBlock(Blocks.stonebrick, 2, 12, 3, 5));
-        list.add(new PlaceableBlock(Blocks.air, 0, 12, 3, 6));
-        list.add(new PlaceableBlock(Blocks.air, 0, 12, 3, 7));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 1, 0, 4, 8));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 1, 0, 4, 9));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 1, 1, 4, 6));

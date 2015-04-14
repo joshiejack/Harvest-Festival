@@ -78,11 +78,13 @@ public class HMItems {
         hoe = new ItemHoe().setUnlocalizedName("hoe");
         sickle = new ItemSickle().setUnlocalizedName("sickle");
         wateringcan = new ItemWateringCan().setUnlocalizedName("wateringcan");
-
+        
+        //Creative Mod Items
+        structures = new ItemBuilding().setUnlocalizedName("structures");
+        spawner = new ItemNPCSpawner().setUnlocalizedName("spawner");
+        
         if (General.DEBUG_MODE) {
             cheat = new ItemCheat().setUnlocalizedName("cheat");
-            spawner = new ItemNPCSpawner().setUnlocalizedName("spawner");
-            structures = new ItemBuilding().setUnlocalizedName("structures");
         }
     }
 

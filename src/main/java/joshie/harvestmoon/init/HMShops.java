@@ -25,6 +25,7 @@ public class HMShops {
     public static IShop barn;
     public static IShop blacksmith;
     public static IShop cafe;
+    public static IShop carpenter;
     public static IShop poultry;
     public static IShop supermarket;
     public static boolean isClient;

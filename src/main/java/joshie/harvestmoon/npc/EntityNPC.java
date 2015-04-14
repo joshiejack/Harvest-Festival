@@ -212,6 +212,12 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
             for (char c : name) {
                 buf.writeChar(c);
             }
+            
+            if (owning_player != null) {
+                buf.writeBoolean(true);
+                buf.writeLong(owning_player.getMostSignificantBits());
+                buf.writeLong(owning_player.getLeastSignificantBits());
+            } else buf.writeBoolean(false);
         }
     }
 
@@ -225,6 +231,12 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
         npc = HMApi.NPC.get(new String(name));
         if (npc == null) {
             npc = HMNPCs.goddess;
+        }
+        
+        if (buf.readBoolean()) {
+            long most = buf.readLong();
+            long least = buf.readLong();
+            owning_player = new UUID(most, least);
         }
     }
 

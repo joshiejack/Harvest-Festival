@@ -2,7 +2,7 @@ package joshie.harvestmoon.buildings.placeable;
 
 import java.util.UUID;
 
-import net.minecraft.entity.player.EntityPlayer;
+import joshie.harvestmoon.npc.EntityNPC;
 import net.minecraft.world.World;
 
 public abstract class Placeable {

@@ -9,6 +9,8 @@ import joshie.harvestmoon.npc.EntityNPC;
 import joshie.harvestmoon.npc.EntityNPCBuilder;
 import joshie.harvestmoon.npc.EntityNPCMiner;
 import joshie.harvestmoon.npc.EntityNPCShopkeeper;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
 public class NPCHelper {
@@ -31,5 +33,13 @@ public class NPCHelper {
     
     public static int getGuiIDForNPC(INPC npc, World world, boolean isSneaking) {
         return npc.getShop() != null && npc.getShop().isOpen(world) ? GuiHandler.SHOP : (isSneaking) ? GuiHandler.GIFT : GuiHandler.NPC;
+    }
+    
+    public static EntityNPCBuilder getBuilderForPlayer(World world, EntityPlayer player) {
+        return world.isRemote ? PlayerHelper.getData().getBuilder(world) : getBuilderForPlayer(player);
+    }
+
+    public static EntityNPCBuilder getBuilderForPlayer(EntityLivingBase entityLiving) {      
+        return PlayerHelper.getData((EntityPlayer)entityLiving).getBuilder(entityLiving.worldObj);
     }
 }

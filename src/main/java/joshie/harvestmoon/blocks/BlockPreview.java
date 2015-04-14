@@ -8,7 +8,6 @@ import joshie.harvestmoon.core.config.General;
 import joshie.harvestmoon.core.helpers.NPCHelper;
 import joshie.harvestmoon.core.helpers.UUIDHelper;
 import joshie.harvestmoon.core.lib.RenderIds;
-import joshie.harvestmoon.init.HMNPCs;
 import joshie.harvestmoon.npc.EntityNPCBuilder;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -90,21 +89,13 @@ public class BlockPreview extends BlockHMBaseMeta {
         } else {
             int meta = world.getBlockMetadata(x, y, z);
             TileMarker marker = (TileMarker) world.getTileEntity(x, y, z);
-            EntityNPCBuilder builder = marker.getBuilder();
-            if (builder == null) {
-                builder = (EntityNPCBuilder) NPCHelper.getEntityForNPC(UUIDHelper.getPlayerUUID(player), world, HMNPCs.builder);
-            }
-
-            builder.setPosition(x, y, z);
-
-            if (!world.isRemote) {
-                world.spawnEntityInWorld(builder);
-            }
-
-            builder.startBuilding(marker.getBuilding(), x, y, z, getN1FromMeta(meta), getN2FromMeta(meta), getSwapFromMeta(meta), UUIDHelper.getPlayerUUID(player));
-            world.setBlockToAir(x, y, z);
-
-            return true;
+            EntityNPCBuilder builder = NPCHelper.getBuilderForPlayer(world, player);
+            if (builder != null && !builder.isBuilding()) {
+                builder.setPosition(x, y, z); //Teleport the builder to the position
+                builder.startBuilding(marker.getBuilding(), x, y, z, getN1FromMeta(meta), getN2FromMeta(meta), getSwapFromMeta(meta), UUIDHelper.getPlayerUUID(player));
+                world.setBlockToAir(x, y, z);
+                return true;
+            } else return false;
         }
     }
 
@@ -125,6 +116,10 @@ public class BlockPreview extends BlockHMBaseMeta {
         if (group != null) {
             TileMarker marker = (TileMarker) world.getTileEntity(x, y, z);
             marker.setBuilding(group, group.getRandom());
+            //Create a builder if none exists
+            if (!world.isRemote) {
+                NPCHelper.getBuilderForPlayer(player);
+            }
         }
     }
 

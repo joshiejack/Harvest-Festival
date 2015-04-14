@@ -25,6 +25,10 @@ public class EntityNPCBuilder extends EntityNPC {
         super(owning_player, world, npc);
     }
 
+    public boolean isBuilding() {
+        return building != null;
+    }
+
     @Override
     protected void updateAITick() {
         if (building == null) {

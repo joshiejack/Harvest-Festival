@@ -11,6 +11,7 @@ import joshie.harvestmoon.api.crops.ICropData;
 import joshie.harvestmoon.api.npc.INPC;
 import joshie.harvestmoon.buildings.BuildingStage;
 import joshie.harvestmoon.calendar.CalendarDate;
+import joshie.harvestmoon.core.helpers.NPCHelper;
 import joshie.harvestmoon.core.helpers.UUIDHelper;
 import joshie.harvestmoon.core.helpers.generic.EntityHelper;
 import joshie.harvestmoon.core.network.PacketSyncBirthday;
@@ -19,10 +20,14 @@ import joshie.harvestmoon.core.network.PacketSyncGold;
 import joshie.harvestmoon.core.network.PacketSyncStats;
 import joshie.harvestmoon.core.util.IData;
 import joshie.harvestmoon.core.util.SellStack;
+import joshie.harvestmoon.init.HMNPCs;
 import joshie.harvestmoon.npc.EntityNPC;
+import joshie.harvestmoon.npc.EntityNPCBuilder;
 import joshie.harvestmoon.npc.NPC;
 import joshie.harvestmoon.player.Town.TownBuilding;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -37,6 +42,7 @@ public class PlayerDataServer implements IData {
     private TrackingStats trackingStats;
     private FriendTracker friends;
     private FridgeContents fridge;
+    private EntityNPCBuilder builder;
     private Town town;
 
     //References to the player and uuid this refers to
@@ -219,6 +225,28 @@ public class PlayerDataServer implements IData {
         TownBuilding building = town.buildings.get(home.getName());
         if (building == null) return null;
         return building.getRealCoordinatesFor(npc_location);
+    }
+    
+    //Cached Value, The actual data for the owner is stored in the entity itself
+    public EntityNPCBuilder getBuilder(World world) {
+        if (builder != null) return builder;
+        for (int i = 0; i < world.loadedEntityList.size(); i++) {
+            Entity entity = (Entity) world.loadedEntityList.get(i);
+            if (entity instanceof EntityNPCBuilder) {
+                UUID owner = ((EntityNPCBuilder)entity).owning_player;
+                if (owner == uuid) {
+                    builder = (EntityNPCBuilder) entity;
+                    return builder;
+                }
+            }
+        }
+        
+        //Create an npc builder, with this person as their owner
+        EntityNPCBuilder builder = (EntityNPCBuilder) NPCHelper.getEntityForNPC(uuid, world, HMNPCs.builder);
+        EntityPlayer player = getAndCreatePlayer();
+        builder.setPosition(player.posX + player.worldObj.rand.nextDouble() * 4D, player.posY, player.posZ + player.worldObj.rand.nextDouble() * 4D);
+        world.spawnEntityInWorld(builder);
+        return builder;
     }
 
     @Override

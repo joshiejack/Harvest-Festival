@@ -6,10 +6,16 @@ import java.util.UUID;
 import joshie.harvestmoon.api.npc.INPC;
 import joshie.harvestmoon.calendar.CalendarDate;
 import joshie.harvestmoon.calendar.Season;
+import joshie.harvestmoon.core.helpers.NPCHelper;
 import joshie.harvestmoon.core.helpers.UUIDHelper;
+import joshie.harvestmoon.core.helpers.generic.MCClientHelper;
 import joshie.harvestmoon.core.util.Translate;
+import joshie.harvestmoon.init.HMNPCs;
 import joshie.harvestmoon.npc.EntityNPC;
+import joshie.harvestmoon.npc.EntityNPCBuilder;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -20,6 +26,7 @@ public class PlayerDataClient {
     private QuestsClientside quests = new QuestsClientside();
     private HashMap<UUID, Short> entity_relations = new HashMap();
     private HashMap<INPC, Short> npc_relations = new HashMap();
+    private EntityNPCBuilder builder;
     private FridgeContents fridge;
     private double staminaMax = 100D;
     private double fatigueMin = 0D;
@@ -132,5 +139,21 @@ public class PlayerDataClient {
 
     public CalendarDate getBirthday() {
         return birthday;
+    }
+    
+    public EntityNPCBuilder getBuilder(World world) {
+        if (builder != null) return builder;
+        for (int i = 0; i < world.loadedEntityList.size(); i++) {
+            Entity entity = (Entity) world.loadedEntityList.get(i);
+            if (entity instanceof EntityNPCBuilder) {
+                UUID owner = ((EntityNPCBuilder)entity).owning_player;
+                if (owner == UUIDHelper.getPlayerUUID(MCClientHelper.getPlayer())) {
+                    builder = (EntityNPCBuilder) entity;
+                    return builder;
+                }
+            }
+        }
+        
+        return null;
     }
 }

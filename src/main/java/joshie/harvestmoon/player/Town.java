@@ -15,7 +15,6 @@ public class Town implements IData {
 
     public Town(PlayerDataServer master) {}
     
-
     public void addBuilding(World world, BuildingStage building) {
         buildings.put(building.building.getName(), new TownBuilding(building, world.provider.dimensionId));
     }

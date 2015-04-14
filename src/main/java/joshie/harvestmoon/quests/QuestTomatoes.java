@@ -8,6 +8,7 @@ import static joshie.harvestmoon.core.helpers.QuestHelper.takeHeldStack;
 import java.util.HashSet;
 
 import joshie.harvestmoon.api.npc.INPC;
+import joshie.harvestmoon.api.quest.IQuest;
 import joshie.harvestmoon.init.HMCrops;
 import joshie.harvestmoon.init.HMNPCs;
 import joshie.harvestmoon.npc.EntityNPC;
@@ -17,7 +18,7 @@ import net.minecraft.item.ItemStack;
 
 public class QuestTomatoes extends Quest {    
     @Override
-    public boolean canStart(EntityPlayer player, HashSet<Quest> active, HashSet<Quest> finished) {
+    public boolean canStart(EntityPlayer player, HashSet<IQuest> active, HashSet<IQuest> finished) {
         if(!super.canStart(player, active, finished)) return false;
         else {
             return true;

@@ -5,18 +5,19 @@ import static joshie.harvestmoon.core.network.PacketHandler.sendToClient;
 
 import java.util.HashSet;
 
+import joshie.harvestmoon.api.HMApi;
+import joshie.harvestmoon.api.quest.IQuest;
 import joshie.harvestmoon.core.network.quests.PacketQuestSetAvailable;
 import joshie.harvestmoon.core.network.quests.PacketQuestSetCurrent;
 import joshie.harvestmoon.core.util.IData;
 import joshie.harvestmoon.init.HMQuests;
-import joshie.harvestmoon.quests.Quest;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 
 public class QuestStats implements IData {
-    private HashSet<Quest> finished = new HashSet();
-    private HashSet<Quest> current = new HashSet(10);
+    private HashSet<IQuest> finished = new HashSet();
+    private HashSet<IQuest> current = new HashSet(10);
 
     public PlayerDataServer master;
 
@@ -24,13 +25,13 @@ public class QuestStats implements IData {
         this.master = master;
     }
 
-    public HashSet<Quest> getCurrent() {
+    public HashSet<IQuest> getCurrent() {
         return current;
     }
 
-    private Quest getAQuest(Quest quest) {
+    private IQuest getAQuest(IQuest quest) {
         if (current != null) {
-            for (Quest q : current) {
+            for (IQuest q : current) {
                 if (q.equals(quest)) {
                     return q;
                 }
@@ -41,10 +42,10 @@ public class QuestStats implements IData {
     }
 
     //Called to start a quest, is called clientside, by the startquest packet
-    public boolean startQuest(Quest q) {
+    public boolean startQuest(IQuest q) {
         if (current.size() < 10) {
             try {
-                Quest quest = ((Quest) q.getClass().newInstance()).setName(q.getName()).setStage(0); //Set the current quest to your new 
+                IQuest quest = ((IQuest) q.getClass().newInstance()).setUniqueName(q.getUniqueName()).setStage(0); //Set the current quest to your new 
                 current.add(quest);
                 syncQuest(q);
             } catch (Exception e) {}
@@ -53,8 +54,8 @@ public class QuestStats implements IData {
         } else return false;
     }
 
-    public void setStage(Quest quest, int stage) {
-        Quest q = getAQuest(quest);
+    public void setStage(IQuest quest, int stage) {
+        IQuest q = getAQuest(quest);
         if (q != null) {
             q.setStage(stage);
         }
@@ -63,8 +64,8 @@ public class QuestStats implements IData {
     }
 
     //Quests should always REMOVE from the current quests, and add to the finished quests THEMSELVES
-    public void markCompleted(Quest quest) {
-        Quest q = getAQuest(quest);
+    public void markCompleted(IQuest quest) {
+        IQuest q = getAQuest(quest);
         if (q != null) {
             q.claim(master.getAndCreatePlayer());
             finished.add(q);
@@ -74,12 +75,12 @@ public class QuestStats implements IData {
     }
 
     public void syncQuests() {
-        for (Quest quest : HMQuests.getQuests().values()) {
+        for (IQuest quest : HMQuests.getQuests().values()) {
             syncQuest(quest);
         }
     }
 
-    public void syncQuest(Quest quest) {
+    public void syncQuest(IQuest quest) {
         //Check if the quest can be complete
         //If the quest isn't finished, do stuff
         if (!finished.contains(quest)) {
@@ -105,9 +106,9 @@ public class QuestStats implements IData {
             NBTTagList list = nbt.getTagList("CurrentQuests", 10);
             for (int i = 0; i < list.tagCount(); i++) {
                 NBTTagCompound tag = list.getCompoundTagAt(i);
-                Quest q = HMQuests.get(tag.getString("QuestID"));
+                IQuest q = HMApi.QUESTS.get(tag.getString("QuestID"));
                 try {
-                    Quest quest = ((Quest) q.getClass().newInstance()).setName(q.getName());
+                    IQuest quest = ((IQuest) q.getClass().newInstance()).setUniqueName(q.getUniqueName());
                     quest.readFromNBT(tag);
                     current.add(quest);
                 } catch (Exception e) {}
@@ -117,7 +118,7 @@ public class QuestStats implements IData {
         if (nbt.hasKey("FinishedQuests")) {
             NBTTagList list = nbt.getTagList("FinishedQuests", 8);
             for (int i = 0; i < list.tagCount(); i++) {
-                finished.add(HMQuests.get(list.getStringTagAt(i)));
+                finished.add(HMApi.QUESTS.get(list.getStringTagAt(i)));
             }
         }
     }
@@ -125,9 +126,9 @@ public class QuestStats implements IData {
     @Override
     public void writeToNBT(NBTTagCompound nbt) {
         NBTTagList quests = new NBTTagList();
-        for (Quest s : current) {
+        for (IQuest s : current) {
             NBTTagCompound tag = new NBTTagCompound();
-            tag.setString("QuestID", s.getName());
+            tag.setString("QuestID", s.getUniqueName());
             s.writeToNBT(tag);
             quests.appendTag(tag);
         }
@@ -135,9 +136,9 @@ public class QuestStats implements IData {
         nbt.setTag("CurrentQuests", quests);
 
         NBTTagList done = new NBTTagList();
-        for (Quest s : finished) {
+        for (IQuest s : finished) {
             if (s != null) {
-                done.appendTag(new NBTTagString(s.getName()));
+                done.appendTag(new NBTTagString(s.getUniqueName()));
             }
         }
 

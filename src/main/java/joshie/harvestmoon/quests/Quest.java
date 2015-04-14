@@ -7,6 +7,7 @@ import io.netty.buffer.ByteBuf;
 import java.util.HashSet;
 
 import joshie.harvestmoon.api.npc.INPC;
+import joshie.harvestmoon.api.quest.IQuest;
 import joshie.harvestmoon.core.network.quests.PacketQuestSetStage;
 import joshie.harvestmoon.core.util.Translate;
 import joshie.harvestmoon.npc.EntityNPC;
@@ -18,32 +19,31 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class Quest {
+public abstract class Quest implements IQuest {
     protected String name;
     protected int quest_stage;
 
     public Quest() {}
-
-    public Quest setName(String name) {
+    
+    @Override
+    public IQuest setStage(int quest_stage) {
+        this.quest_stage = quest_stage;
+        return this;
+    }
+    
+    @Override
+    public IQuest setUniqueName(String name) {
         this.name = name;
         return this;
     }
 
-    public Quest setStage(int quest_stage) {
-        this.quest_stage = quest_stage;
-        return this;
-    }
-
-    public String getName() {
+    @Override
+    public String getUniqueName() {
         return name;
     }
 
-    public int getStage() {
-        return quest_stage;
-    }
-
     /** ENSURE YOU ONLY EVER CALL THIS ON ONE SIDE **/
-    public void increaseStage(EntityPlayer player) {
+    protected void increaseStage(EntityPlayer player) {
         this.quest_stage++;
         if (!player.worldObj.isRemote) {
             //Send Packet to increase stage to client
@@ -54,18 +54,19 @@ public class Quest {
         }
     }
 
-    public boolean isRepeatable() {
+    protected boolean isRepeatable() {
         return false;
     }
 
     //This is only called client side
-    public boolean canStart(EntityPlayer player, HashSet<Quest> active, HashSet<Quest> finished) {
+    @Override
+    public boolean canStart(EntityPlayer player, HashSet<IQuest> active, HashSet<IQuest> finished) {
         if(finished.contains(this) && !isRepeatable()) {
             return false;
         }
         
         //Loops through all the active quests, if any of the quests contain npcs that are used by this quest, we can not start it
-        for (Quest a : active) {
+        for (IQuest a : active) {
             for(INPC npc: getNPCs()) {
                 if(a.handlesScript(npc)) {
                     return false;
@@ -77,7 +78,7 @@ public class Quest {
     }
     
     //Return a list of all the npcs involved in this quest
-    public INPC[] getNPCs() {
+    protected INPC[] getNPCs() {
         return null;
     }
 
@@ -89,6 +90,7 @@ public class Quest {
     /** Exposed to quest_stage */
     //Return true if the script will determine, thisNPC's script at the current stage   
     @SideOnly(Side.CLIENT)
+    @Override
     public boolean handlesScript(INPC npc) {
         for(INPC n: getNPCs()) {
             if(n.equals(npc)) {
@@ -102,27 +104,33 @@ public class Quest {
     /** Exposed to quest_stage, is only called client side, must sync any changes */
     //Return the script
     @SideOnly(Side.CLIENT)
+    @Override
     public String getScript(EntityPlayer player, EntityNPC npc) {
         return null;
     }
 
     //Called Serverside, to claim the reward
+    @Override
     public void claim(EntityPlayerMP player) {
         return;
     }
 
+    @Override
     public void readFromNBT(NBTTagCompound nbt) {
         quest_stage = nbt.getShort("Completed");
     }
 
+    @Override
     public void writeToNBT(NBTTagCompound nbt) {
         nbt.setShort("Completed", (short) quest_stage);
     }
 
+    @Override
     public void toBytes(ByteBuf buf) {
         buf.writeShort(quest_stage);
     }
 
+    @Override
     public void fromBytes(ByteBuf buf) {
         quest_stage = buf.readShort();
     }
@@ -131,9 +139,9 @@ public class Quest {
     public boolean equals(Object o) {
         if (o == null) return false;
         if (o == this) return true;
-        if (o.getClass() != this.getClass()) return false;
+        if (!(o instanceof IQuest)) return false;
 
-        return name.equals(((Quest) o).getName());
+        return name.equals(((IQuest) o).getUniqueName());
     }
 
     @Override

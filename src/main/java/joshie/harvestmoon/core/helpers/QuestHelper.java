@@ -6,6 +6,7 @@ import static joshie.harvestmoon.core.network.PacketHandler.sendToServer;
 import java.util.HashSet;
 
 import joshie.harvestmoon.api.npc.INPC;
+import joshie.harvestmoon.api.quest.IQuest;
 import joshie.harvestmoon.core.network.PacketSyncGold;
 import joshie.harvestmoon.core.network.quests.PacketQuestCompleted;
 import joshie.harvestmoon.core.network.quests.PacketQuestDecreaseHeld;
@@ -37,8 +38,8 @@ public class QuestHelper {
         }
     }
 
-    public static HashSet<Quest> getCurrentQuest(EntityPlayer player) {
-        HashSet<Quest> quest = null;
+    public static HashSet<IQuest> getCurrentQuest(EntityPlayer player) {
+        HashSet<IQuest> quest = null;
         if (player.worldObj.isRemote) {
             quest = ClientHelper.getPlayerData().getQuests().getCurrent();
         } else {
@@ -67,31 +68,31 @@ public class QuestHelper {
         }
     }
 
-    public static void markCompleted(EntityPlayer player, Quest quest) {
+    public static void markCompleted(EntityPlayer player, IQuest quest) {
         if (!player.worldObj.isRemote) {
             ServerHelper.getPlayerData(player).getQuests().markCompleted(quest);
         } else ClientHelper.getPlayerData().getQuests().markCompleted(quest);
     }
 
-    public static void markAvailable(EntityPlayer player, Quest quest) {
+    public static void markAvailable(EntityPlayer player, IQuest quest) {
         if (!player.worldObj.isRemote) {
 
         } else ClientHelper.getPlayerData().getQuests().setAvailable(quest);
     }
 
-    public static void markAsCurrent(EntityPlayer player, Quest quest) {
+    public static void markAsCurrent(EntityPlayer player, IQuest quest) {
         if (!player.worldObj.isRemote) {
 
         } else ClientHelper.getPlayerData().getQuests().addAsCurrent(quest);
     }
 
-    public static void setQuestStage(EntityPlayer player, Quest quest, int stage) {
+    public static void setQuestStage(EntityPlayer player, IQuest quest, int stage) {
         if (!player.worldObj.isRemote) {
             ServerHelper.getPlayerData(player).getQuests().setStage(quest, stage);
         } else ClientHelper.getPlayerData().getQuests().setStage(quest, stage);
     }
 
-    public static void startQuest(EntityPlayer player, Quest quest) {
+    public static void startQuest(EntityPlayer player, IQuest quest) {
         if (!player.worldObj.isRemote) {
             ServerHelper.getPlayerData(player).getQuests().startQuest(quest);
         }

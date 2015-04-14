@@ -84,7 +84,23 @@ public class HMNPCs implements INPCRegistry {
     }
 
     public static void init() {
+        goddess.setHome(HMBuildings.goddessPond, Town.GODDESS);
         animal_owner.setHome(HMBuildings.barn, Town.JIM);
+        cafe_owner.setHome(HMBuildings.cafe, Town.LIARA);
+        seed_owner.setHome(HMBuildings.carpenter, Town.JADE);
+        daughter_1.setHome(HMBuildings.townhall, Town.CLOE);
+        priest.setHome(HMBuildings.townhall, Town.TOWNHALL_ADULT_BEDROOM);
+        clockmaker_child.setHome(HMBuildings.clockmaker, Town.FENN);
+        cafe_granny.setHome(HMBuildings.cafe, Town.KATLIN);
+        mayor.setHome(HMBuildings.townhall, Town.JAMIE);
+        builder.setHome(HMBuildings.carpenter, Town.CARPENTER_DOWNSTAIRS);
+        tool_owner.setHome(HMBuildings.blacksmith, Town.DANIEL);
+        daughter_2.setHome(HMBuildings.townhall, Town.ABI);
+        clock_worker.setHome(HMBuildings.clockmaker, Town.TIBERIUS);
+        gs_owner.setHome(HMBuildings.supermarket, Town.JENNI);
+        miner.setHome(HMBuildings.miningHut, Town.BRANDON);
+        fisherman.setHome(HMBuildings.fishingHut, Town.JACOB);
         milkmaid.setHome(HMBuildings.supermarket, Town.CANDICE);
+        poultry.setHome(HMBuildings.poultryFarm, Town.ONDRA);
     }
 }

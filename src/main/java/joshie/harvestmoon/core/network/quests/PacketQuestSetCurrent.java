@@ -3,6 +3,8 @@ package joshie.harvestmoon.core.network.quests;
 import static cpw.mods.fml.common.network.ByteBufUtils.readUTF8String;
 import static cpw.mods.fml.common.network.ByteBufUtils.writeUTF8String;
 import io.netty.buffer.ByteBuf;
+import joshie.harvestmoon.api.HMApi;
+import joshie.harvestmoon.api.quest.IQuest;
 import joshie.harvestmoon.core.helpers.QuestHelper;
 import joshie.harvestmoon.core.helpers.generic.MCClientHelper;
 import joshie.harvestmoon.init.HMQuests;
@@ -12,11 +14,10 @@ import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 public class PacketQuestSetCurrent implements IMessage, IMessageHandler<PacketQuestSetCurrent, IMessage> {
-    private Quest quest;
+    private IQuest quest;
 
     public PacketQuestSetCurrent() {}
-
-    public PacketQuestSetCurrent(Quest quest) {
+    public PacketQuestSetCurrent(IQuest quest) {
         this.quest = quest;
     }
 
@@ -24,7 +25,7 @@ public class PacketQuestSetCurrent implements IMessage, IMessageHandler<PacketQu
     public void toBytes(ByteBuf buf) {
         buf.writeBoolean(quest == null);
         if (quest != null) {
-            writeUTF8String(buf, quest.getName());
+            writeUTF8String(buf, quest.getUniqueName());
             quest.toBytes(buf);
         }
     }
@@ -33,10 +34,10 @@ public class PacketQuestSetCurrent implements IMessage, IMessageHandler<PacketQu
     public void fromBytes(ByteBuf buf) {
         boolean isNull = buf.readBoolean();
         if (!isNull) {
-            Quest q = HMQuests.get(readUTF8String(buf));
+            IQuest q = HMApi.QUESTS.get(readUTF8String(buf));
 
             try {
-                quest = ((Quest) q.getClass().newInstance()).setName(q.getName());
+                quest = ((Quest) q.getClass().newInstance()).setUniqueName(q.getUniqueName());
                 quest.fromBytes(buf);
             } catch (Exception e) {}
         }

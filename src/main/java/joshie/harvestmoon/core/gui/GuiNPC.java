@@ -5,13 +5,13 @@ import static joshie.harvestmoon.core.helpers.RelationsHelper.getRelationshipVal
 import java.util.Arrays;
 import java.util.HashSet;
 
+import joshie.harvestmoon.api.quest.IQuest;
 import joshie.harvestmoon.core.helpers.PlayerHelper;
 import joshie.harvestmoon.core.helpers.QuestHelper;
 import joshie.harvestmoon.core.lib.HMModInfo;
 import joshie.harvestmoon.core.util.Translate;
 import joshie.harvestmoon.npc.EntityNPC;
 import joshie.harvestmoon.player.PlayerDataClient;
-import joshie.harvestmoon.quests.Quest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 
@@ -144,8 +144,8 @@ public class GuiNPC extends GuiBase {
     public void drawForeground(int x, int y) {
         if (npc == null) {
             player.closeScreen();
-            HashSet<Quest> quests = QuestHelper.getCurrentQuest(player);
-            for (Quest quest : quests) {
+            HashSet<IQuest> quests = QuestHelper.getCurrentQuest(player);
+            for (IQuest quest : quests) {
                 if (quest != null) {
                     quest.onClosedChat(player, npc);
                 }
@@ -214,8 +214,8 @@ public class GuiNPC extends GuiBase {
     }
 
     private void select() {
-        HashSet<Quest> quests = QuestHelper.getCurrentQuest(player);
-        for (Quest quest : quests) {
+        HashSet<IQuest> quests = QuestHelper.getCurrentQuest(player);
+        for (IQuest quest : quests) {
             if (quest != null) {
                 if (!selectedBottom) {
                     quest.confirm(player, npc);

@@ -7,15 +7,16 @@ import io.netty.buffer.ByteBuf;
 
 import java.util.HashSet;
 
+import joshie.harvestmoon.api.HMApi;
 import joshie.harvestmoon.api.core.ISizeable.Size;
 import joshie.harvestmoon.api.npc.INPC;
+import joshie.harvestmoon.api.quest.IQuest;
 import joshie.harvestmoon.core.helpers.SizeableHelper;
 import joshie.harvestmoon.core.helpers.ToolHelper;
 import joshie.harvestmoon.core.helpers.generic.ItemHelper;
 import joshie.harvestmoon.core.lib.SizeableMeta;
 import joshie.harvestmoon.init.HMItems;
 import joshie.harvestmoon.init.HMNPCs;
-import joshie.harvestmoon.init.HMQuests;
 import joshie.harvestmoon.items.ItemGeneral;
 import joshie.harvestmoon.npc.EntityNPC;
 import net.minecraft.entity.Entity;
@@ -78,10 +79,10 @@ public class QuestCowCare extends Quest {
     }
 
     @Override
-    public boolean canStart(EntityPlayer player, HashSet<Quest> active, HashSet<Quest> finished) {
+    public boolean canStart(EntityPlayer player, HashSet<IQuest> active, HashSet<IQuest> finished) {
         if (!super.canStart(player, active, finished)) return false;
         else {
-            return finished.contains(HMQuests.get("tutorial.tomatoes")); //This quest is unlocked when we have completed tomato quest
+            return finished.contains(HMApi.QUESTS.get("tutorial.tomatoes")); //This quest is unlocked when we have completed tomato quest
         }
     }
 

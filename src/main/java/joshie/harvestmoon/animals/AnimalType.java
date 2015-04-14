@@ -93,7 +93,7 @@ public enum AnimalType {
     }
 
     public boolean canEat(ItemStack stack) {
-        AnimalFoodType type = (AnimalFoodType) SafeStackHelper.getResult(stack, registry);
+        AnimalFoodType type = (AnimalFoodType) SafeStackHelper.getResult(stack, registry);        
         if (type == null) return false;
         else {
             for (AnimalFoodType t : types) {

@@ -146,4 +146,7 @@ public interface ICrop {
     
     /** Sets that this crop grows to the side (pumpkins and melons) **/
     public ICrop setGrowsToSide(Block block);
+    
+    /** Set the animal food type of this crop, Crops default to vegetable **/
+    public ICrop setAnimalFoodType(AnimalFoodType type);
 }

@@ -22,6 +22,9 @@ public interface IQuest {
     /** Sets the current stage of the quest **/
     public IQuest setStage(int stage);
 
+    /** Current stage **/
+    public int getStage();
+
     /** Return true if this quest can be started **/
     public boolean canStart(EntityPlayer player, HashSet<IQuest> current, HashSet<IQuest> finished);
 
@@ -60,4 +63,7 @@ public interface IQuest {
 
     /** Called when the quest is active, and the player clicks a block **/
     public void onRightClickBlock(EntityPlayer player, World world, int x, int y, int z, int face);
+
+    /** Called when the stage changes **/
+    public void onStageChanged(EntityPlayer player, int previous, int stage);
 }

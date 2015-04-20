@@ -13,8 +13,6 @@
 - [ ] Shipping Bin
 - [ ] Oven
 - [ ] Mixer
-- [ ] Mixing Bowl
-- [ ] Chopping Board
 - [ ] Baking thing
 - [ ] Incubator
 - [ ] Rural Chest

@@ -7,6 +7,7 @@ import java.util.HashSet;
 
 import joshie.harvestmoon.api.npc.INPC;
 import joshie.harvestmoon.api.quest.IQuest;
+import joshie.harvestmoon.core.helpers.generic.ItemHelper;
 import joshie.harvestmoon.core.network.PacketSyncGold;
 import joshie.harvestmoon.core.network.quests.PacketQuestCompleted;
 import joshie.harvestmoon.core.network.quests.PacketQuestDecreaseHeld;
@@ -15,6 +16,7 @@ import joshie.harvestmoon.player.PlayerDataServer;
 import joshie.harvestmoon.quests.Quest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.server.S2FPacketSetSlot;
 
 public class QuestHelper {
@@ -31,7 +33,7 @@ public class QuestHelper {
     public static void takeHeldStack(EntityPlayer player, int amount) {
         if (player.worldObj.isRemote) {
             player.inventory.decrStackSize(player.inventory.currentItem, amount);
-            sendToServer(new PacketQuestDecreaseHeld(10));
+            sendToServer(new PacketQuestDecreaseHeld(amount));
         } else {
             player.inventory.decrStackSize(player.inventory.currentItem, amount);
             ((EntityPlayerMP) player).playerNetServerHandler.sendPacket(new S2FPacketSetSlot(-1, -1, player.getCurrentEquippedItem()));
@@ -55,7 +57,7 @@ public class QuestHelper {
             throw new IdiotException("Joshie shouldn't be rewarding anyone with gold client side");
         } else {
             PlayerDataServer data = ServerHelper.getPlayerData(player);
-            data.addGold(100);
+            data.addGold(amount);
             sendToClient(new PacketSyncGold(data.getGold()), (EntityPlayerMP) player);
         }
     }
@@ -66,6 +68,10 @@ public class QuestHelper {
         } else {
             ServerHelper.getPlayerData(player).affectRelationship(npc, amount);
         }
+    }
+    
+    public static void rewardItem(EntityPlayer player, ItemStack stack) {
+        ItemHelper.addToPlayerInventory(player, stack);
     }
 
     public static void markCompleted(EntityPlayer player, IQuest quest) {
@@ -88,8 +94,14 @@ public class QuestHelper {
 
     public static void setQuestStage(EntityPlayer player, IQuest quest, int stage) {
         if (!player.worldObj.isRemote) {
-            ServerHelper.getPlayerData(player).getQuests().setStage(quest, stage);
-        } else ClientHelper.getPlayerData().getQuests().setStage(quest, stage);
+            int previous = ServerHelper.getPlayerData(player).getQuests().getAQuest(quest).getStage();
+            ServerHelper.getPlayerData(player).getQuests().setStage(quest, stage);;
+            quest.onStageChanged(player, previous, stage);
+        } else {
+            int previous = ClientHelper.getPlayerData().getQuests().getAQuest(quest).getStage();
+            ClientHelper.getPlayerData().getQuests().setStage(quest, stage);
+            quest.onStageChanged(player, previous, stage);
+        }
     }
 
     public static void startQuest(EntityPlayer player, IQuest quest) {

@@ -81,6 +81,10 @@ public class PlayerDataServer implements IData {
 
         return player;
     }
+    
+    public UUID getUUID() {
+        return uuid;
+    }
 
     //The world is the world that this player is currently in
     public void newDay() {

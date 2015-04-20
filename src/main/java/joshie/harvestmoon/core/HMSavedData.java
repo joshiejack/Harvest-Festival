@@ -97,8 +97,7 @@ public class HMSavedData extends WorldSavedData {
             NBTTagCompound tag = tag_list_players.getCompoundTagAt(i);
             PlayerDataServer data = new PlayerDataServer();
             data.readFromNBT(tag);
-            UUID uuid = new UUID(tag.getLong("UUIDMost"), tag.getLong("UUIDLeast"));
-            players.put(uuid, data);
+            players.put(data.getUUID(), data);
         }
     }
 

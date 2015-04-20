@@ -1,12 +1,13 @@
 package joshie.harvestmoon.core.helpers.generic;
 
-import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class OreDictionaryHelper {
-    public static boolean isLogs(Block block) {
-        for (String name : getNames(new ItemStack(block))) {
+    public static boolean isLogs(ItemStack stack) {
+        for (String name : getNames(stack)) {
             if (name.equals("logWood")) return true;
         }
 
@@ -21,5 +22,9 @@ public class OreDictionaryHelper {
         }
 
         return names;
+    }
+
+    public static boolean isFlowers(ItemStack held) {
+        return held.getItem() == Item.getItemFromBlock(Blocks.red_flower);
     }
 }

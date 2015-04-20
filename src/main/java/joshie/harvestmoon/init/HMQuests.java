@@ -5,9 +5,7 @@ import java.util.HashMap;
 import joshie.harvestmoon.api.HMApi;
 import joshie.harvestmoon.api.quest.IQuest;
 import joshie.harvestmoon.api.quest.IQuestRegistry;
-import joshie.harvestmoon.quests.QuestChickenCare;
-import joshie.harvestmoon.quests.QuestCowCare;
-import joshie.harvestmoon.quests.QuestTomatoes;
+import joshie.harvestmoon.quests.QuestGoddess;
 
 public class HMQuests implements IQuestRegistry {
     private static HashMap<String, IQuest> quests = new HashMap();
@@ -29,8 +27,8 @@ public class HMQuests implements IQuestRegistry {
     }
 
     public static void init() {
-        HMApi.QUESTS.register("tutorial.tomatoes", new QuestTomatoes());
-        HMApi.QUESTS.register("tutorial.cow", new QuestCowCare());
-        HMApi.QUESTS.register("tutorial.chicken", new QuestChickenCare());
+        HMApi.QUESTS.register("tutorial.farming", new QuestGoddess());
+        //HMApi.QUESTS.register("tutorial.cow", new QuestCowCare());
+        //HMApi.QUESTS.register("tutorial.chicken", new QuestChickenCare());
     }
 }

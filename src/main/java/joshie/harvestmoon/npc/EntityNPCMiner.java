@@ -5,12 +5,17 @@ import static joshie.harvestmoon.core.helpers.ServerHelper.markDirty;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import joshie.harvestmoon.api.WorldLocation;
 import joshie.harvestmoon.api.npc.INPC;
 import joshie.harvestmoon.blocks.BlockStone;
 import joshie.harvestmoon.buildings.placeable.Placeable.PlacementStage;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvestmoon.core.helpers.MineHelper;
+import joshie.harvestmoon.core.helpers.TownHelper;
+import joshie.harvestmoon.core.helpers.UUIDHelper;
 import joshie.harvestmoon.init.HMBlocks;
+import joshie.harvestmoon.init.HMBuildings;
+import joshie.harvestmoon.player.Town;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -49,7 +54,13 @@ public class EntityNPCMiner extends EntityNPC {
 
     @Override
     public boolean interact(EntityPlayer player) {
-        MineHelper.getServerTracker().addToMine(worldObj, (int) player.posX, (int) player.posY, (int) player.posZ, this, player.getDisplayName());
+        if (!player.worldObj.isRemote) {
+            WorldLocation location = TownHelper.getLocationFor(UUIDHelper.getPlayerUUID(player), HMBuildings.miningHill, Town.MINE_ENTRANCE);
+            if (location != null) {
+                MineHelper.getServerTracker().addToMine(worldObj, location.x, location.y, location.z, this, player.getDisplayName());
+            }
+        }
+        
         return true;
     }
 

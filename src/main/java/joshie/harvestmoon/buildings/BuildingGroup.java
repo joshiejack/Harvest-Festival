@@ -3,7 +3,9 @@ package joshie.harvestmoon.buildings;
 import java.util.ArrayList;
 import java.util.Random;
 
+import net.minecraft.item.ItemStack;
 import joshie.harvestmoon.api.buildings.IBuildingGroup;
+import joshie.harvestmoon.init.HMBlocks;
 
 public class BuildingGroup implements IBuildingGroup {
     public static final ArrayList<BuildingGroup> groups = new ArrayList(50);
@@ -11,9 +13,12 @@ public class BuildingGroup implements IBuildingGroup {
 
     //List of all placeable elements
     private String name;
+    private int meta;
 
     public static BuildingGroup register(String string, Building... buildingsList) {
         BuildingGroup toRegister = new BuildingGroup().setName(string);
+        toRegister.meta = groups.size();
+        
         int index = 0;
         for (Building building : buildingsList) {
             building.init(toRegister, index);
@@ -33,6 +38,10 @@ public class BuildingGroup implements IBuildingGroup {
         }
 
         return null;
+    }
+    
+    public ItemStack getPreview() {
+        return new ItemStack(HMBlocks.preview, 1, meta);
     }
     
     public Building getBuilding(int key) {

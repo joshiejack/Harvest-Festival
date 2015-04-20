@@ -22,7 +22,7 @@ public class QuestsClientside {
     }
 
     //Returns the quest in the current list that is the instance of this quest type
-    private IQuest getAQuest(IQuest quest) {
+    public IQuest getAQuest(IQuest quest) {
         if (current != null) {
             for (IQuest q : current) {
                 if (q.equals(quest)) {

@@ -5,6 +5,7 @@ import static joshie.harvestmoon.core.network.PacketHandler.sendToServer;
 import io.netty.buffer.ByteBuf;
 
 import java.util.HashSet;
+import java.util.Set;
 
 import joshie.harvestmoon.api.npc.INPC;
 import joshie.harvestmoon.api.quest.IQuest;
@@ -22,6 +23,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public abstract class Quest implements IQuest {
     protected String name;
     protected int quest_stage;
+    protected Set<IQuest> required;
 
     public Quest() {}
     
@@ -29,6 +31,11 @@ public abstract class Quest implements IQuest {
     public IQuest setStage(int quest_stage) {
         this.quest_stage = quest_stage;
         return this;
+    }
+    
+    @Override
+    public int getStage() {
+        return quest_stage;
     }
     
     @Override
@@ -44,6 +51,7 @@ public abstract class Quest implements IQuest {
 
     /** ENSURE YOU ONLY EVER CALL THIS ON ONE SIDE **/
     protected void increaseStage(EntityPlayer player) {
+        int previous = this.quest_stage;
         this.quest_stage++;
         if (!player.worldObj.isRemote) {
             //Send Packet to increase stage to client
@@ -52,6 +60,8 @@ public abstract class Quest implements IQuest {
             //Send Packet to increase stage to server
             sendToServer(new PacketQuestSetStage(this, true, this.quest_stage));
         }
+        
+        onStageChanged(player, previous, quest_stage);
     }
 
     protected boolean isRepeatable() {
@@ -63,6 +73,12 @@ public abstract class Quest implements IQuest {
     public boolean canStart(EntityPlayer player, HashSet<IQuest> active, HashSet<IQuest> finished) {
         if(finished.contains(this) && !isRepeatable()) {
             return false;
+        }
+        
+        if (required != null) {
+            if (!finished.containsAll(required)) {
+                return false;
+            }
         }
         
         //Loops through all the active quests, if any of the quests contain npcs that are used by this quest, we can not start it
@@ -78,13 +94,11 @@ public abstract class Quest implements IQuest {
     }
     
     //Return a list of all the npcs involved in this quest
-    protected INPC[] getNPCs() {
-        return null;
-    }
+    protected abstract INPC[] getNPCs();
 
     //Translates a key, to up to 10 lines for the language
     protected String getLocalized(String quest) {
-        return Translate.translate("quest." + name + "." + quest);
+        return Translate.translate("quest." + name + "." + quest.replace("_", ""));
     }
 
     /** Exposed to quest_stage */
@@ -100,13 +114,19 @@ public abstract class Quest implements IQuest {
         
         return false;
     }
+    
+    @SideOnly(Side.CLIENT)
+    public String getScript(EntityPlayer player, INPC npc) {
+        return null;
+    }
 
     /** Exposed to quest_stage, is only called client side, must sync any changes */
     //Return the script
     @SideOnly(Side.CLIENT)
     @Override
     public String getScript(EntityPlayer player, EntityNPC npc) {
-        return null;
+        String script = getScript(player, npc.getNPC());
+        return script == null? null: getLocalized(script);
     }
 
     //Called Serverside, to claim the reward
@@ -161,4 +181,6 @@ public abstract class Quest implements IQuest {
     public void confirm(EntityPlayer player, EntityNPC npc) {}
 
     public void cancel(EntityPlayer player, EntityNPC npc) {}
+    
+    public void onStageChanged(EntityPlayer player, int previous, int stage) {}
 }

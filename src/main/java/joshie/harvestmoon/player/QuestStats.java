@@ -29,7 +29,7 @@ public class QuestStats implements IData {
         return current;
     }
 
-    private IQuest getAQuest(IQuest quest) {
+    public IQuest getAQuest(IQuest quest) {
         if (current != null) {
             for (IQuest q : current) {
                 if (q.equals(quest)) {

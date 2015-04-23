@@ -1,14 +1,9 @@
 package joshie.harvestmoon.items;
 
-import joshie.harvestmoon.api.WorldLocation;
 import joshie.harvestmoon.core.handlers.CodeGeneratorBuildings;
 import joshie.harvestmoon.core.handlers.CodeGeneratorRendering;
-import joshie.harvestmoon.core.helpers.TownHelper;
 import joshie.harvestmoon.core.helpers.generic.MCClientHelper;
-import joshie.harvestmoon.init.HMBuildings;
-import joshie.harvestmoon.player.Town;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -61,10 +56,6 @@ public class ItemCheat extends ItemHMMeta {
                 if (location != null) {
                     player.setPositionAndUpdate(location.x + 0.5D, location.y + 0D, location.z + 0.5D);
                 } */
-                
-                for (int x2 = 0; x2 < 5000; x2++) {
-                    world.setBlock(xCoord + x2, yCoord, zCoord + x2, Blocks.tnt);
-                }
             }
         }
 

@@ -6,7 +6,10 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import joshie.harvestmoon.api.HMApi;
 import joshie.harvestmoon.api.core.ICreativeSorted;
+import joshie.harvestmoon.init.HMBlocks;
+import joshie.harvestmoon.init.HMBuildings;
 import joshie.harvestmoon.init.HMCrops;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
@@ -16,7 +19,11 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class HMTab extends CreativeTabs {
-    public static HMTab tabGeneral = new HMTab("main");
+    public static HMTab tabFarming = new HMTab("farming");
+    public static HMTab tabCooking = new HMTab("cooking");
+    public static HMTab tabMining = new HMTab("mining");
+    public static HMTab tabTown = new HMTab("town");
+    
     private ItemStack icon = new ItemStack(Items.golden_hoe);
 
     public HMTab(String label) {
@@ -87,6 +94,9 @@ public class HMTab extends CreativeTabs {
     }
 
     public static void init() {
-        HMTab.tabGeneral.setStack(HMCrops.tomato.getCropStack());
+        HMTab.tabFarming.setStack(HMCrops.tomato.getCropStack());
+        HMTab.tabCooking.setStack(HMApi.COOKING.getMeal("cookies.chocolate"));
+        HMTab.tabMining.setStack(new ItemStack(HMBlocks.stone, 1, 1));
+        HMTab.tabTown.setStack(HMBuildings.supermarket.getPreview());
     }
 }

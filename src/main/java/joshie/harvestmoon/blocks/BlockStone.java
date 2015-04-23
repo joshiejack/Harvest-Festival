@@ -3,6 +3,7 @@ package joshie.harvestmoon.blocks;
 import java.util.List;
 import java.util.Random;
 
+import joshie.harvestmoon.core.HMTab;
 import joshie.harvestmoon.core.config.General;
 import joshie.harvestmoon.core.helpers.generic.EntityHelper;
 import net.minecraft.block.material.Material;
@@ -20,7 +21,7 @@ public class BlockStone extends BlockHMBaseMeta {
     public static final int CAVE_WALL = 0;
 
     public BlockStone() {
-        super(Material.rock);
+        super(Material.rock, HMTab.tabMining);
         setBlockUnbreakable();
     }
 
@@ -33,7 +34,7 @@ public class BlockStone extends BlockHMBaseMeta {
     public int getToolLevel(int meta) {
         return 1;
     }
-    
+
     private static int META_COUNT = 6;
 
     @Override
@@ -53,11 +54,13 @@ public class BlockStone extends BlockHMBaseMeta {
     public void getSubBlocks(Item item, CreativeTabs tab, List list) {
         if (General.DEBUG_MODE) {
             for (int i = 0; i < getMetaCount(); i++) {
-                list.add(new ItemStack(item, 1, i));
+                if (isValidTab(tab, i)) {
+                    list.add(new ItemStack(item, 1, i));
+                }
             }
         }
     }
-    
+
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister iconRegister) {
@@ -74,7 +77,7 @@ public class BlockStone extends BlockHMBaseMeta {
         if (rand.nextInt(13) <= 10) {
             return 0;
         }
-        
+
         return rand.nextInt(META_COUNT);
     }
 }

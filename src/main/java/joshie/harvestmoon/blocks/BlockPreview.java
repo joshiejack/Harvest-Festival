@@ -4,6 +4,7 @@ import java.util.List;
 
 import joshie.harvestmoon.blocks.tiles.TileMarker;
 import joshie.harvestmoon.buildings.BuildingGroup;
+import joshie.harvestmoon.core.HMTab;
 import joshie.harvestmoon.core.config.General;
 import joshie.harvestmoon.core.helpers.NPCHelper;
 import joshie.harvestmoon.core.helpers.UUIDHelper;
@@ -45,7 +46,7 @@ public class BlockPreview extends BlockHMBaseMeta {
     }
 
     public BlockPreview() {
-        super(Material.wood);
+        super(Material.wood, HMTab.tabTown);
     }
 
     @Override
@@ -126,6 +127,7 @@ public class BlockPreview extends BlockHMBaseMeta {
     @SideOnly(Side.CLIENT)
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, List list) {
+        if (tab != HMTab.tabTown) return;
         if (General.DEBUG_MODE) {
             for (int i = 0; i < getMetaCount(); i++) {
                 list.add(new ItemStack(item, 1, i));

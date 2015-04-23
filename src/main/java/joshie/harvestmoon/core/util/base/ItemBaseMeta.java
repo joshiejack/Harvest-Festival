@@ -2,10 +2,12 @@ package joshie.harvestmoon.core.util.base;
 
 import java.util.List;
 
+import joshie.harvestmoon.core.HMTab;
 import joshie.harvestmoon.core.util.generic.IHasMetaItem;
 import joshie.harvestmoon.core.util.generic.Text;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -59,6 +61,7 @@ public abstract class ItemBaseMeta extends Item implements IHasMetaItem {
     @SideOnly(Side.CLIENT)
     @Override
     public IIcon getIconFromDamage(int damage) {
+        if (icons == null) return Items.arrow.getIconFromDamage(0);
         return icons[damage < icons.length ? damage : 0];
     }
 
@@ -71,9 +74,14 @@ public abstract class ItemBaseMeta extends Item implements IHasMetaItem {
             icons[i] = register.registerIcon(path + getName(new ItemStack(this, 1, i)));
         }
     }
-    
+
     public boolean isValidTab(CreativeTabs tab, int meta) {
         return tab == getCreativeTab();
+    }
+
+    @Override
+    public CreativeTabs[] getCreativeTabs() {
+        return new CreativeTabs[] { HMTab.tabFarming, HMTab.tabCooking, HMTab.tabMining, HMTab.tabTown };
     }
 
     public boolean isActive(int damage) {

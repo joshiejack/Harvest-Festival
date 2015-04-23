@@ -2,10 +2,13 @@ package joshie.harvestmoon.items;
 
 import static joshie.harvestmoon.core.helpers.AnimalHelper.canProduceProduct;
 import static joshie.harvestmoon.core.helpers.AnimalHelper.setProducedProduct;
+import joshie.harvestmoon.api.core.ICreativeSorted;
 import joshie.harvestmoon.api.core.ISizeable.Size;
+import joshie.harvestmoon.core.HMTab;
 import joshie.harvestmoon.core.helpers.AnimalHelper;
 import joshie.harvestmoon.core.helpers.SizeableHelper;
 import joshie.harvestmoon.core.lib.SizeableMeta;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityChicken;
@@ -13,7 +16,7 @@ import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
-public class ItemGeneral extends ItemHMMeta {
+public class ItemGeneral extends ItemHMMeta implements ICreativeSorted {
     public static final int BLUE_FEATHER = 0;
     public static final int MILKER = 1;
     public static final int BRUSH = 2;
@@ -80,6 +83,35 @@ public class ItemGeneral extends ItemHMMeta {
     }
 
     @Override
+    public boolean isValidTab(CreativeTabs tab, int meta) {
+        switch (meta) {
+            case BLUE_FEATHER:
+                return tab == HMTab.tabTown;
+            case BRUSH:
+            case MILKER:
+            case MEDICINE:
+            case CHICKEN_FEED:
+            case MIRACLE:
+                return tab == HMTab.tabFarming;
+            case JUNK_ORE:
+            case COPPER_ORE:
+            case SILVER_ORE:
+            case GOLD_ORE:
+            case MYSTRIL_ORE:
+            case MYTHIC_STONE:
+                return tab == HMTab.tabMining;
+            case FLOUR:
+            case OIL:
+            case RICEBALL:
+            case SALT:
+            case CHOCOLATE:
+                return tab == HMTab.tabCooking;
+            default:
+                return false;
+        }
+    }
+
+    @Override
     public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer player, EntityLivingBase living) {
         if (living instanceof EntityAnimal) {
             EntityAnimal animal = (EntityAnimal) living;
@@ -126,5 +158,10 @@ public class ItemGeneral extends ItemHMMeta {
         }
 
         return false;
+    }
+
+    @Override
+    public int getSortValue(ItemStack stack) {
+        return 102;
     }
 }

@@ -11,7 +11,7 @@ public class ItemBaseSingle extends Item {
     protected String path = MODPATH + ":";
     
     public ItemBaseSingle() {
-        setCreativeTab(HMTab.tabGeneral);
+        setCreativeTab(HMTab.tabFarming);
     }
     
     public void setTextureFolder(String path) {

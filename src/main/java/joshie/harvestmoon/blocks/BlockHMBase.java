@@ -7,6 +7,6 @@ import net.minecraft.block.material.Material;
 
 public abstract class BlockHMBase extends BlockBase {
     protected BlockHMBase(Material material) {
-        super(material, HMModInfo.MODPATH, HMTab.tabGeneral);
+        super(material, HMModInfo.MODPATH, HMTab.tabFarming);
     }
 }

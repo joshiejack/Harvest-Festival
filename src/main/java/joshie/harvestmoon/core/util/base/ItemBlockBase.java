@@ -1,9 +1,11 @@
 package joshie.harvestmoon.core.util.base;
 
+import joshie.harvestmoon.core.HMTab;
 import joshie.harvestmoon.core.util.generic.IHasMetaBlock;
 import joshie.harvestmoon.core.util.generic.IHasMetaItem;
 import joshie.harvestmoon.core.util.generic.Text;
 import net.minecraft.block.Block;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
@@ -16,6 +18,11 @@ public abstract class ItemBlockBase extends ItemBlock implements IHasMetaItem {
     @Override
     public int getMetadata(int meta) {
         return meta;
+    }
+    
+    @Override
+    public CreativeTabs[] getCreativeTabs() {
+        return new CreativeTabs[] { HMTab.tabFarming, HMTab.tabCooking, HMTab.tabMining, HMTab.tabTown };
     }
     
     @Override

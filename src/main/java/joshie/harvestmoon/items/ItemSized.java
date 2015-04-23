@@ -11,6 +11,7 @@ import joshie.harvestmoon.api.core.IShippable;
 import joshie.harvestmoon.api.core.ISizeable;
 import joshie.harvestmoon.api.core.ISizeable.Size;
 import joshie.harvestmoon.api.core.ISizedProvider;
+import joshie.harvestmoon.core.HMTab;
 import joshie.harvestmoon.core.config.General;
 import joshie.harvestmoon.core.helpers.SizeableHelper;
 import joshie.harvestmoon.core.lib.CreativeSort;
@@ -94,6 +95,11 @@ public class ItemSized extends ItemHMMeta implements IShippable, IRateable, ICre
         icons[0] = register.registerIcon(path + getName(new ItemStack(this)) + "_small");
         icons[1] = register.registerIcon(path + getName(new ItemStack(this)) + "_medium");
         icons[2] = register.registerIcon(path + getName(new ItemStack(this)) + "_large");
+    }
+    
+    @Override
+    public CreativeTabs[] getCreativeTabs() {
+        return new CreativeTabs[] { HMTab.tabFarming };
     }
 
     @SideOnly(Side.CLIENT)

@@ -1,5 +1,6 @@
 package joshie.harvestmoon.blocks.items;
 
+import joshie.harvestmoon.api.core.ICreativeSorted;
 import joshie.harvestmoon.buildings.BuildingGroup;
 import joshie.harvestmoon.core.util.base.ItemBlockBase;
 import joshie.harvestmoon.core.util.generic.Text;
@@ -10,7 +11,7 @@ import net.minecraft.util.IIcon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemBlockPreview extends ItemBlockBase {    
+public class ItemBlockPreview extends ItemBlockBase implements ICreativeSorted {    
     public ItemBlockPreview(Block block) {
         super(block);
     }
@@ -45,5 +46,10 @@ public class ItemBlockPreview extends ItemBlockBase {
     @Override
     public IIcon getIconFromDamage(int damage) {
         return HMItems.structures.getIconFromDamage(damage);
+    }
+
+    @Override
+    public int getSortValue(ItemStack stack) {
+        return 105;
     }
 }

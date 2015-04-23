@@ -30,9 +30,9 @@ public class RenderBuilding implements IItemRenderer {
     public void renderItem(ItemRenderType type, ItemStack stack, Object... data) {
         Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
         GL11.glPushMatrix();
-        float scale = 0.13F;
+        float scale = 0.15F;
         GL11.glScalef(scale, scale, scale);
-        GL11.glTranslatef(-4F, -2.5F, -1F);
+        GL11.glTranslatef(-1F, -2F, -1F);
         Building building = BuildingGroup.groups.get(stack.getItemDamage()).getBuilding(0);
         for (Placeable placeable : building.getList()) {
             if (placeable instanceof PlaceableBlock) {
@@ -40,7 +40,7 @@ public class RenderBuilding implements IItemRenderer {
                 int xCoord = block.getX();
                 int yCoord = block.getY();
                 int zCoord = block.getZ();
-                if (yCoord < 1) continue;
+                if (yCoord < 2) continue;
                 
                 GL11.glPushMatrix();
                 GL11.glTranslatef(xCoord, yCoord, zCoord);

@@ -13,6 +13,7 @@ import joshie.harvestmoon.api.cooking.IMealProvider;
 import joshie.harvestmoon.api.cooking.IMealRecipe;
 import joshie.harvestmoon.api.core.ICreativeSorted;
 import joshie.harvestmoon.cooking.Utensil;
+import joshie.harvestmoon.core.HMTab;
 import joshie.harvestmoon.core.config.General;
 import joshie.harvestmoon.core.util.Translate;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -34,6 +35,10 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ItemMeal extends ItemHMMeta implements IMealProvider, ICreativeSorted {
     private HashMap<String, IIcon> iconMap = new HashMap();
     private IIcon[] burnt;
+    
+    public ItemMeal() {
+        super(HMTab.tabCooking);
+    }
 
     //Irrelevant since we overwrite them, but it needs it specified
     @Override
@@ -152,6 +157,11 @@ public class ItemMeal extends ItemHMMeta implements IMealProvider, ICreativeSort
             String key = meal.getUnlocalizedName();
             iconMap.put(key, register.registerIcon(MEALPATH + StringUtils.replace(key, ".", "_")));
         }
+    }
+    
+    @Override
+    public CreativeTabs[] getCreativeTabs() {
+        return new CreativeTabs[] { HMTab.tabCooking };
     }
 
     @Override

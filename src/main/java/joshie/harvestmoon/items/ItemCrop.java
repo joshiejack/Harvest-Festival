@@ -25,7 +25,7 @@ public class ItemCrop extends ItemHMMeta implements IShippable, IRateable, ICrop
     private ICrop crop;
 
     public ItemCrop(ICrop crop) {
-        setCreativeTab(HMTab.tabGeneral);
+        setCreativeTab(HMTab.tabFarming);
         setTextureFolder(CROPPATH);
         this.crop = crop;
     }
@@ -72,6 +72,11 @@ public class ItemCrop extends ItemHMMeta implements IShippable, IRateable, ICrop
     @Override
     public String getName(ItemStack stack) {
         return crop.getUnlocalizedName();
+    }
+    
+    @Override
+    public CreativeTabs[] getCreativeTabs() {
+        return new CreativeTabs[] { HMTab.tabFarming };
     }
 
     @SideOnly(Side.CLIENT)

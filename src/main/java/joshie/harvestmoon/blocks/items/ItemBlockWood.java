@@ -1,11 +1,13 @@
 package joshie.harvestmoon.blocks.items;
 
+import joshie.harvestmoon.api.core.ICreativeSorted;
 import joshie.harvestmoon.blocks.BlockWood;
+import joshie.harvestmoon.core.lib.CreativeSort;
 import joshie.harvestmoon.core.util.base.ItemBlockBase;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 
-public class ItemBlockWood extends ItemBlockBase {
+public class ItemBlockWood extends ItemBlockBase implements ICreativeSorted {
     public ItemBlockWood(Block block) {
         super(block);
     }
@@ -28,5 +30,10 @@ public class ItemBlockWood extends ItemBlockBase {
             default:
                 return "invalid";
         }
+    }
+
+    @Override
+    public int getSortValue(ItemStack stack) {
+        return CreativeSort.TROUGH;
     }
 }

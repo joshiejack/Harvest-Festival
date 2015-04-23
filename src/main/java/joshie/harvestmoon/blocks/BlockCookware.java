@@ -10,6 +10,7 @@ import joshie.harvestmoon.blocks.tiles.TileMixer;
 import joshie.harvestmoon.blocks.tiles.TileOven;
 import joshie.harvestmoon.blocks.tiles.TilePot;
 import joshie.harvestmoon.blocks.tiles.TileSteamer;
+import joshie.harvestmoon.core.HMTab;
 import joshie.harvestmoon.core.config.Cooking;
 import joshie.harvestmoon.core.handlers.GuiHandler;
 import joshie.harvestmoon.core.helpers.generic.DirectionHelper;
@@ -41,7 +42,7 @@ public class BlockCookware extends BlockHMBaseMeta {
     public static final int STEAMER = 7;
 
     public BlockCookware() {
-        super(Material.piston);
+        super(Material.piston, HMTab.tabCooking);
         setHardness(2.5F);
     }
 

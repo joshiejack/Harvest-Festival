@@ -105,12 +105,14 @@ public class GuiNPC extends GuiBase {
             if (script[page][line] != null) {
                 //Convert the next line in to a char array
                 char[] todisplay = script[page][line].toCharArray();
-                if (new String("" + todisplay[0]).equals("@")) {
-                    character = todisplay.length;
-                }
-
-                if (character < todisplay.length) { //If the current position of the char array, is less than it's maximum
-                    character += 0.2D; //Increase the tick, slowly
+                if (todisplay.length > 0) {
+                    if (new String("" + todisplay[0]).equals("@")) {
+                        character = todisplay.length;
+                    }
+    
+                    if (character < todisplay.length) { //If the current position of the char array, is less than it's maximum
+                        character += 0.2D; //Increase the tick, slowly
+                    }
                 }
 
                 //Create a new set of chars, this is what we will display

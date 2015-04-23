@@ -43,7 +43,7 @@ public class ItemSeeds extends net.minecraft.item.ItemSeeds implements IRateable
 
     public ItemSeeds() {
         super(HMBlocks.crops, Blocks.farmland);
-        setCreativeTab(HMTab.tabGeneral);
+        setCreativeTab(HMTab.tabFarming);
         setHasSubtypes(true);
     }
 

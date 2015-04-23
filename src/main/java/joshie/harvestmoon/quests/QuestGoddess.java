@@ -9,6 +9,7 @@ import joshie.harvestmoon.core.helpers.generic.OreDictionaryHelper;
 import joshie.harvestmoon.init.HMBlocks;
 import joshie.harvestmoon.init.HMBuildings;
 import joshie.harvestmoon.init.HMCrops;
+import joshie.harvestmoon.init.HMItems;
 import joshie.harvestmoon.init.HMNPCs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -38,11 +39,13 @@ public class QuestGoddess extends Quest {
     @Override
     public void claim(EntityPlayerMP player) {
         rewardGold(player, 1000);
+        rewardItem(player, new ItemStack(HMItems.hoe));
+        rewardItem(player, new ItemStack(HMItems.wateringcan));
+        rewardItem(player, new ItemStack(HMItems.sickle));
     }
 
     @Override
     public String getScript(EntityPlayer player, INPC npc) {       
-        System.out.println(quest_stage);
         if (npc == HMNPCs.goddess) {
             if (quest_stage == 0) {
                 increaseStage(player);

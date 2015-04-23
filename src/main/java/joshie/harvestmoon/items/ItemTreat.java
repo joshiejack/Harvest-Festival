@@ -1,6 +1,7 @@
 package joshie.harvestmoon.items;
 
 import joshie.harvestmoon.animals.AnimalType;
+import joshie.harvestmoon.api.core.ICreativeSorted;
 import joshie.harvestmoon.core.helpers.AnimalHelper;
 import joshie.harvestmoon.core.lib.HMModInfo;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -12,7 +13,7 @@ import net.minecraft.util.IIcon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemTreat extends ItemHMMeta {
+public class ItemTreat extends ItemHMMeta implements ICreativeSorted {
     @Override
     public int getMetaCount() {
         return AnimalType.values().length;
@@ -46,5 +47,10 @@ public class ItemTreat extends ItemHMMeta {
         for (int i = 0; i < icons.length; i++) {
             icons[i] = register.registerIcon(HMModInfo.TREATPATH + getName(new ItemStack(this, 1, i)));
         }
+    }
+
+    @Override
+    public int getSortValue(ItemStack stack) {
+        return 100;
     }
 }

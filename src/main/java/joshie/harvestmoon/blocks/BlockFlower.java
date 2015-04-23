@@ -1,6 +1,7 @@
 package joshie.harvestmoon.blocks;
 
 import static net.minecraftforge.common.EnumPlantType.Plains;
+import joshie.harvestmoon.core.HMTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -15,7 +16,7 @@ public class BlockFlower extends BlockHMBaseMeta implements IPlantable {
     public static final int GODDESS = 0;
 
     public BlockFlower() {
-        super(Material.plants);
+        super(Material.plants, HMTab.tabTown);
         float f = 0.2F;
         setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, f * 3.0F, 0.5F + f);
     }

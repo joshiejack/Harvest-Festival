@@ -6,6 +6,7 @@ import joshie.harvestmoon.animals.AnimalType;
 import joshie.harvestmoon.api.HMApi;
 import joshie.harvestmoon.api.core.IShippable;
 import joshie.harvestmoon.blocks.tiles.TileRuralChest;
+import joshie.harvestmoon.core.HMTab;
 import joshie.harvestmoon.core.helpers.AnimalHelper;
 import joshie.harvestmoon.core.helpers.generic.DirectionHelper;
 import joshie.harvestmoon.core.lib.RenderIds;
@@ -13,6 +14,7 @@ import joshie.harvestmoon.core.util.generic.IFaceable;
 import joshie.harvestmoon.init.HMIngredients;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -176,6 +178,11 @@ public class BlockWood extends BlockHMBaseMeta {
             default:
                 return null;
         }
+    }
+
+    @Override
+    public boolean isValidTab(CreativeTabs tab, int meta) {
+        return meta == RURAL_CHEST ? tab == HMTab.tabTown : tab == HMTab.tabFarming;
     }
 
     @Override

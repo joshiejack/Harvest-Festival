@@ -2,6 +2,7 @@ package joshie.harvestmoon.buildings;
 
 import java.util.ArrayList;
 
+import joshie.harvestmoon.blocks.BlockWood;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableButton;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableDoor;
@@ -167,7 +168,7 @@ public class BuildingFishingHut extends Building {
         list.add(new PlaceableBlock(Blocks.planks, 1, 8, 2, 1));
         list.add(new PlaceableFlowerPot(Blocks.flower_pot, 5, 8, 2, 2));
         list.add(new PlaceableBlock(Blocks.wooden_pressure_plate, 0, 8, 2, 3));
-        list.add(new PlaceableIFaceable(HMBlocks.woodmachines, 1, 8, 2, 4, ForgeDirection.WEST, LootStrings.FISHING_CHEST));
+        list.add(new PlaceableIFaceable(HMBlocks.woodmachines, BlockWood.RURAL_CHEST, 8, 2, 4, ForgeDirection.WEST, LootStrings.FISHING_CHEST));
         list.add(new PlaceableBlock(Blocks.planks, 1, 8, 2, 5));
         list.add(new PlaceableVine(Blocks.vine, 4, 8, 2, 6));
         list.add(new PlaceableButton(Blocks.wooden_button, 4, 9, 2, 0));

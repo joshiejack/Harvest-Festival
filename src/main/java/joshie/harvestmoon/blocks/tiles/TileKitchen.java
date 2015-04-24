@@ -5,6 +5,11 @@ import joshie.harvestmoon.cooking.Utensil;
 
 public class TileKitchen extends TileCooking {
     @Override
+    public short getCookingTime(IUtensil utensil) {
+        return 30;
+    }
+    
+    @Override
     public boolean canUpdate() {
         return false;
     }

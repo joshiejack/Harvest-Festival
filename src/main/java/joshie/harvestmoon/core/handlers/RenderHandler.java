@@ -26,7 +26,7 @@ public class RenderHandler implements ISimpleBlockRenderingHandler {
     public void renderInventoryBlock(Block block, int meta, int modelId, RenderBlocks renderer) {
         String data = Block.blockRegistry.getNameForObject(block) + ":" + meta;
         if (renders.get(data) != null) {
-            renders.get(data).render(renderer, block);
+            renders.get(data).render(renderer, block, meta);
         }
     }
 

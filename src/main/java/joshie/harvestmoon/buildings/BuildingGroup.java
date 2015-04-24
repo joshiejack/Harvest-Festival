@@ -3,9 +3,9 @@ package joshie.harvestmoon.buildings;
 import java.util.ArrayList;
 import java.util.Random;
 
-import net.minecraft.item.ItemStack;
 import joshie.harvestmoon.api.buildings.IBuildingGroup;
 import joshie.harvestmoon.init.HMBlocks;
+import net.minecraft.item.ItemStack;
 
 public class BuildingGroup implements IBuildingGroup {
     public static final ArrayList<BuildingGroup> groups = new ArrayList(50);

@@ -2,6 +2,7 @@ package joshie.harvestmoon.buildings;
 
 import java.util.ArrayList;
 
+import joshie.harvestmoon.blocks.BlockWood;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableButton;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableDoor;
@@ -442,7 +443,7 @@ public class BuildingClockmaker extends Building {
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 3, 5, 5, 7));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 13, 6, 5, 0));
         list.add(new PlaceableBlock(Blocks.hardened_clay, 0, 6, 5, 1));
-        list.add(new PlaceableIFaceable(HMBlocks.woodmachines, 1, 6, 5, 2, ForgeDirection.SOUTH, LootStrings.CLOCKMAKER_CHEST));
+        list.add(new PlaceableIFaceable(HMBlocks.woodmachines, BlockWood.RURAL_CHEST, 6, 5, 2, ForgeDirection.SOUTH, LootStrings.CLOCKMAKER_CHEST));
         list.add(new PlaceableNPC("fenn", 6, 5, 3));
         npc_offsets.put(Town.FENN, new PlaceableNPC("", 6, 5, 3));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 5, 3));

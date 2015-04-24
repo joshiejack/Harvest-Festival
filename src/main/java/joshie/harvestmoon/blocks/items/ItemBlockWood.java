@@ -17,9 +17,9 @@ public class ItemBlockWood extends ItemBlockBase implements ICreativeSorted {
         switch (stack.getItemDamage()) {
             case BlockWood.SHIPPING:
                 return "shipping";
+            case BlockWood.SHIPPING_2:
+                return "shipping2";
             case BlockWood.RURAL_CHEST:
-                return "chest";
-            case BlockWood.OLD_RURAL_CHEST:
                 return "chest";
             case BlockWood.NEST:
                 return "nest";

@@ -2,6 +2,7 @@ package joshie.harvestmoon.buildings;
 
 import java.util.ArrayList;
 
+import joshie.harvestmoon.blocks.BlockWood;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableButton;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableDoor;
@@ -254,9 +255,9 @@ public class BuildingCarpenter extends Building {
         list.add(new PlaceableBlock(Blocks.fence, 0, 1, 4, 6));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 12, 2, 4, 0));
         list.add(new PlaceableLog(Blocks.log, 5, 2, 4, 1));
-        list.add(new PlaceableIFaceable(HMBlocks.woodmachines, 1, 2, 4, 2, ForgeDirection.EAST, LootStrings.JADE_CHEST));
+        list.add(new PlaceableIFaceable(HMBlocks.woodmachines, BlockWood.RURAL_CHEST, 2, 4, 2, ForgeDirection.EAST, LootStrings.JADE_CHEST));
         list.add(new PlaceableBlock(Blocks.air, 0, 2, 4, 3));
-        list.add(new PlaceableIFaceable(HMBlocks.woodmachines, 1, 2, 4, 4, ForgeDirection.EAST, LootStrings.YULIF_CHEST));
+        list.add(new PlaceableIFaceable(HMBlocks.woodmachines, BlockWood.RURAL_CHEST, 2, 4, 4, ForgeDirection.EAST, LootStrings.YULIF_CHEST));
         list.add(new PlaceableLog(Blocks.log, 5, 2, 4, 5));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 13, 2, 4, 6));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 12, 3, 4, 0));

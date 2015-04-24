@@ -1,5 +1,6 @@
 package joshie.harvestmoon.blocks.render;
 
+import joshie.harvestmoon.blocks.BlockIcons;
 import joshie.harvestmoon.core.config.Client;
 import joshie.harvestmoon.core.util.RenderBase;
 import net.minecraft.init.Blocks;
@@ -13,56 +14,98 @@ public class RenderMixer extends RenderBase {
         } else renderClassic();
     }
 
+    //Handle-Top
+    //Handle centre
+    //Handle-Bottom
+    //Lid Middle
+    //Top-Bottom
+    //Base
+    //Middle Section
+
+    //Glass
+    //Lid-Top
+
+    //Button
+
+    //Lid-Bottom
+
     private void renderClassic() {
-        setTexture(Blocks.iron_block);
         if (dir == ForgeDirection.WEST || isItem()) {
-            renderBlock(0.8D, 0.449D, 0.45D, 0.85D, 0.9D, 0.55D);
-            renderBlock(0.3D, 0.449D, 0.3D, 0.7D, 0.9D, 0.7D);
-            renderBlock(0.3D, 0.199D, 0.3D, 0.7D, 0.35D, 0.7D);
-            renderBlock(0.35D, 0.35D, 0.35D, 0.649D, 0.449D, 0.649D);
+            setTexture(Blocks.wool);
             renderBlock(0.7D, 0.9D, 0.45D, 0.82D, 0.95D, 0.55D);
-            renderBlock(0.34D, 0.97D, 0.34D, 0.66D, 1.0D, 0.66D);
-            renderBlock(0.3D, 0.9D, 0.3D, 0.7D, 0.929D, 0.7D);
-            renderBlock(0.28D, 0.219D, 0.45D, 0.3D, 0.319D, 0.55D);
-            renderBlock(0.29D, 0.929D, 0.29D, 0.71D, 0.98D, 0.71D);
+            renderBlock(0.8D, 0.449D, 0.45D, 0.85D, 0.9D, 0.55D);
             renderBlock(0.65D, 0.399D, 0.45D, 0.82D, 0.449D, 0.55D);
-            renderBlock(0.25D, 0.0D, 0.25D, 0.75D, 0.199D, 0.75D);
-        } else if (dir == ForgeDirection.NORTH) {
-            renderBlock(0.45D, 0.449D, 0.8D, 0.55D, 0.9D, 0.85D);
-            renderBlock(0.3D, 0.449D, 0.3D, 0.7D, 0.9D, 0.7D);
-            renderBlock(0.3D, 0.199D, 0.3D, 0.7D, 0.35D, 0.7D);
+            renderBlock(0.29D, 0.929D, 0.29D, 0.71D, 0.98D, 0.71D);
             renderBlock(0.35D, 0.35D, 0.35D, 0.649D, 0.449D, 0.649D);
-            renderBlock(0.45D, 0.9D, 0.7D, 0.55D, 0.95D, 0.82D);
+            renderBlock(0.25D, 0.0D, 0.25D, 0.75D, 0.199D, 0.75D);
+            renderBlock(0.3D, 0.199D, 0.3D, 0.7D, 0.35D, 0.7D);
+
+            setTexture(Blocks.glass);
+            renderBlock(0.3D, 0.449D, 0.3D, 0.7D, 0.9D, 0.7D);
             renderBlock(0.34D, 0.97D, 0.34D, 0.66D, 1.0D, 0.66D);
+
+            setTexture(Blocks.coal_block);
+            renderBlock(0.28D, 0.219D, 0.45D, 0.3D, 0.319D, 0.55D);
+
+            setTexture(BlockIcons.METALLIC);
             renderBlock(0.3D, 0.9D, 0.3D, 0.7D, 0.929D, 0.7D);
-            renderBlock(0.45D, 0.219D, 0.28D, 0.55D, 0.319D, 0.3D);
-            renderBlock(0.29D, 0.929D, 0.29D, 0.71D, 0.98D, 0.71D);
+        } else if (dir == ForgeDirection.NORTH) {
+            setTexture(Blocks.wool);
+            renderBlock(0.45D, 0.9D, 0.7D, 0.55D, 0.95D, 0.82D);
+            renderBlock(0.45D, 0.449D, 0.8D, 0.55D, 0.9D, 0.85D);
             renderBlock(0.45D, 0.399D, 0.65D, 0.55D, 0.449D, 0.82D);
+            renderBlock(0.29D, 0.929D, 0.29D, 0.71D, 0.98D, 0.71D);
+            renderBlock(0.35D, 0.35D, 0.35D, 0.649D, 0.449D, 0.649D);
             renderBlock(0.25D, 0.0D, 0.25D, 0.75D, 0.199D, 0.75D);
+            renderBlock(0.3D, 0.199D, 0.3D, 0.7D, 0.35D, 0.7D);
+
+            setTexture(Blocks.stained_glass);
+            renderBlock(0.3D, 0.449D, 0.3D, 0.7D, 0.9D, 0.7D);
+            renderBlock(0.34D, 0.97D, 0.34D, 0.66D, 1.0D, 0.66D);
+            
+            setTexture(Blocks.coal_block);
+            renderBlock(0.45D, 0.219D, 0.28D, 0.55D, 0.319D, 0.3D);
+            
+            setTexture(BlockIcons.METALLIC);
+            renderBlock(0.3D, 0.9D, 0.3D, 0.7D, 0.929D, 0.7D);
         } else if (dir == ForgeDirection.EAST) {
-            renderBlock(0.15D, 0.449D, 0.45D, 0.199D, 0.9D, 0.55D);
-            renderBlock(0.3D, 0.449D, 0.3D, 0.7D, 0.9D, 0.7D);
-            renderBlock(0.3D, 0.199D, 0.3D, 0.7D, 0.35D, 0.7D);
-            renderBlock(0.351D, 0.35D, 0.35D, 0.65D, 0.449D, 0.649D);
+            setTexture(Blocks.wool);
             renderBlock(0.18D, 0.9D, 0.45D, 0.3D, 0.95D, 0.55D);
-            renderBlock(0.339D, 0.97D, 0.34D, 0.659D, 1.0D, 0.66D);
-            renderBlock(0.3D, 0.9D, 0.3D, 0.7D, 0.929D, 0.7D);
-            renderBlock(0.7D, 0.219D, 0.45D, 0.72D, 0.319D, 0.55D);
-            renderBlock(0.29D, 0.929D, 0.29D, 0.71D, 0.98D, 0.71D);
+            renderBlock(0.15D, 0.449D, 0.45D, 0.199D, 0.9D, 0.55D);
             renderBlock(0.18D, 0.399D, 0.45D, 0.35D, 0.449D, 0.55D);
-            renderBlock(0.25D, 0.0D, 0.25D, 0.75D, 0.199D, 0.75D);
-        } else if (dir == ForgeDirection.SOUTH) {
-            renderBlock(0.45D, 0.449D, 0.15D, 0.55D, 0.9D, 0.199D);
-            renderBlock(0.3D, 0.449D, 0.3D, 0.7D, 0.9D, 0.7D);
-            renderBlock(0.3D, 0.199D, 0.3D, 0.7D, 0.35D, 0.7D);
-            renderBlock(0.35D, 0.35D, 0.351D, 0.649D, 0.449D, 0.65D);
-            renderBlock(0.45D, 0.9D, 0.18D, 0.55D, 0.95D, 0.3D);
-            renderBlock(0.34D, 0.97D, 0.339D, 0.66D, 1.0D, 0.659D);
-            renderBlock(0.3D, 0.9D, 0.3D, 0.7D, 0.929D, 0.7D);
-            renderBlock(0.45D, 0.219D, 0.7D, 0.55D, 0.319D, 0.72D);
             renderBlock(0.29D, 0.929D, 0.29D, 0.71D, 0.98D, 0.71D);
-            renderBlock(0.45D, 0.399D, 0.18D, 0.55D, 0.449D, 0.35D);
+            renderBlock(0.351D, 0.35D, 0.35D, 0.65D, 0.449D, 0.649D);
             renderBlock(0.25D, 0.0D, 0.25D, 0.75D, 0.199D, 0.75D);
+            renderBlock(0.3D, 0.199D, 0.3D, 0.7D, 0.35D, 0.7D);
+            
+            setTexture(Blocks.glass);
+            renderBlock(0.3D, 0.449D, 0.3D, 0.7D, 0.9D, 0.7D);
+            renderBlock(0.339D, 0.97D, 0.34D, 0.659D, 1.0D, 0.66D);
+            
+            setTexture(Blocks.coal_block);
+            renderBlock(0.7D, 0.219D, 0.45D, 0.72D, 0.319D, 0.55D);
+            
+            setTexture(BlockIcons.METALLIC);
+            renderBlock(0.3D, 0.9D, 0.3D, 0.7D, 0.929D, 0.7D);
+        } else if (dir == ForgeDirection.SOUTH) {
+            setTexture(Blocks.wool);
+            renderBlock(0.45D, 0.9D, 0.18D, 0.55D, 0.95D, 0.3D);
+            renderBlock(0.45D, 0.449D, 0.15D, 0.55D, 0.9D, 0.199D);
+            renderBlock(0.45D, 0.399D, 0.18D, 0.55D, 0.449D, 0.35D);
+            renderBlock(0.29D, 0.929D, 0.29D, 0.71D, 0.98D, 0.71D);
+            renderBlock(0.35D, 0.35D, 0.351D, 0.649D, 0.449D, 0.65D);
+            renderBlock(0.25D, 0.0D, 0.25D, 0.75D, 0.199D, 0.75D);
+            renderBlock(0.3D, 0.199D, 0.3D, 0.7D, 0.35D, 0.7D);
+            
+            setTexture(Blocks.glass);
+            renderBlock(0.3D, 0.449D, 0.3D, 0.7D, 0.9D, 0.7D);
+            renderBlock(0.34D, 0.97D, 0.339D, 0.66D, 1.0D, 0.659D);
+            
+            setTexture(Blocks.coal_block);
+            renderBlock(0.45D, 0.219D, 0.7D, 0.55D, 0.319D, 0.72D);
+            
+            setTexture(BlockIcons.METALLIC);
+            renderBlock(0.3D, 0.9D, 0.3D, 0.7D, 0.929D, 0.7D);
         }
     }
 

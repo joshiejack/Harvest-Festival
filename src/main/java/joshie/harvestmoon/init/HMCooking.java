@@ -90,10 +90,10 @@ public class HMCooking {
         addMixerRecipe("butter", false, 1, 0, milk).setOptionalIngredients(salt);
         addMixerRecipe("fishsticks", false, 5, -1, fish).setOptionalIngredients(salt);
         
-        addNoUtensilRecipe("salad", 10, -3, salad_ingredient).setOptionalIngredients(mushroom, cucumber, cabbage, tomato, carrot, salt);
-        addNoUtensilRecipe("sandwich", 8, -2, bread, sandwich_ingredient).setOptionalIngredients(butter, tomato, cucumber, salt, mayonnaise, mushroom);
         addNoUtensilRecipe("turnip.pickled", 6, -2, turnip).setOptionalIngredients(salt);
         addNoUtensilRecipe("cucumber.pickled", 6, -2, cucumber).setOptionalIngredients(salt);
+        addNoUtensilRecipe("salad", 10, -3, salad_ingredient).setOptionalIngredients(mushroom, cucumber, cabbage, tomato, carrot, salt);
+        addNoUtensilRecipe("sandwich", 8, -2, bread, sandwich_ingredient).setOptionalIngredients(butter, tomato, cucumber, salt, mayonnaise, mushroom);
         addNoUtensilRecipe("sushi", 30, -5, sashimi, riceball);
         addNoUtensilRecipe("sashimi", 22, -4, fish);
         addNoUtensilRecipe("sashimi.chirashi", 50, -7, sashimi, scrambled_egg, riceball, sashimi_vegetable);

@@ -44,10 +44,6 @@ public class HMClientProxy extends HMCommonProxy {
         super.init();
         
         ClientHelper.resetClient();
-
-        registerRenders(HMBlocks.cookware);
-        registerRenders(HMBlocks.woodmachines);
-
         RenderIds.ALL = RenderingRegistry.getNextAvailableRenderId();
         RenderIds.CROPS = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(new RenderHandler());
@@ -62,6 +58,9 @@ public class HMClientProxy extends HMCommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityNPCShopkeeper.class, new RenderNPC());
         RenderingRegistry.registerEntityRenderingHandler(EntityNPCMiner.class, new RenderNPC());
         RenderingRegistry.registerEntityRenderingHandler(EntityFakeItem.class, new RenderFakeItem());
+        registerRenders(HMBlocks.cookware);
+        registerRenders(HMBlocks.woodmachines);
+        
         for (int i = 0; i < 8; i++) {
             RenderHandler.register(HMBlocks.preview, i, RenderPreview.class);
         }

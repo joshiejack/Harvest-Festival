@@ -2,6 +2,7 @@ package joshie.harvestmoon.buildings;
 
 import java.util.ArrayList;
 
+import joshie.harvestmoon.blocks.BlockWood;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableButton;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableFlowerPot;
@@ -129,7 +130,7 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableBlock(Blocks.stained_hardened_clay, 7, 2, 1, 6));
         list.add(new PlaceableBlock(Blocks.stained_hardened_clay, 7, 2, 1, 7));
         list.add(new PlaceableBlock(Blocks.fence, 0, 2, 1, 8));
-        list.add(new PlaceableIFaceable(HMBlocks.woodmachines, 1, 2, 1, 9, ForgeDirection.EAST, LootStrings.MINING_CHEST));
+        list.add(new PlaceableIFaceable(HMBlocks.woodmachines, BlockWood.RURAL_CHEST, 2, 1, 9, ForgeDirection.EAST, LootStrings.MINING_CHEST));
         list.add(new PlaceableBlock(Blocks.stained_hardened_clay, 7, 2, 1, 10));
         list.add(new PlaceableBlock(Blocks.fence, 0, 2, 1, 11));
         list.add(new PlaceableBlock(Blocks.fence, 0, 3, 1, 4));
@@ -151,7 +152,7 @@ public class BuildingMiningHut extends Building {
         npc_offsets.put(Town.BRANDON, new PlaceableNPC("", 4, 1, 9));
         list.add(new PlaceableBlock(Blocks.air, 0, 4, 1, 9));
         list.add(new PlaceableBlock(Blocks.air, 0, 4, 1, 10));
-        list.add(new PlaceableIFaceable(HMBlocks.woodmachines, 1, 4, 1, 11, ForgeDirection.NORTH, LootStrings.MINING_CHEST));
+        list.add(new PlaceableIFaceable(HMBlocks.woodmachines, BlockWood.RURAL_CHEST, 4, 1, 11, ForgeDirection.NORTH, LootStrings.MINING_CHEST));
         list.add(new PlaceableLog(Blocks.log, 1, 4, 1, 12));
         list.add(new PlaceableButton(Blocks.wooden_button, 3, 4, 1, 13));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 2, 5, 1, 2));

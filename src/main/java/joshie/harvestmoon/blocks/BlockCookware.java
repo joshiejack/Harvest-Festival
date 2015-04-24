@@ -47,6 +47,11 @@ public class BlockCookware extends BlockHMBaseMeta {
     }
 
     @Override
+    public String getToolType(int meta) {
+        return meta == KITCHEN ? "axe" : super.getToolType(meta);
+    }
+
+    @Override
     public boolean renderAsNormalBlock() {
         return false;
     }
@@ -103,31 +108,31 @@ public class BlockCookware extends BlockHMBaseMeta {
             if (!(tile instanceof TileKitchen)) return false;
             if (meta == KITCHEN && held == null) {
                 tile.updateEntity();
-                return true;
-            } else return false;
-        } else {
-            TileEntity tile = world.getTileEntity(x, y, z);
-            if (tile instanceof TileCooking) {
-                TileCooking cooking = (TileCooking) tile;
-                ItemStack held = player.getCurrentEquippedItem();
-                if (!cooking.canAddItems()) {
-                    if (!player.inventory.addItemStackToInventory(cooking.getResult())) {
-                        if (!world.isRemote) {
-                            ItemHelper.spawnItem(world, x, y + 1, z, cooking.getResult());
-                        }
-                    }
-
-                    cooking.clear();
-                } else if (held != null && !(held.getItem() instanceof ItemBlockCookware)) {
-                    if (cooking.addIngredient(held)) {
-                        player.inventory.decrStackSize(player.inventory.currentItem, 1);
-                        return true;
+            }
+        }
+        
+        TileEntity tile = world.getTileEntity(x, y, z);
+        if (tile instanceof TileCooking) {
+            TileCooking cooking = (TileCooking) tile;
+            ItemStack held = player.getCurrentEquippedItem();
+            if (!cooking.canAddItems()) {
+                if (!player.inventory.addItemStackToInventory(cooking.getResult())) {
+                    if (!world.isRemote) {
+                        ItemHelper.spawnItem(world, x, y + 1, z, cooking.getResult());
                     }
                 }
-            }
 
-            return false;
+                cooking.clear();
+            } else if (held != null && !(held.getItem() instanceof ItemBlockCookware)) {
+                if (cooking.addIngredient(held)) {
+                    player.inventory.decrStackSize(player.inventory.currentItem, 1);
+                    return true;
+                }
+            }
         }
+
+        return false;
+
     }
 
     @Override

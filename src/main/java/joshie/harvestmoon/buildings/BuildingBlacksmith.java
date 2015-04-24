@@ -2,6 +2,7 @@ package joshie.harvestmoon.buildings;
 
 import java.util.ArrayList;
 
+import joshie.harvestmoon.blocks.BlockWood;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableAnvil;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableButton;
@@ -135,7 +136,7 @@ public class BuildingBlacksmith extends Building {
         list.add(new PlaceableBlock(Blocks.double_stone_slab, 0, 5, 2, 5));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 1, 5, 2, 6));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 0, 5, 2, 7));
-        list.add(new PlaceableIFaceable(HMBlocks.woodmachines, 1, 5, 2, 8, ForgeDirection.WEST, LootStrings.BLACKSMITH_CHEST));
+        list.add(new PlaceableIFaceable(HMBlocks.woodmachines, BlockWood.RURAL_CHEST, 5, 2, 8, ForgeDirection.WEST, LootStrings.BLACKSMITH_CHEST));
         list.add(new PlaceableBlock(Blocks.cobblestone_wall, 0, 5, 2, 9));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 3, 5, 2, 11));
         list.add(new PlaceableBlock(Blocks.cobblestone_wall, 0, 6, 2, 1));

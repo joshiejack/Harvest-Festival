@@ -2,6 +2,7 @@ package joshie.harvestmoon.buildings;
 
 import java.util.ArrayList;
 
+import joshie.harvestmoon.blocks.BlockWood;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableButton;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableDoor;
@@ -341,7 +342,7 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.stonebrick, 0, 2, 2, 9));
         list.add(new PlaceableTorches(Blocks.lever, 11, 2, 2, 10));
         list.add(new PlaceableBlock(Blocks.cake, 2, 2, 2, 11));
-        list.add(new PlaceableIFaceable(HMBlocks.woodmachines, 1, 2, 2, 12, ForgeDirection.NORTH, LootStrings.CAFE_CHEST));
+        list.add(new PlaceableIFaceable(HMBlocks.woodmachines, BlockWood.RURAL_CHEST, 2, 2, 12, ForgeDirection.NORTH, LootStrings.CAFE_CHEST));
         list.add(new PlaceableBlock(Blocks.glass_pane, 0, 2, 2, 13));
         list.add(new PlaceableBlock(Blocks.glass_pane, 0, 3, 2, 1));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 0, 3, 2, 2));

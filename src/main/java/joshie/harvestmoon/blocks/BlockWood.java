@@ -27,12 +27,11 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public class BlockWood extends BlockHMBaseMeta {
     public static final int SHIPPING = 0;
-    public static final int RURAL_CHEST = 1;
-    public static final int NEST = 2;
-    public static final int TROUGH = 3;
-    public static final int TROUGH_2 = 4;
-
-    public static final int OLD_RURAL_CHEST = 9;
+    public static final int SHIPPING_2 = 1;
+    public static final int RURAL_CHEST = 2;
+    public static final int NEST = 3;
+    public static final int TROUGH = 4;
+    public static final int TROUGH_2 = 5;
 
     public BlockWood() {
         super(Material.wood);
@@ -125,7 +124,13 @@ public class BlockWood extends BlockHMBaseMeta {
             ((IFaceable) tile).setFacing(dir);
         }
 
-        if (meta == TROUGH || meta == TROUGH_2) {
+        if (meta == SHIPPING || meta == SHIPPING_2) {
+            if (dir == ForgeDirection.WEST || dir == ForgeDirection.EAST) {
+                world.setBlockMetadataWithNotify(x, y, z, SHIPPING, 2);
+            } else if (dir == ForgeDirection.NORTH || dir == ForgeDirection.SOUTH) {
+                world.setBlockMetadataWithNotify(x, y, z, SHIPPING_2, 2);
+            }
+        } else if (meta == TROUGH || meta == TROUGH_2) {
             if (dir == ForgeDirection.WEST || dir == ForgeDirection.EAST) {
                 world.setBlockMetadataWithNotify(x, y, z, TROUGH_2, 2);
             } else if (dir == ForgeDirection.NORTH || dir == ForgeDirection.SOUTH) {
@@ -171,13 +176,18 @@ public class BlockWood extends BlockHMBaseMeta {
     @Override
     public TileEntity createTileEntity(World world, int meta) {
         switch (meta) {
-            case OLD_RURAL_CHEST:
-                return new TileRuralChest();
             case RURAL_CHEST:
                 return new TileRuralChest();
             default:
                 return null;
         }
+    }
+
+    @Override
+    public int damageDropped(int meta) {
+        if (meta == SHIPPING_2) return SHIPPING;
+        else if (meta == TROUGH_2) return TROUGH;
+        else return super.damageDropped(meta);
     }
 
     @Override
@@ -187,11 +197,11 @@ public class BlockWood extends BlockHMBaseMeta {
 
     @Override
     public boolean isActive(int meta) {
-        return meta != TROUGH_2;
+        return meta != TROUGH_2 && meta != SHIPPING_2;
     }
 
     @Override
     public int getMetaCount() {
-        return 5;
+        return 6;
     }
 }

@@ -5,7 +5,6 @@ import java.util.UUID;
 import joshie.harvestmoon.buildings.placeable.Placeable;
 import joshie.harvestmoon.buildings.placeable.Placeable.PlacementStage;
 import joshie.harvestmoon.core.helpers.PlayerHelper;
-import joshie.harvestmoon.npc.EntityNPCBuilder;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 

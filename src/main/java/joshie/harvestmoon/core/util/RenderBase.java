@@ -13,6 +13,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidStack;
 
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
 
 public abstract class RenderBase {
     private static final double RENDER_OFFSET = 0.0010000000474974513D;
@@ -29,6 +30,7 @@ public abstract class RenderBase {
     public float rgb_green = 1.0F;
     public float rgb_blue = 1.0F;
     private boolean isItem;
+    public int meta = 0;
 
     public RenderBase() {}
     
@@ -46,12 +48,13 @@ public abstract class RenderBase {
         this.y = y;
         this.z = z;
         block = world.getBlock(x, y, z);
+        meta = world.getBlockMetadata(x, y, z);
         render();
         return true;
     }
 
     //Item Based Rendering
-    public void render(RenderBlocks render, Block block) {
+    public void render(RenderBlocks render, Block block, int meta) {
         isItem = true;
         this.render = render;
         this.block = block;
@@ -67,7 +70,10 @@ public abstract class RenderBase {
             renderBlock();
             GL11.glPopMatrix();
         } else {
+            GL11.glPushMatrix();
+            GL11.glColor4f(1F, 1F, 1F, 0F);
             renderBlock();
+            GL11.glPopMatrix();
             if (render.hasOverrideBlockTexture()) {
                 render.clearOverrideBlockTexture();
             }

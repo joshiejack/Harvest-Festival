@@ -2,6 +2,7 @@ package joshie.harvestmoon.buildings;
 
 import java.util.ArrayList;
 
+import joshie.harvestmoon.blocks.BlockWood;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableButton;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableDoor;
@@ -1598,7 +1599,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 5, 2, 5, 1));
         list.add(new PlaceableBlock(Blocks.bookshelf, 0, 2, 5, 2));
         list.add(new PlaceableBlock(Blocks.bookshelf, 0, 2, 5, 3));
-        list.add(new PlaceableIFaceable(HMBlocks.woodmachines, 1, 2, 5, 4, ForgeDirection.EAST, LootStrings.TOWNHALL_TEENAGER_CHEST));
+        list.add(new PlaceableIFaceable(HMBlocks.woodmachines, BlockWood.RURAL_CHEST, 2, 5, 4, ForgeDirection.EAST, LootStrings.TOWNHALL_TEENAGER_CHEST));
         list.add(new PlaceableLog(Blocks.log, 1, 2, 5, 5));
         list.add(new PlaceableBlock(Blocks.fence, 0, 2, 5, 6));
         list.add(new PlaceableBlock(Blocks.air, 0, 2, 5, 7));
@@ -1724,7 +1725,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 5, 4));
         list.add(new PlaceableDoor(Blocks.wooden_door, 1, 8, 5, 5));
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 5, 6));
-        list.add(new PlaceableIFaceable(HMBlocks.woodmachines, 1, 8, 5, 7, ForgeDirection.NORTH));
+        list.add(new PlaceableIFaceable(HMBlocks.woodmachines, BlockWood.RURAL_CHEST, 8, 5, 7, ForgeDirection.NORTH));
         list.add(new PlaceableBlock(Blocks.fence, 0, 8, 5, 8));
         list.add(new PlaceableBlock(Blocks.fence, 0, 8, 5, 9));
         list.add(new PlaceableBlock(Blocks.fence, 0, 8, 5, 10));
@@ -2842,7 +2843,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 9, 13));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 9, 14));
         list.add(new PlaceableLog(Blocks.log, 1, 6, 9, 15));
-        list.add(new PlaceableIFaceable(HMBlocks.woodmachines, 1, 6, 9, 16, ForgeDirection.SOUTH, LootStrings.TOWNHALL_PASSAGE_CHEST));
+        list.add(new PlaceableIFaceable(HMBlocks.woodmachines, BlockWood.RURAL_CHEST, 6, 9, 16, ForgeDirection.SOUTH, LootStrings.TOWNHALL_PASSAGE_CHEST));
         list.add(new PlaceableTorches(Blocks.torch, 5, 6, 9, 17));
         list.add(new PlaceableFlowerPot(Blocks.flower_pot, 0, 6, 9, 18));
         list.add(new PlaceableBlock(Blocks.stonebrick, 0, 6, 9, 19));

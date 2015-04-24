@@ -2,6 +2,7 @@ package joshie.harvestmoon.buildings;
 
 import java.util.ArrayList;
 
+import joshie.harvestmoon.blocks.BlockWood;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableButton;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableDoor;
@@ -151,7 +152,7 @@ public class BuildingPoultryFarm extends Building {
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 13, 5, 1, 8));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 12, 6, 1, 0));
         list.add(new PlaceableBlock(Blocks.stained_hardened_clay, 1, 6, 1, 1));
-        list.add(new PlaceableIFaceable(HMBlocks.woodmachines, 1, 6, 1, 2, ForgeDirection.SOUTH, LootStrings.POULTRY_CHEST));
+        list.add(new PlaceableIFaceable(HMBlocks.woodmachines, BlockWood.RURAL_CHEST, 6, 1, 2, ForgeDirection.SOUTH, LootStrings.POULTRY_CHEST));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 1, 3));
         list.add(new PlaceableNPC("ondra", 6, 1, 4));
         npc_offsets.put(Town.ONDRA, new PlaceableNPC("", 6, 1, 4));

@@ -1,5 +1,6 @@
 package joshie.harvestmoon.blocks.render;
 
+import joshie.harvestmoon.blocks.BlockIcons;
 import joshie.harvestmoon.core.util.RenderBase;
 import net.minecraft.init.Blocks;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -7,7 +8,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 public class RenderPot extends RenderBase {
     @Override
     public void renderBlock() {
-        setTexture(Blocks.iron_block);
+        setTexture(BlockIcons.MATTE);
         //Base of Pot
         renderBlock(0.15D, 0D, 0.15D, 0.85D, 0.025D, 0.85D);
         renderBlock(0.1D, 0.025D, 0.1D, 0.9D, 0.05D, 0.9D);

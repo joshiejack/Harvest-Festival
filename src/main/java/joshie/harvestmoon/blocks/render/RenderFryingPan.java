@@ -1,5 +1,6 @@
 package joshie.harvestmoon.blocks.render;
 
+import joshie.harvestmoon.blocks.BlockIcons;
 import joshie.harvestmoon.core.util.RenderBase;
 import net.minecraft.init.Blocks;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -14,7 +15,7 @@ public class RenderFryingPan extends RenderBase {
             GL11.glTranslatef(-0.2F, 0.65F, 0.5F);
         }
 
-        setTexture(Blocks.iron_block);
+        setTexture(BlockIcons.MATTE);
         //Main Frame of the Frying Pan
         renderBlock(0.15D, 0D, 0.15D, 0.85D, 0.05D, 0.85D);
         renderBlock(0.1D, 0.05D, 0.1D, 0.9D, 0.075D, 0.9D);

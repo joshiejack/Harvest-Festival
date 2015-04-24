@@ -10,6 +10,12 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockIcons {
     /** Generic Material Icons **/
     public static IIcon METALLIC;
+    public static IIcon GLASS;
+    public static IIcon BLACK_PLASTIC;
+    public static IIcon WHITE_PLASTIC;
+    public static IIcon RED_PLASTIC;
+    public static IIcon BLUE_PLASTIC;
+    public static IIcon MATTE;
     
     /** Kitchen Icons **/
     public static IIcon COUNTER_FRONT;
@@ -26,6 +32,12 @@ public class BlockIcons {
     public static void registerBlockIcons(IIconRegister register) {
         /** Generic Material Icons **/
         METALLIC = register.registerIcon(HMModInfo.MODPATH + ":generic/metal");
+        GLASS = register.registerIcon(HMModInfo.MODPATH + ":generic/glass");
+        BLACK_PLASTIC = register.registerIcon(HMModInfo.MODPATH + ":generic/plastic_black");
+        WHITE_PLASTIC = register.registerIcon(HMModInfo.MODPATH + ":generic/plastic_white");
+        RED_PLASTIC = register.registerIcon(HMModInfo.MODPATH + ":generic/plastic_red");
+        BLUE_PLASTIC = register.registerIcon(HMModInfo.MODPATH + ":generic/plastic_blue");
+        MATTE = register.registerIcon(HMModInfo.MODPATH + ":generic/matte");
         
         /** Kitchen Icons **/
         COUNTER_FRONT = register.registerIcon(HMModInfo.MODPATH + ":counter_front");

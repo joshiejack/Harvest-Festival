@@ -1,7 +1,7 @@
 package joshie.harvestmoon.blocks.tiles;
 
 import joshie.harvestmoon.api.WorldLocation;
-import joshie.harvestmoon.buildings.BuildingGroup;
+import joshie.harvestmoon.buildings.Building;
 import joshie.harvestmoon.core.network.PacketHandler;
 import joshie.harvestmoon.core.network.PacketSyncMarker;
 import net.minecraft.nbt.NBTTagCompound;
@@ -10,19 +10,19 @@ import net.minecraft.tileentity.TileEntity;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 
 public class TileMarker extends TileEntity {
-    private BuildingGroup group;
+    private Building group;
 
     @Override
     public boolean canUpdate() {
         return false;
     }
 
-    public void setBuilding(BuildingGroup group) {
+    public void setBuilding(Building group) {
         this.group = group;
         this.markDirty();
     }
     
-    public BuildingGroup getBuilding() {
+    public Building getBuilding() {
         return group;
     }
     
@@ -38,7 +38,7 @@ public class TileMarker extends TileEntity {
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
-        group = BuildingGroup.getGroup(nbt.getString("Group"));
+        group = Building.getGroup(nbt.getString("Group"));
     }
 
     @Override

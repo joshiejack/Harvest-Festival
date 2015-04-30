@@ -3,7 +3,7 @@ package joshie.harvestmoon.core.util;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import joshie.harvestmoon.buildings.BuildingGroup;
+import joshie.harvestmoon.buildings.Building;
 import joshie.harvestmoon.buildings.placeable.Placeable;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvestmoon.core.helpers.generic.MCClientHelper;
@@ -18,11 +18,11 @@ public class BlockAccessPreview implements IBlockAccess {
     private HashMap<PlaceableBlock, PlaceableBlock> blocks = new HashMap();
     private int previewX, previewY, previewZ; //The world location of the BASE BLOCK
     private boolean n1, n2, swap; //Which direction is this building facing?
-    private BuildingGroup building;
+    private Building building;
 
-    public BlockAccessPreview(BuildingGroup building, ArrayList<Placeable> list) {
+    public BlockAccessPreview(Building building) {
         this.building = building;
-        for (Placeable p : list) {
+        for (Placeable p : building.getList()) {
             if (p instanceof PlaceableBlock) {
                 PlaceableBlock block = (PlaceableBlock) p;
                 blocks.put(block, block);

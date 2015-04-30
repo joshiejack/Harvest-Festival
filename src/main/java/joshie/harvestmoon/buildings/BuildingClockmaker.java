@@ -25,7 +25,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class BuildingClockmaker extends BuildingGroup {
+public class BuildingClockmaker extends Building {
     public BuildingClockmaker() {
         super("clockmaker");
         offsetY = - 1;

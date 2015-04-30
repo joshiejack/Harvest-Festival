@@ -12,7 +12,7 @@ import joshie.harvestmoon.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvestmoon.player.Town;
 import net.minecraft.init.Blocks;
 
-public class BuildingGoddess extends BuildingGroup {
+public class BuildingGoddess extends Building {
     public BuildingGoddess() {
         super("goddessPond");
         list = new ArrayList(1194);

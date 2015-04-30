@@ -3,7 +3,7 @@ package joshie.harvestmoon.core.network;
 import io.netty.buffer.ByteBuf;
 import joshie.harvestmoon.api.WorldLocation;
 import joshie.harvestmoon.blocks.tiles.TileMarker;
-import joshie.harvestmoon.buildings.BuildingGroup;
+import joshie.harvestmoon.buildings.Building;
 import joshie.harvestmoon.core.helpers.generic.MCClientHelper;
 import net.minecraft.tileentity.TileEntity;
 import cpw.mods.fml.common.network.ByteBufUtils;
@@ -13,11 +13,11 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 public class PacketSyncMarker implements IMessage, IMessageHandler<PacketSyncMarker, IMessage> {
     private WorldLocation location;
-    private BuildingGroup group;
+    private Building group;
 
     public PacketSyncMarker() {}
 
-    public PacketSyncMarker(WorldLocation location, BuildingGroup group) {
+    public PacketSyncMarker(WorldLocation location, Building group) {
         this.location = location;
         this.group = group;
     }
@@ -32,7 +32,7 @@ public class PacketSyncMarker implements IMessage, IMessageHandler<PacketSyncMar
     public void fromBytes(ByteBuf buf) {
         location = new WorldLocation();
         location.fromBytes(buf);
-        group = BuildingGroup.getGroup(ByteBufUtils.readUTF8String(buf));
+        group = Building.getGroup(ByteBufUtils.readUTF8String(buf));
     }
 
     @Override

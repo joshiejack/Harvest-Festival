@@ -1,7 +1,7 @@
 package joshie.harvestmoon.blocks.items;
 
 import joshie.harvestmoon.api.core.ICreativeSorted;
-import joshie.harvestmoon.buildings.BuildingGroup;
+import joshie.harvestmoon.buildings.Building;
 import joshie.harvestmoon.core.util.base.ItemBlockBase;
 import joshie.harvestmoon.core.util.generic.Text;
 import joshie.harvestmoon.init.HMItems;
@@ -28,8 +28,8 @@ public class ItemBlockPreview extends ItemBlockBase implements ICreativeSorted {
         
     @Override
     public String getName(ItemStack stack) {
-        if (stack.getItemDamage() >= BuildingGroup.groups.size()) return "invalid";
-        BuildingGroup group = BuildingGroup.groups.get(stack.getItemDamage());
+        if (stack.getItemDamage() >= Building.groups.size()) return "invalid";
+        Building group = Building.groups.get(stack.getItemDamage());
         if (group != null) {
             return group.getName();
         } else return "invalid";

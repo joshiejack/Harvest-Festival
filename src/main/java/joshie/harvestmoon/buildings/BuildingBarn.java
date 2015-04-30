@@ -22,7 +22,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
-public class BuildingBarn extends BuildingGroup {
+public class BuildingBarn extends Building {
     public BuildingBarn() {
         super("barn");
         offsetY = - 1;

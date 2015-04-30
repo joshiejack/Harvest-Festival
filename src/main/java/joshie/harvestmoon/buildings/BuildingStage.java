@@ -12,14 +12,14 @@ import net.minecraft.world.World;
  * to know their current progress through a building project **/
 public class BuildingStage {
     public UUID owner;
-    public BuildingGroup building;
+    public Building building;
     public boolean n1, n2, swap;
     public PlacementStage stage;
     public int index, xCoord, yCoord, zCoord;
 
     public BuildingStage() {}
 
-    public BuildingStage(UUID uuid, BuildingGroup building, int x, int y, int z, boolean n1, boolean n2, boolean swap) {
+    public BuildingStage(UUID uuid, Building building, int x, int y, int z, boolean n1, boolean n2, boolean swap) {
         this.owner = uuid;
         this.building = building;
         this.n1 = n1;
@@ -73,7 +73,7 @@ public class BuildingStage {
     }
 
     public void readFromNBT(NBTTagCompound nbt) {
-        building = BuildingGroup.getGroup(nbt.getString("CurrentlyBuilding"));
+        building = Building.getGroup(nbt.getString("CurrentlyBuilding"));
         n1 = nbt.getBoolean("North1");
         n2 = nbt.getBoolean("North2");
         swap = nbt.getBoolean("Swap");

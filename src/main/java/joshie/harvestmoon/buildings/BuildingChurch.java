@@ -19,7 +19,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
-public class BuildingChurch extends BuildingGroup {
+public class BuildingChurch extends Building {
     public BuildingChurch() {
         super("church");
         list = new ArrayList(614);

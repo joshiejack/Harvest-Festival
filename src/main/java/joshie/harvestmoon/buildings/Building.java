@@ -15,13 +15,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BuildingGroup implements IBuildingGroup {
-    public static final ArrayList<BuildingGroup> groups = new ArrayList(50);
+public class Building implements IBuildingGroup {
+    public static final ArrayList<Building> groups = new ArrayList(50);
     //List of all placeable elements
     public HashMap<String, PlaceableNPC> npc_offsets = new HashMap();
     protected ArrayList<Placeable> list;
     private BlockAccessPreview preview;
-    private BuildingGroup group;
     protected int offsetY;
     protected int tickTime = 20;
 
@@ -29,15 +28,19 @@ public class BuildingGroup implements IBuildingGroup {
     private String name;
     private int meta;
     
-    public BuildingGroup(String string) {
+    public Building(String string) {
         this.name = string;
         this.meta = groups.size();
         this.groups.add(this);
-        this.preview = new BlockAccessPreview(this, list);
+    }
+    
+    public Building init() {
+        this.preview = new BlockAccessPreview(this);
+        return this;
     }
 
-    public static BuildingGroup getGroup(String string) {
-        for (BuildingGroup b : groups) {
+    public static Building getGroup(String string) {
+        for (Building b : groups) {
             if (b.getName().equals(string)) {
                 return b;
             }
@@ -60,14 +63,6 @@ public class BuildingGroup implements IBuildingGroup {
 
     public IBlockAccess getBlockAccess(int worldX, int worldY, int worldZ, boolean n1, boolean n2, boolean swap) {
         return preview.setCoordinatesAndDirection(worldX, worldY, worldZ, n1, n2, swap);
-    }
-
-    public BuildingGroup getGroup() {
-        return group;
-    }
-
-    public int getInt() {
-        return meta;
     }
 
     public int getOffsetY() {

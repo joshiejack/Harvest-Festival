@@ -2,7 +2,7 @@ package joshie.harvestmoon.blocks.render;
 
 import joshie.harvestmoon.blocks.BlockPreview;
 import joshie.harvestmoon.blocks.tiles.TileMarker;
-import joshie.harvestmoon.buildings.BuildingGroup;
+import joshie.harvestmoon.buildings.Building;
 import joshie.harvestmoon.buildings.placeable.Placeable;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvestmoon.core.util.RenderBase;
@@ -19,7 +19,7 @@ public class RenderPreview extends RenderBase {
             boolean n2 = BlockPreview.getN2FromMeta(meta);
             boolean swap = BlockPreview.getSwapFromMeta(meta);
             TileMarker marker = (TileMarker) world.getTileEntity(x, y, z);
-            BuildingGroup preview = marker.getBuilding();
+            Building preview = marker.getBuilding();
             if (preview == null) return;
 
             renderer.blockAccess = preview.getBlockAccess(x, y, z, n1, n2, swap);

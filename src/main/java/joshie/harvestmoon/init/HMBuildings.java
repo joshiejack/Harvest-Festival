@@ -2,6 +2,7 @@ package joshie.harvestmoon.init;
 
 import joshie.harvestmoon.animals.AnimalType;
 import joshie.harvestmoon.api.crops.ICrop;
+import joshie.harvestmoon.buildings.Building;
 import joshie.harvestmoon.buildings.BuildingBarn;
 import joshie.harvestmoon.buildings.BuildingBlacksmith;
 import joshie.harvestmoon.buildings.BuildingCafe;
@@ -11,7 +12,6 @@ import joshie.harvestmoon.buildings.BuildingClockmaker;
 import joshie.harvestmoon.buildings.BuildingFishingHole;
 import joshie.harvestmoon.buildings.BuildingFishingHut;
 import joshie.harvestmoon.buildings.BuildingGoddess;
-import joshie.harvestmoon.buildings.BuildingGroup;
 import joshie.harvestmoon.buildings.BuildingMiningHill;
 import joshie.harvestmoon.buildings.BuildingMiningHut;
 import joshie.harvestmoon.buildings.BuildingPoultryFarm;
@@ -27,36 +27,36 @@ import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraftforge.common.ChestGenHooks;
 
 public class HMBuildings {
-    public static BuildingGroup barn;
-    public static BuildingGroup blacksmith;
-    public static BuildingGroup cafe;
-    public static BuildingGroup carpenter;
-    public static BuildingGroup church;
-    public static BuildingGroup clockmaker;
-    public static BuildingGroup fishingHole;
-    public static BuildingGroup fishingHut;
-    public static BuildingGroup goddessPond;
-    public static BuildingGroup miningHill;
-    public static BuildingGroup miningHut;
-    public static BuildingGroup poultryFarm;
-    public static BuildingGroup supermarket;
-    public static BuildingGroup townhall;
+    public static Building barn;
+    public static Building blacksmith;
+    public static Building cafe;
+    public static Building carpenter;
+    public static Building church;
+    public static Building clockmaker;
+    public static Building fishingHole;
+    public static Building fishingHut;
+    public static Building goddessPond;
+    public static Building miningHill;
+    public static Building miningHut;
+    public static Building poultryFarm;
+    public static Building supermarket;
+    public static Building townhall;
 
     public static void preInit() {
-        barn = new BuildingBarn();
-        blacksmith = new BuildingBlacksmith();
-        cafe = new BuildingCafe();
-        carpenter = new BuildingCarpenter();
-        church = new BuildingChurch();
-        clockmaker = new BuildingClockmaker();
-        fishingHole = new BuildingFishingHole();
-        fishingHut = new BuildingFishingHut();
-        goddessPond = new BuildingGoddess();
-        miningHill = new BuildingMiningHill();
-        miningHut = new BuildingMiningHut();
-        poultryFarm = new BuildingPoultryFarm();
-        supermarket = new BuildingSupermarket();
-        townhall = new BuildingTownhall();
+        barn = new BuildingBarn().init();
+        blacksmith = new BuildingBlacksmith().init();
+        cafe = new BuildingCafe().init();
+        carpenter = new BuildingCarpenter().init();
+        church = new BuildingChurch().init();
+        clockmaker = new BuildingClockmaker().init();
+        fishingHole = new BuildingFishingHole().init();
+        fishingHut = new BuildingFishingHut().init();
+        goddessPond = new BuildingGoddess().init();
+        miningHill = new BuildingMiningHill().init();
+        miningHut = new BuildingMiningHut().init();
+        poultryFarm = new BuildingPoultryFarm().init();
+        supermarket = new BuildingSupermarket().init();
+        townhall = new BuildingTownhall().init();
     }
 
     public static void init() {

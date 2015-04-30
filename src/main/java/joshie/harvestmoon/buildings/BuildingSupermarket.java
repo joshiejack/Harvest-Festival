@@ -36,7 +36,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class BuildingSupermarket extends BuildingGroup {
+public class BuildingSupermarket extends Building {
     public BuildingSupermarket() {
         super("supermarket");
         offsetY = -10;

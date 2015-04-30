@@ -23,7 +23,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class BuildingPoultryFarm extends BuildingGroup {
+public class BuildingPoultryFarm extends Building {
     public BuildingPoultryFarm() {
         super("poultryFarm");
         list = new ArrayList(668);

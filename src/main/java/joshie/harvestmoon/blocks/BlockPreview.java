@@ -3,7 +3,7 @@ package joshie.harvestmoon.blocks;
 import java.util.List;
 
 import joshie.harvestmoon.blocks.tiles.TileMarker;
-import joshie.harvestmoon.buildings.BuildingGroup;
+import joshie.harvestmoon.buildings.Building;
 import joshie.harvestmoon.core.HMTab;
 import joshie.harvestmoon.core.config.General;
 import joshie.harvestmoon.core.helpers.NPCHelper;
@@ -76,7 +76,7 @@ public class BlockPreview extends BlockHMBaseMeta {
 
     @Override
     public int getMetaCount() {
-        return BuildingGroup.groups.size();
+        return Building.groups.size();
     }
 
     @Override
@@ -112,8 +112,8 @@ public class BlockPreview extends BlockHMBaseMeta {
 
     @Override
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase player, ItemStack stack) {
-        if (stack.getItemDamage() >= BuildingGroup.groups.size()) return;
-        BuildingGroup group = BuildingGroup.groups.get(stack.getItemDamage());
+        if (stack.getItemDamage() >= Building.groups.size()) return;
+        Building group = Building.groups.get(stack.getItemDamage());
         if (group != null) {
             TileMarker marker = (TileMarker) world.getTileEntity(x, y, z);
             marker.setBuilding(group);

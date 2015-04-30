@@ -26,7 +26,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class BuildingCafe extends BuildingGroup {
+public class BuildingCafe extends Building {
     public BuildingCafe() {
         super("cafe");
         offsetY = -1;

@@ -25,7 +25,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class BuildingFishingHut extends BuildingGroup {
+public class BuildingFishingHut extends Building {
     public BuildingFishingHut() {
         super("fishingHut");
         offsetY = -1;

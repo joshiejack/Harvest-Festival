@@ -11,7 +11,7 @@ import joshie.harvestmoon.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvestmoon.player.Town;
 import net.minecraft.init.Blocks;
 
-public class BuildingMiningHill extends BuildingGroup {
+public class BuildingMiningHill extends Building {
     public BuildingMiningHill() {
         super("miningHill");
         offsetY = -4;

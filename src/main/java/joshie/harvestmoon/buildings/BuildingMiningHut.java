@@ -21,7 +21,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class BuildingMiningHut extends BuildingGroup {
+public class BuildingMiningHut extends Building {
     public BuildingMiningHut() {
         super("miningHut");
         offsetY = -1;

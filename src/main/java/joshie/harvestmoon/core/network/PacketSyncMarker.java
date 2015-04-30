@@ -3,7 +3,6 @@ package joshie.harvestmoon.core.network;
 import io.netty.buffer.ByteBuf;
 import joshie.harvestmoon.api.WorldLocation;
 import joshie.harvestmoon.blocks.tiles.TileMarker;
-import joshie.harvestmoon.buildings.Building;
 import joshie.harvestmoon.buildings.BuildingGroup;
 import joshie.harvestmoon.core.helpers.generic.MCClientHelper;
 import net.minecraft.tileentity.TileEntity;
@@ -15,21 +14,18 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 public class PacketSyncMarker implements IMessage, IMessageHandler<PacketSyncMarker, IMessage> {
     private WorldLocation location;
     private BuildingGroup group;
-    private Building building;
 
     public PacketSyncMarker() {}
 
-    public PacketSyncMarker(WorldLocation location, BuildingGroup group, Building building) {
+    public PacketSyncMarker(WorldLocation location, BuildingGroup group) {
         this.location = location;
         this.group = group;
-        this.building = building;
     }
 
     @Override
     public void toBytes(ByteBuf buf) {
         location.toBytes(buf);
         ByteBufUtils.writeUTF8String(buf, group.getName());
-        buf.writeInt(building.getInt());
     }
 
     @Override
@@ -37,14 +33,13 @@ public class PacketSyncMarker implements IMessage, IMessageHandler<PacketSyncMar
         location = new WorldLocation();
         location.fromBytes(buf);
         group = BuildingGroup.getGroup(ByteBufUtils.readUTF8String(buf));
-        building = group.getBuilding(buf.readInt());
     }
 
     @Override
     public IMessage onMessage(PacketSyncMarker msg, MessageContext ctx) {
         TileEntity tile = MCClientHelper.getWorld().getTileEntity(msg.location.x, msg.location.y, msg.location.z);
         if (tile instanceof TileMarker) {
-            ((TileMarker) tile).setBuilding(msg.group, msg.building);
+            ((TileMarker) tile).setBuilding(msg.group);
         }
 
         MCClientHelper.refresh(msg.location.dimension, msg.location.x, msg.location.y, msg.location.z);

@@ -28,8 +28,9 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class BuildingTownhall extends Building {
+public class BuildingTownhall extends BuildingGroup {
     public BuildingTownhall() {
+        super("townhall");
         offsetY = -1;
         list = new ArrayList(3350);
         init1();

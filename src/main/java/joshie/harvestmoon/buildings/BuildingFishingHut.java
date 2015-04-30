@@ -25,8 +25,9 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class BuildingFishingHut extends Building {
+public class BuildingFishingHut extends BuildingGroup {
     public BuildingFishingHut() {
+        super("fishingHut");
         offsetY = -1;
         list = new ArrayList(345);
         list.add(new PlaceableBlock(Blocks.planks, 5, 2, 0, 1));

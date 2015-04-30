@@ -16,6 +16,7 @@ public class BlockIcons {
     public static IIcon RED_PLASTIC;
     public static IIcon BLUE_PLASTIC;
     public static IIcon MATTE;
+    public static IIcon RAINBOW;
     
     /** Kitchen Icons **/
     public static IIcon COUNTER_FRONT;
@@ -25,6 +26,8 @@ public class BlockIcons {
     public static IIcon FRIDGE_SIDE;
     public static IIcon FRIDGE_TOP;
     public static IIcon FRIDGE_BOTTOM;
+    public static IIcon PAN_BOTTOM;
+    public static IIcon PAN_SIDE;
     
     /** Soil Icons **/
     public static IIcon MINE_HOED;
@@ -38,6 +41,7 @@ public class BlockIcons {
         RED_PLASTIC = register.registerIcon(HMModInfo.MODPATH + ":generic/plastic_red");
         BLUE_PLASTIC = register.registerIcon(HMModInfo.MODPATH + ":generic/plastic_blue");
         MATTE = register.registerIcon(HMModInfo.MODPATH + ":generic/matte");
+        RAINBOW = register.registerIcon(HMModInfo.MODPATH + ":generic/rainbow");
         
         /** Kitchen Icons **/
         COUNTER_FRONT = register.registerIcon(HMModInfo.MODPATH + ":counter_front");
@@ -47,6 +51,8 @@ public class BlockIcons {
         FRIDGE_SIDE = register.registerIcon(HMModInfo.MODPATH + ":fridge_sides");
         FRIDGE_TOP = register.registerIcon(HMModInfo.MODPATH + ":fridge_upper_door");
         FRIDGE_BOTTOM = register.registerIcon(HMModInfo.MODPATH + ":fridge_lower_door");
+        PAN_BOTTOM = register.registerIcon(HMModInfo.MODPATH + ":pan_base");
+        PAN_SIDE = register.registerIcon(HMModInfo.MODPATH + ":pan_side");
         
         /** Mine Hoed */
         MINE_HOED = register.registerIcon(HMModInfo.MODPATH + ":mine_hoe");

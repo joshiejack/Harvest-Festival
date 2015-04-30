@@ -1,7 +1,6 @@
 package joshie.harvestmoon.blocks.tiles;
 
 import joshie.harvestmoon.api.WorldLocation;
-import joshie.harvestmoon.buildings.Building;
 import joshie.harvestmoon.buildings.BuildingGroup;
 import joshie.harvestmoon.core.network.PacketHandler;
 import joshie.harvestmoon.core.network.PacketSyncMarker;
@@ -12,25 +11,23 @@ import cpw.mods.fml.common.network.simpleimpl.IMessage;
 
 public class TileMarker extends TileEntity {
     private BuildingGroup group;
-    private Building building;
 
     @Override
     public boolean canUpdate() {
         return false;
     }
 
-    public void setBuilding(BuildingGroup group, Building building) {
+    public void setBuilding(BuildingGroup group) {
         this.group = group;
-        this.building = building;
         this.markDirty();
     }
     
-    public Building getBuilding() {
-        return building;
+    public BuildingGroup getBuilding() {
+        return group;
     }
-
+    
     public IMessage getPacket() {
-        return new PacketSyncMarker(new WorldLocation(worldObj.provider.dimensionId, xCoord, yCoord, zCoord), group, building);
+        return new PacketSyncMarker(new WorldLocation(worldObj.provider.dimensionId, xCoord, yCoord, zCoord), group);
     }
 
     @Override
@@ -42,13 +39,11 @@ public class TileMarker extends TileEntity {
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
         group = BuildingGroup.getGroup(nbt.getString("Group"));
-        building = group.getBuilding(nbt.getInteger("Type"));
     }
 
     @Override
     public void writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
         nbt.setString("Group", group.getName());
-        nbt.setInteger("Type", building.getInt());
     }
 }

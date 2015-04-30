@@ -26,8 +26,9 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class BuildingCafe extends Building {
+public class BuildingCafe extends BuildingGroup {
     public BuildingCafe() {
+        super("cafe");
         offsetY = -1;
         list = new ArrayList(1300);
         list.add(new PlaceableBlock(Blocks.planks, 5, 0, 0, 1));

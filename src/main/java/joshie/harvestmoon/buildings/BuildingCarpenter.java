@@ -24,8 +24,9 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class BuildingCarpenter extends Building {
+public class BuildingCarpenter extends BuildingGroup {
     public BuildingCarpenter() {
+        super("carpenter");
         offsetY = - 1;
         offsetY = -1;
         list = new ArrayList(373);

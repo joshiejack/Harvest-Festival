@@ -1,12 +1,10 @@
 package joshie.harvestmoon.items.render;
 
-import joshie.harvestmoon.buildings.Building;
 import joshie.harvestmoon.buildings.BuildingGroup;
 import joshie.harvestmoon.buildings.placeable.Placeable;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableBlock;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
@@ -33,7 +31,7 @@ public class RenderBuilding implements IItemRenderer {
         float scale = 0.15F;
         GL11.glScalef(scale, scale, scale);
         GL11.glTranslatef(-1F, -2F, -1F);
-        Building building = BuildingGroup.groups.get(stack.getItemDamage()).getBuilding(0);
+        BuildingGroup building = BuildingGroup.groups.get(stack.getItemDamage());
         for (Placeable placeable : building.getList()) {
             if (placeable instanceof PlaceableBlock) {
                 PlaceableBlock block = (PlaceableBlock) placeable;

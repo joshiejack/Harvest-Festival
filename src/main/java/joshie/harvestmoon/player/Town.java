@@ -26,7 +26,6 @@ public class Town implements IData {
 
         public TownBuilding(BuildingStage building, int dimensionId) {
             this.building = building.building;
-            this.subType = building.subType;
             this.n1 = building.n1;
             this.n2 = building.n2;
             this.swap = building.swap;
@@ -37,7 +36,9 @@ public class Town implements IData {
         }
 
         public WorldLocation getRealCoordinatesFor(String npc_location) {
-            PlaceableNPC offsets = building.getBuilding(subType).npc_offsets.get(npc_location);
+            PlaceableNPC offsets = building.npc_offsets.get(npc_location);
+            if (offsets == null) return null;
+            
             int y = offsets.getY();
             int x = n1 ? -offsets.getX() : offsets.getX();
             int z = n2 ? -offsets.getZ() : offsets.getZ();

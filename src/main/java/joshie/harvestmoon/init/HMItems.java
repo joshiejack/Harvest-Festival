@@ -7,6 +7,7 @@ import joshie.harvestmoon.core.config.General;
 import joshie.harvestmoon.core.lib.SizeableMeta;
 import joshie.harvestmoon.crops.Crop;
 import joshie.harvestmoon.items.ItemAnimal;
+import joshie.harvestmoon.items.ItemAnimalSpawner;
 import joshie.harvestmoon.items.ItemBuilding;
 import joshie.harvestmoon.items.ItemCheat;
 import joshie.harvestmoon.items.ItemCrop;
@@ -31,7 +32,8 @@ public class HMItems {
     public static Item general;
     public static Item meal;
     public static Item structures;
-    public static Item spawner;
+    public static Item spawnerNPC;
+    public static Item spawnerAnimal;
     public static Item treats;
     public static Item cheat;
     
@@ -81,7 +83,8 @@ public class HMItems {
         
         //Creative Mod Items
         structures = new ItemBuilding().setUnlocalizedName("structures");
-        spawner = new ItemNPCSpawner().setUnlocalizedName("spawner");
+        spawnerNPC = new ItemNPCSpawner().setUnlocalizedName("spawner.npc");
+        spawnerAnimal = new ItemAnimalSpawner().setUnlocalizedName("spawner.animal");
         
         if (General.DEBUG_MODE) {
             cheat = new ItemCheat().setUnlocalizedName("cheat");

@@ -26,7 +26,7 @@ public class RenderOven extends RenderBase {
     private void renderClassic() {
         setTexture(Blocks.iron_block);
         if (dir == ForgeDirection.WEST || isItem()) {
-            renderBlock(0.9D, 0.95D, 0D, 1D, 1.1D, 1D);
+            renderBlock(0.9D, 1D, 0D, 1D, 1.05D, 1D);
             renderBlock(0.05D, 0.98D, 0.0D, 0.1D, 1.0D, 1.0D);
             renderBlock(0.02D, 0.299D, 0.05D, 0.04D, 0.85D, 0.95D);
             renderBlock(0.85D, 0.0D, 0.85D, 0.95D, 0.099D, 0.95D);
@@ -46,7 +46,7 @@ public class RenderOven extends RenderBase {
             renderBlock(0.05D, 0.0D, 0.05D, 0.15D, 0.099D, 0.15D);
             renderBlock(0.0D, 0.099D, 0.0D, 1.0D, 0.15D, 1.0D);
         } else if (dir == ForgeDirection.NORTH) {
-            renderBlock(0D, 0.95D, 0.9D, 1D, 1.1D, 1D);
+            renderBlock(0D, 1D, 0.9D, 1D, 1.05D, 1D);
             renderBlock(0.0D, 0.98D, 0.05D, 1.0D, 1.0D, 0.1D);
             renderBlock(0.05D, 0.299D, 0.02D, 0.95D, 0.85D, 0.04D);
             renderBlock(0.85D, 0.0D, 0.85D, 0.95D, 0.099D, 0.95D);
@@ -66,7 +66,7 @@ public class RenderOven extends RenderBase {
             renderBlock(0.05D, 0.0D, 0.05D, 0.15D, 0.099D, 0.15D);
             renderBlock(0.0D, 0.099D, 0.0D, 1.0D, 0.15D, 1.0D);
         } else if (dir == ForgeDirection.EAST) {
-            renderBlock(0D, 0.95D, 0D, 0.1D, 1.1D, 1D);
+            renderBlock(0D, 1D, 0D, 0.1D, 1.05D, 1D);
             renderBlock(0.9D, 0.98D, 0.0D, 0.95D, 1.0D, 1.0D);
             renderBlock(0.96D, 0.299D, 0.05D, 0.98D, 0.85D, 0.95D);
             renderBlock(0.05D, 0.0D, 0.85D, 0.15D, 0.099D, 0.95D);
@@ -86,7 +86,7 @@ public class RenderOven extends RenderBase {
             renderBlock(0.85D, 0.0D, 0.05D, 0.95D, 0.099D, 0.15D);
             renderBlock(0D, 0.099D, 0.0D, 1D, 0.15D, 1.0D);
         } else if (dir == ForgeDirection.SOUTH) {
-            renderBlock(0D, 0.95D, 0D, 1D, 1.1D, 0.11D);
+            renderBlock(0D, 1D, 0D, 1D, 1.05D, 0.11D);
             renderBlock(0.0D, 0.98D, 0.9D, 1.0D, 1.0D, 0.95D);
             renderBlock(0.05D, 0.299D, 0.96D, 0.95D, 0.85D, 0.98D);
             renderBlock(0.85D, 0.0D, 0.05D, 0.95D, 0.099D, 0.15D);

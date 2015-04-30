@@ -43,20 +43,20 @@ public class HMBuildings {
     public static BuildingGroup townhall;
 
     public static void preInit() {
-        barn = BuildingGroup.register("barn", new BuildingBarn());
-        blacksmith = BuildingGroup.register("blacksmith", new BuildingBlacksmith());
-        cafe = BuildingGroup.register("cafe", new BuildingCafe());
-        carpenter = BuildingGroup.register("carpenter", new BuildingCarpenter());
-        church = BuildingGroup.register("church", new BuildingChurch());
-        clockmaker = BuildingGroup.register("clockmaker", new BuildingClockmaker());
-        fishingHole = BuildingGroup.register("fishingHole", new BuildingFishingHole());
-        fishingHut = BuildingGroup.register("fishingHut", new BuildingFishingHut());
-        goddessPond = BuildingGroup.register("goddessPond", new BuildingGoddess());
-        miningHill = BuildingGroup.register("miningHill", new BuildingMiningHill());
-        miningHut = BuildingGroup.register("miningHut", new BuildingMiningHut());
-        poultryFarm = BuildingGroup.register("poultryFarm", new BuildingPoultryFarm());
-        supermarket = BuildingGroup.register("supermarket", new BuildingSupermarket());
-        townhall = BuildingGroup.register("townhall", new BuildingTownhall());
+        barn = new BuildingBarn();
+        blacksmith = new BuildingBlacksmith();
+        cafe = new BuildingCafe();
+        carpenter = new BuildingCarpenter();
+        church = new BuildingChurch();
+        clockmaker = new BuildingClockmaker();
+        fishingHole = new BuildingFishingHole();
+        fishingHut = new BuildingFishingHut();
+        goddessPond = new BuildingGoddess();
+        miningHill = new BuildingMiningHill();
+        miningHut = new BuildingMiningHut();
+        poultryFarm = new BuildingPoultryFarm();
+        supermarket = new BuildingSupermarket();
+        townhall = new BuildingTownhall();
     }
 
     public static void init() {

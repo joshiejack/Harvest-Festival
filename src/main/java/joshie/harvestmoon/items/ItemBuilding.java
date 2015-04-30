@@ -24,7 +24,7 @@ public class ItemBuilding extends ItemHMMeta implements ICreativeSorted {
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
         BuildingGroup group = BuildingGroup.groups.get(stack.getItemDamage());
         if (group != null) {
-            return group.getRandom().generate(UUIDHelper.getPlayerUUID(player), world, x, y, z);
+            return group.generate(UUIDHelper.getPlayerUUID(player), world, x, y, z);
         } else return false;
     }
 

@@ -2,6 +2,8 @@ package joshie.harvestmoon.core;
 
 import static joshie.harvestmoon.core.lib.HMModInfo.JAVAPATH;
 import joshie.harvestmoon.animals.ChickenRenderFix;
+import joshie.harvestmoon.animals.EntityHarvestCow;
+import joshie.harvestmoon.animals.render.RenderHarvestCow;
 import joshie.harvestmoon.blocks.BlockHMBaseMeta;
 import joshie.harvestmoon.blocks.render.RenderCrops;
 import joshie.harvestmoon.blocks.render.RenderPreview;
@@ -18,7 +20,6 @@ import joshie.harvestmoon.core.util.generic.EntityFakeItem;
 import joshie.harvestmoon.core.util.generic.RenderFakeItem;
 import joshie.harvestmoon.init.HMBlocks;
 import joshie.harvestmoon.init.HMItems;
-import joshie.harvestmoon.items.render.RenderBuilding;
 import joshie.harvestmoon.items.render.RenderItemAnimal;
 import joshie.harvestmoon.items.render.RenderSeedBag;
 import joshie.harvestmoon.npc.EntityNPC;
@@ -58,6 +59,7 @@ public class HMClientProxy extends HMCommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityNPCShopkeeper.class, new RenderNPC());
         RenderingRegistry.registerEntityRenderingHandler(EntityNPCMiner.class, new RenderNPC());
         RenderingRegistry.registerEntityRenderingHandler(EntityFakeItem.class, new RenderFakeItem());
+        RenderingRegistry.registerEntityRenderingHandler(EntityHarvestCow.class, new RenderHarvestCow());
         registerRenders(HMBlocks.cookware);
         registerRenders(HMBlocks.woodmachines);
         

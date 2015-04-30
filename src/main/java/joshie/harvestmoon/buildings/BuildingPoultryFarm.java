@@ -23,8 +23,9 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class BuildingPoultryFarm extends Building {
+public class BuildingPoultryFarm extends BuildingGroup {
     public BuildingPoultryFarm() {
+        super("poultryFarm");
         list = new ArrayList(668);
         list.add(new PlaceableBlock(Blocks.fence, 0, 1, 0, 1));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 13, 1, 0, 2));

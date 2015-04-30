@@ -15,26 +15,25 @@ public class BuildingStage {
     public BuildingGroup building;
     public boolean n1, n2, swap;
     public PlacementStage stage;
-    public int subType, index, xCoord, yCoord, zCoord;
+    public int index, xCoord, yCoord, zCoord;
 
     public BuildingStage() {}
 
-    public BuildingStage(UUID uuid, BuildingGroup building, int subType, int x, int y, int z, boolean n1, boolean n2, boolean swap) {
+    public BuildingStage(UUID uuid, BuildingGroup building, int x, int y, int z, boolean n1, boolean n2, boolean swap) {
         this.owner = uuid;
         this.building = building;
-        this.subType = subType;
         this.n1 = n1;
         this.n2 = n2;
         this.swap = swap;
         this.stage = PlacementStage.BLOCKS;
         this.index = 0;
         this.xCoord = x;
-        this.yCoord = y + building.getBuilding(subType).getOffsetY();
+        this.yCoord = y + building.getOffsetY();
         this.zCoord = z;
     }
 
     public BuildingStage build(World world) {        
-        if (index >= building.getBuilding(subType).getSize()) {
+        if (index >= building.getSize()) {
             if (stage == PlacementStage.BLOCKS) {
                 stage = PlacementStage.TORCHES;
                 index = 0;
@@ -51,8 +50,8 @@ public class BuildingStage {
                 PlayerHelper.addBuilding(world, this);
             }
         } else {
-            while (index < building.getBuilding(subType).getSize()) {
-                Placeable block = building.getBuilding(subType).get(index);
+            while (index < building.getSize()) {
+                Placeable block = building.get(index);
                 if (block.place(owner, world, xCoord, yCoord, zCoord, n1, n2, swap, stage)) {
                     index++;
                     return this;
@@ -66,7 +65,7 @@ public class BuildingStage {
     }
 
     public long getTickTime() {
-        return building.getBuilding(subType).getTickTime();
+        return building.getTickTime();
     }
 
     public boolean isFinished() {
@@ -75,7 +74,6 @@ public class BuildingStage {
 
     public void readFromNBT(NBTTagCompound nbt) {
         building = BuildingGroup.getGroup(nbt.getString("CurrentlyBuilding"));
-        subType = nbt.getInteger("SubType");
         n1 = nbt.getBoolean("North1");
         n2 = nbt.getBoolean("North2");
         swap = nbt.getBoolean("Swap");
@@ -92,7 +90,6 @@ public class BuildingStage {
 
     public void writeToNBT(NBTTagCompound nbt) {
         nbt.setString("CurrentlyBuilding", building.getName());
-        nbt.setInteger("SubType", subType);
         nbt.setBoolean("North1", n1);
         nbt.setBoolean("North2", n2);
         nbt.setBoolean("Swap", swap);

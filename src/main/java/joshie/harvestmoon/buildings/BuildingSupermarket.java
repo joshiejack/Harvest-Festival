@@ -23,16 +23,22 @@ import joshie.harvestmoon.buildings.placeable.blocks.PlaceableWeb;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceableItemFrame;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceablePainting;
+import joshie.harvestmoon.core.helpers.TownHelper;
+import joshie.harvestmoon.core.helpers.UUIDHelper;
 import joshie.harvestmoon.core.lib.LootStrings;
 import joshie.harvestmoon.init.HMBlocks;
+import joshie.harvestmoon.init.HMBuildings;
 import joshie.harvestmoon.player.Town;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class BuildingSupermarket extends Building {
+public class BuildingSupermarket extends BuildingGroup {
     public BuildingSupermarket() {
+        super("supermarket");
         offsetY = -10;
         tickTime = 5; //Place a block every 5 ticks
 
@@ -2367,5 +2373,10 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 1, 9, 21, 5));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 1, 9, 21, 9));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 1, 9, 21, 13));
+    }
+    
+    @Override
+    public boolean canBuy(World world, EntityPlayer player) {
+        return TownHelper.getLocationFor(UUIDHelper.getPlayerUUID(player), HMBuildings.carpenter, Town.CARPENTER_DOWNSTAIRS) != null;
     }
 }

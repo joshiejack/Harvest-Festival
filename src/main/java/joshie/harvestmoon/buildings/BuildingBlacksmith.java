@@ -24,8 +24,9 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class BuildingBlacksmith extends Building {
+public class BuildingBlacksmith extends BuildingGroup {
     public BuildingBlacksmith() {
+        super("blacksmith");
         offsetY = - 2;
         list = new ArrayList(386);
         list.add(new PlaceableBlock(Blocks.stonebrick, 0, 2, 0, 10));

@@ -14,8 +14,9 @@ import joshie.harvestmoon.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvestmoon.player.Town;
 import net.minecraft.init.Blocks;
 
-public class BuildingFishingHole extends Building {
+public class BuildingFishingHole extends BuildingGroup {
     public BuildingFishingHole() {
+        super("fishingHole");
         list = new ArrayList(162);
         list.add(new PlaceableBlock(Blocks.sandstone, 0, 2, 0, 2));
         list.add(new PlaceableBlock(Blocks.sandstone, 0, 2, 0, 3));

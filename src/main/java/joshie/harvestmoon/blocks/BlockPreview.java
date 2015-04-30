@@ -116,7 +116,7 @@ public class BlockPreview extends BlockHMBaseMeta {
         BuildingGroup group = BuildingGroup.groups.get(stack.getItemDamage());
         if (group != null) {
             TileMarker marker = (TileMarker) world.getTileEntity(x, y, z);
-            marker.setBuilding(group, group.getRandom());
+            marker.setBuilding(group);
             //Create a builder if none exists
             if (!world.isRemote) {
                 NPCHelper.getBuilderForPlayer(player);

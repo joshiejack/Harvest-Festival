@@ -15,10 +15,12 @@ public class RenderFryingPan extends RenderBase {
             GL11.glTranslatef(-0.2F, 0.65F, 0.5F);
         }
 
-        setTexture(BlockIcons.MATTE);
+        setTexture(BlockIcons.PAN_BOTTOM);
         //Main Frame of the Frying Pan
-        renderBlock(0.15D, 0D, 0.15D, 0.85D, 0.05D, 0.85D);
-        renderBlock(0.1D, 0.05D, 0.1D, 0.9D, 0.075D, 0.9D);
+        renderBlock(0.15D, 0D, 0.15D, 0.85D, 0.05D, 0.85D); //Very Bottom
+        renderBlock(0.1D, 0.05D, 0.1D, 0.9D, 0.075D, 0.9D); //Bottom
+        setTexture(BlockIcons.PAN_SIDE);
+        //Sides
         renderBlock(0.05D, 0.05D, 0.1D, 0.1D, 0.15D, 0.9D);
         renderBlock(0.9D, 0.05D, 0.1D, 0.95D, 0.15D, 0.9D);
         renderBlock(0.1D, 0.05D, 0.9D, 0.9D, 0.15D, 0.95D);
@@ -34,6 +36,7 @@ public class RenderFryingPan extends RenderBase {
 
         //Handle (Dependent on the Frying pans rotation)
         if (dir == ForgeDirection.WEST || isItem()) {
+            setTexture(BlockIcons.RAINBOW);
             renderBlock(-0.25D, 0.125D, 0.45D, 0D, 0.2D, 0.55D);
             renderBlock(-0.35D, 0.155D, 0.45D, -0.25D, 0.2D, 0.55D);
             renderBlock(-0.45D, 0.2D, 0.45D, -0.2D, 0.235D, 0.55D);

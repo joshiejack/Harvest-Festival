@@ -21,8 +21,9 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class BuildingMiningHut extends Building {
+public class BuildingMiningHut extends BuildingGroup {
     public BuildingMiningHut() {
+        super("miningHut");
         offsetY = -1;
         list = new ArrayList(551);
         list.add(new PlaceableBlock(Blocks.stonebrick, 0, 1, 0, 8));

@@ -22,8 +22,9 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
-public class BuildingBarn extends Building {
+public class BuildingBarn extends BuildingGroup {
     public BuildingBarn() {
+        super("barn");
         offsetY = - 1;
         list = new ArrayList(525);
         list.add(new PlaceableLog(Blocks.log, 1, 1, 0, 1));

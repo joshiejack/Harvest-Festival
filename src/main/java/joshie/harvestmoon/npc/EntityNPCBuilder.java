@@ -3,12 +3,12 @@ package joshie.harvestmoon.npc;
 import java.util.UUID;
 
 import joshie.harvestmoon.api.npc.INPC;
-import joshie.harvestmoon.buildings.Building;
+import joshie.harvestmoon.buildings.BuildingGroup;
 import joshie.harvestmoon.buildings.BuildingStage;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
-public class EntityNPCBuilder extends EntityNPC {
+public class EntityNPCBuilder extends EntityNPCShopkeeper {
     private BuildingStage building;
     private int tick;
 
@@ -47,9 +47,9 @@ public class EntityNPCBuilder extends EntityNPC {
         }
     }
 
-    public boolean startBuilding(Building building, int x, int y, int z, boolean n1, boolean n2, boolean swap, UUID uuid) {
+    public boolean startBuilding(BuildingGroup building, int x, int y, int z, boolean n1, boolean n2, boolean swap, UUID uuid) {
         if (!worldObj.isRemote) {
-            this.building = new BuildingStage(uuid, building.getGroup(), building.getInt(), x, y, z, n1, n2, swap);
+            this.building = new BuildingStage(uuid, building, x, y, z, n1, n2, swap);
         }
 
         return false;

@@ -19,8 +19,9 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
-public class BuildingChurch extends Building {
+public class BuildingChurch extends BuildingGroup {
     public BuildingChurch() {
+        super("church");
         list = new ArrayList(614);
         list.add(new PlaceableBlock(Blocks.grass, 0, 0, 0, 1));
         list.add(new PlaceableBlock(Blocks.stonebrick, 0, 0, 0, 2));

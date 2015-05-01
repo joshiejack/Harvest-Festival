@@ -13,7 +13,6 @@ import joshie.harvestmoon.core.network.PacketHandler;
 import joshie.harvestmoon.core.network.PacketPurchaseItem;
 import joshie.harvestmoon.npc.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
@@ -32,14 +31,9 @@ public class GuiNPCShop extends GuiNPC {
         super(npc, player);
 
         IShop shop = npc.getNPC().getShop();
-        if (shop == null || !shop.isOpen(player.worldObj)) player.closeScreen();
+        if (shop == null || !shop.isOpen(player.worldObj, player)) player.closeScreen();
         overlay = shop.getGuiOverlay();
-        contents = new ArrayList();
-        for (IPurchaseable purchaseable : shop.getContents()) {
-            if (purchaseable.canList(player.worldObj, player)) {
-                contents.add(purchaseable);
-            }
-        }
+        contents = shop.getContents(player);
     }
 
     public void setStart(int i) {

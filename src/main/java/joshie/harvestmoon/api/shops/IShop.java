@@ -3,6 +3,7 @@ package joshie.harvestmoon.api.shops;
 import java.util.List;
 
 import joshie.harvestmoon.api.core.Weekday;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
@@ -12,12 +13,13 @@ import cpw.mods.fml.relauncher.SideOnly;
 public interface IShop {
    /** Whether the shop is currently open
     *  @param      the world the player is in
+    *  @param      the player (can be null if checking if the npcs ai should return)
     *  @return     true if shop is open, false if its closed */
-    public boolean isOpen(World world);
+    public boolean isOpen(World world, EntityPlayer player);
 
     /** Returns a list of every purchaseable item
      *  in this shop */
-    public List<IPurchaseable> getContents();
+    public List<IPurchaseable> getContents(EntityPlayer player);
     
     /** Add a new purchaseable to this shop **/
     public IShop addItem(IPurchaseable item);

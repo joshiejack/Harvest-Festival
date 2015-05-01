@@ -32,13 +32,13 @@ public class EntityNPCShopkeeper extends EntityNPC {
     @Override
     protected void updateAITick() {
         if (!isWorking) {
-            if (shop.isOpen(worldObj)) {
+            if (shop.isOpen(worldObj, null)) {
                 isWorking = true;
                 //setPosition(shopX, shopY, shopZ);
             }
 
             super.updateAITick();
-        } else if (worldObj.getWorldTime() % 200 == 0 && !shop.isOpen(worldObj)) {
+        } else if (worldObj.getWorldTime() % 200 == 0 && !shop.isOpen(worldObj, null)) {
             isWorking = false;
         }
     }

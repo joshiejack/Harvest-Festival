@@ -14,6 +14,7 @@ import joshie.harvestmoon.core.helpers.generic.MCClientHelper;
 import joshie.harvestmoon.core.lib.HMModInfo;
 import joshie.harvestmoon.core.util.generic.Text;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.EnumDifficulty;
@@ -74,13 +75,20 @@ public class ShopInventory implements IShop {
     }
 
     @Override
-    public List<IPurchaseable> getContents() {
+    public List<IPurchaseable> getContents(EntityPlayer player) {
+        List contents = new ArrayList();
+        for (IPurchaseable purchaseable : this.contents) {
+            if (purchaseable.canList(player.worldObj, player)) {
+                contents.add(purchaseable);
+            }
+        }
+        
         return contents;
     }
 
     /** Whether or not the shop is currently open at this time or season **/
     @Override
-    public boolean isOpen(World world) {
+    public boolean isOpen(World world, EntityPlayer player) {
         if (world.difficultySetting == EnumDifficulty.PEACEFUL) return true;
         Weekday day = CalendarHelper.getWeekday(world);
         OpeningHours hours = open.get(world.difficultySetting).opening.get(day);
@@ -89,7 +97,9 @@ public class ShopInventory implements IShop {
             long daytime = CalendarHelper.getTime(world); //0-23999 by default      
             int scaledOpening = CalendarHelper.getScaledTime(hours.open);
             int scaledClosing = CalendarHelper.getScaledTime(hours.close);
-            return daytime >= scaledOpening && daytime <= scaledClosing;
+            boolean isOpen = daytime >= scaledOpening && daytime <= scaledClosing;
+            if (!isOpen) return false;
+            else return player != null? getContents(player).size() > 0: true;
         }
     }
 

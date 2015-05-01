@@ -4,7 +4,6 @@ import java.util.Random;
 
 import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.core.helpers.CalendarHelper;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockSnow;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.IBlockAccess;
@@ -18,23 +17,15 @@ public class BlockSnowSheet extends BlockSnow {
 
     @Override
     public void updateTick(World world, int x, int y, int z, Random rand) {
-        if (!world.provider.canSnowAt(x, y, z, false)) {
-            world.setBlockToAir(x, y, z);
-        }
-
-        super.updateTick(world, x, y, z, rand);
+        dieSnow(world, x, y, z);
     }
 
     private void dieSnow(World world, int x, int y, int z) {
         if (!world.isRemote) {
-            updateTick(world, x, y, z, world.rand);
+            if (!world.provider.canSnowAt(x, y, z, false)) {
+                world.setBlockToAir(x, y, z);
+            }
         }
-    }
-
-    @Override
-    public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
-        super.onNeighborBlockChange(world, x, y, z, block);
-        dieSnow(world, x, y, z);
     }
 
     @Override

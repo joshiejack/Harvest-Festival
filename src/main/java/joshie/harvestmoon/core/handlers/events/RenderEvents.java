@@ -13,13 +13,16 @@ import java.util.Locale;
 import joshie.harvestmoon.api.core.ILevelable;
 import joshie.harvestmoon.api.core.IRateable;
 import joshie.harvestmoon.api.core.ITiered;
+import joshie.harvestmoon.calendar.Season;
 import joshie.harvestmoon.core.gui.ContainerNPC;
+import joshie.harvestmoon.core.helpers.CalendarHelper;
 import joshie.harvestmoon.core.helpers.ClientHelper;
 import joshie.harvestmoon.core.helpers.RatingHelper;
 import joshie.harvestmoon.core.helpers.ToolLevelHelper;
 import joshie.harvestmoon.core.helpers.generic.MCClientHelper;
 import joshie.harvestmoon.core.lib.HMModInfo;
 import joshie.harvestmoon.items.ItemBaseTool.ToolTier;
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
@@ -27,6 +30,8 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.GuiIngameForge;
+import net.minecraftforge.client.event.EntityViewRenderEvent.FogColors;
+import net.minecraftforge.client.event.EntityViewRenderEvent.RenderFogEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 
@@ -70,7 +75,7 @@ public class RenderEvents {
                         if (isRateable) {
                             int rating = ((IRateable) stack.getItem()).getRating(stack);
                             if (rating >= 0) {
-                                int y = tooltip.size() <= 1? 10: 2 + (10 * tooltip.size());
+                                int y = tooltip.size() <= 1 ? 10 : 2 + (10 * tooltip.size());
                                 RatingHelper.drawStarRating(gui, k, l + 7 + y, rating, mc.fontRenderer);
                             }
                         } else if (isLevelable) {
@@ -80,7 +85,7 @@ public class RenderEvents {
                                 tier = ((ITiered) stack.getItem()).getTier(stack);
                             }
 
-                            int y = tooltip.size() == 0? 0: 2 + (10 * tooltip.size());
+                            int y = tooltip.size() == 0 ? 0 : 2 + (10 * tooltip.size());
                             ToolLevelHelper.drawToolProgress(gui, k, l + 5 + y, tier, level, mc.fontRenderer);
                         }
                     }
@@ -127,6 +132,38 @@ public class RenderEvents {
             GL11.glDisable(GL11.GL_BLEND);
             GL11.glPopMatrix();
             mc.mcProfiler.endSection();
+        }
+    }
+
+    private boolean isAcceptable(Season season, Block block) {
+        if (!block.getMaterial().isLiquid()) {
+            if (MCClientHelper.getWorld().isRaining() && CalendarHelper.getSeason() == season) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    @SubscribeEvent
+    public void onFogRender(RenderFogEvent event) {
+        if (isAcceptable(Season.WINTER, event.block)) {
+            GL11.glFogi(GL11.GL_FOG_MODE, GL11.GL_EXP);
+            GL11.glFogf(GL11.GL_FOG_DENSITY, 0.15F);
+        } else if (CalendarHelper.getSeason() == Season.WINTER) {
+            GL11.glFogi(GL11.GL_FOG_MODE, GL11.GL_EXP);
+            GL11.glFogf(GL11.GL_FOG_DENSITY, 0.01F);
+        }
+    }
+
+    @SubscribeEvent
+    public void onFogColor(FogColors event) {
+        if (!event.block.getMaterial().isLiquid()) {
+            if (CalendarHelper.getSeason() == Season.WINTER) {
+                event.red = 1F;
+                event.blue = 1F;
+                event.green = 1F;
+            }
         }
     }
 }

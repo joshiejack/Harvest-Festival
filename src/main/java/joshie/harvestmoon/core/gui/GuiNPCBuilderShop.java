@@ -35,9 +35,9 @@ public class GuiNPCBuilderShop extends GuiNPCShop {
     @Override
     protected void drawShelves(int x, int y) {
         int index = 0;
-        for (int i = start; i < PurchaseableBuilding.listings.size(); i++) {
+        for (int i = start; i < contents.size(); i++) {
             if (index > 4) break;
-            PurchaseableBuilding purchaseable = PurchaseableBuilding.listings.get(i);
+            PurchaseableBuilding purchaseable = (PurchaseableBuilding) contents.get(i);
             ItemStack display = purchaseable.getDisplayStack();
             long cost = purchaseable.getCost();
             mc.renderEngine.bindTexture(shelve_texture);

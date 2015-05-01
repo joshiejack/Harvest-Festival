@@ -174,7 +174,7 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
         boolean flag = held != null && held.getItem() == Items.spawn_egg;
         if (!flag && isEntityAlive()) {
             if (!worldObj.isRemote) {
-                player.openGui(HarvestMoon.instance, NPCHelper.getGuiIDForNPC(npc, worldObj, player.isSneaking() && held != null), worldObj, getEntityId(), 0, 0);
+                player.openGui(HarvestMoon.instance, NPCHelper.getGuiIDForNPC(npc, worldObj, player, player.isSneaking() && held != null), worldObj, getEntityId(), 0, 0);
                 setTalking(player);
             }
 

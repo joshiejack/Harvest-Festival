@@ -10,6 +10,7 @@ import joshie.harvestmoon.blocks.BlockCookware;
 import joshie.harvestmoon.blocks.BlockCrop;
 import joshie.harvestmoon.blocks.BlockDirt;
 import joshie.harvestmoon.blocks.BlockFlower;
+import joshie.harvestmoon.blocks.BlockGoddessWater;
 import joshie.harvestmoon.blocks.BlockPreview;
 import joshie.harvestmoon.blocks.BlockStone;
 import joshie.harvestmoon.blocks.BlockWood;
@@ -25,6 +26,9 @@ import joshie.harvestmoon.blocks.tiles.TileRuralChest;
 import joshie.harvestmoon.blocks.tiles.TileSteamer;
 import joshie.harvestmoon.core.lib.HMModInfo;
 import net.minecraft.block.Block;
+import net.minecraft.item.EnumRarity;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 
 public class HMBlocks {
     public static Block cookware;
@@ -34,6 +38,9 @@ public class HMBlocks {
     public static Block preview;
     public static Block stone;
     public static Block woodmachines;
+    public static Block goddessWater;
+    
+    public static Fluid goddess;
 
     public static void init() {
         crops = new BlockCrop().setStepSound(soundTypeGrass).setBlockName("crops.block");
@@ -43,6 +50,10 @@ public class HMBlocks {
         woodmachines = new BlockWood().setStepSound(soundTypeWood).setBlockName("general.block");
         preview = new BlockPreview().setBlockName("preview");
         stone = new BlockStone().setStepSound(soundTypePiston).setBlockName("stone");
+        goddess = new Fluid("hm_goddess_water").setRarity(EnumRarity.rare);
+        FluidRegistry.registerFluid(goddess);
+        goddessWater = new BlockGoddessWater(goddess).setBlockName("goddess.water");
+        goddess.setBlock(goddessWater);
 
         registerTiles(HMModInfo.CAPNAME, TileCooking.class, TileFridge.class, TileFryingPan.class, TileKitchen.class, TileMarker.class, 
                             TileMixer.class, TileOven.class, TilePot.class, TileRuralChest.class, TileSteamer.class);

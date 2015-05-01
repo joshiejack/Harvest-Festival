@@ -11,8 +11,12 @@ import joshie.harvestmoon.buildings.placeable.blocks.PlaceableSignWall;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableStairs;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableVine;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceableNPC;
+import joshie.harvestmoon.core.helpers.TownHelper;
+import joshie.harvestmoon.init.HMBuildings;
 import joshie.harvestmoon.player.Town;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
 
 public class BuildingFishingHole extends Building {
     public BuildingFishingHole() {
@@ -182,5 +186,25 @@ public class BuildingFishingHole extends Building {
         list.add(new PlaceableBlock(Blocks.wooden_slab, 1, 0, 6, 4));
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 6, 3));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 6, 3));
+    }
+    
+    @Override
+    public long getCost() {
+        return 1000L;
+    }
+    
+    @Override
+    public int getWoodCount() {
+        return 16;
+    }
+    
+    @Override
+    public int getStoneCount() {
+        return 0;
+    }
+    
+    @Override
+    public boolean canBuy(World world, EntityPlayer player) {
+        return TownHelper.hasBuilding(player, HMBuildings.fishingHut);
     }
 }

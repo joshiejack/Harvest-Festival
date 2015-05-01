@@ -31,7 +31,7 @@ public class RenderBuilding implements IItemRenderer {
         float scale = 0.15F;
         GL11.glScalef(scale, scale, scale);
         GL11.glTranslatef(-1F, -2F, -1F);
-        Building building = Building.groups.get(stack.getItemDamage());
+        Building building = Building.buildings.get(stack.getItemDamage());
         for (Placeable placeable : building.getList()) {
             if (placeable instanceof PlaceableBlock) {
                 PlaceableBlock block = (PlaceableBlock) placeable;

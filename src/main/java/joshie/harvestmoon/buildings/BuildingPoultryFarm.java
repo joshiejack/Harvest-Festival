@@ -15,12 +15,16 @@ import joshie.harvestmoon.buildings.placeable.blocks.PlaceableTrapDoor;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableWeb;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceableItemFrame;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceableNPC;
+import joshie.harvestmoon.core.helpers.TownHelper;
 import joshie.harvestmoon.core.lib.LootStrings;
 import joshie.harvestmoon.init.HMBlocks;
+import joshie.harvestmoon.init.HMBuildings;
 import joshie.harvestmoon.player.Town;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 public class BuildingPoultryFarm extends Building {
@@ -707,6 +711,25 @@ public class BuildingPoultryFarm extends Building {
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 0, 12, 8, 4));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 1, 1, 9, 4));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 0, 11, 9, 4));
-
+    }
+    
+    @Override
+    public long getCost() {
+        return 2000L;
+    }
+    
+    @Override
+    public int getWoodCount() {
+        return 160;
+    }
+    
+    @Override
+    public int getStoneCount() {
+        return 0;
+    }
+    
+    @Override
+    public boolean canBuy(World world, EntityPlayer player) {
+        return TownHelper.hasBuilding(player, HMBuildings.blacksmith);
     }
 }

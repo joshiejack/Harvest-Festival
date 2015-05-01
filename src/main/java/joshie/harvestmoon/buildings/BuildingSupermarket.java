@@ -2376,7 +2376,23 @@ public class BuildingSupermarket extends Building {
     }
     
     @Override
+    public long getCost() {
+        return 1280L;
+    }
+    
+    @Override
+    public int getWoodCount() {
+        return 512;
+    }
+    
+    @Override
+    public int getStoneCount() {
+        return 320;
+    }
+    
+    /** Can purchase when you have the carpenters house built in your town **/
+    @Override
     public boolean canBuy(World world, EntityPlayer player) {
-        return TownHelper.getLocationFor(UUIDHelper.getPlayerUUID(player), HMBuildings.carpenter, Town.CARPENTER_DOWNSTAIRS) != null;
+        return TownHelper.hasBuilding(player, HMBuildings.carpenter);
     }
 }

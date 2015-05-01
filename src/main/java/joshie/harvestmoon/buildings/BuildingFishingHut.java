@@ -17,12 +17,16 @@ import joshie.harvestmoon.buildings.placeable.blocks.PlaceableVine;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceableItemFrame;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceablePainting;
+import joshie.harvestmoon.core.helpers.TownHelper;
 import joshie.harvestmoon.core.lib.LootStrings;
 import joshie.harvestmoon.init.HMBlocks;
+import joshie.harvestmoon.init.HMBuildings;
 import joshie.harvestmoon.player.Town;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 public class BuildingFishingHut extends Building {
@@ -383,5 +387,25 @@ public class BuildingFishingHut extends Building {
         list.add(new PlaceableBlock(Blocks.fence, 0, 12, 7, 3));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 5, 0, 8, 3));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 5, 12, 8, 3));
+    }
+    
+    @Override
+    public long getCost() {
+        return 6000L;
+    }
+    
+    @Override
+    public int getWoodCount() {
+        return 96;
+    }
+    
+    @Override
+    public int getStoneCount() {
+        return 0;
+    }
+    
+    @Override
+    public boolean canBuy(World world, EntityPlayer player) {
+        return TownHelper.hasBuilding(player, HMBuildings.miningHill) && TownHelper.hasBuilding(player, HMBuildings.miningHut) && TownHelper.hasBuilding(player, HMBuildings.goddessPond);
     }
 }

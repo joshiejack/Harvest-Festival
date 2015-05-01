@@ -17,12 +17,12 @@ public class ItemBuilding extends ItemHMMeta implements ICreativeSorted {
     
     @Override
     public int getMetaCount() {
-        return Building.groups.size();
+        return Building.buildings.size();
     }
 
     @Override
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
-        Building group = Building.groups.get(stack.getItemDamage());
+        Building group = Building.buildings.get(stack.getItemDamage());
         if (group != null) {
             return group.generate(UUIDHelper.getPlayerUUID(player), world, x, y, z);
         } else return false;
@@ -30,8 +30,8 @@ public class ItemBuilding extends ItemHMMeta implements ICreativeSorted {
 
     @Override
     public String getName(ItemStack stack) {
-        if (stack.getItemDamage() >= Building.groups.size()) return "invalid";
-        Building group = Building.groups.get(stack.getItemDamage());
+        if (stack.getItemDamage() >= Building.buildings.size()) return "invalid";
+        Building group = Building.buildings.get(stack.getItemDamage());
         if (group != null) {
             return group.getName();
         } else return "invalid";

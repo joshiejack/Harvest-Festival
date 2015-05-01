@@ -7,8 +7,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public interface IPurchaseable {
-    /** Whether this player can purchase this product or not, on this date/time **/
+    /** Whether the player has everything needed to purchase this item **/
     public boolean canBuy(World world, EntityPlayer player);
+    
+    /** Whether this item shows up in the shop gui for purchase **/
+    public boolean canList(World world, EntityPlayer player);
     
     /** The cost of this product **/
     public long getCost();

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.UUID;
 
-import joshie.harvestmoon.api.buildings.IBuildingGroup;
+import joshie.harvestmoon.api.buildings.IBuilding;
 import joshie.harvestmoon.api.core.IDate;
 import joshie.harvestmoon.api.npc.INPC;
 import joshie.harvestmoon.api.shops.IShop;
@@ -52,7 +52,7 @@ public class NPC implements INPC {
     private boolean isMiner;
     private IShop shop;
     private CalendarDate birthday;
-    private IBuildingGroup home;
+    private IBuilding home;
     private String home_location;
     private boolean doesRespawn;
 
@@ -155,7 +155,7 @@ public class NPC implements INPC {
     }
 
     @Override
-    public INPC setHome(IBuildingGroup group, String home_location) {
+    public INPC setHome(IBuilding group, String home_location) {
         this.home = group;
         this.home_location = home_location;
         return this;
@@ -263,7 +263,7 @@ public class NPC implements INPC {
     }
 
     @Override
-    public IBuildingGroup getHomeGroup() {
+    public IBuilding getHomeGroup() {
         return home;
     }
 

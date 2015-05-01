@@ -3,9 +3,11 @@ package joshie.harvestmoon.core.handlers;
 import joshie.harvestmoon.blocks.tiles.TileRuralChest;
 import joshie.harvestmoon.core.gui.ContainerFridge;
 import joshie.harvestmoon.core.gui.ContainerNPC;
+import joshie.harvestmoon.core.gui.ContainerNPCBuilderShop;
 import joshie.harvestmoon.core.gui.ContainerNPCGift;
 import joshie.harvestmoon.core.gui.ContainerNPCShop;
 import joshie.harvestmoon.core.gui.ContainerRuralChest;
+import joshie.harvestmoon.core.gui.GuiNPCBuilderShop;
 import joshie.harvestmoon.core.gui.GuiFridge;
 import joshie.harvestmoon.core.gui.GuiNPC;
 import joshie.harvestmoon.core.gui.GuiNPCGift;
@@ -23,6 +25,7 @@ public class GuiHandler implements IGuiHandler {
     public static final int SHOP = 1;
     public static final int GIFT = 2;
     public static final int FRIDGE = 3;
+    public static final int SHOP_BUILDER = 4;
 
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
@@ -32,11 +35,12 @@ public class GuiHandler implements IGuiHandler {
         }
 
         switch (ID) {
-            case NPC:       return new ContainerNPC((EntityNPC) world.getEntityByID(x), player.inventory);
-            case SHOP:      return new ContainerNPCShop((EntityNPC) world.getEntityByID(x), player.inventory);
-            case GIFT:      return new ContainerNPCGift((EntityNPC) world.getEntityByID(x), player.inventory);
-            case FRIDGE:    return new ContainerFridge(player.inventory, PlayerHelper.getFridge(player));
-            default:        return null;
+            case NPC:           return new ContainerNPC((EntityNPC) world.getEntityByID(x), player.inventory);
+            case SHOP:          return new ContainerNPCShop((EntityNPC) world.getEntityByID(x), player.inventory);
+            case SHOP_BUILDER:  return new ContainerNPCBuilderShop((EntityNPC) world.getEntityByID(x), player.inventory);
+            case GIFT:          return new ContainerNPCGift((EntityNPC) world.getEntityByID(x), player.inventory);
+            case FRIDGE:        return new ContainerFridge(player.inventory, PlayerHelper.getFridge(player));
+            default:            return null;
         }
     }
 
@@ -48,11 +52,12 @@ public class GuiHandler implements IGuiHandler {
         }
         
         switch (ID) {
-            case NPC:       return new GuiNPC((EntityNPC) world.getEntityByID(x), player);
-            case SHOP:      return new GuiNPCShop((EntityNPC) world.getEntityByID(x), player);
-            case GIFT:      return new GuiNPCGift((EntityNPC) world.getEntityByID(x), player);
-            case FRIDGE:    return new GuiFridge(player.inventory, PlayerHelper.getFridge(player));
-            default:        return null;
+            case NPC:           return new GuiNPC((EntityNPC) world.getEntityByID(x), player);
+            case SHOP:          return new GuiNPCShop((EntityNPC) world.getEntityByID(x), player);
+            case SHOP_BUILDER:  return new GuiNPCBuilderShop((EntityNPC) world.getEntityByID(x), player);
+            case GIFT:          return new GuiNPCGift((EntityNPC) world.getEntityByID(x), player);
+            case FRIDGE:        return new GuiFridge(player.inventory, PlayerHelper.getFridge(player));
+            default:            return null;
         }
     }
 }

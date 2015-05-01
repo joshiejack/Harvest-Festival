@@ -31,6 +31,11 @@ public class PurchaseableEntity implements IPurchaseable {
     public boolean canBuy(World world, EntityPlayer player) {
         return true;
     }
+    
+    @Override
+    public boolean canList(World world, EntityPlayer player) {
+        return canBuy(world, player);
+    }
 
     @Override
     public long getCost() {

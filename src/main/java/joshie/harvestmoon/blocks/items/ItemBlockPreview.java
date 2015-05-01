@@ -28,8 +28,8 @@ public class ItemBlockPreview extends ItemBlockBase implements ICreativeSorted {
         
     @Override
     public String getName(ItemStack stack) {
-        if (stack.getItemDamage() >= Building.groups.size()) return "invalid";
-        Building group = Building.groups.get(stack.getItemDamage());
+        if (stack.getItemDamage() >= Building.buildings.size()) return "invalid";
+        Building group = Building.buildings.get(stack.getItemDamage());
         if (group != null) {
             return group.getName();
         } else return "invalid";

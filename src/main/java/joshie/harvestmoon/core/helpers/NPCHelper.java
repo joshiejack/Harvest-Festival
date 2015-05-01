@@ -32,7 +32,7 @@ public class NPCHelper {
     }
     
     public static int getGuiIDForNPC(INPC npc, World world, boolean isSneaking) {
-        return npc.getShop() != null && npc.getShop().isOpen(world) ? GuiHandler.SHOP : (isSneaking) ? GuiHandler.GIFT : GuiHandler.NPC;
+        return npc.getShop() != null && npc.getShop().isOpen(world) ? (npc.isBuilder()? GuiHandler.SHOP_BUILDER: GuiHandler.SHOP) : (isSneaking) ? GuiHandler.GIFT : GuiHandler.NPC;
     }
     
     public static EntityNPCBuilder getBuilderForPlayer(World world, EntityPlayer player) {

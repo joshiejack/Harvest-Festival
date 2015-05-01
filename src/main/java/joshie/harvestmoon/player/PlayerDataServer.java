@@ -6,7 +6,7 @@ import static joshie.harvestmoon.core.network.PacketHandler.sendToClient;
 import java.util.UUID;
 
 import joshie.harvestmoon.api.WorldLocation;
-import joshie.harvestmoon.api.buildings.IBuildingGroup;
+import joshie.harvestmoon.api.buildings.IBuilding;
 import joshie.harvestmoon.api.crops.ICropData;
 import joshie.harvestmoon.api.npc.INPC;
 import joshie.harvestmoon.buildings.BuildingStage;
@@ -225,10 +225,15 @@ public class PlayerDataServer implements IData {
         markDirty();
     }
 
-    public WorldLocation getCoordinatesFor(IBuildingGroup home, String npc_location) {
+    public WorldLocation getCoordinatesFor(IBuilding home, String npc_location) {
         TownBuilding building = town.buildings.get(home.getName());
         if (building == null) return null;
         return building.getRealCoordinatesFor(npc_location);
+    }
+    
+
+    public boolean hasBuilding(IBuilding building) {
+        return town.buildings.get(building.getName()) != null;
     }
     
     //Cached Value, The actual data for the owner is stored in the entity itself

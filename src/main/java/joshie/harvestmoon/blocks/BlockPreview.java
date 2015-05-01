@@ -76,7 +76,7 @@ public class BlockPreview extends BlockHMBaseMeta {
 
     @Override
     public int getMetaCount() {
-        return Building.groups.size();
+        return Building.buildings.size();
     }
 
     @Override
@@ -112,8 +112,8 @@ public class BlockPreview extends BlockHMBaseMeta {
 
     @Override
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase player, ItemStack stack) {
-        if (stack.getItemDamage() >= Building.groups.size()) return;
-        Building group = Building.groups.get(stack.getItemDamage());
+        if (stack.getItemDamage() >= Building.buildings.size()) return;
+        Building group = Building.buildings.get(stack.getItemDamage());
         if (group != null) {
             TileMarker marker = (TileMarker) world.getTileEntity(x, y, z);
             marker.setBuilding(group);

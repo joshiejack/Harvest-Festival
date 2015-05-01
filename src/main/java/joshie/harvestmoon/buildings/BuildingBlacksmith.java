@@ -16,12 +16,16 @@ import joshie.harvestmoon.buildings.placeable.blocks.PlaceableTrapDoor;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableWeb;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceableItemFrame;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceableNPC;
+import joshie.harvestmoon.core.helpers.TownHelper;
 import joshie.harvestmoon.core.lib.LootStrings;
 import joshie.harvestmoon.init.HMBlocks;
+import joshie.harvestmoon.init.HMBuildings;
 import joshie.harvestmoon.player.Town;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 public class BuildingBlacksmith extends Building {
@@ -427,5 +431,25 @@ public class BuildingBlacksmith extends Building {
         list.add(new PlaceableBlock(Blocks.stone_slab, 0, 3, 9, 9));
         list.add(new PlaceableBlock(Blocks.stone_slab, 0, 4, 9, 8));
         list.add(new PlaceableBlock(Blocks.stone_slab, 0, 4, 9, 9));
+    }
+    
+    @Override
+    public long getCost() {
+        return 3500L;
+    }
+    
+    @Override
+    public int getWoodCount() {
+        return 32;
+    }
+    
+    @Override
+    public int getStoneCount() {
+        return 244;
+    }
+    
+    @Override
+    public boolean canBuy(World world, EntityPlayer player) {
+        return TownHelper.hasBuilding(player, HMBuildings.supermarket);
     }
 }

@@ -8,8 +8,12 @@ import joshie.harvestmoon.buildings.placeable.blocks.PlaceableFlower;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableLog;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableTorches;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceableNPC;
+import joshie.harvestmoon.core.helpers.TownHelper;
+import joshie.harvestmoon.init.HMBuildings;
 import joshie.harvestmoon.player.Town;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
 
 public class BuildingMiningHill extends Building {
     public BuildingMiningHill() {
@@ -786,5 +790,25 @@ public class BuildingMiningHill extends Building {
         list.add(new PlaceableBlock(Blocks.leaves, 0, 3, 14, 4));
         list.add(new PlaceableBlock(Blocks.leaves, 0, 3, 14, 5));
         list.add(new PlaceableBlock(Blocks.leaves, 0, 4, 14, 4));
+    }
+    
+    @Override
+    public long getCost() {
+        return 1000L;
+    }
+    
+    @Override
+    public int getWoodCount() {
+        return 0;
+    }
+    
+    @Override
+    public int getStoneCount() {
+        return 64;
+    }
+    
+    @Override
+    public boolean canBuy(World world, EntityPlayer player) {
+        return TownHelper.hasBuilding(player, HMBuildings.miningHut);
     }
 }

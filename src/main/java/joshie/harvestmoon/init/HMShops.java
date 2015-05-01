@@ -10,9 +10,11 @@ import static joshie.harvestmoon.api.core.Weekday.WEDNESDAY;
 import joshie.harvestmoon.api.HMApi;
 import joshie.harvestmoon.api.crops.ICrop;
 import joshie.harvestmoon.api.shops.IShop;
+import joshie.harvestmoon.buildings.Building;
 import joshie.harvestmoon.items.ItemAnimal;
 import joshie.harvestmoon.items.ItemGeneral;
 import joshie.harvestmoon.shops.PurchaseableBlueFeather;
+import joshie.harvestmoon.shops.PurchaseableBuilding;
 import joshie.harvestmoon.shops.PurchaseableCropSeeds;
 import joshie.harvestmoon.shops.PurchaseableEntity;
 import joshie.harvestmoon.shops.ShopInventoryGui;
@@ -88,6 +90,10 @@ public class HMShops {
         carpenter = HMApi.SHOPS.newShop("cafe", HMNPCs.builder);
         if (isClient) {
             carpenter.setGuiOverlay(new ShopInventoryGui(100));
+        }
+        
+        for (Building building: Building.buildings) {
+            carpenter.addItem(new PurchaseableBuilding(building));
         }
         
         HMNPCs.builder.setShop(carpenter);

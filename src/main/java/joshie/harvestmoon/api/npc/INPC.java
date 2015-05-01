@@ -6,7 +6,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import joshie.harvestmoon.api.WorldLocation;
-import joshie.harvestmoon.api.buildings.IBuildingGroup;
+import joshie.harvestmoon.api.buildings.IBuilding;
 import joshie.harvestmoon.api.core.IDate;
 import joshie.harvestmoon.api.shops.IShop;
 import joshie.harvestmoon.npc.EntityNPC;
@@ -27,7 +27,7 @@ public interface INPC {
 
     /** Marks this NPCs home as this building group, with this name 
      * @return **/
-    public INPC setHome(IBuildingGroup group, String name);
+    public INPC setHome(IBuilding group, String name);
     
     /** Marks this npc as not respawning **/
     public INPC setNoRespawn();
@@ -77,7 +77,7 @@ public interface INPC {
     public Quality getGiftValue(ItemStack gift);
 
     /** Returns the building group home for this npc **/
-    public IBuildingGroup getHomeGroup();
+    public IBuilding getHomeGroup();
     
     /** Returns the home name for this npc **/
     public String getHomeLocation();

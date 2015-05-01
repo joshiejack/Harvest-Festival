@@ -41,6 +41,11 @@ public class PurchaseableCropSeeds implements IPurchaseable {
             return true;
         } else return false;
     }
+    
+    @Override
+    public boolean canList(World world, EntityPlayer player) {
+        return canBuy(world, player);
+    }
 
     @Override
     public long getCost() {

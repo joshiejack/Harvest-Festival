@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
-import joshie.harvestmoon.api.buildings.IBuildingGroup;
+import joshie.harvestmoon.api.buildings.IBuilding;
 import joshie.harvestmoon.buildings.placeable.Placeable;
 import joshie.harvestmoon.buildings.placeable.Placeable.PlacementStage;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceableNPC;
@@ -15,8 +15,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class Building implements IBuildingGroup {
-    public static final ArrayList<Building> groups = new ArrayList(50);
+public class Building implements IBuilding {
+    public static final ArrayList<Building> buildings = new ArrayList(50);
     //List of all placeable elements
     public HashMap<String, PlaceableNPC> npc_offsets = new HashMap();
     protected ArrayList<Placeable> list;
@@ -30,8 +30,8 @@ public class Building implements IBuildingGroup {
     
     public Building(String string) {
         this.name = string;
-        this.meta = groups.size();
-        this.groups.add(this);
+        this.meta = buildings.size();
+        this.buildings.add(this);
     }
     
     public Building init() {
@@ -40,7 +40,7 @@ public class Building implements IBuildingGroup {
     }
 
     public static Building getGroup(String string) {
-        for (Building b : groups) {
+        for (Building b : buildings) {
             if (b.getName().equals(string)) {
                 return b;
             }
@@ -114,6 +114,18 @@ public class Building implements IBuildingGroup {
 
     public boolean canBuy(World world, EntityPlayer player) {
         return false;
+    }
+
+    public long getCost() {
+        return 0;
+    }
+
+    public int getWoodCount() {
+        return 0;
+    }
+
+    public int getStoneCount() {
+        return 0;
     }
 
     @Override

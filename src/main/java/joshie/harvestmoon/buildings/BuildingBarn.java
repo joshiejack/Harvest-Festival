@@ -16,11 +16,15 @@ import joshie.harvestmoon.buildings.placeable.blocks.PlaceableVine;
 import joshie.harvestmoon.buildings.placeable.blocks.PlaceableWeb;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceableItemFrame;
 import joshie.harvestmoon.buildings.placeable.entities.PlaceableNPC;
+import joshie.harvestmoon.core.helpers.TownHelper;
 import joshie.harvestmoon.core.lib.LootStrings;
+import joshie.harvestmoon.init.HMBuildings;
 import joshie.harvestmoon.player.Town;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 public class BuildingBarn extends Building {
     public BuildingBarn() {
@@ -561,5 +565,25 @@ public class BuildingBarn extends Building {
         list.add(new PlaceableBlock(Blocks.wooden_slab, 1, 6, 9, 6));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 1, 7, 9, 6));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 0, 8, 9, 6));
+    }
+    
+    @Override
+    public long getCost() {
+        return 3000L;
+    }
+    
+    @Override
+    public int getWoodCount() {
+        return 160;
+    }
+    
+    @Override
+    public int getStoneCount() {
+        return 0;
+    }
+    
+    @Override
+    public boolean canBuy(World world, EntityPlayer player) {
+        return TownHelper.hasBuilding(player, HMBuildings.blacksmith);
     }
 }

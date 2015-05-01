@@ -69,7 +69,7 @@ public class RenderNPC extends RendererLivingEntity {
             }
         }
 
-        GL11.glScalef(1F, npc.getNPC().getHeight(), 1F);
+        GL11.glScalef(npc.getNPC().getHeight(), npc.getNPC().getHeight(), npc.getNPC().getHeight());
         GL11.glTranslatef(0F, npc.getNPC().getOffset(), 0F);
 
         GL11.glColor3f(1.0F, 1.0F, 1.0F);

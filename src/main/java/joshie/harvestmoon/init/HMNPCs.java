@@ -63,7 +63,7 @@ public class HMNPCs implements INPCRegistry {
     public static INPC poultry; //Poultry Farm Owner                 (POULTRY FARM) - done
 
     public static void preInit() {
-        goddess = HMApi.NPC.register("goddess", FEMALE, ADULT, 8, Season.SPRING).setHeight(1.2F, 0.35F);
+        goddess = HMApi.NPC.register("goddess", FEMALE, ADULT, 8, Season.SPRING).setHeight(1.2F, 0.05F);
         animal_owner = HMApi.NPC.register("jim", MALE, ADULT, 26, Season.SPRING);
         cafe_owner = HMApi.NPC.register("liara", FEMALE, ADULT, 17, Season.SPRING);
         seed_owner = HMApi.NPC.register("jade", FEMALE, ADULT, 14, Season.SPRING);

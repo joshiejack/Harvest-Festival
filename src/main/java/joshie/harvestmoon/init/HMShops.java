@@ -34,6 +34,7 @@ public class HMShops {
         barn();
         blacksmith();
         cafe();
+        carpenter();
         poultry();
         supermarket();
         
@@ -81,6 +82,15 @@ public class HMShops {
         cafe.addItem(250, HMApi.COOKING.getMeal("corn.baked"));
         cafe.addOpening(MONDAY, 9500, 17000).addOpening(TUESDAY, 9500, 17000).addOpening(WEDNESDAY, 9500, 17000).addOpening(THURSDAY, 9500, 17000);
         cafe.addOpening(FRIDAY, 9500, 17000).addOpening(SATURDAY, 9500, 17000).addOpening(SUNDAY, 9500, 17000);
+    }
+    
+    private static void carpenter() {
+        carpenter = HMApi.SHOPS.newShop("cafe", HMNPCs.builder);
+        if (isClient) {
+            carpenter.setGuiOverlay(new ShopInventoryGui(100));
+        }
+        
+        HMNPCs.builder.setShop(carpenter);
     }
     
     private static void poultry() {

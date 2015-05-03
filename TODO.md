@@ -43,7 +43,6 @@
 - [ ] items/meals/burntPOT.png
 - [ ] items/meals/burntSTEAMER.png
 - [ ] items/meals/cake_chocolate.png
-- [ ] items/meals/chocolate_hot.png
 - [ ] items/meals/corn_baked.png
 - [ ] items/meals/cornflakes.png
 - [ ] items/meals/cucumber_pickled.png

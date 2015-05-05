@@ -60,7 +60,7 @@ public class QuestsClientside {
     //Returns a single lined script
     public String getScript(EntityPlayer player, EntityNPC npc) {      
         IShop shop = npc.getNPC().getShop();
-        if(shop != null && shop.isOpen(player.worldObj, player)) {
+        if(shop != null && shop.isOpen(player.worldObj, player) && shop.getContents(player).size() > 0) {
             return shop.getWelcome();
         }
         

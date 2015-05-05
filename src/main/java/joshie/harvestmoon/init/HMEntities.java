@@ -2,6 +2,7 @@ package joshie.harvestmoon.init;
 
 import joshie.harvestmoon.HarvestMoon;
 import joshie.harvestmoon.animals.EntityHarvestCow;
+import joshie.harvestmoon.animals.EntityHarvestSheep;
 import joshie.harvestmoon.core.util.generic.EntityFakeItem;
 import joshie.harvestmoon.npc.EntityNPC;
 import joshie.harvestmoon.npc.EntityNPCBuilder;
@@ -17,5 +18,6 @@ public class HMEntities {
         EntityRegistry.registerModEntity(EntityNPCShopkeeper.class, "NPCShopkeeper", 3, HarvestMoon.instance, 80, 3, true);
         EntityRegistry.registerModEntity(EntityNPCMiner.class, "NPCMiner", 4, HarvestMoon.instance, 80, 3, true);
         EntityRegistry.registerModEntity(EntityHarvestCow.class, "HarvestCow", 5, HarvestMoon.instance, 150, 3, true);
+        EntityRegistry.registerModEntity(EntityHarvestSheep.class, "HarvestSheep", 6, HarvestMoon.instance, 150, 3, true);
     }
 }

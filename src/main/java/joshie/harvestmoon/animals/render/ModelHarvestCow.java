@@ -7,7 +7,7 @@ import net.minecraft.util.MathHelper;
 
 import org.lwjgl.opengl.GL11;
 
-public class ModelHarvestCowChild extends ModelBase {
+public class ModelHarvestCow extends ModelBase {
     /** Child Models **/
     public ModelRenderer child_frontRightLeg;
     public ModelRenderer child_backRightLeg;
@@ -47,7 +47,7 @@ public class ModelHarvestCowChild extends ModelBase {
     public ModelRenderer hornRight;
     public ModelRenderer head;
 
-    public ModelHarvestCowChild() {
+    public ModelHarvestCow() {
         this.textureWidth = 128;
         this.textureHeight = 128;
         this.child_backMiddle = new ModelRenderer(this, 47, 25);

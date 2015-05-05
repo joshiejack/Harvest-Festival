@@ -34,9 +34,10 @@ public class RenderFryingPan extends RenderBase {
         renderBlock(0.05D, 0.1D, 0.05D, 0.1D, 0.25D, 0.1D);
         renderBlock(0.9D, 0.1D, 0.05D, 0.95D, 0.25D, 0.1D);
 
+        setTexture(BlockIcons.METALLIC);
+
         //Handle (Dependent on the Frying pans rotation)
         if (dir == ForgeDirection.WEST || isItem()) {
-            setTexture(BlockIcons.RAINBOW);
             renderBlock(-0.25D, 0.125D, 0.45D, 0D, 0.2D, 0.55D);
             renderBlock(-0.35D, 0.155D, 0.45D, -0.25D, 0.2D, 0.55D);
             renderBlock(-0.45D, 0.2D, 0.45D, -0.2D, 0.235D, 0.55D);

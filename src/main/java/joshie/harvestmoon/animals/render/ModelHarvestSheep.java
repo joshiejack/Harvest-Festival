@@ -180,8 +180,8 @@ public class ModelHarvestSheep extends ModelBase {
         if (this.isChild) {
             this.setChildAngles(f, f1, f2, f3, f4, f5, entity);
             GL11.glPushMatrix();
-            GL11.glScalef(0.5F, 0.5F, 0.5F);
-            GL11.glTranslatef(0F, 1.3F, 0F);
+            GL11.glScalef(0.7F, 0.7F, 0.7F);
+            GL11.glTranslatef(0F, 0.6F, 0F);
             this.child_head.render(f5);
             this.child_bodyMiddle.render(f5);
             this.child_frontLeftLeg.render(f5);

@@ -46,7 +46,7 @@ http://opengameart.org/content/lpc-farming-tilesets-magic-animations-and-ui-elem
 
 Sickle Textures > Schist;
  
-Milk, Watering Cans, Wool, Bush > VapourDrive
+Milk, Watering Cans, Wool, Bush, Ores > VapourDrive
 
 Mine Materials > VapourDrive, Balduran (http://balduranne.deviantart.com/)
  

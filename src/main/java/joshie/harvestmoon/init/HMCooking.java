@@ -116,6 +116,7 @@ public class HMCooking {
         addOvenRecipe("riceballs.toasted", 12, -1, riceball).setOptionalIngredients(sugar, salt);
         addOvenRecipe("toast", 16, -1, bread).setOptionalIngredients(butter);
         addOvenRecipe("dinnerroll", 9, -2, egg, milk, butter);
+        addOvenRecipe("sweetroll", 11, -2, egg, milk, butter, sugar);
         addOvenRecipe("doria", 25, -3, onion, butter, milk, riceball, flour);
         addOvenRecipe("cookies", 15, -5, egg, flour, butter).setOptionalIngredients(sugar);
         addOvenRecipe("cookies.chocolate", 30, -5, cookies, chocolate);

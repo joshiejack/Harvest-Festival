@@ -37,34 +37,46 @@
 - [ ] items/feed.png
 - [ ] items/flour.png
 - [ ] items/meals/burntSTEAMER.png
+<<<<<<< HEAD
 - [ ] items/meals/cake_chocolate.png
 - [ ] items/meals/corn_baked.png
 - [ ] items/meals/doughnut.png
 - [ ] items/meals/dumplings.png
+=======
+- [ ] items/meals/cake_chocolate.png //Plate
+- [ ] items/meals/corn_baked.png //Plate
+- [ ] items/meals/cucumber_pickled.png
+- [ ] items/meals/doughnut.png //Plate
+- [ ] items/meals/dumplings.png //Bowl
+>>>>>>> origin/master
 - [ ] items/meals/egg_boiled.png
 - [ ] items/meals/egg_overrice.png
-- [ ] items/meals/egg_scrambled.png
+- [ ] items/meals/egg_scrambled.png //Plate
 - [ ] items/meals/eggplant_happy.png
 - [ ] items/meals/fish_grilled.png
 - [ ] items/meals/fishsticks.png
 - [ ] items/meals/fries_french.png
 - [ ] items/meals/omelet.png
+- [ ] items/meals/mountain_stew.png
+- [ ] items/meals/noodles_curry.png
 - [ ] items/meals/omelet_rice.png
 - [ ] items/meals/pancake.png
-- [ ] items/meals/pancake_savoury.png
-- [ ] items/meals/popcorn.png
-- [ ] items/meals/potato_candied.png
-- [ ] items/meals/potsticker.png
-- [ ] items/meals/risotto.png
-- [ ] items/meals/sandwich.png
+- [ ] items/meals/pancake_savoury.png //Plate
+- [ ] items/meals/popcorn.png //Custom
+- [ ] items/meals/potato_candied.png //Plate
+- [ ] items/meals/potsticker.png //Plate
+- [ ] items/meals/cake_rice.png //Plate
+- [ ] items/meals/cake_rice_roasted.png //Plate
+- [ ] items/meals/risotto.png //Plate
+- [ ] items/meals/sandwich.png //Plate
 - [ ] items/meals/sashimi.png
 - [ ] items/meals/sashimi_chirashi.png
-- [ ] items/meals/spinach_boiled.png
+- [ ] items/meals/spinach_boiled.png //Bowl
 - [ ] items/meals/sushi.png
-- [ ] items/meals/toast.png
-- [ ] items/meals/toast_french.png
-- [ ] items/meals/turnip_pickled.png
-- [ ] items/treats/horse.png
+- [ ] items/meals/toast.png//Carrot //Plate
+- [ ] items/meals/toast_french.png //Plate
+- [ ] items/meals/turnip_pickled.png //Custom
+- [ ] items/treats/horse.png //Carrot chunks?
 - [ ] items/treats/other.png
-- [ ] items/treats/pig.png
-- [ ] items/treats/sheep.png
+- [ ] items/treats/pig.png //Candied apple?
+- [ ] items/treats/sheep.png //Light, cloudy? Marshmellows?

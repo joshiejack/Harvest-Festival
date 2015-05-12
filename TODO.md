@@ -39,7 +39,6 @@
 - [ ] items/meals/burntSTEAMER.png
 - [ ] items/meals/cake_chocolate.png
 - [ ] items/meals/corn_baked.png
-- [ ] items/meals/cucumber_pickled.png
 - [ ] items/meals/doughnut.png
 - [ ] items/meals/dumplings.png
 - [ ] items/meals/egg_boiled.png

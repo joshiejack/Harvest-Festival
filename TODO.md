@@ -39,21 +39,20 @@
 - [ ] items/meals/burntSTEAMER.png
 - [ ] items/meals/cake_chocolate.png //Plate
 - [ ] items/meals/corn_baked.png //Plate
-- [ ] items/meals/cucumber_pickled.png
 - [ ] items/meals/doughnut.png //Plate
 - [ ] items/meals/dumplings.png //Bowl
-- [ ] items/meals/egg_boiled.png
-- [ ] items/meals/egg_overrice.png
+- [ ] items/meals/egg_boiled.png //Custom
+- [ ] items/meals/egg_overrice.png //Bowl
 - [ ] items/meals/egg_scrambled.png //Plate
-- [ ] items/meals/eggplant_happy.png
-- [ ] items/meals/fish_grilled.png
-- [ ] items/meals/fishsticks.png
-- [ ] items/meals/fries_french.png
-- [ ] items/meals/omelet.png
-- [ ] items/meals/mountain_stew.png
-- [ ] items/meals/noodles_curry.png
-- [ ] items/meals/omelet_rice.png
-- [ ] items/meals/pancake.png
+- [ ] items/meals/eggplant_happy.png //Custom
+- [ ] items/meals/fish_grilled.png //Plate
+- [ ] items/meals/fishsticks.png //Custom
+- [ ] items/meals/fries_french.png //Custom
+- [ ] items/meals/mountain_stew.png //Bowl
+- [ ] items/meals/noodles_curry.png //Bowl
+- [ ] items/meals/omelet.png //Plate
+- [ ] items/meals/omelet_rice.png //Plate
+- [ ] items/meals/pancake.png //plate
 - [ ] items/meals/pancake_savoury.png //Plate
 - [ ] items/meals/popcorn.png //Custom
 - [ ] items/meals/potato_candied.png //Plate
@@ -62,11 +61,11 @@
 - [ ] items/meals/cake_rice_roasted.png //Plate
 - [ ] items/meals/risotto.png //Plate
 - [ ] items/meals/sandwich.png //Plate
-- [ ] items/meals/sashimi.png
-- [ ] items/meals/sashimi_chirashi.png
+- [ ] items/meals/sashimi.png //Custom
+- [ ] items/meals/sashimi_chirashi.png //Custom
 - [ ] items/meals/spinach_boiled.png //Bowl
-- [ ] items/meals/sushi.png
-- [ ] items/meals/toast.png//Carrot //Plate
+- [ ] items/meals/sushi.png //Custom
+- [ ] items/meals/toast.png //Plate
 - [ ] items/meals/toast_french.png //Plate
 - [ ] items/meals/turnip_pickled.png //Custom
 - [ ] items/treats/horse.png //Carrot chunks?

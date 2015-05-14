@@ -100,23 +100,24 @@ public class HMCooking {
         
         addPotRecipe("milk.hot", true, 20, -10, milk).setOptionalIngredients(sugar);
         addPotRecipe("chocolate.hot", true, 10, -15, milk, chocolate).setOptionalIngredients(sugar);
-        addPotRecipe("stew.pumpkin", 8, -1, pumpkin).setOptionalIngredients(sugar, salt);
-        addPotRecipe("stew.fish", 7, -1, fish).setOptionalIngredients(salt);
         addPotRecipe("egg.boiled", 20, -2, egg).setOptionalIngredients(salt);
         addPotRecipe("spinach.boiled", 20, -1, spinach);
         addPotRecipe("potato.candied", 8, -1, sweet_potato).setOptionalIngredients(sugar);
         addPotRecipe("dumplings", 25, -5, cabbage, onion, flour, oil).setOptionalIngredients(sugar);
         addPotRecipe("noodles", 40, -3, flour).setOptionalIngredients(salt);
+//        addPotRecipe("noodles.curry", 60, -3, noodles, curry).setOptionalIngredients(salt);
         addPotRecipe("soup.rice", 10, -2, riceball);
         addPotRecipe("porridge", 8, -2, milk, riceball).setOptionalIngredients(sugar);
         addPotRecipe("egg.overrice", 12, -2, egg, riceball).setOptionalIngredients(salt);
         addPotRecipe("stew", 30, -1, milk, flour).setOptionalIngredients(eggplant, onion, potato, carrot, green_pepper, fish, salt);
-        
+        addPotRecipe("stew.pumpkin", 8, -1, pumpkin).setOptionalIngredients(sugar, salt);
+        addPotRecipe("stew.fish", 7, -1, fish).setOptionalIngredients(salt);
+//        addPotRecipe("stew.mountain", [you do the numbers plis], carrot, bamboo.shoot, shiitake).setOptionalIngredients(salt);     
         addOvenRecipe("corn.baked", 7, -1, corn).setOptionalIngredients(oil, butter, salt);
         addOvenRecipe("riceballs.toasted", 12, -1, riceball).setOptionalIngredients(sugar, salt);
         addOvenRecipe("toast", 16, -1, bread).setOptionalIngredients(butter);
         addOvenRecipe("dinnerroll", 9, -2, egg, milk, butter);
-        addOvenRecipe("sweetroll", 11, -2, egg, milk, butter, sugar);
+//        addOvenRecipe("bun.jam", [you do the numbers plis], egg, milk, jam);
         addOvenRecipe("doria", 25, -3, onion, butter, milk, riceball, flour);
         addOvenRecipe("cookies", 15, -5, egg, flour, butter).setOptionalIngredients(sugar);
         addOvenRecipe("cookies.chocolate", 30, -5, cookies, chocolate);

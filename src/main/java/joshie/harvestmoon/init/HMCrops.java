@@ -61,7 +61,7 @@ public class HMCrops {
         turnip = HMApi.CROPS.registerCrop("turnip", 120, 60, 5, 0, 0, 0xEDE1B5, SPRING).setCropIconHandler(new IconHandlerTurnip());
         potato = HMApi.CROPS.registerCrop("potato", 150, 80, 8, 0, 0, 0x8D782A, SPRING).setDropHandler(new DropPotato()).setCropIconHandler(new IconHandlerSeedFood(Blocks.potatoes));
         cucumber = HMApi.CROPS.registerCrop("cucumber", 200, 60, 10, 5, 0, 0x137B27, SPRING).setAnimalFoodType(AnimalFoodType.FRUIT).setCropIconHandler(new IconHandlerCucumber());
-        strawberry = HMApi.CROPS.registerCrop("strawberry", 150, 30, 9, 7, 3, 0xA42F14, SPRING).setAnimalFoodType(AnimalFoodType.FRUIT).setCropIconHandler(new IconHandlerStrawberry());
+        strawberry = HMApi.CROPS.registerCrop("strawberry", 150, 30, 9, 7, 3, 0xff7bea, SPRING).setAnimalFoodType(AnimalFoodType.FRUIT).setCropIconHandler(new IconHandlerStrawberry());
         cabbage = HMApi.CROPS.registerCrop("cabbage", 500, 250, 15, 0, 8, 0x8DF146, SPRING).setCropIconHandler(new IconHandlerCabbage());
 
         //Summer Crops

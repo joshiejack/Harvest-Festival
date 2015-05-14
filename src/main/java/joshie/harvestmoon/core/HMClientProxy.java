@@ -24,7 +24,6 @@ import joshie.harvestmoon.core.util.generic.RenderFakeItem;
 import joshie.harvestmoon.init.HMBlocks;
 import joshie.harvestmoon.init.HMItems;
 import joshie.harvestmoon.items.render.RenderItemAnimal;
-import joshie.harvestmoon.items.render.RenderSeedBag;
 import joshie.harvestmoon.npc.EntityNPC;
 import joshie.harvestmoon.npc.EntityNPCBuilder;
 import joshie.harvestmoon.npc.EntityNPCMiner;
@@ -54,7 +53,6 @@ public class HMClientProxy extends HMCommonProxy {
         RenderingRegistry.registerBlockHandler(new RenderCrops());
         FMLCommonHandler.instance().bus().register(new RenderEvents());
         MinecraftForge.EVENT_BUS.register(new RenderEvents());
-        MinecraftForgeClient.registerItemRenderer(HMItems.seeds, new RenderSeedBag());
         MinecraftForgeClient.registerItemRenderer(HMItems.animal, new RenderItemAnimal());
         ClientRegistry.bindTileEntitySpecialRenderer(TileFryingPan.class, new SpecialRendererFryingPan());
         RenderingRegistry.registerEntityRenderingHandler(EntityNPC.class, new RenderNPC());

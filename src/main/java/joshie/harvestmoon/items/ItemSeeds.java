@@ -160,13 +160,13 @@ public class ItemSeeds extends net.minecraft.item.ItemSeeds implements IRateable
     @Override
     public IIcon getIcon(ItemStack stack, int pass, EntityPlayer player, ItemStack usingItem, int useRemaining) {
         if (!stack.hasTagCompound()) return seed_bag_body;
-        if (pass == 1) return seed_bag_body;
-        else if (pass == 2) return seed_bag_neck;
-        else {
-            ICrop crop = SeedHelper.getCropFromSeed(stack);
-            return crop == null ? seed_bag_neck : crop.getCropStack().getIconIndex();
-        }
-
+        if (pass == 0) return seed_bag_body;
+        else return seed_bag_neck;
+    }
+    
+    @Override
+    public IIcon getIcon(ItemStack stack, int pass) {
+        return getIcon(stack, pass, null, null, 0);
     }
 
     @Override
@@ -178,14 +178,13 @@ public class ItemSeeds extends net.minecraft.item.ItemSeeds implements IRateable
     public int getColorFromItemStack(ItemStack stack, int pass) {
         if (!stack.hasTagCompound()) return super.getColorFromItemStack(stack, pass);
         ICrop crop = SeedHelper.getCropFromSeed(stack);
-        if (pass == 1 && crop != null) return crop.getColor();
-        else if (pass == 2) return 0xFFFFFF;
+        if (pass == 0 && crop != null) return crop.getColor();
         else return super.getColorFromItemStack(stack, pass);
     }
 
     @Override
     public int getRenderPasses(int metadata) {
-        return 3;
+        return 2;
     }
 
     @SideOnly(Side.CLIENT)

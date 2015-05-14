@@ -132,8 +132,24 @@ public class ItemMeal extends ItemHMMeta implements IMealProvider, ICreativeSort
         int meta = Math.max(0, Math.min(Utensil.values().length - 1, damage));
         return burnt[meta];
     }
+    
+    @Override
+    public boolean requiresMultipleRenderPasses() {
+        return true;
+    }
+    
+    @Override
+    public int getRenderPasses(int meta) {
+        return 1;
+    }
+    
+    @Override
+    public IIcon getIcon(ItemStack stack, int pass) {
+        return getIconIndex(stack);
+    }
 
     @SideOnly(Side.CLIENT)
+    @Override
     public IIcon getIconIndex(ItemStack stack) {
         if (!stack.hasTagCompound()) {
             return getIconFromDamage(stack.getItemDamage());

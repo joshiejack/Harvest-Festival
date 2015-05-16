@@ -95,11 +95,7 @@ public class HMTab extends CreativeTabs {
 
     public static void init() {
         HMTab.tabFarming.setStack(HMCrops.tomato.getCropStack());
-<<<<<<< HEAD
         HMTab.tabCooking.setStack(HMApi.COOKING.getMeal("salad"));
-=======
-        HMTab.tabCooking.setStack(HMApi.COOKING.getMeal("noodles"));
->>>>>>> 8bb2beaae805e78bd538891d88632d3b992cc424
         HMTab.tabMining.setStack(new ItemStack(HMBlocks.stone, 1, 1));
         HMTab.tabTown.setStack(HMBuildings.church.getPreview());
     }

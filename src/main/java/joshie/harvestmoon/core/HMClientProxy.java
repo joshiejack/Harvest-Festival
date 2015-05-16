@@ -8,6 +8,7 @@ import joshie.harvestmoon.animals.render.ModelHarvestCow;
 import joshie.harvestmoon.animals.render.ModelHarvestSheep;
 import joshie.harvestmoon.animals.render.RenderHarvestAnimal;
 import joshie.harvestmoon.blocks.BlockHMBaseMeta;
+import joshie.harvestmoon.blocks.render.RenderCookware;
 import joshie.harvestmoon.blocks.render.RenderCrops;
 import joshie.harvestmoon.blocks.render.RenderPreview;
 import joshie.harvestmoon.blocks.render.SpecialRendererFryingPan;
@@ -45,12 +46,14 @@ public class HMClientProxy extends HMCommonProxy {
     @Override
     public void init() {
         super.init();
-        
+
         ClientHelper.resetClient();
         RenderIds.ALL = RenderingRegistry.getNextAvailableRenderId();
         RenderIds.CROPS = RenderingRegistry.getNextAvailableRenderId();
+        RenderIds.COOKING = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(new RenderHandler());
         RenderingRegistry.registerBlockHandler(new RenderCrops());
+        RenderingRegistry.registerBlockHandler(new RenderCookware());
         FMLCommonHandler.instance().bus().register(new RenderEvents());
         MinecraftForge.EVENT_BUS.register(new RenderEvents());
         MinecraftForgeClient.registerItemRenderer(HMItems.animal, new RenderItemAnimal());
@@ -62,17 +65,16 @@ public class HMClientProxy extends HMCommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityFakeItem.class, new RenderFakeItem());
         RenderingRegistry.registerEntityRenderingHandler(EntityHarvestCow.class, new RenderHarvestAnimal(new ModelHarvestCow(), "cow"));
         RenderingRegistry.registerEntityRenderingHandler(EntityHarvestSheep.class, new RenderHarvestAnimal(new ModelHarvestSheep(), "sheep"));
-        registerRenders(HMBlocks.cookware);
         registerRenders(HMBlocks.woodmachines);
-        
+
         for (int i = 0; i < 8; i++) {
             RenderHandler.register(HMBlocks.preview, i, RenderPreview.class);
         }
-        
+
         if (Client.CHICKEN_OFFSET_FIX) {
             MinecraftForge.EVENT_BUS.register(new ChickenRenderFix());
         }
-        
+
         if (General.DEBUG_MODE) {
             //MinecraftForgeClient.registerItemRenderer(HMItems.structures, new RenderBuilding());
         }

@@ -63,7 +63,7 @@ public class BlockCookware extends BlockHMBaseMeta {
 
     @Override
     public int getRenderType() {
-        return RenderIds.ALL;
+        return RenderIds.COOKING;
     }
 
     @Override

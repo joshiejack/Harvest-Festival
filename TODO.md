@@ -34,11 +34,8 @@
 - [ ] blocks/fridge_upper_door.png
 - [ ] blocks/trough.png
 - [ ] blocks/trough2.png
-- [ ] items/flour.png
+- [ ] blocks/shipping.png
 - [ ] items/meals/burntSTEAMER.png
-- [ ] items/meals/cake_chocolate.png //Plate
-- [ ] items/meals/corn_baked.png //Plate
-- [ ] items/meals/doughnut.png //Plate
 - [ ] items/meals/egg_boiled.png //Custom
 - [ ] items/meals/egg_scrambled.png //Plate
 - [ ] items/meals/eggplant_happy.png //Custom
@@ -49,7 +46,6 @@
 - [ ] items/meals/omelet_rice.png //Plate
 - [ ] items/meals/pancake.png //plate
 - [ ] items/meals/pancake_savoury.png //Plate
-- [ ] items/meals/popcorn.png //Custom
 - [ ] items/meals/potato_candied.png //Plate
 - [ ] items/meals/potsticker.png //Plate
 - [ ] items/meals/cake_rice.png //Plate
@@ -59,8 +55,7 @@
 - [ ] items/meals/sashimi.png //Custom
 - [ ] items/meals/sashimi_chirashi.png //Custom
 - [ ] items/meals/sushi.png //Custom
-- [ ] items/meals/toast.png //Plate
-- [ ] items/meals/toast_french.png //Plate
 - [ ] items/meals/turnip_pickled.png //Custom
-- [ ] items/treats/horse.png //Carrot chunks?
-- [ ] items/treats/pig.png //Candied apple?
+
+##Pics
+Mayonnaise Maker = http://i.imgur.com/sje2Cj8.png

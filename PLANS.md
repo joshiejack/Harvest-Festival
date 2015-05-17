@@ -20,10 +20,13 @@ Stage 2 (0.6.0)
 * Gathering
 * Farm Equipment
 * More General Items
+* Flowers
+* Vase Effects through Flowers (http://i.imgur.com/xTrUPeR.png)
 
 Stage 3 (0.7.0)
 * Fishing
 * Jewels, Emeralds, Gems
+* Fruit Trees
 
 Stage 4 (0.8.0)
 * Harvest Sprite
@@ -34,7 +37,7 @@ Stage 5 (0.9.0)
 * Events
 * Festivals
 
-Stage 6 (1.0)
+Stage 10000 (1.0)
 * Minetweaker Support
 
 Potential Names

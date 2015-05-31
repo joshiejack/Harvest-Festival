@@ -35,20 +35,15 @@
 - [ ] blocks/trough.png
 - [ ] blocks/trough2.png
 - [ ] blocks/shipping.png
-- [ ] items/meals/burntSTEAMER.png
-- [ ] items/meals/egg_boiled.png //Custom
 - [ ] items/meals/egg_scrambled.png //Plate
-- [ ] items/meals/eggplant_happy.png //Custom
 - [ ] items/meals/fish_grilled.png //Plate
 - [ ] items/meals/fishsticks.png //Custom
 - [ ] items/meals/fries_french.png //Custom
 - [ ] items/meals/omelet.png //Plate
 - [ ] items/meals/omelet_rice.png //Plate
-- [ ] items/meals/pancake.png //plate
 - [ ] items/meals/pancake_savoury.png //Plate
 - [ ] items/meals/potato_candied.png //Plate
 - [ ] items/meals/potsticker.png //Plate
-- [ ] items/meals/cake_rice.png //Plate
 - [ ] items/meals/cake_rice_roasted.png //Plate
 - [ ] items/meals/risotto.png //Plate
 - [ ] items/meals/sandwich.png //Plate
@@ -56,6 +51,18 @@
 - [ ] items/meals/sashimi_chirashi.png //Custom
 - [ ] items/meals/sushi.png //Custom
 - [ ] items/meals/turnip_pickled.png //Custom
+- [ ] entities/abi.png
+- [ ] entities/cloe.png
+- [ ] entities/goddess.png
+- [ ] entities/inap.png
+- [ ] entities/jade.png
+- [ ] entities/jamie.png
+- [ ] entities/jim.png
+- [ ] entities/katlin.png
+- [ ] entities/thomas.png
+- [ ] entities/tiberius.png
+
+- [ ] Move Skin Textures to assets/textures/entities
 
 ##Pics
-Mayonnaise Maker = http://i.imgur.com/sje2Cj8.png
+Makers = http://i.imgur.com/hx18lk0.png

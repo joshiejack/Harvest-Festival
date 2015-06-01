@@ -42,7 +42,6 @@
 - [ ] items/meals/omelet.png //Plate
 - [ ] items/meals/omelet_rice.png //Plate
 - [ ] items/meals/pancake_savoury.png //Plate
-- [ ] items/meals/potato_candied.png //Plate
 - [ ] items/meals/risotto.png //Plate
 - [ ] items/meals/sashimi.png //Custom
 - [ ] items/meals/sashimi_chirashi.png //Custom

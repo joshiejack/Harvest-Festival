@@ -24,14 +24,14 @@ if (System.getenv().BUILD_NUMBER) {
 
 version = "${minecraft_version}-${mod_version}${buildnumber}"
 group= "uk.joshiejack.harvest" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "Harvest Moon"
+archivesBaseName = "Harvest Festival"
 
 minecraft {
     version = "${minecraft_version}-${forge_version}"
     runDir = "eclipse"
     
     replace "@VERSION@", "${mod_version}"
-    replaceIn "HMModInfo.java"
+    replaceIn "HFModInfo.java"
 }
 
 repositories {
@@ -68,17 +68,17 @@ processResources {
 }
 
 runClient {
-    jvmArgs '-Dfml.coreMods.load=joshie.harvestmoon.init.HMOverride'
+    jvmArgs '-Dfml.coreMods.load=joshie.harvest.init.HFOverride'
 }
 
 runServer {
-    jvmArgs '-Dfml.coreMods.load=joshie.harvestmoon.init.HMOverride'
+    jvmArgs '-Dfml.coreMods.load=joshie.harvest.init.HFOverride'
 }
 
 jar {
     manifest {
-        attributes 'FMLAT': 'harvestmoon_at.cfg'
-        attributes 'FMLCorePlugin': 'joshie.harvestmoon.init.HMOverride'
+        attributes 'FMLAT': 'harvestfestival_at.cfg'
+        attributes 'FMLCorePlugin': 'joshie.harvest.init.HFOverride'
         attributes 'FMLCorePluginContainsFMLMod': 'true'
     }
 }
@@ -90,8 +90,8 @@ task sourceJar(type: Jar) {
 
 task deobfJar(type: Jar) {
     manifest {
-        attributes 'FMLAT': 'harvestmoon_at.cfg'
-        attributes 'FMLCorePlugin': 'joshie.harvestmoon.init.HMOverride'
+        attributes 'FMLAT': 'harvestfestival_at.cfg'
+        attributes 'FMLCorePlugin': 'joshie.harvest.init.HFOverride'
         attributes 'FMLCorePluginContainsFMLMod': 'true'
     }
     from sourceSets.main.output

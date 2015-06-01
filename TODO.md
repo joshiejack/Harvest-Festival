@@ -35,6 +35,8 @@
 - [ ] blocks/trough.png
 - [ ] blocks/trough2.png
 - [ ] blocks/shipping.png
+- [ ] items/crops/pineapple.png 
+- [ ] items/crops/grass.png 
 - [ ] items/meals/egg_scrambled.png //Plate
 - [ ] items/meals/fish_grilled.png //Plate
 - [ ] items/meals/fishsticks.png //Custom

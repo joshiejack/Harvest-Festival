@@ -1,0 +1,479 @@
+#en_US.lang by joshie ;)
+hf.tab.farming=Harvest Festival - Farming
+hf.tab.cooking=Harvest Festival - Cooking
+hf.tab.mining=Harvest Festival - Mining
+hf.tab.town=Harvest Festival - Township
+hf.mode.true=Harvest Festival was set to easy mode!
+hf.mode.false=Harvest Festival was set to hard mode!
+hf.check.head=On head after purchase.
+hf.check.lead=On lead after purchase.
+
+#Commands
+hf.commands.help.header=--- Showing hm help page %d of %d (/hm help <page>) ---
+
+#Animals
+hf.animal.chicken=Chicken
+hf.animal.cow=Cow
+hf.animal.sheep=Sheep
+
+#Buildings
+hf.structures.barn=Animal Ranch
+hf.structures.blacksmith=Blacksmith
+hf.structures.cafe=Cafe
+hf.structures.carpenter=Carpenter
+hf.structures.church=Church
+hf.structures.clockmaker=Clockmaker
+hf.structures.fishinghole=Fishing Hole
+hf.structures.fishinghut=Fishing Hut
+hf.structures.goddesspond=Goddess Pond
+hf.structures.mininghill=Mining Hill
+hf.structures.mininghut=Mining Hut
+hf.structures.poultryfarm=Poultry Farm
+hf.structures.supermarket=General Store
+hf.structures.townhall=Townhall
+
+#Cheat Items (Translators don't bother tranlating these, I just use them to help with dev)
+hf.cheat.coord.setter=[BuildingGen] Coordinate Setter
+hf.cheat.code.generator=[BuildingGen] Code Generator
+hf.cheat.render.generator=[RenderGen] Rotation Generator
+hf.cheat.meta.checker=[Helper] Meta Checker
+
+#Crops
+hf.crop.seeds.format.standard=%C %S
+hf.crop.seeds.format.giant=%G %C %S
+hf.crop.seeds=Seeds
+hf.crop.turnip=Turnip
+hf.crop.potato=Potato
+hf.crop.cucumber=Cucumber
+hf.crop.strawberry=Strawberry
+hf.crop.cabbage=Cabbage
+hf.crop.tomato=Tomato
+hf.crop.onion=Onion
+hf.crop.corn=Corn
+hf.crop.pumpkin=Pumpkin
+hf.crop.pineapple=Pineapple
+hf.crop.eggplant=Eggplant
+hf.crop.carrot=Carrot
+hf.crop.potato.sweet=Sweet Potato
+hf.crop.spinach=Spinach
+hf.crop.pepper.green=Green Pepper
+hf.crop.grass.block=Grass
+hf.crop.grass.item=Fodder
+hf.crop.wheat=Wheat
+hf.crop.watermelon=Watermelon
+
+#General Items
+hf.general.item.feather.blue=Blue Feather
+hf.general.item.milker=Milker
+hf.general.item.brush=Animal Brush
+hf.general.item.medicine=Animal Medicine
+hf.general.item.feed=Chicken Feed
+hf.general.item.ore.junk=Junk Ore
+hf.general.item.ore.copper=Copper Ore
+hf.general.item.ore.silver=Silver Ore
+hf.general.item.ore.gold=Gold Ore
+hf.general.item.ore.mystril=Mystril Ore
+hf.general.item.stone.mythic=Mythic Stone
+hf.general.item.shoot.bamboo=Bamboo Shoot
+hf.general.item.flour=Flour
+hf.general.item.mushroom.matsutake=Matsutake Mushroom
+hf.general.item.oil=Cooking Oil
+hf.general.item.riceball=Riceball
+hf.general.item.butter=Butter
+hf.general.item.salt=Salt
+hf.general.item.miracle.potion=Miracle Potion
+hf.general.item.chocolate=Chocolate
+
+#Meals
+hf.meal.level=Restores
+hf.meal.sat=Fills
+hf.meal.stamina=Stamina
+hf.meal.fatigue=Fatigue
+hf.meal.fry.stir=Stir Fry
+hf.meal.rice.fried=Fried Rice
+hf.meal.pancake.savoury=Savoury Pancake
+hf.meal.fries.french=French Fries
+hf.meal.popcorn=Popcorn
+hf.meal.cornflakes=Cornflakes
+hf.meal.egg.scrambled=Scrambled Eggs
+hf.meal.omelet=Omelette
+hf.meal.omelet.rice=Omurice
+hf.meal.pancake=Pancake
+hf.meal.potsticker=Pot Sticker
+hf.meal.risotto=Risotto
+hf.meal.juice.pineapple=Pineapple Juice
+hf.meal.juice.tomato=Tomato Juice
+hf.meal.milk.strawberry=Strawberry Milk
+hf.meal.juice.vegetable=Vegetable Juice
+hf.meal.latte.vegetable=Vegetable Latte
+hf.meal.ketchup=Tomato Ketchup
+hf.meal.butter=Butter
+hf.meal.fishsticks=Fish Fingers
+hf.meal.salad=Salad
+hf.meal.sandwich=Sandwich
+hf.meal.turnip.pickled=Pickled Turnip
+hf.meal.cucumber.pickled=Pickled Cucumber
+hf.meal.sushi=Sushi
+hf.meal.sashimi=Sashimi
+hf.meal.sashimi.chirashi=Chirashi Sushi
+hf.meal.milk.hot=Hot Milk
+hf.meal.chocolate.hot=Hot Chocolate
+hf.meal.stew.pumpkin=Pumpkin Stew
+hf.meal.stew.fish=Fish Stew
+hf.meal.egg.boiled=Boiled Egg
+hf.meal.spinach.boiled=Boiled Spinach
+hf.meal.potato.candied=Candied Potato
+hf.meal.dumplings=Dumplings
+hf.meal.noodles=Noodles
+hf.meal.soup.rice=Rice Soup
+hf.meal.porridge=Porridge
+hf.meal.egg.overrice=Egg Over Rice
+hf.meal.stew=Stew
+hf.meal.corn.baked=Baked Corn
+hf.meal.riceballs.toasted=Toasted Riceballs
+hf.meal.toast=Toast
+hf.meal.dinnerroll=Dinner Roll
+hf.meal.sweetroll=Sweet Roll
+hf.meal.doria=Doria
+hf.meal.cookies=Cookies
+hf.meal.cookies.chocolate=Chocolate Chip Cookies
+hf.meal.cake.chocolate=Chocolate Cake
+hf.meal.toast.french=French Toast
+hf.meal.doughnut=Doughnut
+hf.meal.fish.grilled=Grilled Fish
+hf.meal.eggplant.happy=Happy Eggplant
+
+#Sizeables
+hf.sizeable.format=%S %P
+hf.sizeable.small=Small
+hf.sizeable.medium=Medium
+hf.sizeable.large=Large
+hf.sizeable.egg=Egg
+hf.sizeable.milk=Milk
+hf.sizeable.wool=Wool
+hf.sizeable.fish=Fish
+hf.sizeable.cheese=Cheese
+hf.sizeable.yoghurt=Yoghurt
+hf.sizeable.mayonnaise=Mayonnaise
+hf.sizeable.matsutake=Matsutake Mushroom
+hf.sizeable.toadstool=Toadstool
+hf.sizeable.shiitake=Shiitake Mushroom
+hf.sizeable.yarn=Yarn
+
+#Tools
+#Hoe
+hf.hoe.basic=Hoe
+hf.hoe.copper=Copper Hoe
+hf.hoe.silver=Silver Hoe
+hf.hoe.gold=Gold Hoe
+hf.hoe.mystril=Mystril Hoe
+hf.hoe.cursed=Cursed Hoe
+hf.hoe.blessed=Blessed Hoe
+hf.hoe.mythic=Mythic Hoe
+#Sickle
+hf.sickle.basic=Sickle
+hf.sickle.copper=Copper Sickle
+hf.sickle.silver=Silver Sickle
+hf.sickle.gold=Gold Sickle
+hf.sickle.mystril=Mystril Sickle
+hf.sickle.cursed=Cursed Sickle
+hf.sickle.blessed=Blessed Sickle
+hf.sickle.mythic=Mythic Sickle
+#Watering Can
+hf.wateringcan.basic=Watering Can
+hf.wateringcan.copper=Copper Watering Can
+hf.wateringcan.silver=Silver Watering Can
+hf.wateringcan.gold=Gold Watering Can
+hf.wateringcan.mystril=Mystril Watering Can
+hf.wateringcan.cursed=Cursed Watering Can
+hf.wateringcan.blessed=Blessed Watering Can
+hf.wateringcan.mythic=Mythic Watering Can
+#Vanilla config option
+hf.hoe.wood=Wooden Hoe
+hf.hoe.stone=Stone Hoe
+hf.hoe.iron=Iron Hoe
+hf.hoe.diamond=Diamond Hoe
+hf.sickle.wood=Wooden Sickle
+hf.sickle.stone=Stone Sickle
+hf.sickle.iron=Iron Sickle
+hf.sickle.diamond=Diamond Sickle
+hf.wateringcan.wood=Wooden Watering Can
+hf.wateringcan.stone=Stone Watering Can
+hf.wateringcan.iron=Iron Watering Can
+hf.wateringcan.diamond=Diamond Watering Can
+
+#Treats
+hf.treat.cow=Cow Treat
+hf.treat.sheep=Sheep Treat
+hf.treat.chicken=Chicken Treat
+hf.treat.horse=Horse Treat
+hf.treat.pig=Pig Treat
+hf.treat.cat=Cat Treat
+hf.treat.dog=Dog Treat
+hf.treat.other=Animal Treat
+
+#Blocks
+hf.cookware.fridge=Fridge
+hf.cookware.fridge.top=Fridge
+hf.cookware.kitchen=Kitchen Counter
+hf.cookware.pot=Cooking Pot
+hf.cookware.frying.pan=Frying Pan
+hf.cookware.mixer=Food Mixer
+hf.cookware.oven=Oven
+hf.cookware.chopping.board=Chopping Board
+hf.cookware.mixing.bowl=Mixing Bowl
+hf.cookware.baking=Baking Tray
+hf.cookware.steamer=Steamer
+
+hf.general.block.shipping=Shipment Box
+hf.general.block.chest=Rural Chest
+hf.general.block.nest=Incubator
+hf.general.block.trough=Food Trough
+hf.general.block.trough2=Food Trough
+
+hf.flowers.block.goddess=Goddess Flower
+
+hf.dirt.mine.floor=Mine Floor
+hf.stone.mine.wall=Mine Wall
+
+#Seasons
+hf.season.spring=Spring
+hf.season.summer=Summer
+hf.season.autumn=Autumn
+hf.season.winter=Winter
+
+# NPC Names
+## NOTE FOR TRANSLATORS, READ
+# For the Harvest Goddess, use the name that is used by the Harvest Moon Games
+# in your own language, as for the other characters, name them whatever you like!
+# can be your friends, yourself, hints at famous people in your language or whatever
+# the names don't need to be the same.
+hf.npc.goddess.name=Harvest Goddess
+hf.npc.katlin.name=Granny Katlin
+hf.npc.daniel.name=Danieru
+hf.npc.cloe.name=Cloe
+hf.npc.liara.name=Liara
+hf.npc.jade.name=Jade
+hf.npc.jenni.name=Jenni
+hf.npc.jamie.name=Mayor Jeimmi
+hf.npc.abi.name=Abii
+hf.npc.tiberius.name=Tiberius
+hf.npc.jacob.name=Jakob
+hf.npc.fenn.name=Suirenji
+hf.npc.jim.name=Jim
+hf.npc.brandon.name=Brandon
+hf.npc.thomas.name=Tomas
+hf.npc.candice.name=Candice
+hf.npc.inap.name=Yulif
+hf.npc.ondra.name=Ondra
+
+## NOTE FOR TRANSLATORS, READ
+# When translating these, do not directly translate, just come up with your own
+# funny, or generic greetings related to each character, things that work best
+# in your own language, as these are just generic, do translate the quests
+# semi-literally though, as they are important so the user knows what to do,
+# but take liberty there to, just make sure the user still knows what they
+# have to do in order to complete the quest in question.
+#Key-Codes for conversations
+# $ = Money - Player has
+# ♥ = Player's Romantic Interest
+# ❤ = Entity's Romantic Interest
+# Þ = Player
+# ℇ = The Entity
+#Conversations
+#Generic - Children
+hf.npc.generic.child.greeting1=WOW you're really tall!
+hf.npc.generic.child.greeting2=Do you wanna play with me?
+hf.npc.generic.child.greeting3=Have you heard of Minecraft? It's my favourite game!
+hf.npc.generic.child.greeting4=Good day!
+hf.npc.generic.child.greeting5=My parents told me not to talk to strangers...!
+
+#Generic - Adults/Elders
+hf.npc.generic.adult.greeting1=What do you need? I'm here to help.
+hf.npc.generic.adult.greeting2=It's been a long time since I last saw you! How have you been?
+hf.npc.generic.adult.greeting3=Great weather, eh?
+hf.npc.generic.adult.greeting4=What terrible weather!
+hf.npc.generic.adult.greeting5=What are you looking at?!
+
+#Generic - Male
+hf.npc.generic.male.greeting1=Hey, how's it hanging?
+hf.npc.generic.male.greeting2=Want to have a beer?
+
+#Generic - Female
+hf.npc.generic.female.greeting1=Hello Þ! I hope you're feeling well! It's such a beautiful day isn't it?
+
+#Generic Adult Thanks
+hf.npc.generic.adult.gift.awesome=Wow thanks so much for the awesome gift! I love it.
+hf.npc.generic.adult.gift.good=That's a nice really nice gift, thanks!
+hf.npc.generic.adult.gift.decent=Thanks for the gift.
+hf.npc.generic.adult.gift.dislike=Umm thanks, I guess.
+hf.npc.generic.adult.gift.bad=What were you thinking? Why would I want this?
+hf.npc.generic.adult.gift.terrible=What on earth is wrong with you, Why would I want such a stupid gift?
+
+#Generic Child Thanks
+hf.npc.generic.child.gift.awesome=OMG! Yes, Yes Yes, thanks you sooooooooooo much! It's amazing!
+hf.npc.generic.child.gift.good=Awesome! Thanks for the lovely gift.
+hf.npc.generic.child.gift.decent=Nice, thank you!
+hf.npc.generic.child.gift.dislike=Hmm, I'm not so sure I like this.
+hf.npc.generic.child.gift.bad=Why would you do this to me? :(
+hf.npc.generic.child.gift.terrible=I HATE YOU, TAKE THIS AWAAAAY!!!
+
+#Generic Elder Thanks
+hf.npc.generic.adult.gift.awesome=In all my life, I have never received such a beautiful gift. With all my heart thank you.
+hf.npc.generic.adult.gift.good=That was such a lovely thing for you to give me. Thank you.
+hf.npc.generic.adult.gift.decent=Thanks for making me smile.
+hf.npc.generic.adult.gift.dislike=That was not a good idea.
+hf.npc.generic.adult.gift.bad=Are trying to insult me?
+hf.npc.generic.adult.gift.terrible=You should be caned for giving me such a terrible gift.
+
+#Goddess
+hf.npc.goddess.greeting1=Who are you, stranger?
+hf.npc.goddess.greeting2=What a great day to farm!
+hf.npc.goddess.greeting3=Do you need anything else, kid?
+hf.npc.goddess.greeting4=Don't dally around, I cannot stay for long.
+hf.npc.goddess.greeting5=What do you need?
+
+#Katlin
+hf.npc.katlin.greeting1=Hello my sweet, how have you been?
+hf.npc.katlin.greeting2=Back in my day, oh you don't want to hear it all again. How are you today?
+hf.npc.katlin.greeting3=Youngsters these days. Oh hello.
+
+#Danieuru/chylex
+hf.npc.daniel.greeting1=I've always loved tinkering around since I was a child.
+hf.npc.daniel.greeting2=Tools really are my passion, they are a Hardcore Expansion to my life.
+hf.npc.daniel.greeting3=People call me crazy around here for believing in Dragons. They'll see them when they reach The End, and they'll no longer call me a fool.
+hf.npc.daniel.greeting4=If I could do anything other than playing with tools, I'd be a dragon slayer.
+hf.npc.daniel.greeting5=Did you know that I used to be an olympic sprinter back in my youth? I was better than everyone else in Minecraftia.
+hf.npc.daniel.greeting6=Males, Females? Don't bother me, I like them all. Variety is the spice of life.
+
+#Cloe
+hf.npc.cloe.greeting1=A good book, makes a girl happy.
+hf.npc.cloe.greeting2=My dad, he's just too much sometimes, I can't handle the pressure.
+hf.npc.cloe.greeting3=I just don't understand girls sometimes.
+
+#Liara/ApsciLiara
+hf.npc.liara.greeting1=I really love this weather, perfect time to bake a cake!
+hf.npc.liara.greeting2=Cooking is what I enjoy the most! I love seeing the smile on someone's face as they take their first bite of my delicious dishes!
+hf.npc.liara.greeting3=Are you feeling hungry? I'm always hungry, no wonder I like to cook so much.
+hf.npc.liara.greeting4=Make sure to drop by the café on Tuesdays, there's always something special.
+hf.npc.liara.greeting5=Food makes the world go round, and it makes me giddy.
+hf.npc.liara.greeting6=There's nothing like a good ol piece of a chocolate to make a girl happy.
+
+#Jade
+hf.npc.jade.greeting1=Hey! I just love going out in to the world, watch out for the sheep though!
+hf.npc.jade.greeting2=The sky is falling, the sky is falling!
+hf.npc.jade.greeting3=I would just love to own a farm, but my brother is such a control freak!
+hf.npc.jade.greeting4=So many people have called me evil, but I'm a nice girl really.
+hf.npc.jade.greeting5=I wish I owned a cat, but yulif hates them.
+hf.npc.jade.greeting6=It can get really tight in my house, not much room to move about.
+
+#Jenni/Othlon
+hf.npc.jenni.greeting1=Hey my good friend, make sure to come to me if you need any general goods!
+hf.npc.jenni.greeting2=As much as I love my customers, I love my art so much more.
+hf.npc.jenni.greeting3=Don't tell anybody but I'm secretly a huge fan of Belly Dancing.
+hf.npc.jenni.greeting4=Sometimes I wish I would open on Sundays, but then I remember how much I love a good lay in.
+hf.npc.jenni.greeting5=Granny Katlin sure makes a mean soup!
+hf.npc.jenni.greeting6=My prices are the best in the town, noone can beat ol' jenni's bargains.
+
+#Jaimii
+hf.npc.jamie.greeting1=This is my town, and you remember that.
+hf.npc.jamie.greeting2=My family has won the town elections for the last 100 years.
+hf.npc.jamie.greeting3=My two girls are so precious to me, if you ever hurt either of them.
+hf.npc.jamie.greeting4=It's really hard being mayor, the people just love you too much.
+hf.npc.jamie.greeting5=Heya Þ, have you seen my house, it's far too small.
+
+#Abii
+hf.npc.abi.greeting1=Ooo, so cute. What's that? OMG!
+hf.npc.abi.greeting2=Hello big person! Where've you been?
+hf.npc.abi.greeting3=I've missed you!
+hf.npc.abi.greeting4=Oh my, you're so big!
+
+#Tiberius/WayofTime
+hf.npc.tiberius.greeting1=Time is a fascinating thing, one second it's going slow then the next hour it's passing by faster than light!
+hf.npc.tiberius.greeting2=When I was a child my favourite nursery rhyme was hickory dickory dock.
+hf.npc.tiberius.greeting3=What time is it?
+hf.npc.tiberius.greeting4=My favourite season is spring, as that's when a new year starts!
+hf.npc.tiberius.greeting5=I've never understood why some people are afraid of blood, I had a friend who delved in to Sanguimancy, he almost took over the world, shame he was caught redhanded before he got away with it. I guess it's just not the time for it.
+
+#Jakob
+hf.npc.jacob.greeting1=Fishing is my game, Jacob is my name.
+hf.npc.jacob.greeting2=One day I will catch the elusive clownfish, I promise you!
+hf.npc.jacob.greeting3=There's nothing like just sitting and waiting for a fish to bite, so relaxing.
+hf.npc.jacob.greeting4=I really hope it rains soon. Or is it now?
+
+#Suirenji/Pokefenn
+hf.npc.fenn.greeting1=One day, I'm going to grow some vines, and you're going to climb them with me!
+hf.npc.fenn.greeting2=Don't be scared of me, I may be small but I know a lot! I know all about totems.
+hf.npc.fenn.greeting3=I wish my dad wasn't so scary.
+
+#Jim/SpitefulFox
+hf.npc.jim.greeting1=What's your favourite animal? Mine's the fox, the spiteful buggers.
+hf.npc.jim.greeting2=Remember you can always come see me, if you want your animals to have babies!
+hf.npc.jim.greeting3=Lately I've been tweaking how much I feed my chickens, it's been an educational experience.
+hf.npc.jim.greeting4=You know, this world is ridiculous sometimes, just the otherday I saw a squirrel attack a bench.
+hf.npc.jim.greeting5=Have you ever noticed how some countries, add 'u' to all their words, It's crazy if you ask me.
+hf.npc.jim.greeting6=Life could not be better, when I'm out on the saddle.
+
+#Brandon/Cricket
+hf.npc.brandon.greeting1=Whenever I'm down in the mines, I can't help but get excited when I come across some diamonds.
+hf.npc.brandon.greeting2=I don't know about you, but I've got insomnia every night, can never get to sleep... can always hear the dang crickets.
+hf.npc.brandon.greeting3=What's your favourite ice cream? Mine's Vanilla Plus. At least it used to be, until someone else stole it...
+hf.npc.brandon.greeting4=Do you ever get tired of mining? I never do. I'm always willing to trade if you ever get tired.
+hf.npc.brandon.greeting5=I'll never understand why people are afraid of the dark. There's nothing better than mining without seeing where you are going.
+hf.npc.brandon.greeting6=The other day when I was in the mines, I heard and saw this strange fire like creature. I wonder what it was?
+
+#Tomas
+hf.npc.thomas.greeting1=I will save you from your sins.
+hf.npc.thomas.greeting2=Remember if you every need anything cursed, blessed I will be happy to help.
+hf.npc.thomas.greeting3=Only he can save you now.
+hf.npc.thomas.greeting4=The lord's grace, is shining down upon you.
+
+#Candice
+hf.npc.candice.greeting1=Do you know what I love about milking the most? Sharing it with friends, like Jenni! Sometimes we just get it all over us. So it's nice to have a helping hand to clean up the mess.
+hf.npc.candice.greeting2=Some people can just be real cows!
+hf.npc.candice.greeting3=Where the heck am I? What is this world?
+hf.npc.candice.greeting4=Come over here, I have something in my eye.
+
+#Inap
+hf.npc.inap.greeting1=Building stuff is so time consuming, when will I get a break?
+hf.npc.inap.greeting2=People treat me like a slave, no rest for the builder!
+hf.npc.inap.greeting3=Have you seen Jim? Isn't he just?
+hf.npc.inap.greeting4=I am tired of all this hard work, When will you appreciate my buildings?
+hf.npc.inap.greeting5=I am tired of wandering around, I am dying right now.
+
+#Ondra
+hf.npc.ondra.greeting1=I sure love plucking chickens!
+hf.npc.ondra.greeting2=I am so tired, working with chickens is such hard work!
+hf.npc.ondra.greeting3=From this day forward, I hope I can sleep better.
+hf.npc.ondra.greeting4=Most chicken handlers hate foxes, I love them. They're so furry, like me!
+hf.npc.ondra.greeting5=Cluck, Cluck, Cluck Clucking. When will these chicks just shut the Cluck up!
+
+###Shop greetings
+#General Store
+hf.shop.general.greeting1=Welcome to the General Store, how may I help you?
+hf.shop.general.greeting2=We're always in stock, can I help?
+hf.shop.general.greeting3=This store is the best in town! What do you need?
+
+#Poultry Farm
+hf.shop.poultry.greeting1=Chickens provide essentials for us, what can I help you with?
+hf.shop.poultry.greeting2=The Poultry Farm has been here for 300 years, what do you desire?
+
+#Cafe
+hf.shop.cafe.greeting1=Food come and get it! Yes?
+hf.shop.cafe.greeting2=Serving it all up, welcome!
+
+#Animal Ranch
+hf.shop.barn.greeting1=We don't just sell animals, we sell em strong!
+hf.shop.barn.greeting2=Welcome to the ranch, do you need anything?
+
+###Quests
+## Harvest Goddess
+hf.quest.tutorial.farming.welcome=Why hello there my dear? You must be new around these parts. I am the Harvest Goddess.<BR><BR> I would like to tell you a little story about tales of a lost a people that once lived here, their homes were destroyed and their lives ruined, they moved away for a little bit, but with your help and running a farm to keep them fed they may be able to return.<BR><BR> On another note, to help bring them back I would be ever so greatful if you could find me 64 logs, so that I can make something special for you, that can help you get started with restoring their homes.
+hf.quest.tutorial.farming.reminder.welcome=Do you still want to hear more about the lost people? Bring me 64 logs please!
+hf.quest.tutorial.farming.thanks=Oh my! Well thank you very much. I have a gift for you. This here is a construction totem. When you place it in the world, you will see a ghost shape of a building appear! If you have never met a builder before, they will appear when you place this totem. With this ghost building in place, you can right click the totem to rotate it. Once the building is facing the direction you desire, you must then sneak and right click it. This will inform the builder that you wish to build the structure at the location you selected. The builder will build the building, when it's done someone may just move in! The first house the build will build for you, is his own home. Once he has built the home, his sister will move in and you will be able to interact with her, she spends her time in the upstairs of the house! I've been after some seeds, I've heard she may have a few hanging around so be sure to talk to her when the construction work is done.
+hf.quest.tutorial.farming.seeds=Remember, you should be getting the carpenter's house built! And don't forgot to talk to his sister!
+hf.quest.tutorial.farming.jade.hello=Oh Hi! I'm Jade, Yulif's little sister. I heard the Harvest Goddess is looking for some seeds, I do have a few spare, but first I need a little something in return. I've been after some wild flowers for a while now, but I don't get much of a chance to leave this little shack. Could you gather me a few?
+hf.quest.tutorial.farming.jade.reminder=I sure would love a few flowers!
+hf.quest.tutorial.farming.jade.complete=Why thank you very much, these flowers will truly come in handy. Thanks for the help, I have something for you!
+hf.quest.tutorial.farming.jade.goddess=Don't you think you should be heading back to see the Harvest Goddess, I heard she was after some seeds.
+hf.quest.tutorial.farming.completed=Well that is just perfect, you have some seeds! I would love for you to keep them. I even have some other things for you to help you get started farming. Jade is an aspiring farmer, and I'm sure if you visit her, she can give you some tips on how to get started using these new tools. I also have some spare gold for you, that was donated by those who want to move in, to help you on your way. If you would like to learn more about gold, and how to expand the town, you should go and talk to Yulif.

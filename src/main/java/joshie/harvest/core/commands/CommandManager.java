@@ -1,0 +1,103 @@
+package joshie.harvest.core.commands;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import joshie.harvest.api.HFApi;
+import joshie.harvest.api.commands.IHFCommand;
+import joshie.harvest.api.commands.IHFCommandHandler;
+import joshie.harvest.core.lib.HFModInfo;
+import net.minecraft.command.CommandBase;
+import net.minecraft.command.ICommandSender;
+import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraftforge.event.CommandEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+
+public class CommandManager extends CommandBase implements IHFCommandHandler {
+    public static final IHFCommandHandler INSTANCE = new CommandManager();
+    private HashMap<String, IHFCommand> commands = new HashMap();
+
+    @Override
+    public void registerCommand(IHFCommand command) {
+        commands.put(command.getCommandName(), command);
+    }
+
+    @Override
+    public Map getCommands() {
+        return commands;
+    }
+
+    @Override
+    public List getPossibleCommands(ICommandSender sender) {
+        ArrayList list = new ArrayList();
+        for (IHFCommand command: commands.values()) {
+            if (sender.canCommandSenderUseCommand(command.getPermissionLevel().ordinal(), command.getCommandName())) {
+                list.add(command);
+            }
+        }
+        
+        return list;
+    }
+
+    @Override
+    public String getCommandName() {
+        return HFModInfo.COMMANDNAME;
+    }
+
+    @SubscribeEvent
+    public void onCommandSend(CommandEvent event) {
+        if (event.command == this && event.parameters.length > 0) {
+            String commandName = event.parameters[0];
+            IHFCommand command = commands.get(commandName);
+            if (command == null || !event.sender.canCommandSenderUseCommand(command.getPermissionLevel().ordinal(), commandName)) {
+                event.setCanceled(true);
+            } else {
+                processCommand(event, command);
+            }
+        }
+    }
+
+    //Attempt to process the command, throw wrong usage otherwise
+    private void processCommand(CommandEvent event, IHFCommand command) {
+        String[] args = new String[event.parameters.length - 1];
+        System.arraycopy(event.parameters, 1, args, 0, args.length);
+        if (!command.processCommand(event.sender, args)) {
+            throwError(event.sender, command);
+        }
+    }
+    
+    static void throwError(ICommandSender sender, IHFCommand command) {
+        ChatComponentTranslation chatcomponenttranslation1 = new ChatComponentTranslation(getUsage(command), new Object[0]);
+        chatcomponenttranslation1.getChatStyle().setColor(EnumChatFormatting.RED);
+        sender.addChatMessage(chatcomponenttranslation1);
+    }
+    
+    static String getUsage(IHFCommand command) {
+        return "/" + HFApi.COMMANDS.getCommandName() + " " + command.getCommandName() + " " + command.getUsage();
+    }
+
+    @Override
+    public List addTabCompletionOptions(ICommandSender sender, String[] parameters) {
+        return new ArrayList();
+    }
+
+    @Override
+    public String getCommandUsage(ICommandSender sender) {
+        return "/" + getCommandName() + " help";
+    }
+
+    @Override
+    public void processCommand(ICommandSender sender, String[] values) {
+        if(values.length == 0) {
+            throwError(sender, new HFCommandHelp());
+        }
+    } //Do sweet nothing
+
+    @Override
+    public boolean canCommandSenderUseCommand(ICommandSender sender) {
+        return true;
+    }
+}

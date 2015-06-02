@@ -35,7 +35,6 @@
 - [ ] blocks/trough.png
 - [ ] blocks/trough2.png
 - [ ] blocks/shipping.png
-- [ ] items/crops/pineapple.png 
 - [ ] items/crops/grass.png 
 - [ ] items/meals/egg_scrambled.png //Plate
 - [ ] items/meals/fish_grilled.png //Plate
@@ -44,7 +43,6 @@
 - [ ] items/meals/omelet.png //Plate
 - [ ] items/meals/omelet_rice.png //Plate
 - [ ] items/meals/pancake_savoury.png //Plate
-- [ ] items/meals/risotto.png //Plate
 - [ ] items/meals/sashimi.png //Custom
 - [ ] items/meals/sashimi_chirashi.png //Custom
 - [ ] items/meals/sushi.png //Custom

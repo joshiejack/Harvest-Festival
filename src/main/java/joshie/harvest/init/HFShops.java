@@ -96,7 +96,8 @@ public class HFShops {
             carpenter.addItem(new PurchaseableBuilding(building));
         }
         
-        carpenter.addOpening(MONDAY, 0, 1000);
+        carpenter.addOpening(MONDAY, 11000, 16000).addOpening(TUESDAY, 11000, 16000).addOpening(WEDNESDAY, 11000, 16000);
+        carpenter.addOpening(THURSDAY, 11000, 16000).addOpening(FRIDAY, 11000, 16000).addOpening(SUNDAY, 11000, 16000);
     }
     
     private static void poultry() {

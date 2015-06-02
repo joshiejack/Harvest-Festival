@@ -49,11 +49,8 @@ public class PlaceableBlock extends Placeable {
         }
         
         int meta = getMetaData(n1, n2, swap);
-        if (meta == 0) {
-            return world.setBlock(x, y, z, block);
-        } else {
-            return world.setBlock(x, y, z, block, meta, 2);
-        }
+        world.setBlock(x, y, z, block);
+        return world.setBlockMetadataWithNotify(x, y, z, meta, 2);
     }
 
     /** Called by EntityNPCMiner**/

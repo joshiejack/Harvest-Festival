@@ -20,7 +20,6 @@ public class HFCommandReloadLang extends HFCommandBase {
 
     @Override
     public boolean processCommand(ICommandSender sender, String[] parameters) {
-        System.out.println("PROCESSED");
         for (ModContainer mod: Loader.instance().getActiveModList()) {
             if (mod.getModId().equals(HFModInfo.MODID)) {
                 LanguageRegistry.instance().loadLanguagesFor(mod, Side.SERVER);

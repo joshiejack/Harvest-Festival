@@ -90,12 +90,14 @@ public class GuiNPCShop extends GuiNPC {
 
             drawTexturedModalRect(x + posX, y + posY, xOffset, 32, 32, 32);
             //mc.fontRenderer.drawStringWithShadow(display.getDisplayName(), x + 60, y + 46 + (index * 37), 0xC39753);
-            StackHelper.drawStack(display, x99 + 36, y37 + 46, 1.4F);
             mc.renderEngine.bindTexture(HFModInfo.elements);
             drawTexturedModalRect(x99 + 59, y37 + 50, 244, 0, 12, 12);
             
             mc.fontRenderer.drawStringWithShadow("" + cost, x99 + 73, y37 + 53, 0xC39753);
             GL11.glColor3f(1.0F, 1.0F, 1.0F);
+            
+            StackHelper.drawStack(display, x99 + 36, y37 + 46, 1.4F);
+
             index++;
 
             if (index >= 10) {

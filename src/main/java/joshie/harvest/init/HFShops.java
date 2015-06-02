@@ -96,7 +96,7 @@ public class HFShops {
             carpenter.addItem(new PurchaseableBuilding(building));
         }
         
-        HFNPCs.builder.setShop(carpenter);
+        carpenter.addOpening(MONDAY, 0, 1000);
     }
     
     private static void poultry() {

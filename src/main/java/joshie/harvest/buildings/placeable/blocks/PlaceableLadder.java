@@ -14,6 +14,36 @@ public class PlaceableLadder extends PlaceableBlock {
 
     @Override
     public int getMetaData(boolean n1, boolean n2, boolean swap) {
+        if (meta == 3) {
+            if (n2) {
+                return swap ? 4 : 2;
+            } else if (swap) {
+                return 5;
+            }
+        } else if (meta == 5) {
+            if (n1) {
+                return swap ? 2 : 4;
+            } else if (swap) {
+                return 3;
+            }
+        } else if (meta == 4) {
+            if (n1) {
+                return swap ? 3 : 5;
+            } else if (swap) {
+                return 2;
+            }
+        } else if (meta == 2) {
+            if (n2) {
+                return swap ? 5: 3;
+            } else if (swap) {
+                return 4;
+            }
+        }
+
+        return meta;
+
+        /*
+        
         if (meta == 1) {
             if (n1) {
                 return swap ? 3 : 5;
@@ -40,6 +70,6 @@ public class PlaceableLadder extends PlaceableBlock {
             }
         }
 
-        return meta;
+        return meta; */
     }
 }

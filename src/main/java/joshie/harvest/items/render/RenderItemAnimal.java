@@ -5,6 +5,8 @@ import joshie.harvest.animals.EntityHarvestSheep;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.items.ItemAnimal;
 import net.minecraft.client.gui.inventory.GuiInventory;
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntitySheep;
@@ -12,6 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
 
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
 
 public class RenderItemAnimal implements IItemRenderer {
     private static EntityChicken chicken;
@@ -50,5 +53,13 @@ public class RenderItemAnimal implements IItemRenderer {
         }
 
         GL11.glPopMatrix();
+        
+        RenderHelper.enableGUIStandardItemLighting();
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+        GL11.glEnable(GL12.GL_RESCALE_NORMAL);
+        short short1 = 240;
+        short short2 = 240;
+        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float)short1 / 1.0F, (float)short2 / 1.0F);
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
     }
 }

@@ -7,6 +7,7 @@ import joshie.harvest.buildings.placeable.blocks.PlaceableButton;
 import joshie.harvest.buildings.placeable.blocks.PlaceableChest;
 import joshie.harvest.buildings.placeable.blocks.PlaceableDoor;
 import joshie.harvest.buildings.placeable.blocks.PlaceableLadder;
+import joshie.harvest.buildings.placeable.blocks.PlaceableLever;
 import joshie.harvest.buildings.placeable.blocks.PlaceableLog;
 import joshie.harvest.buildings.placeable.blocks.PlaceableStairs;
 import joshie.harvest.buildings.placeable.blocks.PlaceableTorches;
@@ -246,7 +247,7 @@ public class BuildingPoultryFarm extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 2, 3));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 2, 4));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 2, 5));
-        list.add(new PlaceableTorches(Blocks.lever, 12, 6, 2, 6));
+        list.add(new PlaceableLever(Blocks.lever, 12, 6, 2, 6));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 3, 6, 2, 7));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 2, 7, 2, 1));
         list.add(new PlaceableBlock(Blocks.cobblestone_wall, 0, 7, 2, 2));

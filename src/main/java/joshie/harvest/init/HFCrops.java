@@ -52,8 +52,6 @@ public class HFCrops {
     public static ICrop wheat;
     public static ICrop watermelon;
 
-    //TODO: Add Vanilla Melon
-
     public static void init() {
         null_crop = HFApi.CROPS.registerCrop(new CropNull().setCropIconHandler(new IconHandlerNull()));
 

@@ -67,8 +67,10 @@ public class PlaceableHelper {
     public static String getPrefixString(Block block) {
         if (block instanceof BlockStairs) {
             return "Stairs";
-        } else if (block instanceof BlockTorch || block instanceof BlockLever) {
+        } else if (block instanceof BlockTorch) {
             return "Torches";
+        } else if (block instanceof BlockLever) {
+            return "Lever";
         } else if (block instanceof BlockButton) {
             return "Button";
         } else if (block instanceof BlockDoor) {

@@ -8,6 +8,7 @@ import joshie.harvest.buildings.placeable.blocks.PlaceableChest;
 import joshie.harvest.buildings.placeable.blocks.PlaceableDoor;
 import joshie.harvest.buildings.placeable.blocks.PlaceableFlowerPot;
 import joshie.harvest.buildings.placeable.blocks.PlaceableLadder;
+import joshie.harvest.buildings.placeable.blocks.PlaceableLever;
 import joshie.harvest.buildings.placeable.blocks.PlaceableLog;
 import joshie.harvest.buildings.placeable.blocks.PlaceableStairs;
 import joshie.harvest.buildings.placeable.blocks.PlaceableTorches;
@@ -146,8 +147,8 @@ public class BuildingFishingHut extends Building {
         list.add(new PlaceableLog(Blocks.log, 1, 3, 2, 5));
         list.add(new PlaceableButton(Blocks.wooden_button, 3, 3, 2, 6));
         list.add(new PlaceableBlock(Blocks.planks, 1, 4, 2, 1));
-        list.add(new PlaceableTorches(Blocks.lever, 1, 4, 2, 2));
-        list.add(new PlaceableTorches(Blocks.lever, 1, 4, 2, 4));
+        list.add(new PlaceableLever(Blocks.lever, 1, 4, 2, 2));
+        list.add(new PlaceableLever(Blocks.lever, 1, 4, 2, 4));
         list.add(new PlaceableBlock(Blocks.planks, 1, 4, 2, 5));
         list.add(new PlaceableTorches(Blocks.torch, 4, 5, 2, 0));
         list.add(new PlaceableItemFrame(new ItemStack(Blocks.trapdoor, 1, 0), 0, 2, 5, 2, 0));

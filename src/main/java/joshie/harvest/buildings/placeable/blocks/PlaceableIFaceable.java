@@ -40,39 +40,27 @@ public class PlaceableIFaceable extends PlaceableBlock {
     private ForgeDirection getFacing(boolean n1, boolean n2, boolean swap) {
         if (dir == NORTH) {
             if (n2) {
-                dir = SOUTH;
-                if (swap) {
-                    dir = EAST;
-                }
+                return swap ? EAST : SOUTH;
             } else if (swap) {
-                dir = WEST;
+                return WEST;
             }
         } else if (dir == SOUTH) {
             if (n2) {
-                dir = NORTH;
-                if (swap) {
-                    dir = WEST;
-                }
+                return swap ? WEST : NORTH;
             } else if (swap) {
-                dir = EAST;
+                return EAST;
             }
         } else if (dir == WEST) {
             if (n1) {
-                dir = EAST;
-                if (swap) {
-                    dir = SOUTH;
-                }
+                return swap ? SOUTH : EAST;
             } else if (swap) {
-                dir = NORTH;
+                return NORTH;
             }
         } else if (dir == EAST) {
             if (n1) {
-                dir = WEST;
-                if (swap) {
-                    dir = NORTH;
-                }
+                return swap ? NORTH : WEST;
             } else if (swap) {
-                dir = SOUTH;
+                return SOUTH;
             }
         }
 
@@ -81,7 +69,7 @@ public class PlaceableIFaceable extends PlaceableBlock {
 
     @Override
     public boolean place(UUID uuid, World world, int x, int y, int z, boolean n1, boolean n2, boolean swap) {
-        if(!super.place(uuid, world, x, y, z, n1, n2, swap)) return false;
+        if (!super.place(uuid, world, x, y, z, n1, n2, swap)) return false;
         TileEntity tile = world.getTileEntity(x, y, z);
         if (tile instanceof IFaceable) {
             ForgeDirection orientation = getFacing(n1, n2, swap);
@@ -91,10 +79,10 @@ public class PlaceableIFaceable extends PlaceableBlock {
         }
 
         if (chestType != null && tile instanceof IInventory) {
-            WeightedRandomChestContent.generateChestContents(world.rand, ChestGenHooks.getItems(chestType, world.rand), (IInventory)tile, 10);
+            WeightedRandomChestContent.generateChestContents(world.rand, ChestGenHooks.getItems(chestType, world.rand), (IInventory) tile, 10);
             return true;
         }
-        
+
         return false;
     }
 }

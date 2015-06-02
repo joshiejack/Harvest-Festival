@@ -8,6 +8,7 @@ import joshie.harvest.buildings.placeable.blocks.PlaceableChest;
 import joshie.harvest.buildings.placeable.blocks.PlaceableDoor;
 import joshie.harvest.buildings.placeable.blocks.PlaceableFlowerPot;
 import joshie.harvest.buildings.placeable.blocks.PlaceableLadder;
+import joshie.harvest.buildings.placeable.blocks.PlaceableLever;
 import joshie.harvest.buildings.placeable.blocks.PlaceableLog;
 import joshie.harvest.buildings.placeable.blocks.PlaceableStairs;
 import joshie.harvest.buildings.placeable.blocks.PlaceableTorches;
@@ -164,7 +165,7 @@ public class BuildingCarpenter extends Building {
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 2, 5, 2, 1));
         list.add(new PlaceableButton(Blocks.wooden_button, 3, 5, 2, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 2, 3));
-        list.add(new PlaceableTorches(Blocks.lever, 13, 5, 2, 4));
+        list.add(new PlaceableLever(Blocks.lever, 13, 5, 2, 4));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 3, 5, 2, 5));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 2, 6, 2, 1));
         list.add(new PlaceableBlock(Blocks.fence, 0, 6, 2, 2));

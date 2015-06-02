@@ -181,6 +181,6 @@ public class BlockWood extends BlockHFBaseMeta {
 
     @Override
     public int getMetaCount() {
-        return 6;
+        return 5;
     }
 }

@@ -257,6 +257,10 @@ public class PlayerDataServer implements IData {
         world.spawnEntityInWorld(builder);
         return builder;
     }
+    
+    public TrackingStats getTrackingStats() {
+        return trackingStats;
+    }
 
     @Override
     public void readFromNBT(NBTTagCompound nbt) {

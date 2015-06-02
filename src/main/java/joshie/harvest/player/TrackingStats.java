@@ -6,6 +6,7 @@ import java.util.Map;
 
 import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.core.util.IData;
+import joshie.harvest.core.util.SafeStack;
 import joshie.harvest.core.util.SellStack;
 import joshie.harvest.crops.CropData;
 import net.minecraft.nbt.NBTTagCompound;
@@ -15,7 +16,13 @@ public class TrackingStats implements IData {
     private HashMap<ICropData, Integer> cropTracker = new HashMap(); //How many of this crop has been Harvested
     private HashSet<SellStack> sellTracker = new HashSet(); //What has been sold so far
     
+    //TODO: Add obtain triggers for mystril tools, and blessed tools
+    private HashSet<SafeStack> obtained = new HashSet();    
     public TrackingStats(PlayerDataServer master) {}
+    
+    public boolean hasObtainedItem(SafeStack stack) {
+        return obtained.contains(stack);
+    }
     
     public void onHarvested(ICropData data) {
         cropTracker.put(data, cropTracker.get(data) != null ? cropTracker.get(data) + 1 : 0);
@@ -55,6 +62,15 @@ public class TrackingStats implements IData {
             int amount = tag.getInteger("Amount");
             sellTracker.add(new SellStack(name, damage, amount, sell));
         }
+        
+      //Read in the Obtained List
+        NBTTagList obtainedList = nbt.getTagList("ItemsObtained", 10);
+        for (int i = 0; i < obtainedList.tagCount(); i++) {
+            NBTTagCompound tag = obtainedList.getCompoundTagAt(i);
+            String name = tag.getString("ItemName");
+            int damage = tag.getShort("ItemDamage");
+            obtained.add(new SafeStack(name, damage));
+        }
     }
 
     @Override
@@ -84,5 +100,18 @@ public class TrackingStats implements IData {
         }
 
         nbt.setTag("ItemsSold", sold);
+        
+      ////////////////////////////////////////////////////////////////////////////
+        
+      //Saving the Obtained List
+        NBTTagList obtainedList = new NBTTagList();
+        for (SafeStack stack : obtained) {
+            NBTTagCompound tag = new NBTTagCompound();
+            tag.setString("ItemName", stack.item);
+            tag.setShort("ItemDamage", (short) stack.damage);
+            obtainedList.appendTag(tag);
+        }
+
+        nbt.setTag("ItemsObtained", obtainedList);
     }
 }

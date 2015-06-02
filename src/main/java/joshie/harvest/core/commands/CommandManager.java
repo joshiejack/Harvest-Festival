@@ -5,35 +5,30 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import joshie.harvest.api.HFApi;
-import joshie.harvest.api.commands.IHFCommand;
-import joshie.harvest.api.commands.IHFCommandHandler;
 import joshie.harvest.core.lib.HFModInfo;
 import net.minecraft.command.CommandBase;
+import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.event.CommandEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
-public class CommandManager extends CommandBase implements IHFCommandHandler {
-    public static final IHFCommandHandler INSTANCE = new CommandManager();
-    private HashMap<String, IHFCommand> commands = new HashMap();
+public class CommandManager extends CommandBase implements ICommand {
+    public static final CommandManager INSTANCE = new CommandManager();
+    private HashMap<String, HFCommandBase> commands = new HashMap();
 
-    @Override
-    public void registerCommand(IHFCommand command) {
+    public void registerCommand(HFCommandBase command) {
         commands.put(command.getCommandName(), command);
     }
 
-    @Override
     public Map getCommands() {
         return commands;
     }
 
-    @Override
     public List getPossibleCommands(ICommandSender sender) {
         ArrayList list = new ArrayList();
-        for (IHFCommand command: commands.values()) {
+        for (HFCommandBase command: commands.values()) {
             if (sender.canCommandSenderUseCommand(command.getPermissionLevel().ordinal(), command.getCommandName())) {
                 list.add(command);
             }
@@ -51,7 +46,7 @@ public class CommandManager extends CommandBase implements IHFCommandHandler {
     public void onCommandSend(CommandEvent event) {
         if (event.command == this && event.parameters.length > 0) {
             String commandName = event.parameters[0];
-            IHFCommand command = commands.get(commandName);
+            HFCommandBase command = commands.get(commandName);
             if (command == null || !event.sender.canCommandSenderUseCommand(command.getPermissionLevel().ordinal(), commandName)) {
                 event.setCanceled(true);
             } else {
@@ -61,7 +56,7 @@ public class CommandManager extends CommandBase implements IHFCommandHandler {
     }
 
     //Attempt to process the command, throw wrong usage otherwise
-    private void processCommand(CommandEvent event, IHFCommand command) {
+    private void processCommand(CommandEvent event, HFCommandBase command) {
         String[] args = new String[event.parameters.length - 1];
         System.arraycopy(event.parameters, 1, args, 0, args.length);
         if (!command.processCommand(event.sender, args)) {
@@ -69,14 +64,14 @@ public class CommandManager extends CommandBase implements IHFCommandHandler {
         }
     }
     
-    static void throwError(ICommandSender sender, IHFCommand command) {
+    static void throwError(ICommandSender sender, HFCommandBase command) {
         ChatComponentTranslation chatcomponenttranslation1 = new ChatComponentTranslation(getUsage(command), new Object[0]);
         chatcomponenttranslation1.getChatStyle().setColor(EnumChatFormatting.RED);
         sender.addChatMessage(chatcomponenttranslation1);
     }
     
-    static String getUsage(IHFCommand command) {
-        return "/" + HFApi.COMMANDS.getCommandName() + " " + command.getCommandName() + " " + command.getUsage();
+    static String getUsage(HFCommandBase command) {
+        return "/" + INSTANCE.getCommandName() + " " + command.getCommandName() + " " + command.getUsage();
     }
 
     @Override

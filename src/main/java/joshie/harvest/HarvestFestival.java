@@ -8,8 +8,8 @@ import static joshie.harvest.core.lib.HFModInfo.VERSION;
 
 import java.io.File;
 
-import joshie.harvest.api.HFApi;
 import joshie.harvest.core.HFCommonProxy;
+import joshie.harvest.core.commands.CommandManager;
 import joshie.harvest.init.HFRecipeFixes;
 import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
@@ -63,7 +63,7 @@ public class HarvestFestival {
     public void onServerStarting(FMLServerStartingEvent event) {
         ICommandManager manager = event.getServer().getCommandManager();
         if (manager instanceof ServerCommandManager) {
-            ((ServerCommandManager) manager).registerCommand(HFApi.COMMANDS);
+            ((ServerCommandManager) manager).registerCommand(CommandManager.INSTANCE);
         }
     }
 }

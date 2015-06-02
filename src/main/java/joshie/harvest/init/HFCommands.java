@@ -1,6 +1,6 @@
 package joshie.harvest.init;
 
-import joshie.harvest.api.HFApi;
+import joshie.harvest.core.commands.CommandManager;
 import joshie.harvest.core.commands.HFCommandDay;
 import joshie.harvest.core.commands.HFCommandGold;
 import joshie.harvest.core.commands.HFCommandHelp;
@@ -13,17 +13,17 @@ import net.minecraftforge.common.MinecraftForge;
 
 public class HFCommands {
     public static void preInit() {
-        MinecraftForge.EVENT_BUS.register(HFApi.COMMANDS);
-        HFApi.COMMANDS.registerCommand(new HFCommandHelp());
-        HFApi.COMMANDS.registerCommand(new HFCommandGold());
-        HFApi.COMMANDS.registerCommand(new HFCommandSeason());
-        HFApi.COMMANDS.registerCommand(new HFCommandDay());
-        HFApi.COMMANDS.registerCommand(new HFCommandYear());
-        HFApi.COMMANDS.registerCommand(new HFCommandNewDay());
+        MinecraftForge.EVENT_BUS.register(CommandManager.INSTANCE);
+        CommandManager.INSTANCE.registerCommand(new HFCommandHelp());
+        CommandManager.INSTANCE.registerCommand(new HFCommandGold());
+        CommandManager.INSTANCE.registerCommand(new HFCommandSeason());
+        CommandManager.INSTANCE.registerCommand(new HFCommandDay());
+        CommandManager.INSTANCE.registerCommand(new HFCommandYear());
+        CommandManager.INSTANCE.registerCommand(new HFCommandNewDay());
 
         //Debug commands
         if (General.DEBUG_MODE) {
-            HFApi.COMMANDS.registerCommand(new HFCommandReloadLang());
+            CommandManager.INSTANCE.registerCommand(new HFCommandReloadLang());
         }
     }
 }

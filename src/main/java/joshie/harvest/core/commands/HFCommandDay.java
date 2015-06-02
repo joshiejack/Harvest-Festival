@@ -5,7 +5,7 @@ import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSetCalendar;
 import net.minecraft.command.ICommandSender;
 
-public class HFCommandDay extends HFCommandBase  {
+public class HFCommandDay extends HFCommandBase  {  
     @Override
     public String getCommandName() {
         return "day";

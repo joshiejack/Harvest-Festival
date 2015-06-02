@@ -1,16 +1,18 @@
 package joshie.harvest.core.commands;
 
-import joshie.harvest.api.commands.CommandLevel;
-import joshie.harvest.api.commands.IHFCommand;
+import net.minecraft.command.ICommandSender;
 
-public abstract class HFCommandBase implements IHFCommand {
-    @Override
+public abstract class HFCommandBase implements Comparable {
+    public abstract String getCommandName();
+    public abstract boolean processCommand(ICommandSender sender, String[] parameters);
+    public abstract String getUsage();
+    
     public CommandLevel getPermissionLevel() {
         return CommandLevel.OP_AFFECT_GAMEPLAY;
     }
     
     @Override
     public int compareTo(Object o) {
-        return getCommandName().compareTo(((IHFCommand)o).getCommandName());
+        return getCommandName().compareTo(((HFCommandBase)o).getCommandName());
     }
 }

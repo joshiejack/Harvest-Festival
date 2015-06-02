@@ -36,6 +36,8 @@ public class PlaceableItemFrame extends PlaceableHanging {
         int facing = getFacing(n1, n2, swap);
         EntityItemFrame frame = new EntityItemFrame(world, getX(x, facing), y, getZ(z, facing), facing);
         ItemStack loot = null;
+        
+        if (stack != null) loot = stack.copy();
         if (chestType != null) {
             try {
                 WeightedRandomChestContent chest = (WeightedRandomChestContent) WeightedRandom.getRandomItem(world.rand, ChestGenHooks.getItems(chestType, world.rand));
@@ -50,7 +52,6 @@ public class PlaceableItemFrame extends PlaceableHanging {
             }
         }
 
-        if (stack != null) loot = stack.copy();
         frame.setDisplayedItem(loot);
         frame.setItemRotation(rotation);
         return frame;

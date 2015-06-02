@@ -29,6 +29,7 @@ import net.minecraft.block.BlockQuartz;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.BlockTorch;
 import net.minecraft.block.BlockTrapDoor;
+import net.minecraft.block.BlockTripWireHook;
 import net.minecraft.block.BlockVine;
 import net.minecraft.block.BlockWeb;
 import net.minecraft.entity.Entity;
@@ -105,6 +106,8 @@ public class PlaceableHelper {
             return "Mushroom";
         } else if (block instanceof BlockFlower) {
             return "Flower";
+        } else if (block instanceof BlockTripWireHook) {
+            return "Tripwire";
         } else return "Block";
     }
 

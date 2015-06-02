@@ -81,7 +81,6 @@ public class Building implements IBuilding {
         return list;
     }
 
-    //TODO: LilyPad/Tripwire Hooks, Doors, ItemFrame Loot????????????
     public boolean generate(UUID uuid, World world, int xCoord, int yCoord, int zCoord) {
         if (!world.isRemote) {
             boolean n1 = world.rand.nextBoolean();

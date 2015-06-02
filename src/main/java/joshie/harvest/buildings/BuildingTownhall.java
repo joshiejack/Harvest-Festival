@@ -2,13 +2,12 @@ package joshie.harvest.buildings;
 
 import java.util.ArrayList;
 
-import joshie.harvest.blocks.BlockWood;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvest.buildings.placeable.blocks.PlaceableButton;
+import joshie.harvest.buildings.placeable.blocks.PlaceableChest;
 import joshie.harvest.buildings.placeable.blocks.PlaceableDoor;
 import joshie.harvest.buildings.placeable.blocks.PlaceableDoublePlant;
 import joshie.harvest.buildings.placeable.blocks.PlaceableFlowerPot;
-import joshie.harvest.buildings.placeable.blocks.PlaceableIFaceable;
 import joshie.harvest.buildings.placeable.blocks.PlaceableLadder;
 import joshie.harvest.buildings.placeable.blocks.PlaceableLog;
 import joshie.harvest.buildings.placeable.blocks.PlaceableSignWall;
@@ -22,7 +21,6 @@ import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.buildings.placeable.entities.PlaceablePainting;
 import joshie.harvest.core.helpers.TownHelper;
 import joshie.harvest.core.lib.LootStrings;
-import joshie.harvest.init.HFBlocks;
 import joshie.harvest.init.HFBuildings;
 import joshie.harvest.player.Town;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,7 +28,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 
 public class BuildingTownhall extends Building {
     public BuildingTownhall() {
@@ -1604,7 +1601,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 5, 2, 5, 1));
         list.add(new PlaceableBlock(Blocks.bookshelf, 0, 2, 5, 2));
         list.add(new PlaceableBlock(Blocks.bookshelf, 0, 2, 5, 3));
-        list.add(new PlaceableIFaceable(HFBlocks.woodmachines, BlockWood.RURAL_CHEST, 2, 5, 4, ForgeDirection.EAST, LootStrings.TOWNHALL_TEENAGER_CHEST));
+        list.add(new PlaceableChest(Blocks.chest, 5, 2, 5, 4, LootStrings.TOWNHALL_TEENAGER_CHEST));
         list.add(new PlaceableLog(Blocks.log, 1, 2, 5, 5));
         list.add(new PlaceableBlock(Blocks.fence, 0, 2, 5, 6));
         list.add(new PlaceableBlock(Blocks.air, 0, 2, 5, 7));
@@ -1730,7 +1727,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 5, 4));
         list.add(new PlaceableDoor(Blocks.wooden_door, 1, 8, 5, 5));
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 5, 6));
-        list.add(new PlaceableIFaceable(HFBlocks.woodmachines, BlockWood.RURAL_CHEST, 8, 5, 7, ForgeDirection.NORTH));
+        list.add(new PlaceableChest(Blocks.chest, 2, 8, 5, 7));
         list.add(new PlaceableBlock(Blocks.fence, 0, 8, 5, 8));
         list.add(new PlaceableBlock(Blocks.fence, 0, 8, 5, 9));
         list.add(new PlaceableBlock(Blocks.fence, 0, 8, 5, 10));
@@ -2848,7 +2845,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 9, 13));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 9, 14));
         list.add(new PlaceableLog(Blocks.log, 1, 6, 9, 15));
-        list.add(new PlaceableIFaceable(HFBlocks.woodmachines, BlockWood.RURAL_CHEST, 6, 9, 16, ForgeDirection.SOUTH, LootStrings.TOWNHALL_PASSAGE_CHEST));
+        list.add(new PlaceableChest(Blocks.chest, 3, 6, 9, 16, LootStrings.TOWNHALL_PASSAGE_CHEST));
         list.add(new PlaceableTorches(Blocks.torch, 5, 6, 9, 17));
         list.add(new PlaceableFlowerPot(Blocks.flower_pot, 0, 6, 9, 18));
         list.add(new PlaceableBlock(Blocks.stonebrick, 0, 6, 9, 19));

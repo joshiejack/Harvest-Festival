@@ -2,15 +2,14 @@ package joshie.harvest.buildings;
 
 import java.util.ArrayList;
 
-import joshie.harvest.blocks.BlockWood;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvest.buildings.placeable.blocks.PlaceableButton;
+import joshie.harvest.buildings.placeable.blocks.PlaceableChest;
 import joshie.harvest.buildings.placeable.blocks.PlaceableDoor;
 import joshie.harvest.buildings.placeable.blocks.PlaceableDoublePlant;
 import joshie.harvest.buildings.placeable.blocks.PlaceableFlower;
 import joshie.harvest.buildings.placeable.blocks.PlaceableFlowerPot;
 import joshie.harvest.buildings.placeable.blocks.PlaceableGate;
-import joshie.harvest.buildings.placeable.blocks.PlaceableIFaceable;
 import joshie.harvest.buildings.placeable.blocks.PlaceableLilypad;
 import joshie.harvest.buildings.placeable.blocks.PlaceableLog;
 import joshie.harvest.buildings.placeable.blocks.PlaceableMushroom;
@@ -24,9 +23,7 @@ import joshie.harvest.buildings.placeable.entities.PlaceableItemFrame;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.buildings.placeable.entities.PlaceablePainting;
 import joshie.harvest.core.helpers.TownHelper;
-import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.lib.LootStrings;
-import joshie.harvest.init.HFBlocks;
 import joshie.harvest.init.HFBuildings;
 import joshie.harvest.player.Town;
 import net.minecraft.entity.player.EntityPlayer;
@@ -34,7 +31,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 
 public class BuildingSupermarket extends Building {
     public BuildingSupermarket() {
@@ -245,9 +241,9 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 3, 4, 7));
         list.add(new PlaceableVine(Blocks.vine, 1, 3, 4, 8));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 3, 3, 4, 9));
-        list.add(new PlaceableIFaceable(HFBlocks.woodmachines, BlockWood.RURAL_CHEST, 3, 4, 10, ForgeDirection.SOUTH, LootStrings.MARKET_BASEMENT_CHESTS));
+        list.add(new PlaceableChest(Blocks.chest, 3, 3, 4, 10, LootStrings.MARKET_BASEMENT_CHESTS));
         list.add(new PlaceableBlock(Blocks.air, 0, 3, 4, 11));
-        list.add(new PlaceableIFaceable(HFBlocks.woodmachines, BlockWood.RURAL_CHEST, 3, 4, 12, ForgeDirection.NORTH, LootStrings.MARKET_BASEMENT_CHESTS));
+        list.add(new PlaceableChest(Blocks.chest, 2, 3, 4, 12, LootStrings.MARKET_BASEMENT_CHESTS));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 2, 3, 4, 13));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 3, 4, 4, 1));
         list.add(new PlaceableBlock(Blocks.planks, 5, 4, 4, 2));
@@ -271,11 +267,11 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 4, 7));
         list.add(new PlaceableVine(Blocks.vine, 1, 5, 4, 8));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 3, 5, 4, 9));
-        list.add(new PlaceableIFaceable(HFBlocks.woodmachines, BlockWood.RURAL_CHEST, 5, 4, 10, ForgeDirection.SOUTH, LootStrings.MARKET_BASEMENT_CHESTS));
+        list.add(new PlaceableChest(Blocks.chest, 3, 5, 4, 10, LootStrings.MARKET_BASEMENT_CHESTS));
         list.add(new PlaceableNPC("jenni", 5, 4, 11));
         npc_offsets.put(Town.JENNI, new PlaceableNPC("", 5, 4, 11));
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 4, 11));
-        list.add(new PlaceableIFaceable(HFBlocks.woodmachines, BlockWood.RURAL_CHEST, 5, 4, 12, ForgeDirection.NORTH, LootStrings.MARKET_BASEMENT_CHESTS));
+        list.add(new PlaceableChest(Blocks.chest, 2, 5, 4, 12, LootStrings.MARKET_BASEMENT_CHESTS));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 2, 5, 4, 13));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 3, 6, 4, 1));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 4, 2));
@@ -1600,9 +1596,9 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableBlock(Blocks.wooden_slab, 9, 9, 14, 14));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 9, 10, 14, 0));
         list.add(new PlaceableBlock(Blocks.stained_hardened_clay, 6, 10, 14, 1));
-        list.add(new PlaceableIFaceable(HFBlocks.woodmachines, BlockWood.RURAL_CHEST, 10, 14, 2, ForgeDirection.WEST, LootStrings.MARKET_BEDROOM_CHESTS));
+        list.add(new PlaceableChest(Blocks.chest, 4, 10, 14, 2, LootStrings.MARKET_BEDROOM_CHESTS));
         list.add(new PlaceableBlock(Blocks.fence, 0, 10, 14, 3));
-        list.add(new PlaceableIFaceable(HFBlocks.woodmachines, BlockWood.RURAL_CHEST, 10, 14, 4, ForgeDirection.WEST, LootStrings.MARKET_BEDROOM_CHESTS));
+        list.add(new PlaceableChest(Blocks.chest, 4, 10, 14, 4, LootStrings.MARKET_BEDROOM_CHESTS));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 0, 10, 14, 5));
         list.add(new PlaceableBlock(Blocks.leaves, 12, 10, 14, 6));
         list.add(new PlaceableBlock(Blocks.bookshelf, 0, 10, 14, 7));
@@ -2148,7 +2144,7 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 5, 7, 18, 6));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 5, 7, 18, 7));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 5, 7, 18, 8));
-        list.add(new PlaceableIFaceable(HFBlocks.woodmachines, BlockWood.RURAL_CHEST, 7, 18, 9, ForgeDirection.EAST));
+        list.add(new PlaceableChest(Blocks.chest, 5, 7, 18, 9));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 5, 7, 18, 10));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 5, 7, 18, 11));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 5, 7, 18, 12));

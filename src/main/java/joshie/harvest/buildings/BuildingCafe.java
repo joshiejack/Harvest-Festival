@@ -2,13 +2,12 @@ package joshie.harvest.buildings;
 
 import java.util.ArrayList;
 
-import joshie.harvest.blocks.BlockWood;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvest.buildings.placeable.blocks.PlaceableButton;
+import joshie.harvest.buildings.placeable.blocks.PlaceableChest;
 import joshie.harvest.buildings.placeable.blocks.PlaceableDoor;
 import joshie.harvest.buildings.placeable.blocks.PlaceableFlowerPot;
 import joshie.harvest.buildings.placeable.blocks.PlaceableFurnace;
-import joshie.harvest.buildings.placeable.blocks.PlaceableIFaceable;
 import joshie.harvest.buildings.placeable.blocks.PlaceableLadder;
 import joshie.harvest.buildings.placeable.blocks.PlaceableLog;
 import joshie.harvest.buildings.placeable.blocks.PlaceableStairs;
@@ -20,7 +19,6 @@ import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.buildings.placeable.entities.PlaceablePainting;
 import joshie.harvest.core.helpers.TownHelper;
 import joshie.harvest.core.lib.LootStrings;
-import joshie.harvest.init.HFBlocks;
 import joshie.harvest.init.HFBuildings;
 import joshie.harvest.player.Town;
 import net.minecraft.entity.player.EntityPlayer;
@@ -28,7 +26,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 
 public class BuildingCafe extends Building {
     public BuildingCafe() {
@@ -347,7 +344,7 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.stonebrick, 0, 2, 2, 9));
         list.add(new PlaceableTorches(Blocks.lever, 11, 2, 2, 10));
         list.add(new PlaceableBlock(Blocks.cake, 2, 2, 2, 11));
-        list.add(new PlaceableIFaceable(HFBlocks.woodmachines, BlockWood.RURAL_CHEST, 2, 2, 12, ForgeDirection.NORTH, LootStrings.CAFE_CHEST));
+        list.add(new PlaceableChest(Blocks.chest, 2, 2, 2, 12, LootStrings.CAFE_CHEST));
         list.add(new PlaceableBlock(Blocks.glass_pane, 0, 2, 2, 13));
         list.add(new PlaceableBlock(Blocks.glass_pane, 0, 3, 2, 1));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 0, 3, 2, 2));

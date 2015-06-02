@@ -3,14 +3,12 @@ package joshie.harvest.buildings.placeable;
 import java.util.HashMap;
 
 import joshie.harvest.HarvestFestival;
-import joshie.harvest.blocks.BlockWood;
 import joshie.harvest.buildings.placeable.entities.PlaceableEntity;
 import joshie.harvest.buildings.placeable.entities.PlaceableItemFrame;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.buildings.placeable.entities.PlaceablePainting;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.generic.IFaceable;
-import joshie.harvest.init.HFBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockAnvil;
 import net.minecraft.block.BlockButton;
@@ -109,10 +107,6 @@ public class PlaceableHelper {
     }
 
     public static String getPlaceableIFaceableString(IFaceable tile, Block block, int meta, int x, int y, int z) {
-        if ((block == HFBlocks.cookware || block == HFBlocks.woodmachines) && meta == 9) {
-            meta = BlockWood.RURAL_CHEST;
-        }
-
         return "list.add(new PlaceableIFaceable" + "(" + HFModInfo.BLOCKSNAME + ".woodmachines, " + meta + ", " + x + ", " + y + ", " + z + ", ForgeDirection." + tile.getFacing() + "));";
     }
 

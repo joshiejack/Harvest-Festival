@@ -2,12 +2,11 @@ package joshie.harvest.buildings;
 
 import java.util.ArrayList;
 
-import joshie.harvest.blocks.BlockWood;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvest.buildings.placeable.blocks.PlaceableButton;
+import joshie.harvest.buildings.placeable.blocks.PlaceableChest;
 import joshie.harvest.buildings.placeable.blocks.PlaceableDoor;
 import joshie.harvest.buildings.placeable.blocks.PlaceableFlowerPot;
-import joshie.harvest.buildings.placeable.blocks.PlaceableIFaceable;
 import joshie.harvest.buildings.placeable.blocks.PlaceableLadder;
 import joshie.harvest.buildings.placeable.blocks.PlaceableLog;
 import joshie.harvest.buildings.placeable.blocks.PlaceableStairs;
@@ -17,12 +16,10 @@ import joshie.harvest.buildings.placeable.entities.PlaceableItemFrame;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.buildings.placeable.entities.PlaceablePainting;
 import joshie.harvest.core.lib.LootStrings;
-import joshie.harvest.init.HFBlocks;
 import joshie.harvest.player.Town;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.util.ForgeDirection;
 
 public class BuildingCarpenter extends Building {
     public BuildingCarpenter() {
@@ -256,9 +253,9 @@ public class BuildingCarpenter extends Building {
         list.add(new PlaceableBlock(Blocks.fence, 0, 1, 4, 6));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 12, 2, 4, 0));
         list.add(new PlaceableLog(Blocks.log, 5, 2, 4, 1));
-        list.add(new PlaceableIFaceable(HFBlocks.woodmachines, BlockWood.RURAL_CHEST, 2, 4, 2, ForgeDirection.EAST, LootStrings.JADE_CHEST));
+        list.add(new PlaceableChest(Blocks.chest, 5, 2, 4, 2, LootStrings.JADE_CHEST));
         list.add(new PlaceableBlock(Blocks.air, 0, 2, 4, 3));
-        list.add(new PlaceableIFaceable(HFBlocks.woodmachines, BlockWood.RURAL_CHEST, 2, 4, 4, ForgeDirection.EAST, LootStrings.YULIF_CHEST));
+        list.add(new PlaceableChest(Blocks.chest, 5, 2, 4, 4, LootStrings.YULIF_CHEST));
         list.add(new PlaceableLog(Blocks.log, 5, 2, 4, 5));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 13, 2, 4, 6));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 12, 3, 4, 0));

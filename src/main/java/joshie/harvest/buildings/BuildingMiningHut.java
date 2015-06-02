@@ -2,12 +2,11 @@ package joshie.harvest.buildings;
 
 import java.util.ArrayList;
 
-import joshie.harvest.blocks.BlockWood;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvest.buildings.placeable.blocks.PlaceableButton;
+import joshie.harvest.buildings.placeable.blocks.PlaceableChest;
 import joshie.harvest.buildings.placeable.blocks.PlaceableFlowerPot;
 import joshie.harvest.buildings.placeable.blocks.PlaceableFurnace;
-import joshie.harvest.buildings.placeable.blocks.PlaceableIFaceable;
 import joshie.harvest.buildings.placeable.blocks.PlaceableLog;
 import joshie.harvest.buildings.placeable.blocks.PlaceableStairs;
 import joshie.harvest.buildings.placeable.blocks.PlaceableTorches;
@@ -16,14 +15,12 @@ import joshie.harvest.buildings.placeable.entities.PlaceableItemFrame;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.core.helpers.TownHelper;
 import joshie.harvest.core.lib.LootStrings;
-import joshie.harvest.init.HFBlocks;
 import joshie.harvest.init.HFBuildings;
 import joshie.harvest.player.Town;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 
 public class BuildingMiningHut extends Building {
     public BuildingMiningHut() {
@@ -135,7 +132,7 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableBlock(Blocks.stained_hardened_clay, 7, 2, 1, 6));
         list.add(new PlaceableBlock(Blocks.stained_hardened_clay, 7, 2, 1, 7));
         list.add(new PlaceableBlock(Blocks.fence, 0, 2, 1, 8));
-        list.add(new PlaceableIFaceable(HFBlocks.woodmachines, BlockWood.RURAL_CHEST, 2, 1, 9, ForgeDirection.EAST, LootStrings.MINING_CHEST));
+        list.add(new PlaceableChest(Blocks.chest, 5, 2, 1, 9, LootStrings.MINING_CHEST));
         list.add(new PlaceableBlock(Blocks.stained_hardened_clay, 7, 2, 1, 10));
         list.add(new PlaceableBlock(Blocks.fence, 0, 2, 1, 11));
         list.add(new PlaceableBlock(Blocks.fence, 0, 3, 1, 4));
@@ -157,7 +154,7 @@ public class BuildingMiningHut extends Building {
         npc_offsets.put(Town.BRANDON, new PlaceableNPC("", 4, 1, 9));
         list.add(new PlaceableBlock(Blocks.air, 0, 4, 1, 9));
         list.add(new PlaceableBlock(Blocks.air, 0, 4, 1, 10));
-        list.add(new PlaceableIFaceable(HFBlocks.woodmachines, BlockWood.RURAL_CHEST, 4, 1, 11, ForgeDirection.NORTH, LootStrings.MINING_CHEST));
+        list.add(new PlaceableChest(Blocks.chest, 2, 4, 1, 11, LootStrings.MINING_CHEST));
         list.add(new PlaceableLog(Blocks.log, 1, 4, 1, 12));
         list.add(new PlaceableButton(Blocks.wooden_button, 3, 4, 1, 13));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 2, 5, 1, 2));

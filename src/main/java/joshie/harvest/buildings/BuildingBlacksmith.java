@@ -2,14 +2,13 @@ package joshie.harvest.buildings;
 
 import java.util.ArrayList;
 
-import joshie.harvest.blocks.BlockWood;
 import joshie.harvest.buildings.placeable.blocks.PlaceableAnvil;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvest.buildings.placeable.blocks.PlaceableButton;
+import joshie.harvest.buildings.placeable.blocks.PlaceableChest;
 import joshie.harvest.buildings.placeable.blocks.PlaceableDoor;
 import joshie.harvest.buildings.placeable.blocks.PlaceableFlowerPot;
 import joshie.harvest.buildings.placeable.blocks.PlaceableFurnace;
-import joshie.harvest.buildings.placeable.blocks.PlaceableIFaceable;
 import joshie.harvest.buildings.placeable.blocks.PlaceableStairs;
 import joshie.harvest.buildings.placeable.blocks.PlaceableTorches;
 import joshie.harvest.buildings.placeable.blocks.PlaceableTrapDoor;
@@ -18,7 +17,6 @@ import joshie.harvest.buildings.placeable.entities.PlaceableItemFrame;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.core.helpers.TownHelper;
 import joshie.harvest.core.lib.LootStrings;
-import joshie.harvest.init.HFBlocks;
 import joshie.harvest.init.HFBuildings;
 import joshie.harvest.player.Town;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,7 +24,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 
 public class BuildingBlacksmith extends Building {
     public BuildingBlacksmith() {
@@ -141,7 +138,7 @@ public class BuildingBlacksmith extends Building {
         list.add(new PlaceableBlock(Blocks.double_stone_slab, 0, 5, 2, 5));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 1, 5, 2, 6));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 0, 5, 2, 7));
-        list.add(new PlaceableIFaceable(HFBlocks.woodmachines, BlockWood.RURAL_CHEST, 5, 2, 8, ForgeDirection.WEST, LootStrings.BLACKSMITH_CHEST));
+        list.add(new PlaceableChest(Blocks.chest, 4, 5, 2, 8, LootStrings.BLACKSMITH_CHEST));
         list.add(new PlaceableBlock(Blocks.cobblestone_wall, 0, 5, 2, 9));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 3, 5, 2, 11));
         list.add(new PlaceableBlock(Blocks.cobblestone_wall, 0, 6, 2, 1));

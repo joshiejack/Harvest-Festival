@@ -1,22 +1,18 @@
 package joshie.harvest.core.handlers;
 
-import joshie.harvest.blocks.tiles.TileRuralChest;
 import joshie.harvest.core.gui.ContainerFridge;
 import joshie.harvest.core.gui.ContainerNPC;
 import joshie.harvest.core.gui.ContainerNPCBuilderShop;
 import joshie.harvest.core.gui.ContainerNPCGift;
 import joshie.harvest.core.gui.ContainerNPCShop;
-import joshie.harvest.core.gui.ContainerRuralChest;
 import joshie.harvest.core.gui.GuiFridge;
 import joshie.harvest.core.gui.GuiNPC;
 import joshie.harvest.core.gui.GuiNPCBuilderShop;
 import joshie.harvest.core.gui.GuiNPCGift;
 import joshie.harvest.core.gui.GuiNPCShop;
-import joshie.harvest.core.gui.GuiRuralChest;
 import joshie.harvest.core.helpers.PlayerHelper;
 import joshie.harvest.npc.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
 
@@ -29,11 +25,6 @@ public class GuiHandler implements IGuiHandler {
 
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-        TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile != null) {
-            if (tile instanceof TileRuralChest)     return new ContainerRuralChest((TileRuralChest) tile, player.inventory);
-        }
-
         switch (ID) {
             case NPC:           return new ContainerNPC((EntityNPC) world.getEntityByID(x), player.inventory);
             case SHOP:          return new ContainerNPCShop((EntityNPC) world.getEntityByID(x), player.inventory);
@@ -45,12 +36,7 @@ public class GuiHandler implements IGuiHandler {
     }
 
     @Override
-    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-        TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile != null) {
-            if (tile instanceof TileRuralChest)      return new GuiRuralChest(player.inventory, (TileRuralChest) tile);
-        }
-        
+    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {       
         switch (ID) {
             case NPC:           return new GuiNPC((EntityNPC) world.getEntityByID(x), player);
             case SHOP:          return new GuiNPCShop((EntityNPC) world.getEntityByID(x), player);

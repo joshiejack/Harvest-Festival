@@ -2,11 +2,10 @@ package joshie.harvest.buildings;
 
 import java.util.ArrayList;
 
-import joshie.harvest.blocks.BlockWood;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvest.buildings.placeable.blocks.PlaceableButton;
+import joshie.harvest.buildings.placeable.blocks.PlaceableChest;
 import joshie.harvest.buildings.placeable.blocks.PlaceableDoor;
-import joshie.harvest.buildings.placeable.blocks.PlaceableIFaceable;
 import joshie.harvest.buildings.placeable.blocks.PlaceableLadder;
 import joshie.harvest.buildings.placeable.blocks.PlaceableLog;
 import joshie.harvest.buildings.placeable.blocks.PlaceableStairs;
@@ -17,7 +16,6 @@ import joshie.harvest.buildings.placeable.entities.PlaceableItemFrame;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.core.helpers.TownHelper;
 import joshie.harvest.core.lib.LootStrings;
-import joshie.harvest.init.HFBlocks;
 import joshie.harvest.init.HFBuildings;
 import joshie.harvest.player.Town;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,7 +23,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 
 public class BuildingPoultryFarm extends Building {
     public BuildingPoultryFarm() {
@@ -157,7 +154,7 @@ public class BuildingPoultryFarm extends Building {
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 13, 5, 1, 8));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 12, 6, 1, 0));
         list.add(new PlaceableBlock(Blocks.stained_hardened_clay, 1, 6, 1, 1));
-        list.add(new PlaceableIFaceable(HFBlocks.woodmachines, BlockWood.RURAL_CHEST, 6, 1, 2, ForgeDirection.SOUTH, LootStrings.POULTRY_CHEST));
+        list.add(new PlaceableChest(Blocks.chest, 3, 6, 1, 2, LootStrings.POULTRY_CHEST));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 1, 3));
         list.add(new PlaceableNPC("ondra", 6, 1, 4));
         npc_offsets.put(Town.ONDRA, new PlaceableNPC("", 6, 1, 4));

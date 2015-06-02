@@ -2,12 +2,11 @@ package joshie.harvest.buildings;
 
 import java.util.ArrayList;
 
-import joshie.harvest.blocks.BlockWood;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvest.buildings.placeable.blocks.PlaceableButton;
+import joshie.harvest.buildings.placeable.blocks.PlaceableChest;
 import joshie.harvest.buildings.placeable.blocks.PlaceableDoor;
 import joshie.harvest.buildings.placeable.blocks.PlaceableFlowerPot;
-import joshie.harvest.buildings.placeable.blocks.PlaceableIFaceable;
 import joshie.harvest.buildings.placeable.blocks.PlaceableLog;
 import joshie.harvest.buildings.placeable.blocks.PlaceableSignWall;
 import joshie.harvest.buildings.placeable.blocks.PlaceableStairs;
@@ -19,7 +18,6 @@ import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.buildings.placeable.entities.PlaceablePainting;
 import joshie.harvest.core.helpers.TownHelper;
 import joshie.harvest.core.lib.LootStrings;
-import joshie.harvest.init.HFBlocks;
 import joshie.harvest.init.HFBuildings;
 import joshie.harvest.player.Town;
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,7 +25,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 
 public class BuildingClockmaker extends Building {
     public BuildingClockmaker() {
@@ -448,7 +445,7 @@ public class BuildingClockmaker extends Building {
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 3, 5, 5, 7));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 13, 6, 5, 0));
         list.add(new PlaceableBlock(Blocks.hardened_clay, 0, 6, 5, 1));
-        list.add(new PlaceableIFaceable(HFBlocks.woodmachines, BlockWood.RURAL_CHEST, 6, 5, 2, ForgeDirection.SOUTH, LootStrings.CLOCKMAKER_CHEST));
+        list.add(new PlaceableChest(Blocks.chest, 3, 6, 5, 2, LootStrings.CLOCKMAKER_CHEST));
         list.add(new PlaceableNPC("fenn", 6, 5, 3));
         npc_offsets.put(Town.FENN, new PlaceableNPC("", 6, 5, 3));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 5, 3));

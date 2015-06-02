@@ -1,11 +1,9 @@
 package joshie.harvest.blocks;
 
 import static joshie.harvest.core.helpers.ShippingHelper.addForShipping;
-import joshie.harvest.HarvestFestival;
 import joshie.harvest.animals.AnimalType;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.IShippable;
-import joshie.harvest.blocks.tiles.TileRuralChest;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.helpers.AnimalHelper;
 import joshie.harvest.core.helpers.generic.DirectionHelper;
@@ -28,10 +26,9 @@ import net.minecraftforge.common.util.ForgeDirection;
 public class BlockWood extends BlockHFBaseMeta {
     public static final int SHIPPING = 0;
     public static final int SHIPPING_2 = 1;
-    public static final int RURAL_CHEST = 2;
-    public static final int NEST = 3;
-    public static final int TROUGH = 4;
-    public static final int TROUGH_2 = 5;
+    public static final int NEST = 2;
+    public static final int TROUGH = 3;
+    public static final int TROUGH_2 = 4;
 
     public BlockWood() {
         super(Material.wood);
@@ -89,9 +86,6 @@ public class BlockWood extends BlockHFBaseMeta {
                     return addForShipping(player, held);
                 } else return false;
             } else return false;
-        } else if (meta == RURAL_CHEST) {
-            player.openGui(HarvestFestival.instance, -1, world, x, y, z);
-            return true;
         } else if (meta == NEST) {
             ItemStack held = player.getCurrentEquippedItem();
             if (held != null && HFApi.COOKING.getCookingComponents(held).contains(HFIngredients.egg)) {
@@ -167,22 +161,7 @@ public class BlockWood extends BlockHFBaseMeta {
             AnimalHelper.removeTrough(world, x, y, z);
         }
     }
-
-    @Override
-    public boolean hasTileEntity(int meta) {
-        return meta != SHIPPING;
-    }
-
-    @Override
-    public TileEntity createTileEntity(World world, int meta) {
-        switch (meta) {
-            case RURAL_CHEST:
-                return new TileRuralChest();
-            default:
-                return null;
-        }
-    }
-
+    
     @Override
     public int damageDropped(int meta) {
         if (meta == SHIPPING_2) return SHIPPING;
@@ -192,7 +171,7 @@ public class BlockWood extends BlockHFBaseMeta {
 
     @Override
     public boolean isValidTab(CreativeTabs tab, int meta) {
-        return meta == RURAL_CHEST ? tab == HFTab.tabTown : tab == HFTab.tabFarming;
+        return tab == HFTab.tabFarming;
     }
 
     @Override

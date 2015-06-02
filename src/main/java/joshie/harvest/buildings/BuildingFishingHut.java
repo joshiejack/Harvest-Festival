@@ -2,12 +2,11 @@ package joshie.harvest.buildings;
 
 import java.util.ArrayList;
 
-import joshie.harvest.blocks.BlockWood;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvest.buildings.placeable.blocks.PlaceableButton;
+import joshie.harvest.buildings.placeable.blocks.PlaceableChest;
 import joshie.harvest.buildings.placeable.blocks.PlaceableDoor;
 import joshie.harvest.buildings.placeable.blocks.PlaceableFlowerPot;
-import joshie.harvest.buildings.placeable.blocks.PlaceableIFaceable;
 import joshie.harvest.buildings.placeable.blocks.PlaceableLadder;
 import joshie.harvest.buildings.placeable.blocks.PlaceableLog;
 import joshie.harvest.buildings.placeable.blocks.PlaceableStairs;
@@ -19,7 +18,6 @@ import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.buildings.placeable.entities.PlaceablePainting;
 import joshie.harvest.core.helpers.TownHelper;
 import joshie.harvest.core.lib.LootStrings;
-import joshie.harvest.init.HFBlocks;
 import joshie.harvest.init.HFBuildings;
 import joshie.harvest.player.Town;
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,7 +25,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 
 public class BuildingFishingHut extends Building {
     public BuildingFishingHut() {
@@ -173,7 +170,7 @@ public class BuildingFishingHut extends Building {
         list.add(new PlaceableBlock(Blocks.planks, 1, 8, 2, 1));
         list.add(new PlaceableFlowerPot(Blocks.flower_pot, 5, 8, 2, 2));
         list.add(new PlaceableBlock(Blocks.wooden_pressure_plate, 0, 8, 2, 3));
-        list.add(new PlaceableIFaceable(HFBlocks.woodmachines, BlockWood.RURAL_CHEST, 8, 2, 4, ForgeDirection.WEST, LootStrings.FISHING_CHEST));
+        list.add(new PlaceableChest(Blocks.chest, 4, 8, 2, 4, LootStrings.FISHING_CHEST));
         list.add(new PlaceableBlock(Blocks.planks, 1, 8, 2, 5));
         list.add(new PlaceableVine(Blocks.vine, 4, 8, 2, 6));
         list.add(new PlaceableButton(Blocks.wooden_button, 4, 9, 2, 0));

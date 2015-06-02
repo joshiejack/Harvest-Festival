@@ -22,7 +22,6 @@ import joshie.harvest.blocks.tiles.TileMarker;
 import joshie.harvest.blocks.tiles.TileMixer;
 import joshie.harvest.blocks.tiles.TileOven;
 import joshie.harvest.blocks.tiles.TilePot;
-import joshie.harvest.blocks.tiles.TileRuralChest;
 import joshie.harvest.blocks.tiles.TileSteamer;
 import joshie.harvest.core.lib.HFModInfo;
 import net.minecraft.block.Block;
@@ -56,6 +55,6 @@ public class HFBlocks {
         goddess.setBlock(goddessWater);
 
         registerTiles(HFModInfo.CAPNAME, TileCooking.class, TileFridge.class, TileFryingPan.class, TileKitchen.class, TileMarker.class, 
-                            TileMixer.class, TileOven.class, TilePot.class, TileRuralChest.class, TileSteamer.class);
+                            TileMixer.class, TileOven.class, TilePot.class, TileSteamer.class);
     }
 }

@@ -27,14 +27,6 @@
 
 ## Aesthetics 
 ###Textures
-- [ ] blocks/chest.png
-- [ ] blocks/fridge_back.png
-- [ ] blocks/fridge_lower_door.png
-- [ ] blocks/fridge_sides.png
-- [ ] blocks/fridge_upper_door.png
-- [ ] blocks/trough.png
-- [ ] blocks/trough2.png
-- [ ] blocks/shipping.png
 - [ ] items/crops/grass.png 
 - [ ] items/meals/egg_scrambled.png //Plate
 - [ ] items/meals/fish_grilled.png //Plate

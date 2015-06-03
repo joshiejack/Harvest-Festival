@@ -28,9 +28,6 @@
 ## Aesthetics 
 ###Textures
 - [ ] items/crops/grass.png 
-- [ ] items/meals/egg_scrambled.png //Plate
-- [ ] items/meals/fish_grilled.png //Plate
-- [ ] items/meals/fishsticks.png //Custom
 - [ ] items/meals/fries_french.png //Custom
 - [ ] items/meals/omelet.png //Plate
 - [ ] items/meals/omelet_rice.png //Plate

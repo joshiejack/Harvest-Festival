@@ -20,8 +20,8 @@ import joshie.harvest.shops.PurchaseableEntity;
 import joshie.harvest.shops.ShopInventoryGui;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class HFShops {
     public static IShop barn;
@@ -30,7 +30,6 @@ public class HFShops {
     public static IShop carpenter;
     public static IShop poultry;
     public static IShop supermarket;
-    public static boolean isClient;
 
     public static void init() {
         barn();
@@ -39,16 +38,10 @@ public class HFShops {
         carpenter();
         poultry();
         supermarket();
-        
-        isClient = FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT;
     }
     
     private static void barn() {
-        barn = HFApi.SHOPS.newShop("barn", HFNPCs.animal_owner);
-        if (isClient) {
-            barn.setGuiOverlay(new ShopInventoryGui(67));
-        }
-        
+        barn = HFApi.SHOPS.newShop("barn", HFNPCs.animal_owner);       
         barn.addItem(20, HFCrops.grass.getCropStack());
         barn.addItem(1000, new ItemStack(HFItems.general, 1, ItemGeneral.MEDICINE));
         barn.addItem(new PurchaseableEntity("Sheep", 4000, new ItemStack(HFItems.animal, 1, ItemAnimal.SHEEP), true));
@@ -60,10 +53,6 @@ public class HFShops {
     
     private static void blacksmith() {
         blacksmith = HFApi.SHOPS.newShop("blacksmith", HFNPCs.tool_owner);
-        if (isClient) {
-            blacksmith.setGuiOverlay(new ShopInventoryGui(132));
-        }
-        
         blacksmith.addItem(800, new ItemStack(HFItems.general, 1, ItemGeneral.BRUSH));
         blacksmith.addItem(2000, new ItemStack(HFItems.general, 1, ItemGeneral.MILKER));
         blacksmith.addItem(1800, new ItemStack(Items.shears));
@@ -72,11 +61,7 @@ public class HFShops {
     }
     
     private static void cafe() {
-        cafe = HFApi.SHOPS.newShop("cafe", HFNPCs.cafe_owner);
-        if (isClient) {
-            cafe.setGuiOverlay(new ShopInventoryGui(100));
-        }
-        
+        cafe = HFApi.SHOPS.newShop("cafe", HFNPCs.cafe_owner);       
         cafe.addItem(0, new ItemStack(Items.potionitem));
         cafe.addItem(300, HFApi.COOKING.getMeal("salad"));
         cafe.addItem(200, HFApi.COOKING.getMeal("cookies"));
@@ -87,11 +72,7 @@ public class HFShops {
     }
     
     private static void carpenter() {
-        carpenter = HFApi.SHOPS.newShop("cafe", HFNPCs.builder);
-        if (isClient) {
-            carpenter.setGuiOverlay(new ShopInventoryGui(100));
-        }
-        
+        carpenter = HFApi.SHOPS.newShop("carpenter", HFNPCs.builder);
         for (Building building: Building.buildings) {
             carpenter.addItem(new PurchaseableBuilding(building));
         }
@@ -102,10 +83,6 @@ public class HFShops {
     
     private static void poultry() {
         poultry = HFApi.SHOPS.newShop("poultry", HFNPCs.poultry);
-        if (isClient) {
-            poultry.setGuiOverlay(new ShopInventoryGui(34));
-        }
-        
         poultry.addItem(new PurchaseableEntity("Chicken", 1500, new ItemStack(HFItems.animal, 1, ItemAnimal.CHICKEN), false));
         poultry.addItem(1000, new ItemStack(HFItems.general, 1, ItemGeneral.MEDICINE));
         poultry.addItem(10, new ItemStack(HFItems.general, 1, ItemGeneral.CHICKEN_FEED));
@@ -114,11 +91,7 @@ public class HFShops {
     }
 
     private static void supermarket() {
-        supermarket = HFApi.SHOPS.newShop("general", HFNPCs.gs_owner);
-        if (isClient) {
-            supermarket.setGuiOverlay(new ShopInventoryGui(166));
-        }
-        
+        supermarket = HFApi.SHOPS.newShop("general", HFNPCs.gs_owner);       
         for (ICrop crop: HFApi.CROPS.getCrops()) {
             supermarket.addItem(new PurchaseableCropSeeds(crop));
         }
@@ -132,5 +105,16 @@ public class HFShops {
         supermarket.addItem(new PurchaseableBlueFeather(1000, new ItemStack(HFItems.general, 1, ItemGeneral.BLUE_FEATHER)));
         supermarket.addOpening(MONDAY, 9000, 17000).addOpening(TUESDAY, 9000, 17000).addOpening(THURSDAY, 9000, 17000);
         supermarket.addOpening(FRIDAY, 9000, 17000).addOpening(SATURDAY, 11000, 15000);
+    }
+    
+    
+    @SideOnly(Side.CLIENT)
+    public static void initClient() {
+        barn.setGuiOverlay(new ShopInventoryGui(67));
+        blacksmith.setGuiOverlay(new ShopInventoryGui(132));
+        cafe.setGuiOverlay(new ShopInventoryGui(100));
+        carpenter.setGuiOverlay(new ShopInventoryGui(199));
+        supermarket.setGuiOverlay(new ShopInventoryGui(166));
+        poultry.setGuiOverlay(new ShopInventoryGui(34));
     }
 }

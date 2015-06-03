@@ -30,7 +30,7 @@ public class PacketPurchaseItem implements IMessage, IMessageHandler<PacketPurch
 
     @Override
     public void fromBytes(ByteBuf buf) {
-        this.purchaseable_id = buf.readInt();
+        purchaseable_id = buf.readInt();
     }
     
     @Override

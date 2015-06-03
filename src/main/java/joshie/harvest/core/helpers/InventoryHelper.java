@@ -33,4 +33,16 @@ public class InventoryHelper {
         
         return count;
     }
+    
+    public static boolean isOreName(ItemStack stack, String ore) {
+        int[] ids = OreDictionary.getOreIDs(stack);
+        for (int i: ids) {
+            String name = OreDictionary.getOreName(i);
+            if (name.equals(ore)) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
 }

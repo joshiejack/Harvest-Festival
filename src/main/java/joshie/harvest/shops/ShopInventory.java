@@ -41,10 +41,6 @@ public class ShopInventory implements IShop {
         }
 
         Collections.shuffle(greetings);
-        
-        if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
-            overlay = new ShopInventoryGui(0);
-        }
     }
     
     @SideOnly(Side.CLIENT)
@@ -59,6 +55,10 @@ public class ShopInventory implements IShop {
     @SideOnly(Side.CLIENT)
     @Override
     public IShopGuiOverlay getGuiOverlay() {
+        if (overlay == null) {
+            overlay = new ShopInventoryGui(0);
+        }
+        
         return overlay;
     }
     

@@ -23,6 +23,7 @@ import joshie.harvest.core.util.generic.EntityFakeItem;
 import joshie.harvest.core.util.generic.RenderFakeItem;
 import joshie.harvest.init.HFBlocks;
 import joshie.harvest.init.HFItems;
+import joshie.harvest.init.HFShops;
 import joshie.harvest.items.render.RenderItemAnimal;
 import joshie.harvest.items.render.RenderItemNPC;
 import joshie.harvest.npc.EntityNPC;
@@ -75,6 +76,8 @@ public class HFClientProxy extends HFCommonProxy {
         if (Client.CHICKEN_OFFSET_FIX) {
             MinecraftForge.EVENT_BUS.register(new ChickenRenderFix());
         }
+        
+        HFShops.initClient();
     }
 
     private void registerRenders(Block b) {

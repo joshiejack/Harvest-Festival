@@ -9,6 +9,7 @@ import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.helpers.TownHelper;
 import joshie.harvest.core.helpers.UUIDHelper;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class PurchaseableBuilding extends Purchaseable {
@@ -33,6 +34,31 @@ public class PurchaseableBuilding extends Purchaseable {
     @Override
     public boolean canList(World world, EntityPlayer player) {
         return !TownHelper.hasBuilding(UUIDHelper.getPlayerUUID(player), building) && building.canBuy(world, player);
+    }
+
+    @Override
+    public boolean onPurchased(EntityPlayer player) {
+        int logs = 0;
+        int stone = 0;
+
+        for (int i = 0; i < player.inventory.mainInventory.length && (logs < getLogCost() || stone < getStoneCost()); i++) {
+            ItemStack stack = player.inventory.mainInventory[i];
+            if (stack != null) {
+                if (InventoryHelper.isOreName(stack, "logWood")) {
+                    for (int j = 0; j < 64 && (logs < getLogCost()) && stack.stackSize > 0; j++) {
+                        player.inventory.decrStackSize(i, 1);
+                        logs++;
+                    }
+                } else if (InventoryHelper.isOreName(stack, "stone")) {
+                    for (int j = 0; j < 64 && (stone < getStoneCost()) && stack.stackSize > 0; j++) {
+                        player.inventory.decrStackSize(i, 1);
+                        stone++;
+                    }
+                }
+            }
+        }
+
+        return super.onPurchased(player);
     }
 
     public int getLogCost() {

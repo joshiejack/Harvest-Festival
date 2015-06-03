@@ -3,8 +3,11 @@ package joshie.harvest.core.gui;
 import java.util.ArrayList;
 import java.util.List;
 
+import joshie.harvest.core.helpers.PlayerHelper;
 import joshie.harvest.core.helpers.generic.StackHelper;
 import joshie.harvest.core.lib.HFModInfo;
+import joshie.harvest.core.network.PacketHandler;
+import joshie.harvest.core.network.PacketPurchaseItem;
 import joshie.harvest.npc.EntityNPC;
 import joshie.harvest.shops.PurchaseableBuilding;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,20 +21,20 @@ public class GuiNPCBuilderShop extends GuiNPCShop {
     public GuiNPCBuilderShop(EntityNPC npc, EntityPlayer player) {
         super(npc, player);
     }
-    
+
     @Override
     public int getIncrease() {
         return 1;
     }
-    
+
     @Override
     public int getMax() {
         return 5;
     }
-    
+
     private static final ItemStack log = new ItemStack(Blocks.log);
     private static final ItemStack stone = new ItemStack(Blocks.stone);
-    
+
     @Override
     protected void drawShelves(int x, int y) {
         int index = 0;
@@ -65,24 +68,46 @@ public class GuiNPCBuilderShop extends GuiNPCShop {
             }
 
             drawTexturedModalRect(x + posX, y + posY + (index * 34), xOffset, 32, 32, 32);
-            //mc.fontRenderer.drawStringWithShadow(display.getDisplayName(), x + 60, y + 46 + (index * 37), 0xC39753);
             StackHelper.drawStack(display, x + 34, y + 46 + (index * 34), 1.4F);
             mc.renderEngine.bindTexture(HFModInfo.elements);
             drawTexturedModalRect(x + 34 + 100, y + 54 + (index * 34), 244, 0, 12, 12);
             mc.fontRenderer.drawStringWithShadow("" + cost, x + 148, y + 57 + (index * 34), 0xC39753);
-            
-          
+
             //Wood
             StackHelper.drawStack(log, x + 56, y + 55 + (index * 34), 0.75F);
             mc.fontRenderer.drawStringWithShadow("" + purchaseable.getLogCost(), x + 69, y + 57 + (index * 34), 0xC39753);
-            
+
             //Stone
             StackHelper.drawStack(stone, x + 95, y + 55 + (index * 34), 0.75F);
             mc.fontRenderer.drawStringWithShadow("" + purchaseable.getStoneCost(), x + 108, y + 57 + (index * 34), 0xC39753);
-            
+
             mc.fontRenderer.drawStringWithShadow(EnumChatFormatting.BOLD + purchaseable.getName(), x + 60, y + 46 + (index * 34), 0xC39753);
-            
+
             GL11.glColor3f(1.0F, 1.0F, 1.0F);
+            index++;
+
+            if (index >= 10) {
+                break;
+            }
+        }
+    }
+
+    @Override
+    protected void onMouseClick(int x, int y) {
+        if (!welcome) super.onMouseClick(x, y);
+        int index = 0;
+        for (int i = start; i < contents.size(); i++) {
+            if (index > 4) break;
+            PurchaseableBuilding purchaseable = (PurchaseableBuilding) contents.get(i);
+            if (purchaseable.canBuy(player.worldObj, player)) {
+                long cost = purchaseable.getCost();
+                if (PlayerHelper.getGold(player) - purchaseable.getCost() >= 0) {
+                    if (mouseY >= 61 + (index * 34) && mouseY <= 93 + (index * 34) && mouseX >= 190 && mouseX <= 222) {
+                        PacketHandler.sendToServer(new PacketPurchaseItem(purchaseable));
+                    }
+                }
+            }
+
             index++;
 
             if (index >= 10) {

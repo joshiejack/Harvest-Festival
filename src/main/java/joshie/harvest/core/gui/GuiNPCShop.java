@@ -11,7 +11,9 @@ import joshie.harvest.core.helpers.generic.StackHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketPurchaseItem;
+import joshie.harvest.init.HFShops;
 import joshie.harvest.npc.EntityNPC;
+import joshie.harvest.shops.ShopInventoryGui;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -53,6 +55,17 @@ public class GuiNPCShop extends GuiNPC {
             overlay.renderOverlay(this, x, y, xSize, ySize);
             drawCoinage(x, y, PlayerHelper.getGold(player));
             drawShelves(x, y);
+            mc.renderEngine.bindTexture(shelve_texture);
+            
+            int up = 0;
+            int down = 0;
+            if (mouseX >= 231 && mouseX <= 242) {
+                up = mouseY >= 66 && mouseY <= 75? 17: 0;
+                down = mouseY >= 231 && mouseY <= 240? 17: 0;
+            }
+            
+            drawTexturedModalRect(x + 230, y + 45, 72 + up, 34, 14, 11);
+            drawTexturedModalRect(x + 230, y + 210, 72 + down, 47, 14, 11);
             GL11.glDisable(GL11.GL_BLEND);
             GL11.glPopMatrix();
         }
@@ -84,12 +97,13 @@ public class GuiNPCShop extends GuiNPC {
                 addTooltip(list);
             }
 
-            if (mouseY >= posY + 20 && mouseY <= posY + 52 && mouseX >= posX && mouseX <= posX + 32) {
+            if (mouseY >= posY + 20 && mouseY <= posY + 52 && mouseX >= posX && mouseX <= posX + 28) {
                 xOffset = 32;
             }
 
             drawTexturedModalRect(x + posX, y + posY, xOffset, 32, 32, 32);
-            //mc.fontRenderer.drawStringWithShadow(display.getDisplayName(), x + 60, y + 46 + (index * 37), 0xC39753);
+            GL11.glEnable(GL11.GL_BLEND);
+            GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
             mc.renderEngine.bindTexture(HFModInfo.elements);
             drawTexturedModalRect(x99 + 59, y37 + 50, 244, 0, 12, 12);
             
@@ -179,6 +193,16 @@ public class GuiNPCShop extends GuiNPC {
                     index++;
                 }
             }
+            
+            boolean up = false;
+            boolean down = false;
+            if (mouseX >= 231 && mouseX <= 242) {
+                up = mouseY >= 66 && mouseY <= 75;
+                down = mouseY >= 231 && mouseY <= 240;
+            }
+            
+            if (down) setStart(start + getIncrease());
+            else if (up) setStart(start - getIncrease());
         }
     }
 

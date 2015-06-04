@@ -5,8 +5,6 @@ import static joshie.harvest.core.helpers.ServerHelper.markDirty;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Map;
-import java.util.UUID;
 
 import joshie.harvest.api.WorldLocation;
 import joshie.harvest.api.animals.IAnimalData;
@@ -36,61 +34,7 @@ public class AnimalTrackerServer implements IData {
         return new ValueLocation(world.provider.dimensionId, x, y, z);
     }
 
-    public static IAnimalData null_data = new IAnimalData() {
-        @Override
-        public EntityAnimal getAnimal() {
-            return null;
-        }
-        
-        @Override
-        public EntityPlayer getOwner() {
-            return null;
-        }
-
-        @Override
-        public void setOwner(EntityPlayer player) {}
-
-        @Override
-        public boolean newDay() {
-            return true;
-        }
-
-        @Override
-        public boolean canProduce() {
-            return false;
-        }
-
-        @Override
-        public void setProduced() {}
-
-        @Override
-        public boolean setCleaned() {
-            return false;
-        }
-
-        @Override
-        public boolean setThrown() {
-            return false;
-        }
-
-        @Override
-        public boolean setFed() {
-            return false;
-        }
-
-        @Override
-        public boolean heal() {
-            return false;
-        }
-
-        @Override
-        public void treat(ItemStack stack, EntityPlayer player) {}
-
-        @Override
-        public boolean impregnate() {
-            return false;
-        }
-    };
+    public static final IAnimalData null_data = new NullAnimalData();
 
     //Returns a new instanceof this animal
     private IAnimalData getAndCreateData(EntityAnimal animal) {

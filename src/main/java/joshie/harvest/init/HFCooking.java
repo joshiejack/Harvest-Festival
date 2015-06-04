@@ -70,7 +70,7 @@ public class HFCooking {
         addFryingPanRecipe("pancake.savoury", 50, -1, flour, cabbage, oil, egg).setOptionalIngredients(onion);
         addFryingPanRecipe("fries.french", 15, 0, potato, oil).setOptionalIngredients(salt);
         addFryingPanRecipe("popcorn", 30, -1, corn).setOptionalIngredients(butter, salt);
-        addFryingPanRecipe("cornflakes", true, 10, -2, corn, milk).setOptionalIngredients(sugar);
+        addFryingPanRecipe("cornflakes", 10, -2, corn, milk).setOptionalIngredients(sugar);
         addFryingPanRecipe("eggplant.happy", 30, -2, eggplant).setOptionalIngredients(sugar);
         addFryingPanRecipe("egg.scrambled", 40, -3, egg, oil).setOptionalIngredients(butter, mayonnaise, salt);
         addFryingPanRecipe("omelet", 50, -4, egg, oil, milk).setOptionalIngredients(salt);
@@ -83,14 +83,14 @@ public class HFCooking {
         addFryingPanRecipe("risotto", 35, -1, tomato, onion, riceball, oil);
     
 	    //Mixer
-        addMixerRecipe("juice.pineapple", true, 5, -15, pineapple).setOptionalIngredients(salt, sugar);
-        addMixerRecipe("juice.tomato", true, 20, -20, tomato).setOptionalIngredients(salt);
-        addMixerRecipe("milk.strawberry", true, 30, -15, strawberry, milk).setOptionalIngredients(sugar);
-        addMixerRecipe("juice.vegetable", true, 20, -20, juice_vegetable).setOptionalIngredients(cucumber, onion, cabbage, tomato, spinach, carrot, green_pepper, turnip, salt); //Yo this doesnt make any sense. It requires Vegetable Juice to make iteslf?
-        addMixerRecipe("latte.vegetable", true, 30, -20, juice_vegetable, milk).setOptionalIngredients(cucumber, onion, cabbage, tomato, spinach, carrot, green_pepper, turnip, salt);
-        addMixerRecipe("ketchup", true, 1, 0, tomato, onion).setOptionalIngredients(salt, sugar);
-        addMixerRecipe("butter", 1, 0, milk).setOptionalIngredients(salt);
-        addMixerRecipe("fishsticks", 5, -1, fish).setOptionalIngredients(salt);
+        addMixerRecipe("juice.pineapple", 5, -15, pineapple).setOptionalIngredients(salt, sugar);
+        addMixerRecipe("juice.tomato", 20, -20, tomato).setOptionalIngredients(salt);
+        addMixerRecipe("milk.strawberry", 30, -15, strawberry, milk).setOptionalIngredients(sugar);
+        addMixerRecipe("juice.vegetable", 20, -20, juice_vegetable).setOptionalIngredients(cucumber, onion, cabbage, tomato, spinach, carrot, green_pepper, turnip, salt); //Yo this doesnt make any sense. It requires Vegetable Juice to make iteslf?
+        addMixerRecipe("latte.vegetable", 30, -20, juice_vegetable, milk).setOptionalIngredients(cucumber, onion, cabbage, tomato, spinach, carrot, green_pepper, turnip, salt);
+        addMixerRecipe("ketchup", 1, 0, tomato, onion).setOptionalIngredients(salt, sugar);
+        addMixerRecipe("butter", false, 1, 0, milk).setOptionalIngredients(salt);
+        addMixerRecipe("fishsticks", false, 5, -1, fish).setOptionalIngredients(salt);
         
 		//Hand
         addNoUtensilRecipe("turnip.pickled", 6, -2, turnip).setOptionalIngredients(salt);
@@ -108,14 +108,14 @@ public class HFCooking {
         addPotRecipe("spinach.boiled", 20, -1, spinach);
         addPotRecipe("potato.candied", 8, -1, sweet_potato).setOptionalIngredients(sugar);
         addPotRecipe("dumplings", true, 25, -5, cabbage, onion, flour, oil).setOptionalIngredients(sugar);
-        addPotRecipe("noodles", 40, true, -3, flour).setOptionalIngredients(salt);
+        addPotRecipe("noodles", 40, -3, flour).setOptionalIngredients(salt);
 //        addPotRecipe("noodles.curry", true, 60, -3, noodles, curry).setOptionalIngredients(salt);
-        addPotRecipe("soup.rice", 10, true, -2, riceball);
-        addPotRecipe("porridge", 8, -2, true, milk, riceball).setOptionalIngredients(sugar);
+        addPotRecipe("soup.rice", 10, -2, riceball);
+        addPotRecipe("porridge", 8, -2, milk, riceball).setOptionalIngredients(sugar);
         addPotRecipe("egg.overrice", 12, -2, egg, riceball).setOptionalIngredients(salt);
-        addPotRecipe("stew", 30, -1, true, milk, flour).setOptionalIngredients(eggplant, onion, potato, carrot, green_pepper, fish, salt);
+        addPotRecipe("stew", 30, -1, milk, flour).setOptionalIngredients(eggplant, onion, potato, carrot, green_pepper, fish, salt);
         addPotRecipe("stew.pumpkin", true, 8, -1, pumpkin).setOptionalIngredients(sugar, salt);
-        addPotRecipe("stew.fish", 7, -1, true, fish).setOptionalIngredients(salt);
+        addPotRecipe("stew.fish", 7, -1, fish).setOptionalIngredients(salt);
 //        addPotRecipe("stew.mountain", true, [numbers missing], carrot, bamboo_shoot, shiitake).setOptionalIngredients(salt);     
 
 		//Oven

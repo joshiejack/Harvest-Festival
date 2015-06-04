@@ -3,6 +3,7 @@ package joshie.harvest.api.animals;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 
 public interface IAnimalData {
     /** Returns the instanceof this animal
@@ -48,4 +49,10 @@ public interface IAnimalData {
     /** Attempt to impregnate the animal
      *  return true if sucessful */
     public boolean impregnate();
+
+    /** Read information from nbt **/
+    public void readFromNBT(NBTTagCompound nbt);
+
+    /** Write information to nbt **/
+    public void writeToNBT(NBTTagCompound nbt);
 }

@@ -66,10 +66,11 @@ public class HFCooking {
         HFIngredients.addIngredients();
         
         //Recipes
+		//Frying Pan
         addFryingPanRecipe("pancake.savoury", 50, -1, flour, cabbage, oil, egg).setOptionalIngredients(onion);
         addFryingPanRecipe("fries.french", 15, 0, potato, oil).setOptionalIngredients(salt);
         addFryingPanRecipe("popcorn", 30, -1, corn).setOptionalIngredients(butter, salt);
-        addFryingPanRecipe("cornflakes", 10, -2, corn, milk).setOptionalIngredients(sugar);
+        addFryingPanRecipe("cornflakes", true, 10, -2, corn, milk).setOptionalIngredients(sugar);
         addFryingPanRecipe("eggplant.happy", 30, -2, eggplant).setOptionalIngredients(sugar);
         addFryingPanRecipe("egg.scrambled", 40, -3, egg, oil).setOptionalIngredients(butter, mayonnaise, salt);
         addFryingPanRecipe("omelet", 50, -4, egg, oil, milk).setOptionalIngredients(salt);
@@ -81,15 +82,17 @@ public class HFCooking {
         addFryingPanRecipe("potsticker", 25, -1, cabbage, onion, flour, oil);
         addFryingPanRecipe("risotto", 35, -1, tomato, onion, riceball, oil);
     
-        addMixerRecipe("juice.pineapple", 5, -15, pineapple).setOptionalIngredients(salt, sugar);
-        addMixerRecipe("juice.tomato", 20, -20, tomato).setOptionalIngredients(salt);
-        addMixerRecipe("milk.strawberry", 30, -15, strawberry, milk).setOptionalIngredients(sugar);
-        addMixerRecipe("juice.vegetable", 20, -20, juice_vegetable).setOptionalIngredients(cucumber, onion, cabbage, tomato, spinach, carrot, green_pepper, turnip, salt);
-        addMixerRecipe("latte.vegetable", 30, -20, juice_vegetable, milk).setOptionalIngredients(cucumber, onion, cabbage, tomato, spinach, carrot, green_pepper, turnip, salt);
-        addMixerRecipe("ketchup", false, 1, 0, tomato, onion).setOptionalIngredients(salt, sugar);
-        addMixerRecipe("butter", false, 1, 0, milk).setOptionalIngredients(salt);
-        addMixerRecipe("fishsticks", false, 5, -1, fish).setOptionalIngredients(salt);
+	    //Mixer
+        addMixerRecipe("juice.pineapple", true, 5, -15, pineapple).setOptionalIngredients(salt, sugar);
+        addMixerRecipe("juice.tomato", true, 20, -20, tomato).setOptionalIngredients(salt);
+        addMixerRecipe("milk.strawberry", true, 30, -15, strawberry, milk).setOptionalIngredients(sugar);
+        addMixerRecipe("juice.vegetable", true, 20, -20, juice_vegetable).setOptionalIngredients(cucumber, onion, cabbage, tomato, spinach, carrot, green_pepper, turnip, salt); //Yo this doesnt make any sense. It requires Vegetable Juice to make iteslf?
+        addMixerRecipe("latte.vegetable", true, 30, -20, juice_vegetable, milk).setOptionalIngredients(cucumber, onion, cabbage, tomato, spinach, carrot, green_pepper, turnip, salt);
+        addMixerRecipe("ketchup", true, 1, 0, tomato, onion).setOptionalIngredients(salt, sugar);
+        addMixerRecipe("butter", 1, 0, milk).setOptionalIngredients(salt);
+        addMixerRecipe("fishsticks", 5, -1, fish).setOptionalIngredients(salt);
         
+		//Hand
         addNoUtensilRecipe("turnip.pickled", 6, -2, turnip).setOptionalIngredients(salt);
         addNoUtensilRecipe("cucumber.pickled", 6, -2, cucumber).setOptionalIngredients(salt);
         addNoUtensilRecipe("salad", 10, -3, salad_ingredient).setOptionalIngredients(mushroom, cucumber, cabbage, tomato, carrot, salt);
@@ -98,21 +101,24 @@ public class HFCooking {
         addNoUtensilRecipe("sashimi", 22, -4, fish);
         addNoUtensilRecipe("sashimi.chirashi", 50, -7, sashimi, scrambled_egg, riceball, sashimi_vegetable);
         
+		//Pot
         addPotRecipe("milk.hot", true, 20, -10, milk).setOptionalIngredients(sugar);
         addPotRecipe("chocolate.hot", true, 10, -15, milk, chocolate).setOptionalIngredients(sugar);
         addPotRecipe("egg.boiled", 20, -2, egg).setOptionalIngredients(salt);
         addPotRecipe("spinach.boiled", 20, -1, spinach);
         addPotRecipe("potato.candied", 8, -1, sweet_potato).setOptionalIngredients(sugar);
-        addPotRecipe("dumplings", 25, -5, cabbage, onion, flour, oil).setOptionalIngredients(sugar);
-        addPotRecipe("noodles", 40, -3, flour).setOptionalIngredients(salt);
-//        addPotRecipe("noodles.curry", 60, -3, noodles, curry).setOptionalIngredients(salt);
-        addPotRecipe("soup.rice", 10, -2, riceball);
-        addPotRecipe("porridge", 8, -2, milk, riceball).setOptionalIngredients(sugar);
+        addPotRecipe("dumplings", true, 25, -5, cabbage, onion, flour, oil).setOptionalIngredients(sugar);
+        addPotRecipe("noodles", 40, true, -3, flour).setOptionalIngredients(salt);
+//        addPotRecipe("noodles.curry", true, 60, -3, noodles, curry).setOptionalIngredients(salt);
+        addPotRecipe("soup.rice", 10, true, -2, riceball);
+        addPotRecipe("porridge", 8, -2, true, milk, riceball).setOptionalIngredients(sugar);
         addPotRecipe("egg.overrice", 12, -2, egg, riceball).setOptionalIngredients(salt);
-        addPotRecipe("stew", 30, -1, milk, flour).setOptionalIngredients(eggplant, onion, potato, carrot, green_pepper, fish, salt);
-        addPotRecipe("stew.pumpkin", 8, -1, pumpkin).setOptionalIngredients(sugar, salt);
-        addPotRecipe("stew.fish", 7, -1, fish).setOptionalIngredients(salt);
-//        addPotRecipe("stew.mountain", [you do the numbers plis], carrot, bamboo.shoot, shiitake).setOptionalIngredients(salt);     
+        addPotRecipe("stew", 30, -1, true, milk, flour).setOptionalIngredients(eggplant, onion, potato, carrot, green_pepper, fish, salt);
+        addPotRecipe("stew.pumpkin", true, 8, -1, pumpkin).setOptionalIngredients(sugar, salt);
+        addPotRecipe("stew.fish", 7, -1, true, fish).setOptionalIngredients(salt);
+//        addPotRecipe("stew.mountain", true, [numbers missing], carrot, bamboo_shoot, shiitake).setOptionalIngredients(salt);     
+
+		//Oven
         addOvenRecipe("corn.baked", 7, -1, corn).setOptionalIngredients(oil, butter, salt);
         addOvenRecipe("riceballs.toasted", 12, -1, riceball).setOptionalIngredients(sugar, salt);
         addOvenRecipe("toast", 16, -1, bread).setOptionalIngredients(butter);
@@ -121,7 +127,12 @@ public class HFCooking {
         addOvenRecipe("doria", 25, -3, onion, butter, milk, riceball, flour);
         addOvenRecipe("cookies", 15, -5, egg, flour, butter).setOptionalIngredients(sugar);
         addOvenRecipe("cookies.chocolate", 30, -5, cookies, chocolate);
+//      addOvenRecipe("cake", 46, -11, egg, flour, butter, fruit_ingredient).setOptionalIngredients(egg, flour, butter, orange, pineapple, strawberry, peach, grape_wild);
         addOvenRecipe("cake.chocolate", 70, -8, egg, flour, butter, chocolate).setOptionalIngredients(sugar, pineapple, apple, strawberry);
+//		addOvenRecipe("cake.rice", [numbers missing], [festival]); //Can only be gotten via the New Year's Festival, not sure how you make a recipe with no ingredients.. lol if that even works
+//		addOvenRecipe("cake.rice.toasted", [numbers missing], cake_rice);
+//      addOvenRecipe("cake.cheese", 50, -5, egg, cheese, milk);
+//      addOvenRecipe("cake.apple", [numbers missing], apple, egg, butter, flour);
         
         HFIngredients.assignIngredients();
     }

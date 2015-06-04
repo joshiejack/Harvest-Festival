@@ -1,7 +1,7 @@
 [
 {
-  "modid": "HarvestMoon",
-  "name": "Harvest Moon",
+  "modid": "HarvestFestival",
+  "name": "Harvest Festival",
   "description": "A Mod inspired by the Harvest Moon series of games",
   "version": "${version}",
   "mcversion": "${mcversion}",

@@ -49,7 +49,7 @@ public class HFBlocks {
         woodmachines = new BlockWood().setStepSound(soundTypeWood).setBlockName("general.block");
         preview = new BlockPreview().setBlockName("preview");
         stone = new BlockStone().setStepSound(soundTypePiston).setBlockName("stone");
-        goddess = new Fluid("hm_goddess_water").setRarity(EnumRarity.rare);
+        goddess = new Fluid("hf_goddess_water").setRarity(EnumRarity.rare);
         FluidRegistry.registerFluid(goddess);
         goddessWater = new BlockGoddessWater(goddess).setBlockName("goddess.water");
         goddess.setBlock(goddessWater);

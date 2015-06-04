@@ -28,7 +28,7 @@ public class HFTab extends CreativeTabs {
 
     public HFTab(String label) {
         super(label);
-        setBackgroundImageName("hm.png");
+        setBackgroundImageName("hf.png");
         setNoTitle();
     }
 

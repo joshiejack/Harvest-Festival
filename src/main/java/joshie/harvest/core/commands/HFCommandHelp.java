@@ -50,7 +50,7 @@ public class HFCommandHelp extends HFCommandBase {
         }
 
         int j = Math.min((k + 1) * b0, list.size());
-        ChatComponentTranslation chatcomponenttranslation1 = new ChatComponentTranslation("hm.commands.help.header", new Object[] { Integer.valueOf(k + 1), Integer.valueOf(i + 1) });
+        ChatComponentTranslation chatcomponenttranslation1 = new ChatComponentTranslation("hf.commands.help.header", new Object[] { Integer.valueOf(k + 1), Integer.valueOf(i + 1) });
         chatcomponenttranslation1.getChatStyle().setColor(EnumChatFormatting.DARK_GREEN);
         sender.addChatMessage(chatcomponenttranslation1);
 

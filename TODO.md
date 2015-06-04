@@ -20,7 +20,7 @@
 
 ### Questing
 - [ ] Spawning the NPC Builder Quest
-- [ ] Welcome to 'Harvest Moon' Quests
+- [ ] Welcome to 'Harvest Festival' Quests
 - [ ] Blacksmith Upgrade Tool Quests
 - [ ] Priest Bless Tools Quests
 - [ ] Unlock Mixer, Frying Pan, Pot, Oven for purchase quests
@@ -28,13 +28,6 @@
 ## Aesthetics 
 ###Textures
 - [ ] items/crops/grass.png 
-- [ ] items/meals/fries_french.png //Custom
-- [ ] items/meals/omelet.png //Plate
-- [ ] items/meals/omelet_rice.png //Plate
-- [ ] items/meals/pancake_savoury.png //Plate
-- [ ] items/meals/sashimi.png //Custom
-- [ ] items/meals/sashimi_chirashi.png //Custom
-- [ ] items/meals/sushi.png //Custom
 - [ ] entities/abi.png
 - [ ] entities/cloe.png
 - [ ] entities/goddess.png

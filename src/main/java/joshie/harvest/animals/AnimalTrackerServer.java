@@ -3,21 +3,20 @@ package joshie.harvest.animals;
 import static joshie.harvest.core.helpers.ServerHelper.markDirty;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.UUID;
 
 import joshie.harvest.api.WorldLocation;
+import joshie.harvest.api.animals.IAnimalData;
+import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.core.config.Animals;
-import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.util.IData;
 import joshie.harvest.init.HFBlocks;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -28,9 +27,7 @@ import net.minecraftforge.common.DimensionManager;
 //Handles the Data for the crops rather than using TE Data
 public class AnimalTrackerServer implements IData {
     private DamageSource natural_causes = new DamageSource("natural").setDamageBypassesArmor();
-
-    //Key is the animal, Value is the Player
-    private HashMap<UUID, AnimalData> animalData = new HashMap();
+    private HashSet<IAnimalData> animals = new HashSet();
     private HashSet<ValueLocation> troughs = new HashSet();
     private HashSet<ValueLocation> nests = new HashSet();
 
@@ -39,16 +36,69 @@ public class AnimalTrackerServer implements IData {
         return new ValueLocation(world.provider.dimensionId, x, y, z);
     }
 
-    //Returns a new instanceof this animal
-    private AnimalData getAndCreateData(EntityAnimal animal) {
-        AnimalData data = animalData.get(UUIDHelper.getEntityUUID(animal));
-        if (data == null) {
-            data = new AnimalData(animal);
-            animalData.put(UUIDHelper.getEntityUUID(animal), data);
+    public static IAnimalData null_data = new IAnimalData() {
+        @Override
+        public EntityAnimal getAnimal() {
+            return null;
+        }
+        
+        @Override
+        public EntityPlayer getOwner() {
+            return null;
         }
 
-        markDirty();
-        return data;
+        @Override
+        public void setOwner(EntityPlayer player) {}
+
+        @Override
+        public boolean newDay() {
+            return true;
+        }
+
+        @Override
+        public boolean canProduce() {
+            return false;
+        }
+
+        @Override
+        public void setProduced() {}
+
+        @Override
+        public boolean setCleaned() {
+            return false;
+        }
+
+        @Override
+        public boolean setThrown() {
+            return false;
+        }
+
+        @Override
+        public boolean setFed() {
+            return false;
+        }
+
+        @Override
+        public boolean heal() {
+            return false;
+        }
+
+        @Override
+        public void treat(ItemStack stack, EntityPlayer player) {}
+
+        @Override
+        public boolean impregnate() {
+            return false;
+        }
+    };
+
+    //Returns a new instanceof this animal
+    private IAnimalData getAndCreateData(EntityAnimal animal) {
+        if (animal instanceof IAnimalTracked) {
+            return ((IAnimalTracked) animal).getData();
+        }
+
+        return null_data;
     }
 
     //Returns the entityplayer that is the owner of this animal, or the closest to it
@@ -57,22 +107,24 @@ public class AnimalTrackerServer implements IData {
     }
 
     //Sets the owner of this animal
-    public void setOwner(EntityPlayerMP player, EntityAnimal animal) {
+    public void setOwner(EntityPlayer player, EntityAnimal animal) {
         getAndCreateData(animal).setOwner(player);
     }
 
     //Kills an animal
-    private void kill(int dimension, UUID uuid) {
-        EntityAnimal animal = joshie.harvest.core.helpers.generic.EntityHelper.getAnimalFromUUID(dimension, uuid);
+    private void kill(EntityAnimal animal) {
         if (animal != null) {
             animal.attackEntityFrom(natural_causes, 1000F);
         }
     }
+    
+    public void onJoinWorld(EntityAnimal animal) {
+        animals.add(getAndCreateData(animal));
+    }
 
     //Called when an animal dies
     public void onDeath(EntityAnimal animal) {
-        animalData.remove(UUIDHelper.getEntityUUID(animal));
-        markDirty();
+        animals.remove(getAndCreateData(animal));
     }
 
     //Loops through all the animal, and 'ticks' them for their new day
@@ -109,13 +161,12 @@ public class AnimalTrackerServer implements IData {
             }
         }
 
-        Iterator<Map.Entry<UUID, AnimalData>> iter = animalData.entrySet().iterator();
+        Iterator<IAnimalData> iter = animals.iterator();
         while (iter.hasNext()) {
-            Map.Entry<UUID, AnimalData> entry = iter.next();
-            AnimalData data = entry.getValue();
+            IAnimalData data = iter.next();
             if (!data.newDay()) { //If the new day wasn't successful, remove the animal from your memory
                 iter.remove();
-                kill(data.getDimension(), entry.getKey());
+                kill(data.getAnimal());
             }
         }
 
@@ -224,15 +275,6 @@ public class AnimalTrackerServer implements IData {
 
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
-        NBTTagList animals = nbt.getTagList("AnimalData", 10);
-        for (int i = 0; i < animals.tagCount(); i++) {
-            NBTTagCompound tag = animals.getCompoundTagAt(i);
-            UUID id = new UUID(tag.getLong("UUIDMost"), tag.getLong("UUIDLeast"));
-            AnimalData data = new AnimalData();
-            data.readFromNBT(tag);
-            animalData.put(id, data);
-        }
-
         NBTTagList trough = nbt.getTagList("Troughs", 10);
         for (int i = 0; i < trough.tagCount(); i++) {
             NBTTagCompound tag = trough.getCompoundTagAt(i);
@@ -252,17 +294,6 @@ public class AnimalTrackerServer implements IData {
 
     @Override
     public void writeToNBT(NBTTagCompound nbt) {
-        NBTTagList animals = new NBTTagList();
-        for (Map.Entry<UUID, AnimalData> entry : animalData.entrySet()) {
-            NBTTagCompound tag = new NBTTagCompound();
-            tag.setLong("UUIDMost", entry.getKey().getMostSignificantBits());
-            tag.setLong("UUIDLeast", entry.getKey().getLeastSignificantBits());
-            entry.getValue().writeToNBT(tag);
-            animals.appendTag(tag);
-        }
-
-        nbt.setTag("AnimalData", animals);
-
         //Animal Troughs
         NBTTagList trough = new NBTTagList();
         for (WorldLocation location : troughs) {

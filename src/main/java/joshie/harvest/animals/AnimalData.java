@@ -10,6 +10,7 @@ import static joshie.harvest.core.network.PacketHandler.sendToEveryone;
 import java.util.Random;
 import java.util.UUID;
 
+import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.core.config.Animals;
 import joshie.harvest.core.helpers.AnimalHelper;
 import joshie.harvest.core.helpers.RelationsHelper;
@@ -25,11 +26,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 
-public class AnimalData implements IData {
+public class AnimalData implements IData, IAnimalData {
     private static final Random rand = new Random();
 
     private EntityAnimal animal;
-    private EntityPlayerMP owner;
+    private EntityPlayer owner;
 
     private UUID a_uuid;
     private UUID o_uuid;
@@ -56,8 +57,6 @@ public class AnimalData implements IData {
     private boolean isPregnant;
     private int daysPregnant;
 
-    public AnimalData() {}
-
     public AnimalData(EntityAnimal animal) {
         this.animal = animal;
         this.a_uuid = UUIDHelper.getEntityUUID(animal);
@@ -66,16 +65,7 @@ public class AnimalData implements IData {
     }
 
     /** May return null **/
-    public EntityAnimal getAndCreateAnimal() {
-        if (animal == null) {
-            animal = (EntityAnimal) joshie.harvest.core.helpers.generic.EntityHelper.getAnimalFromUUID(dimension, a_uuid);
-        }
-
-        return animal;
-    }
-
-    /** May return null **/
-    public EntityPlayerMP getAndCreateOwner() {
+    public EntityPlayer getAndCreateOwner() {
         if (o_uuid != null) {
             if (owner == null) {
                 owner = joshie.harvest.core.helpers.generic.EntityHelper.getPlayerFromUUID(o_uuid);
@@ -103,12 +93,11 @@ public class AnimalData implements IData {
     }
 
     public boolean newDay() {
-        EntityAnimal entity = getAndCreateAnimal();
-        if (entity != null) {
+        if (animal != null) {
             //Stage 1, Check if the Animal is going to die
             if (currentLifespan > type.getMax()) return false;
             if (currentLifespan > type.getMin() || isSick) {
-                if (rand.nextInt(getDeathChance(entity)) == 0) {
+                if (rand.nextInt(getDeathChance(animal)) == 0) {
                     return false;
                 }
             }
@@ -162,21 +151,21 @@ public class AnimalData implements IData {
 
                     //Stage 4, if the animal is a sheep, make it eat grass
                     if (type == SHEEP) {
-                        if (entity != null) {
-                            entity.eatGrassBonus();
+                        if (animal != null) {
+                            animal.eatGrassBonus();
                         }
                     } else if (type == CHICKEN) { //Or if it's a chicken, make it lay an egg
-                        EntityPlayer player = AnimalHelper.getOwner(entity);
-                        if (entity != null && player != null) {
-                            ItemStack egg = getEgg(player, entity);
-                            entity.playSound("mob.chicken.plop", 1.0F, (entity.worldObj.rand.nextFloat() - entity.worldObj.rand.nextFloat()) * 0.2F + 1.0F);
-                            spawnByEntity(entity, egg);
+                        EntityPlayer player = AnimalHelper.getOwner(animal);
+                        if (animal != null && player != null) {
+                            ItemStack egg = getEgg(player, animal);
+                            animal.playSound("mob.chicken.plop", 1.0F, (animal.worldObj.rand.nextFloat() - animal.worldObj.rand.nextFloat()) * 0.2F + 1.0F);
+                            spawnByEntity(animal, egg);
                         }
                     }
                 }
 
                 //Sync Whether this animal can produce, before we increase daysnotfed
-                sendToEveryone(new PacketSyncCanProduce(entity.getEntityId(), false, canProduce()));
+                sendToEveryone(new PacketSyncCanProduce(animal.getEntityId(), false, canProduce()));
             }
 
             //Stage 4 Pregnancy time!
@@ -202,11 +191,15 @@ public class AnimalData implements IData {
             return true;
         } else return false;
     }
+    
+    @Override
+    public EntityAnimal getAnimal() {
+        return animal;
+    }
 
-    //Returns this owner of this animal, can be null
+    @Override
     public EntityPlayer getOwner() {
-        EntityAnimal animal = getAndCreateAnimal();
-        EntityPlayerMP owner = getAndCreateOwner();
+        EntityPlayer owner = getAndCreateOwner();
         if (owner != null) {
             if (animal.worldObj.provider.dimensionId == owner.worldObj.provider.dimensionId) {
                 if (animal.getDistanceToEntity(owner) <= 128) {
@@ -218,8 +211,8 @@ public class AnimalData implements IData {
         return animal.worldObj.getClosestPlayerToEntity(animal, 128);
     }
 
-    //Sets the owner of this animal
-    public void setOwner(EntityPlayerMP player) {
+    @Override
+    public void setOwner(EntityPlayer player) {
         this.owner = player;
         this.o_uuid = UUIDHelper.getPlayerUUID(player);
     }
@@ -231,18 +224,20 @@ public class AnimalData implements IData {
     }
 
     //Animals can produce products, if they are healthy, have been fed, and aren't over their daily limit
+    @Override
     public boolean canProduce() {
         return healthiness > 0 && daysNotFed <= 0 && numProductsProduced < maxProductsPerDay;
     }
 
     //Increase the amount of products this animal has produced for the day
+    @Override
     public void setProduced() {
         numProductsProduced++;
         //Increase the amount produced, then resync the data with the client
-        EntityAnimal animal = getAndCreateAnimal();
         sendToEveryone(new PacketSyncCanProduce(animal.getEntityId(), false, canProduce()));
     }
 
+    @Override
     public boolean setCleaned() {
         if (cleanliness < Byte.MAX_VALUE) {
             cleanliness += 10;
@@ -250,6 +245,7 @@ public class AnimalData implements IData {
         } else return false;
     }
 
+    @Override
     public boolean setThrown() {
         if (!thrown) {
             thrown = true;
@@ -258,26 +254,16 @@ public class AnimalData implements IData {
     }
 
     //Sets this animal as having been fed, if it's already been fed, this will return false
+    @Override
     public boolean setFed() {
         if (daysNotFed >= 0) {
             daysNotFed = -1;
             return true;
         } else return false;
     }
-
-    //If the anima hasn't been treated yet today, and it's the right treat, then reward some points
-    public void treat(ItemStack stack, EntityPlayer player) {
-        if (!treated) {
-            int dmg = stack.getItemDamage();
-            AnimalType type = dmg < AnimalType.values().length ? AnimalType.values()[dmg] : OTHER;
-            if (type == this.type) {
-                treated = true;
-                RelationsHelper.affectRelations(player, getAndCreateAnimal(), 1000);
-            }
-        }
-    }
-
+    
     //Returns true if the animal was healed
+    @Override
     public boolean heal() {
         if (healthiness < 27) {
             healthiness += 100;
@@ -289,8 +275,21 @@ public class AnimalData implements IData {
         } else return false;
     }
 
+    //If the animal hasn't been treated yet today, and it's the right treat, then reward some points
+    @Override
+    public void treat(ItemStack stack, EntityPlayer player) {
+        if (!treated) {
+            int dmg = stack.getItemDamage();
+            AnimalType type = dmg < AnimalType.values().length ? AnimalType.values()[dmg] : OTHER;
+            if (type == this.type) {
+                treated = true;
+                RelationsHelper.affectRelations(player, animal, 1000);
+            }
+        }
+    }
+
+    @Override
     public boolean impregnate() {
-        EntityAnimal animal = getAndCreateAnimal();
         if (animal.getAge() < 0) return false;
         if (isPregnant) return false;
         daysPregnant = 0;
@@ -299,7 +298,6 @@ public class AnimalData implements IData {
     }
 
     public void giveBirth() {
-        EntityAnimal animal = getAndCreateAnimal();
         int count = 1;
         //Chance for litters up to 5
         for (int i = 0; i < (Animals.MAX_LITTER_SIZE - 1); i++) {

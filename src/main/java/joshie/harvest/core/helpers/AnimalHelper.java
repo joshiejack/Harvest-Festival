@@ -46,6 +46,10 @@ public class AnimalHelper {
             ClientHelper.getAnimalTracker().onDeath(animal);
         }
     }
+    
+    public static void onJoinWorld(EntityAnimal entity) {
+        ServerHelper.getAnimalTracker().onJoinWorld(entity);
+    }
 
     public static void throwChicken(EntityPlayer player, EntityChicken chicken) {
         if (ServerHelper.getAnimalTracker().setThrown(chicken)) {

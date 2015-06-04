@@ -36,6 +36,7 @@ public class AnimalEvents {
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void onEntityLoaded(EntityJoinWorldEvent event) {
         if (event.entity instanceof EntityAnimal) {
+            if (!event.world.isRemote) AnimalHelper.onJoinWorld((EntityAnimal) event.entity);
             if (event.world.isRemote) {
                 //Request information about whether you can get products from the cow or sheep
                 if (event.entity instanceof EntityCow || event.entity instanceof EntitySheep) {
@@ -61,7 +62,7 @@ public class AnimalEvents {
             AnimalHelper.onDeath((EntityAnimal) event.entityLiving);
         }
     }
-    
+
     private HashSet<Entity> mounted = new HashSet();
 
     @SubscribeEvent
@@ -73,7 +74,7 @@ public class AnimalEvents {
                     mounted.remove(player.riddenByEntity);
                     return;
                 }
-                
+
                 EntityChicken chicken = (EntityChicken) player.riddenByEntity;
                 chicken.mountEntity(null);
                 chicken.rotationPitch = player.rotationPitch;
@@ -119,7 +120,7 @@ public class AnimalEvents {
     @SubscribeEvent
     public void onSpawnAttempt(CheckSpawn event) {
         if (!Animals.CAN_SPAWN) {
-            if (event.entity instanceof EntityAnimal) {
+            if (event.entity instanceof EntityCow || event.entity instanceof EntitySheep || event.entity instanceof EntityChicken) {
                 event.setResult(Result.DENY);
             }
         }

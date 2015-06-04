@@ -9,7 +9,7 @@ hf.check.head=On head after purchase.
 hf.check.lead=On lead after purchase.
 
 #Commands
-hf.commands.help.header=--- Showing hm help page %d of %d (/hm help <page>) ---
+hf.commands.help.header=--- Showing hf help page %d of %d (/hf help <page>) ---
 
 #Animals
 hf.animal.chicken=Chicken
@@ -97,7 +97,7 @@ hf.meal.popcorn=Popcorn
 hf.meal.cornflakes=Cornflakes
 hf.meal.egg.scrambled=Scrambled Eggs
 hf.meal.omelet=Omelette
-hf.meal.omelet.rice=Omurice
+hf.meal.omelet.rice=Omelet Rice
 hf.meal.pancake=Pancake
 hf.meal.potsticker=Pot Sticker
 hf.meal.risotto=Risotto
@@ -106,9 +106,9 @@ hf.meal.juice.tomato=Tomato Juice
 hf.meal.milk.strawberry=Strawberry Milk
 hf.meal.juice.vegetable=Vegetable Juice
 hf.meal.latte.vegetable=Vegetable Latte
-hf.meal.ketchup=Tomato Ketchup
+hf.meal.ketchup=Ketchup
 hf.meal.butter=Butter
-hf.meal.fishsticks=Fish Fingers
+hf.meal.fishsticks=Fish Sticks
 hf.meal.salad=Salad
 hf.meal.sandwich=Sandwich
 hf.meal.turnip.pickled=Pickled Turnip
@@ -133,7 +133,7 @@ hf.meal.corn.baked=Baked Corn
 hf.meal.riceballs.toasted=Toasted Riceballs
 hf.meal.toast=Toast
 hf.meal.dinnerroll=Dinner Roll
-hf.meal.sweetroll=Sweet Roll
+hf.meal.bun.jam=Jam Bun
 hf.meal.doria=Doria
 hf.meal.cookies=Cookies
 hf.meal.cookies.chocolate=Chocolate Chip Cookies

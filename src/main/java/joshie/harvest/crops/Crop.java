@@ -3,7 +3,7 @@ package joshie.harvest.crops;
 import java.util.ArrayList;
 import java.util.Random;
 
-import joshie.harvest.api.AnimalFoodType;
+import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropRenderHandler;
 import joshie.harvest.api.crops.IDropHandler;
@@ -39,7 +39,6 @@ public class Crop implements ICrop {
     protected boolean needsWatering;
     protected boolean alternativeName;
     protected boolean requiresSickle;
-    protected boolean isEdible;
     protected ItemStack item;
     protected Season[] seasons;
     protected int cost;
@@ -126,12 +125,6 @@ public class Crop implements ICrop {
     @Override
     public ICrop setSoilRequirements(ISoilHandler handler) {
         this.soilHandler = handler;
-        return this;
-    }
-
-    @Override
-    public ICrop setIsEdible() {
-        this.isEdible = true;
         return this;
     }
 
@@ -226,11 +219,6 @@ public class Crop implements ICrop {
     @Override
     public boolean requiresWater() {
         return needsWatering;
-    }
-
-    @Override
-    public boolean isEdible() {
-        return isEdible;
     }
 
     @Override

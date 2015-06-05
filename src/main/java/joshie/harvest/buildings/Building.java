@@ -129,7 +129,7 @@ public class Building implements IBuilding {
 
     @Override
     public boolean equals(Object o) {
-        return name.equals(o);
+        return (o instanceof String) ? name.equals(o) : false;
     }
 
     @Override

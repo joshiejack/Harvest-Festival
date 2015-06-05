@@ -44,7 +44,6 @@ public class CodeGeneratorBuildings {
     public void getCode(boolean air) {
         if (!world.isRemote) {
             ArrayList<String> ret = new ArrayList();
-            StringBuilder entities = new StringBuilder();
             Set all = new HashSet();
             boolean hasAFrame = false;
             int i = 0;

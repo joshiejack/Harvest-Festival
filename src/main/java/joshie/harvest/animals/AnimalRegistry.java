@@ -5,19 +5,21 @@ import joshie.harvest.animals.type.AnimalCow;
 import joshie.harvest.animals.type.AnimalSheep;
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalHandler;
+import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.animals.IAnimalType;
+import joshie.harvest.items.ItemTreat;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntitySheep;
 
 public class AnimalRegistry implements IAnimalHandler {
-    private static final IAnimalType cow = new AnimalCow();
-    private static final IAnimalType sheep = new AnimalSheep();
-    private static final IAnimalType chicken = new AnimalChicken();
+    public static final IAnimalType cow = new AnimalCow();
+    public static final IAnimalType sheep = new AnimalSheep();
+    public static final IAnimalType chicken = new AnimalChicken();
 
     @Override
-    public IAnimalData newData(EntityAnimal animal) {
+    public IAnimalData newData(IAnimalTracked animal) {
         return new AnimalData(animal);
     }
 

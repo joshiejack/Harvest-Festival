@@ -6,6 +6,7 @@ import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.core.lib.SizeableMeta;
 import joshie.harvest.init.HFConfig;
 import joshie.harvest.init.HFItems;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -14,7 +15,7 @@ import net.minecraft.item.ItemStack;
 public class SizeableHelper {
     private static final Random rand = new Random();
 
-    public static ItemStack getEgg(EntityPlayer player, EntityAnimal animal) {
+    public static ItemStack getEgg(EntityPlayer player, EntityLiving animal) {
         Size size = Size.SMALL;
         int relationship = RelationsHelper.getRelationshipValue(animal, player);
         int chance = Math.max(1, RelationsHelper.ADJUSTED_MAX - relationship);

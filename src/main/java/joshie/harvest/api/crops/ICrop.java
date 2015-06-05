@@ -1,6 +1,6 @@
 package joshie.harvest.api.crops;
 
-import joshie.harvest.api.AnimalFoodType;
+import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.calendar.Season;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -71,9 +71,6 @@ public interface ICrop {
     /** Whether this crop requires water to grow **/
     public boolean requiresWater();
     
-    /** Returns true if this crop can be eaten by animals (While growing) **/
-    public boolean isEdible();
-    
     /** Whether or not an item was assigned to this crop yet **/
     public boolean hasItemAssigned();
 
@@ -118,10 +115,6 @@ public interface ICrop {
      *  So you can specify whether this crop is allowed to be placed
      *  on this type of soil or whatever. */
     public ICrop setSoilRequirements(ISoilHandler handler);
-
-    /** Setting this to true means, animals will consume the crop
-     *  while it is growing  */
-    public ICrop setIsEdible();
     
     /** Sets the stage at which this crop becomes double tall **/
     public ICrop setBecomesDouble(int doubleStage);

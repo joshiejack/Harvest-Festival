@@ -1,4 +1,4 @@
-package joshie.harvest.api;
+package joshie.harvest.api.animals;
 
 
 public enum AnimalFoodType {

@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
 
-import joshie.harvest.animals.AnimalType;
 import joshie.harvest.api.WorldLocation;
+import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.core.Weekday;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
@@ -23,7 +23,6 @@ import joshie.harvest.core.network.PacketSyncCrop;
 import joshie.harvest.core.util.IData;
 import joshie.harvest.init.HFBlocks;
 import net.minecraft.block.Block;
-import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -55,16 +54,6 @@ public class CropTrackerServer extends CropTrackerCommon implements IData {
             }
 
             if (data.canGrow() && !removed) {
-                //Feed surrounding animals with grass
-                if (data.getCrop().isEdible()) {
-                    ArrayList<EntityAnimal> animals = (ArrayList<EntityAnimal>) world.getEntitiesWithinAABB(EntityAnimal.class, HFBlocks.cookware.getCollisionBoundingBoxFromPool(world, location.x, location.y, location.z).expand(16D, 16D, 16D));
-                    for (EntityAnimal animal : animals) {
-                        if (AnimalType.getType(animal).eatsGrass()) {
-                            AnimalHelper.feed(null, animal);
-                        }
-                    }
-                }
-
                 boolean alive = data.newDay();
                 if (!alive) {
                     toWither.add(data);

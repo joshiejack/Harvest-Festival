@@ -29,7 +29,6 @@ public class SnowTransformer implements ITransformer {
         ClassReader classReader = new ClassReader(data);
         classReader.accept(classNode, 0);
 
-        boolean[] overridden = new boolean[3];
         topLabel: for (MethodNode method : classNode.methods) {
             if ((method.name.equals("registerBlocks") || method.name.equals("func_149671_p")) && method.desc.equals("()V")) {
                 for (int j = 0; j < method.instructions.size(); j++) {

@@ -1,6 +1,7 @@
 package joshie.harvest.items;
 
-import joshie.harvest.animals.AnimalType;
+import joshie.harvest.animals.AnimalRegistry;
+import joshie.harvest.api.animals.IAnimalType;
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.core.helpers.AnimalHelper;
 import joshie.harvest.core.lib.HFModInfo;
@@ -14,28 +15,38 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTreat extends ItemHFMeta implements ICreativeSorted {
+    public static final int COW = 0;
+    public static final int SHEEP = 1;
+    public static final int CHICKEN = 2;
+
+    public static IAnimalType getTreatTypeFromMeta(int meta) {
+        switch (meta) {
+            case COW:
+                return AnimalRegistry.cow;
+            case SHEEP:
+                return AnimalRegistry.sheep;
+            case CHICKEN:
+                return AnimalRegistry.chicken;
+            default:
+                return null;
+        }
+    }
+
     @Override
     public int getMetaCount() {
-        return AnimalType.values().length;
-    }
-    
-    @Override
-    public boolean isActive(int meta) {
-        return meta != AnimalType.PIG.ordinal() && meta != AnimalType.HORSE.ordinal();
+        return 3;
     }
 
     @Override
     public String getName(ItemStack stack) {
-        if (stack.getItemDamage() < getMetaCount()) {
-            return AnimalType.values()[stack.getItemDamage()].name().toLowerCase();
-        } else return AnimalType.OTHER.name().toLowerCase();
+        return getTreatTypeFromMeta(stack.getItemDamage()).getName();
     }
 
     @Override
     public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer player, EntityLivingBase living) {
         if (living instanceof EntityAnimal) {
             if (!living.worldObj.isRemote) {
-                AnimalHelper.treat(stack, player, living);
+                AnimalHelper.treat(stack, player, (EntityAnimal) living);
             }
 
             stack.stackSize--;
@@ -43,7 +54,7 @@ public class ItemTreat extends ItemHFMeta implements ICreativeSorted {
             return true;
         } else return false;
     }
-    
+
     @SideOnly(Side.CLIENT)
     @Override
     public void registerIcons(IIconRegister register) {

@@ -4,7 +4,7 @@ import net.minecraft.entity.passive.EntityAnimal;
 
 public interface IAnimalHandler {
     /** Creates a new animal data **/
-    public IAnimalData newData(EntityAnimal animal);
+    public IAnimalData newData(IAnimalTracked animal);
     
     /** Returns an animal type based on the string name **/
     public IAnimalType getTypeFromString(String string);

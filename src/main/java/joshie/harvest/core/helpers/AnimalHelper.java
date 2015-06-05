@@ -1,6 +1,7 @@
 package joshie.harvest.core.helpers;
 
-import net.minecraft.entity.EntityLivingBase;
+import joshie.harvest.api.animals.AnimalFoodType;
+import joshie.harvest.api.animals.IAnimalTracked;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,11 +30,14 @@ public class AnimalHelper {
 
     /** Causes the player to feed the animal, affecting it's relationship 
      * @param b **/
-    public static void feed(EntityPlayer player, EntityAnimal animal) {
-        if (!animal.worldObj.isRemote) {
-            if (ServerHelper.getAnimalTracker().setFed(animal)) {
-                if (player != null) {
-                    ServerHelper.getPlayerData(player).affectRelationship(animal, 5);
+    public static void feed(EntityPlayer player, IAnimalTracked tracked) {
+        if (tracked instanceof EntityAnimal) {
+            EntityAnimal animal = (EntityAnimal) tracked;
+            if (!animal.worldObj.isRemote) {
+                if (ServerHelper.getAnimalTracker().setFed(animal)) {
+                    if (player != null) {
+                        ServerHelper.getPlayerData(player).affectRelationship(animal, 5);
+                    }
                 }
             }
         }
@@ -46,7 +50,7 @@ public class AnimalHelper {
             ClientHelper.getAnimalTracker().onDeath(animal);
         }
     }
-    
+
     public static void onJoinWorld(EntityAnimal entity) {
         ServerHelper.getAnimalTracker().onJoinWorld(entity);
     }
@@ -67,7 +71,7 @@ public class AnimalHelper {
         return ServerHelper.getAnimalTracker().heal(animal);
     }
 
-    public static void treat(ItemStack stack, EntityPlayer player, EntityLivingBase living) {
+    public static void treat(ItemStack stack, EntityPlayer player, EntityAnimal living) {
         ServerHelper.getAnimalTracker().treat(stack, player, (EntityAnimal) living);
     }
 
@@ -104,5 +108,13 @@ public class AnimalHelper {
 
     public static void removeTrough(World world, int x, int y, int z) {
         ServerHelper.getAnimalTracker().removeTrough(world, x, y, z);
+    }
+
+    public static boolean eatsGrass(IAnimalTracked animal) {
+        for (AnimalFoodType type: animal.getType().getFoodTypes()) {
+            if (type.equals(AnimalFoodType.GRASS)) return true;
+        }
+        
+        return false;
     }
 }

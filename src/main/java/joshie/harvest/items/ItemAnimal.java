@@ -12,8 +12,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemAnimal extends ItemHFMeta {
-    public static final int SHEEP = 1;
     public static final int COW = 0;
+    public static final int SHEEP = 1;
     public static final int CHICKEN = 2;
 
     public ItemAnimal() {

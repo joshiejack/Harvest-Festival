@@ -14,7 +14,7 @@ import joshie.harvest.items.ItemGeneral;
 import joshie.harvest.items.ItemHoe;
 import joshie.harvest.items.ItemMeal;
 import joshie.harvest.items.ItemNPCSpawner;
-import joshie.harvest.items.ItemSeeds;
+import joshie.harvest.items.ItemHFSeeds;
 import joshie.harvest.items.ItemSickle;
 import joshie.harvest.items.ItemTreat;
 import joshie.harvest.items.ItemWateringCan;
@@ -34,12 +34,11 @@ public class HFItems {
     public static Item spawnerNPC;
     public static Item spawnerAnimal;
     public static Item treats;
-    public static Item cheat;
     
     public static Item egg;
     public static Item milk;
     public static Item mayonnaise;
-    public static Item yarn;
+    public static Item wool;
 
     //Tool Items
     public static Item hoe;
@@ -67,10 +66,10 @@ public class HFItems {
         egg = sized.get(SizeableMeta.EGG);
         milk = sized.get(SizeableMeta.MILK);
         mayonnaise = sized.get(SizeableMeta.MAYONNAISE);
-        yarn = sized.get(SizeableMeta.YARN);
+        wool = sized.get(SizeableMeta.WOOL);
 
         animal = (ItemAnimal) new ItemAnimal().setUnlocalizedName("animal");
-        seeds = new ItemSeeds().setUnlocalizedName("crops.seeds");
+        seeds = new ItemHFSeeds().setUnlocalizedName("crops.seeds");
         general = new ItemGeneral().setUnlocalizedName("general.item");
         meal = new ItemMeal().setUnlocalizedName("meal");
         treats = new ItemTreat().setUnlocalizedName("treat");
@@ -83,10 +82,6 @@ public class HFItems {
         //Creative Mod Items
         structures = new ItemBuilding().setUnlocalizedName("structures");
         spawnerNPC = new ItemNPCSpawner().setUnlocalizedName("spawner.npc");
-        
-        if (General.DEBUG_MODE) {
-            cheat = new ItemCheat().setUnlocalizedName("cheat");
-        }
     }
 
 }

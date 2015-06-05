@@ -1,26 +1,22 @@
 package joshie.harvest.animals;
 
-import static joshie.harvest.animals.AnimalType.CHICKEN;
-import static joshie.harvest.animals.AnimalType.OTHER;
-import static joshie.harvest.animals.AnimalType.SHEEP;
-import static joshie.harvest.core.helpers.SizeableHelper.getEgg;
-import static joshie.harvest.core.helpers.generic.ItemHelper.spawnByEntity;
 import static joshie.harvest.core.network.PacketHandler.sendToEveryone;
 
 import java.util.Random;
 import java.util.UUID;
 
 import joshie.harvest.api.animals.IAnimalData;
+import joshie.harvest.api.animals.IAnimalTracked;
+import joshie.harvest.api.animals.IAnimalType;
 import joshie.harvest.core.config.Animals;
-import joshie.harvest.core.helpers.AnimalHelper;
 import joshie.harvest.core.helpers.RelationsHelper;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.network.PacketSyncCanProduce;
 import joshie.harvest.core.util.IData;
+import joshie.harvest.items.ItemTreat;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
@@ -31,12 +27,12 @@ public class AnimalData implements IData, IAnimalData {
 
     private EntityAnimal animal;
     private EntityPlayer owner;
+    private IAnimalTracked tracking;
 
     private UUID a_uuid;
     private UUID o_uuid;
     private int dimension; //The dimension this animal was last in
 
-    private AnimalType type;
     private int currentLifespan = 0; //How many days this animal has lived for
     private int healthiness = 127; //How healthy this animal is, full byte range
     private int cleanliness = 0; //How clean this animal is, full byte range
@@ -44,7 +40,6 @@ public class AnimalData implements IData, IAnimalData {
 
     private boolean sickCheck; //Whether to check if the animal is sick
     private boolean isSick; //Whether the animal is sick or not
-    private boolean isBaby; //Whether this animal is considered a baby
 
     //Product based stuff
     private int daysPassed; //How many days have passed so far
@@ -57,11 +52,10 @@ public class AnimalData implements IData, IAnimalData {
     private boolean isPregnant;
     private int daysPregnant;
 
-    public AnimalData(EntityAnimal animal) {
-        this.animal = animal;
-        this.a_uuid = UUIDHelper.getEntityUUID(animal);
-        this.type = AnimalType.getType(animal);
-        this.isBaby = animal.isChild();
+    public AnimalData(IAnimalTracked animal) {
+        this.tracking = animal;
+        this.animal = (EntityAnimal) animal;
+        this.a_uuid = UUIDHelper.getEntityUUID(this.animal);
     }
 
     /** May return null **/
@@ -75,14 +69,14 @@ public class AnimalData implements IData, IAnimalData {
         } else return null;
     }
 
-    private int getDeathChance(EntityAnimal entity) {
+    private int getDeathChance() {
         //If the animal has not been fed, give it a fix changed of dying
         if (daysNotFed > 0) {
             return Math.max(1, 45 - daysNotFed * 3);
         }
 
         //Gets the adjusted relationship, 0-65k
-        int relationship = RelationsHelper.getRelationshipValue(entity, getOwner());
+        int relationship = RelationsHelper.getRelationshipValue(animal, getOwner());
         double chance = (relationship / (double) RelationsHelper.ADJUSTED_MAX) * 200;
         chance += healthiness;
         if (chance <= 1) {
@@ -95,9 +89,9 @@ public class AnimalData implements IData, IAnimalData {
     public boolean newDay() {
         if (animal != null) {
             //Stage 1, Check if the Animal is going to die
-            if (currentLifespan > type.getMax()) return false;
-            if (currentLifespan > type.getMin() || isSick) {
-                if (rand.nextInt(getDeathChance(animal)) == 0) {
+            if (currentLifespan > tracking.getType().getMaxLifespan()) return false;
+            if (currentLifespan > tracking.getType().getMinLifespan() || isSick) {
+                if (rand.nextInt(getDeathChance()) == 0) {
                     return false;
                 }
             }
@@ -144,24 +138,11 @@ public class AnimalData implements IData, IAnimalData {
             }
 
             //Stage 3, Reset the products produced per day
-            if (type.getDays() > 0) {
-                if (daysPassed >= type.getDays()) {
+            if (tracking.getType().getDaysBetweenProduction() > 0) {
+                if (daysPassed >= tracking.getType().getDaysBetweenProduction()) {
                     daysPassed = 0;
                     numProductsProduced = 0;
-
-                    //Stage 4, if the animal is a sheep, make it eat grass
-                    if (type == SHEEP) {
-                        if (animal != null) {
-                            animal.eatGrassBonus();
-                        }
-                    } else if (type == CHICKEN) { //Or if it's a chicken, make it lay an egg
-                        EntityPlayer player = AnimalHelper.getOwner(animal);
-                        if (animal != null && player != null) {
-                            ItemStack egg = getEgg(player, animal);
-                            animal.playSound("mob.chicken.plop", 1.0F, (animal.worldObj.rand.nextFloat() - animal.worldObj.rand.nextFloat()) * 0.2F + 1.0F);
-                            spawnByEntity(animal, egg);
-                        }
-                    }
+                    tracking.getType().newDay(animal);
                 }
 
                 //Sync Whether this animal can produce, before we increase daysnotfed
@@ -178,20 +159,16 @@ public class AnimalData implements IData, IAnimalData {
                     giveBirth();
                 }
             }
-            
+
             //Stage 5 Growth time!
-            if (isBaby) {
-                if (!animal.isChild()) {
-                    isBaby = false;
-                }
-                
+            if (animal.isChild()) {
                 animal.addGrowth(1200);
             }
 
             return true;
         } else return false;
     }
-    
+
     @Override
     public EntityAnimal getAnimal() {
         return animal;
@@ -261,7 +238,7 @@ public class AnimalData implements IData, IAnimalData {
             return true;
         } else return false;
     }
-    
+
     //Returns true if the animal was healed
     @Override
     public boolean heal() {
@@ -279,9 +256,8 @@ public class AnimalData implements IData, IAnimalData {
     @Override
     public void treat(ItemStack stack, EntityPlayer player) {
         if (!treated) {
-            int dmg = stack.getItemDamage();
-            AnimalType type = dmg < AnimalType.values().length ? AnimalType.values()[dmg] : OTHER;
-            if (type == this.type) {
+            IAnimalType type = ItemTreat.getTreatTypeFromMeta(stack.getItemDamage());
+            if (type == tracking.getType()) {
                 treated = true;
                 RelationsHelper.affectRelations(player, animal, 1000);
             }
@@ -322,7 +298,6 @@ public class AnimalData implements IData, IAnimalData {
         }
 
         a_uuid = new UUID(nbt.getLong("UUIDMost"), nbt.getLong("UUIDLeast"));
-        type = AnimalType.values()[nbt.getByte("AnimalType")];
         currentLifespan = nbt.getShort("CurrentLifespan");
         healthiness = nbt.getByte("Healthiness");
         cleanliness = nbt.getByte("Cleanliness");
@@ -331,10 +306,9 @@ public class AnimalData implements IData, IAnimalData {
         treated = nbt.getBoolean("Treated");
         sickCheck = nbt.getBoolean("CheckIfSick");
         isSick = nbt.getBoolean("IsSick");
-        isBaby = nbt.getBoolean("IsBaby");
         dimension = nbt.getInteger("Dimension");
-        if (type == CHICKEN) thrown = nbt.getBoolean("Thrown");
-        if (type.getDays() > 0) {
+        if (tracking.getType() == AnimalRegistry.chicken) thrown = nbt.getBoolean("Thrown");
+        if (tracking.getType().getDaysBetweenProduction() > 0) {
             maxProductsPerDay = nbt.getByte("NumProducts");
             numProductsProduced = nbt.getByte("ProductsProduced");
         }
@@ -350,7 +324,6 @@ public class AnimalData implements IData, IAnimalData {
             nbt.setLong("Owner-UUIDLeast", o_uuid.getLeastSignificantBits());
         }
 
-        nbt.setByte("AnimalType", (byte) type.ordinal());
         nbt.setShort("CurrentLifespan", (short) currentLifespan);
         nbt.setByte("Healthiness", (byte) healthiness);
         nbt.setByte("Cleanliness", (byte) cleanliness);
@@ -359,14 +332,13 @@ public class AnimalData implements IData, IAnimalData {
         nbt.setBoolean("Treated", treated);
         nbt.setBoolean("CheckIfSick", sickCheck);
         nbt.setBoolean("IsSick", isSick);
-        nbt.setBoolean("IsBaby", isBaby);
-        
+
         if (animal != null) {
             nbt.setInteger("Dimension", animal.worldObj.provider.dimensionId);
         }
 
-        if (type == CHICKEN) nbt.setBoolean("Thrown", thrown);
-        if (type.getDays() > 0) {
+        if (tracking.getType() == AnimalRegistry.chicken) nbt.setBoolean("Thrown", thrown);
+        if (tracking.getType().getDaysBetweenProduction() > 0) {
             nbt.setByte("NumProducts", (byte) maxProductsPerDay);
             nbt.setByte("ProductsProduced", (byte) numProductsProduced);
         }

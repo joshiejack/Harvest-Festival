@@ -8,7 +8,7 @@ import joshie.harvest.core.util.generic.Text;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLeashKnot;
 import net.minecraft.entity.EntityList;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -65,7 +65,7 @@ public class PurchaseableEntity implements IPurchaseable {
             theEntity.mountEntity(player);
         } else {
             EntityLeashKnot leash = EntityLeashKnot.func_110129_a(player.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ);
-            ((EntityLiving)theEntity).setLeashedToEntity(player, true);
+            ((EntityAnimal)theEntity).setLeashedToEntity(player, true);
             player.worldObj.spawnEntityInWorld(theEntity);
         }
         

@@ -1,6 +1,7 @@
 package joshie.harvest.blocks;
 
 import static joshie.harvest.core.helpers.ShippingHelper.addForShipping;
+import joshie.harvest.animals.AnimalRegistry;
 import joshie.harvest.animals.AnimalType;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.IShippable;
@@ -98,7 +99,7 @@ public class BlockWood extends BlockHFBaseMeta {
             return false;
         } else if (meta == TROUGH) {
             ItemStack held = player.getCurrentEquippedItem();
-            if (held != null && AnimalType.COW.canEat(held)) {
+            if (held != null && AnimalType.canEat(AnimalRegistry.cow.getFoodTypes(), held)) {
                 if (AnimalHelper.addFodder(world, x, y, z)) {
                     player.inventory.decrStackSize(player.inventory.currentItem, 1);
                     return true;

@@ -20,6 +20,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
@@ -36,11 +37,11 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @Optional.Interface(modid = "AgriCraft", iface = "com.InfinityRaider.AgriCraft.farming.ICropOverridingSeed")
-public class ItemSeeds extends net.minecraft.item.ItemSeeds implements ICropOverridingSeed, ICreativeSorted {
+public class ItemHFSeeds extends ItemSeeds implements ICropOverridingSeed, ICreativeSorted {
     private IIcon seed_bag_body;
     private IIcon seed_bag_neck;
 
-    public ItemSeeds() {
+    public ItemHFSeeds() {
         super(HFBlocks.crops, Blocks.farmland);
         setCreativeTab(HFTab.tabFarming);
         setHasSubtypes(true);

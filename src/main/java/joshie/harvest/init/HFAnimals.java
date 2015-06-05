@@ -2,7 +2,7 @@ package joshie.harvest.init;
 
 import static joshie.harvest.animals.AnimalType.registerFoodAsType;
 import static joshie.harvest.animals.AnimalType.registerFoodsAsType;
-import joshie.harvest.api.AnimalFoodType;
+import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.crops.Crop;
 import joshie.harvest.items.ItemGeneral;

@@ -10,8 +10,10 @@ import joshie.harvest.api.WorldLocation;
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.core.config.Animals;
+import joshie.harvest.core.helpers.AnimalHelper;
 import joshie.harvest.core.util.IData;
 import joshie.harvest.init.HFBlocks;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
@@ -77,11 +79,11 @@ public class AnimalTrackerServer implements IData {
         for (ValueLocation trough : troughs) {
             if (trough.getValue() <= 0) continue;
             World world = DimensionManager.getWorld(trough.dimension);
-            ArrayList<EntityAnimal> animals = (ArrayList<EntityAnimal>) world.getEntitiesWithinAABB(EntityAnimal.class, HFBlocks.cookware.getCollisionBoundingBoxFromPool(world, trough.x, trough.y, trough.z).expand(16D, 16D, 16D));
-            for (EntityAnimal animal : animals) {
+            ArrayList<IAnimalTracked> animals = (ArrayList<IAnimalTracked>) world.getEntitiesWithinAABB(IAnimalTracked.class, HFBlocks.cookware.getCollisionBoundingBoxFromPool(world, trough.x, trough.y, trough.z).expand(16D, 16D, 16D));
+            for (IAnimalTracked animal : animals) {
                 if (trough.getValue() <= 0) break;
-                if (AnimalType.getType(animal).eatsGrass()) {
-                    setFed(animal);
+                if (AnimalHelper.eatsGrass(animal)) {
+                    setFed((EntityAnimal) animal);
                     trough.decr();
                 }
             }

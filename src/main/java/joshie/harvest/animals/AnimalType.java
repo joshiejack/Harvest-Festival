@@ -2,7 +2,7 @@ package joshie.harvest.animals;
 
 import java.util.HashMap;
 
-import joshie.harvest.api.AnimalFoodType;
+import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.core.config.Calendar;
 import joshie.harvest.core.helpers.SafeStackHelper;
 import joshie.harvest.core.util.SafeStack;
@@ -92,7 +92,7 @@ public enum AnimalType {
         registry.put(SafeStackHelper.getSafeStackType(stack), type);
     }
 
-    public boolean canEat(ItemStack stack) {
+    public static boolean canEat(AnimalFoodType[] types, ItemStack stack) {
         AnimalFoodType type = (AnimalFoodType) SafeStackHelper.getResult(stack, registry);        
         if (type == null) return false;
         else {

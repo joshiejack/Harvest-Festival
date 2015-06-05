@@ -9,7 +9,6 @@ import joshie.harvest.buildings.BuildingCafe;
 import joshie.harvest.buildings.BuildingCarpenter;
 import joshie.harvest.buildings.BuildingChurch;
 import joshie.harvest.buildings.BuildingClockmaker;
-import joshie.harvest.buildings.BuildingDebug;
 import joshie.harvest.buildings.BuildingFishingHole;
 import joshie.harvest.buildings.BuildingFishingHut;
 import joshie.harvest.buildings.BuildingGoddess;
@@ -18,7 +17,6 @@ import joshie.harvest.buildings.BuildingMiningHut;
 import joshie.harvest.buildings.BuildingPoultryFarm;
 import joshie.harvest.buildings.BuildingSupermarket;
 import joshie.harvest.buildings.BuildingTownhall;
-import joshie.harvest.core.config.General;
 import joshie.harvest.core.lib.LootStrings;
 import joshie.harvest.crops.Crop;
 import joshie.harvest.items.ItemGeneral;
@@ -59,10 +57,6 @@ public class HFBuildings {
         poultryFarm = new BuildingPoultryFarm().init();
         supermarket = new BuildingSupermarket().init();
         townhall = new BuildingTownhall().init();
-
-        if (General.DEBUG_MODE) {
-            new BuildingDebug().init();
-        }
     }
 
     public static void init() {

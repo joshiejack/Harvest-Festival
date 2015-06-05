@@ -85,13 +85,10 @@ public class AnimalEvents {
         }
     }
 
-    //If it's a food item
-    public boolean isFood(EntityAnimal animal, ItemStack item) {
-        return AnimalType.getType(animal).canEat(item);
-    }
-
     @SubscribeEvent
     public void onEntityInteract(EntityInteractEvent event) {
+        //TODO: Add to entity classes
+        /*
         if (event.target instanceof EntityAnimal) {
             EntityPlayer player = event.entityPlayer;
             ItemStack held = player.getCurrentEquippedItem();
@@ -114,13 +111,14 @@ public class AnimalEvents {
 
                 RelationsHelper.setTalkedTo(player, animal);
             }
-        }
+        } */
     }
 
     @SubscribeEvent
     public void onSpawnAttempt(CheckSpawn event) {
         if (!Animals.CAN_SPAWN) {
-            if (event.entity instanceof EntityCow || event.entity instanceof EntitySheep || event.entity instanceof EntityChicken) {
+            Class animal = event.entity.getClass();
+            if (animal == EntityCow.class || animal == EntitySheep.class || animal == EntityChicken.class) {
                 event.setResult(Result.DENY);
             }
         }

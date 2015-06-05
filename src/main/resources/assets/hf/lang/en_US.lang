@@ -188,6 +188,15 @@ hf.wateringcan.mystril=Mystril Watering Can
 hf.wateringcan.cursed=Cursed Watering Can
 hf.wateringcan.blessed=Blessed Watering Can
 hf.wateringcan.mythic=Mythic Watering Can
+#Hammer
+hf.hammer.basic=Hammer
+hf.hammer.copper=Copper Hammer
+hf.hammer.silver=Silver Hammer
+hf.hammer.gold=Gold Hammer
+hf.hammer.mystril=Mystril Hammer
+hf.hammer.cursed=Cursed Hammer
+hf.hammer.blessed=Blessed Hammer
+hf.hammer.mythic=Mythic Hammer
 #Vanilla config option
 hf.hoe.wood=Wooden Hoe
 hf.hoe.stone=Stone Hoe

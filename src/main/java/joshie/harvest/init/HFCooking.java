@@ -120,7 +120,7 @@ public class HFCooking {
 
 		//Oven
         addOvenRecipe("corn.baked", 7, -1, corn).setOptionalIngredients(oil, butter, salt);
-        addOvenRecipe("riceballs.toasted", 12, -1, riceball).setOptionalIngredients(sugar, salt);
+        addOvenRecipe("riceball.toasted", 12, -1, riceball).setOptionalIngredients(sugar, salt);
         addOvenRecipe("toast", 16, -1, bread).setOptionalIngredients(butter);
         addOvenRecipe("dinnerroll", 9, -2, egg, milk, butter);
 //        addOvenRecipe("bun.jam", [you do the numbers plis], egg, milk, jam);

@@ -18,6 +18,7 @@ import joshie.harvest.items.ItemHFSeeds;
 import joshie.harvest.items.ItemSickle;
 import joshie.harvest.items.ItemTreat;
 import joshie.harvest.items.ItemWateringCan;
+import joshie.harvest.items.ItemHammer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
@@ -44,6 +45,7 @@ public class HFItems {
     public static Item hoe;
     public static Item sickle;
     public static Item wateringcan;
+	public static Item hammer;
 
     public static void init() {
         //Add a new crop item for things that do not have an item yet :D
@@ -78,6 +80,7 @@ public class HFItems {
         hoe = new ItemHoe().setUnlocalizedName("hoe");
         sickle = new ItemSickle().setUnlocalizedName("sickle");
         wateringcan = new ItemWateringCan().setUnlocalizedName("wateringcan");
+		hammer = new ItemHammer().setUnlocalizedName("hammer");
         
         //Creative Mod Items
         structures = new ItemBuilding().setUnlocalizedName("structures");

@@ -39,6 +39,3 @@ Stage 5 (0.9.0)
 
 Stage 10000 (1.0)
 * Minetweaker Support
-
-Potential Names
-Grand Harvest, Harvest Festival, Farm Story

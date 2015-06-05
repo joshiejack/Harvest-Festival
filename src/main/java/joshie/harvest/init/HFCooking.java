@@ -109,30 +109,30 @@ public class HFCooking {
         addPotRecipe("potato.candied", 8, -1, sweet_potato).setOptionalIngredients(sugar);
         addPotRecipe("dumplings", true, 25, -5, cabbage, onion, flour, oil).setOptionalIngredients(sugar);
         addPotRecipe("noodles", 40, -3, flour).setOptionalIngredients(salt);
-//        addPotRecipe("noodles.curry", true, 60, -3, noodles, curry).setOptionalIngredients(salt);
+//		addPotRecipe("noodles.curry", 60, -3, noodles, curry).setOptionalIngredients(salt); //Ingredients missing
         addPotRecipe("soup.rice", 10, -2, riceball);
         addPotRecipe("porridge", 8, -2, milk, riceball).setOptionalIngredients(sugar);
         addPotRecipe("egg.overrice", 12, -2, egg, riceball).setOptionalIngredients(salt);
         addPotRecipe("stew", 30, -1, milk, flour).setOptionalIngredients(eggplant, onion, potato, carrot, green_pepper, fish, salt);
         addPotRecipe("stew.pumpkin", true, 8, -1, pumpkin).setOptionalIngredients(sugar, salt);
         addPotRecipe("stew.fish", 7, -1, fish).setOptionalIngredients(salt);
-//        addPotRecipe("stew.mountain", true, [numbers missing], carrot, bamboo_shoot, shiitake).setOptionalIngredients(salt);     
+//      addPotRecipe("stew.mountain", true, 0, 0, carrot, bamboo_shoot, shiitake).setOptionalIngredients(salt); //Numbers missing
 
 		//Oven
         addOvenRecipe("corn.baked", 7, -1, corn).setOptionalIngredients(oil, butter, salt);
         addOvenRecipe("riceballs.toasted", 12, -1, riceball).setOptionalIngredients(sugar, salt);
         addOvenRecipe("toast", 16, -1, bread).setOptionalIngredients(butter);
         addOvenRecipe("dinnerroll", 9, -2, egg, milk, butter);
-//        addOvenRecipe("bun.jam", [you do the numbers plis], egg, milk, jam);
+//		addOvenRecipe("bun.jam", 0, 0, egg, milk, jam); //Numbers missing
         addOvenRecipe("doria", 25, -3, onion, butter, milk, riceball, flour);
         addOvenRecipe("cookies", 15, -5, egg, flour, butter).setOptionalIngredients(sugar);
         addOvenRecipe("cookies.chocolate", 30, -5, cookies, chocolate);
-//      addOvenRecipe("cake", 46, -11, egg, flour, butter, fruit_ingredient).setOptionalIngredients(egg, flour, butter, orange, pineapple, strawberry, peach, grape_wild);
+//		addOvenRecipe("cake", 46, -11, egg, flour, butter, fruit_ingredient).setOptionalIngredients(egg, flour, butter, orange, pineapple, strawberry, peach, grape_wild); //Ingredients missing
         addOvenRecipe("cake.chocolate", 70, -8, egg, flour, butter, chocolate).setOptionalIngredients(sugar, pineapple, apple, strawberry);
-//		addOvenRecipe("cake.rice", [numbers missing], [festival]); //Can only be gotten via the New Year's Festival, not sure how you make a recipe with no ingredients.. lol if that even works
-//		addOvenRecipe("cake.rice.toasted", [numbers missing], cake_rice);
-//      addOvenRecipe("cake.cheese", 50, -5, egg, cheese, milk);
-//      addOvenRecipe("cake.apple", [numbers missing], apple, egg, butter, flour);
+//		addOvenRecipe("cake.rice", 0, 0, festival); //Numbers missing //Can only be gotten via the New Year's Festival, not sure how you make a recipe with no ingredients.. lol if that even works 
+//		addOvenRecipe("cake.rice.toasted", 0, 0, cake_rice); //Numbers missing
+//		addOvenRecipe("cake.cheese", 50, -5, egg, cheese, milk);
+//		addOvenRecipe("cake.apple", 0, 0, apple, egg, butter, flour); //Numbers missing
         
         HFIngredients.assignIngredients();
     }

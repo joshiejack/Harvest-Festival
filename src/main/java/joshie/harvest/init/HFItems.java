@@ -3,22 +3,20 @@ package joshie.harvest.init;
 import java.util.EnumMap;
 
 import joshie.harvest.api.crops.ICrop;
-import joshie.harvest.core.config.General;
 import joshie.harvest.core.lib.SizeableMeta;
 import joshie.harvest.crops.Crop;
 import joshie.harvest.items.ItemAnimal;
 import joshie.harvest.items.ItemBuilding;
-import joshie.harvest.items.ItemCheat;
 import joshie.harvest.items.ItemCrop;
 import joshie.harvest.items.ItemGeneral;
+import joshie.harvest.items.ItemHFSeeds;
+import joshie.harvest.items.ItemHammer;
 import joshie.harvest.items.ItemHoe;
 import joshie.harvest.items.ItemMeal;
 import joshie.harvest.items.ItemNPCSpawner;
-import joshie.harvest.items.ItemHFSeeds;
 import joshie.harvest.items.ItemSickle;
 import joshie.harvest.items.ItemTreat;
 import joshie.harvest.items.ItemWateringCan;
-import joshie.harvest.items.ItemHammer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
@@ -35,7 +33,7 @@ public class HFItems {
     public static Item spawnerNPC;
     public static Item spawnerAnimal;
     public static Item treats;
-    
+
     public static Item egg;
     public static Item milk;
     public static Item mayonnaise;
@@ -45,7 +43,7 @@ public class HFItems {
     public static Item hoe;
     public static Item sickle;
     public static Item wateringcan;
-	public static Item hammer;
+    public static Item hammer;
 
     public static void init() {
         //Add a new crop item for things that do not have an item yet :D
@@ -57,14 +55,14 @@ public class HFItems {
                 OreDictionary.registerOre("crop" + WordUtils.capitalizeFully(crop.getUnlocalizedName().replace("_", "")), clone);
             }
         }
-        
-        for (SizeableMeta size: SizeableMeta.values()) {
+
+        for (SizeableMeta size : SizeableMeta.values()) {
             if (size.ordinal() >= SizeableMeta.YOGHURT.ordinal()) continue;
             else {
                 sized.put(size, size.getOrCreateStack());
             }
         }
-        
+
         egg = sized.get(SizeableMeta.EGG);
         milk = sized.get(SizeableMeta.MILK);
         mayonnaise = sized.get(SizeableMeta.MAYONNAISE);
@@ -75,13 +73,13 @@ public class HFItems {
         general = new ItemGeneral().setUnlocalizedName("general.item");
         meal = new ItemMeal().setUnlocalizedName("meal");
         treats = new ItemTreat().setUnlocalizedName("treat");
-        
+
         /* Tools **/
         hoe = new ItemHoe().setUnlocalizedName("hoe");
         sickle = new ItemSickle().setUnlocalizedName("sickle");
         wateringcan = new ItemWateringCan().setUnlocalizedName("wateringcan");
-		hammer = new ItemHammer().setUnlocalizedName("hammer");
-        
+        hammer = new ItemHammer().setUnlocalizedName("hammer");
+
         //Creative Mod Items
         structures = new ItemBuilding().setUnlocalizedName("structures");
         spawnerNPC = new ItemNPCSpawner().setUnlocalizedName("spawner.npc");

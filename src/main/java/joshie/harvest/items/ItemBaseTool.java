@@ -1,5 +1,7 @@
 package joshie.harvest.items;
 
+import static joshie.harvest.core.lib.HFModInfo.TOOLSPATH;
+
 import java.util.List;
 
 import joshie.harvest.api.core.ICreativeSorted;
@@ -7,7 +9,6 @@ import joshie.harvest.api.core.ILevelable;
 import joshie.harvest.api.core.ITiered;
 import joshie.harvest.core.config.Tools;
 import joshie.harvest.core.lib.CreativeSort;
-import joshie.harvest.core.lib.HFModInfo.TOOLSPATH;
 import joshie.harvest.core.util.Translate;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;

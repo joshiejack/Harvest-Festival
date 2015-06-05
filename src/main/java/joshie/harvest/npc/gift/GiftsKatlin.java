@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 public class GiftsKatlin extends Gifts {
     @Override
     public Quality getQuality(ItemStack stack) {
-        if (stack.getItem() == HFItems.yarn) {
+        if (stack.getItem() == HFItems.wool) {
             return AWESOME;
         }
         

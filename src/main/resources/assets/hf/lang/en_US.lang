@@ -130,7 +130,7 @@ hf.meal.porridge=Porridge
 hf.meal.egg.overrice=Egg Over Rice
 hf.meal.stew=Stew
 hf.meal.corn.baked=Baked Corn
-hf.meal.riceballs.toasted=Toasted Riceballs
+hf.meal.riceball.toasted=Toasted Riceball
 hf.meal.toast=Toast
 hf.meal.dinnerroll=Dinner Roll
 hf.meal.bun.jam=Jam Bun
@@ -233,7 +233,6 @@ hf.cookware.chopping.board=Chopping Board
 hf.cookware.mixing.bowl=Mixing Bowl
 hf.cookware.baking=Baking Tray
 hf.cookware.steamer=Steamer
-tile.goddess.water.name=Goddess Water
 
 hf.general.block.shipping=Shipment Box
 hf.general.block.nest=Incubator

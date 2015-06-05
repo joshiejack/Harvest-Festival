@@ -85,20 +85,20 @@ public abstract class ItemBaseTool extends ItemBaseSingle implements ILevelable,
         ToolTier tier = getTier(stack);
         switch (tier) {
             case BASIC:
-                return 0.5D;
+                return 3D;
             case COPPER:
-                return 1D;
+                return 2.5D;
             case SILVER:
             case GOLD:
-                return 1.5D;
-            case MYSTRIL:
                 return 2D;
+            case MYSTRIL:
+                return 1.5D;
             case CURSED:
                 return 10D;
             case BLESSED:
-                return 2.5D;
+                return 1D;
             case MYTHIC:
-                return 3D;
+                return 0.5D;
             default:
                 return 0;
         }

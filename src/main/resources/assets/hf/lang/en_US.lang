@@ -244,6 +244,8 @@ hf.flowers.block.goddess=Goddess Flower
 hf.dirt.mine.floor=Mine Floor
 hf.stone.mine.wall=Mine Wall
 
+tile.goddess.water.name=Goddess Water
+
 #Seasons
 hf.season.spring=Spring
 hf.season.summer=Summer

@@ -11,7 +11,7 @@ public interface INPCRegistry {
     public INPC register(INPC npc);
     
     /** Register a default npc **/
-    public INPC register(String unlocalised, Gender gender, Age age, int dayOfBirth, Season seasonOfBirth);
+    public INPC register(String unlocalised, Gender gender, Age age, int dayOfBirth, Season seasonOfBirth, int insideColor, int outsideColor);
     
     /** Returns the collection of all registered npcs **/
     public Collection<INPC> getNPCs();

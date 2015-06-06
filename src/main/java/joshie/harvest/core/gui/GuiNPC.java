@@ -22,6 +22,7 @@ import org.lwjgl.opengl.GL11;
 import cpw.mods.fml.common.FMLCommonHandler;
 
 public class GuiNPC extends GuiBase {
+    private static final ResourceLocation chatbox = new ResourceLocation(HFModInfo.MODPATH, "textures/gui/chatbox.png");
     private static ResourceLocation name_texture;
 
     protected EntityPlayer player;
@@ -58,10 +59,19 @@ public class GuiNPC extends GuiBase {
     public void drawBackground(int x, int y) {
         GL11.glPushMatrix();
         GL11.glEnable(GL11.GL_BLEND);
-        mc.renderEngine.bindTexture(name_texture);
-        drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
+        
+        mc.renderEngine.bindTexture(chatbox);
+        drawTexturedModalRect(x, y + 150, 0, 150, 256, 46);
+        ChatFontRenderer.colorise(npc.getNPC().getInsideColor());
+        drawTexturedModalRect(x, y + 150, 0, 100, 256, 46);
+        ChatFontRenderer.colorise(npc.getNPC().getOutsideColor());
+        drawTexturedModalRect(x, y + 150, 0, 50, 256, 46);
+        GL11.glColor4f(1F, 1F, 1F, 1F);
+
         GL11.glDisable(GL11.GL_BLEND);
         GL11.glPopMatrix();
+        
+        ChatFontRenderer.render(this, x, y, npc.getCommandSenderName(), npc.getNPC().getInsideColor(), npc.getNPC().getOutsideColor());
     }
 
     private String format(String string) {
@@ -109,7 +119,7 @@ public class GuiNPC extends GuiBase {
                     if (new String("" + todisplay[0]).equals("@")) {
                         character = todisplay.length;
                     }
-    
+
                     if (character < todisplay.length) { //If the current position of the char array, is less than it's maximum
                         character += 0.2D; //Increase the tick, slowly
                     }
@@ -137,7 +147,7 @@ public class GuiNPC extends GuiBase {
 
     private void drawHeart(int value) {
         GL11.glColor4f(1F, 1F, 1F, 1F);
-        int xPos = (int) ((((double)value / (Short.MAX_VALUE * 2))) * 7);
+        int xPos = (int) ((((double) value / (Short.MAX_VALUE * 2))) * 7);
         drawTexturedModalRect(240, 130, 0, 0, 25, 25);
         drawTexturedModalRect(240, 130, 25 + (25 * xPos), 0, 25, 25);
     }
@@ -199,7 +209,7 @@ public class GuiNPC extends GuiBase {
     }
 
     @Override
-    protected void keyTyped(char character, int key) {        
+    protected void keyTyped(char character, int key) {
         if (character == 'w' || key == 200) {
             selectedBottom = false;
         }

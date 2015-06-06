@@ -90,4 +90,10 @@ public interface INPC {
     
     /** Returns true if this npc is a miner **/
     public boolean isMiner();
+
+    /** Return the inside color **/
+    public int getInsideColor();
+    
+    /** Return the outside color **/
+    public int getOutsideColor();
 }

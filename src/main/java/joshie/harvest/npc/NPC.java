@@ -55,14 +55,18 @@ public class NPC implements INPC {
     private IBuilding home;
     private String home_location;
     private boolean doesRespawn;
+    private int insideColor;
+    private int outsideColor;
 
-    public NPC(String name, Gender gender, Age age, CalendarDate birthday) {
+    public NPC(String name, Gender gender, Age age, CalendarDate birthday, int insideColor, int outsideColor) {
         this.name = name;
         this.gender = gender;
         this.age = age;
         this.height = 1F;
         this.birthday = birthday;
         this.doesRespawn = true;
+        this.insideColor = insideColor;
+        this.outsideColor = outsideColor;
 
         String gift = StringUtils.capitalize(name);
         try {
@@ -270,6 +274,16 @@ public class NPC implements INPC {
     @Override
     public String getHomeLocation() {
         return home_location;
+    }
+
+    @Override
+    public int getInsideColor() {
+        return insideColor;
+    }
+
+    @Override
+    public int getOutsideColor() {
+        return outsideColor;
     }
 
     public void onContainerClosed(EntityPlayer player, EntityNPC npc) {

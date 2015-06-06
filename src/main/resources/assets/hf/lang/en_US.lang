@@ -130,7 +130,7 @@ hf.meal.porridge=Porridge
 hf.meal.egg.overrice=Egg Over Rice
 hf.meal.stew=Stew
 hf.meal.corn.baked=Baked Corn
-hf.meal.riceball.toasted=Toasted Rice Balls
+hf.meal.riceballs.toasted=Toasted Rice Balls
 hf.meal.toast=Toast
 hf.meal.dinnerroll=Dinner Roll
 hf.meal.bun.jam=Jam Bun
@@ -274,7 +274,7 @@ hf.npc.jim.name=Jim
 hf.npc.brandon.name=Brandon
 hf.npc.thomas.name=Tomas
 hf.npc.candice.name=Candice
-hf.npc.inap.name=Yulif
+hf.npc.yulif.name=Yulif
 hf.npc.ondra.name=Ondra
 
 ## NOTE FOR TRANSLATORS, READ

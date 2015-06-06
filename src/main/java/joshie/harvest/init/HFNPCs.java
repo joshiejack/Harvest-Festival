@@ -72,7 +72,7 @@ public class HFNPCs implements INPCRegistry {
         clockmaker_child = HFApi.NPC.register("fenn", MALE, CHILD,  25, Season.SUMMER);
         cafe_granny = HFApi.NPC.register("katlin", FEMALE, ELDER,  12, Season.SUMMER);
         mayor = HFApi.NPC.register("jamie", FEMALE, ELDER,  8, Season.SUMMER);
-        builder = HFApi.NPC.register("inap", MALE, ADULT,  19, Season.SUMMER).setIsBuilder();
+        builder = HFApi.NPC.register("yulif", MALE, ADULT,  19, Season.SUMMER).setIsBuilder();
         tool_owner = HFApi.NPC.register("daniel", MALE, ADULT,  1, Season.WINTER);
         daughter_2 = HFApi.NPC.register("abi", FEMALE, CHILD,  27, Season.WINTER);
         clock_worker = HFApi.NPC.register("tiberius", MALE, ADULT,  15, Season.WINTER);

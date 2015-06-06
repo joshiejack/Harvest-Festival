@@ -30,15 +30,22 @@
 ###Textures
 - [ ] items/crops/grass.png 
 - [ ] entities/abi.png
+- [ ] entities/candice.png
 - [ ] entities/cloe.png
+- [ ] entities/daniel.png
+- [ ] entities/fenn.png
 - [ ] entities/goddess.png
-- [ ] entities/inap.png
+- [ ] entities/jacob.png
 - [ ] entities/jade.png
 - [ ] entities/jamie.png
+- [ ] entities/jenni.png
 - [ ] entities/jim.png
 - [ ] entities/katlin.png
+- [ ] entities/liara.png
+- [ ] entities/ondra.png
 - [ ] entities/thomas.png
 - [ ] entities/tiberius.png
+- [ ] entities/yulif.png
 
 - [ ] Move Skin Textures to assets/textures/entities
 

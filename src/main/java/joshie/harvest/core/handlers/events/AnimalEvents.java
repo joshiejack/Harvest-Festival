@@ -1,11 +1,9 @@
 package joshie.harvest.core.handlers.events;
 
-import static joshie.harvest.core.helpers.AnimalHelper.feed;
 import static joshie.harvest.core.network.PacketHandler.sendToServer;
 
 import java.util.HashSet;
 
-import joshie.harvest.animals.AnimalType;
 import joshie.harvest.core.config.Animals;
 import joshie.harvest.core.helpers.AnimalHelper;
 import joshie.harvest.core.helpers.RelationsHelper;
@@ -13,15 +11,13 @@ import joshie.harvest.core.network.PacketDismountChicken;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSyncCanProduce;
 import joshie.harvest.core.network.PacketSyncRelations;
+import joshie.harvest.npc.EntityNPC;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent.CheckSpawn;
@@ -42,8 +38,6 @@ public class AnimalEvents {
                 if (event.entity instanceof EntityCow || event.entity instanceof EntitySheep) {
                     sendToServer(new PacketSyncCanProduce(event.entity.getEntityId(), true));
                 }
-
-                sendToServer(new PacketSyncRelations(event.entity.getEntityId()));
             }
 
             /* Disable sheep from ever eating grass */
@@ -51,6 +45,12 @@ public class AnimalEvents {
                 ((EntitySheep) event.entity).tasks.removeTask(((EntitySheep) event.entity).field_146087_bs);
             } else if (event.entity instanceof EntityChicken) { /* Make chickens take forever to lay eggs */
                 ((EntityChicken) event.entity).timeUntilNextEgg = Integer.MAX_VALUE;
+            }
+        }
+        
+        if (event.world.isRemote) {
+            if (event.entity instanceof EntityAnimal || event.entity instanceof EntityNPC) {
+                sendToServer(new PacketSyncRelations(event.entity.getEntityId()));
             }
         }
     }

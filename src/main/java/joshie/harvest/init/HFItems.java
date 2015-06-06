@@ -3,10 +3,12 @@ package joshie.harvest.init;
 import java.util.EnumMap;
 
 import joshie.harvest.api.crops.ICrop;
+import joshie.harvest.core.config.General;
 import joshie.harvest.core.lib.SizeableMeta;
 import joshie.harvest.crops.Crop;
 import joshie.harvest.items.ItemAnimal;
 import joshie.harvest.items.ItemBuilding;
+import joshie.harvest.items.ItemCheat;
 import joshie.harvest.items.ItemCrop;
 import joshie.harvest.items.ItemGeneral;
 import joshie.harvest.items.ItemHFSeeds;
@@ -83,6 +85,10 @@ public class HFItems {
         //Creative Mod Items
         structures = new ItemBuilding().setUnlocalizedName("structures");
         spawnerNPC = new ItemNPCSpawner().setUnlocalizedName("spawner.npc");
+
+        if (General.DEBUG_MODE) {
+            new ItemCheat().setUnlocalizedName("cheat");
+        }
     }
 
 }

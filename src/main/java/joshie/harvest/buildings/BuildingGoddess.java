@@ -3,6 +3,7 @@ package joshie.harvest.buildings;
 import java.util.ArrayList;
 
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
+import joshie.harvest.buildings.placeable.blocks.PlaceableCocoa;
 import joshie.harvest.buildings.placeable.blocks.PlaceableDoublePlant;
 import joshie.harvest.buildings.placeable.blocks.PlaceableFlower;
 import joshie.harvest.buildings.placeable.blocks.PlaceableLilypad;
@@ -1030,7 +1031,7 @@ public class BuildingGoddess extends Building {
         list.add(new PlaceableBlock(Blocks.stone, 0, 5, 7, 9));
         list.add(new PlaceableBlock(Blocks.stone, 0, 5, 7, 10));
         list.add(new PlaceableBlock(Blocks.stone, 0, 5, 7, 11));
-        list.add(new PlaceableBlock(Blocks.cocoa, 11, 5, 7, 12));
+        list.add(new PlaceableCocoa(Blocks.cocoa, 11, 5, 7, 12));
         list.add(new PlaceableBlock(Blocks.stone, 0, 6, 7, 7));
         list.add(new PlaceableBlock(Blocks.stone, 0, 6, 7, 8));
         list.add(new PlaceableBlock(Blocks.stone, 0, 6, 7, 9));
@@ -1042,7 +1043,7 @@ public class BuildingGoddess extends Building {
         list.add(new PlaceableVine(Blocks.vine, 2, 7, 7, 8));
         list.add(new PlaceableVine(Blocks.vine, 2, 7, 7, 9));
         list.add(new PlaceableVine(Blocks.vine, 2, 7, 7, 10));
-        list.add(new PlaceableBlock(Blocks.cocoa, 9, 7, 7, 12));
+        list.add(new PlaceableCocoa(Blocks.cocoa, 9, 7, 7, 12));
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 7, 13));
         list.add(new PlaceableLog(Blocks.log, 0, 8, 7, 6));
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 7, 7));

@@ -4,6 +4,7 @@
 - Finish Mining System
 - Finish Animal System
 - Finish Shop System
+- Fix child hat rendering npcs
 
 ### Tediousnessess
 - [ ] Register my items/blocks as gift types

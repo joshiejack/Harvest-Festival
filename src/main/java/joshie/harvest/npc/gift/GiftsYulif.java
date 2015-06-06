@@ -9,7 +9,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class GiftsInap extends Gifts {
+public class GiftsYulif extends Gifts {
     @Override
     public Quality getQuality(ItemStack stack) {
         if (stack.getItem() == Items.melon) {

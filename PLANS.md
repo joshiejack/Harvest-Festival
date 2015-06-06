@@ -11,6 +11,7 @@ Stage 1 (0.5.0)
 * Relationships
 * Harvest Goddess
 * Add Brushes, and Talk to Animals
+* Stamina & Fatique (http://www.gamefaqs.com/ds/925581-harvest-moon-ds/faqs/56021, http://uk.ign.com/faqs/2007/harvest-moon-ds-cooking-and-recipe-faq-735108)
 
 Stage 1.1 (0.5.1)
 * Recipe Book

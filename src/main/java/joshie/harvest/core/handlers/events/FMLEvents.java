@@ -4,7 +4,6 @@ import static joshie.harvest.core.network.PacketHandler.sendToClient;
 import joshie.harvest.core.config.Calendar;
 import joshie.harvest.core.helpers.CalendarHelper;
 import joshie.harvest.core.helpers.PlayerHelper;
-import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.network.PacketSetCalendar;
 import joshie.harvest.player.PlayerDataServer;
 import net.minecraft.entity.player.EntityPlayer;
@@ -34,21 +33,16 @@ public class FMLEvents {
     public void onTick(ServerTickEvent event) {
         if (event.phase != Phase.END) return;
         World world = MinecraftServer.getServer().getEntityWorld();
-        if (world.getWorldTime() % Calendar.TICKS_PER_DAY == 1) {
+        if (world.getTotalWorldTime() % Calendar.TICKS_PER_DAY == 0) {
             newDay(false);
         }
     }
 
     public static void newDay(final boolean forced) {
-        (new Thread(HFModInfo.CAPNAME + " Calendar Thread") {
-            @Override
-            public void run() {
-                int daysPassed = CalendarHelper.getTotalDays(CalendarHelper.getServerDate());
-                int serverDays = (int) Math.floor(DimensionManager.getWorld(0).getWorldTime() / Calendar.TICKS_PER_DAY);
-                if (daysPassed <= serverDays || forced) {
-                    CalendarHelper.newDay();
-                }
-            }
-        }).start();
+        int daysPassed = CalendarHelper.getTotalDays(CalendarHelper.getServerDate());
+        int serverDays = (int) Math.floor(DimensionManager.getWorld(0).getWorldTime() / Calendar.TICKS_PER_DAY);
+        if (daysPassed <= serverDays || forced) {
+            CalendarHelper.newDay();
+        }
     }
 }

@@ -7,6 +7,8 @@ import static joshie.harvest.api.core.Weekday.SUNDAY;
 import static joshie.harvest.api.core.Weekday.THURSDAY;
 import static joshie.harvest.api.core.Weekday.TUESDAY;
 import static joshie.harvest.api.core.Weekday.WEDNESDAY;
+import joshie.harvest.animals.EntityHarvestCow;
+import joshie.harvest.animals.EntityHarvestSheep;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.shops.IShop;
@@ -18,6 +20,7 @@ import joshie.harvest.shops.PurchaseableBuilding;
 import joshie.harvest.shops.PurchaseableCropSeeds;
 import joshie.harvest.shops.PurchaseableEntity;
 import joshie.harvest.shops.ShopInventoryGui;
+import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.relauncher.Side;
@@ -44,8 +47,8 @@ public class HFShops {
         barn = HFApi.SHOPS.newShop("barn", HFNPCs.animal_owner);       
         barn.addItem(20, HFCrops.grass.getCropStack());
         barn.addItem(1000, new ItemStack(HFItems.general, 1, ItemGeneral.MEDICINE));
-        barn.addItem(new PurchaseableEntity("Sheep", 4000, new ItemStack(HFItems.animal, 1, ItemAnimal.SHEEP), true));
-        barn.addItem(new PurchaseableEntity("Cow", 5000, new ItemStack(HFItems.animal, 1, ItemAnimal.COW), true));
+        barn.addItem(new PurchaseableEntity(EntityHarvestSheep.class, 4000, new ItemStack(HFItems.animal, 1, ItemAnimal.SHEEP), true));
+        barn.addItem(new PurchaseableEntity(EntityHarvestCow.class, 5000, new ItemStack(HFItems.animal, 1, ItemAnimal.COW), true));
         barn.addItem(3000, new ItemStack(HFItems.general, 1, ItemGeneral.MIRACLE));
         barn.addOpening(MONDAY, 10000, 15000).addOpening(TUESDAY, 10000, 15000).addOpening(WEDNESDAY, 10000, 15000);
         barn.addOpening(THURSDAY, 10000, 15000).addOpening(FRIDAY, 10000, 15000).addOpening(SATURDAY, 10000, 15000);
@@ -83,7 +86,7 @@ public class HFShops {
     
     private static void poultry() {
         poultry = HFApi.SHOPS.newShop("poultry", HFNPCs.poultry);
-        poultry.addItem(new PurchaseableEntity("Chicken", 1500, new ItemStack(HFItems.animal, 1, ItemAnimal.CHICKEN), false));
+        poultry.addItem(new PurchaseableEntity(EntityChicken.class, 1500, new ItemStack(HFItems.animal, 1, ItemAnimal.CHICKEN), false));
         poultry.addItem(1000, new ItemStack(HFItems.general, 1, ItemGeneral.MEDICINE));
         poultry.addItem(10, new ItemStack(HFItems.general, 1, ItemGeneral.CHICKEN_FEED));
         poultry.addOpening(MONDAY, 11000, 16000).addOpening(TUESDAY, 11000, 16000).addOpening(WEDNESDAY, 11000, 16000);

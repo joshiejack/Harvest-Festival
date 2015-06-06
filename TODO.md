@@ -29,7 +29,6 @@
 ## Aesthetics 
 ###Textures
 - [ ] items/crops/grass.png 
-- [ ] entities/abi.png
 - [ ] entities/candice.png
 - [ ] entities/cloe.png
 - [ ] entities/daniel.png

@@ -22,8 +22,6 @@
 
 (Cloe) - http://www.minecraftskins.com/skin/3742619/og-girl-68/
 
-(Abi) - http://www.minecraftskins.com/skin/3434691/pretty-prom-girl/
-
 (Granny) - http://www.minecraftskins.com/skin/1274688/granny-bacon/
 
 (Suirienji) - http://www.minecraftskins.com/skin/1432797/dino-boy/

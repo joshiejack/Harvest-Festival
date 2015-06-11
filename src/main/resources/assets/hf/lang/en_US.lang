@@ -444,12 +444,12 @@ hf.npc.candice.greeting2=Some people can just be real cows!
 hf.npc.candice.greeting3=Where the heck am I? What is this world?
 hf.npc.candice.greeting4=Come over here, I have something in my eye.
 
-#Inap
-hf.npc.inap.greeting1=Building stuff is so time consuming, when will I get a break?
-hf.npc.inap.greeting2=People treat me like a slave, no rest for the builder!
-hf.npc.inap.greeting3=Have you seen Jim? Isn't he just?
-hf.npc.inap.greeting4=I am tired of all this hard work, When will you appreciate my buildings?
-hf.npc.inap.greeting5=I am tired of wandering around, I am dying right now.
+#Yulife
+hf.npc.yulif.greeting1=Building stuff is so time consuming, when will I get a break?
+hf.npc.yulif.greeting2=People treat me like a slave, no rest for the builder!
+hf.npc.yulif.greeting3=Have you seen Jim? Isn't he just?
+hf.npc.yulif.greeting4=I am tired of all this hard work, When will you appreciate my buildings?
+hf.npc.yulif.greeting5=I am tired of wandering around, I am dying right now.
 
 #Ondra
 hf.npc.ondra.greeting1=I sure love plucking chickens!

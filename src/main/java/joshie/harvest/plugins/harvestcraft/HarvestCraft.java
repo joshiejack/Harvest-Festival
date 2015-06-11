@@ -3,8 +3,8 @@ package joshie.harvest.plugins.harvestcraft;
 import java.util.ArrayList;
 
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.core.Season;
 import joshie.harvest.asm.overrides.ItemPamSeedFood;
-import joshie.harvest.calendar.Season;
 import joshie.harvest.plugins.HFPlugins.Plugin;
 
 public class HarvestCraft extends Plugin {

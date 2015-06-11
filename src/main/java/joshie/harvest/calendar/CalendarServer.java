@@ -5,6 +5,7 @@ import static joshie.harvest.core.network.PacketHandler.sendToEveryone;
 
 import java.util.List;
 
+import joshie.harvest.api.core.Season;
 import joshie.harvest.core.config.Calendar;
 import joshie.harvest.core.helpers.AnimalHelper;
 import joshie.harvest.core.helpers.CropHelper;

@@ -2,10 +2,11 @@ package joshie.harvest.shops;
 
 import java.util.List;
 
+import joshie.harvest.api.core.Season;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.shops.IPurchaseable;
 import joshie.harvest.calendar.CalendarDate;
-import joshie.harvest.calendar.Season;
+import joshie.harvest.calendar.SeasonData;
 import joshie.harvest.core.helpers.CalendarHelper;
 import joshie.harvest.core.helpers.PlayerHelper;
 import joshie.harvest.core.helpers.generic.ItemHelper;
@@ -61,7 +62,8 @@ public class PurchaseableCropSeeds implements IPurchaseable {
     public void addTooltip(List list) {
         list.add(Text.WHITE + crop.getSeedsName());
         for (Season season : crop.getSeasons()) {
-            list.add(season.getTextColor() + season.getLocalized());
+            SeasonData data = SeasonData.getData(season);
+            list.add(data.textColor + data.getLocalized());
         }
     }
 

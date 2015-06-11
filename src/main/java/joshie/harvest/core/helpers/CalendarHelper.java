@@ -1,8 +1,8 @@
 package joshie.harvest.core.helpers;
 
+import joshie.harvest.api.core.Season;
 import joshie.harvest.api.core.Weekday;
 import joshie.harvest.calendar.CalendarDate;
-import joshie.harvest.calendar.Season;
 import joshie.harvest.core.config.Calendar;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.FMLCommonHandler;

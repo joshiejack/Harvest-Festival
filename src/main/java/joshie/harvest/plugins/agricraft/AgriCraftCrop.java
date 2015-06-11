@@ -1,6 +1,6 @@
 package joshie.harvest.plugins.agricraft;
 
-import joshie.harvest.calendar.Season;
+import joshie.harvest.api.core.Season;
 import joshie.harvest.crops.Crop;
 import net.minecraft.item.ItemStack;
 

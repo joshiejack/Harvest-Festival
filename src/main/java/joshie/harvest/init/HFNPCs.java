@@ -10,10 +10,10 @@ import java.util.Collection;
 import java.util.HashMap;
 
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.core.Season;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.npc.INPCRegistry;
 import joshie.harvest.calendar.CalendarDate;
-import joshie.harvest.calendar.Season;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.NPC.Age;
 import joshie.harvest.npc.NPC.Gender;
@@ -43,24 +43,24 @@ public class HFNPCs implements INPCRegistry {
         return register(new NPC(unlocalised, gender, age, new CalendarDate(dayOfBirth, seasonOfBirth, 1), insideColor, outsideColor));
     }
 
-    public static INPC goddess; //The Goddess                        (SPAWN) - done
+    public static INPC goddess; //The Goddess                        (SPAWN)
     public static INPC animal_owner; // Owner of the Animal Barn     (BARN)
-    public static INPC cafe_owner; // Owner of the Cafe              (CAFE) - done
-    public static INPC cafe_granny;// Granny of Café Owner           (CAFE) - done
-    public static INPC seed_owner; // Sister of Yulif                (CARPENTER) - done
-    public static INPC tool_owner; // Blacksmith                     (BLACKSMITH) - done
-    public static INPC priest; //Married to mayor                    (CHURCH) - done
-    public static INPC mayor; //Married to priest                    (TOWNHALL) - done
-    public static INPC daughter_1; //Daughter of Mayor and Priest    (TOWNHALL) - done
-    public static INPC daughter_2; //Daughter of Mayor and Priest    (TOWNHALL) - done
-    public static INPC clock_worker; //The clock worker              (CLOCKWORKERS) - done
-    public static INPC clockmaker_child; // Clockmakers Child        (CLOCKWORKERS) - done
-    public static INPC gs_owner; //Owner of general store            (GENERAL STORE) - done
-    public static INPC miner; //Works in the mines                   (MINING HUT) - done
-    public static INPC fisherman; //Fisherman                        (FISHING HUT) - done
-    public static INPC milkmaid; //Works in the Barn, Milking Cows   (GENERAL STORE) - done
-    public static INPC builder; //Builds stuff for the players       (SPAWN) - done
-    public static INPC poultry; //Poultry Farm Owner                 (POULTRY FARM) - done
+    public static INPC cafe_owner; // Owner of the Cafe              (CAFE)
+    public static INPC cafe_granny;// Granny of Café Owner           (CAFE)
+    public static INPC seed_owner; // Sister of Yulif                (CARPENTER)
+    public static INPC tool_owner; // Blacksmith                     (BLACKSMITH)
+    public static INPC priest; //Married to mayor                    (CHURCH)
+    public static INPC mayor; //Married to priest                    (TOWNHALL)
+    public static INPC daughter_1; //Daughter of Mayor and Priest    (TOWNHALL)
+    public static INPC daughter_2; //Daughter of Mayor and Priest    (TOWNHALL)
+    public static INPC clock_worker; //The clock worker              (CLOCKWORKERS)
+    public static INPC clockmaker_child; // Clockmakers Child        (CLOCKWORKERS)
+    public static INPC gs_owner; //Owner of general store            (GENERAL STORE)
+    public static INPC miner; //Works in the mines                   (MINING HUT)
+    public static INPC fisherman; //Fisherman                        (FISHING HUT)
+    public static INPC milkmaid; //Works in the Barn, Milking Cows   (GENERAL STORE)
+    public static INPC builder; //Builds stuff for the players       (SPAWN)
+    public static INPC poultry; //Poultry Farm Owner                 (POULTRY FARM)
 
     public static void preInit() {
         goddess = HFApi.NPC.register("goddess", FEMALE, ADULT, 8, Season.SPRING, 0x8CEED3, 0x4EC485).setHeight(1.2F, 0.05F);

@@ -1,9 +1,9 @@
 package joshie.harvest.core.handlers.events;
 
 import static joshie.harvest.core.helpers.CalendarHelper.getSeason;
+import joshie.harvest.api.core.Season;
 import joshie.harvest.blocks.BlockFlower;
 import joshie.harvest.blocks.items.ItemBlockFlower;
-import joshie.harvest.calendar.Season;
 import joshie.harvest.core.helpers.ClientHelper;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.core.helpers.ServerHelper;

@@ -2,7 +2,7 @@ package joshie.harvest.api.npc;
 
 import java.util.Collection;
 
-import joshie.harvest.calendar.Season;
+import joshie.harvest.api.core.Season;
 import joshie.harvest.npc.NPC.Age;
 import joshie.harvest.npc.NPC.Gender;
 

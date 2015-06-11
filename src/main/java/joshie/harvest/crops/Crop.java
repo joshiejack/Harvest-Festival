@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import joshie.harvest.api.animals.AnimalFoodType;
+import joshie.harvest.api.core.Season;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropRenderHandler;
 import joshie.harvest.api.crops.IDropHandler;
 import joshie.harvest.api.crops.ISoilHandler;
-import joshie.harvest.calendar.Season;
 import joshie.harvest.core.helpers.SeedHelper;
 import joshie.harvest.core.util.Translate;
 import joshie.harvest.crops.icons.IconHandlerDefault;

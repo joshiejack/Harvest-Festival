@@ -1,8 +1,8 @@
 package joshie.harvest.core.network;
 
 import io.netty.buffer.ByteBuf;
+import joshie.harvest.api.core.Season;
 import joshie.harvest.calendar.CalendarDate;
-import joshie.harvest.calendar.Season;
 import joshie.harvest.core.helpers.PlayerHelper;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;

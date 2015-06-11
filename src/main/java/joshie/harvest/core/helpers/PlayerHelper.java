@@ -3,9 +3,9 @@ package joshie.harvest.core.helpers;
 import java.util.Random;
 import java.util.UUID;
 
+import joshie.harvest.api.core.Season;
 import joshie.harvest.buildings.BuildingStage;
 import joshie.harvest.calendar.CalendarDate;
-import joshie.harvest.calendar.Season;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSyncGold;
 import joshie.harvest.player.FridgeContents;

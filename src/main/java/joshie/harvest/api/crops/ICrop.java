@@ -1,7 +1,7 @@
 package joshie.harvest.api.crops;
 
 import joshie.harvest.api.animals.AnimalFoodType;
-import joshie.harvest.calendar.Season;
+import joshie.harvest.api.core.Season;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

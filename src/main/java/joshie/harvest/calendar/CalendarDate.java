@@ -1,6 +1,7 @@
 package joshie.harvest.calendar;
 
 import joshie.harvest.api.core.IDate;
+import joshie.harvest.api.core.Season;
 import joshie.harvest.api.core.Weekday;
 import joshie.harvest.core.helpers.CalendarHelper;
 import net.minecraft.nbt.NBTTagCompound;

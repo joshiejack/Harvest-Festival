@@ -1,5 +1,6 @@
 package joshie.harvest.calendar;
 
+import joshie.harvest.api.core.Season;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

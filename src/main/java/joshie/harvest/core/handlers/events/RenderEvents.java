@@ -12,7 +12,8 @@ import java.util.Locale;
 
 import joshie.harvest.api.core.ILevelable;
 import joshie.harvest.api.core.ITiered;
-import joshie.harvest.calendar.Season;
+import joshie.harvest.api.core.Season;
+import joshie.harvest.calendar.SeasonData;
 import joshie.harvest.core.gui.ContainerNPC;
 import joshie.harvest.core.helpers.CalendarHelper;
 import joshie.harvest.core.helpers.ClientHelper;
@@ -98,17 +99,19 @@ public class RenderEvents {
             mc.ingameGUI.remainingHighlightTicks = 0;
             mc.mcProfiler.startSection("calendarHUD");
 
+            SeasonData data = SeasonData.getData(getClientSeason());
+            
             GL11.glPushMatrix();
             GL11.glEnable(GL11.GL_BLEND);
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-            mc.renderEngine.bindTexture(getClientSeason().getTexture());
+            mc.renderEngine.bindTexture(data.resource);
             mc.ingameGUI.drawTexturedModalRect(0, 0, 0, 0, 256, 256);
 
             //Enlarge the Day
             GL11.glPushMatrix();
             GL11.glScalef(1.4F, 1.4F, 1.4F);
-            mc.fontRenderer.drawStringWithShadow(getClientSeason().getLocalized() + " " + getClientDay(), 30, 8, 0xFFFFFFFF);
+            mc.fontRenderer.drawStringWithShadow(data.getLocalized() + " " + getClientDay(), 30, 8, 0xFFFFFFFF);
             GL11.glPopMatrix();
 
             mc.fontRenderer.drawStringWithShadow("Year " + getClientYear(), 45, 25, 0xFFFFFFFF);

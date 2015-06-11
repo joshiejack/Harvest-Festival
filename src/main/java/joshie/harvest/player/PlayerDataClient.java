@@ -3,9 +3,9 @@ package joshie.harvest.player;
 import java.util.HashMap;
 import java.util.UUID;
 
+import joshie.harvest.api.core.Season;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.calendar.CalendarDate;
-import joshie.harvest.calendar.Season;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.helpers.generic.MCClientHelper;

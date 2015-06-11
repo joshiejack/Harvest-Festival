@@ -10,18 +10,15 @@ import java.util.Iterator;
 import java.util.Map;
 
 import joshie.harvest.api.WorldLocation;
-import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.core.Weekday;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.calendar.CalendarDate;
-import joshie.harvest.core.helpers.AnimalHelper;
 import joshie.harvest.core.helpers.CalendarHelper;
 import joshie.harvest.core.helpers.CropHelper;
 import joshie.harvest.core.helpers.TrackingHelper;
 import joshie.harvest.core.network.PacketSyncCrop;
 import joshie.harvest.core.util.IData;
-import joshie.harvest.init.HFBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;

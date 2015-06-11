@@ -1,6 +1,6 @@
 package joshie.harvest.core.commands;
 
-import joshie.harvest.calendar.Season;
+import joshie.harvest.api.core.Season;
 import joshie.harvest.core.helpers.CalendarHelper;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSetCalendar;

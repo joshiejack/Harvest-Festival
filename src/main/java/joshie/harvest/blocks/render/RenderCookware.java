@@ -56,9 +56,9 @@ public class RenderCookware implements ISimpleBlockRenderingHandler {
         int meta = world.getBlockMetadata(x, y, z);
         ResourceLocation resource = resources.get(meta);
         if (resource != null) {
-            // Stop the tesselator from messing with us
             int previousDrawMode = Tessellator.instance.drawMode;
             GL11.glPushMatrix();
+            Tessellator tessellator = Tessellator.instance;
             Tessellator.instance.draw();
             TileEntity tile = world.getTileEntity(x, y, z);
             ForgeDirection dir = ForgeDirection.NORTH;
@@ -128,7 +128,6 @@ public class RenderCookware implements ISimpleBlockRenderingHandler {
             models.get(meta).renderAll();
             GL11.glPopMatrix();
 
-            // Restart the Tesselator
             Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.locationBlocksTexture);
             Tessellator.instance.startDrawing(previousDrawMode);
             GL11.glPopMatrix();

@@ -27,6 +27,7 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -41,9 +42,14 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
     protected EntityNPC lover;
     private EntityPlayer talkingTo;
     private boolean isPlaying;
+    private Mode mode = Mode.GIFT;
     public UUID owning_player;
     public int lastTeleport;
     public boolean hideName;
+    
+    public static enum Mode {
+        DEFAULT, GIFT;
+    }
 
     public EntityNPC(UUID owning_player, EntityNPC entity) {
         this(owning_player, entity.worldObj, entity.npc);
@@ -66,26 +72,29 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
         this.npc = npc;
 
         this.owning_player = owning_player;
-        this.setSize(0.6F, (1.8F * npc.getHeight()));
-        this.getNavigator().setBreakDoors(true);
-        this.getNavigator().setAvoidsWater(true);
+        setSize(0.6F, (1.8F * npc.getHeight()));
+        getNavigator().setBreakDoors(true);
+        getNavigator().setAvoidsWater(true);
 
         if (owning_player != null) {
-            this.tasks.addTask(0, new EntityAISwimming(this));
-            this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityZombie.class, 8.0F, 0.6D, 0.6D));
-            this.tasks.addTask(1, new EntityAITalkingTo(this));
-            this.tasks.addTask(1, new EntityAILookAtPlayer(this));
-            this.tasks.addTask(2, new EntityAITeleportHome(this));
-            this.tasks.addTask(2, new EntityAIGoHome(this));
-            this.tasks.addTask(3, new EntityAIRestrictOpenDoor(this));
-            this.tasks.addTask(4, new EntityAIOpenDoor(this, true));
-            this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 0.6D));
-            this.tasks.addTask(8, new EntityAIPlay(this, 0.32D));
-            this.tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 3.0F, 1.0F));
-            this.tasks.addTask(9, new EntityAIWatchClosest(this, EntityNPC.class, 5.0F, 0.02F));
-            this.tasks.addTask(9, new EntityAIWander(this, 0.6D));
-            this.tasks.addTask(10, new EntityAIWatchClosest(this, EntityLiving.class, 8.0F));
+            tasks.addTask(0, new EntityAISwimming(this));
+            tasks.addTask(1, new EntityAIAvoidEntity(this, EntityZombie.class, 8.0F, 0.6D, 0.6D));
+            tasks.addTask(1, new EntityAITalkingTo(this));
+            tasks.addTask(1, new EntityAILookAtPlayer(this));
+            tasks.addTask(2, new EntityAITeleportHome(this));
+            tasks.addTask(2, new EntityAIGoHome(this));
+            tasks.addTask(3, new EntityAIRestrictOpenDoor(this));
+            tasks.addTask(4, new EntityAIOpenDoor(this, true));
+            tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 0.6D));
+            tasks.addTask(8, new EntityAIPlay(this, 0.32D));
+            tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 3.0F, 1.0F));
+            tasks.addTask(9, new EntityAIWatchClosest(this, EntityNPC.class, 5.0F, 0.02F));
+            tasks.addTask(9, new EntityAIWander(this, 0.6D));
+            tasks.addTask(10, new EntityAIWatchClosest(this, EntityLiving.class, 8.0F));
         }
+        
+        this.setCurrentItemOrArmor(0, new ItemStack(Items.diamond_sword));
+        System.out.println("CALLED");
     }
 
     @Override
@@ -109,6 +118,14 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
 
     public EntityNPC getLover() {
         return lover;
+    }
+    
+    public void setMode(Mode mode) {
+        this.mode = mode;
+    }
+    
+    public Mode getMode() {
+        return mode;
     }
 
     @Override
@@ -189,7 +206,23 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
     public void readEntityFromNBT(NBTTagCompound nbt) {
         super.readEntityFromNBT(nbt);
         npc = HFApi.NPC.get(nbt.getString("NPC"));
-        owning_player = new UUID(nbt.getLong("Owner-UUIDMost"), nbt.getLong("Owner-UUIDLeast"));
+        if (nbt.hasKey("Owner")) {
+            owning_player = UUID.fromString(nbt.getString("Owner"));
+            tasks.addTask(0, new EntityAISwimming(this));
+            tasks.addTask(1, new EntityAIAvoidEntity(this, EntityZombie.class, 8.0F, 0.6D, 0.6D));
+            tasks.addTask(1, new EntityAITalkingTo(this));
+            tasks.addTask(1, new EntityAILookAtPlayer(this));
+            tasks.addTask(2, new EntityAITeleportHome(this));
+            tasks.addTask(2, new EntityAIGoHome(this));
+            tasks.addTask(3, new EntityAIRestrictOpenDoor(this));
+            tasks.addTask(4, new EntityAIOpenDoor(this, true));
+            tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 0.6D));
+            tasks.addTask(8, new EntityAIPlay(this, 0.32D));
+            tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 3.0F, 1.0F));
+            tasks.addTask(9, new EntityAIWatchClosest(this, EntityNPC.class, 5.0F, 0.02F));
+            tasks.addTask(9, new EntityAIWander(this, 0.6D));
+            tasks.addTask(10, new EntityAIWatchClosest(this, EntityLiving.class, 8.0F));
+        }
     }
 
     @Override
@@ -200,8 +233,7 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
         }
 
         if (owning_player != null) {
-            nbt.setLong("Owner-UUIDMost", owning_player.getMostSignificantBits());
-            nbt.setLong("Owner-UUIDLeast", owning_player.getLeastSignificantBits());
+            nbt.setString("Owner", owning_player.toString());
         }
     }
 
@@ -213,7 +245,7 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
             for (char c : name) {
                 buf.writeChar(c);
             }
-            
+
             if (owning_player != null) {
                 buf.writeBoolean(true);
                 buf.writeLong(owning_player.getMostSignificantBits());
@@ -233,7 +265,7 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
         if (npc == null) {
             npc = HFNPCs.goddess;
         }
-        
+
         if (buf.readBoolean()) {
             long most = buf.readLong();
             long least = buf.readLong();

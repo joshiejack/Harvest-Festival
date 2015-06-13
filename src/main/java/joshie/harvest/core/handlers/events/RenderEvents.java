@@ -1,7 +1,6 @@
 package joshie.harvest.core.handlers.events;
 
 import static joshie.harvest.core.helpers.CalendarHelper.getClientDay;
-import static joshie.harvest.core.helpers.CalendarHelper.getClientSeason;
 import static joshie.harvest.core.helpers.CalendarHelper.getClientYear;
 
 import java.awt.Point;
@@ -96,11 +95,8 @@ public class RenderEvents {
             }
         } else if (event.type == ElementType.HOTBAR) {
             Minecraft mc = MCClientHelper.getMinecraft();
-            mc.ingameGUI.remainingHighlightTicks = 0;
             mc.mcProfiler.startSection("calendarHUD");
-
-            SeasonData data = SeasonData.getData(getClientSeason());
-            
+            SeasonData data = CalendarHelper.getSeasonData();
             GL11.glPushMatrix();
             GL11.glEnable(GL11.GL_BLEND);
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);

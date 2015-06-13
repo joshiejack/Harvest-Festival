@@ -10,6 +10,9 @@ public class CalendarDate implements IDate {
     private int day;
     private Season season;
     private int year;
+    
+    //Cached Value
+    private SeasonData data;
 
     public CalendarDate() {}
 
@@ -17,12 +20,14 @@ public class CalendarDate implements IDate {
         this.day = day;
         this.season = season;
         this.year = year;
+        this.data = SeasonData.getData(season);
     }
 
     public CalendarDate(CalendarDate date) {
         this.day = date.day;
         this.season = date.season;
         this.year = date.year;
+        this.data = SeasonData.getData(season);
     }
 
     public CalendarDate setDay(int day) {
@@ -32,6 +37,7 @@ public class CalendarDate implements IDate {
 
     public CalendarDate setSeason(Season season) {
         this.season = season;
+        this.data = SeasonData.getData(season);
         return this;
     }
 
@@ -52,6 +58,10 @@ public class CalendarDate implements IDate {
     public Season getSeason() {
         return season;
     }
+    
+    public SeasonData getSeasonData() {
+        return data;
+    }
 
     public int getYear() {
         return year;
@@ -65,6 +75,7 @@ public class CalendarDate implements IDate {
         day = nbt.getByte("DayOfMonth");
         season = Season.values()[nbt.getByte("Season")];
         year = nbt.getShort("Year");
+        data = SeasonData.getData(season);
     }
 
     public void writeToNBT(NBTTagCompound nbt) {

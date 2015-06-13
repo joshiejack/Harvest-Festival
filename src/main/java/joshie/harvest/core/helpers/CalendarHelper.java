@@ -3,6 +3,7 @@ package joshie.harvest.core.helpers;
 import joshie.harvest.api.core.Season;
 import joshie.harvest.api.core.Weekday;
 import joshie.harvest.calendar.CalendarDate;
+import joshie.harvest.calendar.SeasonData;
 import joshie.harvest.core.config.Calendar;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -18,6 +19,11 @@ public class CalendarHelper {
     @SideOnly(Side.CLIENT)
     public static Season getClientSeason() {
         return ClientHelper.getCalendar().getDate().getSeason();
+    }
+    
+    @SideOnly(Side.CLIENT)
+    public static SeasonData getSeasonData() {
+        return ClientHelper.getCalendar().getDate().getSeasonData();
     }
     
     @SideOnly(Side.CLIENT)

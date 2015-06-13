@@ -52,7 +52,7 @@ public class SpecialRendererFryingPan extends TileEntitySpecialRenderer {
     void renderIngredient(World world, ItemStack stack, int max, int id, float rotation) {
         EntityFakeItem entityitem = new EntityFakeItem(world, 0.0D, 0.0D, 0.0D, stack);
         GL11.glPushMatrix();
-        GL11.glTranslatef(0.5F, -0.125F, 0.5F);
+        GL11.glTranslatef(0.5F, 0F, 0.5F);
         GL11.glScalef(0.5F, 0.5F, 0.5F);
         if (!(stack.getItem() instanceof ItemBlock)) {
             GL11.glRotatef(-90, 1F, 0F, 0F);
@@ -77,13 +77,13 @@ public class SpecialRendererFryingPan extends TileEntitySpecialRenderer {
     void renderResult(World world, ItemStack stack) {
         EntityFakeItem entityitem = new EntityFakeItem(world, 0.0D, 0.0D, 0.0D, stack);
         GL11.glPushMatrix();
-        GL11.glTranslatef(0.5F, 0.125F, 0.625F);
+        GL11.glTranslatef(0.5F, 0.25F, 0.625F);
         if (!(stack.getItem() instanceof ItemBlock)) {
             GL11.glRotatef(-90, 1F, 0F, 0F);
         } else {
             GL11.glRotatef(90, 0F, 1F, 0F);
         }
-
+        
         RenderManager.instance.renderEntityWithPosYaw(entityitem, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F);
         GL11.glPopMatrix();
     }

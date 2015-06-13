@@ -20,7 +20,7 @@ import net.minecraft.server.MinecraftServer;
 public class CalendarServer implements IData {
     private boolean loaded = false;
 
-    private CalendarDate date = new CalendarDate(0, Season.SPRING, 1);
+    private CalendarDate date = new CalendarDate(1, Season.SPRING, 1);
 
     public CalendarDate getDate() {
         return date;

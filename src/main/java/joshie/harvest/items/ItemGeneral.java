@@ -164,7 +164,7 @@ public class ItemGeneral extends ItemHFMeta implements ICreativeSorted {
     public int getSortValue(ItemStack stack) {
         if (stack.getItemDamage() == BLUE_FEATHER) return 1;
         if (stack.getItemDamage() >= JUNK_ORE && stack.getItemDamage() <= MYTHIC_STONE) {
-            return 1 + stack.getItemDamage();
+            return 10 + stack.getItemDamage();
         }
         
         return 102;

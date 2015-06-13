@@ -29,9 +29,6 @@
 ## Aesthetics 
 ###Textures
 - [ ] items/crops/grass.png 
-- [ ] entities/candice.png
-- [ ] entities/cloe.png
-- [ ] entities/daniel.png
 - [ ] entities/fenn.png
 - [ ] entities/goddess.png
 - [ ] entities/jacob.png
@@ -47,6 +44,9 @@
 - [ ] entities/yulif.png
 
 - [ ] Move Skin Textures to assets/textures/entities
+
+### Miscellaneous
+- [ ] Make it so that you can only buy one chicken at a time as others will fall off once your head is occupied with one chicken
 
 ##Pics
 Makers = http://i.imgur.com/hx18lk0.png

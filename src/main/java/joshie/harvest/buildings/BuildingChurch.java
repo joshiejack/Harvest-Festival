@@ -594,7 +594,7 @@ public class BuildingChurch extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 9, 9, 6));
         list.add(new PlaceableBlock(Blocks.air, 0, 10, 9, 2));
         list.add(new PlaceableTorches(Blocks.torch, 4, 10, 9, 3));
-        list.add(new PlaceableBlock(Blocks.iron_block, 0, 10, 9, 4));
+        list.add(new PlaceableBlock(Blocks.cauldron, 0, 10, 9, 4));
         list.add(new PlaceableTorches(Blocks.torch, 3, 10, 9, 5));
         list.add(new PlaceableBlock(Blocks.air, 0, 10, 9, 6));
         list.add(new PlaceableBlock(Blocks.air, 0, 11, 9, 2));

@@ -206,7 +206,6 @@ public class BuildingMiningHill extends Building {
         list.add(new PlaceableBlock(Blocks.grass, 0, 11, 2, 11));
         list.add(new PlaceableBlock(Blocks.tallgrass, 1, 0, 3, 5));
         list.add(new PlaceableFlower(Blocks.red_flower, 6, 0, 3, 7));
-        list.add(new PlaceableFlower(Blocks.red_flower, 0, 0, 3, 8));
         list.add(new PlaceableFlower(Blocks.red_flower, 5, 1, 3, 4));
         list.add(new PlaceableBlock(Blocks.grass, 0, 1, 3, 5));
         list.add(new PlaceableBlock(Blocks.grass, 0, 1, 3, 6));
@@ -327,7 +326,6 @@ public class BuildingMiningHill extends Building {
         list.add(new PlaceableBlock(Blocks.tallgrass, 1, 11, 3, 10));
         list.add(new PlaceableDoublePlant(Blocks.double_plant, 2, 1, 4, 5));
         list.add(new PlaceableFlower(Blocks.red_flower, 5, 1, 4, 6));
-        list.add(new PlaceableFlower(Blocks.red_flower, 6, 1, 4, 7));
         list.add(new PlaceableFlower(Blocks.yellow_flower, 0, 1, 4, 8));
         list.add(new PlaceableFlower(Blocks.red_flower, 4, 1, 4, 10));
         list.add(new PlaceableFlower(Blocks.red_flower, 6, 2, 4, 4));
@@ -433,7 +431,6 @@ public class BuildingMiningHill extends Building {
         list.add(new PlaceableBlock(Blocks.grass, 0, 3, 5, 9));
         list.add(new PlaceableBlock(Blocks.grass, 0, 3, 5, 10));
         list.add(new PlaceableFlower(Blocks.red_flower, 4, 3, 5, 11));
-        list.add(new PlaceableFlower(Blocks.yellow_flower, 0, 4, 5, 3));
         list.add(new PlaceableFlower(Blocks.red_flower, 4, 4, 5, 4));
         list.add(new PlaceableBlock(Blocks.grass, 0, 4, 5, 5));
         list.add(new PlaceableBlock(Blocks.stone, 0, 4, 5, 6));
@@ -488,7 +485,6 @@ public class BuildingMiningHill extends Building {
         list.add(new PlaceableFlower(Blocks.red_flower, 6, 3, 6, 5));
         list.add(new PlaceableBlock(Blocks.grass, 0, 3, 6, 6));
         list.add(new PlaceableFlower(Blocks.red_flower, 3, 3, 6, 7));
-        list.add(new PlaceableFlower(Blocks.red_flower, 6, 3, 6, 8));
         list.add(new PlaceableFlower(Blocks.red_flower, 8, 3, 6, 9));
         list.add(new PlaceableDoublePlant(Blocks.double_plant, 2, 3, 6, 10));
         list.add(new PlaceableDoublePlant(Blocks.double_plant, 0, 4, 6, 5));
@@ -506,7 +502,6 @@ public class BuildingMiningHill extends Building {
         list.add(new PlaceableBlock(Blocks.grass, 0, 5, 6, 9));
         list.add(new PlaceableBlock(Blocks.grass, 0, 5, 6, 10));
         list.add(new PlaceableBlock(Blocks.tallgrass, 1, 5, 6, 11));
-        list.add(new PlaceableFlower(Blocks.red_flower, 8, 6, 6, 4));
         list.add(new PlaceableBlock(Blocks.grass, 0, 6, 6, 5));
         list.add(new PlaceableBlock(Blocks.dirt, 0, 6, 6, 6));
         list.add(new PlaceableBlock(Blocks.dirt, 0, 6, 6, 7));
@@ -535,7 +530,6 @@ public class BuildingMiningHill extends Building {
         list.add(new PlaceableBlock(Blocks.tallgrass, 1, 4, 7, 6));
         list.add(new PlaceableFlower(Blocks.yellow_flower, 0, 4, 7, 7));
         list.add(new PlaceableFlower(Blocks.red_flower, 4, 4, 7, 8));
-        list.add(new PlaceableFlower(Blocks.red_flower, 6, 5, 7, 5));
         list.add(new PlaceableFlower(Blocks.red_flower, 8, 5, 7, 6));
         list.add(new PlaceableBlock(Blocks.grass, 0, 5, 7, 7));
         list.add(new PlaceableBlock(Blocks.grass, 0, 5, 7, 8));
@@ -553,7 +547,6 @@ public class BuildingMiningHill extends Building {
         list.add(new PlaceableBlock(Blocks.grass, 0, 7, 7, 9));
         list.add(new PlaceableLog(Blocks.log, 0, 7, 7, 10));
         list.add(new PlaceableFlower(Blocks.red_flower, 4, 7, 7, 11));
-        list.add(new PlaceableFlower(Blocks.yellow_flower, 0, 8, 7, 6));
         list.add(new PlaceableBlock(Blocks.tallgrass, 1, 8, 7, 7));
         list.add(new PlaceableFlower(Blocks.red_flower, 8, 8, 7, 8));
         list.add(new PlaceableFlower(Blocks.red_flower, 5, 8, 7, 9));

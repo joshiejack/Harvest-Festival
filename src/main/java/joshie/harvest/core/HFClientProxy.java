@@ -7,9 +7,10 @@ import joshie.harvest.animals.EntityHarvestSheep;
 import joshie.harvest.animals.render.ModelHarvestCow;
 import joshie.harvest.animals.render.ModelHarvestSheep;
 import joshie.harvest.animals.render.RenderHarvestAnimal;
+import joshie.harvest.blocks.BlockCookware;
 import joshie.harvest.blocks.BlockHFBaseMeta;
-import joshie.harvest.blocks.render.RenderCookware;
 import joshie.harvest.blocks.render.RenderCrops;
+import joshie.harvest.blocks.render.RenderKitchen;
 import joshie.harvest.blocks.render.RenderPreview;
 import joshie.harvest.blocks.render.SpecialRendererFryingPan;
 import joshie.harvest.blocks.tiles.TileFryingPan;
@@ -54,7 +55,6 @@ public class HFClientProxy extends HFCommonProxy {
         RenderIds.COOKING = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(new RenderHandler());
         RenderingRegistry.registerBlockHandler(new RenderCrops());
-        RenderingRegistry.registerBlockHandler(new RenderCookware());
         FMLCommonHandler.instance().bus().register(new RenderEvents());
         MinecraftForge.EVENT_BUS.register(new RenderEvents());
         MinecraftForgeClient.registerItemRenderer(HFItems.animal, new RenderItemAnimal());
@@ -67,6 +67,7 @@ public class HFClientProxy extends HFCommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityFakeItem.class, new RenderFakeItem());
         RenderingRegistry.registerEntityRenderingHandler(EntityHarvestCow.class, new RenderHarvestAnimal(new ModelHarvestCow(), "cow"));
         RenderingRegistry.registerEntityRenderingHandler(EntityHarvestSheep.class, new RenderHarvestAnimal(new ModelHarvestSheep(), "sheep"));
+        RenderHandler.register(HFBlocks.cookware, BlockCookware.KITCHEN, RenderKitchen.class);
         registerRenders(HFBlocks.woodmachines);
 
         for (int i = 0; i < 8; i++) {

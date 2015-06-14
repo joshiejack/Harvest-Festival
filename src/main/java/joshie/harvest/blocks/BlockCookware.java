@@ -63,7 +63,7 @@ public class BlockCookware extends BlockHFBaseMeta {
 
     @Override
     public int getRenderType() {
-        return RenderIds.COOKING;
+        return RenderIds.ALL;
     }
 
     @Override

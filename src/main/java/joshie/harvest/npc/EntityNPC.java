@@ -27,7 +27,6 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -94,7 +93,6 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
         }
         
         this.setCurrentItemOrArmor(0, new ItemStack(Items.diamond_sword));
-        System.out.println("CALLED");
     }
 
     @Override

@@ -5,9 +5,9 @@ import static joshie.harvest.core.network.PacketHandler.sendToEveryone;
 
 import java.util.List;
 
+import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.core.Season;
 import joshie.harvest.core.config.Calendar;
-import joshie.harvest.core.helpers.AnimalHelper;
 import joshie.harvest.core.helpers.CropHelper;
 import joshie.harvest.core.helpers.MineHelper;
 import joshie.harvest.core.helpers.PlayerHelper;
@@ -51,7 +51,7 @@ public class CalendarServer implements IData {
         sendToEveryone(new PacketSetCalendar(date));
 
         CropHelper.newDay();
-        AnimalHelper.newDay();
+        HarvestFestival.proxy.getAnimalTracker().newDay();
         MineHelper.newDay();
 
         //Loop through all the players and do stuff related to them, Pass the world that the player is in

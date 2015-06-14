@@ -1,14 +1,13 @@
 package joshie.harvest.items;
 
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.animals.IAnimalType;
 import joshie.harvest.api.core.ICreativeSorted;
-import joshie.harvest.core.helpers.AnimalHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.init.HFItems;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -45,9 +44,9 @@ public class ItemTreat extends ItemHFMeta implements ICreativeSorted {
 
     @Override
     public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer player, EntityLivingBase living) {
-        if (living instanceof EntityAnimal) {
+        if (living instanceof IAnimalTracked) {
             if (!living.worldObj.isRemote) {
-                AnimalHelper.treat(stack, player, (EntityAnimal) living);
+                ((IAnimalTracked)living).getData().treat(stack, player);
             }
 
             stack.stackSize--;

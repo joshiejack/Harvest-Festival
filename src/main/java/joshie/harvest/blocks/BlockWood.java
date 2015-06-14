@@ -1,16 +1,11 @@
 package joshie.harvest.blocks;
 
 import static joshie.harvest.core.helpers.ShippingHelper.addForShipping;
-import joshie.harvest.animals.AnimalType;
-import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.IShippable;
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.helpers.AnimalHelper;
 import joshie.harvest.core.helpers.generic.DirectionHelper;
 import joshie.harvest.core.lib.RenderIds;
 import joshie.harvest.core.util.generic.IFaceable;
-import joshie.harvest.init.HFIngredients;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -18,7 +13,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -86,26 +80,6 @@ public class BlockWood extends BlockHFBaseMeta {
                     return addForShipping(player, held);
                 } else return false;
             } else return false;
-        } else if (meta == NEST) {
-            ItemStack held = player.getCurrentEquippedItem();
-            if (held != null && HFApi.COOKING.getCookingComponents(held).contains(HFIngredients.egg)) {
-                if (AnimalHelper.addEgg(world, x, y, z)) {
-                    player.inventory.decrStackSize(player.inventory.currentItem, 1);
-                    return true;
-                }
-            }
-
-            return false;
-        } else if (meta == TROUGH) {
-            ItemStack held = player.getCurrentEquippedItem();
-            if (held != null && AnimalType.canEat(HFApi.ANIMALS.getTypeFromString("cow").getFoodTypes(), held)) {
-                if (AnimalHelper.addFodder(world, x, y, z)) {
-                    player.inventory.decrStackSize(player.inventory.currentItem, 1);
-                    return true;
-                }
-            }
-
-            return false;
         } else return false;
     }
 
@@ -133,35 +107,6 @@ public class BlockWood extends BlockHFBaseMeta {
         }
     }
 
-    @Override
-    public void onBlockAdded(World world, int x, int y, int z) {
-        int meta = world.getBlockMetadata(x, y, z);
-        if (meta == NEST) {
-            AnimalHelper.addNest(world, x, y, z);
-        } else if (meta == TROUGH) {
-            AnimalHelper.addTrough(world, x, y, z);
-        }
-    }
-
-    @Override
-    public void onBlockExploded(World world, int x, int y, int z, Explosion explosion) {
-        int meta = world.getBlockMetadata(x, y, z);
-        if (meta == NEST) {
-            AnimalHelper.removeNest(world, x, y, z);
-        } else if (meta == TROUGH) {
-            AnimalHelper.removeTrough(world, x, y, z);
-        }
-    }
-
-    @Override
-    public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
-        if (meta == NEST) {
-            AnimalHelper.removeNest(world, x, y, z);
-        } else if (meta == TROUGH) {
-            AnimalHelper.removeTrough(world, x, y, z);
-        }
-    }
-    
     @Override
     public int damageDropped(int meta) {
         if (meta == SHIPPING_2) return SHIPPING;

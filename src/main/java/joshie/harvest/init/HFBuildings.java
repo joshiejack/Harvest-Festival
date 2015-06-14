@@ -1,6 +1,5 @@
 package joshie.harvest.init;
 
-import joshie.harvest.animals.AnimalType;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.buildings.Building;
 import joshie.harvest.buildings.BuildingBarn;
@@ -20,6 +19,7 @@ import joshie.harvest.buildings.BuildingTownhall;
 import joshie.harvest.core.lib.LootStrings;
 import joshie.harvest.crops.Crop;
 import joshie.harvest.items.ItemGeneral;
+import joshie.harvest.items.ItemTreat;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -106,7 +106,7 @@ public class HFBuildings {
 
         //Poultry Chest
         ChestGenHooks.addItem(LootStrings.POULTRY_CHEST, new WeightedRandomChestContent(new ItemStack(HFItems.general, 1, ItemGeneral.CHICKEN_FEED), 8, 24, 10));
-        ChestGenHooks.addItem(LootStrings.POULTRY_CHEST, new WeightedRandomChestContent(new ItemStack(HFItems.treats, 1, AnimalType.CHICKEN.ordinal()), 1, 2, 5));
+        ChestGenHooks.addItem(LootStrings.POULTRY_CHEST, new WeightedRandomChestContent(new ItemStack(HFItems.treats, 1, ItemTreat.CHICKEN), 1, 2, 5));
         ChestGenHooks.addItem(LootStrings.POULTRY_CHEST, new WeightedRandomChestContent(new ItemStack(HFItems.egg, 1, 0), 1, 2, 5));
 
         //Mining Frame

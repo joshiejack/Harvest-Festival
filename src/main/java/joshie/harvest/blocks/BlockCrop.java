@@ -12,6 +12,7 @@ import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.api.crops.ICropRenderHandler.PlantSection;
 import joshie.harvest.core.config.Crops;
+import joshie.harvest.core.helpers.AnimalHelper;
 import joshie.harvest.core.helpers.CropHelper;
 import joshie.harvest.core.helpers.DigFXHelper;
 import joshie.harvest.core.helpers.SeedHelper;
@@ -346,13 +347,15 @@ public class BlockCrop extends BlockHFBase implements IPlantable, IGrowable, IAn
 
     @Override
     public boolean canFeedAnimal(IAnimalTracked tracked, World world, int x, int y, int z) {
-        ICropData crop = HFApi.CROPS.getCropAtLocation(world, x, y, z);
-        ICrop theCrop = crop.getCrop();
-        if (theCrop == HFCrops.grass) {
-            int stage = crop.getStage();
-            if (stage > 5) {
-                CropHelper.plantCrop(tracked.getData().getOwner(), world, x, y, z, theCrop, stage - 5);
-                return true;
+        if (AnimalHelper.eatsGrass(tracked)) {
+            ICropData crop = HFApi.CROPS.getCropAtLocation(world, x, y, z);
+            ICrop theCrop = crop.getCrop();
+            if (theCrop == HFCrops.grass) {
+                int stage = crop.getStage();
+                if (stage > 5) {
+                    CropHelper.plantCrop(tracked.getData().getOwner(), world, x, y, z, theCrop, stage - 5);
+                    return true;
+                }
             }
         }
 

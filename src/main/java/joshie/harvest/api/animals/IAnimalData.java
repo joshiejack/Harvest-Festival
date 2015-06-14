@@ -30,20 +30,17 @@ public interface IAnimalData {
     /** Mark this animal as having produced a product today **/
     public void setProduced();
 
-    /** Mark this animal as having been cleaned,
-     *  return true if the animal wasn't fully clean beforehand. */
-    public boolean setCleaned();
+    /** Clean this animal */
+    public void clean(EntityPlayer player);
 
-    /** Marks the animal as having been thrown this day
-     *  If it has already been thrown, return false */
-    public boolean setThrown();
+    /** Called when this animal is dismounted from a players head*/
+    public void dismount(EntityPlayer player);
 
-    /** Attempt to feed the animal for this day,
-     *  If it's already been fed, return false  */
-    public boolean setFed();
+    /** Feed this animal */
+    public void feed(EntityPlayer player);
 
-    /** Attempt to heal the animal
-     *  Return false if the animal was already fully healed */
+    /** Heal the animal
+     *  @return     returns true if it was healed from a sickness */
     public boolean heal();
 
     /** Treat the animal for this day **/
@@ -51,7 +48,7 @@ public interface IAnimalData {
 
     /** Attempt to impregnate the animal
      *  return true if sucessful */
-    public boolean impregnate();
+    public boolean impregnate(EntityPlayer player);
 
     /** Read information from nbt **/
     public void readFromNBT(NBTTagCompound nbt);

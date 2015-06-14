@@ -4,10 +4,12 @@ import static joshie.harvest.core.network.PacketHandler.sendToServer;
 
 import java.util.HashSet;
 
+import joshie.harvest.HarvestFestival;
+import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.core.config.Animals;
 import joshie.harvest.core.helpers.AnimalHelper;
 import joshie.harvest.core.helpers.RelationsHelper;
-import joshie.harvest.core.network.PacketDismountChicken;
+import joshie.harvest.core.network.PacketDismount;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSyncCanProduce;
 import joshie.harvest.core.network.PacketSyncRelations;
@@ -31,8 +33,8 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 public class AnimalEvents {
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void onEntityLoaded(EntityJoinWorldEvent event) {
-        if (event.entity instanceof EntityAnimal) {
-            if (!event.world.isRemote) AnimalHelper.onJoinWorld((EntityAnimal) event.entity);
+        if (event.entity instanceof IAnimalTracked) {
+            HarvestFestival.proxy.getAnimalTracker().onJoinWorld(((IAnimalTracked) event.entity).getData());
             if (event.world.isRemote) {
                 //Request information about whether you can get products from the cow or sheep
                 if (event.entity instanceof EntityCow || event.entity instanceof EntitySheep) {
@@ -57,9 +59,9 @@ public class AnimalEvents {
 
     @SubscribeEvent
     public void onEntityDeath(LivingDeathEvent event) {
-        if (event.entity instanceof EntityAnimal) {
+        if (event.entity instanceof IAnimalTracked) {
             RelationsHelper.removeRelations(event.entityLiving);
-            AnimalHelper.onDeath((EntityAnimal) event.entityLiving);
+            HarvestFestival.proxy.getAnimalTracker().onDeath(((IAnimalTracked) event.entityLiving).getData());
         }
     }
 
@@ -80,7 +82,7 @@ public class AnimalEvents {
                 chicken.rotationPitch = player.rotationPitch;
                 chicken.rotationYaw = player.rotationYaw;
                 chicken.moveFlying(0F, 1.0F, 1.25F);
-                PacketHandler.sendToServer(new PacketDismountChicken());
+                PacketHandler.sendToServer(new PacketDismount());
             }
         }
     }

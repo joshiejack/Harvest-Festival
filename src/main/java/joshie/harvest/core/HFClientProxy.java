@@ -1,6 +1,7 @@
 package joshie.harvest.core;
 
 import static joshie.harvest.core.lib.HFModInfo.JAVAPATH;
+import joshie.harvest.animals.AnimalTracker;
 import joshie.harvest.animals.ChickenRenderFix;
 import joshie.harvest.animals.EntityHarvestCow;
 import joshie.harvest.animals.EntityHarvestSheep;
@@ -96,5 +97,10 @@ public class HFClientProxy extends HFCommonProxy {
         name = name.replace(".", " ");
         name = WordUtils.capitalize(name);
         return name.replace(" ", "");
+    }
+    
+    @Override
+    public AnimalTracker getAnimalTracker() {
+        return ClientHelper.getAnimalTracker();
     }
 }

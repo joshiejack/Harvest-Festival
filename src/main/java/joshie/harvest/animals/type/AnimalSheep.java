@@ -1,6 +1,7 @@
 package joshie.harvest.animals.type;
 
 import static joshie.harvest.api.animals.AnimalFoodType.GRASS;
+import joshie.harvest.api.animals.IAnimalData;
 import net.minecraft.entity.passive.EntityAnimal;
 
 public class AnimalSheep extends AbstractAnimal {  
@@ -14,7 +15,7 @@ public class AnimalSheep extends AbstractAnimal {
     }
 
     @Override
-    public void newDay(EntityAnimal entity) {
+    public void newDay(IAnimalData data, EntityAnimal entity) {
         entity.eatGrassBonus();
     }
 }

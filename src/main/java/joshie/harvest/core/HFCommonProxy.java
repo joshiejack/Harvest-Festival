@@ -1,6 +1,8 @@
 package joshie.harvest.core;
 
+import joshie.harvest.animals.AnimalTracker;
 import joshie.harvest.core.handlers.api.HFApiHandler;
+import joshie.harvest.core.helpers.ServerHelper;
 import joshie.harvest.core.util.WorldDestroyer;
 import joshie.harvest.init.HFAnimals;
 import joshie.harvest.init.HFBlocks;
@@ -55,5 +57,9 @@ public class HFCommonProxy {
     public void postInit() {
         HFPlugins.postInit();
         WorldDestroyer.replaceWorldProvider();
+    }
+
+    public AnimalTracker getAnimalTracker() {
+        return ServerHelper.getAnimalTracker();
     }
 }

@@ -11,6 +11,7 @@ import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.animals.IAnimalType;
 import joshie.harvest.core.config.Animals;
 import joshie.harvest.core.helpers.RelationsHelper;
+import joshie.harvest.core.helpers.ServerHelper;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.network.PacketSyncCanProduce;
 import joshie.harvest.core.util.IData;
@@ -97,7 +98,7 @@ public class AnimalData implements IData, IAnimalData {
                     return false;
                 }
             }
-            
+
             //Stage 1.5 Chance for animal to get sick if healthiness below 100
             if (!isSick) {
                 if (healthiness < 100) {
@@ -144,7 +145,7 @@ public class AnimalData implements IData, IAnimalData {
                 if (daysPassed >= tracking.getType().getDaysBetweenProduction()) {
                     daysPassed = 0;
                     numProductsProduced = 0;
-                    tracking.getType().newDay(animal);
+                    tracking.getType().newDay(tracking.getData(), animal);
                 }
 
                 //Sync Whether this animal can produce, before we increase daysnotfed
@@ -170,7 +171,7 @@ public class AnimalData implements IData, IAnimalData {
             return true;
         } else return false;
     }
-    
+
     @Override
     public boolean isHungry() {
         return daysNotFed >= 0;
@@ -201,12 +202,6 @@ public class AnimalData implements IData, IAnimalData {
         this.o_uuid = UUIDHelper.getPlayerUUID(player);
     }
 
-    public int getDimension() {
-        if (animal != null) {
-            return animal.worldObj.provider.dimensionId;
-        } else return dimension;
-    }
-
     //Animals can produce products, if they are healthy, have been fed, and aren't over their daily limit
     @Override
     public boolean canProduce() {
@@ -222,28 +217,36 @@ public class AnimalData implements IData, IAnimalData {
     }
 
     @Override
-    public boolean setCleaned() {
+    public void clean(EntityPlayer player) {
         if (cleanliness < Byte.MAX_VALUE) {
             cleanliness += 10;
-            return cleanliness >= Byte.MAX_VALUE;
-        } else return false;
+            if (cleanliness >= Byte.MAX_VALUE) {
+                affectRelationship(player, 25);
+            }
+        }
     }
 
     @Override
-    public boolean setThrown() {
+    public void dismount(EntityPlayer player) {
         if (!thrown) {
             thrown = true;
-            return true;
-        } else return false;
+            affectRelationship(player, 25);
+        }
+    }
+
+    private void affectRelationship(EntityPlayer player, int amount) {
+        if (player != null) {
+            ServerHelper.getPlayerData(player).affectRelationship(animal, amount);
+        }
     }
 
     //Sets this animal as having been fed, if it's already been fed, this will return false
     @Override
-    public boolean setFed() {
+    public void feed(EntityPlayer player) {
         if (daysNotFed >= 0) {
             daysNotFed = -1;
-            return true;
-        } else return false;
+            affectRelationship(player, 5);
+        }
     }
 
     //Returns true if the animal was healed
@@ -266,21 +269,22 @@ public class AnimalData implements IData, IAnimalData {
             IAnimalType type = ItemTreat.getTreatTypeFromStack(stack);
             if (type == tracking.getType()) {
                 treated = true;
-                RelationsHelper.affectRelations(player, animal, 1000);
+                affectRelationship(player, 1000);
             }
         }
     }
 
     @Override
-    public boolean impregnate() {
+    public boolean impregnate(EntityPlayer player) {
         if (animal.getAge() < 0) return false;
         if (isPregnant) return false;
         daysPregnant = 0;
         isPregnant = true;
+        affectRelationship(player, 200);
         return true;
     }
 
-    public void giveBirth() {
+    private void giveBirth() {
         int count = 1;
         //Chance for litters up to 5
         for (int i = 0; i < (Animals.MAX_LITTER_SIZE - 1); i++) {

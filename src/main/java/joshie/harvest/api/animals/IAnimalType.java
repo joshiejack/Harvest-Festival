@@ -18,6 +18,7 @@ public interface IAnimalType {
     /** Return the number of days between producing products **/
     public int getDaysBetweenProduction();
 
-    /** Called to make this animal produce it a product on a new day **/
-    public void newDay(EntityAnimal entity);
+    /** Called to make this animal produce it a product on a new day 
+     * @param tracking **/
+    public void newDay(IAnimalData data, EntityAnimal entity);
 }

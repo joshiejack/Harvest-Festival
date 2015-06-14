@@ -5,7 +5,6 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.animals.IAnimalType;
-import joshie.harvest.core.helpers.AnimalHelper;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.player.EntityPlayer;
@@ -39,8 +38,11 @@ public class EntityHarvestCow extends EntityCow implements IAnimalTracked {
     public boolean interact(EntityPlayer player) {
         ItemStack held = player.getCurrentEquippedItem();
         if (held != null) {
-            if (AnimalType.canEat(type.getFoodTypes(), held)) {
-                AnimalHelper.feed(player, this);
+            if (HFApi.ANIMALS.canEat(type.getFoodTypes(), held)) {
+                if (!worldObj.isRemote) {
+                    data.feed(player);
+                }
+                
                 return true;
             }
         }

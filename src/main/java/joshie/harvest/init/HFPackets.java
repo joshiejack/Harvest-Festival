@@ -1,7 +1,7 @@
 package joshie.harvest.init;
 
 import joshie.harvest.core.network.PacketCropRequest;
-import joshie.harvest.core.network.PacketDismountChicken;
+import joshie.harvest.core.network.PacketDismount;
 import joshie.harvest.core.network.PacketFreeze;
 import joshie.harvest.core.network.PacketGoldCommand;
 import joshie.harvest.core.network.PacketHandler;
@@ -50,7 +50,7 @@ public class HFPackets {
         PacketHandler.registerPacket(PacketSyncFridge.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketNewDay.class, Side.SERVER);
         PacketHandler.registerPacket(PacketWateringCan.class, Side.SERVER);
-        PacketHandler.registerPacket(PacketDismountChicken.class, Side.SERVER);
+        PacketHandler.registerPacket(PacketDismount.class, Side.SERVER);
         
         //Quest Packets
         PacketHandler.registerPacket(PacketQuestSetAvailable.class, Side.CLIENT);

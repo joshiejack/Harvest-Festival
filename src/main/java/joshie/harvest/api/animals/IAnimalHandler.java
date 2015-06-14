@@ -1,8 +1,15 @@
 package joshie.harvest.api.animals;
 
 import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.item.ItemStack;
 
 public interface IAnimalHandler {
+    /** Returns true if the item type matches any of the food types **/
+    public boolean canEat(AnimalFoodType[] foodTypes, ItemStack held);
+
+    /** Register an item as a specific food type **/
+    public void registerFoodAsType(ItemStack stack, AnimalFoodType type);
+    
     /** Creates a new animal data **/
     public IAnimalData newData(IAnimalTracked animal);
     

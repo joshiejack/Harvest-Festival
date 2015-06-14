@@ -88,7 +88,6 @@ public class HFSavedData extends WorldSavedData {
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         calendar.readFromNBT(nbt.getCompoundTag("Calendar"));
-        animals.readFromNBT(nbt.getCompoundTag("AnimalTracker"));
         crops.readFromNBT(nbt.getCompoundTag("CropTracker"));
         mines.readFromNBT(nbt.getCompoundTag("MineTracker"));
 
@@ -106,10 +105,6 @@ public class HFSavedData extends WorldSavedData {
         NBTTagCompound tag_calendar = new NBTTagCompound();
         calendar.writeToNBT(tag_calendar);
         nbt.setTag("Calendar", tag_calendar);
-
-        NBTTagCompound tag_animals = new NBTTagCompound();
-        animals.writeToNBT(tag_animals);
-        nbt.setTag("AnimalTracker", tag_animals);
 
         NBTTagCompound tag_crops = new NBTTagCompound();
         crops.writeToNBT(tag_crops);

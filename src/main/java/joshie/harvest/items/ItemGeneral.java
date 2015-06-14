@@ -1,11 +1,11 @@
 package joshie.harvest.items;
 
-import static joshie.harvest.core.helpers.AnimalHelper.canProduceProduct;
-import static joshie.harvest.core.helpers.AnimalHelper.setProducedProduct;
+import joshie.harvest.HarvestFestival;
+import joshie.harvest.api.animals.IAnimalData;
+import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.helpers.AnimalHelper;
 import joshie.harvest.core.helpers.SizeableHelper;
 import joshie.harvest.core.lib.SizeableMeta;
 import net.minecraft.creativetab.CreativeTabs;
@@ -113,12 +113,14 @@ public class ItemGeneral extends ItemHFMeta implements ICreativeSorted {
 
     @Override
     public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer player, EntityLivingBase living) {
-        if (living instanceof EntityAnimal) {
+        if (living instanceof IAnimalTracked) {
+            IAnimalTracked tracked = (IAnimalTracked) living;
+            IAnimalData data = ((IAnimalTracked) tracked).getData();
             EntityAnimal animal = (EntityAnimal) living;
             int metadata = stack.getItemDamage();
             if (metadata == BRUSH && !(living instanceof EntityChicken)) {
                 if (!player.worldObj.isRemote) {
-                    AnimalHelper.clean(player, animal);
+                    data.clean(player);
                 } else {
                     for (int j = 0; j < 30D; j++) {
                         double d7 = (animal.posY - 0.5D) + animal.worldObj.rand.nextFloat();
@@ -130,19 +132,19 @@ public class ItemGeneral extends ItemHFMeta implements ICreativeSorted {
 
                 return true;
             } else if (metadata == MILKER && animal instanceof EntityCow) {
-                if (canProduceProduct(animal)) {
+                if (HarvestFestival.proxy.getAnimalTracker().canProduceProduct(data)) {
                     ItemStack product = SizeableHelper.getSizeable(player, animal, SizeableMeta.MILK, Size.SMALL);
                     if (!player.inventory.addItemStackToInventory(product)) {
                         player.dropPlayerItemWithRandomChoice(product, false);
                     }
 
-                    setProducedProduct(animal);
+                    HarvestFestival.proxy.getAnimalTracker().setProducedProduct(data);
                 }
 
                 return true;
             } else if (metadata == MEDICINE) {
                 if (!player.worldObj.isRemote) {
-                    if (AnimalHelper.heal(animal)) {
+                    if (data.heal()) {
                         stack.stackSize--;
                     }
                 }
@@ -150,7 +152,7 @@ public class ItemGeneral extends ItemHFMeta implements ICreativeSorted {
                 return true;
             } else if (metadata == MIRACLE && !(living instanceof EntityChicken)) {
                 if (!living.worldObj.isRemote) {
-                    if (AnimalHelper.impregnate(player, animal)) {
+                    if (data.impregnate(player)) {
                         stack.stackSize--;
                     }
                 }
@@ -166,7 +168,7 @@ public class ItemGeneral extends ItemHFMeta implements ICreativeSorted {
         if (stack.getItemDamage() >= JUNK_ORE && stack.getItemDamage() <= MYTHIC_STONE) {
             return 10 + stack.getItemDamage();
         }
-        
+
         return 102;
     }
 }

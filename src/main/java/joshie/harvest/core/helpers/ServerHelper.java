@@ -31,7 +31,7 @@ public class ServerHelper {
         return theServer.getCalendar();
     }
 
-    static AnimalTrackerServer getAnimalTracker() {
+    public static AnimalTrackerServer getAnimalTracker() {
         return theServer.getAnimalTracker();
     }
 
@@ -43,7 +43,7 @@ public class ServerHelper {
         return theServer.getMineTracker();
     }
 
-    static PlayerDataServer getPlayerData(EntityPlayer player) {
+    public static PlayerDataServer getPlayerData(EntityPlayer player) {
         return theServer.getPlayerData(player);
     }
 

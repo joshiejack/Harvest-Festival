@@ -5,18 +5,51 @@ import java.util.HashMap;
 import joshie.harvest.animals.type.AnimalChicken;
 import joshie.harvest.animals.type.AnimalCow;
 import joshie.harvest.animals.type.AnimalSheep;
+import joshie.harvest.api.HFApi;
+import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalHandler;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.animals.IAnimalType;
+import joshie.harvest.core.helpers.SafeStackHelper;
+import joshie.harvest.core.util.SafeStack;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class AnimalRegistry implements IAnimalHandler {
     private static final HashMap<String, IAnimalType> types = new HashMap();
+    private static final HashMap<SafeStack, AnimalFoodType> registry = new HashMap();
     private static boolean isInit = false;
+
+    //Internal Convenience method
+    public static void registerFoodsAsType(AnimalFoodType type, Item... items) {
+        for (Item item : items) {
+            HFApi.ANIMALS.registerFoodAsType(new ItemStack(item, 1, OreDictionary.WILDCARD_VALUE), type);
+        }
+    }
+
+    @Override
+    public void registerFoodAsType(ItemStack stack, AnimalFoodType type) {
+        registry.put(SafeStackHelper.getSafeStackType(stack), type);
+    }
+
+    @Override
+    public boolean canEat(AnimalFoodType[] types, ItemStack stack) {
+        AnimalFoodType type = (AnimalFoodType) SafeStackHelper.getResult(stack, registry);
+        if (type == null) return false;
+        else {
+            for (AnimalFoodType t : types) {
+                if (type == t) return true;
+            }
+        }
+
+        return false;
+    }
 
     @Override
     public IAnimalData newData(IAnimalTracked animal) {
@@ -27,7 +60,7 @@ public class AnimalRegistry implements IAnimalHandler {
     public IAnimalType getTypeFromString(String string) {
         return types.get(string);
     }
-    
+
     private void init() {
         types.put("cow", new AnimalCow());
         types.put("sheep", new AnimalSheep());
@@ -40,7 +73,7 @@ public class AnimalRegistry implements IAnimalHandler {
             init();
             isInit = true;
         }
-        
+
         //Return aminals
         if (animal instanceof EntityCow) {
             return types.get("cow");

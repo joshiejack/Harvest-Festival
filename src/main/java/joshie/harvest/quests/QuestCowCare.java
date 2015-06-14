@@ -1,12 +1,13 @@
 package joshie.harvest.quests;
 
-import static joshie.harvest.core.helpers.AnimalHelper.canProduceProduct;
 import static joshie.harvest.core.helpers.QuestHelper.completeQuest;
 import static joshie.harvest.core.helpers.ServerHelper.markDirty;
 import io.netty.buffer.ByteBuf;
 
 import java.util.HashSet;
 
+import joshie.harvest.HarvestFestival;
+import joshie.harvest.animals.EntityHarvestCow;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.api.npc.INPC;
@@ -20,7 +21,6 @@ import joshie.harvest.init.HFNPCs;
 import joshie.harvest.items.ItemGeneral;
 import joshie.harvest.npc.EntityNPC;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
@@ -36,7 +36,8 @@ public class QuestCowCare extends Quest {
     @Override
     public void onEntityInteract(EntityPlayer player, Entity target) {
         if (quest_stage == 2) {
-            if (target instanceof EntityCow) {
+            if (target instanceof EntityHarvestCow) {
+                EntityHarvestCow cow = (EntityHarvestCow) target;
                 ItemStack held = player.getCurrentEquippedItem();
                 if (held != null) {
                     boolean hasChanged = false;
@@ -47,7 +48,7 @@ public class QuestCowCare extends Quest {
                         hasBrushed = true;
                         hasChanged = true;
                     } else if (!hasMilked && ToolHelper.isMilker(held)) {
-                        if (canProduceProduct((EntityCow) target)) {
+                        if (HarvestFestival.proxy.getAnimalTracker().canProduceProduct(cow.getData())) {
                             hasMilked = true;
                             hasChanged = true;
                         }

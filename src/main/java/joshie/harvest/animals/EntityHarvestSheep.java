@@ -7,13 +7,15 @@ import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.animals.IAnimalType;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 public class EntityHarvestSheep extends EntitySheep implements IAnimalTracked {
     private IAnimalData data;
     private IAnimalType type;
-    
+
     public EntityHarvestSheep(World world) {
         super(world);
         setSize(1.4F, 1.4F);
@@ -21,7 +23,7 @@ public class EntityHarvestSheep extends EntitySheep implements IAnimalTracked {
         type = HFApi.ANIMALS.getType(this);
         tasks.addTask(3, new EntityAIEat(this));
     }
-    
+
     @Override
     public IAnimalData getData() {
         return data;
@@ -33,10 +35,26 @@ public class EntityHarvestSheep extends EntitySheep implements IAnimalTracked {
     }
 
     @Override
+    public boolean interact(EntityPlayer player) {
+        ItemStack held = player.getCurrentEquippedItem();
+        if (held != null) {
+            if (HFApi.ANIMALS.canEat(type.getFoodTypes(), held)) {
+                if (!worldObj.isRemote) {
+                    data.feed(player);
+                }
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    @Override
     public EntitySheep createChild(EntityAgeable ageable) {
         return new EntityHarvestSheep(this.worldObj);
     }
-        
+
     @Override
     public void readEntityFromNBT(NBTTagCompound nbt) {
         super.readEntityFromNBT(nbt);

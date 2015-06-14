@@ -1,6 +1,7 @@
 package joshie.harvest.animals.type;
 
 import joshie.harvest.api.animals.AnimalFoodType;
+import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.animals.IAnimalType;
 import joshie.harvest.core.config.Calendar;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -44,5 +45,5 @@ public class AbstractAnimal implements IAnimalType {
     }
 
     @Override
-    public void newDay(EntityAnimal entity) {}
+    public void newDay(IAnimalTracked tracked, EntityAnimal entity) {}
 }

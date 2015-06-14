@@ -18,6 +18,11 @@ public class NullAnimalData implements IAnimalData {
     }
 
     @Override
+    public boolean isHungry() {
+        return false;
+    }
+
+    @Override
     public void setOwner(EntityPlayer player) {}
 
     @Override

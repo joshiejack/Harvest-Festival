@@ -59,6 +59,11 @@ public class CropData implements ICropData {
     @Override
     public ICropData setCrop(EntityPlayer owner, ICrop crop, int stage) {
         this.crop = crop;
+        
+        if (crop.isDouble(this.stage) && !crop.isDouble(stage)) {
+            DimensionManager.getWorld(location.dimension).setBlockToAir(location.x, location.y + 1, location.z);
+        }
+        
         this.stage = stage;
         this.isReal = true;
         if (owner != null) {

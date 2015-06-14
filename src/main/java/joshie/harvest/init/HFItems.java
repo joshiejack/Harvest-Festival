@@ -28,13 +28,13 @@ import org.apache.commons.lang3.text.WordUtils;
 public class HFItems {
     public static EnumMap<SizeableMeta, Item> sized = new EnumMap(SizeableMeta.class);
     public static ItemAnimal animal;
+    public static ItemTreat treats;
     public static Item seeds;
     public static Item general;
     public static Item meal;
     public static Item structures;
     public static Item spawnerNPC;
     public static Item spawnerAnimal;
-    public static Item treats;
 
     public static Item egg;
     public static Item milk;
@@ -74,7 +74,7 @@ public class HFItems {
         seeds = new ItemHFSeeds().setUnlocalizedName("crops.seeds");
         general = new ItemGeneral().setUnlocalizedName("general.item");
         meal = new ItemMeal().setUnlocalizedName("meal");
-        treats = new ItemTreat().setUnlocalizedName("treat");
+        treats = (ItemTreat) new ItemTreat().setUnlocalizedName("treat");
 
         /* Tools **/
         hoe = new ItemHoe().setUnlocalizedName("hoe");

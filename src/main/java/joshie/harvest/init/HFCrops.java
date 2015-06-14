@@ -77,7 +77,7 @@ public class HFCrops {
         green_pepper = HFApi.CROPS.registerCrop("pepper_green", 150, 40, 8, 2, 8, 0x56D213, AUTUMN).setCropIconHandler(new IconHandlerGreenPepper());
 
         //All Seasons
-        grass = HFApi.CROPS.registerCrop("grass", 500, 0, 11, 0, 0, 0x7AC958, SPRING, SUMMER, AUTUMN).setAnimalFoodType(AnimalFoodType.GRASS).setBecomesDouble(6).setHasAlternativeName().setRequiresSickle().setCropIconHandler(new IconHandlerGrass());
+        grass = HFApi.CROPS.registerCrop("grass", 500, 0, 11, 0, 0, 0x7AC958, SPRING, SUMMER, AUTUMN).setAnimalFoodType(AnimalFoodType.GRASS).setBecomesDouble(6).setHasAlternativeName().setRequiresSickle().setNoWaterRequirements().setCropIconHandler(new IconHandlerGrass());
         wheat = HFApi.CROPS.registerCrop("wheat", 150, 100, 28, 0, 0, 0XEAC715, SPRING, SUMMER, AUTUMN).setAnimalFoodType(AnimalFoodType.GRASS).setRequiresSickle().setCropIconHandler(new IconHandlerWheat());
         watermelon = HFApi.CROPS.registerCrop("watermelon", 250, 25, 11, 0, 3, 0xc92b3e, SUMMER).setAnimalFoodType(AnimalFoodType.FRUIT).setDropHandler(new DropMelon()).setGrowsToSide(Blocks.melon_block).setCropIconHandler(new IconHandlerBlock(Blocks.melon_block));
         if (HFConfig.vanilla.POTATO_OVERRIDE) potato.setItem(new ItemStack(Items.potato));

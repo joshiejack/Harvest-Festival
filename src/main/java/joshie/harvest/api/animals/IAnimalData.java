@@ -16,6 +16,9 @@ public interface IAnimalData {
 
     /** Marks this player as the animals owner **/
     public void setOwner(EntityPlayer player);
+    
+    /** Call to check whether the animal is hungry or not **/
+    public boolean isHungry();
 
     /** Called when a new day passes for this animal
      *  should return false if this change causes the animal to die.*/

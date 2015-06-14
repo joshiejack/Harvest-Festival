@@ -1,10 +1,11 @@
 package joshie.harvest.items;
 
-import joshie.harvest.animals.AnimalRegistry;
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.IAnimalType;
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.core.helpers.AnimalHelper;
 import joshie.harvest.core.lib.HFModInfo;
+import joshie.harvest.init.HFItems;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -19,17 +20,8 @@ public class ItemTreat extends ItemHFMeta implements ICreativeSorted {
     public static final int SHEEP = 1;
     public static final int CHICKEN = 2;
 
-    public static IAnimalType getTreatTypeFromMeta(int meta) {
-        switch (meta) {
-            case COW:
-                return AnimalRegistry.cow;
-            case SHEEP:
-                return AnimalRegistry.sheep;
-            case CHICKEN:
-                return AnimalRegistry.chicken;
-            default:
-                return null;
-        }
+    public static IAnimalType getTreatTypeFromStack(ItemStack stack) {
+        return HFApi.ANIMALS.getTypeFromString(HFItems.treats.getName(stack));
     }
 
     @Override
@@ -39,7 +31,16 @@ public class ItemTreat extends ItemHFMeta implements ICreativeSorted {
 
     @Override
     public String getName(ItemStack stack) {
-        return getTreatTypeFromMeta(stack.getItemDamage()).getName();
+        switch (stack.getItemDamage()) {
+            case COW:
+                return "cow";
+            case SHEEP:
+                return "sheep";
+            case CHICKEN:
+                return "chicken";
+            default:
+                return "null";
+        }
     }
 
     @Override

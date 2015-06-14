@@ -5,6 +5,7 @@ import static joshie.harvest.core.network.PacketHandler.sendToEveryone;
 import java.util.Random;
 import java.util.UUID;
 
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.animals.IAnimalType;
@@ -59,7 +60,7 @@ public class AnimalData implements IData, IAnimalData {
     }
 
     /** May return null **/
-    public EntityPlayer getAndCreateOwner() {
+    private EntityPlayer getAndCreateOwner() {
         if (o_uuid != null) {
             if (owner == null) {
                 owner = joshie.harvest.core.helpers.generic.EntityHelper.getPlayerFromUUID(o_uuid);
@@ -86,6 +87,7 @@ public class AnimalData implements IData, IAnimalData {
         return (int) chance;
     }
 
+    @Override
     public boolean newDay() {
         if (animal != null) {
             //Stage 1, Check if the Animal is going to die
@@ -95,7 +97,7 @@ public class AnimalData implements IData, IAnimalData {
                     return false;
                 }
             }
-
+            
             //Stage 1.5 Chance for animal to get sick if healthiness below 100
             if (!isSick) {
                 if (healthiness < 100) {
@@ -167,6 +169,11 @@ public class AnimalData implements IData, IAnimalData {
 
             return true;
         } else return false;
+    }
+    
+    @Override
+    public boolean isHungry() {
+        return daysNotFed >= 0;
     }
 
     @Override
@@ -256,7 +263,7 @@ public class AnimalData implements IData, IAnimalData {
     @Override
     public void treat(ItemStack stack, EntityPlayer player) {
         if (!treated) {
-            IAnimalType type = ItemTreat.getTreatTypeFromMeta(stack.getItemDamage());
+            IAnimalType type = ItemTreat.getTreatTypeFromStack(stack);
             if (type == tracking.getType()) {
                 treated = true;
                 RelationsHelper.affectRelations(player, animal, 1000);
@@ -307,7 +314,7 @@ public class AnimalData implements IData, IAnimalData {
         sickCheck = nbt.getBoolean("CheckIfSick");
         isSick = nbt.getBoolean("IsSick");
         dimension = nbt.getInteger("Dimension");
-        if (tracking.getType() == AnimalRegistry.chicken) thrown = nbt.getBoolean("Thrown");
+        if (tracking.getType() == HFApi.ANIMALS.getTypeFromString("chicken")) thrown = nbt.getBoolean("Thrown");
         if (tracking.getType().getDaysBetweenProduction() > 0) {
             maxProductsPerDay = nbt.getByte("NumProducts");
             numProductsProduced = nbt.getByte("ProductsProduced");
@@ -337,7 +344,7 @@ public class AnimalData implements IData, IAnimalData {
             nbt.setInteger("Dimension", animal.worldObj.provider.dimensionId);
         }
 
-        if (tracking.getType() == AnimalRegistry.chicken) nbt.setBoolean("Thrown", thrown);
+        if (tracking.getType() == HFApi.ANIMALS.getTypeFromString("chicken")) nbt.setBoolean("Thrown", thrown);
         if (tracking.getType().getDaysBetweenProduction() > 0) {
             nbt.setByte("NumProducts", (byte) maxProductsPerDay);
             nbt.setByte("ProductsProduced", (byte) numProductsProduced);

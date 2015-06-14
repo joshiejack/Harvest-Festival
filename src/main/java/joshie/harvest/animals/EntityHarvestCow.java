@@ -1,5 +1,6 @@
 package joshie.harvest.animals;
 
+import joshie.harvest.animals.ai.EntityAIEat;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
@@ -21,6 +22,7 @@ public class EntityHarvestCow extends EntityCow implements IAnimalTracked {
         setSize(1.4F, 1.4F);
         data = HFApi.ANIMALS.newData(this);
         type = HFApi.ANIMALS.getType(this);
+        tasks.addTask(3, new EntityAIEat(this));
     }
 
     @Override

@@ -5,6 +5,8 @@ import static joshie.harvest.core.helpers.CropHelper.harvestCrop;
 import java.util.Random;
 
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.animals.IAnimalFeeder;
+import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.crops.IBreakCrops;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
@@ -16,6 +18,7 @@ import joshie.harvest.core.helpers.SeedHelper;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.lib.RenderIds;
 import joshie.harvest.crops.Crop;
+import joshie.harvest.init.HFCrops;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
@@ -36,7 +39,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockCrop extends BlockHFBase implements IPlantable, IGrowable {
+public class BlockCrop extends BlockHFBase implements IPlantable, IGrowable, IAnimalFeeder {
     public static final int FRESH = 0;
     public static final int WITHERED = 1;
     public static final int FRESH_DOUBLE = 2;
@@ -69,7 +72,7 @@ public class BlockCrop extends BlockHFBase implements IPlantable, IGrowable {
     }
 
     @Override
-    public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {        
+    public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {
         PlantSection section = getSection(world, x, y, z);
         ICropData data = HFApi.CROPS.getCropAtLocation(MCClientHelper.getWorld(), x, y, z);
         data.getCrop().getCropRenderHandler().setBlockBoundsBasedOnStage(this, section, data.getCrop(), data.getStage());
@@ -152,13 +155,13 @@ public class BlockCrop extends BlockHFBase implements IPlantable, IGrowable {
     public float getPlayerRelativeBlockHardness(EntityPlayer player, World world, int x, int y, int z) {
         int meta = world.getBlockMetadata(x, y, z);
         ItemStack held = player.getCurrentEquippedItem();
-        ICropData crop = HFApi.CROPS.getCropAtLocation(world, x, y, z); 
-        if(crop.getCrop().growsToSide() != null && crop.getStage() == crop.getCrop().getStages()) {
+        ICropData crop = HFApi.CROPS.getCropAtLocation(world, x, y, z);
+        if (crop.getCrop().growsToSide() != null && crop.getStage() == crop.getCrop().getStages()) {
             return 0F; //If the crop is fully grown, and grows to the side. Make it immune to destruction.
         }
-        
+
         //If this crop is withered return 0
-        if (held == null || (!(held.getItem() instanceof IBreakCrops))) return meta == WITHERED? 0 : 0.75F;
+        if (held == null || (!(held.getItem() instanceof IBreakCrops))) return meta == WITHERED ? 0 : 0.75F;
         return ((IBreakCrops) held.getItem()).getStrengthVSCrops(player, world, x, y, z, held);
     }
 
@@ -339,5 +342,20 @@ public class BlockCrop extends BlockHFBase implements IPlantable, IGrowable {
     @Override
     public void func_149853_b(World world, Random rand, int x, int y, int z) {
         CropHelper.grow(world, x, y, z);
+    }
+
+    @Override
+    public boolean canFeedAnimal(IAnimalTracked tracked, World world, int x, int y, int z) {
+        ICropData crop = HFApi.CROPS.getCropAtLocation(world, x, y, z);
+        ICrop theCrop = crop.getCrop();
+        if (theCrop == HFCrops.grass) {
+            int stage = crop.getStage();
+            if (stage > 5) {
+                CropHelper.plantCrop(tracked.getData().getOwner(), world, x, y, z, theCrop, stage - 5);
+                return true;
+            }
+        }
+
+        return false;
     }
 }

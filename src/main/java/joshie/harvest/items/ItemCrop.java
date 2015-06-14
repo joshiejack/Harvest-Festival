@@ -75,6 +75,6 @@ public class ItemCrop extends ItemHFMeta implements IShippable, ICropProvider, I
     @SideOnly(Side.CLIENT)
     @Override
     public void getSubItems(Item item, CreativeTabs tab, List list) {
-        list.add(crop.getCropStack());
+        if (crop.getCropStack() != null) list.add(crop.getCropStack());
     }
 }

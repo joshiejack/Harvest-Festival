@@ -96,7 +96,9 @@ public class HFAgricraftOverride extends CropOverride {
             this.crop.clearPlant();
         }
 
-        ItemHelper.dropBlockAsItem(world, x, y, z, crop.getCropStack());
+        if (crop.getCropStack() != null) {
+            ItemHelper.dropBlockAsItem(world, x, y, z, crop.getCropStack());
+        }
     }
 
     @Override

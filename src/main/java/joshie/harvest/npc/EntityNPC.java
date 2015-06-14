@@ -44,7 +44,7 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
     private Mode mode = Mode.GIFT;
     public UUID owning_player;
     public int lastTeleport;
-    public boolean hideName;
+    public boolean hideName = true;
     
     public static enum Mode {
         DEFAULT, GIFT;

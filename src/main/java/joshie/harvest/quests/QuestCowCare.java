@@ -7,7 +7,7 @@ import io.netty.buffer.ByteBuf;
 import java.util.HashSet;
 
 import joshie.harvest.HarvestFestival;
-import joshie.harvest.animals.EntityHarvestCow;
+import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.api.npc.INPC;

@@ -1,7 +1,7 @@
 package joshie.harvest.items.render;
 
-import joshie.harvest.animals.EntityHarvestCow;
-import joshie.harvest.animals.EntityHarvestSheep;
+import joshie.harvest.animals.entity.EntityHarvestCow;
+import joshie.harvest.animals.entity.EntityHarvestSheep;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.items.ItemAnimal;
 import net.minecraft.client.gui.inventory.GuiInventory;

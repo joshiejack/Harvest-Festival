@@ -24,6 +24,10 @@ public class ServerHandler {
             world.setItemData(HFSavedData.DATA_NAME, data);
         }
     }
+    
+    public HFSavedData getData() {
+        return data;
+    }
 
     //Returns the serverside animal tracker
     public AnimalTrackerServer getAnimalTracker() {

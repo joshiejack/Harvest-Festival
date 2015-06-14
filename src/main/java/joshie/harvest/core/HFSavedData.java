@@ -1,5 +1,6 @@
 package joshie.harvest.core;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -46,6 +47,10 @@ public class HFSavedData extends WorldSavedData {
 
     public MineTrackerServer getMineTracker() {
         return mines;
+    }
+    
+    public Collection<PlayerDataServer> getPlayerData() {
+        return players.values();
     }
 
     public PlayerDataServer getPlayerData(EntityPlayerMP player) {

@@ -9,7 +9,7 @@ import net.minecraft.util.DamageSource;
 
 //Handles the Data for the crops rather than using TE Data
 public class AnimalTrackerServer extends AnimalTracker {
-    private DamageSource natural_causes = new DamageSource("natural").setDamageBypassesArmor();
+    private static final DamageSource natural_causes = new DamageSource("natural").setDamageBypassesArmor();
     private HashSet<IAnimalData> animals = new HashSet();
 
     @Override

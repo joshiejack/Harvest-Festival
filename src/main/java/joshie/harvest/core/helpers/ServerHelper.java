@@ -22,6 +22,10 @@ public class ServerHelper {
     public static void setServer(World world) {
         theServer = (new ServerHandler(world));
     }
+    
+    public static ServerHandler getServer() {
+        return theServer;
+    }
 
     public static void markDirty() {
         theServer.markDirty();

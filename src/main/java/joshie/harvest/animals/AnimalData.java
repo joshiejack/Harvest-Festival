@@ -5,7 +5,6 @@ import static joshie.harvest.core.network.PacketHandler.sendToEveryone;
 import java.util.Random;
 import java.util.UUID;
 
-import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.animals.IAnimalType;
@@ -14,7 +13,6 @@ import joshie.harvest.core.helpers.RelationsHelper;
 import joshie.harvest.core.helpers.ServerHelper;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.network.PacketSyncCanProduce;
-import joshie.harvest.core.util.IData;
 import joshie.harvest.items.ItemTreat;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -24,7 +22,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 
-public class AnimalData implements IData, IAnimalData {
+public class AnimalData implements IAnimalData {
     private static final Random rand = new Random();
 
     private EntityAnimal animal;
@@ -33,7 +31,6 @@ public class AnimalData implements IData, IAnimalData {
 
     private UUID a_uuid;
     private UUID o_uuid;
-    private int dimension; //The dimension this animal was last in
 
     private int currentLifespan = 0; //How many days this animal has lived for
     private int healthiness = 127; //How healthy this animal is, full byte range
@@ -317,8 +314,7 @@ public class AnimalData implements IData, IAnimalData {
         treated = nbt.getBoolean("Treated");
         sickCheck = nbt.getBoolean("CheckIfSick");
         isSick = nbt.getBoolean("IsSick");
-        dimension = nbt.getInteger("Dimension");
-        if (tracking.getType() == HFApi.ANIMALS.getTypeFromString("chicken")) thrown = nbt.getBoolean("Thrown");
+        thrown = nbt.getBoolean("Thrown");
         if (tracking.getType().getDaysBetweenProduction() > 0) {
             maxProductsPerDay = nbt.getByte("NumProducts");
             numProductsProduced = nbt.getByte("ProductsProduced");
@@ -343,12 +339,8 @@ public class AnimalData implements IData, IAnimalData {
         nbt.setBoolean("Treated", treated);
         nbt.setBoolean("CheckIfSick", sickCheck);
         nbt.setBoolean("IsSick", isSick);
+        nbt.setBoolean("Thrown", thrown);
 
-        if (animal != null) {
-            nbt.setInteger("Dimension", animal.worldObj.provider.dimensionId);
-        }
-
-        if (tracking.getType() == HFApi.ANIMALS.getTypeFromString("chicken")) nbt.setBoolean("Thrown", thrown);
         if (tracking.getType().getDaysBetweenProduction() > 0) {
             nbt.setByte("NumProducts", (byte) maxProductsPerDay);
             nbt.setByte("ProductsProduced", (byte) numProductsProduced);

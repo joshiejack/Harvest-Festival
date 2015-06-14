@@ -236,6 +236,10 @@ public class PlayerDataServer implements IData {
         return town.buildings.get(building.getName()) != null;
     }
     
+    public Town getTown() {
+        return town;
+    }
+    
     //Cached Value, The actual data for the owner is stored in the entity itself
     public EntityNPCBuilder getBuilder(World world) {
         if (builder != null) return builder;

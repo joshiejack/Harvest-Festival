@@ -1,7 +1,7 @@
 package joshie.harvest.items;
 
-import joshie.harvest.animals.EntityHarvestCow;
-import joshie.harvest.animals.EntityHarvestSheep;
+import joshie.harvest.animals.entity.EntityHarvestCow;
+import joshie.harvest.animals.entity.EntityHarvestSheep;
 import joshie.harvest.core.HFTab;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityAgeable;

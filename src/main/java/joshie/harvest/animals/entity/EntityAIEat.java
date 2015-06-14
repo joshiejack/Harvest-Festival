@@ -1,4 +1,4 @@
-package joshie.harvest.animals.ai;
+package joshie.harvest.animals.entity;
 
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalFeeder;

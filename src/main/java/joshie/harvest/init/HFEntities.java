@@ -1,8 +1,8 @@
 package joshie.harvest.init;
 
 import joshie.harvest.HarvestFestival;
-import joshie.harvest.animals.EntityHarvestCow;
-import joshie.harvest.animals.EntityHarvestSheep;
+import joshie.harvest.animals.entity.EntityHarvestCow;
+import joshie.harvest.animals.entity.EntityHarvestSheep;
 import joshie.harvest.core.util.generic.EntityFakeItem;
 import joshie.harvest.npc.EntityNPC;
 import joshie.harvest.npc.EntityNPCBuilder;

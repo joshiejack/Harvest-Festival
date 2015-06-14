@@ -2,9 +2,9 @@ package joshie.harvest.core;
 
 import static joshie.harvest.core.lib.HFModInfo.JAVAPATH;
 import joshie.harvest.animals.AnimalTracker;
-import joshie.harvest.animals.ChickenRenderFix;
-import joshie.harvest.animals.EntityHarvestCow;
-import joshie.harvest.animals.EntityHarvestSheep;
+import joshie.harvest.animals.entity.EntityHarvestCow;
+import joshie.harvest.animals.entity.EntityHarvestSheep;
+import joshie.harvest.animals.render.ChickenRenderFix;
 import joshie.harvest.animals.render.ModelHarvestCow;
 import joshie.harvest.animals.render.ModelHarvestSheep;
 import joshie.harvest.animals.render.RenderHarvestAnimal;

@@ -1,6 +1,5 @@
-package joshie.harvest.animals;
+package joshie.harvest.animals.entity;
 
-import joshie.harvest.animals.ai.EntityAIEat;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;

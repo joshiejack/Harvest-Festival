@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import joshie.harvest.api.WorldLocation;
 import joshie.harvest.buildings.BuildingStage;
+import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.core.util.IData;
 import net.minecraft.nbt.NBTTagCompound;
@@ -34,14 +35,11 @@ public class Town implements IData {
             this.yCoord = building.yCoord;
             this.zCoord = building.zCoord;
         }
-
-        public WorldLocation getRealCoordinatesFor(String npc_location) {
-            PlaceableNPC offsets = building.npc_offsets.get(npc_location);
-            if (offsets == null) return null;
-            
-            int y = offsets.getY();
-            int x = n1 ? -offsets.getX() : offsets.getX();
-            int z = n2 ? -offsets.getZ() : offsets.getZ();
+        
+        public WorldLocation getRealCoordinatesFor(Placeable placeable) {
+            int y = placeable.getY();
+            int x = n1 ? -placeable.getX() : placeable.getX();
+            int z = n2 ? -placeable.getZ() : placeable.getZ();
             if (swap) {
                 int xClone = x; //Create a copy of X
                 x = z; //Set x to z
@@ -49,6 +47,12 @@ public class Town implements IData {
             }
 
             return new WorldLocation(dimension, xCoord + x, yCoord + y, zCoord + z);
+        }
+
+        public WorldLocation getRealCoordinatesFor(String npc_location) {
+            PlaceableNPC offsets = building.npc_offsets.get(npc_location);
+            if (offsets == null) return null;
+            return getRealCoordinatesFor(offsets);
         }
 
         @Override

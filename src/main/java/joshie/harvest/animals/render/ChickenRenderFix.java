@@ -1,4 +1,4 @@
-package joshie.harvest.animals;
+package joshie.harvest.animals.render;
 
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraftforge.client.event.RenderLivingEvent;

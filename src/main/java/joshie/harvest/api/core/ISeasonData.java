@@ -13,4 +13,5 @@ public interface ISeasonData {
     
     public ResourceLocation getResource();
     public String getLocalized();
+    public String getTextColor();
 }

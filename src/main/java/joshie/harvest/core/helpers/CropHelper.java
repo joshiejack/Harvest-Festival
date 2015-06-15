@@ -4,7 +4,7 @@ import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.core.helpers.generic.ItemHelper;
 import joshie.harvest.crops.CropTrackerClient;
-import joshie.harvest.crops.CropTrackerCommon;
+import joshie.harvest.crops.CropTracker;
 import joshie.harvest.crops.CropTrackerServer;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFarmland;
@@ -78,7 +78,7 @@ public class CropHelper {
         return getTracker(world).canBonemeal(world, x, y, z);
     }
 
-    private static CropTrackerCommon getTracker(World world) {
+    private static CropTracker getTracker(World world) {
         return world.isRemote ? getClientTracker() : getServerTracker();
     }
 

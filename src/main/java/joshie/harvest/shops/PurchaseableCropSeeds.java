@@ -2,11 +2,12 @@ package joshie.harvest.shops;
 
 import java.util.List;
 
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.calendar.Season;
+import joshie.harvest.api.core.ISeasonData;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.shops.IPurchaseable;
-import joshie.harvest.calendar.SeasonData;
 import joshie.harvest.core.handlers.DataHelper;
 import joshie.harvest.core.helpers.CalendarHelper;
 import joshie.harvest.core.helpers.PlayerHelper;
@@ -43,7 +44,7 @@ public class PurchaseableCropSeeds implements IPurchaseable {
             return true;
         } else return false;
     }
-    
+
     @Override
     public boolean canList(World world, EntityPlayer player) {
         return canBuy(world, player);
@@ -58,20 +59,20 @@ public class PurchaseableCropSeeds implements IPurchaseable {
     public ItemStack getDisplayStack() {
         return product;
     }
-    
+
     @Override
     public void addTooltip(List list) {
         list.add(Text.WHITE + crop.getSeedsName());
         for (Season season : crop.getSeasons()) {
-            SeasonData data = SeasonData.getData(season);
-            list.add(data.textColor + data.getLocalized());
+            ISeasonData data = HFApi.CALENDAR.getDataForSeason(season);
+            list.add(data.getTextColor() + data.getLocalized());
         }
     }
 
     @Override
     public boolean onPurchased(EntityPlayer player) {
         ItemHelper.addToPlayerInventory(player, product.copy());
-        
+
         return false;
     }
 }

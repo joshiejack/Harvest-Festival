@@ -9,7 +9,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class CropTrackerClient extends CropTrackerCommon {
+public class CropTrackerClient extends CropTracker {
     @Override
     public ICropData getCropDataForLocation(World world, int x, int y, int z) {
         WorldLocation location = getCropKey(world, x, y, z);

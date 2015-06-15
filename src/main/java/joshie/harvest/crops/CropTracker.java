@@ -9,7 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class CropTrackerCommon {
+public class CropTracker {
     protected HashMap<WorldLocation, ICropData> crops = new HashMap();
 
     //Returns the location for crops

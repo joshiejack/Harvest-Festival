@@ -45,7 +45,7 @@ public class FMLEvents {
         int daysPassed = CalendarHelper.getTotalDays(DataHelper.getCalendar().getDate());
         int serverDays = (int) Math.floor(DimensionManager.getWorld(0).getWorldTime() / Calendar.TICKS_PER_DAY);
         if (daysPassed <= serverDays || forced) {
-            CalendarHelper.newDay();
+            DataHelper.getCalendar().newDay();
         }
     }
 }

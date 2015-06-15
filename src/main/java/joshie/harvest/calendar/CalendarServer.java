@@ -1,8 +1,5 @@
 package joshie.harvest.calendar;
 
-import static joshie.harvest.core.helpers.ServerHelper.markDirty;
-import static joshie.harvest.core.network.PacketHandler.sendToEveryone;
-
 import java.util.List;
 
 import joshie.harvest.api.calendar.Season;
@@ -10,20 +7,16 @@ import joshie.harvest.core.handlers.DataHelper;
 import joshie.harvest.core.helpers.CropHelper;
 import joshie.harvest.core.helpers.MineHelper;
 import joshie.harvest.core.helpers.PlayerHelper;
+import joshie.harvest.core.helpers.ServerHelper;
+import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSetCalendar;
-import joshie.harvest.core.util.IData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 
-public class CalendarServer extends Calendar implements IData {
-    public void setDate(int day, Season season, int year) {
-        date.setDay(day).setSeason(season).setYear(year);
-        markDirty();
-    }
-
-    //Increases the day
-    public boolean newDay() {
+public class CalendarServer extends Calendar {
+    @Override
+    public void newDay() {
         int day = date.getDay();
         Season season = date.getSeason();
         int year = date.getYear();
@@ -39,7 +32,7 @@ public class CalendarServer extends Calendar implements IData {
         }
 
         date.setDay(day).setSeason(season).setYear(year);
-        sendToEveryone(new PacketSetCalendar(date));
+        PacketHandler.sendToEveryone(new PacketSetCalendar(date));
 
         CropHelper.newDay();
         DataHelper.getAnimalTracker().newDay();
@@ -50,22 +43,17 @@ public class CalendarServer extends Calendar implements IData {
             PlayerHelper.getData(player).newDay();
         }
 
-        markDirty();
-        return true;
+        ServerHelper.markDirty();
     }
 
-    //Returns the season after the present one
-    public Season getNextSeason() {
+    private Season getNextSeason() {
         return date.getSeason().ordinal() < Season.values().length - 1 ? Season.values()[date.getSeason().ordinal() + 1] : Season.values()[0];
     }
 
-    @Override
     public void readFromNBT(NBTTagCompound nbt) {
         date.readFromNBT(nbt);
-        System.out.println("DATE WAS READ" + date.getYear());
     }
 
-    @Override
     public void writeToNBT(NBTTagCompound nbt) {
         date.writeToNBT(nbt);
     }

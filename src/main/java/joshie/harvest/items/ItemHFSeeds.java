@@ -4,9 +4,10 @@ import static joshie.harvest.core.helpers.CropHelper.plantCrop;
 
 import java.util.List;
 
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
+import joshie.harvest.api.core.ISeasonData;
 import joshie.harvest.api.crops.ICrop;
-import joshie.harvest.calendar.SeasonData;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.config.Crops;
 import joshie.harvest.core.helpers.SeedHelper;
@@ -81,8 +82,8 @@ public class ItemHFSeeds extends ItemSeeds implements ICropOverridingSeed, ICrea
         ICrop crop = SeedHelper.getCropFromSeed(stack);
         if (crop != null) {
             for (Season season : crop.getSeasons()) {
-                SeasonData data = SeasonData.getData(season);
-                list.add(data.textColor + data.getLocalized());
+                ISeasonData data = HFApi.CALENDAR.getDataForSeason(season);
+                list.add(data.getTextColor() + data.getLocalized());
             }
         }
     }

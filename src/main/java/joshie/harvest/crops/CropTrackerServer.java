@@ -29,7 +29,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 
 //Handles the Data for the crops rather than using TE Data
-public class CropTrackerServer extends CropTrackerCommon implements IData {
+public class CropTrackerServer extends CropTracker implements IData {
     public void newDay() {
         ArrayList<ICropData> toWither = new ArrayList(); //Create a new wither list
         Weekday day = DataHelper.getCalendar().getDate().getWeekday();

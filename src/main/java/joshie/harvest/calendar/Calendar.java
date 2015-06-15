@@ -13,6 +13,8 @@ public class Calendar {
     }
 
     public ISeasonData getSeasonData() {
-        return SeasonData.getData(date.getSeason());
+        return date.getSeasonData();
     }
+
+    public void newDay() {}
 }

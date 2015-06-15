@@ -1,5 +1,6 @@
 package joshie.harvest.calendar;
 
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weekday;
@@ -11,23 +12,24 @@ public class CalendarDate implements ICalendarDate {
     private int day;
     private Season season;
     private int year;
-    
+
     //Cached Value
-    private SeasonData data;
+    private ISeasonData data;
 
     public CalendarDate() {}
+
     public CalendarDate(int day, Season season, int year) {
         this.day = day;
         this.season = season;
         this.year = year;
-        this.data = SeasonData.getData(season);
+        this.data = HFApi.CALENDAR.getDataForSeason(season);
     }
 
     public CalendarDate(ICalendarDate date) {
         this.day = date.getDay();
         this.season = date.getSeason();
         this.year = date.getYear();
-        this.data = SeasonData.getData(season);
+        this.data = date.getSeasonData();
     }
 
     @Override
@@ -38,8 +40,12 @@ public class CalendarDate implements ICalendarDate {
 
     @Override
     public ICalendarDate setSeason(Season season) {
+        Season previous = this.season;
         this.season = season;
-        this.data = SeasonData.getData(season);
+        if (previous != season) {
+            this.data = HFApi.CALENDAR.getDataForSeason(season);
+        }
+        
         return this;
     }
 
@@ -58,7 +64,7 @@ public class CalendarDate implements ICalendarDate {
     public Season getSeason() {
         return season;
     }
-    
+
     @Override
     public ISeasonData getSeasonData() {
         return data;
@@ -68,7 +74,7 @@ public class CalendarDate implements ICalendarDate {
     public int getYear() {
         return year;
     }
-    
+
     @Override
     public Weekday getWeekday() {
         return Weekday.values()[CalendarHelper.getTotalDays(this) % 7];
@@ -78,7 +84,7 @@ public class CalendarDate implements ICalendarDate {
         day = nbt.getByte("DayOfMonth");
         season = Season.values()[nbt.getByte("Season")];
         year = nbt.getShort("Year");
-        data = SeasonData.getData(season);
+        data = HFApi.CALENDAR.getDataForSeason(season);
     }
 
     public void writeToNBT(NBTTagCompound nbt) {
@@ -98,7 +104,7 @@ public class CalendarDate implements ICalendarDate {
         if (year != other.getYear()) return false;
         return true;
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;

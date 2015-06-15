@@ -23,10 +23,6 @@ public class CalendarHelper {
         return years_passed - birthday_years;
     }
 
-    public static void newDay() {
-        ServerHelper.getCalendar().newDay();
-    }
-
     public static long getTime(World world) {
         return world.getWorldTime() % Calendar.TICKS_PER_DAY;
     }

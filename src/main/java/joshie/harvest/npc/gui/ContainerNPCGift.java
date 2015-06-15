@@ -2,11 +2,10 @@ package joshie.harvest.npc.gui;
 
 import java.util.HashSet;
 
-import joshie.harvest.HarvestFestival;
-import joshie.harvest.api.core.IDate;
+import joshie.harvest.api.core.ICalendarDate;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quest.IQuest;
-import joshie.harvest.core.helpers.CalendarHelper;
+import joshie.harvest.core.handlers.DataHelper;
 import joshie.harvest.core.helpers.QuestHelper;
 import joshie.harvest.core.helpers.ToolHelper;
 import joshie.harvest.core.util.ContainerBase;
@@ -38,17 +37,17 @@ public class ContainerNPCGift extends ContainerBase {
             ItemStack gift = player.getCurrentEquippedItem();
             INPC theNpc = npc.getNPC();
             int points = theNpc.getGiftValue(gift).getRelationPoints();
-            IDate today = CalendarHelper.getServerDate();
-            IDate birthday = theNpc.getBirthday();
+            ICalendarDate today = DataHelper.getCalendar().getDate();
+            ICalendarDate birthday = theNpc.getBirthday();
             if (today.getSeason() == birthday.getSeason() && today.getDay() == birthday.getDay()) {
                 points *= 5;
             }
 
             if (ToolHelper.isBlueFeather(gift)) {
-                HarvestFestival.proxy.getPlayerTracker(player).getRelationships().propose(theNpc);
+                DataHelper.getPlayerTracker(player).getRelationships().propose(theNpc);
             }
 
-            HarvestFestival.proxy.getPlayerTracker(player).getRelationships().gift(theNpc, points);
+            DataHelper.getPlayerTracker(player).getRelationships().gift(theNpc, points);
             player.inventory.decrStackSize(player.inventory.currentItem, 1);
         }
     }

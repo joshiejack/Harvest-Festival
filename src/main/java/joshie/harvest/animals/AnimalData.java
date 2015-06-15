@@ -5,13 +5,13 @@ import static joshie.harvest.core.network.PacketHandler.sendToEveryone;
 import java.util.Random;
 import java.util.UUID;
 
-import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.animals.IAnimalType;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.core.config.Animals;
+import joshie.harvest.core.handlers.DataHelper;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.helpers.generic.EntityHelper;
 import joshie.harvest.core.network.PacketSyncCanProduce;
@@ -241,7 +241,7 @@ public class AnimalData implements IAnimalData {
 
     private void affectRelationship(EntityPlayer player, int amount) {
         if (player != null) {
-            HarvestFestival.proxy.getPlayerTracker(player).getRelationships().affectRelationship(relatable, amount);
+            DataHelper.getPlayerTracker(player).getRelationships().affectRelationship(relatable, amount);
         }
     }
 

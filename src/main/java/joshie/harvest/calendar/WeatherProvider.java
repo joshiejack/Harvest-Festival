@@ -1,11 +1,10 @@
 package joshie.harvest.calendar;
 
-import static joshie.harvest.core.helpers.CalendarHelper.getClientSeason;
-import static joshie.harvest.core.helpers.CalendarHelper.getSeason;
+import joshie.harvest.api.core.ISeasonData;
 import joshie.harvest.api.core.Season;
 import joshie.harvest.core.config.Calendar;
+import joshie.harvest.core.handlers.DataHelper;
 import joshie.harvest.core.helpers.CropHelper;
-import joshie.harvest.core.helpers.ServerHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -31,7 +30,7 @@ public class WeatherProvider extends WorldProviderSurface {
     @SideOnly(Side.CLIENT)
     @Override
     public float getStarBrightness(float f) {
-        return getClientSeason() == Season.WINTER ? super.getStarBrightness(f) * 1.25F : super.getStarBrightness(f);
+        return DataHelper.getCalendar().getDate().getSeason() == Season.WINTER ? super.getStarBrightness(f) * 1.25F : super.getStarBrightness(f);
     }
 
     @SideOnly(Side.CLIENT)
@@ -51,7 +50,7 @@ public class WeatherProvider extends WorldProviderSurface {
         int i = MathHelper.floor_double(cameraEntity.posX);
         int j = MathHelper.floor_double(cameraEntity.posY);
         int k = MathHelper.floor_double(cameraEntity.posZ);
-        int l = SeasonData.getData(getClientSeason()).skyColor;
+        int l = DataHelper.getCalendar().getSeasonData().getSkyColor();
         float f4 = (float) (l >> 16 & 255) / 255.0F;
         float f5 = (float) (l >> 8 & 255) / 255.0F;
         float f6 = (float) (l & 255) / 255.0F;
@@ -126,24 +125,22 @@ public class WeatherProvider extends WorldProviderSurface {
     //Cheers to chylex for a bunch of the maths on this one ;D
     @Override
     public float calculateCelestialAngle(long worldTime, float partialTicks) {
-        Season season = ServerHelper.isSet() ? getSeason() : Season.SPRING;
-        SeasonData data = SeasonData.getData(season);
-        
+        ISeasonData data = DataHelper.getCalendar().getDate().getSeasonData();
         int time = (int) (worldTime % Calendar.TICKS_PER_DAY);
-        double fac = data.celestialLengthFactor;
+        double fac = data.getCelestialLengthFactor();
         float chylex = (float) (clamp(0, 1000D, time) + 11000D * (clamp(0, 11000D, time - 1000D) / 11000D) * fac + clamp(0, 1000D, time - 12000D) + 11000D * (clamp(0, 11000D, time - 12000D) / 11000D) * (2 - fac));
         float angle = (chylex / Calendar.TICKS_PER_DAY) - 0.25F;
-        return angle + data.celestialAngleOffset;
+        return angle + data.getCelestialAngleOffset();
     }
 
     @Override
     public boolean isBlockHighHumidity(int x, int y, int z) {
-        return getSeason() == Season.SUMMER ? false : super.isBlockHighHumidity(x, y, z);
+        return DataHelper.getCalendar().getDate().getSeason() == Season.SUMMER ? false : super.isBlockHighHumidity(x, y, z);
     }
 
     @Override
     public boolean canSnowAt(int x, int y, int z, boolean checkLight) {
-        if (getSeason() == Season.WINTER) {
+        if (DataHelper.getCalendar().getDate().getSeason() == Season.WINTER) {
             BiomeGenBase biomegenbase = worldObj.getBiomeGenForCoords(x, z);
             float f = biomegenbase.getFloatTemperature(x, y, z);
 
@@ -175,18 +172,17 @@ public class WeatherProvider extends WorldProviderSurface {
                     CropHelper.getServerTracker().doRain();
                 }
                 
-                Season season = getSeason();
-                SeasonData data = SeasonData.getData(season);
+                ISeasonData data = DataHelper.getCalendar().getDate().getSeasonData();
                 int i = worldObj.worldInfo.getThunderTime();
 
                 if (i <= 0) {
                     if (worldObj.worldInfo.isThundering()) {
-                        worldObj.worldInfo.setThunderTime(worldObj.rand.nextInt(data.rainEndChance) + 3600);
+                        worldObj.worldInfo.setThunderTime(worldObj.rand.nextInt(data.getRainEndChance()) + 3600);
                     } else {
-                        worldObj.worldInfo.setThunderTime(worldObj.rand.nextInt(data.rainStartChance) + 12000);
+                        worldObj.worldInfo.setThunderTime(worldObj.rand.nextInt(data.getRainStartChance()) + 12000);
                     }
                 } else {
-                    i = i - data.thunderLength;
+                    i = i - data.getThunderLength();
                     worldObj.worldInfo.setThunderTime(i);
 
                     if (i <= 0) {
@@ -207,12 +203,12 @@ public class WeatherProvider extends WorldProviderSurface {
 
                 if (j <= 0) {
                     if (worldObj.worldInfo.isRaining()) {
-                        worldObj.worldInfo.setRainTime(worldObj.rand.nextInt(data.rainEndChance) + 12000);
+                        worldObj.worldInfo.setRainTime(worldObj.rand.nextInt(data.getRainEndChance()) + 12000);
                     } else {
-                        worldObj.worldInfo.setRainTime(worldObj.rand.nextInt(data.rainStartChance) + 12000);
+                        worldObj.worldInfo.setRainTime(worldObj.rand.nextInt(data.getRainStartChance()) + 12000);
                     }
                 } else {
-                    j = j - data.rainLength;
+                    j = j - data.getRainLength();
                     worldObj.worldInfo.setRainTime(j);
 
                     if (j <= 0) {

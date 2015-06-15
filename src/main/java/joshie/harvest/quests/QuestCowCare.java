@@ -6,12 +6,12 @@ import io.netty.buffer.ByteBuf;
 
 import java.util.HashSet;
 
-import joshie.harvest.HarvestFestival;
 import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quest.IQuest;
+import joshie.harvest.core.handlers.DataHelper;
 import joshie.harvest.core.helpers.SizeableHelper;
 import joshie.harvest.core.helpers.ToolHelper;
 import joshie.harvest.core.helpers.generic.ItemHelper;
@@ -48,7 +48,7 @@ public class QuestCowCare extends Quest {
                         hasBrushed = true;
                         hasChanged = true;
                     } else if (!hasMilked && ToolHelper.isMilker(held)) {
-                        if (HarvestFestival.proxy.getAnimalTracker().canProduceProduct(cow.getData())) {
+                        if (DataHelper.getAnimalTracker().canProduceProduct(cow.getData())) {
                             hasMilked = true;
                             hasChanged = true;
                         }

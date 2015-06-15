@@ -2,8 +2,9 @@ package joshie.harvest.player;
 
 import java.util.UUID;
 
+import joshie.harvest.api.HFApi;
+import joshie.harvest.api.core.ICalendarDate;
 import joshie.harvest.api.core.Season;
-import joshie.harvest.calendar.CalendarDate;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.util.Translate;
@@ -18,7 +19,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class PlayerTrackerClient extends PlayerTracker {
     //Questing
-    private CalendarDate birthday = new CalendarDate();
+    private ICalendarDate birthday = HFApi.CALENDAR.newDate(0, null, 0);
     private QuestsClientside quests = new QuestsClientside();
     private RelationTrackerClient relationships = new RelationTrackerClient();
     private EntityNPCBuilder builder;
@@ -93,10 +94,10 @@ public class PlayerTrackerClient extends PlayerTracker {
     }
 
     public void setBirthday(int day, Season season, int year) {
-        this.birthday = new CalendarDate(day, season, year);
+        this.birthday = HFApi.CALENDAR.newDate(day, season, year);
     }
 
-    public CalendarDate getBirthday() {
+    public ICalendarDate getBirthday() {
         return birthday;
     }
 

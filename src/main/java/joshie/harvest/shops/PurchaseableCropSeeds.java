@@ -2,11 +2,12 @@ package joshie.harvest.shops;
 
 import java.util.List;
 
+import joshie.harvest.api.core.ICalendarDate;
 import joshie.harvest.api.core.Season;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.shops.IPurchaseable;
-import joshie.harvest.calendar.CalendarDate;
 import joshie.harvest.calendar.SeasonData;
+import joshie.harvest.core.handlers.DataHelper;
 import joshie.harvest.core.helpers.CalendarHelper;
 import joshie.harvest.core.helpers.PlayerHelper;
 import joshie.harvest.core.helpers.generic.ItemHelper;
@@ -24,7 +25,7 @@ public class PurchaseableCropSeeds implements IPurchaseable {
         this.product = crop.getSeedStack();
     }
 
-    private boolean isCorrectSeason(CalendarDate date) {
+    private boolean isCorrectSeason(ICalendarDate date) {
         for (Season season : crop.getSeasons()) {
             if (season == date.getSeason()) return true;
         }
@@ -34,8 +35,8 @@ public class PurchaseableCropSeeds implements IPurchaseable {
 
     @Override
     public boolean canBuy(World world, EntityPlayer player) {
-        CalendarDate playersBirthday = PlayerHelper.getBirthday(player);
-        CalendarDate date = CalendarHelper.getServerDate();
+        ICalendarDate playersBirthday = PlayerHelper.getBirthday(player);
+        ICalendarDate date = DataHelper.getCalendar().getDate();
         if (!isCorrectSeason(date)) return false;
         if (!crop.canPurchase()) return false;
         if (CalendarHelper.getYearsPassed(playersBirthday, date) >= crop.getPurchaseYear()) {

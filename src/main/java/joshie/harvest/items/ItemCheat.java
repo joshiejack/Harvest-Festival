@@ -1,8 +1,8 @@
 package joshie.harvest.items;
 
-import joshie.harvest.core.handlers.CodeGeneratorBuildings;
-import joshie.harvest.core.handlers.CodeGeneratorRendering;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
+import joshie.harvest.core.util.CodeGeneratorBuildings;
+import joshie.harvest.core.util.CodeGeneratorRendering;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;

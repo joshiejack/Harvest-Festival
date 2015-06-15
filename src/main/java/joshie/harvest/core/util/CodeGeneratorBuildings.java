@@ -1,4 +1,4 @@
-package joshie.harvest.core.handlers;
+package joshie.harvest.core.util;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;

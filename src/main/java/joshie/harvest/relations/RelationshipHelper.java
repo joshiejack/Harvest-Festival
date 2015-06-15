@@ -2,11 +2,11 @@ package joshie.harvest.relations;
 
 import java.util.HashMap;
 
-import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.relations.IDataHandler;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.relations.IRelationships;
+import joshie.harvest.core.handlers.DataHelper;
 import joshie.harvest.relations.data.DataHandlerEntity;
 import joshie.harvest.relations.data.DataHandlerNPC;
 import net.minecraft.entity.player.EntityPlayer;
@@ -37,7 +37,12 @@ public class RelationshipHelper implements IRelationships {
 
     @Override
     public void talkTo(EntityPlayer player, IRelatable relatable) {
-        HarvestFestival.instance.proxy.getPlayerTracker(player).getRelationships().talkTo(relatable);
+        DataHelper.getPlayerTracker(player).getRelationships().talkTo(relatable);
+    }
+
+    @Override
+    public void adjustRelationship(EntityPlayer player, IRelatable relatable, int amount) {
+        DataHelper.getPlayerTracker(player).getRelationships().affectRelationship(relatable, amount);
     }
 
     @Override
@@ -47,6 +52,6 @@ public class RelationshipHelper implements IRelationships {
     
     @Override
     public short getRealRelationshipValue(EntityPlayer player, IRelatable relatable) {
-        return HarvestFestival.proxy.getPlayerTracker(player).getRelationships().getRelationship(relatable);
+        return DataHelper.getPlayerTracker(player).getRelationships().getRelationship(relatable);
     }
 }

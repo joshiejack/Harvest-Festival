@@ -2,9 +2,6 @@ package joshie.harvest.animals;
 
 import java.util.HashMap;
 
-import joshie.harvest.animals.type.AnimalChicken;
-import joshie.harvest.animals.type.AnimalCow;
-import joshie.harvest.animals.type.AnimalSheep;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.animals.IAnimalData;
@@ -24,7 +21,6 @@ import net.minecraftforge.oredict.OreDictionary;
 public class AnimalRegistry implements IAnimalHandler {
     private static final HashMap<String, IAnimalType> types = new HashMap();
     private static final HashMap<SafeStack, AnimalFoodType> registry = new HashMap();
-    private static boolean isInit = false;
 
     //Internal Convenience method
     public static void registerFoodsAsType(AnimalFoodType type, Item... items) {
@@ -60,23 +56,14 @@ public class AnimalRegistry implements IAnimalHandler {
     public IAnimalType getTypeFromString(String string) {
         return types.get(string);
     }
-
-    private void init() {
-        types.put("cow", new AnimalCow());
-        types.put("sheep", new AnimalSheep());
-        types.put("chicken", new AnimalChicken());
+    
+    @Override
+    public void registerType(String key, IAnimalType type) {
+        types.put(key, type);
     }
 
     @Override
     public IAnimalType getType(EntityAnimal animal) {
-        if (!isInit) {
-            init();
-            isInit = true;
-        }
-        
-        System.out.println("GETTING COW?");
-
-        //Return aminals
         if (animal instanceof EntityCow) {
             return types.get("cow");
         } else if (animal instanceof EntitySheep) {

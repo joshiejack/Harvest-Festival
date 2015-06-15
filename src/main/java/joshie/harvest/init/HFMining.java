@@ -18,9 +18,7 @@ import joshie.harvest.mining.MiningLoot;
 import net.minecraft.item.ItemStack;
 
 public class HFMining {
-    
-    
-    public static void init() {
+    public static void preInit() {
         MiningLoot.registerLoot(ALL_FLOORS, new ItemStack(HFItems.general, 1, JUNK_ORE), 30D);
         MiningLoot.registerLoot(ALL_FLOORS, new ItemStack(HFItems.general, 1, COPPER_ORE), 15D);
         MiningLoot.registerLoot(ALL_FLOORS, new ItemStack(HFItems.general, 1, SILVER_ORE), 7.5D);

@@ -1,71 +1,64 @@
 package joshie.harvest.core;
 
-import joshie.harvest.animals.AnimalTracker;
-import joshie.harvest.core.helpers.ServerHelper;
-import joshie.harvest.core.util.WorldDestroyer;
+import java.util.ArrayList;
+import java.util.List;
+
 import joshie.harvest.init.HFAnimals;
-import joshie.harvest.init.HFApiHandler;
 import joshie.harvest.init.HFBlocks;
 import joshie.harvest.init.HFBuildings;
 import joshie.harvest.init.HFCommands;
 import joshie.harvest.init.HFConfig;
 import joshie.harvest.init.HFCooking;
+import joshie.harvest.init.HFCore;
 import joshie.harvest.init.HFCrops;
-import joshie.harvest.init.HFEntities;
 import joshie.harvest.init.HFGifts;
-import joshie.harvest.init.HFHandlers;
 import joshie.harvest.init.HFItems;
 import joshie.harvest.init.HFMining;
 import joshie.harvest.init.HFNPCs;
-import joshie.harvest.init.HFPackets;
 import joshie.harvest.init.HFQuests;
+import joshie.harvest.init.HFRecipeFixes;
 import joshie.harvest.init.HFShops;
 import joshie.harvest.init.HFVanilla;
-import joshie.harvest.player.PlayerTracker;
 import joshie.harvest.plugins.HFPlugins;
-import net.minecraft.entity.player.EntityPlayer;
 
 public class HFCommonProxy {
-    public void preInit() {
-        HFApiHandler.init();
-        HFVanilla.init();
-        HFConfig.init();
-        HFPlugins.preInit();
-        HFCrops.init();
-        HFNPCs.preInit();
-        HFBlocks.init();
-        HFBuildings.preInit();
-        HFItems.init();
-        HFCooking.init();
-        HFEntities.init();
-        HFQuests.init();
-        HFPackets.init();
-        HFHandlers.init();
-        HFShops.init();
-        HFMining.init();
-        HFGifts.init();
-        HFAnimals.preInit();
-        HFTab.init();
-        HFCommands.preInit();
+    protected static final List<Class> list = new ArrayList();
+    static {
+        list.add(HFCore.class);
+        list.add(HFVanilla.class);
+        list.add(HFConfig.class);
+        list.add(HFPlugins.class);
+        list.add(HFCrops.class);
+        list.add(HFNPCs.class);
+        list.add(HFBlocks.class);
+        list.add(HFBuildings.class);
+        list.add(HFItems.class);
+        list.add(HFCooking.class);
+        list.add(HFQuests.class);
+        list.add(HFShops.class);
+        list.add(HFMining.class);
+        list.add(HFGifts.class);
+        list.add(HFAnimals.class);
+        list.add(HFTab.class);
+        list.add(HFCommands.class);
+        list.add(HFRecipeFixes.class);
     }
 
-    public void init() {
-        HFPlugins.init();
-        HFAnimals.init();
-        HFBuildings.init();
-        HFNPCs.init();
+    public void load(String stage) {
+        //Check stage is client
+        if (stage.equals("initClient")) {
+            if (!isClient()) return;
+        }
+        
+        //Continue
+        for (Class c : list) {
+            try {
+                c.getMethod(stage).invoke(null);
+            } catch (Exception e) {}
+        }
     }
 
-    public void postInit() {
-        HFPlugins.postInit();
-        WorldDestroyer.replaceWorldProvider();
-    }
-
-    public AnimalTracker getAnimalTracker() {
-        return ServerHelper.getAnimalTracker();
-    }
-
-    public PlayerTracker getPlayerTracker(EntityPlayer player) {
-        return ServerHelper.getPlayerData(player);
+    public boolean isClient() {
+        return false;
     }
 }

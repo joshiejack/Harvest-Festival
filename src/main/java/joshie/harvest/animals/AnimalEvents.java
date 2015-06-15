@@ -4,9 +4,9 @@ import static joshie.harvest.core.network.PacketHandler.sendToServer;
 
 import java.util.HashSet;
 
-import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.core.config.Animals;
+import joshie.harvest.core.handlers.DataHelper;
 import joshie.harvest.core.network.PacketDismount;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSyncCanProduce;
@@ -29,7 +29,7 @@ public class AnimalEvents {
     public void onEntityLoaded(EntityJoinWorldEvent event) {
         Entity entity = event.entity;
         if (entity instanceof IAnimalTracked) {
-            HarvestFestival.proxy.getAnimalTracker().onJoinWorld(((IAnimalTracked) entity).getData());
+            DataHelper.getAnimalTracker().onJoinWorld(((IAnimalTracked) entity).getData());
             if (event.world.isRemote) {
                 sendToServer(new PacketSyncCanProduce(entity.getEntityId(), true));
             }
@@ -39,7 +39,7 @@ public class AnimalEvents {
     @SubscribeEvent
     public void onEntityDeath(LivingDeathEvent event) {
         if (event.entityLiving instanceof IAnimalTracked) {
-            HarvestFestival.proxy.getAnimalTracker().onDeath(((IAnimalTracked) event.entityLiving));
+            DataHelper.getAnimalTracker().onDeath(((IAnimalTracked) event.entityLiving));
         }
     }
 

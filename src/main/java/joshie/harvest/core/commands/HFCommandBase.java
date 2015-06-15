@@ -1,6 +1,5 @@
 package joshie.harvest.core.commands;
 
-import io.netty.buffer.ByteBuf;
 import net.minecraft.command.ICommandSender;
 
 public abstract class HFCommandBase implements Comparable {

@@ -5,9 +5,8 @@ import static joshie.harvest.core.network.PacketHandler.sendToEveryone;
 
 import java.util.List;
 
-import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.core.Season;
-import joshie.harvest.core.config.Calendar;
+import joshie.harvest.core.handlers.DataHelper;
 import joshie.harvest.core.helpers.CropHelper;
 import joshie.harvest.core.helpers.MineHelper;
 import joshie.harvest.core.helpers.PlayerHelper;
@@ -17,15 +16,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 
-public class CalendarServer implements IData {
-    private boolean loaded = false;
-
-    private CalendarDate date = new CalendarDate(1, Season.SPRING, 1);
-
-    public CalendarDate getDate() {
-        return date;
-    }
-
+public class CalendarServer extends Calendar implements IData {
     public void setDate(int day, Season season, int year) {
         date.setDay(day).setSeason(season).setYear(year);
         markDirty();
@@ -37,7 +28,7 @@ public class CalendarServer implements IData {
         Season season = date.getSeason();
         int year = date.getYear();
 
-        if (day < Calendar.DAYS_PER_SEASON) {
+        if (day < joshie.harvest.core.config.Calendar.DAYS_PER_SEASON) {
             day++;
         } else {
             season = getNextSeason();
@@ -51,7 +42,7 @@ public class CalendarServer implements IData {
         sendToEveryone(new PacketSetCalendar(date));
 
         CropHelper.newDay();
-        HarvestFestival.proxy.getAnimalTracker().newDay();
+        DataHelper.getAnimalTracker().newDay();
         MineHelper.newDay();
 
         //Loop through all the players and do stuff related to them, Pass the world that the player is in
@@ -59,7 +50,6 @@ public class CalendarServer implements IData {
             PlayerHelper.getData(player).newDay();
         }
 
-        loaded = true;
         markDirty();
         return true;
     }
@@ -72,12 +62,11 @@ public class CalendarServer implements IData {
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         date.readFromNBT(nbt);
-        loaded = nbt.getBoolean("Loaded");
+        System.out.println("DATE WAS READ" + date.getYear());
     }
 
     @Override
     public void writeToNBT(NBTTagCompound nbt) {
         date.writeToNBT(nbt);
-        nbt.setBoolean("Loaded", true);
     }
 }

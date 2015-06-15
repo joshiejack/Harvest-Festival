@@ -1,6 +1,5 @@
 package joshie.harvest.animals.entity;
 
-import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
@@ -8,6 +7,7 @@ import joshie.harvest.api.animals.IAnimalType;
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.api.relations.IDataHandler;
 import joshie.harvest.api.relations.IRelatable;
+import joshie.harvest.core.handlers.DataHelper;
 import joshie.harvest.core.helpers.SizeableHelper;
 import joshie.harvest.core.helpers.ToolHelper;
 import joshie.harvest.core.lib.SizeableMeta;
@@ -73,13 +73,13 @@ public class EntityHarvestCow extends EntityCow implements IAnimalTracked {
 
                 return true;
             } else if (ToolHelper.isMilker(held)) {
-                if (HarvestFestival.proxy.getAnimalTracker().canProduceProduct(data)) {
+                if (DataHelper.getAnimalTracker().canProduceProduct(data)) {
                     ItemStack product = getMilk(player);
                     if (!player.inventory.addItemStackToInventory(product)) {
                         player.dropPlayerItemWithRandomChoice(product, false);
                     }
 
-                    HarvestFestival.proxy.getAnimalTracker().setProducedProduct(data);
+                    DataHelper.getAnimalTracker().setProducedProduct(data);
                 }
             }
 

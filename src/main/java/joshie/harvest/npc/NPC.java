@@ -9,11 +9,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import joshie.harvest.api.buildings.IBuilding;
-import joshie.harvest.api.core.IDate;
+import joshie.harvest.api.core.ICalendarDate;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.relations.IDataHandler;
 import joshie.harvest.api.shops.IShop;
-import joshie.harvest.calendar.CalendarDate;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.Translate;
 import joshie.harvest.core.util.generic.Text;
@@ -50,14 +49,14 @@ public class NPC implements INPC {
     private boolean isBuilder;
     private boolean isMiner;
     private IShop shop;
-    private CalendarDate birthday;
+    private ICalendarDate birthday;
     private IBuilding home;
     private String home_location;
     private boolean doesRespawn;
     private int insideColor;
     private int outsideColor;
 
-    public NPC(String name, Gender gender, Age age, CalendarDate birthday, int insideColor, int outsideColor) {
+    public NPC(String name, Gender gender, Age age, ICalendarDate birthday, int insideColor, int outsideColor) {
         this.name = name;
         this.gender = gender;
         this.age = age;
@@ -211,7 +210,7 @@ public class NPC implements INPC {
     }
 
     @Override
-    public IDate getBirthday() {
+    public ICalendarDate getBirthday() {
         return birthday;
     }
 

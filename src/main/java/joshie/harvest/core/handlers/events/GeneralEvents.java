@@ -1,9 +1,9 @@
 package joshie.harvest.core.handlers.events;
 
-import static joshie.harvest.core.helpers.CalendarHelper.getSeason;
 import joshie.harvest.api.core.Season;
 import joshie.harvest.blocks.BlockFlower;
 import joshie.harvest.blocks.items.ItemBlockFlower;
+import joshie.harvest.core.handlers.DataHelper;
 import joshie.harvest.core.helpers.ClientHelper;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.core.helpers.ServerHelper;
@@ -122,7 +122,7 @@ public class GeneralEvents {
 
     @SubscribeEvent
     public void getFoliageColor(GetFoliageColor event) {
-        if (getSeason() == Season.AUTUMN) {
+        if (DataHelper.getCalendar().getDate().getSeason() == Season.AUTUMN) {
             event.newColor = 0xFF9900;
         }
     }

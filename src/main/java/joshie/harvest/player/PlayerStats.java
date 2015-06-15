@@ -1,21 +1,21 @@
 package joshie.harvest.player;
 
-import joshie.harvest.calendar.CalendarDate;
-import joshie.harvest.core.helpers.CalendarHelper;
+import joshie.harvest.api.HFApi;
+import joshie.harvest.api.core.ICalendarDate;
 import joshie.harvest.core.util.IData;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class PlayerStats implements IData {
-    private CalendarDate birthday = new CalendarDate();
+    private ICalendarDate birthday = HFApi.CALENDAR.newDate(0, null, 0);
     private double staminaMax = 100D;
     private double fatigueMin = 0D;
     private double stamina = 100D;
     private double fatigue = 0D;
     private long gold;
-    
+
     public PlayerStats(PlayerTrackerServer master) {}
 
-    public CalendarDate getBirthday() {
+    public ICalendarDate getBirthday() {
         return birthday;
     }
 
@@ -40,9 +40,13 @@ public class PlayerStats implements IData {
         this.gold = gold;
     }
 
+    public boolean isBirthdaySet() {
+        return birthday.getSeason() != null && birthday.getDay() != 0 && birthday.getYear() != 0;
+    }
+
     public boolean setBirthday() {
-        if (!birthday.isSet()) {
-            birthday = new CalendarDate(CalendarHelper.getServerDate());
+        if (!isBirthdaySet()) {
+            birthday = HFApi.CALENDAR.cloneDate(HFApi.CALENDAR.getToday());
             return true;
         } else return false;
     }

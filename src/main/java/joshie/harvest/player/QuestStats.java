@@ -10,7 +10,7 @@ import joshie.harvest.api.quest.IQuest;
 import joshie.harvest.core.network.quests.PacketQuestSetAvailable;
 import joshie.harvest.core.network.quests.PacketQuestSetCurrent;
 import joshie.harvest.core.util.IData;
-import joshie.harvest.init.HFQuests;
+import joshie.harvest.quests.QuestRegistry;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
@@ -75,7 +75,7 @@ public class QuestStats implements IData {
     }
 
     public void syncQuests() {
-        for (IQuest quest : HFQuests.getQuests().values()) {
+        for (IQuest quest : QuestRegistry.getQuests().values()) {
             syncQuest(quest);
         }
     }

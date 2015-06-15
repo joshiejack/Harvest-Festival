@@ -3,7 +3,6 @@ package joshie.harvest.core.helpers;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.core.helpers.generic.ItemHelper;
-import joshie.harvest.crops.Crop;
 import joshie.harvest.crops.CropTrackerClient;
 import joshie.harvest.crops.CropTrackerCommon;
 import joshie.harvest.crops.CropTrackerServer;

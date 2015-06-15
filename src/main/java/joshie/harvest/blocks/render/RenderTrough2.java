@@ -1,7 +1,5 @@
 package joshie.harvest.blocks.render;
 
-import org.lwjgl.opengl.GL11;
-
 import joshie.harvest.blocks.BlockWood;
 import joshie.harvest.core.util.RenderBase;
 import joshie.harvest.init.HFBlocks;

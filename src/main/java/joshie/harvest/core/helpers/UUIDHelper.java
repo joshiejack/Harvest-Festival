@@ -2,7 +2,6 @@ package joshie.harvest.core.helpers;
 
 import java.util.UUID;
 
-import joshie.harvest.api.animals.IAnimalTracked;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 

@@ -16,7 +16,7 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 public class HFRecipeFixes {
-    public static void init() {
+    public static void complete() {
         fixRecipes(Items.egg, null);
         fixRecipes(Items.carrot, "Carrot");
         fixRecipes(Items.potato, "Potato");

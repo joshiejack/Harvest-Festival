@@ -7,16 +7,12 @@ import joshie.harvest.core.network.AbstractPacketLocation;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
 import cpw.mods.fml.client.FMLClientHandler;

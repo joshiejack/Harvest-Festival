@@ -52,7 +52,7 @@ public class HFCrops {
     public static ICrop wheat;
     public static ICrop watermelon;
 
-    public static void init() {
+    public static void preInit() {
         null_crop = HFApi.CROPS.registerCrop(new CropNull().setCropIconHandler(new IconHandlerNull()));
 
         //Spring Crops

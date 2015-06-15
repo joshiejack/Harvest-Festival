@@ -1,8 +1,8 @@
 package joshie.harvest.core.network;
 
 import io.netty.buffer.ByteBuf;
+import joshie.harvest.api.core.ICalendarDate;
 import joshie.harvest.api.core.Season;
-import joshie.harvest.calendar.CalendarDate;
 import joshie.harvest.core.helpers.PlayerHelper;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
@@ -15,7 +15,7 @@ public class PacketSyncBirthday implements IMessage, IMessageHandler<PacketSyncB
     private int year;
 
     public PacketSyncBirthday() {}
-    public PacketSyncBirthday(CalendarDate date) {
+    public PacketSyncBirthday(ICalendarDate date) {
         this.day = date.getDay();
         this.season = date.getSeason();
         this.year = date.getYear();

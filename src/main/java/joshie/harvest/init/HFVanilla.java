@@ -7,7 +7,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 
 public class HFVanilla {
-    public static void init() {
+    public static void preInit() {
         if (HFConfig.vanilla.HOES_HIDDEN) {
             Items.wooden_hoe.setCreativeTab(null);
             Items.stone_hoe.setCreativeTab(null);

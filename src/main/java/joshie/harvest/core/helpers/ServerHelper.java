@@ -13,6 +13,7 @@ import net.minecraft.world.World;
 
 public class ServerHelper {
     private static ServerHandler theServer;
+    private static final CalendarServer TEMP_CALENDAR = new CalendarServer();
 
     public static boolean isSet() {
         return theServer != null;
@@ -30,8 +31,8 @@ public class ServerHelper {
         theServer.markDirty();
     }
 
-    static CalendarServer getCalendar() {
-        return theServer.getCalendar();
+    public static CalendarServer getCalendar() {
+        return theServer != null ? theServer.getCalendar() : TEMP_CALENDAR;
     }
 
     public static AnimalTrackerServer getAnimalTracker() {

@@ -19,11 +19,17 @@ import joshie.harvest.items.ItemNPCSpawner;
 import joshie.harvest.items.ItemSickle;
 import joshie.harvest.items.ItemTreat;
 import joshie.harvest.items.ItemWateringCan;
+import joshie.harvest.items.render.RenderItemAnimal;
+import joshie.harvest.items.render.RenderItemNPC;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.oredict.OreDictionary;
 
 import org.apache.commons.lang3.text.WordUtils;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class HFItems {
     public static EnumMap<SizeableMeta, Item> sized = new EnumMap(SizeableMeta.class);
@@ -47,7 +53,7 @@ public class HFItems {
     public static Item wateringcan;
     public static Item hammer;
 
-    public static void init() {
+    public static void preInit() {
         //Add a new crop item for things that do not have an item yet :D
         for (ICrop crop : Crop.crops) {
             if (!crop.hasItemAssigned()) {
@@ -90,5 +96,10 @@ public class HFItems {
             new ItemCheat().setUnlocalizedName("cheat");
         }
     }
-
+    
+    @SideOnly(Side.CLIENT)
+    public static void initClient() {
+        MinecraftForgeClient.registerItemRenderer(HFItems.animal, new RenderItemAnimal());
+        MinecraftForgeClient.registerItemRenderer(HFItems.spawnerNPC, new RenderItemNPC());
+    }
 }

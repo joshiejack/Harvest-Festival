@@ -1,14 +1,10 @@
 package joshie.harvest.blocks.tiles;
 
-import java.util.ArrayList;
-
-import joshie.harvest.api.cooking.ICookingComponent;
 import joshie.harvest.api.cooking.IUtensil;
 import joshie.harvest.blocks.BlockCookware;
 import joshie.harvest.cooking.Utensil;
 import joshie.harvest.init.HFBlocks;
 import net.minecraft.block.Block;
-import net.minecraftforge.fluids.Fluid;
 
 public class TileFryingPan extends TileCooking {
     @Override

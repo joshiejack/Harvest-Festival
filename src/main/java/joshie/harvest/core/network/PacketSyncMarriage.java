@@ -1,9 +1,9 @@
 package joshie.harvest.core.network;
 
 import io.netty.buffer.ByteBuf;
-import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.relations.IDataHandler;
 import joshie.harvest.api.relations.IRelatable;
+import joshie.harvest.core.handlers.DataHelper;
 import joshie.harvest.relations.RelationshipHelper;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
@@ -35,7 +35,7 @@ public class PacketSyncMarriage implements IMessage, IMessageHandler<PacketSyncM
     public IMessage onMessage(PacketSyncMarriage message, MessageContext ctx) {
         IRelatable relatable = message.handler.onMessage();
         if (relatable != null) {
-            HarvestFestival.instance.proxy.getPlayerTracker(null).getRelationships().setMarried(relatable);
+            DataHelper.getPlayerTracker(null).getRelationships().setMarried(relatable);
         }
 
         return null;

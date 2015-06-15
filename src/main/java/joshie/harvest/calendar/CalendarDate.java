@@ -1,12 +1,13 @@
 package joshie.harvest.calendar;
 
-import joshie.harvest.api.core.IDate;
+import joshie.harvest.api.core.ICalendarDate;
+import joshie.harvest.api.core.ISeasonData;
 import joshie.harvest.api.core.Season;
 import joshie.harvest.api.core.Weekday;
 import joshie.harvest.core.helpers.CalendarHelper;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class CalendarDate implements IDate {
+public class CalendarDate implements ICalendarDate {
     private int day;
     private Season season;
     private int year;
@@ -15,7 +16,6 @@ public class CalendarDate implements IDate {
     private SeasonData data;
 
     public CalendarDate() {}
-
     public CalendarDate(int day, Season season, int year) {
         this.day = day;
         this.season = season;
@@ -23,33 +23,33 @@ public class CalendarDate implements IDate {
         this.data = SeasonData.getData(season);
     }
 
-    public CalendarDate(CalendarDate date) {
-        this.day = date.day;
-        this.season = date.season;
-        this.year = date.year;
+    public CalendarDate(ICalendarDate date) {
+        this.day = date.getDay();
+        this.season = date.getSeason();
+        this.year = date.getYear();
         this.data = SeasonData.getData(season);
     }
 
-    public CalendarDate setDay(int day) {
+    @Override
+    public ICalendarDate setDay(int day) {
         this.day = day;
         return this;
     }
 
-    public CalendarDate setSeason(Season season) {
+    @Override
+    public ICalendarDate setSeason(Season season) {
         this.season = season;
         this.data = SeasonData.getData(season);
         return this;
     }
 
-    public CalendarDate setYear(int year) {
+    @Override
+    public ICalendarDate setYear(int year) {
         this.year = year;
         return this;
     }
 
-    public boolean isSet() {
-        return season != null && day != 0 && year != 0;
-    }
-
+    @Override
     public int getDay() {
         return day;
     }
@@ -59,14 +59,17 @@ public class CalendarDate implements IDate {
         return season;
     }
     
-    public SeasonData getSeasonData() {
+    @Override
+    public ISeasonData getSeasonData() {
         return data;
     }
 
+    @Override
     public int getYear() {
         return year;
     }
     
+    @Override
     public Weekday getWeekday() {
         return Weekday.values()[CalendarHelper.getTotalDays(this) % 7];
     }
@@ -89,10 +92,10 @@ public class CalendarDate implements IDate {
         if (this == obj) return true;
         if (obj == null) return false;
         if (getClass() != obj.getClass()) return false;
-        CalendarDate other = (CalendarDate) obj;
-        if (day != other.day) return false;
-        if (season != other.season) return false;
-        if (year != other.year) return false;
+        ICalendarDate other = (ICalendarDate) obj;
+        if (day != other.getDay()) return false;
+        if (season != other.getSeason()) return false;
+        if (year != other.getYear()) return false;
         return true;
     }
     

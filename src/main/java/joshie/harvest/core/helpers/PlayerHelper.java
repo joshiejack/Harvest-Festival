@@ -3,9 +3,9 @@ package joshie.harvest.core.helpers;
 import java.util.Random;
 import java.util.UUID;
 
+import joshie.harvest.api.core.ICalendarDate;
 import joshie.harvest.api.core.Season;
 import joshie.harvest.buildings.BuildingStage;
-import joshie.harvest.calendar.CalendarDate;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSyncGold;
 import joshie.harvest.player.FridgeContents;
@@ -85,7 +85,7 @@ public class PlayerHelper {
         } else ServerHelper.getPlayerData(player).affectStats(stamina, fatigue);
     }
 
-    public static CalendarDate getBirthday(EntityPlayer player) {
+    public static ICalendarDate getBirthday(EntityPlayer player) {
         if (player.worldObj.isRemote) {
             return ClientHelper.getPlayerData().getBirthday();
         } else return ServerHelper.getPlayerData(player).getBirthday();

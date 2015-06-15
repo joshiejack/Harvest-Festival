@@ -107,7 +107,7 @@ public class ItemGeneral extends ItemHFMeta implements ICreativeSorted {
     }
 
     @Override
-    public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer player, EntityLivingBase living) {
+    public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer player, EntityLivingBase living) {       
         if (living instanceof IAnimalTracked) {
             IAnimalTracked tracked = (IAnimalTracked) living;
             IAnimalData data = ((IAnimalTracked) tracked).getData();

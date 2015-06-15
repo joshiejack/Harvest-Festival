@@ -13,7 +13,6 @@ import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidStack;
 
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
 
 public abstract class RenderBase {
     private static final double RENDER_OFFSET = 0.0010000000474974513D;

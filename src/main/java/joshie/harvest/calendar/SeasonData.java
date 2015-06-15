@@ -8,12 +8,13 @@ import static joshie.harvest.core.util.generic.Text.YELLOW;
 
 import java.util.EnumMap;
 
+import joshie.harvest.api.core.ISeasonData;
 import joshie.harvest.api.core.Season;
 import joshie.harvest.core.lib.HFModInfo;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 
-public class SeasonData {
+public class SeasonData implements ISeasonData {
     private static final EnumMap<Season, SeasonData> data = new EnumMap(Season.class);
     static {
         data.put(Season.SPRING, new SeasonData(Season.SPRING, 168000, 12000, 1, 1, 0x87CEFA, 0.6082D, 0.01F, 1850L, BRIGHT_GREEN, 0x00D900));
@@ -27,14 +28,14 @@ public class SeasonData {
     }
 
     public final Season season;
-    public final ResourceLocation resource;
-    public final int rainStartChance;
-    public final int rainEndChance;
-    public final int rainLength;
-    public final int thunderLength;
-    public final int skyColor;
-    public final double celestialLengthFactor;
-    public final float celestialAngleOffset;
+    private final ResourceLocation resource;
+    private final int rainStartChance;
+    private final int rainEndChance;
+    private final int rainLength;
+    private final int thunderLength;
+    private final int skyColor;
+    private final double celestialLengthFactor;
+    private final float celestialAngleOffset;
     public final long sunrise;
     public final String textColor;
     public final int seasonColor;
@@ -53,7 +54,48 @@ public class SeasonData {
         this.textColor = textColor;
         this.seasonColor = seasonColor;
     }
+    
+    @Override
+    public double getCelestialLengthFactor() {
+        return celestialLengthFactor;
+    }
 
+    @Override
+    public float getCelestialAngleOffset() {
+        return celestialAngleOffset;
+    }
+
+    @Override
+    public int getRainStartChance() {
+        return rainStartChance;
+    }
+
+    @Override
+    public int getRainEndChance() {
+        return rainEndChance;
+    }
+
+    @Override
+    public int getRainLength() {
+        return rainLength;
+    }
+
+    @Override
+    public int getThunderLength() {
+        return thunderLength;
+    }
+
+    @Override
+    public int getSkyColor() {
+        return skyColor;
+    }
+    
+    @Override
+    public ResourceLocation getResource() {
+        return resource;
+    }
+
+    @Override
     public String getLocalized() {
         return StatCollector.translateToLocal(HFModInfo.MODPATH + ".season." + season.name().toLowerCase());
     }

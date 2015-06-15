@@ -18,4 +18,7 @@ public interface IAnimalHandler {
 
     /** Returns an animal type based on the entity **/
     public IAnimalType getType(EntityAnimal animal);
+
+    /** Register an animal type **/
+    public void registerType(String key, IAnimalType type);
 }

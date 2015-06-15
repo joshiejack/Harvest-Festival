@@ -23,7 +23,7 @@ public class ClientHelper {
     }
 
     public static CalendarClient getCalendar() {
-        return theClient.getCalendar();
+        return theClient.getCalendar(); 
     }
 
     public static CropTrackerClient getCropTracker() {

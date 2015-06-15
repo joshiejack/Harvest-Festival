@@ -5,9 +5,9 @@ import static joshie.harvest.core.network.PacketHandler.sendToServer;
 
 import java.util.HashSet;
 
-import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quest.IQuest;
+import joshie.harvest.core.handlers.DataHelper;
 import joshie.harvest.core.helpers.generic.ItemHelper;
 import joshie.harvest.core.network.PacketSyncGold;
 import joshie.harvest.core.network.quests.PacketQuestCompleted;
@@ -64,7 +64,7 @@ public class QuestHelper {
     }
 
     public static void rewardRelations(EntityPlayer player, INPC npc, int amount) {
-        HarvestFestival.proxy.getPlayerTracker(player).getRelationships().affectRelationship(npc, amount);
+        DataHelper.getPlayerTracker(player).getRelationships().affectRelationship(npc, amount);
     }
 
     public static void rewardItem(EntityPlayer player, ItemStack stack) {

@@ -1,7 +1,7 @@
 package joshie.harvest.calendar;
 
-import static joshie.harvest.core.helpers.CalendarHelper.getClientSeason;
 import joshie.harvest.api.core.Season;
+import joshie.harvest.core.handlers.DataHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.EntityRenderer;
@@ -116,7 +116,7 @@ public class WeatherRenderer extends IRenderHandler {
                             float f10;
                             double d4;
 
-                            if (worldclient.getWorldChunkManager().getTemperatureAtHeight(f9, k1) >= 0.15F && getClientSeason() != Season.WINTER)
+                            if (worldclient.getWorldChunkManager().getTemperatureAtHeight(f9, k1) >= 0.15F && DataHelper.getCalendar().getDate().getSeason() != Season.WINTER)
                             {
                                 if (b1 != 0)
                                 {

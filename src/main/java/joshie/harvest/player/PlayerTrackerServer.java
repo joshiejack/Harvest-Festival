@@ -7,9 +7,9 @@ import java.util.UUID;
 
 import joshie.harvest.api.WorldLocation;
 import joshie.harvest.api.buildings.IBuilding;
+import joshie.harvest.api.core.ICalendarDate;
 import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.buildings.BuildingStage;
-import joshie.harvest.calendar.CalendarDate;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.helpers.generic.EntityHelper;
@@ -112,7 +112,7 @@ public class PlayerTrackerServer extends PlayerTracker implements IData {
         return fridge;
     }
 
-    public CalendarDate getBirthday() {
+    public ICalendarDate getBirthday() {
         return playerStats.getBirthday();
     }
 

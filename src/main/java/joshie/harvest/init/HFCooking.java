@@ -51,7 +51,7 @@ public class HFCooking {
     public static Fluid cookingOil;
     public static Fluid cookingMilk;
     
-    public static void init() {
+    public static void preInit() {
         HFApi.COOKING.registerRecipeHandler(new MayonnaiseRecipeHandler());
         
         cookingOil = new Fluid("oil.cooking");

@@ -41,22 +41,24 @@ public class HarvestFestival {
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         root = new File(event.getModConfigurationDirectory() + File.separator + MODPATH);
-        proxy.preInit();
+        proxy.load("preInit");
     }
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
-        proxy.init();
+        proxy.load("init");
     }
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        proxy.postInit();
+        proxy.load("postInit");
+        proxy.load("initClient");
     }
 
     @EventHandler
     public void onLoadComplete(FMLLoadCompleteEvent event) {
-        HFRecipeFixes.init();
+        proxy.load("complete");
+        HFRecipeFixes.complete();
     }
 
     @EventHandler

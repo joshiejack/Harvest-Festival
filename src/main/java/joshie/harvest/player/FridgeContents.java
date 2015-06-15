@@ -1,7 +1,6 @@
 package joshie.harvest.player;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.cooking.FoodRegistry;
 import joshie.harvest.core.helpers.ServerHelper;
 import joshie.harvest.core.util.IData;
 import net.minecraft.entity.player.EntityPlayer;

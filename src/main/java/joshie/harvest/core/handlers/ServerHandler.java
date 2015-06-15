@@ -8,7 +8,6 @@ import joshie.harvest.core.HFSavedData;
 import joshie.harvest.crops.CropTrackerServer;
 import joshie.harvest.mining.MineTrackerServer;
 import joshie.harvest.player.PlayerTrackerServer;
-import joshie.harvest.player.PlayerTracker;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.world.World;

@@ -1,6 +1,5 @@
 package joshie.harvest.blocks.items;
 
-import joshie.harvest.blocks.BlockStone;
 import joshie.harvest.core.util.base.ItemBlockBase;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;

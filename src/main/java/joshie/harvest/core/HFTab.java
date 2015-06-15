@@ -93,7 +93,7 @@ public class HFTab extends CreativeTabs {
         this.icon = stack;
     }
 
-    public static void init() {
+    public static void preInit() {
         HFTab.tabFarming.setStack(HFCrops.tomato.getCropStack());
         HFTab.tabCooking.setStack(HFApi.COOKING.getMeal("salad"));
         HFTab.tabMining.setStack(new ItemStack(HFBlocks.stone, 1, 1));

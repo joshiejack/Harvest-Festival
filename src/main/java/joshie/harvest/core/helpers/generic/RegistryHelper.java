@@ -1,6 +1,5 @@
 package joshie.harvest.core.helpers.generic;
 
-import joshie.harvest.core.util.generic.IHasMetaBlock;
 import joshie.harvest.core.util.generic.Library;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;

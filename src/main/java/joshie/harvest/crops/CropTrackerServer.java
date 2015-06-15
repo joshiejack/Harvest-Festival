@@ -10,11 +10,11 @@ import java.util.Iterator;
 import java.util.Map;
 
 import joshie.harvest.api.WorldLocation;
+import joshie.harvest.api.core.ICalendarDate;
 import joshie.harvest.api.core.Weekday;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
-import joshie.harvest.calendar.CalendarDate;
-import joshie.harvest.core.helpers.CalendarHelper;
+import joshie.harvest.core.handlers.DataHelper;
 import joshie.harvest.core.helpers.CropHelper;
 import joshie.harvest.core.helpers.TrackingHelper;
 import joshie.harvest.core.network.PacketSyncCrop;
@@ -26,14 +26,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
-import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.IPlantable;
 
 //Handles the Data for the crops rather than using TE Data
 public class CropTrackerServer extends CropTrackerCommon implements IData {
     public void newDay() {
         ArrayList<ICropData> toWither = new ArrayList(); //Create a new wither list
-        Weekday day = CalendarHelper.getWeekday(DimensionManager.getWorld(0));
+        Weekday day = DataHelper.getCalendar().getDate().getWeekday();
         Iterator<Map.Entry<WorldLocation, ICropData>> iter = crops.entrySet().iterator();
         while (iter.hasNext()) {
             Map.Entry<WorldLocation, ICropData> entry = iter.next();
@@ -78,11 +77,11 @@ public class CropTrackerServer extends CropTrackerCommon implements IData {
         toWither = null;
     }
 
-    private CalendarDate lastRain;
+    private ICalendarDate lastRain;
 
     //Updates the world, so we know it has rained!
     public void doRain() {
-        if (!CalendarHelper.getServerDate().equals(lastRain)) {
+        if (!DataHelper.getCalendar().getDate().equals(lastRain)) {
             for (WorldLocation location : crops.keySet()) {
                 hydrate(getWorld(location.dimension), location.x, location.y, location.z);
             }

@@ -34,7 +34,7 @@ public class HFShops {
     public static IShop poultry;
     public static IShop supermarket;
 
-    public static void init() {
+    public static void preInit() {
         barn();
         blacksmith();
         cafe();

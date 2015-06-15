@@ -1,9 +1,7 @@
 package joshie.harvest.core.helpers;
 
 import joshie.harvest.api.shops.IPurchaseable;
-import joshie.harvest.core.helpers.generic.ItemHelper;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 
 public class ShopHelper {
     /** This should only be ever called server ide **/

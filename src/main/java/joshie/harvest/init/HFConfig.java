@@ -24,7 +24,7 @@ public class HFConfig {
     public static Mappings mappings = new Mappings();
     public static Vanilla vanilla;
 
-    public static void init() {
+    public static void preInit() {
         initConfig("General");
         initConfig("Animals");
         initConfig("Calendar");

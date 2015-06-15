@@ -1,7 +1,7 @@
 package joshie.harvest.api.npc;
 
 import joshie.harvest.api.buildings.IBuilding;
-import joshie.harvest.api.core.IDate;
+import joshie.harvest.api.core.ICalendarDate;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.shops.IShop;
 import joshie.harvest.npc.gift.Gifts.Quality;
@@ -44,7 +44,7 @@ public interface INPC extends IRelatable {
     public boolean respawns();
 
     /** Returns the birthday of this npc **/
-    public IDate getBirthday();
+    public ICalendarDate getBirthday();
 
     /** Whether the npc is considered a child **/
     public boolean isChild();

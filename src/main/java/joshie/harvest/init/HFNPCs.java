@@ -5,44 +5,24 @@ import static joshie.harvest.npc.NPC.Age.CHILD;
 import static joshie.harvest.npc.NPC.Age.ELDER;
 import static joshie.harvest.npc.NPC.Gender.FEMALE;
 import static joshie.harvest.npc.NPC.Gender.MALE;
-
-import java.util.Collection;
-import java.util.HashMap;
-
+import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.Season;
 import joshie.harvest.api.npc.INPC;
-import joshie.harvest.api.npc.INPCRegistry;
-import joshie.harvest.calendar.CalendarDate;
-import joshie.harvest.npc.NPC;
-import joshie.harvest.npc.NPC.Age;
-import joshie.harvest.npc.NPC.Gender;
+import joshie.harvest.core.util.generic.EntityFakeItem;
+import joshie.harvest.core.util.generic.RenderFakeItem;
+import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.npc.entity.EntityNPCBuilder;
+import joshie.harvest.npc.entity.EntityNPCMiner;
+import joshie.harvest.npc.entity.EntityNPCShopkeeper;
+import joshie.harvest.npc.render.RenderNPC;
 import joshie.harvest.player.Town;
+import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.common.registry.EntityRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
-public class HFNPCs implements INPCRegistry {
-    private static HashMap<String, INPC> npcs = new HashMap();
-
-    @Override
-    public Collection<INPC> getNPCs() {
-        return npcs.values();
-    }
-
-    @Override
-    public INPC get(String string) {
-        return npcs.get(string);
-    }
-
-    @Override
-    public INPC register(INPC npc) {
-        npcs.put(npc.getUnlocalizedName(), npc);
-        return npc;
-    }
-
-    @Override
-    public INPC register(String unlocalised, Gender gender, Age age, int dayOfBirth, Season seasonOfBirth, int insideColor, int outsideColor) {
-        return register(new NPC(unlocalised, gender, age, new CalendarDate(dayOfBirth, seasonOfBirth, 1), insideColor, outsideColor));
-    }
-
+public class HFNPCs {
     public static INPC goddess; //The Goddess                        (SPAWN)
     public static INPC animal_owner; // Owner of the Animal Barn     (BARN)
     public static INPC cafe_owner; // Owner of the Cafe              (CAFE)
@@ -63,6 +43,12 @@ public class HFNPCs implements INPCRegistry {
     public static INPC poultry; //Poultry Farm Owner                 (POULTRY FARM)
 
     public static void preInit() {
+        EntityRegistry.registerModEntity(EntityNPC.class, "NPC", 0, HarvestFestival.instance, 80, 3, true);
+        EntityRegistry.registerModEntity(EntityFakeItem.class, "FakeItem", 1, HarvestFestival.instance, 80, 3, false);
+        EntityRegistry.registerModEntity(EntityNPCBuilder.class, "NPCBuilder", 2, HarvestFestival.instance, 80, 3, true);
+        EntityRegistry.registerModEntity(EntityNPCShopkeeper.class, "NPCShopkeeper", 3, HarvestFestival.instance, 80, 3, true);
+        EntityRegistry.registerModEntity(EntityNPCMiner.class, "NPCMiner", 4, HarvestFestival.instance, 80, 3, true);
+        
         goddess = HFApi.NPC.register("goddess", FEMALE, ADULT, 8, Season.SPRING, 0x8CEED3, 0x4EC485).setHeight(1.2F, 0.05F);
         animal_owner = HFApi.NPC.register("jim", MALE, ADULT, 26, Season.SPRING, 0x888888, 0x000000);
         cafe_owner = HFApi.NPC.register("liara", FEMALE, ADULT, 17, Season.SPRING, 0xA64DFF, 0x46008C);
@@ -102,5 +88,14 @@ public class HFNPCs implements INPCRegistry {
         fisherman.setHome(HFBuildings.fishingHut, Town.JACOB);
         milkmaid.setHome(HFBuildings.supermarket, Town.CANDICE);
         poultry.setHome(HFBuildings.poultryFarm, Town.ONDRA);
+    }
+    
+    @SideOnly(Side.CLIENT)
+    public static void initClient() {
+        RenderingRegistry.registerEntityRenderingHandler(EntityNPC.class, new RenderNPC());
+        RenderingRegistry.registerEntityRenderingHandler(EntityNPCBuilder.class, new RenderNPC());
+        RenderingRegistry.registerEntityRenderingHandler(EntityNPCShopkeeper.class, new RenderNPC());
+        RenderingRegistry.registerEntityRenderingHandler(EntityNPCMiner.class, new RenderNPC());
+        RenderingRegistry.registerEntityRenderingHandler(EntityFakeItem.class, new RenderFakeItem());
     }
 }

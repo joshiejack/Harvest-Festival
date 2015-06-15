@@ -1,10 +1,9 @@
 package joshie.harvest.core.network;
 
-import static joshie.harvest.core.helpers.CalendarHelper.getSeason;
-import static joshie.harvest.core.helpers.CalendarHelper.setDate;
 import io.netty.buffer.ByteBuf;
+import joshie.harvest.api.core.ICalendarDate;
 import joshie.harvest.api.core.Season;
-import joshie.harvest.calendar.CalendarDate;
+import joshie.harvest.core.handlers.DataHelper;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
@@ -15,7 +14,7 @@ public class PacketSetCalendar implements IMessage, IMessageHandler<PacketSetCal
     private int year;
     
     public PacketSetCalendar() {}
-    public PacketSetCalendar(CalendarDate date) {
+    public PacketSetCalendar(ICalendarDate date) {
         this.day = date.getDay();
         this.season = date.getSeason();
         this.year = date.getYear();
@@ -36,9 +35,11 @@ public class PacketSetCalendar implements IMessage, IMessageHandler<PacketSetCal
     }
     
     @Override
-    public IMessage onMessage(PacketSetCalendar message, MessageContext ctx) {        
-        Season previous = getSeason();
-        setDate(message.day, message.season, message.year);
+    public IMessage onMessage(PacketSetCalendar message, MessageContext ctx) {  
+        ICalendarDate date = DataHelper.getCalendar().getDate();
+        Season previous = date.getSeason();
+        System.out.println("RECEIVED A PACKET ON LOGIN!");
+        date.setDay(message.day).setSeason(message.season).setYear(message.year);
         
         //Refresh all Blocks in Render range
         //If the seasons are not the same, and neither the current or past season is/was spring, re-render the client

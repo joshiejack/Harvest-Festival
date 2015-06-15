@@ -1,4 +1,4 @@
-package joshie.harvest.core.handlers;
+package joshie.harvest.blocks.render;
 
 import java.util.HashMap;
 

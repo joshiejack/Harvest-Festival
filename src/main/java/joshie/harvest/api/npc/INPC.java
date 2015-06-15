@@ -1,7 +1,7 @@
 package joshie.harvest.api.npc;
 
 import joshie.harvest.api.buildings.IBuilding;
-import joshie.harvest.api.core.ICalendarDate;
+import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.shops.IShop;
 import joshie.harvest.npc.gift.Gifts.Quality;

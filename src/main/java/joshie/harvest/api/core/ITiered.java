@@ -1,6 +1,5 @@
 package joshie.harvest.api.core;
 
-import joshie.harvest.items.ItemBaseTool.ToolTier;
 import net.minecraft.item.ItemStack;
 
 /** Items that implement this interface are associated with a certain
@@ -11,5 +10,9 @@ public interface ITiered {
      *  
      *  @param  stack   the item
      *  @return         the tier **/
-    ToolTier getTier(ItemStack stack);
+    public ToolTier getTier(ItemStack stack);
+
+    public static enum ToolTier {
+        BASIC, COPPER, SILVER, GOLD, MYSTRIL, CURSED, BLESSED, MYTHIC;
+    }
 }

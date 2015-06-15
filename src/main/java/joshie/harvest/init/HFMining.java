@@ -11,7 +11,7 @@ import static joshie.harvest.items.ItemGeneral.JUNK_ORE;
 import static joshie.harvest.items.ItemGeneral.MYSTRIL_ORE;
 import static joshie.harvest.items.ItemGeneral.MYTHIC_STONE;
 import static joshie.harvest.items.ItemGeneral.SILVER_ORE;
-import joshie.harvest.items.ItemBaseTool.ToolTier;
+import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.mining.LootCursed;
 import joshie.harvest.mining.LootMythic;
 import joshie.harvest.mining.MiningLoot;

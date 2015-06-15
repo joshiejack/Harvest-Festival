@@ -1,7 +1,7 @@
 package joshie.harvest.player;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.core.ICalendarDate;
+import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.core.util.IData;
 import net.minecraft.nbt.NBTTagCompound;
 

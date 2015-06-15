@@ -471,10 +471,6 @@ public class RenderFakeItem extends Render {
         return true;
     }
 
-    public boolean shouldBob() {
-        return false;
-    }
-
     public byte getMiniBlockCount(ItemStack stack) {
         byte ret = 1;
         if (stack.stackSize > 1) {

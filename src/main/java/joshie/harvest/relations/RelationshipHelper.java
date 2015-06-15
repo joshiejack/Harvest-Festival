@@ -3,8 +3,8 @@ package joshie.harvest.relations;
 import java.util.HashMap;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.relations.IDataHandler;
 import joshie.harvest.api.relations.IRelatable;
+import joshie.harvest.api.relations.IRelatableDataHandler;
 import joshie.harvest.api.relations.IRelationships;
 import joshie.harvest.core.handlers.DataHelper;
 import joshie.harvest.relations.data.DataHandlerEntity;
@@ -12,16 +12,16 @@ import joshie.harvest.relations.data.DataHandlerNPC;
 import net.minecraft.entity.player.EntityPlayer;
 
 public class RelationshipHelper implements IRelationships {
-    private static final HashMap<String, IDataHandler> dataHandlers = new HashMap();
+    private static final HashMap<String, IRelatableDataHandler> dataHandlers = new HashMap();
     public static final int ADJUSTED_MAX = 65535;
     private static boolean isInit = false;
 
     @Override
-    public void registerDataHandler(IDataHandler handler) {
+    public void registerDataHandler(IRelatableDataHandler handler) {
         dataHandlers.put(handler.name(), handler);
     }
 
-    public static IDataHandler getHandler(String handler) {
+    public static IRelatableDataHandler getHandler(String handler) {
         if (!isInit) {
             isInit = true;
             init();

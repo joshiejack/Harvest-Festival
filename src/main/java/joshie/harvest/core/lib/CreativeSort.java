@@ -6,6 +6,4 @@ public class CreativeSort {
     public static int SEEDS = 9;
     public static int TROUGH = 10;
     public static int SIZEABLE = 11;
-    
-    public static int MEAL = 300;
 }

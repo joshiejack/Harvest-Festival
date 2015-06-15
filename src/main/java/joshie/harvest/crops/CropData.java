@@ -7,7 +7,7 @@ import java.util.Random;
 import java.util.UUID;
 
 import joshie.harvest.api.WorldLocation;
-import joshie.harvest.api.core.Season;
+import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.api.crops.ICropRenderHandler.PlantSection;
@@ -206,7 +206,7 @@ public class CropData implements ICropData {
                 }
             }
 
-            return crop.getCropStack();
+            return crop.getHarvested();
         } else return null;
     }
 

@@ -6,9 +6,9 @@ import java.util.List;
 
 import joshie.harvest.api.core.ILevelable;
 import joshie.harvest.api.core.ITiered;
+import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.core.helpers.ToolLevelHelper;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
-import joshie.harvest.items.ItemBaseTool.ToolTier;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;

@@ -4,11 +4,10 @@ import static joshie.harvest.core.lib.HFModInfo.TOOLSPATH;
 
 import java.util.List;
 
-import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.api.core.ILevelable;
 import joshie.harvest.api.core.ITiered;
-import joshie.harvest.core.config.Tools;
 import joshie.harvest.core.lib.CreativeSort;
+import joshie.harvest.core.util.ICreativeSorted;
 import joshie.harvest.core.util.Translate;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -21,22 +20,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public abstract class ItemBaseTool extends ItemBaseSingle implements ILevelable, ITiered, ICreativeSorted {
-    public static enum ToolTier {
-        BASIC("WOOD"), COPPER("GOLD"), SILVER("STONE"), GOLD("IRON"), MYSTRIL("DIAMOND"), CURSED, BLESSED, MYTHIC;
-
-        private String alt;
-
-        private ToolTier() {}
-
-        private ToolTier(String alt) {
-            this.alt = alt;
-        }
-
-        public String getName() {
-            return Tools.USE_VANILLA_MATERIALS && alt != null ? alt : name();
-        }
-    }
-
     private IIcon[] icons;
 
     /** Create a tool */
@@ -44,7 +27,7 @@ public abstract class ItemBaseTool extends ItemBaseSingle implements ILevelable,
         setMaxDamage(8);
         setMaxStackSize(1);
     }
-    
+
     @Override
     public int getSortValue(ItemStack stack) {
         return CreativeSort.TOOLS + getTier(stack).ordinal();
@@ -191,7 +174,7 @@ public abstract class ItemBaseTool extends ItemBaseSingle implements ILevelable,
     public void registerIcons(IIconRegister register) {
         icons = new IIcon[ToolTier.values().length];
         for (int i = 0; i < icons.length; i++) {
-		icons[i] = register.registerIcon(TOOLSPATH + getUnlocalizedName().replace("item.", "") + "_" + ToolTier.values()[i].getName().toLowerCase());
+            icons[i] = register.registerIcon(TOOLSPATH + getUnlocalizedName().replace("item.", "") + "_" + ToolTier.values()[i].name().toLowerCase());
         }
     }
 

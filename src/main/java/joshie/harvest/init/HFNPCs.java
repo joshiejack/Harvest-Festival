@@ -7,7 +7,7 @@ import static joshie.harvest.npc.NPC.Gender.FEMALE;
 import static joshie.harvest.npc.NPC.Gender.MALE;
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.core.Season;
+import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.core.util.generic.EntityFakeItem;
 import joshie.harvest.core.util.generic.RenderFakeItem;

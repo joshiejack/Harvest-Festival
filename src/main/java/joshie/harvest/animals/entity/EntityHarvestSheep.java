@@ -4,7 +4,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.animals.IAnimalType;
-import joshie.harvest.api.relations.IDataHandler;
+import joshie.harvest.api.relations.IRelatableDataHandler;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.relations.RelationshipHelper;
 import net.minecraft.entity.EntityAgeable;
@@ -28,7 +28,7 @@ public class EntityHarvestSheep extends EntitySheep implements IAnimalTracked {
     }
     
     @Override
-    public IDataHandler getDataHandler() {
+    public IRelatableDataHandler getDataHandler() {
         return RelationshipHelper.getHandler("entity");
     }
     

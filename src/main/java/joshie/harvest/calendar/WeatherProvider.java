@@ -1,7 +1,7 @@
 package joshie.harvest.calendar;
 
+import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.core.ISeasonData;
-import joshie.harvest.api.core.Season;
 import joshie.harvest.core.config.Calendar;
 import joshie.harvest.core.handlers.DataHelper;
 import joshie.harvest.core.helpers.CropHelper;

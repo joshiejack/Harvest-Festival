@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import joshie.harvest.api.buildings.IBuilding;
-import joshie.harvest.api.core.ICalendarDate;
+import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.npc.INPC;
-import joshie.harvest.api.relations.IDataHandler;
+import joshie.harvest.api.relations.IRelatableDataHandler;
 import joshie.harvest.api.shops.IShop;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.Translate;
@@ -132,7 +132,7 @@ public class NPC implements INPC {
     }
     
     @Override
-    public IDataHandler getDataHandler() {
+    public IRelatableDataHandler getDataHandler() {
         return RelationshipHelper.getHandler("npc");
     }
 

@@ -7,7 +7,7 @@ import java.util.UUID;
 
 import joshie.harvest.api.WorldLocation;
 import joshie.harvest.api.buildings.IBuilding;
-import joshie.harvest.api.core.ICalendarDate;
+import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.buildings.BuildingStage;
 import joshie.harvest.core.helpers.NPCHelper;

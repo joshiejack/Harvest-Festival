@@ -1,9 +1,9 @@
 package joshie.harvest.mining;
 
+import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.core.helpers.PlayerHelper;
 import joshie.harvest.core.util.SafeStack;
 import joshie.harvest.init.HFItems;
-import joshie.harvest.items.ItemBaseTool.ToolTier;
 import joshie.harvest.player.TrackingStats;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

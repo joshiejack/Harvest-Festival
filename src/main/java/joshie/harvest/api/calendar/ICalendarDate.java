@@ -1,5 +1,6 @@
-package joshie.harvest.api.core;
+package joshie.harvest.api.calendar;
 
+import joshie.harvest.api.core.ISeasonData;
 import net.minecraft.nbt.NBTTagCompound;
 
 

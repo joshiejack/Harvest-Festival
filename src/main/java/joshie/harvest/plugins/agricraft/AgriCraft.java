@@ -5,7 +5,7 @@ import static joshie.harvest.core.helpers.generic.ConfigHelper.getBoolean;
 import java.util.ArrayList;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.core.Season;
+import joshie.harvest.api.calendar.Season;
 import joshie.harvest.crops.SoilHandlers;
 import joshie.harvest.plugins.HFPlugins;
 import joshie.harvest.plugins.HFPlugins.Plugin;

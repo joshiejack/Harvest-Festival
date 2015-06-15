@@ -1,8 +1,8 @@
 package joshie.harvest.blocks.items;
 
-import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.blocks.BlockWood;
 import joshie.harvest.core.lib.CreativeSort;
+import joshie.harvest.core.util.ICreativeSorted;
 import joshie.harvest.core.util.base.ItemBlockBase;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;

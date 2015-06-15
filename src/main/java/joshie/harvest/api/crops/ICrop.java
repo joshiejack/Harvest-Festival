@@ -1,7 +1,7 @@
 package joshie.harvest.api.crops;
 
 import joshie.harvest.api.animals.AnimalFoodType;
-import joshie.harvest.api.core.Season;
+import joshie.harvest.api.calendar.Season;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 
@@ -13,6 +13,9 @@ public interface ICrop {
     /** Return this crop in item form, with default stats
      *  @return     the itemstack for this crop as an item **/
     public ItemStack getCropStack();
+    
+    /** Harvested stack **/
+    public ItemStack getHarvested();
 
     /** Returns the unlocalized name for this crop
      *  @return      the unlocalize name **/

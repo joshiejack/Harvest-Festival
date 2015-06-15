@@ -1,4 +1,5 @@
-package joshie.harvest.api.core;
+package joshie.harvest.api.calendar;
+
 
 public interface ICalendar {
     public ICalendarDate getToday();

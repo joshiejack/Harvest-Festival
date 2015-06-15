@@ -1,12 +1,12 @@
 package joshie.harvest.init;
 
-import static joshie.harvest.api.core.Weekday.FRIDAY;
-import static joshie.harvest.api.core.Weekday.MONDAY;
-import static joshie.harvest.api.core.Weekday.SATURDAY;
-import static joshie.harvest.api.core.Weekday.SUNDAY;
-import static joshie.harvest.api.core.Weekday.THURSDAY;
-import static joshie.harvest.api.core.Weekday.TUESDAY;
-import static joshie.harvest.api.core.Weekday.WEDNESDAY;
+import static joshie.harvest.api.calendar.Weekday.FRIDAY;
+import static joshie.harvest.api.calendar.Weekday.MONDAY;
+import static joshie.harvest.api.calendar.Weekday.SATURDAY;
+import static joshie.harvest.api.calendar.Weekday.SUNDAY;
+import static joshie.harvest.api.calendar.Weekday.THURSDAY;
+import static joshie.harvest.api.calendar.Weekday.TUESDAY;
+import static joshie.harvest.api.calendar.Weekday.WEDNESDAY;
 import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.animals.entity.EntityHarvestSheep;
 import joshie.harvest.api.HFApi;

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import joshie.harvest.api.animals.AnimalFoodType;
-import joshie.harvest.api.core.Season;
+import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropRenderHandler;
 import joshie.harvest.api.crops.IDropHandler;
@@ -184,25 +184,6 @@ public class Crop implements ICrop {
         return year;
     }
 
-    /** Whether this crop is considered a seed at this stage **/
-    public boolean isSeed(int stage) {
-        return stage == 0;
-    }
-
-    /** Whether this crop is considered growing at this stage **/
-    public boolean isGrowing(int stage) {
-        if (getRegrowStage() > 0) {
-            return stage < getRegrowStage();
-        } else return stage < getStages() && stage > 0;
-    }
-
-    /** Whether this crop is considered grown this stage **/
-    public boolean isGrown(int stage) {
-        if (getRegrowStage() > 0) {
-            return stage >= getRegrowStage();
-        } else return stage == getStages();
-    }
-
     /** Return the stage that the plant returns to when it's harvested.
      * A return value of 0, means the crop is destroyed.
      * @return the stage */
@@ -261,6 +242,11 @@ public class Crop implements ICrop {
     @Override
     public ItemStack getCropStack() {
         return item.copy();
+    }
+    
+    @Override
+    public ItemStack getHarvested() {
+        return dropHandler == null ? getCropStack() : dropHandler.getDrop(rand, item.getItem());
     }
 
     @Override

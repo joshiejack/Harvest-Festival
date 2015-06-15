@@ -3,8 +3,8 @@ package joshie.harvest.player;
 import java.util.UUID;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.core.ICalendarDate;
-import joshie.harvest.api.core.Season;
+import joshie.harvest.api.calendar.ICalendarDate;
+import joshie.harvest.api.calendar.Season;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.util.Translate;

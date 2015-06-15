@@ -10,8 +10,8 @@ import java.util.Iterator;
 import java.util.Map;
 
 import joshie.harvest.api.WorldLocation;
-import joshie.harvest.api.core.ICalendarDate;
-import joshie.harvest.api.core.Weekday;
+import joshie.harvest.api.calendar.ICalendarDate;
+import joshie.harvest.api.calendar.Weekday;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.core.handlers.DataHelper;

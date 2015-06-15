@@ -2,7 +2,7 @@ package joshie.harvest.api.crops;
 
 import java.util.Collection;
 
-import joshie.harvest.api.core.Season;
+import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.ICropRenderHandler.PlantSection;
 import joshie.harvest.blocks.BlockCrop;
 import joshie.harvest.core.helpers.CropHelper;

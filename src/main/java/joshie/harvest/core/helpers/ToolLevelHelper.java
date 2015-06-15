@@ -1,7 +1,7 @@
 package joshie.harvest.core.helpers;
 
+import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.items.ItemBaseTool.ToolTier;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
 

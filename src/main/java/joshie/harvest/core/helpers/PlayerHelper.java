@@ -3,8 +3,8 @@ package joshie.harvest.core.helpers;
 import java.util.Random;
 import java.util.UUID;
 
-import joshie.harvest.api.core.ICalendarDate;
-import joshie.harvest.api.core.Season;
+import joshie.harvest.api.calendar.ICalendarDate;
+import joshie.harvest.api.calendar.Season;
 import joshie.harvest.buildings.BuildingStage;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSyncGold;

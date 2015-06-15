@@ -1,8 +1,8 @@
 package joshie.harvest.api;
 
 import joshie.harvest.api.animals.IAnimalHandler;
+import joshie.harvest.api.calendar.ICalendar;
 import joshie.harvest.api.cooking.IFoodRegistry;
-import joshie.harvest.api.core.ICalendar;
 import joshie.harvest.api.crops.ICropHandler;
 import joshie.harvest.api.npc.INPCRegistry;
 import joshie.harvest.api.quest.IQuestRegistry;

@@ -4,7 +4,7 @@ import io.netty.buffer.ByteBuf;
 
 import java.util.UUID;
 
-import joshie.harvest.api.relations.IDataHandler;
+import joshie.harvest.api.relations.IRelatableDataHandler;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.helpers.generic.EntityHelper;
@@ -12,14 +12,14 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class DataHandlerEntity implements IDataHandler {
+public class DataHandlerEntity implements IRelatableDataHandler {
     @Override
     public String name() {
         return "entity";
     }
 
     @Override
-    public IDataHandler copy() {
+    public IRelatableDataHandler copy() {
         return new DataHandlerEntity();
     }
 

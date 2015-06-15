@@ -2,7 +2,7 @@ package joshie.harvest.npc.gui;
 
 import java.util.HashSet;
 
-import joshie.harvest.api.core.ICalendarDate;
+import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quest.IQuest;
 import joshie.harvest.core.handlers.DataHelper;

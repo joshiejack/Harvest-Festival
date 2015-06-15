@@ -3,20 +3,20 @@ package joshie.harvest.relations.data;
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.INPC;
-import joshie.harvest.api.relations.IDataHandler;
+import joshie.harvest.api.relations.IRelatableDataHandler;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.nbt.NBTTagCompound;
 import cpw.mods.fml.common.network.ByteBufUtils;
 
-public class DataHandlerNPC implements IDataHandler {
+public class DataHandlerNPC implements IRelatableDataHandler {
     @Override
     public String name() {
         return "npc";
     }
 
     @Override
-    public IDataHandler copy() {
+    public IRelatableDataHandler copy() {
         return new DataHandlerNPC();
     }
 

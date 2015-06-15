@@ -3,9 +3,9 @@ package joshie.harvest.api.relations;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.nbt.NBTTagCompound;
 
-public interface IDataHandler {
+public interface IRelatableDataHandler {
     /** Copy cat **/
-    public IDataHandler copy();
+    public IRelatableDataHandler copy();
     
     /** The name of this data handler **/
     public String name();

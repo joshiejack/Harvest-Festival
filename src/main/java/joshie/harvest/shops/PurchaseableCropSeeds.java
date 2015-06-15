@@ -2,8 +2,8 @@ package joshie.harvest.shops;
 
 import java.util.List;
 
-import joshie.harvest.api.core.ICalendarDate;
-import joshie.harvest.api.core.Season;
+import joshie.harvest.api.calendar.ICalendarDate;
+import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.shops.IPurchaseable;
 import joshie.harvest.calendar.SeasonData;

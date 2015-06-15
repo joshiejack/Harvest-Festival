@@ -8,8 +8,8 @@ import static joshie.harvest.core.util.generic.Text.YELLOW;
 
 import java.util.EnumMap;
 
+import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.core.ISeasonData;
-import joshie.harvest.api.core.Season;
 import joshie.harvest.core.lib.HFModInfo;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;

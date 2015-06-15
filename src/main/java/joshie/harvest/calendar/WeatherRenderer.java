@@ -1,6 +1,6 @@
 package joshie.harvest.calendar;
 
-import joshie.harvest.api.core.Season;
+import joshie.harvest.api.calendar.Season;
 import joshie.harvest.core.handlers.DataHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;

@@ -2,7 +2,7 @@ package joshie.harvest.api.crops;
 
 import java.util.Collection;
 
-import joshie.harvest.api.core.Season;
+import joshie.harvest.api.calendar.Season;
 import net.minecraft.world.World;
 
 public interface ICropHandler {

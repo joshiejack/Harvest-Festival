@@ -2,7 +2,7 @@ package joshie.harvest.asm.overrides;
 
 import java.util.Random;
 
-import joshie.harvest.api.core.Season;
+import joshie.harvest.api.calendar.Season;
 import joshie.harvest.core.handlers.DataHelper;
 import net.minecraft.block.BlockSnow;
 import net.minecraft.entity.Entity;

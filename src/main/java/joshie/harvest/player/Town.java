@@ -24,8 +24,7 @@ public class Town implements IData {
         private int dimension;
 
         public TownBuilding() {}
-
-        public TownBuilding(BuildingStage building, int dimensionId) {
+        private TownBuilding(BuildingStage building, int dimensionId) {
             this.building = building.building;
             this.n1 = building.n1;
             this.n2 = building.n2;

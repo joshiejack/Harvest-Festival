@@ -2,7 +2,7 @@ package joshie.harvest.api.shops;
 
 import java.util.List;
 
-import joshie.harvest.api.core.Weekday;
+import joshie.harvest.api.calendar.Weekday;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.EnumDifficulty;

@@ -3,9 +3,9 @@ package joshie.harvest.calendar;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-import joshie.harvest.api.core.ICalendarDate;
+import joshie.harvest.api.calendar.ICalendarDate;
+import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.core.ISeasonData;
-import joshie.harvest.api.core.Season;
 import joshie.harvest.core.handlers.DataHelper;
 import joshie.harvest.core.helpers.ClientHelper;
 import joshie.harvest.core.helpers.generic.MCClientHelper;

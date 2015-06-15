@@ -5,7 +5,7 @@ import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.animals.IAnimalType;
 import joshie.harvest.api.core.ISizeable.Size;
-import joshie.harvest.api.relations.IDataHandler;
+import joshie.harvest.api.relations.IRelatableDataHandler;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.core.handlers.DataHelper;
 import joshie.harvest.core.helpers.SizeableHelper;
@@ -20,7 +20,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 public class EntityHarvestCow extends EntityCow implements IAnimalTracked {
-    private IDataHandler handler;
+    private IRelatableDataHandler handler;
     private IAnimalData data;
     private IAnimalType type;
 
@@ -33,7 +33,7 @@ public class EntityHarvestCow extends EntityCow implements IAnimalTracked {
     }
 
     @Override
-    public IDataHandler getDataHandler() {
+    public IRelatableDataHandler getDataHandler() {
         return RelationshipHelper.getHandler("entity");
     }
 

@@ -1,8 +1,8 @@
 package joshie.harvest.calendar;
 
-import joshie.harvest.api.core.ICalendar;
-import joshie.harvest.api.core.ICalendarDate;
-import joshie.harvest.api.core.Season;
+import joshie.harvest.api.calendar.ICalendar;
+import joshie.harvest.api.calendar.ICalendarDate;
+import joshie.harvest.api.calendar.Season;
 import joshie.harvest.core.handlers.DataHelper;
 
 public class CalendarHelper implements ICalendar {

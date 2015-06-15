@@ -1,8 +1,8 @@
 package joshie.harvest.core.network;
 
 import io.netty.buffer.ByteBuf;
-import joshie.harvest.api.relations.IDataHandler;
 import joshie.harvest.api.relations.IRelatable;
+import joshie.harvest.api.relations.IRelatableDataHandler;
 import joshie.harvest.core.handlers.DataHelper;
 import joshie.harvest.relations.RelationshipHelper;
 import cpw.mods.fml.common.network.ByteBufUtils;
@@ -12,7 +12,7 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 public class PacketSyncMarriage implements IMessage, IMessageHandler<PacketSyncMarriage, IMessage> {
     private IRelatable relatable;
-    private IDataHandler handler;
+    private IRelatableDataHandler handler;
 
     public PacketSyncMarriage() {}
     public PacketSyncMarriage(IRelatable relatable) {

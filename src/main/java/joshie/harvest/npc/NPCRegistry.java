@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.HashMap;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.core.Season;
+import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.npc.INPCRegistry;
 import joshie.harvest.npc.NPC.Age;

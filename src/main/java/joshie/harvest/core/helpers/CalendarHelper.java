@@ -1,6 +1,6 @@
 package joshie.harvest.core.helpers;
 
-import joshie.harvest.api.core.ICalendarDate;
+import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.core.config.Calendar;
 import net.minecraft.world.World;
 

@@ -1,4 +1,4 @@
-package joshie.harvest.api.core;
+package joshie.harvest.core.util;
 
 import net.minecraft.item.ItemStack;
 

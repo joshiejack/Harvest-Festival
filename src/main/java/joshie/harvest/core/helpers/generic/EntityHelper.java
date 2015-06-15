@@ -6,13 +6,10 @@ import java.util.UUID;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
-import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.util.FakePlayer;
 import cpw.mods.fml.common.FMLCommonHandler;
 
@@ -44,22 +41,6 @@ public class EntityHelper {
         }
     
         return null;
-    }
-
-    //Returns the entity id from it's uuid
-    public static int getEntityIDFromUUID(UUID uuid) {
-        for (WorldServer world : DimensionManager.getWorlds()) {
-            for (int i = 0; i < world.loadedEntityList.size(); i++) {
-                Entity entity = (Entity) world.loadedEntityList.get(i);
-                if (entity instanceof EntityLivingBase) {
-                    if (UUIDHelper.getEntityUUID(entity).equals(uuid)) {
-                        return entity.getEntityId();
-                    }
-                }
-            }
-        }
-    
-        return 0;
     }
 
     /** Gets the player from the uuid **/

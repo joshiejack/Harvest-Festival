@@ -7,7 +7,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.core.ICreativeSorted;
+import joshie.harvest.core.util.ICreativeSorted;
 import joshie.harvest.init.HFBlocks;
 import joshie.harvest.init.HFBuildings;
 import joshie.harvest.init.HFCrops;

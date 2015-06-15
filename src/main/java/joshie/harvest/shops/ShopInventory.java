@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-import joshie.harvest.api.core.Weekday;
+import joshie.harvest.api.calendar.Weekday;
 import joshie.harvest.api.shops.IPurchaseable;
 import joshie.harvest.api.shops.IShop;
 import joshie.harvest.api.shops.IShopGuiOverlay;

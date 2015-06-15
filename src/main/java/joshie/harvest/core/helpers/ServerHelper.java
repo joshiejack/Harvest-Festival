@@ -15,10 +15,6 @@ public class ServerHelper {
     private static ServerHandler theServer;
     private static final CalendarServer TEMP_CALENDAR = new CalendarServer();
 
-    public static boolean isSet() {
-        return theServer != null;
-    }
-
     public static void setServer(World world) {
         theServer = (new ServerHandler(world));
     }

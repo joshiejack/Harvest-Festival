@@ -1,4 +1,4 @@
-package joshie.harvest.api.core;
+package joshie.harvest.api.calendar;
 
 public enum Season {
     SPRING, SUMMER, AUTUMN, WINTER;

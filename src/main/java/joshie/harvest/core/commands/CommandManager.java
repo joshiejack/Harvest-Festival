@@ -21,6 +21,10 @@ public class CommandManager extends CommandBase implements ICommand {
     public void registerCommand(HFCommandBase command) {
         commands.put(command.getCommandName(), command);
     }
+    
+    public HFCommandBase getCommandFromString(String name) {
+        return commands.get(name);
+    }
 
     public Map getCommands() {
         return commands;

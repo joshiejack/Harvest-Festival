@@ -7,8 +7,7 @@ import joshie.harvest.calendar.CalendarServer;
 import joshie.harvest.core.handlers.ServerHandler;
 import joshie.harvest.crops.CropTrackerServer;
 import joshie.harvest.mining.MineTrackerServer;
-import joshie.harvest.player.PlayerDataServer;
-import net.minecraft.entity.EntityLivingBase;
+import joshie.harvest.player.PlayerTrackerServer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
@@ -47,16 +46,12 @@ public class ServerHelper {
         return theServer.getMineTracker();
     }
 
-    public static PlayerDataServer getPlayerData(EntityPlayer player) {
+    public static PlayerTrackerServer getPlayerData(EntityPlayer player) {
         return theServer.getPlayerData(player);
     }
 
     /** CAN AND WILL RETURN NULL, IF THE UUID COULD NOT BE FOUND **/
-    static PlayerDataServer getPlayerData(UUID uuid) {
+    static PlayerTrackerServer getPlayerData(UUID uuid) {
         return theServer.getPlayerData(uuid);
-    }
-
-    static void removeAllRelations(EntityLivingBase entity) {
-        theServer.removeAllRelations(entity);
     }
 }

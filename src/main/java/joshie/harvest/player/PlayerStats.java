@@ -13,7 +13,7 @@ public class PlayerStats implements IData {
     private double fatigue = 0D;
     private long gold;
     
-    public PlayerStats(PlayerDataServer master) {}
+    public PlayerStats(PlayerTrackerServer master) {}
 
     public CalendarDate getBirthday() {
         return birthday;

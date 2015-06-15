@@ -9,7 +9,7 @@ import joshie.harvest.core.config.General;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.lib.RenderIds;
-import joshie.harvest.npc.EntityNPCBuilder;
+import joshie.harvest.npc.entity.EntityNPCBuilder;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;

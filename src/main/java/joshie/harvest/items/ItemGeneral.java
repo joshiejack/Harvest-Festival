@@ -1,18 +1,13 @@
 package joshie.harvest.items;
 
-import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.core.ICreativeSorted;
-import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.helpers.SizeableHelper;
-import joshie.harvest.core.lib.SizeableMeta;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityChicken;
-import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
@@ -131,20 +126,9 @@ public class ItemGeneral extends ItemHFMeta implements ICreativeSorted {
                 }
 
                 return true;
-            } else if (metadata == MILKER && animal instanceof EntityCow) {
-                if (HarvestFestival.proxy.getAnimalTracker().canProduceProduct(data)) {
-                    ItemStack product = SizeableHelper.getSizeable(player, animal, SizeableMeta.MILK, Size.SMALL);
-                    if (!player.inventory.addItemStackToInventory(product)) {
-                        player.dropPlayerItemWithRandomChoice(product, false);
-                    }
-
-                    HarvestFestival.proxy.getAnimalTracker().setProducedProduct(data);
-                }
-
-                return true;
             } else if (metadata == MEDICINE) {
                 if (!player.worldObj.isRemote) {
-                    if (data.heal()) {
+                    if (data.heal(player)) {
                         stack.stackSize--;
                     }
                 }

@@ -5,16 +5,18 @@ import static joshie.harvest.core.network.PacketHandler.sendToEveryone;
 import java.util.Random;
 import java.util.UUID;
 
+import joshie.harvest.HarvestFestival;
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.animals.IAnimalType;
+import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.core.config.Animals;
-import joshie.harvest.core.helpers.RelationsHelper;
-import joshie.harvest.core.helpers.ServerHelper;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.helpers.generic.EntityHelper;
 import joshie.harvest.core.network.PacketSyncCanProduce;
 import joshie.harvest.items.ItemTreat;
+import joshie.harvest.relations.RelationshipHelper;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,6 +29,7 @@ public class AnimalData implements IAnimalData {
     private static final Random rand = new Random();
 
     private EntityAnimal animal;
+    private IRelatable relatable;
     private IAnimalData data;
     private IAnimalType type;
 
@@ -53,20 +56,24 @@ public class AnimalData implements IAnimalData {
     private byte daysPregnant;
 
     public AnimalData(IAnimalTracked animal) {
-        this.animal = animal.getData().getAnimal();
+        this.animal = (EntityAnimal) animal;
+        this.relatable = animal;
         this.data = animal.getData();
         this.type = animal.getType();
     }
 
     private int getDeathChance() {
+        //If the owner is offline, have a low chance of death
+        EntityPlayer owner = getOwner();
+        if (owner == null) return Integer.MAX_VALUE;
         //If the animal has not been fed, give it a fix changed of dying
         if (daysNotFed > 0) {
             return Math.max(1, 45 - daysNotFed * 3);
         }
 
         //Gets the adjusted relationship, 0-65k
-        int relationship = RelationsHelper.getRelationshipValue(animal, o_uuid);
-        double chance = (relationship / (double) RelationsHelper.ADJUSTED_MAX) * 200;
+        int relationship = HFApi.RELATIONS.getAdjustedRelationshipValue(owner, relatable);
+        double chance = (relationship / (double) RelationshipHelper.ADJUSTED_MAX) * 200;
         chance += healthiness;
         if (chance <= 1) {
             chance = 1D;
@@ -228,13 +235,13 @@ public class AnimalData implements IAnimalData {
     public void dismount(EntityPlayer player) {
         if (!thrown) {
             thrown = true;
-            affectRelationship(player, 25);
+            affectRelationship(player, 100);
         }
     }
 
     private void affectRelationship(EntityPlayer player, int amount) {
         if (player != null) {
-            ServerHelper.getPlayerData(player).affectRelationship(animal, amount);
+            HarvestFestival.proxy.getPlayerTracker(player).getRelationships().affectRelationship(relatable, amount);
         }
     }
 

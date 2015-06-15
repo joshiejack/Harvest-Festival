@@ -7,8 +7,9 @@ import joshie.harvest.blocks.items.ItemBlockFlower;
 import joshie.harvest.core.helpers.ClientHelper;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.core.helpers.ServerHelper;
+import joshie.harvest.init.HFConfig;
 import joshie.harvest.init.HFNPCs;
-import joshie.harvest.npc.EntityNPC;
+import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.gui.GuiMultiplayer;
@@ -23,6 +24,7 @@ import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.event.entity.item.ItemExpireEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
+import net.minecraftforge.event.entity.player.UseHoeEvent;
 import net.minecraftforge.event.terraingen.BiomeEvent.GetFoliageColor;
 import net.minecraftforge.event.world.WorldEvent;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -31,6 +33,13 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class GeneralEvents {
+    @SubscribeEvent
+    public void onUseHoe(UseHoeEvent event) {
+        if (HFConfig.vanilla.HOES_ARE_USELESS) {
+            event.setCanceled(true);
+        }
+    }
+    
     @SubscribeEvent
     public void onItemExpire(ItemExpireEvent event) {
         World world = event.entityItem.worldObj;

@@ -10,7 +10,7 @@ import java.util.Map;
 import joshie.harvest.api.WorldLocation;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvest.core.util.IData;
-import joshie.harvest.npc.EntityNPCMiner;
+import joshie.harvest.npc.entity.EntityNPCMiner;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;

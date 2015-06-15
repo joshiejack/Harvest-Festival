@@ -11,7 +11,7 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quest.IQuest;
 import joshie.harvest.init.HFCrops;
 import joshie.harvest.init.HFNPCs;
-import joshie.harvest.npc.EntityNPC;
+import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;

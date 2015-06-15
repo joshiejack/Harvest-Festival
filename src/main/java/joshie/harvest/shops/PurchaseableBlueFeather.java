@@ -2,7 +2,7 @@ package joshie.harvest.shops;
 
 import java.util.List;
 
-import joshie.harvest.core.helpers.PlayerHelper;
+import joshie.harvest.HarvestFestival;
 import joshie.harvest.core.util.Translate;
 import joshie.harvest.core.util.generic.Text;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,7 +16,7 @@ public class PurchaseableBlueFeather extends Purchaseable {
     
     @Override
     public boolean canBuy(World world, EntityPlayer player) {
-        return PlayerHelper.isElligibleToMarry(player);
+        return HarvestFestival.proxy.getPlayerTracker(player).getRelationships().isEllegibleToMarry();
     }
 
     @Override

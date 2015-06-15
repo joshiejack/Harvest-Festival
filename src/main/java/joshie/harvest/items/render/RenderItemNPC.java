@@ -6,7 +6,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.items.ItemNPCSpawner;
-import joshie.harvest.npc.EntityNPC;
+import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;

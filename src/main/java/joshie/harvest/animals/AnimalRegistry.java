@@ -73,6 +73,8 @@ public class AnimalRegistry implements IAnimalHandler {
             init();
             isInit = true;
         }
+        
+        System.out.println("GETTING COW?");
 
         //Return aminals
         if (animal instanceof EntityCow) {

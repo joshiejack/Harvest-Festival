@@ -1,6 +1,5 @@
 package joshie.harvest.core.handlers;
 
-import java.util.List;
 import java.util.UUID;
 
 import joshie.harvest.animals.AnimalTrackerServer;
@@ -8,8 +7,8 @@ import joshie.harvest.calendar.CalendarServer;
 import joshie.harvest.core.HFSavedData;
 import joshie.harvest.crops.CropTrackerServer;
 import joshie.harvest.mining.MineTrackerServer;
-import joshie.harvest.player.PlayerDataServer;
-import net.minecraft.entity.EntityLivingBase;
+import joshie.harvest.player.PlayerTrackerServer;
+import joshie.harvest.player.PlayerTracker;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.world.World;
@@ -55,19 +54,12 @@ public class ServerHandler {
     }
 
     //Returns the server side player data for this player
-    public PlayerDataServer getPlayerData(EntityPlayer player) {
+    public PlayerTrackerServer getPlayerData(EntityPlayer player) {
         return data.getPlayerData((EntityPlayerMP) player);
     }
 
     /** CAN AND WILL RETURN NULL, IF THE UUID COULD NOT BE FOUND **/
-    public PlayerDataServer getPlayerData(UUID uuid) {
+    public PlayerTrackerServer getPlayerData(UUID uuid) {
         return data.getPlayerData(uuid);
-    }
-
-    //Removes all relations
-    public void removeAllRelations(EntityLivingBase entity) {
-        for (EntityPlayer player : (List<EntityPlayer>) entity.worldObj.playerEntities) {
-            getPlayerData(player).removeRelations(entity);
-        }
     }
 }

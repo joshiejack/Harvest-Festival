@@ -12,7 +12,7 @@ import joshie.harvest.core.helpers.generic.EntityHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.crops.CropTrackerServer;
 import joshie.harvest.mining.MineTrackerServer;
-import joshie.harvest.player.PlayerDataServer;
+import joshie.harvest.player.PlayerTrackerServer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
@@ -27,7 +27,7 @@ public class HFSavedData extends WorldSavedData {
     private AnimalTrackerServer animals = new AnimalTrackerServer();
     private CropTrackerServer crops = new CropTrackerServer();
     private MineTrackerServer mines = new MineTrackerServer();
-    private HashMap<UUID, PlayerDataServer> players = new HashMap();
+    private HashMap<UUID, PlayerTrackerServer> players = new HashMap();
 
     public HFSavedData(String string) {
         super(string);
@@ -49,11 +49,11 @@ public class HFSavedData extends WorldSavedData {
         return mines;
     }
     
-    public Collection<PlayerDataServer> getPlayerData() {
+    public Collection<PlayerTrackerServer> getPlayerData() {
         return players.values();
     }
 
-    public PlayerDataServer getPlayerData(EntityPlayerMP player) {
+    public PlayerTrackerServer getPlayerData(EntityPlayerMP player) {
         UUID uuid = UUIDHelper.getPlayerUUID(player);
         if (players.containsKey(uuid)) {
             return players.get(uuid);
@@ -70,7 +70,7 @@ public class HFSavedData extends WorldSavedData {
             if (players.containsKey(uuid)) {
                 return players.get(uuid);
             } else {
-                PlayerDataServer data = new PlayerDataServer(player);
+                PlayerTrackerServer data = new PlayerTrackerServer(player);
                 players.put(uuid, data);
 
                 markDirty();
@@ -80,7 +80,7 @@ public class HFSavedData extends WorldSavedData {
     }
 
     /** CAN AND WILL RETURN NULL, IF THE UUID COULD NOT BE FOUND **/
-    public PlayerDataServer getPlayerData(UUID uuid) {
+    public PlayerTrackerServer getPlayerData(UUID uuid) {
         if (players.containsKey(uuid)) {
             return players.get(uuid);
         } else {
@@ -99,7 +99,7 @@ public class HFSavedData extends WorldSavedData {
         NBTTagList tag_list_players = nbt.getTagList("PlayerTracker", 10);
         for (int i = 0; i < tag_list_players.tagCount(); i++) {
             NBTTagCompound tag = tag_list_players.getCompoundTagAt(i);
-            PlayerDataServer data = new PlayerDataServer();
+            PlayerTrackerServer data = new PlayerTrackerServer();
             data.readFromNBT(tag);
             players.put(data.getUUID(), data);
         }
@@ -120,7 +120,7 @@ public class HFSavedData extends WorldSavedData {
         nbt.setTag("MineTracker", tag_mines);
 
         NBTTagList tag_list_players = new NBTTagList();
-        for (Map.Entry<UUID, PlayerDataServer> entry : players.entrySet()) {
+        for (Map.Entry<UUID, PlayerTrackerServer> entry : players.entrySet()) {
             if (entry.getKey() != null && entry.getValue() != null) {
                 NBTTagCompound tag = new NBTTagCompound();
                 entry.getValue().writeToNBT(tag);

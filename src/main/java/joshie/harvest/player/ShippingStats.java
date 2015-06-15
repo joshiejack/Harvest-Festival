@@ -13,8 +13,8 @@ import net.minecraft.nbt.NBTTagList;
 public class ShippingStats implements IData {
     private ArrayList<SellStack> toBeShipped = new ArrayList(); //What needs to be sold
 
-    public PlayerDataServer master;
-    public ShippingStats(PlayerDataServer master) {
+    public PlayerTrackerServer master;
+    public ShippingStats(PlayerTrackerServer master) {
         this.master = master;
     }
     

@@ -4,6 +4,9 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.animals.IAnimalType;
+import joshie.harvest.api.relations.IDataHandler;
+import joshie.harvest.api.relations.IRelatable;
+import joshie.harvest.relations.RelationshipHelper;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,6 +24,17 @@ public class EntityHarvestSheep extends EntitySheep implements IAnimalTracked {
         data = HFApi.ANIMALS.newData(this);
         type = HFApi.ANIMALS.getType(this);
         tasks.addTask(3, new EntityAIEat(this));
+        tasks.removeTask(field_146087_bs);
+    }
+    
+    @Override
+    public IDataHandler getDataHandler() {
+        return RelationshipHelper.getHandler("entity");
+    }
+    
+    @Override
+    public IRelatable getRelatable() {
+        return this;
     }
 
     @Override
@@ -44,14 +58,17 @@ public class EntityHarvestSheep extends EntitySheep implements IAnimalTracked {
 
                 return true;
             }
+
+            return false;
         }
 
-        return false;
+        HFApi.RELATIONS.talkTo(player, this);
+        return true;
     }
 
     @Override
     public EntitySheep createChild(EntityAgeable ageable) {
-        return new EntityHarvestSheep(this.worldObj);
+        return new EntityHarvestSheep(worldObj);
     }
 
     @Override

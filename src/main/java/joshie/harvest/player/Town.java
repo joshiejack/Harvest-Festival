@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 public class Town implements IData {
     public HashMap<String, TownBuilding> buildings = new HashMap();
 
-    public Town(PlayerDataServer master) {}
+    public Town(PlayerTrackerServer master) {}
     
     public void addBuilding(World world, BuildingStage building) {
         buildings.put(building.building.getName(), new TownBuilding(building, world.provider.dimensionId));

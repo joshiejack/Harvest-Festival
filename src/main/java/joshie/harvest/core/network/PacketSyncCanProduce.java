@@ -5,7 +5,6 @@ import io.netty.buffer.ByteBuf;
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
@@ -50,15 +49,11 @@ public class PacketSyncCanProduce implements IMessage, IMessageHandler<PacketSyn
     public IMessage onMessage(PacketSyncCanProduce message, MessageContext ctx) {
         if (message.isSenderClient) {
             EntityPlayerMP player = ctx.getServerHandler().playerEntity;
-            Entity entity = player.worldObj.getEntityByID(message.id);
-            if (entity instanceof IAnimalTracked) {
-                sendToClient(new PacketSyncCanProduce(message.id, false, HarvestFestival.proxy.getAnimalTracker().canProduceProduct(((IAnimalTracked) entity).getData())), player);
-            }
+            IAnimalTracked entity = (IAnimalTracked) player.worldObj.getEntityByID(message.id);
+            sendToClient(new PacketSyncCanProduce(message.id, false, HarvestFestival.proxy.getAnimalTracker().canProduceProduct(entity.getData())), player);
         } else {
-            Entity entity = MCClientHelper.getWorld().getEntityByID(message.id);
-            if (entity instanceof IAnimalTracked) {
-                HarvestFestival.proxy.getAnimalTracker().setCanProduceProduct(((IAnimalTracked) entity).getData(), message.canProduce);
-            }
+            IAnimalTracked entity = (IAnimalTracked) MCClientHelper.getWorld().getEntityByID(message.id);
+            HarvestFestival.proxy.getAnimalTracker().setCanProduceProduct(entity.getData(), message.canProduce);
         }
 
         return null;

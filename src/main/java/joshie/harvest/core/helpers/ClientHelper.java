@@ -4,7 +4,7 @@ import joshie.harvest.animals.AnimalTrackerClient;
 import joshie.harvest.calendar.CalendarClient;
 import joshie.harvest.core.handlers.ClientHandler;
 import joshie.harvest.crops.CropTrackerClient;
-import joshie.harvest.player.PlayerDataClient;
+import joshie.harvest.player.PlayerTrackerClient;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -30,7 +30,7 @@ public class ClientHelper {
         return theClient.getCropTracker();
     }
 
-    public static PlayerDataClient getPlayerData() {
+    public static PlayerTrackerClient getPlayerData() {
         return theClient.getPlayerData();
     }
 }

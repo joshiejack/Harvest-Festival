@@ -11,7 +11,7 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quest.IQuest;
 import joshie.harvest.core.network.quests.PacketQuestSetStage;
 import joshie.harvest.core.util.Translate;
-import joshie.harvest.npc.EntityNPC;
+import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;

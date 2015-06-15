@@ -7,7 +7,7 @@ import java.util.HashSet;
 import joshie.harvest.api.quest.IQuest;
 import joshie.harvest.api.shops.IShop;
 import joshie.harvest.core.network.quests.PacketQuestStart;
-import joshie.harvest.npc.EntityNPC;
+import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

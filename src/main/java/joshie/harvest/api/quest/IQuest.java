@@ -5,7 +5,7 @@ import io.netty.buffer.ByteBuf;
 import java.util.HashSet;
 
 import joshie.harvest.api.npc.INPC;
-import joshie.harvest.npc.EntityNPC;
+import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;

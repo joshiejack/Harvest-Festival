@@ -28,12 +28,14 @@ import joshie.harvest.init.HFItems;
 import joshie.harvest.init.HFShops;
 import joshie.harvest.items.render.RenderItemAnimal;
 import joshie.harvest.items.render.RenderItemNPC;
-import joshie.harvest.npc.EntityNPC;
-import joshie.harvest.npc.EntityNPCBuilder;
-import joshie.harvest.npc.EntityNPCMiner;
-import joshie.harvest.npc.EntityNPCShopkeeper;
-import joshie.harvest.npc.RenderNPC;
+import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.npc.entity.EntityNPCBuilder;
+import joshie.harvest.npc.entity.EntityNPCMiner;
+import joshie.harvest.npc.entity.EntityNPCShopkeeper;
+import joshie.harvest.npc.render.RenderNPC;
+import joshie.harvest.player.PlayerTracker;
 import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.MinecraftForgeClient;
@@ -78,7 +80,7 @@ public class HFClientProxy extends HFCommonProxy {
         if (Client.CHICKEN_OFFSET_FIX) {
             MinecraftForge.EVENT_BUS.register(new ChickenRenderFix());
         }
-        
+
         HFShops.initClient();
     }
 
@@ -98,9 +100,14 @@ public class HFClientProxy extends HFCommonProxy {
         name = WordUtils.capitalize(name);
         return name.replace(" ", "");
     }
-    
+
     @Override
     public AnimalTracker getAnimalTracker() {
         return ClientHelper.getAnimalTracker();
+    }
+
+    @Override
+    public PlayerTracker getPlayerTracker(EntityPlayer player) {
+        return ClientHelper.getPlayerData();
     }
 }

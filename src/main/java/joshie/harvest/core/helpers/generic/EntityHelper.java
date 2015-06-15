@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import joshie.harvest.core.helpers.UUIDHelper;
-import joshie.harvest.npc.EntityNPCBuilder;
+import joshie.harvest.npc.entity.EntityNPCBuilder;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityAnimal;

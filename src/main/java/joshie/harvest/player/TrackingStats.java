@@ -18,7 +18,7 @@ public class TrackingStats implements IData {
     
     //TODO: Add obtain triggers for mystril tools, and blessed tools
     private HashSet<SafeStack> obtained = new HashSet();    
-    public TrackingStats(PlayerDataServer master) {}
+    public TrackingStats(PlayerTrackerServer master) {}
     
     public boolean hasObtainedItem(SafeStack stack) {
         return obtained.contains(stack);

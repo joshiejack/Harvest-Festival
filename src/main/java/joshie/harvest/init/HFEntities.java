@@ -4,10 +4,10 @@ import joshie.harvest.HarvestFestival;
 import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.animals.entity.EntityHarvestSheep;
 import joshie.harvest.core.util.generic.EntityFakeItem;
-import joshie.harvest.npc.EntityNPC;
-import joshie.harvest.npc.EntityNPCBuilder;
-import joshie.harvest.npc.EntityNPCMiner;
-import joshie.harvest.npc.EntityNPCShopkeeper;
+import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.npc.entity.EntityNPCBuilder;
+import joshie.harvest.npc.entity.EntityNPCMiner;
+import joshie.harvest.npc.entity.EntityNPCShopkeeper;
 import cpw.mods.fml.common.registry.EntityRegistry;
 
 public class HFEntities {

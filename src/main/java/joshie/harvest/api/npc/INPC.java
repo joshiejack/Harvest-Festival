@@ -1,18 +1,13 @@
 package joshie.harvest.api.npc;
 
-import java.util.UUID;
-
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-import joshie.harvest.api.WorldLocation;
 import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.api.core.IDate;
+import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.shops.IShop;
-import joshie.harvest.npc.EntityNPC;
 import joshie.harvest.npc.gift.Gifts.Quality;
+import net.minecraft.item.ItemStack;
 
-public interface INPC {
+public interface INPC extends IRelatable {
     /** Assigns a shop to this NPC **/
     public INPC setShop(IShop shop);
 

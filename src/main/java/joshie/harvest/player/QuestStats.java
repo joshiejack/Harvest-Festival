@@ -19,9 +19,9 @@ public class QuestStats implements IData {
     private HashSet<IQuest> finished = new HashSet();
     private HashSet<IQuest> current = new HashSet(10);
 
-    public PlayerDataServer master;
+    public PlayerTrackerServer master;
 
-    public QuestStats(PlayerDataServer master) {
+    public QuestStats(PlayerTrackerServer master) {
         this.master = master;
     }
 

@@ -5,7 +5,7 @@ import java.util.UUID;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.core.helpers.NPCHelper;
-import joshie.harvest.npc.EntityNPC;
+import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
 

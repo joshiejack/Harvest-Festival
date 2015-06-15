@@ -5,9 +5,11 @@ import net.minecraftforge.common.config.Configuration;
 
 public class NPC {
     public static boolean FREEZE_NPC = false;
-    public static int MARRIAGE_REQUIREMENT;
+    public static int REAL_MARRIAGE_REQUIREMENT;
+    public static int ADJUSTED_MARRIAGE_REQUIREMENT;
 
     public static void init(Configuration config) {
-        MARRIAGE_REQUIREMENT = getInteger("Marriage Requirement", 60000);
+        ADJUSTED_MARRIAGE_REQUIREMENT = getInteger("Marriage Requirement", 60000);
+        REAL_MARRIAGE_REQUIREMENT = ADJUSTED_MARRIAGE_REQUIREMENT - Short.MAX_VALUE;
     }
 }

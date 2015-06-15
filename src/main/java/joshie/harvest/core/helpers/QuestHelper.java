@@ -5,6 +5,7 @@ import static joshie.harvest.core.network.PacketHandler.sendToServer;
 
 import java.util.HashSet;
 
+import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quest.IQuest;
 import joshie.harvest.core.helpers.generic.ItemHelper;
@@ -12,7 +13,7 @@ import joshie.harvest.core.network.PacketSyncGold;
 import joshie.harvest.core.network.quests.PacketQuestCompleted;
 import joshie.harvest.core.network.quests.PacketQuestDecreaseHeld;
 import joshie.harvest.core.util.generic.IdiotException;
-import joshie.harvest.player.PlayerDataServer;
+import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.quests.Quest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -56,20 +57,16 @@ public class QuestHelper {
         if (player.worldObj.isRemote) {
             throw new IdiotException("Joshie shouldn't be rewarding anyone with gold client side");
         } else {
-            PlayerDataServer data = ServerHelper.getPlayerData(player);
+            PlayerTrackerServer data = ServerHelper.getPlayerData(player);
             data.addGold(amount);
             sendToClient(new PacketSyncGold(data.getGold()), (EntityPlayerMP) player);
         }
     }
 
     public static void rewardRelations(EntityPlayer player, INPC npc, int amount) {
-        if (player.worldObj.isRemote) {
-            throw new IdiotException("Joshie shouldn't be rewarding anyone with gold client side");
-        } else {
-            ServerHelper.getPlayerData(player).affectRelationship(npc, amount);
-        }
+        HarvestFestival.proxy.getPlayerTracker(player).getRelationships().affectRelationship(npc, amount);
     }
-    
+
     public static void rewardItem(EntityPlayer player, ItemStack stack) {
         ItemHelper.addToPlayerInventory(player, stack);
     }
@@ -95,7 +92,8 @@ public class QuestHelper {
     public static void setQuestStage(EntityPlayer player, IQuest quest, int stage) {
         if (!player.worldObj.isRemote) {
             int previous = ServerHelper.getPlayerData(player).getQuests().getAQuest(quest).getStage();
-            ServerHelper.getPlayerData(player).getQuests().setStage(quest, stage);;
+            ServerHelper.getPlayerData(player).getQuests().setStage(quest, stage);
+            ;
             quest.onStageChanged(player, previous, stage);
         } else {
             int previous = ClientHelper.getPlayerData().getQuests().getAQuest(quest).getStage();

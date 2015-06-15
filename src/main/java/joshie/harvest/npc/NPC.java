@@ -7,23 +7,22 @@ import static joshie.harvest.npc.NPC.Gender.MALE;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.UUID;
 
 import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.api.core.IDate;
 import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.relations.IDataHandler;
 import joshie.harvest.api.shops.IShop;
 import joshie.harvest.calendar.CalendarDate;
-import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.Translate;
 import joshie.harvest.core.util.generic.Text;
+import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.gift.Gifts;
 import joshie.harvest.npc.gift.Gifts.Quality;
-import net.minecraft.entity.EntityLivingBase;
+import joshie.harvest.relations.RelationshipHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -131,6 +130,11 @@ public class NPC implements INPC {
         }
 
         Collections.shuffle(greetings);
+    }
+    
+    @Override
+    public IDataHandler getDataHandler() {
+        return RelationshipHelper.getHandler("npc");
     }
 
     @Override

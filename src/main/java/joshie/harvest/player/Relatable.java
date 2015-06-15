@@ -1,15 +1,10 @@
 package joshie.harvest.player;
 
-import static joshie.harvest.core.network.PacketHandler.sendToClient;
-
 import java.util.UUID;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.INPC;
-import joshie.harvest.core.helpers.generic.EntityHelper;
-import joshie.harvest.core.network.PacketSyncRelations;
 import joshie.harvest.core.util.IData;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class Relatable implements IData {
@@ -26,14 +21,6 @@ public class Relatable implements IData {
     public Relatable(INPC npc) {
         this.npc = npc;
         this.uuid = null;
-    }
-
-    public void sendPacket(EntityPlayerMP player, int relations, boolean particles) {
-        if(uuid != null) {
-            sendToClient(new PacketSyncRelations(EntityHelper.getEntityIDFromUUID(uuid), relations, true), player);
-        } else if (npc != null) {
-            sendToClient(new PacketSyncRelations(npc, relations, true), player);
-        }
     }
 
     @Override

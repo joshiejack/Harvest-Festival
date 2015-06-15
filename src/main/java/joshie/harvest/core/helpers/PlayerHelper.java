@@ -9,14 +9,13 @@ import joshie.harvest.calendar.CalendarDate;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSyncGold;
 import joshie.harvest.player.FridgeContents;
-import joshie.harvest.player.PlayerDataClient;
-import joshie.harvest.player.PlayerDataServer;
+import joshie.harvest.player.PlayerTrackerClient;
+import joshie.harvest.player.PlayerTrackerServer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
 
 public class PlayerHelper {
@@ -118,16 +117,16 @@ public class PlayerHelper {
         } else ClientHelper.getPlayerData().setBirthday(day, season, year);
     }
 
-    public static PlayerDataServer getData(EntityPlayer player) {
+    public static PlayerTrackerServer getData(EntityPlayer player) {
         return ServerHelper.getPlayerData(player);
     }
 
     /** CAN AND WILL RETURN NULL, IF THE UUID COULD NOT BE FOUND **/
-    public static PlayerDataServer getData(UUID uuid) {
+    public static PlayerTrackerServer getData(UUID uuid) {
         return ServerHelper.getPlayerData(uuid);
     }
 
-    public static PlayerDataClient getData() {
+    public static PlayerTrackerClient getData() {
         return ClientHelper.getPlayerData();
     }
 
@@ -136,21 +135,15 @@ public class PlayerHelper {
     }
 
     public static boolean isOnlineOrFriendsAre(UUID owner) {
-        PlayerDataServer data = getData(owner);
+        PlayerTrackerServer data = getData(owner);
         if (data == null) return false;
         else {
             return data.isOnlineOrFriendsAre();
         }
     }
 
-    public static boolean isElligibleToMarry(EntityPlayer player) {
-        if (player.worldObj.isRemote) {
-            return getData().canMarry();
-        } else return getData(player).canMarry();
-    }
-
     public static void addBuilding(World world, BuildingStage building) {
-        PlayerDataServer data = getData(building.owner);
+        PlayerTrackerServer data = getData(building.owner);
         if (data != null) {
             data.addBuilding(world, building);
         }

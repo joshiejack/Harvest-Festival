@@ -10,10 +10,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
 public class FriendTracker implements IData {
-    private PlayerDataServer master;
+    private PlayerTrackerServer master;
     private HashSet<UUID> friends = new HashSet();
 
-    public FriendTracker(PlayerDataServer master) {
+    public FriendTracker(PlayerTrackerServer master) {
         this.master = master;
     }
 

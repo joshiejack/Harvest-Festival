@@ -1,10 +1,10 @@
 package joshie.harvest.core;
 
 import joshie.harvest.animals.AnimalTracker;
-import joshie.harvest.core.handlers.api.HFApiHandler;
 import joshie.harvest.core.helpers.ServerHelper;
 import joshie.harvest.core.util.WorldDestroyer;
 import joshie.harvest.init.HFAnimals;
+import joshie.harvest.init.HFApiHandler;
 import joshie.harvest.init.HFBlocks;
 import joshie.harvest.init.HFBuildings;
 import joshie.harvest.init.HFCommands;
@@ -21,7 +21,9 @@ import joshie.harvest.init.HFPackets;
 import joshie.harvest.init.HFQuests;
 import joshie.harvest.init.HFShops;
 import joshie.harvest.init.HFVanilla;
+import joshie.harvest.player.PlayerTracker;
 import joshie.harvest.plugins.HFPlugins;
+import net.minecraft.entity.player.EntityPlayer;
 
 public class HFCommonProxy {
     public void preInit() {
@@ -61,5 +63,9 @@ public class HFCommonProxy {
 
     public AnimalTracker getAnimalTracker() {
         return ServerHelper.getAnimalTracker();
+    }
+
+    public PlayerTracker getPlayerTracker(EntityPlayer player) {
+        return ServerHelper.getPlayerData(player);
     }
 }

@@ -19,7 +19,7 @@ import joshie.harvest.core.lib.SizeableMeta;
 import joshie.harvest.init.HFItems;
 import joshie.harvest.init.HFNPCs;
 import joshie.harvest.items.ItemGeneral;
-import joshie.harvest.npc.EntityNPC;
+import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;

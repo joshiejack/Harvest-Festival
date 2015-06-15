@@ -36,12 +36,13 @@ public interface IAnimalData {
     /** Called when this animal is dismounted from a players head*/
     public void dismount(EntityPlayer player);
 
-    /** Feed this animal */
+    /** Feed this animal
+     *  May pass a null player if feeding is automated */
     public void feed(EntityPlayer player);
 
     /** Heal the animal
      *  @return     returns true if it was healed from a sickness */
-    public boolean heal();
+    public boolean heal(EntityPlayer player);
 
     /** Treat the animal for this day **/
     public void treat(ItemStack stack, EntityPlayer player);

@@ -12,6 +12,7 @@ import joshie.harvest.core.config.Animals;
 import joshie.harvest.core.helpers.RelationsHelper;
 import joshie.harvest.core.helpers.ServerHelper;
 import joshie.harvest.core.helpers.UUIDHelper;
+import joshie.harvest.core.helpers.generic.EntityHelper;
 import joshie.harvest.core.network.PacketSyncCanProduce;
 import joshie.harvest.items.ItemTreat;
 import net.minecraft.entity.EntityAgeable;
@@ -26,46 +27,35 @@ public class AnimalData implements IAnimalData {
     private static final Random rand = new Random();
 
     private EntityAnimal animal;
-    private EntityPlayer owner;
-    private IAnimalTracked tracking;
+    private IAnimalData data;
+    private IAnimalType type;
 
-    private UUID a_uuid;
+    private EntityPlayer owner;
     private UUID o_uuid;
 
-    private int currentLifespan = 0; //How many days this animal has lived for
-    private int healthiness = 127; //How healthy this animal is, full byte range
-    private int cleanliness = 0; //How clean this animal is, full byte range
-    private int daysNotFed; //How many subsequent days that this animal has not been fed
+    private short currentLifespan = 0; //How many days this animal has lived for
+    private byte healthiness = 127; //How healthy this animal is, full byte range
+    private byte cleanliness = 0; //How clean this animal is, full byte range
+    private byte daysNotFed; //How many subsequent days that this animal has not been fed
 
-    private boolean sickCheck; //Whether to check if the animal is sick
     private boolean isSick; //Whether the animal is sick or not
+    private boolean wasSick; //Whether the animal was previously sick
 
     //Product based stuff
-    private int daysPassed; //How many days have passed so far
-    private int maxProductsPerDay = 1; //The maximum number of products this animal can produce a day
-    private int numProductsProduced = 0; //The number of products this animal has produced today (resets each day)
+    private byte daysPassed; //How many days have passed so far
+    private byte maxProductsPerDay = 1; //The maximum number of products this animal can produce a day
+    private byte numProductsProduced = 0; //The number of products this animal has produced today (resets each day)
     private boolean thrown; //Whether this animal has been thrown or not today, only affects chickens
     private boolean treated; //Whether this animal has had it's treat for today
 
     //Pregnancy Test
     private boolean isPregnant;
-    private int daysPregnant;
+    private byte daysPregnant;
 
     public AnimalData(IAnimalTracked animal) {
-        this.tracking = animal;
-        this.animal = (EntityAnimal) animal;
-        this.a_uuid = UUIDHelper.getEntityUUID(this.animal);
-    }
-
-    /** May return null **/
-    private EntityPlayer getAndCreateOwner() {
-        if (o_uuid != null) {
-            if (owner == null) {
-                owner = joshie.harvest.core.helpers.generic.EntityHelper.getPlayerFromUUID(o_uuid);
-            }
-
-            return owner;
-        } else return null;
+        this.animal = animal.getData().getAnimal();
+        this.data = animal.getData();
+        this.type = animal.getType();
     }
 
     private int getDeathChance() {
@@ -75,7 +65,7 @@ public class AnimalData implements IAnimalData {
         }
 
         //Gets the adjusted relationship, 0-65k
-        int relationship = RelationsHelper.getRelationshipValue(animal, getOwner());
+        int relationship = RelationsHelper.getRelationshipValue(animal, o_uuid);
         double chance = (relationship / (double) RelationsHelper.ADJUSTED_MAX) * 200;
         chance += healthiness;
         if (chance <= 1) {
@@ -88,71 +78,73 @@ public class AnimalData implements IAnimalData {
     @Override
     public boolean newDay() {
         if (animal != null) {
-            //Stage 1, Check if the Animal is going to die
-            if (currentLifespan > tracking.getType().getMaxLifespan()) return false;
-            if (currentLifespan > tracking.getType().getMinLifespan() || isSick) {
+            //Check if the animal is going to die
+            if (currentLifespan > type.getMaxLifespan() || healthiness <= -120) return false;
+            if (currentLifespan > type.getMinLifespan() || healthiness < 0) {
                 if (rand.nextInt(getDeathChance()) == 0) {
                     return false;
                 }
             }
 
-            //Stage 1.5 Chance for animal to get sick if healthiness below 100
+            //If the animal is not sick, check the healthiness
             if (!isSick) {
-                if (healthiness < 100) {
-                    if (rand.nextInt(Math.max(1, healthiness)) == 0) {
-                        sickCheck = true;
-                        isSick = true;
-                    }
+                if (healthiness < 0) {
+                    isSick = true; //Make the animal sick
                 }
             }
 
-            //Stage 2, Do the basic increasing and resetting of counters
-            thrown = false;
-            treated = false;
+            //Reset everything and increase where appropriate
             currentLifespan++;
-            daysNotFed++;
-            daysPassed++;
             healthiness -= daysNotFed;
+            cleanliness--;
+
             if (cleanliness < 0) {
                 healthiness += cleanliness;
+            } else if (cleanliness >= 0) {
+                cleanliness = 0;
             }
 
-            if (sickCheck) {
-                if (isSick) {
+            daysNotFed++;
+            daysPassed++;
+            thrown = false;
+            treated = false;
+
+            if (isPregnant) {
+                daysPregnant++;
+            }
+
+            //Updating potion effects on the animal
+            if (isSick) {
+                if (!wasSick) {
+                    wasSick = true;
                     animal.addPotionEffect(new PotionEffect(Potion.confusion.id, 1000000, 0));
                     animal.addPotionEffect(new PotionEffect(Potion.blindness.id, 1000000, 0));
                     animal.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 1000000, 0));
-                } else {
+                }
+            } else {
+                if (wasSick) {
+                    wasSick = false;
                     animal.removePotionEffect(Potion.confusion.id);
                     animal.removePotionEffect(Potion.blindness.id);
                     animal.removePotionEffect(Potion.moveSlowdown.id);
-
-                    sickCheck = false;
                 }
             }
 
-            if (cleanliness > 0) {
-                cleanliness = 0;
-            } else if (cleanliness <= 0) {
-                cleanliness--;
-            }
-
-            //Stage 3, Reset the products produced per day
-            if (tracking.getType().getDaysBetweenProduction() > 0) {
-                if (daysPassed >= tracking.getType().getDaysBetweenProduction()) {
+            //Updating grabbing products between animals
+            int daysBetween = type.getDaysBetweenProduction();
+            if (daysBetween > 0) {
+                if (daysPassed >= daysBetween) {
                     daysPassed = 0;
                     numProductsProduced = 0;
-                    tracking.getType().newDay(tracking.getData(), animal);
+                    type.newDay(data, animal);
                 }
 
-                //Sync Whether this animal can produce, before we increase daysnotfed
                 sendToEveryone(new PacketSyncCanProduce(animal.getEntityId(), false, canProduce()));
             }
 
-            //Stage 4 Pregnancy time!
+            //Pregnancy Test!
             if (isPregnant) {
                 daysPregnant++;
-
                 if (daysPregnant >= Animals.PREGNANCY_TIMER) {
                     isPregnant = false;
                     daysPregnant = 0;
@@ -160,7 +152,7 @@ public class AnimalData implements IAnimalData {
                 }
             }
 
-            //Stage 5 Growth time!
+            //Children should grow!
             if (animal.isChild()) {
                 animal.addGrowth(1200);
             }
@@ -179,6 +171,18 @@ public class AnimalData implements IAnimalData {
         return animal;
     }
 
+    private EntityPlayer getAndCreateOwner() {
+        if (o_uuid != null) {
+            if (owner == null) {
+                owner = EntityHelper.getPlayerFromUUID(o_uuid);
+            }
+
+            return owner;
+        }
+
+        return null;
+    }
+
     @Override
     public EntityPlayer getOwner() {
         EntityPlayer owner = getAndCreateOwner();
@@ -186,11 +190,11 @@ public class AnimalData implements IAnimalData {
             if (animal.worldObj.provider.dimensionId == owner.worldObj.provider.dimensionId) {
                 if (animal.getDistanceToEntity(owner) <= 128) {
                     return owner;
-                } else return null;
-            } else return null;
+                }
+            }
         }
 
-        return animal.worldObj.getClosestPlayerToEntity(animal, 128);
+        return null;
     }
 
     @Override
@@ -199,17 +203,14 @@ public class AnimalData implements IAnimalData {
         this.o_uuid = UUIDHelper.getPlayerUUID(player);
     }
 
-    //Animals can produce products, if they are healthy, have been fed, and aren't over their daily limit
     @Override
     public boolean canProduce() {
         return healthiness > 0 && daysNotFed <= 0 && numProductsProduced < maxProductsPerDay;
     }
 
-    //Increase the amount of products this animal has produced for the day
     @Override
     public void setProduced() {
         numProductsProduced++;
-        //Increase the amount produced, then resync the data with the client
         sendToEveryone(new PacketSyncCanProduce(animal.getEntityId(), false, canProduce()));
     }
 
@@ -237,7 +238,6 @@ public class AnimalData implements IAnimalData {
         }
     }
 
-    //Sets this animal as having been fed, if it's already been fed, this will return false
     @Override
     public void feed(EntityPlayer player) {
         if (daysNotFed >= 0) {
@@ -246,9 +246,8 @@ public class AnimalData implements IAnimalData {
         }
     }
 
-    //Returns true if the animal was healed
     @Override
-    public boolean heal() {
+    public boolean heal(EntityPlayer player) {
         if (healthiness < 27) {
             healthiness += 100;
             if (healthiness >= 0) {
@@ -259,12 +258,11 @@ public class AnimalData implements IAnimalData {
         } else return false;
     }
 
-    //If the animal hasn't been treated yet today, and it's the right treat, then reward some points
     @Override
     public void treat(ItemStack stack, EntityPlayer player) {
         if (!treated) {
             IAnimalType type = ItemTreat.getTreatTypeFromStack(stack);
-            if (type == tracking.getType()) {
+            if (type == this.type) {
                 treated = true;
                 affectRelationship(player, 1000);
             }
@@ -301,34 +299,32 @@ public class AnimalData implements IAnimalData {
 
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
-        if (nbt.hasKey("Owner-UUIDMost")) {
-            o_uuid = new UUID(nbt.getLong("Owner-UUIDMost"), nbt.getLong("Owner-UUIDLeast"));
+        if (nbt.hasKey("Owner")) {
+            o_uuid = UUID.fromString(nbt.getString("Owner"));
         }
 
-        a_uuid = new UUID(nbt.getLong("UUIDMost"), nbt.getLong("UUIDLeast"));
         currentLifespan = nbt.getShort("CurrentLifespan");
         healthiness = nbt.getByte("Healthiness");
         cleanliness = nbt.getByte("Cleanliness");
         daysNotFed = nbt.getByte("DaysNotFed");
         daysPassed = nbt.getByte("DaysPassed");
         treated = nbt.getBoolean("Treated");
-        sickCheck = nbt.getBoolean("CheckIfSick");
+        wasSick = nbt.getBoolean("WasSick");
         isSick = nbt.getBoolean("IsSick");
         thrown = nbt.getBoolean("Thrown");
-        if (tracking.getType().getDaysBetweenProduction() > 0) {
+        if (type.getDaysBetweenProduction() > 0) {
             maxProductsPerDay = nbt.getByte("NumProducts");
             numProductsProduced = nbt.getByte("ProductsProduced");
         }
 
         isPregnant = nbt.getBoolean("IsPregnant");
-        daysPregnant = nbt.getInteger("DaysPregnant");
+        daysPregnant = nbt.getByte("DaysPregnant");
     }
 
     @Override
     public void writeToNBT(NBTTagCompound nbt) {
         if (o_uuid != null) {
-            nbt.setLong("Owner-UUIDMost", o_uuid.getMostSignificantBits());
-            nbt.setLong("Owner-UUIDLeast", o_uuid.getLeastSignificantBits());
+            nbt.setString("Owner", o_uuid.toString());
         }
 
         nbt.setShort("CurrentLifespan", (short) currentLifespan);
@@ -337,16 +333,16 @@ public class AnimalData implements IAnimalData {
         nbt.setByte("DaysNotFed", (byte) daysNotFed);
         nbt.setByte("DaysPassed", (byte) daysPassed);
         nbt.setBoolean("Treated", treated);
-        nbt.setBoolean("CheckIfSick", sickCheck);
+        nbt.setBoolean("WasSick", wasSick);
         nbt.setBoolean("IsSick", isSick);
         nbt.setBoolean("Thrown", thrown);
 
-        if (tracking.getType().getDaysBetweenProduction() > 0) {
+        if (type.getDaysBetweenProduction() > 0) {
             nbt.setByte("NumProducts", (byte) maxProductsPerDay);
             nbt.setByte("ProductsProduced", (byte) numProductsProduced);
         }
 
         nbt.setBoolean("IsPregnant", isPregnant);
-        nbt.setInteger("DaysPregnant", daysPregnant);
+        nbt.setByte("DaysPregnant", daysPregnant);
     }
 }

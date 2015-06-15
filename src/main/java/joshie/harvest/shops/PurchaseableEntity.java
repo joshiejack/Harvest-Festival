@@ -2,6 +2,7 @@ package joshie.harvest.shops;
 
 import java.util.List;
 
+import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.shops.IPurchaseable;
 import joshie.harvest.core.util.Translate;
 import joshie.harvest.core.util.generic.Text;
@@ -78,6 +79,7 @@ public class PurchaseableEntity implements IPurchaseable {
             } else {
                 EntityLeashKnot leash = EntityLeashKnot.func_110129_a(player.worldObj, (int) player.posX, (int) player.posY, (int) player.posZ);
                 ((EntityAnimal) theEntity).setLeashedToEntity(player, true);
+                ((IAnimalTracked) theEntity).getData().setOwner(player);
                 player.worldObj.spawnEntityInWorld(theEntity);
             }
         }

@@ -1,5 +1,7 @@
 package joshie.harvest.core.helpers;
 
+import java.util.UUID;
+
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.npc.EntityNPC;
 import net.minecraft.entity.EntityLivingBase;
@@ -10,6 +12,12 @@ public class RelationsHelper {
 
     /** Returns an adjusted relationship from 0-65,535 */
     public static int getRelationshipValue(EntityLivingBase entity, EntityPlayer player) {
+        if (entity.worldObj.isRemote) {
+            return 1 + Short.MAX_VALUE + ClientHelper.getPlayerData().getRelationship(entity);
+        } else return 1 + Short.MAX_VALUE + ServerHelper.getPlayerData(player).getRelationship(entity);
+    }
+    
+    public static int getRelationshipValue(EntityLivingBase entity, UUID player) {
         if (entity.worldObj.isRemote) {
             return 1 + Short.MAX_VALUE + ClientHelper.getPlayerData().getRelationship(entity);
         } else return 1 + Short.MAX_VALUE + ServerHelper.getPlayerData(player).getRelationship(entity);

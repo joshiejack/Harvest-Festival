@@ -1,10 +1,10 @@
 package joshie.harvest.calendar;
 
 import joshie.harvest.api.calendar.Season;
+import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.api.core.ISeasonData;
 import joshie.harvest.core.config.Calendar;
 import joshie.harvest.core.handlers.DataHelper;
-import joshie.harvest.core.helpers.CropHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -95,34 +95,11 @@ public class WeatherProvider extends WorldProviderSurface {
         return Vec3.createVectorHelper((double) f4, (double) f5, (double) f6);
     }
 
-    private float[] colorsSunriseSunset = new float[4];
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public float[] calcSunriseSunsetColors(float p_76560_1_, float partialTicks) {
-        float f2 = 0.4F;
-        float f3 = MathHelper.cos(p_76560_1_ * (float) Math.PI * 2.0F) - 0.0F;
-        float f4 = -0.0F;
-
-        if (f3 >= f4 - f2 && f3 <= f4 + f2) {
-            float f5 = (f3 - f4) / f2 * 0.5F + 0.5F;
-            float f6 = 1.0F - (1.0F - MathHelper.sin(f5 * (float) Math.PI)) * 0.99F;
-            f6 *= f6;
-            colorsSunriseSunset[0] = f5 * 0.3F + 0.7F;
-            colorsSunriseSunset[1] = f5 * f5 * 0.7F + 0.2F;
-            colorsSunriseSunset[2] = f5 * f5 * 0.0F + 0.2F;
-            colorsSunriseSunset[3] = f6;
-            return colorsSunriseSunset;
-        } else {
-            return null;
-        }
-    }
-
     public double clamp(double min, double max, double val) {
         return Math.max(min, Math.min(max, val));
     }
 
-    //Cheers to chylex for a bunch of the maths on this one ;D
+    /** Cheers to chylex for a bunch of the maths on this one ;D **/
     @Override
     public float calculateCelestialAngle(long worldTime, float partialTicks) {
         ISeasonData data = DataHelper.getCalendar().getDate().getSeasonData();
@@ -140,7 +117,8 @@ public class WeatherProvider extends WorldProviderSurface {
 
     @Override
     public boolean canSnowAt(int x, int y, int z, boolean checkLight) {
-        if (DataHelper.getCalendar().getDate().getSeason() == Season.WINTER) {
+        Weather weather = DataHelper.getCalendar().getTodaysWeather();
+        if (weather == Weather.SNOW || weather == Weather.BLIZZARD) {
             BiomeGenBase biomegenbase = worldObj.getBiomeGenForCoords(x, z);
             float f = biomegenbase.getFloatTemperature(x, y, z);
 
@@ -166,65 +144,28 @@ public class WeatherProvider extends WorldProviderSurface {
 
     @Override
     public void updateWeather() {
-        if (!worldObj.provider.hasNoSky) {
-            if (!worldObj.isRemote) {
-                if(worldObj.isRaining()) {
-                    CropHelper.getServerTracker().doRain();
+        if (!worldObj.isRemote) {
+            Weather weather = DataHelper.getCalendar().getTodaysWeather();
+            if (weather == Weather.SUNNY) {
+                if (worldObj.rainingStrength > 0F) {
+                    worldObj.rainingStrength = worldObj.rainingStrength - 0.01F;
                 }
-                
-                ISeasonData data = DataHelper.getCalendar().getDate().getSeasonData();
-                int i = worldObj.worldInfo.getThunderTime();
-
-                if (i <= 0) {
-                    if (worldObj.worldInfo.isThundering()) {
-                        worldObj.worldInfo.setThunderTime(worldObj.rand.nextInt(data.getRainEndChance()) + 3600);
-                    } else {
-                        worldObj.worldInfo.setThunderTime(worldObj.rand.nextInt(data.getRainStartChance()) + 12000);
-                    }
-                } else {
-                    i = i - data.getThunderLength();
-                    worldObj.worldInfo.setThunderTime(i);
-
-                    if (i <= 0) {
-                        worldObj.worldInfo.setThundering(!worldObj.worldInfo.isThundering());
-                    }
+            } else if (weather == Weather.RAIN || weather == Weather.SNOW) {
+                if (worldObj.rainingStrength < 1F) {
+                    worldObj.rainingStrength = worldObj.rainingStrength + 0.01F;
                 }
-
-                worldObj.prevThunderingStrength = worldObj.thunderingStrength;
-
-                if (worldObj.worldInfo.isThundering()) {
-                    worldObj.thunderingStrength = (float) ((double) worldObj.thunderingStrength + 0.01D);
-                } else {
-                    worldObj.thunderingStrength = (float) ((double) worldObj.thunderingStrength - 0.01D);
+            } else if (weather == Weather.TYPHOON || weather == Weather.BLIZZARD) {
+                if (worldObj.rainingStrength < 2F) {
+                    worldObj.rainingStrength = worldObj.rainingStrength + 0.01F;
                 }
-
-                worldObj.thunderingStrength = MathHelper.clamp_float(worldObj.thunderingStrength, 0.0F, 1.0F);
-                int j = worldObj.worldInfo.getRainTime();
-
-                if (j <= 0) {
-                    if (worldObj.worldInfo.isRaining()) {
-                        worldObj.worldInfo.setRainTime(worldObj.rand.nextInt(data.getRainEndChance()) + 12000);
-                    } else {
-                        worldObj.worldInfo.setRainTime(worldObj.rand.nextInt(data.getRainStartChance()) + 12000);
-                    }
-                } else {
-                    j = j - data.getRainLength();
-                    worldObj.worldInfo.setRainTime(j);
-
-                    if (j <= 0) {
-                        worldObj.worldInfo.setRaining(!worldObj.worldInfo.isRaining());
-                    }
+            }
+            
+            if (weather == Weather.TYPHOON) {
+                if (worldObj.thunderingStrength < 1F) {
+                    worldObj.thunderingStrength = worldObj.thunderingStrength + 0.01F;
                 }
-
-                worldObj.prevRainingStrength = worldObj.rainingStrength;
-
-                if (worldObj.worldInfo.isRaining()) {
-                    worldObj.rainingStrength = (float) ((double) worldObj.rainingStrength + 0.01D);
-                } else {
-                    worldObj.rainingStrength = (float) ((double) worldObj.rainingStrength - 0.01D);
-                }
-
-                worldObj.rainingStrength = MathHelper.clamp_float(worldObj.rainingStrength, 0.0F, 1.0F);
+            } else if (worldObj.thunderingStrength > 0F) {
+                worldObj.thunderingStrength = worldObj.thunderingStrength - 0.01F;
             }
         }
     }

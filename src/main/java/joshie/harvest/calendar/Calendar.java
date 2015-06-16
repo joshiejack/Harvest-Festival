@@ -3,10 +3,12 @@ package joshie.harvest.calendar;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.calendar.Season;
+import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.api.core.ISeasonData;
 
 public class Calendar {
     protected ICalendarDate date = HFApi.CALENDAR.newDate(1, Season.SPRING, 1);
+    protected Weather[] forecast = new Weather[7];
 
     public ICalendarDate getDate() {
         return date;
@@ -17,4 +19,15 @@ public class Calendar {
     }
 
     public void newDay() {}
+    
+    public Weather getForecast(int day) {
+        day = Math.max(0, Math.min(6, day));
+        return forecast[day];
+    }
+
+    public Weather getTodaysWeather() {
+        return forecast[0];
+    }
+
+    public void setForecast(Weather[] forecast) {}
 }

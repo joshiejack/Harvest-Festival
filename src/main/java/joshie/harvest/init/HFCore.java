@@ -26,6 +26,7 @@ import joshie.harvest.core.network.PacketSyncBirthday;
 import joshie.harvest.core.network.PacketSyncCanProduce;
 import joshie.harvest.core.network.PacketSyncCooking;
 import joshie.harvest.core.network.PacketSyncCrop;
+import joshie.harvest.core.network.PacketSyncForecast;
 import joshie.harvest.core.network.PacketSyncFridge;
 import joshie.harvest.core.network.PacketSyncGold;
 import joshie.harvest.core.network.PacketSyncMarker;
@@ -77,6 +78,7 @@ public class HFCore {
         PacketHandler.registerPacket(PacketCropRequest.class, Side.SERVER);
         PacketHandler.registerPacket(PacketSetCalendar.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketSetCalendar.class, Side.SERVER);
+        PacketHandler.registerPacket(PacketSyncForecast.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketSyncCrop.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketSyncGold.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketSyncCanProduce.class, Side.CLIENT);

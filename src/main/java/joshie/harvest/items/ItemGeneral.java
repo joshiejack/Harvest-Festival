@@ -2,8 +2,8 @@ package joshie.harvest.items;
 
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
+import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.util.ICreativeSorted;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityAnimal;

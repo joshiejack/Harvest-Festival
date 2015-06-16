@@ -3,7 +3,7 @@ package joshie.harvest.core.network;
 import static joshie.harvest.core.network.PacketHandler.sendToClient;
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.animals.IAnimalTracked;
-import joshie.harvest.core.handlers.DataHelper;
+import joshie.harvest.core.handlers.HFTracker;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import net.minecraft.entity.player.EntityPlayerMP;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
@@ -50,10 +50,10 @@ public class PacketSyncCanProduce implements IMessage, IMessageHandler<PacketSyn
         if (message.isSenderClient) {
             EntityPlayerMP player = ctx.getServerHandler().playerEntity;
             IAnimalTracked entity = (IAnimalTracked) player.worldObj.getEntityByID(message.id);
-            sendToClient(new PacketSyncCanProduce(message.id, false, DataHelper.getAnimalTracker().canProduceProduct(entity.getData())), player);
+            sendToClient(new PacketSyncCanProduce(message.id, false, HFTracker.getAnimalTracker().canProduceProduct(entity.getData())), player);
         } else {
             IAnimalTracked entity = (IAnimalTracked) MCClientHelper.getWorld().getEntityByID(message.id);
-            DataHelper.getAnimalTracker().setCanProduceProduct(entity.getData(), message.canProduce);
+            HFTracker.getAnimalTracker().setCanProduceProduct(entity.getData(), message.canProduce);
         }
 
         return null;

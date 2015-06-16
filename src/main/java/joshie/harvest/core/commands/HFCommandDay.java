@@ -1,6 +1,6 @@
 package joshie.harvest.core.commands;
 
-import joshie.harvest.core.handlers.DataHelper;
+import joshie.harvest.core.handlers.HFTracker;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSetCalendar;
 import net.minecraft.command.ICommandSender;
@@ -20,7 +20,7 @@ public class HFCommandDay extends HFCommandBase  {
     public boolean processCommand(ICommandSender sender, String[] parameters) {
         if (parameters != null && parameters.length == 1) {
             try {
-                PacketHandler.sendToServer(new PacketSetCalendar(DataHelper.getCalendar().getDate().setDay(Integer.parseInt(parameters[0]))));
+                PacketHandler.sendToServer(new PacketSetCalendar(HFTracker.getCalendar().getDate().setDay(Integer.parseInt(parameters[0]))));
                 return true;
             } catch (NumberFormatException e) {}
         }

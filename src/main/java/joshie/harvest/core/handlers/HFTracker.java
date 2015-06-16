@@ -16,7 +16,7 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class DataHelper {
+public class HFTracker {
     private static final CalendarServer TEMP_CALENDAR = new CalendarServer();
 
     @SideOnly(Side.CLIENT)
@@ -64,7 +64,7 @@ public class DataHelper {
     }
     
     public static Collection<PlayerTrackerServer> getPlayerTrackers() {
-        return theServer.getData().getPlayerData();
+        return theServer.getPlayerData();
     }
     
     @SideOnly(Side.CLIENT)

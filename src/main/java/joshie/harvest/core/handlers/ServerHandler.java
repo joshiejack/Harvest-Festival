@@ -1,5 +1,6 @@
 package joshie.harvest.core.handlers;
 
+import java.util.Collection;
 import java.util.UUID;
 
 import joshie.harvest.animals.AnimalTrackerServer;
@@ -23,8 +24,8 @@ public class ServerHandler extends SideHandler {
         }
     }
     
-    public HFSavedData getData() {
-        return data;
+    public Collection<PlayerTrackerServer> getPlayerData() {
+        return data.getPlayerData();
     }
     
     @Override

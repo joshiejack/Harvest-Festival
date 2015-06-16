@@ -1,7 +1,7 @@
 package joshie.harvest.core.network;
 
 import io.netty.buffer.ByteBuf;
-import joshie.harvest.core.handlers.DataHelper;
+import joshie.harvest.core.handlers.HFTracker;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
@@ -26,7 +26,7 @@ public class PacketSyncGold implements IMessage, IMessageHandler<PacketSyncGold,
     
     @Override
     public IMessage onMessage(PacketSyncGold message, MessageContext ctx) {      
-        DataHelper.getPlayerTracker().getStats().setGold(message.gold);
+        HFTracker.getPlayerTracker().getStats().setGold(message.gold);
         return null;
     }
 }

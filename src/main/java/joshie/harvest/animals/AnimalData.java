@@ -11,7 +11,7 @@ import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.animals.IAnimalType;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.core.config.Animals;
-import joshie.harvest.core.handlers.DataHelper;
+import joshie.harvest.core.handlers.HFTracker;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.helpers.generic.EntityHelper;
 import joshie.harvest.core.network.PacketSyncCanProduce;
@@ -242,7 +242,7 @@ public class AnimalData implements IAnimalData {
 
     private void affectRelationship(EntityPlayer player, int amount) {
         if (player != null) {
-            DataHelper.getPlayerTracker(player).getRelationships().affectRelationship(relatable, amount);
+            HFTracker.getPlayerTracker(player).getRelationships().affectRelationship(relatable, amount);
         }
     }
 

@@ -6,7 +6,7 @@ import java.util.HashSet;
 
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.core.config.Animals;
-import joshie.harvest.core.handlers.DataHelper;
+import joshie.harvest.core.handlers.HFTracker;
 import joshie.harvest.core.network.PacketDismount;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSyncCanProduce;
@@ -29,7 +29,7 @@ public class AnimalEvents {
     public void onEntityLoaded(EntityJoinWorldEvent event) {
         Entity entity = event.entity;
         if (entity instanceof IAnimalTracked) {
-            DataHelper.getAnimalTracker().onJoinWorld(((IAnimalTracked) entity).getData());
+            HFTracker.getAnimalTracker().onJoinWorld(((IAnimalTracked) entity).getData());
             if (event.world.isRemote) {
                 sendToServer(new PacketSyncCanProduce(entity.getEntityId(), true));
             }
@@ -39,7 +39,7 @@ public class AnimalEvents {
     @SubscribeEvent
     public void onEntityDeath(LivingDeathEvent event) {
         if (event.entityLiving instanceof IAnimalTracked) {
-            DataHelper.getAnimalTracker().onDeath(((IAnimalTracked) event.entityLiving));
+            HFTracker.getAnimalTracker().onDeath(((IAnimalTracked) event.entityLiving));
         }
     }
 

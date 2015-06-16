@@ -10,7 +10,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quest.IQuest;
-import joshie.harvest.core.handlers.DataHelper;
+import joshie.harvest.core.handlers.HFTracker;
 import joshie.harvest.core.helpers.SizeableHelper;
 import joshie.harvest.core.helpers.ToolHelper;
 import joshie.harvest.core.helpers.generic.ItemHelper;
@@ -47,7 +47,7 @@ public class QuestCowCare extends Quest {
                         hasBrushed = true;
                         hasChanged = true;
                     } else if (!hasMilked && ToolHelper.isMilker(held)) {
-                        if (DataHelper.getAnimalTracker().canProduceProduct(cow.getData())) {
+                        if (HFTracker.getAnimalTracker().canProduceProduct(cow.getData())) {
                             hasMilked = true;
                             hasChanged = true;
                         }
@@ -61,7 +61,7 @@ public class QuestCowCare extends Quest {
                                 increaseStage(player);
                             }
 
-                            DataHelper.markDirty();
+                            HFTracker.markDirty();
                         }
                     }
                 }

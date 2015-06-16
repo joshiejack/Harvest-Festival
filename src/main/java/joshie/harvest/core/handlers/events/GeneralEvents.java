@@ -3,7 +3,7 @@ package joshie.harvest.core.handlers.events;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.blocks.BlockFlower;
 import joshie.harvest.blocks.items.ItemBlockFlower;
-import joshie.harvest.core.handlers.DataHelper;
+import joshie.harvest.core.handlers.HFTracker;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.init.HFConfig;
 import joshie.harvest.init.HFNPCs;
@@ -108,7 +108,7 @@ public class GeneralEvents {
     public void onLoad(WorldEvent.Load event) {
         World world = event.world;
         if (!world.isRemote && world.provider.dimensionId == 0) {
-            DataHelper.reset(world);
+            HFTracker.reset(world);
         }
     }
 
@@ -117,14 +117,14 @@ public class GeneralEvents {
     @SubscribeEvent
     public void onOpenGui(GuiOpenEvent event) {
         if (event.gui instanceof GuiSelectWorld || event.gui instanceof GuiMultiplayer) {
-            DataHelper.reset(null);
+            HFTracker.reset(null);
         }
     }
 
     //Orange Leaves in Autumn
     @SubscribeEvent
     public void getFoliageColor(GetFoliageColor event) {
-        if (DataHelper.getCalendar().getDate().getSeason() == Season.AUTUMN) {
+        if (HFTracker.getCalendar().getDate().getSeason() == Season.AUTUMN) {
             event.newColor = 0xFF9900;
         }
     }

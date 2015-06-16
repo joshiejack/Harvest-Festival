@@ -13,7 +13,7 @@ import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.calendar.Weekday;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
-import joshie.harvest.core.handlers.DataHelper;
+import joshie.harvest.core.handlers.HFTracker;
 import joshie.harvest.core.helpers.CropHelper;
 import joshie.harvest.core.helpers.TrackingHelper;
 import joshie.harvest.core.network.PacketSyncCrop;
@@ -31,7 +31,7 @@ import net.minecraftforge.common.IPlantable;
 public class CropTrackerServer extends CropTracker implements IData {
     public void newDay() {
         ArrayList<ICropData> toWither = new ArrayList(); //Create a new wither list
-        Weekday day = DataHelper.getCalendar().getDate().getWeekday();
+        Weekday day = HFTracker.getCalendar().getDate().getWeekday();
         Iterator<Map.Entry<WorldLocation, ICropData>> iter = crops.entrySet().iterator();
         while (iter.hasNext()) {
             Map.Entry<WorldLocation, ICropData> entry = iter.next();
@@ -80,7 +80,7 @@ public class CropTrackerServer extends CropTracker implements IData {
 
     //Updates the world, so we know it has rained!
     public void doRain() {
-        if (!DataHelper.getCalendar().getDate().equals(lastRain)) {
+        if (!HFTracker.getCalendar().getDate().equals(lastRain)) {
             for (WorldLocation location : crops.keySet()) {
                 hydrate(getWorld(location.dimension), location.x, location.y, location.z);
             }
@@ -103,7 +103,7 @@ public class CropTrackerServer extends CropTracker implements IData {
         ICropData data = getCropDataForLocation(world, x, y, z);
         data.grow();
         sendToEveryone(new PacketSyncCrop(data.getLocation(), data));
-        DataHelper.markDirty();
+        HFTracker.markDirty();
     }
 
     @Override
@@ -117,7 +117,7 @@ public class CropTrackerServer extends CropTracker implements IData {
 
         crops.put(data.getLocation(), data);
         sendToEveryone(new PacketSyncCrop(data.getLocation(), data));
-        DataHelper.markDirty();
+        HFTracker.markDirty();
         return true;
     }
 
@@ -132,10 +132,10 @@ public class CropTrackerServer extends CropTracker implements IData {
             }
 
             if (player != null) {
-                DataHelper.getPlayerTracker(player).getTracking().onHarvested(data);
+                HFTracker.getPlayerTracker(player).getTracking().onHarvested(data);
             }
 
-            DataHelper.markDirty();
+            HFTracker.markDirty();
             sendToEveryone(new PacketSyncCrop(data.getLocation(), (CropData) data));
             return harvest;
         } else return null;
@@ -144,7 +144,7 @@ public class CropTrackerServer extends CropTracker implements IData {
     @Override
     public void hydrate(World world, int x, int y, int z) {
         getCropDataForLocation(world, x, y, z).setHydrated();
-        DataHelper.markDirty();
+        HFTracker.markDirty();
     }
 
     @Override
@@ -157,7 +157,7 @@ public class CropTrackerServer extends CropTracker implements IData {
     @Override
     public void removeCrop(World world, int x, int y, int z) {
         super.removeCrop(world, x, y, z);
-        DataHelper.markDirty();
+        HFTracker.markDirty();
     }
 
     @Override

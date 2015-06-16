@@ -5,7 +5,7 @@ import java.util.HashSet;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.quest.IQuest;
-import joshie.harvest.core.handlers.DataHelper;
+import joshie.harvest.core.handlers.HFTracker;
 import joshie.harvest.core.helpers.QuestHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.ChatFontRenderer;
@@ -77,7 +77,7 @@ public class GuiNPC extends GuiBase {
 
     private String format(String string) {
         if (string == null) return "FORGOT SOME TEXT DUMBASS";
-        PlayerStats stats = DataHelper.getPlayerTracker().getStats();
+        PlayerStats stats = HFTracker.getPlayerTracker().getStats();
         string = string.replace("<BR>", SystemUtils.LINE_SEPARATOR);
         string = string.replace("Þ", player.getDisplayName());
         string = string.replace("ℇ", npc.getNPC().getUnlocalizedName());
@@ -87,7 +87,7 @@ public class GuiNPC extends GuiBase {
             string = string.replace("�?�", npc.getLover().getNPC().getUnlocalizedName());
         } else string = string.replace("�?�", Translate.translate("nolover"));
 
-        return string.replace("♥", DataHelper.getPlayerTracker().getRelationships().getLover());
+        return string.replace("♥", HFTracker.getPlayerTracker().getRelationships().getLover());
     }
 
     protected void drawLines() {
@@ -206,7 +206,7 @@ public class GuiNPC extends GuiBase {
     }
 
     protected String getScript() {
-        return DataHelper.getPlayerTracker().getQuests().getScript(player, npc);
+        return HFTracker.getPlayerTracker().getQuests().getScript(player, npc);
     }
 
     @Override

@@ -5,7 +5,7 @@ import java.util.UUID;
 
 import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.buildings.BuildingStage;
-import joshie.harvest.core.handlers.DataHelper;
+import joshie.harvest.core.handlers.HFTracker;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSyncGold;
 import joshie.harvest.player.FridgeContents;
@@ -66,48 +66,48 @@ public class PlayerHelper {
     }
 
     public static double getStamina(EntityPlayer player) {
-        return DataHelper.getPlayerTracker(player).getStats().getStamina();
+        return HFTracker.getPlayerTracker(player).getStats().getStamina();
     }
 
     public static double getFatigue(EntityPlayer player) {
-        return DataHelper.getPlayerTracker(player).getStats().getFatigue();
+        return HFTracker.getPlayerTracker(player).getStats().getFatigue();
     }
 
     public static void affectStats(EntityPlayer player, double stamina, double fatigue) {
-        DataHelper.getPlayerTracker(player).getStats().affectStats(stamina, fatigue);
+        HFTracker.getPlayerTracker(player).getStats().affectStats(stamina, fatigue);
     }
 
     public static ICalendarDate getBirthday(EntityPlayer player) {
-        return DataHelper.getPlayerTracker(player).getStats().getBirthday();
+        return HFTracker.getPlayerTracker(player).getStats().getBirthday();
     }
 
     public static long getGold(EntityPlayer player) {
-        return DataHelper.getPlayerTracker(player).getStats().getGold();
+        return HFTracker.getPlayerTracker(player).getStats().getGold();
     }
 
     public static void adjustGold(EntityPlayer player, long gold) {
         if (!player.worldObj.isRemote) {
-            DataHelper.getPlayerTracker(player).getStats().addGold(gold);
+            HFTracker.getPlayerTracker(player).getStats().addGold(gold);
             PacketHandler.sendToClient(new PacketSyncGold(getGold(player)), (EntityPlayerMP) player);
         }
     }
 
     public static void setGold(EntityPlayer player, long gold) {
         if (!player.worldObj.isRemote) {
-            DataHelper.getPlayerTracker(player).getStats().setGold(gold);
+            HFTracker.getPlayerTracker(player).getStats().setGold(gold);
             PacketHandler.sendToClient(new PacketSyncGold(PlayerHelper.getGold(player)), (EntityPlayerMP) player);
         }
     }
 
     public static FridgeContents getFridge(EntityPlayer player) {
-        return DataHelper.getPlayerTracker(player).getFridge();
+        return HFTracker.getPlayerTracker(player).getFridge();
     }
 
     public static boolean isOnlineOrFriendsAre(UUID owner) {
-        return DataHelper.getPlayerTracker(owner).getFriendTracker().isOnlineOrFriendsAre();
+        return HFTracker.getPlayerTracker(owner).getFriendTracker().isOnlineOrFriendsAre();
     }
 
     public static void addBuilding(World world, BuildingStage building) {
-        DataHelper.getPlayerTracker(building.owner).getTown().addBuilding(world, building);
+        HFTracker.getPlayerTracker(building.owner).getTown().addBuilding(world, building);
     }
 }

@@ -7,7 +7,7 @@ import java.util.HashSet;
 
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quest.IQuest;
-import joshie.harvest.core.handlers.DataHelper;
+import joshie.harvest.core.handlers.HFTracker;
 import joshie.harvest.core.helpers.generic.ItemHelper;
 import joshie.harvest.core.network.PacketSyncGold;
 import joshie.harvest.core.network.quests.PacketQuestDecreaseHeld;
@@ -22,7 +22,7 @@ import net.minecraft.network.play.server.S2FPacketSetSlot;
 
 public class QuestHelper {
     public static void completeQuest(EntityPlayer player, Quest quest) {
-        DataHelper.getPlayerTracker(player).getQuests().markCompleted(quest, true);
+        HFTracker.getPlayerTracker(player).getQuests().markCompleted(quest, true);
     }
 
     public static void takeHeldStack(EntityPlayer player, int amount) {
@@ -36,7 +36,7 @@ public class QuestHelper {
     }
 
     public static HashSet<IQuest> getCurrentQuest(EntityPlayer player) {
-        return DataHelper.getPlayerTracker(player).getQuests().getCurrent();
+        return HFTracker.getPlayerTracker(player).getQuests().getCurrent();
     }
 
     /************************** REWARDS *****************************/
@@ -44,14 +44,14 @@ public class QuestHelper {
         if (player.worldObj.isRemote) {
             throw new IdiotException("Joshie shouldn't be rewarding anyone with gold client side");
         } else {
-            PlayerStats stats = DataHelper.getPlayerTracker(player).getStats();
+            PlayerStats stats = HFTracker.getPlayerTracker(player).getStats();
             stats.addGold(amount);
             sendToClient(new PacketSyncGold(stats.getGold()), (EntityPlayerMP) player);
         }
     }
 
     public static void rewardRelations(EntityPlayer player, INPC npc, int amount) {
-        DataHelper.getPlayerTracker(player).getRelationships().affectRelationship(npc, amount);
+        HFTracker.getPlayerTracker(player).getRelationships().affectRelationship(npc, amount);
     }
 
     public static void rewardItem(EntityPlayer player, ItemStack stack) {
@@ -59,25 +59,25 @@ public class QuestHelper {
     }
 
     public static void markCompleted(EntityPlayer player, IQuest quest) {
-        DataHelper.getPlayerTracker(player).getQuests().markCompleted(quest, false);
+        HFTracker.getPlayerTracker(player).getQuests().markCompleted(quest, false);
     }
 
     public static void markAvailable(EntityPlayer player, IQuest quest) {
-        DataHelper.getPlayerTracker(player).getQuests().setAvailable(quest);
+        HFTracker.getPlayerTracker(player).getQuests().setAvailable(quest);
     }
 
     public static void markAsCurrent(EntityPlayer player, IQuest quest) {
-        DataHelper.getPlayerTracker(player).getQuests().addAsCurrent(quest);
+        HFTracker.getPlayerTracker(player).getQuests().addAsCurrent(quest);
     }
 
     public static void setQuestStage(EntityPlayer player, IQuest quest, int stage) {
-        QuestStats stats = DataHelper.getPlayerTracker(player).getQuests();
+        QuestStats stats = HFTracker.getPlayerTracker(player).getQuests();
         int previous = stats.getAQuest(quest).getStage();
         stats.setStage(quest, stage);
         quest.onStageChanged(player, previous, stage);
     }
 
     public static void startQuest(EntityPlayer player, IQuest quest) {
-        DataHelper.getPlayerTracker(player).getQuests().startQuest(quest);
+        HFTracker.getPlayerTracker(player).getQuests().startQuest(quest);
     }
 }

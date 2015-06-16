@@ -1,7 +1,7 @@
 package joshie.harvest.core.network;
 
 import io.netty.buffer.ByteBuf;
-import joshie.harvest.core.handlers.DataHelper;
+import joshie.harvest.core.handlers.HFTracker;
 import joshie.harvest.player.FridgeContents;
 import net.minecraft.nbt.NBTTagCompound;
 import cpw.mods.fml.common.network.ByteBufUtils;
@@ -32,7 +32,7 @@ public class PacketSyncFridge implements IMessage, IMessageHandler<PacketSyncFri
     public IMessage onMessage(PacketSyncFridge message, MessageContext ctx) {
         FridgeContents fridge = new FridgeContents();
         fridge.readFromNBT(message.nbt);
-        DataHelper.getPlayerTracker().setFridge(fridge);
+        HFTracker.getPlayerTracker().setFridge(fridge);
         return null;
     }
 }

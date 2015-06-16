@@ -1,11 +1,11 @@
 package joshie.harvest.core.helpers;
 
 import joshie.harvest.api.crops.ICropData;
-import joshie.harvest.core.handlers.DataHelper;
+import joshie.harvest.core.handlers.HFTracker;
 import net.minecraft.entity.player.EntityPlayer;
 
 public class TrackingHelper {
     public static void onHarvested(EntityPlayer player, ICropData data) {
-        DataHelper.getPlayerTracker(player).getTracking().onHarvested(data);
+        HFTracker.getPlayerTracker(player).getTracking().onHarvested(data);
     }
 }

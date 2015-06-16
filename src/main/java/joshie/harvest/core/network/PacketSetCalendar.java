@@ -3,7 +3,7 @@ package joshie.harvest.core.network;
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.calendar.Season;
-import joshie.harvest.core.handlers.DataHelper;
+import joshie.harvest.core.handlers.HFTracker;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
@@ -36,7 +36,7 @@ public class PacketSetCalendar implements IMessage, IMessageHandler<PacketSetCal
     
     @Override
     public IMessage onMessage(PacketSetCalendar message, MessageContext ctx) {  
-        ICalendarDate date = DataHelper.getCalendar().getDate();
+        ICalendarDate date = HFTracker.getCalendar().getDate();
         Season previous = date.getSeason();
         date.setDay(message.day).setSeason(message.season).setYear(message.year);
         

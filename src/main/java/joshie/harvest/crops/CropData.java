@@ -13,7 +13,7 @@ import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.api.crops.ICropRenderHandler.PlantSection;
 import joshie.harvest.blocks.BlockCrop;
 import joshie.harvest.core.config.Crops;
-import joshie.harvest.core.handlers.DataHelper;
+import joshie.harvest.core.handlers.HFTracker;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.network.PacketSyncCrop;
 import joshie.harvest.init.HFBlocks;
@@ -74,7 +74,7 @@ public class CropData implements ICropData {
     }
 
     private boolean isWrongSeason() {
-        Season toMatch = DataHelper.getCalendar().getDate().getSeason();
+        Season toMatch = HFTracker.getCalendar().getDate().getSeason();
         for (Season season : crop.getSeasons()) {
             if (toMatch == season) return false;
         }

@@ -2,7 +2,7 @@ package joshie.harvest.core.network;
 
 import static joshie.harvest.core.helpers.generic.MCServerHelper.getWorld;
 import io.netty.buffer.ByteBuf;
-import joshie.harvest.core.handlers.DataHelper;
+import joshie.harvest.core.handlers.HFTracker;
 import joshie.harvest.core.helpers.CropHelper;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
@@ -39,7 +39,7 @@ public class PacketCropRequest implements IMessage, IMessageHandler<PacketCropRe
 
     @Override
     public IMessage onMessage(PacketCropRequest msg, MessageContext ctx) {     
-        DataHelper.getCropTracker().sendUpdateToClient(ctx.getServerHandler().playerEntity, getWorld(msg.dimension), msg.x, msg.y, msg.z);
+        HFTracker.getCropTracker().sendUpdateToClient(ctx.getServerHandler().playerEntity, getWorld(msg.dimension), msg.x, msg.y, msg.z);
 
         return null;
     }

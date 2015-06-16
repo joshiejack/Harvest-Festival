@@ -3,7 +3,7 @@ package joshie.harvest.npc.gui;
 import java.util.HashSet;
 
 import joshie.harvest.api.quest.IQuest;
-import joshie.harvest.core.handlers.DataHelper;
+import joshie.harvest.core.handlers.HFTracker;
 import joshie.harvest.core.helpers.QuestHelper;
 import joshie.harvest.core.util.ContainerBase;
 import joshie.harvest.npc.entity.EntityNPC;
@@ -29,7 +29,7 @@ public class ContainerNPCShop extends ContainerBase {
         }
 
         if (!player.worldObj.isRemote) {
-            DataHelper.getPlayerTracker(player).getRelationships().talkTo(npc.getRelatable());
+            HFTracker.getPlayerTracker(player).getRelationships().talkTo(npc.getRelatable());
         }
     }
 }

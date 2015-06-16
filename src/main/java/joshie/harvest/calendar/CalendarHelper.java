@@ -11,12 +11,12 @@ import joshie.harvest.api.calendar.ICalendar;
 import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.core.ISeasonData;
-import joshie.harvest.core.handlers.DataHelper;
+import joshie.harvest.core.handlers.HFTracker;
 
 public class CalendarHelper implements ICalendar {
     @Override
     public ICalendarDate getToday() {
-        return DataHelper.getCalendar().getDate();
+        return HFTracker.getCalendar().getDate();
     }
 
     @Override

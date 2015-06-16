@@ -1,7 +1,7 @@
 package joshie.harvest.calendar;
 
 import joshie.harvest.api.calendar.Weather;
-import joshie.harvest.core.handlers.DataHelper;
+import joshie.harvest.core.handlers.HFTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.EntityRenderer;
@@ -17,7 +17,7 @@ import org.lwjgl.opengl.GL11;
 public class WeatherRenderer extends IRenderHandler {
     @Override
     public void render(float rain, WorldClient world, Minecraft mc) {
-        Weather weather = DataHelper.getCalendar().getTodaysWeather();
+        Weather weather = HFTracker.getCalendar().getTodaysWeather();
         EntityRenderer renderer = mc.entityRenderer;
         float f1 = mc.theWorld.getRainStrength(rain);
         if (f1 > 0.0F) {

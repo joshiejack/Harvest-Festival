@@ -5,7 +5,7 @@ import java.util.HashSet;
 import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quest.IQuest;
-import joshie.harvest.core.handlers.DataHelper;
+import joshie.harvest.core.handlers.HFTracker;
 import joshie.harvest.core.helpers.QuestHelper;
 import joshie.harvest.core.helpers.ToolHelper;
 import joshie.harvest.core.util.ContainerBase;
@@ -37,17 +37,17 @@ public class ContainerNPCGift extends ContainerBase {
             ItemStack gift = player.getCurrentEquippedItem();
             INPC theNpc = npc.getNPC();
             int points = theNpc.getGiftValue(gift).getRelationPoints();
-            ICalendarDate today = DataHelper.getCalendar().getDate();
+            ICalendarDate today = HFTracker.getCalendar().getDate();
             ICalendarDate birthday = theNpc.getBirthday();
             if (today.getSeason() == birthday.getSeason() && today.getDay() == birthday.getDay()) {
                 points *= 5;
             }
 
             if (ToolHelper.isBlueFeather(gift)) {
-                DataHelper.getPlayerTracker(player).getRelationships().propose(theNpc);
+                HFTracker.getPlayerTracker(player).getRelationships().propose(theNpc);
             }
 
-            DataHelper.getPlayerTracker(player).getRelationships().gift(theNpc, points);
+            HFTracker.getPlayerTracker(player).getRelationships().gift(theNpc, points);
             player.inventory.decrStackSize(player.inventory.currentItem, 1);
         }
     }

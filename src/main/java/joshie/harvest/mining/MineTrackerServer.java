@@ -7,7 +7,7 @@ import java.util.Map;
 
 import joshie.harvest.api.WorldLocation;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
-import joshie.harvest.core.handlers.DataHelper;
+import joshie.harvest.core.handlers.HFTracker;
 import joshie.harvest.core.util.IData;
 import joshie.harvest.npc.entity.EntityNPCMiner;
 import net.minecraft.nbt.NBTTagCompound;
@@ -38,7 +38,7 @@ public class MineTrackerServer extends MineTracker implements IData {
         }
 
         int level = data.getMine().addLevel();
-        DataHelper.markDirty();
+        HFTracker.markDirty();
 
         npc.startBuild(world, x, y, z, level);
     }
@@ -47,7 +47,7 @@ public class MineTrackerServer extends MineTracker implements IData {
         WorldLocation key = getKey(world, x, y, z);
         MineData data = map.get(key);
         data.getMine().complete(world, x, y, z, blocks);
-        DataHelper.markDirty();
+        HFTracker.markDirty();
     }
 
     public void destroyLevel(World world, int x, int y, int z) {        
@@ -57,7 +57,7 @@ public class MineTrackerServer extends MineTracker implements IData {
             return;
         } else {
             data.getLevel().destroy();
-            DataHelper.markDirty();
+            HFTracker.markDirty();
         }
     }
 

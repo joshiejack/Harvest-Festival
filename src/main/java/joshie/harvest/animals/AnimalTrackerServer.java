@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
-import joshie.harvest.core.handlers.DataHelper;
+import joshie.harvest.core.handlers.HFTracker;
 import joshie.harvest.player.PlayerTracker;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.util.DamageSource;
@@ -23,7 +23,7 @@ public class AnimalTrackerServer extends AnimalTracker {
     @Override
     public void onDeath(IAnimalTracked animal) {
         animals.remove(animal.getData());
-        for (PlayerTracker data: DataHelper.getPlayerTrackers()) {
+        for (PlayerTracker data: HFTracker.getPlayerTrackers()) {
             data.getRelationships().clear(animal);
         }
     }

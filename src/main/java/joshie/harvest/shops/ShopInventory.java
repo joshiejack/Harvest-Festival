@@ -9,7 +9,7 @@ import joshie.harvest.api.calendar.Weekday;
 import joshie.harvest.api.shops.IPurchaseable;
 import joshie.harvest.api.shops.IShop;
 import joshie.harvest.api.shops.IShopGuiOverlay;
-import joshie.harvest.core.handlers.DataHelper;
+import joshie.harvest.core.handlers.HFTracker;
 import joshie.harvest.core.helpers.CalendarHelper;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.lib.HFModInfo;
@@ -91,7 +91,7 @@ public class ShopInventory implements IShop {
     @Override
     public boolean isOpen(World world, EntityPlayer player) {
         if (world.difficultySetting == EnumDifficulty.PEACEFUL) return true;
-        Weekday day = DataHelper.getCalendar().getDate().getWeekday();
+        Weekday day = HFTracker.getCalendar().getDate().getWeekday();
         OpeningHours hours = open.get(world.difficultySetting).opening.get(day);
         if (hours == null) return false;
         else {

@@ -11,13 +11,13 @@ public interface IRelatableDataHandler {
     public String name();
 
     /** Write this to bytebuf **/
-    public void toBytes(IRelatable relatable, ByteBuf buf, Object... data);
+    public void toBytes(IRelatable relatable, ByteBuf buf);
 
     /** Read this from bytebuf **/
     public void fromBytes(ByteBuf buf);
     
     /** Handling **/
-    public IRelatable onMessage();
+    public IRelatable onMessage(boolean particles);
 
     /** Called when reading from nbt **/
     public IRelatable readFromNBT(NBTTagCompound tag);

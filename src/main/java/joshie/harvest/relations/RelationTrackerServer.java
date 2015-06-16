@@ -48,15 +48,15 @@ public class RelationTrackerServer extends RelationshipTracker {
         short newValue = (short) (getRelationship(relatable) + amount);
         relationships.put(relatable, newValue);
         markDirty();
-        syncRelationship(relatable, newValue);
+        syncRelationship(relatable, newValue, true);
     }
 
     private void syncMarriage(IRelatable relatable) {
         PacketHandler.sendToClient(new PacketSyncMarriage(relatable), master.getAndCreatePlayer());
     }
 
-    private void syncRelationship(IRelatable relatable, short value) {
-        PacketHandler.sendToClient(new PacketSyncRelationship(relatable, value, false), master.getAndCreatePlayer());
+    private void syncRelationship(IRelatable relatable, short value, boolean particles) {
+        PacketHandler.sendToClient(new PacketSyncRelationship(relatable, value, particles), master.getAndCreatePlayer());
     }
 
     @Override
@@ -66,7 +66,7 @@ public class RelationTrackerServer extends RelationshipTracker {
         }
 
         for (IRelatable relatable : relationships.keySet()) {
-            syncRelationship(relatable, relationships.get(relatable));
+            syncRelationship(relatable, relationships.get(relatable), false);
         }
     }
 
@@ -82,8 +82,10 @@ public class RelationTrackerServer extends RelationshipTracker {
             NBTTagCompound tag = relationList.getCompoundTagAt(i);
             IRelatableDataHandler data = RelationshipHelper.getHandler(tag.getString("Handler"));
             IRelatable relatable = data.readFromNBT(tag);
-            short value = tag.getShort("Value");
-            relationships.put(relatable, value);
+            if (relatable != null) {
+                short value = tag.getShort("Value");
+                relationships.put(relatable, value);
+            }
         }
 
         //Reading Talked
@@ -92,7 +94,7 @@ public class RelationTrackerServer extends RelationshipTracker {
             NBTTagCompound tag = talkedList.getCompoundTagAt(i);
             IRelatableDataHandler data = RelationshipHelper.getHandler(tag.getString("Handler"));
             IRelatable relatable = data.readFromNBT(tag);
-            talked.add(relatable);
+            if (relatable != null) talked.add(relatable);
         }
 
         //Reading Gifted
@@ -101,7 +103,7 @@ public class RelationTrackerServer extends RelationshipTracker {
             NBTTagCompound tag = giftedList.getCompoundTagAt(i);
             IRelatableDataHandler data = RelationshipHelper.getHandler(tag.getString("Handler"));
             IRelatable relatable = data.readFromNBT(tag);
-            gifted.add(relatable);
+            if (relatable != null) gifted.add(relatable);
         }
 
         //Reading Married
@@ -110,7 +112,7 @@ public class RelationTrackerServer extends RelationshipTracker {
             NBTTagCompound tag = marriedList.getCompoundTagAt(i);
             IRelatableDataHandler data = RelationshipHelper.getHandler(tag.getString("Handler"));
             IRelatable relatable = data.readFromNBT(tag);
-            marriedTo.add(relatable);
+            if (relatable != null) marriedTo.add(relatable);
         }
     }
 
@@ -118,6 +120,7 @@ public class RelationTrackerServer extends RelationshipTracker {
         //Saving Relationships
         NBTTagList relationList = new NBTTagList();
         for (Map.Entry<IRelatable, Short> entry : relationships.entrySet()) {
+            if (entry == null || entry.getKey() == null) continue;
             NBTTagCompound tag = new NBTTagCompound();
             IRelatableDataHandler data = entry.getKey().getDataHandler();
             tag.setString("Handler", data.name());
@@ -131,6 +134,7 @@ public class RelationTrackerServer extends RelationshipTracker {
         //Saving Talked List
         NBTTagList talkedList = new NBTTagList();
         for (IRelatable r : talked) {
+            if (r == null) continue;
             NBTTagCompound tag = new NBTTagCompound();
             IRelatableDataHandler data = r.getDataHandler();
             tag.setString("Handler", data.name());
@@ -143,6 +147,7 @@ public class RelationTrackerServer extends RelationshipTracker {
         //Saving Gifted List
         NBTTagList giftedList = new NBTTagList();
         for (IRelatable r : gifted) {
+            if (r == null) continue;
             NBTTagCompound tag = new NBTTagCompound();
             IRelatableDataHandler data = r.getDataHandler();
             tag.setString("Handler", data.name());
@@ -155,6 +160,7 @@ public class RelationTrackerServer extends RelationshipTracker {
         //Saving Marriages
         NBTTagList marriedList = new NBTTagList();
         for (IRelatable r : marriedTo) {
+            if (r == null) continue;
             NBTTagCompound tag = new NBTTagCompound();
             IRelatableDataHandler data = r.getDataHandler();
             tag.setString("Handler", data.name());

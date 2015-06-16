@@ -22,7 +22,7 @@ public class PacketSyncMarriage implements IMessage, IMessageHandler<PacketSyncM
     @Override
     public void toBytes(ByteBuf buf) {
         ByteBufUtils.writeUTF8String(buf, relatable.getDataHandler().name());
-        relatable.getDataHandler().toBytes(relatable, buf, false);
+        relatable.getDataHandler().toBytes(relatable, buf);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class PacketSyncMarriage implements IMessage, IMessageHandler<PacketSyncM
 
     @Override
     public IMessage onMessage(PacketSyncMarriage message, MessageContext ctx) {
-        IRelatable relatable = message.handler.onMessage();
+        IRelatable relatable = message.handler.onMessage(false);
         if (relatable != null) {
             DataHelper.getPlayerTracker().getRelationships().setMarried(relatable);
         }

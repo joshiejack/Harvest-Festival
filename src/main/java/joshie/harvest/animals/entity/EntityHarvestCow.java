@@ -27,8 +27,8 @@ public class EntityHarvestCow extends EntityCow implements IAnimalTracked {
     public EntityHarvestCow(World world) {
         super(world);
         setSize(1.4F, 1.4F);
-        data = HFApi.ANIMALS.newData(this);
         type = HFApi.ANIMALS.getType(this);
+        data = HFApi.ANIMALS.newData(this);
         tasks.addTask(3, new EntityAIEat(this));
     }
 

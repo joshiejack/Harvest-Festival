@@ -4,8 +4,8 @@ import io.netty.buffer.ByteBuf;
 
 import java.util.UUID;
 
-import joshie.harvest.api.relations.IRelatableDataHandler;
 import joshie.harvest.api.relations.IRelatable;
+import joshie.harvest.api.relations.IRelatableDataHandler;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.helpers.generic.EntityHelper;
 import net.minecraft.entity.Entity;
@@ -27,23 +27,21 @@ public class DataHandlerEntity implements IRelatableDataHandler {
     private boolean displayParticles;
 
     @Override
-    public void toBytes(IRelatable relatable, ByteBuf buf, Object... data) {
+    public void toBytes(IRelatable relatable, ByteBuf buf) {
         id = ((Entity) relatable).getEntityId();
         buf.writeInt(id);
-        buf.writeBoolean((Boolean) data[0]);
     }
 
     @Override
     public void fromBytes(ByteBuf buf) {
         id = buf.readInt();
-        displayParticles = buf.readBoolean();
     }
 
     @Override
-    public IRelatable onMessage() {
+    public IRelatable onMessage(boolean particles) {
         Entity entity = joshie.harvest.core.helpers.generic.MCClientHelper.getWorld().getEntityByID(id);
         if (entity != null) {
-            if (displayParticles) {
+            if (particles) {
                 for (int j = 0; j < 3D; j++) {
                     double d7 = (entity.posY - 0.5D) + entity.worldObj.rand.nextFloat();
                     double d8 = (entity.posX - 0.5D) + entity.worldObj.rand.nextFloat();

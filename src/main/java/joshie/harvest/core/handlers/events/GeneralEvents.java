@@ -25,12 +25,12 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
 import net.minecraftforge.event.terraingen.BiomeEvent.GetFoliageColor;
 import net.minecraftforge.event.world.WorldEvent;
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class GeneralEvents {
+    //Make vanilla hoes useless
     @SubscribeEvent
     public void onUseHoe(UseHoeEvent event) {
         if (HFConfig.vanilla.HOES_ARE_USELESS) {
@@ -38,6 +38,7 @@ public class GeneralEvents {
         }
     }
     
+    //Goddess flower spawns goddess
     @SubscribeEvent
     public void onItemExpire(ItemExpireEvent event) {
         World world = event.entityItem.worldObj;
@@ -57,6 +58,7 @@ public class GeneralEvents {
         }
     }
 
+    //Right clicking flower pot with stick creates goddess
     @SubscribeEvent
     public void onInteract(PlayerInteractEvent event) {
         if (event.action == Action.RIGHT_CLICK_BLOCK) {
@@ -101,23 +103,25 @@ public class GeneralEvents {
         }
     }
 
+    //Setup the Server
     @SubscribeEvent
     public void onLoad(WorldEvent.Load event) {
-        if (event.world.provider.dimensionId == 0) {
-            if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
-                //ServerHelper.setServer(event.world);
-            }
+        World world = event.world;
+        if (!world.isRemote && world.provider.dimensionId == 0) {
+            DataHelper.reset(world);
         }
     }
 
+    //Setup the Client
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
-    public void onOpenGUI(GuiOpenEvent event) {
+    public void onOpenGui(GuiOpenEvent event) {
         if (event.gui instanceof GuiSelectWorld || event.gui instanceof GuiMultiplayer) {
             DataHelper.reset(null);
         }
     }
 
+    //Orange Leaves in Autumn
     @SubscribeEvent
     public void getFoliageColor(GetFoliageColor event) {
         if (DataHelper.getCalendar().getDate().getSeason() == Season.AUTUMN) {

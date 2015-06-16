@@ -71,9 +71,4 @@ public class HarvestFestival {
             ((ServerCommandManager) manager).registerCommand(CommandManager.INSTANCE);
         }
     }
-    
-    @EventHandler
-    public void onServerStarted(FMLServerStartedEvent event) {
-        DataHelper.reset(DimensionManager.getWorld(0));
-    }
 }

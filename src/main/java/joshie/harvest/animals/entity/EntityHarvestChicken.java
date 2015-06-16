@@ -4,8 +4,8 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.animals.IAnimalType;
-import joshie.harvest.api.relations.IRelatableDataHandler;
 import joshie.harvest.api.relations.IRelatable;
+import joshie.harvest.api.relations.IRelatableDataHandler;
 import joshie.harvest.relations.RelationshipHelper;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.passive.EntityChicken;
@@ -20,8 +20,8 @@ public class EntityHarvestChicken extends EntityChicken implements IAnimalTracke
 
     public EntityHarvestChicken(World world) {
         super(world);
-        data = HFApi.ANIMALS.newData(this);
         type = HFApi.ANIMALS.getType(this);
+        data = HFApi.ANIMALS.newData(this);
         timeUntilNextEgg = Integer.MAX_VALUE;
     }
 

@@ -3,8 +3,8 @@ package joshie.harvest.relations.data;
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.INPC;
-import joshie.harvest.api.relations.IRelatableDataHandler;
 import joshie.harvest.api.relations.IRelatable;
+import joshie.harvest.api.relations.IRelatableDataHandler;
 import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.nbt.NBTTagCompound;
 import cpw.mods.fml.common.network.ByteBufUtils;
@@ -21,23 +21,20 @@ public class DataHandlerNPC implements IRelatableDataHandler {
     }
 
     private INPC npc;
-    private boolean displayParticles;
 
     @Override
-    public void toBytes(IRelatable relatable, ByteBuf buf, Object... data) {
+    public void toBytes(IRelatable relatable, ByteBuf buf) {
         npc = ((EntityNPC) relatable).getNPC();
         ByteBufUtils.writeUTF8String(buf, npc.getUnlocalizedName());
-        buf.writeBoolean((Boolean) data[0]);
     }
 
     @Override
     public void fromBytes(ByteBuf buf) {
         npc = HFApi.NPC.get(ByteBufUtils.readUTF8String(buf));
-        displayParticles = buf.readBoolean();
     }
 
     @Override
-    public IRelatable onMessage() {
+    public IRelatable onMessage(boolean particles) {
         return npc;
     }
 

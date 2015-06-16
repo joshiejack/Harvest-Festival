@@ -21,8 +21,8 @@ public class EntityHarvestSheep extends EntitySheep implements IAnimalTracked {
     public EntityHarvestSheep(World world) {
         super(world);
         setSize(1.4F, 1.4F);
-        data = HFApi.ANIMALS.newData(this);
         type = HFApi.ANIMALS.getType(this);
+        data = HFApi.ANIMALS.newData(this);
         tasks.addTask(3, new EntityAIEat(this));
         tasks.removeTask(field_146087_bs);
     }

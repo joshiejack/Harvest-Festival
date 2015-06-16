@@ -4,7 +4,6 @@ import joshie.harvest.HarvestFestival;
 import joshie.harvest.animals.AnimalRegistry;
 import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.animals.entity.EntityHarvestSheep;
-import joshie.harvest.animals.render.ChickenRenderFix;
 import joshie.harvest.animals.render.ModelHarvestCow;
 import joshie.harvest.animals.render.ModelHarvestSheep;
 import joshie.harvest.animals.render.RenderHarvestAnimal;
@@ -14,12 +13,10 @@ import joshie.harvest.animals.type.AnimalSheep;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.crops.ICrop;
-import joshie.harvest.core.config.Client;
 import joshie.harvest.crops.Crop;
 import joshie.harvest.items.ItemGeneral;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -52,8 +49,5 @@ public class HFAnimals {
     public static void initClient() {
         RenderingRegistry.registerEntityRenderingHandler(EntityHarvestCow.class, new RenderHarvestAnimal(new ModelHarvestCow(), "cow"));
         RenderingRegistry.registerEntityRenderingHandler(EntityHarvestSheep.class, new RenderHarvestAnimal(new ModelHarvestSheep(), "sheep"));
-        if (Client.CHICKEN_OFFSET_FIX) {
-            MinecraftForge.EVENT_BUS.register(new ChickenRenderFix());
-        }
     }
 }

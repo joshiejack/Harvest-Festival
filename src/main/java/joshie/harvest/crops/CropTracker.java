@@ -6,6 +6,7 @@ import joshie.harvest.api.WorldLocation;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -67,4 +68,14 @@ public class CropTracker {
         ICropData data = getCropDataForLocation(world, x, y, z);
         crops.remove(data.getLocation());
     }
+
+    /* Grows this plant */
+    public void grow(World world, int x, int y, int z) {}
+
+    /* New day */
+    public void newDay() {}
+    
+    /* Updates */
+    public void sendUpdateToClient(EntityPlayerMP player, World world, int x, int y, int z) {}
+    public void updateClient(boolean isRemoval, WorldLocation location, ICropData data) {}
 }

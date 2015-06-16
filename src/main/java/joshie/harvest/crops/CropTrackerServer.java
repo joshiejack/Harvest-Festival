@@ -1,6 +1,5 @@
 package joshie.harvest.crops;
 
-import static joshie.harvest.core.helpers.ServerHelper.markDirty;
 import static joshie.harvest.core.helpers.generic.MCServerHelper.getWorld;
 import static joshie.harvest.core.network.PacketHandler.sendToClient;
 import static joshie.harvest.core.network.PacketHandler.sendToEveryone;
@@ -89,6 +88,7 @@ public class CropTrackerServer extends CropTracker implements IData {
     }
 
     //Sends an update packet
+    @Override
     public void sendUpdateToClient(EntityPlayerMP player, World world, int x, int y, int z) {
         WorldLocation key = getCropKey(world, x, y, z);
         ICropData data = crops.get(key);
@@ -98,11 +98,12 @@ public class CropTrackerServer extends CropTracker implements IData {
     }
 
     //Causes a growth of the crop at this location, Notifies the clients
+    @Override
     public void grow(World world, int x, int y, int z) {
         ICropData data = getCropDataForLocation(world, x, y, z);
         data.grow();
         sendToEveryone(new PacketSyncCrop(data.getLocation(), data));
-        markDirty();
+        DataHelper.markDirty();
     }
 
     @Override
@@ -116,7 +117,7 @@ public class CropTrackerServer extends CropTracker implements IData {
 
         crops.put(data.getLocation(), data);
         sendToEveryone(new PacketSyncCrop(data.getLocation(), data));
-        markDirty();
+        DataHelper.markDirty();
         return true;
     }
 
@@ -131,10 +132,10 @@ public class CropTrackerServer extends CropTracker implements IData {
             }
 
             if (player != null) {
-                TrackingHelper.onHarvested(player, data);
+                DataHelper.getPlayerTracker(player).getTracking().onHarvested(data);
             }
 
-            markDirty();
+            DataHelper.markDirty();
             sendToEveryone(new PacketSyncCrop(data.getLocation(), (CropData) data));
             return harvest;
         } else return null;
@@ -143,7 +144,7 @@ public class CropTrackerServer extends CropTracker implements IData {
     @Override
     public void hydrate(World world, int x, int y, int z) {
         getCropDataForLocation(world, x, y, z).setHydrated();
-        markDirty();
+        DataHelper.markDirty();
     }
 
     @Override
@@ -156,7 +157,7 @@ public class CropTrackerServer extends CropTracker implements IData {
     @Override
     public void removeCrop(World world, int x, int y, int z) {
         super.removeCrop(world, x, y, z);
-        markDirty();
+        DataHelper.markDirty();
     }
 
     @Override

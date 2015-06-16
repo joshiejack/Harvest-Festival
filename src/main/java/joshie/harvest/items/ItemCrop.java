@@ -9,7 +9,6 @@ import joshie.harvest.api.core.IShippable;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropProvider;
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.config.General;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.init.HFCrops;
 import net.minecraft.creativetab.CreativeTabs;
@@ -42,7 +41,7 @@ public class ItemCrop extends ItemHFMeta implements IShippable, ICropProvider, I
     public long getSellValue(ItemStack stack) {
         if (crop == HFCrops.grass) return 0;
         else {
-            return (long) (General.SELL_QUALITY_MODIFIER * crop.getSellValue());
+            return crop.getSellValue();
         }
     }
 

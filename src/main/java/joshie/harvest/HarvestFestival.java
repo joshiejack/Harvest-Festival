@@ -10,9 +10,11 @@ import java.io.File;
 
 import joshie.harvest.core.HFCommonProxy;
 import joshie.harvest.core.commands.CommandManager;
+import joshie.harvest.core.handlers.DataHelper;
 import joshie.harvest.init.HFRecipeFixes;
 import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
+import net.minecraftforge.common.DimensionManager;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,6 +27,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLLoadCompleteEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartedEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
 @Mod(modid = MODID, name = MODNAME, version = VERSION)
@@ -67,5 +70,10 @@ public class HarvestFestival {
         if (manager instanceof ServerCommandManager) {
             ((ServerCommandManager) manager).registerCommand(CommandManager.INSTANCE);
         }
+    }
+    
+    @EventHandler
+    public void onServerStarted(FMLServerStartedEvent event) {
+        DataHelper.reset(DimensionManager.getWorld(0));
     }
 }

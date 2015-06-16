@@ -5,14 +5,14 @@ import java.util.HashSet;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.quest.IQuest;
-import joshie.harvest.core.helpers.PlayerHelper;
+import joshie.harvest.core.handlers.DataHelper;
 import joshie.harvest.core.helpers.QuestHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.ChatFontRenderer;
 import joshie.harvest.core.util.GuiBase;
 import joshie.harvest.core.util.Translate;
 import joshie.harvest.npc.entity.EntityNPC;
-import joshie.harvest.player.PlayerTrackerClient;
+import joshie.harvest.player.PlayerStats;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 
@@ -77,17 +77,17 @@ public class GuiNPC extends GuiBase {
 
     private String format(String string) {
         if (string == null) return "FORGOT SOME TEXT DUMBASS";
-        PlayerTrackerClient data = PlayerHelper.getData();
+        PlayerStats stats = DataHelper.getPlayerTracker().getStats();
         string = string.replace("<BR>", SystemUtils.LINE_SEPARATOR);
         string = string.replace("Þ", player.getDisplayName());
         string = string.replace("ℇ", npc.getNPC().getUnlocalizedName());
-        string = string.replace("$", "" + data.getGold());
+        string = string.replace("$", "" + stats.getGold());
 
         if (npc.getLover() != null) {
             string = string.replace("�?�", npc.getLover().getNPC().getUnlocalizedName());
         } else string = string.replace("�?�", Translate.translate("nolover"));
 
-        return string.replace("♥", data.getLover());
+        return string.replace("♥", DataHelper.getPlayerTracker().getRelationships().getLover());
     }
 
     protected void drawLines() {
@@ -206,7 +206,7 @@ public class GuiNPC extends GuiBase {
     }
 
     protected String getScript() {
-        return PlayerHelper.getData().getQuests().getScript(player, npc);
+        return DataHelper.getPlayerTracker().getQuests().getScript(player, npc);
     }
 
     @Override

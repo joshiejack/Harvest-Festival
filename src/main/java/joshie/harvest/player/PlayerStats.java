@@ -13,8 +13,6 @@ public class PlayerStats implements IData {
     private double fatigue = 0D;
     private long gold;
 
-    public PlayerStats(PlayerTrackerServer master) {}
-
     public ICalendarDate getBirthday() {
         return birthday;
     }
@@ -49,6 +47,17 @@ public class PlayerStats implements IData {
             birthday = HFApi.CALENDAR.cloneDate(HFApi.CALENDAR.getToday());
             return true;
         } else return false;
+    }
+    
+    public void setBirthday(ICalendarDate newDate) {
+        birthday = newDate;
+    }
+
+    public void setStats(double stamina, double fatigue, double staminaMax, double fatigueMin) {
+        this.stamina = stamina;
+        this.fatigue = fatigue;
+        this.staminaMax = staminaMax;
+        this.fatigueMin = fatigueMin;   
     }
 
     public long getGold() {

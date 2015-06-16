@@ -1,7 +1,7 @@
 package joshie.harvest.core.network;
 
 import io.netty.buffer.ByteBuf;
-import joshie.harvest.core.helpers.ClientHelper;
+import joshie.harvest.core.handlers.DataHelper;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
@@ -38,8 +38,7 @@ public class PacketSyncStats implements IMessage, IMessageHandler<PacketSyncStat
     
     @Override
     public IMessage onMessage(PacketSyncStats message, MessageContext ctx) {        
-        ClientHelper.getPlayerData().setStats(message.stamina, message.fatigue, message.staminaMax, message.fatigueMin);
-
+        DataHelper.getPlayerTracker().getStats().setStats(message.stamina, message.fatigue, message.staminaMax, message.fatigueMin);
         return null;
     }
 }

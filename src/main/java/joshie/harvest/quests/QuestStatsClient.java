@@ -1,4 +1,4 @@
-package joshie.harvest.player;
+package joshie.harvest.quests;
 
 import static joshie.harvest.core.network.PacketHandler.sendToServer;
 
@@ -6,6 +6,7 @@ import java.util.HashSet;
 
 import joshie.harvest.api.quest.IQuest;
 import joshie.harvest.api.shops.IShop;
+import joshie.harvest.core.network.quests.PacketQuestCompleted;
 import joshie.harvest.core.network.quests.PacketQuestStart;
 import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,31 +14,19 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class QuestsClientside {
+public class QuestStatsClient extends QuestStats {
     private HashSet<IQuest> available = new HashSet();
-    private HashSet<IQuest> current = new HashSet(10);
-
-    public HashSet<IQuest> getCurrent() {
-        return current;
-    }
-
-    //Returns the quest in the current list that is the instance of this quest type
-    public IQuest getAQuest(IQuest quest) {
-        if (current != null) {
-            for (IQuest q : current) {
-                if (q.equals(quest)) {
-                    return q;
-                }
-            }
-        }
-
-        return null;
-
-    }
-
+    
     //Adds a quest to the current list
+    @Override
     public void addAsCurrent(IQuest quest) {
         current.add(quest);
+    }
+
+    @Override
+    public void markCompleted(IQuest quest, boolean sendPacket) {
+        markCompleted(quest);
+        sendToServer(new PacketQuestCompleted(quest, true));
     }
     
     //Removes the quest from the current and available lists
@@ -46,18 +35,20 @@ public class QuestsClientside {
         current.remove(quest);
     }
 
-    //Adds a quest to the available list
+    @Override
     public void setAvailable(IQuest quest) {    
         available.add(quest);
     }
 
     //Called to change the current quests stage
+    @Override
     public void setStage(IQuest quest, int stage) {
         IQuest q = getAQuest(quest);
         if (q != null) q.setStage(stage);
     }
 
     //Returns a single lined script
+    @Override
     public String getScript(EntityPlayer player, EntityNPC npc) {      
         IShop shop = npc.getNPC().getShop();
         if(shop != null && shop.isOpen(player.worldObj, player) && shop.getContents(player).size() > 0) {

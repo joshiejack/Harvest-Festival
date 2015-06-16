@@ -4,13 +4,11 @@ import java.util.Random;
 import java.util.UUID;
 
 import joshie.harvest.api.calendar.ICalendarDate;
-import joshie.harvest.api.calendar.Season;
 import joshie.harvest.buildings.BuildingStage;
+import joshie.harvest.core.handlers.DataHelper;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSyncGold;
 import joshie.harvest.player.FridgeContents;
-import joshie.harvest.player.PlayerTrackerClient;
-import joshie.harvest.player.PlayerTrackerServer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -68,84 +66,48 @@ public class PlayerHelper {
     }
 
     public static double getStamina(EntityPlayer player) {
-        if (player.worldObj.isRemote) {
-            return ClientHelper.getPlayerData().getStamina();
-        } else return ServerHelper.getPlayerData(player).getStamina();
+        return DataHelper.getPlayerTracker(player).getStats().getStamina();
     }
 
     public static double getFatigue(EntityPlayer player) {
-        if (player.worldObj.isRemote) {
-            return ClientHelper.getPlayerData().getFatigue();
-        } else return ServerHelper.getPlayerData(player).getFatigue();
+        return DataHelper.getPlayerTracker(player).getStats().getFatigue();
     }
 
     public static void affectStats(EntityPlayer player, double stamina, double fatigue) {
-        if (player.worldObj.isRemote) {
-            ClientHelper.getPlayerData().affectStats(stamina, fatigue);
-        } else ServerHelper.getPlayerData(player).affectStats(stamina, fatigue);
+        DataHelper.getPlayerTracker(player).getStats().affectStats(stamina, fatigue);
     }
 
     public static ICalendarDate getBirthday(EntityPlayer player) {
-        if (player.worldObj.isRemote) {
-            return ClientHelper.getPlayerData().getBirthday();
-        } else return ServerHelper.getPlayerData(player).getBirthday();
+        return DataHelper.getPlayerTracker(player).getStats().getBirthday();
     }
 
     public static long getGold(EntityPlayer player) {
-        if (player.worldObj.isRemote) {
-            return ClientHelper.getPlayerData().getGold();
-        } else return ServerHelper.getPlayerData(player).getGold();
+        return DataHelper.getPlayerTracker(player).getStats().getGold();
     }
 
     public static void adjustGold(EntityPlayer player, long gold) {
         if (!player.worldObj.isRemote) {
-            ServerHelper.getPlayerData(player).addGold(gold);
+            DataHelper.getPlayerTracker(player).getStats().addGold(gold);
             PacketHandler.sendToClient(new PacketSyncGold(getGold(player)), (EntityPlayerMP) player);
         }
     }
 
     public static void setGold(EntityPlayer player, long gold) {
         if (!player.worldObj.isRemote) {
-            ServerHelper.getPlayerData(player).setGold(gold);
+            DataHelper.getPlayerTracker(player).getStats().setGold(gold);
             PacketHandler.sendToClient(new PacketSyncGold(PlayerHelper.getGold(player)), (EntityPlayerMP) player);
         }
     }
 
-    public static void setBirthday(EntityPlayer player, int day, Season season, int year) {
-        if (!player.worldObj.isRemote) {
-            ServerHelper.getPlayerData(player).setBirthday();
-        } else ClientHelper.getPlayerData().setBirthday(day, season, year);
-    }
-
-    public static PlayerTrackerServer getData(EntityPlayer player) {
-        return ServerHelper.getPlayerData(player);
-    }
-
-    /** CAN AND WILL RETURN NULL, IF THE UUID COULD NOT BE FOUND **/
-    public static PlayerTrackerServer getData(UUID uuid) {
-        return ServerHelper.getPlayerData(uuid);
-    }
-
-    public static PlayerTrackerClient getData() {
-        return ClientHelper.getPlayerData();
-    }
-
     public static FridgeContents getFridge(EntityPlayer player) {
-        return !player.worldObj.isRemote ? getData(player).getFridge() : ClientHelper.getPlayerData().getFridge();
+        return DataHelper.getPlayerTracker(player).getFridge();
     }
 
     public static boolean isOnlineOrFriendsAre(UUID owner) {
-        PlayerTrackerServer data = getData(owner);
-        if (data == null) return false;
-        else {
-            return data.isOnlineOrFriendsAre();
-        }
+        return DataHelper.getPlayerTracker(owner).getFriendTracker().isOnlineOrFriendsAre();
     }
 
     public static void addBuilding(World world, BuildingStage building) {
-        PlayerTrackerServer data = getData(building.owner);
-        if (data != null) {
-            data.addBuilding(world, building);
-        }
+        DataHelper.getPlayerTracker(building.owner).getTown().addBuilding(world, building);
     }
 }

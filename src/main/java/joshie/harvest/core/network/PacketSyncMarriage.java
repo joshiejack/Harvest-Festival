@@ -35,7 +35,7 @@ public class PacketSyncMarriage implements IMessage, IMessageHandler<PacketSyncM
     public IMessage onMessage(PacketSyncMarriage message, MessageContext ctx) {
         IRelatable relatable = message.handler.onMessage();
         if (relatable != null) {
-            DataHelper.getPlayerTracker(null).getRelationships().setMarried(relatable);
+            DataHelper.getPlayerTracker().getRelationships().setMarried(relatable);
         }
 
         return null;

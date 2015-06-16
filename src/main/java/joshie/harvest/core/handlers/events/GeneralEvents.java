@@ -4,9 +4,7 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.blocks.BlockFlower;
 import joshie.harvest.blocks.items.ItemBlockFlower;
 import joshie.harvest.core.handlers.DataHelper;
-import joshie.harvest.core.helpers.ClientHelper;
 import joshie.harvest.core.helpers.NPCHelper;
-import joshie.harvest.core.helpers.ServerHelper;
 import joshie.harvest.init.HFConfig;
 import joshie.harvest.init.HFNPCs;
 import joshie.harvest.npc.entity.EntityNPC;
@@ -107,7 +105,7 @@ public class GeneralEvents {
     public void onLoad(WorldEvent.Load event) {
         if (event.world.provider.dimensionId == 0) {
             if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
-                ServerHelper.setServer(event.world);
+                //ServerHelper.setServer(event.world);
             }
         }
     }
@@ -116,7 +114,7 @@ public class GeneralEvents {
     @SubscribeEvent
     public void onOpenGUI(GuiOpenEvent event) {
         if (event.gui instanceof GuiSelectWorld || event.gui instanceof GuiMultiplayer) {
-            ClientHelper.resetClient();
+            DataHelper.reset(null);
         }
     }
 

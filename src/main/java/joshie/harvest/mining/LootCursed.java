@@ -1,6 +1,7 @@
 package joshie.harvest.mining;
 
 import joshie.harvest.api.core.ITiered.ToolTier;
+import joshie.harvest.core.handlers.DataHelper;
 import joshie.harvest.core.helpers.PlayerHelper;
 import joshie.harvest.core.util.SafeStack;
 import joshie.harvest.init.HFItems;
@@ -18,7 +19,7 @@ public class LootCursed extends LootChance {
     }
 
     public boolean canPlayerObtain(EntityPlayer player) {
-        TrackingStats stats = PlayerHelper.getData(player).getTrackingStats();
+        TrackingStats stats = DataHelper.getPlayerTracker(player).getTracking();
         return stats.hasObtainedItem(hoe) && stats.hasObtainedItem(sickle) && stats.hasObtainedItem(watering);
     }
 }

@@ -8,19 +8,12 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.api.core.ISeasonData;
 import joshie.harvest.core.handlers.DataHelper;
-import joshie.harvest.core.helpers.CropHelper;
-import joshie.harvest.core.helpers.MineHelper;
-import joshie.harvest.core.helpers.PlayerHelper;
-import joshie.harvest.core.helpers.ServerHelper;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSetCalendar;
 import joshie.harvest.core.network.PacketSyncForecast;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.world.World;
-import net.minecraft.world.storage.WorldInfo;
-import net.minecraftforge.common.DimensionManager;
 
 public class CalendarServer extends Calendar {
     private static final Random rand = new Random();
@@ -60,9 +53,9 @@ public class CalendarServer extends Calendar {
         date.setDay(day).setSeason(season).setYear(year);
         PacketHandler.sendToEveryone(new PacketSetCalendar(date));
 
-        CropHelper.newDay();
+        DataHelper.getCropTracker().newDay();
         DataHelper.getAnimalTracker().newDay();
-        MineHelper.newDay();
+        DataHelper.getMineTracker().newDay();
 
         /** Setup the forecast for the next 7 days **/
         ISeasonData data = date.getSeasonData();
@@ -78,8 +71,6 @@ public class CalendarServer extends Calendar {
             if (newForecast[i] == null) {
                 newForecast[i] = getRandomWeather(day + i, season);
             }
-
-            System.out.println(newForecast[i]);
         }
 
         forecast = newForecast;
@@ -87,10 +78,10 @@ public class CalendarServer extends Calendar {
 
         //Loop through all the players and do stuff related to them, Pass the world that the player is in
         for (EntityPlayer player : (List<EntityPlayer>) MinecraftServer.getServer().getConfigurationManager().playerEntityList) {
-            PlayerHelper.getData(player).newDay();
+            DataHelper.getPlayerTracker(player).newDay();
         }
 
-        ServerHelper.markDirty();
+        DataHelper.markDirty();
     }
 
     private Season getNextSeason(Season season) {

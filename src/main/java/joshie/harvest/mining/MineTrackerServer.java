@@ -1,7 +1,5 @@
 package joshie.harvest.mining;
 
-import static joshie.harvest.core.helpers.ServerHelper.markDirty;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -9,22 +7,22 @@ import java.util.Map;
 
 import joshie.harvest.api.WorldLocation;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
+import joshie.harvest.core.handlers.DataHelper;
 import joshie.harvest.core.util.IData;
 import joshie.harvest.npc.entity.EntityNPCMiner;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 
-public class MineTrackerServer implements IData {
+public class MineTrackerServer extends MineTracker implements IData {
     public static HashMap<WorldLocation, MineData> map = new HashMap(); // Block > Mine and Level Mappings
     public static HashSet<Mine> mines = new HashSet(); //List of all mines in the world, for iteration purposes
 
-    public boolean newDay() {
+    @Override
+    public void newDay() {
         for (Mine mine : mines) {
             mine.newDay();
         }
-
-        return true;
     }
 
     private WorldLocation getKey(World world, int x, int y, int z) {
@@ -40,7 +38,7 @@ public class MineTrackerServer implements IData {
         }
 
         int level = data.getMine().addLevel();
-        markDirty();
+        DataHelper.markDirty();
 
         npc.startBuild(world, x, y, z, level);
     }
@@ -49,7 +47,7 @@ public class MineTrackerServer implements IData {
         WorldLocation key = getKey(world, x, y, z);
         MineData data = map.get(key);
         data.getMine().complete(world, x, y, z, blocks);
-        markDirty();
+        DataHelper.markDirty();
     }
 
     public void destroyLevel(World world, int x, int y, int z) {        
@@ -59,7 +57,7 @@ public class MineTrackerServer implements IData {
             return;
         } else {
             data.getLevel().destroy();
-            markDirty();
+            DataHelper.markDirty();
         }
     }
 

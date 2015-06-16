@@ -38,7 +38,6 @@ public class PacketSetCalendar implements IMessage, IMessageHandler<PacketSetCal
     public IMessage onMessage(PacketSetCalendar message, MessageContext ctx) {  
         ICalendarDate date = DataHelper.getCalendar().getDate();
         Season previous = date.getSeason();
-        System.out.println("RECEIVED A PACKET ON LOGIN!");
         date.setDay(message.day).setSeason(message.season).setYear(message.year);
         
         //Refresh all Blocks in Render range

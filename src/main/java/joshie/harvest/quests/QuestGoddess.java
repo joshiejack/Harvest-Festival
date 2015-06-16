@@ -12,7 +12,6 @@ import joshie.harvest.init.HFCrops;
 import joshie.harvest.init.HFItems;
 import joshie.harvest.init.HFNPCs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 public class QuestGoddess extends Quest {   
@@ -37,7 +36,7 @@ public class QuestGoddess extends Quest {
     }
     
     @Override
-    public void claim(EntityPlayerMP player) {
+    public void claim(EntityPlayer player) {
         rewardGold(player, 1000);
         rewardItem(player, new ItemStack(HFItems.hoe));
         rewardItem(player, new ItemStack(HFItems.wateringcan));

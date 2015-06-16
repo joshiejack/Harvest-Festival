@@ -40,7 +40,7 @@ public class PacketSyncRelationship implements IMessage, IMessageHandler<PacketS
     public IMessage onMessage(PacketSyncRelationship message, MessageContext ctx) {
         IRelatable relatable = message.handler.onMessage();
         if (relatable != null) {
-            DataHelper.getPlayerTracker(null).getRelationships().setRelationship(relatable, message.value);
+            DataHelper.getPlayerTracker().getRelationships().setRelationship(relatable, message.value);
         }
 
         return null;

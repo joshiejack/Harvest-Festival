@@ -68,7 +68,7 @@ public class BlockWood extends BlockHFBaseMeta {
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
         int meta = world.getBlockMetadata(x, y, z);
         if (player.isSneaking()) return false;
-        else if (meta == SHIPPING && player.getCurrentEquippedItem() != null) {
+        else if ((meta == SHIPPING || meta == SHIPPING_2) && player.getCurrentEquippedItem() != null) {
             ItemStack held = player.getCurrentEquippedItem();
             if (held.getItem() instanceof IShippable) {
                 long sell = ((IShippable) held.getItem()).getSellValue(held);
@@ -76,7 +76,7 @@ public class BlockWood extends BlockHFBaseMeta {
                     if (!player.capabilities.isCreativeMode) {
                         player.inventory.decrStackSize(player.inventory.currentItem, 1);
                     }
-
+                    
                     return addForShipping(player, held);
                 } else return false;
             } else return false;

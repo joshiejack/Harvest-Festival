@@ -10,11 +10,11 @@ import joshie.harvest.api.quest.IQuest;
 import joshie.harvest.core.handlers.DataHelper;
 import joshie.harvest.core.helpers.generic.ItemHelper;
 import joshie.harvest.core.network.PacketSyncGold;
-import joshie.harvest.core.network.quests.PacketQuestCompleted;
 import joshie.harvest.core.network.quests.PacketQuestDecreaseHeld;
 import joshie.harvest.core.util.generic.IdiotException;
-import joshie.harvest.player.PlayerTrackerServer;
+import joshie.harvest.player.PlayerStats;
 import joshie.harvest.quests.Quest;
+import joshie.harvest.quests.QuestStats;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -22,13 +22,7 @@ import net.minecraft.network.play.server.S2FPacketSetSlot;
 
 public class QuestHelper {
     public static void completeQuest(EntityPlayer player, Quest quest) {
-        if (player.worldObj.isRemote) {
-            ClientHelper.getPlayerData().getQuests().markCompleted(quest);
-            sendToServer(new PacketQuestCompleted(quest, true));
-        } else {
-            ServerHelper.getPlayerData(player).getQuests().markCompleted(quest);
-            sendToServer(new PacketQuestCompleted(quest, false));
-        }
+        DataHelper.getPlayerTracker(player).getQuests().markCompleted(quest, true);
     }
 
     public static void takeHeldStack(EntityPlayer player, int amount) {
@@ -42,14 +36,7 @@ public class QuestHelper {
     }
 
     public static HashSet<IQuest> getCurrentQuest(EntityPlayer player) {
-        HashSet<IQuest> quest = null;
-        if (player.worldObj.isRemote) {
-            quest = ClientHelper.getPlayerData().getQuests().getCurrent();
-        } else {
-            quest = ServerHelper.getPlayerData(player).getQuests().getCurrent();
-        }
-
-        return quest;
+        return DataHelper.getPlayerTracker(player).getQuests().getCurrent();
     }
 
     /************************** REWARDS *****************************/
@@ -57,9 +44,9 @@ public class QuestHelper {
         if (player.worldObj.isRemote) {
             throw new IdiotException("Joshie shouldn't be rewarding anyone with gold client side");
         } else {
-            PlayerTrackerServer data = ServerHelper.getPlayerData(player);
-            data.addGold(amount);
-            sendToClient(new PacketSyncGold(data.getGold()), (EntityPlayerMP) player);
+            PlayerStats stats = DataHelper.getPlayerTracker(player).getStats();
+            stats.addGold(amount);
+            sendToClient(new PacketSyncGold(stats.getGold()), (EntityPlayerMP) player);
         }
     }
 
@@ -72,39 +59,25 @@ public class QuestHelper {
     }
 
     public static void markCompleted(EntityPlayer player, IQuest quest) {
-        if (!player.worldObj.isRemote) {
-            ServerHelper.getPlayerData(player).getQuests().markCompleted(quest);
-        } else ClientHelper.getPlayerData().getQuests().markCompleted(quest);
+        DataHelper.getPlayerTracker(player).getQuests().markCompleted(quest, false);
     }
 
     public static void markAvailable(EntityPlayer player, IQuest quest) {
-        if (!player.worldObj.isRemote) {
-
-        } else ClientHelper.getPlayerData().getQuests().setAvailable(quest);
+        DataHelper.getPlayerTracker(player).getQuests().setAvailable(quest);
     }
 
     public static void markAsCurrent(EntityPlayer player, IQuest quest) {
-        if (!player.worldObj.isRemote) {
-
-        } else ClientHelper.getPlayerData().getQuests().addAsCurrent(quest);
+        DataHelper.getPlayerTracker(player).getQuests().addAsCurrent(quest);
     }
 
     public static void setQuestStage(EntityPlayer player, IQuest quest, int stage) {
-        if (!player.worldObj.isRemote) {
-            int previous = ServerHelper.getPlayerData(player).getQuests().getAQuest(quest).getStage();
-            ServerHelper.getPlayerData(player).getQuests().setStage(quest, stage);
-            ;
-            quest.onStageChanged(player, previous, stage);
-        } else {
-            int previous = ClientHelper.getPlayerData().getQuests().getAQuest(quest).getStage();
-            ClientHelper.getPlayerData().getQuests().setStage(quest, stage);
-            quest.onStageChanged(player, previous, stage);
-        }
+        QuestStats stats = DataHelper.getPlayerTracker(player).getQuests();
+        int previous = stats.getAQuest(quest).getStage();
+        stats.setStage(quest, stage);
+        quest.onStageChanged(player, previous, stage);
     }
 
     public static void startQuest(EntityPlayer player, IQuest quest) {
-        if (!player.worldObj.isRemote) {
-            ServerHelper.getPlayerData(player).getQuests().startQuest(quest);
-        }
+        DataHelper.getPlayerTracker(player).getQuests().startQuest(quest);
     }
 }

@@ -3,7 +3,6 @@ package joshie.harvest.asm.overrides;
 import java.util.List;
 
 import joshie.harvest.api.crops.ICrop;
-import joshie.harvest.core.config.General;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.init.HFConfig;
 import joshie.harvest.init.HFCrops;
@@ -37,7 +36,7 @@ public class ItemSeedFood {
 
     public static long getSellValue(ItemStack stack) {
         ICrop crop = getCrop(stack);
-        return crop == null ? 0 : (long) (General.SELL_QUALITY_MODIFIER * crop.getSellValue());
+        return crop == null ? 0 : crop.getSellValue();
     }
 
     public static String getItemStackDisplayName(ItemStack stack) {

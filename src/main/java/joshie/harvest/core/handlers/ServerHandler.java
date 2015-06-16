@@ -12,7 +12,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.world.World;
 
-public class ServerHandler {
+public class ServerHandler extends SideHandler {
     private HFSavedData data;
 
     public ServerHandler(World world) {
@@ -26,39 +26,38 @@ public class ServerHandler {
     public HFSavedData getData() {
         return data;
     }
-
-    //Returns the serverside animal tracker
-    public AnimalTrackerServer getAnimalTracker() {
-        return data.getAnimalTracker();
-    }
-
-    //Returns the serverside calendar
+    
+    @Override
     public CalendarServer getCalendar() {
         return data.getCalendar();
     }
 
-    //Returns the serverside crop tracker
+    @Override
+    public AnimalTrackerServer getAnimalTracker() {
+        return data.getAnimalTracker();
+    }
+
+    @Override
     public CropTrackerServer getCropTracker() {
         return data.getCropTracker();
     }
     
-    //Returns the serverside mines tracker
+    @Override
     public MineTrackerServer getMineTracker() {
         return data.getMineTracker();
     }
-
-    //Marks the data as having changed
-    public void markDirty() {
-        data.markDirty();
-    }
-
-    //Returns the server side player data for this player
-    public PlayerTrackerServer getPlayerData(EntityPlayer player) {
+    
+    @Override
+    public PlayerTrackerServer getPlayerTracker(EntityPlayer player) {
         return data.getPlayerData((EntityPlayerMP) player);
     }
-
-    /** CAN AND WILL RETURN NULL, IF THE UUID COULD NOT BE FOUND **/
-    public PlayerTrackerServer getPlayerData(UUID uuid) {
+    
+    @Override
+    public PlayerTrackerServer getPlayerTracker(UUID uuid) {
         return data.getPlayerData(uuid);
+    }
+    
+    public void markDirty() {
+        data.markDirty();
     }
 }

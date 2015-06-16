@@ -3,6 +3,7 @@ package joshie.harvest.player;
 import java.util.HashMap;
 
 import joshie.harvest.api.WorldLocation;
+import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.buildings.BuildingStage;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
@@ -13,11 +14,19 @@ import net.minecraft.world.World;
 
 public class Town implements IData {
     public HashMap<String, TownBuilding> buildings = new HashMap();
-
-    public Town(PlayerTrackerServer master) {}
     
     public void addBuilding(World world, BuildingStage building) {
         buildings.put(building.building.getName(), new TownBuilding(building, world.provider.dimensionId));
+    }
+
+    public boolean hasBuilding(IBuilding building) {
+        return buildings.get(building.getName()) != null;
+    }
+
+    public WorldLocation getCoordinatesFor(IBuilding home, String npc_location) {
+        TownBuilding building = buildings.get(home.getName());
+        if (building == null) return null;
+        return building.getRealCoordinatesFor(npc_location);
     }
 
     public static class TownBuilding extends BuildingStage {

@@ -52,7 +52,7 @@ public class QuestTomatoes extends Quest {
     }
     
     @Override
-    public void claim(EntityPlayerMP player) {
+    public void claim(EntityPlayer player) {
         rewardGold(player, HFCrops.tomato.getSellValue() * 15);
         rewardRelations(player, HFNPCs.goddess, 1000);
     }

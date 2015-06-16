@@ -1,23 +1,16 @@
 package joshie.harvest.npc.entity;
 
-import static joshie.harvest.core.helpers.ServerHelper.markDirty;
-
 import java.util.ArrayList;
 import java.util.UUID;
 
-import joshie.harvest.api.WorldLocation;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.blocks.BlockStone;
 import joshie.harvest.buildings.placeable.Placeable.PlacementStage;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
+import joshie.harvest.core.handlers.DataHelper;
 import joshie.harvest.core.helpers.MineHelper;
-import joshie.harvest.core.helpers.TownHelper;
-import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.init.HFBlocks;
-import joshie.harvest.init.HFBuildings;
-import joshie.harvest.player.Town;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -139,8 +132,8 @@ public class EntityNPCMiner extends EntityNPC {
                     MineHelper.complete(worldObj, mineX, mineY, mineZ, completed);
                     completed = new ArrayList(500);
                     instructions = new ArrayList(500);
-                    MineHelper.newDay();
-                    markDirty();
+                    DataHelper.getMineTracker().newDay();
+                    DataHelper.markDirty();
                 } else {
                     PlaceableBlock block = instructions.get(index);
                     Material material = worldObj.getBlock(mineX + block.getX(), mineY + block.getY(), mineZ + block.getZ()).getMaterial();

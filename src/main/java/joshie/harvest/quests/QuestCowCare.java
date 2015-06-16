@@ -1,7 +1,6 @@
 package joshie.harvest.quests;
 
 import static joshie.harvest.core.helpers.QuestHelper.completeQuest;
-import static joshie.harvest.core.helpers.ServerHelper.markDirty;
 import io.netty.buffer.ByteBuf;
 
 import java.util.HashSet;
@@ -62,7 +61,7 @@ public class QuestCowCare extends Quest {
                                 increaseStage(player);
                             }
 
-                            markDirty();
+                            DataHelper.markDirty();
                         }
                     }
                 }
@@ -121,7 +120,7 @@ public class QuestCowCare extends Quest {
     }
 
     @Override
-    public void claim(EntityPlayerMP player) {
+    public void claim(EntityPlayer player) {
         ItemHelper.spawnByEntity(player, SizeableHelper.getSizeable(48000, SizeableMeta.MILK, Size.LARGE));
     }
 

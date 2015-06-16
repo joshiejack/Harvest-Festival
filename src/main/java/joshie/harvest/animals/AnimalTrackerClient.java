@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
-import joshie.harvest.core.helpers.ClientHelper;
+import joshie.harvest.core.handlers.DataHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -30,6 +30,6 @@ public class AnimalTrackerClient extends AnimalTracker {
     @Override
     public void onDeath(IAnimalTracked animal) {
         canProduce.remove(animal.getData());
-        ClientHelper.getPlayerData().getRelationships().clear(animal);
+        DataHelper.getPlayerTracker().getRelationships().clear(animal);
     }
 }

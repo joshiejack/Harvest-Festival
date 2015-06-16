@@ -35,7 +35,7 @@ public interface IQuest {
     public String getScript(EntityPlayer player, EntityNPC npc);
 
     /** Called serverside to claim the reward **/
-    public void claim(EntityPlayerMP player);
+    public void claim(EntityPlayer entityPlayer);
 
     /** Read quest data from nbt **/
     public void readFromNBT(NBTTagCompound tag);

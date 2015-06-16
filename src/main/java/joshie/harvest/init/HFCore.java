@@ -8,11 +8,11 @@ import joshie.harvest.api.crops.CropRegistry;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.calendar.CalendarRender;
 import joshie.harvest.cooking.FoodRegistry;
+import joshie.harvest.core.handlers.DataHelper;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.handlers.events.FMLEvents;
 import joshie.harvest.core.handlers.events.GeneralEvents;
 import joshie.harvest.core.handlers.events.ToolLevelRender;
-import joshie.harvest.core.helpers.ClientHelper;
 import joshie.harvest.core.lib.RenderIds;
 import joshie.harvest.core.network.PacketCropRequest;
 import joshie.harvest.core.network.PacketDismount;
@@ -115,7 +115,7 @@ public class HFCore {
 
     @SideOnly(Side.CLIENT)
     public static void initClient() {
-        ClientHelper.resetClient();
+        DataHelper.reset(null);
         RenderIds.ALL = RenderingRegistry.getNextAvailableRenderId();
         RenderIds.CROPS = RenderingRegistry.getNextAvailableRenderId();
         RenderIds.COOKING = RenderingRegistry.getNextAvailableRenderId();

@@ -13,8 +13,8 @@ import net.minecraft.nbt.NBTTagList;
 public class ShippingStats implements IData {
     private ArrayList<SellStack> toBeShipped = new ArrayList(); //What needs to be sold
 
-    public PlayerTrackerServer master;
-    public ShippingStats(PlayerTrackerServer master) {
+    public PlayerTracker master;
+    public ShippingStats(PlayerTracker master) {
         this.master = master;
     }
     
@@ -44,7 +44,7 @@ public class ShippingStats implements IData {
         while (forSale.hasNext()) {
             SellStack stack = forSale.next();
             sold += stack.sell;
-            master.addSold(stack);
+            master.getTracking().addSold(stack);
             forSale.remove();
         }
         

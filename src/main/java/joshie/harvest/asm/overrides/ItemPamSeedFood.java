@@ -5,7 +5,6 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 
 import joshie.harvest.api.crops.ICrop;
-import joshie.harvest.core.config.General;
 import joshie.harvest.plugins.harvestcraft.HarvestCraft;
 import joshie.harvest.plugins.harvestcraft.HarvestCraftCrop;
 import net.minecraft.creativetab.CreativeTabs;
@@ -45,7 +44,7 @@ public class ItemPamSeedFood {
 
     public static long getSellValue(ItemStack stack) {
         ICrop crop = getCrop(stack);
-        return crop == null ? 0 : (long) (General.SELL_QUALITY_MODIFIER * crop.getSellValue());
+        return crop == null ? 0 : crop.getSellValue();
     }
 
     @SideOnly(Side.CLIENT)

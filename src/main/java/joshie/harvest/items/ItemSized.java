@@ -10,7 +10,6 @@ import joshie.harvest.api.core.ISizeable;
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.api.core.ISizedProvider;
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.config.General;
 import joshie.harvest.core.helpers.SizeableHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.lib.SizeableMeta;
@@ -50,7 +49,7 @@ public class ItemSized extends ItemHFMeta implements IShippable, ICreativeSorted
 
     @Override
     public long getSellValue(ItemStack stack) {
-        return (long) General.SELL_QUALITY_MODIFIER * SizeableMeta.EGG.getSellValue(getSize(stack.getItemDamage()));
+        return meta.getSellValue(getSize(stack.getItemDamage()));
     }
 
     @Override

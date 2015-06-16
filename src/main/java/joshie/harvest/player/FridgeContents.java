@@ -1,22 +1,19 @@
 package joshie.harvest.player;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.core.helpers.ServerHelper;
+import joshie.harvest.core.handlers.DataHelper;
 import joshie.harvest.core.util.IData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.world.World;
 
 public class FridgeContents implements IInventory, IData {
     private ItemStack[] inventory;
-    private World world;
 
-    public FridgeContents(World world) {
+    public FridgeContents() {
         inventory = new ItemStack[64];
-        this.world = world;
     }
 
     @Override
@@ -94,9 +91,7 @@ public class FridgeContents implements IInventory, IData {
 
     @Override
     public void markDirty() {
-        if (!world.isRemote) {
-            ServerHelper.markDirty();
-        }
+        DataHelper.markDirty();
     }
 
     @Override

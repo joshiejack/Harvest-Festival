@@ -4,12 +4,12 @@ import java.util.UUID;
 
 import joshie.harvest.api.WorldLocation;
 import joshie.harvest.api.npc.INPC;
+import joshie.harvest.core.handlers.DataHelper;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import joshie.harvest.npc.entity.EntityNPCMiner;
 import joshie.harvest.npc.entity.EntityNPCShopkeeper;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
@@ -36,10 +36,6 @@ public class NPCHelper {
     }
     
     public static EntityNPCBuilder getBuilderForPlayer(World world, EntityPlayer player) {
-        return world.isRemote ? PlayerHelper.getData().getBuilder(world) : getBuilderForPlayer(player);
-    }
-
-    public static EntityNPCBuilder getBuilderForPlayer(EntityLivingBase entityLiving) {      
-        return PlayerHelper.getData((EntityPlayer)entityLiving).getBuilder(entityLiving.worldObj);
+        return DataHelper.getPlayerTracker(player).getBuilder(world);
     }
 }

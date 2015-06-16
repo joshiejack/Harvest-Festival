@@ -6,7 +6,6 @@ import java.util.List;
 
 import joshie.harvest.api.core.ISizeable;
 import joshie.harvest.api.core.ISizeable.Size;
-import joshie.harvest.core.config.General;
 import joshie.harvest.core.helpers.SizeableHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.lib.HFModInfo;
@@ -27,7 +26,7 @@ public class ItemEgg {
     public static IIcon[] icons;
     
     public static long getSellValue(ItemStack stack) {
-        return (long) General.SELL_QUALITY_MODIFIER * SizeableMeta.EGG.getSellValue(getSize(stack.getItemDamage()));
+        return SizeableMeta.EGG.getSellValue(getSize(stack.getItemDamage()));
     }
     
     public static int getSortValue() {

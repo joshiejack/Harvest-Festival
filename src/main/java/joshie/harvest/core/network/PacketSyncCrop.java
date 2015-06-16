@@ -3,7 +3,7 @@ package joshie.harvest.core.network;
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.WorldLocation;
 import joshie.harvest.api.crops.ICropData;
-import joshie.harvest.core.helpers.ClientHelper;
+import joshie.harvest.core.handlers.DataHelper;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.crops.CropData;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
@@ -50,7 +50,7 @@ public class PacketSyncCrop implements IMessage, IMessageHandler<PacketSyncCrop,
 
     @Override
     public IMessage onMessage(PacketSyncCrop msg, MessageContext ctx) {
-        ClientHelper.getCropTracker().updateClient(msg.isRemoval, msg.location, msg.data);
+        DataHelper.getCropTracker().updateClient(msg.isRemoval, msg.location, msg.data);
         MCClientHelper.refresh(msg.location.dimension, msg.location.x, msg.location.y, msg.location.z);
 
         return null;

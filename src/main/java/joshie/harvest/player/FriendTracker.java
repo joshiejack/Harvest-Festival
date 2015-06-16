@@ -10,10 +10,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
 public class FriendTracker implements IData {
-    private PlayerTrackerServer master;
+    private PlayerTracker master;
     private HashSet<UUID> friends = new HashSet();
 
-    public FriendTracker(PlayerTrackerServer master) {
+    public FriendTracker(PlayerTracker master) {
         this.master = master;
     }
 
@@ -23,6 +23,10 @@ public class FriendTracker implements IData {
 
     protected void removeFriend(UUID uuid) {
         friends.add(uuid);
+    }
+
+    public boolean isOnlineOrFriendsAre() {
+        return true;
     }
 
     protected HashSet<EntityPlayer> getFriends() {

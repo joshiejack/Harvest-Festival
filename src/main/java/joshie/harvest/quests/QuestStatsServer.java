@@ -1,47 +1,31 @@
-package joshie.harvest.player;
+package joshie.harvest.quests;
 
-import static joshie.harvest.core.helpers.ServerHelper.markDirty;
 import static joshie.harvest.core.network.PacketHandler.sendToClient;
 
 import java.util.HashSet;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.quest.IQuest;
+import joshie.harvest.core.handlers.DataHelper;
 import joshie.harvest.core.network.quests.PacketQuestSetAvailable;
 import joshie.harvest.core.network.quests.PacketQuestSetCurrent;
 import joshie.harvest.core.util.IData;
-import joshie.harvest.quests.QuestRegistry;
+import joshie.harvest.player.PlayerTracker;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 
-public class QuestStats implements IData {
+public class QuestStatsServer extends QuestStats implements IData {
     private HashSet<IQuest> finished = new HashSet();
-    private HashSet<IQuest> current = new HashSet(10);
 
-    public PlayerTrackerServer master;
-
-    public QuestStats(PlayerTrackerServer master) {
+    public PlayerTracker master;
+    public QuestStatsServer(PlayerTracker master) {
         this.master = master;
     }
 
-    public HashSet<IQuest> getCurrent() {
-        return current;
-    }
-
-    public IQuest getAQuest(IQuest quest) {
-        if (current != null) {
-            for (IQuest q : current) {
-                if (q.equals(quest)) {
-                    return q;
-                }
-            }
-        }
-
-        return null;
-    }
-
     //Called to start a quest, is called clientside, by the startquest packet
+    @Override
     public boolean startQuest(IQuest q) {
         if (current.size() < 10) {
             try {
@@ -54,13 +38,19 @@ public class QuestStats implements IData {
         } else return false;
     }
 
+    @Override
     public void setStage(IQuest quest, int stage) {
         IQuest q = getAQuest(quest);
         if (q != null) {
             q.setStage(stage);
         }
 
-        markDirty();
+        DataHelper.markDirty();
+    }
+    
+    @Override
+    public void markCompleted(IQuest quest, boolean sendPacket) {
+        markCompleted(quest);
     }
 
     //Quests should always REMOVE from the current quests, and add to the finished quests THEMSELVES
@@ -74,6 +64,7 @@ public class QuestStats implements IData {
         }
     }
 
+    @Override
     public void syncQuests() {
         for (IQuest quest : QuestRegistry.getQuests().values()) {
             syncQuest(quest);
@@ -87,17 +78,17 @@ public class QuestStats implements IData {
             //If the quest is in the currently active list, mark it as current
             if (current.contains(quest)) {
                 //Send a packet, fetching the actual quest details that are saved, so we're update to date on the info
-                sendToClient(new PacketQuestSetCurrent(getAQuest(quest)), master.getAndCreatePlayer());
+                sendToClient(new PacketQuestSetCurrent(getAQuest(quest)), (EntityPlayerMP)master.getAndCreatePlayer());
             } else {
                 //Now the quests aren't in the current list has been determined, let's determine whether this quest is valid for being collected
                 //If the quest can be started, we should send it to client to be added to the available list
                 if (quest.canStart(master.getAndCreatePlayer(), current, finished)) {
-                    sendToClient(new PacketQuestSetAvailable(quest), master.getAndCreatePlayer());
+                    sendToClient(new PacketQuestSetAvailable(quest), (EntityPlayerMP)master.getAndCreatePlayer());
                 }
             }
         }
 
-        markDirty();
+        DataHelper.markDirty();
     }
 
     @Override

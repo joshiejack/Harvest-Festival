@@ -3,9 +3,9 @@ package joshie.harvest.core.handlers.events;
 import joshie.harvest.core.config.Calendar;
 import joshie.harvest.core.handlers.DataHelper;
 import joshie.harvest.core.helpers.CalendarHelper;
-import joshie.harvest.core.helpers.PlayerHelper;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSetCalendar;
+import joshie.harvest.player.PlayerTracker;
 import joshie.harvest.player.PlayerTrackerServer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -22,11 +22,9 @@ public class FMLEvents {
     public void onPlayerLogin(PlayerLoggedInEvent event) {
         EntityPlayer player = event.player;
         if (player instanceof EntityPlayerMP) {
-            PlayerHelper.setBirthday(player, 0, null, 0);
-            System.out.println("DATE WAS SENT");
-            System.out.println(DataHelper.getCalendar().getDate().getYear());
+            DataHelper.getPlayerTracker(player).getStats().setBirthday();
             PacketHandler.sendToClient(new PacketSetCalendar(DataHelper.getCalendar().getDate()), (EntityPlayerMP) player);
-            PlayerTrackerServer data = PlayerHelper.getData(player);
+            PlayerTracker data = DataHelper.getPlayerTracker(player);
             data.syncPlayerStats();
             data.getQuests().syncQuests();
         }

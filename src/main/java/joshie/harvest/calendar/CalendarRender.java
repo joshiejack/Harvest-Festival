@@ -4,11 +4,9 @@ import java.text.NumberFormat;
 import java.util.Locale;
 
 import joshie.harvest.api.calendar.ICalendarDate;
-import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.api.core.ISeasonData;
 import joshie.harvest.core.handlers.DataHelper;
-import joshie.harvest.core.helpers.ClientHelper;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.Translate;
@@ -54,7 +52,7 @@ public class CalendarRender {
 
             mc.fontRenderer.drawStringWithShadow(Translate.translate("year") + " " + date.getYear(), 45, 25, 0xFFFFFFFF);
             mc.getTextureManager().bindTexture(HFModInfo.elements);
-            String text = NumberFormat.getNumberInstance(Locale.US).format(ClientHelper.getPlayerData().getGold());
+            String text = NumberFormat.getNumberInstance(Locale.US).format(DataHelper.getPlayerTracker().getStats().getGold());
             int width = event.resolution.getScaledWidth();
             mc.ingameGUI.drawTexturedModalRect(width - mc.fontRenderer.getStringWidth(text) - 20, 2, 244, 0, 12, 12);
             mc.fontRenderer.drawStringWithShadow(text, width - mc.fontRenderer.getStringWidth(text) - 5, 5, 0xFFFFFFFF);

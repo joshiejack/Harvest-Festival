@@ -112,6 +112,7 @@ public class BlockPreview extends BlockHFBaseMeta {
 
     @Override
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase player, ItemStack stack) {
+        if (!(player instanceof EntityPlayer)) return;
         if (stack.getItemDamage() >= Building.buildings.size()) return;
         Building group = Building.buildings.get(stack.getItemDamage());
         if (group != null) {
@@ -119,7 +120,7 @@ public class BlockPreview extends BlockHFBaseMeta {
             marker.setBuilding(group);
             //Create a builder if none exists
             if (!world.isRemote) {
-                NPCHelper.getBuilderForPlayer(player);
+                NPCHelper.getBuilderForPlayer(player.worldObj, (EntityPlayer) player);
             }
         }
     }

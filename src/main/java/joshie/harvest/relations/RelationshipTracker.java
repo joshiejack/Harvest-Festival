@@ -5,6 +5,7 @@ import java.util.HashSet;
 
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.core.config.NPC;
+import joshie.harvest.core.util.Translate;
 
 public abstract class RelationshipTracker {
     public void talkTo(IRelatable relatable) {};
@@ -56,5 +57,9 @@ public abstract class RelationshipTracker {
         }
 
         return false;
+    }
+    
+    public String getLover() {
+        return Translate.translate("nolover");
     }
 }

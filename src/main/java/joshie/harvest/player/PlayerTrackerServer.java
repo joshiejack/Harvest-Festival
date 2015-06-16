@@ -1,15 +1,13 @@
 package joshie.harvest.player;
 
-import static joshie.harvest.core.helpers.ServerHelper.markDirty;
 import static joshie.harvest.core.network.PacketHandler.sendToClient;
 
 import java.util.UUID;
 
-import joshie.harvest.api.WorldLocation;
-import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.buildings.BuildingStage;
+import joshie.harvest.core.handlers.DataHelper;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.helpers.generic.EntityHelper;
@@ -21,7 +19,8 @@ import joshie.harvest.core.util.IData;
 import joshie.harvest.core.util.SellStack;
 import joshie.harvest.init.HFNPCs;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
-import joshie.harvest.player.Town.TownBuilding;
+import joshie.harvest.quests.QuestStats;
+import joshie.harvest.quests.QuestStatsServer;
 import joshie.harvest.relations.RelationTrackerServer;
 import joshie.harvest.relations.RelationshipTracker;
 import net.minecraft.entity.Entity;
@@ -30,48 +29,30 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-import net.minecraftforge.common.DimensionManager;
 
 public class PlayerTrackerServer extends PlayerTracker implements IData {
-    private QuestStats questStats;
     private RelationTrackerServer relationStats;
-    private ShippingStats shippingStats;
-    private PlayerStats playerStats;
-    private TrackingStats trackingStats;
-    private FriendTracker friends;
-    private FridgeContents fridge;
+    private QuestStatsServer questStats;
     private EntityNPCBuilder builder;
-    private Town town;
 
     //References to the player and uuid this refers to
     private EntityPlayerMP player; //No Direct calling, it's a cache value
     private UUID uuid; //SHOULD NOT BE CALLED, EXCEPT BY GET AND CREATE PLAYER
 
     public PlayerTrackerServer() {
-        questStats = new QuestStats(this);
+        questStats = new QuestStatsServer(this);
         relationStats = new RelationTrackerServer(this);
-        shippingStats = new ShippingStats(this);
-        playerStats = new PlayerStats(this);
-        trackingStats = new TrackingStats(this);
-        friends = new FriendTracker(this);
-        fridge = new FridgeContents(DimensionManager.getWorld(0));
-        town = new Town(this);
     }
 
     public PlayerTrackerServer(EntityPlayerMP player) {
         this.player = player;
         this.uuid = UUIDHelper.getPlayerUUID(player);
-        questStats = new QuestStats(this);
+        questStats = new QuestStatsServer(this);
         relationStats = new RelationTrackerServer(this);
-        shippingStats = new ShippingStats(this);
-        playerStats = new PlayerStats(this);
-        trackingStats = new TrackingStats(this);
-        friends = new FriendTracker(this);
-        fridge = new FridgeContents(player.worldObj);
-        town = new Town(this);
     }
 
     //Pass the world that this player is currently in
+    @Override
     public EntityPlayerMP getAndCreatePlayer() {
         if (player == null) {
             player = EntityHelper.getPlayerFromUUID(uuid);
@@ -84,18 +65,24 @@ public class PlayerTrackerServer extends PlayerTracker implements IData {
     public RelationshipTracker getRelationships() {
         return relationStats;
     }
+    
+    @Override
+    public QuestStats getQuests() {
+        return questStats;
+    }
 
     public UUID getUUID() {
         return uuid;
     }
 
     //The world is the world that this player is currently in
+    @Override
     public void newDay() {
         long gold = shippingStats.newDay();
         playerStats.addGold(gold);
         sendToClient(new PacketSyncGold(playerStats.getGold()), getAndCreatePlayer());
         relationStats.newDay();
-        markDirty();
+        DataHelper.markDirty();
     }
 
     public boolean isOnlineOrFriendsAre() {
@@ -104,7 +91,7 @@ public class PlayerTrackerServer extends PlayerTracker implements IData {
 
     public boolean addForShipping(ItemStack stack) {
         boolean ret = shippingStats.addForShipping(stack);
-        markDirty();
+        DataHelper.markDirty();
         return ret;
     }
 
@@ -118,7 +105,7 @@ public class PlayerTrackerServer extends PlayerTracker implements IData {
 
     public void setBirthday() {
         if (playerStats.setBirthday()) {
-            markDirty();
+            DataHelper.markDirty();
         }
     }
 
@@ -132,7 +119,7 @@ public class PlayerTrackerServer extends PlayerTracker implements IData {
 
     public void affectStats(double stamina, double fatigue) {
         playerStats.affectStats(stamina, fatigue);
-        markDirty();
+        DataHelper.markDirty();
     }
 
     public void syncPlayerStats() {
@@ -145,12 +132,12 @@ public class PlayerTrackerServer extends PlayerTracker implements IData {
 
     public void addGold(long gold) {
         playerStats.addGold(gold);
-        markDirty();
+        DataHelper.markDirty();
     }
 
     public void setGold(long gold) {
         playerStats.setGold(gold);
-        markDirty();
+        DataHelper.markDirty();
     }
 
     public long getGold() {
@@ -159,38 +146,20 @@ public class PlayerTrackerServer extends PlayerTracker implements IData {
 
     public void addSold(SellStack stack) {
         trackingStats.addSold(stack);
-        markDirty();
+        DataHelper.markDirty();
     }
 
     public void onHarvested(ICropData data) {
         trackingStats.onHarvested(data);
-        markDirty();
-    }
-
-    public QuestStats getQuests() {
-        return questStats;
+        DataHelper.markDirty();
     }
 
     public void addBuilding(World world, BuildingStage building) {
         town.addBuilding(world, building);
-        markDirty();
+        DataHelper.markDirty();
     }
 
-    public WorldLocation getCoordinatesFor(IBuilding home, String npc_location) {
-        TownBuilding building = town.buildings.get(home.getName());
-        if (building == null) return null;
-        return building.getRealCoordinatesFor(npc_location);
-    }
-
-    public boolean hasBuilding(IBuilding building) {
-        return town.buildings.get(building.getName()) != null;
-    }
-
-    public Town getTown() {
-        return town;
-    }
-
-    //Cached Value, The actual data for the owner is stored in the entity itself
+    @Override
     public EntityNPCBuilder getBuilder(World world) {
         if (builder != null) return builder;
         for (int i = 0; i < world.loadedEntityList.size(); i++) {
@@ -210,10 +179,6 @@ public class PlayerTrackerServer extends PlayerTracker implements IData {
         builder.setPosition(player.posX + player.worldObj.rand.nextDouble() * 4D, player.posY, player.posZ + player.worldObj.rand.nextDouble() * 4D);
         world.spawnEntityInWorld(builder);
         return builder;
-    }
-
-    public TrackingStats getTrackingStats() {
-        return trackingStats;
     }
 
     @Override

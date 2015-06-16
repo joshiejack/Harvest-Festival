@@ -5,7 +5,7 @@ import java.util.Map;
 
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.relations.IRelatableDataHandler;
-import joshie.harvest.core.helpers.ServerHelper;
+import joshie.harvest.core.handlers.DataHelper;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSyncMarriage;
 import joshie.harvest.core.network.PacketSyncRelationship;
@@ -72,7 +72,7 @@ public class RelationTrackerServer extends RelationshipTracker {
 
     @Override
     public void markDirty() {
-        ServerHelper.markDirty();
+        DataHelper.markDirty();
     }
 
     public void readFromNBT(NBTTagCompound nbt) {

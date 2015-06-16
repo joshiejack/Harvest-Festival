@@ -131,7 +131,7 @@ public abstract class Quest implements IQuest {
 
     //Called Serverside, to claim the reward
     @Override
-    public void claim(EntityPlayerMP player) {
+    public void claim(EntityPlayer player) {
         return;
     }
 

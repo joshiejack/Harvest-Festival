@@ -1,7 +1,6 @@
 package joshie.harvest.quests;
 
 import static joshie.harvest.core.helpers.QuestHelper.completeQuest;
-import static joshie.harvest.core.helpers.ServerHelper.markDirty;
 import io.netty.buffer.ByteBuf;
 
 import java.util.HashSet;
@@ -10,6 +9,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quest.IQuest;
+import joshie.harvest.core.handlers.DataHelper;
 import joshie.harvest.core.helpers.SizeableHelper;
 import joshie.harvest.core.helpers.generic.ItemHelper;
 import joshie.harvest.core.lib.SizeableMeta;
@@ -18,7 +18,6 @@ import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -44,7 +43,7 @@ public class QuestChickenCare extends Quest {
                             increaseStage(player);
                         }
 
-                        markDirty();
+                        DataHelper.markDirty();
                     }
                 }
             }
@@ -62,7 +61,7 @@ public class QuestChickenCare extends Quest {
                         increaseStage(player);
                     }
 
-                    markDirty();
+                    DataHelper.markDirty();
                 }
             }
         }
@@ -97,7 +96,7 @@ public class QuestChickenCare extends Quest {
     }
 
     @Override
-    public void claim(EntityPlayerMP player) {
+    public void claim(EntityPlayer player) {
         ItemHelper.spawnByEntity(player, SizeableHelper.getSizeable(48000, SizeableMeta.EGG, Size.LARGE));
     }
 

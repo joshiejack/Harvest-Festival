@@ -26,7 +26,7 @@ public class Calendar {
     }
 
     public Weather getTodaysWeather() {
-        return forecast[0];
+        return forecast[0] != null? forecast[0] : Weather.SUNNY;
     }
 
     public void setForecast(Weather[] forecast) {}

@@ -5,6 +5,7 @@ import java.util.Locale;
 
 import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.calendar.Season;
+import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.api.core.ISeasonData;
 import joshie.harvest.core.handlers.DataHelper;
 import joshie.harvest.core.helpers.ClientHelper;
@@ -12,7 +13,6 @@ import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.Translate;
 import joshie.harvest.npc.gui.ContainerNPC;
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.EntityViewRenderEvent.FogColors;
 import net.minecraftforge.client.event.EntityViewRenderEvent.RenderFogEvent;
@@ -65,31 +65,25 @@ public class CalendarRender {
         }
     }
 
-    private boolean isAcceptable(Season season, Block block) {
-        if (!block.getMaterial().isLiquid()) {
-            if (MCClientHelper.getWorld().isRaining() && DataHelper.getCalendar().getDate().getSeason() == season) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
     @SubscribeEvent
     public void onFogRender(RenderFogEvent event) {
-        if (isAcceptable(Season.WINTER, event.block)) {
-            GL11.glFogi(GL11.GL_FOG_MODE, GL11.GL_EXP);
-            GL11.glFogf(GL11.GL_FOG_DENSITY, 0.15F);
-        } else if (DataHelper.getCalendar().getDate().getSeason() == Season.WINTER) {
-            GL11.glFogi(GL11.GL_FOG_MODE, GL11.GL_EXP);
-            GL11.glFogf(GL11.GL_FOG_DENSITY, 0.01F);
+        if (!event.block.getMaterial().isLiquid()) {
+            Weather weather = DataHelper.getCalendar().getTodaysWeather();
+            if (weather == Weather.BLIZZARD) {
+                GL11.glFogi(GL11.GL_FOG_MODE, GL11.GL_EXP);
+                GL11.glFogf(GL11.GL_FOG_DENSITY, 0.15F);
+            } else if (weather == Weather.SNOW) {
+                GL11.glFogi(GL11.GL_FOG_MODE, GL11.GL_EXP);
+                GL11.glFogf(GL11.GL_FOG_DENSITY, 0.01F);
+            }
         }
     }
 
     @SubscribeEvent
     public void onFogColor(FogColors event) {
         if (!event.block.getMaterial().isLiquid()) {
-            if (DataHelper.getCalendar().getDate().getSeason() == Season.WINTER) {
+            Weather weather = DataHelper.getCalendar().getTodaysWeather();
+            if (weather == Weather.SNOW || weather == Weather.BLIZZARD) {
                 event.red = 1F;
                 event.blue = 1F;
                 event.green = 1F;

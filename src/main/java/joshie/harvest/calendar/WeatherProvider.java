@@ -30,7 +30,14 @@ public class WeatherProvider extends WorldProviderSurface {
     @SideOnly(Side.CLIENT)
     @Override
     public float getStarBrightness(float f) {
-        return DataHelper.getCalendar().getDate().getSeason() == Season.WINTER ? super.getStarBrightness(f) * 1.25F : super.getStarBrightness(f);
+        float brightness = super.getStarBrightness(f);
+        return DataHelper.getCalendar().getDate().getSeason() == Season.WINTER ? brightness * 1.25F : brightness;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public float getSunBrightness(float f) {
+        float brightness = worldObj.getSunBrightnessBody(f);
+        return DataHelper.getCalendar().getDate().getSeason() == Season.SUMMER ? brightness * 1.25F : brightness;
     }
 
     @SideOnly(Side.CLIENT)
@@ -143,6 +150,9 @@ public class WeatherProvider extends WorldProviderSurface {
     }
 
     @Override
+    public void resetRainAndThunder() {}
+
+    @Override
     public void updateWeather() {
         if (!worldObj.isRemote) {
             Weather weather = DataHelper.getCalendar().getTodaysWeather();
@@ -150,16 +160,24 @@ public class WeatherProvider extends WorldProviderSurface {
                 if (worldObj.rainingStrength > 0F) {
                     worldObj.rainingStrength = worldObj.rainingStrength - 0.01F;
                 }
+            } else if (weather == Weather.DRIZZLE) {
+                if (worldObj.rainingStrength < 0.21F) {
+                    worldObj.rainingStrength = worldObj.rainingStrength + 0.01F;
+                } else if (worldObj.rainingStrength > 0.21F) {
+                    worldObj.rainingStrength = worldObj.rainingStrength - 0.01F;
+                }
             } else if (weather == Weather.RAIN || weather == Weather.SNOW) {
                 if (worldObj.rainingStrength < 1F) {
                     worldObj.rainingStrength = worldObj.rainingStrength + 0.01F;
+                } else if (worldObj.rainingStrength > 1F) {
+                    worldObj.rainingStrength = worldObj.rainingStrength - 0.01F;
                 }
             } else if (weather == Weather.TYPHOON || weather == Weather.BLIZZARD) {
                 if (worldObj.rainingStrength < 2F) {
                     worldObj.rainingStrength = worldObj.rainingStrength + 0.01F;
                 }
             }
-            
+
             if (weather == Weather.TYPHOON) {
                 if (worldObj.thunderingStrength < 1F) {
                     worldObj.thunderingStrength = worldObj.thunderingStrength + 0.01F;

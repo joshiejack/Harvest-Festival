@@ -103,7 +103,7 @@ public class WeatherRenderer extends IRenderHandler {
                             float f10;
                             double d4;
 
-                            if (worldclient.getWorldChunkManager().getTemperatureAtHeight(f9, k1) >= 0.15F && (weather == Weather.RAIN || weather == Weather.TYPHOON)) {
+                            if (worldclient.getWorldChunkManager().getTemperatureAtHeight(f9, k1) >= 0.15F && weather.ordinal() < Weather.SNOW.ordinal()) {
                                 if (b1 != 0) {
                                     if (b1 >= 0) {
                                         tessellator.draw();

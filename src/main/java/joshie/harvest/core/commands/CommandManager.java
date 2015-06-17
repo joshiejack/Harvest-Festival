@@ -5,14 +5,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.world.World;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.event.CommandEvent;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.relauncher.Side;
 
 public class CommandManager extends CommandBase implements ICommand {
     public static final CommandManager INSTANCE = new CommandManager();
@@ -21,7 +27,7 @@ public class CommandManager extends CommandBase implements ICommand {
     public void registerCommand(HFCommandBase command) {
         commands.put(command.getCommandName(), command);
     }
-    
+
     public HFCommandBase getCommandFromString(String name) {
         return commands.get(name);
     }
@@ -32,12 +38,12 @@ public class CommandManager extends CommandBase implements ICommand {
 
     public List getPossibleCommands(ICommandSender sender) {
         ArrayList list = new ArrayList();
-        for (HFCommandBase command: commands.values()) {
+        for (HFCommandBase command : commands.values()) {
             if (sender.canCommandSenderUseCommand(command.getPermissionLevel().ordinal(), command.getCommandName())) {
                 list.add(command);
             }
         }
-        
+
         return list;
     }
 
@@ -46,15 +52,28 @@ public class CommandManager extends CommandBase implements ICommand {
         return HFModInfo.COMMANDNAME;
     }
 
+    private World getWorld(ICommandSender sender) {
+        if (sender instanceof EntityPlayer) {
+            return ((EntityPlayer) sender).worldObj;
+        }
+
+        if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
+            return DimensionManager.getWorld(0);
+        } else return MCClientHelper.getWorld();
+    }
+
     @SubscribeEvent
     public void onCommandSend(CommandEvent event) {
         if (event.command == this && event.parameters.length > 0) {
-            String commandName = event.parameters[0];
-            HFCommandBase command = commands.get(commandName);
-            if (command == null || !event.sender.canCommandSenderUseCommand(command.getPermissionLevel().ordinal(), commandName)) {
-                event.setCanceled(true);
-            } else {
-                processCommand(event, command);
+            if (getWorld(event.sender).isRemote) event.setCanceled(true);
+            else {
+                String commandName = event.parameters[0];
+                HFCommandBase command = commands.get(commandName);
+                if (command == null || !event.sender.canCommandSenderUseCommand(command.getPermissionLevel().ordinal(), commandName)) {
+                    event.setCanceled(true);
+                } else {
+                    processCommand(event, command);
+                }
             }
         }
     }
@@ -67,13 +86,13 @@ public class CommandManager extends CommandBase implements ICommand {
             throwError(event.sender, command);
         }
     }
-    
+
     static void throwError(ICommandSender sender, HFCommandBase command) {
         ChatComponentTranslation chatcomponenttranslation1 = new ChatComponentTranslation(getUsage(command), new Object[0]);
         chatcomponenttranslation1.getChatStyle().setColor(EnumChatFormatting.RED);
         sender.addChatMessage(chatcomponenttranslation1);
     }
-    
+
     static String getUsage(HFCommandBase command) {
         return "/" + INSTANCE.getCommandName() + " " + command.getCommandName() + " " + command.getUsage();
     }
@@ -90,7 +109,7 @@ public class CommandManager extends CommandBase implements ICommand {
 
     @Override
     public void processCommand(ICommandSender sender, String[] values) {
-        if(values.length == 0) {
+        if (values.length == 0) {
             throwError(sender, new HFCommandHelp());
         }
     } //Do sweet nothing

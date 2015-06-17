@@ -8,6 +8,14 @@ import joshie.harvest.api.crops.CropRegistry;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.calendar.CalendarRender;
 import joshie.harvest.cooking.FoodRegistry;
+import joshie.harvest.core.commands.CommandManager;
+import joshie.harvest.core.commands.HFCommandDay;
+import joshie.harvest.core.commands.HFCommandGold;
+import joshie.harvest.core.commands.HFCommandHelp;
+import joshie.harvest.core.commands.HFCommandNewDay;
+import joshie.harvest.core.commands.HFCommandSeason;
+import joshie.harvest.core.commands.HFCommandWeather;
+import joshie.harvest.core.commands.HFCommandYear;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.handlers.events.FMLEvents;
@@ -17,12 +25,9 @@ import joshie.harvest.core.lib.RenderIds;
 import joshie.harvest.core.network.PacketCropRequest;
 import joshie.harvest.core.network.PacketDismount;
 import joshie.harvest.core.network.PacketFreeze;
-import joshie.harvest.core.network.PacketGoldCommand;
 import joshie.harvest.core.network.PacketHandler;
-import joshie.harvest.core.network.PacketNewDay;
 import joshie.harvest.core.network.PacketPurchaseItem;
 import joshie.harvest.core.network.PacketSetCalendar;
-import joshie.harvest.core.network.PacketSetWeather;
 import joshie.harvest.core.network.PacketSyncBirthday;
 import joshie.harvest.core.network.PacketSyncCanProduce;
 import joshie.harvest.core.network.PacketSyncCooking;
@@ -70,16 +75,24 @@ public class HFCore {
         //Register Events
         FMLCommonHandler.instance().bus().register(new FMLEvents());
         MinecraftForge.EVENT_BUS.register(new AnimalEvents());
-        MinecraftForge.EVENT_BUS.register(new HFCommands());
         MinecraftForge.EVENT_BUS.register(new GeneralEvents());
         MinecraftForge.EVENT_BUS.register(new QuestEvents());
         NetworkRegistry.INSTANCE.registerGuiHandler(HarvestFestival.instance, new GuiHandler());
+        
+        //Commands
+        MinecraftForge.EVENT_BUS.register(CommandManager.INSTANCE);
+        CommandManager.INSTANCE.registerCommand(new HFCommandHelp());
+        CommandManager.INSTANCE.registerCommand(new HFCommandGold());
+        CommandManager.INSTANCE.registerCommand(new HFCommandSeason());
+        CommandManager.INSTANCE.registerCommand(new HFCommandDay());
+        CommandManager.INSTANCE.registerCommand(new HFCommandYear());
+        CommandManager.INSTANCE.registerCommand(new HFCommandNewDay());
+        CommandManager.INSTANCE.registerCommand(new HFCommandWeather());
 
         //Register Packets
         PacketHandler.registerPacket(PacketCropRequest.class, Side.SERVER);
         PacketHandler.registerPacket(PacketSetCalendar.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketSetCalendar.class, Side.SERVER);
-        PacketHandler.registerPacket(PacketSetWeather.class, Side.SERVER);
         PacketHandler.registerPacket(PacketSyncForecast.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketSyncCrop.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketSyncGold.class, Side.CLIENT);
@@ -92,11 +105,9 @@ public class HFCore {
         PacketHandler.registerPacket(PacketSyncOrientation.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketSyncBirthday.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketPurchaseItem.class, Side.SERVER);
-        PacketHandler.registerPacket(PacketGoldCommand.class, Side.SERVER);
         PacketHandler.registerPacket(PacketFreeze.class, Side.SERVER);
         PacketHandler.registerPacket(PacketSyncMarker.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketSyncFridge.class, Side.CLIENT);
-        PacketHandler.registerPacket(PacketNewDay.class, Side.SERVER);
         PacketHandler.registerPacket(PacketWateringCan.class, Side.SERVER);
         PacketHandler.registerPacket(PacketDismount.class, Side.SERVER);
 

@@ -6,7 +6,6 @@ import java.util.List;
 import joshie.harvest.init.HFAnimals;
 import joshie.harvest.init.HFBlocks;
 import joshie.harvest.init.HFBuildings;
-import joshie.harvest.init.HFCommands;
 import joshie.harvest.init.HFConfig;
 import joshie.harvest.init.HFCooking;
 import joshie.harvest.init.HFCore;
@@ -40,7 +39,6 @@ public class HFCommonProxy {
         list.add(HFGifts.class);
         list.add(HFAnimals.class);
         list.add(HFTab.class);
-        list.add(HFCommands.class);
         list.add(HFRecipeFixes.class);
     }
 

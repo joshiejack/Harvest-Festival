@@ -7,8 +7,8 @@ import java.io.Writer;
 import java.lang.reflect.Method;
 
 import joshie.harvest.HarvestFestival;
-import joshie.harvest.core.config.Mappings;
 import joshie.harvest.core.config.ASM;
+import joshie.harvest.core.config.Mappings;
 import joshie.harvest.core.helpers.generic.ConfigHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.plugins.HFPlugins;
@@ -28,12 +28,10 @@ public class HFConfig {
         initConfig("General");
         initConfig("Animals");
         initConfig("Calendar");
-        initConfig("Client");
         initConfig("Cooking");
         initConfig("Crops");
         initConfig("NPC");
         initConfig("Shops");
-        initConfig("Tools");
         HFPlugins.loadConfigs();
     }
 

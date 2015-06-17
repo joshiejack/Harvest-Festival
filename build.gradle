@@ -68,17 +68,17 @@ processResources {
 }
 
 runClient {
-    jvmArgs '-Dfml.coreMods.load=joshie.harvest.init.HFOverride'
+    jvmArgs '-Dfml.coreMods.load=joshie.harvest.asm.HFOverride'
 }
 
 runServer {
-    jvmArgs '-Dfml.coreMods.load=joshie.harvest.init.HFOverride'
+    jvmArgs '-Dfml.coreMods.load=joshie.harvest.asm.HFOverride'
 }
 
 jar {
     manifest {
         attributes 'FMLAT': 'harvestfestival_at.cfg'
-        attributes 'FMLCorePlugin': 'joshie.harvest.init.HFOverride'
+        attributes 'FMLCorePlugin': 'joshie.harvest.asm.HFOverride'
         attributes 'FMLCorePluginContainsFMLMod': 'true'
     }
 }
@@ -91,7 +91,7 @@ task sourceJar(type: Jar) {
 task deobfJar(type: Jar) {
     manifest {
         attributes 'FMLAT': 'harvestfestival_at.cfg'
-        attributes 'FMLCorePlugin': 'joshie.harvest.init.HFOverride'
+        attributes 'FMLCorePlugin': 'joshie.harvest.asm.HFOverride'
         attributes 'FMLCorePluginContainsFMLMod': 'true'
     }
     from sourceSets.main.output

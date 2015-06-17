@@ -7,6 +7,7 @@ import joshie.harvest.core.commands.HFCommandHelp;
 import joshie.harvest.core.commands.HFCommandNewDay;
 import joshie.harvest.core.commands.HFCommandReloadLang;
 import joshie.harvest.core.commands.HFCommandSeason;
+import joshie.harvest.core.commands.HFCommandWeather;
 import joshie.harvest.core.commands.HFCommandYear;
 import joshie.harvest.core.config.General;
 import net.minecraftforge.common.MinecraftForge;
@@ -20,6 +21,7 @@ public class HFCommands {
         CommandManager.INSTANCE.registerCommand(new HFCommandDay());
         CommandManager.INSTANCE.registerCommand(new HFCommandYear());
         CommandManager.INSTANCE.registerCommand(new HFCommandNewDay());
+        CommandManager.INSTANCE.registerCommand(new HFCommandWeather());
 
         //Debug commands
         if (General.DEBUG_MODE) {

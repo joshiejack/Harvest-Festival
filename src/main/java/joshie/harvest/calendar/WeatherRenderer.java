@@ -28,7 +28,7 @@ public class WeatherRenderer extends IRenderHandler {
             f /= 2.0F;
         }
 
-        if (f != 0.0F) {
+        if (f > 0.0F) {
             random.setSeed((long) renderer.rendererUpdateCount * 312987231L);
             EntityLivingBase entitylivingbase = mc.renderViewEntity;
             WorldClient worldclient = mc.theWorld;

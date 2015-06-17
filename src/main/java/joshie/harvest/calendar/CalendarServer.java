@@ -18,6 +18,12 @@ import net.minecraft.server.MinecraftServer;
 public class CalendarServer extends Calendar {
     private static final Random rand = new Random();
 
+    @Override
+    public void setTodaysWeather(Weather weather) {
+        forecast[0] = weather;
+        PacketHandler.sendToEveryone(new PacketSyncForecast(forecast));
+    }
+
     public Weather getRandomWeather(int day, Season season) {
         if (day > joshie.harvest.core.config.Calendar.DAYS_PER_SEASON) {
             season = getNextSeason(season);

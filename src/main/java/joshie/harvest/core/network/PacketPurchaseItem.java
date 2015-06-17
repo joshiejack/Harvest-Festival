@@ -3,8 +3,8 @@ package joshie.harvest.core.network;
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.shops.IPurchaseable;
 import joshie.harvest.core.helpers.ShopHelper;
-import joshie.harvest.shops.ShopInventory;
-import net.minecraft.entity.player.EntityPlayer;
+import joshie.harvest.shops.Shop;
+import net.minecraft.entity.player.EntityPlayerMP;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
@@ -14,8 +14,8 @@ public class PacketPurchaseItem implements IMessage, IMessageHandler<PacketPurch
     
     public PacketPurchaseItem() {}
     public PacketPurchaseItem(IPurchaseable purchaseable) {        
-        for(int i = 0; i < ShopInventory.registers.size(); i++) {
-            IPurchaseable purchase = ShopInventory.registers.get(i);
+        for(int i = 0; i < Shop.registers.size(); i++) {
+            IPurchaseable purchase = Shop.registers.get(i);
             if(purchase.equals(purchaseable)) {
                 purchaseable_id = i;
                 break;
@@ -35,8 +35,8 @@ public class PacketPurchaseItem implements IMessage, IMessageHandler<PacketPurch
     
     @Override
     public IMessage onMessage(PacketPurchaseItem message, MessageContext ctx) {        
-        EntityPlayer player = ctx.getServerHandler().playerEntity;
-        IPurchaseable purchaseable = ShopInventory.registers.get(message.purchaseable_id);
+        EntityPlayerMP player = ctx.getServerHandler().playerEntity;
+        IPurchaseable purchaseable = Shop.registers.get(message.purchaseable_id);
         if(purchaseable.canBuy(player.worldObj, player)) {
             if(ShopHelper.purchase(player, purchaseable, purchaseable.getCost())) {
                 player.closeScreen();

@@ -2,16 +2,16 @@ package joshie.harvest.player;
 
 import java.util.UUID;
 
-import joshie.harvest.api.HFApi;
-import joshie.harvest.api.calendar.ICalendarDate;
-import joshie.harvest.api.calendar.Season;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
-import joshie.harvest.quests.QuestStats;
-import joshie.harvest.quests.QuestStatsClient;
-import joshie.harvest.relations.RelationTrackerClient;
-import joshie.harvest.relations.RelationshipTracker;
+import joshie.harvest.player.fridge.FridgeData;
+import joshie.harvest.player.quests.QuestDataClient;
+import joshie.harvest.player.relationships.RelationshipDataClient;
+import joshie.harvest.player.stats.StatDataClient;
+import joshie.harvest.player.town.TownData;
+import joshie.harvest.player.town.TownDataClient;
+import joshie.harvest.player.tracking.TrackingData;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
@@ -20,71 +20,55 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class PlayerTrackerClient extends PlayerTracker {
-    //Questing
-    private PlayerStats stats = new PlayerStats();
-    private QuestStatsClient quests = new QuestStatsClient();
-    private RelationTrackerClient relationships = new RelationTrackerClient();
-    private EntityNPCBuilder builder;
-    private FridgeContents fridge;
+    protected FridgeData fridge = new FridgeData();
+    private QuestDataClient quests = new QuestDataClient();
+    private RelationshipDataClient relationships = new RelationshipDataClient();
+    private StatDataClient stats = new StatDataClient();
+    private TownDataClient town = new TownDataClient();
+    private TrackingData tracking = new TrackingData();
 
     @Override
     public EntityPlayer getAndCreatePlayer() {
         return MCClientHelper.getPlayer();
     }
-
+    
     @Override
-    public RelationshipTracker getRelationships() {
-        return relationships;
+    public UUID getUUID() {
+        return UUIDHelper.getPlayerUUID(getAndCreatePlayer());
     }
-
-    public FridgeContents getFridge() {
+    
+    @Override
+    public FridgeData getFridge() {
         return fridge;
     }
-
-    public void setFridge(FridgeContents fridge) {
+    
+    public void setFridge(FridgeData fridge) {
         this.fridge = fridge;
     }
 
     @Override
-    public QuestStats getQuests() {
+    public RelationshipDataClient getRelationships() {
+        return relationships;
+    }
+
+    @Override
+    public QuestDataClient getQuests() {
         return quests;
     }
 
-    public long getGold() {
-        return playerStats.getGold();
+    @Override
+    public StatDataClient getStats() {
+        return stats;
     }
-
-    public boolean addGold(long amount) {
-        playerStats.addGold(amount);
-        return true;
+    
+    @Override
+    public TownData getTown() {
+        return town;
     }
-
-    public void setGold(long gold) {
-        playerStats.setGold(gold);
-    }
-
-    public double getStamina() {
-        return playerStats.getStamina();
-    }
-
-    public double getFatigue() {
-        return playerStats.getFatigue();
-    }
-
-    public void affectStats(double stamina, double fatigue) {
-        playerStats.affectStats(stamina, fatigue);
-    }
-
-    public void setStats(double stamina, double fatigue, double staminaMax, double fatigueMin) {
-        playerStats.setStats(stamina, fatigue, staminaMax, fatigueMin);
-    }
-
-    public void setBirthday(int day, Season season, int year) {
-        playerStats.setBirthday(HFApi.CALENDAR.newDate(day, season, year));
-    }
-
-    public ICalendarDate getBirthday() {
-        return playerStats.getBirthday();
+    
+    @Override
+    public TrackingData getTracking() {
+        return tracking;
     }
 
     @Override

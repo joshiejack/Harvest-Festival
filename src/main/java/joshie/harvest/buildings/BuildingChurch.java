@@ -13,10 +13,9 @@ import joshie.harvest.buildings.placeable.blocks.PlaceableTrapDoor;
 import joshie.harvest.buildings.placeable.blocks.PlaceableWeb;
 import joshie.harvest.buildings.placeable.entities.PlaceableItemFrame;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
-import joshie.harvest.core.helpers.TownHelper;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.lib.LootStrings;
-import joshie.harvest.init.HFBuildings;
-import joshie.harvest.player.Town;
+import joshie.harvest.player.town.TownData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -216,7 +215,7 @@ public class BuildingChurch extends Building {
         list.add(new PlaceableFlower(Blocks.red_flower, 3, 9, 1, 0));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 3, 9, 1, 1));
         list.add(new PlaceableBlock(Blocks.carpet, 14, 9, 1, 3));
-        npc_offsets.put(Town.CHURCH_FRONT, new PlaceableNPC("", 9, 1, 4));
+        npc_offsets.put(TownData.CHURCH_FRONT, new PlaceableNPC("", 9, 1, 4));
         list.add(new PlaceableBlock(Blocks.air, 0, 9, 1, 4));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 2, 9, 1, 7));
         list.add(new PlaceableFlower(Blocks.red_flower, 1, 9, 1, 8));
@@ -316,7 +315,7 @@ public class BuildingChurch extends Building {
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 7, 2, 3, 1));
         list.add(new PlaceableTorches(Blocks.torch, 5, 2, 3, 2));
         list.add(new PlaceableNPC("thomas", 2, 3, 4));
-        npc_offsets.put(Town.THOMAS, new PlaceableNPC("", 2, 3, 4));
+        npc_offsets.put(TownData.THOMAS, new PlaceableNPC("", 2, 3, 4));
         list.add(new PlaceableBlock(Blocks.air, 0, 2, 3, 4));
         list.add(new PlaceableTorches(Blocks.torch, 5, 2, 3, 6));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 6, 2, 3, 7));
@@ -666,6 +665,8 @@ public class BuildingChurch extends Building {
     
     @Override
     public boolean canBuy(World world, EntityPlayer player) {
-        return TownHelper.hasBuilding(player, HFBuildings.miningHill) && TownHelper.hasBuilding(player, HFBuildings.miningHut) && TownHelper.hasBuilding(player, HFBuildings.goddessPond);
+        return HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.miningHill) &&
+                HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.miningHut) && 
+                HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.goddessPond);
     }
 }

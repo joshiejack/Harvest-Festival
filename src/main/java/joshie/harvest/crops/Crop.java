@@ -9,10 +9,11 @@ import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropRenderHandler;
 import joshie.harvest.api.crops.IDropHandler;
 import joshie.harvest.api.crops.ISoilHandler;
+import joshie.harvest.core.config.HFConfig;
 import joshie.harvest.core.helpers.SeedHelper;
 import joshie.harvest.core.util.Translate;
+import joshie.harvest.crops.handlers.SoilHandlers;
 import joshie.harvest.crops.icons.IconHandlerDefault;
-import joshie.harvest.init.HFConfig;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 
@@ -31,7 +32,7 @@ public class Crop implements ICrop {
     @SideOnly(Side.CLIENT)
     protected ICropRenderHandler iconHandler;
     @Expose
-    protected String unlocalized;
+    protected String unlocalized = "null_crop";
 
     protected ISoilHandler soilHandler;
     protected IDropHandler dropHandler;
@@ -241,7 +242,7 @@ public class Crop implements ICrop {
 
     @Override
     public ItemStack getCropStack() {
-        return item.copy();
+        return item == null? null : item.copy();
     }
     
     @Override

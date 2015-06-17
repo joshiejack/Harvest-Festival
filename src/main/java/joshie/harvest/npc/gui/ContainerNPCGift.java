@@ -44,10 +44,10 @@ public class ContainerNPCGift extends ContainerBase {
             }
 
             if (ToolHelper.isBlueFeather(gift)) {
-                HFTrackers.getPlayerTracker(player).getRelationships().propose(theNpc);
+                HFTrackers.getPlayerTracker(player).getRelationships().propose(player, theNpc);
             }
 
-            HFTrackers.getPlayerTracker(player).getRelationships().gift(theNpc, points);
+            HFTrackers.getPlayerTracker(player).getRelationships().gift(player, theNpc, points);
             player.inventory.decrStackSize(player.inventory.currentItem, 1);
         }
     }

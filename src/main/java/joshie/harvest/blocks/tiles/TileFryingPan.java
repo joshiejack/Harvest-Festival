@@ -2,8 +2,8 @@ package joshie.harvest.blocks.tiles;
 
 import joshie.harvest.api.cooking.IUtensil;
 import joshie.harvest.blocks.BlockCookware;
+import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.cooking.Utensil;
-import joshie.harvest.init.HFBlocks;
 import net.minecraft.block.Block;
 
 public class TileFryingPan extends TileCooking {

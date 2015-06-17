@@ -1,8 +1,8 @@
 package joshie.harvest.core.lib;
 
 import joshie.harvest.api.core.ISizeable;
+import joshie.harvest.core.config.HFConfig;
 import joshie.harvest.core.helpers.SizeableHelper;
-import joshie.harvest.init.HFConfig;
 import joshie.harvest.items.ItemSized;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;

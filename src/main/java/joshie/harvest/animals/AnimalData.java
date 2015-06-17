@@ -16,7 +16,7 @@ import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.helpers.generic.EntityHelper;
 import joshie.harvest.core.network.PacketSyncCanProduce;
 import joshie.harvest.items.ItemTreat;
-import joshie.harvest.relations.RelationshipHelper;
+import joshie.harvest.player.relationships.RelationshipHelper;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
@@ -241,7 +241,7 @@ public class AnimalData implements IAnimalData {
 
     private void affectRelationship(EntityPlayer player, int amount) {
         if (player != null) {
-            HFTrackers.getPlayerTracker(player).getRelationships().affectRelationship(relatable, amount);
+            HFTrackers.getPlayerTracker(player).getRelationships().affectRelationship(player, relatable, amount);
         }
     }
 

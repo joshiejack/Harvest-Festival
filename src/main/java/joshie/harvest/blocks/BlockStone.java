@@ -6,6 +6,7 @@ import java.util.Random;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.config.General;
 import joshie.harvest.core.helpers.generic.EntityHelper;
+import joshie.harvest.core.util.base.BlockHFBaseMeta;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;

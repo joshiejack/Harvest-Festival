@@ -10,7 +10,7 @@ import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropProvider;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.lib.CreativeSort;
-import joshie.harvest.init.HFCrops;
+import joshie.harvest.crops.HFCrops;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

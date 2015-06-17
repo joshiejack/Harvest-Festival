@@ -1,6 +1,6 @@
 package joshie.harvest.core.commands;
 
-import joshie.harvest.core.handlers.events.FMLEvents;
+import joshie.harvest.core.handlers.EventsHandler;
 import net.minecraft.command.ICommandSender;
 
 public class HFCommandNewDay extends HFCommandBase {
@@ -16,7 +16,7 @@ public class HFCommandNewDay extends HFCommandBase {
 
     @Override
     public boolean processCommand(ICommandSender sender, String[] parameters) {
-        FMLEvents.newDay(true);
+        EventsHandler.newDay(true);
         return true;
     }
 }

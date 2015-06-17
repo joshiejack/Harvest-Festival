@@ -1,20 +1,18 @@
 package joshie.harvest.core.helpers;
 
-import static joshie.harvest.core.network.PacketHandler.sendToClient;
 import static joshie.harvest.core.network.PacketHandler.sendToServer;
 
 import java.util.HashSet;
 
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quest.IQuest;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.ItemHelper;
-import joshie.harvest.core.network.PacketSyncGold;
 import joshie.harvest.core.network.quests.PacketQuestDecreaseHeld;
 import joshie.harvest.core.util.generic.IdiotException;
-import joshie.harvest.player.PlayerStats;
+import joshie.harvest.player.quests.QuestData;
 import joshie.harvest.quests.Quest;
-import joshie.harvest.quests.QuestStats;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -44,14 +42,12 @@ public class QuestHelper {
         if (player.worldObj.isRemote) {
             throw new IdiotException("Joshie shouldn't be rewarding anyone with gold client side");
         } else {
-            PlayerStats stats = HFTrackers.getPlayerTracker(player).getStats();
-            stats.addGold(amount);
-            sendToClient(new PacketSyncGold(stats.getGold()), (EntityPlayerMP) player);
+            HFTrackers.getServerPlayerTracker(player).getStats().addGold((EntityPlayerMP) player, amount);
         }
     }
 
     public static void rewardRelations(EntityPlayer player, INPC npc, int amount) {
-        HFTrackers.getPlayerTracker(player).getRelationships().affectRelationship(npc, amount);
+        HFApi.RELATIONS.adjustRelationship(player, npc, amount);
     }
 
     public static void rewardItem(EntityPlayer player, ItemStack stack) {
@@ -71,7 +67,7 @@ public class QuestHelper {
     }
 
     public static void setQuestStage(EntityPlayer player, IQuest quest, int stage) {
-        QuestStats stats = HFTrackers.getPlayerTracker(player).getQuests();
+        QuestData stats = HFTrackers.getPlayerTracker(player).getQuests();
         int previous = stats.getAQuest(quest).getStage();
         stats.setStage(quest, stage);
         quest.onStageChanged(player, previous, stage);

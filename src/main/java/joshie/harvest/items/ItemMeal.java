@@ -1,6 +1,5 @@
 package joshie.harvest.items;
 
-import static joshie.harvest.core.helpers.PlayerHelper.affectStats;
 import static joshie.harvest.core.lib.HFModInfo.MEALPATH;
 
 import java.util.HashMap;
@@ -15,6 +14,7 @@ import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.cooking.Utensil;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.config.General;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.util.Translate;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -77,7 +77,7 @@ public class ItemMeal extends ItemHFMeta implements IMealProvider, ICreativeSort
             float sat = stack.stackTagCompound.getFloat("FoodSaturation");
             int stamina = stack.stackTagCompound.getInteger("FoodStamina");
             int fatigue = stack.stackTagCompound.getInteger("FoodFatigue");
-            affectStats(player, stamina, fatigue);
+            HFTrackers.getPlayerTracker(player).getStats().affectStats(stamina, fatigue);
             player.getFoodStats().addStats(level, sat);
             world.playSoundAtEntity(player, "random.burp", 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
 

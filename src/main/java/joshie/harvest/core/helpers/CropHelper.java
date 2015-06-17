@@ -1,7 +1,5 @@
 package joshie.harvest.core.helpers;
 
-import joshie.harvest.api.crops.ICrop;
-import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.ItemHelper;
 import net.minecraft.block.Block;
@@ -46,21 +44,6 @@ public class CropHelper {
         return world.getBlock(x, y, z) instanceof BlockFarmland && world.getBlockMetadata(x, y, z) == 7;
     }
 
-    //Fetch the crop data at this location
-    public static ICropData getCropAtLocation(World world, int x, int y, int z) {
-        return HFTrackers.getCropTracker().getCropDataForLocation(world, x, y, z);
-    }
-
-    //Remove the crop data at this location
-    public static void removeCrop(World world, int x, int y, int z) {
-        HFTrackers.getCropTracker().removeCrop(world, x, y, z);
-    }
-
-    //Set some crop data at this location
-    public static boolean plantCrop(EntityPlayer player, World world, int x, int y, int z, ICrop crop, int regrowStage) {
-        return HFTrackers.getCropTracker().plantCrop(player, world, x, y, z, crop, regrowStage);
-    }
-
     //Harvests the crop at this location
     public static boolean harvestCrop(EntityPlayer player, World world, int x, int y, int z) {
         ItemStack stack = HFTrackers.getCropTracker().harvest(player, world, x, y, z);
@@ -69,14 +52,5 @@ public class CropHelper {
         }
 
         return stack != null;
-    }
-
-    //Whether or not you can bonemeal this location
-    public static boolean canBonemeal(World world, int x, int y, int z) {
-        return HFTrackers.getCropTracker().canBonemeal(world, x, y, z);
-    }
-
-    public static void grow(World world, int x, int y, int z) {
-        HFTrackers.getCropTracker().grow(world, x, y, z);
     }
 }

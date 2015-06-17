@@ -4,8 +4,8 @@ import java.util.UUID;
 
 import joshie.harvest.api.WorldLocation;
 import joshie.harvest.api.npc.INPC;
-import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.handlers.GuiHandler;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import joshie.harvest.npc.entity.EntityNPCMiner;
@@ -18,7 +18,7 @@ public class NPCHelper {
         UUID owner_uuid = entity.owning_player;
         INPC npc = entity.getNPC();
         if (npc.getHomeGroup() == null || npc.getHomeLocation() == null) return null;
-        return TownHelper.getLocationFor(owner_uuid, npc.getHomeGroup(), npc.getHomeLocation());
+        return HFTrackers.getPlayerTracker(owner_uuid).getTown().getCoordinatesFor(npc.getHomeGroup(), npc.getHomeLocation());
     }
     
     public static EntityNPC getEntityForNPC(UUID owning_player, World world, INPC npc) {
@@ -33,9 +33,5 @@ public class NPCHelper {
     
     public static int getGuiIDForNPC(INPC npc, World world, EntityPlayer player, boolean isSneaking) {
         return npc.getShop() != null && npc.getShop().isOpen(world, player) && npc.getShop().getContents(player).size() > 0 ? (npc.isBuilder()? GuiHandler.SHOP_BUILDER: GuiHandler.SHOP) : (isSneaking) ? GuiHandler.GIFT : GuiHandler.NPC;
-    }
-    
-    public static EntityNPCBuilder getBuilderForPlayer(World world, EntityPlayer player) {
-        return HFTrackers.getPlayerTracker(player).getBuilder(world);
     }
 }

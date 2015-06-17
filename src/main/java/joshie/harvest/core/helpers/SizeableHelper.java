@@ -2,7 +2,7 @@ package joshie.harvest.core.helpers;
 
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.core.lib.SizeableMeta;
-import joshie.harvest.init.HFItems;
+import joshie.harvest.items.HFItems;
 import net.minecraft.item.ItemStack;
 
 public class SizeableHelper {

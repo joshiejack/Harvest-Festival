@@ -1,9 +1,7 @@
 package joshie.harvest.core.commands;
 
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.network.PacketHandler;
-import joshie.harvest.core.network.PacketSyncGold;
-import joshie.harvest.player.PlayerStats;
+import joshie.harvest.player.stats.StatDataServer;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
 
@@ -26,12 +24,11 @@ public class HFCommandGold extends HFCommandBase {
                 boolean set = parameters.length == 1 || parameters[0].equals("add") ? false : true;
 
                 EntityPlayerMP player = getPlayer(sender);
-                PlayerStats stats = HFTrackers.getPlayerTracker(player).getStats();
+                StatDataServer stats = HFTrackers.getServerPlayerTracker(player).getStats();
                 if (set) {
-                    stats.setGold(amount);
-                } else stats.addGold(amount);
-
-                PacketHandler.sendToClient(new PacketSyncGold(stats.getGold()), (EntityPlayerMP) player);
+                    stats.setGold(player, amount);
+                } else stats.addGold(player, amount);
+                
                 return true; //After succesfully completing the command, return to avoid throwing an error
             } catch (NumberFormatException e) {}
         }

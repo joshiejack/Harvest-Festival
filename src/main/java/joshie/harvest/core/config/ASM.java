@@ -58,10 +58,4 @@ public class ASM {
     /* Tab Options */
     @SerializedName("Overrides > Move Tabs")
     public boolean MOVE_OVERRIDE_TAB = true;
-
-    /* Hoe Options */
-    @SerializedName("Hoes > Useless")
-    public boolean HOES_ARE_USELESS = true;
-    @SerializedName("Hoes > Hide")
-    public boolean HOES_HIDDEN = true;
 }

@@ -10,7 +10,7 @@ import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 public abstract class AbstractPacketOrientation extends AbstractPacketLocation {
-    protected ForgeDirection dir;
+    private ForgeDirection dir;
 
     public AbstractPacketOrientation() {}
     public AbstractPacketOrientation(int dim, int x, int y, int z, ForgeDirection dir) {

@@ -11,7 +11,7 @@ public class ShopRegistry implements IShopRegistry {
     
     @Override
     public IShop newShop(String unlocalised, INPC npc) {
-        IShop shop = new ShopInventory(unlocalised);
+        IShop shop = new Shop(unlocalised);
         npc.setShop(shop);
         shops.put(unlocalised, shop);
         return shop;

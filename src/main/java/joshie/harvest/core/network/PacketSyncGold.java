@@ -26,7 +26,7 @@ public class PacketSyncGold implements IMessage, IMessageHandler<PacketSyncGold,
     
     @Override
     public IMessage onMessage(PacketSyncGold message, MessageContext ctx) {      
-        HFTrackers.getPlayerTracker().getStats().setGold(message.gold);
+        HFTrackers.getClientPlayerTracker().getStats().setGold(message.gold);
         return null;
     }
 }

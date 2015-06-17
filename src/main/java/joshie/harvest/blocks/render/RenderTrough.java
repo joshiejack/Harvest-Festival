@@ -1,8 +1,8 @@
 package joshie.harvest.blocks.render;
 
 import joshie.harvest.blocks.BlockWood;
+import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.core.util.RenderBase;
-import joshie.harvest.init.HFBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 

@@ -1,6 +1,6 @@
 package joshie.harvest.npc.gift;
 
-import joshie.harvest.init.HFBlocks;
+import joshie.harvest.blocks.HFBlocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 

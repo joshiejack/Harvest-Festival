@@ -1,9 +1,9 @@
 package joshie.harvest.core.helpers;
 
 import joshie.harvest.api.crops.ICrop;
-import joshie.harvest.init.HFConfig;
-import joshie.harvest.init.HFCrops;
-import joshie.harvest.init.HFItems;
+import joshie.harvest.core.config.HFConfig;
+import joshie.harvest.crops.HFCrops;
+import joshie.harvest.items.HFItems;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 

@@ -18,10 +18,9 @@ import joshie.harvest.buildings.placeable.blocks.PlaceableVine;
 import joshie.harvest.buildings.placeable.entities.PlaceableItemFrame;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.buildings.placeable.entities.PlaceablePainting;
-import joshie.harvest.core.helpers.TownHelper;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.lib.LootStrings;
-import joshie.harvest.init.HFBuildings;
-import joshie.harvest.player.Town;
+import joshie.harvest.player.town.TownData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -287,7 +286,7 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableItemFrame(null, 0, 3, 8, 1, 4));
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 1, 5));
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 1, 6));
-        npc_offsets.put(Town.CAFE_FRONT, new PlaceableNPC("", 8, 1, 7));
+        npc_offsets.put(TownData.CAFE_FRONT, new PlaceableNPC("", 8, 1, 7));
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 1, 7));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 12, 8, 1, 8));
         list.add(new PlaceableBlock(Blocks.stained_hardened_clay, 14, 8, 1, 9));
@@ -385,7 +384,7 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableLog(Blocks.log, 1, 5, 2, 9));
         list.add(new PlaceableLadder(Blocks.ladder, 3, 5, 2, 10));
         list.add(new PlaceableNPC("katlin", 5, 2, 11));
-        npc_offsets.put(Town.KATLIN, new PlaceableNPC("", 5, 2, 11));
+        npc_offsets.put(TownData.KATLIN, new PlaceableNPC("", 5, 2, 11));
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 2, 11));
         list.add(new PlaceableBlock(Blocks.cobblestone_wall, 0, 5, 2, 12));
         list.add(new PlaceableLog(Blocks.log, 1, 5, 2, 13));
@@ -801,7 +800,7 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.stained_hardened_clay, 14, 5, 5, 4));
         list.add(new PlaceableLog(Blocks.log, 1, 5, 5, 5));
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 5, 6));
-        npc_offsets.put(Town.CAFE_TILL, new PlaceableNPC("", 5, 5, 7));
+        npc_offsets.put(TownData.CAFE_TILL, new PlaceableNPC("", 5, 5, 7));
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 5, 7));
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 5, 8));
         list.add(new PlaceableLog(Blocks.log, 1, 5, 5, 9));
@@ -829,7 +828,7 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 7, 7, 5, 8));
         list.add(new PlaceableLog(Blocks.log, 1, 7, 5, 9));
         list.add(new PlaceableNPC("liara", 7, 5, 10));
-        npc_offsets.put(Town.LIARA, new PlaceableNPC("", 7, 5, 10));
+        npc_offsets.put(TownData.LIARA, new PlaceableNPC("", 7, 5, 10));
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 5, 10));
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 5, 11));
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 5, 12));
@@ -1386,6 +1385,8 @@ public class BuildingCafe extends Building {
     
     @Override
     public boolean canBuy(World world, EntityPlayer player) {
-        return TownHelper.hasBuilding(player, HFBuildings.miningHill) && TownHelper.hasBuilding(player, HFBuildings.miningHut) && TownHelper.hasBuilding(player, HFBuildings.goddessPond);
+        return HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.miningHill) &&
+               HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.miningHut) && 
+               HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.goddessPond);
     }
 }

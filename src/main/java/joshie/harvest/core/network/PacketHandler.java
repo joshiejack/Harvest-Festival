@@ -1,7 +1,7 @@
 package joshie.harvest.core.network;
 
+import static joshie.harvest.core.config.HFConfig.PACKET_DISTANCE;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
-import static joshie.harvest.init.HFConfig.PACKET_DISTANCE;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;

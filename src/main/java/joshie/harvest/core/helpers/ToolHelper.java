@@ -1,6 +1,6 @@
 package joshie.harvest.core.helpers;
 
-import joshie.harvest.init.HFItems;
+import joshie.harvest.items.HFItems;
 import joshie.harvest.items.ItemBaseTool;
 import joshie.harvest.items.ItemGeneral;
 import net.minecraft.item.ItemStack;

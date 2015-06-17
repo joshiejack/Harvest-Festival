@@ -11,7 +11,7 @@ import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.relations.IRelatableProvider;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.init.HFNPCs;
+import joshie.harvest.npc.HFNPCs;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;

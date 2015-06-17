@@ -13,10 +13,9 @@ import joshie.harvest.buildings.placeable.blocks.PlaceableTorches;
 import joshie.harvest.buildings.placeable.blocks.PlaceableTrapDoor;
 import joshie.harvest.buildings.placeable.entities.PlaceableItemFrame;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
-import joshie.harvest.core.helpers.TownHelper;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.lib.LootStrings;
-import joshie.harvest.init.HFBuildings;
-import joshie.harvest.player.Town;
+import joshie.harvest.player.town.TownData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -151,7 +150,7 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 4, 1, 7));
         list.add(new PlaceableBlock(Blocks.air, 0, 4, 1, 8));
         list.add(new PlaceableNPC("brandon", 4, 1, 9));
-        npc_offsets.put(Town.BRANDON, new PlaceableNPC("", 4, 1, 9));
+        npc_offsets.put(TownData.BRANDON, new PlaceableNPC("", 4, 1, 9));
         list.add(new PlaceableBlock(Blocks.air, 0, 4, 1, 9));
         list.add(new PlaceableBlock(Blocks.air, 0, 4, 1, 10));
         list.add(new PlaceableChest(Blocks.chest, 2, 4, 1, 11, LootStrings.MINING_CHEST));
@@ -209,13 +208,13 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableLog(Blocks.log, 1, 9, 1, 1));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 7, 9, 1, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 9, 1, 3));
-        npc_offsets.put(Town.MINER_GRAVEL, new PlaceableNPC("", 9, 1, 4));
+        npc_offsets.put(TownData.MINER_GRAVEL, new PlaceableNPC("", 9, 1, 4));
         list.add(new PlaceableBlock(Blocks.air, 0, 9, 1, 4));
         list.add(new PlaceableBlock(Blocks.gravel, 0, 9, 1, 5));
         list.add(new PlaceableBlock(Blocks.gravel, 0, 9, 1, 6));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 3, 9, 1, 7));
         list.add(new PlaceableBlock(Blocks.air, 0, 9, 1, 8));
-        npc_offsets.put(Town.MINER_FRONT, new PlaceableNPC("", 9, 1, 9));
+        npc_offsets.put(TownData.MINER_FRONT, new PlaceableNPC("", 9, 1, 9));
         list.add(new PlaceableBlock(Blocks.air, 0, 9, 1, 9));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 2, 10, 1, 1));
         list.add(new PlaceableBlock(Blocks.stained_hardened_clay, 7, 10, 1, 2));
@@ -613,6 +612,7 @@ public class BuildingMiningHut extends Building {
     
     @Override
     public boolean canBuy(World world, EntityPlayer player) {
-        return TownHelper.hasBuilding(player, HFBuildings.poultryFarm) && TownHelper.hasBuilding(player, HFBuildings.barn);
+        return HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.poultryFarm) &&
+               HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.barn);
     }
 }

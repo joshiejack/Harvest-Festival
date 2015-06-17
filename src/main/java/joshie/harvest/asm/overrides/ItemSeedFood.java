@@ -3,9 +3,9 @@ package joshie.harvest.asm.overrides;
 import java.util.List;
 
 import joshie.harvest.api.crops.ICrop;
+import joshie.harvest.core.config.HFConfig;
 import joshie.harvest.core.lib.CreativeSort;
-import joshie.harvest.init.HFConfig;
-import joshie.harvest.init.HFCrops;
+import joshie.harvest.crops.HFCrops;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;

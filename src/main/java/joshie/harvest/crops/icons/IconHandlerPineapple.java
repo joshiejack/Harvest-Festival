@@ -1,7 +1,7 @@
 package joshie.harvest.crops.icons;
 
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.init.HFCrops;
+import joshie.harvest.crops.HFCrops;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
 import cpw.mods.fml.relauncher.Side;

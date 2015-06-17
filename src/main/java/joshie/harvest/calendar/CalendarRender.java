@@ -52,7 +52,7 @@ public class CalendarRender {
 
             mc.fontRenderer.drawStringWithShadow(Translate.translate("year") + " " + date.getYear(), 45, 25, 0xFFFFFFFF);
             mc.getTextureManager().bindTexture(HFModInfo.elements);
-            String text = NumberFormat.getNumberInstance(Locale.US).format(HFTrackers.getPlayerTracker().getStats().getGold());
+            String text = NumberFormat.getNumberInstance(Locale.US).format(HFTrackers.getClientPlayerTracker().getStats().getGold());
             int width = event.resolution.getScaledWidth();
             mc.ingameGUI.drawTexturedModalRect(width - mc.fontRenderer.getStringWidth(text) - 20, 2, 244, 0, 12, 12);
             mc.fontRenderer.drawStringWithShadow(text, width - mc.fontRenderer.getStringWidth(text) - 5, 5, 0xFFFFFFFF);

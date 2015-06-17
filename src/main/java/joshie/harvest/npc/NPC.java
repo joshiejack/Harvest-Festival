@@ -19,7 +19,7 @@ import joshie.harvest.core.util.generic.Text;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.gift.Gifts;
 import joshie.harvest.npc.gift.Gifts.Quality;
-import joshie.harvest.relations.RelationshipHelper;
+import joshie.harvest.player.relationships.RelationshipHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 

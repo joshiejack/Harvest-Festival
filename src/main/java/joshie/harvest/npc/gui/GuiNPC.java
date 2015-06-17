@@ -12,7 +12,7 @@ import joshie.harvest.core.util.ChatFontRenderer;
 import joshie.harvest.core.util.GuiBase;
 import joshie.harvest.core.util.Translate;
 import joshie.harvest.npc.entity.EntityNPC;
-import joshie.harvest.player.PlayerStats;
+import joshie.harvest.player.stats.StatData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 
@@ -77,7 +77,7 @@ public class GuiNPC extends GuiBase {
 
     private String format(String string) {
         if (string == null) return "FORGOT SOME TEXT DUMBASS";
-        PlayerStats stats = HFTrackers.getPlayerTracker().getStats();
+        StatData stats = HFTrackers.getClientPlayerTracker().getStats();
         string = string.replace("<BR>", SystemUtils.LINE_SEPARATOR);
         string = string.replace("Þ", player.getDisplayName());
         string = string.replace("ℇ", npc.getNPC().getUnlocalizedName());
@@ -87,7 +87,7 @@ public class GuiNPC extends GuiBase {
             string = string.replace("�?�", npc.getLover().getNPC().getUnlocalizedName());
         } else string = string.replace("�?�", Translate.translate("nolover"));
 
-        return string.replace("♥", HFTrackers.getPlayerTracker().getRelationships().getLover());
+        return string.replace("♥", HFTrackers.getClientPlayerTracker().getRelationships().getLover());
     }
 
     protected void drawLines() {
@@ -206,7 +206,7 @@ public class GuiNPC extends GuiBase {
     }
 
     protected String getScript() {
-        return HFTrackers.getPlayerTracker().getQuests().getScript(player, npc);
+        return HFTrackers.getClientPlayerTracker().getQuests().getScript(player, npc);
     }
 
     @Override

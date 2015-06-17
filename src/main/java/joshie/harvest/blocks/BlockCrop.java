@@ -11,15 +11,16 @@ import joshie.harvest.api.crops.IBreakCrops;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.api.crops.ICropRenderHandler.PlantSection;
+import joshie.harvest.blocks.render.EntityCropDigFX;
 import joshie.harvest.core.config.Crops;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.AnimalHelper;
-import joshie.harvest.core.helpers.CropHelper;
-import joshie.harvest.core.helpers.DigFXHelper;
 import joshie.harvest.core.helpers.SeedHelper;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.lib.RenderIds;
+import joshie.harvest.core.util.base.BlockHFBase;
 import joshie.harvest.crops.Crop;
-import joshie.harvest.init.HFCrops;
+import joshie.harvest.crops.HFCrops;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
@@ -90,7 +91,7 @@ public class BlockCrop extends BlockHFBase implements IPlantable, IGrowable, IAn
                     float chance = getGrowthChance(world, x, y, z);
                     if (rand.nextInt((int) (25.0F / chance) + 1) == 0) {
                         //We are Growing!
-                        CropHelper.grow(world, x, y, z);
+                        HFTrackers.getCropTracker().grow(world, x, y, z);
                     }
                 }
             }
@@ -190,7 +191,47 @@ public class BlockCrop extends BlockHFBase implements IPlantable, IGrowable, IAn
     @SideOnly(Side.CLIENT)
     @Override
     public boolean addHitEffects(World world, MovingObjectPosition target, EffectRenderer effectRenderer) {
-        DigFXHelper.addBlockHitEffects(world, target.blockX, target.blockY, target.blockZ, target.sideHit, effectRenderer);
+        int x = target.blockX;
+        int y = target.blockY;
+        int z = target.blockZ;
+        int side = target.sideHit;
+
+        //^ setup vars
+        Block block = world.getBlock(x, y, z);
+        IIcon icon = HFApi.CROPS.getCropAtLocation(world, x, y, z).getCropIcon(BlockCrop.getSection(world, x, y, z));
+        if (block.getMaterial() != Material.air) {
+            float f = 0.1F;
+            double d0 = (double) x + world.rand.nextDouble() * (block.getBlockBoundsMaxX() - block.getBlockBoundsMinX() - (double) (f * 2.0F)) + (double) f + block.getBlockBoundsMinX();
+            double d1 = (double) y + world.rand.nextDouble() * (block.getBlockBoundsMaxY() - block.getBlockBoundsMinY() - (double) (f * 2.0F)) + (double) f + block.getBlockBoundsMinY();
+            double d2 = (double) z + world.rand.nextDouble() * (block.getBlockBoundsMaxZ() - block.getBlockBoundsMinZ() - (double) (f * 2.0F)) + (double) f + block.getBlockBoundsMinZ();
+
+            if (side == 0) {
+                d1 = (double) y + block.getBlockBoundsMinY() - (double) f;
+            }
+
+            if (side == 1) {
+                d1 = (double) y + block.getBlockBoundsMaxY() + (double) f;
+            }
+
+            if (side == 2) {
+                d2 = (double) z + block.getBlockBoundsMinZ() - (double) f;
+            }
+
+            if (side == 3) {
+                d2 = (double) z + block.getBlockBoundsMaxZ() + (double) f;
+            }
+
+            if (side == 4) {
+                d0 = (double) x + block.getBlockBoundsMinX() - (double) f;
+            }
+
+            if (side == 5) {
+                d0 = (double) x + block.getBlockBoundsMaxX() + (double) f;
+            }
+
+            effectRenderer.addEffect((new EntityCropDigFX(icon, world, d0, d1, d2, x, y, z, block, world.getBlockMetadata(x, y, z))).applyColourMultiplier(x, y, z).multiplyVelocity(0.2F).multipleParticleScaleBy(0.6F));
+        }
+
         return true;
     }
 
@@ -270,7 +311,7 @@ public class BlockCrop extends BlockHFBase implements IPlantable, IGrowable, IAn
     @Override
     public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
         if (meta == FRESH || meta == WITHERED) {
-            CropHelper.removeCrop(world, x, y, z);
+            HFTrackers.getCropTracker().removeCrop(world, x, y, z);
         } else if (meta == FRESH_DOUBLE || meta == WITHERED_DOUBLE) {
             world.setBlockToAir(x, y - 1, z);
         }
@@ -327,7 +368,7 @@ public class BlockCrop extends BlockHFBase implements IPlantable, IGrowable, IAn
         if (meta == WITHERED) return false; //It's dead it can't grow...
 
         if (Crops.ENABLE_BONEMEAL) {
-            return CropHelper.canBonemeal(world, x, y, z);
+            return HFTrackers.getCropTracker().canBonemeal(world, x, y, z);
         } else return false;
     }
 
@@ -342,7 +383,7 @@ public class BlockCrop extends BlockHFBase implements IPlantable, IGrowable, IAn
     //Apply the bonemeal and grow!
     @Override
     public void func_149853_b(World world, Random rand, int x, int y, int z) {
-        CropHelper.grow(world, x, y, z);
+        HFTrackers.getCropTracker().grow(world, x, y, z);
     }
 
     @Override
@@ -353,7 +394,7 @@ public class BlockCrop extends BlockHFBase implements IPlantable, IGrowable, IAn
             if (theCrop == HFCrops.grass) {
                 int stage = crop.getStage();
                 if (stage > 5) {
-                    CropHelper.plantCrop(tracked.getData().getOwner(), world, x, y, z, theCrop, stage - 5);
+                    HFTrackers.getCropTracker().plantCrop(tracked.getData().getOwner(), world, x, y, z, theCrop, stage - 5);
                     return true;
                 }
             }

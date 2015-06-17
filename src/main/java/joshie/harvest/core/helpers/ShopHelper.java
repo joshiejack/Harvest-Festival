@@ -1,14 +1,16 @@
 package joshie.harvest.core.helpers;
 
 import joshie.harvest.api.shops.IPurchaseable;
-import net.minecraft.entity.player.EntityPlayer;
+import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.player.stats.StatDataServer;
+import net.minecraft.entity.player.EntityPlayerMP;
 
 public class ShopHelper {
     /** This should only be ever called server ide **/
-    public static boolean purchase(EntityPlayer player, IPurchaseable purchaseable, long cost) {
-        long player_gold = PlayerHelper.getGold(player);
-        if (player_gold - cost >= 0) {
-            PlayerHelper.adjustGold(player, -cost);
+    public static boolean purchase(EntityPlayerMP player, IPurchaseable purchaseable, long cost) {
+        StatDataServer stats = HFTrackers.getServerPlayerTracker(player).getStats();
+        if (stats.getGold() - cost >= 0) {
+            stats.addGold(player, -cost);
             return purchaseable.onPurchased(player);
         }
         

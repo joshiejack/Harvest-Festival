@@ -48,7 +48,7 @@ public class HFSavedData extends WorldSavedData {
     public MineTrackerServer getMineTracker() {
         return mines;
     }
-    
+
     public Collection<PlayerTrackerServer> getPlayerData() {
         return players.values();
     }
@@ -100,8 +100,19 @@ public class HFSavedData extends WorldSavedData {
         for (int i = 0; i < tag_list_players.tagCount(); i++) {
             NBTTagCompound tag = tag_list_players.getCompoundTagAt(i);
             PlayerTrackerServer data = new PlayerTrackerServer();
-            data.readFromNBT(tag);
-            players.put(data.getUUID(), data);
+            boolean success = false;
+            try {
+                data.readFromNBT(tag);
+                success = true;
+
+            } catch (Exception e) {
+                success = false;
+            }
+
+            //Only add non failed loads
+            if (success) {
+                players.put(data.getUUID(), data);
+            }
         }
     }
 

@@ -17,10 +17,9 @@ import joshie.harvest.buildings.placeable.blocks.PlaceableVine;
 import joshie.harvest.buildings.placeable.entities.PlaceableItemFrame;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.buildings.placeable.entities.PlaceablePainting;
-import joshie.harvest.core.helpers.TownHelper;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.lib.LootStrings;
-import joshie.harvest.init.HFBuildings;
-import joshie.harvest.player.Town;
+import joshie.harvest.player.town.TownData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -101,7 +100,7 @@ public class BuildingFishingHut extends Building {
         list.add(new PlaceableLog(Blocks.log, 1, 5, 1, 1));
         list.add(new PlaceableVine(Blocks.vine, 4, 5, 1, 2));
         list.add(new PlaceableNPC("jacob", 5, 1, 3));
-        npc_offsets.put(Town.JACOB, new PlaceableNPC("", 5, 1, 3));
+        npc_offsets.put(TownData.JACOB, new PlaceableNPC("", 5, 1, 3));
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 1, 3));
         list.add(new PlaceableFlowerPot(Blocks.flower_pot, 6, 5, 1, 4));
         list.add(new PlaceableBlock(Blocks.stained_hardened_clay, 0, 5, 1, 5));
@@ -404,6 +403,8 @@ public class BuildingFishingHut extends Building {
     
     @Override
     public boolean canBuy(World world, EntityPlayer player) {
-        return TownHelper.hasBuilding(player, HFBuildings.miningHill) && TownHelper.hasBuilding(player, HFBuildings.miningHut) && TownHelper.hasBuilding(player, HFBuildings.goddessPond);
+        return HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.miningHill) &&
+                HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.miningHut) && 
+                HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.goddessPond);
     }
 }

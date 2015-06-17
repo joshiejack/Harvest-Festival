@@ -5,6 +5,7 @@ import joshie.harvest.core.HFTab;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.DirectionHelper;
 import joshie.harvest.core.lib.RenderIds;
+import joshie.harvest.core.util.base.BlockHFBaseMeta;
 import joshie.harvest.core.util.generic.IFaceable;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -76,11 +77,17 @@ public class BlockWood extends BlockHFBaseMeta {
                     if (!player.capabilities.isCreativeMode) {
                         player.inventory.decrStackSize(player.inventory.currentItem, 1);
                     }
-                    
-                    return HFTrackers.getPlayerTracker(player).getShipping().addForShipping(held);
-                } else return false;
-            } else return false;
-        } else return false;
+
+                    if (!world.isRemote) {
+                        HFTrackers.getServerPlayerTracker(player).getTracking().addForShipping(held);
+                    }
+
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     @Override

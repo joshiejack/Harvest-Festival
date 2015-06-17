@@ -2,9 +2,9 @@ package joshie.harvest.blocks.render;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.crops.ICropData;
+import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.lib.RenderIds;
-import joshie.harvest.init.HFBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;

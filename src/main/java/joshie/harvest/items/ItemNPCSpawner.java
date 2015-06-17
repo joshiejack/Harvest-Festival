@@ -7,7 +7,7 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.core.helpers.UUIDHelper;
-import joshie.harvest.init.HFNPCs;
+import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

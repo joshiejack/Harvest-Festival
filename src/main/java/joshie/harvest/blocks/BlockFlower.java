@@ -2,6 +2,7 @@ package joshie.harvest.blocks;
 
 import static net.minecraftforge.common.EnumPlantType.Plains;
 import joshie.harvest.core.HFTab;
+import joshie.harvest.core.util.base.BlockHFBaseMeta;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;

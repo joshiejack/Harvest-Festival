@@ -2,16 +2,15 @@ package joshie.harvest.core.handlers;
 
 import joshie.harvest.cooking.gui.ContainerFridge;
 import joshie.harvest.cooking.gui.GuiFridge;
-import joshie.harvest.core.helpers.PlayerHelper;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.gui.ContainerNPC;
-import joshie.harvest.npc.gui.ContainerNPCBuilderShop;
 import joshie.harvest.npc.gui.ContainerNPCGift;
-import joshie.harvest.npc.gui.ContainerNPCShop;
 import joshie.harvest.npc.gui.GuiNPC;
-import joshie.harvest.npc.gui.GuiNPCBuilderShop;
 import joshie.harvest.npc.gui.GuiNPCGift;
-import joshie.harvest.npc.gui.GuiNPCShop;
+import joshie.harvest.shops.gui.ContainerNPCBuilderShop;
+import joshie.harvest.shops.gui.ContainerNPCShop;
+import joshie.harvest.shops.gui.GuiNPCBuilderShop;
+import joshie.harvest.shops.gui.GuiNPCShop;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
@@ -30,7 +29,7 @@ public class GuiHandler implements IGuiHandler {
             case SHOP:          return new ContainerNPCShop((EntityNPC) world.getEntityByID(x), player.inventory);
             case SHOP_BUILDER:  return new ContainerNPCBuilderShop((EntityNPC) world.getEntityByID(x), player.inventory);
             case GIFT:          return new ContainerNPCGift((EntityNPC) world.getEntityByID(x), player.inventory);
-            case FRIDGE:        return new ContainerFridge(player.inventory, PlayerHelper.getFridge(player));
+            case FRIDGE:        return new ContainerFridge(player.inventory, HFTrackers.getServerPlayerTracker(player).getFridge());
             default:            return null;
         }
     }
@@ -42,7 +41,7 @@ public class GuiHandler implements IGuiHandler {
             case SHOP:          return new GuiNPCShop((EntityNPC) world.getEntityByID(x), player);
             case SHOP_BUILDER:  return new GuiNPCBuilderShop((EntityNPC) world.getEntityByID(x), player);
             case GIFT:          return new GuiNPCGift((EntityNPC) world.getEntityByID(x), player);
-            case FRIDGE:        return new GuiFridge(player.inventory, PlayerHelper.getFridge(player));
+            case FRIDGE:        return new GuiFridge(player.inventory, HFTrackers.getClientPlayerTracker().getFridge());
             default:            return null;
         }
     }

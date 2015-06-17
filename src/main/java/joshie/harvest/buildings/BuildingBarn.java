@@ -16,10 +16,9 @@ import joshie.harvest.buildings.placeable.blocks.PlaceableVine;
 import joshie.harvest.buildings.placeable.blocks.PlaceableWeb;
 import joshie.harvest.buildings.placeable.entities.PlaceableItemFrame;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
-import joshie.harvest.core.helpers.TownHelper;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.lib.LootStrings;
-import joshie.harvest.init.HFBuildings;
-import joshie.harvest.player.Town;
+import joshie.harvest.player.town.TownData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -29,7 +28,7 @@ import net.minecraft.world.World;
 public class BuildingBarn extends Building {
     public BuildingBarn() {
         super("barn");
-        offsetY = - 1;
+        offsetY = -1;
         list = new ArrayList(525);
         list.add(new PlaceableLog(Blocks.log, 1, 1, 0, 1));
         list.add(new PlaceableBlock(Blocks.planks, 1, 1, 0, 2));
@@ -151,7 +150,7 @@ public class BuildingBarn extends Building {
         list.add(new PlaceableMushroom(Blocks.red_mushroom, 0, 3, 1, 3));
         list.add(new PlaceableBlock(Blocks.fence, 0, 3, 1, 4));
         list.add(new PlaceableNPC("jim", 3, 1, 6));
-        npc_offsets.put(Town.JIM, new PlaceableNPC("", 3, 1, 6));
+        npc_offsets.put(TownData.JIM, new PlaceableNPC("", 3, 1, 6));
         list.add(new PlaceableBlock(Blocks.air, 0, 3, 1, 6));
         list.add(new PlaceableBlock(Blocks.fence, 0, 3, 1, 8));
         list.add(new PlaceableBlock(Blocks.hay_block, 0, 3, 1, 10));
@@ -566,24 +565,24 @@ public class BuildingBarn extends Building {
         list.add(new PlaceableBlock(Blocks.wooden_slab, 1, 7, 9, 6));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 0, 8, 9, 6));
     }
-    
+
     @Override
     public long getCost() {
         return 3000L;
     }
-    
+
     @Override
     public int getWoodCount() {
         return 160;
     }
-    
+
     @Override
     public int getStoneCount() {
         return 0;
     }
-    
+
     @Override
     public boolean canBuy(World world, EntityPlayer player) {
-        return TownHelper.hasBuilding(player, HFBuildings.blacksmith);
+        return HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.blacksmith);
     }
 }

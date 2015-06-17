@@ -3,22 +3,20 @@ package joshie.harvest.core;
 import java.util.ArrayList;
 import java.util.List;
 
-import joshie.harvest.init.HFAnimals;
-import joshie.harvest.init.HFBlocks;
-import joshie.harvest.init.HFBuildings;
-import joshie.harvest.init.HFConfig;
-import joshie.harvest.init.HFCooking;
-import joshie.harvest.init.HFCore;
-import joshie.harvest.init.HFCrops;
-import joshie.harvest.init.HFGifts;
-import joshie.harvest.init.HFItems;
-import joshie.harvest.init.HFMining;
-import joshie.harvest.init.HFNPCs;
-import joshie.harvest.init.HFQuests;
-import joshie.harvest.init.HFRecipeFixes;
-import joshie.harvest.init.HFShops;
-import joshie.harvest.init.HFVanilla;
+import joshie.harvest.api.animals.HFAnimals;
+import joshie.harvest.blocks.HFBlocks;
+import joshie.harvest.buildings.HFBuildings;
+import joshie.harvest.cooking.HFCooking;
+import joshie.harvest.core.config.HFConfig;
+import joshie.harvest.core.config.HFVanilla;
+import joshie.harvest.crops.HFCrops;
+import joshie.harvest.items.HFItems;
+import joshie.harvest.mining.HFMining;
+import joshie.harvest.npc.HFNPCs;
+import joshie.harvest.npc.gift.init.HFGifts;
 import joshie.harvest.plugins.HFPlugins;
+import joshie.harvest.quests.HFQuests;
+import joshie.harvest.shops.HFShops;
 
 public class HFCommonProxy {
     protected static final List<Class> list = new ArrayList();

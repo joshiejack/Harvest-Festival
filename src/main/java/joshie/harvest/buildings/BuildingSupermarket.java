@@ -23,10 +23,9 @@ import joshie.harvest.buildings.placeable.blocks.PlaceableWeb;
 import joshie.harvest.buildings.placeable.entities.PlaceableItemFrame;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.buildings.placeable.entities.PlaceablePainting;
-import joshie.harvest.core.helpers.TownHelper;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.lib.LootStrings;
-import joshie.harvest.init.HFBuildings;
-import joshie.harvest.player.Town;
+import joshie.harvest.player.town.TownData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -270,7 +269,7 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 3, 5, 4, 9));
         list.add(new PlaceableChest(Blocks.chest, 3, 5, 4, 10, LootStrings.MARKET_BASEMENT_CHESTS));
         list.add(new PlaceableNPC("jenni", 5, 4, 11));
-        npc_offsets.put(Town.JENNI, new PlaceableNPC("", 5, 4, 11));
+        npc_offsets.put(TownData.JENNI, new PlaceableNPC("", 5, 4, 11));
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 4, 11));
         list.add(new PlaceableChest(Blocks.chest, 2, 5, 4, 12, LootStrings.MARKET_BASEMENT_CHESTS));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 2, 5, 4, 13));
@@ -1039,7 +1038,7 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 9, 10, 8));
         list.add(new PlaceableBlock(Blocks.air, 0, 9, 10, 9));
         list.add(new PlaceableBlock(Blocks.air, 0, 9, 10, 10));
-        npc_offsets.put(Town.MARKET_STOREFRONT, new PlaceableNPC("", 9, 10, 11));
+        npc_offsets.put(TownData.MARKET_STOREFRONT, new PlaceableNPC("", 9, 10, 11));
         list.add(new PlaceableBlock(Blocks.air, 0, 9, 10, 11));
         list.add(new PlaceableBlock(Blocks.air, 0, 9, 10, 12));
         list.add(new PlaceableBlock(Blocks.stained_hardened_clay, 6, 9, 10, 13));
@@ -1140,7 +1139,7 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 11, 4));
         list.add(new PlaceableButton(Blocks.wooden_button, 1, 7, 11, 5));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 7, 7, 11, 6));
-        npc_offsets.put(Town.MARKET_TILL, new PlaceableNPC("", 7, 11, 7));
+        npc_offsets.put(TownData.MARKET_TILL, new PlaceableNPC("", 7, 11, 7));
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 11, 7));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 7, 7, 11, 8));
         list.add(new PlaceableButton(Blocks.wooden_button, 1, 7, 11, 9));
@@ -1727,7 +1726,7 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableVine(Blocks.vine, 1, 8, 15, 8));
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 15, 9));
         list.add(new PlaceableNPC("candice", 8, 15, 10));
-        npc_offsets.put(Town.CANDICE, new PlaceableNPC("", 8, 15, 10));
+        npc_offsets.put(TownData.CANDICE, new PlaceableNPC("", 8, 15, 10));
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 15, 10));
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 15, 11));
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 15, 12));
@@ -2390,6 +2389,6 @@ public class BuildingSupermarket extends Building {
     /** Can purchase when you have the carpenters house built in your town **/
     @Override
     public boolean canBuy(World world, EntityPlayer player) {
-        return TownHelper.hasBuilding(player, HFBuildings.carpenter);
+        return HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.carpenter);
     }
 }

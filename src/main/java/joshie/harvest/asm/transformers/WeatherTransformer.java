@@ -1,6 +1,6 @@
 package joshie.harvest.asm.transformers;
 
-import joshie.harvest.init.HFOverride;
+import joshie.harvest.asm.HFOverride;
 
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;

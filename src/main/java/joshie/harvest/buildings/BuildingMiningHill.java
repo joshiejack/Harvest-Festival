@@ -8,9 +8,8 @@ import joshie.harvest.buildings.placeable.blocks.PlaceableFlower;
 import joshie.harvest.buildings.placeable.blocks.PlaceableLog;
 import joshie.harvest.buildings.placeable.blocks.PlaceableTorches;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
-import joshie.harvest.core.helpers.TownHelper;
-import joshie.harvest.init.HFBuildings;
-import joshie.harvest.player.Town;
+import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.player.town.TownData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
@@ -293,7 +292,7 @@ public class BuildingMiningHill extends Building {
         list.add(new PlaceableBlock(Blocks.stone, 0, 8, 3, 5));
         list.add(new PlaceableBlock(Blocks.stone, 0, 8, 3, 6));
         list.add(new PlaceableBlock(Blocks.cobblestone_wall, 1, 8, 3, 7));
-        npc_offsets.put(Town.MINE_ENTRANCE, new PlaceableNPC("", 8, 3, 8));
+        npc_offsets.put(TownData.MINE_ENTRANCE, new PlaceableNPC("", 8, 3, 8));
         list.add(new PlaceableBlock(Blocks.air, 0, 8, 3, 8));
         list.add(new PlaceableBlock(Blocks.cobblestone_wall, 0, 8, 3, 9));
         list.add(new PlaceableBlock(Blocks.stone, 0, 8, 3, 10));
@@ -802,6 +801,6 @@ public class BuildingMiningHill extends Building {
     
     @Override
     public boolean canBuy(World world, EntityPlayer player) {
-        return TownHelper.hasBuilding(player, HFBuildings.miningHut);
+        return HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.miningHut);
     }
 }

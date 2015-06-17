@@ -4,7 +4,7 @@ import java.util.List;
 
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.config.General;
-import joshie.harvest.init.HFBlocks;
+import joshie.harvest.core.util.base.BlockHFBaseMeta;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;

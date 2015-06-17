@@ -5,11 +5,11 @@ import java.util.HashMap;
 import java.util.UUID;
 
 import joshie.harvest.api.buildings.IBuilding;
+import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.Placeable.PlacementStage;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.core.util.BlockAccessPreview;
-import joshie.harvest.init.HFBlocks;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.IBlockAccess;

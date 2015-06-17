@@ -6,9 +6,9 @@ import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.api.core.IShippable;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropProvider;
-import joshie.harvest.core.helpers.CropHelper;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.lib.CreativeSort;
-import joshie.harvest.init.HFCrops;
+import joshie.harvest.crops.HFCrops;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -54,7 +54,7 @@ public class ItemPumpkin extends ItemBlock implements IShippable, ICropProvider,
         if (world.getBlock(x, y, z) == field_150939_a) {
             field_150939_a.onBlockPlacedBy(world, x, y, z, player, stack);
             field_150939_a.onPostBlockPlaced(world, x, y, z, metadata);
-            CropHelper.plantCrop(player, world, x, y, z, HFCrops.pumpkin, 1);
+            HFTrackers.getCropTracker().plantCrop(player, world, x, y, z, HFCrops.pumpkin, 1);
         }
 
         return true;

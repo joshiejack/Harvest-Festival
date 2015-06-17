@@ -5,11 +5,10 @@ import java.util.UUID;
 
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.blocks.BlockStone;
+import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.buildings.placeable.Placeable.PlacementStage;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.helpers.MineHelper;
-import joshie.harvest.init.HFBlocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
@@ -129,7 +128,7 @@ public class EntityNPCMiner extends EntityNPC {
                 //LETS BUILD
                 if (index >= instructions.size()) {
                     isMining = false;
-                    MineHelper.complete(worldObj, mineX, mineY, mineZ, completed);
+                    HFTrackers.getMineTracker().completeMine(worldObj, mineX, mineY, mineZ, completed);
                     completed = new ArrayList(500);
                     instructions = new ArrayList(500);
                     HFTrackers.getMineTracker().newDay();

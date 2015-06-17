@@ -8,10 +8,10 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.blocks.BlockCrop;
-import joshie.harvest.core.helpers.CropHelper;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.SeedHelper;
 import joshie.harvest.core.helpers.generic.ItemHelper;
-import joshie.harvest.init.HFCrops;
+import joshie.harvest.crops.HFCrops;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -90,9 +90,9 @@ public class HFAgricraftOverride extends CropOverride {
 
         ICrop crop = cropData.getCrop();
         if (cropData.getCrop().getRegrowStage() > 0) {
-            CropHelper.plantCrop(null, world, x, y, z, crop, crop.getRegrowStage());
+            HFTrackers.getCropTracker().plantCrop(null, world, x, y, z, crop, crop.getRegrowStage());
         } else {
-            CropHelper.removeCrop(world, x, y, z);
+            HFTrackers.getCropTracker().removeCrop(world, x, y, z);
             this.crop.clearPlant();
         }
 
@@ -120,7 +120,7 @@ public class HFAgricraftOverride extends CropOverride {
                     }
                 }
 
-                CropHelper.removeCrop(world, x, y, z);
+                HFTrackers.getCropTracker().removeCrop(world, x, y, z);
             }
 
             for (ItemStack drop : drops) {
@@ -138,7 +138,7 @@ public class HFAgricraftOverride extends CropOverride {
             }
 
             if (theCrop != HFCrops.null_crop) {
-                CropHelper.plantCrop(player, world, x, y, z, theCrop, 1);
+                HFTrackers.getCropTracker().plantCrop(player, world, x, y, z, theCrop, 1);
             } else {
                 crop.clearPlant();
             }
@@ -152,7 +152,7 @@ public class HFAgricraftOverride extends CropOverride {
 
     @Override
     public IIcon getIcon() {
-        ICropData data = CropHelper.getCropAtLocation(world, x, y, z);
+        ICropData data = HFTrackers.getCropTracker().getCropDataForLocation(world, x, y, z);
         if (data == null) return net.minecraft.init.Blocks.obsidian.getIcon(0, 0);
         else {
             return data.getCrop().getCropRenderHandler().getIconForStage(BlockCrop.getSection(world, x, y, z), data.getStage());

@@ -19,10 +19,9 @@ import joshie.harvest.buildings.placeable.blocks.PlaceableWeb;
 import joshie.harvest.buildings.placeable.entities.PlaceableItemFrame;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.buildings.placeable.entities.PlaceablePainting;
-import joshie.harvest.core.helpers.TownHelper;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.lib.LootStrings;
-import joshie.harvest.init.HFBuildings;
-import joshie.harvest.player.Town;
+import joshie.harvest.player.town.TownData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -436,7 +435,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 2, 4, 1, 1));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 9, 4, 1, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 4, 1, 3));
-        npc_offsets.put(Town.TOWNHALL_RIGHT_WING, new PlaceableNPC("", 4, 1, 4));
+        npc_offsets.put(TownData.TOWNHALL_RIGHT_WING, new PlaceableNPC("", 4, 1, 4));
         list.add(new PlaceableBlock(Blocks.air, 0, 4, 1, 4));
         list.add(new PlaceableBlock(Blocks.air, 0, 4, 1, 5));
         list.add(new PlaceableBlock(Blocks.air, 0, 4, 1, 6));
@@ -512,7 +511,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 1, 13));
         list.add(new PlaceableFlowerPot(Blocks.flower_pot, 3, 7, 1, 14));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 1, 7, 1, 15));
-        npc_offsets.put(Town.TOWNHALL_LEFT_WING, new PlaceableNPC("", 7, 1, 16));
+        npc_offsets.put(TownData.TOWNHALL_LEFT_WING, new PlaceableNPC("", 7, 1, 16));
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 1, 16));
         list.add(new PlaceableBlock(Blocks.air, 0, 7, 1, 17));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 8, 7, 1, 18));
@@ -549,7 +548,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableVine(Blocks.vine, 1, 9, 1, 7));
         list.add(new PlaceableLog(Blocks.log, 1, 9, 1, 8));
         list.add(new PlaceableVine(Blocks.vine, 4, 9, 1, 9));
-        npc_offsets.put(Town.TOWNHALL_CENTRE, new PlaceableNPC("", 9, 1, 10));
+        npc_offsets.put(TownData.TOWNHALL_CENTRE, new PlaceableNPC("", 9, 1, 10));
         list.add(new PlaceableBlock(Blocks.air, 0, 9, 1, 10));
         list.add(new PlaceableVine(Blocks.vine, 1, 9, 1, 11));
         list.add(new PlaceableLog(Blocks.log, 1, 9, 1, 12));
@@ -612,7 +611,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 12, 1, 7));
         list.add(new PlaceableBlock(Blocks.air, 0, 12, 1, 8));
         list.add(new PlaceableBlock(Blocks.air, 0, 12, 1, 9));
-        npc_offsets.put(Town.TOWNHALL_ENTRANCE, new PlaceableNPC("", 12, 1, 10));
+        npc_offsets.put(TownData.TOWNHALL_ENTRANCE, new PlaceableNPC("", 12, 1, 10));
         list.add(new PlaceableBlock(Blocks.air, 0, 12, 1, 10));
         list.add(new PlaceableBlock(Blocks.air, 0, 12, 1, 11));
         list.add(new PlaceableBlock(Blocks.air, 0, 12, 1, 12));
@@ -761,7 +760,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.fence, 0, 5, 2, 8));
         list.add(new PlaceableBlock(Blocks.fence, 0, 5, 2, 9));
         list.add(new PlaceableNPC("jamie", 5, 2, 10));
-        npc_offsets.put(Town.JAMIE, new PlaceableNPC("", 5, 2, 10));
+        npc_offsets.put(TownData.JAMIE, new PlaceableNPC("", 5, 2, 10));
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 2, 10));
         list.add(new PlaceableBlock(Blocks.fence, 0, 5, 2, 11));
         list.add(new PlaceableBlock(Blocks.fence, 0, 5, 2, 12));
@@ -1661,7 +1660,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 4, 5, 5, 1));
         list.add(new PlaceableBlock(Blocks.carpet, 1, 5, 5, 2));
         list.add(new PlaceableNPC("cloe", 5, 5, 3));
-        npc_offsets.put(Town.CLOE, new PlaceableNPC("", 5, 5, 3));
+        npc_offsets.put(TownData.CLOE, new PlaceableNPC("", 5, 5, 3));
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 5, 3));
         list.add(new PlaceableBlock(Blocks.bookshelf, 0, 5, 5, 4));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 0, 5, 5, 5));
@@ -1697,7 +1696,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableLog(Blocks.log, 1, 6, 5, 15));
         list.add(new PlaceableBlock(Blocks.fence, 0, 6, 5, 16));
         list.add(new PlaceableNPC("abi", 6, 5, 17));
-        npc_offsets.put(Town.ABI, new PlaceableNPC("", 6, 5, 17));
+        npc_offsets.put(TownData.ABI, new PlaceableNPC("", 6, 5, 17));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 5, 17));
         list.add(new PlaceableBlock(Blocks.fence, 0, 6, 5, 18));
         list.add(new PlaceableLog(Blocks.log, 1, 6, 5, 19));
@@ -2083,7 +2082,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableButton(Blocks.wooden_button, 3, 13, 6, 7));
         list.add(new PlaceableBlock(Blocks.air, 0, 13, 6, 8));
         list.add(new PlaceableBlock(Blocks.air, 0, 13, 6, 9));
-        npc_offsets.put(Town.TOWNHALL_ADULT_BEDROOM, new PlaceableNPC("", 13, 6, 10));
+        npc_offsets.put(TownData.TOWNHALL_ADULT_BEDROOM, new PlaceableNPC("", 13, 6, 10));
         list.add(new PlaceableBlock(Blocks.air, 0, 13, 6, 10));
         list.add(new PlaceableBlock(Blocks.air, 0, 13, 6, 11));
         list.add(new PlaceableBlock(Blocks.air, 0, 13, 6, 12));
@@ -3456,6 +3455,8 @@ public class BuildingTownhall extends Building {
     
     @Override
     public boolean canBuy(World world, EntityPlayer player) {
-        return TownHelper.hasBuilding(player, HFBuildings.miningHill) && TownHelper.hasBuilding(player, HFBuildings.miningHut) && TownHelper.hasBuilding(player, HFBuildings.goddessPond);
+        return HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.miningHill) &&
+                HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.miningHut) && 
+                HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.goddessPond);
     }
 }

@@ -3,7 +3,7 @@ package joshie.harvest.npc.gift;
 import static joshie.harvest.npc.gift.Gifts.Quality.AWESOME;
 import static joshie.harvest.npc.gift.Gifts.Quality.DECENT;
 import static joshie.harvest.npc.gift.Gifts.Quality.GOOD;
-import joshie.harvest.init.HFCrops;
+import joshie.harvest.crops.HFCrops;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;

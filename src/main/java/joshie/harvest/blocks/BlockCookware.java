@@ -16,6 +16,7 @@ import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.helpers.generic.DirectionHelper;
 import joshie.harvest.core.helpers.generic.ItemHelper;
 import joshie.harvest.core.lib.RenderIds;
+import joshie.harvest.core.util.base.BlockHFBaseMeta;
 import joshie.harvest.core.util.generic.IFaceable;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

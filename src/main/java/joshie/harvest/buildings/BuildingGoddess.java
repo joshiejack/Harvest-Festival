@@ -2,6 +2,7 @@ package joshie.harvest.buildings;
 
 import java.util.ArrayList;
 
+import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvest.buildings.placeable.blocks.PlaceableCocoa;
 import joshie.harvest.buildings.placeable.blocks.PlaceableDoublePlant;
@@ -10,8 +11,7 @@ import joshie.harvest.buildings.placeable.blocks.PlaceableLilypad;
 import joshie.harvest.buildings.placeable.blocks.PlaceableLog;
 import joshie.harvest.buildings.placeable.blocks.PlaceableVine;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
-import joshie.harvest.init.HFBlocks;
-import joshie.harvest.player.Town;
+import joshie.harvest.player.town.TownData;
 import net.minecraft.init.Blocks;
 
 public class BuildingGoddess extends Building {
@@ -739,7 +739,7 @@ public class BuildingGoddess extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 12, 3, 8));
         list.add(new PlaceableLilypad(Blocks.waterlily, 0, 12, 3, 9));
         list.add(new PlaceableNPC("goddess", 12, 3, 10));
-        npc_offsets.put(Town.GODDESS, new PlaceableNPC("", 12, 3, 10));
+        npc_offsets.put(TownData.GODDESS, new PlaceableNPC("", 12, 3, 10));
         list.add(new PlaceableBlock(Blocks.air, 0, 12, 3, 10));
         list.add(new PlaceableBlock(Blocks.air, 0, 12, 3, 11));
         list.add(new PlaceableBlock(Blocks.air, 0, 12, 3, 12));

@@ -5,7 +5,6 @@ import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.animals.IAnimalType;
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.init.HFItems;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;

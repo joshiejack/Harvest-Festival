@@ -4,7 +4,7 @@ import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.buildings.Building;
 import joshie.harvest.core.util.base.ItemBlockBase;
 import joshie.harvest.core.util.generic.Text;
-import joshie.harvest.init.HFItems;
+import joshie.harvest.items.HFItems;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;

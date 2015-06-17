@@ -2,7 +2,7 @@ package joshie.harvest.cooking;
 
 import joshie.harvest.api.cooking.ICookingComponent;
 import joshie.harvest.api.cooking.IMeal;
-import joshie.harvest.init.HFItems;
+import joshie.harvest.items.HFItems;
 import joshie.harvest.items.ItemMeal;
 import net.minecraft.item.ItemStack;
 

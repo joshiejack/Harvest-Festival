@@ -1,6 +1,6 @@
 package joshie.harvest.plugins.bettersleeping;
 
-import joshie.harvest.core.handlers.events.FMLEvents;
+import joshie.harvest.core.handlers.EventsHandler;
 import joshie.harvest.plugins.HFPlugins.Plugin;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
@@ -24,6 +24,6 @@ public class BetterSleeping extends Plugin {
 
     @SubscribeEvent
     public void onWorldSleep(WorldSleepEvent.Post event) {
-        FMLEvents.newDay(false);
+        EventsHandler.newDay(false);
     }
 }

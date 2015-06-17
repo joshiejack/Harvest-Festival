@@ -6,9 +6,10 @@ import joshie.harvest.blocks.tiles.TileMarker;
 import joshie.harvest.buildings.Building;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.config.General;
-import joshie.harvest.core.helpers.NPCHelper;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.lib.RenderIds;
+import joshie.harvest.core.util.base.BlockHFBaseMeta;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -90,7 +91,7 @@ public class BlockPreview extends BlockHFBaseMeta {
         } else {
             int meta = world.getBlockMetadata(x, y, z);
             TileMarker marker = (TileMarker) world.getTileEntity(x, y, z);
-            EntityNPCBuilder builder = NPCHelper.getBuilderForPlayer(world, player);
+            EntityNPCBuilder builder = HFTrackers.getPlayerTracker(player).getBuilder(world);
             if (builder != null && !builder.isBuilding()) {
                 builder.setPosition(x, y, z); //Teleport the builder to the position
                 builder.startBuilding(marker.getBuilding(), x, y, z, getN1FromMeta(meta), getN2FromMeta(meta), getSwapFromMeta(meta), UUIDHelper.getPlayerUUID(player));
@@ -120,7 +121,7 @@ public class BlockPreview extends BlockHFBaseMeta {
             marker.setBuilding(group);
             //Create a builder if none exists
             if (!world.isRemote) {
-                NPCHelper.getBuilderForPlayer(player.worldObj, (EntityPlayer) player);
+                HFTrackers.getPlayerTracker((EntityPlayer) player).getBuilder(world);
             }
         }
     }
@@ -135,7 +136,7 @@ public class BlockPreview extends BlockHFBaseMeta {
             }
         }
     }
-    
+
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister iconRegister) {

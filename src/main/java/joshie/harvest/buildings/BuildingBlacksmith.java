@@ -15,10 +15,9 @@ import joshie.harvest.buildings.placeable.blocks.PlaceableTrapDoor;
 import joshie.harvest.buildings.placeable.blocks.PlaceableWeb;
 import joshie.harvest.buildings.placeable.entities.PlaceableItemFrame;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
-import joshie.harvest.core.helpers.TownHelper;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.lib.LootStrings;
-import joshie.harvest.init.HFBuildings;
-import joshie.harvest.player.Town;
+import joshie.harvest.player.town.TownData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -111,7 +110,7 @@ public class BuildingBlacksmith extends Building {
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 1, 3, 2, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 3, 2, 3));
         list.add(new PlaceableItemFrame(null, 0, 0, 3, 2, 3));
-        npc_offsets.put(Town.BLACKSMITH_FRONT, new PlaceableNPC("", 3, 2, 4));
+        npc_offsets.put(TownData.BLACKSMITH_FRONT, new PlaceableNPC("", 3, 2, 4));
         list.add(new PlaceableBlock(Blocks.air, 0, 3, 2, 4));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 5, 3, 2, 5));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 15, 3, 2, 6));
@@ -125,7 +124,7 @@ public class BuildingBlacksmith extends Building {
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 14, 4, 2, 6));
         list.add(new PlaceableBlock(Blocks.air, 0, 4, 2, 7));
         list.add(new PlaceableNPC("daniel", 4, 2, 8));
-        npc_offsets.put(Town.DANIEL, new PlaceableNPC("", 4, 2, 8));
+        npc_offsets.put(TownData.DANIEL, new PlaceableNPC("", 4, 2, 8));
         list.add(new PlaceableBlock(Blocks.air, 0, 4, 2, 8));
         list.add(new PlaceableBlock(Blocks.air, 0, 4, 2, 9));
         list.add(new PlaceableFurnace(Blocks.lit_furnace, 2, 4, 2, 10));
@@ -447,6 +446,6 @@ public class BuildingBlacksmith extends Building {
     
     @Override
     public boolean canBuy(World world, EntityPlayer player) {
-        return TownHelper.hasBuilding(player, HFBuildings.supermarket);
+        return HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.supermarket);
     }
 }

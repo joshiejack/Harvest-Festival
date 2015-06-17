@@ -1,8 +1,8 @@
 package joshie.harvest.blocks.render;
 
+import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.blocks.tiles.TileCooking;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.init.HFBlocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.Item;

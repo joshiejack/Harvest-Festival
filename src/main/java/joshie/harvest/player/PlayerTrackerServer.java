@@ -1,54 +1,56 @@
 package joshie.harvest.player;
 
-import static joshie.harvest.core.network.PacketHandler.sendToClient;
-
 import java.util.UUID;
 
-import joshie.harvest.api.calendar.ICalendarDate;
-import joshie.harvest.api.crops.ICropData;
-import joshie.harvest.buildings.BuildingStage;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.helpers.generic.EntityHelper;
-import joshie.harvest.core.network.PacketSyncBirthday;
-import joshie.harvest.core.network.PacketSyncFridge;
-import joshie.harvest.core.network.PacketSyncGold;
-import joshie.harvest.core.network.PacketSyncStats;
 import joshie.harvest.core.util.IData;
-import joshie.harvest.core.util.SellStack;
-import joshie.harvest.init.HFNPCs;
+import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
-import joshie.harvest.quests.QuestStats;
-import joshie.harvest.quests.QuestStatsServer;
-import joshie.harvest.relations.RelationTrackerServer;
-import joshie.harvest.relations.RelationshipTracker;
+import joshie.harvest.player.fridge.FridgeDataServer;
+import joshie.harvest.player.quests.QuestDataServer;
+import joshie.harvest.player.relationships.RelationshipDataServer;
+import joshie.harvest.player.stats.StatDataServer;
+import joshie.harvest.player.town.TownDataServer;
+import joshie.harvest.player.tracking.TrackingDataServer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 public class PlayerTrackerServer extends PlayerTracker implements IData {
-    private RelationTrackerServer relationStats;
-    private QuestStatsServer questStats;
-    private EntityNPCBuilder builder;
+    private FridgeDataServer fridge;
+    private QuestDataServer quests;
+    private RelationshipDataServer relationships;
+    private StatDataServer stats;
+    private TownDataServer town;
+    protected TrackingDataServer tracking;
 
     //References to the player and uuid this refers to
     private EntityPlayerMP player; //No Direct calling, it's a cache value
     private UUID uuid; //SHOULD NOT BE CALLED, EXCEPT BY GET AND CREATE PLAYER
 
     public PlayerTrackerServer() {
-        questStats = new QuestStatsServer(this);
-        relationStats = new RelationTrackerServer(this);
+        fridge = new FridgeDataServer();
+        quests = new QuestDataServer(this);
+        relationships = new RelationshipDataServer();
+        stats = new StatDataServer();
+        town = new TownDataServer();
+        tracking = new TrackingDataServer();
     }
 
     public PlayerTrackerServer(EntityPlayerMP player) {
         this.player = player;
-        this.uuid = UUIDHelper.getPlayerUUID(player);
-        questStats = new QuestStatsServer(this);
-        relationStats = new RelationTrackerServer(this);
+        uuid = UUIDHelper.getPlayerUUID(player);
+        fridge = new FridgeDataServer();
+        quests = new QuestDataServer(this);
+        relationships = new RelationshipDataServer();
+        stats = new StatDataServer();
+        town = new TownDataServer();
+        tracking = new TrackingDataServer();
     }
 
     //Pass the world that this player is currently in
@@ -62,101 +64,37 @@ public class PlayerTrackerServer extends PlayerTracker implements IData {
     }
 
     @Override
-    public RelationshipTracker getRelationships() {
-        return relationStats;
-    }
-    
-    @Override
-    public QuestStats getQuests() {
-        return questStats;
-    }
-
     public UUID getUUID() {
         return uuid;
     }
-
-    //The world is the world that this player is currently in
+    
     @Override
-    public void newDay() {
-        long gold = shippingStats.newDay();
-        playerStats.addGold(gold);
-        sendToClient(new PacketSyncGold(playerStats.getGold()), getAndCreatePlayer());
-        relationStats.newDay();
-        HFTrackers.markDirty();
-    }
-
-    public boolean isOnlineOrFriendsAre() {
-        return friends.getFriends().size() > 0;
-    }
-
-    public boolean addForShipping(ItemStack stack) {
-        boolean ret = shippingStats.addForShipping(stack);
-        HFTrackers.markDirty();
-        return ret;
-    }
-
-    public FridgeContents getFridge() {
+    public FridgeDataServer getFridge() {
         return fridge;
     }
 
-    public ICalendarDate getBirthday() {
-        return playerStats.getBirthday();
+    @Override
+    public RelationshipDataServer getRelationships() {
+        return relationships;
     }
 
-    public void setBirthday() {
-        if (playerStats.setBirthday()) {
-            HFTrackers.markDirty();
-        }
+    @Override
+    public QuestDataServer getQuests() {
+        return quests;
     }
-
-    public double getStamina() {
-        return playerStats.getStamina();
+    
+    @Override
+    public StatDataServer getStats() {
+        return stats;
     }
-
-    public double getFatigue() {
-        return playerStats.getFatigue();
+    
+    @Override
+    public TownDataServer getTown() {
+        return town;
     }
-
-    public void affectStats(double stamina, double fatigue) {
-        playerStats.affectStats(stamina, fatigue);
-        HFTrackers.markDirty();
-    }
-
-    public void syncPlayerStats() {
-        sendToClient(new PacketSyncBirthday(playerStats.getBirthday()), getAndCreatePlayer());
-        sendToClient(new PacketSyncGold(playerStats.getGold()), getAndCreatePlayer());
-        sendToClient(new PacketSyncStats(playerStats.getStamina(), playerStats.getFatigue(), playerStats.getStaminaMax(), playerStats.getFatigueMin()), getAndCreatePlayer());
-        sendToClient(new PacketSyncFridge(fridge), (EntityPlayerMP) getAndCreatePlayer());
-        relationStats.sync();
-    }
-
-    public void addGold(long gold) {
-        playerStats.addGold(gold);
-        HFTrackers.markDirty();
-    }
-
-    public void setGold(long gold) {
-        playerStats.setGold(gold);
-        HFTrackers.markDirty();
-    }
-
-    public long getGold() {
-        return playerStats.getGold();
-    }
-
-    public void addSold(SellStack stack) {
-        trackingStats.addSold(stack);
-        HFTrackers.markDirty();
-    }
-
-    public void onHarvested(ICropData data) {
-        trackingStats.onHarvested(data);
-        HFTrackers.markDirty();
-    }
-
-    public void addBuilding(World world, BuildingStage building) {
-        town.addBuilding(world, building);
-        HFTrackers.markDirty();
+    
+    public TrackingDataServer getTracking() {
+        return tracking;
     }
 
     @Override
@@ -181,34 +119,46 @@ public class PlayerTrackerServer extends PlayerTracker implements IData {
         return builder;
     }
 
+    public void newDay() {
+        //Add their gold from selling items
+        relationships.newDay();
+        EntityPlayerMP player = getAndCreatePlayer();
+        if (player != null) {
+            stats.addGold(player, tracking.newDay());
+            syncPlayerStats(player); //Resync everything
+        }
+
+        HFTrackers.markDirty();
+    }
+
+    public void syncPlayerStats(EntityPlayerMP player) {
+        fridge.sync(player);
+        quests.sync(player);
+        relationships.sync(player);
+        stats.sync(player);
+        town.sync(player);
+        tracking.sync(player);
+    }
+
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
-        uuid = new UUID(nbt.getLong("UUIDMost"), nbt.getLong("UUIDLeast"));
-
-        //Read in the Basic Data Stuffs
-        playerStats.readFromNBT(nbt);
-        questStats.readFromNBT(nbt);
-        relationStats.readFromNBT(nbt);
-        shippingStats.readFromNBT(nbt);
-        trackingStats.readFromNBT(nbt);
-        friends.readFromNBT(nbt);
+        uuid = UUID.fromString(nbt.getString("UUID"));
         fridge.readFromNBT(nbt);
+        quests.readFromNBT(nbt);
+        relationships.readFromNBT(nbt);
+        stats.readFromNBT(nbt);
         town.readFromNBT(nbt);
+        tracking.readFromNBT(nbt);
     }
 
     @Override
     public void writeToNBT(NBTTagCompound nbt) {
-        nbt.setLong("UUIDMost", uuid.getMostSignificantBits());
-        nbt.setLong("UUIDLeast", uuid.getLeastSignificantBits());
-
-        //Write the basic data to disk
-        playerStats.writeToNBT(nbt);
-        relationStats.writeToNBT(nbt);
-        questStats.writeToNBT(nbt);
-        shippingStats.writeToNBT(nbt);
-        trackingStats.writeToNBT(nbt);
-        friends.writeToNBT(nbt);
+        nbt.setString("UUID", uuid.toString());
         fridge.writeToNBT(nbt);
+        quests.writeToNBT(nbt);
+        relationships.writeToNBT(nbt);
+        stats.writeToNBT(nbt);
         town.writeToNBT(nbt);
+        tracking.writeToNBT(nbt);
     }
 }

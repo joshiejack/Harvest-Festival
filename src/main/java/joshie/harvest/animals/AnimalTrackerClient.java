@@ -30,6 +30,6 @@ public class AnimalTrackerClient extends AnimalTracker {
     @Override
     public void onDeath(IAnimalTracked animal) {
         canProduce.remove(animal.getData());
-        HFTrackers.getPlayerTracker().getRelationships().clear(animal);
+        HFTrackers.getClientPlayerTracker().getRelationships().clear(animal);
     }
 }

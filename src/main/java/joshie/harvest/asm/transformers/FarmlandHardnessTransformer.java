@@ -2,8 +2,8 @@ package joshie.harvest.asm.transformers;
 
 import java.util.Iterator;
 
+import joshie.harvest.asm.HFOverride;
 import joshie.harvest.core.config.ASM;
-import joshie.harvest.init.HFOverride;
 
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;

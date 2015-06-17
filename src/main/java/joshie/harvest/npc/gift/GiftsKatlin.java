@@ -4,7 +4,7 @@ import static joshie.harvest.npc.gift.Gifts.Quality.AWESOME;
 import static joshie.harvest.npc.gift.Gifts.Quality.BAD;
 import static joshie.harvest.npc.gift.Gifts.Quality.DECENT;
 import static joshie.harvest.npc.gift.Gifts.Quality.GOOD;
-import joshie.harvest.init.HFItems;
+import joshie.harvest.items.HFItems;
 import net.minecraft.item.ItemStack;
 
 public class GiftsKatlin extends Gifts {

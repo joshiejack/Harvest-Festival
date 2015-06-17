@@ -3,20 +3,18 @@ package joshie.harvest.cooking.gui;
 import java.util.Random;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.cooking.FoodRegistry;
 import joshie.harvest.core.util.ContainerBase;
-import joshie.harvest.player.FridgeContents;
+import joshie.harvest.player.fridge.FridgeData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 
 public class ContainerFridge extends ContainerBase {
-    private final FridgeContents storage;
+    private final FridgeData storage;
     private final Random rand = new Random();
 
-    public ContainerFridge(IInventory inventory, FridgeContents storage) {
+    public ContainerFridge(IInventory inventory, FridgeData storage) {
         this.storage = storage;
         addSlotToContainer(new Slot(storage, 0, 1, 1));
         bindPlayerInventory(inventory, 0);

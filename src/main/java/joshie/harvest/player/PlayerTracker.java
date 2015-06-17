@@ -1,53 +1,27 @@
 package joshie.harvest.player;
 
+import java.util.UUID;
+
 import joshie.harvest.npc.entity.EntityNPCBuilder;
-import joshie.harvest.quests.QuestStats;
-import joshie.harvest.relations.RelationshipTracker;
+import joshie.harvest.player.fridge.FridgeData;
+import joshie.harvest.player.quests.QuestData;
+import joshie.harvest.player.relationships.RelationshipData;
+import joshie.harvest.player.stats.StatData;
+import joshie.harvest.player.town.TownData;
+import joshie.harvest.player.tracking.TrackingData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
 public abstract class PlayerTracker {
-    protected FridgeContents fridge = new FridgeContents();
-    protected FriendTracker friends = new FriendTracker(this);
-    protected PlayerStats playerStats = new PlayerStats();
-    protected ShippingStats shippingStats = new ShippingStats(this);
-    protected TrackingStats trackingStats = new TrackingStats();
-    protected Town town = new Town();
-
+    protected EntityNPCBuilder builder;
+    
     public abstract EntityPlayer getAndCreatePlayer();
-    
-    public FridgeContents getFridge() {
-        return fridge;
-    }
-
-    public void setFridge(FridgeContents fridge) {
-        this.fridge = fridge;
-    }
-
-    public FriendTracker getFriendTracker() {
-        return friends;
-    }
-    
-    public PlayerStats getStats() {
-        return playerStats;
-    }
-
-    public abstract QuestStats getQuests();
-    
-    public ShippingStats getShipping() {
-        return shippingStats;
-    }
-
-    public TrackingStats getTracking() {
-        return trackingStats;
-    }
-
-    public Town getTown() {
-        return town;
-    }
-    
-    public abstract RelationshipTracker getRelationships();
-    public void syncPlayerStats() {}
+    public abstract UUID getUUID();
+    public abstract FridgeData getFridge();   
+    public abstract QuestData getQuests();
+    public abstract RelationshipData getRelationships();
+    public abstract StatData getStats();
+    public abstract TownData getTown();
+    public abstract TrackingData getTracking();
     public abstract EntityNPCBuilder getBuilder(World world);
-    public void newDay() {}
 }

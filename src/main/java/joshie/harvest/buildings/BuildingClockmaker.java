@@ -17,10 +17,9 @@ import joshie.harvest.buildings.placeable.blocks.PlaceableWeb;
 import joshie.harvest.buildings.placeable.entities.PlaceableItemFrame;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.buildings.placeable.entities.PlaceablePainting;
-import joshie.harvest.core.helpers.TownHelper;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.lib.LootStrings;
-import joshie.harvest.init.HFBuildings;
-import joshie.harvest.player.Town;
+import joshie.harvest.player.town.TownData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -139,7 +138,7 @@ public class BuildingClockmaker extends Building {
         list.add(new PlaceableDoor(Blocks.wooden_door, 0, 5, 1, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 1, 3));
         list.add(new PlaceableNPC("tiberius", 5, 1, 4));
-        npc_offsets.put(Town.TIBERIUS, new PlaceableNPC("", 5, 1, 4));
+        npc_offsets.put(TownData.TIBERIUS, new PlaceableNPC("", 5, 1, 4));
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 1, 4));
         list.add(new PlaceableBlock(Blocks.cobblestone_wall, 0, 5, 1, 5));
         list.add(new PlaceableLog(Blocks.log, 1, 5, 1, 6));
@@ -448,7 +447,7 @@ public class BuildingClockmaker extends Building {
         list.add(new PlaceableBlock(Blocks.hardened_clay, 0, 6, 5, 1));
         list.add(new PlaceableChest(Blocks.chest, 3, 6, 5, 2, LootStrings.CLOCKMAKER_CHEST));
         list.add(new PlaceableNPC("fenn", 6, 5, 3));
-        npc_offsets.put(Town.FENN, new PlaceableNPC("", 6, 5, 3));
+        npc_offsets.put(TownData.FENN, new PlaceableNPC("", 6, 5, 3));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 5, 3));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 5, 4));
         list.add(new PlaceableBlock(Blocks.cauldron, 3, 6, 5, 5));
@@ -897,6 +896,8 @@ public class BuildingClockmaker extends Building {
     
     @Override
     public boolean canBuy(World world, EntityPlayer player) {
-        return TownHelper.hasBuilding(player, HFBuildings.miningHill) && TownHelper.hasBuilding(player, HFBuildings.miningHut) && TownHelper.hasBuilding(player, HFBuildings.goddessPond);
+        return HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.miningHill) &&
+                HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.miningHut) && 
+                HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.goddessPond);
     }
 }

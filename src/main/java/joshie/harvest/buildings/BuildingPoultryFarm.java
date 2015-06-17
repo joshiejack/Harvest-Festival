@@ -15,10 +15,9 @@ import joshie.harvest.buildings.placeable.blocks.PlaceableTrapDoor;
 import joshie.harvest.buildings.placeable.blocks.PlaceableWeb;
 import joshie.harvest.buildings.placeable.entities.PlaceableItemFrame;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
-import joshie.harvest.core.helpers.TownHelper;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.lib.LootStrings;
-import joshie.harvest.init.HFBuildings;
-import joshie.harvest.player.Town;
+import joshie.harvest.player.town.TownData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -158,7 +157,7 @@ public class BuildingPoultryFarm extends Building {
         list.add(new PlaceableChest(Blocks.chest, 3, 6, 1, 2, LootStrings.POULTRY_CHEST));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 1, 3));
         list.add(new PlaceableNPC("ondra", 6, 1, 4));
-        npc_offsets.put(Town.ONDRA, new PlaceableNPC("", 6, 1, 4));
+        npc_offsets.put(TownData.ONDRA, new PlaceableNPC("", 6, 1, 4));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 1, 4));
         list.add(new PlaceableBlock(Blocks.air, 0, 6, 1, 5));
         list.add(new PlaceableBlock(Blocks.cauldron, 3, 6, 1, 6));
@@ -728,6 +727,6 @@ public class BuildingPoultryFarm extends Building {
     
     @Override
     public boolean canBuy(World world, EntityPlayer player) {
-        return TownHelper.hasBuilding(player, HFBuildings.blacksmith);
+        return HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.blacksmith);
     }
 }

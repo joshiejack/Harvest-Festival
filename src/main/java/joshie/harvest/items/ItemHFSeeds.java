@@ -1,7 +1,5 @@
 package joshie.harvest.items;
 
-import static joshie.harvest.core.helpers.CropHelper.plantCrop;
-
 import java.util.List;
 
 import joshie.harvest.api.HFApi;
@@ -9,13 +7,14 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.api.core.ISeasonData;
 import joshie.harvest.api.crops.ICrop;
+import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.config.Crops;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.SeedHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.crops.Crop;
-import joshie.harvest.init.HFBlocks;
 import joshie.harvest.plugins.agricraft.HFAgricraftOverride;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -127,7 +126,8 @@ public class ItemHFSeeds extends ItemSeeds implements ICropOverridingSeed, ICrea
     private int plantSeedAt(EntityPlayer player, ItemStack stack, World world, int x, int y, int z, int side, ICrop crop, int planted) {
         if (player.canPlayerEdit(x, y, z, side, stack) && player.canPlayerEdit(x, y + 1, z, side, stack)) {
             if (crop.getSoilHandler().canSustainPlant(world, x, y + 1, z, (IPlantable) HFBlocks.crops) && world.isAirBlock(x, y + 1, z)) {
-                plantCrop(player, world, x, y + 1, z, crop, 1);
+                HFTrackers.getCropTracker().plantCrop(player, world, x, y + 1, z, crop, 1);
+                
                 if (!world.isRemote) {
                     world.setBlock(x, y + 1, z, HFBlocks.crops);
                 }

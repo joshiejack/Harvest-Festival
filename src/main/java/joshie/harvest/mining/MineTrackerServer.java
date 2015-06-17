@@ -9,6 +9,8 @@ import joshie.harvest.api.WorldLocation;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.util.IData;
+import joshie.harvest.mining.data.Mine;
+import joshie.harvest.mining.data.MineData;
 import joshie.harvest.npc.entity.EntityNPCMiner;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;

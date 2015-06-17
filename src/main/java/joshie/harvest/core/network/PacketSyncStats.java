@@ -38,7 +38,7 @@ public class PacketSyncStats implements IMessage, IMessageHandler<PacketSyncStat
     
     @Override
     public IMessage onMessage(PacketSyncStats message, MessageContext ctx) {        
-        HFTrackers.getPlayerTracker().getStats().setStats(message.stamina, message.fatigue, message.staminaMax, message.fatigueMin);
+        HFTrackers.getClientPlayerTracker().getStats().setStats(message.stamina, message.fatigue, message.staminaMax, message.fatigueMin);
         return null;
     }
 }

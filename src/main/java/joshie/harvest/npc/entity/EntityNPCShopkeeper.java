@@ -6,7 +6,7 @@ import java.util.UUID;
 
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.shops.IShop;
-import joshie.harvest.shops.ShopInventory;
+import joshie.harvest.shops.Shop;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 

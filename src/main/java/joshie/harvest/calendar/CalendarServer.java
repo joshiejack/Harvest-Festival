@@ -1,6 +1,5 @@
 package joshie.harvest.calendar;
 
-import java.util.List;
 import java.util.Random;
 
 import joshie.harvest.api.HFApi;
@@ -11,9 +10,8 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSetCalendar;
 import joshie.harvest.core.network.PacketSyncForecast;
-import net.minecraft.entity.player.EntityPlayer;
+import joshie.harvest.player.PlayerTrackerServer;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.server.MinecraftServer;
 
 public class CalendarServer extends Calendar {
     private static final Random rand = new Random();
@@ -86,10 +84,10 @@ public class CalendarServer extends Calendar {
 
         forecast = newForecast;
         updateForecast();
-
-        //Loop through all the players and do stuff related to them, Pass the world that the player is in
-        for (EntityPlayer player : (List<EntityPlayer>) MinecraftServer.getServer().getConfigurationManager().playerEntityList) {
-            HFTrackers.getPlayerTracker(player).newDay();
+        
+        //Update a player
+        for (PlayerTrackerServer player: HFTrackers.getPlayerTrackers()) {
+            player.newDay();
         }
 
         HFTrackers.markDirty();

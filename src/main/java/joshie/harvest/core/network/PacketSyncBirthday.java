@@ -37,7 +37,7 @@ public class PacketSyncBirthday implements IMessage, IMessageHandler<PacketSyncB
 
     @Override
     public IMessage onMessage(PacketSyncBirthday message, MessageContext ctx) {
-        HFTrackers.getPlayerTracker().getStats().setBirthday(HFApi.CALENDAR.newDate(message.day, message.season, message.year));
+        HFTrackers.getClientPlayerTracker().getStats().setBirthday(HFApi.CALENDAR.newDate(message.day, message.season, message.year));
         return null;
     }
 }

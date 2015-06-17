@@ -8,9 +8,9 @@ import java.util.List;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ICreativeSorted;
-import joshie.harvest.init.HFBlocks;
-import joshie.harvest.init.HFBuildings;
-import joshie.harvest.init.HFCrops;
+import joshie.harvest.blocks.HFBlocks;
+import joshie.harvest.buildings.HFBuildings;
+import joshie.harvest.crops.HFCrops;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;

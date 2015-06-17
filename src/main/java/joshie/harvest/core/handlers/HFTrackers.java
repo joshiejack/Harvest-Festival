@@ -9,8 +9,10 @@ import joshie.harvest.calendar.CalendarServer;
 import joshie.harvest.crops.CropTracker;
 import joshie.harvest.mining.MineTracker;
 import joshie.harvest.player.PlayerTracker;
+import joshie.harvest.player.PlayerTrackerClient;
 import joshie.harvest.player.PlayerTrackerServer;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
@@ -68,8 +70,12 @@ public class HFTrackers {
     }
     
     @SideOnly(Side.CLIENT)
-    public static PlayerTracker getPlayerTracker() {
+    public static PlayerTrackerClient getClientPlayerTracker() {
         return theClient.getPlayerTracker();
+    }
+    
+    public static PlayerTrackerServer getServerPlayerTracker(EntityPlayer player) {
+        return theServer.getPlayerTracker(player);
     }
 
     public static void markDirty() {

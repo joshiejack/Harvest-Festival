@@ -4,7 +4,7 @@ import java.util.UUID;
 
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.Placeable.PlacementStage;
-import joshie.harvest.core.helpers.PlayerHelper;
+import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
@@ -47,7 +47,7 @@ public class BuildingStage {
                 stage = PlacementStage.FINISHED;
                 index = 0;
 
-                PlayerHelper.addBuilding(world, this);
+                HFTrackers.getPlayerTracker(owner).getTown().addBuilding(world, this);
             }
         } else {
             while (index < building.getSize()) {

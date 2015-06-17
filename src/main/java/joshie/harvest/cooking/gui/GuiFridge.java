@@ -1,14 +1,14 @@
 package joshie.harvest.cooking.gui;
 
 import joshie.harvest.core.util.GuiBase;
-import joshie.harvest.player.FridgeContents;
+import joshie.harvest.player.fridge.FridgeData;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.world.World;
 
 public class GuiFridge extends GuiBase {
-    private final FridgeContents fridge;
+    private final FridgeData fridge;
 
-    public GuiFridge(IInventory playerInv, FridgeContents fridge) {
+    public GuiFridge(IInventory playerInv, FridgeData fridge) {
         super(new ContainerFridge(playerInv, fridge), "fridge", 0);
         this.fridge = fridge;
     }

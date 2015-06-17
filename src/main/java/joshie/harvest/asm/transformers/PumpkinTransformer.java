@@ -3,10 +3,10 @@ package joshie.harvest.asm.transformers;
 import java.util.HashSet;
 import java.util.Iterator;
 
+import joshie.harvest.asm.HFOverride;
 import joshie.harvest.asm.overrides.ItemPumpkin;
 import joshie.harvest.core.config.ASM;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.init.HFOverride;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;

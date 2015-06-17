@@ -11,9 +11,8 @@ import joshie.harvest.buildings.placeable.blocks.PlaceableSignWall;
 import joshie.harvest.buildings.placeable.blocks.PlaceableStairs;
 import joshie.harvest.buildings.placeable.blocks.PlaceableVine;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
-import joshie.harvest.core.helpers.TownHelper;
-import joshie.harvest.init.HFBuildings;
-import joshie.harvest.player.Town;
+import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.player.town.TownData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
@@ -174,7 +173,7 @@ public class BuildingFishingHole extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 4, 5, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 4, 5, 3));
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 5, 2));
-        npc_offsets.put(Town.FISHING_POND, new PlaceableNPC("", 5, 5, 3));
+        npc_offsets.put(TownData.FISHING_POND, new PlaceableNPC("", 5, 5, 3));
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 5, 3));
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 5, 4));
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 5, 5));
@@ -205,6 +204,6 @@ public class BuildingFishingHole extends Building {
     
     @Override
     public boolean canBuy(World world, EntityPlayer player) {
-        return TownHelper.hasBuilding(player, HFBuildings.fishingHut);
+        return HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.fishingHut);
     }
 }

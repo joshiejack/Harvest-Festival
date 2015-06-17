@@ -5,10 +5,10 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import joshie.harvest.asm.HFOverride;
 import joshie.harvest.core.config.ASM;
+import joshie.harvest.core.config.HFConfig;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.init.HFConfig;
-import joshie.harvest.init.HFOverride;
 
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;

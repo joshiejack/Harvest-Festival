@@ -138,7 +138,7 @@ public class CropTrackerServer extends CropTracker implements IData {
             }
 
             if (player != null) {
-                HFTrackers.getPlayerTracker(player).getTracking().onHarvested(data);
+                HFTrackers.getServerPlayerTracker(player).getTracking().onHarvested(data);
             }
 
             HFTrackers.markDirty();

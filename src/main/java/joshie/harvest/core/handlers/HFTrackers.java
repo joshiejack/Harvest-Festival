@@ -16,7 +16,7 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class HFTracker {
+public class HFTrackers {
     private static final CalendarServer TEMP_CALENDAR = new CalendarServer();
 
     @SideOnly(Side.CLIENT)

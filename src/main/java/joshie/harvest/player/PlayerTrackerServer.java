@@ -7,7 +7,7 @@ import java.util.UUID;
 import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.buildings.BuildingStage;
-import joshie.harvest.core.handlers.HFTracker;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.helpers.generic.EntityHelper;
@@ -82,7 +82,7 @@ public class PlayerTrackerServer extends PlayerTracker implements IData {
         playerStats.addGold(gold);
         sendToClient(new PacketSyncGold(playerStats.getGold()), getAndCreatePlayer());
         relationStats.newDay();
-        HFTracker.markDirty();
+        HFTrackers.markDirty();
     }
 
     public boolean isOnlineOrFriendsAre() {
@@ -91,7 +91,7 @@ public class PlayerTrackerServer extends PlayerTracker implements IData {
 
     public boolean addForShipping(ItemStack stack) {
         boolean ret = shippingStats.addForShipping(stack);
-        HFTracker.markDirty();
+        HFTrackers.markDirty();
         return ret;
     }
 
@@ -105,7 +105,7 @@ public class PlayerTrackerServer extends PlayerTracker implements IData {
 
     public void setBirthday() {
         if (playerStats.setBirthday()) {
-            HFTracker.markDirty();
+            HFTrackers.markDirty();
         }
     }
 
@@ -119,7 +119,7 @@ public class PlayerTrackerServer extends PlayerTracker implements IData {
 
     public void affectStats(double stamina, double fatigue) {
         playerStats.affectStats(stamina, fatigue);
-        HFTracker.markDirty();
+        HFTrackers.markDirty();
     }
 
     public void syncPlayerStats() {
@@ -132,12 +132,12 @@ public class PlayerTrackerServer extends PlayerTracker implements IData {
 
     public void addGold(long gold) {
         playerStats.addGold(gold);
-        HFTracker.markDirty();
+        HFTrackers.markDirty();
     }
 
     public void setGold(long gold) {
         playerStats.setGold(gold);
-        HFTracker.markDirty();
+        HFTrackers.markDirty();
     }
 
     public long getGold() {
@@ -146,17 +146,17 @@ public class PlayerTrackerServer extends PlayerTracker implements IData {
 
     public void addSold(SellStack stack) {
         trackingStats.addSold(stack);
-        HFTracker.markDirty();
+        HFTrackers.markDirty();
     }
 
     public void onHarvested(ICropData data) {
         trackingStats.onHarvested(data);
-        HFTracker.markDirty();
+        HFTrackers.markDirty();
     }
 
     public void addBuilding(World world, BuildingStage building) {
         town.addBuilding(world, building);
-        HFTracker.markDirty();
+        HFTrackers.markDirty();
     }
 
     @Override

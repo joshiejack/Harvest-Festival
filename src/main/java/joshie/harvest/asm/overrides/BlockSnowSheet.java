@@ -3,7 +3,7 @@ package joshie.harvest.asm.overrides;
 import java.util.Random;
 
 import joshie.harvest.api.calendar.Season;
-import joshie.harvest.core.handlers.HFTracker;
+import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.block.BlockSnow;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.IBlockAccess;
@@ -35,7 +35,7 @@ public class BlockSnowSheet extends BlockSnow {
 
     @Override
     public void fillWithRain(World world, int x, int y, int z) {
-        if (HFTracker.getCalendar().getDate().getSeason() == Season.WINTER) {
+        if (HFTrackers.getCalendar().getDate().getSeason() == Season.WINTER) {
             int meta = world.getBlockMetadata(x, y, z);
             if (meta < 15) {
                 world.setBlockMetadataWithNotify(x, y, z, meta + 1, 2);

@@ -43,7 +43,7 @@ public class AnimalChicken extends AbstractAnimal {
         if (rand.nextInt(chance) == 0) size = Size.LARGE;
         else if (rand.nextInt(chance2) == 0) size = Size.MEDIUM;
         ItemStack sizeable = SizeableHelper.getSizeable(relationship, SizeableMeta.EGG, size);
-        if (HFConfig.vanilla.EGG_OVERRIDE) {
+        if (HFConfig.asm.EGG_OVERRIDE) {
             return new ItemStack(Items.egg, 1, sizeable.getItemDamage());
         } else return sizeable;
     }

@@ -2,8 +2,9 @@ package joshie.harvest.asm.transformers;
 
 import java.util.Iterator;
 
-import joshie.harvest.core.config.Vanilla;
+import joshie.harvest.core.config.ASM;
 import joshie.harvest.core.lib.HFModInfo;
+import joshie.harvest.init.HFOverride;
 
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
@@ -14,21 +15,26 @@ import org.objectweb.asm.tree.MethodInsnNode;
 import org.objectweb.asm.tree.MethodNode;
 import org.objectweb.asm.tree.TypeInsnNode;
 
-public class MelonTransformer implements ITransformer {
+public class MelonTransformer extends AbstractASM {
     @Override
-    public boolean isActive(Vanilla config) {
+    public boolean isActive(ASM config) {
         return config.WATERMELON_OVERRIDE;
     }
 
     @Override
-    public String getClass(boolean isObfuscated) {
-        return isObfuscated ? "adb" : "net.minecraft.item.Item";
+    public boolean isClass(String name) {
+        return name.equals("adb") || name.equals("net.minecraft.item.Item");
+    }
+    
+    @Override
+    public boolean isVisitor() {
+        return false;
     }
 
     @Override
-    public byte[] transform(byte[] data, boolean isObfuscated) {
+    public byte[] transform(byte[] data) {
         byte[] modified = data;
-        String name = isObfuscated ? "func_150900_l" : "registerItems";
+        String name = HFOverride.isObfuscated ? "func_150900_l" : "registerItems";
         String desc = "()V";
 
         ClassNode node = new ClassNode();

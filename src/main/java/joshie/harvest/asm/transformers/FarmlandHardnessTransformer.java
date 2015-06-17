@@ -2,7 +2,8 @@ package joshie.harvest.asm.transformers;
 
 import java.util.Iterator;
 
-import joshie.harvest.core.config.Vanilla;
+import joshie.harvest.core.config.ASM;
+import joshie.harvest.init.HFOverride;
 
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
@@ -11,20 +12,25 @@ import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.LdcInsnNode;
 import org.objectweb.asm.tree.MethodNode;
 
-public class FarmlandHardnessTransformer implements ITransformer {
+public class FarmlandHardnessTransformer extends AbstractASM {
     @Override
-    public boolean isActive(Vanilla config) {
+    public boolean isActive(ASM config) {
         return config.FARMLAND_OVERRIDE;
     }
 
     @Override
-    public String getClass(boolean isObfuscated) {
-        return isObfuscated ? "aji" : "net.minecraft.block.Block";
+    public boolean isClass(String name) {
+        return name.equals("aji") || name.equals("net.minecraft.block.Block");
+    }
+    
+    @Override
+    public boolean isVisitor() {
+        return false;
     }
 
     @Override
-    public byte[] transform(byte[] data, boolean isObfuscated) {
-        String name = isObfuscated ? "func_149671_p" : "registerBlocks";
+    public byte[] transform(byte[] data) {
+        String name = HFOverride.isObfuscated ? "func_149671_p" : "registerBlocks";
         String desc = "()V";
 
         ClassNode node = new ClassNode();

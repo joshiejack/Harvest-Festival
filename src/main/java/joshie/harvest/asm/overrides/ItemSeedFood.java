@@ -19,15 +19,15 @@ public class ItemSeedFood {
     public static ICrop getCrop(ItemStack stack) {
         ICrop crop = null;
         Item item = stack.getItem();
-        if (item == Items.carrot && HFConfig.vanilla.CARROT_OVERRIDE) {
+        if (item == Items.carrot && HFConfig.asm.CARROT_OVERRIDE) {
             crop = HFCrops.carrot;
-        } else if (item == Items.potato && HFConfig.vanilla.POTATO_OVERRIDE) {
+        } else if (item == Items.potato && HFConfig.asm.POTATO_OVERRIDE) {
             crop = HFCrops.potato;
-        } else if (item == Items.wheat && HFConfig.vanilla.WHEAT_OVERRIDE) {
+        } else if (item == Items.wheat && HFConfig.asm.WHEAT_OVERRIDE) {
             crop = HFCrops.wheat;
-        } else if (item == Item.getItemFromBlock(Blocks.pumpkin) && HFConfig.vanilla.PUMPKIN_OVERRIDE) {
+        } else if (item == Item.getItemFromBlock(Blocks.pumpkin) && HFConfig.asm.PUMPKIN_OVERRIDE) {
             crop = HFCrops.pumpkin;
-        } else if (item == Items.melon && HFConfig.vanilla.WATERMELON_OVERRIDE) {
+        } else if (item == Items.melon && HFConfig.asm.WATERMELON_OVERRIDE) {
             crop = HFCrops.watermelon;
         }
 

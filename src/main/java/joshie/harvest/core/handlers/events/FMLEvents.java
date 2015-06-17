@@ -1,7 +1,7 @@
 package joshie.harvest.core.handlers.events;
 
 import joshie.harvest.core.config.Calendar;
-import joshie.harvest.core.handlers.HFTracker;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.CalendarHelper;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSetCalendar;
@@ -22,9 +22,9 @@ public class FMLEvents {
     public void onPlayerLogin(PlayerLoggedInEvent event) {
         EntityPlayer player = event.player;
         if (player instanceof EntityPlayerMP) {
-            HFTracker.getPlayerTracker(player).getStats().setBirthday();
-            PacketHandler.sendToClient(new PacketSetCalendar(HFTracker.getCalendar().getDate()), (EntityPlayerMP) player);
-            PlayerTracker data = HFTracker.getPlayerTracker(player);
+            HFTrackers.getPlayerTracker(player).getStats().setBirthday();
+            PacketHandler.sendToClient(new PacketSetCalendar(HFTrackers.getCalendar().getDate()), (EntityPlayerMP) player);
+            PlayerTracker data = HFTrackers.getPlayerTracker(player);
             data.syncPlayerStats();
             data.getQuests().syncQuests();
         }
@@ -40,10 +40,10 @@ public class FMLEvents {
     }
 
     public static void newDay(final boolean forced) {
-        int daysPassed = CalendarHelper.getTotalDays(HFTracker.getCalendar().getDate());
+        int daysPassed = CalendarHelper.getTotalDays(HFTrackers.getCalendar().getDate());
         int serverDays = (int) Math.floor(DimensionManager.getWorld(0).getWorldTime() / Calendar.TICKS_PER_DAY);
         if (daysPassed <= serverDays || forced) {
-            HFTracker.getCalendar().newDay();
+            HFTrackers.getCalendar().newDay();
         }
     }
 }

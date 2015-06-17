@@ -1,9 +1,15 @@
 package joshie.harvest.calendar;
 
+import java.util.Random;
+
 import joshie.harvest.api.calendar.Weather;
-import joshie.harvest.core.handlers.HFTracker;
+import joshie.harvest.core.handlers.HFTrackers;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
+import net.minecraft.client.particle.EntityRainFX;
+import net.minecraft.client.particle.EntitySmokeFX;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
@@ -15,9 +21,76 @@ import net.minecraftforge.client.IRenderHandler;
 import org.lwjgl.opengl.GL11;
 
 public class WeatherRenderer extends IRenderHandler {
+    public static void addRainParticles(Minecraft mc, Random random, EntityRenderer renderer) {
+        float f = mc.theWorld.getRainStrength(1.0F);
+
+        if (!mc.gameSettings.fancyGraphics) {
+            f /= 2.0F;
+        }
+
+        if (f != 0.0F) {
+            random.setSeed((long) renderer.rendererUpdateCount * 312987231L);
+            EntityLivingBase entitylivingbase = mc.renderViewEntity;
+            WorldClient worldclient = mc.theWorld;
+            int i = MathHelper.floor_double(entitylivingbase.posX);
+            int j = MathHelper.floor_double(entitylivingbase.posY);
+            int k = MathHelper.floor_double(entitylivingbase.posZ);
+            byte b0 = 10;
+            double d0 = 0.0D;
+            double d1 = 0.0D;
+            double d2 = 0.0D;
+            int l = 0;
+            int i1 = (int) (100.0F * f * f);
+
+            if (mc.gameSettings.particleSetting == 1) {
+                i1 >>= 1;
+            } else if (mc.gameSettings.particleSetting == 2) {
+                i1 = 0;
+            }
+
+            Weather weather = HFTrackers.getCalendar().getTodaysWeather();
+            for (int j1 = 0; j1 < i1; ++j1) {
+                int k1 = i + random.nextInt(b0) - random.nextInt(b0);
+                int l1 = k + random.nextInt(b0) - random.nextInt(b0);
+                int i2 = worldclient.getPrecipitationHeight(k1, l1);
+                Block block = worldclient.getBlock(k1, i2 - 1, l1);
+                BiomeGenBase biomegenbase = worldclient.getBiomeGenForCoords(k1, l1);
+
+                if (i2 <= j + b0 && i2 >= j - b0 && biomegenbase.canSpawnLightningBolt() && !weather.isSnow()) {
+                    float f1 = random.nextFloat();
+                    float f2 = random.nextFloat();
+
+                    if (block.getMaterial() == Material.lava) {
+                        mc.effectRenderer.addEffect(new EntitySmokeFX(worldclient, (double) ((float) k1 + f1), (double) ((float) i2 + 0.1F) - block.getBlockBoundsMinY(), (double) ((float) l1 + f2), 0.0D, 0.0D, 0.0D));
+                    } else if (block.getMaterial() != Material.air) {
+                        ++l;
+
+                        if (random.nextInt(l) == 0) {
+                            d0 = (double) ((float) k1 + f1);
+                            d1 = (double) ((float) i2 + 0.1F) - block.getBlockBoundsMinY();
+                            d2 = (double) ((float) l1 + f2);
+                        }
+
+                        mc.effectRenderer.addEffect(new EntityRainFX(worldclient, (double) ((float) k1 + f1), (double) ((float) i2 + 0.1F) - block.getBlockBoundsMinY(), (double) ((float) l1 + f2)));
+                    }
+                }
+            }
+
+            if (l > 0 && random.nextInt(3) < renderer.rainSoundCounter++) {
+                renderer.rainSoundCounter = 0;
+
+                if (d1 > entitylivingbase.posY + 1.0D && worldclient.getPrecipitationHeight(MathHelper.floor_double(entitylivingbase.posX), MathHelper.floor_double(entitylivingbase.posZ)) > MathHelper.floor_double(entitylivingbase.posY)) {
+                    mc.theWorld.playSound(d0, d1, d2, "ambient.weather.rain", 0.1F, 0.5F, false);
+                } else {
+                    mc.theWorld.playSound(d0, d1, d2, "ambient.weather.rain", 0.2F, 1.0F, false);
+                }
+            }
+        }
+    }
+
     @Override
     public void render(float rain, WorldClient world, Minecraft mc) {
-        Weather weather = HFTracker.getCalendar().getTodaysWeather();
+        Weather weather = HFTrackers.getCalendar().getTodaysWeather();
         EntityRenderer renderer = mc.entityRenderer;
         float f1 = mc.theWorld.getRainStrength(rain);
         if (f1 > 0.0F) {
@@ -103,7 +176,7 @@ public class WeatherRenderer extends IRenderHandler {
                             float f10;
                             double d4;
 
-                            if (worldclient.getWorldChunkManager().getTemperatureAtHeight(f9, k1) >= 0.15F && weather.ordinal() < Weather.SNOW.ordinal()) {
+                            if (worldclient.getWorldChunkManager().getTemperatureAtHeight(f9, k1) >= 0.15F && !weather.isSnow()) {
                                 if (b1 != 0) {
                                     if (b1 >= 0) {
                                         tessellator.draw();

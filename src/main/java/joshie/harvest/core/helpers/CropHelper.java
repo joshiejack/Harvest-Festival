@@ -2,7 +2,7 @@ package joshie.harvest.core.helpers;
 
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
-import joshie.harvest.core.handlers.HFTracker;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.ItemHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFarmland;
@@ -18,7 +18,7 @@ public class CropHelper {
         int meta = world.getBlockMetadata(x, y, z);
         boolean ret = meta == 7 ? false : world.setBlockMetadataWithNotify(x, y, z, 7, 2);
         if (ret) {
-            HFTracker.getCropTracker().hydrate(world, x, y + 1, z);
+            HFTrackers.getCropTracker().hydrate(world, x, y + 1, z);
         }
 
         return ret;
@@ -48,22 +48,22 @@ public class CropHelper {
 
     //Fetch the crop data at this location
     public static ICropData getCropAtLocation(World world, int x, int y, int z) {
-        return HFTracker.getCropTracker().getCropDataForLocation(world, x, y, z);
+        return HFTrackers.getCropTracker().getCropDataForLocation(world, x, y, z);
     }
 
     //Remove the crop data at this location
     public static void removeCrop(World world, int x, int y, int z) {
-        HFTracker.getCropTracker().removeCrop(world, x, y, z);
+        HFTrackers.getCropTracker().removeCrop(world, x, y, z);
     }
 
     //Set some crop data at this location
     public static boolean plantCrop(EntityPlayer player, World world, int x, int y, int z, ICrop crop, int regrowStage) {
-        return HFTracker.getCropTracker().plantCrop(player, world, x, y, z, crop, regrowStage);
+        return HFTrackers.getCropTracker().plantCrop(player, world, x, y, z, crop, regrowStage);
     }
 
     //Harvests the crop at this location
     public static boolean harvestCrop(EntityPlayer player, World world, int x, int y, int z) {
-        ItemStack stack = HFTracker.getCropTracker().harvest(player, world, x, y, z);
+        ItemStack stack = HFTrackers.getCropTracker().harvest(player, world, x, y, z);
         if (!world.isRemote && stack != null) {
             ItemHelper.dropBlockAsItem(world, x, y, z, stack);
         }
@@ -73,10 +73,10 @@ public class CropHelper {
 
     //Whether or not you can bonemeal this location
     public static boolean canBonemeal(World world, int x, int y, int z) {
-        return HFTracker.getCropTracker().canBonemeal(world, x, y, z);
+        return HFTrackers.getCropTracker().canBonemeal(world, x, y, z);
     }
 
     public static void grow(World world, int x, int y, int z) {
-        HFTracker.getCropTracker().grow(world, x, y, z);
+        HFTrackers.getCropTracker().grow(world, x, y, z);
     }
 }

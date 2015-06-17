@@ -4,7 +4,7 @@ import java.util.UUID;
 
 import joshie.harvest.api.WorldLocation;
 import joshie.harvest.api.npc.INPC;
-import joshie.harvest.core.handlers.HFTracker;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
@@ -36,6 +36,6 @@ public class NPCHelper {
     }
     
     public static EntityNPCBuilder getBuilderForPlayer(World world, EntityPlayer player) {
-        return HFTracker.getPlayerTracker(player).getBuilder(world);
+        return HFTrackers.getPlayerTracker(player).getBuilder(world);
     }
 }

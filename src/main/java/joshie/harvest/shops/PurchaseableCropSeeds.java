@@ -8,7 +8,7 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.core.ISeasonData;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.shops.IPurchaseable;
-import joshie.harvest.core.handlers.HFTracker;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.CalendarHelper;
 import joshie.harvest.core.helpers.PlayerHelper;
 import joshie.harvest.core.helpers.generic.ItemHelper;
@@ -37,7 +37,7 @@ public class PurchaseableCropSeeds implements IPurchaseable {
     @Override
     public boolean canBuy(World world, EntityPlayer player) {
         ICalendarDate playersBirthday = PlayerHelper.getBirthday(player);
-        ICalendarDate date = HFTracker.getCalendar().getDate();
+        ICalendarDate date = HFTrackers.getCalendar().getDate();
         if (!isCorrectSeason(date)) return false;
         if (!crop.canPurchase()) return false;
         if (CalendarHelper.getYearsPassed(playersBirthday, date) >= crop.getPurchaseYear()) {

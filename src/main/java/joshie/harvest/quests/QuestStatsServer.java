@@ -6,7 +6,7 @@ import java.util.HashSet;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.quest.IQuest;
-import joshie.harvest.core.handlers.HFTracker;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.network.quests.PacketQuestSetAvailable;
 import joshie.harvest.core.network.quests.PacketQuestSetCurrent;
 import joshie.harvest.core.util.IData;
@@ -45,7 +45,7 @@ public class QuestStatsServer extends QuestStats implements IData {
             q.setStage(stage);
         }
 
-        HFTracker.markDirty();
+        HFTrackers.markDirty();
     }
     
     @Override
@@ -88,7 +88,7 @@ public class QuestStatsServer extends QuestStats implements IData {
             }
         }
 
-        HFTracker.markDirty();
+        HFTrackers.markDirty();
     }
 
     @Override

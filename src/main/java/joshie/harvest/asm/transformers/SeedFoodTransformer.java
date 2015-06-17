@@ -5,9 +5,10 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import joshie.harvest.core.config.Vanilla;
+import joshie.harvest.core.config.ASM;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.init.HFConfig;
+import joshie.harvest.init.HFOverride;
 
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
@@ -19,15 +20,20 @@ import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.InsnNode;
 import org.objectweb.asm.tree.MethodNode;
 
-public class SeedFoodTransformer implements ITransformer {
+public class SeedFoodTransformer extends AbstractASM {
     @Override
-    public boolean isActive(Vanilla config) {
+    public boolean isActive(ASM config) {
         return config.POTATO_OVERRIDE || config.CARROT_OVERRIDE;
     }
 
     @Override
-    public String getClass(boolean isObfuscated) {
-        return isObfuscated ? "adv" : "net.minecraft.item.ItemSeedFood";
+    public boolean isClass(String name) {
+        return name.equals("adv") || name.equals("net.minecraft.item.ItemSeedFood");
+    }
+    
+    @Override
+    public boolean isVisitor() {
+        return false;
     }
 
     public byte[] injectInterfaces(byte[] data) {
@@ -109,11 +115,11 @@ public class SeedFoodTransformer implements ITransformer {
     }
 
     @Override
-    public byte[] transform(byte[] data, boolean isObfuscated) {
-        byte[] modified = injectMethods(isObfuscated, injectInterfaces(data));
-        if (!HFConfig.vanilla.CARROT_POTATO_DISABLE_PLANTING) return modified;
+    public byte[] transform(byte[] data) {
+        byte[] modified = injectMethods(HFOverride.isObfuscated, injectInterfaces(data));
+        if (!HFConfig.asm.CARROT_POTATO_DISABLE_PLANTING) return modified;
         else {
-            String name = isObfuscated ? "func_77648_a" : "onItemUse";
+            String name = HFOverride.isObfuscated ? "func_77648_a" : "onItemUse";
             String desc = "(Lnet/minecraft/item/ItemStack;Lnet/minecraft/entity/player/EntityPlayer;Lnet/minecraft/world/World;IIIIFFF)Z";
 
             ClassNode node = new ClassNode();

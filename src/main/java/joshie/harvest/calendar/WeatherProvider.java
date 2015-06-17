@@ -4,7 +4,7 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.api.core.ISeasonData;
 import joshie.harvest.core.config.Calendar;
-import joshie.harvest.core.handlers.HFTracker;
+import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -31,13 +31,13 @@ public class WeatherProvider extends WorldProviderSurface {
     @Override
     public float getStarBrightness(float f) {
         float brightness = super.getStarBrightness(f);
-        return HFTracker.getCalendar().getDate().getSeason() == Season.WINTER ? brightness * 1.25F : brightness;
+        return HFTrackers.getCalendar().getDate().getSeason() == Season.WINTER ? brightness * 1.25F : brightness;
     }
 
     @SideOnly(Side.CLIENT)
     public float getSunBrightness(float f) {
         float brightness = worldObj.getSunBrightnessBody(f);
-        return HFTracker.getCalendar().getDate().getSeason() == Season.SUMMER ? brightness * 1.25F : brightness;
+        return HFTrackers.getCalendar().getDate().getSeason() == Season.SUMMER ? brightness * 1.25F : brightness;
     }
 
     @SideOnly(Side.CLIENT)
@@ -57,14 +57,14 @@ public class WeatherProvider extends WorldProviderSurface {
         int i = MathHelper.floor_double(cameraEntity.posX);
         int j = MathHelper.floor_double(cameraEntity.posY);
         int k = MathHelper.floor_double(cameraEntity.posZ);
-        int l = HFTracker.getCalendar().getSeasonData().getSkyColor();
+        int l = HFTrackers.getCalendar().getSeasonData().getSkyColor();
         float f4 = (float) (l >> 16 & 255) / 255.0F;
         float f5 = (float) (l >> 8 & 255) / 255.0F;
         float f6 = (float) (l & 255) / 255.0F;
         f4 *= f2;
         f5 *= f2;
         f6 *= f2;
-        float f7 = worldObj.getRainStrength(partialTicks);
+        float f7 = Math.min(1F, worldObj.getRainStrength(partialTicks));
         float f8;
         float f9;
 
@@ -79,6 +79,7 @@ public class WeatherProvider extends WorldProviderSurface {
         f8 = worldObj.getWeightedThunderStrength(partialTicks);
 
         if (f8 > 0.0F) {
+            f8 /= 10F;
             f9 = (f4 * 0.3F + f5 * 0.59F + f6 * 0.11F) * 0.2F;
             float f10 = 1.0F - f8 * 0.75F;
             f4 = f4 * f10 + f9 * (1.0F - f10);
@@ -109,7 +110,7 @@ public class WeatherProvider extends WorldProviderSurface {
     /** Cheers to chylex for a bunch of the maths on this one ;D **/
     @Override
     public float calculateCelestialAngle(long worldTime, float partialTicks) {
-        ISeasonData data = HFTracker.getCalendar().getDate().getSeasonData();
+        ISeasonData data = HFTrackers.getCalendar().getDate().getSeasonData();
         int time = (int) (worldTime % Calendar.TICKS_PER_DAY);
         double fac = data.getCelestialLengthFactor();
         float chylex = (float) (clamp(0, 1000D, time) + 11000D * (clamp(0, 11000D, time - 1000D) / 11000D) * fac + clamp(0, 1000D, time - 12000D) + 11000D * (clamp(0, 11000D, time - 12000D) / 11000D) * (2 - fac));
@@ -119,12 +120,12 @@ public class WeatherProvider extends WorldProviderSurface {
 
     @Override
     public boolean isBlockHighHumidity(int x, int y, int z) {
-        return HFTracker.getCalendar().getDate().getSeason() == Season.SUMMER ? false : super.isBlockHighHumidity(x, y, z);
+        return HFTrackers.getCalendar().getDate().getSeason() == Season.SUMMER ? false : super.isBlockHighHumidity(x, y, z);
     }
 
     @Override
     public boolean canSnowAt(int x, int y, int z, boolean checkLight) {
-        Weather weather = HFTracker.getCalendar().getTodaysWeather();
+        Weather weather = HFTrackers.getCalendar().getTodaysWeather();
         if (weather == Weather.SNOW || weather == Weather.BLIZZARD) {
             BiomeGenBase biomegenbase = worldObj.getBiomeGenForCoords(x, z);
             float f = biomegenbase.getFloatTemperature(x, y, z);
@@ -155,7 +156,7 @@ public class WeatherProvider extends WorldProviderSurface {
     @Override
     public void updateWeather() {
         if (!worldObj.isRemote) {
-            Weather weather = HFTracker.getCalendar().getTodaysWeather();
+            Weather weather = HFTrackers.getCalendar().getTodaysWeather();
             if (weather == Weather.SUNNY) {
                 if (worldObj.rainingStrength > 0F) {
                     worldObj.rainingStrength = worldObj.rainingStrength - 0.01F;

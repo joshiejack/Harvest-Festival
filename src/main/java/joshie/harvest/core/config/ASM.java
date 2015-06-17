@@ -3,7 +3,7 @@ package joshie.harvest.core.config;
 import com.google.gson.annotations.SerializedName;
 
 /* This class is loaded via json for the config */
-public class Vanilla {
+public class ASM {
     /* Egg Config Options */
     @SerializedName("Egg > Enable Override")
     public boolean EGG_OVERRIDE = true;

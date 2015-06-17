@@ -4,7 +4,7 @@ import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.calendar.Season;
-import joshie.harvest.core.handlers.HFTracker;
+import joshie.harvest.core.handlers.HFTrackers;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
@@ -37,7 +37,7 @@ public class PacketSyncBirthday implements IMessage, IMessageHandler<PacketSyncB
 
     @Override
     public IMessage onMessage(PacketSyncBirthday message, MessageContext ctx) {
-        HFTracker.getPlayerTracker().getStats().setBirthday(HFApi.CALENDAR.newDate(message.day, message.season, message.year));
+        HFTrackers.getPlayerTracker().getStats().setBirthday(HFApi.CALENDAR.newDate(message.day, message.season, message.year));
         return null;
     }
 }

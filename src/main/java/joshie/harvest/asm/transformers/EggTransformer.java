@@ -5,9 +5,10 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import joshie.harvest.core.config.Vanilla;
+import joshie.harvest.core.config.ASM;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.init.HFConfig;
+import joshie.harvest.init.HFOverride;
 
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
@@ -20,15 +21,20 @@ import org.objectweb.asm.tree.InsnNode;
 import org.objectweb.asm.tree.MethodNode;
 import org.objectweb.asm.tree.VarInsnNode;
 
-public class EggTransformer implements ITransformer {
+public class EggTransformer extends AbstractASM {
     @Override
-    public boolean isActive(Vanilla config) {
+    public boolean isActive(ASM config) {
         return config.EGG_OVERRIDE;
     }
-
+    
     @Override
-    public String getClass(boolean isObfuscated) {
-        return isObfuscated ? "ack" : "net.minecraft.item.ItemEgg";
+    public boolean isClass(String name) {
+        return name.equals("ack") || name.equals("net.minecraft.item.ItemEgg");
+    }
+    
+    @Override
+    public boolean isVisitor() {
+        return false;
     }
 
     public byte[] injectInterfaces(byte[] data) {
@@ -55,7 +61,6 @@ public class EggTransformer implements ITransformer {
         ClassWriter cw = new ClassWriter(cr, 0);
 
         //Sellable Sell Value
-
         String name = "getSellValue";
         MethodVisitor mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, "(Lnet/minecraft/item/ItemStack;)J", null, null);
         mv.visitCode();
@@ -131,12 +136,12 @@ public class EggTransformer implements ITransformer {
     }
 
     @Override
-    public byte[] transform(byte[] data, boolean isObfuscated) {
+    public byte[] transform(byte[] data) {
         //Implements the Interfaces ~ Thanks to BluSunrize!!! :D
-        byte[] modified = injectMethods(isObfuscated, injectInterfaces(data));
-        if (!HFConfig.vanilla.EGG_DISABLE_THROWING) return modified;
+        byte[] modified = injectMethods(HFOverride.isObfuscated, injectInterfaces(data));
+        if (!HFConfig.asm.EGG_DISABLE_THROWING) return modified;
         else {
-            String name = isObfuscated ? "func_77659_a" : "onItemRightClick";
+            String name = HFOverride.isObfuscated ? "func_77659_a" : "onItemRightClick";
             String desc = "(Lnet/minecraft/item/ItemStack;Lnet/minecraft/world/World;Lnet/minecraft/entity/player/EntityPlayer;)Lnet/minecraft/item/ItemStack;";
             
             ClassNode node = new ClassNode();

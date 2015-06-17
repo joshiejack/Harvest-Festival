@@ -1,6 +1,6 @@
 package joshie.harvest.init;
 
-import static joshie.harvest.init.HFConfig.vanilla;
+import static joshie.harvest.init.HFConfig.asm;
 import joshie.harvest.core.HFTab;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -8,7 +8,7 @@ import net.minecraft.item.Item;
 
 public class HFVanilla {
     public static void preInit() {
-        if (HFConfig.vanilla.HOES_HIDDEN) {
+        if (HFConfig.asm.HOES_HIDDEN) {
             Items.wooden_hoe.setCreativeTab(null);
             Items.stone_hoe.setCreativeTab(null);
             Items.iron_hoe.setCreativeTab(null);
@@ -16,18 +16,18 @@ public class HFVanilla {
             Items.golden_hoe.setCreativeTab(null);
         }
 
-        if (vanilla.CARROT_BLOCK_DISABLE_TICKING) Blocks.carrots.setTickRandomly(false);
-        if (vanilla.POTATO_BLOCK_DISABLE_TICKING) Blocks.potatoes.setTickRandomly(false);
-        if (vanilla.WHEAT_BLOCK_DISABLE_TICKING) Blocks.wheat.setTickRandomly(false);
-        if (vanilla.PUMPKIN_BLOCK_DISABLE_TICKING) Blocks.pumpkin_stem.setTickRandomly(false);
-        if (vanilla.WATERMELON_BLOCK_DISABLE_TICKING) Blocks.melon_stem.setTickRandomly(false);
-        if (vanilla.MOVE_OVERRIDE_TAB) {
-            if (vanilla.CARROT_OVERRIDE) Items.carrot.setCreativeTab(HFTab.tabFarming).setHasSubtypes(true);
-            if (vanilla.POTATO_OVERRIDE) Items.potato.setCreativeTab(HFTab.tabFarming).setHasSubtypes(true);
-            if (vanilla.WHEAT_OVERRIDE) Items.wheat.setCreativeTab(HFTab.tabFarming).setHasSubtypes(true);
-            if (vanilla.WATERMELON_OVERRIDE) Items.melon.setCreativeTab(HFTab.tabFarming).setHasSubtypes(true);
-            if (vanilla.EGG_OVERRIDE) Items.egg.setCreativeTab(HFTab.tabFarming).setHasSubtypes(true);
-            if (vanilla.PUMPKIN_OVERRIDE) {
+        if (asm.CARROT_BLOCK_DISABLE_TICKING) Blocks.carrots.setTickRandomly(false);
+        if (asm.POTATO_BLOCK_DISABLE_TICKING) Blocks.potatoes.setTickRandomly(false);
+        if (asm.WHEAT_BLOCK_DISABLE_TICKING) Blocks.wheat.setTickRandomly(false);
+        if (asm.PUMPKIN_BLOCK_DISABLE_TICKING) Blocks.pumpkin_stem.setTickRandomly(false);
+        if (asm.WATERMELON_BLOCK_DISABLE_TICKING) Blocks.melon_stem.setTickRandomly(false);
+        if (asm.MOVE_OVERRIDE_TAB) {
+            if (asm.CARROT_OVERRIDE) Items.carrot.setCreativeTab(HFTab.tabFarming).setHasSubtypes(true);
+            if (asm.POTATO_OVERRIDE) Items.potato.setCreativeTab(HFTab.tabFarming).setHasSubtypes(true);
+            if (asm.WHEAT_OVERRIDE) Items.wheat.setCreativeTab(HFTab.tabFarming).setHasSubtypes(true);
+            if (asm.WATERMELON_OVERRIDE) Items.melon.setCreativeTab(HFTab.tabFarming).setHasSubtypes(true);
+            if (asm.EGG_OVERRIDE) Items.egg.setCreativeTab(HFTab.tabFarming).setHasSubtypes(true);
+            if (asm.PUMPKIN_OVERRIDE) {
                 Blocks.pumpkin.setCreativeTab(HFTab.tabFarming);
                 Item.getItemFromBlock(Blocks.pumpkin).setHasSubtypes(true);
             }

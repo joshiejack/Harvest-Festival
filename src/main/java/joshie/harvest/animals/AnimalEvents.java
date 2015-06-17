@@ -1,12 +1,9 @@
 package joshie.harvest.animals;
 
 import static joshie.harvest.core.network.PacketHandler.sendToServer;
-
-import java.util.HashSet;
-
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.core.config.Animals;
-import joshie.harvest.core.handlers.HFTracker;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.network.PacketDismount;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSyncCanProduce;
@@ -29,7 +26,7 @@ public class AnimalEvents {
     public void onEntityLoaded(EntityJoinWorldEvent event) {
         Entity entity = event.entity;
         if (entity instanceof IAnimalTracked) {
-            HFTracker.getAnimalTracker().onJoinWorld(((IAnimalTracked) entity).getData());
+            HFTrackers.getAnimalTracker().onJoinWorld(((IAnimalTracked) entity).getData());
             if (event.world.isRemote) {
                 sendToServer(new PacketSyncCanProduce(entity.getEntityId(), true));
             }
@@ -39,22 +36,15 @@ public class AnimalEvents {
     @SubscribeEvent
     public void onEntityDeath(LivingDeathEvent event) {
         if (event.entityLiving instanceof IAnimalTracked) {
-            HFTracker.getAnimalTracker().onDeath(((IAnimalTracked) event.entityLiving));
+            HFTrackers.getAnimalTracker().onDeath(((IAnimalTracked) event.entityLiving));
         }
     }
-
-    private HashSet<Entity> mounted = new HashSet();
 
     @SubscribeEvent
     public void onRightClickGround(PlayerInteractEvent event) {
         if (event.action != Action.LEFT_CLICK_BLOCK && event.entityPlayer.worldObj.isRemote) {
             EntityPlayer player = event.entityPlayer;
             if (player.riddenByEntity instanceof EntityChicken) {
-                if (mounted.contains(player.riddenByEntity)) {
-                    mounted.remove(player.riddenByEntity);
-                    return;
-                }
-
                 EntityChicken chicken = (EntityChicken) player.riddenByEntity;
                 chicken.mountEntity(null);
                 chicken.rotationPitch = player.rotationPitch;

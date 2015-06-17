@@ -1,7 +1,7 @@
 package joshie.harvest.core.commands;
 
 import joshie.harvest.api.calendar.Season;
-import joshie.harvest.core.handlers.HFTracker;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSetCalendar;
 import net.minecraft.command.ICommandSender;
@@ -24,7 +24,7 @@ public class HFCommandSeason extends HFCommandBase  {
         if (parameters != null && parameters.length == 1) {
             for (Season s : Season.values()) {
                 if (StringUtils.equalsIgnoreCase(s.name(), parameters[0])) {
-                    PacketHandler.sendToServer(new PacketSetCalendar(HFTracker.getCalendar().getDate().setSeason(s)));
+                    PacketHandler.sendToServer(new PacketSetCalendar(HFTrackers.getCalendar().getDate().setSeason(s)));
                     return true;
                 }
             }

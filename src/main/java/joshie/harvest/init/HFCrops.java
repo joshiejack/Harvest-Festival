@@ -80,10 +80,10 @@ public class HFCrops {
         grass = HFApi.CROPS.registerCrop("grass", 500, 0, 11, 0, 0, 0x7AC958, SPRING, SUMMER, AUTUMN).setAnimalFoodType(AnimalFoodType.GRASS).setBecomesDouble(6).setHasAlternativeName().setRequiresSickle().setNoWaterRequirements().setCropIconHandler(new IconHandlerGrass());
         wheat = HFApi.CROPS.registerCrop("wheat", 150, 100, 28, 0, 0, 0XEAC715, SPRING, SUMMER, AUTUMN).setAnimalFoodType(AnimalFoodType.GRASS).setRequiresSickle().setCropIconHandler(new IconHandlerWheat());
         watermelon = HFApi.CROPS.registerCrop("watermelon", 250, 25, 11, 0, 3, 0xc92b3e, SUMMER).setAnimalFoodType(AnimalFoodType.FRUIT).setDropHandler(new DropMelon()).setGrowsToSide(Blocks.melon_block).setCropIconHandler(new IconHandlerBlock(Blocks.melon_block));
-        if (HFConfig.vanilla.POTATO_OVERRIDE) potato.setItem(new ItemStack(Items.potato));
-        if (HFConfig.vanilla.CARROT_OVERRIDE) carrot.setItem(new ItemStack(Items.carrot));
-        if (HFConfig.vanilla.WHEAT_OVERRIDE) wheat.setItem(new ItemStack(Items.wheat));
-        if (HFConfig.vanilla.PUMPKIN_OVERRIDE) pumpkin.setItem(new ItemStack(Blocks.pumpkin));
-        if (HFConfig.vanilla.WATERMELON_OVERRIDE) watermelon.setItem(new ItemStack(Items.melon));
+        if (HFConfig.asm.POTATO_OVERRIDE) potato.setItem(new ItemStack(Items.potato));
+        if (HFConfig.asm.CARROT_OVERRIDE) carrot.setItem(new ItemStack(Items.carrot));
+        if (HFConfig.asm.WHEAT_OVERRIDE) wheat.setItem(new ItemStack(Items.wheat));
+        if (HFConfig.asm.PUMPKIN_OVERRIDE) pumpkin.setItem(new ItemStack(Blocks.pumpkin));
+        if (HFConfig.asm.WATERMELON_OVERRIDE) watermelon.setItem(new ItemStack(Items.melon));
     }
 }

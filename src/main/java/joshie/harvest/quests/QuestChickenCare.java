@@ -9,7 +9,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quest.IQuest;
-import joshie.harvest.core.handlers.HFTracker;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.SizeableHelper;
 import joshie.harvest.core.helpers.generic.ItemHelper;
 import joshie.harvest.core.lib.SizeableMeta;
@@ -43,7 +43,7 @@ public class QuestChickenCare extends Quest {
                             increaseStage(player);
                         }
 
-                        HFTracker.markDirty();
+                        HFTrackers.markDirty();
                     }
                 }
             }
@@ -61,7 +61,7 @@ public class QuestChickenCare extends Quest {
                         increaseStage(player);
                     }
 
-                    HFTracker.markDirty();
+                    HFTrackers.markDirty();
                 }
             }
         }

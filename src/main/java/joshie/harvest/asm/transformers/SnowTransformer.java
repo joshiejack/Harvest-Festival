@@ -1,6 +1,6 @@
 package joshie.harvest.asm.transformers;
 
-import joshie.harvest.core.config.Vanilla;
+import joshie.harvest.core.config.ASM;
 import joshie.harvest.core.lib.HFModInfo;
 
 import org.objectweb.asm.ClassReader;
@@ -12,19 +12,24 @@ import org.objectweb.asm.tree.MethodInsnNode;
 import org.objectweb.asm.tree.MethodNode;
 import org.objectweb.asm.tree.TypeInsnNode;
 
-public class SnowTransformer implements ITransformer {
+public class SnowTransformer extends AbstractASM {
     @Override
-    public boolean isActive(Vanilla config) {
+    public boolean isActive(ASM config) {
         return config.SNOW_OVERRIDE;
     }
 
     @Override
-    public String getClass(boolean isObfuscated) {
-        return isObfuscated ? "aji" : "net.minecraft.block.Block";
+    public boolean isClass(String name) {
+        return name.equals("aji") || name.equals("net.minecraft.block.Block");
+    }
+    
+    @Override
+    public boolean isVisitor() {
+        return false;
     }
 
     @Override
-    public byte[] transform(byte[] data, boolean isObfuscated) {
+    public byte[] transform(byte[] data) {
         ClassNode classNode = new ClassNode();
         ClassReader classReader = new ClassReader(data);
         classReader.accept(classNode, 0);

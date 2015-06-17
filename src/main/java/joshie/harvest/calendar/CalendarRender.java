@@ -6,7 +6,7 @@ import java.util.Locale;
 import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.api.core.ISeasonData;
-import joshie.harvest.core.handlers.HFTracker;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.Translate;
@@ -34,7 +34,7 @@ public class CalendarRender {
         } else if (event.type == ElementType.HOTBAR) {
             Minecraft mc = MCClientHelper.getMinecraft();
             mc.mcProfiler.startSection("calendarHUD");
-            Calendar calendar = HFTracker.getCalendar();
+            Calendar calendar = HFTrackers.getCalendar();
             ICalendarDate date = calendar.getDate();
             ISeasonData data = calendar.getSeasonData();
             GL11.glPushMatrix();
@@ -52,7 +52,7 @@ public class CalendarRender {
 
             mc.fontRenderer.drawStringWithShadow(Translate.translate("year") + " " + date.getYear(), 45, 25, 0xFFFFFFFF);
             mc.getTextureManager().bindTexture(HFModInfo.elements);
-            String text = NumberFormat.getNumberInstance(Locale.US).format(HFTracker.getPlayerTracker().getStats().getGold());
+            String text = NumberFormat.getNumberInstance(Locale.US).format(HFTrackers.getPlayerTracker().getStats().getGold());
             int width = event.resolution.getScaledWidth();
             mc.ingameGUI.drawTexturedModalRect(width - mc.fontRenderer.getStringWidth(text) - 20, 2, 244, 0, 12, 12);
             mc.fontRenderer.drawStringWithShadow(text, width - mc.fontRenderer.getStringWidth(text) - 5, 5, 0xFFFFFFFF);
@@ -66,7 +66,7 @@ public class CalendarRender {
     @SubscribeEvent
     public void onFogRender(RenderFogEvent event) {
         if (!event.block.getMaterial().isLiquid()) {
-            Weather weather = HFTracker.getCalendar().getTodaysWeather();
+            Weather weather = HFTrackers.getCalendar().getTodaysWeather();
             if (weather == Weather.BLIZZARD) {
                 GL11.glFogi(GL11.GL_FOG_MODE, GL11.GL_EXP);
                 GL11.glFogf(GL11.GL_FOG_DENSITY, 0.15F);
@@ -80,7 +80,7 @@ public class CalendarRender {
     @SubscribeEvent
     public void onFogColor(FogColors event) {
         if (!event.block.getMaterial().isLiquid()) {
-            Weather weather = HFTracker.getCalendar().getTodaysWeather();
+            Weather weather = HFTrackers.getCalendar().getTodaysWeather();
             if (weather == Weather.SNOW || weather == Weather.BLIZZARD) {
                 event.red = 1F;
                 event.blue = 1F;

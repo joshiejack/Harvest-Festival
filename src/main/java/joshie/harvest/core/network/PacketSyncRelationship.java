@@ -3,7 +3,7 @@ package joshie.harvest.core.network;
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.relations.IRelatableDataHandler;
-import joshie.harvest.core.handlers.HFTracker;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.relations.RelationshipHelper;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
@@ -44,7 +44,7 @@ public class PacketSyncRelationship implements IMessage, IMessageHandler<PacketS
     public IMessage onMessage(PacketSyncRelationship message, MessageContext ctx) {
         IRelatable relatable = message.handler.onMessage(message.particles);
         if (relatable != null) {
-            HFTracker.getPlayerTracker().getRelationships().setRelationship(message.relatable, message.value);
+            HFTrackers.getPlayerTracker().getRelationships().setRelationship(message.relatable, message.value);
         }
 
         return null;

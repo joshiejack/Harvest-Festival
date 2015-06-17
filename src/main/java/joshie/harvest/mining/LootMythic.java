@@ -1,7 +1,7 @@
 package joshie.harvest.mining;
 
 import joshie.harvest.api.core.ITiered.ToolTier;
-import joshie.harvest.core.handlers.HFTracker;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.util.SafeStack;
 import joshie.harvest.init.HFItems;
 import joshie.harvest.player.TrackingStats;
@@ -18,7 +18,7 @@ public class LootMythic extends LootChance {
     }
 
     public boolean canPlayerObtain(EntityPlayer player) {
-        TrackingStats stats = HFTracker.getPlayerTracker(player).getTracking();
+        TrackingStats stats = HFTrackers.getPlayerTracker(player).getTracking();
         return stats.hasObtainedItem(hoe) && stats.hasObtainedItem(sickle) && stats.hasObtainedItem(watering);
     }
 }

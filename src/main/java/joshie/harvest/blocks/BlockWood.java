@@ -2,7 +2,7 @@ package joshie.harvest.blocks;
 
 import joshie.harvest.api.core.IShippable;
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.handlers.HFTracker;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.DirectionHelper;
 import joshie.harvest.core.lib.RenderIds;
 import joshie.harvest.core.util.generic.IFaceable;
@@ -77,7 +77,7 @@ public class BlockWood extends BlockHFBaseMeta {
                         player.inventory.decrStackSize(player.inventory.currentItem, 1);
                     }
                     
-                    return HFTracker.getPlayerTracker(player).getShipping().addForShipping(held);
+                    return HFTrackers.getPlayerTracker(player).getShipping().addForShipping(held);
                 } else return false;
             } else return false;
         } else return false;

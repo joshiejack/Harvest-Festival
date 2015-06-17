@@ -8,7 +8,7 @@ import java.lang.reflect.Method;
 
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.core.config.Mappings;
-import joshie.harvest.core.config.Vanilla;
+import joshie.harvest.core.config.ASM;
 import joshie.harvest.core.helpers.generic.ConfigHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.plugins.HFPlugins;
@@ -22,7 +22,7 @@ import com.google.gson.Gson;
 public class HFConfig {
     public static final int PACKET_DISTANCE = 172;
     public static Mappings mappings = new Mappings();
-    public static Vanilla vanilla;
+    public static ASM asm;
 
     public static void preInit() {
         initConfig("General");
@@ -58,14 +58,14 @@ public class HFConfig {
         File file = new File("config/" + HFModInfo.MODPATH + "/vanilla.json");
         if (!file.exists()) {
             try {
-                HFConfig.vanilla = new Vanilla();
+                HFConfig.asm = new ASM();
                 Writer writer = new OutputStreamWriter(new FileOutputStream(file), "UTF-8");
-                writer.write(gson.toJson(HFConfig.vanilla));
+                writer.write(gson.toJson(HFConfig.asm));
                 writer.close(); //Write the default json to file
             } catch (Exception e) {}
         } else {
             try {
-                HFConfig.vanilla = gson.fromJson(FileUtils.readFileToString(file), Vanilla.class);
+                HFConfig.asm = gson.fromJson(FileUtils.readFileToString(file), ASM.class);
             } catch (Exception e) {}
         }
     }

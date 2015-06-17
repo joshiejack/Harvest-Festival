@@ -3,7 +3,6 @@ package joshie.harvest.core.network;
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.animals.IAnimalTracked;
 import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayerMP;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
@@ -21,15 +20,12 @@ public class PacketDismount implements IMessage, IMessageHandler<PacketDismount,
     @Override
     public IMessage onMessage(PacketDismount message, MessageContext ctx) {
         EntityPlayerMP player = ctx.getServerHandler().playerEntity;
-        if (player.riddenByEntity instanceof EntityChicken) {
-            EntityAnimal entity = (EntityAnimal) player.riddenByEntity;
-            entity.mountEntity(null);
-            entity.rotationPitch = player.rotationPitch;
-            entity.rotationYaw = player.rotationYaw;
-            entity.moveFlying(0F, 1.0F, 1.25F);
-            ((IAnimalTracked) entity).getData().dismount(player);
-        }
-
+        EntityAnimal entity = (EntityAnimal) player.riddenByEntity;
+        entity.mountEntity(null);
+        entity.rotationPitch = player.rotationPitch;
+        entity.rotationYaw = player.rotationYaw;
+        entity.moveFlying(0F, 1.0F, 1.25F);
+        ((IAnimalTracked) entity).getData().dismount(player);
         return null;
     }
 }

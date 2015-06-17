@@ -3,7 +3,7 @@ package joshie.harvest.core.handlers.events;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.blocks.BlockFlower;
 import joshie.harvest.blocks.items.ItemBlockFlower;
-import joshie.harvest.core.handlers.HFTracker;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.init.HFConfig;
 import joshie.harvest.init.HFNPCs;
@@ -33,7 +33,7 @@ public class GeneralEvents {
     //Make vanilla hoes useless
     @SubscribeEvent
     public void onUseHoe(UseHoeEvent event) {
-        if (HFConfig.vanilla.HOES_ARE_USELESS) {
+        if (HFConfig.asm.HOES_ARE_USELESS) {
             event.setCanceled(true);
         }
     }
@@ -108,7 +108,7 @@ public class GeneralEvents {
     public void onLoad(WorldEvent.Load event) {
         World world = event.world;
         if (!world.isRemote && world.provider.dimensionId == 0) {
-            HFTracker.reset(world);
+            HFTrackers.reset(world);
         }
     }
 
@@ -117,14 +117,14 @@ public class GeneralEvents {
     @SubscribeEvent
     public void onOpenGui(GuiOpenEvent event) {
         if (event.gui instanceof GuiSelectWorld || event.gui instanceof GuiMultiplayer) {
-            HFTracker.reset(null);
+            HFTrackers.reset(null);
         }
     }
 
     //Orange Leaves in Autumn
     @SubscribeEvent
     public void getFoliageColor(GetFoliageColor event) {
-        if (HFTracker.getCalendar().getDate().getSeason() == Season.AUTUMN) {
+        if (HFTrackers.getCalendar().getDate().getSeason() == Season.AUTUMN) {
             event.newColor = 0xFF9900;
         }
     }

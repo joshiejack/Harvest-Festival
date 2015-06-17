@@ -4,12 +4,12 @@ import java.util.UUID;
 
 import joshie.harvest.api.WorldLocation;
 import joshie.harvest.api.buildings.IBuilding;
-import joshie.harvest.core.handlers.HFTracker;
+import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.entity.player.EntityPlayer;
 
 public class TownHelper {
     public static WorldLocation getLocationFor(UUID owner_uuid, IBuilding home, String npc_location) {
-        return HFTracker.getPlayerTracker(owner_uuid).getTown().getCoordinatesFor(home, npc_location);
+        return HFTrackers.getPlayerTracker(owner_uuid).getTown().getCoordinatesFor(home, npc_location);
     }
     
     public static boolean hasBuilding(EntityPlayer player, IBuilding building) {
@@ -17,6 +17,6 @@ public class TownHelper {
     }
 
     public static boolean hasBuilding(UUID owner_uuid, IBuilding building) {
-        return HFTracker.getPlayerTracker(owner_uuid).getTown().hasBuilding(building);
+        return HFTrackers.getPlayerTracker(owner_uuid).getTown().hasBuilding(building);
     }
 }

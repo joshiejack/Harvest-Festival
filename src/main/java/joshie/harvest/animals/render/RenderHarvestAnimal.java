@@ -26,7 +26,7 @@ public class RenderHarvestAnimal extends RenderLiving {
 
     @Override
     protected ResourceLocation getEntityTexture(Entity entity) {
-        if (entity instanceof EntitySheep) {
+        if (texture_sheared != null) {
             EntitySheep sheep = (EntitySheep) entity;
             if (sheep.isChild()) return texture_child;
             else if (sheep.getSheared()) return texture_sheared;

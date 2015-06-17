@@ -7,7 +7,7 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.blocks.BlockStone;
 import joshie.harvest.buildings.placeable.Placeable.PlacementStage;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
-import joshie.harvest.core.handlers.HFTracker;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.MineHelper;
 import joshie.harvest.init.HFBlocks;
 import net.minecraft.block.material.Material;
@@ -132,8 +132,8 @@ public class EntityNPCMiner extends EntityNPC {
                     MineHelper.complete(worldObj, mineX, mineY, mineZ, completed);
                     completed = new ArrayList(500);
                     instructions = new ArrayList(500);
-                    HFTracker.getMineTracker().newDay();
-                    HFTracker.markDirty();
+                    HFTrackers.getMineTracker().newDay();
+                    HFTrackers.markDirty();
                 } else {
                     PlaceableBlock block = instructions.get(index);
                     Material material = worldObj.getBlock(mineX + block.getX(), mineY + block.getY(), mineZ + block.getZ()).getMaterial();

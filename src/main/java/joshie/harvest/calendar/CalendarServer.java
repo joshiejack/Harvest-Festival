@@ -7,7 +7,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.api.core.ISeasonData;
-import joshie.harvest.core.handlers.HFTracker;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSetCalendar;
 import joshie.harvest.core.network.PacketSyncForecast;
@@ -53,9 +53,9 @@ public class CalendarServer extends Calendar {
         date.setDay(day).setSeason(season).setYear(year);
         PacketHandler.sendToEveryone(new PacketSetCalendar(date));
 
-        HFTracker.getCropTracker().newDay();
-        HFTracker.getAnimalTracker().newDay();
-        HFTracker.getMineTracker().newDay();
+        HFTrackers.getCropTracker().newDay();
+        HFTrackers.getAnimalTracker().newDay();
+        HFTrackers.getMineTracker().newDay();
 
         /** Setup the forecast for the next 7 days **/
         ISeasonData data = date.getSeasonData();
@@ -78,10 +78,10 @@ public class CalendarServer extends Calendar {
 
         //Loop through all the players and do stuff related to them, Pass the world that the player is in
         for (EntityPlayer player : (List<EntityPlayer>) MinecraftServer.getServer().getConfigurationManager().playerEntityList) {
-            HFTracker.getPlayerTracker(player).newDay();
+            HFTrackers.getPlayerTracker(player).newDay();
         }
 
-        HFTracker.markDirty();
+        HFTrackers.markDirty();
     }
 
     private Season getNextSeason(Season season) {

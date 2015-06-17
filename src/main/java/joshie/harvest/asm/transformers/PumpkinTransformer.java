@@ -4,8 +4,9 @@ import java.util.HashSet;
 import java.util.Iterator;
 
 import joshie.harvest.asm.overrides.ItemPumpkin;
-import joshie.harvest.core.config.Vanilla;
+import joshie.harvest.core.config.ASM;
 import joshie.harvest.core.lib.HFModInfo;
+import joshie.harvest.init.HFOverride;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -21,15 +22,20 @@ import org.objectweb.asm.tree.MethodNode;
 import org.objectweb.asm.tree.VarInsnNode;
 
 
-public class PumpkinTransformer implements ITransformer {
+public class PumpkinTransformer extends AbstractASM {
     @Override
-    public boolean isActive(Vanilla config) {
+    public boolean isActive(ASM config) {
         return config.PUMPKIN_OVERRIDE;
     }
 
     @Override
-    public String getClass(boolean isObfuscated) {
-        return isObfuscated ? "adb" : "net.minecraft.item.Item";
+    public boolean isClass(String name) {
+        return name.equals("adb") || name.equals("net.minecraft.item.Item");
+    }
+    
+    @Override
+    public boolean isVisitor() {
+        return false;
     }
 
     public static HashSet registerPumpkin(HashSet set) {
@@ -39,8 +45,8 @@ public class PumpkinTransformer implements ITransformer {
     }
 
     @Override
-    public byte[] transform(byte[] data, boolean isObfuscated) {
-        String name = isObfuscated ? "func_150900_l" : "registerItems";
+    public byte[] transform(byte[] data) {
+        String name = HFOverride.isObfuscated ? "func_150900_l" : "registerItems";
         String desc = "()V";
 
         ClassNode classNode = new ClassNode();

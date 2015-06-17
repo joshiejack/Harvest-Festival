@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import joshie.harvest.core.config.Vanilla;
+import joshie.harvest.core.config.ASM;
 import joshie.harvest.core.lib.HFModInfo;
 
 import org.objectweb.asm.ClassReader;
@@ -13,16 +13,21 @@ import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 
-public class PamTransformer implements ITransformer {
+public class PamTransformer extends AbstractASM {
     @Override
-    public boolean isActive(Vanilla config) {
+    public boolean isActive(ASM config) {
         return false; //TODO: Harvestcraft Plugin
         //return config.OVERRIDE_HARVESTCRAFT;
     }
 
     @Override
-    public String getClass(boolean isObfuscated) {
-        return "com.pam.harvestcraft.ItemPamSeedFood";
+    public boolean isClass(String name) {
+        return name.equals("com.pam.harvestcraft.ItemPamSeedFood");
+    }
+    
+    @Override
+    public boolean isVisitor() {
+        return false;
     }
 
     public byte[] injectInterfaces(byte[] data) {
@@ -84,7 +89,7 @@ public class PamTransformer implements ITransformer {
     }
 
     @Override
-    public byte[] transform(byte[] data, boolean isObfuscated) {
+    public byte[] transform(byte[] data) {
         return (injectMethods(injectInterfaces(data)));
     }
 }

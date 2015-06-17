@@ -4,16 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import joshie.harvest.asm.transformers.AbstractASM;
 import joshie.harvest.asm.transformers.EggTransformer;
 import joshie.harvest.asm.transformers.FarmlandHardnessTransformer;
 import joshie.harvest.asm.transformers.FarmlandTransformer;
-import joshie.harvest.asm.transformers.ITransformer;
 import joshie.harvest.asm.transformers.MelonTransformer;
 import joshie.harvest.asm.transformers.PumpkinTransformer;
 import joshie.harvest.asm.transformers.SeedFoodTransformer;
 import joshie.harvest.asm.transformers.SnowTransformer;
+import joshie.harvest.asm.transformers.WeatherTransformer;
 import joshie.harvest.asm.transformers.WheatTransformer;
 import net.minecraft.launchwrapper.IClassTransformer;
+
+import org.objectweb.asm.ClassReader;
+import org.objectweb.asm.ClassVisitor;
+import org.objectweb.asm.ClassWriter;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -26,42 +31,46 @@ public class HFOverride implements IFMLLoadingPlugin, IClassTransformer {
     private static final int FARMLAND = 2;
 
     public static boolean isObfuscated = false;
-    private static List<ITransformer> transformers = new ArrayList();
+    private static List<AbstractASM> asm = new ArrayList();
     static {
-        transformers.add(new EggTransformer());
-        transformers.add(new SeedFoodTransformer());
-        transformers.add(new WheatTransformer());
-        transformers.add(new MelonTransformer());
-        transformers.add(new FarmlandHardnessTransformer());
-        transformers.add(new SnowTransformer());
-        transformers.add(new FarmlandTransformer());
-        transformers.add(new PumpkinTransformer());
+        asm.add(new EggTransformer());
+        asm.add(new SeedFoodTransformer());
+        asm.add(new WheatTransformer());
+        asm.add(new MelonTransformer());
+        asm.add(new FarmlandHardnessTransformer());
+        asm.add(new SnowTransformer());
+        asm.add(new FarmlandTransformer());
+        asm.add(new PumpkinTransformer());
+        asm.add(new WeatherTransformer());
         //TODO: Future Plugins
         //transformers.add(new PamTransformer());
 
         GsonBuilder builder = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping();
         Gson gson = builder.create();
-
         HFConfig.initASM(gson);
-        for (int i = 0; i < transformers.size(); i++) {
-            if (!transformers.get(i).isActive(HFConfig.vanilla)) {
-                transformers.remove(i);
-            }
-        }
     }
 
     @Override
     public byte[] transform(String name, String transformedName, byte[] data) {
         byte[] modified = data;
-        for (ITransformer t : transformers) {
-            if (name.equals(t.getClass(isObfuscated))) {
-                modified = t.transform(modified, isObfuscated);
+        for (AbstractASM a : asm) {
+            if (a.isActive(HFConfig.asm)) {
+                if (a.isClass(name)) {
+                    if (a.isVisitor()) {
+                        ClassReader cr = new ClassReader(modified);
+                        ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS);
+                        ClassVisitor cv = a.newInstance(cw);
+                        cr.accept(cv, ClassReader.EXPAND_FRAMES);
+                        modified = cw.toByteArray();
+                    }
+
+                    modified = a.transform(modified);
+                }
             }
         }
 
         return modified;
     }
-    
 
     @Override
     public String[] getASMTransformerClass() {

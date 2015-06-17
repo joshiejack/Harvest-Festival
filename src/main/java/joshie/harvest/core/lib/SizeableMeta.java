@@ -9,7 +9,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public enum SizeableMeta implements ISizeable {
-    EGG(50, 60, 80, !HFConfig.vanilla.EGG_OVERRIDE), MILK(100, 150, 200), WOOL(100, 400, 500), 
+    EGG(50, 60, 80, !HFConfig.asm.EGG_OVERRIDE), MILK(100, 150, 200), WOOL(100, 400, 500), 
     MAYONNAISE(300, 400, 500), YOGHURT(150, 200, 300), CHEESE(100, 150, 200), YARN(300, 700, 800), 
     MATSUTAKE(350, 500, 800), TOADSTOOL(100, 130, 160), SHIITAKE(50, 80, 120);
 

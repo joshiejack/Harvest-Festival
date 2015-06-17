@@ -6,7 +6,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.relations.IRelatableDataHandler;
 import joshie.harvest.api.relations.IRelationships;
-import joshie.harvest.core.handlers.HFTracker;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.relations.data.DataHandlerEntity;
 import joshie.harvest.relations.data.DataHandlerNPC;
 import net.minecraft.entity.player.EntityPlayer;
@@ -37,12 +37,12 @@ public class RelationshipHelper implements IRelationships {
 
     @Override
     public void talkTo(EntityPlayer player, IRelatable relatable) {
-        HFTracker.getPlayerTracker(player).getRelationships().talkTo(relatable);
+        HFTrackers.getPlayerTracker(player).getRelationships().talkTo(relatable);
     }
 
     @Override
     public void adjustRelationship(EntityPlayer player, IRelatable relatable, int amount) {
-        HFTracker.getPlayerTracker(player).getRelationships().affectRelationship(relatable, amount);
+        HFTrackers.getPlayerTracker(player).getRelationships().affectRelationship(relatable, amount);
     }
 
     @Override
@@ -52,6 +52,6 @@ public class RelationshipHelper implements IRelationships {
     
     @Override
     public short getRealRelationshipValue(EntityPlayer player, IRelatable relatable) {
-        return HFTracker.getPlayerTracker(player).getRelationships().getRelationship(relatable);
+        return HFTrackers.getPlayerTracker(player).getRelationships().getRelationship(relatable);
     }
 }

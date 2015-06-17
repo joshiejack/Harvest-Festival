@@ -10,7 +10,7 @@ import java.io.File;
 
 import joshie.harvest.core.HFCommonProxy;
 import joshie.harvest.core.commands.CommandManager;
-import joshie.harvest.core.handlers.HFTracker;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.init.HFRecipeFixes;
 import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;

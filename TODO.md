@@ -30,7 +30,6 @@
 ###Textures
 - [ ] items/crops/grass.png 
 - [ ] entities/fenn.png
-- [ ] entities/goddess.png
 - [ ] entities/jacob.png
 - [ ] entities/jade.png
 - [ ] entities/jamie.png
@@ -42,8 +41,6 @@
 - [ ] entities/thomas.png
 - [ ] entities/tiberius.png
 - [ ] entities/yulif.png
-
-- [ ] Move Skin Textures to assets/textures/entities
 
 ### Miscellaneous
 - [ ] Make it so that you can only buy one chicken at a time as others will fall off once your head is occupied with one chicken

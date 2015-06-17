@@ -24,7 +24,7 @@ public class RelationshipHandlerNPC implements IRelatableDataHandler {
 
     @Override
     public void toBytes(IRelatable relatable, ByteBuf buf) {
-        npc = ((EntityNPC) relatable).getNPC();
+        npc = (INPC) relatable;
         ByteBufUtils.writeUTF8String(buf, npc.getUnlocalizedName());
     }
 

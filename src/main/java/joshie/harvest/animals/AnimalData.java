@@ -225,7 +225,6 @@ public class AnimalData implements IAnimalData {
     public void clean(EntityPlayer player) {
         if (cleanliness < Byte.MAX_VALUE) {
             cleanliness = (byte) Math.min(Byte.MAX_VALUE, cleanliness + 10);
-            System.out.println(cleanliness);
             if (cleanliness >= Byte.MAX_VALUE) {
                 affectRelationship(player, 25);
             }

@@ -78,4 +78,5 @@ public class CropTracker {
     /* Updates */
     public void sendUpdateToClient(EntityPlayerMP player, World world, int x, int y, int z) {}
     public void updateClient(boolean isRemoval, WorldLocation location, ICropData data) {}
+    public void doRain() {}
 }

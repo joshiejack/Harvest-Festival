@@ -21,7 +21,7 @@ public class CalendarServer extends Calendar {
     @Override
     public void setTodaysWeather(Weather weather) {
         forecast[0] = weather;
-        PacketHandler.sendToEveryone(new PacketSyncForecast(forecast));
+        updateForecast();
     }
 
     public Weather getRandomWeather(int day, Season season) {
@@ -38,6 +38,18 @@ public class CalendarServer extends Calendar {
         }
 
         return Weather.SUNNY;
+    }
+    
+    @Override
+    public void updateForecast() {
+      //If they're null set them
+        for (int i = 0; i < 7; i++) {
+            if (forecast[i] == null) {
+                forecast[i] = getRandomWeather(date.getDay() + i, date.getSeason());
+            }
+        }
+        
+        PacketHandler.sendToEveryone(new PacketSyncForecast(forecast));
     }
 
     @Override
@@ -72,15 +84,8 @@ public class CalendarServer extends Calendar {
             newForecast[i - 1] = forecast[i];
         }
 
-        //If they're null set them
-        for (int i = 0; i < 7; i++) {
-            if (newForecast[i] == null) {
-                newForecast[i] = getRandomWeather(day + i, season);
-            }
-        }
-
         forecast = newForecast;
-        PacketHandler.sendToEveryone(new PacketSyncForecast(forecast));
+        updateForecast();
 
         //Loop through all the players and do stuff related to them, Pass the world that the player is in
         for (EntityPlayer player : (List<EntityPlayer>) MinecraftServer.getServer().getConfigurationManager().playerEntityList) {
@@ -104,7 +109,9 @@ public class CalendarServer extends Calendar {
     public void writeToNBT(NBTTagCompound nbt) {
         date.writeToNBT(nbt);
         for (int i = 0; i < 7; i++) {
-            nbt.setByte("ForecastDay" + i, (byte) forecast[i].ordinal());
+            Weather weather = forecast[i];
+            if (weather == null) weather = Weather.SUNNY;
+            nbt.setByte("ForecastDay" + i, (byte) weather.ordinal());
         }
     }
 }

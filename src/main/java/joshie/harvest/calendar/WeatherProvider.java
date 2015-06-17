@@ -157,6 +157,10 @@ public class WeatherProvider extends WorldProviderSurface {
     public void updateWeather() {
         if (!worldObj.isRemote) {
             Weather weather = HFTrackers.getCalendar().getTodaysWeather();
+            if (weather != Weather.SUNNY) {
+                HFTrackers.getCropTracker().doRain();
+            }
+            
             if (weather == Weather.SUNNY) {
                 if (worldObj.rainingStrength > 0F) {
                     worldObj.rainingStrength = worldObj.rainingStrength - 0.01F;

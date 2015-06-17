@@ -20,7 +20,8 @@ public class Calendar {
         return date.getSeasonData();
     }
 
-    public void newDay() {}
+    public void newDay() {};
+    public void updateForecast() {};
     
     public Weather getForecast(int day) {
         day = Math.max(0, Math.min(6, day));

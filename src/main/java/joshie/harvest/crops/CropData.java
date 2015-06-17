@@ -55,21 +55,21 @@ public class CropData implements ICropData {
         this.isReal = true;
         this.location = location;
     }
-    
+
     @Override
     public ICropData setCrop(EntityPlayer owner, ICrop crop, int stage) {
         this.crop = crop;
-        
+
         if (crop.isDouble(this.stage) && !crop.isDouble(stage)) {
             DimensionManager.getWorld(location.dimension).setBlockToAir(location.x, location.y + 1, location.z);
         }
-        
+
         this.stage = stage;
         this.isReal = true;
         if (owner != null) {
             this.owner = UUIDHelper.getPlayerUUID(owner);
         }
-        
+
         return this;
     }
 
@@ -102,7 +102,7 @@ public class CropData implements ICropData {
         daysWithoutWater++;
 
         //If AgriCraft is loaded, set the blocks metadata accordingly
-        if(HFPlugins.AGRICRAFT_LOADED) {
+        if (HFPlugins.AGRICRAFT_LOADED) {
             //Stage 7, Set the metadata to 7 if fully grown
             if (stage >= crop.getStages()) {
                 //Set the Crop Metadata to 7, when it has fully grown
@@ -122,38 +122,40 @@ public class CropData implements ICropData {
     //Called when the crop that was on this farmland is destroyed
     @Override
     public void clear() {
-        this.isReal = false;        
+        this.isReal = false;
         sendToEveryone(new PacketSyncCrop(location, this));
     }
 
     @Override
     public void grow() {
-        //Increase the stage of this crop
-        if (stage < crop.getStages()) {
-            stage++;
-        }
-        
-        //If the crop has become double add in the new block
-        if (crop.isDouble(stage)) {
-            DimensionManager.getWorld(location.dimension).setBlock(location.x, location.y + 1, location.z, HFBlocks.crops, BlockCrop.FRESH_DOUBLE, 2);
-        }
-        
-        //If the crop grows a block to the side
-        if (crop.growsToSide() != null) {
-            if (stage == crop.getStages()) {
-                if (!attemptToGrowToSide()) {
-                    stage--; //If we failed to grow, decrease the growth stage
+        if (daysWithoutWater == 0 || !crop.requiresWater()) {
+            //Increase the stage of this crop
+            if (stage < crop.getStages()) {
+                stage++;
+            }
+
+            //If the crop has become double add in the new block
+            if (crop.isDouble(stage)) {
+                DimensionManager.getWorld(location.dimension).setBlock(location.x, location.y + 1, location.z, HFBlocks.crops, BlockCrop.FRESH_DOUBLE, 2);
+            }
+
+            //If the crop grows a block to the side
+            if (crop.growsToSide() != null) {
+                if (stage == crop.getStages()) {
+                    if (!attemptToGrowToSide()) {
+                        stage--; //If we failed to grow, decrease the growth stage
+                    }
                 }
             }
         }
     }
-    
+
     private boolean attemptToGrowToSide() {
         World world = DimensionManager.getWorld(location.dimension);
         int x = location.x;
         int y = location.y;
         int z = location.z;
-        
+
         if (world.getBlock(x + 1, y, z).isAir(world, x + 1, y, z)) { //If it's air, then let's grow some shit
             return world.setBlock(x + 1, y, z, crop.growsToSide(), 0, 2); //0 = x-
         } else if (world.getBlock(x, y, z - 1).isAir(world, x, y, z - 1)) {
@@ -163,7 +165,7 @@ public class CropData implements ICropData {
         } else if (world.getBlock(x - 1, y, z).isAir(world, x - 1, y, z)) {
             return world.setBlock(x - 1, y, z, crop.growsToSide(), 2, 2); //3 = x-
         }
-        
+
         return false;
     }
 
@@ -183,7 +185,7 @@ public class CropData implements ICropData {
 
     @Override
     public ICrop getCrop() {
-        return crop != null? crop: HFCrops.null_crop;
+        return crop != null ? crop : HFCrops.null_crop;
     }
 
     @Override
@@ -196,7 +198,7 @@ public class CropData implements ICropData {
         //(PlayerHelper.isOnlineOrFriendsAre(owner));
         return isReal;
     }
-    
+
     public ItemStack harvest(EntityPlayer player, boolean doHarvest) {
         if (crop == null) return null;
         if (stage >= crop.getStages()) {

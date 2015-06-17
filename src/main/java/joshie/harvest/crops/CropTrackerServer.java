@@ -8,14 +8,15 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
 
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.WorldLocation;
 import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.calendar.Weekday;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
+import joshie.harvest.blocks.BlockCrop;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.CropHelper;
-import joshie.harvest.core.helpers.TrackingHelper;
 import joshie.harvest.core.network.PacketSyncCrop;
 import joshie.harvest.core.util.IData;
 import net.minecraft.block.Block;
@@ -25,10 +26,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.IPlantable;
 
 //Handles the Data for the crops rather than using TE Data
 public class CropTrackerServer extends CropTracker implements IData {
+    @Override
     public void newDay() {
         ArrayList<ICropData> toWither = new ArrayList(); //Create a new wither list
         Weekday day = HFTrackers.getCalendar().getDate().getWeekday();
@@ -79,10 +82,13 @@ public class CropTrackerServer extends CropTracker implements IData {
     private ICalendarDate lastRain;
 
     //Updates the world, so we know it has rained!
+    @Override
     public void doRain() {
         if (!HFTrackers.getCalendar().getDate().equals(lastRain)) {
+            lastRain = HFApi.CALENDAR.cloneDate(HFTrackers.getCalendar().getDate());
             for (WorldLocation location : crops.keySet()) {
                 hydrate(getWorld(location.dimension), location.x, location.y, location.z);
+                DimensionManager.getWorld(location.dimension).setBlockMetadataWithNotify(location.x, location.y - 1, location.z, 7, 2);
             }
         }
     }
@@ -150,7 +156,11 @@ public class CropTrackerServer extends CropTracker implements IData {
     @Override
     public void setWithered(ICropData data) {
         WorldLocation location = data.getLocation();
-        getWorld(location.dimension).setBlockMetadataWithNotify(location.x, location.y, location.z, 2, 2);
+        if (data.getCrop().isDouble(data.getStage())) {
+            getWorld(location.dimension).setBlockMetadataWithNotify(location.x, location.y + 1, location.z, BlockCrop.WITHERED_DOUBLE, 2);
+        }
+        
+        getWorld(location.dimension).setBlockMetadataWithNotify(location.x, location.y, location.z, BlockCrop.WITHERED, 2);
         plantCrop(null, getWorld(location.dimension), location.x, location.y, location.z, data.getCrop(), data.getStage());
     }
 
@@ -162,7 +172,7 @@ public class CropTrackerServer extends CropTracker implements IData {
 
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
-        NBTTagList crops = nbt.getTagList("CropData", 10);        
+        NBTTagList crops = nbt.getTagList("CropData", 10);
         for (int i = 0; i < crops.tagCount(); i++) {
             NBTTagCompound tag = crops.getCompoundTagAt(i);
             WorldLocation location = new WorldLocation();

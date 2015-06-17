@@ -5,7 +5,6 @@ import java.util.HashSet;
 
 import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
-import joshie.harvest.core.util.IData;
 import joshie.harvest.mining.MineTrackerServer;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
@@ -13,7 +12,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
 
-public class MineLevel implements IData {
+public class MineLevel {
     private HashSet<MineBlock> blocks = new HashSet();
     private boolean isCavedIn;
     private int number;
@@ -69,7 +68,6 @@ public class MineLevel implements IData {
         }
     }
 
-    @Override
     public void readFromNBT(NBTTagCompound nbt) {
         isCavedIn = nbt.getBoolean("IsCavedIn");
         number = nbt.getInteger("Number");
@@ -93,7 +91,6 @@ public class MineLevel implements IData {
         }
     }
 
-    @Override
     public void writeToNBT(NBTTagCompound nbt) {
         nbt.setBoolean("IsCavedIn", isCavedIn);
         nbt.setInteger("Number", number);

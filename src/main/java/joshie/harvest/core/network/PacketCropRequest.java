@@ -3,7 +3,6 @@ package joshie.harvest.core.network;
 import static joshie.harvest.core.helpers.generic.MCServerHelper.getWorld;
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.helpers.CropHelper;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;

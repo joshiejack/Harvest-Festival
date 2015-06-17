@@ -6,7 +6,6 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.helpers.generic.EntityHelper;
-import joshie.harvest.core.util.IData;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import joshie.harvest.player.fridge.FridgeDataServer;
@@ -21,7 +20,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
-public class PlayerTrackerServer extends PlayerTracker implements IData {
+public class PlayerTrackerServer extends PlayerTracker {
     private FridgeDataServer fridge;
     private QuestDataServer quests;
     private RelationshipDataServer relationships;
@@ -140,7 +139,6 @@ public class PlayerTrackerServer extends PlayerTracker implements IData {
         tracking.sync(player);
     }
 
-    @Override
     public void readFromNBT(NBTTagCompound nbt) {
         uuid = UUID.fromString(nbt.getString("UUID"));
         fridge.readFromNBT(nbt);
@@ -151,7 +149,6 @@ public class PlayerTrackerServer extends PlayerTracker implements IData {
         tracking.readFromNBT(nbt);
     }
 
-    @Override
     public void writeToNBT(NBTTagCompound nbt) {
         nbt.setString("UUID", uuid.toString());
         fridge.writeToNBT(nbt);

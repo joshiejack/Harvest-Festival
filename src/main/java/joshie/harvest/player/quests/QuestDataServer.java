@@ -9,7 +9,6 @@ import joshie.harvest.api.quest.IQuest;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.network.quests.PacketQuestSetAvailable;
 import joshie.harvest.core.network.quests.PacketQuestSetCurrent;
-import joshie.harvest.core.util.IData;
 import joshie.harvest.player.PlayerTracker;
 import joshie.harvest.quests.QuestRegistry;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -17,7 +16,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 
-public class QuestDataServer extends QuestData implements IData {
+public class QuestDataServer extends QuestData {
     private HashSet<IQuest> finished = new HashSet();
 
     public PlayerTracker master;
@@ -91,7 +90,6 @@ public class QuestDataServer extends QuestData implements IData {
         HFTrackers.markDirty();
     }
 
-    @Override
     public void readFromNBT(NBTTagCompound nbt) {
         if (nbt.hasKey("CurrentQuests")) {
             NBTTagList list = nbt.getTagList("CurrentQuests", 10);
@@ -114,7 +112,6 @@ public class QuestDataServer extends QuestData implements IData {
         }
     }
 
-    @Override
     public void writeToNBT(NBTTagCompound nbt) {
         NBTTagList quests = new NBTTagList();
         for (IQuest s : current) {

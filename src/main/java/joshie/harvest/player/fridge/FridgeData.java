@@ -2,15 +2,14 @@ package joshie.harvest.player.fridge;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.util.IData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
-public class FridgeData implements IInventory, IData {
-    private ItemStack[] inventory;
+public class FridgeData implements IInventory {
+    protected ItemStack[] inventory;
 
     public FridgeData() {
         inventory = new ItemStack[64];
@@ -110,7 +109,6 @@ public class FridgeData implements IInventory, IData {
         return HFApi.COOKING.getCookingComponents(stack).size() > 0;
     }
 
-    @Override
     public void readFromNBT(NBTTagCompound nbt) {
         NBTTagList tagList = nbt.getTagList("FridgeContents", 10);
         for (int i = 0; i < tagList.tagCount(); i++) {
@@ -122,7 +120,6 @@ public class FridgeData implements IInventory, IData {
         }
     }
 
-    @Override
     public void writeToNBT(NBTTagCompound nbt) {
         NBTTagList itemList = new NBTTagList();
         for (int i = 0; i < inventory.length; i++) {

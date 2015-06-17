@@ -1,10 +1,9 @@
 package joshie.harvest.mining.data;
 
-import joshie.harvest.core.util.IData;
 import joshie.harvest.mining.MineTrackerServer;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class MineData implements IData {
+public class MineData {
     private Mine mine;
     private MineLevel level;
     
@@ -28,7 +27,6 @@ public class MineData implements IData {
         return level;
     }
 
-    @Override
     public void readFromNBT(NBTTagCompound nbt) {
         String name = nbt.getString("MineName");
         int level = nbt.getInteger("Level");
@@ -44,7 +42,6 @@ public class MineData implements IData {
         }
     }
 
-    @Override
     public void writeToNBT(NBTTagCompound nbt) {
         nbt.setString("MineName", mine.getName());
         if (level != null) {

@@ -18,7 +18,6 @@ import joshie.harvest.blocks.BlockCrop;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.CropHelper;
 import joshie.harvest.core.network.PacketSyncCrop;
-import joshie.harvest.core.util.IData;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -30,7 +29,7 @@ import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.IPlantable;
 
 //Handles the Data for the crops rather than using TE Data
-public class CropTrackerServer extends CropTracker implements IData {
+public class CropTrackerServer extends CropTracker {
     @Override
     public void newDay() {
         ArrayList<ICropData> toWither = new ArrayList(); //Create a new wither list
@@ -170,7 +169,6 @@ public class CropTrackerServer extends CropTracker implements IData {
         HFTrackers.markDirty();
     }
 
-    @Override
     public void readFromNBT(NBTTagCompound nbt) {
         NBTTagList crops = nbt.getTagList("CropData", 10);
         for (int i = 0; i < crops.tagCount(); i++) {
@@ -183,7 +181,6 @@ public class CropTrackerServer extends CropTracker implements IData {
         }
     }
 
-    @Override
     public void writeToNBT(NBTTagCompound nbt) {
         NBTTagList crops = new NBTTagList();
         for (Map.Entry<WorldLocation, ICropData> entry : this.crops.entrySet()) {

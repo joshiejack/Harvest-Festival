@@ -8,7 +8,6 @@ import java.util.Map;
 import joshie.harvest.api.WorldLocation;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.util.IData;
 import joshie.harvest.mining.data.Mine;
 import joshie.harvest.mining.data.MineData;
 import joshie.harvest.npc.entity.EntityNPCMiner;
@@ -16,7 +15,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 
-public class MineTrackerServer extends MineTracker implements IData {
+public class MineTrackerServer extends MineTracker {
     public static HashMap<WorldLocation, MineData> map = new HashMap(); // Block > Mine and Level Mappings
     public static HashSet<Mine> mines = new HashSet(); //List of all mines in the world, for iteration purposes
 
@@ -63,7 +62,6 @@ public class MineTrackerServer extends MineTracker implements IData {
         }
     }
 
-    @Override
     public void readFromNBT(NBTTagCompound nbt) {
         //Read in the mine data
         NBTTagList mine = nbt.getTagList("Mines", 10);
@@ -86,7 +84,6 @@ public class MineTrackerServer extends MineTracker implements IData {
         }
     }
 
-    @Override
     public void writeToNBT(NBTTagCompound nbt) {
         //Save the mine data
         NBTTagList mine = new NBTTagList();

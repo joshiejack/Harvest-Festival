@@ -3,7 +3,6 @@ package joshie.harvest.cooking.gui;
 import joshie.harvest.core.util.GuiBase;
 import joshie.harvest.player.fridge.FridgeData;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.world.World;
 
 public class GuiFridge extends GuiBase {
     private final FridgeData fridge;

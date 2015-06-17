@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
-import joshie.harvest.core.util.IData;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 
-public class Mine implements IData {
+public class Mine {
     private List<MineLevel> levels = new ArrayList();
     private String name;
 
@@ -53,7 +52,6 @@ public class Mine implements IData {
         levels.get(levels.size() - 1).complete(world, x, y, z, this, blocks);
     }
 
-    @Override
     public void readFromNBT(NBTTagCompound nbt) {
         name = nbt.getString("MineName");
         NBTTagList level = nbt.getTagList("Levels", 10);
@@ -65,7 +63,6 @@ public class Mine implements IData {
         }
     }
 
-    @Override
     public void writeToNBT(NBTTagCompound nbt) {
         nbt.setString("MineName", name);
         NBTTagList level = new NBTTagList();

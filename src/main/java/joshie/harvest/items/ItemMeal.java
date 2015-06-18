@@ -33,6 +33,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemMeal extends ItemHFMeta implements IMealProvider, ICreativeSorted {
+    private HashMap<String, IIcon> altMap = new HashMap();
     private HashMap<String, IIcon> iconMap = new HashMap();
     private IIcon[] burnt;
     
@@ -159,6 +160,17 @@ public class ItemMeal extends ItemHFMeta implements IMealProvider, ICreativeSort
         IIcon icon = iconMap.get(key);
         return icon != null ? icon : getIconFromDamage(stack.getItemDamage());
     }
+    
+    @Override
+    public IIcon getCookingIcon(ItemStack stack, int pass) {
+        if (!stack.hasTagCompound()) {
+            return getIconFromDamage(stack.getItemDamage());
+        }
+        
+        String key = stack.getTagCompound().getString("FoodName");
+        IIcon icon = altMap.get(key);
+        return icon != null ? icon : getIconIndex(stack);
+    }
 
     @SideOnly(Side.CLIENT)
     @Override
@@ -171,6 +183,10 @@ public class ItemMeal extends ItemHFMeta implements IMealProvider, ICreativeSort
 
         for (IMeal meal : HFApi.COOKING.getMeals()) {
             String key = meal.getUnlocalizedName();
+            if (meal.hasAltTexture()) {
+                altMap.put(key, register.registerIcon(MEALPATH + StringUtils.replace(key, ".", "_") + "_alt"));
+            }
+            
             iconMap.put(key, register.registerIcon(MEALPATH + StringUtils.replace(key, ".", "_")));
         }
     }

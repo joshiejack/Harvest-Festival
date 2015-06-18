@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.blocks.BlockCookware;
 import joshie.harvest.blocks.tiles.TileCooking;
-import joshie.harvest.core.util.generic.EntityFakeItem;
+import joshie.harvest.cooking.entity.EntityCookingItem;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.item.ItemBlock;
@@ -50,7 +50,7 @@ public class SpecialRendererFryingPan extends SpecialRendererCookware {
     }
 
     void renderIngredient(World world, ItemStack stack, int max, float pos, float rotation, float offset1, float offset2) {
-        EntityFakeItem entityitem = new EntityFakeItem(world, 0.0D, 0.0D, 0.0D, stack);
+        EntityCookingItem entityitem = new EntityCookingItem(world, 0.0D, 0.0D, 0.0D, stack);
         GL11.glPushMatrix();
         GL11.glTranslatef(0.5F, -0.1F, 0.5F);
         GL11.glScalef(0.5F, 0.5F, 0.5F);
@@ -79,7 +79,7 @@ public class SpecialRendererFryingPan extends SpecialRendererCookware {
     }
 
     void renderResult(World world, ItemStack stack) {
-        EntityFakeItem entityitem = new EntityFakeItem(world, 0.0D, 0.0D, 0.0D, stack);
+        EntityCookingItem entityitem = new EntityCookingItem(world, 0.0D, 0.0D, 0.0D, stack);
         GL11.glPushMatrix();
         GL11.glTranslatef(0.5F, 0.15F, 0.625F);
         if (!(stack.getItem() instanceof ItemBlock)) {

@@ -10,8 +10,8 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.buildings.HFBuildings;
-import joshie.harvest.core.util.generic.EntityFakeItem;
-import joshie.harvest.core.util.generic.RenderFakeItem;
+import joshie.harvest.cooking.entity.EntityCookingItem;
+import joshie.harvest.cooking.entity.RenderCookingItem;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import joshie.harvest.npc.entity.EntityNPCMiner;
@@ -45,7 +45,6 @@ public class HFNPCs {
 
     public static void preInit() {
         EntityRegistry.registerModEntity(EntityNPC.class, "NPC", 0, HarvestFestival.instance, 80, 3, true);
-        EntityRegistry.registerModEntity(EntityFakeItem.class, "FakeItem", 1, HarvestFestival.instance, 80, 3, false);
         EntityRegistry.registerModEntity(EntityNPCBuilder.class, "NPCBuilder", 2, HarvestFestival.instance, 80, 3, true);
         EntityRegistry.registerModEntity(EntityNPCShopkeeper.class, "NPCShopkeeper", 3, HarvestFestival.instance, 80, 3, true);
         EntityRegistry.registerModEntity(EntityNPCMiner.class, "NPCMiner", 4, HarvestFestival.instance, 80, 3, true);
@@ -97,6 +96,5 @@ public class HFNPCs {
         RenderingRegistry.registerEntityRenderingHandler(EntityNPCBuilder.class, new RenderNPC());
         RenderingRegistry.registerEntityRenderingHandler(EntityNPCShopkeeper.class, new RenderNPC());
         RenderingRegistry.registerEntityRenderingHandler(EntityNPCMiner.class, new RenderNPC());
-        RenderingRegistry.registerEntityRenderingHandler(EntityFakeItem.class, new RenderFakeItem());
     }
 }

@@ -2,6 +2,7 @@ package joshie.harvest.core.util.base;
 
 import java.util.List;
 
+import joshie.harvest.api.cooking.ICookingAltIcon;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.util.generic.IHasMetaItem;
 import joshie.harvest.core.util.generic.Text;
@@ -15,9 +16,11 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public abstract class ItemBaseMeta extends Item implements IHasMetaItem {
+public abstract class ItemBaseMeta extends Item implements IHasMetaItem, ICookingAltIcon {
     @SideOnly(Side.CLIENT)
     protected IIcon[] icons;
+    @SideOnly(Side.CLIENT)
+    protected IIcon[] alts;
     protected String mod;
     protected String path;
 
@@ -61,17 +64,34 @@ public abstract class ItemBaseMeta extends Item implements IHasMetaItem {
     @SideOnly(Side.CLIENT)
     @Override
     public IIcon getIconFromDamage(int damage) {
+        damage = Math.max(0, Math.min(getMaxDamage() - 1, damage));
         if (icons == null) return Items.arrow.getIconFromDamage(0);
-        return icons[damage < icons.length ? damage : 0];
+        return icons[damage];
+    }
+
+    @Override
+    public IIcon getCookingIcon(ItemStack stack, int pass) {
+        int damage = Math.max(0, Math.min(getMaxDamage() - 1, stack.getItemDamage()));
+        if (icons == null) return Items.arrow.getIconFromDamage(0);
+        if (alts[damage] != null) return alts[damage];
+        return icons[damage];
+    }
+
+    public boolean hasAlt(int meta) {
+        return false;
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public void registerIcons(IIconRegister register) {
         String path = this.path != null ? this.path : mod + ":";
+        alts = new IIcon[getMetaCount()];
         icons = new IIcon[getMetaCount()];
         for (int i = 0; i < icons.length; i++) {
             icons[i] = register.registerIcon(path + getName(new ItemStack(this, 1, i)));
+            if (hasAlt(i)) {
+                alts[i] = register.registerIcon(path + getName(new ItemStack(this, 1, i)) + "_alt");
+            }
         }
     }
 

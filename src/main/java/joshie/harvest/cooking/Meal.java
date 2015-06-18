@@ -17,6 +17,7 @@ public class Meal implements IMeal {
     public int hunger = 0;
     public float saturation = 0;
     public int eatTime = 32;
+    public boolean hasAlt = false;
 
     public boolean isLiquid = false;
     public int hunger_cap = 20;
@@ -86,6 +87,17 @@ public class Meal implements IMeal {
     public Meal setSaturationCap(float cap) {
         this.saturation_cap = cap;
         return this;
+    }
+    
+    @Override
+    public IMeal setHasAltTexture() {
+        hasAlt = true;
+        return this;
+    }
+
+    @Override
+    public boolean hasAltTexture() {
+        return hasAlt;
     }
 
     @Override

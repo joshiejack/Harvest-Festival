@@ -39,6 +39,12 @@ public class Recipe implements IMealRecipe {
         this.result.setIsDrink();
         return this;
     }
+    
+    @Override
+    public IMealRecipe setHasAltTexture() {
+        this.result.setHasAltTexture();
+        return this;
+    }
 
     private boolean recipeHasThisIngredient(ICookingComponent ingredient) {        
         //First we check if the Required Ingredients have this ingredient in them

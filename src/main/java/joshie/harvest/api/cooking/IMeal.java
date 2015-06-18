@@ -42,4 +42,9 @@ public interface IMeal {
 
     /** Returns the itemstack for this meal **/
     ItemStack cook(IMeal meal);
+    
+    /** Set this mean as having a different texture in utensils **/
+    public IMeal setHasAltTexture();
+
+    boolean hasAltTexture();
 }

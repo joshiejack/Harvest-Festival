@@ -68,7 +68,7 @@ public class HFRecipes {
         addMixerRecipe("juice.vegetable", 20, -20, juice_vegetable).setOptionalIngredients(cucumber, onion, cabbage, tomato, spinach, carrot, green_pepper, turnip, salt); //Yo this doesnt make any sense. It requires Vegetable Juice to make iteslf?
         addMixerRecipe("latte.vegetable", 30, -20, juice_vegetable, milk).setOptionalIngredients(cucumber, onion, cabbage, tomato, spinach, carrot, green_pepper, turnip, salt);
         addMixerRecipe("ketchup", 1, 0, tomato, onion).setOptionalIngredients(salt, sugar);
-        addMixerRecipe("butter", false, 1, 0, milk).setOptionalIngredients(salt);
+        addMixerRecipe("butter", false, 1, 0, milk).setOptionalIngredients(salt).setHasAltTexture();
         addMixerRecipe("fishsticks", false, 5, -1, fish).setOptionalIngredients(salt);
 
         //Hand

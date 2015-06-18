@@ -31,4 +31,7 @@ public interface IMealRecipe {
 
     /** Marks the meal as something you drink, not eat **/
     public IMealRecipe setIsDrink();
+    
+    /** Marks the meal as having an alt texture **/
+    public IMealRecipe setHasAltTexture();
 }

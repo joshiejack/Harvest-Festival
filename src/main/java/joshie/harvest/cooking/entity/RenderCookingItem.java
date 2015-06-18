@@ -1,7 +1,8 @@
-package joshie.harvest.core.util.generic;
+package joshie.harvest.cooking.entity;
 
 import java.util.Random;
 
+import joshie.harvest.api.cooking.ICookingAltIcon;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -28,7 +29,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class RenderFakeItem extends Render {
+public class RenderCookingItem extends Render {
     private static final ResourceLocation field_110798_h = new ResourceLocation("textures/misc/enchanted_item_glint.png");
     private RenderBlocks itemRenderBlocks = new RenderBlocks();
 
@@ -40,7 +41,7 @@ public class RenderFakeItem extends Render {
     public float zLevel;
     public static boolean renderInFrame;
 
-    public RenderFakeItem() {
+    public RenderCookingItem() {
         shadowSize = 0.15F;
         shadowOpaque = 0.75F;
     }
@@ -113,9 +114,10 @@ public class RenderFakeItem extends Render {
                         GL11.glScalef(0.5F, 0.5F, 0.5F);
                     }
 
+                    ICookingAltIcon alt = itemstack.getItem() instanceof ICookingAltIcon? (ICookingAltIcon) itemstack.getItem() : null;
                     for (int k = 0; k < itemstack.getItem().getRenderPasses(itemstack.getItemDamage()); ++k) {
                         random.setSeed(187L);
-                        IIcon icon = itemstack.getItem().getIcon(itemstack, k);
+                        IIcon icon = alt == null ? itemstack.getItem().getIcon(itemstack, k): alt.getCookingIcon(itemstack, k);
                         f8 = 1.0F;
 
                         if (renderWithColor) {
@@ -137,8 +139,8 @@ public class RenderFakeItem extends Render {
                         GL11.glScalef(0.5F, 0.5F, 0.5F);
                     }
 
-                    IIcon icon1 = itemstack.getIconIndex();
-
+                    ICookingAltIcon alt = itemstack.getItem() instanceof ICookingAltIcon? (ICookingAltIcon) itemstack.getItem() : null;
+                    IIcon icon1 = alt == null? itemstack.getIconIndex() : alt.getCookingIcon(itemstack, 0);
                     if (renderWithColor) {
                         int l = itemstack.getItem().getColorFromItemStack(itemstack, 0);
                         f8 = (l >> 16 & 255) / 255.0F;

@@ -2,6 +2,7 @@ package joshie.harvest.items;
 
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
+import joshie.harvest.api.cooking.ICookingAltIcon;
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.core.HFTab;
 import net.minecraft.creativetab.CreativeTabs;
@@ -11,7 +12,7 @@ import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
-public class ItemGeneral extends ItemHFMeta implements ICreativeSorted {
+public class ItemGeneral extends ItemHFMeta implements ICreativeSorted, ICookingAltIcon {
     public static final int BLUE_FEATHER = 0;
     public static final int MILKER = 1;
     public static final int BRUSH = 2;
@@ -76,6 +77,11 @@ public class ItemGeneral extends ItemHFMeta implements ICreativeSorted {
                 return "invalid";
         }
     }
+    
+    @Override
+    public boolean hasAlt(int meta) {
+        return meta == FLOUR;
+    }
 
     @Override
     public boolean isValidTab(CreativeTabs tab, int meta) {
@@ -107,7 +113,7 @@ public class ItemGeneral extends ItemHFMeta implements ICreativeSorted {
     }
 
     @Override
-    public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer player, EntityLivingBase living) {       
+    public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer player, EntityLivingBase living) {
         if (living instanceof IAnimalTracked) {
             IAnimalTracked tracked = (IAnimalTracked) living;
             IAnimalData data = ((IAnimalTracked) tracked).getData();

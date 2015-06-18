@@ -16,6 +16,7 @@ import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fluids.Fluid;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 
 public abstract class TileCooking extends TileEntity implements IFaceable {
@@ -25,7 +26,10 @@ public abstract class TileCooking extends TileEntity implements IFaceable {
     private ArrayList<ItemStack> ingredients = new ArrayList();
     private ItemStack result;
     private ForgeDirection orientation = ForgeDirection.NORTH;
-    private float rotation;
+    public float[] rotations = new float[20];
+    public float[] offset1 = new float[20];
+    public float[] offset2 = new float[20];
+    public float[] heightOffset = new float[20];
     protected IUtensil utensil;
 
     public TileCooking() {}
@@ -47,7 +51,7 @@ public abstract class TileCooking extends TileEntity implements IFaceable {
     }
 
     public ItemStack getResult() {
-        return result != null? result.copy(): result;
+        return result != null ? result.copy() : result;
     }
 
     public ArrayList<ItemStack> getIngredients() {
@@ -69,12 +73,8 @@ public abstract class TileCooking extends TileEntity implements IFaceable {
         return orientation;
     }
 
-    public float getRotation() {
-        return rotation;
-    }
-
     public void animate(IUtensil utensil) {
-        rotation += worldObj.rand.nextFloat();
+        //rotation += worldObj.rand.nextFloat();
         worldObj.spawnParticle("smoke", xCoord + 0.5D + +worldObj.rand.nextFloat() - worldObj.rand.nextFloat() / 2, yCoord + 0.5D + worldObj.rand.nextFloat() - worldObj.rand.nextFloat() / 2, zCoord + 0.5D + +worldObj.rand.nextFloat() - worldObj.rand.nextFloat() / 2, 0, 0, 0);
     }
 
@@ -114,8 +114,9 @@ public abstract class TileCooking extends TileEntity implements IFaceable {
 
     //Returns true if this was a valid ingredient to add
     public boolean addIngredient(ItemStack stack) {
-        if (ingredients.size() >= 9) return false;
+        if (ingredients.size() >= 20) return false;
         if (!hasPrerequisites()) return false;
+        Fluid fluid = HFApi.COOKING.getFluid(stack);
         if (HFApi.COOKING.getCookingComponents(stack).size() < 1) return false;
         else {
             if (worldObj.isRemote) return true;
@@ -130,10 +131,18 @@ public abstract class TileCooking extends TileEntity implements IFaceable {
     }
 
     //Called Clientside to update the client
-    public void setFromPacket(boolean isCooking, ArrayList<ItemStack> ingredients, ItemStack result) {
-        this.cooking = isCooking;
-        this.ingredients = ingredients;
-        this.result = result;
+    public void setFromPacket(boolean isCooking, ArrayList<ItemStack> ingredientList, ItemStack resultStack) {
+        int size = ingredients.size();
+        cooking = isCooking;
+        ingredients = ingredientList;
+        result = resultStack;
+
+        if (isCooking) {
+            rotations[size] = worldObj.rand.nextFloat() * 360F;
+            offset1[size] = 0.5F - worldObj.rand.nextFloat();
+            offset2[size] = worldObj.rand.nextFloat() / 1.75F;
+            heightOffset[size] = 0.5F + (ingredients.size() * 0.001F);
+        }
     }
 
     public IMessage getPacket() {

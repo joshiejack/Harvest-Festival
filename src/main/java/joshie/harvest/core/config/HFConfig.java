@@ -29,7 +29,6 @@ public class HFConfig {
         initConfig("Cooking");
         initConfig("Crops");
         initConfig("NPC");
-        initConfig("Shops");
         HFPlugins.loadConfigs();
     }
 

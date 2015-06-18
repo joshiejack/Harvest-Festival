@@ -2,6 +2,8 @@ package joshie.harvest.blocks;
 
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.blocks.items.ItemBlockCookware;
+import joshie.harvest.blocks.render.SpecialRendererCookware;
+import joshie.harvest.blocks.render.SpecialRendererFryingPan;
 import joshie.harvest.blocks.tiles.TileCooking;
 import joshie.harvest.blocks.tiles.TileFridge;
 import joshie.harvest.blocks.tiles.TileFryingPan;
@@ -66,6 +68,11 @@ public class BlockCookware extends BlockHFBaseMeta {
     public int getRenderType() {
         return RenderIds.ALL;
     }
+       
+    @Override
+    public int getRenderBlockPass() {
+        return 1;
+    }
 
     @Override
     public void setBlockBoundsBasedOnState(IBlockAccess block, int x, int y, int z) {
@@ -111,7 +118,7 @@ public class BlockCookware extends BlockHFBaseMeta {
                 tile.updateEntity();
             }
         }
-        
+
         TileEntity tile = world.getTileEntity(x, y, z);
         if (tile instanceof TileCooking) {
             TileCooking cooking = (TileCooking) tile;
@@ -126,7 +133,10 @@ public class BlockCookware extends BlockHFBaseMeta {
                 cooking.clear();
             } else if (held != null && !(held.getItem() instanceof ItemBlockCookware)) {
                 if (cooking.addIngredient(held)) {
-                    player.inventory.decrStackSize(player.inventory.currentItem, 1);
+                    if (!player.capabilities.isCreativeMode) {
+                        player.inventory.decrStackSize(player.inventory.currentItem, 1);
+                    }
+
                     return true;
                 }
             }

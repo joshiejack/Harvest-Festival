@@ -21,8 +21,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public abstract class SpecialRendererCookware extends TileEntitySpecialRenderer implements IItemRenderer {
-    private final IModelCustom model;
-    private final ResourceLocation resource;
+    protected final IModelCustom model;
+    protected final ResourceLocation resource;
     private final int meta;
 
     public SpecialRendererCookware(String name, int meta) {
@@ -78,7 +78,6 @@ public abstract class SpecialRendererCookware extends TileEntitySpecialRenderer 
             case INVENTORY:
                 renderItem(-0.5F, -0.25F, -0.5F, 1F);
                 break;
-
             default:
                 return;
         }

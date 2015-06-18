@@ -8,6 +8,11 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class BlockIcons {
+    public static IIcon OIL_STILL;
+    public static IIcon OIL_FLOW;
+    public static IIcon MILK_STILL;
+    public static IIcon MILK_FLOW;
+
     /** Generic Material Icons **/
     public static IIcon METALLIC;
     
@@ -30,5 +35,10 @@ public class BlockIcons {
         
         /** Mine Hoed */
         MINE_HOED = register.registerIcon(HFModInfo.MODPATH + ":mine_hoe");
+        
+        OIL_STILL = register.registerIcon(HFModInfo.MODPATH + ":oil_still");
+        OIL_FLOW = register.registerIcon(HFModInfo.MODPATH + ":oil_flow");
+        MILK_STILL = register.registerIcon(HFModInfo.MODPATH + ":milk_still");
+        MILK_FLOW = register.registerIcon(HFModInfo.MODPATH + ":milk_flow");
     }
 }

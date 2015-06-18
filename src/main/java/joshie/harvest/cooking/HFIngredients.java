@@ -64,7 +64,7 @@ public class HFIngredients {
     public static ICookingComponent red_mushroom;
     public static ICookingComponent brown_mushroom;
 
-    public static void addIngredients() {
+    public static void preInit() {
         //Categories
         mushroom = HFApi.COOKING.newCategory("mushroom");
         juice_vegetable = HFApi.COOKING.newCategory("vegetable_juice");
@@ -128,7 +128,7 @@ public class HFIngredients {
         sashimi_vegetable.add(cucumber, tomato, onion, eggplant);
     }
 
-    public static void assignIngredients() {
+    public static void init() {
         HFApi.COOKING.register(new ItemStack(HFItems.general, 1, ItemGeneral.SALT), salt);
         HFApi.COOKING.register(new ItemStack(Items.sugar, 1, OreDictionary.WILDCARD_VALUE), sugar);
         HFApi.COOKING.register(new ItemStack(Items.apple, 1, OreDictionary.WILDCARD_VALUE), apple);

@@ -7,6 +7,8 @@ import joshie.harvest.api.animals.HFAnimals;
 import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.cooking.HFCooking;
+import joshie.harvest.cooking.HFIngredients;
+import joshie.harvest.cooking.HFRecipes;
 import joshie.harvest.core.config.HFConfig;
 import joshie.harvest.core.config.HFVanilla;
 import joshie.harvest.crops.HFCrops;
@@ -31,6 +33,8 @@ public class HFCommonProxy {
         list.add(HFBuildings.class);
         list.add(HFItems.class);
         list.add(HFCooking.class);
+        list.add(HFIngredients.class);
+        list.add(HFRecipes.class);
         list.add(HFQuests.class);
         list.add(HFShops.class);
         list.add(HFMining.class);

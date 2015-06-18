@@ -65,7 +65,8 @@ public class FoodRegistry implements IFoodRegistry {
 
     @Override
     public Fluid getFluid(ItemStack ingredient) {
-        return ((List<ICookingComponent>)SafeStackHelper.getResult(ingredient, registry)).get(0).getFluid();
+        List<ICookingComponent> components = ((List<ICookingComponent>)SafeStackHelper.getResult(ingredient, registry));
+        return components.size() < 1 ? null : components.get(0).getFluid();
     }
 
     @Override

@@ -6,11 +6,12 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.blocks.BlockCookware;
 import joshie.harvest.blocks.tiles.TileCooking;
 import joshie.harvest.core.util.generic.EntityFakeItem;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import net.minecraftforge.fluids.Fluid;
 
 import org.lwjgl.opengl.GL11;
 
@@ -40,38 +41,41 @@ public class SpecialRendererFryingPan extends SpecialRendererCookware {
         int max = ingredients.size();
         for (int i = 0; i < max; i++) {
             ItemStack ingredient = ingredients.get(i);
-            Fluid fluid = HFApi.COOKING.getFluid(ingredient);
-            if (fluid != null) {
-                renderFluid(fluid);
-            } else renderIngredient(tile.getWorldObj(), ingredient, max, i, tile.getRotation());
+            if (HFApi.COOKING.getFluid(ingredient) == null) {
+                renderIngredient(tile.getWorldObj(), ingredient, max, tile.heightOffset[i], tile.rotations[i], tile.offset1[i], tile.offset2[i]);
+            }
         }
 
         GL11.glPopMatrix();
     }
 
-    void renderIngredient(World world, ItemStack stack, int max, int id, float rotation) {
+    void renderIngredient(World world, ItemStack stack, int max, float pos, float rotation, float offset1, float offset2) {
         EntityFakeItem entityitem = new EntityFakeItem(world, 0.0D, 0.0D, 0.0D, stack);
         GL11.glPushMatrix();
         GL11.glTranslatef(0.5F, -0.1F, 0.5F);
         GL11.glScalef(0.5F, 0.5F, 0.5F);
         if (!(stack.getItem() instanceof ItemBlock)) {
             GL11.glRotatef(-90, 1F, 0F, 0F);
-            if (id < 8) {
-                GL11.glRotatef((id * 45) + rotation, 0F, 0F, 1F);
-                GL11.glTranslatef(0.5F, 0F, 0.5F);
-            } else {
-                GL11.glTranslatef(0.0F, -0.1F, 0.5F);
-            }
+            GL11.glRotatef(rotation, 0F, 0F, 1F);
+            GL11.glTranslatef(offset1, offset2, pos);
         } else {
-            GL11.glRotatef(90, 0F, 1F, 0F);
+            GL11.glRotatef(90, 1F, 0F, 0F);
+            GL11.glTranslatef(offset1 * 1.4F, 0.8F - offset2 * 2.5F, pos - 1F);
         }
 
         RenderManager.instance.renderEntityWithPosYaw(entityitem, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F);
         GL11.glPopMatrix();
     }
 
-    private void renderFluid(Fluid fluid) {
-
+    public void renderIcon(int par1, int par2, IIcon par3Icon, int par4, int par5, int brightness) {
+        Tessellator tessellator = Tessellator.instance;
+        tessellator.startDrawingQuads();
+        tessellator.setBrightness(brightness);
+        tessellator.addVertexWithUV(par1 + 0, par2 + par5, 0, par3Icon.getMinU(), par3Icon.getMaxV());
+        tessellator.addVertexWithUV(par1 + par4, par2 + par5, 0, par3Icon.getMaxU(), par3Icon.getMaxV());
+        tessellator.addVertexWithUV(par1 + par4, par2 + 0, 0, par3Icon.getMaxU(), par3Icon.getMinV());
+        tessellator.addVertexWithUV(par1 + 0, par2 + 0, 0, par3Icon.getMinU(), par3Icon.getMinV());
+        tessellator.draw();
     }
 
     void renderResult(World world, ItemStack stack) {

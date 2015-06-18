@@ -8,6 +8,7 @@ import static net.minecraft.block.Block.soundTypeMetal;
 import static net.minecraft.block.Block.soundTypePiston;
 import static net.minecraft.block.Block.soundTypeWood;
 import joshie.harvest.blocks.render.RenderCrops;
+import joshie.harvest.blocks.render.RenderFryingPan;
 import joshie.harvest.blocks.render.RenderHandler;
 import joshie.harvest.blocks.render.RenderKitchen;
 import joshie.harvest.blocks.render.RenderPreview;
@@ -73,6 +74,7 @@ public class HFBlocks {
         RenderingRegistry.registerBlockHandler(new RenderHandler());
         RenderingRegistry.registerBlockHandler(new RenderCrops());
         RenderHandler.register(HFBlocks.cookware, BlockCookware.KITCHEN, RenderKitchen.class);
+        RenderHandler.register(HFBlocks.cookware, BlockCookware.FRYING_PAN, RenderFryingPan.class);
         registerRenders(HFBlocks.woodmachines);
 
         for (int i = 0; i < 8; i++) {

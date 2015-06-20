@@ -50,7 +50,7 @@ public class SpecialRendererFryingPan extends SpecialRendererCookware {
     }
 
     void renderIngredient(World world, ItemStack stack, int max, float pos, float rotation, float offset1, float offset2) {
-        EntityCookingItem entityitem = new EntityCookingItem(world, 0.0D, 0.0D, 0.0D, stack);
+        EntityCookingItem entityitem = new EntityCookingItem(world, 0.0D, 0.0D, 0.0D, stack, false);
         GL11.glPushMatrix();
         GL11.glTranslatef(0.5F, -0.1F, 0.5F);
         GL11.glScalef(0.5F, 0.5F, 0.5F);
@@ -79,7 +79,7 @@ public class SpecialRendererFryingPan extends SpecialRendererCookware {
     }
 
     void renderResult(World world, ItemStack stack) {
-        EntityCookingItem entityitem = new EntityCookingItem(world, 0.0D, 0.0D, 0.0D, stack);
+        EntityCookingItem entityitem = new EntityCookingItem(world, 0.0D, 0.0D, 0.0D, stack, true);
         GL11.glPushMatrix();
         GL11.glTranslatef(0.5F, 0.15F, 0.625F);
         if (!(stack.getItem() instanceof ItemBlock)) {

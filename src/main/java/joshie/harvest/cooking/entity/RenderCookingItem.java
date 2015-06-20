@@ -49,7 +49,7 @@ public class RenderCookingItem extends Render {
     /**
      * Renders the item
      */
-    public void doRenderItem(EntityItem entity, double par2, double par4, double par6, float par8, float par9) {
+    public void doRenderItem(EntityCookingItem entity, double par2, double par4, double par6, float par8, float par9) {
         renderInFrame = true;
         bindEntityTexture(entity);
         random.setSeed(187L);
@@ -114,7 +114,7 @@ public class RenderCookingItem extends Render {
                         GL11.glScalef(0.5F, 0.5F, 0.5F);
                     }
 
-                    ICookingAltIcon alt = itemstack.getItem() instanceof ICookingAltIcon? (ICookingAltIcon) itemstack.getItem() : null;
+                    ICookingAltIcon alt = !entity.isFinishedProduct && itemstack.getItem() instanceof ICookingAltIcon? (ICookingAltIcon) itemstack.getItem() : null;
                     for (int k = 0; k < itemstack.getItem().getRenderPasses(itemstack.getItemDamage()); ++k) {
                         random.setSeed(187L);
                         IIcon icon = alt == null ? itemstack.getItem().getIcon(itemstack, k): alt.getCookingIcon(itemstack, k);
@@ -139,7 +139,7 @@ public class RenderCookingItem extends Render {
                         GL11.glScalef(0.5F, 0.5F, 0.5F);
                     }
 
-                    ICookingAltIcon alt = itemstack.getItem() instanceof ICookingAltIcon? (ICookingAltIcon) itemstack.getItem() : null;
+                    ICookingAltIcon alt = !entity.isFinishedProduct && itemstack.getItem() instanceof ICookingAltIcon? (ICookingAltIcon) itemstack.getItem() : null;
                     IIcon icon1 = alt == null? itemstack.getIconIndex() : alt.getCookingIcon(itemstack, 0);
                     if (renderWithColor) {
                         int l = itemstack.getItem().getColorFromItemStack(itemstack, 0);
@@ -466,7 +466,7 @@ public class RenderCookingItem extends Render {
 
     @Override
     public void doRender(Entity par1Entity, double par2, double par4, double par6, float par8, float par9) {
-        doRenderItem((EntityItem) par1Entity, par2, par4, par6, par8, par9);
+        doRenderItem((EntityCookingItem) par1Entity, par2, par4, par6, par8, par9);
     }
 
     public boolean shouldSpreadItems() {

@@ -51,7 +51,7 @@ public class HFRecipes {
         addFryingPanRecipe("popcorn", 30, -1, corn).setOptionalIngredients(butter, salt);
         addFryingPanRecipe("cornflakes", 10, -2, corn, milk).setOptionalIngredients(sugar);
         addFryingPanRecipe("eggplant.happy", 30, -2, eggplant).setOptionalIngredients(sugar);
-        addFryingPanRecipe("egg.scrambled", 40, -3, egg, oil).setOptionalIngredients(butter, mayonnaise, salt);
+        addFryingPanRecipe("egg.scrambled", 40, -3, egg, oil).setOptionalIngredients(butter, mayonnaise, salt).setHasAltTexture();
         addFryingPanRecipe("omelet", 50, -4, egg, oil, milk).setOptionalIngredients(salt);
         addFryingPanRecipe("omelet.rice", 60, -4, egg, milk, oil, riceball).setOptionalIngredients(cabbage, onion, mushroom, green_pepper, salt);
         addFryingPanRecipe("toast.french", 30, -2, egg, bread, oil, sugar).setOptionalIngredients(butter);
@@ -77,7 +77,7 @@ public class HFRecipes {
         addNoUtensilRecipe("salad", 10, -3, salad_ingredient).setOptionalIngredients(mushroom, cucumber, cabbage, tomato, carrot, salt);
         addNoUtensilRecipe("sandwich", 8, -2, bread, sandwich_ingredient).setOptionalIngredients(butter, tomato, cucumber, salt, mayonnaise, mushroom);
         addNoUtensilRecipe("sushi", 30, -5, sashimi, riceball);
-        addNoUtensilRecipe("sashimi", 22, -4, fish);
+        addNoUtensilRecipe("sashimi", 22, -4, fish).setHasAltTexture();
         addNoUtensilRecipe("sashimi.chirashi", 50, -7, sashimi, scrambled_egg, riceball, sashimi_vegetable);
 
         //Pot
@@ -104,7 +104,7 @@ public class HFRecipes {
         addOvenRecipe("dinnerroll", 9, -2, egg, milk, butter);
         //      addOvenRecipe("bun.jam", 0, 0, egg, milk, jam); //Numbers missing
         addOvenRecipe("doria", 25, -3, onion, butter, milk, riceball, flour);
-        addOvenRecipe("cookies", 15, -5, egg, flour, butter).setOptionalIngredients(sugar);
+        addOvenRecipe("cookies", 15, -5, egg, flour, butter).setOptionalIngredients(sugar).setHasAltTexture();
         addOvenRecipe("cookies.chocolate", 30, -5, cookies, chocolate);
         //      addOvenRecipe("cake", 46, -11, egg, flour, butter, fruit_ingredient).setOptionalIngredients(egg, flour, butter, orange, pineapple, strawberry, peach, grape_wild); //Ingredients missing
         addOvenRecipe("cake.chocolate", 70, -8, egg, flour, butter, chocolate).setOptionalIngredients(sugar, pineapple, apple, strawberry);

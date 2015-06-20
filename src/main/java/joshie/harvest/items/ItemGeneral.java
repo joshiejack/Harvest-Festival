@@ -81,6 +81,7 @@ public class ItemGeneral extends ItemHFMeta implements ICreativeSorted, ICooking
     @Override
     public boolean hasAlt(int meta) {
         return meta == FLOUR;
+        //return meta == CORN; Not sure if this would work
     }
 
     @Override

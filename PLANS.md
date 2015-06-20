@@ -52,6 +52,11 @@ Stage 5 (0.9.0)
 * TV Shopping
  -> TV Model
  -> Small Artwork to draw onto TV Screen for each Channel with a sprite on it
+* Beekeeping
+ -> Bee Hut Model
+ -> Beekeeper NPC?
+  -> Beekeeping Questline
+ -> Honey Food
 
 Stage 10000 (1.0)
 * Minetweaker Support

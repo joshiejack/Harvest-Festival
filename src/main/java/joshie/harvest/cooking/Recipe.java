@@ -33,7 +33,6 @@ public class Recipe implements IMealRecipe {
         return this;
     }
     
-
     @Override
     public IMealRecipe setIsDrink() {
         this.result.setIsDrink();

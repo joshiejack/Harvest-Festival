@@ -2,7 +2,6 @@ package joshie.harvest.api.cooking;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
@@ -83,10 +82,6 @@ public interface IFoodRegistry {
     /** Returns a list of all the recipes 
      *  @return     the entire recipe list */
     public List<IMealRecipe> getRecipes();
-    
-    /** Returns a list of all the unique meals
-     *  @return     the meals */
-    public Set<IMeal> getMeals();
 
     /** Returns a default copy of this meal **/
     public ItemStack getMeal(String string);

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import joshie.harvest.api.cooking.ICookingComponent;
 import joshie.harvest.api.cooking.IFoodRegistry;
@@ -24,8 +23,8 @@ public class FoodRegistry implements IFoodRegistry {
     private static final Multimap<SafeStack, ICookingComponent> registry = ArrayListMultimap.create();
     private static final ArrayList<IMealRecipe> recipes = new ArrayList(250);
     private static final HashMap<String, ICookingComponent> components = new HashMap();
-    private static final HashSet meals = new HashSet();
     private static final HashSet<ISpecialRecipeHandler> specials = new HashSet();
+    private static final HashSet meals = new HashSet();
 
     @Override
     public void register(ItemStack stack, ICookingComponent component) {
@@ -81,20 +80,13 @@ public class FoodRegistry implements IFoodRegistry {
     @Override
     public IMealRecipe addRecipe(IMealRecipe recipe) {
         recipes.add(recipe);
-        meals.add(recipe.getBestMeal()); //Add a meal to the list
         return recipe;
     }
-
+    
     @Override
     public ArrayList<IMealRecipe> getRecipes() {
         return recipes;
     }
-
-    @Override
-    public Set<IMeal> getMeals() {
-        return meals;
-    }
-    
 
     @Override
     public ItemStack getBestMeal(String string) {

@@ -50,11 +50,6 @@ public class QuestDataClient extends QuestData {
     //Returns a single lined script
     @Override
     public String getScript(EntityPlayer player, EntityNPC npc) {      
-        IShop shop = npc.getNPC().getShop();
-        if(shop != null && shop.isOpen(player.worldObj, player) && shop.getContents(player).size() > 0) {
-            return shop.getWelcome();
-        }
-        
         if (current != null) {
             for (IQuest q : current) {
                 if (q.handlesScript(npc.getNPC())) {
@@ -81,6 +76,6 @@ public class QuestDataClient extends QuestData {
             }
         }
 
-        return npc.getNPC().getGreeting();
+        return null;
     }
 }

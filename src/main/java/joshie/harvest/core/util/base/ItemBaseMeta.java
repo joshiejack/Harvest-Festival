@@ -64,20 +64,20 @@ public abstract class ItemBaseMeta extends Item implements IHasMetaItem, ICookin
     @SideOnly(Side.CLIENT)
     @Override
     public IIcon getIconFromDamage(int damage) {
-        damage = Math.max(0, Math.min(getMaxDamage() - 1, damage));
+        damage = Math.max(0, Math.min(getMetaCount() - 1, damage));
         if (icons == null) return Items.arrow.getIconFromDamage(0);
         return icons[damage];
     }
 
     @Override
     public IIcon getCookingIcon(ItemStack stack, int pass) {
-        int damage = Math.max(0, Math.min(getMaxDamage() - 1, stack.getItemDamage()));
+        int damage = Math.max(0, Math.min(getMetaCount() - 1, stack.getItemDamage()));
         if (icons == null) return Items.arrow.getIconFromDamage(0);
         if (alts[damage] != null) return alts[damage];
         return icons[damage];
     }
 
-    public boolean hasAlt(int meta) {
+    public boolean hasAlt(ItemStack stack) {
         return false;
     }
 
@@ -88,9 +88,10 @@ public abstract class ItemBaseMeta extends Item implements IHasMetaItem, ICookin
         alts = new IIcon[getMetaCount()];
         icons = new IIcon[getMetaCount()];
         for (int i = 0; i < icons.length; i++) {
-            icons[i] = register.registerIcon(path + getName(new ItemStack(this, 1, i)));
-            if (hasAlt(i)) {
-                alts[i] = register.registerIcon(path + getName(new ItemStack(this, 1, i)) + "_alt");
+            ItemStack stack = new ItemStack(this, 1, i);
+            icons[i] = register.registerIcon(path + getName(stack));
+            if (hasAlt(stack)) {
+                alts[i] = register.registerIcon(path + getName(stack) + "_alt");
             }
         }
     }

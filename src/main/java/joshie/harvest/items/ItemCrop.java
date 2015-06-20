@@ -31,6 +31,11 @@ public class ItemCrop extends ItemHFMeta implements IShippable, ICropProvider, I
     public int getMetaCount() {
         return 1;
     }
+    
+    @Override
+    public boolean hasAlt(ItemStack stack) {
+        return stack.getItem() == HFCrops.corn.getCropStack().getItem();
+    }
 
     @Override
     public int getSortValue(ItemStack stack) {

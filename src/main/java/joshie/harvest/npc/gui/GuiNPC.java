@@ -5,6 +5,7 @@ import java.util.HashSet;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.quest.IQuest;
+import joshie.harvest.api.shops.IShop;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.QuestHelper;
 import joshie.harvest.core.lib.HFModInfo;
@@ -206,7 +207,13 @@ public class GuiNPC extends GuiBase {
     }
 
     protected String getScript() {
-        return HFTrackers.getClientPlayerTracker().getQuests().getScript(player, npc);
+        IShop shop = npc.getNPC().getShop();
+        if(shop != null && shop.isOpen(player.worldObj, player) && shop.getContents(player).size() > 0) {
+            return shop.getWelcome();
+        }
+        
+        String script = HFTrackers.getClientPlayerTracker().getQuests().getScript(player, npc);
+        return script == null ? npc.getNPC().getGreeting() : script;
     }
 
     @Override

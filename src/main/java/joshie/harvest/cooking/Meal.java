@@ -17,9 +17,8 @@ public class Meal implements IMeal {
     public int hunger = 0;
     public float saturation = 0;
     public int eatTime = 32;
-    public boolean hasAlt = false;
-
     public boolean isLiquid = false;
+    public boolean hasAlt = false;
     public int hunger_cap = 20;
     public float saturation_cap = 2F;
 
@@ -38,7 +37,9 @@ public class Meal implements IMeal {
         this.fatigue = meal.getFatigue();
         this.hunger = meal.getHunger();
         this.saturation = meal.getSaturation();
+        this.eatTime = meal.getEatTime();
         this.isLiquid = meal.isDrink();
+        this.hasAlt = meal.hasAltTexture();
         this.hunger_cap = meal.getHungerCap();
         this.saturation_cap = meal.getSaturationCap();
     }
@@ -49,49 +50,9 @@ public class Meal implements IMeal {
         return this;
     }
 
-    public Meal addEatTime(int time) {
-        this.eatTime += time;
-        return this;
-    }
-
-    public Meal setEatTime(int time) {
-        this.eatTime = time;
-        return this;
-    }
-
-    public Meal setStamina(int stamina) {
-        this.stamina = stamina;
-        return this;
-    }
-
-    public Meal setFatigue(int fatigue) {
-        this.fatigue = fatigue;
-        return this;
-    }
-
-    public Meal setHunger(int hunger) {
-        this.hunger = hunger;
-        return this;
-    }
-
-    public Meal setSaturation(float saturation) {
-        this.saturation = saturation;
-        return this;
-    }
-
-    public Meal setHungerCap(int cap) {
-        this.hunger_cap = cap;
-        return this;
-    }
-
-    public Meal setSaturationCap(float cap) {
-        this.saturation_cap = cap;
-        return this;
-    }
-    
     @Override
-    public IMeal setHasAltTexture() {
-        hasAlt = true;
+    public Meal setHasAltTexture() {
+        this.hasAlt = true;
         return this;
     }
 
@@ -154,7 +115,6 @@ public class Meal implements IMeal {
         this.saturation += ingredient.getSaturation();
         this.hunger = Math.min(hunger_cap, this.hunger);
         this.saturation = Math.min(saturation_cap, this.saturation);
-
         return this;
     }
 

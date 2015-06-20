@@ -181,7 +181,8 @@ public class ItemMeal extends ItemHFMeta implements IMealProvider, ICreativeSort
             burnt[u.ordinal()] = register.registerIcon(MEALPATH + "burnt" + WordUtils.capitalize(u.name()));
         }
 
-        for (IMeal meal : HFApi.COOKING.getMeals()) {
+        for (IMealRecipe recipe : HFApi.COOKING.getRecipes()) {
+            IMeal meal = recipe.getMeal();
             String key = meal.getUnlocalizedName();
             if (meal.hasAltTexture()) {
                 altMap.put(key, register.registerIcon(MEALPATH + StringUtils.replace(key, ".", "_") + "_alt"));

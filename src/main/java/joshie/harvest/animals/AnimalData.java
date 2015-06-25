@@ -5,6 +5,7 @@ import static joshie.harvest.core.network.PacketHandler.sendToEveryone;
 import java.util.Random;
 import java.util.UUID;
 
+import codechicken.lib.math.MathHelper;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
@@ -24,6 +25,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.world.World;
 
 public class AnimalData implements IAnimalData {
     private static final Random rand = new Random();
@@ -37,8 +39,9 @@ public class AnimalData implements IAnimalData {
     private UUID o_uuid;
 
     private short currentLifespan = 0; //How many days this animal has lived for
-    private byte healthiness = 127; //How healthy this animal is, full byte range
+    private byte healthiness = Byte.MAX_VALUE; //How healthy this animal is, full byte range
     private byte cleanliness = 0; //How clean this animal is, full byte range
+    private byte stress = Byte.MIN_VALUE; //How stressed this animal is, full byte range
     private byte daysNotFed; //How many subsequent days that this animal has not been fed
 
     private boolean isSick; //Whether the animal is sick or not
@@ -104,6 +107,22 @@ public class AnimalData implements IAnimalData {
             currentLifespan++;
             healthiness -= daysNotFed;
             cleanliness--;
+            
+            World world = animal.worldObj;
+            int x = MathHelper.floor_double(animal.posX);
+            int y = MathHelper.floor_double(animal.posY);
+            int z = MathHelper.floor_double(animal.posZ);
+            boolean isOutside = world.canBlockSeeTheSky(x, y, z);
+            boolean isRaining = world.isRaining();
+            if ((isRaining && isOutside) || (!isRaining && !isOutside)) {
+                stress = (byte) Math.min(Byte.MAX_VALUE, stress + 50);
+            } else if (stress > Byte.MIN_VALUE) {
+                stress--;
+            }
+            
+            if (stress > 0) {
+                healthiness--;
+            }
 
             if (cleanliness < 0) {
                 healthiness += cleanliness;
@@ -313,6 +332,7 @@ public class AnimalData implements IAnimalData {
         currentLifespan = nbt.getShort("CurrentLifespan");
         healthiness = nbt.getByte("Healthiness");
         cleanliness = nbt.getByte("Cleanliness");
+        stress = nbt.getByte("Stress");
         daysNotFed = nbt.getByte("DaysNotFed");
         daysPassed = nbt.getByte("DaysPassed");
         treated = nbt.getBoolean("Treated");
@@ -337,6 +357,7 @@ public class AnimalData implements IAnimalData {
         nbt.setShort("CurrentLifespan", (short) currentLifespan);
         nbt.setByte("Healthiness", (byte) healthiness);
         nbt.setByte("Cleanliness", (byte) cleanliness);
+        nbt.setByte("Stress", (byte) stress);
         nbt.setByte("DaysNotFed", (byte) daysNotFed);
         nbt.setByte("DaysPassed", (byte) daysPassed);
         nbt.setBoolean("Treated", treated);

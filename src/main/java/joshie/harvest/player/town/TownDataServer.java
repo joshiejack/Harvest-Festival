@@ -5,12 +5,19 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
 public class TownDataServer extends TownData {
+    public GatheringData gathering = new GatheringData();
+    
     //TODO: SYNC THE TOWN DATA TO THE CLIENT
     public void sync (EntityPlayerMP player) {
         
     }
+
+    public void newDay() {
+        gathering.newDay(buildings.values());
+    }
     
     public void readFromNBT(NBTTagCompound nbt) {
+        gathering.readFromNBT(nbt);
         NBTTagList list = nbt.getTagList("TownBuildingList", 10);
         for (int i = 0; i < list.tagCount(); i++) {
             NBTTagCompound tag = list.getCompoundTagAt(i);
@@ -22,6 +29,7 @@ public class TownDataServer extends TownData {
     }
 
     public void writeToNBT(NBTTagCompound nbt) {
+        gathering.writeToNBT(nbt);
         NBTTagList list = new NBTTagList();
         for (String name : buildings.keySet()) {
             NBTTagCompound tag = new NBTTagCompound();

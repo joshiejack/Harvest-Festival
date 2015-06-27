@@ -11,7 +11,6 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.GuiOpenEvent;
-import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.event.world.WorldEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
@@ -45,16 +44,16 @@ public class EventsHandler {
         if (event.phase != Phase.END) return;
         World world = MinecraftServer.getServer().getEntityWorld();
         if (world.getTotalWorldTime() % Calendar.TICKS_PER_DAY == 0) {
-            newDay(false);
+            newDay(world, false);
         }
     }
     
     //New day
-    public static void newDay(final boolean forced) {
+    public static void newDay(final World world, final boolean forced) {
         int daysPassed = CalendarHelper.getTotalDays(HFTrackers.getCalendar().getDate());
-        int serverDays = (int) Math.floor(DimensionManager.getWorld(0).getWorldTime() / Calendar.TICKS_PER_DAY);
+        int serverDays = (int) Math.floor(world.getWorldTime() / Calendar.TICKS_PER_DAY);
         if (daysPassed <= serverDays || forced) {
-            HFTrackers.getCalendar().newDay();
+            HFTrackers.getCalendar().newDay(CalendarHelper.getTime(world));
         }
     }
     

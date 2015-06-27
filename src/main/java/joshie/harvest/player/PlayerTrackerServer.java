@@ -118,14 +118,16 @@ public class PlayerTrackerServer extends PlayerTracker {
         return builder;
     }
 
-    public void newDay() {
+    public void newDay(long bedtime) {
         //Add their gold from selling items
         relationships.newDay();
         EntityPlayerMP player = getAndCreatePlayer();
         if (player != null) {
-            stats.addGold(player, tracking.newDay());
+            stats.newDay(bedtime, tracking.newDay());
             syncPlayerStats(player); //Resync everything
         }
+        
+        town.newDay();
 
         HFTrackers.markDirty();
     }

@@ -22,6 +22,25 @@ public class CalendarServer extends Calendar {
         updateForecast();
     }
 
+    public static boolean isWeatherDisabled(Weather weather) {
+        switch (weather) {
+            case SUNNY:
+                return joshie.harvest.core.config.Calendar.ENABLE_SUNNY;
+            case DRIZZLE:
+                return joshie.harvest.core.config.Calendar.ENABLE_DRIZZLE;
+            case RAIN:
+                return joshie.harvest.core.config.Calendar.ENABLE_RAIN;
+            case TYPHOON:
+                return joshie.harvest.core.config.Calendar.ENABLE_TYPHOON;
+            case SNOW:
+                return joshie.harvest.core.config.Calendar.ENABLE_SNOW;
+            case BLIZZARD:
+                return joshie.harvest.core.config.Calendar.ENABLE_BLIZZARD;
+            default:
+                return false;
+        }
+    }
+
     public Weather getRandomWeather(int day, Season season) {
         if (day > joshie.harvest.core.config.Calendar.DAYS_PER_SEASON) {
             season = getNextSeason(season);
@@ -29,6 +48,7 @@ public class CalendarServer extends Calendar {
 
         ISeasonData data = HFApi.CALENDAR.getDataForSeason(season);
         for (Weather weather : Weather.values()) {
+            if (isWeatherDisabled(weather)) continue;
             double chance = data.getWeatherChance(weather);
             if (rand.nextDouble() * 100D < chance) {
                 return weather;
@@ -37,21 +57,21 @@ public class CalendarServer extends Calendar {
 
         return Weather.SUNNY;
     }
-    
+
     @Override
     public void updateForecast() {
-      //If they're null set them
+        //If they're null set them
         for (int i = 0; i < 7; i++) {
             if (forecast[i] == null) {
                 forecast[i] = getRandomWeather(date.getDay() + i, date.getSeason());
             }
         }
-        
+
         PacketHandler.sendToEveryone(new PacketSyncForecast(forecast));
     }
 
     @Override
-    public void newDay() {
+    public void newDay(long bedtime) {
         int day = date.getDay();
         Season season = date.getSeason();
         int year = date.getYear();
@@ -84,10 +104,10 @@ public class CalendarServer extends Calendar {
 
         forecast = newForecast;
         updateForecast();
-        
+
         //Update a player
-        for (PlayerTrackerServer player: HFTrackers.getPlayerTrackers()) {
-            player.newDay();
+        for (PlayerTrackerServer player : HFTrackers.getPlayerTrackers()) {
+            player.newDay(bedtime);
         }
 
         HFTrackers.markDirty();

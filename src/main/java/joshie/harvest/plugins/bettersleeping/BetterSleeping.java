@@ -24,6 +24,6 @@ public class BetterSleeping extends Plugin {
 
     @SubscribeEvent
     public void onWorldSleep(WorldSleepEvent.Post event) {
-        EventsHandler.newDay(false);
+        EventsHandler.newDay(event.world, false);
     }
 }

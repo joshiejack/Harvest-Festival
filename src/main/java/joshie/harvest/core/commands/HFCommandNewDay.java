@@ -16,7 +16,7 @@ public class HFCommandNewDay extends HFCommandBase {
 
     @Override
     public boolean processCommand(ICommandSender sender, String[] parameters) {
-        EventsHandler.newDay(true);
+        EventsHandler.newDay(sender.getEntityWorld(), true);
         return true;
     }
 }

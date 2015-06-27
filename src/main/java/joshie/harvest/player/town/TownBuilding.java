@@ -7,7 +7,7 @@ import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class TownBuilding extends BuildingStage {
-    private int dimension;
+    public int dimension;
 
     public TownBuilding() {}
     public TownBuilding(BuildingStage building, int dimensionId) {

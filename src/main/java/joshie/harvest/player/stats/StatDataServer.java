@@ -38,6 +38,20 @@ public class StatDataServer extends StatData {
         PacketHandler.sendToClient(new PacketSyncStats(getStamina(), getFatigue(), getStaminaMax(), getFatigueMin()), player);
     }
 
+    public void newDay(long bedtime, long gold) {
+        long hours = 23999 - (bedtime - 6000);
+        double fatigueChange = 0D;
+        double staminaChange = 0D;
+        if (hours < 100) fatigueChange = -20D;
+        else {
+            fatigueChange = (2 + ((hours/1000) * 2));
+            staminaChange = ((hours / 100) + 34);
+        }
+        
+        affectStats(staminaChange, fatigueChange);
+        this.gold += gold;
+    }
+
     public void readFromNBT(NBTTagCompound nbt) {
         birthday.readFromNBT(nbt);
         stamina = nbt.getDouble("Stamina");

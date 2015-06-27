@@ -18,7 +18,7 @@ public class Calendar {
         return date.getSeasonData();
     }
 
-    public void newDay() {};
+    public void newDay(long bedtime) {};
     public void updateForecast() {};
     
     public Weather getForecast(int day) {

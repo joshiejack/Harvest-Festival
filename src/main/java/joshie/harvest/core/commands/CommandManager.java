@@ -11,6 +11,7 @@ import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
@@ -58,7 +59,7 @@ public class CommandManager extends CommandBase implements ICommand {
         }
 
         if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
-            return DimensionManager.getWorld(0);
+            return MinecraftServer.getServer().getEntityWorld();
         } else return MCClientHelper.getWorld();
     }
 

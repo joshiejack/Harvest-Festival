@@ -44,7 +44,7 @@ import static joshie.harvest.core.helpers.RecipeHelper.addPotRecipe;
 
 public class HFRecipes {
     public static void preInit() {
-      //Recipes
+      //Recipes ; http://fogu.com/hm4/farm/stamina_chart.htm for numbers
         //Frying Pan
         addFryingPanRecipe("pancake.savoury", 50, -1, flour, cabbage, oil, egg).setOptionalIngredients(onion);
         addFryingPanRecipe("fries.french", 15, 0, potato, oil).setOptionalIngredients(salt);
@@ -95,22 +95,22 @@ public class HFRecipes {
         addPotRecipe("stew", 30, -1, milk, flour).setOptionalIngredients(eggplant, onion, potato, carrot, green_pepper, fish, salt);
         addPotRecipe("stew.pumpkin", true, 8, -1, pumpkin).setOptionalIngredients(sugar, salt);
         addPotRecipe("stew.fish", 7, -1, fish).setOptionalIngredients(salt);
-        //      addPotRecipe("stew.mountain", true, 0, 0, carrot, bamboo_shoot, shiitake).setOptionalIngredients(salt); //Numbers missing
+        //      addPotRecipe("stew.mountain", true, 40, -1, carrot, bamboo_shoot, shiitake).setOptionalIngredients(salt); //Numbers missing
 
         //Oven
         addOvenRecipe("corn.baked", 7, -1, corn).setOptionalIngredients(oil, butter, salt);
         addOvenRecipe("riceballs.toasted", 12, -1, riceball).setOptionalIngredients(sugar, salt);
         addOvenRecipe("toast", 16, -1, bread).setOptionalIngredients(butter);
         addOvenRecipe("dinnerroll", 9, -2, egg, milk, butter);
-        //      addOvenRecipe("bun.jam", 0, 0, egg, milk, jam); //Numbers missing
+        //      addOvenRecipe("bun.jam", 40, -5, egg, milk, jam); //Numbers missing
         addOvenRecipe("doria", 25, -3, onion, butter, milk, riceball, flour);
         addOvenRecipe("cookies", 15, -5, egg, flour, butter).setOptionalIngredients(sugar).setHasAltTexture();
         addOvenRecipe("cookies.chocolate", 30, -5, cookies, chocolate);
         //      addOvenRecipe("cake", 46, -11, egg, flour, butter, fruit_ingredient).setOptionalIngredients(egg, flour, butter, orange, pineapple, strawberry, peach, grape_wild); //Ingredients missing
         addOvenRecipe("cake.chocolate", 70, -8, egg, flour, butter, chocolate).setOptionalIngredients(sugar, pineapple, apple, strawberry);
-        //      addOvenRecipe("cake.rice", 0, 0, festival); //Numbers missing //Can only be gotten via the New Year's Festival, not sure how you make a recipe with no ingredients.. lol if that even works 
-        //      addOvenRecipe("cake.rice.toasted", 0, 0, cake_rice); //Numbers missing
+        //      addOvenRecipe("cake.rice", 2, -2, festival); //Numbers missing //Can only be gotten via the New Year's Festival, not sure how you make a recipe with no ingredients.. lol if that even works 
+        //      addOvenRecipe("cake.rice.toasted", 10, -2, cake_rice); //Numbers missing
         //      addOvenRecipe("cake.cheese", 50, -5, egg, cheese, milk);
-        //      addOvenRecipe("cake.apple", 0, 0, apple, egg, butter, flour); //Numbers missing
+        //      addOvenRecipe("cake.apple", 50, -8, apple, egg, butter, flour); //Numbers missing
     }
 }

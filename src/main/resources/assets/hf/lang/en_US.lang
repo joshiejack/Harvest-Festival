@@ -1,4 +1,4 @@
-#en_US.lang by joshie ;)
+#en_US.lang by joshie and Yulife ;) ;)
 hf.tab.farming=Harvest Festival - Farming
 hf.tab.cooking=Harvest Festival - Cooking
 hf.tab.mining=Harvest Festival - Mining
@@ -17,20 +17,20 @@ hf.animal.cow=Cow
 hf.animal.sheep=Sheep
 
 #Buildings
-hf.structures.barn=Animal Ranch
-hf.structures.blacksmith=Blacksmith
-hf.structures.cafe=Cafe
-hf.structures.carpenter=Carpenter
-hf.structures.church=Church
-hf.structures.clockmaker=Clockmaker
-hf.structures.fishinghole=Fishing Hole
-hf.structures.fishinghut=Fishing Hut
-hf.structures.goddesspond=Goddess Pond
-hf.structures.mininghill=Mining Hill
-hf.structures.mininghut=Mining Hut
-hf.structures.poultryfarm=Poultry Farm
-hf.structures.supermarket=General Store
-hf.structures.townhall=Townhall
+hf.structures.barn=Blueprint: Animal Ranch
+hf.structures.blacksmith=Blueprint: Blacksmith
+hf.structures.cafe=Blueprint: Cafe
+hf.structures.carpenter=Blueprint: Carpenter
+hf.structures.church=Blueprint: Church
+hf.structures.clockmaker=Blueprint: Clockmaker
+hf.structures.fishinghole=Blueprint: Fishing Hole
+hf.structures.fishinghut=Blueprint: Fishing Hut
+hf.structures.goddesspond=Blueprint: Goddess Pond
+hf.structures.mininghill=Blueprint: Mining Hill
+hf.structures.mininghut=Blueprint: Mining Hut
+hf.structures.poultryfarm=Blueprint: Poultry Farm
+hf.structures.supermarket=Blueprint: General Store
+hf.structures.townhall=Blueprint: Townhall
 
 #Cheat Items (Translators don't bother tranlating these, I just use them to help with dev)
 hf.cheat.coord.setter=[BuildingGen] Coordinate Setter

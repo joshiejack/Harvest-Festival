@@ -17,6 +17,12 @@ public interface IAnimalType {
 
     /** Return the number of days between producing products **/
     public int getDaysBetweenProduction();
+    
+    /** How many generic treats this animal needs to up it's productivity **/
+    public int getGenericTreatCount();
+    
+    /** How many typed treats this animal needs to up it's productivity **/
+    public int getTypeTreatCount();
 
     /** Called to make this animal produce it a product on a new day 
      * @param tracking **/

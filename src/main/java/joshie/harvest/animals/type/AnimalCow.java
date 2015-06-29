@@ -11,4 +11,14 @@ public class AnimalCow extends AbstractAnimal {
     public int getDaysBetweenProduction() {
         return 1;
     }
+
+    @Override
+    public int getGenericTreatCount() {
+        return 7;
+    }
+
+    @Override
+    public int getTypeTreatCount() {
+        return 24;
+    }
 }

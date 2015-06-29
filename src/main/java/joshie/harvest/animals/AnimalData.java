@@ -5,7 +5,6 @@ import static joshie.harvest.core.network.PacketHandler.sendToEveryone;
 import java.util.Random;
 import java.util.UUID;
 
-import codechicken.lib.math.MathHelper;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
@@ -16,6 +15,7 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.helpers.generic.EntityHelper;
 import joshie.harvest.core.network.PacketSyncCanProduce;
+import joshie.harvest.items.HFItems;
 import joshie.harvest.items.ItemTreat;
 import joshie.harvest.player.relationships.RelationshipHelper;
 import net.minecraft.entity.EntityAgeable;
@@ -25,6 +25,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class AnimalData implements IAnimalData {
@@ -53,6 +54,8 @@ public class AnimalData implements IAnimalData {
     private byte numProductsProduced = 0; //The number of products this animal has produced today (resets each day)
     private boolean thrown; //Whether this animal has been thrown or not today, only affects chickens
     private boolean treated; //Whether this animal has had it's treat for today
+    private short genericTreats; //Number of generic treats this animal had
+    private short typeTreats; //Number of specific treats this animal had
 
     //Pregnancy Test
     private boolean isPregnant;
@@ -107,7 +110,7 @@ public class AnimalData implements IAnimalData {
             currentLifespan++;
             healthiness -= daysNotFed;
             cleanliness--;
-            
+
             World world = animal.worldObj;
             int x = MathHelper.floor_double(animal.posX);
             int y = MathHelper.floor_double(animal.posY);
@@ -119,7 +122,7 @@ public class AnimalData implements IAnimalData {
             } else if (stress > Byte.MIN_VALUE) {
                 stress--;
             }
-            
+
             if (stress > 0) {
                 healthiness--;
             }
@@ -153,6 +156,17 @@ public class AnimalData implements IAnimalData {
                     animal.removePotionEffect(Potion.confusion.id);
                     animal.removePotionEffect(Potion.blindness.id);
                     animal.removePotionEffect(Potion.moveSlowdown.id);
+                }
+            }
+            
+            //Update the maximum produced products
+            if (treated && maxProductsPerDay < 5) {
+                int requiredGeneric = type.getGenericTreatCount();
+                int requiredType = type.getTypeTreatCount();
+                if (genericTreats >= requiredGeneric && requiredType >= typeTreats) {
+                    genericTreats -= requiredGeneric;
+                    typeTreats -= requiredType;
+                    maxProductsPerDay++;
                 }
             }
 
@@ -195,6 +209,11 @@ public class AnimalData implements IAnimalData {
     @Override
     public EntityAnimal getAnimal() {
         return animal;
+    }
+    
+    @Override
+    public int getProductsPerDay() {
+        return maxProductsPerDay;
     }
 
     private EntityPlayer getAndCreateOwner() {
@@ -285,14 +304,24 @@ public class AnimalData implements IAnimalData {
     }
 
     @Override
-    public void treat(ItemStack stack, EntityPlayer player) {
+    public boolean treat(ItemStack stack, EntityPlayer player) {
         if (!treated) {
-            IAnimalType type = ItemTreat.getTreatTypeFromStack(stack);
-            if (type == this.type) {
-                treated = true;
-                affectRelationship(player, 1000);
+            treated = stack.getItem() == HFItems.treats && stack.getItemDamage() == ItemTreat.GENERIC;
+            if (treated) {
+                genericTreats++;
+                affectRelationship(player, 1);
+                return true;
+            } else {
+                treated = ItemTreat.getTreatTypeFromStack(stack) == type;
+                if (treated) {
+                    typeTreats++;
+                    affectRelationship(player, 2);
+                    return true;
+                }
             }
         }
+        
+        return false;
     }
 
     @Override
@@ -336,6 +365,8 @@ public class AnimalData implements IAnimalData {
         daysNotFed = nbt.getByte("DaysNotFed");
         daysPassed = nbt.getByte("DaysPassed");
         treated = nbt.getBoolean("Treated");
+        genericTreats = nbt.getShort("GenericTreats");
+        typeTreats = nbt.getShort("TypeTreats");
         wasSick = nbt.getBoolean("WasSick");
         isSick = nbt.getBoolean("IsSick");
         thrown = nbt.getBoolean("Thrown");
@@ -361,6 +392,8 @@ public class AnimalData implements IAnimalData {
         nbt.setByte("DaysNotFed", (byte) daysNotFed);
         nbt.setByte("DaysPassed", (byte) daysPassed);
         nbt.setBoolean("Treated", treated);
+        nbt.setShort("GenericTreats", genericTreats);
+        nbt.setShort("TypeTreats", typeTreats);
         nbt.setBoolean("WasSick", wasSick);
         nbt.setBoolean("IsSick", isSick);
         nbt.setBoolean("Thrown", thrown);

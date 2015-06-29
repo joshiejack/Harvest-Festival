@@ -98,7 +98,7 @@ public class QuestChickenCare extends Quest {
 
     @Override
     public void claim(EntityPlayer player) {
-        ItemHelper.spawnByEntity(player, SizeableHelper.getSizeable(48000, SizeableMeta.EGG, Size.LARGE));
+        ItemHelper.spawnByEntity(player, SizeableHelper.getSizeable(SizeableMeta.EGG, 1, Size.LARGE));
     }
 
     @Override

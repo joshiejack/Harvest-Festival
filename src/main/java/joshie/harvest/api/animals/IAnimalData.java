@@ -14,6 +14,9 @@ public interface IAnimalData {
      *  @return     return null if the player isn't online or there is no owner **/
     public EntityPlayer getOwner();
 
+    /** Returns the number of products this animal can produce per day **/
+    public int getProductsPerDay();
+
     /** Marks this player as the animals owner **/
     public void setOwner(EntityPlayer player);
     
@@ -44,8 +47,8 @@ public interface IAnimalData {
      *  @return     returns true if it was healed from a sickness */
     public boolean heal(EntityPlayer player);
 
-    /** Treat the animal for this day **/
-    public void treat(ItemStack stack, EntityPlayer player);
+    /** Treat the animal for this day, returns true if the animal wasn't already treated **/
+    public boolean treat(ItemStack stack, EntityPlayer player);
 
     /** Attempt to impregnate the animal
      *  return true if sucessful */

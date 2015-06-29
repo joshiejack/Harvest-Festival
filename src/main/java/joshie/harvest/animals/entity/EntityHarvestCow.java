@@ -4,13 +4,11 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.animals.IAnimalType;
-import joshie.harvest.api.core.ISizeable.Size;
-import joshie.harvest.api.relations.IRelatableDataHandler;
 import joshie.harvest.api.relations.IRelatable;
+import joshie.harvest.api.relations.IRelatableDataHandler;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.SizeableHelper;
 import joshie.harvest.core.helpers.ToolHelper;
-import joshie.harvest.core.lib.SizeableMeta;
 import joshie.harvest.player.relationships.RelationshipHelper;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.passive.EntityCow;
@@ -52,16 +50,6 @@ public class EntityHarvestCow extends EntityCow implements IAnimalTracked {
         return type;
     }
 
-    private ItemStack getMilk(EntityPlayer player) {
-        Size size = Size.SMALL;
-        int relationship = HFApi.RELATIONS.getAdjustedRelationshipValue(player, this);
-        int chance = Math.max(1, RelationshipHelper.ADJUSTED_MAX - relationship);
-        int chance2 = Math.max(1, chance / 3);
-        if (rand.nextInt(chance) == 0) size = Size.LARGE;
-        else if (rand.nextInt(chance2) == 0) size = Size.MEDIUM;
-        return SizeableHelper.getSizeable(relationship, SizeableMeta.MILK, size);
-    }
-
     @Override
     public boolean interact(EntityPlayer player) {
         ItemStack held = player.getCurrentEquippedItem();
@@ -74,7 +62,7 @@ public class EntityHarvestCow extends EntityCow implements IAnimalTracked {
                 return true;
             } else if (ToolHelper.isMilker(held)) {
                 if (HFTrackers.getAnimalTracker().canProduceProduct(data)) {
-                    ItemStack product = getMilk(player);
+                    ItemStack product = SizeableHelper.getMilk(player, this);
                     if (!player.inventory.addItemStackToInventory(product)) {
                         player.dropPlayerItemWithRandomChoice(product, false);
                     }

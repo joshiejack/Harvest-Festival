@@ -122,7 +122,7 @@ public class QuestCowCare extends Quest {
 
     @Override
     public void claim(EntityPlayer player) {
-        ItemHelper.spawnByEntity(player, SizeableHelper.getSizeable(48000, SizeableMeta.MILK, Size.LARGE));
+        ItemHelper.spawnByEntity(player, SizeableHelper.getSizeable(SizeableMeta.MILK, 1, Size.LARGE));
     }
 
     @Override

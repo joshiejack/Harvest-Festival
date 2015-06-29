@@ -15,6 +15,16 @@ public class AnimalSheep extends AbstractAnimal {
     }
 
     @Override
+    public int getGenericTreatCount() {
+        return 2;
+    }
+
+    @Override
+    public int getTypeTreatCount() {
+        return 29;
+    }
+
+    @Override
     public void newDay(IAnimalData data, EntityAnimal entity) {
         entity.eatGrassBonus();
     }

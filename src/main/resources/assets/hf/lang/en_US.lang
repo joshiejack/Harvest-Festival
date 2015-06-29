@@ -225,7 +225,7 @@ hf.treat.horse=Horse Treat
 hf.treat.pig=Pig Treat
 hf.treat.cat=Cat Treat
 hf.treat.dog=Dog Treat
-hf.treat.other=Animal Treat
+hf.treat.generic=Treat
 
 #Blocks
 hf.cookware.fridge=Fridge

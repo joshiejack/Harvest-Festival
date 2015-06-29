@@ -17,6 +17,7 @@ public class ItemTreat extends ItemHFMeta implements ICreativeSorted {
     public static final int COW = 0;
     public static final int SHEEP = 1;
     public static final int CHICKEN = 2;
+    public static final int GENERIC = 3;
 
     public static IAnimalType getTreatTypeFromStack(ItemStack stack) {
         return HFApi.ANIMALS.getTypeFromString(HFItems.treats.getName(stack));
@@ -24,7 +25,7 @@ public class ItemTreat extends ItemHFMeta implements ICreativeSorted {
 
     @Override
     public int getMetaCount() {
-        return 3;
+        return 4;
     }
 
     @Override
@@ -36,6 +37,8 @@ public class ItemTreat extends ItemHFMeta implements ICreativeSorted {
                 return "sheep";
             case CHICKEN:
                 return "chicken";
+            case GENERIC:
+                return "generic";
             default:
                 return "null";
         }
@@ -45,10 +48,10 @@ public class ItemTreat extends ItemHFMeta implements ICreativeSorted {
     public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer player, EntityLivingBase living) {
         if (living instanceof IAnimalTracked) {
             if (!living.worldObj.isRemote) {
-                ((IAnimalTracked)living).getData().treat(stack, player);
+                if (((IAnimalTracked) living).getData().treat(stack, player)) {
+                    stack.stackSize--;
+                }
             }
-
-            stack.stackSize--;
 
             return true;
         } else return false;

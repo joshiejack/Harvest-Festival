@@ -1,6 +1,7 @@
 package joshie.harvest.animals;
 
 import static joshie.harvest.core.network.PacketHandler.sendToEveryone;
+import io.netty.buffer.ByteBuf;
 
 import java.util.Random;
 import java.util.UUID;
@@ -14,7 +15,10 @@ import joshie.harvest.core.config.Animals;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.helpers.generic.EntityHelper;
-import joshie.harvest.core.network.PacketSyncCanProduce;
+import joshie.harvest.core.network.animals.PacketSyncDaysNotFed;
+import joshie.harvest.core.network.animals.PacketSyncEverything;
+import joshie.harvest.core.network.animals.PacketSyncHealthiness;
+import joshie.harvest.core.network.animals.PacketSyncProductsProduced;
 import joshie.harvest.items.HFItems;
 import joshie.harvest.items.ItemTreat;
 import joshie.harvest.player.relationships.RelationshipHelper;
@@ -50,8 +54,8 @@ public class AnimalData implements IAnimalData {
 
     //Product based stuff
     private byte daysPassed; //How many days have passed so far
-    private byte maxProductsPerDay = 1; //The maximum number of products this animal can produce a day
-    private byte numProductsProduced = 0; //The number of products this animal has produced today (resets each day)
+    private byte productsPerDay = 1; //The maximum number of products this animal can produce a day
+    private boolean producedProducts; //Whether the animal has produced products this day
     private boolean thrown; //Whether this animal has been thrown or not today, only affects chickens
     private boolean treated; //Whether this animal has had it's treat for today
     private short genericTreats; //Number of generic treats this animal had
@@ -158,15 +162,15 @@ public class AnimalData implements IAnimalData {
                     animal.removePotionEffect(Potion.moveSlowdown.id);
                 }
             }
-            
+
             //Update the maximum produced products
-            if (treated && maxProductsPerDay < 5) {
+            if (treated && productsPerDay < 5) {
                 int requiredGeneric = type.getGenericTreatCount();
                 int requiredType = type.getTypeTreatCount();
                 if (genericTreats >= requiredGeneric && requiredType >= typeTreats) {
                     genericTreats -= requiredGeneric;
                     typeTreats -= requiredType;
-                    maxProductsPerDay++;
+                    productsPerDay++;
                 }
             }
 
@@ -175,11 +179,9 @@ public class AnimalData implements IAnimalData {
             if (daysBetween > 0) {
                 if (daysPassed >= daysBetween) {
                     daysPassed = 0;
-                    numProductsProduced = 0;
+                    producedProducts = false;
                     type.newDay(data, animal);
                 }
-
-                sendToEveryone(new PacketSyncCanProduce(animal.getEntityId(), false, canProduce()));
             }
 
             //Pregnancy Test!
@@ -197,6 +199,7 @@ public class AnimalData implements IAnimalData {
                 animal.addGrowth(1200);
             }
 
+            sendToEveryone(new PacketSyncEverything(animal.getEntityId(), this));
             return true;
         } else return false;
     }
@@ -210,10 +213,10 @@ public class AnimalData implements IAnimalData {
     public EntityAnimal getAnimal() {
         return animal;
     }
-    
+
     @Override
-    public int getProductsPerDay() {
-        return maxProductsPerDay;
+    public byte getProductsPerDay() {
+        return productsPerDay;
     }
 
     private EntityPlayer getAndCreateOwner() {
@@ -250,13 +253,13 @@ public class AnimalData implements IAnimalData {
 
     @Override
     public boolean canProduce() {
-        return healthiness > 0 && daysNotFed <= 0 && numProductsProduced < maxProductsPerDay;
+        return healthiness > 0 && !producedProducts && productsPerDay > 0;
     }
 
     @Override
     public void setProduced() {
-        numProductsProduced++;
-        sendToEveryone(new PacketSyncCanProduce(animal.getEntityId(), false, canProduce()));
+        producedProducts = true;
+        sendToEveryone(new PacketSyncProductsProduced(animal.getEntityId(), producedProducts));
     }
 
     @Override
@@ -288,6 +291,7 @@ public class AnimalData implements IAnimalData {
         if (daysNotFed >= 0) {
             daysNotFed = -1;
             affectRelationship(player, 5);
+            sendToEveryone(new PacketSyncDaysNotFed(animal.getEntityId(), daysNotFed));
         }
     }
 
@@ -299,6 +303,7 @@ public class AnimalData implements IAnimalData {
                 isSick = false;
             }
 
+            sendToEveryone(new PacketSyncHealthiness(animal.getEntityId(), healthiness));
             return true;
         } else return false;
     }
@@ -320,7 +325,7 @@ public class AnimalData implements IAnimalData {
                 }
             }
         }
-        
+
         return false;
     }
 
@@ -353,6 +358,22 @@ public class AnimalData implements IAnimalData {
     }
 
     @Override
+    public void toBytes(ByteBuf buf) {
+        buf.writeByte(healthiness);
+        buf.writeByte(daysNotFed);
+        buf.writeByte(productsPerDay);
+        buf.writeBoolean(producedProducts);
+    }
+
+    @Override
+    public void fromBytes(ByteBuf buf) {
+        healthiness = buf.readByte();
+        daysNotFed = buf.readByte();
+        productsPerDay = buf.readByte();
+        producedProducts = buf.readBoolean();
+    }
+
+    @Override
     public void readFromNBT(NBTTagCompound nbt) {
         if (nbt.hasKey("Owner")) {
             o_uuid = UUID.fromString(nbt.getString("Owner"));
@@ -371,8 +392,8 @@ public class AnimalData implements IAnimalData {
         isSick = nbt.getBoolean("IsSick");
         thrown = nbt.getBoolean("Thrown");
         if (type.getDaysBetweenProduction() > 0) {
-            maxProductsPerDay = nbt.getByte("NumProducts");
-            numProductsProduced = nbt.getByte("ProductsProduced");
+            productsPerDay = nbt.getByte("NumProducts");
+            producedProducts = nbt.getBoolean("ProducedProducts");
         }
 
         isPregnant = nbt.getBoolean("IsPregnant");
@@ -399,11 +420,27 @@ public class AnimalData implements IAnimalData {
         nbt.setBoolean("Thrown", thrown);
 
         if (type.getDaysBetweenProduction() > 0) {
-            nbt.setByte("NumProducts", (byte) maxProductsPerDay);
-            nbt.setByte("ProductsProduced", (byte) numProductsProduced);
+            nbt.setByte("NumProducts", (byte) productsPerDay);
+            nbt.setBoolean("ProducedProducts", producedProducts);
         }
 
         nbt.setBoolean("IsPregnant", isPregnant);
         nbt.setByte("DaysPregnant", daysPregnant);
+    }
+    
+    /** Setters **/
+    @Override
+    public void setHealthiness(byte healthiness) {
+        this.healthiness = healthiness;
+    }
+
+    @Override
+    public void setDaysNotFed(byte daysNotFed) {
+        this.daysNotFed = daysNotFed;
+    }
+
+    @Override
+    public void setProductsProduced(boolean producedProducts) {
+        this.producedProducts = producedProducts;
     }
 }

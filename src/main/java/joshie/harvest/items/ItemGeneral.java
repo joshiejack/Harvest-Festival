@@ -1,7 +1,10 @@
 package joshie.harvest.items;
 
+import java.util.HashMap;
+
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
+import joshie.harvest.api.animals.IMilkable;
 import joshie.harvest.api.cooking.ICookingAltIcon;
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.core.HFTab;
@@ -10,7 +13,9 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 public class ItemGeneral extends ItemHFMeta implements ICreativeSorted, ICookingAltIcon {
     public static final int BLUE_FEATHER = 0;
@@ -77,7 +82,7 @@ public class ItemGeneral extends ItemHFMeta implements ICreativeSorted, ICooking
                 return "invalid";
         }
     }
-    
+
     @Override
     public boolean hasAlt(ItemStack stack) {
         return stack.getItemDamage() == FLOUR;
@@ -113,12 +118,36 @@ public class ItemGeneral extends ItemHFMeta implements ICreativeSorted, ICooking
     }
 
     @Override
+    public int getMaxItemUseDuration(ItemStack stack) {
+        return stack.getItemDamage() == MILKER ? 32 : 0;
+    }
+
+    @Override
+    public EnumAction getItemUseAction(ItemStack stack) {
+        return stack.getItemDamage() == MILKER ? EnumAction.bow : EnumAction.none;
+    }
+
+    private HashMap<EntityPlayer, IMilkable> milkables = new HashMap();
+
+    @Override
+    public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player) {
+        if (stack.getItemDamage() == MILKER) {
+            IMilkable milkable = milkables.get(player);
+            if (milkable != null) {
+                milkable.milk(player);
+            }
+        }
+
+        return stack;
+    }
+
+    @Override
     public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer player, EntityLivingBase living) {
         if (living instanceof IAnimalTracked) {
             IAnimalTracked tracked = (IAnimalTracked) living;
             IAnimalData data = ((IAnimalTracked) tracked).getData();
-            EntityAnimal animal = (EntityAnimal) living;
             int metadata = stack.getItemDamage();
+            EntityAnimal animal = (EntityAnimal) living;
             if (metadata == BRUSH && !(living instanceof EntityChicken)) {
                 if (!player.worldObj.isRemote) {
                     data.clean(player);
@@ -145,6 +174,14 @@ public class ItemGeneral extends ItemHFMeta implements ICreativeSorted, ICooking
                     if (data.impregnate(player)) {
                         stack.stackSize--;
                     }
+                }
+
+                return true;
+            } else if (metadata == MILKER && living instanceof IMilkable) {
+                if (((IMilkable) living).canMilk()) {
+                    milkables.put(player, (IMilkable) living);
+                    player.setItemInUse(stack, this.getMaxItemUseDuration(stack));
+                    return true;
                 }
             }
         }

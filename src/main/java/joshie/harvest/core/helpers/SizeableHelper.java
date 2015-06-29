@@ -33,6 +33,6 @@ public class SizeableHelper {
             if (relationship >= s.getRelationshipRequirement()) size = s;
         }
         
-        return SizeableHelper.getSizeable(SizeableMeta.MILK, tracked.getData().getProductsPerDay(), size);
+        return SizeableHelper.getSizeable(SizeableMeta.MILK, tracked.getData().getProductsPerDay() , size);
     }
 }

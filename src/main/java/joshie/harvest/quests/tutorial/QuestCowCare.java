@@ -22,7 +22,6 @@ import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.quests.Quest;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -48,7 +47,7 @@ public class QuestCowCare extends Quest {
                         hasBrushed = true;
                         hasChanged = true;
                     } else if (!hasMilked && ToolHelper.isMilker(held)) {
-                        if (HFTrackers.getAnimalTracker().canProduceProduct(cow.getData())) {
+                        if (cow.getData().canProduce()) {
                             hasMilked = true;
                             hasChanged = true;
                         }

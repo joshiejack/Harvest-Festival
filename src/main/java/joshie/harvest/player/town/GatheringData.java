@@ -41,7 +41,7 @@ public class GatheringData {
                 int x = building.xCoord + 32 - world.rand.nextInt(64);
                 int y = building.yCoord + 4 - world.rand.nextInt(8);
                 int z = building.zCoord + 32 - world.rand.nextInt(64); 
-                if (world.getBlock(x, y, z) == Blocks.grass) {
+                if (world.getBlock(x, y, z) == Blocks.grass && world.getBlock(x, y + 1, z).isAir(world, x, y + 1, z)) {
                     ItemStack random = getRandomBlock();
                     Block block = Block.getBlockFromItem(random.getItem());
                     int meta = random.getItemDamage();

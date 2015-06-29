@@ -42,14 +42,4 @@ public class AnimalTrackerServer extends AnimalTracker {
             }
         }
     }
-
-    @Override
-    public boolean canProduceProduct(IAnimalData animal) {
-        return animal.canProduce();
-    }
-
-    @Override
-    public void setProducedProduct(IAnimalData animal) {
-        animal.setProduced();
-    }
 }

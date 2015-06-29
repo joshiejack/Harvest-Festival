@@ -1,5 +1,6 @@
 package joshie.harvest.api.animals;
 
+import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -15,7 +16,7 @@ public interface IAnimalData {
     public EntityPlayer getOwner();
 
     /** Returns the number of products this animal can produce per day **/
-    public int getProductsPerDay();
+    public byte getProductsPerDay();
 
     /** Marks this player as the animals owner **/
     public void setOwner(EntityPlayer player);
@@ -54,9 +55,18 @@ public interface IAnimalData {
      *  return true if sucessful */
     public boolean impregnate(EntityPlayer player);
 
+    /** Syncs any important data to the connected clients **/
+    public void toBytes(ByteBuf buf);
+    public void fromBytes(ByteBuf buf);
+
     /** Read information from nbt **/
     public void readFromNBT(NBTTagCompound nbt);
 
     /** Write information to nbt **/
     public void writeToNBT(NBTTagCompound nbt);
+
+    /** Setters **/
+    public void setHealthiness(byte healthiness);
+    public void setDaysNotFed(byte daysNotFed);
+    public void setProductsProduced(boolean producedProducts);
 }

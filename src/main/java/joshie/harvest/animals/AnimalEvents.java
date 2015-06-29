@@ -1,12 +1,10 @@
 package joshie.harvest.animals;
 
-import static joshie.harvest.core.network.PacketHandler.sendToServer;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.core.config.Animals;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.network.PacketDismount;
 import joshie.harvest.core.network.PacketHandler;
-import joshie.harvest.core.network.PacketSyncCanProduce;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityCow;
@@ -27,9 +25,6 @@ public class AnimalEvents {
         Entity entity = event.entity;
         if (entity instanceof IAnimalTracked) {
             HFTrackers.getAnimalTracker().onJoinWorld(((IAnimalTracked) entity).getData());
-            if (event.world.isRemote) {
-                sendToServer(new PacketSyncCanProduce(entity.getEntityId(), true));
-            }
         }
     }
 

@@ -27,7 +27,6 @@ import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketPurchaseItem;
 import joshie.harvest.core.network.PacketSetCalendar;
 import joshie.harvest.core.network.PacketSyncBirthday;
-import joshie.harvest.core.network.PacketSyncCanProduce;
 import joshie.harvest.core.network.PacketSyncCooking;
 import joshie.harvest.core.network.PacketSyncCrop;
 import joshie.harvest.core.network.PacketSyncForecast;
@@ -39,6 +38,10 @@ import joshie.harvest.core.network.PacketSyncOrientation;
 import joshie.harvest.core.network.PacketSyncRelationship;
 import joshie.harvest.core.network.PacketSyncStats;
 import joshie.harvest.core.network.PacketWateringCan;
+import joshie.harvest.core.network.animals.PacketSyncDaysNotFed;
+import joshie.harvest.core.network.animals.PacketSyncEverything;
+import joshie.harvest.core.network.animals.PacketSyncHealthiness;
+import joshie.harvest.core.network.animals.PacketSyncProductsProduced;
 import joshie.harvest.core.network.quests.PacketQuestCompleted;
 import joshie.harvest.core.network.quests.PacketQuestDecreaseHeld;
 import joshie.harvest.core.network.quests.PacketQuestSetAvailable;
@@ -97,8 +100,6 @@ public class HFCore {
         PacketHandler.registerPacket(PacketSyncForecast.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketSyncCrop.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketSyncGold.class, Side.CLIENT);
-        PacketHandler.registerPacket(PacketSyncCanProduce.class, Side.CLIENT);
-        PacketHandler.registerPacket(PacketSyncCanProduce.class, Side.SERVER);
         PacketHandler.registerPacket(PacketSyncRelationship.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketSyncMarriage.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketSyncStats.class, Side.CLIENT);
@@ -111,6 +112,12 @@ public class HFCore {
         PacketHandler.registerPacket(PacketSyncFridge.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketWateringCan.class, Side.SERVER);
         PacketHandler.registerPacket(PacketDismount.class, Side.SERVER);
+        
+        //Animal Packets
+        PacketHandler.registerPacket(PacketSyncEverything.class, Side.CLIENT);
+        PacketHandler.registerPacket(PacketSyncHealthiness.class, Side.CLIENT);
+        PacketHandler.registerPacket(PacketSyncDaysNotFed.class, Side.CLIENT);
+        PacketHandler.registerPacket(PacketSyncProductsProduced.class, Side.CLIENT);
 
         //Quest Packets
         PacketHandler.registerPacket(PacketQuestSetAvailable.class, Side.CLIENT);

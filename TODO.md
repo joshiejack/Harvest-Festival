@@ -35,7 +35,6 @@
 - [ ] entities/jamie.png
 - [ ] entities/jenni.png
 - [ ] entities/jim.png
-- [ ] entities/katlin.png
 - [ ] entities/liara.png
 - [ ] entities/ondra.png
 - [ ] entities/thomas.png

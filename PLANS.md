@@ -49,6 +49,7 @@ Stage 4 (0.8.0)
 Stage 5 (0.9.0) 
 * Harvest Sprite
 * Power Berries
+ ->Special Berry from the 
 * TV Shopping
  -> TV Model
  -> Small Artwork to draw onto TV Screen for each Channel with a sprite on it

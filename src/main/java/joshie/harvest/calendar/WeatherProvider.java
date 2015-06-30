@@ -156,9 +156,28 @@ public class WeatherProvider extends WorldProviderSurface {
     @Override
     public void updateWeather() {
         if (!worldObj.isRemote) {
-            Weather weather = HFTrackers.getCalendar().getTodaysWeather();
-            if (weather != Weather.SUNNY) {
+            joshie.harvest.calendar.Calendar calendar = HFTrackers.getCalendar();
+            float rainStrength = calendar.getTodaysRainStrength();
+            float thunderStrength = calendar.getTodaysStormStrength();
+            if (calendar.getTodaysWeather().isRain()) {
                 HFTrackers.getCropTracker().doRain();
+            }
+            
+            if (worldObj.rainingStrength > rainStrength) {
+                worldObj.rainingStrength -= 0.01F;
+            } else if (worldObj.rainingStrength < rainStrength) {
+                worldObj.rainingStrength += 0.01F;
+            }
+            
+            if (worldObj.thunderingStrength > thunderStrength) {
+                worldObj.thunderingStrength -= 0.1F;
+            } else if (worldObj.thunderingStrength < thunderStrength) {
+                worldObj.thunderingStrength += 0.01F;
+            }
+            
+            /*
+            if (weather != Weather.SUNNY) {
+                
             }
             
             if (weather == Weather.SUNNY) {
@@ -181,7 +200,7 @@ public class WeatherProvider extends WorldProviderSurface {
                 if (worldObj.rainingStrength < 2F) {
                     worldObj.rainingStrength = worldObj.rainingStrength + 0.01F;
                 }
-            }
+            } 
 
             if (weather == Weather.TYPHOON) {
                 if (worldObj.thunderingStrength < 1F) {
@@ -189,7 +208,7 @@ public class WeatherProvider extends WorldProviderSurface {
                 }
             } else if (worldObj.thunderingStrength > 0F) {
                 worldObj.thunderingStrength = worldObj.thunderingStrength - 0.01F;
-            }
+            } */
         }
     }
 }

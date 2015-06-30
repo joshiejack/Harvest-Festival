@@ -9,5 +9,6 @@ public class CalendarClient extends Calendar {
     @Override
     public void setForecast(Weather[] forecast) {
         this.forecast = forecast;
+        updateWeatherStrength();
     }
 }

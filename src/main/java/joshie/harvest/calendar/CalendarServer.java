@@ -15,6 +15,7 @@ import net.minecraft.nbt.NBTTagCompound;
 
 public class CalendarServer extends Calendar {
     private static final Random rand = new Random();
+    private static float rainStrength;
 
     @Override
     public void setTodaysWeather(Weather weather) {
@@ -26,8 +27,6 @@ public class CalendarServer extends Calendar {
         switch (weather) {
             case SUNNY:
                 return joshie.harvest.core.config.Calendar.ENABLE_SUNNY;
-            case DRIZZLE:
-                return joshie.harvest.core.config.Calendar.ENABLE_DRIZZLE;
             case RAIN:
                 return joshie.harvest.core.config.Calendar.ENABLE_RAIN;
             case TYPHOON:
@@ -57,6 +56,11 @@ public class CalendarServer extends Calendar {
 
         return Weather.SUNNY;
     }
+    
+    @Override
+    public float getTodaysRainStrength() {
+        return rainStrength;
+    }
 
     @Override
     public void updateForecast() {
@@ -67,6 +71,7 @@ public class CalendarServer extends Calendar {
             }
         }
 
+        updateWeatherStrength();
         PacketHandler.sendToEveryone(new PacketSyncForecast(forecast));
     }
 

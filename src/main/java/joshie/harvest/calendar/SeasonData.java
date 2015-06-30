@@ -19,7 +19,7 @@ public class SeasonData implements ISeasonData {
     public final long sunrise;
     public final int seasonColor;
 
-    public SeasonData(Season season, int color, double factor, float angle, long sunrise, String textColor, int seasonColor, double sunny, double drizzle, double rain, double typhoon, double snow, double blizzard) {
+    public SeasonData(Season season, int color, double factor, float angle, long sunrise, String textColor, int seasonColor, double sunny, double rain, double typhoon, double snow, double blizzard) {
         this.season = season;
         this.resource = new ResourceLocation(MODPATH, "textures/hud/" + season.name().toLowerCase() + ".png");
         this.skyColor = color;
@@ -30,11 +30,10 @@ public class SeasonData implements ISeasonData {
         this.seasonColor = seasonColor;
         this.chances = new double[6];
         this.chances[0] = sunny;
-        this.chances[1] = drizzle;
-        this.chances[2] = rain;
-        this.chances[3] = typhoon;
-        this.chances[4] = snow;
-        this.chances[5] = blizzard;
+        this.chances[1] = rain;
+        this.chances[2] = typhoon;
+        this.chances[3] = snow;
+        this.chances[4] = blizzard;
     }
     
     @Override

@@ -24,7 +24,7 @@ public class CalendarHelper {
     }
 
     public static long getTime(World world) {
-        return world.getWorldTime() % Calendar.TICKS_PER_DAY;
+        return (world.getWorldTime() + 6000) % Calendar.TICKS_PER_DAY;
     }
     
     public static int getScaledTime(int time) {

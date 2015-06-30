@@ -7,6 +7,7 @@ import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.api.core.ISeasonData;
 import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.helpers.CalendarHelper;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.Translate;
@@ -24,6 +25,12 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class CalendarRender {
+    private String formatTime(int time) {
+        int hour = time / 1000;
+        int minute = (int) ((double) (time % 1000) / 20 * (60 / 50));
+        return (hour < 10 ? "0" + hour : hour) + ":" + (minute < 10 ? "0" + minute : minute) ;
+    }
+    
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void onRenderOverlay(RenderGameOverlayEvent.Pre event) {
@@ -47,16 +54,21 @@ public class CalendarRender {
             //Enlarge the Day
             GL11.glPushMatrix();
             GL11.glScalef(1.4F, 1.4F, 1.4F);
-            mc.fontRenderer.drawStringWithShadow(data.getLocalized() + " " + date.getDay(), 30, 8, 0xFFFFFFFF);
+            mc.fontRenderer.drawStringWithShadow(data.getLocalized() + " " + date.getDay(), 30, 7, 0xFFFFFFFF);
+            GL11.glPopMatrix();
+            
+            GL11.glPushMatrix();
+            String time = formatTime(CalendarHelper.getScaledTime((int) CalendarHelper.getTime(MCClientHelper.getWorld())));
+            mc.fontRenderer.drawStringWithShadow("(" + date.getWeekday().name().substring(0, 3) +  ")" + "  " + time, 42, 23, 0xFFFFFFFF);
             GL11.glPopMatrix();
 
-            mc.fontRenderer.drawStringWithShadow(Translate.translate("year") + " " + date.getYear(), 45, 25, 0xFFFFFFFF);
             mc.getTextureManager().bindTexture(HFModInfo.elements);
             String text = NumberFormat.getNumberInstance(Locale.US).format(HFTrackers.getClientPlayerTracker().getStats().getGold());
             int width = event.resolution.getScaledWidth();
             mc.ingameGUI.drawTexturedModalRect(width - mc.fontRenderer.getStringWidth(text) - 20, 2, 244, 0, 12, 12);
-            mc.fontRenderer.drawStringWithShadow(text, width - mc.fontRenderer.getStringWidth(text) - 5, 5, 0xFFFFFFFF);
-
+            int coinWidth = width - mc.fontRenderer.getStringWidth(text) - 5;
+            mc.fontRenderer.drawStringWithShadow(text, coinWidth, 5, 0xFFFFFFFF);
+            
             GL11.glDisable(GL11.GL_BLEND);
             GL11.glPopMatrix();
             mc.mcProfiler.endSection();

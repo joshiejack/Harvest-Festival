@@ -15,7 +15,6 @@ public class PacketQuestSetAvailable implements IMessage, IMessageHandler<Packet
     private IQuest quest;
 
     public PacketQuestSetAvailable() {}
-
     public PacketQuestSetAvailable(IQuest quest) {
         this.quest = quest;
     }

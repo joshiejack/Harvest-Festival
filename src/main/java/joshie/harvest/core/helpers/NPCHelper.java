@@ -4,8 +4,10 @@ import java.util.UUID;
 
 import joshie.harvest.api.WorldLocation;
 import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.shops.IShop;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.npc.NPCScriptHandler;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import joshie.harvest.npc.entity.EntityNPCMiner;
@@ -31,7 +33,32 @@ public class NPCHelper {
         } else return new EntityNPC(owning_player, world, npc);
     }
     
+    public static boolean isShopOpen(INPC npc, World world, EntityPlayer player) {
+        IShop shop = npc.getShop();
+        if (shop != null && shop.isOpen(world, player) && shop.getContents(player).size() > 0) {
+            return true;
+        }
+        
+        return false;
+    }
+    
     public static int getGuiIDForNPC(INPC npc, World world, EntityPlayer player, boolean isSneaking) {
-        return npc.getShop() != null && npc.getShop().isOpen(world, player) && npc.getShop().getContents(player).size() > 0 ? (npc.isBuilder()? GuiHandler.SHOP_BUILDER: GuiHandler.SHOP) : (isSneaking) ? GuiHandler.GIFT : GuiHandler.NPC;
+        if (isShopOpen(npc, world, player)) {
+            return GuiHandler.NPC_SHOP;
+        }
+        
+        return player.isSneaking() ? GuiHandler.GIFT : GuiHandler.NPC;
+        //return npc.getShop() != null && npc.getShop().isOpen(world, player) && npc.getShop().getContents(player).size() > 0 ? (npc.isBuilder()? GuiHandler.SHOP_BUILDER: GuiHandler.SHOP) : (isSneaking) ? GuiHandler.GIFT : GuiHandler.NPC;
+    }
+
+    private static final NPCScriptHandler master_script = new NPCScriptHandler();
+    
+    public static NPCScriptHandler getScript(EntityPlayer player, INPC npc, NPCScriptHandler previous) {
+        if (previous != null) {
+            NPCScriptHandler s = previous.next(player, npc);
+            if (s != null) return s;
+        }
+        
+        return master_script;
     }
 }

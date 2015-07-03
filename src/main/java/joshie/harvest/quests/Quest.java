@@ -67,6 +67,12 @@ public abstract class Quest implements IQuest {
     protected boolean isRepeatable() {
         return false;
     }
+    
+    public int getOptions() {
+        return 0;
+    }
+    
+    public void onSelected(EntityPlayer player, int option) {}
 
     //This is only called client side
     @Override
@@ -178,8 +184,8 @@ public abstract class Quest implements IQuest {
 
     public void onRightClickBlock(EntityPlayer player, World world, int x, int y, int z, int side) {}
 
+    public void select(EntityPlayer player, EntityNPC npc, int option) {}
     public void confirm(EntityPlayer player, EntityNPC npc) {}
-
     public void cancel(EntityPlayer player, EntityNPC npc) {}
     
     public void onStageChanged(EntityPlayer player, int previous, int stage) {}

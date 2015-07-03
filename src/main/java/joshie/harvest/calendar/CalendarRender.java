@@ -27,7 +27,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class CalendarRender {
     private String formatTime(int time) {
         int hour = time / 1000;
-        int minute = (int) ((double) (time % 1000) / 20 * (60 / 50));
+        int minute = (int) ((double) (time % 1000) / 20 * 1.2);
         return (hour < 10 ? "0" + hour : hour) + ":" + (minute < 10 ? "0" + minute : minute) ;
     }
     

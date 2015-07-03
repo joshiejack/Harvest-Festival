@@ -2,11 +2,14 @@ package joshie.harvest.core.handlers;
 
 import joshie.harvest.cooking.gui.ContainerFridge;
 import joshie.harvest.cooking.gui.GuiFridge;
+import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.gui.ContainerNPC;
 import joshie.harvest.npc.gui.ContainerNPCGift;
+import joshie.harvest.npc.gui.ContainerNPCSelect;
 import joshie.harvest.npc.gui.GuiNPC;
 import joshie.harvest.npc.gui.GuiNPCGift;
+import joshie.harvest.npc.gui.GuiNPCSelect;
 import joshie.harvest.shops.gui.ContainerNPCBuilderShop;
 import joshie.harvest.shops.gui.ContainerNPCShop;
 import joshie.harvest.shops.gui.GuiNPCBuilderShop;
@@ -21,6 +24,7 @@ public class GuiHandler implements IGuiHandler {
     public static final int GIFT = 2;
     public static final int FRIDGE = 3;
     public static final int SHOP_BUILDER = 4;
+    public static final int NPC_SHOP = 5;
 
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
@@ -30,6 +34,13 @@ public class GuiHandler implements IGuiHandler {
             case SHOP_BUILDER:  return new ContainerNPCBuilderShop((EntityNPC) world.getEntityByID(x), player.inventory);
             case GIFT:          return new ContainerNPCGift((EntityNPC) world.getEntityByID(x), player.inventory);
             case FRIDGE:        return new ContainerFridge(player.inventory, HFTrackers.getServerPlayerTracker(player).getFridge());
+            case NPC_SHOP:    {
+                EntityNPC npc = (EntityNPC) world.getEntityByID(x);
+                if (NPCHelper.isShopOpen(npc.getNPC(), world, player)) {
+                    return new ContainerNPCSelect(npc, player.inventory);
+                } else   return new ContainerNPC(npc, player.inventory);
+            }
+            
             default:            return null;
         }
     }
@@ -42,6 +53,12 @@ public class GuiHandler implements IGuiHandler {
             case SHOP_BUILDER:  return new GuiNPCBuilderShop((EntityNPC) world.getEntityByID(x), player);
             case GIFT:          return new GuiNPCGift((EntityNPC) world.getEntityByID(x), player);
             case FRIDGE:        return new GuiFridge(player.inventory, HFTrackers.getClientPlayerTracker().getFridge());
+            case NPC_SHOP:    {
+                EntityNPC npc = (EntityNPC) world.getEntityByID(x);
+                if (NPCHelper.isShopOpen(npc.getNPC(), world, player)) {
+                    return new GuiNPCSelect(npc, player);
+                } else   return new GuiNPC(npc, player);
+            }
             default:            return null;
         }
     }

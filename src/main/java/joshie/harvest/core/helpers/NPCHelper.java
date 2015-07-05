@@ -7,7 +7,6 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.shops.IShop;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.npc.NPCScriptHandler;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import joshie.harvest.npc.entity.EntityNPCMiner;
@@ -44,21 +43,10 @@ public class NPCHelper {
     
     public static int getGuiIDForNPC(INPC npc, World world, EntityPlayer player, boolean isSneaking) {
         if (isShopOpen(npc, world, player)) {
-            return GuiHandler.NPC_SHOP;
+            return GuiHandler.SHOP_WELCOME;
         }
         
         return player.isSneaking() ? GuiHandler.GIFT : GuiHandler.NPC;
         //return npc.getShop() != null && npc.getShop().isOpen(world, player) && npc.getShop().getContents(player).size() > 0 ? (npc.isBuilder()? GuiHandler.SHOP_BUILDER: GuiHandler.SHOP) : (isSneaking) ? GuiHandler.GIFT : GuiHandler.NPC;
-    }
-
-    private static final NPCScriptHandler master_script = new NPCScriptHandler();
-    
-    public static NPCScriptHandler getScript(EntityPlayer player, INPC npc, NPCScriptHandler previous) {
-        if (previous != null) {
-            NPCScriptHandler s = previous.next(player, npc);
-            if (s != null) return s;
-        }
-        
-        return master_script;
     }
 }

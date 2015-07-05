@@ -9,29 +9,24 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.QuestHelper;
 import joshie.harvest.core.helpers.ToolHelper;
 import joshie.harvest.core.util.ContainerBase;
+import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 
-public class ContainerNPCGift extends ContainerBase {
+public class ContainerNPCGift extends ContainerNPCBase {
     //The Fridge CAN be null
     private EntityNPC npc;
 
     public ContainerNPCGift(EntityNPC npc, InventoryPlayer playerInventory) {
+        super(npc, playerInventory);
         this.npc = npc;
     }
 
     @Override
     public void onContainerClosed(EntityPlayer player) {
         super.onContainerClosed(player);
-        npc.setTalking((EntityPlayer) null);
-        HashSet<IQuest> quests = QuestHelper.getCurrentQuest(player);
-        for (IQuest quest : quests) {
-            if (quest != null) {
-                quest.onClosedChat(player, npc);
-            }
-        }
 
         if (!player.worldObj.isRemote) {
             ItemStack gift = player.getCurrentEquippedItem();
@@ -49,6 +44,11 @@ public class ContainerNPCGift extends ContainerBase {
 
             HFTrackers.getPlayerTracker(player).getRelationships().gift(player, theNpc, points);
             player.inventory.decrStackSize(player.inventory.currentItem, 1);
+        }
+        
+        //Kill the goddess
+        if (npc.getNPC() == HFNPCs.goddess) {
+            npc.setDead();
         }
     }
 }

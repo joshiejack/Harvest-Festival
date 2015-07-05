@@ -5,6 +5,7 @@ import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.shops.IShop;
 import joshie.harvest.npc.gift.Gifts.Quality;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
 public interface INPC extends IRelatable {
@@ -56,8 +57,9 @@ public interface INPC extends IRelatable {
      *  the shop can be null, if there is no shop. */
     public IShop getShop();
 
-    /** Returns a random greeting for this npc **/
-    public String getGreeting();
+    /** Returns a random greeting for this npc 
+     * @param player **/
+    public String getGreeting(EntityPlayer player);
 
     /** What this NPC says when they accept a marriage proposal **/
     public String getAcceptProposal();

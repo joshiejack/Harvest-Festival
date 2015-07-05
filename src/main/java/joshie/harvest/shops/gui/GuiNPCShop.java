@@ -12,7 +12,7 @@ import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketPurchaseItem;
 import joshie.harvest.npc.entity.EntityNPC;
-import joshie.harvest.npc.gui.GuiNPC;
+import joshie.harvest.npc.gui.GuiNPCBase;
 import joshie.harvest.player.stats.StatDataClient;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -20,14 +20,13 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-public class GuiNPCShop extends GuiNPC {
+public class GuiNPCShop extends GuiNPCBase {
     protected static final ResourceLocation gui_texture = new ResourceLocation(HFModInfo.MODPATH, "textures/gui/shop.png");
     protected static final ResourceLocation number_texture = new ResourceLocation(HFModInfo.MODPATH, "lang/en_US/shops.png");
     protected static final ResourceLocation shelve_texture = new ResourceLocation(HFModInfo.MODPATH, "textures/gui/shop_extra.png");
     protected StatDataClient stats;
     protected List<IPurchaseable> contents;
     protected IShopGuiOverlay overlay;
-    protected boolean welcome;
     protected int start;
 
     public GuiNPCShop(EntityNPC npc, EntityPlayer player) {
@@ -46,31 +45,28 @@ public class GuiNPCShop extends GuiNPC {
 
     @Override
     public void drawBackground(int x, int y) {
-        if (!welcome) super.drawBackground(x, y);
-        else {
-            y += 20; //Add 20
+        y += 20; //Add 20
 
-            GL11.glPushMatrix();
-            GL11.glEnable(GL11.GL_BLEND);
-            mc.renderEngine.bindTexture(gui_texture);
-            drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
-            overlay.renderOverlay(this, x, y, xSize, ySize);
-            drawCoinage(x, y, stats.getGold());
-            drawShelves(x, y);
-            mc.renderEngine.bindTexture(shelve_texture);
-            
-            int up = 0;
-            int down = 0;
-            if (mouseX >= 231 && mouseX <= 242) {
-                up = mouseY >= 66 && mouseY <= 75? 17: 0;
-                down = mouseY >= 231 && mouseY <= 240? 17: 0;
-            }
-            
-            drawTexturedModalRect(x + 230, y + 45, 72 + up, 34, 14, 11);
-            drawTexturedModalRect(x + 230, y + 210, 72 + down, 47, 14, 11);
-            GL11.glDisable(GL11.GL_BLEND);
-            GL11.glPopMatrix();
+        GL11.glPushMatrix();
+        GL11.glEnable(GL11.GL_BLEND);
+        mc.renderEngine.bindTexture(gui_texture);
+        drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
+        overlay.renderOverlay(this, x, y, xSize, ySize);
+        drawCoinage(x, y, stats.getGold());
+        drawShelves(x, y);
+        mc.renderEngine.bindTexture(shelve_texture);
+
+        int up = 0;
+        int down = 0;
+        if (mouseX >= 231 && mouseX <= 242) {
+            up = mouseY >= 66 && mouseY <= 75 ? 17 : 0;
+            down = mouseY >= 231 && mouseY <= 240 ? 17 : 0;
         }
+
+        drawTexturedModalRect(x + 230, y + 45, 72 + up, 34, 14, 11);
+        drawTexturedModalRect(x + 230, y + 210, 72 + down, 47, 14, 11);
+        GL11.glDisable(GL11.GL_BLEND);
+        GL11.glPopMatrix();
     }
 
     protected void drawShelves(int x, int y) {
@@ -108,10 +104,10 @@ public class GuiNPCShop extends GuiNPC {
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
             mc.renderEngine.bindTexture(HFModInfo.elements);
             drawTexturedModalRect(x99 + 59, y37 + 50, 244, 0, 12, 12);
-            
+
             mc.fontRenderer.drawStringWithShadow("" + cost, x99 + 73, y37 + 53, 0xC39753);
             GL11.glColor3f(1.0F, 1.0F, 1.0F);
-            
+
             StackHelper.drawStack(display, x99 + 36, y37 + 46, 1.4F);
 
             index++;
@@ -147,14 +143,7 @@ public class GuiNPCShop extends GuiNPC {
     }
 
     @Override
-    public void drawForeground(int x, int y) {
-        if (!welcome) super.drawForeground(x, y);
-    }
-
-    @Override
-    public void endChat() {
-        welcome = true;
-    }
+    public void drawForeground(int x, int y) {}
 
     @Override
     protected void keyTyped(char character, int key) {
@@ -171,41 +160,38 @@ public class GuiNPCShop extends GuiNPC {
 
     @Override
     protected void onMouseClick(int x, int y) {
-        if (!welcome) super.onMouseClick(x, y);
-        else {
-            int index = 0;
-            for (int i = start; i < contents.size(); i++) {
-                if (index > 9) break;
-                IPurchaseable purchaseable = contents.get(i);
-                if (purchaseable.canBuy(player.worldObj, player)) {
-                    long cost = purchaseable.getCost();
-                    int indexPercent = index % 2;
-                    int indexDivide = index / 2;
-                    int percent99 = indexPercent * 99;
-                    int percent37 = indexDivide * 37;
-                    int posY = 41 + percent37;
-                    int posX = 98 + percent99;
+        int index = 0;
+        for (int i = start; i < contents.size(); i++) {
+            if (index > 9) break;
+            IPurchaseable purchaseable = contents.get(i);
+            if (purchaseable.canBuy(player.worldObj, player)) {
+                long cost = purchaseable.getCost();
+                int indexPercent = index % 2;
+                int indexDivide = index / 2;
+                int percent99 = indexPercent * 99;
+                int percent37 = indexDivide * 37;
+                int posY = 41 + percent37;
+                int posX = 98 + percent99;
 
-                    if (stats.getGold() - purchaseable.getCost() >= 0) {
-                        if (mouseY >= posY + 20 && mouseY <= posY + 52 && mouseX >= posX && mouseX <= posX + 32) {
-                            PacketHandler.sendToServer(new PacketPurchaseItem(purchaseable));
-                        }
+                if (stats.getGold() - purchaseable.getCost() >= 0) {
+                    if (mouseY >= posY + 20 && mouseY <= posY + 52 && mouseX >= posX && mouseX <= posX + 32) {
+                        PacketHandler.sendToServer(new PacketPurchaseItem(purchaseable));
                     }
-
-                    index++;
                 }
+
+                index++;
             }
-            
-            boolean up = false;
-            boolean down = false;
-            if (mouseX >= 231 && mouseX <= 242) {
-                up = mouseY >= 66 && mouseY <= 75;
-                down = mouseY >= 231 && mouseY <= 240;
-            }
-            
-            if (down) setStart(start + getIncrease());
-            else if (up) setStart(start - getIncrease());
         }
+
+        boolean up = false;
+        boolean down = false;
+        if (mouseX >= 231 && mouseX <= 242) {
+            up = mouseY >= 66 && mouseY <= 75;
+            down = mouseY >= 231 && mouseY <= 240;
+        }
+
+        if (down) setStart(start + getIncrease());
+        else if (up) setStart(start - getIncrease());
     }
 
     @Override
@@ -217,11 +203,11 @@ public class GuiNPCShop extends GuiNPC {
             else setStart(start - getIncrease());
         }
     }
-    
+
     public int getIncrease() {
         return 2;
     }
-    
+
     public int getMax() {
         return 10;
     }

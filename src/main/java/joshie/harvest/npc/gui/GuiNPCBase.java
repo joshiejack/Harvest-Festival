@@ -1,6 +1,7 @@
 package joshie.harvest.npc.gui;
 
 import joshie.harvest.api.HFApi;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.ChatFontRenderer;
 import joshie.harvest.core.util.GuiBase;
@@ -56,4 +57,10 @@ public class GuiNPCBase extends GuiBase {
             drawHeart(HFApi.RELATIONS.getAdjustedRelationshipValue(player, npc.getRelatable()));
         }
     }
+
+    public String getScript() {
+        return "missing chat";
+    }
+
+    public void endChat() {}
 }

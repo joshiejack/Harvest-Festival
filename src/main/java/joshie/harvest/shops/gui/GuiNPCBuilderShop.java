@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.helpers.PlayerHelper;
 import joshie.harvest.core.helpers.generic.StackHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.network.PacketHandler;
@@ -95,7 +94,6 @@ public class GuiNPCBuilderShop extends GuiNPCShop {
 
     @Override
     protected void onMouseClick(int x, int y) {
-        if (!welcome) super.onMouseClick(x, y);
         int index = 0;
         for (int i = start; i < contents.size(); i++) {
             if (index > 4) break;

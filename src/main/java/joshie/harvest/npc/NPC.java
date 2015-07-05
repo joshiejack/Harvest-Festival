@@ -233,7 +233,7 @@ public class NPC implements INPC {
 
     //Returns the script that this character should at this point
     @Override
-    public String getGreeting() {
+    public String getGreeting(EntityPlayer player) {
         if (greetings.size() == 0) {
             return "JOSHIE IS STOOPID AND FORGOT WELCOME LANG";
         }

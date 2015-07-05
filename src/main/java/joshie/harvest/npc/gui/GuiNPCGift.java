@@ -8,12 +8,12 @@ import joshie.harvest.npc.gift.Gifts.Quality;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
-public class GuiNPCGift extends GuiNPC {
+public class GuiNPCGift extends GuiNPCChat {
     private ItemStack gift;
     private Quality value;
 
     public GuiNPCGift(EntityNPC npc, EntityPlayer player) {
-        super(npc, player);
+        super(npc, player, -1);
         gift = player.getCurrentEquippedItem();
         value = npc.getNPC().getGiftValue(gift);
     }

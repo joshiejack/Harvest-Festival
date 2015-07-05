@@ -89,8 +89,6 @@ public class GuiNPCSelect extends GuiNPCBase {
         if (key == 28 || key == 57 || character == 'q') {
             selection.onSelected(npc, player, selected);
         }
-        
-        System.out.println(key);
     }
 
     @Override
@@ -131,7 +129,7 @@ public class GuiNPCSelect extends GuiNPCBase {
         /** Called when the option is selected **/
         public void onSelected(EntityNPC npc, EntityPlayer player, int option) {
             if (option == 1) {
-                player.openGui(HarvestFestival.instance, GuiHandler.SHOP, player.worldObj, npc.getEntityId(), 0, 0);
+                player.openGui(HarvestFestival.instance, GuiHandler.SHOP_MENU, player.worldObj, npc.getEntityId(), 0, 0);
             } else if (option == 2) {
                 player.openGui(HarvestFestival.instance, GuiHandler.NPC, player.worldObj, npc.getEntityId(), 0, 0);
             }

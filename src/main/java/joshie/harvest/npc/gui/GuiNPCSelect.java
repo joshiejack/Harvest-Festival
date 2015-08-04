@@ -16,8 +16,8 @@ public class GuiNPCSelect extends GuiNPCBase {
     public byte optionsTotal;
     public byte selected;
 
-    public GuiNPCSelect(EntityNPC npc, EntityPlayer player) {
-        super(npc, player);
+    public GuiNPCSelect(EntityNPC npc, EntityPlayer player, int next) {
+        super(npc, player, next);
         optionsTotal = 0;
         text = Arrays.copyOf(selection.getText(), selection.getText().length);
         selected = 1;

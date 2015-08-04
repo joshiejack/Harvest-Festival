@@ -41,9 +41,7 @@ public class GuiNPCChat extends GuiNPCBase {
     }
 
     public GuiNPCChat(EntityNPC npc, EntityPlayer player, int nextGui) {
-        super(npc, player);
-        this.nextGui = nextGui;
-
+        super(npc, player, nextGui);
         String[] original = WordUtils.wrap(format(getScript()), 39).split(SystemUtils.LINE_SEPARATOR);
         if (original != null) {
             int size = original.length / MAX_LINES_PER_PAGE;
@@ -160,14 +158,5 @@ public class GuiNPCChat extends GuiNPCBase {
 
         String script = HFTrackers.getClientPlayerTracker().getQuests().getScript(player, npc);
         return script == null ? npc.getNPC().getGreeting(player) : script;
-    }
-
-    @Override
-    public void endChat() {
-        player.closeScreen();
-
-        if (nextGui != -1) {
-            player.openGui(HarvestFestival.instance, nextGui, player.worldObj, npc.getEntityId(), 0, 0);
-        }
     }
 }

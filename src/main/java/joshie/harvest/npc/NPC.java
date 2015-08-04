@@ -7,9 +7,12 @@ import static joshie.harvest.npc.NPC.Gender.MALE;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.api.calendar.ICalendarDate;
+import joshie.harvest.api.npc.IConditionalGreeting;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.relations.IRelatableDataHandler;
 import joshie.harvest.api.shops.IShop;
@@ -34,12 +37,11 @@ public class NPC implements INPC {
         CHILD, ADULT, ELDER;
     }
 
-    protected ArrayList<String> greetings = new ArrayList(128);
+    protected List<IConditionalGreeting> conditionals = new ArrayList(256);
     protected ArrayList<String> thanks = new ArrayList(6);
     protected String accept = "WHAT?";
     protected String reject = "NO!";
     protected String name;
-    protected int last;
 
     private Age age;
     private Gender gender;
@@ -92,7 +94,7 @@ public class NPC implements INPC {
             key = HFModInfo.MODPATH + ".npc." + name + ".greeting" + i;
             String greeting = Text.localize(key);
             if (!greeting.equals(key)) {
-                greetings.add(greeting);
+                conditionals.add(new GreetingGeneric(greeting));
             }
 
             //Adding Generic Child Greetings
@@ -100,14 +102,14 @@ public class NPC implements INPC {
                 key = HFModInfo.MODPATH + ".npc.generic.child.greeting" + i;
                 greeting = Text.localize(key);
                 if (!greeting.equals(key)) {
-                    greetings.add(greeting);
+                    conditionals.add(new GreetingGeneric(greeting));
                 }
             } else {
                 //Add Generic Adult Greetings
                 key = HFModInfo.MODPATH + ".npc.generic.adult.greeting" + i;
                 greeting = Text.localize(key);
                 if (!greeting.equals(key)) {
-                    greetings.add(greeting);
+                    conditionals.add(new GreetingGeneric(greeting));
                 }
 
                 if (gender == MALE) {
@@ -115,22 +117,22 @@ public class NPC implements INPC {
                     key = HFModInfo.MODPATH + ".npc.generic.male.greeting" + i;
                     greeting = Text.localize(key);
                     if (!greeting.equals(key)) {
-                        greetings.add(greeting);
+                        conditionals.add(new GreetingGeneric(greeting));
                     }
                 } else if (gender == FEMALE) {
                     //Add Generic Female Greetings
                     key = HFModInfo.MODPATH + ".npc.generic.female.greeting" + i;
                     greeting = Text.localize(key);
                     if (!greeting.equals(key)) {
-                        greetings.add(greeting);
+                        conditionals.add(new GreetingGeneric(greeting));
                     }
                 }
             }
         }
 
-        Collections.shuffle(greetings);
+        Collections.shuffle(conditionals);
     }
-    
+
     @Override
     public IRelatableDataHandler getDataHandler() {
         return RelationshipHelper.getHandler("npc");
@@ -167,7 +169,7 @@ public class NPC implements INPC {
         this.home_location = home_location;
         return this;
     }
-    
+
     @Override
     public INPC setNoRespawn() {
         this.doesRespawn = false;
@@ -228,21 +230,35 @@ public class NPC implements INPC {
 
     @Override
     public int getBedtime() {
-        return isChild()? 19000: 23000;
+        return isChild() ? 19000 : 23000;
+    }
+
+    private static class Priority implements Comparator {
+        @Override
+        public int compare(Object o1, Object o2) {
+            int i1 = ((IConditionalGreeting) o1).getPriority();
+            int i2 = ((IConditionalGreeting) o2).getPriority();
+            return i1 == i2 ? 0 : i1 > i2 ? 1 : -1;
+        }
+
     }
 
     //Returns the script that this character should at this point
     @Override
     public String getGreeting(EntityPlayer player) {
-        if (greetings.size() == 0) {
+        if (conditionals.size() == 0) {
             return "JOSHIE IS STOOPID AND FORGOT WELCOME LANG";
         }
 
-        if (last < (greetings.size() - 1)) {
-            last++;
-        } else last = 0;
-
-        return greetings.get(last);
+        Collections.shuffle(conditionals);
+        Collections.sort(conditionals, new Priority());
+        for (IConditionalGreeting greeting : conditionals) {
+            if (greeting.canDisplay(player)) {
+                return greeting.getText();
+            }
+        }
+        
+        return "Found no greetings";
     }
 
     @Override

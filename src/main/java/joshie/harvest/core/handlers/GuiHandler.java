@@ -29,19 +29,19 @@ public class GuiHandler implements IGuiHandler {
     public static final int SHOP_WELCOME = 6;
 
     @Override
-    public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+    public Object getServerGuiElement(int ID, EntityPlayer player, World world, int entityID, int nextGui, int z) {
         switch (ID) {
-            case NPC:           return new ContainerNPCChat((EntityNPC) world.getEntityByID(x), player.inventory, -1);
-            case SHOP_WELCOME:  return new ContainerNPCChat((EntityNPC) world.getEntityByID(x), player.inventory, SHOP_OPTIONS);
-            case SHOP_MENU:     return new ContainerNPCShop((EntityNPC) world.getEntityByID(x), player.inventory);
-            case SHOP_BUILDER:  return new ContainerNPCBuilderShop((EntityNPC) world.getEntityByID(x), player.inventory);
-            case GIFT:          return new ContainerNPCGift((EntityNPC) world.getEntityByID(x), player.inventory);
+            case NPC:           return new ContainerNPCChat((EntityNPC) world.getEntityByID(entityID), player.inventory, nextGui);
+            case SHOP_WELCOME:  return new ContainerNPCChat((EntityNPC) world.getEntityByID(entityID), player.inventory, SHOP_OPTIONS);
+            case SHOP_MENU:     return new ContainerNPCShop((EntityNPC) world.getEntityByID(entityID), player.inventory);
+            case SHOP_BUILDER:  return new ContainerNPCBuilderShop((EntityNPC) world.getEntityByID(entityID), player.inventory);
+            case GIFT:          return new ContainerNPCGift((EntityNPC) world.getEntityByID(entityID), player.inventory);
             case FRIDGE:        return new ContainerFridge(player.inventory, HFTrackers.getServerPlayerTracker(player).getFridge());
             case SHOP_OPTIONS:    {
-                EntityNPC npc = (EntityNPC) world.getEntityByID(x);
+                EntityNPC npc = (EntityNPC) world.getEntityByID(entityID);
                 if (NPCHelper.isShopOpen(npc.getNPC(), world, player)) {
                     return new ContainerNPCSelect(npc, player.inventory);
-                } else   return new ContainerNPC(npc, player.inventory);
+                } else return new ContainerNPC(npc, player.inventory);
             }
             
             default:            return null;
@@ -49,19 +49,19 @@ public class GuiHandler implements IGuiHandler {
     }
 
     @Override
-    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {       
+    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int entityID, int nextGui, int z) {       
         switch (ID) {
-            case NPC:           return new GuiNPCChat((EntityNPC) world.getEntityByID(x), player, -1);
-            case SHOP_WELCOME:  return new GuiNPCChat((EntityNPC) world.getEntityByID(x), player, SHOP_OPTIONS);
-            case SHOP_MENU:     return new GuiNPCShop((EntityNPC) world.getEntityByID(x), player);
-            case SHOP_BUILDER:  return new GuiNPCBuilderShop((EntityNPC) world.getEntityByID(x), player);
-            case GIFT:          return new GuiNPCGift((EntityNPC) world.getEntityByID(x), player);
+            case NPC:           return new GuiNPCChat((EntityNPC) world.getEntityByID(entityID), player, nextGui);
+            case SHOP_WELCOME:  return new GuiNPCChat((EntityNPC) world.getEntityByID(entityID), player, SHOP_OPTIONS);
+            case SHOP_MENU:     return new GuiNPCShop((EntityNPC) world.getEntityByID(entityID), player);
+            case SHOP_BUILDER:  return new GuiNPCBuilderShop((EntityNPC) world.getEntityByID(entityID), player);
+            case GIFT:          return new GuiNPCGift((EntityNPC) world.getEntityByID(entityID), player);
             case FRIDGE:        return new GuiFridge(player.inventory, HFTrackers.getClientPlayerTracker().getFridge());
             case SHOP_OPTIONS:    {
-                EntityNPC npc = (EntityNPC) world.getEntityByID(x);
+                EntityNPC npc = (EntityNPC) world.getEntityByID(entityID);
                 if (NPCHelper.isShopOpen(npc.getNPC(), world, player)) {
-                    return new GuiNPCSelect(npc, player);
-                } else return new GuiNPCChat(npc, player, -1);
+                    return new GuiNPCSelect(npc, player, nextGui);
+                } else return new GuiNPCChat(npc, player, nextGui);
             }
             default:            return null;
         }

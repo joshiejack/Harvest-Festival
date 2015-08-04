@@ -30,7 +30,7 @@ public class GuiNPCShop extends GuiNPCBase {
     protected int start;
 
     public GuiNPCShop(EntityNPC npc, EntityPlayer player) {
-        super(npc, player);
+        super(npc, player, -1);
 
         IShop shop = npc.getNPC().getShop();
         if (shop == null || !shop.isOpen(player.worldObj, player)) player.closeScreen();

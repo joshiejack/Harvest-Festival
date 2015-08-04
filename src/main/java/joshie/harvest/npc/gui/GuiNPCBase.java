@@ -1,7 +1,7 @@
 package joshie.harvest.npc.gui;
 
+import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
-import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.ChatFontRenderer;
 import joshie.harvest.core.util.GuiBase;
@@ -15,8 +15,9 @@ public class GuiNPCBase extends GuiBase {
     private static final ResourceLocation chatbox = new ResourceLocation(HFModInfo.MODPATH, "textures/gui/chatbox.png");
     protected EntityNPC npc;
     protected EntityPlayer player;
+    protected int nextGui;
     
-    public GuiNPCBase(EntityNPC eNpc, EntityPlayer ePlayer) {
+    public GuiNPCBase(EntityNPC eNpc, EntityPlayer ePlayer, int next) {
         super(new ContainerNPC(eNpc, ePlayer.inventory), "chat", 0);
         
         hasInventory = false;
@@ -24,6 +25,7 @@ public class GuiNPCBase extends GuiBase {
         player = ePlayer;
         xSize = 256;
         ySize = 256;
+        nextGui = next;
     }
 
     @Override
@@ -62,5 +64,11 @@ public class GuiNPCBase extends GuiBase {
         return "missing chat";
     }
 
-    public void endChat() {}
+    public void endChat() {
+        player.closeScreen();
+
+        if (nextGui != -1) {
+            player.openGui(HarvestFestival.instance, nextGui, player.worldObj, npc.getEntityId(), 0, 0);
+        }
+    }
 }

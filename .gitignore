@@ -4,7 +4,16 @@
 /README.txt
 /CREDITS-fml.txt
 /forge-1.7.2*
+/saves
+/logs
 /build
+/resourcepacks
+/mods
+/config
+/usernamecache.json
+/options.txt
+/asm
+/crash-reports
 /common
 /eclipse/*
 /.gradle

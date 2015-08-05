@@ -47,6 +47,7 @@ dependencies {
     compile "codechicken:CodeChickenLib:${minecraft_version}-1.1.3.127:dev"
     compile "codechicken:CodeChickenCore:${minecraft_version}-1.0.4.35:dev"
     compile "codechicken:NotEnoughItems:${minecraft_version}-1.0.4.90:dev"
+    compile "CTMLib:${minecraft_version}-1.2.0-9-deobf"
 }
 
 processResources {

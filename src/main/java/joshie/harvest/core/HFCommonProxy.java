@@ -3,6 +3,7 @@ package joshie.harvest.core;
 import java.util.ArrayList;
 import java.util.List;
 
+import cpw.mods.fml.common.event.FMLInitializationEvent;
 import joshie.harvest.api.animals.HFAnimals;
 import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.buildings.HFBuildings;

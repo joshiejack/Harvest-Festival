@@ -1,5 +1,6 @@
 package joshie.harvest.mining;
 
+/*
 import static joshie.harvest.blocks.BlockDirt.FloorType.ALL_FLOORS;
 import static joshie.harvest.blocks.BlockDirt.FloorType.CURSED_FLOOR;
 import static joshie.harvest.blocks.BlockDirt.FloorType.GOLD_FLOOR;
@@ -17,8 +18,10 @@ import joshie.harvest.mining.loot.LootCursed;
 import joshie.harvest.mining.loot.LootMythic;
 import joshie.harvest.mining.loot.MiningLoot;
 import net.minecraft.item.ItemStack;
+*/
 
 public class HFMining {
+	/*
     public static void preInit() {
         MiningLoot.registerLoot(ALL_FLOORS, new ItemStack(HFItems.general, 1, JUNK_ORE), 30D);
         MiningLoot.registerLoot(ALL_FLOORS, new ItemStack(HFItems.general, 1, COPPER_ORE), 15D);
@@ -30,4 +33,5 @@ public class HFMining {
         MiningLoot.registerLoot(CURSED_FLOOR, new LootCursed(new ItemStack(HFItems.wateringcan, 1, ToolTier.CURSED.ordinal()), 1D));
         MiningLoot.registerLoot(CURSED_FLOOR, new LootCursed(new ItemStack(HFItems.sickle, 1, ToolTier.CURSED.ordinal()), 1D));
     }
+    */
 }

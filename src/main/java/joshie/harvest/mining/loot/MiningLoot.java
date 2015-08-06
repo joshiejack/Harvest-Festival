@@ -4,15 +4,19 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.Random;
 
+/*
 import joshie.harvest.blocks.BlockDirt.FloorType;
 import joshie.harvest.core.helpers.generic.ItemHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+*/
 
 public class MiningLoot {
+    /*
     private static EnumMap<FloorType, Loot> loots = new EnumMap(FloorType.class);
     private static Random rand = new Random();
+
 
     public static void getLoot(World world, int x, int y, int z, EntityPlayer player, int meta) {
         Loot loot = loots.get(FloorType.values()[meta]);
@@ -27,6 +31,7 @@ public class MiningLoot {
             }
         }
     }
+
 
     public static void registerLoot(FloorType meta, ItemStack stack, double chance) {
         Loot loot = loots.get(meta) != null ? loots.get(meta) : new Loot();
@@ -43,4 +48,5 @@ public class MiningLoot {
     private static class Loot {
         ArrayList<LootChance> loot = new ArrayList();
     }
+        */
 }

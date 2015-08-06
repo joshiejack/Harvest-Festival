@@ -2,7 +2,9 @@ package joshie.harvest.blocks.items;
 
 import java.util.List;
 
+/*
 import joshie.harvest.blocks.BlockDirt.FloorType;
+*/
 import joshie.harvest.core.config.General;
 import joshie.harvest.core.util.base.ItemBlockBase;
 import joshie.harvest.core.util.generic.Text;
@@ -25,6 +27,8 @@ public class ItemBlockDirt extends ItemBlockBase {
         return "mine_floor";
     }
 
+
+    /*
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean debug) {
@@ -34,4 +38,5 @@ public class ItemBlockDirt extends ItemBlockBase {
             }
         }
     }
+    */
 }

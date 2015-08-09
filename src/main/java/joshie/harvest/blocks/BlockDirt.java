@@ -40,22 +40,6 @@ public class BlockDirt extends CTMBlockHFBase {
 	public ISubmapManager getSubMap() {
 		return managerCTM;
 	}
-	
-	@Override
-	public void registerBlockIcons(IIconRegister icon) {
-		managerCTM = new SubmapManagerCTM("dirt");
-		managerCTM.registerIcons(HFModInfo.MODPATH, this, icon);
-	}
-
-	@Override
-	public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
-		return managerCTM.getIcon(world, x, y, z, side);
-	}
-
-	@Override
-	public IIcon getIcon(int side, int meta) {
-		return managerCTM.getIcon(side, meta);
-	}
 
 
 	/*

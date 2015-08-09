@@ -77,12 +77,11 @@ public class HFBlocks {
         ClientRegistry.bindTileEntitySpecialRenderer(TileFryingPan.class, new SpecialRendererFryingPan());
         RenderingRegistry.registerBlockHandler(new RenderHandler());
         RenderingRegistry.registerBlockHandler(new RenderCrops());
-        RenderingRegistry.registerBlockHandler(new CTMRenderer(renderIDCTM));
     	renderIDCTM = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(new CTMRenderer(renderIDCTM));
         RenderHandler.register(HFBlocks.cookware, BlockCookware.KITCHEN, RenderKitchen.class);
         RenderHandler.register(HFBlocks.cookware, BlockCookware.FRYING_PAN, RenderFryingPan.class);
         registerRenders(HFBlocks.woodmachines);
-
         for (int i = 0; i < 8; i++) {
             RenderHandler.register(HFBlocks.preview, i, RenderPreview.class);
         }

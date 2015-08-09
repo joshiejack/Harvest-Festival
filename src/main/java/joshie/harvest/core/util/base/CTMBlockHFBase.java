@@ -8,6 +8,7 @@ import com.cricketcraft.ctmlib.SubmapManagerCTM;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import jdk.nashorn.internal.objects.annotations.Getter;
+import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.lib.HFModInfo;
 import net.minecraft.block.material.Material;
@@ -45,18 +46,16 @@ public abstract class CTMBlockHFBase extends BlockHFBase implements ICTMBlock<IS
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister icon) {
-		managerCTM = new SubmapManagerCTM(texturePath);
-		managerCTM.registerIcons(modid, this, icon);
+		managerCTM = new SubmapManagerCTM("dirt");
+		managerCTM.registerIcons(HFModInfo.MODPATH, this, icon);
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
 		return managerCTM.getIcon(world, x, y, z, side);
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta) {
 		return managerCTM.getIcon(side, meta);
 	}
@@ -64,7 +63,7 @@ public abstract class CTMBlockHFBase extends BlockHFBase implements ICTMBlock<IS
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getRenderType() {
-		return renderId;
+		return HFBlocks.renderIDCTM;
 	}
 
 	@Override

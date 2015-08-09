@@ -31,10 +31,9 @@ public class BlockDirt extends CTMBlockHFBase {
 	
 	private SubmapManagerCTM managerCTM;
 
-	public BlockDirt(String modid, String texturePath, int renderIDCTM) {
+	public BlockDirt(String modid, String texturePath) {
 		super(modid, texturePath, HFBlocks.renderIDCTM);
 		this.setHarvestLevel("shovel", 0);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -45,7 +44,7 @@ public class BlockDirt extends CTMBlockHFBase {
 	@Override
 	public void registerBlockIcons(IIconRegister icon) {
 		managerCTM = new SubmapManagerCTM("dirt");
-		managerCTM.registerIcons(HFModInfo.MODID, this, icon);
+		managerCTM.registerIcons(HFModInfo.MODPATH, this, icon);
 	}
 
 	@Override

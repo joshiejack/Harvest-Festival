@@ -57,7 +57,7 @@ public class HFBlocks {
 
     public static void preInit() {
         crops = new BlockCrop().setStepSound(soundTypeGrass).setBlockName("crops.block");
-        dirt = new BlockDirt("hf", "dirt", renderIDCTM).setStepSound(soundTypeGravel).setBlockName("dirt")/*, new SubmapManagerRCTM(4, "dirt", TextureType.R16));*/;
+        dirt = new BlockDirt("hf", "dirt").setStepSound(soundTypeGravel).setBlockName("dirt")/*, new SubmapManagerRCTM(4, "dirt", TextureType.R16));*/;
         flowers = new BlockFlower().setStepSound(soundTypeGrass).setBlockName("flowers.block");
         cookware = new BlockCookware().setStepSound(soundTypeMetal).setBlockName("cookware");
         woodmachines = new BlockWood().setStepSound(soundTypeWood).setBlockName("general.block");
@@ -75,10 +75,10 @@ public class HFBlocks {
     @SideOnly(Side.CLIENT)
     public static void initClient() {
         ClientRegistry.bindTileEntitySpecialRenderer(TileFryingPan.class, new SpecialRendererFryingPan());
-        RenderingRegistry.registerBlockHandler(new CTMRenderer(renderIDCTM));
-        	renderIDCTM = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(new RenderHandler());
         RenderingRegistry.registerBlockHandler(new RenderCrops());
+        RenderingRegistry.registerBlockHandler(new CTMRenderer(renderIDCTM));
+    	renderIDCTM = RenderingRegistry.getNextAvailableRenderId();
         RenderHandler.register(HFBlocks.cookware, BlockCookware.KITCHEN, RenderKitchen.class);
         RenderHandler.register(HFBlocks.cookware, BlockCookware.FRYING_PAN, RenderFryingPan.class);
         registerRenders(HFBlocks.woodmachines);

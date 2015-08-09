@@ -22,6 +22,7 @@ import joshie.harvest.blocks.tiles.TileMixer;
 import joshie.harvest.blocks.tiles.TileOven;
 import joshie.harvest.blocks.tiles.TilePot;
 import joshie.harvest.blocks.tiles.TileSteamer;
+import joshie.harvest.core.HFClientProxy;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.base.BlockHFBaseMeta;
 import joshie.harvest.core.util.base.ItemBlockBase;
@@ -34,12 +35,15 @@ import net.minecraftforge.fluids.FluidRegistry;
 
 import org.apache.commons.lang3.text.WordUtils;
 
+import com.cricketcraft.ctmlib.CTMRenderer;
+
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class HFBlocks {
+	public static int renderIDCTM;
     public static Block cookware;
     public static Block crops;
     public static Block dirt;
@@ -53,7 +57,7 @@ public class HFBlocks {
 
     public static void preInit() {
         crops = new BlockCrop().setStepSound(soundTypeGrass).setBlockName("crops.block");
-        dirt = new BlockDirt("HarvestFestival", "textures:blocks", 0).setStepSound(soundTypeGravel).setBlockName("dirt")/*, new SubmapManagerRCTM(4, "dirt", TextureType.R16));*/;
+        dirt = new BlockDirt("hf", "dirt", renderIDCTM).setStepSound(soundTypeGravel).setBlockName("dirt")/*, new SubmapManagerRCTM(4, "dirt", TextureType.R16));*/;
         flowers = new BlockFlower().setStepSound(soundTypeGrass).setBlockName("flowers.block");
         cookware = new BlockCookware().setStepSound(soundTypeMetal).setBlockName("cookware");
         woodmachines = new BlockWood().setStepSound(soundTypeWood).setBlockName("general.block");
@@ -71,6 +75,8 @@ public class HFBlocks {
     @SideOnly(Side.CLIENT)
     public static void initClient() {
         ClientRegistry.bindTileEntitySpecialRenderer(TileFryingPan.class, new SpecialRendererFryingPan());
+        RenderingRegistry.registerBlockHandler(new CTMRenderer(renderIDCTM));
+        	renderIDCTM = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(new RenderHandler());
         RenderingRegistry.registerBlockHandler(new RenderCrops());
         RenderHandler.register(HFBlocks.cookware, BlockCookware.KITCHEN, RenderKitchen.class);

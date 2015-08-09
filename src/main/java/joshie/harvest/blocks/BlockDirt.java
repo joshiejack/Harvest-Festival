@@ -10,6 +10,7 @@ import com.cricketcraft.ctmlib.SubmapManagerCTM;
 import com.cricketcraft.ctmlib.TextureSubmap;
 
 import joshie.harvest.HarvestFestival;
+import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.config.General;
 import joshie.harvest.core.lib.HFModInfo;
@@ -30,8 +31,8 @@ public class BlockDirt extends CTMBlockHFBase {
 	
 	private SubmapManagerCTM managerCTM;
 
-	public BlockDirt(String modid, String texturePath, int renderId) {
-		super(modid, texturePath, renderId);
+	public BlockDirt(String modid, String texturePath, int renderIDCTM) {
+		super(modid, texturePath, HFBlocks.renderIDCTM);
 		this.setHarvestLevel("shovel", 0);
 		// TODO Auto-generated constructor stub
 	}

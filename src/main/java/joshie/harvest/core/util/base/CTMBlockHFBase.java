@@ -7,7 +7,6 @@ import com.cricketcraft.ctmlib.SubmapManagerCTM;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import jdk.nashorn.internal.objects.annotations.Getter;
 import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.lib.HFModInfo;

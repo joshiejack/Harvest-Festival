@@ -27,7 +27,7 @@ public class HFNPCs {
     public static INPC goddess; //The Goddess                        (SPAWN)
     public static INPC animal_owner; // Owner of the Animal Barn     (BARN)
     public static INPC cafe_owner; // Owner of the Cafe              (CAFE)
-    public static INPC cafe_granny;// Granny of Café Owner           (CAFE)
+    public static INPC cafe_granny;// Granny of Cafe Owner           (CAFE)
     public static INPC seed_owner; // Sister of Yulif                (CARPENTER)
     public static INPC tool_owner; // Blacksmith                     (BLACKSMITH)
     public static INPC priest; //Married to mayor                    (CHURCH)

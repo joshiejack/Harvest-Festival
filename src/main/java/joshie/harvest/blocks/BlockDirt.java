@@ -14,6 +14,7 @@ import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.config.General;
 import joshie.harvest.core.lib.HFModInfo;
+import joshie.harvest.core.render.HFSubmapManagerCTM;
 import joshie.harvest.core.util.base.BlockHFBase;
 import joshie.harvest.core.util.base.BlockHFBaseMeta;
 import joshie.harvest.core.util.base.CTMBlockHFBase;
@@ -30,6 +31,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockDirt extends CTMBlockHFBase {
 	
 	private SubmapManagerCTM managerCTM;
+	private HFSubmapManagerCTM dirtManagerCTM;
 
 	public BlockDirt(String modid, String texturePath) {
 		super(modid, texturePath, HFBlocks.renderIDCTM);
@@ -38,7 +40,7 @@ public class BlockDirt extends CTMBlockHFBase {
 
 	@Override
 	public ISubmapManager getSubMap() {
-		return managerCTM;
+		return dirtManagerCTM;
 	}
 
 

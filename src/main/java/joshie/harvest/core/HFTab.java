@@ -11,6 +11,8 @@ import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.crops.HFCrops;
+import joshie.harvest.items.HFItems;
+import joshie.harvest.items.ItemHFSeeds;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -19,11 +21,11 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class HFTab extends CreativeTabs {
+    public static HFTab tabTown = new HFTab("town");
+    public static HFTab tabMining = new HFTab("mining");
     public static HFTab tabFarming = new HFTab("farming");
     public static HFTab tabCooking = new HFTab("cooking");
-    public static HFTab tabMining = new HFTab("mining");
-    public static HFTab tabTown = new HFTab("town");
-    
+
     private ItemStack icon = new ItemStack(Items.golden_hoe);
 
     public HFTab(String label) {
@@ -94,9 +96,10 @@ public class HFTab extends CreativeTabs {
     }
 
     public static void preInit() {
-        HFTab.tabFarming.setStack(HFCrops.tomato.getCropStack());
-        HFTab.tabCooking.setStack(HFApi.COOKING.getMeal("salad"));
-        HFTab.tabMining.setStack(new ItemStack(HFBlocks.stone, 1, 1));
         HFTab.tabTown.setStack(HFBuildings.church.getPreview());
+        HFTab.tabMining.setStack(new ItemStack(HFBlocks.stone, 1, 3));
+        HFTab.tabFarming.setStack(new ItemStack(HFItems.hoe, 1, 0));
+        HFTab.tabCooking.setStack(HFApi.COOKING.getMeal("salad"));
+
     }
 }

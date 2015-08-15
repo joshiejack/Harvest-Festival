@@ -247,7 +247,7 @@ hf.general.block.trough2=Food Trough
 
 hf.flowers.block.goddess=Goddess Flower
 
-hf.dirt.mine.floor=Mine Floor
+hf.tile.dirt.name=Mine Floor
 hf.stone.mine.wall=Mine Wall
 
 tile.goddess.water.name=Goddess Water

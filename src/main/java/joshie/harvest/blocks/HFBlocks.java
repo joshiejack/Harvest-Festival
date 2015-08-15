@@ -57,7 +57,7 @@ public class HFBlocks {
 
     public static void preInit() {
         crops = new BlockCrop().setStepSound(soundTypeGrass).setBlockName("crops.block");
-        dirt = new BlockDirt("hf", "dirt").setStepSound(soundTypeGravel).setBlockName("dirt")/*, new SubmapManagerRCTM(4, "dirt", TextureType.R16));*/;
+        dirt = new BlockDirt("hf", "ctm/dirt").setStepSound(soundTypeGravel).setBlockName("dirt");
         flowers = new BlockFlower().setStepSound(soundTypeGrass).setBlockName("flowers.block");
         cookware = new BlockCookware().setStepSound(soundTypeMetal).setBlockName("cookware");
         woodmachines = new BlockWood().setStepSound(soundTypeWood).setBlockName("general.block");

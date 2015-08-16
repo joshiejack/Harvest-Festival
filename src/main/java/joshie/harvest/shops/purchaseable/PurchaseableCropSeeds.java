@@ -60,7 +60,7 @@ public class PurchaseableCropSeeds implements IPurchaseable {
     }
 
     @Override
-    public void addTooltip(List list) {
+    public void addTooltip(List list, EntityPlayer player) {
         list.add(Text.WHITE + crop.getSeedsName());
         for (Season season : crop.getSeasons()) {
             ISeasonData data = HFApi.CALENDAR.getDataForSeason(season);

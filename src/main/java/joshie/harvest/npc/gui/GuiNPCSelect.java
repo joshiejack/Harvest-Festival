@@ -5,6 +5,7 @@ import java.util.Arrays;
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.lib.HFModInfo;
+import joshie.harvest.core.util.Translate;
 import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
 
@@ -111,8 +112,8 @@ public class GuiNPCSelect extends GuiNPCBase {
         private String[] lines = new String[3];
 
         public ShopSelection() {
-            lines[0] = "What do you want to do?";
-            lines[1] = "@Shop";
+            lines[0] = Translate.translate("shop.general.options");
+            lines[1] = Translate.translate("@shop.general.shop");
             lines[2] = "@Chat";
         }
 

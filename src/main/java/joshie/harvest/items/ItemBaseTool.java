@@ -185,4 +185,9 @@ public abstract class ItemBaseTool extends ItemBaseSingle implements ILevelable,
             list.add(new ItemStack(item, 1, i));
         }
     }
+    
+	@SideOnly(Side.CLIENT)
+	public boolean isFull3D() {
+		return true;
+	}
 }

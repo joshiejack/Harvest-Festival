@@ -14,7 +14,7 @@ public class Text {
     public static final String GREY = prfx + "7";
     public static final String DARK_GREY = prfx + "8";
     public static final String INDIGO = prfx + "9";
-    public static final String BRIGHT_GREEN = prfx + "a";
+    public static final String LIME = prfx + "a";
     public static final String AQUA = prfx + "b";
     public static final String RED = prfx + "c";
     public static final String PINK = prfx + "d";

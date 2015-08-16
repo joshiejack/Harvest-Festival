@@ -25,8 +25,12 @@ public class PurchaseableBlueFeather extends Purchaseable {
     }
 
     @Override
-    public void addTooltip(List list) {
-        list.add(Text.WHITE + stacks[0].getDisplayName());
+    public void addTooltip(List list, EntityPlayer player) {
+        list.add(/*Text.WHITE + */stacks[0].getDisplayName());
         list.add(Translate.translate("marriage"));
+        if (!HFTrackers.getPlayerTracker(player).getRelationships().isEllegibleToMarry()) {
+        list.add(Text.DARK_RED + Translate.translate("lockeduntilmarriage"));
+        } else
+        list.add(Text.LIME + Translate.translate("unlockedsincemarriage"));
     }
 }

@@ -444,6 +444,7 @@ hf.npc.thomas.greeting1=I will save you from your sins.
 hf.npc.thomas.greeting2=Remember if you every need anything cursed, blessed I will be happy to help.
 hf.npc.thomas.greeting3=Only he can save you now.
 hf.npc.thomas.greeting4=The lord's grace, is shining down upon you.
+hf.npc.thomas.greeting5=If you want to marry someone you need a bigger bed.
 
 #Candice
 hf.npc.candice.greeting1=Do you know what I love about milking the most? Sharing it with friends, like Jenni! Sometimes we just get it all over us. So it's nice to have a helping hand to clean up the mess.
@@ -470,6 +471,9 @@ hf.npc.ondra.greeting5=Cluck, Cluck, Cluck Clucking. When will these chicks just
 hf.shop.general.greeting1=Welcome to the General Store, how may I help you?
 hf.shop.general.greeting2=We're always in stock, can I help?
 hf.shop.general.greeting3=This store is the best in town! What do you need?
+hf.shop.general.options=What do you want to do?
+hf.shop.general.shop=Shop
+hf.shop.general.chat=Chat
 
 #Poultry Farm
 hf.shop.poultry.greeting1=Chickens provide essentials for us, what can I help you with?
@@ -483,6 +487,11 @@ hf.shop.cafe.greeting2=Serving it all up, welcome!
 hf.shop.barn.greeting1=We don't just sell animals, we sell em strong!
 hf.shop.barn.greeting2=Welcome to the ranch, do you need anything?
 
+#Miscellaneous
+hf.marriage=Gift for Marriage
+hf.lockeduntilmarriage=LOCKED
+hf.unlockedsincemarriage=UNLOCKED
+
 ###Quests
 ## Harvest Goddess
 hf.quest.tutorial.farming.welcome=Why hello there my dear? You must be new around these parts. I am the Harvest Goddess.<BR><BR> I would like to tell you a little story about tales of a lost a people that once lived here, their homes were destroyed and their lives ruined, they moved away for a little bit, but with your help and running a farm to keep them fed they may be able to return.<BR><BR> On another note, to help bring them back I would be ever so greatful if you could find me 64 logs, so that I can make something special for you, that can help you get started with restoring their homes.
@@ -494,3 +503,4 @@ hf.quest.tutorial.farming.jade.reminder=I sure would love a few flowers!
 hf.quest.tutorial.farming.jade.complete=Why thank you very much, these flowers will truly come in handy. Thanks for the help, I have something for you!
 hf.quest.tutorial.farming.jade.goddess=Don't you think you should be heading back to see the Harvest Goddess, I heard she was after some seeds.
 hf.quest.tutorial.farming.completed=Well that is just perfect, you have some seeds! I would love for you to keep them. I even have some other things for you to help you get started farming. Jade is an aspiring farmer, and I'm sure if you visit her, she can give you some tips on how to get started using these new tools. I also have some spare gold for you, that was donated by those who want to move in, to help you on your way. If you would like to learn more about gold, and how to expand the town, you should go and talk to Yulif.
+

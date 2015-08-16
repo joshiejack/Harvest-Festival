@@ -1,13 +1,17 @@
 package joshie.harvest.items;
 
 import java.util.HashMap;
+import java.util.List;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.animals.IMilkable;
 import joshie.harvest.api.cooking.ICookingAltIcon;
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.core.HFTab;
+import joshie.harvest.core.util.generic.Text;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -15,6 +19,8 @@ import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 public class ItemGeneral extends ItemHFMeta implements ICreativeSorted, ICookingAltIcon {
@@ -116,6 +122,12 @@ public class ItemGeneral extends ItemHFMeta implements ICreativeSorted, ICooking
                 return false;
         }
     }
+        
+    
+    //Doesn't weeeerk
+	@SideOnly(Side.CLIENT)
+    public boolean setFull3D(int meta) { return meta == BRUSH || meta == MILKER; } 
+
 
     @Override
     public int getMaxItemUseDuration(ItemStack stack) {

@@ -29,8 +29,8 @@ public class PurchaseableBlueFeather extends Purchaseable {
         list.add(/*Text.WHITE + */stacks[0].getDisplayName());
         list.add(Translate.translate("marriage"));
         if (!HFTrackers.getPlayerTracker(player).getRelationships().isEllegibleToMarry()) {
-        list.add(Text.DARK_RED + Translate.translate("lockeduntilmarriage"));
+        list.add(Text.DARK_RED + Translate.translate("marriage.locked"));
         } else
-        list.add(Text.LIME + Translate.translate("unlockedsincemarriage"));
+        list.add(Text.LIME + Translate.translate("marriage.unlocked"));
     }
 }

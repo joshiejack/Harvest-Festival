@@ -293,10 +293,10 @@ hf.npc.ondra.name=Ondra
 # have to do in order to complete the quest in question.
 #Key-Codes for conversations
 # $ = Money - Player has
-# ♥ = Player's Romantic Interest
-# ❤ = Entity's Romantic Interest
-# Þ = Player
-# ℇ = The Entity
+# â™¥ = Player's Romantic Interest
+# â�¤ = Entity's Romantic Interest
+# Ãž = Player
+# â„‡ = The Entity
 #Conversations
 #Generic - Children
 hf.npc.generic.child.greeting1=WOW you're really tall!
@@ -317,7 +317,7 @@ hf.npc.generic.male.greeting1=Hey, how's it hanging?
 hf.npc.generic.male.greeting2=Want to have a beer?
 
 #Generic - Female
-hf.npc.generic.female.greeting1=Hello Þ! I hope you're feeling well! It's such a beautiful day isn't it?
+hf.npc.generic.female.greeting1=Hello Ãž! I hope you're feeling well! It's such a beautiful day isn't it?
 
 #Generic Adult Thanks
 hf.npc.generic.adult.gift.awesome=Wow thanks so much for the awesome gift! I love it.
@@ -372,7 +372,7 @@ hf.npc.cloe.greeting3=I just don't understand girls sometimes.
 hf.npc.liara.greeting1=I really love this weather, perfect time to bake a cake!
 hf.npc.liara.greeting2=Cooking is what I enjoy the most! I love seeing the smile on someone's face as they take their first bite of my delicious dishes!
 hf.npc.liara.greeting3=Are you feeling hungry? I'm always hungry, no wonder I like to cook so much.
-hf.npc.liara.greeting4=Make sure to drop by the café on Tuesdays, there's always something special.
+hf.npc.liara.greeting4=Make sure to drop by the cafÃ© on Tuesdays, there's always something special.
 hf.npc.liara.greeting5=Food makes the world go round, and it makes me giddy.
 hf.npc.liara.greeting6=There's nothing like a good ol piece of a chocolate to make a girl happy.
 
@@ -397,7 +397,7 @@ hf.npc.jamie.greeting1=This is my town, and you remember that.
 hf.npc.jamie.greeting2=My family has won the town elections for the last 100 years.
 hf.npc.jamie.greeting3=My two girls are so precious to me, if you ever hurt either of them.
 hf.npc.jamie.greeting4=It's really hard being mayor, the people just love you too much.
-hf.npc.jamie.greeting5=Heya Þ, have you seen my house, it's far too small.
+hf.npc.jamie.greeting5=Heya Ãž, have you seen my house, it's far too small.
 
 #Abii
 hf.npc.abi.greeting1=Ooo, so cute. What's that? OMG!
@@ -489,8 +489,8 @@ hf.shop.barn.greeting2=Welcome to the ranch, do you need anything?
 
 #Miscellaneous
 hf.marriage=Gift for Marriage
-hf.lockeduntilmarriage=LOCKED
-hf.unlockedsincemarriage=UNLOCKED
+hf.marriage.locked=LOCKED
+hf.marriage.unlocked=UNLOCKED
 
 ###Quests
 ## Harvest Goddess

@@ -15,7 +15,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 
-public class EntityNPCMiner extends EntityNPC {
+public class EntityNPCMiner extends EntityNPCShopkeeper {
     private boolean isMining = false;
     private int mineX;
     private int mineY;

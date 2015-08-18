@@ -12,6 +12,7 @@ import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.items.HFItems;
+import joshie.harvest.items.ItemBuilding;
 import joshie.harvest.items.ItemHFSeeds;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
@@ -96,7 +97,7 @@ public class HFTab extends CreativeTabs {
     }
 
     public static void preInit() {
-        HFTab.tabTown.setStack(HFBuildings.church.getPreview());
+        HFTab.tabTown.setStack(new ItemStack(HFItems.structures, 0, 0));
         HFTab.tabMining.setStack(new ItemStack(HFBlocks.stone, 1, 3));
         HFTab.tabFarming.setStack(new ItemStack(HFItems.hoe, 1, 0));
         HFTab.tabCooking.setStack(HFApi.COOKING.getMeal("salad"));

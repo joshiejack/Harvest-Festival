@@ -6,6 +6,7 @@ import java.util.List;
 import joshie.harvest.blocks.BlockDirt.FloorType;
 */
 import joshie.harvest.core.config.General;
+import joshie.harvest.core.util.Translate;
 import joshie.harvest.core.util.base.ItemBlockBase;
 import joshie.harvest.core.util.generic.Text;
 import net.minecraft.block.Block;
@@ -39,4 +40,5 @@ public class ItemBlockDirt extends ItemBlockBase {
         }
     }
     */
+    
 }

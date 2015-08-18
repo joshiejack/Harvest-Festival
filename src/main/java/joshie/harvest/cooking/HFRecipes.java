@@ -15,6 +15,7 @@ import static joshie.harvest.cooking.HFIngredients.fish;
 import static joshie.harvest.cooking.HFIngredients.flour;
 import static joshie.harvest.cooking.HFIngredients.green_pepper;
 import static joshie.harvest.cooking.HFIngredients.juice_vegetable;
+import static joshie.harvest.cooking.HFIngredients.ketchup;
 import static joshie.harvest.cooking.HFIngredients.mayonnaise;
 import static joshie.harvest.cooking.HFIngredients.milk;
 import static joshie.harvest.cooking.HFIngredients.mushroom;
@@ -67,9 +68,10 @@ public class HFRecipes {
         addMixerRecipe("milk.strawberry", 30, -15, strawberry, milk).setOptionalIngredients(sugar);
         addMixerRecipe("juice.vegetable", 20, -20, juice_vegetable).setOptionalIngredients(cucumber, onion, cabbage, tomato, spinach, carrot, green_pepper, turnip, salt); //Yo this doesnt make any sense. It requires Vegetable Juice to make iteslf?
         addMixerRecipe("latte.vegetable", 30, -20, juice_vegetable, milk).setOptionalIngredients(cucumber, onion, cabbage, tomato, spinach, carrot, green_pepper, turnip, salt);
-        addMixerRecipe("ketchup", 1, 0, tomato, onion).setOptionalIngredients(salt, sugar);
+        addMixerRecipe("ketchup", 1, 0, tomato, onion).setOptionalIngredients(salt, sugar).setHasAltTexture();
         addMixerRecipe("butter", false, 1, 0, milk).setOptionalIngredients(salt).setHasAltTexture();
         addMixerRecipe("fishsticks", false, 5, -1, fish).setOptionalIngredients(salt);
+        addMixerRecipe("fishsticks", false, 5, -1, ketchup).setOptionalIngredients(salt);
 
         //Hand
         addNoUtensilRecipe("turnip.pickled", 6, -2, turnip).setOptionalIngredients(salt);

@@ -39,6 +39,7 @@ public class HFIngredients {
     public static ICookingComponent riceball;
     public static ICookingComponent milk;
     public static ICookingComponent mayonnaise;
+    public static ICookingComponent ketchup;
 
     /** Crops **/
     public static ICookingComponent turnip;
@@ -119,6 +120,8 @@ public class HFIngredients {
         sashimi = HFApi.COOKING.newIngredient("sashimi", 11, -2, 2, 0.07F, 10);
         scrambled_egg = HFApi.COOKING.newIngredient("egg.scrambled", 20, -1, 1, 0.05F, 6);
         cookies = HFApi.COOKING.newIngredient("cookies", 15, -2, 1, 0.03F, 4);
+         //Idk if the numbers are right, check it joshie
+        ketchup = HFApi.COOKING.newIngredient("ketchup", 2, -1, 1, 0.033F, 8);
         
         //Add ingredients to the categories
         mushroom.add(red_mushroom, brown_mushroom);
@@ -169,6 +172,7 @@ public class HFIngredients {
         HFApi.COOKING.register(HFApi.COOKING.getBestMeal("sashimi"), sashimi);
         HFApi.COOKING.register(HFApi.COOKING.getBestMeal("egg.scrambled"), scrambled_egg);
         HFApi.COOKING.register(HFApi.COOKING.getBestMeal("cookies"), cookies);
+        HFApi.COOKING.register(HFApi.COOKING.getBestMeal("ketchup"), ketchup);
         HFApi.COOKING.register(new ItemStack(Blocks.brown_mushroom, 1, OreDictionary.WILDCARD_VALUE), brown_mushroom);
         HFApi.COOKING.register(new ItemStack(Blocks.red_mushroom, 1, OreDictionary.WILDCARD_VALUE), red_mushroom);
     }

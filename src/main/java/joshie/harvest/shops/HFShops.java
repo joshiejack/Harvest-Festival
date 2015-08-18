@@ -12,6 +12,7 @@ import joshie.harvest.animals.entity.EntityHarvestSheep;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.shops.IShop;
+import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.buildings.Building;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.items.HFItems;
@@ -35,6 +36,7 @@ public class HFShops {
     public static IShop carpenter;
     public static IShop poultry;
     public static IShop supermarket;
+    public static IShop miner;
 
     public static void preInit() {
         barn();
@@ -43,6 +45,7 @@ public class HFShops {
         carpenter();
         poultry();
         supermarket();
+        miner();
     }
     
     private static void barn() {
@@ -112,6 +115,14 @@ public class HFShops {
         supermarket.addOpening(FRIDAY, 9000, 17000).addOpening(SATURDAY, 11000, 15000);
     }
     
+    private static void miner() {
+    	miner = HFApi.SHOPS.newShop("miner", HFNPCs.miner);
+    	miner.addItem(1000, new ItemStack(HFBlocks.dirt));
+    	miner.addItem(1000, new ItemStack(HFBlocks.stone));
+    	miner.addOpening(MONDAY, 11000, 16000).addOpening(TUESDAY, 11000, 16000).addOpening(WEDNESDAY, 11000, 16000);
+    	miner.addOpening(THURSDAY, 11000, 16000).addOpening(FRIDAY, 11000, 16000).addOpening(SATURDAY, 11000, 16000);
+    }
+    
     
     @SideOnly(Side.CLIENT)
     public static void initClient() {
@@ -121,5 +132,6 @@ public class HFShops {
         carpenter.setGuiOverlay(new ShopGui(199));
         supermarket.setGuiOverlay(new ShopGui(166));
         poultry.setGuiOverlay(new ShopGui(34));
+        miner.setGuiOverlay(new ShopGui(2));
     }
 }

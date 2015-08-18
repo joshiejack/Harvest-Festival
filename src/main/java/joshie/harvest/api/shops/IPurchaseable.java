@@ -25,5 +25,5 @@ public interface IPurchaseable {
     public boolean onPurchased(EntityPlayer player);
 
     /** Display tooltip for this item **/
-    public void addTooltip(List list, EntityPlayer player);
+    public void addTooltip(List list);
 }

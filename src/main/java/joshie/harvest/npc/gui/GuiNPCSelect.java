@@ -52,7 +52,7 @@ public class GuiNPCSelect extends GuiNPCBase {
         mc.renderEngine.bindTexture(HFModInfo.elements);
 
         int position = selected + optionsStart;
-        if (position == 1) {
+        if (position == 1.5) {
             drawTexturedModalRect(20, 159, 0, 32, 19, 8);
         } else if (position == 2) {
             drawTexturedModalRect(20, 169, 0, 32, 19, 8);
@@ -113,8 +113,8 @@ public class GuiNPCSelect extends GuiNPCBase {
 
         public ShopSelection() {
             lines[0] = Translate.translate("shop.general.options");
-            lines[1] = Translate.translate("@shop.general.shop");
-            lines[2] = "@Chat";
+            lines[1] = Translate.translate("shop.general.options.shop");
+            lines[2] = Translate.translate("shop.general.options.chat");
         }
 
         /** Return the text **/

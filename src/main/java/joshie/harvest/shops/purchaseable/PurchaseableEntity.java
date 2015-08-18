@@ -48,7 +48,7 @@ public class PurchaseableEntity implements IPurchaseable {
     }
 
     @Override
-    public void addTooltip(List list, EntityPlayer player) {
+    public void addTooltip(List list) {
         list.add(Text.WHITE + product.getDisplayName());
         if (!lead) {
             list.add(Translate.translate("check.head"));

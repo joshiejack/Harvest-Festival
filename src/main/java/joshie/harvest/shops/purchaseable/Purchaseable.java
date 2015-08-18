@@ -48,7 +48,7 @@ public class Purchaseable implements IPurchaseable {
     }
 
     @Override
-    public void addTooltip(List list, EntityPlayer player) {
+    public void addTooltip(List list) {
         for (ItemStack stack: stacks) {
             list.add(Text.WHITE + stack.getDisplayName());
         }

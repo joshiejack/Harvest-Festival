@@ -91,7 +91,7 @@ public class GuiNPCShop extends GuiNPCBase {
 
             if (mouseY >= posY + 23 && mouseY <= posY + 46 && mouseX >= posX - 63 && mouseX <= posX - 41) {
                 List list = new ArrayList();
-                purchaseable.addTooltip(list, player);
+                purchaseable.addTooltip(list);
                 addTooltip(list);
             }
 

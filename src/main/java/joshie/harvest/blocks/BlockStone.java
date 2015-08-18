@@ -7,6 +7,7 @@ import joshie.harvest.core.HFTab;
 import joshie.harvest.core.config.General;
 import joshie.harvest.core.helpers.generic.EntityHelper;
 import joshie.harvest.core.util.base.BlockHFBaseMeta;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -20,10 +21,13 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockStone extends BlockHFBaseMeta {
     public static final int CAVE_WALL = 0;
-
+    private static int META_COUNT = 6;
+    
     public BlockStone() {
         super(Material.rock, HFTab.tabMining);
-        setBlockUnbreakable();
+		this.setBlockUnbreakable();
+		this.setResistance(6000000.0F);
+		this.setHardness(1000.0F);
     }
 
     @Override
@@ -36,8 +40,6 @@ public class BlockStone extends BlockHFBaseMeta {
         return 1;
     }
 
-    private static int META_COUNT = 6;
-
     @Override
     public int getMetaCount() {
         return META_COUNT;
@@ -49,6 +51,25 @@ public class BlockStone extends BlockHFBaseMeta {
             //MineHelper.caveIn(world, x, y, z);
         }
     }
+    
+    @Override
+    public int quantityDropped(Random p_149745_1_)
+    {
+        return 0;
+    }
+    
+    @Override
+    public boolean canSilkHarvest(World world, EntityPlayer player, int x, int y, int z, int metadata)
+    {
+    	return false;
+    }
+    
+    //Maybe something doable in the future
+    @Override
+    public void onBlockHarvested(World world, int x, int y, int z, int p_149681_5_, EntityPlayer player) {
+    	
+    }
+
 
     @SideOnly(Side.CLIENT)
     @Override

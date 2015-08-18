@@ -18,7 +18,9 @@ public class HFModInfo {
     public static final String SEEDPATH = "hf:seeds/";
     public static final String TREATPATH = "hf:treats/";
     public static final String TOOLSPATH = "hf:tools/";
+    public static final String CTMPATH = "hf:ctm/";
     public static final String VERSION = "@VERSION@";
+
     
     public static final ResourceLocation elements = new ResourceLocation(MODPATH, "textures/gui/gui_elements.png");
     public static ResourceLocation stars = new ResourceLocation(MODPATH, "textures/gui/gui_stars.png");

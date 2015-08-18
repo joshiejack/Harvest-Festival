@@ -3,6 +3,7 @@ package joshie.harvest.shops.purchaseable;
 import java.util.List;
 
 import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.util.Translate;
 import joshie.harvest.core.util.generic.Text;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,10 +26,10 @@ public class PurchaseableBlueFeather extends Purchaseable {
     }
 
     @Override
-    public void addTooltip(List list, EntityPlayer player) {
+    public void addTooltip(List list) {
         list.add(/*Text.WHITE + */stacks[0].getDisplayName());
         list.add(Translate.translate("marriage"));
-        if (!HFTrackers.getPlayerTracker(player).getRelationships().isEllegibleToMarry()) {
+        if (!HFTrackers.getPlayerTracker(MCClientHelper.getPlayer()).getRelationships().isEllegibleToMarry()) {
         list.add(Text.DARK_RED + Translate.translate("marriage.locked"));
         } else
         list.add(Text.LIME + Translate.translate("marriage.unlocked"));

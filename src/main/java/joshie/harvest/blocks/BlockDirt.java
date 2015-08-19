@@ -40,10 +40,7 @@ public class BlockDirt extends CTMBlockHFBase {
 		setCreativeTab(HFTab.tabMining);
 	}
 	
-	/***********
-	 * META STUFF
-	 ***********/
-	
+	//META STUFF
     private static int META_COUNT = 2;
     
     @Override
@@ -63,10 +60,7 @@ public class BlockDirt extends CTMBlockHFBase {
         }
     }
 	
-	/***********
-	 * CTM
-	 ***********/
-    
+	//CTM
 	private SubmapManagerCTM managerCTM;
 	private HFSubmapManagerCTM dirtManagerCTM;
 
@@ -75,10 +69,7 @@ public class BlockDirt extends CTMBlockHFBase {
 		return dirtManagerCTM;
 	}
 
-	/************
-	 * TECHNICAL
-	 ************/
-    
+	//TECHNICAL/
     @Override
     public float getBlockHardness(World world, int x, int y, int z) {
         switch (world.getBlockMetadata(x, y, z)) {
@@ -131,10 +122,9 @@ public class BlockDirt extends CTMBlockHFBase {
     	return false;
     }
     
-	/************
-	 * MINE STUFF
-	 ************/
+	//MINE STUFF
     
+    /*
     @Override
     public void onBlockDestroyedByPlayer(World world, int x, int y, int z, int side) {
         if (world.rand.nextInt(3) == 0) {
@@ -147,12 +137,11 @@ public class BlockDirt extends CTMBlockHFBase {
         return !EntityHelper.isFakePlayer(player) ? 0.025F : super.getPlayerRelativeBlockHardness(player, world, x, y, z);
     }
 
-
     //Normal height = 12 floors, y91 = On a hill = 17 floors, On an extreme hills = y120 = 23 floors
     private static int MAXIMUM_FLOORS = 23;
 
     public static enum FloorType {
         ALL_FLOORS, MULTIPLE_OF_5, MULTIPLE_OF_10, MULTIPLE_OF_3, MULTIPLE_OF_2, ENDS_IN_8, ENDS_IN_9, LAST_FLOOR, MYSTRIL_FLOOR, GOLD_FLOOR, MYTHIC_FLOOR, CURSED_FLOOR, NON_MULTIPLE_OF_5, BELOW_15, GODDESS_FLOOR, BERRY_FLOOR;
     }
-    
+    */
 }

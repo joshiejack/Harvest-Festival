@@ -1,5 +1,6 @@
 package joshie.harvest.blocks;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -11,6 +12,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -20,57 +22,22 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockStone extends BlockHFBaseMeta {
-    public static final int CAVE_WALL = 0;
-    private static int META_COUNT = 6;
-    
+  
     public BlockStone() {
         super(Material.rock, HFTab.tabMining);
-		this.setBlockUnbreakable();
-		this.setResistance(6000000.0F);
-		this.setHardness(1000.0F);
     }
-
-    @Override
-    public float getPlayerRelativeBlockHardness(EntityPlayer player, World world, int x, int y, int z) {
-        return !EntityHelper.isFakePlayer(player) ? 0.025F : super.getPlayerRelativeBlockHardness(player, world, x, y, z);
-    }
-
-    @Override
-    public int getToolLevel(int meta) {
-        return 1;
-    }
-
+    
+	/***********
+	 * META STUFF
+	 ***********/
+    
+    private static int META_COUNT = 2;
+    
     @Override
     public int getMetaCount() {
         return META_COUNT;
     }
-
-    @Override
-    public void onBlockDestroyedByPlayer(World world, int x, int y, int z, int side) {
-        if (world.rand.nextInt(3) == 0) {
-            //MineHelper.caveIn(world, x, y, z);
-        }
-    }
     
-    @Override
-    public int quantityDropped(Random p_149745_1_)
-    {
-        return 0;
-    }
-    
-    @Override
-    public boolean canSilkHarvest(World world, EntityPlayer player, int x, int y, int z, int metadata)
-    {
-    	return false;
-    }
-    
-    //Maybe something doable in the future
-    @Override
-    public void onBlockHarvested(World world, int x, int y, int z, int p_149681_5_, EntityPlayer player) {
-    	
-    }
-
-
     @SideOnly(Side.CLIENT)
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, List list) {
@@ -82,24 +49,108 @@ public class BlockStone extends BlockHFBaseMeta {
             }
         }
     }
-
+    
+	/***********
+	 * TEXTURES
+	 ***********/
+  
+	private IIcon[] textures = new IIcon[7];
+    
+    //Not working at the moment
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister iconRegister) {
         String name = prefix != null ? prefix : "";
-        icons = new IIcon[getMetaCount()];
+        for(int i = 0; i < getTextures().length; i++){ getTextures()[i] = iconRegister.registerIcon(mod + ":" + name + getName(i));}
+        }
+    
+	@Override
+	@SideOnly(Side.CLIENT)
+	public IIcon getIcon(int side, int metadata) {
+		return textures[(new Random()).nextInt(textures.length)];
+	}
 
-        icons[0] = iconRegister.registerIcon(mod + ":" + name + getName(0));
-        for (int i = 1; i < icons.length; i++) {
-            icons[i] = iconRegister.registerIcon(mod + ":" + name + getName(0) + i);
+	@SideOnly(Side.CLIENT)
+	public IIcon[] getTextures() {
+		return textures;
+	}
+
+	@SideOnly(Side.CLIENT)
+	public void setTextures(IIcon[] textures) {
+		this.textures = textures;
+	}
+	
+	/************
+	 * TECHNICAL
+	 ************/
+
+    @Override
+    public float getBlockHardness(World world, int x, int y, int z) {
+        switch (world.getBlockMetadata(x, y, z)) {
+            case 0:
+                return 55F;
+            case 1:
+                return 7F;
+            default:
+                return 4F;
         }
     }
-
-    public static int getRandomMeta(Random rand) {
-        if (rand.nextInt(13) <= 10) {
-            return 0;
+    
+    @Override
+    public int getToolLevel(int meta) {
+        return 4;
+    }
+    
+    @Override
+    public float getExplosionResistance(Entity par1Entity, World world, int x, int y, int z, double explosionX, double explosionY, double explosionZ) {
+        switch (world.getBlockMetadata(x, y, z)) {
+            case 0:
+                return 6002;
+            case 1:
+                return 14.0F;
+            default:
+                return 5;
         }
+    }
+    
+    @Override
+    public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune)
+    {
+        ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
 
-        return rand.nextInt(META_COUNT);
+        int count = quantityDropped(metadata, fortune, world.rand);
+        for(int i = 0; i < count; i++)
+        {
+        	if (metadata == 0) {
+        	}
+        	if (metadata == 1) {
+                ret.add(new ItemStack(HFBlocks.stone, 1, 1));
+            }
+        }
+        return ret;
+    }
+    
+    @Override
+    public boolean canSilkHarvest(World world, EntityPlayer player, int x, int y, int z, int metadata)
+    {
+    	return false;
+    }
+
+	/************
+	 * MINE STUFF
+	 ************/
+    
+    public static final int CAVE_WALL = 0;
+    
+    @Override
+    public void onBlockDestroyedByPlayer(World world, int x, int y, int z, int side) {
+        if (world.rand.nextInt(3) == 0) {
+            //MineHelper.caveIn(world, x, y, z);
+        }
+    }
+    
+    @Override
+    public float getPlayerRelativeBlockHardness(EntityPlayer player, World world, int x, int y, int z) {
+        return !EntityHelper.isFakePlayer(player) ? 0.025F : super.getPlayerRelativeBlockHardness(player, world, x, y, z);
     }
 }

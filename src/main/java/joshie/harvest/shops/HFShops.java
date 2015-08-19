@@ -22,7 +22,9 @@ import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.shops.purchaseable.PurchaseableBlueFeather;
 import joshie.harvest.shops.purchaseable.PurchaseableBuilding;
 import joshie.harvest.shops.purchaseable.PurchaseableCropSeeds;
+import joshie.harvest.shops.purchaseable.PurchaseableDirt;
 import joshie.harvest.shops.purchaseable.PurchaseableEntity;
+import joshie.harvest.shops.purchaseable.PurchaseableStone;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -117,9 +119,9 @@ public class HFShops {
     
     private static void miner() {
     	miner = HFApi.SHOPS.newShop("miner", HFNPCs.miner);
-    	miner.addItem(1000, new ItemStack(HFBlocks.dirt));
-    	miner.addItem(1000, new ItemStack(HFBlocks.stone));
-    	miner.addOpening(MONDAY, 11000, 16000).addOpening(TUESDAY, 11000, 16000).addOpening(WEDNESDAY, 11000, 16000);
+    	miner.addItem(new PurchaseableDirt(1000, new ItemStack(HFBlocks.dirt, 16, 1)));
+    	miner.addItem(new PurchaseableStone(1000, new ItemStack(HFBlocks.stone, 16, 1)));
+    	miner.addOpening(MONDAY, 11000, 16000).addOpening(TUESDAY, 11000, 16000).addOpening(WEDNESDAY, 11000, 16000); //You decide what time it will be open yoshie
     	miner.addOpening(THURSDAY, 11000, 16000).addOpening(FRIDAY, 11000, 16000).addOpening(SATURDAY, 11000, 16000);
     }
     
@@ -132,6 +134,6 @@ public class HFShops {
         carpenter.setGuiOverlay(new ShopGui(199));
         supermarket.setGuiOverlay(new ShopGui(166));
         poultry.setGuiOverlay(new ShopGui(34));
-        miner.setGuiOverlay(new ShopGui(2));
+        miner.setGuiOverlay(new ShopGui(15)); //Look into this yoshie
     }
 }

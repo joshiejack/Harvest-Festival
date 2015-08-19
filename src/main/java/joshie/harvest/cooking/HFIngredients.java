@@ -120,7 +120,7 @@ public class HFIngredients {
         sashimi = HFApi.COOKING.newIngredient("sashimi", 11, -2, 2, 0.07F, 10);
         scrambled_egg = HFApi.COOKING.newIngredient("egg.scrambled", 20, -1, 1, 0.05F, 6);
         cookies = HFApi.COOKING.newIngredient("cookies", 15, -2, 1, 0.03F, 4);
-         //Idk if the numbers are right, check it joshie
+         //Idk if the numbers are right, check it yoshie
         ketchup = HFApi.COOKING.newIngredient("ketchup", 2, -1, 1, 0.033F, 8);
         
         //Add ingredients to the categories

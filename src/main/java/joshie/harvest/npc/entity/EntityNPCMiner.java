@@ -44,6 +44,8 @@ public class EntityNPCMiner extends EntityNPCShopkeeper {
         super(owning_player, world, npc);
     }
 
+    
+    //Why is this not working yoshie
     /*
     @Override
     public boolean interact(EntityPlayer player) {
@@ -81,23 +83,23 @@ public class EntityNPCMiner extends EntityNPCShopkeeper {
         //Walls
         for (int x = -mineXSize - 1; x <= mineXSize + 1; x++) {
             for (int y = -8; y < -3; y++) {
-                instructions.add(new PlaceableBlock(HFBlocks.stone, BlockStone.getRandomMeta(world.rand), x, y - (level * 5), -mineZSize - 1));
-                instructions.add(new PlaceableBlock(HFBlocks.stone, BlockStone.getRandomMeta(world.rand), x, y - (level * 5), mineZSize + 1));
+                instructions.add(new PlaceableBlock(HFBlocks.stone, 0, x, y - (level * 5), -mineZSize - 1));
+                instructions.add(new PlaceableBlock(HFBlocks.stone, 0, x, y - (level * 5), mineZSize + 1));
             }
         }
 
         //Walls Two
         for (int z = -mineZSize - 1; z <= mineZSize + 1; z++) {
             for (int y = -8; y < -3; y++) {
-                instructions.add(new PlaceableBlock(HFBlocks.stone, BlockStone.getRandomMeta(world.rand), -mineXSize - 1, y - (level * 5), z));
-                instructions.add(new PlaceableBlock(HFBlocks.stone, BlockStone.getRandomMeta(world.rand), mineXSize + 1, y - (level * 5), z));
+                instructions.add(new PlaceableBlock(HFBlocks.stone, 0, -mineXSize - 1, y - (level * 5), z));
+                instructions.add(new PlaceableBlock(HFBlocks.stone, 0, mineXSize + 1, y - (level * 5), z));
             }
         }
 
         //Ceiling
         for (int x = -mineXSize; x <= mineXSize; x++) {
             for (int z = -mineZSize; z <= mineZSize; z++) {
-                instructions.add(new PlaceableBlock(HFBlocks.stone, BlockStone.getRandomMeta(world.rand), x, -4 - (level * 5), z)); //Add the block to this list
+                instructions.add(new PlaceableBlock(HFBlocks.stone, 0, x, -4 - (level * 5), z)); //Add the block to this list
             }
         }
 

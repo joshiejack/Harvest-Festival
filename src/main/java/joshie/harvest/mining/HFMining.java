@@ -21,6 +21,7 @@ import net.minecraft.item.ItemStack;
 */
 
 public class HFMining {
+	//I needed to disable some things yoshie :(
 	/*
     public static void preInit() {
         MiningLoot.registerLoot(ALL_FLOORS, new ItemStack(HFItems.general, 1, JUNK_ORE), 30D);

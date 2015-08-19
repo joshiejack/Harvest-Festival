@@ -23,6 +23,7 @@ import joshie.harvest.core.util.base.CTMBlockHFBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -33,53 +34,23 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockDirt extends CTMBlockHFBase {
-	
-	private SubmapManagerCTM managerCTM;
-	private HFSubmapManagerCTM dirtManagerCTM;
-    private static int META_COUNT = 2;
 
 	public BlockDirt(String modid, String texturePath) {
 		super(modid, texturePath, HFBlocks.renderIDCTM);
-		this.setBlockUnbreakable();
-		this.setResistance(6000000.0F);
-		this.setHardness(50.0F);
-		this.setCreativeTab(HFTab.tabMining);
+		setCreativeTab(HFTab.tabMining);
 	}
-
-	@Override
-	public ISubmapManager getSubMap() {
-		return dirtManagerCTM;
-	}
-
 	
-    @Override
-    public float getPlayerRelativeBlockHardness(EntityPlayer player, World world, int x, int y, int z) {
-        return !EntityHelper.isFakePlayer(player) ? 0.025F : super.getPlayerRelativeBlockHardness(player, world, x, y, z);
-    }
+	/***********
+	 * META STUFF
+	 ***********/
 	
-    @Override
-    public void onBlockDestroyedByPlayer(World world, int x, int y, int z, int side) {
-        if (world.rand.nextInt(3) == 0) {
-            //MineHelper.caveIn(world, x, y, z);
-        }
-    }
+    private static int META_COUNT = 2;
     
-    @Override
-    public int quantityDropped(Random p_149745_1_)
-    {
-        return 0;
-    }
-    
-    public boolean canSilkHarvest(World world, EntityPlayer player, int x, int y, int z, int metadata)
-    {
-    	return false;
-    }
-
     @Override
     public int getMetaCount() {
         return META_COUNT;
     }
-    
+	
     @SideOnly(Side.CLIENT)
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, List list) {
@@ -91,14 +62,97 @@ public class BlockDirt extends CTMBlockHFBase {
             }
         }
     }
+	
+	/***********
+	 * CTM
+	 ***********/
+    
+	private SubmapManagerCTM managerCTM;
+	private HFSubmapManagerCTM dirtManagerCTM;
 
-	/*
-     Normal height = 12 floors, y91 = On a hill = 17 floors, On an extreme hills = y120 = 23 floors
+	@Override
+	public ISubmapManager getSubMap() {
+		return dirtManagerCTM;
+	}
+
+	/************
+	 * TECHNICAL
+	 ************/
+    
+    @Override
+    public float getBlockHardness(World world, int x, int y, int z) {
+        switch (world.getBlockMetadata(x, y, z)) {
+            case 0:
+                return 50F;
+            case 1:
+                return 2F;
+            default:
+                return 4F;
+        }
+    }
+    
+    @Override
+    public int getToolLevel(int meta) {
+        return 4;
+    }
+    
+    @Override
+    public float getExplosionResistance(Entity par1Entity, World world, int x, int y, int z, double explosionX, double explosionY, double explosionZ) {
+        switch (world.getBlockMetadata(x, y, z)) {
+            case 0:
+                return 6000;
+            case 1:
+                return 12.0F;
+            default:
+                return 5;
+        }
+    }
+    
+    @Override
+    public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune)
+    {
+        ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
+
+        int count = quantityDropped(metadata, fortune, world.rand);
+        for(int i = 0; i < count; i++)
+        {
+        	if (metadata == 0) {
+        	}
+        	if (metadata == 1) {
+                ret.add(new ItemStack(HFBlocks.dirt, 1, 1));
+            }
+        }
+        return ret;
+    }
+    
+    @Override
+    public boolean canSilkHarvest(World world, EntityPlayer player, int x, int y, int z, int metadata)
+    {
+    	return false;
+    }
+    
+	/************
+	 * MINE STUFF
+	 ************/
+    
+    @Override
+    public void onBlockDestroyedByPlayer(World world, int x, int y, int z, int side) {
+        if (world.rand.nextInt(3) == 0) {
+            //MineHelper.caveIn(world, x, y, z);
+        }
+    }
+    
+    @Override
+    public float getPlayerRelativeBlockHardness(EntityPlayer player, World world, int x, int y, int z) {
+        return !EntityHelper.isFakePlayer(player) ? 0.025F : super.getPlayerRelativeBlockHardness(player, world, x, y, z);
+    }
+
+
+    //Normal height = 12 floors, y91 = On a hill = 17 floors, On an extreme hills = y120 = 23 floors
     private static int MAXIMUM_FLOORS = 23;
 
     public static enum FloorType {
         ALL_FLOORS, MULTIPLE_OF_5, MULTIPLE_OF_10, MULTIPLE_OF_3, MULTIPLE_OF_2, ENDS_IN_8, ENDS_IN_9, LAST_FLOOR, MYSTRIL_FLOOR, GOLD_FLOOR, MYTHIC_FLOOR, CURSED_FLOOR, NON_MULTIPLE_OF_5, BELOW_15, GODDESS_FLOOR, BERRY_FLOOR;
     }
-    */
-
+    
 }

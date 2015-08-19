@@ -40,5 +40,11 @@ public class ItemBlockDirt extends ItemBlockBase {
         }
     }
     */
-    
+    @Override
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean flag)
+	{
+    		if(stack.getItemDamage()==1)
+			list.add(Translate.translate("tooltip.dirt"));
+	}
 }

@@ -47,26 +47,21 @@ public class HFBlocks {
     public static Block cookware;
     public static Block crops;
     public static Block dirt;
-    public static Block dirtCosmetic;
     public static Block flowers;
     public static Block preview;
     public static Block stone;
-    public static Block stoneCosmetic;
     public static Block woodmachines;
     public static Block goddessWater;
-    
     public static Fluid goddess;
 
     public static void preInit() {
         crops = new BlockCrop().setStepSound(soundTypeGrass).setBlockName("crops.block");
         dirt = new BlockDirt("hf", "ctm/dirt").setStepSound(soundTypeGravel).setBlockName("dirt");
-        dirtCosmetic = new BlockDirtCosmetic("hf", "ctm/dirt").setStepSound(soundTypeGravel).setBlockName("dirtCosmetic");
         flowers = new BlockFlower().setStepSound(soundTypeGrass).setBlockName("flowers.block");
         cookware = new BlockCookware().setStepSound(soundTypeMetal).setBlockName("cookware");
         woodmachines = new BlockWood().setStepSound(soundTypeWood).setBlockName("general.block");
         preview = new BlockPreview().setBlockName("preview");
         stone = new BlockStone().setStepSound(soundTypePiston).setBlockName("stone");
-        //stoneCosmetic = new BlockStoneCosmetic().setStepSound(soundTypePiston).setBlockName("stoneCosmetic");
         goddess = new Fluid("hf_goddess_water").setRarity(EnumRarity.rare);
         FluidRegistry.registerFluid(goddess);
         goddessWater = new BlockGoddessWater(goddess).setBlockName("goddess.water");

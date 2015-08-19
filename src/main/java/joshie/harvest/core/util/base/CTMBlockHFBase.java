@@ -21,7 +21,7 @@ import net.minecraft.world.IBlockAccess;
  * This class does <i>not</i> handle metadata-dependent textures.
  */
 
-public abstract class CTMBlockHFBase extends BlockHFBase implements ICTMBlock<ISubmapManager> {
+public abstract class CTMBlockHFBase extends BlockHFBaseMeta implements ICTMBlock<ISubmapManager> {
 
 	@SideOnly(Side.CLIENT)
 	private SubmapManagerCTM managerCTM;

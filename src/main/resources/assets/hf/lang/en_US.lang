@@ -247,8 +247,7 @@ hf.general.block.trough2=Food Trough
 
 hf.flowers.block.goddess=Goddess Flower
 
-hf.tile.dirt.name=Mine Floor
-hf.tile.dirtCosmetic.name=Mine Floor
+hf.dirt.mine.floor=Mine Floor
 hf.tooltip.dirt=Cosmetical
 hf.stone.mine.wall=Mine Wall
 

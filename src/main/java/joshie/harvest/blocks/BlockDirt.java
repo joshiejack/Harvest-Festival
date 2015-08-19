@@ -36,6 +36,7 @@ public class BlockDirt extends CTMBlockHFBase {
 	
 	private SubmapManagerCTM managerCTM;
 	private HFSubmapManagerCTM dirtManagerCTM;
+    private static int META_COUNT = 2;
 
 	public BlockDirt(String modid, String texturePath) {
 		super(modid, texturePath, HFBlocks.renderIDCTM);
@@ -72,6 +73,23 @@ public class BlockDirt extends CTMBlockHFBase {
     public boolean canSilkHarvest(World world, EntityPlayer player, int x, int y, int z, int metadata)
     {
     	return false;
+    }
+
+    @Override
+    public int getMetaCount() {
+        return META_COUNT;
+    }
+    
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void getSubBlocks(Item item, CreativeTabs tab, List list) {
+        if (General.DEBUG_MODE) {
+            for (int i = 0; i < getMetaCount(); i++) {
+                if (isValidTab(tab, i)) {
+                    list.add(new ItemStack(item, 1, i));
+                }
+            }
+        }
     }
 
 	/*

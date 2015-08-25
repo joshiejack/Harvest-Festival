@@ -11,6 +11,7 @@ import joshie.harvest.api.animals.IMilkable;
 import joshie.harvest.api.cooking.ICookingAltIcon;
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.core.HFTab;
+import joshie.harvest.core.util.Translate;
 import joshie.harvest.core.util.generic.Text;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -210,4 +211,25 @@ public class ItemGeneral extends ItemHFMeta implements ICreativeSorted, ICooking
 
         return 102;
     }
+    
+	@Override
+	public String getItemStackDisplayName(ItemStack stack) {
+        switch (stack.getItemDamage()) {
+        case BLUE_FEATHER:
+        case MIRACLE:
+    		return Text.AQUA +super.getItemStackDisplayName(stack);
+        case MYTHIC_STONE:
+    		return Text.LIME +super.getItemStackDisplayName(stack);
+        default:
+            return Text.WHITE +super.getItemStackDisplayName(stack);
+            }
+		}
+    
+    @Override
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean flag)
+	{
+    		if(stack.getItemDamage() == MYTHIC_STONE)
+			list.add(Translate.translate("tooltip.mythic_stone"));
+    		}
 }

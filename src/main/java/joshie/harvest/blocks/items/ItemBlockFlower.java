@@ -1,9 +1,16 @@
 package joshie.harvest.blocks.items;
 
+import java.util.List;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.blocks.BlockFlower;
+import joshie.harvest.core.util.Translate;
 import joshie.harvest.core.util.base.ItemBlockBase;
+import joshie.harvest.core.util.generic.Text;
 import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -31,4 +38,16 @@ public class ItemBlockFlower extends ItemBlockBase implements ICreativeSorted {
     public int getSortValue(ItemStack stack) {
         return 1;
     }
+    
+	@Override
+	public String getItemStackDisplayName(ItemStack stack) {
+    return Text.AQUA +super.getItemStackDisplayName(stack);
+        }
+    
+    @Override
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean flag)
+	{
+			list.add(Translate.translate("tooltip.flower"));
+    		}
 }

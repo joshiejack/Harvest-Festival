@@ -16,6 +16,7 @@ import joshie.harvest.core.HFTab;
 import joshie.harvest.core.config.General;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.util.Translate;
+import joshie.harvest.core.util.generic.Text;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -53,7 +54,7 @@ public class ItemMeal extends ItemHFMeta implements IMealProvider, ICreativeSort
             return Translate.translate("meal." + stack.stackTagCompound.getString("FoodName"));
         } else {
             int meta = Math.min(Utensil.values().length - 1, stack.getItemDamage());
-            return Translate.translate("meal.burnt." + Utensil.values()[meta].name().replace("_", ".").toLowerCase());
+            return Text.DARK_GREY + Translate.translate("meal.burnt." + Utensil.values()[meta].name().replace("_", ".").toLowerCase());
         }
     }
 

@@ -24,25 +24,25 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockStone extends BlockHFBaseMeta {
   
     public BlockStone() {
-    			super(Material.rock, HFTab.tabMining);
-    					}
+        super(Material.rock, HFTab.tabMining);
+    }
     
 	//META STUFF
-    	private static int META_COUNT = 2;
+    private static int META_COUNT = 2;
     
     @Override
     public int getMetaCount() {
-    		return META_COUNT;
-    	}
+        return META_COUNT;
+    }
     
     @SideOnly(Side.CLIENT)
-    	@Override
+    @Override
     public void getSubBlocks(Item item, CreativeTabs tab, List list) {
         if (General.DEBUG_MODE) {
             for (int i = 0; i < getMetaCount(); i++) {
                 if (isValidTab(tab, i)) {
                     list.add(new ItemStack(item, 1, i));
-                	}
+                }
             }
         }
     }
@@ -53,9 +53,9 @@ public class BlockStone extends BlockHFBaseMeta {
     //Not working at the moment
     @Override
     @SideOnly(Side.CLIENT)
-    	public void registerBlockIcons(IIconRegister iconRegister) {
+    public void registerBlockIcons(IIconRegister iconRegister) {
         String name = prefix != null ? prefix : "";
-        	for(int i = 0; i < getTextures().length; i++){ getTextures()[i] = iconRegister.registerIcon(mod + ":" + name + getName(i));}
+        for(int i = 0; i < getTextures().length; i++){ getTextures()[i] = iconRegister.registerIcon(mod + ":" + name + getName(i));}
         }
     
 	@Override
@@ -69,9 +69,9 @@ public class BlockStone extends BlockHFBaseMeta {
 		return textures;
 	}
 
-		@SideOnly(Side.CLIENT)
+	@SideOnly(Side.CLIENT)
 	public void setTextures(IIcon[] textures) {
-			this.textures = textures;
+		this.textures = textures;
 	}
 	
 	//TECHNICAL
@@ -81,15 +81,15 @@ public class BlockStone extends BlockHFBaseMeta {
             case 0:
                 return 55F;
             case 1:
-                return 7F;
+                return 4F;
             default:
                 return 4F;
         }
     }
     
     @Override
-    	public int getToolLevel(int meta) {
-        return 4;
+    public int getToolLevel(int meta) {
+    	return 2;
     }
     
     @Override
@@ -105,8 +105,8 @@ public class BlockStone extends BlockHFBaseMeta {
     }
     
     @Override
-    		public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune)
-    	{
+    public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune)
+    {
         ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
 
         int count = quantityDropped(metadata, fortune, world.rand);
@@ -122,11 +122,12 @@ public class BlockStone extends BlockHFBaseMeta {
     }
     
     @Override
-    		public boolean canSilkHarvest(World world, EntityPlayer player, int x, int y, int z, int metadata)
-    	{
+    public boolean canSilkHarvest(World world, EntityPlayer player, int x, int y, int z, int metadata)
+    {
     	return false;
     }
 
+	
     //MINE STUFF
     /*
     public static final int CAVE_WALL = 0;
@@ -140,7 +141,7 @@ public class BlockStone extends BlockHFBaseMeta {
     
     @Override
     public float getPlayerRelativeBlockHardness(EntityPlayer player, World world, int x, int y, int z) {
-        	return !EntityHelper.isFakePlayer(player) ? 0.025F : super.getPlayerRelativeBlockHardness(player, world, x, y, z);
+        return !EntityHelper.isFakePlayer(player) ? 0.025F : super.getPlayerRelativeBlockHardness(player, world, x, y, z);
     }
     */
 }

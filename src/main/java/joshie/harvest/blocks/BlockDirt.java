@@ -76,7 +76,7 @@ public class BlockDirt extends CTMBlockHFBase {
             case 0:
                 return 50F;
             case 1:
-                return 2F;
+                return 4F;
             default:
                 return 4F;
         }
@@ -84,7 +84,7 @@ public class BlockDirt extends CTMBlockHFBase {
     
     @Override
     public int getToolLevel(int meta) {
-        return 4;
+    	return 2;
     }
     
     @Override

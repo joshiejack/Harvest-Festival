@@ -11,6 +11,11 @@ hf.check.lead=On lead after purchase.
 #Commands
 hf.commands.help.header=--- Showing hf help page %d of %d (/hf help <page>) ---
 
+#Tooltips
+hf.tooltip.dirt=Cosmetical
+hf.tooltip.mythic_stone=Used to Upgrade
+hf.tooltip.flower=Caller of the Goddess
+
 #Animals
 hf.animal.chicken=Chicken
 hf.animal.cow=Cow
@@ -37,6 +42,7 @@ hf.cheat.coord.setter=[BuildingGen] Coordinate Setter
 hf.cheat.code.generator=[BuildingGen] Code Generator
 hf.cheat.render.generator=[RenderGen] Rotation Generator
 hf.cheat.meta.checker=[Helper] Meta Checker
+hf.cheat.chunk.tester=[Helper] Chunk Tester
 
 #Crops
 hf.crop.seeds.format.standard=%C %S
@@ -248,7 +254,6 @@ hf.general.block.trough2=Food Trough
 hf.flowers.block.goddess=Goddess Flower
 
 hf.dirt.mine.floor=Mine Floor
-hf.tooltip.dirt=Cosmetical
 hf.stone.mine.wall=Mine Wall
 
 tile.goddess.water.name=Goddess Water

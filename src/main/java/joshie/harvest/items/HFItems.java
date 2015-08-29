@@ -20,25 +20,28 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class HFItems {
     public static EnumMap<SizeableMeta, Item> sized = new EnumMap(SizeableMeta.class);
-    public static ItemAnimal animal;
-    public static ItemTreat treats;
-    public static Item seeds;
-    public static Item general;
-    public static Item meal;
-    public static Item structures;
-    public static Item spawnerNPC;
-    public static Item spawnerAnimal;
-
+    //Sizeables
     public static Item egg;
     public static Item milk;
     public static Item mayonnaise;
     public static Item wool;
-
-    //Tool Items
+    
+    //Tools
     public static Item hoe;
     public static Item sickle;
     public static Item wateringcan;
     public static Item hammer;
+    
+    //Misc
+    public static Item general;
+    public static Item meal;
+    public static ItemAnimal animal;
+    public static ItemTreat treats;
+    public static Item seeds;
+    
+    //Misc
+    public static Item structures;
+    public static Item spawnerNPC;
 
     public static void preInit() {
         //Add a new crop item for things that do not have an item yet :D
@@ -58,24 +61,26 @@ public class HFItems {
             }
         }
 
+        //Sizeables
         egg = sized.get(SizeableMeta.EGG);
         milk = sized.get(SizeableMeta.MILK);
         mayonnaise = sized.get(SizeableMeta.MAYONNAISE);
         wool = sized.get(SizeableMeta.WOOL);
 
-        animal = (ItemAnimal) new ItemAnimal().setUnlocalizedName("animal");
-        seeds = new ItemHFSeeds().setUnlocalizedName("crops.seeds");
-        general = new ItemGeneral().setUnlocalizedName("general.item");
-        meal = new ItemMeal().setUnlocalizedName("meal");
-        treats = (ItemTreat) new ItemTreat().setUnlocalizedName("treat");
-
-        /* Tools **/
+        //Tools
         hoe = new ItemHoe().setUnlocalizedName("hoe");
         sickle = new ItemSickle().setUnlocalizedName("sickle");
         wateringcan = new ItemWateringCan().setUnlocalizedName("wateringcan");
         hammer = new ItemHammer().setUnlocalizedName("hammer");
+        
+        //Misc
+        general = new ItemGeneral().setUnlocalizedName("general.item");
+        meal = new ItemMeal().setUnlocalizedName("meal");
+        animal = (ItemAnimal) new ItemAnimal().setUnlocalizedName("animal");
+        treats = (ItemTreat) new ItemTreat().setUnlocalizedName("treat");
+        seeds = new ItemHFSeeds().setUnlocalizedName("crops.seeds");
 
-        //Creative Mod Items
+        //Creative
         structures = new ItemBuilding().setUnlocalizedName("structures");
         spawnerNPC = new ItemNPCSpawner().setUnlocalizedName("spawner.npc");
 

@@ -17,9 +17,12 @@ hf.tooltip.mythic_stone=Used to Upgrade
 hf.tooltip.flower=Caller of the Goddess
 
 #Animals
-hf.animal.chicken=Chicken
 hf.animal.cow=Cow
 hf.animal.sheep=Sheep
+hf.animal.chicken=Chicken
+entity.HarvestFestival.HarvestCow.name=Cow
+entity.HarvestFestival.HarvestSheep.name=Sheep
+entity.HarvestFestival.HarvestChicken.name=Chicken
 
 #Buildings
 hf.structures.barn=Blueprint: Animal Ranch

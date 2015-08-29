@@ -43,25 +43,33 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class HFBlocks {
+	
 	public static int renderIDCTM;
+	//Cooking & Farming
     public static Block cookware;
     public static Block crops;
-    public static Block dirt;
     public static Block flowers;
-    public static Block preview;
+    //Mine
     public static Block stone;
+    public static Block dirt;
+    //Misc
     public static Block woodmachines;
+    public static Block preview;
     public static Block goddessWater;
     public static Fluid goddess;
 
     public static void preInit() {
-        crops = new BlockCrop().setStepSound(soundTypeGrass).setBlockName("crops.block");
-        dirt = new BlockDirt("hf", "ctm/dirt").setStepSound(soundTypeGravel).setBlockName("dirt");
-        flowers = new BlockFlower().setStepSound(soundTypeGrass).setBlockName("flowers.block");
+    	
+    	//Cooking & Farming
         cookware = new BlockCookware().setStepSound(soundTypeMetal).setBlockName("cookware");
+        crops = new BlockCrop().setStepSound(soundTypeGrass).setBlockName("crops.block");
+        flowers = new BlockFlower().setStepSound(soundTypeGrass).setBlockName("flowers.block");
+        //Mine
+        stone = new BlockStone().setStepSound(soundTypePiston).setBlockName("stone");
+        dirt = new BlockDirt("hf", "ctm/dirt").setStepSound(soundTypeGravel).setBlockName("dirt");
+        //Misc
         woodmachines = new BlockWood().setStepSound(soundTypeWood).setBlockName("general.block");
         preview = new BlockPreview().setBlockName("preview");
-        stone = new BlockStone().setStepSound(soundTypePiston).setBlockName("stone");
         goddess = new Fluid("hf_goddess_water").setRarity(EnumRarity.rare);
         FluidRegistry.registerFluid(goddess);
         goddessWater = new BlockGoddessWater(goddess).setBlockName("goddess.water");

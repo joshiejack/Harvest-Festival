@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.core.helpers.generic.ConfigHelper;
 import joshie.harvest.core.lib.HFModInfo;
+import joshie.harvest.plugins.agricraft.AgriCraft;
 import joshie.harvest.plugins.bettersleeping.BetterSleeping;
+import joshie.harvest.plugins.harvestcraft.HarvestCraft;
 import net.minecraftforge.common.config.Configuration;
 
 import org.apache.logging.log4j.Level;
@@ -29,9 +31,9 @@ public class HFPlugins {
     }
 
     static {
-        //data.add(new PluginData("harvestcraft", HarvestCraft.class));
+        data.add(new PluginData("harvestcraft", HarvestCraft.class));
         data.add(new PluginData("bettersleeping", BetterSleeping.class));
-        //data.add(new PluginData("AgriCraft", AgriCraft.class));
+        data.add(new PluginData("AgriCraft", AgriCraft.class));
     }
 
     private static class PluginData {

@@ -10,7 +10,7 @@
 /eclipse/*
 /forge-1.7.10*
 /.gradle
-/libs
+#/libs
 /LICENSE-fml.txt
 /logs
 /MinecraftForge-Credits.txt

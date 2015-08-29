@@ -4,16 +4,13 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.Random;
 
-/*
 import joshie.harvest.blocks.BlockDirt.FloorType;
 import joshie.harvest.core.helpers.generic.ItemHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-*/
 
 public class MiningLoot {
-    /*
     private static EnumMap<FloorType, Loot> loots = new EnumMap(FloorType.class);
     private static Random rand = new Random();
 
@@ -48,5 +45,4 @@ public class MiningLoot {
     private static class Loot {
         ArrayList<LootChance> loot = new ArrayList();
     }
-        */
 }

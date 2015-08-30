@@ -16,7 +16,7 @@ public class TileMixer extends TileCooking {
     public boolean hasPrerequisites() {
         Block block = worldObj.getBlock(xCoord, yCoord - 1, zCoord);
         int meta = worldObj.getBlockMetadata(xCoord, yCoord - 1, zCoord);
-        if (block == HFBlocks.cookware && meta == BlockCookware.KITCHEN) {
+        if (block == HFBlocks.cookware && meta == BlockCookware.COUNTER) {
             return true;
         } else return false;
     }

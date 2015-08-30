@@ -16,8 +16,8 @@ public class ItemBlockCookware extends ItemBlockBase implements ICreativeSorted 
         switch (stack.getItemDamage()) {
             case BlockCookware.FRIDGE:
                 return "fridge";
-            case BlockCookware.KITCHEN:
-                return "kitchen";
+            case BlockCookware.COUNTER:
+                return "COUNTER";
             case BlockCookware.POT:
                 return "pot";
             case BlockCookware.FRYING_PAN:
@@ -26,8 +26,6 @@ public class ItemBlockCookware extends ItemBlockBase implements ICreativeSorted 
                 return "mixer";
             case BlockCookware.OVEN:
                 return "oven";
-            case BlockCookware.STEAMER:
-                return "steamer";
             case BlockCookware.FRIDGE_TOP:
                 return "fridge.top";
             default:

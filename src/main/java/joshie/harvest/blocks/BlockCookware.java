@@ -11,7 +11,6 @@ import joshie.harvest.blocks.tiles.TileKitchen;
 import joshie.harvest.blocks.tiles.TileMixer;
 import joshie.harvest.blocks.tiles.TileOven;
 import joshie.harvest.blocks.tiles.TilePot;
-import joshie.harvest.blocks.tiles.TileSteamer;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.config.Cooking;
 import joshie.harvest.core.handlers.GuiHandler;
@@ -37,12 +36,11 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockCookware extends BlockHFBaseMeta {
     public static final int FRIDGE_TOP = 0;
     public static final int FRIDGE = 1;
-    public static final int KITCHEN = 2;
+    public static final int COUNTER = 2;
     public static final int POT = 3;
     public static final int FRYING_PAN = 4;
     public static final int MIXER = 5;
     public static final int OVEN = 6;
-    public static final int STEAMER = 7;
 
     public BlockCookware() {
         super(Material.piston, HFTab.tabCooking);
@@ -51,7 +49,7 @@ public class BlockCookware extends BlockHFBaseMeta {
 
     @Override
     public String getToolType(int meta) {
-        return meta == KITCHEN ? "axe" : super.getToolType(meta);
+        return meta == COUNTER ? "axe" : super.getToolType(meta);
     }
 
     @Override
@@ -108,13 +106,13 @@ public class BlockCookware extends BlockHFBaseMeta {
         else if (meta == FRIDGE || meta == FRIDGE_TOP) {
             player.openGui(HarvestFestival.instance, GuiHandler.FRIDGE, world, x, y, z);
             return true;
-        } else if (meta == KITCHEN) {
+        } else if (meta == COUNTER) {
             ItemStack held = player.getCurrentEquippedItem();
             TileEntity tile = null;
-            if (meta == KITCHEN) tile = world.getTileEntity(x, y, z);
+            if (meta == COUNTER) tile = world.getTileEntity(x, y, z);
             else tile = world.getTileEntity(x, y - 1, z);
             if (!(tile instanceof TileKitchen)) return false;
-            if (meta == KITCHEN && held == null) {
+            if (meta == COUNTER && held == null) {
                 tile.updateEntity();
             }
         }
@@ -196,7 +194,7 @@ public class BlockCookware extends BlockHFBaseMeta {
         switch (meta) {
             case FRIDGE:
                 return new TileFridge();
-            case KITCHEN:
+            case COUNTER:
                 return new TileKitchen();
             case POT:
                 return new TilePot();
@@ -206,8 +204,6 @@ public class BlockCookware extends BlockHFBaseMeta {
                 return new TileMixer();
             case OVEN:
                 return new TileOven();
-            case STEAMER:
-                return new TileSteamer();
             default:
                 return null;
         }
@@ -215,7 +211,7 @@ public class BlockCookware extends BlockHFBaseMeta {
 
     @Override
     public boolean isActive(int meta) {
-        return meta == STEAMER ? Cooking.ENABLE_STEAMER : meta == FRIDGE_TOP ? false : true;
+        return meta == FRIDGE_TOP ? false : true;
     }
 
     @Override

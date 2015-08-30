@@ -16,6 +16,6 @@ public class TileKitchen extends TileCooking {
 
     @Override
     public IUtensil getUtensil() {
-        return Utensil.KITCHEN;
+        return Utensil.COUNTER;
     }
 }

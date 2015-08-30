@@ -74,7 +74,7 @@ public class FoodRegistry implements IFoodRegistry {
             if (utensil.name().equalsIgnoreCase(unlocalized)) return utensil;
         }
 
-        return Utensil.KITCHEN;
+        return Utensil.COUNTER;
     }
 
     @Override

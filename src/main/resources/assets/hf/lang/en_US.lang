@@ -151,12 +151,11 @@ hf.meal.toast.french=French Toast
 hf.meal.doughnut=Doughnut
 hf.meal.fish.grilled=Grilled Fish
 hf.meal.eggplant.happy=Happy Eggplant
-hf.meal.burnt.kitchen=Failed Handmade Dish
+hf.meal.burnt.counter=Failed Handmade Dish
 hf.meal.burnt.pot=Failed Pot Dish
 hf.meal.burnt.frying.pan=Failed Frying Pan Meal
 hf.meal.burnt.mixer=Failed Mixer Dish
 hf.meal.burnt.oven=Failed Oven Dish
-hf.meal.burnt.steamer=Failed Steamer Dish
 
 #Sizeables
 hf.sizeable.format=%S %P
@@ -239,7 +238,7 @@ hf.treat.generic=Treat
 #Blocks
 hf.cookware.fridge=Fridge
 hf.cookware.fridge.top=Fridge
-hf.cookware.kitchen=Kitchen Counter
+hf.cookware.counter=Kitchen Counter
 hf.cookware.pot=Cooking Pot
 hf.cookware.frying.pan=Frying Pan
 hf.cookware.mixer=Food Mixer

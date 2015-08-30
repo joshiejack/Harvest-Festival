@@ -11,7 +11,7 @@ import net.minecraft.item.ItemStack;
 public class MayoRecipeHandler implements ISpecialRecipeHandler {
     @Override
     public ItemStack getResult(IUtensil utensil, ArrayList<ItemStack> ingredients) {
-        if (utensil != Utensil.KITCHEN) return null;
+        if (utensil != Utensil.COUNTER) return null;
         if (ingredients.size() != 2) return null;
         boolean is0Oil = ingredients.get(0).getItem() == HFItems.general;
         ItemStack oil = is0Oil ? ingredients.get(0) : ingredients.get(1);

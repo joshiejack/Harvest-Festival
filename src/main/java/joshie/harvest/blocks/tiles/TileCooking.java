@@ -35,7 +35,7 @@ public abstract class TileCooking extends TileEntity implements IFaceable {
     public TileCooking() {}
 
     public IUtensil getUtensil() {
-        return Utensil.KITCHEN;
+        return Utensil.COUNTER;
     }
 
     public IUtensil getUtensil(World world, int x, int y, int z) {

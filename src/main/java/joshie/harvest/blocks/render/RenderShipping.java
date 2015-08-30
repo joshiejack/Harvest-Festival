@@ -1,20 +1,21 @@
 package joshie.harvest.blocks.render;
 
-import joshie.harvest.core.util.RenderBase;
-import net.minecraft.init.Blocks;
+import org.lwjgl.opengl.GL11;
 
-public class RenderShipping extends RenderBase {
-    @Override
-    public void renderBlock() {
-        setTexture(Blocks.planks);
-        renderBlock(0.0D, 0.399D, 0.8D, 1.0D, 0.449D, 0.85D);
-        renderBlock(0.0D, 0.4D, 0.2D, 1.0D, 0.5D, 0.25D);
-        renderBlock(0.99D, 0.0D, 0.1D, 1.0D, 0.4D, 0.9D);
-        renderBlock(0.0D, 0.399D, 0.35D, 1.0D, 0.6D, 0.649D);
-        renderBlock(0.01D, 0.0D, 0.1D, 0.99D, 0.4D, 0.9D);
-        renderBlock(0.0D, 0.4D, 0.25D, 1.0D, 0.55D, 0.35D);
-        renderBlock(0.0D, 0.4D, 0.65D, 1.0D, 0.55D, 0.75D);
-        renderBlock(0.0D, 0.399D, 0.15D, 1.0D, 0.449D, 0.2D);
-        renderBlock(0.0D, 0.4D, 0.75D, 1.0D, 0.5D, 0.8D);
-    }
+import joshie.harvest.blocks.tiles.TileCooking;
+import joshie.harvest.core.util.RenderBase;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.init.Blocks;
+import net.minecraft.tileentity.TileEntity;
+
+public class RenderShipping extends TileEntitySpecialRenderer {
+
+	@Override
+	public void renderTileEntityAt(TileEntity p_147500_1_, double p_147500_2_, double p_147500_4_, double p_147500_6_,
+			float p_147500_8_) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

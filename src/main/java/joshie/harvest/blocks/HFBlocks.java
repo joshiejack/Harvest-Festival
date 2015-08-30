@@ -10,7 +10,7 @@ import static net.minecraft.block.Block.soundTypeWood;
 import joshie.harvest.blocks.render.RenderCrops;
 import joshie.harvest.blocks.render.RenderFryingPan;
 import joshie.harvest.blocks.render.RenderHandler;
-import joshie.harvest.blocks.render.RenderKitchen;
+import joshie.harvest.blocks.render.RenderCounter;
 import joshie.harvest.blocks.render.RenderPreview;
 import joshie.harvest.blocks.render.SpecialRendererFryingPan;
 import joshie.harvest.blocks.tiles.TileCooking;
@@ -21,7 +21,6 @@ import joshie.harvest.blocks.tiles.TileMarker;
 import joshie.harvest.blocks.tiles.TileMixer;
 import joshie.harvest.blocks.tiles.TileOven;
 import joshie.harvest.blocks.tiles.TilePot;
-import joshie.harvest.blocks.tiles.TileSteamer;
 import joshie.harvest.core.HFClientProxy;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.base.BlockHFBaseMeta;
@@ -76,7 +75,7 @@ public class HFBlocks {
         goddess.setBlock(goddessWater);
 
         registerTiles(HFModInfo.CAPNAME, TileCooking.class, TileFridge.class, TileFryingPan.class, TileKitchen.class, TileMarker.class, 
-                            TileMixer.class, TileOven.class, TilePot.class, TileSteamer.class);
+                            TileMixer.class, TileOven.class, TilePot.class);
     }
     
     @SideOnly(Side.CLIENT)
@@ -86,7 +85,7 @@ public class HFBlocks {
         RenderingRegistry.registerBlockHandler(new RenderCrops());
     	renderIDCTM = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(new CTMRenderer(renderIDCTM));
-        RenderHandler.register(HFBlocks.cookware, BlockCookware.KITCHEN, RenderKitchen.class);
+        RenderHandler.register(HFBlocks.cookware, BlockCookware.COUNTER, RenderCounter.class);
         RenderHandler.register(HFBlocks.cookware, BlockCookware.FRYING_PAN, RenderFryingPan.class);
         registerRenders(HFBlocks.woodmachines);
         for (int i = 0; i < 8; i++) {

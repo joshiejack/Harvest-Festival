@@ -41,7 +41,7 @@ public class RecipeHelper {
     }
     
     public static IMealRecipe addNoUtensilRecipe(String mealname, int stamina, int fatigue, ICookingComponent... ingredients) {
-        return addRecipe(mealname, stamina, fatigue, false, ingredients).setRequiredTool(Utensil.KITCHEN);
+        return addRecipe(mealname, stamina, fatigue, false, ingredients).setRequiredTool(Utensil.COUNTER);
     }
     
     public static IMealRecipe addPotRecipe(String mealname, boolean isDrink, int stamina, int fatigue, ICookingComponent... ingredients) {

@@ -12,11 +12,16 @@ import joshie.harvest.blocks.render.RenderFryingPan;
 import joshie.harvest.blocks.render.RenderHandler;
 import joshie.harvest.blocks.render.RenderCounter;
 import joshie.harvest.blocks.render.RenderPreview;
+import joshie.harvest.blocks.render.SpecialRendererCounter;
+import joshie.harvest.blocks.render.SpecialRendererFridge;
 import joshie.harvest.blocks.render.SpecialRendererFryingPan;
+import joshie.harvest.blocks.render.SpecialRendererMixer;
+import joshie.harvest.blocks.render.SpecialRendererOven;
+import joshie.harvest.blocks.render.SpecialRendererPot;
 import joshie.harvest.blocks.tiles.TileCooking;
 import joshie.harvest.blocks.tiles.TileFridge;
 import joshie.harvest.blocks.tiles.TileFryingPan;
-import joshie.harvest.blocks.tiles.TileKitchen;
+import joshie.harvest.blocks.tiles.TileCounter;
 import joshie.harvest.blocks.tiles.TileMarker;
 import joshie.harvest.blocks.tiles.TileMixer;
 import joshie.harvest.blocks.tiles.TileOven;
@@ -74,22 +79,32 @@ public class HFBlocks {
         goddessWater = new BlockGoddessWater(goddess).setBlockName("goddess.water");
         goddess.setBlock(goddessWater);
 
-        registerTiles(HFModInfo.CAPNAME, TileCooking.class, TileFridge.class, TileFryingPan.class, TileKitchen.class, TileMarker.class, 
+        registerTiles(HFModInfo.CAPNAME, TileCooking.class, TileFridge.class, TileFryingPan.class, TileCounter.class, TileMarker.class, 
                             TileMixer.class, TileOven.class, TilePot.class);
     }
     
     @SideOnly(Side.CLIENT)
     public static void initClient() {
+        ClientRegistry.bindTileEntitySpecialRenderer(TileCounter.class, new SpecialRendererCounter());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileFridge.class, new SpecialRendererFridge());
         ClientRegistry.bindTileEntitySpecialRenderer(TileFryingPan.class, new SpecialRendererFryingPan());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileMixer.class, new SpecialRendererMixer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileOven.class, new SpecialRendererOven());
+        ClientRegistry.bindTileEntitySpecialRenderer(TilePot.class, new SpecialRendererPot());
+
         RenderingRegistry.registerBlockHandler(new RenderHandler());
         RenderingRegistry.registerBlockHandler(new RenderCrops());
-    	renderIDCTM = RenderingRegistry.getNextAvailableRenderId();
-        RenderingRegistry.registerBlockHandler(new CTMRenderer(renderIDCTM));
         RenderHandler.register(HFBlocks.cookware, BlockCookware.COUNTER, RenderCounter.class);
-        RenderHandler.register(HFBlocks.cookware, BlockCookware.FRYING_PAN, RenderFryingPan.class);
+        RenderHandler.register(HFBlocks.cookware, BlockCookware.FRIDGE, RenderCounter.class);
+        RenderHandler.register(HFBlocks.cookware, BlockCookware.FRYING_PAN, RenderCounter.class);
+        RenderHandler.register(HFBlocks.cookware, BlockCookware.MIXER, RenderCounter.class);
+        RenderHandler.register(HFBlocks.cookware, BlockCookware.OVEN, RenderCounter.class);
+        RenderHandler.register(HFBlocks.cookware, BlockCookware.POT, RenderFryingPan.class);
         registerRenders(HFBlocks.woodmachines);
         for (int i = 0; i < 8; i++) {
             RenderHandler.register(HFBlocks.preview, i, RenderPreview.class);
+        renderIDCTM = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(new CTMRenderer(renderIDCTM));
         }
     }
     

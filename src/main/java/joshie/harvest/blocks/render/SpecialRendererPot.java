@@ -22,9 +22,9 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class SpecialRendererCounter extends SpecialRendererCookware {
-    public SpecialRendererCounter() {
-        super("ModelCounter", BlockCookware.COUNTER);
+public class SpecialRendererPot extends SpecialRendererCookware {
+    public SpecialRendererPot() {
+        super("ModelPot", BlockCookware.POT);
         }
     
     @Override

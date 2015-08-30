@@ -7,7 +7,7 @@ import joshie.harvest.blocks.render.SpecialRendererFryingPan;
 import joshie.harvest.blocks.tiles.TileCooking;
 import joshie.harvest.blocks.tiles.TileFridge;
 import joshie.harvest.blocks.tiles.TileFryingPan;
-import joshie.harvest.blocks.tiles.TileKitchen;
+import joshie.harvest.blocks.tiles.TileCounter;
 import joshie.harvest.blocks.tiles.TileMixer;
 import joshie.harvest.blocks.tiles.TileOven;
 import joshie.harvest.blocks.tiles.TilePot;
@@ -111,7 +111,7 @@ public class BlockCookware extends BlockHFBaseMeta {
             TileEntity tile = null;
             if (meta == COUNTER) tile = world.getTileEntity(x, y, z);
             else tile = world.getTileEntity(x, y - 1, z);
-            if (!(tile instanceof TileKitchen)) return false;
+            if (!(tile instanceof TileCounter)) return false;
             if (meta == COUNTER && held == null) {
                 tile.updateEntity();
             }
@@ -195,7 +195,7 @@ public class BlockCookware extends BlockHFBaseMeta {
             case FRIDGE:
                 return new TileFridge();
             case COUNTER:
-                return new TileKitchen();
+                return new TileCounter();
             case POT:
                 return new TilePot();
             case FRYING_PAN:

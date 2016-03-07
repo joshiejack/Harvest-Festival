@@ -1,6 +1,7 @@
 package joshie.harvest.player.relationships;
 
 import joshie.harvest.api.relations.IRelatable;
+import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)

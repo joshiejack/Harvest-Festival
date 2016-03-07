@@ -23,6 +23,7 @@ import net.minecraftforge.client.GuiIngameForge;
 import net.minecraftforge.event.terraingen.BiomeEvent.GetFoliageColor;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class RenderHandler {
@@ -68,7 +69,7 @@ public class RenderHandler {
                         }
 
                         int y = tooltip.size() == 0 ? 0 : 2 + (10 * tooltip.size());
-                        RenderToolLevel.drawToolProgress(gui, k, l + 5 + y, tier, level, mc.fontRenderer);
+                        RenderToolLevel.drawToolProgress(gui, k, l + 5 + y, tier, level, mc.fontRendererObj);
                     }
                 }
             }

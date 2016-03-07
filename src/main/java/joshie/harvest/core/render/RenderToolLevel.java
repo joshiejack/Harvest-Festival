@@ -7,6 +7,7 @@ import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.core.lib.HFModInfo;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class RenderToolLevel {
@@ -50,7 +51,7 @@ public class RenderToolLevel {
         
         GL11.glPushMatrix();
         GL11.glTranslatef(53F, 0F, 0F);
-        gui.mc.fontRenderer.drawString(level + "%", i1, j1, 0xFFFFFF);
+        gui.mc.fontRendererObj.drawString(level + "%", i1, j1, 0xFFFFFF);
         GL11.glPopMatrix();
        
         gui.zLevel = 0.0F;

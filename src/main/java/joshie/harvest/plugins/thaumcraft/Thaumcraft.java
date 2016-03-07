@@ -1,29 +1,22 @@
 package joshie.harvest.plugins.thaumcraft;
 
-import joshie.harvest.api.core.ISizeable.Size;
-import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.api.crops.ICrop;
-import joshie.harvest.blocks.HFBlocks;
-import joshie.harvest.items.HFItems;
 import joshie.harvest.plugins.HFPlugins.Plugin;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class Thaumcraft extends Plugin {
-	
     @Override
-    public void preInit() {
-    }
+    public void preInit() {}
 
     @Override
-    public void init() {
-    }
+    public void init() {}
 
     @Override
     public void postInit() {
     	///Blocks
     	//Cooking & Farming
-        ThaumcraftApi.registerObjectTag(new ItemStack(HFBlocks.cookware, 0, OreDictionary.WILDCARD_VALUE), new AspectList().add(CRAFT, 4).add(MECHANISM, 2));
+        /*ThaumcraftApi.registerObjectTag(new ItemStack(HFBlocks.cookware, 0, OreDictionary.WILDCARD_VALUE), new AspectList().add(CRAFT, 4).add(MECHANISM, 2));
         ThaumcraftApi.registerObjectTag(new ItemStack(HFBlocks.crops, 0, OreDictionary.WILDCARD_VALUE), new AspectList().add(PLANT, 1));
         ThaumcraftApi.registerObjectTag(new ItemStack(HFBlocks.flowers, 0), new AspectList().add(PLANT, 1).add(AURA, 4).add(SENSES, 4));
         //Mine
@@ -109,9 +102,13 @@ public class Thaumcraft extends Plugin {
         ///Entity
         ThaumcraftApi.registerEntityTag("HarvestFestival.HarvestCow", new AspectList().add(BEAST, 3).add(EARTH, 3));
         ThaumcraftApi.registerEntityTag("HarvestFestival.HarvestSheep", new AspectList().add(BEAST, 2).add(EARTH, 2));
-        ThaumcraftApi.registerEntityTag("HarvestFestival.HarvestChicken", new AspectList().add(AIR, 1).add(BEAST, 2).add(FLIGHT, 2));
+        ThaumcraftApi.registerEntityTag("HarvestFestival.HarvestChicken", new AspectList().add(AIR, 1).add(BEAST, 2).add(FLIGHT, 2)); */
 
     }
-    public ItemStack getCropStack(ICrop crop) { ItemStack stack = crop.getCropStack().copy(); stack.setItemDamage(OreDictionary.WILDCARD_VALUE); return stack; }
-
+    
+    public ItemStack getCropStack(ICrop crop) { 
+    	ItemStack stack = crop.getCropStack().copy(); stack.setItemDamage(OreDictionary.WILDCARD_VALUE); 
+    	
+    	return stack;
+   }
 }

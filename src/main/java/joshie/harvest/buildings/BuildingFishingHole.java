@@ -117,9 +117,9 @@ public class BuildingFishingHole extends Building {
         list.add(new PlaceableBlock(Blocks.grass, 0, 7, 3, 3));
         list.add(new PlaceableBlock(Blocks.grass, 0, 7, 3, 4));
         list.add(new PlaceableBlock(Blocks.grass, 0, 7, 3, 5));
-        list.add(new PlaceableBlock(Blocks.fence, 0, 0, 4, 2));
+        list.add(new PlaceableBlock(Blocks.oak_fence, 0, 0, 4, 2));
         list.add(new PlaceableBlock(Blocks.reeds, 0, 0, 4, 3));
-        list.add(new PlaceableBlock(Blocks.fence, 0, 0, 4, 4));
+        list.add(new PlaceableBlock(Blocks.oak_fence, 0, 0, 4, 4));
         list.add(new PlaceableBlock(Blocks.tallgrass, 1, 1, 4, 0));
         list.add(new PlaceableDoublePlant(Blocks.double_plant, 5, 1, 4, 1));
         list.add(new PlaceableBlock(Blocks.air, 0, 1, 4, 2));
@@ -164,9 +164,9 @@ public class BuildingFishingHole extends Building {
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 1, 7, 4, 3));
         list.add(new PlaceableBlock(Blocks.tallgrass, 1, 7, 4, 4));
         list.add(new PlaceableBlock(Blocks.tallgrass, 2, 7, 4, 5));
-        list.add(new PlaceableBlock(Blocks.fence, 0, 0, 5, 2));
+        list.add(new PlaceableBlock(Blocks.oak_fence, 0, 0, 5, 2));
         list.add(new PlaceableBlock(Blocks.reeds, 0, 0, 5, 3));
-        list.add(new PlaceableBlock(Blocks.fence, 0, 0, 5, 4));
+        list.add(new PlaceableBlock(Blocks.oak_fence, 0, 0, 5, 4));
         list.add(new PlaceableBlock(Blocks.air, 0, 1, 5, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 1, 5, 3));
         list.add(new PlaceableBlock(Blocks.wooden_slab, 1, 1, 5, 7));

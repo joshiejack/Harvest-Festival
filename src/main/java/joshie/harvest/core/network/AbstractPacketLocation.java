@@ -1,36 +1,31 @@
 package joshie.harvest.core.network;
 
 import io.netty.buffer.ByteBuf;
+import net.minecraft.util.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 
 public abstract class AbstractPacketLocation implements IMessage {
     protected int dim;
-    public int x;
-    public int y;
-    public int z;
-
+    public BlockPos pos;
+    
     public AbstractPacketLocation() {}
 
-    public AbstractPacketLocation(int dim, int x, int y, int z) {
+    public AbstractPacketLocation(int dim, BlockPos pos) {
         this.dim = dim;
-        this.x = x;
-        this.y = y;
-        this.z = z;
+        this.pos = pos;
     }
 
     @Override
     public void toBytes(ByteBuf buf) {
         buf.writeInt(dim);
-        buf.writeInt(x);
-        buf.writeInt(y);
-        buf.writeInt(z);
+        buf.writeInt(pos.getX());
+        buf.writeInt(pos.getY());
+        buf.writeInt(pos.getZ());
     }
 
     @Override
     public void fromBytes(ByteBuf buf) {
         dim = buf.readInt();
-        x = buf.readInt();
-        y = buf.readInt();
-        z = buf.readInt();
+        pos = new BlockPos(buf.readInt(), buf.readInt(), buf.readInt());
     }
 }

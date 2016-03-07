@@ -5,15 +5,18 @@ import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.util.generic.IFaceable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public abstract class AbstractPacketOrientation extends AbstractPacketLocation {
-    private ForgeDirection dir;
+    private EnumFacing dir;
 
     public AbstractPacketOrientation() {}
-    public AbstractPacketOrientation(int dim, int x, int y, int z, ForgeDirection dir) {
-        super(dim, x, y, z);
-        this.dir = dir == null ? ForgeDirection.NORTH : dir;
+    public AbstractPacketOrientation(int dim, BlockPos pos, EnumFacing dir) {
+        super(dim, pos);
+        this.dir = dir == null ? EnumFacing.NORTH : dir;
     }
 
     @Override
@@ -25,15 +28,15 @@ public abstract class AbstractPacketOrientation extends AbstractPacketLocation {
     @Override
     public void fromBytes(ByteBuf buffer) {
         super.fromBytes(buffer);
-        dir = ForgeDirection.getOrientation(buffer.readInt());
+        dir = EnumFacing.values()[(buffer.readInt())];
     }
 
     public IMessage onMessage(AbstractPacketOrientation message, MessageContext ctx) {
         EntityPlayer player = MCClientHelper.getPlayer();
         TileEntity tile = MCClientHelper.getTile(message);
         if (tile instanceof IFaceable) {
-            ((IFaceable) player.worldObj.getTileEntity(message.x, message.y, message.z)).setFacing(message.dir);
-            MCClientHelper.updateRender(message.x, message.y, message.z);
+            ((IFaceable) player.worldObj.getTileEntity(message.pos)).setFacing(message.dir);
+            MCClientHelper.updateRender(message.pos);
         }
 
         return null;

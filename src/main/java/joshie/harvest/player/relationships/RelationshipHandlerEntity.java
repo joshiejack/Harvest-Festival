@@ -10,6 +10,7 @@ import joshie.harvest.core.helpers.generic.EntityHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumParticleTypes;
 
 public class RelationshipHandlerEntity implements IRelatableDataHandler {
     @Override
@@ -45,7 +46,7 @@ public class RelationshipHandlerEntity implements IRelatableDataHandler {
                     double d7 = (entity.posY - 0.5D) + entity.worldObj.rand.nextFloat();
                     double d8 = (entity.posX - 0.5D) + entity.worldObj.rand.nextFloat();
                     double d9 = (entity.posZ - 0.5D) + entity.worldObj.rand.nextFloat();
-                    entity.worldObj.spawnParticle("heart", d8, 1.0D + d7 - 0.125D, d9, 0, 0, 0);
+                    entity.worldObj.spawnParticle(EnumParticleTypes.HEART, d8, 1.0D + d7 - 0.125D, d9, 0, 0, 0);
                 }
             }
 
@@ -64,6 +65,6 @@ public class RelationshipHandlerEntity implements IRelatableDataHandler {
     public void writeToNBT(IRelatable relatable, NBTTagCompound tag) {
         EntityAnimal animal = (EntityAnimal) relatable;
         tag.setString("UUID", UUIDHelper.getEntityUUID(animal).toString());
-        tag.setInteger("Dimension", animal.worldObj.provider.dimensionId);
+        tag.setInteger("Dimension", animal.worldObj.provider.getDimensionId());
     }
 }

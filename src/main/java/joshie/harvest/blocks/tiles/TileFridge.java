@@ -6,30 +6,26 @@ import joshie.harvest.core.util.generic.IFaceable;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 
 /** Just a way to interfact with the fridge inventory, the fridge inventory is global though, not stored in this block **/
 public class TileFridge extends TileEntity implements IFaceable {
-    private ForgeDirection orientation = ForgeDirection.NORTH;
+    private EnumFacing orientation = EnumFacing.NORTH;
     private boolean isTop;
 
     @Override
-    public void setFacing(ForgeDirection dir) {
+    public void setFacing(EnumFacing dir) {
         orientation = dir;
     }
 
     @Override
-    public ForgeDirection getFacing() {
+    public EnumFacing getFacing() {
         return orientation;
     }
 
-    @Override
-    public boolean canUpdate() {
-        return false;
-    }
-
     public IMessage getPacket() {
-        return new PacketSyncOrientation(worldObj.provider.dimensionId, xCoord, yCoord, zCoord, orientation);
+        return new PacketSyncOrientation(worldObj.provider.getDimensionId(), getPos(), orientation);
     }
 
     @Override
@@ -40,7 +36,7 @@ public class TileFridge extends TileEntity implements IFaceable {
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
-        orientation = ForgeDirection.getOrientation(nbt.getInteger("Orientation"));
+        orientation = EnumFacing.values()[(nbt.getInteger("Orientation"))];
     }
 
     @Override

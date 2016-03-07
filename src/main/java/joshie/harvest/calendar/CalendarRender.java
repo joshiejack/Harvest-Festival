@@ -19,6 +19,7 @@ import net.minecraftforge.client.event.EntityViewRenderEvent.RenderFogEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class CalendarRender {
@@ -51,20 +52,20 @@ public class CalendarRender {
             //Enlarge the Day
             GL11.glPushMatrix();
             GL11.glScalef(1.4F, 1.4F, 1.4F);
-            mc.fontRenderer.drawStringWithShadow(data.getLocalized() + " " + date.getDay(), 30, 7, 0xFFFFFFFF);
+            mc.fontRendererObj.drawStringWithShadow(data.getLocalized() + " " + date.getDay(), 30, 7, 0xFFFFFFFF);
             GL11.glPopMatrix();
             
             GL11.glPushMatrix();
             String time = formatTime(CalendarHelper.getScaledTime((int) CalendarHelper.getTime(MCClientHelper.getWorld())));
-            mc.fontRenderer.drawStringWithShadow("(" + date.getWeekday().name().substring(0, 3) +  ")" + "  " + time, 42, 23, 0xFFFFFFFF);
+            mc.fontRendererObj.drawStringWithShadow("(" + date.getWeekday().name().substring(0, 3) +  ")" + "  " + time, 42, 23, 0xFFFFFFFF);
             GL11.glPopMatrix();
 
             mc.getTextureManager().bindTexture(HFModInfo.elements);
             String text = NumberFormat.getNumberInstance(Locale.US).format(HFTrackers.getClientPlayerTracker().getStats().getGold());
             int width = event.resolution.getScaledWidth();
-            mc.ingameGUI.drawTexturedModalRect(width - mc.fontRenderer.getStringWidth(text) - 20, 2, 244, 0, 12, 12);
-            int coinWidth = width - mc.fontRenderer.getStringWidth(text) - 5;
-            mc.fontRenderer.drawStringWithShadow(text, coinWidth, 5, 0xFFFFFFFF);
+            mc.ingameGUI.drawTexturedModalRect(width - mc.fontRendererObj.getStringWidth(text) - 20, 2, 244, 0, 12, 12);
+            int coinWidth = width - mc.fontRendererObj.getStringWidth(text) - 5;
+            mc.fontRendererObj.drawStringWithShadow(text, coinWidth, 5, 0xFFFFFFFF);
             
             GL11.glDisable(GL11.GL_BLEND);
             GL11.glPopMatrix();

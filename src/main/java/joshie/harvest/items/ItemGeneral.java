@@ -3,8 +3,6 @@ package joshie.harvest.items;
 import java.util.HashMap;
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.animals.IMilkable;
@@ -20,9 +18,8 @@ import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemGeneral extends ItemHFMeta implements ICreativeSorted, ICookingAltIcon {
     public static final int BLUE_FEATHER = 0;

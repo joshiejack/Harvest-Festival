@@ -2,8 +2,6 @@ package joshie.harvest.plugins.harvestcraft;
 
 import joshie.harvest.crops.icons.AbstractIconHandler;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.util.IIcon;
 
 public class IconHandlerHarvestCraft extends AbstractIconHandler {
     private Block block;

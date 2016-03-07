@@ -5,9 +5,8 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.relations.IRelatableDataHandler;
-import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.nbt.NBTTagCompound;
-import cpw.mods.fml.common.network.ByteBufUtils;
+import net.minecraftforge.fml.common.network.ByteBufUtils;
 
 public class RelationshipHandlerNPC implements IRelatableDataHandler {
     @Override

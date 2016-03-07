@@ -1,7 +1,6 @@
 package joshie.harvest.api.animals;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
 
 /** Animals that are milkable with the milker, implement this interface **/
 public interface IMilkable {

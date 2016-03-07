@@ -16,26 +16,16 @@ import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.crops.Crop;
 import joshie.harvest.plugins.agricraft.HFAgricraftOverride;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
-
-import com.InfinityRaider.AgriCraft.farming.CropOverride;
-import com.InfinityRaider.AgriCraft.farming.GrowthRequirement;
-import com.InfinityRaider.AgriCraft.farming.ICropOverridingSeed;
-import com.InfinityRaider.AgriCraft.tileentity.TileEntityCrop;
-
-import cpw.mods.fml.common.Optional;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @Optional.Interface(modid = "AgriCraft", iface = "com.InfinityRaider.AgriCraft.farming.ICropOverridingSeed")
 public class ItemHFSeeds extends ItemSeeds implements ICropOverridingSeed, ICreativeSorted {

@@ -2,10 +2,13 @@ package joshie.harvest.npc.render;
 
 import java.util.UUID;
 
+import org.lwjgl.opengl.GL11;
+
+import com.mojang.authlib.GameProfile;
+
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.entity.EntityNPC.Mode;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.entity.RendererLivingEntity;
 import net.minecraft.client.renderer.tileentity.TileEntitySkullRenderer;
 import net.minecraft.entity.Entity;
@@ -18,13 +21,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringUtils;
-
-import org.lwjgl.opengl.GL11;
-
-import com.mojang.authlib.GameProfile;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class RenderNPC extends RendererLivingEntity {

@@ -12,7 +12,6 @@ import joshie.harvest.core.lib.RenderIds;
 import joshie.harvest.core.util.base.BlockHFBaseMeta;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,8 +20,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockPreview extends BlockHFBaseMeta {
     public static final int N1_T__N2_T__SWAP_F = 0;

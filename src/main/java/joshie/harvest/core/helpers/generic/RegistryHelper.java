@@ -1,14 +1,13 @@
 package joshie.harvest.core.helpers.generic;
 
+import org.apache.logging.log4j.Level;
+
 import joshie.harvest.core.util.generic.Library;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntity;
-
-import org.apache.logging.log4j.Level;
-
-import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class RegistryHelper {
     //Shorthand for registering items

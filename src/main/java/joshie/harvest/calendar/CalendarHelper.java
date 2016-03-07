@@ -1,7 +1,7 @@
 package joshie.harvest.calendar;
 
-import static joshie.harvest.core.util.generic.Text.LIME;
 import static joshie.harvest.core.util.generic.Text.INDIGO;
+import static joshie.harvest.core.util.generic.Text.LIME;
 import static joshie.harvest.core.util.generic.Text.ORANGE;
 import static joshie.harvest.core.util.generic.Text.YELLOW;
 

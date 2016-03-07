@@ -13,9 +13,8 @@ import joshie.harvest.player.PlayerTrackerClient;
 import joshie.harvest.player.PlayerTrackerServer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class HFTrackers {
     private static final CalendarServer TEMP_CALENDAR = new CalendarServer();

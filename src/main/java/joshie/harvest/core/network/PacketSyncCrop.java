@@ -6,9 +6,8 @@ import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.crops.CropData;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 
 public class PacketSyncCrop implements IMessage, IMessageHandler<PacketSyncCrop, IMessage> {
     private boolean isRemoval;

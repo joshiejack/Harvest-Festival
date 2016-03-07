@@ -1,10 +1,10 @@
 package joshie.harvest.quests.tutorial;
 
 import static joshie.harvest.core.helpers.QuestHelper.completeQuest;
-import io.netty.buffer.ByteBuf;
 
 import java.util.HashSet;
 
+import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.api.npc.INPC;
@@ -22,7 +22,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.world.World;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 public class QuestChickenCare extends Quest {
     private boolean hasThrown;
     private boolean hasFed;
@@ -52,7 +53,7 @@ public class QuestChickenCare extends Quest {
     }
 
     @Override
-    public void onRightClickBlock(EntityPlayer player, World world, int x, int y, int z, int side) {
+    public void onRightClickBlock(EntityPlayer player, BlockPos pos, EnumFacing face) {
         if (!hasThrown) {
             if (player.riddenByEntity instanceof EntityChicken) {
                 hasThrown = true;

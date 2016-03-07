@@ -6,15 +6,12 @@ import joshie.harvest.api.cooking.ICookingAltIcon;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.util.generic.IHasMetaItem;
 import joshie.harvest.core.util.generic.Text;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class ItemBaseMeta extends Item implements IHasMetaItem, ICookingAltIcon {
     @SideOnly(Side.CLIENT)

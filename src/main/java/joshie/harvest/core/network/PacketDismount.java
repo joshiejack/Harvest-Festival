@@ -4,9 +4,8 @@ import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.animals.IAnimalTracked;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayerMP;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 
 public class PacketDismount implements IMessage, IMessageHandler<PacketDismount, IMessage> {
     public PacketDismount() {}

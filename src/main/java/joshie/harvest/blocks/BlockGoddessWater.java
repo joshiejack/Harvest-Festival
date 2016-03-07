@@ -5,17 +5,14 @@ import java.util.Random;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.generic.IHasMetaBlock;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockGoddessWater extends BlockFluidClassic {
     public static IIcon still;

@@ -1,6 +1,5 @@
 package joshie.harvest.buildings.placeable.blocks;
 
-import joshie.harvest.buildings.placeable.Placeable.PlacementStage;
 import net.minecraft.block.Block;
 
 public class PlaceableGate extends PlaceableBlock {

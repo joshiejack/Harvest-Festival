@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 import joshie.harvest.api.npc.INPC;
-import joshie.harvest.blocks.BlockStone;
 import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.buildings.placeable.Placeable.PlacementStage;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;

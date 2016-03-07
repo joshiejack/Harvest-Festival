@@ -17,7 +17,7 @@ import joshie.harvest.shops.gui.GuiNPCBuilderShop;
 import joshie.harvest.shops.gui.GuiNPCShop;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
-import cpw.mods.fml.common.network.IGuiHandler;
+import net.minecraftforge.fml.common.network.IGuiHandler;
 
 public class GuiHandler implements IGuiHandler {
     public static final int NPC = 0;

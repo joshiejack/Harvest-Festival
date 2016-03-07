@@ -1,15 +1,13 @@
 package joshie.harvest.items.render;
 
+import org.lwjgl.opengl.GL11;
+
 import joshie.harvest.buildings.Building;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.client.IItemRenderer;
-
-import org.lwjgl.opengl.GL11;
 
 public class RenderBuilding implements IItemRenderer {
     public static RenderBlocks renderer = new RenderBlocks();

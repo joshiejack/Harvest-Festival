@@ -1,7 +1,6 @@
 package joshie.harvest.cooking;
 
 import joshie.harvest.blocks.BlockIcons;
-import net.minecraft.util.IIcon;
 import net.minecraftforge.fluids.Fluid;
 
 public class FluidCookingMilk extends Fluid {

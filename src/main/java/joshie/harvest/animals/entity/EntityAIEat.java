@@ -4,8 +4,10 @@ import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalFeeder;
 import joshie.harvest.api.animals.IAnimalTracked;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
 public class EntityAIEat extends EntityAIBase {
@@ -33,12 +35,11 @@ public class EntityAIEat extends EntityAIBase {
 
     @Override
     public void updateTask() {
-        int x = (int) (animal.posX + 3 - worldObj.rand.nextInt(7));
-        int y = (int) animal.posY;
-        int z = (int) (animal.posZ + 3 - worldObj.rand.nextInt(7));
-        Block block = animal.worldObj.getBlock(x, y, z);
+        BlockPos position = new BlockPos(animal).add(3 - worldObj.rand.nextInt(7), 0, 3 - worldObj.rand.nextInt(7));
+        IBlockState state = animal.worldObj.getBlockState(position);
+        Block block = state.getBlock();
         if (block instanceof IAnimalFeeder) {
-            if (((IAnimalFeeder) block).canFeedAnimal(tracked, worldObj, x, y, z)) {
+            if (((IAnimalFeeder) block).canFeedAnimal(tracked, worldObj, position.getX(), position.getY(), position.getZ())) {
                 tracked.getData().feed(null);
             }
         }

@@ -3,9 +3,8 @@ package joshie.harvest.core.network;
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.core.handlers.HFTrackers;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 
 public class PacketSyncForecast implements IMessage, IMessageHandler<PacketSyncForecast, IMessage> {
     private Weather[] forecast;

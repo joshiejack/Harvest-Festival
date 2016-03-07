@@ -11,7 +11,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.common.util.ForgeDirection;
 
 public class BlockAccessPreview implements IBlockAccess {
     private HashMap<PlaceableBlock, PlaceableBlock> blocks = new HashMap();

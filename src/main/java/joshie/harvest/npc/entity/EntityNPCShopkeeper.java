@@ -1,12 +1,10 @@
 package joshie.harvest.npc.entity;
 
-import io.netty.buffer.ByteBuf;
-
 import java.util.UUID;
 
+import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.shops.IShop;
-import joshie.harvest.shops.Shop;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 

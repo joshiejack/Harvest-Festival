@@ -5,9 +5,8 @@ import joshie.harvest.api.shops.IPurchaseable;
 import joshie.harvest.core.helpers.ShopHelper;
 import joshie.harvest.shops.Shop;
 import net.minecraft.entity.player.EntityPlayerMP;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 
 public class PacketPurchaseItem implements IMessage, IMessageHandler<PacketPurchaseItem, IMessage> {
     private int purchaseable_id;

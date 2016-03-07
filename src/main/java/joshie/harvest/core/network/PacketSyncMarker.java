@@ -6,10 +6,9 @@ import joshie.harvest.blocks.tiles.TileMarker;
 import joshie.harvest.buildings.Building;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import net.minecraft.tileentity.TileEntity;
-import cpw.mods.fml.common.network.ByteBufUtils;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.common.network.ByteBufUtils;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 
 public class PacketSyncMarker implements IMessage, IMessageHandler<PacketSyncMarker, IMessage> {
     private WorldLocation location;

@@ -1,58 +1,13 @@
 package joshie.harvest.plugins.thaumcraft;
 
-import static thaumcraft.api.aspects.Aspect.SLIME;
-import static thaumcraft.api.aspects.Aspect.LIFE;
-import static thaumcraft.api.aspects.Aspect.BEAST;
-import static thaumcraft.api.aspects.Aspect.ELDRITCH;
-import static thaumcraft.api.aspects.Aspect.EARTH;
-import static thaumcraft.api.aspects.Aspect.AIR;
-import static thaumcraft.api.aspects.Aspect.HEAL;
-import static thaumcraft.api.aspects.Aspect.FLIGHT;
-import static thaumcraft.api.aspects.Aspect.GREED;
-import static thaumcraft.api.aspects.Aspect.PLANT;
-import static thaumcraft.api.aspects.Aspect.METAL;
-import static thaumcraft.api.aspects.Aspect.VOID;
-import static thaumcraft.api.aspects.Aspect.EARTH;
-import static thaumcraft.api.aspects.Aspect.CROP;
-import static thaumcraft.api.aspects.Aspect.HUNGER;
-import static thaumcraft.api.aspects.Aspect.ENTROPY;
-import static thaumcraft.api.aspects.Aspect.EXCHANGE;
-import static thaumcraft.api.aspects.Aspect.MAGIC;
-import static thaumcraft.api.aspects.Aspect.WATER;
-import static thaumcraft.api.aspects.Aspect.CLOTH;
-import static thaumcraft.api.aspects.Aspect.HARVEST;
-import static thaumcraft.api.aspects.Aspect.DEATH;
-import static thaumcraft.api.aspects.Aspect.MINE;
-import static thaumcraft.api.aspects.Aspect.CRAFT;
-import static thaumcraft.api.aspects.Aspect.MECHANISM;
-import static thaumcraft.api.aspects.Aspect.AURA;
-import static thaumcraft.api.aspects.Aspect.SENSES;
-import static thaumcraft.api.aspects.Aspect.TREE;
-import static thaumcraft.api.aspects.Aspect.AURA;
-import static thaumcraft.api.aspects.Aspect.AURA;
-import static thaumcraft.api.aspects.Aspect.AURA;
-import static thaumcraft.api.aspects.Aspect.AURA;
-import static thaumcraft.api.aspects.Aspect.AURA;
-
-import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.api.crops.ICrop;
-import joshie.harvest.asm.overrides.ItemPamSeedFood;
 import joshie.harvest.blocks.HFBlocks;
-import joshie.harvest.core.helpers.SizeableHelper;
-import joshie.harvest.core.lib.SizeableMeta;
-import joshie.harvest.crops.HFCrops;
 import joshie.harvest.items.HFItems;
 import joshie.harvest.plugins.HFPlugins.Plugin;
-import joshie.harvest.plugins.harvestcraft.HarvestCraftCrop;
-import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.oredict.OreDictionary;
-import thaumcraft.api.ThaumcraftApi;
-import thaumcraft.api.aspects.Aspect;
-import thaumcraft.api.aspects.AspectList;
 
 public class Thaumcraft extends Plugin {
 	

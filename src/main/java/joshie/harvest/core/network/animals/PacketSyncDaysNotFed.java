@@ -1,9 +1,8 @@
 package joshie.harvest.core.network.animals;
 
 import joshie.harvest.api.animals.IAnimalTracked;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 
 public class PacketSyncDaysNotFed extends AbstractSyncByte implements IMessageHandler<PacketSyncDaysNotFed, IMessage> {
     public PacketSyncDaysNotFed(){}

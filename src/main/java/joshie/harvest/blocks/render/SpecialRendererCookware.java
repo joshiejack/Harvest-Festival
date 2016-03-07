@@ -1,5 +1,7 @@
 package joshie.harvest.blocks.render;
 
+import org.lwjgl.opengl.GL11;
+
 import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.blocks.tiles.TileCooking;
 import joshie.harvest.core.lib.HFModInfo;
@@ -9,15 +11,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
-import net.minecraftforge.client.model.AdvancedModelLoader;
-import net.minecraftforge.client.model.IModelCustom;
-
-import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public abstract class SpecialRendererCookware extends TileEntitySpecialRenderer implements IItemRenderer {

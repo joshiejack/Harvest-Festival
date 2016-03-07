@@ -3,6 +3,8 @@ package joshie.harvest.shops.gui;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.lwjgl.opengl.GL11;
+
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.StackHelper;
 import joshie.harvest.core.lib.HFModInfo;
@@ -14,8 +16,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
-
-import org.lwjgl.opengl.GL11;
 
 public class GuiNPCBuilderShop extends GuiNPCShop {
     public GuiNPCBuilderShop(EntityNPC npc, EntityPlayer player) {
@@ -71,17 +71,17 @@ public class GuiNPCBuilderShop extends GuiNPCShop {
             StackHelper.drawStack(display, x + 34, y + 46 + (index * 34), 1.4F);
             mc.renderEngine.bindTexture(HFModInfo.elements);
             drawTexturedModalRect(x + 34 + 100, y + 54 + (index * 34), 244, 0, 12, 12);
-            mc.fontRenderer.drawStringWithShadow("" + cost, x + 148, y + 57 + (index * 34), 0xC39753);
+            mc.fontRendererObj.drawStringWithShadow("" + cost, x + 148, y + 57 + (index * 34), 0xC39753);
 
             //Wood
             StackHelper.drawStack(log, x + 56, y + 55 + (index * 34), 0.75F);
-            mc.fontRenderer.drawStringWithShadow("" + purchaseable.getLogCost(), x + 69, y + 57 + (index * 34), 0xC39753);
+            mc.fontRendererObj.drawStringWithShadow("" + purchaseable.getLogCost(), x + 69, y + 57 + (index * 34), 0xC39753);
 
             //Stone
             StackHelper.drawStack(stone, x + 95, y + 55 + (index * 34), 0.75F);
-            mc.fontRenderer.drawStringWithShadow("" + purchaseable.getStoneCost(), x + 108, y + 57 + (index * 34), 0xC39753);
+            mc.fontRendererObj.drawStringWithShadow("" + purchaseable.getStoneCost(), x + 108, y + 57 + (index * 34), 0xC39753);
 
-            mc.fontRenderer.drawStringWithShadow(EnumChatFormatting.BOLD + purchaseable.getName(), x + 60, y + 46 + (index * 34), 0xC39753);
+            mc.fontRendererObj.drawStringWithShadow(EnumChatFormatting.BOLD + purchaseable.getName(), x + 60, y + 46 + (index * 34), 0xC39753);
 
             GL11.glColor3f(1.0F, 1.0F, 1.0F);
             index++;

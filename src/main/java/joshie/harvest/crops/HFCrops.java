@@ -3,6 +3,7 @@ package joshie.harvest.crops;
 import static joshie.harvest.api.calendar.Season.AUTUMN;
 import static joshie.harvest.api.calendar.Season.SPRING;
 import static joshie.harvest.api.calendar.Season.SUMMER;
+
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.crops.ICrop;

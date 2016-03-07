@@ -3,6 +3,8 @@ package joshie.harvest.plugins;
 import java.io.File;
 import java.util.ArrayList;
 
+import org.apache.logging.log4j.Level;
+
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.core.helpers.generic.ConfigHelper;
 import joshie.harvest.core.lib.HFModInfo;
@@ -11,10 +13,6 @@ import joshie.harvest.plugins.bettersleeping.BetterSleeping;
 import joshie.harvest.plugins.harvestcraft.HarvestCraft;
 import joshie.harvest.plugins.thaumcraft.Thaumcraft;
 import net.minecraftforge.common.config.Configuration;
-
-import org.apache.logging.log4j.Level;
-
-import cpw.mods.fml.common.Loader;
 
 public class HFPlugins {
     public static ArrayList<Plugin> plugins = new ArrayList();

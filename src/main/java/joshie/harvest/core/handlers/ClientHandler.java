@@ -8,8 +8,7 @@ import joshie.harvest.crops.CropTrackerClient;
 import joshie.harvest.mining.MineTrackerClient;
 import joshie.harvest.player.PlayerTrackerClient;
 import net.minecraft.entity.player.EntityPlayer;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class ClientHandler extends SideHandler {

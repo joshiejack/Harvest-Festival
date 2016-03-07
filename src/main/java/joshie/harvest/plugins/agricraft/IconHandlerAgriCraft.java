@@ -1,10 +1,6 @@
 package joshie.harvest.plugins.agricraft;
 
 import joshie.harvest.crops.icons.AbstractIconHandler;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.util.IIcon;
-
-import com.InfinityRaider.AgriCraft.blocks.BlockModPlant;
 
 public class IconHandlerAgriCraft extends AbstractIconHandler {
     private BlockModPlant block;

@@ -1,6 +1,7 @@
 package joshie.harvest.core.config;
 
 import static joshie.harvest.core.config.HFConfig.asm;
+
 import joshie.harvest.core.HFTab;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;

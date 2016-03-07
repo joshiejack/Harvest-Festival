@@ -2,10 +2,7 @@ package joshie.harvest.crops.icons;
 
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.crops.HFCrops;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.util.IIcon;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class IconHandlerSpinach extends AbstractIconHandler {
     @SideOnly(Side.CLIENT)

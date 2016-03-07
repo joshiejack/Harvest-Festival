@@ -2,21 +2,12 @@ package joshie.harvest.blocks.items;
 
 import java.util.List;
 
-/*
-import joshie.harvest.blocks.BlockDirt.FloorType;
-*/
-import joshie.harvest.core.config.General;
 import joshie.harvest.core.util.Translate;
 import joshie.harvest.core.util.base.ItemBlockBase;
-import joshie.harvest.core.util.generic.Text;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-
-import org.apache.commons.lang3.text.WordUtils;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemBlockDirt extends ItemBlockBase {
     public ItemBlockDirt(Block block) {

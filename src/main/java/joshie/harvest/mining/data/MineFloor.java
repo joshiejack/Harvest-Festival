@@ -1,6 +1,7 @@
 package joshie.harvest.mining.data;
 
 import static joshie.harvest.core.helpers.generic.MCServerHelper.getWorld;
+
 import joshie.harvest.blocks.HFBlocks;
 import net.minecraft.world.World;
 

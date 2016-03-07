@@ -14,7 +14,6 @@ import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.quests.Quest;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 
 public class QuestTomatoes extends Quest {    

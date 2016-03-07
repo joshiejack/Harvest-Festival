@@ -7,6 +7,7 @@ import static joshie.harvest.api.calendar.Weekday.SUNDAY;
 import static joshie.harvest.api.calendar.Weekday.THURSDAY;
 import static joshie.harvest.api.calendar.Weekday.TUESDAY;
 import static joshie.harvest.api.calendar.Weekday.WEDNESDAY;
+
 import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.animals.entity.EntityHarvestSheep;
 import joshie.harvest.api.HFApi;
@@ -28,8 +29,8 @@ import joshie.harvest.shops.purchaseable.PurchaseableStone;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class HFShops {
     public static IShop barn;

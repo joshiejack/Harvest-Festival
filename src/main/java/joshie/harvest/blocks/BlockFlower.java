@@ -1,6 +1,7 @@
 package joshie.harvest.blocks;
 
 import static net.minecraftforge.common.EnumPlantType.Plains;
+
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.util.base.BlockHFBaseMeta;
 import net.minecraft.block.Block;
@@ -11,7 +12,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.common.util.ForgeDirection;
 
 public class BlockFlower extends BlockHFBaseMeta implements IPlantable {
     public static final int GODDESS = 0;

@@ -6,7 +6,6 @@ import net.minecraft.block.Block;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.common.util.ForgeDirection;
 
 public class SoilHandlerDefault implements ISoilHandler, IPlantable {
     private EnumPlantType plantable;

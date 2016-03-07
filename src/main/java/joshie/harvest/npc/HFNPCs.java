@@ -5,23 +5,21 @@ import static joshie.harvest.npc.NPC.Age.CHILD;
 import static joshie.harvest.npc.NPC.Age.ELDER;
 import static joshie.harvest.npc.NPC.Gender.FEMALE;
 import static joshie.harvest.npc.NPC.Gender.MALE;
+
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.buildings.HFBuildings;
-import joshie.harvest.cooking.entity.EntityCookingItem;
-import joshie.harvest.cooking.entity.RenderCookingItem;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import joshie.harvest.npc.entity.EntityNPCMiner;
 import joshie.harvest.npc.entity.EntityNPCShopkeeper;
 import joshie.harvest.npc.render.RenderNPC;
 import joshie.harvest.player.town.TownData;
-import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.common.registry.EntityRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class HFNPCs {
     public static INPC goddess; //The Goddess                        (SPAWN)

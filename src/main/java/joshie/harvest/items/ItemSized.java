@@ -4,6 +4,8 @@ import static joshie.harvest.core.helpers.SizeableHelper.getSize;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.api.core.IShippable;
 import joshie.harvest.api.core.ISizeable;
@@ -14,16 +16,10 @@ import joshie.harvest.core.helpers.SizeableHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.lib.SizeableMeta;
 import joshie.harvest.core.util.Translate;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-
-import org.apache.commons.lang3.StringUtils;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemSized extends ItemHFMeta implements IShippable, ICreativeSorted, ISizedProvider {
     private final SizeableMeta meta;

@@ -1,11 +1,8 @@
 package joshie.harvest.blocks.render;
 
-import joshie.harvest.blocks.BlockCookware;
-import joshie.harvest.blocks.BlockIcons;
-import joshie.harvest.core.util.RenderBase;
-import net.minecraftforge.common.util.ForgeDirection;
-
 import org.lwjgl.opengl.GL11;
+
+import joshie.harvest.core.util.RenderBase;
 
 public class RenderCounter extends RenderBase {
     @Override

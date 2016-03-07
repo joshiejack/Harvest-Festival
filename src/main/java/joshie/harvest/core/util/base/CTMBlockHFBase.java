@@ -1,19 +1,10 @@
 package joshie.harvest.core.util.base;
 
-import com.cricketcraft.ctmlib.ICTMBlock;
-import com.cricketcraft.ctmlib.ISubmapManager;
-import com.cricketcraft.ctmlib.RenderBlocksCTM;
-import com.cricketcraft.ctmlib.SubmapManagerCTM;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import joshie.harvest.blocks.HFBlocks;
-import joshie.harvest.core.HFTab;
 import joshie.harvest.core.lib.HFModInfo;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * Convenience implementation of ICMBlock. This does everything you should need for basic CTM.

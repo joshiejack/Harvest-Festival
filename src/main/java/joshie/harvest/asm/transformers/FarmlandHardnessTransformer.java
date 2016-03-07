@@ -2,15 +2,15 @@ package joshie.harvest.asm.transformers;
 
 import java.util.Iterator;
 
-import joshie.harvest.asm.HFOverride;
-import joshie.harvest.core.config.ASM;
-
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.tree.AbstractInsnNode;
 import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.LdcInsnNode;
 import org.objectweb.asm.tree.MethodNode;
+
+import joshie.harvest.asm.HFOverride;
+import joshie.harvest.core.config.ASM;
 
 public class FarmlandHardnessTransformer extends AbstractASM {
     @Override

@@ -7,9 +7,7 @@ import joshie.harvest.core.util.generic.Text;
 import joshie.harvest.items.HFItems;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemBlockPreview extends ItemBlockBase implements ICreativeSorted {    
     public ItemBlockPreview(Block block) {

@@ -1,15 +1,15 @@
 package joshie.harvest.api.quest;
 
-import io.netty.buffer.ByteBuf;
-
 import java.util.HashSet;
 
+import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
 public interface IQuest {
@@ -62,7 +62,7 @@ public interface IQuest {
     public void onEntityInteract(EntityPlayer entityPlayer, Entity target);
 
     /** Called when the quest is active, and the player clicks a block **/
-    public void onRightClickBlock(EntityPlayer player, World world, int x, int y, int z, int face);
+    public void onRightClickBlock(EntityPlayer player, BlockPos pos, EnumFacing face);
 
     /** Called when the stage changes **/
     public void onStageChanged(EntityPlayer player, int previous, int stage);

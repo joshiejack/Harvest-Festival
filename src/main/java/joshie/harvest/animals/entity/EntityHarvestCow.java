@@ -16,7 +16,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
+import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 
 public class EntityHarvestCow extends EntityCow implements IAnimalTracked, IEntityAdditionalSpawnData, IMilkable {
     private IRelatableDataHandler handler;

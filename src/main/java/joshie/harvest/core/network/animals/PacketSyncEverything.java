@@ -2,9 +2,8 @@ package joshie.harvest.core.network.animals;
 
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.animals.IAnimalData;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 
 public class PacketSyncEverything extends AbstractSyncAnimal implements IMessageHandler<PacketSyncEverything, IMessage> {
     protected IAnimalData data;

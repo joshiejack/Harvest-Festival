@@ -2,6 +2,8 @@ package joshie.harvest.blocks.render;
 
 import java.util.ArrayList;
 
+import org.lwjgl.opengl.GL11;
+
 import joshie.harvest.api.HFApi;
 import joshie.harvest.blocks.BlockCookware;
 import joshie.harvest.blocks.tiles.TileCooking;
@@ -10,16 +12,8 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.AdvancedModelLoader;
-import net.minecraftforge.client.model.IModelCustom;
-
-import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class SpecialRendererPot extends SpecialRendererCookware {

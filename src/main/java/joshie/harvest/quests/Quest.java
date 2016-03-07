@@ -2,11 +2,11 @@ package joshie.harvest.quests;
 
 import static joshie.harvest.core.network.PacketHandler.sendToClient;
 import static joshie.harvest.core.network.PacketHandler.sendToServer;
-import io.netty.buffer.ByteBuf;
 
 import java.util.HashSet;
 import java.util.Set;
 
+import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quest.IQuest;
 import joshie.harvest.core.network.quests.PacketQuestSetStage;
@@ -16,9 +16,11 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class Quest implements IQuest {
     protected String name;
@@ -177,16 +179,19 @@ public abstract class Quest implements IQuest {
 
     /**** EVENTS ****/
     //Called When a player interacts with an animal
+    @Override
     public void onEntityInteract(EntityPlayer player, Entity target) {}
 
     //Called serverside when you close the chat with an npc
     public void onClosedChat(EntityPlayer player, EntityNPC npc) {}
 
-    public void onRightClickBlock(EntityPlayer player, World world, int x, int y, int z, int side) {}
+    @Override
+    public void onRightClickBlock(EntityPlayer player, BlockPos pos, EnumFacing face) {}
 
     public void select(EntityPlayer player, EntityNPC npc, int option) {}
     public void confirm(EntityPlayer player, EntityNPC npc) {}
     public void cancel(EntityPlayer player, EntityNPC npc) {}
     
+    @Override
     public void onStageChanged(EntityPlayer player, int previous, int stage) {}
 }

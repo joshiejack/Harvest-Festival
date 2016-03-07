@@ -4,6 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.objectweb.asm.ClassReader;
+import org.objectweb.asm.ClassVisitor;
+import org.objectweb.asm.ClassWriter;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import joshie.harvest.asm.transformers.AbstractASM;
 import joshie.harvest.asm.transformers.EggTransformer;
 import joshie.harvest.asm.transformers.FarmlandHardnessTransformer;
@@ -16,15 +23,7 @@ import joshie.harvest.asm.transformers.WeatherTransformer;
 import joshie.harvest.asm.transformers.WheatTransformer;
 import joshie.harvest.core.config.HFConfig;
 import net.minecraft.launchwrapper.IClassTransformer;
-
-import org.objectweb.asm.ClassReader;
-import org.objectweb.asm.ClassVisitor;
-import org.objectweb.asm.ClassWriter;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
+import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 
 public class HFOverride implements IFMLLoadingPlugin, IClassTransformer {
     private static final int EGG = 0;

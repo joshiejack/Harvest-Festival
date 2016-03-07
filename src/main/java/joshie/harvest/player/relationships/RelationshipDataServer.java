@@ -9,7 +9,6 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSyncMarriage;
 import joshie.harvest.core.network.PacketSyncRelationship;
-import joshie.harvest.player.PlayerTrackerServer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;

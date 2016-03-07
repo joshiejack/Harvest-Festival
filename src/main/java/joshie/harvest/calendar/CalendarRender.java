@@ -3,6 +3,8 @@ package joshie.harvest.calendar;
 import java.text.NumberFormat;
 import java.util.Locale;
 
+import org.lwjgl.opengl.GL11;
+
 import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.api.core.ISeasonData;
@@ -10,19 +12,14 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.CalendarHelper;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.core.util.Translate;
 import joshie.harvest.npc.gui.ContainerNPC;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.EntityViewRenderEvent.FogColors;
 import net.minecraftforge.client.event.EntityViewRenderEvent.RenderFogEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
-
-import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class CalendarRender {
     private String formatTime(int time) {

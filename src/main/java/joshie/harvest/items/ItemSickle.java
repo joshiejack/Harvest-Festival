@@ -1,6 +1,7 @@
 package joshie.harvest.items;
 
 import static net.minecraft.block.Block.soundTypeGrass;
+
 import joshie.harvest.api.crops.IBreakCrops;
 import joshie.harvest.blocks.BlockCrop;
 import joshie.harvest.core.helpers.PlayerHelper;
@@ -10,7 +11,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 
 public class ItemSickle extends ItemBaseTool implements IBreakCrops {
     @Override

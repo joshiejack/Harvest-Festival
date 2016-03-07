@@ -6,15 +6,12 @@ import java.util.Random;
 import joshie.harvest.core.util.generic.IHasMetaBlock;
 import joshie.harvest.core.util.generic.IHasMetaItem;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class BlockBaseMeta extends BlockBase implements IHasMetaBlock {
     @SideOnly(Side.CLIENT)

@@ -1,6 +1,7 @@
 package joshie.harvest.items;
 
 import static joshie.harvest.core.lib.HFModInfo.BUILDINGPATH;
+
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.buildings.Building;
 import joshie.harvest.core.HFTab;

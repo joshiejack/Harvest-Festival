@@ -15,8 +15,7 @@ import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.WorldProviderSurface;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.client.IRenderHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WeatherProvider extends WorldProviderSurface {
     private static final IRenderHandler weather = new WeatherRenderer();

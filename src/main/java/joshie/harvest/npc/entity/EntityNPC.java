@@ -1,9 +1,8 @@
 package joshie.harvest.npc.entity;
 
-import io.netty.buffer.ByteBuf;
-
 import java.util.UUID;
 
+import io.netty.buffer.ByteBuf;
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.INPC;
@@ -31,7 +30,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
+import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 
 public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnData, IRelatableProvider {
     protected INPC npc;

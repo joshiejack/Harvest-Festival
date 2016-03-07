@@ -21,9 +21,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class Shop implements IShop {
     public static final ArrayList<IPurchaseable> registers = new ArrayList();
@@ -91,9 +91,9 @@ public class Shop implements IShop {
     /** Whether or not the shop is currently open at this time or season **/
     @Override
     public boolean isOpen(World world, EntityPlayer player) {
-        if (world.difficultySetting == EnumDifficulty.PEACEFUL) return true;
+        if (world.getDifficulty() == EnumDifficulty.PEACEFUL) return true;
         Weekday day = HFTrackers.getCalendar().getDate().getWeekday();
-        OpeningHours hours = open.get(world.difficultySetting).opening.get(day);
+        OpeningHours hours = open.get(world.getDifficulty()).opening.get(day);
         if (hours == null) return false;
         else {
             long daytime = CalendarHelper.getTime(world); //0-23999 by default      

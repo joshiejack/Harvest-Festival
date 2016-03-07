@@ -7,10 +7,13 @@ import static net.minecraft.block.Block.soundTypeGravel;
 import static net.minecraft.block.Block.soundTypeMetal;
 import static net.minecraft.block.Block.soundTypePiston;
 import static net.minecraft.block.Block.soundTypeWood;
+
+import org.apache.commons.lang3.text.WordUtils;
+
+import joshie.harvest.blocks.render.RenderCounter;
 import joshie.harvest.blocks.render.RenderCrops;
 import joshie.harvest.blocks.render.RenderFryingPan;
 import joshie.harvest.blocks.render.RenderHandler;
-import joshie.harvest.blocks.render.RenderCounter;
 import joshie.harvest.blocks.render.RenderPreview;
 import joshie.harvest.blocks.render.SpecialRendererCounter;
 import joshie.harvest.blocks.render.SpecialRendererFridge;
@@ -19,14 +22,13 @@ import joshie.harvest.blocks.render.SpecialRendererMixer;
 import joshie.harvest.blocks.render.SpecialRendererOven;
 import joshie.harvest.blocks.render.SpecialRendererPot;
 import joshie.harvest.blocks.tiles.TileCooking;
+import joshie.harvest.blocks.tiles.TileCounter;
 import joshie.harvest.blocks.tiles.TileFridge;
 import joshie.harvest.blocks.tiles.TileFryingPan;
-import joshie.harvest.blocks.tiles.TileCounter;
 import joshie.harvest.blocks.tiles.TileMarker;
 import joshie.harvest.blocks.tiles.TileMixer;
 import joshie.harvest.blocks.tiles.TileOven;
 import joshie.harvest.blocks.tiles.TilePot;
-import joshie.harvest.core.HFClientProxy;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.base.BlockHFBaseMeta;
 import joshie.harvest.core.util.base.ItemBlockBase;
@@ -36,15 +38,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
-
-import org.apache.commons.lang3.text.WordUtils;
-
-import com.cricketcraft.ctmlib.CTMRenderer;
-
-import cpw.mods.fml.client.registry.ClientRegistry;
-import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class HFBlocks {
 	

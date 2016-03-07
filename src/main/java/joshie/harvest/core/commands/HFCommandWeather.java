@@ -1,10 +1,10 @@
 package joshie.harvest.core.commands;
 
+import org.apache.commons.lang3.StringUtils;
+
 import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.command.ICommandSender;
-
-import org.apache.commons.lang3.StringUtils;
 
 public class HFCommandWeather extends HFCommandBase {
     @Override

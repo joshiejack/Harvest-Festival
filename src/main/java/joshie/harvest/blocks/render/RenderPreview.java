@@ -6,7 +6,6 @@ import joshie.harvest.buildings.Building;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvest.core.util.RenderBase;
-import net.minecraft.client.renderer.RenderBlocks;
 
 public class RenderPreview extends RenderBase {
     public static RenderBlocks renderer = new RenderBlocks();

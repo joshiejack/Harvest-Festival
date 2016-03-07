@@ -5,8 +5,7 @@ import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.core.network.PacketCropRequest;
 import joshie.harvest.core.network.PacketHandler;
 import net.minecraft.world.World;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class CropTrackerClient extends CropTracker {

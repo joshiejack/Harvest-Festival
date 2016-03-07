@@ -2,7 +2,6 @@ package joshie.harvest.mining.loot;
 
 import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.helpers.PlayerHelper;
 import joshie.harvest.core.util.SafeStack;
 import joshie.harvest.items.HFItems;
 import joshie.harvest.player.tracking.TrackingData;

@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.text.WordUtils;
+
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.IMeal;
 import joshie.harvest.api.cooking.IMealProvider;
@@ -17,21 +20,14 @@ import joshie.harvest.core.config.General;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.util.Translate;
 import joshie.harvest.core.util.generic.Text;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.text.WordUtils;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemMeal extends ItemHFMeta implements IMealProvider, ICreativeSorted {
     private HashMap<String, IIcon> altMap = new HashMap();

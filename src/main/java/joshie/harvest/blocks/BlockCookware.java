@@ -2,17 +2,14 @@ package joshie.harvest.blocks;
 
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.blocks.items.ItemBlockCookware;
-import joshie.harvest.blocks.render.SpecialRendererCookware;
-import joshie.harvest.blocks.render.SpecialRendererFryingPan;
 import joshie.harvest.blocks.tiles.TileCooking;
+import joshie.harvest.blocks.tiles.TileCounter;
 import joshie.harvest.blocks.tiles.TileFridge;
 import joshie.harvest.blocks.tiles.TileFryingPan;
-import joshie.harvest.blocks.tiles.TileCounter;
 import joshie.harvest.blocks.tiles.TileMixer;
 import joshie.harvest.blocks.tiles.TileOven;
 import joshie.harvest.blocks.tiles.TilePot;
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.config.Cooking;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.helpers.generic.DirectionHelper;
 import joshie.harvest.core.helpers.generic.ItemHelper;
@@ -21,7 +18,6 @@ import joshie.harvest.core.util.base.BlockHFBaseMeta;
 import joshie.harvest.core.util.generic.IFaceable;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -30,8 +26,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockCookware extends BlockHFBaseMeta {
     public static final int FRIDGE_TOP = 0;

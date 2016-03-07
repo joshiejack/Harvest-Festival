@@ -3,8 +3,6 @@ package joshie.harvest.crops.icons;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropRenderHandler;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 
 public abstract class AbstractIconHandler implements ICropRenderHandler {

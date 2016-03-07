@@ -2,6 +2,7 @@ package joshie.harvest.animals.type;
 
 import static joshie.harvest.api.animals.AnimalFoodType.SEED;
 import static joshie.harvest.core.helpers.generic.ItemHelper.spawnByEntity;
+
 import joshie.harvest.animals.entity.EntityHarvestChicken;
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.core.helpers.SizeableHelper;

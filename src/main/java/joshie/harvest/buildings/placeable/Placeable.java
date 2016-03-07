@@ -2,7 +2,6 @@ package joshie.harvest.buildings.placeable;
 
 import java.util.UUID;
 
-import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.world.World;
 
 public abstract class Placeable {

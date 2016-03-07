@@ -11,6 +11,7 @@ import net.minecraft.entity.EntityLeashKnot;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
 public class PurchaseableEntity implements IPurchaseable {
@@ -77,7 +78,7 @@ public class PurchaseableEntity implements IPurchaseable {
                 player.worldObj.spawnEntityInWorld(theEntity);
                 theEntity.mountEntity(player);
             } else {
-                EntityLeashKnot leash = EntityLeashKnot.func_110129_a(player.worldObj, (int) player.posX, (int) player.posY, (int) player.posZ);
+                EntityLeashKnot leash = EntityLeashKnot.createKnot(player.worldObj, new BlockPos(player));
                 ((EntityAnimal) theEntity).setLeashedToEntity(player, true);
                 ((IAnimalTracked) theEntity).getData().setOwner(player);
                 player.worldObj.spawnEntityInWorld(theEntity);

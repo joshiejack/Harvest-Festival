@@ -1,8 +1,7 @@
 package joshie.harvest.player.relationships;
 
 import joshie.harvest.api.relations.IRelatable;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class RelationshipDataClient extends RelationshipData {

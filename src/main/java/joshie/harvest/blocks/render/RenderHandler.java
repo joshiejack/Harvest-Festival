@@ -6,10 +6,8 @@ import joshie.harvest.core.lib.RenderIds;
 import joshie.harvest.core.util.RenderBase;
 import joshie.harvest.core.util.generic.IFaceable;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public class RenderHandler implements ISimpleBlockRenderingHandler {
     private static final HashMap<String, RenderBase> renders = new HashMap();

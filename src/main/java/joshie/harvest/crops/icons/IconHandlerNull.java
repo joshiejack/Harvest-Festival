@@ -1,8 +1,6 @@
 package joshie.harvest.crops.icons;
 
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.IIcon;
 
 public class IconHandlerNull extends AbstractIconHandler {
     @Override

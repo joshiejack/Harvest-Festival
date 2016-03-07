@@ -4,7 +4,6 @@ import java.util.HashSet;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.quest.IQuest;
-import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.QuestHelper;
 import joshie.harvest.core.util.ContainerBase;
 import joshie.harvest.npc.entity.EntityNPC;

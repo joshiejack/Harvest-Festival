@@ -3,6 +3,8 @@ package joshie.harvest.core.helpers.generic;
 import java.awt.Dimension;
 import java.awt.Point;
 
+import org.lwjgl.input.Mouse;
+
 import joshie.harvest.core.network.AbstractPacketLocation;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
@@ -12,12 +14,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.world.World;
-
-import org.lwjgl.input.Mouse;
-
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class MCClientHelper {

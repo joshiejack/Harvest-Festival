@@ -1,15 +1,13 @@
 package joshie.harvest.core.render;
 
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
+
 import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.core.lib.HFModInfo;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
-
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class RenderToolLevel {
     @SideOnly(Side.CLIENT)

@@ -57,11 +57,10 @@ import joshie.harvest.quests.QuestEvents;
 import joshie.harvest.quests.QuestRegistry;
 import joshie.harvest.shops.ShopRegistry;
 import net.minecraftforge.common.MinecraftForge;
-import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class HFCore {
     public static void preInit() {

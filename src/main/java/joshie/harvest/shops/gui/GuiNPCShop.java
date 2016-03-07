@@ -1,7 +1,10 @@
 package joshie.harvest.shops.gui;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.lwjgl.opengl.GL11;
 
 import joshie.harvest.api.shops.IPurchaseable;
 import joshie.harvest.api.shops.IShop;
@@ -17,8 +20,6 @@ import joshie.harvest.player.stats.StatDataClient;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-
-import org.lwjgl.opengl.GL11;
 
 public class GuiNPCShop extends GuiNPCBase {
     protected static final ResourceLocation gui_texture = new ResourceLocation(HFModInfo.MODPATH, "textures/gui/shop.png");
@@ -105,7 +106,7 @@ public class GuiNPCShop extends GuiNPCBase {
             mc.renderEngine.bindTexture(HFModInfo.elements);
             drawTexturedModalRect(x99 + 59, y37 + 50, 244, 0, 12, 12);
 
-            mc.fontRenderer.drawStringWithShadow("" + cost, x99 + 73, y37 + 53, 0xC39753);
+            mc.fontRendererObj.drawStringWithShadow("" + cost, x99 + 73, y37 + 53, 0xC39753);
             GL11.glColor3f(1.0F, 1.0F, 1.0F);
 
             StackHelper.drawStack(display, x99 + 36, y37 + 46, 1.4F);
@@ -146,7 +147,7 @@ public class GuiNPCShop extends GuiNPCBase {
     public void drawForeground(int x, int y) {}
 
     @Override
-    protected void keyTyped(char character, int key) {
+    protected void keyTyped(char character, int key) throws IOException {
         if (key == 208 || character == 's') {
             setStart(start + 2);
         }

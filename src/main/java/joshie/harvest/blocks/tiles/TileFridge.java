@@ -6,8 +6,7 @@ import joshie.harvest.core.util.generic.IFaceable;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.util.ForgeDirection;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 
 /** Just a way to interfact with the fridge inventory, the fridge inventory is global though, not stored in this block **/
 public class TileFridge extends TileEntity implements IFaceable {

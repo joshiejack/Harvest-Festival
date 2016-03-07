@@ -1,29 +1,22 @@
-/asm
-/bin/*
-/build
-.checkstyle
+# eclipse
+bin
+*.launch
+.settings
+.metadata
 .classpath
-/config
-/common
-/crash-reports
-/CREDITS-fml.txt
-/eclipse/*
-/forge-1.7.10*
-/.gradle
-#/libs
-/LICENSE-fml.txt
-/logs
-/MinecraftForge-Credits.txt
-/MinecraftForge-License.txt
-/mods
-/options.txt
 .project
-/saves
-.settings/*
-src/api/resources/*
-src/api/java/hacker/
-/screenshots
-/README.txt
-/resourcepacks
-/usernamecache.json
-/bin/
+
+# idea
+out
+*.ipr
+*.iws
+*.iml
+.idea
+
+# gradle
+build
+.gradle
+
+# other
+eclipse
+run

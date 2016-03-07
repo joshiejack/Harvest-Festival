@@ -4,8 +4,6 @@ import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.entity.EntityNPC.Mode;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
 
 public class ModelNPC extends ModelBiped {
     public ModelNPC() {

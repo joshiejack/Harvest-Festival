@@ -1,11 +1,12 @@
 package joshie.harvest.items;
 
 import static joshie.harvest.core.lib.HFModInfo.MODPATH;
+
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.util.Translate;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ItemBaseSingle extends Item {
     protected String path = MODPATH + ":";

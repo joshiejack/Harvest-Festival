@@ -1,5 +1,6 @@
 package joshie.harvest.core.config;
 import static joshie.harvest.core.helpers.generic.ConfigHelper.getDouble;
+
 import net.minecraftforge.common.config.Configuration;
 
 public class General {

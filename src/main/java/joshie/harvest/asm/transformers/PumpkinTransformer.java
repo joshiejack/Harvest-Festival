@@ -3,14 +3,6 @@ package joshie.harvest.asm.transformers;
 import java.util.HashSet;
 import java.util.Iterator;
 
-import joshie.harvest.asm.HFOverride;
-import joshie.harvest.asm.overrides.ItemPumpkin;
-import joshie.harvest.core.config.ASM;
-import joshie.harvest.core.lib.HFModInfo;
-import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;
@@ -20,6 +12,14 @@ import org.objectweb.asm.tree.LdcInsnNode;
 import org.objectweb.asm.tree.MethodInsnNode;
 import org.objectweb.asm.tree.MethodNode;
 import org.objectweb.asm.tree.VarInsnNode;
+
+import joshie.harvest.asm.HFOverride;
+import joshie.harvest.asm.overrides.ItemPumpkin;
+import joshie.harvest.core.config.ASM;
+import joshie.harvest.core.lib.HFModInfo;
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 
 
 public class PumpkinTransformer extends AbstractASM {

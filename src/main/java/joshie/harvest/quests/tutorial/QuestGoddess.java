@@ -4,6 +4,7 @@ import static joshie.harvest.core.helpers.QuestHelper.completeQuest;
 import static joshie.harvest.core.helpers.QuestHelper.rewardGold;
 import static joshie.harvest.core.helpers.QuestHelper.rewardItem;
 import static joshie.harvest.core.helpers.QuestHelper.takeHeldStack;
+
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.buildings.HFBuildings;

@@ -3,6 +3,10 @@ package joshie.harvest.crops;
 import java.util.ArrayList;
 import java.util.Random;
 
+import org.apache.commons.lang3.StringUtils;
+
+import com.google.gson.annotations.Expose;
+
 import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.ICrop;
@@ -16,13 +20,7 @@ import joshie.harvest.crops.handlers.SoilHandlers;
 import joshie.harvest.crops.icons.IconHandlerDefault;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
-
-import org.apache.commons.lang3.StringUtils;
-
-import com.google.gson.annotations.Expose;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class Crop implements ICrop {
     public static final ArrayList<ICrop> crops = new ArrayList(30);

@@ -2,7 +2,9 @@ package joshie.harvest.npc.gui;
 
 import java.util.Arrays;
 
-import joshie.harvest.HarvestFestival;
+import org.apache.commons.lang3.SystemUtils;
+import org.apache.commons.lang3.text.WordUtils;
+
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.NPCHelper;
@@ -10,9 +12,6 @@ import joshie.harvest.core.util.Translate;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.player.stats.StatData;
 import net.minecraft.entity.player.EntityPlayer;
-
-import org.apache.commons.lang3.SystemUtils;
-import org.apache.commons.lang3.text.WordUtils;
 
 /** Renders a chat script **/
 public class GuiNPCChat extends GuiNPCBase {
@@ -29,15 +28,15 @@ public class GuiNPCChat extends GuiNPCBase {
         if (string == null) return "FORGOT SOME TEXT DUMBASS";
         StatData stats = HFTrackers.getClientPlayerTracker().getStats();
         string = string.replace("<BR>", SystemUtils.LINE_SEPARATOR);
-        string = string.replace("Þ", player.getDisplayName());
-        string = string.replace("ℇ", npc.getNPC().getUnlocalizedName());
+        string = string.replace("Ãž", player.getDisplayName());
+        string = string.replace("â„‡", npc.getNPC().getUnlocalizedName());
         string = string.replace("$", "" + stats.getGold());
 
         if (npc.getLover() != null) {
-            string = string.replace("❤", npc.getLover().getNPC().getUnlocalizedName());
-        } else string = string.replace("❤", Translate.translate("nolover"));
+            string = string.replace("â�¤", npc.getLover().getNPC().getUnlocalizedName());
+        } else string = string.replace("â�¤", Translate.translate("nolover"));
 
-        return string.replace("♥", HFTrackers.getClientPlayerTracker().getRelationships().getLover());
+        return string.replace("â™¥", HFTrackers.getClientPlayerTracker().getRelationships().getLover());
     }
 
     public GuiNPCChat(EntityNPC npc, EntityPlayer player, int nextGui) {

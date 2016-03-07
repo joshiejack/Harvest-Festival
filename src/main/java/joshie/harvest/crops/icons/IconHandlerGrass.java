@@ -4,14 +4,10 @@ import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.EntityRenderer;
-import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class IconHandlerGrass extends AbstractIconHandler {
     private IIcon[] bottomIcons;

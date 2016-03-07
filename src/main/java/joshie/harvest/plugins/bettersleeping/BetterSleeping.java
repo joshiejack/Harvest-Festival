@@ -4,8 +4,7 @@ import joshie.harvest.core.handlers.EventsHandler;
 import joshie.harvest.plugins.HFPlugins.Plugin;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cz.ondraster.bettersleeping.api.WorldSleepEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class BetterSleeping extends Plugin {
     @Override

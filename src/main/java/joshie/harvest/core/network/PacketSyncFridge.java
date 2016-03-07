@@ -4,10 +4,9 @@ import io.netty.buffer.ByteBuf;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.player.fridge.FridgeData;
 import net.minecraft.nbt.NBTTagCompound;
-import cpw.mods.fml.common.network.ByteBufUtils;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.common.network.ByteBufUtils;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 
 public class PacketSyncFridge implements IMessage, IMessageHandler<PacketSyncFridge, IMessage> {
     private NBTTagCompound nbt;

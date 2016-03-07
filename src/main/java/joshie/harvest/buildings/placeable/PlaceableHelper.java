@@ -2,6 +2,8 @@ package joshie.harvest.buildings.placeable;
 
 import java.util.HashMap;
 
+import org.apache.logging.log4j.Level;
+
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.buildings.placeable.entities.PlaceableEntity;
 import joshie.harvest.buildings.placeable.entities.PlaceableItemFrame;
@@ -37,8 +39,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-
-import org.apache.logging.log4j.Level;
 
 public class PlaceableHelper {
     public static HashMap<String, PlaceableEntity> entities = new HashMap();

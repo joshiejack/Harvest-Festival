@@ -7,7 +7,7 @@ import joshie.harvest.core.network.PacketSyncMarker;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 
 public class TileMarker extends TileEntity {
     private Building group;

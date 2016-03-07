@@ -5,11 +5,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import joshie.harvest.asm.HFOverride;
-import joshie.harvest.core.config.ASM;
-import joshie.harvest.core.config.HFConfig;
-import joshie.harvest.core.lib.HFModInfo;
-
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
@@ -19,6 +14,11 @@ import org.objectweb.asm.tree.AbstractInsnNode;
 import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.InsnNode;
 import org.objectweb.asm.tree.MethodNode;
+
+import joshie.harvest.asm.HFOverride;
+import joshie.harvest.core.config.ASM;
+import joshie.harvest.core.config.HFConfig;
+import joshie.harvest.core.lib.HFModInfo;
 
 public class SeedFoodTransformer extends AbstractASM {
     @Override

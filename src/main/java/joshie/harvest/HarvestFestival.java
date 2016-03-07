@@ -8,24 +8,23 @@ import static joshie.harvest.core.lib.HFModInfo.VERSION;
 
 import java.io.File;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import joshie.harvest.core.HFCommonProxy;
 import joshie.harvest.core.HFRecipeFixes;
 import joshie.harvest.core.commands.CommandManager;
 import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLLoadCompleteEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.Mod.Instance;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 
 @Mod(modid = MODID, name = MODNAME, version = VERSION)
 public class HarvestFestival {
@@ -42,6 +41,7 @@ public class HarvestFestival {
     public void preInit(FMLPreInitializationEvent event) {
         root = new File(event.getModConfigurationDirectory() + File.separator + MODPATH);
         proxy.load("preInit");
+        proxy.load("preInitClient");
     }
 
     @EventHandler

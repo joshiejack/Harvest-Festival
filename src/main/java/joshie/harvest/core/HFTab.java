@@ -8,18 +8,12 @@ import java.util.List;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ICreativeSorted;
-import joshie.harvest.blocks.HFBlocks;
-import joshie.harvest.buildings.HFBuildings;
-import joshie.harvest.crops.HFCrops;
 import joshie.harvest.items.HFItems;
-import joshie.harvest.items.ItemBuilding;
-import joshie.harvest.items.ItemHFSeeds;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class HFTab extends CreativeTabs {
     public static HFTab tabTown = new HFTab("town");

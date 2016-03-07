@@ -1,9 +1,8 @@
 package joshie.harvest.player.relationships;
 
-import io.netty.buffer.ByteBuf;
-
 import java.util.UUID;
 
+import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.relations.IRelatableDataHandler;
 import joshie.harvest.core.helpers.UUIDHelper;

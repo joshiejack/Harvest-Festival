@@ -6,16 +6,14 @@ import java.util.ArrayList;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
+import joshie.harvest.blocks.BlockCrop;
 import joshie.harvest.crops.handlers.SoilHandlers;
 import joshie.harvest.plugins.HFPlugins;
 import joshie.harvest.plugins.HFPlugins.Plugin;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
-
-import com.InfinityRaider.AgriCraft.blocks.BlockCrop;
-
-import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class AgriCraft extends Plugin {
     public static ArrayList<AgriCraftCrop> cropsList = new ArrayList();

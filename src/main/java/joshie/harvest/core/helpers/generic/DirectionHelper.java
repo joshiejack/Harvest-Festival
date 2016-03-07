@@ -2,7 +2,6 @@ package joshie.harvest.core.helpers.generic;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
-import net.minecraftforge.common.util.ForgeDirection;
 
 public class DirectionHelper {
     public static ForgeDirection getFacingFromEntity(EntityLivingBase entity) {

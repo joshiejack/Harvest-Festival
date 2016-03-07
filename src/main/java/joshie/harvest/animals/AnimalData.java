@@ -1,11 +1,11 @@
 package joshie.harvest.animals;
 
 import static joshie.harvest.core.network.PacketHandler.sendToEveryone;
-import io.netty.buffer.ByteBuf;
 
 import java.util.Random;
 import java.util.UUID;
 
+import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
@@ -29,6 +29,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
@@ -116,10 +117,7 @@ public class AnimalData implements IAnimalData {
             cleanliness--;
 
             World world = animal.worldObj;
-            int x = MathHelper.floor_double(animal.posX);
-            int y = MathHelper.floor_double(animal.posY);
-            int z = MathHelper.floor_double(animal.posZ);
-            boolean isOutside = world.canBlockSeeTheSky(x, y, z);
+            boolean isOutside = world.canBlockSeeSky(new BlockPos(animal));
             boolean isRaining = world.isRaining();
             if ((isRaining && isOutside) || (!isRaining && !isOutside)) {
                 stress = (byte) Math.min(Byte.MAX_VALUE, stress + 50);
@@ -235,7 +233,7 @@ public class AnimalData implements IAnimalData {
     public EntityPlayer getOwner() {
         EntityPlayer owner = getAndCreateOwner();
         if (owner != null) {
-            if (animal.worldObj.provider.dimensionId == owner.worldObj.provider.dimensionId) {
+            if (animal.worldObj.provider.getDimensionId() == owner.worldObj.provider.getDimensionId()) {
                 if (animal.getDistanceToEntity(owner) <= 128) {
                     return owner;
                 }

@@ -10,6 +10,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.npc.IConditionalGreeting;
@@ -25,8 +27,6 @@ import joshie.harvest.npc.gift.Gifts.Quality;
 import joshie.harvest.player.relationships.RelationshipHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-
-import org.apache.commons.lang3.StringUtils;
 
 public class NPC implements INPC {
     public static enum Gender {

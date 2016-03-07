@@ -1,6 +1,7 @@
 package joshie.harvest.calendar;
 
 import static joshie.harvest.core.lib.HFModInfo.MODPATH;
+
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.api.core.ISeasonData;

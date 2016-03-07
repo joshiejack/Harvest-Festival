@@ -2,6 +2,8 @@ package joshie.harvest.items;
 
 import java.util.EnumMap;
 
+import org.apache.commons.lang3.text.WordUtils;
+
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.core.config.General;
 import joshie.harvest.core.lib.SizeableMeta;
@@ -11,12 +13,8 @@ import joshie.harvest.items.render.RenderItemNPC;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.MinecraftForgeClient;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
-
-import org.apache.commons.lang3.text.WordUtils;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class HFItems {
     public static EnumMap<SizeableMeta, Item> sized = new EnumMap(SizeableMeta.class);

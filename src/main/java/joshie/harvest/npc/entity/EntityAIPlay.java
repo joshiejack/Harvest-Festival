@@ -28,7 +28,7 @@ public class EntityAIPlay extends EntityAIBase {
         } else if (npc.getRNG().nextInt(400) != 0) {
             return false;
         } else {
-            List list = npc.worldObj.getEntitiesWithinAABB(EntityNPC.class, npc.boundingBox.expand(6.0D, 3.0D, 6.0D));
+            List list = npc.worldObj.getEntitiesWithinAABB(EntityNPC.class, npc.getEntityBoundingBox().expand(6.0D, 3.0D, 6.0D));
             double d0 = Double.MAX_VALUE;
             Iterator iterator = list.iterator();
 

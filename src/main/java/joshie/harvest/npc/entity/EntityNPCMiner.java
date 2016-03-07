@@ -12,6 +12,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
 public class EntityNPCMiner extends EntityNPCShopkeeper {
@@ -113,7 +114,7 @@ public class EntityNPCMiner extends EntityNPCShopkeeper {
     }
 
     private boolean canPlaceBlock(int x, int y, int z) {
-        if (worldObj.canBlockSeeTheSky(x, y, z)) {
+        if (worldObj.canBlockSeeSky(new BlockPos(x, y, z))) {
             return false;
         }
 

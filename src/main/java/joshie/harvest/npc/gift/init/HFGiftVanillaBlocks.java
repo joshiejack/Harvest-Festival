@@ -86,7 +86,12 @@ public class HFGiftVanillaBlocks {
         assign(cactus, NATURE, DANGER);
         assign(clay, WATER, CONSTRUCTION);
         assign(jukebox, TECHNOLOGY);
-        assign(fence, FARMING);
+        assign(oak_fence, FARMING);
+        assign(spruce_fence, FARMING);
+        assign(birch_fence, FARMING);
+        assign(jungle_fence, FARMING);
+        assign(acacia_fence, FARMING);
+        assign(dark_oak_fence, FARMING);
         assign(pumpkin, NATURE, COOKING, FARMING);
         assign(netherrack, DANGER);
         assign(soul_sand, SCARY);
@@ -100,7 +105,12 @@ public class HFGiftVanillaBlocks {
         assign(glass_pane, CONSTRUCTION);
         assign(melon_block, NATURE, COOKING, FARMING);
         assign(vine, NATURE);
-        assign(fence_gate, FARMING, CONSTRUCTION);
+        assign(oak_fence_gate, FARMING, CONSTRUCTION);
+        assign(spruce_fence_gate, FARMING, CONSTRUCTION);
+        assign(birch_fence_gate, FARMING, CONSTRUCTION);
+        assign(jungle_fence_gate, FARMING, CONSTRUCTION);
+        assign(acacia_fence_gate, FARMING, CONSTRUCTION);
+        assign(dark_oak_fence_gate, FARMING, CONSTRUCTION);
         assign(brick_stairs, CONSTRUCTION);
         assign(stone_brick_stairs, CONSTRUCTION);
         assign(mycelium, NATURE);

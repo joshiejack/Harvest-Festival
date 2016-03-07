@@ -4,6 +4,7 @@ import joshie.harvest.api.WorldLocation;
 import joshie.harvest.core.helpers.CalendarHelper;
 import joshie.harvest.core.helpers.NPCHelper;
 import net.minecraft.entity.ai.EntityAIBase;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
 
 public class EntityAITeleportHome extends EntityAIBase {
@@ -22,14 +23,11 @@ public class EntityAITeleportHome extends EntityAIBase {
     @Override
     public boolean shouldExecute() {
         if (home == null || this.entity.lastTeleport != 0) return false;
-        int i = MathHelper.floor_double(this.entity.posX);
-        int j = MathHelper.floor_double(this.entity.posY);
-        int k = MathHelper.floor_double(this.entity.posZ);
         int lastTeleport = this.entity.lastTeleport;
         int bedTime = CalendarHelper.getScaledTime(entity.getNPC().getBedtime());
         long time = CalendarHelper.getTime(entity.worldObj);
         if (time >= bedTime) {
-            return (entity.worldObj.canBlockSeeTheSky(i, j, k));
+            return (entity.worldObj.canBlockSeeSky(new BlockPos(entity)));
         } else return false;
     }
 

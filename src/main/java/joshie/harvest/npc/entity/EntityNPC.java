@@ -131,13 +131,13 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
     }
 
     @Override
-    protected void updateEntityActionState() {
+    protected void updateAITasks() {
         if (this.lastTeleport > 0) {
             this.lastTeleport--;
         }
 
         if (!isTalking()) {
-            super.updateEntityActionState();
+            super.updateAITasks();
         } else {
             addPotionEffect(new PotionEffect(Potion.regeneration.id, 200, 0));
         }

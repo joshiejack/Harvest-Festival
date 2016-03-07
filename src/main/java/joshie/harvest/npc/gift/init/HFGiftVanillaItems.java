@@ -91,7 +91,12 @@ public class HFGiftVanillaItems {
         assign(painting, PRETTY);
         assign(golden_apple, RARE);
         assign(sign, CHEAP, CONSTRUCTION);
-        assign(wooden_door, CONSTRUCTION);
+        assign(oak_door, CONSTRUCTION);
+        assign(spruce_door, CONSTRUCTION);
+        assign(birch_door, CONSTRUCTION);
+        assign(jungle_door, CONSTRUCTION);
+        assign(acacia_door, CONSTRUCTION);
+        assign(dark_oak_door, CONSTRUCTION);
         assign(bucket, TOOLS);
         assign(water_bucket, WATER);
         assign(lava_bucket, SCARY, DANGER);
@@ -117,7 +122,7 @@ public class HFGiftVanillaItems {
         assign(clock, TOOLS, TECHNOLOGY);
         assign(glowstone_dust, PRETTY, GIRLY);
         assign(fish, NATURE, COOKING, WATER);
-        assign(cooked_fished, COOKING, WATER);
+        assign(cooked_fish, COOKING, WATER);
         assign(dye); //TODO: ASSIGN THE VARIATIONS
         assign(bone, SCARY, DANGER);
         assign(sugar, CUTE, COOKING, GIRLY);

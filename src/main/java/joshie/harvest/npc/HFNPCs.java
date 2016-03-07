@@ -19,6 +19,7 @@ import joshie.harvest.npc.render.RenderNPC;
 import joshie.harvest.player.town.TownData;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class HFNPCs {

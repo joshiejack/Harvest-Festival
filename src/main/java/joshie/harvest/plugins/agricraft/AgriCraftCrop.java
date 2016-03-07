@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class AgriCraftCrop extends Crop {
-    private BlockModPlant plant;
+    /*private BlockModPlant plant;
     private String seeds;
     private String block;
 
@@ -41,5 +41,5 @@ public class AgriCraftCrop extends Crop {
         if (seed != null) {
             seeds = new ItemStack(seed).getDisplayName();
         }
-    }
+    } */
 }

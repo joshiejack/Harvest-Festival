@@ -58,7 +58,7 @@ public class AgriCraft extends Plugin {
         }
 
         for (AgriCraftCrop crop : cropsList) {
-            crop.loadItem();
+            //crop.loadItem();
         }
     }
 
@@ -66,8 +66,9 @@ public class AgriCraft extends Plugin {
     public void postInit() {}
 
     private AgriCraftCrop addCrop(String unlocalized, int stages, int regrow, int color, Season... seasons) {
-        AgriCraftCrop crop = (AgriCraftCrop) HFApi.CROPS.registerCrop(new AgriCraftCrop(unlocalized, stages, regrow, color, seasons));
-        cropsList.add((AgriCraftCrop) crop);
-        return crop;
+        //AgriCraftCrop crop = (AgriCraftCrop) HFApi.CROPS.registerCrop(new AgriCraftCrop(unlocalized, stages, regrow, color, seasons));
+        //cropsList.add((AgriCraftCrop) crop);
+        //return crop;
+    	return null;
     }
 }

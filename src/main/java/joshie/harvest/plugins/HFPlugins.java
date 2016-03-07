@@ -13,6 +13,7 @@ import joshie.harvest.plugins.bettersleeping.BetterSleeping;
 import joshie.harvest.plugins.harvestcraft.HarvestCraft;
 import joshie.harvest.plugins.thaumcraft.Thaumcraft;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.common.Loader;
 
 public class HFPlugins {
     public static ArrayList<Plugin> plugins = new ArrayList();

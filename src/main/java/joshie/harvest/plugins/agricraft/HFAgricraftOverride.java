@@ -20,8 +20,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
-public class HFAgricraftOverride extends CropOverride {
-    private static Cache<Integer, CropOverride> client_cache = CacheBuilder.newBuilder().maximumSize(1000).build();
+public class HFAgricraftOverride /*extends CropOverride*/ {
+    /*private static Cache<Integer, CropOverride> client_cache = CacheBuilder.newBuilder().maximumSize(1000).build();
     private static Cache<Integer, CropOverride> server_cache = CacheBuilder.newBuilder().maximumSize(32000).build();
 
     private TileEntityCrop crop;
@@ -162,5 +162,5 @@ public class HFAgricraftOverride extends CropOverride {
     }
 
     @Override
-    public void loadFromNBT(NBTTagCompound tag) {}
+    public void loadFromNBT(NBTTagCompound tag) {}*/
 }

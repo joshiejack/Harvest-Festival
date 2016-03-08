@@ -105,7 +105,7 @@ public class BuildingFishingHut extends Building {
         list.add(new PlaceableFlowerPot(Blocks.flower_pot, 6, 5, 1, 4));
         list.add(new PlaceableBlock(Blocks.stained_hardened_clay, 0, 5, 1, 5));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 13, 5, 1, 6));
-        list.add(new PlaceableDoor(Blocks.wooden_door, 3, 6, 1, 1));
+        list.add(new PlaceableDoor(Blocks.oak_door, 3, 6, 1, 1));
         list.add(new PlaceableBlock(Blocks.oak_fence, 0, 6, 1, 4));
         list.add(new PlaceableLog(Blocks.log, 1, 6, 1, 5));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 3, 6, 1, 6));
@@ -156,7 +156,7 @@ public class BuildingFishingHut extends Building {
         list.add(new PlaceableVine(Blocks.vine, 1, 5, 2, 4));
         list.add(new PlaceableBlock(Blocks.planks, 1, 5, 2, 5));
         list.add(new PlaceableVine(Blocks.vine, 4, 5, 2, 6));
-        list.add(new PlaceableDoor(Blocks.wooden_door, 8, 6, 2, 1));
+        list.add(new PlaceableDoor(Blocks.oak_door, 8, 6, 2, 1));
         list.add(new PlaceableTorches(Blocks.torch, 5, 6, 2, 4));
         list.add(new PlaceableLog(Blocks.log, 1, 6, 2, 5));
         list.add(new PlaceableButton(Blocks.wooden_button, 3, 6, 2, 6));

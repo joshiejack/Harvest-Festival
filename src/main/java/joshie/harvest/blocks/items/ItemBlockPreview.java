@@ -7,6 +7,7 @@ import joshie.harvest.core.util.generic.Text;
 import joshie.harvest.items.HFItems;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemBlockPreview extends ItemBlockBase implements ICreativeSorted {    
@@ -35,16 +36,16 @@ public class ItemBlockPreview extends ItemBlockBase implements ICreativeSorted {
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        String unlocalized = field_150939_a.getUnlocalizedName().replace("preview", "structures").replace("tile.", "").replace("_", ".");
+        String unlocalized = block.getUnlocalizedName().replace("preview", "structures").replace("tile.", "").replace("_", ".");
         String name = getName(stack).replaceAll("(.)([A-Z])", "$1$2").toLowerCase();
         return Text.localize(unlocalized + "." + name.replace("_", "."));
     }
     
-    @SideOnly(Side.CLIENT)
+    /*@SideOnly(Side.CLIENT)
     @Override
     public IIcon getIconFromDamage(int damage) {
         return HFItems.structures.getIconFromDamage(damage);
-    }
+    } */
 
     @Override
     public int getSortValue(ItemStack stack) {

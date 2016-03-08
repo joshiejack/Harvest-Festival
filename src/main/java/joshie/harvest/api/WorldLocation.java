@@ -2,51 +2,45 @@ package joshie.harvest.api;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.BlockPos;
 
 public class WorldLocation {
-    protected final static int prime = 31;
     public int dimension;
-    public int x;
-    public int y;
-    public int z;
+    public BlockPos position;
 
     public WorldLocation() {}
 
-    public WorldLocation(int dimension, int x, int y, int z) {
+    public WorldLocation(int dimension, BlockPos position) {
         this.dimension = dimension;
-        this.x = x;
-        this.y = y;
-        this.z = z;
+        this.position = position;
     }
 
     public WorldLocation(WorldLocation location) {
         this.dimension = location.dimension;
-        this.x = location.x;
-        this.y = location.y;
-        this.z = location.z;
+        this.position = new BlockPos(location.position);
+    }
+
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + dimension;
+        result = prime * result + ((position == null) ? 0 : position.hashCode());
+        return result;
     }
 
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null) return false;
-        if ((!(obj instanceof WorldLocation))) return false;
+        if (getClass() != obj.getClass()) return false;
         WorldLocation other = (WorldLocation) obj;
         if (dimension != other.dimension) return false;
-        if (x != other.x) return false;
-        if (y != other.y) return false;
-        if (z != other.z) return false;
+        if (position == null) {
+            if (other.position != null) return false;
+        } else if (!position.equals(other.position)) return false;
         return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = 1;
-        result = prime * result + dimension;
-        result = prime * result + x;
-        result = prime * result + y;
-        result = prime * result + z;
-        return result;
     }
 
     /* NBT BASED SAVING */
@@ -54,9 +48,11 @@ public class WorldLocation {
         if (tag.hasKey("Dimension")) {
             dimension = tag.getByte("Dimension");
         } else dimension = 0;
-        x = tag.getInteger("X");
-        y = tag.getInteger("Y");
-        z = tag.getInteger("Z");
+        
+        int x = tag.getInteger("X");
+        int y = tag.getInteger("Y");
+        int z = tag.getInteger("Z");
+        position = new BlockPos(x, y, z);
     }
 
     public void writeToNBT(NBTTagCompound tag) {
@@ -64,23 +60,24 @@ public class WorldLocation {
             tag.setByte("Dimension", (byte) dimension);
         }
 
-        tag.setInteger("X", x);
-        tag.setInteger("Y", y);
-        tag.setInteger("Z", z);
+        tag.setInteger("X", position.getX());
+        tag.setInteger("Y", position.getY());
+        tag.setInteger("Z", position.getZ());
     }
 
     /* PACKET HANDLING */
     public void toBytes(ByteBuf buf) {
         buf.writeByte(dimension);
-        buf.writeInt(x);
-        buf.writeInt(y);
-        buf.writeInt(z);
+        buf.writeInt(position.getX());
+        buf.writeInt(position.getY());
+        buf.writeInt(position.getZ());
     }
 
     public void fromBytes(ByteBuf buf) {
         dimension = buf.readByte();
-        x = buf.readInt();
-        y = buf.readInt();
-        z = buf.readInt();
+        int x = buf.readInt();
+        int y = buf.readInt();
+        int z = buf.readInt();
+        position = new BlockPos(x, y, z);
     }
 }

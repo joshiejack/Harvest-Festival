@@ -212,7 +212,7 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.carpet, 14, 3, 1, 6));
         list.add(new PlaceableBlock(Blocks.carpet, 14, 3, 1, 7));
         list.add(new PlaceableBlock(Blocks.air, 0, 3, 1, 8));
-        list.add(new PlaceableDoor(Blocks.wooden_door, 1, 3, 1, 9));
+        list.add(new PlaceableDoor(Blocks.oak_door, 1, 3, 1, 9));
         list.add(new PlaceableBlock(Blocks.air, 0, 3, 1, 10));
         list.add(new PlaceableBlock(Blocks.carpet, 14, 3, 1, 11));
         list.add(new PlaceableFurnace(Blocks.lit_furnace, 2, 3, 1, 12));
@@ -240,7 +240,7 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.stained_hardened_clay, 14, 5, 1, 4));
         list.add(new PlaceableLog(Blocks.log, 1, 5, 1, 5));
         list.add(new PlaceableBlock(Blocks.stained_hardened_clay, 14, 5, 1, 6));
-        list.add(new PlaceableDoor(Blocks.wooden_door, 0, 5, 1, 7));
+        list.add(new PlaceableDoor(Blocks.oak_door, 0, 5, 1, 7));
         list.add(new PlaceableBlock(Blocks.stained_hardened_clay, 14, 5, 1, 8));
         list.add(new PlaceableLog(Blocks.log, 1, 5, 1, 9));
         list.add(new PlaceableLadder(Blocks.ladder, 3, 5, 1, 10));
@@ -354,7 +354,7 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 3, 2, 6));
         list.add(new PlaceableBlock(Blocks.air, 0, 3, 2, 7));
         list.add(new PlaceableBlock(Blocks.air, 0, 3, 2, 8));
-        list.add(new PlaceableDoor(Blocks.wooden_door, 8, 3, 2, 9));
+        list.add(new PlaceableDoor(Blocks.oak_door, 8, 3, 2, 9));
         list.add(new PlaceableBlock(Blocks.air, 0, 3, 2, 10));
         list.add(new PlaceableBlock(Blocks.air, 0, 3, 2, 11));
         list.add(new PlaceableBlock(Blocks.cobblestone_wall, 0, 3, 2, 12));
@@ -379,7 +379,7 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.glass_pane, 0, 5, 2, 4));
         list.add(new PlaceableLog(Blocks.log, 1, 5, 2, 5));
         list.add(new PlaceableBlock(Blocks.planks, 1, 5, 2, 6));
-        list.add(new PlaceableDoor(Blocks.wooden_door, 8, 5, 2, 7));
+        list.add(new PlaceableDoor(Blocks.oak_door, 8, 5, 2, 7));
         list.add(new PlaceableBlock(Blocks.planks, 1, 5, 2, 8));
         list.add(new PlaceableLog(Blocks.log, 1, 5, 2, 9));
         list.add(new PlaceableLadder(Blocks.ladder, 3, 5, 2, 10));
@@ -805,7 +805,7 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 5, 8));
         list.add(new PlaceableLog(Blocks.log, 1, 5, 5, 9));
         list.add(new PlaceableBlock(Blocks.stained_hardened_clay, 14, 5, 5, 10));
-        list.add(new PlaceableDoor(Blocks.wooden_door, 4, 5, 5, 11));
+        list.add(new PlaceableDoor(Blocks.oak_door, 4, 5, 5, 11));
         list.add(new PlaceableBlock(Blocks.stained_hardened_clay, 14, 5, 5, 12));
         list.add(new PlaceableLog(Blocks.log, 1, 5, 5, 13));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 3, 5, 5, 14));
@@ -928,7 +928,7 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 6, 8));
         list.add(new PlaceableLog(Blocks.log, 1, 5, 6, 9));
         list.add(new PlaceableBlock(Blocks.planks, 1, 5, 6, 10));
-        list.add(new PlaceableDoor(Blocks.wooden_door, 8, 5, 6, 11));
+        list.add(new PlaceableDoor(Blocks.oak_door, 8, 5, 6, 11));
         list.add(new PlaceableBlock(Blocks.planks, 1, 5, 6, 12));
         list.add(new PlaceableLog(Blocks.log, 1, 5, 6, 13));
         list.add(new PlaceableButton(Blocks.wooden_button, 3, 5, 6, 14));

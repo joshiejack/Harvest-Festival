@@ -15,6 +15,7 @@ import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.WorldProviderSurface;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.client.IRenderHandler;
+import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WeatherProvider extends WorldProviderSurface {
@@ -75,7 +76,7 @@ public class WeatherProvider extends WorldProviderSurface {
             f6 = f6 * f9 + f8 * (1.0F - f9);
         }
 
-        f8 = worldObj.getWeightedThunderStrength(partialTicks);
+        f8 = worldObj.getThunderStrength(partialTicks);
 
         if (f8 > 0.0F) {
             f8 /= 10F;
@@ -86,8 +87,8 @@ public class WeatherProvider extends WorldProviderSurface {
             f6 = f6 * f10 + f9 * (1.0F - f10);
         }
 
-        if (worldObj.lastLightningBolt > 0) {
-            f9 = (float) worldObj.lastLightningBolt - partialTicks;
+        if (worldObj.getLastLightningBolt() > 0) {
+            f9 = (float) worldObj.getLastLightningBolt() - partialTicks;
 
             if (f9 > 1.0F) {
                 f9 = 1.0F;

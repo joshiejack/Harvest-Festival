@@ -7,9 +7,12 @@ import joshie.harvest.blocks.tiles.TileCooking;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class PacketSyncCooking extends AbstractPacketOrientation implements IMessageHandler<PacketSyncCooking, IMessage> {
     private boolean isCooking, hasResult;
@@ -19,8 +22,8 @@ public class PacketSyncCooking extends AbstractPacketOrientation implements IMes
 
     public PacketSyncCooking() {}
 
-    public PacketSyncCooking(int dim, int x, int y, int z, ForgeDirection dir, boolean isCooking, ArrayList<ItemStack> ingredients, ItemStack result) {
-        super(dim, x, y, z, dir);
+    public PacketSyncCooking(int dim, BlockPos pos, EnumFacing dir, boolean isCooking, ArrayList<ItemStack> ingredients, ItemStack result) {
+        super(dim, pos, dir);
         this.isCooking = isCooking;
         this.hasResult = result != null;
         this.iIngredient = ingredients.size();

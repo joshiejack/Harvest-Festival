@@ -6,6 +6,7 @@ import joshie.harvest.api.crops.ICropRenderHandler.PlantSection;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public interface ICropData {    
@@ -40,8 +41,8 @@ public interface ICropData {
     
     /** Returns the icon for the crop
      *  @param      whether it's the top half or bottom half of the crop **/
-    @SideOnly(Side.CLIENT)
-    public IIcon getCropIcon(PlantSection section);
+    //@SideOnly(Side.CLIENT)
+    //public IIcon getCropIcon(PlantSection section);
 
     /** Returns the ItemStack that would be harvested
      *  @param          The player harvesting

@@ -8,9 +8,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
 
-public class RenderHarvestAnimal extends RenderLiving implements IRenderFactory {
+public class RenderHarvestAnimal extends RenderLiving {
     private ResourceLocation texture_child;
     private ResourceLocation texture_adult;
     private ResourceLocation texture_sheared;

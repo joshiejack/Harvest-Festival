@@ -12,11 +12,6 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 public class TileMarker extends TileEntity {
     private Building group;
 
-    @Override
-    public boolean canUpdate() {
-        return false;
-    }
-
     public void setBuilding(Building group) {
         this.group = group;
         this.markDirty();
@@ -27,7 +22,7 @@ public class TileMarker extends TileEntity {
     }
     
     public IMessage getPacket() {
-        return new PacketSyncMarker(new WorldLocation(worldObj.provider.dimensionId, xCoord, yCoord, zCoord), group);
+        return new PacketSyncMarker(new WorldLocation(worldObj.provider.getDimensionId(), xCoord, yCoord, zCoord), group);
     }
 
     @Override

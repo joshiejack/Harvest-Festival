@@ -1,6 +1,7 @@
 package joshie.harvest.calendar;
 
 import joshie.harvest.api.calendar.Weather;
+import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)

@@ -14,7 +14,9 @@ import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ServerTickEvent;
+import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EventsHandler {   
@@ -22,7 +24,7 @@ public class EventsHandler {
     @SubscribeEvent
     public void onLoad(WorldEvent.Load event) {
         World world = event.world;
-        if (!world.isRemote && world.provider.dimensionId == 0) {
+        if (!world.isRemote && world.provider.getDimensionId() == 0) {
             HFTrackers.reset(world);
         }
     }

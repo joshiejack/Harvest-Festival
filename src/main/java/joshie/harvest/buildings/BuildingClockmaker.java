@@ -119,7 +119,7 @@ public class BuildingClockmaker extends Building {
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 13, 2, 1, 7));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 12, 3, 1, 0));
         list.add(new PlaceableBlock(Blocks.hardened_clay, 0, 3, 1, 1));
-        list.add(new PlaceableDoor(Blocks.wooden_door, 2, 3, 1, 2));
+        list.add(new PlaceableDoor(Blocks.oak_door, 2, 3, 1, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 3, 1, 3));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 15, 3, 1, 4));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 1, 3, 1, 5));
@@ -135,7 +135,7 @@ public class BuildingClockmaker extends Building {
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 13, 4, 1, 7));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 2, 5, 1, 0));
         list.add(new PlaceableLog(Blocks.log, 1, 5, 1, 1));
-        list.add(new PlaceableDoor(Blocks.wooden_door, 0, 5, 1, 2));
+        list.add(new PlaceableDoor(Blocks.oak_door, 0, 5, 1, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 1, 3));
         list.add(new PlaceableNPC("tiberius", 5, 1, 4));
         npc_offsets.put(TownData.TIBERIUS, new PlaceableNPC("", 5, 1, 4));
@@ -172,8 +172,8 @@ public class BuildingClockmaker extends Building {
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 2, 9, 1, 0));
         list.add(new PlaceableLog(Blocks.log, 1, 9, 1, 1));
         list.add(new PlaceableBlock(Blocks.hardened_clay, 0, 9, 1, 2));
-        list.add(new PlaceableDoor(Blocks.wooden_door, 2, 9, 1, 3));
-        list.add(new PlaceableDoor(Blocks.wooden_door, 2, 9, 1, 4));
+        list.add(new PlaceableDoor(Blocks.oak_door, 2, 9, 1, 3));
+        list.add(new PlaceableDoor(Blocks.oak_door, 2, 9, 1, 4));
         list.add(new PlaceableBlock(Blocks.hardened_clay, 0, 9, 1, 5));
         list.add(new PlaceableLog(Blocks.log, 1, 9, 1, 6));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 3, 9, 1, 7));
@@ -196,7 +196,7 @@ public class BuildingClockmaker extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 2, 2, 5));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 2, 2, 2, 6));
         list.add(new PlaceableBlock(Blocks.stained_glass, 14, 3, 2, 1));
-        list.add(new PlaceableDoor(Blocks.wooden_door, 9, 3, 2, 2));
+        list.add(new PlaceableDoor(Blocks.oak_door, 9, 3, 2, 2));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 15, 3, 2, 3));
         list.add(new PlaceableBlock(Blocks.air, 0, 3, 2, 4));
         list.add(new PlaceableBlock(Blocks.air, 0, 3, 2, 5));
@@ -209,7 +209,7 @@ public class BuildingClockmaker extends Building {
         list.add(new PlaceableBlock(Blocks.air, 0, 4, 2, 5));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 2, 4, 2, 6));
         list.add(new PlaceableLog(Blocks.log, 1, 5, 2, 1));
-        list.add(new PlaceableDoor(Blocks.wooden_door, 8, 5, 2, 2));
+        list.add(new PlaceableDoor(Blocks.oak_door, 8, 5, 2, 2));
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 2, 3));
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 2, 4));
         list.add(new PlaceableBlock(Blocks.air, 0, 5, 2, 5));
@@ -235,8 +235,8 @@ public class BuildingClockmaker extends Building {
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 2, 8, 2, 6));
         list.add(new PlaceableLog(Blocks.log, 1, 9, 2, 1));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 0, 9, 2, 2));
-        list.add(new PlaceableDoor(Blocks.wooden_door, 9, 9, 2, 3));
-        list.add(new PlaceableDoor(Blocks.wooden_door, 8, 9, 2, 4));
+        list.add(new PlaceableDoor(Blocks.oak_door, 9, 9, 2, 3));
+        list.add(new PlaceableDoor(Blocks.oak_door, 8, 9, 2, 4));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 0, 9, 2, 5));
         list.add(new PlaceableLog(Blocks.log, 1, 9, 2, 6));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 15, 10, 2, 2));

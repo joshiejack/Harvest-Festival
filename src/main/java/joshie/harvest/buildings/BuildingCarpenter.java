@@ -125,7 +125,7 @@ public class BuildingCarpenter extends Building {
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 2, 7, 1, 0));
         list.add(new PlaceableLog(Blocks.log, 1, 7, 1, 1));
         list.add(new PlaceableBlock(Blocks.planks, 3, 7, 1, 2));
-        list.add(new PlaceableDoor(Blocks.wooden_door, 0, 7, 1, 3));
+        list.add(new PlaceableDoor(Blocks.oak_door, 0, 7, 1, 3));
         list.add(new PlaceableBlock(Blocks.planks, 3, 7, 1, 4));
         list.add(new PlaceableLog(Blocks.log, 1, 7, 1, 5));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 3, 7, 1, 6));
@@ -175,7 +175,7 @@ public class BuildingCarpenter extends Building {
         list.add(new PlaceableButton(Blocks.wooden_button, 4, 7, 2, 0));
         list.add(new PlaceableLog(Blocks.log, 1, 7, 2, 1));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 1, 7, 2, 2));
-        list.add(new PlaceableDoor(Blocks.wooden_door, 8, 7, 2, 3));
+        list.add(new PlaceableDoor(Blocks.oak_door, 8, 7, 2, 3));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 1, 7, 2, 4));
         list.add(new PlaceableLog(Blocks.log, 1, 7, 2, 5));
         list.add(new PlaceableButton(Blocks.wooden_button, 3, 7, 2, 6));

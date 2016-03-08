@@ -47,7 +47,7 @@ public class PlaceableHelper {
     public static String getBestGuessName(ItemStack stack) {
         if (stack.getItem() != null && stack.getItem() instanceof ItemBlock) {
             Block block = Block.getBlockFromItem(stack.getItem());
-            String name = Block.blockRegistry.getNameForObject(block).replace("minecraft:", "");
+            String name = Block.blockRegistry.getNameForObject(block).getResourcePath();
             String print = "Blocks." + name;
             if (names.containsKey(name)) {
                 print = names.get(name);
@@ -55,7 +55,7 @@ public class PlaceableHelper {
 
             return print;
         } else if (stack.getItem() != null) {
-            String name = Item.itemRegistry.getNameForObject(stack.getItem()).replace("minecraft:", "");
+            String name = Item.itemRegistry.getNameForObject(stack.getItem()).getResourcePath();
             String print = "Items." + name;
             if (names.containsKey(name)) {
                 print = names.get(name);
@@ -127,7 +127,12 @@ public class PlaceableHelper {
 
     public static String getPlaceableBlockString(Block block, int meta, int x, int y, int z) {
         String print = getBestGuessName(new ItemStack(block));
-        if (block == Blocks.wooden_door) print = "Blocks.wooden_door";
+        if (block == Blocks.oak_door) print = "Blocks.oak_door";
+        if (block == Blocks.birch_door) print = "Blocks.birch_door";
+        if (block == Blocks.spruce_door) print = "Blocks.spruce_door";
+        if (block == Blocks.jungle_door) print = "Blocks.jungle_door";
+        if (block == Blocks.acacia_door) print = "Blocks.acacia_door";
+        if (block == Blocks.dark_oak_door) print = "Blocks.dark_oak_door";
         if (block == Blocks.iron_door) print = "Blocks.iron_door";
         if (block == Blocks.standing_sign) print = "Blocks.standing_sign";
         if (block == Blocks.air) print = "Blocks.air";

@@ -14,17 +14,20 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ITickable;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 
-public abstract class TileCooking extends TileEntity implements IFaceable {
+public abstract class TileCooking extends TileEntity implements IFaceable, ITickable {
     public static short COOK_TIMER = 100;
     private boolean cooking;
     private short cookTimer = 0;
     private ArrayList<ItemStack> ingredients = new ArrayList();
     private ItemStack result;
-    private ForgeDirection orientation = ForgeDirection.NORTH;
+    private EnumFacing orientation = EnumFacing.NORTH;
     public float[] rotations = new float[20];
     public float[] offset1 = new float[20];
     public float[] offset2 = new float[20];
@@ -37,7 +40,7 @@ public abstract class TileCooking extends TileEntity implements IFaceable {
         return Utensil.COUNTER;
     }
 
-    public IUtensil getUtensil(World world, int x, int y, int z) {
+    public IUtensil getUtensil(World world, BlockPos pos) {
         return getUtensil();
     }
 
@@ -63,12 +66,12 @@ public abstract class TileCooking extends TileEntity implements IFaceable {
     }
 
     @Override
-    public void setFacing(ForgeDirection dir) {
+    public void setFacing(EnumFacing dir) {
         orientation = dir;
     }
 
     @Override
-    public ForgeDirection getFacing() {
+    public EnumFacing getFacing() {
         return orientation;
     }
 
@@ -83,12 +86,12 @@ public abstract class TileCooking extends TileEntity implements IFaceable {
 
     public void updateUtensil() {
         if (worldObj.getWorldTime() % 20 == 0) {
-            utensil = getUtensil(worldObj, xCoord, yCoord + 1, zCoord);
+            utensil = getUtensil(worldObj, pos);
         }
     }
 
     @Override
-    public void updateEntity() {
+    public void update() {
         //Update the utensil every second
         updateUtensil();
         //If we are server side perform the actions
@@ -145,7 +148,7 @@ public abstract class TileCooking extends TileEntity implements IFaceable {
     }
 
     public IMessage getPacket() {
-        return new PacketSyncCooking(worldObj.provider.dimensionId, xCoord, yCoord, zCoord, orientation, cooking, ingredients, result);
+        return new PacketSyncCooking(worldObj.provider.getDimensionId(), getPos(), orientation, cooking, ingredients, result);
     }
 
     @Override
@@ -165,7 +168,7 @@ public abstract class TileCooking extends TileEntity implements IFaceable {
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
-        orientation = ForgeDirection.getOrientation(nbt.getInteger("Orientation"));
+        orientation = EnumFacing.values()[nbt.getInteger("Orientation")];
         cooking = nbt.getBoolean("IsCooking");
         cookTimer = nbt.getShort("CookingTimer");
         if (nbt.hasKey("IngredientsInside")) {

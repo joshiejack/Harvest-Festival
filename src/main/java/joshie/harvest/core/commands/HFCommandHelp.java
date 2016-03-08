@@ -32,7 +32,7 @@ public class HFCommandHelp extends HFCommandBase {
         int k;
 
         try {
-            k = parameters.length == 0 ? 0 : net.minecraft.command.CommandBase.parseIntBounded(sender, parameters[0], 1, i + 1) - 1;
+            k = parameters.length == 0 ? 0 : net.minecraft.command.CommandBase.parseInt(parameters[0], 1, i + 1) - 1;
         } catch (NumberInvalidException numberinvalidexception) {
             Map map = this.getCommands();
             HFCommandBase icommand = (HFCommandBase) map.get(parameters[0]);

@@ -200,7 +200,7 @@ public class BuildingPoultryFarm extends Building {
         list.add(new PlaceableLog(Blocks.log, 1, 11, 1, 1));
         list.add(new PlaceableBlock(Blocks.stained_hardened_clay, 1, 11, 1, 2));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 1, 11, 1, 3));
-        list.add(new PlaceableDoor(Blocks.wooden_door, 0, 11, 1, 4));
+        list.add(new PlaceableDoor(Blocks.oak_door, 0, 11, 1, 4));
         list.add(new PlaceableStairs(Blocks.dark_oak_stairs, 1, 11, 1, 5));
         list.add(new PlaceableBlock(Blocks.stained_hardened_clay, 1, 11, 1, 6));
         list.add(new PlaceableLog(Blocks.log, 1, 11, 1, 7));
@@ -275,7 +275,7 @@ public class BuildingPoultryFarm extends Building {
         list.add(new PlaceableLog(Blocks.log, 1, 11, 2, 1));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 1, 11, 2, 2));
         list.add(new PlaceableBlock(Blocks.planks, 5, 11, 2, 3));
-        list.add(new PlaceableDoor(Blocks.wooden_door, 8, 11, 2, 4));
+        list.add(new PlaceableDoor(Blocks.oak_door, 8, 11, 2, 4));
         list.add(new PlaceableBlock(Blocks.planks, 5, 11, 2, 5));
         list.add(new PlaceableStairs(Blocks.spruce_stairs, 1, 11, 2, 6));
         list.add(new PlaceableLog(Blocks.log, 1, 11, 2, 7));

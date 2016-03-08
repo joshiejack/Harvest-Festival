@@ -4,7 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemSnow;
 
 public class ItemBlockSnow extends ItemSnow {
-    public ItemBlockSnow(Block block, Block block2) {
-        super(block, block2);
+    public ItemBlockSnow(Block block) {
+        super(block);
     }
 }

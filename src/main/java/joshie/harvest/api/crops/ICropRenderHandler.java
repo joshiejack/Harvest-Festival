@@ -12,11 +12,11 @@ public interface ICropRenderHandler {
      *              if the plant is one tall, this will pass BOTTOM
      * @param       the stage this crop is at
      * @return      the icon for this stage */
-    public IIcon getIconForStage(PlantSection section, int stage);
+    //public IIcon getIconForStage(PlantSection section, int stage);
     
     /** Register your icons
      *  @param      the icon register **/
-    public void registerIcons(IIconRegister register);
+    //public void registerIcons(IIconRegister register);
     
     /** Return true if this crop handles it's own rendering 
      * @param       the block renderer
@@ -25,7 +25,7 @@ public interface ICropRenderHandler {
      * @param       the ycoord
      * @param       the zcoord
      * @param       the block **/
-    public boolean doCustomRender(RenderBlocks renderer, IBlockAccess world, int x, int y, int z, Block block);
+    //public boolean doCustomRender(RenderBlocks renderer, IBlockAccess world, int x, int y, int z, Block block);
     
     /** Can be used to set the blocks bound, based on how
      * thie crop is rendereing

@@ -11,6 +11,7 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemBlockFlower extends ItemBlockBase implements ICreativeSorted {
@@ -37,16 +38,15 @@ public class ItemBlockFlower extends ItemBlockBase implements ICreativeSorted {
     public int getSortValue(ItemStack stack) {
         return 1;
     }
-    
-	@Override
-	public String getItemStackDisplayName(ItemStack stack) {
-    return Text.AQUA +super.getItemStackDisplayName(stack);
-        }
-    
+
     @Override
-	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean flag)
-	{
-			list.add(Translate.translate("tooltip.flower"));
-    		}
+    public String getItemStackDisplayName(ItemStack stack) {
+        return Text.AQUA + super.getItemStackDisplayName(stack);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean flag) {
+        list.add(Translate.translate("tooltip.flower"));
+    }
 }

@@ -120,7 +120,7 @@ public class BuildingBlacksmith extends Building {
         list.add(new PlaceableFurnace(Blocks.lit_furnace, 2, 3, 2, 10));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 2, 3, 2, 11));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 2, 4, 2, 1));
-        list.add(new PlaceableBlock(Blocks.fence, 0, 4, 2, 2));
+        list.add(new PlaceableBlock(Blocks.oak_fence, 0, 4, 2, 2));
         list.add(new PlaceableTrapDoor(Blocks.trapdoor, 14, 4, 2, 6));
         list.add(new PlaceableBlock(Blocks.air, 0, 4, 2, 7));
         list.add(new PlaceableNPC("daniel", 4, 2, 8));
@@ -132,7 +132,7 @@ public class BuildingBlacksmith extends Building {
         list.add(new PlaceableBlock(Blocks.cobblestone_wall, 0, 5, 2, 0));
         list.add(new PlaceableBlock(Blocks.double_stone_slab, 0, 5, 2, 1));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 1, 5, 2, 2));
-        list.add(new PlaceableDoor(Blocks.wooden_door, 0, 5, 2, 3));
+        list.add(new PlaceableDoor(Blocks.oak_door, 0, 5, 2, 3));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 1, 5, 2, 4));
         list.add(new PlaceableBlock(Blocks.double_stone_slab, 0, 5, 2, 5));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 1, 5, 2, 6));
@@ -188,7 +188,7 @@ public class BuildingBlacksmith extends Building {
         list.add(new PlaceableBlock(Blocks.cobblestone_wall, 0, 5, 3, 0));
         list.add(new PlaceableBlock(Blocks.double_stone_slab, 0, 5, 3, 1));
         list.add(new PlaceableBlock(Blocks.stonebrick, 0, 5, 3, 2));
-        list.add(new PlaceableDoor(Blocks.wooden_door, 8, 5, 3, 3));
+        list.add(new PlaceableDoor(Blocks.oak_door, 8, 5, 3, 3));
         list.add(new PlaceableBlock(Blocks.stonebrick, 1, 5, 3, 4));
         list.add(new PlaceableBlock(Blocks.double_stone_slab, 0, 5, 3, 5));
         list.add(new PlaceableStairs(Blocks.stone_brick_stairs, 5, 5, 3, 6));

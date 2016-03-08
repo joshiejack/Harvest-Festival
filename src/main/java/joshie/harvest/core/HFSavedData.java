@@ -59,7 +59,7 @@ public class HFSavedData extends WorldSavedData {
             return players.get(uuid);
         } else {
             //If this UUID was not found, Search the username cache for this players username
-            String name = player.getCommandSenderName();
+            String name = player.getGameProfile().getName();
             for (Map.Entry<UUID, String> entry : UsernameCache.getMap().entrySet()) {
                 if (entry.getValue().equals(name)) {
                     uuid = entry.getKey();

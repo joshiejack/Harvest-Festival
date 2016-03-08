@@ -1,12 +1,13 @@
 package joshie.harvest.core.commands;
 
+import net.minecraft.command.CommandNotFoundException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
 
 public abstract class HFCommandBase implements Comparable {
     public abstract String getCommandName();
 
-    public abstract boolean processCommand(ICommandSender sender, String[] parameters);
+    public abstract boolean processCommand(ICommandSender sender, String[] parameters) throws CommandNotFoundException;
 
     public abstract String getUsage();
 

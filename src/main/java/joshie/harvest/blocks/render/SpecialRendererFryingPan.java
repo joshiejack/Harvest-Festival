@@ -13,14 +13,15 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class SpecialRendererFryingPan extends SpecialRendererCookware {
     public SpecialRendererFryingPan() {
         super("ModelFryingPan", BlockCookware.FRYING_PAN);
-        }
-    
+    }
+
     @Override
     public void renderCookware(TileCooking tile, double x, double y, double z, float tick) {
         ArrayList<ItemStack> ingredients = tile.getIngredients();
@@ -45,7 +46,7 @@ public class SpecialRendererFryingPan extends SpecialRendererCookware {
 
         GL11.glPopMatrix();
     }
-    
+
     void renderIngredient(World world, ItemStack stack, int max, float pos, float rotation, float offset1, float offset2) {
         EntityCookingItem entityitem = new EntityCookingItem(world, 0.0D, 0.0D, 0.0D, stack, false);
         GL11.glPushMatrix();

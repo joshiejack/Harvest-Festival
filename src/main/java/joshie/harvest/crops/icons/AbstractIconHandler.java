@@ -6,12 +6,12 @@ import net.minecraft.block.Block;
 import net.minecraft.world.IBlockAccess;
 
 public abstract class AbstractIconHandler implements ICropRenderHandler {
-    protected IIcon[] stageIcons;
+    //protected IIcon[] stageIcons;
     
-    @Override
+    /*@Override
     public boolean doCustomRender(RenderBlocks renderer, IBlockAccess world, int x, int y, int z, Block block) {
         return false;
-    }
+    } */
     
     @Override
     public void setBlockBoundsBasedOnStage(Block block, PlantSection section, ICrop crop, int stage) {

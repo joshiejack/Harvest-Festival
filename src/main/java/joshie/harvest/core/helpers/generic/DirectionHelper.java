@@ -1,16 +1,17 @@
 package joshie.harvest.core.helpers.generic;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
 
 public class DirectionHelper {
-    public static ForgeDirection getFacingFromEntity(EntityLivingBase entity) {
+    public static EnumFacing getFacingFromEntity(EntityLivingBase entity) {
         int facing = MathHelper.floor_double(entity.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
-        ForgeDirection dir = ForgeDirection.NORTH;
-        if (facing == 0) return ForgeDirection.NORTH;
-        if (facing == 1) return ForgeDirection.EAST;
-        if (facing == 2) return ForgeDirection.SOUTH;
-        if (facing == 3) return ForgeDirection.WEST;
+        EnumFacing dir = EnumFacing.NORTH;
+        if (facing == 0) return EnumFacing.NORTH;
+        if (facing == 1) return EnumFacing.EAST;
+        if (facing == 2) return EnumFacing.SOUTH;
+        if (facing == 3) return EnumFacing.WEST;
         return dir;
     }
 }

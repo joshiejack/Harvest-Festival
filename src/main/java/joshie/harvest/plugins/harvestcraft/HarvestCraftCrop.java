@@ -41,7 +41,7 @@ public class HarvestCraftCrop extends Crop {
         setItem(new ItemStack(GameRegistry.findItem("harvestcraft", itemName)));
         Item seeds = GameRegistry.findItem("harvestcraft", seedItemName);
         if (seeds instanceof IPlantable) {
-            setCropIconHandler(new IconHandlerHarvestCraft(((IPlantable) seeds).getPlant(null, 0, 0, 0), getStages()));
+            //setCropIconHandler(new IconHandlerHarvestCraft(((IPlantable) seeds).getPlant(null, 0, 0, 0), getStages()));
         }
 
         seeds = null;

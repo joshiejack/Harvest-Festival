@@ -56,6 +56,6 @@ public class EntityHelper {
     }
     
     public static boolean isFakePlayer(EntityPlayer player) {
-        return player instanceof FakePlayer || player.getCommandSenderName().equals("CoFH") || player.getCommandSenderName().startsWith("[Thaumcraft");
+        return player instanceof FakePlayer || player.getGameProfile().getName().equals("CoFH") || player.getGameProfile().getName().startsWith("[Thaumcraft");
     }
 }

@@ -53,7 +53,7 @@ public class MCClientHelper {
 
     /** Returns the dimension the player is in **/
     public static int getDimension() {
-        return getWorld().provider.dimensionId;
+        return getWorld().provider.getDimensionId();
     }
 
     /** Add text to the game chat **/
@@ -80,6 +80,6 @@ public class MCClientHelper {
     }
 
     public static TileEntity getTile(AbstractPacketLocation message) {
-        return getWorld().getTileEntity(message.x, message.y, message.z);
+        return getWorld().getTileEntity(message.pos);
     }
 }

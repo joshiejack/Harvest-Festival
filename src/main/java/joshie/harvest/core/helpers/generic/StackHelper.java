@@ -50,7 +50,7 @@ public class StackHelper {
                 RenderHelper.enableGUIStandardItemLighting();
                 GL11.glEnable(GL11.GL_DEPTH_TEST);
                 if (!ForgeHooksClient.renderInventoryItem(blockRenderer, mc.getTextureManager(), stack, itemRenderer.renderWithColor, itemRenderer.zLevel, x, y)) {
-                    itemRenderer.renderItemIntoGUI(mc.fontRenderer, mc.getTextureManager(), stack, x, y, false);
+                    itemRenderer.renderItemIntoGUI(mc.fontRendererObj, mc.getTextureManager(), stack, x, y, false);
                 }
 
                 RenderHelper.disableStandardItemLighting();

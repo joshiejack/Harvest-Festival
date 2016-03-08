@@ -47,7 +47,7 @@ public abstract class Placeable {
         } else return false;
     }
 
-    public abstract boolean place(UUID owner, World world, BlockPos position, boolean n1, boolean n2, boolean swap);
+    public abstract boolean place(UUID owner, World world, int x, int y, int z, boolean n1, boolean n2, boolean swap);
 
     public static enum PlacementStage {
         BLOCKS, ENTITIES, TORCHES, NPC, FINISHED;

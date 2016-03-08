@@ -12,11 +12,13 @@ import joshie.harvest.core.util.Translate;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class ItemBaseTool extends ItemBaseSingle implements ILevelable, ITiered, ICreativeSorted {
-    private IIcon[] icons;
+    //private IIcon[] icons;
 
     /** Create a tool */
     public ItemBaseTool() {
@@ -107,42 +109,42 @@ public abstract class ItemBaseTool extends ItemBaseSingle implements ILevelable,
         }
     }
 
-    protected int getXMinus(ItemStack stack, ForgeDirection facing, int x) {
-        if (facing == ForgeDirection.NORTH) {
+    protected int getXMinus(ItemStack stack, EnumFacing facing, int x) {
+        if (facing == EnumFacing.NORTH) {
             return x - getSides(stack);
-        } else if (facing == ForgeDirection.SOUTH) {
+        } else if (facing == EnumFacing.SOUTH) {
             return x - getSides(stack);
-        } else if (facing == ForgeDirection.EAST) {
+        } else if (facing == EnumFacing.EAST) {
             return x - getFront(stack);
         } else return x;
     }
 
-    protected int getXPlus(ItemStack stack, ForgeDirection facing, int x) {
-        if (facing == ForgeDirection.NORTH) {
+    protected int getXPlus(ItemStack stack, EnumFacing facing, int x) {
+        if (facing == EnumFacing.NORTH) {
             return x + getSides(stack);
-        } else if (facing == ForgeDirection.SOUTH) {
+        } else if (facing == EnumFacing.SOUTH) {
             return x + getSides(stack);
-        } else if (facing == ForgeDirection.WEST) {
+        } else if (facing == EnumFacing.WEST) {
             return x + getFront(stack);
         } else return x;
     }
 
-    protected int getZMinus(ItemStack stack, ForgeDirection facing, int z) {
-        if (facing == ForgeDirection.SOUTH) {
+    protected int getZMinus(ItemStack stack, EnumFacing facing, int z) {
+        if (facing == EnumFacing.SOUTH) {
             return z - getFront(stack);
-        } else if (facing == ForgeDirection.WEST) {
+        } else if (facing == EnumFacing.WEST) {
             return z - getSides(stack);
-        } else if (facing == ForgeDirection.EAST) {
+        } else if (facing == EnumFacing.EAST) {
             return z - getSides(stack);
         } else return z;
     }
 
-    protected int getZPlus(ItemStack stack, ForgeDirection facing, int z) {
-        if (facing == ForgeDirection.NORTH) {
+    protected int getZPlus(ItemStack stack, EnumFacing facing, int z) {
+        if (facing == EnumFacing.NORTH) {
             return z + getFront(stack);
-        } else if (facing == ForgeDirection.WEST) {
+        } else if (facing == EnumFacing.WEST) {
             return z + getSides(stack);
-        } else if (facing == ForgeDirection.EAST) {
+        } else if (facing == EnumFacing.EAST) {
             return z + getSides(stack);
         } else return z;
     }
@@ -159,7 +161,7 @@ public abstract class ItemBaseTool extends ItemBaseSingle implements ILevelable,
         world.playSoundEffect((double) ((float) x + 0.5F), (double) ((float) y + 0.5F), (double) ((float) z + 0.5F), sound, world.rand.nextFloat() * 0.25F + 0.75F, world.rand.nextFloat() * 1.0F + 0.5F);
     }
 
-    @SideOnly(Side.CLIENT)
+    /*@SideOnly(Side.CLIENT)
     @Override
     public IIcon getIconFromDamage(int damage) {
         return icons[damage < icons.length ? damage : 0];
@@ -172,7 +174,7 @@ public abstract class ItemBaseTool extends ItemBaseSingle implements ILevelable,
         for (int i = 0; i < icons.length; i++) {
             icons[i] = register.registerIcon(TOOLSPATH + getUnlocalizedName().replace("item.", "") + "_" + ToolTier.values()[i].name().toLowerCase());
         }
-    }
+    } */
 
     @SideOnly(Side.CLIENT)
     @Override

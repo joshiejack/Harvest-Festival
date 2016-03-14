@@ -16,7 +16,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockDirt extends CTMBlockHFBase {
-
 	public BlockDirt(String modid, String texturePath) {
 		super(modid, texturePath, HFBlocks.renderIDCTM);
 		setCreativeTab(HFTab.tabMining);

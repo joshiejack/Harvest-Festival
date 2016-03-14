@@ -4,7 +4,6 @@ import joshie.harvest.api.core.IShippable;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.DirectionHelper;
-import joshie.harvest.core.lib.RenderIds;
 import joshie.harvest.core.util.base.BlockHFBaseMeta;
 import joshie.harvest.core.util.generic.IFaceable;
 import net.minecraft.block.material.Material;
@@ -13,30 +12,29 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockWood extends BlockHFBaseMeta {
-    public static final int SHIPPING = 0;
-    public static final int SHIPPING_2 = 1;
-    public static final int NEST = 2;
-    public static final int TROUGH = 3;
-    public static final int TROUGH_2 = 4;
+public class BlockWood extends BlockHFBaseMeta<BlockWood.Woodware> {
+    public enum Woodware implements IStringSerializable {
+        SHIPPING, SHIPPING_2, NEST, TROUGH, TROUGH_2;
+
+        @Override
+        public String getName() {
+            return toString();
+        }
+    }
 
     public BlockWood() {
-        super(Material.wood);
+        super(Material.wood, Woodware.class);
         setHardness(1.5F);
     }
 
     @Override
-    public String getToolType(int meta) {
+    public String getToolType(Woodware wood) {
         return "axe";
-    }
-
-    @Override
-    public boolean renderAsNormalBlock() {
-        return false;
     }
 
     @Override
@@ -45,23 +43,13 @@ public class BlockWood extends BlockHFBaseMeta {
     }
 
     @Override
-    public int getRenderType() {
-        return RenderIds.ALL;
-    }
-
-    @Override
-    public void setBlockBoundsBasedOnState(IBlockAccess block, int x, int y, int z) {
-        int meta = block.getBlockMetadata(x, y, z);
-        switch (meta) {
+    public void setBlockBoundsBasedOnState(IBlockAccess block, BlockPos pos) {
+        Woodware wood = getEnumFromBlockPos(block, pos);
+        switch (wood) {
             default:
                 setBlockBounds(0F, 0F, 0F, 1F, 1F, 1F);
                 break;
         }
-    }
-
-    @Override
-    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
-        return AxisAlignedBB.getBoundingBox(x + minX, y + minY, z + minZ, x + maxX, y + maxY, z + maxZ);
     }
 
     @Override

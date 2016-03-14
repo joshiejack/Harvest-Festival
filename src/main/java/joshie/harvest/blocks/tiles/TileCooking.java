@@ -16,6 +16,7 @@ import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
@@ -77,7 +78,7 @@ public abstract class TileCooking extends TileEntity implements IFaceable, ITick
 
     public void animate(IUtensil utensil) {
         //rotation += worldObj.rand.nextFloat();
-        worldObj.spawnParticle("smoke", xCoord + 0.5D + +worldObj.rand.nextFloat() - worldObj.rand.nextFloat() / 2, yCoord + 0.5D + worldObj.rand.nextFloat() - worldObj.rand.nextFloat() / 2, zCoord + 0.5D + +worldObj.rand.nextFloat() - worldObj.rand.nextFloat() / 2, 0, 0, 0);
+        worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, getPos().getX() + 0.5D + +worldObj.rand.nextFloat() - worldObj.rand.nextFloat() / 2, getPos().getY() + 0.5D + worldObj.rand.nextFloat() - worldObj.rand.nextFloat() / 2, getPos().getZ() + 0.5D + +worldObj.rand.nextFloat() - worldObj.rand.nextFloat() / 2, 0, 0, 0);
     }
 
     public short getCookingTime(IUtensil utensil) {

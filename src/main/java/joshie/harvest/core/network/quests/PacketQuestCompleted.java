@@ -6,8 +6,10 @@ import joshie.harvest.api.quest.IQuest;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class PacketQuestCompleted implements IMessage, IMessageHandler<PacketQuestCompleted, IMessage> {
     private IQuest quest;
@@ -23,13 +25,13 @@ public class PacketQuestCompleted implements IMessage, IMessageHandler<PacketQue
     @Override
     public void toBytes(ByteBuf buf) {
         buf.writeBoolean(isSenderClient);
-        writeUTF8String(buf, quest.getUniqueName());
+        ByteBufUtils.writeUTF8String(buf, quest.getUniqueName());
     }
 
     @Override
     public void fromBytes(ByteBuf buf) {
         isSenderClient = buf.readBoolean();
-        quest = HFApi.QUESTS.get(readUTF8String(buf));
+        quest = HFApi.QUESTS.get(ByteBufUtils.readUTF8String(buf));
     }
 
     @Override

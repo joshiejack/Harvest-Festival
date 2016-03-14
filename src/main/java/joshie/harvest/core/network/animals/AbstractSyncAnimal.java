@@ -4,6 +4,7 @@ import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public abstract class AbstractSyncAnimal implements IMessage {
     private int id;

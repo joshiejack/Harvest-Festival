@@ -3,6 +3,7 @@ package joshie.harvest.core.network.animals;
 import joshie.harvest.api.animals.IAnimalTracked;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class PacketSyncDaysNotFed extends AbstractSyncByte implements IMessageHandler<PacketSyncDaysNotFed, IMessage> {
     public PacketSyncDaysNotFed(){}

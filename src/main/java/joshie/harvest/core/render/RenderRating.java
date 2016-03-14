@@ -6,6 +6,7 @@ import org.lwjgl.opengl.GL12;
 import joshie.harvest.core.lib.HFModInfo;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @Deprecated

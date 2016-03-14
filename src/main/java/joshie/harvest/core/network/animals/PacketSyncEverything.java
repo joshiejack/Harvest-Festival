@@ -4,6 +4,7 @@ import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.animals.IAnimalData;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class PacketSyncEverything extends AbstractSyncAnimal implements IMessageHandler<PacketSyncEverything, IMessage> {
     protected IAnimalData data;

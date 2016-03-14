@@ -15,7 +15,7 @@ public class PacketCropRequest implements IMessage, IMessageHandler<PacketCropRe
     public PacketCropRequest() {}
 
     public PacketCropRequest(World world, int x, int y, int z) {
-        this.dimension = world.provider.dimensionId;
+        this.dimension = world.provider.getDimensionId();
         this.x = x;
         this.y = y;
         this.z = z;

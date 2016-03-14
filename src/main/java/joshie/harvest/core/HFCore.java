@@ -19,7 +19,6 @@ import joshie.harvest.core.handlers.EventsHandler;
 import joshie.harvest.core.handlers.GoddessHandler;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.lib.RenderIds;
 import joshie.harvest.core.network.PacketCropRequest;
 import joshie.harvest.core.network.PacketDismount;
 import joshie.harvest.core.network.PacketFreeze;
@@ -57,7 +56,6 @@ import joshie.harvest.quests.QuestEvents;
 import joshie.harvest.quests.QuestRegistry;
 import joshie.harvest.shops.ShopRegistry;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -82,7 +80,7 @@ public class HFCore {
         MinecraftForge.EVENT_BUS.register(new GoddessHandler());
         MinecraftForge.EVENT_BUS.register(new QuestEvents());
         NetworkRegistry.INSTANCE.registerGuiHandler(HarvestFestival.instance, new GuiHandler());
-        
+
         //Commands
         MinecraftForge.EVENT_BUS.register(CommandManager.INSTANCE);
         CommandManager.INSTANCE.registerCommand(new HFCommandHelp());
@@ -112,7 +110,7 @@ public class HFCore {
         PacketHandler.registerPacket(PacketSyncFridge.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketWateringCan.class, Side.SERVER);
         PacketHandler.registerPacket(PacketDismount.class, Side.SERVER);
-        
+
         //Animal Packets
         PacketHandler.registerPacket(PacketSyncEverything.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketSyncHealthiness.class, Side.CLIENT);
@@ -137,11 +135,7 @@ public class HFCore {
     @SideOnly(Side.CLIENT)
     public static void initClient() {
         HFTrackers.reset(null);
-        RenderIds.ALL = RenderingRegistry.getNextAvailableRenderId();
-        RenderIds.CROPS = RenderingRegistry.getNextAvailableRenderId();
-        RenderIds.COOKING = RenderingRegistry.getNextAvailableRenderId();
         MinecraftForge.EVENT_BUS.register(new CalendarRender());
         MinecraftForge.EVENT_BUS.register(new RenderHandler());
-        FMLCommonHandler.instance().bus().register(new RenderHandler());
     }
 }

@@ -6,6 +6,8 @@ import joshie.harvest.buildings.placeable.PlaceableHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItemFrame;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
@@ -34,7 +36,7 @@ public class PlaceableItemFrame extends PlaceableHanging {
     @Override
     public Entity getEntity(UUID uuid, World world, int x, int y, int z, boolean n1, boolean n2, boolean swap) {
         int facing = getFacing(n1, n2, swap);
-        EntityItemFrame frame = new EntityItemFrame(world, getX(x, facing), y, getZ(z, facing), facing);
+        EntityItemFrame frame = new EntityItemFrame(world, new BlockPos(getX(x, facing), y, getZ(z, facing)), EnumFacing.values()[facing]);
         ItemStack loot = null;
         
         if (stack != null) loot = stack.copy();
@@ -42,7 +44,7 @@ public class PlaceableItemFrame extends PlaceableHanging {
             try {
                 WeightedRandomChestContent chest = (WeightedRandomChestContent) WeightedRandom.getRandomItem(world.rand, ChestGenHooks.getItems(chestType, world.rand));
                 while (loot == null) {
-                    ItemStack[] stacks = ChestGenHooks.generateStacks(world.rand, chest.theItemId, chest.theMinimumChanceToGenerateItem, chest.theMaximumChanceToGenerateItem);
+                    ItemStack[] stacks = ChestGenHooks.generateStacks(world.rand, chest.theItemId, chest.minStackSize, chest.maxStackSize);
                     if (stacks != null && stacks.length >= 1) {
                         loot = stacks[0].copy();
                     }
@@ -69,6 +71,6 @@ public class PlaceableItemFrame extends PlaceableHanging {
     @Override
     public String getStringFor(Entity e, int x, int y, int z) {
         EntityItemFrame frame = (EntityItemFrame) e;
-        return "list.add(new PlaceableItemFrame(" + getItemStack(frame.getDisplayedItem()) + ", " + frame.getRotation() + ", " + frame.hangingDirection + ", " + x + ", " + y + ", " + z + "));";
+        return "list.add(new PlaceableItemFrame(" + getItemStack(frame.getDisplayedItem()) + ", " + frame.getRotation() + ", " + frame.facingDirection + ", " + x + ", " + y + ", " + z + "));";
     }
 }

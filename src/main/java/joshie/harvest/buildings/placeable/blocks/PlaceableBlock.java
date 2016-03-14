@@ -5,6 +5,7 @@ import java.util.UUID;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.core.helpers.generic.StackHelper;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -34,6 +35,10 @@ public class PlaceableBlock extends Placeable {
 
     public int getMetaData(boolean n1, boolean n2, boolean swap) {
         return meta;
+    }
+    
+    public IBlockState getBlockState(boolean n1, boolean n2, boolean swap) {
+        return block.getStateFromMeta(meta);
     }
 
     @Override

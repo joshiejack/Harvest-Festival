@@ -1,6 +1,7 @@
 package joshie.harvest.blocks;
 
 import joshie.harvest.api.core.IShippable;
+import joshie.harvest.blocks.BlockWood.Woodware;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.DirectionHelper;
@@ -17,8 +18,8 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockWood extends BlockHFBaseMeta<BlockWood.Woodware> {
-    public enum Woodware implements IStringSerializable {
+public class BlockWood extends BlockHFBaseMeta<Woodware> {
+    public static enum Woodware implements IStringSerializable {
         SHIPPING, SHIPPING_2, NEST, TROUGH, TROUGH_2;
 
         @Override

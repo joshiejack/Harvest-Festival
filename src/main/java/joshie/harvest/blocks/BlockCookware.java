@@ -5,6 +5,7 @@ import static joshie.harvest.blocks.BlockCookware.Cookware.FRIDGE;
 import static joshie.harvest.blocks.BlockCookware.Cookware.FRIDGE_TOP;
 
 import joshie.harvest.HarvestFestival;
+import joshie.harvest.blocks.BlockCookware.Cookware;
 import joshie.harvest.blocks.items.ItemBlockCookware;
 import joshie.harvest.blocks.tiles.TileCooking;
 import joshie.harvest.blocks.tiles.TileCounter;
@@ -36,8 +37,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockCookware extends BlockHFBaseMeta<BlockCookware.Cookware> {
-    public enum Cookware implements IStringSerializable {
+public class BlockCookware extends BlockHFBaseMeta<Cookware> {
+    public static enum Cookware implements IStringSerializable {
         FRIDGE_TOP, FRIDGE, COUNTER, POT, FRYING_PAN, MIXER, OVEN;
 
         @Override

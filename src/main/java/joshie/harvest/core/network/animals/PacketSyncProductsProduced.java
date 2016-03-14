@@ -3,6 +3,7 @@ package joshie.harvest.core.network.animals;
 import joshie.harvest.api.animals.IAnimalTracked;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class PacketSyncProductsProduced extends AbstractSyncBoolean implements IMessageHandler<PacketSyncProductsProduced, IMessage> {
     public PacketSyncProductsProduced() {}

@@ -6,8 +6,10 @@ import joshie.harvest.api.quest.IQuest;
 import joshie.harvest.core.helpers.QuestHelper;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.quests.Quest;
+import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class PacketQuestSetCurrent implements IMessage, IMessageHandler<PacketQuestSetCurrent, IMessage> {
     private IQuest quest;
@@ -21,7 +23,7 @@ public class PacketQuestSetCurrent implements IMessage, IMessageHandler<PacketQu
     public void toBytes(ByteBuf buf) {
         buf.writeBoolean(quest == null);
         if (quest != null) {
-            writeUTF8String(buf, quest.getUniqueName());
+            ByteBufUtils.writeUTF8String(buf, quest.getUniqueName());
             quest.toBytes(buf);
         }
     }
@@ -30,7 +32,7 @@ public class PacketQuestSetCurrent implements IMessage, IMessageHandler<PacketQu
     public void fromBytes(ByteBuf buf) {
         boolean isNull = buf.readBoolean();
         if (!isNull) {
-            IQuest q = HFApi.QUESTS.get(readUTF8String(buf));
+            IQuest q = HFApi.QUESTS.get(ByteBufUtils.readUTF8String(buf));
 
             try {
                 quest = ((Quest) q.getClass().newInstance()).setUniqueName(q.getUniqueName());

@@ -1,6 +1,5 @@
 package joshie.harvest.cooking;
 
-import joshie.harvest.blocks.BlockIcons;
 import net.minecraftforge.fluids.Fluid;
 
 public class FluidCookingOil extends Fluid {

@@ -1,10 +1,5 @@
 package joshie.harvest.calendar;
 
-import java.text.NumberFormat;
-import java.util.Locale;
-
-import org.lwjgl.opengl.GL11;
-
 import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.api.core.ISeasonData;
@@ -21,6 +16,10 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.opengl.GL11;
+
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class CalendarRender {
     private String formatTime(int time) {

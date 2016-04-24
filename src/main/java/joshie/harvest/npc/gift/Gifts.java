@@ -1,12 +1,12 @@
 package joshie.harvest.npc.gift;
 
-import java.util.HashMap;
-
 import joshie.harvest.core.util.SafeStack;
 import joshie.harvest.core.util.WildStack;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+
+import java.util.HashMap;
 
 public abstract class Gifts {
     private static HashMap<SafeStack, Category[]> gifts = new HashMap();;

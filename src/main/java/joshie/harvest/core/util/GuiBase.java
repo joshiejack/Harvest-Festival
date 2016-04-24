@@ -1,19 +1,18 @@
 package joshie.harvest.core.util;
 
-import static joshie.harvest.core.lib.HFModInfo.MODPATH;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.util.ResourceLocation;
+import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
-
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.util.ResourceLocation;
+import static joshie.harvest.core.lib.HFModInfo.MODPATH;
 
 public abstract class GuiBase extends GuiContainer {
     protected boolean hasInventory;

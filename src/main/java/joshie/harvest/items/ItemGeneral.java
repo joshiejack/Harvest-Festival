@@ -1,8 +1,5 @@
 package joshie.harvest.items;
 
-import java.util.HashMap;
-import java.util.List;
-
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.animals.IMilkable;
@@ -20,6 +17,9 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.HashMap;
+import java.util.List;
 
 public class ItemGeneral extends ItemHFMeta implements ICreativeSorted, ICookingAltIcon {
     public static final int BLUE_FEATHER = 0;

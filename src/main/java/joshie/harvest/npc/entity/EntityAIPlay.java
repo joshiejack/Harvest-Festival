@@ -1,12 +1,12 @@
 package joshie.harvest.npc.entity;
 
-import java.util.Iterator;
-import java.util.List;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.util.Vec3;
+
+import java.util.Iterator;
+import java.util.List;
 
 public class EntityAIPlay extends EntityAIBase {
     private EntityNPC npc;

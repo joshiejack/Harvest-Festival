@@ -1,10 +1,5 @@
 package joshie.harvest.shops.gui;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.lwjgl.opengl.GL11;
-
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.StackHelper;
 import joshie.harvest.core.lib.HFModInfo;
@@ -16,6 +11,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
+import org.lwjgl.opengl.GL11;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GuiNPCBuilderShop extends GuiNPCShop {
     public GuiNPCBuilderShop(EntityNPC npc, EntityPlayer player) {
@@ -32,8 +31,8 @@ public class GuiNPCBuilderShop extends GuiNPCShop {
         return 5;
     }
 
-    private static final ItemStack log = new ItemStack(Blocks.log);
-    private static final ItemStack stone = new ItemStack(Blocks.stone);
+    private static final ItemStack log = new ItemStack(Blocks.LOG);
+    private static final ItemStack stone = new ItemStack(Blocks.STONE);
 
     @Override
     protected void drawShelves(int x, int y) {

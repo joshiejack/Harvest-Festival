@@ -1,8 +1,5 @@
 package joshie.harvest.core.util.base;
 
-import java.util.List;
-import java.util.Random;
-
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.helpers.ReflectionHelper;
 import joshie.harvest.core.util.generic.IHasMetaBlock;
@@ -20,6 +17,9 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
+import java.util.Random;
 
 public abstract class BlockHFBaseMeta<E extends Enum<E> & IStringSerializable> extends BlockHFBase implements IHasMetaBlock {
     public PropertyEnum<E> property;

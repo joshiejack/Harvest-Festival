@@ -1,12 +1,12 @@
 package joshie.harvest.buildings;
 
-import java.util.UUID;
-
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.Placeable.PlacementStage;
 import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+
+import java.util.UUID;
 
 /** This data is used by the BuilderNPC, 
  * to know their current progress through a building project **/
@@ -17,7 +17,8 @@ public class BuildingStage {
     public PlacementStage stage;
     public int index, xCoord, yCoord, zCoord;
 
-    public BuildingStage() {}
+    public BuildingStage() {
+    }
 
     public BuildingStage(UUID uuid, Building building, int x, int y, int z, boolean n1, boolean n2, boolean swap) {
         this.owner = uuid;
@@ -32,7 +33,7 @@ public class BuildingStage {
         this.zCoord = z;
     }
 
-    public BuildingStage build(World world) {        
+    public BuildingStage build(World world) {
         if (index >= building.getSize()) {
             if (stage == PlacementStage.BLOCKS) {
                 stage = PlacementStage.TORCHES;

@@ -1,7 +1,5 @@
 package joshie.harvest.shops.purchaseable;
 
-import java.util.List;
-
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.shops.IPurchaseable;
 import joshie.harvest.core.util.Translate;
@@ -13,6 +11,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class PurchaseableEntity implements IPurchaseable {
     private ItemStack product;

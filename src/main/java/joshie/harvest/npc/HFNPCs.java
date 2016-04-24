@@ -1,11 +1,5 @@
 package joshie.harvest.npc;
 
-import static joshie.harvest.npc.NPC.Age.ADULT;
-import static joshie.harvest.npc.NPC.Age.CHILD;
-import static joshie.harvest.npc.NPC.Age.ELDER;
-import static joshie.harvest.npc.NPC.Gender.FEMALE;
-import static joshie.harvest.npc.NPC.Gender.MALE;
-
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
@@ -21,6 +15,10 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import static joshie.harvest.npc.NPC.Age.*;
+import static joshie.harvest.npc.NPC.Gender.FEMALE;
+import static joshie.harvest.npc.NPC.Gender.MALE;
 
 public class HFNPCs {
     public static INPC goddess; //The Goddess                        (SPAWN)

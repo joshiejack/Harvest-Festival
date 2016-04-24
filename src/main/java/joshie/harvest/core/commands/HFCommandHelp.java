@@ -1,9 +1,5 @@
 package joshie.harvest.core.commands;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-
 import net.minecraft.command.CommandNotFoundException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.NumberInvalidException;
@@ -11,6 +7,10 @@ import net.minecraft.event.ClickEvent;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 public class HFCommandHelp extends HFCommandBase {
     @Override

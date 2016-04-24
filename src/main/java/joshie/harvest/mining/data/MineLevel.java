@@ -1,8 +1,5 @@
 package joshie.harvest.mining.data;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-
 import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvest.mining.MineTrackerServer;
@@ -11,6 +8,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
+
+import java.util.ArrayList;
+import java.util.HashSet;
 
 public class MineLevel {
     private HashSet<MineBlock> blocks = new HashSet();
@@ -45,9 +45,9 @@ public class MineLevel {
             int z = zCoord + block.getZ();
 
             MineBlock location = null;
-            if (block.getBlock() == Blocks.air) {
+            if (block.getBlock() == Blocks.AIR) {
                 location = new MineAir(world.provider.dimensionId, x, y, z);
-            } else if (block.getBlock() == HFBlocks.dirt) {
+            } else if (block.getBlock() == HFBlocks.DIRT) {
                 location = new MineFloor(world.provider.dimensionId, x, y, z);
             } else if (block.getBlock() == HFBlocks.stone) {
                 location = new MineWall(world.provider.dimensionId, x, y, z);
@@ -63,8 +63,8 @@ public class MineLevel {
         for (MineBlock block : blocks) {
             World world = DimensionManager.getWorld(block.dimension);
             if (world.rand.nextInt(64) == 0) {
-                world.setBlock(block.x, block.y, block.z, Blocks.cobblestone);
-            } else world.setBlock(block.x, block.y, block.z, Blocks.gravel);
+                world.setBlock(block.x, block.y, block.z, Blocks.COBBLESTONE);
+            } else world.setBlock(block.x, block.y, block.z, Blocks.GRAVEL);
         }
     }
 

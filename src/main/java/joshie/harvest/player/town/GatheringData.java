@@ -1,9 +1,5 @@
 package joshie.harvest.player.town;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -11,6 +7,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
+
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 public class GatheringData {
     private Set<GatheringLocation> locations = new HashSet();
@@ -41,7 +41,7 @@ public class GatheringData {
                 int x = building.xCoord + 32 - world.rand.nextInt(64);
                 int y = building.yCoord + 4 - world.rand.nextInt(8);
                 int z = building.zCoord + 32 - world.rand.nextInt(64); 
-                if (world.getBlock(x, y, z) == Blocks.grass && world.getBlock(x, y + 1, z).isAir(world, x, y + 1, z)) {
+                if (world.getBlock(x, y, z) == Blocks.GRASS && world.getBlock(x, y + 1, z).isAir(world, x, y + 1, z)) {
                     ItemStack random = getRandomBlock();
                     Block block = Block.getBlockFromItem(random.getItem());
                     int meta = random.getItemDamage();

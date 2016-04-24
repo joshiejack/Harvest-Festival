@@ -1,7 +1,5 @@
 package joshie.harvest.blocks;
 
-import java.util.List;
-
 import joshie.harvest.blocks.tiles.TileMarker;
 import joshie.harvest.buildings.Building;
 import joshie.harvest.core.HFTab;
@@ -21,6 +19,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 public class BlockPreview extends BlockHFBaseMeta {
     public static final int N1_T__N2_T__SWAP_F = 0;

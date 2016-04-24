@@ -49,7 +49,7 @@ public class IconHandlerGrass extends AbstractIconHandler {
         double d0 = (double) z;
         long i1;
 
-        if (block == Blocks.tallgrass) {
+        if (block == Blocks.TALLGRASS) {
             i1 = (long) (x * 3129871) ^ (long) y * 116129781L ^ (long) z;
             i1 = i1 * i1 * 42317861L + i1 * 11L;
             d1 += ((double) ((float) (i1 >> 16 & 15L) / 15.0F) - 0.5D) * 0.5D;

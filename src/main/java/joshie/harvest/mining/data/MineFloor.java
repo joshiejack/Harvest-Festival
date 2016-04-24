@@ -1,9 +1,9 @@
 package joshie.harvest.mining.data;
 
-import static joshie.harvest.core.helpers.generic.MCServerHelper.getWorld;
-
 import joshie.harvest.blocks.HFBlocks;
 import net.minecraft.world.World;
+
+import static joshie.harvest.core.helpers.generic.MCServerHelper.getWorld;
 
 public class MineFloor extends MineBlock {
     public MineFloor() {}
@@ -21,6 +21,6 @@ public class MineFloor extends MineBlock {
     public void newDay(int level) {
         World world = getWorld(dimension);
         int meta = world.rand.nextInt(13) <= 10 ? 0 : world.rand.nextInt(16);
-        world.setBlock(x, y, z, HFBlocks.dirt, meta, 2);
+        world.setBlock(x, y, z, HFBlocks.DIRT, meta, 2);
     }
 }

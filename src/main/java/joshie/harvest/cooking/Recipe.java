@@ -1,12 +1,12 @@
 package joshie.harvest.cooking;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import joshie.harvest.api.cooking.ICookingComponent;
 import joshie.harvest.api.cooking.IMeal;
 import joshie.harvest.api.cooking.IMealRecipe;
 import joshie.harvest.api.cooking.IUtensil;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class Recipe implements IMealRecipe {
     public final IMeal result;

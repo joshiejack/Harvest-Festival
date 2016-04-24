@@ -134,7 +134,7 @@ public class HFIngredients {
     public static void init() {
         HFApi.COOKING.register(new ItemStack(HFItems.general, 1, ItemGeneral.SALT), salt);
         HFApi.COOKING.register(new ItemStack(Items.sugar, 1, OreDictionary.WILDCARD_VALUE), sugar);
-        HFApi.COOKING.register(new ItemStack(Items.apple, 1, OreDictionary.WILDCARD_VALUE), apple);
+        HFApi.COOKING.register(new ItemStack(Items.APPLE, 1, OreDictionary.WILDCARD_VALUE), apple);
         HFApi.COOKING.register(new ItemStack(HFItems.general, 1, ItemGeneral.CHOCOLATE), chocolate);
         HFApi.COOKING.register(new ItemStack(HFItems.general, 1, ItemGeneral.FLOUR), flour);
         HFApi.COOKING.register(new ItemStack(HFItems.general, 1, ItemGeneral.OIL), oil);
@@ -153,17 +153,17 @@ public class HFIngredients {
         HFApi.COOKING.register(HFCrops.pineapple.getCropStack(), pineapple);
         HFApi.COOKING.register(HFCrops.eggplant.getCropStack(), eggplant);
         HFApi.COOKING.register(HFCrops.carrot.getCropStack(), carrot);
-        HFApi.COOKING.register(new ItemStack(Items.carrot, 1, OreDictionary.WILDCARD_VALUE), carrot);
+        HFApi.COOKING.register(new ItemStack(Items.CARROT, 1, OreDictionary.WILDCARD_VALUE), carrot);
         HFApi.COOKING.register(HFCrops.sweet_potato.getCropStack(), sweet_potato);
         HFApi.COOKING.register(HFCrops.spinach.getCropStack(), spinach);
         HFApi.COOKING.register(HFCrops.green_pepper.getCropStack(), green_pepper);
-        HFApi.COOKING.register(new ItemStack(Items.wheat, 1, OreDictionary.WILDCARD_VALUE), wheat);
-        HFApi.COOKING.register(new ItemStack(Items.melon, 1, OreDictionary.WILDCARD_VALUE), watermelon);
+        HFApi.COOKING.register(new ItemStack(Items.WHEAT, 1, OreDictionary.WILDCARD_VALUE), wheat);
+        HFApi.COOKING.register(new ItemStack(Items.MELON, 1, OreDictionary.WILDCARD_VALUE), watermelon);
         HFApi.COOKING.register(new ItemStack(Blocks.melon_block, 1, OreDictionary.WILDCARD_VALUE), watermelon);
         HFApi.COOKING.register(new ItemStack(Items.bread, 1, OreDictionary.WILDCARD_VALUE), bread);
         HFApi.COOKING.register(new ItemStack(HFItems.egg), egg);
         HFApi.COOKING.register(new ItemStack(Items.egg, 1, OreDictionary.WILDCARD_VALUE), egg);
-        HFApi.COOKING.register(new ItemStack(Items.fish, 1, OreDictionary.WILDCARD_VALUE), fish);
+        HFApi.COOKING.register(new ItemStack(Items.FISH, 1, OreDictionary.WILDCARD_VALUE), fish);
         HFApi.COOKING.register(new ItemStack(HFItems.milk), milk);
         HFApi.COOKING.register(new ItemStack(Items.milk_bucket, 1, OreDictionary.WILDCARD_VALUE), milk);
         HFApi.COOKING.register(new ItemStack(HFItems.mayonnaise), mayonnaise);
@@ -173,7 +173,7 @@ public class HFIngredients {
         HFApi.COOKING.register(HFApi.COOKING.getBestMeal("egg.scrambled"), scrambled_egg);
         HFApi.COOKING.register(HFApi.COOKING.getBestMeal("cookies"), cookies);
         HFApi.COOKING.register(HFApi.COOKING.getBestMeal("ketchup"), ketchup);
-        HFApi.COOKING.register(new ItemStack(Blocks.brown_mushroom, 1, OreDictionary.WILDCARD_VALUE), brown_mushroom);
-        HFApi.COOKING.register(new ItemStack(Blocks.red_mushroom, 1, OreDictionary.WILDCARD_VALUE), red_mushroom);
+        HFApi.COOKING.register(new ItemStack(Blocks.BROWN_MUSHROOM, 1, OreDictionary.WILDCARD_VALUE), brown_mushroom);
+        HFApi.COOKING.register(new ItemStack(Blocks.RED_MUSHROOM, 1, OreDictionary.WILDCARD_VALUE), red_mushroom);
     }
 }

@@ -1,25 +1,5 @@
 package joshie.harvest.plugins.agricraft;
 
-import java.util.ArrayList;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-
-import com.google.common.cache.Cache;
-import com.google.common.cache.CacheBuilder;
-
-import joshie.harvest.api.HFApi;
-import joshie.harvest.api.crops.ICrop;
-import joshie.harvest.api.crops.ICropData;
-import joshie.harvest.blocks.BlockCrop;
-import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.helpers.SeedHelper;
-import joshie.harvest.core.helpers.generic.ItemHelper;
-import joshie.harvest.crops.HFCrops;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.world.World;
-
 public class HFAgricraftOverride /*extends CropOverride*/ {
     /*private static Cache<Integer, CropOverride> client_cache = CacheBuilder.newBuilder().maximumSize(1000).build();
     private static Cache<Integer, CropOverride> server_cache = CacheBuilder.newBuilder().maximumSize(32000).build();

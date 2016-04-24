@@ -1,10 +1,5 @@
 package joshie.harvest.mining;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-
 import joshie.harvest.api.WorldLocation;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvest.core.handlers.HFTrackers;
@@ -14,6 +9,11 @@ import joshie.harvest.npc.entity.EntityNPCMiner;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 
 public class MineTrackerServer extends MineTracker {
     public static HashMap<WorldLocation, MineData> map = new HashMap(); // Block > Mine and Level Mappings

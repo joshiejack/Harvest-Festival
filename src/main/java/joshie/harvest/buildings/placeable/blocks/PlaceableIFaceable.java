@@ -1,7 +1,5 @@
 package joshie.harvest.buildings.placeable.blocks;
 
-import java.util.UUID;
-
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSyncOrientation;
 import joshie.harvest.core.util.generic.IFaceable;
@@ -11,6 +9,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ChestGenHooks;
+
+import java.util.UUID;
 
 public class PlaceableIFaceable extends PlaceableBlock {
     private ForgeDirection dir;

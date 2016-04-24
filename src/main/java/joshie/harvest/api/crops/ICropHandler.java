@@ -1,9 +1,9 @@
 package joshie.harvest.api.crops;
 
-import java.util.Collection;
-
 import joshie.harvest.api.calendar.Season;
 import net.minecraft.world.World;
+
+import java.util.Collection;
 
 public interface ICropHandler {
     public ICrop registerCrop(String unlocalized, int cost, int sell, int stages, int regrow, int year, int color, Season... seasons);

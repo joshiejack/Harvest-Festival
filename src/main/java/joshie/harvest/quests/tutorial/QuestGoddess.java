@@ -1,10 +1,5 @@
 package joshie.harvest.quests.tutorial;
 
-import static joshie.harvest.core.helpers.QuestHelper.completeQuest;
-import static joshie.harvest.core.helpers.QuestHelper.rewardGold;
-import static joshie.harvest.core.helpers.QuestHelper.rewardItem;
-import static joshie.harvest.core.helpers.QuestHelper.takeHeldStack;
-
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.buildings.HFBuildings;
@@ -16,6 +11,8 @@ import joshie.harvest.quests.Quest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+
+import static joshie.harvest.core.helpers.QuestHelper.*;
 public class QuestGoddess extends Quest {   
     @Override
     protected INPC[] getNPCs() {
@@ -29,7 +26,7 @@ public class QuestGoddess extends Quest {
             rewardItem(player, new ItemStack(HFBlocks.flowers, 4, 0));
         } else if (previous == 1) {
             rewardItem(player, HFBuildings.carpenter.getPreview());
-            rewardItem(player, new ItemStack(Blocks.red_flower, 1, player.worldObj.rand.nextInt(8)));
+            rewardItem(player, new ItemStack(Blocks.RED_FLOWER, 1, player.worldObj.rand.nextInt(8)));
         } else if (previous == 3) {
             ItemStack seeds = HFCrops.turnip.getSeedStack().copy();
             seeds.stackSize = 10;

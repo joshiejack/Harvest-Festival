@@ -1,11 +1,11 @@
 package joshie.harvest.buildings.placeable.blocks;
 
-import java.util.UUID;
-
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntitySign;
 import net.minecraft.world.World;
+
+import java.util.UUID;
 
 public class PlaceableSignWall extends PlaceableBlock {
     private String[] text;

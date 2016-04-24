@@ -29,13 +29,13 @@ public class HFAnimals {
     public static void preInit() {
         EntityRegistry.registerModEntity(EntityHarvestCow.class, "HarvestCow", 5, HarvestFestival.instance, 150, 3, true);
         EntityRegistry.registerModEntity(EntityHarvestSheep.class, "HarvestSheep", 6, HarvestFestival.instance, 150, 3, true);
-        AnimalRegistry.registerFoodsAsType(AnimalFoodType.CHICKEN, Items.chicken, Items.cooked_chicken);
-        AnimalRegistry.registerFoodsAsType(AnimalFoodType.FISH, Items.fish, Items.cooked_fish);
-        AnimalRegistry.registerFoodsAsType(AnimalFoodType.FRUIT, Items.apple, Items.melon);
-        AnimalRegistry.registerFoodsAsType(AnimalFoodType.GRASS, Items.wheat);
-        AnimalRegistry.registerFoodsAsType(AnimalFoodType.REDMEAT, Items.porkchop, Items.beef, Items.cooked_porkchop, Items.cooked_beef);
-        AnimalRegistry.registerFoodsAsType(AnimalFoodType.SEED, Items.melon_seeds, Items.wheat_seeds, Items.pumpkin_seeds);
-        AnimalRegistry.registerFoodsAsType(AnimalFoodType.VEGETABLE, Items.carrot);
+        AnimalRegistry.registerFoodsAsType(AnimalFoodType.CHICKEN, Items.CHICKEN, Items.COOKED_CHICKEN);
+        AnimalRegistry.registerFoodsAsType(AnimalFoodType.FISH, Items.FISH, Items.COOKED_FISH);
+        AnimalRegistry.registerFoodsAsType(AnimalFoodType.FRUIT, Items.APPLE, Items.MELON);
+        AnimalRegistry.registerFoodsAsType(AnimalFoodType.GRASS, Items.WHEAT);
+        AnimalRegistry.registerFoodsAsType(AnimalFoodType.REDMEAT, Items.PORKCHOP, Items.BEEF, Items.COOKED_PORKCHOP, Items.COOKED_BEEF);
+        AnimalRegistry.registerFoodsAsType(AnimalFoodType.SEED, Items.MELON_SEEDS, Items.WHEAT_SEEDS, Items.PUMPKIN_SEEDS);
+        AnimalRegistry.registerFoodsAsType(AnimalFoodType.VEGETABLE, Items.CARROT);
         HFApi.ANIMALS.registerFoodAsType(new ItemStack(HFItems.general, 1, ItemGeneral.CHICKEN_FEED), AnimalFoodType.SEED);
         HFApi.ANIMALS.registerType("cow", new AnimalCow());
         HFApi.ANIMALS.registerType("sheep", new AnimalSheep());

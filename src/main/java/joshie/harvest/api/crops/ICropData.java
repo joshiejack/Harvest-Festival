@@ -2,12 +2,9 @@ package joshie.harvest.api.crops;
 
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.WorldLocation;
-import joshie.harvest.api.crops.ICropRenderHandler.PlantSection;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public interface ICropData {    
     /** Returns the crop itself **/

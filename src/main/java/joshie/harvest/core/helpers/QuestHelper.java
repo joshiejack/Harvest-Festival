@@ -1,9 +1,5 @@
 package joshie.harvest.core.helpers;
 
-import static joshie.harvest.core.network.PacketHandler.sendToServer;
-
-import java.util.HashSet;
-
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quest.IQuest;
@@ -17,6 +13,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.server.S2FPacketSetSlot;
+
+import java.util.HashSet;
+
+import static joshie.harvest.core.network.PacketHandler.sendToServer;
 
 public class QuestHelper {
     public static void completeQuest(EntityPlayer player, Quest quest) {

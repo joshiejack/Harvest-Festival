@@ -1,12 +1,12 @@
 package joshie.harvest.cooking;
 
-import java.util.ArrayList;
-
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.ISpecialRecipeHandler;
 import joshie.harvest.api.cooking.IUtensil;
 import joshie.harvest.items.HFItems;
 import net.minecraft.item.ItemStack;
+
+import java.util.ArrayList;
 
 public class MayoRecipeHandler implements ISpecialRecipeHandler {
     @Override

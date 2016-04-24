@@ -1,13 +1,5 @@
 package joshie.harvest.shops;
 
-import static joshie.harvest.api.calendar.Weekday.FRIDAY;
-import static joshie.harvest.api.calendar.Weekday.MONDAY;
-import static joshie.harvest.api.calendar.Weekday.SATURDAY;
-import static joshie.harvest.api.calendar.Weekday.SUNDAY;
-import static joshie.harvest.api.calendar.Weekday.THURSDAY;
-import static joshie.harvest.api.calendar.Weekday.TUESDAY;
-import static joshie.harvest.api.calendar.Weekday.WEDNESDAY;
-
 import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.animals.entity.EntityHarvestSheep;
 import joshie.harvest.api.HFApi;
@@ -20,17 +12,14 @@ import joshie.harvest.items.HFItems;
 import joshie.harvest.items.ItemAnimal;
 import joshie.harvest.items.ItemGeneral;
 import joshie.harvest.npc.HFNPCs;
-import joshie.harvest.shops.purchaseable.PurchaseableBlueFeather;
-import joshie.harvest.shops.purchaseable.PurchaseableBuilding;
-import joshie.harvest.shops.purchaseable.PurchaseableCropSeeds;
-import joshie.harvest.shops.purchaseable.PurchaseableDirt;
-import joshie.harvest.shops.purchaseable.PurchaseableEntity;
-import joshie.harvest.shops.purchaseable.PurchaseableStone;
+import joshie.harvest.shops.purchaseable.*;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import static joshie.harvest.api.calendar.Weekday.*;
 
 public class HFShops {
     public static IShop barn;
@@ -75,7 +64,7 @@ public class HFShops {
     
     private static void registerCafe() {
         cafe = HFApi.SHOPS.newShop("cafe", HFNPCs.cafe_owner);       
-        cafe.addItem(0, new ItemStack(Items.potionitem));
+        cafe.addItem(0, new ItemStack(Items.POTIONITEM));
         cafe.addItem(300, HFApi.COOKING.getMeal("salad"));
         cafe.addItem(200, HFApi.COOKING.getMeal("cookies"));
         cafe.addItem(300, HFApi.COOKING.getMeal("juice.pineapple"));
@@ -122,7 +111,7 @@ public class HFShops {
     
     private static void registerMiner() {
     	miner = HFApi.SHOPS.newShop("miner", HFNPCs.miner);
-    	miner.addItem(new PurchaseableDirt(1000, new ItemStack(HFBlocks.dirt, 16, 1)));
+    	miner.addItem(new PurchaseableDirt(1000, new ItemStack(HFBlocks.DIRT, 16, 1)));
     	miner.addItem(new PurchaseableStone(1000, new ItemStack(HFBlocks.stone, 16, 1)));
     	
     	miner.addOpening(MONDAY, 11000, 16000).addOpening(TUESDAY, 11000, 16000).addOpening(WEDNESDAY, 11000, 16000); //You decide what time it will be open yoshie

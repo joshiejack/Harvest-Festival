@@ -1,9 +1,9 @@
 package joshie.harvest.core.config;
 
+import net.minecraftforge.common.config.Configuration;
+
 import static joshie.harvest.core.helpers.generic.ConfigHelper.getBoolean;
 import static joshie.harvest.core.helpers.generic.ConfigHelper.getInteger;
-
-import net.minecraftforge.common.config.Configuration;
 
 public class Animals {
     public static boolean CAN_SPAWN;

@@ -1,8 +1,5 @@
 package joshie.harvest.player.relationships;
 
-import java.util.HashSet;
-import java.util.Map;
-
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.relations.IRelatableDataHandler;
 import joshie.harvest.core.handlers.HFTrackers;
@@ -13,6 +10,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+
+import java.util.HashSet;
+import java.util.Map;
 
 public class RelationshipDataServer extends RelationshipData {
     private HashSet<IRelatable> talked = new HashSet();

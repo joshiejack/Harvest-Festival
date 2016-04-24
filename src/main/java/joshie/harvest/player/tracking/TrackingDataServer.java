@@ -1,9 +1,5 @@
 package joshie.harvest.player.tracking;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Map;
-
 import joshie.harvest.api.core.IShippable;
 import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.core.handlers.HFTrackers;
@@ -14,6 +10,10 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
 
 public class TrackingDataServer extends TrackingData {
     private ArrayList<SellStack> toBeShipped = new ArrayList(); //What needs to be sold

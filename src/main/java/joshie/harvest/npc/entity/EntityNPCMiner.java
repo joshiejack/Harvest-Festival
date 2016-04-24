@@ -1,8 +1,5 @@
 package joshie.harvest.npc.entity;
 
-import java.util.ArrayList;
-import java.util.UUID;
-
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.buildings.placeable.Placeable.PlacementStage;
@@ -14,6 +11,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
+
+import java.util.ArrayList;
+import java.util.UUID;
 
 public class EntityNPCMiner extends EntityNPCShopkeeper {
     private boolean isMining = false;
@@ -76,7 +76,7 @@ public class EntityNPCMiner extends EntityNPCShopkeeper {
         //Ground floor
         for (int x = -mineXSize; x <= mineXSize; x++) {
             for (int z = -mineZSize; z <= mineZSize; z++) {
-                instructions.add(new PlaceableBlock(HFBlocks.dirt, 0, x, -8 - (level * 5), z)); //Add the block to this list
+                instructions.add(new PlaceableBlock(HFBlocks.DIRT, 0, x, -8 - (level * 5), z)); //Add the block to this list
             }
         }
 
@@ -107,7 +107,7 @@ public class EntityNPCMiner extends EntityNPCShopkeeper {
         for (int x = -mineXSize; x <= mineXSize; x++) {
             for (int z = -mineZSize; z <= mineZSize; z++) {
                 for (int y = -7; y < -4; y++) {
-                    instructions.add(new PlaceableBlock(Blocks.air, 0, x, y - (level * 5), z)); //Add the block to this list
+                    instructions.add(new PlaceableBlock(Blocks.AIR, 0, x, y - (level * 5), z)); //Add the block to this list
                 }
             }
         }

@@ -1,7 +1,5 @@
 package joshie.harvest.player;
 
-import java.util.UUID;
-
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.core.helpers.UUIDHelper;
@@ -19,6 +17,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+
+import java.util.UUID;
 
 public class PlayerTrackerServer extends PlayerTracker {
     private FridgeDataServer fridge;

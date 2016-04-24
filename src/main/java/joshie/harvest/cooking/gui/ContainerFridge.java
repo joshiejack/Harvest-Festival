@@ -1,7 +1,5 @@
 package joshie.harvest.cooking.gui;
 
-import java.util.Random;
-
 import joshie.harvest.api.HFApi;
 import joshie.harvest.core.util.ContainerBase;
 import joshie.harvest.player.fridge.FridgeData;
@@ -9,6 +7,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+
+import java.util.Random;
 
 public class ContainerFridge extends ContainerBase {
     private final FridgeData storage;

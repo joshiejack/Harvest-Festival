@@ -1,10 +1,11 @@
 package joshie.harvest.buildings.placeable.entities;
 
-import java.util.UUID;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityPainting;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import java.util.UUID;
 
 public class PlaceablePainting extends PlaceableHanging {
     private String painting;
@@ -23,7 +24,7 @@ public class PlaceablePainting extends PlaceableHanging {
     @Override
     public Entity getEntity(UUID uuid, World world, int x, int y, int z, boolean n1, boolean n2, boolean swap) {
         int facing = getFacing(n1, n2, swap);
-        return new EntityPainting(world, getX(x, facing), y, getZ(z, facing), facing, painting);
+        return new EntityPainting(world, new BlockPos(getX(x, facing), y, getZ(z, facing)), facing, painting);
     }
 
     @Override

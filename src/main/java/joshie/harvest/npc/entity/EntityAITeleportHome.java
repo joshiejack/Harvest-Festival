@@ -5,7 +5,6 @@ import joshie.harvest.core.helpers.CalendarHelper;
 import joshie.harvest.core.helpers.NPCHelper;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.util.BlockPos;
-import net.minecraft.util.MathHelper;
 
 public class EntityAITeleportHome extends EntityAIBase {
     private WorldLocation home;

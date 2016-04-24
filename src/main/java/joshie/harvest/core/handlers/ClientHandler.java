@@ -1,7 +1,5 @@
 package joshie.harvest.core.handlers;
 
-import java.util.UUID;
-
 import joshie.harvest.animals.AnimalTrackerClient;
 import joshie.harvest.calendar.CalendarClient;
 import joshie.harvest.crops.CropTrackerClient;
@@ -10,6 +8,8 @@ import joshie.harvest.player.PlayerTrackerClient;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.UUID;
 
 @SideOnly(Side.CLIENT)
 public class ClientHandler extends SideHandler {

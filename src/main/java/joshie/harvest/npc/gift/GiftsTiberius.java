@@ -1,16 +1,15 @@
 package joshie.harvest.npc.gift;
 
-import static joshie.harvest.npc.gift.Gifts.Quality.AWESOME;
-import static joshie.harvest.npc.gift.Gifts.Quality.DECENT;
-import static joshie.harvest.npc.gift.Gifts.Quality.GOOD;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+
+import static joshie.harvest.npc.gift.Gifts.Quality.*;
 
 public class GiftsTiberius extends Gifts {
     @Override
     public Quality getQuality(ItemStack stack) {
         //If we are strength two potion!
-        if (stack.getItem() == Items.potionitem) {
+        if (stack.getItem() == Items.POTIONITEM) {
             return stack.getItemDamage() == 8233 ? AWESOME : GOOD;
         }
 

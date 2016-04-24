@@ -1,14 +1,14 @@
 package joshie.harvest.animals;
 
-import java.util.HashSet;
-import java.util.Iterator;
-
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.player.PlayerTracker;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.util.DamageSource;
+
+import java.util.HashSet;
+import java.util.Iterator;
 
 //Handles the Data for the crops rather than using TE Data
 public class AnimalTrackerServer extends AnimalTracker {

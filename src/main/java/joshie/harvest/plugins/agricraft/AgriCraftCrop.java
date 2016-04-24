@@ -1,9 +1,6 @@
 package joshie.harvest.plugins.agricraft;
 
-import joshie.harvest.api.calendar.Season;
 import joshie.harvest.crops.Crop;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class AgriCraftCrop extends Crop {
     /*private BlockModPlant plant;

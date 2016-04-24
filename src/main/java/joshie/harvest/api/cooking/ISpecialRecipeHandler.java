@@ -1,8 +1,8 @@
 package joshie.harvest.api.cooking;
 
-import java.util.ArrayList;
-
 import net.minecraft.item.ItemStack;
+
+import java.util.ArrayList;
 
 /** Implement this on items that should handle recipes in a non
  *  default, special way. */

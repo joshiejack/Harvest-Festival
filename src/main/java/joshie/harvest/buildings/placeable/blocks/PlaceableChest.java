@@ -1,13 +1,13 @@
 package joshie.harvest.buildings.placeable.blocks;
 
-import java.util.UUID;
-
 import net.minecraft.block.Block;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ChestGenHooks;
+
+import java.util.UUID;
 
 public class PlaceableChest extends PlaceableBlock {
     private String chestType;

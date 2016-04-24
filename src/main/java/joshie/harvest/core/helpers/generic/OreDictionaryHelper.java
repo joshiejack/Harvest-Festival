@@ -25,6 +25,6 @@ public class OreDictionaryHelper {
     }
 
     public static boolean isFlowers(ItemStack held) {
-        return held.getItem() == Item.getItemFromBlock(Blocks.red_flower);
+        return held.getItem() == Item.getItemFromBlock(Blocks.RED_FLOWER);
     }
 }

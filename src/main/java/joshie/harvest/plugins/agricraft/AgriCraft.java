@@ -1,10 +1,5 @@
 package joshie.harvest.plugins.agricraft;
 
-import static joshie.harvest.core.helpers.generic.ConfigHelper.getBoolean;
-
-import java.util.ArrayList;
-
-import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.blocks.BlockCrop;
 import joshie.harvest.crops.handlers.SoilHandlers;
@@ -14,6 +9,10 @@ import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+
+import java.util.ArrayList;
+
+import static joshie.harvest.core.helpers.generic.ConfigHelper.getBoolean;
 
 public class AgriCraft extends Plugin {
     public static ArrayList<AgriCraftCrop> cropsList = new ArrayList();

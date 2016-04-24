@@ -1,9 +1,9 @@
 package joshie.harvest.core.config;
 
-import java.util.HashMap;
-
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.crops.Crop;
+
+import java.util.HashMap;
 
 public class Mappings {    
     private HashMap<String, ICrop> cropUnlocalizedMappings = new HashMap();

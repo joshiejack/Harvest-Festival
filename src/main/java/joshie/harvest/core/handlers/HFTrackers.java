@@ -1,8 +1,5 @@
 package joshie.harvest.core.handlers;
 
-import java.util.Collection;
-import java.util.UUID;
-
 import joshie.harvest.animals.AnimalTracker;
 import joshie.harvest.calendar.Calendar;
 import joshie.harvest.calendar.CalendarServer;
@@ -16,6 +13,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.Collection;
+import java.util.UUID;
 
 public class HFTrackers {
     private static final CalendarServer TEMP_CALENDAR = new CalendarServer();

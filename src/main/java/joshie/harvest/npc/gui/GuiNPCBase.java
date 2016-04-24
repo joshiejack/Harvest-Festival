@@ -8,7 +8,6 @@ import joshie.harvest.core.util.GuiBase;
 import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
 
 public class GuiNPCBase extends GuiBase {

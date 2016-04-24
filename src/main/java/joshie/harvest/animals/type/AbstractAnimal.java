@@ -1,12 +1,12 @@
 package joshie.harvest.animals.type;
 
-import java.util.Random;
-
 import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalType;
 import joshie.harvest.core.config.Calendar;
 import net.minecraft.entity.passive.EntityAnimal;
+
+import java.util.Random;
 
 public abstract class AbstractAnimal implements IAnimalType {
     protected static final Random rand = new Random();

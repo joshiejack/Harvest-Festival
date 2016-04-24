@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 public class GiftsFenn extends Gifts {
     @Override
     public Quality getQuality(ItemStack stack) {
-        if (stack.getItem() == Item.getItemFromBlock(Blocks.vine)) {
+        if (stack.getItem() == Item.getItemFromBlock(Blocks.VINE)) {
             return Quality.AWESOME;
         }
 

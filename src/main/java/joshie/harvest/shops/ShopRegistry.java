@@ -1,10 +1,10 @@
 package joshie.harvest.shops;
 
-import java.util.HashMap;
-
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.shops.IShop;
 import joshie.harvest.api.shops.IShopRegistry;
+
+import java.util.HashMap;
 
 public class ShopRegistry implements IShopRegistry {
     private HashMap<String, IShop> shops = new HashMap();

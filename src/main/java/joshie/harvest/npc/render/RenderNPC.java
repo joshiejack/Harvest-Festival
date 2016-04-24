@@ -1,15 +1,10 @@
 package joshie.harvest.npc.render;
 
-import java.util.UUID;
-
-import org.lwjgl.opengl.GL11;
-
 import com.mojang.authlib.GameProfile;
-
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.entity.EntityNPC.Mode;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.entity.RendererLivingEntity;
+import net.minecraft.client.renderer.entity.RenderLivingBase;
 import net.minecraft.client.renderer.tileentity.TileEntitySkullRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -21,10 +16,14 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringUtils;
+import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.opengl.GL11;
+
+import java.util.UUID;
 
 @SideOnly(Side.CLIENT)
-public class RenderNPC extends RendererLivingEntity {
+public class RenderNPC extends RenderLivingBase {
     private static final ResourceLocation steveTextures = new ResourceLocation("textures/entity/steve.png");
     public ModelNPC modelBipedMain;
 

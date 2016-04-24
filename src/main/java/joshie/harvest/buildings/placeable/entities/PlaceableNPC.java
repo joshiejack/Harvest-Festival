@@ -1,13 +1,13 @@
 package joshie.harvest.buildings.placeable.entities;
 
-import java.util.UUID;
-
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
+
+import java.util.UUID;
 
 public class PlaceableNPC extends PlaceableEntity {
     private INPC npc;

@@ -1,11 +1,9 @@
 package joshie.harvest.npc.gift;
 
-import static joshie.harvest.npc.gift.Gifts.Quality.AWESOME;
-import static joshie.harvest.npc.gift.Gifts.Quality.BAD;
-import static joshie.harvest.npc.gift.Gifts.Quality.DECENT;
-import static joshie.harvest.npc.gift.Gifts.Quality.GOOD;
 import joshie.harvest.items.HFItems;
 import net.minecraft.item.ItemStack;
+
+import static joshie.harvest.npc.gift.Gifts.Quality.*;
 
 public class GiftsKatlin extends Gifts {
     @Override

@@ -1,9 +1,9 @@
 package joshie.harvest.quests;
 
-import java.util.HashMap;
-
 import joshie.harvest.api.quest.IQuest;
 import joshie.harvest.api.quest.IQuestRegistry;
+
+import java.util.HashMap;
 
 public class QuestRegistry implements IQuestRegistry {
     private static HashMap<String, IQuest> quests = new HashMap();

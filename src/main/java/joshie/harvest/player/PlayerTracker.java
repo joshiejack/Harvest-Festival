@@ -1,7 +1,5 @@
 package joshie.harvest.player;
 
-import java.util.UUID;
-
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import joshie.harvest.player.fridge.FridgeData;
 import joshie.harvest.player.quests.QuestData;
@@ -11,6 +9,8 @@ import joshie.harvest.player.town.TownData;
 import joshie.harvest.player.tracking.TrackingData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+
+import java.util.UUID;
 
 public abstract class PlayerTracker {
     protected EntityNPCBuilder builder;

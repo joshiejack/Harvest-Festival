@@ -1,7 +1,5 @@
 package joshie.harvest.calendar;
 
-import java.util.Random;
-
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weather;
@@ -12,6 +10,8 @@ import joshie.harvest.core.network.PacketSetCalendar;
 import joshie.harvest.core.network.PacketSyncForecast;
 import joshie.harvest.player.PlayerTrackerServer;
 import net.minecraft.nbt.NBTTagCompound;
+
+import java.util.Random;
 
 public class CalendarServer extends Calendar {
     private static final Random rand = new Random();

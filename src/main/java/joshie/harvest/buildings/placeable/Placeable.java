@@ -1,9 +1,8 @@
 package joshie.harvest.buildings.placeable;
 
-import java.util.UUID;
-
-import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
+
+import java.util.UUID;
 
 public abstract class Placeable {
     protected int offsetX;

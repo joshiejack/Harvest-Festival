@@ -1,10 +1,5 @@
 package joshie.harvest.core.util;
 
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-
 import joshie.harvest.api.HFApi;
 import joshie.harvest.buildings.placeable.PlaceableHelper;
 import joshie.harvest.core.util.generic.IFaceable;
@@ -22,6 +17,11 @@ import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntitySign;
 import net.minecraft.world.World;
 
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
 public class CodeGeneratorBuildings {
 
     private World world;
@@ -38,7 +38,7 @@ public class CodeGeneratorBuildings {
     }
 
     public ArrayList<Entity> getEntities(Class clazz, int x, int y, int z) {
-        return (ArrayList<Entity>) world.getEntitiesWithinAABB(clazz, Blocks.stone.getCollisionBoundingBoxFromPool(world, x, y, z));
+        return (ArrayList<Entity>) world.getEntitiesWithinAABB(clazz, Blocks.STONE.getCollisionBoundingBoxFromPool(world, x, y, z));
     }
 
     public void getCode(boolean air) {
@@ -59,7 +59,7 @@ public class CodeGeneratorBuildings {
                         entityList.addAll(getEntities(EntityNPCShopkeeper.class, x1 + x, y1 + y, z1 + z));
 
                         Block block = world.getBlock(x1 + x, y1 + y, z1 + z);
-                        if (block == Blocks.chest) {
+                        if (block == Blocks.CHEST) {
                             TileEntityChest chest = (TileEntityChest) world.getTileEntity(x1 + x, y1 + y, z1 + z);
                             String name = chest.getInventoryName();
                             String field = name;
@@ -70,14 +70,14 @@ public class CodeGeneratorBuildings {
                             
                             String text = "npc_offsets.put(Town." + field.toUpperCase() + ", new PlaceableNPC(\"\", " + x + ", " + y + ", " + z + "));";
                             ret.add(text);
-                            String air2 = PlaceableHelper.getPlaceableBlockString(Blocks.air, 0, x, y, z);
+                            String air2 = PlaceableHelper.getPlaceableBlockString(Blocks.AIR, 0, x, y, z);
                             ret.add(air2);
                             continue;
                         }
                         
-                        if ((block != Blocks.air || air || entityList.size() > 0) && block != Blocks.end_stone) {
+                        if ((block != Blocks.AIR || air || entityList.size() > 0) && block != Blocks.end_stone) {
                             int meta = world.getBlockMetadata(x1 + x, y1 + y, z1 + z);
-                            if (block == Blocks.double_plant && meta >= 8) continue;
+                            if (block == Blocks.DOUBLE_PLANT && meta >= 8) continue;
                             TileEntity tile = world.getTileEntity(x1 + x, y1 + y, z1 + z);
                             if (tile instanceof IFaceable) {
                                 ret.add(PlaceableHelper.getPlaceableIFaceableString((IFaceable) tile, block, meta, x, y, z));

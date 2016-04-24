@@ -1,10 +1,5 @@
 package joshie.harvest.npc.gui;
 
-import java.util.Arrays;
-
-import org.apache.commons.lang3.SystemUtils;
-import org.apache.commons.lang3.text.WordUtils;
-
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.NPCHelper;
@@ -12,6 +7,10 @@ import joshie.harvest.core.util.Translate;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.player.stats.StatData;
 import net.minecraft.entity.player.EntityPlayer;
+import org.apache.commons.lang3.SystemUtils;
+import org.apache.commons.lang3.text.WordUtils;
+
+import java.util.Arrays;
 
 /** Renders a chat script **/
 public class GuiNPCChat extends GuiNPCBase {

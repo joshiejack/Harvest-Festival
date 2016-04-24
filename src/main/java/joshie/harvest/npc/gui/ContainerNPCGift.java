@@ -1,14 +1,9 @@
 package joshie.harvest.npc.gui;
 
-import java.util.HashSet;
-
 import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.npc.INPC;
-import joshie.harvest.api.quest.IQuest;
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.helpers.QuestHelper;
 import joshie.harvest.core.helpers.ToolHelper;
-import joshie.harvest.core.util.ContainerBase;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;

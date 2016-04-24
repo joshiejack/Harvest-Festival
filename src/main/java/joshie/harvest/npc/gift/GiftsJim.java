@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 public class GiftsJim extends Gifts {
     @Override
     public Quality getQuality(ItemStack stack) {
-        if (stack.getItem() == Items.stick) {
+        if (stack.getItem() == Items.STICK) {
             return Quality.AWESOME;
         }
 

@@ -1,13 +1,12 @@
 package joshie.harvest.core.commands;
 
-import org.apache.commons.lang3.StringUtils;
-
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.calendar.Calendar;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSetCalendar;
 import net.minecraft.command.ICommandSender;
+import org.apache.commons.lang3.StringUtils;
 
 public class HFCommandSeason extends HFCommandBase {
     @Override

@@ -1,7 +1,5 @@
 package joshie.harvest.core.util.base;
 
-import java.util.List;
-
 import joshie.harvest.api.cooking.ICookingAltIcon;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.util.generic.IHasMetaItem;
@@ -12,6 +10,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 public abstract class ItemBaseMeta extends Item implements IHasMetaItem, ICookingAltIcon {
     @SideOnly(Side.CLIENT)

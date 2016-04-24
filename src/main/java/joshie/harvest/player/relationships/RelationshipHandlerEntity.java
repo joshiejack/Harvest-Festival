@@ -1,7 +1,5 @@
 package joshie.harvest.player.relationships;
 
-import java.util.UUID;
-
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.relations.IRelatableDataHandler;
@@ -11,6 +9,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumParticleTypes;
+
+import java.util.UUID;
 
 public class RelationshipHandlerEntity implements IRelatableDataHandler {
     @Override

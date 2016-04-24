@@ -1,7 +1,5 @@
 package joshie.harvest.buildings.placeable.blocks;
 
-import java.util.UUID;
-
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.core.helpers.generic.StackHelper;
 import net.minecraft.block.Block;
@@ -10,6 +8,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+
+import java.util.UUID;
 
 public class PlaceableBlock extends Placeable {
     protected Block block;
@@ -48,7 +48,7 @@ public class PlaceableBlock extends Placeable {
 
     @Override
     public boolean place(UUID uuid, World world, int x, int y, int z, boolean n1, boolean n2, boolean swap) {
-        if (block == Blocks.air && world.getBlock(x, y, z) == Blocks.air) {
+        if (block == Blocks.AIR && world.getBlock(x, y, z) == Blocks.AIR) {
             return false;
             
         }

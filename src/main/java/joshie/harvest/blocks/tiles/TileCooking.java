@@ -1,7 +1,5 @@
 package joshie.harvest.blocks.tiles;
 
-import java.util.ArrayList;
-
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.IUtensil;
 import joshie.harvest.cooking.Utensil;
@@ -21,6 +19,8 @@ import net.minecraft.util.ITickable;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+
+import java.util.ArrayList;
 
 public abstract class TileCooking extends TileEntity implements IFaceable, ITickable {
     public static short COOK_TIMER = 100;

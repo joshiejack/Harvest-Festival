@@ -1,7 +1,5 @@
 package joshie.harvest.core.util;
 
-import java.util.HashMap;
-
 import joshie.harvest.buildings.Building;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
@@ -14,6 +12,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.BiomeGenBase;
+
+import java.util.HashMap;
 
 public class BlockAccessPreview implements IBlockAccess {
     private HashMap<PlaceableBlock, PlaceableBlock> blocks = new HashMap();
@@ -88,7 +88,7 @@ public class BlockAccessPreview implements IBlockAccess {
         }
 
         PlaceableBlock block = blocks.get(new PlaceableBlock(trueX, trueY, trueZ));
-        return block == null ? Blocks.stone.getDefaultState() : block.getBlockState(n1, n2, swap);
+        return block == null ? Blocks.STONE.getDefaultState() : block.getBlockState(n1, n2, swap);
     }
 
     @Override

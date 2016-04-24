@@ -1,10 +1,10 @@
 package joshie.harvest.player.quests;
 
-import java.util.HashSet;
-
 import joshie.harvest.api.quest.IQuest;
 import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
+
+import java.util.HashSet;
 
 public abstract class QuestData {
     protected HashSet<IQuest> current = new HashSet(10);

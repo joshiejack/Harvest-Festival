@@ -1,7 +1,5 @@
 package joshie.harvest.crops;
 
-import java.util.HashMap;
-
 import joshie.harvest.api.WorldLocation;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
@@ -9,6 +7,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
+import java.util.HashMap;
 
 public class CropTracker {
     protected HashMap<WorldLocation, ICropData> crops = new HashMap();

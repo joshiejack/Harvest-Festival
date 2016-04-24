@@ -1,9 +1,5 @@
 package joshie.harvest.calendar;
 
-import java.util.Random;
-
-import org.lwjgl.opengl.GL11;
-
 import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.block.Block;
@@ -19,6 +15,9 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.client.IRenderHandler;
+import org.lwjgl.opengl.GL11;
+
+import java.util.Random;
 
 public class WeatherRenderer extends IRenderHandler {
     public static void addRainParticles(Minecraft mc, Random random, EntityRenderer renderer) {

@@ -1,9 +1,5 @@
 package joshie.harvest.core;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
-import java.util.ArrayList;
-
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -15,12 +11,16 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.util.ArrayList;
+
 public class HFRecipeFixes {
     public static void complete() {
         fixRecipes(Items.egg, null);
-        fixRecipes(Items.carrot, "Carrot");
+        fixRecipes(Items.CARROT, "Carrot");
         fixRecipes(Items.potato, "Potato");
-        fixRecipes(Items.wheat, "Wheat");
+        fixRecipes(Items.WHEAT, "Wheat");
     }
 
     public static void fixRecipes(Item fix, String name) {

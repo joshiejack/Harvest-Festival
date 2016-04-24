@@ -1,9 +1,5 @@
 package joshie.harvest.items;
 
-import static joshie.harvest.core.lib.HFModInfo.CROPPATH;
-
-import java.util.List;
-
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.api.core.IShippable;
 import joshie.harvest.api.crops.ICrop;
@@ -15,6 +11,10 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
+
+import static joshie.harvest.core.lib.HFModInfo.CROPPATH;
 
 public class ItemCrop extends ItemHFMeta implements IShippable, ICropProvider, ICreativeSorted {
     private ICrop crop;

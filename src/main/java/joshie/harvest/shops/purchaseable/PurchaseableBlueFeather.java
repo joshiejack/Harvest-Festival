@@ -1,7 +1,5 @@
 package joshie.harvest.shops.purchaseable;
 
-import java.util.List;
-
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.util.Translate;
@@ -9,6 +7,8 @@ import joshie.harvest.core.util.generic.Text;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class PurchaseableBlueFeather extends Purchaseable {    
     public PurchaseableBlueFeather(int cost, ItemStack stack) {

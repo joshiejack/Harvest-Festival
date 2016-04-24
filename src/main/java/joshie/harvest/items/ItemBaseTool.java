@@ -1,9 +1,5 @@
 package joshie.harvest.items;
 
-import static joshie.harvest.core.lib.HFModInfo.TOOLSPATH;
-
-import java.util.List;
-
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.api.core.ILevelable;
 import joshie.harvest.api.core.ITiered;
@@ -16,6 +12,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 public abstract class ItemBaseTool extends ItemBaseSingle implements ILevelable, ITiered, ICreativeSorted {
     //private IIcon[] icons;

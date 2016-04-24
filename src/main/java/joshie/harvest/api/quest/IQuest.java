@@ -1,7 +1,5 @@
 package joshie.harvest.api.quest;
 
-import java.util.HashSet;
-
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.npc.entity.EntityNPC;
@@ -10,7 +8,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.world.World;
+
+import java.util.HashSet;
 
 public interface IQuest {
     /** Sets the unique name of this quest **/

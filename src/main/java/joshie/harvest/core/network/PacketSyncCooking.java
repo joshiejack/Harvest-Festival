@@ -1,7 +1,5 @@
 package joshie.harvest.core.network;
 
-import java.util.ArrayList;
-
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.blocks.tiles.TileCooking;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
@@ -13,6 +11,8 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+
+import java.util.ArrayList;
 
 public class PacketSyncCooking extends AbstractPacketOrientation implements IMessageHandler<PacketSyncCooking, IMessage> {
     private boolean isCooking, hasResult;

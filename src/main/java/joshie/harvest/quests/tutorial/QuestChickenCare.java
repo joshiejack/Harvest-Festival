@@ -1,9 +1,5 @@
 package joshie.harvest.quests.tutorial;
 
-import static joshie.harvest.core.helpers.QuestHelper.completeQuest;
-
-import java.util.HashSet;
-
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ISizeable.Size;
@@ -24,6 +20,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+
+import java.util.HashSet;
+
+import static joshie.harvest.core.helpers.QuestHelper.completeQuest;
 public class QuestChickenCare extends Quest {
     private boolean hasThrown;
     private boolean hasFed;

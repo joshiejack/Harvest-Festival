@@ -1,12 +1,7 @@
 package joshie.harvest.asm.overrides;
 
-import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.plugins.harvestcraft.HarvestCraft;
 import joshie.harvest.plugins.harvestcraft.HarvestCraftCrop;
@@ -14,6 +9,10 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 
 public class ItemPamSeedFood {
     private static Cache<String, HarvestCraftCrop> cache = CacheBuilder.newBuilder().maximumSize(1000).build();

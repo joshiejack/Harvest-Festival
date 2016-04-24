@@ -1,10 +1,5 @@
 package joshie.harvest.items.render;
 
-import java.util.HashMap;
-
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
-
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
@@ -15,6 +10,10 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
+
+import java.util.HashMap;
 
 public class RenderItemNPC implements IItemRenderer {
     private static HashMap<INPC, EntityLivingBase> render = new HashMap();

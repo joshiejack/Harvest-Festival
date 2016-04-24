@@ -1,17 +1,16 @@
 package joshie.harvest.buildings.placeable.entities;
 
-import java.util.UUID;
-
 import joshie.harvest.buildings.placeable.PlaceableHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItemFrame;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.util.WeightedRandomChestContent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ChestGenHooks;
+
+import java.util.UUID;
 
 public class PlaceableItemFrame extends PlaceableHanging {
     private ItemStack stack;
@@ -38,7 +37,7 @@ public class PlaceableItemFrame extends PlaceableHanging {
         int facing = getFacing(n1, n2, swap);
         EntityItemFrame frame = new EntityItemFrame(world, new BlockPos(getX(x, facing), y, getZ(z, facing)), EnumFacing.values()[facing]);
         ItemStack loot = null;
-        
+
         if (stack != null) loot = stack.copy();
         if (chestType != null) {
             try {

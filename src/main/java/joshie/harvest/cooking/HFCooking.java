@@ -1,7 +1,5 @@
 package joshie.harvest.cooking;
 
-import static joshie.harvest.cooking.HFIngredients.milk;
-
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.cooking.entity.EntityCookingItem;
@@ -12,6 +10,8 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import static joshie.harvest.cooking.HFIngredients.milk;
 
 public class HFCooking {
     public static Fluid cookingOil;

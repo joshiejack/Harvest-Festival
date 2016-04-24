@@ -1,7 +1,5 @@
 package joshie.harvest.api.shops;
 
-import java.util.List;
-
 import joshie.harvest.api.calendar.Weekday;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -9,6 +7,8 @@ import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 public interface IShop {
    /** Whether the shop is currently open

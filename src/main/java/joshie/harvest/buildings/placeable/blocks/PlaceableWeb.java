@@ -1,9 +1,9 @@
 package joshie.harvest.buildings.placeable.blocks;
 
-import java.util.UUID;
-
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
+
+import java.util.UUID;
 
 public class PlaceableWeb extends PlaceableBlock {
     public PlaceableWeb(Block web, int meta, int x, int y, int z) {

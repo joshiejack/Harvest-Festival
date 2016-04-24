@@ -1,7 +1,5 @@
 package joshie.harvest.blocks.items;
 
-import java.util.List;
-
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.blocks.BlockFlower;
 import joshie.harvest.core.util.Translate;
@@ -13,6 +11,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 public class ItemBlockFlower extends ItemBlockBase implements ICreativeSorted {
     public ItemBlockFlower(Block block) {

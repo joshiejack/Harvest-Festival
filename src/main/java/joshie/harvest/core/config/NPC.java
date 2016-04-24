@@ -1,8 +1,8 @@
 package joshie.harvest.core.config;
 
-import static joshie.harvest.core.helpers.generic.ConfigHelper.getInteger;
-
 import net.minecraftforge.common.config.Configuration;
+
+import static joshie.harvest.core.helpers.generic.ConfigHelper.getInteger;
 
 public class NPC {
     public static boolean FREEZE_NPC = false;

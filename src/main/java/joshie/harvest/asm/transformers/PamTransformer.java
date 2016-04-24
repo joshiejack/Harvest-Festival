@@ -1,17 +1,12 @@
 package joshie.harvest.asm.transformers;
 
+import joshie.harvest.core.config.ASM;
+import joshie.harvest.core.lib.HFModInfo;
+import org.objectweb.asm.*;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-
-import org.objectweb.asm.ClassReader;
-import org.objectweb.asm.ClassVisitor;
-import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.MethodVisitor;
-import org.objectweb.asm.Opcodes;
-
-import joshie.harvest.core.config.ASM;
-import joshie.harvest.core.lib.HFModInfo;
 
 public class PamTransformer extends AbstractASM {
     @Override

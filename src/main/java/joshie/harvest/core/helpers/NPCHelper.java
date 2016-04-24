@@ -1,7 +1,5 @@
 package joshie.harvest.core.helpers;
 
-import java.util.UUID;
-
 import joshie.harvest.api.WorldLocation;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.shops.IShop;
@@ -13,6 +11,8 @@ import joshie.harvest.npc.entity.EntityNPCMiner;
 import joshie.harvest.npc.entity.EntityNPCShopkeeper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+
+import java.util.UUID;
 
 public class NPCHelper {
     public static WorldLocation getHomeForEntity(EntityNPC entity) {

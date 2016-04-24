@@ -1,9 +1,5 @@
 package joshie.harvest.buildings;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.UUID;
-
 import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.buildings.placeable.Placeable;
@@ -15,10 +11,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.UUID;
+
 public class Building implements IBuilding {
-    public static final ArrayList<Building> buildings = new ArrayList(50);
+    public static final ArrayList<Building> buildings = new ArrayList<Building>(50);
     //List of all placeable elements
-    public HashMap<String, PlaceableNPC> npc_offsets = new HashMap();
+    public HashMap<String, PlaceableNPC> npc_offsets = new HashMap<String, PlaceableNPC>();
     protected ArrayList<Placeable> list;
     private BlockAccessPreview preview;
     protected int offsetY;
@@ -27,13 +27,13 @@ public class Building implements IBuilding {
     //List of all placeable elements
     private String name;
     private int meta;
-    
+
     public Building(String string) {
         this.name = string;
         this.meta = buildings.size();
-        this.buildings.add(this);
+        buildings.add(this);
     }
-    
+
     public Building init() {
         this.preview = new BlockAccessPreview(this);
         return this;
@@ -48,11 +48,11 @@ public class Building implements IBuilding {
 
         return null;
     }
-    
+
     public ItemStack getPreview() {
         return new ItemStack(HFBlocks.preview, 1, meta);
     }
-    
+
     public String getName() {
         return name;
     }
@@ -129,7 +129,7 @@ public class Building implements IBuilding {
 
     @Override
     public boolean equals(Object o) {
-        return (o instanceof String) ? name.equals(o) : false;
+        return (o instanceof String) && name.equals(o);
     }
 
     @Override

@@ -1,7 +1,5 @@
 package joshie.harvest.blocks;
 
-import static net.minecraftforge.common.EnumPlantType.Plains;
-
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.util.base.BlockHFBase;
 import net.minecraft.block.Block;
@@ -16,6 +14,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 
+import static net.minecraftforge.common.EnumPlantType.Plains;
+
 public class BlockFlower extends BlockHFBase implements IPlantable {
     public BlockFlower() {
         super(Material.plants, HFTab.tabTown);
@@ -29,7 +29,7 @@ public class BlockFlower extends BlockHFBase implements IPlantable {
     }
 
     protected boolean canPlaceBlockOn(Block block) {
-        return block == Blocks.grass || block == Blocks.dirt || block == Blocks.farmland;
+        return block == Blocks.GRASS || block == Blocks.DIRT || block == Blocks.farmland;
     }
 
     @Override

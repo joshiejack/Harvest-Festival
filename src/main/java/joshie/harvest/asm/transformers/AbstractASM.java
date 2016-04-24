@@ -1,10 +1,9 @@
 package joshie.harvest.asm.transformers;
 
-import org.objectweb.asm.ClassVisitor;
-import org.objectweb.asm.ClassWriter;
-
 import joshie.harvest.core.config.ASM;
 import net.minecraft.tileentity.TileEntityChest;
+import org.objectweb.asm.ClassVisitor;
+import org.objectweb.asm.ClassWriter;
 
 public abstract class AbstractASM {
     public abstract boolean isClass(String name);

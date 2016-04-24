@@ -1,7 +1,5 @@
 package joshie.harvest.shops.purchaseable;
 
-import java.util.List;
-
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.calendar.Season;
@@ -15,6 +13,8 @@ import joshie.harvest.core.util.generic.Text;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class PurchaseableCropSeeds implements IPurchaseable {
     private ItemStack product;

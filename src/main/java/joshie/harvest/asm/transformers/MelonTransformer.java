@@ -1,19 +1,13 @@
 package joshie.harvest.asm.transformers;
 
-import java.util.Iterator;
-
-import org.objectweb.asm.ClassReader;
-import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.tree.AbstractInsnNode;
-import org.objectweb.asm.tree.ClassNode;
-import org.objectweb.asm.tree.LdcInsnNode;
-import org.objectweb.asm.tree.MethodInsnNode;
-import org.objectweb.asm.tree.MethodNode;
-import org.objectweb.asm.tree.TypeInsnNode;
-
 import joshie.harvest.asm.HFOverride;
 import joshie.harvest.core.config.ASM;
 import joshie.harvest.core.lib.HFModInfo;
+import org.objectweb.asm.ClassReader;
+import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.tree.*;
+
+import java.util.Iterator;
 
 public class MelonTransformer extends AbstractASM {
     @Override

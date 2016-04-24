@@ -1,7 +1,5 @@
 package joshie.harvest.items;
 
-import java.util.List;
-
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.core.ICreativeSorted;
@@ -26,6 +24,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 @Optional.Interface(modid = "AgriCraft", iface = "com.InfinityRaider.AgriCraft.farming.ICropOverridingSeed")
 public class ItemHFSeeds extends ItemSeeds implements ICropOverridingSeed, ICreativeSorted {

@@ -1,7 +1,5 @@
 package joshie.harvest.items;
 
-import static net.minecraft.block.Block.soundTypeGrass;
-
 import joshie.harvest.api.crops.IBreakCrops;
 import joshie.harvest.blocks.BlockCrop;
 import joshie.harvest.core.helpers.PlayerHelper;
@@ -11,6 +9,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
+import static net.minecraft.block.Block.soundTypeGrass;
 
 public class ItemSickle extends ItemBaseTool implements IBreakCrops {
     @Override
@@ -60,7 +60,7 @@ public class ItemSickle extends ItemBaseTool implements IBreakCrops {
 
     @Override
     public float getDigSpeed(ItemStack stack, Block block, int meta) {
-        return (block != Blocks.grass && block.getMaterial() == Material.grass) || block.getMaterial() == Material.leaves || block.getMaterial() == Material.vine ? 10F : func_150893_a(stack, block);
+        return (block != Blocks.GRASS && block.getMaterial() == Material.grass) || block.getMaterial() == Material.leaves || block.getMaterial() == Material.vine ? 10F : func_150893_a(stack, block);
     }
 
     @Override

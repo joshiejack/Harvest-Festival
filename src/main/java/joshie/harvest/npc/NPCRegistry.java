@@ -1,14 +1,14 @@
 package joshie.harvest.npc;
 
-import java.util.Collection;
-import java.util.HashMap;
-
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.npc.INPCRegistry;
 import joshie.harvest.npc.NPC.Age;
 import joshie.harvest.npc.NPC.Gender;
+
+import java.util.Collection;
+import java.util.HashMap;
 
 public class NPCRegistry  implements INPCRegistry {
     private static HashMap<String, INPC> npcs = new HashMap();

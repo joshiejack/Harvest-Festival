@@ -1,47 +1,7 @@
 package joshie.harvest.cooking;
 
-import static joshie.harvest.cooking.HFIngredients.apple;
-import static joshie.harvest.cooking.HFIngredients.bread;
-import static joshie.harvest.cooking.HFIngredients.butter;
-import static joshie.harvest.cooking.HFIngredients.cabbage;
-import static joshie.harvest.cooking.HFIngredients.carrot;
-import static joshie.harvest.cooking.HFIngredients.chocolate;
-import static joshie.harvest.cooking.HFIngredients.cookies;
-import static joshie.harvest.cooking.HFIngredients.corn;
-import static joshie.harvest.cooking.HFIngredients.cucumber;
-import static joshie.harvest.cooking.HFIngredients.egg;
-import static joshie.harvest.cooking.HFIngredients.eggplant;
-import static joshie.harvest.cooking.HFIngredients.fish;
-import static joshie.harvest.cooking.HFIngredients.flour;
-import static joshie.harvest.cooking.HFIngredients.green_pepper;
-import static joshie.harvest.cooking.HFIngredients.juice_vegetable;
-import static joshie.harvest.cooking.HFIngredients.ketchup;
-import static joshie.harvest.cooking.HFIngredients.mayonnaise;
-import static joshie.harvest.cooking.HFIngredients.milk;
-import static joshie.harvest.cooking.HFIngredients.mushroom;
-import static joshie.harvest.cooking.HFIngredients.oil;
-import static joshie.harvest.cooking.HFIngredients.onion;
-import static joshie.harvest.cooking.HFIngredients.pineapple;
-import static joshie.harvest.cooking.HFIngredients.potato;
-import static joshie.harvest.cooking.HFIngredients.pumpkin;
-import static joshie.harvest.cooking.HFIngredients.riceball;
-import static joshie.harvest.cooking.HFIngredients.salad_ingredient;
-import static joshie.harvest.cooking.HFIngredients.salt;
-import static joshie.harvest.cooking.HFIngredients.sandwich_ingredient;
-import static joshie.harvest.cooking.HFIngredients.sashimi;
-import static joshie.harvest.cooking.HFIngredients.sashimi_vegetable;
-import static joshie.harvest.cooking.HFIngredients.scrambled_egg;
-import static joshie.harvest.cooking.HFIngredients.spinach;
-import static joshie.harvest.cooking.HFIngredients.strawberry;
-import static joshie.harvest.cooking.HFIngredients.sugar;
-import static joshie.harvest.cooking.HFIngredients.sweet_potato;
-import static joshie.harvest.cooking.HFIngredients.tomato;
-import static joshie.harvest.cooking.HFIngredients.turnip;
-import static joshie.harvest.core.helpers.RecipeHelper.addFryingPanRecipe;
-import static joshie.harvest.core.helpers.RecipeHelper.addMixerRecipe;
-import static joshie.harvest.core.helpers.RecipeHelper.addNoUtensilRecipe;
-import static joshie.harvest.core.helpers.RecipeHelper.addOvenRecipe;
-import static joshie.harvest.core.helpers.RecipeHelper.addPotRecipe;
+import static joshie.harvest.cooking.HFIngredients.*;
+import static joshie.harvest.core.helpers.RecipeHelper.*;
 
 public class HFRecipes {
     public static void preInit() {

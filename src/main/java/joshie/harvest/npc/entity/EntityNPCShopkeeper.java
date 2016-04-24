@@ -1,12 +1,12 @@
 package joshie.harvest.npc.entity;
 
-import java.util.UUID;
-
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.shops.IShop;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+
+import java.util.UUID;
 
 public class EntityNPCShopkeeper extends EntityNPC {
     private IShop shop;

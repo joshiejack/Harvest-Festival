@@ -1,8 +1,5 @@
 package joshie.harvest.core.helpers.generic;
 
-import java.util.List;
-import java.util.UUID;
-
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import net.minecraft.entity.Entity;
@@ -12,6 +9,9 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+
+import java.util.List;
+import java.util.UUID;
 
 public class EntityHelper {
     //Loops through all the animals in the specified dimension id

@@ -1,9 +1,5 @@
 package joshie.harvest.quests.tutorial;
 
-import static joshie.harvest.core.helpers.QuestHelper.completeQuest;
-
-import java.util.HashSet;
-
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.api.HFApi;
@@ -26,6 +22,10 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
+import java.util.HashSet;
+
+import static joshie.harvest.core.helpers.QuestHelper.completeQuest;
+
 public class QuestCowCare extends Quest {
     private boolean hasCollected;
     private boolean hasFed;
@@ -40,7 +40,7 @@ public class QuestCowCare extends Quest {
                 ItemStack held = player.getCurrentEquippedItem();
                 if (held != null) {
                     boolean hasChanged = false;
-                    if (!hasFed && held.getItem() == Items.wheat) {
+                    if (!hasFed && held.getItem() == Items.WHEAT) {
                         hasFed = true;
                         hasChanged = true;
                     } else if (!hasBrushed && ToolHelper.isBrush(held)) {

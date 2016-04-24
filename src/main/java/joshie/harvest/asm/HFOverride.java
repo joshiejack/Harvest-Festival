@@ -1,29 +1,18 @@
 package joshie.harvest.asm;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import joshie.harvest.asm.transformers.*;
+import joshie.harvest.core.config.HFConfig;
+import net.minecraft.launchwrapper.IClassTransformer;
+import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import joshie.harvest.asm.transformers.AbstractASM;
-import joshie.harvest.asm.transformers.EggTransformer;
-import joshie.harvest.asm.transformers.FarmlandHardnessTransformer;
-import joshie.harvest.asm.transformers.FarmlandTransformer;
-import joshie.harvest.asm.transformers.MelonTransformer;
-import joshie.harvest.asm.transformers.PumpkinTransformer;
-import joshie.harvest.asm.transformers.SeedFoodTransformer;
-import joshie.harvest.asm.transformers.SnowTransformer;
-import joshie.harvest.asm.transformers.WeatherTransformer;
-import joshie.harvest.asm.transformers.WheatTransformer;
-import joshie.harvest.core.config.HFConfig;
-import net.minecraft.launchwrapper.IClassTransformer;
-import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class HFOverride implements IFMLLoadingPlugin, IClassTransformer {
     private static final int EGG = 0;

@@ -1,11 +1,5 @@
 package joshie.harvest.core;
 
-import static joshie.harvest.core.lib.HFModInfo.MODPATH;
-
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.items.HFItems;
@@ -15,6 +9,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+import static joshie.harvest.core.lib.HFModInfo.MODPATH;
 
 public class HFTab extends CreativeTabs {
     public static HFTab tabTown = new HFTab("town");

@@ -1,11 +1,11 @@
 package joshie.harvest.core.util;
 
-import java.lang.reflect.Field;
-import java.util.Hashtable;
-
 import joshie.harvest.calendar.WeatherProvider;
 import net.minecraft.world.WorldProvider;
 import net.minecraftforge.common.DimensionManager;
+
+import java.lang.reflect.Field;
+import java.util.Hashtable;
 
 //STOLEN FROM THE ALLMIGHTY CHYLEX
 public class WorldDestroyer {

@@ -1,11 +1,11 @@
 package joshie.harvest.core.util;
 
+import org.apache.commons.io.FileUtils;
+
 import java.io.File;
 import java.io.PrintWriter;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
-
-import org.apache.commons.io.FileUtils;
 
 public class CodeGeneratorRendering {
     public void getCode() {

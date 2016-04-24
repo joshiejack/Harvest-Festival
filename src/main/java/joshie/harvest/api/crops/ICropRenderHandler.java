@@ -1,7 +1,6 @@
 package joshie.harvest.api.crops;
 
 import net.minecraft.block.Block;
-import net.minecraft.world.IBlockAccess;
 
 /** This is for grabbing the icons for different crops in block form **/
 public interface ICropRenderHandler {

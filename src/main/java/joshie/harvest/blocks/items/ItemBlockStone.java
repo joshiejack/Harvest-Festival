@@ -1,7 +1,5 @@
 package joshie.harvest.blocks.items;
 
-import java.util.List;
-
 import joshie.harvest.core.util.Translate;
 import joshie.harvest.core.util.base.ItemBlockBase;
 import net.minecraft.block.Block;
@@ -9,6 +7,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 public class ItemBlockStone extends ItemBlockBase {
     public ItemBlockStone(Block block) {

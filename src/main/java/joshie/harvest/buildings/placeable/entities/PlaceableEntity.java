@@ -1,10 +1,10 @@
 package joshie.harvest.buildings.placeable.entities;
 
-import java.util.UUID;
-
 import joshie.harvest.buildings.placeable.Placeable;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
+
+import java.util.UUID;
 
 public abstract class PlaceableEntity extends Placeable {    
     public PlaceableEntity(int offsetX, int offsetY, int offsetZ) {

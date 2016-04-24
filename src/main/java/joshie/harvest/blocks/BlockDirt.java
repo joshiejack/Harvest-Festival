@@ -1,8 +1,5 @@
 package joshie.harvest.blocks;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.config.General;
 import joshie.harvest.core.render.HFSubmapManagerCTM;
@@ -14,6 +11,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BlockDirt extends CTMBlockHFBase {
 	public BlockDirt(String modid, String texturePath) {
@@ -91,7 +91,7 @@ public class BlockDirt extends CTMBlockHFBase {
         	if (metadata == 0) {
         	}
         	if (metadata == 1) {
-                ret.add(new ItemStack(HFBlocks.dirt, 1, 1));
+                ret.add(new ItemStack(HFBlocks.DIRT, 1, 1));
             }
         }
         return ret;

@@ -1,35 +1,17 @@
 package joshie.harvest.crops;
 
-import static joshie.harvest.api.calendar.Season.AUTUMN;
-import static joshie.harvest.api.calendar.Season.SPRING;
-import static joshie.harvest.api.calendar.Season.SUMMER;
-
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.core.config.HFConfig;
 import joshie.harvest.crops.handlers.DropHandlerMelon;
 import joshie.harvest.crops.handlers.DropHandlerPotato;
-import joshie.harvest.crops.icons.IconHandlerBlock;
-import joshie.harvest.crops.icons.IconHandlerCabbage;
-import joshie.harvest.crops.icons.IconHandlerCorn;
-import joshie.harvest.crops.icons.IconHandlerCucumber;
-import joshie.harvest.crops.icons.IconHandlerEggplant;
-import joshie.harvest.crops.icons.IconHandlerGrass;
-import joshie.harvest.crops.icons.IconHandlerGreenPepper;
-import joshie.harvest.crops.icons.IconHandlerNull;
-import joshie.harvest.crops.icons.IconHandlerOnion;
-import joshie.harvest.crops.icons.IconHandlerPineapple;
-import joshie.harvest.crops.icons.IconHandlerSeedFood;
-import joshie.harvest.crops.icons.IconHandlerSpinach;
-import joshie.harvest.crops.icons.IconHandlerStrawberry;
-import joshie.harvest.crops.icons.IconHandlerSweetPotato;
-import joshie.harvest.crops.icons.IconHandlerTomato;
-import joshie.harvest.crops.icons.IconHandlerTurnip;
-import joshie.harvest.crops.icons.IconHandlerWheat;
+import joshie.harvest.crops.icons.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+
+import static joshie.harvest.api.calendar.Season.*;
 
 public class HFCrops {
     public static ICrop null_crop; //Dummy crop
@@ -82,9 +64,9 @@ public class HFCrops {
         wheat = HFApi.CROPS.registerCrop("wheat", 150, 100, 28, 0, 0, 0XEAC715, SPRING, SUMMER, AUTUMN).setAnimalFoodType(AnimalFoodType.GRASS).setRequiresSickle().setCropIconHandler(new IconHandlerWheat());
         watermelon = HFApi.CROPS.registerCrop("watermelon", 250, 25, 11, 0, 3, 0xc92b3e, SUMMER).setAnimalFoodType(AnimalFoodType.FRUIT).setDropHandler(new DropHandlerMelon()).setGrowsToSide(Blocks.melon_block).setCropIconHandler(new IconHandlerBlock(Blocks.melon_block));
         if (HFConfig.asm.POTATO_OVERRIDE) potato.setItem(new ItemStack(Items.potato));
-        if (HFConfig.asm.CARROT_OVERRIDE) carrot.setItem(new ItemStack(Items.carrot));
-        if (HFConfig.asm.WHEAT_OVERRIDE) wheat.setItem(new ItemStack(Items.wheat));
+        if (HFConfig.asm.CARROT_OVERRIDE) carrot.setItem(new ItemStack(Items.CARROT));
+        if (HFConfig.asm.WHEAT_OVERRIDE) wheat.setItem(new ItemStack(Items.WHEAT));
         if (HFConfig.asm.PUMPKIN_OVERRIDE) pumpkin.setItem(new ItemStack(Blocks.pumpkin));
-        if (HFConfig.asm.WATERMELON_OVERRIDE) watermelon.setItem(new ItemStack(Items.melon));
+        if (HFConfig.asm.WATERMELON_OVERRIDE) watermelon.setItem(new ItemStack(Items.MELON));
     }
 }

@@ -1,12 +1,12 @@
 package joshie.harvest.player.town;
 
-import java.util.HashMap;
-
 import joshie.harvest.api.WorldLocation;
 import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.buildings.BuildingStage;
 import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.world.World;
+
+import java.util.HashMap;
 
 public class TownData {
     public static final String CARPENTER_DOWNSTAIRS = "yulifhome";

@@ -1,9 +1,5 @@
 package joshie.harvest.player.quests;
 
-import static joshie.harvest.core.network.PacketHandler.sendToClient;
-
-import java.util.HashSet;
-
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.quest.IQuest;
 import joshie.harvest.core.handlers.HFTrackers;
@@ -15,6 +11,10 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
+
+import java.util.HashSet;
+
+import static joshie.harvest.core.network.PacketHandler.sendToClient;
 
 public class QuestDataServer extends QuestData {
     private HashSet<IQuest> finished = new HashSet();

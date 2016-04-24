@@ -1,8 +1,5 @@
 package joshie.harvest.core.handlers;
 
-import java.util.Collection;
-import java.util.UUID;
-
 import joshie.harvest.animals.AnimalTrackerServer;
 import joshie.harvest.calendar.CalendarServer;
 import joshie.harvest.core.HFSavedData;
@@ -12,6 +9,9 @@ import joshie.harvest.player.PlayerTrackerServer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.world.World;
+
+import java.util.Collection;
+import java.util.UUID;
 
 public class ServerHandler extends SideHandler {
     private HFSavedData data;

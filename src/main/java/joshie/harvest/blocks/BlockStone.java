@@ -1,9 +1,5 @@
 package joshie.harvest.blocks;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.config.General;
 import joshie.harvest.core.util.base.BlockHFBaseMeta;
@@ -14,7 +10,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BlockStone extends BlockHFBaseMeta {
   
@@ -41,33 +41,6 @@ public class BlockStone extends BlockHFBaseMeta {
             }
         }
     }
-    
-    //TEXTURES
-	private IIcon[] textures = new IIcon[7];
-    
-    //Not working at the moment
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister iconRegister) {
-        String name = prefix != null ? prefix : "";
-        for(int i = 0; i < getTextures().length; i++){ getTextures()[i] = iconRegister.registerIcon(mod + ":" + name + getName(i));}
-        }
-    
-	@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(int side, int metadata) {
-		return textures[(new Random()).nextInt(textures.length)];
-	}
-
-	@SideOnly(Side.CLIENT)
-	public IIcon[] getTextures() {
-		return textures;
-	}
-
-	@SideOnly(Side.CLIENT)
-	public void setTextures(IIcon[] textures) {
-		this.textures = textures;
-	}
 	
 	//TECHNICAL
     @Override

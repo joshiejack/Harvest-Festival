@@ -1,12 +1,5 @@
 package joshie.harvest.quests.tutorial;
 
-import static joshie.harvest.core.helpers.QuestHelper.completeQuest;
-import static joshie.harvest.core.helpers.QuestHelper.rewardGold;
-import static joshie.harvest.core.helpers.QuestHelper.rewardRelations;
-import static joshie.harvest.core.helpers.QuestHelper.takeHeldStack;
-
-import java.util.HashSet;
-
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quest.IQuest;
 import joshie.harvest.crops.HFCrops;
@@ -15,6 +8,10 @@ import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.quests.Quest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+
+import java.util.HashSet;
+
+import static joshie.harvest.core.helpers.QuestHelper.*;
 
 public class QuestTomatoes extends Quest {    
     @Override

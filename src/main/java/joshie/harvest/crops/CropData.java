@@ -1,10 +1,5 @@
 package joshie.harvest.crops;
 
-import static joshie.harvest.core.network.PacketHandler.sendToEveryone;
-
-import java.util.Random;
-import java.util.UUID;
-
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.WorldLocation;
 import joshie.harvest.api.calendar.Season;
@@ -25,6 +20,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
+
+import java.util.Random;
+import java.util.UUID;
+
+import static joshie.harvest.core.network.PacketHandler.sendToEveryone;
 
 public class CropData implements ICropData {
     private static final Random rand = new Random();

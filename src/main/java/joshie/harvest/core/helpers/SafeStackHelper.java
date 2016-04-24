@@ -1,10 +1,6 @@
 package joshie.harvest.core.helpers;
 
-import java.util.Collection;
-import java.util.HashMap;
-
 import com.google.common.collect.Multimap;
-
 import joshie.harvest.api.cooking.IMealProvider;
 import joshie.harvest.api.core.ISizedProvider;
 import joshie.harvest.api.crops.ICropProvider;
@@ -14,6 +10,9 @@ import joshie.harvest.core.util.SafeStack;
 import joshie.harvest.core.util.WildStack;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
+
+import java.util.Collection;
+import java.util.HashMap;
 
 public class SafeStackHelper {
     public static SafeStack getSafeStackType(ItemStack stack) {

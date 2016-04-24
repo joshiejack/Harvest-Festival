@@ -1,8 +1,5 @@
 package joshie.harvest.core;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import joshie.harvest.api.animals.HFAnimals;
 import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.buildings.HFBuildings;
@@ -19,6 +16,9 @@ import joshie.harvest.npc.gift.init.HFGifts;
 import joshie.harvest.plugins.HFPlugins;
 import joshie.harvest.quests.HFQuests;
 import joshie.harvest.shops.HFShops;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HFCommonProxy {
     protected static final List<Class> list = new ArrayList();

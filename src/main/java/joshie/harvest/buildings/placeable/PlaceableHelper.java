@@ -1,9 +1,5 @@
 package joshie.harvest.buildings.placeable;
 
-import java.util.HashMap;
-
-import org.apache.logging.log4j.Level;
-
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.buildings.placeable.entities.PlaceableEntity;
 import joshie.harvest.buildings.placeable.entities.PlaceableItemFrame;
@@ -11,43 +7,24 @@ import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.buildings.placeable.entities.PlaceablePainting;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.generic.IFaceable;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockAnvil;
-import net.minecraft.block.BlockButton;
-import net.minecraft.block.BlockDoor;
-import net.minecraft.block.BlockDoublePlant;
-import net.minecraft.block.BlockEnderChest;
-import net.minecraft.block.BlockFenceGate;
-import net.minecraft.block.BlockFlower;
-import net.minecraft.block.BlockFlowerPot;
-import net.minecraft.block.BlockFurnace;
-import net.minecraft.block.BlockLadder;
-import net.minecraft.block.BlockLever;
-import net.minecraft.block.BlockLilyPad;
-import net.minecraft.block.BlockLog;
-import net.minecraft.block.BlockMushroom;
-import net.minecraft.block.BlockPumpkin;
-import net.minecraft.block.BlockQuartz;
-import net.minecraft.block.BlockStairs;
-import net.minecraft.block.BlockTorch;
-import net.minecraft.block.BlockTrapDoor;
-import net.minecraft.block.BlockTripWireHook;
-import net.minecraft.block.BlockVine;
-import net.minecraft.block.BlockWeb;
+import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import org.apache.logging.log4j.Level;
+
+import java.util.HashMap;
 
 public class PlaceableHelper {
-    public static HashMap<String, PlaceableEntity> entities = new HashMap();
-    private static final HashMap<String, String> names = new HashMap();
+    public static HashMap<String, PlaceableEntity> entities = new HashMap<String, PlaceableEntity>();
+    private static final HashMap<String, String> names = new HashMap<String, String>();
 
     public static String getBestGuessName(ItemStack stack) {
         if (stack.getItem() != null && stack.getItem() instanceof ItemBlock) {
             Block block = Block.getBlockFromItem(stack.getItem());
-            String name = Block.blockRegistry.getNameForObject(block).getResourcePath();
+            String name = Block.REGISTRY.getNameForObject(block).getResourcePath();
             String print = "Blocks." + name;
             if (names.containsKey(name)) {
                 print = names.get(name);
@@ -55,7 +32,7 @@ public class PlaceableHelper {
 
             return print;
         } else if (stack.getItem() != null) {
-            String name = Item.itemRegistry.getNameForObject(stack.getItem()).getResourcePath();
+            String name = Item.REGISTRY.getNameForObject(stack.getItem()).getResourcePath();
             String print = "Items." + name;
             if (names.containsKey(name)) {
                 print = names.get(name);
@@ -65,7 +42,7 @@ public class PlaceableHelper {
         } else return "//ITEM NAME";
     }
 
-    public static String getPrefixString(Block block) {
+    private static String getPrefixString(Block block) {
         if (block instanceof BlockStairs) {
             return "Stairs";
         } else if (block instanceof BlockTorch) {
@@ -122,25 +99,25 @@ public class PlaceableHelper {
 
     public static String getWallSignString(String[] sign, Block block, int meta, int x, int y, int z) {
         String text = "new String[] { \"" + sign[0] + "\", \"" + sign[1] + "\", \"" + sign[2] + "\", \"" + sign[3] + "\" } ";
-        return "list.add(new PlaceableSignWall" + "(Blocks.wall_sign, " + meta + ", " + x + ", " + y + ", " + z + ", " + text + "));";
+        return "list.add(new PlaceableSignWall" + "(Blocks.WALL_SIGN, " + meta + ", " + x + ", " + y + ", " + z + ", " + text + "));";
     }
 
     public static String getPlaceableBlockString(Block block, int meta, int x, int y, int z) {
         String print = getBestGuessName(new ItemStack(block));
-        if (block == Blocks.oak_door) print = "Blocks.oak_door";
-        if (block == Blocks.birch_door) print = "Blocks.birch_door";
-        if (block == Blocks.spruce_door) print = "Blocks.spruce_door";
-        if (block == Blocks.jungle_door) print = "Blocks.jungle_door";
-        if (block == Blocks.acacia_door) print = "Blocks.acacia_door";
-        if (block == Blocks.dark_oak_door) print = "Blocks.dark_oak_door";
-        if (block == Blocks.iron_door) print = "Blocks.iron_door";
-        if (block == Blocks.standing_sign) print = "Blocks.standing_sign";
-        if (block == Blocks.air) print = "Blocks.air";
-        if (block == Blocks.wall_sign) print = "Blocks.wall_sign";
-        if (block == Blocks.flower_pot) print = "Blocks.flower_pot";
-        if (block == Blocks.cauldron) print = "Blocks.cauldron";
-        if (block == Blocks.reeds) print = "Blocks.reeds";
-        if (block == Blocks.cake) print = "Blocks.cake";
+        if (block == Blocks.OAK_DOOR) print = "Blocks.OAK_DOOR";
+        if (block == Blocks.BIRCH_DOOR) print = "Blocks.BIRCH_DOOR";
+        if (block == Blocks.SPRUCE_DOOR) print = "Blocks.spruce_door";
+        if (block == Blocks.JUNGLE_DOOR) print = "Blocks.jungle_door";
+        if (block == Blocks.ACACIA_DOOR) print = "Blocks.acacia_door";
+        if (block == Blocks.DARK_OAK_DOOR) print = "Blocks.dark_oak_door";
+        if (block == Blocks.IRON_DOOR) print = "Blocks.iron_door";
+        if (block == Blocks.STANDING_SIGN) print = "Blocks.standing_sign";
+        if (block == Blocks.AIR) print = "Blocks.AIR";
+        if (block == Blocks.WALL_SIGN) print = "Blocks.WALL_SIGN";
+        if (block == Blocks.FLOWER_POT) print = "Blocks.FLOWER_POT";
+        if (block == Blocks.CAULDRON) print = "Blocks.CAULDRON";
+        if (block == Blocks.REEDS) print = "Blocks.REEDS";
+        if (block == Blocks.CAKE) print = "Blocks.CAKE";
         if (print.equals("//ITEM NAME")) HarvestFestival.logger.log(Level.INFO, block);
 
         return "list.add(new Placeable" + getPrefixString(block) + "(" + print + ", " + meta + ", " + x + ", " + y + ", " + z + "));";

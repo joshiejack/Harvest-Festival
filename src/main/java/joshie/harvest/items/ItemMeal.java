@@ -1,14 +1,5 @@
 package joshie.harvest.items;
 
-import static joshie.harvest.core.lib.HFModInfo.MEALPATH;
-
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.text.WordUtils;
-
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.IMeal;
 import joshie.harvest.api.cooking.IMealProvider;
@@ -28,6 +19,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.text.WordUtils;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+
+import static joshie.harvest.core.lib.HFModInfo.MEALPATH;
 
 public class ItemMeal extends ItemHFMeta implements IMealProvider, ICreativeSorted {
     private HashMap<String, IIcon> altMap = new HashMap();

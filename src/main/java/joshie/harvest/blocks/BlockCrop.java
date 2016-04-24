@@ -1,9 +1,5 @@
 package joshie.harvest.blocks;
 
-import static joshie.harvest.core.helpers.CropHelper.harvestCrop;
-
-import java.util.Random;
-
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.IAnimalFeeder;
 import joshie.harvest.api.animals.IAnimalTracked;
@@ -36,6 +32,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.Random;
+
+import static joshie.harvest.core.helpers.CropHelper.harvestCrop;
 
 public class BlockCrop extends BlockHFBase implements IPlantable, IGrowable, IAnimalFeeder {
     public static final int FRESH = 0;

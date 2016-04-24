@@ -1,7 +1,5 @@
 package joshie.harvest.asm.overrides;
 
-import java.util.List;
-
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.core.config.HFConfig;
 import joshie.harvest.core.lib.CreativeSort;
@@ -14,19 +12,21 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.List;
+
 public class ItemSeedFood {
     public static ICrop getCrop(ItemStack stack) {
         ICrop crop = null;
         Item item = stack.getItem();
-        if (item == Items.carrot && HFConfig.asm.CARROT_OVERRIDE) {
+        if (item == Items.CARROT && HFConfig.asm.CARROT_OVERRIDE) {
             crop = HFCrops.carrot;
         } else if (item == Items.potato && HFConfig.asm.POTATO_OVERRIDE) {
             crop = HFCrops.potato;
-        } else if (item == Items.wheat && HFConfig.asm.WHEAT_OVERRIDE) {
+        } else if (item == Items.WHEAT && HFConfig.asm.WHEAT_OVERRIDE) {
             crop = HFCrops.wheat;
         } else if (item == Item.getItemFromBlock(Blocks.pumpkin) && HFConfig.asm.PUMPKIN_OVERRIDE) {
             crop = HFCrops.pumpkin;
-        } else if (item == Items.melon && HFConfig.asm.WATERMELON_OVERRIDE) {
+        } else if (item == Items.MELON && HFConfig.asm.WATERMELON_OVERRIDE) {
             crop = HFCrops.watermelon;
         }
 

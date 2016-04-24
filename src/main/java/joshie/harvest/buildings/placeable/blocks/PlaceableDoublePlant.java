@@ -1,9 +1,9 @@
 package joshie.harvest.buildings.placeable.blocks;
 
-import java.util.UUID;
-
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
+
+import java.util.UUID;
 
 public class PlaceableDoublePlant extends PlaceableBlock {
     public PlaceableDoublePlant(Block block, int meta, int offsetX, int offsetY, int offsetZ) {

@@ -21,7 +21,7 @@ public class Thaumcraft extends Plugin {
         ThaumcraftApi.registerObjectTag(new ItemStack(HFBlocks.flowers, 0), new AspectList().add(PLANT, 1).add(AURA, 4).add(SENSES, 4));
         //Mine
         ThaumcraftApi.registerObjectTag(new ItemStack(HFBlocks.stone, 0, OreDictionary.WILDCARD_VALUE), new AspectList().add(EARTH, 2).add(ENTROPY, 2));
-        ThaumcraftApi.registerObjectTag(new ItemStack(HFBlocks.dirt, 0, OreDictionary.WILDCARD_VALUE), new AspectList().add(EARTH, 2).add(ENTROPY, 2));
+        ThaumcraftApi.registerObjectTag(new ItemStack(HFBlocks.DIRT, 0, OreDictionary.WILDCARD_VALUE), new AspectList().add(EARTH, 2).add(ENTROPY, 2));
         //Misc
         ThaumcraftApi.registerObjectTag(new ItemStack(HFBlocks.woodmachines, 0, OreDictionary.WILDCARD_VALUE), new AspectList().add(TREE, 4));
         ThaumcraftApi.registerObjectTag(new ItemStack(HFBlocks.preview, 0, OreDictionary.WILDCARD_VALUE), new AspectList().add(TREE, 10).add(CRAFT, 8).add(EXCHANGE, 8));

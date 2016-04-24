@@ -1,7 +1,5 @@
 package joshie.harvest.crops;
 
-import java.util.Collection;
-
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
@@ -11,6 +9,8 @@ import joshie.harvest.blocks.BlockCrop;
 import joshie.harvest.core.config.HFConfig;
 import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.world.World;
+
+import java.util.Collection;
 
 public class CropRegistry implements ICropHandler {
     @Override

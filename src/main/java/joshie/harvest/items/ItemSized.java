@@ -1,11 +1,5 @@
 package joshie.harvest.items;
 
-import static joshie.harvest.core.helpers.SizeableHelper.getSize;
-
-import java.util.List;
-
-import org.apache.commons.lang3.StringUtils;
-
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.api.core.IShippable;
 import joshie.harvest.api.core.ISizeable;
@@ -20,6 +14,11 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.List;
+
+import static joshie.harvest.core.helpers.SizeableHelper.getSize;
 
 public class ItemSized extends ItemHFMeta implements IShippable, ICreativeSorted, ISizedProvider {
     private final SizeableMeta meta;

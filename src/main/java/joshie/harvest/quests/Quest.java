@@ -1,11 +1,5 @@
 package joshie.harvest.quests;
 
-import static joshie.harvest.core.network.PacketHandler.sendToClient;
-import static joshie.harvest.core.network.PacketHandler.sendToServer;
-
-import java.util.HashSet;
-import java.util.Set;
-
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quest.IQuest;
@@ -18,9 +12,14 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import static joshie.harvest.core.network.PacketHandler.sendToClient;
+import static joshie.harvest.core.network.PacketHandler.sendToServer;
 
 public abstract class Quest implements IQuest {
     protected String name;

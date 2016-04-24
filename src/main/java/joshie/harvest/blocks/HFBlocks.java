@@ -1,22 +1,6 @@
 package joshie.harvest.blocks;
 
-import static joshie.harvest.core.helpers.generic.RegistryHelper.registerTiles;
-import static net.minecraft.block.Block.soundTypeGrass;
-import static net.minecraft.block.Block.soundTypeGravel;
-import static net.minecraft.block.Block.soundTypeMetal;
-import static net.minecraft.block.Block.soundTypePiston;
-import static net.minecraft.block.Block.soundTypeWood;
-
-import org.apache.commons.lang3.text.WordUtils;
-
-import joshie.harvest.blocks.tiles.TileCooking;
-import joshie.harvest.blocks.tiles.TileCounter;
-import joshie.harvest.blocks.tiles.TileFridge;
-import joshie.harvest.blocks.tiles.TileFryingPan;
-import joshie.harvest.blocks.tiles.TileMarker;
-import joshie.harvest.blocks.tiles.TileMixer;
-import joshie.harvest.blocks.tiles.TileOven;
-import joshie.harvest.blocks.tiles.TilePot;
+import joshie.harvest.blocks.tiles.*;
 import joshie.harvest.core.lib.HFModInfo;
 import net.minecraft.block.Block;
 import net.minecraft.item.EnumRarity;
@@ -24,6 +8,9 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.commons.lang3.text.WordUtils;
+
+import static joshie.harvest.core.helpers.generic.RegistryHelper.registerTiles;
 
 public class HFBlocks {
 	//Cooking & Farming

@@ -1,13 +1,12 @@
 package joshie.harvest.core.util;
 
-import org.lwjgl.opengl.GL11;
-
 import gnu.trove.map.TCharObjectMap;
 import gnu.trove.map.hash.TCharObjectHashMap;
 import joshie.harvest.core.lib.HFModInfo;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 
 public class ChatFontRenderer {
     public enum Char {

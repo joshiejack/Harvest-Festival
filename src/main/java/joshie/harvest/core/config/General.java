@@ -1,7 +1,8 @@
 package joshie.harvest.core.config;
-import static joshie.harvest.core.helpers.generic.ConfigHelper.getDouble;
 
 import net.minecraftforge.common.config.Configuration;
+
+import static joshie.harvest.core.helpers.generic.ConfigHelper.getDouble;
 
 public class General {
     public static double SELL_QUALITY_MODIFIER;

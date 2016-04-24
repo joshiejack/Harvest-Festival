@@ -1,15 +1,15 @@
 package joshie.harvest.quests;
 
-import static joshie.harvest.core.helpers.QuestHelper.getCurrentQuest;
-
-import java.util.HashSet;
-
 import joshie.harvest.api.quest.IQuest;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+import java.util.HashSet;
+
+import static joshie.harvest.core.helpers.QuestHelper.getCurrentQuest;
 
 public class QuestEvents {
     @SubscribeEvent(priority = EventPriority.HIGH)

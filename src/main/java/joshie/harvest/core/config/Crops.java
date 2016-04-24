@@ -1,8 +1,8 @@
 package joshie.harvest.core.config;
 
-import static joshie.harvest.core.helpers.generic.ConfigHelper.getBoolean;
-
 import net.minecraftforge.common.config.Configuration;
+
+import static joshie.harvest.core.helpers.generic.ConfigHelper.getBoolean;
 
 public class Crops {
     public static boolean SEASONAL_BONEMEAL;

@@ -1,7 +1,5 @@
 package joshie.harvest.asm.overrides;
 
-import java.util.List;
-
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.api.core.IShippable;
 import joshie.harvest.api.crops.ICrop;
@@ -11,6 +9,8 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 public class ItemWheat extends Item implements IShippable, ICropProvider, ICreativeSorted {
     public ItemWheat() {}

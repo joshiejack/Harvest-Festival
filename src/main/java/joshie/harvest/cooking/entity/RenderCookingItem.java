@@ -1,10 +1,5 @@
 package joshie.harvest.cooking.entity;
 
-import java.util.Random;
-
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
-
 import joshie.harvest.api.cooking.ICookingAltIcon;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import net.minecraft.block.Block;
@@ -22,7 +17,12 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.ForgeHooksClient;
+import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
+
+import java.util.Random;
 
 @SideOnly(Side.CLIENT)
 public class RenderCookingItem extends Render {
@@ -63,9 +63,8 @@ public class RenderCookingItem extends Render {
             float f6;
             int i;
 
-            //field_147909_c = renderBlocks
-            if (ForgeHooksClient.renderEntityItem(entity, itemstack, f2, f3, random, renderManager.renderEngine, field_147909_c, b0)) {
-                ;
+            if (ForgeHooksClient.renderEntityItem(entity, itemstack, f2, f3, random, renderManager.renderEngine, itemRenderBlocks, b0)) {
+
             } else if (itemstack.getItemSpriteNumber() == 0 && itemstack.getItem() instanceof ItemBlock && RenderBlocks.renderItemIn3d(Block.getBlockFromItem(itemstack.getItem()).getRenderType())) {
                 Block block = Block.getBlockFromItem(itemstack.getItem());
                 GL11.glRotatef(f3, 0.0F, 1.0F, 0.0F);

@@ -1,24 +1,7 @@
 package joshie.harvest.npc.gift.init;
 
+import static joshie.harvest.npc.gift.Gifts.Category.*;
 import static joshie.harvest.npc.gift.Gifts.assign;
-import static joshie.harvest.npc.gift.Gifts.Category.ANIMALS;
-import static joshie.harvest.npc.gift.Gifts.Category.CHEAP;
-import static joshie.harvest.npc.gift.Gifts.Category.CONSTRUCTION;
-import static joshie.harvest.npc.gift.Gifts.Category.COOKING;
-import static joshie.harvest.npc.gift.Gifts.Category.CUTE;
-import static joshie.harvest.npc.gift.Gifts.Category.DANGER;
-import static joshie.harvest.npc.gift.Gifts.Category.FARMING;
-import static joshie.harvest.npc.gift.Gifts.Category.GIRLY;
-import static joshie.harvest.npc.gift.Gifts.Category.KNITTING;
-import static joshie.harvest.npc.gift.Gifts.Category.MINING;
-import static joshie.harvest.npc.gift.Gifts.Category.NATURE;
-import static joshie.harvest.npc.gift.Gifts.Category.PRETTY;
-import static joshie.harvest.npc.gift.Gifts.Category.RARE;
-import static joshie.harvest.npc.gift.Gifts.Category.SCARY;
-import static joshie.harvest.npc.gift.Gifts.Category.TECHNOLOGY;
-import static joshie.harvest.npc.gift.Gifts.Category.TOOLS;
-import static joshie.harvest.npc.gift.Gifts.Category.WATER;
-import static net.minecraft.init.Blocks.*;
 
 public class HFGiftVanillaBlocks {
     public static void init() {

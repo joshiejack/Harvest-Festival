@@ -1,9 +1,9 @@
 package joshie.harvest.cooking;
 
-import java.util.HashSet;
-
 import joshie.harvest.api.cooking.ICookingComponent;
 import net.minecraftforge.fluids.Fluid;
+
+import java.util.HashSet;
 
 public class Ingredient implements ICookingComponent {
     private HashSet<Ingredient> equivalents = new HashSet();

@@ -1,10 +1,10 @@
 package joshie.harvest.api.npc;
 
-import java.util.Collection;
-
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.npc.NPC.Age;
 import joshie.harvest.npc.NPC.Gender;
+
+import java.util.Collection;
 
 public interface INPCRegistry {
     /** Register a new npc **/

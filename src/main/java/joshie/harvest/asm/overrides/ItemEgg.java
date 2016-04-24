@@ -1,11 +1,5 @@
 package joshie.harvest.asm.overrides;
 
-import static joshie.harvest.core.helpers.SizeableHelper.getSize;
-
-import java.util.List;
-
-import org.apache.commons.lang3.StringUtils;
-
 import joshie.harvest.api.core.ISizeable;
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.core.helpers.SizeableHelper;
@@ -17,6 +11,11 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.List;
+
+import static joshie.harvest.core.helpers.SizeableHelper.getSize;
 
 public class ItemEgg {
     public static IIcon[] icons;

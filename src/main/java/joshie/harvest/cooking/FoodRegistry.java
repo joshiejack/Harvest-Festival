@@ -1,23 +1,17 @@
 package joshie.harvest.cooking;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
-
-import joshie.harvest.api.cooking.ICookingComponent;
-import joshie.harvest.api.cooking.IFoodRegistry;
-import joshie.harvest.api.cooking.IMeal;
-import joshie.harvest.api.cooking.IMealRecipe;
-import joshie.harvest.api.cooking.ISpecialRecipeHandler;
-import joshie.harvest.api.cooking.IUtensil;
+import joshie.harvest.api.cooking.*;
 import joshie.harvest.core.helpers.SafeStackHelper;
 import joshie.harvest.core.util.SafeStack;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 
 public class FoodRegistry implements IFoodRegistry {
     private static final Multimap<SafeStack, ICookingComponent> registry = ArrayListMultimap.create();

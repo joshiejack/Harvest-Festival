@@ -1,7 +1,5 @@
 package joshie.harvest.player;
 
-import java.util.UUID;
-
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
@@ -17,6 +15,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.UUID;
 
 @SideOnly(Side.CLIENT)
 public class PlayerTrackerClient extends PlayerTracker {

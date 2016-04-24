@@ -1,10 +1,5 @@
 package joshie.harvest.animals;
 
-import static joshie.harvest.core.network.PacketHandler.sendToEveryone;
-
-import java.util.Random;
-import java.util.UUID;
-
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.IAnimalData;
@@ -30,8 +25,12 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.BlockPos;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
+import java.util.Random;
+import java.util.UUID;
+
+import static joshie.harvest.core.network.PacketHandler.sendToEveryone;
 
 public class AnimalData implements IAnimalData {
     private static final Random rand = new Random();

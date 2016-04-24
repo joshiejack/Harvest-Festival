@@ -1,14 +1,14 @@
 package joshie.harvest.animals.type;
 
-import static joshie.harvest.api.animals.AnimalFoodType.SEED;
-import static joshie.harvest.core.helpers.generic.ItemHelper.spawnByEntity;
-
 import joshie.harvest.animals.entity.EntityHarvestChicken;
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.core.helpers.SizeableHelper;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+
+import static joshie.harvest.api.animals.AnimalFoodType.SEED;
+import static joshie.harvest.core.helpers.generic.ItemHelper.spawnByEntity;
 
 public class AnimalChicken extends AbstractAnimal {
     public AnimalChicken() {

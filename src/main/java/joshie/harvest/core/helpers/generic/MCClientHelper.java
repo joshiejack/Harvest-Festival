@@ -1,10 +1,5 @@
 package joshie.harvest.core.helpers.generic;
 
-import java.awt.Dimension;
-import java.awt.Point;
-
-import org.lwjgl.input.Mouse;
-
 import joshie.harvest.core.network.AbstractPacketLocation;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
@@ -18,6 +13,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.input.Mouse;
+
+import java.awt.*;
 
 @SideOnly(Side.CLIENT)
 public class MCClientHelper {

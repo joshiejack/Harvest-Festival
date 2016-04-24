@@ -1,7 +1,5 @@
 package joshie.harvest.core.util;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.EntityRenderer;
@@ -10,6 +8,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fluids.FluidStack;
+import org.lwjgl.opengl.GL11;
 
 public abstract class RenderBase {
     private static final double RENDER_OFFSET = 0.0010000000474974513D;
@@ -200,7 +199,7 @@ public abstract class RenderBase {
     protected void renderFluidBlock(double minX, double minY, double minZ, double maxX, double maxY, double maxZ) {
         render.renderAllFaces = true;
         render.setRenderBounds(minX, minY, minZ, maxX, maxY, maxZ);
-        render.renderStandardBlock(Blocks.lava, x, y, z);
+        render.renderStandardBlock(Blocks.LAVA, x, y, z);
         render.renderAllFaces = false;
     }
 

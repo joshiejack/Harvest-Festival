@@ -1,13 +1,13 @@
 package joshie.harvest.player.relationships;
 
-import java.util.HashMap;
-
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.relations.IRelatableDataHandler;
 import joshie.harvest.api.relations.IRelationships;
 import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.entity.player.EntityPlayer;
+
+import java.util.HashMap;
 
 public class RelationshipHelper implements IRelationships {
     private static final HashMap<String, IRelatableDataHandler> dataHandlers = new HashMap();

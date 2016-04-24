@@ -1,9 +1,5 @@
 package joshie.harvest.player.quests;
 
-import static joshie.harvest.core.network.PacketHandler.sendToServer;
-
-import java.util.HashSet;
-
 import joshie.harvest.api.quest.IQuest;
 import joshie.harvest.core.network.quests.PacketQuestCompleted;
 import joshie.harvest.core.network.quests.PacketQuestStart;
@@ -11,6 +7,10 @@ import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.HashSet;
+
+import static joshie.harvest.core.network.PacketHandler.sendToServer;
 
 @SideOnly(Side.CLIENT)
 public class QuestDataClient extends QuestData {

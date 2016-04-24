@@ -44,10 +44,10 @@ public class GoddessHandler {
     public void onInteract(PlayerInteractEvent event) {
         if (event.action == Action.RIGHT_CLICK_BLOCK) {
             ItemStack held = event.entityPlayer.getCurrentEquippedItem();
-            if (held != null && held.getItem() == Items.stick) {
-                if (event.world.getBlockState(event.pos).getBlock() == Blocks.flower_pot) {
+            if (held != null && held.getItem() == Items.STICK) {
+                if (event.world.getBlockState(event.pos).getBlock() == Blocks.FLOWER_POT) {
                     TileEntityFlowerPot tile = (TileEntityFlowerPot) event.world.getTileEntity(event.pos);
-                    if (tile.getFlowerPotItem() == Item.getItemFromBlock(Blocks.yellow_flower)) {
+                    if (tile.getFlowerPotItem() == Item.getItemFromBlock(Blocks.YELLOW_FLOWER)) {
                         Block xMinus = event.world.getBlockState(event.pos.add(-1, -1, 0)).getBlock();
                         Block xPlus = event.world.getBlockState(event.pos.add(+1, -1, 0)).getBlock();
                         Block zMinus = event.world.getBlockState(event.pos.add(0, -1, -1)).getBlock();
@@ -55,18 +55,18 @@ public class GoddessHandler {
                         int water = 0;
                         int flower = 0;
 
-                        if (xMinus == Blocks.water) water++;
-                        if (xPlus == Blocks.water) water++;
-                        if (zMinus == Blocks.water) water++;
-                        if (zPlus == Blocks.water) water++;
+                        if (xMinus == Blocks.WATER) water++;
+                        if (xPlus == Blocks.WATER) water++;
+                        if (zMinus == Blocks.WATER) water++;
+                        if (zPlus == Blocks.WATER) water++;
                         xMinus = event.world.getBlockState(event.pos.add(-1, 0, 0)).getBlock();
                         xPlus = event.world.getBlockState(event.pos.add(+1, 0, 0)).getBlock();
                         zMinus = event.world.getBlockState(event.pos.add(0, 0, -1)).getBlock();
                         zPlus = event.world.getBlockState(event.pos.add(0, 0, +1)).getBlock();
-                        if (xMinus == Blocks.red_flower || xMinus == Blocks.double_plant || xMinus == Blocks.tallgrass) flower++;
-                        if (xPlus == Blocks.red_flower || xPlus == Blocks.double_plant || xPlus == Blocks.tallgrass) flower++;
-                        if (zMinus == Blocks.red_flower || zMinus == Blocks.double_plant || zMinus == Blocks.tallgrass) flower++;
-                        if (zPlus == Blocks.red_flower || zPlus == Blocks.double_plant || zPlus == Blocks.tallgrass) flower++;
+                        if (xMinus == Blocks.RED_FLOWER || xMinus == Blocks.DOUBLE_PLANT || xMinus == Blocks.TALLGRASS) flower++;
+                        if (xPlus == Blocks.RED_FLOWER || xPlus == Blocks.DOUBLE_PLANT || xPlus == Blocks.TALLGRASS) flower++;
+                        if (zMinus == Blocks.RED_FLOWER || zMinus == Blocks.DOUBLE_PLANT || zMinus == Blocks.TALLGRASS) flower++;
+                        if (zPlus == Blocks.RED_FLOWER || zPlus == Blocks.DOUBLE_PLANT || zPlus == Blocks.TALLGRASS) flower++;
                         
                         if (water == 2 && flower == 2) {
                             if (!event.world.isRemote) {

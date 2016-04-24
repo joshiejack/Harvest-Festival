@@ -1,17 +1,14 @@
 package joshie.harvest.calendar;
 
-import static joshie.harvest.core.util.generic.Text.INDIGO;
-import static joshie.harvest.core.util.generic.Text.LIME;
-import static joshie.harvest.core.util.generic.Text.ORANGE;
-import static joshie.harvest.core.util.generic.Text.YELLOW;
-
-import java.util.EnumMap;
-
 import joshie.harvest.api.calendar.ICalendar;
 import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.core.ISeasonData;
 import joshie.harvest.core.handlers.HFTrackers;
+
+import java.util.EnumMap;
+
+import static joshie.harvest.core.util.generic.Text.*;
 
 public class CalendarHelper implements ICalendar {
     @Override

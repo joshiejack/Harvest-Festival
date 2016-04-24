@@ -1,13 +1,13 @@
 package joshie.harvest.core.helpers;
 
-import java.util.Random;
-
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.player.stats.StatData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+
+import java.util.Random;
 
 public class PlayerHelper {
     private static final Random rand = new Random();

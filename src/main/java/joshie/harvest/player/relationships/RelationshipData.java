@@ -1,13 +1,13 @@
 package joshie.harvest.player.relationships;
 
-import java.util.HashMap;
-import java.util.HashSet;
-
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.core.config.NPC;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.util.Translate;
 import net.minecraft.entity.player.EntityPlayer;
+
+import java.util.HashMap;
+import java.util.HashSet;
 
 public abstract class RelationshipData {
     public void talkTo(EntityPlayer player, IRelatable relatable) {};

@@ -1,9 +1,9 @@
 package joshie.harvest.core.helpers;
 
-import java.util.UUID;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+
+import java.util.UUID;
 
 public class UUIDHelper {
     public static UUID getPlayerUUID(EntityPlayer player) {

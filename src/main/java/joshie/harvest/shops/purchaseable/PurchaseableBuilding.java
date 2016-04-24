@@ -1,8 +1,5 @@
 package joshie.harvest.shops.purchaseable;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.buildings.Building;
 import joshie.harvest.core.handlers.HFTrackers;
@@ -10,6 +7,9 @@ import joshie.harvest.core.helpers.InventoryHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PurchaseableBuilding extends Purchaseable {
     public static List<PurchaseableBuilding> listings = new ArrayList();

@@ -1,12 +1,12 @@
 package joshie.harvest.npc.entity;
 
-import java.util.UUID;
-
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.buildings.Building;
 import joshie.harvest.buildings.BuildingStage;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+
+import java.util.UUID;
 
 public class EntityNPCBuilder extends EntityNPCShopkeeper {
     private BuildingStage building;

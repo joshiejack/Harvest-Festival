@@ -1,25 +1,16 @@
 package joshie.harvest.asm.transformers;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
-
-import org.objectweb.asm.ClassReader;
-import org.objectweb.asm.ClassVisitor;
-import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.MethodVisitor;
-import org.objectweb.asm.Opcodes;
-import org.objectweb.asm.tree.AbstractInsnNode;
-import org.objectweb.asm.tree.ClassNode;
-import org.objectweb.asm.tree.InsnNode;
-import org.objectweb.asm.tree.MethodNode;
-import org.objectweb.asm.tree.VarInsnNode;
-
 import joshie.harvest.asm.HFOverride;
 import joshie.harvest.core.config.ASM;
 import joshie.harvest.core.config.HFConfig;
 import joshie.harvest.core.lib.HFModInfo;
+import org.objectweb.asm.*;
+import org.objectweb.asm.tree.*;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 public class EggTransformer extends AbstractASM {
     @Override

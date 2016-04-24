@@ -59,7 +59,7 @@ public class ItemHoe extends ItemBaseTool {
         else {
             ForgeDirection front = joshie.harvest.core.helpers.generic.DirectionHelper.getFacingFromEntity(player);
             Block initial = world.getBlock(x, y, z);
-            if (!(world.getBlock(x, y + 1, z).isAir(world, x, y + 1, z) && (initial == Blocks.grass || initial == Blocks.dirt || initial == HFBlocks.dirt))) {
+            if (!(world.getBlock(x, y + 1, z).isAir(world, x, y + 1, z) && (initial == Blocks.GRASS || initial == Blocks.DIRT || initial == HFBlocks.DIRT))) {
                 return false;
             }
 
@@ -70,7 +70,7 @@ public class ItemHoe extends ItemBaseTool {
                     Block block = world.getBlock(x2, y, z2);
                     if (world.getBlock(x, y + 1, z).isAir(world, x, y + 1, z)) {
                         changed = true;
-                        if ((block == Blocks.grass || block == Blocks.dirt)) {
+                        if ((block == Blocks.GRASS || block == Blocks.DIRT)) {
                             doParticles(stack, player, world, x2, y, z2);
                             if (!world.isRemote) {
                                 world.setBlock(x2, y, z2, Blocks.farmland);

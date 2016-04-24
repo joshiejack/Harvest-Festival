@@ -1,8 +1,5 @@
 package joshie.harvest.buildings.placeable.blocks;
 
-import java.util.Random;
-import java.util.UUID;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -10,6 +7,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFlowerPot;
 import net.minecraft.world.World;
+
+import java.util.Random;
+import java.util.UUID;
 
 
 public class PlaceableFlowerPot extends PlaceableBlock {
@@ -47,38 +47,38 @@ public class PlaceableFlowerPot extends PlaceableBlock {
         int what = rand.nextInt(13) + 1;
         switch(what) {
         case 1:
-            block = Blocks.red_flower;
+            block = Blocks.RED_FLOWER;
             meta = 0;
             break;
         case 2:
-            block = Blocks.yellow_flower;
+            block = Blocks.YELLOW_FLOWER;
             break;
         case 3:
-            block = Blocks.sapling;
+            block = Blocks.SAPLING;
             meta = 0;
             break;
         case 4:
-            block = Blocks.sapling;
+            block = Blocks.SAPLING;
             meta = 1;
             break;
         case 5:
-            block = Blocks.sapling;
+            block = Blocks.SAPLING;
             meta = 2;
             break;
         case 6:
-            block = Blocks.sapling;
+            block = Blocks.SAPLING;
             meta = 3;
             break;
         case 7:
-            block = Blocks.red_mushroom;
+            block = Blocks.RED_MUSHROOM;
             break;
         case 8:
-            block = Blocks.brown_mushroom;
+            block = Blocks.BROWN_MUSHROOM;
             break;
         case 9:
             if (canCactus) {
                 block = Blocks.cactus;
-            } else block = Blocks.sapling;
+            } else block = Blocks.SAPLING;
             
             meta = 5;
             break;
@@ -86,15 +86,15 @@ public class PlaceableFlowerPot extends PlaceableBlock {
             block = Blocks.deadbush;
             break;
         case 11:
-            block = Blocks.tallgrass;
+            block = Blocks.TALLGRASS;
             meta = 2;
             break;
         case 12:
-            block = Blocks.sapling;
+            block = Blocks.SAPLING;
             meta = 4;
             break;
         case 13:
-            block = Blocks.sapling;
+            block = Blocks.SAPLING;
             meta = 5;
         }
         

@@ -1,13 +1,13 @@
 package joshie.harvest.shops.purchaseable;
 
-import java.util.List;
-
 import joshie.harvest.api.shops.IPurchaseable;
 import joshie.harvest.core.helpers.generic.ItemHelper;
 import joshie.harvest.core.util.generic.Text;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class Purchaseable implements IPurchaseable {
     protected ItemStack[] stacks;

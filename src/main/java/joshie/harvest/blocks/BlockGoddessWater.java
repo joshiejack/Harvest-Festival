@@ -1,7 +1,5 @@
 package joshie.harvest.blocks;
 
-import java.util.Random;
-
 import joshie.harvest.core.util.generic.IHasMetaBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -13,6 +11,8 @@ import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+
+import java.util.Random;
 
 public class BlockGoddessWater extends BlockFluidClassic {
     public BlockGoddessWater(Fluid fluid) {

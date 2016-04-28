@@ -42,8 +42,8 @@ public interface ICropData {
     //public IIcon getCropIcon(PlantSection section);
 
     /** Returns the ItemStack that would be harvested
-     *  @param          The player harvesting
-     *  @param          Whether we should actually harvest the plant **/
+     *  @param          player The player harvesting
+     *  @param          doHarvest Whether we should actually harvest the plant **/
     public ItemStack harvest(EntityPlayer player, boolean doHarvest);
     
     /** Writes the crop data to nbt **/

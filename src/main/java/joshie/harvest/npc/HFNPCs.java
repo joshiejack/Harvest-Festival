@@ -7,7 +7,6 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
-import joshie.harvest.npc.entity.EntityNPCMiner;
 import joshie.harvest.npc.entity.EntityNPCShopkeeper;
 import joshie.harvest.npc.render.RenderNPC;
 import joshie.harvest.player.town.TownData;

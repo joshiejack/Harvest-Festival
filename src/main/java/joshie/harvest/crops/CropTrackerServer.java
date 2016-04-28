@@ -16,6 +16,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.IPlantable;
@@ -32,7 +33,7 @@ import static joshie.harvest.core.network.PacketHandler.sendToEveryone;
 public class CropTrackerServer extends CropTracker {
     @Override
     public void newDay() {
-        ArrayList<ICropData> toWither = new ArrayList(); //Create a new wither list
+        ArrayList<ICropData> toWither = new ArrayList<ICropData>(); //Create a new wither list
         Weekday day = HFTrackers.getCalendar().getDate().getWeekday();
         Iterator<Map.Entry<WorldLocation, ICropData>> iter = crops.entrySet().iterator();
         while (iter.hasNext()) {
@@ -43,7 +44,7 @@ public class CropTrackerServer extends CropTracker {
 
             boolean removed = false;
             if (day == Weekday.FRIDAY) {
-                Block block = world.getBlock(location.x, location.y, location.z);
+                Block block = world.getBlockState(location.position).getBlock();
                 if (!(block instanceof IPlantable)) {
                     iter.remove();
                     removed = true; //We have removed this crop from our memory
@@ -86,16 +87,16 @@ public class CropTrackerServer extends CropTracker {
         if (!HFTrackers.getCalendar().getDate().equals(lastRain)) {
             lastRain = HFApi.CALENDAR.cloneDate(HFTrackers.getCalendar().getDate());
             for (WorldLocation location : crops.keySet()) {
-                hydrate(getWorld(location.dimension), location.x, location.y, location.z);
-                DimensionManager.getWorld(location.dimension).setBlockMetadataWithNotify(location.x, location.y - 1, location.z, 7, 2);
+                hydrate(getWorld(location.dimension), location.position);
+                DimensionManager.getWorld(location.dimension).setBlockState(location.position.down(), 7, 2);
             }
         }
     }
 
     //Sends an update packet
     @Override
-    public void sendUpdateToClient(EntityPlayerMP player, World world, int x, int y, int z) {
-        WorldLocation key = getCropKey(world, x, y, z);
+    public void sendUpdateToClient(EntityPlayerMP player, World world, BlockPos pos) {
+        WorldLocation key = getCropKey(world, pos);
         ICropData data = crops.get(key);
         if (data == null) {
             sendToClient(new PacketSyncCrop(key), player);
@@ -104,17 +105,17 @@ public class CropTrackerServer extends CropTracker {
 
     //Causes a growth of the crop at this location, Notifies the clients
     @Override
-    public void grow(World world, int x, int y, int z) {
-        ICropData data = getCropDataForLocation(world, x, y, z);
+    public void grow(World world, BlockPos pos) {
+        ICropData data = getCropDataForLocation(world, pos);
         data.grow();
         sendToEveryone(new PacketSyncCrop(data.getLocation(), data));
         HFTrackers.markDirty();
     }
 
     @Override
-    public boolean plantCrop(EntityPlayer player, World world, int x, int y, int z, ICrop crop, int stage) {
-        ICropData data = getCropDataForLocation(world, x, y, z);
-        if (CropHelper.isHydrated(world, x, y - 1, z)) {
+    public boolean plantCrop(EntityPlayer player, World world, BlockPos pos, ICrop crop, int stage) {
+        ICropData data = getCropDataForLocation(world, pos);
+        if (CropHelper.isHydrated(world, pos.down())) {
             data.setHydrated();
         }
 

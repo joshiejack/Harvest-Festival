@@ -29,7 +29,7 @@ public class QuestHelper {
             sendToServer(new PacketQuestDecreaseHeld(amount));
         } else {
             player.inventory.decrStackSize(player.inventory.currentItem, amount);
-            ((EntityPlayerMP) player).playerNetServerHandler.sendPacket(new S2FPacketSetSlot(-1, -1, player.getCurrentEquippedItem()));
+            ((EntityPlayerMP) player).playerNetServerHandler.sendPacket(new S2FPacketSetSlot(-1, -1, player.getActiveItemStack()));
         }
     }
 
@@ -37,7 +37,9 @@ public class QuestHelper {
         return HFTrackers.getPlayerTracker(player).getQuests().getCurrent();
     }
 
-    /************************** REWARDS *****************************/
+    /**************************
+     * REWARDS
+     *****************************/
     public static void rewardGold(EntityPlayer player, long amount) {
         if (player.worldObj.isRemote) {
             throw new IdiotException("Joshie shouldn't be rewarding anyone with gold client side");

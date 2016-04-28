@@ -10,7 +10,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import java.util.HashMap;
 
 public class RelationshipHelper implements IRelationships {
-    private static final HashMap<String, IRelatableDataHandler> dataHandlers = new HashMap();
+    private static final HashMap<String, IRelatableDataHandler> dataHandlers = new HashMap<String, IRelatableDataHandler>();
     public static final int ADJUSTED_MAX = 65535;
     private static boolean isInit = false;
 

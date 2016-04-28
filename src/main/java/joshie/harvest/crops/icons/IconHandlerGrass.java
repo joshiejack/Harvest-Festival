@@ -1,15 +1,6 @@
 package joshie.harvest.crops.icons;
 
-import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.crops.HFCrops;
-import net.minecraft.block.Block;
-import net.minecraft.client.renderer.EntityRenderer;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.init.Blocks;
-import net.minecraft.world.IBlockAccess;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-public class IconHandlerGrass extends AbstractIconHandler {
+/*public class IconHandlerGrass extends AbstractIconHandler {
     private IIcon[] bottomIcons;
     private IIcon[] topIcons;
 
@@ -61,17 +52,4 @@ public class IconHandlerGrass extends AbstractIconHandler {
         renderer.drawCrossedSquares(iicon, d1, d2, d0, 1.0F);
         return true;
     }
-
-    @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister register) {
-        bottomIcons = new IIcon[11];
-        for (int i = 0; i < bottomIcons.length; i++) {
-            bottomIcons[i] = register.registerIcon(HFModInfo.CROPPATH + HFCrops.grass.getUnlocalizedName() + "_bottom_" + (i + 1));
-        }
-
-        topIcons = new IIcon[6];
-        for (int i = 0; i < topIcons.length; i++) {
-            topIcons[i] = register.registerIcon(HFModInfo.CROPPATH + HFCrops.grass.getUnlocalizedName() + "_top_" + (i + 1));
-        }
-    }
-}
+}*/

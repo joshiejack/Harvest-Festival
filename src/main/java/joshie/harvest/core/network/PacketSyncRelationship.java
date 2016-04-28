@@ -8,6 +8,7 @@ import joshie.harvest.player.relationships.RelationshipHelper;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class PacketSyncRelationship implements IMessage, IMessageHandler<PacketSyncRelationship, IMessage> {
     private IRelatableDataHandler handler;
@@ -15,7 +16,9 @@ public class PacketSyncRelationship implements IMessage, IMessageHandler<PacketS
     private short value;
     private boolean particles;
 
-    public PacketSyncRelationship() {}
+    public PacketSyncRelationship() {
+    }
+
     public PacketSyncRelationship(IRelatable relatable, short value, boolean particles) {
         this.relatable = relatable;
         this.value = value;

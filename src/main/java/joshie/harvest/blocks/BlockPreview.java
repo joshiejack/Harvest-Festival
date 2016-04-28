@@ -10,14 +10,17 @@ import joshie.harvest.core.lib.RenderIds;
 import joshie.harvest.core.util.base.BlockHFBaseMeta;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
@@ -45,7 +48,7 @@ public class BlockPreview extends BlockHFBaseMeta {
     }
 
     public BlockPreview() {
-        super(Material.wood, HFTab.tabTown);
+        super(Material.WOOD, HFTab.TOWN);
     }
 
     @Override
@@ -59,7 +62,7 @@ public class BlockPreview extends BlockHFBaseMeta {
     }
 
     @Override
-    public boolean isOpaqueCube() {
+    public boolean isOpaqueCube(IBlockState state) {
         return false;
     }
 
@@ -100,17 +103,17 @@ public class BlockPreview extends BlockHFBaseMeta {
     }
 
     @Override
-    public boolean hasTileEntity(int meta) {
+    public boolean hasTileEntity(IBlockState state) {
         return true;
     }
 
     @Override
-    public TileEntity createTileEntity(World world, int meta) {
+    public TileEntity createTileEntity(World world, IBlockState state) {
         return new TileMarker();
     }
 
     @Override
-    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase player, ItemStack stack) {
+    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase player, ItemStack stack) {
         if (!(player instanceof EntityPlayer)) return;
         if (stack.getItemDamage() >= Building.buildings.size()) return;
         Building group = Building.buildings.get(stack.getItemDamage());
@@ -124,20 +127,14 @@ public class BlockPreview extends BlockHFBaseMeta {
         }
     }
 
-    @SideOnly(Side.CLIENT)
     @Override
-    public void getSubBlocks(Item item, CreativeTabs tab, List list) {
-        if (tab != HFTab.tabTown) return;
+    @SideOnly(Side.CLIENT)
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
+        if (tab != HFTab.TOWN) return;
         if (General.DEBUG_MODE) {
             for (int i = 0; i < getMetaCount(); i++) {
                 list.add(new ItemStack(item, 1, i));
             }
         }
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister iconRegister) {
-        return;
     }
 }

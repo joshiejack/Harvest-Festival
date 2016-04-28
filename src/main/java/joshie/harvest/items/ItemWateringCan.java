@@ -10,7 +10,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -71,19 +70,19 @@ public class ItemWateringCan extends ItemBaseTool implements IFluidContainerItem
     @Override
     public double getDurabilityForDisplay(ItemStack stack) {
         if (stack.hasTagCompound()) {
-            byte water = stack.stackTagCompound.getByte("Water");
+            byte water = stack.getTagCompound().getByte("Water");
             return (water / 128) * 100D;
         } else return 0D;
     }
 
     @Override
     public FluidStack getFluid(ItemStack container) {
-        return container.hasTagCompound() ? new FluidStack(FluidRegistry.WATER, container.stackTagCompound.getByte("Water")) : null;
+        return container.hasTagCompound() ? new FluidStack(FluidRegistry.WATER, container.getTagCompound().getByte("Water")) : null;
     }
 
     @Override
     public int getCapacity(ItemStack container) {
-        return container.hasTagCompound() ? container.stackTagCompound.getByte("Water") : 0;
+        return container.hasTagCompound() ? container.getTagCompound().getByte("Water") : 0;
     }
 
     @Override
@@ -95,7 +94,7 @@ public class ItemWateringCan extends ItemBaseTool implements IFluidContainerItem
                 container.setTagCompound(new NBTTagCompound());
             }
 
-            int current_capacity = container.stackTagCompound.getByte("Water");
+            int current_capacity = container.getTagCompound().getByte("Water");
             int max_fill_capacity = (Math.max(0, Byte.MAX_VALUE - current_capacity));
             int amount_filled = 0;
             if (resource.amount >= max_fill_capacity) {
@@ -105,7 +104,7 @@ public class ItemWateringCan extends ItemBaseTool implements IFluidContainerItem
             int new_amount = (current_capacity + amount_filled);
 
             if (doFill) {
-                container.stackTagCompound.setByte("Water", (byte) new_amount);
+                container.getTagCompound().setByte("Water", (byte) new_amount);
             }
 
             return amount_filled;
@@ -116,10 +115,10 @@ public class ItemWateringCan extends ItemBaseTool implements IFluidContainerItem
     public FluidStack drain(ItemStack container, int maxDrain, boolean doDrain) {
         if (maxDrain == 1) {
             if (container.hasTagCompound()) {
-                byte water = container.stackTagCompound.getByte("Water");
+                byte water = container.getTagCompound().getByte("Water");
                 if (water >= 1) {
                     if (doDrain) {
-                        container.stackTagCompound.setByte("Water", (byte) (water - 1));
+                        container.getTagCompound().setByte("Water", (byte) (water - 1));
                     }
 
                     return new FluidStack(FluidRegistry.WATER, 1);

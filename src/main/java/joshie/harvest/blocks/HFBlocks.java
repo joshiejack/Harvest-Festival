@@ -13,48 +13,48 @@ import org.apache.commons.lang3.text.WordUtils;
 import static joshie.harvest.core.helpers.generic.RegistryHelper.registerTiles;
 
 public class HFBlocks {
-	//Cooking & Farming
-    public static Block cookware;
-    public static Block crops;
-    public static Block flowers;
+    //Cooking & Farming
+    public static Block COOKWARE;
+    public static Block CROPS;
+    public static Block FLOWERS;
     //Mine
-    public static Block stone;
-    public static Block dirt;
+    public static Block STONE;
+    public static Block DIRT;
     //Misc
-    public static Block woodmachines;
-    public static Block preview;
-    public static Block goddessWater;
-    public static Fluid goddess;
+    public static Block WOOD_MACHINES;
+    public static Block PREVIEW;
+    public static Block GODDESS_WATER;
+    public static Fluid GODDESS;
 
     public static void preInit() {
-    	
-    	//Cooking & Farming
-        cookware = new BlockCookware().setStepSound(soundTypeMetal).setUnlocalizedName("cookware");
-        crops = new BlockCrop().setStepSound(soundTypeGrass).setUnlocalizedName("crops.block");
-        flowers = new BlockFlower().setStepSound(soundTypeGrass).setUnlocalizedName("flowers.block");
-        //Mine
-        stone = new BlockStone().setStepSound(soundTypePiston).setUnlocalizedName("stone");
-        dirt = new BlockDirt("hf", "ctm/dirt").setStepSound(soundTypeGravel).setUnlocalizedName("dirt");
-        //Misc
-        woodmachines = new BlockWood().setStepSound(soundTypeWood).setUnlocalizedName("general.block");
-        preview = new BlockPreview().setUnlocalizedName("preview");
-        goddess = new Fluid("hf_goddess_water").setRarity(EnumRarity.RARE);
-        FluidRegistry.registerFluid(goddess);
-        goddessWater = new BlockGoddessWater(goddess).setUnlocalizedName("goddess.water");
-        goddess.setBlock(goddessWater);
 
-        registerTiles(HFModInfo.CAPNAME, TileCooking.class, TileFridge.class, TileFryingPan.class, TileCounter.class, TileMarker.class, 
-                            TileMixer.class, TileOven.class, TilePot.class);
+        //Cooking & Farming
+        COOKWARE = new BlockCookware().setSoundType(soundTypeMetal).setUnlocalizedName("cookware");
+        CROPS = new BlockCrop().setSoundType(soundTypeGrass).setUnlocalizedName("crops.block");
+        FLOWERS = new BlockFlower().setSoundType(soundTypeGrass).setUnlocalizedName("flowers.block");
+        //Mine
+        STONE = new BlockStone().setSoundType(soundTypePiston).setUnlocalizedName("stone");
+        DIRT = new BlockDirt("hf", "ctm/dirt").setSoundType(soundTypeGravel).setUnlocalizedName("dirt");
+        //Misc
+        WOOD_MACHINES = new BlockWood().setSoundType(soundTypeWood).setUnlocalizedName("general.block");
+        PREVIEW = new BlockPreview().setUnlocalizedName("preview");
+        GODDESS = new Fluid("hf_goddess_water").setRarity(EnumRarity.RARE);
+        FluidRegistry.registerFluid(GODDESS);
+        GODDESS_WATER = new BlockGoddessWater(GODDESS).setUnlocalizedName("goddess.water");
+        GODDESS.setBlock(GODDESS_WATER);
+
+        registerTiles(HFModInfo.CAPNAME, TileCooking.class, TileFridge.class, TileFryingPan.class, TileCounter.class, TileMarker.class,
+                TileMixer.class, TileOven.class, TilePot.class);
     }
-    
+
     @SideOnly(Side.CLIENT)
     public static void initClient() {
-        
+
     }
-    
+
     @SideOnly(Side.CLIENT)
     private static void registerRenders(Block b) {
-        
+
     }
 
     @SideOnly(Side.CLIENT)

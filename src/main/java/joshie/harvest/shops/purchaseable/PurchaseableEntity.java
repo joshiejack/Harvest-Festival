@@ -9,7 +9,7 @@ import net.minecraft.entity.EntityLeashKnot;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -20,7 +20,9 @@ public class PurchaseableEntity implements IPurchaseable {
     private long cost;
     private boolean lead;
 
-    /** If lead is true, entity spawns with a lead, otherwise, entity spawns mounting the player  **/
+    /**
+     * If lead is true, entity spawns with a lead, otherwise, entity spawns mounting the player
+     **/
     public PurchaseableEntity(Class clazz, long cost, ItemStack render, boolean lead) {
         this.product = render;
         this.eClass = clazz;
@@ -49,7 +51,7 @@ public class PurchaseableEntity implements IPurchaseable {
     }
 
     @Override
-    public void addTooltip(List list) {
+    public void addTooltip(List<String> list) {
         list.add(Text.WHITE + product.getDisplayName());
         if (!lead) {
             list.add(Translate.translate("check.head"));
@@ -60,7 +62,7 @@ public class PurchaseableEntity implements IPurchaseable {
         Entity entity = null;
         try {
             if (eClass != null) {
-                entity = (Entity) eClass.getConstructor(new Class[] { World.class }).newInstance(new Object[] { world });
+                entity = (Entity) eClass.getConstructor(new Class[]{World.class}).newInstance(world);
             }
         } catch (Exception exception) {
             exception.printStackTrace();

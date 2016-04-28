@@ -37,7 +37,7 @@ public class QuestCowCare extends Quest {
         if (quest_stage == 2) {
             if (target instanceof EntityHarvestCow) {
                 EntityHarvestCow cow = (EntityHarvestCow) target;
-                ItemStack held = player.getCurrentEquippedItem();
+                ItemStack held = player.getActiveItemStack();
                 if (held != null) {
                     boolean hasChanged = false;
                     if (!hasFed && held.getItem() == Items.WHEAT) {

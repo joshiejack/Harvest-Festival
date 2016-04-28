@@ -14,16 +14,16 @@ public class ItemBlockWood extends ItemBlockBase implements ICreativeSorted {
 
     @Override
     public String getName(ItemStack stack) {
-        switch (stack.getItemDamage()) {
-            case BlockWood.SHIPPING:
+        switch (BlockWood.Woodware.SHIPPING) {
+            case SHIPPING:
                 return "shipping";
-            case BlockWood.SHIPPING_2:
+            case SHIPPING_2:
                 return "shipping2";
-            case BlockWood.NEST:
+            case NEST:
                 return "nest";
-            case BlockWood.TROUGH:
+            case TROUGH:
                 return "trough";
-            case BlockWood.TROUGH_2:
+            case TROUGH_2:
                 return "trough2";
             default:
                 return "invalid";

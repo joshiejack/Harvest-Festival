@@ -4,7 +4,7 @@ import joshie.harvest.api.cooking.IUtensil;
 import joshie.harvest.blocks.BlockCookware;
 import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.cooking.Utensil;
-import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 
 public class TileMixer extends TileCooking {
     @Override
@@ -14,9 +14,10 @@ public class TileMixer extends TileCooking {
 
     @Override
     public boolean hasPrerequisites() {
-        Block block = worldObj.getBlock(xCoord, yCoord - 1, zCoord);
-        int meta = worldObj.getBlockMetadata(xCoord, yCoord - 1, zCoord);
-        if (block == HFBlocks.cookware && meta == BlockCookware.COUNTER) {
+        IBlockState state = worldObj.getBlockState(pos.down());
+        int meta = state.getBlock().getMetaFromState(state);
+        BlockCookware.Cookware cookware = getEnumFromState(state);
+        if (state.getBlock() == HFBlocks.COOKWARE && meta == BlockCookware.Cookware.COUNTER) {
             return true;
         } else return false;
     }

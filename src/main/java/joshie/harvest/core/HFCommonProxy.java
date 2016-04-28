@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HFCommonProxy {
-    protected static final List<Class> list = new ArrayList();
+    protected static final List<Class> list = new ArrayList<Class>();
     static {
         list.add(HFCore.class);
         list.add(HFVanilla.class);
@@ -54,7 +54,7 @@ public class HFCommonProxy {
         for (Class c : list) {
             try {
                 c.getMethod(stage).invoke(null);
-            } catch (Exception e) {}
+            } catch (Exception ignored) {}
         }
     }
 

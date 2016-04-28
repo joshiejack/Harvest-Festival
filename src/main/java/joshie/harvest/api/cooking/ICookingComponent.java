@@ -16,7 +16,7 @@ public interface ICookingComponent {
     public String getUnlocalizedName();
     
     /** Assign a fluid to this ingredient, for rendering purposes
-     *  @param      the fluid
+     *  @param      fluid the fluid
      *  @return     the ingredient **/
     public ICookingComponent setFluid(Fluid fluid);
     

@@ -7,13 +7,16 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class PacketSyncBirthday implements IMessage, IMessageHandler<PacketSyncBirthday, IMessage> {
     private int day;
     private Season season;
     private int year;
 
-    public PacketSyncBirthday() {}
+    public PacketSyncBirthday() {
+    }
+
     public PacketSyncBirthday(ICalendarDate date) {
         this.day = date.getDay();
         this.season = date.getSeason();

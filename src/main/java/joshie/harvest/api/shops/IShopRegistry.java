@@ -7,8 +7,7 @@ public interface IShopRegistry {
      *  If this npc, already has a shop associated with it.
      *  Then this will return null;
      * @param       unlocalised name of the shop
-     * @param       texture the shop uses
-     * @param       the npc
+     * @param       npc the npc
      * @return      the shop*/
     public IShop newShop(String unlocalised, INPC npc);
     

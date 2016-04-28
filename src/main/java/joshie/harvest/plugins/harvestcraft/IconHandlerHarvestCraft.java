@@ -1,9 +1,6 @@
 package joshie.harvest.plugins.harvestcraft;
 
-import joshie.harvest.crops.icons.AbstractIconHandler;
-import net.minecraft.block.Block;
-
-public class IconHandlerHarvestCraft extends AbstractIconHandler {
+/*public class IconHandlerHarvestCraft extends AbstractIconHandler {
     private Block block;
     private int maxStages;
 
@@ -21,4 +18,4 @@ public class IconHandlerHarvestCraft extends AbstractIconHandler {
     public void registerIcons(IIconRegister register) {
         return;
     }
-}
+}*/

@@ -8,15 +8,21 @@ import joshie.harvest.core.helpers.generic.DirectionHelper;
 import joshie.harvest.core.util.base.BlockHFBaseMeta;
 import joshie.harvest.core.util.generic.IFaceable;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
+import static joshie.harvest.blocks.BlockWood.Woodware.*;
 
 public class BlockWood extends BlockHFBaseMeta<Woodware> {
     public static enum Woodware implements IStringSerializable {
@@ -29,7 +35,7 @@ public class BlockWood extends BlockHFBaseMeta<Woodware> {
     }
 
     public BlockWood() {
-        super(Material.wood, Woodware.class);
+        super(Material.WOOD, Woodware.class);
         setHardness(1.5F);
     }
 
@@ -39,26 +45,25 @@ public class BlockWood extends BlockHFBaseMeta<Woodware> {
     }
 
     @Override
-    public boolean isOpaqueCube() {
+    public boolean isOpaqueCube(IBlockState state) {
         return false;
     }
 
     @Override
-    public void setBlockBoundsBasedOnState(IBlockAccess block, BlockPos pos) {
-        Woodware wood = getEnumFromBlockPos(block, pos);
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
+        Woodware wood = getEnumFromBlockPos(world, pos);
         switch (wood) {
             default:
-                setBlockBounds(0F, 0F, 0F, 1F, 1F, 1F);
-                break;
+                return FULL_BLOCK_AABB;
         }
     }
 
     @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
-        int meta = world.getBlockMetadata(x, y, z);
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+        Woodware wood = getEnumFromState(state);
         if (player.isSneaking()) return false;
-        else if ((meta == SHIPPING || meta == SHIPPING_2) && player.getCurrentEquippedItem() != null) {
-            ItemStack held = player.getCurrentEquippedItem();
+        else if ((wood == SHIPPING || wood == SHIPPING_2) && player.getActiveItemStack() != null) {
+            ItemStack held = player.getActiveItemStack();
             if (held.getItem() instanceof IShippable) {
                 long sell = ((IShippable) held.getItem()).getSellValue(held);
                 if (sell > 0) {
@@ -69,49 +74,48 @@ public class BlockWood extends BlockHFBaseMeta<Woodware> {
                     if (!world.isRemote) {
                         HFTrackers.getServerPlayerTracker(player).getTracking().addForShipping(held);
                     }
-
                     return true;
                 }
             }
         }
-
         return false;
     }
 
     @Override
-    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
-        ForgeDirection dir = DirectionHelper.getFacingFromEntity(entity);
-        int meta = stack.getItemDamage();
-        TileEntity tile = world.getTileEntity(x, y, z);
+    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+        EnumFacing facing = DirectionHelper.getFacingFromEntity(placer);
+        Woodware wood = getEnumFromState(state);
+        TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof IFaceable) {
-            ((IFaceable) tile).setFacing(dir);
+            ((IFaceable) tile).setFacing(facing);
         }
 
-        if (meta == SHIPPING || meta == SHIPPING_2) {
-            if (dir == ForgeDirection.WEST || dir == ForgeDirection.EAST) {
-                world.setBlockMetadataWithNotify(x, y, z, SHIPPING, 2);
-            } else if (dir == ForgeDirection.NORTH || dir == ForgeDirection.SOUTH) {
-                world.setBlockMetadataWithNotify(x, y, z, SHIPPING_2, 2);
+        if (wood == SHIPPING || wood == SHIPPING_2) {
+            if (facing == EnumFacing.WEST || facing == EnumFacing.EAST) {
+                world.setBlockMetadataWithNotify(pos, SHIPPING, 2);
+            } else if (facing == EnumFacing.NORTH || facing == EnumFacing.SOUTH) {
+                world.setBlockMetadataWithNotify(pos, SHIPPING_2, 2);
             }
-        } else if (meta == TROUGH || meta == TROUGH_2) {
-            if (dir == ForgeDirection.WEST || dir == ForgeDirection.EAST) {
-                world.setBlockMetadataWithNotify(x, y, z, TROUGH_2, 2);
-            } else if (dir == ForgeDirection.NORTH || dir == ForgeDirection.SOUTH) {
-                world.setBlockMetadataWithNotify(x, y, z, TROUGH, 2);
+        } else if (wood == TROUGH || wood == TROUGH_2) {
+            if (facing == EnumFacing.WEST || facing == EnumFacing.EAST) {
+                world.setBlockMetadataWithNotify(pos, TROUGH_2, 2);
+            } else if (facing == EnumFacing.NORTH || facing == EnumFacing.SOUTH) {
+                world.setBlockMetadataWithNotify(pos, TROUGH, 2);
             }
         }
     }
 
     @Override
-    public int damageDropped(int meta) {
-        if (meta == SHIPPING_2) return SHIPPING;
-        else if (meta == TROUGH_2) return TROUGH;
-        else return super.damageDropped(meta);
+    public int damageDropped(IBlockState state) {
+        Woodware wood = getEnumFromState(state);
+        if (wood == SHIPPING_2) return SHIPPING;
+        else if (wood == TROUGH_2) return TROUGH;
+        else return super.damageDropped(state);
     }
 
     @Override
-    public boolean isValidTab(CreativeTabs tab, int meta) {
-        return tab == HFTab.tabFarming;
+    public boolean isValidTab(CreativeTabs tab, E e) {
+        return tab == HFTab.FARMING;
     }
 
     @Override

@@ -23,7 +23,7 @@ public class QuestGoddess extends Quest {
     public void onStageChanged(EntityPlayer player, int previous, int stage) {
         //On completion of stage 0, give the player 4 goddess flowers
         if (previous == 0) {
-            rewardItem(player, new ItemStack(HFBlocks.flowers, 4, 0));
+            rewardItem(player, new ItemStack(HFBlocks.FLOWERS, 4, 0));
         } else if (previous == 1) {
             rewardItem(player, HFBuildings.carpenter.getPreview());
             rewardItem(player, new ItemStack(Blocks.RED_FLOWER, 1, player.worldObj.rand.nextInt(8)));
@@ -50,7 +50,7 @@ public class QuestGoddess extends Quest {
                 return "welcome"; //Greet the player, tell them to gather 64 logs for you, Give them 4 goddess flowers
             } else if (quest_stage == 1) {
                 //If the player has 64 logs, take them away
-                ItemStack held = player.getCurrentEquippedItem();
+                ItemStack held = player.getActiveItemStack();
                 if (held != null) {
                     boolean isLogs = OreDictionaryHelper.isLogs(held);
                     if (isLogs && held.stackSize >= 64) {
@@ -96,7 +96,7 @@ public class QuestGoddess extends Quest {
             } else if (quest_stage == 3) {
                 //I am jade, remind the player about wanting some pretty flowers
                //If the player has 3 flowers, take them away
-                ItemStack held = player.getCurrentEquippedItem();
+                ItemStack held = player.getActiveItemStack();
                 if (held != null) {
                     boolean isFlowers = OreDictionaryHelper.isFlowers(held);
                     if (isFlowers && held.stackSize >= 3) {

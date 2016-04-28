@@ -10,7 +10,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
-import java.util.List;
 import java.util.UUID;
 
 public class EntityHelper {
@@ -25,10 +24,10 @@ public class EntityHelper {
                 }
             }
         }
-    
+
         return null;
     }
-    
+
     public static EntityNPCBuilder getBuilderFromUUID(int dimension, UUID uuid) {
         World world = MCServerHelper.getWorld(dimension);
         for (int i = 0; i < world.loadedEntityList.size(); i++) {
@@ -39,22 +38,22 @@ public class EntityHelper {
                 }
             }
         }
-    
+
         return null;
     }
 
     /** Gets the player from the uuid **/
-    public static EntityPlayerMP getPlayerFromUUID(UUID uuid) {        
+    public static EntityPlayerMP getPlayerFromUUID(UUID uuid) {
         //Loops through every single player
-        for (EntityPlayer player : (List<EntityPlayerMP>) FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().playerEntityList) {
+        for (EntityPlayer player : FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayerList()) {
             if (UUIDHelper.getPlayerUUID(player).equals(uuid)) {
                 return (EntityPlayerMP) player;
             }
         }
-    
+
         return null;
     }
-    
+
     public static boolean isFakePlayer(EntityPlayer player) {
         return player instanceof FakePlayer || player.getGameProfile().getName().equals("CoFH") || player.getGameProfile().getName().startsWith("[Thaumcraft");
     }

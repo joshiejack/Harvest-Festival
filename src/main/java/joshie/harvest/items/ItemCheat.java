@@ -3,8 +3,13 @@ package joshie.harvest.items;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.util.CodeGeneratorBuildings;
 import joshie.harvest.core.util.CodeGeneratorRendering;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class ItemCheat extends ItemHFMeta {
@@ -13,7 +18,8 @@ public class ItemCheat extends ItemHFMeta {
     private static final int RENDER_GENERATOR = 2;
     private static final int META_CHECKER = 3;
     private static final int CHUNK_TESTER = 4;
-    private static int x1, x2, y1, y2, z1, z2;
+    private static BlockPos pos1;
+    private static BlockPos pos2;
 
     @Override
     public int getMetaCount() {
@@ -21,33 +27,30 @@ public class ItemCheat extends ItemHFMeta {
     }
 
     @Override
-    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int xCoord, int yCoord, int zCoord, int side, float hitX, float hitY, float hitZ) {
+    public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         int damage = stack.getItemDamage();
         if (damage == COORD_SETTER) {
             if (player.isSneaking()) {
-                x2 = xCoord;
-                y2 = yCoord;
-                z2 = zCoord;
+                pos2 = pos;
                 if (world.isRemote) {
-                    MCClientHelper.addToChat("Setting Second Coordinates to " + x2 + " " + y2 + " " + z2);
+                    MCClientHelper.addToChat("Setting Second Coordinates to " + pos2);
                 }
             } else {
-                x1 = xCoord;
-                y1 = yCoord;
-                z1 = zCoord;
+                pos1 = pos;
                 if (world.isRemote) {
-                    MCClientHelper.addToChat("Setting First Coordinates to " + x1 + " " + y1 + " " + z1);
+                    MCClientHelper.addToChat("Setting First Coordinates to " + pos1);
                 }
             }
         } else if (damage == CODE_GENERATOR) {
-            new CodeGeneratorBuildings(world, x1, y1, z1, x2, y2, z2).getCode(player.isSneaking());
+            new CodeGeneratorBuildings(world, pos1, pos2).getCode(player.isSneaking());
         } else if (damage == RENDER_GENERATOR) {
             new CodeGeneratorRendering().getCode();
         } else if (damage == META_CHECKER) {
-            if(world.isRemote) {
-                MCClientHelper.addToChat("Block: " + world.getBlock(xCoord, yCoord, zCoord));
-                MCClientHelper.addToChat("Metadata: " + world.getBlockMetadata(xCoord, yCoord, zCoord));
-                MCClientHelper.addToChat("" + world.getBlock(xCoord, yCoord, zCoord).getClass());
+            if (world.isRemote) {
+                IBlockState state = world.getBlockState(pos);
+                MCClientHelper.addToChat("Block: " + state.getBlock());
+                MCClientHelper.addToChat("Metadata: " + state.getBlock().getMetaFromState(state));
+                MCClientHelper.addToChat("" + state.getBlock().getClass());
             }
         } else if (damage == CHUNK_TESTER) {
             //ChunkTester.activate(world, xCoord, yCoord, zCoord);
@@ -59,7 +62,7 @@ public class ItemCheat extends ItemHFMeta {
             }
         }
 
-        return false;
+        return EnumActionResult.PASS;
     }
 
     @Override

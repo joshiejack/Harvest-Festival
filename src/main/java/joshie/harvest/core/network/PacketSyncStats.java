@@ -4,14 +4,17 @@ import io.netty.buffer.ByteBuf;
 import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class PacketSyncStats implements IMessage, IMessageHandler<PacketSyncStats, IMessage> {
     private double stamina;
     private double fatigue;
     private double staminaMax;
     private double fatigueMin;
-    
-    public PacketSyncStats() {}
+
+    public PacketSyncStats() {
+    }
+
     public PacketSyncStats(double stamina, double fatigue, double staminaMax, double fatigueMin) {
         this.stamina = stamina;
         this.fatigue = fatigue;
@@ -34,9 +37,9 @@ public class PacketSyncStats implements IMessage, IMessageHandler<PacketSyncStat
         staminaMax = buf.readDouble();
         fatigueMin = buf.readDouble();
     }
-    
+
     @Override
-    public IMessage onMessage(PacketSyncStats message, MessageContext ctx) {        
+    public IMessage onMessage(PacketSyncStats message, MessageContext ctx) {
         HFTrackers.getClientPlayerTracker().getStats().setStats(message.stamina, message.fatigue, message.staminaMax, message.fatigueMin);
         return null;
     }

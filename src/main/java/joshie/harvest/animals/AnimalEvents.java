@@ -14,7 +14,6 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent.CheckSpawn;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -22,7 +21,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class AnimalEvents {
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void onEntityLoaded(EntityJoinWorldEvent event) {
-        Entity entity = event.entity;
+        Entity entity = event.getEntity();
         if (entity instanceof IAnimalTracked) {
             HFTrackers.getAnimalTracker().onJoinWorld(((IAnimalTracked) entity).getData());
         }
@@ -30,17 +29,17 @@ public class AnimalEvents {
 
     @SubscribeEvent
     public void onEntityDeath(LivingDeathEvent event) {
-        if (event.entityLiving instanceof IAnimalTracked) {
-            HFTrackers.getAnimalTracker().onDeath(((IAnimalTracked) event.entityLiving));
+        if (event.getEntityLiving() instanceof IAnimalTracked) {
+            HFTrackers.getAnimalTracker().onDeath(((IAnimalTracked) event.getEntityLiving()));
         }
     }
 
     @SubscribeEvent
-    public void onRightClickGround(PlayerInteractEvent event) {
-        if (event.action != Action.LEFT_CLICK_BLOCK && event.entityPlayer.worldObj.isRemote) {
-            EntityPlayer player = event.entityPlayer;
-            if (player.riddenByEntity instanceof EntityChicken) {
-                EntityChicken chicken = (EntityChicken) player.riddenByEntity;
+    public void onRightClickGround(PlayerInteractEvent.LeftClickBlock event) {
+        if (event.getEntityPlayer().worldObj.isRemote) {
+            EntityPlayer player = event.getEntityPlayer();
+            if (player.getRidingEntity() instanceof EntityChicken) {
+                EntityChicken chicken = (EntityChicken) player.getRidingEntity();
                 chicken.mountEntity(null);
                 chicken.rotationPitch = player.rotationPitch;
                 chicken.rotationYaw = player.rotationYaw;
@@ -53,7 +52,7 @@ public class AnimalEvents {
     @SubscribeEvent
     public void onSpawnAttempt(CheckSpawn event) {
         if (!Animals.CAN_SPAWN) {
-            Class animal = event.entity.getClass();
+            Class animal = event.getEntity().getClass();
             if (animal == EntityCow.class || animal == EntitySheep.class || animal == EntityChicken.class) {
                 event.setResult(Result.DENY);
             }

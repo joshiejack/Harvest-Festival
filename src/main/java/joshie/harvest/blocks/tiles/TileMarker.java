@@ -16,13 +16,13 @@ public class TileMarker extends TileEntity {
         this.group = group;
         this.markDirty();
     }
-    
+
     public Building getBuilding() {
         return group;
     }
-    
+
     public IMessage getPacket() {
-        return new PacketSyncMarker(new WorldLocation(worldObj.provider.getDimensionId(), xCoord, yCoord, zCoord), group);
+        return new PacketSyncMarker(new WorldLocation(worldObj.provider.getDimension(), pos), group);
     }
 
     @Override

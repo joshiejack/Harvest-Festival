@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 public class GiftsBrandon extends Gifts {
     @Override
     public Quality getQuality(ItemStack stack) {
-        if (stack.getItem() == Items.iron_pickaxe) {
+        if (stack.getItem() == Items.IRON_PICKAXE) {
             return Quality.AWESOME;
         }
 

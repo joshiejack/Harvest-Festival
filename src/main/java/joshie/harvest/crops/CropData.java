@@ -5,7 +5,6 @@ import joshie.harvest.api.WorldLocation;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
-import joshie.harvest.api.crops.ICropRenderHandler.PlantSection;
 import joshie.harvest.blocks.BlockCrop;
 import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.core.config.Crops;
@@ -40,7 +39,7 @@ public class CropData implements ICropData {
 
     public CropData(WorldLocation location) {
         this.location = location;
-        this.crop = (Crop) HFCrops.null_crop;
+        this.crop = HFCrops.null_crop;
     }
 
     public CropData(EntityPlayer owner, Crop crop, WorldLocation location) {
@@ -59,7 +58,7 @@ public class CropData implements ICropData {
         this.crop = crop;
 
         if (crop.isDouble(this.stage) && !crop.isDouble(stage)) {
-            DimensionManager.getWorld(location.dimension).setBlockToAir(location.x, location.y + 1, location.z);
+            DimensionManager.getWorld(location.dimension).setBlockToAir(location.position.up());
         }
 
         this.stage = stage;
@@ -114,7 +113,8 @@ public class CropData implements ICropData {
     }
 
     public void setCropMetaData(WorldLocation location, int meta) {
-        DimensionManager.getWorld(location.dimension).setBlockMetadataWithNotify(location.x, location.y, location.z, meta, 2);
+        World world = DimensionManager.getWorld(location.dimension);
+        world.setBlockState(location.position, world.getBlockState(location.position).getBlock().getStateFromMeta(meta), 2);
     }
 
     //Called when the crop that was on this farmland is destroyed
@@ -134,7 +134,7 @@ public class CropData implements ICropData {
 
             //If the crop has become double add in the new block
             if (crop.isDouble(stage)) {
-                DimensionManager.getWorld(location.dimension).setBlock(location.x, location.y + 1, location.z, HFBlocks.crops, BlockCrop.FRESH_DOUBLE, 2);
+                DimensionManager.getWorld(location.dimension).setBlockState(location.position.up(), HFBlocks.CROPS, BlockCrop.FRESH_DOUBLE, 2);
             }
 
             //If the crop grows a block to the side
@@ -184,11 +184,6 @@ public class CropData implements ICropData {
     @Override
     public ICrop getCrop() {
         return crop != null ? crop : HFCrops.null_crop;
-    }
-
-    @Override
-    public IIcon getCropIcon(PlantSection section) {
-        return getCrop().getCropRenderHandler().getIconForStage(section, getStage());
     }
 
     public boolean canGrow() {

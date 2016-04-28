@@ -13,28 +13,33 @@ import joshie.harvest.core.helpers.SeedHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.crops.Crop;
-import joshie.harvest.plugins.agricraft.HFAgricraftOverride;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
 @Optional.Interface(modid = "AgriCraft", iface = "com.InfinityRaider.AgriCraft.farming.ICropOverridingSeed")
-public class ItemHFSeeds extends ItemSeeds implements ICropOverridingSeed, ICreativeSorted {
-    private IIcon seed_bag_body;
-    private IIcon seed_bag_neck;
+public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
 
     public ItemHFSeeds() {
-        super(HFBlocks.crops, Blocks.farmland);
-        setCreativeTab(HFTab.tabFarming);
+        super(HFBlocks.CROPS, Blocks.FARMLAND);
+        setCreativeTab(HFTab.FARMING);
         setHasSubtypes(true);
     }
 
@@ -46,7 +51,7 @@ public class ItemHFSeeds extends ItemSeeds implements ICropOverridingSeed, ICrea
     @Override
     public Item setUnlocalizedName(String name) {
         super.setUnlocalizedName(name);
-        GameRegistry.registerItem(this, name.replace(".", "_"));
+        GameRegistry.register(this, new ResourceLocation(HFModInfo.MODID, name.replace(".", "_")));
         return this;
     }
 
@@ -64,9 +69,9 @@ public class ItemHFSeeds extends ItemSeeds implements ICropOverridingSeed, ICrea
         return (crop == null) ? "Bloody Useless Seeds" : crop.getSeedsName();
     }
 
-    @SideOnly(Side.CLIENT)
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean debug) {
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean debug) {
         if (!stack.hasTagCompound()) return;
         ICrop crop = SeedHelper.getCropFromSeed(stack);
         if (crop != null) {
@@ -78,20 +83,21 @@ public class ItemHFSeeds extends ItemSeeds implements ICropOverridingSeed, ICrea
     }
 
     @Override
-    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int xCoord, int yCoord, int zCoord, int side, float hitX, float hitY, float hitZ) {
-        if (side != 1 || !stack.hasTagCompound()) {
-            return false;
+    public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        if (facing != EnumFacing.UP || !stack.hasTagCompound()) {
+            return EnumActionResult.FAIL;
         } else {
             ICrop crop = SeedHelper.getCropFromSeed(stack);
             int planted = 0;
 
             if (player.isSneaking()) {
-                planted = plantSeedAt(player, stack, world, xCoord, yCoord, zCoord, side, crop, planted);
+                planted = plantSeedAt(player, stack, world, pos, facing, crop, planted);
             } else {
-                labelTop: for (int x = xCoord - 1; x <= xCoord + 1; x++) {
-                    for (int z = zCoord - 1; z <= zCoord + 1; z++) {
-                        if (crop.growsToSide() == null || !((x == xCoord && z == zCoord))) {
-                            planted = plantSeedAt(player, stack, world, x, yCoord, z, side, crop, planted);
+                labelTop:
+                for (int x = pos.getX() - 1; x <= pos.getX() + 1; x++) {
+                    for (int z = pos.getZ() - 1; z <= pos.getZ() + 1; z++) {
+                        if (crop.growsToSide() == null || !((x == pos.getX() && z == pos.getZ()))) {
+                            planted = plantSeedAt(player, stack, world, new BlockPos(x, pos.getY(), z), facing, crop, planted);
                         }
 
                         if (planted < 0) {
@@ -106,20 +112,21 @@ public class ItemHFSeeds extends ItemSeeds implements ICropOverridingSeed, ICrea
 
             if (planted > 0) {
                 --stack.stackSize;
-                return true;
+                return EnumActionResult.SUCCESS;
             } else {
-                return false;
+                return EnumActionResult.PASS;
             }
         }
     }
 
-    private int plantSeedAt(EntityPlayer player, ItemStack stack, World world, int x, int y, int z, int side, ICrop crop, int planted) {
-        if (player.canPlayerEdit(x, y, z, side, stack) && player.canPlayerEdit(x, y + 1, z, side, stack)) {
-            if (crop.getSoilHandler().canSustainPlant(world, x, y + 1, z, (IPlantable) HFBlocks.crops) && world.isAirBlock(x, y + 1, z)) {
-                HFTrackers.getCropTracker().plantCrop(player, world, x, y + 1, z, crop, 1);
-                
+    private int plantSeedAt(EntityPlayer player, ItemStack stack, World world, BlockPos pos, EnumFacing facing, ICrop crop, int planted) {
+        if (player.canPlayerEdit(pos, facing, stack) && player.canPlayerEdit(pos.up(), facing, stack)) {
+            IBlockState soil = world.getBlockState(pos.down());
+            if (crop.getSoilHandler().canSustainPlant(soil, world, pos.up(), (IPlantable) HFBlocks.CROPS) && world.isAirBlock(pos.up())) {
+                HFTrackers.getCropTracker().plantCrop(player, world, pos.up(), crop, 1);
+
                 if (!world.isRemote) {
-                    world.setBlock(x, y + 1, z, HFBlocks.crops);
+                    world.setBlockState(pos.up(), HFBlocks.CROPS.getDefaultState());
                 }
 
                 planted++;
@@ -131,61 +138,26 @@ public class ItemHFSeeds extends ItemSeeds implements ICropOverridingSeed, ICrea
                 }
             }
         }
-
         return planted;
     }
 
-    @Override
-    public boolean requiresMultipleRenderPasses() {
-        return true;
-    }
-
-    @Override
-    public IIcon getIcon(ItemStack stack, int pass, EntityPlayer player, ItemStack usingItem, int useRemaining) {
-        if (!stack.hasTagCompound()) return seed_bag_body;
-        if (pass == 0) return seed_bag_body;
-        else return seed_bag_neck;
-    }
-
-    @Override
-    public IIcon getIcon(ItemStack stack, int pass) {
-        return getIcon(stack, pass, null, null, 0);
-    }
-
-    @Override
-    public IIcon getIconFromDamage(int damage) {
-        return seed_bag_body;
-    }
-
-    @Override
+    /*@Override //Moved in vanilla
     public int getColorFromItemStack(ItemStack stack, int pass) {
         if (!stack.hasTagCompound()) return super.getColorFromItemStack(stack, pass);
         ICrop crop = SeedHelper.getCropFromSeed(stack);
         if (pass == 0 && crop != null) return crop.getColor();
         else return super.getColorFromItemStack(stack, pass);
-    }
+    }*/
 
     @Override
-    public int getRenderPasses(int metadata) {
-        return 2;
-    }
-
     @SideOnly(Side.CLIENT)
-    @Override
-    public void getSubItems(Item item, CreativeTabs tab, List list) {
+    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
         for (ICrop crop : Crop.crops) {
             list.add(SeedHelper.getSeedsFromCrop(crop));
         }
     }
 
-    @SideOnly(Side.CLIENT)
-    @Override
-    public void registerIcons(IIconRegister register) {
-        seed_bag_body = register.registerIcon(HFModInfo.MODPATH + ":seed_bag_body");
-        seed_bag_neck = register.registerIcon(HFModInfo.MODPATH + ":seed_bag_neck");
-    }
-
-    //Agricraft
+    /*//Agricraft
     @Optional.Method(modid = "AgriCraft")
     @Override
     public CropOverride getOverride(TileEntityCrop crop) {
@@ -202,5 +174,5 @@ public class ItemHFSeeds extends ItemSeeds implements ICropOverridingSeed, ICrea
     @Override
     public GrowthRequirement getGrowthRequirement() {
         return null;
-    }
+    }*/
 }

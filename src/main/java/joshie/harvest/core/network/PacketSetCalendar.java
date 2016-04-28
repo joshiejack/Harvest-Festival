@@ -6,6 +6,7 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class PacketSetCalendar implements IMessage, IMessageHandler<PacketSetCalendar, IMessage> {
     private int day;
@@ -34,7 +35,7 @@ public class PacketSetCalendar implements IMessage, IMessageHandler<PacketSetCal
     }
     
     @Override
-    public IMessage onMessage(PacketSetCalendar message, MessageContext ctx) {  
+    public IMessage onMessage(PacketSetCalendar message, MessageContext ctx) {
         ICalendarDate date = HFTrackers.getCalendar().getDate();
         Season previous = date.getSeason();
         date.setDay(message.day).setSeason(message.season).setYear(message.year);

@@ -8,18 +8,20 @@ import joshie.harvest.core.lib.CreativeSort;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
 public class ItemWheat extends Item implements IShippable, ICropProvider, ICreativeSorted {
-    public ItemWheat() {}
-    
+    public ItemWheat() {
+    }
+
     @Override
     public int getSortValue(ItemStack stack) {
         return CreativeSort.CROPS;
     }
-    
+
     @Override
     public ICrop getCrop(ItemStack stack) {
         return ItemSeedFood.getCrop(stack);
@@ -36,11 +38,6 @@ public class ItemWheat extends Item implements IShippable, ICropProvider, ICreat
     }
 
     @Override
-    public ItemWheat setTextureName(String name) {
-        return (ItemWheat) super.setTextureName(name);
-    }
-
-    @Override
     public long getSellValue(ItemStack stack) {
         return ItemSeedFood.getSellValue(stack);
     }
@@ -50,9 +47,9 @@ public class ItemWheat extends Item implements IShippable, ICropProvider, ICreat
         return ItemSeedFood.getItemStackDisplayName(stack);
     }
 
-    @SideOnly(Side.CLIENT)
     @Override
-    public void getSubItems(Item item, CreativeTabs tab, List list) {
+    @SideOnly(Side.CLIENT)
+    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
         ItemSeedFood.getSubItems(item, tab, list);
     }
 }

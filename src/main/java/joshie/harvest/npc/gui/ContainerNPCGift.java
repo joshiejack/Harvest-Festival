@@ -24,7 +24,7 @@ public class ContainerNPCGift extends ContainerNPCBase {
         super.onContainerClosed(player);
 
         if (!player.worldObj.isRemote) {
-            ItemStack gift = player.getCurrentEquippedItem();
+            ItemStack gift = player.getActiveItemStack();
             INPC theNpc = npc.getNPC();
             int points = theNpc.getGiftValue(gift).getRelationPoints();
             ICalendarDate today = HFTrackers.getCalendar().getDate();
@@ -40,7 +40,7 @@ public class ContainerNPCGift extends ContainerNPCBase {
             HFTrackers.getPlayerTracker(player).getRelationships().gift(player, theNpc, points);
             player.inventory.decrStackSize(player.inventory.currentItem, 1);
         }
-        
+
         //Kill the goddess
         if (npc.getNPC() == HFNPCs.goddess) {
             npc.setDead();

@@ -15,6 +15,8 @@ import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 
@@ -60,7 +62,7 @@ public class EntityHarvestCow extends EntityCow implements IAnimalTracked, IEnti
     public void milk(EntityPlayer player) {
         ItemStack product = SizeableHelper.getMilk(player, this);
         if (!player.inventory.addItemStackToInventory(product)) {
-            player.dropPlayerItemWithRandomChoice(product, false);
+            player.dropItem(product, false);
         }
 
         if (!worldObj.isRemote) {
@@ -69,8 +71,8 @@ public class EntityHarvestCow extends EntityCow implements IAnimalTracked, IEnti
     }
 
     @Override
-    public boolean interact(EntityPlayer player) {
-        ItemStack held = player.getCurrentEquippedItem();
+    public boolean processInteract(EntityPlayer player, EnumHand hand, ItemStack stack) {
+        ItemStack held = player.getActiveItemStack();
         if (held != null) {
             if (HFApi.ANIMALS.canEat(type.getFoodTypes(), held)) {
                 if (!worldObj.isRemote) {
@@ -84,7 +86,7 @@ public class EntityHarvestCow extends EntityCow implements IAnimalTracked, IEnti
         }
 
         if (worldObj.rand.nextFloat() < 0.33F) {
-            String s = getLivingSound();
+            SoundEvent s = getAmbientSound();
             if (s != null) {
                 playSound(s, 2F, getSoundPitch());
             }

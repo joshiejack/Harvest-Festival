@@ -19,7 +19,7 @@ public class LootStrings {
     public static final String TOWNHALL_TEENAGER_CHEST = "TownHallBedroomTeenagerChest";
     public static final String CAFE_CHEST = "CafeKitchenChest";
     public static final String CAFE_FRAME = "CafeKitchenFrame";
-    
+
     public static final String MINING_CHEST = "MiningHutLeftWingChest";
     public static final String MINING_FRAME = "MiningHutRightWingFrame";
     public static final String POULTRY_CHEST = "PoultryFarmCornerChest";

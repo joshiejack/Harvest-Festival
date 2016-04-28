@@ -4,9 +4,9 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.crops.Crop;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class HarvestCraftCrop extends Crop {
     private String itemName;
@@ -23,12 +23,12 @@ public class HarvestCraftCrop extends Crop {
 
     @Override
     public String getLocalizedName(boolean isItem) {
-        return StatCollector.translateToLocal(getUnlocalizedName());
+        return I18n.translateToLocal(getUnlocalizedName());
     }
 
     @Override
     public String getSeedsName() {
-        return StatCollector.translateToLocal(seedName);
+        return I18n.translateToLocal(seedName);
     }
 
     @Override
@@ -38,8 +38,8 @@ public class HarvestCraftCrop extends Crop {
 
     //Attempt to load the harvestcraft item
     public void loadItem() {
-        setItem(new ItemStack(GameRegistry.findItem("harvestcraft", itemName)));
-        Item seeds = GameRegistry.findItem("harvestcraft", seedItemName);
+        setItem(new ItemStack(Item.REGISTRY.getObject(new ResourceLocation("harvestcraft", itemName))));
+        Item seeds = Item.REGISTRY.getObject(new ResourceLocation("harvestcraft", seedItemName));
         if (seeds instanceof IPlantable) {
             //setCropIconHandler(new IconHandlerHarvestCraft(((IPlantable) seeds).getPlant(null, 0, 0, 0), getStages()));
         }

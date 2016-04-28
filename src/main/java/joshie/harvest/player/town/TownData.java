@@ -45,10 +45,10 @@ public class TownData {
     public static final String GODDESS = "goddesspond";
     //END NPC NAME OF LOCATIONS **/
     
-    protected HashMap<String, TownBuilding> buildings = new HashMap();
+    protected HashMap<String, TownBuilding> buildings = new HashMap<String, TownBuilding>();
     
     public void addBuilding(World world, BuildingStage building) {
-        buildings.put(building.building.getName(), new TownBuilding(building, world.provider.dimensionId));
+        buildings.put(building.building.getName(), new TownBuilding(building, world.provider.getDimension()));
         HFTrackers.markDirty();
     }
 

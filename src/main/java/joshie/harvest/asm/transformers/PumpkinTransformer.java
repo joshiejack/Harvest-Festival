@@ -26,15 +26,15 @@ public class PumpkinTransformer extends AbstractASM {
     public boolean isClass(String name) {
         return name.equals("adb") || name.equals("net.minecraft.item.Item");
     }
-    
+
     @Override
     public boolean isVisitor() {
         return false;
     }
 
-    public static HashSet registerPumpkin(HashSet set) {
-        set.add(Blocks.pumpkin);
-        Item.itemRegistry.addObject(Block.getIdFromBlock(Blocks.pumpkin), "pumpkin", new ItemPumpkin(Blocks.pumpkin));
+    public static HashSet<Block> registerPumpkin(HashSet<Block> set) {
+        set.add(Blocks.PUMPKIN);
+        Item.REGISTRY.addObject(Block.getIdFromBlock(Blocks.PUMPKIN), "pumpkin", new ItemPumpkin(Blocks.PUMPKIN));
         return set;
     }
 
@@ -48,7 +48,8 @@ public class PumpkinTransformer extends AbstractASM {
         classReader.accept(classNode, 0);
 
         Iterator<MethodNode> methods = classNode.methods.iterator();
-        labelTop: while (methods.hasNext()) {
+        labelTop:
+        while (methods.hasNext()) {
             MethodNode m = methods.next();
             if ((m.name.equals(name) && m.desc.equals(desc))) {
                 for (int j = 0; j < m.instructions.size(); j++) {
@@ -65,7 +66,6 @@ public class PumpkinTransformer extends AbstractASM {
                 }
             }
         }
-
         ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS);
         classNode.accept(writer);
         return writer.toByteArray();

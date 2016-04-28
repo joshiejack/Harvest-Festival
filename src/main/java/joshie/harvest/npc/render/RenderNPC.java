@@ -4,9 +4,9 @@ import com.mojang.authlib.GameProfile;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.entity.EntityNPC.Mode;
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLivingBase;
 import net.minecraft.client.renderer.tileentity.TileEntitySkullRenderer;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumAction;
@@ -23,7 +23,7 @@ import org.lwjgl.opengl.GL11;
 import java.util.UUID;
 
 @SideOnly(Side.CLIENT)
-public class RenderNPC extends RenderLivingBase {
+public class RenderNPC extends RenderLivingBase<EntityNPC> {
     private static final ResourceLocation steveTextures = new ResourceLocation("textures/entity/steve.png");
     public ModelNPC modelBipedMain;
 
@@ -33,8 +33,8 @@ public class RenderNPC extends RenderLivingBase {
     }
 
     @Override
-    protected void renderEquippedItems(EntityLivingBase living, float pitch) {
-        renderEquippedItems((EntityNPC) living, pitch);
+    protected void renderEquippedItems(EntityNPC npc, float pitch) {
+        renderEquippedItems((EntityNPC) npc, pitch);
     }
 
     private void renderEquippedItems(EntityNPC npc, float pitch) {
@@ -157,24 +157,19 @@ public class RenderNPC extends RenderLivingBase {
     }
 
     @Override
-    protected void preRenderCallback(EntityLivingBase living, float pitch) {
+    protected void preRenderCallback(EntityNPC npc, float partialTickTime) {
         float f1 = 0.9375F;
-        GL11.glScalef(f1, f1, f1);
+        GlStateManager.scale(f1, f1, f1);
     }
 
     @Override
-    protected int shouldRenderPass(EntityLivingBase living, int p_77032_2_, float p_77032_3_) {
+    protected int shouldRenderPass(EntityNPC npc, int p_77032_2_, float p_77032_3_) {
         return -1;
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(Entity entity) {
-        return ((EntityNPC) entity).getSkin();
-    }
-
-    @Override
-    public void doRender(Entity entity, double x, double y, double z, float pitch, float yaw) {
-        doRender((EntityNPC) entity, x, y, z, pitch, yaw);
+    protected ResourceLocation getEntityTexture(EntityNPC npc) {
+        return npc.getSkin();
     }
 
     @Override
@@ -183,13 +178,9 @@ public class RenderNPC extends RenderLivingBase {
         else return super.func_110813_b(entity);
     }
 
-    @Override
-    public void doRender(EntityLivingBase living, double x, double y, double z, float pitch, float yaw) {
-        doRender((EntityNPC) living, x, y, z, pitch, yaw);
-    }
-
     //Renders the Entity
-    private void doRender(EntityNPC npc, double x, double y, double z, float pitch, float yaw) {
+    @Override
+    public void doRender(EntityNPC npc, double x, double y, double z, float pitch, float yaw) {
         GL11.glPushMatrix();
         if (npc.getNPC().isChild()) {
             modelBipedMain.isChild = true;
@@ -205,17 +196,17 @@ public class RenderNPC extends RenderLivingBase {
         GL11.glColor3f(1.0F, 1.0F, 1.0F);
         //modelBipedMain.heldItemRight = 0;
         modelBipedMain.isSneak = npc.isSneaking();
-        double d3 = y - (double) npc.yOffset;
+        double d3 = y - npc.getYOffset();
 
         if (npc.getMode() == Mode.GIFT) {
             //npc.limbSwing = 45F;
         }
 
-        super.doRender((EntityLivingBase) npc, x, d3, z, pitch, yaw);
+        super.doRender(npc, x, d3, z, pitch, yaw);
         //modelBipedMain.aimedBow = false;
         //modelBipedMain.isSneak = false;
         //modelBipedMain.heldItemRight = 0;
 
-        GL11.glPopMatrix();
+        GlStateManager.popMatrix();
     }
 }

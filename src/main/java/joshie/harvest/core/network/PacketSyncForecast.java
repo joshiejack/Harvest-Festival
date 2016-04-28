@@ -5,11 +5,14 @@ import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class PacketSyncForecast implements IMessage, IMessageHandler<PacketSyncForecast, IMessage> {
     private Weather[] forecast;
 
-    public PacketSyncForecast() {}
+    public PacketSyncForecast() {
+    }
+
     public PacketSyncForecast(Weather[] forecast) {
         this.forecast = forecast;
     }
@@ -28,9 +31,9 @@ public class PacketSyncForecast implements IMessage, IMessageHandler<PacketSyncF
             forecast[i] = Weather.values()[buf.readByte()];
         }
     }
-    
+
     @Override
-    public IMessage onMessage(PacketSyncForecast message, MessageContext ctx) {  
+    public IMessage onMessage(PacketSyncForecast message, MessageContext ctx) {
         HFTrackers.getCalendar().setForecast(message.forecast);
         return null;
     }

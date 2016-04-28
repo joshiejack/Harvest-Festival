@@ -3,8 +3,7 @@ package joshie.harvest.blocks;
 import joshie.harvest.core.util.generic.IHasMetaBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.fluids.BlockFluidClassic;
@@ -16,7 +15,7 @@ import java.util.Random;
 
 public class BlockGoddessWater extends BlockFluidClassic {
     public BlockGoddessWater(Fluid fluid) {
-        super(fluid, Material.water);
+        super(fluid, Material.WATER);
         quantaPerBlock = 8;
         quantaPerBlockFloat = 8;
     }
@@ -48,8 +47,9 @@ public class BlockGoddessWater extends BlockFluidClassic {
                 String pack = this.getClass().getPackage().getName() + ".items.";
                 String thiz = "Item" + this.getClass().getSimpleName();
                 try {
-                    clazz = (Class<? extends ItemBlock>) Class.forName(pack + thiz);
-                } catch (Exception e) {}
+                    clazz = Class.forName(pack + thiz);
+                } catch (Exception ignored) {
+                }
             }
 
             GameRegistry.registerBlock(this, clazz, register);

@@ -7,7 +7,6 @@ import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
-import joshie.harvest.npc.entity.EntityNPCMiner;
 import joshie.harvest.npc.entity.EntityNPCShopkeeper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;

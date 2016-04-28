@@ -20,11 +20,11 @@ import joshie.harvest.player.relationships.RelationshipHelper;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -147,16 +147,16 @@ public class AnimalData implements IAnimalData {
             if (isSick) {
                 if (!wasSick) {
                     wasSick = true;
-                    animal.addPotionEffect(new PotionEffect(Potion.confusion.id, 1000000, 0));
-                    animal.addPotionEffect(new PotionEffect(Potion.blindness.id, 1000000, 0));
-                    animal.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 1000000, 0));
+                    animal.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 1000000, 0));
+                    animal.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 1000000, 0));
+                    animal.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 1000000, 0));
                 }
             } else {
                 if (wasSick) {
                     wasSick = false;
-                    animal.removePotionEffect(Potion.confusion.id);
-                    animal.removePotionEffect(Potion.blindness.id);
-                    animal.removePotionEffect(Potion.moveSlowdown.id);
+                    animal.removePotionEffect(MobEffects.NAUSEA);
+                    animal.removePotionEffect(MobEffects.BLINDNESS);
+                    animal.removePotionEffect(MobEffects.SLOWNESS);
                 }
             }
 
@@ -232,7 +232,7 @@ public class AnimalData implements IAnimalData {
     public EntityPlayer getOwner() {
         EntityPlayer owner = getAndCreateOwner();
         if (owner != null) {
-            if (animal.worldObj.provider.getDimensionId() == owner.worldObj.provider.getDimensionId()) {
+            if (animal.worldObj.provider.getDimension() == owner.worldObj.provider.getDimension()) {
                 if (animal.getDistanceToEntity(owner) <= 128) {
                     return owner;
                 }
@@ -424,7 +424,7 @@ public class AnimalData implements IAnimalData {
         nbt.setBoolean("IsPregnant", isPregnant);
         nbt.setByte("DaysPregnant", daysPregnant);
     }
-    
+
     /** Setters **/
     @Override
     public void setHealthiness(byte healthiness) {

@@ -5,15 +5,17 @@ import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.util.generic.IFaceable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public abstract class AbstractPacketOrientation extends AbstractPacketLocation {
     private EnumFacing dir;
 
-    public AbstractPacketOrientation() {}
+    public AbstractPacketOrientation() {
+    }
+
     public AbstractPacketOrientation(int dim, BlockPos pos, EnumFacing dir) {
         super(dim, pos);
         this.dir = dir == null ? EnumFacing.NORTH : dir;

@@ -8,11 +8,6 @@ public class TileCounter extends TileCooking {
     public short getCookingTime(IUtensil utensil) {
         return 30;
     }
-    
-    @Override
-    public boolean canUpdate() {
-        return false;
-    }
 
     @Override
     public IUtensil getUtensil() {

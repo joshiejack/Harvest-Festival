@@ -85,7 +85,7 @@ public interface ICrop {
 
     /** Returns true when the itemstack matches this crop
      * 
-     * @param       the itemstack
+     * @param       stack the itemstack
      * @return      whether the passed in stack is this crop */
     public boolean matches(ItemStack stack);
 
@@ -95,7 +95,7 @@ public interface ICrop {
     public ICrop setItem(ItemStack item);
 
     /** Associates this crop with this VisualHandler
-     * @param       item of this crop
+     * @param       handler item of this crop
      * @return      the instance*/
     public ICrop setCropIconHandler(ICropRenderHandler handler);
 

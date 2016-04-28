@@ -9,8 +9,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.JsonToNBT;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.IChatComponent;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.client.ForgeHooksClient;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
@@ -56,7 +57,8 @@ public class StackHelper {
                 GL11.glPopMatrix();
                 GL11.glDisable(GL11.GL_LIGHTING);
                 GL11.glDisable(GL12.GL_RESCALE_NORMAL);
-            } catch (Exception e) {}
+            } catch (Exception e) {
+            }
         }
     }
 
@@ -65,13 +67,13 @@ public class StackHelper {
     }
 
     public static String getStringFromStack(ItemStack stack) {
-        String str = Item.itemRegistry.getNameForObject(stack.getItem());
+        String str = Item.REGISTRY.getNameForObject(stack.getItem()).getResourcePath();
         if (stack.getHasSubtypes() || stack.hasTagCompound()) {
             str = str + " " + stack.getItemDamage();
         }
 
         if (stack.hasTagCompound()) {
-            str = str + " " + stack.stackTagCompound.toString();
+            str = str + " " + stack.getTagCompound().toString();
         }
 
         return str;
@@ -106,7 +108,7 @@ public class StackHelper {
         if (str.length > 2) {
             String s = formatNBT(str, 2).getUnformattedText();
             try {
-                NBTBase nbtbase = JsonToNBT.func_150315_a(s);
+                NBTBase nbtbase = JsonToNBT.getTagFromJson(s);
 
                 if (!(nbtbase instanceof NBTTagCompound)) return null;
 
@@ -119,33 +121,29 @@ public class StackHelper {
         return stack;
     }
 
-    private static Item getItemByText(String str) {
-        Item item = (Item) Item.itemRegistry.getObject(str);
+    private static Item getItemByText(String location) {
+        Item item = Item.REGISTRY.getObject(new ResourceLocation(location));
         if (item == null) {
             try {
-                Item item1 = Item.getItemById(Integer.parseInt(str));
-                item = item1;
-            } catch (NumberFormatException numberformatexception) {
-                ;
+                item = Item.getItemById(Integer.parseInt(location));
+            } catch (NumberFormatException ignored) {
             }
         }
-
         return item;
     }
 
-    private static IChatComponent formatNBT(String[] str, int start) {
-        ChatComponentText chatcomponenttext = new ChatComponentText("");
+    private static ITextComponent formatNBT(String[] str, int start) {
+        TextComponentString textComponents = new TextComponentString("");
 
         for (int j = start; j < str.length; ++j) {
             if (j > start) {
-                chatcomponenttext.appendText(" ");
+                textComponents.appendText(" ");
             }
 
-            Object object = new ChatComponentText(str[j]);
-            chatcomponenttext.appendSibling((IChatComponent) object);
+            Object object = new TextComponentString(str[j]);
+            textComponents.appendSibling((ITextComponent) object);
         }
-
-        return chatcomponenttext;
+        return textComponents;
     }
 
     private static int parseInt(String str) {
@@ -162,15 +160,15 @@ public class StackHelper {
         }
 
         try {
-            tag.setString("Name", Item.itemRegistry.getNameForObject(stack.getItem()));
+            tag.setString("Name", Item.REGISTRY.getNameForObject(stack.getItem()));
             tag.setInteger("Count", (byte) stack.stackSize);
             tag.setInteger("Damage", (short) stack.getItemDamage());
 
-            if (stack.stackTagCompound != null) {
-                tag.setTag("tag", stack.stackTagCompound);
+            if (stack.getTagCompound() != null) {
+                tag.setTag("tag", stack.getTagCompound());
             }
-        } catch (Exception e) {}
-
+        } catch (Exception ignored) {
+        }
         return tag;
     }
 
@@ -179,7 +177,7 @@ public class StackHelper {
             tag = new NBTTagCompound();
         }
 
-        Item item = (Item) Item.itemRegistry.getObject(tag.getString("Name"));
+        Item item = Item.REGISTRY.getObject(tag.getString("Name"));
         int count = tag.getInteger("Count");
         int damage = tag.getInteger("Damage");
         if (damage < 0) {
@@ -188,9 +186,8 @@ public class StackHelper {
 
         ItemStack stack = new ItemStack(item, count, damage);
         if (tag.hasKey("tag", 10)) {
-            stack.stackTagCompound = tag.getCompoundTag("tag");
+            stack.setTagCompound(tag.getCompoundTag("tag"));
         }
-
         return stack;
     }
 }

@@ -1,10 +1,6 @@
 package joshie.harvest.crops.icons;
 
-import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-public class IconHandlerWheat extends AbstractIconHandler {
+/*public class IconHandlerWheat extends AbstractIconHandler {
     private Block block;
 
     public IconHandlerWheat() {
@@ -29,4 +25,4 @@ public class IconHandlerWheat extends AbstractIconHandler {
     public void registerIcons(IIconRegister register) {
         return;
     }
-}
+}*/

@@ -3,6 +3,7 @@ package joshie.harvest.core.network;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -41,6 +42,7 @@ public class PacketHandler {
     }
 
     public static void sendAround(IMessage packet, TileEntity tile) {
-        sendAround(packet, tile.getWorld().provider.getDimensionId(), tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ());
+        BlockPos pos = tile.getPos();
+        sendAround(packet, tile.getWorld().provider.getDimension(), pos.getX(), pos.getY(), pos.getZ());
     }
 }

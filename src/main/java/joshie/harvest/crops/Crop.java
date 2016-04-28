@@ -11,9 +11,9 @@ import joshie.harvest.core.config.HFConfig;
 import joshie.harvest.core.helpers.SeedHelper;
 import joshie.harvest.core.util.Translate;
 import joshie.harvest.crops.handlers.SoilHandlers;
-import joshie.harvest.crops.icons.IconHandlerDefault;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.StringUtils;
 
@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Crop implements ICrop {
-    public static final ArrayList<ICrop> crops = new ArrayList(30);
+    public static final ArrayList<ICrop> crops = new ArrayList<ICrop>(30);
     private static final Random rand = new Random();
 
     //CropData
@@ -56,8 +56,7 @@ public class Crop implements ICrop {
      * @param sell how much this sells for
      * @param stages how many stages this crop has
      * @param regrow the stage this returns to once harvested
-     * @param year the year in which this crop can be purchased
-     * @param meta the crop meta value for dropping the correct item  */
+     * @param year the year in which this crop can be purchased */
     public Crop(String unlocalized, Season season, int cost, int sell, int stages, int regrow, int year, int color) {
         this(unlocalized, new Season[] { season }, cost, sell, stages, regrow, year, color);
     }
@@ -73,7 +72,7 @@ public class Crop implements ICrop {
         this.alternativeName = false;
         this.foodType = AnimalFoodType.VEGETABLE;
         this.bag_color = color;
-        this.iconHandler = new IconHandlerDefault(this);
+        //this.iconHandler = new IconHandlerDefault(this);
         this.soilHandler = SoilHandlers.farmland;
         this.needsWatering = true;
         this.doubleStage = Integer.MAX_VALUE;
@@ -215,7 +214,6 @@ public class Crop implements ICrop {
     }
 
     /** This is called when bringing up the list of crops for sale 
-     * @param shop The shop that is currently open
      * @return whether this item can be purchased in this shop or not */
     public boolean canPurchase() {
         return getSeedCost() > 0;

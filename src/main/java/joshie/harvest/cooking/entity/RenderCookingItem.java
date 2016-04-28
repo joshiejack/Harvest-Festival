@@ -1,6 +1,6 @@
+/*
 package joshie.harvest.cooking.entity;
 
-import joshie.harvest.api.cooking.ICookingAltIcon;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -29,11 +29,15 @@ public class RenderCookingItem extends Render {
     private static final ResourceLocation field_110798_h = new ResourceLocation("textures/misc/enchanted_item_glint.png");
     private RenderBlocks itemRenderBlocks = new RenderBlocks();
 
-    /** The RNG used in RenderItem (for bobbing itemstacks on the ground) */
+    */
+/** The RNG used in RenderItem (for bobbing itemstacks on the ground) *//*
+
     private Random random = new Random();
     public boolean renderWithColor = true;
 
-    /** Defines the zLevel of rendering of item on GUI. */
+    */
+/** Defines the zLevel of rendering of item on GUI. *//*
+
     public float zLevel;
     public static boolean renderInFrame;
 
@@ -42,9 +46,11 @@ public class RenderCookingItem extends Render {
         shadowOpaque = 0.75F;
     }
 
-    /**
+    */
+/**
      * Renders the item
-     */
+     *//*
+
     public void doRenderItem(EntityCookingItem entity, double par2, double par4, double par6, float par8, float par9) {
         renderInFrame = true;
         bindEntityTexture(entity);
@@ -251,9 +257,11 @@ public class RenderCookingItem extends Render {
 
     }
 
-    /**
+    */
+/**
      * Renders the item's icon or block into the UI at the specified position.
-     */
+     *//*
+
     public void renderItemIntoGUI(FontRenderer par1FontRenderer, TextureManager par2TextureManager, ItemStack par3ItemStack, int par4, int par5) {
         renderItemIntoGUI(par1FontRenderer, par2TextureManager, par3ItemStack, par4, par5, false);
     }
@@ -360,9 +368,11 @@ public class RenderCookingItem extends Render {
         GL11.glDepthFunc(GL11.GL_LEQUAL);
     }
 
-    /**
+    */
+/**
      * Render the item's icon or block into the GUI, including the glint effect.
-     */
+     *//*
+
     public void renderItemAndEffectIntoGUI(FontRenderer par1FontRenderer, TextureManager par2TextureManager, ItemStack par3ItemStack, int par4, int par5) {
         if (par3ItemStack != null) if (!ForgeHooksClient.renderInventoryItem(field_147909_c, par2TextureManager, par3ItemStack, renderWithColor, zLevel, par4, par5)) {
             this.renderItemIntoGUI(par1FontRenderer, par2TextureManager, par3ItemStack, par4, par5, true);
@@ -498,4 +508,4 @@ public class RenderCookingItem extends Render {
         }
         return ret;
     }
-}
+}*/

@@ -4,11 +4,9 @@ import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.core.config.General;
 import joshie.harvest.core.lib.SizeableMeta;
 import joshie.harvest.crops.Crop;
-import joshie.harvest.items.render.RenderItemAnimal;
-import joshie.harvest.items.render.RenderItemNPC;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.client.MinecraftForgeClient;
+import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 import org.apache.commons.lang3.text.WordUtils;
@@ -16,26 +14,26 @@ import org.apache.commons.lang3.text.WordUtils;
 import java.util.EnumMap;
 
 public class HFItems {
-    public static EnumMap<SizeableMeta, Item> sized = new EnumMap(SizeableMeta.class);
+    public static EnumMap<SizeableMeta, Item> sized = new EnumMap<SizeableMeta, Item>(SizeableMeta.class);
     //Sizeables
     public static Item egg;
     public static Item milk;
     public static Item mayonnaise;
     public static Item wool;
-    
+
     //Tools
     public static Item hoe;
     public static Item sickle;
     public static Item wateringcan;
     public static Item hammer;
-    
+
     //Misc
     public static Item general;
     public static Item meal;
     public static ItemAnimal animal;
     public static ItemTreat treats;
     public static Item seeds;
-    
+
     //Misc
     public static Item structures;
     public static Item spawnerNPC;
@@ -69,7 +67,7 @@ public class HFItems {
         sickle = new ItemSickle().setUnlocalizedName("sickle");
         wateringcan = new ItemWateringCan().setUnlocalizedName("wateringcan");
         hammer = new ItemHammer().setUnlocalizedName("hammer");
-        
+
         //Misc
         general = new ItemGeneral().setUnlocalizedName("general.item");
         meal = new ItemMeal().setUnlocalizedName("meal");
@@ -85,10 +83,10 @@ public class HFItems {
             new ItemCheat().setUnlocalizedName("cheat");
         }
     }
-    
+
     @SideOnly(Side.CLIENT)
     public static void initClient() {
-        MinecraftForgeClient.registerItemRenderer(HFItems.animal, new RenderItemAnimal());
-        MinecraftForgeClient.registerItemRenderer(HFItems.spawnerNPC, new RenderItemNPC());
+        //MinecraftForgeClient.registerItemRenderer(HFItems.animal, new RenderItemAnimal());
+        //MinecraftForgeClient.registerItemRenderer(HFItems.spawnerNPC, new RenderItemNPC());
     }
 }

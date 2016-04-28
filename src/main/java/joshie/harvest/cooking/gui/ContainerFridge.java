@@ -8,11 +8,8 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-import java.util.Random;
-
 public class ContainerFridge extends ContainerBase {
     private final FridgeData storage;
-    private final Random rand = new Random();
 
     public ContainerFridge(IInventory inventory, FridgeData storage) {
         this.storage = storage;

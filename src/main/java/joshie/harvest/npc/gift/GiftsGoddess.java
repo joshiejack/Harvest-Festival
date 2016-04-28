@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 public class GiftsGoddess extends Gifts {
     @Override
     public Quality getQuality(ItemStack stack) {
-        if (stack.getItem() == Item.getItemFromBlock(HFBlocks.flowers)) {
+        if (stack.getItem() == Item.getItemFromBlock(HFBlocks.FLOWERS)) {
             return Quality.AWESOME;
         }
 
@@ -18,7 +18,6 @@ public class GiftsGoddess extends Gifts {
         if (is(stack, Category.CHEAP)) {
             return Quality.BAD;
         }
-
         return Quality.DECENT;
     }
 }

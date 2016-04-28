@@ -8,6 +8,7 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -150,7 +151,7 @@ public abstract class GuiBase extends GuiContainer {
     }
 
     @Override
-    public void handleMouseInput() {
+    public void handleMouseInput() throws IOException {
         int x = Mouse.getEventX() * width / mc.displayWidth;
         int y = height - Mouse.getEventY() * height / mc.displayHeight - 1;
 
@@ -162,12 +163,11 @@ public abstract class GuiBase extends GuiContainer {
     }
 
     @Override
-    protected void mouseClicked(int par1, int par2, int par3) {
-        super.mouseClicked(par1, par2, par3);
+    protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
+        super.mouseClicked(mouseX, mouseY, mouseButton);
         onMouseClick(mouseX, mouseY);
     }
 
     protected void onMouseClick(int mouseX, int mouseY) {
-        return;
     }
 }

@@ -34,6 +34,6 @@ public class RenderHarvestAnimal extends RenderLiving<EntityLiving> {
             else return texture_adult;
         }
 
-        return ((EntityAgeable) entityLiving).isChild() ? texture_child : texture_adult;
+        return entityLiving.isChild() ? texture_child : texture_adult;
     }
 }

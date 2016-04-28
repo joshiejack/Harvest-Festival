@@ -25,6 +25,6 @@ public interface IAnimalType {
     public int getTypeTreatCount();
 
     /** Called to make this animal produce it a product on a new day 
-     * @param tracking **/
+     * @param data tracking **/
     public void newDay(IAnimalData data, EntityAnimal entity);
 }

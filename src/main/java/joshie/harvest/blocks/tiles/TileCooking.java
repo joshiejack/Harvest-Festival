@@ -12,12 +12,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 
 import java.util.ArrayList;
@@ -26,7 +25,7 @@ public abstract class TileCooking extends TileEntity implements IFaceable, ITick
     public static short COOK_TIMER = 100;
     private boolean cooking;
     private short cookTimer = 0;
-    private ArrayList<ItemStack> ingredients = new ArrayList();
+    private ArrayList<ItemStack> ingredients = new ArrayList<ItemStack>();
     private ItemStack result;
     private EnumFacing orientation = EnumFacing.NORTH;
     public float[] rotations = new float[20];
@@ -102,7 +101,7 @@ public abstract class TileCooking extends TileEntity implements IFaceable, ITick
                 if (cookTimer >= getCookingTime(utensil)) {
                     result = HFApi.COOKING.getResult(utensil, ingredients);
                     cooking = false;
-                    ingredients = new ArrayList();
+                    ingredients = new ArrayList<ItemStack>();
                     cookTimer = 0;
                     this.markDirty();
                 }
@@ -119,7 +118,6 @@ public abstract class TileCooking extends TileEntity implements IFaceable, ITick
     public boolean addIngredient(ItemStack stack) {
         if (ingredients.size() >= 20) return false;
         if (!hasPrerequisites()) return false;
-        Fluid fluid = HFApi.COOKING.getFluid(stack);
         if (HFApi.COOKING.getCookingComponents(stack).size() < 1) return false;
         else {
             if (worldObj.isRemote) return true;
@@ -149,7 +147,7 @@ public abstract class TileCooking extends TileEntity implements IFaceable, ITick
     }
 
     public IMessage getPacket() {
-        return new PacketSyncCooking(worldObj.provider.getDimensionId(), getPos(), orientation, cooking, ingredients, result);
+        return new PacketSyncCooking(worldObj.provider.getDimension(), getPos(), orientation, cooking, ingredients, result);
     }
 
     @Override

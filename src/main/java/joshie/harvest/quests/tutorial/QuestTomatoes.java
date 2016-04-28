@@ -13,41 +13,41 @@ import java.util.HashSet;
 
 import static joshie.harvest.core.helpers.QuestHelper.*;
 
-public class QuestTomatoes extends Quest {    
+public class QuestTomatoes extends Quest {
     @Override
     public boolean canStart(EntityPlayer player, HashSet<IQuest> active, HashSet<IQuest> finished) {
-        if(!super.canStart(player, active, finished)) return false;
+        if (!super.canStart(player, active, finished)) return false;
         else {
             return true;
         }
     }
-    
+
     @Override
     public INPC[] getNPCs() {
-        return new INPC[] { HFNPCs.goddess };
+        return new INPC[]{HFNPCs.goddess};
     }
-    
+
     @Override
-    public String getScript(EntityPlayer player, EntityNPC npc) {     
-        if(quest_stage == 0) {            
+    public String getScript(EntityPlayer player, EntityNPC npc) {
+        if (quest_stage == 0) {
             increaseStage(player);
             return getLocalized("start");
-        } else if(player.getCurrentEquippedItem() != null) {              
-            ItemStack held = player.getCurrentEquippedItem();
-            if(held.stackSize >= 10) {
-                if(HFCrops.tomato.matches(held)) {
+        } else if (player.getActiveItemStack() != null) {
+            ItemStack held = player.getActiveItemStack();
+            if (held.stackSize >= 10) {
+                if (HFCrops.tomato.matches(held)) {
                     takeHeldStack(player, 10);
                     completeQuest(player, this);
                     return getLocalized("finish");
                 }
             }
-            
+
             return getLocalized("wrong");
         }
-        
+
         return null;
     }
-    
+
     @Override
     public void claim(EntityPlayer player) {
         rewardGold(player, HFCrops.tomato.getSellValue() * 15);

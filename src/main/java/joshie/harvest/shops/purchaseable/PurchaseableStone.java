@@ -12,7 +12,7 @@ public class PurchaseableStone extends Purchaseable {
     }
 
     @Override
-    public void addTooltip(List list) {
+    public void addTooltip(List<String> list) {
         for (ItemStack stack: stacks) {
         list.add(Text.WHITE + stack.getDisplayName());
 		list.add(Translate.translate("tooltip.dirt"));

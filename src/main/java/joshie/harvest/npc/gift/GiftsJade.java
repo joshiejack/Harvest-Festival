@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 public class GiftsJade extends Gifts {
     @Override
     public Quality getQuality(ItemStack stack) {
-        if (stack.getItem() == Items.wheat_seeds) {
+        if (stack.getItem() == Items.WHEAT_SEEDS) {
             return Quality.AWESOME;
         }
 
@@ -17,7 +17,6 @@ public class GiftsJade extends Gifts {
         if (is(stack, Category.MINING)) {
             return Quality.BAD;
         }
-
         return Quality.DECENT;
     }
 }

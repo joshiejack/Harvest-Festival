@@ -6,6 +6,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockFarmland;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 
@@ -27,7 +29,7 @@ public class CropHelper {
         Block farmland = world.getBlock(x, y, z);
         int meta = world.getBlockMetadata(x, y, z);
         if (!(farmland instanceof BlockFarmland)) return true;
-        else if (crop instanceof IPlantable && farmland.canSustainPlant(world, x, y, z, ForgeDirection.UP, (IPlantable) crop)) {
+        else if (crop instanceof IPlantable && farmland.canSustainPlant(world, x, y, z, EnumFacing.UP, (IPlantable) crop)) {
             world.setBlockMetadataWithNotify(x, y, z, 0, 2);
             return true;
         } else if (meta == 7) {
@@ -39,8 +41,8 @@ public class CropHelper {
     }
 
     //Returns whether the farmland is hydrated
-    public static boolean isHydrated(World world, int x, int y, int z) {
-        return world.getBlock(x, y, z) instanceof BlockFarmland && world.getBlockMetadata(x, y, z) == 7;
+    public static boolean isHydrated(World world, BlockPos pos) {
+        return world.getBlockState(pos).getBlock() instanceof BlockFarmland && world.getBlockMetadata(x, y, z) == 7;
     }
 
     //Harvests the crop at this location

@@ -3,20 +3,22 @@ package joshie.harvest.mining.data;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Mine {
-    private List<MineLevel> levels = new ArrayList();
+    private List<MineLevel> levels = new ArrayList<MineLevel>();
     private String name;
 
     public String getName() {
         return name;
     }
 
-    public Mine() {}
+    public Mine() {
+    }
 
     public Mine(String name) {
         this.name = name;
@@ -48,8 +50,8 @@ public class Mine {
         return levels.size() - 1;
     }
 
-    public void complete(World world, int x, int y, int z, ArrayList<PlaceableBlock> blocks) {
-        levels.get(levels.size() - 1).complete(world, x, y, z, this, blocks);
+    public void complete(World world, BlockPos pos, ArrayList<PlaceableBlock> blocks) {
+        levels.get(levels.size() - 1).complete(world, pos, this, blocks);
     }
 
     public void readFromNBT(NBTTagCompound nbt) {

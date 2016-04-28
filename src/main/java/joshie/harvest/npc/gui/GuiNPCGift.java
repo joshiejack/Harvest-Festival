@@ -14,7 +14,7 @@ public class GuiNPCGift extends GuiNPCChat {
 
     public GuiNPCGift(EntityNPC npc, EntityPlayer player) {
         super(npc, player, -1);
-        gift = player.getCurrentEquippedItem();
+        gift = player.getActiveItemStack();
         value = npc.getNPC().getGiftValue(gift);
     }
 

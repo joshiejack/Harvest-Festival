@@ -9,7 +9,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.text.translation.I18n;
+import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
@@ -20,11 +21,11 @@ public class ItemSeedFood {
         Item item = stack.getItem();
         if (item == Items.CARROT && HFConfig.asm.CARROT_OVERRIDE) {
             crop = HFCrops.carrot;
-        } else if (item == Items.potato && HFConfig.asm.POTATO_OVERRIDE) {
+        } else if (item == Items.POTATO && HFConfig.asm.POTATO_OVERRIDE) {
             crop = HFCrops.potato;
         } else if (item == Items.WHEAT && HFConfig.asm.WHEAT_OVERRIDE) {
             crop = HFCrops.wheat;
-        } else if (item == Item.getItemFromBlock(Blocks.pumpkin) && HFConfig.asm.PUMPKIN_OVERRIDE) {
+        } else if (item == Item.getItemFromBlock(Blocks.PUMPKIN) && HFConfig.asm.PUMPKIN_OVERRIDE) {
             crop = HFCrops.pumpkin;
         } else if (item == Items.MELON && HFConfig.asm.WATERMELON_OVERRIDE) {
             crop = HFCrops.watermelon;
@@ -40,7 +41,8 @@ public class ItemSeedFood {
 
     public static String getItemStackDisplayName(ItemStack stack) {
         ICrop crop = getCrop(stack);
-        if (crop == null) return ("" + StatCollector.translateToLocal(stack.getItem().getUnlocalizedNameInefficiently(stack) + ".name")).trim();
+        if (crop == null)
+            return ("" + I18n.translateToLocal(stack.getItem().getUnlocalizedNameInefficiently(stack) + ".name")).trim();
         else return crop.getLocalizedName(true);
     }
 
@@ -49,7 +51,7 @@ public class ItemSeedFood {
     }
 
     @SideOnly(Side.CLIENT)
-    public static void getSubItems(Item item, CreativeTabs tab, List list) {
+    public static void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
         list.add(new ItemStack(item, 1, 0));
     }
 }

@@ -46,7 +46,7 @@ public class ItemBlockFlower extends ItemBlockBase implements ICreativeSorted {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean flag) {
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
         list.add(Translate.translate("tooltip.flower"));
     }
 }

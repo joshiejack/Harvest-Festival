@@ -10,6 +10,7 @@ import joshie.harvest.crops.HFCrops;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class ItemCrop extends ItemHFMeta implements IShippable, ICropProvider, I
     private ICrop crop;
 
     public ItemCrop(ICrop crop) {
-        setCreativeTab(HFTab.tabFarming);
+        setCreativeTab(HFTab.FARMING);
         setTextureFolder(CROPPATH);
         this.crop = crop;
     }
@@ -28,11 +29,6 @@ public class ItemCrop extends ItemHFMeta implements IShippable, ICropProvider, I
     @Override
     public int getMetaCount() {
         return 1;
-    }
-    
-    @Override
-    public boolean hasAlt(ItemStack stack) {
-        return stack.getItem() == HFCrops.corn.getCropStack().getItem();
     }
 
     @Override
@@ -58,12 +54,6 @@ public class ItemCrop extends ItemHFMeta implements IShippable, ICropProvider, I
         return crop.getLocalizedName(true);
     }
 
-    @SideOnly(Side.CLIENT)
-    @Override
-    public IIcon getIconFromDamage(int damage) {
-        return icons[0];
-    }
-
     @Override
     public String getName(ItemStack stack) {
         return crop.getUnlocalizedName();
@@ -71,12 +61,12 @@ public class ItemCrop extends ItemHFMeta implements IShippable, ICropProvider, I
 
     @Override
     public CreativeTabs[] getCreativeTabs() {
-        return new CreativeTabs[] { HFTab.tabFarming };
+        return new CreativeTabs[] { HFTab.FARMING };
     }
 
-    @SideOnly(Side.CLIENT)
     @Override
-    public void getSubItems(Item item, CreativeTabs tab, List list) {
+    @SideOnly(Side.CLIENT)
+    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
         if (crop.getCropStack() != null) list.add(crop.getCropStack());
     }
 }

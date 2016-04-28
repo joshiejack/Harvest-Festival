@@ -2,6 +2,7 @@ package joshie.harvest.core.network;
 
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.core.handlers.HFTrackers;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -12,10 +13,11 @@ import static joshie.harvest.core.helpers.generic.MCServerHelper.getWorld;
 public class PacketCropRequest implements IMessage, IMessageHandler<PacketCropRequest, IMessage> {
     private int dimension, x, y, z;
 
-    public PacketCropRequest() {}
+    public PacketCropRequest() {
+    }
 
     public PacketCropRequest(World world, int x, int y, int z) {
-        this.dimension = world.provider.getDimensionId();
+        this.dimension = world.provider.getDimension();
         this.x = x;
         this.y = y;
         this.z = z;
@@ -38,9 +40,8 @@ public class PacketCropRequest implements IMessage, IMessageHandler<PacketCropRe
     }
 
     @Override
-    public IMessage onMessage(PacketCropRequest msg, MessageContext ctx) {     
-        HFTrackers.getCropTracker().sendUpdateToClient(ctx.getServerHandler().playerEntity, getWorld(msg.dimension), msg.x, msg.y, msg.z);
-
+    public IMessage onMessage(PacketCropRequest msg, MessageContext ctx) {
+        HFTrackers.getCropTracker().sendUpdateToClient(ctx.getServerHandler().playerEntity, getWorld(msg.dimension), new BlockPos(msg.x, msg.y, msg.z));
         return null;
     }
 }

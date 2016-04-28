@@ -1,23 +1,18 @@
 package joshie.harvest.core.util.base;
 
-import joshie.harvest.api.cooking.ICookingAltIcon;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.util.generic.IHasMetaItem;
 import joshie.harvest.core.util.generic.Text;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public abstract class ItemBaseMeta extends Item implements IHasMetaItem, ICookingAltIcon {
-    @SideOnly(Side.CLIENT)
-    protected IIcon[] icons;
-    @SideOnly(Side.CLIENT)
-    protected IIcon[] alts;
+public abstract class ItemBaseMeta extends Item implements IHasMetaItem {
     protected String mod;
     protected String path;
 
@@ -58,57 +53,22 @@ public abstract class ItemBaseMeta extends Item implements IHasMetaItem, ICookin
         return damage;
     }
 
-    @SideOnly(Side.CLIENT)
-    @Override
-    public IIcon getIconFromDamage(int damage) {
-        damage = Math.max(0, Math.min(getMetaCount() - 1, damage));
-        if (icons == null) return Items.arrow.getIconFromDamage(0);
-        return icons[damage];
-    }
-
-    @Override
-    public IIcon getCookingIcon(ItemStack stack, int pass) {
-        int damage = Math.max(0, Math.min(getMetaCount() - 1, stack.getItemDamage()));
-        if (icons == null) return Items.arrow.getIconFromDamage(0);
-        if (alts[damage] != null) return alts[damage];
-        return icons[damage];
-    }
-
-    public boolean hasAlt(ItemStack stack) {
-        return false;
-    }
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public void registerIcons(IIconRegister register) {
-        String path = this.path != null ? this.path : mod + ":";
-        alts = new IIcon[getMetaCount()];
-        icons = new IIcon[getMetaCount()];
-        for (int i = 0; i < icons.length; i++) {
-            ItemStack stack = new ItemStack(this, 1, i);
-            icons[i] = register.registerIcon(path + getName(stack));
-            if (hasAlt(stack)) {
-                alts[i] = register.registerIcon(path + getName(stack) + "_alt");
-            }
-        }
-    }
-
     public boolean isValidTab(CreativeTabs tab, int meta) {
         return tab == getCreativeTab();
     }
 
     @Override
     public CreativeTabs[] getCreativeTabs() {
-        return new CreativeTabs[] { HFTab.tabFarming, HFTab.tabCooking, HFTab.tabMining, HFTab.tabTown };
+        return new CreativeTabs[]{HFTab.FARMING, HFTab.COOKING, HFTab.MINING, HFTab.TOWN};
     }
 
     public boolean isActive(int damage) {
         return true;
     }
 
-    @SideOnly(Side.CLIENT)
     @Override
-    public void getSubItems(Item item, CreativeTabs tab, List list) {
+    @SideOnly(Side.CLIENT)
+    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
         for (int i = 0; i < getMetaCount(); i++) {
             if (isActive(i) && isValidTab(tab, i)) {
                 list.add(new ItemStack(item, 1, i));

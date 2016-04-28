@@ -10,6 +10,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.GuiIngameForge;
@@ -30,10 +31,10 @@ public class RenderHandler {
     @SubscribeEvent
     public void getFoliageColor(GetFoliageColor event) {
         if (HFTrackers.getCalendar().getDate().getSeason() == Season.AUTUMN) {
-            event.newColor = 0xFF9900;
+            event.setNewColor(0xFF9900);
         }
     }
-    
+
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void renderTick(TickEvent.RenderTickEvent event) {
@@ -48,7 +49,7 @@ public class RenderHandler {
             final int k = Mouse.getX() * i / mc.displayWidth;
             final int l = j - Mouse.getY() * j / mc.displayHeight - 1;
 
-            GL11.glPushMatrix();
+            GlStateManager.pushMatrix();
             GL11.glPushAttrib(1048575);
             GL11.glDisable(2896);
             List slots = mc.thePlayer.openContainer.inventorySlots;
@@ -72,9 +73,8 @@ public class RenderHandler {
                     }
                 }
             }
-
-            GL11.glPopAttrib();
-            GL11.glPopMatrix();
+            GlStateManager.popAttrib();
+            GlStateManager.popMatrix();
         }
     }
 }

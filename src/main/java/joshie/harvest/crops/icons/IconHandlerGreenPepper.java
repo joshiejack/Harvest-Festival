@@ -1,10 +1,6 @@
 package joshie.harvest.crops.icons;
 
-import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.crops.HFCrops;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-public class IconHandlerGreenPepper extends AbstractIconHandler {
+/*public class IconHandlerGreenPepper extends AbstractIconHandler {
     @SideOnly(Side.CLIENT)
     public IIcon getIconForStage(PlantSection section, int stage) {
         if (stage <= 2) return stageIcons[0];
@@ -21,4 +17,4 @@ public class IconHandlerGreenPepper extends AbstractIconHandler {
             stageIcons[i] = register.registerIcon(HFModInfo.CROPPATH + HFCrops.green_pepper.getUnlocalizedName() + "_" + (i + 1));
         }
     }
-}
+}*/

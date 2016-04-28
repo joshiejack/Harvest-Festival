@@ -1,9 +1,7 @@
 package joshie.harvest.plugins.agricraft;
 
-import joshie.harvest.crops.icons.AbstractIconHandler;
-
-public class IconHandlerAgriCraft extends AbstractIconHandler {
-    /*private BlockModPlant block;
+/*public class IconHandlerAgriCraft extends AbstractIconHandler {
+    private BlockModPlant block;
     private int maxStages;
 
     public IconHandlerAgriCraft(BlockModPlant block, int maxStages) {
@@ -19,5 +17,5 @@ public class IconHandlerAgriCraft extends AbstractIconHandler {
     @Override
     public void registerIcons(IIconRegister register) {
         return;
-    }*/
-}
+    }
+}*/

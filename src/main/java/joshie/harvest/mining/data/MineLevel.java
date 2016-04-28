@@ -6,6 +6,7 @@ import joshie.harvest.mining.MineTrackerServer;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
 
@@ -13,11 +14,12 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 public class MineLevel {
-    private HashSet<MineBlock> blocks = new HashSet();
+    private HashSet<MineBlock> blocks = new HashSet<MineBlock>();
     private boolean isCavedIn;
     private int number;
 
-    public MineLevel() {}
+    public MineLevel() {
+    }
 
     public MineLevel(int number) {
         this.number = number;
@@ -38,19 +40,16 @@ public class MineLevel {
         return number;
     }
 
-    public void complete(World world, int xCoord, int yCoord, int zCoord, Mine mine, ArrayList<PlaceableBlock> list) {
+    public void complete(World world, BlockPos pos, Mine mine, ArrayList<PlaceableBlock> list) {
         for (PlaceableBlock block : list) {
-            int x = xCoord + block.getX();
-            int y = yCoord + block.getY();
-            int z = zCoord + block.getZ();
 
             MineBlock location = null;
             if (block.getBlock() == Blocks.AIR) {
-                location = new MineAir(world.provider.dimensionId, x, y, z);
+                location = new MineAir(world.provider.getDimension(), pos);
             } else if (block.getBlock() == HFBlocks.DIRT) {
-                location = new MineFloor(world.provider.dimensionId, x, y, z);
-            } else if (block.getBlock() == HFBlocks.stone) {
-                location = new MineWall(world.provider.dimensionId, x, y, z);
+                location = new MineFloor(world.provider.getDimension(), pos);
+            } else if (block.getBlock() == HFBlocks.STONE) {
+                location = new MineWall(world.provider.getDimension(), pos);
             }
 
             blocks.add(location); //Add to this list for iteration
@@ -63,8 +62,8 @@ public class MineLevel {
         for (MineBlock block : blocks) {
             World world = DimensionManager.getWorld(block.dimension);
             if (world.rand.nextInt(64) == 0) {
-                world.setBlock(block.x, block.y, block.z, Blocks.COBBLESTONE);
-            } else world.setBlock(block.x, block.y, block.z, Blocks.GRAVEL);
+                world.setBlockState(block.position, Blocks.COBBLESTONE.getDefaultState());
+            } else world.setBlockState(block.position, Blocks.GRAVEL.getDefaultState());
         }
     }
 

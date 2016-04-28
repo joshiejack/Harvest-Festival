@@ -1,12 +1,10 @@
 package joshie.harvest.buildings.placeable.blocks;
 
 import joshie.harvest.buildings.placeable.Placeable;
-import joshie.harvest.core.helpers.generic.StackHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.UUID;
@@ -16,19 +14,19 @@ public class PlaceableBlock extends Placeable {
     protected int meta;
 
     public PlaceableBlock() {
-        super(0, 0, 0);
+        super(BlockPos.ORIGIN);
     }
-    
-    public PlaceableBlock(int x, int y, int z) {
-        super(x, y, z);
+
+    public PlaceableBlock(BlockPos pos) {
+        super(pos);
     }
 
     public PlaceableBlock(Block block, int meta, int offsetX, int offsetY, int offsetZ) {
-        super(offsetX, offsetY, offsetZ);
+        super(new BlockPos(offsetX, offsetY, offsetZ));
         this.block = block;
         this.meta = meta;
     }
-    
+
     public Block getBlock() {
         return block;
     }
@@ -36,7 +34,7 @@ public class PlaceableBlock extends Placeable {
     public int getMetaData(boolean n1, boolean n2, boolean swap) {
         return meta;
     }
-    
+
     public IBlockState getBlockState(boolean n1, boolean n2, boolean swap) {
         return block.getStateFromMeta(meta);
     }
@@ -47,44 +45,26 @@ public class PlaceableBlock extends Placeable {
     }
 
     @Override
-    public boolean place(UUID uuid, World world, int x, int y, int z, boolean n1, boolean n2, boolean swap) {
-        if (block == Blocks.AIR && world.getBlock(x, y, z) == Blocks.AIR) {
+    public boolean place(UUID uuid, World world, BlockPos pos, IBlockState state, boolean n1, boolean n2, boolean swap) {
+        if (block == Blocks.AIR && state == Blocks.AIR.getDefaultState()) {
             return false;
-            
+
         }
-        
+
         int meta = getMetaData(n1, n2, swap);
-        world.setBlock(x, y, z, block);
-        return world.setBlockMetadataWithNotify(x, y, z, meta, 2);
+        world.setBlockState(pos, block.getDefaultState());
+        return world.setBlockState(pos, state.getBlock().getStateFromMeta(meta), 2);
     }
 
-    /** Called by EntityNPCMiner**/
-    public void readFromNBT(NBTTagCompound tag) {
-        ItemStack stack = StackHelper.getItemStackFromNBT(tag);
-        block = Block.getBlockFromItem(stack.getItem());
-        meta = stack.getItemDamage();
-        offsetX = tag.getInteger("X");
-        offsetY = tag.getInteger("Y");
-        offsetZ = tag.getInteger("Z");
-    }
-
-    public void writeToNBT(NBTTagCompound tag) {
-        ItemStack stack = new ItemStack(block, 1, meta);
-        StackHelper.writeItemStackToNBT(tag, stack);
-        tag.setInteger("X", offsetX);
-        tag.setInteger("Y", offsetY);
-        tag.setInteger("Z", offsetZ);
-    }
-    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null) return false;
         if ((!(obj instanceof PlaceableBlock))) return false;
         PlaceableBlock other = (PlaceableBlock) obj;
-        if (offsetX != other.offsetX) return false;
-        if (offsetY != other.offsetY) return false;
-        if (offsetZ != other.offsetZ) return false;
+        if (getX() != other.getX()) return false;
+        if (getY() != other.getY()) return false;
+        if (getZ() != other.getZ()) return false;
         return true;
     }
 
@@ -92,9 +72,9 @@ public class PlaceableBlock extends Placeable {
     public int hashCode() {
         int prime = 31;
         int result = 1;
-        result = prime * result + offsetX;
-        result = prime * result + offsetY;
-        result = prime * result + offsetZ;
+        result = prime * result + getX();
+        result = prime * result + getY();
+        result = prime * result + getZ();
         return result;
     }
 }

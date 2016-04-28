@@ -65,6 +65,6 @@ public class RelationshipHandlerEntity implements IRelatableDataHandler {
     public void writeToNBT(IRelatable relatable, NBTTagCompound tag) {
         EntityAnimal animal = (EntityAnimal) relatable;
         tag.setString("UUID", UUIDHelper.getEntityUUID(animal).toString());
-        tag.setInteger("Dimension", animal.worldObj.provider.getDimensionId());
+        tag.setInteger("Dimension", animal.worldObj.provider.getDimension());
     }
 }

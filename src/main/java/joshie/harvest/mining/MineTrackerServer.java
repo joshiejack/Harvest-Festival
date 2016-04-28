@@ -5,9 +5,9 @@ import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.mining.data.Mine;
 import joshie.harvest.mining.data.MineData;
-import joshie.harvest.npc.entity.EntityNPCMiner;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
@@ -16,8 +16,8 @@ import java.util.HashSet;
 import java.util.Map;
 
 public class MineTrackerServer extends MineTracker {
-    public static HashMap<WorldLocation, MineData> map = new HashMap(); // Block > Mine and Level Mappings
-    public static HashSet<Mine> mines = new HashSet(); //List of all mines in the world, for iteration purposes
+    public static HashMap<WorldLocation, MineData> map = new HashMap<WorldLocation, MineData>(); // Block > Mine and Level Mappings
+    public static HashSet<Mine> mines = new HashSet<Mine>(); //List of all mines in the world, for iteration purposes
 
     @Override
     public void newDay() {
@@ -26,12 +26,12 @@ public class MineTrackerServer extends MineTracker {
         }
     }
 
-    private WorldLocation getKey(World world, int x, int y, int z) {
-        return new WorldLocation(world.provider.dimensionId, x, y, z);
+    private WorldLocation getKey(World world, BlockPos pos) {
+        return new WorldLocation(world.provider.getDimension(), pos);
     }
 
-    public void addToMine(World world, int x, int y, int z, EntityNPCMiner npc, String name) {
-        WorldLocation key = getKey(world, x, y, z);
+    /*public void addToMine(World world, BlockPos pos, EntityNPCMiner npc, String name) {
+        WorldLocation key = getKey(world, pos);
         MineData data = map.get(key);
         if (data == null) {
             data = new MineData(name);
@@ -41,18 +41,18 @@ public class MineTrackerServer extends MineTracker {
         int level = data.getMine().addLevel();
         HFTrackers.markDirty();
 
-        npc.startBuild(world, x, y, z, level);
-    }
+        npc.startBuild(world, pos, level);
+    }*/
 
-    public void completeMine(World world, int x, int y, int z, ArrayList<PlaceableBlock> blocks) {
-        WorldLocation key = getKey(world, x, y, z);
+    public void completeMine(World world, BlockPos pos, ArrayList<PlaceableBlock> blocks) {
+        WorldLocation key = getKey(world, pos);
         MineData data = map.get(key);
-        data.getMine().complete(world, x, y, z, blocks);
+        data.getMine().complete(world, pos, blocks);
         HFTrackers.markDirty();
     }
 
-    public void destroyLevel(World world, int x, int y, int z) {        
-        WorldLocation key = getKey(world, x, y, z);
+    public void destroyLevel(World world, BlockPos pos) {
+        WorldLocation key = getKey(world, pos);
         MineData data = map.get(key);
         if (data == null || data.getLevel() == null) {
             return;

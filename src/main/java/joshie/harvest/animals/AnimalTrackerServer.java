@@ -13,7 +13,7 @@ import java.util.Iterator;
 //Handles the Data for the crops rather than using TE Data
 public class AnimalTrackerServer extends AnimalTracker {
     private static final DamageSource natural_causes = new DamageSource("natural").setDamageBypassesArmor();
-    private HashSet<IAnimalData> animals = new HashSet();
+    private HashSet<IAnimalData> animals = new HashSet<IAnimalData>();
 
     @Override
     public void onJoinWorld(IAnimalData animal) {
@@ -23,7 +23,7 @@ public class AnimalTrackerServer extends AnimalTracker {
     @Override
     public void onDeath(IAnimalTracked animal) {
         animals.remove(animal.getData());
-        for (PlayerTracker tracker: HFTrackers.getPlayerTrackers()) {
+        for (PlayerTracker tracker : HFTrackers.getPlayerTrackers()) {
             tracker.getRelationships().clear(animal);
         }
     }

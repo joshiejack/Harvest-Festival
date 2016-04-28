@@ -9,20 +9,20 @@ import static joshie.harvest.core.config.HFConfig.asm;
 
 public class HFVanilla {
     public static void preInit() {
-        if (asm.CARROT_BLOCK_DISABLE_TICKING) Blocks.carrots.setTickRandomly(false);
-        if (asm.POTATO_BLOCK_DISABLE_TICKING) Blocks.potatoes.setTickRandomly(false);
-        if (asm.WHEAT_BLOCK_DISABLE_TICKING) Blocks.wheat.setTickRandomly(false);
-        if (asm.PUMPKIN_BLOCK_DISABLE_TICKING) Blocks.pumpkin_stem.setTickRandomly(false);
-        if (asm.WATERMELON_BLOCK_DISABLE_TICKING) Blocks.melon_stem.setTickRandomly(false);
+        if (asm.CARROT_BLOCK_DISABLE_TICKING) Blocks.CARROTS.setTickRandomly(false);
+        if (asm.POTATO_BLOCK_DISABLE_TICKING) Blocks.POTATOES.setTickRandomly(false);
+        if (asm.WHEAT_BLOCK_DISABLE_TICKING) Blocks.WHEAT.setTickRandomly(false);
+        if (asm.PUMPKIN_BLOCK_DISABLE_TICKING) Blocks.PUMPKIN_STEM.setTickRandomly(false);
+        if (asm.WATERMELON_BLOCK_DISABLE_TICKING) Blocks.MELON_STEM.setTickRandomly(false);
         if (asm.MOVE_OVERRIDE_TAB) {
-            if (asm.CARROT_OVERRIDE) Items.CARROT.setCreativeTab(HFTab.tabFarming).setHasSubtypes(true);
-            if (asm.POTATO_OVERRIDE) Items.potato.setCreativeTab(HFTab.tabFarming).setHasSubtypes(true);
-            if (asm.WHEAT_OVERRIDE) Items.WHEAT.setCreativeTab(HFTab.tabFarming).setHasSubtypes(true);
-            if (asm.WATERMELON_OVERRIDE) Items.MELON.setCreativeTab(HFTab.tabFarming).setHasSubtypes(true);
-            if (asm.EGG_OVERRIDE) Items.egg.setCreativeTab(HFTab.tabFarming).setHasSubtypes(true);
+            if (asm.CARROT_OVERRIDE) Items.CARROT.setCreativeTab(HFTab.FARMING).setHasSubtypes(true);
+            if (asm.POTATO_OVERRIDE) Items.POTATO.setCreativeTab(HFTab.FARMING).setHasSubtypes(true);
+            if (asm.WHEAT_OVERRIDE) Items.WHEAT.setCreativeTab(HFTab.FARMING).setHasSubtypes(true);
+            if (asm.WATERMELON_OVERRIDE) Items.MELON.setCreativeTab(HFTab.FARMING).setHasSubtypes(true);
+            if (asm.EGG_OVERRIDE) Items.EGG.setCreativeTab(HFTab.FARMING).setHasSubtypes(true);
             if (asm.PUMPKIN_OVERRIDE) {
-                Blocks.pumpkin.setCreativeTab(HFTab.tabFarming);
-                Item.getItemFromBlock(Blocks.pumpkin).setHasSubtypes(true);
+                Blocks.PUMPKIN.setCreativeTab(HFTab.FARMING);
+                Item.getItemFromBlock(Blocks.PUMPKIN).setHasSubtypes(true);
             }
         }
     }

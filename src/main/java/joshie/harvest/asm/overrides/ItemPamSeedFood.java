@@ -8,6 +8,7 @@ import joshie.harvest.plugins.harvestcraft.HarvestCraftCrop;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
@@ -45,7 +46,7 @@ public class ItemPamSeedFood {
     }
 
     @SideOnly(Side.CLIENT)
-    public static void getSubItems(Item item, CreativeTabs tab, List list) {
+    public static void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
         list.add(new ItemStack(item, 1, 0));
     }
 }

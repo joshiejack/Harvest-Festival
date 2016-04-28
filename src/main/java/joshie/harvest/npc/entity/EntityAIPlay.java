@@ -3,7 +3,7 @@ package joshie.harvest.npc.entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.RandomPositionGenerator;
-import net.minecraft.util.Vec3;
+import net.minecraft.util.math.Vec3d;
 
 import java.util.Iterator;
 import java.util.List;
@@ -28,12 +28,12 @@ public class EntityAIPlay extends EntityAIBase {
         } else if (npc.getRNG().nextInt(400) != 0) {
             return false;
         } else {
-            List list = npc.worldObj.getEntitiesWithinAABB(EntityNPC.class, npc.getEntityBoundingBox().expand(6.0D, 3.0D, 6.0D));
+            List<EntityNPC> list = npc.worldObj.getEntitiesWithinAABB(EntityNPC.class, npc.getEntityBoundingBox().expand(6.0D, 3.0D, 6.0D));
             double d0 = Double.MAX_VALUE;
-            Iterator iterator = list.iterator();
+            Iterator<EntityNPC> iterator = list.iterator();
 
             while (iterator.hasNext()) {
-                EntityNPC entityvillager = (EntityNPC) iterator.next();
+                EntityNPC entityvillager = iterator.next();
 
                 if (entityvillager != npc && !entityvillager.isPlaying() && entityvillager.getGrowingAge() < 0) {
                     double d1 = entityvillager.getDistanceSqToEntity(this.npc);
@@ -46,9 +46,9 @@ public class EntityAIPlay extends EntityAIBase {
             }
 
             if (this.targetVillager == null) {
-                Vec3 vec3 = RandomPositionGenerator.findRandomTarget(this.npc, 16, 3);
+                Vec3d vec3d = RandomPositionGenerator.findRandomTarget(this.npc, 16, 3);
 
-                if (vec3 == null) {
+                if (vec3d == null) {
                     return false;
                 }
             }
@@ -86,13 +86,13 @@ public class EntityAIPlay extends EntityAIBase {
                 this.npc.getNavigator().tryMoveToEntityLiving(this.targetVillager, this.field_75261_c);
             }
         } else if (this.npc.getNavigator().noPath()) {
-            Vec3 vec3 = RandomPositionGenerator.findRandomTarget(this.npc, 16, 3);
+            Vec3d vec3d = RandomPositionGenerator.findRandomTarget(this.npc, 16, 3);
 
-            if (vec3 == null) {
+            if (vec3d == null) {
                 return;
             }
 
-            this.npc.getNavigator().tryMoveToXYZ(vec3.xCoord, vec3.yCoord, vec3.zCoord, this.field_75261_c);
+            this.npc.getNavigator().tryMoveToXYZ(vec3d.xCoord, vec3d.yCoord, vec3d.zCoord, this.field_75261_c);
         }
     }
 }

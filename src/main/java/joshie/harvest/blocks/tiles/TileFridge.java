@@ -25,7 +25,7 @@ public class TileFridge extends TileEntity implements IFaceable {
     }
 
     public IMessage getPacket() {
-        return new PacketSyncOrientation(worldObj.provider.getDimensionId(), getPos(), orientation);
+        return new PacketSyncOrientation(worldObj.provider.getDimension(), getPos(), orientation);
     }
 
     @Override

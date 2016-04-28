@@ -17,7 +17,7 @@ import java.util.HashSet;
 import static joshie.harvest.core.network.PacketHandler.sendToClient;
 
 public class QuestDataServer extends QuestData {
-    private HashSet<IQuest> finished = new HashSet();
+    private HashSet<IQuest> finished = new HashSet<IQuest>();
 
     public PlayerTracker master;
     public QuestDataServer(PlayerTracker master) {
@@ -32,8 +32,7 @@ public class QuestDataServer extends QuestData {
                 IQuest quest = ((IQuest) q.getClass().newInstance()).setUniqueName(q.getUniqueName()).setStage(0); //Set the current quest to your new 
                 current.add(quest);
                 syncQuest(q, (EntityPlayerMP) master.getAndCreatePlayer());
-            } catch (Exception e) {}
-
+            } catch (Exception ignored) {}
             return true;
         } else return false;
     }

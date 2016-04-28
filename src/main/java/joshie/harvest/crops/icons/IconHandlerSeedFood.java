@@ -1,9 +1,6 @@
 package joshie.harvest.crops.icons;
 
-import net.minecraft.block.Block;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-public class IconHandlerSeedFood extends AbstractIconHandler {
+/*public class IconHandlerSeedFood extends AbstractIconHandler {
     private Block block;
 
     public IconHandlerSeedFood(Block block) {
@@ -18,10 +15,4 @@ public class IconHandlerSeedFood extends AbstractIconHandler {
         if (stage == 5 || stage == 6 || stage == 7) return block.getIcon(0, 4);
         return stage == 8 ? block.getIcon(0, 7) : block.getIcon(0, 0);
     }
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public void registerIcons(IIconRegister register) {
-        return;
-    }
-}
+}*/

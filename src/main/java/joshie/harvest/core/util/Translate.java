@@ -1,10 +1,10 @@
 package joshie.harvest.core.util;
 
 import joshie.harvest.core.lib.HFModInfo;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.text.translation.I18n;
 
 public class Translate {
     public static String translate(String s) {
-        return StatCollector.translateToLocal(HFModInfo.MODPATH + "." + s);
+        return I18n.translateToLocal(HFModInfo.MODPATH + "." + s);
     }
 }

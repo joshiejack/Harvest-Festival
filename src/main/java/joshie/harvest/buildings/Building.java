@@ -6,8 +6,10 @@ import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.Placeable.PlacementStage;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.core.util.BlockAccessPreview;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -50,7 +52,7 @@ public class Building implements IBuilding {
     }
 
     public ItemStack getPreview() {
-        return new ItemStack(HFBlocks.preview, 1, meta);
+        return new ItemStack(HFBlocks.PREVIEW, 1, meta);
     }
 
     public String getName() {
@@ -81,7 +83,7 @@ public class Building implements IBuilding {
         return list;
     }
 
-    public boolean generate(UUID uuid, World world, int xCoord, int yCoord, int zCoord) {
+    public boolean generate(UUID uuid, World world, BlockPos pos, IBlockState state) {
         if (!world.isRemote) {
             boolean n1 = world.rand.nextBoolean();
             boolean n2 = world.rand.nextBoolean();
@@ -89,22 +91,22 @@ public class Building implements IBuilding {
 
             /** First loop we place solid blocks **/
             for (Placeable block : list) {
-                block.place(uuid, world, xCoord, yCoord, zCoord, n1, n2, swap, PlacementStage.BLOCKS);
+                block.place(uuid, world, pos, state, n1, n2, swap, PlacementStage.BLOCKS);
             }
 
             /** Second loop we place entities etc. **/
             for (Placeable block : list) {
-                block.place(uuid, world, xCoord, yCoord, zCoord, n1, n2, swap, PlacementStage.ENTITIES);
+                block.place(uuid, world, pos, state, n1, n2, swap, PlacementStage.ENTITIES);
             }
 
             /** Third loop we place torch/ladders etc **/
             for (Placeable block : list) {
-                block.place(uuid, world, xCoord, yCoord, zCoord, n1, n2, swap, PlacementStage.TORCHES);
+                block.place(uuid, world, pos, state, n1, n2, swap, PlacementStage.TORCHES);
             }
 
             /** Fourth loop we place NPCs **/
             for (Placeable block : list) {
-                block.place(uuid, world, xCoord, yCoord, zCoord, n1, n2, swap, PlacementStage.NPC);
+                block.place(uuid, world, pos, state, n1, n2, swap, PlacementStage.NPC);
             }
         }
 

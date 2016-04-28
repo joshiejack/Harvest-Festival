@@ -4,11 +4,13 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntitySheep;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.MathHelper;
 import org.lwjgl.opengl.GL11;
 
 public class ModelHarvestSheep extends ModelBase {
-    /** Adult Models **/
+    /**
+     * Adult Models
+     **/
     public ModelRenderer bodyTop;
     public ModelRenderer backRightLeg;
     public ModelRenderer frontLeftLeg;
@@ -27,7 +29,9 @@ public class ModelHarvestSheep extends ModelBase {
     public ModelRenderer earRight;
     public ModelRenderer head;
 
-    /** Sheared Models **/
+    /**
+     * Sheared Models
+     **/
     public ModelRenderer sheared_backRightLeg;
     public ModelRenderer sheared_frontLeftLeg;
     public ModelRenderer sheared_backLeftLeg;
@@ -36,8 +40,10 @@ public class ModelHarvestSheep extends ModelBase {
     public ModelRenderer sheared_bodyMiddle;
     public ModelRenderer sheared_tail;
     public ModelRenderer sheared_hair;
-    
-    /** Child Models **/
+
+    /**
+     * Child Models
+     **/
     public ModelRenderer child_backRightLeg;
     public ModelRenderer child_frontLeftLeg;
     public ModelRenderer child_backLeftLeg;
@@ -134,7 +140,7 @@ public class ModelHarvestSheep extends ModelBase {
         this.sheared_hair = new ModelRenderer(this, 71, 35);
         this.sheared_hair.setRotationPoint(0.0F, 14.0F, -8.0F);
         this.sheared_hair.addBox(-6.0F, -7.0F, -5.0F, 12, 1, 4, 0.0F);
-        
+
         /** Child Models **/
         this.child_head = new ModelRenderer(this, 0, 33);
         this.child_head.setRotationPoint(0.0F, 14.0F, -8.0F);

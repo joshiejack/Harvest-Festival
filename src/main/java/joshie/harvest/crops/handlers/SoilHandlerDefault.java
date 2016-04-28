@@ -3,6 +3,9 @@ package joshie.harvest.crops.handlers;
 import joshie.harvest.api.crops.ISoilHandler;
 import joshie.harvest.blocks.HFBlocks;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
@@ -21,25 +24,20 @@ public class SoilHandlerDefault implements ISoilHandler, IPlantable {
     }
 
     @Override
-    public boolean canSustainPlant(IBlockAccess access, int x, int y, int z, IPlantable plantable) {
-        Block below = access.getBlock(x, y - 1, z);
+    public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, IPlantable plantable) {
+        Block below = world.getBlockState(pos.down()).getBlock();
         if (block != null) {
-            return below == block && below.canSustainPlant(access, x, y - 1, z, ForgeDirection.UP, this);
-        } else return below.canSustainPlant(access, x, y - 1, z, ForgeDirection.UP, this);
+            return below == block && below.canSustainPlant(state, world, pos.down(), EnumFacing.UP, this);
+        } else return below.canSustainPlant(state, world, pos.down(), EnumFacing.UP, this);
     }
 
     @Override
-    public EnumPlantType getPlantType(IBlockAccess world, int x, int y, int z) {
+    public EnumPlantType getPlantType(IBlockAccess world, BlockPos pos) {
         return plantable;
     }
 
     @Override
-    public Block getPlant(IBlockAccess world, int x, int y, int z) {
-        return HFBlocks.crops;
-    }
-
-    @Override
-    public int getPlantMetadata(IBlockAccess world, int x, int y, int z) {
-        return 0;
+    public IBlockState getPlant(IBlockAccess world, BlockPos pos) {
+        return HFBlocks.CROPS.getDefaultState();
     }
 }

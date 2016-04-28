@@ -2,7 +2,7 @@ package joshie.harvest.api;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 
 public class WorldLocation {
     public int dimension;

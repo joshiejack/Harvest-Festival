@@ -14,22 +14,22 @@ public abstract class ItemBlockBase extends ItemBlock implements IHasMetaItem {
         super(block);
         setHasSubtypes(true);
     }
-    
+
     @Override
     public int getMetadata(int meta) {
         return meta;
     }
-    
+
     @Override
     public CreativeTabs[] getCreativeTabs() {
-        return new CreativeTabs[] { HFTab.tabFarming, HFTab.tabCooking, HFTab.tabMining, HFTab.tabTown };
+        return new CreativeTabs[]{HFTab.FARMING, HFTab.COOKING, HFTab.MINING, HFTab.TOWN};
     }
-    
+
     @Override
     public int getMetaCount() {
         return ((IHasMetaBlock) Block.getBlockFromItem(this)).getMetaCount();
     }
-    
+
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
         String unlocalized = block.getUnlocalizedName().replace("tile.", "").replace("_", ".");

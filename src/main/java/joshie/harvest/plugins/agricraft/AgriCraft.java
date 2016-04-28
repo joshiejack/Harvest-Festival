@@ -5,7 +5,9 @@ import joshie.harvest.blocks.BlockCrop;
 import joshie.harvest.crops.handlers.SoilHandlers;
 import joshie.harvest.plugins.HFPlugins;
 import joshie.harvest.plugins.HFPlugins.Plugin;
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -49,10 +51,10 @@ public class AgriCraft extends Plugin {
     @Override
     public void init() {
         blockCrops = (BlockCrop) GameRegistry.findBlock("AgriCraft", "crops");
-        crops = GameRegistry.findItem("AgriCraft", "cropsItem");
+        crops = Item.REGISTRY.getObject(new ResourceLocation("AgriCraft", "cropsItem"));
 
         if (DISABLE_TICKING) {
-            GameRegistry.findBlock("AgriCraft", "crops").setTickRandomly(false);
+            Block.REGISTRY.getObject(new ResourceLocation("AgriCraft", "crops")).setTickRandomly(false);
             MinecraftForge.EVENT_BUS.register(this);
         }
 

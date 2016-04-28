@@ -12,6 +12,7 @@ import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
 public class EntityHarvestSheep extends EntitySheep implements IAnimalTracked {
@@ -48,8 +49,8 @@ public class EntityHarvestSheep extends EntitySheep implements IAnimalTracked {
     }
 
     @Override
-    public boolean interact(EntityPlayer player) {
-        ItemStack held = player.getCurrentEquippedItem();
+    public boolean processInteract(EntityPlayer player, EnumHand hand, ItemStack stack) {
+        ItemStack held = player.getActiveItemStack();
         if (held != null) {
             if (HFApi.ANIMALS.canEat(type.getFoodTypes(), held)) {
                 if (!worldObj.isRemote) {

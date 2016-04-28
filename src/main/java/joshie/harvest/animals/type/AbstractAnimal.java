@@ -14,14 +14,14 @@ public abstract class AbstractAnimal implements IAnimalType {
     private final String name;
     private final int min;
     private final int max;
-    
+
     public AbstractAnimal(String name, int min, int max, AnimalFoodType... types) {
         this.name = name;
         this.types = types;
         this.min = min * (Calendar.DAYS_PER_SEASON * 4);
         this.max = max * (Calendar.DAYS_PER_SEASON * 4);
     }
-    
+
     @Override
     public String getName() {
         return name;
@@ -48,5 +48,6 @@ public abstract class AbstractAnimal implements IAnimalType {
     }
 
     @Override
-    public void newDay(IAnimalData data, EntityAnimal entity) {}
+    public void newDay(IAnimalData data, EntityAnimal entity) {
+    }
 }

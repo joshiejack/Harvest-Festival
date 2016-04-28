@@ -3,11 +3,13 @@ package joshie.harvest.animals.render;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.MathHelper;
 import org.lwjgl.opengl.GL11;
 
 public class ModelHarvestCow extends ModelBase {
-    /** Child Models **/
+    /**
+     * Child Models
+     **/
     public ModelRenderer child_frontRightLeg;
     public ModelRenderer child_backRightLeg;
     public ModelRenderer child_frontLeftLeg;
@@ -24,8 +26,10 @@ public class ModelHarvestCow extends ModelBase {
     public ModelRenderer child_earRight;
     public ModelRenderer child_earLeft;
     public ModelRenderer child_head;
-    
-    /** Adult Models **/
+
+    /**
+     * Adult Models
+     **/
     public ModelRenderer frontRightLeg;
     public ModelRenderer backRightLeg;
     public ModelRenderer frontLeftLeg;
@@ -101,7 +105,7 @@ public class ModelHarvestCow extends ModelBase {
         this.child_sideRight = new ModelRenderer(this, 0, 0);
         this.child_sideRight.setRotationPoint(-1.0F, 18.0F, -5.0F);
         this.child_sideRight.addBox(-5.5F, -10.5F, -3.5F, 1, 9, 14, 0.0F);
-        
+
         /** Adult **/
         this.textureWidth = 128;
         this.textureHeight = 128;

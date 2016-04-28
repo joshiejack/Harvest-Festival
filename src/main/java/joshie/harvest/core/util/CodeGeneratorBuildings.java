@@ -5,7 +5,6 @@ import joshie.harvest.buildings.placeable.PlaceableHelper;
 import joshie.harvest.core.util.generic.IFaceable;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
-import joshie.harvest.npc.entity.EntityNPCMiner;
 import joshie.harvest.npc.entity.EntityNPCShopkeeper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -15,6 +14,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntitySign;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.io.PrintWriter;
@@ -27,7 +27,7 @@ public class CodeGeneratorBuildings {
     private World world;
     private int x1, y1, z1, x2, y2, z2;
 
-    public CodeGeneratorBuildings(World world, int xStart, int yStart, int zStart, int xEnd, int yEnd, int zEnd) {
+    public CodeGeneratorBuildings(World world, BlockPos posStart, BlockPos posEnd) {
         this.world = world;
         this.x1 = xStart < xEnd ? xStart : xEnd;
         this.x2 = xStart < xEnd ? xEnd : xStart;
@@ -43,14 +43,14 @@ public class CodeGeneratorBuildings {
 
     public void getCode(boolean air) {
         if (!world.isRemote) {
-            ArrayList<String> ret = new ArrayList();
+            ArrayList<String> ret = new ArrayList<String>();
             Set all = new HashSet();
             boolean hasAFrame = false;
             int i = 0;
             for (int y = 0; y <= y2 - y1; y++) {
                 for (int x = 0; x <= x2 - x1; x++) {
                     for (int z = 0; z <= z2 - z1; z++) {
-                        Set<Entity> entityList = new HashSet();
+                        Set<Entity> entityList = new HashSet<Entity>();
                         entityList.addAll(getEntities(EntityPainting.class, x1 + x, y1 + y, z1 + z));
                         entityList.addAll(getEntities(EntityItemFrame.class, x1 + x, y1 + y, z1 + z));
                         entityList.addAll(getEntities(EntityNPC.class, x1 + x, y1 + y, z1 + z));

@@ -15,7 +15,7 @@ import org.lwjgl.opengl.GL12;
 
 import java.util.HashMap;
 
-public class RenderItemNPC implements IItemRenderer {
+/*public class RenderItemNPC implements IItemRenderer {
     private static HashMap<INPC, EntityLivingBase> render = new HashMap();
     private static boolean isInit = false;
 
@@ -60,4 +60,4 @@ public class RenderItemNPC implements IItemRenderer {
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float)short1 / 1.0F, (float)short2 / 1.0F);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
     }
-}
+}*/

@@ -6,6 +6,7 @@ import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class PacketDismount implements IMessage, IMessageHandler<PacketDismount, IMessage> {
     public PacketDismount() {}
@@ -19,7 +20,7 @@ public class PacketDismount implements IMessage, IMessageHandler<PacketDismount,
     @Override
     public IMessage onMessage(PacketDismount message, MessageContext ctx) {
         EntityPlayerMP player = ctx.getServerHandler().playerEntity;
-        EntityAnimal entity = (EntityAnimal) player.riddenByEntity;
+        EntityAnimal entity = (EntityAnimal) player.getRidingEntity();
         entity.mountEntity(null);
         entity.rotationPitch = player.rotationPitch;
         entity.rotationYaw = player.rotationYaw;

@@ -6,14 +6,14 @@ import joshie.harvest.core.util.generic.IHasMetaBlock;
 import joshie.harvest.core.util.generic.IHasMetaItem;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -26,10 +26,10 @@ public abstract class BlockHFBaseMeta<E extends Enum<E> & IStringSerializable> e
     private E[] values;
 
     //Main Constructor
-    public BlockHFBaseMeta(Material material, CreativeTabs tab, Class<E> clazz) {
+    public BlockHFBaseMeta(Material material, CreativeTabs tab, Class<E> enumClass) {
         super(material, tab);
-        property = PropertyEnum.create("type", clazz);
-        values = clazz.getEnumConstants();
+        property = PropertyEnum.create("type", enumClass);
+        values = enumClass.getEnumConstants();
         ReflectionHelper.setFinalField(this, createBlockState(), "blockState");
         setDefaultState(blockState.getBaseState());
 
@@ -40,13 +40,13 @@ public abstract class BlockHFBaseMeta<E extends Enum<E> & IStringSerializable> e
 
     //Constructor default to farming tab
     public BlockHFBaseMeta(Material material, Class<E> clazz) {
-        this(material, HFTab.tabFarming, clazz);
+        this(material, HFTab.FARMING, clazz);
     }
 
     @Override
-    protected BlockState createBlockState() {
-        if (property == null) return new BlockState(this);
-        return new BlockState(this, property);
+    protected BlockStateContainer createBlockState() {
+        if (property == null) return new BlockStateContainer(this);
+        return new BlockStateContainer(this, property);
     }
 
     @Override
@@ -54,15 +54,15 @@ public abstract class BlockHFBaseMeta<E extends Enum<E> & IStringSerializable> e
         return getDefaultState().withProperty(property, fromMeta(meta));
     }
 
-    public IBlockState getStateFromEnum(E e) {
+    protected IBlockState getStateFromEnum(E e) {
         return getDefaultState().withProperty(property, e);
     }
 
-    public E getEnumFromBlockPos(IBlockAccess world, BlockPos pos) {
+    protected E getEnumFromBlockPos(IBlockAccess world, BlockPos pos) {
         return getEnumFromState(world.getBlockState(pos));
     }
 
-    public E getEnumFromState(IBlockState state) {
+    protected E getEnumFromState(IBlockState state) {
         return state.getValue(property);
     }
 
@@ -90,7 +90,7 @@ public abstract class BlockHFBaseMeta<E extends Enum<E> & IStringSerializable> e
     }
 
     //Default to level 0
-    public int getToolLevel(E type) {
+    protected int getToolLevel(E type) {
         return 0;
     }
 
@@ -104,7 +104,7 @@ public abstract class BlockHFBaseMeta<E extends Enum<E> & IStringSerializable> e
         return !doesDrop(state) ? null : super.getItemDropped(state, rand, side);
     }
 
-    public boolean doesDrop(IBlockState state) {
+    protected boolean doesDrop(IBlockState state) {
         return true;
     }
 
@@ -112,7 +112,7 @@ public abstract class BlockHFBaseMeta<E extends Enum<E> & IStringSerializable> e
         return ((IHasMetaItem) Item.getItemFromBlock(this)).getName(new ItemStack(this, 1, i));
     }
 
-    public boolean isValidTab(CreativeTabs tab, E e) {
+    protected boolean isValidTab(CreativeTabs tab, E e) {
         return tab == getCreativeTabToDisplayOn();
     }
 
@@ -120,9 +120,9 @@ public abstract class BlockHFBaseMeta<E extends Enum<E> & IStringSerializable> e
         return true;
     }
 
-    @SideOnly(Side.CLIENT)
     @Override
-    public void getSubBlocks(Item item, CreativeTabs tab, List list) {
+    @SideOnly(Side.CLIENT)
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
         for (E e : values) {
             if (isActive(e) && isValidTab(tab, e)) {
                 list.add(new ItemStack(item, 1, e.ordinal()));

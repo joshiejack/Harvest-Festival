@@ -4,25 +4,25 @@ import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSyncOrientation;
 import joshie.harvest.core.util.generic.IFaceable;
 import net.minecraft.block.Block;
-import net.minecraft.inventory.IInventory;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.WeightedRandomChestContent;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ChestGenHooks;
 
 import java.util.UUID;
 
 public class PlaceableIFaceable extends PlaceableBlock {
-    private ForgeDirection dir;
+    private EnumFacing facing;
     private String chestType;
 
-    public PlaceableIFaceable(Block block, int meta, int offsetX, int offsetY, int offsetZ, ForgeDirection dir) {
+    public PlaceableIFaceable(Block block, int meta, int offsetX, int offsetY, int offsetZ, EnumFacing facing) {
         super(block, meta, offsetX, offsetY, offsetZ);
-        this.dir = dir;
+        this.facing = facing;
     }
 
-    public PlaceableIFaceable(Block block, int meta, int offsetX, int offsetY, int offsetZ, ForgeDirection dir, String chestType) {
-        this(block, meta, offsetX, offsetY, offsetZ, dir);
+    public PlaceableIFaceable(Block block, int meta, int offsetX, int offsetY, int offsetZ, EnumFacing facing, String chestType) {
+        this(block, meta, offsetX, offsetY, offsetZ, facing);
         this.chestType = chestType;
     }
 
@@ -31,51 +31,51 @@ public class PlaceableIFaceable extends PlaceableBlock {
         return stage == PlacementStage.TORCHES;
     }
 
-    private ForgeDirection getFacing(boolean n1, boolean n2, boolean swap) {
-        if (dir == NORTH) {
+    private EnumFacing getFacing(boolean n1, boolean n2, boolean swap) {
+        if (facing == EnumFacing.NORTH) {
             if (n2) {
-                return swap ? EAST : SOUTH;
+                return swap ? EnumFacing.EAST : EnumFacing.SOUTH;
             } else if (swap) {
-                return WEST;
+                return EnumFacing.WEST;
             }
-        } else if (dir == SOUTH) {
+        } else if (facing == EnumFacing.SOUTH) {
             if (n2) {
-                return swap ? WEST : NORTH;
+                return swap ? EnumFacing.WEST : EnumFacing.NORTH;
             } else if (swap) {
-                return EAST;
+                return EnumFacing.EAST;
             }
-        } else if (dir == WEST) {
+        } else if (facing == EnumFacing.WEST) {
             if (n1) {
-                return swap ? SOUTH : EAST;
+                return swap ? EnumFacing.SOUTH : EnumFacing.EAST;
             } else if (swap) {
-                return NORTH;
+                return EnumFacing.NORTH;
             }
-        } else if (dir == EAST) {
+        } else if (facing == EnumFacing.EAST) {
             if (n1) {
-                return swap ? NORTH : WEST;
+                return swap ? EnumFacing.NORTH : EnumFacing.WEST;
             } else if (swap) {
-                return SOUTH;
+                return EnumFacing.SOUTH;
             }
         }
 
-        return dir;
+        return facing;
     }
 
     @Override
-    public boolean place(UUID uuid, World world, int x, int y, int z, boolean n1, boolean n2, boolean swap) {
-        if (!super.place(uuid, world, x, y, z, n1, n2, swap)) return false;
-        TileEntity tile = world.getTileEntity(x, y, z);
+    public boolean place(UUID uuid, World world, BlockPos pos, IBlockState state, boolean n1, boolean n2, boolean swap) {
+        if (!super.place(uuid, world, pos, state, n1, n2, swap)) return false;
+        TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof IFaceable) {
-            ForgeDirection orientation = getFacing(n1, n2, swap);
+            EnumFacing orientation = getFacing(n1, n2, swap);
             ((IFaceable) tile).setFacing(orientation);
-            PacketHandler.sendAround(new PacketSyncOrientation(world.provider.dimensionId, x, y, z, orientation), tile);
+            PacketHandler.sendAround(new PacketSyncOrientation(world.provider.getDimension(), pos, orientation), tile);
             return true;
         }
 
-        if (chestType != null && tile instanceof IInventory) {
+        /*if (chestType != null && tile instanceof IInventory) { //TODO
             WeightedRandomChestContent.generateChestContents(world.rand, ChestGenHooks.getItems(chestType, world.rand), (IInventory) tile, 10);
             return true;
-        }
+        }*/
 
         return false;
     }

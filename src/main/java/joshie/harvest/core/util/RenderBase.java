@@ -1,11 +1,16 @@
+/*
 package joshie.harvest.core.util;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.VertexBuffer;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fluids.FluidStack;
 import org.lwjgl.opengl.GL11;
@@ -15,10 +20,9 @@ public abstract class RenderBase {
     private static final float LIGHT_Y_POS = 1.0F;
 
     public RenderBlocks render;
-    public ForgeDirection dir = ForgeDirection.UNKNOWN;
+    public EnumFacing facing = EnumFacing.UNKNOWN;
     public IBlockAccess world;
-    public int x, y, z;
-    public IIcon icon;
+    public BlockPos pos;
     public Block block;
     public int brightness = -1;
     public float rgb_red = 1.0F;
@@ -27,23 +31,22 @@ public abstract class RenderBase {
     private boolean isItem;
     public int meta = 0;
 
-    public RenderBase() {}
-    
-    public RenderBase setFacing(ForgeDirection dir) {
-        this.dir = dir;
+    public RenderBase() {
+    }
+
+    public RenderBase setFacing(EnumFacing facing) {
+        this.facing = facing;
         return this;
     }
 
     //World Based Rendering
-    public boolean render(RenderBlocks render, IBlockAccess world, int x, int y, int z) {
+    public boolean render(RenderBlocks render, IBlockAccess world, BlockPos pos) {
         isItem = false;
         this.render = render;
         this.world = world;
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        block = world.getBlock(x, y, z);
-        meta = world.getBlockMetadata(x, y, z);
+        this.pos = pos;
+        block = world.getBlockState(pos).getBlock();
+        meta = world.getBlockMetadata(pos);
         render();
         return true;
     }
@@ -83,13 +86,6 @@ public abstract class RenderBase {
         return isItem;
     }
 
-    protected void setTexture(IIcon texture) {
-        icon = texture;
-        if (!isItem()) {
-            render.setOverrideBlockTexture(texture);
-        }
-    }
-
     protected void setTexture(ItemStack stack) {
         setTexture(Block.getBlockFromItem(stack.getItem()), stack.getItemDamage());
     }
@@ -106,7 +102,7 @@ public abstract class RenderBase {
     protected void renderColoredBlock(double minX, double minY, double minZ, double maxX, double maxY, double maxZ, Block block) {
         render.renderAllFaces = true;
         render.setRenderBounds(minX, minY, minZ, maxX, maxY, maxZ);
-        render.renderStandardBlock(block, x, y, z);
+        render.renderStandardBlock(block, pos);
         render.renderAllFaces = false;
     }
 
@@ -120,20 +116,21 @@ public abstract class RenderBase {
 
     protected void renderFace(double x1, double y1, double z1, double x2, double y2, double z2, double x3, double y3, double z3, double x4, double y4, double z4) {
         //Diagonal Guessing
-        Tessellator tessellator = Tessellator.instance;
-        IIcon iicon = icon;
+        Tessellator tessellator = Tessellator.getInstance();
+        VertexBuffer vertexbuffer = tessellator.getBuffer();
+        TextureAtlasSprite sprite = icon;
         if (!isItem()) {
-            tessellator.setBrightness(block.getMixedBrightnessForBlock(world, x, y, z));
+            vertexbuffer.setBrightness(block.getMixedBrightnessForBlock(world, x, y, z));
         }
         if (brightness > -1) {
-            tessellator.setBrightness(brightness);
+            vertexbuffer.setBrightness(brightness);
         }
 
-        tessellator.setColorOpaque_F(rgb_red, rgb_green, rgb_blue);
-        double d0 = iicon.getMinU();
-        double d1 = iicon.getMinV();
-        double d2 = iicon.getMaxU();
-        double d3 = iicon.getMaxV();
+        vertexbuffer.setColorOpaque_F(rgb_red, rgb_green, rgb_blue);
+        double d0 = sprite.getMinU();
+        double d1 = sprite.getMinV();
+        double d2 = sprite.getMaxU();
+        double d3 = sprite.getMaxV();
         double d4 = 0.0625D;
         double d5 = x + 1 + x1;
         double d6 = x + 1 + x2;
@@ -148,14 +145,14 @@ public abstract class RenderBase {
         double d15 = y + d4 + y3;
         double d16 = y + d4 + y4;
 
-        tessellator.addVertexWithUV(d5, d13, d9, d2, d1);
-        tessellator.addVertexWithUV(d6, d14, d10, d2, d3);
-        tessellator.addVertexWithUV(d7, d15, d11, d0, d3);
-        tessellator.addVertexWithUV(d8, d16, d12, d0, d1);
-        tessellator.addVertexWithUV(d8, d16, d12, d0, d1);
-        tessellator.addVertexWithUV(d7, d15, d11, d0, d3);
-        tessellator.addVertexWithUV(d6, d14, d10, d2, d3);
-        tessellator.addVertexWithUV(d5, d13, d9, d2, d1);
+        vertexbuffer.addVertexWithUV(d5, d13, d9, d2, d1);
+        vertexbuffer.addVertexWithUV(d6, d14, d10, d2, d3);
+        vertexbuffer.addVertexWithUV(d7, d15, d11, d0, d3);
+        vertexbuffer.addVertexWithUV(d8, d16, d12, d0, d1);
+        vertexbuffer.addVertexWithUV(d8, d16, d12, d0, d1);
+        vertexbuffer.addVertexWithUV(d7, d15, d11, d0, d3);
+        vertexbuffer.addVertexWithUV(d6, d14, d10, d2, d3);
+        vertexbuffer.addVertexWithUV(d5, d13, d9, d2, d1);
     }
 
     protected void renderFluid(FluidStack fluid, int max, double scale, int xPlus, int yPlus, int zPlus) {
@@ -171,7 +168,7 @@ public abstract class RenderBase {
 
         double extra = (double) fluid.amount / max * scale;
         double height = 0.4D + extra;
-        IIcon iconStill = fluid.getFluid().getIcon();
+        TextureAtlasSprite iconStill = fluid.getFluid().getIcon();
 
         height += RENDER_OFFSET;
 
@@ -283,4 +280,4 @@ public abstract class RenderBase {
         render.renderFaceXPos(block, 0.0D, 0.0D, 0.0D, icon);
         tessellator.draw();
     }
-}
+}*/

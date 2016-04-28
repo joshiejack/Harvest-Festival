@@ -14,8 +14,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ShopGui implements IShopGuiOverlay {
     private ResourceLocation shop_overlay;
     private int resourceY;
-    private String name;
-    protected int last;
 
     public ShopGui(String name, int resourceY) {
         this.shop_overlay = new ResourceLocation(HFModInfo.MODPATH + ":textures/gui/shops/" + name + ".png");
@@ -33,12 +31,14 @@ public class ShopGui implements IShopGuiOverlay {
             gui.mc.renderEngine.bindTexture(shop_overlay);
             gui.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
         }
-               
+
         gui.mc.renderEngine.bindTexture(getResource());
         gui.drawTexturedModalRect(x + 20, y + 5, 1, resourceY + 1, 254, 31);
     }
 
-    /** Returns the location of the shops name **/
+    /**
+     * Returns the location of the shops name
+     **/
     public ResourceLocation getResource() {
         ResourceLocation shop_texture = new ResourceLocation(HFModInfo.MODPATH + ":lang/" + FMLCommonHandler.instance().getCurrentLanguage() + "/shops.png");
         try {

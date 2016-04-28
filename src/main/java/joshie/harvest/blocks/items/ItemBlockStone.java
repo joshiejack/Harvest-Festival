@@ -22,7 +22,7 @@ public class ItemBlockStone extends ItemBlockBase {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean flag) {
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
         if (stack.getItemDamage() == 1) list.add(Translate.translate("tooltip.dirt"));
     }
 }

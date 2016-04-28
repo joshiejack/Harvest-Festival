@@ -20,10 +20,10 @@ public interface IPurchaseable {
     public ItemStack getDisplayStack();
     
     /** Called whenever this item is purchased
-     *  @param      the player purchasing the item
+     *  @param      player the player purchasing the item
      *  @return     return true if the gui should close after a purchase **/
     public boolean onPurchased(EntityPlayer player);
 
     /** Display tooltip for this item **/
-    public void addTooltip(List list);
+    public void addTooltip(List<String> list);
 }

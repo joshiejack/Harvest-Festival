@@ -25,19 +25,19 @@ public class SeedFoodTransformer extends AbstractASM {
     public boolean isClass(String name) {
         return name.equals("adv") || name.equals("net.minecraft.item.ItemSeedFood");
     }
-    
+
     @Override
     public boolean isVisitor() {
         return false;
     }
 
-    public byte[] injectInterfaces(byte[] data) {
+    private byte[] injectInterfaces(byte[] data) {
         ClassReader cr = new ClassReader(data);
         ClassWriter cw = new ClassWriter(cr, 0);
         ClassVisitor cv = new ClassVisitor(Opcodes.ASM4, cw) {
             @Override
             public void visit(int version, int access, String name, String signature, String superName, String[] interfaces) {
-                Set<String> intf = new HashSet();
+                Set<String> intf = new HashSet<String>();
                 intf.addAll(Arrays.asList(interfaces));
                 intf.add(HFModInfo.ASMPATH + "api/core/IShippable");
                 intf.add(HFModInfo.ASMPATH + "api/crops/ICropProvider");
@@ -50,7 +50,7 @@ public class SeedFoodTransformer extends AbstractASM {
         return cw.toByteArray();
     }
 
-    public byte[] injectMethods(boolean isObfuscated, byte[] data) {
+    private byte[] injectMethods(boolean isObfuscated, byte[] data) {
         ClassReader cr = new ClassReader(data);
         ClassWriter cw = new ClassWriter(cr, 0);
 
@@ -73,7 +73,7 @@ public class SeedFoodTransformer extends AbstractASM {
         mv.visitInsn(Opcodes.ARETURN);
         mv.visitMaxs(1, 2);
         mv.visitEnd();
-        
+
         //Creative Sort
         name = "getSortValue";
         mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, "(Lnet/minecraft/item/ItemStack;)I", null, null);
@@ -84,7 +84,7 @@ public class SeedFoodTransformer extends AbstractASM {
         mv.visitEnd();
 
         //Display Name Override
-        name = isObfuscated? "func_77653_i" : "getItemStackDisplayName";
+        name = isObfuscated ? "func_77653_i" : "getItemStackDisplayName";
         mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, "(Lnet/minecraft/item/ItemStack;)Ljava/lang/String;", null, null);
         mv.visitCode();
         mv.visitVarInsn(Opcodes.ALOAD, 1);
@@ -94,7 +94,7 @@ public class SeedFoodTransformer extends AbstractASM {
         mv.visitEnd();
 
         //Get Sub Items
-        name = isObfuscated? "func_150895_a" : "getSubItems";
+        name = isObfuscated ? "func_150895_a" : "getSubItems";
         mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, "(Lnet/minecraft/item/Item;Lnet/minecraft/creativetab/CreativeTabs;Ljava/util/List;)V", null, null);
         mv.visitCode();
         mv.visitVarInsn(Opcodes.ALOAD, 1);
@@ -103,7 +103,7 @@ public class SeedFoodTransformer extends AbstractASM {
         mv.visitMethodInsn(Opcodes.INVOKESTATIC, HFModInfo.ASMPATH + "asm/overrides/ItemSeedFood", "getSubItems", "(Lnet/minecraft/item/Item;Lnet/minecraft/creativetab/CreativeTabs;Ljava/util/List;)V", false);
         mv.visitInsn(Opcodes.RETURN);
         mv.visitMaxs(4, 1);
-        mv.visitEnd(); 
+        mv.visitEnd();
 
         cr.accept(cw, 0);
         return cw.toByteArray();

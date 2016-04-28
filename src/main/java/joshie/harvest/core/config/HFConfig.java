@@ -55,11 +55,11 @@ public class HFConfig {
                 Writer writer = new OutputStreamWriter(new FileOutputStream(file), "UTF-8");
                 writer.write(gson.toJson(HFConfig.asm));
                 writer.close(); //Write the default json to file
-            } catch (Exception e) {}
+            } catch (Exception ignored) {}
         } else {
             try {
                 HFConfig.asm = gson.fromJson(FileUtils.readFileToString(file), ASM.class);
-            } catch (Exception e) {}
+            } catch (Exception ignored) {}
         }
     }
 }

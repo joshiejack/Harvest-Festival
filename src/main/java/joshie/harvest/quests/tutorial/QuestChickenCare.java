@@ -18,8 +18,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 
 import java.util.HashSet;
 
@@ -32,10 +32,10 @@ public class QuestChickenCare extends Quest {
     public void onEntityInteract(EntityPlayer player, Entity target) {
         if (quest_stage == 1) {
             if (target instanceof EntityChicken) {
-                ItemStack held = player.getCurrentEquippedItem();
+                ItemStack held = player.getActiveItemStack();
                 if (held != null) {
                     boolean hasChanged = false;
-                    if (!hasFed && held.getItem() == Items.wheat_seeds) {
+                    if (!hasFed && held.getItem() == Items.WHEAT_SEEDS) {
                         hasFed = true;
                         hasChanged = true;
                     }
@@ -55,7 +55,7 @@ public class QuestChickenCare extends Quest {
     @Override
     public void onRightClickBlock(EntityPlayer player, BlockPos pos, EnumFacing face) {
         if (!hasThrown) {
-            if (player.riddenByEntity instanceof EntityChicken) {
+            if (player.getRidingEntity() instanceof EntityChicken) {
                 hasThrown = true;
 
                 if (!player.worldObj.isRemote) {
@@ -79,7 +79,7 @@ public class QuestChickenCare extends Quest {
 
     @Override
     public INPC[] getNPCs() {
-        return new INPC[] { HFNPCs.animal_owner };
+        return new INPC[]{HFNPCs.animal_owner};
     }
 
     @Override

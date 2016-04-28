@@ -14,10 +14,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class EntityCropDigFX extends EntityDiggingFX {
     public EntityCropDigFX(TextureAtlasSprite icon, World world, double posX, double posY, double posZ, double motionX, double motionY, double motionZ, IBlockState state) {
         super(world, posX, posY, posZ, motionX, motionY, motionZ, state);
-        if (state.getBlock() != HFBlocks.crops) {
-            this.setParticleIcon(Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelShapes().getTexture(Blocks.carrots.getDefaultState()));
+        if (state.getBlock() != HFBlocks.CROPS) {
+            this.setParticleTexture(Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelShapes().getTexture(Blocks.CARROTS.getDefaultState()));
         }
-
-        this.setParticleIcon(icon);
+        this.setParticleTexture(icon);
     }
 }

@@ -15,7 +15,8 @@ public class PacketSyncMarker implements IMessage, IMessageHandler<PacketSyncMar
     private WorldLocation location;
     private Building group;
 
-    public PacketSyncMarker() {}
+    public PacketSyncMarker() {
+    }
 
     public PacketSyncMarker(WorldLocation location, Building group) {
         this.location = location;
@@ -37,13 +38,12 @@ public class PacketSyncMarker implements IMessage, IMessageHandler<PacketSyncMar
 
     @Override
     public IMessage onMessage(PacketSyncMarker msg, MessageContext ctx) {
-        TileEntity tile = MCClientHelper.getWorld().getTileEntity(msg.location.x, msg.location.y, msg.location.z);
+        TileEntity tile = MCClientHelper.getWorld().getTileEntity(msg.location.position);
         if (tile instanceof TileMarker) {
             ((TileMarker) tile).setBuilding(msg.group);
         }
 
-        MCClientHelper.refresh(msg.location.dimension, msg.location.x, msg.location.y, msg.location.z);
-
+        MCClientHelper.refresh(msg.location.dimension, msg.location.position);
         return null;
     }
 }

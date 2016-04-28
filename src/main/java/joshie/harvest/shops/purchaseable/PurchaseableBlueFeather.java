@@ -26,7 +26,7 @@ public class PurchaseableBlueFeather extends Purchaseable {
     }
 
     @Override
-    public void addTooltip(List list) {
+    public void addTooltip(List<String> list) {
         list.add(/*Text.WHITE + */stacks[0].getDisplayName());
         list.add(Translate.translate("marriage"));
         if (!HFTrackers.getPlayerTracker(MCClientHelper.getPlayer()).getRelationships().isEllegibleToMarry()) {

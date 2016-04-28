@@ -8,13 +8,16 @@ import joshie.harvest.player.relationships.RelationshipHelper;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class PacketSyncMarriage implements IMessage, IMessageHandler<PacketSyncMarriage, IMessage> {
     private IRelatable relatable;
     private boolean divorce;
     private IRelatableDataHandler handler;
 
-    public PacketSyncMarriage() {}
+    public PacketSyncMarriage() {
+    }
+
     public PacketSyncMarriage(IRelatable relatable, boolean divorce) {
         this.relatable = relatable;
     }

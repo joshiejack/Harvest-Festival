@@ -4,11 +4,14 @@ import io.netty.buffer.ByteBuf;
 import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class PacketSyncGold implements IMessage, IMessageHandler<PacketSyncGold, IMessage> {
     private long gold;
-    
-    public PacketSyncGold() {}
+
+    public PacketSyncGold() {
+    }
+
     public PacketSyncGold(long gold) {
         this.gold = gold;
     }
@@ -22,9 +25,9 @@ public class PacketSyncGold implements IMessage, IMessageHandler<PacketSyncGold,
     public void fromBytes(ByteBuf buf) {
         gold = buf.readLong();
     }
-    
+
     @Override
-    public IMessage onMessage(PacketSyncGold message, MessageContext ctx) {      
+    public IMessage onMessage(PacketSyncGold message, MessageContext ctx) {
         HFTrackers.getClientPlayerTracker().getStats().setGold(message.gold);
         return null;
     }

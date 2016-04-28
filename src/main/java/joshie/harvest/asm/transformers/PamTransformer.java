@@ -19,19 +19,19 @@ public class PamTransformer extends AbstractASM {
     public boolean isClass(String name) {
         return name.equals("com.pam.harvestcraft.ItemPamSeedFood");
     }
-    
+
     @Override
     public boolean isVisitor() {
         return false;
     }
 
-    public byte[] injectInterfaces(byte[] data) {
+    private byte[] injectInterfaces(byte[] data) {
         ClassReader cr = new ClassReader(data);
         ClassWriter cw = new ClassWriter(cr, 0);
         ClassVisitor cv = new ClassVisitor(Opcodes.ASM4, cw) {
             @Override
             public void visit(int version, int access, String name, String signature, String superName, String[] interfaces) {
-                Set<String> intf = new HashSet();
+                Set<String> intf = new HashSet<String>();
                 intf.addAll(Arrays.asList(interfaces));
                 intf.add(HFModInfo.ASMPATH + "api/core/IShippable");
                 intf.add(HFModInfo.ASMPATH + "api/crops/ICropProvider");
@@ -43,7 +43,7 @@ public class PamTransformer extends AbstractASM {
         return cw.toByteArray();
     }
 
-    public byte[] injectMethods(byte[] data) {
+    private byte[] injectMethods(byte[] data) {
         ClassReader cr = new ClassReader(data);
         ClassWriter cw = new ClassWriter(cr, 0);
 

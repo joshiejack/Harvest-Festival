@@ -10,7 +10,7 @@ import joshie.harvest.shops.purchaseable.PurchaseableBuilding;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.text.TextFormatting;
 import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
@@ -57,7 +57,7 @@ public class GuiNPCBuilderShop extends GuiNPCShop {
             int posX = 190;
 
             if (mouseY >= posY + 26 + (index * 34) && mouseY <= posY + 46 + (index * 34) && mouseX >= 34 && mouseX <= 56) {
-                List list = new ArrayList();
+                List<String> list = new ArrayList<String>();
                 purchaseable.addTooltip(list);
                 addTooltip(list);
             }
@@ -80,7 +80,7 @@ public class GuiNPCBuilderShop extends GuiNPCShop {
             StackHelper.drawStack(stone, x + 95, y + 55 + (index * 34), 0.75F);
             mc.fontRendererObj.drawStringWithShadow("" + purchaseable.getStoneCost(), x + 108, y + 57 + (index * 34), 0xC39753);
 
-            mc.fontRendererObj.drawStringWithShadow(EnumChatFormatting.BOLD + purchaseable.getName(), x + 60, y + 46 + (index * 34), 0xC39753);
+            mc.fontRendererObj.drawStringWithShadow(TextFormatting.BOLD + purchaseable.getName(), x + 60, y + 46 + (index * 34), 0xC39753);
 
             GL11.glColor3f(1.0F, 1.0F, 1.0F);
             index++;

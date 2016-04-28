@@ -19,18 +19,21 @@ import joshie.harvest.crops.Crop;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
@@ -38,6 +41,7 @@ import java.util.Random;
 import static joshie.harvest.core.helpers.CropHelper.harvestCrop;
 
 public class BlockCrop extends BlockHFBase implements IPlantable, IGrowable, IAnimalFeeder {
+    public static final AxisAlignedBB CROP_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D);
     public static final int FRESH = 0;
     public static final int WITHERED = 1;
     public static final int FRESH_DOUBLE = 2;
@@ -45,9 +49,9 @@ public class BlockCrop extends BlockHFBase implements IPlantable, IGrowable, IAn
     public static final int GROWN = 7;
 
     public BlockCrop() {
-        super(Material.plants);
+        super(Material.PLANTS);
         setBlockUnbreakable();
-        setStepSound(Block.soundTypeGrass);
+        setSoundType(SoundType.GROUND);
         setCreativeTab(null);
         setBlockBounds(0F, 0F, 0F, 1F, 0.5F, 1F);
         setTickRandomly(Crops.ALWAYS_GROW);
@@ -55,7 +59,7 @@ public class BlockCrop extends BlockHFBase implements IPlantable, IGrowable, IAn
     }
 
     @Override
-    public boolean isOpaqueCube() {
+    public boolean isOpaqueCube(IBlockState state) {
         return false;
     }
 
@@ -168,20 +172,14 @@ public class BlockCrop extends BlockHFBase implements IPlantable, IGrowable, IAn
         return section;
     }
 
-    @SideOnly(Side.CLIENT)
-    @Override
-    public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
-        return HFApi.CROPS.getCropAtLocation(MCClientHelper.getWorld(), x, y, z).getCropIcon(BlockCrop.getSection(world, x, y, z));
-    }
-
     @Override
     public Item getItemDropped(int meta, Random rand, int side) {
         return null;
     }
 
-    @SideOnly(Side.CLIENT)
     @Override
-    public boolean addHitEffects(World world, MovingObjectPosition target, EffectRenderer effectRenderer) {
+    @SideOnly(Side.CLIENT)
+    public boolean addHitEffects(World world, RayTraceResult result, EffectRenderer effectRenderer) {
         int x = target.blockX;
         int y = target.blockY;
         int z = target.blockZ;
@@ -189,7 +187,6 @@ public class BlockCrop extends BlockHFBase implements IPlantable, IGrowable, IAn
 
         //^ setup vars
         Block block = world.getBlock(x, y, z);
-        IIcon icon = HFApi.CROPS.getCropAtLocation(world, x, y, z).getCropIcon(BlockCrop.getSection(world, x, y, z));
         if (block.getMaterial() != Material.air) {
             float f = 0.1F;
             double d0 = (double) x + world.rand.nextDouble() * (block.getBlockBoundsMaxX() - block.getBlockBoundsMinX() - (double) (f * 2.0F)) + (double) f + block.getBlockBoundsMinX();
@@ -229,7 +226,6 @@ public class BlockCrop extends BlockHFBase implements IPlantable, IGrowable, IAn
     @SideOnly(Side.CLIENT)
     @Override
     public boolean addDestroyEffects(World world, int x, int y, int z, int meta, EffectRenderer effectRenderer) {
-        IIcon icon = HFApi.CROPS.getCropAtLocation(world, x, y, z).getCropIcon(getSection(world, x, y, z));
         byte b0 = 4;
         for (int i1 = 0; i1 < b0; ++i1) {
             for (int j1 = 0; j1 < b0; ++j1) {

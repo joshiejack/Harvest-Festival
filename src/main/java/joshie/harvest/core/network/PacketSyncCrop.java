@@ -8,13 +8,15 @@ import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.crops.CropData;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class PacketSyncCrop implements IMessage, IMessageHandler<PacketSyncCrop, IMessage> {
     private boolean isRemoval;
     private WorldLocation location;
     private ICropData data;
 
-    public PacketSyncCrop() {}
+    public PacketSyncCrop() {
+    }
 
     public PacketSyncCrop(WorldLocation location, ICropData data) {
         this.isRemoval = false;
@@ -50,8 +52,7 @@ public class PacketSyncCrop implements IMessage, IMessageHandler<PacketSyncCrop,
     @Override
     public IMessage onMessage(PacketSyncCrop msg, MessageContext ctx) {
         HFTrackers.getCropTracker().updateClient(msg.isRemoval, msg.location, msg.data);
-        MCClientHelper.refresh(msg.location.dimension, msg.location.x, msg.location.y, msg.location.z);
-
+        MCClientHelper.refresh(msg.location.dimension, msg.location.position);
         return null;
     }
 }

@@ -6,7 +6,7 @@ import net.minecraft.command.NumberInvalidException;
 import net.minecraft.event.ClickEvent;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.MathHelper;
 
 import java.util.Collections;
 import java.util.List;

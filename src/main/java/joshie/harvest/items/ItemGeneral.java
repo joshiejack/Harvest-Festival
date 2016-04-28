@@ -3,7 +3,6 @@ package joshie.harvest.items;
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.animals.IMilkable;
-import joshie.harvest.api.cooking.ICookingAltIcon;
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.util.Translate;
@@ -21,7 +20,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.HashMap;
 import java.util.List;
 
-public class ItemGeneral extends ItemHFMeta implements ICreativeSorted, ICookingAltIcon {
+public class ItemGeneral extends ItemHFMeta implements ICreativeSorted {
     public static final int BLUE_FEATHER = 0;
     public static final int MILKER = 1;
     public static final int BRUSH = 2;

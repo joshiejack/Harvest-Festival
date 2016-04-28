@@ -15,18 +15,26 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class HFPlugins {
-    public static ArrayList<Plugin> plugins = new ArrayList();
-    private static ArrayList<PluginData> data = new ArrayList();
+    public static ArrayList<Plugin> plugins = new ArrayList<Plugin>();
+    private static ArrayList<PluginData> data = new ArrayList<PluginData>();
 
     public static abstract class Plugin {
         public String modid;
 
-        public Plugin() {}
+        public Plugin() {
+        }
 
-        public void loadConfig(Configuration config) {}
-        public void preInit() {}
-        public void init() {}
-        public void postInit() {}
+        public void loadConfig(Configuration config) {
+        }
+
+        public void preInit() {
+        }
+
+        public void init() {
+        }
+
+        public void postInit() {
+        }
     }
 
     static {

@@ -1,10 +1,6 @@
 package joshie.harvest.crops.icons;
 
-import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.crops.HFCrops;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-public class IconHandlerCorn extends AbstractIconHandler {
+/*public class IconHandlerCorn extends AbstractIconHandler {
     @SideOnly(Side.CLIENT)
     public IIcon getIconForStage(PlantSection section, int stage) {
         if (stage <= 3) return stageIcons[0];
@@ -21,4 +17,4 @@ public class IconHandlerCorn extends AbstractIconHandler {
             stageIcons[i] = register.registerIcon(HFModInfo.CROPPATH + HFCrops.corn.getUnlocalizedName() + "_" + (i + 1));
         }
     }
-}
+}*/

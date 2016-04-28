@@ -27,7 +27,6 @@ public class MelonTransformer extends AbstractASM {
 
     @Override
     public byte[] transform(byte[] data) {
-        byte[] modified = data;
         String name = HFOverride.isObfuscated ? "func_150900_l" : "registerItems";
         String desc = "()V";
 

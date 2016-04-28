@@ -10,8 +10,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -27,18 +27,18 @@ public abstract class Quest implements IQuest {
     protected Set<IQuest> required;
 
     public Quest() {}
-    
+
     @Override
     public IQuest setStage(int quest_stage) {
         this.quest_stage = quest_stage;
         return this;
     }
-    
+
     @Override
     public int getStage() {
         return quest_stage;
     }
-    
+
     @Override
     public IQuest setUniqueName(String name) {
         this.name = name;
@@ -61,18 +61,18 @@ public abstract class Quest implements IQuest {
             //Send Packet to increase stage to server
             sendToServer(new PacketQuestSetStage(this, true, this.quest_stage));
         }
-        
+
         onStageChanged(player, previous, quest_stage);
     }
 
     protected boolean isRepeatable() {
         return false;
     }
-    
+
     public int getOptions() {
         return 0;
     }
-    
+
     public void onSelected(EntityPlayer player, int option) {}
 
     //This is only called client side
@@ -81,13 +81,13 @@ public abstract class Quest implements IQuest {
         if(finished.contains(this) && !isRepeatable()) {
             return false;
         }
-        
+
         if (required != null) {
             if (!finished.containsAll(required)) {
                 return false;
             }
         }
-        
+
         //Loops through all the active quests, if any of the quests contain npcs that are used by this quest, we can not start it
         for (IQuest a : active) {
             for(INPC npc: getNPCs()) {
@@ -96,10 +96,10 @@ public abstract class Quest implements IQuest {
                 }
             }
         }
-        
+
         return true;
     }
-    
+
     //Return a list of all the npcs involved in this quest
     protected abstract INPC[] getNPCs();
 
@@ -118,10 +118,10 @@ public abstract class Quest implements IQuest {
                 return true;
             }
         }
-        
+
         return false;
     }
-    
+
     @SideOnly(Side.CLIENT)
     public String getScript(EntityPlayer player, INPC npc) {
         return null;
@@ -190,7 +190,7 @@ public abstract class Quest implements IQuest {
     public void select(EntityPlayer player, EntityNPC npc, int option) {}
     public void confirm(EntityPlayer player, EntityNPC npc) {}
     public void cancel(EntityPlayer player, EntityNPC npc) {}
-    
+
     @Override
     public void onStageChanged(EntityPlayer player, int previous, int stage) {}
 }

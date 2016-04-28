@@ -1,16 +1,12 @@
 package joshie.harvest.crops.icons;
 
-import joshie.harvest.api.crops.ICrop;
-import joshie.harvest.api.crops.ICropRenderHandler;
-import net.minecraft.block.Block;
-
-public abstract class AbstractIconHandler implements ICropRenderHandler {
+/*public abstract class AbstractIconHandler implements ICropRenderHandler {
     //protected IIcon[] stageIcons;
     
-    /*@Override
+    @Override
     public boolean doCustomRender(RenderBlocks renderer, IBlockAccess world, int x, int y, int z, Block block) {
         return false;
-    } */
+    }
     
     @Override
     public void setBlockBoundsBasedOnStage(Block block, PlantSection section, ICrop crop, int stage) {
@@ -18,4 +14,4 @@ public abstract class AbstractIconHandler implements ICropRenderHandler {
             block.setBlockBounds(0F, 0F, 0F, 1F, 0.25F, 1F);
         } else block.setBlockBounds(0F, 0F, 0F, 1F, 1F, 1F);
     }
-}
+}*/

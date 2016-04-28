@@ -1,14 +1,6 @@
 package joshie.harvest.items.render;
 
-import joshie.harvest.buildings.Building;
-import joshie.harvest.buildings.placeable.Placeable;
-import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.item.ItemStack;
-import org.lwjgl.opengl.GL11;
-
-public class RenderBuilding implements IItemRenderer {
+/*public class RenderBuilding implements IItemRenderer {
     public static RenderBlocks renderer = new RenderBlocks();
     
     @Override
@@ -46,4 +38,4 @@ public class RenderBuilding implements IItemRenderer {
         
         GL11.glPopMatrix();
     }
-}
+}*/

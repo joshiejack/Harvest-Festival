@@ -5,7 +5,7 @@ import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.api.core.ISeasonData;
 import joshie.harvest.core.lib.HFModInfo;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.text.translation.I18n;
 
 import static joshie.harvest.core.lib.HFModInfo.MODPATH;
 
@@ -36,7 +36,7 @@ public class SeasonData implements ISeasonData {
         this.chances[3] = snow;
         this.chances[4] = blizzard;
     }
-    
+
     @Override
     public double getCelestialLengthFactor() {
         return celestialLengthFactor;
@@ -46,7 +46,7 @@ public class SeasonData implements ISeasonData {
     public float getCelestialAngleOffset() {
         return celestialAngleOffset;
     }
-    
+
     @Override
     public double getWeatherChance(Weather weather) {
         return chances[weather.ordinal()];
@@ -56,7 +56,7 @@ public class SeasonData implements ISeasonData {
     public int getSkyColor() {
         return skyColor;
     }
-    
+
     @Override
     public ResourceLocation getResource() {
         return resource;
@@ -64,7 +64,7 @@ public class SeasonData implements ISeasonData {
 
     @Override
     public String getLocalized() {
-        return StatCollector.translateToLocal(HFModInfo.MODPATH + ".season." + season.name().toLowerCase());
+        return I18n.translateToLocal(HFModInfo.MODPATH + ".season." + season.name().toLowerCase());
     }
 
     @Override

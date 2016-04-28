@@ -1,6 +1,6 @@
 package joshie.harvest.core.util.generic;
 
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.text.translation.I18n;
 
 public class Text {
     private final static String prfx = "\u00a7";
@@ -29,7 +29,7 @@ public class Text {
     public static final String DEGREES = "\u00B0" + "C";
 
     public static String localize(String key) {
-        return StatCollector.translateToLocal(key);
+        return I18n.translateToLocal(key);
     }
 
     public static String removeDecimals(String name) {
@@ -40,10 +40,10 @@ public class Text {
         } else {
             theName = name;
         }
-        
+
         return theName;
     }
-    
+
     public static String capitalizeFirst(String string) {
         return string.substring(0, 1).toUpperCase() + string.substring(1);
     }

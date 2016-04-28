@@ -5,8 +5,8 @@ import joshie.harvest.blocks.tiles.TileCooking;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -54,7 +54,7 @@ public class PacketSyncCooking extends AbstractPacketOrientation implements IMes
         isCooking = buf.readBoolean();
         hasResult = buf.readBoolean();
         iIngredient = buf.readInt();
-        ingredients = new ArrayList(20);
+        ingredients = new ArrayList<ItemStack>(20);
         if (iIngredient > 0) {
             for (int i = 0; i < iIngredient; i++) {
                 ingredients.add(ByteBufUtils.readItemStack(buf));

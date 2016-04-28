@@ -42,11 +42,9 @@ public class CodeGeneratorRendering {
             DecimalFormat df = new DecimalFormat("#.###");
             df.setRoundingMode(RoundingMode.DOWN);
 
-            int round = 0;
-
             for (String s : split) {
                 if (s.contains("setTexture")) {
-                    second.append(s + ";");
+                    second.append(s).append(";");
                     continue;
                 }
 

@@ -4,9 +4,11 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.text.ITextComponent;
 
 public class FridgeData implements IInventory {
     protected ItemStack[] inventory;
@@ -21,41 +23,26 @@ public class FridgeData implements IInventory {
     }
 
     @Override
-    public ItemStack getStackInSlot(int slot) {
-        return inventory[slot];
+    public ItemStack getStackInSlot(int index) {
+        return inventory[index];
     }
 
     @Override
-    public ItemStack decrStackSize(int slot, int amount) {
-        if (inventory[slot] != null) {
-            ItemStack stack;
+    public ItemStack decrStackSize(int index, int count) {
+        ItemStack itemstack = ItemStackHelper.getAndSplit(this.inventory, index, count);
 
-            if (inventory[slot].stackSize <= amount) {
-                stack = inventory[slot];
-                inventory[slot] = null;
-
-                markDirty();
-                return stack;
-            } else {
-                stack = inventory[slot].splitStack(amount);
-
-                if (inventory[slot].stackSize == 0) {
-                    inventory[slot] = null;
-                }
-
-                markDirty();
-                return stack;
-            }
+        if (itemstack != null) {
+            this.markDirty();
         }
 
-        return null;
+        return itemstack;
     }
 
     @Override
-    public ItemStack getStackInSlotOnClosing(int slot) {
-        if (inventory[slot] != null) {
-            ItemStack stack = inventory[slot];
-            inventory[slot] = null;
+    public ItemStack removeStackFromSlot(int index) {
+        if (inventory[index] != null) {
+            ItemStack stack = inventory[index];
+            inventory[index] = null;
             return stack;
         }
 
@@ -74,13 +61,18 @@ public class FridgeData implements IInventory {
     }
 
     @Override
-    public String getInventoryName() {
+    public String getName() {
         return "";
     }
 
     @Override
-    public boolean hasCustomInventoryName() {
+    public boolean hasCustomName() {
         return false;
+    }
+
+    @Override
+    public ITextComponent getDisplayName() {
+        return null;
     }
 
     @Override
@@ -99,14 +91,34 @@ public class FridgeData implements IInventory {
     }
 
     @Override
-    public void openInventory() {}
+    public void openInventory(EntityPlayer player) {
+    }
 
     @Override
-    public void closeInventory() {}
+    public void closeInventory(EntityPlayer player) {
+    }
 
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack stack) {
         return HFApi.COOKING.getCookingComponents(stack).size() > 0;
+    }
+
+    @Override
+    public int getField(int id) {
+        return 0;
+    }
+
+    @Override
+    public void setField(int id, int value) {
+    }
+
+    @Override
+    public int getFieldCount() {
+        return 0;
+    }
+
+    @Override
+    public void clear() {
     }
 
     public void readFromNBT(NBTTagCompound nbt) {

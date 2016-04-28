@@ -9,6 +9,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
@@ -17,12 +18,12 @@ public class ItemMelon extends ItemFood implements IShippable, ICropProvider, IC
     public ItemMelon(int hunger, float saturation, boolean isMeat) {
         super(hunger, saturation, isMeat);
     }
-    
+
     @Override
     public int getSortValue(ItemStack stack) {
         return CreativeSort.CROPS;
     }
-    
+
     @Override
     public ICrop getCrop(ItemStack stack) {
         return ItemSeedFood.getCrop(stack);
@@ -31,11 +32,6 @@ public class ItemMelon extends ItemFood implements IShippable, ICropProvider, IC
     @Override
     public ItemMelon setUnlocalizedName(String string) {
         return (ItemMelon) super.setUnlocalizedName(string);
-    }
-
-    @Override
-    public ItemMelon setTextureName(String name) {
-        return (ItemMelon) super.setTextureName(name);
     }
 
     @Override
@@ -50,7 +46,7 @@ public class ItemMelon extends ItemFood implements IShippable, ICropProvider, IC
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubItems(Item item, CreativeTabs tab, List list) {
+    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
         ItemSeedFood.getSubItems(item, tab, list);
     }
 }

@@ -7,7 +7,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class EntityAIEat extends EntityAIBase {
@@ -39,7 +39,7 @@ public class EntityAIEat extends EntityAIBase {
         IBlockState state = animal.worldObj.getBlockState(position);
         Block block = state.getBlock();
         if (block instanceof IAnimalFeeder) {
-            if (((IAnimalFeeder) block).canFeedAnimal(tracked, worldObj, position.getX(), position.getY(), position.getZ())) {
+            if (((IAnimalFeeder) block).canFeedAnimal(tracked, worldObj, position)) {
                 tracked.getData().feed(null);
             }
         }

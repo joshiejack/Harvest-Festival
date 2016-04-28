@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 public class GiftsThomas extends Gifts {
     @Override
     public Quality getQuality(ItemStack stack) {
-        if (stack.getItem() == Item.getItemFromBlock(Blocks.tnt)) {
+        if (stack.getItem() == Item.getItemFromBlock(Blocks.TNT)) {
             return Quality.AWESOME;
         }
 
@@ -18,7 +18,6 @@ public class GiftsThomas extends Gifts {
         if (is(stack, Category.BATTLE)) {
             return Quality.BAD;
         }
-
         return Quality.DECENT;
     }
 }

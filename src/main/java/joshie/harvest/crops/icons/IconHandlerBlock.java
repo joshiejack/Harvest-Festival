@@ -1,17 +1,6 @@
 package joshie.harvest.crops.icons;
 
-import joshie.harvest.api.HFApi;
-import joshie.harvest.api.crops.ICrop;
-import joshie.harvest.core.helpers.generic.MCClientHelper;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockStem;
-import net.minecraft.client.renderer.EntityRenderer;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.init.Blocks;
-import net.minecraft.world.IBlockAccess;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-public class IconHandlerBlock extends AbstractIconHandler {
+/*public class IconHandlerBlock extends AbstractIconHandler {
     private Block block;
 
     public IconHandlerBlock(Block block) {
@@ -92,12 +81,4 @@ public class IconHandlerBlock extends AbstractIconHandler {
         float f = 0.125F;
         block.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, (float) maxY, 0.5F + f);
     }
-
-    @SideOnly(Side.CLIENT)
-    public IIcon getIconForStage(PlantSection section, int stage) {
-        return Blocks.carrots.getIcon(0, 0);
-    }
-
-    @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister register) {}
-}
+}*/

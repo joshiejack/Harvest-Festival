@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 public class GiftsCloe extends Gifts {
     @Override
     public Quality getQuality(ItemStack stack) {
-        if (stack.getItem() == Items.bone) {
+        if (stack.getItem() == Items.BONE) {
             return Quality.AWESOME;
         }
 

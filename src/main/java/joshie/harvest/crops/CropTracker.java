@@ -6,6 +6,7 @@ import joshie.harvest.api.crops.ICropData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.HashMap;
@@ -13,60 +14,60 @@ import java.util.HashMap;
 public class CropTracker {
     protected HashMap<WorldLocation, ICropData> crops = new HashMap();
 
-    protected WorldLocation getCropKey(World world, int x, int y, int z) {
-        return new WorldLocation(world.provider.dimensionId, x, y, z);
+    protected WorldLocation getCropKey(World world, BlockPos pos) {
+        return new WorldLocation(world.provider.getDimension(), pos);
     }
 
-    protected WorldLocation getFarmlandKey(World world, int x, int y, int z) {
-        return new WorldLocation(world.provider.dimensionId, x, y + 1, z);
+    protected WorldLocation getFarmlandKey(World world, BlockPos pos) {
+        return new WorldLocation(world.provider.getDimension(), pos.up());
     }
 
-    public ICropData getCropDataForLocation(World world, int x, int y, int z) {
-        WorldLocation location = getCropKey(world, x, y, z);
+    public ICropData getCropDataForLocation(World world, BlockPos pos) {
+        WorldLocation location = getCropKey(world, pos);
         ICropData data = crops.get(location);
         return data != null ? data : new CropData(location);
     }
 
-    public boolean canBonemeal(World world, int x, int y, int z) {
-        ICropData data = getCropDataForLocation(world, x, y, z);
+    public boolean canBonemeal(World world, BlockPos pos) {
+        ICropData data = getCropDataForLocation(world, pos);
         return data.getStage() < data.getCrop().getStages();
     }
 
-    public boolean plantCrop(EntityPlayer player, World world, int x, int y, int z, ICrop crop, int stage) {
+    public boolean plantCrop(EntityPlayer player, World world, BlockPos pos, ICrop crop, int stage) {
         return true;
     }
 
-    public ItemStack getHarvest(EntityPlayer player, World world, int x, int y, int z) {
-        ICropData data = getCropDataForLocation(world, x, y, z);
+    public ItemStack getHarvest(EntityPlayer player, World world, BlockPos pos) {
+        ICropData data = getCropDataForLocation(world, pos);
         return data.harvest(player, false);
     }
 
-    public ItemStack harvest(EntityPlayer player, World world, int x, int y, int z) {
-        ICropData data = getCropDataForLocation(world, x, y, z);
+    public ItemStack harvest(EntityPlayer player, World world, BlockPos pos) {
+        ICropData data = getCropDataForLocation(world, pos);
         ItemStack harvest = data.harvest(player, true);
         if (harvest != null) {
             if (data.getCrop().getRegrowStage() < 0) {
-                removeCrop(world, x, y, z);
+                removeCrop(world, pos);
             }
 
             return harvest;
         } else return null;
     }
 
-    public void removeCrop(World world, int x, int y, int z) {
-        ICropData data = getCropDataForLocation(world, x, y, z);
+    public void removeCrop(World world, BlockPos pos) {
+        ICropData data = getCropDataForLocation(world, pos);
         crops.remove(data.getLocation());
     }
 
-    public void hydrate(World world, int x, int y, int z) {}
+    public void hydrate(World world, BlockPos pos) {}
 
     public void setWithered(ICropData data) {}
 
-    public void grow(World world, int x, int y, int z) {}
+    public void grow(World world, BlockPos pos) {}
 
     public void newDay() {}
 
-    public void sendUpdateToClient(EntityPlayerMP player, World world, int x, int y, int z) {}
+    public void sendUpdateToClient(EntityPlayerMP player, World world, BlockPos pos) {}
 
     public void updateClient(boolean isRemoval, WorldLocation location, ICropData data) {}
 

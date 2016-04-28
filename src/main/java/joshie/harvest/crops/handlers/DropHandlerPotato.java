@@ -10,6 +10,6 @@ import java.util.Random;
 public class DropHandlerPotato implements IDropHandler {
     @Override
     public ItemStack getDrop(Random rand, Item item) {
-        return rand.nextInt(50) == 0 ? new ItemStack(Items.poisonous_potato) : null;
+        return rand.nextInt(50) == 0 ? new ItemStack(Items.POISONOUS_POTATO) : null;
     }
 }

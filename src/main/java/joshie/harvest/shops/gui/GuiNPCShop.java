@@ -90,7 +90,7 @@ public class GuiNPCShop extends GuiNPCBase {
             int posX = 98 + percent99;
 
             if (mouseY >= posY + 23 && mouseY <= posY + 46 && mouseX >= posX - 63 && mouseX <= posX - 41) {
-                List list = new ArrayList();
+                List<String> list = new ArrayList<String>();
                 purchaseable.addTooltip(list);
                 addTooltip(list);
             }
@@ -143,7 +143,8 @@ public class GuiNPCShop extends GuiNPCBase {
     }
 
     @Override
-    public void drawForeground(int x, int y) {}
+    public void drawForeground(int x, int y) {
+    }
 
     @Override
     protected void keyTyped(char character, int key) throws IOException {
@@ -165,7 +166,6 @@ public class GuiNPCShop extends GuiNPCBase {
             if (index > 9) break;
             IPurchaseable purchaseable = contents.get(i);
             if (purchaseable.canBuy(player.worldObj, player)) {
-                long cost = purchaseable.getCost();
                 int indexPercent = index % 2;
                 int indexDivide = index / 2;
                 int percent99 = indexPercent * 99;
@@ -195,7 +195,7 @@ public class GuiNPCShop extends GuiNPCBase {
     }
 
     @Override
-    public void handleMouseInput() {
+    public void handleMouseInput() throws IOException {
         super.handleMouseInput();
 
         if (mouseWheel != 0) {

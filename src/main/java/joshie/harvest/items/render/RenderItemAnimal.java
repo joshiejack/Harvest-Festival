@@ -1,20 +1,6 @@
 package joshie.harvest.items.render;
 
-import joshie.harvest.animals.entity.EntityHarvestCow;
-import joshie.harvest.animals.entity.EntityHarvestSheep;
-import joshie.harvest.core.helpers.generic.MCClientHelper;
-import joshie.harvest.items.ItemAnimal;
-import net.minecraft.client.gui.inventory.GuiInventory;
-import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.entity.passive.EntityChicken;
-import net.minecraft.entity.passive.EntityCow;
-import net.minecraft.entity.passive.EntitySheep;
-import net.minecraft.item.ItemStack;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
-
-public class RenderItemAnimal implements IItemRenderer {
+/*public class RenderItemAnimal implements IItemRenderer {
     private static EntityChicken chicken;
     private static EntityCow cow;
     private static EntitySheep sheep;
@@ -60,4 +46,4 @@ public class RenderItemAnimal implements IItemRenderer {
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float)short1 / 1.0F, (float)short2 / 1.0F);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
     }
-}
+}*/

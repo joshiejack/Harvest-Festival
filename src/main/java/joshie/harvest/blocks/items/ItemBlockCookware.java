@@ -13,21 +13,21 @@ public class ItemBlockCookware extends ItemBlockBase implements ICreativeSorted 
 
     @Override
     public String getName(ItemStack stack) {
-        switch (stack.getItemDamage()) {
-            case BlockCookware.FRIDGE:
-                return "fridge";
-            case BlockCookware.COUNTER:
-                return "COUNTER";
-            case BlockCookware.POT:
-                return "pot";
-            case BlockCookware.FRYING_PAN:
-                return "frying.pan";
-            case BlockCookware.MIXER:
-                return "mixer";
-            case BlockCookware.OVEN:
-                return "oven";
-            case BlockCookware.FRIDGE_TOP:
+        switch (BlockCookware.Cookware.POT) {
+            case FRIDGE_TOP:
                 return "fridge.top";
+            case FRIDGE:
+                return "fridge";
+            case COUNTER:
+                return "COUNTER";
+            case POT:
+                return "pot";
+            case FRYING_PAN:
+                return "frying.pan";
+            case MIXER:
+                return "mixer";
+            case OVEN:
+                return "oven";
             default:
                 return "invalid";
         }

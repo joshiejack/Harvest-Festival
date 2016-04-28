@@ -36,8 +36,8 @@ public class NPC implements INPC {
         CHILD, ADULT, ELDER;
     }
 
-    protected List<IConditionalGreeting> conditionals = new ArrayList(256);
-    protected ArrayList<String> thanks = new ArrayList(6);
+    protected List<IConditionalGreeting> conditionals = new ArrayList<IConditionalGreeting>(256);
+    protected ArrayList<String> thanks = new ArrayList<String>(6);
     protected String accept = "WHAT?";
     protected String reject = "NO!";
     protected String name;

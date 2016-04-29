@@ -35,7 +35,7 @@ public class HFConfig {
         try {
             config.load();
             ConfigHelper.setConfig(config);
-            Class clazz = Class.forName(HFModInfo.JAVAPATH + "core.config." + name);
+            Class<?> clazz = Class.forName(HFModInfo.JAVAPATH + "core.config." + name);
             Method method = clazz.getMethod("init", Configuration.class);
             method.invoke(null, config);
         } catch (Exception e) {

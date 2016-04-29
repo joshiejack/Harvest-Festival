@@ -16,9 +16,9 @@ import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
@@ -72,7 +72,7 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
 
         if (owning_player != null) {
             tasks.addTask(0, new EntityAISwimming(this));
-            tasks.addTask(1, new EntityAIAvoidEntity(this, EntityZombie.class, 8.0F, 0.6D, 0.6D));
+            tasks.addTask(1, new EntityAIAvoidEntity<EntityZombie>(this, EntityZombie.class, 8.0F, 0.6D, 0.6D));
             tasks.addTask(1, new EntityAITalkingTo(this));
             tasks.addTask(1, new EntityAILookAtPlayer(this));
             tasks.addTask(2, new EntityAITeleportHome(this));
@@ -91,7 +91,7 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.5D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D);
     }
 
     @Override
@@ -133,7 +133,7 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
         if (!isTalking()) {
             super.updateAITasks();
         } else {
-            addPotionEffect(new PotionEffect(Potion.regeneration.id, 200, 0));
+            addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 200, 0));
         }
     }
 
@@ -180,7 +180,7 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
     @Override
     public boolean interact(EntityPlayer player) {
         ItemStack held = player.inventory.getCurrentItem();
-        boolean flag = held != null && held.getItem() == Items.spawn_egg;
+        boolean flag = held != null && held.getItem() == Items.SPAWN_EGG;
         if (!flag && isEntityAlive()) {
             if (!worldObj.isRemote) {
                 player.openGui(HarvestFestival.instance, NPCHelper.getGuiIDForNPC(npc, worldObj, player, player.isSneaking() && held != null), worldObj, getEntityId(), -1, 0);
@@ -200,7 +200,7 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
         if (nbt.hasKey("Owner")) {
             owning_player = UUID.fromString(nbt.getString("Owner"));
             tasks.addTask(0, new EntityAISwimming(this));
-            tasks.addTask(1, new EntityAIAvoidEntity(this, EntityZombie.class, 8.0F, 0.6D, 0.6D));
+            tasks.addTask(1, new EntityAIAvoidEntity<EntityZombie>(this, EntityZombie.class, 8.0F, 0.6D, 0.6D));
             tasks.addTask(1, new EntityAITalkingTo(this));
             tasks.addTask(1, new EntityAILookAtPlayer(this));
             tasks.addTask(2, new EntityAITeleportHome(this));

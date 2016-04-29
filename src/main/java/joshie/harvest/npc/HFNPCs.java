@@ -43,26 +43,26 @@ public class HFNPCs {
         EntityRegistry.registerModEntity(EntityNPC.class, "NPC", 0, HarvestFestival.instance, 80, 3, true);
         EntityRegistry.registerModEntity(EntityNPCBuilder.class, "NPCBuilder", 2, HarvestFestival.instance, 80, 3, true);
         EntityRegistry.registerModEntity(EntityNPCShopkeeper.class, "NPCShopkeeper", 3, HarvestFestival.instance, 80, 3, true);
-        EntityRegistry.registerModEntity(EntityNPCMiner.class, "NPCMiner", 4, HarvestFestival.instance, 80, 3, true);
-        
+        //EntityRegistry.registerModEntity(EntityNPCMiner.class, "NPCMiner", 4, HarvestFestival.instance, 80, 3, true);
+
         goddess = HFApi.NPC.register("goddess", FEMALE, ADULT, 8, Season.SPRING, 0x8CEED3, 0x4EC485).setHeight(1.2F, 0.05F);
         animal_owner = HFApi.NPC.register("jim", MALE, ADULT, 26, Season.SPRING, 0x888888, 0x000000);
         cafe_owner = HFApi.NPC.register("liara", FEMALE, ADULT, 17, Season.SPRING, 0xA64DFF, 0x46008C);
         seed_owner = HFApi.NPC.register("jade", FEMALE, ADULT, 14, Season.SPRING, 0x9326FF, 0x46008C);
         daughter_1 = HFApi.NPC.register("cloe", FEMALE, ADULT, 3, Season.SPRING, 0xFFFF99, 0xB2B200);
-        priest = HFApi.NPC.register("thomas", MALE, ELDER,  9, Season.SUMMER, 0x006666, 0x00B2B20);
-        clockmaker_child = HFApi.NPC.register("fenn", MALE, CHILD,  25, Season.SUMMER, 0x228C00, 0x003F00);
-        cafe_granny = HFApi.NPC.register("katlin", FEMALE, ELDER,  12, Season.SUMMER, 0xDDDDDD, 0x777777);
-        mayor = HFApi.NPC.register("jamie", FEMALE, ELDER,  8, Season.SUMMER, 0xFF9326, 0xB25900);
-        builder = HFApi.NPC.register("yulif", MALE, ADULT,  19, Season.SUMMER, 0x8C001A, 0x3C0000).setIsBuilder();
-        tool_owner = HFApi.NPC.register("daniel", MALE, ADULT,  1, Season.WINTER, 0xD9D916, 0x6D14C7);
-        daughter_2 = HFApi.NPC.register("abi", FEMALE, CHILD,  27, Season.WINTER, 0xFF99FF, 0xFF20FF);
-        clock_worker = HFApi.NPC.register("tiberius", MALE, ADULT,  15, Season.WINTER, 0xFF4C4C, 0x700606);
-        gs_owner = HFApi.NPC.register("jenni", FEMALE, ADULT,  7, Season.WINTER, 0x2858E0, 0x000000);
-        miner = HFApi.NPC.register("brandon", MALE, ADULT,  13, Season.AUTUMN, 0xC28D48, 0x5F5247).setIsMiner();
-        fisherman = HFApi.NPC.register("jacob", MALE, ADULT,  28, Season.AUTUMN, 0x7396FF, 0x0036D9);
-        milkmaid = HFApi.NPC.register("candice", FEMALE, ADULT,  5, Season.AUTUMN, 0xF65FAB, 0xF21985);
-        poultry = HFApi.NPC.register("ondra", MALE, ADULT,  16, Season.AUTUMN, 0xFF8000, 0x46008C);
+        priest = HFApi.NPC.register("thomas", MALE, ELDER, 9, Season.SUMMER, 0x006666, 0x00B2B20);
+        clockmaker_child = HFApi.NPC.register("fenn", MALE, CHILD, 25, Season.SUMMER, 0x228C00, 0x003F00);
+        cafe_granny = HFApi.NPC.register("katlin", FEMALE, ELDER, 12, Season.SUMMER, 0xDDDDDD, 0x777777);
+        mayor = HFApi.NPC.register("jamie", FEMALE, ELDER, 8, Season.SUMMER, 0xFF9326, 0xB25900);
+        builder = HFApi.NPC.register("yulif", MALE, ADULT, 19, Season.SUMMER, 0x8C001A, 0x3C0000).setIsBuilder();
+        tool_owner = HFApi.NPC.register("daniel", MALE, ADULT, 1, Season.WINTER, 0xD9D916, 0x6D14C7);
+        daughter_2 = HFApi.NPC.register("abi", FEMALE, CHILD, 27, Season.WINTER, 0xFF99FF, 0xFF20FF);
+        clock_worker = HFApi.NPC.register("tiberius", MALE, ADULT, 15, Season.WINTER, 0xFF4C4C, 0x700606);
+        gs_owner = HFApi.NPC.register("jenni", FEMALE, ADULT, 7, Season.WINTER, 0x2858E0, 0x000000);
+        miner = HFApi.NPC.register("brandon", MALE, ADULT, 13, Season.AUTUMN, 0xC28D48, 0x5F5247).setIsMiner();
+        fisherman = HFApi.NPC.register("jacob", MALE, ADULT, 28, Season.AUTUMN, 0x7396FF, 0x0036D9);
+        milkmaid = HFApi.NPC.register("candice", FEMALE, ADULT, 5, Season.AUTUMN, 0xF65FAB, 0xF21985);
+        poultry = HFApi.NPC.register("ondra", MALE, ADULT, 16, Season.AUTUMN, 0xFF8000, 0x46008C);
     }
 
     public static void init() {
@@ -85,12 +85,12 @@ public class HFNPCs {
         milkmaid.setHome(HFBuildings.supermarket, TownData.CANDICE);
         poultry.setHome(HFBuildings.poultryFarm, TownData.ONDRA);
     }
-    
+
     @SideOnly(Side.CLIENT)
     public static void initClient() {
         RenderingRegistry.registerEntityRenderingHandler(EntityNPC.class, new RenderNPC());
         RenderingRegistry.registerEntityRenderingHandler(EntityNPCBuilder.class, new RenderNPC());
         RenderingRegistry.registerEntityRenderingHandler(EntityNPCShopkeeper.class, new RenderNPC());
-        RenderingRegistry.registerEntityRenderingHandler(EntityNPCMiner.class, new RenderNPC());
+        //RenderingRegistry.registerEntityRenderingHandler(EntityNPCMiner.class, new RenderNPC());
     }
 }

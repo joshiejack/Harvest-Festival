@@ -6,7 +6,7 @@ import joshie.harvest.api.quest.IQuestRegistry;
 import java.util.HashMap;
 
 public class QuestRegistry implements IQuestRegistry {
-    private static HashMap<String, IQuest> quests = new HashMap();
+    private static HashMap<String, IQuest> quests = new HashMap<String, IQuest>();
 
     @Override
     public IQuest register(String name, IQuest quest) {

@@ -7,6 +7,7 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.player.town.TownData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
@@ -289,7 +290,7 @@ public class BuildingMiningHill extends Building {
         list.add(new PlaceableBlock(Blocks.STONE, 0, 8, 3, 5));
         list.add(new PlaceableBlock(Blocks.STONE, 0, 8, 3, 6));
         list.add(new PlaceableBlock(Blocks.COBBLESTONE_WALL, 1, 8, 3, 7));
-        npc_offsets.put(TownData.MINE_ENTRANCE, new PlaceableNPC("", 8, 3, 8));
+        npc_offsets.put(TownData.MINE_ENTRANCE, new PlaceableNPC("", new BlockPos(8, 3, 8)));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 8, 3, 8));
         list.add(new PlaceableBlock(Blocks.COBBLESTONE_WALL, 0, 8, 3, 9));
         list.add(new PlaceableBlock(Blocks.STONE, 0, 8, 3, 10));

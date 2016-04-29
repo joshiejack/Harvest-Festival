@@ -15,7 +15,7 @@ public class GiftsYulif extends Gifts {
             return AWESOME;
         }
 
-        if (stack.getItem() == Items.sugar || stack.getItem() == Items.quartz || stack.getItem() == Item.getItemFromBlock(Blocks.CAKE)) {
+        if (stack.getItem() == Items.SUGAR || stack.getItem() == Items.QUARTZ || stack.getItem() == Item.getItemFromBlock(Blocks.CAKE)) {
             return GOOD;
         }
 

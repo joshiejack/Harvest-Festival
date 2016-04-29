@@ -6,6 +6,7 @@ import joshie.harvest.buildings.placeable.blocks.*;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.player.town.TownData;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
 
 import java.util.ArrayList;
 
@@ -733,8 +734,8 @@ public class BuildingGoddess extends Building {
         list.add(new PlaceableLilypad(Blocks.WATERLILY, 0, 12, 3, 7));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 12, 3, 8));
         list.add(new PlaceableLilypad(Blocks.WATERLILY, 0, 12, 3, 9));
-        list.add(new PlaceableNPC("goddess", 12, 3, 10));
-        npc_offsets.put(TownData.GODDESS, new PlaceableNPC("", 12, 3, 10));
+        list.add(new PlaceableNPC("goddess", new BlockPos(12, 3, 10)));
+        npc_offsets.put(TownData.GODDESS, new PlaceableNPC("", new BlockPos(12, 3, 10)));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 12, 3, 10));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 12, 3, 11));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 12, 3, 12));

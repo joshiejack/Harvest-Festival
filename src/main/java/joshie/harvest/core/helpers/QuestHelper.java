@@ -12,7 +12,7 @@ import joshie.harvest.quests.Quest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.play.server.S2FPacketSetSlot;
+import net.minecraft.network.play.server.SPacketSetSlot;
 
 import java.util.HashSet;
 
@@ -29,7 +29,7 @@ public class QuestHelper {
             sendToServer(new PacketQuestDecreaseHeld(amount));
         } else {
             player.inventory.decrStackSize(player.inventory.currentItem, amount);
-            ((EntityPlayerMP) player).playerNetServerHandler.sendPacket(new S2FPacketSetSlot(-1, -1, player.getActiveItemStack()));
+            ((EntityPlayerMP) player).playerNetServerHandler.sendPacket(new SPacketSetSlot(-1, -1, player.getActiveItemStack()));
         }
     }
 

@@ -3,7 +3,9 @@ package joshie.harvest.buildings;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.Placeable.PlacementStage;
 import joshie.harvest.core.handlers.HFTrackers;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.UUID;
@@ -15,12 +17,13 @@ public class BuildingStage {
     public Building building;
     public boolean n1, n2, swap;
     public PlacementStage stage;
-    public int index, xCoord, yCoord, zCoord;
+    public int index;
+    public BlockPos pos;
 
     public BuildingStage() {
     }
 
-    public BuildingStage(UUID uuid, Building building, int x, int y, int z, boolean n1, boolean n2, boolean swap) {
+    public BuildingStage(UUID uuid, Building building, BlockPos pos, boolean n1, boolean n2, boolean swap) {
         this.owner = uuid;
         this.building = building;
         this.n1 = n1;
@@ -28,9 +31,7 @@ public class BuildingStage {
         this.swap = swap;
         this.stage = PlacementStage.BLOCKS;
         this.index = 0;
-        this.xCoord = x;
-        this.yCoord = y + building.getOffsetY();
-        this.zCoord = z;
+        this.pos = pos.add(0, building.getOffsetY(), 0);
     }
 
     public BuildingStage build(World world) {
@@ -53,7 +54,8 @@ public class BuildingStage {
         } else {
             while (index < building.getSize()) {
                 Placeable block = building.get(index);
-                if (block.place(owner, world, xCoord, yCoord, zCoord, n1, n2, swap, stage)) {
+                IBlockState state = world.getBlockState(pos);
+                if (block.place(owner, world, pos, state, n1, n2, swap, stage)) {
                     index++;
                     return this;
                 }
@@ -78,9 +80,7 @@ public class BuildingStage {
         n1 = nbt.getBoolean("North1");
         n2 = nbt.getBoolean("North2");
         swap = nbt.getBoolean("Swap");
-        xCoord = nbt.getInteger("BuildingX");
-        yCoord = nbt.getInteger("BuildingY");
-        zCoord = nbt.getInteger("BuildingZ");
+        pos = new BlockPos(nbt.getInteger("BuildingX"), nbt.getInteger("BuildingY"), nbt.getInteger("BuildingZ"));
 
         if (nbt.hasKey("Owner-UUIDMost")) {
             index = nbt.getInteger("Index");
@@ -94,9 +94,9 @@ public class BuildingStage {
         nbt.setBoolean("North1", n1);
         nbt.setBoolean("North2", n2);
         nbt.setBoolean("Swap", swap);
-        nbt.setInteger("BuildingX", xCoord);
-        nbt.setInteger("BuildingY", yCoord);
-        nbt.setInteger("BuildingZ", zCoord);
+        nbt.setInteger("BuildingX", pos.getX());
+        nbt.setInteger("BuildingY", pos.getY());
+        nbt.setInteger("BuildingZ", pos.getZ());
 
         if (owner != null) {
             nbt.setInteger("Stage", stage.ordinal());

@@ -11,37 +11,37 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import static joshie.harvest.core.helpers.generic.MCServerHelper.getWorld;
 
 public class PacketCropRequest implements IMessage, IMessageHandler<PacketCropRequest, IMessage> {
-    private int dimension, x, y, z;
+    private int dimension;
+    private BlockPos pos;
 
     public PacketCropRequest() {
     }
 
-    public PacketCropRequest(World world, int x, int y, int z) {
+    public PacketCropRequest(World world, BlockPos pos) {
         this.dimension = world.provider.getDimension();
-        this.x = x;
-        this.y = y;
-        this.z = z;
+        this.pos = pos;
     }
 
     @Override
     public void toBytes(ByteBuf buf) {
         buf.writeByte(dimension);
-        buf.writeInt(x);
-        buf.writeInt(y);
-        buf.writeInt(z);
+        buf.writeInt(pos.getX());
+        buf.writeInt(pos.getY());
+        buf.writeInt(pos.getZ());
     }
 
     @Override
     public void fromBytes(ByteBuf buf) {
         dimension = buf.readByte();
-        x = buf.readInt();
-        y = buf.readInt();
-        z = buf.readInt();
+        int x = buf.readInt();
+        int y = buf.readInt();
+        int z = buf.readInt();
+        pos = new BlockPos(x, y, z);
     }
 
     @Override
     public IMessage onMessage(PacketCropRequest msg, MessageContext ctx) {
-        HFTrackers.getCropTracker().sendUpdateToClient(ctx.getServerHandler().playerEntity, getWorld(msg.dimension), new BlockPos(msg.x, msg.y, msg.z));
+        HFTrackers.getCropTracker().sendUpdateToClient(ctx.getServerHandler().playerEntity, getWorld(msg.dimension), msg.pos);
         return null;
     }
 }

@@ -12,7 +12,6 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 /** Just a way to interfact with the fridge inventory, the fridge inventory is global though, not stored in this block **/
 public class TileFridge extends TileEntity implements IFaceable {
     private EnumFacing orientation = EnumFacing.NORTH;
-    private boolean isTop;
 
     @Override
     public void setFacing(EnumFacing dir) {
@@ -29,7 +28,7 @@ public class TileFridge extends TileEntity implements IFaceable {
     }
 
     @Override
-    public Packet getDescriptionPacket() {
+    public Packet<?> getDescriptionPacket() {
         return PacketHandler.getPacket(getPacket());
     }
 

@@ -5,6 +5,7 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.UUID;
@@ -13,15 +14,14 @@ public class PlaceableNPC extends PlaceableEntity {
     private INPC npc;
 
     public PlaceableNPC() {
-        super(0, 0, 0);
+        super(BlockPos.ORIGIN);
     }
-    
-    public PlaceableNPC(String npc, int offsetX, int offsetY, int offsetZ) {
-        super(offsetX, offsetY, offsetZ);
+
+    public PlaceableNPC(String npc, BlockPos offsetPos) {
+        super(offsetPos);
 
         this.npc = HFApi.NPC.get(npc);
     }
-
 
     @Override
     public boolean canPlace(PlacementStage stage) {
@@ -29,15 +29,15 @@ public class PlaceableNPC extends PlaceableEntity {
     }
 
     @Override
-    public Entity getEntity(UUID uuid, World world, int x, int y, int z, boolean n1, boolean n2, boolean swap) {
+    public Entity getEntity(UUID uuid, World world, BlockPos pos, boolean n1, boolean n2, boolean swap) {
         EntityNPC entity = NPCHelper.getEntityForNPC(uuid, world, npc);
-        entity.setPosition(x + 0.5, y + 0.5, z + 0.5);
+        entity.setPosition(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
         return entity;
     }
 
     @Override
-    public String getStringFor(Entity e, int x, int y, int z) {
+    public String getStringFor(Entity e, BlockPos pos) {
         EntityNPC npc = (EntityNPC) e;
-        return "list.add(new PlaceableNPC(\"" + npc.getNPC().getUnlocalizedName() + "\", " + x + ", " + y + ", " + z + "));";
+        return "list.add(new PlaceableNPC(\"" + npc.getNPC().getUnlocalizedName() + "\", " + pos + "));";
     }
 }

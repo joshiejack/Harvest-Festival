@@ -247,7 +247,6 @@ public class ModelHarvestSheep extends ModelBase {
     }
 
     public void setChildAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity) {
-        float f6 = (180F / (float) Math.PI);
         this.child_head.rotateAngleX = f4 / (360F / (float) Math.PI);
         this.child_head.rotateAngleY = f3 / (720F / (float) Math.PI);
         this.child_earLeft.rotateAngleX = this.child_head.rotateAngleX;
@@ -263,7 +262,6 @@ public class ModelHarvestSheep extends ModelBase {
     }
 
     public void setAdultAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity) {
-        float f6 = (180F / (float) Math.PI);
         this.head.rotateAngleX = f4 / (360F / (float) Math.PI);
         this.head.rotateAngleY = f3 / (720F / (float) Math.PI);
         this.earLeft.rotateAngleX = this.head.rotateAngleX;
@@ -285,7 +283,6 @@ public class ModelHarvestSheep extends ModelBase {
     }
 
     public void setShearedAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity) {
-        float f6 = (180F / (float) Math.PI);
         this.head.rotateAngleX = f4 / (360F / (float) Math.PI);
         this.head.rotateAngleY = f3 / (720F / (float) Math.PI);
         this.earLeft.rotateAngleX = this.head.rotateAngleX;

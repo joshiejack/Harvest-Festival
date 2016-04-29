@@ -46,9 +46,9 @@ public class HFPlugins {
 
     private static class PluginData {
         String name;
-        Class clazz;
+        Class<? extends Plugin> clazz;
 
-        public PluginData(String name, Class clazz) {
+        public PluginData(String name, Class<? extends Plugin> clazz) {
             this.name = name;
             this.clazz = clazz;
         }
@@ -56,7 +56,7 @@ public class HFPlugins {
 
     private static Plugin get(PluginData p) {
         try {
-            Plugin plugin = (Plugin) p.clazz.newInstance();
+            Plugin plugin = p.clazz.newInstance();
             plugin.modid = p.name;
             plugins.add(plugin);
         } catch (Exception e) {

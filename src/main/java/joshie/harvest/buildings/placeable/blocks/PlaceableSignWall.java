@@ -1,8 +1,10 @@
 package joshie.harvest.buildings.placeable.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntitySign;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.UUID;
@@ -10,9 +12,13 @@ import java.util.UUID;
 public class PlaceableSignWall extends PlaceableBlock {
     private String[] text;
 
-    public PlaceableSignWall(Block block, int meta, int offsetX, int offsetY, int offsetZ, String[] text) {
-        super(block, meta, offsetX, offsetY, offsetZ);
+    public PlaceableSignWall(Block block, int meta, BlockPos offsetPos, String[] text) {
+        super(block, meta, offsetPos);
         this.text = text;
+    }
+
+    public PlaceableSignWall(Block block, int meta, int offsetX, int offsetY, int offsetZ, String[] text) {
+        this(block, meta, new BlockPos(offsetX, offsetY, offsetZ), text);
     }
 
     @Override
@@ -52,11 +58,11 @@ public class PlaceableSignWall extends PlaceableBlock {
     }
 
     @Override
-    public boolean place(UUID uuid, World world, int x, int y, int z, boolean n1, boolean n2, boolean swap) {
-        if (!super.place(uuid, world, x, y, z, n1, n2, swap)) return false;
-        TileEntity tile = world.getTileEntity(x, y, z);
+    public boolean place(UUID uuid, World world, BlockPos pos, IBlockState state, boolean n1, boolean n2, boolean swap) {
+        if (!super.place(uuid, world, pos, state, n1, n2, swap)) return false;
+        TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof TileEntitySign) {
-            ((TileEntitySign) tile).signText = text;
+            //((TileEntitySign) tile).signText = text; //TODO
             return true;
         } else return false;
     }

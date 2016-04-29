@@ -14,18 +14,18 @@ public class CodeGeneratorRendering {
             builder.append("package joshie.harvest.blocks.render;\n\n");
             builder.append("import joshie.harvest.util.RenderBase;\n");
             builder.append("import net.minecraft.init.Blocks;\n");
-            builder.append("import net.minecraftforge.common.util.ForgeDirection;\n\n");
+            builder.append("import net.minecraft.util.EnumFacing;\n\n");
             builder.append("import org.lwjgl.opengl.GL11;\n\n");
             builder.append("public class RenderFridge extends RenderBase {\n");
             builder.append("    @Override\n");
             builder.append("    public void renderBlock() {\n");
-            
+
             String input = FileUtils.readFileToString(new File("render-input.txt"));
-            builder.append("        if (dir == ForgeDirection.WEST || isItem()) {\n");
+            builder.append("        if (dir == EnumFacing.WEST || isItem()) {\n");
             builder.append(input);
-            builder.append("\n        } else if (dir == ForgeDirection.NORTH) {");
+            builder.append("\n        } else if (dir == EnumFacing.NORTH) {");
             builder.append("\n" + input.replaceAll("\\((.*),\\s(.*),\\s(.*),\\s(.*),\\s(.*),\\s(.*)\\)", "\\($3, $2, $1, $6, $5, $4\\)"));
-            builder.append("\n        } else if (dir == ForgeDirection.EAST) {");
+            builder.append("\n        } else if (dir == EnumFacing.EAST) {");
 
             //Remove RenderBlock and ); and spaces
             StringBuilder second = new StringBuilder("");
@@ -87,12 +87,11 @@ public class CodeGeneratorRendering {
                     second.append(append);
 
                     pos = 0;
-                    round++;
                 }
             }
 
             builder.append(second);
-            builder.append("\n        } else if (dir == ForgeDirection.SOUTH) {");
+            builder.append("\n        } else if (dir == EnumFacing.SOUTH) {");
             builder.append(second.toString().replaceAll("\\((.*),\\s(.*),\\s(.*),\\s(.*),\\s(.*),\\s(.*)\\)", "\\($3, $2, $1, $6, $5, $4\\)"));
             builder.append("\n        }\n");
             builder.append("    }\n");

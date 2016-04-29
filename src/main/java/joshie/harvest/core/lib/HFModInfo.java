@@ -3,7 +3,7 @@ package joshie.harvest.core.lib;
 import net.minecraft.util.ResourceLocation;
 
 public class HFModInfo {
-    public static final String MODID = "HarvestFestival";
+    public static final String MODID = "harvestfestival";
     public static final String MODNAME = "Harvest Festival";
     public static final String MODPATH = "hf";
     public static final String JAVAPATH = "joshie.harvest.";

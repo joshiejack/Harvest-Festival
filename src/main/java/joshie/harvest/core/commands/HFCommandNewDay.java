@@ -2,6 +2,7 @@ package joshie.harvest.core.commands;
 
 import joshie.harvest.core.handlers.EventsHandler;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.server.MinecraftServer;
 
 public class HFCommandNewDay extends HFCommandBase {
     @Override
@@ -15,7 +16,7 @@ public class HFCommandNewDay extends HFCommandBase {
     }
 
     @Override
-    public boolean processCommand(ICommandSender sender, String[] parameters) {
+    public boolean execute(MinecraftServer server, ICommandSender sender, String[] parameters) {
         EventsHandler.newDay(sender.getEntityWorld(), true);
         return true;
     }

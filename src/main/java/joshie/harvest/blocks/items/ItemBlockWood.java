@@ -1,7 +1,7 @@
 package joshie.harvest.blocks.items;
 
 import joshie.harvest.api.core.ICreativeSorted;
-import joshie.harvest.blocks.BlockWood;
+import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.base.ItemBlockBase;
 import net.minecraft.block.Block;
@@ -14,20 +14,7 @@ public class ItemBlockWood extends ItemBlockBase implements ICreativeSorted {
 
     @Override
     public String getName(ItemStack stack) {
-        switch (BlockWood.Woodware.SHIPPING) {
-            case SHIPPING:
-                return "shipping";
-            case SHIPPING_2:
-                return "shipping2";
-            case NEST:
-                return "nest";
-            case TROUGH:
-                return "trough";
-            case TROUGH_2:
-                return "trough2";
-            default:
-                return "invalid";
-        }
+        return HFBlocks.WOOD_MACHINES.getEnumFromMeta(stack.getItemDamage()).name().toLowerCase().replace("_", "");
     }
 
     @Override

@@ -51,32 +51,31 @@ public abstract class BlockHFBaseMeta<E extends Enum<E> & IStringSerializable> e
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-        return getDefaultState().withProperty(property, fromMeta(meta));
+        return getDefaultState().withProperty(property, getEnumFromMeta(meta));
     }
 
-    protected IBlockState getStateFromEnum(E e) {
+    public IBlockState getStateFromEnum(E e) {
         return getDefaultState().withProperty(property, e);
     }
 
-    protected E getEnumFromBlockPos(IBlockAccess world, BlockPos pos) {
+    public E getEnumFromBlockPos(IBlockAccess world, BlockPos pos) {
         return getEnumFromState(world.getBlockState(pos));
     }
 
-    protected E getEnumFromState(IBlockState state) {
+    public E getEnumFromState(IBlockState state) {
         return state.getValue(property);
     }
 
-    private E fromMeta(int meta) {
+    public E getEnumFromMeta(int meta) {
         if (meta < 0 || meta >= values.length) {
             meta = 0;
         }
-
         return values[meta];
     }
 
     @Override
     public int getMetaFromState(IBlockState state) {
-        return ((E) state.getValue(property)).ordinal();
+        return (state.getValue(property)).ordinal();
     }
 
     @Override
@@ -90,7 +89,7 @@ public abstract class BlockHFBaseMeta<E extends Enum<E> & IStringSerializable> e
     }
 
     //Default to level 0
-    protected int getToolLevel(E type) {
+    protected int getToolLevel(E level) {
         return 0;
     }
 

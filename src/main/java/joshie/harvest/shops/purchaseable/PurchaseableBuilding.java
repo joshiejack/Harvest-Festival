@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PurchaseableBuilding extends Purchaseable {
-    public static List<PurchaseableBuilding> listings = new ArrayList();
+    public static List<PurchaseableBuilding> listings = new ArrayList<PurchaseableBuilding>();
     private IBuilding building;
 
     public PurchaseableBuilding(Building building) {

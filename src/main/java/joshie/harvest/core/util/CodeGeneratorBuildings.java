@@ -7,6 +7,7 @@ import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import joshie.harvest.npc.entity.EntityNPCShopkeeper;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItemFrame;
 import net.minecraft.entity.item.EntityPainting;
@@ -20,6 +21,7 @@ import net.minecraft.world.World;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class CodeGeneratorBuildings {
@@ -37,15 +39,15 @@ public class CodeGeneratorBuildings {
         this.z2 = zStart < zEnd ? zEnd : zStart;
     }
 
-    public ArrayList<Entity> getEntities(Class clazz, int x, int y, int z) {
-        return (ArrayList<Entity>) world.getEntitiesWithinAABB(clazz, Blocks.STONE.getCollisionBoundingBoxFromPool(world, x, y, z));
+    public List<Entity> getEntities(Class<? extends Entity> clazz, BlockPos pos) {
+        IBlockState state = world.getBlockState(pos);
+        return world.getEntitiesWithinAABB(clazz, Blocks.STONE.getCollisionBoundingBox(state, world, pos));
     }
 
     public void getCode(boolean air) {
         if (!world.isRemote) {
             ArrayList<String> ret = new ArrayList<String>();
-            Set all = new HashSet();
-            boolean hasAFrame = false;
+            Set<Entity> all = new HashSet<Entity>();
             int i = 0;
             for (int y = 0; y <= y2 - y1; y++) {
                 for (int x = 0; x <= x2 - x1; x++) {
@@ -55,13 +57,13 @@ public class CodeGeneratorBuildings {
                         entityList.addAll(getEntities(EntityItemFrame.class, x1 + x, y1 + y, z1 + z));
                         entityList.addAll(getEntities(EntityNPC.class, x1 + x, y1 + y, z1 + z));
                         entityList.addAll(getEntities(EntityNPCBuilder.class, x1 + x, y1 + y, z1 + z));
-                        entityList.addAll(getEntities(EntityNPCMiner.class, x1 + x, y1 + y, z1 + z));
+                        //entityList.addAll(getEntities(EntityNPCMiner.class, x1 + x, y1 + y, z1 + z));
                         entityList.addAll(getEntities(EntityNPCShopkeeper.class, x1 + x, y1 + y, z1 + z));
 
                         Block block = world.getBlock(x1 + x, y1 + y, z1 + z);
                         if (block == Blocks.CHEST) {
                             TileEntityChest chest = (TileEntityChest) world.getTileEntity(x1 + x, y1 + y, z1 + z);
-                            String name = chest.getInventoryName();
+                            String name = chest.getName();
                             String field = name;
                             if (name.startsWith("npc.")) {
                                 field = name.replace("npc.", "");
@@ -75,7 +77,7 @@ public class CodeGeneratorBuildings {
                             continue;
                         }
                         
-                        if ((block != Blocks.AIR || air || entityList.size() > 0) && block != Blocks.end_stone) {
+                        if ((block != Blocks.AIR || air || entityList.size() > 0) && block != Blocks.END_STONE) {
                             int meta = world.getBlockMetadata(x1 + x, y1 + y, z1 + z);
                             if (block == Blocks.DOUBLE_PLANT && meta >= 8) continue;
                             TileEntity tile = world.getTileEntity(x1 + x, y1 + y, z1 + z);
@@ -83,7 +85,7 @@ public class CodeGeneratorBuildings {
                                 ret.add(PlaceableHelper.getPlaceableIFaceableString((IFaceable) tile, block, meta, x, y, z));
                             } else if (tile instanceof TileEntitySign) {
                                 String[] text = ((TileEntitySign) tile).signText;
-                                if (block == Blocks.standing_sign) {
+                                if (block == Blocks.STANDING_SIGN) {
                                     ret.add(PlaceableHelper.getFloorSignString(text, block, meta, x, y, z));
                                 } else ret.add(PlaceableHelper.getWallSignString(text, block, meta, x, y, z));
                             } else {
@@ -113,7 +115,7 @@ public class CodeGeneratorBuildings {
                 }
             }
 
-            ArrayList<String> build = new ArrayList();
+            ArrayList<String> build = new ArrayList<String>();
             build.add("list = new ArrayList("+ i + ");");
             build.addAll(ret);
 

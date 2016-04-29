@@ -14,7 +14,6 @@ public class SizeableHelper {
     }
 
     public static Size getSize(int meta) {
-        int size = Math.max(0, meta);
         return Size.values()[Math.min(2, meta)];
     }
     

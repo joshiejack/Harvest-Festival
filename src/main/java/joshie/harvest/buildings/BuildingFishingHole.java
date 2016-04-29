@@ -7,6 +7,7 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.player.town.TownData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
@@ -167,7 +168,7 @@ public class BuildingFishingHole extends Building {
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 5, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 5, 3));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 5, 5, 2));
-        npc_offsets.put(TownData.FISHING_POND, new PlaceableNPC("", 5, 5, 3));
+        npc_offsets.put(TownData.FISHING_POND, new PlaceableNPC("", new BlockPos(5, 5, 3)));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 5, 5, 3));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 5, 5, 4));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 5, 5, 5));

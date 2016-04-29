@@ -9,7 +9,7 @@ public abstract class ItemHFMeta extends ItemBaseMeta {
     public ItemHFMeta() {
         super(HFModInfo.MODPATH, HFTab.FARMING);
     }
-    
+
     public ItemHFMeta(CreativeTabs tab) {
         super(HFModInfo.MODPATH, tab);
     }

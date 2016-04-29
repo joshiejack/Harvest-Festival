@@ -11,6 +11,8 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.CropHelper;
 import joshie.harvest.core.network.PacketSyncCrop;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockFarmland;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -66,7 +68,7 @@ public class CropTrackerServer extends CropTracker {
         while (it.hasNext()) {
             WorldLocation location = it.next();
             World world = getWorld(location.dimension);
-            CropHelper.dehydrate(world, location.x, location.y - 1, location.z);
+            CropHelper.dehydrate(world, location.position.down(), world.getBlockState(location.position));
         }
 
         Iterator<ICropData> wither = toWither.iterator();
@@ -87,8 +89,10 @@ public class CropTrackerServer extends CropTracker {
         if (!HFTrackers.getCalendar().getDate().equals(lastRain)) {
             lastRain = HFApi.CALENDAR.cloneDate(HFTrackers.getCalendar().getDate());
             for (WorldLocation location : crops.keySet()) {
-                hydrate(getWorld(location.dimension), location.position);
-                DimensionManager.getWorld(location.dimension).setBlockState(location.position.down(), 7, 2);
+                World world = getWorld(location.dimension);
+                IBlockState state = world.getBlockState(location.position);
+                hydrate(world, location.position, state);
+                DimensionManager.getWorld(location.dimension).setBlockState(location.position.down(), state.withProperty(BlockFarmland.MOISTURE, 7), 2);
             }
         }
     }
@@ -128,13 +132,13 @@ public class CropTrackerServer extends CropTracker {
     }
 
     @Override
-    public ItemStack harvest(EntityPlayer player, World world, int x, int y, int z) {
-        ICropData data = getCropDataForLocation(world, x, y, z);
+    public ItemStack harvest(EntityPlayer player, World world, BlockPos pos) {
+        ICropData data = getCropDataForLocation(world, pos);
         ItemStack harvest = data.harvest(player, true);
         if (harvest != null) {
             if (data.getCrop().getRegrowStage() <= 0) {
-                removeCrop(world, x, y, z);
-                world.setBlockToAir(x, y, z);
+                removeCrop(world, pos);
+                world.setBlockToAir(pos);
             }
 
             if (player != null) {
@@ -142,14 +146,14 @@ public class CropTrackerServer extends CropTracker {
             }
 
             HFTrackers.markDirty();
-            sendToEveryone(new PacketSyncCrop(data.getLocation(), (CropData) data));
+            sendToEveryone(new PacketSyncCrop(data.getLocation(), data));
             return harvest;
         } else return null;
     }
 
     @Override
-    public void hydrate(World world, int x, int y, int z) {
-        getCropDataForLocation(world, x, y, z).setHydrated();
+    public void hydrate(World world, BlockPos pos, IBlockState state) {
+        getCropDataForLocation(world, pos).setHydrated();
         HFTrackers.markDirty();
     }
 
@@ -157,16 +161,16 @@ public class CropTrackerServer extends CropTracker {
     public void setWithered(ICropData data) {
         WorldLocation location = data.getLocation();
         if (data.getCrop().isDouble(data.getStage())) {
-            getWorld(location.dimension).setBlockMetadataWithNotify(location.x, location.y + 1, location.z, BlockCrop.WITHERED_DOUBLE, 2);
+            getWorld(location.dimension).setBlockState(location.position.up(), BlockCrop.WITHERED_DOUBLE, 2);
         }
-        
-        getWorld(location.dimension).setBlockMetadataWithNotify(location.x, location.y, location.z, BlockCrop.WITHERED, 2);
-        plantCrop(null, getWorld(location.dimension), location.x, location.y, location.z, data.getCrop(), data.getStage());
+
+        getWorld(location.dimension).setBlockState(location.position, BlockCrop.WITHERED, 2);
+        plantCrop(null, getWorld(location.dimension), location.position, data.getCrop(), data.getStage());
     }
 
     @Override
-    public void removeCrop(World world, int x, int y, int z) {
-        super.removeCrop(world, x, y, z);
+    public void removeCrop(World world, BlockPos pos) {
+        super.removeCrop(world, pos);
         HFTrackers.markDirty();
     }
 

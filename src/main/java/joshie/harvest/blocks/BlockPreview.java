@@ -6,7 +6,6 @@ import joshie.harvest.core.HFTab;
 import joshie.harvest.core.config.General;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.UUIDHelper;
-import joshie.harvest.core.lib.RenderIds;
 import joshie.harvest.core.util.base.BlockHFBaseMeta;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import net.minecraft.block.material.Material;
@@ -17,6 +16,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumBlockRenderType;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -25,39 +28,51 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class BlockPreview extends BlockHFBaseMeta {
-    public static final int N1_T__N2_T__SWAP_F = 0;
-    public static final int N1_T__N2_T__SWAP_T = 1;
-    public static final int N1_T__N2_F__SWAP_F = 2;
-    public static final int N1_T__N2_F__SWAP_T = 3;
-    public static final int N1_F__N2_F__SWAP_F = 4;
-    public static final int N1_F__N2_F__SWAP_T = 5;
-    public static final int N1_F__N2_T__SWAP_F = 6;
-    public static final int N1_F__N2_T__SWAP_T = 7;
+public class BlockPreview extends BlockHFBaseMeta<BlockPreview.Direction> {
+    public static enum Direction implements IStringSerializable {
+        N1_T__N2_T__SWAP_F(true, true, false),
+        N1_T__N2_T__SWAP_T(true, true, true),
+        N1_T__N2_F__SWAP_F(true, false, false),
+        N1_T__N2_F__SWAP_T(true, false, true),
+        N1_F__N2_F__SWAP_F(false, false, false),
+        N1_F__N2_F__SWAP_T(false, false, true),
+        N1_F__N2_T__SWAP_F(false, true, false),
+        N1_F__N2_T__SWAP_T(false, true, true);
 
-    public static boolean getN1FromMeta(int meta) {
-        return meta <= 3;
-    }
+        private final boolean N1;
+        private final boolean N2;
+        private final boolean swap;
 
-    public static boolean getN2FromMeta(int meta) {
-        return meta <= 1 || meta >= 6;
-    }
+        Direction(boolean N1, boolean N2, boolean swap) {
+            this.N1 = N1;
+            this.N2 = N2;
+            this.swap = swap;
+        }
 
-    public static boolean getSwapFromMeta(int meta) {
-        return meta % 2 == 1;
+        public boolean isN1() {
+            return this.N1;
+        }
+
+        public boolean isN2() {
+            return this.N2;
+        }
+
+        public boolean isSwap() {
+            return this.swap;
+        }
+
+        @Override
+        public String getName() {
+            return toString();
+        }
     }
 
     public BlockPreview() {
-        super(Material.WOOD, HFTab.TOWN);
+        super(Material.WOOD, HFTab.TOWN, Direction.class);
     }
 
     @Override
-    public int getRenderBlockPass() {
-        return 1;
-    }
-
-    @Override
-    public boolean renderAsNormalBlock() {
+    public boolean isBlockNormalCube(IBlockState state) {
         return false;
     }
 
@@ -67,36 +82,31 @@ public class BlockPreview extends BlockHFBaseMeta {
     }
 
     @Override
-    public int getRenderType() {
-        return RenderIds.ALL;
+    public EnumBlockRenderType getRenderType(IBlockState state) {
+        return EnumBlockRenderType.INVISIBLE;
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
-        return null;
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos) {
+        return NULL_AABB;
     }
 
     @Override
-    public int getMetaCount() {
-        return Building.buildings.size();
-    }
-
-    @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (!player.isSneaking()) {
-            int meta = world.getBlockMetadata(x, y, z);
-            if (meta < 7) {
-                meta++;
-            } else meta = 0;
-            return world.setBlockMetadataWithNotify(x, y, z, meta, 2);
+            int next = getEnumFromState(state).ordinal() + 1;
+            if (next >= 7) {
+                next = 0;
+            }
+            return world.setBlockState(pos, getStateFromMeta(next), 2);
         } else {
-            int meta = world.getBlockMetadata(x, y, z);
-            TileMarker marker = (TileMarker) world.getTileEntity(x, y, z);
+            Direction direction = getEnumFromState(state);
+            TileMarker marker = (TileMarker) world.getTileEntity(pos);
             EntityNPCBuilder builder = HFTrackers.getPlayerTracker(player).getBuilder(world);
             if (builder != null && !builder.isBuilding()) {
-                builder.setPosition(x, y, z); //Teleport the builder to the position
-                builder.startBuilding(marker.getBuilding(), x, y, z, getN1FromMeta(meta), getN2FromMeta(meta), getSwapFromMeta(meta), UUIDHelper.getPlayerUUID(player));
-                world.setBlockToAir(x, y, z);
+                builder.setPosition(pos.getX(), pos.getY(), pos.getZ()); //Teleport the builder to the position
+                builder.startBuilding(marker.getBuilding(), pos, direction.isN1(), direction.isN2(), direction.isSwap(), UUIDHelper.getPlayerUUID(player));
+                world.setBlockToAir(pos);
                 return true;
             } else return false;
         }
@@ -118,7 +128,7 @@ public class BlockPreview extends BlockHFBaseMeta {
         if (stack.getItemDamage() >= Building.buildings.size()) return;
         Building group = Building.buildings.get(stack.getItemDamage());
         if (group != null) {
-            TileMarker marker = (TileMarker) world.getTileEntity(x, y, z);
+            TileMarker marker = (TileMarker) world.getTileEntity(pos);
             marker.setBuilding(group);
             //Create a builder if none exists
             if (!world.isRemote) {
@@ -132,9 +142,7 @@ public class BlockPreview extends BlockHFBaseMeta {
     public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
         if (tab != HFTab.TOWN) return;
         if (General.DEBUG_MODE) {
-            for (int i = 0; i < getMetaCount(); i++) {
-                list.add(new ItemStack(item, 1, i));
-            }
+            super.getSubBlocks(item, tab, list);
         }
     }
 }

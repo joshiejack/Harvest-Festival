@@ -7,9 +7,14 @@ import joshie.harvest.core.network.PacketWateringCan;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.*;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -130,79 +135,73 @@ public class ItemWateringCan extends ItemBaseTool implements IFluidContainerItem
     }
 
     @Override
-    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
+    public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
         attemptToFill(world, player, stack);
-        return stack;
+        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
     }
 
     @Override
-    public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
-        if (!world.isRemote) return false;
+    public EnumActionResult onItemUseFirst(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, EnumHand hand) {
+        if (!world.isRemote) return EnumActionResult.FAIL;
         else {
-            onItemUse(stack, player, world, x, y, z, side, hitX, hitY, hitZ);
-            PacketHandler.sendToServer(new PacketWateringCan(stack, world, x, y, z));
-            return true;
+            onItemUse(stack, player, world, pos, hand, facing, hitX, hitY, hitZ);
+            PacketHandler.sendToServer(new PacketWateringCan(stack, world, pos));
+            return EnumActionResult.SUCCESS;
         }
     }
 
-    private boolean hydrate(EntityPlayer player, ItemStack stack, World world, int x, int y, int z) {
-        if (CropHelper.hydrate(world, x, y, z)) {
-            displayParticle(world, x, y, z, "splash");
-            playSound(world, x, y, z, "game.neutral.swim");
+    private EnumActionResult hydrate(EntityPlayer player, ItemStack stack, World world, BlockPos pos) {
+        if (CropHelper.hydrate(world, pos)) {
+            displayParticle(world, pos, EnumParticleTypes.WATER_SPLASH);
+            playSound(world, pos, SoundEvents.ENTITY_GENERIC_SWIM, SoundCategory.NEUTRAL);
             PlayerHelper.performTask(player, stack, getExhaustionRate(stack));
             if (!player.capabilities.isCreativeMode) {
                 drain(stack, 1, true);
             }
-
-            return true;
-        } else return false;
+            return EnumActionResult.SUCCESS;
+        } else return EnumActionResult.FAIL;
     }
 
     private boolean attemptToFill(World world, EntityPlayer player, ItemStack stack) {
-        MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(world, player, true);
-        if (movingobjectposition != null) {
-            if (movingobjectposition.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) {
-                int posX = movingobjectposition.blockX;
-                int posY = movingobjectposition.blockY;
-                int posZ = movingobjectposition.blockZ;
-                Block block = world.getBlock(posX, posY, posZ);
-                if (block.getMaterial() == Material.water) {
+        RayTraceResult rayTraceResult = this.rayTrace(world, player, true);
+        if (rayTraceResult != null) {
+            if (rayTraceResult.typeOfHit == RayTraceResult.Type.BLOCK) {
+                IBlockState state = world.getBlockState(rayTraceResult.getBlockPos());
+                if (state.getMaterial() == Material.WATER) {
                     return fill(stack, new FluidStack(FluidRegistry.WATER, 128), true) > 0;
                 }
             }
         }
-
         return false;
     }
 
     @Override
-    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
+    public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (attemptToFill(world, player, stack)) {
-            return true;
+            return EnumActionResult.PASS;
         } else {
-            ForgeDirection front = joshie.harvest.core.helpers.generic.DirectionHelper.getFacingFromEntity(player);
-            Block initial = world.getBlock(x, y, z);
+            EnumFacing front = joshie.harvest.core.helpers.generic.DirectionHelper.getFacingFromEntity(player);
+            Block initial = world.getBlockState(pos).getBlock();
             if (!(initial instanceof BlockFarmland) && (!(initial instanceof IPlantable))) {
-                return false;
+                return EnumActionResult.FAIL;
             }
 
-            boolean watered = false;
+            EnumActionResult watered = EnumActionResult.FAIL;
             //Facing North, We Want East and West to be 1, left * this.left
-            for (int y2 = y - 1; y2 <= y; y2++) {
-                for (int x2 = getXMinus(stack, front, x); x2 <= getXPlus(stack, front, x); x2++) {
-                    for (int z2 = getZMinus(stack, front, z); z2 <= getZPlus(stack, front, z); z2++) {
+            for (int y2 = pos.getY() - 1; y2 <= pos.getY(); y2++) {
+                for (int x2 = getXMinus(stack, front, pos.getX()); x2 <= getXPlus(stack, front, pos.getX()); x2++) {
+                    for (int z2 = getZMinus(stack, front, pos.getZ()); z2 <= getZPlus(stack, front, pos.getZ()); z2++) {
                         if (getCapacity(stack) > 0) {
-                            Block block = world.getBlock(x2, y2, z2);
+                            Block block = world.getBlockState(new BlockPos(x2, y2, z2)).getBlock();
                             if (block instanceof IPlantable) {
-                                watered = hydrate(player, stack, world, x2, y2 - 1, z2);
+                                watered = hydrate(player, stack, world, new BlockPos(x2, y2 - 1, z2));
                             } else if (block instanceof BlockFarmland) {
-                                watered = hydrate(player, stack, world, x2, y2, z2);
+                                watered = hydrate(player, stack, world, new BlockPos(x2, y2, z2));
                             }
                         }
                     }
                 }
             }
-
             return watered;
         }
     }

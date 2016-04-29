@@ -1,64 +1,68 @@
 package joshie.harvest.buildings.placeable.entities;
 
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+
+import static net.minecraft.util.EnumFacing.*;
+
 public abstract class PlaceableHanging extends PlaceableEntity {
-    private int facing;
+    private EnumFacing facing;
 
     public PlaceableHanging() {
-        super(0, 0, 0);
+        super(BlockPos.ORIGIN);
     }
 
-    public PlaceableHanging(int facing, int offsetX, int offsetY, int offsetZ) {
-        super(offsetX, offsetY, offsetZ);
+    public PlaceableHanging(EnumFacing facing, BlockPos offsetPos) {
+        super(offsetPos);
         this.facing = facing;
     }
 
-    public int getFacing(boolean n1, boolean n2, boolean swap) {
-        if (facing == 0) {
+    public EnumFacing getFacing(boolean n1, boolean n2, boolean swap) {
+        if (facing == DOWN) {
             if (n2) {
-                return swap ? 1 : 2;
+                return swap ? UP : NORTH;
             } else if (swap) {
-                return 3;
+                return SOUTH;
             }
-        } else if (facing == 1) {
+        } else if (facing == UP) {
             if (n1) {
-                return swap ? 0 : 3;
+                return swap ? DOWN : SOUTH;
             } else if (swap) {
-                return 2;
+                return NORTH;
             }
-        } else if (facing == 2) {
+        } else if (facing == NORTH) {
             if (n2) {
-                return swap ? 3 : 0;
+                return swap ? SOUTH : DOWN;
             } else if (swap) {
-                return 1;
+                return UP;
             }
-        } else if (facing == 3) {
+        } else if (facing == SOUTH) {
             if (n1) {
-                return swap ? 2 : 1;
+                return swap ? NORTH : UP;
             } else if (swap) {
-                return 0;
+                return DOWN;
             }
         }
 
         return facing;
     }
 
-    public int getX(int x, int facing) {
-        if (facing == 1) {
+    public int getX(int x, EnumFacing facing) {
+        if (facing == UP) {
             x++;
-        } else if (facing == 3) {
+        } else if (facing == SOUTH) {
             x--;
         }
 
         return x;
     }
 
-    public int getZ(int z, int facing) {
-        if (facing == 0) {
+    public int getZ(int z, EnumFacing facing) {
+        if (facing == DOWN) {
             z--;
-        } else if (facing == 2) {
+        } else if (facing == NORTH) {
             z++;
         }
-
         return z;
     }
 }

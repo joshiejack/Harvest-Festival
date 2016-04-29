@@ -3,10 +3,11 @@ package joshie.harvest.core.commands;
 import net.minecraft.command.CommandNotFoundException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.NumberInvalidException;
-import net.minecraft.event.ClickEvent;
-import net.minecraft.util.ChatComponentTranslation;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.event.ClickEvent;
 
 import java.util.Collections;
 import java.util.List;
@@ -24,17 +25,16 @@ public class HFCommandHelp extends HFCommandBase {
     }
 
     @Override
-    public boolean processCommand(ICommandSender sender, String[] parameters) {
-        List list = this.getSortedPossibleCommands(sender);
-        byte b0 = 7;
-        int i = (list.size() - 1) / b0;
-        boolean flag = false;
+    public boolean execute(MinecraftServer server, ICommandSender sender, String[] parameters) throws CommandNotFoundException, NumberInvalidException {
+        List<HFCommandBase> list = this.getSortedPossibleCommands(sender);
+        int i0 = 7;
+        int i = (list.size() - 1) / i0;
         int k;
 
         try {
             k = parameters.length == 0 ? 0 : net.minecraft.command.CommandBase.parseInt(parameters[0], 1, i + 1) - 1;
         } catch (NumberInvalidException numberinvalidexception) {
-            Map map = this.getCommands();
+            Map<String, HFCommandBase> map = this.getCommands();
             HFCommandBase icommand = (HFCommandBase) map.get(parameters[0]);
 
             if (icommand != null) {
@@ -49,27 +49,27 @@ public class HFCommandHelp extends HFCommandBase {
             throw new CommandNotFoundException();
         }
 
-        int j = Math.min((k + 1) * b0, list.size());
-        ChatComponentTranslation chatcomponenttranslation1 = new ChatComponentTranslation("hf.commands.help.header", new Object[] { Integer.valueOf(k + 1), Integer.valueOf(i + 1) });
-        chatcomponenttranslation1.getChatStyle().setColor(EnumChatFormatting.DARK_GREEN);
-        sender.addChatMessage(chatcomponenttranslation1);
+        int j = Math.min((k + 1) * i0, list.size());
+        TextComponentTranslation componentTranslation1 = new TextComponentTranslation("hf.commands.help.header", k + 1, i + 1);
+        componentTranslation1.getStyle().setColor(TextFormatting.DARK_GREEN);
+        sender.addChatMessage(componentTranslation1);
 
-        for (int l = k * b0; l < j; ++l) {
-            HFCommandBase icommand1 = (HFCommandBase) list.get(l);
-            ChatComponentTranslation chatcomponenttranslation = new ChatComponentTranslation(CommandManager.getUsage(icommand1), new Object[0]);
-            chatcomponenttranslation.getChatStyle().setChatClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/" + icommand1.getCommandName() + " "));
-            sender.addChatMessage(chatcomponenttranslation);
+        for (int l = k * i0; l < j; ++l) {
+            HFCommandBase icommand1 = list.get(l);
+            TextComponentTranslation componentTranslation = new TextComponentTranslation(CommandManager.getUsage(icommand1));
+            componentTranslation.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/" + icommand1.getCommandName() + " "));
+            sender.addChatMessage(componentTranslation);
         }
 
         return true;
     }
 
-    private Map getCommands() {
+    private Map<String, HFCommandBase> getCommands() {
         return CommandManager.INSTANCE.getCommands();
     }
 
-    private List getSortedPossibleCommands(ICommandSender sender) {
-        List list = CommandManager.INSTANCE.getPossibleCommands(sender);
+    private List<HFCommandBase> getSortedPossibleCommands(ICommandSender sender) {
+        List<HFCommandBase> list = CommandManager.INSTANCE.getPossibleCommands(sender);
         Collections.sort(list);
         return list;
     }

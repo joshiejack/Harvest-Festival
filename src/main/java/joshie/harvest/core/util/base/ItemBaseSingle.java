@@ -1,11 +1,12 @@
 package joshie.harvest.core.util.base;
 
+import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.generic.Text;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class ItemBaseSingle extends Item {
     protected String mod;
@@ -17,14 +18,10 @@ public abstract class ItemBaseSingle extends Item {
         this.mod = mod;
     }
 
-    public void setTextureFolder(String thePath) {
-        this.path = thePath;
-    }
-
     @Override
     public Item setUnlocalizedName(String name) {
         super.setUnlocalizedName(name);
-        GameRegistry.registerItem(this, name.replace(".", "_"));
+        GameRegistry.register(this, new ResourceLocation(HFModInfo.MODID, name.replace(".", "_")));
         return this;
     }
 
@@ -36,13 +33,5 @@ public abstract class ItemBaseSingle extends Item {
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
         return Text.localize(getUnlocalizedName());
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister iconRegister) {
-        String path = this.path != null ? this.path : mod + ":";
-        String name = super.getUnlocalizedName().replace("item.", "").toLowerCase();
-        itemIcon = iconRegister.registerIcon(path + Text.removeDecimals(name));
     }
 }

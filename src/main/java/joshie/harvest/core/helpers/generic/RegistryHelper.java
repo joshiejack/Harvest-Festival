@@ -1,10 +1,12 @@
 package joshie.harvest.core.helpers.generic;
 
+import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.generic.Library;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.apache.logging.log4j.Level;
 
@@ -25,7 +27,7 @@ public class RegistryHelper {
                 Library.log(Level.DEBUG, "Successfully registered the item " + item.getClass().getSimpleName() + " as Mariculture:" + name);
             }
             
-            GameRegistry.registerItem(item, name);
+            GameRegistry.register(item, new ResourceLocation(HFModInfo.MODID, name));
         } catch (Exception e) {
             e.printStackTrace();
         }

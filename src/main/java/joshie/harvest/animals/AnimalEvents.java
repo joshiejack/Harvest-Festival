@@ -40,10 +40,10 @@ public class AnimalEvents {
             EntityPlayer player = event.getEntityPlayer();
             if (player.getRidingEntity() instanceof EntityChicken) {
                 EntityChicken chicken = (EntityChicken) player.getRidingEntity();
-                chicken.mountEntity(null);
+                chicken.startRiding(null);
                 chicken.rotationPitch = player.rotationPitch;
                 chicken.rotationYaw = player.rotationYaw;
-                chicken.moveFlying(0F, 1.0F, 1.25F);
+                chicken.moveRelative(0F, 1.0F, 1.25F);
                 PacketHandler.sendToServer(new PacketDismount());
             }
         }
@@ -52,7 +52,7 @@ public class AnimalEvents {
     @SubscribeEvent
     public void onSpawnAttempt(CheckSpawn event) {
         if (!Animals.CAN_SPAWN) {
-            Class animal = event.getEntity().getClass();
+            Class<? extends Entity> animal = event.getEntity().getClass();
             if (animal == EntityCow.class || animal == EntitySheep.class || animal == EntityChicken.class) {
                 event.setResult(Result.DENY);
             }

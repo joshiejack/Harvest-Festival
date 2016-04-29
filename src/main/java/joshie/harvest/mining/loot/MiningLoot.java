@@ -4,6 +4,7 @@ import joshie.harvest.blocks.BlockDirt.FloorType;
 import joshie.harvest.core.helpers.generic.ItemHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
@@ -11,18 +12,18 @@ import java.util.EnumMap;
 import java.util.Random;
 
 public class MiningLoot {
-    private static EnumMap<FloorType, Loot> loots = new EnumMap(FloorType.class);
+    private static EnumMap<FloorType, Loot> loots = new EnumMap<FloorType, Loot>(FloorType.class);
     private static Random rand = new Random();
 
 
-    public static void getLoot(World world, int x, int y, int z, EntityPlayer player, int meta) {
+    public static void getLoot(World world, BlockPos pos, EntityPlayer player, int meta) {
         Loot loot = loots.get(FloorType.values()[meta]);
         if (loot == null) return;
         ArrayList<LootChance> lootList = loot.loot;
         for (LootChance l : lootList) {
             if (l.canPlayerObtain(player)) {
                 if (rand.nextDouble() <= l.chance) {
-                    ItemHelper.spawnItem(world, x, y + 0.25D, z, l.stack.copy());
+                    ItemHelper.spawnItem(world, pos.getX(), pos.getY() + 0.25D, pos.getZ(), l.stack.copy());
                     break;
                 }
             }
@@ -43,6 +44,6 @@ public class MiningLoot {
     }
 
     private static class Loot {
-        ArrayList<LootChance> loot = new ArrayList();
+        ArrayList<LootChance> loot = new ArrayList<LootChance>();
     }
 }

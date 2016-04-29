@@ -3,14 +3,19 @@ package joshie.harvest.items;
 import joshie.harvest.api.crops.IBreakCrops;
 import joshie.harvest.blocks.BlockCrop;
 import joshie.harvest.core.helpers.PlayerHelper;
+import joshie.harvest.core.helpers.generic.DirectionHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-
-import static net.minecraft.block.Block.soundTypeGrass;
 
 public class ItemSickle extends ItemBaseTool implements IBreakCrops {
     @Override
@@ -59,38 +64,37 @@ public class ItemSickle extends ItemBaseTool implements IBreakCrops {
     }
 
     @Override
-    public float getDigSpeed(ItemStack stack, Block block, int meta) {
-        return (block != Blocks.GRASS && block.getMaterial() == Material.grass) || block.getMaterial() == Material.leaves || block.getMaterial() == Material.vine ? 10F : func_150893_a(stack, block);
+    public float getStrVsBlock(ItemStack stack, IBlockState state) {
+        Material material = state.getMaterial();
+        return (state.getBlock() != Blocks.GRASS && material == Material.GRASS) || material == Material.LEAVES || material == Material.VINE ? 10F : getStrVsBlock(stack, state);
     }
 
     @Override
-    public float getStrengthVSCrops(EntityPlayer player, World world, int x, int y, int z, ItemStack stack) {
-        if (!player.canPlayerEdit(x, y, z, 0, stack)) return 0F;
+    public float getStrengthVSCrops(EntityPlayer player, World world, BlockPos pos, IBlockState state, ItemStack stack) {
+        if (!player.canPlayerEdit(pos, EnumFacing.DOWN, stack)) return 0F;
         else {
-            ForgeDirection front = joshie.harvest.core.helpers.generic.DirectionHelper.getFacingFromEntity(player);
-            Block initial = world.getBlock(x, y, z);
+            EnumFacing front = DirectionHelper.getFacingFromEntity(player);
+            Block initial = world.getBlockState(pos).getBlock();
             if (!(initial instanceof BlockCrop)) {
                 return 0F;
             }
 
             //Facing North, We Want East and West to be 1, left * this.left
-            boolean changed = false;
-            for (int x2 = getXMinus(stack, front, x); x2 <= getXPlus(stack, front, x); x2++) {
-                for (int z2 = getZMinus(stack, front, z); z2 <= getZPlus(stack, front, z); z2++) {
-                    Block block = world.getBlock(x2, y, z2);
+            for (int x2 = getXMinus(stack, front, pos.getX()); x2 <= getXPlus(stack, front, pos.getX()); x2++) {
+                for (int z2 = getZMinus(stack, front, pos.getZ()); z2 <= getZPlus(stack, front, pos.getZ()); z2++) {
+                    Block block = world.getBlockState(new BlockPos(x2, pos.getY(), z2)).getBlock();
                     if (block instanceof BlockCrop) {
                         if (!world.isRemote) {
-                            block.removedByPlayer(world, player, x2, y, z2, true);
+                            block.removedByPlayer(state, world, pos.add(x2, pos.getY(), z2), player, true);
                         }
 
-                        displayParticle(world, x2, y, z2, "blockcrack_31_1");
-                        playSound(world, x2, y, z2, soundTypeGrass.soundName);
+                        displayParticle(world, pos.add(x2, pos.getY(), z2), EnumParticleTypes.BLOCK_CRACK);
+                        playSound(world, pos.add(x2, pos.getY(), z2), SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS);
                         PlayerHelper.performTask(player, stack, getExhaustionRate(stack));
                     }
                 }
             }
         }
-
         return 1F;
     }
 }

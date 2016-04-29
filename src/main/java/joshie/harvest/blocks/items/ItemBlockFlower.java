@@ -1,14 +1,12 @@
 package joshie.harvest.blocks.items;
 
 import joshie.harvest.api.core.ICreativeSorted;
-import joshie.harvest.blocks.BlockFlower;
 import joshie.harvest.core.util.Translate;
 import joshie.harvest.core.util.base.ItemBlockBase;
 import joshie.harvest.core.util.generic.Text;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -21,17 +19,7 @@ public class ItemBlockFlower extends ItemBlockBase implements ICreativeSorted {
 
     @Override
     public String getName(ItemStack stack) {
-        switch (stack.getItemDamage()) {
-            case BlockFlower.GODDESS:
-                return "goddess";
-            default:
-                return "invalid";
-        }
-    }
-
-    @Override
-    public int getEntityLifespan(ItemStack stack, World world) {
-        return stack.getItemDamage() == BlockFlower.GODDESS ? 60 : super.getEntityLifespan(stack, world);
+        return "goddess";
     }
 
     @Override

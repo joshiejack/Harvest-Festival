@@ -5,25 +5,23 @@ import joshie.harvest.api.shops.IPurchaseable;
 import joshie.harvest.core.util.Translate;
 import joshie.harvest.core.util.generic.Text;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLeashKnot;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.List;
 
 public class PurchaseableEntity implements IPurchaseable {
     private ItemStack product;
-    private Class eClass;
+    private Class<? extends Entity> eClass;
     private long cost;
     private boolean lead;
 
     /**
      * If lead is true, entity spawns with a lead, otherwise, entity spawns mounting the player
      **/
-    public PurchaseableEntity(Class clazz, long cost, ItemStack render, boolean lead) {
+    public PurchaseableEntity(Class<? extends Entity> clazz, long cost, ItemStack render, boolean lead) {
         this.product = render;
         this.eClass = clazz;
         this.cost = cost;
@@ -78,9 +76,8 @@ public class PurchaseableEntity implements IPurchaseable {
             theEntity.setPosition(player.posX, player.posY, player.posZ);
             if (!lead) {
                 player.worldObj.spawnEntityInWorld(theEntity);
-                theEntity.mountEntity(player);
+                theEntity.startRiding(player);
             } else {
-                EntityLeashKnot leash = EntityLeashKnot.createKnot(player.worldObj, new BlockPos(player));
                 ((EntityAnimal) theEntity).setLeashedToEntity(player, true);
                 ((IAnimalTracked) theEntity).getData().setOwner(player);
                 player.worldObj.spawnEntityInWorld(theEntity);

@@ -13,6 +13,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
 import org.apache.logging.log4j.Level;
 
 import java.util.HashMap;
@@ -123,8 +124,8 @@ public class PlaceableHelper {
         return "list.add(new Placeable" + getPrefixString(block) + "(" + print + ", " + meta + ", " + x + ", " + y + ", " + z + "));";
     }
 
-    public static String getPlaceableEntityString(Entity entity, int x, int y, int z) {
-        return entities.get(entity.getClass().getSimpleName()).getStringFor(entity, x, y, z);
+    public static String getPlaceableEntityString(Entity entity, BlockPos pos) {
+        return entities.get(entity.getClass().getSimpleName()).getStringFor(entity, pos);
     }
 
     static {

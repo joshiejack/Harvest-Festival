@@ -63,7 +63,7 @@ public class HFTab extends CreativeTabs {
         Collections.sort(list, new Alphabetical());
     }
 
-    private static class Alphabetical implements Comparator {
+    private static class Alphabetical implements Comparator<Object> {
         @Override
         public int compare(Object o1, Object o2) {
             ItemStack stack1 = ((ItemStack) o1);

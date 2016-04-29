@@ -7,11 +7,11 @@ import java.util.UUID;
 
 public class UUIDHelper {
     public static UUID getPlayerUUID(EntityPlayer player) {
-        return EntityPlayer.func_146094_a(player.getGameProfile());
+        return EntityPlayer.getUUID(player.getGameProfile());
         //return player.getUniqueID();
         //return player.getPersistentID();
     }
-    
+
     public static UUID getEntityUUID(Entity entity) {
         return entity.getPersistentID();
     }

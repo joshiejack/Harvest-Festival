@@ -1,6 +1,5 @@
 package joshie.harvest.animals.entity;
 
-import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalFeeder;
 import joshie.harvest.api.animals.IAnimalTracked;
 import net.minecraft.block.Block;
@@ -14,13 +13,11 @@ public class EntityAIEat extends EntityAIBase {
     private World worldObj;
     private EntityAnimal animal;
     private IAnimalTracked tracked;
-    private IAnimalData data;
 
     public EntityAIEat(IAnimalTracked animal) {
         this.worldObj = animal.getData().getAnimal().worldObj;
         this.animal = animal.getData().getAnimal();
         this.tracked = animal;
-        this.data = animal.getData();
     }
 
     @Override

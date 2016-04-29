@@ -13,7 +13,6 @@ public class EntityAIPlay extends EntityAIBase {
     private EntityLivingBase targetVillager;
     private double field_75261_c;
     private int playTime;
-    private static final String __OBFID = "CL_00001605";
 
     public EntityAIPlay(EntityNPC npc, double p_i1646_2_) {
         this.npc = npc;

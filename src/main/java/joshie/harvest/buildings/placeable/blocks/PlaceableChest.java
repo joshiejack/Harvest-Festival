@@ -1,26 +1,26 @@
 package joshie.harvest.buildings.placeable.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.WeightedRandomChestContent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ChestGenHooks;
 
 import java.util.UUID;
 
 public class PlaceableChest extends PlaceableBlock {
     private String chestType;
-    
-    public PlaceableChest(Block block, int meta, int offsetX, int offsetY, int offsetZ) {
-        super(block, meta, offsetX, offsetY, offsetZ);
+
+    public PlaceableChest(Block block, int meta, BlockPos offsetPos) {
+        super(block, meta, offsetPos);
     }
-    
-    public PlaceableChest(Block block, int meta, int offsetX, int offsetY, int offsetZ, String chestType) {
-        this(block, meta, offsetX, offsetY, offsetZ);
+
+    public PlaceableChest(Block block, int meta, BlockPos offsetPos, String chestType) {
+        this(block, meta, offsetPos);
         this.chestType = chestType;
     }
-    
+
     @Override
     public boolean canPlace(PlacementStage stage) {
         return stage == PlacementStage.TORCHES;
@@ -57,16 +57,15 @@ public class PlaceableChest extends PlaceableBlock {
 
         return meta;
     }
-    
+
     @Override
-    public boolean place(UUID uuid, World world, int x, int y, int z, boolean n1, boolean n2, boolean swap) {
-        if(!super.place(uuid, world, x, y, z, n1, n2, swap)) return false;
-        TileEntity tile = world.getTileEntity(x, y, z);
+    public boolean place(UUID uuid, World world, BlockPos pos, IBlockState state, boolean n1, boolean n2, boolean swap) {
+        if (!super.place(uuid, world, pos, state, n1, n2, swap)) return false;
+        TileEntity tile = world.getTileEntity(pos);
         if (chestType != null && tile instanceof IInventory) {
-            WeightedRandomChestContent.generateChestContents(world.rand, ChestGenHooks.getItems(chestType, world.rand), (IInventory)tile, 10);
+            //WeightedRandomChestContent.generateChestContents(world.rand, ChestGenHooks.getItems(chestType, world.rand), (IInventory)tile, 10); //TODO
             return true;
         }
-        
         return false;
     }
 }

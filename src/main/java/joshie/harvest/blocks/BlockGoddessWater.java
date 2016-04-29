@@ -3,6 +3,7 @@ package joshie.harvest.blocks;
 import joshie.harvest.core.util.generic.IHasMetaBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
@@ -42,12 +43,12 @@ public class BlockGoddessWater extends BlockFluidClassic {
         super.setUnlocalizedName(name);
         String register = name.replace(".", "_");
         if (this instanceof IHasMetaBlock) {
-            Class clazz = ((IHasMetaBlock) this).getItemClass();
+            Class<? extends ItemBlock> clazz = ((IHasMetaBlock) this).getItemClass();
             if (clazz == null) {
                 String pack = this.getClass().getPackage().getName() + ".items.";
                 String thiz = "Item" + this.getClass().getSimpleName();
                 try {
-                    clazz = Class.forName(pack + thiz);
+                    clazz = (Class<? extends ItemBlock>) Class.forName(pack + thiz);
                 } catch (Exception ignored) {
                 }
             }

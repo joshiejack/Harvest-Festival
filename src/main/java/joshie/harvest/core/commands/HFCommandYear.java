@@ -5,6 +5,7 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSetCalendar;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.server.MinecraftServer;
 
 public class HFCommandYear extends HFCommandBase {
     @Override
@@ -18,7 +19,7 @@ public class HFCommandYear extends HFCommandBase {
     }
 
     @Override
-    public boolean processCommand(ICommandSender sender, String[] parameters) {
+    public boolean execute(MinecraftServer server, ICommandSender sender, String[] parameters) {
         if (parameters != null && parameters.length == 1) {
             try {
                 Calendar calendar = HFTrackers.getCalendar();
@@ -26,7 +27,8 @@ public class HFCommandYear extends HFCommandBase {
                 calendar.getDate().setYear(year);
                 PacketHandler.sendToEveryone(new PacketSetCalendar(calendar.getDate()));
                 return true;
-            } catch (NumberFormatException e) {}
+            } catch (NumberFormatException ignored) {
+            }
         }
 
         return false;

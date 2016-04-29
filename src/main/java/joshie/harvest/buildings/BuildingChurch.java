@@ -11,6 +11,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
@@ -208,7 +210,7 @@ public class BuildingChurch extends Building {
         list.add(new PlaceableFlower(Blocks.RED_FLOWER, 3, 9, 1, 0));
         list.add(new PlaceableStairs(Blocks.DARK_OAK_STAIRS, 3, 9, 1, 1));
         list.add(new PlaceableBlock(Blocks.CARPET, 14, 9, 1, 3));
-        npc_offsets.put(TownData.CHURCH_FRONT, new PlaceableNPC("", 9, 1, 4));
+        npc_offsets.put(TownData.CHURCH_FRONT, new PlaceableNPC("", new BlockPos(9, 1, 4)));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 9, 1, 4));
         list.add(new PlaceableStairs(Blocks.DARK_OAK_STAIRS, 2, 9, 1, 7));
         list.add(new PlaceableFlower(Blocks.RED_FLOWER, 1, 9, 1, 8));
@@ -307,8 +309,8 @@ public class BuildingChurch extends Building {
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 2, 3, 0));
         list.add(new PlaceableStairs(Blocks.DARK_OAK_STAIRS, 7, 2, 3, 1));
         list.add(new PlaceableTorches(Blocks.TORCH, 5, 2, 3, 2));
-        list.add(new PlaceableNPC("thomas", 2, 3, 4));
-        npc_offsets.put(TownData.THOMAS, new PlaceableNPC("", 2, 3, 4));
+        list.add(new PlaceableNPC("thomas", new BlockPos(2, 3, 4)));
+        npc_offsets.put(TownData.THOMAS, new PlaceableNPC("", new BlockPos(2, 3, 4)));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 2, 3, 4));
         list.add(new PlaceableTorches(Blocks.TORCH, 5, 2, 3, 6));
         list.add(new PlaceableStairs(Blocks.DARK_OAK_STAIRS, 6, 2, 3, 7));
@@ -416,7 +418,7 @@ public class BuildingChurch extends Building {
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 2, 2, 5, 1));
         list.add(new PlaceableStairs(Blocks.STONE_BRICK_STAIRS, 7, 2, 5, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 2, 5, 4));
-        list.add(new PlaceableItemFrame(new ItemStack(Items.EXPERIENCE_BOTTLE, 1, 0), 0, 3, 2, 5, 4, LootStrings.CHURCH_FRAME));
+        list.add(new PlaceableItemFrame(new ItemStack(Items.EXPERIENCE_BOTTLE, 1, 0), 0, EnumFacing.SOUTH, 2, 5, 4, LootStrings.CHURCH_FRAME));
         list.add(new PlaceableWeb(Blocks.WEB, 0, 2, 5, 5));
         list.add(new PlaceableStairs(Blocks.STONE_BRICK_STAIRS, 6, 2, 5, 6));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 2, 5, 7));

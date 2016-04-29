@@ -22,7 +22,11 @@ public class PlaceableBlock extends Placeable {
     }
 
     public PlaceableBlock(Block block, int meta, int offsetX, int offsetY, int offsetZ) {
-        super(new BlockPos(offsetX, offsetY, offsetZ));
+        this(block, meta, new BlockPos(offsetX, offsetY, offsetZ));
+    }
+
+    public PlaceableBlock(Block block, int meta, BlockPos offsetPos) {
+        super(offsetPos);
         this.block = block;
         this.meta = meta;
     }

@@ -152,11 +152,11 @@ public abstract class ItemBaseTool extends ItemBaseSingle implements ILevelable,
         } else return z;
     }
 
-    protected void displayParticle(World world, int x, int y, int z, EnumParticleTypes particle) {
+    protected void displayParticle(World world, BlockPos pos, EnumParticleTypes particle) {
         for (int j = 0; j < 60D; j++) {
-            double d8 = (x) + world.rand.nextFloat();
-            double d9 = (z) + world.rand.nextFloat();
-            world.spawnParticle(particle, d8, y + 1.0D - 0.125D, d9, 0, 0, 0);
+            double d8 = (pos.getX()) + world.rand.nextFloat();
+            double d9 = (pos.getZ()) + world.rand.nextFloat();
+            world.spawnParticle(particle, d8, pos.getY() + 1.0D - 0.125D, d9, 0, 0, 0);
         }
     }
 
@@ -164,8 +164,8 @@ public abstract class ItemBaseTool extends ItemBaseSingle implements ILevelable,
         world.playSound(null, pos, sound, category, world.rand.nextFloat() * 0.25F + 0.75F, world.rand.nextFloat() * 1.0F + 0.5F);
     }
 
-    @SideOnly(Side.CLIENT)
     @Override
+    @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
         for (int i = 0; i < ToolTier.values().length; i++) {
             list.add(new ItemStack(item, 1, i));

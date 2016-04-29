@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 public class GiftsDaniel extends Gifts {
     @Override
     public Quality getQuality(ItemStack stack) {
-        if (stack.getItem() == Items.ender_pearl) {
+        if (stack.getItem() == Items.ENDER_PEARL) {
             return Quality.AWESOME;
         }
 
@@ -14,7 +14,7 @@ public class GiftsDaniel extends Gifts {
             return Quality.GOOD;
         }
 
-        if (is(stack, Category.WATER)) {
+        if (is(stack, Category.WATERY)) {
             return Quality.BAD;
         }
 

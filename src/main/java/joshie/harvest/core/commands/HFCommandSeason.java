@@ -6,6 +6,7 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSetCalendar;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.server.MinecraftServer;
 import org.apache.commons.lang3.StringUtils;
 
 public class HFCommandSeason extends HFCommandBase {
@@ -20,7 +21,7 @@ public class HFCommandSeason extends HFCommandBase {
     }
 
     @Override
-    public boolean processCommand(ICommandSender sender, String[] parameters) {
+    public boolean execute(MinecraftServer server, ICommandSender sender, String[] parameters) {
         if (parameters != null && parameters.length == 1) {
             for (Season season : Season.values()) {
                 if (StringUtils.equalsIgnoreCase(season.name(), parameters[0])) {
@@ -31,7 +32,6 @@ public class HFCommandSeason extends HFCommandBase {
                 }
             }
         }
-
         return false;
     }
 }

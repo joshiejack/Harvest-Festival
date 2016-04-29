@@ -6,7 +6,7 @@ import net.minecraftforge.fluids.Fluid;
 import java.util.HashSet;
 
 public class Ingredient implements ICookingComponent {
-    private HashSet<Ingredient> equivalents = new HashSet();
+    private HashSet<Ingredient> equivalents = new HashSet<Ingredient>();
     private String unlocalized;
     public int stamina;
     public int fatigue;

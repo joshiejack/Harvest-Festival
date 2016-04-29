@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 public class GiftsCandice extends Gifts {
     @Override
     public Quality getQuality(ItemStack stack) {
-        if (stack.getItem() == Items.milk_bucket) {
+        if (stack.getItem() == Items.MILK_BUCKET) {
             return Quality.AWESOME;
         }
 

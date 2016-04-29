@@ -6,6 +6,7 @@ import joshie.harvest.core.util.generic.IHasMetaBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public abstract class BlockHFBase extends Block {
@@ -28,12 +29,12 @@ public abstract class BlockHFBase extends Block {
         super.setUnlocalizedName(name);
         String register = name.replace(".", "_");
         if (this instanceof IHasMetaBlock) {
-            Class clazz = ((IHasMetaBlock) this).getItemClass();
+            Class<? extends ItemBlock> clazz = ((IHasMetaBlock) this).getItemClass();
             if (clazz == null) {
                 String pack = this.getClass().getPackage().getName() + ".items.";
                 String thiz = "Item" + this.getClass().getSimpleName();
                 try {
-                    clazz = Class.forName(pack + thiz);
+                    clazz = (Class<? extends ItemBlock>) Class.forName(pack + thiz);
                 } catch (Exception ignored) {
                 }
             }

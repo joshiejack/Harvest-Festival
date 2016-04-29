@@ -1,12 +1,10 @@
 package joshie.harvest.asm.transformers;
 
 import joshie.harvest.asm.HFOverride;
-import joshie.harvest.asm.overrides.ItemPumpkin;
 import joshie.harvest.core.config.ASM;
 import joshie.harvest.core.lib.HFModInfo;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;
@@ -34,7 +32,7 @@ public class PumpkinTransformer extends AbstractASM {
 
     public static HashSet<Block> registerPumpkin(HashSet<Block> set) {
         set.add(Blocks.PUMPKIN);
-        Item.REGISTRY.addObject(Block.getIdFromBlock(Blocks.PUMPKIN), "pumpkin", new ItemPumpkin(Blocks.PUMPKIN));
+        //Item.REGISTRY.addObject(Block.getIdFromBlock(Blocks.PUMPKIN), "pumpkin", new ItemPumpkin(Blocks.PUMPKIN)); //TODO Fix
         return set;
     }
 

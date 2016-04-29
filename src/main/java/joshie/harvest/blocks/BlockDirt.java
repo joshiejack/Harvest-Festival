@@ -2,7 +2,8 @@ package joshie.harvest.blocks;
 
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.config.General;
-import joshie.harvest.core.util.base.CTMBlockHFBase;
+import joshie.harvest.core.util.base.BlockHFBaseMeta;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -20,29 +21,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class BlockDirt extends CTMBlockHFBase {
+public class BlockDirt extends BlockHFBaseMeta {
     public BlockDirt(String modid, String texturePath) {
         super(modid, texturePath);
         setCreativeTab(HFTab.MINING);
-    }
-
-    //META STUFF
-    private static int META_COUNT = 2;
-
-    @Override
-    public int getMetaCount() {
-        return META_COUNT;
+        setSoundType(SoundType.GROUND);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
         if (General.DEBUG_MODE) {
-            for (int i = 0; i < getMetaCount(); i++) {
-                if (isValidTab(tab, i)) {
-                    list.add(new ItemStack(item, 1, i));
-                }
-            }
+            super.getSubBlocks(item, tab, list);
         }
     }
 

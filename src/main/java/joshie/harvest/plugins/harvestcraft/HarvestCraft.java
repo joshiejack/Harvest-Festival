@@ -8,7 +8,7 @@ import joshie.harvest.plugins.HFPlugins.Plugin;
 import java.util.ArrayList;
 
 public class HarvestCraft extends Plugin {
-    public static ArrayList<HarvestCraftCrop> crops = new ArrayList();
+    public static ArrayList<HarvestCraftCrop> crops = new ArrayList<HarvestCraftCrop>();
 
     @Override
     public void preInit() {

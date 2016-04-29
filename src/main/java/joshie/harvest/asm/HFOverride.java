@@ -21,6 +21,7 @@ public class HFOverride implements IFMLLoadingPlugin, IClassTransformer {
 
     public static boolean isObfuscated = false;
     private static List<AbstractASM> asm = new ArrayList<AbstractASM>();
+
     static {
         asm.add(new EggTransformer());
         asm.add(new SeedFoodTransformer());
@@ -63,7 +64,7 @@ public class HFOverride implements IFMLLoadingPlugin, IClassTransformer {
 
     @Override
     public String[] getASMTransformerClass() {
-        return new String[] { HFOverride.class.getName() };
+        return new String[]{HFOverride.class.getName()};
     }
 
     @Override

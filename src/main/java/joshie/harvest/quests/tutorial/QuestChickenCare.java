@@ -34,10 +34,8 @@ public class QuestChickenCare extends Quest {
             if (target instanceof EntityChicken) {
                 ItemStack held = player.getActiveItemStack();
                 if (held != null) {
-                    boolean hasChanged = false;
                     if (!hasFed && held.getItem() == Items.WHEAT_SEEDS) {
                         hasFed = true;
-                        hasChanged = true;
                     }
 
                     if (!player.worldObj.isRemote) {

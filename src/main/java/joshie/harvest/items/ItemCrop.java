@@ -61,7 +61,7 @@ public class ItemCrop extends ItemHFMeta implements IShippable, ICropProvider, I
 
     @Override
     public CreativeTabs[] getCreativeTabs() {
-        return new CreativeTabs[] { HFTab.FARMING };
+        return new CreativeTabs[]{HFTab.FARMING};
     }
 
     @Override

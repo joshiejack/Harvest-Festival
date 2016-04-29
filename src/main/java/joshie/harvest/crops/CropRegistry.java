@@ -8,6 +8,7 @@ import joshie.harvest.api.crops.ICropRenderHandler.PlantSection;
 import joshie.harvest.blocks.BlockCrop;
 import joshie.harvest.core.config.HFConfig;
 import joshie.harvest.core.handlers.HFTrackers;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.Collection;
@@ -19,9 +20,9 @@ public class CropRegistry implements ICropHandler {
     }
 
     @Override
-    public ICropData getCropAtLocation(World world, int x, int y, int z) {
-        PlantSection section = BlockCrop.getSection(world, x, y, z);
-        return section == PlantSection.BOTTOM ? HFTrackers.getCropTracker().getCropDataForLocation(world, x, y, z) : HFTrackers.getCropTracker().getCropDataForLocation(world, x, y - 1, z);
+    public ICropData getCropAtLocation(World world, BlockPos pos) {
+        PlantSection section = BlockCrop.getSection(world, pos);
+        return section == PlantSection.BOTTOM ? HFTrackers.getCropTracker().getCropDataForLocation(world, pos) : HFTrackers.getCropTracker().getCropDataForLocation(world, pos.down());
     }
 
     @Override

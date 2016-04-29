@@ -9,16 +9,20 @@ import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.HashMap;
 
 public class ItemNPCSpawner extends ItemHFMeta {
-    private static HashMap<Integer, INPC> metas = new HashMap();
+    private static HashMap<Integer, INPC> metas = new HashMap<Integer, INPC>();
 
     public ItemNPCSpawner() {
-        super(HFTab.tabTown);
-        
+        super(HFTab.TOWN);
+
         int meta = 0;
         for (INPC npc : HFApi.NPC.getNPCs()) {
             metas.put(meta, npc);
@@ -44,14 +48,13 @@ public class ItemNPCSpawner extends ItemHFMeta {
     }
 
     @Override
-    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int xCoord, int yCoord, int zCoord, int side, float hitX, float hitY, float hitZ) {
+    public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (!world.isRemote && stack.getItemDamage() < getMetaCount()) {
             INPC npc = getNPC(stack.getItemDamage());
             EntityNPC entity = NPCHelper.getEntityForNPC(UUIDHelper.getPlayerUUID(player), world, npc);
-            entity.setPosition(xCoord + 0.5, yCoord + 1, zCoord + 0.5);
+            entity.setPosition(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5);
             world.spawnEntityInWorld(entity);
         }
-
-        return false;
+        return EnumActionResult.FAIL;
     }
 }

@@ -17,9 +17,9 @@ import java.util.ArrayList;
 
 public class HFRecipeFixes {
     public static void complete() {
-        fixRecipes(Items.egg, null);
+        fixRecipes(Items.EGG, null);
         fixRecipes(Items.CARROT, "Carrot");
-        fixRecipes(Items.potato, "Potato");
+        fixRecipes(Items.POTATO, "Potato");
         fixRecipes(Items.WHEAT, "Wheat");
     }
 
@@ -39,7 +39,7 @@ public class HFRecipeFixes {
 
     private static void overrideShapelessOre(ShapelessOreRecipe recipe, Item fix, String name) {
         ArrayList<Object> original = recipe.getInput();
-        ArrayList<Object> clone = new ArrayList(original.size());
+        ArrayList<Object> clone = new ArrayList<Object>(original.size());
         boolean hasChanged = false;
         for (int i = 0; i < original.size(); i++) {
             Object o = original.get(i);
@@ -51,7 +51,7 @@ public class HFRecipeFixes {
             ItemStack stack = (ItemStack) o;
             Item item = stack.getItem();
             if (item == fix) {
-                Object add = null;
+                Object add;
                 if (name == null) {
                     add = new ItemStack(fix, 1, OreDictionary.WILDCARD_VALUE);
                     ((ItemStack) add).setTagCompound(stack.getTagCompound());
@@ -99,7 +99,7 @@ public class HFRecipeFixes {
 
     private static void overrideShapeless(ShapelessRecipes recipe, Item fix) {
         ArrayList<ItemStack> original = (ArrayList<ItemStack>) recipe.recipeItems;
-        ArrayList<ItemStack> clone = new ArrayList(original.size());
+        ArrayList<ItemStack> clone = new ArrayList<ItemStack>(original.size());
         boolean hasChanged = false;
         while (clone.size() < original.size())
             clone.add(null);
@@ -158,6 +158,7 @@ public class HFRecipeFixes {
             modifiersField.setAccessible(true);
             modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
             field.set(recipe, items);
-        } catch (Exception e) {}
+        } catch (Exception ignored) {
+        }
     }
 }

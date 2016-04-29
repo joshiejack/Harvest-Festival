@@ -10,6 +10,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import org.apache.commons.lang3.SystemUtils;
 import org.apache.commons.lang3.text.WordUtils;
 
+import java.io.IOException;
 import java.util.Arrays;
 
 /** Renders a chat script **/
@@ -27,7 +28,7 @@ public class GuiNPCChat extends GuiNPCBase {
         if (string == null) return "FORGOT SOME TEXT DUMBASS";
         StatData stats = HFTrackers.getClientPlayerTracker().getStats();
         string = string.replace("<BR>", SystemUtils.LINE_SEPARATOR);
-        string = string.replace("Ãž", player.getDisplayName());
+        string = string.replace("Ãž", player.getDisplayNameString());
         string = string.replace("â„‡", npc.getNPC().getUnlocalizedName());
         string = string.replace("$", "" + stats.getGold());
 
@@ -122,7 +123,7 @@ public class GuiNPCChat extends GuiNPCBase {
     }
 
     @Override
-    protected void keyTyped(char character, int key) {
+    protected void keyTyped(char character, int key) throws IOException {
         super.keyTyped(character, key);
         if (key == 28 || key == 57 || character == 'q') {
             nextChat();

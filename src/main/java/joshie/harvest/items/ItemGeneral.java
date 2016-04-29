@@ -14,7 +14,10 @@ import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.HashMap;
@@ -87,44 +90,39 @@ public class ItemGeneral extends ItemHFMeta implements ICreativeSorted {
     }
 
     @Override
-    public boolean hasAlt(ItemStack stack) {
-        return stack.getItemDamage() == FLOUR;
-    }
-
-    @Override
     public boolean isValidTab(CreativeTabs tab, int meta) {
         switch (meta) {
             case BLUE_FEATHER:
-                return tab == HFTab.tabTown;
+                return tab == HFTab.TOWN;
             case BRUSH:
             case MILKER:
             case MEDICINE:
             case CHICKEN_FEED:
             case MIRACLE:
-                return tab == HFTab.tabFarming;
+                return tab == HFTab.FARMING;
             case JUNK_ORE:
             case COPPER_ORE:
             case SILVER_ORE:
             case GOLD_ORE:
             case MYSTRIL_ORE:
             case MYTHIC_STONE:
-                return tab == HFTab.tabMining;
+                return tab == HFTab.MINING;
             case FLOUR:
             case OIL:
             case RICEBALL:
             case SALT:
             case CHOCOLATE:
-                return tab == HFTab.tabCooking;
+                return tab == HFTab.COOKING;
             default:
                 return false;
         }
     }
-        
-    
-    //Doesn't weeeerk
-	@SideOnly(Side.CLIENT)
-    public boolean setFull3D(int meta) { return meta == BRUSH || meta == MILKER; } 
 
+    //Doesn't weeeerk
+    @SideOnly(Side.CLIENT)
+    public boolean setFull3D(int meta) {
+        return meta == BRUSH || meta == MILKER;
+    }
 
     @Override
     public int getMaxItemUseDuration(ItemStack stack) {
@@ -133,28 +131,28 @@ public class ItemGeneral extends ItemHFMeta implements ICreativeSorted {
 
     @Override
     public EnumAction getItemUseAction(ItemStack stack) {
-        return stack.getItemDamage() == MILKER ? EnumAction.bow : EnumAction.none;
+        return stack.getItemDamage() == MILKER ? EnumAction.BOW : EnumAction.NONE;
     }
 
-    private HashMap<EntityPlayer, IMilkable> milkables = new HashMap();
+    private HashMap<EntityPlayer, IMilkable> milkables = new HashMap<EntityPlayer, IMilkable>();
 
     @Override
-    public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player) {
-        if (stack.getItemDamage() == MILKER) {
+    public ItemStack onItemUseFinish(ItemStack stack, World world, EntityLivingBase entityLiving) {
+        if (entityLiving instanceof EntityPlayer && stack.getItemDamage() == MILKER) {
+            EntityPlayer player = (EntityPlayer) entityLiving;
             IMilkable milkable = milkables.get(player);
             if (milkable != null) {
                 milkable.milk(player);
             }
         }
-
         return stack;
     }
 
     @Override
-    public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer player, EntityLivingBase living) {
+    public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer player, EntityLivingBase living, EnumHand hand) {
         if (living instanceof IAnimalTracked) {
             IAnimalTracked tracked = (IAnimalTracked) living;
-            IAnimalData data = ((IAnimalTracked) tracked).getData();
+            IAnimalData data = tracked.getData();
             int metadata = stack.getItemDamage();
             EntityAnimal animal = (EntityAnimal) living;
             if (metadata == BRUSH && !(living instanceof EntityChicken)) {
@@ -165,7 +163,7 @@ public class ItemGeneral extends ItemHFMeta implements ICreativeSorted {
                         double d7 = (animal.posY - 0.5D) + animal.worldObj.rand.nextFloat();
                         double d8 = (animal.posX - 0.5D) + animal.worldObj.rand.nextFloat();
                         double d9 = (animal.posZ - 0.5D) + animal.worldObj.rand.nextFloat();
-                        animal.worldObj.spawnParticle("townaura", d8, 1.0D + d7 - 0.125D, d9, 0, 0, 0);
+                        animal.worldObj.spawnParticle(EnumParticleTypes.TOWN_AURA, d8, 1.0D + d7 - 0.125D, d9, 0, 0, 0);
                     }
                 }
 
@@ -189,12 +187,11 @@ public class ItemGeneral extends ItemHFMeta implements ICreativeSorted {
             } else if (metadata == MILKER && living instanceof IMilkable) {
                 if (((IMilkable) living).canMilk()) {
                     milkables.put(player, (IMilkable) living);
-                    player.setItemInUse(stack, this.getMaxItemUseDuration(stack));
+                    player.setActiveHand(hand);
                     return true;
                 }
             }
         }
-
         return false;
     }
 
@@ -207,25 +204,24 @@ public class ItemGeneral extends ItemHFMeta implements ICreativeSorted {
 
         return 102;
     }
-    
-	@Override
-	public String getItemStackDisplayName(ItemStack stack) {
-        switch (stack.getItemDamage()) {
-        case BLUE_FEATHER:
-        case MIRACLE:
-    		return Text.AQUA +super.getItemStackDisplayName(stack);
-        case MYTHIC_STONE:
-    		return Text.LIME +super.getItemStackDisplayName(stack);
-        default:
-            return Text.WHITE +super.getItemStackDisplayName(stack);
-            }
-		}
-    
+
     @Override
-	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean flag)
-	{
-    		if(stack.getItemDamage() == MYTHIC_STONE)
-			list.add(Translate.translate("tooltip.mythic_stone"));
-    		}
+    public String getItemStackDisplayName(ItemStack stack) {
+        switch (stack.getItemDamage()) {
+            case BLUE_FEATHER:
+            case MIRACLE:
+                return Text.AQUA + super.getItemStackDisplayName(stack);
+            case MYTHIC_STONE:
+                return Text.LIME + super.getItemStackDisplayName(stack);
+            default:
+                return Text.WHITE + super.getItemStackDisplayName(stack);
+        }
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
+        if (stack.getItemDamage() == MYTHIC_STONE)
+            list.add(Translate.translate("tooltip.mythic_stone"));
+    }
 }

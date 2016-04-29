@@ -10,20 +10,37 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public abstract class RelationshipData {
-    public void talkTo(EntityPlayer player, IRelatable relatable) {};
-    public void gift(EntityPlayer player, IRelatable relatable, int amount) {};
-    public void affectRelationship(EntityPlayer player, IRelatable relatable, int amount) {};
-    public void setRelationship(IRelatable relatable, short value) {}
-    public void setMarriageState(IRelatable relatable, boolean divorce) {};
-    
-    protected HashMap<IRelatable, Short> relationships = new HashMap();
-    protected HashSet<IRelatable> marriedTo = new HashSet();
+    public void talkTo(EntityPlayer player, IRelatable relatable) {
+    }
+
+    ;
+
+    public void gift(EntityPlayer player, IRelatable relatable, int amount) {
+    }
+
+    ;
+
+    public void affectRelationship(EntityPlayer player, IRelatable relatable, int amount) {
+    }
+
+    ;
+
+    public void setRelationship(IRelatable relatable, short value) {
+    }
+
+    public void setMarriageState(IRelatable relatable, boolean divorce) {
+    }
+
+    ;
+
+    protected HashMap<IRelatable, Short> relationships = new HashMap<IRelatable, Short>();
+    protected HashSet<IRelatable> marriedTo = new HashSet<IRelatable>();
 
     public void clear(IRelatable animal) {
         relationships.remove(animal);
         HFTrackers.markDirty();
     }
-       
+
     protected short getRelationship(IRelatable relatable) {
         if (relationships.containsKey(relatable)) {
             return relationships.get(relatable);
@@ -58,7 +75,7 @@ public abstract class RelationshipData {
 
         return false;
     }
-    
+
     public String getLover() {
         return Translate.translate("nolover");
     }

@@ -70,7 +70,8 @@ public class NPC implements INPC {
         String gift = StringUtils.capitalize(name);
         try {
             gifts = (Gifts) Class.forName(HFModInfo.JAVAPATH + "npc.gift.Gifts" + gift).newInstance();
-        } catch (Exception e) {}
+        } catch (Exception ignored) {
+        }
 
         String key = HFModInfo.MODPATH + ".npc." + name + ".accept";
         accept = Text.localize(key);
@@ -232,7 +233,7 @@ public class NPC implements INPC {
         return isChild() ? 19000 : 23000;
     }
 
-    private static class Priority implements Comparator {
+    private static class Priority implements Comparator<Object> {
         @Override
         public int compare(Object o1, Object o2) {
             int i1 = ((IConditionalGreeting) o1).getPriority();
@@ -256,7 +257,7 @@ public class NPC implements INPC {
                 return greeting.getText();
             }
         }
-        
+
         return "Found no greetings";
     }
 

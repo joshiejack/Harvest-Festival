@@ -16,7 +16,7 @@ public class SafeStack implements Immutable {
     }
 
     public SafeStack(ItemStack stack) {
-        this.item = Item.REGISTRY.getNameForObject(new ResourceLocation(stack.getItem()));
+        this.item = Item.REGISTRY.getNameForObject(stack.getItem()).toString();
         this.damage = stack.getItemDamage();
     }
 

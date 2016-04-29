@@ -1,45 +1,27 @@
 package joshie.harvest.blocks;
 
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.config.General;
 import joshie.harvest.core.util.base.BlockHFBase;
-import joshie.harvest.core.util.base.BlockHFBaseMeta;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class BlockStone extends BlockHFBase {
 
     public BlockStone() {
         super(Material.ROCK, HFTab.MINING);
-    }
-
-    //META STUFF
-    private static int META_COUNT = 2;
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
-        if (General.DEBUG_MODE) {
-            for (int i = 0; i < META_COUNT; i++) {
-                //if (isValidTab(tab, i)) {
-                    list.add(new ItemStack(item, 1, i));
-                //}
-            }
-        }
+        setSoundType(SoundType.METAL);
     }
 
     //TECHNICAL
@@ -77,7 +59,8 @@ public class BlockStone extends BlockHFBase {
     public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
         ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
 
-        int count = quantityDropped(state, fortune, world.rand);
+        Random rand = world instanceof World ? ((World) world).rand : new Random();
+        int count = quantityDropped(state, fortune, rand);
         for (int i = 0; i < count; i++) {
             if (metadata == 0) {
             }

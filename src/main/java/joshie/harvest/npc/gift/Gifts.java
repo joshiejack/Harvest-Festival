@@ -9,7 +9,8 @@ import net.minecraft.item.ItemStack;
 import java.util.HashMap;
 
 public abstract class Gifts {
-    private static HashMap<SafeStack, Category[]> gifts = new HashMap();;
+    private static HashMap<SafeStack, Category[]> gifts = new HashMap<SafeStack, Category[]>();
+    ;
 
     public Quality getQuality(ItemStack stack) {
         return Quality.DECENT;
@@ -37,7 +38,7 @@ public abstract class Gifts {
     }
 
     public static enum Category {
-        CUTE, SCARY, MINING, NATURE, ANIMALS, COOKING, TOOLS, WATER, PRETTY, CHEAP, FARMING, CONSTRUCTION, RARE, GIRLY, KNITTING, TECHNOLOGY, DANGER, BATTLE;
+        CUTE, SCARY, MINING, NATURE, ANIMALS, COOKING, TOOLS, WATERY, PRETTY, CHEAP, FARMING, CONSTRUCTION, RARE, GIRLY, KNITTING, TECHNOLOGY, DANGER, BATTLE;
     }
 
     public static enum Quality {

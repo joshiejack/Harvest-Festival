@@ -12,11 +12,17 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.util.Translate;
 import joshie.harvest.core.util.generic.Text;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -60,8 +66,9 @@ public class ItemMeal extends ItemHFMeta implements IMealProvider, ICreativeSort
     }
 
     @Override
-    public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player) {
-        if (stack.hasTagCompound()) {
+    public ItemStack onItemUseFinish(ItemStack stack, World world, EntityLivingBase entityLiving) {
+        if (stack.hasTagCompound() && entityLiving instanceof EntityPlayer) {
+            EntityPlayer player = (EntityPlayer) entityLiving;
             if (!player.capabilities.isCreativeMode) --stack.stackSize;
             int level = stack.getTagCompound().getInteger("FoodLevel");
             float sat = stack.getTagCompound().getFloat("FoodSaturation");
@@ -69,10 +76,11 @@ public class ItemMeal extends ItemHFMeta implements IMealProvider, ICreativeSort
             int fatigue = stack.getTagCompound().getInteger("FoodFatigue");
             HFTrackers.getPlayerTracker(player).getStats().affectStats(stamina, fatigue);
             player.getFoodStats().addStats(level, sat);
-            world.playSound(player, "random.burp", 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
+            world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
 
             return stack;
-        } else return stack;
+        }
+        return stack;
     }
 
     @Override
@@ -90,12 +98,13 @@ public class ItemMeal extends ItemHFMeta implements IMealProvider, ICreativeSort
     }
 
     @Override
-    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
+    public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
         if (player.canEat(false)) {
-            player.setItemInUse(stack, this.getMaxItemUseDuration(stack));
+            player.setActiveHand(hand);
+            return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
+        } else {
+            return new ActionResult<ItemStack>(EnumActionResult.FAIL, stack);
         }
-
-        return stack;
     }
 
     //Apply all the relevant information about this meal to the meal stack

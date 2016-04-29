@@ -81,18 +81,18 @@ public class HFGiftVanillaItems {
         assign(ACACIA_DOOR, CONSTRUCTION);
         assign(DARK_OAK_DOOR, CONSTRUCTION);
         assign(BUCKET, TOOLS);
-        assign(WATER_BUCKET, WATER);
+        assign(WATER_BUCKET, WATERY);
         assign(LAVA_BUCKET, SCARY, DANGER);
         assign(MINECART, MINING);
         assign(SADDLE, CUTE, ANIMALS);
         assign(IRON_DOOR, CONSTRUCTION);
         assign(REDSTONE, MINING);
         assign(SNOWBALL, CUTE);
-        assign(BOAT, WATER);
+        assign(BOAT, WATERY);
         assign(LEATHER, FARMING);
         assign(MILK_BUCKET, ANIMALS, COOKING, FARMING);
         assign(BRICK, CONSTRUCTION);
-        assign(CLAY_BALL, WATER, CONSTRUCTION);
+        assign(CLAY_BALL, WATERY, CONSTRUCTION);
         assign(REEDS, NATURE, FARMING);
         assign(PAPER, CONSTRUCTION);
         assign(BOOK, CHEAP);
@@ -101,11 +101,11 @@ public class HFGiftVanillaItems {
         assign(FURNACE_MINECART, TECHNOLOGY);
         assign(EGG, NATURE, ANIMALS, COOKING);
         assign(COMPASS, TOOLS, TECHNOLOGY);
-        assign(FISHING_ROD, ANIMALS, WATER);
+        assign(FISHING_ROD, ANIMALS, WATERY);
         assign(CLOCK, TOOLS, TECHNOLOGY);
         assign(GLOWSTONE_DUST, PRETTY, GIRLY);
-        assign(FISH, NATURE, COOKING, WATER);
-        assign(COOKED_FISH, COOKING, WATER);
+        assign(FISH, NATURE, COOKING, WATERY);
+        assign(COOKED_FISH, COOKING, WATERY);
         assign(DYE); //TODO: ASSIGN THE VARIATIONS
         assign(BONE, SCARY, DANGER);
         assign(SUGAR, CUTE, COOKING, GIRLY);
@@ -128,7 +128,7 @@ public class HFGiftVanillaItems {
         assign(GHAST_TEAR, SCARY, RARE, DANGER);
         assign(GOLD_NUGGET, MINING, DANGER);
         assign(NETHER_WART, DANGER);
-        assign(POTIONITEM, WATER, DANGER);
+        assign(POTIONITEM, WATERY, DANGER);
         assign(GLASS_BOTTLE, COOKING, TOOLS);
         assign(SPIDER_EYE, SCARY, DANGER);
         assign(FERMENTED_SPIDER_EYE, SCARY, DANGER);

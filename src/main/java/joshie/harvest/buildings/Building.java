@@ -9,6 +9,7 @@ import joshie.harvest.core.util.BlockAccessPreview;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -83,7 +84,7 @@ public class Building implements IBuilding {
         return list;
     }
 
-    public boolean generate(UUID uuid, World world, BlockPos pos, IBlockState state) {
+    public EnumActionResult generate(UUID uuid, World world, BlockPos pos, IBlockState state) {
         if (!world.isRemote) {
             boolean n1 = world.rand.nextBoolean();
             boolean n2 = world.rand.nextBoolean();
@@ -109,8 +110,7 @@ public class Building implements IBuilding {
                 block.place(uuid, world, pos, state, n1, n2, swap, PlacementStage.NPC);
             }
         }
-
-        return true;
+        return EnumActionResult.SUCCESS;
     }
 
     public boolean canBuy(World world, EntityPlayer player) {

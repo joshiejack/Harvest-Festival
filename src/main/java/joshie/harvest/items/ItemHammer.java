@@ -6,12 +6,11 @@ import net.minecraft.item.ItemStack;
 
 public class ItemHammer extends ItemBaseTool {
     public ItemHammer() {
-        setCreativeTab(HFTab.tabMining);
+        setCreativeTab(HFTab.MINING);
     }
-    
+
     //Might want to use this for "charging" the hammer up to destroy rocks
-    public EnumAction getItemUseAction(ItemStack p_77661_1_)
-    {
-        return EnumAction.bow;
+    public EnumAction getItemUseAction(ItemStack stack) {
+        return EnumAction.BOW;
     }
 }

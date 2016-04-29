@@ -7,6 +7,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 
@@ -17,8 +18,8 @@ public class PacketHandler {
     private static final SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);
     private static int id;
 
-    public static void registerPacket(Class clazz, Side side) {
-        INSTANCE.registerMessage(clazz, clazz, id++, side);
+    public static <REQ extends IMessage, REPLY extends IMessage> void registerPacket(Class<? extends IMessageHandler<REQ, REPLY>> clazz, Side side) {
+        INSTANCE.registerMessage(clazz, (Class<REQ>) clazz, id++, side);
     }
 
     public static void sendToEveryone(IMessage packet) {
@@ -37,7 +38,7 @@ public class PacketHandler {
         INSTANCE.sendToServer(packet);
     }
 
-    public static Packet getPacket(IMessage packet) {
+    public static Packet<?> getPacket(IMessage packet) {
         return INSTANCE.getPacketFrom(packet);
     }
 

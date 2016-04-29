@@ -27,7 +27,7 @@ public class HFSavedData extends WorldSavedData {
     private AnimalTrackerServer animals = new AnimalTrackerServer();
     private CropTrackerServer crops = new CropTrackerServer();
     private MineTrackerServer mines = new MineTrackerServer();
-    private HashMap<UUID, PlayerTrackerServer> players = new HashMap();
+    private HashMap<UUID, PlayerTrackerServer> players = new HashMap<UUID, PlayerTrackerServer>();
 
     public HFSavedData(String string) {
         super(string);
@@ -79,7 +79,9 @@ public class HFSavedData extends WorldSavedData {
         }
     }
 
-    /** CAN AND WILL RETURN NULL, IF THE UUID COULD NOT BE FOUND **/
+    /**
+     * CAN AND WILL RETURN NULL, IF THE UUID COULD NOT BE FOUND
+     **/
     public PlayerTrackerServer getPlayerData(UUID uuid) {
         if (players.containsKey(uuid)) {
             return players.get(uuid);

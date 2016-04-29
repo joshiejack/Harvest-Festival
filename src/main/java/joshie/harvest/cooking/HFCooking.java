@@ -3,10 +3,8 @@ package joshie.harvest.cooking;
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.cooking.entity.EntityCookingItem;
-import joshie.harvest.cooking.entity.RenderCookingItem;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -33,9 +31,9 @@ public class HFCooking {
             FluidRegistry.registerFluid(cookingMilk);
         }
     }
-    
+
     @SideOnly(Side.CLIENT)
     public static void initClient() {
-        RenderingRegistry.registerEntityRenderingHandler(EntityCookingItem.class, new RenderCookingItem());
+        //RenderingRegistry.registerEntityRenderingHandler(EntityCookingItem.class, new RenderCookingItem()); //TODO
     }
 }

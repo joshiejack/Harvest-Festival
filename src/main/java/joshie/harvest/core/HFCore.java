@@ -27,7 +27,6 @@ import joshie.harvest.quests.QuestEvents;
 import joshie.harvest.quests.QuestRegistry;
 import joshie.harvest.shops.ShopRegistry;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -45,7 +44,6 @@ public class HFCore {
         HFApi.RELATIONS = new RelationshipHelper();
 
         //Register Events
-        FMLCommonHandler.instance().bus().register(new EventsHandler());
         MinecraftForge.EVENT_BUS.register(new EventsHandler());
         MinecraftForge.EVENT_BUS.register(new AnimalEvents());
         MinecraftForge.EVENT_BUS.register(new GoddessHandler());

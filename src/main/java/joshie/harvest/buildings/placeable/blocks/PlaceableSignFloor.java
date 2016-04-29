@@ -1,12 +1,12 @@
 package joshie.harvest.buildings.placeable.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.util.math.BlockPos;
 
 public class PlaceableSignFloor extends PlaceableSignWall {
-    private String[] text;
 
-    public PlaceableSignFloor(Block block, int meta, int offsetX, int offsetY, int offsetZ, String[] text) {
-        super(block, meta, offsetX, offsetY, offsetZ, text);
+    public PlaceableSignFloor(Block block, int meta, BlockPos offsetPos, String[] text) {
+        super(block, meta, offsetPos, text);
     }
 
     @Override

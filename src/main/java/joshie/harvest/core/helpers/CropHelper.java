@@ -4,6 +4,7 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.ItemHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFarmland;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
@@ -13,27 +14,27 @@ import net.minecraftforge.common.IPlantable;
 
 public class CropHelper {
     //Converts the soil to hydrated soil
-    public static boolean hydrate(World world, int x, int y, int z) {
-        int meta = world.getBlockMetadata(x, y, z);
-        boolean ret = meta == 7 ? false : world.setBlockMetadataWithNotify(x, y, z, 7, 2);
+    public static boolean hydrate(World world, BlockPos pos) {
+        IBlockState state = world.getBlockState(pos);
+        int meta = state.getValue(BlockFarmland.MOISTURE);
+        boolean ret = meta != 7 && world.setBlockState(pos, state.withProperty(BlockFarmland.MOISTURE, 7), 2);
         if (ret) {
-            HFTrackers.getCropTracker().hydrate(world, x, y + 1, z);
+            HFTrackers.getCropTracker().hydrate(world, pos.up(), state);
         }
-
         return ret;
     }
 
     //Returns false if the soil is no longer farmland and should be converted to dirt
-    public static boolean dehydrate(World world, int x, int y, int z) {
-        Block crop = world.getBlock(x, y + 1, z);
-        Block farmland = world.getBlock(x, y, z);
-        int meta = world.getBlockMetadata(x, y, z);
+    public static boolean dehydrate(World world, BlockPos pos, IBlockState state) {
+        Block crop = world.getBlockState(pos.up()).getBlock();
+        Block farmland = state.getBlock();
+        int meta = state.getValue(BlockFarmland.MOISTURE);
         if (!(farmland instanceof BlockFarmland)) return true;
-        else if (crop instanceof IPlantable && farmland.canSustainPlant(world, x, y, z, EnumFacing.UP, (IPlantable) crop)) {
-            world.setBlockMetadataWithNotify(x, y, z, 0, 2);
+        else if (crop instanceof IPlantable && farmland.canSustainPlant(state, world, pos, EnumFacing.UP, (IPlantable) crop)) {
+            world.setBlockState(pos, state.withProperty(BlockFarmland.MOISTURE, 0), 2);
             return true;
         } else if (meta == 7) {
-            world.setBlockMetadataWithNotify(x, y, z, 0, 2);
+            world.setBlockState(pos, state.withProperty(BlockFarmland.MOISTURE, 0), 2);
             return true;
         } else {
             return false;
@@ -42,14 +43,15 @@ public class CropHelper {
 
     //Returns whether the farmland is hydrated
     public static boolean isHydrated(World world, BlockPos pos) {
-        return world.getBlockState(pos).getBlock() instanceof BlockFarmland && world.getBlockMetadata(x, y, z) == 7;
+        IBlockState state = world.getBlockState(pos);
+        return state.getBlock() instanceof BlockFarmland && state.getValue(BlockFarmland.MOISTURE) == 7;
     }
 
     //Harvests the crop at this location
-    public static boolean harvestCrop(EntityPlayer player, World world, int x, int y, int z) {
-        ItemStack stack = HFTrackers.getCropTracker().harvest(player, world, x, y, z);
+    public static boolean harvestCrop(EntityPlayer player, World world, BlockPos pos) {
+        ItemStack stack = HFTrackers.getCropTracker().harvest(player, world, pos);
         if (!world.isRemote && stack != null) {
-            ItemHelper.dropBlockAsItem(world, x, y, z, stack);
+            ItemHelper.dropBlockAsItem(world, pos.getX(), pos.getY(), pos.getZ(), stack);
         }
 
         return stack != null;

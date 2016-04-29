@@ -3,6 +3,7 @@ package joshie.harvest.crops;
 import joshie.harvest.api.WorldLocation;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -12,7 +13,7 @@ import net.minecraft.world.World;
 import java.util.HashMap;
 
 public class CropTracker {
-    protected HashMap<WorldLocation, ICropData> crops = new HashMap();
+    protected HashMap<WorldLocation, ICropData> crops = new HashMap<WorldLocation, ICropData>();
 
     protected WorldLocation getCropKey(World world, BlockPos pos) {
         return new WorldLocation(world.provider.getDimension(), pos);
@@ -59,7 +60,7 @@ public class CropTracker {
         crops.remove(data.getLocation());
     }
 
-    public void hydrate(World world, BlockPos pos) {}
+    public void hydrate(World world, BlockPos pos, IBlockState state) {}
 
     public void setWithered(ICropData data) {}
 

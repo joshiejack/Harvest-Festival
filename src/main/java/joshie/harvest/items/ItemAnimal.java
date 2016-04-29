@@ -6,8 +6,11 @@ import joshie.harvest.core.HFTab;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemAnimal extends ItemHFMeta {
     public static final int COW = 0;
@@ -15,7 +18,7 @@ public class ItemAnimal extends ItemHFMeta {
     public static final int CHICKEN = 2;
 
     public ItemAnimal() {
-        super(HFTab.tabFarming);
+        super(HFTab.FARMING);
     }
 
     public EntityAgeable getEntityFromMeta(World world, int meta) {
@@ -43,21 +46,15 @@ public class ItemAnimal extends ItemHFMeta {
         }
     }
 
-    @SideOnly(Side.CLIENT)
     @Override
-    public void registerIcons(IIconRegister register) {
-        return;
-    }
-
-    @Override
-    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int xCoord, int yCoord, int zCoord, int side, float hitX, float hitY, float hitZ) {
+    public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (!world.isRemote && stack.getItemDamage() < getMetaCount()) {
             EntityAgeable entity = getEntityFromMeta(world, stack.getItemDamage());
-            entity.setPosition(xCoord + 0.5, yCoord + 1, zCoord + 0.5);
+            entity.setPosition(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5);
             world.spawnEntityInWorld(entity);
         }
 
-        return false;
+        return EnumActionResult.FAIL;
     }
 
     @Override

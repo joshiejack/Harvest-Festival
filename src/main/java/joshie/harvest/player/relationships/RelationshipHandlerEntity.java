@@ -24,7 +24,6 @@ public class RelationshipHandlerEntity implements IRelatableDataHandler {
     }
 
     private int id;
-    private boolean displayParticles;
 
     @Override
     public void toBytes(IRelatable relatable, ByteBuf buf) {

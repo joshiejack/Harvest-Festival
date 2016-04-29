@@ -20,7 +20,7 @@ public class ItemBuilding extends ItemHFMeta implements ICreativeSorted {
         super(HFTab.TOWN);
         setTextureFolder(BUILDINGPATH);
     }
-    
+
     @Override
     public int getMetaCount() {
         return Building.buildings.size();
@@ -31,8 +31,9 @@ public class ItemBuilding extends ItemHFMeta implements ICreativeSorted {
         Building group = Building.buildings.get(stack.getItemDamage());
         IBlockState state = world.getBlockState(pos);
         if (group != null) {
-            //return group.generate(UUIDHelper.getPlayerUUID(player), world, pos, state); //TODO
-        } /*else*/ return EnumActionResult.PASS;
+            return group.generate(UUIDHelper.getPlayerUUID(player), world, pos, state);
+        }
+        return EnumActionResult.PASS;
     }
 
     @Override

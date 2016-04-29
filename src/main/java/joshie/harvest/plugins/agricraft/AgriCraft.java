@@ -10,17 +10,16 @@ import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import java.util.ArrayList;
 
 import static joshie.harvest.core.helpers.generic.ConfigHelper.getBoolean;
 
 public class AgriCraft extends Plugin {
-    public static ArrayList<AgriCraftCrop> cropsList = new ArrayList();
-    public static boolean DISABLE_TICKING;
+    private static ArrayList<AgriCraftCrop> cropsList = new ArrayList<AgriCraftCrop>();
+    private static boolean DISABLE_TICKING;
 
-    public static BlockCrop blockCrops;
+    private static BlockCrop blockCrops;
     public static Item crops;
 
     @Override
@@ -50,7 +49,7 @@ public class AgriCraft extends Plugin {
 
     @Override
     public void init() {
-        blockCrops = (BlockCrop) GameRegistry.findBlock("AgriCraft", "crops");
+        blockCrops = (BlockCrop) Block.REGISTRY.getObject(new ResourceLocation("AgriCraft", "crops"));
         crops = Item.REGISTRY.getObject(new ResourceLocation("AgriCraft", "cropsItem"));
 
         if (DISABLE_TICKING) {
@@ -64,12 +63,13 @@ public class AgriCraft extends Plugin {
     }
 
     @Override
-    public void postInit() {}
+    public void postInit() {
+    }
 
     private AgriCraftCrop addCrop(String unlocalized, int stages, int regrow, int color, Season... seasons) {
         //AgriCraftCrop crop = (AgriCraftCrop) HFApi.CROPS.registerCrop(new AgriCraftCrop(unlocalized, stages, regrow, color, seasons));
         //cropsList.add((AgriCraftCrop) crop);
         //return crop;
-    	return null;
+        return null;
     }
 }

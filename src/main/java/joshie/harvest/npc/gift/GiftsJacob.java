@@ -6,11 +6,11 @@ import net.minecraft.item.ItemStack;
 public class GiftsJacob extends Gifts {
     @Override
     public Quality getQuality(ItemStack stack) {
-        if (stack.getItem() == Items.fishing_rod) {
+        if (stack.getItem() == Items.FISHING_ROD) {
             return Quality.AWESOME;
         }
 
-        if (is(stack, Category.WATER)) {
+        if (is(stack, Category.WATERY)) {
             return Quality.GOOD;
         }
 

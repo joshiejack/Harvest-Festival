@@ -15,12 +15,12 @@ import java.util.HashSet;
 import java.util.Map;
 
 public class RelationshipDataServer extends RelationshipData {
-    private HashSet<IRelatable> talked = new HashSet();
-    private HashSet<IRelatable> gifted = new HashSet();
+    private HashSet<IRelatable> talked = new HashSet<IRelatable>();
+    private HashSet<IRelatable> gifted = new HashSet<IRelatable>();
 
     public void newDay() {
-        talked = new HashSet();
-        gifted = new HashSet();
+        talked = new HashSet<IRelatable>();
+        gifted = new HashSet<IRelatable>();
     }
 
     @Override
@@ -46,7 +46,7 @@ public class RelationshipDataServer extends RelationshipData {
         HFTrackers.markDirty();
         syncRelationship((EntityPlayerMP) player, relatable, newValue, true);
     }
-    
+
     public void sync(EntityPlayerMP player) {
         for (IRelatable relatable : marriedTo) {
             syncMarriage(player, relatable, true);
@@ -56,7 +56,7 @@ public class RelationshipDataServer extends RelationshipData {
             syncRelationship(player, relatable, relationships.get(relatable), false);
         }
     }
-    
+
     public void syncMarriage(EntityPlayerMP player, IRelatable relatable, boolean divorce) {
         PacketHandler.sendToClient(new PacketSyncMarriage(relatable, divorce), player);
     }

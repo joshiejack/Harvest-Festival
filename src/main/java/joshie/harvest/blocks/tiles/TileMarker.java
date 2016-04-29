@@ -26,7 +26,7 @@ public class TileMarker extends TileEntity {
     }
 
     @Override
-    public Packet getDescriptionPacket() {
+    public Packet<?> getDescriptionPacket() {
         return PacketHandler.getPacket(getPacket());
     }
 

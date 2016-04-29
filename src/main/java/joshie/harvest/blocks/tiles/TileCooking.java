@@ -151,7 +151,7 @@ public abstract class TileCooking extends TileEntity implements IFaceable, ITick
     }
 
     @Override
-    public Packet getDescriptionPacket() {
+    public Packet<?> getDescriptionPacket() {
         return PacketHandler.getPacket(getPacket());
     }
 

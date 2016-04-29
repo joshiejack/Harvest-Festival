@@ -4,7 +4,6 @@ import joshie.harvest.api.cooking.IUtensil;
 import joshie.harvest.blocks.BlockCookware;
 import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.cooking.Utensil;
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 
 public class TilePot extends TileCooking {
@@ -17,7 +16,7 @@ public class TilePot extends TileCooking {
     public boolean hasPrerequisites() {
         IBlockState state = worldObj.getBlockState(pos.down());
         int meta = state.getBlock().getMetaFromState(state);
-        if (state.getBlock() == HFBlocks.COOKWARE && meta == BlockCookware.Cookware.OVEN) {
+        if (state.getBlock() == HFBlocks.COOKWARE && meta == BlockCookware.Cookware.OVEN.ordinal()) {
             return true;
         } else return false;
     }

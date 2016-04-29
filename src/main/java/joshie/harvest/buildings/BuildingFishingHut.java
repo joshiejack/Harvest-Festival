@@ -12,6 +12,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
@@ -89,8 +91,8 @@ public class BuildingFishingHut extends Building {
         list.add(new PlaceableStairs(Blocks.DARK_OAK_STAIRS, 2, 5, 1, 0));
         list.add(new PlaceableLog(Blocks.LOG, 1, 5, 1, 1));
         list.add(new PlaceableVine(Blocks.VINE, 4, 5, 1, 2));
-        list.add(new PlaceableNPC("jacob", 5, 1, 3));
-        npc_offsets.put(TownData.JACOB, new PlaceableNPC("", 5, 1, 3));
+        list.add(new PlaceableNPC("jacob", new BlockPos(5, 1, 3)));
+        npc_offsets.put(TownData.JACOB, new PlaceableNPC("", new BlockPos(5, 1, 3)));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 5, 1, 3));
         list.add(new PlaceableFlowerPot(Blocks.FLOWER_POT, 6, 5, 1, 4));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 0, 5, 1, 5));
@@ -140,7 +142,7 @@ public class BuildingFishingHut extends Building {
         list.add(new PlaceableLever(Blocks.LEVER, 1, 4, 2, 4));
         list.add(new PlaceableBlock(Blocks.PLANKS, 1, 4, 2, 5));
         list.add(new PlaceableTorches(Blocks.TORCH, 4, 5, 2, 0));
-        list.add(new PlaceableItemFrame(new ItemStack(Blocks.TRAPDOOR, 1, 0), 0, 2, 5, 2, 0));
+        list.add(new PlaceableItemFrame(new ItemStack(Blocks.TRAPDOOR, 1, 0), 0, EnumFacing.NORTH, 5, 2, 0));
         list.add(new PlaceableLog(Blocks.LOG, 1, 5, 2, 1));
         list.add(new PlaceableVine(Blocks.VINE, 4, 5, 2, 2));
         list.add(new PlaceableVine(Blocks.VINE, 1, 5, 2, 4));
@@ -151,7 +153,7 @@ public class BuildingFishingHut extends Building {
         list.add(new PlaceableLog(Blocks.LOG, 1, 6, 2, 5));
         list.add(new PlaceableButton(Blocks.WOODEN_BUTTON, 3, 6, 2, 6));
         list.add(new PlaceableTorches(Blocks.TORCH, 4, 7, 2, 0));
-        list.add(new PlaceableItemFrame(new ItemStack(Blocks.TRAPDOOR, 1, 0), 0, 2, 7, 2, 0));
+        list.add(new PlaceableItemFrame(new ItemStack(Blocks.TRAPDOOR, 1, 0), 0, EnumFacing.NORTH, 7, 2, 0));
         list.add(new PlaceableLog(Blocks.LOG, 1, 7, 2, 1));
         list.add(new PlaceableLadder(Blocks.LADDER, 2, 7, 2, 4));
         list.add(new PlaceableBlock(Blocks.PLANKS, 1, 7, 2, 5));
@@ -160,7 +162,7 @@ public class BuildingFishingHut extends Building {
         list.add(new PlaceableBlock(Blocks.PLANKS, 1, 8, 2, 1));
         list.add(new PlaceableFlowerPot(Blocks.FLOWER_POT, 5, 8, 2, 2));
         list.add(new PlaceableBlock(Blocks.WOODEN_PRESSURE_PLATE, 0, 8, 2, 3));
-        list.add(new PlaceableChest(Blocks.CHEST, 4, 8, 2, 4, LootStrings.FISHING_CHEST));
+        list.add(new PlaceableChest(Blocks.CHEST, 4, new BlockPos(8, 2, 4), LootStrings.FISHING_CHEST));
         list.add(new PlaceableBlock(Blocks.PLANKS, 1, 8, 2, 5));
         list.add(new PlaceableVine(Blocks.VINE, 4, 8, 2, 6));
         list.add(new PlaceableButton(Blocks.WOODEN_BUTTON, 4, 9, 2, 0));
@@ -278,7 +280,7 @@ public class BuildingFishingHut extends Building {
         list.add(new PlaceableStairs(Blocks.DARK_OAK_STAIRS, 7, 4, 5, 1));
         list.add(new PlaceableTorches(Blocks.TORCH, 5, 4, 5, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 5, 3));
-        list.add(new PlaceablePainting("Bomb", 3, 4, 5, 3));
+        list.add(new PlaceablePainting("Bomb", EnumFacing.SOUTH, 4, 5, 3));
         list.add(new PlaceableFlowerPot(Blocks.FLOWER_POT, 7, 4, 5, 4));
         list.add(new PlaceableStairs(Blocks.DARK_OAK_STAIRS, 6, 4, 5, 5));
         list.add(new PlaceableStairs(Blocks.DARK_OAK_STAIRS, 3, 4, 5, 6));
@@ -300,7 +302,7 @@ public class BuildingFishingHut extends Building {
         list.add(new PlaceableStairs(Blocks.DARK_OAK_STAIRS, 7, 8, 5, 1));
         list.add(new PlaceableButton(Blocks.WOODEN_BUTTON, 2, 8, 5, 2));
         list.add(new PlaceableTorches(Blocks.TORCH, 2, 8, 5, 3));
-        list.add(new PlaceableItemFrame(new ItemStack(Blocks.TRAPDOOR, 1, 0), 0, 1, 8, 5, 3));
+        list.add(new PlaceableItemFrame(new ItemStack(Blocks.TRAPDOOR, 1, 0), 0, EnumFacing.UP, 8, 5, 3));
         list.add(new PlaceableButton(Blocks.WOODEN_BUTTON, 2, 8, 5, 4));
         list.add(new PlaceableStairs(Blocks.DARK_OAK_STAIRS, 6, 8, 5, 5));
         list.add(new PlaceableStairs(Blocks.DARK_OAK_STAIRS, 3, 8, 5, 6));
@@ -326,7 +328,7 @@ public class BuildingFishingHut extends Building {
         list.add(new PlaceableStairs(Blocks.DARK_OAK_STAIRS, 2, 4, 6, 1));
         list.add(new PlaceableStairs(Blocks.DARK_OAK_STAIRS, 7, 4, 6, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 6, 3));
-        list.add(new PlaceableItemFrame(new ItemStack(Items.FISH, 1, 1), 0, 3, 4, 6, 3, LootStrings.FISHING_FRAME));
+        list.add(new PlaceableItemFrame(new ItemStack(Items.FISH, 1, 1), 0, EnumFacing.SOUTH, 4, 6, 3, LootStrings.FISHING_FRAME));
         list.add(new PlaceableStairs(Blocks.DARK_OAK_STAIRS, 6, 4, 6, 4));
         list.add(new PlaceableStairs(Blocks.DARK_OAK_STAIRS, 3, 4, 6, 5));
         list.add(new PlaceableStairs(Blocks.DARK_OAK_STAIRS, 2, 5, 6, 1));
@@ -375,26 +377,26 @@ public class BuildingFishingHut extends Building {
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 5, 0, 8, 3));
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 5, 12, 8, 3));
     }
-    
+
     @Override
     public long getCost() {
         return 6000L;
     }
-    
+
     @Override
     public int getWoodCount() {
         return 96;
     }
-    
+
     @Override
     public int getStoneCount() {
         return 0;
     }
-    
+
     @Override
     public boolean canBuy(World world, EntityPlayer player) {
         return HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.miningHill) &&
-                HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.miningHut) && 
+                HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.miningHut) &&
                 HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.goddessPond);
     }
 }

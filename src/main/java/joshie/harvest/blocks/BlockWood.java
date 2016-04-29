@@ -7,6 +7,7 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.DirectionHelper;
 import joshie.harvest.core.util.base.BlockHFBaseMeta;
 import joshie.harvest.core.util.generic.IFaceable;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -37,6 +38,7 @@ public class BlockWood extends BlockHFBaseMeta<Woodware> {
     public BlockWood() {
         super(Material.WOOD, Woodware.class);
         setHardness(1.5F);
+        setSoundType(SoundType.WOOD);
     }
 
     @Override
@@ -92,15 +94,15 @@ public class BlockWood extends BlockHFBaseMeta<Woodware> {
 
         if (wood == SHIPPING || wood == SHIPPING_2) {
             if (facing == EnumFacing.WEST || facing == EnumFacing.EAST) {
-                world.setBlockMetadataWithNotify(pos, SHIPPING, 2);
+                world.setBlockState(pos, getStateFromEnum(SHIPPING), 2);
             } else if (facing == EnumFacing.NORTH || facing == EnumFacing.SOUTH) {
-                world.setBlockMetadataWithNotify(pos, SHIPPING_2, 2);
+                world.setBlockState(pos, getStateFromEnum(SHIPPING_2), 2);
             }
         } else if (wood == TROUGH || wood == TROUGH_2) {
             if (facing == EnumFacing.WEST || facing == EnumFacing.EAST) {
-                world.setBlockMetadataWithNotify(pos, TROUGH_2, 2);
+                world.setBlockState(pos, getStateFromEnum(TROUGH_2));
             } else if (facing == EnumFacing.NORTH || facing == EnumFacing.SOUTH) {
-                world.setBlockMetadataWithNotify(pos, TROUGH, 2);
+                world.setBlockState(pos, getStateFromEnum(TROUGH));
             }
         }
     }
@@ -108,23 +110,18 @@ public class BlockWood extends BlockHFBaseMeta<Woodware> {
     @Override
     public int damageDropped(IBlockState state) {
         Woodware wood = getEnumFromState(state);
-        if (wood == SHIPPING_2) return SHIPPING;
-        else if (wood == TROUGH_2) return TROUGH;
+        if (wood == SHIPPING_2) return SHIPPING.ordinal();
+        else if (wood == TROUGH_2) return TROUGH.ordinal();
         else return super.damageDropped(state);
     }
 
     @Override
-    public boolean isValidTab(CreativeTabs tab, E e) {
+    public boolean isValidTab(CreativeTabs tab, Woodware wood) {
         return tab == HFTab.FARMING;
     }
 
     @Override
-    public boolean isActive(int meta) {
-        return meta != TROUGH_2 && meta != SHIPPING_2;
-    }
-
-    @Override
-    public int getMetaCount() {
-        return 5;
+    public boolean isActive(Woodware wood) {
+        return wood != TROUGH_2 && wood != SHIPPING_2;
     }
 }

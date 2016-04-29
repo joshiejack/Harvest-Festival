@@ -10,6 +10,7 @@ import joshie.harvest.core.helpers.generic.DirectionHelper;
 import joshie.harvest.core.helpers.generic.ItemHelper;
 import joshie.harvest.core.util.base.BlockHFBaseMeta;
 import joshie.harvest.core.util.generic.IFaceable;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -40,6 +41,7 @@ public class BlockCookware extends BlockHFBaseMeta<Cookware> {
     public BlockCookware() {
         super(Material.PISTON, HFTab.COOKING, Cookware.class);
         setHardness(2.5F);
+        setSoundType(SoundType.METAL);
     }
 
     @Override

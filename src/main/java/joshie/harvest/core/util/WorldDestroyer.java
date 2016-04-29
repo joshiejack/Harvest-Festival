@@ -14,7 +14,7 @@ public class WorldDestroyer {
         try {
             Field f = DimensionManager.class.getDeclaredField("providers");
             f.setAccessible(true); // let it throw NPE if the field isn't found
-            Hashtable<Integer,Class<? extends WorldProvider>> providers = (Hashtable<Integer, Class<? extends WorldProvider>>) f.get(null);
+            Hashtable<Integer, Class<? extends WorldProvider>> providers = (Hashtable<Integer, Class<? extends WorldProvider>>) f.get(null);
             providers.put(0, WeatherProvider.class);
             f.set(null, providers);
         } catch (Exception e) {

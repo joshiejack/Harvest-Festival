@@ -15,10 +15,9 @@ import java.util.List;
 
 public class FoodRegistry implements IFoodRegistry {
     private static final Multimap<SafeStack, ICookingComponent> registry = ArrayListMultimap.create();
-    private static final ArrayList<IMealRecipe> recipes = new ArrayList(250);
-    private static final HashMap<String, ICookingComponent> components = new HashMap();
-    private static final HashSet<ISpecialRecipeHandler> specials = new HashSet();
-    private static final HashSet meals = new HashSet();
+    private static final ArrayList<IMealRecipe> recipes = new ArrayList<IMealRecipe>(250);
+    private static final HashMap<String, ICookingComponent> components = new HashMap<String, ICookingComponent>();
+    private static final HashSet<ISpecialRecipeHandler> specials = new HashSet<ISpecialRecipeHandler>();
 
     @Override
     public void register(ItemStack stack, ICookingComponent component) {
@@ -115,7 +114,7 @@ public class FoodRegistry implements IFoodRegistry {
         }
                 
         //Convert all the stacks in to their relevant ingredients
-        HashSet<ICookingComponent> components = new HashSet();
+        HashSet<ICookingComponent> components = new HashSet<ICookingComponent>();
         for (ItemStack stack : ingredients) {
             components.addAll(getCookingComponents(stack));
         }

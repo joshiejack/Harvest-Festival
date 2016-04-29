@@ -6,6 +6,7 @@ import joshie.harvest.npc.entity.EntityNPC.Mode;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLivingBase;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySkullRenderer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Items;
@@ -24,19 +25,14 @@ import java.util.UUID;
 
 @SideOnly(Side.CLIENT)
 public class RenderNPC extends RenderLivingBase<EntityNPC> {
-    private static final ResourceLocation steveTextures = new ResourceLocation("textures/entity/steve.png");
     public ModelNPC modelBipedMain;
 
-    public RenderNPC() {
-        super(new ModelNPC(), 0.5F);
+    public RenderNPC(RenderManager renderManager) {
+        super(renderManager, new ModelNPC(), 0.5F);
         this.modelBipedMain = (ModelNPC) this.mainModel;
     }
 
     @Override
-    protected void renderEquippedItems(EntityNPC npc, float pitch) {
-        renderEquippedItems((EntityNPC) npc, pitch);
-    }
-
     private void renderEquippedItems(EntityNPC npc, float pitch) {
         GL11.glColor3f(1.0F, 1.0F, 1.0F);
         super.renderEquippedItems(npc, pitch);

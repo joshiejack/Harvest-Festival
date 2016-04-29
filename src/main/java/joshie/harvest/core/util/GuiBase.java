@@ -1,6 +1,7 @@
 package joshie.harvest.core.util;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
@@ -77,21 +78,21 @@ public abstract class GuiBase extends GuiContainer {
         return;
     }
     
-    public void addTooltip(List list) {
+    public void addTooltip(List<String> list) {
         tooltip.addAll(list);
     }
     
-    private void drawTooltip(List list, int x, int y) {
+    private void drawTooltip(List<String> list, int x, int y) {
         if (!list.isEmpty()) {
-            GL11.glDisable(GL12.GL_RESCALE_NORMAL);
+            GlStateManager.disableRescaleNormal();
             RenderHelper.disableStandardItemLighting();
-            GL11.glDisable(GL11.GL_LIGHTING);
-            GL11.glDisable(GL11.GL_DEPTH_TEST);
+            GlStateManager.disableLighting();
+            GlStateManager.disableDepth();
             int k = 0;
-            Iterator iterator = list.iterator();
+            Iterator<String> iterator = list.iterator();
 
             while (iterator.hasNext()) {
-                String s = (String) iterator.next();
+                String s = iterator.next();
                 int l = fontRendererObj.getStringWidth(s);
 
                 if (l > k) {

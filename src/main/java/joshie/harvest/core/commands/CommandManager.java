@@ -2,10 +2,7 @@ package joshie.harvest.core.commands;
 
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.lib.HFModInfo;
-import net.minecraft.command.CommandBase;
-import net.minecraft.command.CommandNotFoundException;
-import net.minecraft.command.ICommand;
-import net.minecraft.command.ICommandSender;
+import net.minecraft.command.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
@@ -34,11 +31,11 @@ public class CommandManager extends CommandBase implements ICommand {
         return commands.get(name);
     }
 
-    public Map getCommands() {
+    public Map<String, HFCommandBase> getCommands() {
         return commands;
     }
 
-    public List getPossibleCommands(ICommandSender sender) {
+    public List<HFCommandBase> getPossibleCommands(ICommandSender sender) {
         ArrayList<HFCommandBase> list = new ArrayList<HFCommandBase>();
         for (HFCommandBase command : commands.values()) {
             if (sender.canCommandSenderUseCommand(command.getPermissionLevel().ordinal(), command.getCommandName())) {
@@ -65,7 +62,7 @@ public class CommandManager extends CommandBase implements ICommand {
     }
 
     @SubscribeEvent
-    public void onCommandSend(CommandEvent event) throws CommandNotFoundException {
+    public void onCommandSend(CommandEvent event) throws CommandNotFoundException, NumberInvalidException {
         if (event.getCommand() == this && event.getParameters().length > 0) {
             if (getWorld(event.getSender()).isRemote) event.setCanceled(true);
             else {
@@ -81,7 +78,7 @@ public class CommandManager extends CommandBase implements ICommand {
     }
 
     //Attempt to process the command, throw wrong usage otherwise
-    private void processCommand(CommandEvent event, HFCommandBase command) throws CommandNotFoundException {
+    private void processCommand(CommandEvent event, HFCommandBase command) throws CommandNotFoundException, NumberInvalidException {
         String[] args = new String[event.getParameters().length - 1];
         System.arraycopy(event.getParameters(), 1, args, 0, args.length);
         if (!command.execute(FMLCommonHandler.instance().getMinecraftServerInstance(), event.getSender(), args)) {

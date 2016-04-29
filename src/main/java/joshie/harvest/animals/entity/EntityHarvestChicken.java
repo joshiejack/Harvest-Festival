@@ -12,6 +12,7 @@ import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
 public class EntityHarvestChicken extends EntityChicken implements IAnimalTracked {
@@ -29,7 +30,7 @@ public class EntityHarvestChicken extends EntityChicken implements IAnimalTracke
     public IRelatableDataHandler getDataHandler() {
         return RelationshipHelper.getHandler("entity");
     }
-    
+
     @Override
     public IRelatable getRelatable() {
         return this;
@@ -46,7 +47,7 @@ public class EntityHarvestChicken extends EntityChicken implements IAnimalTracke
     }
 
     @Override
-    public boolean interact(EntityPlayer player) {
+    public boolean processInteract(EntityPlayer player, EnumHand hand, ItemStack stack) {
         ItemStack held = player.getActiveItemStack();
         if (held != null) {
             if (HFApi.ANIMALS.canEat(type.getFoodTypes(), held)) {
@@ -60,7 +61,7 @@ public class EntityHarvestChicken extends EntityChicken implements IAnimalTracke
             return false;
         }
 
-        mountEntity(player);
+        startRiding(player);
         return true;
     }
 

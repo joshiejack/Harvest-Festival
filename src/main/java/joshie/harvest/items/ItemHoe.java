@@ -2,10 +2,14 @@ package joshie.harvest.items;
 
 import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.core.helpers.PlayerHelper;
+import joshie.harvest.core.helpers.generic.DirectionHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.*;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class ItemHoe extends ItemBaseTool {
@@ -54,39 +58,38 @@ public class ItemHoe extends ItemBaseTool {
     }
 
     @Override
-    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
-        if (!player.canPlayerEdit(x, y, z, side, stack)) return false;
+    public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        if (!player.canPlayerEdit(pos.offset(facing), facing, stack)) return EnumActionResult.FAIL;
         else {
-            ForgeDirection front = joshie.harvest.core.helpers.generic.DirectionHelper.getFacingFromEntity(player);
-            Block initial = world.getBlock(x, y, z);
-            if (!(world.getBlock(x, y + 1, z).isAir(world, x, y + 1, z) && (initial == Blocks.GRASS || initial == Blocks.DIRT || initial == HFBlocks.DIRT))) {
-                return false;
+            EnumFacing front = DirectionHelper.getFacingFromEntity(player);
+            Block initial = world.getBlockState(pos).getBlock();
+            if (!(world.isAirBlock(pos.up()) && (initial == Blocks.GRASS || initial == Blocks.DIRT || initial == HFBlocks.DIRT))) {
+                return EnumActionResult.FAIL;
             }
 
-            //Facing North, We Want East and West to be 1, left * this.left
-            boolean changed = false;
-            for (int x2 = getXMinus(stack, front, x); x2 <= getXPlus(stack, front, x); x2++) {
-                for (int z2 = getZMinus(stack, front, z); z2 <= getZPlus(stack, front, z); z2++) {
-                    Block block = world.getBlock(x2, y, z2);
-                    if (world.getBlock(x, y + 1, z).isAir(world, x, y + 1, z)) {
-                        changed = true;
+            //Facing North, We Want East and West to be 1, left * this.left //TODO Move properly to 1.9
+            EnumActionResult changed = EnumActionResult.FAIL;
+            for (int x2 = getXMinus(stack, front, pos.getX()); x2 <= getXPlus(stack, front, pos.getX()); x2++) {
+                for (int z2 = getZMinus(stack, front, pos.getZ()); z2 <= getZPlus(stack, front, pos.getZ()); z2++) {
+                    Block block = world.getBlockState(new BlockPos(x2, pos.getY(), z2)).getBlock();
+                    if (world.isAirBlock(pos.up())) {
+                        changed = EnumActionResult.SUCCESS;
                         if ((block == Blocks.GRASS || block == Blocks.DIRT)) {
-                            doParticles(stack, player, world, x2, y, z2);
+                            doParticles(stack, player, world, new BlockPos(x2, pos.getY(), z2));
                             if (!world.isRemote) {
-                                world.setBlock(x2, y, z2, Blocks.farmland);
+                                world.setBlockState(new BlockPos(x2, pos.getY(), z2), Blocks.FARMLAND.getDefaultState());
                             }
                         }
                     }
                 }
             }
-
             return changed;
         }
     }
 
-    private void doParticles(ItemStack stack, EntityPlayer player, World world, int x, int y, int z) {
-        displayParticle(world, x, y, z, "blockcrack_3_0");
-        playSound(world, x, y, z, Blocks.farmland.stepSound.getStepResourcePath());
+    private void doParticles(ItemStack stack, EntityPlayer player, World world, BlockPos pos) {
+        displayParticle(world, pos, EnumParticleTypes.BLOCK_CRACK);
+        playSound(world, pos, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS);
         PlayerHelper.performTask(player, stack, getExhaustionRate(stack));
     }
 }

@@ -7,6 +7,7 @@ import joshie.harvest.core.util.Translate;
 import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
 
+import java.io.IOException;
 import java.util.Arrays;
 
 /** Renders a selection menu gui **/
@@ -73,7 +74,7 @@ public class GuiNPCSelect extends GuiNPCBase {
     }
 
     @Override
-    public void keyTyped(char character, int key) {
+    public void keyTyped(char character, int key) throws IOException {
         super.keyTyped(character, key);
 
         //W or Up

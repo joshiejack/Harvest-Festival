@@ -21,10 +21,10 @@ public class PacketDismount implements IMessage, IMessageHandler<PacketDismount,
     public IMessage onMessage(PacketDismount message, MessageContext ctx) {
         EntityPlayerMP player = ctx.getServerHandler().playerEntity;
         EntityAnimal entity = (EntityAnimal) player.getRidingEntity();
-        entity.mountEntity(null);
+        entity.startRiding(null);
         entity.rotationPitch = player.rotationPitch;
         entity.rotationYaw = player.rotationYaw;
-        entity.moveFlying(0F, 1.0F, 1.25F);
+        entity.moveRelative(0F, 1.0F, 1.25F);
         ((IAnimalTracked) entity).getData().dismount(player);
         return null;
     }

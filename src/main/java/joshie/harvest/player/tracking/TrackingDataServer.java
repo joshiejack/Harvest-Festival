@@ -16,21 +16,21 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class TrackingDataServer extends TrackingData {
-    private ArrayList<SellStack> toBeShipped = new ArrayList(); //What needs to be sold
+    private ArrayList<SellStack> toBeShipped = new ArrayList<SellStack>(); //What needs to be sold
 
     //TODO: Sync Stats for reading in a gui
     public void sync(EntityPlayerMP player) {
         // TODO Auto-generated method stub
-        
+
     }
-    
+
     public void onHarvested(ICropData data) {
         cropTracker.put(data, cropTracker.get(data) != null ? cropTracker.get(data) + 1 : 0);
 
         HFTrackers.markDirty();
     }
 
-    public void addSold(SellStack stack) {
+    private void addSold(SellStack stack) {
         if (sellTracker.contains(stack)) {
             for (SellStack safe : sellTracker) {
                 if (safe.equals(stack)) {
@@ -40,7 +40,7 @@ public class TrackingDataServer extends TrackingData {
         } else {
             sellTracker.add(stack);
         }
-        
+
         HFTrackers.markDirty();
     }
 
@@ -60,7 +60,7 @@ public class TrackingDataServer extends TrackingData {
         } else {
             toBeShipped.add(check);
         }
-        
+
         HFTrackers.markDirty();
         return sell >= 0;
     }

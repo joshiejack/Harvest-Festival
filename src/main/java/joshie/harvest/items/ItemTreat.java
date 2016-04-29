@@ -7,6 +7,7 @@ import joshie.harvest.api.core.ICreativeSorted;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumHand;
 
 public class ItemTreat extends ItemHFMeta implements ICreativeSorted {
     public static final int COW = 0;
@@ -40,10 +41,10 @@ public class ItemTreat extends ItemHFMeta implements ICreativeSorted {
     }
 
     @Override
-    public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer player, EntityLivingBase living) {
-        if (living instanceof IAnimalTracked) {
-            if (!living.worldObj.isRemote) {
-                if (((IAnimalTracked) living).getData().treat(stack, player)) {
+    public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer player, EntityLivingBase target, EnumHand hand) {
+        if (target instanceof IAnimalTracked) {
+            if (!target.worldObj.isRemote) {
+                if (((IAnimalTracked) target).getData().treat(stack, player)) {
                     stack.stackSize--;
                 }
             }

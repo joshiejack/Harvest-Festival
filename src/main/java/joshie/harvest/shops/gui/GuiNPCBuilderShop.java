@@ -43,7 +43,6 @@ public class GuiNPCBuilderShop extends GuiNPCShop {
             ItemStack display = purchaseable.getDisplayStack();
             long cost = purchaseable.getCost();
             mc.renderEngine.bindTexture(shelve_texture);
-            int y37 = y + 37;
 
             int posY = 41;
 
@@ -99,7 +98,7 @@ public class GuiNPCBuilderShop extends GuiNPCShop {
             PurchaseableBuilding purchaseable = (PurchaseableBuilding) contents.get(i);
             if (purchaseable.canBuy(player.worldObj, player)) {
                 long cost = purchaseable.getCost();
-                if (HFTrackers.getClientPlayerTracker().getStats().getGold() - purchaseable.getCost() >= 0) {
+                if (HFTrackers.getClientPlayerTracker().getStats().getGold() - cost >= 0) {
                     if (mouseY >= 61 + (index * 34) && mouseY <= 93 + (index * 34) && mouseX >= 190 && mouseX <= 222) {
                         PacketHandler.sendToServer(new PacketPurchaseItem(purchaseable));
                     }

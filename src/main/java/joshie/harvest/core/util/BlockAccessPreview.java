@@ -7,8 +7,8 @@ import joshie.harvest.core.helpers.generic.MCClientHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -16,7 +16,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 import java.util.HashMap;
 
 public class BlockAccessPreview implements IBlockAccess {
-    private HashMap<PlaceableBlock, PlaceableBlock> blocks = new HashMap();
+    private HashMap<PlaceableBlock, PlaceableBlock> blocks = new HashMap<PlaceableBlock, PlaceableBlock>();
     private int previewX, previewY, previewZ; //The world location of the BASE BLOCK
     private boolean n1, n2, swap; //Which direction is this building facing?
     private Building building;
@@ -56,7 +56,6 @@ public class BlockAccessPreview implements IBlockAccess {
         return 255;
     }
 
-    @SuppressWarnings("null")
     @Override
     public IBlockState getBlockState(BlockPos pos) {
         //This is calling for a blocks metadata at a certain world position
@@ -87,7 +86,7 @@ public class BlockAccessPreview implements IBlockAccess {
             }
         }
 
-        PlaceableBlock block = blocks.get(new PlaceableBlock(trueX, trueY, trueZ));
+        PlaceableBlock block = blocks.get(new PlaceableBlock(new BlockPos(trueX, trueY, trueZ)));
         return block == null ? Blocks.STONE.getDefaultState() : block.getBlockState(n1, n2, swap);
     }
 

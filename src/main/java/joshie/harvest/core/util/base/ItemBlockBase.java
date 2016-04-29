@@ -16,11 +16,6 @@ public abstract class ItemBlockBase extends ItemBlock implements IHasMetaItem {
     }
 
     @Override
-    public int getMetadata(int meta) {
-        return meta;
-    }
-
-    @Override
     public CreativeTabs[] getCreativeTabs() {
         return new CreativeTabs[]{HFTab.FARMING, HFTab.COOKING, HFTab.MINING, HFTab.TOWN};
     }

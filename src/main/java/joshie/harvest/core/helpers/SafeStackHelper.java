@@ -1,6 +1,8 @@
 package joshie.harvest.core.helpers;
 
 import com.google.common.collect.Multimap;
+import joshie.harvest.api.animals.AnimalFoodType;
+import joshie.harvest.api.cooking.ICookingComponent;
 import joshie.harvest.api.cooking.IMealProvider;
 import joshie.harvest.api.core.ISizedProvider;
 import joshie.harvest.api.crops.ICropProvider;
@@ -26,15 +28,15 @@ public class SafeStackHelper {
         } else return new SafeStack(stack);
     }
 
-    public static Collection<ItemStack> getResult(ItemStack stack, Multimap<SafeStack, ItemStack> map) {
-        Collection<ItemStack> list = map.get(new SafeStack(stack));
+    public static Collection<ICookingComponent> getResult(ItemStack stack, Multimap<SafeStack, ICookingComponent> map) {
+        Collection<ICookingComponent> list = map.get(new SafeStack(stack));
         if (list.size() < 1) list = map.get(new MealStack(stack));
         if (list.size() < 1) list = map.get(new WildStack(stack));
         if (list.size() < 1) list = map.get(new HFStack(stack));
         return list;
     }
 
-    public static Object getResult(ItemStack stack, HashMap map) {
+    public static Object getResult(ItemStack stack, HashMap<SafeStack, AnimalFoodType> map) {
         Object result = map.get(new SafeStack(stack));
         if (result == null) result = map.get(new MealStack(stack));
         if (result == null) result = map.get(new WildStack(stack));

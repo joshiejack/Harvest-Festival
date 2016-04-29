@@ -52,9 +52,9 @@ public class RenderHandler {
             GlStateManager.pushMatrix();
             GL11.glPushAttrib(1048575);
             GL11.glDisable(2896);
-            List slots = mc.thePlayer.openContainer.inventorySlots;
+            List<Slot> slots = mc.thePlayer.openContainer.inventorySlots;
             for (int o = 0; o < slots.size(); o++) {
-                Slot slot = (Slot) slots.get(o);
+                Slot slot = slots.get(o);
                 if (mouse.x >= slot.xDisplayPosition - 1 && mouse.x <= slot.xDisplayPosition + 16 && mouse.y >= slot.yDisplayPosition - 1 && mouse.y <= slot.yDisplayPosition + 16) {
                     //Mouse is hovering over this slot
                     ItemStack stack = slot.getStack();

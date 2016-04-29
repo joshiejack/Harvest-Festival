@@ -16,8 +16,7 @@ public class TileMixer extends TileCooking {
     public boolean hasPrerequisites() {
         IBlockState state = worldObj.getBlockState(pos.down());
         int meta = state.getBlock().getMetaFromState(state);
-        BlockCookware.Cookware cookware = getEnumFromState(state);
-        if (state.getBlock() == HFBlocks.COOKWARE && meta == BlockCookware.Cookware.COUNTER) {
+        if (state.getBlock() == HFBlocks.COOKWARE && meta == BlockCookware.Cookware.COUNTER.ordinal()) {
             return true;
         } else return false;
     }

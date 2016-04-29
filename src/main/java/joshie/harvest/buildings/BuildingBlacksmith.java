@@ -11,6 +11,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
@@ -18,7 +20,7 @@ import java.util.ArrayList;
 public class BuildingBlacksmith extends Building {
     public BuildingBlacksmith() {
         super("blacksmith");
-        offsetY = - 2;
+        offsetY = -2;
         list = new ArrayList<Placeable>(386);
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 2, 0, 10));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 5, 0, 10));
@@ -100,8 +102,8 @@ public class BuildingBlacksmith extends Building {
         list.add(new PlaceableStairs(Blocks.STONE_BRICK_STAIRS, 2, 3, 2, 1));
         list.add(new PlaceableStairs(Blocks.SPRUCE_STAIRS, 1, 3, 2, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 2, 3));
-        list.add(new PlaceableItemFrame(null, 0, 0, 3, 2, 3));
-        npc_offsets.put(TownData.BLACKSMITH_FRONT, new PlaceableNPC("", 3, 2, 4));
+        list.add(new PlaceableItemFrame(null, 0, EnumFacing.DOWN, 3, 2, 3));
+        npc_offsets.put(TownData.BLACKSMITH_FRONT, new PlaceableNPC("", new BlockPos(3, 2, 4)));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 2, 4));
         list.add(new PlaceableStairs(Blocks.DARK_OAK_STAIRS, 5, 3, 2, 5));
         list.add(new PlaceableTrapDoor(Blocks.TRAPDOOR, 15, 3, 2, 6));
@@ -114,8 +116,8 @@ public class BuildingBlacksmith extends Building {
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 4, 2, 2));
         list.add(new PlaceableTrapDoor(Blocks.TRAPDOOR, 14, 4, 2, 6));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 2, 7));
-        list.add(new PlaceableNPC("daniel", 4, 2, 8));
-        npc_offsets.put(TownData.DANIEL, new PlaceableNPC("", 4, 2, 8));
+        list.add(new PlaceableNPC("daniel", new BlockPos(4, 2, 8)));
+        npc_offsets.put(TownData.DANIEL, new PlaceableNPC("", new BlockPos(4, 2, 8)));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 2, 8));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 2, 9));
         list.add(new PlaceableFurnace(Blocks.LIT_FURNACE, 2, 4, 2, 10));
@@ -128,7 +130,7 @@ public class BuildingBlacksmith extends Building {
         list.add(new PlaceableBlock(Blocks.DOUBLE_STONE_SLAB, 0, 5, 2, 5));
         list.add(new PlaceableStairs(Blocks.STONE_BRICK_STAIRS, 1, 5, 2, 6));
         list.add(new PlaceableStairs(Blocks.STONE_BRICK_STAIRS, 0, 5, 2, 7));
-        list.add(new PlaceableChest(Blocks.CHEST, 4, 5, 2, 8, LootStrings.BLACKSMITH_CHEST));
+        list.add(new PlaceableChest(Blocks.CHEST, 4, new BlockPos(5, 2, 8), LootStrings.BLACKSMITH_CHEST));
         list.add(new PlaceableBlock(Blocks.COBBLESTONE_WALL, 0, 5, 2, 9));
         list.add(new PlaceableStairs(Blocks.STONE_BRICK_STAIRS, 3, 5, 2, 11));
         list.add(new PlaceableBlock(Blocks.COBBLESTONE_WALL, 0, 6, 2, 1));
@@ -165,7 +167,7 @@ public class BuildingBlacksmith extends Building {
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 3, 8));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 3, 9));
         list.add(new PlaceableButton(Blocks.WOODEN_BUTTON, 1, 3, 3, 10));
-        list.add(new PlaceableItemFrame(new ItemStack(Items.IRON_SWORD, 1, 0), 0, 2, 3, 3, 10, LootStrings.BLACKSMITH_FRAME));
+        list.add(new PlaceableItemFrame(new ItemStack(Items.IRON_SWORD, 1, 0), 0, EnumFacing.NORTH, 3, 3, 10, LootStrings.BLACKSMITH_FRAME));
         list.add(new PlaceableStairs(Blocks.STONE_BRICK_STAIRS, 1, 3, 3, 11));
         list.add(new PlaceableStairs(Blocks.STONE_BRICK_STAIRS, 0, 4, 3, 1));
         list.add(new PlaceableBlock(Blocks.CARPET, 12, 4, 3, 2));
@@ -174,7 +176,7 @@ public class BuildingBlacksmith extends Building {
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 3, 8));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 3, 9));
         list.add(new PlaceableButton(Blocks.WOODEN_BUTTON, 2, 4, 3, 10));
-        list.add(new PlaceableItemFrame(new ItemStack(Items.IRON_SWORD, 1, 0), 0, 2, 4, 3, 10, LootStrings.BLACKSMITH_FRAME));
+        list.add(new PlaceableItemFrame(new ItemStack(Items.IRON_SWORD, 1, 0), 0, EnumFacing.NORTH, 4, 3, 10, LootStrings.BLACKSMITH_FRAME));
         list.add(new PlaceableStairs(Blocks.STONE_BRICK_STAIRS, 0, 4, 3, 11));
         list.add(new PlaceableBlock(Blocks.COBBLESTONE_WALL, 0, 5, 3, 0));
         list.add(new PlaceableBlock(Blocks.DOUBLE_STONE_SLAB, 0, 5, 3, 1));
@@ -216,10 +218,10 @@ public class BuildingBlacksmith extends Building {
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 2, 2, 4, 10));
         list.add(new PlaceableStairs(Blocks.STONE_BRICK_STAIRS, 5, 3, 4, 1));
         list.add(new PlaceableTorches(Blocks.TORCH, 4, 3, 4, 5));
-        list.add(new PlaceableItemFrame(new ItemStack(Blocks.TRAPDOOR, 1, 0), 0, 2, 3, 4, 5));
+        list.add(new PlaceableItemFrame(new ItemStack(Blocks.TRAPDOOR, 1, 0), 0, EnumFacing.NORTH, 3, 4, 5));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 3, 4, 6));
         list.add(new PlaceableTorches(Blocks.TORCH, 3, 3, 4, 7));
-        list.add(new PlaceableItemFrame(new ItemStack(Blocks.TRAPDOOR, 1, 0), 0, 0, 3, 4, 7));
+        list.add(new PlaceableItemFrame(new ItemStack(Blocks.TRAPDOOR, 1, 0), 0, EnumFacing.DOWN, 3, 4, 7));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 4, 8));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 4, 9));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 4, 10));
@@ -227,10 +229,10 @@ public class BuildingBlacksmith extends Building {
         list.add(new PlaceableStairs(Blocks.STONE_BRICK_STAIRS, 4, 4, 4, 1));
         list.add(new PlaceableButton(Blocks.WOODEN_BUTTON, 2, 4, 4, 3));
         list.add(new PlaceableTorches(Blocks.TORCH, 4, 4, 4, 5));
-        list.add(new PlaceableItemFrame(new ItemStack(Blocks.TRAPDOOR, 1, 0), 0, 2, 4, 4, 5));
+        list.add(new PlaceableItemFrame(new ItemStack(Blocks.TRAPDOOR, 1, 0), 0, EnumFacing.NORTH, 4, 4, 5));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 1, 4, 4, 6));
         list.add(new PlaceableTorches(Blocks.TORCH, 3, 4, 4, 7));
-        list.add(new PlaceableItemFrame(new ItemStack(Blocks.TRAPDOOR, 1, 0), 0, 0, 4, 4, 7));
+        list.add(new PlaceableItemFrame(new ItemStack(Blocks.TRAPDOOR, 1, 0), 0, EnumFacing.DOWN, 4, 4, 7));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 4, 8));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 4, 9));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 4, 10));
@@ -419,22 +421,22 @@ public class BuildingBlacksmith extends Building {
         list.add(new PlaceableBlock(Blocks.STONE_SLAB, 0, 4, 9, 8));
         list.add(new PlaceableBlock(Blocks.STONE_SLAB, 0, 4, 9, 9));
     }
-    
+
     @Override
     public long getCost() {
         return 3500L;
     }
-    
+
     @Override
     public int getWoodCount() {
         return 32;
     }
-    
+
     @Override
     public int getStoneCount() {
         return 244;
     }
-    
+
     @Override
     public boolean canBuy(World world, EntityPlayer player) {
         return HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.supermarket);

@@ -21,7 +21,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 
 public class EntityHarvestCow extends EntityCow implements IAnimalTracked, IEntityAdditionalSpawnData, IMilkable {
-    private IRelatableDataHandler handler;
     private IAnimalData data;
     private IAnimalType type;
 

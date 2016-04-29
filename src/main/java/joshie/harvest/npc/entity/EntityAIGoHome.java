@@ -5,15 +5,12 @@ import joshie.harvest.core.helpers.CalendarHelper;
 import joshie.harvest.core.helpers.NPCHelper;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.RandomPositionGenerator;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.Vec3;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 
 public class EntityAIGoHome extends EntityAIBase {
     private WorldLocation home;
     private EntityNPC entity;
-    private int insidePosX = -1;
-    private int insidePosZ = -1;
-    private int insidePosY = -1;
 
     public EntityAIGoHome(EntityNPC npc) {
         entity = npc;
@@ -33,7 +30,7 @@ public class EntityAIGoHome extends EntityAIBase {
             return (entity.worldObj.canBlockSeeTheSky(i, j, k));
         }
 
-        if ((!entity.worldObj.isDaytime() || entity.worldObj.isRaining() || !this.entity.worldObj.getBiomeGenForCoords(i, k).canSpawnLightningBolt()) && !this.entity.worldObj.provider.hasNoSky) { //If it's raining or night, send the npc home
+        if ((!entity.worldObj.isDaytime() || entity.worldObj.isRaining() || !this.entity.worldObj.getBiomeGenForCoords(i, k).canRain()) && !this.entity.worldObj.provider.getHasNoSky()) { //If it's raining or night, send the npc home
             //If the entity is not inside
             return (entity.worldObj.canBlockSeeTheSky(i, j, k)); //If she can see the sky continue executing
         } else return false;
@@ -47,10 +44,10 @@ public class EntityAIGoHome extends EntityAIBase {
     @Override
     public void startExecuting() {
         this.insidePosX = -1;
-        if (this.entity.getDistanceSq((double) home.x, (double) home.y, (double) home.z) > 256.0D) {
-            Vec3 vec3 = RandomPositionGenerator.findRandomTargetBlockTowards(this.entity, 14, 3, Vec3.createVectorHelper((double) home.x + 0.5D, (double) home.y, (double) home.z + 0.5D));
-            if (vec3 != null) {
-                this.entity.getNavigator().tryMoveToXYZ(vec3.xCoord, vec3.yCoord, vec3.zCoord, 1.0D);
+        if (this.entity.getDistanceSq(home.position) > 256.0D) {
+            Vec3d vec3d = RandomPositionGenerator.findRandomTargetBlockTowards(this.entity, 14, 3, new Vec3d((double) home.x + 0.5D, (double) home.y, (double) home.z + 0.5D));
+            if (vec3d != null) {
+                this.entity.getNavigator().tryMoveToXYZ(vec3d.xCoord, vec3d.yCoord, vec3d.zCoord, 1.0D);
             }
         } else {
             this.entity.getNavigator().tryMoveToXYZ((double) home.x + 0.5D, (double) home.y, (double) home.z + 0.5D, 1.0D);

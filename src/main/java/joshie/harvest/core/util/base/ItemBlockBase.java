@@ -1,7 +1,6 @@
 package joshie.harvest.core.util.base;
 
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.util.generic.IHasMetaBlock;
 import joshie.harvest.core.util.generic.IHasMetaItem;
 import joshie.harvest.core.util.generic.Text;
 import net.minecraft.block.Block;
@@ -22,7 +21,8 @@ public abstract class ItemBlockBase extends ItemBlock implements IHasMetaItem {
 
     @Override
     public int getMetaCount() {
-        return ((IHasMetaBlock) Block.getBlockFromItem(this)).getMetaCount();
+        return ((BlockHFBaseMeta) Block.getBlockFromItem(this)).getEnumFromMeta(new ItemStack(this).getItemDamage()).ordinal(); //TODO
+        //return ((IHasMetaBlock) Block.getBlockFromItem(this)).getMetaCount();
     }
 
     @Override

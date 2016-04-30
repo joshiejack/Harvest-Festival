@@ -132,7 +132,7 @@ public abstract class GuiBase extends GuiContainer {
             this.drawGradientRect(j2 - 3, k2 + i1 + 2, j2 + k + 3, k2 + i1 + 3, l1, l1);
 
             for (int i2 = 0; i2 < list.size(); ++i2) {
-                String s1 = (String) list.get(i2);
+                String s1 = list.get(i2);
                 fontRendererObj.drawStringWithShadow(s1, j2, k2, -1);
 
                 if (i2 == 0) {

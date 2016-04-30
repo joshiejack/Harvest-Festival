@@ -8,12 +8,14 @@ import joshie.harvest.buildings.placeable.entities.PlaceablePainting;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.generic.IFaceable;
 import net.minecraft.block.*;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
 import org.apache.logging.log4j.Level;
 
 import java.util.HashMap;
@@ -89,21 +91,22 @@ public class PlaceableHelper {
         } else return "Block";
     }
 
-    public static String getPlaceableIFaceableString(IFaceable tile, Block block, int meta, int x, int y, int z) {
-        return "list.add(new PlaceableIFaceable" + "(" + HFModInfo.BLOCKSNAME + ".woodmachines, " + meta + ", " + x + ", " + y + ", " + z + ", ForgeDirection." + tile.getFacing() + "));";
+    public static String getPlaceableIFaceableString(IFaceable tile, IBlockState state, BlockPos pos) {
+        return "list.add(new PlaceableIFaceable" + "(" + HFModInfo.BLOCKSNAME + ".woodmachines, " + state + ", " + pos + ", ForgeDirection." + tile.getFacing() + "));";
     }
 
-    public static String getFloorSignString(String[] sign, Block block, int meta, int x, int y, int z) {
+    public static String getFloorSignString(ITextComponent[] sign, IBlockState state, BlockPos pos) {
         String text = "new String[] { \"" + sign[0] + "\", \"" + sign[1] + "\", \"" + sign[2] + "\", \"" + sign[3] + "\" } ";
-        return "list.add(new PlaceableSignFloor" + "(Blocks.standing_sign, " + meta + ", " + x + ", " + y + ", " + z + ", " + text + "));";
+        return "list.add(new PlaceableSignFloor" + "(Blocks.standing_sign, " + state + ", " + pos + ", " + text + "));";
     }
 
-    public static String getWallSignString(String[] sign, Block block, int meta, int x, int y, int z) {
+    public static String getWallSignString(ITextComponent[] sign, IBlockState state, BlockPos pos) {
         String text = "new String[] { \"" + sign[0] + "\", \"" + sign[1] + "\", \"" + sign[2] + "\", \"" + sign[3] + "\" } ";
-        return "list.add(new PlaceableSignWall" + "(Blocks.WALL_SIGN, " + meta + ", " + x + ", " + y + ", " + z + ", " + text + "));";
+        return "list.add(new PlaceableSignWall" + "(Blocks.WALL_SIGN, " + state + ", " + pos + ", " + text + "));";
     }
 
-    public static String getPlaceableBlockString(Block block, int meta, int x, int y, int z) {
+    public static String getPlaceableBlockString(IBlockState state, BlockPos pos) {
+        Block block = state.getBlock();
         String print = getBestGuessName(new ItemStack(block));
         if (block == Blocks.OAK_DOOR) print = "Blocks.OAK_DOOR";
         if (block == Blocks.BIRCH_DOOR) print = "Blocks.BIRCH_DOOR";
@@ -121,7 +124,7 @@ public class PlaceableHelper {
         if (block == Blocks.CAKE) print = "Blocks.CAKE";
         if (print.equals("//ITEM NAME")) HarvestFestival.logger.log(Level.INFO, block);
 
-        return "list.add(new Placeable" + getPrefixString(block) + "(" + print + ", " + meta + ", " + x + ", " + y + ", " + z + "));";
+        return "list.add(new Placeable" + getPrefixString(block) + "(" + print + ", " + state + ", " + pos + "));";
     }
 
     public static String getPlaceableEntityString(Entity entity, BlockPos pos) {

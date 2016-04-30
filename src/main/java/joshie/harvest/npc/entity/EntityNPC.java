@@ -19,7 +19,9 @@ import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
@@ -36,7 +38,7 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
     public int lastTeleport;
     public boolean hideName = true;
 
-    public static enum Mode {
+    public enum Mode {
         DEFAULT, GIFT;
     }
 
@@ -67,8 +69,11 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
 
         this.owning_player = owning_player;
         setSize(0.6F, (1.8F * npc.getHeight()));
-        getNavigator().setBreakDoors(true);
-        getNavigator().setAvoidsWater(true);
+    }
+
+    @Override
+    protected void initEntityAI() {
+        ((PathNavigateGround)this.getNavigator()).setBreakDoors(true);
 
         if (owning_player != null) {
             tasks.addTask(0, new EntityAISwimming(this));
@@ -94,11 +99,6 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D);
     }
 
-    @Override
-    public boolean isAIEnabled() {
-        return true;
-    }
-
     public ResourceLocation getSkin() {
         return new ResourceLocation(HFModInfo.MODPATH + ":" + "textures/entity/" + npc.getUnlocalizedName() + ".png");
     }
@@ -120,7 +120,7 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
     }
 
     @Override
-    public String getCommandSenderName() {
+    public String getName() {
         return npc.getLocalizedName();
     }
 
@@ -178,7 +178,7 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
     }
 
     @Override
-    public boolean interact(EntityPlayer player) {
+    public boolean processInteract(EntityPlayer player, EnumHand hand, ItemStack stack) {
         ItemStack held = player.inventory.getCurrentItem();
         boolean flag = held != null && held.getItem() == Items.SPAWN_EGG;
         if (!flag && isEntityAlive()) {
@@ -189,7 +189,7 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
 
             return true;
         } else {
-            return super.interact(player);
+            return super.processInteract(player, hand, stack);
         }
     }
 

@@ -16,6 +16,7 @@ import joshie.harvest.plugins.HFPlugins;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
@@ -35,7 +36,8 @@ public class CropData implements ICropData {
     private int daysWithoutWater; //The number of days this crop has gone without water
     private WorldLocation location;
 
-    public CropData() {}
+    public CropData() {
+    }
 
     public CropData(WorldLocation location) {
         this.location = location;
@@ -134,7 +136,7 @@ public class CropData implements ICropData {
 
             //If the crop has become double add in the new block
             if (crop.isDouble(stage)) {
-                DimensionManager.getWorld(location.dimension).setBlockState(location.position.up(), HFBlocks.CROPS, BlockCrop.FRESH_DOUBLE, 2);
+                DimensionManager.getWorld(location.dimension).setBlockState(location.position.up(), HFBlocks.CROPS.getStateFromEnum(BlockCrop.Stage.FRESH_DOUBLE), 2);
             }
 
             //If the crop grows a block to the side
@@ -150,20 +152,17 @@ public class CropData implements ICropData {
 
     private boolean attemptToGrowToSide() {
         World world = DimensionManager.getWorld(location.dimension);
-        int x = location.x;
-        int y = location.y;
-        int z = location.z;
+        BlockPos pos = location.position;
 
-        if (world.getBlock(x + 1, y, z).isAir(world, x + 1, y, z)) { //If it's air, then let's grow some shit
-            return world.setBlock(x + 1, y, z, crop.growsToSide(), 0, 2); //0 = x-
-        } else if (world.getBlock(x, y, z - 1).isAir(world, x, y, z - 1)) {
-            return world.setBlock(x, y, z - 1, crop.growsToSide(), 1, 2); //1 = z+
-        } else if (world.getBlock(x, y, z + 1).isAir(world, x, y, z + 1)) {
-            return world.setBlock(x, y, z + 1, crop.growsToSide(), 2, 2); //2 = z-
-        } else if (world.getBlock(x - 1, y, z).isAir(world, x - 1, y, z)) {
-            return world.setBlock(x - 1, y, z, crop.growsToSide(), 2, 2); //3 = x-
+        if (world.isAirBlock(pos.add(1, 0, 0))) { //If it's air, then let's grow some shit
+            return world.setBlockState(pos.add(1, 0, 0), crop.growsToSide().getStateFromMeta(0), 2); //0 = x-
+        } else if (world.isAirBlock(pos.add(0, 0, -1))) {
+            return world.setBlockState(pos.add(0, 0, -1), crop.growsToSide().getStateFromMeta(1), 2); //1 = z+
+        } else if (world.isAirBlock(pos.add(0, 0, 1))) {
+            return world.setBlockState(pos.add(0, 0, 1), crop.growsToSide().getStateFromMeta(2), 2); //2 = z-
+        } else if (world.isAirBlock(pos.add(-1, 0, 0))) {
+            return world.setBlockState(pos.add(-1, 0, 0), crop.growsToSide().getStateFromMeta(2), 2); //3 = x-
         }
-
         return false;
     }
 

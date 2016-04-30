@@ -15,10 +15,10 @@ public class GuiNPCBase extends GuiBase {
     protected EntityNPC npc;
     protected EntityPlayer player;
     protected int nextGui;
-    
+
     public GuiNPCBase(EntityNPC eNpc, EntityPlayer ePlayer, int next) {
         super(new ContainerNPC(eNpc, ePlayer.inventory), "chat", 0);
-        
+
         hasInventory = false;
         npc = eNpc;
         player = ePlayer;
@@ -40,17 +40,17 @@ public class GuiNPCBase extends GuiBase {
         GL11.glColor4f(1F, 1F, 1F, 1F);
         GL11.glDisable(GL11.GL_BLEND);
         GL11.glPopMatrix();
-        
-        ChatFontRenderer.render(this, x, y, npc.getCommandSenderName(), npc.getNPC().getInsideColor(), npc.getNPC().getOutsideColor());
+
+        ChatFontRenderer.render(this, x, y, npc.getName(), npc.getNPC().getInsideColor(), npc.getNPC().getOutsideColor());
     }
-    
+
     private void drawHeart(int value) {
         GL11.glColor4f(1F, 1F, 1F, 1F);
         int xPos = (int) ((((double) value / (Short.MAX_VALUE * 2))) * 7);
         drawTexturedModalRect(240, 130, 0, 0, 25, 25);
         drawTexturedModalRect(240, 130, 25 + (25 * xPos), 0, 25, 25);
     }
-    
+
     @Override
     public void drawForeground(int x, int y) {
         mc.renderEngine.bindTexture(HFModInfo.elements);

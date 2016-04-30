@@ -31,9 +31,9 @@ public class EntityNPCBuilder extends EntityNPCShopkeeper {
     }
 
     @Override
-    protected void updateAITick() {
+    protected void updateAITasks() {
         if (building == null) {
-            super.updateAITick();
+            super.updateAITasks();
         } else {
             if (!worldObj.isRemote) {
                 if (tick % building.getTickTime() == 0) {
@@ -42,7 +42,6 @@ public class EntityNPCBuilder extends EntityNPCShopkeeper {
                         building = null;
                     }
                 }
-                
                 tick++;
             }
         }

@@ -2,8 +2,8 @@ package joshie.harvest.core.helpers.generic;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.JsonToNBT;
@@ -12,54 +12,28 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
-import net.minecraftforge.client.ForgeHooksClient;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
 
 import java.util.List;
 
 public class StackHelper {
-    private final static RenderItem itemRenderer = new RenderItem();
 
     public static void drawStack(ItemStack stack, int left, int top, float size) {
-        GL11.glDisable(GL11.GL_ALPHA_TEST);
-        GL11.glPushMatrix();
-        GL11.glScalef(size, size, size);
-        GL11.glDisable(GL11.GL_LIGHTING);
-        GL11.glColor3f(1F, 1F, 1F); //Forge: Reset color in case Items change it.
-        GL11.glEnable(GL11.GL_BLEND); //Forge: Make sure blend is enabled else tabs show a white border.
-        GL11.glEnable(GL11.GL_LIGHTING);
-        GL11.glEnable(GL12.GL_RESCALE_NORMAL);
+        GlStateManager.disableAlpha();
+        GlStateManager.pushMatrix();
+        GlStateManager.scale(size, size, size);
+        GlStateManager.disableLighting();
+        GlStateManager.color(1.0F, 1.0F, 1.0F); //Forge: Reset color in case Items change it.
+        GlStateManager.enableBlend(); //Forge: Make sure blend is enabled else tabs show a white border.
+        GlStateManager.enableLighting();
+        GlStateManager.enableRescaleNormal();
         RenderHelper.enableGUIStandardItemLighting();
         Minecraft mc = MCClientHelper.getMinecraft();
-        itemRenderer.renderItemAndEffectIntoGUI(mc.fontRendererObj, mc.getTextureManager(), stack, (int) (left / size), (int) (top / size));
-        itemRenderer.renderItemOverlayIntoGUI(mc.fontRendererObj, mc.getTextureManager(), stack, (int) (left / size), (int) (top / size));
+        mc.getRenderItem().renderItemAndEffectIntoGUI(stack, (int) (left / size), (int) (top / size));
+        mc.getRenderItem().renderItemOverlayIntoGUI(mc.fontRendererObj, stack, (int) (left / size), (int) (top / size), "");
         RenderHelper.disableStandardItemLighting();
-        GL11.glDisable(GL11.GL_LIGHTING);
-        GL11.glPopMatrix();
-        GL11.glEnable(GL11.GL_ALPHA_TEST);
-    }
-
-    public static void renderStack(Minecraft mc, RenderBlocks blockRenderer, RenderItem itemRenderer, ItemStack stack, int x, int y) {
-        if (stack != null && stack.getItem() != null) {
-            try {
-                GL11.glPushMatrix();
-                GL11.glEnable(GL12.GL_RESCALE_NORMAL);
-                GL11.glEnable(GL11.GL_BLEND);
-                GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-                RenderHelper.enableGUIStandardItemLighting();
-                GL11.glEnable(GL11.GL_DEPTH_TEST);
-                if (!ForgeHooksClient.renderInventoryItem(blockRenderer, mc.getTextureManager(), stack, itemRenderer.renderWithColor, itemRenderer.zLevel, x, y)) {
-                    itemRenderer.renderItemIntoGUI(mc.fontRendererObj, mc.getTextureManager(), stack, x, y, false);
-                }
-
-                RenderHelper.disableStandardItemLighting();
-                GL11.glPopMatrix();
-                GL11.glDisable(GL11.GL_LIGHTING);
-                GL11.glDisable(GL12.GL_RESCALE_NORMAL);
-            } catch (Exception e) {
-            }
-        }
+        GlStateManager.disableLighting();
+        GlStateManager.popMatrix();
+        GlStateManager.enableAlpha();
     }
 
     public static ItemStack getStackFromString(String str) {
@@ -140,8 +114,8 @@ public class StackHelper {
                 textComponents.appendText(" ");
             }
 
-            Object object = new TextComponentString(str[j]);
-            textComponents.appendSibling((ITextComponent) object);
+            TextComponentString object = new TextComponentString(str[j]);
+            textComponents.appendSibling(object);
         }
         return textComponents;
     }
@@ -160,7 +134,7 @@ public class StackHelper {
         }
 
         try {
-            tag.setString("Name", Item.REGISTRY.getNameForObject(stack.getItem()));
+            tag.setString("Name", Item.REGISTRY.getNameForObject(stack.getItem()).getResourcePath());
             tag.setInteger("Count", (byte) stack.stackSize);
             tag.setInteger("Damage", (short) stack.getItemDamage());
 
@@ -177,7 +151,7 @@ public class StackHelper {
             tag = new NBTTagCompound();
         }
 
-        Item item = Item.REGISTRY.getObject(tag.getString("Name"));
+        Item item = Item.REGISTRY.getObject(new ResourceLocation(tag.getString("Name")));
         int count = tag.getInteger("Count");
         int damage = tag.getInteger("Damage");
         if (damage < 0) {

@@ -1,13 +1,14 @@
 package joshie.harvest.blocks;
 
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.util.base.BlockHFBase;
+import joshie.harvest.core.util.base.BlockHFBaseMeta;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
@@ -17,20 +18,28 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class BlockStone extends BlockHFBase {
+public class BlockStone extends BlockHFBaseMeta<BlockStone.Types> {
+    public enum Types implements IStringSerializable {
+        REAL, DECORATIVE;
+
+        @Override
+        public String getName() {
+            return toString();
+        }
+    }
 
     public BlockStone() {
-        super(Material.ROCK, HFTab.MINING);
+        super(Material.ROCK, HFTab.MINING, Types.class);
         setSoundType(SoundType.METAL);
     }
 
     //TECHNICAL
     @Override
     public float getBlockHardness(IBlockState state, World world, BlockPos pos) {
-        switch (state.getBlock().getMetaFromState(state)) {
-            case 0:
-                return 55F;
-            case 1:
+        switch (getEnumFromState(state)) {
+            case REAL:
+                return -1.0F;
+            case DECORATIVE:
                 return 4F;
             default:
                 return 4F;
@@ -38,17 +47,16 @@ public class BlockStone extends BlockHFBase {
     }
 
     @Override
-    public int getToolLevel(int meta) {
+    public int getToolLevel(Types types) {
         return 2;
     }
 
     @Override
     public float getExplosionResistance(World world, BlockPos pos, Entity exploder, Explosion explosion) {
-        IBlockState state = world.getBlockState(pos);
-        switch (state.getBlock().getMetaFromState(state)) {
-            case 0:
-                return 6002;
-            case 1:
+        switch (getEnumFromState(world.getBlockState(pos))) {
+            case REAL:
+                return 6000000.0F;
+            case DECORATIVE:
                 return 14.0F;
             default:
                 return 5;
@@ -62,9 +70,7 @@ public class BlockStone extends BlockHFBase {
         Random rand = world instanceof World ? ((World) world).rand : new Random();
         int count = quantityDropped(state, fortune, rand);
         for (int i = 0; i < count; i++) {
-            if (metadata == 0) {
-            }
-            if (metadata == 1) {
+            if (getEnumFromState(world.getBlockState(pos)) == Types.DECORATIVE) {
                 ret.add(new ItemStack(HFBlocks.STONE, 1, 1));
             }
         }

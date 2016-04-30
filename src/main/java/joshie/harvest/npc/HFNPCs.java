@@ -10,6 +10,9 @@ import joshie.harvest.npc.entity.EntityNPCBuilder;
 import joshie.harvest.npc.entity.EntityNPCShopkeeper;
 import joshie.harvest.npc.render.RenderNPC;
 import joshie.harvest.player.town.TownData;
+import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -88,9 +91,17 @@ public class HFNPCs {
 
     @SideOnly(Side.CLIENT)
     public static void initClient() {
-        RenderingRegistry.registerEntityRenderingHandler(EntityNPC.class, new RenderNPC());
-        RenderingRegistry.registerEntityRenderingHandler(EntityNPCBuilder.class, new RenderNPC());
-        RenderingRegistry.registerEntityRenderingHandler(EntityNPCShopkeeper.class, new RenderNPC());
-        //RenderingRegistry.registerEntityRenderingHandler(EntityNPCMiner.class, new RenderNPC());
+        registerNPCRendering(EntityNPC.class);
+        registerNPCRendering(EntityNPCBuilder.class);
+        registerNPCRendering(EntityNPCShopkeeper.class);
+    }
+
+    private static <E extends EntityNPC> void registerNPCRendering(Class<E> entityClass) {
+        RenderingRegistry.registerEntityRenderingHandler(entityClass, new IRenderFactory<EntityNPC>() {
+            @Override
+            public Render<? super EntityNPC> createRenderFor(RenderManager manager) {
+                return new RenderNPC(manager);
+            }
+        });
     }
 }

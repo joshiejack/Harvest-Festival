@@ -6,6 +6,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
 
@@ -15,7 +16,7 @@ import java.util.Set;
 
 public class GatheringData {
     private Set<GatheringLocation> locations = new HashSet<GatheringLocation>();
-    
+
     public ItemStack getRandomBlock() {
         return new ItemStack(Blocks.OBSIDIAN, 1, 0);
     }
@@ -36,19 +37,17 @@ public class GatheringData {
         }
 
         //Create some new spawn spots based on where we have buildings
-        for (TownBuilding building: buildings) {
+        for (TownBuilding building : buildings) {
             World world = DimensionManager.getWorld(building.dimension);
             int placed = 0;
             for (int i = 0; i < 64 && placed < 10; i++) {
-                int x = building.xCoord + 32 - world.rand.nextInt(64);
-                int y = building.yCoord + 4 - world.rand.nextInt(8);
-                int z = building.zCoord + 32 - world.rand.nextInt(64); 
-                if (world.getBlockState().getBlock() == Blocks.GRASS && world.isAirBlock(x, y + 1, z)) {
+                BlockPos pos = building.pos.add(32 - world.rand.nextInt(64), 4 - world.rand.nextInt(8), 32 - world.rand.nextInt(64));
+                if (world.getBlockState(pos).getBlock() == Blocks.GRASS && world.isAirBlock(pos.up())) {
                     ItemStack random = getRandomBlock();
                     Block block = Block.getBlockFromItem(random.getItem());
                     int meta = random.getItemDamage();
-                    if(world.setBlockState(x, y + 1, z, block, meta, 2)) {
-                        locations.add(new GatheringLocation(block, meta, building.dimension, x, y + 1, z));
+                    if (world.setBlockState(pos.up(), block.getStateFromMeta(meta), 2)) {
+                        locations.add(new GatheringLocation(block, meta, building.dimension, pos.up()));
                         placed++;
                     }
                 }

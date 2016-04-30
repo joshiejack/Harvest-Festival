@@ -33,7 +33,7 @@ public class HFBlocks {
         FLOWERS = (BlockFlower) new BlockFlower().setUnlocalizedName("flowers.block");
         //Mine
         STONE = (BlockStone) new BlockStone().setUnlocalizedName("stone");
-        DIRT = (BlockDirt) new BlockDirt("hf", "ctm/dirt").setUnlocalizedName("dirt");
+        DIRT = (BlockDirt) new BlockDirt().setUnlocalizedName("dirt");
         //Misc
         WOOD_MACHINES = (BlockWood) new BlockWood().setUnlocalizedName("general.block");
         PREVIEW = (BlockPreview) new BlockPreview().setUnlocalizedName("preview");

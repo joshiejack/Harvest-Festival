@@ -5,19 +5,21 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntitySign;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
 import java.util.UUID;
 
 public class PlaceableSignWall extends PlaceableBlock {
-    private String[] text;
+    private ITextComponent[] text;
 
-    public PlaceableSignWall(Block block, int meta, BlockPos offsetPos, String[] text) {
+    public PlaceableSignWall(Block block, int meta, BlockPos offsetPos, String... text) {
         super(block, meta, offsetPos);
-        this.text = text;
+        this.text = new ITextComponent[]{new TextComponentString(text[1]), new TextComponentString(text[2]), new TextComponentString(text[3]), new TextComponentString(text[4])};
     }
 
-    public PlaceableSignWall(Block block, int meta, int offsetX, int offsetY, int offsetZ, String[] text) {
+    public PlaceableSignWall(Block block, int meta, int offsetX, int offsetY, int offsetZ, String... text) {
         this(block, meta, new BlockPos(offsetX, offsetY, offsetZ), text);
     }
 
@@ -62,7 +64,7 @@ public class PlaceableSignWall extends PlaceableBlock {
         if (!super.place(uuid, world, pos, state, n1, n2, swap)) return false;
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof TileEntitySign) {
-            //((TileEntitySign) tile).signText = text; //TODO
+            text = ((TileEntitySign) tile).signText;
             return true;
         } else return false;
     }

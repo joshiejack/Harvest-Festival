@@ -12,14 +12,14 @@ import joshie.harvest.core.config.Crops;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.AnimalHelper;
 import joshie.harvest.core.helpers.SeedHelper;
-import joshie.harvest.core.helpers.generic.MCClientHelper;
-import joshie.harvest.core.util.base.BlockHFBase;
+import joshie.harvest.core.util.base.BlockHFBaseMeta;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -28,6 +28,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -42,19 +43,22 @@ import java.util.Random;
 
 import static joshie.harvest.core.helpers.CropHelper.harvestCrop;
 
-public class BlockCrop extends BlockHFBase implements IPlantable, IGrowable, IAnimalFeeder {
+public class BlockCrop extends BlockHFBaseMeta<BlockCrop.Stage> implements IPlantable, IGrowable, IAnimalFeeder {
+    public enum Stage implements IStringSerializable {
+        FRESH, WITHERED, FRESH_DOUBLE, WITHERED_DOUBLE/*, GROWN*/;
+
+        @Override
+        public String getName() {
+            return toString();
+        }
+    }
+
     public static final AxisAlignedBB CROP_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D);
-    public static final int FRESH = 0;
-    public static final int WITHERED = 1;
-    public static final int FRESH_DOUBLE = 2;
-    public static final int WITHERED_DOUBLE = 3;
-    public static final int GROWN = 7;
 
     public BlockCrop() {
-        super(Material.PLANTS);
+        super(Material.PLANTS, null, Stage.class);
         setBlockUnbreakable();
         setSoundType(SoundType.GROUND);
-        setCreativeTab(null);
         setTickRandomly(Crops.ALWAYS_GROW);
         disableStats();
     }
@@ -74,22 +78,22 @@ public class BlockCrop extends BlockHFBase implements IPlantable, IGrowable, IAn
         return BlockRenderLayer.CUTOUT;
     }
 
-    @Override
+    /*@Override //TODO
     public void setBlockBoundsBasedOnState(IBlockAccess world, BlockPos pos) {
         PlantSection section = getSection(world, pos);
         ICropData data = HFApi.CROPS.getCropAtLocation(MCClientHelper.getWorld(), pos);
         data.getCrop().getCropRenderHandler().setBlockBoundsBasedOnStage(this, section, data.getCrop(), data.getStage());
-    }
+    }*/
 
     //Only called if crops are set to tick randomly
     @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
         if (Crops.ALWAYS_GROW) {
             if (!world.isRemote) {
-                int meta = world.getBlockMetadata(pos);
-                if (meta == WITHERED) return; //If withered do nothing
-                if (world.getBlockLightValue(pos.up()) >= 9) {
-                    float chance = getGrowthChance(world, pos);
+                Stage stage = getEnumFromState(state);
+                if (stage == Stage.WITHERED) return; //If withered do nothing
+                if (world.getLightFromNeighbors(pos.up()) >= 9) {
+                    float chance = getGrowthChance(this, world, pos);
                     if (rand.nextInt((int) (25.0F / chance) + 1) == 0) {
                         //We are Growing!
                         HFTrackers.getCropTracker().grow(world, pos);
@@ -99,33 +103,24 @@ public class BlockCrop extends BlockHFBase implements IPlantable, IGrowable, IAn
         }
     }
 
-    private float getGrowthChance(World world, int x, int y, int z) {
+    private static float getGrowthChance(Block block, World world, BlockPos pos) {
         float f = 1.0F;
-        Block block = world.getBlock(x, y, z - 1);
-        Block block1 = world.getBlock(x, y, z + 1);
-        Block block2 = world.getBlock(x - 1, y, z);
-        Block block3 = world.getBlock(x + 1, y, z);
-        Block block4 = world.getBlock(x - 1, y, z - 1);
-        Block block5 = world.getBlock(x + 1, y, z - 1);
-        Block block6 = world.getBlock(x + 1, y, z + 1);
-        Block block7 = world.getBlock(x - 1, y, z + 1);
-        boolean xTrue = block2 == this || block3 == this;
-        boolean zTrue = block == this || block1 == this;
-        boolean cornerTrue = block4 == this || block5 == this || block6 == this || block7 == this;
+        BlockPos posDown = pos.down();
 
-        for (int l = x - 1; l <= x + 1; ++l) {
-            for (int i1 = z - 1; i1 <= z + 1; ++i1) {
+        for (int i = -1; i <= 1; ++i) {
+            for (int j = -1; j <= 1; ++j) {
                 float f1 = 0.0F;
+                IBlockState state = world.getBlockState(posDown.add(i, 0, j));
 
-                if (world.getBlock(l, y - 1, i1).canSustainPlant(world, l, y - 1, i1, EnumFacing.UP, this)) {
+                if (state.getBlock().canSustainPlant(state, world, posDown.add(i, 0, j), EnumFacing.UP, (IPlantable) block)) {
                     f1 = 1.0F;
 
-                    if (world.getBlock(l, y - 1, i1).isFertile(world, l, y - 1, i1)) {
+                    if (state.getBlock().isFertile(world, posDown.add(i, 0, j))) {
                         f1 = 3.0F;
                     }
                 }
 
-                if (l != x || i1 != z) {
+                if (i != 0 || j != 0) {
                     f1 /= 4.0F;
                 }
 
@@ -133,21 +128,33 @@ public class BlockCrop extends BlockHFBase implements IPlantable, IGrowable, IAn
             }
         }
 
-        if (cornerTrue || xTrue && zTrue) {
-            f /= 2.0F;
-        }
+        BlockPos posNorth = pos.north();
+        BlockPos posSouth = pos.south();
+        BlockPos posWest = pos.west();
+        BlockPos posEast = pos.east();
+        boolean xTrue = block == world.getBlockState(posWest).getBlock() || block == world.getBlockState(posEast).getBlock();
+        boolean yTrue = block == world.getBlockState(posNorth).getBlock() || block == world.getBlockState(posSouth).getBlock();
 
+        if (xTrue && yTrue) {
+            f /= 2.0F;
+        } else {
+            boolean cornerTrue = block == world.getBlockState(posWest.north()).getBlock() || block == world.getBlockState(posEast.north()).getBlock() || block == world.getBlockState(posEast.south()).getBlock() || block == world.getBlockState(posWest.south()).getBlock();
+
+            if (cornerTrue) {
+                f /= 2.0F;
+            }
+        }
         return f;
     }
 
     @Override
     public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable) {
         IBlockState stateUp = world.getBlockState(pos.up());
-        int aboveMeta = state.getBlock().getMetaFromState(stateUp);
-        int thisMeta = state.getBlock().getMetaFromState(state);
+        Stage aboveStage = getEnumFromState(stateUp);
+        Stage thisStage = getEnumFromState(state);
         if (stateUp.getBlock() == this) {
-            if (thisMeta == FRESH) return aboveMeta == FRESH_DOUBLE;
-            else if (thisMeta == WITHERED) return aboveMeta == WITHERED_DOUBLE;
+            if (thisStage == Stage.FRESH) return aboveStage == Stage.FRESH_DOUBLE;
+            else if (thisStage == Stage.WITHERED) return aboveStage == Stage.WITHERED_DOUBLE;
         }
         return false;
     }
@@ -155,7 +162,7 @@ public class BlockCrop extends BlockHFBase implements IPlantable, IGrowable, IAn
     @Override
     //Return 0.75F if the plant isn't withered, otherwise, unbreakable!!!
     public float getPlayerRelativeBlockHardness(IBlockState state, EntityPlayer player, World world, BlockPos pos) {
-        int meta = world.getBlockMetadata(pos);
+        Stage stage = getEnumFromState(state);
         ItemStack held = player.getActiveItemStack();
         ICropData crop = HFApi.CROPS.getCropAtLocation(world, pos);
         if (crop.getCrop().growsToSide() != null && crop.getStage() == crop.getCrop().getStages()) {
@@ -163,14 +170,15 @@ public class BlockCrop extends BlockHFBase implements IPlantable, IGrowable, IAn
         }
 
         //If this crop is withered return 0
-        if (held == null || (!(held.getItem() instanceof IBreakCrops))) return meta == WITHERED ? 0 : 0.75F;
+        if (held == null || (!(held.getItem() instanceof IBreakCrops))) return stage == Stage.WITHERED ? 0 : 0.75F;
         return ((IBreakCrops) held.getItem()).getStrengthVSCrops(player, world, pos, state, held);
     }
 
     public static PlantSection getSection(IBlockAccess world, BlockPos pos) {
-        int meta = world.getBlockMetadata(pos);
+        IBlockState state = world.getBlockState(pos);
+        int stage = state.getBlock().getMetaFromState(state); //Can't get the Enum from state, because this method is static.
         PlantSection section = PlantSection.BOTTOM;
-        if (meta == WITHERED_DOUBLE || meta == FRESH_DOUBLE) {
+        if (stage == Stage.WITHERED_DOUBLE.ordinal() || stage == Stage.FRESH_DOUBLE.ordinal()) {
             section = PlantSection.TOP;
         }
 
@@ -184,72 +192,57 @@ public class BlockCrop extends BlockHFBase implements IPlantable, IGrowable, IAn
 
     @Override
     @SideOnly(Side.CLIENT)
-    public boolean addHitEffects(IBlockState state, World world, RayTraceResult target, EffectRenderer effectRenderer) {
-        int x = target.blockX;
-        int y = target.blockY;
-        int z = target.blockZ;
-        int side = target.sideHit;
+    public boolean addHitEffects(IBlockState state, World world, RayTraceResult rayTraceResult, EffectRenderer effectRenderer) {
+        BlockPos pos = rayTraceResult.getBlockPos();
+        EnumFacing facing = rayTraceResult.sideHit;
 
         //^ setup vars
-        Block block = world.getBlock(x, y, z);
-        if (block.getMaterial() != Material.AIR) {
+        Block block = state.getBlock();
+        if (state.getMaterial() != Material.AIR) {
+            AxisAlignedBB aabb = block.getBoundingBox(state, world, pos);
             float f = 0.1F;
-            double d0 = (double) x + world.rand.nextDouble() * (block.getBlockBoundsMaxX() - block.getBlockBoundsMinX() - (double) (f * 2.0F)) + (double) f + block.getBlockBoundsMinX();
-            double d1 = (double) y + world.rand.nextDouble() * (block.getBlockBoundsMaxY() - block.getBlockBoundsMinY() - (double) (f * 2.0F)) + (double) f + block.getBlockBoundsMinY();
-            double d2 = (double) z + world.rand.nextDouble() * (block.getBlockBoundsMaxZ() - block.getBlockBoundsMinZ() - (double) (f * 2.0F)) + (double) f + block.getBlockBoundsMinZ();
+            double d0 = (double) pos.getX() + world.rand.nextDouble() * (aabb.maxX - aabb.minX) - (double) (f * 2.0F) + (double) f + aabb.minX;
+            double d1 = (double) pos.getY() + world.rand.nextDouble() * (aabb.maxY - aabb.minY - (double) (f * 2.0F)) + (double) f + aabb.minY;
+            double d2 = (double) pos.getZ() + world.rand.nextDouble() * (aabb.maxZ - aabb.minZ - (double) (f * 2.0F)) + (double) f + aabb.minZ;
 
-            if (side == 0) {
-                d1 = (double) y + block.getBlockBoundsMinY() - (double) f;
+            if (facing == EnumFacing.DOWN || facing == EnumFacing.UP) {
+                d1 = (double) pos.getY() + aabb.maxY - (double) f;
             }
 
-            if (side == 1) {
-                d1 = (double) y + block.getBlockBoundsMaxY() + (double) f;
+            if (facing == EnumFacing.NORTH || facing == EnumFacing.SOUTH) {
+                d2 = (double) pos.getZ() + aabb.minZ - (double) f;
             }
 
-            if (side == 2) {
-                d2 = (double) z + block.getBlockBoundsMinZ() - (double) f;
+            if (facing == EnumFacing.WEST || facing == EnumFacing.EAST) {
+                d0 = (double) pos.getX() + aabb.minX - (double) f;
             }
 
-            if (side == 3) {
-                d2 = (double) z + block.getBlockBoundsMaxZ() + (double) f;
-            }
-
-            if (side == 4) {
-                d0 = (double) x + block.getBlockBoundsMinX() - (double) f;
-            }
-
-            if (side == 5) {
-                d0 = (double) x + block.getBlockBoundsMaxX() + (double) f;
-            }
-
-            effectRenderer.addEffect((new EntityCropDigFX(icon, world, d0, d1, d2, x, y, z, block, world.getBlockMetadata(x, y, z))).applyColourMultiplier(x, y, z).multiplyVelocity(0.2F).multipleParticleScaleBy(0.6F));
+            effectRenderer.addEffect((new EntityCropDigFX(Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getParticleIcon(Item.getItemFromBlock(this)), world, d0, d1, d2, pos.getX(), pos.getY(), pos.getZ(), world.getBlockState(pos)))/*.applyColourMultiplier(pos)*/.multiplyVelocity(0.2F).multipleParticleScaleBy(0.6F));
         }
-
         return true;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public boolean addDestroyEffects(World world, BlockPos pos, EffectRenderer effectRenderer) {
-        byte b0 = 4;
+        int b0 = 4;
         for (int i1 = 0; i1 < b0; ++i1) {
             for (int j1 = 0; j1 < b0; ++j1) {
                 for (int k1 = 0; k1 < b0; ++k1) {
-                    double d0 = (double) x + ((double) i1 + 0.5D) / (double) b0;
-                    double d1 = (double) y + ((double) j1 + 0.5D) / (double) b0;
-                    double d2 = (double) z + ((double) k1 + 0.5D) / (double) b0;
-                    effectRenderer.addEffect((new EntityCropDigFX(icon, world, d0, d1, d2, d0 - (double) x - 0.5D, d1 - (double) y - 0.5D, d2 - (double) z - 0.5D, world.getBlock(x, y, z), meta)).applyColourMultiplier(x, y, z));
+                    double d0 = (double) pos.getX() + ((double) i1 + 0.5D) / (double) b0;
+                    double d1 = (double) pos.getY() + ((double) j1 + 0.5D) / (double) b0;
+                    double d2 = (double) pos.getZ() + ((double) k1 + 0.5D) / (double) b0;
+                    effectRenderer.addEffect((new EntityCropDigFX(Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getParticleIcon(Item.getItemFromBlock(this)), world, d0, d1, d2, d0 - (double) pos.getX() - 0.5D, d1 - (double) pos.getY() - 0.5D, d2 - (double) pos.getZ() - 0.5D, world.getBlockState(pos)))/*.applyColourMultiplier(pos)*/);
                 }
             }
         }
-
         return true;
     }
 
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
-        int meta = world.getBlockMetadata(pos);
-        if (meta == WITHERED || meta == WITHERED_DOUBLE) return false; //If Withered with suck!
+        Stage stage = getEnumFromState(state);
+        if (stage == Stage.WITHERED || stage == Stage.WITHERED_DOUBLE) return false; //If Withered with suck!
 
         if (player.isSneaking()) return false;
         else {
@@ -280,8 +273,9 @@ public class BlockCrop extends BlockHFBase implements IPlantable, IGrowable, IAn
 
     @Override
     public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
-        int meta = world.getBlockMetadata(pos);
-        if (meta == WITHERED || meta == WITHERED_DOUBLE) return world.setBlockToAir(pos); //JUST KILL IT IF WITHERED
+        Stage stage = getEnumFromState(state);
+        if (stage == Stage.WITHERED || stage == Stage.WITHERED_DOUBLE)
+            return world.setBlockToAir(pos); //JUST KILL IT IF WITHERED
 
         PlantSection section = getSection(world, pos);
         ICropData data = HFApi.CROPS.getCropAtLocation(world, pos);
@@ -302,9 +296,10 @@ public class BlockCrop extends BlockHFBase implements IPlantable, IGrowable, IAn
 
     @Override
     public void breakBlock(World world, BlockPos pos, IBlockState state) {
-        if (meta == FRESH || meta == WITHERED) {
+        Stage stage = getEnumFromState(state);
+        if (stage == Stage.FRESH || stage == Stage.WITHERED) {
             HFTrackers.getCropTracker().removeCrop(world, pos);
-        } else if (meta == FRESH_DOUBLE || meta == WITHERED_DOUBLE) {
+        } else if (stage == Stage.FRESH_DOUBLE || stage == Stage.WITHERED_DOUBLE) {
             world.setBlockToAir(pos.down());
         }
     }
@@ -321,15 +316,14 @@ public class BlockCrop extends BlockHFBase implements IPlantable, IGrowable, IAn
 
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
-        int meta = world.getBlockMetadata(pos);
-        if (meta == WITHERED) return new ItemStack(Blocks.DEADBUSH); //It's Dead soo???
+        if (getEnumFromState(state) == Stage.WITHERED) return new ItemStack(Blocks.DEADBUSH); //It's Dead soo???
 
         ICropData data = HFApi.CROPS.getCropAtLocation(world, pos);
         return SeedHelper.getSeedsFromCrop(data.getCrop());
     }
 
     /*@Override
-    @SideOnly(Side.CLIENT) //TODO
+    @SideOnly(Side.CLIENT) //TODO Is no longer in Block. Moved to Minecraft.getMinecraft().getItemColors.registerItemColorHandler()
     public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
         int meta = world.getBlockMetadata(x, y, z);
         return meta == WITHERED ? 0x333333 : super.colorMultiplier(world, x, y, z); //Darken the dead shit
@@ -341,20 +335,16 @@ public class BlockCrop extends BlockHFBase implements IPlantable, IGrowable, IAn
     }
 
     @Override
-    public Block getPlant(IBlockAccess world, BlockPos pos) {
-        return world.getBlock(pos);
-    }
-
-    @Override
-    public int getPlantMetadata(IBlockAccess world, BlockPos pos) {
-        return 0;
+    public IBlockState getPlant(IBlockAccess world, BlockPos pos) {
+        IBlockState state = world.getBlockState(pos);
+        if (state.getBlock() != this) return getDefaultState();
+        return state;
     }
 
     //Can Apply Bonemeal (Not Fully Grown)
     @Override
-    public boolean func_149851_a(World world, BlockPos pos, boolean isRemote) {
-        int meta = world.getBlockMetadata(pos);
-        if (meta == WITHERED) return false; //It's dead it can't grow...
+    public boolean canGrow(World world, BlockPos pos, IBlockState state, boolean isClient) {
+        if (getEnumFromState(state) == Stage.WITHERED) return false; //It's dead it can't grow...
 
         if (Crops.ENABLE_BONEMEAL) {
             return HFTrackers.getCropTracker().canBonemeal(world, pos);
@@ -364,14 +354,14 @@ public class BlockCrop extends BlockHFBase implements IPlantable, IGrowable, IAn
     /* Only called server side **/
     //Whether the bonemeal has been used and we should call the function below to make the plant grow
     @Override
-    public boolean func_149852_a(World world, Random rand, BlockPos pos) {
+    public boolean canUseBonemeal(World world, Random rand, BlockPos pos, IBlockState state) {
         return true;
     }
 
     /* Only called server side **/
     //Apply the bonemeal and grow!
     @Override
-    public void func_149853_b(World world, Random rand, BlockPos pos) {
+    public void grow(World world, Random rand, BlockPos pos, IBlockState state) {
         HFTrackers.getCropTracker().grow(world, pos);
     }
 

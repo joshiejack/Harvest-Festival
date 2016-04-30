@@ -56,7 +56,7 @@ public class CalendarServer extends Calendar {
 
         return Weather.SUNNY;
     }
-    
+
     @Override
     public float getTodaysRainStrength() {
         return rainStrength;
@@ -99,7 +99,6 @@ public class CalendarServer extends Calendar {
         HFTrackers.getMineTracker().newDay();
 
         /** Setup the forecast for the next 7 days **/
-        ISeasonData data = date.getSeasonData();
         Weather[] newForecast = new Weather[7];
 
         //Copy over the old forecast

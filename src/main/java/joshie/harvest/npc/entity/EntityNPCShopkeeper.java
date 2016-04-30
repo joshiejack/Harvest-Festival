@@ -28,7 +28,7 @@ public class EntityNPCShopkeeper extends EntityNPC {
     }
 
     @Override
-    protected void updateAITick() {
+    protected void updateAITasks() {
         if (!isWorking) {
             if (shop.isOpen(worldObj, null)) {
                 isWorking = true;

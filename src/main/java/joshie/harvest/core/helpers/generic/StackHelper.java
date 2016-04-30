@@ -134,7 +134,7 @@ public class StackHelper {
         }
 
         try {
-            tag.setString("Name", Item.REGISTRY.getNameForObject(stack.getItem()).getResourcePath());
+            tag.setString("Name", Item.REGISTRY.getNameForObject(stack.getItem()).toString());
             tag.setInteger("Count", (byte) stack.stackSize);
             tag.setInteger("Damage", (short) stack.getItemDamage());
 

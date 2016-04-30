@@ -1,7 +1,6 @@
 package joshie.harvest.asm.overrides;
 
 import joshie.harvest.api.WorldLocation;
-import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -10,16 +9,16 @@ import net.minecraftforge.common.IPlantable;
 
 import java.util.WeakHashMap;
 
-public class BlockModifiedFarmland {
+public class BlockFarmland {
     public static WeakHashMap<WorldLocation, Long> timePlaced = new WeakHashMap<WorldLocation, Long>();
 
     public static void tick(World world, BlockPos pos, IBlockState state) {
         IBlockState stateAbove = world.getBlockState(pos.up());
         if (!(stateAbove.getBlock() instanceof IPlantable)) {
             if (!world.isRaining()) {
-                int meta = state.getValue(BlockFarmland.MOISTURE);
+                int meta = state.getValue(net.minecraft.block.BlockFarmland.MOISTURE);
                 if (meta == 7) {
-                    world.setBlockState(pos, state.withProperty(BlockFarmland.MOISTURE, 0), 2);
+                    world.setBlockState(pos, state.withProperty(net.minecraft.block.BlockFarmland.MOISTURE, 0), 2);
                 } else {
                     WorldLocation location = new WorldLocation(world.provider.getDimension(), pos);
                     Long time = timePlaced.get(location);
@@ -30,7 +29,7 @@ public class BlockModifiedFarmland {
                     }
                 }
             } else {
-                world.setBlockState(pos, state.withProperty(BlockFarmland.MOISTURE, 7), 2);
+                world.setBlockState(pos, state.withProperty(net.minecraft.block.BlockFarmland.MOISTURE, 7), 2);
             }
         }
     }

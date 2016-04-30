@@ -1,10 +1,13 @@
 package joshie.harvest.asm.transformers;
 
+import joshie.harvest.asm.ASMConstants;
+import joshie.harvest.asm.ASMHelper;
 import joshie.harvest.asm.HFOverride;
+import joshie.harvest.asm.overrides.ItemPumpkin;
 import joshie.harvest.core.config.ASM;
-import joshie.harvest.core.lib.HFModInfo;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;
@@ -22,7 +25,7 @@ public class PumpkinTransformer extends AbstractASM {
 
     @Override
     public boolean isClass(String name) {
-        return name.equals("adb") || name.equals("net.minecraft.item.Item");
+        return name.equals("adb") || name.equals(ASMConstants.ITEM);
     }
 
     @Override
@@ -32,14 +35,14 @@ public class PumpkinTransformer extends AbstractASM {
 
     public static HashSet<Block> registerPumpkin(HashSet<Block> set) {
         set.add(Blocks.PUMPKIN);
-        //Item.REGISTRY.addObject(Block.getIdFromBlock(Blocks.PUMPKIN), "pumpkin", new ItemPumpkin(Blocks.PUMPKIN)); //TODO Fix
+        ForgeRegistries.ITEMS.register(new ItemPumpkin(Blocks.PUMPKIN)); //TODO Figure out if this works
         return set;
     }
 
     @Override
     public byte[] transform(byte[] data) {
         String name = HFOverride.isObfuscated ? "func_150900_l" : "registerItems";
-        String desc = "()V";
+        String desc = ASMHelper.toMethodDescriptor("V");
 
         ClassNode classNode = new ClassNode();
         ClassReader classReader = new ClassReader(data);
@@ -54,9 +57,9 @@ public class PumpkinTransformer extends AbstractASM {
                     AbstractInsnNode instruction = m.instructions.get(j);
                     if (instruction.getType() == AbstractInsnNode.LDC_INSN) {
                         LdcInsnNode ldcInstruction = (LdcInsnNode) instruction;
-                        if (ldcInstruction.cst.equals("record_wait")) {
+                        if (ldcInstruction.cst.equals("RECORD_WAIT")) {
                             m.instructions.insert(m.instructions.get(j + 124), new VarInsnNode(Opcodes.ASTORE, 1));
-                            m.instructions.insert(m.instructions.get(j + 124), new MethodInsnNode(Opcodes.INVOKESTATIC, HFModInfo.ASMPATH + "asm/transformers/PumpkinTransformer", "registerPumpkin", "(Ljava/util/HashSet;)Ljava/util/HashSet;", false));
+                            m.instructions.insert(m.instructions.get(j + 124), new MethodInsnNode(Opcodes.INVOKESTATIC, ASMHelper.toInternalClassName(ASMConstants.Transformers.PUMPKIN), "registerPumpkin", ASMHelper.toMethodDescriptor(ASMConstants.HASH_SET, ASMConstants.HASH_SET), false));
                             m.instructions.insert(m.instructions.get(j + 124), new VarInsnNode(Opcodes.ALOAD, 1));
                             break labelTop;
                         }

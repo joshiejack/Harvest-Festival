@@ -1,8 +1,9 @@
 package joshie.harvest.asm.transformers;
 
+import joshie.harvest.asm.ASMConstants;
+import joshie.harvest.asm.ASMHelper;
 import joshie.harvest.asm.HFOverride;
 import joshie.harvest.core.config.ASM;
-import joshie.harvest.core.lib.HFModInfo;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.tree.*;
@@ -17,9 +18,9 @@ public class WheatTransformer extends AbstractASM {
 
     @Override
     public boolean isClass(String name) {
-        return name.equals("adb") || name.equals("net.minecraft.item.Item");
+        return name.equals("adb") || name.equals(ASMConstants.ITEM);
     }
-    
+
     @Override
     public boolean isVisitor() {
         return false;
@@ -28,7 +29,7 @@ public class WheatTransformer extends AbstractASM {
     @Override
     public byte[] transform(byte[] data) {
         String name = HFOverride.isObfuscated ? "func_150900_l" : "registerItems";
-        String desc = "()V";
+        String desc = ASMHelper.toMethodDescriptor("V");
 
         ClassNode node = new ClassNode();
         ClassReader classReader = new ClassReader(data);
@@ -36,29 +37,29 @@ public class WheatTransformer extends AbstractASM {
 
         //Remove all Instructions from the onItemUse Method
         Iterator<MethodNode> methods = node.methods.iterator();
-        labelTop: while (methods.hasNext()) {
+        labelTop:
+        while (methods.hasNext()) {
             MethodNode m = methods.next();
             if ((m.name.equals(name) && m.desc.equals(desc))) {
                 for (int j = 0; j < m.instructions.size(); j++) {
                     AbstractInsnNode instruction = m.instructions.get(j);
                     if (instruction.getType() == AbstractInsnNode.LDC_INSN) {
                         LdcInsnNode ldcInstruction = (LdcInsnNode) instruction;
-                        if (ldcInstruction.cst.equals("wheat")) {
-                            ((TypeInsnNode) m.instructions.get(j + 1)).desc = HFModInfo.ASMPATH + "asm/overrides/ItemWheat";
-                            ((MethodInsnNode) m.instructions.get(j + 3)).owner = HFModInfo.ASMPATH + "asm/overrides/ItemWheat";
-                            ((MethodInsnNode) m.instructions.get(j + 5)).desc = "(Ljava/lang/String;)L" + HFModInfo.ASMPATH + "asm/overrides/ItemWheat;";
-                            ((MethodInsnNode) m.instructions.get(j + 5)).owner = HFModInfo.ASMPATH + "asm/overrides/ItemWheat";
-                            ((MethodInsnNode) m.instructions.get(j + 7)).desc = "(Lnet/minecraft/creativetab/CreativeTabs;)L" + HFModInfo.ASMPATH + "asm/overrides/ItemWheat;";
-                            ((MethodInsnNode) m.instructions.get(j + 7)).owner = HFModInfo.ASMPATH + "asm/overrides/ItemWheat";
-                            ((MethodInsnNode) m.instructions.get(j + 9)).desc = "(Ljava/lang/String;)L" + HFModInfo.ASMPATH + "asm/overrides/ItemWheat;";
-                            ((MethodInsnNode) m.instructions.get(j + 9)).owner = HFModInfo.ASMPATH + "asm/overrides/ItemWheat";
+                        if (ldcInstruction.cst.equals("WHEAT")) {
+                            ((TypeInsnNode) m.instructions.get(j + 1)).desc = ASMHelper.toInternalClassName(ASMConstants.Overrides.WHEAT);
+                            ((MethodInsnNode) m.instructions.get(j + 3)).owner = ASMHelper.toInternalClassName(ASMConstants.Overrides.WHEAT);
+                            ((MethodInsnNode) m.instructions.get(j + 5)).desc = ASMHelper.toMethodDescriptor("L", ASMConstants.STRING) + ASMHelper.toInternalClassName(ASMConstants.Overrides.WHEAT);
+                            ((MethodInsnNode) m.instructions.get(j + 5)).owner = ASMHelper.toInternalClassName(ASMConstants.Overrides.WHEAT);
+                            ((MethodInsnNode) m.instructions.get(j + 7)).desc = ASMHelper.toMethodDescriptor("L", ASMConstants.CREATIVE_TABS) + ASMHelper.toInternalClassName(ASMConstants.Overrides.WHEAT);
+                            ((MethodInsnNode) m.instructions.get(j + 7)).owner = ASMHelper.toInternalClassName(ASMConstants.Overrides.WHEAT);
+                            ((MethodInsnNode) m.instructions.get(j + 9)).desc = ASMHelper.toMethodDescriptor("L", ASMConstants.STRING) + ASMHelper.toInternalClassName(ASMConstants.Overrides.WHEAT);
+                            ((MethodInsnNode) m.instructions.get(j + 9)).owner = ASMHelper.toInternalClassName(ASMConstants.Overrides.WHEAT);
                             break labelTop;
                         }
                     }
                 }
             }
         }
-
         ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS);
         node.accept(writer);
         return writer.toByteArray();

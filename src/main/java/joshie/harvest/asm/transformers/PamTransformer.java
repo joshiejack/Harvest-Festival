@@ -1,7 +1,8 @@
 package joshie.harvest.asm.transformers;
 
+import joshie.harvest.asm.ASMConstants;
+import joshie.harvest.asm.ASMHelper;
 import joshie.harvest.core.config.ASM;
-import joshie.harvest.core.lib.HFModInfo;
 import org.objectweb.asm.*;
 
 import java.util.Arrays;
@@ -33,8 +34,8 @@ public class PamTransformer extends AbstractASM {
             public void visit(int version, int access, String name, String signature, String superName, String[] interfaces) {
                 Set<String> intf = new HashSet<String>();
                 intf.addAll(Arrays.asList(interfaces));
-                intf.add(HFModInfo.ASMPATH + "api/core/IShippable");
-                intf.add(HFModInfo.ASMPATH + "api/crops/ICropProvider");
+                intf.add(ASMHelper.toInternalClassName(ASMConstants.API.SHIPPABLE));
+                intf.add(ASMHelper.toInternalClassName(ASMConstants.API.CROP_PROVIDER));
                 super.visit(version, access, name, signature, superName, intf.toArray(new String[0]));
             }
         };
@@ -49,32 +50,32 @@ public class PamTransformer extends AbstractASM {
 
         //Sellable Sell Value
         String name = "getSellValue";
-        MethodVisitor mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, "(Lnet/minecraft/item/ItemStack;)J", null, null);
+        MethodVisitor mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, ASMHelper.toMethodDescriptor("J", ASMConstants.STACK), null, null);
         mv.visitCode();
         mv.visitVarInsn(Opcodes.ALOAD, 1);
-        mv.visitMethodInsn(Opcodes.INVOKESTATIC, HFModInfo.ASMPATH + "asm/overrides/ItemPamSeedFood", name, "(Lnet/minecraft/item/ItemStack;)J", false);
+        mv.visitMethodInsn(Opcodes.INVOKESTATIC, ASMHelper.toInternalClassName(ASMConstants.Overrides.PAM_SEED_FOOD), name, ASMHelper.toMethodDescriptor("J", ASMConstants.STACK), false);
         mv.visitInsn(Opcodes.LRETURN);
         mv.visitMaxs(2, 1);
         mv.visitEnd();
 
         //Crop Provider
         name = "getCrop";
-        mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, "(Lnet/minecraft/item/ItemStack;)L" + HFModInfo.ASMPATH + "api/crops/ICrop;", null, null);
+        mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, ASMHelper.toMethodDescriptor("L", ASMConstants.STACK) + ASMHelper.toInternalClassName(ASMConstants.API.ICROP), null, null);
         mv.visitCode();
         mv.visitVarInsn(Opcodes.ALOAD, 1);
-        mv.visitMethodInsn(Opcodes.INVOKESTATIC, HFModInfo.ASMPATH + "asm/overrides/ItemPamSeedFood", name, "(Lnet/minecraft/item/ItemStack;)L" + HFModInfo.ASMPATH + "api/crops/ICrop;", false);
+        mv.visitMethodInsn(Opcodes.INVOKESTATIC, ASMHelper.toInternalClassName(ASMConstants.Overrides.PAM_SEED_FOOD), name, ASMHelper.toMethodDescriptor("L", ASMConstants.STACK) + ASMHelper.toInternalClassName(ASMConstants.API.ICROP), false);
         mv.visitInsn(Opcodes.ARETURN);
         mv.visitMaxs(1, 2);
         mv.visitEnd();
 
         //Get Sub Items
         name = "getSubItems";
-        mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, "(Lnet/minecraft/item/Item;Lnet/minecraft/creativetab/CreativeTabs;Ljava/util/List;)V", null, null);
+        mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, ASMHelper.toMethodDescriptor("V", ASMConstants.ITEM, ASMConstants.CREATIVE_TABS, ASMConstants.LIST), null, null);
         mv.visitCode();
         mv.visitVarInsn(Opcodes.ALOAD, 1);
         mv.visitVarInsn(Opcodes.ALOAD, 2);
         mv.visitVarInsn(Opcodes.ALOAD, 3);
-        mv.visitMethodInsn(Opcodes.INVOKESTATIC, HFModInfo.ASMPATH + "asm/overrides/ItemPamSeedFood", name, "(Lnet/minecraft/item/Item;Lnet/minecraft/creativetab/CreativeTabs;Ljava/util/List;)V", false);
+        mv.visitMethodInsn(Opcodes.INVOKESTATIC, ASMHelper.toInternalClassName(ASMConstants.Overrides.PAM_SEED_FOOD), name, ASMHelper.toMethodDescriptor("V", ASMConstants.ITEM, ASMConstants.CREATIVE_TABS, ASMConstants.LIST), false);
         mv.visitInsn(Opcodes.RETURN);
         mv.visitMaxs(4, 1);
         mv.visitEnd();

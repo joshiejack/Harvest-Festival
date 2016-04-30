@@ -1,8 +1,9 @@
 package joshie.harvest.asm.transformers;
 
+import joshie.harvest.asm.ASMConstants;
+import joshie.harvest.asm.ASMHelper;
 import joshie.harvest.asm.HFOverride;
 import joshie.harvest.core.config.ASM;
-import joshie.harvest.core.lib.HFModInfo;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;
@@ -18,9 +19,9 @@ public class FarmlandTransformer extends AbstractASM {
 
     @Override
     public boolean isClass(String name) {
-        return name.equals("aky") || name.equals("net.minecraft.block.BlockFarmland");
+        return name.equals("aky") || name.equals(ASMConstants.FARMLAND);
     }
-    
+
     @Override
     public boolean isVisitor() {
         return false;
@@ -28,9 +29,9 @@ public class FarmlandTransformer extends AbstractASM {
 
     @Override
     public byte[] transform(byte[] data) {
-        String name = HFOverride.isObfuscated ? "func_149674_a" : "updateTick";
-        String desc = "(Lnet/minecraft/world/World;IIILjava/util/Random;)V";
-        
+        String name = HFOverride.isObfuscated ? "func_180650_b" : "updateTick";
+        String desc = ASMHelper.toMethodDescriptor("V", ASMConstants.WORLD, ASMConstants.POS, ASMConstants.STATE, ASMConstants.RANDOM);
+
         ClassNode node = new ClassNode();
         ClassReader classReader = new ClassReader(data);
         classReader.accept(node, 0);
@@ -48,10 +49,9 @@ public class FarmlandTransformer extends AbstractASM {
 
                 //return stack
                 m.instructions.add(new VarInsnNode(Opcodes.ALOAD, 1));
-                m.instructions.add(new VarInsnNode(Opcodes.ILOAD, 2));
-                m.instructions.add(new VarInsnNode(Opcodes.ILOAD, 3));
-                m.instructions.add(new VarInsnNode(Opcodes.ILOAD, 4));
-                m.instructions.add(new MethodInsnNode(Opcodes.INVOKESTATIC, HFModInfo.ASMPATH + "asm/overrides/BlockFarmland", "tick", "(Lnet/minecraft/world/World;III)V", false));
+                m.instructions.add(new VarInsnNode(Opcodes.ALOAD, 2));
+                m.instructions.add(new VarInsnNode(Opcodes.ALOAD, 3));
+                m.instructions.add(new MethodInsnNode(Opcodes.INVOKESTATIC, ASMHelper.toInternalClassName(ASMConstants.Overrides.FARMLAND), "tick", ASMHelper.toMethodDescriptor("V", ASMConstants.WORLD, ASMConstants.POS, ASMConstants.STATE), false));
                 m.instructions.add(new InsnNode(Opcodes.RETURN));
             }
         }

@@ -9,7 +9,6 @@ public class HFModInfo {
     public static final String JAVAPATH = "joshie.harvest.";
     public static final String CAPNAME = "HF";
     public static final String BLOCKSNAME = "HFBlocks";
-    public static final String ASMPATH = "joshie/harvest/";
     public static final String COMMANDNAME = "hf";
     
     public static final String BUILDINGPATH = "hf:buildings/";

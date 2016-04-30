@@ -1,5 +1,7 @@
 package joshie.harvest.asm.transformers;
 
+import joshie.harvest.asm.ASMConstants;
+import joshie.harvest.asm.ASMHelper;
 import joshie.harvest.asm.HFOverride;
 import joshie.harvest.core.config.ASM;
 import org.objectweb.asm.ClassReader;
@@ -19,9 +21,9 @@ public class FarmlandHardnessTransformer extends AbstractASM {
 
     @Override
     public boolean isClass(String name) {
-        return name.equals("aji") || name.equals("net.minecraft.block.Block");
+        return name.equals("aji") || name.equals(ASMConstants.BLOCK);
     }
-    
+
     @Override
     public boolean isVisitor() {
         return false;
@@ -30,7 +32,7 @@ public class FarmlandHardnessTransformer extends AbstractASM {
     @Override
     public byte[] transform(byte[] data) {
         String name = HFOverride.isObfuscated ? "func_149671_p" : "registerBlocks";
-        String desc = "()V";
+        String desc = ASMHelper.toMethodDescriptor("V");
 
         ClassNode node = new ClassNode();
         ClassReader classReader = new ClassReader(data);
@@ -38,14 +40,15 @@ public class FarmlandHardnessTransformer extends AbstractASM {
 
         //Remove all Instructions from the onItemUse Method
         Iterator<MethodNode> methods = node.methods.iterator();
-        labelTop: while (methods.hasNext()) {
+        labelTop:
+        while (methods.hasNext()) {
             MethodNode m = methods.next();
             if ((m.name.equals(name) && m.desc.equals(desc))) {
                 for (int j = 0; j < m.instructions.size(); j++) {
                     AbstractInsnNode instruction = m.instructions.get(j);
                     if (instruction.getType() == AbstractInsnNode.LDC_INSN) {
                         LdcInsnNode ldcInstruction = (LdcInsnNode) instruction;
-                        if (ldcInstruction.cst.equals("wheat")) {
+                        if (ldcInstruction.cst.equals("WHEAT")) {
                             ((LdcInsnNode) m.instructions.get(j + 14)).cst = -1.0F;
                             break labelTop;
                         }

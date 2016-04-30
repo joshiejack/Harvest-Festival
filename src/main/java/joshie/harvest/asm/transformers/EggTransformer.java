@@ -1,9 +1,10 @@
 package joshie.harvest.asm.transformers;
 
+import joshie.harvest.asm.ASMConstants;
+import joshie.harvest.asm.ASMHelper;
 import joshie.harvest.asm.HFOverride;
 import joshie.harvest.core.config.ASM;
 import joshie.harvest.core.config.HFConfig;
-import joshie.harvest.core.lib.HFModInfo;
 import org.objectweb.asm.*;
 import org.objectweb.asm.tree.*;
 
@@ -20,7 +21,7 @@ public class EggTransformer extends AbstractASM {
 
     @Override
     public boolean isClass(String name) {
-        return name.equals("ack") || name.equals("net.minecraft.item.ItemEgg");
+        return name.equals("ack") || name.equals(ASMConstants.EGG);
     }
 
     @Override
@@ -36,9 +37,9 @@ public class EggTransformer extends AbstractASM {
             public void visit(int version, int access, String name, String signature, String superName, String[] interfaces) {
                 Set<String> intf = new HashSet<String>();
                 intf.addAll(Arrays.asList(interfaces));
-                intf.add(HFModInfo.ASMPATH + "api/core/IShippable");
-                intf.add(HFModInfo.ASMPATH + "api/core/ICreativeSorted");
-                intf.add(HFModInfo.ASMPATH + "api/core/ISizedProvider");
+                intf.add(ASMHelper.toInternalClassName(ASMConstants.API.SHIPPABLE));
+                intf.add(ASMHelper.toInternalClassName(ASMConstants.API.CREATIVE_SORTED));
+                intf.add(ASMHelper.toInternalClassName(ASMConstants.API.SIZED_PROVIDER));
                 super.visit(version, access, name, signature, superName, intf.toArray(new String[0]));
             }
         };
@@ -53,71 +54,51 @@ public class EggTransformer extends AbstractASM {
 
         //Sellable Sell Value
         String name = "getSellValue";
-        MethodVisitor mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, "(Lnet/minecraft/item/ItemStack;)J", null, null);
+        MethodVisitor mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, ASMHelper.toMethodDescriptor("J", ASMConstants.STACK), null, null);
         mv.visitCode();
         mv.visitVarInsn(Opcodes.ALOAD, 1);
-        mv.visitMethodInsn(Opcodes.INVOKESTATIC, HFModInfo.ASMPATH + "asm/overrides/ItemEgg", name, "(Lnet/minecraft/item/ItemStack;)J", false);
+        mv.visitMethodInsn(Opcodes.INVOKESTATIC, ASMHelper.toInternalClassName(ASMConstants.Overrides.EGG), name, ASMHelper.toMethodDescriptor("J", ASMConstants.STACK), false);
         mv.visitInsn(Opcodes.LRETURN);
         mv.visitMaxs(2, 1);
         mv.visitEnd();
 
         //Creative Sort
         name = "getSortValue";
-        mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, "(Lnet/minecraft/item/ItemStack;)I", null, null);
+        mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, ASMHelper.toMethodDescriptor("I", ASMConstants.STACK), null, null);
         mv.visitCode();
-        mv.visitMethodInsn(Opcodes.INVOKESTATIC, HFModInfo.ASMPATH + "asm/overrides/ItemEgg", name, "()I", false);
+        mv.visitMethodInsn(Opcodes.INVOKESTATIC, ASMHelper.toInternalClassName(ASMConstants.Overrides.EGG), name, ASMHelper.toMethodDescriptor("I"), false);
         mv.visitInsn(Opcodes.IRETURN);
         mv.visitMaxs(1, 1);
         mv.visitEnd();
 
         //Crop Provider
         name = "getSizeable";
-        mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, "(Lnet/minecraft/item/ItemStack;)L" + HFModInfo.ASMPATH + "api/core/ISizeable;", null, null);
+        mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, ASMHelper.toMethodDescriptor("L", ASMConstants.STACK) + ASMHelper.toInternalClassName(ASMConstants.API.SIZEABLE), null, null);
         mv.visitCode();
         mv.visitVarInsn(Opcodes.ALOAD, 1);
-        mv.visitMethodInsn(Opcodes.INVOKESTATIC, HFModInfo.ASMPATH + "asm/overrides/ItemEgg", name, "(Lnet/minecraft/item/ItemStack;)L" + HFModInfo.ASMPATH + "api/core/ISizeable;", false);
+        mv.visitMethodInsn(Opcodes.INVOKESTATIC, ASMHelper.toInternalClassName(ASMConstants.Overrides.EGG), name, ASMHelper.toMethodDescriptor("L", ASMConstants.STACK) + ASMHelper.toInternalClassName(ASMConstants.API.SIZEABLE), false);
         mv.visitInsn(Opcodes.ARETURN);
         mv.visitMaxs(1, 2);
         mv.visitEnd();
 
         //Display Name Override
         name = isObfuscated ? "func_77653_i" : "getItemStackDisplayName";
-        mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, "(Lnet/minecraft/item/ItemStack;)Ljava/lang/String;", null, null);
+        mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, ASMHelper.toMethodDescriptor(ASMConstants.STRING, ASMConstants.STACK), null, null);
         mv.visitCode();
         mv.visitVarInsn(Opcodes.ALOAD, 1);
-        mv.visitMethodInsn(Opcodes.INVOKESTATIC, HFModInfo.ASMPATH + "asm/overrides/ItemEgg", "getItemStackDisplayName", "(Lnet/minecraft/item/ItemStack;)Ljava/lang/String;", false);
+        mv.visitMethodInsn(Opcodes.INVOKESTATIC, ASMHelper.toInternalClassName(ASMConstants.Overrides.EGG), "getItemStackDisplayName", ASMHelper.toMethodDescriptor(ASMConstants.STRING, ASMConstants.STACK), false);
         mv.visitInsn(Opcodes.ARETURN);
-        mv.visitMaxs(2, 1);
-        mv.visitEnd();
-
-        //Get Item Icon Override
-        name = isObfuscated ? "func_77617_a" : "getIconFromDamage";
-        mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, "(I)Lnet/minecraft/util/IIcon;", null, null);
-        mv.visitCode();
-        mv.visitVarInsn(Opcodes.ILOAD, 1);
-        mv.visitMethodInsn(Opcodes.INVOKESTATIC, HFModInfo.ASMPATH + "asm/overrides/ItemEgg", "getIconFromDamage", "(I)Lnet/minecraft/util/IIcon;", false);
-        mv.visitInsn(Opcodes.ARETURN);
-        mv.visitMaxs(2, 1);
-        mv.visitEnd();
-
-        //Register Icons
-        name = isObfuscated ? "func_94581_a" : "registerIcons";
-        mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, "(Lnet/minecraft/client/renderer/texture/IIconRegister;)V", null, null);
-        mv.visitCode();
-        mv.visitVarInsn(Opcodes.ALOAD, 1);
-        mv.visitMethodInsn(Opcodes.INVOKESTATIC, HFModInfo.ASMPATH + "asm/overrides/ItemEgg", "registerIcons", "(Lnet/minecraft/client/renderer/texture/IIconRegister;)V", false);
-        mv.visitInsn(Opcodes.RETURN);
         mv.visitMaxs(2, 1);
         mv.visitEnd();
 
         //Get Sub Items
         name = isObfuscated ? "func_150895_a" : "getSubItems";
-        mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, "(Lnet/minecraft/item/Item;Lnet/minecraft/creativetab/CreativeTabs;Ljava/util/List;)V", null, null);
+        mv = cw.visitMethod(Opcodes.ACC_PUBLIC, name, ASMHelper.toMethodDescriptor("V", ASMConstants.ITEM, ASMConstants.CREATIVE_TABS, ASMConstants.LIST), null, null);
         mv.visitCode();
         mv.visitVarInsn(Opcodes.ALOAD, 1);
         mv.visitVarInsn(Opcodes.ALOAD, 2);
         mv.visitVarInsn(Opcodes.ALOAD, 3);
-        mv.visitMethodInsn(Opcodes.INVOKESTATIC, HFModInfo.ASMPATH + "asm/overrides/ItemEgg", "getSubItems", "(Lnet/minecraft/item/Item;Lnet/minecraft/creativetab/CreativeTabs;Ljava/util/List;)V", false);
+        mv.visitMethodInsn(Opcodes.INVOKESTATIC, ASMHelper.toInternalClassName(ASMConstants.Overrides.EGG), "getSubItems", ASMHelper.toMethodDescriptor("V", ASMConstants.ITEM, ASMConstants.CREATIVE_TABS, ASMConstants.LIST), false);
         mv.visitInsn(Opcodes.RETURN);
         mv.visitMaxs(4, 1);
         mv.visitEnd();
@@ -133,16 +114,14 @@ public class EggTransformer extends AbstractASM {
         if (!HFConfig.asm.EGG_DISABLE_THROWING) return modified;
         else {
             String name = HFOverride.isObfuscated ? "func_77659_a" : "onItemRightClick";
-            String desc = "(Lnet/minecraft/item/ItemStack;Lnet/minecraft/world/World;Lnet/minecraft/entity/player/EntityPlayer;)Lnet/minecraft/item/ItemStack;";
+            String desc = ASMHelper.toMethodDescriptor(ASMConstants.ACTION_RESULT, ASMConstants.STACK, ASMConstants.WORLD, ASMConstants.PLAYER, ASMConstants.HAND);
 
             ClassNode node = new ClassNode();
             ClassReader classReader = new ClassReader(modified);
             classReader.accept(node, 0);
 
-            //Remove the instructions from onRightClick for the ItemEgg
-            Iterator<MethodNode> methods = node.methods.iterator();
-            while (methods.hasNext()) {
-                MethodNode m = methods.next();
+            //Remove the instructions from onItemRightClick for the ItemEgg
+            for (MethodNode m : node.methods) {
                 if ((m.name.equals(name) && m.desc.equals(desc))) {
                     Iterator<AbstractInsnNode> iter = m.instructions.iterator();
                     while (iter.hasNext()) {

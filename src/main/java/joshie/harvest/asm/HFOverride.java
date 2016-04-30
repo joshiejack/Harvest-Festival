@@ -23,8 +23,8 @@ public class HFOverride implements IFMLLoadingPlugin, IClassTransformer {
     private static List<AbstractASM> asm = new ArrayList<AbstractASM>();
 
     static {
-        asm.add(new EggTransformer());
-        asm.add(new SeedFoodTransformer());
+        //asm.add(new EggTransformer()); //TODO Joshie
+        //asm.add(new SeedFoodTransformer()); //TODO Joshie
         asm.add(new WheatTransformer());
         asm.add(new MelonTransformer());
         asm.add(new FarmlandHardnessTransformer());

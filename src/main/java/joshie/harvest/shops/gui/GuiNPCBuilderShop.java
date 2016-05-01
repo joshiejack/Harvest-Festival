@@ -7,11 +7,11 @@ import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketPurchaseItem;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.shops.purchaseable.PurchaseableBuilding;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
-import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,7 +81,7 @@ public class GuiNPCBuilderShop extends GuiNPCShop {
 
             mc.fontRendererObj.drawStringWithShadow(TextFormatting.BOLD + purchaseable.getName(), x + 60, y + 46 + (index * 34), 0xC39753);
 
-            GL11.glColor3f(1.0F, 1.0F, 1.0F);
+            GlStateManager.color(1.0F, 1.0F, 1.0F);
             index++;
 
             if (index >= 10) {

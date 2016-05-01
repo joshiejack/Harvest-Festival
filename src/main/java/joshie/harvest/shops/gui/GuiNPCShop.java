@@ -11,10 +11,10 @@ import joshie.harvest.core.network.PacketPurchaseItem;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.gui.GuiNPCBase;
 import joshie.harvest.player.stats.StatDataClient;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import org.lwjgl.opengl.GL11;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -47,8 +47,8 @@ public class GuiNPCShop extends GuiNPCBase {
     public void drawBackground(int x, int y) {
         y += 20; //Add 20
 
-        GL11.glPushMatrix();
-        GL11.glEnable(GL11.GL_BLEND);
+        GlStateManager.pushMatrix();
+        GlStateManager.enableBlend();
         mc.renderEngine.bindTexture(gui_texture);
         drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
         overlay.renderOverlay(this, x, y, xSize, ySize);
@@ -65,8 +65,8 @@ public class GuiNPCShop extends GuiNPCBase {
 
         drawTexturedModalRect(x + 230, y + 45, 72 + up, 34, 14, 11);
         drawTexturedModalRect(x + 230, y + 210, 72 + down, 47, 14, 11);
-        GL11.glDisable(GL11.GL_BLEND);
-        GL11.glPopMatrix();
+        GlStateManager.disableBlend();
+        GlStateManager.popMatrix();
     }
 
     protected void drawShelves(int x, int y) {
@@ -100,13 +100,13 @@ public class GuiNPCShop extends GuiNPCBase {
             }
 
             drawTexturedModalRect(x + posX, y + posY, xOffset, 32, 32, 32);
-            GL11.glEnable(GL11.GL_BLEND);
-            GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+            GlStateManager.enableBlend();
+            GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.ZERO, GlStateManager.DestFactor.ONE_MINUS_SRC_COLOR, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
             mc.renderEngine.bindTexture(HFModInfo.elements);
             drawTexturedModalRect(x99 + 59, y37 + 50, 244, 0, 12, 12);
 
             mc.fontRendererObj.drawStringWithShadow("" + cost, x99 + 73, y37 + 53, 0xC39753);
-            GL11.glColor3f(1.0F, 1.0F, 1.0F);
+            GlStateManager.color(1.0F, 1.0F, 1.0F);
 
             StackHelper.drawStack(display, x99 + 36, y37 + 46, 1.4F);
 
@@ -136,10 +136,10 @@ public class GuiNPCShop extends GuiNPCBase {
             pos++;
         }
 
-        GL11.glDisable(GL11.GL_DEPTH_TEST);
+        GlStateManager.disableDepth();
         mc.renderEngine.bindTexture(HFModInfo.elements);
         mc.ingameGUI.drawTexturedModalRect((x + 230) - width - 15, y + 15, 244, 0, 12, 12);
-        GL11.glEnable(GL11.GL_DEPTH_TEST);
+        GlStateManager.enableDepth();
     }
 
     @Override

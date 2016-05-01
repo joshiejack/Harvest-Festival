@@ -6,9 +6,9 @@ import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.ChatFontRenderer;
 import joshie.harvest.core.util.GuiBase;
 import joshie.harvest.npc.entity.EntityNPC;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
-import org.lwjgl.opengl.GL11;
 
 public class GuiNPCBase extends GuiBase {
     private static final ResourceLocation chatbox = new ResourceLocation(HFModInfo.MODPATH, "textures/gui/chatbox.png");
@@ -29,23 +29,23 @@ public class GuiNPCBase extends GuiBase {
 
     @Override
     public void drawBackground(int x, int y) {
-        GL11.glPushMatrix();
-        GL11.glEnable(GL11.GL_BLEND);
+        GlStateManager.pushMatrix();
+        GlStateManager.enableBlend();
         mc.renderEngine.bindTexture(chatbox);
         drawTexturedModalRect(x, y + 150, 0, 150, 256, 46);
         ChatFontRenderer.colorise(npc.getNPC().getInsideColor());
         drawTexturedModalRect(x, y + 150, 0, 100, 256, 46);
         ChatFontRenderer.colorise(npc.getNPC().getOutsideColor());
         drawTexturedModalRect(x, y + 150, 0, 50, 256, 46);
-        GL11.glColor4f(1F, 1F, 1F, 1F);
-        GL11.glDisable(GL11.GL_BLEND);
-        GL11.glPopMatrix();
+        GlStateManager.color(1F, 1F, 1F, 1F);
+        GlStateManager.disableBlend();
+        GlStateManager.popMatrix();
 
         ChatFontRenderer.render(this, x, y, npc.getName(), npc.getNPC().getInsideColor(), npc.getNPC().getOutsideColor());
     }
 
     private void drawHeart(int value) {
-        GL11.glColor4f(1F, 1F, 1F, 1F);
+        GlStateManager.color(1F, 1F, 1F, 1F);
         int xPos = (int) ((((double) value / (Short.MAX_VALUE * 2))) * 7);
         drawTexturedModalRect(240, 130, 0, 0, 25, 25);
         drawTexturedModalRect(240, 130, 25 + (25 * xPos), 0, 25, 25);

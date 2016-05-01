@@ -2,10 +2,10 @@ package joshie.harvest.animals.render;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.util.math.MathHelper;
-import org.lwjgl.opengl.GL11;
 
 public class ModelHarvestSheep extends ModelBase {
     /**
@@ -184,9 +184,9 @@ public class ModelHarvestSheep extends ModelBase {
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
         if (this.isChild) {
             this.setChildAngles(f, f1, f2, f3, f4, f5, entity);
-            GL11.glPushMatrix();
-            GL11.glScalef(0.7F, 0.7F, 0.7F);
-            GL11.glTranslatef(0F, 0.6F, 0F);
+            GlStateManager.pushMatrix();
+            GlStateManager.scale(0.7F, 0.7F, 0.7F);
+            GlStateManager.translate(0F, 0.6F, 0F);
             this.child_head.render(f5);
             this.child_bodyMiddle.render(f5);
             this.child_frontLeftLeg.render(f5);
@@ -198,7 +198,7 @@ public class ModelHarvestSheep extends ModelBase {
             this.child_tail.render(f5);
             this.child_backLeftLeg.render(f5);
             this.child_backRightLeg.render(f5);
-            GL11.glPopMatrix();
+            GlStateManager.popMatrix();
         } else {
             EntitySheep sheep = (EntitySheep) entity;
             if (sheep.getSheared()) {

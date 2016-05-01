@@ -44,7 +44,7 @@ public class CalendarRender {
             ISeasonData data = calendar.getSeasonData();
             GlStateManager.pushMatrix();
             GlStateManager.enableBlend();
-            GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+            GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             mc.renderEngine.bindTexture(data.getResource());
             mc.ingameGUI.drawTexturedModalRect(0, 0, 0, 0, 256, 256);

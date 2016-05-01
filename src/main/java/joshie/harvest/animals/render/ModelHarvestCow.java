@@ -2,9 +2,9 @@ package joshie.harvest.animals.render;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
-import org.lwjgl.opengl.GL11;
 
 public class ModelHarvestCow extends ModelBase {
     /**
@@ -177,9 +177,9 @@ public class ModelHarvestCow extends ModelBase {
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
         if (this.isChild) {
             this.setChildAngles(f, f1, f2, f3, f4, f5, entity);
-            GL11.glPushMatrix();
-            GL11.glScalef(0.5F, 0.5F, 0.5F);
-            GL11.glTranslatef(0F, 1.3F, 0F);
+            GlStateManager.pushMatrix();
+            GlStateManager.scale(0.5F, 0.5F, 0.5F);
+            GlStateManager.translate(0F, 1.3F, 0F);
             this.child_frontLeftLeg.render(f5);
             this.child_frontRightLeg.render(f5);
             this.child_earLeft.render(f5);
@@ -196,7 +196,7 @@ public class ModelHarvestCow extends ModelBase {
             this.child_backLeftLeg.render(f5);
             this.child_sideRight.render(f5);
             this.child_tail.render(f5);
-            GL11.glPopMatrix();
+            GlStateManager.popMatrix();
         } else {
             this.setAdultAngles(f, f1, f2, f3, f4, f5, entity);
             this.earLeft.render(f5);

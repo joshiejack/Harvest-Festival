@@ -10,7 +10,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.GuiIngameForge;
@@ -20,10 +19,8 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class RenderHandler {
@@ -42,26 +39,22 @@ public class RenderHandler {
         GuiScreen gui = mc.currentScreen;
         if (gui instanceof GuiContainer && mc.thePlayer.inventory.getItemStack() == null) {
             GuiContainer container = (GuiContainer) gui;
-            Point mouse = joshie.harvest.core.helpers.generic.MCClientHelper.getMouse(container);
+            Point mouse = MCClientHelper.getMouse(container);
             final ScaledResolution scaledresolution = ((GuiIngameForge) mc.ingameGUI).getResolution();
             int i = scaledresolution.getScaledWidth();
             int j = scaledresolution.getScaledHeight();
             final int k = Mouse.getX() * i / mc.displayWidth;
             final int l = j - Mouse.getY() * j / mc.displayHeight - 1;
 
-            GlStateManager.pushMatrix();
-            GL11.glPushAttrib(1048575);
-            GL11.glDisable(2896);
             List<Slot> slots = mc.thePlayer.openContainer.inventorySlots;
-            for (int o = 0; o < slots.size(); o++) {
-                Slot slot = slots.get(o);
+            for (Slot slot : slots) {
                 if (mouse.x >= slot.xDisplayPosition - 1 && mouse.x <= slot.xDisplayPosition + 16 && mouse.y >= slot.yDisplayPosition - 1 && mouse.y <= slot.yDisplayPosition + 16) {
                     //Mouse is hovering over this slot
                     ItemStack stack = slot.getStack();
                     if (stack == null) continue;
                     boolean isLevelable = stack.getItem() instanceof ILevelable;
                     if (isLevelable) {
-                        ArrayList<String> tooltip = (ArrayList<String>) stack.getTooltip(mc.thePlayer, mc.gameSettings.advancedItemTooltips);
+                        List<String> tooltip = stack.getTooltip(mc.thePlayer, mc.gameSettings.advancedItemTooltips);
                         ToolTier tier = ToolTier.BASIC;
                         int level = ((ILevelable) stack.getItem()).getLevel(stack);
                         if (stack.getItem() instanceof ITiered) {
@@ -73,8 +66,6 @@ public class RenderHandler {
                     }
                 }
             }
-            GlStateManager.popAttrib();
-            GlStateManager.popMatrix();
         }
     }
 }

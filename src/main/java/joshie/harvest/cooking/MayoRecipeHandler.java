@@ -6,11 +6,11 @@ import joshie.harvest.api.cooking.IUtensil;
 import joshie.harvest.items.HFItems;
 import net.minecraft.item.ItemStack;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class MayoRecipeHandler implements ISpecialRecipeHandler {
     @Override
-    public ItemStack getResult(IUtensil utensil, ArrayList<ItemStack> ingredients) {
+    public ItemStack getResult(IUtensil utensil, List<ItemStack> ingredients) {
         if (utensil != Utensil.COUNTER) return null;
         if (ingredients.size() != 2) return null;
         boolean is0Oil = ingredients.get(0).getItem() == HFItems.GENERAL;
@@ -21,7 +21,6 @@ public class MayoRecipeHandler implements ISpecialRecipeHandler {
                 return new ItemStack(HFItems.MAYONNAISE, 1, egg.getItemDamage());
             }
         }
-
         return null;
     }
 }

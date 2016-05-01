@@ -14,16 +14,11 @@ import java.util.List;
 
 public abstract class ItemBaseMeta extends Item implements IHasMetaItem {
     protected String mod;
-    protected String path;
 
     public ItemBaseMeta(String mod, CreativeTabs tab) {
         setCreativeTab(tab);
         setHasSubtypes(true);
         this.mod = mod;
-    }
-
-    public void setTextureFolder(String thePath) {
-        this.path = thePath;
     }
 
     @Override

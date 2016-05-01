@@ -15,14 +15,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-import static joshie.harvest.core.lib.HFModInfo.CROPPATH;
-
 public class ItemCrop extends ItemHFMeta implements IShippable, ICropProvider, ICreativeSorted {
     private ICrop crop;
 
     public ItemCrop(ICrop crop) {
         setCreativeTab(HFTab.FARMING);
-        setTextureFolder(CROPPATH);
         this.crop = crop;
     }
 

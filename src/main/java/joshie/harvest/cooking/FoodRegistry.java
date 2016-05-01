@@ -104,7 +104,7 @@ public class FoodRegistry implements IFoodRegistry {
     }
 
     @Override
-    public ItemStack getResult(IUtensil utensil, ArrayList<ItemStack> ingredients) {
+    public ItemStack getResult(IUtensil utensil, List<ItemStack> ingredients) {
         //Check the special recipes first
         for (ISpecialRecipeHandler recipe : specials) {
             ItemStack ret = recipe.getResult(utensil, ingredients);

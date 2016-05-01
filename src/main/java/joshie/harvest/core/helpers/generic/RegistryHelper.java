@@ -2,6 +2,7 @@ package joshie.harvest.core.helpers.generic;
 
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.generic.Library;
+import joshie.harvest.items.ItemBaseTool;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -20,35 +21,36 @@ import java.util.List;
 
 public class RegistryHelper {
 
-    public static void registerItem(Item item, String name) {
-        try {
-            name = name.replace('.', '_');
+    public static Item registerItem(Item item, String name) {
+        name = name.replace(".", "_");
 
-            GameRegistry.register(item, new ResourceLocation(HFModInfo.MODID, name));
+        GameRegistry.register(item, new ResourceLocation(HFModInfo.MODID, name));
 
-            if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
-                if (item.getHasSubtypes()) {
-                    List<ItemStack> subItems = new ArrayList<ItemStack>();
-                    item.getSubItems(item, item.getCreativeTab(), subItems);
-                    for (ItemStack stack : subItems) {
-                        String subItemName = item.getUnlocalizedName(stack);
+        if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
+            if (item.getHasSubtypes()) {
+                List<ItemStack> subItems = new ArrayList<ItemStack>();
+                item.getSubItems(item, item.getCreativeTab(), subItems);
+                for (ItemStack stack : subItems) {
+                    String subItemName = item.getUnlocalizedName(stack).replace("item.", "").replace(".", "_");
 
-                        ModelLoader.setCustomModelResourceLocation(item, stack.getItemDamage(), new ModelResourceLocation(new ResourceLocation(HFModInfo.MODID, subItemName), "inventory"));
-                        System.out.println("Sub Item Name " + subItemName);
+                    if (item instanceof ItemBaseTool) {
+                        subItemName = subItemName + "_" + ((ItemBaseTool) item).getTier(stack).name().toLowerCase();
                     }
-                } else {
-                    ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(new ResourceLocation(HFModInfo.MODID, name), "inventory"));
-                    System.out.println("Item Name " + name);
+
+                    ModelLoader.setCustomModelResourceLocation(item, item.getDamage(stack), new ModelResourceLocation(new ResourceLocation(HFModInfo.MODPATH, subItemName), "inventory"));
+                    System.out.println("Sub Item Name " + subItemName);
                 }
+            } else {
+                ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(new ResourceLocation(HFModInfo.MODPATH, name), "inventory"));
+                System.out.println("Item Name " + name);
             }
-
-            if (Library.DEBUG_ON) {
-                Library.log(Level.DEBUG, "Successfully registered the item " + item.getClass().getSimpleName() + " as " + HFModInfo.MODID + ":" + name);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
         }
+
+        if (Library.DEBUG_ON) {
+            Library.log(Level.DEBUG, "Successfully registered the item " + item.getClass().getSimpleName() + " as " + HFModInfo.MODPATH + ":" + name);
+        }
+
+        return item;
     }
 
     //Short hand for registering tile entities

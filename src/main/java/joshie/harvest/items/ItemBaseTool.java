@@ -27,6 +27,7 @@ public abstract class ItemBaseTool extends ItemBaseSingle implements ILevelable,
     public ItemBaseTool() {
         setMaxDamage(8);
         setMaxStackSize(1);
+        setHasSubtypes(true);
     }
 
     @Override

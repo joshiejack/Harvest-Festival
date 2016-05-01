@@ -13,12 +13,9 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import static joshie.harvest.core.lib.HFModInfo.BUILDINGPATH;
-
 public class ItemBuilding extends ItemHFMeta implements ICreativeSorted {
     public ItemBuilding() {
         super(HFTab.TOWN);
-        setTextureFolder(BUILDINGPATH);
     }
 
     @Override

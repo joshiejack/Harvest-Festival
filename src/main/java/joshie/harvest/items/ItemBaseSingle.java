@@ -6,10 +6,7 @@ import joshie.harvest.core.util.Translate;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import static joshie.harvest.core.lib.HFModInfo.MODPATH;
-
 public class ItemBaseSingle extends Item {
-    protected String path = MODPATH + ":";
 
     public ItemBaseSingle() {
         setCreativeTab(HFTab.FARMING);

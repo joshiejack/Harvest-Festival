@@ -60,17 +60,24 @@ public class CropTracker {
         crops.remove(data.getLocation());
     }
 
-    public void hydrate(World world, BlockPos pos, IBlockState state) {}
+    public void hydrate(World world, BlockPos pos, IBlockState state) {
+    }
 
-    public void setWithered(ICropData data) {}
+    public void setWithered(ICropData data) {
+    }
 
-    public void grow(World world, BlockPos pos) {}
+    public void grow(World world, BlockPos pos) {
+    }
 
-    public void newDay() {}
+    public void newDay() {
+    }
 
-    public void sendUpdateToClient(EntityPlayerMP player, World world, BlockPos pos) {}
+    public void sendUpdateToClient(EntityPlayerMP player, World world, BlockPos pos) {
+    }
 
-    public void updateClient(boolean isRemoval, WorldLocation location, ICropData data) {}
+    public void updateClient(boolean isRemoval, WorldLocation location, ICropData data) {
+    }
 
-    public void doRain() {}
+    public void doRain() {
+    }
 }

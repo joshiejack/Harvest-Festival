@@ -24,7 +24,7 @@ public class QuestTomatoes extends Quest {
 
     @Override
     public INPC[] getNPCs() {
-        return new INPC[]{HFNPCs.goddess};
+        return new INPC[]{HFNPCs.GODDESS};
     }
 
     @Override
@@ -51,6 +51,6 @@ public class QuestTomatoes extends Quest {
     @Override
     public void claim(EntityPlayer player) {
         rewardGold(player, HFCrops.tomato.getSellValue() * 15);
-        rewardRelations(player, HFNPCs.goddess, 1000);
+        rewardRelations(player, HFNPCs.GODDESS, 1000);
     }
 }

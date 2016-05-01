@@ -144,13 +144,13 @@ public class HFIngredients {
     }
 
     public static void init() {
-        HFApi.COOKING.register(new ItemStack(HFItems.general, 1, ItemGeneral.SALT), salt);
+        HFApi.COOKING.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.SALT), salt);
         HFApi.COOKING.register(new ItemStack(Items.SUGAR, 1, OreDictionary.WILDCARD_VALUE), sugar);
         HFApi.COOKING.register(new ItemStack(Items.APPLE, 1, OreDictionary.WILDCARD_VALUE), apple);
-        HFApi.COOKING.register(new ItemStack(HFItems.general, 1, ItemGeneral.CHOCOLATE), chocolate);
-        HFApi.COOKING.register(new ItemStack(HFItems.general, 1, ItemGeneral.FLOUR), flour);
-        HFApi.COOKING.register(new ItemStack(HFItems.general, 1, ItemGeneral.OIL), oil);
-        HFApi.COOKING.register(new ItemStack(HFItems.general, 1, ItemGeneral.RICEBALL), riceball);
+        HFApi.COOKING.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.CHOCOLATE), chocolate);
+        HFApi.COOKING.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.FLOUR), flour);
+        HFApi.COOKING.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.OIL), oil);
+        HFApi.COOKING.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.RICEBALL), riceball);
         HFApi.COOKING.register(HFCrops.turnip.getCropStack(), turnip);
         HFApi.COOKING.register(HFCrops.potato.getCropStack(), potato);
         HFApi.COOKING.register(new ItemStack(Items.POTATO, 1, OreDictionary.WILDCARD_VALUE), potato);
@@ -173,12 +173,12 @@ public class HFIngredients {
         HFApi.COOKING.register(new ItemStack(Items.MELON, 1, OreDictionary.WILDCARD_VALUE), watermelon);
         HFApi.COOKING.register(new ItemStack(Blocks.MELON_BLOCK, 1, OreDictionary.WILDCARD_VALUE), watermelon);
         HFApi.COOKING.register(new ItemStack(Items.BREAD, 1, OreDictionary.WILDCARD_VALUE), bread);
-        HFApi.COOKING.register(new ItemStack(HFItems.egg), egg);
+        HFApi.COOKING.register(new ItemStack(HFItems.EGG), egg);
         HFApi.COOKING.register(new ItemStack(Items.EGG, 1, OreDictionary.WILDCARD_VALUE), egg);
         HFApi.COOKING.register(new ItemStack(Items.FISH, 1, OreDictionary.WILDCARD_VALUE), fish);
-        HFApi.COOKING.register(new ItemStack(HFItems.milk), milk);
+        HFApi.COOKING.register(new ItemStack(HFItems.MILK), milk);
         HFApi.COOKING.register(new ItemStack(Items.MILK_BUCKET, 1, OreDictionary.WILDCARD_VALUE), milk);
-        HFApi.COOKING.register(new ItemStack(HFItems.mayonnaise), mayonnaise);
+        HFApi.COOKING.register(new ItemStack(HFItems.MAYONNAISE), mayonnaise);
         HFApi.COOKING.register(HFApi.COOKING.getBestMeal("butter"), butter);
         HFApi.COOKING.register(HFApi.COOKING.getBestMeal("egg.boiled"), boiled_egg);
         HFApi.COOKING.register(HFApi.COOKING.getBestMeal("sashimi"), sashimi);

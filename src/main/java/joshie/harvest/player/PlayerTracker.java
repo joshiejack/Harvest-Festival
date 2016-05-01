@@ -14,14 +14,22 @@ import java.util.UUID;
 
 public abstract class PlayerTracker {
     protected EntityNPCBuilder builder;
-    
+
     public abstract EntityPlayer getAndCreatePlayer();
+
     public abstract UUID getUUID();
-    public abstract FridgeData getFridge();   
+
+    public abstract FridgeData getFridge();
+
     public abstract QuestData getQuests();
+
     public abstract RelationshipData getRelationships();
+
     public abstract StatData getStats();
+
     public abstract TownData getTown();
+
     public abstract TrackingData getTracking();
+
     public abstract EntityNPCBuilder getBuilder(World world);
 }

@@ -7,7 +7,7 @@ import joshie.harvest.items.ItemMeal;
 import net.minecraft.item.ItemStack;
 
 public class Meal implements IMeal {
-    static final ItemStack BURNT = new ItemStack(HFItems.meal);
+    static final ItemStack BURNT = new ItemStack(HFItems.MEAL);
     private static double hunger_modifier = 1.0D;
     private static double saturation_modifier = 1.0D;
 
@@ -120,7 +120,7 @@ public class Meal implements IMeal {
 
     @Override
     public ItemStack cook(IMeal meal) {
-        return ItemMeal.cook(new ItemStack(HFItems.meal), meal);
+        return ItemMeal.cook(new ItemStack(HFItems.MEAL), meal);
     }
 
     @Override

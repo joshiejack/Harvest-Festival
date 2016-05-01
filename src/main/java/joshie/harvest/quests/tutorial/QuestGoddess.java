@@ -16,7 +16,7 @@ import static joshie.harvest.core.helpers.QuestHelper.*;
 public class QuestGoddess extends Quest {   
     @Override
     protected INPC[] getNPCs() {
-        return new INPC[] { HFNPCs.goddess, HFNPCs.seed_owner };
+        return new INPC[] { HFNPCs.GODDESS, HFNPCs.SEED_OWNER };
     }
     
     @Override
@@ -37,14 +37,14 @@ public class QuestGoddess extends Quest {
     @Override
     public void claim(EntityPlayer player) {
         rewardGold(player, 1000);
-        rewardItem(player, new ItemStack(HFItems.hoe));
-        rewardItem(player, new ItemStack(HFItems.wateringcan));
-        rewardItem(player, new ItemStack(HFItems.sickle));
+        rewardItem(player, new ItemStack(HFItems.HOE));
+        rewardItem(player, new ItemStack(HFItems.WATERING_CAN));
+        rewardItem(player, new ItemStack(HFItems.SICKLE));
     }
 
     @Override
     public String getScript(EntityPlayer player, INPC npc) {       
-        if (npc == HFNPCs.goddess) {
+        if (npc == HFNPCs.GODDESS) {
             if (quest_stage == 0) {
                 increaseStage(player);
                 return "welcome"; //Greet the player, tell them to gather 64 logs for you, Give them 4 goddess flowers
@@ -88,7 +88,7 @@ public class QuestGoddess extends Quest {
                 completeQuest(player, this);
                 return "completed";
             }
-        } else if (npc == HFNPCs.seed_owner) {
+        } else if (npc == HFNPCs.SEED_OWNER) {
             if (quest_stage == 2) {
                 //I am jade, and i like flowers and i will give you seeds
                 increaseStage(player);

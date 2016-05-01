@@ -48,7 +48,7 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
     }
 
     public EntityNPC(World world) {
-        this(null, world, HFNPCs.goddess);
+        this(null, world, HFNPCs.GODDESS);
     }
 
     @Override
@@ -73,7 +73,7 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
 
     @Override
     protected void initEntityAI() {
-        ((PathNavigateGround)this.getNavigator()).setBreakDoors(true);
+        ((PathNavigateGround) this.getNavigator()).setBreakDoors(true);
 
         if (owning_player != null) {
             tasks.addTask(0, new EntityAISwimming(this));
@@ -254,7 +254,7 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
 
         npc = HFApi.NPC.get(new String(name));
         if (npc == null) {
-            npc = HFNPCs.goddess;
+            npc = HFNPCs.GODDESS;
         }
 
         if (buf.readBoolean()) {
@@ -266,6 +266,6 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
 
     @Override
     public EntityAgeable createChild(EntityAgeable ageable) {
-        return new EntityNPC(owning_player, worldObj, HFNPCs.goddess);
+        return new EntityNPC(owning_player, worldObj, HFNPCs.GODDESS);
     }
 }

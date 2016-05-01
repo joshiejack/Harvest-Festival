@@ -7,7 +7,7 @@
   "mcversion": "${mcversion}",
   "url": "http://joshiejack.uk/harvest",
   "updateUrl": "",
-  "authors": ["joshie"],
+  "authorList": ["joshie"],
   "credits": "Yulife for awesomeness, See credits.txt in jar for extra",
   "logoFile": "",
   "screenshots": [],

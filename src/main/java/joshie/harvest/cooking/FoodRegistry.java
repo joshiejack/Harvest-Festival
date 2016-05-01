@@ -29,7 +29,7 @@ public class FoodRegistry implements IFoodRegistry {
             components.put(component.getUnlocalizedName(), component);
         }
     }
-    
+
     @Override
     public void registerRecipeHandler(ISpecialRecipeHandler handler) {
         specials.add(handler);
@@ -44,12 +44,12 @@ public class FoodRegistry implements IFoodRegistry {
     public ICookingComponent getComponent(String unlocalized) {
         return components.get(unlocalized);
     }
-    
+
     @Override
     public ICookingComponent newCategory(String unlocalized) {
         return new Ingredient(unlocalized);
     }
-    
+
     @Override
     public ICookingComponent newIngredient(String unlocalized, int stamina, int fatigue, int hunger, float saturation, int eatTimer) {
         return new Ingredient(unlocalized, stamina, fatigue, hunger, saturation, eatTimer);
@@ -57,7 +57,7 @@ public class FoodRegistry implements IFoodRegistry {
 
     @Override
     public Fluid getFluid(ItemStack ingredient) {
-        List<ICookingComponent> components = ((List<ICookingComponent>)SafeStackHelper.getResult(ingredient, registry));
+        List<ICookingComponent> components = ((List<ICookingComponent>) SafeStackHelper.getResult(ingredient, registry));
         return components.size() < 1 ? null : components.get(0).getFluid();
     }
 
@@ -75,7 +75,7 @@ public class FoodRegistry implements IFoodRegistry {
         recipes.add(recipe);
         return recipe;
     }
-    
+
     @Override
     public ArrayList<IMealRecipe> getRecipes() {
         return recipes;
@@ -83,36 +83,36 @@ public class FoodRegistry implements IFoodRegistry {
 
     @Override
     public ItemStack getBestMeal(String string) {
-        for (IMealRecipe recipe: getRecipes()) {
+        for (IMealRecipe recipe : getRecipes()) {
             if (recipe.getBestMeal().getUnlocalizedName().equals(string)) {
                 return recipe.getBestMeal().cook(recipe.getBestMeal());
             }
         }
-        
+
         return null;
     }
 
     @Override
     public ItemStack getMeal(String string) {
-        for (IMealRecipe recipe: getRecipes()) {
+        for (IMealRecipe recipe : getRecipes()) {
             if (recipe.getBestMeal().getUnlocalizedName().equals(string)) {
                 return recipe.getBestMeal().cook(recipe.getMeal());
             }
         }
-        
+
         return null;
     }
 
     @Override
     public ItemStack getResult(IUtensil utensil, ArrayList<ItemStack> ingredients) {
         //Check the special recipes first
-        for (ISpecialRecipeHandler recipe: specials) {
+        for (ISpecialRecipeHandler recipe : specials) {
             ItemStack ret = recipe.getResult(utensil, ingredients);
             if (ret != null) {
                 return ret;
             }
         }
-                
+
         //Convert all the stacks in to their relevant ingredients
         HashSet<ICookingComponent> components = new HashSet<ICookingComponent>();
         for (ItemStack stack : ingredients) {

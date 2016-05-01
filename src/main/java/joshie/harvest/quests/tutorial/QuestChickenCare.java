@@ -77,7 +77,7 @@ public class QuestChickenCare extends Quest {
 
     @Override
     public INPC[] getNPCs() {
-        return new INPC[]{HFNPCs.animal_owner};
+        return new INPC[]{HFNPCs.ANIMAL_OWNER};
     }
 
     @Override

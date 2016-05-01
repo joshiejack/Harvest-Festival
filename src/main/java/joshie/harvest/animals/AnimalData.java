@@ -308,7 +308,7 @@ public class AnimalData implements IAnimalData {
     @Override
     public boolean treat(ItemStack stack, EntityPlayer player) {
         if (!treated) {
-            treated = stack.getItem() == HFItems.treats && stack.getItemDamage() == ItemTreat.GENERIC;
+            treated = stack.getItem() == HFItems.TREATS && stack.getItemDamage() == ItemTreat.GENERIC;
             if (treated) {
                 genericTreats++;
                 affectRelationship(player, 1);
@@ -425,7 +425,9 @@ public class AnimalData implements IAnimalData {
         nbt.setByte("DaysPregnant", daysPregnant);
     }
 
-    /** Setters **/
+    /**
+     * Setters
+     **/
     @Override
     public void setHealthiness(byte healthiness) {
         this.healthiness = healthiness;

@@ -7,7 +7,12 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 
 public abstract class MineTracker {
-    public void completeMine(World world, BlockPos pos, ArrayList<PlaceableBlock> completed) {}
-    public void destroyLevel(World world, BlockPos pos) {}
-    public void newDay() {}
+    public void completeMine(World world, BlockPos pos, ArrayList<PlaceableBlock> completed) {
+    }
+
+    public void destroyLevel(World world, BlockPos pos) {
+    }
+
+    public void newDay() {
+    }
 }

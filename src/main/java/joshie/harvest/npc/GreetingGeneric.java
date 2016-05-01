@@ -5,11 +5,11 @@ import net.minecraft.entity.player.EntityPlayer;
 
 public class GreetingGeneric implements IConditionalGreeting {
     public String text;
-    
+
     public GreetingGeneric(String text) {
         this.text = text;
     }
-    
+
     @Override
     public boolean canDisplay(EntityPlayer player) {
         return true;

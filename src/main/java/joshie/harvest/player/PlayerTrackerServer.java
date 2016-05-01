@@ -66,7 +66,7 @@ public class PlayerTrackerServer extends PlayerTracker {
     public UUID getUUID() {
         return uuid;
     }
-    
+
     @Override
     public FridgeDataServer getFridge() {
         return fridge;
@@ -81,17 +81,17 @@ public class PlayerTrackerServer extends PlayerTracker {
     public QuestDataServer getQuests() {
         return quests;
     }
-    
+
     @Override
     public StatDataServer getStats() {
         return stats;
     }
-    
+
     @Override
     public TownDataServer getTown() {
         return town;
     }
-    
+
     public TrackingDataServer getTracking() {
         return tracking;
     }
@@ -111,7 +111,7 @@ public class PlayerTrackerServer extends PlayerTracker {
         }
 
         //Create an npc builder, with this person as their owner
-        EntityNPCBuilder builder = (EntityNPCBuilder) NPCHelper.getEntityForNPC(uuid, world, HFNPCs.builder);
+        EntityNPCBuilder builder = (EntityNPCBuilder) NPCHelper.getEntityForNPC(uuid, world, HFNPCs.BUILDER);
         EntityPlayer player = getAndCreatePlayer();
         builder.setPosition(player.posX + player.worldObj.rand.nextDouble() * 4D, player.posY, player.posZ + player.worldObj.rand.nextDouble() * 4D);
         world.spawnEntityInWorld(builder);
@@ -126,7 +126,7 @@ public class PlayerTrackerServer extends PlayerTracker {
             stats.newDay(bedtime, tracking.newDay());
             syncPlayerStats(player); //Resync everything
         }
-        
+
         town.newDay();
 
         HFTrackers.markDirty();

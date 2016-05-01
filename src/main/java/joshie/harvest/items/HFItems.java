@@ -14,31 +14,9 @@ import org.apache.commons.lang3.text.WordUtils;
 import java.util.EnumMap;
 
 public class HFItems {
-    public static EnumMap<SizeableMeta, Item> sized = new EnumMap<SizeableMeta, Item>(SizeableMeta.class);
-    //Sizeables
-    public static Item egg;
-    public static Item milk;
-    public static Item mayonnaise;
-    public static Item wool;
+    public static final EnumMap<SizeableMeta, Item> SIZED = new EnumMap<SizeableMeta, Item>(SizeableMeta.class);
 
-    //Tools
-    public static Item hoe;
-    public static Item sickle;
-    public static Item wateringcan;
-    public static Item hammer;
-
-    //Misc
-    public static Item general;
-    public static Item meal;
-    public static ItemAnimal animal;
-    public static ItemTreat treats;
-    public static Item seeds;
-
-    //Misc
-    public static Item structures;
-    public static Item spawnerNPC;
-
-    public static void preInit() {
+    static {
         //Add a new crop item for things that do not have an item yet :D
         for (ICrop crop : Crop.crops) {
             if (!crop.hasItemAssigned()) {
@@ -52,33 +30,35 @@ public class HFItems {
         for (SizeableMeta size : SizeableMeta.values()) {
             if (size.ordinal() >= SizeableMeta.YOGHURT.ordinal()) continue;
             else {
-                sized.put(size, size.getOrCreateStack());
+                SIZED.put(size, size.getOrCreateStack());
             }
         }
+    }
 
-        //Sizeables
-        egg = sized.get(SizeableMeta.EGG);
-        milk = sized.get(SizeableMeta.MILK);
-        mayonnaise = sized.get(SizeableMeta.MAYONNAISE);
-        wool = sized.get(SizeableMeta.WOOL);
+    //Sizeables
+    public static final Item EGG = SIZED.get(SizeableMeta.EGG);
+    public static final Item MILK = SIZED.get(SizeableMeta.MILK);
+    public static final Item MAYONNAISE = SIZED.get(SizeableMeta.MAYONNAISE);
+    public static final Item WOOL = SIZED.get(SizeableMeta.WOOL);
 
-        //Tools
-        hoe = new ItemHoe().setUnlocalizedName("hoe");
-        sickle = new ItemSickle().setUnlocalizedName("sickle");
-        wateringcan = new ItemWateringCan().setUnlocalizedName("wateringcan");
-        hammer = new ItemHammer().setUnlocalizedName("hammer");
+    //Tools
+    public static final Item HOE = new ItemHoe().setUnlocalizedName("hoe");
+    public static final Item SICKLE = new ItemSickle().setUnlocalizedName("sickle");
+    public static final Item WATERING_CAN = new ItemWateringCan().setUnlocalizedName("wateringcan");
+    public static final Item HAMMER = new ItemHammer().setUnlocalizedName("hammer");
 
-        //Misc
-        general = new ItemGeneral().setUnlocalizedName("general.item");
-        meal = new ItemMeal().setUnlocalizedName("meal");
-        animal = (ItemAnimal) new ItemAnimal().setUnlocalizedName("animal");
-        treats = (ItemTreat) new ItemTreat().setUnlocalizedName("treat");
-        seeds = new ItemHFSeeds().setUnlocalizedName("crops.seeds");
+    //Misc
+    public static final Item GENERAL = new ItemGeneral().setUnlocalizedName("general.item");
+    public static final Item MEAL = new ItemMeal().setUnlocalizedName("meal");
+    public static final Item ANIMAL = new ItemAnimal().setUnlocalizedName("animal");
+    public static final ItemTreat TREATS = (ItemTreat) new ItemTreat().setUnlocalizedName("treat");
+    public static final Item SEEDS = new ItemHFSeeds().setUnlocalizedName("crops.seeds");
 
-        //Creative
-        structures = new ItemBuilding().setUnlocalizedName("structures");
-        spawnerNPC = new ItemNPCSpawner().setUnlocalizedName("spawner.npc");
+    //Misc
+    public static final Item STRUCTURES = new ItemBuilding().setUnlocalizedName("structures");
+    public static final Item SPAWNER_NPC = new ItemNPCSpawner().setUnlocalizedName("spawner.npc");
 
+    public static void preInit() {
         if (General.DEBUG_MODE) {
             new ItemCheat().setUnlocalizedName("cheat");
         }

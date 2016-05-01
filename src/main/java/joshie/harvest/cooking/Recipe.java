@@ -32,20 +32,20 @@ public class Recipe implements IMealRecipe {
         this.requiredTool = tool;
         return this;
     }
-    
+
     @Override
     public IMealRecipe setIsDrink() {
         this.result.setIsDrink();
         return this;
     }
-    
+
     @Override
     public IMealRecipe setHasAltTexture() {
         this.result.setHasAltTexture();
         return this;
     }
 
-    private boolean recipeHasThisIngredient(ICookingComponent ingredient) {        
+    private boolean recipeHasThisIngredient(ICookingComponent ingredient) {
         //First we check if the Required Ingredients have this ingredient in them
         for (ICookingComponent i : requiredIngredients) {
             if (i.isEqual(ingredient)) {
@@ -67,22 +67,25 @@ public class Recipe implements IMealRecipe {
     private boolean ingredientListContains(Set<ICookingComponent> ingredients, ICookingComponent required) {
         //Now we should loop through all the ingredient passed in
         for (ICookingComponent passed : ingredients) {
-            if (required.isEqual(passed)) return true; //If we found this ingredient in the list, then we can return it as true;
+            if (required.isEqual(passed))
+                return true; //If we found this ingredient in the list, then we can return it as true;
         }
 
         return false; //We did not find the item, therefore we return false
     }
-    
+
     @Override
     public IMeal getMeal(IUtensil utensil, HashSet<ICookingComponent> ingredients) {
-        if (ingredients == null || ingredients.size() < 1 || utensil != requiredTool) return null; //If we have no utensils, or not enough recipes remove them all
-               
+        if (ingredients == null || ingredients.size() < 1 || utensil != requiredTool)
+            return null; //If we have no utensils, or not enough recipes remove them all
+
         /** Step one.
          *  Validate that all supplied Ingredients are Allowed in this Meal.*/
         for (ICookingComponent ingredient : ingredients) { //Loop through all the ingredients to CHECK if the recipe allow this type of food in to it
-            if (!recipeHasThisIngredient(ingredient)) return null; //If the recipe DOES not contain this ingredient then we should return null.
+            if (!recipeHasThisIngredient(ingredient))
+                return null; //If the recipe DOES not contain this ingredient then we should return null.
         }
-        
+
         /** Step two.
          *  Now that we know that all the ingredients are valid ingredients for this recipe.
          *  We need to actually check that we HAVE all of the required ingredients.
@@ -91,7 +94,7 @@ public class Recipe implements IMealRecipe {
             //If the ingredients list does NOT contain this item we should return null
             if (!ingredientListContains(ingredients, required)) return null;
         }
-        
+
         /** Final step is to build the meal **/
         IMeal meal = new Meal(result);
         if (optionalIngredients != null) { //Loop through optional ingredients
@@ -104,7 +107,7 @@ public class Recipe implements IMealRecipe {
 
         return meal;
     }
-    
+
     @Override
     public IMeal getMeal() {
         return new Meal(result); //Clone the meal

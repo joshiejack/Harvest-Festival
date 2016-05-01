@@ -4,6 +4,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.items.HFItems;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -92,11 +93,9 @@ public class HFTab extends CreativeTabs {
     }
 
     public static void preInit() {
-        HFTab.TOWN.setStack(new ItemStack(HFItems.structures, 0, 0));
-        /*
-        HFTab.tabMining.setStack(new ItemStack(HFBlocks.stone, 0, 0));
-        */
-        HFTab.FARMING.setStack(new ItemStack(HFItems.hoe, 1, 0));
+        HFTab.TOWN.setStack(new ItemStack(HFItems.STRUCTURES, 1, 0));
+        HFTab.MINING.setStack(new ItemStack(Blocks.STONE)); //TODO Change to HFBlocks.STONE
+        HFTab.FARMING.setStack(new ItemStack(HFItems.HOE, 1, 0));
         HFTab.COOKING.setStack(HFApi.COOKING.getMeal("salad"));
     }
 }

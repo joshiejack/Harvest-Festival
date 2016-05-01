@@ -12,13 +12,13 @@ public class SeedHelper {
         if (!stack.hasTagCompound()) {
             return HFCrops.null_crop;
         }
-        
+
         String unlocalized = stack.getTagCompound().getString("UnlocalizedSeedName");
         return HFConfig.mappings.getCrop(unlocalized);
     }
 
     public static ItemStack getSeedsFromCrop(ICrop crop) {
-        ItemStack seeds = new ItemStack(HFItems.seeds);
+        ItemStack seeds = new ItemStack(HFItems.SEEDS);
         seeds.setTagCompound(new NBTTagCompound());
         seeds.getTagCompound().setString("UnlocalizedSeedName", crop.getUnlocalizedName());
         return seeds;

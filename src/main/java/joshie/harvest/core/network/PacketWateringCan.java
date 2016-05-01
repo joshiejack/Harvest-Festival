@@ -39,7 +39,7 @@ public class PacketWateringCan extends AbstractPacketLocation implements IMessag
     @Override
     public IMessage onMessage(PacketWateringCan message, MessageContext ctx) {
         EntityPlayer player = ctx.getServerHandler().playerEntity;
-        HFItems.wateringcan.onItemUse(message.stack, player, DimensionManager.getWorld(message.dim), message.pos, player.getActiveHand(), EnumFacing.DOWN, 0, 0, 0);
+        HFItems.WATERING_CAN.onItemUse(message.stack, player, DimensionManager.getWorld(message.dim), message.pos, player.getActiveHand(), EnumFacing.DOWN, 0, 0, 0);
         return null;
     }
 }

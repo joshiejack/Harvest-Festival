@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 
 public class SizeableHelper {
     public static ItemStack getSizeable(SizeableMeta meta, int amount, Size size) {
-        return new ItemStack(HFItems.sized.get(meta), amount, size.ordinal());
+        return new ItemStack(HFItems.SIZED.get(meta), amount, size.ordinal());
     }
 
     public static Size getSize(int meta) {

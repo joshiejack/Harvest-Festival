@@ -31,17 +31,17 @@ public class PlayerTrackerClient extends PlayerTracker {
     public EntityPlayer getAndCreatePlayer() {
         return MCClientHelper.getPlayer();
     }
-    
+
     @Override
     public UUID getUUID() {
         return UUIDHelper.getPlayerUUID(getAndCreatePlayer());
     }
-    
+
     @Override
     public FridgeData getFridge() {
         return fridge;
     }
-    
+
     public void setFridge(FridgeData fridge) {
         this.fridge = fridge;
     }
@@ -60,12 +60,12 @@ public class PlayerTrackerClient extends PlayerTracker {
     public StatDataClient getStats() {
         return stats;
     }
-    
+
     @Override
     public TownData getTown() {
         return town;
     }
-    
+
     @Override
     public TrackingData getTracking() {
         return tracking;

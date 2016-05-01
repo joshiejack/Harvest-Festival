@@ -44,10 +44,10 @@ public class ItemBuilding extends ItemHFMeta implements ICreativeSorted {
             return group.getName();
         } else return "invalid";
     }
-    
+
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        return "[SPAWN] " + super.getItemStackDisplayName(stack); 
+        return "[SPAWN] " + super.getItemStackDisplayName(stack);
     }
 
     @Override

@@ -16,7 +16,8 @@ public class CalendarDate implements ICalendarDate {
     //Cached Value
     private ISeasonData data;
 
-    public CalendarDate() {}
+    public CalendarDate() {
+    }
 
     public CalendarDate(int day, Season season, int year) {
         this.day = day;
@@ -45,7 +46,7 @@ public class CalendarDate implements ICalendarDate {
         if (previous != season) {
             this.data = HFApi.CALENDAR.getDataForSeason(season);
         }
-        
+
         return this;
     }
 

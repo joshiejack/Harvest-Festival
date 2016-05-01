@@ -20,29 +20,39 @@ public class Calendar {
         return date.getSeasonData();
     }
 
-    public void newDay(long bedtime) {};
-    public void updateForecast() {};
-    
+    public void newDay(long bedtime) {
+    }
+
+    ;
+
+    public void updateForecast() {
+    }
+
+    ;
+
     public Weather getForecast(int day) {
         day = Math.max(0, Math.min(6, day));
         return forecast[day];
     }
 
     public Weather getTodaysWeather() {
-        return forecast[0] != null? forecast[0] : Weather.SUNNY;
+        return forecast[0] != null ? forecast[0] : Weather.SUNNY;
     }
 
-    public void setTodaysWeather(Weather weather) {}
-    public void setForecast(Weather[] forecast) {}
+    public void setTodaysWeather(Weather weather) {
+    }
+
+    public void setForecast(Weather[] forecast) {
+    }
 
     public float getTodaysRainStrength() {
         return rainStrength;
     }
-    
+
     public float getTodaysStormStrength() {
         return stormStrength;
     }
-    
+
     public void updateWeatherStrength() {
         switch (forecast[0]) {
             case SUNNY:

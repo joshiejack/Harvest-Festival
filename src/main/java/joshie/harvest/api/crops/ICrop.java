@@ -22,7 +22,7 @@ public interface ICrop {
     public String getUnlocalizedName();
 
     /** Returns the localized name for this crop 
-     * @param       true if we are asking for the crops item name, 
+     * @param       isItem true if we are asking for the crops item name,
      *              false if we are asking for it's block name
      *              
      * @return      the localized name*/

@@ -1,14 +1,12 @@
 package joshie.harvest.core.util.base;
 
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.lib.HFModInfo;
+import joshie.harvest.core.helpers.generic.RegistryHelper;
 import joshie.harvest.core.util.generic.IHasMetaItem;
 import joshie.harvest.core.util.generic.Text;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -31,7 +29,7 @@ public abstract class ItemBaseMeta extends Item implements IHasMetaItem {
     @Override
     public Item setUnlocalizedName(String name) {
         super.setUnlocalizedName(name);
-        GameRegistry.register(this, new ResourceLocation(HFModInfo.MODID, name.replace(".", "_")));
+        RegistryHelper.registerItem(this, name);
         return this;
     }
 

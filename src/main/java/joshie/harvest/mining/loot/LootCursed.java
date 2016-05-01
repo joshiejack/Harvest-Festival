@@ -9,10 +9,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
 public class LootCursed extends LootChance {
-    private static final SafeStack hoe = new SafeStack(new ItemStack(HFItems.hoe, 1, ToolTier.MYSTRIL.ordinal()));
-    private static final SafeStack sickle = new SafeStack(new ItemStack(HFItems.sickle, 1, ToolTier.MYSTRIL.ordinal()));
-    private static final SafeStack watering = new SafeStack(new ItemStack(HFItems.wateringcan, 1, ToolTier.MYSTRIL.ordinal()));
-    
+    private static final SafeStack hoe = new SafeStack(new ItemStack(HFItems.HOE, 1, ToolTier.MYSTRIL.ordinal()));
+    private static final SafeStack sickle = new SafeStack(new ItemStack(HFItems.SICKLE, 1, ToolTier.MYSTRIL.ordinal()));
+    private static final SafeStack watering = new SafeStack(new ItemStack(HFItems.WATERING_CAN, 1, ToolTier.MYSTRIL.ordinal()));
+
     public LootCursed(ItemStack stack, double chance) {
         super(stack, chance);
     }

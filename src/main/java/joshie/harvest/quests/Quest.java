@@ -26,7 +26,8 @@ public abstract class Quest implements IQuest {
     protected int quest_stage;
     protected Set<IQuest> required;
 
-    public Quest() {}
+    public Quest() {
+    }
 
     @Override
     public IQuest setStage(int quest_stage) {
@@ -50,7 +51,9 @@ public abstract class Quest implements IQuest {
         return name;
     }
 
-    /** ENSURE YOU ONLY EVER CALL THIS ON ONE SIDE **/
+    /**
+     * ENSURE YOU ONLY EVER CALL THIS ON ONE SIDE
+     **/
     protected void increaseStage(EntityPlayer player) {
         int previous = this.quest_stage;
         this.quest_stage++;
@@ -73,12 +76,13 @@ public abstract class Quest implements IQuest {
         return 0;
     }
 
-    public void onSelected(EntityPlayer player, int option) {}
+    public void onSelected(EntityPlayer player, int option) {
+    }
 
     //This is only called client side
     @Override
     public boolean canStart(EntityPlayer player, HashSet<IQuest> active, HashSet<IQuest> finished) {
-        if(finished.contains(this) && !isRepeatable()) {
+        if (finished.contains(this) && !isRepeatable()) {
             return false;
         }
 
@@ -90,8 +94,8 @@ public abstract class Quest implements IQuest {
 
         //Loops through all the active quests, if any of the quests contain npcs that are used by this quest, we can not start it
         for (IQuest a : active) {
-            for(INPC npc: getNPCs()) {
-                if(a.handlesScript(npc)) {
+            for (INPC npc : getNPCs()) {
+                if (a.handlesScript(npc)) {
                     return false;
                 }
             }
@@ -108,13 +112,15 @@ public abstract class Quest implements IQuest {
         return Translate.translate("quest." + name + "." + quest.replace("_", ""));
     }
 
-    /** Exposed to quest_stage */
+    /**
+     * Exposed to quest_stage
+     */
     //Return true if the script will determine, thisNPC's script at the current stage   
     @SideOnly(Side.CLIENT)
     @Override
     public boolean handlesScript(INPC npc) {
-        for(INPC n: getNPCs()) {
-            if(n.equals(npc)) {
+        for (INPC n : getNPCs()) {
+            if (n.equals(npc)) {
                 return true;
             }
         }
@@ -127,13 +133,15 @@ public abstract class Quest implements IQuest {
         return null;
     }
 
-    /** Exposed to quest_stage, is only called client side, must sync any changes */
+    /**
+     * Exposed to quest_stage, is only called client side, must sync any changes
+     */
     //Return the script
     @SideOnly(Side.CLIENT)
     @Override
     public String getScript(EntityPlayer player, EntityNPC npc) {
         String script = getScript(player, npc.getNPC());
-        return script == null? null: getLocalized(script);
+        return script == null ? null : getLocalized(script);
     }
 
     //Called Serverside, to claim the reward
@@ -176,21 +184,32 @@ public abstract class Quest implements IQuest {
         return name.hashCode();
     }
 
-    /**** EVENTS ****/
+    /****
+     * EVENTS
+     ****/
     //Called When a player interacts with an animal
     @Override
-    public void onEntityInteract(EntityPlayer player, Entity target) {}
+    public void onEntityInteract(EntityPlayer player, Entity target) {
+    }
 
     //Called serverside when you close the chat with an npc
-    public void onClosedChat(EntityPlayer player, EntityNPC npc) {}
+    public void onClosedChat(EntityPlayer player, EntityNPC npc) {
+    }
 
     @Override
-    public void onRightClickBlock(EntityPlayer player, BlockPos pos, EnumFacing face) {}
+    public void onRightClickBlock(EntityPlayer player, BlockPos pos, EnumFacing face) {
+    }
 
-    public void select(EntityPlayer player, EntityNPC npc, int option) {}
-    public void confirm(EntityPlayer player, EntityNPC npc) {}
-    public void cancel(EntityPlayer player, EntityNPC npc) {}
+    public void select(EntityPlayer player, EntityNPC npc, int option) {
+    }
+
+    public void confirm(EntityPlayer player, EntityNPC npc) {
+    }
+
+    public void cancel(EntityPlayer player, EntityNPC npc) {
+    }
 
     @Override
-    public void onStageChanged(EntityPlayer player, int previous, int stage) {}
+    public void onStageChanged(EntityPlayer player, int previous, int stage) {
+    }
 }

@@ -71,10 +71,10 @@ public class QuestCowCare extends Quest {
 
     @Override
     public void onClosedChat(EntityPlayer player, EntityNPC npc) {
-        if (!hasCollected && quest_stage == 2 && npc.getNPC() == HFNPCs.animal_owner) {
+        if (!hasCollected && quest_stage == 2 && npc.getNPC() == HFNPCs.ANIMAL_OWNER) {
             hasCollected = true;
-            ItemHelper.addToPlayerInventory(player, new ItemStack(HFItems.general, 1, ItemGeneral.MILKER));
-            ItemHelper.addToPlayerInventory(player, new ItemStack(HFItems.general, 1, ItemGeneral.BRUSH));
+            ItemHelper.addToPlayerInventory(player, new ItemStack(HFItems.GENERAL, 1, ItemGeneral.MILKER));
+            ItemHelper.addToPlayerInventory(player, new ItemStack(HFItems.GENERAL, 1, ItemGeneral.BRUSH));
         }
     }
 
@@ -88,29 +88,29 @@ public class QuestCowCare extends Quest {
 
     @Override
     public INPC[] getNPCs() {
-        return new INPC[] { HFNPCs.animal_owner, HFNPCs.goddess };
+        return new INPC[]{HFNPCs.ANIMAL_OWNER, HFNPCs.GODDESS};
     }
 
     @Override
     public String getScript(EntityPlayer player, EntityNPC npc) {
         if (quest_stage == 0) {
-            if (npc.getNPC() == HFNPCs.goddess) {
+            if (npc.getNPC() == HFNPCs.GODDESS) {
                 increaseStage(player);
                 return getLocalized("start"); //Goddess tells you to go and talk to jeremy
             }
         } else if (quest_stage == 1) {
-            if (npc.getNPC() == HFNPCs.goddess) {
+            if (npc.getNPC() == HFNPCs.GODDESS) {
                 return getLocalized("go"); //Goddess reminds you you should be talking to jeremy
             } else {
                 increaseStage(player);
                 return getLocalized("care"); //Jeremy tells you how caring for cows works
             }
         } else if (quest_stage == 2) {
-            if (npc.getNPC() == HFNPCs.animal_owner) {
+            if (npc.getNPC() == HFNPCs.ANIMAL_OWNER) {
                 return getLocalized("reminder");
             }
         } else if (quest_stage == 3) { //Jeremy expects you to have brushed 1 cow, fed 1 cow and to have milked 1 cow
-            if (npc.getNPC() == HFNPCs.animal_owner) {
+            if (npc.getNPC() == HFNPCs.ANIMAL_OWNER) {
                 completeQuest(player, this);
                 return getLocalized("finish");
             }

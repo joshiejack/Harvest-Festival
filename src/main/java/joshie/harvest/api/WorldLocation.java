@@ -8,7 +8,8 @@ public class WorldLocation {
     public int dimension;
     public BlockPos position;
 
-    public WorldLocation() {}
+    public WorldLocation() {
+    }
 
     public WorldLocation(int dimension, BlockPos position) {
         this.dimension = dimension;
@@ -48,7 +49,7 @@ public class WorldLocation {
         if (tag.hasKey("Dimension")) {
             dimension = tag.getByte("Dimension");
         } else dimension = 0;
-        
+
         int x = tag.getInteger("X");
         int y = tag.getInteger("Y");
         int z = tag.getInteger("Z");

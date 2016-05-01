@@ -37,7 +37,7 @@ public class ItemNPCSpawner extends ItemHFMeta {
 
     public static INPC getNPC(int damage) {
         INPC npc = metas.get(damage);
-        return npc != null ? npc : HFNPCs.goddess;
+        return npc != null ? npc : HFNPCs.GODDESS;
     }
 
     @Override

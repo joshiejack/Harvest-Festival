@@ -9,7 +9,9 @@ import joshie.harvest.api.quest.IQuestRegistry;
 import joshie.harvest.api.relations.IRelationships;
 import joshie.harvest.api.shops.IShopRegistry;
 
-/** These are filled by HarvestFestival when it is loaded **/
+/**
+ * These are filled by HarvestFestival when it is loaded
+ **/
 public class HFApi {
     public static IAnimalHandler ANIMALS = null;
     public static ICalendar CALENDAR = null;

@@ -42,7 +42,7 @@ public class ContainerNPCGift extends ContainerNPCBase {
         }
 
         //Kill the goddess
-        if (npc.getNPC() == HFNPCs.goddess) {
+        if (npc.getNPC() == HFNPCs.GODDESS) {
             npc.setDead();
         }
     }

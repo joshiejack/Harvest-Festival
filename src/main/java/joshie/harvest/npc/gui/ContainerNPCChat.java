@@ -25,7 +25,7 @@ public class ContainerNPCChat extends ContainerNPCBase {
         }
 
         //Kill the goddess
-        if (npc.getNPC() == HFNPCs.goddess) {
+        if (npc.getNPC() == HFNPCs.GODDESS) {
             npc.setDead();
         }
 

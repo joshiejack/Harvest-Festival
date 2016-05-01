@@ -8,15 +8,15 @@ import net.minecraft.nbt.NBTTagCompound;
 
 public class ToolHelper {
     public static boolean isMilker(ItemStack stack) {
-        return stack.getItem() == HFItems.general && stack.getItemDamage() == ItemGeneral.MILKER;
+        return stack.getItem() == HFItems.GENERAL && stack.getItemDamage() == ItemGeneral.MILKER;
     }
 
     public static boolean isBrush(ItemStack stack) {
-        return stack.getItem() == HFItems.general && stack.getItemDamage() == ItemGeneral.BRUSH;
+        return stack.getItem() == HFItems.GENERAL && stack.getItemDamage() == ItemGeneral.BRUSH;
     }
 
     public static boolean isBlueFeather(ItemStack stack) {
-        return stack.getItem() == HFItems.general && stack.getItemDamage() == ItemGeneral.BLUE_FEATHER;
+        return stack.getItem() == HFItems.GENERAL && stack.getItemDamage() == ItemGeneral.BLUE_FEATHER;
     }
 
     public static void levelTool(ItemStack stack) {

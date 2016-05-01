@@ -36,7 +36,7 @@ public class HFAnimals {
         AnimalRegistry.registerFoodsAsType(AnimalFoodType.REDMEAT, Items.PORKCHOP, Items.BEEF, Items.COOKED_PORKCHOP, Items.COOKED_BEEF);
         AnimalRegistry.registerFoodsAsType(AnimalFoodType.SEED, Items.MELON_SEEDS, Items.WHEAT_SEEDS, Items.PUMPKIN_SEEDS);
         AnimalRegistry.registerFoodsAsType(AnimalFoodType.VEGETABLE, Items.CARROT);
-        HFApi.ANIMALS.registerFoodAsType(new ItemStack(HFItems.general, 1, ItemGeneral.CHICKEN_FEED), AnimalFoodType.SEED);
+        HFApi.ANIMALS.registerFoodAsType(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.CHICKEN_FEED), AnimalFoodType.SEED);
         HFApi.ANIMALS.registerType("cow", new AnimalCow());
         HFApi.ANIMALS.registerType("sheep", new AnimalSheep());
         HFApi.ANIMALS.registerType("chicken", new AnimalChicken());

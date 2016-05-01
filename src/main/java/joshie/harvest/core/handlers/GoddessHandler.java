@@ -26,7 +26,7 @@ public class GoddessHandler {
                 ItemStack stack = event.getEntityItem().getEntityItem();
                 if (stack != null) {
                     if (stack.getItem() instanceof ItemBlockFlower) {
-                        EntityNPC goddess = NPCHelper.getEntityForNPC(null, world, HFNPCs.goddess);
+                        EntityNPC goddess = NPCHelper.getEntityForNPC(null, world, HFNPCs.GODDESS);
                         goddess.setPosition((int) event.getEntityItem().posX, (int) event.getEntityItem().posY + 1, (int) event.getEntityItem().posZ);
                         world.spawnEntityInWorld(goddess);
                     }
@@ -71,7 +71,7 @@ public class GoddessHandler {
                         if (!event.getWorld().isRemote) {
                             event.getWorld().playAuxSFX(2005, event.getPos(), 0);
                             if (event.getWorld().rand.nextInt(5) == 0) {
-                                EntityNPC goddess = NPCHelper.getEntityForNPC(null, event.getWorld(), HFNPCs.goddess);
+                                EntityNPC goddess = NPCHelper.getEntityForNPC(null, event.getWorld(), HFNPCs.GODDESS);
                                 goddess.setPosition(event.getPos().getX(), event.getPos().getY() + 1, event.getPos().getZ());
                                 event.getWorld().spawnEntityInWorld(goddess);
                             }

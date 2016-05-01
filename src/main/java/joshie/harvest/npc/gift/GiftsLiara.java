@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 public class GiftsLiara extends Gifts {
     @Override
     public Quality getQuality(ItemStack stack) {
-        if (stack.getItem() == HFItems.general && stack.getItemDamage() == ItemGeneral.CHOCOLATE) {
+        if (stack.getItem() == HFItems.GENERAL && stack.getItemDamage() == ItemGeneral.CHOCOLATE) {
             return Quality.AWESOME;
         }
 

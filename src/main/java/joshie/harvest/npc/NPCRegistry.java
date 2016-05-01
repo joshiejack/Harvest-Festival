@@ -10,7 +10,7 @@ import joshie.harvest.npc.NPC.Gender;
 import java.util.Collection;
 import java.util.HashMap;
 
-public class NPCRegistry  implements INPCRegistry {
+public class NPCRegistry implements INPCRegistry {
     private static HashMap<String, INPC> npcs = new HashMap<String, INPC>();
 
     @Override

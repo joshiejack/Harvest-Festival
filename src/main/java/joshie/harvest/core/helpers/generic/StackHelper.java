@@ -41,7 +41,7 @@ public class StackHelper {
     }
 
     public static String getStringFromStack(ItemStack stack) {
-        String str = Item.REGISTRY.getNameForObject(stack.getItem()).getResourcePath();
+        String str = Item.REGISTRY.getNameForObject(stack.getItem()).toString();
         if (stack.getHasSubtypes() || stack.hasTagCompound()) {
             str = str + " " + stack.getItemDamage();
         }

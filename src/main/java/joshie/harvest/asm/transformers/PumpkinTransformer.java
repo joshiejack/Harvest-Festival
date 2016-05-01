@@ -7,7 +7,8 @@ import joshie.harvest.asm.overrides.ItemPumpkin;
 import joshie.harvest.core.config.ASM;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;
@@ -35,7 +36,7 @@ public class PumpkinTransformer extends AbstractASM {
 
     public static HashSet<Block> registerPumpkin(HashSet<Block> set) {
         set.add(Blocks.PUMPKIN);
-        ForgeRegistries.ITEMS.register(new ItemPumpkin(Blocks.PUMPKIN)); //TODO Figure out if this works
+        Item.REGISTRY.register(Block.getIdFromBlock(Blocks.PUMPKIN), new ResourceLocation("pumpkin"), new ItemPumpkin(Blocks.PUMPKIN));
         return set;
     }
 

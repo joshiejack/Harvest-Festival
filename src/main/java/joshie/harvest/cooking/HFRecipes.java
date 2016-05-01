@@ -5,7 +5,7 @@ import static joshie.harvest.core.helpers.RecipeHelper.*;
 
 public class HFRecipes {
     public static void preInit() {
-      //Recipes ; http://fogu.com/hm4/farm/stamina_chart.htm for numbers
+        //Recipes ; http://fogu.com/hm4/farm/stamina_chart.htm for numbers
         //Frying Pan
         addFryingPanRecipe("pancake.savoury", 50, -1, flour, cabbage, oil, egg).setOptionalIngredients(onion);
         addFryingPanRecipe("fries.french", 15, 0, potato, oil).setOptionalIngredients(salt);

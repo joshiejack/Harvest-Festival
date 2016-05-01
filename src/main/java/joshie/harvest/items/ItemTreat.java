@@ -16,7 +16,7 @@ public class ItemTreat extends ItemHFMeta implements ICreativeSorted {
     public static final int GENERIC = 3;
 
     public static IAnimalType getTreatTypeFromStack(ItemStack stack) {
-        return HFApi.ANIMALS.getTypeFromString(HFItems.treats.getName(stack));
+        return HFApi.ANIMALS.getTypeFromString(HFItems.TREATS.getName(stack));
     }
 
     @Override

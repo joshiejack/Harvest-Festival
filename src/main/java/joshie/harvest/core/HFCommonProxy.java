@@ -22,6 +22,7 @@ import java.util.List;
 
 public class HFCommonProxy {
     protected static final List<Class> list = new ArrayList<Class>();
+
     static {
         list.add(HFCore.class);
         list.add(HFVanilla.class);
@@ -49,12 +50,13 @@ public class HFCommonProxy {
         if (stage.equals("initClient")) {
             if (!isClient()) return;
         }
-        
+
         //Continue
         for (Class c : list) {
             try {
                 c.getMethod(stage).invoke(null);
-            } catch (Exception ignored) {}
+            } catch (Exception ignored) {
+            }
         }
     }
 

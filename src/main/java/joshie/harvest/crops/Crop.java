@@ -47,18 +47,22 @@ public class Crop implements ICrop {
     protected int doubleStage;
     protected AnimalFoodType foodType;
 
-    public Crop() {}
+    public Crop() {
+    }
 
-    /** Constructor for crop
+    /**
+     * Constructor for crop
+     *
      * @param unlocalized name, works as the uuid
-     * @param season the season this crop grows in
-     * @param cost how much the seed costs
-     * @param sell how much this sells for
-     * @param stages how many stages this crop has
-     * @param regrow the stage this returns to once harvested
-     * @param year the year in which this crop can be purchased */
+     * @param season      the season this crop grows in
+     * @param cost        how much the seed costs
+     * @param sell        how much this sells for
+     * @param stages      how many stages this crop has
+     * @param regrow      the stage this returns to once harvested
+     * @param year        the year in which this crop can be purchased
+     */
     public Crop(String unlocalized, Season season, int cost, int sell, int stages, int regrow, int year, int color) {
-        this(unlocalized, new Season[] { season }, cost, sell, stages, regrow, year, color);
+        this(unlocalized, new Season[]{season}, cost, sell, stages, regrow, year, color);
     }
 
     public Crop(String unlocalized, Season[] seasons, int cost, int sell, int stages, int regrow, int year, int color) {
@@ -135,7 +139,7 @@ public class Crop implements ICrop {
         this.dropHandler = handler;
         return this;
     }
-    
+
     @Override
     public ICrop setGrowsToSide(Block block) {
         this.growsToSide = block;
@@ -143,46 +147,65 @@ public class Crop implements ICrop {
     }
 
 
-    /** Return true if this crop uses an item other than HFCrop item **/
+    /**
+     * Return true if this crop uses an item other than HFCrop item
+     **/
     public boolean hasItemAssigned() {
         return item != null;
     }
 
-    /** This is the season this crop survives in 
-     * @return the season that is valid for this crop */
+    /**
+     * This is the season this crop survives in
+     *
+     * @return the season that is valid for this crop
+     */
     public Season[] getSeasons() {
         return seasons;
     }
 
-    /** This is how much the seed costs in the store.
+    /**
+     * This is how much the seed costs in the store.
      * If the seed isn't purchasable return 0
-     * @return the cost in gold */
+     *
+     * @return the cost in gold
+     */
     public long getSeedCost() {
         return cost;
     }
 
-    /** This is how much this crop well sell for at level 1.
+    /**
+     * This is how much this crop well sell for at level 1.
      * If this crop cannot be sold return 0
-     * @return the sell value in gold */
+     *
+     * @return the sell value in gold
+     */
     public long getSellValue() {
         return sell;
     }
 
-    /** Return how many stages this crop has.
+    /**
+     * Return how many stages this crop has.
      * A return value of 0, means the crop is instantly grown.
-     * @return the stage */
+     *
+     * @return the stage
+     */
     public int getStages() {
         return stages;
     }
 
-    /** The year in which this crop can be purchased **/
+    /**
+     * The year in which this crop can be purchased
+     **/
     public int getPurchaseYear() {
         return year;
     }
 
-    /** Return the stage that the plant returns to when it's harvested.
+    /**
+     * Return the stage that the plant returns to when it's harvested.
      * A return value of 0, means the crop is destroyed.
-     * @return the stage */
+     *
+     * @return the stage
+     */
     @Override
     public int getRegrowStage() {
         return regrow;
@@ -213,18 +236,25 @@ public class Crop implements ICrop {
         return soilHandler;
     }
 
-    /** This is called when bringing up the list of crops for sale 
-     * @return whether this item can be purchased in this shop or not */
+    /**
+     * This is called when bringing up the list of crops for sale
+     *
+     * @return whether this item can be purchased in this shop or not
+     */
     public boolean canPurchase() {
         return getSeedCost() > 0;
     }
 
-    /** Return the colour of the seed bag **/
+    /**
+     * Return the colour of the seed bag
+     **/
     public int getColor() {
         return bag_color;
     }
 
-    /** The type of animal food this is **/
+    /**
+     * The type of animal food this is
+     **/
     public AnimalFoodType getFoodType() {
         return foodType;
     }
@@ -236,9 +266,9 @@ public class Crop implements ICrop {
 
     @Override
     public ItemStack getCropStack() {
-        return item == null? null : item.copy();
+        return item == null ? null : item.copy();
     }
-    
+
     @Override
     public ItemStack getHarvested() {
         return dropHandler == null ? getCropStack() : dropHandler.getDrop(rand, item.getItem());
@@ -254,23 +284,32 @@ public class Crop implements ICrop {
         return (stack.getItem() == getCropStack().getItem());
     }
 
-    /** Gets the unlocalized name for this crop
-     * @return unlocalized name */
+    /**
+     * Gets the unlocalized name for this crop
+     *
+     * @return unlocalized name
+     */
     @Override
     public String getUnlocalizedName() {
         return unlocalized;
     }
 
-    /** Gets the localized crop name for this crop
-     * @param stack 
-     * @return crop name */
+    /**
+     * Gets the localized crop name for this crop
+     *
+     * @param stack
+     * @return crop name
+     */
     public String getLocalizedName(boolean isItem) {
         String suffix = alternativeName ? ((isItem) ? ".item" : ".block") : "";
         return Translate.translate("crop." + StringUtils.replace(getUnlocalizedName(), "_", ".") + suffix);
     }
 
-    /** Gets the localized seed name for this crop
-     * @return seed name */
+    /**
+     * Gets the localized seed name for this crop
+     *
+     * @return seed name
+     */
     public String getSeedsName() {
         String suffix = alternativeName ? ".block" : "";
         String name = Translate.translate("crop." + StringUtils.replace(getUnlocalizedName(), "_", ".") + suffix);
@@ -287,8 +326,8 @@ public class Crop implements ICrop {
         if (!(o instanceof ICrop)) {
             return false;
         }
-        
-        return getUnlocalizedName().equals(((ICrop)o).getUnlocalizedName());
+
+        return getUnlocalizedName().equals(((ICrop) o).getUnlocalizedName());
     }
 
     @Override

@@ -1,0 +1,6 @@
+{
+  "parent": "block/crop",
+  "textures": {
+    "crop": "harvestfestival:blocks/crops/grass_bottom1"
+  }
+}

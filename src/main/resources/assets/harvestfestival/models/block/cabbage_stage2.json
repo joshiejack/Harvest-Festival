@@ -1,0 +1,6 @@
+{
+  "parent": "block/crop",
+  "textures": {
+    "crop": "hf:blocks/crops/cabbage1"
+  }
+}

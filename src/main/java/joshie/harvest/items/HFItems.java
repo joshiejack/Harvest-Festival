@@ -14,32 +14,14 @@ import org.apache.commons.lang3.text.WordUtils;
 import java.util.EnumMap;
 
 public class HFItems {
-    public static final EnumMap<SizeableMeta, Item> SIZED = new EnumMap<SizeableMeta, Item>(SizeableMeta.class);
-
-    static {
-        //Add a new crop item for things that do not have an item yet :D
-        for (ICrop crop : Crop.crops) {
-            if (!crop.hasItemAssigned()) {
-                crop.setItem(new ItemStack(new ItemCrop(crop).setUnlocalizedName("crop." + crop.getUnlocalizedName()), 1, 0));
-                ItemStack clone = crop.getCropStack().copy();
-                clone.setItemDamage(OreDictionary.WILDCARD_VALUE);
-                OreDictionary.registerOre("crop" + WordUtils.capitalizeFully(crop.getUnlocalizedName().replace("_", "")), clone);
-            }
-        }
-
-        for (SizeableMeta size : SizeableMeta.values()) {
-            if (size.ordinal() >= SizeableMeta.YOGHURT.ordinal()) continue;
-            else {
-                SIZED.put(size, size.getOrCreateStack());
-            }
-        }
-    }
+    //Sized Map
+    private static final EnumMap<SizeableMeta, Item> SIZED = new EnumMap<SizeableMeta, Item>(SizeableMeta.class);
 
     //Sizeables
-    public static final Item EGG = SIZED.get(SizeableMeta.EGG);
-    public static final Item MILK = SIZED.get(SizeableMeta.MILK);
-    public static final Item MAYONNAISE = SIZED.get(SizeableMeta.MAYONNAISE);
-    public static final Item WOOL = SIZED.get(SizeableMeta.WOOL);
+    public static final Item EGG = getSizedItem(SizeableMeta.EGG);
+    public static final Item MILK = getSizedItem(SizeableMeta.MILK);
+    public static final Item MAYONNAISE = getSizedItem(SizeableMeta.MAYONNAISE);
+    public static final Item WOOL = getSizedItem(SizeableMeta.WOOL);
 
     //Tools
     public static final Item HOE = new ItemHoe().setUnlocalizedName("hoe");
@@ -59,6 +41,17 @@ public class HFItems {
     public static final Item SPAWNER_NPC = new ItemNPCSpawner().setUnlocalizedName("spawner.npc");
 
     public static void preInit() {
+        //Add a new crop item for things that do not have an item yet :D
+        for (ICrop crop : Crop.crops) {
+            if (!crop.hasItemAssigned()) {
+                crop.setItem(new ItemStack(new ItemCrop(crop).setUnlocalizedName("crop." + crop.getUnlocalizedName()), 1, 0));
+                ItemStack clone = crop.getCropStack().copy();
+                clone.setItemDamage(OreDictionary.WILDCARD_VALUE);
+                OreDictionary.registerOre("crop" + WordUtils.capitalizeFully(crop.getUnlocalizedName().replace("_", "")), clone);
+            }
+        }
+
+        //Add the debug item
         if (General.DEBUG_MODE) {
             new ItemCheat().setUnlocalizedName("cheat");
         }
@@ -68,5 +61,14 @@ public class HFItems {
     public static void initClient() {
         //MinecraftForgeClient.registerItemRenderer(HFItems.animal, new RenderItemAnimal());
         //MinecraftForgeClient.registerItemRenderer(HFItems.spawnerNPC, new RenderItemNPC());
+    }
+
+    public static Item getSizedItem(SizeableMeta size) {
+        if (SIZED.containsKey(size)) return SIZED.get(size);
+        else {
+            Item item = size.getOrCreateStack();
+            SIZED.put(size, item);
+            return item;
+        }
     }
 }

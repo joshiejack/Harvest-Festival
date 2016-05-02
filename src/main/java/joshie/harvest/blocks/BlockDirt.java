@@ -29,12 +29,12 @@ public class BlockDirt extends BlockHFBaseMeta<BlockDirt.Types> {
 
         @Override
         public String getName() {
-            return toString();
+            return toString().toLowerCase();
         }
     }
 
     public BlockDirt() {
-        super(Material.GROUND, HFTab.MINING, Types.class);
+        super(Material.GROUND, Types.class, HFTab.MINING);
         setSoundType(SoundType.GROUND);
     }
 

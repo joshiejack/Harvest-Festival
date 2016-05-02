@@ -34,12 +34,12 @@ public class BlockCookware extends BlockHFBaseMeta<Cookware> {
 
         @Override
         public String getName() {
-            return toString();
+            return toString().toLowerCase();
         }
     }
 
     public BlockCookware() {
-        super(Material.PISTON, HFTab.COOKING, Cookware.class);
+        super(Material.PISTON, Cookware.class, HFTab.COOKING);
         setHardness(2.5F);
         setSoundType(SoundType.METAL);
     }
@@ -62,7 +62,7 @@ public class BlockCookware extends BlockHFBaseMeta<Cookware> {
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
-        Cookware cookware = getEnumFromBlockPos(world, pos);
+        Cookware cookware = getEnumFromState(state);
         switch (cookware) {
             case FRYING_PAN:
                 new AxisAlignedBB(0F, 0F, 0F, 1F, 0.25F, 1F);
@@ -80,6 +80,7 @@ public class BlockCookware extends BlockHFBaseMeta<Cookware> {
                 new AxisAlignedBB(0F, 0F, 0F, 1F, 1F, 1F);
                 break;
         }
+
         return FULL_BLOCK_AABB;
     }
 
@@ -144,12 +145,14 @@ public class BlockCookware extends BlockHFBaseMeta<Cookware> {
 
     @Override
     public void onBlockExploded(World world, BlockPos pos, Explosion explosion) {
-        Cookware cookware = getEnumFromBlockPos(world, pos);
-        if (cookware == FRIDGE_TOP) {
-            world.setBlockToAir(pos.down());
-        } else if (cookware == FRIDGE) {
-            world.setBlockToAir(pos.up());
-        }
+        try {
+            Cookware cookware = getEnumFromBlockPos(world, pos);
+            if (cookware == FRIDGE_TOP) {
+                world.setBlockToAir(pos.down());
+            } else if (cookware == FRIDGE) {
+                world.setBlockToAir(pos.up());
+            }
+        } catch (Exception e) { e.printStackTrace(); }
     }
 
     @Override

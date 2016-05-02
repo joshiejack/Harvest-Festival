@@ -29,7 +29,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 
 public class BlockPreview extends BlockHFBaseMeta<BlockPreview.Direction> {
-    public static enum Direction implements IStringSerializable {
+    public enum Direction implements IStringSerializable {
         N1_T__N2_T__SWAP_F(true, true, false),
         N1_T__N2_T__SWAP_T(true, true, true),
         N1_T__N2_F__SWAP_F(true, false, false),
@@ -63,12 +63,12 @@ public class BlockPreview extends BlockHFBaseMeta<BlockPreview.Direction> {
 
         @Override
         public String getName() {
-            return toString();
+            return toString().toLowerCase();
         }
     }
 
     public BlockPreview() {
-        super(Material.WOOD, HFTab.TOWN, Direction.class);
+        super(Material.WOOD, Direction.class, HFTab.TOWN);
     }
 
     @Override

@@ -49,14 +49,14 @@ public class BlockCrop extends BlockHFBaseMeta<BlockCrop.Stage> implements IPlan
 
         @Override
         public String getName() {
-            return toString();
+            return toString().toLowerCase();
         }
     }
 
     public static final AxisAlignedBB CROP_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D);
 
     public BlockCrop() {
-        super(Material.PLANTS, null, Stage.class);
+        super(Material.PLANTS, Stage.class, null);
         setBlockUnbreakable();
         setSoundType(SoundType.GROUND);
         setTickRandomly(Crops.ALWAYS_GROW);

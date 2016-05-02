@@ -24,12 +24,12 @@ public class BlockStone extends BlockHFBaseMeta<BlockStone.Types> {
 
         @Override
         public String getName() {
-            return toString();
+            return toString().toLowerCase();
         }
     }
 
     public BlockStone() {
-        super(Material.ROCK, HFTab.MINING, Types.class);
+        super(Material.ROCK, Types.class, HFTab.MINING);
         setSoundType(SoundType.METAL);
     }
 

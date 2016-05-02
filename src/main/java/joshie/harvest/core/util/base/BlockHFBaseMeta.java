@@ -1,7 +1,6 @@
 package joshie.harvest.core.util.base;
 
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.helpers.ReflectionHelper;
 import joshie.harvest.core.util.generic.IHasMetaBlock;
 import joshie.harvest.core.util.generic.IHasMetaItem;
 import net.minecraft.block.material.Material;
@@ -22,30 +21,40 @@ import java.util.List;
 import java.util.Random;
 
 public abstract class BlockHFBaseMeta<E extends Enum<E> & IStringSerializable> extends BlockHFBase implements IHasMetaBlock {
-    public PropertyEnum<E> property;
-    private E[] values;
+    private static PropertyEnum<?> temporary;
+    public final PropertyEnum<E> property;
+    private final E[] values;
 
     //Main Constructor
-    public BlockHFBaseMeta(Material material, CreativeTabs tab, Class<E> enumClass) {
-        super(material, tab);
-        property = PropertyEnum.create("type", enumClass);
-        values = enumClass.getEnumConstants();
-        ReflectionHelper.setFinalField(this, createBlockState(), "blockState");
+    public BlockHFBaseMeta(Material material, Class<E> clazz, CreativeTabs tab) {
+        super(preInit(material, clazz), tab);
+        property = (PropertyEnum<E>) temporary;
+        values = clazz.getEnumConstants();
         setDefaultState(blockState.getBaseState());
 
         for (E e : values) {
-            setHarvestLevel(getToolType(e), getToolLevel(e), getStateById(e.ordinal()));
+            setHarvestLevel(getToolType(e), getToolLevel(e), getStateFromEnum(e));
         }
+    }
+
+    private static Material preInit(Material material, PropertyEnum<?> property) {
+        temporary = property;
+        return material;
+    }
+
+    private static Material preInit(Material material, Class clazz) {
+        temporary = PropertyEnum.create(clazz.getSimpleName().toLowerCase(), clazz);
+        return material;
     }
 
     //Constructor default to farming tab
     public BlockHFBaseMeta(Material material, Class<E> clazz) {
-        this(material, HFTab.FARMING, clazz);
+        this(material, clazz, HFTab.FARMING);
     }
 
     @Override
     protected BlockStateContainer createBlockState() {
-        if (property == null) return new BlockStateContainer(this);
+        if(property == null)return new BlockStateContainer(this, temporary);
         return new BlockStateContainer(this, property);
     }
 
@@ -117,6 +126,12 @@ public abstract class BlockHFBaseMeta<E extends Enum<E> & IStringSerializable> e
 
     public boolean isActive(E e) {
         return true;
+    }
+
+    @Override
+    public BlockHFBaseMeta setUnlocalizedName(String name) {
+        super.setUnlocalizedName(name);
+        return this;
     }
 
     @Override

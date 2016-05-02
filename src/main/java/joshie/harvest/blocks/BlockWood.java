@@ -26,12 +26,12 @@ import net.minecraft.world.World;
 import static joshie.harvest.blocks.BlockWood.Woodware.*;
 
 public class BlockWood extends BlockHFBaseMeta<Woodware> {
-    public static enum Woodware implements IStringSerializable {
+    public enum Woodware implements IStringSerializable {
         SHIPPING, SHIPPING_2, NEST, TROUGH, TROUGH_2;
 
         @Override
         public String getName() {
-            return toString();
+            return toString().toLowerCase();
         }
     }
 
@@ -53,7 +53,7 @@ public class BlockWood extends BlockHFBaseMeta<Woodware> {
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
-        Woodware wood = getEnumFromBlockPos(world, pos);
+        Woodware wood = getEnumFromState(state);
         switch (wood) {
             default:
                 return FULL_BLOCK_AABB;

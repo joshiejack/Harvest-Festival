@@ -5,19 +5,19 @@ import net.minecraft.util.ResourceLocation;
 public class HFModInfo {
     public static final String MODID = "harvestfestival";
     public static final String MODNAME = "Harvest Festival";
-    public static final String MODPATH = "hf";
+    public static final String MODPATH = "harvestfestival";
     public static final String JAVAPATH = "joshie.harvest.";
     public static final String CAPNAME = "HF";
     public static final String BLOCKSNAME = "HFBlocks";
     public static final String COMMANDNAME = "hf";
     
     public static final String BUILDINGPATH = "hf:buildings/";
-    public static final String CROPPATH = "hf:crops/";
-    public static final String MEALPATH = "hf:meals/";
-    public static final String SEEDPATH = "hf:seeds/";
-    public static final String TREATPATH = "hf:treats/";
-    public static final String TOOLSPATH = "hf:tools/";
-    public static final String CTMPATH = "hf:ctm/";
+    public static final String CROPPATH = "harvestfestival:crops/";
+    public static final String MEALPATH = "harvestfestival:meals/";
+    public static final String SEEDPATH = "harvestfestival:seeds/";
+    public static final String TREATPATH = "harvestfestival:treats/";
+    public static final String TOOLSPATH = "harvestfestival:tools/";
+    public static final String CTMPATH = "harvestfestival:ctm/";
     public static final String VERSION = "@VERSION@";
 
     

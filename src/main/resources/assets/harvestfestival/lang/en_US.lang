@@ -1,0 +1,514 @@
+#en_US.lang by joshie and Yulife ;) ;)
+harvestfestival.tab.farming=Harvest Festival - Farming
+harvestfestival.tab.cooking=Harvest Festival - Cooking
+harvestfestival.tab.mining=Harvest Festival - Mining
+harvestfestival.tab.town=Harvest Festival - Township
+harvestfestival.mode.true=Harvest Festival was set to easy mode!
+harvestfestival.mode.false=Harvest Festival was set to hard mode!
+harvestfestival.check.head=On head after purchase.
+harvestfestival.check.lead=On lead after purchase.
+
+#Commands
+harvestfestival.commands.help.header=--- Showing hf.help page %d of %d (/hf.help <page>) ---
+
+#Tooltips
+harvestfestival.tooltip.dirt=Cosmetical
+harvestfestival.tooltip.mythic_stone=Used to Upgrade
+harvestfestival.tooltip.flower=Caller of the Goddess
+
+#Animals
+harvestfestival.animal.cow=Cow
+harvestfestival.animal.sheep=Sheep
+harvestfestival.animal.chicken=Chicken
+entity.HarvestFestival.HarvestCow.name=Cow
+entity.HarvestFestival.HarvestSheep.name=Sheep
+entity.HarvestFestival.HarvestChicken.name=Chicken
+
+#Buildings
+harvestfestival.structures.barn=Blueprint: Animal Ranch
+harvestfestival.structures.blacksmith=Blueprint: Blacksmith
+harvestfestival.structures.cafe=Blueprint: Cafe
+harvestfestival.structures.carpenter=Blueprint: Carpenter
+harvestfestival.structures.church=Blueprint: Church
+harvestfestival.structures.clockmaker=Blueprint: Clockmaker
+harvestfestival.structures.fishinghole=Blueprint: Fishing Hole
+harvestfestival.structures.fishinghut=Blueprint: Fishing Hut
+harvestfestival.structures.goddesspond=Blueprint: Goddess Pond
+harvestfestival.structures.mininghill=Blueprint: Mining Hill
+harvestfestival.structures.mininghut=Blueprint: Mining Hut
+harvestfestival.structures.poultryfarm=Blueprint: Poultry Farm
+harvestfestival.structures.supermarket=Blueprint: General Store
+harvestfestival.structures.townhall=Blueprint: Townhall
+
+#Cheat Items (Translators don't bother tranlating these, I just use them to help with dev)
+harvestfestival.cheat.coord.setter=[BuildingGen] Coordinate Setter
+harvestfestival.cheat.code.generator=[BuildingGen] Code Generator
+harvestfestival.cheat.render.generator=[RenderGen] Rotation Generator
+harvestfestival.cheat.meta.checker=[Helper] Meta Checker
+harvestfestival.cheat.chunk.tester=[Helper] Chunk Tester
+
+#Crops
+harvestfestival.crop.seeds.format.standard=%C %S
+harvestfestival.crop.seeds.format.giant=%G %C %S
+harvestfestival.crop.seeds=Seeds
+harvestfestival.crop.turnip=Turnip
+harvestfestival.crop.potato=Potato
+harvestfestival.crop.cucumber=Cucumber
+harvestfestival.crop.strawberry=Strawberry
+harvestfestival.crop.cabbage=Cabbage
+harvestfestival.crop.tomato=Tomato
+harvestfestival.crop.onion=Onion
+harvestfestival.crop.corn=Corn
+harvestfestival.crop.pumpkin=Pumpkin
+harvestfestival.crop.pineapple=Pineapple
+harvestfestival.crop.eggplant=Eggplant
+harvestfestival.crop.carrot=Carrot
+harvestfestival.crop.potato.sweet=Sweet Potato
+harvestfestival.crop.spinach=Spinach
+harvestfestival.crop.pepper.green=Green Pepper
+harvestfestival.crop.grass.block=Grass
+harvestfestival.crop.grass.item=Fodder
+harvestfestival.crop.wheat=Wheat
+harvestfestival.crop.watermelon=Watermelon
+
+#General Items
+harvestfestival.general.item.feather.blue=Blue Feather
+harvestfestival.general.item.milker=Milker
+harvestfestival.general.item.brush=Animal Brush
+harvestfestival.general.item.medicine=Animal Medicine
+harvestfestival.general.item.feed=Chicken Feed
+harvestfestival.general.item.ore.junk=Junk Ore
+harvestfestival.general.item.ore.copper=Copper Ore
+harvestfestival.general.item.ore.silver=Silver Ore
+harvestfestival.general.item.ore.gold=Gold Ore
+harvestfestival.general.item.ore.mystril=Mystril Ore
+harvestfestival.general.item.stone.mythic=Mythic Stone
+harvestfestival.general.item.shoot.bamboo=Bamboo Shoot
+harvestfestival.general.item.flour=Flour
+harvestfestival.general.item.mushroom.matsutake=Matsutake Mushroom
+harvestfestival.general.item.oil=Cooking Oil
+harvestfestival.general.item.riceball=Riceball
+harvestfestival.general.item.butter=Butter
+harvestfestival.general.item.salt=Salt
+harvestfestival.general.item.miracle.potion=Miracle Potion
+harvestfestival.general.item.chocolate=Chocolate
+
+#Meals
+harvestfestival.meal.level=Restores
+harvestfestival.meal.sat=Fills
+harvestfestival.meal.stamina=Stamina
+harvestfestival.meal.fatigue=Fatigue
+harvestfestival.meal.fry.stir=Stir Fry
+harvestfestival.meal.rice.fried=Fried Rice
+harvestfestival.meal.pancake.savoury=Savoury Pancake
+harvestfestival.meal.fries.french=French Fries
+harvestfestival.meal.popcorn=Popcorn
+harvestfestival.meal.cornflakes=Cornflakes
+harvestfestival.meal.egg.scrambled=Scrambled Eggs
+harvestfestival.meal.omelet=Omelette
+harvestfestival.meal.omelet.rice=Omelet Rice
+harvestfestival.meal.pancake=Pancake
+harvestfestival.meal.potsticker=Pot Sticker
+harvestfestival.meal.risotto=Risotto
+harvestfestival.meal.juice.pineapple=Pineapple Juice
+harvestfestival.meal.juice.tomato=Tomato Juice
+harvestfestival.meal.milk.strawberry=Strawberry Milk
+harvestfestival.meal.juice.vegetable=Vegetable Juice
+harvestfestival.meal.latte.vegetable=Vegetable Latte
+harvestfestival.meal.ketchup=Ketchup
+harvestfestival.meal.butter=Butter
+harvestfestival.meal.fishsticks=Fish Sticks
+harvestfestival.meal.salad=Salad
+harvestfestival.meal.sandwich=Sandwich
+harvestfestival.meal.turnip.pickled=Pickled Turnip
+harvestfestival.meal.cucumber.pickled=Pickled Cucumber
+harvestfestival.meal.sushi=Sushi
+harvestfestival.meal.sashimi=Sashimi
+harvestfestival.meal.sashimi.chirashi=Chirashi Sushi
+harvestfestival.meal.milk.hot=Hot Milk
+harvestfestival.meal.chocolate.hot=Hot Chocolate
+harvestfestival.meal.stew.pumpkin=Pumpkin Stew
+harvestfestival.meal.stew.fish=Fish Stew
+harvestfestival.meal.egg.boiled=Boiled Egg
+harvestfestival.meal.spinach.boiled=Boiled Spinach
+harvestfestival.meal.potato.candied=Candied Potato
+harvestfestival.meal.dumplings=Dumplings
+harvestfestival.meal.noodles=Noodles
+harvestfestival.meal.soup.rice=Rice Soup
+harvestfestival.meal.porridge=Porridge
+harvestfestival.meal.egg.overrice=Egg Over Rice
+harvestfestival.meal.stew=Stew
+harvestfestival.meal.corn.baked=Baked Corn
+harvestfestival.meal.riceballs.toasted=Toasted Rice Balls
+harvestfestival.meal.toast=Toast
+harvestfestival.meal.dinnerroll=Dinner Roll
+harvestfestival.meal.bun.jam=Jam Bun
+harvestfestival.meal.doria=Doria
+harvestfestival.meal.cookies=Cookies
+harvestfestival.meal.cookies.chocolate=Chocolate Chip Cookies
+harvestfestival.meal.cake.chocolate=Chocolate Cake
+harvestfestival.meal.toast.french=French Toast
+harvestfestival.meal.doughnut=Doughnut
+harvestfestival.meal.fish.grilled=Grilled Fish
+harvestfestival.meal.eggplant.happy=Happy Eggplant
+harvestfestival.meal.burnt.counter=Failed Handmade Dish
+harvestfestival.meal.burnt.pot=Failed Pot Dish
+harvestfestival.meal.burnt.frying.pan=Failed Frying Pan Meal
+harvestfestival.meal.burnt.mixer=Failed Mixer Dish
+harvestfestival.meal.burnt.oven=Failed Oven Dish
+
+#Sizeables
+harvestfestival.sizeable.format=%S %P
+harvestfestival.sizeable.small=Small
+harvestfestival.sizeable.medium=Medium
+harvestfestival.sizeable.large=Large
+harvestfestival.sizeable.egg=Egg
+harvestfestival.sizeable.milk=Milk
+harvestfestival.sizeable.wool=Wool
+harvestfestival.sizeable.fish=Fish
+harvestfestival.sizeable.cheese=Cheese
+harvestfestival.sizeable.yoghurt=Yoghurt
+harvestfestival.sizeable.mayonnaise=Mayonnaise
+harvestfestival.sizeable.matsutake=Matsutake Mushroom
+harvestfestival.sizeable.toadstool=Toadstool
+harvestfestival.sizeable.shiitake=Shiitake Mushroom
+harvestfestival.sizeable.yarn=Yarn
+
+#Tools
+#Hoe
+harvestfestival.hoe.basic=Hoe
+harvestfestival.hoe.copper=Copper Hoe
+harvestfestival.hoe.silver=Silver Hoe
+harvestfestival.hoe.gold=Gold Hoe
+harvestfestival.hoe.mystril=Mystril Hoe
+harvestfestival.hoe.cursed=Cursed Hoe
+harvestfestival.hoe.blessed=Blessed Hoe
+harvestfestival.hoe.mythic=Mythic Hoe
+#Sickle
+harvestfestival.sickle.basic=Sickle
+harvestfestival.sickle.copper=Copper Sickle
+harvestfestival.sickle.silver=Silver Sickle
+harvestfestival.sickle.gold=Gold Sickle
+harvestfestival.sickle.mystril=Mystril Sickle
+harvestfestival.sickle.cursed=Cursed Sickle
+harvestfestival.sickle.blessed=Blessed Sickle
+harvestfestival.sickle.mythic=Mythic Sickle
+#Watering Can
+harvestfestival.wateringcan.basic=Watering Can
+harvestfestival.wateringcan.copper=Copper Watering Can
+harvestfestival.wateringcan.silver=Silver Watering Can
+harvestfestival.wateringcan.gold=Gold Watering Can
+harvestfestival.wateringcan.mystril=Mystril Watering Can
+harvestfestival.wateringcan.cursed=Cursed Watering Can
+harvestfestival.wateringcan.blessed=Blessed Watering Can
+harvestfestival.wateringcan.mythic=Mythic Watering Can
+#Hammer
+harvestfestival.hammer.basic=Hammer
+harvestfestival.hammer.copper=Copper Hammer
+harvestfestival.hammer.silver=Silver Hammer
+harvestfestival.hammer.gold=Gold Hammer
+harvestfestival.hammer.mystril=Mystril Hammer
+harvestfestival.hammer.cursed=Cursed Hammer
+harvestfestival.hammer.blessed=Blessed Hammer
+harvestfestival.hammer.mythic=Mythic Hammer
+#Vanilla config option
+harvestfestival.hoe.wood=Wooden Hoe
+harvestfestival.hoe.stone=Stone Hoe
+harvestfestival.hoe.iron=Iron Hoe
+harvestfestival.hoe.diamond=Diamond Hoe
+harvestfestival.sickle.wood=Wooden Sickle
+harvestfestival.sickle.stone=Stone Sickle
+harvestfestival.sickle.iron=Iron Sickle
+harvestfestival.sickle.diamond=Diamond Sickle
+harvestfestival.wateringcan.wood=Wooden Watering Can
+harvestfestival.wateringcan.stone=Stone Watering Can
+harvestfestival.wateringcan.iron=Iron Watering Can
+harvestfestival.wateringcan.diamond=Diamond Watering Can
+
+#Treats
+harvestfestival.treat.cow=Cow Treat
+harvestfestival.treat.sheep=Sheep Treat
+harvestfestival.treat.chicken=Chicken Treat
+harvestfestival.treat.horse=Horse Treat
+harvestfestival.treat.pig=Pig Treat
+harvestfestival.treat.cat=Cat Treat
+harvestfestival.treat.dog=Dog Treat
+harvestfestival.treat.generic=Treat
+
+#Blocks
+harvestfestival.cookware.fridge=Fridge
+harvestfestival.cookware.fridge.top=Fridge
+harvestfestival.cookware.counter=Kitchen Counter
+harvestfestival.cookware.pot=Cooking Pot
+harvestfestival.cookware.frying.pan=Frying Pan
+harvestfestival.cookware.mixer=Food Mixer
+harvestfestival.cookware.oven=Oven
+harvestfestival.cookware.chopping.board=Chopping Board
+harvestfestival.cookware.mixing.bowl=Mixing Bowl
+harvestfestival.cookware.baking=Baking Tray
+harvestfestival.cookware.steamer=Steamer
+
+harvestfestival.general.block.shipping=Shipment Box
+harvestfestival.general.block.nest=Incubator
+harvestfestival.general.block.trough=Food Trough
+harvestfestival.general.block.trough2=Food Trough
+
+harvestfestival.flowers.block.goddess=Goddess Flower
+
+harvestfestival.dirt.mine.floor=Mine Floor
+harvestfestival.stone.mine.wall=Mine Wall
+
+tile.goddess.water.name=Goddess Water
+
+#Seasons
+harvestfestival.season.spring=Spring
+harvestfestival.season.summer=Summer
+harvestfestival.season.autumn=Autumn
+harvestfestival.season.winter=Winter
+harvestfestival.year=Year
+
+# NPC Names
+## NOTE FOR TRANSLATORS, READ
+# For the Harvest Goddess, use the name that is used by the Harvest Festival Games
+# in your own language, as for the other characters, name them whatever you like!
+# can be your friends, yourself, hints at famous people in your language or whatever
+# the names don't need to be the same.
+harvestfestival.npc.goddess.name=Harvest Goddess
+harvestfestival.npc.katlin.name=Granny Katlin
+harvestfestival.npc.daniel.name=Danieru
+harvestfestival.npc.cloe.name=Cloe
+harvestfestival.npc.liara.name=Liara
+harvestfestival.npc.jade.name=Jade
+harvestfestival.npc.jenni.name=Jenni
+harvestfestival.npc.jamie.name=Mayor Jeimmi
+harvestfestival.npc.abi.name=Abii
+harvestfestival.npc.tiberius.name=Tiberius
+harvestfestival.npc.jacob.name=Jakob
+harvestfestival.npc.fenn.name=Suirenji
+harvestfestival.npc.jim.name=Jim
+harvestfestival.npc.brandon.name=Brandon
+harvestfestival.npc.thomas.name=Tomas
+harvestfestival.npc.candice.name=Candice
+harvestfestival.npc.yulif.name=Yulif
+harvestfestival.npc.ondra.name=Ondra
+
+## NOTE FOR TRANSLATORS, READ
+# When translating these, do not directly translate, just come up with your own
+# funny, or generic greetings related to each character, things that work best
+# in your own language, as these are just generic, do translate the quests
+# semi-literally though, as they are important so the user knows what to do,
+# but take liberty there to, just make sure the user still knows what they
+# have to do in order to complete the quest in question.
+#Key-Codes for conversations
+# $ = Money - Player has
+# ♥ = Player's Romantic Interest
+# ❤ = Entity's Romantic Interest
+# Þ = Player
+# ℇ = The Entity
+#Conversations
+#Generic - Children
+harvestfestival.npc.generic.child.greeting1=WOW you're really tall!
+harvestfestival.npc.generic.child.greeting2=Do you wanna play with me?
+harvestfestival.npc.generic.child.greeting3=Have you heard of Minecraft? It's my favourite game!
+harvestfestival.npc.generic.child.greeting4=Good day!
+harvestfestival.npc.generic.child.greeting5=My parents told me not to talk to strangers...!
+
+#Generic - Adults/Elders
+harvestfestival.npc.generic.adult.greeting1=What do you need? I'm here to help.
+harvestfestival.npc.generic.adult.greeting2=It's been a long time since I last saw you! How have you been?
+harvestfestival.npc.generic.adult.greeting3=Great weather, eh?
+harvestfestival.npc.generic.adult.greeting4=What terrible weather!
+harvestfestival.npc.generic.adult.greeting5=What are you looking at?!
+
+#Generic - Male
+harvestfestival.npc.generic.male.greeting1=Hey, how's it hanging?
+harvestfestival.npc.generic.male.greeting2=Want to have a beer?
+
+#Generic - Female
+harvestfestival.npc.generic.female.greeting1=Hello Þ! I hope you're feeling well! It's such a beautiful day isn't it?
+
+#Generic Adult Thanks
+harvestfestival.npc.generic.adult.gift.awesome=Wow thanks so much for the awesome gift! I love it.
+harvestfestival.npc.generic.adult.gift.good=That's a nice really nice gift, thanks!
+harvestfestival.npc.generic.adult.gift.decent=Thanks for the gift.
+harvestfestival.npc.generic.adult.gift.dislike=Umm thanks, I guess.
+harvestfestival.npc.generic.adult.gift.bad=What were you thinking? Why would I want this?
+harvestfestival.npc.generic.adult.gift.terrible=What on earth is wrong with you, Why would I want such a stupid gift?
+
+#Generic Child Thanks
+harvestfestival.npc.generic.child.gift.awesome=OMG! Yes, Yes Yes, thanks you sooooooooooo much! It's amazing!
+harvestfestival.npc.generic.child.gift.good=Awesome! Thanks for the lovely gift.
+harvestfestival.npc.generic.child.gift.decent=Nice, thank you!
+harvestfestival.npc.generic.child.gift.dislike=Hmm, I'm not so sure I like this.
+harvestfestival.npc.generic.child.gift.bad=Why would you do this to me? :(
+harvestfestival.npc.generic.child.gift.terrible=I HATE YOU, TAKE THIS AWAAAAY!!!
+
+#Generic Elder Thanks
+harvestfestival.npc.generic.adult.gift.awesome=In all my life, I have never received such a beautiful gift. With all my heart thank you.
+harvestfestival.npc.generic.adult.gift.good=That was such a lovely thing for you to give me. Thank you.
+harvestfestival.npc.generic.adult.gift.decent=Thanks for making me smile.
+harvestfestival.npc.generic.adult.gift.dislike=That was not a good idea.
+harvestfestival.npc.generic.adult.gift.bad=Are trying to insult me?
+harvestfestival.npc.generic.adult.gift.terrible=You should be caned for giving me such a terrible gift.
+
+#Goddess
+harvestfestival.npc.goddess.greeting1=Who are you, stranger?
+harvestfestival.npc.goddess.greeting2=What a great day to farm!
+harvestfestival.npc.goddess.greeting3=Do you need anything else, kid?
+harvestfestival.npc.goddess.greeting4=Don't dally around, I cannot stay for long.
+harvestfestival.npc.goddess.greeting5=What do you need?
+
+#Katlin
+harvestfestival.npc.katlin.greeting1=Hello my sweet, how have you been?
+harvestfestival.npc.katlin.greeting2=Back in my day, oh you don't want to hear it all again. How are you today?
+harvestfestival.npc.katlin.greeting3=Youngsters these days. Oh hello.
+
+#Danieuru/chylex
+harvestfestival.npc.daniel.greeting1=I've always loved tinkering around since I was a child.
+harvestfestival.npc.daniel.greeting2=Tools really are my passion, they are a Hardcore Expansion to my life.
+harvestfestival.npc.daniel.greeting3=People call me crazy around here for believing in Dragons. They'll see them when they reach The End, and they'll no longer call me a fool.
+harvestfestival.npc.daniel.greeting4=If I could do anything other than playing with tools, I'd be a dragon slayer.
+harvestfestival.npc.daniel.greeting5=Did you know that I used to be an olympic sprinter back in my youth? I was better than everyone else in Minecraftia.
+harvestfestival.npc.daniel.greeting6=Males, Females? Don't bother me, I like them all. Variety is the spice of life.
+
+#Cloe
+harvestfestival.npc.cloe.greeting1=A good book, makes a girl happy.
+harvestfestival.npc.cloe.greeting2=My dad, he's just too much sometimes, I can't handle the pressure.
+harvestfestival.npc.cloe.greeting3=I just don't understand girls sometimes.
+
+#Liara/ApsciLiara
+harvestfestival.npc.liara.greeting1=I really love this weather, perfect time to bake a cake!
+harvestfestival.npc.liara.greeting2=Cooking is what I enjoy the most! I love seeing the smile on someone's face as they take their first bite of my delicious dishes!
+harvestfestival.npc.liara.greeting3=Are you feeling hungry? I'm always hungry, no wonder I like to cook so much.
+harvestfestival.npc.liara.greeting4=Make sure to drop by the café on Tuesdays, there's always something special.
+harvestfestival.npc.liara.greeting5=Food makes the world go round, and it makes me giddy.
+harvestfestival.npc.liara.greeting6=There's nothing like a good ol piece of a chocolate to make a girl happy.
+
+#Jade
+harvestfestival.npc.jade.greeting1=Hey! I just love going out in to the world, watch out for the sheep though!
+harvestfestival.npc.jade.greeting2=The sky is falling, the sky is falling!
+harvestfestival.npc.jade.greeting3=I would just love to own a farm, but my brother is such a control freak!
+harvestfestival.npc.jade.greeting4=So many people have called me evil, but I'm a nice girl really.
+harvestfestival.npc.jade.greeting5=I wish I owned a cat, but Yulif hates them.
+harvestfestival.npc.jade.greeting6=It can get really tight in my house, not much room to move about.
+
+#Jenni/Othlon
+harvestfestival.npc.jenni.greeting1=Hey my good friend, make sure to come to me if you need any general goods!
+harvestfestival.npc.jenni.greeting2=As much as I love my customers, I love my art so much more.
+harvestfestival.npc.jenni.greeting3=Don't tell anybody but I'm secretly a huge fan of Belly Dancing.
+harvestfestival.npc.jenni.greeting4=Sometimes I wish I would open on Sundays, but then I remember how much I love a good lay in.
+harvestfestival.npc.jenni.greeting5=Granny Katlin sure makes a mean soup!
+harvestfestival.npc.jenni.greeting6=My prices are the best in the town, noone can beat ol' jenni's bargains.
+
+#Jaimii
+harvestfestival.npc.jamie.greeting1=This is my town, and you remember that.
+harvestfestival.npc.jamie.greeting2=My family has won the town elections for the last 100 years.
+harvestfestival.npc.jamie.greeting3=My two girls are so precious to me, if you ever hurt either of them.
+harvestfestival.npc.jamie.greeting4=It's really hard being mayor, the people just love you too much.
+harvestfestival.npc.jamie.greeting5=Heya Þ, have you seen my house, it's far too small.
+
+#Abii
+harvestfestival.npc.abi.greeting1=Ooo, so cute. What's that? OMG!
+harvestfestival.npc.abi.greeting2=Hello big person! Where've you been?
+harvestfestival.npc.abi.greeting3=I've missed you!
+harvestfestival.npc.abi.greeting4=Oh my, you're so big!
+
+#Tiberius/WayofTime
+harvestfestival.npc.tiberius.greeting1=Time is a fascinating thing, one second it's going slow then the next hour it's passing by faster than light!
+harvestfestival.npc.tiberius.greeting2=When I was a child my favourite nursery rhyme was hickory dickory dock.
+harvestfestival.npc.tiberius.greeting3=What time is it?
+harvestfestival.npc.tiberius.greeting4=My favourite season is spring, as that's when a new year starts!
+harvestfestival.npc.tiberius.greeting5=I've never understood why some people are afraid of blood, I had a friend who delved in to Sanguimancy, he almost took over the world, shame he was caught redhanded before he got away with it. I guess it's just not the time for it.
+
+#Jakob
+harvestfestival.npc.jacob.greeting1=Fishing is my game, Jacob is my name.
+harvestfestival.npc.jacob.greeting2=One day I will catch the elusive clownfish, I promise you!
+harvestfestival.npc.jacob.greeting3=There's nothing like just sitting and waiting for a fish to bite, so relaxing.
+harvestfestival.npc.jacob.greeting4=I really hope it rains soon. Or is it now?
+
+#Suirenji/Pokefenn
+harvestfestival.npc.fenn.greeting1=One day, I'm going to grow some vines, and you're going to climb them with me!
+harvestfestival.npc.fenn.greeting2=Don't be scared of me, I may be small but I know a lot! I know all about totems.
+harvestfestival.npc.fenn.greeting3=I wish my dad wasn't so scary.
+
+#Jim/SpitefulFox
+harvestfestival.npc.jim.greeting1=What's your favourite animal? Mine's the fox, the spiteful buggers.
+harvestfestival.npc.jim.greeting2=Remember you can always come see me, if you want your animals to have babies!
+harvestfestival.npc.jim.greeting3=Lately I've been tweaking how much I feed my chickens, it's been an educational experience.
+harvestfestival.npc.jim.greeting4=You know, this world is ridiculous sometimes, just the otherday I saw a squirrel attack a bench.
+harvestfestival.npc.jim.greeting5=Have you ever noticed how some countries, add 'u' to all their words, It's crazy if you ask me.
+harvestfestival.npc.jim.greeting6=Life could not be better, when I'm out on the saddle.
+
+#Brandon/Cricket
+harvestfestival.npc.brandon.greeting1=Whenever I'm down in the mines, I can't help but get excited when I come across some diamonds.
+harvestfestival.npc.brandon.greeting2=I don't know about you, but I've got insomnia every night, can never get to sleep... can always hear the dang crickets.
+harvestfestival.npc.brandon.greeting3=What's your favourite ice cream? Mine's Vanilla Plus. At least it used to be, until someone else stole it...
+harvestfestival.npc.brandon.greeting4=Do you ever get tired of mining? I never do. I'm always willing to trade if you ever get tired.
+harvestfestival.npc.brandon.greeting5=I'll never understand why people are afraid of the dark. There's nothing better than mining without seeing where you are going.
+harvestfestival.npc.brandon.greeting6=The other day when I was in the mines, I heard and saw this strange fire like creature. I wonder what it was?
+
+#Tomas
+harvestfestival.npc.thomas.greeting1=I will save you from your sins.
+harvestfestival.npc.thomas.greeting2=Remember if you every need anything cursed, blessed I will be happy to help.
+harvestfestival.npc.thomas.greeting3=Only he can save you now.
+harvestfestival.npc.thomas.greeting4=The lord's grace, is shining down upon you.
+harvestfestival.npc.thomas.greeting5=If you want to marry someone you need a bigger bed.
+
+#Candice
+harvestfestival.npc.candice.greeting1=Do you know what I love about milking the most? Sharing it with friends, like Jenni! Sometimes we just get it all over us. So it's nice to have a helping hand to clean up the mess.
+harvestfestival.npc.candice.greeting2=Some people can just be real cows!
+harvestfestival.npc.candice.greeting3=Where the heck am I? What is this world?
+harvestfestival.npc.candice.greeting4=Come over here, I have something in my eye.
+
+#Yulife
+harvestfestival.npc.yulif.greeting1=Building stuff is so time consuming, when will I get a break?
+harvestfestival.npc.yulif.greeting2=People treat me like a slave, no rest for the builder!
+harvestfestival.npc.yulif.greeting3=Have you seen Jim? Isn't he just?
+harvestfestival.npc.yulif.greeting4=I am tired of all this hard work, When will you appreciate my buildings?
+harvestfestival.npc.yulif.greeting5=I am tired of wandering around, I am dying right now.
+
+#Ondra
+harvestfestival.npc.ondra.greeting1=I sure love plucking chickens!
+harvestfestival.npc.ondra.greeting2=I am so tired, working with chickens is such hard work!
+harvestfestival.npc.ondra.greeting3=From this day forward, I hope I can sleep better.
+harvestfestival.npc.ondra.greeting4=Most chicken handlers hate foxes, I love them. They're so furry, like me!
+harvestfestival.npc.ondra.greeting5=Cluck, Cluck, Cluck Clucking. When will these chicks just shut the Cluck up!
+
+###Shop greetings
+#General Store
+harvestfestival.shop.general.greeting1=Welcome to the General Store, how may I help you?
+harvestfestival.shop.general.greeting2=We're always in stock, can I help?
+harvestfestival.shop.general.greeting3=This store is the best in town! What do you need?
+harvestfestival.shop.general.options=What do you want to do?
+harvestfestival.shop.general.options.shop=@Shop
+harvestfestival.shop.general.options.chat=@Chat
+
+#Poultry Farm
+harvestfestival.shop.poultry.greeting1=Chickens provide essentials for us, what can I help you with?
+harvestfestival.shop.poultry.greeting2=The Poultry Farm has been here for 300 years, what do you desire?
+
+#Cafe
+harvestfestival.shop.cafe.greeting1=Food come and get it! Yes?
+harvestfestival.shop.cafe.greeting2=Serving it all up, welcome!
+
+#Animal Ranch
+harvestfestival.shop.barn.greeting1=We don't just sell animals, we sell em strong!
+harvestfestival.shop.barn.greeting2=Welcome to the ranch, do you need anything?
+
+#Miscellaneous
+harvestfestival.marriage=Gift for Marriage
+harvestfestival.marriage.locked=LOCKED
+harvestfestival.marriage.unlocked=UNLOCKED
+
+###Quests
+## Harvest Goddess
+harvestfestival.quest.tutorial.farming.welcome=Why hello there my dear? You must be new around these parts. I am the Harvest Goddess.<BR><BR> I would like to tell you a little story about tales of a lost a people that once lived here, their homes were destroyed and their lives ruined, they moved away for a little bit, but with your help and running a farm to keep them fed they may be able to return.<BR><BR> On another note, to help bring them back I would be ever so greatful if you could find me 64 logs, so that I can make something special for you, that can help you get started with restoring their homes.
+harvestfestival.quest.tutorial.farming.reminder.welcome=Do you still want to hear more about the lost people? Bring me 64 logs please!
+harvestfestival.quest.tutorial.farming.thanks=Oh my! Well thank you very much. I have a gift for you. This here is a construction totem. When you place it in the world, you will see a ghost shape of a building appear! If you have never met a builder before, they will appear when you place this totem. With this ghost building in place, you can right click the totem to rotate it. Once the building is facing the direction you desire, you must then sneak and right click it. This will inform the builder that you wish to build the structure at the location you selected. The builder will build the building, when it's done someone may just move in! The first house the build will build for you, is his own home. Once he has built the home, his sister will move in and you will be able to interact with her, she spends her time in the upstairs of the house! I've been after some seeds, I've heard she may have a few hanging around so be sure to talk to her when the construction work is done.
+harvestfestival.quest.tutorial.farming.seeds=Remember, you should be getting the carpenter's house built! And don't forgot to talk to his sister!
+harvestfestival.quest.tutorial.farming.jade.hello=Oh Hi! I'm Jade, Yulif's little sister. I heard the Harvest Goddess is looking for some seeds, I do have a few spare, but first I need a little something in return. I've been after some wild flowers for a while now, but I don't get much of a chance to leave this little shack. Could you gather me a few?
+harvestfestival.quest.tutorial.farming.jade.reminder=I sure would love a few flowers!
+harvestfestival.quest.tutorial.farming.jade.complete=Why thank you very much, these flowers will truly come in handy. Thanks for the help, I have something for you!
+harvestfestival.quest.tutorial.farming.jade.goddess=Don't you think you should be heading back to see the Harvest Goddess, I heard she was after some seeds.
+harvestfestival.quest.tutorial.farming.completed=Well that is just perfect, you have some seeds! I would love for you to keep them. I even have some other things for you to help you get started farming. Jade is an aspiring farmer, and I'm sure if you visit her, she can give you some tips on how to get started using these new tools. I also have some spare gold for you, that was donated by those who want to move in, to help you on your way. If you would like to learn more about gold, and how to expand the town, you should go and talk to Yulif.
+

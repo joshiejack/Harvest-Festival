@@ -5,11 +5,15 @@ import joshie.harvest.core.helpers.generic.RegistryHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.base.BlockHFBase;
 import joshie.harvest.core.util.base.BlockHFBaseMeta;
+import joshie.harvest.crops.CropStateMapper;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class HFBlocks {
     //Fluid
@@ -30,8 +34,13 @@ public class HFBlocks {
     public static void preInit() {
         GODDESS.setBlock(GODDESS_WATER);
 
-        RegistryHelper.registerTiles(HFModInfo.CAPNAME, TileCooking.class, TileFridge.class, TileFryingPan.class, TileCounter.class, TileMarker.class,
+        RegistryHelper.registerTiles(HFModInfo.MODID, TileCooking.class, TileFridge.class, TileFryingPan.class, TileCounter.class, TileMarker.class,
                 TileMixer.class, TileOven.class, TilePot.class);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static void preInitClient() {
+        ModelLoader.setCustomStateMapper(CROPS, new CropStateMapper());
     }
 
     private static Fluid registerFluid(Fluid fluid) {

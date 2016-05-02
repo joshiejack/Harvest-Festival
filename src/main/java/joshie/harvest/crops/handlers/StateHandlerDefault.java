@@ -1,5 +1,6 @@
 package joshie.harvest.crops.handlers;
 
+import com.google.common.collect.ImmutableList;
 import joshie.harvest.api.crops.IStateHandler;
 import joshie.harvest.blocks.BlockCrop;
 import joshie.harvest.blocks.HFBlocks;
@@ -20,6 +21,11 @@ public class StateHandlerDefault implements IStateHandler {
         stages = PropertyInteger.create("stage", 1, crop.getStages());
         stateContainer = new BlockStateContainer(HFBlocks.CROPS, stages);
         state = stateContainer.getBaseState();
+    }
+
+    @Override
+    public ImmutableList<IBlockState> getValidStates() {
+        return stateContainer.getValidStates();
     }
 
     @Override

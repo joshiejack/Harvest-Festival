@@ -1,5 +1,7 @@
 package joshie.harvest.core.helpers;
 
+import joshie.harvest.api.crops.ICropData;
+import joshie.harvest.api.crops.IStateHandler.PlantSection;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.ItemHelper;
 import net.minecraft.block.Block;
@@ -8,11 +10,22 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 
 public class CropHelper {
+    public static IBlockState getBlockState(World world, BlockPos pos, PlantSection section, boolean withered) {
+        ICropData data = HFTrackers.getCropTracker().getCropDataForLocation(world, pos);
+        return data.getCrop().getStateHandler().getState(section, data.getStage(), withered);
+    }
+
+    public static AxisAlignedBB getCropBoundingBox(World world, BlockPos pos, PlantSection section, boolean withered) {
+        ICropData data = HFTrackers.getCropTracker().getCropDataForLocation(world, pos);
+        return data.getCrop().getStateHandler().getBoundingBox(section, data.getStage(), withered);
+    }
+
     //Converts the soil to hydrated soil
     public static boolean hydrate(World world, BlockPos pos) {
         IBlockState state = world.getBlockState(pos);

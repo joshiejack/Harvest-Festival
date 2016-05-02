@@ -6,7 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-public interface ICropData {    
+public interface ICropData {
     /** Returns the crop itself **/
     public ICrop getCrop();
     

@@ -54,7 +54,7 @@ public abstract class BlockHFBaseMeta<E extends Enum<E> & IStringSerializable> e
 
     @Override
     protected BlockStateContainer createBlockState() {
-        if(property == null)return new BlockStateContainer(this, temporary);
+        if(property == null) return new BlockStateContainer(this, temporary);
         return new BlockStateContainer(this, property);
     }
 

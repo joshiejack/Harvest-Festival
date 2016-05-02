@@ -4,13 +4,14 @@ import com.google.gson.annotations.Expose;
 import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.ICrop;
-import joshie.harvest.api.crops.ICropRenderHandler;
 import joshie.harvest.api.crops.IDropHandler;
 import joshie.harvest.api.crops.ISoilHandler;
+import joshie.harvest.api.crops.IStateHandler;
 import joshie.harvest.core.config.HFConfig;
 import joshie.harvest.core.helpers.SeedHelper;
 import joshie.harvest.core.util.Translate;
 import joshie.harvest.crops.handlers.SoilHandlers;
+import joshie.harvest.crops.handlers.StateHandlerDefault;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
@@ -26,7 +27,7 @@ public class Crop implements ICrop {
 
     //CropData
     @SideOnly(Side.CLIENT)
-    protected ICropRenderHandler iconHandler;
+    protected IStateHandler iconHandler;
     @Expose
     protected String unlocalized = "null_crop";
 
@@ -47,8 +48,7 @@ public class Crop implements ICrop {
     protected int doubleStage;
     protected AnimalFoodType foodType;
 
-    public Crop() {
-    }
+    public Crop() {}
 
     /**
      * Constructor for crop
@@ -76,7 +76,7 @@ public class Crop implements ICrop {
         this.alternativeName = false;
         this.foodType = AnimalFoodType.VEGETABLE;
         this.bag_color = color;
-        //this.iconHandler = new IconHandlerDefault(this);
+        this.iconHandler = new StateHandlerDefault(this);
         this.soilHandler = SoilHandlers.farmland;
         this.needsWatering = true;
         this.doubleStage = Integer.MAX_VALUE;
@@ -99,7 +99,7 @@ public class Crop implements ICrop {
     }
 
     @Override
-    public ICrop setCropIconHandler(ICropRenderHandler handler) {
+    public ICrop setCropIconHandler(IStateHandler handler) {
         this.iconHandler = handler;
         return this;
     }
@@ -275,7 +275,7 @@ public class Crop implements ICrop {
     }
 
     @Override
-    public ICropRenderHandler getCropRenderHandler() {
+    public IStateHandler getStateHandler() {
         return iconHandler;
     }
 
@@ -297,7 +297,7 @@ public class Crop implements ICrop {
     /**
      * Gets the localized crop name for this crop
      *
-     * @param stack
+     * @param isItem the item
      * @return crop name
      */
     public String getLocalizedName(boolean isItem) {
@@ -322,12 +322,7 @@ public class Crop implements ICrop {
 
     @Override
     public boolean equals(Object o) {
-        if (o == this) return true;
-        if (!(o instanceof ICrop)) {
-            return false;
-        }
-
-        return getUnlocalizedName().equals(((ICrop) o).getUnlocalizedName());
+        return o == this || o instanceof ICrop && getUnlocalizedName().equals(((ICrop) o).getUnlocalizedName());
     }
 
     @Override

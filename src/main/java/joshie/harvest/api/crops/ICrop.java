@@ -62,8 +62,8 @@ public interface ICrop {
     public Season[] getSeasons();
     
     /** Returns the render handler this crop uses **/
-    public ICropRenderHandler getCropRenderHandler();
-    
+    public IStateHandler getStateHandler();
+
     /** Return the soil handler for this crop **/
     public ISoilHandler getSoilHandler();
   
@@ -97,7 +97,7 @@ public interface ICrop {
     /** Associates this crop with this VisualHandler
      * @param       handler item of this crop
      * @return      the instance*/
-    public ICrop setCropIconHandler(ICropRenderHandler handler);
+    public ICrop setCropIconHandler(IStateHandler handler);
 
     /** If if you call this when creating a crop,
      *  it will use a different name for it's block and item form.

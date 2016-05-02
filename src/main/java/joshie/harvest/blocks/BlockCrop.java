@@ -6,11 +6,12 @@ import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.crops.IBreakCrops;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
-import joshie.harvest.api.crops.ICropRenderHandler.PlantSection;
-import joshie.harvest.blocks.render.EntityCropDigFX;
+import joshie.harvest.api.crops.IStateHandler.PlantSection;
+import joshie.harvest.blocks.BlockCrop.Stage;
 import joshie.harvest.core.config.Crops;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.AnimalHelper;
+import joshie.harvest.core.helpers.CropHelper;
 import joshie.harvest.core.helpers.SeedHelper;
 import joshie.harvest.core.util.base.BlockHFBaseMeta;
 import joshie.harvest.crops.HFCrops;
@@ -19,8 +20,6 @@ import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -41,15 +40,33 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
+import static joshie.harvest.api.crops.IStateHandler.PlantSection.BOTTOM;
+import static joshie.harvest.api.crops.IStateHandler.PlantSection.TOP;
 import static joshie.harvest.core.helpers.CropHelper.harvestCrop;
 
-public class BlockCrop extends BlockHFBaseMeta<BlockCrop.Stage> implements IPlantable, IGrowable, IAnimalFeeder {
+public class BlockCrop extends BlockHFBaseMeta<Stage> implements IPlantable, IGrowable, IAnimalFeeder {
     public enum Stage implements IStringSerializable {
-        FRESH, WITHERED, FRESH_DOUBLE, WITHERED_DOUBLE/*, GROWN*/;
+        FRESH(false, BOTTOM), WITHERED(false, BOTTOM), FRESH_DOUBLE(false, TOP), WITHERED_DOUBLE(true, TOP);
+
+        private final boolean isWithered;
+        private final PlantSection section;
+
+        private Stage(boolean isWithered, PlantSection section) {
+            this.isWithered = true;
+            this.section = section;
+        }
 
         @Override
         public String getName() {
             return toString().toLowerCase();
+        }
+
+        public boolean isWithered() {
+            return isWithered;
+        }
+
+        public PlantSection getSection() {
+            return section;
         }
     }
 
@@ -177,7 +194,7 @@ public class BlockCrop extends BlockHFBaseMeta<BlockCrop.Stage> implements IPlan
     public static PlantSection getSection(IBlockAccess world, BlockPos pos) {
         IBlockState state = world.getBlockState(pos);
         int stage = state.getBlock().getMetaFromState(state); //Can't get the Enum from state, because this method is static.
-        PlantSection section = PlantSection.BOTTOM;
+        PlantSection section = BOTTOM;
         if (stage == Stage.WITHERED_DOUBLE.ordinal() || stage == Stage.FRESH_DOUBLE.ordinal()) {
             section = PlantSection.TOP;
         }
@@ -190,6 +207,7 @@ public class BlockCrop extends BlockHFBaseMeta<BlockCrop.Stage> implements IPlan
         return null;
     }
 
+    /* //TODO: Fix Hit effects
     @Override
     @SideOnly(Side.CLIENT)
     public boolean addHitEffects(IBlockState state, World world, RayTraceResult rayTraceResult, EffectRenderer effectRenderer) {
@@ -217,11 +235,12 @@ public class BlockCrop extends BlockHFBaseMeta<BlockCrop.Stage> implements IPlan
                 d0 = (double) pos.getX() + aabb.minX - (double) f;
             }
 
-            effectRenderer.addEffect((new EntityCropDigFX(Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getParticleIcon(Item.getItemFromBlock(this)), world, d0, d1, d2, pos.getX(), pos.getY(), pos.getZ(), world.getBlockState(pos)))/*.applyColourMultiplier(pos)*/.multiplyVelocity(0.2F).multipleParticleScaleBy(0.6F));
+            effectRenderer.addEffect((new EntityCropDigFX(Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getParticleIcon(Item.getItemFromBlock(this)), world, d0, d1, d2, pos.getX(), pos.getY(), pos.getZ(), world.getBlockState(pos)))/*.applyColourMultiplier(pos)*.multiplyVelocity(0.2F).multipleParticleScaleBy(0.6F));
         }
         return true;
-    }
+    } */
 
+    /*
     @Override
     @SideOnly(Side.CLIENT)
     public boolean addDestroyEffects(World world, BlockPos pos, EffectRenderer effectRenderer) {
@@ -231,13 +250,14 @@ public class BlockCrop extends BlockHFBaseMeta<BlockCrop.Stage> implements IPlan
                 for (int k1 = 0; k1 < b0; ++k1) {
                     double d0 = (double) pos.getX() + ((double) i1 + 0.5D) / (double) b0;
                     double d1 = (double) pos.getY() + ((double) j1 + 0.5D) / (double) b0;
-                    double d2 = (double) pos.getZ() + ((double) k1 + 0.5D) / (double) b0;
-                    effectRenderer.addEffect((new EntityCropDigFX(Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getParticleIcon(Item.getItemFromBlock(this)), world, d0, d1, d2, d0 - (double) pos.getX() - 0.5D, d1 - (double) pos.getY() - 0.5D, d2 - (double) pos.getZ() - 0.5D, world.getBlockState(pos)))/*.applyColourMultiplier(pos)*/);
+
+                    //TODO: Fix Block Crop destroy effects
+                    //effectRenderer.addEffect((new EntityCropDigFX(Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getParticleIcon(Item.getItemFromBlock(this)), world, d0, d1, d2, d0 - (double) pos.getX() - 0.5D, d1 - (double) pos.getY() - 0.5D, d2 - (double) pos.getZ() - 0.5D, world.getBlockState(pos)))/*.applyColourMultiplier(pos));
                 }
             }
         }
         return true;
-    }
+    } */
 
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
@@ -251,7 +271,7 @@ public class BlockCrop extends BlockHFBaseMeta<BlockCrop.Stage> implements IPlan
             if (data == null || data.getCrop().requiresSickle() || data.getCrop().growsToSide() != null) {
                 return false;
             } else {
-                if (section == PlantSection.BOTTOM) {
+                if (section == BOTTOM) {
                     return harvestCrop(player, world, pos);
                 } else {
                     return harvestCrop(player, world, pos.down());
@@ -286,7 +306,7 @@ public class BlockCrop extends BlockHFBaseMeta<BlockCrop.Stage> implements IPlan
         ICrop crop = data.getCrop();
         boolean isSickle = player.getActiveItemStack() != null && player.getActiveItemStack().getItem() instanceof IBreakCrops;
         if (isSickle || !crop.requiresSickle()) {
-            if (section == PlantSection.BOTTOM) {
+            if (section == BOTTOM) {
                 harvestCrop(player, world, pos);
             } else harvestCrop(player, world, pos.down());
         }
@@ -305,8 +325,11 @@ public class BlockCrop extends BlockHFBaseMeta<BlockCrop.Stage> implements IPlan
     }
 
     @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return CROP_AABB;
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
+        if (world instanceof World) {
+            Stage stage = getEnumFromState(state);
+            return CropHelper.getCropBoundingBox((World) world, pos, stage.getSection(), stage.isWithered());
+        } else return CROP_AABB;
     }
 
     @Override
@@ -320,6 +343,14 @@ public class BlockCrop extends BlockHFBaseMeta<BlockCrop.Stage> implements IPlan
 
         ICropData data = HFApi.CROPS.getCropAtLocation(world, pos);
         return SeedHelper.getSeedsFromCrop(data.getCrop());
+    }
+
+    @Override
+    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
+        if (world instanceof World) {
+            Stage stage = getEnumFromState(state);
+            return CropHelper.getBlockState((World) world, pos, stage.getSection(), stage.isWithered());
+        } else return state;
     }
 
     /*@Override

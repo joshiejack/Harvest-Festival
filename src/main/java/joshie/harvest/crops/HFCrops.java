@@ -6,6 +6,7 @@ import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.core.config.HFConfig;
 import joshie.harvest.crops.handlers.DropHandlerMelon;
 import joshie.harvest.crops.handlers.DropHandlerPotato;
+import joshie.harvest.crops.handlers.StateHandlerNull;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -35,7 +36,7 @@ public class HFCrops {
     public static ICrop watermelon;
 
     public static void preInit() {
-        null_crop = HFApi.CROPS.registerCrop(new Crop()/*.setCropIconHandler(new IconHandlerNull())*/);
+        null_crop = HFApi.CROPS.registerCrop(new Crop().setCropIconHandler(new StateHandlerNull()));
 
         //Spring Crops
         turnip = HFApi.CROPS.registerCrop("turnip", 120, 60, 5, 0, 0, 0xFFFFFF, SPRING)/*.setCropIconHandler(new IconHandlerTurnip())*/;

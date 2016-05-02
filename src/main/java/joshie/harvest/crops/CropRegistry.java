@@ -4,7 +4,7 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.api.crops.ICropHandler;
-import joshie.harvest.api.crops.ICropRenderHandler.PlantSection;
+import joshie.harvest.api.crops.IStateHandler.PlantSection;
 import joshie.harvest.blocks.BlockCrop;
 import joshie.harvest.core.config.HFConfig;
 import joshie.harvest.core.handlers.HFTrackers;

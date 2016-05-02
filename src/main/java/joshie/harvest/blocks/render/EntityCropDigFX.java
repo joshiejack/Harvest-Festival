@@ -17,6 +17,7 @@ public class EntityCropDigFX extends EntityDiggingFX {
         if (state.getBlock() != HFBlocks.CROPS) {
             this.setParticleTexture(Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelShapes().getTexture(Blocks.CARROTS.getDefaultState()));
         }
+
         this.setParticleTexture(icon);
     }
 }

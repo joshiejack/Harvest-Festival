@@ -12,6 +12,8 @@ import net.minecraft.util.ResourceLocation;
 import java.util.Map;
 
 public class CropStateMapper extends StateMapperBase {
+    public static final CropStateMapper INSTANCE = new CropStateMapper();
+
     @Override
     public Map<IBlockState, ModelResourceLocation> putStateModelLocations(Block blockIn) {
         for (IBlockState iblockstate : blockIn.getBlockState().getValidStates()) {
@@ -19,6 +21,7 @@ public class CropStateMapper extends StateMapperBase {
         }
 
         for (ICrop crop: Crop.crops) {
+            if (crop.getStateHandler().getValidStates() == null) continue;
             for (IBlockState state: crop.getStateHandler().getValidStates()) {
                 mapStateModelLocations.put(state, getCropResourceLocation(crop, state));
             }

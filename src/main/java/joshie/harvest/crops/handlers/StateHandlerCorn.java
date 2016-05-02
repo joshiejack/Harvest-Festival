@@ -1,11 +1,10 @@
 package joshie.harvest.crops.handlers;
 
-import joshie.harvest.crops.HFCrops;
 import net.minecraft.block.state.IBlockState;
 
 public class StateHandlerCorn extends StateHandlerDefault {
     public StateHandlerCorn() {
-        super(HFCrops.cabbage, 4);
+        super(5);
     }
 
     @Override

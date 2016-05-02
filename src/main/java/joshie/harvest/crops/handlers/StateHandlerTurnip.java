@@ -1,18 +1,16 @@
 package joshie.harvest.crops.handlers;
 
-/*public class IconHandlerTurnip extends AbstractIconHandler {
-    @SideOnly(Side.CLIENT)
-    public IIcon getIconForStage(PlantSection section, int stage) {
-        if (stage <= 2) return stageIcons[0];
-        else if (stage <= 4) return stageIcons[1];
-        else return stageIcons[2];
+import net.minecraft.block.state.IBlockState;
+
+public class StateHandlerTurnip extends StateHandlerDefault {
+    public StateHandlerTurnip() {
+        super(3);
     }
 
-    @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister register) {
-        stageIcons = new IIcon[3];
-        for (int i = 0; i < stageIcons.length; i++) {
-            stageIcons[i] = register.registerIcon(HFModInfo.CROPPATH + HFCrops.turnip.getUnlocalizedName() + "_" + (i + 1));
-        }
+    @Override
+    public IBlockState getState(PlantSection section, int stage, boolean withered) {
+        if (stage <= 2) return getState(1);
+        else if (stage <= 4) return getState(2);
+        else return getState(3);
     }
-}*/
+}

@@ -97,7 +97,7 @@ public interface ICrop {
     /** Associates this crop with this VisualHandler
      * @param       handler item of this crop
      * @return      the instance*/
-    public ICrop setCropIconHandler(IStateHandler handler);
+    public ICrop setStateHandler(IStateHandler handler);
 
     /** If if you call this when creating a crop,
      *  it will use a different name for it's block and item form.

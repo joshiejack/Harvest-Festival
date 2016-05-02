@@ -1,6 +1,6 @@
 {
-  "parent": "block/crop",
+  "parent": "block/tinted_cross",
   "textures": {
-    "crop": "harvestfestival:blocks/crops/grass_bottom2"
+    "cross": "harvestfestival:blocks/crops/grass_bottom_3"
   }
 }

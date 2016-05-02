@@ -1,10 +1,11 @@
 package joshie.harvest.crops.handlers;
 
 import com.google.common.collect.ImmutableList;
+import gnu.trove.map.TIntObjectMap;
+import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.IStateHandler;
 import joshie.harvest.blocks.BlockCrop;
 import joshie.harvest.blocks.HFBlocks;
-import joshie.harvest.crops.Crop;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -13,14 +14,20 @@ import net.minecraft.util.math.AxisAlignedBB;
 public class StateHandlerDefault implements IStateHandler {
     protected BlockStateContainer stateContainer;
     protected PropertyInteger stages;
-    protected IBlockState state;
-    protected Crop crop;
+    protected IBlockState defaultState;
 
-    public StateHandlerDefault(Crop crop) {
-        this.crop = crop;
-        stages = PropertyInteger.create("stage", 1, crop.getStages());
-        stateContainer = new BlockStateContainer(HFBlocks.CROPS, stages);
-        state = stateContainer.getBaseState();
+    protected TIntObjectMap<IBlockState> statesMap;
+    protected final int maximum;
+
+    public StateHandlerDefault(int maximum) {
+        this.maximum = maximum;
+        this.stages = PropertyInteger.create("stage", 1, maximum);
+        this.stateContainer = new BlockStateContainer(HFBlocks.CROPS, stages);
+        this.defaultState = stateContainer.getBaseState().withProperty(stages, Integer.valueOf(1));
+    }
+
+    public StateHandlerDefault(ICrop crop) {
+        this(crop.getStages());
     }
 
     @Override
@@ -35,7 +42,10 @@ public class StateHandlerDefault implements IStateHandler {
 
     @Override
     public IBlockState getState(PlantSection section, int stage, boolean withered) {
-        System.out.println("Called this to get the states for " + crop.getLocalizedName(false));
-        return state.withProperty(stages, Integer.valueOf(stage));
+        return getState(stage);
+    }
+
+    protected IBlockState getState(int stage) {
+        return defaultState.withProperty(stages, Integer.valueOf(stage));
     }
 }

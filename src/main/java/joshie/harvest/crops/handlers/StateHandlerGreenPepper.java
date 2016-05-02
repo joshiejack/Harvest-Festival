@@ -9,10 +9,10 @@ public class StateHandlerGreenPepper extends StateHandlerDefault {
 
     @Override
     public IBlockState getState(PlantSection section, int stage, boolean withered) {
-        if (stage <= 5) return getState(1);
-        else if (stage <= 10) return getState(2);
-        else if (stage <= 15) return getState(3);
-        else if (stage <= 20) return getState(4);
+        if (stage <= 2) return getState(1);
+        else if (stage <= 3) return getState(2);
+        else if (stage <= 5) return getState(3);
+        else if (stage <= 7) return getState(4);
         else return getState(5);
     }
 }

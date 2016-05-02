@@ -13,6 +13,7 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.AnimalHelper;
 import joshie.harvest.core.helpers.CropHelper;
 import joshie.harvest.core.helpers.SeedHelper;
+import joshie.harvest.core.helpers.WorldHelper;
 import joshie.harvest.core.util.base.BlockHFBaseMeta;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.block.Block;
@@ -167,6 +168,7 @@ public class BlockCrop extends BlockHFBaseMeta<Stage> implements IPlantable, IGr
     @Override
     public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable) {
         IBlockState stateUp = world.getBlockState(pos.up());
+        if (stateUp.getBlock() != this) return false;
         Stage aboveStage = getEnumFromState(stateUp);
         Stage thisStage = getEnumFromState(state);
         if (stateUp.getBlock() == this) {
@@ -263,7 +265,6 @@ public class BlockCrop extends BlockHFBaseMeta<Stage> implements IPlantable, IGr
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
         Stage stage = getEnumFromState(state);
         if (stage == Stage.WITHERED || stage == Stage.WITHERED_DOUBLE) return false; //If Withered with suck!
-
         if (player.isSneaking()) return false;
         else {
             PlantSection section = getSection(world, pos);
@@ -285,8 +286,10 @@ public class BlockCrop extends BlockHFBaseMeta<Stage> implements IPlantable, IGr
         if (!world.isRemote) {
             IBlockState soil = world.getBlockState(pos.down());
             ICrop crop = HFApi.CROPS.getCropAtLocation(world, pos).getCrop();
-            if (!crop.getSoilHandler().canSustainPlant(soil, world, pos, this)) {
-                world.setBlockToAir(pos);
+            if (crop != null && crop.getSoilHandler() != null) {
+                if (!crop.getSoilHandler().canSustainPlant(soil, world, pos, this)) {
+                    world.setBlockToAir(pos);
+                }
             }
         }
     }
@@ -346,10 +349,13 @@ public class BlockCrop extends BlockHFBaseMeta<Stage> implements IPlantable, IGr
     }
 
     @Override
-    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
-        if (world instanceof World) {
+    public IBlockState getActualState(IBlockState state, IBlockAccess access, BlockPos pos) {
+        World world = WorldHelper.getWorld(access);
+        if (world != null) {
             Stage stage = getEnumFromState(state);
-            return CropHelper.getBlockState((World) world, pos, stage.getSection(), stage.isWithered());
+            if (stage.getSection() == TOP) {
+                return CropHelper.getBlockState(world, pos.down(), stage.getSection(), stage.isWithered());
+            } else return CropHelper.getBlockState(world, pos, stage.getSection(), stage.isWithered());
         } else return state;
     }
 

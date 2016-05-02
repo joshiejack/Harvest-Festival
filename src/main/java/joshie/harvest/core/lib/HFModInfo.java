@@ -10,7 +10,7 @@ public class HFModInfo {
     public static final String BLOCKSNAME = "HFBlocks";
     public static final String COMMANDNAME = "hf";
     
-    public static final String BUILDINGPATH = "hf:buildings/";
+    public static final String BUILDINGPATH = "harvestfestival:buildings/";
     public static final String CROPPATH = "harvestfestival:crops/";
     public static final String MEALPATH = "harvestfestival:meals/";
     public static final String SEEDPATH = "harvestfestival:seeds/";

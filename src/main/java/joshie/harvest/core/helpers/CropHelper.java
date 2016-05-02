@@ -41,9 +41,9 @@ public class CropHelper {
     public static boolean dehydrate(World world, BlockPos pos, IBlockState state) {
         Block crop = world.getBlockState(pos.up()).getBlock();
         Block farmland = state.getBlock();
-        int meta = state.getValue(BlockFarmland.MOISTURE);
         if (!(farmland instanceof BlockFarmland)) return true;
-        else if (crop instanceof IPlantable && farmland.canSustainPlant(state, world, pos, EnumFacing.UP, (IPlantable) crop)) {
+        int meta = state.getValue(BlockFarmland.MOISTURE);
+        if (crop instanceof IPlantable && farmland.canSustainPlant(state, world, pos, EnumFacing.UP, (IPlantable) crop)) {
             world.setBlockState(pos, state.withProperty(BlockFarmland.MOISTURE, 0), 2);
             return true;
         } else if (meta == 7) {

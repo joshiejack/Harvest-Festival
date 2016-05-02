@@ -10,9 +10,13 @@ public class StateHandlerStem extends StateHandlerVanilla {
 
     @Override
     public IBlockState getState(PlantSection section, int stage, boolean withered) {
-        if (stage == 1) return block.getStateFromMeta(0);
-        if (stage == 2 || stage == 3 || stage == 4) return block.getStateFromMeta(1);
-        if (stage == 5 || stage == 6 || stage == 7) return block.getStateFromMeta(2);
-        return block.getStateFromMeta(3);
+        if (stage == 0)  return block.getStateFromMeta(0);
+        if (stage == 1)  return block.getStateFromMeta(1);
+        else if (stage <= 2) return block.getStateFromMeta(2);
+        else if (stage <= 4) return block.getStateFromMeta(3);
+        else if (stage <= 8) return block.getStateFromMeta(4);
+        else if (stage <= 12) return block.getStateFromMeta(5);
+        else if (stage <= 14) return block.getStateFromMeta(6);
+        else return block.getStateFromMeta(7);
     }
 }

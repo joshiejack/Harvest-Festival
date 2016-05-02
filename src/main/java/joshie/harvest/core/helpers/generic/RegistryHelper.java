@@ -1,5 +1,6 @@
 package joshie.harvest.core.helpers.generic;
 
+import joshie.harvest.HarvestFestival;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.generic.Library;
 import joshie.harvest.items.ItemBaseTool;
@@ -38,11 +39,11 @@ public class RegistryHelper {
                     }
 
                     ModelLoader.setCustomModelResourceLocation(item, item.getDamage(stack), new ModelResourceLocation(new ResourceLocation(HFModInfo.MODID, subItemName), "inventory"));
-                    System.out.println("Sub Item Name " + subItemName);
+                    HarvestFestival.logger.log(Level.INFO, "Sub Item Name " + subItemName);
                 }
             } else {
                 ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(new ResourceLocation(HFModInfo.MODID, name), "inventory"));
-                System.out.println("Item Name " + name);
+                HarvestFestival.logger.log(Level.INFO, "Item Name " + name);
             }
         }
 

@@ -1,6 +1,6 @@
 {
   "parent": "block/crop",
   "textures": {
-    "crop": "harvestfestival:blocks/crops/tomato_4"
+    "crop": "harvestfestival:blocks/crops/tomato_5"
   }
 }

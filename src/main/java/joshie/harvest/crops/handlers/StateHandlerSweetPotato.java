@@ -10,7 +10,7 @@ public class StateHandlerSweetPotato extends StateHandlerDefault {
     @Override
     public IBlockState getState(PlantSection section, int stage, boolean withered) {
         if (stage <= 3) return getState(1);
-        else if (stage <= 7) return getState(2);
+        else if (stage <= 5) return getState(2);
         else return getState(3);
     }
 }

@@ -33,7 +33,7 @@ public class AgriCraftCrop extends Crop {
 
     public void loadItem() {
         plant = (BlockModPlant) GameRegistry.findBlock("AgriCraft", "crop" + block);        
-        setCropIconHandler(new IconHandlerAgriCraft(plant, getStages()));
+        setStateHandler(new IconHandlerAgriCraft(plant, getStages()));
         ItemModSeed seed = (ItemModSeed) plant.getSeed();
         if (seed != null) {
             seeds = new ItemStack(seed).getDisplayName();

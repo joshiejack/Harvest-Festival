@@ -1,6 +1,6 @@
 {
   "parent": "block/crop",
   "textures": {
-    "crop": "harvestfestival:blocks/crops/cabbage2"
+    "crop": "harvestfestival:blocks/crops/cabbage_3"
   }
 }

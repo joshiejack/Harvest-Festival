@@ -69,7 +69,7 @@ public class CropTrackerServer extends CropTracker {
         while (it.hasNext()) {
             WorldLocation location = it.next();
             World world = getWorld(location.dimension);
-            CropHelper.dehydrate(world, location.position.down(), world.getBlockState(location.position));
+            CropHelper.dehydrate(world, location.position.down(), world.getBlockState(location.position.down()));
         }
 
         Iterator<ICropData> wither = toWither.iterator();

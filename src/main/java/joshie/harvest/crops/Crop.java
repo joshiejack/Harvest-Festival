@@ -99,7 +99,7 @@ public class Crop implements ICrop {
     }
 
     @Override
-    public ICrop setCropIconHandler(IStateHandler handler) {
+    public ICrop setStateHandler(IStateHandler handler) {
         this.iconHandler = handler;
         return this;
     }

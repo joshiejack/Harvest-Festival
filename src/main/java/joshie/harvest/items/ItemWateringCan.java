@@ -9,6 +9,7 @@ import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -152,7 +153,7 @@ public class ItemWateringCan extends ItemBaseTool implements IFluidContainerItem
 
     private EnumActionResult hydrate(EntityPlayer player, ItemStack stack, World world, BlockPos pos) {
         if (CropHelper.hydrate(world, pos)) {
-            displayParticle(world, pos, EnumParticleTypes.WATER_SPLASH);
+            displayParticle(world, pos, EnumParticleTypes.WATER_SPLASH, Blocks.WATER.getDefaultState());
             playSound(world, pos, SoundEvents.ENTITY_GENERIC_SWIM, SoundCategory.NEUTRAL);
             PlayerHelper.performTask(player, stack, getExhaustionRate(stack));
             if (!player.capabilities.isCreativeMode) {

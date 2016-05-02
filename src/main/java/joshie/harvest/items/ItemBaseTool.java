@@ -5,6 +5,8 @@ import joshie.harvest.api.core.ILevelable;
 import joshie.harvest.api.core.ITiered;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.Translate;
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -153,11 +155,11 @@ public abstract class ItemBaseTool extends ItemBaseSingle implements ILevelable,
         } else return z;
     }
 
-    protected void displayParticle(World world, BlockPos pos, EnumParticleTypes particle) {
+    protected void displayParticle(World world, BlockPos pos, EnumParticleTypes particle, IBlockState state) {
         for (int j = 0; j < 60D; j++) {
             double d8 = (pos.getX()) + world.rand.nextFloat();
             double d9 = (pos.getZ()) + world.rand.nextFloat();
-            world.spawnParticle(particle, d8, pos.getY() + 1.0D - 0.125D, d9, 0, 0, 0);
+            world.spawnParticle(particle, d8, pos.getY() + 1.0D - 0.125D, d9, 0, 0, 0, new int[] {Block.getStateId(state)});
         }
     }
 

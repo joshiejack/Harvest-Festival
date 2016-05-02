@@ -1,9 +1,11 @@
 package joshie.harvest.blocks;
 
+import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.generic.IHasMetaBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
@@ -54,7 +56,10 @@ public class BlockGoddessWater extends BlockFluidClassic {
             }
 
             GameRegistry.registerBlock(this, clazz, register);
-        } else GameRegistry.registerBlock(this, register);
+        } else {
+            GameRegistry.register(this, new ResourceLocation(HFModInfo.MODID, register));
+            GameRegistry.register(new ItemBlock(this), new ResourceLocation(HFModInfo.MODID, register));
+        }
 
         return this;
     }

@@ -11,7 +11,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 
 public class GuiNPCBase extends GuiBase {
-    private static final ResourceLocation chatbox = new ResourceLocation(HFModInfo.MODPATH, "textures/gui/chatbox.png");
+    private static final ResourceLocation chatbox = new ResourceLocation(HFModInfo.MODID, "textures/gui/chatbox.png");
     protected EntityNPC npc;
     protected EntityPlayer player;
     protected int nextGui;

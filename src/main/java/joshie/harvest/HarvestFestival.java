@@ -30,7 +30,7 @@ public class HarvestFestival {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        root = new File(event.getModConfigurationDirectory() + File.separator + MODPATH);
+        root = new File(event.getModConfigurationDirectory() + File.separator + MODID);
         proxy.load("preInit");
         proxy.load("preInitClient");
     }

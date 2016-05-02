@@ -7,10 +7,10 @@ import net.minecraft.creativetab.CreativeTabs;
 
 public abstract class ItemHFMeta extends ItemBaseMeta {
     public ItemHFMeta() {
-        super(HFModInfo.MODPATH, HFTab.FARMING);
+        super(HFModInfo.MODID, HFTab.FARMING);
     }
 
     public ItemHFMeta(CreativeTabs tab) {
-        super(HFModInfo.MODPATH, tab);
+        super(HFModInfo.MODID, tab);
     }
 }

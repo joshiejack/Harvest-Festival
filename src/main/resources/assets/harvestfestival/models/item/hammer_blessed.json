@@ -1,6 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "hf:items/tools/hammer_blessed"
+    "layer0": "harvestfestival:items/tools/hammer_blessed"
   }
 }

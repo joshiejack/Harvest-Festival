@@ -37,17 +37,17 @@ public class RegistryHelper {
                         subItemName = subItemName + "_" + ((ItemBaseTool) item).getTier(stack).name().toLowerCase();
                     }
 
-                    ModelLoader.setCustomModelResourceLocation(item, item.getDamage(stack), new ModelResourceLocation(new ResourceLocation(HFModInfo.MODPATH, subItemName), "inventory"));
+                    ModelLoader.setCustomModelResourceLocation(item, item.getDamage(stack), new ModelResourceLocation(new ResourceLocation(HFModInfo.MODID, subItemName), "inventory"));
                     System.out.println("Sub Item Name " + subItemName);
                 }
             } else {
-                ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(new ResourceLocation(HFModInfo.MODPATH, name), "inventory"));
+                ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(new ResourceLocation(HFModInfo.MODID, name), "inventory"));
                 System.out.println("Item Name " + name);
             }
         }
 
         if (Library.DEBUG_ON) {
-            Library.log(Level.DEBUG, "Successfully registered the item " + item.getClass().getSimpleName() + " as " + HFModInfo.MODPATH + ":" + name);
+            Library.log(Level.DEBUG, "Successfully registered the item " + item.getClass().getSimpleName() + " as " + HFModInfo.MODID + ":" + name);
         }
 
         return item;

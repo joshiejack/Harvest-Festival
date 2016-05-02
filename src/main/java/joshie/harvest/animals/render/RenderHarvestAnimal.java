@@ -16,11 +16,11 @@ public class RenderHarvestAnimal extends RenderLiving<EntityLiving> {
     public RenderHarvestAnimal(RenderManager manager, ModelBase model, String animal) {
         super(manager, model, 1F);
 
-        texture_child = new ResourceLocation(HFModInfo.MODPATH, "textures/entity/" + animal + "_child.png");
-        texture_adult = new ResourceLocation(HFModInfo.MODPATH, "textures/entity/" + animal + "_adult.png");
+        texture_child = new ResourceLocation(HFModInfo.MODID, "textures/entity/" + animal + "_child.png");
+        texture_adult = new ResourceLocation(HFModInfo.MODID, "textures/entity/" + animal + "_adult.png");
 
         if (animal.equals("sheep")) {
-            texture_sheared = new ResourceLocation(HFModInfo.MODPATH, "textures/entity/" + animal + "_adult_sheared.png");
+            texture_sheared = new ResourceLocation(HFModInfo.MODID, "textures/entity/" + animal + "_adult_sheared.png");
         }
     }
 

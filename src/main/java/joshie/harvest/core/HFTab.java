@@ -2,6 +2,7 @@ package joshie.harvest.core;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ICreativeSorted;
+import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.items.HFItems;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
@@ -14,8 +15,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
-import static joshie.harvest.core.lib.HFModInfo.MODPATH;
 
 public class HFTab extends CreativeTabs {
     public static HFTab TOWN = new HFTab("town");
@@ -34,7 +33,7 @@ public class HFTab extends CreativeTabs {
     @Override
     @SideOnly(Side.CLIENT)
     public String getTranslatedTabLabel() {
-        return MODPATH + ".tab." + this.getTabLabel();
+        return HFModInfo.MODID + ".tab." + this.getTabLabel();
     }
 
     @Override

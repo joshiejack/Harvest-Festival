@@ -7,8 +7,6 @@ import joshie.harvest.core.lib.HFModInfo;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
 
-import static joshie.harvest.core.lib.HFModInfo.MODPATH;
-
 public class SeasonData implements ISeasonData {
     public final Season season;
     private final ResourceLocation resource;
@@ -22,7 +20,7 @@ public class SeasonData implements ISeasonData {
 
     public SeasonData(Season season, int color, double factor, float angle, long sunrise, String textColor, int seasonColor, double sunny, double rain, double typhoon, double snow, double blizzard) {
         this.season = season;
-        this.resource = new ResourceLocation(MODPATH, "textures/hud/" + season.name().toLowerCase() + ".png");
+        this.resource = new ResourceLocation(HFModInfo.MODID, "textures/hud/" + season.name().toLowerCase() + ".png");
         this.skyColor = color;
         this.celestialLengthFactor = factor;
         this.celestialAngleOffset = angle;
@@ -64,7 +62,7 @@ public class SeasonData implements ISeasonData {
 
     @Override
     public String getLocalized() {
-        return I18n.translateToLocal(HFModInfo.MODPATH + ".season." + season.name().toLowerCase());
+        return I18n.translateToLocal(HFModInfo.MODID + ".season." + season.name().toLowerCase());
     }
 
     @Override

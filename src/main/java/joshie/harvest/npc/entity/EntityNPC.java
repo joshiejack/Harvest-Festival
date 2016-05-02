@@ -100,7 +100,7 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
     }
 
     public ResourceLocation getSkin() {
-        return new ResourceLocation(HFModInfo.MODPATH + ":" + "textures/entity/" + npc.getUnlocalizedName() + ".png");
+        return new ResourceLocation(HFModInfo.MODID + ":" + "textures/entity/" + npc.getUnlocalizedName() + ".png");
     }
 
     public INPC getNPC() {

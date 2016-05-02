@@ -34,7 +34,7 @@ public class Shop implements IShop {
 
     public Shop(String name) {
         for (int i = 1; i < 32; i++) {
-            String key = HFModInfo.MODPATH + ".shop." + name + ".greeting" + i;
+            String key = HFModInfo.MODID + ".shop." + name + ".greeting" + i;
             String greeting = Text.localize(key);
             if (!greeting.equals(key)) {
                 greetings.add(greeting);
@@ -67,11 +67,11 @@ public class Shop implements IShop {
      * Returns the location of the shops name
      **/
     public ResourceLocation getResource() {
-        ResourceLocation shop_texture = new ResourceLocation(HFModInfo.MODPATH + ":lang/" + FMLCommonHandler.instance().getCurrentLanguage() + "/shops.png");
+        ResourceLocation shop_texture = new ResourceLocation(HFModInfo.MODID + ":lang/" + FMLCommonHandler.instance().getCurrentLanguage() + "/shops.png");
         try {
             MCClientHelper.getMinecraft().renderEngine.getTexture(shop_texture).loadTexture(Minecraft.getMinecraft().getResourceManager());
         } catch (Exception e) {
-            shop_texture = new ResourceLocation(HFModInfo.MODPATH + ":lang/en_US/shops.png");
+            shop_texture = new ResourceLocation(HFModInfo.MODID + ":lang/en_US/shops.png");
         }
 
         return shop_texture;

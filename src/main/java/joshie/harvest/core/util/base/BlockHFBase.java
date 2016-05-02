@@ -7,16 +7,15 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public abstract class BlockHFBase extends Block {
-    protected final String mod;
 
     //General Constructor
     public BlockHFBase(Material material, CreativeTabs tab) {
         super(material);
         setCreativeTab(tab);
-        this.mod = HFModInfo.MODPATH;
     }
 
     //Default to farming constructor
@@ -38,15 +37,17 @@ public abstract class BlockHFBase extends Block {
                 } catch (Exception ignored) {
                 }
             }
-
             GameRegistry.registerBlock(this, clazz, register);
-        } else GameRegistry.registerBlock(this, register);
+        } else {
+            GameRegistry.register(this, new ResourceLocation(HFModInfo.MODID, register));
+            GameRegistry.register(new ItemBlock(this), new ResourceLocation(HFModInfo.MODID, register));
+        }
 
         return this;
     }
 
     @Override
     public String getUnlocalizedName() {
-        return mod + "." + super.getUnlocalizedName();
+        return HFModInfo.MODID + "." + super.getUnlocalizedName();
     }
 }

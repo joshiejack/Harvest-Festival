@@ -1,5 +1,6 @@
 package joshie.harvest.core.util;
 
+import joshie.harvest.core.lib.HFModInfo;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
@@ -11,8 +12,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
-import static joshie.harvest.core.lib.HFModInfo.MODPATH;
 
 public abstract class GuiBase extends GuiContainer {
     protected boolean hasInventory;
@@ -27,7 +26,7 @@ public abstract class GuiBase extends GuiContainer {
 
     public GuiBase(ContainerBase container, String texture, int yOffset) {
         super(container);
-        TEXTURE = new ResourceLocation(MODPATH, "textures/gui/" + texture + ".png");
+        TEXTURE = new ResourceLocation(HFModInfo.MODID, "textures/gui/" + texture + ".png");
         ySize += yOffset;
         xSize = 201;
         name = "";

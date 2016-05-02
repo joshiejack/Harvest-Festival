@@ -45,7 +45,7 @@ public class ChatFontRenderer {
         }
     }
 
-    private static final ResourceLocation resource = new ResourceLocation(HFModInfo.MODPATH, "textures/gui/chattext.png");
+    private static final ResourceLocation resource = new ResourceLocation(HFModInfo.MODID, "textures/gui/chattext.png");
     private static final TCharObjectMap<Char> map = new TCharObjectHashMap<Char>();
 
     static {

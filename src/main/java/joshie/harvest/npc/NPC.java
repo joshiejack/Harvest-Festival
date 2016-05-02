@@ -73,25 +73,25 @@ public class NPC implements INPC {
         } catch (Exception ignored) {
         }
 
-        String key = HFModInfo.MODPATH + ".npc." + name + ".accept";
+        String key = HFModInfo.MODID + ".npc." + name + ".accept";
         accept = Text.localize(key);
-        key = HFModInfo.MODPATH + ".npc." + name + ".reject";
+        key = HFModInfo.MODID + ".npc." + name + ".reject";
         reject = Text.localize(key);
 
         for (int i = 0; i < 6; i++) {
-            key = HFModInfo.MODPATH + ".npc." + name + ".gift." + Quality.values()[i].name().toLowerCase();
+            key = HFModInfo.MODID + ".npc." + name + ".gift." + Quality.values()[i].name().toLowerCase();
             String translated = Text.localize(key);
             if (!translated.equals(key)) {
                 thanks.add(translated);
             } else {
-                key = HFModInfo.MODPATH + ".npc.generic." + age.name().toLowerCase() + ".gift." + Quality.values()[i].name().toLowerCase();
+                key = HFModInfo.MODID + ".npc.generic." + age.name().toLowerCase() + ".gift." + Quality.values()[i].name().toLowerCase();
                 translated = Text.localize(key);
                 thanks.add(translated);
             }
         }
 
         for (int i = 1; i <= 32; i++) {
-            key = HFModInfo.MODPATH + ".npc." + name + ".greeting" + i;
+            key = HFModInfo.MODID + ".npc." + name + ".greeting" + i;
             String greeting = Text.localize(key);
             if (!greeting.equals(key)) {
                 conditionals.add(new GreetingGeneric(greeting));
@@ -99,14 +99,14 @@ public class NPC implements INPC {
 
             //Adding Generic Child Greetings
             if (age == CHILD) {
-                key = HFModInfo.MODPATH + ".npc.generic.child.greeting" + i;
+                key = HFModInfo.MODID + ".npc.generic.child.greeting" + i;
                 greeting = Text.localize(key);
                 if (!greeting.equals(key)) {
                     conditionals.add(new GreetingGeneric(greeting));
                 }
             } else {
                 //Add Generic Adult Greetings
-                key = HFModInfo.MODPATH + ".npc.generic.adult.greeting" + i;
+                key = HFModInfo.MODID + ".npc.generic.adult.greeting" + i;
                 greeting = Text.localize(key);
                 if (!greeting.equals(key)) {
                     conditionals.add(new GreetingGeneric(greeting));
@@ -114,14 +114,14 @@ public class NPC implements INPC {
 
                 if (gender == MALE) {
                     //Add Generic Male Greetings
-                    key = HFModInfo.MODPATH + ".npc.generic.male.greeting" + i;
+                    key = HFModInfo.MODID + ".npc.generic.male.greeting" + i;
                     greeting = Text.localize(key);
                     if (!greeting.equals(key)) {
                         conditionals.add(new GreetingGeneric(greeting));
                     }
                 } else if (gender == FEMALE) {
                     //Add Generic Female Greetings
-                    key = HFModInfo.MODPATH + ".npc.generic.female.greeting" + i;
+                    key = HFModInfo.MODID + ".npc.generic.female.greeting" + i;
                     greeting = Text.localize(key);
                     if (!greeting.equals(key)) {
                         conditionals.add(new GreetingGeneric(greeting));

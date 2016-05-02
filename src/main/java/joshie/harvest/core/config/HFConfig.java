@@ -48,7 +48,7 @@ public class HFConfig {
 
     /** Creates the configuration file for the ASM Configs **/
     public static void initASM(Gson gson) {
-        File file = new File("config/" + HFModInfo.MODPATH + "/vanilla.json");
+        File file = new File("config/" + HFModInfo.MODID + "/vanilla.json");
         if (!file.exists()) {
             try {
                 HFConfig.asm = new ASM();

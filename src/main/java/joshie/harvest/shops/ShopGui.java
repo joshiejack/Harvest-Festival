@@ -16,7 +16,7 @@ public class ShopGui implements IShopGuiOverlay {
     private int resourceY;
 
     public ShopGui(String name, int resourceY) {
-        this.shop_overlay = new ResourceLocation(HFModInfo.MODPATH + ":textures/gui/shops/" + name + ".png");
+        this.shop_overlay = new ResourceLocation(HFModInfo.MODID + ":textures/gui/shops/" + name + ".png");
         this.resourceY = resourceY;
     }
 
@@ -40,11 +40,11 @@ public class ShopGui implements IShopGuiOverlay {
      * Returns the location of the shops name
      **/
     public ResourceLocation getResource() {
-        ResourceLocation shop_texture = new ResourceLocation(HFModInfo.MODPATH + ":lang/" + FMLCommonHandler.instance().getCurrentLanguage() + "/shops.png");
+        ResourceLocation shop_texture = new ResourceLocation(HFModInfo.MODID + ":lang/" + FMLCommonHandler.instance().getCurrentLanguage() + "/shops.png");
         try {
             MCClientHelper.getMinecraft().renderEngine.getTexture(shop_texture).loadTexture(Minecraft.getMinecraft().getResourceManager());
         } catch (Exception e) {
-            shop_texture = new ResourceLocation(HFModInfo.MODPATH + ":lang/en_US/shops.png");
+            shop_texture = new ResourceLocation(HFModInfo.MODID + ":lang/en_US/shops.png");
         }
 
         return shop_texture;

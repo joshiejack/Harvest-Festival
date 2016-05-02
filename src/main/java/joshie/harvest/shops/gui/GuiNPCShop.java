@@ -21,9 +21,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GuiNPCShop extends GuiNPCBase {
-    protected static final ResourceLocation gui_texture = new ResourceLocation(HFModInfo.MODPATH, "textures/gui/shop.png");
-    protected static final ResourceLocation number_texture = new ResourceLocation(HFModInfo.MODPATH, "lang/en_US/shops.png");
-    protected static final ResourceLocation shelve_texture = new ResourceLocation(HFModInfo.MODPATH, "textures/gui/shop_extra.png");
+    protected static final ResourceLocation gui_texture = new ResourceLocation(HFModInfo.MODID, "textures/gui/shop.png");
+    protected static final ResourceLocation number_texture = new ResourceLocation(HFModInfo.MODID, "lang/en_US/shops.png");
+    protected static final ResourceLocation shelve_texture = new ResourceLocation(HFModInfo.MODID, "textures/gui/shop_extra.png");
     protected StatDataClient stats;
     protected List<IPurchaseable> contents;
     protected IShopGuiOverlay overlay;

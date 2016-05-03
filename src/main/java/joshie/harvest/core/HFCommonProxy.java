@@ -58,8 +58,7 @@ public class HFCommonProxy {
         for (Class c : LIST) {
             try {
                 c.getMethod(stage).invoke(null);
-            } catch (Exception e) {
-            }
+            } catch (Exception e) { }
         }
     }
 

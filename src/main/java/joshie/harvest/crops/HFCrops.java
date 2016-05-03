@@ -57,8 +57,8 @@ public class HFCrops {
         eggplant = HFApi.CROPS.registerCrop("eggplant", 120, 80, 10, 7, 0, 0XA25CC4, AUTUMN).setStateHandler(new StateHandlerEggplant());
         spinach = HFApi.CROPS.registerCrop("spinach", 200, 80, 6, 0, 3, 0X90AE15, AUTUMN).setStateHandler(new StateHandlerSpinach());
         carrot = HFApi.CROPS.registerCrop("carrot", 300, 120, 8, 0, 0, 0XF8AC33, AUTUMN).setStateHandler(new StateHandlerSeedFood(Blocks.CARROTS));
-        sweet_potato = HFApi.CROPS.registerCrop("potato_sweet", 300, 120, 6, 4, 0, 0XD82AAC, AUTUMN).setStateHandler(new StateHandlerSweetPotato());
-        green_pepper = HFApi.CROPS.registerCrop("pepper_green", 150, 40, 8, 2, 8, 0x56D213, AUTUMN).setStateHandler(new StateHandlerGreenPepper());
+        sweet_potato = HFApi.CROPS.registerCrop("sweet_potato", 300, 120, 6, 4, 0, 0XD82AAC, AUTUMN).setStateHandler(new StateHandlerSweetPotato());
+        green_pepper = HFApi.CROPS.registerCrop("green_pepper", 150, 40, 8, 2, 8, 0x56D213, AUTUMN).setStateHandler(new StateHandlerGreenPepper());
 
         //All Seasons
         grass = HFApi.CROPS.registerCrop("grass", 500, 0, 11, 0, 0, 0x7AC958, SPRING, SUMMER, AUTUMN).setAnimalFoodType(GRASS).setBecomesDouble(6).setHasAlternativeName().setRequiresSickle().setNoWaterRequirements().setStateHandler(new StateHandlerGrass());

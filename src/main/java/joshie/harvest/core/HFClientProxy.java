@@ -26,7 +26,7 @@ public class HFClientProxy extends HFCommonProxy {
                 List<ItemStack> subBlocks = new ArrayList<ItemStack>();
                 item.getSubItems(item, item.getCreativeTab(), subBlocks);
                 for (ItemStack stack : subBlocks) {
-                    String subBlockName = item.getUnlocalizedName(stack).replace(HFModInfo.MODID, "").replace(".", "_");
+                    String subBlockName = item.getUnlocalizedName(stack).replace(".", "_").replace(HFModInfo.MODID + "_tile_", "");
 
                     ModelLoader.setCustomModelResourceLocation(item, stack.getItemDamage(), new ModelResourceLocation(new ResourceLocation(HFModInfo.MODID, subBlockName), "inventory"));
                     HarvestFestival.LOGGER.log(Level.INFO, "SubBlockName: " + subBlockName);

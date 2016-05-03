@@ -62,6 +62,10 @@ public class RenderNPC extends RenderLiving<EntityNPC> {
         GlStateManager.scale(npc.getNPC().getHeight(), npc.getNPC().getHeight(), npc.getNPC().getHeight());
         GlStateManager.translate(0F, npc.getNPC().getOffset(), 0F);
 
+        if (npc.isSneaking()) {
+            y -= npc.getYOffset();
+        }
+
         super.doRender(npc, x, y, z, entityYaw, partialTicks);
         GlStateManager.popMatrix();
     }

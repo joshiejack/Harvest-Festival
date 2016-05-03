@@ -90,16 +90,16 @@ public class HFNPCs {
     }
 
     @SideOnly(Side.CLIENT)
-    public static void initClient() {
+    public static void preInitClient() {
         registerNPCRendering(EntityNPC.class);
         registerNPCRendering(EntityNPCBuilder.class);
         registerNPCRendering(EntityNPCShopkeeper.class);
     }
 
     private static <E extends EntityNPC> void registerNPCRendering(Class<E> entityClass) {
-        RenderingRegistry.registerEntityRenderingHandler(entityClass, new IRenderFactory<EntityNPC>() {
+        RenderingRegistry.registerEntityRenderingHandler(entityClass, new IRenderFactory<E>() {
             @Override
-            public Render<? super EntityNPC> createRenderFor(RenderManager manager) {
+            public Render<? super E> createRenderFor(RenderManager manager) {
                 return new RenderNPC(manager);
             }
         });

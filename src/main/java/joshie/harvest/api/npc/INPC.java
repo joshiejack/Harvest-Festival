@@ -28,6 +28,9 @@ public interface INPC extends IRelatable {
     /** Marks this npc as not respawning **/
     public INPC setNoRespawn();
 
+    /** Set whether this npc uses alex skin or not */
+    INPC setAlexSkin();
+
     /** Returns this height of this NPC
      *  This is for rendering purposes **/
     public float getHeight();
@@ -93,4 +96,7 @@ public interface INPC extends IRelatable {
     
     /** Return the outside color **/
     public int getOutsideColor();
+
+    /** Returns true if this npc uses alex skin **/
+    boolean isAlexSkin();
 }

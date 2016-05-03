@@ -47,7 +47,7 @@ public class HFCommonProxy {
 
     public void load(String stage) {
         //Check stage is client
-        if (stage.equals("initClient")) {
+        if (stage.contains("Client")) {
             if (!isClient()) return;
         }
 

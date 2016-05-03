@@ -56,6 +56,7 @@ public class NPC implements INPC {
     private boolean doesRespawn;
     private int insideColor;
     private int outsideColor;
+    private boolean alex;
 
     public NPC(String name, Gender gender, Age age, ICalendarDate birthday, int insideColor, int outsideColor) {
         this.name = name;
@@ -173,6 +174,12 @@ public class NPC implements INPC {
     @Override
     public INPC setNoRespawn() {
         this.doesRespawn = false;
+        return this;
+    }
+
+    @Override
+    public INPC setAlexSkin() {
+        this.alex = true;
         return this;
     }
 
@@ -303,6 +310,11 @@ public class NPC implements INPC {
     @Override
     public int getOutsideColor() {
         return outsideColor;
+    }
+
+    @Override
+    public boolean isAlexSkin() {
+        return alex;
     }
 
     public void onContainerClosed(EntityPlayer player, EntityNPC npc) {

@@ -1,7 +1,6 @@
-package joshie.harvest.api.animals;
+package joshie.harvest.animals;
 
 import joshie.harvest.HarvestFestival;
-import joshie.harvest.animals.AnimalRegistry;
 import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.animals.entity.EntityHarvestSheep;
 import joshie.harvest.animals.render.ModelHarvestCow;
@@ -11,6 +10,7 @@ import joshie.harvest.animals.type.AnimalChicken;
 import joshie.harvest.animals.type.AnimalCow;
 import joshie.harvest.animals.type.AnimalSheep;
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.crops.Crop;
 import joshie.harvest.items.HFItems;
@@ -49,7 +49,7 @@ public class HFAnimals {
     }
 
     @SideOnly(Side.CLIENT)
-    public static void initClient() {
+    public static void preInitClient() {
         //Register the cow
         RenderingRegistry.registerEntityRenderingHandler(EntityHarvestCow.class, new IRenderFactory<EntityHarvestCow>() {
             @Override

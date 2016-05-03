@@ -20,7 +20,7 @@ public class CropStateMapper extends StateMapperBase {
             mapStateModelLocations.put(iblockstate, getModelResourceLocation(iblockstate));
         }
 
-        for (ICrop crop: Crop.crops) {
+        for (ICrop crop: Crop.CROPS) {
             if (crop.getStateHandler().getValidStates() == null) continue;
             for (IBlockState state: crop.getStateHandler().getValidStates()) {
                 mapStateModelLocations.put(state, getCropResourceLocation(crop, state));

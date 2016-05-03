@@ -39,7 +39,7 @@ public class HFConfig {
             Method method = clazz.getMethod("init", Configuration.class);
             method.invoke(null, config);
         } catch (Exception e) {
-            HarvestFestival.logger.log(Level.ERROR, HFModInfo.MODNAME + " failed to load in it's " + name + " config");
+            HarvestFestival.LOGGER.log(Level.ERROR, HFModInfo.MODNAME + " failed to load in it's " + name + " config");
             e.printStackTrace();
         } finally {
             config.save();

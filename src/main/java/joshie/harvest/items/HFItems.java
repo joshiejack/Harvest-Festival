@@ -42,7 +42,7 @@ public class HFItems {
 
     public static void preInit() {
         //Add a new crop item for things that do not have an item yet :D
-        for (ICrop crop : Crop.crops) {
+        for (ICrop crop : Crop.CROPS) {
             if (!crop.hasItemAssigned()) {
                 crop.setItem(new ItemStack(new ItemCrop(crop).setUnlocalizedName("crop." + crop.getUnlocalizedName()), 1, 0));
                 ItemStack clone = crop.getCropStack().copy();

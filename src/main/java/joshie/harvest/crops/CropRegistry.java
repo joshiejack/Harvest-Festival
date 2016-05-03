@@ -37,6 +37,6 @@ public class CropRegistry implements ICropHandler {
 
     @Override
     public Collection<ICrop> getCrops() {
-        return Crop.crops;
+        return Crop.CROPS;
     }
 }

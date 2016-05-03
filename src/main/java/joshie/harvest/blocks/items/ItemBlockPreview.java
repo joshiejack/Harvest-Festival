@@ -2,12 +2,12 @@ package joshie.harvest.blocks.items;
 
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.buildings.Building;
-import joshie.harvest.core.util.base.ItemBlockBase;
+import joshie.harvest.core.util.base.ItemBlockHFBase;
 import joshie.harvest.core.util.generic.Text;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 
-public class ItemBlockPreview extends ItemBlockBase implements ICreativeSorted {
+public class ItemBlockPreview extends ItemBlockHFBase implements ICreativeSorted {
     public ItemBlockPreview(Block block) {
         super(block);
     }

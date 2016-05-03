@@ -5,6 +5,7 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.core.helpers.UUIDHelper;
+import joshie.harvest.core.util.base.ItemHFBaseMeta;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,7 +18,7 @@ import net.minecraft.world.World;
 
 import java.util.HashMap;
 
-public class ItemNPCSpawner extends ItemHFMeta {
+public class ItemNPCSpawner extends ItemHFBaseMeta   {
     private static HashMap<Integer, INPC> metas = new HashMap<Integer, INPC>();
 
     public ItemNPCSpawner() {

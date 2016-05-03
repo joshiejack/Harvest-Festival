@@ -4,6 +4,7 @@ import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.buildings.Building;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.helpers.UUIDHelper;
+import joshie.harvest.core.util.base.ItemHFBaseMeta;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -13,7 +14,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class ItemBuilding extends ItemHFMeta implements ICreativeSorted {
+public class ItemBuilding extends ItemHFBaseMeta implements ICreativeSorted {
     public ItemBuilding() {
         super(HFTab.TOWN);
     }

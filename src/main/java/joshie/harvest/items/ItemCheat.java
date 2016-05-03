@@ -3,6 +3,7 @@ package joshie.harvest.items;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.util.CodeGeneratorBuildings;
 import joshie.harvest.core.util.CodeGeneratorRendering;
+import joshie.harvest.core.util.base.ItemHFBaseMeta;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -12,7 +13,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class ItemCheat extends ItemHFMeta {
+public class ItemCheat extends ItemHFBaseMeta {
     private static final int COORD_SETTER = 0;
     private static final int CODE_GENERATOR = 1;
     private static final int RENDER_GENERATOR = 2;

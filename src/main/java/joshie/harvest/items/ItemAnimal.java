@@ -3,6 +3,7 @@ package joshie.harvest.items;
 import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.animals.entity.EntityHarvestSheep;
 import joshie.harvest.core.HFTab;
+import joshie.harvest.core.util.base.ItemHFBaseMeta;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -12,7 +13,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class ItemAnimal extends ItemHFMeta {
+public class ItemAnimal extends ItemHFBaseMeta {
     public static final int COW = 0;
     public static final int SHEEP = 1;
     public static final int CHICKEN = 2;

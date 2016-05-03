@@ -9,6 +9,7 @@ import joshie.harvest.core.HFTab;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.lib.SizeableMeta;
 import joshie.harvest.core.util.Translate;
+import joshie.harvest.core.util.base.ItemHFBaseMeta;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -20,7 +21,7 @@ import java.util.List;
 
 import static joshie.harvest.core.helpers.SizeableHelper.getSize;
 
-public class ItemSized extends ItemHFMeta implements IShippable, ICreativeSorted, ISizedProvider {
+public class ItemSized extends ItemHFBaseMeta implements IShippable, ICreativeSorted, ISizedProvider {
     private final SizeableMeta meta;
 
     public ItemSized(SizeableMeta meta) {

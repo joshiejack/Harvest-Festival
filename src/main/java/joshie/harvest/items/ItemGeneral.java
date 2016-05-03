@@ -6,6 +6,7 @@ import joshie.harvest.api.animals.IMilkable;
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.util.Translate;
+import joshie.harvest.core.util.base.ItemHFBaseMeta;
 import joshie.harvest.core.util.generic.Text;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -23,7 +24,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.HashMap;
 import java.util.List;
 
-public class ItemGeneral extends ItemHFMeta implements ICreativeSorted {
+public class ItemGeneral extends ItemHFBaseMeta implements ICreativeSorted {
     public static final int BLUE_FEATHER = 0;
     public static final int MILKER = 1;
     public static final int BRUSH = 2;

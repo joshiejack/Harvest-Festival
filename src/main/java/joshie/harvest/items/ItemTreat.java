@@ -4,12 +4,13 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.animals.IAnimalType;
 import joshie.harvest.api.core.ICreativeSorted;
+import joshie.harvest.core.util.base.ItemHFBaseMeta;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 
-public class ItemTreat extends ItemHFMeta implements ICreativeSorted {
+public class ItemTreat extends ItemHFBaseMeta implements ICreativeSorted {
     public static final int COW = 0;
     public static final int SHEEP = 1;
     public static final int CHICKEN = 2;

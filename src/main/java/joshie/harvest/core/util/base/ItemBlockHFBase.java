@@ -8,8 +8,8 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
-public abstract class ItemBlockBase extends ItemBlock implements IHasMetaItem {
-    public ItemBlockBase(Block block) {
+public abstract class ItemBlockHFBase extends ItemBlock implements IHasMetaItem {
+    public ItemBlockHFBase(Block block) {
         super(block);
         setHasSubtypes(true);
     }

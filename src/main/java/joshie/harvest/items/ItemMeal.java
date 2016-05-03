@@ -10,6 +10,7 @@ import joshie.harvest.core.HFTab;
 import joshie.harvest.core.config.General;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.util.Translate;
+import joshie.harvest.core.util.base.ItemHFBaseMeta;
 import joshie.harvest.core.util.generic.Text;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -30,7 +31,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.HashSet;
 import java.util.List;
 
-public class ItemMeal extends ItemHFMeta implements IMealProvider, ICreativeSorted {
+public class ItemMeal extends ItemHFBaseMeta implements IMealProvider, ICreativeSorted {
 
     public ItemMeal() {
         super(HFTab.COOKING);

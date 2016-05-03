@@ -2,6 +2,7 @@ package joshie.harvest.core.util.base;
 
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.helpers.generic.RegistryHelper;
+import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.generic.IHasMetaItem;
 import joshie.harvest.core.util.generic.Text;
 import net.minecraft.creativetab.CreativeTabs;
@@ -12,13 +13,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public abstract class ItemBaseMeta extends Item implements IHasMetaItem {
-    protected String mod;
+public abstract class ItemHFBaseMeta extends Item implements IHasMetaItem {
 
-    public ItemBaseMeta(String mod, CreativeTabs tab) {
+    public ItemHFBaseMeta() {
+        this(HFTab.FARMING);
+    }
+
+    public ItemHFBaseMeta(CreativeTabs tab) {
         setCreativeTab(tab);
         setHasSubtypes(true);
-        this.mod = mod;
     }
 
     @Override
@@ -30,7 +33,7 @@ public abstract class ItemBaseMeta extends Item implements IHasMetaItem {
 
     @Override
     public String getUnlocalizedName() {
-        return mod + "." + super.getUnlocalizedName().replace("item.", "");
+        return HFModInfo.MODID + "." + super.getUnlocalizedName().replace("item.", "");
     }
 
     @Override

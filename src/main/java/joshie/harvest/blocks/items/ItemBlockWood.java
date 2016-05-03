@@ -3,11 +3,11 @@ package joshie.harvest.blocks.items;
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.core.lib.CreativeSort;
-import joshie.harvest.core.util.base.ItemBlockBase;
+import joshie.harvest.core.util.base.ItemBlockHFBase;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 
-public class ItemBlockWood extends ItemBlockBase implements ICreativeSorted {
+public class ItemBlockWood extends ItemBlockHFBase implements ICreativeSorted {
     public ItemBlockWood(Block block) {
         super(block);
     }

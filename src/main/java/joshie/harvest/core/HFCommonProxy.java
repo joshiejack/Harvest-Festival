@@ -17,34 +17,35 @@ import joshie.harvest.npc.gift.init.HFGifts;
 import joshie.harvest.plugins.HFPlugins;
 import joshie.harvest.quests.HFQuests;
 import joshie.harvest.shops.HFShops;
+import net.minecraft.item.Item;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class HFCommonProxy {
-    protected static final List<Class> list = new ArrayList<Class>();
+    protected static final List<Class> LIST = new ArrayList<Class>();
 
     static {
-        list.add(HFDebug.class);
-        list.add(HFCore.class);
-        list.add(HFVanilla.class);
-        list.add(HFConfig.class);
-        list.add(HFPlugins.class);
-        list.add(HFCrops.class);
-        list.add(HFNPCs.class);
-        list.add(HFBlocks.class);
-        list.add(HFBuildings.class);
-        list.add(HFItems.class);
-        list.add(HFCooking.class);
-        list.add(HFIngredients.class);
-        list.add(HFRecipes.class);
-        list.add(HFQuests.class);
-        list.add(HFShops.class);
-        list.add(HFMining.class);
-        list.add(HFGifts.class);
-        list.add(HFAnimals.class);
-        list.add(HFTab.class);
-        list.add(HFRecipeFixes.class);
+        LIST.add(HFDebug.class);
+        LIST.add(HFCore.class);
+        LIST.add(HFVanilla.class);
+        LIST.add(HFConfig.class);
+        LIST.add(HFPlugins.class);
+        LIST.add(HFCrops.class);
+        LIST.add(HFNPCs.class);
+        LIST.add(HFBlocks.class);
+        LIST.add(HFBuildings.class);
+        LIST.add(HFItems.class);
+        LIST.add(HFCooking.class);
+        LIST.add(HFIngredients.class);
+        LIST.add(HFRecipes.class);
+        LIST.add(HFQuests.class);
+        LIST.add(HFShops.class);
+        LIST.add(HFMining.class);
+        LIST.add(HFGifts.class);
+        LIST.add(HFAnimals.class);
+        LIST.add(HFTab.class);
+        LIST.add(HFRecipeFixes.class);
     }
 
     public void load(String stage) {
@@ -54,14 +55,17 @@ public class HFCommonProxy {
         }
 
         //Continue
-        for (Class c : list) {
+        for (Class c : LIST) {
             try {
                 c.getMethod(stage).invoke(null);
-            } catch (Exception e) { }
+            } catch (Exception e) {
+            }
         }
     }
 
     public boolean isClient() {
         return false;
     }
+
+    public void setBlockModelResourceLocation(Item item, String name) {}
 }

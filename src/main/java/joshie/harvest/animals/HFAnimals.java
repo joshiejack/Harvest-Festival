@@ -43,7 +43,7 @@ public class HFAnimals {
     }
 
     public static void init() {
-        for (ICrop crop : Crop.crops) {
+        for (ICrop crop : Crop.CROPS) {
             HFApi.ANIMALS.registerFoodAsType(crop.getCropStack(), crop.getFoodType());
         }
     }

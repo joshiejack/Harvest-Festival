@@ -54,7 +54,7 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
     }
 
     public int getMetaCount() {
-        return Crop.crops.size();
+        return Crop.CROPS.size();
     }
 
     @Override
@@ -153,7 +153,7 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
-        for (ICrop crop : Crop.crops) {
+        for (ICrop crop : Crop.CROPS) {
             list.add(SeedHelper.getSeedsFromCrop(crop));
         }
     }

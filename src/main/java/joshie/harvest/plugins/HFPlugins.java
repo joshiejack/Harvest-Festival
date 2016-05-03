@@ -60,7 +60,7 @@ public class HFPlugins {
             plugin.modid = p.name;
             plugins.add(plugin);
         } catch (Exception e) {
-            HarvestFestival.logger.log(Level.INFO, "Failed to load plugin for modid: " + p.name);
+            HarvestFestival.LOGGER.log(Level.INFO, "Failed to load plugin for modid: " + p.name);
         }
 
         return null;
@@ -81,7 +81,7 @@ public class HFPlugins {
                         }
                     }
                 } catch (Exception e) {
-                    HarvestFestival.logger.log(Level.ERROR, HFModInfo.MODNAME + " failed to load in it's " + p.name + " config");
+                    HarvestFestival.LOGGER.log(Level.ERROR, HFModInfo.MODNAME + " failed to load in it's " + p.name + " config");
                     e.printStackTrace();
                 } finally {
                     config.save();
@@ -98,7 +98,7 @@ public class HFPlugins {
             try {
                 plugin.preInit();
             } catch (Exception e) {
-                HarvestFestival.logger.log(Level.INFO, "Failed to load plugin for modid @ PreINIT: " + plugin.modid);
+                HarvestFestival.LOGGER.log(Level.INFO, "Failed to load plugin for modid @ PreINIT: " + plugin.modid);
                 e.printStackTrace();
             }
         }
@@ -109,7 +109,7 @@ public class HFPlugins {
             try {
                 plugin.init();
             } catch (Exception e) {
-                HarvestFestival.logger.log(Level.INFO, "Failed to load plugin for modid @ INIT: " + plugin.modid);
+                HarvestFestival.LOGGER.log(Level.INFO, "Failed to load plugin for modid @ INIT: " + plugin.modid);
                 e.printStackTrace();
             }
         }
@@ -120,7 +120,7 @@ public class HFPlugins {
             try {
                 plugin.postInit();
             } catch (Exception e) {
-                HarvestFestival.logger.log(Level.INFO, "Failed to load plugin for modid @ PostINIT: " + plugin.modid);
+                HarvestFestival.LOGGER.log(Level.INFO, "Failed to load plugin for modid @ PostINIT: " + plugin.modid);
                 e.printStackTrace();
             }
         }

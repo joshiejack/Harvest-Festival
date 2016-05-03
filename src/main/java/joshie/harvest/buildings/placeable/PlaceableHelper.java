@@ -122,7 +122,7 @@ public class PlaceableHelper {
         if (block == Blocks.CAULDRON) print = "Blocks.CAULDRON";
         if (block == Blocks.REEDS) print = "Blocks.REEDS";
         if (block == Blocks.CAKE) print = "Blocks.CAKE";
-        if (print.equals("//ITEM NAME")) HarvestFestival.logger.log(Level.INFO, block);
+        if (print.equals("//ITEM NAME")) HarvestFestival.LOGGER.log(Level.INFO, block);
 
         return "list.add(new Placeable" + getPrefixString(block) + "(" + print + ", " + state + ", " + pos + "));";
     }

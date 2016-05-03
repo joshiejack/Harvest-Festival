@@ -2,6 +2,7 @@ package joshie.harvest.core.helpers.generic;
 
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.core.lib.HFModInfo;
+import joshie.harvest.core.util.generic.IHasMetaBlock;
 import joshie.harvest.core.util.generic.Library;
 import joshie.harvest.items.ItemBaseTool;
 import net.minecraft.block.Block;
@@ -39,11 +40,11 @@ public class RegistryHelper {
                     }
 
                     ModelLoader.setCustomModelResourceLocation(item, item.getDamage(stack), new ModelResourceLocation(new ResourceLocation(HFModInfo.MODID, subItemName), "inventory"));
-                    HarvestFestival.logger.log(Level.INFO, "Sub Item Name " + subItemName);
+                    HarvestFestival.LOGGER.log(Level.INFO, "Sub Item Name " + subItemName);
                 }
             } else {
                 ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(new ResourceLocation(HFModInfo.MODID, name), "inventory"));
-                HarvestFestival.logger.log(Level.INFO, "Item Name " + name);
+                HarvestFestival.LOGGER.log(Level.INFO, "Item Name " + name);
             }
         }
 
@@ -54,21 +55,40 @@ public class RegistryHelper {
         return item;
     }
 
+    public static Block registerBlock(Block block, String name) {
+        ResourceLocation resource = new ResourceLocation(HFModInfo.MODID, name.replace(".", "_"));
+        ItemBlock item = null;
+        if (block instanceof IHasMetaBlock) {
+            try {
+                Class<? extends ItemBlock> clazz = ((IHasMetaBlock) block).getItemClass();
+                if (clazz == null) {
+                    String pack = block.getClass().getPackage().getName() + ".items.";
+                    String thiz = "Item" + block.getClass().getSimpleName();
+                    clazz = (Class<? extends ItemBlock>) Class.forName(pack + thiz);
+                }
+                item = clazz.getConstructor(Block.class).newInstance(block);
+            } catch (Exception ignored) {
+            }
+        }
+
+        //If we ended up with null, then fix it
+        if (item == null) item = new ItemBlock(block);
+        GameRegistry.register(block, resource);
+        GameRegistry.register(item, resource);
+
+        HarvestFestival.proxy.setBlockModelResourceLocation(Item.getItemFromBlock(block), name);
+
+        if (Library.DEBUG_ON) {
+            Library.log(Level.DEBUG, "Successfully registered the block " + block.getClass().getSimpleName() + " as " + HFModInfo.MODID + ":" + name);
+        }
+
+        return block;
+    }
+
     //Short hand for registering tile entities
     public static void registerTiles(String mod, Class<? extends TileEntity>... tiles) {
         for (Class<? extends TileEntity> tile : tiles) {
             GameRegistry.registerTileEntity(tile, mod + ":" + tile.getSimpleName());
         }
-    }
-
-    private static void registerBlock(Block block) {
-        String name = block.getUnlocalizedName().substring(5);
-        name = name.replace('.', '_');
-        if (Library.DEBUG_ON) {
-            Library.log(Level.DEBUG, "Successfully registered the block " + block.getClass().getSimpleName() + " as " + HFModInfo.MODID + ":" + name);
-        }
-
-        GameRegistry.register(block, new ResourceLocation(HFModInfo.MODID, name));
-        GameRegistry.register(new ItemBlock(block), new ResourceLocation(HFModInfo.MODID, name));
     }
 }

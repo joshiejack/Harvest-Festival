@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Crop implements ICrop {
-    public static final ArrayList<ICrop> crops = new ArrayList<ICrop>(30);
+    public static final ArrayList<ICrop> CROPS = new ArrayList<ICrop>(30);
     private static final Random rand = new Random();
 
     //CropData
@@ -83,7 +83,7 @@ public class Crop implements ICrop {
         this.dropHandler = null;
         this.growsToSide = null;
         HFConfig.mappings.addCrop(this);
-        crops.add(this);
+        CROPS.add(this);
     }
 
     @Override

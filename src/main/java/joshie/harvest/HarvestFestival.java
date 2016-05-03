@@ -22,7 +22,7 @@ public class HarvestFestival {
     @SidedProxy(clientSide = JAVAPATH + "core.HFClientProxy", serverSide = JAVAPATH + "core.HFCommonProxy")
     public static HFCommonProxy proxy;
 
-    public static final Logger logger = LogManager.getLogger(MODNAME);
+    public static final Logger LOGGER = LogManager.getLogger(MODNAME);
 
     @Instance(MODID)
     public static HarvestFestival instance;

@@ -86,34 +86,37 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
             return EnumActionResult.FAIL;
         } else {
             ICrop crop = SeedHelper.getCropFromSeed(stack);
-            int planted = 0;
+            if (crop != null) {
+                int planted = 0;
+                if (player.isSneaking()) {
+                    planted = plantSeedAt(player, stack, world, pos, facing, crop, planted);
+                } else {
+                    labelTop:
+                    for (int x = pos.getX() - 1; x <= pos.getX() + 1; x++) {
+                        for (int z = pos.getZ() - 1; z <= pos.getZ() + 1; z++) {
+                            if (crop.growsToSide() == null || !((x == pos.getX() && z == pos.getZ()))) {
+                                planted = plantSeedAt(player, stack, world, new BlockPos(x, pos.getY(), z), facing, crop, planted);
+                            }
 
-            if (player.isSneaking()) {
-                planted = plantSeedAt(player, stack, world, pos, facing, crop, planted);
-            } else {
-                labelTop:
-                for (int x = pos.getX() - 1; x <= pos.getX() + 1; x++) {
-                    for (int z = pos.getZ() - 1; z <= pos.getZ() + 1; z++) {
-                        if (crop.growsToSide() == null || !((x == pos.getX() && z == pos.getZ()))) {
-                            planted = plantSeedAt(player, stack, world, new BlockPos(x, pos.getY(), z), facing, crop, planted);
-                        }
-
-                        if (planted < 0) {
-                            if (Crops.ALWAYS_GROW) {
-                                planted = 2;
-                                break labelTop;
+                            if (planted < 0) {
+                                if (Crops.ALWAYS_GROW) {
+                                    planted = 2;
+                                    break labelTop;
+                                }
                             }
                         }
                     }
                 }
+
+                if (planted > 0) {
+                    --stack.stackSize;
+                    return EnumActionResult.SUCCESS;
+                } else {
+                    return EnumActionResult.PASS;
+                }
             }
 
-            if (planted > 0) {
-                --stack.stackSize;
-                return EnumActionResult.SUCCESS;
-            } else {
-                return EnumActionResult.PASS;
-            }
+            return EnumActionResult.FAIL;
         }
     }
 

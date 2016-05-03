@@ -56,7 +56,7 @@ public class PlaceableBlock extends Placeable {
         }
 
         int meta = getMetaData(n1, n2, swap);
-        world.setBlockState(pos, block.getDefaultState());
+        world.setBlockState(pos, block.getDefaultState(), 2);
         return world.setBlockState(pos, state.getBlock().getStateFromMeta(meta), 2);
     }
 

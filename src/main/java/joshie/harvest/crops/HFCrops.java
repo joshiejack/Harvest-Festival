@@ -72,5 +72,6 @@ public class HFCrops {
         if (HFConfig.asm.WHEAT_OVERRIDE) wheat.setItem(new ItemStack(Items.WHEAT));
         if (HFConfig.asm.PUMPKIN_OVERRIDE) pumpkin.setItem(new ItemStack(PUMPKIN));
         if (HFConfig.asm.WATERMELON_OVERRIDE) watermelon.setItem(new ItemStack(Items.MELON));
+        beetroot.setItem(new ItemStack(Items.BEETROOT));
     }
 }

@@ -9,6 +9,7 @@ import joshie.harvest.cooking.HFRecipes;
 import joshie.harvest.core.config.HFConfig;
 import joshie.harvest.core.config.HFVanilla;
 import joshie.harvest.crops.HFCrops;
+import joshie.harvest.debug.HFDebug;
 import joshie.harvest.items.HFItems;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.npc.HFNPCs;
@@ -24,6 +25,7 @@ public class HFCommonProxy {
     protected static final List<Class> list = new ArrayList<Class>();
 
     static {
+        list.add(HFDebug.class);
         list.add(HFCore.class);
         list.add(HFVanilla.class);
         list.add(HFConfig.class);

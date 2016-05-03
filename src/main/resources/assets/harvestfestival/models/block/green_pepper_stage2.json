@@ -1,0 +1,6 @@
+{
+  "parent": "block/crop",
+  "textures": {
+    "crop": "harvestfestival:blocks/crops/green_pepper_2"
+  }
+}

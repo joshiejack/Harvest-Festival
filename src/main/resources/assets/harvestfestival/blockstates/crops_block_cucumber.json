@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "stage=1": { "model": "harvestfestival:cucumber_stage1" },
+    "stage=2": { "model": "harvestfestival:cucumber_stage2" },
+    "stage=3": { "model": "harvestfestival:cucumber_stage3" },
+    "stage=4": { "model": "harvestfestival:cucumber_stage4" }
+  }
+}

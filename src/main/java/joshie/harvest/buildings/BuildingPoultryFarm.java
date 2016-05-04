@@ -1,7 +1,11 @@
 package joshie.harvest.buildings;
 
+import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.buildings.placeable.Placeable;
-import joshie.harvest.buildings.placeable.blocks.*;
+import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
+import joshie.harvest.buildings.placeable.blocks.PlaceableChest;
+import joshie.harvest.buildings.placeable.blocks.PlaceableGirafi;
+import joshie.harvest.buildings.placeable.blocks.PlaceableWeb;
 import joshie.harvest.buildings.placeable.entities.PlaceableItemFrame;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.core.handlers.HFTrackers;
@@ -20,6 +24,30 @@ import java.util.ArrayList;
 public class BuildingPoultryFarm extends Building {
     public BuildingPoultryFarm() {
         super("poultryFarm");
+    }
+
+    @Override
+    public long getCost() {
+        return 2000L;
+    }
+
+    @Override
+    public int getWoodCount() {
+        return 160;
+    }
+
+    @Override
+    public int getStoneCount() {
+        return 0;
+    }
+
+    @Override
+    public boolean canBuy(World world, EntityPlayer player) {
+        return HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.blacksmith);
+    }
+
+    @Override
+    public IBuilding addBlocks() {
         list = new ArrayList<Placeable>(668);
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 1, 0, 1));
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 13, 1, 0, 2));
@@ -101,9 +129,9 @@ public class BuildingPoultryFarm extends Building {
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 1, 12, 0, 3));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 1, 12, 0, 4));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 1, 12, 0, 5));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 14, 0, 1, 2));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 14, 0, 1, 4));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 14, 0, 1, 6));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 14, 0, 1, 2));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 14, 0, 1, 4));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 14, 0, 1, 6));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 1, 1, 1));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 1, 1, 1, 2));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 0, 1, 1, 3));
@@ -111,16 +139,16 @@ public class BuildingPoultryFarm extends Building {
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 0, 1, 1, 5));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 1, 1, 1, 6));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 1, 1, 7));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 12, 2, 1, 0));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 12, 2, 1, 0));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 1, 2, 1, 1));
         list.add(new PlaceableBlock(Blocks.HAY_BLOCK, 0, 2, 1, 2));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 7, 2, 1, 3));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 15, 2, 1, 4));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 15, 2, 1, 4));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 6, 2, 1, 5));
         list.add(new PlaceableBlock(Blocks.HAY_BLOCK, 0, 2, 1, 6));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 1, 2, 1, 7));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 13, 2, 1, 8));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 12, 3, 1, 0));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 13, 2, 1, 8));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 12, 3, 1, 0));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 1, 3, 1, 1));
         list.add(new PlaceableBlock(Blocks.HAY_BLOCK, 0, 3, 1, 2));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 7, 3, 1, 3));
@@ -128,7 +156,7 @@ public class BuildingPoultryFarm extends Building {
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 6, 3, 1, 5));
         list.add(new PlaceableBlock(Blocks.HAY_BLOCK, 0, 3, 1, 6));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 1, 3, 1, 7));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 13, 3, 1, 8));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 13, 3, 1, 8));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 2, 4, 1, 1));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 5, 4, 1, 2));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 5, 4, 1, 3));
@@ -136,7 +164,7 @@ public class BuildingPoultryFarm extends Building {
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 6, 4, 1, 5));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 5, 4, 1, 6));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 3, 4, 1, 7));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 12, 5, 1, 0));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 12, 5, 1, 0));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 1, 5, 1, 1));
         list.add(new PlaceableBlock(Blocks.COBBLESTONE_WALL, 0, 5, 1, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 5, 1, 3));
@@ -144,8 +172,8 @@ public class BuildingPoultryFarm extends Building {
         list.add(new PlaceableBlock(Blocks.AIR, 0, 5, 1, 5));
         list.add(new PlaceableBlock(Blocks.COBBLESTONE_WALL, 0, 5, 1, 6));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 1, 5, 1, 7));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 13, 5, 1, 8));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 12, 6, 1, 0));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 13, 5, 1, 8));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 12, 6, 1, 0));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 1, 6, 1, 1));
         list.add(new PlaceableChest(Blocks.CHEST, 3, 6, 1, 2, LootStrings.POULTRY_CHEST));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 6, 1, 3));
@@ -155,8 +183,8 @@ public class BuildingPoultryFarm extends Building {
         list.add(new PlaceableBlock(Blocks.AIR, 0, 6, 1, 5));
         list.add(new PlaceableBlock(Blocks.CAULDRON, 3, 6, 1, 6));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 1, 6, 1, 7));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 13, 6, 1, 8));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 12, 7, 1, 0));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 13, 6, 1, 8));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 12, 7, 1, 0));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 1, 7, 1, 1));
         list.add(new PlaceableBlock(Blocks.COBBLESTONE_WALL, 0, 7, 1, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 7, 1, 3));
@@ -164,7 +192,7 @@ public class BuildingPoultryFarm extends Building {
         list.add(new PlaceableBlock(Blocks.AIR, 0, 7, 1, 5));
         list.add(new PlaceableBlock(Blocks.COBBLESTONE_WALL, 0, 7, 1, 6));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 1, 7, 1, 7));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 13, 7, 1, 8));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 13, 7, 1, 8));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 2, 8, 1, 1));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 4, 8, 1, 2));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 4, 8, 1, 3));
@@ -172,7 +200,7 @@ public class BuildingPoultryFarm extends Building {
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 4, 8, 1, 5));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 4, 8, 1, 6));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 3, 8, 1, 7));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 12, 9, 1, 0));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 12, 9, 1, 0));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 1, 9, 1, 1));
         list.add(new PlaceableBlock(Blocks.HAY_BLOCK, 0, 9, 1, 2));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 7, 9, 1, 3));
@@ -180,8 +208,8 @@ public class BuildingPoultryFarm extends Building {
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 6, 9, 1, 5));
         list.add(new PlaceableBlock(Blocks.HAY_BLOCK, 0, 9, 1, 6));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 1, 9, 1, 7));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 13, 9, 1, 8));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 12, 10, 1, 0));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 13, 9, 1, 8));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 12, 10, 1, 0));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 1, 10, 1, 1));
         list.add(new PlaceableBlock(Blocks.HAY_BLOCK, 0, 10, 1, 2));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 7, 10, 1, 3));
@@ -189,19 +217,19 @@ public class BuildingPoultryFarm extends Building {
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 6, 10, 1, 5));
         list.add(new PlaceableBlock(Blocks.HAY_BLOCK, 0, 10, 1, 6));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 1, 10, 1, 7));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 13, 10, 1, 8));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 13, 10, 1, 8));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 11, 1, 1));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 1, 11, 1, 2));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 1, 11, 1, 3));
-        list.add(new PlaceableDecorative(Blocks.OAK_DOOR, 0, 11, 1, 4));
+        list.add(new PlaceableGirafi(Blocks.OAK_DOOR, 0, 11, 1, 4));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 1, 11, 1, 5));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 1, 11, 1, 6));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 11, 1, 7));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 15, 12, 1, 2));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 15, 12, 1, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 12, 1, 3));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 12, 1, 4));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 12, 1, 5));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 15, 12, 1, 6));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 15, 12, 1, 6));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 1, 2, 1));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 0, 1, 2, 2));
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 1, 2, 3));
@@ -211,7 +239,7 @@ public class BuildingPoultryFarm extends Building {
         list.add(new PlaceableBlock(Blocks.LOG, 1, 1, 2, 7));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 2, 2, 2, 1));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 2, 2, 3));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 1, 2, 2, 4));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 1, 2, 2, 4));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 2, 2, 5));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 3, 2, 2, 7));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 2, 3, 2, 1));
@@ -239,7 +267,7 @@ public class BuildingPoultryFarm extends Building {
         list.add(new PlaceableBlock(Blocks.AIR, 0, 6, 2, 3));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 6, 2, 4));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 6, 2, 5));
-        list.add(new PlaceableDecorative(Blocks.LEVER, 12, 6, 2, 6));
+        list.add(new PlaceableGirafi(Blocks.LEVER, 12, 6, 2, 6));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 3, 6, 2, 7));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 2, 7, 2, 1));
         list.add(new PlaceableBlock(Blocks.COBBLESTONE_WALL, 0, 7, 2, 2));
@@ -268,18 +296,18 @@ public class BuildingPoultryFarm extends Building {
         list.add(new PlaceableBlock(Blocks.LOG, 1, 11, 2, 1));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 1, 11, 2, 2));
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 11, 2, 3));
-        list.add(new PlaceableDecorative(Blocks.OAK_DOOR, 8, 11, 2, 4));
+        list.add(new PlaceableGirafi(Blocks.OAK_DOOR, 8, 11, 2, 4));
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 11, 2, 5));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 1, 11, 2, 6));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 11, 2, 7));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 1, 12, 2, 3));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 1, 12, 2, 3));
         list.add(new PlaceableItemFrame(new ItemStack(Blocks.TRAPDOOR, 1, 0), 0, EnumFacing.EAST, 12, 2, 3));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 12, 2, 4));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 1, 12, 2, 5));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 1, 12, 2, 5));
         list.add(new PlaceableItemFrame(new ItemStack(Blocks.TRAPDOOR, 1, 0), 0, EnumFacing.EAST, 12, 2, 5));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 2, 0, 3, 1));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 2, 0, 3, 7));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 4, 1, 3, 0));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 2, 0, 3, 1));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 2, 0, 3, 7));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 4, 1, 3, 0));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 1, 3, 1));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 0, 1, 3, 2));
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 1, 3, 3));
@@ -287,11 +315,11 @@ public class BuildingPoultryFarm extends Building {
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 1, 3, 5));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 0, 1, 3, 6));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 1, 3, 7));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 3, 1, 3, 8));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 3, 1, 3, 8));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 2, 2, 3, 1));
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 9, 2, 3, 2));
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 1, 2, 3, 3));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 1, 2, 3, 4));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 1, 2, 3, 4));
         list.add(new PlaceableItemFrame(new ItemStack(Blocks.TRAPDOOR, 1, 0), 0, EnumFacing.EAST, 2, 3, 4));
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 1, 2, 3, 5));
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 9, 2, 3, 6));
@@ -348,12 +376,12 @@ public class BuildingPoultryFarm extends Building {
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 2, 10, 3, 1));
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 9, 10, 3, 2));
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 1, 10, 3, 3));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 2, 10, 3, 4));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 2, 10, 3, 4));
         list.add(new PlaceableItemFrame(new ItemStack(Blocks.TRAPDOOR, 1, 0), 0, EnumFacing.WEST, 10, 3, 4));
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 1, 10, 3, 5));
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 9, 10, 3, 6));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 3, 10, 3, 7));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 4, 11, 3, 0));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 4, 11, 3, 0));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 11, 3, 1));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 1, 11, 3, 2));
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 11, 3, 3));
@@ -361,11 +389,11 @@ public class BuildingPoultryFarm extends Building {
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 11, 3, 5));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 1, 11, 3, 6));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 11, 3, 7));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 3, 11, 3, 8));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 1, 12, 3, 1));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 1, 12, 3, 7));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 2, 0, 4, 3));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 2, 0, 4, 5));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 3, 11, 3, 8));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 1, 12, 3, 1));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 1, 12, 3, 7));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 2, 0, 4, 3));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 2, 0, 4, 5));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 1, 4, 1));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 0, 1, 4, 2));
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 1, 4, 3));
@@ -374,75 +402,75 @@ public class BuildingPoultryFarm extends Building {
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 0, 1, 4, 6));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 1, 4, 7));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 2, 2, 4, 1));
-        list.add(new PlaceableDecorative(Blocks.LADDER, 3, 2, 4, 2));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 1, 2, 4, 3));
+        list.add(new PlaceableGirafi(Blocks.LADDER, 3, 2, 4, 2));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 1, 2, 4, 3));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 2, 4, 4));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 1, 2, 4, 5));
-        list.add(new PlaceableDecorative(Blocks.LADDER, 2, 2, 4, 6));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 1, 2, 4, 5));
+        list.add(new PlaceableGirafi(Blocks.LADDER, 2, 2, 4, 6));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 3, 2, 4, 7));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 2, 3, 4, 1));
-        list.add(new PlaceableDecorative(Blocks.LADDER, 3, 3, 4, 2));
+        list.add(new PlaceableGirafi(Blocks.LADDER, 3, 3, 4, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 4, 3));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 4, 4));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 4, 5));
-        list.add(new PlaceableDecorative(Blocks.LADDER, 2, 3, 4, 6));
+        list.add(new PlaceableGirafi(Blocks.LADDER, 2, 3, 4, 6));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 3, 3, 4, 7));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 4, 4, 4, 0));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 4, 4, 4, 0));
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 4, 4, 1));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 3, 4, 4, 2));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 3, 4, 4, 2));
         list.add(new PlaceableItemFrame(new ItemStack(Blocks.TRAPDOOR, 1, 0), 0, EnumFacing.SOUTH, 4, 4, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 4, 3));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 4, 4));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 4, 5));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 4, 4, 4, 6));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 4, 4, 4, 6));
         list.add(new PlaceableItemFrame(new ItemStack(Blocks.TRAPDOOR, 1, 0), 0, EnumFacing.NORTH, 4, 4, 6));
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 4, 4, 7));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 3, 4, 4, 8));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 3, 4, 4, 8));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 2, 5, 4, 1));
-        list.add(new PlaceableDecorative(Blocks.LADDER, 3, 5, 4, 2));
+        list.add(new PlaceableGirafi(Blocks.LADDER, 3, 5, 4, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 5, 4, 3));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 5, 4, 4));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 5, 4, 5));
-        list.add(new PlaceableDecorative(Blocks.LADDER, 2, 5, 4, 6));
+        list.add(new PlaceableGirafi(Blocks.LADDER, 2, 5, 4, 6));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 3, 5, 4, 7));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 2, 6, 4, 1));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 3, 6, 4, 2));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 3, 6, 4, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 6, 4, 3));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 6, 4, 4));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 6, 4, 5));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 4, 6, 4, 6));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 4, 6, 4, 6));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 3, 6, 4, 7));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 2, 7, 4, 1));
-        list.add(new PlaceableDecorative(Blocks.LADDER, 3, 7, 4, 2));
+        list.add(new PlaceableGirafi(Blocks.LADDER, 3, 7, 4, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 7, 4, 3));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 7, 4, 4));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 7, 4, 5));
-        list.add(new PlaceableDecorative(Blocks.LADDER, 2, 7, 4, 6));
+        list.add(new PlaceableGirafi(Blocks.LADDER, 2, 7, 4, 6));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 3, 7, 4, 7));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 4, 8, 4, 0));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 4, 8, 4, 0));
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 8, 4, 1));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 3, 8, 4, 2));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 3, 8, 4, 2));
         list.add(new PlaceableItemFrame(new ItemStack(Blocks.TRAPDOOR, 1, 0), 0, EnumFacing.SOUTH, 8, 4, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 8, 4, 3));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 8, 4, 4));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 8, 4, 5));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 4, 8, 4, 6));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 4, 8, 4, 6));
         list.add(new PlaceableItemFrame(new ItemStack(Blocks.TRAPDOOR, 1, 0), 0, EnumFacing.NORTH, 8, 4, 6));
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 8, 4, 7));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 3, 8, 4, 8));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 3, 8, 4, 8));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 2, 9, 4, 1));
-        list.add(new PlaceableDecorative(Blocks.LADDER, 3, 9, 4, 2));
+        list.add(new PlaceableGirafi(Blocks.LADDER, 3, 9, 4, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 9, 4, 3));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 9, 4, 4));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 9, 4, 5));
-        list.add(new PlaceableDecorative(Blocks.LADDER, 2, 9, 4, 6));
+        list.add(new PlaceableGirafi(Blocks.LADDER, 2, 9, 4, 6));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 3, 9, 4, 7));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 2, 10, 4, 1));
-        list.add(new PlaceableDecorative(Blocks.LADDER, 3, 10, 4, 2));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 2, 10, 4, 3));
+        list.add(new PlaceableGirafi(Blocks.LADDER, 3, 10, 4, 2));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 2, 10, 4, 3));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 10, 4, 4));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 2, 10, 4, 5));
-        list.add(new PlaceableDecorative(Blocks.LADDER, 2, 10, 4, 6));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 2, 10, 4, 5));
+        list.add(new PlaceableGirafi(Blocks.LADDER, 2, 10, 4, 6));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 3, 10, 4, 7));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 11, 4, 1));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 1, 11, 4, 2));
@@ -556,8 +584,8 @@ public class BuildingPoultryFarm extends Building {
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 3, 11, 5, 8));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 2, 12, 5, 1));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 7, 12, 5, 2));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 1, 12, 5, 3));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 1, 12, 5, 5));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 1, 12, 5, 3));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 1, 12, 5, 5));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 6, 12, 5, 6));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 3, 12, 5, 7));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 2, 0, 6, 2));
@@ -573,7 +601,7 @@ public class BuildingPoultryFarm extends Building {
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 3, 1, 6, 7));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 2, 2, 6, 2));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 7, 2, 6, 3));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 1, 2, 6, 4));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 1, 2, 6, 4));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 6, 2, 6, 5));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 3, 2, 6, 6));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 2, 3, 6, 2));
@@ -617,7 +645,7 @@ public class BuildingPoultryFarm extends Building {
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 3, 9, 6, 6));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 2, 10, 6, 2));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 7, 10, 6, 3));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 2, 10, 6, 4));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 2, 10, 6, 4));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 6, 10, 6, 5));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 3, 10, 6, 6));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 2, 11, 6, 1));
@@ -701,25 +729,6 @@ public class BuildingPoultryFarm extends Building {
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 0, 12, 8, 4));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 1, 1, 9, 4));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 0, 11, 9, 4));
-    }
-
-    @Override
-    public long getCost() {
-        return 2000L;
-    }
-
-    @Override
-    public int getWoodCount() {
-        return 160;
-    }
-
-    @Override
-    public int getStoneCount() {
-        return 0;
-    }
-
-    @Override
-    public boolean canBuy(World world, EntityPlayer player) {
-        return HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.blacksmith);
+        return this;
     }
 }

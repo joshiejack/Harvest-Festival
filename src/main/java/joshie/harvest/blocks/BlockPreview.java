@@ -1,5 +1,6 @@
 package joshie.harvest.blocks;
 
+import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.blocks.tiles.TileMarker;
 import joshie.harvest.buildings.Building;
 import joshie.harvest.core.HFTab;
@@ -19,6 +20,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -121,7 +123,7 @@ public class BlockPreview extends BlockHFBaseMeta<BlockPreview.Direction> {
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase player, ItemStack stack) {
         if (!(player instanceof EntityPlayer)) return;
         if (stack.getItemDamage() >= Building.buildings.size()) return;
-        Building group = Building.buildings.get(stack.getItemDamage());
+        IBuilding group = Building.buildings.get(stack.getItemDamage());
         if (group != null) {
             TileMarker marker = (TileMarker) world.getTileEntity(pos);
             marker.setBuilding(group);
@@ -130,6 +132,11 @@ public class BlockPreview extends BlockHFBaseMeta<BlockPreview.Direction> {
                 HFTrackers.getPlayerTracker((EntityPlayer) player).getBuilder(world);
             }
         }
+    }
+
+    @Override
+    public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos) {
+        return state;
     }
 
     @Override

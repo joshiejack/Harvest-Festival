@@ -5,7 +5,6 @@ import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.Placeable.ConstructionStage;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
-import joshie.harvest.core.util.BlockAccessPreview;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
@@ -17,14 +16,14 @@ import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 public class Building implements IBuilding {
-    public static final ArrayList<Building> buildings = new ArrayList<Building>(50);
+    public static final ArrayList<IBuilding> buildings = new ArrayList<IBuilding>(50);
     //List of all placeable elements
     public HashMap<String, PlaceableNPC> npc_offsets = new HashMap<String, PlaceableNPC>();
     protected ArrayList<Placeable> list;
-    private BlockAccessPreview preview;
     protected int offsetY;
     protected int tickTime = 20;
 
@@ -38,13 +37,13 @@ public class Building implements IBuilding {
         buildings.add(this);
     }
 
-    public Building init() {
-        this.preview = new BlockAccessPreview(this);
+    @Override
+    public IBuilding addBlocks() {
         return this;
     }
 
-    public static Building getGroup(String string) {
-        for (Building b : buildings) {
+    public static IBuilding getGroup(String string) {
+        for (IBuilding b : buildings) {
             if (b.getName().equals(string)) {
                 return b;
             }
@@ -54,7 +53,12 @@ public class Building implements IBuilding {
     }
 
     public ItemStack getPreview() {
-        return new ItemStack(HFBlocks.PREVIEW, 1, meta);
+        return new ItemStack(HFBlocks.PREVIEW.get(this));
+    }
+
+    @Override
+    public PlaceableNPC getNPCOffset(String npc_location) {
+        return npc_offsets.get(npc_location);
     }
 
     public String getName() {
@@ -70,6 +74,7 @@ public class Building implements IBuilding {
         return null;
     }
 
+    @Override
     public int getOffsetY() {
         return offsetY;
     }
@@ -82,7 +87,8 @@ public class Building implements IBuilding {
         return list.get(index);
     }
 
-    public ArrayList<Placeable> getList() {
+    @Override
+    public List<Placeable> getList() {
         return list;
     }
 

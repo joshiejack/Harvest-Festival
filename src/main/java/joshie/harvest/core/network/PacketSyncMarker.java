@@ -2,6 +2,7 @@ package joshie.harvest.core.network;
 
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.WorldLocation;
+import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.blocks.tiles.TileMarker;
 import joshie.harvest.buildings.Building;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
@@ -13,12 +14,12 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class PacketSyncMarker implements IMessage, IMessageHandler<PacketSyncMarker, IMessage> {
     private WorldLocation location;
-    private Building group;
+    private IBuilding group;
 
     public PacketSyncMarker() {
     }
 
-    public PacketSyncMarker(WorldLocation location, Building group) {
+    public PacketSyncMarker(WorldLocation location, IBuilding group) {
         this.location = location;
         this.group = group;
     }

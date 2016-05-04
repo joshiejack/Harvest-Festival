@@ -1,5 +1,6 @@
 package joshie.harvest.buildings;
 
+import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.blocks.*;
 import joshie.harvest.buildings.placeable.entities.PlaceableItemFrame;
@@ -19,6 +20,31 @@ import java.util.ArrayList;
 public class BuildingMiningHut extends Building {
     public BuildingMiningHut() {
         super("miningHut");
+    }
+
+    @Override
+    public long getCost() {
+        return 3000L;
+    }
+
+    @Override
+    public int getWoodCount() {
+        return 96;
+    }
+
+    @Override
+    public int getStoneCount() {
+        return 96;
+    }
+
+    @Override
+    public boolean canBuy(World world, EntityPlayer player) {
+        return HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.poultryFarm) &&
+                HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.barn);
+    }
+
+    @Override
+    public IBuilding addBlocks() {
         offsetY = -1;
         list = new ArrayList<Placeable>(551);
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 1, 0, 8));
@@ -115,8 +141,8 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 12, 0, 3));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 12, 0, 4));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 12, 0, 5));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 14, 0, 1, 8));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 2, 0, 1, 9));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 14, 0, 1, 8));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 2, 0, 1, 9));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 1, 1, 6));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 1, 1, 7));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 7, 1, 1, 8));
@@ -131,8 +157,8 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 2, 1, 11));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 3, 1, 4));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 3, 1, 5));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 15, 3, 1, 6));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 15, 3, 1, 7));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 15, 3, 1, 6));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 15, 3, 1, 7));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 1, 8));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 1, 9));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 3, 1, 10));
@@ -140,7 +166,7 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 3, 3, 1, 12));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 4, 1, 3));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 7, 4, 1, 4));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 13, 4, 1, 5));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 13, 4, 1, 5));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 1, 6));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 1, 7));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 1, 8));
@@ -150,10 +176,10 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 1, 10));
         list.add(new PlaceableChest(Blocks.CHEST, 2, 4, 1, 11, LootStrings.MINING_CHEST));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 4, 1, 12));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 3, 4, 1, 13));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 3, 4, 1, 13));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 2, 5, 1, 2));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 5, 1, 3));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 15, 5, 1, 4));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 15, 5, 1, 4));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 5, 1, 5));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 5, 1, 6));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 2, 5, 1, 7));
@@ -162,22 +188,22 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableBlock(Blocks.AIR, 0, 5, 1, 10));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 5, 1, 11));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 7, 5, 1, 12));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 13, 5, 1, 13));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 13, 5, 1, 13));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 6, 1, 1));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 7, 6, 1, 2));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 13, 6, 1, 3));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 13, 6, 1, 3));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 6, 1, 4));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 6, 1, 5));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 6, 1, 6));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 6, 1, 7));
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 5, 6, 1, 8));
         list.add(new PlaceableFlowerPot(Blocks.FLOWER_POT, 5, 6, 1, 9));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 12, 6, 1, 10));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 12, 6, 1, 10));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 7, 6, 1, 11));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 6, 1, 12));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 7, 1, 1));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 7, 7, 1, 2));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 13, 7, 1, 3));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 13, 7, 1, 3));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 7, 1, 4));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 0, 7, 1, 5));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 7, 1, 6));
@@ -187,7 +213,7 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableFurnace(Blocks.LIT_FURNACE, 4, 7, 1, 10));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 7, 7, 1, 11));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 7, 1, 12));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 12, 8, 1, 0));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 12, 8, 1, 0));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 7, 8, 1, 1));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 7, 8, 1, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 8, 1, 3));
@@ -199,7 +225,7 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableBlock(Blocks.AIR, 0, 8, 1, 9));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 8, 1, 10));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 3, 8, 1, 11));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 4, 9, 1, 0));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 4, 9, 1, 0));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 9, 1, 1));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 7, 9, 1, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 9, 1, 3));
@@ -231,10 +257,10 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 7, 12, 1, 5));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 12, 1, 6));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 12, 1, 7));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 1, 13, 1, 4));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 15, 13, 1, 5));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 5, 1, 2, 6));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 5, 1, 2, 7));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 1, 13, 1, 4));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 15, 13, 1, 5));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 5, 1, 2, 6));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 5, 1, 2, 7));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 1, 2, 8));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 1, 2, 9));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 2, 2, 2, 6));
@@ -242,19 +268,19 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 5, 2, 2, 8));
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 5, 2, 2, 9));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 2, 2, 10));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 5, 2, 2, 11));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 5, 3, 2, 4));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 5, 2, 2, 11));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 5, 3, 2, 4));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 3, 2, 5));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 2, 6));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 1, 3, 2, 7));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 1, 3, 2, 7));
         list.add(new PlaceableItemFrame(new ItemStack(Blocks.TRAPDOOR, 1, 0), 0, EnumFacing.EAST, 3, 2, 7));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 2, 8));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 2, 9));
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 5, 3, 2, 10));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 3, 2, 11));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 5, 4, 2, 3));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 5, 4, 2, 3));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 4, 2, 4));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 3, 4, 2, 5));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 3, 4, 2, 5));
         list.add(new PlaceableItemFrame(new ItemStack(Blocks.TRAPDOOR, 1, 0), 0, EnumFacing.SOUTH, 4, 2, 5));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 2, 6));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 2, 7));
@@ -264,7 +290,7 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 5, 4, 2, 11));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 4, 2, 12));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 5, 2, 3));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 1, 5, 2, 4));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 1, 5, 2, 4));
         list.add(new PlaceableItemFrame(new ItemStack(Blocks.TRAPDOOR, 1, 0), 0, EnumFacing.EAST, 5, 2, 4));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 5, 2, 5));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 5, 2, 6));
@@ -274,7 +300,7 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableBlock(Blocks.AIR, 0, 5, 2, 10));
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 5, 5, 2, 11));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 1, 5, 2, 12));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 5, 6, 2, 1));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 5, 6, 2, 1));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 6, 2, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 6, 2, 3));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 6, 2, 4));
@@ -283,13 +309,13 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableBlock(Blocks.AIR, 0, 6, 2, 7));
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 5, 6, 2, 8));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 6, 2, 9));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 4, 6, 2, 10));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 4, 6, 2, 10));
         list.add(new PlaceableItemFrame(new ItemStack(Blocks.TRAPDOOR, 1, 0), 0, EnumFacing.NORTH, 6, 2, 10));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 6, 2, 11));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 5, 6, 2, 12));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 5, 7, 2, 1));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 5, 6, 2, 12));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 5, 7, 2, 1));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 1, 7, 2, 2));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 3, 7, 2, 3));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 3, 7, 2, 3));
         list.add(new PlaceableItemFrame(new ItemStack(Blocks.TRAPDOOR, 1, 0), 0, EnumFacing.SOUTH, 7, 2, 3));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 7, 2, 4));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 0, 7, 2, 5));
@@ -299,7 +325,7 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 1, 7, 2, 9));
         list.add(new PlaceableBlock(Blocks.COBBLESTONE_WALL, 0, 7, 2, 10));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 2, 7, 2, 11));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 5, 7, 2, 12));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 5, 7, 2, 12));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 2, 8, 2, 1));
         list.add(new PlaceableBlock(Blocks.WOODEN_PRESSURE_PLATE, 0, 8, 2, 2));
         list.add(new PlaceableItemFrame(new ItemStack(Blocks.IRON_ORE, 1, 0), 0, EnumFacing.SOUTH, 8, 2, 2, LootStrings.MINING_FRAME));
@@ -309,7 +335,7 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 5, 8, 2, 6));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 8, 2, 7));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 8, 2, 8));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 4, 8, 2, 9));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 4, 8, 2, 9));
         list.add(new PlaceableItemFrame(new ItemStack(Blocks.TRAPDOOR, 1, 0), 0, EnumFacing.WEST, 8, 2, 9));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 8, 2, 10));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 9, 2, 1));
@@ -320,7 +346,7 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableBlock(Blocks.AIR, 0, 9, 2, 5));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 9, 2, 6));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 3, 9, 2, 7));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 2, 9, 2, 8));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 2, 9, 2, 8));
         list.add(new PlaceableItemFrame(new ItemStack(Blocks.TRAPDOOR, 1, 0), 0, EnumFacing.WEST, 9, 2, 8));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 9, 2, 9));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 2, 10, 2, 2));
@@ -330,7 +356,7 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableBlock(Blocks.GRAVEL, 0, 10, 2, 6));
         list.add(new PlaceableBlock(Blocks.GRAVEL, 0, 10, 2, 7));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 10, 2, 8));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 5, 11, 2, 2));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 5, 11, 2, 2));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 2, 11, 2, 3));
         list.add(new PlaceableBlock(Blocks.GRAVEL, 0, 11, 2, 4));
         list.add(new PlaceableBlock(Blocks.GRAVEL, 0, 11, 2, 5));
@@ -338,8 +364,8 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 2, 11, 2, 7));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 12, 2, 4));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 12, 2, 5));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 5, 12, 2, 6));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 5, 12, 2, 7));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 5, 12, 2, 6));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 5, 12, 2, 7));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 1, 3, 8));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 1, 3, 9));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 2, 3, 6));
@@ -412,7 +438,7 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 3, 9, 3, 7));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 9, 3, 8));
         list.add(new PlaceableBlock(Blocks.STONE_SLAB, 13, 9, 3, 9));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 1, 9, 3, 10));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 1, 9, 3, 10));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 10, 3, 2));
         list.add(new PlaceableBlock(Blocks.IRON_BARS, 0, 10, 3, 3));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 10, 3, 4));
@@ -420,7 +446,7 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableBlock(Blocks.AIR, 0, 10, 3, 6));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 10, 3, 7));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 10, 3, 8));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 3, 10, 3, 9));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 3, 10, 3, 9));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 11, 3, 3));
         list.add(new PlaceableBlock(Blocks.IRON_BARS, 0, 11, 3, 4));
         list.add(new PlaceableBlock(Blocks.GRAVEL, 0, 11, 3, 5));
@@ -588,26 +614,6 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 5, 7, 6, 6));
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 5, 7, 6, 7));
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 5, 8, 6, 5));
-    }
-
-    @Override
-    public long getCost() {
-        return 3000L;
-    }
-
-    @Override
-    public int getWoodCount() {
-        return 96;
-    }
-
-    @Override
-    public int getStoneCount() {
-        return 96;
-    }
-
-    @Override
-    public boolean canBuy(World world, EntityPlayer player) {
-        return HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.poultryFarm) &&
-                HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.barn);
+        return this;
     }
 }

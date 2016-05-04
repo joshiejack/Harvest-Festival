@@ -1,5 +1,6 @@
 package joshie.harvest.buildings;
 
+import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.Placeable.ConstructionStage;
 import joshie.harvest.core.handlers.HFTrackers;
@@ -15,7 +16,7 @@ import java.util.UUID;
  * to know their current progress through a building project **/
 public class BuildingStage {
     public UUID owner;
-    public Building building;
+    public IBuilding building;
     public Mirror mirror;
     public Rotation rotation;
     public ConstructionStage stage;
@@ -25,7 +26,7 @@ public class BuildingStage {
     public BuildingStage() {
     }
 
-    public BuildingStage(UUID uuid, Building building, BlockPos pos, Mirror mirror, Rotation rotation) {
+    public BuildingStage(UUID uuid, IBuilding building, BlockPos pos, Mirror mirror, Rotation rotation) {
         this.owner = uuid;
         this.building = building;
         this.mirror = mirror;
@@ -54,7 +55,7 @@ public class BuildingStage {
             }
         } else {
             while (index < building.getSize()) {
-                Placeable block = building.get(index);
+                Placeable block = building.getList().get(index);
                 if (block.place(owner, world, pos, mirror, rotation, stage)) {
                     index++;
                     return this;

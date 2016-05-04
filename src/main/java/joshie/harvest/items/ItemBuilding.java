@@ -1,5 +1,6 @@
 package joshie.harvest.items;
 
+import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.buildings.Building;
 import joshie.harvest.core.HFTab;
@@ -25,7 +26,7 @@ public class ItemBuilding extends ItemHFBaseMeta implements ICreativeSorted {
 
     @Override
     public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        Building group = Building.buildings.get(stack.getItemDamage());
+        IBuilding group = Building.buildings.get(stack.getItemDamage());
         if (group != null) {
             return group.generate(UUIDHelper.getPlayerUUID(player), world, pos);
         }
@@ -36,7 +37,7 @@ public class ItemBuilding extends ItemHFBaseMeta implements ICreativeSorted {
     @Override
     public String getName(ItemStack stack) {
         if (stack.getItemDamage() >= Building.buildings.size()) return "invalid";
-        Building group = Building.buildings.get(stack.getItemDamage());
+        IBuilding group = Building.buildings.get(stack.getItemDamage());
         if (group != null) {
             return group.getName();
         } else return "invalid";

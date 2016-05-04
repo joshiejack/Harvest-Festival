@@ -24,7 +24,7 @@ public class TownBuilding extends BuildingStage {
     }
 
     public WorldLocation getRealCoordinatesFor(String npc_location) {
-        PlaceableNPC offsets = building.npc_offsets.get(npc_location);
+        PlaceableNPC offsets = building.getNPCOffset(npc_location);
         if (offsets == null) return null;
         return getRealCoordinatesFor(offsets);
     }

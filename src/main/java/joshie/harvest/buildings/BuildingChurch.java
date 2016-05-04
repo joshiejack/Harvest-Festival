@@ -1,7 +1,10 @@
 package joshie.harvest.buildings;
 
+import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.buildings.placeable.Placeable;
-import joshie.harvest.buildings.placeable.blocks.*;
+import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
+import joshie.harvest.buildings.placeable.blocks.PlaceableGirafi;
+import joshie.harvest.buildings.placeable.blocks.PlaceableWeb;
 import joshie.harvest.buildings.placeable.entities.PlaceableItemFrame;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.core.handlers.HFTrackers;
@@ -20,6 +23,32 @@ import java.util.ArrayList;
 public class BuildingChurch extends Building {
     public BuildingChurch() {
         super("church");
+    }
+
+    @Override
+    public long getCost() {
+        return 10000L;
+    }
+
+    @Override
+    public int getWoodCount() {
+        return 160;
+    }
+
+    @Override
+    public int getStoneCount() {
+        return 128;
+    }
+
+    @Override
+    public boolean canBuy(World world, EntityPlayer player) {
+        return HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.miningHill) &&
+                HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.miningHut) &&
+                HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.goddessPond);
+    }
+
+    @Override
+    public IBuilding addBlocks() {
         list = new ArrayList<Placeable>(614);
         list.add(new PlaceableBlock(Blocks.GRASS, 0, 0, 0, 1));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 0, 0, 2));
@@ -143,14 +172,14 @@ public class BuildingChurch extends Building {
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 2, 13, 0, 5));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 13, 0, 6));
         list.add(new PlaceableBlock(Blocks.GRASS, 0, 13, 0, 7));
-        list.add(new PlaceableDecorative(Blocks.RED_FLOWER, 4, 0, 1, 1));
+        list.add(new PlaceableGirafi(Blocks.RED_FLOWER, 4, 0, 1, 1));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 0, 1, 2));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 0, 1, 3));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 2, 0, 1, 4));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 2, 0, 1, 5));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 2, 0, 1, 6));
-        list.add(new PlaceableDecorative(Blocks.YELLOW_FLOWER, 0, 0, 1, 7));
-        list.add(new PlaceableDecorative(Blocks.RED_FLOWER, 6, 1, 1, 0));
+        list.add(new PlaceableGirafi(Blocks.YELLOW_FLOWER, 0, 0, 1, 7));
+        list.add(new PlaceableGirafi(Blocks.RED_FLOWER, 6, 1, 1, 0));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 1, 1, 1));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 1, 1, 2));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 1, 1, 3));
@@ -158,7 +187,7 @@ public class BuildingChurch extends Building {
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 2, 1, 1, 5));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 1, 1, 6));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 1, 1, 7));
-        list.add(new PlaceableDecorative(Blocks.RED_FLOWER, 5, 1, 1, 8));
+        list.add(new PlaceableGirafi(Blocks.RED_FLOWER, 5, 1, 1, 8));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 2, 1, 0));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 2, 1, 1));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 2, 1, 2));
@@ -168,7 +197,7 @@ public class BuildingChurch extends Building {
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 2, 1, 6));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 1, 2, 1, 7));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 1, 2, 1, 8));
-        list.add(new PlaceableDecorative(Blocks.RED_FLOWER, 6, 3, 1, 0));
+        list.add(new PlaceableGirafi(Blocks.RED_FLOWER, 6, 3, 1, 0));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 3, 3, 1, 1));
         list.add(new PlaceableBlock(Blocks.STONE_BRICK_STAIRS, 1, 3, 1, 2));
         list.add(new PlaceableBlock(Blocks.STONE_BRICK_STAIRS, 2, 3, 1, 3));
@@ -176,30 +205,30 @@ public class BuildingChurch extends Building {
         list.add(new PlaceableBlock(Blocks.STONE_BRICK_STAIRS, 3, 3, 1, 5));
         list.add(new PlaceableBlock(Blocks.STONE_BRICK_STAIRS, 1, 3, 1, 6));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 2, 3, 1, 7));
-        list.add(new PlaceableDecorative(Blocks.RED_FLOWER, 1, 3, 1, 8));
-        list.add(new PlaceableDecorative(Blocks.RED_FLOWER, 7, 4, 1, 0));
+        list.add(new PlaceableGirafi(Blocks.RED_FLOWER, 1, 3, 1, 8));
+        list.add(new PlaceableGirafi(Blocks.RED_FLOWER, 7, 4, 1, 0));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 3, 4, 1, 1));
         list.add(new PlaceableBlock(Blocks.STONE_BRICK_STAIRS, 1, 4, 1, 3));
         list.add(new PlaceableBlock(Blocks.STONE_BRICK_STAIRS, 1, 4, 1, 4));
         list.add(new PlaceableBlock(Blocks.STONE_BRICK_STAIRS, 1, 4, 1, 5));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 2, 4, 1, 7));
-        list.add(new PlaceableDecorative(Blocks.RED_FLOWER, 1, 4, 1, 8));
+        list.add(new PlaceableGirafi(Blocks.RED_FLOWER, 1, 4, 1, 8));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 2, 5, 1, 0));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 5, 1, 1));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 5, 1, 7));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 1, 5, 1, 8));
-        list.add(new PlaceableDecorative(Blocks.RED_FLOWER, 4, 6, 1, 0));
+        list.add(new PlaceableGirafi(Blocks.RED_FLOWER, 4, 6, 1, 0));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 3, 6, 1, 1));
         list.add(new PlaceableBlock(Blocks.CARPET, 14, 6, 1, 3));
         list.add(new PlaceableBlock(Blocks.CARPET, 14, 6, 1, 4));
         list.add(new PlaceableBlock(Blocks.CARPET, 14, 6, 1, 5));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 2, 6, 1, 7));
-        list.add(new PlaceableDecorative(Blocks.RED_FLOWER, 7, 6, 1, 8));
-        list.add(new PlaceableDecorative(Blocks.RED_FLOWER, 2, 7, 1, 0));
+        list.add(new PlaceableGirafi(Blocks.RED_FLOWER, 7, 6, 1, 8));
+        list.add(new PlaceableGirafi(Blocks.RED_FLOWER, 2, 7, 1, 0));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 3, 7, 1, 1));
         list.add(new PlaceableBlock(Blocks.CARPET, 14, 7, 1, 5));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 2, 7, 1, 7));
-        list.add(new PlaceableDecorative(Blocks.RED_FLOWER, 1, 7, 1, 8));
+        list.add(new PlaceableGirafi(Blocks.RED_FLOWER, 1, 7, 1, 8));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 8, 1, 0));
         list.add(new PlaceableBlock(Blocks.BOOKSHELF, 0, 8, 1, 1));
         list.add(new PlaceableBlock(Blocks.CARPET, 14, 8, 1, 3));
@@ -207,59 +236,59 @@ public class BuildingChurch extends Building {
         list.add(new PlaceableBlock(Blocks.CARPET, 14, 8, 1, 5));
         list.add(new PlaceableBlock(Blocks.BOOKSHELF, 0, 8, 1, 7));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 8, 1, 8));
-        list.add(new PlaceableDecorative(Blocks.RED_FLOWER, 3, 9, 1, 0));
+        list.add(new PlaceableGirafi(Blocks.RED_FLOWER, 3, 9, 1, 0));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 3, 9, 1, 1));
         list.add(new PlaceableBlock(Blocks.CARPET, 14, 9, 1, 3));
         npc_offsets.put(TownData.CHURCH_FRONT, new PlaceableNPC("", new BlockPos(9, 1, 4)));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 9, 1, 4));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 2, 9, 1, 7));
-        list.add(new PlaceableDecorative(Blocks.RED_FLOWER, 1, 9, 1, 8));
-        list.add(new PlaceableDecorative(Blocks.RED_FLOWER, 0, 10, 1, 0));
+        list.add(new PlaceableGirafi(Blocks.RED_FLOWER, 1, 9, 1, 8));
+        list.add(new PlaceableGirafi(Blocks.RED_FLOWER, 0, 10, 1, 0));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 3, 10, 1, 1));
         list.add(new PlaceableBlock(Blocks.CARPET, 14, 10, 1, 3));
         list.add(new PlaceableBlock(Blocks.CARPET, 14, 10, 1, 4));
         list.add(new PlaceableBlock(Blocks.CARPET, 14, 10, 1, 5));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 2, 10, 1, 7));
-        list.add(new PlaceableDecorative(Blocks.RED_FLOWER, 0, 10, 1, 8));
+        list.add(new PlaceableGirafi(Blocks.RED_FLOWER, 0, 10, 1, 8));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 1, 11, 1, 0));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 11, 1, 1));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 11, 1, 7));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 1, 11, 1, 8));
-        list.add(new PlaceableDecorative(Blocks.RED_FLOWER, 1, 12, 1, 0));
+        list.add(new PlaceableGirafi(Blocks.RED_FLOWER, 1, 12, 1, 0));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 12, 1, 1));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 2, 12, 1, 2));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 7, 12, 1, 3));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 6, 12, 1, 5));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 3, 12, 1, 6));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 12, 1, 7));
-        list.add(new PlaceableDecorative(Blocks.RED_FLOWER, 7, 12, 1, 8));
-        list.add(new PlaceableDecorative(Blocks.RED_FLOWER, 4, 13, 1, 1));
+        list.add(new PlaceableGirafi(Blocks.RED_FLOWER, 7, 12, 1, 8));
+        list.add(new PlaceableGirafi(Blocks.RED_FLOWER, 4, 13, 1, 1));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 13, 1, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 13, 1, 3));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 13, 1, 4));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 13, 1, 5));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 2, 13, 1, 6));
-        list.add(new PlaceableDecorative(Blocks.RED_FLOWER, 2, 13, 1, 7));
+        list.add(new PlaceableGirafi(Blocks.RED_FLOWER, 2, 13, 1, 7));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 0, 2, 2));
         list.add(new PlaceableBlock(Blocks.STAINED_GLASS_PANE, 5, 0, 2, 3));
         list.add(new PlaceableBlock(Blocks.STAINED_GLASS_PANE, 13, 0, 2, 4));
         list.add(new PlaceableBlock(Blocks.STAINED_GLASS_PANE, 5, 0, 2, 5));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 2, 0, 2, 6));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 1, 2, 1));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 15, 1, 2, 2));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 15, 1, 2, 2));
         list.add(new PlaceableBlock(Blocks.CARPET, 14, 1, 2, 3));
         list.add(new PlaceableBlock(Blocks.CARPET, 14, 1, 2, 4));
         list.add(new PlaceableBlock(Blocks.CARPET, 14, 1, 2, 5));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 15, 1, 2, 6));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 15, 1, 2, 6));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 1, 2, 7));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 2, 2, 2, 0));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 13, 2, 2, 1));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 13, 2, 2, 1));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 2, 2, 2));
         list.add(new PlaceableBlock(Blocks.CARPET, 14, 2, 2, 3));
         list.add(new PlaceableBlock(Blocks.CARPET, 14, 2, 2, 4));
         list.add(new PlaceableBlock(Blocks.CARPET, 14, 2, 2, 5));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 2, 2, 6));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 12, 2, 2, 7));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 12, 2, 2, 7));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 2, 2, 8));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 3, 3, 2, 1));
         list.add(new PlaceableBlock(Blocks.BOOKSHELF, 0, 3, 2, 4));
@@ -267,8 +296,8 @@ public class BuildingChurch extends Building {
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 3, 4, 2, 1));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 2, 4, 2, 7));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 5, 2, 0));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 5, 5, 2, 1));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 5, 5, 2, 7));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 5, 5, 2, 1));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 5, 5, 2, 7));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 5, 2, 8));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 3, 6, 2, 1));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 2, 6, 2, 7));
@@ -283,10 +312,10 @@ public class BuildingChurch extends Building {
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 3, 10, 2, 1));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 2, 10, 2, 7));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 2, 11, 2, 0));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 5, 11, 2, 1));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 2, 11, 2, 3));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 2, 11, 2, 5));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 5, 11, 2, 7));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 5, 11, 2, 1));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 2, 11, 2, 3));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 2, 11, 2, 5));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 5, 11, 2, 7));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 2, 11, 2, 8));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 12, 2, 1));
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 12, 2, 3));
@@ -308,11 +337,11 @@ public class BuildingChurch extends Building {
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 3, 1, 3, 7));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 2, 3, 0));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 7, 2, 3, 1));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 5, 2, 3, 2));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 5, 2, 3, 2));
         list.add(new PlaceableNPC("thomas", new BlockPos(2, 3, 4)));
         npc_offsets.put(TownData.THOMAS, new PlaceableNPC("", new BlockPos(2, 3, 4)));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 2, 3, 4));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 5, 2, 3, 6));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 5, 2, 3, 6));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 6, 2, 3, 7));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 2, 3, 8));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 3, 3, 3, 1));
@@ -320,8 +349,8 @@ public class BuildingChurch extends Building {
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 3, 4, 3, 1));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 2, 4, 3, 7));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 5, 3, 0));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 3, 5, 3, 1));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 4, 5, 3, 7));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 3, 5, 3, 1));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 4, 5, 3, 7));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 2, 5, 3, 8));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 3, 6, 3, 1));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 2, 6, 3, 7));
@@ -356,17 +385,17 @@ public class BuildingChurch extends Building {
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 0, 4, 4));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 0, 4, 5));
         list.add(new PlaceableBlock(Blocks.STONE_BRICK_STAIRS, 3, 0, 4, 6));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 2, 1, 4, 1));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 2, 1, 4, 1));
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 1, 4, 2));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 7, 1, 4, 3));
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 13, 1, 4, 4));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 6, 1, 4, 5));
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 1, 4, 6));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 2, 1, 4, 7));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 2, 1, 4, 7));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 2, 4, 0));
         list.add(new PlaceableBlock(Blocks.LOG, 5, 2, 4, 1));
-        list.add(new PlaceableDecorative(Blocks.LADDER, 3, 2, 4, 2));
-        list.add(new PlaceableDecorative(Blocks.LADDER, 2, 2, 4, 6));
+        list.add(new PlaceableGirafi(Blocks.LADDER, 3, 2, 4, 2));
+        list.add(new PlaceableGirafi(Blocks.LADDER, 2, 2, 4, 6));
         list.add(new PlaceableBlock(Blocks.LOG, 5, 2, 4, 7));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 2, 2, 4, 8));
         list.add(new PlaceableBlock(Blocks.LOG, 5, 3, 4, 1));
@@ -375,8 +404,8 @@ public class BuildingChurch extends Building {
         list.add(new PlaceableBlock(Blocks.LOG, 5, 4, 4, 7));
         list.add(new PlaceableBlock(Blocks.STONE_BRICK_STAIRS, 2, 5, 4, 0));
         list.add(new PlaceableBlock(Blocks.LOG, 5, 5, 4, 1));
-        list.add(new PlaceableDecorative(Blocks.LADDER, 3, 5, 4, 2));
-        list.add(new PlaceableDecorative(Blocks.LADDER, 2, 5, 4, 6));
+        list.add(new PlaceableGirafi(Blocks.LADDER, 3, 5, 4, 2));
+        list.add(new PlaceableGirafi(Blocks.LADDER, 2, 5, 4, 6));
         list.add(new PlaceableBlock(Blocks.LOG, 5, 5, 4, 7));
         list.add(new PlaceableBlock(Blocks.STONE_BRICK_STAIRS, 3, 5, 4, 8));
         list.add(new PlaceableBlock(Blocks.LOG, 5, 6, 4, 1));
@@ -385,8 +414,8 @@ public class BuildingChurch extends Building {
         list.add(new PlaceableBlock(Blocks.LOG, 5, 7, 4, 7));
         list.add(new PlaceableBlock(Blocks.STONE_BRICK_STAIRS, 2, 8, 4, 0));
         list.add(new PlaceableBlock(Blocks.LOG, 5, 8, 4, 1));
-        list.add(new PlaceableDecorative(Blocks.LADDER, 3, 8, 4, 2));
-        list.add(new PlaceableDecorative(Blocks.LADDER, 2, 8, 4, 6));
+        list.add(new PlaceableGirafi(Blocks.LADDER, 3, 8, 4, 2));
+        list.add(new PlaceableGirafi(Blocks.LADDER, 2, 8, 4, 6));
         list.add(new PlaceableBlock(Blocks.LOG, 5, 8, 4, 7));
         list.add(new PlaceableBlock(Blocks.STONE_BRICK_STAIRS, 3, 8, 4, 8));
         list.add(new PlaceableBlock(Blocks.LOG, 5, 9, 4, 1));
@@ -395,17 +424,17 @@ public class BuildingChurch extends Building {
         list.add(new PlaceableBlock(Blocks.LOG, 5, 10, 4, 7));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 11, 4, 0));
         list.add(new PlaceableBlock(Blocks.LOG, 5, 11, 4, 1));
-        list.add(new PlaceableDecorative(Blocks.LADDER, 3, 11, 4, 2));
-        list.add(new PlaceableDecorative(Blocks.LADDER, 2, 11, 4, 6));
+        list.add(new PlaceableGirafi(Blocks.LADDER, 3, 11, 4, 2));
+        list.add(new PlaceableGirafi(Blocks.LADDER, 2, 11, 4, 6));
         list.add(new PlaceableBlock(Blocks.LOG, 5, 11, 4, 7));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 11, 4, 8));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 1, 12, 4, 1));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 1, 12, 4, 1));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 1, 12, 4, 2));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 7, 12, 4, 3));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 12, 4, 4));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 6, 12, 4, 5));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 1, 12, 4, 6));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 1, 12, 4, 7));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 1, 12, 4, 7));
         list.add(new PlaceableBlock(Blocks.STONE_BRICK_STAIRS, 2, 13, 4, 3));
         list.add(new PlaceableBlock(Blocks.DOUBLE_STONE_SLAB, 5, 13, 4, 4));
         list.add(new PlaceableBlock(Blocks.STONE_BRICK_STAIRS, 3, 13, 4, 5));
@@ -448,7 +477,7 @@ public class BuildingChurch extends Building {
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 2, 11, 5, 1));
         list.add(new PlaceableBlock(Blocks.STONE_BRICK_STAIRS, 7, 11, 5, 2));
         list.add(new PlaceableWeb(Blocks.WEB, 0, 11, 5, 3));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 2, 11, 5, 4));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 2, 11, 5, 4));
         list.add(new PlaceableBlock(Blocks.STONE_BRICK_STAIRS, 6, 11, 5, 6));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 2, 11, 5, 7));
         list.add(new PlaceableBlock(Blocks.STONE_BRICK_STAIRS, 3, 11, 5, 8));
@@ -492,35 +521,35 @@ public class BuildingChurch extends Building {
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 13, 7, 6, 4));
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 13, 7, 6, 5));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 3, 7, 6, 6));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 4, 8, 6, 1));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 4, 8, 6, 1));
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 8, 6, 2));
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 8, 6, 3));
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 8, 6, 4));
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 8, 6, 5));
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 8, 6, 6));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 3, 8, 6, 7));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 3, 8, 6, 7));
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 9, 6, 2));
-        list.add(new PlaceableDecorative(Blocks.LADDER, 5, 9, 6, 4));
+        list.add(new PlaceableGirafi(Blocks.LADDER, 5, 9, 6, 4));
         list.add(new PlaceableWeb(Blocks.WEB, 0, 9, 6, 5));
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 9, 6, 6));
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 10, 6, 2));
-        list.add(new PlaceableDecorative(Blocks.LADDER, 3, 10, 6, 3));
-        list.add(new PlaceableDecorative(Blocks.LADDER, 2, 10, 6, 5));
+        list.add(new PlaceableGirafi(Blocks.LADDER, 3, 10, 6, 3));
+        list.add(new PlaceableGirafi(Blocks.LADDER, 2, 10, 6, 5));
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 10, 6, 6));
         list.add(new PlaceableBlock(Blocks.STONE_BRICK_STAIRS, 2, 11, 6, 1));
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 11, 6, 2));
-        list.add(new PlaceableDecorative(Blocks.LADDER, 4, 11, 6, 4));
+        list.add(new PlaceableGirafi(Blocks.LADDER, 4, 11, 6, 4));
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 11, 6, 6));
         list.add(new PlaceableBlock(Blocks.STONE_BRICK_STAIRS, 3, 11, 6, 7));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 4, 12, 6, 1));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 4, 12, 6, 1));
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 12, 6, 2));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 5, 12, 6, 3));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 5, 12, 6, 4));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 5, 12, 6, 5));
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 12, 6, 6));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 3, 12, 6, 7));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 1, 13, 6, 2));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 1, 13, 6, 6));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 3, 12, 6, 7));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 1, 13, 6, 2));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 1, 13, 6, 6));
         list.add(new PlaceableBlock(Blocks.STONE_SLAB, 5, 2, 7, 2));
         list.add(new PlaceableBlock(Blocks.STONE_SLAB, 5, 2, 7, 3));
         list.add(new PlaceableBlock(Blocks.STONE_SLAB, 5, 2, 7, 4));
@@ -532,19 +561,19 @@ public class BuildingChurch extends Building {
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 2, 8, 7, 5));
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 8, 7, 6));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 1, 9, 7, 2));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 1, 9, 7, 3));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 2, 9, 7, 4));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 3, 9, 7, 5));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 1, 9, 7, 3));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 2, 9, 7, 4));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 3, 9, 7, 5));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 1, 9, 7, 6));
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 5, 10, 7, 2));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 0, 10, 7, 3));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 0, 10, 7, 3));
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 5, 10, 7, 4));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 1, 10, 7, 5));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 1, 10, 7, 5));
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 5, 10, 7, 6));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 0, 11, 7, 2));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 2, 11, 7, 3));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 3, 11, 7, 4));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 0, 11, 7, 5));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 2, 11, 7, 3));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 3, 11, 7, 4));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 0, 11, 7, 5));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 0, 11, 7, 6));
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 12, 7, 2));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 3, 12, 7, 3));
@@ -583,17 +612,17 @@ public class BuildingChurch extends Building {
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 8, 9, 6));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 9, 9, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 9, 9, 3));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 2, 9, 9, 4));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 2, 9, 9, 4));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 9, 9, 5));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 9, 9, 6));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 10, 9, 2));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 4, 10, 9, 3));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 4, 10, 9, 3));
         list.add(new PlaceableBlock(Blocks.CAULDRON, 0, 10, 9, 4));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 3, 10, 9, 5));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 3, 10, 9, 5));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 10, 9, 6));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 11, 9, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 11, 9, 3));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 1, 11, 9, 4));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 1, 11, 9, 4));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 11, 9, 5));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 11, 9, 6));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 12, 9, 2));
@@ -641,27 +670,6 @@ public class BuildingChurch extends Building {
         list.add(new PlaceableBlock(Blocks.COBBLESTONE_WALL, 0, 10, 14, 4));
         list.add(new PlaceableBlock(Blocks.COBBLESTONE_WALL, 0, 10, 14, 5));
         list.add(new PlaceableBlock(Blocks.COBBLESTONE_WALL, 0, 10, 15, 4));
-    }
-
-    @Override
-    public long getCost() {
-        return 10000L;
-    }
-
-    @Override
-    public int getWoodCount() {
-        return 160;
-    }
-
-    @Override
-    public int getStoneCount() {
-        return 128;
-    }
-
-    @Override
-    public boolean canBuy(World world, EntityPlayer player) {
-        return HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.miningHill) &&
-                HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.miningHut) &&
-                HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.goddessPond);
+        return this;
     }
 }

@@ -1,7 +1,6 @@
 package joshie.harvest.shops.purchaseable;
 
 import joshie.harvest.api.buildings.IBuilding;
-import joshie.harvest.buildings.Building;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.InventoryHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,7 +14,7 @@ public class PurchaseableBuilding extends Purchaseable {
     public static List<PurchaseableBuilding> listings = new ArrayList<PurchaseableBuilding>();
     private IBuilding building;
 
-    public PurchaseableBuilding(Building building) {
+    public PurchaseableBuilding(IBuilding building) {
         super(building.getCost(), building.getPreview());
         this.building = building;
         listings.add(this);

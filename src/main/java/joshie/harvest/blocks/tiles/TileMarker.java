@@ -1,6 +1,7 @@
 package joshie.harvest.blocks.tiles;
 
 import joshie.harvest.api.WorldLocation;
+import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.buildings.Building;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSyncMarker;
@@ -10,14 +11,14 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 
 public class TileMarker extends TileEntity {
-    private Building group;
+    private IBuilding group;
 
-    public void setBuilding(Building group) {
+    public void setBuilding(IBuilding group) {
         this.group = group;
         this.markDirty();
     }
 
-    public Building getBuilding() {
+    public IBuilding getBuilding() {
         return group;
     }
 

@@ -37,8 +37,8 @@ public class HFCommonProxy {
         LIST.add(HFPlugins.class);
         LIST.add(HFCrops.class);
         LIST.add(HFNPCs.class);
-        LIST.add(HFBlocks.class);
         LIST.add(HFBuildings.class);
+        LIST.add(HFBlocks.class);
         LIST.add(HFItems.class);
         LIST.add(HFCooking.class);
         LIST.add(HFIngredients.class);

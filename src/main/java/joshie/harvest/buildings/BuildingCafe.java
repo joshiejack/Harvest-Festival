@@ -1,5 +1,6 @@
 package joshie.harvest.buildings;
 
+import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.blocks.*;
 import joshie.harvest.buildings.placeable.entities.PlaceableItemFrame;
@@ -21,6 +22,32 @@ import java.util.ArrayList;
 public class BuildingCafe extends Building {
     public BuildingCafe() {
         super("cafe");
+    }
+
+    @Override
+    public long getCost() {
+        return 8800L;
+    }
+
+    @Override
+    public int getWoodCount() {
+        return 320;
+    }
+
+    @Override
+    public int getStoneCount() {
+        return 160;
+    }
+
+    @Override
+    public boolean canBuy(World world, EntityPlayer player) {
+        return HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.miningHill) &&
+                HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.miningHut) &&
+                HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.goddessPond);
+    }
+
+    @Override
+    public IBuilding addBlocks() {
         offsetY = -1;
         list = new ArrayList<Placeable>(1300);
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 0, 0, 1));
@@ -152,17 +179,17 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 10, 0, 9));
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 10, 0, 13));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 0, 0, 1, 1));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 14, 0, 1, 2));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 14, 0, 1, 3));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 14, 0, 1, 4));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 14, 0, 1, 2));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 14, 0, 1, 3));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 14, 0, 1, 4));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 0, 0, 1, 5));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 14, 0, 1, 6));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 14, 0, 1, 7));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 14, 0, 1, 8));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 14, 0, 1, 6));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 14, 0, 1, 7));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 14, 0, 1, 8));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 0, 0, 1, 9));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 14, 0, 1, 10));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 14, 0, 1, 11));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 14, 0, 1, 12));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 14, 0, 1, 10));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 14, 0, 1, 11));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 14, 0, 1, 12));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 0, 0, 1, 13));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 2, 1, 1, 0));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 1, 1, 1));
@@ -179,7 +206,7 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 14, 1, 1, 12));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 1, 1, 13));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 3, 1, 1, 14));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 12, 2, 1, 0));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 12, 2, 1, 0));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 14, 2, 1, 1));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 2, 1, 2));
         list.add(new PlaceableBlock(Blocks.STONE_BRICK_STAIRS, 3, 2, 1, 3));
@@ -193,8 +220,8 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 5, 2, 1, 11));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 6, 2, 1, 12));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 14, 2, 1, 13));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 13, 2, 1, 14));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 12, 3, 1, 0));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 13, 2, 1, 14));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 12, 3, 1, 0));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 14, 3, 1, 1));
         list.add(new PlaceableBlock(Blocks.STONE_BRICK_STAIRS, 5, 3, 1, 2));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 3, 1, 3));
@@ -203,13 +230,13 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.CARPET, 14, 3, 1, 6));
         list.add(new PlaceableBlock(Blocks.CARPET, 14, 3, 1, 7));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 1, 8));
-        list.add(new PlaceableDecorative(Blocks.OAK_DOOR, 1, 3, 1, 9));
+        list.add(new PlaceableGirafi(Blocks.OAK_DOOR, 1, 3, 1, 9));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 1, 10));
         list.add(new PlaceableBlock(Blocks.CARPET, 14, 3, 1, 11));
         list.add(new PlaceableFurnace(Blocks.LIT_FURNACE, 2, 3, 1, 12));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 14, 3, 1, 13));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 13, 3, 1, 14));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 12, 4, 1, 0));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 13, 3, 1, 14));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 12, 4, 1, 0));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 14, 4, 1, 1));
         list.add(new PlaceableFlowerPot(Blocks.FLOWER_POT, 0, 4, 1, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 1, 3));
@@ -223,7 +250,7 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.CARPET, 14, 4, 1, 11));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 6, 4, 1, 12));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 14, 4, 1, 13));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 13, 4, 1, 14));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 13, 4, 1, 14));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 2, 5, 1, 0));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 5, 1, 1));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 14, 5, 1, 2));
@@ -231,30 +258,30 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 14, 5, 1, 4));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 5, 1, 5));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 14, 5, 1, 6));
-        list.add(new PlaceableDecorative(Blocks.OAK_DOOR, 0, 5, 1, 7));
+        list.add(new PlaceableGirafi(Blocks.OAK_DOOR, 0, 5, 1, 7));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 14, 5, 1, 8));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 5, 1, 9));
-        list.add(new PlaceableDecorative(Blocks.LADDER, 3, 5, 1, 10));
+        list.add(new PlaceableGirafi(Blocks.LADDER, 3, 5, 1, 10));
         list.add(new PlaceableBlock(Blocks.CARPET, 14, 5, 1, 11));
         list.add(new PlaceableFurnace(Blocks.LIT_FURNACE, 2, 5, 1, 12));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 5, 1, 13));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 3, 5, 1, 14));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 6, 1, 1));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 15, 6, 1, 2));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 15, 6, 1, 2));
         list.add(new PlaceableItemFrame(null, 0, EnumFacing.WEST, 6, 1, 2));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 7, 6, 1, 3));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 15, 6, 1, 4));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 7, 6, 1, 3));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 15, 6, 1, 4));
         list.add(new PlaceableItemFrame(null, 0, EnumFacing.WEST, 6, 1, 4));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 6, 1, 5));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 11, 6, 1, 6));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 11, 6, 1, 6));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 6, 1, 7));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 8, 6, 1, 8));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 8, 6, 1, 8));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 14, 6, 1, 9));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 9, 6, 1, 10));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 9, 6, 1, 10));
         list.add(new PlaceableBlock(Blocks.CARPET, 14, 6, 1, 11));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 6, 6, 1, 12));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 14, 6, 1, 13));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 13, 6, 1, 14));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 13, 6, 1, 14));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 7, 1, 1));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 3, 7, 1, 2));
         list.add(new PlaceableBlock(Blocks.GLASS_PANE, 0, 7, 1, 3));
@@ -262,13 +289,13 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.AIR, 0, 7, 1, 5));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 7, 1, 6));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 7, 1, 7));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 12, 7, 1, 8));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 12, 7, 1, 8));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 14, 7, 1, 9));
         list.add(new PlaceableBlock(Blocks.CAULDRON, 3, 7, 1, 10));
         list.add(new PlaceableBlock(Blocks.CARPET, 14, 7, 1, 11));
         list.add(new PlaceableFurnace(Blocks.LIT_FURNACE, 2, 7, 1, 12));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 14, 7, 1, 13));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 13, 7, 1, 14));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 13, 7, 1, 14));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 8, 1, 1));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 8, 1, 2));
         list.add(new PlaceableItemFrame(null, 0, EnumFacing.EAST, 8, 1, 2));
@@ -279,13 +306,13 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.AIR, 0, 8, 1, 6));
         npc_offsets.put(TownData.CAFE_FRONT, new PlaceableNPC("", new BlockPos(8, 1, 7)));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 8, 1, 7));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 12, 8, 1, 8));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 12, 8, 1, 8));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 14, 8, 1, 9));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 7, 8, 1, 10));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 4, 8, 1, 11));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 6, 8, 1, 12));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 14, 8, 1, 13));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 13, 8, 1, 14));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 13, 8, 1, 14));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 9, 1, 1));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 9, 1, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 9, 1, 3));
@@ -301,15 +328,15 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.LOG, 1, 9, 1, 13));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 3, 9, 1, 14));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 1, 10, 1, 9));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 15, 10, 1, 10));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 15, 10, 1, 11));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 15, 10, 1, 12));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 15, 10, 1, 10));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 15, 10, 1, 11));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 15, 10, 1, 12));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 1, 10, 1, 13));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 2, 0, 2, 1));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 2, 0, 2, 5));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 2, 0, 2, 9));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 2, 0, 2, 13));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 4, 1, 2, 0));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 2, 0, 2, 1));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 2, 0, 2, 5));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 2, 0, 2, 9));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 2, 0, 2, 13));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 4, 1, 2, 0));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 1, 2, 1));
         list.add(new PlaceableBlock(Blocks.GLASS_PANE, 0, 1, 2, 2));
         list.add(new PlaceableBlock(Blocks.GLASS_PANE, 0, 1, 2, 3));
@@ -323,7 +350,7 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.GLASS_PANE, 0, 1, 2, 11));
         list.add(new PlaceableBlock(Blocks.GLASS_PANE, 0, 1, 2, 12));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 1, 2, 13));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 3, 1, 2, 14));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 3, 1, 2, 14));
         list.add(new PlaceableBlock(Blocks.GLASS_PANE, 0, 2, 2, 1));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 2, 2, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 2, 2, 3));
@@ -331,9 +358,9 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 2, 2, 5));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 2, 2, 6));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 2, 2, 7));
-        list.add(new PlaceableDecorative(Blocks.LEVER, 4, 2, 2, 8));
+        list.add(new PlaceableGirafi(Blocks.LEVER, 4, 2, 2, 8));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 2, 2, 9));
-        list.add(new PlaceableDecorative(Blocks.LEVER, 11, 2, 2, 10));
+        list.add(new PlaceableGirafi(Blocks.LEVER, 11, 2, 2, 10));
         list.add(new PlaceableBlock(Blocks.CAKE, 2, 2, 2, 11));
         list.add(new PlaceableChest(Blocks.CHEST, 2, 2, 2, 12, LootStrings.CAFE_CHEST));
         list.add(new PlaceableBlock(Blocks.GLASS_PANE, 0, 2, 2, 13));
@@ -345,7 +372,7 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 2, 6));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 2, 7));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 2, 8));
-        list.add(new PlaceableDecorative(Blocks.OAK_DOOR, 8, 3, 2, 9));
+        list.add(new PlaceableGirafi(Blocks.OAK_DOOR, 8, 3, 2, 9));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 2, 10));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 2, 11));
         list.add(new PlaceableBlock(Blocks.COBBLESTONE_WALL, 0, 3, 2, 12));
@@ -363,28 +390,28 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 2, 11));
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 9, 4, 2, 12));
         list.add(new PlaceableBlock(Blocks.GLASS_PANE, 0, 4, 2, 13));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 4, 5, 2, 0));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 4, 5, 2, 0));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 5, 2, 1));
         list.add(new PlaceableBlock(Blocks.GLASS_PANE, 0, 5, 2, 2));
         list.add(new PlaceableBlock(Blocks.GLASS_PANE, 0, 5, 2, 3));
         list.add(new PlaceableBlock(Blocks.GLASS_PANE, 0, 5, 2, 4));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 5, 2, 5));
         list.add(new PlaceableBlock(Blocks.PLANKS, 1, 5, 2, 6));
-        list.add(new PlaceableDecorative(Blocks.OAK_DOOR, 8, 5, 2, 7));
+        list.add(new PlaceableGirafi(Blocks.OAK_DOOR, 8, 5, 2, 7));
         list.add(new PlaceableBlock(Blocks.PLANKS, 1, 5, 2, 8));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 5, 2, 9));
-        list.add(new PlaceableDecorative(Blocks.LADDER, 3, 5, 2, 10));
+        list.add(new PlaceableGirafi(Blocks.LADDER, 3, 5, 2, 10));
         list.add(new PlaceableNPC("katlin", new BlockPos(5, 2, 11)));
         npc_offsets.put(TownData.KATLIN, new PlaceableNPC("", new BlockPos(5, 2, 11)));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 5, 2, 11));
         list.add(new PlaceableBlock(Blocks.COBBLESTONE_WALL, 0, 5, 2, 12));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 5, 2, 13));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 3, 5, 2, 14));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 1, 6, 2, 1));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 3, 5, 2, 14));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 1, 6, 2, 1));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 6, 2, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 6, 2, 3));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 6, 2, 4));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 1, 6, 2, 5));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 1, 6, 2, 5));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 6, 2, 6));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 6, 2, 7));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 6, 2, 8));
@@ -426,21 +453,21 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.AIR, 0, 9, 2, 5));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 9, 2, 6));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 9, 2, 7));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 4, 9, 2, 8));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 4, 9, 2, 8));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 9, 2, 9));
         list.add(new PlaceableBlock(Blocks.GLASS_PANE, 0, 9, 2, 10));
         list.add(new PlaceableBlock(Blocks.GLASS_PANE, 0, 9, 2, 11));
         list.add(new PlaceableBlock(Blocks.GLASS_PANE, 0, 9, 2, 12));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 9, 2, 13));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 3, 9, 2, 14));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 1, 10, 2, 9));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 1, 10, 2, 13));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 3, 9, 2, 14));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 1, 10, 2, 9));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 1, 10, 2, 13));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 4, 0, 3, 1));
-        list.add(new PlaceableDecorative(Blocks.LADDER, 4, 0, 3, 3));
+        list.add(new PlaceableGirafi(Blocks.LADDER, 4, 0, 3, 3));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 4, 0, 3, 5));
-        list.add(new PlaceableDecorative(Blocks.LADDER, 4, 0, 3, 7));
+        list.add(new PlaceableGirafi(Blocks.LADDER, 4, 0, 3, 7));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 4, 0, 3, 9));
-        list.add(new PlaceableDecorative(Blocks.LADDER, 4, 0, 3, 11));
+        list.add(new PlaceableGirafi(Blocks.LADDER, 4, 0, 3, 11));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 4, 0, 3, 13));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 6, 1, 3, 0));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 1, 3, 1));
@@ -459,11 +486,11 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 7, 1, 3, 14));
         list.add(new PlaceableBlock(Blocks.GLASS_PANE, 0, 2, 3, 1));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 2, 3, 2));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 1, 2, 3, 3));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 1, 2, 3, 3));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 2, 3, 4));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 2, 3, 5));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 2, 3, 6));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 1, 2, 3, 7));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 1, 2, 3, 7));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 2, 3, 8));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 3, 2, 3, 9));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 2, 3, 10));
@@ -471,9 +498,9 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableItemFrame(new ItemStack(Items.MUSHROOM_STEW, 1, 0), 0, EnumFacing.EAST, 2, 3, 11, LootStrings.CAFE_FRAME));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 2, 3, 12));
         list.add(new PlaceableBlock(Blocks.GLASS_PANE, 0, 2, 3, 13));
-        list.add(new PlaceableDecorative(Blocks.LADDER, 2, 3, 3, 0));
+        list.add(new PlaceableGirafi(Blocks.LADDER, 2, 3, 3, 0));
         list.add(new PlaceableBlock(Blocks.PLANKS, 1, 3, 3, 1));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 3, 3, 3, 2));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 3, 3, 3, 2));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 3, 3, 3));
         list.add(new PlaceableBlock(Blocks.STONE_BRICK_STAIRS, 4, 3, 3, 4));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 3, 3, 5));
@@ -487,16 +514,16 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 3, 11));
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 1, 3, 3, 12));
         list.add(new PlaceableBlock(Blocks.PLANKS, 1, 3, 3, 13));
-        list.add(new PlaceableDecorative(Blocks.LADDER, 3, 3, 3, 14));
+        list.add(new PlaceableGirafi(Blocks.LADDER, 3, 3, 3, 14));
         list.add(new PlaceableBlock(Blocks.GLASS_PANE, 0, 4, 3, 1));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 3, 2));
         list.add(new PlaceableBlock(Blocks.STONE_BRICK_STAIRS, 2, 4, 3, 3));
         list.add(new PlaceableBlock(Blocks.STONE_BRICK_STAIRS, 6, 4, 3, 4));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 4, 3, 5));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 2, 4, 3, 6));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 2, 4, 3, 6));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 3, 7));
         list.add(new PlaceablePainting("Wasteland", EnumFacing.WEST, 4, 3, 7));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 2, 4, 3, 8));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 2, 4, 3, 8));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 3, 4, 3, 9));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 3, 10));
         list.add(new PlaceableItemFrame(new ItemStack(Items.MUSHROOM_STEW, 1, 0), 0, EnumFacing.SOUTH, 4, 3, 10, LootStrings.CAFE_FRAME));
@@ -513,14 +540,14 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.PLANKS, 1, 5, 3, 7));
         list.add(new PlaceableBlock(Blocks.PLANKS, 1, 5, 3, 8));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 5, 3, 9));
-        list.add(new PlaceableDecorative(Blocks.LADDER, 3, 5, 3, 10));
+        list.add(new PlaceableGirafi(Blocks.LADDER, 3, 5, 3, 10));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 5, 3, 11));
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 1, 5, 3, 12));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 5, 3, 13));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 7, 5, 3, 14));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 5, 6, 3, 1));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 6, 3, 2));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 1, 6, 3, 3));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 1, 6, 3, 3));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 6, 3, 4));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 5, 6, 3, 5));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 2, 6, 3, 6));
@@ -538,14 +565,14 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.AIR, 0, 7, 3, 5));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 7, 3, 6));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 7, 3, 7));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 4, 7, 3, 8));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 4, 7, 3, 8));
         list.add(new PlaceableBlock(Blocks.PLANKS, 1, 7, 3, 9));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 7, 3, 10));
         list.add(new PlaceableItemFrame(new ItemStack(Items.MUSHROOM_STEW, 1, 0), 0, EnumFacing.SOUTH, 7, 3, 10, LootStrings.CAFE_FRAME));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 7, 3, 11));
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 1, 7, 3, 12));
         list.add(new PlaceableBlock(Blocks.PLANKS, 1, 7, 3, 13));
-        list.add(new PlaceableDecorative(Blocks.LADDER, 3, 7, 3, 14));
+        list.add(new PlaceableGirafi(Blocks.LADDER, 3, 7, 3, 14));
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 13, 8, 3, 1));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 8, 3, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 8, 3, 3));
@@ -575,14 +602,14 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.LOG, 1, 9, 3, 13));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 7, 9, 3, 14));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 5, 10, 3, 9));
-        list.add(new PlaceableDecorative(Blocks.LADDER, 5, 10, 3, 11));
+        list.add(new PlaceableGirafi(Blocks.LADDER, 5, 10, 3, 11));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 5, 10, 3, 13));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 0, 4, 1));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 2, 0, 4, 3));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 2, 0, 4, 3));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 0, 4, 5));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 2, 0, 4, 7));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 2, 0, 4, 7));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 0, 4, 9));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 2, 0, 4, 11));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 2, 0, 4, 11));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 0, 4, 13));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 1, 4, 0));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 14, 1, 4, 1));
@@ -612,7 +639,7 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 5, 2, 4, 11));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 5, 2, 4, 12));
         list.add(new PlaceableBlock(Blocks.LOG, 5, 2, 4, 13));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 4, 3, 4, 0));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 4, 3, 4, 0));
         list.add(new PlaceableBlock(Blocks.LOG, 5, 3, 4, 1));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 4, 2));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 3, 4, 3));
@@ -626,7 +653,7 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 13, 3, 4, 11));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 6, 3, 4, 12));
         list.add(new PlaceableBlock(Blocks.LOG, 5, 3, 4, 13));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 3, 3, 4, 14));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 3, 3, 4, 14));
         list.add(new PlaceableBlock(Blocks.LOG, 5, 4, 4, 1));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 4, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 4, 3));
@@ -708,17 +735,17 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 5, 10, 4, 12));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 10, 4, 13));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 0, 0, 5, 1));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 14, 0, 5, 2));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 14, 0, 5, 3));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 14, 0, 5, 4));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 14, 0, 5, 2));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 14, 0, 5, 3));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 14, 0, 5, 4));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 0, 0, 5, 5));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 14, 0, 5, 6));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 14, 0, 5, 7));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 14, 0, 5, 8));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 14, 0, 5, 6));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 14, 0, 5, 7));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 14, 0, 5, 8));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 0, 0, 5, 9));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 14, 0, 5, 10));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 14, 0, 5, 11));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 14, 0, 5, 12));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 14, 0, 5, 10));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 14, 0, 5, 11));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 14, 0, 5, 12));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 0, 0, 5, 13));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 2, 1, 5, 0));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 1, 5, 1));
@@ -735,22 +762,22 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 14, 1, 5, 12));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 1, 5, 13));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 3, 1, 5, 14));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 12, 2, 5, 0));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 12, 2, 5, 0));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 14, 2, 5, 1));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 15, 2, 5, 2));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 15, 2, 5, 3));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 15, 2, 5, 4));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 15, 2, 5, 5));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 15, 2, 5, 2));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 15, 2, 5, 3));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 15, 2, 5, 4));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 15, 2, 5, 5));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 3, 2, 5, 6));
         list.add(new PlaceableBlock(Blocks.GLASS_PANE, 0, 2, 5, 7));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 2, 2, 5, 8));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 15, 2, 5, 9));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 15, 2, 5, 9));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 3, 2, 5, 10));
         list.add(new PlaceableBlock(Blocks.GLASS_PANE, 0, 2, 5, 11));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 2, 2, 5, 12));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 14, 2, 5, 13));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 13, 2, 5, 14));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 12, 3, 5, 0));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 13, 2, 5, 14));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 12, 3, 5, 0));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 14, 3, 5, 1));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 5, 2));
         list.add(new PlaceableBlock(Blocks.STONE_SLAB, 5, 3, 5, 3));
@@ -768,22 +795,22 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 5, 12));
         list.add(new PlaceableItemFrame(null, 0, EnumFacing.EAST, 3, 5, 12));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 14, 3, 5, 13));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 13, 3, 5, 14));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 12, 4, 5, 0));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 13, 3, 5, 14));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 12, 4, 5, 0));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 14, 4, 5, 1));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 14, 4, 5, 2));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 14, 4, 5, 3));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 14, 4, 5, 4));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 14, 4, 5, 2));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 14, 4, 5, 3));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 14, 4, 5, 4));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 4, 4, 5, 5));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 9, 4, 5, 6));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 9, 4, 5, 6));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 4, 4, 5, 7));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 4, 4, 5, 8));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 4, 4, 5, 9));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 6, 4, 5, 10));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 6, 4, 5, 10));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 5, 11));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 14, 4, 5, 12));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 14, 4, 5, 12));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 14, 4, 5, 13));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 13, 4, 5, 14));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 13, 4, 5, 14));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 2, 5, 5, 0));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 5, 5, 1));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 14, 5, 5, 2));
@@ -796,27 +823,27 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.AIR, 0, 5, 5, 8));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 5, 5, 9));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 14, 5, 5, 10));
-        list.add(new PlaceableDecorative(Blocks.OAK_DOOR, 4, 5, 5, 11));
+        list.add(new PlaceableGirafi(Blocks.OAK_DOOR, 4, 5, 5, 11));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 14, 5, 5, 12));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 5, 5, 13));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 3, 5, 5, 14));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 1, 6, 5, 1));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 7, 6, 5, 2));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 7, 6, 5, 3));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 7, 6, 5, 4));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 7, 6, 5, 2));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 7, 6, 5, 3));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 7, 6, 5, 4));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 6, 5, 5));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 14, 6, 5, 6));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 14, 6, 5, 7));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 14, 6, 5, 8));
         list.add(new PlaceableBlock(Blocks.LOG, 5, 6, 5, 9));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 15, 6, 5, 10));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 15, 6, 5, 10));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 6, 5, 11));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 15, 6, 5, 12));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 15, 6, 5, 12));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 6, 5, 13));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 6, 5, 14));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 7, 7, 5, 6));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 7, 7, 5, 7));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 7, 7, 5, 8));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 7, 7, 5, 6));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 7, 7, 5, 7));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 7, 7, 5, 8));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 7, 5, 9));
         list.add(new PlaceableNPC("liara", new BlockPos(7, 5, 10)));
         npc_offsets.put(TownData.LIARA, new PlaceableNPC("", new BlockPos(7, 5, 10)));
@@ -835,11 +862,11 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableFlowerPot(Blocks.FLOWER_POT, 4, 8, 5, 13));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 8, 5, 14));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 2, 9, 5, 8));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 2, 9, 5, 9));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 2, 9, 5, 9));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 3, 9, 5, 10));
         list.add(new PlaceableBlock(Blocks.GLASS_PANE, 0, 9, 5, 11));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 2, 9, 5, 12));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 2, 9, 5, 13));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 2, 9, 5, 13));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 3, 9, 5, 14));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 1, 10, 5, 9));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 10, 5, 10));
@@ -848,11 +875,11 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 10, 5, 12));
         list.add(new PlaceableItemFrame(null, 0, EnumFacing.EAST, 10, 5, 12));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 1, 10, 5, 13));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 2, 0, 6, 1));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 2, 0, 6, 5));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 2, 0, 6, 9));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 2, 0, 6, 13));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 4, 1, 6, 0));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 2, 0, 6, 1));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 2, 0, 6, 5));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 2, 0, 6, 9));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 2, 0, 6, 13));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 4, 1, 6, 0));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 1, 6, 1));
         list.add(new PlaceableBlock(Blocks.GLASS_PANE, 0, 1, 6, 2));
         list.add(new PlaceableBlock(Blocks.GLASS_PANE, 0, 1, 6, 3));
@@ -866,7 +893,7 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.GLASS_PANE, 0, 1, 6, 11));
         list.add(new PlaceableBlock(Blocks.GLASS_PANE, 0, 1, 6, 12));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 1, 6, 13));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 3, 1, 6, 14));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 3, 1, 6, 14));
         list.add(new PlaceableBlock(Blocks.GLASS_PANE, 0, 2, 6, 1));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 2, 6, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 2, 6, 3));
@@ -908,7 +935,7 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 6, 11));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 6, 12));
         list.add(new PlaceableBlock(Blocks.GLASS_PANE, 0, 4, 6, 13));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 4, 5, 6, 0));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 4, 5, 6, 0));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 5, 6, 1));
         list.add(new PlaceableBlock(Blocks.GLASS_PANE, 0, 5, 6, 2));
         list.add(new PlaceableBlock(Blocks.GLASS_PANE, 0, 5, 6, 3));
@@ -919,20 +946,20 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.AIR, 0, 5, 6, 8));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 5, 6, 9));
         list.add(new PlaceableBlock(Blocks.PLANKS, 1, 5, 6, 10));
-        list.add(new PlaceableDecorative(Blocks.OAK_DOOR, 8, 5, 6, 11));
+        list.add(new PlaceableGirafi(Blocks.OAK_DOOR, 8, 5, 6, 11));
         list.add(new PlaceableBlock(Blocks.PLANKS, 1, 5, 6, 12));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 5, 6, 13));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 3, 5, 6, 14));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 1, 6, 6, 1));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 3, 5, 6, 14));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 1, 6, 6, 1));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 6, 6, 5));
         list.add(new PlaceableBlock(Blocks.GLASS_PANE, 0, 6, 6, 6));
         list.add(new PlaceableBlock(Blocks.GLASS_PANE, 0, 6, 6, 7));
         list.add(new PlaceableBlock(Blocks.GLASS_PANE, 0, 6, 6, 8));
         list.add(new PlaceableBlock(Blocks.LOG, 5, 6, 6, 9));
-        list.add(new PlaceableDecorative(Blocks.VINE, 6, 6, 6, 10));
+        list.add(new PlaceableGirafi(Blocks.VINE, 6, 6, 6, 10));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 6, 6, 11));
-        list.add(new PlaceableDecorative(Blocks.VINE, 2, 6, 6, 12));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 1, 6, 6, 13));
+        list.add(new PlaceableGirafi(Blocks.VINE, 2, 6, 6, 12));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 1, 6, 6, 13));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 6, 6, 14));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 7, 6, 9));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 7, 6, 10));
@@ -955,7 +982,7 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 13, 9, 6, 13));
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 13, 9, 6, 14));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 10, 6, 10));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 5, 10, 6, 11));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 5, 10, 6, 11));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 10, 6, 12));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 4, 0, 7, 1));
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 13, 0, 7, 2));
@@ -988,16 +1015,16 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 13, 2, 7, 0));
         list.add(new PlaceableBlock(Blocks.GLASS_PANE, 0, 2, 7, 1));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 2, 7, 2));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 1, 2, 7, 3));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 1, 2, 7, 3));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 2, 7, 4));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 2, 7, 5));
         list.add(new PlaceablePainting("Bomb", EnumFacing.EAST, 2, 7, 5));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 2, 7, 6));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 1, 2, 7, 7));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 1, 2, 7, 7));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 2, 7, 8));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 2, 7, 9));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 2, 7, 10));
-        list.add(new PlaceableDecorative(Blocks.TORCH, 1, 2, 7, 11));
+        list.add(new PlaceableGirafi(Blocks.TORCH, 1, 2, 7, 11));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 2, 7, 12));
         list.add(new PlaceableBlock(Blocks.GLASS_PANE, 0, 2, 7, 13));
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 13, 2, 7, 14));
@@ -1023,11 +1050,11 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 7, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 7, 3));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 7, 4));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 2, 4, 7, 5));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 2, 4, 7, 5));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 7, 6));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 7, 7));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 7, 8));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 2, 4, 7, 9));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 2, 4, 7, 9));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 7, 10));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 7, 11));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 7, 12));
@@ -1080,17 +1107,17 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 5, 9, 7, 11));
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 5, 9, 7, 12));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 0, 8, 1));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 2, 0, 8, 2));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 2, 0, 8, 2));
         list.add(new PlaceableFlowerPot(Blocks.FLOWER_POT, 2, 0, 8, 3));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 2, 0, 8, 4));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 2, 0, 8, 4));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 0, 8, 5));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 2, 0, 8, 6));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 2, 0, 8, 6));
         list.add(new PlaceableFlowerPot(Blocks.FLOWER_POT, 3, 0, 8, 7));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 2, 0, 8, 8));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 2, 0, 8, 8));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 0, 8, 9));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 2, 0, 8, 10));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 2, 0, 8, 10));
         list.add(new PlaceableFlowerPot(Blocks.FLOWER_POT, 0, 0, 8, 11));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 2, 0, 8, 12));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 2, 0, 8, 12));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 0, 8, 13));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 1, 8, 0));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 14, 1, 8, 1));
@@ -1107,21 +1134,21 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.LOG, 9, 1, 8, 12));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 14, 1, 8, 13));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 1, 8, 14));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 4, 2, 8, 0));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 4, 2, 8, 0));
         list.add(new PlaceableBlock(Blocks.LOG, 5, 2, 8, 1));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 2, 8, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 2, 8, 3));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 2, 8, 4));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 15, 2, 8, 5));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 15, 2, 8, 5));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 2, 8, 6));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 2, 8, 7));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 2, 8, 8));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 15, 2, 8, 9));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 15, 2, 8, 9));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 2, 8, 10));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 2, 8, 11));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 2, 8, 12));
         list.add(new PlaceableBlock(Blocks.LOG, 5, 2, 8, 13));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 3, 2, 8, 14));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 3, 2, 8, 14));
         list.add(new PlaceableFlowerPot(Blocks.FLOWER_POT, 0, 3, 8, 0));
         list.add(new PlaceableBlock(Blocks.GLASS_PANE, 0, 3, 8, 1));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 8, 2));
@@ -1137,21 +1164,21 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 8, 12));
         list.add(new PlaceableBlock(Blocks.GLASS_PANE, 0, 3, 8, 13));
         list.add(new PlaceableFlowerPot(Blocks.FLOWER_POT, 1, 3, 8, 14));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 4, 4, 8, 0));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 4, 4, 8, 0));
         list.add(new PlaceableBlock(Blocks.LOG, 5, 4, 8, 1));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 8, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 8, 3));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 8, 4));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 14, 4, 8, 5));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 14, 4, 8, 5));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 8, 6));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 8, 7));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 8, 8));
-        list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 14, 4, 8, 9));
+        list.add(new PlaceableGirafi(Blocks.TRAPDOOR, 14, 4, 8, 9));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 8, 10));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 8, 11));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 8, 12));
         list.add(new PlaceableBlock(Blocks.LOG, 5, 4, 8, 13));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 3, 4, 8, 14));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 3, 4, 8, 14));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 5, 8, 0));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 14, 5, 8, 1));
         list.add(new PlaceableBlock(Blocks.LOG, 9, 5, 8, 2));
@@ -1168,17 +1195,17 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 14, 5, 8, 13));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 5, 8, 14));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 6, 8, 1));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 1, 6, 8, 2));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 1, 6, 8, 2));
         list.add(new PlaceableFlowerPot(Blocks.FLOWER_POT, 0, 6, 8, 3));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 1, 6, 8, 4));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 1, 6, 8, 4));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 6, 8, 5));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 1, 6, 8, 6));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 1, 6, 8, 6));
         list.add(new PlaceableFlowerPot(Blocks.FLOWER_POT, 0, 6, 8, 7));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 1, 6, 8, 8));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 1, 6, 8, 8));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 6, 8, 9));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 1, 6, 8, 10));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 1, 6, 8, 10));
         list.add(new PlaceableFlowerPot(Blocks.FLOWER_POT, 4, 6, 8, 11));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 1, 6, 8, 12));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 1, 6, 8, 12));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 6, 8, 13));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 0, 0, 9, 1));
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 5, 0, 9, 2));
@@ -1223,7 +1250,7 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 5, 2, 9, 12));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 1, 2, 9, 13));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 5, 2, 9, 14));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 4, 3, 9, 0));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 4, 3, 9, 0));
         list.add(new PlaceableBlock(Blocks.LOG, 5, 3, 9, 1));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 9, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 9, 3));
@@ -1237,7 +1264,7 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 9, 11));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 9, 12));
         list.add(new PlaceableBlock(Blocks.LOG, 5, 3, 9, 13));
-        list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 3, 3, 9, 14));
+        list.add(new PlaceableGirafi(Blocks.WOODEN_BUTTON, 3, 3, 9, 14));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 4, 4, 9, 0));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 0, 4, 9, 1));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 4, 4, 9, 2));
@@ -1357,27 +1384,6 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 1, 4, 11, 5));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 1, 4, 11, 9));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 1, 4, 11, 13));
-    }
-
-    @Override
-    public long getCost() {
-        return 8800L;
-    }
-
-    @Override
-    public int getWoodCount() {
-        return 320;
-    }
-
-    @Override
-    public int getStoneCount() {
-        return 160;
-    }
-
-    @Override
-    public boolean canBuy(World world, EntityPlayer player) {
-        return HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.miningHill) &&
-                HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.miningHut) &&
-                HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.goddessPond);
+        return this;
     }
 }

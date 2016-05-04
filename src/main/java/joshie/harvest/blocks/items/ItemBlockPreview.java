@@ -1,5 +1,6 @@
 package joshie.harvest.blocks.items;
 
+import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.buildings.Building;
 import joshie.harvest.core.util.base.ItemBlockHFBase;
@@ -20,7 +21,7 @@ public class ItemBlockPreview extends ItemBlockHFBase implements ICreativeSorted
     @Override
     public String getName(ItemStack stack) {
         if (stack.getItemDamage() >= Building.buildings.size()) return "invalid";
-        Building group = Building.buildings.get(stack.getItemDamage());
+        IBuilding group = Building.buildings.get(stack.getItemDamage());
         if (group != null) {
             return group.getName();
         } else return "invalid";

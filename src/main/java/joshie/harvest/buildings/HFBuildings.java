@@ -1,39 +1,35 @@
 package joshie.harvest.buildings;
 
+import joshie.harvest.HarvestFestival;
+import joshie.harvest.api.buildings.IBuilding;
+import org.apache.logging.log4j.Level;
+
 public class HFBuildings {
-    public static Building barn;
-    public static Building blacksmith;
-    public static Building cafe;
-    public static Building carpenter;
-    public static Building church;
-    public static Building clockmaker;
-    public static Building fishingHole;
-    public static Building fishingHut;
-    public static Building goddessPond;
-    public static Building miningHill;
-    public static Building miningHut;
-    public static Building poultryFarm;
-    public static Building supermarket;
-    public static Building townhall;
+    public static final IBuilding barn = new BuildingBarn();
+    public static final IBuilding blacksmith = new BuildingBlacksmith();
+    public static final IBuilding cafe = new BuildingCafe();
+    public static final IBuilding carpenter = new BuildingCarpenter();
+    public static final IBuilding church = new BuildingChurch();
+    public static final IBuilding clockmaker = new BuildingClockmaker();
+    public static final IBuilding fishingHole = new BuildingFishingHole();
+    public static final IBuilding fishingHut = new BuildingFishingHut();
+    public static final IBuilding goddessPond = new BuildingGoddess();
+    public static final IBuilding miningHill = new BuildingMiningHill();
+    public static final IBuilding miningHut = new BuildingMiningHut();
+    public static final IBuilding poultryFarm = new BuildingPoultryFarm();
+    public static final IBuilding supermarket = new BuildingSupermarket();
+    public static final IBuilding townhall = new BuildingTownhall();
 
     public static void preInit() {
-        barn = new BuildingBarn().init();
-        blacksmith = new BuildingBlacksmith().init();
-        cafe = new BuildingCafe().init();
-        carpenter = new BuildingCarpenter().init();
-        church = new BuildingChurch().init();
-        clockmaker = new BuildingClockmaker().init();
-        fishingHole = new BuildingFishingHole().init();
-        fishingHut = new BuildingFishingHut().init();
-        goddessPond = new BuildingGoddess().init();
-        miningHill = new BuildingMiningHill().init();
-        miningHut = new BuildingMiningHut().init();
-        poultryFarm = new BuildingPoultryFarm().init();
-        supermarket = new BuildingSupermarket().init();
-        townhall = new BuildingTownhall().init();
+        HarvestFestival.LOGGER.log(Level.INFO, "Creating Buildings!");
     }
 
-    public static void init() { //TODO Wait for Forge to add support for the new loot tables.
+    public static void init() {
+        for (IBuilding building: Building.buildings) {
+            building.addBlocks();
+        }
+
+
         //Barn Frame
         /*ChestGenHooks.addItem(LootStrings.BARN_FRAME, new WeightedRandomChestContent(new ItemStack(Items.WHEAT), 3, 7, 10));
         ChestGenHooks.addItem(LootStrings.BARN_FRAME, new WeightedRandomChestContent(new ItemStack(Items.CARROT), 3, 7, 10));

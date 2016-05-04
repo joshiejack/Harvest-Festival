@@ -1,7 +1,11 @@
 package joshie.harvest.buildings;
 
+import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.buildings.placeable.Placeable;
-import joshie.harvest.buildings.placeable.blocks.*;
+import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
+import joshie.harvest.buildings.placeable.blocks.PlaceableGirafi;
+import joshie.harvest.buildings.placeable.blocks.PlaceableDoublePlant;
+import joshie.harvest.buildings.placeable.blocks.PlaceableSignWall;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.player.town.TownData;
@@ -15,6 +19,30 @@ import java.util.ArrayList;
 public class BuildingFishingHole extends Building {
     public BuildingFishingHole() {
         super("fishingHole");
+    }
+
+    @Override
+    public long getCost() {
+        return 1000L;
+    }
+
+    @Override
+    public int getWoodCount() {
+        return 16;
+    }
+
+    @Override
+    public int getStoneCount() {
+        return 0;
+    }
+
+    @Override
+    public boolean canBuy(World world, EntityPlayer player) {
+        return HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.fishingHut);
+    }
+
+    @Override
+    public IBuilding addBlocks() {
         list = new ArrayList<Placeable>(162);
         list.add(new PlaceableBlock(Blocks.SANDSTONE, 0, 2, 0, 2));
         list.add(new PlaceableBlock(Blocks.SANDSTONE, 0, 2, 0, 3));
@@ -73,7 +101,7 @@ public class BuildingFishingHole extends Building {
         list.add(new PlaceableBlock(Blocks.WATER, 0, 1, 3, 2));
         list.add(new PlaceableBlock(Blocks.WATER, 0, 1, 3, 3));
         list.add(new PlaceableBlock(Blocks.GRASS, 0, 1, 3, 4));
-        list.add(new PlaceableDecorative(Blocks.VINE, 1, 1, 3, 6));
+        list.add(new PlaceableGirafi(Blocks.VINE, 1, 1, 3, 6));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 1, 3, 7));
         list.add(new PlaceableBlock(Blocks.GRASS, 0, 2, 3, 0));
         list.add(new PlaceableBlock(Blocks.WATER, 0, 2, 3, 1));
@@ -81,7 +109,7 @@ public class BuildingFishingHole extends Building {
         list.add(new PlaceableBlock(Blocks.WATER, 0, 2, 3, 3));
         list.add(new PlaceableBlock(Blocks.WATER, 0, 2, 3, 4));
         list.add(new PlaceableBlock(Blocks.GRASS, 0, 2, 3, 5));
-        list.add(new PlaceableDecorative(Blocks.VINE, 2, 2, 3, 7));
+        list.add(new PlaceableGirafi(Blocks.VINE, 2, 2, 3, 7));
         list.add(new PlaceableBlock(Blocks.GRASS, 0, 3, 3, 0));
         list.add(new PlaceableBlock(Blocks.WATER, 0, 3, 3, 1));
         list.add(new PlaceableBlock(Blocks.WATER, 0, 3, 3, 2));
@@ -120,22 +148,22 @@ public class BuildingFishingHole extends Building {
         list.add(new PlaceableBlock(Blocks.AIR, 0, 1, 4, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 1, 4, 3));
         list.add(new PlaceableBlock(Blocks.TALLGRASS, 1, 1, 4, 4));
-        list.add(new PlaceableDecorative(Blocks.VINE, 1, 1, 4, 6));
+        list.add(new PlaceableGirafi(Blocks.VINE, 1, 1, 4, 6));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 1, 4, 7));
-        list.add(new PlaceableDecorative(Blocks.RED_FLOWER, 3, 2, 4, 0));
+        list.add(new PlaceableGirafi(Blocks.RED_FLOWER, 3, 2, 4, 0));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 2, 4, 1));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 2, 4, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 2, 4, 3));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 2, 4, 4));
         list.add(new PlaceableDoublePlant(Blocks.DOUBLE_PLANT, 3, 2, 4, 5));
-        list.add(new PlaceableDecorative(Blocks.VINE, 2, 2, 4, 7));
+        list.add(new PlaceableGirafi(Blocks.VINE, 2, 2, 4, 7));
         list.add(new PlaceableBlock(Blocks.TALLGRASS, 1, 3, 4, 0));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 4, 1));
-        list.add(new PlaceableDecorative(Blocks.WATERLILY, 0, 3, 4, 2));
+        list.add(new PlaceableGirafi(Blocks.WATERLILY, 0, 3, 4, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 4, 3));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 4, 4));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 4, 5));
-        list.add(new PlaceableDecorative(Blocks.RED_FLOWER, 1, 3, 4, 6));
+        list.add(new PlaceableGirafi(Blocks.RED_FLOWER, 1, 3, 4, 6));
         list.add(new PlaceableDoublePlant(Blocks.DOUBLE_PLANT, 1, 4, 4, 0));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 4, 1));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 4, 2));
@@ -148,14 +176,14 @@ public class BuildingFishingHole extends Building {
         list.add(new PlaceableSignWall(Blocks.WALL_SIGN, 2, 5, 4, 2, new String[]{"", "", "", ""}));
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 9, 5, 4, 3));
         list.add(new PlaceableSignWall(Blocks.WALL_SIGN, 3, 5, 4, 4, new String[]{"", "", "", ""}));
-        list.add(new PlaceableDecorative(Blocks.RED_FLOWER, 6, 5, 4, 5));
+        list.add(new PlaceableGirafi(Blocks.RED_FLOWER, 6, 5, 4, 5));
         list.add(new PlaceableBlock(Blocks.TALLGRASS, 1, 6, 4, 1));
         list.add(new PlaceableSignWall(Blocks.WALL_SIGN, 2, 6, 4, 2, new String[]{"", "", "", ""}));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 4, 6, 4, 3));
         list.add(new PlaceableSignWall(Blocks.WALL_SIGN, 3, 6, 4, 4, new String[]{"", "", "", ""}));
-        list.add(new PlaceableDecorative(Blocks.RED_FLOWER, 3, 6, 4, 5));
+        list.add(new PlaceableGirafi(Blocks.RED_FLOWER, 3, 6, 4, 5));
         list.add(new PlaceableBlock(Blocks.TALLGRASS, 2, 7, 4, 1));
-        list.add(new PlaceableDecorative(Blocks.RED_FLOWER, 6, 7, 4, 2));
+        list.add(new PlaceableGirafi(Blocks.RED_FLOWER, 6, 7, 4, 2));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 1, 7, 4, 3));
         list.add(new PlaceableBlock(Blocks.TALLGRASS, 1, 7, 4, 4));
         list.add(new PlaceableBlock(Blocks.TALLGRASS, 2, 7, 4, 5));
@@ -180,25 +208,6 @@ public class BuildingFishingHole extends Building {
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 1, 0, 6, 4));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 5, 6, 3));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 6, 6, 3));
-    }
-
-    @Override
-    public long getCost() {
-        return 1000L;
-    }
-
-    @Override
-    public int getWoodCount() {
-        return 16;
-    }
-
-    @Override
-    public int getStoneCount() {
-        return 0;
-    }
-
-    @Override
-    public boolean canBuy(World world, EntityPlayer player) {
-        return HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.fishingHut);
+        return this;
     }
 }

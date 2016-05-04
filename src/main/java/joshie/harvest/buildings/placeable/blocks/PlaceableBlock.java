@@ -26,6 +26,10 @@ public class PlaceableBlock extends Placeable {
         return state.getBlock();
     }
 
+    public IBlockState getTransformedState(Mirror mirror, Rotation rotation) {
+        return this.state.withMirror(mirror).withRotation(rotation);
+    }
+
     @Override
     public boolean canPlace(ConstructionStage stage) {
         return stage == ConstructionStage.BUILD;
@@ -38,7 +42,7 @@ public class PlaceableBlock extends Placeable {
     @Override
     public final boolean place (UUID owner, World world, BlockPos pos, Mirror mirror, Rotation rotation) {
         if (!prePlace(owner, world, pos, mirror, rotation)) return false;
-        IBlockState state = this.state.withMirror(mirror).withRotation(rotation);
+        IBlockState state = getTransformedState(mirror, rotation);
         boolean result = world.setBlockState(pos, state, 3);
         if (result) {
             postPlace(owner, world, pos, mirror, rotation);

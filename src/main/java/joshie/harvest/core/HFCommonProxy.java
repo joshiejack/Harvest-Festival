@@ -6,6 +6,7 @@ import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.HFIngredients;
 import joshie.harvest.cooking.HFRecipes;
+import joshie.harvest.core.config.General;
 import joshie.harvest.core.config.HFConfig;
 import joshie.harvest.core.config.HFVanilla;
 import joshie.harvest.crops.HFCrops;
@@ -26,7 +27,10 @@ public class HFCommonProxy {
     protected static final List<Class> LIST = new ArrayList<Class>();
 
     static {
-        LIST.add(HFDebug.class);
+        if (General.DEBUG_MODE) {
+            LIST.add(HFDebug.class);
+        }
+
         LIST.add(HFCore.class);
         LIST.add(HFVanilla.class);
         LIST.add(HFConfig.class);
@@ -49,16 +53,18 @@ public class HFCommonProxy {
     }
 
     public void load(String stage) {
-        //Check stage is client
-        if (stage.contains("Client")) {
-            if (!isClient()) return;
-        }
-
         //Continue
         for (Class c : LIST) {
-            try {
+            try { //Attempt to load default
                 c.getMethod(stage).invoke(null);
             } catch (Exception e) { }
+
+            //Attempt to load client side only
+            if (isClient()) {
+                try { //Attempt to load default
+                    c.getMethod(stage + "Client").invoke(null);
+                } catch (Exception e) {}
+            }
         }
     }
 

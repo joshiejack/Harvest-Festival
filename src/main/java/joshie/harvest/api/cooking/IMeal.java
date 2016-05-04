@@ -1,12 +1,16 @@
 package joshie.harvest.api.cooking;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 
 
 public interface IMeal {
     /** Marks the meal as a drink 
      * @return **/
     IMeal setIsDrink();
+
+    /** Gives this meal a custom resource location **/
+    IMeal setResourceLocation(ResourceLocation resource);
     
     /** @return     the unlocalized name, must be unique*/
     String getUnlocalizedName();
@@ -47,4 +51,7 @@ public interface IMeal {
     public IMeal setHasAltTexture();
 
     boolean hasAltTexture();
+
+    /** Return the resource location for this meal **/
+    ResourceLocation getResource();
 }

@@ -32,9 +32,12 @@ import java.util.HashSet;
 import java.util.List;
 
 public class ItemMeal extends ItemHFBaseMeta implements IMealProvider, ICreativeSorted {
-
     public ItemMeal() {
         super(HFTab.COOKING);
+    }
+
+    public static String getMeal(ItemStack stack) {
+        return stack.getTagCompound().getString("FoodName");
     }
 
     //Irrelevant since we overwrite them, but it needs it specified
@@ -46,7 +49,7 @@ public class ItemMeal extends ItemHFBaseMeta implements IMealProvider, ICreative
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
         if (stack.hasTagCompound()) {
-            return Translate.translate("meal." + stack.getTagCompound().getString("FoodName"));
+            return Translate.translate("meal." + getMeal(stack));
         } else {
             int meta = Math.min(Utensil.values().length - 1, stack.getItemDamage());
             return Text.DARK_GREY + Translate.translate("meal.burnt." + Utensil.values()[meta].name().replace("_", ".").toLowerCase());

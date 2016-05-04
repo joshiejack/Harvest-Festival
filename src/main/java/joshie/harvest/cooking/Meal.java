@@ -2,15 +2,18 @@ package joshie.harvest.cooking;
 
 import joshie.harvest.api.cooking.ICookingComponent;
 import joshie.harvest.api.cooking.IMeal;
+import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.items.HFItems;
 import joshie.harvest.items.ItemMeal;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 
 public class Meal implements IMeal {
     static final ItemStack BURNT = new ItemStack(HFItems.MEAL);
     private static double hunger_modifier = 1.0D;
     private static double saturation_modifier = 1.0D;
 
+    public ResourceLocation resource;
     public String unlocalized;
     public int stamina = 0;
     public int fatigue = 0;
@@ -29,6 +32,7 @@ public class Meal implements IMeal {
         this.hunger = (int) (hunger * hunger_modifier);
         this.saturation = (float) (saturation * saturation_modifier);
         this.eatTime = eatTime;
+        this.resource = new ResourceLocation(HFModInfo.MODID, "meals/" + unlocalized.replace(".", "_"));
     }
 
     public Meal(IMeal meal) {
@@ -42,11 +46,18 @@ public class Meal implements IMeal {
         this.hasAlt = meal.hasAltTexture();
         this.hunger_cap = meal.getHungerCap();
         this.saturation_cap = meal.getSaturationCap();
+        this.resource = meal.getResource();
     }
 
     @Override
     public IMeal setIsDrink() {
         this.isLiquid = true;
+        return this;
+    }
+
+    @Override
+    public IMeal setResourceLocation(ResourceLocation resource) {
+        this.resource = resource;
         return this;
     }
 
@@ -59,6 +70,11 @@ public class Meal implements IMeal {
     @Override
     public boolean hasAltTexture() {
         return hasAlt;
+    }
+
+    @Override
+    public ResourceLocation getResource() {
+        return resource;
     }
 
     @Override

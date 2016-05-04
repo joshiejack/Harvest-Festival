@@ -1,7 +1,6 @@
 package joshie.harvest;
 
 import joshie.harvest.core.HFCommonProxy;
-import joshie.harvest.core.HFRecipeFixes;
 import joshie.harvest.core.commands.CommandManager;
 import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
@@ -32,7 +31,6 @@ public class HarvestFestival {
     public void preInit(FMLPreInitializationEvent event) {
         root = new File(event.getModConfigurationDirectory() + File.separator + MODID);
         proxy.load("preInit");
-        proxy.load("preInitClient");
     }
 
     @EventHandler
@@ -43,13 +41,11 @@ public class HarvestFestival {
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         proxy.load("postInit");
-        proxy.load("initClient");
     }
 
     @EventHandler
     public void onLoadComplete(FMLLoadCompleteEvent event) {
         proxy.load("complete");
-        HFRecipeFixes.complete();
     }
 
     @EventHandler

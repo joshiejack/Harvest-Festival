@@ -1,24 +1,16 @@
 package joshie.harvest.core.util;
 
 import joshie.harvest.calendar.WeatherProvider;
-import net.minecraft.world.WorldProvider;
+import net.minecraft.world.DimensionType;
 import net.minecraftforge.common.DimensionManager;
-
-import java.lang.reflect.Field;
-import java.util.Hashtable;
 
 //STOLEN FROM THE ALLMIGHTY CHYLEX
 public class WorldDestroyer {
+    public static DimensionType seasons = DimensionType.register("seasons", "seasons", 3, WeatherProvider.class, true);
+
     @SuppressWarnings("unchecked")
     public static void replaceWorldProvider() {
-        try {
-            Field f = DimensionManager.class.getDeclaredField("providers");
-            f.setAccessible(true); // let it throw NPE if the field isn't found
-            Hashtable<Integer, Class<? extends WorldProvider>> providers = (Hashtable<Integer, Class<? extends WorldProvider>>) f.get(null);
-            providers.put(0, WeatherProvider.class);
-            f.set(null, providers);
-        } catch (Exception e) {
-            throw new RuntimeException("Could not override the DimensionManager providers!", e);
-        }
+        DimensionManager.unregisterDimension(0);
+        DimensionManager.registerDimension(0, seasons);
     }
 }

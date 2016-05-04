@@ -21,13 +21,16 @@ public class HFTrackers {
     private static final CalendarServer TEMP_CALENDAR = new CalendarServer();
 
     @SideOnly(Side.CLIENT)
-    private static ClientHandler theClient;
+    private static SideHandler theClient;
     private static ServerHandler theServer;
-    
-    public static void reset(World world) {
-        if (world != null) {
-            theServer = (new ServerHandler(world));
-        } else theClient = new ClientHandler();
+
+    public static void resetServer(World world) {
+        theServer = (new ServerHandler(world));
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static void resetClient() {
+        theClient = new ClientHandler();
     }
 
     private static SideHandler getHandler() {
@@ -70,7 +73,7 @@ public class HFTrackers {
     
     @SideOnly(Side.CLIENT)
     public static PlayerTrackerClient getClientPlayerTracker() {
-        return theClient.getPlayerTracker();
+        return ((ClientHandler)theClient).getPlayerTracker();
     }
     
     public static PlayerTrackerServer getServerPlayerTracker(EntityPlayer player) {

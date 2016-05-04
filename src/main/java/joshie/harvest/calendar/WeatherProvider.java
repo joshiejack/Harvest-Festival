@@ -176,41 +176,6 @@ public class WeatherProvider extends WorldProviderSurface {
             } else if (worldObj.thunderingStrength < thunderStrength) {
                 worldObj.thunderingStrength += 0.01F;
             }
-            
-            /*
-            if (weather != Weather.SUNNY) {
-                
-            }
-            
-            if (weather == Weather.SUNNY) {
-                if (worldObj.rainingStrength > 0F) {
-                    worldObj.rainingStrength = worldObj.rainingStrength - 0.01F;
-                }
-            } else if (weather == Weather.DRIZZLE) {
-                if (worldObj.rainingStrength < 0.21F) {
-                    worldObj.rainingStrength = worldObj.rainingStrength + 0.01F;
-                } else if (worldObj.rainingStrength > 0.21F) {
-                    worldObj.rainingStrength = worldObj.rainingStrength - 0.01F;
-                }
-            } else if (weather == Weather.RAIN || weather == Weather.SNOW) {
-                if (worldObj.rainingStrength < 1F) {
-                    worldObj.rainingStrength = worldObj.rainingStrength + 0.01F;
-                } else if (worldObj.rainingStrength > 1F) {
-                    worldObj.rainingStrength = worldObj.rainingStrength - 0.01F;
-                }
-            } else if (weather == Weather.TYPHOON || weather == Weather.BLIZZARD) {
-                if (worldObj.rainingStrength < 2F) {
-                    worldObj.rainingStrength = worldObj.rainingStrength + 0.01F;
-                }
-            } 
-
-            if (weather == Weather.TYPHOON) {
-                if (worldObj.thunderingStrength < 1F) {
-                    worldObj.thunderingStrength = worldObj.thunderingStrength + 0.01F;
-                }
-            } else if (worldObj.thunderingStrength > 0F) {
-                worldObj.thunderingStrength = worldObj.thunderingStrength - 0.01F;
-            } */
         }
     }
 }

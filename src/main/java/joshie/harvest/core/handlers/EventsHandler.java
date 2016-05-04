@@ -25,7 +25,7 @@ public class EventsHandler {
     public void onLoad(WorldEvent.Load event) {
         World world = event.getWorld();
         if (!world.isRemote && world.provider.getDimension() == 0) {
-            HFTrackers.reset(world);
+            HFTrackers.resetServer(world);
         }
     }
 
@@ -34,7 +34,7 @@ public class EventsHandler {
     @SubscribeEvent
     public void onOpenGui(GuiOpenEvent event) {
         if (event.getGui() instanceof GuiWorldSelection || event.getGui() instanceof GuiMultiplayer) {
-            HFTrackers.reset(null);
+            HFTrackers.resetClient();
         }
     }
 

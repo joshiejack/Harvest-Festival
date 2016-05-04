@@ -196,7 +196,7 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
     @Override
     public void readEntityFromNBT(NBTTagCompound nbt) {
         super.readEntityFromNBT(nbt);
-        npc = HFApi.NPC.get(nbt.getString("MOVEIN"));
+        npc = HFApi.NPC.get(nbt.getString("NPC"));
         if (nbt.hasKey("Owner")) {
             owning_player = UUID.fromString(nbt.getString("Owner"));
             tasks.addTask(0, new EntityAISwimming(this));
@@ -220,7 +220,7 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
     public void writeEntityToNBT(NBTTagCompound nbt) {
         super.writeEntityToNBT(nbt);
         if (npc != null) {
-            nbt.setString("MOVEIN", npc.getUnlocalizedName());
+            nbt.setString("NPC", npc.getUnlocalizedName());
         }
 
         if (owning_player != null) {

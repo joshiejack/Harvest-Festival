@@ -39,11 +39,11 @@ public class RelationshipHandlerNPC implements IRelatableDataHandler {
 
     @Override
     public IRelatable readFromNBT(NBTTagCompound tag) {
-        return HFApi.NPC.get(tag.getString("MOVEIN"));
+        return HFApi.NPC.get(tag.getString("NPC"));
     }
 
     @Override
     public void writeToNBT(IRelatable relatable, NBTTagCompound tag) {
-        tag.setString("MOVEIN", ((INPC) relatable).getUnlocalizedName());
+        tag.setString("NPC", ((INPC) relatable).getUnlocalizedName());
     }
 }

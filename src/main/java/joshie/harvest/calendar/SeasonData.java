@@ -15,16 +15,14 @@ public class SeasonData implements ISeasonData {
     private final float celestialAngleOffset;
     private final double[] chances;
     private final String textColor;
-    public final long sunrise;
     public final int seasonColor;
 
-    public SeasonData(Season season, int color, double factor, float angle, long sunrise, String textColor, int seasonColor, double sunny, double rain, double typhoon, double snow, double blizzard) {
+    public SeasonData(Season season, int color, double factor, float angle, String textColor, int seasonColor, double sunny, double rain, double typhoon, double snow, double blizzard) {
         this.season = season;
         this.resource = new ResourceLocation(HFModInfo.MODID, "textures/hud/" + season.name().toLowerCase() + ".png");
         this.skyColor = color;
         this.celestialLengthFactor = factor;
         this.celestialAngleOffset = angle;
-        this.sunrise = sunrise;
         this.textColor = textColor;
         this.seasonColor = seasonColor;
         this.chances = new double[6];

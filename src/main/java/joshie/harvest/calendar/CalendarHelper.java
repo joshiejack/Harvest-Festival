@@ -29,10 +29,10 @@ public class CalendarHelper implements ICalendar {
     private static final EnumMap<Season, SeasonData> data = new EnumMap<Season, SeasonData>(Season.class);
 
     static {
-        data.put(Season.SPRING, new SeasonData(Season.SPRING, 0x87CEFA, 0.6082D, 0.01F, 1850L, LIME, 0x00D900, 80D, 100D, 0D, 0D, 0D));
-        data.put(Season.SUMMER, new SeasonData(Season.SUMMER, 7972863, 0.1D, 0.0011F, 0L, YELLOW, 0xFFFF4D, 95D, 75D, 100D, 0D, 0D));
-        data.put(Season.AUTUMN, new SeasonData(Season.AUTUMN, 0x8CBED6, 1.0D, -0.0325F, 2400L, ORANGE, 0x8C4600, 50D, 100D, 0D, 0D, 0D));
-        data.put(Season.WINTER, new SeasonData(Season.WINTER, 0xFFFFFF, 1.35D, -0.09F, 2950L, INDIGO, 0xFFFFFF, 45D, 0D, 0D, 90D, 100D));
+        data.put(Season.SPRING, new SeasonData(Season.SPRING, 0x87CEFA, 0.65D, 0.0F, LIME, 0x00D900, 80D, 100D, 0D, 0D, 0D));
+        data.put(Season.SUMMER, new SeasonData(Season.SUMMER, 7972863, 0.4D, 0.0011F, YELLOW, 0xFFFF4D, 95D, 75D, 100D, 0D, 0D));
+        data.put(Season.AUTUMN, new SeasonData(Season.AUTUMN, 0x8CBED6, 1.08D, -0.07F, ORANGE, 0x8C4600, 50D, 100D, 0D, 0D, 0D));
+        data.put(Season.WINTER, new SeasonData(Season.WINTER, 0xFFFFFF, 1.56D, -0.1375F, INDIGO, 0xFFFFFF, 45D, 0D, 0D, 90D, 100D));
     }
 
     @Override

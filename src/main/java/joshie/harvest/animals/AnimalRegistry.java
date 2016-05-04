@@ -19,7 +19,7 @@ public class AnimalRegistry implements IAnimalHandler {
     private static final HashMap<SafeStack, AnimalFoodType> registry = new HashMap<SafeStack, AnimalFoodType>();
 
     //Internal Convenience method
-    public static void registerFoodsAsType(AnimalFoodType type, Item... items) {
+    static void registerFoodsAsType(AnimalFoodType type, Item... items) {
         for (Item item : items) {
             HFApi.ANIMALS.registerFoodAsType(new ItemStack(item, 1, OreDictionary.WILDCARD_VALUE), type);
         }

@@ -11,50 +11,50 @@ public class ModelHarvestSheep extends ModelBase {
     /**
      * Adult Models
      **/
-    public ModelRenderer bodyTop;
-    public ModelRenderer backRightLeg;
-    public ModelRenderer frontLeftLeg;
-    public ModelRenderer backLeftLeg;
-    public ModelRenderer frontRightLeg;
-    public ModelRenderer bodyLeft;
-    public ModelRenderer bodyBack;
-    public ModelRenderer bodyRight;
-    public ModelRenderer hornLeft;
-    public ModelRenderer body;
-    public ModelRenderer neck;
-    public ModelRenderer hair;
-    public ModelRenderer hornRight;
-    public ModelRenderer earLeft;
-    public ModelRenderer bodyMiddle;
-    public ModelRenderer earRight;
-    public ModelRenderer head;
+    private ModelRenderer bodyTop;
+    private ModelRenderer backRightLeg;
+    private ModelRenderer frontLeftLeg;
+    private ModelRenderer backLeftLeg;
+    private ModelRenderer frontRightLeg;
+    private ModelRenderer bodyLeft;
+    private ModelRenderer bodyBack;
+    private ModelRenderer bodyRight;
+    private ModelRenderer hornLeft;
+    private ModelRenderer body;
+    private ModelRenderer neck;
+    private ModelRenderer hair;
+    private ModelRenderer hornRight;
+    private ModelRenderer earLeft;
+    private ModelRenderer bodyMiddle;
+    private ModelRenderer earRight;
+    private ModelRenderer head;
 
     /**
      * Sheared Models
      **/
-    public ModelRenderer sheared_backRightLeg;
-    public ModelRenderer sheared_frontLeftLeg;
-    public ModelRenderer sheared_backLeftLeg;
-    public ModelRenderer sheared_frontRightLeg;
-    public ModelRenderer sheared_bodyTop;
-    public ModelRenderer sheared_bodyMiddle;
-    public ModelRenderer sheared_tail;
-    public ModelRenderer sheared_hair;
+    private ModelRenderer sheared_backRightLeg;
+    private ModelRenderer sheared_frontLeftLeg;
+    private ModelRenderer sheared_backLeftLeg;
+    private ModelRenderer sheared_frontRightLeg;
+    private ModelRenderer sheared_bodyTop;
+    private ModelRenderer sheared_bodyMiddle;
+    private ModelRenderer sheared_tail;
+    private ModelRenderer sheared_hair;
 
     /**
      * Child Models
      **/
-    public ModelRenderer child_backRightLeg;
-    public ModelRenderer child_frontLeftLeg;
-    public ModelRenderer child_backLeftLeg;
-    public ModelRenderer child_frontRightLeg;
-    public ModelRenderer child_neck;
-    public ModelRenderer child_earLeft;
-    public ModelRenderer child_tail;
-    public ModelRenderer child_earRight;
-    public ModelRenderer child_head;
-    public ModelRenderer child_bodyTop;
-    public ModelRenderer child_bodyMiddle;
+    private ModelRenderer child_backRightLeg;
+    private ModelRenderer child_frontLeftLeg;
+    private ModelRenderer child_backLeftLeg;
+    private ModelRenderer child_frontRightLeg;
+    private ModelRenderer child_neck;
+    private ModelRenderer child_earLeft;
+    private ModelRenderer child_tail;
+    private ModelRenderer child_earRight;
+    private ModelRenderer child_head;
+    private ModelRenderer child_bodyTop;
+    private ModelRenderer child_bodyMiddle;
 
     public ModelHarvestSheep() {
         this.textureWidth = 128;
@@ -240,13 +240,13 @@ public class ModelHarvestSheep extends ModelBase {
         }
     }
 
-    public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
+    private void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;
         modelRenderer.rotateAngleZ = z;
     }
 
-    public void setChildAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity) {
+    private void setChildAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity) {
         this.child_head.rotateAngleX = f4 / (360F / (float) Math.PI);
         this.child_head.rotateAngleY = f3 / (720F / (float) Math.PI);
         this.child_earLeft.rotateAngleX = this.child_head.rotateAngleX;
@@ -261,7 +261,7 @@ public class ModelHarvestSheep extends ModelBase {
         this.child_backRightLeg.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
     }
 
-    public void setAdultAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity) {
+    private void setAdultAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity) {
         this.head.rotateAngleX = f4 / (360F / (float) Math.PI);
         this.head.rotateAngleY = f3 / (720F / (float) Math.PI);
         this.earLeft.rotateAngleX = this.head.rotateAngleX;
@@ -282,7 +282,7 @@ public class ModelHarvestSheep extends ModelBase {
         this.backRightLeg.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
     }
 
-    public void setShearedAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity) {
+    private void setShearedAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity) {
         this.head.rotateAngleX = f4 / (360F / (float) Math.PI);
         this.head.rotateAngleY = f3 / (720F / (float) Math.PI);
         this.earLeft.rotateAngleX = this.head.rotateAngleX;

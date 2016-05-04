@@ -9,29 +9,18 @@ import net.minecraft.nbt.NBTTagCompound;
 public class TownBuilding extends BuildingStage {
     public int dimension;
 
-    public TownBuilding() {
-    }
+    public TownBuilding() {}
 
     public TownBuilding(BuildingStage building, int dimensionId) {
         this.building = building.building;
-        this.n1 = building.n1;
-        this.n2 = building.n2;
-        this.swap = building.swap;
+        this.mirror = building.mirror;
+        this.rotation = building.rotation;
         this.dimension = dimensionId;
         this.pos = building.pos;
     }
 
     public WorldLocation getRealCoordinatesFor(Placeable placeable) {
-        int y = placeable.getY();
-        int x = n1 ? -placeable.getX() : placeable.getX();
-        int z = n2 ? -placeable.getZ() : placeable.getZ();
-        if (swap) {
-            int xClone = x; //Create a copy of X
-            x = z; //Set x to z
-            z = xClone; //Set z to the old value of x
-        }
-
-        return new WorldLocation(dimension, pos.add(x, y, z));
+        return new WorldLocation(dimension, placeable.getTransformedPosition(pos, mirror, rotation));
     }
 
     public WorldLocation getRealCoordinatesFor(String npc_location) {

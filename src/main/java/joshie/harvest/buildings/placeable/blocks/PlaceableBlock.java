@@ -3,62 +3,51 @@ package joshie.harvest.buildings.placeable.blocks;
 import joshie.harvest.buildings.placeable.Placeable;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.UUID;
 
 public class PlaceableBlock extends Placeable {
-    protected Block block;
-    protected int meta;
+    protected IBlockState state;
 
     public PlaceableBlock() {
         super(BlockPos.ORIGIN);
     }
 
-    public PlaceableBlock(BlockPos pos) {
-        super(pos);
-    }
-
     public PlaceableBlock(Block block, int meta, int offsetX, int offsetY, int offsetZ) {
-        this(block, meta, new BlockPos(offsetX, offsetY, offsetZ));
-    }
-
-    public PlaceableBlock(Block block, int meta, BlockPos offsetPos) {
-        super(offsetPos);
-        this.block = block;
-        this.meta = meta;
+        super(new BlockPos(offsetX, offsetY, offsetZ));
+        state = block.getStateFromMeta(meta);
     }
 
     public Block getBlock() {
-        return block;
-    }
-
-    public int getMetaData(boolean n1, boolean n2, boolean swap) {
-        return meta;
-    }
-
-    public IBlockState getBlockState(boolean n1, boolean n2, boolean swap) {
-        return block.getStateFromMeta(meta);
+        return state.getBlock();
     }
 
     @Override
-    public boolean canPlace(PlacementStage stage) {
-        return stage == PlacementStage.BLOCKS;
+    public boolean canPlace(ConstructionStage stage) {
+        return stage == ConstructionStage.BUILD;
+    }
+
+    public boolean prePlace (UUID owner, World world, BlockPos pos, Mirror mirror, Rotation rotation) {
+        return true;
     }
 
     @Override
-    public boolean place(UUID uuid, World world, BlockPos pos, IBlockState state, boolean n1, boolean n2, boolean swap) {
-        if (block == Blocks.AIR && state == Blocks.AIR.getDefaultState()) {
-            return false;
-
+    public final boolean place (UUID owner, World world, BlockPos pos, Mirror mirror, Rotation rotation) {
+        if (!prePlace(owner, world, pos, mirror, rotation)) return false;
+        IBlockState state = this.state.withMirror(mirror).withRotation(rotation);
+        boolean result = world.setBlockState(pos, state, 3);
+        if (result) {
+            postPlace(owner, world, pos, mirror, rotation);
         }
 
-        int meta = getMetaData(n1, n2, swap);
-        world.setBlockState(pos, block.getDefaultState(), 2);
-        return world.setBlockState(pos, state.getBlock().getStateFromMeta(meta), 2);
+        return result;
     }
+
+    public void postPlace (UUID owner, World world, BlockPos pos, Mirror mirror, Rotation rotation) {}
 
     @Override
     public boolean equals(Object obj) {

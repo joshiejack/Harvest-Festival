@@ -15,6 +15,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntitySign;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
@@ -22,13 +23,11 @@ import net.minecraft.world.World;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class CodeGeneratorBuildings {
 
     private World world;
-    private BlockPos pos1, pos2;
     private int x1, y1, z1, x2, y2, z2;
 
     public CodeGeneratorBuildings(World world, int xStart, int yStart, int zStart, int xEnd, int yEnd, int zEnd) {
@@ -41,36 +40,31 @@ public class CodeGeneratorBuildings {
         this.z2 = zStart < zEnd ? zEnd : zStart;
     }
 
-    public CodeGeneratorBuildings(World world, BlockPos posStart, BlockPos posEnd) {
-        this(world, posStart.getX(), posStart.getY(), posStart.getZ(), posEnd.getX(), posEnd.getY(), posEnd.getZ());
-        this.pos1 = posStart;
-        this.pos2 = posEnd;
-    }
-
-    public List<Entity> getEntities(Class<? extends Entity> clazz, BlockPos pos) {
-        IBlockState state = world.getBlockState(pos);
-        return world.getEntitiesWithinAABB(clazz, Blocks.STONE.getCollisionBoundingBox(state, world, pos));
+    public ArrayList<Entity> getEntities(Class clazz, int x, int y, int z) {
+        return (ArrayList<Entity>) world.getEntitiesWithinAABB(clazz, new AxisAlignedBB(new BlockPos(x, y, z)));
     }
 
     public void getCode(boolean air) {
         if (!world.isRemote) {
-            ArrayList<String> ret = new ArrayList<String>();
-            Set<Entity> all = new HashSet<Entity>();
+            ArrayList<String> ret = new ArrayList();
+            Set all = new HashSet();
             int i = 0;
-            for (int y = 0; y <= pos2.getY() - pos1.getY(); y++) {
-                for (int x = 0; x <= pos2.getX() - pos1.getX(); x++) {
-                    for (int z = 0; z <= pos2.getZ() - pos1.getZ(); z++) {
-                        Set<Entity> entityList = new HashSet<Entity>();
-                        entityList.addAll(getEntities(EntityPainting.class, pos1.add(x, y, z)));
-                        entityList.addAll(getEntities(EntityItemFrame.class, pos1.add(x, y, z)));
-                        entityList.addAll(getEntities(EntityNPC.class, pos1.add(x, y, z)));
-                        entityList.addAll(getEntities(EntityNPCBuilder.class, pos1.add(x, y, z)));
-                        //entityList.addAll(getEntities(EntityNPCMiner.class, pos1.add(x, y, z)));
-                        entityList.addAll(getEntities(EntityNPCShopkeeper.class, pos1.add(x, y, z)));
+            for (int y = 0; y <= y2 - y1; y++) {
+                for (int x = 0; x <= x2 - x1; x++) {
+                    for (int z = 0; z <= z2 - z1; z++) {
 
-                        Block block = world.getBlockState(pos1.add(x, y, z)).getBlock();
+                        Set<Entity> entityList = new HashSet();
+                        entityList.addAll(getEntities(EntityPainting.class, x1 + x, y1 + y, z1 + z));
+                        entityList.addAll(getEntities(EntityItemFrame.class, x1 + x, y1 + y, z1 + z));
+                        entityList.addAll(getEntities(EntityNPC.class, x1 + x, y1 + y, z1 + z));
+                        entityList.addAll(getEntities(EntityNPCBuilder.class, x1 + x, y1 + y, z1 + z));
+                        entityList.addAll(getEntities(EntityNPCShopkeeper.class, x1 + x, y1 + y, z1 + z));
+
+                        BlockPos position = new BlockPos(x1 + x, y1 + y, z1 + z);
+                        IBlockState state = world.getBlockState(position);
+                        Block block = state.getBlock();
                         if (block == Blocks.CHEST) {
-                            TileEntityChest chest = (TileEntityChest) world.getTileEntity(pos1.add(x, y, z));
+                            TileEntityChest chest = (TileEntityChest) world.getTileEntity(new BlockPos(x1 + x, y1 + y, z1 + z));
                             String name = chest.getName();
                             String field = name;
                             if (name.startsWith("npc.")) {
@@ -80,15 +74,15 @@ public class CodeGeneratorBuildings {
 
                             String text = "npc_offsets.put(Town." + field.toUpperCase() + ", new PlaceableNPC(\"\", " + x + ", " + y + ", " + z + "));";
                             ret.add(text);
-                            String air2 = PlaceableHelper.getPlaceableBlockString(Blocks.AIR.getDefaultState(), new BlockPos(x, y, z));
+                            String air2 = PlaceableHelper.getPlaceableBlockString(state, new BlockPos(x, y, z));
                             ret.add(air2);
                             continue;
                         }
 
                         if ((block != Blocks.AIR || air || entityList.size() > 0) && block != Blocks.END_STONE) {
-                            IBlockState state = world.getBlockState(pos1.add(x, y, z));
-                            if (block == Blocks.DOUBLE_PLANT && state.getBlock().getMetaFromState(state) >= 8) continue;
-                            TileEntity tile = world.getTileEntity(pos1.add(x, y, z));
+                            int meta = state.getBlock().getMetaFromState(state);
+                            if (block == Blocks.DOUBLE_PLANT && meta >= 8) continue;
+                            TileEntity tile = world.getTileEntity(position);
                             if (tile instanceof IFaceable) {
                                 ret.add(PlaceableHelper.getPlaceableIFaceableString((IFaceable) tile, state, new BlockPos(x, y, z)));
                             } else if (tile instanceof TileEntitySign) {
@@ -106,21 +100,25 @@ public class CodeGeneratorBuildings {
 
                             //Entities
                             if (entityList.size() > 0) {
+                                int l = 0;
                                 for (Entity e : entityList) {
                                     if (!all.contains(e)) {
                                         ret.add(PlaceableHelper.getPlaceableEntityString(e, new BlockPos(x, y, z)));
                                         all.add(e);
                                     }
+
+                                    l++;
                                 }
                             }
+
                             i++;
                         }
                     }
                 }
             }
 
-            List<String> build = new ArrayList<String>();
-            build.add("list = new ArrayList(" + i + ");");
+            ArrayList<String> build = new ArrayList();
+            build.add("list = new ArrayList("+ i + ");");
             build.addAll(ret);
 
             try {

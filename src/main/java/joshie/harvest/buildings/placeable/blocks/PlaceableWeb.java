@@ -1,7 +1,8 @@
 package joshie.harvest.buildings.placeable.blocks;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -13,9 +14,7 @@ public class PlaceableWeb extends PlaceableBlock {
     }
 
     @Override
-    public boolean place(UUID uuid, World world, BlockPos pos, IBlockState state, boolean n1, boolean n2, boolean swap) {
-        if (world.rand.nextInt(3) == 0) {
-            return super.place(uuid, world, pos, state, n1, n2, swap);
-        } else return false;
+    public boolean prePlace (UUID owner, World world, BlockPos pos, Mirror mirror, Rotation rotation) {
+        return world.rand.nextInt() == 3;
     }
 }

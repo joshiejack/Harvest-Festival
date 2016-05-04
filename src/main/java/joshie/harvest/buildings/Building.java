@@ -3,13 +3,14 @@ package joshie.harvest.buildings;
 import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.buildings.placeable.Placeable;
-import joshie.harvest.buildings.placeable.Placeable.PlacementStage;
+import joshie.harvest.buildings.placeable.Placeable.ConstructionStage;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.core.util.BlockAccessPreview;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -64,8 +65,9 @@ public class Building implements IBuilding {
         return tickTime;
     }
 
+    //TODO PREVIEW
     public IBlockAccess getBlockAccess(int worldX, int worldY, int worldZ, boolean n1, boolean n2, boolean swap) {
-        return preview.setCoordinatesAndDirection(worldX, worldY, worldZ, n1, n2, swap);
+        return null;
     }
 
     public int getOffsetY() {
@@ -84,32 +86,16 @@ public class Building implements IBuilding {
         return list;
     }
 
-    public EnumActionResult generate(UUID uuid, World world, BlockPos pos, IBlockState state) {
+    public EnumActionResult generate(UUID uuid, World world, BlockPos pos) {
         if (!world.isRemote) {
-            boolean n1 = world.rand.nextBoolean();
-            boolean n2 = world.rand.nextBoolean();
-            boolean swap = world.rand.nextBoolean();
-
-            /** First loop we place solid blocks **/
-            for (Placeable block : list) {
-                block.place(uuid, world, pos, state, n1, n2, swap, PlacementStage.BLOCKS);
-            }
-
-            /** Second loop we place entities etc. **/
-            for (Placeable block : list) {
-                block.place(uuid, world, pos, state, n1, n2, swap, PlacementStage.ENTITIES);
-            }
-
-            /** Third loop we place torch/ladders etc **/
-            for (Placeable block : list) {
-                block.place(uuid, world, pos, state, n1, n2, swap, PlacementStage.TORCHES);
-            }
-
-            /** Fourth loop we place NPCs **/
-            for (Placeable block : list) {
-                block.place(uuid, world, pos, state, n1, n2, swap, PlacementStage.NPC);
-            }
+            Mirror mirror = Mirror.values()[world.rand.nextInt(3)];
+            Rotation rotation = Rotation.values()[world.rand.nextInt(4)];
+            for (Placeable placeable: list) placeable.place(uuid, world, pos, mirror, rotation, ConstructionStage.BUILD);
+            for (Placeable placeable: list) placeable.place(uuid, world, pos, mirror, rotation, ConstructionStage.PAINT);
+            for (Placeable placeable: list) placeable.place(uuid, world, pos, mirror, rotation, ConstructionStage.DECORATE);
+            for (Placeable placeable: list) placeable.place(uuid, world, pos, mirror, rotation, ConstructionStage.MOVEIN);
         }
+
         return EnumActionResult.SUCCESS;
     }
 

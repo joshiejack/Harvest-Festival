@@ -1,7 +1,8 @@
 package joshie.harvest.buildings.placeable.blocks;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -13,13 +14,12 @@ public class PlaceableDoublePlant extends PlaceableBlock {
     }
 
     @Override
-    public boolean canPlace(PlacementStage stage) {
-        return stage == PlacementStage.TORCHES;
+    public boolean canPlace(ConstructionStage stage) {
+        return stage == ConstructionStage.DECORATE;
     }
 
     @Override
-    public boolean place(UUID uuid, World world, BlockPos pos, IBlockState state, boolean n1, boolean n2, boolean swap) {
-        if (!super.place(uuid, world, pos, state, n1, n2, swap)) return false;
-        else return world.setBlockState(pos.up(), block.getStateFromMeta(8), 2);
+    public void postPlace(UUID uuid, World world, BlockPos pos, Mirror mirror, Rotation rotation) {
+        world.setBlockState(pos.up(), state.getBlock().getStateFromMeta(8), 2);
     }
 }

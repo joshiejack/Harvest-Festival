@@ -42,8 +42,11 @@ public class ItemCheat extends ItemHFBaseMeta {
                     MCClientHelper.addToChat("Setting First Coordinates to " + pos1);
                 }
             }
-        } else if (damage == CODE_GENERATOR) {
-            new CodeGeneratorBuildings(world, pos1, pos2).getCode(player.isSneaking());
+
+            return EnumActionResult.SUCCESS;
+        } else if (damage == CODE_GENERATOR && pos1 != null && pos2 != null) {
+            new CodeGeneratorBuildings(world, pos1.getX(), pos1.getY(), pos1.getZ(), pos2.getX(), pos2.getY(), pos2.getZ()).getCode(player.isSneaking());
+            return EnumActionResult.SUCCESS;
         } else if (damage == RENDER_GENERATOR) {
             new CodeGeneratorRendering().getCode();
         } else if (damage == META_CHECKER) {
@@ -63,7 +66,7 @@ public class ItemCheat extends ItemHFBaseMeta {
             }
         }
 
-        return EnumActionResult.PASS;
+        return EnumActionResult.SUCCESS;
     }
 
     @Override

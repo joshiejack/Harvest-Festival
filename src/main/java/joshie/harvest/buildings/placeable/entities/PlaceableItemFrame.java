@@ -1,66 +1,62 @@
 package joshie.harvest.buildings.placeable.entities;
 
 import joshie.harvest.buildings.placeable.PlaceableHelper;
+import joshie.harvest.core.helpers.LootHelper;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityHanging;
 import net.minecraft.entity.item.EntityItemFrame;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.UUID;
 
+import static net.minecraft.util.EnumFacing.NORTH;
+
 public class PlaceableItemFrame extends PlaceableHanging {
+    private ResourceLocation chestType;
     private ItemStack stack;
     private int rotation;
-    private String chestType;
 
     public PlaceableItemFrame() {
-        super(EnumFacing.DOWN, BlockPos.ORIGIN);
+        super(NORTH, BlockPos.ORIGIN);
     }
 
     public PlaceableItemFrame(ItemStack stack, int rotation, EnumFacing facing, BlockPos offsetPos) {
         super(facing, offsetPos);
-        this.stack = stack;
         this.rotation = rotation;
+        this.stack = stack;
     }
 
     public PlaceableItemFrame(ItemStack stack, int rotation, EnumFacing facing, int offsetX, int offsetY, int offsetZ) {
         this(stack, rotation, facing, new BlockPos(offsetX, offsetY, offsetZ));
     }
 
-    public PlaceableItemFrame(ItemStack stack, int rotation, EnumFacing facing, BlockPos offsetPos, String chestType) {
+    public PlaceableItemFrame(ItemStack stack, int rotation, EnumFacing facing, BlockPos offsetPos, ResourceLocation chestType) {
         this(stack, rotation, facing, offsetPos);
         this.chestType = chestType;
     }
 
-    public PlaceableItemFrame(ItemStack stack, int rotation, EnumFacing facing, int offsetX, int offsetY, int offsetZ, String chestType) {
+    public PlaceableItemFrame(ItemStack stack, int rotation, EnumFacing facing, int offsetX, int offsetY, int offsetZ, ResourceLocation chestType) {
         this(stack, rotation, facing, new BlockPos(offsetX, offsetY, offsetZ), chestType);
     }
 
     @Override
-    public Entity getEntity(UUID uuid, World world, BlockPos pos, boolean n1, boolean n2, boolean swap) {
-        EnumFacing facing = getFacing(n1, n2, swap);
-        EntityItemFrame frame = new EntityItemFrame(world, new BlockPos(getX(pos.getX(), facing), pos.getY(), getZ(pos.getZ(), facing)), EnumFacing.values()[facing.ordinal()]);
+    public EntityHanging getEntityHanging(UUID owner, World world, BlockPos pos, EnumFacing facing) {
+        EntityItemFrame frame = new EntityItemFrame(world, new BlockPos(pos.getX(), pos.getY(), pos.getZ()), facing);
         ItemStack loot = null;
 
         if (stack != null) loot = stack.copy();
         if (chestType != null) {
-            /*try {
-                WeightedRandomChestContent chest = (WeightedRandomChestContent) WeightedRandom.getRandomItem(world.rand, ChestGenHooks.getItems(chestType, world.rand)); //TODO
-                while (loot == null) {
-                    ItemStack[] stacks = ChestGenHooks.generateStacks(world.rand, chest.theItemId, chest.minStackSize, chest.maxStackSize);
-                    if (stacks != null && stacks.length >= 1) {
-                        loot = stacks[0].copy();
-                    }
-                }
-            } catch (IllegalArgumentException e) {
-                e.printStackTrace();
-            }*/
+            EntityPlayer player = world.getPlayerEntityByUUID(owner);
+            loot = LootHelper.getStack(world, player, chestType);
         }
 
         frame.setDisplayedItem(loot);
-        frame.setItemRotation(rotation);
+        frame.setItemRotation(this.rotation);
         return frame;
     }
 
@@ -76,6 +72,7 @@ public class PlaceableItemFrame extends PlaceableHanging {
     @Override
     public String getStringFor(Entity e, BlockPos pos) {
         EntityItemFrame frame = (EntityItemFrame) e;
-        return "list.add(new PlaceableItemFrame(" + getItemStack(frame.getDisplayedItem()) + ", " + frame.getRotation() + ", " + frame.facingDirection + ", " + pos + "));";
+        return "list.add(new PlaceableItemFrame(" + getItemStack(frame.getDisplayedItem()) + ", " + frame.getRotation() + ", EnumFacing." + frame.facingDirection.name().toUpperCase() +
+                ", new BlockPos(" + pos.getX() + ", " + pos.getY() + "," + pos.getZ() + ")));";
     }
 }

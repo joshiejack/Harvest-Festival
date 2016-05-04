@@ -5,7 +5,6 @@ import joshie.harvest.buildings.Building;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.util.base.ItemHFBaseMeta;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
@@ -27,10 +26,10 @@ public class ItemBuilding extends ItemHFBaseMeta implements ICreativeSorted {
     @Override
     public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         Building group = Building.buildings.get(stack.getItemDamage());
-        IBlockState state = world.getBlockState(pos);
         if (group != null) {
-            return group.generate(UUIDHelper.getPlayerUUID(player), world, pos, state);
+            return group.generate(UUIDHelper.getPlayerUUID(player), world, pos);
         }
+
         return EnumActionResult.PASS;
     }
 

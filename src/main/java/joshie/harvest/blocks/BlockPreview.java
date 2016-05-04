@@ -16,10 +16,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumBlockRenderType;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -30,35 +27,33 @@ import java.util.List;
 
 public class BlockPreview extends BlockHFBaseMeta<BlockPreview.Direction> {
     public enum Direction implements IStringSerializable {
-        N1_T__N2_T__SWAP_F(true, true, false),
-        N1_T__N2_T__SWAP_T(true, true, true),
-        N1_T__N2_F__SWAP_F(true, false, false),
-        N1_T__N2_F__SWAP_T(true, false, true),
-        N1_F__N2_F__SWAP_F(false, false, false),
-        N1_F__N2_F__SWAP_T(false, false, true),
-        N1_F__N2_T__SWAP_F(false, true, false),
-        N1_F__N2_T__SWAP_T(false, true, true);
+        MN_R0(Mirror.NONE, Rotation.NONE),
+        MN_R90(Mirror.NONE, Rotation.CLOCKWISE_90),
+        MN_R180(Mirror.NONE, Rotation.CLOCKWISE_180),
+        MN_R270(Mirror.NONE, Rotation.COUNTERCLOCKWISE_90),
+        MLR_R0(Mirror.LEFT_RIGHT, Rotation.NONE),
+        MLR_R90(Mirror.LEFT_RIGHT, Rotation.CLOCKWISE_90),
+        MLR_R180(Mirror.LEFT_RIGHT, Rotation.CLOCKWISE_180),
+        MLR_R270(Mirror.LEFT_RIGHT, Rotation.COUNTERCLOCKWISE_90),
+        MFB_R0(Mirror.FRONT_BACK, Rotation.NONE),
+        MFB_R90(Mirror.FRONT_BACK, Rotation.CLOCKWISE_90),
+        MFB_R180(Mirror.FRONT_BACK, Rotation.CLOCKWISE_180),
+        MFB_R270(Mirror.FRONT_BACK, Rotation.COUNTERCLOCKWISE_90);
 
-        private final boolean N1;
-        private final boolean N2;
-        private final boolean swap;
+        private final Mirror mirror;
+        private final Rotation rotation;
 
-        Direction(boolean N1, boolean N2, boolean swap) {
-            this.N1 = N1;
-            this.N2 = N2;
-            this.swap = swap;
+        Direction(Mirror mirror, Rotation rotation) {
+            this.mirror = mirror;
+            this.rotation = rotation;
         }
 
-        public boolean isN1() {
-            return this.N1;
+        public Mirror getMirror() {
+            return this.mirror;
         }
 
-        public boolean isN2() {
-            return this.N2;
-        }
-
-        public boolean isSwap() {
-            return this.swap;
+        public Rotation getRotation() {
+            return this.rotation;
         }
 
         @Override
@@ -95,7 +90,7 @@ public class BlockPreview extends BlockHFBaseMeta<BlockPreview.Direction> {
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (!player.isSneaking()) {
             int next = getEnumFromState(state).ordinal() + 1;
-            if (next >= 7) {
+            if (next >= 11) {
                 next = 0;
             }
             return world.setBlockState(pos, getStateFromMeta(next), 2);
@@ -105,7 +100,7 @@ public class BlockPreview extends BlockHFBaseMeta<BlockPreview.Direction> {
             EntityNPCBuilder builder = HFTrackers.getPlayerTracker(player).getBuilder(world);
             if (builder != null && !builder.isBuilding()) {
                 builder.setPosition(pos.getX(), pos.getY(), pos.getZ()); //Teleport the builder to the position
-                builder.startBuilding(marker.getBuilding(), pos, direction.isN1(), direction.isN2(), direction.isSwap(), UUIDHelper.getPlayerUUID(player));
+                builder.startBuilding(marker.getBuilding(), pos, direction.getMirror(), direction.getRotation(), UUIDHelper.getPlayerUUID(player));
                 world.setBlockToAir(pos);
                 return true;
             } else return false;

@@ -26,7 +26,7 @@ public class HFConfig {
         initConfig("Calendar");
         initConfig("Cooking");
         initConfig("Crops");
-        initConfig("NPC");
+        initConfig("MOVEIN");
         HFPlugins.loadConfigs();
     }
 

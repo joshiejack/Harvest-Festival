@@ -9,13 +9,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
 public interface INPC extends IRelatable {
-    /** Assigns a shop to this NPC **/
+    /** Assigns a shop to this MOVEIN **/
     public INPC setShop(IShop shop);
 
-    /** Marks this NPC as a builder NPC **/
+    /** Marks this MOVEIN as a builder MOVEIN **/
     public INPC setIsBuilder();
 
-    /** Marks this NPC as a miner NPC **/
+    /** Marks this MOVEIN as a miner MOVEIN **/
     public INPC setIsMiner();
 
     /** Set the height of this npc for rendering purposes **/
@@ -31,17 +31,17 @@ public interface INPC extends IRelatable {
     /** Set whether this npc uses alex skin or not */
     INPC setAlexSkin();
 
-    /** Returns this height of this NPC
+    /** Returns this height of this MOVEIN
      *  This is for rendering purposes **/
     public float getHeight();
 
-    /** Returns this render offset for this NPC**/
+    /** Returns this render offset for this MOVEIN**/
     public float getOffset();
     
-    /** Returns the unlocalised name for this NPC **/
+    /** Returns the unlocalised name for this MOVEIN **/
     public String getUnlocalizedName();
 
-    /** Returns the localised name for this NPC **/
+    /** Returns the localised name for this MOVEIN **/
     public String getLocalizedName();
 
     /** Whether or not this entity type respawns **/
@@ -64,10 +64,10 @@ public interface INPC extends IRelatable {
      * @param player **/
     public String getGreeting(EntityPlayer player);
 
-    /** What this NPC says when they accept a marriage proposal **/
+    /** What this MOVEIN says when they accept a marriage proposal **/
     public String getAcceptProposal();
 
-    /** What this NPC says when they reject a marriage proposal **/
+    /** What this MOVEIN says when they reject a marriage proposal **/
     public String getRejectProposal();
 
     /** Returns a gift thank you message, based on the quality **/

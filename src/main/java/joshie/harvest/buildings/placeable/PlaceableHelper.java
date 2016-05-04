@@ -28,7 +28,7 @@ public class PlaceableHelper {
         if (stack.getItem() != null && stack.getItem() instanceof ItemBlock) {
             Block block = Block.getBlockFromItem(stack.getItem());
             String name = Block.REGISTRY.getNameForObject(block).getResourcePath();
-            String print = "Blocks." + name;
+            String print = "Blocks." + name.toUpperCase();
             if (names.containsKey(name)) {
                 print = names.get(name);
             }
@@ -36,7 +36,7 @@ public class PlaceableHelper {
             return print;
         } else if (stack.getItem() != null) {
             String name = Item.REGISTRY.getNameForObject(stack.getItem()).getResourcePath();
-            String print = "Items." + name;
+            String print = "Items." + name.toUpperCase();
             if (names.containsKey(name)) {
                 print = names.get(name);
             }
@@ -46,48 +46,42 @@ public class PlaceableHelper {
     }
 
     private static String getPrefixString(Block block) {
-        if (block instanceof BlockStairs) {
-            return "Stairs";
-        } else if (block instanceof BlockTorch) {
-            return "Torches";
+        if (block instanceof BlockTorch) {
+            return "Decorative";
         } else if (block instanceof BlockLever) {
-            return "Lever";
+            return "Decorative";
         } else if (block instanceof BlockButton) {
-            return "Button";
+            return "Decorative";
         } else if (block instanceof BlockDoor) {
-            return "Door";
+            return "Decorative";
         } else if (block instanceof BlockLilyPad) {
-            return "Lilypad";
-        } else if (block instanceof BlockFenceGate) {
-            return "Gate";
+            return "Decorative";
+        } else if (block instanceof BlockCocoa) {
+            return "Decorative";
         } else if (block instanceof BlockAnvil) {
-            return "Anvil";
+            return "Decorative";
         } else if (block instanceof BlockFurnace || block instanceof BlockEnderChest) {
             return "Furnace";
         } else if (block instanceof BlockLadder) {
-            return "Ladder";
+            return "Decorative";
         } else if (block instanceof BlockPumpkin) {
-            return "Pumpkin";
+            return "Decorative";
         } else if (block instanceof BlockTrapDoor) {
-            return "TrapDoor";
+            return "Decorative";
         } else if (block instanceof BlockVine) {
-            return "Vine";
-        } else if (block instanceof BlockLog) {
-            return "Log";
-        } else if (block instanceof BlockQuartz) {
-            return "Pillar";
-        } else if (block instanceof BlockDoublePlant) {
+            return "Decorative";
+        }  else if (block instanceof BlockDoublePlant) {
             return "DoublePlant";
         } else if (block instanceof BlockWeb) {
             return "Web";
         } else if (block instanceof BlockFlowerPot) {
             return "FlowerPot";
         } else if (block instanceof BlockMushroom) {
-            return "Mushroom";
+            return "Decorative";
         } else if (block instanceof BlockFlower) {
-            return "Flower";
+            return "Decorative";
         } else if (block instanceof BlockTripWireHook) {
-            return "Tripwire";
+            return "Decorative";
         } else return "Block";
     }
 
@@ -97,7 +91,7 @@ public class PlaceableHelper {
 
     public static String getFloorSignString(ITextComponent[] sign, IBlockState state, BlockPos pos) {
         String text = "new String[] { \"" + sign[0] + "\", \"" + sign[1] + "\", \"" + sign[2] + "\", \"" + sign[3] + "\" } ";
-        return "list.add(new PlaceableSignFloor" + "(Blocks.standing_sign, " + state + ", " + pos + ", " + text + "));";
+        return "list.add(new PlaceableSignFloor" + "(Blocks.STANDING_SIGN, " + state + ", " + pos + ", " + text + "));";
     }
 
     public static String getWallSignString(ITextComponent[] sign, IBlockState state, BlockPos pos) {
@@ -110,21 +104,25 @@ public class PlaceableHelper {
         String print = getBestGuessName(new ItemStack(block));
         if (block == Blocks.OAK_DOOR) print = "Blocks.OAK_DOOR";
         if (block == Blocks.BIRCH_DOOR) print = "Blocks.BIRCH_DOOR";
-        if (block == Blocks.SPRUCE_DOOR) print = "Blocks.spruce_door";
-        if (block == Blocks.JUNGLE_DOOR) print = "Blocks.jungle_door";
-        if (block == Blocks.ACACIA_DOOR) print = "Blocks.acacia_door";
-        if (block == Blocks.DARK_OAK_DOOR) print = "Blocks.dark_oak_door";
-        if (block == Blocks.IRON_DOOR) print = "Blocks.iron_door";
-        if (block == Blocks.STANDING_SIGN) print = "Blocks.standing_sign";
+        if (block == Blocks.SPRUCE_DOOR) print = "Blocks.SPRUCE_DOOR";
+        if (block == Blocks.JUNGLE_DOOR) print = "Blocks.JUNGLE_DOOR";
+        if (block == Blocks.ACACIA_DOOR) print = "Blocks.ACACIA_DOOR";
+        if (block == Blocks.DARK_OAK_DOOR) print = "Blocks.DARK_OAK_DOOR";
+        if (block == Blocks.IRON_DOOR) print = "Blocks.IRON_DOOR";
+        if (block == Blocks.STANDING_SIGN) print = "Blocks.STANDING_SIGN";
         if (block == Blocks.AIR) print = "Blocks.AIR";
         if (block == Blocks.WALL_SIGN) print = "Blocks.WALL_SIGN";
         if (block == Blocks.FLOWER_POT) print = "Blocks.FLOWER_POT";
         if (block == Blocks.CAULDRON) print = "Blocks.CAULDRON";
         if (block == Blocks.REEDS) print = "Blocks.REEDS";
         if (block == Blocks.CAKE) print = "Blocks.CAKE";
+        if (block == Blocks.DOUBLE_WOODEN_SLAB) print = "Blocks.DOUBLE_WOODEN_SLAB";
+        if (block == Blocks.DOUBLE_STONE_SLAB) print = "Blocks.DOUBLE_STONE_SLAB";
+        if (block == Blocks.DOUBLE_STONE_SLAB2) print = "Blocks.DOUBLE_STONE_SLAB2";
+        if (block == Blocks.PURPUR_DOUBLE_SLAB) print = "Blocks.PURPUR_DOUBLE_SLAB";
         if (print.equals("//ITEM NAME")) HarvestFestival.LOGGER.log(Level.INFO, block);
 
-        return "list.add(new Placeable" + getPrefixString(block) + "(" + print + ", " + state + ", " + pos + "));";
+        return "list.add(new Placeable" + getPrefixString(block) + "(" + print + ", " + "" + state.getBlock().getMetaFromState(state) + ", " + pos.getX() + ", " + pos.getY() + ", " + pos.getZ() + "));";
     }
 
     public static String getPlaceableEntityString(Entity entity, BlockPos pos) {

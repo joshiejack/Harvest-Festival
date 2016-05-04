@@ -43,7 +43,7 @@ public class HFNPCs {
     public static INPC POULTRY; //Poultry Farm Owner                 (POULTRY FARM)
 
     public static void preInit() {
-        EntityRegistry.registerModEntity(EntityNPC.class, "NPC", 0, HarvestFestival.instance, 80, 3, true);
+        EntityRegistry.registerModEntity(EntityNPC.class, "MOVEIN", 0, HarvestFestival.instance, 80, 3, true);
         EntityRegistry.registerModEntity(EntityNPCBuilder.class, "NPCBuilder", 2, HarvestFestival.instance, 80, 3, true);
         EntityRegistry.registerModEntity(EntityNPCShopkeeper.class, "NPCShopkeeper", 3, HarvestFestival.instance, 80, 3, true);
         //EntityRegistry.registerModEntity(EntityNPCMiner.class, "NPCMiner", 4, HarvestFestival.instance, 80, 3, true);

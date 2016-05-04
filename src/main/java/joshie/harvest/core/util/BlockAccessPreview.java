@@ -8,6 +8,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.WorldType;
@@ -18,7 +20,8 @@ import java.util.HashMap;
 public class BlockAccessPreview implements IBlockAccess {
     private HashMap<PlaceableBlock, PlaceableBlock> blocks = new HashMap<PlaceableBlock, PlaceableBlock>();
     private int previewX, previewY, previewZ; //The world location of the BASE BLOCK
-    private boolean n1, n2, swap; //Which direction is this building facing?
+    private Mirror mirror;
+    private Rotation rotation;
     private Building building;
 
     public BlockAccessPreview(Building building) {
@@ -31,13 +34,12 @@ public class BlockAccessPreview implements IBlockAccess {
         }
     }
 
-    public BlockAccessPreview setCoordinatesAndDirection(int worldX, int worldY, int worldZ, boolean n1, boolean n2, boolean swap) {
+    public BlockAccessPreview setCoordinatesAndDirection(int worldX, int worldY, int worldZ, Mirror mirror, Rotation rotation) {
         this.previewX = worldX;
         this.previewY = worldY;
         this.previewZ = worldZ;
-        this.n1 = n1;
-        this.n2 = n2;
-        this.swap = swap;
+        this.mirror = mirror;
+        this.rotation = rotation;
         return this;
     }
 
@@ -58,36 +60,7 @@ public class BlockAccessPreview implements IBlockAccess {
 
     @Override
     public IBlockState getBlockState(BlockPos pos) {
-        //This is calling for a blocks metadata at a certain world position
-        int trueX = pos.getX() - previewX; //The real x value is the world value, minus the position
-        int trueY = pos.getY() - previewY - building.getOffsetY(); //The real y value is the world value, minus the height of the current block
-        int trueZ = pos.getZ() - previewZ;
-
-        if (!swap) {
-            if (n1) {
-                trueX = previewX - pos.getX();
-            }
-
-            if (n2) {
-                trueZ = previewZ - pos.getZ();
-            }
-        }
-
-        if (swap) {
-            trueX = pos.getZ() - previewZ;
-            trueZ = pos.getX() - previewX;
-
-            if (n1) {
-                trueX = previewZ - pos.getZ();
-            }
-
-            if (n2) {
-                trueZ = previewX - pos.getX();
-            }
-        }
-
-        PlaceableBlock block = blocks.get(new PlaceableBlock(new BlockPos(trueX, trueY, trueZ)));
-        return block == null ? Blocks.STONE.getDefaultState() : block.getBlockState(n1, n2, swap);
+        return Blocks.STONE.getDefaultState(); //TODO: Rendering the preview
     }
 
     @Override

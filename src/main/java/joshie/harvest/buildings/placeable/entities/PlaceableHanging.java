@@ -1,15 +1,22 @@
 package joshie.harvest.buildings.placeable.entities;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityHanging;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import org.apache.commons.lang3.Validate;
 
-import static net.minecraft.util.EnumFacing.*;
+import java.util.UUID;
 
 public abstract class PlaceableHanging extends PlaceableEntity {
     private EnumFacing facing;
 
     public PlaceableHanging() {
         super(BlockPos.ORIGIN);
+        this.facing = EnumFacing.NORTH;
     }
 
     public PlaceableHanging(EnumFacing facing, BlockPos offsetPos) {
@@ -17,52 +24,24 @@ public abstract class PlaceableHanging extends PlaceableEntity {
         this.facing = facing;
     }
 
-    public EnumFacing getFacing(boolean n1, boolean n2, boolean swap) {
-        if (facing == DOWN) {
-            if (n2) {
-                return swap ? UP : NORTH;
-            } else if (swap) {
-                return SOUTH;
-            }
-        } else if (facing == UP) {
-            if (n1) {
-                return swap ? DOWN : SOUTH;
-            } else if (swap) {
-                return NORTH;
-            }
-        } else if (facing == NORTH) {
-            if (n2) {
-                return swap ? SOUTH : DOWN;
-            } else if (swap) {
-                return UP;
-            }
-        } else if (facing == SOUTH) {
-            if (n1) {
-                return swap ? NORTH : UP;
-            } else if (swap) {
-                return DOWN;
-            }
+    @Override
+    public Entity getEntity(UUID uuid, World world, BlockPos pos, Mirror mirror, Rotation rotation) {
+        EntityHanging entity = getEntityHanging(uuid, world, pos, getFacing(mirror, rotation));
+        if (!entity.onValidSurface()) {
+            EnumFacing opposite = entity.facingDirection.getOpposite();
+            Validate.notNull(opposite);
+            Validate.isTrue(opposite.getAxis().isHorizontal());
+            entity.facingDirection = opposite;
+            entity.prevRotationYaw = entity.rotationYaw = (float)(entity.facingDirection.getHorizontalIndex() * 90);
+            entity.setPosition(entity.posX, entity.posY, entity.posZ);
         }
 
-        return facing;
+        return entity;
     }
 
-    public int getX(int x, EnumFacing facing) {
-        if (facing == UP) {
-            x++;
-        } else if (facing == SOUTH) {
-            x--;
-        }
+    public abstract EntityHanging getEntityHanging(UUID owner, World world, BlockPos pos, EnumFacing facing);
 
-        return x;
-    }
-
-    public int getZ(int z, EnumFacing facing) {
-        if (facing == DOWN) {
-            z--;
-        } else if (facing == NORTH) {
-            z++;
-        }
-        return z;
+    public EnumFacing getFacing(Mirror mirror, Rotation rotation) {
+        return rotation.rotate(mirror.mirror(this.facing));
     }
 }

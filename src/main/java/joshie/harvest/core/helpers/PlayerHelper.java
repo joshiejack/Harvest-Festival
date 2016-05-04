@@ -12,10 +12,6 @@ import java.util.Random;
 public class PlayerHelper {
     private static final Random rand = new Random();
 
-    public static void performTask(EntityPlayer player) {
-        performTask(player, player.getActiveItemStack(), 1D);
-    }
-
     /**
      * Should always be called client and server side
      **/

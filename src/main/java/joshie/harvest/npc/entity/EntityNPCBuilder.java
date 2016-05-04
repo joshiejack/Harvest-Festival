@@ -4,6 +4,8 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.buildings.Building;
 import joshie.harvest.buildings.BuildingStage;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -47,9 +49,9 @@ public class EntityNPCBuilder extends EntityNPCShopkeeper {
         }
     }
 
-    public boolean startBuilding(Building building, BlockPos pos, boolean n1, boolean n2, boolean swap, UUID uuid) {
+    public boolean startBuilding(Building building, BlockPos pos, Mirror mirror, Rotation rotation, UUID uuid) {
         if (!worldObj.isRemote) {
-            this.building = new BuildingStage(uuid, building, pos, n1, n2, swap);
+            this.building = new BuildingStage(uuid, building, pos, mirror, rotation);
         }
 
         return false;

@@ -43,7 +43,7 @@ public class TownData {
     public static final String BLACKSMITH_FRONT = "blacksmithfront";
     public static final String JIM = "jimhome";
     public static final String GODDESS = "goddesspond";
-    //END NPC NAME OF LOCATIONS **/
+    //END MOVEIN NAME OF LOCATIONS **/
     
     protected HashMap<String, TownBuilding> buildings = new HashMap<String, TownBuilding>();
     

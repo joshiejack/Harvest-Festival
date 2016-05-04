@@ -1,33 +1,40 @@
 package joshie.harvest.core.lib;
 
-public class LootStrings {
-    public static final String JADE_CHEST = "CarpenterJadeChest";
-    public static final String YULIF_CHEST = "CarpenterYulifChest";
-    public static final String CARPENTER_FRAME = "CarpenterEntryFrame";
-    public static final String CLOCKMAKER_CHEST = "ClockworkerBedroomChest";
-    public static final String CLOCKMAKER_FRAME = "ClockworkerCraftingFrame";
-    public static final String MARKET_BASEMENT_CHESTS = "MarketBasementChest";
-    public static final String MARKET_BEDROOM_CHESTS = "MarketBedroomChest";
-    public static final String MARKET_BEDROOM_FRAME = "MarketBedroomFrame";
-    public static final String MARKET_ENTRY_FRAME = "MarketEntryFrame";
-    public static final String TOWNHALL_HALL_FRAME = "TownHallHallFrame";
-    public static final String TOWNHALL_MASTER_PRIEST_FRAME = "TownHallMasterBedroomPriestFrame";
-    public static final String TOWNHALL_MASTER_MAYOR_FRAME = "TownHallMasterBedroomMayorFrame";
-    public static final String TOWNHALL_CHILD_FRAME = "TownHallBedroomChildFrame";
-    public static final String TOWNHALL_TEENAGER_FRAME = "TownHallBedroomTeenagerFrame";
-    public static final String TOWNHALL_PASSAGE_CHEST = "TownHallPassageChest";
-    public static final String TOWNHALL_TEENAGER_CHEST = "TownHallBedroomTeenagerChest";
-    public static final String CAFE_CHEST = "CafeKitchenChest";
-    public static final String CAFE_FRAME = "CafeKitchenFrame";
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.storage.loot.LootTableList;
 
-    public static final String MINING_CHEST = "MiningHutLeftWingChest";
-    public static final String MINING_FRAME = "MiningHutRightWingFrame";
-    public static final String POULTRY_CHEST = "PoultryFarmCornerChest";
-    public static final String POULTRY_FRAME = "PoultryFarmCornerFrame";
-    public static final String FISHING_CHEST = "FishingHutEntryChest";
-    public static final String FISHING_FRAME = "FishingHutHouseFrame";
-    public static final String CHURCH_FRAME = "ChurchAltarFrame";
-    public static final String BLACKSMITH_CHEST = "BlacksmithTowerChest";
-    public static final String BLACKSMITH_FRAME = "BlacksmithTowerFrame";
-    public static final String BARN_FRAME = "BarnPenFrame";
+public class LootStrings {
+    public static final ResourceLocation JADE_CHEST = register("chests/carpenter_jade");
+    public static final ResourceLocation YULIF_CHEST = register("chests/carpenter_yulif");
+    public static final ResourceLocation CARPENTER_FRAME = register("frames/carpenter");
+    public static final ResourceLocation CLOCKMAKER_CHEST = register("chests/clockworker_bedroom");
+    public static final ResourceLocation CLOCKMAKER_FRAME = register("frames/clockworker");
+    public static final ResourceLocation MARKET_BASEMENT_CHESTS = register("chests/market_basement");
+    public static final ResourceLocation MARKET_BEDROOM_CHESTS = register("chests/market_bedroom");
+    public static final ResourceLocation MARKET_BEDROOM_FRAME = register("frames/market_bedroom");
+    public static final ResourceLocation MARKET_ENTRY_FRAME = register("frames/market_entry");
+    public static final ResourceLocation TOWNHALL_HALL_FRAME = register("frames/townhall_entry");
+    public static final ResourceLocation TOWNHALL_MASTER_PRIEST_FRAME = register("frames/townhall_priest");
+    public static final ResourceLocation TOWNHALL_MASTER_MAYOR_FRAME = register("frames/townhall_mayor");
+    public static final ResourceLocation TOWNHALL_CHILD_FRAME = register("frames/townhall_child");
+    public static final ResourceLocation TOWNHALL_TEENAGER_FRAME = register("frames/townhall_teenager");
+    public static final ResourceLocation TOWNHALL_PASSAGE_CHEST = register("frames/townhall_passage");
+    public static final ResourceLocation TOWNHALL_TEENAGER_CHEST = register("chests/townhall_teenager");
+    public static final ResourceLocation CAFE_CHEST = register("chests/cafe");
+    public static final ResourceLocation CAFE_FRAME = register("frames/cafe");
+
+    public static final ResourceLocation MINING_CHEST = register("chests/miner");
+    public static final ResourceLocation MINING_FRAME = register("frames/minier");
+    public static final ResourceLocation POULTRY_CHEST = register("chests/poultry");
+    public static final ResourceLocation POULTRY_FRAME = register("frames/poultry");
+    public static final ResourceLocation FISHING_CHEST = register("chests/fishing");
+    public static final ResourceLocation FISHING_FRAME = register("frames/fishing");
+    public static final ResourceLocation CHURCH_FRAME = register("frames/church");
+    public static final ResourceLocation BLACKSMITH_CHEST = register("chests/blacksmith");
+    public static final ResourceLocation BLACKSMITH_FRAME = register("frames/blacksmith");
+    public static final ResourceLocation BARN_FRAME = register("frames/barn");
+
+    private static ResourceLocation register(String id) {
+        return LootTableList.register(new ResourceLocation(HFModInfo.MODID, id));
+    }
 }

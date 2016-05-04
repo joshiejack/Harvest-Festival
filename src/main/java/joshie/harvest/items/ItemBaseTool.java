@@ -22,12 +22,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 
 public abstract class ItemBaseTool extends ItemBaseSingle implements ILevelable, ITiered, ICreativeSorted {
-
     /**
      * Create a tool
      */
     public ItemBaseTool() {
-        setMaxDamage(8);
         setMaxStackSize(1);
         setHasSubtypes(true);
     }

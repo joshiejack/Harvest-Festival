@@ -6,8 +6,6 @@ import joshie.harvest.core.lib.SizeableMeta;
 import joshie.harvest.crops.Crop;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 import org.apache.commons.lang3.text.WordUtils;
 
@@ -55,12 +53,6 @@ public class HFItems {
         if (General.DEBUG_MODE) {
             new ItemCheat().setUnlocalizedName("cheat");
         }
-    }
-
-    @SideOnly(Side.CLIENT)
-    public static void initClient() {
-        //MinecraftForgeClient.registerItemRenderer(HFItems.animal, new RenderItemAnimal());
-        //MinecraftForgeClient.registerItemRenderer(HFItems.spawnerNPC, new RenderItemNPC());
     }
 
     public static Item getSizedItem(SizeableMeta size) {

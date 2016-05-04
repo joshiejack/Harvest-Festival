@@ -16,6 +16,7 @@ import net.minecraftforge.client.GuiIngameForge;
 import net.minecraftforge.event.terraingen.BiomeEvent.GetFoliageColor;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Mouse;
@@ -35,6 +36,7 @@ public class RenderHandler {
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void renderTick(TickEvent.RenderTickEvent event) {
+        if (event.phase != Phase.END) return;
         Minecraft mc = MCClientHelper.getMinecraft();
         GuiScreen gui = mc.currentScreen;
         if (gui instanceof GuiContainer && mc.thePlayer.inventory.getItemStack() == null) {

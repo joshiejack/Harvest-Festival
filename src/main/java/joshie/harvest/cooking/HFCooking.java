@@ -6,11 +6,10 @@ import joshie.harvest.api.cooking.IMeal;
 import joshie.harvest.api.cooking.IMealRecipe;
 import joshie.harvest.cooking.entity.EntityCookingItem;
 import joshie.harvest.cooking.render.MealDefinition;
-import joshie.harvest.core.lib.HFModInfo;
+import joshie.harvest.core.helpers.ModelHelper;
 import joshie.harvest.items.HFItems;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -49,16 +48,14 @@ public class HFCooking {
     @SideOnly(Side.CLIENT)
     public static void initClient() {
         for (IMealRecipe recipe : HFApi.COOKING.getRecipes()) {
-            IMeal best = recipe.getMeal();
-            ResourceLocation resource = best.getResource();
-            ModelResourceLocation model = new ModelResourceLocation(resource, "inventory");
+            IMeal meal = recipe.getMeal();
+            ModelResourceLocation model = new ModelResourceLocation(meal.getResource(), "inventory");
             ModelBakery.registerItemVariants(HFItems.MEAL, model);
-            MealDefinition.registerMeal(best.getUnlocalizedName(), model);
+            MealDefinition.registerMeal(meal.getUnlocalizedName(), model);
         }
 
         for (Utensil utensil: Utensil.values()) {
-            ResourceLocation resource = new ResourceLocation(HFModInfo.MODID, "meals/burnt" + utensil.name());
-            ModelResourceLocation model = new ModelResourceLocation(resource, "inventory");
+            ModelResourceLocation model = ModelHelper.getModelForItem("meals/burnt" + utensil.name());
             ModelBakery.registerItemVariants(HFItems.MEAL, model);
             MealDefinition.registerBurnt(utensil.ordinal(), model);
         }

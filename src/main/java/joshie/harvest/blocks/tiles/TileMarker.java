@@ -40,6 +40,8 @@ public class TileMarker extends TileEntity {
     @Override
     public void writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
-        nbt.setString("Group", group.getName());
+        if (group != null) {
+            nbt.setString("Group", group.getName());
+        }
     }
 }

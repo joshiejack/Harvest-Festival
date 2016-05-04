@@ -27,14 +27,19 @@ public class PacketSyncMarker implements IMessage, IMessageHandler<PacketSyncMar
     @Override
     public void toBytes(ByteBuf buf) {
         location.toBytes(buf);
-        ByteBufUtils.writeUTF8String(buf, group.getName());
+        if (group != null) {
+            buf.writeBoolean(true);
+            ByteBufUtils.writeUTF8String(buf, group.getName());
+        } else buf.writeBoolean(false);
     }
 
     @Override
     public void fromBytes(ByteBuf buf) {
         location = new WorldLocation();
         location.fromBytes(buf);
-        group = Building.getGroup(ByteBufUtils.readUTF8String(buf));
+        if (buf.readBoolean()) {
+            group = Building.getGroup(ByteBufUtils.readUTF8String(buf));
+        }
     }
 
     @Override

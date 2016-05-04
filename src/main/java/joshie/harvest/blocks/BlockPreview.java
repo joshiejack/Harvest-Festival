@@ -95,7 +95,13 @@ public class BlockPreview extends BlockHFBaseMeta<BlockPreview.Direction> {
             if (next >= 11) {
                 next = 0;
             }
-            return world.setBlockState(pos, getStateFromMeta(next), 2);
+
+            IBuilding building =  ((TileMarker)world.getTileEntity(pos)).getBuilding();
+            if (building != null) {
+                world.setBlockState(pos, getStateFromMeta(next), 2);
+                ((TileMarker)world.getTileEntity(pos)).setBuilding(building);
+                return true;
+            } else return false;
         } else {
             Direction direction = getEnumFromState(state);
             TileMarker marker = (TileMarker) world.getTileEntity(pos);

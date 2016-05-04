@@ -53,7 +53,7 @@ public class Building implements IBuilding {
     }
 
     public ItemStack getPreview() {
-        return new ItemStack(HFBlocks.PREVIEW.get(this));
+        return new ItemStack(HFBlocks.PREVIEW, 1, meta);
     }
 
     @Override

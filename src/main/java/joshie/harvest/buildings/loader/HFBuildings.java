@@ -3,13 +3,13 @@ package joshie.harvest.buildings.loader;
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.buildings.IBuilding;
-import joshie.harvest.buildings.BuildingAbstract;
+import joshie.harvest.buildings.Building;
 import joshie.harvest.buildings.BuildingProvider;
 import net.minecraft.util.ResourceLocation;
 import org.apache.logging.log4j.Level;
 
 public class HFBuildings {
-    public static final IBuilding null_building = new BuildingAbstract("null").setProvider(new BuildingProvider());
+    public static final IBuilding null_building = new Building("null").setProvider(new BuildingProvider());
     public static final IBuilding barn = registerBuilding("barn");
     public static final IBuilding blacksmith = registerBuilding("blacksmith");
     public static final IBuilding cafe = registerBuilding("cafe");

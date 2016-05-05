@@ -36,7 +36,7 @@ public class BuildingRegistry implements IBuildingRegistry {
         builder.registerTypeAdapter(ItemStack.class, new StackAdapter());
         builder.registerTypeAdapter(ResourceLocation.class, new ResourceAdapter());
         builder.registerTypeAdapter(TextComponentString.class, new TextComponentAdapter());
-        BuildingAbstract building = builder.create().fromJson(ResourceLoader.getJSONResource(resource, "buildings"), BuildingAbstract.class);
+        Building building = builder.create().fromJson(ResourceLoader.getJSONResource(resource, "buildings"), Building.class);
         if (building != null) {
             building.resource = resource;
             buildings.put(resource, building);

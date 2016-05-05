@@ -32,13 +32,16 @@ public class EntityNPCShopkeeper extends EntityNPC {
         if (!isWorking) {
             if (shop.isOpen(worldObj, null)) {
                 isWorking = true;
-                //setPosition(shopX, shopY, shopZ);
             }
 
             super.updateAITasks();
         } else if (worldObj.getWorldTime() % 200 == 0 && !shop.isOpen(worldObj, null)) {
             isWorking = false;
         }
+    }
+
+    protected void update() {
+
     }
 
     @Override

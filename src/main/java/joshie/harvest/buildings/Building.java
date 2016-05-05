@@ -8,11 +8,8 @@ import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
-import net.minecraft.world.World;
 
-import java.util.List;
-
-public class BuildingAbstract implements IBuilding {
+public class Building implements IBuilding {
     private transient ISpecialPurchaseRules special = new SpecialRulesDefault();
     private transient IBuildingProvider provider;
     private transient String toLocalise;
@@ -26,8 +23,8 @@ public class BuildingAbstract implements IBuilding {
     public long tickTime;
     public Placeable[] components; //Set to null after loading
 
-    public BuildingAbstract(){}
-    public BuildingAbstract(String string) {
+    public Building(){}
+    public Building(String string) {
         resource = new ResourceLocation("harvestfestival", string);
     }
 
@@ -39,10 +36,6 @@ public class BuildingAbstract implements IBuilding {
     @Override
     public ResourceLocation getResource() {
         return resource;
-    }
-
-    public boolean canBuy(World world, EntityPlayer player) {
-        return false;
     }
 
     @Override
@@ -101,19 +94,11 @@ public class BuildingAbstract implements IBuilding {
 
     @Override
     public boolean equals(Object o) {
-        return o instanceof BuildingAbstract && resource != null && resource.equals(((BuildingAbstract) o).resource);
+        return o instanceof Building && resource != null && resource.equals(((Building) o).resource);
     }
 
     @Override
     public int hashCode() {
         return resource == null? 0 : resource.hashCode();
-    }
-
-    public String[] getRequirements() {
-        return new String[] { "miningHill", "miningHut", "goddessPond" };
-    }
-
-    public IBuilding addBlocks(List<Placeable> list) {
-        return this;
     }
 }

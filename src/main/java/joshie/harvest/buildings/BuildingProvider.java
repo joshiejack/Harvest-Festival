@@ -22,11 +22,8 @@ public class BuildingProvider implements IBuildingProvider {
     protected ArrayList<PlaceableBlock> block_list = new ArrayList<PlaceableBlock>();
     protected ArrayList<Placeable> full_list;
     private IBuilding building;
-    private int size;
 
-    public BuildingProvider() {
-        this.building = building;
-    }
+    public BuildingProvider() {}
 
     public void setBuilding(IBuilding building) {
         this.building = building;
@@ -34,13 +31,11 @@ public class BuildingProvider implements IBuildingProvider {
 
     public void setList(ArrayList<Placeable> list) {
         this.full_list = list;
-        this.size = full_list.size();
     }
 
     public void setList(Placeable[] list) {
         this.full_list = new ArrayList<Placeable>();
         Collections.addAll(full_list, list);
-        this.size = full_list.size();
     }
 
     public void addToList(Placeable placeable) {
@@ -77,7 +72,7 @@ public class BuildingProvider implements IBuildingProvider {
 
     @Override
     public int getSize() {
-        return size;
+        return full_list.size();
     }
 
     @Override
@@ -93,8 +88,6 @@ public class BuildingProvider implements IBuildingProvider {
     @Override
     public EnumActionResult generate(UUID uuid, World world, BlockPos pos) {
         if (!world.isRemote && full_list != null) {
-            System.out.println("We're in");
-            System.out.println(full_list.size());;
             Direction direction = Direction.values()[world.rand.nextInt(Direction.values().length)];
             for (Placeable placeable: full_list) placeable.place(uuid, world, pos, direction, ConstructionStage.BUILD);
             for (Placeable placeable: full_list) placeable.place(uuid, world, pos, direction, ConstructionStage.PAINT);

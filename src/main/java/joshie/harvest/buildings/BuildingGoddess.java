@@ -9,18 +9,16 @@ import joshie.harvest.buildings.placeable.blocks.PlaceableDoublePlant;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.player.town.TownData;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.math.BlockPos;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class BuildingGoddess extends Building {
+public class BuildingGoddess extends BuildingAbstract {
     public BuildingGoddess() {
         super("goddessPond");
     }
 
     @Override
-    public IBuilding addBlocks() {
-        list = new ArrayList<Placeable>(1194);
+    public IBuilding addBlocks(List<Placeable> list) {
         list.add(new PlaceableBlock(Blocks.GRASS, 0, 0, 0, 8));
         list.add(new PlaceableBlock(Blocks.GRASS, 0, 0, 0, 9));
         list.add(new PlaceableBlock(Blocks.GRASS, 0, 0, 0, 10));
@@ -741,8 +739,7 @@ public class BuildingGoddess extends Building {
         list.add(new PlaceableDecorative(Blocks.WATERLILY, 0, 12, 3, 7));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 12, 3, 8));
         list.add(new PlaceableDecorative(Blocks.WATERLILY, 0, 12, 3, 9));
-        list.add(new PlaceableNPC("goddess", new BlockPos(12, 3, 10)));
-        npc_offsets.put(TownData.GODDESS, new PlaceableNPC("", new BlockPos(12, 3, 10)));
+        list.add(new PlaceableNPC(TownData.GODDESS, "goddess", 12, 3, 10));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 12, 3, 10));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 12, 3, 11));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 12, 3, 12));

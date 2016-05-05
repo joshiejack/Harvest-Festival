@@ -15,19 +15,21 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class BuildingCarpenter extends Building {
+public class BuildingCarpenter extends BuildingAbstract {
     public BuildingCarpenter() {
         super("carpenter");
     }
 
     @Override
-    public IBuilding addBlocks() {
-        offsetY = -1;
-        list = new ArrayList<Placeable>(373);
+    public int getOffsetY() {
+        return -1;
+    }
+
+    @Override
+    public IBuilding addBlocks(List<Placeable> list) {
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 0, 0, 1));
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 0, 0, 5));
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 1, 0, 0));
@@ -103,7 +105,7 @@ public class BuildingCarpenter extends Building {
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 2, 4, 1, 0));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 4, 1, 1));
         list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 9, 4, 1, 2));
-        npc_offsets.put(TownData.CARPENTER_DOWNSTAIRS, new PlaceableNPC("", new BlockPos(4, 1, 3)));
+        list.add(new PlaceableNPC(TownData.CARPENTER_DOWNSTAIRS, "", 4, 1, 3));
         list.add(new PlaceableBlock(Blocks.CRAFTING_TABLE, 0, 4, 1, 4));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 4, 1, 5));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 3, 4, 1, 6));
@@ -131,7 +133,7 @@ public class BuildingCarpenter extends Building {
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 3, 7, 1, 6));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 1, 8, 1, 1));
         list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 15, 8, 1, 2));
-        npc_offsets.put(TownData.CARPENTER_DOOR, new PlaceableNPC("", new BlockPos(8, 1, 3)));
+        list.add(new PlaceableNPC(TownData.CARPENTER_DOOR, "", 8, 1, 3));
         list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 15, 8, 1, 4));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 1, 8, 1, 5));
         list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 2, 0, 2, 1));
@@ -269,8 +271,7 @@ public class BuildingCarpenter extends Building {
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 4, 4, 0));
         list.add(new PlaceableBlock(Blocks.PLANKS, 3, 4, 4, 1));
         list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 5, 4, 4, 2));
-        list.add(new PlaceableNPC("jade", new BlockPos(4, 4, 3)));
-        npc_offsets.put(TownData.JADE, new PlaceableNPC("", new BlockPos(4, 4, 3)));
+        list.add(new PlaceableNPC(TownData.JADE, "jade", 4, 4, 3));
         list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 4, 4, 4, 4));
         list.add(new PlaceableBlock(Blocks.PLANKS, 3, 4, 4, 5));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 4, 4, 6));

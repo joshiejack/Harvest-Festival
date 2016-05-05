@@ -14,14 +14,18 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class BuildingTownhall extends Building {
+public class BuildingTownhall extends BuildingAbstract {
     public BuildingTownhall() {
         super("townhall");
+    }
+
+    @Override
+    public int getOffsetY() {
+        return -1;
     }
 
     @Override
@@ -47,13 +51,11 @@ public class BuildingTownhall extends Building {
     }
 
     @Override
-    public IBuilding addBlocks() {
-        offsetY = -1;
-        list = new ArrayList<Placeable>(3350);
-        return addBlocks1().addBlocks2();
+    public IBuilding addBlocks(List<Placeable> list) {
+        return addBlocks1(list).addBlocks2(list);
     }
 
-    private BuildingTownhall addBlocks1() {
+    private BuildingTownhall addBlocks1(List<Placeable> list) {
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 0, 0, 1));
         list.add(new PlaceableBlock(Blocks.GRASS, 0, 0, 0, 2));
         list.add(new PlaceableBlock(Blocks.GRASS, 0, 0, 0, 3));
@@ -451,7 +453,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.STONE_BRICK_STAIRS, 2, 4, 1, 1));
         list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 9, 4, 1, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 1, 3));
-        npc_offsets.put(TownData.TOWNHALL_RIGHT_WING, new PlaceableNPC("", new BlockPos(4, 1, 4)));
+        list.add(new PlaceableNPC(TownData.TOWNHALL_RIGHT_WING, "", 4, 1, 4));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 1, 4));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 1, 5));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 1, 6));
@@ -527,7 +529,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.AIR, 0, 7, 1, 13));
         list.add(new PlaceableFlowerPot(Blocks.FLOWER_POT, 3, 7, 1, 14));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 1, 7, 1, 15));
-        npc_offsets.put(TownData.TOWNHALL_LEFT_WING, new PlaceableNPC("", new BlockPos(7, 1, 16)));
+        list.add(new PlaceableNPC(TownData.TOWNHALL_LEFT_WING, "", 7, 1, 16));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 7, 1, 16));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 7, 1, 17));
         list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 8, 7, 1, 18));
@@ -564,7 +566,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableDecorative(Blocks.VINE, 1, 9, 1, 7));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 9, 1, 8));
         list.add(new PlaceableDecorative(Blocks.VINE, 4, 9, 1, 9));
-        npc_offsets.put(TownData.TOWNHALL_CENTRE, new PlaceableNPC("", new BlockPos(9, 1, 10)));
+        list.add(new PlaceableNPC(TownData.TOWNHALL_CENTRE, "", 9, 1, 10));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 9, 1, 10));
         list.add(new PlaceableDecorative(Blocks.VINE, 1, 9, 1, 11));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 9, 1, 12));
@@ -627,7 +629,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.AIR, 0, 12, 1, 7));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 12, 1, 8));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 12, 1, 9));
-        npc_offsets.put(TownData.TOWNHALL_ENTRANCE, new PlaceableNPC("", new BlockPos(12, 1, 10)));
+        list.add(new PlaceableNPC(TownData.TOWNHALL_ENTRANCE, "", 12, 1, 10));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 12, 1, 10));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 12, 1, 11));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 12, 1, 12));
@@ -775,8 +777,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.AIR, 0, 5, 2, 7));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 5, 2, 8));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 5, 2, 9));
-        list.add(new PlaceableNPC("jamie", new BlockPos(5, 2, 10)));
-        npc_offsets.put(TownData.JAMIE, new PlaceableNPC("", new BlockPos(5, 2, 10)));
+        list.add(new PlaceableNPC(TownData.JAMIE, "jamie", 5, 2, 10));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 5, 2, 10));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 5, 2, 11));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 5, 2, 12));
@@ -1656,7 +1657,7 @@ public class BuildingTownhall extends Building {
         return this;
     }
 
-    private BuildingTownhall addBlocks2() {
+    private BuildingTownhall addBlocks2(List<Placeable> list) {
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 5, 3));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 2, 4, 5, 4));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 3, 4, 5, 5));
@@ -1676,8 +1677,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.STONE_BRICK_STAIRS, 7, 4, 5, 19));
         list.add(new PlaceableBlock(Blocks.STONE_BRICK_STAIRS, 4, 5, 5, 1));
         list.add(new PlaceableBlock(Blocks.CARPET, 1, 5, 5, 2));
-        list.add(new PlaceableNPC("cloe", new BlockPos(5, 5, 3)));
-        npc_offsets.put(TownData.CLOE, new PlaceableNPC("", new BlockPos(5, 5, 3)));
+        list.add(new PlaceableNPC(TownData.CLOE, "cloe", 5, 5, 3));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 5, 5, 3));
         list.add(new PlaceableBlock(Blocks.BOOKSHELF, 0, 5, 5, 4));
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 0, 5, 5, 5));
@@ -1712,8 +1712,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 6, 5, 14));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 6, 5, 15));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 6, 5, 16));
-        list.add(new PlaceableNPC("abi", new BlockPos(6, 5, 17)));
-        npc_offsets.put(TownData.ABI, new PlaceableNPC("", new BlockPos(6, 5, 17)));
+        list.add(new PlaceableNPC(TownData.ABI, "abi", 6, 5, 17));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 6, 5, 17));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 6, 5, 18));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 6, 5, 19));
@@ -2099,7 +2098,7 @@ public class BuildingTownhall extends Building {
         list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 3, 13, 6, 7));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 13, 6, 8));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 13, 6, 9));
-        npc_offsets.put(TownData.TOWNHALL_ADULT_BEDROOM, new PlaceableNPC("", new BlockPos(13, 6, 10)));
+        list.add(new PlaceableNPC(TownData.TOWNHALL_ADULT_BEDROOM, "", 13, 6, 10));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 13, 6, 10));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 13, 6, 11));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 13, 6, 12));

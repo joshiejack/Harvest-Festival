@@ -1,10 +1,9 @@
 package joshie.harvest.buildings.placeable.blocks;
 
+import joshie.harvest.blocks.BlockPreview.Direction;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntitySign;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
@@ -17,7 +16,7 @@ public class PlaceableSignWall extends PlaceableBlock {
 
     public PlaceableSignWall(Block block, int meta, BlockPos offsetPos, String... text) {
         super(block, meta, offsetPos.getX(), offsetPos.getY(), offsetPos.getZ());
-        this.text = new ITextComponent[]{new TextComponentString(text[1]), new TextComponentString(text[2]), new TextComponentString(text[3]), new TextComponentString(text[4])};
+        this.text = new ITextComponent[]{new TextComponentString(text[0]), new TextComponentString(text[1]), new TextComponentString(text[2]), new TextComponentString(text[3])};
     }
 
     public PlaceableSignWall(Block block, int meta, int offsetX, int offsetY, int offsetZ, String... text) {
@@ -30,7 +29,7 @@ public class PlaceableSignWall extends PlaceableBlock {
     }
 
     @Override
-    public void postPlace (UUID owner, World world, BlockPos pos, Mirror mirror, Rotation rotation) {
+    public void postPlace (UUID owner, World world, BlockPos pos, Direction direction) {
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof TileEntitySign) {
             text = ((TileEntitySign) tile).signText;

@@ -13,14 +13,18 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class BuildingBlacksmith extends Building {
+public class BuildingBlacksmith extends BuildingAbstract {
     public BuildingBlacksmith() {
         super("blacksmith");
+    }
+
+    @Override
+    public int getOffsetY() {
+        return -2;
     }
 
     @Override
@@ -44,9 +48,7 @@ public class BuildingBlacksmith extends Building {
     }
 
     @Override
-    public IBuilding addBlocks() {
-        offsetY = -2;
-        list = new ArrayList<Placeable>(386);
+    public IBuilding addBlocks(List<Placeable> list) {
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 2, 0, 10));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 5, 0, 10));
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 1, 1, 1, 1));
@@ -128,7 +130,7 @@ public class BuildingBlacksmith extends Building {
         list.add(new PlaceableBlock(Blocks.SPRUCE_STAIRS, 1, 3, 2, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 2, 3));
         list.add(new PlaceableItemFrame(null, 0, EnumFacing.SOUTH, 3, 2, 3));
-        npc_offsets.put(TownData.BLACKSMITH_FRONT, new PlaceableNPC("", new BlockPos(3, 2, 4)));
+        list.add(new PlaceableNPC(TownData.BLACKSMITH_FRONT, "", 3, 2, 4));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 2, 4));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 5, 3, 2, 5));
         list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 15, 3, 2, 6));
@@ -141,8 +143,7 @@ public class BuildingBlacksmith extends Building {
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 4, 2, 2));
         list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 14, 4, 2, 6));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 2, 7));
-        list.add(new PlaceableNPC("daniel", new BlockPos(4, 2, 8)));
-        npc_offsets.put(TownData.DANIEL, new PlaceableNPC("", new BlockPos(4, 2, 8)));
+        list.add(new PlaceableNPC(TownData.DANIEL, "daniel", 4, 2, 8));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 2, 8));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 2, 9));
         list.add(new PlaceableFurnace(Blocks.LIT_FURNACE, 2, 4, 2, 10));

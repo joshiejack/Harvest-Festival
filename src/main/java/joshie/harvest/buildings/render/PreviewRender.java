@@ -1,33 +1,25 @@
 package joshie.harvest.buildings.render;
 
-import joshie.harvest.api.buildings.IBuilding;
-import joshie.harvest.blocks.BlockPreview.Direction;
-import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.blocks.tiles.TileMarker;
-import joshie.harvest.buildings.placeable.Placeable;
-import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.*;
-import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.client.renderer.BlockRendererDispatcher;
+import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class PreviewRender extends TileEntitySpecialRenderer<TileMarker> {
     private BlockRendererDispatcher blockRenderer;
 
-    @Override
+    @Override //TODO: Not Gonna happen, need to find another way to do this that is more friendly
     public void renderTileEntityAt(TileMarker te, double x, double y, double z, float partialTicks, int destroyStage) {
+        /*
+        HFDebug.start("tile");
         if(blockRenderer == null) blockRenderer = Minecraft.getMinecraft().getBlockRendererDispatcher();
         BlockPos blockpos = te.getPos();
         IBlockState iblockstate = Blocks.STONE.getDefaultState();
         if (iblockstate.getMaterial() != Material.AIR) {
+            HFDebug.start("setup");
             Tessellator tessellator = Tessellator.getInstance();
             VertexBuffer vertexbuffer = tessellator.getBuffer();
             bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
@@ -46,23 +38,37 @@ public class PreviewRender extends TileEntitySpecialRenderer<TileMarker> {
             vertexbuffer.color(1F, 1F, 1F, 0.1F);
             vertexbuffer.setTranslation((double)((float)x - (float)blockpos.getX()), (double)((float)y - (float)blockpos.getY()), (double)((float)z - (float)blockpos.getZ()));
             World world = this.getWorld();
-
+            HFDebug.end("setup");
+            HFDebug.start("building");
             IBuilding building = te.getBuilding();
-            if (building != null) {
-                Direction direction = HFBlocks.PREVIEW.getEnumFromState(te.getWorld().getBlockState(te.getPos()));
-                Mirror mirror = direction.getMirror();
-                Rotation rotation = direction.getRotation();
-                for (Placeable placeable: building.getList()) {
-                    if (!(placeable instanceof PlaceableBlock)) continue;
-                    PlaceableBlock block = ((PlaceableBlock)placeable);
-                    if (block.getBlock() == Blocks.AIR) continue;
-                    renderStateModel(block.getTransformedPosition(blockpos, mirror, rotation), block.getTransformedState(mirror, rotation), vertexbuffer, world, false);
+            if (building != null && building.getProvider() != null) {
+                HFDebug.start("direction");
+                Direction direction = te.getDirection();
+                HFDebug.end("direction");
+                HFDebug.start("loop");
+                for (PlaceableBlock block: te.getList()) {
+                    HFDebug.start("pos");
+                    BlockPos pos = block.getTransformedPosition(blockpos, direction);
+                    HFDebug.end("pos");
+                    HFDebug.start("state");
+                    IBlockState state = block.getTransformedState(direction);
+                    HFDebug.end("state");
+                    HFDebug.start("render");
+                    renderStateModel(pos, state, vertexbuffer, world, false);
+                    HFDebug.end("render");
                 }
+
+                HFDebug.end("loop");
             } else renderStateModel(blockpos, iblockstate, vertexbuffer, world, false);
+            HFDebug.end("building");
+            HFDebug.start("end");
             vertexbuffer.setTranslation(0.0D, 0.0D, 0.0D);
             tessellator.draw();
             RenderHelper.enableStandardItemLighting();
+            HFDebug.end("end");
         }
+
+        HFDebug.end("tile"); */
     }
 
 

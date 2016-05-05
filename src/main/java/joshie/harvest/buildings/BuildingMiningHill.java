@@ -10,14 +10,18 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.player.town.TownData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class BuildingMiningHill extends Building {
+public class BuildingMiningHill extends BuildingAbstract {
     public BuildingMiningHill() {
         super("miningHill");
+    }
+
+    @Override
+    public int getOffsetY() {
+        return -4;
     }
 
     @Override
@@ -41,9 +45,7 @@ public class BuildingMiningHill extends Building {
     }
 
     @Override
-    public IBuilding addBlocks() {
-        offsetY = -4;
-        list = new ArrayList<Placeable>(768);
+    public IBuilding addBlocks(List<Placeable> list) {
         list.add(new PlaceableBlock(Blocks.STONE, 0, 1, 0, 7));
         list.add(new PlaceableBlock(Blocks.STONE, 0, 1, 0, 8));
         list.add(new PlaceableBlock(Blocks.STONE, 0, 1, 0, 9));
@@ -317,7 +319,7 @@ public class BuildingMiningHill extends Building {
         list.add(new PlaceableBlock(Blocks.STONE, 0, 8, 3, 5));
         list.add(new PlaceableBlock(Blocks.STONE, 0, 8, 3, 6));
         list.add(new PlaceableBlock(Blocks.COBBLESTONE_WALL, 1, 8, 3, 7));
-        npc_offsets.put(TownData.MINE_ENTRANCE, new PlaceableNPC("", new BlockPos(8, 3, 8)));
+        list.add(new PlaceableNPC(TownData.MINE_ENTRANCE, "", 8, 3, 8));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 8, 3, 8));
         list.add(new PlaceableBlock(Blocks.COBBLESTONE_WALL, 0, 8, 3, 9));
         list.add(new PlaceableBlock(Blocks.STONE, 0, 8, 3, 10));

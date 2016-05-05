@@ -13,18 +13,17 @@ public class TownBuilding extends BuildingStage {
 
     public TownBuilding(BuildingStage building, int dimensionId) {
         this.building = building.building;
-        this.mirror = building.mirror;
-        this.rotation = building.rotation;
+        this.direction = building.direction;
         this.dimension = dimensionId;
         this.pos = building.pos;
     }
 
     public WorldLocation getRealCoordinatesFor(Placeable placeable) {
-        return new WorldLocation(dimension, placeable.getTransformedPosition(pos, mirror, rotation));
+        return new WorldLocation(dimension, placeable.getTransformedPosition(pos, direction));
     }
 
     public WorldLocation getRealCoordinatesFor(String npc_location) {
-        PlaceableNPC offsets = building.getNPCOffset(npc_location);
+        PlaceableNPC offsets = building.getProvider().getNPCOffset(npc_location);
         if (offsets == null) return null;
         return getRealCoordinatesFor(offsets);
     }

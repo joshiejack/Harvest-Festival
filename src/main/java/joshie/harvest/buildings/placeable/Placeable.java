@@ -1,57 +1,58 @@
 package joshie.harvest.buildings.placeable;
 
-import net.minecraft.util.Mirror;
-import net.minecraft.util.Rotation;
+import joshie.harvest.blocks.BlockPreview.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.UUID;
 
 public abstract class Placeable {
-    private BlockPos offsetPos;
+    private int x, y, z;
 
-    public Placeable(BlockPos pos) {
-        this.offsetPos = pos;
+    public Placeable(int x, int y, int z) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
 
     public BlockPos getOffsetPos() {
-        return offsetPos;
+        return new BlockPos(x, y, z);
     }
 
     public int getX() {
-        return offsetPos.getX();
+        return x;
     }
 
     public int getY() {
-        return offsetPos.getY();
+        return y;
     }
 
     public int getZ() {
-        return offsetPos.getZ();
+        return z;
     }
 
     public boolean canPlace(ConstructionStage stage) {
         return stage == ConstructionStage.BUILD;
     }
 
-    public boolean place(UUID owner, World world, BlockPos pos, Mirror mirror, Rotation rotation, ConstructionStage stage) {
+    public boolean place(UUID owner, World world, BlockPos pos, Direction direction, ConstructionStage stage) {
         if (canPlace(stage)) {
-            return place(owner, world, getTransformedPosition(pos, mirror, rotation) , mirror, rotation);
+            return place(owner, world, getTransformedPosition(pos, direction), direction);
         } else return false;
     }
 
-    public BlockPos getTransformedPosition(BlockPos pos, Mirror mirror, Rotation rotation) {
-        BlockPos adjusted = transformBlockPos(mirror, rotation);
+    public BlockPos getTransformedPosition(BlockPos pos, Direction direction) {
+        BlockPos adjusted = transformBlockPos(direction);
         return new BlockPos(pos.getX() + adjusted.getX(), pos.getY() + adjusted.getY(), pos.getZ() + adjusted.getZ());
     }
 
-    private BlockPos transformBlockPos(Mirror mirrorIn, Rotation rotationIn) {
+    private BlockPos transformBlockPos(Direction direction) {
         int i = getX();
         int j = getY();
         int k = getZ();
         boolean flag = true;
 
-        switch (mirrorIn) {
+        switch (direction.getMirror()) {
             case LEFT_RIGHT:
                 k = -k;
                 break;
@@ -62,7 +63,7 @@ public abstract class Placeable {
                 flag = false;
         }
 
-        switch (rotationIn)  {
+        switch (direction.getRotation())  {
             case COUNTERCLOCKWISE_90:
                 return new BlockPos(k, j, -i);
             case CLOCKWISE_90:
@@ -74,7 +75,7 @@ public abstract class Placeable {
         }
     }
 
-    public boolean place (UUID owner, World world, BlockPos pos, Mirror mirror, Rotation rotation) {
+    public boolean place (UUID owner, World world, BlockPos pos, Direction direction) {
         return false;
     }
 

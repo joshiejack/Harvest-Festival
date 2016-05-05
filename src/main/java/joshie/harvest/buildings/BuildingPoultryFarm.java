@@ -19,9 +19,9 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class BuildingPoultryFarm extends Building {
+public class BuildingPoultryFarm extends BuildingAbstract {
     public BuildingPoultryFarm() {
         super("poultryFarm");
     }
@@ -47,8 +47,7 @@ public class BuildingPoultryFarm extends Building {
     }
 
     @Override
-    public IBuilding addBlocks() {
-        list = new ArrayList<Placeable>(668);
+    public IBuilding addBlocks(List<Placeable> list) {
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 1, 0, 1));
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 13, 1, 0, 2));
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 13, 1, 0, 3));
@@ -177,8 +176,7 @@ public class BuildingPoultryFarm extends Building {
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 1, 6, 1, 1));
         list.add(new PlaceableChest(Blocks.CHEST, 3, 6, 1, 2, LootStrings.POULTRY_CHEST));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 6, 1, 3));
-        list.add(new PlaceableNPC("ondra", new BlockPos(6, 1, 4)));
-        npc_offsets.put(TownData.ONDRA, new PlaceableNPC("", new BlockPos(6, 1, 4)));
+        list.add(new PlaceableNPC(TownData.ONDRA, "ondra", 6, 1, 4));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 6, 1, 4));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 6, 1, 5));
         list.add(new PlaceableBlock(Blocks.CAULDRON, 3, 6, 1, 6));

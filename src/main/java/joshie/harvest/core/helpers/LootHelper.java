@@ -120,7 +120,8 @@ public class LootHelper {
         }
 
         loottable.fillInventory(INVENTORY, random, lootcontext$builder.build());
-        ItemStack result = INVENTORY.getStackInSlot(0).copy();
+        ItemStack result = INVENTORY.getStackInSlot(0);
+        if (result != null) result = result.copy();
         INVENTORY.setInventorySlotContents(0, null);
         return  result;
     }

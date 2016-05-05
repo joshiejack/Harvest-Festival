@@ -11,12 +11,11 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.player.town.TownData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class BuildingFishingHole extends Building {
+public class BuildingFishingHole extends BuildingAbstract {
     public BuildingFishingHole() {
         super("fishingHole");
     }
@@ -42,8 +41,7 @@ public class BuildingFishingHole extends Building {
     }
 
     @Override
-    public IBuilding addBlocks() {
-        list = new ArrayList<Placeable>(162);
+    public IBuilding addBlocks(List<Placeable> list) {
         list.add(new PlaceableBlock(Blocks.SANDSTONE, 0, 2, 0, 2));
         list.add(new PlaceableBlock(Blocks.SANDSTONE, 0, 2, 0, 3));
         list.add(new PlaceableBlock(Blocks.SANDSTONE, 0, 3, 0, 2));
@@ -196,7 +194,7 @@ public class BuildingFishingHole extends Building {
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 5, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 5, 3));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 5, 5, 2));
-        npc_offsets.put(TownData.FISHING_POND, new PlaceableNPC("", new BlockPos(5, 5, 3)));
+        list.add(new PlaceableNPC(TownData.FISHING_POND, "", 5, 5, 3));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 5, 5, 3));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 5, 5, 4));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 5, 5, 5));

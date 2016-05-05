@@ -14,14 +14,23 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class BuildingSupermarket extends Building {
+public class BuildingSupermarket extends BuildingAbstract {
     public BuildingSupermarket() {
         super("supermarket");
+    }
+
+    @Override
+    public int getOffsetY() {
+        return -10;
+    }
+
+    @Override
+    public long getTickTime() {
+        return 5;
     }
 
     @Override
@@ -48,11 +57,7 @@ public class BuildingSupermarket extends Building {
     }
 
     @Override
-    public IBuilding addBlocks() {
-        offsetY = -10;
-        tickTime = 5; //Place a block every 5 ticks
-
-        list = new ArrayList<Placeable>(2293);
+    public IBuilding addBlocks(List<Placeable> list) {
         list.add(new PlaceableBlock(Blocks.SANDSTONE, 0, 4, 0, 8));
         list.add(new PlaceableBlock(Blocks.SANDSTONE, 0, 5, 0, 7));
         list.add(new PlaceableBlock(Blocks.SANDSTONE, 0, 5, 0, 8));
@@ -282,8 +287,7 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableDecorative(Blocks.VINE, 1, 5, 4, 8));
         list.add(new PlaceableBlock(Blocks.STONE_BRICK_STAIRS, 3, 5, 4, 9));
         list.add(new PlaceableChest(Blocks.CHEST, 3, 5, 4, 10, LootStrings.MARKET_BASEMENT_CHESTS));
-        list.add(new PlaceableNPC("jenni", new BlockPos(5, 4, 11)));
-        npc_offsets.put(TownData.JENNI, new PlaceableNPC("", new BlockPos(5, 4, 11)));
+        list.add(new PlaceableNPC(TownData.JENNI, "jenni", 5, 4, 11));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 5, 4, 11));
         list.add(new PlaceableChest(Blocks.CHEST, 2, 5, 4, 12, LootStrings.MARKET_BASEMENT_CHESTS));
         list.add(new PlaceableBlock(Blocks.STONE_BRICK_STAIRS, 2, 5, 4, 13));
@@ -1052,7 +1056,7 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableBlock(Blocks.AIR, 0, 9, 10, 8));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 9, 10, 9));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 9, 10, 10));
-        npc_offsets.put(TownData.MARKET_STOREFRONT, new PlaceableNPC("", new BlockPos(9, 10, 11)));
+        list.add(new PlaceableNPC(TownData.MARKET_STOREFRONT, "", 9, 10, 11));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 9, 10, 11));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 9, 10, 12));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 6, 9, 10, 13));
@@ -1153,7 +1157,7 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableBlock(Blocks.AIR, 0, 7, 11, 4));
         list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 1, 7, 11, 5));
         list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 7, 7, 11, 6));
-        npc_offsets.put(TownData.MARKET_TILL, new PlaceableNPC("", new BlockPos(7, 11, 7)));
+        list.add(new PlaceableNPC(TownData.MARKET_TILL, "", 7, 11, 7));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 7, 11, 7));
         list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 7, 7, 11, 8));
         list.add(new PlaceableDecorative(Blocks.WOODEN_BUTTON, 1, 7, 11, 9));
@@ -1350,7 +1354,7 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 5, 12, 12, 13));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 0, 13, 1));
         list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 14, 0, 13, 2));
-        list.add(new PlaceableSignWall(Blocks.WALL_SIGN, 4, 0, 13, 3, new String[]{"", "===============", "===============", ""}));
+        list.add(new PlaceableSignWall(Blocks.WALL_SIGN, 4, 0, 13, 3, "", "===============", "===============", ""));
         list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 14, 0, 13, 4));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 0, 13, 5));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 1, 13, 0));
@@ -1367,20 +1371,20 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableBlock(Blocks.AIR, 0, 2, 13, 4));
         list.add(new PlaceableBlock(Blocks.LOG, 5, 2, 13, 5));
         list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 13, 2, 13, 6));
-        list.add(new PlaceableSignWall(Blocks.WALL_SIGN, 2, 3, 13, 0, new String[]{"", "===============", "===============", ""}));
+        list.add(new PlaceableSignWall(Blocks.WALL_SIGN, 2, 3, 13, 0, "", "===============", "===============", ""));
         list.add(new PlaceableBlock(Blocks.LOG, 5, 3, 13, 1));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 13, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 13, 3));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 13, 4));
         list.add(new PlaceableBlock(Blocks.LOG, 5, 3, 13, 5));
-        list.add(new PlaceableSignWall(Blocks.WALL_SIGN, 3, 3, 13, 6, new String[]{"", "===============", "===============", ""}));
-        list.add(new PlaceableSignWall(Blocks.WALL_SIGN, 2, 4, 13, 0, new String[]{"", "===============", "===============", ""}));
+        list.add(new PlaceableSignWall(Blocks.WALL_SIGN, 3, 3, 13, 6, "", "===============", "===============", ""));
+        list.add(new PlaceableSignWall(Blocks.WALL_SIGN, 2, 4, 13, 0, "", "===============", "===============", ""));
         list.add(new PlaceableBlock(Blocks.LOG, 5, 4, 13, 1));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 13, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 13, 3));
         list.add(new PlaceableBlock(Blocks.STONE_BRICK_STAIRS, 0, 4, 13, 4));
         list.add(new PlaceableBlock(Blocks.LOG, 5, 4, 13, 5));
-        list.add(new PlaceableSignWall(Blocks.WALL_SIGN, 3, 4, 13, 6, new String[]{"", "===============", "===============", ""}));
+        list.add(new PlaceableSignWall(Blocks.WALL_SIGN, 3, 4, 13, 6, "", "===============", "===============", ""));
         list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 12, 5, 13, 0));
         list.add(new PlaceableBlock(Blocks.LOG, 5, 5, 13, 1));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 5, 13, 2));
@@ -1388,11 +1392,11 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 5, 13, 4));
         list.add(new PlaceableBlock(Blocks.LOG, 5, 5, 13, 5));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 5, 13, 6));
-        list.add(new PlaceableSignWall(Blocks.WALL_SIGN, 4, 5, 13, 7, new String[]{"", "===============", "===============", ""}));
+        list.add(new PlaceableSignWall(Blocks.WALL_SIGN, 4, 5, 13, 7, "", "===============", "===============", ""));
         list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 14, 5, 13, 8));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 5, 13, 9));
         list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 14, 5, 13, 10));
-        list.add(new PlaceableSignWall(Blocks.WALL_SIGN, 4, 5, 13, 11, new String[]{"", "===============", "===============", ""}));
+        list.add(new PlaceableSignWall(Blocks.WALL_SIGN, 4, 5, 13, 11, "", "===============", "===============", ""));
         list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 14, 5, 13, 12));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 5, 13, 13));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 6, 13, 0));
@@ -1425,7 +1429,7 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableBlock(Blocks.STONE_BRICK_STAIRS, 5, 7, 13, 12));
         list.add(new PlaceableBlock(Blocks.LOG, 5, 7, 13, 13));
         list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 13, 7, 13, 14));
-        list.add(new PlaceableSignWall(Blocks.WALL_SIGN, 2, 8, 13, 0, new String[]{"", "===============", "===============", ""}));
+        list.add(new PlaceableSignWall(Blocks.WALL_SIGN, 2, 8, 13, 0, "", "===============", "===============", ""));
         list.add(new PlaceableBlock(Blocks.LOG, 5, 8, 13, 1));
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 9, 8, 13, 2));
         list.add(new PlaceableBlock(Blocks.STONE_SLAB, 13, 8, 13, 3));
@@ -1439,8 +1443,8 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableBlock(Blocks.STONE_SLAB, 13, 8, 13, 11));
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 9, 8, 13, 12));
         list.add(new PlaceableBlock(Blocks.LOG, 5, 8, 13, 13));
-        list.add(new PlaceableSignWall(Blocks.WALL_SIGN, 3, 8, 13, 14, new String[]{"", "===============", "===============", ""}));
-        list.add(new PlaceableSignWall(Blocks.WALL_SIGN, 2, 9, 13, 0, new String[]{"", "===============", "===============", ""}));
+        list.add(new PlaceableSignWall(Blocks.WALL_SIGN, 3, 8, 13, 14, "", "===============", "===============", ""));
+        list.add(new PlaceableSignWall(Blocks.WALL_SIGN, 2, 9, 13, 0, "", "===============", "===============", ""));
         list.add(new PlaceableBlock(Blocks.LOG, 5, 9, 13, 1));
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 9, 9, 13, 2));
         list.add(new PlaceableBlock(Blocks.STONE_SLAB, 13, 9, 13, 3));
@@ -1454,7 +1458,7 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableBlock(Blocks.STONE_SLAB, 13, 9, 13, 11));
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 9, 9, 13, 12));
         list.add(new PlaceableBlock(Blocks.LOG, 5, 9, 13, 13));
-        list.add(new PlaceableSignWall(Blocks.WALL_SIGN, 3, 9, 13, 14, new String[]{"", "===============", "===============", ""}));
+        list.add(new PlaceableSignWall(Blocks.WALL_SIGN, 3, 9, 13, 14, "", "===============", "===============", ""));
         list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 12, 10, 13, 0));
         list.add(new PlaceableBlock(Blocks.LOG, 5, 10, 13, 1));
         list.add(new PlaceableBlock(Blocks.STONE_BRICK_STAIRS, 4, 10, 13, 2));
@@ -1487,15 +1491,15 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 11, 13, 14));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 12, 13, 1));
         list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 15, 12, 13, 2));
-        list.add(new PlaceableSignWall(Blocks.WALL_SIGN, 5, 12, 13, 3, new String[]{"", "===============", "===============", ""}));
+        list.add(new PlaceableSignWall(Blocks.WALL_SIGN, 5, 12, 13, 3, "", "===============", "===============", ""));
         list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 15, 12, 13, 4));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 12, 13, 5));
         list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 15, 12, 13, 6));
-        list.add(new PlaceableSignWall(Blocks.WALL_SIGN, 5, 12, 13, 7, new String[]{"", "===============", "===============", ""}));
+        list.add(new PlaceableSignWall(Blocks.WALL_SIGN, 5, 12, 13, 7, "", "===============", "===============", ""));
         list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 15, 12, 13, 8));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 12, 13, 9));
         list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 15, 12, 13, 10));
-        list.add(new PlaceableSignWall(Blocks.WALL_SIGN, 5, 12, 13, 11, new String[]{"", "===============", "===============", ""}));
+        list.add(new PlaceableSignWall(Blocks.WALL_SIGN, 5, 12, 13, 11, "", "===============", "===============", ""));
         list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 15, 12, 13, 12));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 12, 13, 13));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 0, 0, 14, 1));
@@ -1739,8 +1743,7 @@ public class BuildingSupermarket extends Building {
         list.add(new PlaceableBlock(Blocks.AIR, 0, 8, 15, 7));
         list.add(new PlaceableDecorative(Blocks.VINE, 1, 8, 15, 8));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 8, 15, 9));
-        list.add(new PlaceableNPC("candice", new BlockPos(8, 15, 10)));
-        npc_offsets.put(TownData.CANDICE, new PlaceableNPC("", new BlockPos(8, 15, 10)));
+        list.add(new PlaceableNPC(TownData.CANDICE, "candice", 8, 15, 10));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 8, 15, 10));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 8, 15, 11));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 8, 15, 12));

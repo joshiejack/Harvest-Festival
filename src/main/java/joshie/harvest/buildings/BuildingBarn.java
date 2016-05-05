@@ -16,14 +16,18 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class BuildingBarn extends Building {
+public class BuildingBarn extends BuildingAbstract {
     public BuildingBarn() {
         super("barn");
+    }
+
+    @Override
+    public int getOffsetY() {
+        return -1;
     }
 
     @Override
@@ -47,9 +51,7 @@ public class BuildingBarn extends Building {
     }
 
     @Override
-    public IBuilding addBlocks() {
-        offsetY = -1;
-        list = new ArrayList<Placeable>(525);
+    public IBuilding addBlocks(List<Placeable> list) {
         list.add(new PlaceableBlock(Blocks.LOG, 1, 1, 0, 1));
         list.add(new PlaceableBlock(Blocks.PLANKS, 1, 1, 0, 2));
         list.add(new PlaceableBlock(Blocks.PLANKS, 1, 1, 0, 3));
@@ -169,8 +171,7 @@ public class BuildingBarn extends Building {
         list.add(new PlaceableDecorative(Blocks.RED_MUSHROOM, 0, 3, 1, 2));
         list.add(new PlaceableDecorative(Blocks.RED_MUSHROOM, 0, 3, 1, 3));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 3, 1, 4));
-        list.add(new PlaceableNPC("jim", new BlockPos(3, 1, 6)));
-        npc_offsets.put(TownData.JIM, new PlaceableNPC("", new BlockPos(3, 1, 6)));
+        list.add(new PlaceableNPC(TownData.JIM, "jim", 3, 1, 6));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 3, 1, 6));
         list.add(new PlaceableBlock(Blocks.OAK_FENCE, 0, 3, 1, 8));
         list.add(new PlaceableBlock(Blocks.HAY_BLOCK, 0, 3, 1, 10));

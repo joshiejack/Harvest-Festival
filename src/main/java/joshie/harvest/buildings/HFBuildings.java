@@ -1,32 +1,46 @@
 package joshie.harvest.buildings;
 
 import joshie.harvest.HarvestFestival;
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.buildings.IBuilding;
+import joshie.harvest.buildings.placeable.Placeable;
 import org.apache.logging.log4j.Level;
 
+import java.util.ArrayList;
+
 public class HFBuildings {
-    public static final IBuilding barn = new BuildingBarn();
-    public static final IBuilding blacksmith = new BuildingBlacksmith();
-    public static final IBuilding cafe = new BuildingCafe();
-    public static final IBuilding carpenter = new BuildingCarpenter();
-    public static final IBuilding church = new BuildingChurch();
-    public static final IBuilding clockmaker = new BuildingClockmaker();
-    public static final IBuilding fishingHole = new BuildingFishingHole();
-    public static final IBuilding fishingHut = new BuildingFishingHut();
-    public static final IBuilding goddessPond = new BuildingGoddess();
-    public static final IBuilding miningHill = new BuildingMiningHill();
-    public static final IBuilding miningHut = new BuildingMiningHut();
-    public static final IBuilding poultryFarm = new BuildingPoultryFarm();
-    public static final IBuilding supermarket = new BuildingSupermarket();
-    public static final IBuilding townhall = new BuildingTownhall();
+    public static final IBuilding barn = HFApi.BUILDINGS.registerBuilding(new BuildingBarn());
+    public static final IBuilding blacksmith = HFApi.BUILDINGS.registerBuilding(new BuildingBlacksmith());
+    public static final IBuilding cafe = HFApi.BUILDINGS.registerBuilding(new BuildingCafe());
+    public static final IBuilding carpenter = HFApi.BUILDINGS.registerBuilding(new BuildingCarpenter());
+    public static final IBuilding church = HFApi.BUILDINGS.registerBuilding(new BuildingChurch());
+    public static final IBuilding clockmaker = HFApi.BUILDINGS.registerBuilding(new BuildingClockmaker());
+    public static final IBuilding fishingHole = HFApi.BUILDINGS.registerBuilding(new BuildingFishingHole());
+    public static final IBuilding fishingHut = HFApi.BUILDINGS.registerBuilding(new BuildingFishingHut());
+    public static final IBuilding goddessPond = HFApi.BUILDINGS.registerBuilding(new BuildingGoddess());
+    public static final IBuilding miningHill = HFApi.BUILDINGS.registerBuilding(new BuildingMiningHill());
+    public static final IBuilding miningHut = HFApi.BUILDINGS.registerBuilding(new BuildingMiningHut());
+    public static final IBuilding poultryFarm = HFApi.BUILDINGS.registerBuilding(new BuildingPoultryFarm());
+    public static final IBuilding supermarket = HFApi.BUILDINGS.registerBuilding(new BuildingSupermarket());
+    public static final IBuilding townhall = HFApi.BUILDINGS.registerBuilding(new BuildingTownhall());
 
     public static void preInit() {
         HarvestFestival.LOGGER.log(Level.INFO, "Creating Buildings!");
     }
 
     public static void init() {
-        for (IBuilding building: Building.buildings) {
-            building.addBlocks();
+        HarvestFestival.LOGGER.log(Level.INFO, "Assigning Buildings");
+        for (IBuilding building: BuildingRegistry.buildings.values()) {
+            ArrayList<Placeable> list = new ArrayList<Placeable>();
+            BuildingProvider provider = new BuildingProvider(building);
+            building.addBlocks(list);
+            provider.setList(list);
+            for (Placeable placeable: list) {
+                provider.addToList(placeable);
+            }
+
+            building.setProvider(provider);
+            HarvestFestival.LOGGER.log(Level.INFO, "Set a Provider for the building: " + building.getProvider());
         }
 
 

@@ -1,13 +1,12 @@
 package joshie.harvest.buildings.placeable.blocks;
 
+import joshie.harvest.blocks.BlockPreview.Direction;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFlowerPot;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -33,7 +32,7 @@ public class PlaceableFlowerPot extends PlaceableBlock {
     }
 
     @Override
-    public void postPlace(UUID uuid, World world, BlockPos pos, Mirror mirror, Rotation rotation) {
+    public void postPlace(UUID uuid, World world, BlockPos pos, Direction direction) {
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof TileEntityFlowerPot) {
             TileEntityFlowerPot pot = (TileEntityFlowerPot) tile;

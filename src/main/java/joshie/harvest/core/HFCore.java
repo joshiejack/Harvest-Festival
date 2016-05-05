@@ -4,6 +4,7 @@ import joshie.harvest.HarvestFestival;
 import joshie.harvest.animals.AnimalEvents;
 import joshie.harvest.animals.AnimalRegistry;
 import joshie.harvest.api.HFApi;
+import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.calendar.CalendarRender;
 import joshie.harvest.cooking.FoodRegistry;
@@ -35,6 +36,7 @@ public class HFCore {
     public static void preInit() {
         //Register API Handlers
         HFApi.ANIMALS = new AnimalRegistry();
+        HFApi.BUILDINGS = new BuildingRegistry();
         HFApi.CALENDAR = new CalendarHelper();
         HFApi.CROPS = new CropRegistry();
         HFApi.COOKING = new FoodRegistry();

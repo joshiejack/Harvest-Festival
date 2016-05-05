@@ -1,5 +1,6 @@
 package joshie.harvest.buildings.placeable.entities;
 
+import joshie.harvest.blocks.BlockPreview.Direction;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityHanging;
 import net.minecraft.util.EnumFacing;
@@ -25,8 +26,8 @@ public abstract class PlaceableHanging extends PlaceableEntity {
     }
 
     @Override
-    public Entity getEntity(UUID uuid, World world, BlockPos pos, Mirror mirror, Rotation rotation) {
-        EntityHanging entity = getEntityHanging(uuid, world, pos, getFacing(mirror, rotation));
+    public Entity getEntity(UUID uuid, World world, BlockPos pos, Direction direction) {
+        EntityHanging entity = getEntityHanging(uuid, world, pos, getFacing(direction.getMirror(), direction.getRotation()));
         if (!entity.onValidSurface()) {
             EnumFacing opposite = entity.facingDirection.getOpposite();
             Validate.notNull(opposite);

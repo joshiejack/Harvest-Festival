@@ -12,14 +12,18 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class BuildingMiningHut extends Building {
+public class BuildingMiningHut extends BuildingAbstract {
     public BuildingMiningHut() {
         super("miningHut");
+    }
+
+    @Override
+    public int getOffsetY() {
+        return -1;
     }
 
     @Override
@@ -44,9 +48,7 @@ public class BuildingMiningHut extends Building {
     }
 
     @Override
-    public IBuilding addBlocks() {
-        offsetY = -1;
-        list = new ArrayList<Placeable>(551);
+    public IBuilding addBlocks(List<Placeable> list) {
         list.add(new PlaceableBlock(Blocks.STONEBRICK, 0, 1, 0, 8));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 1, 0, 9));
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 1, 0, 10));
@@ -170,8 +172,7 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 1, 6));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 1, 7));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 1, 8));
-        list.add(new PlaceableNPC("brandon", new BlockPos(4, 1, 9)));
-        npc_offsets.put(TownData.BRANDON, new PlaceableNPC("", new BlockPos(4, 1, 9)));
+        list.add(new PlaceableNPC(TownData.BRANDON, "brandon", 4, 1, 9));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 1, 9));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 4, 1, 10));
         list.add(new PlaceableChest(Blocks.CHEST, 2, 4, 1, 11, LootStrings.MINING_CHEST));
@@ -229,13 +230,13 @@ public class BuildingMiningHut extends Building {
         list.add(new PlaceableBlock(Blocks.LOG, 1, 9, 1, 1));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 7, 9, 1, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 9, 1, 3));
-        npc_offsets.put(TownData.MINER_GRAVEL, new PlaceableNPC("", new BlockPos(9, 1, 4)));
+        list.add(new PlaceableNPC(TownData.MINER_GRAVEL, "", 9, 1, 4));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 9, 1, 4));
         list.add(new PlaceableBlock(Blocks.GRAVEL, 0, 9, 1, 5));
         list.add(new PlaceableBlock(Blocks.GRAVEL, 0, 9, 1, 6));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 3, 9, 1, 7));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 9, 1, 8));
-        npc_offsets.put(TownData.MINER_FRONT, new PlaceableNPC("", new BlockPos(9, 1, 9)));
+        list.add(new PlaceableNPC(TownData.MINER_FRONT, "", 9, 1, 9));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 9, 1, 9));
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 2, 10, 1, 1));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 7, 10, 1, 2));

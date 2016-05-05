@@ -17,14 +17,18 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class BuildingFishingHut extends Building {
+public class BuildingFishingHut extends BuildingAbstract {
     public BuildingFishingHut() {
         super("fishingHut");
+    }
+
+    @Override
+    public int getOffsetY() {
+        return -1;
     }
 
     @Override
@@ -50,9 +54,7 @@ public class BuildingFishingHut extends Building {
     }
 
     @Override
-    public IBuilding addBlocks() {
-        offsetY = -1;
-        list = new ArrayList<Placeable>(345);
+    public IBuilding addBlocks(List<Placeable> list) {
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 2, 0, 1));
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 2, 0, 5));
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 3, 0, 0));
@@ -121,8 +123,7 @@ public class BuildingFishingHut extends Building {
         list.add(new PlaceableBlock(Blocks.DARK_OAK_STAIRS, 2, 5, 1, 0));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 5, 1, 1));
         list.add(new PlaceableDecorative(Blocks.VINE, 4, 5, 1, 2));
-        list.add(new PlaceableNPC("jacob", new BlockPos(5, 1, 3)));
-        npc_offsets.put(TownData.JACOB, new PlaceableNPC("", new BlockPos(5, 1, 3)));
+        list.add(new PlaceableNPC(TownData.JACOB, "jacob", 5, 1, 3));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 5, 1, 3));
         list.add(new PlaceableFlowerPot(Blocks.FLOWER_POT, 6, 5, 1, 4));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 0, 5, 1, 5));

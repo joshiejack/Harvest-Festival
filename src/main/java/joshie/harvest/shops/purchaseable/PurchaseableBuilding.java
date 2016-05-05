@@ -15,7 +15,7 @@ public class PurchaseableBuilding extends Purchaseable {
     private IBuilding building;
 
     public PurchaseableBuilding(IBuilding building) {
-        super(building.getCost(), building.getPreview());
+        super(building.getCost(), building.getProvider().getPreview());
         this.building = building;
         listings.add(this);
     }

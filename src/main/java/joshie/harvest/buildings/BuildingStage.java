@@ -1,6 +1,8 @@
 package joshie.harvest.buildings;
 
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.buildings.IBuilding;
+import joshie.harvest.blocks.BlockPreview.Direction;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.Placeable.ConstructionStage;
 import joshie.harvest.core.handlers.HFTrackers;
@@ -17,8 +19,7 @@ import java.util.UUID;
 public class BuildingStage {
     public UUID owner;
     public IBuilding building;
-    public Mirror mirror;
-    public Rotation rotation;
+    public Direction direction;
     public ConstructionStage stage;
     public int index;
     public BlockPos pos;
@@ -29,15 +30,14 @@ public class BuildingStage {
     public BuildingStage(UUID uuid, IBuilding building, BlockPos pos, Mirror mirror, Rotation rotation) {
         this.owner = uuid;
         this.building = building;
-        this.mirror = mirror;
-        this.rotation = rotation;
+        this.direction = Direction.withMirrorAndRotation(mirror, rotation);
         this.stage = ConstructionStage.BUILD;
         this.index = 0;
         this.pos = pos.add(0, building.getOffsetY(), 0);
     }
 
     public BuildingStage build(World world) {
-        if (index >= building.getSize()) {
+        if (index >= building.getProvider().getSize()) {
             if (stage == ConstructionStage.BUILD) {
                 stage = ConstructionStage.DECORATE;
                 index = 0;
@@ -54,9 +54,9 @@ public class BuildingStage {
                 HFTrackers.getPlayerTracker(owner).getTown().addBuilding(world, this);
             }
         } else {
-            while (index < building.getSize()) {
-                Placeable block = building.getList().get(index);
-                if (block.place(owner, world, pos, mirror, rotation, stage)) {
+            while (index < building.getProvider().getSize()) {
+                Placeable block = building.getProvider().getFullList().get(index);
+                if (block.place(owner, world, pos, direction, stage)) {
                     index++;
                     return this;
                 }
@@ -77,9 +77,8 @@ public class BuildingStage {
     }
 
     public void readFromNBT(NBTTagCompound nbt) {
-        building = Building.getGroup(nbt.getString("CurrentlyBuilding"));
-        mirror = Mirror.valueOf(nbt.getString("Mirror"));
-        rotation = Rotation.valueOf(nbt.getString("Rotation"));
+        building = HFApi.BUILDINGS.getBuildingFromName(nbt.getString("CurrentlyBuilding"));
+        direction = Direction.valueOf(nbt.getString("Direction"));
         pos = new BlockPos(nbt.getInteger("BuildingX"), nbt.getInteger("BuildingY"), nbt.getInteger("BuildingZ"));
 
         if (nbt.hasKey("Owner-UUIDMost")) {
@@ -91,8 +90,7 @@ public class BuildingStage {
 
     public void writeToNBT(NBTTagCompound nbt) {
         nbt.setString("CurrentlyBuilding", building.getName());
-        nbt.setString("Mirror", mirror.name());
-        nbt.setString("Rotation", rotation.name());
+        nbt.setString("Direction", direction.name());
         nbt.setInteger("BuildingX", pos.getX());
         nbt.setInteger("BuildingY", pos.getY());
         nbt.setInteger("BuildingZ", pos.getZ());

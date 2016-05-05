@@ -14,14 +14,18 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class BuildingClockmaker extends Building {
+public class BuildingClockmaker extends BuildingAbstract {
     public BuildingClockmaker() {
         super("clockmaker");
+    }
+
+    @Override
+    public int getOffsetY() {
+        return -1;
     }
 
     @Override
@@ -47,9 +51,7 @@ public class BuildingClockmaker extends Building {
     }
 
     @Override
-    public IBuilding addBlocks() {
-        offsetY = -1;
-        list = new ArrayList<Placeable>(824);
+    public IBuilding addBlocks(List<Placeable> list) {
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 0, 0, 1));
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 0, 0, 6));
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 1, 0, 0));
@@ -156,8 +158,7 @@ public class BuildingClockmaker extends Building {
         list.add(new PlaceableBlock(Blocks.LOG, 1, 5, 1, 1));
         list.add(new PlaceableDecorative(Blocks.OAK_DOOR, 0, 5, 1, 2));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 5, 1, 3));
-        list.add(new PlaceableNPC("tiberius", new BlockPos(5, 1, 4)));
-        npc_offsets.put(TownData.TIBERIUS, new PlaceableNPC("", new BlockPos(5, 1, 4)));
+        list.add(new PlaceableNPC(TownData.TIBERIUS, "tiberius", 5, 1, 4));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 5, 1, 4));
         list.add(new PlaceableBlock(Blocks.COBBLESTONE_WALL, 0, 5, 1, 5));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 5, 1, 6));
@@ -465,8 +466,7 @@ public class BuildingClockmaker extends Building {
         list.add(new PlaceableBlock(Blocks.WOODEN_SLAB, 13, 6, 5, 0));
         list.add(new PlaceableBlock(Blocks.HARDENED_CLAY, 0, 6, 5, 1));
         list.add(new PlaceableChest(Blocks.CHEST, 3, 6, 5, 2, LootStrings.CLOCKMAKER_CHEST));
-        list.add(new PlaceableNPC("fenn", new BlockPos(6, 5, 3)));
-        npc_offsets.put(TownData.FENN, new PlaceableNPC("", new BlockPos(6, 5, 3)));
+        list.add(new PlaceableNPC(TownData.FENN, "fenn", 6, 5, 3));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 6, 5, 3));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 6, 5, 4));
         list.add(new PlaceableBlock(Blocks.CAULDRON, 3, 6, 5, 5));

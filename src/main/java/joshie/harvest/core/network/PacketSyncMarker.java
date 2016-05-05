@@ -1,10 +1,10 @@
 package joshie.harvest.core.network;
 
 import io.netty.buffer.ByteBuf;
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.WorldLocation;
 import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.blocks.tiles.TileMarker;
-import joshie.harvest.buildings.Building;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
@@ -38,7 +38,7 @@ public class PacketSyncMarker implements IMessage, IMessageHandler<PacketSyncMar
         location = new WorldLocation();
         location.fromBytes(buf);
         if (buf.readBoolean()) {
-            group = Building.getGroup(ByteBufUtils.readUTF8String(buf));
+            group = HFApi.BUILDINGS.getBuildingFromName(ByteBufUtils.readUTF8String(buf));
         }
     }
 

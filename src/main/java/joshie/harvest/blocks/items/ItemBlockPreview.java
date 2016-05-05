@@ -2,7 +2,8 @@ package joshie.harvest.blocks.items;
 
 import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.api.core.ICreativeSorted;
-import joshie.harvest.buildings.Building;
+import joshie.harvest.blocks.HFBlocks;
+import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.core.util.base.ItemBlockHFBase;
 import joshie.harvest.core.util.generic.Text;
 import net.minecraft.block.Block;
@@ -20,8 +21,8 @@ public class ItemBlockPreview extends ItemBlockHFBase implements ICreativeSorted
 
     @Override
     public String getName(ItemStack stack) {
-        if (stack.getItemDamage() >= Building.buildings.size()) return "invalid";
-        IBuilding group = Building.buildings.get(stack.getItemDamage());
+        if (stack.getItemDamage() >= BuildingRegistry.buildings.size()) return "invalid";
+        IBuilding group = HFBlocks.PREVIEW.getBuildingFromStack(stack);
         if (group != null) {
             return group.getName();
         } else return "invalid";

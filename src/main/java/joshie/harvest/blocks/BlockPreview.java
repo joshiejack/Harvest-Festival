@@ -1,8 +1,9 @@
 package joshie.harvest.blocks;
 
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.blocks.tiles.TileMarker;
-import joshie.harvest.buildings.Building;
+import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.config.General;
 import joshie.harvest.core.handlers.HFTrackers;
@@ -16,18 +17,28 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.commons.lang3.tuple.Pair;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class BlockPreview extends BlockHFBaseMeta<BlockPreview.Direction> {
+    public ItemStack getItemStack(IBuilding building) {
+        ItemStack stack = new ItemStack(this);
+        stack.setTagCompound(new NBTTagCompound());
+        stack.getTagCompound().setString("Building", building.getName());
+        return stack;
+    }
+
     public enum Direction implements IStringSerializable {
         MN_R0(Mirror.NONE, Rotation.NONE),
         MN_R90(Mirror.NONE, Rotation.CLOCKWISE_90),
@@ -42,6 +53,7 @@ public class BlockPreview extends BlockHFBaseMeta<BlockPreview.Direction> {
         MFB_R180(Mirror.FRONT_BACK, Rotation.CLOCKWISE_180),
         MFB_R270(Mirror.FRONT_BACK, Rotation.COUNTERCLOCKWISE_90);
 
+        public static final HashMap<Pair<Mirror, Rotation>, Direction> map = new HashMap<Pair<Mirror, Rotation>, Direction>();
         private final Mirror mirror;
         private final Rotation rotation;
 
@@ -58,9 +70,23 @@ public class BlockPreview extends BlockHFBaseMeta<BlockPreview.Direction> {
             return this.rotation;
         }
 
+        public IBlockState withDirection(IBlockState state) {
+            return state.withMirror(mirror).withRotation(rotation);
+        }
+
+        public static Direction withMirrorAndRotation(Mirror mirror, Rotation rotation) {
+            return map.get(Pair.of(mirror, rotation));
+        }
+
         @Override
         public String getName() {
             return toString().toLowerCase();
+        }
+    }
+
+    static {
+        for (Direction direction: Direction.values()) {
+            Direction.map.put(Pair.of(direction.getMirror(), direction.getRotation()), direction);
         }
     }
 
@@ -125,14 +151,18 @@ public class BlockPreview extends BlockHFBaseMeta<BlockPreview.Direction> {
         return new TileMarker();
     }
 
+    public IBuilding getBuildingFromStack(ItemStack stack) {
+        if (!stack.hasTagCompound()) return null;
+        return HFApi.BUILDINGS.getBuildingFromName(stack.getTagCompound().getString("Building"));
+    }
+
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase player, ItemStack stack) {
         if (!(player instanceof EntityPlayer)) return;
-        if (stack.getItemDamage() >= Building.buildings.size()) return;
-        IBuilding group = Building.buildings.get(stack.getItemDamage());
-        if (group != null) {
+        IBuilding building = getBuildingFromStack(stack);
+        if (building != null) {
             TileMarker marker = (TileMarker) world.getTileEntity(pos);
-            marker.setBuilding(group);
+            marker.setBuilding(building);
             //Create a builder if none exists
             if (!world.isRemote) {
                 HFTrackers.getPlayerTracker((EntityPlayer) player).getBuilder(world);
@@ -141,8 +171,13 @@ public class BlockPreview extends BlockHFBaseMeta<BlockPreview.Direction> {
     }
 
     @Override
-    public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos) {
-        return state;
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
+        TileMarker marker = (TileMarker) world.getTileEntity(pos);
+        IBuilding building = marker.getBuilding();
+        if (building == null) return null;
+        else {
+            return getItemStack(building);
+        }
     }
 
     @Override
@@ -150,7 +185,9 @@ public class BlockPreview extends BlockHFBaseMeta<BlockPreview.Direction> {
     public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
         if (tab != HFTab.TOWN) return;
         if (General.DEBUG_MODE) {
-            super.getSubBlocks(item, tab, list);
+            for (IBuilding building: BuildingRegistry.buildings.values()) {
+                list.add(getItemStack(building));
+            }
         }
     }
 }

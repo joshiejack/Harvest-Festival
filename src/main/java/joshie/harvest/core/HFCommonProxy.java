@@ -57,7 +57,7 @@ public class HFCommonProxy {
         for (Class c : LIST) {
             try { //Attempt to load default
                 c.getMethod(stage).invoke(null);
-            } catch (Exception e) { }
+            } catch (Exception e) { if (c.equals(HFBuildings.class)) e.printStackTrace(); }
 
             //Attempt to load client side only
             if (isClient()) {

@@ -25,7 +25,7 @@ public class QuestGoddess extends Quest {
         if (previous == 0) {
             rewardItem(player, new ItemStack(HFBlocks.FLOWERS, 4, 0));
         } else if (previous == 1) {
-            rewardItem(player, HFBuildings.carpenter.getPreview());
+            rewardItem(player, HFBuildings.carpenter.getProvider().getPreview());
             rewardItem(player, new ItemStack(Blocks.RED_FLOWER, 1, player.worldObj.rand.nextInt(8)));
         } else if (previous == 3) {
             ItemStack seeds = HFCrops.turnip.getSeedStack().copy();

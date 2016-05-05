@@ -14,14 +14,18 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class BuildingCafe extends Building {
+public class BuildingCafe extends BuildingAbstract {
     public BuildingCafe() {
         super("cafe");
+    }
+
+    @Override
+    public int getOffsetY() {
+        return -1;
     }
 
     @Override
@@ -47,9 +51,7 @@ public class BuildingCafe extends Building {
     }
 
     @Override
-    public IBuilding addBlocks() {
-        offsetY = -1;
-        list = new ArrayList<Placeable>(1300);
+    public IBuilding addBlocks(List<Placeable> list) {
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 0, 0, 1));
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 0, 0, 5));
         list.add(new PlaceableBlock(Blocks.PLANKS, 5, 0, 0, 9));
@@ -304,7 +306,7 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableItemFrame(null, 0, EnumFacing.EAST, 8, 1, 4));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 8, 1, 5));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 8, 1, 6));
-        npc_offsets.put(TownData.CAFE_FRONT, new PlaceableNPC("", new BlockPos(8, 1, 7)));
+        list.add(new PlaceableNPC(TownData.CAFE_FRONT, "", 8, 1, 7));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 8, 1, 7));
         list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 12, 8, 1, 8));
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 14, 8, 1, 9));
@@ -401,8 +403,7 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.PLANKS, 1, 5, 2, 8));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 5, 2, 9));
         list.add(new PlaceableDecorative(Blocks.LADDER, 3, 5, 2, 10));
-        list.add(new PlaceableNPC("katlin", new BlockPos(5, 2, 11)));
-        npc_offsets.put(TownData.KATLIN, new PlaceableNPC("", new BlockPos(5, 2, 11)));
+        list.add(new PlaceableNPC(TownData.KATLIN, "katlin", 5, 2, 11));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 5, 2, 11));
         list.add(new PlaceableBlock(Blocks.COBBLESTONE_WALL, 0, 5, 2, 12));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 5, 2, 13));
@@ -818,7 +819,7 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableBlock(Blocks.STAINED_HARDENED_CLAY, 14, 5, 5, 4));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 5, 5, 5));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 5, 5, 6));
-        npc_offsets.put(TownData.CAFE_TILL, new PlaceableNPC("", new BlockPos(5, 5, 7)));
+        list.add(new PlaceableNPC(TownData.CAFE_TILL, "", 5, 5, 7));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 5, 5, 7));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 5, 5, 8));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 5, 5, 9));
@@ -845,8 +846,7 @@ public class BuildingCafe extends Building {
         list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 7, 7, 5, 7));
         list.add(new PlaceableDecorative(Blocks.TRAPDOOR, 7, 7, 5, 8));
         list.add(new PlaceableBlock(Blocks.LOG, 1, 7, 5, 9));
-        list.add(new PlaceableNPC("liara", new BlockPos(7, 5, 10)));
-        npc_offsets.put(TownData.LIARA, new PlaceableNPC("", new BlockPos(7, 5, 10)));
+        list.add(new PlaceableNPC(TownData.LIARA, "liara", 7, 5, 10));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 7, 5, 10));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 7, 5, 11));
         list.add(new PlaceableBlock(Blocks.AIR, 0, 7, 5, 12));

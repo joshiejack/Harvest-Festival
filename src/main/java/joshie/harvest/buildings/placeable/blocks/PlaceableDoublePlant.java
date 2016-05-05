@@ -1,8 +1,7 @@
 package joshie.harvest.buildings.placeable.blocks;
 
+import joshie.harvest.blocks.BlockPreview.Direction;
 import net.minecraft.block.Block;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -19,7 +18,7 @@ public class PlaceableDoublePlant extends PlaceableBlock {
     }
 
     @Override
-    public void postPlace(UUID uuid, World world, BlockPos pos, Mirror mirror, Rotation rotation) {
+    public void postPlace(UUID uuid, World world, BlockPos pos, Direction direction) {
         world.setBlockState(pos.up(), state.getBlock().getStateFromMeta(8), 2);
     }
 }

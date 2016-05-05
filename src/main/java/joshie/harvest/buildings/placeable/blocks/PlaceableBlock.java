@@ -1,33 +1,49 @@
 package joshie.harvest.buildings.placeable.blocks;
 
+import joshie.harvest.blocks.BlockPreview.Direction;
 import joshie.harvest.buildings.placeable.Placeable;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import java.util.EnumMap;
 import java.util.UUID;
 
 public class PlaceableBlock extends Placeable {
+    protected EnumMap<Direction, IBlockState> states = new EnumMap<Direction, IBlockState>(Direction.class);
     protected IBlockState state;
 
     public PlaceableBlock() {
-        super(BlockPos.ORIGIN);
+        super(0, 0, 0);
     }
 
     public PlaceableBlock(Block block, int meta, int offsetX, int offsetY, int offsetZ) {
-        super(new BlockPos(offsetX, offsetY, offsetZ));
+        super(offsetX, offsetY, offsetZ);
         state = block.getStateFromMeta(meta);
+        for (Direction direction: Direction.values()) {
+            states.put(direction, direction.withDirection(state));
+        }
+    }
+
+    public PlaceableBlock(BlockPos pos, PlaceableBlock block) {
+        super(pos.getX(), pos.getY(), pos.getZ());
+        state = block.state;
+        for (Direction direction: Direction.values()) {
+            states.put(direction, direction.withDirection(state));
+        }
     }
 
     public Block getBlock() {
         return state.getBlock();
     }
 
-    public IBlockState getTransformedState(Mirror mirror, Rotation rotation) {
-        return this.state.withMirror(mirror).withRotation(rotation);
+    public IBlockState getTransformedState(Direction direction) {
+        return states.get(direction);
+    }
+
+    public PlaceableBlock copyWithOffset(BlockPos pos, Direction direction) {
+        return new PlaceableBlock(getTransformedPosition(pos, direction), this);
     }
 
     @Override
@@ -35,23 +51,23 @@ public class PlaceableBlock extends Placeable {
         return stage == ConstructionStage.BUILD;
     }
 
-    public boolean prePlace (UUID owner, World world, BlockPos pos, Mirror mirror, Rotation rotation) {
+    public boolean prePlace (UUID owner, World world, BlockPos pos, Direction direction) {
         return true;
     }
 
     @Override
-    public final boolean place (UUID owner, World world, BlockPos pos, Mirror mirror, Rotation rotation) {
-        if (!prePlace(owner, world, pos, mirror, rotation)) return false;
-        IBlockState state = getTransformedState(mirror, rotation);
+    public final boolean place (UUID owner, World world, BlockPos pos, Direction direction) {
+        if (!prePlace(owner, world, pos, direction)) return false;
+        IBlockState state = getTransformedState(direction);
         boolean result = world.setBlockState(pos, state, 3);
         if (result) {
-            postPlace(owner, world, pos, mirror, rotation);
+            postPlace(owner, world, pos, direction);
         }
 
         return result;
     }
 
-    public void postPlace (UUID owner, World world, BlockPos pos, Mirror mirror, Rotation rotation) {}
+    public void postPlace (UUID owner, World world, BlockPos pos, Direction direction) {}
 
     @Override
     public boolean equals(Object obj) {

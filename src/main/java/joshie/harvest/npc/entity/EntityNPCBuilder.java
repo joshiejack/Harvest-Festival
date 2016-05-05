@@ -3,6 +3,8 @@ package joshie.harvest.npc.entity;
 import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.buildings.BuildingStage;
+import joshie.harvest.npc.entity.ai.EntityAINPC;
+import joshie.harvest.npc.entity.ai.TaskHeadToBlock;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityZombie;
@@ -17,6 +19,7 @@ import net.minecraft.world.World;
 import java.util.UUID;
 
 public class EntityNPCBuilder extends EntityNPCShopkeeper {
+    private TaskHeadToBlock go = new TaskHeadToBlock();
     private BuildingStage building;
     public BlockPos headTowards = null;
     private int tick;
@@ -39,13 +42,14 @@ public class EntityNPCBuilder extends EntityNPCShopkeeper {
     }
 
     @Override
-    protected void updateAITasks() {
+    protected void updateTasks() {
         if (building == null) {
-            super.updateAITasks();
+            super.updateTasks();
         } else {
             if (!worldObj.isRemote) {
                 if (tick % building.getTickTime() == 0) {
-                    headTowards = building.build(worldObj);
+                    building.build(worldObj);
+                    setTask(go.setLocation(building.next()));
                     if (building.isFinished()) {
                         building = null;
                         headTowards = null;
@@ -65,13 +69,11 @@ public class EntityNPCBuilder extends EntityNPCShopkeeper {
             tasks.addTask(0, new EntityAISwimming(this));
             tasks.addTask(1, new EntityAIAvoidEntity<EntityZombie>(this, EntityZombie.class, 8.0F, 0.6D, 0.6D));
             tasks.addTask(1, new EntityAITalkingTo(this));
-            tasks.addTask(2, new EntityAIGoToBlock(this));
+            tasks.addTask(2, new EntityAINPC(this));
             tasks.addTask(3, new EntityAILookAtPlayer(this));
             tasks.addTask(3, new EntityAITeleportHome(this));
-            tasks.addTask(3, new EntityAIGoHome(this));
             tasks.addTask(4, new EntityAIRestrictOpenDoor(this));
             tasks.addTask(5, new EntityAIOpenDoor(this, true));
-            tasks.addTask(6, new EntityAIMoveTowardsRestriction(this, 0.6D));
             tasks.addTask(8, new EntityAIPlay(this, 0.32D));
             tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 3.0F, 1.0F));
             tasks.addTask(9, new EntityAIWatchClosest(this, EntityNPC.class, 5.0F, 0.02F));
@@ -92,6 +94,7 @@ public class EntityNPCBuilder extends EntityNPCShopkeeper {
     public void setDead() {
         if (!worldObj.isRemote && npc.respawns()) {
             EntityNPCBuilder clone = new EntityNPCBuilder(owning_player, this);
+            clone.building = building;
             worldObj.spawnEntityInWorld(clone);
         }
 

@@ -36,6 +36,10 @@ public class BuildingStage {
         this.pos = pos.add(0, building.getOffsetY(), 0);
     }
 
+    public BlockPos next() {
+        return index < building.getProvider().getFullList().size() ? building.getProvider().getFullList().get(index).getTransformedPosition(pos, direction): pos;
+    }
+
     public BlockPos build(World world) {
         if (index >= building.getProvider().getSize()) {
             if (stage == ConstructionStage.BUILD) {

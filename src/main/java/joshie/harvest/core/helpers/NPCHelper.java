@@ -21,6 +21,11 @@ public class NPCHelper {
         return HFTrackers.getPlayerTracker(owner_uuid).getTown().getCoordinatesFor(npc.getHomeGroup(), npc.getHomeLocation());
     }
 
+    public static BlockPos getHomeForEntity(UUID owner, INPC npc) {
+        if (npc.getHomeGroup() == null || npc.getHomeLocation() == null) return null;
+        return HFTrackers.getPlayerTracker(owner).getTown().getCoordinatesFor(npc.getHomeGroup(), npc.getHomeLocation());
+    }
+
     public static EntityNPC getEntityForNPC(UUID owning_player, World world, INPC npc) {
         if (npc.isBuilder()) {
             return new EntityNPCBuilder(owning_player, world, npc);

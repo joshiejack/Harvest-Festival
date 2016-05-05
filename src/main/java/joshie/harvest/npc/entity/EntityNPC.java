@@ -4,11 +4,13 @@ import io.netty.buffer.ByteBuf;
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.npc.ai.INPCTask;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.relations.IRelatableProvider;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.npc.HFNPCs;
+import joshie.harvest.npc.entity.ai.EntityAINPC;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -29,6 +31,8 @@ import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import java.util.UUID;
 
 public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnData, IRelatableProvider {
+    private boolean init;
+    private INPCTask task; //Currently executing task
     protected INPC npc;
     protected EntityNPC lover;
     private EntityPlayer talkingTo;
@@ -56,6 +60,14 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
         return npc;
     }
 
+    public INPCTask getTask() {
+        return task;
+    }
+
+    public void setTask(INPCTask task) {
+        this.task = task;
+    }
+
     @Override
     public void onUpdate() {
         if (!joshie.harvest.core.config.NPC.FREEZE_NPC) {
@@ -67,6 +79,7 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
         super(world);
         this.npc = npc;
 
+        this.enablePersistence();
         this.owning_player = owning_player;
         setSize(0.6F, (1.8F * npc.getHeight()));
     }
@@ -81,10 +94,9 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
             tasks.addTask(1, new EntityAITalkingTo(this));
             tasks.addTask(1, new EntityAILookAtPlayer(this));
             tasks.addTask(2, new EntityAITeleportHome(this));
-            tasks.addTask(2, new EntityAIGoHome(this));
+            tasks.addTask(2, new EntityAINPC(this));
             tasks.addTask(3, new EntityAIRestrictOpenDoor(this));
             tasks.addTask(4, new EntityAIOpenDoor(this, true));
-            tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 0.6D));
             tasks.addTask(8, new EntityAIPlay(this, 0.32D));
             tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 3.0F, 1.0F));
             tasks.addTask(9, new EntityAIWatchClosest(this, EntityNPC.class, 5.0F, 0.02F));
@@ -126,6 +138,15 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
 
     @Override
     protected void updateAITasks() {
+        if (!init) {
+            init = true;
+            initEntityAI();
+        }
+
+        updateTasks();
+    }
+
+    protected void updateTasks() {
         if (this.lastTeleport > 0) {
             this.lastTeleport--;
         }
@@ -199,20 +220,6 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
         npc = HFApi.NPC.get(nbt.getString("NPC"));
         if (nbt.hasKey("Owner")) {
             owning_player = UUID.fromString(nbt.getString("Owner"));
-            tasks.addTask(0, new EntityAISwimming(this));
-            tasks.addTask(1, new EntityAIAvoidEntity<EntityZombie>(this, EntityZombie.class, 8.0F, 0.6D, 0.6D));
-            tasks.addTask(1, new EntityAITalkingTo(this));
-            tasks.addTask(1, new EntityAILookAtPlayer(this));
-            tasks.addTask(2, new EntityAITeleportHome(this));
-            tasks.addTask(2, new EntityAIGoHome(this));
-            tasks.addTask(3, new EntityAIRestrictOpenDoor(this));
-            tasks.addTask(4, new EntityAIOpenDoor(this, true));
-            tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 0.6D));
-            tasks.addTask(8, new EntityAIPlay(this, 0.32D));
-            tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 3.0F, 1.0F));
-            tasks.addTask(9, new EntityAIWatchClosest(this, EntityNPC.class, 5.0F, 0.02F));
-            tasks.addTask(9, new EntityAIWander(this, 0.6D));
-            tasks.addTask(10, new EntityAIWatchClosest(this, EntityLiving.class, 8.0F));
         }
     }
 

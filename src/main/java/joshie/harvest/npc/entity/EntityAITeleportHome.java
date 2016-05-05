@@ -12,7 +12,7 @@ public class EntityAITeleportHome extends EntityAIBase {
     public EntityAITeleportHome(EntityNPC npc) {
         entity = npc;
         home = NPCHelper.getHomeForEntity(entity);
-        setMutexBits(1);
+        setMutexBits(3);
     }
 
     @Override

@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "types=decorative": { "model": "harvestfestival:dirt" },
+    "types=real": { "model": "harvestfestival:dirt" }
+  }
+}

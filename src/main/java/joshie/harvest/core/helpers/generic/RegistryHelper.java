@@ -6,6 +6,7 @@ import joshie.harvest.core.util.generic.IHasMetaBlock;
 import joshie.harvest.core.util.generic.Library;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -30,7 +31,11 @@ public class RegistryHelper {
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
             if (item.getHasSubtypes()) {
                 List<ItemStack> subItems = new ArrayList<ItemStack>();
-                item.getSubItems(item, item.getCreativeTab(), subItems);
+                if (item.getCreativeTabs() != null && item.getCreativeTabs().length > 0) {
+                    for (CreativeTabs tab : item.getCreativeTabs()) {
+                        item.getSubItems(item, tab, subItems);
+                    }
+                }
                 for (ItemStack stack : subItems) {
                     String subItemName = item.getUnlocalizedName(stack).replace("item.", "").replace(".", "_");
 

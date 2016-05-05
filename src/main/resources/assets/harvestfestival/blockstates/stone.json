@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "types=decorative": { "model": "harvestfestival:stone" },
+    "types=real": { "model": "harvestfestival:stone" }
+  }
+}

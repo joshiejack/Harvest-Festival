@@ -2,10 +2,10 @@ package joshie.harvest.core;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ICreativeSorted;
+import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.items.HFItems;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -17,10 +17,10 @@ import java.util.Comparator;
 import java.util.List;
 
 public class HFTab extends CreativeTabs {
-    public static HFTab TOWN = new HFTab("town");
-    public static HFTab MINING = new HFTab("mining");
-    public static HFTab FARMING = new HFTab("farming");
-    public static HFTab COOKING = new HFTab("cooking");
+    public static final HFTab TOWN = new HFTab("town");
+    public static final HFTab MINING = new HFTab("mining");
+    public static final HFTab FARMING = new HFTab("farming");
+    public static final HFTab COOKING = new HFTab("cooking");
 
     private ItemStack icon = new ItemStack(Items.GOLDEN_HOE);
 
@@ -93,7 +93,7 @@ public class HFTab extends CreativeTabs {
 
     public static void preInit() {
         HFTab.TOWN.setStack(new ItemStack(HFItems.STRUCTURES, 1, 0));
-        HFTab.MINING.setStack(new ItemStack(Blocks.STONE)); //TODO Change to HFBlocks.STONE
+        HFTab.MINING.setStack(new ItemStack(HFBlocks.STONE, 1, 0));
         HFTab.FARMING.setStack(new ItemStack(HFItems.HOE, 1, 0));
         HFTab.COOKING.setStack(HFApi.COOKING.getMeal("salad"));
     }

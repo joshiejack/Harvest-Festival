@@ -2,10 +2,16 @@ package joshie.harvest.items;
 
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.core.config.General;
+import joshie.harvest.core.helpers.SeedHelper;
 import joshie.harvest.core.lib.SizeableMeta;
 import joshie.harvest.crops.Crop;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.color.IItemColor;
+import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 import org.apache.commons.lang3.text.WordUtils;
 
@@ -53,6 +59,20 @@ public class HFItems {
         if (General.DEBUG_MODE) {
             new ItemCheat().setUnlocalizedName("cheat");
         }
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static void initClient() {
+        ItemColors colors = Minecraft.getMinecraft().getItemColors();
+
+        colors.registerItemColorHandler(new IItemColor() {
+            @Override
+            public int getColorFromItemstack(ItemStack stack, int tintIndex) {
+                if (!stack.hasTagCompound()) return -1;
+                ICrop crop = SeedHelper.getCropFromSeed(stack);
+                return crop != null ? crop.getColor() : -1;
+            }
+        }, HFItems.SEEDS);
     }
 
     public static Item getSizedItem(SizeableMeta size) {

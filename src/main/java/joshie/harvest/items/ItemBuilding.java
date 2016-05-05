@@ -25,6 +25,11 @@ public class ItemBuilding extends ItemHFBaseMeta implements ICreativeSorted {
     }
 
     @Override
+    public String getUnlocalizedName(ItemStack stack) {
+        return getName(stack);
+    }
+
+    @Override
     public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         IBuilding group = Building.buildings.get(stack.getItemDamage());
         if (group != null) {

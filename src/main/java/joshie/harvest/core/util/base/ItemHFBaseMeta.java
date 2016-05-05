@@ -37,6 +37,11 @@ public abstract class ItemHFBaseMeta extends Item implements IHasMetaItem {
     }
 
     @Override
+    public String getUnlocalizedName(ItemStack stack) {
+        return super.getUnlocalizedName(stack) + "_" + getName(stack);
+    }
+
+    @Override
     public String getItemStackDisplayName(ItemStack stack) {
         String name = getName(stack).replaceAll("(.)([A-Z])", "$1$2").toLowerCase();
         return Text.localize(getUnlocalizedName() + "." + name.replace("_", "."));

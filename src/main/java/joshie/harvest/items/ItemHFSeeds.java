@@ -142,14 +142,6 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
         return planted;
     }
 
-    /*@Override //Moved in vanilla
-    public int getColorFromItemStack(ItemStack stack, int pass) {
-        if (!stack.hasTagCompound()) return super.getColorFromItemStack(stack, pass);
-        ICrop crop = SeedHelper.getCropFromSeed(stack);
-        if (pass == 0 && crop != null) return crop.getColor();
-        else return super.getColorFromItemStack(stack, pass);
-    }*/
-
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {

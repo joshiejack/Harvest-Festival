@@ -4,7 +4,6 @@ import joshie.harvest.HarvestFestival;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.generic.IHasMetaBlock;
 import joshie.harvest.core.util.generic.Library;
-import joshie.harvest.items.ItemBaseTool;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -35,12 +34,8 @@ public class RegistryHelper {
                 for (ItemStack stack : subItems) {
                     String subItemName = item.getUnlocalizedName(stack).replace("item.", "").replace(".", "_");
 
-                    if (item instanceof ItemBaseTool) {
-                        subItemName = subItemName + "_" + ((ItemBaseTool) item).getTier(stack).name().toLowerCase();
-                    }
-
                     ModelLoader.setCustomModelResourceLocation(item, item.getDamage(stack), new ModelResourceLocation(new ResourceLocation(HFModInfo.MODID, subItemName), "inventory"));
-                    HarvestFestival.LOGGER.log(Level.INFO, "Sub Item Name " + subItemName);
+                    HarvestFestival.LOGGER.log(Level.INFO, "Sub item name " + subItemName);
                 }
             } else {
                 ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(new ResourceLocation(HFModInfo.MODID, name), "inventory"));

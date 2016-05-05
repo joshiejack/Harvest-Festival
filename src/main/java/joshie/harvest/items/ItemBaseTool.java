@@ -36,6 +36,11 @@ public abstract class ItemBaseTool extends ItemBaseSingle implements ILevelable,
     }
 
     @Override
+    public String getUnlocalizedName(ItemStack stack) {
+        return super.getUnlocalizedName(stack) + "_" + getTier(stack).name().toLowerCase();
+    }
+
+    @Override
     public String getItemStackDisplayName(ItemStack stack) {
         return Translate.translate(super.getUnlocalizedName().replace("item.", "") + "." + getTier(stack).name().toLowerCase());
     }
@@ -157,7 +162,7 @@ public abstract class ItemBaseTool extends ItemBaseSingle implements ILevelable,
         for (int j = 0; j < 60D; j++) {
             double d8 = (pos.getX()) + world.rand.nextFloat();
             double d9 = (pos.getZ()) + world.rand.nextFloat();
-            world.spawnParticle(particle, d8, pos.getY() + 1.0D - 0.125D, d9, 0, 0, 0, new int[] {Block.getStateId(state)});
+            world.spawnParticle(particle, d8, pos.getY() + 1.0D - 0.125D, d9, 0, 0, 0, new int[]{Block.getStateId(state)});
         }
     }
 

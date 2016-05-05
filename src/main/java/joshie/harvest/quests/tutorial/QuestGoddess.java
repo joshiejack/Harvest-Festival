@@ -2,7 +2,7 @@ package joshie.harvest.quests.tutorial;
 
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.blocks.HFBlocks;
-import joshie.harvest.buildings.HFBuildings;
+import joshie.harvest.buildings.loader.HFBuildings;
 import joshie.harvest.core.helpers.generic.OreDictionaryHelper;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.items.HFItems;

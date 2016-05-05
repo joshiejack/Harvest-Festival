@@ -39,6 +39,7 @@ harvestfestival.structures.mininghut=Blueprint: Mining Hut
 harvestfestival.structures.poultryfarm=Blueprint: Poultry Farm
 harvestfestival.structures.supermarket=Blueprint: General Store
 harvestfestival.structures.townhall=Blueprint: Townhall
+harvestfestival.structures.null=Blueprint: Invalid
 
 #Cheat Items (Translators don't bother tranlating these, I just use them to help with dev)
 harvestfestival.cheat.coord.setter=[BuildingGen] Coordinate Setter

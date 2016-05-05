@@ -1,9 +1,10 @@
 package joshie.harvest.player.town;
 
-import joshie.harvest.api.WorldLocation;
 import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.buildings.BuildingStage;
 import joshie.harvest.core.handlers.HFTrackers;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.HashMap;
@@ -45,19 +46,27 @@ public class TownData {
     public static final String GODDESS = "goddesspond";
     //END NPC NAME OF LOCATIONS **/
     
-    protected HashMap<String, TownBuilding> buildings = new HashMap<String, TownBuilding>();
+    protected HashMap<ResourceLocation, TownBuilding> buildings = new HashMap<ResourceLocation, TownBuilding>();
     
     public void addBuilding(World world, BuildingStage building) {
-        buildings.put(building.building.getName(), new TownBuilding(building, world.provider.getDimension()));
+        buildings.put(building.building.getResource(), new TownBuilding(building, world.provider.getDimension()));
         HFTrackers.markDirty();
     }
 
     public boolean hasBuilding(IBuilding building) {
-        return buildings.get(building.getName()) != null;
+        return buildings.get(building.getResource()) != null;
     }
 
-    public WorldLocation getCoordinatesFor(IBuilding home, String npc_location) {
-        TownBuilding building = buildings.get(home.getName());
+    public boolean hasBuildings(ResourceLocation[] buildings) {
+        for (ResourceLocation building: buildings) {
+            if (this.buildings.get(building) == null) return false;
+        }
+
+        return true;
+    }
+
+    public BlockPos getCoordinatesFor(IBuilding home, String npc_location) {
+        TownBuilding building = buildings.get(home.getResource());
         if (building == null) return null;
         return building.getRealCoordinatesFor(npc_location);
     }

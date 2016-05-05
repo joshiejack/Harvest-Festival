@@ -26,12 +26,12 @@ public class PurchaseableBuilding extends Purchaseable {
         if (wood < building.getWoodCount()) return false;
         int stone = InventoryHelper.getCount(player, "stone");
         if (stone < building.getStoneCount()) return false;
-        return building.canBuy(world, player);
+        return building.getRules().canBuy(world, player) && building.hasRequirements(player);
     }
 
     @Override
     public boolean canList(World world, EntityPlayer player) {
-        return !HFTrackers.getPlayerTracker(player).getTown().hasBuilding(building) && building.canBuy(world, player);
+        return !HFTrackers.getPlayerTracker(player).getTown().hasBuilding(building) && building.getRules().canBuy(world, player) && building.hasRequirements(player);
     }
 
     @Override

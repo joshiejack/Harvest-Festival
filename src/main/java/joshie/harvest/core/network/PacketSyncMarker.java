@@ -7,6 +7,7 @@ import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.blocks.tiles.TileMarker;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -29,7 +30,7 @@ public class PacketSyncMarker implements IMessage, IMessageHandler<PacketSyncMar
         location.toBytes(buf);
         if (group != null) {
             buf.writeBoolean(true);
-            ByteBufUtils.writeUTF8String(buf, group.getName());
+            ByteBufUtils.writeUTF8String(buf, group.getResource().toString());
         } else buf.writeBoolean(false);
     }
 
@@ -38,7 +39,7 @@ public class PacketSyncMarker implements IMessage, IMessageHandler<PacketSyncMar
         location = new WorldLocation();
         location.fromBytes(buf);
         if (buf.readBoolean()) {
-            group = HFApi.BUILDINGS.getBuildingFromName(ByteBufUtils.readUTF8String(buf));
+            group = HFApi.BUILDINGS.getBuildingFromName(new ResourceLocation(ByteBufUtils.readUTF8String(buf)));
         }
     }
 

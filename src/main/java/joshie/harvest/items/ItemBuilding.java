@@ -4,6 +4,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.buildings.BuildingRegistry;
+import joshie.harvest.buildings.loader.HFBuildings;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.util.base.ItemHFBaseMeta;
@@ -15,6 +16,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -30,7 +32,7 @@ public class ItemBuilding extends ItemHFBaseMeta implements ICreativeSorted {
     public ItemStack getItemStack(IBuilding building) {
         ItemStack stack = new ItemStack(this);
         stack.setTagCompound(new NBTTagCompound());
-        stack.getTagCompound().setString("Building", building.getName());
+        stack.getTagCompound().setString("Building", building.getResource().toString());
         return stack;
     }
 
@@ -55,22 +57,14 @@ public class ItemBuilding extends ItemHFBaseMeta implements ICreativeSorted {
     }
 
     public IBuilding getBuildingFromStack(ItemStack stack) {
-        if (!stack.hasTagCompound()) return null;
-        return HFApi.BUILDINGS.getBuildingFromName(stack.getTagCompound().getString("Building"));
-    }
-
-    @Override
-    public String getName(ItemStack stack) {
-        if (stack.getItemDamage() >= BuildingRegistry.buildings.size()) return "invalid";
-        IBuilding group = getBuildingFromStack(stack);
-        if (group != null) {
-            return group.getName();
-        } else return "invalid";
+        if (!stack.hasTagCompound()) return HFBuildings.null_building;
+        IBuilding building = HFApi.BUILDINGS.getBuildingFromName(new ResourceLocation(stack.getTagCompound().getString("Building")));
+        return building == null ? HFBuildings.null_building: building;
     }
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        return "[SPAWN] " + super.getItemStackDisplayName(stack);
+        return "[SPAWN] " + getBuildingFromStack(stack).getLocalisedName();
     }
 
     @Override
@@ -83,6 +77,7 @@ public class ItemBuilding extends ItemHFBaseMeta implements ICreativeSorted {
     public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
         if (tab == HFTab.TOWN) {
             for (IBuilding building : BuildingRegistry.buildings.values()) {
+                if (building == null) continue;
                 list.add(getItemStack(building));
             }
         }

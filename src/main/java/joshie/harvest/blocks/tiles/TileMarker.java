@@ -11,6 +11,7 @@ import joshie.harvest.core.network.PacketSyncMarker;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 
 import java.util.ArrayList;
@@ -60,8 +61,11 @@ public class TileMarker extends TileEntity {
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
-        building = HFApi.BUILDINGS.getBuildingFromName(nbt.getString("Building"));
-        direction = Direction.valueOf(nbt.getString("Direction"));
+        building = HFApi.BUILDINGS.getBuildingFromName(new ResourceLocation(nbt.getString("Building")));
+        if (nbt.hasKey("Direction")) {
+            direction = Direction.valueOf(nbt.getString("Direction"));
+        }
+
         needsInit = nbt.getBoolean("Init");
     }
 
@@ -71,7 +75,7 @@ public class TileMarker extends TileEntity {
         nbt.setBoolean("Init", needsInit);
         nbt.setString("Direction", direction.name());
         if (building != null) {
-            nbt.setString("Building", building.getName());
+            nbt.setString("Building", building.getResource().toString());
         }
     }
 }

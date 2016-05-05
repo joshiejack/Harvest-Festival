@@ -1,13 +1,12 @@
 package joshie.harvest.npc.entity;
 
-import joshie.harvest.api.WorldLocation;
 import joshie.harvest.core.helpers.CalendarHelper;
 import joshie.harvest.core.helpers.NPCHelper;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.util.math.BlockPos;
 
 public class EntityAITeleportHome extends EntityAIBase {
-    private WorldLocation home;
+    private BlockPos home;
     private EntityNPC entity;
 
     public EntityAITeleportHome(EntityNPC npc) {
@@ -33,7 +32,7 @@ public class EntityAITeleportHome extends EntityAIBase {
 
     @Override
     public void startExecuting() {
-        this.entity.setPositionAndUpdate(home.position.getX() + 0.5D, home.position.getY(), home.position.getZ() + 0.5D);
+        this.entity.setPositionAndUpdate(home.getX() + 0.5D, home.getY(), home.getZ() + 0.5D);
     }
 
     @Override

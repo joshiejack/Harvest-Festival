@@ -11,7 +11,7 @@ import java.util.EnumMap;
 import java.util.UUID;
 
 public class PlaceableBlock extends Placeable {
-    protected EnumMap<Direction, IBlockState> states = new EnumMap<Direction, IBlockState>(Direction.class);
+    protected transient EnumMap<Direction, IBlockState> states = new EnumMap<Direction, IBlockState>(Direction.class);
     protected IBlockState state;
 
     public PlaceableBlock() {
@@ -34,12 +34,22 @@ public class PlaceableBlock extends Placeable {
         }
     }
 
+    @Override
+    public PlaceableBlock init() {
+        if (states == null) states = new EnumMap<Direction, IBlockState>(Direction.class);
+        for (Direction direction: Direction.values()) {
+            states.put(direction, direction.withDirection(state));
+        }
+
+        return this;
+    }
+
     public Block getBlock() {
         return state.getBlock();
     }
 
     public IBlockState getTransformedState(Direction direction) {
-        return states.get(direction);
+        return direction.withDirection(state);
     }
 
     public PlaceableBlock copyWithOffset(BlockPos pos, Direction direction) {
@@ -52,7 +62,7 @@ public class PlaceableBlock extends Placeable {
     }
 
     public boolean prePlace (UUID owner, World world, BlockPos pos, Direction direction) {
-        return true;
+        return world.getBlockState(pos).getBlockHardness(world, pos) != -1.0F;
     }
 
     @Override

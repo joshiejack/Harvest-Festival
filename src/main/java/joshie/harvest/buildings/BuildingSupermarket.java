@@ -1,6 +1,7 @@
 package joshie.harvest.buildings;
 
 import joshie.harvest.api.buildings.IBuilding;
+import joshie.harvest.buildings.loader.HFBuildings;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.blocks.*;
 import joshie.harvest.buildings.placeable.entities.PlaceableItemFrame;
@@ -54,6 +55,11 @@ public class BuildingSupermarket extends BuildingAbstract {
     @Override
     public boolean canBuy(World world, EntityPlayer player) {
         return HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.carpenter);
+    }
+
+    @Override
+    public String[] getRequirements() {
+        return new String[] { "carpenter" };
     }
 
     @Override

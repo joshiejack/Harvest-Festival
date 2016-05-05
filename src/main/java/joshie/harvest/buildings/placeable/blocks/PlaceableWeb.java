@@ -14,6 +14,6 @@ public class PlaceableWeb extends PlaceableBlock {
 
     @Override
     public boolean prePlace (UUID owner, World world, BlockPos pos, Direction direction) {
-        return world.rand.nextInt() == 3;
+        return world.rand.nextInt() == 3 && super.prePlace(owner, world, pos, direction);
     }
 }

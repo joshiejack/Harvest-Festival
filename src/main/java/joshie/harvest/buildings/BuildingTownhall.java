@@ -1,6 +1,7 @@
 package joshie.harvest.buildings;
 
 import joshie.harvest.api.buildings.IBuilding;
+import joshie.harvest.buildings.loader.HFBuildings;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.blocks.*;
 import joshie.harvest.buildings.placeable.entities.PlaceableItemFrame;
@@ -44,10 +45,8 @@ public class BuildingTownhall extends BuildingAbstract {
     }
 
     @Override
-    public boolean canBuy(World world, EntityPlayer player) {
-        return HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.miningHill) &&
-                HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.miningHut) &&
-                HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.goddessPond);
+    public String[] getRequirements() {
+        return new String[] { "miningHill", "miningHut", "goddessPond" };
     }
 
     @Override

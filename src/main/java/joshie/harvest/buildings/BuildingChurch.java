@@ -1,6 +1,7 @@
 package joshie.harvest.buildings;
 
 import joshie.harvest.api.buildings.IBuilding;
+import joshie.harvest.buildings.loader.HFBuildings;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvest.buildings.placeable.blocks.PlaceableDecorative;
@@ -44,6 +45,11 @@ public class BuildingChurch extends BuildingAbstract {
         return HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.miningHill) &&
                 HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.miningHut) &&
                 HFTrackers.getPlayerTracker(player).getTown().hasBuilding(HFBuildings.goddessPond);
+    }
+
+    @Override
+    public String[] getRequirements() {
+        return new String[] { "miningHill", "miningHut", "goddessPond" };
     }
 
     @Override

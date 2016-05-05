@@ -4,6 +4,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.blocks.tiles.TileMarker;
 import joshie.harvest.buildings.BuildingRegistry;
+import joshie.harvest.buildings.loader.HFBuildings;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.config.General;
 import joshie.harvest.core.handlers.HFTrackers;
@@ -35,7 +36,7 @@ public class BlockPreview extends BlockHFBaseMeta<BlockPreview.Direction> {
     public ItemStack getItemStack(IBuilding building) {
         ItemStack stack = new ItemStack(this);
         stack.setTagCompound(new NBTTagCompound());
-        stack.getTagCompound().setString("Building", building.getName());
+        stack.getTagCompound().setString("Building", building.getResource().toString());
         return stack;
     }
 
@@ -152,8 +153,9 @@ public class BlockPreview extends BlockHFBaseMeta<BlockPreview.Direction> {
     }
 
     public IBuilding getBuildingFromStack(ItemStack stack) {
-        if (!stack.hasTagCompound()) return null;
-        return HFApi.BUILDINGS.getBuildingFromName(stack.getTagCompound().getString("Building"));
+        if (!stack.hasTagCompound()) return HFBuildings.null_building;
+        IBuilding building = HFApi.BUILDINGS.getBuildingFromName(new ResourceLocation(stack.getTagCompound().getString("Building")));
+        return building == null ? HFBuildings.null_building: building;
     }
 
     @Override

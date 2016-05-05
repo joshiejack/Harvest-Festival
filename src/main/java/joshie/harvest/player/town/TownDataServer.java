@@ -3,6 +3,7 @@ package joshie.harvest.player.town;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.ResourceLocation;
 
 public class TownDataServer extends TownData {
     public GatheringData gathering = new GatheringData();
@@ -24,16 +25,16 @@ public class TownDataServer extends TownData {
             String name = tag.getString("BuildingKey");
             TownBuilding building = new TownBuilding();
             building.readFromNBT(tag);
-            buildings.put(name, building);
+            buildings.put(new ResourceLocation(name), building);
         }
     }
 
     public void writeToNBT(NBTTagCompound nbt) {
         gathering.writeToNBT(nbt);
         NBTTagList list = new NBTTagList();
-        for (String name : buildings.keySet()) {
+        for (ResourceLocation name : buildings.keySet()) {
             NBTTagCompound tag = new NBTTagCompound();
-            tag.setString("BuildingKey", name);
+            tag.setString("BuildingKey", name.toString());
             buildings.get(name).writeToNBT(tag);
             list.appendTag(tag);
         }

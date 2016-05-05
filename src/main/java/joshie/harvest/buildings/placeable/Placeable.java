@@ -15,6 +15,10 @@ public abstract class Placeable {
         this.z = z;
     }
 
+    public Placeable init() {
+        return this;
+    }
+
     public BlockPos getOffsetPos() {
         return new BlockPos(x, y, z);
     }

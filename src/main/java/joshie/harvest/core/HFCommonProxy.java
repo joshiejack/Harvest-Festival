@@ -2,7 +2,7 @@ package joshie.harvest.core;
 
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.blocks.HFBlocks;
-import joshie.harvest.buildings.HFBuildings;
+import joshie.harvest.buildings.loader.HFBuildings;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.HFIngredients;
 import joshie.harvest.cooking.HFRecipes;

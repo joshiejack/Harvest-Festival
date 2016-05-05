@@ -5,18 +5,17 @@ import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntitySign;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
 import java.util.UUID;
 
 public class PlaceableSignWall extends PlaceableBlock {
-    private ITextComponent[] text;
+    private TextComponentString[] text;
 
     public PlaceableSignWall(Block block, int meta, BlockPos offsetPos, String... text) {
         super(block, meta, offsetPos.getX(), offsetPos.getY(), offsetPos.getZ());
-        this.text = new ITextComponent[]{new TextComponentString(text[0]), new TextComponentString(text[1]), new TextComponentString(text[2]), new TextComponentString(text[3])};
+        this.text = new TextComponentString[]{new TextComponentString(text[0]), new TextComponentString(text[1]), new TextComponentString(text[2]), new TextComponentString(text[3])};
     }
 
     public PlaceableSignWall(Block block, int meta, int offsetX, int offsetY, int offsetZ, String... text) {
@@ -32,7 +31,7 @@ public class PlaceableSignWall extends PlaceableBlock {
     public void postPlace (UUID owner, World world, BlockPos pos, Direction direction) {
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof TileEntitySign) {
-            text = ((TileEntitySign) tile).signText;
+            //((TileEntitySign) tile).signText = text; //TODO: Fix signs
         }
     }
 }

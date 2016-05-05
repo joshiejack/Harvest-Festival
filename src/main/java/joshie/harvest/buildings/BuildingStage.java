@@ -8,6 +8,7 @@ import joshie.harvest.buildings.placeable.Placeable.ConstructionStage;
 import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.Mirror;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -24,8 +25,7 @@ public class BuildingStage {
     public int index;
     public BlockPos pos;
 
-    public BuildingStage() {
-    }
+    public BuildingStage() {}
 
     public BuildingStage(UUID uuid, IBuilding building, BlockPos pos, Mirror mirror, Rotation rotation) {
         this.owner = uuid;
@@ -36,7 +36,7 @@ public class BuildingStage {
         this.pos = pos.add(0, building.getOffsetY(), 0);
     }
 
-    public BuildingStage build(World world) {
+    public BlockPos build(World world) {
         if (index >= building.getProvider().getSize()) {
             if (stage == ConstructionStage.BUILD) {
                 stage = ConstructionStage.DECORATE;
@@ -58,14 +58,14 @@ public class BuildingStage {
                 Placeable block = building.getProvider().getFullList().get(index);
                 if (block.place(owner, world, pos, direction, stage)) {
                     index++;
-                    return this;
+                    return block.getTransformedPosition(pos, direction);
                 }
 
                 index++;
             }
         }
 
-        return this;
+        return pos;
     }
 
     public long getTickTime() {
@@ -77,7 +77,7 @@ public class BuildingStage {
     }
 
     public void readFromNBT(NBTTagCompound nbt) {
-        building = HFApi.BUILDINGS.getBuildingFromName(nbt.getString("CurrentlyBuilding"));
+        building = HFApi.BUILDINGS.getBuildingFromName(new ResourceLocation(nbt.getString("CurrentlyBuilding")));
         direction = Direction.valueOf(nbt.getString("Direction"));
         pos = new BlockPos(nbt.getInteger("BuildingX"), nbt.getInteger("BuildingY"), nbt.getInteger("BuildingZ"));
 
@@ -89,7 +89,7 @@ public class BuildingStage {
     }
 
     public void writeToNBT(NBTTagCompound nbt) {
-        nbt.setString("CurrentlyBuilding", building.getName());
+        nbt.setString("CurrentlyBuilding", building.getResource().toString());
         nbt.setString("Direction", direction.name());
         nbt.setInteger("BuildingX", pos.getX());
         nbt.setInteger("BuildingY", pos.getY());

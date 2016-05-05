@@ -37,20 +37,8 @@ public class StackHelper {
     }
 
     public static ItemStack getStackFromString(String str) {
+        if (str == null || str.equals("")) return null;
         return getStackFromArray(str.trim().split(" "));
-    }
-
-    public static String getStringFromStack(ItemStack stack) {
-        String str = Item.REGISTRY.getNameForObject(stack.getItem()).toString();
-        if (stack.getHasSubtypes() || stack.hasTagCompound()) {
-            str = str + " " + stack.getItemDamage();
-        }
-
-        if (stack.hasTagCompound()) {
-            str = str + " " + stack.getTagCompound().toString();
-        }
-
-        return str;
     }
 
     public static String getStringFromObject(Object object) {
@@ -67,62 +55,110 @@ public class StackHelper {
         } else return "";
     }
 
-    public static boolean matches(String str, ItemStack stack) {
-        return getStringFromStack(stack).equals(str);
+    public static String getStringFromStack(ItemStack stack) {
+        String str = Item.REGISTRY.getNameForObject(stack.getItem()).toString().replace(" ", "%20");
+        if (stack.getHasSubtypes() || stack.isItemStackDamageable()) {
+            str = str + " " + stack.getItemDamage();
+        }
+
+        if (stack.stackSize > 1) {
+            str = str + " *" + stack.stackSize;
+        }
+
+        if (stack.hasTagCompound()) {
+            str = str + " " + stack.getTagCompound().toString();
+        }
+
+        return str;
+    }
+
+    public static NBTTagCompound getTag(String[] str, int pos) {
+        String s = formatNBT(str, pos).getUnformattedText();
+        try {
+            NBTBase nbtbase = JsonToNBT.getTagFromJson(s);
+            if (!(nbtbase instanceof NBTTagCompound)) return null;
+            return (NBTTagCompound) nbtbase;
+        } catch (Exception nbtexception) {
+            return null;
+        }
+    }
+
+    public static boolean isMeta(String str) {
+        return !isNBT(str) && !isAmount(str);
+    }
+
+    public static boolean isNBT(String str) {
+        return str.startsWith("{");
+    }
+
+    public static boolean isAmount(String str) {
+        return str.startsWith("*");
     }
 
     private static ItemStack getStackFromArray(String[] str) {
         Item item = getItemByText(str[0]);
+        if (item == null) return null;
+
         int meta = 0;
-        if (str.length > 1) {
-            meta = parseInt(str[1]);
-        }
-
+        int amount = 1;
         ItemStack stack = new ItemStack(item, 1, meta);
-        if (str.length > 2) {
-            String s = formatNBT(str, 2).getUnformattedText();
-            try {
-                NBTBase nbtbase = JsonToNBT.getTagFromJson(s);
+        NBTTagCompound tag = null;
 
-                if (!(nbtbase instanceof NBTTagCompound)) return null;
-
-                stack.setTagCompound((NBTTagCompound) nbtbase);
-            } catch (Exception nbtexception) {
-                return null;
+        for (int i = 1; i <= 3; i++) {
+            if (str.length > i) {
+                if (isMeta(str[i])) meta = parseMeta(str[i]);
+                if (isAmount(str[i])) amount = parseAmount(str[i]);
+                if (isNBT(str[i])) tag = getTag(str, i);
             }
         }
 
+        stack.setItemDamage(meta);
+        stack.setTagCompound(tag);
+        stack.stackSize = amount;
         return stack;
     }
 
-    private static Item getItemByText(String location) {
-        Item item = Item.REGISTRY.getObject(new ResourceLocation(location));
+    public static Item getItemByText(String str) {
+        str = str.replace("%20", " ");
+        Item item = (Item) Item.REGISTRY.getObject(new ResourceLocation(str));
         if (item == null) {
             try {
-                item = Item.getItemById(Integer.parseInt(location));
-            } catch (NumberFormatException ignored) {
+                Item item1 = Item.getItemById(Integer.parseInt(str));
+                item = item1;
+            } catch (NumberFormatException numberformatexception) {
+                ;
             }
         }
+
         return item;
     }
 
     private static ITextComponent formatNBT(String[] str, int start) {
-        TextComponentString textComponents = new TextComponentString("");
+        TextComponentString chatcomponenttext = new TextComponentString("");
 
         for (int j = start; j < str.length; ++j) {
             if (j > start) {
-                textComponents.appendText(" ");
+                chatcomponenttext.appendText(" ");
             }
 
-            TextComponentString object = new TextComponentString(str[j]);
-            textComponents.appendSibling(object);
+            Object object = new TextComponentString(str[j]);
+            chatcomponenttext.appendSibling((ITextComponent) object);
         }
-        return textComponents;
+
+        return chatcomponenttext;
     }
 
-    private static int parseInt(String str) {
+    private static int parseMeta(String str) {
         try {
             return Integer.parseInt(str);
+        } catch (NumberFormatException numberformatexception) {
+            return 0;
+        }
+    }
+
+    private static int parseAmount(String str) {
+        try {
+            return Integer.parseInt(str.substring(1, str.length()));
         } catch (NumberFormatException numberformatexception) {
             return 0;
         }

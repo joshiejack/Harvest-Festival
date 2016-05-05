@@ -19,4 +19,5 @@ public interface IBuildingProvider {
     List<Placeable> getFullList();
     ItemStack getPreview();
     int getSize();
+    void setBuilding(IBuilding building);
 }

@@ -1,28 +1,29 @@
-package joshie.harvest.buildings;
+package joshie.harvest.buildings.loader;
 
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.buildings.IBuilding;
-import joshie.harvest.buildings.placeable.Placeable;
+import joshie.harvest.buildings.BuildingAbstract;
+import joshie.harvest.buildings.BuildingProvider;
+import net.minecraft.util.ResourceLocation;
 import org.apache.logging.log4j.Level;
 
-import java.util.ArrayList;
-
 public class HFBuildings {
-    public static final IBuilding barn = HFApi.BUILDINGS.registerBuilding(new BuildingBarn());
-    public static final IBuilding blacksmith = HFApi.BUILDINGS.registerBuilding(new BuildingBlacksmith());
-    public static final IBuilding cafe = HFApi.BUILDINGS.registerBuilding(new BuildingCafe());
-    public static final IBuilding carpenter = HFApi.BUILDINGS.registerBuilding(new BuildingCarpenter());
-    public static final IBuilding church = HFApi.BUILDINGS.registerBuilding(new BuildingChurch());
-    public static final IBuilding clockmaker = HFApi.BUILDINGS.registerBuilding(new BuildingClockmaker());
-    public static final IBuilding fishingHole = HFApi.BUILDINGS.registerBuilding(new BuildingFishingHole());
-    public static final IBuilding fishingHut = HFApi.BUILDINGS.registerBuilding(new BuildingFishingHut());
-    public static final IBuilding goddessPond = HFApi.BUILDINGS.registerBuilding(new BuildingGoddess());
-    public static final IBuilding miningHill = HFApi.BUILDINGS.registerBuilding(new BuildingMiningHill());
-    public static final IBuilding miningHut = HFApi.BUILDINGS.registerBuilding(new BuildingMiningHut());
-    public static final IBuilding poultryFarm = HFApi.BUILDINGS.registerBuilding(new BuildingPoultryFarm());
-    public static final IBuilding supermarket = HFApi.BUILDINGS.registerBuilding(new BuildingSupermarket());
-    public static final IBuilding townhall = HFApi.BUILDINGS.registerBuilding(new BuildingTownhall());
+    public static final IBuilding null_building = new BuildingAbstract("null").setProvider(new BuildingProvider());
+    public static final IBuilding barn = registerBuilding("barn");
+    public static final IBuilding blacksmith = registerBuilding("blacksmith");
+    public static final IBuilding cafe = registerBuilding("cafe");
+    public static final IBuilding carpenter = registerBuilding("carpenter");
+    public static final IBuilding church = registerBuilding("church");
+    public static final IBuilding clockmaker = registerBuilding("clockmaker");
+    public static final IBuilding fishingHole = registerBuilding("fishingHole");
+    public static final IBuilding fishingHut = registerBuilding("fishingHut");
+    public static final IBuilding goddessPond = registerBuilding("goddessPond");
+    public static final IBuilding miningHill = registerBuilding("miningHill");
+    public static final IBuilding miningHut = registerBuilding("miningHut");
+    public static final IBuilding poultryFarm = registerBuilding("poultryFarm");
+    public static final IBuilding supermarket = registerBuilding("supermarket");
+    public static final IBuilding townhall = registerBuilding("townhall");
 
     public static void preInit() {
         HarvestFestival.LOGGER.log(Level.INFO, "Creating Buildings!");
@@ -30,18 +31,21 @@ public class HFBuildings {
 
     public static void init() {
         HarvestFestival.LOGGER.log(Level.INFO, "Assigning Buildings");
+        /*
         for (IBuilding building: BuildingRegistry.buildings.values()) {
-            ArrayList<Placeable> list = new ArrayList<Placeable>();
-            BuildingProvider provider = new BuildingProvider(building);
-            building.addBlocks(list);
-            provider.setList(list);
-            for (Placeable placeable: list) {
-                provider.addToList(placeable);
-            }
+            if (building.getProvider() == null) {
+                ArrayList<Placeable> list = new ArrayList<Placeable>();
+                BuildingProvider provider = new BuildingProvider(building);
+                building.addBlocks(list);
+                provider.setList(building.getPlaceable());
+                for (Placeable placeable : list) {
+                    provider.addToList(placeable);
+                }
 
-            building.setProvider(provider);
-            HarvestFestival.LOGGER.log(Level.INFO, "Set a Provider for the building: " + building.getProvider());
-        }
+                building.setProvider(provider);
+                HarvestFestival.LOGGER.log(Level.INFO, "Set a Provider for the building: " + building.getProvider());
+            }
+        } */
 
 
         //Barn Frame
@@ -221,5 +225,9 @@ public class HFBuildings {
         for (int i = 0; i < 4; i++) {
             ChestGenHooks.addItem(LootStrings.YULIF_CHEST, new WeightedRandomChestContent(new ItemStack(Blocks.LOG, 1, i), 1, 5, 10));
         }*/
+    }
+
+    private static IBuilding registerBuilding(String building) {
+        return HFApi.BUILDINGS.registerBuilding(new ResourceLocation("harvestfestival", building));
     }
 }

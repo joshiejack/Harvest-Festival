@@ -14,10 +14,7 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class BuildingProvider implements IBuildingProvider {
     //List of all placeable elements
@@ -27,13 +24,23 @@ public class BuildingProvider implements IBuildingProvider {
     private IBuilding building;
     private int size;
 
-    public BuildingProvider(IBuilding building) {
+    public BuildingProvider() {
+        this.building = building;
+    }
+
+    public void setBuilding(IBuilding building) {
         this.building = building;
     }
 
     public void setList(ArrayList<Placeable> list) {
         this.full_list = list;
-        this.size = list.size();
+        this.size = full_list.size();
+    }
+
+    public void setList(Placeable[] list) {
+        this.full_list = new ArrayList<Placeable>();
+        Collections.addAll(full_list, list);
+        this.size = full_list.size();
     }
 
     public void addToList(Placeable placeable) {
@@ -85,7 +92,9 @@ public class BuildingProvider implements IBuildingProvider {
 
     @Override
     public EnumActionResult generate(UUID uuid, World world, BlockPos pos) {
-        if (!world.isRemote) {
+        if (!world.isRemote && full_list != null) {
+            System.out.println("We're in");
+            System.out.println(full_list.size());;
             Direction direction = Direction.values()[world.rand.nextInt(Direction.values().length)];
             for (Placeable placeable: full_list) placeable.place(uuid, world, pos, direction, ConstructionStage.BUILD);
             for (Placeable placeable: full_list) placeable.place(uuid, world, pos, direction, ConstructionStage.PAINT);

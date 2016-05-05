@@ -1,6 +1,5 @@
 package joshie.harvest.core.helpers;
 
-import joshie.harvest.api.WorldLocation;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.shops.IShop;
 import joshie.harvest.core.handlers.GuiHandler;
@@ -9,12 +8,13 @@ import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import joshie.harvest.npc.entity.EntityNPCShopkeeper;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.UUID;
 
 public class NPCHelper {
-    public static WorldLocation getHomeForEntity(EntityNPC entity) {
+    public static BlockPos getHomeForEntity(EntityNPC entity) {
         UUID owner_uuid = entity.owning_player;
         INPC npc = entity.getNPC();
         if (npc.getHomeGroup() == null || npc.getHomeLocation() == null) return null;

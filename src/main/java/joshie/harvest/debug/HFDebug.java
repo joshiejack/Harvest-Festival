@@ -92,6 +92,62 @@ public class HFDebug {
         }
 
         System.out.println("fin"); */
+
+
+        /* for (IBuilding b: BuildingRegistry.buildings.values()) {
+            if (b.getProvider() == null) {
+                BuildingAbstract building = (BuildingAbstract) b;
+                ArrayList<Placeable> list = new ArrayList<Placeable>();
+                BuildingProvider provider = new BuildingProvider(building);
+                building.addBlocks(list);
+                provider.setList(list);
+                for (Placeable placeable : list) {
+                    provider.addToList(placeable);
+                }
+
+                building.setProvider(provider);
+                HarvestFestival.LOGGER.log(Level.INFO, "Set a Provider for the building: " + building.getProvider());
+            }
+        }
+
+        for (IBuilding b: BuildingRegistry.buildings.values()) {
+            BuildingAbstract building = (BuildingAbstract) b;
+            building.offsetY = building.getOffsetY();
+            building.stone = building.getStoneCount();
+            building.wood = building.getWoodCount();
+            building.cost = building.getCost();
+            building.tickTime = building.getTickTime();
+            ArrayList<Placeable> list = new ArrayList<Placeable>();
+            building.addBlocks(list);
+            building.components = new Placeable[list.size()];
+            for (int i = 0; i < building.components.length; i++) {
+                building.components[i] = list.get(i);
+            }
+
+            building.requirements = new ResourceLocation[building.getRequirements().length];
+            for (int i = 0; i < building.getRequirements().length; i++) {
+                building.requirements[i] = new ResourceLocation("harvestfestival", building.getRequirements()[i]);
+            }
+
+            GsonBuilder builder = new GsonBuilder().setPrettyPrinting();
+            builder.registerTypeAdapter(Placeable.class, new PlaceableAdapter());
+            builder.registerTypeAdapter(IBlockState.class, new StateAdapter());
+            builder.registerTypeAdapter(ItemStack.class, new StackAdapter());
+            builder.registerTypeAdapter(ResourceLocation.class, new ResourceAdapter());
+            builder.registerTypeAdapter(TextComponentString.class, new TextComponentAdapter());
+            String json = builder.create().toJson(building);
+            File file = new File("C:\\Users\\joshie\\Desktop\\Test\\" + building.resource.getResourcePath() + ".json\\");
+            if (!file.getParentFile().exists()) {
+                file.getParentFile().mkdirs();
+            }
+
+            try {
+                Writer writer = new OutputStreamWriter(new FileOutputStream(file), "UTF-8");
+                writer.write(json.toString());
+                writer.close();
+            } catch (Exception e){}
+        }
+        }*/
     }
 
     private static class Data {

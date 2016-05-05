@@ -1,40 +1,35 @@
 package joshie.harvest.api.buildings;
 
-import joshie.harvest.buildings.placeable.Placeable;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
-
-import java.util.List;
+import net.minecraft.util.ResourceLocation;
 
 public interface IBuilding {
     /** Sets Provider **/
-    public void setProvider(IBuildingProvider provider);
+    public IBuilding setProvider(IBuildingProvider provider);
 
-    /** Returns the name of this building group **/
-    public String getName();
+    public IBuilding setSpecialRules(ISpecialPurchaseRules rules);
+
+    /** Returns the resource **/
+    public ResourceLocation getResource();
+
+    String getLocalisedName();
 
     /** How much gold this building costs **/
-    public long getCost();
+    long getCost();
 
     /** How much wood this building costs **/
-    public int getWoodCount();
+    int getWoodCount();
 
     /** How much stone this building costs **/
-    public int getStoneCount();
+    int getStoneCount();
 
     /** Whether this building can be purchased or not **/
-    public boolean canBuy(World world, EntityPlayer player);
+     ISpecialPurchaseRules getRules();
 
-    /** Add all the blocks to this building **/
-    IBuilding addBlocks(List<Placeable> list);
-
+    boolean hasRequirements(EntityPlayer player);
     IBuildingProvider getProvider();
-
-
 
     int getOffsetY();
 
     long getTickTime();
-
-
 }

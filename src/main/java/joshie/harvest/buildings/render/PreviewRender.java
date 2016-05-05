@@ -43,6 +43,7 @@ public class PreviewRender extends TileEntitySpecialRenderer<TileMarker> {
             }
 
             vertexbuffer.begin(7, DefaultVertexFormats.BLOCK);
+            vertexbuffer.color(1F, 1F, 1F, 0.1F);
             vertexbuffer.setTranslation((double)((float)x - (float)blockpos.getX()), (double)((float)y - (float)blockpos.getY()), (double)((float)z - (float)blockpos.getZ()));
             World world = this.getWorld();
 
@@ -54,7 +55,7 @@ public class PreviewRender extends TileEntitySpecialRenderer<TileMarker> {
                 for (Placeable placeable: building.getList()) {
                     if (!(placeable instanceof PlaceableBlock)) continue;
                     PlaceableBlock block = ((PlaceableBlock)placeable);
-
+                    if (block.getBlock() == Blocks.AIR) continue;
                     renderStateModel(block.getTransformedPosition(blockpos, mirror, rotation), block.getTransformedState(mirror, rotation), vertexbuffer, world, false);
                 }
             } else renderStateModel(blockpos, iblockstate, vertexbuffer, world, false);

@@ -13,7 +13,6 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.GuiIngameForge;
-import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.event.terraingen.BiomeEvent.GetFoliageColor;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -32,12 +31,6 @@ public class RenderHandler {
         if (HFTrackers.getCalendar().getDate().getSeason() == Season.AUTUMN) {
             event.setNewColor(0xFF9900);
         }
-    }
-
-    @SideOnly(Side.CLIENT)
-    @SubscribeEvent
-    public void renderWorldLast(RenderWorldLastEvent event) {
-
     }
 
     @SideOnly(Side.CLIENT)

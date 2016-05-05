@@ -49,6 +49,11 @@ public class ItemGeneral extends ItemHFBaseMeta implements ICreativeSorted {
     }
 
     @Override
+    public String getUnlocalizedName(ItemStack stack) {
+        return getName(stack);
+    }
+
+    @Override
     public String getName(ItemStack stack) {
         switch (stack.getItemDamage()) {
             case BLUE_FEATHER:

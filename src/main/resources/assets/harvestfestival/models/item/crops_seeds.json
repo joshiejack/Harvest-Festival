@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "harvestfestival:items/seed_bag_neck",
+    "layer1": "harvestfestival:items/seed_bag_body"
+  }
+}

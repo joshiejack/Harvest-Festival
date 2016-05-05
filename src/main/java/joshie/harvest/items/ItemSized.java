@@ -49,6 +49,11 @@ public class ItemSized extends ItemHFBaseMeta implements IShippable, ICreativeSo
     }
 
     @Override
+    public String getUnlocalizedName(ItemStack stack) {
+        return getName(stack) + "_" + meta.getSize(stack).toString().toLowerCase();
+    }
+
+    @Override
     public String getItemStackDisplayName(ItemStack stack) {
         Size sizeof = getSize(stack.getItemDamage());
         String text = Translate.translate("sizeable.format");

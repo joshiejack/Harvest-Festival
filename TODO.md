@@ -73,6 +73,8 @@
 - Shops are working correctly
 - Town System is working correctly
 - Gathering System is functional
+- Stamina and Fatigue is doing the correct things
+- Cursed Tools are giving cursed effects
 
 ### To Fix
 - Rendering of Shops

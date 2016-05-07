@@ -23,7 +23,7 @@ public class LootStrings {
     public static final ResourceLocation CAFE_CHEST = register("chests/cafe");
     public static final ResourceLocation CAFE_FRAME = register("frames/cafe");
     public static final ResourceLocation MINING_CHEST = register("chests/miner");
-    public static final ResourceLocation MINING_FRAME = register("frames/minier");
+    public static final ResourceLocation MINING_FRAME = register("frames/miner");
     public static final ResourceLocation POULTRY_CHEST = register("chests/poultry");
     public static final ResourceLocation POULTRY_FRAME = register("frames/poultry");
     public static final ResourceLocation FISHING_CHEST = register("chests/fishing");

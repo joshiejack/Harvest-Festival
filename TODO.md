@@ -47,6 +47,9 @@
         - Medium > Gives 2 Wood
         - Large > Gives 4 Wood
 - Change Ondra to Ashlee, make female - Y
+- Loot Table JSON
+    - See https://github.com/joshiejack/Harvest-Festival/blob/4fc81be862b9686cf00a3b8b1d262a8b7106aaaf/src/main/java/joshie/harvest/core/lib/LootStrings.java
+    - See https://github.com/joshiejack/Harvest-Festival/blob/4fc81be862b9686cf00a3b8b1d262a8b7106aaaf/src/main/java/joshie/harvest/buildings/loader/HFBuildings.java#L51
 
 ### To Check
 - Gift of NPCs is working correctly - J

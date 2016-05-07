@@ -1,3 +1,8 @@
+#Who
+- Y = Yulife
+- G = Girafi
+- J = Joshie
+
 ### To Do
 - Register Vanilla Items and HFItems as gift types
 - Make NPCs leave for work early, and leave for home early
@@ -19,9 +24,9 @@
 - Make the rotation of Blueprints make more sense
 - Change Blueprints to not be a block but an item that you hover and click where you want them place
 - Add Extra Chat Messages, and Conversations for all NPCs
-- New Winter Mine building that is surround by water (That turns to ice in winter)
+- New Winter Mine building that is surround by water (That turns to ice in winter)- Y
 - Remove coin render overlay or move it
-- Change Buildings to
+- Change Buildings to what joshie?
 - Add Axe Item
     - Basic (Breaks Small Twigs)
     - Copper (Breaks Medium Twigs)
@@ -30,7 +35,7 @@
     - Mystril (Breaks Medium Stumps)
     - Cursed/Blessed (Breaks Large Stumps)
     - Mythic (Fells whole trees)
-- Add Basic Items to spawn that can be gathered (Expanded Later)
+- Add Basic Items to spawn that can be gathered (Expanded Later)- Y
     - Weeds
     - Breakable Rocks
     - Stumps
@@ -41,7 +46,7 @@
         - Small > Gives 1 Wood
         - Medium > Gives 2 Wood
         - Large > Gives 4 Wood
-- Change Ondra to Ashlee, make female
+- Change Ondra to Ashlee, make female - Y
 
 ### To Check
 - Gift of NPCs is working correctly
@@ -54,7 +59,7 @@
 - Can Spawn the Goddess with the Flower Pot Trick
 - Can Spawn the Goddess with the Goddess Flower Trick
 - Can Spawn the Goddess by dropping relevant items in goddess water
-- All Crops render Correctly
+- All Crops render correctly - Y
 - All Crops grow correctly
 - All Crops drop the correct items
 - ASM For Snow
@@ -81,8 +86,8 @@
 - Make Decorative MineWall/Floor actually mineable
 - Make Withered versions of crops be darker
 - Make crops get destroyed on losing the block below
-- Location of the flower in the spring season overlay
-- Give the custom farmland block a name and texture/model
+- Location of the flower in the spring season overlay - Y
+- Give the custom farmland block a name and texture/model - Y
 
 ### Rendering
 - Make Blueprints Render in World
@@ -90,46 +95,44 @@
 - Make Spawn Building Blueprints Render their Icon
 - Make Spawn NPC Render the NPC
 - Make Goddess Flower Render
-- Mine Floor Connected Textures and Random Texture Overlays
-- Mine Wall Random Textures
+- Mine Floor Connected Textures and Random Texture Overlays - Y, J
+- Mine Wall Random Textures - Y
 - Make Spawn Cow Render the Cow
 - Make Spawn Sheep Render the Sheep
 - Make Spawn Chicken Render the Chicken
 
 ### Textures
-- Crop Grass Better Texture
-- Winter Mine version
-- Portal Texture that looks like it will take you in to a mine (Side of Block, Like Nether, Could just look like a pitch black tunnel in to vanilla stone)
-- Some as above but looks like a brightly lit tunnel, and is based on the mine wall texture.
-- Like I'm thinking these kinda like these http://i.imgur.com/a5x8Xc0.png http://pokedream.com/games/pokemon-xy/images/connecting-cave.png
-- Portal Texture that looks like it you're going down a ladder (Top of Block, Like End)
-- Portal Texture that looks like a hole you're going to fall down (Top of Block, Like End)
-- Kinda like http://i.imgur.com/FRKeWft.png or http://media-cerulean.cursecdn.com/attachments/thumbnails/12/250/530/530/granite_cave_crossroads.png
-- Axe and it's various textures
-- Weed (Will use flower render)
-- Textures for the NPCs which we stole + New Selection for Ondra > Ashlee
+- Crop Grass Better Texture - Y
+- Winter Mine version - Y
+- Portal Texture that looks like it will take you in to a mine (Side of Block, Like Nether, Could just look like a pitch black tunnel in to vanilla stone) - Y
+- Some as above but looks like a brightly lit tunnel, and is based on the mine wall texture, like I'm thinking these kinda like these http://i.imgur.com/a5x8Xc0.png http://pokedream.com/games/pokemon-xy/images/connecting-cave.png - Y
+- Portal Texture that looks like it you're going down a ladder (Top of Block, Like End) - Y
+- Portal Texture that looks like a hole you're going to fall down (Top of Block, Like End), kinda like http://i.imgur.com/FRKeWft.png or http://media-cerulean.cursecdn.com/attachments/thumbnails/12/250/530/530/granite_cave_crossroads.png - Y
+- Axe and it's various textures - Y
+- Weed (Will use flower render) - Y
+- Textures for the NPCs which we stole + New Selection for Ondra > Ashlee - Y
 
 ### Models + Textures
-- Free Standing Ladder
+- Free Standing Ladder - Y
     - Mine Floor with Free Standing Ladder hole
         - Z Axis Facing
         - X Acis Facing
     - Free Standing Ladder
         - Z Axis Facing
         - X Acis Facing
-- Rocks
+- Rocks - Y
     - Large (Various) (Can be cominbed automatically)
     - Medium (Various) (Can be cominbed automatically)
     - Small (Various) (Can be combined automatically)
-- Branch
+- Branch - Y
     - Large
     - Medium
     - Small
-- Stump
+- Stump - Y
     - Large
     - Medium
     - Small
--Food Trough
+-Food Trough - Y
     #For feeding animals
     - Empty Trough
         - Z Axis Rotation
@@ -149,22 +152,22 @@
             - Left Side
             - Middle Section
             - Right Side
-- Incubator
+- Incubator - Y
     - Empty
     - With Egg
-- Shipment Box
+- Shipment Box - Y
     - North Rotation
     - East Rotation
     - South Rotation
     - West Rotation
-- Cooking Pot
+- Cooking Pot - Y
     - Pot
         - Z Axis Rotation
         - X Axis Rotation
     - Liquid in Pot
         - Z Axis Rotation
         - X Axis Rotation
-- Food Mixer
+- Food Mixer - Y
     - Mixer
         - North Rotation
         - East Rotation
@@ -175,7 +178,7 @@
         - East Rotation
         - South Rotation
         - West Rotation
-- Fridge
+- Fridge - Y
     - Top
         - North Rotation
         - East Rotation
@@ -186,7 +189,7 @@
         - East Rotation
         - South Rotation
         - West Rotation
-- Frying Pan
+- Frying Pan - Y
     - Frying Pan
         - North Rotation
         - East Rotation
@@ -197,7 +200,7 @@
         - East Rotation
         - South Rotation
         - West Rotation
-- Kitchen Counter
+- Kitchen Counter - Y
     - Straight
         - North Rotation
         - East Rotation
@@ -213,7 +216,7 @@
          - South > East
          - West > South
          - North > West
-- Oven
+- Oven - Y
     - Different Texture for On and Off
     - North Rotation
     - East Rotation

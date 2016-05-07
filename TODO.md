@@ -20,7 +20,6 @@
 - Change Blueprints to not be a block but an item that you hover and click where you want them place
 - Add Extra Chat Messages, and Conversations for all NPCs
 - New Winter Mine building that is surround by water (That turns to ice in winter)
-- Redo the ASM for the crops, making them sellable
 - Remove coin render overlay or move it
 - Change Buildings to
 - Add Axe Item
@@ -59,7 +58,6 @@
 - All Crops grow correctly
 - All Crops drop the correct items
 - ASM For Snow
-- ASM For Farmland
 - Hoes, Sickles, Watering Cans do their jobs
 - Troughs can be filled
 - Cows and Sheep will eat grass crop and from trough automatically
@@ -84,7 +82,7 @@
 - Make Withered versions of crops be darker
 - Make crops get destroyed on losing the block below
 - Location of the flower in the spring season overlay
-- Egg ASM
+- Give the custom farmland block a name and texture/model
 
 ### Rendering
 - Make Blueprints Render in World

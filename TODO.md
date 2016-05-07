@@ -1,48 +1,229 @@
-# To-Do Stuff, feel free to help with any!
-- Finish Cooking System
-- Finish Shipping System
-- Finish Mining System
-- Finish Animal System
-- Finish Shop System
-- Fix child hat rendering npcs
+### To Do
+- Register Vanilla Items and HFItems as gift types
+- Make NPCs leave for work early, and leave for home early
+- Add Schedules for NPCs, where they visit specific buildings at certain times
+- Schedule Based Conversations
+- Add the mining Dimension
+    - Add Breakable rocks that drop specific things on different floors when broken with a hammer
+    - Different Hammers should be able to break different rock sizes, with different amount of hits
+    - Would be cool to hold down the hammer with right click, which makes the player jump then do a smash instead of 'mining it'
+    - Add Portal blocks to mines that teleport you to the dimension
+    - Add Portal blocks that teleport you further down floors
+    - Add Portal blocks that look like ladders that players can place, that will take you down one floor of the mine
+    - Add an Overlay while in the dimension that tells you the name of the mine aka Spring Mine or Winter Mine
+    - Add an Overlay that tells you what floor you are on
+    - Add Free Standing ladders
+    - Generate rooms in dimensions and keep track with the mine tracker
+        - Different size and shaped rooms
+- Make all cooking equipment render things that they are cooking
+- Make the rotation of Blueprints make more sense
+- Change Blueprints to not be a block but an item that you hover and click where you want them place
+- Add Extra Chat Messages, and Conversations for all NPCs
+- New Winter Mine building that is surround by water (That turns to ice in winter)
+- Redo the ASM for the crops, making them sellable
+- Remove coin render overlay or move it
+- Change Buildings to
+- Add Axe Item
+    - Basic (Breaks Small Twigs)
+    - Copper (Breaks Medium Twigs)
+    - Silver (Breaks Small Stumps)
+    - Gold (Breaks Large Twigs)
+    - Mystril (Breaks Medium Stumps)
+    - Cursed/Blessed (Breaks Large Stumps)
+    - Mythic (Fells whole trees)
+- Add Basic Items to spawn that can be gathered (Expanded Later)
+    - Weeds
+    - Breakable Rocks
+    - Stumps
+        - Small - > Gives 3 Wood
+        - Medium - > Gives 6 Wood
+        - Large > Gives 12 Wood
+    - Breakable Twigs
+        - Small > Gives 1 Wood
+        - Medium > Gives 2 Wood
+        - Large > Gives 4 Wood
+- Change Ondra to Ashlee, make female
 
-### Tediousnessess
-- [ ] Register my items/blocks as gift types
-- [ ] 5 Million configs
+### To Check
+- Gift of NPCs is working correctly
+- Relation ship status of npcs is working correctly
+- Can you Buy Items only when they're available i.e. blue feather when ready to marry
+- Can you marry NPCs with the blue feather, when they like you enough
+- NPCs respawn at their homes on death
+- NPCs walk home, if they fail they should teleport
+- Incubators will hatch chickens
+- Can Spawn the Goddess with the Flower Pot Trick
+- Can Spawn the Goddess with the Goddess Flower Trick
+- Can Spawn the Goddess by dropping relevant items in goddess water
+- All Crops render Correctly
+- All Crops grow correctly
+- All Crops drop the correct items
+- ASM For Snow
+- ASM For Farmland
+- Hoes, Sickles, Watering Cans do their jobs
+- Troughs can be filled
+- Cows and Sheep will eat grass crop and from trough automatically
+- Animals will get sick if not fed for a few days and die
+- Animals will give better products when cared for (brushing, talking, milking/shearing, treats)
+- Animal Pregnancy is working correctly (Impregnanted via miracle potion, takes few days to hatch)
+- Buying Entities works correctly
+- Can Ship items and get paid the next day
+- All Cooking utensils work correctly
+- All Recipes can be successfully made
+- Shops are working correctly
+- Town System is working correctly
+- Gathering System is functional
+
+### To Fix
+- Rendering of Shops
+- NPC Chat not closing after conversation is finished
+- Fix Localisation of Goddess Flower
+- Make Decorative MineWall/Floor actually mineable
+- Make Withered versions of crops be darker
+- Make crops get destroyed on losing the block below
+- Location of the flower in the spring season overlay
+- Egg ASM
 
 ### Rendering
-- [ ] Shipping Bin
-- [ ] Oven
-- [ ] Mixer
-- [ ] Baking thing
-- [ ] Incubator
-- [ ] Rural Chest
-- [ ] Render Items in Kitchen things and Animations
+- Make Blueprints Render in World
+- Make Blueprints Item Render
+- Make Spawn Building Blueprints Render their Icon
+- Make Spawn NPC Render the NPC
+- Make Goddess Flower Render
+- Mine Floor Connected Textures and Random Texture Overlays
+- Mine Wall Random Textures
+- Make Spawn Cow Render the Cow
+- Make Spawn Sheep Render the Sheep
+- Make Spawn Chicken Render the Chicken
 
-### Questing
-- [ ] Spawning the NPC Builder Quest
-- [ ] Welcome to 'Harvest Festival' Quests
-- [ ] Blacksmith Upgrade Tool Quests
-- [ ] Priest Bless Tools Quests
-- [ ] Unlock Mixer, Frying Pan, Pot, Oven for purchase quests
+### Textures
+- Crop Grass Better Texture
+- Winter Mine version
+- Portal Texture that looks like it will take you in to a mine (Side of Block, Like Nether, Could just look like a pitch black tunnel in to vanilla stone)
+- Some as above but looks like a brightly lit tunnel, and is based on the mine wall texture.
+- Like I'm thinking these kinda like these http://i.imgur.com/a5x8Xc0.png http://pokedream.com/games/pokemon-xy/images/connecting-cave.png
+- Portal Texture that looks like it you're going down a ladder (Top of Block, Like End)
+- Portal Texture that looks like a hole you're going to fall down (Top of Block, Like End)
+- Kinda like http://i.imgur.com/FRKeWft.png or http://media-cerulean.cursecdn.com/attachments/thumbnails/12/250/530/530/granite_cave_crossroads.png
+- Axe and it's various textures
+- Weed (Will use flower render)
+- Textures for the NPCs which we stole + New Selection for Ondra > Ashlee
 
-## Aesthetics 
-###Textures
-- [ ] items/crops/grass.png 
-- [ ] entities/fenn.png
-- [ ] entities/jacob.png
-- [ ] entities/jade.png
-- [ ] entities/jamie.png
-- [ ] entities/jenni.png
-- [ ] entities/jim.png
-- [ ] entities/liara.png
-- [ ] entities/ondra.png
-- [ ] entities/thomas.png
-- [ ] entities/tiberius.png
-- [ ] entities/yulif.png
+### Models + Textures
+- Free Standing Ladder
+    - Mine Floor with Free Standing Ladder hole
+        - Z Axis Facing
+        - X Acis Facing
+    - Free Standing Ladder
+        - Z Axis Facing
+        - X Acis Facing
+- Rocks
+    - Large (Various) (Can be cominbed automatically)
+    - Medium (Various) (Can be cominbed automatically)
+    - Small (Various) (Can be combined automatically)
+- Branch
+    - Large
+    - Medium
+    - Small
+- Stump
+    - Large
+    - Medium
+    - Small
+-Food Trough
+    #For feeding animals
+    - Empty Trough
+        - Z Axis Rotation
+            - Left Side
+            - Middle Section
+            - Right Side
+         - X Axis Rotation
+            - Left Side
+            - Middle Section
+            - Right Side
+    - Full Trough
+        - Z Axis Rotation
+            - Left Side
+            - Middle Section
+            - Right Side
+         - X Axis Rotation
+            - Left Side
+            - Middle Section
+            - Right Side
+- Incubator
+    - Empty
+    - With Egg
+- Shipment Box
+    - North Rotation
+    - East Rotation
+    - South Rotation
+    - West Rotation
+- Cooking Pot
+    - Pot
+        - Z Axis Rotation
+        - X Axis Rotation
+    - Liquid in Pot
+        - Z Axis Rotation
+        - X Axis Rotation
+- Food Mixer
+    - Mixer
+        - North Rotation
+        - East Rotation
+        - South Rotation
+        - West Rotation
+    - Liquid in Mixer
+        - North Rotation
+        - East Rotation
+        - South Rotation
+        - West Rotation
+- Fridge
+    - Top
+        - North Rotation
+        - East Rotation
+        - South Rotation
+        - West Rotation
+    - Bottom
+        - North Rotation
+        - East Rotation
+        - South Rotation
+        - West Rotation
+- Frying Pan
+    - Frying Pan
+        - North Rotation
+        - East Rotation
+        - South Rotation
+        - West Rotation
+    - Liquid in Frying Pan
+        - North Rotation
+        - East Rotation
+        - South Rotation
+        - West Rotation
+- Kitchen Counter
+    - Straight
+        - North Rotation
+        - East Rotation
+        - South Rotation
+        - West Rotation
+    - Inner Corner
+        - North > East
+        - East > South
+        - South > West
+        - West > North
+     - Outer Corner
+         - East > North
+         - South > East
+         - West > South
+         - North > West
+- Oven
+    - Different Texture for On and Off
+    - North Rotation
+    - East Rotation
+    - South Rotation
+    - West Rotation
 
-### Miscellaneous
-- [ ] Make it so that you can only buy one chicken at a time as others will fall off once your head is occupied with one chicken
 
-##Pics
-Makers = http://i.imgur.com/hx18lk0.png
+### Questing Tasks
+- Spawning the NPC Builder Quest
+- Welcome to 'Harvest Festival' Quests
+- Blacksmith Upgrade Tool Quests
+- Priest Bless Tools Quests
+- Unlock Mixer, Frying Pan, Pot, Oven for purchase quests

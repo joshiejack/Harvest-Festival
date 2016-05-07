@@ -8,7 +8,7 @@
 - Make NPCs leave for work early, and leave for home early
 - Add Schedules for NPCs, where they visit specific buildings at certain times
 - Schedule Based Conversations
-- Add the mining Dimension
+- Add the mining Dimension - J
     - Add Breakable rocks that drop specific things on different floors when broken with a hammer
     - Different Hammers should be able to break different rock sizes, with different amount of hits
     - Would be cool to hold down the hammer with right click, which makes the player jump then do a smash instead of 'mining it'
@@ -21,13 +21,13 @@
     - Generate rooms in dimensions and keep track with the mine tracker
         - Different size and shaped rooms
 - Make all cooking equipment render things that they are cooking
-- Make the rotation of Blueprints make more sense
-- Change Blueprints to not be a block but an item that you hover and click where you want them place
+- Make the rotation of Blueprints make more sense - J
+- Change Blueprints to not be a block but an item that you hover and click where you want them place - J
 - Add Extra Chat Messages, and Conversations for all NPCs
 - New Winter Mine building that is surround by water (That turns to ice in winter)- Y
 - Remove coin render overlay or move it
 - Change Buildings to what joshie?
-- Add Axe Item
+- Add Axe Item - J
     - Basic (Breaks Small Twigs)
     - Copper (Breaks Medium Twigs)
     - Silver (Breaks Small Stumps)
@@ -35,7 +35,7 @@
     - Mystril (Breaks Medium Stumps)
     - Cursed/Blessed (Breaks Large Stumps)
     - Mythic (Fells whole trees)
-- Add Basic Items to spawn that can be gathered (Expanded Later)- Y
+- Add Basic Items to spawn that can be gathered (Expanded Later)- J
     - Weeds
     - Breakable Rocks
     - Stumps
@@ -49,43 +49,43 @@
 - Change Ondra to Ashlee, make female - Y
 
 ### To Check
-- Gift of NPCs is working correctly
-- Relation ship status of npcs is working correctly
-- Can you Buy Items only when they're available i.e. blue feather when ready to marry
-- Can you marry NPCs with the blue feather, when they like you enough
-- NPCs respawn at their homes on death
-- NPCs walk home, if they fail they should teleport
-- Incubators will hatch chickens
-- Can Spawn the Goddess with the Flower Pot Trick
-- Can Spawn the Goddess with the Goddess Flower Trick
-- Can Spawn the Goddess by dropping relevant items in goddess water
+- Gift of NPCs is working correctly - J
+- Relation ship status of npcs is working correctly - J
+- Can you Buy Items only when they're available i.e. blue feather when ready to marry - J
+- Can you marry NPCs with the blue feather, when they like you enough - J
+- NPCs respawn at their homes on death - J
+- NPCs walk home, if they fail they should teleport - J
+- Incubators will hatch chickens - J
+- Can Spawn the Goddess with the Flower Pot Trick - J
+- Can Spawn the Goddess with the Goddess Flower Trick - J
+- Can Spawn the Goddess by dropping relevant items in goddess water - J
 - All Crops render correctly - Y
-- All Crops grow correctly
-- All Crops drop the correct items
-- ASM For Snow
-- Hoes, Sickles, Watering Cans do their jobs
-- Troughs can be filled
-- Cows and Sheep will eat grass crop and from trough automatically
-- Animals will get sick if not fed for a few days and die
-- Animals will give better products when cared for (brushing, talking, milking/shearing, treats)
-- Animal Pregnancy is working correctly (Impregnanted via miracle potion, takes few days to hatch)
-- Buying Entities works correctly
-- Can Ship items and get paid the next day
-- All Cooking utensils work correctly
-- All Recipes can be successfully made
-- Shops are working correctly
-- Town System is working correctly
-- Gathering System is functional
-- Stamina and Fatigue is doing the correct things
-- Cursed Tools are giving cursed effects
+- All Crops grow correctly - J
+- All Crops drop the correct items - J
+- ASM For Snow - J
+- Hoes, Sickles, Watering Cans do their jobs - J
+- Troughs can be filled - J
+- Cows and Sheep will eat grass crop and from trough automatically - J
+- Animals will get sick if not fed for a few days and die - J
+- Animals will give better products when cared for (brushing, talking, milking/shearing, treats) - J
+- Animal Pregnancy is working correctly (Impregnanted via miracle potion, takes few days to hatch) - J
+- Buying Entities works correctly - J
+- Can Ship items and get paid the next day - J
+- All Cooking utensils work correctly - J
+- All Recipes can be successfully made - J
+- Shops are working correctly - J
+- Town System is working correctly - J
+- Gathering System is functional - J
+- Stamina and Fatigue is doing the correct things - J
+- Cursed Tools are giving cursed effects - J
 
 ### To Fix
-- Rendering of Shops
-- NPC Chat not closing after conversation is finished
-- Fix Localisation of Goddess Flower
-- Make Decorative MineWall/Floor actually mineable
-- Make Withered versions of crops be darker
-- Make crops get destroyed on losing the block below
+- Rendering of Shops - J
+- NPC Chat not closing after conversation is finished - J
+- Fix Localisation of Goddess Flower - J
+- Make Decorative MineWall/Floor actually mineable - J
+- Make Withered versions of crops be darker - J
+- Make crops get destroyed on losing the block below - J
 - Location of the flower in the spring season overlay - Y
 - Give the custom farmland block a name and texture/model - Y
 
@@ -94,8 +94,8 @@
 - Make Blueprints Item Render
 - Make Spawn Building Blueprints Render their Icon
 - Make Spawn NPC Render the NPC
-- Make Goddess Flower Render
-- Mine Floor Connected Textures and Random Texture Overlays - Y, J
+- Make Goddess Flower Render - J
+- Mine Floor Connected Textures and Random Texture Overlays - Y, J?
 - Mine Wall Random Textures - Y
 - Make Spawn Cow Render the Cow
 - Make Spawn Sheep Render the Sheep

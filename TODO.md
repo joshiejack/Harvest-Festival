@@ -25,7 +25,7 @@
 - Change Blueprints to not be a block but an item that you hover and click where you want them place - J
 - Add Extra Chat Messages, and Conversations for all NPCs
 - New Winter Mine building that is surround by water (That turns to ice in winter)- Y
-- Remove coin render overlay or move it
+- Coin Render only in cities
 - Change Buildings to what joshie?
 - Add Axe Item - J
     - Basic (Breaks Small Twigs)
@@ -104,10 +104,6 @@
 ### Textures
 - Crop Grass Better Texture - Y
 - Winter Mine version - Y
-- Portal Texture that looks like it will take you in to a mine (Side of Block, Like Nether, Could just look like a pitch black tunnel in to vanilla stone) - Y
-- Some as above but looks like a brightly lit tunnel, and is based on the mine wall texture, like I'm thinking these kinda like these http://i.imgur.com/a5x8Xc0.png http://pokedream.com/games/pokemon-xy/images/connecting-cave.png - Y
-- Portal Texture that looks like it you're going down a ladder (Top of Block, Like End) - Y
-- Portal Texture that looks like a hole you're going to fall down (Top of Block, Like End), kinda like http://i.imgur.com/FRKeWft.png or http://media-cerulean.cursecdn.com/attachments/thumbnails/12/250/530/530/granite_cave_crossroads.png - Y
 - Axe and it's various textures - Y
 - Weed (Will use flower render) - Y
 - Textures for the NPCs which we stole + New Selection for Ondra > Ashlee - Y
@@ -217,7 +213,6 @@
          - West > South
          - North > West
 - Oven - Y
-    - Different Texture for On and Off
     - North Rotation
     - East Rotation
     - South Rotation

@@ -1,6 +1,7 @@
 package joshie.harvest.crops;
 
 import io.netty.buffer.ByteBuf;
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.WorldLocation;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.ICrop;
@@ -8,7 +9,6 @@ import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.blocks.BlockCrop;
 import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.core.config.Crops;
-import joshie.harvest.core.config.HFConfig;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.network.PacketSyncCrop;
@@ -16,6 +16,7 @@ import joshie.harvest.plugins.HFPlugins;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
@@ -166,8 +167,8 @@ public class CropData implements ICropData {
         return false;
     }
 
-    public String getName() {
-        return crop.getUnlocalizedName();
+    public ResourceLocation getResource() {
+        return crop.getResource();
     }
 
     @Override
@@ -211,7 +212,7 @@ public class CropData implements ICropData {
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         isReal = nbt.getBoolean("IsReal");
-        crop = HFConfig.mappings.getCrop(nbt.getString("CropUnlocalized"));
+        crop = HFApi.CROPS.getCrop(new ResourceLocation(nbt.getString("CropResource")));
         stage = nbt.getByte("CurrentStage");
         daysWithoutWater = nbt.getShort("DaysWithoutWater");
 
@@ -224,7 +225,7 @@ public class CropData implements ICropData {
     public void writeToNBT(NBTTagCompound nbt) {
         if (crop != null) {
             nbt.setBoolean("IsReal", isReal);
-            nbt.setString("CropUnlocalized", crop.getUnlocalizedName());
+            nbt.setString("CropResource", crop.getResource().toString());
             nbt.setByte("CurrentStage", (byte) stage);
             nbt.setShort("DaysWithoutWater", (short) daysWithoutWater);
 
@@ -240,7 +241,7 @@ public class CropData implements ICropData {
         if (crop != null) {
             buf.writeBoolean(true);
             buf.writeBoolean(isReal);
-            ByteBufUtils.writeUTF8String(buf, crop.getUnlocalizedName());
+            ByteBufUtils.writeUTF8String(buf, crop.getResource().toString());
             buf.writeByte(stage);
         }
 
@@ -250,7 +251,7 @@ public class CropData implements ICropData {
     public void fromBytes(ByteBuf buf) {
         if (buf.readBoolean()) {
             isReal = buf.readBoolean();
-            crop = HFConfig.mappings.getCrop(ByteBufUtils.readUTF8String(buf));
+            crop = HFApi.CROPS.getCrop(new ResourceLocation(ByteBufUtils.readUTF8String(buf)));
             stage = buf.readByte();
         }
     }

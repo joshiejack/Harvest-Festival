@@ -31,7 +31,7 @@ public class BlockFlower extends BlockHFBase implements IPlantable {
     }
 
     protected boolean canSustainBush(IBlockState state) {
-        return state.getBlock() == Blocks.GRASS || state.getBlock() == Blocks.DIRT || state.getBlock() == Blocks.FARMLAND;
+        return state.getBlock() == Blocks.GRASS || state.getBlock() == Blocks.DIRT || state.getBlock() == Blocks.FARMLAND || state.getBlock() == HFBlocks.FARMLAND;
     }
 
     @Override

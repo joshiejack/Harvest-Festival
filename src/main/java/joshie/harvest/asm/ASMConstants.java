@@ -1,23 +1,8 @@
 package joshie.harvest.asm;
 
 public class ASMConstants {
-    public static final class API {
-        public static final String CREATIVE_SORTED = "joshie.harvest.api.core.ICreativeSorted";
-        public static final String CROP_PROVIDER = "joshie.harvest.api.core.ICropProvider";
-        public static final String ICROP = "joshie.harvest.api.core.ICrop";
-        public static final String SHIPPABLE = "joshie.harvest.api.core.IShippable";
-        public static final String SIZEABLE = "joshie.harvest.api.core.ISizeable";
-        public static final String SIZED_PROVIDER = "joshie.harvest.api.core.ISizedProvider";
-    }
-
     public static final class Overrides {
-        public static final String EGG = "joshie.harvest.asm.overrides.ItemEgg";
-        public static final String FARMLAND = "joshie.harvest.asm.overrides.BlockFarmland";
-        public static final String MELON = "joshie.harvest.asm.overrides.ItemMelon";
-        public static final String PAM_SEED_FOOD = "joshie.harvest.asm.overrides.ItemPamSeedFood";
-        public static final String SEED_FOOD = "joshie.harvest.asm.overrides.ItemSeedFood";
         public static final String SNOW = "joshie.harvest.asm.overrides.BlockSnowSheet";
-        public static final String WHEAT = "joshie.harvest.asm.overrides.ItemWheat";
     }
 
     public static final class Transformers {
@@ -48,9 +33,4 @@ public class ASMConstants {
 
     //Harvest Festival
     public static final String WEATHER_RENDERER = "joshie.harvest.calendar.WeatherRenderer";
-
-    //Specific Blocks and Items
-    public static final String EGG = "net.minecraft.item.ItemEgg";
-    public static final String FARMLAND = "net.minecraft.block.BlockFarmland";
-    public static final String SEED_FOOD = "net.minecraft.item.ItemSeedFood";
 }

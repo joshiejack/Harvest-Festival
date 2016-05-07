@@ -1,6 +1,6 @@
 package joshie.harvest.blocks;
 
-import joshie.harvest.api.core.IShippable;
+import joshie.harvest.api.HFApi;
 import joshie.harvest.blocks.BlockWood.Woodware;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.handlers.HFTrackers;
@@ -66,18 +66,17 @@ public class BlockWood extends BlockHFBaseMeta<Woodware> {
         if (player.isSneaking()) return false;
         else if ((wood == SHIPPING || wood == SHIPPING_2) && player.getActiveItemStack() != null) {
             ItemStack held = player.getActiveItemStack();
-            if (held.getItem() instanceof IShippable) {
-                long sell = ((IShippable) held.getItem()).getSellValue(held);
-                if (sell > 0) {
-                    if (!player.capabilities.isCreativeMode) {
-                        player.inventory.decrStackSize(player.inventory.currentItem, 1);
-                    }
-
-                    if (!world.isRemote) {
-                        HFTrackers.getServerPlayerTracker(player).getTracking().addForShipping(held);
-                    }
-                    return true;
+            long sell = HFApi.SHIPPING.getSellValue(held);
+            if (sell > 0) {
+                if (!player.capabilities.isCreativeMode) {
+                    player.inventory.decrStackSize(player.inventory.currentItem, 1);
                 }
+
+                if (!world.isRemote) {
+                    HFTrackers.getServerPlayerTracker(player).getTracking().addForShipping(held);
+                }
+
+                return true;
             }
         }
         return false;

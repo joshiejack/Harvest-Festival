@@ -1,9 +1,9 @@
 package joshie.harvest.core.util;
 
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ISizeable;
 import joshie.harvest.api.core.ISizedProvider;
 import joshie.harvest.api.crops.ICrop;
-import joshie.harvest.api.crops.ICropProvider;
 import net.minecraft.item.ItemStack;
 
 public class HFStack extends SafeStack {
@@ -13,8 +13,8 @@ public class HFStack extends SafeStack {
     public HFStack(ItemStack stack) {
         super(stack);
 
-        if (stack.getItem() instanceof ICropProvider) {
-            crop = ((ICropProvider) stack.getItem()).getCrop(stack);
+        if (HFApi.CROPS.getCropFromStack(stack) != null) {
+            crop = HFApi.CROPS.getCropFromStack(stack);
         } else if (stack.getItem() instanceof ISizedProvider) {
             sized = ((ISizedProvider)stack.getItem()).getSizeable(stack);
         }

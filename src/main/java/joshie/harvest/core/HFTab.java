@@ -3,6 +3,7 @@ package joshie.harvest.core;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.blocks.HFBlocks;
+import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.items.HFItems;
 import net.minecraft.creativetab.CreativeTabs;
@@ -75,12 +76,17 @@ public class HFTab extends CreativeTabs {
             int value1 = 500;
             int value2 = 500;
 
+
             if (item1 instanceof ICreativeSorted) {
                 value1 = ((ICreativeSorted) item1).getSortValue(stack1);
+            } else if (HFApi.CROPS.getCropFromStack(stack1) != null) {
+                value1 = CreativeSort.CROPS;
             }
 
             if (item2 instanceof ICreativeSorted) {
                 value2 = ((ICreativeSorted) item2).getSortValue(stack2);
+            } else if (HFApi.CROPS.getCropFromStack(stack2) != null) {
+                value2 = CreativeSort.CROPS;
             }
 
             return value1 == value2 ? stack1.getDisplayName().compareTo(stack2.getDisplayName()) : value1 > value2 ? 1 : -1;

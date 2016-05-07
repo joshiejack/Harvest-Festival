@@ -2,10 +2,12 @@ package joshie.harvest.api.crops;
 
 import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.calendar.Season;
+import joshie.harvest.api.core.IShippable;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 
-public interface ICrop {
+public interface ICrop extends IShippable {
     /** Returns this crop in seed form, with default stats
      *  @return     the itemstack for this crop as seeds **/
     public ItemStack getSeedStack();
@@ -17,9 +19,8 @@ public interface ICrop {
     /** Harvested stack **/
     public ItemStack getHarvested();
 
-    /** Returns the unlocalized name for this crop
-     *  @return      the unlocalize name **/
-    public String getUnlocalizedName();
+    /** Returns the resource location for this crop **/
+    public ResourceLocation getResource();
 
     /** Returns the localized name for this crop 
      * @param       isItem true if we are asking for the crops item name,
@@ -31,10 +32,6 @@ public interface ICrop {
     /** Returns the localized name for this seed 
      * @return      the localized name for this crop as seeds*/
     public String getSeedsName();
-
-    /** Returns how much this crop will sell for at 0.5 start
-     * @return      money gained from selling*/
-    public long getSellValue();
 
     /** Returns how many stages this crop has 
      * @return      the total number of stages*/

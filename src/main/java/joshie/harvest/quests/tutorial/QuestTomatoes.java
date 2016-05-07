@@ -50,7 +50,7 @@ public class QuestTomatoes extends Quest {
 
     @Override
     public void claim(EntityPlayer player) {
-        rewardGold(player, HFCrops.tomato.getSellValue() * 15);
+        rewardGold(player, HFCrops.tomato.getSellValue(HFCrops.tomato.getCropStack()) * 15);
         rewardRelations(player, HFNPCs.GODDESS, 1000);
     }
 }

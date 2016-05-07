@@ -1,7 +1,5 @@
 package joshie.harvest.core.config;
 
-import net.minecraftforge.common.config.Configuration;
-
 import static joshie.harvest.core.helpers.generic.ConfigHelper.getInteger;
 
 public class NPC {
@@ -9,7 +7,7 @@ public class NPC {
     public static int REAL_MARRIAGE_REQUIREMENT;
     public static int ADJUSTED_MARRIAGE_REQUIREMENT;
 
-    public static void init(Configuration config) {
+    public static void init() {
         ADJUSTED_MARRIAGE_REQUIREMENT = getInteger("Marriage Requirement", 60000);
         REAL_MARRIAGE_REQUIREMENT = ADJUSTED_MARRIAGE_REQUIREMENT - Short.MAX_VALUE;
     }

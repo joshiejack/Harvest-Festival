@@ -8,7 +8,6 @@ import joshie.harvest.cooking.HFIngredients;
 import joshie.harvest.cooking.HFRecipes;
 import joshie.harvest.core.config.General;
 import joshie.harvest.core.config.HFConfig;
-import joshie.harvest.core.config.HFVanilla;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.debug.HFDebug;
 import joshie.harvest.items.HFItems;
@@ -32,7 +31,6 @@ public class HFCommonProxy {
         }
 
         LIST.add(HFCore.class);
-        LIST.add(HFVanilla.class);
         LIST.add(HFConfig.class);
         LIST.add(HFPlugins.class);
         LIST.add(HFCrops.class);

@@ -27,7 +27,7 @@ public class ItemCrop extends ItemHFBase implements IShippable, ICropProvider, I
     public long getSellValue(ItemStack stack) {
         if (crop == HFCrops.grass) return 0;
         else {
-            return crop.getSellValue();
+            return crop.getSellValue(stack);
         }
     }
 
@@ -43,6 +43,6 @@ public class ItemCrop extends ItemHFBase implements IShippable, ICropProvider, I
 
     @Override
     public String getName(ItemStack stack) {
-        return crop.getUnlocalizedName();
+        return crop.getResource().getResourcePath();
     }
 }

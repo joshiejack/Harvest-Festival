@@ -1,6 +1,6 @@
 package joshie.harvest.player.tracking;
 
-import joshie.harvest.api.core.IShippable;
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.util.SafeStack;
@@ -45,10 +45,7 @@ public class TrackingDataServer extends TrackingData {
     }
 
     public boolean addForShipping(ItemStack stack) {
-        long sell = 0;
-        if (stack.getItem() instanceof IShippable) {
-            sell = ((IShippable) stack.getItem()).getSellValue(stack);
-        }
+        long sell = HFApi.SHIPPING.getSellValue(stack);
 
         SellStack check = new SellStack(stack, sell);
         if (toBeShipped.contains(check)) {

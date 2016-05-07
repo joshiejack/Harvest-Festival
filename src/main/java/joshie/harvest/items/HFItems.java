@@ -1,10 +1,10 @@
 package joshie.harvest.items;
 
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.core.config.General;
 import joshie.harvest.core.helpers.SeedHelper;
 import joshie.harvest.core.lib.SizeableMeta;
-import joshie.harvest.crops.Crop;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.client.renderer.color.ItemColors;
@@ -46,12 +46,17 @@ public class HFItems {
 
     public static void preInit() {
         //Add a new crop item for things that do not have an item yet :D
-        for (ICrop crop : Crop.CROPS) {
+        for (ICrop crop : HFApi.CROPS.getCrops()) {
             if (!crop.hasItemAssigned()) {
-                crop.setItem(new ItemStack(new ItemCrop(crop).setUnlocalizedName("crop." + crop.getUnlocalizedName()), 1, 0));
-                ItemStack clone = crop.getCropStack().copy();
-                clone.setItemDamage(OreDictionary.WILDCARD_VALUE);
-                OreDictionary.registerOre("crop" + WordUtils.capitalizeFully(crop.getUnlocalizedName().replace("_", "")), clone);
+                crop.setItem(new ItemStack(new ItemCrop(crop).setUnlocalizedName("crop." + crop.getResource().getResourcePath()), 1, 0));
+            }
+
+            //Register always in the ore dictionary
+            ItemStack clone = crop.getCropStack().copy();
+            clone.setItemDamage(OreDictionary.WILDCARD_VALUE);
+            String name = "crop" + WordUtils.capitalizeFully(crop.getResource().getResourcePath().replace("_", ""));
+            if (!isInDictionary(name, clone)) {
+                OreDictionary.registerOre(name, clone);
             }
         }
 
@@ -59,6 +64,16 @@ public class HFItems {
         if (General.DEBUG_MODE) {
             new ItemCheat().setUnlocalizedName("cheat");
         }
+    }
+
+    private static boolean isInDictionary(String name, ItemStack stack) {
+        for (ItemStack check: OreDictionary.getOres(name)) {
+            if (check.getItem() == stack.getItem() && (check.getItemDamage() == OreDictionary.WILDCARD_VALUE || check.getItemDamage() == stack.getItemDamage())) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     @SideOnly(Side.CLIENT)

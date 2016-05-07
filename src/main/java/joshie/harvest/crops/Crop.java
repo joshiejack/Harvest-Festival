@@ -1,36 +1,34 @@
 package joshie.harvest.crops;
 
-import com.google.gson.annotations.Expose;
 import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.IDropHandler;
 import joshie.harvest.api.crops.ISoilHandler;
 import joshie.harvest.api.crops.IStateHandler;
-import joshie.harvest.core.config.HFConfig;
 import joshie.harvest.core.helpers.SeedHelper;
+import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.Translate;
 import joshie.harvest.crops.handlers.SoilHandlers;
 import joshie.harvest.crops.handlers.StateHandlerDefault;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 public class Crop implements ICrop {
-    public static final ArrayList<ICrop> CROPS = new ArrayList<ICrop>(30);
+    public static final HashMap<ResourceLocation, ICrop> CROPS = new HashMap<>();
     private static final Random rand = new Random();
 
     //CropData
     @SideOnly(Side.CLIENT)
     protected IStateHandler iconHandler;
-    @Expose
-    protected String unlocalized = "null_crop";
-
+    protected ResourceLocation resource = new ResourceLocation(HFModInfo.MODID, "null_crop");
     protected ISoilHandler soilHandler;
     protected IDropHandler dropHandler;
     protected Block growsToSide;
@@ -53,7 +51,6 @@ public class Crop implements ICrop {
     /**
      * Constructor for crop
      *
-     * @param unlocalized name, works as the uuid
      * @param season      the season this crop grows in
      * @param cost        how much the seed costs
      * @param sell        how much this sells for
@@ -61,12 +58,12 @@ public class Crop implements ICrop {
      * @param regrow      the stage this returns to once harvested
      * @param year        the year in which this crop can be purchased
      */
-    public Crop(String unlocalized, Season season, int cost, int sell, int stages, int regrow, int year, int color) {
-        this(unlocalized, new Season[]{season}, cost, sell, stages, regrow, year, color);
+    public Crop(ResourceLocation key, Season season, int cost, int sell, int stages, int regrow, int year, int color) {
+        this(key, new Season[]{season}, cost, sell, stages, regrow, year, color);
     }
 
-    public Crop(String unlocalized, Season[] seasons, int cost, int sell, int stages, int regrow, int year, int color) {
-        this.unlocalized = unlocalized;
+    public Crop(ResourceLocation key, Season[] seasons, int cost, int sell, int stages, int regrow, int year, int color) {
+        this.resource = key;
         this.seasons = seasons;
         this.cost = cost;
         this.sell = sell;
@@ -82,8 +79,7 @@ public class Crop implements ICrop {
         this.doubleStage = Integer.MAX_VALUE;
         this.dropHandler = null;
         this.growsToSide = null;
-        HFConfig.mappings.addCrop(this);
-        CROPS.add(this);
+        CROPS.put(key, this);
     }
 
     @Override
@@ -179,7 +175,7 @@ public class Crop implements ICrop {
      *
      * @return the sell value in gold
      */
-    public long getSellValue() {
+    public long getSellValue(ItemStack stack) {
         return sell;
     }
 
@@ -284,14 +280,9 @@ public class Crop implements ICrop {
         return (stack.getItem() == getCropStack().getItem());
     }
 
-    /**
-     * Gets the unlocalized name for this crop
-     *
-     * @return unlocalized name
-     */
     @Override
-    public String getUnlocalizedName() {
-        return unlocalized;
+    public ResourceLocation getResource() {
+        return resource;
     }
 
     /**
@@ -302,7 +293,7 @@ public class Crop implements ICrop {
      */
     public String getLocalizedName(boolean isItem) {
         String suffix = alternativeName ? ((isItem) ? ".item" : ".block") : "";
-        return Translate.translate("crop." + StringUtils.replace(getUnlocalizedName(), "_", ".") + suffix);
+        return Translate.translate(resource.getResourceDomain(), "crop." + StringUtils.replace(resource.getResourcePath(), "_", ".") + suffix);
     }
 
     /**
@@ -312,7 +303,7 @@ public class Crop implements ICrop {
      */
     public String getSeedsName() {
         String suffix = alternativeName ? ".block" : "";
-        String name = Translate.translate("crop." + StringUtils.replace(getUnlocalizedName(), "_", ".") + suffix);
+        String name = Translate.translate(resource.getResourceDomain(), "crop." + StringUtils.replace(resource.getResourcePath(), "_", ".") + suffix);
         String seeds = Translate.translate("crop.seeds");
         String text = Translate.translate("crop.seeds.format.standard");
         text = StringUtils.replace(text, "%C", name);
@@ -322,11 +313,11 @@ public class Crop implements ICrop {
 
     @Override
     public boolean equals(Object o) {
-        return o == this || o instanceof ICrop && getUnlocalizedName().equals(((ICrop) o).getUnlocalizedName());
+        return o == this || o instanceof ICrop && getResource().equals(((ICrop) o).getResource());
     }
 
     @Override
     public int hashCode() {
-        return unlocalized.hashCode();
+        return resource.hashCode();
     }
 }

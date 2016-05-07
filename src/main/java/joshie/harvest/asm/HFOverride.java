@@ -15,22 +15,11 @@ import java.util.List;
 import java.util.Map;
 
 public class HFOverride implements IFMLLoadingPlugin, IClassTransformer {
-    private static final int EGG = 0;
-    private static final int SNOW = 1;
-    private static final int FARMLAND = 2;
-
     public static boolean isObfuscated = false;
     private static List<AbstractASM> asm = new ArrayList<AbstractASM>();
 
     static {
-        //asm.add(new EggTransformer()); //TODO Joshie
-        //asm.add(new SeedFoodTransformer()); //TODO Joshie
-        asm.add(new WheatTransformer());
-        asm.add(new MelonTransformer());
-        asm.add(new FarmlandHardnessTransformer());
         asm.add(new SnowTransformer());
-        asm.add(new FarmlandTransformer());
-        asm.add(new PumpkinTransformer());
         asm.add(new WeatherTransformer());
         //TODO: Future Plugins
         //transformers.add(new PamTransformer());

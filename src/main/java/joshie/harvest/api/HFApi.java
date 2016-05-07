@@ -4,6 +4,7 @@ import joshie.harvest.api.animals.IAnimalHandler;
 import joshie.harvest.api.buildings.IBuildingRegistry;
 import joshie.harvest.api.calendar.ICalendar;
 import joshie.harvest.api.cooking.IFoodRegistry;
+import joshie.harvest.api.core.IShippingRegistry;
 import joshie.harvest.api.crops.ICropHandler;
 import joshie.harvest.api.npc.INPCRegistry;
 import joshie.harvest.api.quest.IQuestRegistry;
@@ -23,4 +24,5 @@ public class HFApi {
     public static IShopRegistry SHOPS = null;
     public static IQuestRegistry QUESTS = null;
     public static IRelationships RELATIONS = null;
+    public static IShippingRegistry SHIPPING = null;
 }

@@ -78,8 +78,6 @@ public class CropTrackerServer extends CropTracker {
             wither.remove();
             setWithered(data);
         }
-
-        toWither = null;
     }
 
     private ICalendarDate lastRain;

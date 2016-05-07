@@ -16,7 +16,6 @@ import joshie.harvest.crops.Crop;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
@@ -36,7 +35,7 @@ import java.util.List;
 public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
 
     public ItemHFSeeds() {
-        super(HFBlocks.CROPS, Blocks.FARMLAND);
+        super(HFBlocks.CROPS, HFBlocks.FARMLAND);
         setCreativeTab(HFTab.FARMING);
         setHasSubtypes(true);
     }
@@ -145,7 +144,7 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
-        for (ICrop crop : Crop.CROPS) {
+        for (ICrop crop : HFApi.CROPS.getCrops()) {
             list.add(SeedHelper.getSeedsFromCrop(crop));
         }
     }

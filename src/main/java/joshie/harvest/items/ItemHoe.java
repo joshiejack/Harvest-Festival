@@ -77,7 +77,7 @@ public class ItemHoe extends ItemBaseTool {
                         if ((block == Blocks.GRASS || block == Blocks.DIRT)) {
                             doParticles(stack, player, world, new BlockPos(x2, pos.getY(), z2));
                             if (!world.isRemote) {
-                                world.setBlockState(new BlockPos(x2, pos.getY(), z2), Blocks.FARMLAND.getDefaultState());
+                                world.setBlockState(new BlockPos(x2, pos.getY(), z2), HFBlocks.FARMLAND.getDefaultState());
                             }
                         }
                     }

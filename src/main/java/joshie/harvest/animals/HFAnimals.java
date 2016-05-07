@@ -12,7 +12,6 @@ import joshie.harvest.animals.type.AnimalSheep;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.crops.ICrop;
-import joshie.harvest.crops.Crop;
 import joshie.harvest.items.HFItems;
 import joshie.harvest.items.ItemGeneral;
 import net.minecraft.client.renderer.entity.Render;
@@ -43,7 +42,7 @@ public class HFAnimals {
     }
 
     public static void init() {
-        for (ICrop crop : Crop.CROPS) {
+        for (ICrop crop : HFApi.CROPS.getCrops()) {
             HFApi.ANIMALS.registerFoodAsType(crop.getCropStack(), crop.getFoodType());
         }
     }

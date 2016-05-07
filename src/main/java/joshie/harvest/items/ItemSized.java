@@ -77,10 +77,8 @@ public class ItemSized extends ItemHFBaseMeta implements IShippable, ICreativeSo
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
-        if (!meta.isVanilla()) {
-            list.add(new ItemStack(item, 1, 0));
-            list.add(new ItemStack(item, 1, 1));
-            list.add(new ItemStack(item, 1, 2));
-        }
+        list.add(new ItemStack(item, 1, 0));
+        list.add(new ItemStack(item, 1, 1));
+        list.add(new ItemStack(item, 1, 2));
     }
 }

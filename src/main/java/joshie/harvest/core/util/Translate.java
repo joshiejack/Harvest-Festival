@@ -7,4 +7,8 @@ public class Translate {
     public static String translate(String s) {
         return I18n.translateToLocal(HFModInfo.MODID + "." + s);
     }
+
+    public static String translate(String mod, String s) {
+        return I18n.translateToLocal(mod + "." + s);
+    }
 }

@@ -9,10 +9,7 @@ import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.calendar.CalendarRender;
 import joshie.harvest.cooking.FoodRegistry;
 import joshie.harvest.core.commands.*;
-import joshie.harvest.core.handlers.EventsHandler;
-import joshie.harvest.core.handlers.GoddessHandler;
-import joshie.harvest.core.handlers.GuiHandler;
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.handlers.*;
 import joshie.harvest.core.network.*;
 import joshie.harvest.core.network.animals.PacketSyncDaysNotFed;
 import joshie.harvest.core.network.animals.PacketSyncEverything;
@@ -22,6 +19,7 @@ import joshie.harvest.core.network.quests.*;
 import joshie.harvest.core.render.RenderHandler;
 import joshie.harvest.core.util.WorldDestroyer;
 import joshie.harvest.crops.CropRegistry;
+import joshie.harvest.core.handlers.DisableHandler;
 import joshie.harvest.npc.NPCRegistry;
 import joshie.harvest.player.relationships.RelationshipHelper;
 import joshie.harvest.quests.QuestEvents;
@@ -47,12 +45,14 @@ public class HFCore {
         HFApi.SHOPS = new ShopRegistry();
         HFApi.QUESTS = new QuestRegistry();
         HFApi.RELATIONS = new RelationshipHelper();
+        HFApi.SHIPPING = new ShippingRegistry();
 
         //Register Events
         MinecraftForge.EVENT_BUS.register(new EventsHandler());
         MinecraftForge.EVENT_BUS.register(new AnimalEvents());
         MinecraftForge.EVENT_BUS.register(new GoddessHandler());
         MinecraftForge.EVENT_BUS.register(new QuestEvents());
+        MinecraftForge.EVENT_BUS.register(new DisableHandler());
         NetworkRegistry.INSTANCE.registerGuiHandler(HarvestFestival.instance, new GuiHandler());
 
         //Commands

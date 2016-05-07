@@ -1,11 +1,12 @@
 package joshie.harvest.core.helpers;
 
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.crops.ICrop;
-import joshie.harvest.core.config.HFConfig;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.items.HFItems;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ResourceLocation;
 
 public class SeedHelper {
     public static ICrop getCropFromSeed(ItemStack stack) {
@@ -13,14 +14,14 @@ public class SeedHelper {
             return HFCrops.null_crop;
         }
 
-        String unlocalized = stack.getTagCompound().getString("UnlocalizedSeedName");
-        return HFConfig.mappings.getCrop(unlocalized);
+        ResourceLocation resource = new ResourceLocation(stack.getTagCompound().getString("ResourceSeedName"));
+        return HFApi.CROPS.getCrop(resource);
     }
 
     public static ItemStack getSeedsFromCrop(ICrop crop) {
         ItemStack seeds = new ItemStack(HFItems.SEEDS);
         seeds.setTagCompound(new NBTTagCompound());
-        seeds.getTagCompound().setString("UnlocalizedSeedName", crop.getUnlocalizedName());
+        seeds.getTagCompound().setString("ResourceSeedName", crop.getResource().toString());
         return seeds;
     }
 }

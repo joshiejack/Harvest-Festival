@@ -24,6 +24,7 @@ public class HFBlocks {
 
     //Cooking & Farming
     public static final BlockHFBaseMeta COOKWARE = new BlockCookware().setUnlocalizedName("cookware");
+    public static final BlockHFBaseMeta FARMLAND = new BlockFarmland().setUnlocalizedName("farmland");
     public static final BlockHFBaseMeta CROPS = new BlockCrop().setUnlocalizedName("crops.block");
     public static final BlockHFBase FLOWERS = new BlockFlower().setUnlocalizedName("flowers.block");
     //Mine

@@ -17,7 +17,6 @@ import java.lang.reflect.Method;
 
 public class HFConfig {
     public static final int PACKET_DISTANCE = 172;
-    public static Mappings mappings = new Mappings();
     public static ASM asm;
 
     public static void preInit() {
@@ -36,8 +35,8 @@ public class HFConfig {
             config.load();
             ConfigHelper.setConfig(config);
             Class<?> clazz = Class.forName(HFModInfo.JAVAPATH + "core.config." + name);
-            Method method = clazz.getMethod("init", Configuration.class);
-            method.invoke(null, config);
+            Method method = clazz.getMethod("init");
+            method.invoke(null);
         } catch (Exception e) {
             HarvestFestival.LOGGER.log(Level.ERROR, HFModInfo.MODNAME + " failed to load in it's " + name + " config");
             e.printStackTrace();

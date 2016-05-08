@@ -6,16 +6,23 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.blocks.tiles.TileCooking;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL14;
 
 import java.util.ArrayList;
+
+import static net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType.FIXED;
 
 @SideOnly(Side.CLIENT)
 public abstract class SpecialRendererCookware<T extends TileCooking> extends TileEntitySpecialRenderer<T> {
@@ -34,17 +41,20 @@ public abstract class SpecialRendererCookware<T extends TileCooking> extends Til
         ArrayList<ItemStack> ingredients = tile.getIngredients();
         ItemStack result = tile.getResult();
         if (result != null) {
-            renderItem(-1, tile.getWorld(), result);
+            renderItem(-1, tile.getWorld(), result, tile.getPos());
         }
 
         int max = ingredients.size();
         for (int i = 0; i < max; i++) {
             ItemStack ingredient = ingredients.get(i);
-            if (HFApi.COOKING.getFluid(ingredient) == null) {
+            ResourceLocation fluid = HFApi.COOKING.getFluid(ingredient);
+            if (fluid == null) {
                 renderItem(i, tile.getWorld(), ingredient, tile.heightOffset[i], tile.rotations[i], tile.offset1[i], tile.offset2[i]);
-            }
+            } else renderFluid(i, tile.getWorld(), fluid);
         }
     }
+
+    public void renderFluid(int i, World world, ResourceLocation fluid) {}
 
     protected EntityItem getEntityItem(int id, World world, ItemStack stack) {
         EntityItem item = items.get(id);
@@ -75,15 +85,39 @@ public abstract class SpecialRendererCookware<T extends TileCooking> extends Til
         EntityItem item = getEntityItem(id, world, stack);
         GlStateManager.pushMatrix();
         translateResult(stack.getItem() instanceof ItemBlock);
-        MINECRAFT.getRenderItem().renderItem(item.getEntityItem(), ItemCameraTransforms.TransformType.FIXED);
+
+        //IBakedModel model = Minecraft.getMinecraft().getRenderItem().getItemModelWithOverrides(stack, world, null);
+        //MINECRAFT.getRenderItem().renderItem(stack, model);
+        //MINECRAFT.getRenderItem().renderItem(item.getEntityItem(), ItemCameraTransforms.TransformType.FIXED);
         GlStateManager.popMatrix();
     }
 
-    private void renderItemStart() {
+    private void renderItem(int id, World world, ItemStack stack, BlockPos pos) {
         GlStateManager.pushMatrix();
+        RenderHelper.disableStandardItemLighting();
+        GlStateManager.enableBlend();
+        GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+
+        if (Minecraft.isAmbientOcclusionEnabled())  {
+            GL11.glShadeModel(GL11.GL_SMOOTH);
+        } else  {
+            GL11.glShadeModel(GL11.GL_FLAT);
+        }
+
+        translateResult(stack.getItem() instanceof ItemBlock);
+        GlStateManager.blendFunc(GL11.GL_CONSTANT_ALPHA, GL11.GL_ONE_MINUS_CONSTANT_ALPHA);
+        GL14.glBlendColor(1F, 1F, 1F, 1F);
+        Minecraft.getMinecraft().getRenderItem().renderItem(stack, FIXED);
+        GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+        GlStateManager.disableBlend();
+        RenderHelper.enableStandardItemLighting();
+        GlStateManager.popMatrix();
     }
 
-    private void renderItemEnd(EntityItem item) {
-
+    protected void setColorFromInteger(int color) {
+        float red = (color >> 16 & 0xFF) / 255.0F;
+        float green = (color >> 8 & 0xFF) / 255.0F;
+        float blue = (color & 0xFF) / 255.0F;
+        GlStateManager.color(red, green, blue, 1.0F);
     }
 }

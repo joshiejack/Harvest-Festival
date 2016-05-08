@@ -67,7 +67,6 @@ public abstract class BlockHFBaseEnumRotatableMeta<E extends Enum<E> & IStringSe
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
         EnumFacing facing = DirectionHelper.getFacingFromEntity(placer);
         world.setBlockState(pos, state.withProperty(FACING, facing));
-        System.out.println(world.getBlockState(pos));
     }
 
     @Override
@@ -96,7 +95,6 @@ public abstract class BlockHFBaseEnumRotatableMeta<E extends Enum<E> & IStringSe
     public void registerModels(Item item, String name) {
         for (int i = 0; i < values.length; i++) {
             String variant = name + "#facing=north," + property.getName() + "=" + getEnumFromMeta(i).getName() + "";
-            System.out.println("Registering the model for " + name + " with the variant of " + variant);
             ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(new ResourceLocation(HFModInfo.MODID, variant), "inventory"));
         }
     }

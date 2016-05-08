@@ -1,12 +1,14 @@
 package joshie.harvest.api.cooking;
 
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.Fluid;
+import net.minecraft.util.ResourceLocation;
 
 import java.util.Collection;
 import java.util.List;
 
 public interface IFoodRegistry {
+    Collection<ICookingComponent> getIngredients();
+
     /** Registers this item as a cooking component type
      *  @param      stack the itemstack
      *  @param      component the component **/
@@ -58,7 +60,7 @@ public interface IFoodRegistry {
      *  Returns null if the ingredient doesn't have a fluid associated with it.
      * @param       ingredient the ingredient
      * @return      a fluid, can be null */
-    public Fluid getFluid(ItemStack ingredient);
+    public ResourceLocation getFluid(ItemStack ingredient);
     
     /** Returns a utensil based on the unlocalized name
      *  Returns kitchen counter if none was found.

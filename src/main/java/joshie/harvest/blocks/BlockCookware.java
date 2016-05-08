@@ -74,6 +74,8 @@ public class BlockCookware extends BlockHFBaseEnumRotatableTile<Cookware> {
                 return new AxisAlignedBB(0F, 0F, 0F, 1F, 2F, 1F);
             case FRIDGE_TOP:
                 return new AxisAlignedBB(0F, -1F, 0F, 1F, 1F, 1F);
+            case MIXER:
+                return new AxisAlignedBB(0.2F, 0F, 0.2F, 0.8F, 1F, 0.8F);
             default:
                 return FULL_BLOCK_AABB;
         }

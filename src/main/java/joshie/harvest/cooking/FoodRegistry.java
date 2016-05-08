@@ -6,9 +6,12 @@ import joshie.harvest.api.cooking.*;
 import joshie.harvest.core.helpers.SafeStackHelper;
 import joshie.harvest.core.util.SafeStack;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.Fluid;
+import net.minecraft.util.ResourceLocation;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 
 public class FoodRegistry implements IFoodRegistry {
     private static final Multimap<SafeStack, ICookingComponent> registry = ArrayListMultimap.create();
@@ -25,6 +28,11 @@ public class FoodRegistry implements IFoodRegistry {
         if (!components.containsKey(component.getUnlocalizedName())) {
             components.put(component.getUnlocalizedName(), component);
         }
+    }
+
+    @Override
+    public Collection<ICookingComponent> getIngredients() {
+        return components.values();
     }
 
     @Override
@@ -53,7 +61,7 @@ public class FoodRegistry implements IFoodRegistry {
     }
 
     @Override
-    public Fluid getFluid(ItemStack ingredient) {
+    public ResourceLocation getFluid(ItemStack ingredient) {
         List<ICookingComponent> components = ((List<ICookingComponent>) SafeStackHelper.getResult(ingredient, registry));
         return components.size() < 1 ? null : components.get(0).getFluid();
     }

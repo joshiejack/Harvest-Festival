@@ -13,7 +13,9 @@ import java.util.UUID;
 public class TaskGoHome implements INPCTask {
     @Override
     public boolean shouldTerminate(UUID owner, EntityAgeable entity, INPC npc) {
-        return entity.getDistanceSq(NPCHelper.getHomeForEntity(owner, npc)) < 1D;
+        BlockPos pos = NPCHelper.getHomeForEntity(owner, npc);
+        if (pos == null) return true;
+        return entity.getDistanceSq(pos) < 1D;
     }
 
     @Override
@@ -39,6 +41,8 @@ public class TaskGoHome implements INPCTask {
     @Override
     public void execute(UUID owner, EntityAgeable entity, INPC npc) {
         BlockPos go = NPCHelper.getHomeForEntity(owner, npc);
-        entity.getNavigator().tryMoveToXYZ((double) go.getX() + 0.5D, (double) go.getY(), (double) go.getZ() + 0.5D, 1.0D);
+        if (go != null) {
+            entity.getNavigator().tryMoveToXYZ((double) go.getX() + 0.5D, (double) go.getY(), (double) go.getZ() + 0.5D, 1.0D);
+        }
     }
 }

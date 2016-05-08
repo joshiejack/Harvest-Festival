@@ -69,7 +69,6 @@ public class Meal implements IMeal {
 
     @Override
     public ItemStack getAlternativeItem() {
-        System.out.println(alt);
         return alt;
     }
 

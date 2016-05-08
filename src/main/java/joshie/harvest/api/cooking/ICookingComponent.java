@@ -1,6 +1,6 @@
 package joshie.harvest.api.cooking;
 
-import net.minecraftforge.fluids.Fluid;
+import net.minecraft.util.ResourceLocation;
 
 public interface ICookingComponent {
     /** Whether these cooking components are equal or not **/
@@ -18,10 +18,10 @@ public interface ICookingComponent {
     /** Assign a fluid to this ingredient, for rendering purposes
      *  @param      fluid the fluid
      *  @return     the ingredient **/
-    public ICookingComponent setFluid(Fluid fluid);
+    public ICookingComponent setFluid(ResourceLocation fluid);
     
     /** @return     the fluid, can be null **/
-    public Fluid getFluid();
+    public ResourceLocation getFluid();
 
     /** The following values are added to meals, when the ingredient
      *  is considered an optional ingredient. The stats boost the meals

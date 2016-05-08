@@ -2,6 +2,7 @@ package joshie.harvest.cooking;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.ICookingComponent;
+import joshie.harvest.cooking.render.MappingEvent;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.items.HFItems;
 import joshie.harvest.items.ItemGeneral;
@@ -92,13 +93,13 @@ public class HFIngredients {
         //Store Bought
         chocolate = HFApi.COOKING.newIngredient("chocolate", 5, -10, 1, 0.05F, 4);
         flour = HFApi.COOKING.newIngredient("flour", 0, 0, 0, 0.1F, 4);
-        oil = HFApi.COOKING.newIngredient("oil", 0, -2, 0, 0F, 2).setFluid(HFCooking.cookingOil);
+        oil = HFApi.COOKING.newIngredient("oil", 0, -2, 0, 0F, 2).setFluid(MappingEvent.OIL);
         riceball = HFApi.COOKING.newIngredient("riceball", 6, -3, 1, 0.085F, 16);
 
         //Sizeables
         egg = HFApi.COOKING.newIngredient("egg", 6, 0, 0, 0.075F, 10);
         mayonnaise = HFApi.COOKING.newIngredient("mayonnaise", 6, -1, 1, 0.8F, 8);
-        milk = HFApi.COOKING.newIngredient("milk", 5, -2, 0, 0.04F, 6).setFluid(HFCooking.cookingMilk);
+        milk = HFApi.COOKING.newIngredient("milk", 5, -2, 0, 0.04F, 6).setFluid(MappingEvent.MILK);
 
         //Crops
         turnip = HFApi.COOKING.newIngredient("turnip", 2, -1, 1, 0.033F, 8);

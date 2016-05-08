@@ -1,7 +1,7 @@
 package joshie.harvest.cooking;
 
 import joshie.harvest.api.cooking.ICookingComponent;
-import net.minecraftforge.fluids.Fluid;
+import net.minecraft.util.ResourceLocation;
 
 import java.util.HashSet;
 
@@ -13,7 +13,7 @@ public class Ingredient implements ICookingComponent {
     public int hunger;
     public float saturation;
     public int eatTime;
-    public Fluid fluid;
+    public ResourceLocation fluid;
 
     /**
      * @param stamina    - how much this restored stamina
@@ -56,13 +56,13 @@ public class Ingredient implements ICookingComponent {
     }
 
     @Override
-    public ICookingComponent setFluid(Fluid fluid) {
+    public ICookingComponent setFluid(ResourceLocation fluid) {
         this.fluid = fluid;
         return this;
     }
 
     @Override
-    public Fluid getFluid() {
+    public ResourceLocation getFluid() {
         return fluid;
     }
 

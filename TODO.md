@@ -150,8 +150,6 @@
             - Left Side
             - Middle Section
             - Right Side
-- Incubator - Y
-    - With Egg
 - Cooking Pot - Y
     - Pot
         - Z Axis Rotation

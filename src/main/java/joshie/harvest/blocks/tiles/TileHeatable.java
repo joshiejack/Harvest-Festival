@@ -1,13 +1,13 @@
 package joshie.harvest.blocks.tiles;
 
-import joshie.harvest.api.cooking.IUtensil;
+import joshie.harvest.blocks.tiles.TileCooking.TileCookingTicking;
 import joshie.harvest.cooking.Utensil;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 
-public class TileHeatable extends TileCooking {
+public abstract class TileHeatable extends TileCookingTicking {
     @Override
-    public void animate(IUtensil utensil) {
+    public void animate() {
         EnumFacing orientation = ((TileOven)worldObj.getTileEntity(pos.down())).orientation;
         if (orientation == EnumFacing.NORTH || orientation == EnumFacing.SOUTH) {
             worldObj.spawnParticle(EnumParticleTypes.FLAME, getPos().getX() + 0.2D + (worldObj.rand.nextInt(10) / 100D), getPos().getY() - 0.115D, getPos().getZ() + 0.265D + (worldObj.rand.nextInt(15) / 100D), 0, 0, 0);

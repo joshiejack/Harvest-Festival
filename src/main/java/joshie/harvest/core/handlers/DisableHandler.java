@@ -15,7 +15,7 @@ import java.util.Set;
 import static net.minecraft.init.Items.*;
 
 public class DisableHandler {
-    private static final Set<Item> BLACKLIST = new HashSet<>();
+    private static final Set<Item> BLACKLIST = new HashSet<Item>();
 
     static {
         BLACKLIST.add(MELON_SEEDS);

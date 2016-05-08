@@ -20,7 +20,7 @@ import java.util.Collection;
 import java.util.HashMap;
 
 public class CropRegistry implements ICropHandler {
-    private static final HashMap<Pair<Item, Integer>, ICrop> PROVIDERS = new HashMap<>();
+    private static final HashMap<Pair<Item, Integer>, ICrop> PROVIDERS = new HashMap<Pair<Item, Integer>, ICrop>();
 
     @Override
     public ICrop getCrop(ResourceLocation resource) {

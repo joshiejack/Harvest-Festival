@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class Crop implements ICrop {
-    public static final HashMap<ResourceLocation, ICrop> CROPS = new HashMap<>();
+    public static final HashMap<ResourceLocation, ICrop> CROPS = new HashMap<ResourceLocation, ICrop>();
     private static final Random rand = new Random();
 
     //CropData

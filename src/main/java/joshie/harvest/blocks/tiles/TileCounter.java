@@ -5,7 +5,7 @@ import joshie.harvest.cooking.Utensil;
 
 public class TileCounter extends TileCooking {
     @Override
-    public short getCookingTime(IUtensil utensil) {
+    public short getCookingTime() {
         return 30;
     }
 

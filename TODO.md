@@ -117,10 +117,7 @@
 
 ### Models + Textures
 - Free Standing Ladder - Y
-    - Mine Floor with Free Standing Ladder hole
-        - Z Axis Facing
-        - X Acis Facing
-    - Free Standing Ladder
+    - Mine Floor with Free Standing Ladder hole (What?)
         - Z Axis Facing
         - X Acis Facing
 - Rocks - Y

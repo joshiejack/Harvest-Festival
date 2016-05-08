@@ -106,6 +106,7 @@
 - Make Spawn Sheep Render the Sheep
 - Make Spawn Chicken Render the Chicken
 - Mine Wall/Floor in world Rendering and Cookware in inventory renders
+- Render Food/Liquids in Mixer correctly, render food on counter correctly - J
 
 ### Textures
 - Crop Grass Better Texture - Y
@@ -150,31 +151,6 @@
             - Left Side
             - Middle Section
             - Right Side
-- Cooking Pot - Y
-    - Pot
-        - Z Axis Rotation
-        - X Axis Rotation
-    - Liquid in Pot
-        - Z Axis Rotation
-        - X Axis Rotation
-- Food Mixer - Y
-    - Mixer
-        - North Rotation
-        - East Rotation
-        - South Rotation
-        - West Rotation
-    - Liquid in Mixer
-        - North Rotation
-        - East Rotation
-        - South Rotation
-        - West Rotation
-    - Liquid in Frying Pan
-        - North Rotation
-        - East Rotation
-        - South Rotation
-        - West Rotation
-
-
 ### Questing Tasks
 - Spawning the NPC Builder Quest
 - Welcome to 'Harvest Festival' Quests

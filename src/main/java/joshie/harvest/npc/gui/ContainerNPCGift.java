@@ -9,14 +9,17 @@ import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumHand;
 
 public class ContainerNPCGift extends ContainerNPCBase {
     //The Fridge CAN be null
     private EntityNPC npc;
+    private EnumHand hand;
 
-    public ContainerNPCGift(EntityNPC npc, InventoryPlayer playerInventory) {
+    public ContainerNPCGift(EntityNPC npc, InventoryPlayer playerInventory, EnumHand hand) {
         super(npc, playerInventory);
         this.npc = npc;
+        this.hand = hand;
     }
 
     @Override
@@ -24,7 +27,8 @@ public class ContainerNPCGift extends ContainerNPCBase {
         super.onContainerClosed(player);
 
         if (!player.worldObj.isRemote) {
-            ItemStack gift = player.getActiveItemStack();
+            new Exception().printStackTrace();
+            ItemStack gift = player.getHeldItem(hand);
             INPC theNpc = npc.getNPC();
             int points = theNpc.getGiftValue(gift).getRelationPoints();
             ICalendarDate today = HFTrackers.getCalendar().getDate();

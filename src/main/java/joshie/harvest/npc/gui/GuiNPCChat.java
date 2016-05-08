@@ -22,25 +22,30 @@ public class GuiNPCChat extends GuiNPCBase {
     protected double character; //A ticker, Determines what character we should be displaying
     protected boolean finished; //Whether the text has finished displaying
     protected boolean executed; //Whether the whole thing was executed
+    private boolean isScriptInit = false;
     private int nextGui = -1;
 
     private String format(String string) {
         if (string == null) return "FORGOT SOME TEXT DUMBASS";
         StatData stats = HFTrackers.getClientPlayerTracker().getStats();
         string = string.replace("<BR>", SystemUtils.LINE_SEPARATOR);
-        string = string.replace("Ãž", player.getDisplayNameString());
-        string = string.replace("â„‡", npc.getNPC().getUnlocalizedName());
-        string = string.replace("$", "" + stats.getGold());
+        string = string.replace("%p", player.getDisplayNameString());
+        string = string.replace("%e", npc.getNPC().getUnlocalizedName());
+        string = string.replace("%$", "" + stats.getGold());
 
         if (npc.getLover() != null) {
-            string = string.replace("â�¤", npc.getLover().getNPC().getUnlocalizedName());
-        } else string = string.replace("â�¤", Translate.translate("nolover"));
+            string = string.replace("%rE", npc.getLover().getNPC().getUnlocalizedName());
+        } else string = string.replace("%rE", Translate.translate("nolover"));
 
-        return string.replace("â™¥", HFTrackers.getClientPlayerTracker().getRelationships().getLover());
+        return string.replace("%rP", HFTrackers.getClientPlayerTracker().getRelationships().getLover());
     }
 
     public GuiNPCChat(EntityNPC npc, EntityPlayer player, int nextGui) {
         super(npc, player, nextGui);
+        isScriptInit = false;
+    }
+
+    private boolean buildScript() {
         String[] original = WordUtils.wrap(format(getScript()), 39).split(SystemUtils.LINE_SEPARATOR);
         if (original != null) {
             int size = original.length / MAX_LINES_PER_PAGE;
@@ -61,10 +66,16 @@ public class GuiNPCChat extends GuiNPCBase {
                 start = start + MAX_LINES_PER_PAGE;
             }
         }
+
+        return true;
     }
 
     @Override
     public void drawForeground(int x, int y) {
+        if (!isScriptInit) {
+            isScriptInit = buildScript();
+        }
+
         super.drawForeground(x, y);
 
         //Cancel the drawing if the script is null

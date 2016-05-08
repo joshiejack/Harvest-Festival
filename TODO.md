@@ -54,7 +54,6 @@
 - Change Items to  Item Enums + Change Item Registry Helper
 
 ### To Check
-- Gift of NPCs is working correctly - J
 - Relation ship status of npcs is working correctly - J
 - Can you Buy Items only when they're available i.e. blue feather when ready to marry - J
 - Can you marry NPCs with the blue feather, when they like you enough - J

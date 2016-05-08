@@ -305,11 +305,11 @@ harvestfestival.npc.ondra.name=Ondra
 # but take liberty there to, just make sure the user still knows what they
 # have to do in order to complete the quest in question.
 #Key-Codes for conversations
-# $ = Money - Player has
-# ♥ = Player's Romantic Interest
-# ❤ = Entity's Romantic Interest
-# Þ = Player
-# ℇ = The Entity
+# %$ = Money - Player has
+# %rP = Player's Romantic Interest's name
+# %rE = Entity's Romantic Interest's name
+# %p = Players Name
+# %e = NPC Name
 #Conversations
 #Generic - Children
 harvestfestival.npc.generic.child.greeting1=WOW you're really tall!
@@ -330,7 +330,7 @@ harvestfestival.npc.generic.male.greeting1=Hey, how's it hanging?
 harvestfestival.npc.generic.male.greeting2=Want to have a beer?
 
 #Generic - Female
-harvestfestival.npc.generic.female.greeting1=Hello Þ! I hope you're feeling well! It's such a beautiful day isn't it?
+harvestfestival.npc.generic.female.greeting1=Hello %p! I hope you're feeling well! It's such a beautiful day isn't it?
 
 #Generic Adult Thanks
 harvestfestival.npc.generic.adult.gift.awesome=Wow thanks so much for the awesome gift! I love it.
@@ -410,7 +410,7 @@ harvestfestival.npc.jamie.greeting1=This is my town, and you remember that.
 harvestfestival.npc.jamie.greeting2=My family has won the town elections for the last 100 years.
 harvestfestival.npc.jamie.greeting3=My two girls are so precious to me, if you ever hurt either of them.
 harvestfestival.npc.jamie.greeting4=It's really hard being mayor, the people just love you too much.
-harvestfestival.npc.jamie.greeting5=Heya Þ, have you seen my house, it's far too small.
+harvestfestival.npc.jamie.greeting5=Heya %p, have you seen my house, it's far too small.
 
 #Abii
 harvestfestival.npc.abi.greeting1=Ooo, so cute. What's that? OMG!

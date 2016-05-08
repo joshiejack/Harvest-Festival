@@ -154,7 +154,7 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
         if (!isTalking()) {
             super.updateAITasks();
         } else {
-            addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 200, 0));
+            addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 200, 0, true, false));
         }
     }
 
@@ -200,11 +200,11 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
 
     @Override
     public boolean processInteract(EntityPlayer player, EnumHand hand, ItemStack stack) {
-        ItemStack held = player.inventory.getCurrentItem();
+        ItemStack held = player.getHeldItem(hand);
         boolean flag = held != null && held.getItem() == Items.SPAWN_EGG;
         if (!flag && isEntityAlive()) {
             if (!worldObj.isRemote) {
-                player.openGui(HarvestFestival.instance, NPCHelper.getGuiIDForNPC(npc, worldObj, player, player.isSneaking() && held != null), worldObj, getEntityId(), -1, 0);
+                player.openGui(HarvestFestival.instance, NPCHelper.getGuiIDForNPC(npc, worldObj, player, player.isSneaking() && held != null), worldObj, getEntityId(), -1, player.getActiveHand().ordinal());
                 setTalking(player);
             }
 

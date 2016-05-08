@@ -7,14 +7,15 @@ import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.gift.Gifts.Quality;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumHand;
 
 public class GuiNPCGift extends GuiNPCChat {
     private ItemStack gift;
     private Quality value;
 
-    public GuiNPCGift(EntityNPC npc, EntityPlayer player) {
+    public GuiNPCGift(EntityNPC npc, EntityPlayer player, EnumHand hand) {
         super(npc, player, -1);
-        gift = player.getActiveItemStack();
+        gift = player.getHeldItem(hand).copy();
         value = npc.getNPC().getGiftValue(gift);
     }
 

@@ -45,12 +45,11 @@ public class NPCHelper {
         return false;
     }
 
-    public static int getGuiIDForNPC(INPC npc, World world, EntityPlayer player, boolean isSneaking) {
+    public static int getGuiIDForNPC(INPC npc, World world, EntityPlayer player, boolean isGifting) {
         if (isShopOpen(npc, world, player)) {
             return GuiHandler.SHOP_WELCOME;
         }
 
-        return player.isSneaking() ? GuiHandler.GIFT : GuiHandler.NPC;
-        //return npc.getShop() != null && npc.getShop().isOpen(world, player) && npc.getShop().getContents(player).size() > 0 ? (npc.isBuilder()? GuiHandler.SHOP_BUILDER: GuiHandler.SHOP) : (isSneaking) ? GuiHandler.GIFT : GuiHandler.MOVEIN;
+        return isGifting ? GuiHandler.GIFT : GuiHandler.NPC;
     }
 }

@@ -13,6 +13,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.ResourceLocation;
@@ -66,13 +67,35 @@ public abstract class BlockHFBaseEnumRotatableMeta<E extends Enum<E> & IStringSe
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
         EnumFacing facing = DirectionHelper.getFacingFromEntity(placer);
         world.setBlockState(pos, state.withProperty(FACING, facing));
+        System.out.println(world.getBlockState(pos));
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getBlockLayer() {
+        return BlockRenderLayer.CUTOUT_MIPPED;
+    }
+
+    @Override
+    public boolean isFullCube(IBlockState blockState) {
+        return false;
+    }
+
+    @Override
+    public boolean isOpaqueCube(IBlockState blockState) {
+        return false;
+    }
+
+    @Override
+    public boolean isVisuallyOpaque() {
+        return false;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void registerModels(Item item, String name) {
         for (int i = 0; i < values.length; i++) {
-            String variant = name + "#" + property.getName() + "=" + getEnumFromMeta(i).getName() + ",facing=north";
+            String variant = name + "#facing=north," + property.getName() + "=" + getEnumFromMeta(i).getName() + "";
             System.out.println("Registering the model for " + name + " with the variant of " + variant);
             ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(new ResourceLocation(HFModInfo.MODID, variant), "inventory"));
         }

@@ -1,7 +1,11 @@
 package joshie.harvest.cooking;
 
+import joshie.harvest.items.ItemGeneral;
+import net.minecraft.item.ItemStack;
+
 import static joshie.harvest.cooking.HFIngredients.*;
 import static joshie.harvest.core.helpers.RecipeHelper.*;
+import static joshie.harvest.items.HFItems.GENERAL;
 
 public class HFRecipes {
     public static void preInit() {
@@ -12,7 +16,7 @@ public class HFRecipes {
         addFryingPanRecipe("popcorn", 30, -1, corn).setOptionalIngredients(butter, salt);
         addFryingPanRecipe("cornflakes", 10, -2, corn, milk).setOptionalIngredients(sugar);
         addFryingPanRecipe("eggplant.happy", 30, -2, eggplant).setOptionalIngredients(sugar);
-        addFryingPanRecipe("egg.scrambled", 40, -3, egg, oil).setOptionalIngredients(butter, mayonnaise, salt).setHasAltTexture();
+        addFryingPanRecipe("egg.scrambled", 40, -3, egg, oil).setOptionalIngredients(butter, mayonnaise, salt).setAlternativeTexture(new ItemStack(GENERAL, 1, ItemGeneral.EGG_SCRAMBLED));
         addFryingPanRecipe("omelet", 50, -4, egg, oil, milk).setOptionalIngredients(salt);
         addFryingPanRecipe("omelet.rice", 60, -4, egg, milk, oil, riceball).setOptionalIngredients(cabbage, onion, mushroom, green_pepper, salt);
         addFryingPanRecipe("toast.french", 30, -2, egg, bread, oil, sugar).setOptionalIngredients(butter);
@@ -28,8 +32,8 @@ public class HFRecipes {
         addMixerRecipe("milk.strawberry", 30, -15, strawberry, milk).setOptionalIngredients(sugar);
         addMixerRecipe("juice.vegetable", 20, -20, juice_vegetable).setOptionalIngredients(cucumber, onion, cabbage, tomato, spinach, carrot, green_pepper, turnip, salt); //Yo this doesnt make any sense. It requires Vegetable Juice to make iteslf?
         addMixerRecipe("latte.vegetable", 30, -20, juice_vegetable, milk).setOptionalIngredients(cucumber, onion, cabbage, tomato, spinach, carrot, green_pepper, turnip, salt);
-        addMixerRecipe("ketchup", 1, 0, tomato, onion).setOptionalIngredients(salt, sugar).setHasAltTexture();
-        addMixerRecipe("butter", false, 1, 0, milk).setOptionalIngredients(salt).setHasAltTexture();
+        addMixerRecipe("ketchup", 1, 0, tomato, onion).setOptionalIngredients(salt, sugar).setAlternativeTexture(new ItemStack(GENERAL, 1, ItemGeneral.KETCHUP));
+        addMixerRecipe("butter", false, 1, 0, milk).setOptionalIngredients(salt).setAlternativeTexture(new ItemStack(GENERAL, 1, ItemGeneral.BUTTER));
         addMixerRecipe("fishsticks", false, 5, -1, fish).setOptionalIngredients(salt);
         addMixerRecipe("fishsticks", false, 5, -1, ketchup).setOptionalIngredients(salt);
 
@@ -39,7 +43,7 @@ public class HFRecipes {
         addNoUtensilRecipe("salad", 10, -3, salad_ingredient).setOptionalIngredients(mushroom, cucumber, cabbage, tomato, carrot, salt);
         addNoUtensilRecipe("sandwich", 8, -2, bread, sandwich_ingredient).setOptionalIngredients(butter, tomato, cucumber, salt, mayonnaise, mushroom);
         addNoUtensilRecipe("sushi", 30, -5, sashimi, riceball);
-        addNoUtensilRecipe("sashimi", 22, -4, fish).setHasAltTexture();
+        addNoUtensilRecipe("sashimi", 22, -4, fish).setAlternativeTexture(new ItemStack(GENERAL, 1, ItemGeneral.SASHIMI));
         addNoUtensilRecipe("sashimi.chirashi", 50, -7, sashimi, scrambled_egg, riceball, sashimi_vegetable);
 
         //Pot
@@ -66,7 +70,7 @@ public class HFRecipes {
         addOvenRecipe("dinnerroll", 9, -2, egg, milk, butter);
         //      addOvenRecipe("bun.jam", 40, -5, egg, milk, jam); //Numbers missing
         addOvenRecipe("doria", 25, -3, onion, butter, milk, riceball, flour);
-        addOvenRecipe("cookies", 15, -5, egg, flour, butter).setOptionalIngredients(sugar).setHasAltTexture();
+        addOvenRecipe("cookies", 15, -5, egg, flour, butter).setOptionalIngredients(sugar).setAlternativeTexture(new ItemStack(GENERAL, 1, ItemGeneral.COOKIES));
         addOvenRecipe("cookies.chocolate", 30, -5, cookies, chocolate);
         //      addOvenRecipe("cake", 46, -11, egg, flour, butter, fruit_ingredient).setOptionalIngredients(egg, flour, butter, orange, pineapple, strawberry, peach, grape_wild); //Ingredients missing
         addOvenRecipe("cake.chocolate", 70, -8, egg, flour, butter, chocolate).setOptionalIngredients(sugar, pineapple, apple, strawberry);

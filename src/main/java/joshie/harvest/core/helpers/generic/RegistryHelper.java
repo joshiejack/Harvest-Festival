@@ -38,6 +38,7 @@ public class RegistryHelper {
                         item.getSubItems(item, tab, subItems);
                     }
                 }
+
                 for (ItemStack stack : subItems) {
                     String subItemName = item.getUnlocalizedName(stack).replace("item.", "").replace(".", "_");
 

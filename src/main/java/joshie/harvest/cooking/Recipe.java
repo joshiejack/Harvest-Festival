@@ -4,6 +4,7 @@ import joshie.harvest.api.cooking.ICookingComponent;
 import joshie.harvest.api.cooking.IMeal;
 import joshie.harvest.api.cooking.IMealRecipe;
 import joshie.harvest.api.cooking.IUtensil;
+import net.minecraft.item.ItemStack;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -40,8 +41,8 @@ public class Recipe implements IMealRecipe {
     }
 
     @Override
-    public IMealRecipe setHasAltTexture() {
-        this.result.setHasAltTexture();
+    public IMealRecipe setAlternativeTexture(ItemStack stack) {
+        this.result.setAlternativeItem(stack);
         return this;
     }
 

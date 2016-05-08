@@ -3,6 +3,7 @@ package joshie.harvest.api.cooking;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 
+import java.util.Collection;
 import java.util.List;
 
 public interface IFoodRegistry {
@@ -77,9 +78,9 @@ public interface IFoodRegistry {
      *  @return     the resulting item */
     public ItemStack getResult(IUtensil utensil, List<ItemStack> ingredients);
     
-    /** Returns a list of all the recipes 
+    /** Returns a collection of all the recipes
      *  @return     the entire recipe list */
-    public List<IMealRecipe> getRecipes();
+    public Collection<IMealRecipe> getRecipes();
 
     /** Returns a default copy of this meal **/
     public ItemStack getMeal(String string);
@@ -87,4 +88,7 @@ public interface IFoodRegistry {
     /** Returns a copy of this meal, with it's best stats
      *  Can and will return null if it was not found. **/
     public ItemStack getBestMeal(String string);
+
+    /** Get the core recipe by name **/
+    IMealRecipe getRecipe(String meal);
 }

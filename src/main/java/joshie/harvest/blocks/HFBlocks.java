@@ -35,7 +35,7 @@ public class HFBlocks {
     public static BlockHFBaseEnum STONE = new BlockStone().setUnlocalizedName("stone");
     public static BlockHFBaseEnum DIRT = new BlockDirt().setUnlocalizedName("dirt");
     //Misc
-    public static BlockHFBaseEnum WOOD_MACHINES = new BlockWood().setUnlocalizedName("general.block");
+    public static BlockHFBaseEnum WOOD_MACHINES = new BlockWood().setUnlocalizedName("woodware");
     public static BlockPreview PREVIEW = (BlockPreview) new BlockPreview().setUnlocalizedName("preview");
 
     public static void preInit() {

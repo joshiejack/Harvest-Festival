@@ -43,10 +43,15 @@ public class ItemGeneral extends ItemHFBaseMeta implements ICreativeSorted {
     public static final int SALT = 14;
     public static final int MIRACLE = 15;
     public static final int CHOCOLATE = 16;
+    public static final int BUTTER = 17;
+    public static final int EGG_SCRAMBLED = 18;
+    public static final int COOKIES = 19;
+    public static final int SASHIMI = 20;
+    public static final int KETCHUP = 21;
 
     @Override
     public int getMetaCount() {
-        return 17;
+        return 22;
     }
 
     @Override
@@ -91,6 +96,16 @@ public class ItemGeneral extends ItemHFBaseMeta implements ICreativeSorted {
                 return "miracle_potion";
             case CHOCOLATE:
                 return "chocolate";
+            case BUTTER:
+                return "butter";
+            case EGG_SCRAMBLED:
+                return "egg_scrambled";
+            case COOKIES:
+                return "cookies";
+            case SASHIMI:
+                return "sashimi";
+            case KETCHUP:
+                return "ketchup";
             default:
                 return "invalid";
         }

@@ -179,11 +179,16 @@ public class HFIngredients {
         HFApi.COOKING.register(new ItemStack(HFItems.MILK), milk);
         HFApi.COOKING.register(new ItemStack(Items.MILK_BUCKET, 1, OreDictionary.WILDCARD_VALUE), milk);
         HFApi.COOKING.register(new ItemStack(HFItems.MAYONNAISE), mayonnaise);
+        HFApi.COOKING.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.BUTTER), butter);
         HFApi.COOKING.register(HFApi.COOKING.getBestMeal("butter"), butter);
         HFApi.COOKING.register(HFApi.COOKING.getBestMeal("egg.boiled"), boiled_egg);
+        HFApi.COOKING.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.SASHIMI), sashimi);
         HFApi.COOKING.register(HFApi.COOKING.getBestMeal("sashimi"), sashimi);
+        HFApi.COOKING.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.EGG_SCRAMBLED), scrambled_egg);
         HFApi.COOKING.register(HFApi.COOKING.getBestMeal("egg.scrambled"), scrambled_egg);
+        HFApi.COOKING.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.COOKIES), cookies);
         HFApi.COOKING.register(HFApi.COOKING.getBestMeal("cookies"), cookies);
+        HFApi.COOKING.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.KETCHUP), ketchup);
         HFApi.COOKING.register(HFApi.COOKING.getBestMeal("ketchup"), ketchup);
         HFApi.COOKING.register(new ItemStack(Blocks.BROWN_MUSHROOM, 1, OreDictionary.WILDCARD_VALUE), brown_mushroom);
         HFApi.COOKING.register(new ItemStack(Blocks.RED_MUSHROOM, 1, OreDictionary.WILDCARD_VALUE), red_mushroom);

@@ -48,9 +48,9 @@ public interface IMeal {
     ItemStack cook(IMeal meal);
     
     /** Set this mean as having a different texture in utensils **/
-    public IMeal setHasAltTexture();
+    IMeal setAlternativeItem(ItemStack stack);
 
-    boolean hasAltTexture();
+    ItemStack getAlternativeItem();
 
     /** Return the resource location for this meal **/
     ResourceLocation getResource();

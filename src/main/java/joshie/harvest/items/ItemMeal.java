@@ -1,6 +1,7 @@
 package joshie.harvest.items;
 
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.cooking.IAltItem;
 import joshie.harvest.api.cooking.IMeal;
 import joshie.harvest.api.cooking.IMealProvider;
 import joshie.harvest.api.cooking.IMealRecipe;
@@ -32,7 +33,7 @@ import java.util.List;
 
 import static net.minecraft.util.text.TextFormatting.DARK_GRAY;
 
-public class ItemMeal extends ItemHFBaseMeta implements IMealProvider, ICreativeSorted {
+public class ItemMeal extends ItemHFBaseMeta implements IMealProvider, ICreativeSorted, IAltItem {
     public ItemMeal() {
         super(HFTab.COOKING);
     }
@@ -60,7 +61,7 @@ public class ItemMeal extends ItemHFBaseMeta implements IMealProvider, ICreative
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean debug) {
-        if (General.DEBUG_MODE) {
+        if (General.DEBUG_MODE && debug) {
             if (stack.hasTagCompound()) {
                 list.add(Translate.translate("meal.level") + " : " + stack.getTagCompound().getInteger("FoodLevel"));
                 list.add(Translate.translate("meal.sat") + " : " + stack.getTagCompound().getFloat("FoodSaturation"));
@@ -151,5 +152,15 @@ public class ItemMeal extends ItemHFBaseMeta implements IMealProvider, ICreative
     @Override
     public int getSortValue(ItemStack stack) {
         return 100;
+    }
+
+    @Override
+    public ItemStack getAlternativeWhenCooking(ItemStack stack) {
+        IMealRecipe recipe = HFApi.COOKING.getRecipe(getMeal(stack));
+        if (recipe != null) {
+            return recipe.getMeal().getAlternativeItem();
+        }
+
+        return null;
     }
 }

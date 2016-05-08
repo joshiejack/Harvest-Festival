@@ -21,7 +21,7 @@ public class Meal implements IMeal {
     public float saturation = 0;
     public int eatTime = 32;
     public boolean isLiquid = false;
-    public boolean hasAlt = false;
+    public ItemStack alt = null;
     public int hunger_cap = 20;
     public float saturation_cap = 2F;
 
@@ -43,7 +43,7 @@ public class Meal implements IMeal {
         this.saturation = meal.getSaturation();
         this.eatTime = meal.getEatTime();
         this.isLiquid = meal.isDrink();
-        this.hasAlt = meal.hasAltTexture();
+        this.alt = meal.getAlternativeItem();
         this.hunger_cap = meal.getHungerCap();
         this.saturation_cap = meal.getSaturationCap();
         this.resource = meal.getResource();
@@ -62,14 +62,15 @@ public class Meal implements IMeal {
     }
 
     @Override
-    public Meal setHasAltTexture() {
-        this.hasAlt = true;
+    public IMeal setAlternativeItem(ItemStack alt) {
+        this.alt = alt;
         return this;
     }
 
     @Override
-    public boolean hasAltTexture() {
-        return hasAlt;
+    public ItemStack getAlternativeItem() {
+        System.out.println(alt);
+        return alt;
     }
 
     @Override

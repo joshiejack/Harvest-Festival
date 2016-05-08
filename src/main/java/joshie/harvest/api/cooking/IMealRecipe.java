@@ -1,5 +1,7 @@
 package joshie.harvest.api.cooking;
 
+import net.minecraft.item.ItemStack;
+
 import java.util.HashSet;
 
 public interface IMealRecipe {
@@ -32,5 +34,5 @@ public interface IMealRecipe {
     public IMealRecipe setIsDrink();
     
     /** Marks the meal as having an alt texture **/
-    public IMealRecipe setHasAltTexture();
+    public IMealRecipe setAlternativeTexture(ItemStack stack);
 }

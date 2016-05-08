@@ -1,6 +1,7 @@
 package joshie.harvest.blocks.tiles;
 
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.cooking.IAltItem;
 import joshie.harvest.api.cooking.IUtensil;
 import joshie.harvest.cooking.Utensil;
 import joshie.harvest.core.helpers.generic.StackHelper;
@@ -112,7 +113,7 @@ public abstract class TileCooking extends TileFaceable implements ITickable {
         if (HFApi.COOKING.getCookingComponents(stack).size() < 1) return false;
         else {
             if (worldObj.isRemote) return true;
-            ItemStack clone = stack.copy();
+            ItemStack clone = getRealIngredient(stack);
             clone.stackSize = 1;
             this.ingredients.add(clone);
             this.cooking = true;
@@ -120,6 +121,15 @@ public abstract class TileCooking extends TileFaceable implements ITickable {
             this.markDirty();
             return true;
         }
+    }
+
+    private ItemStack getRealIngredient(ItemStack stack) {
+        ItemStack alt = null;
+        if (stack.getItem() instanceof IAltItem) {
+            alt = ((IAltItem)stack.getItem()).getAlternativeWhenCooking(stack);
+        }
+
+        return alt == null ? stack.copy() : alt.copy();
     }
 
     //Called Clientside to update the client

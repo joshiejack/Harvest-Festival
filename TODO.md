@@ -50,6 +50,9 @@
 - Loot Table JSON
     - See https://github.com/joshiejack/Harvest-Festival/blob/4fc81be862b9686cf00a3b8b1d262a8b7106aaaf/src/main/java/joshie/harvest/core/lib/LootStrings.java
     - See https://github.com/joshiejack/Harvest-Festival/blob/4fc81be862b9686cf00a3b8b1d262a8b7106aaaf/src/main/java/joshie/harvest/buildings/loader/HFBuildings.java#L51
+- Change Meals to use ResourceLocation Identifiers
+- Change NPCs to use ResourceLocation Identifiers
+- Change Items to  Item Enums + Change Item Registry Helper
 
 ### To Check
 - Gift of NPCs is working correctly - J

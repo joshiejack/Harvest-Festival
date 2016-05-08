@@ -1,9 +1,9 @@
 {
   "variants": {
-    "woodware=shipping,facing=north":  { "model": "harvestfestival:shipping_box" },
-    "woodware=shipping,facing=south":  { "model": "harvestfestival:shipping_box", "y": 180 },
-    "woodware=shipping,facing=east": { "model": "harvestfestival:shipping_box", "y": 90 },
-    "woodware=shipping,facing=west": { "model": "harvestfestival:shipping_box", "y": 270 },
+    "facing=north,woodware=shipping":  { "model": "harvestfestival:shipping_box" },
+    "facing=south,woodware=shipping":  { "model": "harvestfestival:shipping_box", "y": 180 },
+    "facing=east,woodware=shipping": { "model": "harvestfestival:shipping_box", "y": 90 },
+    "facing=west,woodware=shipping": { "model": "harvestfestival:shipping_box", "y": 270 },
     "woodware=nest,facing=north":  { "model": "harvestfestival:nest" },
     "woodware=trough,facing=north":  { "model": "harvestfestival:trough", "y": 180 },
     "woodware=trough,facing=south": { "model": "harvestfestival:trough", "y": 90 },

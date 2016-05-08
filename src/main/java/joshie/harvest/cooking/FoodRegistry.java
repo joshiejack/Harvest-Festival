@@ -8,14 +8,11 @@ import joshie.harvest.core.util.SafeStack;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public class FoodRegistry implements IFoodRegistry {
     private static final Multimap<SafeStack, ICookingComponent> registry = ArrayListMultimap.create();
-    private static final ArrayList<IMealRecipe> recipes = new ArrayList<IMealRecipe>(250);
+    private static final HashMap<String, IMealRecipe> recipes = new HashMap<>(250);
     private static final HashMap<String, ICookingComponent> components = new HashMap<String, ICookingComponent>();
     private static final HashSet<ISpecialRecipeHandler> specials = new HashSet<ISpecialRecipeHandler>();
 
@@ -72,13 +69,18 @@ public class FoodRegistry implements IFoodRegistry {
 
     @Override
     public IMealRecipe addRecipe(IMealRecipe recipe) {
-        recipes.add(recipe);
+        recipes.put(recipe.getMeal().getUnlocalizedName(), recipe);
         return recipe;
     }
 
     @Override
-    public ArrayList<IMealRecipe> getRecipes() {
-        return recipes;
+    public IMealRecipe getRecipe(String meal) {
+        return recipes.get(meal);
+    }
+
+    @Override
+    public Collection<IMealRecipe> getRecipes() {
+        return recipes.values();
     }
 
     @Override
@@ -119,7 +121,7 @@ public class FoodRegistry implements IFoodRegistry {
             components.addAll(getCookingComponents(stack));
         }
 
-        for (IMealRecipe recipe : recipes) {
+        for (IMealRecipe recipe : recipes.values()) {
             IMeal meal = recipe.getMeal(utensil, components);
             if (meal != null) {
                 return meal.cook(meal);

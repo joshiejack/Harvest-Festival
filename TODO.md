@@ -111,7 +111,6 @@
 ### Textures
 - Crop Grass Better Texture - Y
 - Winter Mine version - Y
-- Axe and it's various textures - Y
 - Weed (Will use flower render) - Y
 - Textures for the NPCs which we stole + New Selection for Ondra > Ashlee - Y
 

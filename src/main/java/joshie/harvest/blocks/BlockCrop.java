@@ -14,7 +14,7 @@ import joshie.harvest.core.helpers.AnimalHelper;
 import joshie.harvest.core.helpers.CropHelper;
 import joshie.harvest.core.helpers.SeedHelper;
 import joshie.harvest.core.helpers.WorldHelper;
-import joshie.harvest.core.util.base.BlockHFBaseMeta;
+import joshie.harvest.core.util.base.BlockHFBaseEnum;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
@@ -45,7 +45,7 @@ import static joshie.harvest.api.crops.IStateHandler.PlantSection.BOTTOM;
 import static joshie.harvest.api.crops.IStateHandler.PlantSection.TOP;
 import static joshie.harvest.core.helpers.CropHelper.harvestCrop;
 
-public class BlockCrop extends BlockHFBaseMeta<Stage> implements IPlantable, IGrowable, IAnimalFeeder {
+public class BlockCrop extends BlockHFBaseEnum<Stage> implements IPlantable, IGrowable, IAnimalFeeder {
     public enum Stage implements IStringSerializable {
         FRESH(false, BOTTOM), WITHERED(false, BOTTOM), FRESH_DOUBLE(false, TOP), WITHERED_DOUBLE(true, TOP);
 

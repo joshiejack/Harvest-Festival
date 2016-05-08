@@ -1,7 +1,8 @@
 {
 "textures": {
-    "texture": "models/oven",
-    "texture1": "models/oven1"
+    "particle": "harvestfestival:models/oven",
+    "texture": "harvestfestival:models/oven",
+    "texture1": "harvestfestival:models/oven1_on"
 },
 "elements": [ 
 {

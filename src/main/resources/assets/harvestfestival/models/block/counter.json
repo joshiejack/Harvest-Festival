@@ -1,7 +1,8 @@
 {
 "textures": {
-    "texture": "models/counter",
-    "texture1": "models/counter1"
+    "particle": "harvestfestival:models/counter",
+    "texture": "harvestfestival:models/counter",
+    "texture1": "harvestfestival:models/counter1"
 },
 "elements": [ 
 {

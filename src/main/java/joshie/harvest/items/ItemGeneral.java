@@ -7,7 +7,6 @@ import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.util.Translate;
 import joshie.harvest.core.util.base.ItemHFBaseMeta;
-import joshie.harvest.core.util.generic.Text;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -23,6 +22,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.HashMap;
 import java.util.List;
+
+import static net.minecraft.util.text.TextFormatting.*;
 
 public class ItemGeneral extends ItemHFBaseMeta implements ICreativeSorted {
     public static final int BLUE_FEATHER = 0;
@@ -216,11 +217,11 @@ public class ItemGeneral extends ItemHFBaseMeta implements ICreativeSorted {
         switch (stack.getItemDamage()) {
             case BLUE_FEATHER:
             case MIRACLE:
-                return Text.AQUA + super.getItemStackDisplayName(stack);
+                return AQUA + super.getItemStackDisplayName(stack);
             case MYTHIC_STONE:
-                return Text.LIME + super.getItemStackDisplayName(stack);
+                return GREEN + super.getItemStackDisplayName(stack);
             default:
-                return Text.WHITE + super.getItemStackDisplayName(stack);
+                return WHITE + super.getItemStackDisplayName(stack);
         }
     }
 

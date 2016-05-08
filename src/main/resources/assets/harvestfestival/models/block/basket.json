@@ -1,6 +1,7 @@
 {
 "textures": {
-    "texture": "models/basket"
+    "particle": "harvestfestival:models/basket",
+    "texture": "harvestfestival:models/basket"
 },
 "elements": [ 
 {

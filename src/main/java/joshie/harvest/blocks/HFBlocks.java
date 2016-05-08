@@ -2,10 +2,14 @@ package joshie.harvest.blocks;
 
 import joshie.harvest.blocks.tiles.*;
 import joshie.harvest.buildings.render.PreviewRender;
+import joshie.harvest.cooking.render.SpecialRendererCounter;
+import joshie.harvest.cooking.render.SpecialRendererFryingPan;
+import joshie.harvest.cooking.render.SpecialRendererMixer;
+import joshie.harvest.cooking.render.SpecialRendererPot;
 import joshie.harvest.core.helpers.generic.RegistryHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.base.BlockHFBase;
-import joshie.harvest.core.util.base.BlockHFBaseMeta;
+import joshie.harvest.core.util.base.BlockHFBaseEnum;
 import joshie.harvest.crops.CropStateMapper;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.util.ResourceLocation;
@@ -23,15 +27,15 @@ public class HFBlocks {
     public static final BlockFluidClassic GODDESS_WATER = new BlockGoddessWater(GODDESS).setUnlocalizedName("goddess.water");
 
     //Cooking & Farming
-    public static final BlockHFBaseMeta COOKWARE = new BlockCookware().setUnlocalizedName("cookware");
-    public static final BlockHFBaseMeta FARMLAND = new BlockFarmland().setUnlocalizedName("farmland");
-    public static final BlockHFBaseMeta CROPS = new BlockCrop().setUnlocalizedName("crops.block");
+    public static final BlockHFBaseEnum COOKWARE = new BlockCookware().setUnlocalizedName("cookware");
+    public static final BlockHFBaseEnum FARMLAND = new BlockFarmland().setUnlocalizedName("farmland");
+    public static final BlockHFBaseEnum CROPS = new BlockCrop().setUnlocalizedName("crops.block");
     public static final BlockHFBase FLOWERS = new BlockFlower().setUnlocalizedName("flowers.block");
     //Mine
-    public static BlockHFBaseMeta STONE = new BlockStone().setUnlocalizedName("stone");
-    public static BlockHFBaseMeta DIRT = new BlockDirt().setUnlocalizedName("dirt");
+    public static BlockHFBaseEnum STONE = new BlockStone().setUnlocalizedName("stone");
+    public static BlockHFBaseEnum DIRT = new BlockDirt().setUnlocalizedName("dirt");
     //Misc
-    public static BlockHFBaseMeta WOOD_MACHINES = new BlockWood().setUnlocalizedName("general.block");
+    public static BlockHFBaseEnum WOOD_MACHINES = new BlockWood().setUnlocalizedName("general.block");
     public static BlockPreview PREVIEW = (BlockPreview) new BlockPreview().setUnlocalizedName("preview");
 
     public static void preInit() {
@@ -44,10 +48,11 @@ public class HFBlocks {
     public static void preInitClient() {
         ModelLoader.setCustomStateMapper(CROPS, new CropStateMapper());
         ClientRegistry.bindTileEntitySpecialRenderer(TileMarker.class, new PreviewRender());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileFryingPan.class, new SpecialRendererFryingPan());
+        ClientRegistry.bindTileEntitySpecialRenderer(TilePot.class, new SpecialRendererPot());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileCounter.class, new SpecialRendererCounter());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileMixer.class, new SpecialRendererMixer());
     }
-
-    @SideOnly(Side.CLIENT)
-    public static void initClient() {}
 
     private static Fluid registerFluid(Fluid fluid) {
         FluidRegistry.registerFluid(fluid);

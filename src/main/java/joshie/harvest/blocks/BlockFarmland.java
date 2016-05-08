@@ -2,7 +2,7 @@ package joshie.harvest.blocks;
 
 import joshie.harvest.api.WorldLocation;
 import joshie.harvest.blocks.BlockFarmland.Moisture;
-import joshie.harvest.core.util.base.BlockHFBaseMeta;
+import joshie.harvest.core.util.base.BlockHFBaseEnum;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -25,7 +25,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.Random;
 import java.util.WeakHashMap;
 
-public class BlockFarmland extends BlockHFBaseMeta<Moisture> {
+public class BlockFarmland extends BlockHFBaseEnum<Moisture> {
     private final WeakHashMap<WorldLocation, Long> timePlaced = new WeakHashMap<WorldLocation, Long>();
     private final AxisAlignedBB FARMLAND_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.9375D, 1.0D);
     private final IBlockState WET;

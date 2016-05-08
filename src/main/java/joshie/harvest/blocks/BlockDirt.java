@@ -1,8 +1,10 @@
 package joshie.harvest.blocks;
 
+import joshie.harvest.blocks.BlockDirt.Types;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.config.General;
-import joshie.harvest.core.util.base.BlockHFBaseMeta;
+import joshie.harvest.core.util.Translate;
+import joshie.harvest.core.util.base.BlockHFBaseEnum;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -21,9 +23,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
-public class BlockDirt extends BlockHFBaseMeta<BlockDirt.Types> {
+public class BlockDirt extends BlockHFBaseEnum<Types> {
     public enum Types implements IStringSerializable {
         REAL, DECORATIVE;
 
@@ -36,6 +37,12 @@ public class BlockDirt extends BlockHFBaseMeta<BlockDirt.Types> {
     public BlockDirt() {
         super(Material.GROUND, Types.class, HFTab.MINING);
         setSoundType(SoundType.GROUND);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
+        if (stack.getItemDamage() == 1) list.add(Translate.translate("tooltip.dirt"));
     }
 
     @Override
@@ -79,14 +86,10 @@ public class BlockDirt extends BlockHFBaseMeta<BlockDirt.Types> {
     @Override
     public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
         List<ItemStack> ret = new ArrayList<ItemStack>();
-
-        Random rand = world instanceof World ? ((World) world).rand : new Random();
-        int count = quantityDropped(state, fortune, rand);
-        for (int i = 0; i < count; i++) {
-            if (getEnumFromState(world.getBlockState(pos)) == Types.DECORATIVE) {
-                ret.add(new ItemStack(HFBlocks.DIRT, 1, 1));
-            }
+        if (getEnumFromState(world.getBlockState(pos)) == Types.DECORATIVE) {
+            ret.add(new ItemStack(HFBlocks.DIRT, 1, 1));
         }
+
         return ret;
     }
 
@@ -114,7 +117,4 @@ public class BlockDirt extends BlockHFBaseMeta<BlockDirt.Types> {
     //Normal height = 12 floors, y91 = On a hill = 17 floors, On an extreme hills = y120 = 23 floors
     //private static int MAXIMUM_FLOORS = 23;
 
-    public static enum FloorType {
-        ALL_FLOORS, MULTIPLE_OF_5, MULTIPLE_OF_10, MULTIPLE_OF_3, MULTIPLE_OF_2, ENDS_IN_8, ENDS_IN_9, LAST_FLOOR, MYSTRIL_FLOOR, GOLD_FLOOR, MYTHIC_FLOOR, CURSED_FLOOR, NON_MULTIPLE_OF_5, BELOW_15, GODDESS_FLOOR, BERRY_FLOOR;
-    }
 }

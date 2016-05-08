@@ -1,32 +1,35 @@
 package joshie.harvest.core.util.base;
 
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.util.generic.IHasMetaBlock;
+import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.generic.IHasMetaItem;
+import joshie.harvest.core.util.generic.Text;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 import java.util.Random;
 
-public abstract class BlockHFBaseMeta<E extends Enum<E> & IStringSerializable> extends BlockHFBase implements IHasMetaBlock {
-    private static PropertyEnum<?> temporary;
-    public final PropertyEnum<E> property;
-    private final E[] values;
+public abstract class BlockHFBaseEnum<E extends Enum<E> & IStringSerializable> extends BlockHFBase {
+    protected static PropertyEnum<?> temporary;
+    protected final PropertyEnum<E> property;
+    protected final E[] values;
 
     //Main Constructor
-    public BlockHFBaseMeta(Material material, Class<E> clazz, CreativeTabs tab) {
+    public BlockHFBaseEnum(Material material, Class<E> clazz, CreativeTabs tab) {
         super(preInit(material, clazz), tab);
         property = (PropertyEnum<E>) temporary;
         values = clazz.getEnumConstants();
@@ -48,7 +51,7 @@ public abstract class BlockHFBaseMeta<E extends Enum<E> & IStringSerializable> e
     }
 
     //Constructor default to farming tab
-    public BlockHFBaseMeta(Material material, Class<E> clazz) {
+    public BlockHFBaseEnum(Material material, Class<E> clazz) {
         this(material, clazz, HFTab.FARMING);
     }
 
@@ -79,6 +82,7 @@ public abstract class BlockHFBaseMeta<E extends Enum<E> & IStringSerializable> e
         if (meta < 0 || meta >= values.length) {
             meta = 0;
         }
+
         return values[meta];
     }
 
@@ -103,11 +107,6 @@ public abstract class BlockHFBaseMeta<E extends Enum<E> & IStringSerializable> e
     }
 
     @Override
-    public Class<? extends ItemBlock> getItemClass() {
-        return null;
-    }
-
-    @Override
     public Item getItemDropped(IBlockState state, Random rand, int side) {
         return !doesDrop(state) ? null : super.getItemDropped(state, rand, side);
     }
@@ -124,23 +123,38 @@ public abstract class BlockHFBaseMeta<E extends Enum<E> & IStringSerializable> e
         return tab == getCreativeTabToDisplayOn();
     }
 
-    public boolean isActive(E e) {
-        return true;
-    }
-
     @Override
-    public BlockHFBaseMeta setUnlocalizedName(String name) {
+    public BlockHFBaseEnum setUnlocalizedName(String name) {
         super.setUnlocalizedName(name);
         return this;
+    }
+
+    public String getItemStackDisplayName(ItemStack stack) {
+        String unlocalized = getUnlocalizedName();
+        String name = stack.getItem().getUnlocalizedName(stack);
+        return Text.localizeFully(unlocalized + "." + name);
+    }
+
+    public int getSortValue(ItemStack stack) {
+        return 0;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
         for (E e : values) {
-            if (isActive(e) && isValidTab(tab, e)) {
+            if (isValidTab(tab, e)) {
                 list.add(new ItemStack(item, 1, e.ordinal()));
             }
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void registerModels(Item item, String name) {
+        for (int i = 0; i < values.length; i++) {
+            String variant = name + "#" + property.getName() + "=" + getEnumFromMeta(i).getName();
+            System.out.println("Registering the model for " + name + " with the variant of " + variant);
+            ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(new ResourceLocation(HFModInfo.MODID, variant), "inventory"));
         }
     }
 }

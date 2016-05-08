@@ -7,7 +7,7 @@ import joshie.harvest.mining.loot.LootMythic;
 import joshie.harvest.mining.loot.MiningLoot;
 import net.minecraft.item.ItemStack;
 
-import static joshie.harvest.blocks.BlockDirt.FloorType.*;
+import static joshie.harvest.mining.loot.MiningLoot.FloorType.*;
 import static joshie.harvest.items.ItemGeneral.*;
 
 public class HFMining {

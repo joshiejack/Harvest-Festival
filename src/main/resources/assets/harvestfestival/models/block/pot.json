@@ -1,6 +1,7 @@
 {
 "textures": {
-    "texture": "models/pot"
+    "particle": "harvestfestival:models/pot",
+    "texture": "harvestfestival:models/pot"
 },
 "elements": [ 
 {

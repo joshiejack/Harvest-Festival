@@ -10,7 +10,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-public abstract class AbstractPacketOrientation extends AbstractPacketLocation {
+public class AbstractPacketOrientation extends AbstractPacketLocation {
     private EnumFacing dir;
 
     public AbstractPacketOrientation() {

@@ -2,6 +2,7 @@ package joshie.harvest.blocks;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.buildings.IBuilding;
+import joshie.harvest.blocks.BlockPreview.Direction;
 import joshie.harvest.blocks.tiles.TileMarker;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.buildings.loader.HFBuildings;
@@ -9,7 +10,7 @@ import joshie.harvest.core.HFTab;
 import joshie.harvest.core.config.General;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.UUIDHelper;
-import joshie.harvest.core.util.base.BlockHFBaseMeta;
+import joshie.harvest.core.util.base.BlockHFBaseEnum;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -32,7 +33,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import java.util.HashMap;
 import java.util.List;
 
-public class BlockPreview extends BlockHFBaseMeta<BlockPreview.Direction> {
+public class BlockPreview extends BlockHFBaseEnum<Direction> {
     public ItemStack getItemStack(IBuilding building) {
         ItemStack stack = new ItemStack(this);
         stack.setTagCompound(new NBTTagCompound());
@@ -191,5 +192,15 @@ public class BlockPreview extends BlockHFBaseMeta<BlockPreview.Direction> {
                 list.add(getItemStack(building));
             }
         }
+    }
+
+    @Override
+    public String getItemStackDisplayName(ItemStack stack) {
+        return getBuildingFromStack(stack).getLocalisedName();
+    }
+
+    @Override
+    public int getSortValue(ItemStack stack) {
+        return 105;
     }
 }

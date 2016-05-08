@@ -242,9 +242,10 @@ harvestfestival.cookware.fridge=Fridge
 harvestfestival.cookware.fridge.top=Fridge
 harvestfestival.cookware.counter=Kitchen Counter
 harvestfestival.cookware.pot=Cooking Pot
-harvestfestival.cookware.fryingpan=Frying Pan
+harvestfestival.cookware.frying.pan=Frying Pan
 harvestfestival.cookware.mixer=Food Mixer
-harvestfestival.cookware.oven=Oven
+harvestfestival.cookware.oven.off=Oven
+harvestfestival.cookware.oven.on=Oven
 harvestfestival.cookware.chopping.board=Chopping Board
 harvestfestival.cookware.mixing.bowl=Mixing Bowl
 harvestfestival.cookware.baking=Baking Tray
@@ -257,8 +258,10 @@ harvestfestival.general.block.trough2=Food Trough
 
 harvestfestival.flowers.block.goddess=Goddess Flower
 
-harvestfestival.dirt.mine.floor=Mine Floor
-harvestfestival.stone.mine.wall=Mine Wall
+harvestfestival.dirt.real=Mine Floor
+harvestfestival.dirt.decorative=Mine Floor
+harvestfestival.stone.real=Mine Wall
+harvestfestival.stone.decorative=Mine Wall
 
 tile.goddess.water.name=Goddess Water
 

@@ -1,8 +1,10 @@
 package joshie.harvest.core.helpers.generic;
 
 import joshie.harvest.HarvestFestival;
+import joshie.harvest.blocks.BlockCrop;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.core.util.generic.IHasMetaBlock;
+import joshie.harvest.core.util.base.BlockHFBaseEnum;
+import joshie.harvest.core.util.base.ItemBlockHF;
 import joshie.harvest.core.util.generic.Library;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -57,26 +59,13 @@ public class RegistryHelper {
 
     public static Block registerBlock(Block block, String name) {
         ResourceLocation resource = new ResourceLocation(HFModInfo.MODID, name.replace(".", "_"));
-        ItemBlock item = null;
-        if (block instanceof IHasMetaBlock) {
-            try {
-                Class<? extends ItemBlock> clazz = ((IHasMetaBlock) block).getItemClass();
-                if (clazz == null) {
-                    String pack = block.getClass().getPackage().getName() + ".items.";
-                    String thiz = "Item" + block.getClass().getSimpleName();
-                    clazz = (Class<? extends ItemBlock>) Class.forName(pack + thiz);
-                }
-                item = clazz.getConstructor(Block.class).newInstance(block);
-            } catch (Exception ignored) {
-            }
-        }
-
-        //If we ended up with null, then fix it
-        if (item == null) item = new ItemBlock(block);
+        ItemBlock item = block instanceof BlockHFBaseEnum ? new ItemBlockHF((BlockHFBaseEnum)block) : new ItemBlock(block);
         GameRegistry.register(block, resource);
         GameRegistry.register(item, resource);
 
-        HarvestFestival.proxy.setBlockModelResourceLocation(Item.getItemFromBlock(block), name);
+        if (!(block instanceof BlockCrop)) {
+            HarvestFestival.proxy.setBlockModelResourceLocation(Item.getItemFromBlock(block), name);
+        }
 
         if (Library.DEBUG_ON) {
             Library.log(Level.DEBUG, "Successfully registered the block " + block.getClass().getSimpleName() + " as " + HFModInfo.MODID + ":" + name);

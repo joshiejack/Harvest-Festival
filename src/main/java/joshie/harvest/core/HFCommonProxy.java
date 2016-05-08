@@ -1,7 +1,6 @@
 package joshie.harvest.core;
 
 import joshie.harvest.animals.HFAnimals;
-import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.buildings.loader.HFBuildings;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.HFIngredients;
@@ -36,7 +35,7 @@ public class HFCommonProxy {
         LIST.add(HFCrops.class);
         LIST.add(HFNPCs.class);
         LIST.add(HFBuildings.class);
-        LIST.add(HFBlocks.class);
+        LIST.add(joshie.harvest.blocks.HFBlocks.class);
         LIST.add(HFItems.class);
         LIST.add(HFCooking.class);
         LIST.add(HFIngredients.class);
@@ -55,13 +54,13 @@ public class HFCommonProxy {
         for (Class c : LIST) {
             try { //Attempt to load default
                 c.getMethod(stage).invoke(null);
-            } catch (Exception e) { if (c.equals(HFBuildings.class)) e.printStackTrace(); }
+            } catch (Exception e) { }
 
             //Attempt to load client side only
             if (isClient()) {
                 try { //Attempt to load default
                     c.getMethod(stage + "Client").invoke(null);
-                } catch (Exception e) {}
+                } catch (Exception e) {  }
             }
         }
     }

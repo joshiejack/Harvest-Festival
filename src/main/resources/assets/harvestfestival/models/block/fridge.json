@@ -1,8 +1,9 @@
 {
 "textures": {
-    "texture": "models/fridge",
-    "texture1": "models/fridge1",
-    "texture2": "models/fridge2"
+    "particle": "harvestfestival:models/fridge",
+    "texture": "harvestfestival:models/fridge",
+    "texture1": "harvestfestival:models/fridge1",
+    "texture2": "harvestfestival:models/fridge2"
 },
 "elements": [ 
 {

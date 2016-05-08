@@ -3,7 +3,6 @@ package joshie.harvest.shops.purchaseable;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.shops.IPurchaseable;
 import joshie.harvest.core.util.Translate;
-import joshie.harvest.core.util.generic.Text;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,6 +10,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import java.util.List;
+
+import static net.minecraft.util.text.TextFormatting.WHITE;
 
 public class PurchaseableEntity implements IPurchaseable {
     private ItemStack product;
@@ -50,7 +51,7 @@ public class PurchaseableEntity implements IPurchaseable {
 
     @Override
     public void addTooltip(List<String> list) {
-        list.add(Text.WHITE + product.getDisplayName());
+        list.add(WHITE + product.getDisplayName());
         if (!lead) {
             list.add(Translate.translate("check.head"));
         } else list.add(Translate.translate("check.lead"));

@@ -2,6 +2,7 @@ package joshie.harvest.api.core;
 
 import joshie.harvest.api.calendar.Weather;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 
 public interface ISeasonData {
     public double getCelestialLengthFactor();
@@ -11,5 +12,5 @@ public interface ISeasonData {
     
     public ResourceLocation getResource();
     public String getLocalized();
-    public String getTextColor();
+    public TextFormatting getTextColor();
 }

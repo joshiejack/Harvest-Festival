@@ -6,14 +6,11 @@ import joshie.harvest.cooking.Utensil;
 import joshie.harvest.core.helpers.generic.StackHelper;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSyncCooking;
-import joshie.harvest.core.util.generic.IFaceable;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -21,13 +18,13 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 
 import java.util.ArrayList;
 
-public abstract class TileCooking extends TileEntity implements IFaceable, ITickable {
+public abstract class TileCooking extends TileFaceable implements ITickable {
     public static short COOK_TIMER = 100;
     private boolean cooking;
     private short cookTimer = 0;
     private ArrayList<ItemStack> ingredients = new ArrayList<ItemStack>();
     private ItemStack result;
-    private EnumFacing orientation = EnumFacing.NORTH;
+
     public float[] rotations = new float[20];
     public float[] offset1 = new float[20];
     public float[] offset2 = new float[20];
@@ -42,6 +39,10 @@ public abstract class TileCooking extends TileEntity implements IFaceable, ITick
 
     public IUtensil getUtensil(World world, BlockPos pos) {
         return getUtensil();
+    }
+
+    public boolean isCooking() {
+        return cooking;
     }
 
     public boolean hasPrerequisites() {
@@ -65,19 +66,9 @@ public abstract class TileCooking extends TileEntity implements IFaceable, ITick
         result = null;
     }
 
-    @Override
-    public void setFacing(EnumFacing dir) {
-        orientation = dir;
-    }
-
-    @Override
-    public EnumFacing getFacing() {
-        return orientation;
-    }
-
     public void animate(IUtensil utensil) {
         //rotation += worldObj.rand.nextFloat();
-        worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, getPos().getX() + 0.5D + +worldObj.rand.nextFloat() - worldObj.rand.nextFloat() / 2, getPos().getY() + 0.5D + worldObj.rand.nextFloat() - worldObj.rand.nextFloat() / 2, getPos().getZ() + 0.5D + +worldObj.rand.nextFloat() - worldObj.rand.nextFloat() / 2, 0, 0, 0);
+        //worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, getPos().getX() + 0.5D + +worldObj.rand.nextFloat() - worldObj.rand.nextFloat() / 2, getPos().getY() + 0.5D + worldObj.rand.nextFloat() - worldObj.rand.nextFloat() / 2, getPos().getZ() + 0.5D + +worldObj.rand.nextFloat() - worldObj.rand.nextFloat() / 2, 0, 0, 0);
     }
 
     public short getCookingTime(IUtensil utensil) {
@@ -111,7 +102,7 @@ public abstract class TileCooking extends TileEntity implements IFaceable, ITick
                     this.markDirty();
                 }
             }
-        } else if (cooking) animate(utensil);
+        } else if (isCooking()) animate(utensil);
     }
 
     //Returns true if this was a valid ingredient to add
@@ -167,7 +158,6 @@ public abstract class TileCooking extends TileEntity implements IFaceable, ITick
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
-        orientation = EnumFacing.values()[nbt.getInteger("Orientation")];
         cooking = nbt.getBoolean("IsCooking");
         cookTimer = nbt.getShort("CookingTimer");
         if (nbt.hasKey("IngredientsInside")) {
@@ -185,7 +175,6 @@ public abstract class TileCooking extends TileEntity implements IFaceable, ITick
     @Override
     public void writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
-        nbt.setInteger("Orientation", orientation.ordinal());
         nbt.setBoolean("IsCooking", cooking);
         nbt.setShort("CookingTimer", cookTimer);
         //Write out the saved Ingredients
@@ -201,5 +190,14 @@ public abstract class TileCooking extends TileEntity implements IFaceable, ITick
         if (result != null) {
             StackHelper.writeItemStackToNBT(nbt, result);
         }
+    }
+
+    public boolean isAbove(Utensil utensil) {
+        TileEntity tile = worldObj.getTileEntity(pos.down());
+        if (tile instanceof TileCooking) {
+            return ((TileCooking)tile).getUtensil(worldObj, pos.down()) == utensil;
+        }
+
+        return false;
     }
 }

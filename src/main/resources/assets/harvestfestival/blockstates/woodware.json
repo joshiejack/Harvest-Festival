@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "woodware=shipping,facing=north":  { "model": "harvestfestival:shipping_box" },
+    "woodware=shipping,facing=south":  { "model": "harvestfestival:shipping_box", "y": 180 },
+    "woodware=shipping,facing=east": { "model": "harvestfestival:shipping_box", "y": 90 },
+    "woodware=shipping,facing=west": { "model": "harvestfestival:shipping_box", "y": 270 },
+    "woodware=nest,facing=north":  { "model": "harvestfestival:nest" },
+    "woodware=trough,facing=north":  { "model": "harvestfestival:trough", "y": 180 },
+    "woodware=trough,facing=south": { "model": "harvestfestival:trough", "y": 90 },
+    "woodware=trough,facing=east": { "model": "harvestfestival:trough", "y": 270 },
+    "woodware=trough,facing=west":  { "model": "harvestfestival:trough" },
+    "woodware=trough,facing=north,section=end":  { "model": "harvestfestival:trough_end", "y": 180 },
+    "woodware=trough,facing=south,section=end": { "model": "harvestfestival:trough_end", "y": 90 },
+    "woodware=trough,facing=east,section=end": { "model": "harvestfestival:trough_end", "y": 270 },
+    "woodware=trough,facing=west,section=end":  { "model": "harvestfestival:trough_end" },
+    "woodware=trough,facing=north,section=centre":  { "model": "harvestfestival:trough_centre" },
+    "woodware=trough,facing=south,section=centre":  { "model": "harvestfestival:trough_centre", "y": 180 },
+    "woodware=trough,facing=east,section=centre": { "model": "harvestfestival:trough_centre", "y": 90 },
+    "woodware=trough,facing=west,section=centre": { "model": "harvestfestival:trough_centre", "y": 270 }
+  }
+}

@@ -19,19 +19,15 @@ import joshie.harvest.core.network.quests.*;
 import joshie.harvest.core.render.RenderHandler;
 import joshie.harvest.core.util.WorldDestroyer;
 import joshie.harvest.crops.CropRegistry;
-import joshie.harvest.core.handlers.DisableHandler;
 import joshie.harvest.npc.NPCRegistry;
 import joshie.harvest.player.relationships.RelationshipHelper;
 import joshie.harvest.quests.QuestEvents;
 import joshie.harvest.quests.QuestRegistry;
 import joshie.harvest.shops.ShopRegistry;
-import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class HFCore {
     public static void preInit() {
@@ -104,11 +100,6 @@ public class HFCore {
 
     public static void postInit() {
         WorldDestroyer.replaceWorldProvider();
-    }
-
-    @SideOnly(Side.CLIENT)
-    public static void preInitClient() {
-        OBJLoader.INSTANCE.addDomain(MODID);
     }
 
     @SideOnly(Side.CLIENT)

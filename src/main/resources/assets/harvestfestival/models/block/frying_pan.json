@@ -1,6 +1,7 @@
 {
 "textures": {
-    "texture": "models/frying_pan"
+    "particle": "harvestfestival:models/frying_pan",
+    "texture": "harvestfestival:models/frying_pan"
 },
 "elements": [ 
 {

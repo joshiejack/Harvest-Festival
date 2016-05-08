@@ -8,6 +8,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 
 public abstract class BlockHFBase extends Block {
+    private String unlocalizedName;
 
     //General Constructor
     public BlockHFBase(Material material, CreativeTabs tab) {
@@ -24,11 +25,12 @@ public abstract class BlockHFBase extends Block {
     public BlockHFBase setUnlocalizedName(String name) {
         super.setUnlocalizedName(name);
         RegistryHelper.registerBlock(this, name);
+        this.unlocalizedName = HFModInfo.MODID + "." + name;
         return this;
     }
 
     @Override
     public String getUnlocalizedName() {
-        return HFModInfo.MODID + "." + super.getUnlocalizedName();
+        return unlocalizedName;
     }
 }

@@ -1,6 +1,17 @@
 {
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-block",
+    "model": "cube_all"
+  },
   "variants": {
-    "types=decorative": { "model": "harvestfestival:dirt" },
-    "types=real": { "model": "harvestfestival:dirt" }
+    "types": {
+      "decorative": {
+        "textures": { "all": "harvestfestival:blocks/ctm/dirt" }
+      },
+      "real": {
+        "textures": { "all": "harvestfestival:blocks/ctm/dirt" }
+      }
+    }
   }
 }

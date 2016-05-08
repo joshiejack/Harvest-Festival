@@ -1,6 +1,7 @@
 {
 "textures": {
-    "texture": "models/mixer"
+    "particle": "harvestfestival:models/mixer",
+    "texture": "harvestfestival:models/mixer"
 },
 "elements": [ 
 {

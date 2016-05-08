@@ -1,6 +1,7 @@
 package joshie.harvest.core.handlers;
 
-import joshie.harvest.blocks.items.ItemBlockFlower;
+import joshie.harvest.blocks.BlockFlower.FlowerType;
+import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.EntityNPC;
@@ -17,6 +18,13 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class GoddessHandler {
+    private static Item goddess;
+
+    public static boolean isGoddessFlower(ItemStack stack) {
+        if (goddess == null) goddess = Item.getItemFromBlock(HFBlocks.FLOWERS);
+        return stack.getItem() == goddess && stack.getItemDamage() == FlowerType.GODDESS.ordinal();
+    }
+
     //Goddess flower spawns goddess
     @SubscribeEvent
     public void onItemExpire(ItemExpireEvent event) {
@@ -25,7 +33,7 @@ public class GoddessHandler {
             if (event.getEntityItem().isInsideOfMaterial(Material.WATER)) {
                 ItemStack stack = event.getEntityItem().getEntityItem();
                 if (stack != null) {
-                    if (stack.getItem() instanceof ItemBlockFlower) {
+                    if (isGoddessFlower(stack)) {
                         EntityNPC goddess = NPCHelper.getEntityForNPC(null, world, HFNPCs.GODDESS);
                         goddess.setPosition((int) event.getEntityItem().posX, (int) event.getEntityItem().posY + 1, (int) event.getEntityItem().posZ);
                         world.spawnEntityInWorld(goddess);

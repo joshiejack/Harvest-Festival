@@ -5,6 +5,7 @@ import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.api.core.ISeasonData;
 import joshie.harvest.core.lib.HFModInfo;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 
 public class SeasonData implements ISeasonData {
@@ -14,10 +15,10 @@ public class SeasonData implements ISeasonData {
     private final double celestialLengthFactor;
     private final float celestialAngleOffset;
     private final double[] chances;
-    private final String textColor;
+    private final TextFormatting textColor;
     public final int seasonColor;
 
-    public SeasonData(Season season, int color, double factor, float angle, String textColor, int seasonColor, double sunny, double rain, double typhoon, double snow, double blizzard) {
+    public SeasonData(Season season, int color, double factor, float angle, TextFormatting textColor, int seasonColor, double sunny, double rain, double typhoon, double snow, double blizzard) {
         this.season = season;
         this.resource = new ResourceLocation(HFModInfo.MODID, "textures/hud/" + season.name().toLowerCase() + ".png");
         this.skyColor = color;
@@ -64,7 +65,7 @@ public class SeasonData implements ISeasonData {
     }
 
     @Override
-    public String getTextColor() {
+    public TextFormatting getTextColor() {
         return textColor;
     }
 }

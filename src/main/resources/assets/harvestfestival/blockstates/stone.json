@@ -1,6 +1,17 @@
 {
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-block",
+    "model": "cube_all"
+  },
   "variants": {
-    "types=decorative": { "model": "harvestfestival:stone" },
-    "types=real": { "model": "harvestfestival:stone" }
+    "types": {
+      "decorative": {
+        "textures": { "all": "harvestfestival:blocks/mine_wall" }
+      },
+      "real": {
+        "textures": { "all": "harvestfestival:blocks/stone" }
+      }
+    }
   }
 }

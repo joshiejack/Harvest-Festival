@@ -1,6 +1,5 @@
 package joshie.harvest.mining.loot;
 
-import joshie.harvest.blocks.BlockDirt.FloorType;
 import joshie.harvest.core.helpers.generic.ItemHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -45,5 +44,9 @@ public class MiningLoot {
 
     private static class Loot {
         ArrayList<LootChance> loot = new ArrayList<LootChance>();
+    }
+
+    public enum FloorType {
+        ALL_FLOORS, MULTIPLE_OF_5, MULTIPLE_OF_10, MULTIPLE_OF_3, MULTIPLE_OF_2, ENDS_IN_8, ENDS_IN_9, LAST_FLOOR, MYSTRIL_FLOOR, GOLD_FLOOR, MYTHIC_FLOOR, CURSED_FLOOR, NON_MULTIPLE_OF_5, BELOW_15, GODDESS_FLOOR, BERRY_FLOOR;
     }
 }

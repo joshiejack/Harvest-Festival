@@ -103,6 +103,7 @@
 - Make Spawn Cow Render the Cow
 - Make Spawn Sheep Render the Sheep
 - Make Spawn Chicken Render the Chicken
+- Mine Wall/Floor in world Rendering and Cookware in inventory renders
 
 ### Textures
 - Crop Grass Better Texture - Y

@@ -2,11 +2,10 @@ package joshie.harvest.core.network;
 
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.core.handlers.HFTrackers;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import joshie.harvest.core.network.penguin.PenguinPacket;
+import net.minecraft.entity.player.EntityPlayer;
 
-public class PacketSyncGold implements IMessage, IMessageHandler<PacketSyncGold, IMessage> {
+public class PacketSyncGold extends PenguinPacket {
     private long gold;
 
     public PacketSyncGold() {
@@ -27,8 +26,7 @@ public class PacketSyncGold implements IMessage, IMessageHandler<PacketSyncGold,
     }
 
     @Override
-    public IMessage onMessage(PacketSyncGold message, MessageContext ctx) {
-        HFTrackers.getClientPlayerTracker().getStats().setGold(message.gold);
-        return null;
+    public void handlePacket(EntityPlayer player) {
+        HFTrackers.getClientPlayerTracker().getStats().setGold(gold);
     }
 }

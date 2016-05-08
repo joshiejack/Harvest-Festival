@@ -1,12 +1,10 @@
 package joshie.harvest.core.network.quests;
 
 import io.netty.buffer.ByteBuf;
+import joshie.harvest.core.network.penguin.PenguinPacket;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-public class PacketQuestDecreaseHeld implements IMessage, IMessageHandler<PacketQuestDecreaseHeld, IMessage> {
+public class PacketQuestDecreaseHeld extends PenguinPacket {
     private int amount;
     
     public PacketQuestDecreaseHeld() {}
@@ -25,9 +23,7 @@ public class PacketQuestDecreaseHeld implements IMessage, IMessageHandler<Packet
     }
 
     @Override
-    public IMessage onMessage(PacketQuestDecreaseHeld message, MessageContext ctx) {
-        EntityPlayer player = ctx.getServerHandler().playerEntity;
-        player.inventory.decrStackSize(player.inventory.currentItem, message.amount);
-        return null;
+    public void handlePacket(EntityPlayer player) {
+        player.inventory.decrStackSize(player.inventory.currentItem, amount);
     }
 }

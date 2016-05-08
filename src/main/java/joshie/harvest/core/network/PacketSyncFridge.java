@@ -2,14 +2,13 @@ package joshie.harvest.core.network;
 
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.network.penguin.PenguinPacket;
 import joshie.harvest.player.fridge.FridgeData;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-public class PacketSyncFridge implements IMessage, IMessageHandler<PacketSyncFridge, IMessage> {
+public class PacketSyncFridge extends PenguinPacket {
     private NBTTagCompound nbt;
 
     public PacketSyncFridge() {
@@ -31,10 +30,9 @@ public class PacketSyncFridge implements IMessage, IMessageHandler<PacketSyncFri
     }
 
     @Override
-    public IMessage onMessage(PacketSyncFridge message, MessageContext ctx) {
+    public void handlePacket(EntityPlayer player) {
         FridgeData fridge = new FridgeData();
-        fridge.readFromNBT(message.nbt);
+        fridge.readFromNBT(nbt);
         HFTrackers.getClientPlayerTracker().setFridge(fridge);
-        return null;
     }
 }

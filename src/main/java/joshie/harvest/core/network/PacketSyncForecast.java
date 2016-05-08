@@ -3,15 +3,13 @@ package joshie.harvest.core.network;
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.core.handlers.HFTrackers;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import joshie.harvest.core.network.penguin.PenguinPacket;
+import net.minecraft.entity.player.EntityPlayer;
 
-public class PacketSyncForecast implements IMessage, IMessageHandler<PacketSyncForecast, IMessage> {
+public class PacketSyncForecast extends PenguinPacket {
     private Weather[] forecast;
 
-    public PacketSyncForecast() {
-    }
+    public PacketSyncForecast() {}
 
     public PacketSyncForecast(Weather[] forecast) {
         this.forecast = forecast;
@@ -33,8 +31,7 @@ public class PacketSyncForecast implements IMessage, IMessageHandler<PacketSyncF
     }
 
     @Override
-    public IMessage onMessage(PacketSyncForecast message, MessageContext ctx) {
-        HFTrackers.getCalendar().setForecast(message.forecast);
-        return null;
+    public void handlePacket(EntityPlayer player) {
+        HFTrackers.getCalendar().setForecast(forecast);
     }
 }

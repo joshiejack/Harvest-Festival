@@ -95,8 +95,6 @@ public class BlockCookware extends BlockHFBaseEnumRotatableTile<Cookware> {
             if (cookware == COUNTER && held == null) {
                 ((ITickable) tile).update();
             }
-
-            return true;
         }
 
         TileEntity tile = world.getTileEntity(pos);

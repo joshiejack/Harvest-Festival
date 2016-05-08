@@ -23,8 +23,4 @@ public abstract class AbstractSyncByte extends AbstractSyncAnimal {
         super.fromBytes(buf);
         data = buf.readByte();
     }
-    
-    public byte getByte(AbstractSyncByte message) {
-        return message.data;
-    }
 }

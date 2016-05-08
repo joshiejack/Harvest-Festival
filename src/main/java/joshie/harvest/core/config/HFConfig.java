@@ -16,7 +16,6 @@ import java.io.Writer;
 import java.lang.reflect.Method;
 
 public class HFConfig {
-    public static final int PACKET_DISTANCE = 172;
     public static ASM asm;
 
     public static void preInit() {

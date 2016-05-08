@@ -3,18 +3,16 @@ package joshie.harvest.core.network;
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.blocks.tiles.TileCooking;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 import java.util.ArrayList;
 
-public class PacketSyncCooking extends AbstractPacketOrientation implements IMessageHandler<PacketSyncCooking, IMessage> {
+public class PacketSyncCooking extends AbstractPacketOrientation {
     private boolean isCooking, hasResult;
     private int iIngredient;
     private ArrayList<ItemStack> ingredients;
@@ -67,13 +65,11 @@ public class PacketSyncCooking extends AbstractPacketOrientation implements IMes
     }
 
     @Override
-    public IMessage onMessage(PacketSyncCooking message, MessageContext ctx) {
-        super.onMessage(message, ctx);
-        TileEntity tile = MCClientHelper.getTile(message);
+    public void handlePacket(EntityPlayer player) {
+        super.handlePacket(player);
+        TileEntity tile = MCClientHelper.getTile(this);
         if (tile instanceof TileCooking) {
-            ((TileCooking) tile).setFromPacket(message.isCooking, message.ingredients, message.result);
+            ((TileCooking) tile).setFromPacket(isCooking, ingredients, result);
         }
-
-        return null;
     }
 }

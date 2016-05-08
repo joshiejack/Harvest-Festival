@@ -4,19 +4,17 @@ import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.relations.IRelatableDataHandler;
 import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.network.penguin.PenguinPacket;
 import joshie.harvest.player.relationships.RelationshipHelper;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-public class PacketSyncMarriage implements IMessage, IMessageHandler<PacketSyncMarriage, IMessage> {
+public class PacketSyncMarriage extends PenguinPacket {
     private IRelatable relatable;
     private boolean divorce;
     private IRelatableDataHandler handler;
 
-    public PacketSyncMarriage() {
-    }
+    public PacketSyncMarriage() {}
 
     public PacketSyncMarriage(IRelatable relatable, boolean divorce) {
         this.relatable = relatable;
@@ -37,12 +35,10 @@ public class PacketSyncMarriage implements IMessage, IMessageHandler<PacketSyncM
     }
 
     @Override
-    public IMessage onMessage(PacketSyncMarriage message, MessageContext ctx) {
-        IRelatable relatable = message.handler.onMessage(false);
+    public void handlePacket(EntityPlayer player) {
+        IRelatable relatable = handler.onMessage(false);
         if (relatable != null) {
-            HFTrackers.getClientPlayerTracker().getRelationships().setMarriageState(relatable, message.divorce);
+            HFTrackers.getClientPlayerTracker().getRelationships().setMarriageState(relatable, divorce);
         }
-
-        return null;
     }
 }

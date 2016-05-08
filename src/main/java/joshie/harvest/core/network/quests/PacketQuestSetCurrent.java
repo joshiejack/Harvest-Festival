@@ -5,13 +5,12 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.quest.IQuest;
 import joshie.harvest.core.helpers.QuestHelper;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
+import joshie.harvest.core.network.penguin.PenguinPacket;
 import joshie.harvest.quests.Quest;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-public class PacketQuestSetCurrent implements IMessage, IMessageHandler<PacketQuestSetCurrent, IMessage> {
+public class PacketQuestSetCurrent extends PenguinPacket {
     private IQuest quest;
 
     public PacketQuestSetCurrent() {}
@@ -42,8 +41,7 @@ public class PacketQuestSetCurrent implements IMessage, IMessageHandler<PacketQu
     }
 
     @Override
-    public IMessage onMessage(PacketQuestSetCurrent message, MessageContext ctx) {
-        QuestHelper.markAsCurrent(MCClientHelper.getPlayer(), message.quest);
-        return null;
+    public void handlePacket(EntityPlayer player) {
+        QuestHelper.markAsCurrent(MCClientHelper.getPlayer(), quest);
     }
 }

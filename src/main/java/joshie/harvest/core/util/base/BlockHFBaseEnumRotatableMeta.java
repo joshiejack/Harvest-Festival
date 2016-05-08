@@ -47,7 +47,7 @@ public abstract class BlockHFBaseEnumRotatableMeta<E extends Enum<E> & IStringSe
     }
 
     public EnumFacing getFacingFromMeta(int meta) {
-        return EnumFacing.values()[(meta / values.length) %4];
+        return EnumFacing.values()[2 + ((meta / values.length) %4)];
     }
 
     @Override

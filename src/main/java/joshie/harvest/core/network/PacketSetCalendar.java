@@ -4,11 +4,10 @@ import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.core.handlers.HFTrackers;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import joshie.harvest.core.network.penguin.PenguinPacket;
+import net.minecraft.entity.player.EntityPlayer;
 
-public class PacketSetCalendar implements IMessage, IMessageHandler<PacketSetCalendar, IMessage> {
+public class PacketSetCalendar extends PenguinPacket {
     private int day;
     private Season season;
     private int year;
@@ -35,17 +34,15 @@ public class PacketSetCalendar implements IMessage, IMessageHandler<PacketSetCal
     }
     
     @Override
-    public IMessage onMessage(PacketSetCalendar message, MessageContext ctx) {
+    public void handlePacket(EntityPlayer player) {
         ICalendarDate date = HFTrackers.getCalendar().getDate();
         Season previous = date.getSeason();
-        date.setDay(message.day).setSeason(message.season).setYear(message.year);
+        date.setDay(day).setSeason(season).setYear(year);
         
         //Refresh all Blocks in Render range
         //If the seasons are not the same, and neither the current or past season is/was spring, re-render the client
-        if(previous != message.season && previous != Season.SPRING && message.season != Season.SPRING) {
+        if(previous != season && previous != Season.SPRING && season != Season.SPRING) {
             joshie.harvest.core.helpers.generic.MCClientHelper.refresh();
         }
-
-        return null;
     }
 }

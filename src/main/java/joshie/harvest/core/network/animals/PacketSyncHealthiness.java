@@ -1,23 +1,19 @@
 package joshie.harvest.core.network.animals;
 
 import joshie.harvest.api.animals.IAnimalTracked;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraft.entity.player.EntityPlayer;
 
-public class PacketSyncHealthiness extends AbstractSyncByte implements IMessageHandler<PacketSyncHealthiness, IMessage> {
+public class PacketSyncHealthiness extends AbstractSyncByte {
     public PacketSyncHealthiness(){}
     public PacketSyncHealthiness(int id, byte data) {
         super(id, data);
     }
 
     @Override
-    public IMessage onMessage(PacketSyncHealthiness message, MessageContext ctx) {
-        IAnimalTracked entity = getAnimal(message, ctx);
+    public void handlePacket(EntityPlayer player) {
+        IAnimalTracked entity = getAnimal();
         if (entity != null) {
-            entity.getData().setHealthiness(getByte(message));
+            entity.getData().setHealthiness(data);
         }
-
-        return null;
     }
 }

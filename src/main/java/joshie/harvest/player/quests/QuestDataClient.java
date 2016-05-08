@@ -25,7 +25,7 @@ public class QuestDataClient extends QuestData {
     @Override
     public void markCompleted(IQuest quest, boolean sendPacket) {
         markCompleted(quest);
-        sendToServer(new PacketQuestCompleted(quest, true));
+        sendToServer(new PacketQuestCompleted(quest));
     }
     
     //Removes the quest from the current and available lists

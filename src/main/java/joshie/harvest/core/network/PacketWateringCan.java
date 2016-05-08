@@ -9,11 +9,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-public class PacketWateringCan extends AbstractPacketLocation implements IMessageHandler<PacketWateringCan, IMessage> {
+public class PacketWateringCan extends AbstractPacketLocation {
     private ItemStack stack;
 
     public PacketWateringCan() {
@@ -37,9 +34,7 @@ public class PacketWateringCan extends AbstractPacketLocation implements IMessag
     }
 
     @Override
-    public IMessage onMessage(PacketWateringCan message, MessageContext ctx) {
-        EntityPlayer player = ctx.getServerHandler().playerEntity;
-        HFItems.WATERING_CAN.onItemUse(message.stack, player, DimensionManager.getWorld(message.dim), message.pos, player.getActiveHand(), EnumFacing.DOWN, 0, 0, 0);
-        return null;
+    public void handlePacket(EntityPlayer player) {
+        HFItems.WATERING_CAN.onItemUse(stack, player, DimensionManager.getWorld(dim), pos, player.getActiveHand(), EnumFacing.DOWN, 0, 0, 0);
     }
 }

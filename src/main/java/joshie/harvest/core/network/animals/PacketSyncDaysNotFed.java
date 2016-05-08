@@ -1,23 +1,19 @@
 package joshie.harvest.core.network.animals;
 
 import joshie.harvest.api.animals.IAnimalTracked;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraft.entity.player.EntityPlayer;
 
-public class PacketSyncDaysNotFed extends AbstractSyncByte implements IMessageHandler<PacketSyncDaysNotFed, IMessage> {
+public class PacketSyncDaysNotFed extends AbstractSyncByte {
     public PacketSyncDaysNotFed(){}
     public PacketSyncDaysNotFed(int id, byte data) {
         super(id, data);
     }
 
     @Override
-    public IMessage onMessage(PacketSyncDaysNotFed message, MessageContext ctx) {
-        IAnimalTracked entity = getAnimal(message, ctx);
+    public void handlePacket(EntityPlayer player) {
+        IAnimalTracked entity = getAnimal();
         if (entity != null) {
-            entity.getData().setDaysNotFed(getByte(message));
+            entity.getData().setDaysNotFed(data);
         }
-
-        return null;
     }
 }

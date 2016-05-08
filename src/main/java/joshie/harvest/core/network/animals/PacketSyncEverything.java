@@ -2,11 +2,9 @@ package joshie.harvest.core.network.animals;
 
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.animals.IAnimalData;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraft.entity.player.EntityPlayer;
 
-public class PacketSyncEverything extends AbstractSyncAnimal implements IMessageHandler<PacketSyncEverything, IMessage> {
+public class PacketSyncEverything extends AbstractSyncAnimal {
     protected IAnimalData data;
     protected ByteBuf buf;
 
@@ -29,8 +27,7 @@ public class PacketSyncEverything extends AbstractSyncAnimal implements IMessage
     }
 
     @Override
-    public IMessage onMessage(PacketSyncEverything message, MessageContext ctx) {
-        (getAnimal(message, ctx)).getData().fromBytes(message.buf);
-        return null;
+    public void handlePacket(EntityPlayer player) {
+        (getAnimal()).getData().fromBytes(buf);
     }
 }

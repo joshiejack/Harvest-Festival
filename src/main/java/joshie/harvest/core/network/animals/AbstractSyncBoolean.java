@@ -23,8 +23,4 @@ public abstract class AbstractSyncBoolean extends AbstractSyncAnimal {
         super.fromBytes(buf);
         data = buf.readBoolean();
     }
-    
-    public boolean getBoolean(AbstractSyncBoolean message) {
-        return message.data;
-    }
 }

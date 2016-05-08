@@ -2,18 +2,16 @@ package joshie.harvest.core.network;
 
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.core.handlers.HFTrackers;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import joshie.harvest.core.network.penguin.PenguinPacket;
+import net.minecraft.entity.player.EntityPlayer;
 
-public class PacketSyncStats implements IMessage, IMessageHandler<PacketSyncStats, IMessage> {
+public class PacketSyncStats extends PenguinPacket {
     private double stamina;
     private double fatigue;
     private double staminaMax;
     private double fatigueMin;
 
-    public PacketSyncStats() {
-    }
+    public PacketSyncStats() {}
 
     public PacketSyncStats(double stamina, double fatigue, double staminaMax, double fatigueMin) {
         this.stamina = stamina;
@@ -39,8 +37,7 @@ public class PacketSyncStats implements IMessage, IMessageHandler<PacketSyncStat
     }
 
     @Override
-    public IMessage onMessage(PacketSyncStats message, MessageContext ctx) {
-        HFTrackers.getClientPlayerTracker().getStats().setStats(message.stamina, message.fatigue, message.staminaMax, message.fatigueMin);
-        return null;
+    public void handlePacket(EntityPlayer player) {
+        HFTrackers.getClientPlayerTracker().getStats().setStats(stamina, fatigue, staminaMax, fatigueMin);
     }
 }

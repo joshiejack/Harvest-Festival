@@ -5,12 +5,11 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.quest.IQuest;
 import joshie.harvest.core.helpers.QuestHelper;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
+import joshie.harvest.core.network.penguin.PenguinPacket;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-public class PacketQuestSetAvailable implements IMessage, IMessageHandler<PacketQuestSetAvailable, IMessage> {
+public class PacketQuestSetAvailable extends PenguinPacket {
     private IQuest quest;
 
     public PacketQuestSetAvailable() {}
@@ -29,8 +28,7 @@ public class PacketQuestSetAvailable implements IMessage, IMessageHandler<Packet
     }
 
     @Override
-    public IMessage onMessage(PacketQuestSetAvailable message, MessageContext ctx) {
-        QuestHelper.markAvailable(MCClientHelper.getPlayer(), message.quest);
-        return null;
+    public void handlePacket(EntityPlayer player) {
+        QuestHelper.markAvailable(MCClientHelper.getPlayer(), quest);
     }
 }

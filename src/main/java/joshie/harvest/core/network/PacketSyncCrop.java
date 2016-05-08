@@ -5,19 +5,16 @@ import joshie.harvest.api.WorldLocation;
 import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
+import joshie.harvest.core.network.penguin.PenguinPacket;
 import joshie.harvest.crops.CropData;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraft.entity.player.EntityPlayer;
 
-public class PacketSyncCrop implements IMessage, IMessageHandler<PacketSyncCrop, IMessage> {
+public class PacketSyncCrop extends PenguinPacket {
     private boolean isRemoval;
     private WorldLocation location;
     private ICropData data;
 
-    public PacketSyncCrop() {
-    }
-
+    public PacketSyncCrop() { }
     public PacketSyncCrop(WorldLocation location, ICropData data) {
         this.isRemoval = false;
         this.location = location;
@@ -50,9 +47,8 @@ public class PacketSyncCrop implements IMessage, IMessageHandler<PacketSyncCrop,
     }
 
     @Override
-    public IMessage onMessage(PacketSyncCrop msg, MessageContext ctx) {
-        HFTrackers.getCropTracker().updateClient(msg.isRemoval, msg.location, msg.data);
-        MCClientHelper.refresh(msg.location.dimension, msg.location.position);
-        return null;
+    public void handlePacket(EntityPlayer player) {
+        HFTrackers.getCropTracker().updateClient(isRemoval, location, data);
+        MCClientHelper.refresh(location.dimension, location.position);
     }
 }

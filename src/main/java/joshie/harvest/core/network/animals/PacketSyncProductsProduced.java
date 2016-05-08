@@ -1,23 +1,19 @@
 package joshie.harvest.core.network.animals;
 
 import joshie.harvest.api.animals.IAnimalTracked;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraft.entity.player.EntityPlayer;
 
-public class PacketSyncProductsProduced extends AbstractSyncBoolean implements IMessageHandler<PacketSyncProductsProduced, IMessage> {
+public class PacketSyncProductsProduced extends AbstractSyncBoolean {
     public PacketSyncProductsProduced() {}
     public PacketSyncProductsProduced(int id, boolean data) {
         super(id, data);
     }
 
     @Override
-    public IMessage onMessage(PacketSyncProductsProduced message, MessageContext ctx) {
-        IAnimalTracked entity = getAnimal(message, ctx);
+    public void handlePacket(EntityPlayer player) {
+        IAnimalTracked entity = getAnimal();
         if (entity != null) {
-            entity.getData().setProductsProduced(getBoolean(message));
+            entity.getData().setProductsProduced(data);
         }
-
-        return null;
     }
 }

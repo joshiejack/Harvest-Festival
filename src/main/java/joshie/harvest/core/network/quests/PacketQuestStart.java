@@ -4,12 +4,11 @@ import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.quest.IQuest;
 import joshie.harvest.core.helpers.QuestHelper;
+import joshie.harvest.core.network.penguin.PenguinPacket;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-public class PacketQuestStart implements IMessage, IMessageHandler<PacketQuestStart, IMessage> {
+public class PacketQuestStart extends PenguinPacket {
     private IQuest quest;
 
     public PacketQuestStart() {}
@@ -29,8 +28,7 @@ public class PacketQuestStart implements IMessage, IMessageHandler<PacketQuestSt
     }
 
     @Override
-    public IMessage onMessage(PacketQuestStart message, MessageContext ctx) {
-        QuestHelper.startQuest(ctx.getServerHandler().playerEntity, message.quest);
-        return null;
+    public void handlePacket(EntityPlayer player) {
+        QuestHelper.startQuest(player, quest);
     }
 }

@@ -5,11 +5,10 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.core.handlers.HFTrackers;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import joshie.harvest.core.network.penguin.PenguinPacket;
+import net.minecraft.entity.player.EntityPlayer;
 
-public class PacketSyncBirthday implements IMessage, IMessageHandler<PacketSyncBirthday, IMessage> {
+public class PacketSyncBirthday extends PenguinPacket {
     private int day;
     private Season season;
     private int year;
@@ -38,8 +37,7 @@ public class PacketSyncBirthday implements IMessage, IMessageHandler<PacketSyncB
     }
 
     @Override
-    public IMessage onMessage(PacketSyncBirthday message, MessageContext ctx) {
-        HFTrackers.getClientPlayerTracker().getStats().setBirthday(HFApi.CALENDAR.newDate(message.day, message.season, message.year));
-        return null;
+    public void handlePacket(EntityPlayer player) {
+        HFTrackers.getClientPlayerTracker().getStats().setBirthday(HFApi.CALENDAR.newDate(day, season, year));
     }
 }

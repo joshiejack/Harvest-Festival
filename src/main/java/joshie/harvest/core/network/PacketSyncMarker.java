@@ -6,19 +6,17 @@ import joshie.harvest.api.WorldLocation;
 import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.blocks.tiles.TileMarker;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
+import joshie.harvest.core.network.penguin.PenguinPacket;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-public class PacketSyncMarker implements IMessage, IMessageHandler<PacketSyncMarker, IMessage> {
+public class PacketSyncMarker extends PenguinPacket {
     private WorldLocation location;
     private IBuilding group;
 
-    public PacketSyncMarker() {
-    }
+    public PacketSyncMarker() {}
 
     public PacketSyncMarker(WorldLocation location, IBuilding group) {
         this.location = location;
@@ -44,13 +42,12 @@ public class PacketSyncMarker implements IMessage, IMessageHandler<PacketSyncMar
     }
 
     @Override
-    public IMessage onMessage(PacketSyncMarker msg, MessageContext ctx) {
-        TileEntity tile = MCClientHelper.getWorld().getTileEntity(msg.location.position);
+    public void handlePacket(EntityPlayer player) {
+        TileEntity tile = MCClientHelper.getWorld().getTileEntity(location.position);
         if (tile instanceof TileMarker) {
-            ((TileMarker) tile).setBuilding(msg.group);
+            ((TileMarker) tile).setBuilding(group);
         }
 
-        MCClientHelper.refresh(msg.location.dimension, msg.location.position);
-        return null;
+        MCClientHelper.refresh(location.dimension, location.position);
     }
 }

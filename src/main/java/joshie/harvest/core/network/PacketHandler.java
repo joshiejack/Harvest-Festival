@@ -1,41 +1,41 @@
 package joshie.harvest.core.network;
 
+import joshie.harvest.core.network.penguin.PenguinNetwork;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 
-import static joshie.harvest.core.config.HFConfig.PACKET_DISTANCE;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class PacketHandler {
-    private static final SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);
-    private static int id;
-
-    public static <REQ extends IMessage, REPLY extends IMessage> void registerPacket(Class<? extends IMessageHandler<REQ, REPLY>> clazz, Side side) {
-        INSTANCE.registerMessage(clazz, (Class<REQ>) clazz, id++, side);
+    private static final PenguinNetwork INSTANCE = new PenguinNetwork(MODID);
+    public static void registerPacket(Class clazz) {
+        registerPacket(clazz, Side.CLIENT);
+        registerPacket(clazz, Side.SERVER);
     }
 
-    public static void sendToEveryone(IMessage packet) {
-        INSTANCE.sendToAll(packet);
+    public static void registerPacket(Class clazz, Side side) {
+        INSTANCE.registerPacket(clazz, side);
     }
 
-    public static void sendToClient(IMessage packet, EntityPlayerMP player) {
-        INSTANCE.sendTo(packet, player);
+    public static void sendToClient(IMessage message, EntityPlayer player) {
+        INSTANCE.sendToClient(message, (EntityPlayerMP) player);
+    }
+
+    public static void sendToServer(IMessage message) {
+        INSTANCE.sendToServer(message);
+    }
+
+    public static void sendToEveryone(IMessage message) {
+        INSTANCE.sendToEveryone(message);
     }
 
     public static void sendAround(IMessage packet, int dim, double x, double y, double z) {
-        INSTANCE.sendToAllAround(packet, new TargetPoint(dim, x, y, z, PACKET_DISTANCE));
-    }
-
-    public static void sendToServer(IMessage packet) {
-        INSTANCE.sendToServer(packet);
+        INSTANCE.sendToAllAround(packet, dim, x, y, z);
     }
 
     public static Packet<?> getPacket(IMessage packet) {
@@ -43,7 +43,7 @@ public class PacketHandler {
     }
 
     public static void sendAround(IMessage packet, TileEntity tile) {
-        BlockPos pos = tile.getPos();
+        BlockPos pos = tile.getPos(); //Damn you!
         sendAround(packet, tile.getWorld().provider.getDimension(), pos.getX(), pos.getY(), pos.getZ());
     }
 }

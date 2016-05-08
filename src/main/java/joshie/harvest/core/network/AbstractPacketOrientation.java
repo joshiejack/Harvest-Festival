@@ -7,8 +7,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class AbstractPacketOrientation extends AbstractPacketLocation {
     private EnumFacing dir;
@@ -33,14 +31,11 @@ public class AbstractPacketOrientation extends AbstractPacketLocation {
         dir = EnumFacing.values()[(buffer.readInt())];
     }
 
-    public IMessage onMessage(AbstractPacketOrientation message, MessageContext ctx) {
-        EntityPlayer player = MCClientHelper.getPlayer();
-        TileEntity tile = MCClientHelper.getTile(message);
+    public void handlePacket(EntityPlayer player) {
+        TileEntity tile = MCClientHelper.getTile(this);
         if (tile instanceof IFaceable) {
-            ((IFaceable) player.worldObj.getTileEntity(message.pos)).setFacing(message.dir);
-            MCClientHelper.updateRender(message.pos);
+            ((IFaceable) player.worldObj.getTileEntity(pos)).setFacing(dir);
+            MCClientHelper.updateRender(pos);
         }
-
-        return null;
     }
 }

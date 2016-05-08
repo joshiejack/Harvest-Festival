@@ -1,26 +1,14 @@
 package joshie.harvest.core.network;
 
-import io.netty.buffer.ByteBuf;
 import joshie.harvest.core.config.NPC;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import joshie.harvest.core.network.penguin.PenguinPacket;
+import net.minecraft.entity.player.EntityPlayer;
 
-public class PacketFreeze implements IMessage, IMessageHandler<PacketFreeze, IMessage> {
-    public PacketFreeze() {
-    }
+public class PacketFreeze extends PenguinPacket {
+    public PacketFreeze() {}
 
     @Override
-    public void toBytes(ByteBuf buf) {
-    }
-
-    @Override
-    public void fromBytes(ByteBuf buf) {
-    }
-
-    @Override
-    public IMessage onMessage(PacketFreeze message, MessageContext ctx) {
+    public void handlePacket(EntityPlayer player) {
         NPC.FREEZE_NPC = true;
-        return null;
     }
 }

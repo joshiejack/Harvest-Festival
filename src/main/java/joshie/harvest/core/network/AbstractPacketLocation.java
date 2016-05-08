@@ -1,10 +1,10 @@
 package joshie.harvest.core.network;
 
 import io.netty.buffer.ByteBuf;
+import joshie.harvest.core.network.penguin.PenguinPacket;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 
-public abstract class AbstractPacketLocation implements IMessage {
+public abstract class AbstractPacketLocation extends PenguinPacket {
     protected int dim;
     public BlockPos pos;
 

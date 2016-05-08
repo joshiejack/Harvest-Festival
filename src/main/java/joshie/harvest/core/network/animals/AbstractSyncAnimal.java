@@ -3,10 +3,9 @@ package joshie.harvest.core.network.animals;
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import joshie.harvest.core.network.penguin.PenguinPacket;
 
-public abstract class AbstractSyncAnimal implements IMessage {
+public abstract class AbstractSyncAnimal extends PenguinPacket {
     private int id;
 
     public AbstractSyncAnimal() {}
@@ -24,7 +23,7 @@ public abstract class AbstractSyncAnimal implements IMessage {
         id = buf.readInt();
     }
     
-    public IAnimalTracked getAnimal(AbstractSyncAnimal message, MessageContext ctx) {
-        return (IAnimalTracked) MCClientHelper.getWorld().getEntityByID(message.id);
+    public IAnimalTracked getAnimal() {
+        return (IAnimalTracked) MCClientHelper.getWorld().getEntityByID(id);
     }
 }

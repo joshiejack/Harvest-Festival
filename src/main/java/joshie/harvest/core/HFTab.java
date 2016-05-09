@@ -22,6 +22,7 @@ public class HFTab extends CreativeTabs {
     public static final HFTab MINING = new HFTab("mining");
     public static final HFTab FARMING = new HFTab("farming");
     public static final HFTab COOKING = new HFTab("cooking");
+    public static final HFTab GATHERING = new HFTab("gathering");
 
     private ItemStack icon = new ItemStack(Items.GOLDEN_HOE);
 
@@ -102,5 +103,6 @@ public class HFTab extends CreativeTabs {
         HFTab.MINING.setStack(new ItemStack(HFBlocks.STONE, 1, 0));
         HFTab.FARMING.setStack(new ItemStack(HFItems.HOE, 1, 0));
         HFTab.COOKING.setStack(HFApi.COOKING.getMeal("salad"));
+        HFTab.GATHERING.setStack(new ItemStack(HFItems.AXE, 1, 0));
     }
 }

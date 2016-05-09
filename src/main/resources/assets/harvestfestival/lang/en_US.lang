@@ -3,6 +3,7 @@ harvestfestival.tab.farming=Harvest Festival - Farming
 harvestfestival.tab.cooking=Harvest Festival - Cooking
 harvestfestival.tab.mining=Harvest Festival - Mining
 harvestfestival.tab.town=Harvest Festival - Township
+harvestfestival.tab.gathering=Harvest Festival - Gathering
 harvestfestival.mode.true=Harvest Festival was set to easy mode!
 harvestfestival.mode.false=Harvest Festival was set to hard mode!
 harvestfestival.check.head=On head after purchase.
@@ -213,19 +214,15 @@ harvestfestival.hammer.mystril=Mystril Hammer
 harvestfestival.hammer.cursed=Cursed Hammer
 harvestfestival.hammer.blessed=Blessed Hammer
 harvestfestival.hammer.mythic=Mythic Hammer
-#Vanilla config option
-harvestfestival.hoe.wood=Wooden Hoe
-harvestfestival.hoe.stone=Stone Hoe
-harvestfestival.hoe.iron=Iron Hoe
-harvestfestival.hoe.diamond=Diamond Hoe
-harvestfestival.sickle.wood=Wooden Sickle
-harvestfestival.sickle.stone=Stone Sickle
-harvestfestival.sickle.iron=Iron Sickle
-harvestfestival.sickle.diamond=Diamond Sickle
-harvestfestival.wateringcan.wood=Wooden Watering Can
-harvestfestival.wateringcan.stone=Stone Watering Can
-harvestfestival.wateringcan.iron=Iron Watering Can
-harvestfestival.wateringcan.diamond=Diamond Watering Can
+#Axe
+harvestfestival.axe.basic=Axe
+harvestfestival.axe.copper=Copper Axe
+harvestfestival.axe.silver=Silver Axe
+harvestfestival.axe.gold=Gold Axe
+harvestfestival.axe.mystril=Mystril Axe
+harvestfestival.axe.cursed=Cursed Axe
+harvestfestival.axe.blessed=Blessed Axe
+harvestfestival.axe.mythic=Mythic Axe
 
 #Treats
 harvestfestival.treat.cow=Cow Treat

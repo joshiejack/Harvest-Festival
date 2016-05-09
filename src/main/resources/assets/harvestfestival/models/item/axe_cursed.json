@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "harvestfestival:items/tools/axe_cursed"
+  }
+}

@@ -32,6 +32,7 @@ public class HFItems {
     public static final Item SICKLE = new ItemSickle().setUnlocalizedName("sickle");
     public static final Item WATERING_CAN = new ItemWateringCan().setUnlocalizedName("wateringcan");
     public static final Item HAMMER = new ItemHammer().setUnlocalizedName("hammer");
+    public static final Item AXE = new ItemAxe().setUnlocalizedName("axe");
 
     //Misc
     public static final Item GENERAL = new ItemGeneral().setUnlocalizedName("general.item");

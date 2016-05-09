@@ -36,7 +36,10 @@
     - Mythic (Fells whole trees)
 - Add Basic Items to spawn that can be gathered (Expanded Later)- J
     - Weeds
-    - Breakable Rocks
+        - Rocks
+            - Small - > Gives 1 Stone
+            - Medium - > Gives 4 Stone
+            - Large > Gives 10 Stone
     - Stumps
         - Small - > Gives 3 Wood
         - Medium - > Gives 6 Wood
@@ -138,10 +141,20 @@
     - Mine Floor with Free Standing Ladder hole (What?)
         - Z Axis Facing
         - X Acis Facing
-- Rocks - Y
-    - Large (Various) (Can be cominbed automatically)
-    - Medium (Various) (Can be cominbed automatically)
-    - Small (Various) (Can be combined automatically)
+- Rocks - Y ### See below...... >>>>>>>>>>>>>>>>>>>>>>>>>>>V
+    - Large (Various) (Can be cominbed automatically)      V
+    - Medium (Various) (Can be cominbed automatically)     V
+    - Small (Various) (Can be combined automatically)      V
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Same Models just different textures
+- Mining Rocks (Spring Mine, Winter Mine Versions >>> Potential Ore Deposits, Gathering Rocks (for getting stone from))
+    - Large                                                ^
+    - Medium                                               ^
+    - Small                                                ^
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>^
+- Gathering Rocks
+    - Large
+    - Medium
+    - Small
 - Branch - Y
     - Large
     - Medium

@@ -33,7 +33,12 @@ public class BlockCookware extends BlockHFBaseEnumRotatableTile<Cookware> {
     private static Item cookware = null;
 
     public enum Cookware implements IStringSerializable {
-        FRIDGE_TOP, FRIDGE, COUNTER, POT, FRYING_PAN, MIXER, OVEN_OFF, OVEN_ON;
+        FRIDGE_TOP(false), FRIDGE(true), COUNTER(true), POT(true), FRYING_PAN(true), MIXER(true), OVEN_OFF(true), OVEN_ON(false), COUNTER_IC(false), COUNTER_OC(false);
+
+        private final boolean isReal;
+        Cookware(boolean isReal) {
+            this.isReal = isReal;
+        }
 
         @Override
         public String getName() {
@@ -222,6 +227,6 @@ public class BlockCookware extends BlockHFBaseEnumRotatableTile<Cookware> {
     @Override
     @SideOnly(Side.CLIENT)
     protected boolean isValidTab(CreativeTabs tab, Cookware cookware) {
-        return cookware == FRIDGE_TOP || cookware == OVEN_OFF ? false: super.isValidTab(tab, cookware);
+        return cookware.isReal? super.isValidTab(tab, cookware) : false;
     }
 }

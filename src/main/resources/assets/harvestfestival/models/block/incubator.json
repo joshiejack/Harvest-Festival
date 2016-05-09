@@ -1,4 +1,4 @@
-{
+{"parent": "block/block",
 "textures": {
     "main": "harvestfestival:models/incubator"
 },

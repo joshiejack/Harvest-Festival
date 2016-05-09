@@ -5,12 +5,12 @@
     "model": "cube_all"
   },
   "variants": {
-    "types": {
+    "type": {
       "decorative": {
         "textures": { "all": "harvestfestival:blocks/mine_wall" }
       },
       "real": {
-        "textures": { "all": "harvestfestival:blocks/stone" }
+        "textures": { "all": "harvestfestival:blocks/mine_wall" }
       }
     }
   }

@@ -64,7 +64,7 @@ public abstract class SpecialRendererCookware<T extends TileCooking> extends Til
         GlStateManager.enableBlend();
         GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 
-        if (Minecraft.isAmbientOcclusionEnabled())  {
+        if (MINECRAFT.isAmbientOcclusionEnabled())  {
             GL11.glShadeModel(GL11.GL_SMOOTH);
         } else  {
             GL11.glShadeModel(GL11.GL_FLAT);
@@ -73,7 +73,7 @@ public abstract class SpecialRendererCookware<T extends TileCooking> extends Til
         translateIngredient(stack.getItem() instanceof ItemBlock, position, rotation, offset1, offset2);
         GlStateManager.blendFunc(GL11.GL_CONSTANT_ALPHA, GL11.GL_ONE_MINUS_CONSTANT_ALPHA);
         GL14.glBlendColor(1F, 1F, 1F, 1F);
-        Minecraft.getMinecraft().getRenderItem().renderItem(stack, FIXED);
+        MINECRAFT.getRenderItem().renderItem(stack, FIXED);
         GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         GlStateManager.disableBlend();
         RenderHelper.enableStandardItemLighting();
@@ -86,7 +86,7 @@ public abstract class SpecialRendererCookware<T extends TileCooking> extends Til
         GlStateManager.enableBlend();
         GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 
-        if (Minecraft.isAmbientOcclusionEnabled())  {
+        if (MINECRAFT.isAmbientOcclusionEnabled())  {
             GL11.glShadeModel(GL11.GL_SMOOTH);
         } else  {
             GL11.glShadeModel(GL11.GL_FLAT);
@@ -95,7 +95,7 @@ public abstract class SpecialRendererCookware<T extends TileCooking> extends Til
         translateResult(stack.getItem() instanceof ItemBlock);
         GlStateManager.blendFunc(GL11.GL_CONSTANT_ALPHA, GL11.GL_ONE_MINUS_CONSTANT_ALPHA);
         GL14.glBlendColor(1F, 1F, 1F, 1F);
-        Minecraft.getMinecraft().getRenderItem().renderItem(stack, FIXED);
+        MINECRAFT.getRenderItem().renderItem(stack, FIXED);
         GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         GlStateManager.disableBlend();
         RenderHelper.enableStandardItemLighting();
@@ -109,8 +109,8 @@ public abstract class SpecialRendererCookware<T extends TileCooking> extends Til
         GlStateManager.enableBlend();
         GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         Tessellator tessellator = Tessellator.getInstance();
-        VertexBuffer wr = tessellator.getBuffer();
-        TextureAtlasSprite sprite = Minecraft.getMinecraft().getTextureMapBlocks().getTextureExtry(fluid.toString());
+        VertexBuffer vb = tessellator.getBuffer();
+        TextureAtlasSprite sprite = MINECRAFT.getTextureMapBlocks().getTextureExtry(fluid.toString());
         if (sprite != null) {
             MINECRAFT.renderEngine.bindTexture(LOCATION_BLOCKS_TEXTURE);
             double uMin = (double) sprite.getMinU();
@@ -118,12 +118,11 @@ public abstract class SpecialRendererCookware<T extends TileCooking> extends Til
             double vMin = (double) sprite.getMinV();
             double vMax = (double) sprite.getMaxV();
 
-            wr.begin(7, POSITION_TEX);
-            wr.pos(size / 2f, 0, size / 2f).tex(uMax, vMax).endVertex();
-            wr.pos(size / 2f, 0, -size / 2f).tex(uMax, vMin).endVertex();
-            wr.pos(-size / 2f, 0, -size / 2f).tex(uMin, vMin).endVertex();
-            wr.pos(-size / 2f, 0, size / 2f).tex(uMin, vMax).endVertex();
-
+            vb.begin(7, POSITION_TEX);
+            vb.pos(size / 2f, 0, size / 2f).tex(uMax, vMax).endVertex();
+            vb.pos(size / 2f, 0, -size / 2f).tex(uMax, vMin).endVertex();
+            vb.pos(-size / 2f, 0, -size / 2f).tex(uMin, vMin).endVertex();
+            vb.pos(-size / 2f, 0, size / 2f).tex(uMin, vMax).endVertex();
             tessellator.draw();
         }
 

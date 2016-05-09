@@ -1,4 +1,11 @@
-{
+{"parent": "block/block",
+    "display": {
+        "gui": {
+            "rotation": [ 30, 225, 0 ],
+            "translation": [ -1, 7, 0],
+            "scale":[ 1.2, 1.2, 1.2 ]
+        }
+    },
 "textures": {
     "particle": "harvestfestival:models/frying_pan",
     "texture": "harvestfestival:models/frying_pan"

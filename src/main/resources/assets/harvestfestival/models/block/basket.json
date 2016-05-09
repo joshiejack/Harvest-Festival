@@ -1,4 +1,4 @@
-{
+{"parent": "block/block",
 "textures": {
     "particle": "harvestfestival:models/basket",
     "texture": "harvestfestival:models/basket"

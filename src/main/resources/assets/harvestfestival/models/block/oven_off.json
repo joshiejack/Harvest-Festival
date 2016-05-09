@@ -1,4 +1,11 @@
-{
+{"parent": "block/block",
+    "display": {
+        "gui": {
+            "rotation": [ 30, 225, 0 ],
+            "translation": [ 0, 0, 0],
+            "scale":[ 0.55, 0.55, 0.55 ]
+        }
+    },
 "textures": {
     "particle": "harvestfestival:models/oven",
     "texture": "harvestfestival:models/oven",

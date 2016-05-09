@@ -53,6 +53,26 @@
 - Change NPCs to use ResourceLocation Identifiers
 - Change Items to  Item Enums + Change Item Registry Helper
 
+##(S)ounds, (E)ffects, (A)nimations
+- Frying Pan
+    #S - Sizzling
+- Pot
+    #S - Bubbling
+    #E - Bubbles
+- Oven
+    #S - Fire Flicker
+    #S - Timer Ping when Done
+    #A - Open Door when placing stuff in
+- Fridge
+    #S - Hummmm
+    #E - Open Door
+- Counter
+    #S - Chopping
+    #A - Player Chopping
+- Mixer
+    #S - Whirring
+    #E - Items Spin
+
 ### To Check
 - Relation ship status of npcs is working correctly - J
 - Can you Buy Items only when they're available i.e. blue feather when ready to marry - J

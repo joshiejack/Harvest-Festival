@@ -1,10 +1,10 @@
 package joshie.harvest.api.crops;
 
 import io.netty.buffer.ByteBuf;
-import joshie.harvest.api.WorldLocation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
 
 public interface ICropData {
     /** Returns the crop itself **/
@@ -14,9 +14,6 @@ public interface ICropData {
      * @param stage **/
     public ICropData setCrop(EntityPlayer player, ICrop crop, int stage);
     
-    /** The WorldLocation of this crop in the world **/
-    public WorldLocation getLocation();
-    
     /** Returns the stage this crop is at **/
     public int getStage();
    
@@ -24,17 +21,14 @@ public interface ICropData {
     public boolean canGrow();
 
     /** Causes the crop to grow one stage **/
-    public void grow();
-
-    /** Wipes out the data for this crop **/
-    public void clear();
+    public void grow(World world);
 
     /** Sets this crop as having been hydrated for the day **/
     public void setHydrated();
 
     /** Causes this crop to perform it's new day action
      * @return true if the crop survived without withering, false if it is withered */
-    public boolean newDay();
+    public boolean newDay(World world);
     
     /** Returns the icon for the crop
      *  @param      whether it's the top half or bottom half of the crop **/

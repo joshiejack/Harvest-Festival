@@ -55,31 +55,30 @@
 - Change Meals to use ResourceLocation Identifiers
 - Change NPCs to use ResourceLocation Identifiers
 - Change Items to  Item Enums + Change Item Registry Helper
+- Change Seeds, Meals, Buildings etc to use ForgeControlledNameSpace and use metadata instead of NBT where appropriate
+- Add Sprinkler Block
 
-##(S)ounds, (E)ffects, (A)nimations
+###(S)ounds, (E)ffects, (A)nimations
 - Frying Pan
-    #S - Sizzling
+    -S - Sizzling
 - Pot
-    #S - Bubbling
-    #E - Bubbles
+    -S Bubbling
+    -E Bubbles
 - Oven
-    #S - Fire Flicker
-    #S - Timer Ping when Done
-    #A - Open Door when placing stuff in
+    -S Fire Flicker
+    -S Timer Ping when Done
+    -A Open Door when placing stuff in
 - Fridge
-    #S - Hummmm
-    #E - Open Door
+    -S Hummmm
+    -E Open Door
 - Counter
-    #S - Chopping
-    #A - Player Chopping
+    -S Chopping
+    -A Player Chopping
 - Mixer
-    #S - Whirring
-    #E - Items Spin
+    -S Whirring
+    -E Items Spin
 
 ### To Check
-- Relation ship status of npcs is working correctly - J
-- Can you Buy Items only when they're available i.e. blue feather when ready to marry - J
-- Can you marry NPCs with the blue feather, when they like you enough - J
 - NPCs respawn at their homes on death - J
 - NPCs walk home, if they fail they should teleport - J
 - Incubators will hatch chickens - J
@@ -183,6 +182,10 @@
             - Left Side
             - Middle Section
             - Right Side
+- Sprinkler Block
+    - Just a simple shape in the centre, water effects will be done by J
+    - Was thinking against it BUT, I'd rather have sprinklers running on a server than do a team system.
+
 ### Questing Tasks
 - Spawning the NPC Builder Quest
 - Welcome to 'Harvest Festival' Quests

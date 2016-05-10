@@ -70,6 +70,7 @@ public class HFCore {
         PacketHandler.registerPacket(PacketSyncGold.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketSyncRelationship.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketSyncMarriage.class, Side.CLIENT);
+        PacketHandler.registerPacket(PacketSyncGifted.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketSyncStats.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketSyncCooking.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketSyncOrientation.class, Side.CLIENT);

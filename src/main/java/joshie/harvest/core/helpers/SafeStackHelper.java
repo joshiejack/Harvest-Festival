@@ -37,7 +37,7 @@ public class SafeStackHelper {
     }
 
     public static Object getResult(ItemStack stack, HashMap<SafeStack, AnimalFoodType> map) {
-        Object result = map.get(new SafeStack(stack));
+        Object result = map.get(stack);
         if (result == null) result = map.get(new MealStack(stack));
         if (result == null) result = map.get(new WildStack(stack));
         if (result == null) result = map.get(new HFStack(stack));

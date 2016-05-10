@@ -1,6 +1,7 @@
 package joshie.harvest.crops;
 
-import joshie.harvest.api.WorldLocation;
+import gnu.trove.map.TIntObjectMap;
+import gnu.trove.map.hash.TIntObjectHashMap;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
 import net.minecraft.block.state.IBlockState;
@@ -13,20 +14,25 @@ import net.minecraft.world.World;
 import java.util.HashMap;
 
 public class CropTracker {
-    protected HashMap<WorldLocation, ICropData> crops = new HashMap<WorldLocation, ICropData>();
+    protected TIntObjectMap<HashMap<BlockPos, ICropData>> dimensions = new TIntObjectHashMap<>();
 
-    protected WorldLocation getCropKey(World world, BlockPos pos) {
-        return new WorldLocation(world.provider.getDimension(), pos);
+    protected HashMap<BlockPos, ICropData> getDimensionData(World world) {
+        return getDimensionData(world.provider.getDimension());
     }
 
-    protected WorldLocation getFarmlandKey(World world, BlockPos pos) {
-        return new WorldLocation(world.provider.getDimension(), pos.up());
+    protected HashMap<BlockPos, ICropData> getDimensionData(int dimension) {
+        HashMap<BlockPos, ICropData> map = dimensions.get(dimension);
+        if (map == null) {
+            map = new HashMap<>();
+            dimensions.put(dimension, map);
+        }
+
+        return map;
     }
 
     public ICropData getCropDataForLocation(World world, BlockPos pos) {
-        WorldLocation location = getCropKey(world, pos);
-        ICropData data = crops.get(location);
-        return data != null ? data : new CropData(location);
+        ICropData data = getDimensionData(world.provider.getDimension()).get(pos);
+        return data != null ? data : new CropData(pos, world.provider.getDimension());
     }
 
     public boolean canBonemeal(World world, BlockPos pos) {
@@ -56,28 +62,14 @@ public class CropTracker {
     }
 
     public void removeCrop(World world, BlockPos pos) {
-        ICropData data = getCropDataForLocation(world, pos);
-        crops.remove(data.getLocation());
+        getDimensionData(world.provider.getDimension()).remove(pos);
     }
 
-    public void hydrate(World world, BlockPos pos, IBlockState state) {
-    }
-
-    public void setWithered(ICropData data) {
-    }
-
-    public void grow(World world, BlockPos pos) {
-    }
-
-    public void newDay() {
-    }
-
-    public void sendUpdateToClient(EntityPlayerMP player, World world, BlockPos pos) {
-    }
-
-    public void updateClient(boolean isRemoval, WorldLocation location, ICropData data) {
-    }
-
-    public void doRain() {
-    }
+    public void hydrate(World world, BlockPos pos, IBlockState state) {}
+    public void setWithered(World world, BlockPos pos, ICropData data) {}
+    public void grow(World world, BlockPos pos) {}
+    public void newDay(World world) {}
+    public void sendUpdateToClient(EntityPlayerMP player, World world, BlockPos pos) {}
+    public void updateClient(int dimension, BlockPos position, ICropData data, boolean isRemoval) {}
+    public void doRain(World world) {}
 }

@@ -27,22 +27,23 @@ public class ContainerNPCGift extends ContainerNPCBase {
         super.onContainerClosed(player);
 
         if (!player.worldObj.isRemote) {
-            new Exception().printStackTrace();
-            ItemStack gift = player.getHeldItem(hand);
-            INPC theNpc = npc.getNPC();
-            int points = theNpc.getGiftValue(gift).getRelationPoints();
-            ICalendarDate today = HFTrackers.getCalendar().getDate();
-            ICalendarDate birthday = theNpc.getBirthday();
-            if (today.getSeason() == birthday.getSeason() && today.getDay() == birthday.getDay()) {
-                points *= 5;
-            }
+            if (HFTrackers.getServerPlayerTracker(player).getRelationships().gift(player, npc.getRelatable(), 0)) {
+                ItemStack gift = player.getHeldItem(hand);
+                INPC theNpc = npc.getNPC();
+                int points = theNpc.getGiftValue(gift).getRelationPoints();
+                ICalendarDate today = HFTrackers.getCalendar().getDate();
+                ICalendarDate birthday = theNpc.getBirthday();
+                if (today.getSeason() == birthday.getSeason() && today.getDay() == birthday.getDay()) {
+                    points *= 5;
+                }
 
-            if (ToolHelper.isBlueFeather(gift)) {
-                HFTrackers.getPlayerTracker(player).getRelationships().propose(player, theNpc);
-            }
+                if (ToolHelper.isBlueFeather(gift)) {
+                    HFTrackers.getPlayerTracker(player).getRelationships().propose(player, theNpc);
+                }
 
-            HFTrackers.getPlayerTracker(player).getRelationships().gift(player, theNpc, points);
-            player.inventory.decrStackSize(player.inventory.currentItem, 1);
+                HFTrackers.getPlayerTracker(player).getRelationships().gift(player, theNpc, points);
+                player.inventory.decrStackSize(player.inventory.currentItem, 1);
+            }
         }
 
         //Kill the goddess

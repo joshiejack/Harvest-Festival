@@ -176,7 +176,7 @@ public class ModelHarvestCow extends ModelBase {
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
         if (this.isChild) {
-            this.setChildAngles(f, f1, f2, f3, f4, f5, entity);
+            this.setChildAngles(f, f1, f3, f4);
             GlStateManager.pushMatrix();
             GlStateManager.scale(0.5F, 0.5F, 0.5F);
             GlStateManager.translate(0F, 1.3F, 0F);
@@ -198,7 +198,7 @@ public class ModelHarvestCow extends ModelBase {
             this.child_tail.render(f5);
             GlStateManager.popMatrix();
         } else {
-            this.setAdultAngles(f, f1, f2, f3, f4, f5, entity);
+            this.setAdultAngles(f, f1, f3, f4);
             this.earLeft.render(f5);
             this.backRightLeg.render(f5);
             this.frontLeftLeg.render(f5);
@@ -227,7 +227,7 @@ public class ModelHarvestCow extends ModelBase {
         modelRenderer.rotateAngleZ = z;
     }
 
-    private void setChildAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity) {
+    private void setChildAngles(float f, float f1, float f3, float f4) {
         this.child_head.rotateAngleX = f4 / (360F / (float) Math.PI);
         this.child_head.rotateAngleY = f3 / (720F / (float) Math.PI);
         this.child_earLeft.rotateAngleX = this.child_head.rotateAngleX;
@@ -244,7 +244,7 @@ public class ModelHarvestCow extends ModelBase {
         this.child_backRightLeg.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
     }
 
-    private void setAdultAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity) {
+    private void setAdultAngles(float f, float f1, float f3, float f4) {
         this.head.rotateAngleX = f4 / (360F / (float) Math.PI);
         this.head.rotateAngleY = f3 / (720F / (float) Math.PI);
         this.earLeft.rotateAngleX = this.head.rotateAngleX;

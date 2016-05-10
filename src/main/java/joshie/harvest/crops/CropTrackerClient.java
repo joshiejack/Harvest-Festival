@@ -1,6 +1,5 @@
 package joshie.harvest.crops;
 
-import joshie.harvest.api.WorldLocation;
 import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.core.network.PacketCropRequest;
 import joshie.harvest.core.network.PacketHandler;
@@ -13,18 +12,17 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class CropTrackerClient extends CropTracker {
     @Override
     public ICropData getCropDataForLocation(World world, BlockPos pos) {
-        WorldLocation location = getCropKey(world, pos);
-        ICropData data = crops.get(location);
+        ICropData data = super.getCropDataForLocation(world, pos);
         if (data == null) { //If the data is null, ask the server!?
             PacketHandler.sendToServer(new PacketCropRequest(world, pos));
         }
 
-        return data != null ? data : new CropData(location);
+        return data != null ? data : new CropData(pos, world.provider.getDimension());
     }
 
-    public void updateClient(boolean isRemoval, WorldLocation location, ICropData data) {
+    public void updateClient(int dimension, BlockPos position, ICropData data, boolean isRemoval) {
         if (isRemoval) {
-            crops.remove(location);
-        } else crops.put(location, data);
+            getDimensionData(dimension).remove(position);
+        } else getDimensionData(dimension).put(position, data);
     }
 }

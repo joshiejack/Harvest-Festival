@@ -10,6 +10,7 @@ import joshie.harvest.core.network.PacketSetCalendar;
 import joshie.harvest.core.network.PacketSyncForecast;
 import joshie.harvest.player.PlayerTrackerServer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
 
 import java.util.Random;
 
@@ -76,7 +77,7 @@ public class CalendarServer extends Calendar {
     }
 
     @Override
-    public void newDay(long bedtime) {
+    public void newDay(World world, long bedtime) {
         int day = date.getDay();
         Season season = date.getSeason();
         int year = date.getYear();
@@ -94,7 +95,7 @@ public class CalendarServer extends Calendar {
         date.setDay(day).setSeason(season).setYear(year);
         PacketHandler.sendToEveryone(new PacketSetCalendar(date));
 
-        HFTrackers.getCropTracker().newDay();
+        HFTrackers.getCropTracker().newDay(world);
         HFTrackers.getAnimalTracker().newDay();
         HFTrackers.getMineTracker().newDay();
 

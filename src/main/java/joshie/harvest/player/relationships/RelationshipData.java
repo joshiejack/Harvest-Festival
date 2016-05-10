@@ -10,49 +10,36 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public abstract class RelationshipData {
-    public void talkTo(EntityPlayer player, IRelatable relatable) {
-    }
+    public void talkTo(EntityPlayer player, IRelatable relatable) {}
+    public boolean gift(EntityPlayer player, IRelatable relatable, int amount) { return false; }
+    public void affectRelationship(EntityPlayer player, IRelatable relatable, int amount) {}
+    public void setRelationship(IRelatable relatable, int value) {}
+    public void setMarriageState(IRelatable relatable, boolean divorce) {}
 
-    ;
-
-    public void gift(EntityPlayer player, IRelatable relatable, int amount) {
-    }
-
-    ;
-
-    public void affectRelationship(EntityPlayer player, IRelatable relatable, int amount) {
-    }
-
-    ;
-
-    public void setRelationship(IRelatable relatable, short value) {
-    }
-
-    public void setMarriageState(IRelatable relatable, boolean divorce) {
-    }
-
-    ;
-
-    protected HashMap<IRelatable, Short> relationships = new HashMap<IRelatable, Short>();
-    protected HashSet<IRelatable> marriedTo = new HashSet<IRelatable>();
+    protected HashMap<IRelatable, Integer> relationships = new HashMap<>();
+    protected HashSet<IRelatable> marriedTo = new HashSet<>();
+    protected HashSet<IRelatable> gifted = new HashSet<>();
 
     public void clear(IRelatable animal) {
         relationships.remove(animal);
         HFTrackers.markDirty();
     }
 
-    protected short getRelationship(IRelatable relatable) {
+    protected int getRelationship(IRelatable relatable) {
         if (relationships.containsKey(relatable)) {
             return relationships.get(relatable);
         }
 
-        relationships.put(relatable, Short.MIN_VALUE);
-        return Short.MIN_VALUE;
+        //If we don't have a relationship yet, return 0
+        relationships.put(relatable, 0);
+        return 0;
     }
 
+    //If we have the npc friendship requirement and we propose then we become married, if
+    //We don't they shall hate us!
     public boolean propose(EntityPlayer player, IRelatable relatable) {
         if (!marriedTo.contains(relatable)) {
-            short value = getRelationship(relatable);
+            int value = getRelationship(relatable);
             if (value >= NPC.REAL_MARRIAGE_REQUIREMENT) {
                 marriedTo.add(relatable);
                 affectRelationship(player, relatable, 1000);
@@ -67,7 +54,7 @@ public abstract class RelationshipData {
 
     public boolean isEllegibleToMarry() {
         for (IRelatable relatable : relationships.keySet()) {
-            short value = getRelationship(relatable);
+            int value = getRelationship(relatable);
             if (value >= NPC.REAL_MARRIAGE_REQUIREMENT) {
                 return true;
             }

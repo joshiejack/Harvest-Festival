@@ -2,45 +2,40 @@ package joshie.harvest.core.util;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.oredict.OreDictionary;
 import scala.Immutable;
 
 public class SafeStack implements Immutable {
-    public String item;
+    public Item item;
     public int damage;
 
-    public SafeStack(String item, int damage) {
+    public SafeStack(Item item, int damage) {
         this.item = item;
         this.damage = damage;
     }
 
     public SafeStack(ItemStack stack) {
-        this.item = Item.REGISTRY.getNameForObject(stack.getItem()).toString();
+        this.item = stack.getItem();
         this.damage = stack.getItemDamage();
     }
 
     public ItemStack getItem() {
-        return new ItemStack(Item.REGISTRY.getObject(new ResourceLocation(item)), 1, damage);
+        return new ItemStack(item, 1, damage);
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        SafeStack other = (SafeStack) obj;
-        if (damage != OreDictionary.WILDCARD_VALUE && damage != other.damage)
-            return false;
-        if (item == null) {
-            if (other.item != null)
-                return false;
-        } else if (!item.equals(other.item))
-            return false;
-        return true;
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (obj instanceof ItemStack) {
+            ItemStack stack = ((ItemStack)obj);
+            if (damage != OreDictionary.WILDCARD_VALUE && damage != stack.getItemDamage()) return false;
+            return item.equals(stack.getItem());
+        } else if (obj instanceof SafeStack) {
+            SafeStack stack = ((SafeStack)obj);
+            if (damage != OreDictionary.WILDCARD_VALUE && damage != stack.damage) return false;
+            return item.equals(stack.item);
+        } else return false;
     }
 
     @Override

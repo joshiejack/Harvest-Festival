@@ -38,6 +38,7 @@ public class NPC implements INPC {
 
     protected List<IConditionalGreeting> conditionals = new ArrayList<IConditionalGreeting>(256);
     protected ArrayList<String> thanks = new ArrayList<String>(6);
+    protected String nothanks = "PASS!...";
     protected String accept = "WHAT?";
     protected String reject = "NO!";
     protected String name;
@@ -71,13 +72,15 @@ public class NPC implements INPC {
         String gift = StringUtils.capitalize(name);
         try {
             gifts = (Gifts) Class.forName(HFModInfo.JAVAPATH + "npc.gift.Gifts" + gift).newInstance();
-        } catch (Exception ignored) {
-        }
+        } catch (Exception ignored) {}
 
         String key = HFModInfo.MODID + ".npc." + name + ".accept";
         accept = Text.localize(key);
         key = HFModInfo.MODID + ".npc." + name + ".reject";
         reject = Text.localize(key);
+        key = HFModInfo.MODID + ".npc." + name + ".gift.reject";
+        nothanks = Text.localize(key);
+        if (nothanks.equals(key)) nothanks = Text.localize(HFModInfo.MODID + ".npc.generic." + age.name().toLowerCase() + ".gift.reject");
 
         for (int i = 0; i < 6; i++) {
             key = HFModInfo.MODID + ".npc." + name + ".gift." + Quality.values()[i].name().toLowerCase();
@@ -276,6 +279,11 @@ public class NPC implements INPC {
     @Override
     public String getThanks(Quality value) {
         return thanks.get(value.ordinal());
+    }
+
+    @Override
+    public String getNoThanks() {
+        return nothanks;
     }
 
     @Override

@@ -2,6 +2,7 @@ package joshie.harvest.npc.gui;
 
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
+import joshie.harvest.core.config.NPC;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.ChatFontRenderer;
 import joshie.harvest.core.util.GuiBase;
@@ -46,7 +47,7 @@ public class GuiNPCBase extends GuiBase {
 
     private void drawHeart(int value) {
         GlStateManager.color(1F, 1F, 1F, 1F);
-        int xPos = (int) ((((double) value / (Short.MAX_VALUE * 2))) * 7);
+        int xPos = (int) ((((double) value / (NPC.MAXIMUM_FRIENDSHIP))) * 7);
         drawTexturedModalRect(240, 130, 0, 0, 25, 25);
         drawTexturedModalRect(240, 130, 25 + (25 * xPos), 0, 25, 25);
     }

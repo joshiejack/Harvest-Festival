@@ -30,11 +30,11 @@ public class AnimalTrackerServer extends AnimalTracker {
 
     @Override
     public void newDay() {
-        Iterator<IAnimalData> iter = animals.iterator();
-        while (iter.hasNext()) {
-            IAnimalData data = iter.next();
+        Iterator<IAnimalData> iterator = animals.iterator();
+        while (iterator.hasNext()) {
+            IAnimalData data = iterator.next();
             if (!data.newDay()) { //If the new day wasn't successful, remove the animal from your memory
-                iter.remove();
+                iterator.remove();
                 EntityAnimal animal = data.getAnimal();
                 if (animal != null) {
                     animal.attackEntityFrom(natural_causes, 1000F);

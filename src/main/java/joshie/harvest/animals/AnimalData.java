@@ -16,7 +16,6 @@ import joshie.harvest.core.network.animals.PacketSyncHealthiness;
 import joshie.harvest.core.network.animals.PacketSyncProductsProduced;
 import joshie.harvest.items.HFItems;
 import joshie.harvest.items.ItemTreat;
-import joshie.harvest.player.relationships.RelationshipHelper;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
@@ -43,27 +42,27 @@ public class AnimalData implements IAnimalData {
     private EntityPlayer owner;
     private UUID o_uuid;
 
-    private short currentLifespan = 0; //How many days this animal has lived for
-    private byte healthiness = Byte.MAX_VALUE; //How healthy this animal is, full byte range
-    private byte cleanliness = 0; //How clean this animal is, full byte range
-    private byte stress = Byte.MIN_VALUE; //How stressed this animal is, full byte range
-    private byte daysNotFed; //How many subsequent days that this animal has not been fed
+    private int currentLifespan = 0; //How many days this animal has lived for
+    private int healthiness = Byte.MAX_VALUE; //How healthy this animal is, full byte range
+    private int cleanliness = 0; //How clean this animal is, full byte range
+    private int stress = Byte.MIN_VALUE; //How stressed this animal is, full byte range
+    private int daysNotFed; //How many subsequent days that this animal has not been fed
 
     private boolean isSick; //Whether the animal is sick or not
     private boolean wasSick; //Whether the animal was previously sick
 
     //Product based stuff
-    private byte daysPassed; //How many days have passed so far
-    private byte productsPerDay = 1; //The maximum number of products this animal can produce a day
+    private int daysPassed; //How many days have passed so far
+    private int productsPerDay = 1; //The maximum number of products this animal can produce a day
     private boolean producedProducts; //Whether the animal has produced products this day
     private boolean thrown; //Whether this animal has been thrown or not today, only affects chickens
     private boolean treated; //Whether this animal has had it's treat for today
-    private short genericTreats; //Number of generic treats this animal had
-    private short typeTreats; //Number of specific treats this animal had
+    private int genericTreats; //Number of generic treats this animal had
+    private int typeTreats; //Number of specific treats this animal had
 
     //Pregnancy Test
     private boolean isPregnant;
-    private byte daysPregnant;
+    private int daysPregnant;
 
     public AnimalData(IAnimalTracked animal) {
         this.animal = (EntityAnimal) animal;
@@ -83,7 +82,7 @@ public class AnimalData implements IAnimalData {
 
         //Gets the adjusted relationship, 0-65k
         int relationship = HFApi.RELATIONS.getAdjustedRelationshipValue(owner, relatable);
-        double chance = (relationship / (double) RelationshipHelper.ADJUSTED_MAX) * 200;
+        double chance = (relationship / (double) HFApi.RELATIONS.getMaximumRelationshipValue()) * 200;
         chance += healthiness;
         if (chance <= 1) {
             chance = 1D;
@@ -212,7 +211,7 @@ public class AnimalData implements IAnimalData {
     }
 
     @Override
-    public byte getProductsPerDay() {
+    public int getProductsPerDay() {
         return productsPerDay;
     }
 
@@ -288,7 +287,7 @@ public class AnimalData implements IAnimalData {
         if (daysNotFed >= 0) {
             daysNotFed = -1;
             affectRelationship(player, 5);
-            sendToEveryone(new PacketSyncDaysNotFed(animal.getEntityId(), daysNotFed));
+            sendToEveryone(new PacketSyncDaysNotFed(animal.getEntityId(), (byte)daysNotFed));
         }
     }
 
@@ -300,7 +299,7 @@ public class AnimalData implements IAnimalData {
                 isSick = false;
             }
 
-            sendToEveryone(new PacketSyncHealthiness(animal.getEntityId(), healthiness));
+            sendToEveryone(new PacketSyncHealthiness(animal.getEntityId(), (byte)healthiness));
             return true;
         } else return false;
     }
@@ -405,13 +404,13 @@ public class AnimalData implements IAnimalData {
 
         nbt.setShort("CurrentLifespan", (short) currentLifespan);
         nbt.setByte("Healthiness", (byte) healthiness);
-        nbt.setByte("Cleanliness", (byte) cleanliness);
+        nbt.setByte("Cleanliness", (byte)cleanliness);
         nbt.setByte("Stress", (byte) stress);
         nbt.setByte("DaysNotFed", (byte) daysNotFed);
         nbt.setByte("DaysPassed", (byte) daysPassed);
         nbt.setBoolean("Treated", treated);
-        nbt.setShort("GenericTreats", genericTreats);
-        nbt.setShort("TypeTreats", typeTreats);
+        nbt.setShort("GenericTreats", (short) genericTreats);
+        nbt.setShort("TypeTreats", (short) typeTreats);
         nbt.setBoolean("WasSick", wasSick);
         nbt.setBoolean("IsSick", isSick);
         nbt.setBoolean("Thrown", thrown);
@@ -422,7 +421,7 @@ public class AnimalData implements IAnimalData {
         }
 
         nbt.setBoolean("IsPregnant", isPregnant);
-        nbt.setByte("DaysPregnant", daysPregnant);
+        nbt.setByte("DaysPregnant", (byte) daysPregnant);
     }
 
     /**

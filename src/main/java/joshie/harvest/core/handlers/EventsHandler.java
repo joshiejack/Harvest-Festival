@@ -53,7 +53,7 @@ public class EventsHandler {
         int daysPassed = CalendarHelper.getTotalDays(HFTrackers.getCalendar().getDate());
         int serverDays = (int) Math.floor(world.getWorldTime() / Calendar.TICKS_PER_DAY);
         if (daysPassed <= serverDays || forced) {
-            HFTrackers.getCalendar().newDay(CalendarHelper.getTime(world));
+            HFTrackers.getCalendar().newDay(world, CalendarHelper.getTime(world));
         }
     }
 

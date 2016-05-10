@@ -73,6 +73,9 @@ public interface INPC extends IRelatable {
     /** Returns a gift thank you message, based on the quality **/
     public String getThanks(Quality value);
 
+    /** The message this npc returns when they've already been gifted **/
+    String getNoThanks();
+
     /** Returns this quality of this gift **/
     public Quality getGiftValue(ItemStack gift);
 

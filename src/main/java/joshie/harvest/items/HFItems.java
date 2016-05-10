@@ -28,11 +28,11 @@ public class HFItems {
     public static final Item WOOL = getSizedItem(SizeableMeta.WOOL);
 
     //Tools
-    public static final Item HOE = new ItemHoe().setUnlocalizedName("hoe");
-    public static final Item SICKLE = new ItemSickle().setUnlocalizedName("sickle");
-    public static final Item WATERING_CAN = new ItemWateringCan().setUnlocalizedName("wateringcan");
-    public static final Item HAMMER = new ItemHammer().setUnlocalizedName("hammer");
-    public static final Item AXE = new ItemAxe().setUnlocalizedName("axe");
+    public static final ItemBaseTool HOE = (ItemBaseTool) new ItemHoe().setUnlocalizedName("hoe");
+    public static final ItemBaseTool SICKLE = (ItemBaseTool) new ItemSickle().setUnlocalizedName("sickle");
+    public static final ItemBaseTool WATERING_CAN = (ItemBaseTool) new ItemWateringCan().setUnlocalizedName("wateringcan");
+    public static final ItemBaseTool HAMMER = (ItemBaseTool) new ItemHammer().setUnlocalizedName("hammer");
+    public static final ItemBaseTool AXE = (ItemBaseTool) new ItemAxe().setUnlocalizedName("axe");
 
     //Misc
     public static final Item GENERAL = new ItemGeneral().setUnlocalizedName("general.item");

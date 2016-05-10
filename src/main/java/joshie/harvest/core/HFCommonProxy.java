@@ -22,7 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HFCommonProxy {
-    protected static final List<Class> LIST = new ArrayList<Class>();
+    private static final List<Class> LIST = new ArrayList<>();
+    private static final boolean ENABLE_LOGGING = false;
 
     static {
         if (General.DEBUG_MODE) {
@@ -54,13 +55,13 @@ public class HFCommonProxy {
         for (Class c : LIST) {
             try { //Attempt to load default
                 c.getMethod(stage).invoke(null);
-            } catch (Exception e) { }
+            } catch (Exception e) { if (ENABLE_LOGGING) e.printStackTrace(); }
 
             //Attempt to load client side only
             if (isClient()) {
                 try { //Attempt to load default
                     c.getMethod(stage + "Client").invoke(null);
-                } catch (Exception e) {  }
+                } catch (Exception e) { if (ENABLE_LOGGING) e.printStackTrace();  }
             }
         }
     }

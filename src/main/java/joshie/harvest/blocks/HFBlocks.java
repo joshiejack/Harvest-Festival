@@ -47,6 +47,7 @@ public class HFBlocks {
     @SideOnly(Side.CLIENT)
     public static void preInitClient() {
         ModelLoader.setCustomStateMapper(CROPS, new CropStateMapper());
+        ModelLoader.setCustomStateMapper(FARMLAND, new CropStateMapper());
         ClientRegistry.bindTileEntitySpecialRenderer(TileMarker.class, new PreviewRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TileFryingPan.class, new SpecialRendererFryingPan());
         ClientRegistry.bindTileEntitySpecialRenderer(TilePot.class, new SpecialRendererPot());

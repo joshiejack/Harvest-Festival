@@ -13,6 +13,9 @@ buildscript {
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
 repositories {
   maven {
     url "http://dvs1.progwml6.com/files/maven"

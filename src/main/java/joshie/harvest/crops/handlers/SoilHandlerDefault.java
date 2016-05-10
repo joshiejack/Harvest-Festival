@@ -4,7 +4,6 @@ import joshie.harvest.api.crops.ISoilHandler;
 import joshie.harvest.blocks.HFBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.EnumPlantType;
@@ -25,10 +24,7 @@ public class SoilHandlerDefault implements ISoilHandler, IPlantable {
 
     @Override
     public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, IPlantable plantable) {
-        Block below = world.getBlockState(pos.down()).getBlock();
-        if (block != null) {
-            return below == block && below.canSustainPlant(state, world, pos.down(), EnumFacing.UP, this);
-        } else return below.canSustainPlant(state, world, pos.down(), EnumFacing.UP, this);
+        return world.getBlockState(pos.down()).getBlock() == block;
     }
 
     @Override

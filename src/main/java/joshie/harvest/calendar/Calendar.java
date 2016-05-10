@@ -5,6 +5,7 @@ import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.api.core.ISeasonData;
+import net.minecraft.world.World;
 
 public class Calendar {
     protected ICalendarDate date = HFApi.CALENDAR.newDate(1, Season.SPRING, 1);
@@ -20,7 +21,7 @@ public class Calendar {
         return date.getSeasonData();
     }
 
-    public void newDay(long bedtime) {}
+    public void newDay(World world, long bedtime) {}
 
     public void updateForecast() {}
 

@@ -13,6 +13,7 @@ import joshie.harvest.crops.handlers.SoilHandlers;
 import joshie.harvest.crops.handlers.StateHandlerDefault;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -319,5 +320,15 @@ public class Crop implements ICrop {
     @Override
     public int hashCode() {
         return resource.hashCode();
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound tag) {
+
+    }
+
+    @Override
+    public void writeToNBT(NBTTagCompound tag) {
+
     }
 }

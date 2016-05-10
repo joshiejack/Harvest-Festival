@@ -53,6 +53,8 @@ harvestfestival.cheat.chunk.tester=[Helper] Chunk Tester
 harvestfestival.crop.seeds.format.standard=%C %S
 harvestfestival.crop.seeds.format.giant=%G %C %S
 harvestfestival.crop.seeds=Seeds
+harvestfestival.crop.seeds.useless=Bloody Useless Seeds
+harvestfestival.crop.seeds.corrupted=Corrupted Seeds, Yo!
 harvestfestival.crop.beetroot=Beetroot
 harvestfestival.crop.cabbage=Cabbage
 harvestfestival.crop.carrot=Carrot
@@ -336,6 +338,8 @@ harvestfestival.npc.generic.adult.gift.decent=Thanks for the gift.
 harvestfestival.npc.generic.adult.gift.dislike=Umm thanks, I guess.
 harvestfestival.npc.generic.adult.gift.bad=What were you thinking? Why would I want this?
 harvestfestival.npc.generic.adult.gift.terrible=What on earth is wrong with you, Why would I want such a stupid gift?
+#No Thanks
+harvestfestival.npc.generic.adult.gift.reject=I really do appreciate it, but I cannot accept another gift from you today.
 
 #Generic Child Thanks
 harvestfestival.npc.generic.child.gift.awesome=OMG! Yes, Yes Yes, thanks you sooooooooooo much! It's amazing!
@@ -344,14 +348,18 @@ harvestfestival.npc.generic.child.gift.decent=Nice, thank you!
 harvestfestival.npc.generic.child.gift.dislike=Hmm, I'm not so sure I like this.
 harvestfestival.npc.generic.child.gift.bad=Why would you do this to me? :(
 harvestfestival.npc.generic.child.gift.terrible=I HATE YOU, TAKE THIS AWAAAAY!!!
+#No Thanks
+harvestfestival.npc.generic.child.gift.reject=No thank you! Maybe tomorrow :D
 
 #Generic Elder Thanks
-harvestfestival.npc.generic.adult.gift.awesome=In all my life, I have never received such a beautiful gift. With all my heart thank you.
-harvestfestival.npc.generic.adult.gift.good=That was such a lovely thing for you to give me. Thank you.
-harvestfestival.npc.generic.adult.gift.decent=Thanks for making me smile.
-harvestfestival.npc.generic.adult.gift.dislike=That was not a good idea.
-harvestfestival.npc.generic.adult.gift.bad=Are trying to insult me?
-harvestfestival.npc.generic.adult.gift.terrible=You should be caned for giving me such a terrible gift.
+harvestfestival.npc.generic.elder.gift.awesome=In all my life, I have never received such a beautiful gift. With all my heart thank you.
+harvestfestival.npc.generic.elder.gift.good=That was such a lovely thing for you to give me. Thank you.
+harvestfestival.npc.generic.elder.gift.decent=Thanks for making me smile.
+harvestfestival.npc.generic.elder.gift.dislike=That was not a good idea.
+harvestfestival.npc.generic.elder.gift.bad=Are trying to insult me?
+harvestfestival.npc.generic.elder.gift.terrible=You should be caned for giving me such a terrible gift.
+#No Thanks
+harvestfestival.npc.generic.elder.gift.reject=Sorry young one, but with great respect I cannot take another gift from you today.
 
 #Goddess
 harvestfestival.npc.goddess.greeting1=Who are you, stranger?

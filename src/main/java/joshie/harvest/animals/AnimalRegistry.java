@@ -15,8 +15,8 @@ import net.minecraftforge.oredict.OreDictionary;
 import java.util.HashMap;
 
 public class AnimalRegistry implements IAnimalHandler {
-    private static final HashMap<String, IAnimalType> types = new HashMap<String, IAnimalType>();
-    private static final HashMap<SafeStack, AnimalFoodType> registry = new HashMap<SafeStack, AnimalFoodType>();
+    private static final HashMap<String, IAnimalType> types = new HashMap<>();
+    private static final HashMap<SafeStack, AnimalFoodType> registry = new HashMap<>();
 
     //Internal Convenience method
     static void registerFoodsAsType(AnimalFoodType type, Item... items) {

@@ -2,6 +2,7 @@ package joshie.harvest.npc.gui;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.core.config.NPC;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.ToolHelper;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.gift.Gifts.Quality;
@@ -26,6 +27,10 @@ public class GuiNPCGift extends GuiNPCChat {
             if (relationship >= NPC.ADJUSTED_MARRIAGE_REQUIREMENT && npc.getNPC().isMarriageCandidate()) {
                 return npc.getNPC().getAcceptProposal();
             } else return npc.getNPC().getRejectProposal();
-        } else return npc.getNPC().getThanks(value);
+        }
+
+        if (HFTrackers.getClientPlayerTracker().getRelationships().gift(player, npc.getRelatable(), value.getRelationPoints())) {
+            return npc.getNPC().getThanks(value);
+        } else return npc.getNPC().getNoThanks();
     }
 }

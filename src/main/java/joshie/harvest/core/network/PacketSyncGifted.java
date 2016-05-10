@@ -9,42 +9,38 @@ import joshie.harvest.player.relationships.RelationshipHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 
-public class PacketSyncRelationship extends PenguinPacket {
-    private IRelatableDataHandler handler;
+public class PacketSyncGifted extends PenguinPacket {
     private IRelatable relatable;
-    private int value;
-    private boolean particles;
+    private IRelatableDataHandler handler;
+    private boolean gifted;
 
-    public PacketSyncRelationship() {}
+    public PacketSyncGifted() {}
 
-    public PacketSyncRelationship(IRelatable relatable, int value, boolean particles) {
+    public PacketSyncGifted(IRelatable relatable, boolean gifted) {
         this.relatable = relatable;
-        this.value = value;
-        this.particles = particles;
+        this.gifted = gifted;
     }
 
     @Override
     public void toBytes(ByteBuf buf) {
-        buf.writeInt(value);
-        buf.writeBoolean(particles);
         ByteBufUtils.writeUTF8String(buf, relatable.getDataHandler().name());
         relatable.getDataHandler().toBytes(relatable, buf);
+        buf.writeBoolean(gifted);
     }
 
     @Override
     public void fromBytes(ByteBuf buf) {
-        value = buf.readInt();
-        particles = buf.readBoolean();
         String handlerName = ByteBufUtils.readUTF8String(buf);
         handler = RelationshipHelper.getHandler(handlerName).copy();
         handler.fromBytes(buf);
+        gifted = buf.readBoolean();
     }
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        IRelatable relatable = handler.onMessage(particles);
+        IRelatable relatable = handler.onMessage(false);
         if (relatable != null) {
-            HFTrackers.getClientPlayerTracker().getRelationships().setRelationship(relatable, value);
+            HFTrackers.getClientPlayerTracker().getRelationships().setGifted(relatable, gifted);
         }
     }
 }

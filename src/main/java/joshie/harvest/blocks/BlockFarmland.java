@@ -24,6 +24,7 @@ import java.util.Random;
 
 public class BlockFarmland extends BlockHFBaseEnum<Moisture> {
     private final AxisAlignedBB FARMLAND_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.9375D, 1.0D);
+    private final IBlockState DRY;
     private final IBlockState WET;
 
     public BlockFarmland() {
@@ -31,6 +32,7 @@ public class BlockFarmland extends BlockHFBaseEnum<Moisture> {
         setTickRandomly(true);
         setLightOpacity(255);
         setSoundType(SoundType.GROUND);
+        DRY = getStateFromEnum(Moisture.DRY);
         WET = getStateFromEnum(Moisture.WET);
         setBlockUnbreakable();
     }
@@ -68,7 +70,14 @@ public class BlockFarmland extends BlockHFBaseEnum<Moisture> {
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
         if (state != WET && world.isRainingAt(pos.up())) {
             world.setBlockState(pos, WET, 2);
+        } else if (!hasCrops(world, pos) && state != DRY) {
+            world.setBlockState(pos, DRY, 2);
         }
+    }
+
+    private boolean hasCrops(World worldIn, BlockPos pos)  {
+        Block block = worldIn.getBlockState(pos.up()).getBlock();
+        return block instanceof net.minecraftforge.common.IPlantable && canSustainPlant(worldIn.getBlockState(pos), worldIn, pos, net.minecraft.util.EnumFacing.UP, (net.minecraftforge.common.IPlantable)block);
     }
 
     @Override

@@ -18,14 +18,18 @@ public class NBTHelper {
             for (int i = 0; i < list.tagCount(); i++) {
                 H stack = h.newInstance();
                 stack.readFromNBT(list.getCompoundTagAt(i));
-                collection.add(stack);
+                if (stack.getKey() != null) {
+                    collection.add(stack);
+                }
             }
 
             return collection;
-        } catch (Exception e) {}
+        } catch (Exception e) { e.printStackTrace(); }
 
         //Whatever
-        return null;
+        try {
+            return c.newInstance();
+        } catch (Exception e) { return  null; }
     }
 
     public static <H extends HolderStack> ArrayList<H> readList(Class<H> h, NBTTagList list) {
@@ -38,10 +42,12 @@ public class NBTHelper {
 
     public static <C extends Collection<? extends HolderStack>> NBTTagList writeCollection(C set) {
         NBTTagList list = new NBTTagList();
-        for (HolderStack stack: set) {
-            NBTTagCompound tag = new NBTTagCompound();
-            stack.writeToNBT(tag);
-            list.appendTag(tag);
+        if (set != null) {
+            for (HolderStack stack : set) {
+                NBTTagCompound tag = new NBTTagCompound();
+                stack.writeToNBT(tag);
+                list.appendTag(tag);
+            }
         }
 
         return list;
@@ -66,7 +72,9 @@ public class NBTHelper {
             try {
                 K holder = c.newInstance();
                 holder.readFromNBT(tag);
-                map.put(holder, (V) holder.getValue());
+                if (holder.getKey() != null) {
+                    map.put(holder, (V) holder.getValue());
+                }
             } catch (Exception e) {}
         }
 

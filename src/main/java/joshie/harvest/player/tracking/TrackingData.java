@@ -12,9 +12,9 @@ import org.apache.commons.lang3.tuple.Pair;
 import java.util.HashSet;
 
 public class TrackingData {
-    HashSet<CropHolderStack> cropTracker = new HashSet<>(); //Crops that have been harvested
-    HashSet<SellHolderStack> sellTracker = new HashSet<>(); //Items That have been sold
-    HashSet<ItemHolderStack> obtained = new HashSet<>(); //Items that have been obtained
+    protected HashSet<CropHolderStack> cropTracker = new HashSet<>(); //Crops that have been harvested
+    protected HashSet<SellHolderStack> sellTracker = new HashSet<>(); //Items That have been sold
+    protected HashSet<ItemHolderStack> obtained = new HashSet<>(); //Items that have been obtained
 
 
     //TODO: Track Mystril tools and blessed tools
@@ -39,41 +39,13 @@ public class TrackingData {
 
         @Override
         public boolean equals(Object obj) {
-            if (obj == null || !(obj instanceof HolderStack)) return false;
+            if (obj == null || !(obj instanceof HolderStack) || getKey() == null || ((HolderStack)obj).getKey() == null) return false;
             return (((HolderStack) obj).getKey()).equals(getKey());
         }
 
         @Override
         public int hashCode() {
-            return getKey().hashCode();
-        }
-    }
-
-    public static class IntegerHolderStack extends HolderStack<IntegerHolderStack, Integer> {
-        public int value;
-
-        public IntegerHolderStack(int i) {
-            this.value = i;
-        }
-
-        @Override
-        public void merge(IntegerHolderStack stack) {
-            value += stack.value;
-        }
-
-        @Override
-        public Integer getKey() {
-            return value;
-        }
-
-        @Override
-        public void readFromNBT(NBTTagCompound tag) {
-            value = tag.getInteger("Amount");
-        }
-
-        @Override
-        public void writeToNBT(NBTTagCompound tag) {
-            tag.setInteger("Amount", value);
+            return getKey() == null ? 0: getKey().hashCode();
         }
     }
 
@@ -81,8 +53,10 @@ public class TrackingData {
         public ICrop crop;
         public int amount; //Amount of this item sold
 
+        public CropHolderStack() {}
         public CropHolderStack (ICrop crop) {
-            amount = 1;
+            this.crop = crop;
+            this.amount = 1;
         }
 
         @Override
@@ -103,8 +77,10 @@ public class TrackingData {
 
         @Override
         public void writeToNBT(NBTTagCompound tag) {
-            tag.setString("CropResource", crop.getResource().toString());
-            tag.setInteger("SellAmount", amount);
+            if (crop != null) {
+                tag.setString("CropResource", crop.getResource().toString());
+                tag.setInteger("SellAmount", amount);
+            }
         }
     }
 
@@ -112,6 +88,7 @@ public class TrackingData {
         public int amount; //Amount of this item sold
         public long sell; //Amount of money made from this item
 
+        public SellHolderStack() {}
         public SellHolderStack(ItemStack stack) {
             super(stack);
         }
@@ -155,6 +132,7 @@ public class TrackingData {
     public static class ItemHolder extends GiftHolder<ItemHolder, Item> {
         private Item item;
 
+        public ItemHolder() { super(null); }
         public ItemHolder(Item item) {
             super(null);
             this.item = item;
@@ -185,6 +163,7 @@ public class TrackingData {
         private Item item;
         private int meta;
 
+        public ItemHolderStack() { super(null); }
         public ItemHolderStack(Item item, int meta) {
             super(null);
             this.item = item;

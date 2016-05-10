@@ -182,14 +182,14 @@ public class BlockCrop extends BlockHFBaseEnum<Stage> implements IPlantable, IGr
     //Return 0.75F if the plant isn't withered, otherwise, unbreakable!!!
     public float getPlayerRelativeBlockHardness(IBlockState state, EntityPlayer player, World world, BlockPos pos) {
         Stage stage = getEnumFromState(state);
-        ItemStack held = player.getActiveItemStack();
+        ItemStack held = player.getHeldItemMainhand();
         ICropData crop = HFApi.CROPS.getCropAtLocation(world, pos);
         if (crop.getCrop().growsToSide() != null && crop.getStage() == crop.getCrop().getStages()) {
             return 0F; //If the crop is fully grown, and grows to the side. Make it immune to destruction.
         }
 
         //If this crop is withered return 0
-        if (held == null || (!(held.getItem() instanceof IBreakCrops))) return stage == Stage.WITHERED ? 0 : 0.75F;
+        if (held == null || (!(held.getItem() instanceof IBreakCrops))) return stage.isWithered() ? 0 : 0.75F;
         return ((IBreakCrops) held.getItem()).getStrengthVSCrops(player, world, pos, state, held);
     }
 

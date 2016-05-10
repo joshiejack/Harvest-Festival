@@ -5,7 +5,6 @@ import joshie.harvest.core.helpers.PlayerHelper;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketWateringCan;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -76,8 +75,8 @@ public class ItemWateringCan extends ItemBaseTool implements IFluidContainerItem
     @Override
     public double getDurabilityForDisplay(ItemStack stack) {
         if (stack.hasTagCompound()) {
-            byte water = stack.getTagCompound().getByte("Water");
-            return (water / 128) * 100D;
+            int water = stack.getTagCompound().getByte("Water");
+            return (double) (128D - water) / 128D;
         } else return 0D;
     }
 
@@ -183,7 +182,7 @@ public class ItemWateringCan extends ItemBaseTool implements IFluidContainerItem
         } else {
             EnumFacing front = joshie.harvest.core.helpers.generic.DirectionHelper.getFacingFromEntity(player);
             Block initial = world.getBlockState(pos).getBlock();
-            if (!(initial instanceof BlockFarmland) && (!(initial instanceof IPlantable))) {
+            if (!(initial instanceof joshie.harvest.blocks.BlockFarmland) && (!(initial instanceof IPlantable))) {
                 return EnumActionResult.FAIL;
             }
 
@@ -196,7 +195,7 @@ public class ItemWateringCan extends ItemBaseTool implements IFluidContainerItem
                             Block block = world.getBlockState(new BlockPos(x2, y2, z2)).getBlock();
                             if (block instanceof IPlantable) {
                                 watered = hydrate(player, stack, world, new BlockPos(x2, y2 - 1, z2));
-                            } else if (block instanceof BlockFarmland) {
+                            } else if (block instanceof joshie.harvest.blocks.BlockFarmland) {
                                 watered = hydrate(player, stack, world, new BlockPos(x2, y2, z2));
                             }
                         }

@@ -7,6 +7,7 @@ import joshie.harvest.api.calendar.Weekday;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.blocks.BlockCrop;
+import joshie.harvest.blocks.BlockCrop.Stage;
 import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.CropHelper;
@@ -157,13 +158,14 @@ public class CropTrackerServer extends CropTracker {
             world.setBlockState(pos.up(), HFBlocks.CROPS.getStateFromEnum(BlockCrop.Stage.WITHERED_DOUBLE), 2);
         }
 
-        world.setBlockState(pos, HFBlocks.CROPS.getStateFromEnum(BlockCrop.Stage.WITHERED_DOUBLE), 2);
+        world.setBlockState(pos, HFBlocks.CROPS.getStateFromEnum(Stage.WITHERED), 2);
         plantCrop(null, world, pos, data.getCrop(), data.getStage());
     }
 
     @Override
     public void removeCrop(World world, BlockPos pos) {
         super.removeCrop(world, pos);
+        sendToEveryone(new PacketSyncCrop(world.provider.getDimension(), pos));
         HFTrackers.markDirty();
     }
 

@@ -38,13 +38,9 @@ public class CropHelper {
 
     //Returns false if the soil is no longer farmland and should be converted to dirt
     public static boolean dehydrate(World world, BlockPos pos, IBlockState state) {
-        if (!(state.getBlock() instanceof joshie.harvest.blocks.BlockFarmland)) return true;
-        if (isHydrated(world, pos)) {
-            world.setBlockState(pos, HFBlocks.FARMLAND.getStateFromEnum(Moisture.DRY), 2);
-            return true;
-        } else {
-            return false;
-        }
+        world.setBlockState(pos, HFBlocks.FARMLAND.getStateFromEnum(Moisture.DRY), 2);
+        world.markAndNotifyBlock(pos, world.getChunkFromBlockCoords(pos), state, state, 2);
+        return true;
     }
 
     //Returns whether the farmland is hydrated
@@ -55,6 +51,7 @@ public class CropHelper {
 
     //Harvests the crop at this location
     public static boolean harvestCrop(EntityPlayer player, World world, BlockPos pos) {
+        System.out.println("Harvesting");
         ItemStack stack = HFTrackers.getCropTracker().harvest(player, world, pos);
         if (!world.isRemote && stack != null) {
             ItemHelper.dropBlockAsItem(world, pos.getX(), pos.getY(), pos.getZ(), stack);

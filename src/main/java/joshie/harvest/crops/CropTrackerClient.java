@@ -13,7 +13,7 @@ public class CropTrackerClient extends CropTracker {
     @Override
     public ICropData getCropDataForLocation(World world, BlockPos pos) {
         ICropData data = super.getCropDataForLocation(world, pos);
-        if (data == null) { //If the data is null, ask the server!?
+        if (data == null || data.getCrop() == HFCrops.null_crop) { //If the data is null, ask the server!?
             PacketHandler.sendToServer(new PacketCropRequest(world, pos));
         }
 

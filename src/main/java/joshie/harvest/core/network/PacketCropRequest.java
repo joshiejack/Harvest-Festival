@@ -8,18 +8,14 @@ import net.minecraft.world.World;
 import static joshie.harvest.core.helpers.generic.MCServerHelper.getWorld;
 
 public class PacketCropRequest extends AbstractPacketLocation {
-    private int dimension;
-    private BlockPos pos;
-
     public PacketCropRequest() { }
-
     public PacketCropRequest(World world, BlockPos pos) {
         super(world.provider.getDimension(), pos);
     }
 
     @Override
     public boolean handleServerPacket(EntityPlayerMP player) {
-        HFTrackers.getCropTracker().sendUpdateToClient(player, getWorld(dimension), pos);
+        HFTrackers.getCropTracker().sendUpdateToClient(player, getWorld(dim), pos);
         return true;
     }
 }

@@ -2,18 +2,23 @@ package joshie.harvest.core.network;
 
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.core.network.penguin.PenguinPacket;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 
 public abstract class AbstractPacketLocation extends PenguinPacket {
     protected int dim;
     public BlockPos pos;
 
-    public AbstractPacketLocation() {
-    }
+    public AbstractPacketLocation() {}
 
     public AbstractPacketLocation(int dim, BlockPos pos) {
         this.dim = dim;
         this.pos = pos;
+    }
+
+    public AbstractPacketLocation(TileEntity tile) {
+        this.dim = tile.getWorld().provider.getDimension();
+        this.pos = tile.getPos();
     }
 
     @Override

@@ -31,4 +31,8 @@ public class ToolHelper {
             stack.getTagCompound().setDouble("Level", newLevel);
         }
     }
+
+    public static boolean isEgg(ItemStack heldItem) {
+        return heldItem.getItem() == HFItems.EGG;
+    }
 }

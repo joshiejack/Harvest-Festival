@@ -11,8 +11,7 @@ import net.minecraft.util.math.BlockPos;
 public class AbstractPacketOrientation extends AbstractPacketLocation {
     private EnumFacing dir;
 
-    public AbstractPacketOrientation() {
-    }
+    public AbstractPacketOrientation() {}
 
     public AbstractPacketOrientation(int dim, BlockPos pos, EnumFacing dir) {
         super(dim, pos);

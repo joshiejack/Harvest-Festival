@@ -41,7 +41,7 @@ public class HFBlocks {
     public static void preInit() {
         GODDESS.setBlock(GODDESS_WATER);
         RegistryHelper.registerTiles(HFModInfo.MODID, TileCooking.class, TileFridge.class, TileFryingPan.class, TileCounter.class, TileMarker.class,
-                TileMixer.class, TileOven.class, TilePot.class);
+                TileMixer.class, TileOven.class, TilePot.class, TileNest.class, TileTrough.class);
     }
 
     @SideOnly(Side.CLIENT)

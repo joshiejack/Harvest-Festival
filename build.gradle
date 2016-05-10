@@ -37,7 +37,7 @@ minecraft {
     mappings = "${mappings_version}"
     
     replace "@VERSION@", "${mod_version}"
-    replaceIn "ProgressionInfo.java"
+    replaceIn "HFModInfo.java"
 }
 
 dependencies {

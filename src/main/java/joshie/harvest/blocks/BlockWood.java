@@ -63,6 +63,8 @@ public class BlockWood extends BlockHFBaseEnumRotatableMeta<Woodware> {
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
         Woodware wood = getEnumFromState(state);
         switch (wood) {
+            case SHIPPING:
+                return new AxisAlignedBB(0D, 0D, 0D, 1D, 0.6D, 1D);
             default:
                 return FULL_BLOCK_AABB;
         }
@@ -70,6 +72,7 @@ public class BlockWood extends BlockHFBaseEnumRotatableMeta<Woodware> {
 
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack held, EnumFacing side, float hitX, float hitY, float hitZ) {
+        System.out.println(state);
         Woodware wood = getEnumFromState(state);
         if (player.isSneaking()) return false;
         else if ((wood == Woodware.SHIPPING) && held != null) {

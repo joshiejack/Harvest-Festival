@@ -250,10 +250,9 @@ harvestfestival.cookware.mixing.bowl=Mixing Bowl
 harvestfestival.cookware.baking=Baking Tray
 harvestfestival.cookware.steamer=Steamer
 
-harvestfestival.general.block.shipping=Shipment Box
-harvestfestival.general.block.nest=Incubator
-harvestfestival.general.block.trough=Food Trough
-harvestfestival.general.block.trough2=Food Trough
+harvestfestival.woodware.shipping=Shipment Box
+harvestfestival.woodware.nest=Incubator
+harvestfestival.woodware.trough=Food Trough
 
 harvestfestival.flowers.block.goddess=Goddess Flower
 

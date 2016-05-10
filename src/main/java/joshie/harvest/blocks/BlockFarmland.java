@@ -70,8 +70,9 @@ public class BlockFarmland extends BlockHFBaseEnum<Moisture> {
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
         if (state != WET && world.isRainingAt(pos.up())) {
             world.setBlockState(pos, WET, 2);
-        } else if (!hasCrops(world, pos) && state != DRY) {
-            world.setBlockState(pos, DRY, 2);
+        } else if (!hasCrops(world, pos)) {
+            if (state == WET) world.setBlockState(pos, DRY, 2);
+            else if (state == DRY) world.setBlockState(pos, Blocks.DIRT.getDefaultState(), 2);
         }
     }
 

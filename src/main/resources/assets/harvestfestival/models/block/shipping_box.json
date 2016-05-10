@@ -1,4 +1,4 @@
-{
+{"parent": "block/block",
 "textures": {
     "particle": "harvestfestival:models/shipping_box",
     "texture": "harvestfestival:models/shipping_box"

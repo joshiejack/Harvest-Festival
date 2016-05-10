@@ -96,7 +96,6 @@
 - Animals will give better products when cared for (brushing, talking, milking/shearing, treats) - J
 - Animal Pregnancy is working correctly (Impregnanted via miracle potion, takes few days to hatch) - J
 - Buying Entities works correctly - J
-- Can Ship items and get paid the next day - J
 - All Cooking utensils work correctly - J
 - All Recipes can be successfully made - J
 - Shops are working correctly - J

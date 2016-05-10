@@ -72,17 +72,14 @@ public class BlockWood extends BlockHFBaseEnumRotatableMeta<Woodware> {
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack held, EnumFacing side, float hitX, float hitY, float hitZ) {
         Woodware wood = getEnumFromState(state);
         if (player.isSneaking()) return false;
-        else if ((wood == Woodware.SHIPPING) && player.getActiveItemStack() != null) {
+        else if ((wood == Woodware.SHIPPING) && held != null) {
             long sell = SHIPPING.getSellValue(held);
             if (sell > 0) {
-                if (!player.capabilities.isCreativeMode) {
-                    player.inventory.decrStackSize(player.inventory.currentItem, 1);
-                }
-
                 if (!world.isRemote) {
-                    HFTrackers.getServerPlayerTracker(player).getTracking().addForShipping(held);
+                    HFTrackers.getServerPlayerTracker(player).getTracking().addForShipping(held.copy());
                 }
 
+                held.splitStack(1);
                 return true;
             }
         } else if (wood == NEST) {

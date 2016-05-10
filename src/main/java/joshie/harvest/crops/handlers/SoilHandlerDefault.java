@@ -24,7 +24,7 @@ public class SoilHandlerDefault implements ISoilHandler, IPlantable {
 
     @Override
     public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, IPlantable plantable) {
-        return world.getBlockState(pos.down()).getBlock() == block;
+        return world.getBlockState(pos.down()).getBlock() == HFBlocks.FARMLAND;
     }
 
     @Override

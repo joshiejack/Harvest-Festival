@@ -2,15 +2,15 @@ package joshie.harvest.api.cooking;
 
 import net.minecraft.util.ResourceLocation;
 
-public interface ICookingComponent {
+public interface ICookingIngredient {
     /** Whether these cooking components are equal or not **/
-    public boolean isEqual(ICookingComponent component);
+    public boolean isEqual(ICookingIngredient component);
 
     /** Adds this component as an equivalent item **/
-    public ICookingComponent add(ICookingComponent... component);
+    public ICookingIngredient add(ICookingIngredient... component);
 
     /** Assigns this component to the other components equivalency list **/
-    public ICookingComponent assign(ICookingComponent... component);
+    public ICookingIngredient assign(ICookingIngredient... component);
     
     /** @return     the unlocalized name **/
     public String getUnlocalizedName();
@@ -18,7 +18,7 @@ public interface ICookingComponent {
     /** Assign a fluid to this ingredient, for rendering purposes
      *  @param      fluid the fluid
      *  @return     the ingredient **/
-    public ICookingComponent setFluid(ResourceLocation fluid);
+    public ICookingIngredient setFluid(ResourceLocation fluid);
     
     /** @return     the fluid, can be null **/
     public ResourceLocation getFluid();

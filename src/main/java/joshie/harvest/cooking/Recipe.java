@@ -1,29 +1,39 @@
 package joshie.harvest.cooking;
 
-import joshie.harvest.api.cooking.ICookingComponent;
+import joshie.harvest.api.cooking.ICookingIngredient;
 import joshie.harvest.api.cooking.IMeal;
 import joshie.harvest.api.cooking.IMealRecipe;
 import joshie.harvest.api.cooking.IUtensil;
+import joshie.harvest.items.HFItems;
+import joshie.harvest.items.ItemMeal;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.translation.I18n;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class Recipe implements IMealRecipe {
+public class Recipe extends net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl<Recipe> implements IMealRecipe {
+    private final String name;
     public final IMeal result;
-    private final ICookingComponent[] requiredIngredients;
+    private final ICookingIngredient[] requiredIngredients;
 
     //Optional Extras
     private IUtensil requiredTool;
-    private ICookingComponent[] optionalIngredients;
+    private ICookingIngredient[] optionalIngredients;
 
-    public Recipe(ICookingComponent[] ingredients, IMeal result) {
+    public Recipe(String unlocalised, ICookingIngredient[] ingredients, IMeal result) {
+        this.name = unlocalised;
         this.requiredIngredients = ingredients;
         this.result = result;
     }
 
     @Override
-    public IMealRecipe setOptionalIngredients(ICookingComponent... ingredients) {
+    public String getDisplayName() {
+        return I18n.translateToLocal(name);
+    }
+
+    @Override
+    public IMealRecipe setOptionalIngredients(ICookingIngredient... ingredients) {
         this.optionalIngredients = ingredients;
         return this;
     }
@@ -46,9 +56,9 @@ public class Recipe implements IMealRecipe {
         return this;
     }
 
-    private boolean recipeHasThisIngredient(ICookingComponent ingredient) {
+    private boolean recipeHasThisIngredient(ICookingIngredient ingredient) {
         //First we check if the Required Ingredients have this ingredient in them
-        for (ICookingComponent i : requiredIngredients) {
+        for (ICookingIngredient i : requiredIngredients) {
             if (i.isEqual(ingredient)) {
                 return true;
             }
@@ -56,7 +66,7 @@ public class Recipe implements IMealRecipe {
 
         //Second we check if the Optional Ingredients have this ingredient in them
         if (optionalIngredients != null) {
-            for (ICookingComponent i : optionalIngredients) {
+            for (ICookingIngredient i : optionalIngredients) {
                 if (i.isEqual(ingredient)) return true;
             }
         }
@@ -65,9 +75,9 @@ public class Recipe implements IMealRecipe {
         return false;
     }
 
-    private boolean ingredientListContains(Set<ICookingComponent> ingredients, ICookingComponent required) {
+    private boolean ingredientListContains(Set<ICookingIngredient> ingredients, ICookingIngredient required) {
         //Now we should loop through all the ingredient passed in
-        for (ICookingComponent passed : ingredients) {
+        for (ICookingIngredient passed : ingredients) {
             if (required.isEqual(passed))
                 return true; //If we found this ingredient in the list, then we can return it as true;
         }
@@ -76,13 +86,13 @@ public class Recipe implements IMealRecipe {
     }
 
     @Override
-    public IMeal getMeal(IUtensil utensil, HashSet<ICookingComponent> ingredients) {
+    public IMeal getMeal(IUtensil utensil, HashSet<ICookingIngredient> ingredients) {
         if (ingredients == null || ingredients.size() < 1 || utensil != requiredTool)
             return null; //If we have no utensils, or not enough recipes remove them all
 
         /** Step one.
          *  Validate that all supplied Ingredients are Allowed in this Meal.*/
-        for (ICookingComponent ingredient : ingredients) { //Loop through all the ingredients to CHECK if the recipe allow this type of food in to it
+        for (ICookingIngredient ingredient : ingredients) { //Loop through all the ingredients to CHECK if the recipe allow this type of food in to it
             if (!recipeHasThisIngredient(ingredient))
                 return null; //If the recipe DOES not contain this ingredient then we should return null.
         }
@@ -91,7 +101,7 @@ public class Recipe implements IMealRecipe {
          *  Now that we know that all the ingredients are valid ingredients for this recipe.
          *  We need to actually check that we HAVE all of the required ingredients.
          */
-        for (ICookingComponent required : requiredIngredients) { //Loop through the required ingredients
+        for (ICookingIngredient required : requiredIngredients) { //Loop through the required ingredients
             //If the ingredients list does NOT contain this item we should return null
             if (!ingredientListContains(ingredients, required)) return null;
         }
@@ -99,7 +109,7 @@ public class Recipe implements IMealRecipe {
         /** Final step is to build the meal **/
         IMeal meal = new Meal(result);
         if (optionalIngredients != null) { //Loop through optional ingredients
-            for (ICookingComponent optional : optionalIngredients) {
+            for (ICookingIngredient optional : optionalIngredients) {
                 if (ingredientListContains(ingredients, optional)) { //If the optional ingredients list has this item
                     meal.addIngredient(optional);
                 }
@@ -118,11 +128,16 @@ public class Recipe implements IMealRecipe {
     public IMeal getBestMeal() {
         IMeal meal = getMeal();
         if (optionalIngredients != null) {
-            for (ICookingComponent i : optionalIngredients) {
+            for (ICookingIngredient i : optionalIngredients) {
                 meal.addIngredient(i);
             }
         }
 
         return meal;
+    }
+
+    @Override
+    public ItemStack cook(IMeal meal) {
+        return ItemMeal.cook(new ItemStack(HFItems.MEAL), this, meal);
     }
 }

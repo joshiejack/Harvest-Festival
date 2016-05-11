@@ -1,11 +1,11 @@
 package joshie.harvest.cooking;
 
-import joshie.harvest.api.cooking.ICookingComponent;
+import joshie.harvest.api.cooking.ICookingIngredient;
 import net.minecraft.util.ResourceLocation;
 
 import java.util.HashSet;
 
-public class Ingredient implements ICookingComponent {
+public class Ingredient implements ICookingIngredient {
     private HashSet<Ingredient> equivalents = new HashSet<Ingredient>();
     private String unlocalized;
     public int stamina;
@@ -38,8 +38,8 @@ public class Ingredient implements ICookingComponent {
     }
 
     @Override
-    public ICookingComponent add(ICookingComponent... components) {
-        for (ICookingComponent component : components) {
+    public ICookingIngredient add(ICookingIngredient... components) {
+        for (ICookingIngredient component : components) {
             equivalents.add((Ingredient) component);
         }
 
@@ -47,8 +47,8 @@ public class Ingredient implements ICookingComponent {
     }
 
     @Override
-    public ICookingComponent assign(ICookingComponent... ingredient) {
-        for (ICookingComponent c : ingredient) {
+    public ICookingIngredient assign(ICookingIngredient... ingredient) {
+        for (ICookingIngredient c : ingredient) {
             c.add(this);
         }
 
@@ -56,7 +56,7 @@ public class Ingredient implements ICookingComponent {
     }
 
     @Override
-    public ICookingComponent setFluid(ResourceLocation fluid) {
+    public ICookingIngredient setFluid(ResourceLocation fluid) {
         this.fluid = fluid;
         return this;
     }
@@ -100,7 +100,7 @@ public class Ingredient implements ICookingComponent {
      * This should return true if the passed in ingredient is the same as this one
      **/
     @Override
-    public boolean isEqual(ICookingComponent ingredient) {
+    public boolean isEqual(ICookingIngredient ingredient) {
         for (Ingredient i : equivalents) { //Return true if the item passed in matches this one
             if (i.getUnlocalizedName().equals(ingredient.getUnlocalizedName()))
                 return true; //Loops the equivalents list, this item is contained in that list by default

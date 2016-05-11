@@ -1,14 +1,13 @@
 package joshie.harvest.cooking;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.cooking.IMeal;
-import joshie.harvest.api.cooking.IMealRecipe;
 import joshie.harvest.cooking.render.MappingEvent;
 import joshie.harvest.cooking.render.MealDefinition;
 import joshie.harvest.core.helpers.ModelHelper;
 import joshie.harvest.items.HFItems;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.relauncher.Side;
@@ -27,11 +26,10 @@ public class HFCooking {
 
     @SideOnly(Side.CLIENT)
     public static void initClient() {
-        for (IMealRecipe recipe : HFApi.COOKING.getRecipes()) {
-            IMeal meal = recipe.getMeal();
-            ModelResourceLocation model = new ModelResourceLocation(meal.getResource(), "inventory");
+        for (Recipe recipe : FoodRegistry.REGISTRY.getValues()) {
+            ModelResourceLocation model = new ModelResourceLocation(new ResourceLocation(recipe.getRegistryName().getResourceDomain(), "meals/" + recipe.getRegistryName().getResourcePath()), "inventory");
             ModelBakery.registerItemVariants(HFItems.MEAL, model);
-            MealDefinition.registerMeal(meal.getUnlocalizedName(), model);
+            MealDefinition.registerMeal(recipe, model);
         }
 
         for (Utensil utensil: Utensil.values()) {

@@ -4,6 +4,7 @@ import joshie.harvest.blocks.BlockStone.Type;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.util.Translate;
 import joshie.harvest.core.util.base.BlockHFBaseEnum;
+import joshie.harvest.core.util.generic.Text;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -23,7 +24,7 @@ import java.util.List;
 
 public class BlockStone extends BlockHFBaseEnum<Type> {
     public enum Type implements IStringSerializable {
-        REAL, DECORATIVE;
+        REAL, DECORATIVE_BLANK, DECORATIVE_PURPLE, DECORATIVE_SILVER, DECORATIVE_GREEN, DECORATIVE_BLUE, DECORATIVE_RED;
 
         @Override
         public String getName() {
@@ -42,8 +43,6 @@ public class BlockStone extends BlockHFBaseEnum<Type> {
         switch (getEnumFromState(state)) {
             case REAL:
                 return -1.0F;
-            case DECORATIVE:
-                return 4F;
             default:
                 return 4F;
         }
@@ -59,17 +58,15 @@ public class BlockStone extends BlockHFBaseEnum<Type> {
         switch (getEnumFromState(world.getBlockState(pos))) {
             case REAL:
                 return 6000000.0F;
-            case DECORATIVE:
-                return 14.0F;
             default:
-                return 5;
+                return 14.0F;
         }
     }
 
     @Override
     public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
         ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
-        if (getEnumFromState(world.getBlockState(pos)) == Type.DECORATIVE) {
+        if (getEnumFromState(world.getBlockState(pos)) != Type.REAL) {
             ret.add(new ItemStack(HFBlocks.STONE, 1, 1));
         }
 
@@ -82,8 +79,15 @@ public class BlockStone extends BlockHFBaseEnum<Type> {
     }
 
     @Override
+    public String getItemStackDisplayName(ItemStack stack) {
+        String unlocalized = getUnlocalizedName();
+        String name = stack.getItemDamage() != 0 ? "decorative" : stack.getItem().getUnlocalizedName(stack);
+        return Text.localizeFully(unlocalized + "." + name);
+    }
+
+    @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
-        if (stack.getItemDamage() == 1) list.add(Translate.translate("tooltip.dirt"));
+        if (stack.getItemDamage() != 0) list.add(Translate.translate("tooltip.dirt"));
     }
 }

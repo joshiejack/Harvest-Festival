@@ -24,13 +24,15 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 
 import java.util.UUID;
 
-public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnData, IRelatableProvider {
+public class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEntityAdditionalSpawnData, IRelatableProvider {
     private boolean init;
     private INPCTask task; //Currently executing task
     protected INPC npc;
@@ -41,18 +43,28 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
     public UUID owning_player;
     public int lastTeleport;
     public boolean hideName = true;
+    public BlockPos spawned;
 
     public enum Mode {
         DEFAULT, GIFT;
     }
 
-    public EntityNPC(UUID owning_player, EntityNPC entity) {
-        this(owning_player, entity.worldObj, entity.npc);
+    public EntityNPC(E entity) {
+        this(entity.owning_player, entity.worldObj, entity.npc);
         lover = entity.lover;
+        //setEntityInvulnerable(true);
     }
 
     public EntityNPC(World world) {
         this(null, world, HFNPCs.GODDESS);
+    }
+
+    public EntityNPC getNewEntity(EntityNPC entity) {
+        return new EntityNPC(entity);
+    }
+
+    public void setSpawnCoordinates(BlockPos pos) {
+        this.spawned = pos;
     }
 
     @Override
@@ -189,13 +201,37 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
     }
 
     @Override
-    public void setDead() {
-        if (!worldObj.isRemote && npc.respawns() && !isDead) {
-            EntityNPC clone = new EntityNPC(owning_player, this);
+    protected void onDeathUpdate() {
+        super.onDeathUpdate();
+        ++deathTime;
+        if (deathTime == 20) {
+            kill();
+            for (int k = 0; k < 20; ++k) {
+                double d2 = rand.nextGaussian() * 0.02D;
+                double d0 = rand.nextGaussian() * 0.02D;
+                double d1 = rand.nextGaussian() * 0.02D;
+                worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, posX + (double)(rand.nextFloat() * width * 2.0F) - (double)width, posY + (double)(rand.nextFloat() * height), posZ + (double)(rand.nextFloat() * width * 2.0F) - (double)width, d2, d0, d1, new int[0]);
+            }
+        }
+    }
+
+    @Override
+    protected void kill() {
+        setDead(); //Kill the existing mofo
+
+        System.out.println("Killed the entity");
+
+        //Respawn a new bugger
+        EntityNPC clone = getNewEntity((E)this);
+        BlockPos home = NPCHelper.getHomeForEntity(this);
+        EntityPlayer thePlayer = worldObj.getPlayerEntityByUUID(owning_player);
+        if (home == null) home = spawned;
+        if (thePlayer != null && home == null) home = new BlockPos(thePlayer.posX, thePlayer.posY, thePlayer.posZ);
+        if (home != null) {
+            clone.setPositionAndUpdate(home.getX() + 0.5D, home.getY() + 0.5D, home.getZ() + 0.5D);
+            clone.setSpawnCoordinates(home);
             worldObj.spawnEntityInWorld(clone);
         }
-
-        isDead = true;
     }
 
     @Override
@@ -217,6 +253,7 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
     @Override
     public void readEntityFromNBT(NBTTagCompound nbt) {
         super.readEntityFromNBT(nbt);
+        spawned = new BlockPos(nbt.getInteger("OriginalX"), nbt.getInteger("OriginalY"), nbt.getInteger("OriginalZ"));
         npc = HFApi.NPC.get(nbt.getString("NPC"));
         if (nbt.hasKey("Owner")) {
             owning_player = UUID.fromString(nbt.getString("Owner"));
@@ -232,6 +269,12 @@ public class EntityNPC extends EntityAgeable implements IEntityAdditionalSpawnDa
 
         if (owning_player != null) {
             nbt.setString("Owner", owning_player.toString());
+        }
+
+        if (spawned != null) {
+            nbt.setInteger("OriginalX", spawned.getX());
+            nbt.setInteger("OriginalY", spawned.getY());
+            nbt.setInteger("OriginalZ", spawned.getZ());
         }
     }
 

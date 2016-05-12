@@ -8,14 +8,19 @@ import net.minecraft.world.World;
 
 import java.util.UUID;
 
-public class EntityNPCShopkeeper extends EntityNPC {
+public class EntityNPCShopkeeper extends EntityNPC<EntityNPCShopkeeper> {
     private IShop shop;
     private boolean isWorking;
 
-    public EntityNPCShopkeeper(UUID owning_player, EntityNPCShopkeeper entity) {
-        super(owning_player, entity);
+    public EntityNPCShopkeeper(EntityNPCShopkeeper entity) {
+        super(entity);
         shop = entity.shop;
         isWorking = entity.isWorking;
+    }
+
+    @Override
+    public EntityNPCShopkeeper getNewEntity(EntityNPC entity) {
+        return new EntityNPCShopkeeper((EntityNPCShopkeeper)entity);
     }
 
     public EntityNPCShopkeeper(World world) {
@@ -36,16 +41,6 @@ public class EntityNPCShopkeeper extends EntityNPC {
         } else if (worldObj.getWorldTime() % 200 == 0 && !shop.isOpen(worldObj, null)) {
             isWorking = false;
         }
-    }
-
-    @Override
-    public void setDead() {
-        if (!worldObj.isRemote && npc.respawns()) {
-            EntityNPCShopkeeper clone = new EntityNPCShopkeeper(owning_player, this);
-            worldObj.spawnEntityInWorld(clone);
-        }
-
-        isDead = true;
     }
 
     @Override

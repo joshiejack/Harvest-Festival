@@ -79,7 +79,6 @@
     -E Items Spin
 
 ### To Check
-- NPCs respawn at their homes on death - J
 - NPCs walk home, if they fail they should teleport - J
 - Incubators will hatch chickens - J
 - Can Spawn the Goddess with the Flower Pot Trick - J

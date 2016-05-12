@@ -24,13 +24,18 @@ public class EntityNPCBuilder extends EntityNPCShopkeeper {
     public BlockPos headTowards = null;
     private int tick;
 
-    public EntityNPCBuilder(UUID owning_player, EntityNPCBuilder entity) {
-        super(owning_player, entity);
+    public EntityNPCBuilder(EntityNPCBuilder entity) {
+        super(entity);
         building = entity.building;
     }
 
     public EntityNPCBuilder(World world) {
         super(world);
+    }
+
+    @Override
+    public EntityNPCBuilder getNewEntity(EntityNPC entity) {
+        return new EntityNPCBuilder((EntityNPCBuilder)entity);
     }
 
     public EntityNPCBuilder(UUID owning_player, World world, INPC npc) {
@@ -88,17 +93,6 @@ public class EntityNPCBuilder extends EntityNPCShopkeeper {
         }
 
         return false;
-    }
-
-    @Override
-    public void setDead() {
-        if (!worldObj.isRemote && npc.respawns()) {
-            EntityNPCBuilder clone = new EntityNPCBuilder(owning_player, this);
-            clone.building = building;
-            worldObj.spawnEntityInWorld(clone);
-        }
-
-        isDead = true;
     }
 
     @Override

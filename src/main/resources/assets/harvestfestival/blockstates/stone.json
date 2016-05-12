@@ -1,17 +1,18 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-    "transform": "forge:default-block",
-    "model": "cube_all"
-  },
- "variants": {
- "normal": [
-		{ "model": "mine_wall/mine_wall", "weight": 10 },
-		{ "model": "mine_wall/mine_wall1", "weight": 2 },
-		{ "model": "mine_wall/mine_wall2", "weight": 2 },
-		{ "model": "mine_wall/mine_wall3", "weight": 2 },
-		{ "model": "mine_wall/mine_wall4", "weight": 2 },	
-		{ "model": "mine_wall/mine_wall5", "weight": 2 }
-		]
-	}
+  "variants": {
+    "type=real": [
+      { "model": "harvestfestival:mine_wall", "weight": 10 },
+      { "model": "harvestfestival:mine_wall1", "weight": 1 },
+      { "model": "harvestfestival:mine_wall2", "weight": 1 },
+      { "model": "harvestfestival:mine_wall3", "weight": 1 },
+      { "model": "harvestfestival:mine_wall4", "weight": 1 },
+      { "model": "harvestfestival:mine_wall5", "weight": 1 }
+    ],
+    "type=decorative_none": { "model": "harvestfestival:mine_wall" },
+    "type=decorative_purple": { "model": "harvestfestival:mine_wall1" },
+    "type=decorative_silver": { "model": "harvestfestival:mine_wall2" },
+    "type=decorative_green": { "model": "harvestfestival:mine_wall3" },
+    "type=decorative_blue": { "model": "harvestfestival:mine_wall4" },
+    "type=decorative_red": { "model": "harvestfestival:mine_wall5" }
+  }
 }

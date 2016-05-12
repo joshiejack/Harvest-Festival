@@ -54,6 +54,7 @@ public class ItemNPCSpawner extends ItemHFBaseMeta   {
             INPC npc = getNPC(stack.getItemDamage());
             EntityNPC entity = NPCHelper.getEntityForNPC(UUIDHelper.getPlayerUUID(player), world, npc);
             entity.setPosition(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5);
+            entity.setSpawnCoordinates(pos);
             world.spawnEntityInWorld(entity);
         }
         return EnumActionResult.FAIL;

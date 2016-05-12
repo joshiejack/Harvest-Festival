@@ -36,7 +36,10 @@
     - Mythic (Fells whole trees)
 - Add Basic Items to spawn that can be gathered (Expanded Later)- J
     - Weeds
-    - Breakable Rocks
+        - Rocks
+            - Small - > Gives 1 Stone
+            - Medium - > Gives 4 Stone
+            - Large > Gives 10 Stone
     - Stumps
         - Small - > Gives 3 Wood
         - Medium - > Gives 6 Wood
@@ -52,12 +55,30 @@
 - Change Meals to use ResourceLocation Identifiers
 - Change NPCs to use ResourceLocation Identifiers
 - Change Items to  Item Enums + Change Item Registry Helper
+- Change Seeds, Buildings etc to use ForgeControlledNameSpace and use metadata instead of NBT where appropriate
+- Add Sprinkler Block
+
+###(S)ounds, (E)ffects, (A)nimations
+- Frying Pan
+    -S - Sizzling
+- Pot
+    -S Bubbling
+    -E Bubbles
+- Oven
+    -S Fire Flicker
+    -S Timer Ping when Done
+    -A Open Door when placing stuff in
+- Fridge
+    -S Hummmm
+    -E Open Door
+- Counter
+    -S Chopping
+    -A Player Chopping
+- Mixer
+    -S Whirring
+    -E Items Spin
 
 ### To Check
-- Gift of NPCs is working correctly - J
-- Relation ship status of npcs is working correctly - J
-- Can you Buy Items only when they're available i.e. blue feather when ready to marry - J
-- Can you marry NPCs with the blue feather, when they like you enough - J
 - NPCs respawn at their homes on death - J
 - NPCs walk home, if they fail they should teleport - J
 - Incubators will hatch chickens - J
@@ -75,7 +96,6 @@
 - Animals will give better products when cared for (brushing, talking, milking/shearing, treats) - J
 - Animal Pregnancy is working correctly (Impregnanted via miracle potion, takes few days to hatch) - J
 - Buying Entities works correctly - J
-- Can Ship items and get paid the next day - J
 - All Cooking utensils work correctly - J
 - All Recipes can be successfully made - J
 - Shops are working correctly - J
@@ -106,16 +126,29 @@
 - Make Spawn Sheep Render the Sheep
 - Make Spawn Chicken Render the Chicken
 - Mine Wall/Floor in world Rendering and Cookware in inventory renders
+- Render Food/Liquids in Mixer correctly, render food on counter correctly - J
 
 ### Textures
 - Crop Grass Better Texture - Y
+- Winter Mine version - Y
+- Weed (Will use flower render) - Y
 - Textures for the NPCs which we stole + New Selection for Ondra > Ashlee - Y
 
 ### Models + Textures
-- Rocks - Y
-    - Large (Various) (Can be cominbed automatically)
-    - Medium (Various) (Can be cominbed automatically)
-    - Small (Various) (Can be combined automatically)
+- Rocks - Y ### See below...... >>>>>>>>>>>>>>>>>>>>>>>>>>>V
+    - Large (Various) (Can be cominbed automatically)      V
+    - Medium (Various) (Can be cominbed automatically)     V
+    - Small (Various) (Can be combined automatically)      V
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Same Models just different textures
+- Mining Rocks (Spring Mine, Winter Mine Versions >>> Potential Ore Deposits, Gathering Rocks (for getting stone from))
+    - Large                                                ^
+    - Medium                                               ^
+    - Small                                                ^
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>^
+- Gathering Rocks
+    - Large
+    - Medium
+    - Small
 - Branch - Y
     - Large
     - Medium
@@ -144,23 +177,9 @@
             - Left Side
             - Middle Section
             - Right Side
-- Cooking Pot - Y
-    - Liquid in Pot
-        - Z Axis Rotation
-        - X Axis Rotation
-- Food Mixer - Y
-    - Liquid in Mixer
-        - North Rotation
-        - East Rotation
-        - South Rotation
-        - West Rotation
-- Frying Pan - Y
-    - Liquid in Frying Pan
-        - North Rotation
-        - East Rotation
-        - South Rotation
-        - West Rotation
-
+- Sprinkler Block
+    - Just a simple shape in the centre, water effects will be done by J
+    - Was thinking against it BUT, I'd rather have sprinklers running on a server than do a team system.
 
 ### Questing Tasks
 - Spawning the NPC Builder Quest

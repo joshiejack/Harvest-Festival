@@ -109,7 +109,6 @@
 
 ### Textures
 - Crop Grass Better Texture - Y
-- Weed (Will use flower render) - Y
 - Textures for the NPCs which we stole + New Selection for Ondra > Ashlee - Y
 
 ### Models + Textures
@@ -155,6 +154,7 @@
         - East Rotation
         - South Rotation
         - West Rotation
+- Frying Pan - Y
     - Liquid in Frying Pan
         - North Rotation
         - East Rotation

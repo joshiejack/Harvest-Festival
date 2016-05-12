@@ -1,4 +1,11 @@
-{
+{"parent": "block/block",
+    "display": {
+        "gui": {
+            "rotation": [ 30, 225, 0 ],
+            "translation": [ 0, 3, 0],
+            "scale":[ 1.1, 1.1, 1.1 ]
+        }
+    },
 "textures": {
     "particle": "harvestfestival:models/mixer",
     "texture": "harvestfestival:models/mixer"

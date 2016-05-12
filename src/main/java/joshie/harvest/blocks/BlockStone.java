@@ -1,6 +1,6 @@
 package joshie.harvest.blocks;
 
-import joshie.harvest.blocks.BlockStone.Types;
+import joshie.harvest.blocks.BlockStone.Type;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.util.Translate;
 import joshie.harvest.core.util.base.BlockHFBaseEnum;
@@ -21,8 +21,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BlockStone extends BlockHFBaseEnum<Types> {
-    public enum Types implements IStringSerializable {
+public class BlockStone extends BlockHFBaseEnum<Type> {
+    public enum Type implements IStringSerializable {
         REAL, DECORATIVE;
 
         @Override
@@ -32,7 +32,7 @@ public class BlockStone extends BlockHFBaseEnum<Types> {
     }
 
     public BlockStone() {
-        super(Material.ROCK, Types.class, HFTab.MINING);
+        super(Material.ROCK, Type.class, HFTab.MINING);
         setSoundType(SoundType.METAL);
     }
 
@@ -50,7 +50,7 @@ public class BlockStone extends BlockHFBaseEnum<Types> {
     }
 
     @Override
-    public int getToolLevel(Types types) {
+    public int getToolLevel(Type type) {
         return 2;
     }
 
@@ -69,7 +69,7 @@ public class BlockStone extends BlockHFBaseEnum<Types> {
     @Override
     public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
         ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
-        if (getEnumFromState(world.getBlockState(pos)) == Types.DECORATIVE) {
+        if (getEnumFromState(world.getBlockState(pos)) == Type.DECORATIVE) {
             ret.add(new ItemStack(HFBlocks.STONE, 1, 1));
         }
 

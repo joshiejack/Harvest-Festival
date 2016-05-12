@@ -12,12 +12,12 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 public class PacketSyncRelationship extends PenguinPacket {
     private IRelatableDataHandler handler;
     private IRelatable relatable;
-    private short value;
+    private int value;
     private boolean particles;
 
     public PacketSyncRelationship() {}
 
-    public PacketSyncRelationship(IRelatable relatable, short value, boolean particles) {
+    public PacketSyncRelationship(IRelatable relatable, int value, boolean particles) {
         this.relatable = relatable;
         this.value = value;
         this.particles = particles;
@@ -25,7 +25,7 @@ public class PacketSyncRelationship extends PenguinPacket {
 
     @Override
     public void toBytes(ByteBuf buf) {
-        buf.writeShort(value);
+        buf.writeInt(value);
         buf.writeBoolean(particles);
         ByteBufUtils.writeUTF8String(buf, relatable.getDataHandler().name());
         relatable.getDataHandler().toBytes(relatable, buf);
@@ -33,7 +33,7 @@ public class PacketSyncRelationship extends PenguinPacket {
 
     @Override
     public void fromBytes(ByteBuf buf) {
-        value = buf.readShort();
+        value = buf.readInt();
         particles = buf.readBoolean();
         String handlerName = ByteBufUtils.readUTF8String(buf);
         handler = RelationshipHelper.getHandler(handlerName).copy();

@@ -1,17 +1,19 @@
 package joshie.harvest.mining.loot;
 
-import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.util.SafeStack;
 import joshie.harvest.items.HFItems;
 import joshie.harvest.player.tracking.TrackingData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
+import static joshie.harvest.api.core.ITiered.ToolTier.MYSTRIL;
+
 public class LootCursed extends LootChance {
-    private static final SafeStack hoe = new SafeStack(new ItemStack(HFItems.HOE, 1, ToolTier.MYSTRIL.ordinal()));
-    private static final SafeStack sickle = new SafeStack(new ItemStack(HFItems.SICKLE, 1, ToolTier.MYSTRIL.ordinal()));
-    private static final SafeStack watering = new SafeStack(new ItemStack(HFItems.WATERING_CAN, 1, ToolTier.MYSTRIL.ordinal()));
+    private static final ItemStack hoe = HFItems.HOE.getStack(MYSTRIL);
+    private static final ItemStack sickle = HFItems.SICKLE.getStack(MYSTRIL);
+    private static final ItemStack watering = HFItems.WATERING_CAN.getStack(MYSTRIL);
+    private static final ItemStack axe = HFItems.AXE.getStack(MYSTRIL);
+    private static final ItemStack hammer = HFItems.HAMMER.getStack(MYSTRIL);
 
     public LootCursed(ItemStack stack, double chance) {
         super(stack, chance);
@@ -19,6 +21,6 @@ public class LootCursed extends LootChance {
 
     public boolean canPlayerObtain(EntityPlayer player) {
         TrackingData stats = HFTrackers.getPlayerTracker(player).getTracking();
-        return stats.hasObtainedItem(hoe) && stats.hasObtainedItem(sickle) && stats.hasObtainedItem(watering);
+        return stats.hasObtainedItem(hoe) && stats.hasObtainedItem(sickle) && stats.hasObtainedItem(watering) && stats.hasObtainedItem(axe) && stats.hasObtainedItem(hammer);
     }
 }

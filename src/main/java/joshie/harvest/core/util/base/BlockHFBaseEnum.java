@@ -152,9 +152,7 @@ public abstract class BlockHFBaseEnum<E extends Enum<E> & IStringSerializable> e
     @SideOnly(Side.CLIENT)
     public void registerModels(Item item, String name) {
         for (int i = 0; i < values.length; i++) {
-            String variant = name + "#" + property.getName() + "=" + getEnumFromMeta(i).getName();
-            System.out.println("Registering the model for " + name + " with the variant of " + variant);
-            ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(new ResourceLocation(HFModInfo.MODID, variant), "inventory"));
+            ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(new ResourceLocation(HFModInfo.MODID, property.getName() + "_" + getEnumFromMeta(i).getName()), "inventory"));
         }
     }
 }

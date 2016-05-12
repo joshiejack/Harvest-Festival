@@ -1,4 +1,11 @@
-{
+{"parent": "block/block",
+    "display": {
+        "gui": {
+            "rotation": [ 30, 225, 0 ],
+            "translation": [ 0, 4, 1],
+            "scale":[ 1.1, 1.1, 1.1 ]
+        }
+    },
 "textures": {
     "particle": "harvestfestival:models/pot",
     "texture": "harvestfestival:models/pot"

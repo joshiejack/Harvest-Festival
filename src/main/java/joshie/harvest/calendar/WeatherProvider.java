@@ -162,7 +162,7 @@ public class WeatherProvider extends WorldProviderSurface {
             float rainStrength = calendar.getTodaysRainStrength();
             float thunderStrength = calendar.getTodaysStormStrength();
             if (calendar.getTodaysWeather().isRain()) {
-                HFTrackers.getCropTracker().doRain();
+                HFTrackers.getCropTracker().doRain(worldObj);
             }
 
             if (worldObj.rainingStrength > rainStrength) {

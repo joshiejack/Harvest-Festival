@@ -1,6 +1,5 @@
 package joshie.harvest.blocks;
 
-import joshie.harvest.api.WorldLocation;
 import joshie.harvest.blocks.BlockFarmland.Moisture;
 import joshie.harvest.core.util.base.BlockHFBaseEnum;
 import net.minecraft.block.Block;
@@ -8,7 +7,6 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -23,11 +21,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
-import java.util.WeakHashMap;
 
 public class BlockFarmland extends BlockHFBaseEnum<Moisture> {
-    private final WeakHashMap<WorldLocation, Long> timePlaced = new WeakHashMap<WorldLocation, Long>();
     private final AxisAlignedBB FARMLAND_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.9375D, 1.0D);
+    private final IBlockState DRY;
     private final IBlockState WET;
 
     public BlockFarmland() {
@@ -35,6 +32,7 @@ public class BlockFarmland extends BlockHFBaseEnum<Moisture> {
         setTickRandomly(true);
         setLightOpacity(255);
         setSoundType(SoundType.GROUND);
+        DRY = getStateFromEnum(Moisture.DRY);
         WET = getStateFromEnum(Moisture.WET);
         setBlockUnbreakable();
     }
@@ -55,7 +53,7 @@ public class BlockFarmland extends BlockHFBaseEnum<Moisture> {
 
     @Override
     public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos) {
-        return FULL_BLOCK_AABB;
+        return FARMLAND_AABB;
     }
 
     @Override
@@ -70,17 +68,17 @@ public class BlockFarmland extends BlockHFBaseEnum<Moisture> {
 
     @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
-        if (!world.isRainingAt(pos.up())) {
-            WorldLocation location = new WorldLocation(world.provider.getDimension(), pos);
-            Long time = timePlaced.get(location);
-            if (time == null) {
-                timePlaced.put(location, System.currentTimeMillis());
-            } else if (System.currentTimeMillis() - time >= 60000) {
-                world.setBlockState(pos, Blocks.DIRT.getDefaultState());
-            }
-        } else if (state != WET) {
+        if (state != WET && world.isRainingAt(pos.up())) {
             world.setBlockState(pos, WET, 2);
+        } else if (!hasCrops(world, pos)) {
+            if (state == WET) world.setBlockState(pos, DRY, 2);
+            else if (state == DRY) world.setBlockState(pos, Blocks.DIRT.getDefaultState(), 2);
         }
+    }
+
+    private boolean hasCrops(World worldIn, BlockPos pos)  {
+        Block block = worldIn.getBlockState(pos.up()).getBlock();
+        return block instanceof net.minecraftforge.common.IPlantable && canSustainPlant(worldIn.getBlockState(pos), worldIn, pos, net.minecraft.util.EnumFacing.UP, (net.minecraftforge.common.IPlantable)block);
     }
 
     @Override
@@ -94,8 +92,7 @@ public class BlockFarmland extends BlockHFBaseEnum<Moisture> {
 
     @Override
     public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance) {
-        if (!worldIn.isRemote && worldIn.rand.nextFloat() < fallDistance - 0.5F && entityIn instanceof EntityLivingBase && (entityIn instanceof EntityPlayer || worldIn.getGameRules().getBoolean("mobGriefing")) && entityIn.width * entityIn.width * entityIn.height > 0.512F)
-        {
+        if (!worldIn.isRemote && worldIn.rand.nextFloat() < fallDistance - 0.5F && entityIn instanceof EntityPlayer && entityIn.width * entityIn.width * entityIn.height > 0.512F) {
             worldIn.setBlockState(pos, Blocks.DIRT.getDefaultState());
         }
 

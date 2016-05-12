@@ -30,6 +30,10 @@ public abstract class ItemBaseTool extends ItemBaseSingle implements ILevelable,
         setHasSubtypes(true);
     }
 
+    public ItemStack getStack(ToolTier tier) {
+        return new ItemStack(this, 1, tier.ordinal());
+    }
+
     @Override
     public int getSortValue(ItemStack stack) {
         return CreativeSort.TOOLS + getTier(stack).ordinal();

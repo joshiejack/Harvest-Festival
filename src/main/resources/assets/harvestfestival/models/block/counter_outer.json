@@ -1,7 +1,14 @@
-{
+{"parent": "block/block",
+    "display": {
+        "gui": {
+            "rotation": [ 30, 225, 0 ],
+            "translation": [ 0, 0, 0],
+            "scale":[ 0.55, 0.55, 0.55 ]
+        }
+    },
 "textures": {
-    "texture": "models/counter",
-    "texture1": "models/counter1"
+    "texture": "harvestfestival:models/counter",
+    "texture1": "harvestfestival:models/counter1"
 },
 "elements": [ 
 {

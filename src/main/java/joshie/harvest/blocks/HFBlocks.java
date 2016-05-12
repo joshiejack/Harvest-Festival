@@ -41,12 +41,13 @@ public class HFBlocks {
     public static void preInit() {
         GODDESS.setBlock(GODDESS_WATER);
         RegistryHelper.registerTiles(HFModInfo.MODID, TileCooking.class, TileFridge.class, TileFryingPan.class, TileCounter.class, TileMarker.class,
-                TileMixer.class, TileOven.class, TilePot.class);
+                TileMixer.class, TileOven.class, TilePot.class, TileNest.class, TileTrough.class);
     }
 
     @SideOnly(Side.CLIENT)
     public static void preInitClient() {
         ModelLoader.setCustomStateMapper(CROPS, new CropStateMapper());
+        ModelLoader.setCustomStateMapper(FARMLAND, new CropStateMapper());
         ClientRegistry.bindTileEntitySpecialRenderer(TileMarker.class, new PreviewRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TileFryingPan.class, new SpecialRendererFryingPan());
         ClientRegistry.bindTileEntitySpecialRenderer(TilePot.class, new SpecialRendererPot());

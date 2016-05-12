@@ -82,19 +82,21 @@ public class ItemSickle extends ItemBaseTool implements IBreakCrops {
             //Facing North, We Want East and West to be 1, left * this.left
             for (int x2 = getXMinus(stack, front, pos.getX()); x2 <= getXPlus(stack, front, pos.getX()); x2++) {
                 for (int z2 = getZMinus(stack, front, pos.getZ()); z2 <= getZPlus(stack, front, pos.getZ()); z2++) {
-                    Block block = world.getBlockState(new BlockPos(x2, pos.getY(), z2)).getBlock();
+                    BlockPos newPos = new BlockPos(x2, pos.getY(), z2);
+                    Block block = world.getBlockState(newPos).getBlock();
                     if (block instanceof BlockCrop) {
                         if (!world.isRemote) {
-                            block.removedByPlayer(state, world, pos.add(x2, pos.getY(), z2), player, true);
+                            block.removedByPlayer(state, world, newPos, player, true);
                         }
 
-                        displayParticle(world, pos.add(x2, pos.getY(), z2), EnumParticleTypes.BLOCK_CRACK, Blocks.TALLGRASS.getDefaultState());
-                        playSound(world, pos.add(x2, pos.getY(), z2), SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS);
+                        displayParticle(world, newPos, EnumParticleTypes.BLOCK_CRACK, Blocks.TALLGRASS.getDefaultState());
+                        playSound(world, newPos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS);
                         PlayerHelper.performTask(player, stack, getExhaustionRate(stack));
                     }
                 }
             }
         }
+
         return 1F;
     }
 }

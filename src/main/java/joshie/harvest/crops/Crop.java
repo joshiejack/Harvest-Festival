@@ -13,6 +13,7 @@ import joshie.harvest.crops.handlers.SoilHandlers;
 import joshie.harvest.crops.handlers.StateHandlerDefault;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -22,7 +23,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class Crop implements ICrop {
-    public static final HashMap<ResourceLocation, ICrop> CROPS = new HashMap<>();
+    public static final HashMap<ResourceLocation, ICrop> CROPS = new HashMap<ResourceLocation, ICrop>();
     private static final Random rand = new Random();
 
     //CropData
@@ -319,5 +320,15 @@ public class Crop implements ICrop {
     @Override
     public int hashCode() {
         return resource.hashCode();
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound tag) {
+
+    }
+
+    @Override
+    public void writeToNBT(NBTTagCompound tag) {
+
     }
 }

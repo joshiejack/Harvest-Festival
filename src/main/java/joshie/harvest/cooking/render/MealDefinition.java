@@ -2,8 +2,9 @@ package joshie.harvest.cooking.render;
 
 import gnu.trove.map.TIntObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
+import joshie.harvest.cooking.FoodRegistry;
+import joshie.harvest.cooking.Recipe;
 import joshie.harvest.cooking.Utensil;
-import joshie.harvest.items.ItemMeal;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.ItemStack;
@@ -11,10 +12,10 @@ import net.minecraft.item.ItemStack;
 import java.util.HashMap;
 
 public class MealDefinition implements ItemMeshDefinition {
-    private static HashMap<String, ModelResourceLocation> models = new HashMap<String, ModelResourceLocation>();
-    private static TIntObjectMap<ModelResourceLocation> burnt = new TIntObjectHashMap<ModelResourceLocation>();
-    public static void registerMeal(String unlocalized, ModelResourceLocation resource) {
-        models.put(unlocalized, resource);
+    private static HashMap<Recipe, ModelResourceLocation> models = new HashMap<>();
+    private static TIntObjectMap<ModelResourceLocation> burnt = new TIntObjectHashMap<>();
+    public static void registerMeal(Recipe recipe, ModelResourceLocation resource) {
+        models.put(recipe, resource);
     }
 
     public static void registerBurnt(int damage, ModelResourceLocation resource) {
@@ -32,7 +33,7 @@ public class MealDefinition implements ItemMeshDefinition {
     @Override
     public ModelResourceLocation getModelLocation(ItemStack stack) {
         if (stack.hasTagCompound()) {
-            ModelResourceLocation resource = models.get(ItemMeal.getMeal(stack));
+            ModelResourceLocation resource = models.get(FoodRegistry.REGISTRY.getObjectById(stack.getItemDamage()));
             if (resource != null) return resource;
         }
 

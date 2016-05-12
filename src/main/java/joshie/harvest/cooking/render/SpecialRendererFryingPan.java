@@ -2,11 +2,18 @@ package joshie.harvest.cooking.render;
 
 import joshie.harvest.blocks.tiles.TileFryingPan;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class SpecialRendererFryingPan extends SpecialRendererCookware<TileFryingPan> {
+    @Override
+    public void renderFluid(int i, World world, ResourceLocation fluid) {
+        renderFluid(fluid, 0.5F, 0.065F + (i * 0.01F), 0.5F, 0.499F);
+    }
+
     @Override
     public void translateIngredient(boolean isBlock, float position, float rotation, float offset1, float offset2) {
         GlStateManager.translate(0.5F, -0.05F, 0.5F);

@@ -1,11 +1,10 @@
 package joshie.harvest.items;
 
-import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.IAltItem;
 import joshie.harvest.api.cooking.IMeal;
-import joshie.harvest.api.cooking.IMealProvider;
-import joshie.harvest.api.cooking.IMealRecipe;
 import joshie.harvest.api.core.ICreativeSorted;
+import joshie.harvest.cooking.FoodRegistry;
+import joshie.harvest.cooking.Recipe;
 import joshie.harvest.cooking.Utensil;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.config.General;
@@ -28,18 +27,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.HashSet;
 import java.util.List;
 
 import static net.minecraft.util.text.TextFormatting.DARK_GRAY;
 
-public class ItemMeal extends ItemHFBaseMeta implements IMealProvider, ICreativeSorted, IAltItem {
+public class ItemMeal extends ItemHFBaseMeta implements ICreativeSorted, IAltItem {
     public ItemMeal() {
         super(HFTab.COOKING);
-    }
-
-    public static String getMeal(ItemStack stack) {
-        return stack.getTagCompound().getString("FoodName");
     }
 
     //Irrelevant since we overwrite them, but it needs it specified
@@ -50,8 +44,8 @@ public class ItemMeal extends ItemHFBaseMeta implements IMealProvider, ICreative
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        if (stack.hasTagCompound()) {
-            return Translate.translate("meal." + getMeal(stack));
+        if (stack.getItemDamage() >= 10) {
+            return FoodRegistry.REGISTRY.getObjectById(stack.getItemDamage()).getDisplayName();
         } else {
             int meta = Math.min(Utensil.values().length - 1, stack.getItemDamage());
             return DARK_GRAY + Translate.translate("meal.burnt." + Utensil.values()[meta].name().replace("_", ".").toLowerCase());
@@ -107,16 +101,16 @@ public class ItemMeal extends ItemHFBaseMeta implements IMealProvider, ICreative
     public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
         if (player.canEat(false)) {
             player.setActiveHand(hand);
-            return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
+            return new ActionResult<>(EnumActionResult.SUCCESS, stack);
         } else {
-            return new ActionResult<ItemStack>(EnumActionResult.FAIL, stack);
+            return new ActionResult<>(EnumActionResult.FAIL, stack);
         }
     }
 
     //Apply all the relevant information about this meal to the meal stack
-    public static ItemStack cook(ItemStack stack, IMeal meal) {
+    public static ItemStack cook(ItemStack stack, Recipe recipe, IMeal meal) {
+        stack.setItemDamage(FoodRegistry.REGISTRY.getIDForObject(recipe));
         stack.setTagCompound(new NBTTagCompound());
-        stack.getTagCompound().setString("FoodName", meal.getUnlocalizedName());
         stack.getTagCompound().setInteger("FoodLevel", meal.getHunger());
         stack.getTagCompound().setFloat("FoodSaturation", meal.getSaturation());
         stack.getTagCompound().setInteger("FoodStamina", meal.getStamina());
@@ -127,25 +121,15 @@ public class ItemMeal extends ItemHFBaseMeta implements IMealProvider, ICreative
     }
 
     @Override
-    public String getMealName(ItemStack stack) {
-        if (!stack.hasTagCompound()) return "burnt";
-        return stack.getTagCompound().getString("FoodName");
-    }
-
-    @Override
     public CreativeTabs[] getCreativeTabs() {
-        return new CreativeTabs[]{HFTab.COOKING};
+        return new CreativeTabs[]{ HFTab.COOKING };
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs creative, List<ItemStack> list) {
-        HashSet<IMeal> added = new HashSet<IMeal>();
-        for (IMealRecipe recipe : HFApi.COOKING.getRecipes()) {
-            IMeal best = recipe.getBestMeal();
-            if (added.add(best)) {
-                list.add(cook(new ItemStack(item), best));
-            }
+        for (Recipe recipe : FoodRegistry.REGISTRY.getValues()) {
+            list.add(cook(new ItemStack(item), recipe, recipe.getBestMeal()));
         }
     }
 
@@ -156,7 +140,7 @@ public class ItemMeal extends ItemHFBaseMeta implements IMealProvider, ICreative
 
     @Override
     public ItemStack getAlternativeWhenCooking(ItemStack stack) {
-        IMealRecipe recipe = HFApi.COOKING.getRecipe(getMeal(stack));
+        Recipe recipe = FoodRegistry.REGISTRY.getObjectById(stack.getItemDamage());
         if (recipe != null) {
             return recipe.getMeal().getAlternativeItem();
         }

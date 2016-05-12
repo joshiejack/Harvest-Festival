@@ -12,7 +12,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import java.util.HashMap;
 
 public class ShippingRegistry implements IShippingRegistry {
-    private static final HashMap<Pair<Item, Integer>, Long> REGISTRY = new HashMap<>();
+    private static final HashMap<Pair<Item, Integer>, Long> REGISTRY = new HashMap<Pair<Item, Integer>, Long>();
 
     @Override
     public void registerSellable(ItemStack stack, long value) {

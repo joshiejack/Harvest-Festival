@@ -27,11 +27,18 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import static joshie.harvest.blocks.BlockCookware.Cookware.*;
 
 public class BlockCookware extends BlockHFBaseEnumRotatableTile<Cookware> {
-    public static final AxisAlignedBB FRYING_PAN_AABB = new AxisAlignedBB(0.2F, 0F, 0.2F, 0.8F, 0.15F, 0.8F);
+    private static final AxisAlignedBB FRYING_PAN_AABB = new AxisAlignedBB(0.2F, 0F, 0.2F, 0.8F, 0.15F, 0.8F);
+    private static final AxisAlignedBB MIXER_AABB = new AxisAlignedBB(0.275F, 0F, 0.275F, 0.725F, 0.725F, 0.725F);
+    private static final AxisAlignedBB POT_AABB = new AxisAlignedBB(0.2F, 0F, 0.2F, 0.8F, 0.375F, 0.8F);
     private static Item cookware = null;
 
     public enum Cookware implements IStringSerializable {
-        FRIDGE_TOP, FRIDGE, COUNTER, POT, FRYING_PAN, MIXER, OVEN_OFF, OVEN_ON;
+        FRIDGE_TOP(false), FRIDGE(true), COUNTER(true), POT(true), FRYING_PAN(true), MIXER(true), OVEN_OFF(true), OVEN_ON(false), COUNTER_IC(false), COUNTER_OC(false);
+
+        private final boolean isReal;
+        Cookware(boolean isReal) {
+            this.isReal = isReal;
+        }
 
         @Override
         public String getName() {
@@ -69,11 +76,13 @@ public class BlockCookware extends BlockHFBaseEnumRotatableTile<Cookware> {
             case FRYING_PAN:
                 return FRYING_PAN_AABB;
             case POT:
-                return new AxisAlignedBB(0F, 0F, 0F, 1F, 0.75F, 1F);
+                return POT_AABB;
             case FRIDGE:
                 return new AxisAlignedBB(0F, 0F, 0F, 1F, 2F, 1F);
             case FRIDGE_TOP:
                 return new AxisAlignedBB(0F, -1F, 0F, 1F, 1F, 1F);
+            case MIXER:
+                return MIXER_AABB;
             default:
                 return FULL_BLOCK_AABB;
         }
@@ -93,7 +102,7 @@ public class BlockCookware extends BlockHFBaseEnumRotatableTile<Cookware> {
             else tile = world.getTileEntity(pos.down());
             if (!(tile instanceof TileCounter)) return false;
             if (cookware == COUNTER && held == null) {
-                ((ITickable) tile).update();
+                ((TileCooking) tile).update();
             }
         }
 
@@ -133,7 +142,7 @@ public class BlockCookware extends BlockHFBaseEnumRotatableTile<Cookware> {
     public void onBlockAdded(World world, BlockPos pos, IBlockState state) {
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof TileFridge) {
-           // world.setBlockState(pos.up(), getStateFromEnum(FRIDGE_TOP), 2);
+            world.setBlockState(pos.up(), getStateFromEnum(FRIDGE_TOP), 2);
         }
     }
 
@@ -218,6 +227,6 @@ public class BlockCookware extends BlockHFBaseEnumRotatableTile<Cookware> {
     @Override
     @SideOnly(Side.CLIENT)
     protected boolean isValidTab(CreativeTabs tab, Cookware cookware) {
-        return cookware == FRIDGE_TOP || cookware == OVEN_OFF ? false: super.isValidTab(tab, cookware);
+        return cookware.isReal? super.isValidTab(tab, cookware) : false;
     }
 }

@@ -14,6 +14,7 @@ import joshie.harvest.core.helpers.AnimalHelper;
 import joshie.harvest.core.helpers.CropHelper;
 import joshie.harvest.core.helpers.SeedHelper;
 import joshie.harvest.core.helpers.WorldHelper;
+import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.base.BlockHFBaseEnum;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.block.Block;
@@ -21,19 +22,18 @@ import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
@@ -182,14 +182,14 @@ public class BlockCrop extends BlockHFBaseEnum<Stage> implements IPlantable, IGr
     //Return 0.75F if the plant isn't withered, otherwise, unbreakable!!!
     public float getPlayerRelativeBlockHardness(IBlockState state, EntityPlayer player, World world, BlockPos pos) {
         Stage stage = getEnumFromState(state);
-        ItemStack held = player.getActiveItemStack();
+        ItemStack held = player.getHeldItemMainhand();
         ICropData crop = HFApi.CROPS.getCropAtLocation(world, pos);
         if (crop.getCrop().growsToSide() != null && crop.getStage() == crop.getCrop().getStages()) {
             return 0F; //If the crop is fully grown, and grows to the side. Make it immune to destruction.
         }
 
         //If this crop is withered return 0
-        if (held == null || (!(held.getItem() instanceof IBreakCrops))) return stage == Stage.WITHERED ? 0 : 0.75F;
+        if (held == null || (!(held.getItem() instanceof IBreakCrops))) return stage.isWithered() ? 0 : 0.75F;
         return ((IBreakCrops) held.getItem()).getStrengthVSCrops(player, world, pos, state, held);
     }
 
@@ -355,7 +355,9 @@ public class BlockCrop extends BlockHFBaseEnum<Stage> implements IPlantable, IGr
             Stage stage = getEnumFromState(state);
             if (stage.getSection() == TOP) {
                 return CropHelper.getBlockState(world, pos.down(), stage.getSection(), stage.isWithered());
-            } else return CropHelper.getBlockState(world, pos, stage.getSection(), stage.isWithered());
+            } else  {
+                return CropHelper.getBlockState(world, pos, stage.getSection(), stage.isWithered());
+            }
         } else return state;
     }
 
@@ -417,5 +419,13 @@ public class BlockCrop extends BlockHFBaseEnum<Stage> implements IPlantable, IGr
         }
 
         return false;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerModels(Item item, String name) {
+        for (int i = 0; i < values.length; i++) {
+            ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(new ResourceLocation(HFModInfo.MODID, property.getName() + "_" + getEnumFromMeta(i).getName()), "inventory"));
+        }
     }
 }

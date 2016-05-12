@@ -16,7 +16,7 @@ public interface IAnimalData {
     public EntityPlayer getOwner();
 
     /** Returns the number of products this animal can produce per day **/
-    public byte getProductsPerDay();
+    public int getProductsPerDay();
 
     /** Marks this player as the animals owner **/
     public void setOwner(EntityPlayer player);

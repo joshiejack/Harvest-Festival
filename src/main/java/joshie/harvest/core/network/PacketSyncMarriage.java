@@ -31,6 +31,7 @@ public class PacketSyncMarriage extends PenguinPacket {
     public void fromBytes(ByteBuf buf) {
         String handlerName = ByteBufUtils.readUTF8String(buf);
         handler = RelationshipHelper.getHandler(handlerName).copy();
+        handler.fromBytes(buf);
         divorce = buf.readBoolean();
     }
 

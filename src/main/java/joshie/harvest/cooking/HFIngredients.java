@@ -1,7 +1,8 @@
 package joshie.harvest.cooking;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.cooking.ICookingComponent;
+import joshie.harvest.api.cooking.ICookingIngredient;
+import joshie.harvest.cooking.render.MappingEvent;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.items.HFItems;
 import joshie.harvest.items.ItemGeneral;
@@ -14,68 +15,68 @@ public class HFIngredients {
     /**
      * Categories
      **/
-    public static ICookingComponent mushroom;
-    public static ICookingComponent juice_vegetable;
-    public static ICookingComponent salad_ingredient;
-    public static ICookingComponent sandwich_ingredient;
-    public static ICookingComponent sashimi_vegetable;
+    public static ICookingIngredient mushroom;
+    public static ICookingIngredient juice_vegetable;
+    public static ICookingIngredient salad_ingredient;
+    public static ICookingIngredient sandwich_ingredient;
+    public static ICookingIngredient sashimi_vegetable;
 
     /**
      * Seasonings
      **/
-    public static ICookingComponent salt;
-    public static ICookingComponent sugar;
+    public static ICookingIngredient salt;
+    public static ICookingIngredient sugar;
 
     /**
      * Created
      **/
-    public static ICookingComponent butter;
-    public static ICookingComponent boiled_egg;
-    public static ICookingComponent sashimi;
-    public static ICookingComponent scrambled_egg;
-    public static ICookingComponent cookies;
+    public static ICookingIngredient butter;
+    public static ICookingIngredient boiled_egg;
+    public static ICookingIngredient sashimi;
+    public static ICookingIngredient scrambled_egg;
+    public static ICookingIngredient cookies;
 
     /**
      * Other stuff
      **/
-    public static ICookingComponent apple;
-    public static ICookingComponent chocolate;
-    public static ICookingComponent egg;
-    public static ICookingComponent fish;
-    public static ICookingComponent flour;
-    public static ICookingComponent oil;
-    public static ICookingComponent riceball;
-    public static ICookingComponent milk;
-    public static ICookingComponent mayonnaise;
-    public static ICookingComponent ketchup;
+    public static ICookingIngredient apple;
+    public static ICookingIngredient chocolate;
+    public static ICookingIngredient egg;
+    public static ICookingIngredient fish;
+    public static ICookingIngredient flour;
+    public static ICookingIngredient oil;
+    public static ICookingIngredient riceball;
+    public static ICookingIngredient milk;
+    public static ICookingIngredient mayonnaise;
+    public static ICookingIngredient ketchup;
 
     /**
      * Crops
      **/
-    public static ICookingComponent turnip;
-    public static ICookingComponent potato;
-    public static ICookingComponent cucumber;
-    public static ICookingComponent strawberry;
-    public static ICookingComponent cabbage;
-    public static ICookingComponent tomato;
-    public static ICookingComponent onion;
-    public static ICookingComponent corn;
-    public static ICookingComponent pumpkin;
-    public static ICookingComponent pineapple;
-    public static ICookingComponent eggplant;
-    public static ICookingComponent carrot;
-    public static ICookingComponent sweet_potato;
-    public static ICookingComponent spinach;
-    public static ICookingComponent green_pepper;
+    public static ICookingIngredient turnip;
+    public static ICookingIngredient potato;
+    public static ICookingIngredient cucumber;
+    public static ICookingIngredient strawberry;
+    public static ICookingIngredient cabbage;
+    public static ICookingIngredient tomato;
+    public static ICookingIngredient onion;
+    public static ICookingIngredient corn;
+    public static ICookingIngredient pumpkin;
+    public static ICookingIngredient pineapple;
+    public static ICookingIngredient eggplant;
+    public static ICookingIngredient carrot;
+    public static ICookingIngredient sweet_potato;
+    public static ICookingIngredient spinach;
+    public static ICookingIngredient green_pepper;
 
     /**
      * Vanilla foods
      **/
-    public static ICookingComponent watermelon;
-    public static ICookingComponent wheat;
-    public static ICookingComponent bread;
-    public static ICookingComponent red_mushroom;
-    public static ICookingComponent brown_mushroom;
+    public static ICookingIngredient watermelon;
+    public static ICookingIngredient wheat;
+    public static ICookingIngredient bread;
+    public static ICookingIngredient red_mushroom;
+    public static ICookingIngredient brown_mushroom;
 
     public static void preInit() {
         //Categories
@@ -92,13 +93,13 @@ public class HFIngredients {
         //Store Bought
         chocolate = HFApi.COOKING.newIngredient("chocolate", 5, -10, 1, 0.05F, 4);
         flour = HFApi.COOKING.newIngredient("flour", 0, 0, 0, 0.1F, 4);
-        oil = HFApi.COOKING.newIngredient("oil", 0, -2, 0, 0F, 2).setFluid(HFCooking.cookingOil);
+        oil = HFApi.COOKING.newIngredient("oil", 0, -2, 0, 0F, 2).setFluid(MappingEvent.OIL);
         riceball = HFApi.COOKING.newIngredient("riceball", 6, -3, 1, 0.085F, 16);
 
         //Sizeables
         egg = HFApi.COOKING.newIngredient("egg", 6, 0, 0, 0.075F, 10);
         mayonnaise = HFApi.COOKING.newIngredient("mayonnaise", 6, -1, 1, 0.8F, 8);
-        milk = HFApi.COOKING.newIngredient("milk", 5, -2, 0, 0.04F, 6).setFluid(HFCooking.cookingMilk);
+        milk = HFApi.COOKING.newIngredient("milk", 5, -2, 0, 0.04F, 6).setFluid(MappingEvent.MILK);
 
         //Crops
         turnip = HFApi.COOKING.newIngredient("turnip", 2, -1, 1, 0.033F, 8);

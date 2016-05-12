@@ -13,13 +13,13 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 
 import java.util.ArrayList;
 
-public abstract class TileCooking extends TileFaceable implements ITickable {
+public abstract class TileCooking extends TileFaceable {
+    public abstract static class TileCookingTicking extends TileCooking implements ITickable {}
+
     public static short COOK_TIMER = 100;
     private boolean cooking;
     private short cookTimer = 0;
@@ -30,17 +30,10 @@ public abstract class TileCooking extends TileFaceable implements ITickable {
     public float[] offset1 = new float[20];
     public float[] offset2 = new float[20];
     public float[] heightOffset = new float[20];
-    protected IUtensil utensil;
 
     public TileCooking() {}
 
-    public IUtensil getUtensil() {
-        return Utensil.COUNTER;
-    }
-
-    public IUtensil getUtensil(World world, BlockPos pos) {
-        return getUtensil();
-    }
+    public abstract IUtensil getUtensil();
 
     public boolean isCooking() {
         return cooking;
@@ -67,31 +60,19 @@ public abstract class TileCooking extends TileFaceable implements ITickable {
         result = null;
     }
 
-    public void animate(IUtensil utensil) {
-        //rotation += worldObj.rand.nextFloat();
-        //worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, getPos().getX() + 0.5D + +worldObj.rand.nextFloat() - worldObj.rand.nextFloat() / 2, getPos().getY() + 0.5D + worldObj.rand.nextFloat() - worldObj.rand.nextFloat() / 2, getPos().getZ() + 0.5D + +worldObj.rand.nextFloat() - worldObj.rand.nextFloat() / 2, 0, 0, 0);
-    }
+    public void animate() {}
 
-    public short getCookingTime(IUtensil utensil) {
+    public short getCookingTime() {
         return COOK_TIMER;
     }
 
-    public void updateUtensil() {
-        if (worldObj.getWorldTime() % 20 == 0) {
-            utensil = getUtensil(worldObj, pos);
-        }
-    }
-
-    @Override
     public void update() {
-        //Update the utensil every second
-        updateUtensil();
         //If we are server side perform the actions
         if (!worldObj.isRemote) {
             if (cooking) {
                 cookTimer++;
-                if (cookTimer >= getCookingTime(utensil)) {
-                    result = HFApi.COOKING.getResult(utensil, ingredients);
+                if (cookTimer >= getCookingTime()) {
+                    result = HFApi.COOKING.getResult(getUtensil(), ingredients);
                     cooking = false;
                     ingredients = new ArrayList<ItemStack>();
                     cookTimer = 0;
@@ -103,7 +84,7 @@ public abstract class TileCooking extends TileFaceable implements ITickable {
                     this.markDirty();
                 }
             }
-        } else if (isCooking()) animate(utensil);
+        } else if (isCooking()) animate();
     }
 
     //Returns true if this was a valid ingredient to add
@@ -205,7 +186,7 @@ public abstract class TileCooking extends TileFaceable implements ITickable {
     public boolean isAbove(Utensil utensil) {
         TileEntity tile = worldObj.getTileEntity(pos.down());
         if (tile instanceof TileCooking) {
-            return ((TileCooking)tile).getUtensil(worldObj, pos.down()) == utensil;
+            return ((TileCooking)tile).getUtensil() == utensil;
         }
 
         return false;

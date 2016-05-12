@@ -3,11 +3,12 @@ package joshie.harvest.api.crops;
 import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.core.IShippable;
+import joshie.harvest.core.helpers.NBTHelper.ISaveable;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-public interface ICrop extends IShippable {
+public interface ICrop extends IShippable, ISaveable {
     /** Returns this crop in seed form, with default stats
      *  @return     the itemstack for this crop as seeds **/
     public ItemStack getSeedStack();

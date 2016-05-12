@@ -6,18 +6,26 @@ import joshie.harvest.api.cooking.*;
 import joshie.harvest.core.helpers.SafeStackHelper;
 import joshie.harvest.core.util.SafeStack;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.Fluid;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.registry.FMLControlledNamespacedRegistry;
+import net.minecraftforge.fml.common.registry.PersistentRegistryManager;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+
+import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class FoodRegistry implements IFoodRegistry {
-    private static final Multimap<SafeStack, ICookingComponent> registry = ArrayListMultimap.create();
-    private static final HashMap<String, IMealRecipe> recipes = new HashMap<>(250);
-    private static final HashMap<String, ICookingComponent> components = new HashMap<String, ICookingComponent>();
-    private static final HashSet<ISpecialRecipeHandler> specials = new HashSet<ISpecialRecipeHandler>();
+    public static final FMLControlledNamespacedRegistry<Recipe> REGISTRY = PersistentRegistryManager.createRegistry(new ResourceLocation(MODID, "meals"), Recipe.class, null, 10, 32000, true, null, null, null);
+    private static final HashMap<String, ICookingIngredient> components = new HashMap<>();
+    private static final HashSet<ISpecialRecipeHandler> specials = new HashSet<>();
+    private static final Multimap<SafeStack, ICookingIngredient> registry = ArrayListMultimap.create();
+
 
     @Override
-    public void register(ItemStack stack, ICookingComponent component) {
+    public void register(ItemStack stack, ICookingIngredient component) {
         if (stack == null || stack.getItem() == null || component == null) return; //Fail silently
         FoodRegistry.registry.get(SafeStackHelper.getSafeStackType(stack)).add(component);
 
@@ -27,34 +35,38 @@ public class FoodRegistry implements IFoodRegistry {
         }
     }
 
+    public static Collection<ICookingIngredient> getIngredients() {
+        return components.values();
+    }
+
     @Override
     public void registerRecipeHandler(ISpecialRecipeHandler handler) {
         specials.add(handler);
     }
 
     @Override
-    public List<ICookingComponent> getCookingComponents(ItemStack stack) {
-        return (List<ICookingComponent>) SafeStackHelper.getResult(stack, registry);
+    public List<ICookingIngredient> getCookingComponents(ItemStack stack) {
+        return (List<ICookingIngredient>) SafeStackHelper.getResult(stack, registry);
     }
 
     @Override
-    public ICookingComponent getComponent(String unlocalized) {
+    public ICookingIngredient getIngredient(String unlocalized) {
         return components.get(unlocalized);
     }
 
     @Override
-    public ICookingComponent newCategory(String unlocalized) {
+    public ICookingIngredient newCategory(String unlocalized) {
         return new Ingredient(unlocalized);
     }
 
     @Override
-    public ICookingComponent newIngredient(String unlocalized, int stamina, int fatigue, int hunger, float saturation, int eatTimer) {
+    public ICookingIngredient newIngredient(String unlocalized, int stamina, int fatigue, int hunger, float saturation, int eatTimer) {
         return new Ingredient(unlocalized, stamina, fatigue, hunger, saturation, eatTimer);
     }
 
     @Override
-    public Fluid getFluid(ItemStack ingredient) {
-        List<ICookingComponent> components = ((List<ICookingComponent>) SafeStackHelper.getResult(ingredient, registry));
+    public ResourceLocation getFluid(ItemStack ingredient) {
+        List<ICookingIngredient> components = ((List<ICookingIngredient>) SafeStackHelper.getResult(ingredient, registry));
         return components.size() < 1 ? null : components.get(0).getFluid();
     }
 
@@ -68,26 +80,21 @@ public class FoodRegistry implements IFoodRegistry {
     }
 
     @Override
-    public IMealRecipe addRecipe(IMealRecipe recipe) {
-        recipes.put(recipe.getMeal().getUnlocalizedName(), recipe);
+    public IMealRecipe addMeal(ResourceLocation key, IUtensil utensil, int stamina, int fatigue, int hunger, float saturation, int eatTimer, ICookingIngredient... components) {
+        String unlocalised = key.getResourceDomain() + ".meal." + key.getResourcePath().replace("_", ".");
+        Recipe recipe = new Recipe(unlocalised, components, new Meal(stamina, fatigue, hunger, saturation, eatTimer));
+        recipe.setRegistryName(key);
+        recipe.setRequiredTool(utensil);
+        REGISTRY.register(recipe);
         return recipe;
     }
 
     @Override
-    public IMealRecipe getRecipe(String meal) {
-        return recipes.get(meal);
-    }
-
-    @Override
-    public Collection<IMealRecipe> getRecipes() {
-        return recipes.values();
-    }
-
-    @Override
     public ItemStack getBestMeal(String string) {
-        for (IMealRecipe recipe : getRecipes()) {
-            if (recipe.getBestMeal().getUnlocalizedName().equals(string)) {
-                return recipe.getBestMeal().cook(recipe.getBestMeal());
+        ResourceLocation location = string.contains(":") ? new ResourceLocation(string) : new ResourceLocation(MODID, string);
+        for (Recipe recipe : REGISTRY.getValues()) {
+            if (recipe.getRegistryName().equals(location)) {
+                return recipe.cook(recipe.getBestMeal());
             }
         }
 
@@ -96,9 +103,10 @@ public class FoodRegistry implements IFoodRegistry {
 
     @Override
     public ItemStack getMeal(String string) {
-        for (IMealRecipe recipe : getRecipes()) {
-            if (recipe.getBestMeal().getUnlocalizedName().equals(string)) {
-                return recipe.getBestMeal().cook(recipe.getMeal());
+        ResourceLocation location = string.contains(":") ? new ResourceLocation(string) : new ResourceLocation(MODID, string);
+        for (Recipe recipe : REGISTRY.getValues()) {
+            if (recipe.getRegistryName().equals(location)) {
+                return recipe.cook(recipe.getMeal());
             }
         }
 
@@ -116,15 +124,15 @@ public class FoodRegistry implements IFoodRegistry {
         }
 
         //Convert all the stacks in to their relevant ingredients
-        HashSet<ICookingComponent> components = new HashSet<ICookingComponent>();
+        HashSet<ICookingIngredient> components = new HashSet<ICookingIngredient>();
         for (ItemStack stack : ingredients) {
             components.addAll(getCookingComponents(stack));
         }
 
-        for (IMealRecipe recipe : recipes.values()) {
+        for (Recipe recipe : REGISTRY.getValues()) {
             IMeal meal = recipe.getMeal(utensil, components);
             if (meal != null) {
-                return meal.cook(meal);
+                return recipe.cook(meal);
             }
         }
 

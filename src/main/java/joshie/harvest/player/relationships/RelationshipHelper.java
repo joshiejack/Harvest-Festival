@@ -4,6 +4,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.relations.IRelatableDataHandler;
 import joshie.harvest.api.relations.IRelationships;
+import joshie.harvest.core.config.NPC;
 import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.entity.player.EntityPlayer;
 
@@ -11,7 +12,6 @@ import java.util.HashMap;
 
 public class RelationshipHelper implements IRelationships {
     private static final HashMap<String, IRelatableDataHandler> dataHandlers = new HashMap<String, IRelatableDataHandler>();
-    public static final int ADJUSTED_MAX = 65535;
     private static boolean isInit = false;
 
     @Override
@@ -45,11 +45,11 @@ public class RelationshipHelper implements IRelationships {
 
     @Override
     public int getAdjustedRelationshipValue(EntityPlayer player, IRelatable relatable) {
-        return 1 + Short.MAX_VALUE + getRealRelationshipValue(player, relatable);
-    }
-    
-    @Override
-    public short getRealRelationshipValue(EntityPlayer player, IRelatable relatable) {
         return HFTrackers.getPlayerTracker(player).getRelationships().getRelationship(relatable);
+    }
+
+    @Override
+    public int getMaximumRelationshipValue() {
+        return NPC.MAXIMUM_FRIENDSHIP;
     }
 }

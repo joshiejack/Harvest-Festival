@@ -12,6 +12,7 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.SeedHelper;
 import joshie.harvest.core.helpers.generic.RegistryHelper;
 import joshie.harvest.core.lib.CreativeSort;
+import joshie.harvest.core.util.Translate;
 import joshie.harvest.crops.Crop;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -25,13 +26,11 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-@Optional.Interface(modid = "AgriCraft", iface = "com.InfinityRaider.AgriCraft.farming.ICropOverridingSeed")
 public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
 
     public ItemHFSeeds() {
@@ -59,11 +58,11 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
         if (!stack.hasTagCompound()) {
-            return "Corrupted Seeds, Yo!";
+            return Translate.translate("crop.seeds.corrupted");
         }
 
         ICrop crop = SeedHelper.getCropFromSeed(stack);
-        return (crop == null) ? "Bloody Useless Seeds" : crop.getSeedsName();
+        return (crop == null) ? Translate.translate("crop.seeds.useless") : crop.getSeedsName();
     }
 
     @Override

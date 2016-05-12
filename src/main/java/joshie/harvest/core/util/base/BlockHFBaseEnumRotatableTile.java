@@ -1,24 +1,23 @@
 package joshie.harvest.core.util.base;
 
 import joshie.harvest.core.helpers.generic.DirectionHelper;
-import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.generic.IFaceable;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -79,15 +78,5 @@ public abstract class BlockHFBaseEnumRotatableTile<E extends Enum<E> & IStringSe
         }
 
         return state;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerModels(Item item, String name) {
-        for (int i = 0; i < values.length; i++) {
-            String variant = name + "#" + property.getName() + "=" + getEnumFromMeta(i).getName() + ",facing=north";
-            System.out.println("Registering the model for " + name + " with the variant of " + variant);
-            ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(new ResourceLocation(HFModInfo.MODID, variant), "variants"));
-        }
     }
 }

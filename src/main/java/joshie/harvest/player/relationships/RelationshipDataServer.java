@@ -2,8 +2,10 @@ package joshie.harvest.player.relationships;
 
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.relations.IRelatableDataHandler;
+import joshie.harvest.core.config.NPC;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.network.PacketHandler;
+import joshie.harvest.core.network.PacketSyncGifted;
 import joshie.harvest.core.network.PacketSyncMarriage;
 import joshie.harvest.core.network.PacketSyncRelationship;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,12 +17,13 @@ import java.util.HashSet;
 import java.util.Map;
 
 public class RelationshipDataServer extends RelationshipData {
-    private HashSet<IRelatable> talked = new HashSet<IRelatable>();
-    private HashSet<IRelatable> gifted = new HashSet<IRelatable>();
+    private HashSet<IRelatable> talked = new HashSet<>();
+    private HashSet<IRelatable> temp;
 
     public void newDay() {
-        talked = new HashSet<IRelatable>();
-        gifted = new HashSet<IRelatable>();
+        talked = new HashSet<>();
+        temp = gifted; //Clone it
+        gifted = new HashSet<>();
     }
 
     @Override
@@ -32,16 +35,21 @@ public class RelationshipDataServer extends RelationshipData {
     }
 
     @Override
-    public void gift(EntityPlayer player, IRelatable relatable, int amount) {
+    public boolean gift(EntityPlayer player, IRelatable relatable, int amount) {
         if (!gifted.contains(relatable)) {
+            if (amount == 0) return true;
+            syncGifted((EntityPlayerMP) player, relatable, true);
             affectRelationship(player, relatable, amount);
             gifted.add(relatable);
+            return true;
         }
+
+        return false;
     }
 
     @Override
     public void affectRelationship(EntityPlayer player, IRelatable relatable, int amount) {
-        short newValue = (short) (getRelationship(relatable) + amount);
+        int newValue = Math.max(0, Math.min(NPC.ADJUSTED_MARRIAGE_REQUIREMENT, getRelationship(relatable) + amount));
         relationships.put(relatable, newValue);
         HFTrackers.markDirty();
         syncRelationship((EntityPlayerMP) player, relatable, newValue, true);
@@ -55,14 +63,32 @@ public class RelationshipDataServer extends RelationshipData {
         for (IRelatable relatable : relationships.keySet()) {
             syncRelationship(player, relatable, relationships.get(relatable), false);
         }
+
+        //
+        //IF we didn't clone yesterdays, then sync the current, otherwise, destroy yesterdays after syncing
+        if (temp == null) {
+            for (IRelatable relatable : gifted) {
+                syncGifted(player, relatable, true);
+            }
+        } else {
+            for (IRelatable relatable: temp) {
+                syncGifted(player, relatable, false);
+            }
+
+            temp = null;
+        }
     }
 
     public void syncMarriage(EntityPlayerMP player, IRelatable relatable, boolean divorce) {
         PacketHandler.sendToClient(new PacketSyncMarriage(relatable, divorce), player);
     }
 
-    public void syncRelationship(EntityPlayerMP player, IRelatable relatable, short value, boolean particles) {
+    public void syncRelationship(EntityPlayerMP player, IRelatable relatable, int value, boolean particles) {
         PacketHandler.sendToClient(new PacketSyncRelationship(relatable, value, particles), player);
+    }
+
+    public void syncGifted(EntityPlayerMP player, IRelatable relatable, boolean value) {
+        PacketHandler.sendToClient(new PacketSyncGifted(relatable, value), player);
     }
 
     public void readFromNBT(NBTTagCompound nbt) {
@@ -73,7 +99,7 @@ public class RelationshipDataServer extends RelationshipData {
             IRelatableDataHandler data = RelationshipHelper.getHandler(tag.getString("Handler"));
             IRelatable relatable = data.readFromNBT(tag);
             if (relatable != null) {
-                short value = tag.getShort("Value");
+                int value = tag.getInteger("Value");
                 relationships.put(relatable, value);
             }
         }
@@ -109,13 +135,13 @@ public class RelationshipDataServer extends RelationshipData {
     public void writeToNBT(NBTTagCompound nbt) {
         //Saving Relationships
         NBTTagList relationList = new NBTTagList();
-        for (Map.Entry<IRelatable, Short> entry : relationships.entrySet()) {
+        for (Map.Entry<IRelatable, Integer> entry : relationships.entrySet()) {
             if (entry == null || entry.getKey() == null) continue;
             NBTTagCompound tag = new NBTTagCompound();
             IRelatableDataHandler data = entry.getKey().getDataHandler();
             tag.setString("Handler", data.name());
             data.writeToNBT(entry.getKey(), tag);
-            tag.setShort("Value", entry.getValue());
+            tag.setInteger("Value", entry.getValue());
             relationList.appendTag(tag);
         }
 

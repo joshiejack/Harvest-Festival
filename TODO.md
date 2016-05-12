@@ -109,15 +109,10 @@
 
 ### Textures
 - Crop Grass Better Texture - Y
-- Winter Mine version - Y
 - Weed (Will use flower render) - Y
 - Textures for the NPCs which we stole + New Selection for Ondra > Ashlee - Y
 
 ### Models + Textures
-- Free Standing Ladder - Y
-    - Mine Floor with Free Standing Ladder hole (What?)
-        - Z Axis Facing
-        - X Acis Facing
 - Rocks - Y
     - Large (Various) (Can be cominbed automatically)
     - Medium (Various) (Can be cominbed automatically)
@@ -151,18 +146,10 @@
             - Middle Section
             - Right Side
 - Cooking Pot - Y
-    - Pot
-        - Z Axis Rotation
-        - X Axis Rotation
     - Liquid in Pot
         - Z Axis Rotation
         - X Axis Rotation
 - Food Mixer - Y
-    - Mixer
-        - North Rotation
-        - East Rotation
-        - South Rotation
-        - West Rotation
     - Liquid in Mixer
         - North Rotation
         - East Rotation

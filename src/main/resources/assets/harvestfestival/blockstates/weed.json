@@ -1,0 +1,8 @@
+{
+  "variants": {
+		{ "model": "weed/weed", "weight":  2 },
+		{ "model": "weed/weed1", "weight": 2 },
+		{ "model": "weed/weed2", "weight": 2 },
+		{ "model": "weed/weed3", "weight": 2 }
+  }
+}

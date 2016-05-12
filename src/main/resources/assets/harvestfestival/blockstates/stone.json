@@ -4,14 +4,14 @@
     "transform": "forge:default-block",
     "model": "cube_all"
   },
-  "variants": {
-    "types": {
-      "decorative": {
-        "textures": { "all": "harvestfestival:blocks/mine_wall" }
-      },
-      "real": {
-        "textures": { "all": "harvestfestival:blocks/stone" }
-      }
-    }
-  }
+ "variants": {
+ "normal": [
+		{ "model": "mine_wall/mine_wall", "weight": 10 },
+		{ "model": "mine_wall/mine_wall1", "weight": 2 },
+		{ "model": "mine_wall/mine_wall2", "weight": 2 },
+		{ "model": "mine_wall/mine_wall3", "weight": 2 },
+		{ "model": "mine_wall/mine_wall4", "weight": 2 },	
+		{ "model": "mine_wall/mine_wall5", "weight": 2 }
+		]
+	}
 }

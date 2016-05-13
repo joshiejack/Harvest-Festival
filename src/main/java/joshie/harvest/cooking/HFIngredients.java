@@ -80,61 +80,61 @@ public class HFIngredients {
 
     public static void preInit() {
         //Categories
-        mushroom = HFApi.COOKING.newCategory("mushroom");
-        juice_vegetable = HFApi.COOKING.newCategory("vegetable_juice");
-        salad_ingredient = HFApi.COOKING.newCategory("salad_ingredient");
-        sandwich_ingredient = HFApi.COOKING.newCategory("sandwich_ingredient");
-        sashimi_vegetable = HFApi.COOKING.newCategory("sashimi_vegetable");
+        mushroom = HFApi.cooking.newCategory("mushroom");
+        juice_vegetable = HFApi.cooking.newCategory("vegetable_juice");
+        salad_ingredient = HFApi.cooking.newCategory("salad_ingredient");
+        sandwich_ingredient = HFApi.cooking.newCategory("sandwich_ingredient");
+        sashimi_vegetable = HFApi.cooking.newCategory("sashimi_vegetable");
 
         //Seasonings
-        salt = HFApi.COOKING.newIngredient("salt", 0, 0, 0, 0.01F, 0);
-        sugar = HFApi.COOKING.newIngredient("sugar", 1, 0, 0, 0F, 0);
+        salt = HFApi.cooking.newIngredient("salt", 0, 0, 0, 0.01F, 0);
+        sugar = HFApi.cooking.newIngredient("sugar", 1, 0, 0, 0F, 0);
 
         //Store Bought
-        chocolate = HFApi.COOKING.newIngredient("chocolate", 5, -10, 1, 0.05F, 4);
-        flour = HFApi.COOKING.newIngredient("flour", 0, 0, 0, 0.1F, 4);
-        oil = HFApi.COOKING.newIngredient("oil", 0, -2, 0, 0F, 2).setFluid(MappingEvent.OIL);
-        riceball = HFApi.COOKING.newIngredient("riceball", 6, -3, 1, 0.085F, 16);
+        chocolate = HFApi.cooking.newIngredient("chocolate", 5, -10, 1, 0.05F, 4);
+        flour = HFApi.cooking.newIngredient("flour", 0, 0, 0, 0.1F, 4);
+        oil = HFApi.cooking.newIngredient("oil", 0, -2, 0, 0F, 2).setFluid(MappingEvent.OIL);
+        riceball = HFApi.cooking.newIngredient("riceball", 6, -3, 1, 0.085F, 16);
 
         //Sizeables
-        egg = HFApi.COOKING.newIngredient("egg", 6, 0, 0, 0.075F, 10);
-        mayonnaise = HFApi.COOKING.newIngredient("mayonnaise", 6, -1, 1, 0.8F, 8);
-        milk = HFApi.COOKING.newIngredient("milk", 5, -2, 0, 0.04F, 6).setFluid(MappingEvent.MILK);
+        egg = HFApi.cooking.newIngredient("egg", 6, 0, 0, 0.075F, 10);
+        mayonnaise = HFApi.cooking.newIngredient("mayonnaise", 6, -1, 1, 0.8F, 8);
+        milk = HFApi.cooking.newIngredient("milk", 5, -2, 0, 0.04F, 6).setFluid(MappingEvent.MILK);
 
         //Crops
-        turnip = HFApi.COOKING.newIngredient("turnip", 2, -1, 1, 0.033F, 8);
-        potato = HFApi.COOKING.newIngredient("potato", 5, -1, 1, 0.08F, 16);
-        cucumber = HFApi.COOKING.newIngredient("cucumber", 3, -1, 1, 0.02F, 4);
-        strawberry = HFApi.COOKING.newIngredient("strawberry", 3, -2, 1, 0.025F, 8);
-        cabbage = HFApi.COOKING.newIngredient("cabbage", 3, -3, 1, 0.05F, 8);
-        tomato = HFApi.COOKING.newIngredient("tomato", 2, -1, 1, 0.035F, 10);
-        onion = HFApi.COOKING.newIngredient("onion", 2, -2, 1, 0.03F, 8);
-        corn = HFApi.COOKING.newIngredient("corn", 5, -3, 1, 0.0375F, 16);
-        pumpkin = HFApi.COOKING.newIngredient("pumpkin", 4, -1, 2, 0.06F, 16);
-        pineapple = HFApi.COOKING.newIngredient("pineapple", 3, -3, 1, 0.055F, 16);
-        eggplant = HFApi.COOKING.newIngredient("eggplant", 2, -3, 1, 0.05F, 8);
-        carrot = HFApi.COOKING.newIngredient("carrot", 2, -2, 1, 0.035F, 6);
-        sweet_potato = HFApi.COOKING.newIngredient("potato_sweet", 6, -2, 1, 0.04F, 16);
-        spinach = HFApi.COOKING.newIngredient("spinach", 3, -4, 1, 0.022F, 8);
-        green_pepper = HFApi.COOKING.newIngredient("pepper_green", 4, -2, 1, 0.03F, 12);
+        turnip = HFApi.cooking.newIngredient("turnip", 2, -1, 1, 0.033F, 8);
+        potato = HFApi.cooking.newIngredient("potato", 5, -1, 1, 0.08F, 16);
+        cucumber = HFApi.cooking.newIngredient("cucumber", 3, -1, 1, 0.02F, 4);
+        strawberry = HFApi.cooking.newIngredient("strawberry", 3, -2, 1, 0.025F, 8);
+        cabbage = HFApi.cooking.newIngredient("cabbage", 3, -3, 1, 0.05F, 8);
+        tomato = HFApi.cooking.newIngredient("tomato", 2, -1, 1, 0.035F, 10);
+        onion = HFApi.cooking.newIngredient("onion", 2, -2, 1, 0.03F, 8);
+        corn = HFApi.cooking.newIngredient("corn", 5, -3, 1, 0.0375F, 16);
+        pumpkin = HFApi.cooking.newIngredient("pumpkin", 4, -1, 2, 0.06F, 16);
+        pineapple = HFApi.cooking.newIngredient("pineapple", 3, -3, 1, 0.055F, 16);
+        eggplant = HFApi.cooking.newIngredient("eggplant", 2, -3, 1, 0.05F, 8);
+        carrot = HFApi.cooking.newIngredient("carrot", 2, -2, 1, 0.035F, 6);
+        sweet_potato = HFApi.cooking.newIngredient("potato_sweet", 6, -2, 1, 0.04F, 16);
+        spinach = HFApi.cooking.newIngredient("spinach", 3, -4, 1, 0.022F, 8);
+        green_pepper = HFApi.cooking.newIngredient("pepper_green", 4, -2, 1, 0.03F, 12);
 
         //Vanilla Stuff
-        apple = HFApi.COOKING.newIngredient("apple", 2, -1, 1, 0.015F, 6);
-        bread = HFApi.COOKING.newIngredient("bread", 8, -6, 3, 0.06F, 24);
-        fish = HFApi.COOKING.newIngredient("fish", 5, -5, 2, 0.1F, 16);
-        watermelon = HFApi.COOKING.newIngredient("watermelon", 1, -1, 1, 0.05F, 4);
-        wheat = HFApi.COOKING.newIngredient("wheat", 6, -3, 1, 0.0275F, 16);
-        red_mushroom = HFApi.COOKING.newIngredient("mushroom_red", 2, -1, 1, 0.02F, 8);
-        brown_mushroom = HFApi.COOKING.newIngredient("mushroom_brown", 2, -1, 1, 0.02F, 8);
+        apple = HFApi.cooking.newIngredient("apple", 2, -1, 1, 0.015F, 6);
+        bread = HFApi.cooking.newIngredient("bread", 8, -6, 3, 0.06F, 24);
+        fish = HFApi.cooking.newIngredient("fish", 5, -5, 2, 0.1F, 16);
+        watermelon = HFApi.cooking.newIngredient("watermelon", 1, -1, 1, 0.05F, 4);
+        wheat = HFApi.cooking.newIngredient("wheat", 6, -3, 1, 0.0275F, 16);
+        red_mushroom = HFApi.cooking.newIngredient("mushroom_red", 2, -1, 1, 0.02F, 8);
+        brown_mushroom = HFApi.cooking.newIngredient("mushroom_brown", 2, -1, 1, 0.02F, 8);
 
         //Meals
-        butter = HFApi.COOKING.newIngredient("butter", 6, -1, 0, 0.01F, 6);
-        boiled_egg = HFApi.COOKING.newIngredient("egg.boiled", 10, -1, 2, 0.06F, 8);
-        sashimi = HFApi.COOKING.newIngredient("sashimi", 11, -2, 2, 0.07F, 10);
-        scrambled_egg = HFApi.COOKING.newIngredient("egg.scrambled", 20, -1, 1, 0.05F, 6);
-        cookies = HFApi.COOKING.newIngredient("cookies", 15, -2, 1, 0.03F, 4);
+        butter = HFApi.cooking.newIngredient("butter", 6, -1, 0, 0.01F, 6);
+        boiled_egg = HFApi.cooking.newIngredient("egg.boiled", 10, -1, 2, 0.06F, 8);
+        sashimi = HFApi.cooking.newIngredient("sashimi", 11, -2, 2, 0.07F, 10);
+        scrambled_egg = HFApi.cooking.newIngredient("egg.scrambled", 20, -1, 1, 0.05F, 6);
+        cookies = HFApi.cooking.newIngredient("cookies", 15, -2, 1, 0.03F, 4);
         //Idk if the numbers are right, check it yoshie
-        ketchup = HFApi.COOKING.newIngredient("ketchup", 2, -1, 1, 0.033F, 8);
+        ketchup = HFApi.cooking.newIngredient("ketchup", 2, -1, 1, 0.033F, 8);
 
         //Add ingredients to the categories
         mushroom.add(red_mushroom, brown_mushroom);
@@ -145,53 +145,53 @@ public class HFIngredients {
     }
 
     public static void init() {
-        HFApi.COOKING.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.SALT), salt);
-        HFApi.COOKING.register(new ItemStack(Items.SUGAR, 1, OreDictionary.WILDCARD_VALUE), sugar);
-        HFApi.COOKING.register(new ItemStack(Items.APPLE, 1, OreDictionary.WILDCARD_VALUE), apple);
-        HFApi.COOKING.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.CHOCOLATE), chocolate);
-        HFApi.COOKING.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.FLOUR), flour);
-        HFApi.COOKING.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.OIL), oil);
-        HFApi.COOKING.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.RICEBALL), riceball);
-        HFApi.COOKING.register(HFCrops.turnip.getCropStack(), turnip);
-        HFApi.COOKING.register(HFCrops.potato.getCropStack(), potato);
-        HFApi.COOKING.register(new ItemStack(Items.POTATO, 1, OreDictionary.WILDCARD_VALUE), potato);
-        HFApi.COOKING.register(HFCrops.cucumber.getCropStack(), cucumber);
-        HFApi.COOKING.register(HFCrops.strawberry.getCropStack(), strawberry);
-        HFApi.COOKING.register(HFCrops.cabbage.getCropStack(), cabbage);
-        HFApi.COOKING.register(HFCrops.tomato.getCropStack(), tomato);
-        HFApi.COOKING.register(HFCrops.onion.getCropStack(), onion);
-        HFApi.COOKING.register(HFCrops.corn.getCropStack(), corn);
-        HFApi.COOKING.register(HFCrops.pumpkin.getCropStack(), pumpkin);
-        HFApi.COOKING.register(new ItemStack(Blocks.PUMPKIN, 1, OreDictionary.WILDCARD_VALUE), pumpkin);
-        HFApi.COOKING.register(HFCrops.pineapple.getCropStack(), pineapple);
-        HFApi.COOKING.register(HFCrops.eggplant.getCropStack(), eggplant);
-        HFApi.COOKING.register(HFCrops.carrot.getCropStack(), carrot);
-        HFApi.COOKING.register(new ItemStack(Items.CARROT, 1, OreDictionary.WILDCARD_VALUE), carrot);
-        HFApi.COOKING.register(HFCrops.sweet_potato.getCropStack(), sweet_potato);
-        HFApi.COOKING.register(HFCrops.spinach.getCropStack(), spinach);
-        HFApi.COOKING.register(HFCrops.green_pepper.getCropStack(), green_pepper);
-        HFApi.COOKING.register(new ItemStack(Items.WHEAT, 1, OreDictionary.WILDCARD_VALUE), wheat);
-        HFApi.COOKING.register(new ItemStack(Items.MELON, 1, OreDictionary.WILDCARD_VALUE), watermelon);
-        HFApi.COOKING.register(new ItemStack(Blocks.MELON_BLOCK, 1, OreDictionary.WILDCARD_VALUE), watermelon);
-        HFApi.COOKING.register(new ItemStack(Items.BREAD, 1, OreDictionary.WILDCARD_VALUE), bread);
-        HFApi.COOKING.register(new ItemStack(HFItems.EGG), egg);
-        HFApi.COOKING.register(new ItemStack(Items.EGG, 1, OreDictionary.WILDCARD_VALUE), egg);
-        HFApi.COOKING.register(new ItemStack(Items.FISH, 1, OreDictionary.WILDCARD_VALUE), fish);
-        HFApi.COOKING.register(new ItemStack(HFItems.MILK), milk);
-        HFApi.COOKING.register(new ItemStack(Items.MILK_BUCKET, 1, OreDictionary.WILDCARD_VALUE), milk);
-        HFApi.COOKING.register(new ItemStack(HFItems.MAYONNAISE), mayonnaise);
-        HFApi.COOKING.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.BUTTER), butter);
-        HFApi.COOKING.register(HFApi.COOKING.getBestMeal("butter"), butter);
-        HFApi.COOKING.register(HFApi.COOKING.getBestMeal("egg.boiled"), boiled_egg);
-        HFApi.COOKING.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.SASHIMI), sashimi);
-        HFApi.COOKING.register(HFApi.COOKING.getBestMeal("sashimi"), sashimi);
-        HFApi.COOKING.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.EGG_SCRAMBLED), scrambled_egg);
-        HFApi.COOKING.register(HFApi.COOKING.getBestMeal("egg.scrambled"), scrambled_egg);
-        HFApi.COOKING.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.COOKIES), cookies);
-        HFApi.COOKING.register(HFApi.COOKING.getBestMeal("cookies"), cookies);
-        HFApi.COOKING.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.KETCHUP), ketchup);
-        HFApi.COOKING.register(HFApi.COOKING.getBestMeal("ketchup"), ketchup);
-        HFApi.COOKING.register(new ItemStack(Blocks.BROWN_MUSHROOM, 1, OreDictionary.WILDCARD_VALUE), brown_mushroom);
-        HFApi.COOKING.register(new ItemStack(Blocks.RED_MUSHROOM, 1, OreDictionary.WILDCARD_VALUE), red_mushroom);
+        HFApi.cooking.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.SALT), salt);
+        HFApi.cooking.register(new ItemStack(Items.SUGAR, 1, OreDictionary.WILDCARD_VALUE), sugar);
+        HFApi.cooking.register(new ItemStack(Items.APPLE, 1, OreDictionary.WILDCARD_VALUE), apple);
+        HFApi.cooking.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.CHOCOLATE), chocolate);
+        HFApi.cooking.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.FLOUR), flour);
+        HFApi.cooking.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.OIL), oil);
+        HFApi.cooking.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.RICEBALL), riceball);
+        HFApi.cooking.register(HFCrops.turnip.getCropStack(), turnip);
+        HFApi.cooking.register(HFCrops.potato.getCropStack(), potato);
+        HFApi.cooking.register(new ItemStack(Items.POTATO, 1, OreDictionary.WILDCARD_VALUE), potato);
+        HFApi.cooking.register(HFCrops.cucumber.getCropStack(), cucumber);
+        HFApi.cooking.register(HFCrops.strawberry.getCropStack(), strawberry);
+        HFApi.cooking.register(HFCrops.cabbage.getCropStack(), cabbage);
+        HFApi.cooking.register(HFCrops.tomato.getCropStack(), tomato);
+        HFApi.cooking.register(HFCrops.onion.getCropStack(), onion);
+        HFApi.cooking.register(HFCrops.corn.getCropStack(), corn);
+        HFApi.cooking.register(HFCrops.pumpkin.getCropStack(), pumpkin);
+        HFApi.cooking.register(new ItemStack(Blocks.PUMPKIN, 1, OreDictionary.WILDCARD_VALUE), pumpkin);
+        HFApi.cooking.register(HFCrops.pineapple.getCropStack(), pineapple);
+        HFApi.cooking.register(HFCrops.eggplant.getCropStack(), eggplant);
+        HFApi.cooking.register(HFCrops.carrot.getCropStack(), carrot);
+        HFApi.cooking.register(new ItemStack(Items.CARROT, 1, OreDictionary.WILDCARD_VALUE), carrot);
+        HFApi.cooking.register(HFCrops.sweet_potato.getCropStack(), sweet_potato);
+        HFApi.cooking.register(HFCrops.spinach.getCropStack(), spinach);
+        HFApi.cooking.register(HFCrops.green_pepper.getCropStack(), green_pepper);
+        HFApi.cooking.register(new ItemStack(Items.WHEAT, 1, OreDictionary.WILDCARD_VALUE), wheat);
+        HFApi.cooking.register(new ItemStack(Items.MELON, 1, OreDictionary.WILDCARD_VALUE), watermelon);
+        HFApi.cooking.register(new ItemStack(Blocks.MELON_BLOCK, 1, OreDictionary.WILDCARD_VALUE), watermelon);
+        HFApi.cooking.register(new ItemStack(Items.BREAD, 1, OreDictionary.WILDCARD_VALUE), bread);
+        HFApi.cooking.register(new ItemStack(HFItems.EGG), egg);
+        HFApi.cooking.register(new ItemStack(Items.EGG, 1, OreDictionary.WILDCARD_VALUE), egg);
+        HFApi.cooking.register(new ItemStack(Items.FISH, 1, OreDictionary.WILDCARD_VALUE), fish);
+        HFApi.cooking.register(new ItemStack(HFItems.MILK), milk);
+        HFApi.cooking.register(new ItemStack(Items.MILK_BUCKET, 1, OreDictionary.WILDCARD_VALUE), milk);
+        HFApi.cooking.register(new ItemStack(HFItems.MAYONNAISE), mayonnaise);
+        HFApi.cooking.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.BUTTER), butter);
+        HFApi.cooking.register(HFApi.cooking.getBestMeal("butter"), butter);
+        HFApi.cooking.register(HFApi.cooking.getBestMeal("egg.boiled"), boiled_egg);
+        HFApi.cooking.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.SASHIMI), sashimi);
+        HFApi.cooking.register(HFApi.cooking.getBestMeal("sashimi"), sashimi);
+        HFApi.cooking.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.EGG_SCRAMBLED), scrambled_egg);
+        HFApi.cooking.register(HFApi.cooking.getBestMeal("egg.scrambled"), scrambled_egg);
+        HFApi.cooking.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.COOKIES), cookies);
+        HFApi.cooking.register(HFApi.cooking.getBestMeal("cookies"), cookies);
+        HFApi.cooking.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.KETCHUP), ketchup);
+        HFApi.cooking.register(HFApi.cooking.getBestMeal("ketchup"), ketchup);
+        HFApi.cooking.register(new ItemStack(Blocks.BROWN_MUSHROOM, 1, OreDictionary.WILDCARD_VALUE), brown_mushroom);
+        HFApi.cooking.register(new ItemStack(Blocks.RED_MUSHROOM, 1, OreDictionary.WILDCARD_VALUE), red_mushroom);
     }
 }

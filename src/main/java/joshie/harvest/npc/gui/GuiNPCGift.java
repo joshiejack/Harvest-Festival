@@ -23,7 +23,7 @@ public class GuiNPCGift extends GuiNPCChat {
     @Override
     public String getScript() {
         if (ToolHelper.isBlueFeather(gift)) {
-            int relationship = HFApi.RELATIONS.getAdjustedRelationshipValue(player, npc.getNPC());
+            int relationship = HFApi.relations.getAdjustedRelationshipValue(player, npc.getNPC());
             if (relationship >= NPC.ADJUSTED_MARRIAGE_REQUIREMENT && npc.getNPC().isMarriageCandidate()) {
                 return npc.getNPC().getAcceptProposal();
             } else return npc.getNPC().getRejectProposal();

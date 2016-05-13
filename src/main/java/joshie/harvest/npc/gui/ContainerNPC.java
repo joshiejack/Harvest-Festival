@@ -31,7 +31,7 @@ public class ContainerNPC extends ContainerBase {
         }
 
         if (!player.worldObj.isRemote) {
-            HFApi.RELATIONS.talkTo(player, npc.getRelatable());
+            HFApi.relations.talkTo(player, npc.getRelatable());
         }
 
         if (npc.getNPC() == HFNPCs.GODDESS) {

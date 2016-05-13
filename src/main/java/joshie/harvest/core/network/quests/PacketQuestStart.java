@@ -24,7 +24,7 @@ public class PacketQuestStart extends PenguinPacket {
 
     @Override
     public void fromBytes(ByteBuf buf) {
-        quest = HFApi.QUESTS.get(ByteBufUtils.readUTF8String(buf));
+        quest = HFApi.quests.get(ByteBufUtils.readUTF8String(buf));
     }
 
     @Override

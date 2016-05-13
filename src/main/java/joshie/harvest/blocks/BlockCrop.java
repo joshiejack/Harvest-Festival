@@ -96,13 +96,6 @@ public class BlockCrop extends BlockHFBaseEnum<Stage> implements IPlantable, IGr
         return BlockRenderLayer.CUTOUT;
     }
 
-    /*@Override //TODO
-    public void setBlockBoundsBasedOnState(IBlockAccess world, BlockPos pos) {
-        PlantSection section = getSection(world, pos);
-        ICropData data = HFApi.CROPS.getCropAtLocation(MCClientHelper.getWorld(), pos);
-        data.getCrop().getCropRenderHandler().setBlockBoundsBasedOnStage(this, section, data.getCrop(), data.getStage());
-    }*/
-
     //Only called if crops are set to tick randomly
     @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
@@ -183,7 +176,7 @@ public class BlockCrop extends BlockHFBaseEnum<Stage> implements IPlantable, IGr
     public float getPlayerRelativeBlockHardness(IBlockState state, EntityPlayer player, World world, BlockPos pos) {
         Stage stage = getEnumFromState(state);
         ItemStack held = player.getHeldItemMainhand();
-        ICropData crop = HFApi.CROPS.getCropAtLocation(world, pos);
+        ICropData crop = HFApi.crops.getCropAtLocation(world, pos);
         if (crop.getCrop().growsToSide() != null && crop.getStage() == crop.getCrop().getStages()) {
             return 0F; //If the crop is fully grown, and grows to the side. Make it immune to destruction.
         }
@@ -268,7 +261,7 @@ public class BlockCrop extends BlockHFBaseEnum<Stage> implements IPlantable, IGr
         if (player.isSneaking()) return false;
         else {
             PlantSection section = getSection(world, pos);
-            ICropData data = HFApi.CROPS.getCropAtLocation(world, pos);
+            ICropData data = HFApi.crops.getCropAtLocation(world, pos);
             if (data == null || data.getCrop().requiresSickle() || data.getCrop().growsToSide() != null) {
                 return false;
             } else {
@@ -285,7 +278,7 @@ public class BlockCrop extends BlockHFBaseEnum<Stage> implements IPlantable, IGr
     public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block neighborBlock) {
         if (!world.isRemote) {
             IBlockState soil = world.getBlockState(pos.down());
-            ICrop crop = HFApi.CROPS.getCropAtLocation(world, pos).getCrop();
+            ICrop crop = HFApi.crops.getCropAtLocation(world, pos).getCrop();
             if (crop != null && crop.getSoilHandler() != null) {
                 if (!crop.getSoilHandler().canSustainPlant(soil, world, pos, this)) {
                     world.setBlockToAir(pos);
@@ -301,7 +294,7 @@ public class BlockCrop extends BlockHFBaseEnum<Stage> implements IPlantable, IGr
             return world.setBlockToAir(pos); //JUST KILL IT IF WITHERED
 
         PlantSection section = getSection(world, pos);
-        ICropData data = HFApi.CROPS.getCropAtLocation(world, pos);
+        ICropData data = HFApi.crops.getCropAtLocation(world, pos);
         if (data == null) {
             return super.removedByPlayer(state, world, pos, player, willHarvest);
         }
@@ -344,7 +337,7 @@ public class BlockCrop extends BlockHFBaseEnum<Stage> implements IPlantable, IGr
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
         if (getEnumFromState(state) == Stage.WITHERED) return new ItemStack(Blocks.DEADBUSH); //It's Dead soo???
 
-        ICropData data = HFApi.CROPS.getCropAtLocation(world, pos);
+        ICropData data = HFApi.crops.getCropAtLocation(world, pos);
         return SeedHelper.getSeedsFromCrop(data.getCrop());
     }
 
@@ -407,7 +400,7 @@ public class BlockCrop extends BlockHFBaseEnum<Stage> implements IPlantable, IGr
     @Override
     public boolean canFeedAnimal(IAnimalTracked tracked, World world, BlockPos pos) {
         if (AnimalHelper.eatsGrass(tracked)) {
-            ICropData crop = HFApi.CROPS.getCropAtLocation(world, pos);
+            ICropData crop = HFApi.crops.getCropAtLocation(world, pos);
             ICrop theCrop = crop.getCrop();
             if (theCrop == HFCrops.grass) {
                 int stage = crop.getStage();

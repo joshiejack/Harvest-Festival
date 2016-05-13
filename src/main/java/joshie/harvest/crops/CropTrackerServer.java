@@ -84,7 +84,7 @@ public class CropTrackerServer extends CropTracker {
     @Override
     public void doRain(World world) {
         if (!HFTrackers.getCalendar().getDate().equals(lastRain)) {
-            lastRain = HFApi.CALENDAR.cloneDate(HFTrackers.getCalendar().getDate());
+            lastRain = HFApi.calendar.cloneDate(HFTrackers.getCalendar().getDate());
             for (BlockPos position : getDimensionData(world).keySet()) {
                 IBlockState state = world.getBlockState(position);
                 hydrate(world, position, state);

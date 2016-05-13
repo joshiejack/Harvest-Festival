@@ -64,7 +64,7 @@ public class PurchaseableCropSeeds implements IPurchaseable {
     public void addTooltip(List<String> list) {
         list.add(WHITE + crop.getSeedsName());
         for (Season season : crop.getSeasons()) {
-            ISeasonData data = HFApi.CALENDAR.getDataForSeason(season);
+            ISeasonData data = HFApi.calendar.getDataForSeason(season);
             list.add(data.getTextColor() + data.getLocalized());
         }
     }

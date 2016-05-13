@@ -8,7 +8,7 @@ import joshie.harvest.api.core.ISeasonData;
 import net.minecraft.world.World;
 
 public class Calendar {
-    protected ICalendarDate date = HFApi.CALENDAR.newDate(1, Season.SPRING, 1);
+    protected ICalendarDate date = HFApi.calendar.newDate(1, Season.SPRING, 1);
     protected Weather[] forecast = new Weather[7];
     protected float rainStrength;
     protected float stormStrength;

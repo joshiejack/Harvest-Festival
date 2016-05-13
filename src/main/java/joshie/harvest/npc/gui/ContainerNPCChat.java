@@ -21,7 +21,7 @@ public class ContainerNPCChat extends ContainerNPCBase {
     public void onContainerClosed(EntityPlayer player) {
         super.onContainerClosed(player);
         if (!player.worldObj.isRemote) {
-            HFApi.RELATIONS.talkTo(player, npc.getRelatable());
+            HFApi.relations.talkTo(player, npc.getRelatable());
         }
 
         //Kill the goddess

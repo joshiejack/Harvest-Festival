@@ -11,7 +11,7 @@ import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class RecipeHelper {
     private static IMealRecipe addRecipe(String mealname, IUtensil utensil, int stamina, int fatigue, int hunger, float saturation, int eatTimer, ICookingIngredient... ingredients) {
-        return HFApi.COOKING.addMeal(new ResourceLocation(MODID, mealname), utensil, stamina, fatigue, hunger, saturation, eatTimer, ingredients);
+        return HFApi.cooking.addMeal(new ResourceLocation(MODID, mealname), utensil, stamina, fatigue, hunger, saturation, eatTimer, ingredients);
     }
     
     private static IMealRecipe addRecipe(String mealname, IUtensil utensil, int stamina, int fatigue, boolean drink, ICookingIngredient... ingredients) {

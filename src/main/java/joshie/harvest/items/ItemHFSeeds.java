@@ -72,7 +72,7 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
         ICrop crop = SeedHelper.getCropFromSeed(stack);
         if (crop != null) {
             for (Season season : crop.getSeasons()) {
-                ISeasonData data = HFApi.CALENDAR.getDataForSeason(season);
+                ISeasonData data = HFApi.calendar.getDataForSeason(season);
                 list.add(data.getTextColor() + data.getLocalized());
             }
         }
@@ -143,7 +143,7 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
-        for (ICrop crop : HFApi.CROPS.getCrops()) {
+        for (ICrop crop : HFApi.crops.getCrops()) {
             list.add(SeedHelper.getSeedsFromCrop(crop));
         }
     }

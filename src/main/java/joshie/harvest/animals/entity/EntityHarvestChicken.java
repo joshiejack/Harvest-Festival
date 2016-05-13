@@ -6,7 +6,6 @@ import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.animals.IAnimalType;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.relations.IRelatableDataHandler;
-import joshie.harvest.player.relationships.RelationshipHelper;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,14 +20,14 @@ public class EntityHarvestChicken extends EntityChicken implements IAnimalTracke
 
     public EntityHarvestChicken(World world) {
         super(world);
-        type = HFApi.ANIMALS.getType(this);
-        data = HFApi.ANIMALS.newData(this);
+        type = HFApi.animals.getType(this);
+        data = HFApi.animals.newData(this);
         timeUntilNextEgg = Integer.MAX_VALUE;
     }
 
     @Override
     public IRelatableDataHandler getDataHandler() {
-        return RelationshipHelper.getHandler("entity");
+        return HFApi.relations.getDataHandler("entity");
     }
 
     @Override
@@ -50,7 +49,7 @@ public class EntityHarvestChicken extends EntityChicken implements IAnimalTracke
     public boolean processInteract(EntityPlayer player, EnumHand hand, ItemStack stack) {
         ItemStack held = player.getActiveItemStack();
         if (held != null) {
-            if (HFApi.ANIMALS.canEat(type.getFoodTypes(), held)) {
+            if (HFApi.animals.canEat(type.getFoodTypes(), held)) {
                 if (!worldObj.isRemote) {
                     data.feed(player);
                 }

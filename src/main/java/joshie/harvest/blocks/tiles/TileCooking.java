@@ -72,7 +72,7 @@ public abstract class TileCooking extends TileFaceable {
             if (cooking) {
                 cookTimer++;
                 if (cookTimer >= getCookingTime()) {
-                    result = HFApi.COOKING.getResult(getUtensil(), ingredients);
+                    result = HFApi.cooking.getResult(getUtensil(), ingredients);
                     cooking = false;
                     ingredients = new ArrayList<ItemStack>();
                     cookTimer = 0;
@@ -91,7 +91,7 @@ public abstract class TileCooking extends TileFaceable {
     public boolean addIngredient(ItemStack stack) {
         if (ingredients.size() >= 20) return false;
         if (!hasPrerequisites()) return false;
-        if (HFApi.COOKING.getCookingComponents(stack).size() < 1) return false;
+        if (HFApi.cooking.getCookingComponents(stack).size() < 1) return false;
         else {
             if (worldObj.isRemote) return true;
             ItemStack clone = getRealIngredient(stack);

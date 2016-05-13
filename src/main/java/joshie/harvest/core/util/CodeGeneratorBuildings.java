@@ -69,7 +69,7 @@ public class CodeGeneratorBuildings {
                             String field = name;
                             if (name.startsWith("npc.")) {
                                 field = name.replace("npc.", "");
-                                ret.add(PlaceableHelper.getPlaceableEntityString(new EntityNPC(null, world, HFApi.NPC.get(field)), new BlockPos(x, y, z)));
+                                ret.add(PlaceableHelper.getPlaceableEntityString(new EntityNPC(null, world, HFApi.npc.get(field)), new BlockPos(x, y, z)));
                             }
 
                             String text = "npc_offsets.put(Town." + field.toUpperCase() + ", new PlaceableNPC(\"\", " + x + ", " + y + ", " + z + "));";

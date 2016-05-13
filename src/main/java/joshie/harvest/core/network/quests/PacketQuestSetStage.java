@@ -29,7 +29,7 @@ public class PacketQuestSetStage extends PenguinPacket {
     @Override
     public void fromBytes(ByteBuf buf) {
         stage = buf.readShort();
-        quest = HFApi.QUESTS.get(ByteBufUtils.readUTF8String(buf));
+        quest = HFApi.quests.get(ByteBufUtils.readUTF8String(buf));
     }
 
     @Override

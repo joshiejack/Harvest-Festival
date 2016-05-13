@@ -218,9 +218,6 @@ public class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEn
     @Override
     protected void kill() {
         setDead(); //Kill the existing mofo
-
-        System.out.println("Killed the entity");
-
         //Respawn a new bugger
         EntityNPC clone = getNewEntity((E)this);
         BlockPos home = NPCHelper.getHomeForEntity(this);
@@ -254,7 +251,7 @@ public class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEn
     public void readEntityFromNBT(NBTTagCompound nbt) {
         super.readEntityFromNBT(nbt);
         spawned = new BlockPos(nbt.getInteger("OriginalX"), nbt.getInteger("OriginalY"), nbt.getInteger("OriginalZ"));
-        npc = HFApi.NPC.get(nbt.getString("NPC"));
+        npc = HFApi.npc.get(nbt.getString("NPC"));
         if (nbt.hasKey("Owner")) {
             owning_player = UUID.fromString(nbt.getString("Owner"));
         }
@@ -302,7 +299,7 @@ public class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEn
             name[i] = buf.readChar();
         }
 
-        npc = HFApi.NPC.get(new String(name));
+        npc = HFApi.npc.get(new String(name));
         if (npc == null) {
             npc = HFNPCs.GODDESS;
         }

@@ -27,7 +27,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import static joshie.harvest.api.HFApi.SHIPPING;
+import static joshie.harvest.api.HFApi.shipping;
 import static joshie.harvest.blocks.BlockWood.Woodware.NEST;
 
 public class BlockWood extends BlockHFBaseEnumRotatableMeta<Woodware> {
@@ -76,7 +76,7 @@ public class BlockWood extends BlockHFBaseEnumRotatableMeta<Woodware> {
         Woodware wood = getEnumFromState(state);
         if (player.isSneaking()) return false;
         else if ((wood == Woodware.SHIPPING) && held != null) {
-            long sell = SHIPPING.getSellValue(held);
+            long sell = shipping.getSellValue(held);
             if (sell > 0) {
                 if (!world.isRemote) {
                     HFTrackers.getServerPlayerTracker(player).getTracking().addForShipping(held.copy());

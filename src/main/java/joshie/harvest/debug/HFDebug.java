@@ -68,7 +68,7 @@ public class HFDebug {
 
     public static void init() {
         /*
-        for (IMealRecipe recipe : HFApi.COOKING.getRecipes()) {
+        for (IMealRecipe recipe : HFApi.cooking.getRecipes()) {
             try {
                 IMeal best = recipe.getMeal();
                 String name = best.getUnlocalizedName().replace(".", "_");

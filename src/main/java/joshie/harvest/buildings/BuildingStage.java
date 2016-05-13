@@ -81,7 +81,7 @@ public class BuildingStage {
     }
 
     public void readFromNBT(NBTTagCompound nbt) {
-        building = HFApi.BUILDINGS.getBuildingFromName(new ResourceLocation(nbt.getString("CurrentlyBuilding")));
+        building = HFApi.buildings.getBuildingFromName(new ResourceLocation(nbt.getString("CurrentlyBuilding")));
         direction = Direction.valueOf(nbt.getString("Direction"));
         pos = new BlockPos(nbt.getInteger("BuildingX"), nbt.getInteger("BuildingY"), nbt.getInteger("BuildingZ"));
 

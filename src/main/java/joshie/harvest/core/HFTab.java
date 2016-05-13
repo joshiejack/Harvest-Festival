@@ -80,13 +80,13 @@ public class HFTab extends CreativeTabs {
 
             if (item1 instanceof ICreativeSorted) {
                 value1 = ((ICreativeSorted) item1).getSortValue(stack1);
-            } else if (HFApi.CROPS.getCropFromStack(stack1) != null) {
+            } else if (HFApi.crops.getCropFromStack(stack1) != null) {
                 value1 = CreativeSort.CROPS;
             }
 
             if (item2 instanceof ICreativeSorted) {
                 value2 = ((ICreativeSorted) item2).getSortValue(stack2);
-            } else if (HFApi.CROPS.getCropFromStack(stack2) != null) {
+            } else if (HFApi.crops.getCropFromStack(stack2) != null) {
                 value2 = CreativeSort.CROPS;
             }
 
@@ -102,7 +102,7 @@ public class HFTab extends CreativeTabs {
         HFTab.TOWN.setStack(new ItemStack(HFItems.STRUCTURES, 1, 0));
         HFTab.MINING.setStack(new ItemStack(HFBlocks.STONE, 1, 0));
         HFTab.FARMING.setStack(new ItemStack(HFItems.HOE, 1, 0));
-        HFTab.COOKING.setStack(HFApi.COOKING.getMeal("salad"));
+        HFTab.COOKING.setStack(HFApi.cooking.getMeal("salad"));
         HFTab.GATHERING.setStack(new ItemStack(HFItems.AXE, 1, 0));
     }
 }

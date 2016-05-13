@@ -82,7 +82,7 @@ public class QuestCowCare extends Quest {
     public boolean canStart(EntityPlayer player, HashSet<IQuest> active, HashSet<IQuest> finished) {
         if (!super.canStart(player, active, finished)) return false;
         else {
-            return finished.contains(HFApi.QUESTS.get("tutorial.tomatoes")); //This quest is unlocked when we have completed tomato quest
+            return finished.contains(HFApi.quests.get("tutorial.tomatoes")); //This quest is unlocked when we have completed tomato quest
         }
     }
 

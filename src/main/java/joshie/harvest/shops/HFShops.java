@@ -7,7 +7,6 @@ import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.shops.IShop;
 import joshie.harvest.blocks.HFBlocks;
-import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.items.HFItems;
 import joshie.harvest.items.ItemAnimal;
@@ -42,7 +41,7 @@ public class HFShops {
     }
 
     private static void registerBarn() {
-        BARN = HFApi.SHOPS.newShop("barn", HFNPCs.ANIMAL_OWNER);
+        BARN = HFApi.shops.newShop("barn", HFNPCs.ANIMAL_OWNER);
         BARN.addItem(20, HFCrops.grass.getCropStack());
         BARN.addItem(1000, new ItemStack(HFItems.GENERAL, 1, ItemGeneral.MEDICINE));
         BARN.addItem(new PurchaseableEntity(EntityHarvestSheep.class, 4000, new ItemStack(HFItems.ANIMAL, 1, ItemAnimal.SHEEP), true));
@@ -54,7 +53,7 @@ public class HFShops {
     }
 
     private static void registerBlacksmith() {
-        BLACKSMITH = HFApi.SHOPS.newShop("blacksmith", HFNPCs.TOOL_OWNER);
+        BLACKSMITH = HFApi.shops.newShop("blacksmith", HFNPCs.TOOL_OWNER);
         BLACKSMITH.addItem(800, new ItemStack(HFItems.GENERAL, 1, ItemGeneral.BRUSH));
         BLACKSMITH.addItem(2000, new ItemStack(HFItems.GENERAL, 1, ItemGeneral.MILKER));
         BLACKSMITH.addItem(1800, new ItemStack(Items.SHEARS));
@@ -64,20 +63,20 @@ public class HFShops {
     }
 
     private static void registerCafe() {
-        CAFE = HFApi.SHOPS.newShop("cafe", HFNPCs.CAFE_OWNER);
+        CAFE = HFApi.shops.newShop("cafe", HFNPCs.CAFE_OWNER);
         CAFE.addItem(0, new ItemStack(Items.POTIONITEM));
-        CAFE.addItem(300, HFApi.COOKING.getMeal("salad"));
-        CAFE.addItem(200, HFApi.COOKING.getMeal("cookies"));
-        CAFE.addItem(300, HFApi.COOKING.getMeal("juice.pineapple"));
-        CAFE.addItem(250, HFApi.COOKING.getMeal("corn.baked"));
+        CAFE.addItem(300, HFApi.cooking.getMeal("salad"));
+        CAFE.addItem(200, HFApi.cooking.getMeal("cookies"));
+        CAFE.addItem(300, HFApi.cooking.getMeal("juice.pineapple"));
+        CAFE.addItem(250, HFApi.cooking.getMeal("corn.baked"));
 
         CAFE.addOpening(MONDAY, 9500, 17000).addOpening(TUESDAY, 9500, 17000).addOpening(WEDNESDAY, 9500, 17000).addOpening(THURSDAY, 9500, 17000);
         CAFE.addOpening(FRIDAY, 9500, 17000).addOpening(SATURDAY, 9500, 17000).addOpening(SUNDAY, 9500, 17000);
     }
 
     private static void registerCarpenter() {
-        CARPENTER = HFApi.SHOPS.newShop("carpenter", HFNPCs.BUILDER);
-        for (IBuilding building : BuildingRegistry.buildings.values()) {
+        CARPENTER = HFApi.shops.newShop("carpenter", HFNPCs.BUILDER);
+        for (IBuilding building : HFApi.buildings.getBuildings()) {
             CARPENTER.addItem(new PurchaseableBuilding(building));
         }
 
@@ -86,7 +85,7 @@ public class HFShops {
     }
 
     private static void registerPoultry() {
-        POULTRY = HFApi.SHOPS.newShop("poultry", HFNPCs.POULTRY);
+        POULTRY = HFApi.shops.newShop("poultry", HFNPCs.POULTRY);
         POULTRY.addItem(new PurchaseableEntity(EntityChicken.class, 1500, new ItemStack(HFItems.ANIMAL, 1, ItemAnimal.CHICKEN), false));
         POULTRY.addItem(1000, new ItemStack(HFItems.GENERAL, 1, ItemGeneral.MEDICINE));
         POULTRY.addItem(10, new ItemStack(HFItems.GENERAL, 1, ItemGeneral.CHICKEN_FEED));
@@ -96,8 +95,8 @@ public class HFShops {
     }
 
     private static void registerSupermarket() {
-        SUPERMARKET = HFApi.SHOPS.newShop("general", HFNPCs.GS_OWNER);
-        for (ICrop crop : HFApi.CROPS.getCrops()) {
+        SUPERMARKET = HFApi.shops.newShop("general", HFNPCs.GS_OWNER);
+        for (ICrop crop : HFApi.crops.getCrops()) {
             SUPERMARKET.addItem(new PurchaseableCropSeeds(crop));
         }
         SUPERMARKET.addItem(100, new ItemStack(Items.BREAD));
@@ -113,7 +112,7 @@ public class HFShops {
     }
 
     private static void registerMiner() {
-        MINER = HFApi.SHOPS.newShop("miner", HFNPCs.MINER);
+        MINER = HFApi.shops.newShop("miner", HFNPCs.MINER);
         MINER.addItem(new PurchaseableDirt(1000, new ItemStack(HFBlocks.DIRT, 16, 1)));
         MINER.addItem(new PurchaseableStone(1000, new ItemStack(HFBlocks.STONE, 16, 1)));
 

@@ -5,7 +5,7 @@ import joshie.harvest.api.buildings.IBuildingRegistry;
 import joshie.harvest.api.calendar.ICalendar;
 import joshie.harvest.api.cooking.IFoodRegistry;
 import joshie.harvest.api.core.IShippingRegistry;
-import joshie.harvest.api.crops.ICropHandler;
+import joshie.harvest.api.crops.ICropRegistry;
 import joshie.harvest.api.npc.INPCRegistry;
 import joshie.harvest.api.quest.IQuestRegistry;
 import joshie.harvest.api.relations.IRelationships;
@@ -15,14 +15,14 @@ import joshie.harvest.api.shops.IShopRegistry;
  * These are filled by HarvestFestival when it is loaded
  **/
 public class HFApi {
-    public static IAnimalHandler ANIMALS = null;
-    public static ICalendar CALENDAR = null;
-    public static ICropHandler CROPS = null;
-    public static IBuildingRegistry BUILDINGS = null;
-    public static IFoodRegistry COOKING = null;
-    public static INPCRegistry NPC = null;
-    public static IShopRegistry SHOPS = null;
-    public static IQuestRegistry QUESTS = null;
-    public static IRelationships RELATIONS = null;
-    public static IShippingRegistry SHIPPING = null;
+    public static IAnimalHandler animals = null;
+    public static ICalendar calendar = null;
+    public static ICropRegistry crops = null;
+    public static IBuildingRegistry buildings = null;
+    public static IFoodRegistry cooking = null;
+    public static INPCRegistry npc = null;
+    public static IShopRegistry shops = null;
+    public static IQuestRegistry quests = null;
+    public static IRelationships relations = null;
+    public static IShippingRegistry shipping = null;
 }

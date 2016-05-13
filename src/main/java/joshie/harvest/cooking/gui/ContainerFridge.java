@@ -48,7 +48,7 @@ public class ContainerFridge extends ContainerBase {
 
             if (slotID < size) {
                 if (!mergeItemStack(stack, size, high, true)) return null;
-            } else if (HFApi.COOKING.getCookingComponents(stack).size() > 0) {
+            } else if (HFApi.cooking.getCookingComponents(stack).size() > 0) {
                 if (!mergeItemStack(stack, 0, storage.getSizeInventory(), false)) return null;
             } else if (slotID >= size && slotID < low) {
                 if (!mergeItemStack(stack, low, high, false)) return null;

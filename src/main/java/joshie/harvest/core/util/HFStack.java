@@ -13,8 +13,8 @@ public class HFStack extends SafeStack {
     public HFStack(ItemStack stack) {
         super(stack);
 
-        if (HFApi.CROPS.getCropFromStack(stack) != null) {
-            crop = HFApi.CROPS.getCropFromStack(stack);
+        if (HFApi.crops.getCropFromStack(stack) != null) {
+            crop = HFApi.crops.getCropFromStack(stack);
         } else if (stack.getItem() instanceof ISizedProvider) {
             sized = ((ISizedProvider)stack.getItem()).getSizeable(stack);
         }

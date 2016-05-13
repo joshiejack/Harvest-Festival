@@ -1,11 +1,11 @@
 package joshie.harvest.core.network;
 
 import io.netty.buffer.ByteBuf;
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.relations.IRelatableDataHandler;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.network.penguin.PenguinPacket;
-import joshie.harvest.player.relationships.RelationshipHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 
@@ -30,7 +30,7 @@ public class PacketSyncMarriage extends PenguinPacket {
     @Override
     public void fromBytes(ByteBuf buf) {
         String handlerName = ByteBufUtils.readUTF8String(buf);
-        handler = RelationshipHelper.getHandler(handlerName).copy();
+        handler = HFApi.relations.getDataHandler(handlerName).copy();
         handler.fromBytes(buf);
         divorce = buf.readBoolean();
     }

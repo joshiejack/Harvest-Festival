@@ -25,7 +25,7 @@ public class ItemNPCSpawner extends ItemHFBaseMeta   {
         super(HFTab.TOWN);
 
         int meta = 0;
-        for (INPC npc : HFApi.NPC.getNPCs()) {
+        for (INPC npc : HFApi.npc.getNPCs()) {
             metas.put(meta, npc);
             meta++;
         }
@@ -33,7 +33,7 @@ public class ItemNPCSpawner extends ItemHFBaseMeta   {
 
     @Override
     public int getMetaCount() {
-        return HFApi.NPC.getNPCs().size();
+        return HFApi.npc.getNPCs().size();
     }
 
     public static INPC getNPC(int damage) {

@@ -5,6 +5,8 @@ import net.minecraft.entity.player.EntityPlayer;
 public interface IRelationships {
     /** Register a data handler **/
     void registerDataHandler(IRelatableDataHandler handler);
+
+    IRelatableDataHandler getDataHandler(String name);
     
     /** Call this whenever a player talks to something that you can have
      *  a relationship with. Only call this server side. */

@@ -100,7 +100,7 @@ public class FridgeData implements IInventory {
 
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack stack) {
-        return HFApi.COOKING.getCookingComponents(stack).size() > 0;
+        return HFApi.cooking.getCookingComponents(stack).size() > 0;
     }
 
     @Override

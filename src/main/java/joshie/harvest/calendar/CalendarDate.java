@@ -23,7 +23,7 @@ public class CalendarDate implements ICalendarDate {
         this.day = day;
         this.season = season;
         this.year = year;
-        this.data = HFApi.CALENDAR.getDataForSeason(season);
+        this.data = HFApi.calendar.getDataForSeason(season);
     }
 
     public CalendarDate(ICalendarDate date) {
@@ -44,7 +44,7 @@ public class CalendarDate implements ICalendarDate {
         Season previous = this.season;
         this.season = season;
         if (previous != season) {
-            this.data = HFApi.CALENDAR.getDataForSeason(season);
+            this.data = HFApi.calendar.getDataForSeason(season);
         }
 
         return this;
@@ -85,7 +85,7 @@ public class CalendarDate implements ICalendarDate {
         day = nbt.getByte("DayOfMonth");
         season = Season.values()[nbt.getByte("Season")];
         year = nbt.getShort("Year");
-        data = HFApi.CALENDAR.getDataForSeason(season);
+        data = HFApi.calendar.getDataForSeason(season);
     }
 
     public void writeToNBT(NBTTagCompound nbt) {

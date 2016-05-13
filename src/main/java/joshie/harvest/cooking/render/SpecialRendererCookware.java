@@ -47,7 +47,7 @@ public abstract class SpecialRendererCookware<T extends TileCooking> extends Til
         int max = ingredients.size();
         for (int i = 0; i < max; i++) {
             ItemStack ingredient = ingredients.get(i);
-            ResourceLocation fluid = HFApi.COOKING.getFluid(ingredient);
+            ResourceLocation fluid = HFApi.cooking.getFluid(ingredient);
             if (fluid == null) {
                 renderIngredient(ingredient, tile.heightOffset[i], tile.rotations[i], tile.offset1[i], tile.offset2[i]);
             } else {

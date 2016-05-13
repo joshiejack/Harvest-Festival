@@ -6,7 +6,6 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.network.quests.PacketQuestSetAvailable;
 import joshie.harvest.core.network.quests.PacketQuestSetCurrent;
 import joshie.harvest.player.PlayerTracker;
-import joshie.harvest.quests.QuestRegistry;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -64,7 +63,7 @@ public class QuestDataServer extends QuestData {
     }
     
     public void sync(EntityPlayerMP player) {
-        for (IQuest quest : QuestRegistry.getQuests().values()) {
+        for (IQuest quest : HFApi.quests.getQuests()) {
             syncQuest(quest, player);
         }
     }
@@ -94,7 +93,7 @@ public class QuestDataServer extends QuestData {
             NBTTagList list = nbt.getTagList("CurrentQuests", 10);
             for (int i = 0; i < list.tagCount(); i++) {
                 NBTTagCompound tag = list.getCompoundTagAt(i);
-                IQuest q = HFApi.QUESTS.get(tag.getString("QuestID"));
+                IQuest q = HFApi.quests.get(tag.getString("QuestID"));
                 try {
                     IQuest quest = ((IQuest) q.getClass().newInstance()).setUniqueName(q.getUniqueName());
                     quest.readFromNBT(tag);
@@ -106,7 +105,7 @@ public class QuestDataServer extends QuestData {
         if (nbt.hasKey("FinishedQuests")) {
             NBTTagList list = nbt.getTagList("FinishedQuests", 8);
             for (int i = 0; i < list.tagCount(); i++) {
-                finished.add(HFApi.QUESTS.get(list.getStringTagAt(i)));
+                finished.add(HFApi.quests.get(list.getStringTagAt(i)));
             }
         }
     }

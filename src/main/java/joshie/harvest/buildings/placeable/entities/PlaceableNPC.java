@@ -44,7 +44,7 @@ public class PlaceableNPC extends PlaceableEntity {
     @Override
     public Entity getEntity(UUID uuid, World world, BlockPos pos, Direction direction) {
         if (npc == null || npc.equals("")) return null;
-        INPC inpc = HFApi.NPC.get(npc); if (inpc == null) return null;
+        INPC inpc = HFApi.npc.get(npc); if (inpc == null) return null;
         EntityNPC entity = NPCHelper.getEntityForNPC(uuid, world, inpc);
         entity.setPosition(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
         entity.setSpawnCoordinates(pos);

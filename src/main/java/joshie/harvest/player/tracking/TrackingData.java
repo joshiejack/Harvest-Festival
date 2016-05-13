@@ -71,7 +71,7 @@ public class TrackingData {
 
         @Override
         public void readFromNBT(NBTTagCompound tag) {
-            crop = HFApi.CROPS.getCrop(new ResourceLocation(tag.getString("CropResource")));
+            crop = HFApi.crops.getCrop(new ResourceLocation(tag.getString("CropResource")));
             amount = tag.getInteger("SellAmount");
         }
 

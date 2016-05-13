@@ -5,7 +5,7 @@ import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.core.handlers.HFTrackers;
 
 public class StatData {
-    protected ICalendarDate birthday = HFApi.CALENDAR.newDate(0, null, 0);
+    protected ICalendarDate birthday = HFApi.calendar.newDate(0, null, 0);
     protected double staminaMax = 100D;
     protected double fatigueMin = 0D;
     protected double stamina = 100D;
@@ -37,7 +37,7 @@ public class StatData {
 
     public boolean setBirthday() {
         if (!isBirthdaySet()) {
-            birthday = HFApi.CALENDAR.cloneDate(HFApi.CALENDAR.getToday());
+            birthday = HFApi.calendar.cloneDate(HFApi.calendar.getToday());
             HFTrackers.markDirty();
             return true;
         } else return false;

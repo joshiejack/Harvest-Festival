@@ -81,8 +81,8 @@ public class AnimalData implements IAnimalData {
         }
 
         //Gets the adjusted relationship, 0-65k
-        int relationship = HFApi.RELATIONS.getAdjustedRelationshipValue(owner, relatable);
-        double chance = (relationship / (double) HFApi.RELATIONS.getMaximumRelationshipValue()) * 200;
+        int relationship = HFApi.relations.getAdjustedRelationshipValue(owner, relatable);
+        double chance = (relationship / (double) HFApi.relations.getMaximumRelationshipValue()) * 200;
         chance += healthiness;
         if (chance <= 1) {
             chance = 1D;

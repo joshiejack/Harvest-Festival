@@ -228,6 +228,6 @@ public class HFBuildings {
     }
 
     private static IBuilding registerBuilding(String building) {
-        return HFApi.BUILDINGS.registerBuilding(new ResourceLocation("harvestfestival", building));
+        return HFApi.buildings.registerBuilding(new ResourceLocation("harvestfestival", building));
     }
 }

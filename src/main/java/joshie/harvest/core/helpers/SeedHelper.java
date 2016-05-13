@@ -15,7 +15,7 @@ public class SeedHelper {
         }
 
         ResourceLocation resource = new ResourceLocation(stack.getTagCompound().getString("ResourceSeedName"));
-        return HFApi.CROPS.getCrop(resource);
+        return HFApi.crops.getCrop(resource);
     }
 
     public static ItemStack getSeedsFromCrop(ICrop crop) {

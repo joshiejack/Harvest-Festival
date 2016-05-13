@@ -5,8 +5,8 @@ import joshie.harvest.quests.tutorial.QuestGoddess;
 
 public class HFQuests {
     public static void preInit() {
-        HFApi.QUESTS.register("tutorial.farming", new QuestGoddess());
-        //HFApi.QUESTS.register("tutorial.cow", new QuestCowCare());
-        //HFApi.QUESTS.register("tutorial.chicken", new QuestChickenCare());
+        HFApi.quests.register("tutorial.farming", new QuestGoddess());
+        //HFApi.quests.register("tutorial.cow", new QuestCowCare());
+        //HFApi.quests.register("tutorial.chicken", new QuestChickenCare());
     }
 }

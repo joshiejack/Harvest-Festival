@@ -11,7 +11,7 @@ import java.util.Collection;
 import java.util.HashMap;
 
 public class NPCRegistry implements INPCRegistry {
-    private static HashMap<String, INPC> npcs = new HashMap<String, INPC>();
+    private final HashMap<String, INPC> npcs = new HashMap<>();
 
     @Override
     public Collection<INPC> getNPCs() {
@@ -31,6 +31,6 @@ public class NPCRegistry implements INPCRegistry {
 
     @Override
     public INPC register(String unlocalised, Gender gender, Age age, int dayOfBirth, Season seasonOfBirth, int insideColor, int outsideColor) {
-        return register(new NPC(unlocalised, gender, age, HFApi.CALENDAR.newDate(dayOfBirth, seasonOfBirth, 1), insideColor, outsideColor));
+        return register(new NPC(unlocalised, gender, age, HFApi.calendar.newDate(dayOfBirth, seasonOfBirth, 1), insideColor, outsideColor));
     }
 }

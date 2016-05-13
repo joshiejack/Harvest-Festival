@@ -22,15 +22,15 @@ public class EntityHarvestSheep extends EntitySheep implements IAnimalTracked {
     public EntityHarvestSheep(World world) {
         super(world);
         setSize(1.4F, 1.4F);
-        type = HFApi.ANIMALS.getType(this);
-        data = HFApi.ANIMALS.newData(this);
+        type = HFApi.animals.getType(this);
+        data = HFApi.animals.newData(this);
         tasks.addTask(3, new EntityAIEat(this));
         tasks.removeTask(entityAIEatGrass);
     }
     
     @Override
     public IRelatableDataHandler getDataHandler() {
-        return RelationshipHelper.getHandler("entity");
+        return HFApi.relations.getDataHandler("entity");
     }
     
     @Override
@@ -52,7 +52,7 @@ public class EntityHarvestSheep extends EntitySheep implements IAnimalTracked {
     public boolean processInteract(EntityPlayer player, EnumHand hand, ItemStack stack) {
         ItemStack held = player.getActiveItemStack();
         if (held != null) {
-            if (HFApi.ANIMALS.canEat(type.getFoodTypes(), held)) {
+            if (HFApi.animals.canEat(type.getFoodTypes(), held)) {
                 if (!worldObj.isRemote) {
                     data.feed(player);
                 }
@@ -63,7 +63,7 @@ public class EntityHarvestSheep extends EntitySheep implements IAnimalTracked {
             return false;
         }
 
-        HFApi.RELATIONS.talkTo(player, this);
+        HFApi.relations.talkTo(player, this);
         return true;
     }
 

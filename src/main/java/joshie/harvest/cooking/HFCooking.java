@@ -15,7 +15,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class HFCooking {
     public static void preInit() {
-        HFApi.COOKING.registerRecipeHandler(new MayoRecipeHandler());
+        HFApi.cooking.registerRecipeHandler(new MayoRecipeHandler());
     }
 
     @SideOnly(Side.CLIENT)

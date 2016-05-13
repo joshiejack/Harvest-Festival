@@ -38,6 +38,6 @@ public class PacketSyncBirthday extends PenguinPacket {
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        HFTrackers.getClientPlayerTracker().getStats().setBirthday(HFApi.CALENDAR.newDate(day, season, year));
+        HFTrackers.getClientPlayerTracker().getStats().setBirthday(HFApi.calendar.newDate(day, season, year));
     }
 }

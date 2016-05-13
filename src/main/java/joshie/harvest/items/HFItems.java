@@ -47,7 +47,7 @@ public class HFItems {
 
     public static void preInit() {
         //Add a new crop item for things that do not have an item yet :D
-        for (ICrop crop : HFApi.CROPS.getCrops()) {
+        for (ICrop crop : HFApi.crops.getCrops()) {
             if (!crop.hasItemAssigned()) {
                 crop.setItem(new ItemStack(new ItemCrop(crop).setUnlocalizedName("crop." + crop.getResource().getResourcePath()), 1, 0));
             }

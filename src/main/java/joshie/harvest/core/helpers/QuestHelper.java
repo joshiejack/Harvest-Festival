@@ -49,7 +49,7 @@ public class QuestHelper {
     }
 
     public static void rewardRelations(EntityPlayer player, INPC npc, int amount) {
-        HFApi.RELATIONS.adjustRelationship(player, npc, amount);
+        HFApi.relations.adjustRelationship(player, npc, amount);
     }
 
     public static void rewardItem(EntityPlayer player, ItemStack stack) {

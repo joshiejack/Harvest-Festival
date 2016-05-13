@@ -1,5 +1,6 @@
 package joshie.harvest;
 
+import joshie.harvest.core.HFApiLoader;
 import joshie.harvest.core.HFCommonProxy;
 import joshie.harvest.core.commands.CommandManager;
 import net.minecraft.command.ICommandManager;
@@ -26,6 +27,11 @@ public class HarvestFestival {
     @Instance(MODID)
     public static HarvestFestival instance;
     public static File root;
+
+    @EventHandler
+    public void onConstruction(FMLConstructionEvent event) {
+        HFApiLoader.init(); //Load in the api once construction is done
+    }
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {

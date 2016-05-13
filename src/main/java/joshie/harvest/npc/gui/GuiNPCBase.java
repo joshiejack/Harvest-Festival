@@ -56,7 +56,7 @@ public class GuiNPCBase extends GuiBase {
     public void drawForeground(int x, int y) {
         mc.renderEngine.bindTexture(HFModInfo.elements);
         if (npc.getNPC().isMarriageCandidate()) {
-            drawHeart(HFApi.RELATIONS.getAdjustedRelationshipValue(player, npc.getRelatable()));
+            drawHeart(HFApi.relations.getAdjustedRelationshipValue(player, npc.getRelatable()));
         }
     }
 

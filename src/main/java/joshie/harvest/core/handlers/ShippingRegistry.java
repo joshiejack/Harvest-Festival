@@ -12,11 +12,11 @@ import org.apache.commons.lang3.tuple.Pair;
 import java.util.HashMap;
 
 public class ShippingRegistry implements IShippingRegistry {
-    private static final HashMap<Pair<Item, Integer>, Long> REGISTRY = new HashMap<Pair<Item, Integer>, Long>();
+    private final HashMap<Pair<Item, Integer>, Long> registry = new HashMap<>();
 
     @Override
     public void registerSellable(ItemStack stack, long value) {
-        REGISTRY.put(Pair.of(stack.getItem(), stack.getItemDamage()), value);
+        registry.put(Pair.of(stack.getItem(), stack.getItemDamage()), value);
     }
 
     @Override
@@ -26,15 +26,15 @@ public class ShippingRegistry implements IShippingRegistry {
         }
 
         //Special case Crops
-        ICrop crop = HFApi.CROPS.getCropFromStack(stack);
+        ICrop crop = HFApi.crops.getCropFromStack(stack);
         if (crop != null) return crop.getSellValue(stack);
 
         //Wildcard
-        Long value = REGISTRY.get(Pair.of(stack.getItem(), OreDictionary.WILDCARD_VALUE));
+        Long value = registry.get(Pair.of(stack.getItem(), OreDictionary.WILDCARD_VALUE));
         if (value != null) return value;
 
         //Normal
-        value = REGISTRY.get(Pair.of(stack.getItem(), stack.getItemDamage()));
+        value = registry.get(Pair.of(stack.getItem(), stack.getItemDamage()));
         if (value != null) return value;
 
         return 0;

@@ -12,16 +12,23 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentString;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 public class BuildingRegistry implements IBuildingRegistry {
-    public static final HashMap<ResourceLocation, IBuilding> buildings = new HashMap<ResourceLocation, IBuilding>();
+    private final HashMap<ResourceLocation, IBuilding> buildings = new HashMap<ResourceLocation, IBuilding>();
+
+    @Override
+    public Collection<IBuilding> getBuildings() {
+        return buildings.values();
+    }
 
     @Override
     public IBuilding registerBuilding(IBuilding building) {
         buildings.put(building.getResource(), building);
         return building;
     }
+
 
     @Override
     public IBuilding getBuildingFromName(ResourceLocation name) {

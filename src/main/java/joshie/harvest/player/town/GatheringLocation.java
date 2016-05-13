@@ -10,8 +10,7 @@ public class GatheringLocation extends WorldLocation {
     public Block block;
     public int meta;
 
-    public GatheringLocation() {
-    }
+    public GatheringLocation() {}
 
     public GatheringLocation(Block block, int meta, int dimension, BlockPos pos) {
         super(dimension, pos);

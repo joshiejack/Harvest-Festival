@@ -1,5 +1,6 @@
 package joshie.harvest.player.relationships;
 
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.relations.IRelatableDataHandler;
 import joshie.harvest.core.config.NPC;
@@ -96,7 +97,7 @@ public class RelationshipDataServer extends RelationshipData {
         NBTTagList relationList = nbt.getTagList("Relationships", 10);
         for (int i = 0; i < relationList.tagCount(); i++) {
             NBTTagCompound tag = relationList.getCompoundTagAt(i);
-            IRelatableDataHandler data = RelationshipHelper.getHandler(tag.getString("Handler"));
+            IRelatableDataHandler data = HFApi.relations.getDataHandler(tag.getString("Handler"));
             IRelatable relatable = data.readFromNBT(tag);
             if (relatable != null) {
                 int value = tag.getInteger("Value");
@@ -108,7 +109,7 @@ public class RelationshipDataServer extends RelationshipData {
         NBTTagList talkedList = nbt.getTagList("TalkedTo", 10);
         for (int i = 0; i < talkedList.tagCount(); i++) {
             NBTTagCompound tag = talkedList.getCompoundTagAt(i);
-            IRelatableDataHandler data = RelationshipHelper.getHandler(tag.getString("Handler"));
+            IRelatableDataHandler data = HFApi.relations.getDataHandler(tag.getString("Handler"));
             IRelatable relatable = data.readFromNBT(tag);
             if (relatable != null) talked.add(relatable);
         }
@@ -117,7 +118,7 @@ public class RelationshipDataServer extends RelationshipData {
         NBTTagList giftedList = nbt.getTagList("Gifted", 10);
         for (int i = 0; i < giftedList.tagCount(); i++) {
             NBTTagCompound tag = giftedList.getCompoundTagAt(i);
-            IRelatableDataHandler data = RelationshipHelper.getHandler(tag.getString("Handler"));
+            IRelatableDataHandler data = HFApi.relations.getDataHandler(tag.getString("Handler"));
             IRelatable relatable = data.readFromNBT(tag);
             if (relatable != null) gifted.add(relatable);
         }
@@ -126,7 +127,7 @@ public class RelationshipDataServer extends RelationshipData {
         NBTTagList marriedList = nbt.getTagList("MarriedTo", 10);
         for (int i = 0; i < marriedList.tagCount(); i++) {
             NBTTagCompound tag = marriedList.getCompoundTagAt(i);
-            IRelatableDataHandler data = RelationshipHelper.getHandler(tag.getString("Handler"));
+            IRelatableDataHandler data = HFApi.relations.getDataHandler(tag.getString("Handler"));
             IRelatable relatable = data.readFromNBT(tag);
             if (relatable != null) marriedTo.add(relatable);
         }

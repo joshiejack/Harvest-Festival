@@ -3,7 +3,6 @@ package joshie.harvest.items;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.api.core.ICreativeSorted;
-import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.buildings.loader.HFBuildings;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.helpers.UUIDHelper;
@@ -38,7 +37,7 @@ public class ItemBuilding extends ItemHFBaseMeta implements ICreativeSorted {
 
     @Override
     public int getMetaCount() {
-        return BuildingRegistry.buildings.size();
+        return HFApi.buildings.getBuildings().size();
     }
 
     @Override
@@ -58,7 +57,7 @@ public class ItemBuilding extends ItemHFBaseMeta implements ICreativeSorted {
 
     public IBuilding getBuildingFromStack(ItemStack stack) {
         if (!stack.hasTagCompound()) return HFBuildings.null_building;
-        IBuilding building = HFApi.BUILDINGS.getBuildingFromName(new ResourceLocation(stack.getTagCompound().getString("Building")));
+        IBuilding building = HFApi.buildings.getBuildingFromName(new ResourceLocation(stack.getTagCompound().getString("Building")));
         return building == null ? HFBuildings.null_building: building;
     }
 
@@ -76,7 +75,7 @@ public class ItemBuilding extends ItemHFBaseMeta implements ICreativeSorted {
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
         if (tab == HFTab.TOWN) {
-            for (IBuilding building : BuildingRegistry.buildings.values()) {
+            for (IBuilding building : HFApi.buildings.getBuildings()) {
                 if (building == null) continue;
                 list.add(getItemStack(building));
             }

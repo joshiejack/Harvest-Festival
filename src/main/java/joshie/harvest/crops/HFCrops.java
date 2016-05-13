@@ -82,18 +82,18 @@ public class HFCrops {
     }
 
     private static void registerVanillaCrop(Item item, ICrop crop) {
-        HFApi.CROPS.registerCropProvider(new ItemStack(item, 1, OreDictionary.WILDCARD_VALUE), crop);
+        HFApi.crops.registerCropProvider(new ItemStack(item, 1, OreDictionary.WILDCARD_VALUE), crop);
         item.setCreativeTab(FARMING);
         crop.setItem(new ItemStack(item));
     }
 
     private static void registerVanillaCrop(Block block, ICrop crop) {
-        HFApi.CROPS.registerCropProvider(new ItemStack(block, 1, OreDictionary.WILDCARD_VALUE), crop);
+        HFApi.crops.registerCropProvider(new ItemStack(block, 1, OreDictionary.WILDCARD_VALUE), crop);
         block.setCreativeTab(FARMING);
         crop.setItem(new ItemStack(block));
     }
 
     private static ICrop registerCrop(String name, int cost, int sell, int stages, int regrow, int year, int color, Season... seasons) {
-        return HFApi.CROPS.registerCrop(new ResourceLocation(HFModInfo.MODID, name), cost, sell, stages, regrow, year, color, seasons);
+        return HFApi.crops.registerCrop(new ResourceLocation(HFModInfo.MODID, name), cost, sell, stages, regrow, year, color, seasons);
     }
 }

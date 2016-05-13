@@ -15,7 +15,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class GatheringData {
-    private Set<GatheringLocation> locations = new HashSet<GatheringLocation>();
+    private Set<GatheringLocation> locations = new HashSet<>();
 
     public ItemStack getRandomBlock() {
         return new ItemStack(Blocks.OBSIDIAN, 1, 0);
@@ -23,7 +23,7 @@ public class GatheringData {
 
     public void newDay(Collection<TownBuilding> buildings) {
         Set<GatheringLocation> previous = new HashSet<GatheringLocation>(locations);
-        locations = new HashSet<GatheringLocation>();
+        locations = new HashSet<>();
 
         //Remove all previous locations
         for (GatheringLocation location : previous) {

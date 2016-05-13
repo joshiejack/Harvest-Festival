@@ -27,7 +27,7 @@ public class SizeableHelper {
 
     public static ItemStack getSizeable(EntityPlayer player, IAnimalTracked tracked, SizeableMeta milk) {
         Size size = null;
-        int relationship = HFApi.RELATIONS.getAdjustedRelationshipValue(player, tracked);
+        int relationship = HFApi.relations.getAdjustedRelationshipValue(player, tracked);
         for (Size s: Size.values()) {
             if (relationship >= s.getRelationshipRequirement()) size = s;
         }

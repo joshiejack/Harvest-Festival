@@ -1,9 +1,13 @@
 package joshie.harvest.api.quest;
 
+import java.util.Collection;
+
 public interface IQuestRegistry {
+    Collection<IQuest> getQuests();
+
     /** Registers a new quest, using the default system **/
-    public IQuest register(String uniqueName, IQuest quest);
+    IQuest register(String uniqueName, IQuest quest);
 
     /** Grab a quest from it's unique name **/
-    public IQuest get(String uniqueName);
+    IQuest get(String uniqueName);
 }

@@ -8,7 +8,7 @@ import net.minecraft.world.World;
 
 import java.util.Collection;
 
-public interface ICropHandler {
+public interface ICropRegistry {
     /** Registers a crop with some specific information **/
     public ICrop registerCrop(ResourceLocation resource, int cost, int sell, int stages, int regrow, int year, int color, Season... seasons);
 

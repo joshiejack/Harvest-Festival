@@ -3,24 +3,28 @@ package joshie.harvest.api.cooking;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
+import java.util.Collection;
 import java.util.List;
 
 public interface IFoodRegistry {
+    /** Returns a collection of all the ingredients that are registered **/
+    Collection<ICookingIngredient> getIngredients();
+
     /** Registers this item as a cooking component type
      *  @param      stack the itemstack
      *  @param      component the component **/
-    public void register(ItemStack stack, ICookingIngredient component);
+    void register(ItemStack stack, ICookingIngredient component);
     
     /** Registers a special recipe handler, called before the normal
      *  recipes are ever processed
      * @param handler */
-    public void registerRecipeHandler(ISpecialRecipeHandler handler);
+    void registerRecipeHandler(ISpecialRecipeHandler handler);
 
     /** Returns a set of all the components this stack provides
      * 
      * @param       stack the stack
      * @return      the components the stack provides*/
-    public List<ICookingIngredient> getCookingComponents(ItemStack stack);
+    List<ICookingIngredient> getCookingComponents(ItemStack stack);
     
     /** Returns a cooking component based on it's unlocalized name
      *  Cooking components are regitered when an item is registered to them,
@@ -29,7 +33,7 @@ public interface IFoodRegistry {
      *  
      *  @param      unlocalized the unlocalized name of the component
      *  @return     the cooking component  */
-    public ICookingIngredient getIngredient(String unlocalized);
+    ICookingIngredient getIngredient(String unlocalized);
     
     /** Creates a new cooking category, e.g. "fruit"
      *  To add things to this category, simple call 
@@ -39,7 +43,7 @@ public interface IFoodRegistry {
      * @param       unlocalized name
      * @return      the component
      */
-    public ICookingIngredient newCategory(String unlocalized);
+    ICookingIngredient newCategory(String unlocalized);
     
     /** Creates a new ingredient type for usage in cooking
      *  @param      unlocalised the unlocalised name, this needs to be unique
@@ -50,7 +54,7 @@ public interface IFoodRegistry {
      *  @param      hunger the hunger (vanilla) this ingredient fills
      *  @param      saturation the saturation (vanilla) this ingredient fills
      *  @param      eatTimer the eatTimer, this is how many ticks extra this adds to eating time **/
-    public ICookingIngredient newIngredient(String unlocalised, int stamina, int fatigue, int hunger, float saturation, int eatTimer);
+    ICookingIngredient newIngredient(String unlocalised, int stamina, int fatigue, int hunger, float saturation, int eatTimer);
 
     /** Returns a fluid for this ingredient if it's valid
      *  This is called by the client when rendering, to determine how to rend the item.
@@ -84,16 +88,16 @@ public interface IFoodRegistry {
      *  @param      utensil the utensil in use
      *  @param      ingredients the ingredients
      *  @return     the resulting item */
-    public ItemStack getResult(IUtensil utensil, List<ItemStack> ingredients);
+    ItemStack getResult(IUtensil utensil, List<ItemStack> ingredients);
 
     /** Returns a default copy of this meal
      *  @param name     this is the resource path of the name, if it's a harvestfestival meal you can just use the name,
      *                  if it's added by other mods you should use the normal resourcepath **/
-    public ItemStack getMeal(String name);
+    ItemStack getMeal(String name);
     
     /** Returns a copy of this meal, with it's best stats
      *  Can and will return null if it was not found.
      *  @param name     this is the resource path of the name, if it's a harvestfestival meal you can just use the name,
      *                  if it's added by other mods you should use the normal resourcepath **/
-    public ItemStack getBestMeal(String name);
+    ItemStack getBestMeal(String name);
 }

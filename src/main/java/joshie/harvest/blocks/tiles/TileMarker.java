@@ -61,7 +61,7 @@ public class TileMarker extends TileEntity {
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
-        building = HFApi.BUILDINGS.getBuildingFromName(new ResourceLocation(nbt.getString("Building")));
+        building = HFApi.buildings.getBuildingFromName(new ResourceLocation(nbt.getString("Building")));
         if (nbt.hasKey("Direction")) {
             direction = Direction.valueOf(nbt.getString("Direction"));
         }

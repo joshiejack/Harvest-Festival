@@ -3,7 +3,7 @@ package joshie.harvest.crops;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
-import joshie.harvest.api.crops.ICropHandler;
+import joshie.harvest.api.crops.ICropRegistry;
 import joshie.harvest.api.crops.ICropProvider;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
 import joshie.harvest.blocks.BlockCrop;
@@ -19,8 +19,8 @@ import org.apache.commons.lang3.tuple.Pair;
 import java.util.Collection;
 import java.util.HashMap;
 
-public class CropRegistry implements ICropHandler {
-    private static final HashMap<Pair<Item, Integer>, ICrop> PROVIDERS = new HashMap<Pair<Item, Integer>, ICrop>();
+public class CropRegistry implements ICropRegistry {
+    private final HashMap<Pair<Item, Integer>, ICrop> providers = new HashMap<Pair<Item, Integer>, ICrop>();
 
     @Override
     public ICrop getCrop(ResourceLocation resource) {
@@ -51,7 +51,7 @@ public class CropRegistry implements ICropHandler {
 
     @Override
     public ICrop registerCropProvider(ItemStack stack, ICrop crop) {
-        PROVIDERS.put(Pair.of(stack.getItem(), stack.getItemDamage()), crop);
+        providers.put(Pair.of(stack.getItem(), stack.getItemDamage()), crop);
         return crop;
     }
 
@@ -61,7 +61,7 @@ public class CropRegistry implements ICropHandler {
             return ((ICropProvider)stack.getItem()).getCrop(stack);
         }
 
-        ICrop crop = PROVIDERS.get(Pair.of(stack.getItem(), OreDictionary.WILDCARD_VALUE));
-        return crop != null ? crop : PROVIDERS.get(Pair.of(stack.getItem(), stack.getItemDamage()));
+        ICrop crop = providers.get(Pair.of(stack.getItem(), OreDictionary.WILDCARD_VALUE));
+        return crop != null ? crop : providers.get(Pair.of(stack.getItem(), stack.getItemDamage()));
     }
 }

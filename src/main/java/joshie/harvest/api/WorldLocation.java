@@ -16,12 +16,6 @@ public class WorldLocation {
         this.position = position;
     }
 
-    public WorldLocation(WorldLocation location) {
-        this.dimension = location.dimension;
-        this.position = new BlockPos(location.position);
-    }
-
-
     @Override
     public int hashCode() {
         final int prime = 31;

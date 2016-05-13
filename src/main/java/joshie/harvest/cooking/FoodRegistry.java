@@ -19,15 +19,14 @@ import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class FoodRegistry implements IFoodRegistry {
     public static final FMLControlledNamespacedRegistry<Recipe> REGISTRY = PersistentRegistryManager.createRegistry(new ResourceLocation(MODID, "meals"), Recipe.class, null, 10, 32000, true, null, null, null);
-    private static final HashMap<String, ICookingIngredient> components = new HashMap<>();
-    private static final HashSet<ISpecialRecipeHandler> specials = new HashSet<>();
-    private static final Multimap<SafeStack, ICookingIngredient> registry = ArrayListMultimap.create();
-
+    private final HashMap<String, ICookingIngredient> components = new HashMap<>();
+    private final HashSet<ISpecialRecipeHandler> specials = new HashSet<>();
+    private final Multimap<SafeStack, ICookingIngredient> registry = ArrayListMultimap.create();
 
     @Override
     public void register(ItemStack stack, ICookingIngredient component) {
         if (stack == null || stack.getItem() == null || component == null) return; //Fail silently
-        FoodRegistry.registry.get(SafeStackHelper.getSafeStackType(stack)).add(component);
+        registry.get(SafeStackHelper.getSafeStackType(stack)).add(component);
 
         //Register the component
         if (!components.containsKey(component.getUnlocalizedName())) {
@@ -35,7 +34,8 @@ public class FoodRegistry implements IFoodRegistry {
         }
     }
 
-    public static Collection<ICookingIngredient> getIngredients() {
+    @Override
+    public Collection<ICookingIngredient> getIngredients() {
         return components.values();
     }
 
@@ -124,7 +124,7 @@ public class FoodRegistry implements IFoodRegistry {
         }
 
         //Convert all the stacks in to their relevant ingredients
-        HashSet<ICookingIngredient> components = new HashSet<ICookingIngredient>();
+        HashSet<ICookingIngredient> components = new HashSet<>();
         for (ItemStack stack : ingredients) {
             components.addAll(getCookingComponents(stack));
         }

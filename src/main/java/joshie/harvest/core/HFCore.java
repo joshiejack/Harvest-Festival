@@ -2,12 +2,7 @@ package joshie.harvest.core;
 
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.animals.AnimalEvents;
-import joshie.harvest.animals.AnimalRegistry;
-import joshie.harvest.api.HFApi;
-import joshie.harvest.buildings.BuildingRegistry;
-import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.calendar.CalendarRender;
-import joshie.harvest.cooking.FoodRegistry;
 import joshie.harvest.core.commands.*;
 import joshie.harvest.core.handlers.*;
 import joshie.harvest.core.network.*;
@@ -18,12 +13,7 @@ import joshie.harvest.core.network.animals.PacketSyncProductsProduced;
 import joshie.harvest.core.network.quests.*;
 import joshie.harvest.core.render.RenderHandler;
 import joshie.harvest.core.util.WorldDestroyer;
-import joshie.harvest.crops.CropRegistry;
-import joshie.harvest.npc.NPCRegistry;
-import joshie.harvest.player.relationships.RelationshipHelper;
 import joshie.harvest.quests.QuestEvents;
-import joshie.harvest.quests.QuestRegistry;
-import joshie.harvest.shops.ShopRegistry;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -31,18 +21,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class HFCore {
     public static void preInit() {
-        //Register API Handlers
-        HFApi.ANIMALS = new AnimalRegistry();
-        HFApi.BUILDINGS = new BuildingRegistry();
-        HFApi.CALENDAR = new CalendarHelper();
-        HFApi.CROPS = new CropRegistry();
-        HFApi.COOKING = new FoodRegistry();
-        HFApi.NPC = new NPCRegistry();
-        HFApi.SHOPS = new ShopRegistry();
-        HFApi.QUESTS = new QuestRegistry();
-        HFApi.RELATIONS = new RelationshipHelper();
-        HFApi.SHIPPING = new ShippingRegistry();
-
         //Register Events
         MinecraftForge.EVENT_BUS.register(new EventsHandler());
         MinecraftForge.EVENT_BUS.register(new AnimalEvents());

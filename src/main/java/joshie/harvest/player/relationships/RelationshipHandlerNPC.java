@@ -29,7 +29,7 @@ public class RelationshipHandlerNPC implements IRelatableDataHandler {
 
     @Override
     public void fromBytes(ByteBuf buf) {
-        npc = HFApi.NPC.get(ByteBufUtils.readUTF8String(buf));
+        npc = HFApi.npc.get(ByteBufUtils.readUTF8String(buf));
     }
 
     @Override
@@ -39,7 +39,7 @@ public class RelationshipHandlerNPC implements IRelatableDataHandler {
 
     @Override
     public IRelatable readFromNBT(NBTTagCompound tag) {
-        return HFApi.NPC.get(tag.getString("NPC"));
+        return HFApi.npc.get(tag.getString("NPC"));
     }
 
     @Override

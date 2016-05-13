@@ -15,13 +15,13 @@ import net.minecraftforge.oredict.OreDictionary;
 import java.util.HashMap;
 
 public class AnimalRegistry implements IAnimalHandler {
-    private static final HashMap<String, IAnimalType> types = new HashMap<>();
-    private static final HashMap<SafeStack, AnimalFoodType> registry = new HashMap<>();
+    private final HashMap<String, IAnimalType> types = new HashMap<>();
+    private final HashMap<SafeStack, AnimalFoodType> registry = new HashMap<>();
 
     //Internal Convenience method
     static void registerFoodsAsType(AnimalFoodType type, Item... items) {
         for (Item item : items) {
-            HFApi.ANIMALS.registerFoodAsType(new ItemStack(item, 1, OreDictionary.WILDCARD_VALUE), type);
+            HFApi.animals.registerFoodAsType(new ItemStack(item, 1, OreDictionary.WILDCARD_VALUE), type);
         }
     }
 

@@ -16,8 +16,8 @@ public class MayoRecipeHandler implements ISpecialRecipeHandler {
         boolean is0Oil = ingredients.get(0).getItem() == HFItems.GENERAL;
         ItemStack oil = is0Oil ? ingredients.get(0) : ingredients.get(1);
         ItemStack egg = is0Oil ? ingredients.get(1) : ingredients.get(0);
-        if (HFApi.COOKING.getCookingComponents(oil).contains(HFIngredients.oil)) {
-            if (HFApi.COOKING.getCookingComponents(egg).contains(HFIngredients.egg)) {
+        if (HFApi.cooking.getCookingComponents(oil).contains(HFIngredients.oil)) {
+            if (HFApi.cooking.getCookingComponents(egg).contains(HFIngredients.egg)) {
                 return new ItemStack(HFItems.MAYONNAISE, 1, egg.getItemDamage());
             }
         }

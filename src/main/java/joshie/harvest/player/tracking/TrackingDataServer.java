@@ -26,7 +26,7 @@ public class TrackingDataServer extends TrackingData {
     }
 
     public boolean addForShipping(ItemStack item) {
-        long sell = HFApi.SHIPPING.getSellValue(item);
+        long sell = HFApi.shipping.getSellValue(item);
         SellHolderStack stack = new SellHolderStack(item, sell);
         CollectionHelper.mergeCollection(stack, toBeShipped);
         HFTrackers.markDirty();

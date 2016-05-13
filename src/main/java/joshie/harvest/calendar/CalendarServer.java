@@ -46,7 +46,7 @@ public class CalendarServer extends Calendar {
             season = getNextSeason(season);
         }
 
-        ISeasonData data = HFApi.CALENDAR.getDataForSeason(season);
+        ISeasonData data = HFApi.calendar.getDataForSeason(season);
         for (Weather weather : Weather.values()) {
             if (isWeatherDisabled(weather)) continue;
             double chance = data.getWeatherChance(weather);

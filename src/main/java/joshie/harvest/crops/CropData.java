@@ -150,7 +150,7 @@ public class CropData implements ICropData {
 
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
-        crop = HFApi.CROPS.getCrop(new ResourceLocation(nbt.getString("CropResource")));
+        crop = HFApi.crops.getCrop(new ResourceLocation(nbt.getString("CropResource")));
         isReal = nbt.getBoolean("IsReal");
         if (crop == HFCrops.null_crop) isReal = false;
         stage = nbt.getByte("CurrentStage");
@@ -182,7 +182,7 @@ public class CropData implements ICropData {
     public void fromBytes(ByteBuf buf) {
         if (buf.readBoolean()) {
             isReal = buf.readBoolean();
-            crop = HFApi.CROPS.getCrop(new ResourceLocation(ByteBufUtils.readUTF8String(buf)));
+            crop = HFApi.crops.getCrop(new ResourceLocation(ByteBufUtils.readUTF8String(buf)));
             stage = buf.readByte();
         }
     }

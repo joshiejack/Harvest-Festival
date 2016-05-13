@@ -31,7 +31,7 @@ public class PacketQuestSetCurrent extends PenguinPacket {
     public void fromBytes(ByteBuf buf) {
         boolean isNull = buf.readBoolean();
         if (!isNull) {
-            IQuest q = HFApi.QUESTS.get(ByteBufUtils.readUTF8String(buf));
+            IQuest q = HFApi.quests.get(ByteBufUtils.readUTF8String(buf));
 
             try {
                 quest = ((Quest) q.getClass().newInstance()).setUniqueName(q.getUniqueName());

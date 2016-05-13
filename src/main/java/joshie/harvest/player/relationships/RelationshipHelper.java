@@ -1,6 +1,5 @@
 package joshie.harvest.player.relationships;
 
-import joshie.harvest.api.HFApi;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.relations.IRelatableDataHandler;
 import joshie.harvest.api.relations.IRelationships;
@@ -11,26 +10,21 @@ import net.minecraft.entity.player.EntityPlayer;
 import java.util.HashMap;
 
 public class RelationshipHelper implements IRelationships {
-    private static final HashMap<String, IRelatableDataHandler> dataHandlers = new HashMap<String, IRelatableDataHandler>();
-    private static boolean isInit = false;
+    private final HashMap<String, IRelatableDataHandler> dataHandlers = new HashMap<>();
+
+    public RelationshipHelper() {
+        registerDataHandler(new RelationshipHandlerEntity());
+        registerDataHandler(new RelationshipHandlerNPC());
+    }
 
     @Override
     public void registerDataHandler(IRelatableDataHandler handler) {
         dataHandlers.put(handler.name(), handler);
     }
 
-    public static IRelatableDataHandler getHandler(String handler) {
-        if (!isInit) {
-            isInit = true;
-            init();
-        }
-        
+    @Override
+    public IRelatableDataHandler getDataHandler(String handler) {
         return dataHandlers.get(handler);
-    }
-    
-    public static void init() {
-        HFApi.RELATIONS.registerDataHandler(new RelationshipHandlerEntity());
-        HFApi.RELATIONS.registerDataHandler(new RelationshipHandlerNPC());
     }
 
     @Override

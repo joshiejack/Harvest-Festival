@@ -37,7 +37,7 @@ public class PacketSyncMarker extends PenguinPacket {
         location = new WorldLocation();
         location.fromBytes(buf);
         if (buf.readBoolean()) {
-            group = HFApi.BUILDINGS.getBuildingFromName(new ResourceLocation(ByteBufUtils.readUTF8String(buf)));
+            group = HFApi.buildings.getBuildingFromName(new ResourceLocation(ByteBufUtils.readUTF8String(buf)));
         }
     }
 

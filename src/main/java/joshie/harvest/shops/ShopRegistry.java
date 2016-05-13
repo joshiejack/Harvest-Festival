@@ -7,7 +7,7 @@ import joshie.harvest.api.shops.IShopRegistry;
 import java.util.HashMap;
 
 public class ShopRegistry implements IShopRegistry {
-    private HashMap<String, IShop> shops = new HashMap<String, IShop>();
+    private final HashMap<String, IShop> shops = new HashMap<>();
 
     @Override
     public IShop newShop(String unlocalised, INPC npc) {

@@ -5,6 +5,7 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.InventoryHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class PurchaseableBuilding extends Purchaseable {
 
     @Override
     public boolean canList(World world, EntityPlayer player) {
-        return !HFTrackers.getPlayerTracker(player).getTown().hasBuilding(building) && building.getRules().canBuy(world, player) && building.hasRequirements(player);
+        return !HFTrackers.getTownTracker().getClosestTownToBlockPos(player.dimension, new BlockPos(player)).hasBuilding(building) && building.getRules().canBuy(world, player) && building.hasRequirements(player);
     }
 
     @Override

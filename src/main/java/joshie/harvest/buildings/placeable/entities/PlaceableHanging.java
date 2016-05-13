@@ -10,8 +10,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.apache.commons.lang3.Validate;
 
-import java.util.UUID;
-
 public abstract class PlaceableHanging extends PlaceableEntity {
     private EnumFacing facing;
 
@@ -26,8 +24,8 @@ public abstract class PlaceableHanging extends PlaceableEntity {
     }
 
     @Override
-    public Entity getEntity(UUID uuid, World world, BlockPos pos, Direction direction) {
-        EntityHanging entity = getEntityHanging(uuid, world, pos, getFacing(direction.getMirror(), direction.getRotation()));
+    public Entity getEntity(World world, BlockPos pos, Direction direction) {
+        EntityHanging entity = getEntityHanging(world, pos, getFacing(direction.getMirror(), direction.getRotation()));
         if (!entity.onValidSurface()) {
             EnumFacing opposite = entity.facingDirection.getOpposite();
             Validate.notNull(opposite);
@@ -40,7 +38,7 @@ public abstract class PlaceableHanging extends PlaceableEntity {
         return entity;
     }
 
-    public abstract EntityHanging getEntityHanging(UUID owner, World world, BlockPos pos, EnumFacing facing);
+    public abstract EntityHanging getEntityHanging(World world, BlockPos pos, EnumFacing facing);
 
     public EnumFacing getFacing(Mirror mirror, Rotation rotation) {
         return rotation.rotate(mirror.mirror(this.facing));

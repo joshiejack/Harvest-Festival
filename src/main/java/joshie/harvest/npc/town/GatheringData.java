@@ -1,14 +1,9 @@
-package joshie.harvest.player.town;
+package joshie.harvest.npc.town;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraftforge.common.DimensionManager;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -22,6 +17,7 @@ public class GatheringData {
     }
 
     public void newDay(Collection<TownBuilding> buildings) {
+        /*
         Set<GatheringLocation> previous = new HashSet<GatheringLocation>(locations);
         locations = new HashSet<>();
 
@@ -52,7 +48,7 @@ public class GatheringData {
                     }
                 }
             }
-        }
+        } */
     }
 
     public void readFromNBT(NBTTagCompound nbt) {

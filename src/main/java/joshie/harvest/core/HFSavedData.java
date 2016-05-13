@@ -7,6 +7,7 @@ import joshie.harvest.core.helpers.generic.EntityHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.crops.CropTrackerServer;
 import joshie.harvest.mining.MineTrackerServer;
+import joshie.harvest.npc.town.TownTrackerServer;
 import joshie.harvest.player.PlayerTrackerServer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -27,7 +28,8 @@ public class HFSavedData extends WorldSavedData {
     private AnimalTrackerServer animals = new AnimalTrackerServer();
     private CropTrackerServer crops = new CropTrackerServer();
     private MineTrackerServer mines = new MineTrackerServer();
-    private HashMap<UUID, PlayerTrackerServer> players = new HashMap<UUID, PlayerTrackerServer>();
+    private HashMap<UUID, PlayerTrackerServer> players = new HashMap<>();
+    private TownTrackerServer towns = new TownTrackerServer();
 
     public HFSavedData(String string) {
         super(string);
@@ -51,6 +53,10 @@ public class HFSavedData extends WorldSavedData {
 
     public Collection<PlayerTrackerServer> getPlayerData() {
         return players.values();
+    }
+
+    public TownTrackerServer getTownTracker() {
+        return towns;
     }
 
     public PlayerTrackerServer getPlayerData(EntityPlayerMP player) {
@@ -97,6 +103,7 @@ public class HFSavedData extends WorldSavedData {
         calendar.readFromNBT(nbt.getCompoundTag("Calendar"));
         crops.readFromNBT(nbt.getCompoundTag("CropTracker"));
         mines.readFromNBT(nbt.getCompoundTag("MineTracker"));
+        towns.readFromNBT(nbt.getCompoundTag("TownTracker"));
 
         NBTTagList tag_list_players = nbt.getTagList("PlayerTracker", 10);
         for (int i = 0; i < tag_list_players.tagCount(); i++) {
@@ -131,6 +138,10 @@ public class HFSavedData extends WorldSavedData {
         NBTTagCompound tag_mines = new NBTTagCompound();
         mines.writeToNBT(tag_mines);
         nbt.setTag("MineTracker", tag_mines);
+
+        NBTTagCompound tag_towns = new NBTTagCompound();
+        towns.writeToNBT(tag_towns);
+        nbt.setTag("TownTracker", tag_towns);
 
         NBTTagList tag_list_players = new NBTTagList();
         for (Map.Entry<UUID, PlayerTrackerServer> entry : players.entrySet()) {

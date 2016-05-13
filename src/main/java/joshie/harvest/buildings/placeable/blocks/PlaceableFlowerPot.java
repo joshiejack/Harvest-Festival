@@ -11,7 +11,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.Random;
-import java.util.UUID;
 
 
 public class PlaceableFlowerPot extends PlaceableBlock {
@@ -32,7 +31,7 @@ public class PlaceableFlowerPot extends PlaceableBlock {
     }
 
     @Override
-    public void postPlace(UUID uuid, World world, BlockPos pos, Direction direction) {
+    public void postPlace(World world, BlockPos pos, Direction direction) {
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof TileEntityFlowerPot) {
             TileEntityFlowerPot pot = (TileEntityFlowerPot) tile;

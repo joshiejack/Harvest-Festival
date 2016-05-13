@@ -6,8 +6,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.UUID;
-
 public abstract class PlaceableEntity extends Placeable {
     public PlaceableEntity(BlockPos offsetPos) {
         super(offsetPos.getX(), offsetPos.getY(), offsetPos.getZ());
@@ -18,13 +16,13 @@ public abstract class PlaceableEntity extends Placeable {
         return stage == ConstructionStage.PAINT;
     }
 
-    public abstract Entity getEntity(UUID uuid, World world, BlockPos pos, Direction direction);
+    public abstract Entity getEntity(World world, BlockPos pos, Direction direction);
 
     public abstract String getStringFor(Entity entity, BlockPos pos);
 
     @Override
-    public boolean place (UUID owner, World world, BlockPos pos, Direction direction) {
-        Entity entity = getEntity(owner, world, pos, direction);
+    public boolean place (World world, BlockPos pos, Direction direction) {
+        Entity entity = getEntity(world, pos, direction);
         if (entity == null) return false;
         return world.spawnEntityInWorld(entity);
     }

@@ -98,6 +98,7 @@ public class CalendarServer extends Calendar {
         HFTrackers.getCropTracker().newDay(world);
         HFTrackers.getAnimalTracker().newDay();
         HFTrackers.getMineTracker().newDay();
+        HFTrackers.getTownTracker().newDay(world);
 
         /** Setup the forecast for the next 7 days **/
         Weather[] newForecast = new Weather[7];

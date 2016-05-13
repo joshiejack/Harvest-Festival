@@ -45,14 +45,13 @@ public class PlaceableItemFrame extends PlaceableHanging {
     }
 
     @Override
-    public EntityHanging getEntityHanging(UUID owner, World world, BlockPos pos, EnumFacing facing) {
+    public EntityHanging getEntityHanging(World world, BlockPos pos, EnumFacing facing) {
         EntityItemFrame frame = new EntityItemFrame(world, new BlockPos(pos.getX(), pos.getY(), pos.getZ()), facing);
         ItemStack loot = null;
 
         if (stack != null) loot = stack.copy();
         if (chestType != null) {
-            EntityPlayer player = world.getPlayerEntityByUUID(owner);
-            loot = LootHelper.getStack(world, player, chestType);
+            loot = LootHelper.getStack(world, null, chestType);
         }
 
         frame.setDisplayedItem(loot);

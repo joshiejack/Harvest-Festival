@@ -1,4 +1,4 @@
-package joshie.harvest.player.town;
+package joshie.harvest.npc.town;
 
 import joshie.harvest.api.WorldLocation;
 import net.minecraft.block.Block;

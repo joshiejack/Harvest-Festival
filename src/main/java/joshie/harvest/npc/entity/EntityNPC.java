@@ -7,10 +7,13 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.npc.ai.INPCTask;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.relations.IRelatableProvider;
+import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.helpers.NPCHelper;
+import joshie.harvest.core.helpers.TownHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.ai.EntityAINPC;
+import joshie.harvest.npc.town.TownData;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -40,31 +43,50 @@ public class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEn
     private EntityPlayer talkingTo;
     private boolean isPlaying;
     private Mode mode = Mode.DEFAULT;
-    public UUID owning_player;
     public int lastTeleport;
     public boolean hideName = true;
     public BlockPos spawned;
+    public TownData homeTown;
+    public UUID townID;
 
     public enum Mode {
         DEFAULT, GIFT;
     }
 
     public EntityNPC(E entity) {
-        this(entity.owning_player, entity.worldObj, entity.npc);
+        this(entity.worldObj, entity.npc);
+        npc = entity.getNPC();
         lover = entity.lover;
-        //setEntityInvulnerable(true);
+    }
+
+    public TownData getHomeTown() {
+        if (homeTown == null) {
+            if (townID != null) homeTown = TownHelper.getTownByID(townID);
+            else homeTown = TownHelper.getClosestTownToEntityOrCreate(this);
+        }
+
+        return homeTown;
     }
 
     public EntityNPC(World world) {
-        this(null, world, HFNPCs.GODDESS);
+        this(world, HFNPCs.GODDESS);
+    }
+
+    public EntityNPC(World world, INPC npc) {
+        super(world);
+        this.npc = npc;
+        this.enablePersistence();
+        setSize(0.6F, (1.8F * npc.getHeight()));
     }
 
     public EntityNPC getNewEntity(EntityNPC entity) {
         return new EntityNPC(entity);
     }
 
-    public void setSpawnCoordinates(BlockPos pos) {
-        this.spawned = pos;
+    public void resetSpawnHome() {
+        this.homeTown = TownHelper.getClosestTownToEntityOrCreate(this);
+        this.townID = homeTown.getID();
+        this.spawned = homeTown.getCoordinatesFor(getNPC().getHome());
     }
 
     @Override
@@ -87,34 +109,21 @@ public class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEn
         }
     }
 
-    public EntityNPC(UUID owning_player, World world, INPC npc) {
-        super(world);
-        this.npc = npc;
-
-        this.enablePersistence();
-        this.owning_player = owning_player;
-        setSize(0.6F, (1.8F * npc.getHeight()));
-    }
-
     @Override
     protected void initEntityAI() {
         ((PathNavigateGround) this.getNavigator()).setBreakDoors(true);
-
-        if (owning_player != null) {
-            tasks.addTask(0, new EntityAISwimming(this));
-            tasks.addTask(1, new EntityAIAvoidEntity<EntityZombie>(this, EntityZombie.class, 8.0F, 0.6D, 0.6D));
-            tasks.addTask(1, new EntityAITalkingTo(this));
-            tasks.addTask(1, new EntityAILookAtPlayer(this));
-            tasks.addTask(2, new EntityAITeleportHome(this));
-            tasks.addTask(2, new EntityAINPC(this));
-            tasks.addTask(3, new EntityAIRestrictOpenDoor(this));
-            tasks.addTask(4, new EntityAIOpenDoor(this, true));
-            tasks.addTask(8, new EntityAIPlay(this, 0.32D));
-            tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 3.0F, 1.0F));
-            tasks.addTask(9, new EntityAIWatchClosest(this, EntityNPC.class, 5.0F, 0.02F));
-            tasks.addTask(9, new EntityAIWander(this, 0.6D));
-            tasks.addTask(10, new EntityAIWatchClosest(this, EntityLiving.class, 8.0F));
-        }
+        tasks.addTask(0, new EntityAISwimming(this));
+        tasks.addTask(1, new EntityAIAvoidEntity<EntityZombie>(this, EntityZombie.class, 8.0F, 0.6D, 0.6D));
+        tasks.addTask(1, new EntityAITalkingTo(this));
+        tasks.addTask(1, new EntityAILookAtPlayer(this));
+        tasks.addTask(2, new EntityAINPC(this));
+        tasks.addTask(3, new EntityAIRestrictOpenDoor(this));
+        tasks.addTask(4, new EntityAIOpenDoor(this, true));
+        tasks.addTask(8, new EntityAIPlay(this, 0.32D));
+        tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 3.0F, 1.0F));
+        tasks.addTask(9, new EntityAIWatchClosest(this, EntityNPC.class, 5.0F, 0.02F));
+        tasks.addTask(9, new EntityAIWander(this, 0.6D));
+        tasks.addTask(10, new EntityAIWatchClosest(this, EntityLiving.class, 8.0F));
     }
 
     @Override
@@ -220,15 +229,18 @@ public class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEn
         setDead(); //Kill the existing mofo
         //Respawn a new bugger
         EntityNPC clone = getNewEntity((E)this);
-        BlockPos home = NPCHelper.getHomeForEntity(this);
-        EntityPlayer thePlayer = worldObj.getPlayerEntityByUUID(owning_player);
-        if (home == null) home = spawned;
-        if (thePlayer != null && home == null) home = new BlockPos(thePlayer.posX, thePlayer.posY, thePlayer.posZ);
+        BlockPos home = getHomeCoordinates();
         if (home != null) {
             clone.setPositionAndUpdate(home.getX() + 0.5D, home.getY() + 0.5D, home.getZ() + 0.5D);
-            clone.setSpawnCoordinates(home);
+            clone.resetSpawnHome();
             worldObj.spawnEntityInWorld(clone);
         }
+    }
+
+    public BlockPos getHomeCoordinates() {
+        BlockPos home = NPCHelper.getHomeForEntity(this);
+        if (home == null) home = spawned;
+        return home;
     }
 
     @Override
@@ -250,11 +262,9 @@ public class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEn
     @Override
     public void readEntityFromNBT(NBTTagCompound nbt) {
         super.readEntityFromNBT(nbt);
-        spawned = new BlockPos(nbt.getInteger("OriginalX"), nbt.getInteger("OriginalY"), nbt.getInteger("OriginalZ"));
+        spawned = NBTHelper.readBlockPos("Original", nbt);
+        townID = NBTHelper.readUUID("Town", nbt);
         npc = HFApi.npc.get(nbt.getString("NPC"));
-        if (nbt.hasKey("Owner")) {
-            owning_player = UUID.fromString(nbt.getString("Owner"));
-        }
     }
 
     @Override
@@ -264,15 +274,8 @@ public class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEn
             nbt.setString("NPC", npc.getUnlocalizedName());
         }
 
-        if (owning_player != null) {
-            nbt.setString("Owner", owning_player.toString());
-        }
-
-        if (spawned != null) {
-            nbt.setInteger("OriginalX", spawned.getX());
-            nbt.setInteger("OriginalY", spawned.getY());
-            nbt.setInteger("OriginalZ", spawned.getZ());
-        }
+        NBTHelper.writeUUID("Town", nbt, townID);
+        NBTHelper.writeBlockPos("Original", nbt, spawned);
     }
 
     @Override
@@ -283,12 +286,6 @@ public class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEn
             for (char c : name) {
                 buf.writeChar(c);
             }
-
-            if (owning_player != null) {
-                buf.writeBoolean(true);
-                buf.writeLong(owning_player.getMostSignificantBits());
-                buf.writeLong(owning_player.getLeastSignificantBits());
-            } else buf.writeBoolean(false);
         }
     }
 
@@ -303,16 +300,10 @@ public class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEn
         if (npc == null) {
             npc = HFNPCs.GODDESS;
         }
-
-        if (buf.readBoolean()) {
-            long most = buf.readLong();
-            long least = buf.readLong();
-            owning_player = new UUID(most, least);
-        }
     }
 
     @Override
     public EntityAgeable createChild(EntityAgeable ageable) {
-        return new EntityNPC(owning_player, worldObj, HFNPCs.GODDESS);
+        return new EntityNPC(worldObj, HFNPCs.GODDESS);
     }
 }

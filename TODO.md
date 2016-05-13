@@ -57,7 +57,6 @@
 - Change Items to  Item Enums + Change Item Registry Helper
 - Change Seeds, Buildings etc to use ForgeControlledNameSpace and use metadata instead of NBT where appropriate
 - Add Sprinkler Block
-- Seperate towns from players, Quest lock players from interactions, such as needing to have bought something, or done something for a specific npc, to buy new buildings instead. And check the town the npc belongs to for the menu check instead of players.
 
 ###(S)ounds, (E)ffects, (A)nimations
 - Frying Pan
@@ -113,6 +112,8 @@
 - Make crops get destroyed on losing the block below - J
 - Location of the flower in the spring season overlay - Y
 - Give the custom farmland block a name and texture/model - Y
+- Syncing Town Information to Players
+- When you can purchase buildings from a town
 
 ### Rendering
 - Make Blueprints Render in World

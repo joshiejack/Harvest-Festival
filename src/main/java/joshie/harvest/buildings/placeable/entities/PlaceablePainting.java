@@ -7,8 +7,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.UUID;
-
 public class PlaceablePainting extends PlaceableHanging {
     private String painting;
 
@@ -27,7 +25,7 @@ public class PlaceablePainting extends PlaceableHanging {
     }
 
     @Override
-    public EntityHanging getEntityHanging(UUID owner, World world, BlockPos pos, EnumFacing facing) {
+    public EntityHanging getEntityHanging(World world, BlockPos pos, EnumFacing facing) {
         return new EntityPainting(world, pos, facing, painting);
     }
 

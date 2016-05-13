@@ -5,11 +5,9 @@ import joshie.harvest.player.tracking.TrackingData.HolderStack;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.math.BlockPos;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
 
 public class NBTHelper {
     private static <C extends Collection, H extends HolderStack> C readCollection(Class<C> c, Class<H> h, NBTTagList list) {
@@ -79,6 +77,31 @@ public class NBTHelper {
         }
 
         return map;
+    }
+
+    public static BlockPos readBlockPos(String prefix, NBTTagCompound tag) {
+        return tag.hasKey(prefix + "X")? new BlockPos(tag.getInteger(prefix + "X"), tag.getInteger(prefix + "Y"), tag.getInteger(prefix + "Z")) : BlockPos.ORIGIN;
+    }
+
+    public static void writeBlockPos(String prefix, NBTTagCompound tag, BlockPos pos) {
+        if (pos != null) {
+            tag.setInteger(prefix + "X", pos.getX());
+            tag.setInteger(prefix + "Y", pos.getY());
+            tag.setInteger(prefix + "Z", pos.getZ());
+        }
+    }
+
+    public static UUID readUUID(String prefix, NBTTagCompound nbt) {
+        String key = prefix + "UUID";
+        if (nbt.hasKey(key)) {
+            return UUID.fromString(nbt.getString(key));
+        } else return UUID.randomUUID();
+    }
+
+    public static void writeUUID(String prefix, NBTTagCompound nbt, UUID uuid) {
+        if (uuid != null) {
+            nbt.setString(prefix + "UUID", uuid.toString());
+        }
     }
 
     public interface ISaveable {

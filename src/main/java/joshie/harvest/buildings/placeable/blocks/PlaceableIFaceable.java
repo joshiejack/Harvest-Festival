@@ -11,8 +11,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.UUID;
-
 public class PlaceableIFaceable extends PlaceableBlock {
     private EnumFacing facing;
     private ResourceLocation chestType;
@@ -28,7 +26,7 @@ public class PlaceableIFaceable extends PlaceableBlock {
     }
 
     @Override
-    public void postPlace(UUID uuid, World world, BlockPos pos, Direction direction) {
+    public void postPlace(World world, BlockPos pos, Direction direction) {
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof IFaceable) {
             EnumFacing orientation = direction.getRotation().rotate(direction.getMirror().mirror(this.facing));

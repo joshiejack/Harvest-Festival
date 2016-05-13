@@ -9,7 +9,7 @@ import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import joshie.harvest.npc.entity.EntityNPCShopkeeper;
 import joshie.harvest.npc.render.RenderNPC;
-import joshie.harvest.player.town.TownData;
+import joshie.harvest.npc.town.TownData;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
@@ -62,7 +62,7 @@ public class HFNPCs {
         DAUGHTER_2 = HFApi.npc.register("abi", FEMALE, CHILD, 27, Season.WINTER, 0xFF99FF, 0xFF20FF);
         CLOCK_WORKER = HFApi.npc.register("tiberius", MALE, ADULT, 15, Season.WINTER, 0xFF4C4C, 0x700606);
         GS_OWNER = HFApi.npc.register("jenni", FEMALE, ADULT, 7, Season.WINTER, 0x2858E0, 0x000000);
-        MINER = HFApi.npc.register("brandon", MALE, ADULT, 13, Season.AUTUMN, 0xC28D48, 0x5F5247).setIsMiner();
+        MINER = HFApi.npc.register("brandon", MALE, ADULT, 13, Season.AUTUMN, 0xC28D48, 0x5F5247);
         FISHERMAN = HFApi.npc.register("jacob", MALE, ADULT, 28, Season.AUTUMN, 0x7396FF, 0x0036D9);
         MILKMAID = HFApi.npc.register("candice", FEMALE, ADULT, 5, Season.AUTUMN, 0xF65FAB, 0xF21985);
         POULTRY = HFApi.npc.register("ondra", MALE, ADULT, 16, Season.AUTUMN, 0xFF8000, 0x46008C);

@@ -4,8 +4,6 @@ import joshie.harvest.blocks.BlockPreview.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.UUID;
-
 public abstract class Placeable {
     private int x, y, z;
 
@@ -39,9 +37,9 @@ public abstract class Placeable {
         return stage == ConstructionStage.BUILD;
     }
 
-    public boolean place(UUID owner, World world, BlockPos pos, Direction direction, ConstructionStage stage) {
+    public boolean place(World world, BlockPos pos, Direction direction, ConstructionStage stage) {
         if (canPlace(stage)) {
-            return place(owner, world, getTransformedPosition(pos, direction), direction);
+            return place(world, getTransformedPosition(pos, direction), direction);
         } else return false;
     }
 
@@ -79,11 +77,11 @@ public abstract class Placeable {
         }
     }
 
-    public boolean place (UUID owner, World world, BlockPos pos, Direction direction) {
+    public boolean place (World world, BlockPos pos, Direction direction) {
         return false;
     }
 
-    public static enum ConstructionStage {
+    public enum ConstructionStage {
         BUILD, PAINT, DECORATE, MOVEIN, FINISHED;
     }
 }

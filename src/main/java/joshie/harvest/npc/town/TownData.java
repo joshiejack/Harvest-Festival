@@ -1,13 +1,14 @@
-package joshie.harvest.player.town;
+package joshie.harvest.npc.town;
 
 import joshie.harvest.api.buildings.IBuilding;
-import joshie.harvest.buildings.BuildingStage;
+import joshie.harvest.blocks.BlockPreview.Direction;
 import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.HashMap;
+import java.util.UUID;
 
 public class TownData {
     public static final String CARPENTER_DOWNSTAIRS = "yulifhome";
@@ -46,10 +47,16 @@ public class TownData {
     public static final String GODDESS = "goddesspond";
     //END NPC NAME OF LOCATIONS **/
     
-    protected HashMap<ResourceLocation, TownBuilding> buildings = new HashMap<ResourceLocation, TownBuilding>();
+    protected HashMap<ResourceLocation, TownBuilding> buildings = new HashMap<>();
+    protected BlockPos townCentre;
+    protected UUID uuid;
+
+    public UUID getID() {
+        return uuid;
+    }
     
-    public void addBuilding(World world, BuildingStage building) {
-        buildings.put(building.building.getResource(), new TownBuilding(building, world.provider.getDimension()));
+    public void addBuilding(IBuilding building, Direction direction, BlockPos pos) {
+        buildings.put(building.getResource(), new TownBuilding(building, direction, pos));
         HFTrackers.markDirty();
     }
 
@@ -65,9 +72,13 @@ public class TownData {
         return true;
     }
 
-    public BlockPos getCoordinatesFor(IBuilding home, String npc_location) {
-        TownBuilding building = buildings.get(home.getResource());
+    public BlockPos getCoordinatesFor(Pair<IBuilding, String> home) {
+        TownBuilding building = buildings.get(home.getKey().getResource());
         if (building == null) return null;
-        return building.getRealCoordinatesFor(npc_location);
+        return building.getRealCoordinatesFor(home.getValue());
+    }
+
+    public BlockPos getTownCentre() {
+        return townCentre;
     }
 }

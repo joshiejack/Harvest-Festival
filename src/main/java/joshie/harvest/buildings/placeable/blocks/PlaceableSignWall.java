@@ -8,8 +8,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
-import java.util.UUID;
-
 public class PlaceableSignWall extends PlaceableBlock {
     private TextComponentString[] text;
 
@@ -28,7 +26,7 @@ public class PlaceableSignWall extends PlaceableBlock {
     }
 
     @Override
-    public void postPlace (UUID owner, World world, BlockPos pos, Direction direction) {
+    public void postPlace (World world, BlockPos pos, Direction direction) {
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof TileEntitySign) {
             //((TileEntitySign) tile).signText = text; //TODO: Fix signs

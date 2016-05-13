@@ -11,7 +11,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentString;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
@@ -47,10 +46,9 @@ public class BuildingRegistry implements IBuildingRegistry {
         if (building != null) {
             building.resource = resource;
             buildings.put(resource, building);
-            ArrayList<Placeable> list = new ArrayList<Placeable>();
             BuildingProvider provider = new BuildingProvider();
             provider.setList(building.components);
-            for (Placeable placeable: list) {
+            for (Placeable placeable: provider.getFullList()) {
                 provider.addToList(placeable);
             }
 

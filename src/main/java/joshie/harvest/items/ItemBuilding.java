@@ -5,7 +5,7 @@ import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.buildings.loader.HFBuildings;
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.helpers.UUIDHelper;
+import joshie.harvest.core.helpers.TownHelper;
 import joshie.harvest.core.util.base.ItemHFBaseMeta;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -49,7 +49,7 @@ public class ItemBuilding extends ItemHFBaseMeta implements ICreativeSorted {
     public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         IBuilding group = getBuildingFromStack(stack);
         if (group != null) {
-            return group.getProvider().generate(UUIDHelper.getPlayerUUID(player), world, pos);
+            EnumActionResult built = group.getProvider().generate(world, pos);
         }
 
         return EnumActionResult.PASS;

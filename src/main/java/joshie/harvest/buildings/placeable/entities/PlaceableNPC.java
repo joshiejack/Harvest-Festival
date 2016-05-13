@@ -9,8 +9,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.UUID;
-
 public class PlaceableNPC extends PlaceableEntity {
     private String homeString;
     private String npc;
@@ -42,12 +40,11 @@ public class PlaceableNPC extends PlaceableEntity {
     }
 
     @Override
-    public Entity getEntity(UUID uuid, World world, BlockPos pos, Direction direction) {
+    public Entity getEntity(World world, BlockPos pos, Direction direction) {
         if (npc == null || npc.equals("")) return null;
         INPC inpc = HFApi.npc.get(npc); if (inpc == null) return null;
-        EntityNPC entity = NPCHelper.getEntityForNPC(uuid, world, inpc);
+        EntityNPC entity = NPCHelper.getEntityForNPC(world, inpc);
         entity.setPosition(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
-        entity.setSpawnCoordinates(pos);
         return entity;
     }
 

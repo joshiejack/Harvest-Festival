@@ -8,8 +8,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.UUID;
-
 public class PlaceableChest extends PlaceableBlock {
     private ResourceLocation chestType;
 
@@ -24,7 +22,7 @@ public class PlaceableChest extends PlaceableBlock {
     }
 
     @Override
-    public void postPlace(UUID uuid, World world, BlockPos pos, Direction direction) {
+    public void postPlace(World world, BlockPos pos, Direction direction) {
         TileEntity tile = world.getTileEntity(pos);
         if (chestType != null && tile instanceof TileEntityChest) {
             ((TileEntityChest)tile).setLoot(chestType, world.rand.nextLong());

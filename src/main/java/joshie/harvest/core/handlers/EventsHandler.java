@@ -64,6 +64,7 @@ public class EventsHandler {
             EntityPlayerMP player = (EntityPlayerMP) event.player;
             HFTrackers.getPlayerTracker(player).getStats().setBirthday();
             PacketHandler.sendToClient(new PacketSetCalendar(HFTrackers.getCalendar().getDate()), player);
+            HFTrackers.getTownTracker().syncToPlayer(player);
             PlayerTrackerServer data = HFTrackers.getServerPlayerTracker(player);
             data.syncPlayerStats(player);
         }

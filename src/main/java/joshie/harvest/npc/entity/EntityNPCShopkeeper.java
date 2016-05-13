@@ -1,20 +1,14 @@
 package joshie.harvest.npc.entity;
 
-import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.npc.INPC;
-import joshie.harvest.api.shops.IShop;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
-import java.util.UUID;
-
 public class EntityNPCShopkeeper extends EntityNPC<EntityNPCShopkeeper> {
-    private IShop shop;
     private boolean isWorking;
 
     public EntityNPCShopkeeper(EntityNPCShopkeeper entity) {
         super(entity);
-        shop = entity.shop;
         isWorking = entity.isWorking;
     }
 
@@ -27,18 +21,17 @@ public class EntityNPCShopkeeper extends EntityNPC<EntityNPCShopkeeper> {
         super(world);
     }
 
-    public EntityNPCShopkeeper(UUID owning_player, World world, INPC npc) {
-        super(owning_player, world, npc);
-        shop = npc.getShop();
+    public EntityNPCShopkeeper(World world, INPC npc) {
+        super(world, npc);
     }
 
     @Override
     protected void updateTasks() {
         if (!isWorking) {
-            if (shop.isOpen(worldObj, null)) {
+            if (npc.getShop().isOpen(worldObj, null)) {
                 isWorking = true;
             }
-        } else if (worldObj.getWorldTime() % 200 == 0 && !shop.isOpen(worldObj, null)) {
+        } else if (worldObj.getWorldTime() % 200 == 0 && !npc.getShop().isOpen(worldObj, null)) {
             isWorking = false;
         }
     }
@@ -46,7 +39,6 @@ public class EntityNPCShopkeeper extends EntityNPC<EntityNPCShopkeeper> {
     @Override
     public void readEntityFromNBT(NBTTagCompound nbt) {
         super.readEntityFromNBT(nbt);
-        shop = npc.getShop();
         isWorking = nbt.getBoolean("IsWorking");
     }
 
@@ -54,11 +46,5 @@ public class EntityNPCShopkeeper extends EntityNPC<EntityNPCShopkeeper> {
     public void writeEntityToNBT(NBTTagCompound nbt) {
         super.writeEntityToNBT(nbt);
         nbt.setBoolean("IsWorking", isWorking);
-    }
-
-    @Override
-    public void readSpawnData(ByteBuf buf) {
-        super.readSpawnData(buf);
-        shop = npc.getShop();
     }
 }

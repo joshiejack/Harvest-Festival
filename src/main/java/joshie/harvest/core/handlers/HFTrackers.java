@@ -5,6 +5,7 @@ import joshie.harvest.calendar.Calendar;
 import joshie.harvest.calendar.CalendarServer;
 import joshie.harvest.crops.CropTracker;
 import joshie.harvest.mining.MineTracker;
+import joshie.harvest.npc.town.TownTracker;
 import joshie.harvest.player.PlayerTracker;
 import joshie.harvest.player.PlayerTrackerClient;
 import joshie.harvest.player.PlayerTrackerServer;
@@ -65,6 +66,10 @@ public class HFTrackers {
 
     public static PlayerTracker getPlayerTracker(UUID owner) {
         return getHandler().getPlayerTracker(owner);
+    }
+
+    public static TownTracker getTownTracker() {
+        return getHandler().getTownTracker();
     }
     
     public static Collection<PlayerTrackerServer> getPlayerTrackers() {

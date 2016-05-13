@@ -5,6 +5,7 @@ import joshie.harvest.calendar.CalendarServer;
 import joshie.harvest.core.HFSavedData;
 import joshie.harvest.crops.CropTrackerServer;
 import joshie.harvest.mining.MineTrackerServer;
+import joshie.harvest.npc.town.TownTrackerServer;
 import joshie.harvest.player.PlayerTrackerServer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -56,6 +57,11 @@ public class ServerHandler extends SideHandler {
     @Override
     public PlayerTrackerServer getPlayerTracker(UUID uuid) {
         return data.getPlayerData(uuid);
+    }
+
+    @Override
+    public TownTrackerServer getTownTracker() {
+        return data.getTownTracker();
     }
     
     public void markDirty() {

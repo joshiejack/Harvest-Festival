@@ -72,7 +72,6 @@ public class BlockWood extends BlockHFBaseEnumRotatableMeta<Woodware> {
 
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack held, EnumFacing side, float hitX, float hitY, float hitZ) {
-        System.out.println(state);
         Woodware wood = getEnumFromState(state);
         if (player.isSneaking()) return false;
         else if ((wood == Woodware.SHIPPING) && held != null) {

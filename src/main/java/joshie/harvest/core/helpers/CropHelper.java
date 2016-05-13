@@ -51,7 +51,6 @@ public class CropHelper {
 
     //Harvests the crop at this location
     public static boolean harvestCrop(EntityPlayer player, World world, BlockPos pos) {
-        System.out.println("Harvesting");
         ItemStack stack = HFTrackers.getCropTracker().harvest(player, world, pos);
         if (!world.isRemote && stack != null) {
             ItemHelper.dropBlockAsItem(world, pos.getX(), pos.getY(), pos.getZ(), stack);

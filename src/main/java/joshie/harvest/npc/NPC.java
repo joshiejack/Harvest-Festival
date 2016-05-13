@@ -16,6 +16,7 @@ import joshie.harvest.npc.gift.Gifts.Quality;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,11 +29,11 @@ import static joshie.harvest.npc.NPC.Gender.FEMALE;
 import static joshie.harvest.npc.NPC.Gender.MALE;
 
 public class NPC implements INPC {
-    public static enum Gender {
+    public enum Gender {
         MALE, FEMALE;
     }
 
-    public static enum Age {
+    public enum Age {
         CHILD, ADULT, ELDER;
     }
 
@@ -49,11 +50,9 @@ public class NPC implements INPC {
     private float offset;
     private Gifts gifts;
     private boolean isBuilder;
-    private boolean isMiner;
     private IShop shop;
     private ICalendarDate birthday;
-    private IBuilding home;
-    private String home_location;
+    private Pair<IBuilding, String> home;
     private boolean doesRespawn;
     private int insideColor;
     private int outsideColor;
@@ -149,12 +148,6 @@ public class NPC implements INPC {
     }
 
     @Override
-    public NPC setIsMiner() {
-        isMiner = true;
-        return this;
-    }
-
-    @Override
     public INPC setHeight(float height, float offset) {
         this.height = height;
         this.offset = offset;
@@ -168,15 +161,8 @@ public class NPC implements INPC {
     }
 
     @Override
-    public INPC setHome(IBuilding group, String home_location) {
-        this.home = group;
-        this.home_location = home_location;
-        return this;
-    }
-
-    @Override
-    public INPC setNoRespawn() {
-        this.doesRespawn = false;
+    public INPC setHome(IBuilding building, String home_location) {
+        this.home = Pair.of(building, home_location);
         return this;
     }
 
@@ -212,11 +198,6 @@ public class NPC implements INPC {
     }
 
     @Override
-    public boolean isMiner() {
-        return isMiner;
-    }
-
-    @Override
     public IShop getShop() {
         return shop;
     }
@@ -224,6 +205,11 @@ public class NPC implements INPC {
     @Override
     public ICalendarDate getBirthday() {
         return birthday;
+    }
+
+    @Override
+    public Pair<IBuilding, String> getHome() {
+        return home;
     }
 
     //Return the name of this character
@@ -293,21 +279,6 @@ public class NPC implements INPC {
 
     public String getRejectProposal() {
         return reject;
-    }
-
-    @Override
-    public boolean respawns() {
-        return doesRespawn;
-    }
-
-    @Override
-    public IBuilding getHomeGroup() {
-        return home;
-    }
-
-    @Override
-    public String getHomeLocation() {
-        return home_location;
     }
 
     @Override

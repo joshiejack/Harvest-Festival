@@ -5,7 +5,9 @@ import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.blocks.BlockPreview.Direction;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.Placeable.ConstructionStage;
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.helpers.TownHelper;
+import joshie.harvest.npc.entity.EntityNPCBuilder;
+import joshie.harvest.npc.town.TownData;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.ResourceLocation;
@@ -13,22 +15,23 @@ import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.UUID;
-
 /** This data is used by the BuilderNPC, 
  * to know their current progress through a building project **/
 public class BuildingStage {
-    public UUID owner;
+    private final EntityNPCBuilder entity;
+    private boolean isBuilt;
     public IBuilding building;
     public Direction direction;
     public ConstructionStage stage;
     public int index;
     public BlockPos pos;
 
-    public BuildingStage() {}
+    public BuildingStage(EntityNPCBuilder builder) {
+        this.entity = builder;
+    }
 
-    public BuildingStage(UUID uuid, IBuilding building, BlockPos pos, Mirror mirror, Rotation rotation) {
-        this.owner = uuid;
+    public BuildingStage(EntityNPCBuilder builder, IBuilding building, BlockPos pos, Mirror mirror, Rotation rotation) {
+        this.entity = builder;
         this.building = building;
         this.direction = Direction.withMirrorAndRotation(mirror, rotation);
         this.stage = ConstructionStage.BUILD;
@@ -55,12 +58,15 @@ public class BuildingStage {
                 stage = ConstructionStage.FINISHED;
                 index = 0;
 
-                HFTrackers.getPlayerTracker(owner).getTown().addBuilding(world, this);
+
+                TownData data = TownHelper.getClosestTownToEntityOrCreate(entity);
+                data.addBuilding(building, direction, pos);
+                entity.resetSpawnHome();
             }
         } else {
             while (index < building.getProvider().getSize()) {
                 Placeable block = building.getProvider().getFullList().get(index);
-                if (block.place(owner, world, pos, direction, stage)) {
+                if (block.place(world, pos, direction, stage)) {
                     index++;
                     return block.getTransformedPosition(pos, direction);
                 }
@@ -85,10 +91,9 @@ public class BuildingStage {
         direction = Direction.valueOf(nbt.getString("Direction"));
         pos = new BlockPos(nbt.getInteger("BuildingX"), nbt.getInteger("BuildingY"), nbt.getInteger("BuildingZ"));
 
-        if (nbt.hasKey("Owner-UUIDMost")) {
+        if (nbt.hasKey("Stage")) {
             index = nbt.getInteger("Index");
             stage = ConstructionStage.values()[nbt.getInteger("Stage")];
-            owner = new UUID(nbt.getLong("Owner-UUIDMost"), nbt.getLong("Owner-UUIDLeast"));
         }
     }
 
@@ -99,11 +104,9 @@ public class BuildingStage {
         nbt.setInteger("BuildingY", pos.getY());
         nbt.setInteger("BuildingZ", pos.getZ());
 
-        if (owner != null) {
+        if (stage != null) {
             nbt.setInteger("Stage", stage.ordinal());
             nbt.setInteger("Index", index);
-            nbt.setLong("Owner-UUIDMost", owner.getMostSignificantBits());
-            nbt.setLong("Owner-UUIDLeast", owner.getLeastSignificantBits());
         }
     }
 }

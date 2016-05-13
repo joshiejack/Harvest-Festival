@@ -1,7 +1,7 @@
 package joshie.harvest.cooking.render;
 
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.ICookingIngredient;
-import joshie.harvest.cooking.FoodRegistry;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -14,7 +14,7 @@ public class MappingEvent {
 
     @SubscribeEvent
     public void onMapping(TextureStitchEvent.Pre event) {
-        for (ICookingIngredient component: FoodRegistry.getIngredients()) {
+        for (ICookingIngredient component: HFApi.cooking.getIngredients()) {
             if (component.getFluid() != null) {
                 event.getMap().registerSprite(component.getFluid());
             }

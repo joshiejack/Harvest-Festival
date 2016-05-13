@@ -7,7 +7,7 @@ import net.minecraft.entity.ai.EntityAIBase;
 import java.util.ArrayList;
 
 public class EntityAINPC extends EntityAIBase {
-    private static final ArrayList<INPCTask> tasks = new ArrayList<INPCTask>();
+    private static final ArrayList<INPCTask> tasks = new ArrayList<>();
     private EntityNPC npc;
 
     public EntityAINPC(EntityNPC npc) {
@@ -23,7 +23,8 @@ public class EntityAINPC extends EntityAIBase {
         if (npc.getTask() != null) return true;
         else {
             for (INPCTask task: tasks) {
-                if (task.shouldExecute(npc.owning_player, npc, npc.getNPC())) {
+                if (task.shouldExecute(npc, npc.getNPC())) {
+                    System.out.println("Going home");
                     npc.setTask(task);
                     return true;
                 }
@@ -35,8 +36,11 @@ public class EntityAINPC extends EntityAIBase {
 
     @Override
     public boolean continueExecuting() {
-        if (npc.getTask().shouldTerminate(npc.owning_player, npc, npc.getNPC())) {
-            npc.setTask(null);
+        if (npc.getTask() != null) {
+            if (npc.getTask().shouldTerminate(npc, npc.getNPC())) {
+                System.out.println("Terminating task");
+                npc.setTask(null);
+            }
         }
 
         return false;
@@ -44,6 +48,6 @@ public class EntityAINPC extends EntityAIBase {
 
     @Override
     public void startExecuting() {
-        npc.getTask().execute(npc.owning_player, npc, npc.getNPC());
+        npc.getTask().execute(npc, npc.getNPC());
     }
 }

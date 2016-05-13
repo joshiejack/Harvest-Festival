@@ -3,7 +3,6 @@ package joshie.harvest.core.helpers;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.shops.IShop;
 import joshie.harvest.core.handlers.GuiHandler;
-import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import joshie.harvest.npc.entity.EntityNPCShopkeeper;
@@ -11,29 +10,19 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.UUID;
-
 public class NPCHelper {
     public static BlockPos getHomeForEntity(EntityNPC entity) {
-        UUID owner_uuid = entity.owning_player;
         INPC npc = entity.getNPC();
-        if (npc.getHomeGroup() == null || npc.getHomeLocation() == null) return null;
-        return HFTrackers.getPlayerTracker(owner_uuid).getTown().getCoordinatesFor(npc.getHomeGroup(), npc.getHomeLocation());
+        if (npc.getHome() == null) return null;
+        return TownHelper.getClosestTownToEntityOrCreate(entity).getCoordinatesFor(npc.getHome());
     }
 
-    public static BlockPos getHomeForEntity(UUID owner, INPC npc) {
-        if (npc.getHomeGroup() == null || npc.getHomeLocation() == null) return null;
-        return HFTrackers.getPlayerTracker(owner).getTown().getCoordinatesFor(npc.getHomeGroup(), npc.getHomeLocation());
-    }
-
-    public static EntityNPC getEntityForNPC(UUID owning_player, World world, INPC npc) {
+    public static EntityNPC getEntityForNPC(World world, INPC npc) {
         if (npc.isBuilder()) {
-            return new EntityNPCBuilder(owning_player, world, npc);
-        /*} else if (npc.isMiner()) {
-            return new EntityNPCMiner(owning_player, world, npc);*/
+            return new EntityNPCBuilder(world, npc);
         } else if (npc.getShop() != null) {
-            return new EntityNPCShopkeeper(owning_player, world, npc);
-        } else return new EntityNPC(owning_player, world, npc);
+            return new EntityNPCShopkeeper(world, npc);
+        } else return new EntityNPC(world, npc);
     }
 
     public static boolean isShopOpen(INPC npc, World world, EntityPlayer player) {

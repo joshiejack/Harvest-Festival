@@ -7,8 +7,7 @@ import joshie.harvest.blocks.tiles.TileMarker;
 import joshie.harvest.buildings.loader.HFBuildings;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.config.General;
-import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.helpers.UUIDHelper;
+import joshie.harvest.core.helpers.TownHelper;
 import joshie.harvest.core.util.base.BlockHFBaseEnum;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import net.minecraft.block.material.Material;
@@ -132,10 +131,10 @@ public class BlockPreview extends BlockHFBaseEnum<Direction> {
         } else {
             Direction direction = getEnumFromState(state);
             TileMarker marker = (TileMarker) world.getTileEntity(pos);
-            EntityNPCBuilder builder = HFTrackers.getPlayerTracker(player).getBuilder(world);
+            EntityNPCBuilder builder = TownHelper.getClosestBuilderToEntityOrCreate(player);
             if (builder != null && !builder.isBuilding()) {
                 builder.setPosition(pos.getX(), pos.getY(), pos.getZ()); //Teleport the builder to the position
-                builder.startBuilding(marker.getBuilding(), pos, direction.getMirror(), direction.getRotation(), UUIDHelper.getPlayerUUID(player));
+                builder.startBuilding(marker.getBuilding(), pos, direction.getMirror(), direction.getRotation());
                 world.setBlockToAir(pos);
                 return true;
             } else return false;
@@ -167,7 +166,7 @@ public class BlockPreview extends BlockHFBaseEnum<Direction> {
             marker.setBuilding(building);
             //Create a builder if none exists
             if (!world.isRemote) {
-                HFTrackers.getPlayerTracker((EntityPlayer) player).getBuilder(world);
+                TownHelper.getClosestBuilderToEntityOrCreate(player);
             }
         }
     }

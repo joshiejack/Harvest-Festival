@@ -4,7 +4,6 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.helpers.NPCHelper;
-import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.util.base.ItemHFBaseMeta;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.EntityNPC;
@@ -52,11 +51,12 @@ public class ItemNPCSpawner extends ItemHFBaseMeta   {
     public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (!world.isRemote && stack.getItemDamage() < getMetaCount()) {
             INPC npc = getNPC(stack.getItemDamage());
-            EntityNPC entity = NPCHelper.getEntityForNPC(UUIDHelper.getPlayerUUID(player), world, npc);
+            EntityNPC entity = NPCHelper.getEntityForNPC(world, npc);
             entity.setPosition(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5);
-            entity.setSpawnCoordinates(pos);
+            entity.resetSpawnHome();
             world.spawnEntityInWorld(entity);
         }
+
         return EnumActionResult.FAIL;
     }
 }

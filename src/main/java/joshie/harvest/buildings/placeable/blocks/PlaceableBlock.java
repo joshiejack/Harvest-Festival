@@ -8,7 +8,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.EnumMap;
-import java.util.UUID;
 
 public class PlaceableBlock extends Placeable {
     protected transient EnumMap<Direction, IBlockState> states = new EnumMap<Direction, IBlockState>(Direction.class);
@@ -61,23 +60,23 @@ public class PlaceableBlock extends Placeable {
         return stage == ConstructionStage.BUILD;
     }
 
-    public boolean prePlace (UUID owner, World world, BlockPos pos, Direction direction) {
+    public boolean prePlace (World world, BlockPos pos, Direction direction) {
         return world.getBlockState(pos).getBlockHardness(world, pos) != -1.0F;
     }
 
     @Override
-    public final boolean place (UUID owner, World world, BlockPos pos, Direction direction) {
-        if (!prePlace(owner, world, pos, direction)) return false;
+    public final boolean place (World world, BlockPos pos, Direction direction) {
+        if (!prePlace(world, pos, direction)) return false;
         IBlockState state = getTransformedState(direction);
-        boolean result = world.setBlockState(pos, state, 3);
+        boolean result = world.setBlockState(pos, state, 2);
         if (result) {
-            postPlace(owner, world, pos, direction);
+            postPlace(world, pos, direction);
         }
 
         return result;
     }
 
-    public void postPlace (UUID owner, World world, BlockPos pos, Direction direction) {}
+    public void postPlace (World world, BlockPos pos, Direction direction) {}
 
     @Override
     public boolean equals(Object obj) {

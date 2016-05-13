@@ -7,6 +7,7 @@ import joshie.harvest.api.shops.IShop;
 import joshie.harvest.npc.gift.Gifts.Quality;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import org.apache.commons.lang3.tuple.Pair;
 
 public interface INPC extends IRelatable {
     /** Assigns a shop to this NPC **/
@@ -15,18 +16,12 @@ public interface INPC extends IRelatable {
     /** Marks this NPC as a builder NPC **/
     public INPC setIsBuilder();
 
-    /** Marks this NPC as a miner NPC **/
-    public INPC setIsMiner();
-
     /** Set the height of this npc for rendering purposes **/
     public INPC setHeight(float height, float offset);
 
     /** Marks this NPCs home as this building group, with this name 
      * @return **/
     public INPC setHome(IBuilding group, String name);
-    
-    /** Marks this npc as not respawning **/
-    public INPC setNoRespawn();
 
     /** Set whether this npc uses alex skin or not */
     INPC setAlexSkin();
@@ -43,9 +38,6 @@ public interface INPC extends IRelatable {
 
     /** Returns the localised name for this NPC **/
     public String getLocalizedName();
-
-    /** Whether or not this entity type respawns **/
-    public boolean respawns();
 
     /** Returns the birthday of this npc **/
     public ICalendarDate getBirthday();
@@ -79,20 +71,14 @@ public interface INPC extends IRelatable {
     /** Returns this quality of this gift **/
     public Quality getGiftValue(ItemStack gift);
 
-    /** Returns the building group home for this npc **/
-    public IBuilding getHomeGroup();
-    
-    /** Returns the home name for this npc **/
-    public String getHomeLocation();
+    /** Returns the home for this npc **/
+    public Pair<IBuilding, String> getHome();
 
     /** Returns true if this npc can be married **/
     public boolean isMarriageCandidate();
 
     /** Returns true if this npc is a builder **/
     public boolean isBuilder();
-    
-    /** Returns true if this npc is a miner **/
-    public boolean isMiner();
 
     /** Return the inside color **/
     public int getInsideColor();

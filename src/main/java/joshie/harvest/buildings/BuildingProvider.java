@@ -8,19 +8,23 @@ import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.Placeable.ConstructionStage;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
+import joshie.harvest.core.helpers.TownHelper;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 
 public class BuildingProvider implements IBuildingProvider {
     //List of all placeable elements
-    public HashMap<String, PlaceableNPC> npc_offsets = new HashMap<String, PlaceableNPC>();
-    protected ArrayList<PlaceableBlock> block_list = new ArrayList<PlaceableBlock>();
-    protected ArrayList<Placeable> full_list;
+    private final HashMap<String, PlaceableNPC> npc_offsets = new HashMap<>();
+    private final ArrayList<PlaceableBlock> block_list = new ArrayList<>();
+    private ArrayList<Placeable> full_list;
     private IBuilding building;
 
     public BuildingProvider() {}
@@ -67,6 +71,7 @@ public class BuildingProvider implements IBuildingProvider {
 
     @Override
     public PlaceableNPC getNPCOffset(String npc_location) {
+        System.out.println(npc_offsets.size() + " ..." + npc_location);
         return npc_offsets.get(npc_location);
     }
 
@@ -86,13 +91,14 @@ public class BuildingProvider implements IBuildingProvider {
     }
 
     @Override
-    public EnumActionResult generate(UUID uuid, World world, BlockPos pos) {
+    public EnumActionResult generate(World world, BlockPos pos) {
         if (!world.isRemote && full_list != null) {
             Direction direction = Direction.values()[world.rand.nextInt(Direction.values().length)];
-            for (Placeable placeable: full_list) placeable.place(uuid, world, pos, direction, ConstructionStage.BUILD);
-            for (Placeable placeable: full_list) placeable.place(uuid, world, pos, direction, ConstructionStage.PAINT);
-            for (Placeable placeable: full_list) placeable.place(uuid, world, pos, direction, ConstructionStage.DECORATE);
-            for (Placeable placeable: full_list) placeable.place(uuid, world, pos, direction, ConstructionStage.MOVEIN);
+            for (Placeable placeable: full_list) placeable.place(world, pos, direction, ConstructionStage.BUILD);
+            for (Placeable placeable: full_list) placeable.place(world, pos, direction, ConstructionStage.PAINT);
+            for (Placeable placeable: full_list) placeable.place(world, pos, direction, ConstructionStage.DECORATE);
+            //for (Placeable placeable: full_list) placeable.place(world, pos, direction, ConstructionStage.MOVEIN);
+            TownHelper.getClosestTownToBlockPosOrCreate(world.provider.getDimension(), pos).addBuilding(getBuilding(), direction, pos);
         }
 
         return EnumActionResult.SUCCESS;

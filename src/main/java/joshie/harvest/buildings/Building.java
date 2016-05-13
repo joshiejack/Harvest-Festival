@@ -4,7 +4,7 @@ import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.api.buildings.IBuildingProvider;
 import joshie.harvest.api.buildings.ISpecialPurchaseRules;
 import joshie.harvest.buildings.placeable.Placeable;
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.helpers.TownHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
@@ -74,7 +74,7 @@ public class Building implements IBuilding {
 
     @Override
     public boolean hasRequirements(EntityPlayer player) {
-        return HFTrackers.getPlayerTracker(player).getTown().hasBuildings(requirements);
+        return TownHelper.getClosestTownToPlayer(player).hasBuildings(requirements);
     }
 
     @Override

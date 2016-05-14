@@ -127,12 +127,10 @@
 - Textures for the NPCs which we stole + New Selection for Ondra > Ashlee - Y
 
 ### Models + Textures
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Same Models just different textures
 - Rocks (Spring Mine (Ore Variation), Winter Mine Versions (Ore Variation), Overworld Rocks (Stone Only))
-    - Large                                                ^
-    - Medium                                               ^
-    - Small                                                ^
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>^
+    - Large                                                
+    - Medium                                               
+    - Small                                                
 - Branch - Y
     - Large
     - Medium

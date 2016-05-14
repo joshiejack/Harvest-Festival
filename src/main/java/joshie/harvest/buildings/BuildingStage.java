@@ -1,7 +1,5 @@
 package joshie.harvest.buildings;
 
-import joshie.harvest.api.HFApi;
-import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.blocks.BlockPreview.Direction;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.Placeable.ConstructionStage;
@@ -20,7 +18,7 @@ import net.minecraft.world.World;
 public class BuildingStage {
     private final EntityNPCBuilder entity;
     private boolean isBuilt;
-    public IBuilding building;
+    public Building building;
     public Direction direction;
     public ConstructionStage stage;
     public int index;
@@ -30,7 +28,7 @@ public class BuildingStage {
         this.entity = builder;
     }
 
-    public BuildingStage(EntityNPCBuilder builder, IBuilding building, BlockPos pos, Mirror mirror, Rotation rotation) {
+    public BuildingStage(EntityNPCBuilder builder, Building building, BlockPos pos, Mirror mirror, Rotation rotation) {
         this.entity = builder;
         this.building = building;
         this.direction = Direction.withMirrorAndRotation(mirror, rotation);
@@ -87,7 +85,7 @@ public class BuildingStage {
     }
 
     public void readFromNBT(NBTTagCompound nbt) {
-        building = HFApi.buildings.getBuildingFromName(new ResourceLocation(nbt.getString("CurrentlyBuilding")));
+        building = BuildingRegistry.REGISTRY.getObject(new ResourceLocation(nbt.getString("CurrentlyBuilding")));
         direction = Direction.valueOf(nbt.getString("Direction"));
         pos = new BlockPos(nbt.getInteger("BuildingX"), nbt.getInteger("BuildingY"), nbt.getInteger("BuildingZ"));
 
@@ -98,7 +96,7 @@ public class BuildingStage {
     }
 
     public void writeToNBT(NBTTagCompound nbt) {
-        nbt.setString("CurrentlyBuilding", building.getResource().toString());
+        nbt.setString("CurrentlyBuilding", BuildingRegistry.REGISTRY.getNameForObject(building).toString());
         nbt.setString("Direction", direction.name());
         nbt.setInteger("BuildingX", pos.getX());
         nbt.setInteger("BuildingY", pos.getY());

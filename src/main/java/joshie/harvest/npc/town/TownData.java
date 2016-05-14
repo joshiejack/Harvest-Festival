@@ -1,7 +1,8 @@
 package joshie.harvest.npc.town;
 
-import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.blocks.BlockPreview.Direction;
+import joshie.harvest.buildings.Building;
+import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -55,13 +56,13 @@ public class TownData {
         return uuid;
     }
     
-    public void addBuilding(IBuilding building, Direction direction, BlockPos pos) {
-        buildings.put(building.getResource(), new TownBuilding(building, direction, pos));
+    public void addBuilding(Building building, Direction direction, BlockPos pos) {
+        buildings.put(BuildingRegistry.REGISTRY.getNameForObject(building), new TownBuilding(building, direction, pos));
         HFTrackers.markDirty();
     }
 
-    public boolean hasBuilding(IBuilding building) {
-        return buildings.get(building.getResource()) != null;
+    public boolean hasBuilding(ResourceLocation resource) {
+        return buildings.get(resource) != null;
     }
 
     public boolean hasBuildings(ResourceLocation[] buildings) {
@@ -72,8 +73,8 @@ public class TownData {
         return true;
     }
 
-    public BlockPos getCoordinatesFor(Pair<IBuilding, String> home) {
-        TownBuilding building = buildings.get(home.getKey().getResource());
+    public BlockPos getCoordinatesFor(Pair<ResourceLocation, String> home) {
+        TownBuilding building = buildings.get(home.getKey());
         if (building == null) return null;
         return building.getRealCoordinatesFor(home.getValue());
     }

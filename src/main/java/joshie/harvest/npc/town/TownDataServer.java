@@ -1,5 +1,6 @@
 package joshie.harvest.npc.town;
 
+import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.npc.town.gathering.GatheringData;
 import net.minecraft.nbt.NBTTagCompound;
@@ -32,7 +33,7 @@ public class TownDataServer extends TownData {
             NBTTagCompound tag = list.getCompoundTagAt(i);
             TownBuilding building = new TownBuilding();
             building.readFromNBT(tag);
-            buildings.put(building.building.getResource(), building);
+            buildings.put(BuildingRegistry.REGISTRY.getNameForObject(building.building), building);
         }
     }
 

@@ -1,7 +1,6 @@
 package joshie.harvest.npc;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.npc.IConditionalGreeting;
 import joshie.harvest.api.npc.INPC;
@@ -15,6 +14,7 @@ import joshie.harvest.npc.gift.Gifts;
 import joshie.harvest.npc.gift.Gifts.Quality;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Pair;
 
@@ -52,7 +52,7 @@ public class NPC implements INPC {
     private boolean isBuilder;
     private IShop shop;
     private ICalendarDate birthday;
-    private Pair<IBuilding, String> home;
+    private Pair<ResourceLocation, String> home;
     private boolean doesRespawn;
     private int insideColor;
     private int outsideColor;
@@ -161,7 +161,7 @@ public class NPC implements INPC {
     }
 
     @Override
-    public INPC setHome(IBuilding building, String home_location) {
+    public INPC setHome(ResourceLocation building, String home_location) {
         this.home = Pair.of(building, home_location);
         return this;
     }
@@ -208,7 +208,7 @@ public class NPC implements INPC {
     }
 
     @Override
-    public Pair<IBuilding, String> getHome() {
+    public Pair<ResourceLocation, String> getHome() {
         return home;
     }
 

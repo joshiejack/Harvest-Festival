@@ -1,7 +1,7 @@
 package joshie.harvest.npc.entity;
 
-import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.api.npc.INPC;
+import joshie.harvest.buildings.Building;
 import joshie.harvest.buildings.BuildingStage;
 import joshie.harvest.npc.entity.ai.TaskHeadToBlock;
 import net.minecraft.nbt.NBTTagCompound;
@@ -58,7 +58,7 @@ public class EntityNPCBuilder extends EntityNPCShopkeeper {
         }
     }
 
-    public boolean startBuilding(IBuilding building, BlockPos pos, Mirror mirror, Rotation rotation) {
+    public boolean startBuilding(Building building, BlockPos pos, Mirror mirror, Rotation rotation) {
         if (!worldObj.isRemote) {
             this.building = new BuildingStage(this, building, pos, mirror, rotation);
         }

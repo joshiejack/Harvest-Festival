@@ -1,8 +1,8 @@
 package joshie.harvest.npc.town;
 
-import joshie.harvest.api.HFApi;
-import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.blocks.BlockPreview.Direction;
+import joshie.harvest.buildings.Building;
+import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.core.helpers.NBTHelper;
@@ -11,12 +11,12 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 
 public class TownBuilding {
-    public IBuilding building;
+    public Building building;
     public Direction direction;
     public BlockPos pos;
 
     public TownBuilding() {}
-    public TownBuilding(IBuilding building, Direction direction, BlockPos pos) {
+    public TownBuilding(Building building, Direction direction, BlockPos pos) {
         this.building = building;
         this.direction = direction;
         this.pos = pos;
@@ -33,13 +33,13 @@ public class TownBuilding {
     }
 
     public void readFromNBT(NBTTagCompound nbt) {
-        building = HFApi.buildings.getBuildingFromName(new ResourceLocation(nbt.getString("Building")));
+        building = BuildingRegistry.REGISTRY.getObject(new ResourceLocation(nbt.getString("Building")));
         direction = Direction.valueOf(nbt.getString("Direction"));
         pos = NBTHelper.readBlockPos("Building", nbt);
     }
 
     public void writeToNBT(NBTTagCompound nbt) {
-        nbt.setString("Building", building.getResource().toString());
+        nbt.setString("Building", BuildingRegistry.REGISTRY.getNameForObject(building).toString());
         nbt.setString("Direction", direction.name());
         NBTHelper.writeBlockPos("Building", nbt, pos);
     }

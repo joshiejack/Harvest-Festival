@@ -1,12 +1,12 @@
 package joshie.harvest.api.npc;
 
-import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.shops.IShop;
 import joshie.harvest.npc.gift.Gifts.Quality;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import org.apache.commons.lang3.tuple.Pair;
 
 public interface INPC extends IRelatable {
@@ -21,7 +21,7 @@ public interface INPC extends IRelatable {
 
     /** Marks this NPCs home as this building group, with this name 
      * @return **/
-    public INPC setHome(IBuilding group, String name);
+    public INPC setHome(ResourceLocation building, String name);
 
     /** Set whether this npc uses alex skin or not */
     INPC setAlexSkin();
@@ -71,8 +71,10 @@ public interface INPC extends IRelatable {
     /** Returns this quality of this gift **/
     public Quality getGiftValue(ItemStack gift);
 
-    /** Returns the home for this npc **/
-    public Pair<IBuilding, String> getHome();
+    /** Returns the home for this npc
+     *  @ResourceLocation = Building ResourceLocation
+     *  @String = The string name of the location of the building**/
+    public Pair<ResourceLocation, String> getHome();
 
     /** Returns true if this npc can be married **/
     public boolean isMarriageCandidate();

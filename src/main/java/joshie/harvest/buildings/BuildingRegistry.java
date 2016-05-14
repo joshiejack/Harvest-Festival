@@ -1,5 +1,7 @@
 package joshie.harvest.buildings;
 
+import com.google.gson.ExclusionStrategy;
+import com.google.gson.FieldAttributes;
 import com.google.gson.GsonBuilder;
 import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.api.buildings.IBuildingRegistry;
@@ -10,33 +12,23 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraftforge.fml.common.registry.FMLControlledNamespacedRegistry;
+import net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl;
+import net.minecraftforge.fml.common.registry.PersistentRegistryManager;
 
-import java.util.Collection;
-import java.util.HashMap;
+import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class BuildingRegistry implements IBuildingRegistry {
-    private final HashMap<ResourceLocation, IBuilding> buildings = new HashMap<ResourceLocation, IBuilding>();
-
-    @Override
-    public Collection<IBuilding> getBuildings() {
-        return buildings.values();
-    }
-
-    @Override
-    public IBuilding registerBuilding(IBuilding building) {
-        buildings.put(building.getResource(), building);
-        return building;
-    }
-
+    public static final FMLControlledNamespacedRegistry<Building> REGISTRY = PersistentRegistryManager.createRegistry(new ResourceLocation(MODID, "buildings"), Building.class, null, 0, 32000, true, null, null, null);
 
     @Override
     public IBuilding getBuildingFromName(ResourceLocation name) {
-        return buildings.get(name);
+        return REGISTRY.getObject(name);
     }
 
     @Override
-    public IBuilding registerBuilding(ResourceLocation resource) {
-        GsonBuilder builder = new GsonBuilder().setPrettyPrinting();
+    public ResourceLocation registerBuilding(ResourceLocation resource) {
+        GsonBuilder builder = new GsonBuilder().setPrettyPrinting().setExclusionStrategies(new SuperClassExclusionStrategy());
         builder.registerTypeAdapter(Placeable.class, new PlaceableAdapter());
         builder.registerTypeAdapter(IBlockState.class, new StateAdapter());
         builder.registerTypeAdapter(ItemStack.class, new StackAdapter());
@@ -44,18 +36,30 @@ public class BuildingRegistry implements IBuildingRegistry {
         builder.registerTypeAdapter(TextComponentString.class, new TextComponentAdapter());
         Building building = builder.create().fromJson(ResourceLoader.getJSONResource(resource, "buildings"), Building.class);
         if (building != null) {
-            building.resource = resource;
-            buildings.put(resource, building);
             BuildingProvider provider = new BuildingProvider();
             provider.setList(building.components);
             for (Placeable placeable: provider.getFullList()) {
                 provider.addToList(placeable);
             }
 
+            building.setRegistryName(resource);
             building.setProvider(provider);
             building.components = null; //Clear the memory
+            REGISTRY.register(building);
         }
 
-        return building;
+        return building.getRegistryName();
+    }
+
+    private static class SuperClassExclusionStrategy implements ExclusionStrategy {
+        @Override
+        public boolean shouldSkipClass(Class<?> clazz) {
+            return false;
+        }
+
+        @Override
+        public boolean shouldSkipField(FieldAttributes field) {
+            return field.getDeclaringClass().equals(Impl.class);
+        }
     }
 }

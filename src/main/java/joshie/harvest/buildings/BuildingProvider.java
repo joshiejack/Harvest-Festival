@@ -26,11 +26,11 @@ public class BuildingProvider implements IBuildingProvider {
     private final HashMap<String, PlaceableNPC> npc_offsets = new HashMap<>();
     private final ArrayList<PlaceableBlock> block_list = new ArrayList<>();
     private ArrayList<Placeable> full_list;
-    private IBuilding building;
+    private Building building;
 
     public BuildingProvider() {}
 
-    public void setBuilding(IBuilding building) {
+    public void setBuilding(Building building) {
         this.building = building;
     }
 
@@ -98,7 +98,7 @@ public class BuildingProvider implements IBuildingProvider {
             for (Placeable placeable: full_list) placeable.place(world, pos, direction, ConstructionStage.PAINT);
             for (Placeable placeable: full_list) placeable.place(world, pos, direction, ConstructionStage.DECORATE);
             for (Placeable placeable: full_list) placeable.place(world, pos, direction, ConstructionStage.MOVEIN);
-            TownHelper.getClosestTownToBlockPosOrCreate(world.provider.getDimension(), pos).addBuilding(getBuilding(), direction, pos);
+            TownHelper.getClosestTownToBlockPosOrCreate(world.provider.getDimension(), pos).addBuilding(building, direction, pos);
         } else if (world.isRemote) {
             MCClientHelper.refresh();
         }

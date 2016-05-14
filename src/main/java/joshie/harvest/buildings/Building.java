@@ -9,12 +9,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
 
-public class Building implements IBuilding {
+public class Building extends net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl<Building> implements IBuilding {
     private transient ISpecialPurchaseRules special = new SpecialRulesDefault();
-    private transient IBuildingProvider provider;
+    private transient BuildingProvider provider;
     private transient String toLocalise;
-    //List of all placeable elements
-    public transient ResourceLocation resource;
     public ResourceLocation[] requirements;
     public long cost;
     public int wood;
@@ -24,25 +22,19 @@ public class Building implements IBuilding {
     public Placeable[] components; //Set to null after loading
 
     public Building(){}
-    public Building(String string) {
-        resource = new ResourceLocation("harvestfestival", string);
-    }
 
     @Override
     public String getLocalisedName() {
         return I18n.translateToLocal(toLocalise);
     }
 
-    @Override
-    public ResourceLocation getResource() {
-        return resource;
-    }
-
-    @Override
-    public IBuilding setProvider(IBuildingProvider provider) {
+    public Building setProvider(BuildingProvider provider) {
         this.provider = provider;
         this.provider.setBuilding(this);
-        this.toLocalise = resource.getResourceDomain().toLowerCase() + ".structures." + resource.getResourcePath().toLowerCase();
+        if (getRegistryName() != null) {
+            this.toLocalise = getRegistryName().getResourceDomain().toString().toLowerCase() + ".structures." + getRegistryName().getResourcePath().toLowerCase();
+        }
+
         return this;
     }
 
@@ -94,11 +86,11 @@ public class Building implements IBuilding {
 
     @Override
     public boolean equals(Object o) {
-        return o instanceof Building && resource != null && resource.equals(((Building) o).resource);
+        return o instanceof Building && getRegistryName() != null && getRegistryName().equals(((Building) o).getRegistryName());
     }
 
     @Override
     public int hashCode() {
-        return resource == null? 0 : resource.hashCode();
+        return getRegistryName() == null? 0 : getRegistryName().hashCode();
     }
 }

@@ -1,10 +1,10 @@
 package joshie.harvest.blocks.tiles;
 
-import joshie.harvest.api.HFApi;
 import joshie.harvest.api.WorldLocation;
-import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.blocks.BlockPreview.Direction;
 import joshie.harvest.blocks.HFBlocks;
+import joshie.harvest.buildings.Building;
+import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSyncMarker;
@@ -21,9 +21,9 @@ public class TileMarker extends TileEntity {
     private boolean needsInit = true;
     private List<PlaceableBlock> clone;
     private Direction direction;
-    private IBuilding building;
+    private Building building;
 
-    public void setBuilding(IBuilding building) {
+    public void setBuilding(Building building) {
         this.direction = HFBlocks.PREVIEW.getEnumFromMeta(getBlockMetadata());
         this.building = building;
         this.needsInit = true;
@@ -41,7 +41,7 @@ public class TileMarker extends TileEntity {
         return building.getProvider().getPreviewList();
     }
 
-    public IBuilding getBuilding() {
+    public Building getBuilding() {
         return building;
     }
 
@@ -61,7 +61,7 @@ public class TileMarker extends TileEntity {
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
-        building = HFApi.buildings.getBuildingFromName(new ResourceLocation(nbt.getString("Building")));
+        building = BuildingRegistry.REGISTRY.getObject(new ResourceLocation(nbt.getString("Building")));
         if (nbt.hasKey("Direction")) {
             direction = Direction.valueOf(nbt.getString("Direction"));
         }
@@ -75,7 +75,7 @@ public class TileMarker extends TileEntity {
         nbt.setBoolean("Init", needsInit);
         nbt.setString("Direction", direction.name());
         if (building != null) {
-            nbt.setString("Building", building.getResource().toString());
+            nbt.setString("Building", BuildingRegistry.REGISTRY.getNameForObject(building).toString());
         }
     }
 }

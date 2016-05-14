@@ -5,6 +5,8 @@ import joshie.harvest.blocks.BlockCrop;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.base.BlockHFBaseEnum;
 import joshie.harvest.core.util.base.ItemBlockHF;
+import joshie.harvest.core.util.base.ItemHFBaseEnum;
+import joshie.harvest.core.util.base.ItemHFBaseFML;
 import joshie.harvest.core.util.generic.Library;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -31,7 +33,11 @@ public class RegistryHelper {
         GameRegistry.register(item, new ResourceLocation(HFModInfo.MODID, name));
 
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
-            if (item.getHasSubtypes()) {
+            if (item instanceof ItemHFBaseFML) {
+
+            } else if (item instanceof ItemHFBaseEnum) {
+                ((ItemHFBaseEnum)item).registerModels(item, name);
+            } else if (item.getHasSubtypes()) {
                 List<ItemStack> subItems = new ArrayList<ItemStack>();
                 if (item.getCreativeTabs() != null && item.getCreativeTabs().length > 0) {
                     for (CreativeTabs tab : item.getCreativeTabs()) {

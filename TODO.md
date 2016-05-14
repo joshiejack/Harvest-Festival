@@ -24,7 +24,7 @@
 - Make the rotation of Blueprints make more sense - J
 - Change Blueprints to not be a block but an item that you hover and click where you want them place - J
 - Add Extra Chat Messages, and Conversations for all NPCs
-- Coin Render only in cities
+- Coin Render on hotbar
 - Add Axe Item - J
     - Basic (Breaks Small Twigs)
     - Copper (Breaks Medium Twigs)
@@ -53,7 +53,7 @@
 - Change Meals to use ResourceLocation Identifiers
 - Change NPCs to use ResourceLocation Identifiers
 - Change Items to  Item Enums + Change Item Registry Helper
-- Change Seeds, Buildings etc to use ForgeControlledNameSpace and use metadata instead of NBT where appropriate
+- Change Seeds to use ForgeControlledNameSpace and use metadata instead of NBT where appropriate
 - Add Sprinkler Block
 
 ###(S)ounds, (E)ffects, (A)nimations
@@ -97,6 +97,7 @@
 - All Recipes can be successfully made - J
 - Stamina and Fatigue is doing the correct things - J
 - Cursed Tools are giving cursed effects - J
+- Gathering is saving
 
 ### To Fix
 - Rendering of Shops - J
@@ -111,7 +112,6 @@
 ### Rendering
 - Make Blueprints Render in World
 - Make Blueprints Item Render
-- Make Spawn Building Blueprints Render their Icon
 - Make Spawn NPC Render the NPC
 - Mine Floor Connected Textures and Random Texture Overlays - Y, J?
 - Mine Wall Random Textures - Y

@@ -1,9 +1,9 @@
 package joshie.harvest.blocks;
 
-import joshie.harvest.api.HFApi;
-import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.blocks.BlockPreview.Direction;
 import joshie.harvest.blocks.tiles.TileMarker;
+import joshie.harvest.buildings.Building;
+import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.buildings.loader.HFBuildings;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.config.General;
@@ -32,10 +32,10 @@ import java.util.HashMap;
 import java.util.List;
 
 public class BlockPreview extends BlockHFBaseEnum<Direction> {
-    public ItemStack getItemStack(IBuilding building) {
+    public ItemStack getItemStack(Building building) {
         ItemStack stack = new ItemStack(this);
         stack.setTagCompound(new NBTTagCompound());
-        stack.getTagCompound().setString("Building", building.getResource().toString());
+        stack.getTagCompound().setString("Building", BuildingRegistry.REGISTRY.getNameForObject(building).toString());
         return stack;
     }
 
@@ -122,7 +122,7 @@ public class BlockPreview extends BlockHFBaseEnum<Direction> {
                 next = 0;
             }
 
-            IBuilding building =  ((TileMarker)world.getTileEntity(pos)).getBuilding();
+            Building building =  ((TileMarker)world.getTileEntity(pos)).getBuilding();
             if (building != null) {
                 world.setBlockState(pos, getStateFromMeta(next), 2);
                 ((TileMarker)world.getTileEntity(pos)).setBuilding(building);
@@ -151,16 +151,16 @@ public class BlockPreview extends BlockHFBaseEnum<Direction> {
         return new TileMarker();
     }
 
-    public IBuilding getBuildingFromStack(ItemStack stack) {
+    public Building getBuildingFromStack(ItemStack stack) {
         if (!stack.hasTagCompound()) return HFBuildings.null_building;
-        IBuilding building = HFApi.buildings.getBuildingFromName(new ResourceLocation(stack.getTagCompound().getString("Building")));
+        Building building = BuildingRegistry.REGISTRY.getObject(new ResourceLocation(stack.getTagCompound().getString("Building")));
         return building == null ? HFBuildings.null_building: building;
     }
 
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase player, ItemStack stack) {
         if (!(player instanceof EntityPlayer)) return;
-        IBuilding building = getBuildingFromStack(stack);
+        Building building = getBuildingFromStack(stack);
         if (building != null) {
             TileMarker marker = (TileMarker) world.getTileEntity(pos);
             marker.setBuilding(building);
@@ -174,7 +174,7 @@ public class BlockPreview extends BlockHFBaseEnum<Direction> {
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
         TileMarker marker = (TileMarker) world.getTileEntity(pos);
-        IBuilding building = marker.getBuilding();
+        Building building = marker.getBuilding();
         if (building == null) return null;
         else {
             return getItemStack(building);
@@ -186,7 +186,7 @@ public class BlockPreview extends BlockHFBaseEnum<Direction> {
     public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
         if (tab != HFTab.TOWN) return;
         if (General.DEBUG_MODE) {
-            for (IBuilding building: HFApi.buildings.getBuildings()) {
+            for (Building building: BuildingRegistry.REGISTRY.getValues()) {
                 list.add(getItemStack(building));
             }
         }

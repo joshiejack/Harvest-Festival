@@ -3,10 +3,11 @@ package joshie.harvest.shops;
 import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.animals.entity.EntityHarvestSheep;
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.shops.IShop;
 import joshie.harvest.blocks.HFBlocks;
+import joshie.harvest.buildings.Building;
+import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.items.HFItems;
 import joshie.harvest.items.ItemAnimal;
@@ -76,7 +77,7 @@ public class HFShops {
 
     private static void registerCarpenter() {
         CARPENTER = HFApi.shops.newShop("carpenter", HFNPCs.BUILDER);
-        for (IBuilding building : HFApi.buildings.getBuildings()) {
+        for (Building building : BuildingRegistry.REGISTRY.getValues()) {
             CARPENTER.addItem(new PurchaseableBuilding(building));
         }
 

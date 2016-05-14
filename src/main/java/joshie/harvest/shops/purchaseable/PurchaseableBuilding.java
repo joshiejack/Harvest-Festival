@@ -1,10 +1,13 @@
 package joshie.harvest.shops.purchaseable;
 
 import joshie.harvest.api.buildings.IBuilding;
+import joshie.harvest.buildings.Building;
+import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.InventoryHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -12,12 +15,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PurchaseableBuilding extends Purchaseable {
-    public static List<PurchaseableBuilding> listings = new ArrayList<PurchaseableBuilding>();
+    public static List<PurchaseableBuilding> listings = new ArrayList<>();
+    private ResourceLocation resource;
     private IBuilding building;
 
-    public PurchaseableBuilding(IBuilding building) {
+    public PurchaseableBuilding(Building building) {
         super(building.getCost(), building.getProvider().getPreview());
         this.building = building;
+        this.resource = BuildingRegistry.REGISTRY.getNameForObject(building);
         listings.add(this);
     }
 
@@ -32,7 +37,7 @@ public class PurchaseableBuilding extends Purchaseable {
 
     @Override
     public boolean canList(World world, EntityPlayer player) {
-        return !HFTrackers.getTownTracker().getClosestTownToBlockPos(player.dimension, new BlockPos(player)).hasBuilding(building) && building.getRules().canBuy(world, player) && building.hasRequirements(player);
+        return !HFTrackers.getTownTracker().getClosestTownToBlockPos(player.dimension, new BlockPos(player)).hasBuilding(resource) && building.getRules().canBuy(world, player) && building.hasRequirements(player);
     }
 
     @Override

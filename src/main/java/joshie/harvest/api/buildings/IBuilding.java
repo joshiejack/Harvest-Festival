@@ -1,16 +1,9 @@
 package joshie.harvest.api.buildings;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ResourceLocation;
 
 public interface IBuilding {
-    /** Sets Provider **/
-    public IBuilding setProvider(IBuildingProvider provider);
-
     public IBuilding setSpecialRules(ISpecialPurchaseRules rules);
-
-    /** Returns the resource **/
-    public ResourceLocation getResource();
 
     String getLocalisedName();
 

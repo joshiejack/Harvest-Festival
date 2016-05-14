@@ -1,6 +1,7 @@
 package joshie.harvest.npc.town;
 
 import joshie.harvest.core.helpers.NBTHelper;
+import joshie.harvest.npc.town.gathering.GatheringData;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ResourceLocation;

@@ -13,6 +13,7 @@ import joshie.harvest.items.HFItems;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.gift.init.HFGifts;
+import joshie.harvest.npc.town.gathering.HFGathering;
 import joshie.harvest.plugins.HFPlugins;
 import joshie.harvest.quests.HFQuests;
 import joshie.harvest.shops.HFShops;
@@ -44,6 +45,7 @@ public class HFCommonProxy {
         LIST.add(HFQuests.class);
         LIST.add(HFShops.class);
         LIST.add(HFMining.class);
+        LIST.add(HFGathering.class);
         LIST.add(HFGifts.class);
         LIST.add(HFAnimals.class);
         LIST.add(HFTab.class);

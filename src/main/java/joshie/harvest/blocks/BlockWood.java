@@ -15,7 +15,6 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -29,8 +28,10 @@ import net.minecraft.world.World;
 
 import static joshie.harvest.api.HFApi.shipping;
 import static joshie.harvest.blocks.BlockWood.Woodware.NEST;
+import static joshie.harvest.blocks.BlockWood.Woodware.SHIPPING;
 
 public class BlockWood extends BlockHFBaseEnumRotatableMeta<Woodware> {
+    private static final AxisAlignedBB SHIPPING_AABB = new AxisAlignedBB(0D, 0D, 0D, 1D, 0.6D, 1D);
     public static final PropertyBool FILLED = PropertyBool.create("filled");
 
     public enum Woodware implements IStringSerializable {
@@ -64,7 +65,7 @@ public class BlockWood extends BlockHFBaseEnumRotatableMeta<Woodware> {
         Woodware wood = getEnumFromState(state);
         switch (wood) {
             case SHIPPING:
-                return new AxisAlignedBB(0D, 0D, 0D, 1D, 0.6D, 1D);
+                return SHIPPING_AABB;
             default:
                 return FULL_BLOCK_AABB;
         }
@@ -74,7 +75,7 @@ public class BlockWood extends BlockHFBaseEnumRotatableMeta<Woodware> {
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack held, EnumFacing side, float hitX, float hitY, float hitZ) {
         Woodware wood = getEnumFromState(state);
         if (player.isSneaking()) return false;
-        else if ((wood == Woodware.SHIPPING) && held != null) {
+        else if ((wood == SHIPPING) && held != null) {
             long sell = shipping.getSellValue(held);
             if (sell > 0) {
                 if (!world.isRemote) {
@@ -97,7 +98,7 @@ public class BlockWood extends BlockHFBaseEnumRotatableMeta<Woodware> {
 
     @Override
     public boolean hasTileEntity(IBlockState state) {
-        return getEnumFromState(state) != Woodware.SHIPPING;
+        return getEnumFromState(state) != SHIPPING;
     }
 
     @Override
@@ -122,14 +123,6 @@ public class BlockWood extends BlockHFBaseEnumRotatableMeta<Woodware> {
         }
 
         return state;
-    }
-
-    @Override
-    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-        Woodware wood = getEnumFromState(state);
-        if (wood != NEST) {
-            super.onBlockPlacedBy(world, pos, state, placer, stack);
-        }
     }
 
     @Override

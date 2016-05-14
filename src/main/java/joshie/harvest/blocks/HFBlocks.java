@@ -41,11 +41,14 @@ public class HFBlocks {
     public static final BlockHFBaseEnum CROPS = new BlockCrop().setUnlocalizedName("crops.block");
     public static final BlockFlower FLOWERS = (BlockFlower) new BlockFlower().setUnlocalizedName("flowers");
     //Mine
-    public static BlockHFBaseEnum STONE = new BlockStone().setUnlocalizedName("stone");
-    public static BlockHFBaseEnum DIRT = new BlockDirt().setUnlocalizedName("dirt");
+    public static final BlockHFBaseEnum STONE = new BlockStone().setUnlocalizedName("stone");
+    public static final BlockHFBaseEnum DIRT = new BlockDirt().setUnlocalizedName("dirt");
     //Misc
-    public static BlockHFBaseEnum WOOD_MACHINES = new BlockWood().setUnlocalizedName("woodware");
-    public static BlockPreview PREVIEW = (BlockPreview) new BlockPreview().setUnlocalizedName("preview");
+    public static final BlockHFBaseEnum WOOD_MACHINES = new BlockWood().setUnlocalizedName("woodware");
+    public static final BlockPreview PREVIEW = (BlockPreview) new BlockPreview().setUnlocalizedName("preview");
+
+    //Gathering
+    public static final BlockHFBaseEnum GATHERING = new BlockGathering().setUnlocalizedName("gathering");
 
     public static void preInit() {
         GODDESS.setBlock(GODDESS_WATER);

@@ -25,7 +25,6 @@
 - Change Blueprints to not be a block but an item that you hover and click where you want them place - J
 - Add Extra Chat Messages, and Conversations for all NPCs
 - Coin Render only in cities
-- Change Buildings to what joshie?
 - Add Axe Item - J
     - Basic (Breaks Small Twigs)
     - Copper (Breaks Medium Twigs)
@@ -35,10 +34,10 @@
     - Cursed/Blessed (Breaks Large Stumps)
     - Mythic (Fells whole trees)
 - Add Basic Items to spawn that can be gathered (Expanded Later)- J
-        - Rocks
-            - Small - > Gives 1 Stone
-            - Medium - > Gives 4 Stone
-            - Large > Gives 10 Stone
+    - Rocks
+        - Small - > Gives 1 Stone
+        - Medium - > Gives 4 Stone
+        - Large > Gives 10 Stone
     - Stumps
         - Small - > Gives 3 Wood
         - Medium - > Gives 6 Wood
@@ -128,20 +127,12 @@
 - Textures for the NPCs which we stole + New Selection for Ondra > Ashlee - Y
 
 ### Models + Textures
-- Rocks - Y ### See below...... >>>>>>>>>>>>>>>>>>>>>>>>>>>V
-    - Large (Various) (Can be cominbed automatically)      V
-    - Medium (Various) (Can be cominbed automatically)     V
-    - Small (Various) (Can be combined automatically)      V
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Same Models just different textures
-- Mining Rocks (Spring Mine, Winter Mine Versions >>> Potential Ore Deposits, Gathering Rocks (for getting stone from))
+- Rocks (Spring Mine (Ore Variation), Winter Mine Versions (Ore Variation), Overworld Rocks (Stone Only))
     - Large                                                ^
     - Medium                                               ^
     - Small                                                ^
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>^
-- Gathering Rocks
-    - Large
-    - Medium
-    - Small
 - Branch - Y
     - Large
     - Medium

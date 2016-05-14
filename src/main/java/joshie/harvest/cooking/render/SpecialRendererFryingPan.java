@@ -11,7 +11,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class SpecialRendererFryingPan extends SpecialRendererCookware<TileFryingPan> {
     @Override
     public void renderFluid(int i, World world, ResourceLocation fluid) {
-        renderFluid(fluid, 0.5F, 0.065F + (i * 0.01F), 0.5F, 0.499F);
+        renderFluid(fluid, 0.5F, 0.065F + (i * 0.001F), 0.5F, 0.499F);
     }
 
     @Override

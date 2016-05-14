@@ -11,7 +11,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class SpecialRendererPot extends SpecialRendererCookware<TilePot> {
     @Override
     public void renderFluid(int i, World world, ResourceLocation fluid) {
-        renderFluid(fluid, 0.5F, 0.125F + (i * 0.01F), 0.5F, 0.499F);
+        renderFluid(fluid, 0.5F, 0.125F + (i * 0.001F), 0.5F, 0.499F);
     }
 
     @Override

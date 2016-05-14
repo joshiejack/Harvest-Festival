@@ -96,9 +96,6 @@
 - Buying Entities works correctly - J
 - All Cooking utensils work correctly - J
 - All Recipes can be successfully made - J
-- Shops are working correctly - J
-- Town System is working correctly - J
-- Gathering System is functional - J
 - Stamina and Fatigue is doing the correct things - J
 - Cursed Tools are giving cursed effects - J
 

@@ -47,7 +47,7 @@ public class GuiNPCBase extends GuiBase {
 
     private void drawHeart(int value) {
         GlStateManager.color(1F, 1F, 1F, 1F);
-        int xPos = (int) ((((double) value / (NPC.MAXIMUM_FRIENDSHIP))) * 7);
+        int xPos = (int) ((((double) value / (NPC.maximumFriendship))) * 7);
         drawTexturedModalRect(240, 130, 0, 0, 25, 25);
         drawTexturedModalRect(240, 130, 25 + (25 * xPos), 0, 25, 25);
     }

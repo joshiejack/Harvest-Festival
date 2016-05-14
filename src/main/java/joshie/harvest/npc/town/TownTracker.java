@@ -9,10 +9,9 @@ import net.minecraft.world.World;
 import java.util.UUID;
 
 public abstract class TownTracker {
-    public static final TownData NULL_TOWN = new TownData();
+    public static final TownData NULL_TOWN = new TownData().setUUID(UUID.fromString("5b529b64-62dc-35df-416c-05e0210f6ab0"));
 
     public TownData getClosestTownToBlockPos(int dimension, BlockPos pos) {
-        System.out.println("Returning the null town for some reason");
         return NULL_TOWN;
     }
 

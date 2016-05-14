@@ -17,7 +17,7 @@ public class ItemBlockHF extends ItemBlock implements  ICreativeSorted {
 
     @Override
     public CreativeTabs[] getCreativeTabs() {
-        return new CreativeTabs[]{HFTab.FARMING, HFTab.COOKING, HFTab.MINING, HFTab.TOWN};
+        return new CreativeTabs[]{ HFTab.FARMING, HFTab.COOKING, HFTab.MINING, HFTab.TOWN, HFTab.GATHERING };
     }
 
     @Override

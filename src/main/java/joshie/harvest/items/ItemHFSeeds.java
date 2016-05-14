@@ -97,7 +97,7 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
                             }
 
                             if (planted < 0) {
-                                if (Crops.ALWAYS_GROW) {
+                                if (Crops.alwaysGrow) {
                                     planted = 2;
                                     break labelTop;
                                 }
@@ -130,7 +130,7 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
 
                 planted++;
 
-                if (Crops.ALWAYS_GROW) {
+                if (Crops.alwaysGrow) {
                     if (planted >= 2) {
                         return -1;
                     }

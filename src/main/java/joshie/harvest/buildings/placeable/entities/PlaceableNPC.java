@@ -45,6 +45,7 @@ public class PlaceableNPC extends PlaceableEntity {
         INPC inpc = HFApi.npc.get(npc); if (inpc == null) return null;
         EntityNPC entity = NPCHelper.getEntityForNPC(world, inpc);
         entity.setPosition(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
+        entity.resetSpawnHome();
         return entity;
     }
 

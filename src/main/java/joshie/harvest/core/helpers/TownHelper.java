@@ -13,15 +13,9 @@ import java.util.UUID;
 public class TownHelper {
     public static TownData getClosestTownToBlockPosOrCreate(int dimension, BlockPos pos) {
         TownData data = HFTrackers.getTownTracker().getClosestTownToBlockPos(dimension, pos);
-        System.out.println(data + " was it null?");
         if (data == TownTracker.NULL_TOWN) {
-            System.out.println("Returning a new town");
             data = HFTrackers.getTownTracker().createNewTown(dimension, pos);
         }
-
-        System.out.println(data == TownTracker.NULL_TOWN);
-
-        System.out.println("Returning the town with the id: " + data.getID());
 
         return data;
     }
@@ -36,8 +30,6 @@ public class TownHelper {
         if (data == TownTracker.NULL_TOWN) {
             data = HFTrackers.getTownTracker().createNewTown(entity.dimension, new BlockPos(entity));
         }
-
-        System.out.println(data.getID());
 
         return data;
     }

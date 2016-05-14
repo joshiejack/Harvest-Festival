@@ -23,6 +23,7 @@ public class HFTab extends CreativeTabs {
     public static final HFTab FARMING = new HFTab("farming");
     public static final HFTab COOKING = new HFTab("cooking");
     public static final HFTab GATHERING = new HFTab("gathering");
+    public static CreativeTabs[] tabs = new CreativeTabs[0];
 
     private ItemStack icon = new ItemStack(Items.GOLDEN_HOE);
 

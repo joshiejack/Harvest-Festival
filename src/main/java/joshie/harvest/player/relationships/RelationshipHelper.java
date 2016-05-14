@@ -44,6 +44,6 @@ public class RelationshipHelper implements IRelationships {
 
     @Override
     public int getMaximumRelationshipValue() {
-        return NPC.MAXIMUM_FRIENDSHIP;
+        return NPC.maximumFriendship;
     }
 }

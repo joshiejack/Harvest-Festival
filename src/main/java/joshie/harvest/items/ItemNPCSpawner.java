@@ -4,6 +4,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.helpers.NPCHelper;
+import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.util.base.ItemHFBaseMeta;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.EntityNPC;
@@ -55,6 +56,8 @@ public class ItemNPCSpawner extends ItemHFBaseMeta   {
             entity.setPosition(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5);
             entity.resetSpawnHome();
             world.spawnEntityInWorld(entity);
+        } else if (world.isRemote) {
+            MCClientHelper.refresh();
         }
 
         return EnumActionResult.FAIL;

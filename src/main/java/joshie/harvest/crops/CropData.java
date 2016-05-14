@@ -64,7 +64,7 @@ public class CropData implements ICropData {
             return false;
         } else { //Stage 2: Now that we know, it has been watered, Update it's stage
             //If we aren't ticking randomly, Then increase the stage
-            if (!Crops.ALWAYS_GROW) {
+            if (!Crops.alwaysGrow) {
                 grow(world);
             }
         }

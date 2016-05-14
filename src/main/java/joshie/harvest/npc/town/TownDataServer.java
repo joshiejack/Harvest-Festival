@@ -34,10 +34,9 @@ public class TownDataServer extends TownData {
         NBTTagList list = nbt.getTagList("TownBuildingList", 10);
         for (int i = 0; i < list.tagCount(); i++) {
             NBTTagCompound tag = list.getCompoundTagAt(i);
-            String name = tag.getString("BuildingKey");
             TownBuilding building = new TownBuilding();
             building.readFromNBT(tag);
-            buildings.put(new ResourceLocation(name), building);
+            buildings.put(building.building.getResource(), building);
         }
     }
 
@@ -48,7 +47,6 @@ public class TownDataServer extends TownData {
         NBTTagList list = new NBTTagList();
         for (ResourceLocation name : buildings.keySet()) {
             NBTTagCompound tag = new NBTTagCompound();
-            tag.setString("BuildingKey", name.toString());
             buildings.get(name).writeToNBT(tag);
             list.appendTag(tag);
         }

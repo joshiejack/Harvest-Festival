@@ -40,8 +40,8 @@ public class PacketSetCalendar extends PenguinPacket {
         date.setDay(day).setSeason(season).setYear(year);
         
         //Refresh all Blocks in Render range
-        //If the seasons are not the same, and neither the current or past season is/was spring, re-render the client
-        if(previous != season && previous != Season.SPRING && season != Season.SPRING) {
+        //If the seasons are not the same, re-render the client
+        if(previous != season) {
             joshie.harvest.core.helpers.generic.MCClientHelper.refresh();
         }
     }

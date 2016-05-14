@@ -9,6 +9,7 @@ import joshie.harvest.buildings.placeable.Placeable.ConstructionStage;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.core.helpers.TownHelper;
+import joshie.harvest.core.helpers.generic.MCClientHelper;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
@@ -71,7 +72,6 @@ public class BuildingProvider implements IBuildingProvider {
 
     @Override
     public PlaceableNPC getNPCOffset(String npc_location) {
-        System.out.println(npc_offsets.size() + " ..." + npc_location);
         return npc_offsets.get(npc_location);
     }
 
@@ -97,8 +97,10 @@ public class BuildingProvider implements IBuildingProvider {
             for (Placeable placeable: full_list) placeable.place(world, pos, direction, ConstructionStage.BUILD);
             for (Placeable placeable: full_list) placeable.place(world, pos, direction, ConstructionStage.PAINT);
             for (Placeable placeable: full_list) placeable.place(world, pos, direction, ConstructionStage.DECORATE);
-            //for (Placeable placeable: full_list) placeable.place(world, pos, direction, ConstructionStage.MOVEIN);
+            for (Placeable placeable: full_list) placeable.place(world, pos, direction, ConstructionStage.MOVEIN);
             TownHelper.getClosestTownToBlockPosOrCreate(world.provider.getDimension(), pos).addBuilding(getBuilding(), direction, pos);
+        } else if (world.isRemote) {
+            MCClientHelper.refresh();
         }
 
         return EnumActionResult.SUCCESS;

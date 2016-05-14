@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "blocks/mine_wall1"
+        "all": "harvestfestival:blocks/mine_wall5_winter"
     }
 }

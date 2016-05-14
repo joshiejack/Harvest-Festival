@@ -1,0 +1,11 @@
+{
+	"variants": {
+		"flowertype=weed": [
+			{ "model": "harvestfestival:flowers/weed", "weight": 1 },
+			{ "model": "harvestfestival:flowers/weed1", "weight": 1 },
+			{ "model": "harvestfestival:flowers/weed2", "weight": 1 },
+			{ "model": "harvestfestival:flowers/weed3", "weight": 1 }
+		],
+		"flowertype=goddess": { "model": "harvestfestival:flowers/goddess" }
+	}
+}

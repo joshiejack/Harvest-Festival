@@ -44,8 +44,7 @@ public class MCClientHelper {
 
     /** Calls a for a re-render of all surrounding blocks **/
     public static void refresh() {
-        EntityPlayer player = getPlayer();
-        getMinecraft().renderGlobal.markBlockRangeForRenderUpdate((int) player.posX - 176, 0, (int) player.posZ - 176, (int) player.posX + 176, 256, (int) player.posZ + 176);
+        getMinecraft().renderGlobal.loadRenderers();
     }
 
     /** Returns the dimension the player is in **/

@@ -31,6 +31,7 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 
 import java.util.UUID;
@@ -62,7 +63,10 @@ public class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEn
     public TownData getHomeTown() {
         if (homeTown == null) {
             if (townID != null) homeTown = TownHelper.getTownByID(townID);
-            else homeTown = TownHelper.getClosestTownToEntityOrCreate(this);
+            else {
+                homeTown = TownHelper.getClosestTownToEntityOrCreate(this);
+                townID = homeTown.getID(); //Set the town id when we create one
+            }
         }
 
         return homeTown;
@@ -104,7 +108,7 @@ public class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEn
 
     @Override
     public void onUpdate() {
-        if (!joshie.harvest.core.config.NPC.FREEZE_NPC) {
+        if (!joshie.harvest.core.config.NPC.freezeNPC) {
             super.onUpdate();
         }
     }
@@ -159,11 +163,6 @@ public class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEn
 
     @Override
     protected void updateAITasks() {
-        if (!init) {
-            init = true;
-            initEntityAI();
-        }
-
         updateTasks();
     }
 
@@ -287,6 +286,8 @@ public class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEn
                 buf.writeChar(c);
             }
         }
+
+        ByteBufUtils.writeUTF8String(buf, townID.toString());
     }
 
     @Override
@@ -300,6 +301,8 @@ public class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEn
         if (npc == null) {
             npc = HFNPCs.GODDESS;
         }
+
+        townID = UUID.fromString(ByteBufUtils.readUTF8String(buf));
     }
 
     @Override

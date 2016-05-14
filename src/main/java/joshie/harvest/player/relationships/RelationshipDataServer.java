@@ -50,7 +50,7 @@ public class RelationshipDataServer extends RelationshipData {
 
     @Override
     public void affectRelationship(EntityPlayer player, IRelatable relatable, int amount) {
-        int newValue = Math.max(0, Math.min(NPC.ADJUSTED_MARRIAGE_REQUIREMENT, getRelationship(relatable) + amount));
+        int newValue = Math.max(0, Math.min(NPC.marriageRequirement, getRelationship(relatable) + amount));
         relationships.put(relatable, newValue);
         HFTrackers.markDirty();
         syncRelationship((EntityPlayerMP) player, relatable, newValue, true);

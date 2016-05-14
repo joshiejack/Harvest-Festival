@@ -81,4 +81,24 @@ public class TownData {
     public BlockPos getTownCentre() {
         return townCentre;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        TownData townData = (TownData) o;
+        return uuid != null ? uuid.equals(townData.uuid) : townData.uuid == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return uuid != null ? uuid.hashCode() : 0;
+    }
+
+    public TownData setUUID(UUID UUID) {
+        uuid = UUID;
+        return this;
+    }
 }

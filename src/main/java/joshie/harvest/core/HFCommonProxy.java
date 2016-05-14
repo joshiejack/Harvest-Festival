@@ -23,7 +23,7 @@ import java.util.List;
 
 public class HFCommonProxy {
     private static final List<Class> LIST = new ArrayList<>();
-    private static final boolean ENABLE_LOGGING = false;
+    private static final boolean ENABLE_LOGGING = true;
 
     static {
         if (General.DEBUG_MODE) {

@@ -24,7 +24,6 @@ public class EntityAINPC extends EntityAIBase {
         else {
             for (INPCTask task: tasks) {
                 if (task.shouldExecute(npc, npc.getNPC())) {
-                    System.out.println("Going home");
                     npc.setTask(task);
                     return true;
                 }
@@ -38,7 +37,6 @@ public class EntityAINPC extends EntityAIBase {
     public boolean continueExecuting() {
         if (npc.getTask() != null) {
             if (npc.getTask().shouldTerminate(npc, npc.getNPC())) {
-                System.out.println("Terminating task");
                 npc.setTask(null);
             }
         }

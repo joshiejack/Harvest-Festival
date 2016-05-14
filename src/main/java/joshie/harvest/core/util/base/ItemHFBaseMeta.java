@@ -33,7 +33,7 @@ public abstract class ItemHFBaseMeta extends ItemHFBase implements IHasMetaItem 
 
     @Override
     public CreativeTabs[] getCreativeTabs() {
-        return new CreativeTabs[]{HFTab.FARMING, HFTab.COOKING, HFTab.MINING, HFTab.TOWN};
+        return new CreativeTabs[]{HFTab.FARMING, HFTab.COOKING, HFTab.MINING, HFTab.TOWN, HFTab.GATHERING};
     }
 
     public boolean isActive(int damage) {

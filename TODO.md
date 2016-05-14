@@ -35,7 +35,6 @@
     - Cursed/Blessed (Breaks Large Stumps)
     - Mythic (Fells whole trees)
 - Add Basic Items to spawn that can be gathered (Expanded Later)- J
-    - Weeds
         - Rocks
             - Small - > Gives 1 Stone
             - Medium - > Gives 4 Stone
@@ -106,8 +105,6 @@
 ### To Fix
 - Rendering of Shops - J
 - NPC Chat not closing after conversation is finished - J
-- Fix Localisation of Goddess Flower - J
-- Make Decorative MineWall/Floor actually mineable - J
 - Make Withered versions of crops be darker - J
 - Make crops get destroyed on losing the block below - J
 - Location of the flower in the spring season overlay - Y
@@ -120,7 +117,6 @@
 - Make Blueprints Item Render
 - Make Spawn Building Blueprints Render their Icon
 - Make Spawn NPC Render the NPC
-- Make Goddess Flower Render - J
 - Mine Floor Connected Textures and Random Texture Overlays - Y, J?
 - Mine Wall Random Textures - Y
 - Make Spawn Cow Render the Cow
@@ -132,7 +128,6 @@
 ### Textures
 - Crop Grass Better Texture - Y
 - Winter Mine version - Y
-- Weed (Will use flower render) - Y
 - Textures for the NPCs which we stole + New Selection for Ondra > Ashlee - Y
 
 ### Models + Textures

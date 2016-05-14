@@ -28,7 +28,7 @@ public class DisableHandler {
 
     @SubscribeEvent
     public void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
-        if (Crops.DISABLE_VANILLA_SEEDS) {
+        if (Crops.disableVanillaSeeds) {
             ItemStack held = event.getItemStack();
             if (held != null) {
                 if (BLACKLIST.contains(held.getItem())) {
@@ -52,7 +52,7 @@ public class DisableHandler {
 
     @SubscribeEvent
     public void onUseHoe(UseHoeEvent event) {
-        if (Crops.DISABLE_VANILLA_HOE) {
+        if (Crops.disableVanillaHoe) {
             event.setCanceled(true);
         }
     }

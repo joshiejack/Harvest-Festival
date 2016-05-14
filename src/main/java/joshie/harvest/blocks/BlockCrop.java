@@ -3,6 +3,7 @@ package joshie.harvest.blocks;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.IAnimalFeeder;
 import joshie.harvest.api.animals.IAnimalTracked;
+import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.IBreakCrops;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
@@ -77,7 +78,7 @@ public class BlockCrop extends BlockHFBaseEnum<Stage> implements IPlantable, IGr
         super(Material.PLANTS, Stage.class, null);
         setBlockUnbreakable();
         setSoundType(SoundType.GROUND);
-        setTickRandomly(Crops.ALWAYS_GROW);
+        setTickRandomly(Crops.alwaysGrow);
         disableStats();
     }
 
@@ -99,7 +100,7 @@ public class BlockCrop extends BlockHFBaseEnum<Stage> implements IPlantable, IGr
     //Only called if crops are set to tick randomly
     @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
-        if (Crops.ALWAYS_GROW) {
+        if (Crops.alwaysGrow) {
             if (!world.isRemote) {
                 Stage stage = getEnumFromState(state);
                 if (stage == Stage.WITHERED) return; //If withered do nothing
@@ -377,9 +378,17 @@ public class BlockCrop extends BlockHFBaseEnum<Stage> implements IPlantable, IGr
     @Override
     public boolean canGrow(World world, BlockPos pos, IBlockState state, boolean isClient) {
         if (getEnumFromState(state) == Stage.WITHERED) return false; //It's dead it can't grow...
+        if (Crops.enableBonemeal) {
+            if (Crops.seasonalBonemeal) {
+                ICropData crop = HFApi.crops.getCropAtLocation(world, pos);
+                for (Season season: crop.getCrop().getSeasons()) {
+                    if (HFApi.calendar.getToday().getSeason() == season) {
+                        return HFTrackers.getCropTracker().canBonemeal(world, pos);
+                    }
+                }
 
-        if (Crops.ENABLE_BONEMEAL) {
-            return HFTrackers.getCropTracker().canBonemeal(world, pos);
+                return false;
+            } else return HFTrackers.getCropTracker().canBonemeal(world, pos);
         } else return false;
     }
 

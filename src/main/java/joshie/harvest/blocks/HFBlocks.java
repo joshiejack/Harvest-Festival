@@ -1,5 +1,6 @@
 package joshie.harvest.blocks;
 
+import joshie.harvest.blocks.BlockFlower.FlowerType;
 import joshie.harvest.blocks.tiles.*;
 import joshie.harvest.buildings.render.PreviewRender;
 import joshie.harvest.cooking.render.SpecialRendererCounter;
@@ -8,11 +9,19 @@ import joshie.harvest.cooking.render.SpecialRendererMixer;
 import joshie.harvest.cooking.render.SpecialRendererPot;
 import joshie.harvest.core.helpers.generic.RegistryHelper;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.core.util.base.BlockHFBase;
 import joshie.harvest.core.util.base.BlockHFBaseEnum;
 import joshie.harvest.crops.CropStateMapper;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.color.IBlockColor;
+import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.item.EnumRarity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.ColorizerFoliage;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
@@ -30,7 +39,7 @@ public class HFBlocks {
     public static final BlockHFBaseEnum COOKWARE = new BlockCookware().setUnlocalizedName("cookware");
     public static final BlockHFBaseEnum FARMLAND = new BlockFarmland().setUnlocalizedName("farmland");
     public static final BlockHFBaseEnum CROPS = new BlockCrop().setUnlocalizedName("crops.block");
-    public static final BlockHFBase FLOWERS = new BlockFlower().setUnlocalizedName("flowers.block");
+    public static final BlockFlower FLOWERS = (BlockFlower) new BlockFlower().setUnlocalizedName("flowers");
     //Mine
     public static BlockHFBaseEnum STONE = new BlockStone().setUnlocalizedName("stone");
     public static BlockHFBaseEnum DIRT = new BlockDirt().setUnlocalizedName("dirt");
@@ -53,6 +62,24 @@ public class HFBlocks {
         ClientRegistry.bindTileEntitySpecialRenderer(TilePot.class, new SpecialRendererPot());
         ClientRegistry.bindTileEntitySpecialRenderer(TileCounter.class, new SpecialRendererCounter());
         ClientRegistry.bindTileEntitySpecialRenderer(TileMixer.class, new SpecialRendererMixer());
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static void initClient() {
+        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(new IBlockColor() {
+            public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
+                FlowerType type = FLOWERS.getEnumFromState(state);
+                if (!type.isColored()) return -1;
+                return worldIn != null && pos != null ? BiomeColorHelper.getFoliageColorAtPos(worldIn, pos) : ColorizerFoliage.getFoliageColorBasic();
+            }
+        }, FLOWERS);
+
+        Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new IItemColor() {
+            @Override
+            public int getColorFromItemstack(ItemStack stack, int tintIndex) {
+                return FLOWERS.getEnumFromMeta(stack.getItemDamage()).isColored() ? ColorizerFoliage.getFoliageColorBasic(): -1;
+            }
+        }, FLOWERS);
     }
 
     private static Fluid registerFluid(Fluid fluid) {

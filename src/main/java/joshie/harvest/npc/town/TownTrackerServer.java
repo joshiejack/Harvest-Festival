@@ -41,7 +41,9 @@ public class TownTrackerServer extends TownTracker {
     }
 
     public void newDay(World world) {
-
+        for (TownDataServer town: getTownsForDimension(world.provider.getDimension(), true)) {
+            town.newDay(world);
+        }
     }
 
     private EntityNPCBuilder createBuilder(TownData town, EntityLivingBase entity) {

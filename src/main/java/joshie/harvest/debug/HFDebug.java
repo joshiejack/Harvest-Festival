@@ -63,7 +63,6 @@ public class HFDebug {
             } catch (Exception e) {}
         }
 
-        System.out.print("fin"); */
     }
 
     public static void init() {
@@ -91,7 +90,6 @@ public class HFDebug {
             } catch (Exception e) {}
         }
 
-        System.out.println("fin"); */
 
 
         /* for (IBuilding b: BuildingRegistry.buildings.values()) {

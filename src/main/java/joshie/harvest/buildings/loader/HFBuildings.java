@@ -2,8 +2,8 @@ package joshie.harvest.buildings.loader;
 
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.buildings.Building;
-import joshie.harvest.buildings.BuildingProvider;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.core.util.base.FMLDefinition;
 import joshie.harvest.items.HFItems;
@@ -16,21 +16,21 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.Level;
 
 public class HFBuildings {
-    public static final Building null_building = (Building) new Building().setProvider(new BuildingProvider());
-    public static final ResourceLocation barn = registerBuilding("barn");
-    public static final ResourceLocation blacksmith = registerBuilding("blacksmith");
-    public static final ResourceLocation cafe = registerBuilding("cafe");
-    public static final ResourceLocation carpenter = registerBuilding("carpenter");
-    public static final ResourceLocation church = registerBuilding("church");
-    public static final ResourceLocation clockmaker = registerBuilding("clockmaker");
-    public static final ResourceLocation fishingHole = registerBuilding("fishingHole");
-    public static final ResourceLocation fishingHut = registerBuilding("fishingHut");
-    public static final ResourceLocation goddessPond = registerBuilding("goddessPond");
-    public static final ResourceLocation miningHill = registerBuilding("miningHill");
-    public static final ResourceLocation miningHut = registerBuilding("miningHut");
-    public static final ResourceLocation poultryFarm = registerBuilding("poultryFarm");
-    public static final ResourceLocation supermarket = registerBuilding("supermarket");
-    public static final ResourceLocation townhall = registerBuilding("townhall");
+    public static final Building null_building = new Building();
+    public static final IBuilding barn = registerBuilding("barn");
+    public static final IBuilding blacksmith = registerBuilding("blacksmith");
+    public static final IBuilding cafe = registerBuilding("cafe");
+    public static final IBuilding carpenter = registerBuilding("carpenter");
+    public static final IBuilding church = registerBuilding("church");
+    public static final IBuilding clockmaker = registerBuilding("clockmaker");
+    public static final IBuilding fishingHole = registerBuilding("fishingHole");
+    public static final IBuilding fishingHut = registerBuilding("fishingHut");
+    public static final IBuilding goddessPond = registerBuilding("goddessPond");
+    public static final IBuilding miningHill = registerBuilding("miningHill");
+    public static final IBuilding miningHut = registerBuilding("miningHut");
+    public static final IBuilding poultryFarm = registerBuilding("poultryFarm");
+    public static final IBuilding supermarket = registerBuilding("supermarket");
+    public static final IBuilding townhall = registerBuilding("townhall");
 
     @SideOnly(Side.CLIENT)
     private static FMLDefinition definition;
@@ -252,7 +252,7 @@ public class HFBuildings {
         }*/
     }
 
-    private static ResourceLocation registerBuilding(String building) {
+    private static IBuilding registerBuilding(String building) {
         return HFApi.buildings.registerBuilding(new ResourceLocation("harvestfestival", building));
     }
 }

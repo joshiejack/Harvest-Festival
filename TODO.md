@@ -101,9 +101,7 @@
 
 ### To Fix
 - Rendering of Shops - J
-- NPC Chat not closing after conversation is finished - J
 - Make Withered versions of crops be darker - J
-- Make crops get destroyed on losing the block below - J
 - Location of the flower in the spring season overlay - Y
 - Give the custom farmland block a name and texture/model - Y
 - Syncing Town Information to Players
@@ -123,7 +121,7 @@
 
 ### Textures
 - Crop Grass Better Texture - Y
-- Winter Mine version - Y
+- Farmland Texture (Wet and Dry), Maybe just a slightly darker version of vanilla?
 - Textures for the NPCs which we stole + New Selection for Ondra > Ashlee - Y
 
 ### Models + Textures

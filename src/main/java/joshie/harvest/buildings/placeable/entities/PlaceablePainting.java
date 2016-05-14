@@ -10,20 +10,6 @@ import net.minecraft.world.World;
 public class PlaceablePainting extends PlaceableHanging {
     private String painting;
 
-    //Registration Purposes
-    public PlaceablePainting() {
-        super(EnumFacing.SOUTH, BlockPos.ORIGIN);
-    }
-
-    public PlaceablePainting(String painting, EnumFacing facing, BlockPos offsetPos) {
-        super(facing, offsetPos);
-        this.painting = painting;
-    }
-
-    public PlaceablePainting(String painting, EnumFacing facing, int offsetX, int offsetY, int offsetZ) {
-        this(painting, facing, new BlockPos(offsetX, offsetY, offsetZ));
-    }
-
     @Override
     public EntityHanging getEntityHanging(World world, BlockPos pos, EnumFacing facing) {
         return new EntityPainting(world, pos, facing, painting);

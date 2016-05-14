@@ -27,7 +27,12 @@ public class BuildingRegistry implements IBuildingRegistry {
     }
 
     @Override
-    public ResourceLocation registerBuilding(ResourceLocation resource) {
+    public ResourceLocation getNameForBuilding(IBuilding building) {
+        return REGISTRY.getNameForObject((Building)building);
+    }
+
+    @Override
+    public IBuilding registerBuilding(ResourceLocation resource) {
         GsonBuilder builder = new GsonBuilder().setPrettyPrinting().setExclusionStrategies(new SuperClassExclusionStrategy());
         builder.registerTypeAdapter(Placeable.class, new PlaceableAdapter());
         builder.registerTypeAdapter(IBlockState.class, new StateAdapter());
@@ -36,19 +41,12 @@ public class BuildingRegistry implements IBuildingRegistry {
         builder.registerTypeAdapter(TextComponentString.class, new TextComponentAdapter());
         Building building = builder.create().fromJson(ResourceLoader.getJSONResource(resource, "buildings"), Building.class);
         if (building != null) {
-            BuildingProvider provider = new BuildingProvider();
-            provider.setList(building.components);
-            for (Placeable placeable: provider.getFullList()) {
-                provider.addToList(placeable);
-            }
-
             building.setRegistryName(resource);
-            building.setProvider(provider);
-            building.components = null; //Clear the memory
+            building.initBuilding();
             REGISTRY.register(building);
         }
 
-        return building.getRegistryName();
+        return building;
     }
 
     private static class SuperClassExclusionStrategy implements ExclusionStrategy {

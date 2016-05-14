@@ -17,7 +17,6 @@ import net.minecraft.world.World;
  * to know their current progress through a building project **/
 public class BuildingStage {
     private final EntityNPCBuilder entity;
-    private boolean isBuilt;
     public Building building;
     public Direction direction;
     public ConstructionStage stage;
@@ -38,11 +37,11 @@ public class BuildingStage {
     }
 
     public BlockPos next() {
-        return index < building.getProvider().getFullList().size() ? building.getProvider().getFullList().get(index).getTransformedPosition(pos, direction): pos;
+        return index < building.getFullList().size() ? building.getFullList().get(index).getTransformedPosition(pos, direction): pos;
     }
 
     public BlockPos build(World world) {
-        if (index >= building.getProvider().getSize()) {
+        if (index >= building.getFullList().size()) {
             if (stage == ConstructionStage.BUILD) {
                 stage = ConstructionStage.DECORATE;
                 index = 0;
@@ -62,8 +61,8 @@ public class BuildingStage {
                 entity.resetSpawnHome();
             }
         } else {
-            while (index < building.getProvider().getSize()) {
-                Placeable block = building.getProvider().getFullList().get(index);
+            while (index < building.getFullList().size()) {
+                Placeable block = building.getFullList().get(index);
                 if (block.place(world, pos, direction, stage)) {
                     index++;
                     return block.getTransformedPosition(pos, direction);

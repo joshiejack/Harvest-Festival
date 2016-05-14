@@ -13,27 +13,6 @@ public class PlaceableNPC extends PlaceableEntity {
     private String homeString;
     private String npc;
 
-    public PlaceableNPC() {
-        super(BlockPos.ORIGIN);
-    }
-
-    public PlaceableNPC(String npc, BlockPos offsetPos) {
-        super(offsetPos);
-        this.npc = npc;
-    }
-
-    public PlaceableNPC(String npc, int x, int y, int z) {
-        super(new BlockPos(x, y, z));
-        this.npc = npc;
-    }
-
-    public PlaceableNPC(String homeString, String npc, int x, int y, int z) {
-        super(new BlockPos(x, y, z));
-        this.npc = npc;
-        this.homeString = homeString;
-    }
-
-
     @Override
     public boolean canPlace(ConstructionStage stage) {
         return stage == ConstructionStage.MOVEIN;

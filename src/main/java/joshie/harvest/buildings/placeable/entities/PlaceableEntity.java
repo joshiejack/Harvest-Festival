@@ -7,10 +7,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public abstract class PlaceableEntity extends Placeable {
-    public PlaceableEntity(BlockPos offsetPos) {
-        super(offsetPos.getX(), offsetPos.getY(), offsetPos.getZ());
-    }
-
     @Override
     public boolean canPlace(ConstructionStage stage) {
         return stage == ConstructionStage.PAINT;

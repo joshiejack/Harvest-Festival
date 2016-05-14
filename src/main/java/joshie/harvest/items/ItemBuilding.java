@@ -1,6 +1,7 @@
 package joshie.harvest.items;
 
 import joshie.harvest.api.core.ICreativeSorted;
+import joshie.harvest.blocks.BlockPreview.Direction;
 import joshie.harvest.buildings.Building;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.buildings.loader.HFBuildings;
@@ -26,9 +27,10 @@ public class ItemBuilding extends ItemHFBaseFML<Building> implements ICreativeSo
 
     @Override
     public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        Building group = getObjectFromStack(stack);
-        if (group != null) {
-            return group.getProvider().generate(world, pos);
+        Building building = getObjectFromStack(stack);
+        if (building != null) {
+            Direction direction = Direction.values()[world.rand.nextInt(Direction.values().length)];
+            return building.generate(world, pos, direction.getMirror(), direction.getRotation());
         }
 
         return EnumActionResult.PASS;

@@ -1,7 +1,6 @@
 package joshie.harvest.buildings.placeable.blocks;
 
 import joshie.harvest.blocks.BlockPreview.Direction;
-import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntitySign;
 import net.minecraft.util.math.BlockPos;
@@ -10,15 +9,6 @@ import net.minecraft.world.World;
 
 public class PlaceableSignWall extends PlaceableBlock {
     private TextComponentString[] text;
-
-    public PlaceableSignWall(Block block, int meta, BlockPos offsetPos, String... text) {
-        super(block, meta, offsetPos.getX(), offsetPos.getY(), offsetPos.getZ());
-        this.text = new TextComponentString[]{new TextComponentString(text[0]), new TextComponentString(text[1]), new TextComponentString(text[2]), new TextComponentString(text[3])};
-    }
-
-    public PlaceableSignWall(Block block, int meta, int offsetX, int offsetY, int offsetZ, String... text) {
-        this(block, meta, new BlockPos(offsetX, offsetY, offsetZ), text);
-    }
 
     @Override
     public boolean canPlace(ConstructionStage stage) {

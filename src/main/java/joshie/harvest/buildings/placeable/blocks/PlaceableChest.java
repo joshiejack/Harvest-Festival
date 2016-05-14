@@ -1,7 +1,6 @@
 package joshie.harvest.buildings.placeable.blocks;
 
 import joshie.harvest.blocks.BlockPreview.Direction;
-import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.ResourceLocation;
@@ -10,11 +9,6 @@ import net.minecraft.world.World;
 
 public class PlaceableChest extends PlaceableBlock {
     private ResourceLocation chestType;
-
-    public PlaceableChest(Block block, int meta, int x, int y, int z, ResourceLocation chestType) {
-        super(block, meta, x, y, z);
-        this.chestType = chestType;
-    }
 
     @Override
     public boolean canPlace(ConstructionStage stage) {

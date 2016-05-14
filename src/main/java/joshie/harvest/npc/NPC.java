@@ -1,6 +1,7 @@
 package joshie.harvest.npc;
 
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.npc.IConditionalGreeting;
 import joshie.harvest.api.npc.INPC;
@@ -161,8 +162,8 @@ public class NPC implements INPC {
     }
 
     @Override
-    public INPC setHome(ResourceLocation building, String home_location) {
-        this.home = Pair.of(building, home_location);
+    public INPC setHome(IBuilding building, String home_location) {
+        this.home = Pair.of(HFApi.buildings.getNameForBuilding(building), home_location);
         return this;
     }
 

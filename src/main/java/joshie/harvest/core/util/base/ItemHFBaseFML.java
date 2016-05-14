@@ -37,6 +37,10 @@ public abstract class ItemHFBaseFML<E extends Impl<E>> extends ItemHFBase {
         return new ItemStack(this, 1, registry.getId(resource));
     }
 
+    public ItemStack getStackFromObject(E e) {
+        return new ItemStack(this, 1, registry.getIDForObject(e));
+    }
+
     @Override
     public int getMetadata(int damage) {
         return damage;

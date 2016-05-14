@@ -13,20 +13,8 @@ public class PlaceableBlock extends Placeable {
     protected transient EnumMap<Direction, IBlockState> states = new EnumMap<Direction, IBlockState>(Direction.class);
     protected IBlockState state;
 
-    public PlaceableBlock() {
-        super(0, 0, 0);
-    }
-
-    public PlaceableBlock(Block block, int meta, int offsetX, int offsetY, int offsetZ) {
-        super(offsetX, offsetY, offsetZ);
-        state = block.getStateFromMeta(meta);
-        for (Direction direction: Direction.values()) {
-            states.put(direction, direction.withDirection(state));
-        }
-    }
-
+    public PlaceableBlock() {}
     public PlaceableBlock(BlockPos pos, PlaceableBlock block) {
-        super(pos.getX(), pos.getY(), pos.getZ());
         state = block.state;
         for (Direction direction: Direction.values()) {
             states.put(direction, direction.withDirection(state));

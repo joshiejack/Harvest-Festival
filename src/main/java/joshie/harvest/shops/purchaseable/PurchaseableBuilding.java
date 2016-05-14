@@ -1,10 +1,12 @@
 package joshie.harvest.shops.purchaseable;
 
-import joshie.harvest.api.buildings.IBuilding;
+import joshie.harvest.api.HFApi;
 import joshie.harvest.buildings.Building;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.InventoryHelper;
+import joshie.harvest.core.helpers.TownHelper;
+import joshie.harvest.npc.town.TownData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -17,10 +19,10 @@ import java.util.List;
 public class PurchaseableBuilding extends Purchaseable {
     public static List<PurchaseableBuilding> listings = new ArrayList<>();
     private ResourceLocation resource;
-    private IBuilding building;
+    private Building building;
 
     public PurchaseableBuilding(Building building) {
-        super(building.getCost(), building.getProvider().getPreview());
+        super(building.getCost(), building.getBlueprint());
         this.building = building;
         this.resource = BuildingRegistry.REGISTRY.getNameForObject(building);
         listings.add(this);
@@ -28,6 +30,8 @@ public class PurchaseableBuilding extends Purchaseable {
 
     @Override
     public boolean canBuy(World world, EntityPlayer player) {
+        TownData town = TownHelper.getClosestTownToPlayer(player);
+        if (town.hasBuilding(HFApi.buildings.getNameForBuilding(building))) return false;
         int wood = InventoryHelper.getCount(player, "logWood");
         if (wood < building.getWoodCount()) return false;
         int stone = InventoryHelper.getCount(player, "stone");

@@ -7,12 +7,6 @@ import net.minecraft.world.World;
 public abstract class Placeable {
     private int x, y, z;
 
-    public Placeable(int x, int y, int z) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
-
     public Placeable init() {
         return this;
     }

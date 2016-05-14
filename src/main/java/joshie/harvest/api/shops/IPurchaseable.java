@@ -6,10 +6,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public interface IPurchaseable {
-    /** Whether the player has everything needed to purchase this item **/
-    public boolean canBuy(World world, EntityPlayer player);
-    
+public interface IPurchaseable extends ISpecialPurchaseRules {
     /** Whether this item shows up in the shop gui for purchase **/
     public boolean canList(World world, EntityPlayer player);
     

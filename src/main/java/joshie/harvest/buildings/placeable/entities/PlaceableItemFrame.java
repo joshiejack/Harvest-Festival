@@ -5,44 +5,16 @@ import joshie.harvest.core.helpers.LootHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityHanging;
 import net.minecraft.entity.item.EntityItemFrame;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.UUID;
-
-import static net.minecraft.util.EnumFacing.NORTH;
-
 public class PlaceableItemFrame extends PlaceableHanging {
     private ResourceLocation chestType;
     private ItemStack stack;
     private int rotation;
-
-    public PlaceableItemFrame() {
-        super(NORTH, BlockPos.ORIGIN);
-    }
-
-    public PlaceableItemFrame(ItemStack stack, int rotation, EnumFacing facing, BlockPos offsetPos) {
-        super(facing, offsetPos);
-        this.rotation = rotation;
-        this.stack = stack;
-    }
-
-    public PlaceableItemFrame(ItemStack stack, int rotation, EnumFacing facing, int offsetX, int offsetY, int offsetZ) {
-        this(stack, rotation, facing, new BlockPos(offsetX, offsetY, offsetZ));
-    }
-
-    public PlaceableItemFrame(ItemStack stack, int rotation, EnumFacing facing, BlockPos offsetPos, ResourceLocation chestType) {
-        this(stack, rotation, facing, offsetPos);
-        this.chestType = chestType;
-    }
-
-    public PlaceableItemFrame(ItemStack stack, int rotation, EnumFacing facing, int offsetX, int offsetY, int offsetZ, ResourceLocation chestType) {
-        this(stack, rotation, facing, new BlockPos(offsetX, offsetY, offsetZ), chestType);
-    }
 
     @Override
     public EntityHanging getEntityHanging(World world, BlockPos pos, EnumFacing facing) {

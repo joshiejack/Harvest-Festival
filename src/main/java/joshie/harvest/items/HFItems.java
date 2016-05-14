@@ -42,7 +42,7 @@ public class HFItems {
     public static final Item SEEDS = new ItemHFSeeds().setUnlocalizedName("crops.seeds");
 
     //Misc
-    public static final Item STRUCTURES = new ItemBuilding().setUnlocalizedName("structures");
+    public static final ItemBuilding STRUCTURES = (ItemBuilding) new ItemBuilding().setUnlocalizedName("structures");
     public static final Item SPAWNER_NPC = new ItemNPCSpawner().setUnlocalizedName("spawner.npc");
 
     public static void preInit() {

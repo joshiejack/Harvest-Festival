@@ -16,15 +16,6 @@ import java.util.Random;
 public class PlaceableFlowerPot extends PlaceableBlock {
     private boolean canCactus;
 
-    public PlaceableFlowerPot(Block block, int meta, int offsetX, int offsetY, int offsetZ) {
-        super(block, meta, offsetX, offsetY, offsetZ);
-    }
-
-    public PlaceableFlowerPot(Block block, int meta, int offsetX, int offsetY, int offsetZ, boolean canCactus) {
-        super(block, meta, offsetX, offsetY, offsetZ);
-        this.canCactus = canCactus;
-    }
-
     @Override
     public boolean canPlace(ConstructionStage stage) {
         return stage == ConstructionStage.DECORATE;

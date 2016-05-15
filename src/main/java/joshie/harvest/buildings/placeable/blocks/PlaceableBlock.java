@@ -21,6 +21,13 @@ public class PlaceableBlock extends Placeable {
         }
     }
 
+    public PlaceableBlock(IBlockState state, int x, int y, int z) {
+        this.state = state;
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
     @Override
     public PlaceableBlock init() {
         if (states == null) states = new EnumMap<Direction, IBlockState>(Direction.class);

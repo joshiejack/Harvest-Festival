@@ -2,6 +2,7 @@ package joshie.harvest.buildings.placeable.blocks;
 
 import joshie.harvest.blocks.BlockPreview.Direction;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -15,6 +16,11 @@ import java.util.Random;
 
 public class PlaceableFlowerPot extends PlaceableBlock {
     private boolean canCactus;
+
+    public PlaceableFlowerPot() {}
+    public PlaceableFlowerPot(IBlockState state, int x, int y, int z) {
+        super(state, x, y, z);
+    }
 
     @Override
     public boolean canPlace(ConstructionStage stage) {

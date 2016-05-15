@@ -17,20 +17,20 @@ import org.apache.logging.log4j.Level;
 
 public class HFBuildings {
     public static final Building null_building = new Building();
-    public static final IBuilding barn = registerBuilding("barn");
-    public static final IBuilding blacksmith = registerBuilding("blacksmith");
-    public static final IBuilding cafe = registerBuilding("cafe");
-    public static final IBuilding carpenter = registerBuilding("carpenter");
-    public static final IBuilding church = registerBuilding("church");
-    public static final IBuilding clockmaker = registerBuilding("clockmaker");
-    public static final IBuilding fishingHole = registerBuilding("fishingHole");
-    public static final IBuilding fishingHut = registerBuilding("fishingHut");
-    public static final IBuilding goddessPond = registerBuilding("goddessPond");
-    public static final IBuilding miningHill = registerBuilding("miningHill");
-    public static final IBuilding miningHut = registerBuilding("miningHut");
-    public static final IBuilding poultryFarm = registerBuilding("poultryFarm");
-    public static final IBuilding supermarket = registerBuilding("supermarket");
-    public static final IBuilding townhall = registerBuilding("townhall");
+    public static final IBuilding barn = registerBuilding("barn", 3000L, 160, 0).setRequirements("blacksmith");
+    public static final IBuilding blacksmith = registerBuilding("blacksmith", 3500L, 32, 244).setRequirements("supermarket").setOffsetY(-2);
+    public static final IBuilding cafe = registerBuilding("cafe", 8800L, 320, 160).setRequirements("miningHill", "miningHut", "goddessPond");
+    public static final IBuilding carpenter = registerBuilding("carpenter", 0L, 0, 0);
+    public static final IBuilding church = registerBuilding("church", 10000L, 160, 128).setRequirements("miningHill", "miningHut", "goddessPond").setOffsetY(0);
+    public static final IBuilding clockmaker = registerBuilding("clockmaker", 6800L, 192, 112).setRequirements("miningHill", "miningHut", "goddessPond");
+    public static final IBuilding fishingHole = registerBuilding("fishingHole", 1000L, 16, 0).setRequirements("fishingHut").setOffsetY(0);
+    public static final IBuilding fishingHut = registerBuilding("fishingHut", 6000L, 96, 0).setRequirements("miningHill", "miningHut", "goddessPond");
+    public static final IBuilding goddessPond = registerBuilding("goddessPond", 250L, 32, 0).setOffsetY(0);
+    public static final IBuilding miningHill = registerBuilding("miningHill", 1000L, 0, 64).setRequirements("miningHut").setOffsetY(-4);
+    public static final IBuilding miningHut = registerBuilding("miningHut", 3000L, 96, 96).setRequirements("poultryFarm", "barn");
+    public static final IBuilding poultryFarm = registerBuilding("poultryFarm", 2000L, 160, 0).setRequirements("blacksmith").setOffsetY(0);
+    public static final IBuilding supermarket = registerBuilding("supermarket", 1280L, 512, 320).setRequirements("carpenter").setOffsetY(-10).setTickTime(5);
+    public static final IBuilding townhall = registerBuilding("townhall", 16400L, 768, 256).setRequirements("miningHill", "miningHut", "goddessPond");
 
     @SideOnly(Side.CLIENT)
     private static FMLDefinition definition;
@@ -252,7 +252,7 @@ public class HFBuildings {
         }*/
     }
 
-    private static IBuilding registerBuilding(String building) {
-        return HFApi.buildings.registerBuilding(new ResourceLocation("harvestfestival", building));
+    private static IBuilding registerBuilding(String building, long cost, int wood, int stone) {
+        return HFApi.buildings.registerBuilding(new ResourceLocation("harvestfestival", building), cost, wood, stone);
     }
 }

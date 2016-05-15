@@ -1,7 +1,15 @@
 package joshie.harvest.core.util;
 
+import com.google.gson.GsonBuilder;
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.npc.INPC;
+import joshie.harvest.buildings.Building;
+import joshie.harvest.buildings.BuildingRegistry.SuperClassExclusionStrategy;
+import joshie.harvest.buildings.loader.*;
+import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.PlaceableHelper;
+import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
+import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.core.util.generic.IFaceable;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
@@ -12,18 +20,24 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItemFrame;
 import net.minecraft.entity.item.EntityPainting;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntitySign;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
-import java.io.PrintWriter;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.zip.GZIPOutputStream;
 
 public class CodeGeneratorBuildings {
 
@@ -46,7 +60,7 @@ public class CodeGeneratorBuildings {
 
     public void getCode(boolean air) {
         if (!world.isRemote) {
-            ArrayList<String> ret = new ArrayList();
+            ArrayList<Placeable> ret = new ArrayList();
             Set all = new HashSet();
             int i = 0;
             for (int y = 0; y <= y2 - y1; y++) {
@@ -69,14 +83,12 @@ public class CodeGeneratorBuildings {
                             String field = name;
                             if (name.startsWith("npc.")) {
                                 field = name.replace("npc.", "");
-                                ret.add(PlaceableHelper.getPlaceableEntityString(new EntityNPC(world, HFApi.npc.get(field)), new BlockPos(x, y, z)));
+                                INPC npc = HFApi.npc.get(field);
+                                String npcField = npc == null ? "" : npc.getUnlocalizedName();
+                                ret.add(new PlaceableNPC(field, npcField, x, y, z));
+                                ret.add(new PlaceableBlock(Blocks.AIR.getDefaultState(), x, y, z));
+                                continue;
                             }
-
-                            String text = "npc_offsets.put(Town." + field.toUpperCase() + ", new PlaceableNPC(\"\", " + x + ", " + y + ", " + z + "));";
-                            ret.add(text);
-                            String air2 = PlaceableHelper.getPlaceableBlockString(state, new BlockPos(x, y, z));
-                            ret.add(air2);
-                            continue;
                         }
 
                         if ((block != Blocks.AIR || air || entityList.size() > 0) && block != Blocks.END_STONE) {
@@ -84,30 +96,24 @@ public class CodeGeneratorBuildings {
                             if (block == Blocks.DOUBLE_PLANT && meta >= 8) continue;
                             TileEntity tile = world.getTileEntity(position);
                             if (tile instanceof IFaceable) {
-                                ret.add(PlaceableHelper.getPlaceableIFaceableString((IFaceable) tile, state, new BlockPos(x, y, z)));
+                                //ret.add(PlaceableHelper.getPlaceableIFaceableString((IFaceable) tile, state, new BlockPos(x, y, z)));
                             } else if (tile instanceof TileEntitySign) {
                                 ITextComponent[] text = ((TileEntitySign) tile).signText;
                                 if (block == Blocks.STANDING_SIGN) {
                                     ret.add(PlaceableHelper.getFloorSignString(text, state, new BlockPos(x, y, z)));
                                 } else ret.add(PlaceableHelper.getWallSignString(text, state, new BlockPos(x, y, z)));
                             } else {
-                                String text = PlaceableHelper.getPlaceableBlockString(state, new BlockPos(x, y, z));
-                                text = text.replace("schematicmetablocks:blockImplicitAir", "air");
-                                text = text.replace("schematicmetablocks:blockInteriorAirMarker", "air");
-                                text = text.replace("schematicmetablocks:blockExplicitAir", "air");
+                                Placeable text = PlaceableHelper.getPlaceableBlockString(state, x, y, z);
                                 ret.add(text);
                             }
 
                             //Entities
                             if (entityList.size() > 0) {
-                                int l = 0;
                                 for (Entity e : entityList) {
                                     if (!all.contains(e)) {
-                                        ret.add(PlaceableHelper.getPlaceableEntityString(e, new BlockPos(x, y, z)));
+                                        ret.add(PlaceableHelper.getPlaceableEntityString(e, x, y, z));
                                         all.add(e);
                                     }
-
-                                    l++;
                                 }
                             }
 
@@ -117,17 +123,25 @@ public class CodeGeneratorBuildings {
                 }
             }
 
-            ArrayList<String> build = new ArrayList();
-            build.add("list = new ArrayList("+ i + ");");
-            build.addAll(ret);
+            Building building = new Building();
+            building.components = new Placeable[ret.size()];
+            for (int j = 0; j < ret.size(); j++) {
+                building.components[j] = ret.get(j);
+            }
 
             try {
-                PrintWriter writer = new PrintWriter("building-generator.log", "UTF-8");
-                for (String s : build) {
-                    writer.println(s);
-                }
-
+                GsonBuilder builder = new GsonBuilder().setPrettyPrinting().setExclusionStrategies(new SuperClassExclusionStrategy());
+                builder.registerTypeAdapter(Placeable.class, new PlaceableAdapter());
+                builder.registerTypeAdapter(IBlockState.class, new StateAdapter());
+                builder.registerTypeAdapter(ItemStack.class, new StackAdapter());
+                builder.registerTypeAdapter(ResourceLocation.class, new ResourceAdapter());
+                builder.registerTypeAdapter(TextComponentString.class, new TextComponentAdapter());
+                String json = builder.create().toJson(building);
+                FileOutputStream output = new FileOutputStream("test.building");
+                Writer writer = new OutputStreamWriter(new GZIPOutputStream(output), "UTF-8");
+                writer.write(json);
                 writer.close();
+                output.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -32,24 +32,24 @@ public class BuildingRegistry implements IBuildingRegistry {
     }
 
     @Override
-    public IBuilding registerBuilding(ResourceLocation resource) {
+    public IBuilding registerBuilding(ResourceLocation resource, long cost, int wood, int stone) {
         GsonBuilder builder = new GsonBuilder().setPrettyPrinting().setExclusionStrategies(new SuperClassExclusionStrategy());
         builder.registerTypeAdapter(Placeable.class, new PlaceableAdapter());
         builder.registerTypeAdapter(IBlockState.class, new StateAdapter());
         builder.registerTypeAdapter(ItemStack.class, new StackAdapter());
         builder.registerTypeAdapter(ResourceLocation.class, new ResourceAdapter());
         builder.registerTypeAdapter(TextComponentString.class, new TextComponentAdapter());
-        Building building = builder.create().fromJson(ResourceLoader.getJSONResource(resource, "buildings"), Building.class);
+        Building building = builder.create().fromJson(ResourceLoader.getBuildingResource(resource, "buildings"), Building.class);
         if (building != null) {
             building.setRegistryName(resource);
-            building.initBuilding();
+            building.initBuilding(cost, wood, stone);
             REGISTRY.register(building);
         }
 
         return building;
     }
 
-    private static class SuperClassExclusionStrategy implements ExclusionStrategy {
+    public static class SuperClassExclusionStrategy implements ExclusionStrategy {
         @Override
         public boolean shouldSkipClass(Class<?> clazz) {
             return false;

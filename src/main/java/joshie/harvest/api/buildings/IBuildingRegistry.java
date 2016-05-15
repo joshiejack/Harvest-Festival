@@ -9,7 +9,7 @@ public interface IBuildingRegistry {
     /** This will register a building, it returns an IBuilding for your own convenience
      * @param resource  the resource location for your building, Harvest Festival will look in the buildings folder in your mods assets directory for buildings
      * @return the building object*/
-    IBuilding registerBuilding(ResourceLocation resource);
+    IBuilding registerBuilding(ResourceLocation resource, long cost, int wood, int stone);
 
     /** Returns a building based on it's resource name, e.g.
      *      getBuildingFromName(new ResourceLocation("harvestfestival", "barn")) will return the barn building;

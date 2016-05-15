@@ -131,7 +131,8 @@ public class GuiNPCSelect extends GuiNPCBase {
         /** Called when the option is selected **/
         public void onSelected(EntityNPC npc, EntityPlayer player, int option) {
             if (option == 1) {
-                player.openGui(HarvestFestival.instance, GuiHandler.SHOP_MENU, player.worldObj, npc.getEntityId(), 0, 0);
+                if (npc.getNPC().isBuilder()) player.openGui(HarvestFestival.instance, GuiHandler.SHOP_BUILDER, player.worldObj, npc.getEntityId(), 0, 0);
+                else player.openGui(HarvestFestival.instance, GuiHandler.SHOP_MENU, player.worldObj, npc.getEntityId(), 0, 0);
             } else if (option == 2) {
                 player.openGui(HarvestFestival.instance, GuiHandler.NPC, player.worldObj, npc.getEntityId(), 0, 0);
             }

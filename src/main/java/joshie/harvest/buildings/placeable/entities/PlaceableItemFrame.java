@@ -1,6 +1,5 @@
 package joshie.harvest.buildings.placeable.entities;
 
-import joshie.harvest.buildings.placeable.PlaceableHelper;
 import joshie.harvest.core.helpers.LootHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityHanging;
@@ -15,6 +14,14 @@ public class PlaceableItemFrame extends PlaceableHanging {
     private ResourceLocation chestType;
     private ItemStack stack;
     private int rotation;
+
+    public PlaceableItemFrame() {}
+    public PlaceableItemFrame(ResourceLocation chestType, ItemStack stack, int rotation, EnumFacing facing, int x, int y, int z) {
+        super(facing, x, y, z);
+        this.chestType = chestType;
+        this.stack = stack;
+        this.rotation = rotation;
+    }
 
     @Override
     public EntityHanging getEntityHanging(World world, BlockPos pos, EnumFacing facing) {
@@ -31,19 +38,9 @@ public class PlaceableItemFrame extends PlaceableHanging {
         return frame;
     }
 
-    public String getItemStack(ItemStack stack) {
-        if (stack == null) {
-            return "null";
-        }
-
-        String name = PlaceableHelper.getBestGuessName(stack);
-        return "new ItemStack(" + name + ", 1, " + stack.getItemDamage() + ")";
-    }
-
     @Override
-    public String getStringFor(Entity e, BlockPos pos) {
+    public PlaceableItemFrame getCopyFromEntity(Entity e, int x, int y, int z) {
         EntityItemFrame frame = (EntityItemFrame) e;
-        return "list.add(new PlaceableItemFrame(" + getItemStack(frame.getDisplayedItem()) + ", " + frame.getRotation() + ", EnumFacing." + frame.facingDirection.name().toUpperCase() +
-                ", new BlockPos(" + pos.getX() + ", " + pos.getY() + "," + pos.getZ() + ")));";
+        return new PlaceableItemFrame(null, frame.getDisplayedItem(), frame.getRotation(), frame.facingDirection, x, y, z);
     }
 }

@@ -36,23 +36,18 @@ public class Building extends net.minecraftforge.fml.common.registry.IForgeRegis
 
     //Costs and rules
     private transient ISpecialPurchaseRules special = new SpecialRulesDefault();
-    private transient String toLocalise;
-    public ResourceLocation[] requirements;
-    public long cost;
-    public int wood;
-    public int stone;
-    public int offsetY;
-    public long tickTime;
+    private transient String toLocalise = "";
+    private transient ResourceLocation[] requirements = new ResourceLocation[0];
+    private transient long cost = 1000L;
+    private transient int wood = 64;
+    private transient  int stone = 64;
+    private transient int offsetY = -1;
+    private transient long tickTime = 20L;
     public Placeable[] components; //Set to null after loading
 
     public Building(){}
 
-    @Override
-    public String getLocalisedName() {
-        return I18n.translateToLocal(toLocalise);
-    }
-
-    public void initBuilding() {
+    public void initBuilding(long cost, int wood, int stone) {
         full_list = new ArrayList<>();
         Collections.addAll(full_list, components);
         for (Placeable placeable: full_list) {
@@ -62,6 +57,10 @@ public class Building extends net.minecraftforge.fml.common.registry.IForgeRegis
         if (getRegistryName() != null) {
             this.toLocalise = getRegistryName().getResourceDomain().toString().toLowerCase() + ".structures." + getRegistryName().getResourcePath().toLowerCase();
         }
+
+        this.cost = cost;
+        this.wood = wood;
+        this.stone = stone;
 
         components = null;
     }
@@ -83,24 +82,31 @@ public class Building extends net.minecraftforge.fml.common.registry.IForgeRegis
         }
     }
 
-    public List<Placeable> getFullList() {
-        return full_list;
+    private ResourceLocation getResourceFromName(String resource) {
+        if (resource.contains(":")) return new ResourceLocation(resource);
+        else return new ResourceLocation("harvestfestival", resource);
     }
 
-    public PlaceableNPC getNPCOffset(String npc_location) {
-        return npc_offsets.get(npc_location);
+    @Override
+    public IBuilding setRequirements(String... requirements) {
+        this.requirements = new ResourceLocation[requirements.length];
+        for (int i = 0; i < requirements.length; i++) {
+            this.requirements[i] = getResourceFromName(requirements[i]);
+        }
+
+        return this;
     }
 
-    public List<PlaceableBlock> getPreviewList() {
-        return block_list;
+    @Override
+    public IBuilding setTickTime(long time) {
+        this.tickTime = time;
+        return this;
     }
 
-    public long getTickTime() {
-        return tickTime;
-    }
-
-    public int getOffsetY() {
-        return offsetY;
+    @Override
+    public IBuilding setOffsetY(int offsetY) {
+        this.offsetY = offsetY;
+        return this;
     }
 
     @Override
@@ -114,8 +120,9 @@ public class Building extends net.minecraftforge.fml.common.registry.IForgeRegis
         return special;
     }
 
-    public boolean hasRequirements(EntityPlayer player) {
-        return TownHelper.getClosestTownToPlayer(player).hasBuildings(requirements);
+    @Override
+    public String getLocalisedName() {
+        return I18n.translateToLocal(toLocalise);
     }
 
     @Override
@@ -147,7 +154,7 @@ public class Building extends net.minecraftforge.fml.common.registry.IForgeRegis
     public EnumActionResult generate(World world, BlockPos pos, Mirror mirror, Rotation rotation) {
         if (!world.isRemote && full_list != null) {
             Direction direction = Direction.withMirrorAndRotation(mirror, rotation);
-            pos = pos.up(offsetY);
+            pos = pos.up(offsetY).up();
             for (Placeable placeable: full_list) placeable.place(world, pos, direction, ConstructionStage.BUILD);
             for (Placeable placeable: full_list) placeable.place(world, pos, direction, ConstructionStage.PAINT);
             for (Placeable placeable: full_list) placeable.place(world, pos, direction, ConstructionStage.DECORATE);
@@ -159,6 +166,30 @@ public class Building extends net.minecraftforge.fml.common.registry.IForgeRegis
 
 
         return EnumActionResult.SUCCESS;
+    }
+
+    public List<Placeable> getFullList() {
+        return full_list;
+    }
+
+    public List<PlaceableBlock> getPreviewList() {
+        return block_list;
+    }
+
+    public PlaceableNPC getNPCOffset(String npc_location) {
+        return npc_offsets.get(npc_location);
+    }
+
+    public long getTickTime() {
+        return tickTime;
+    }
+
+    public int getOffsetY() {
+        return offsetY;
+    }
+
+    public boolean hasRequirements(EntityPlayer player) {
+        return TownHelper.getClosestTownToPlayer(player).hasBuildings(requirements);
     }
 
     @Override

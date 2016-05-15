@@ -15,11 +15,23 @@ public interface IBuilding {
      * @return the building  */
     IBuilding setSpecialRules(ISpecialPurchaseRules rules);
 
-    /** Returns the special rules for this building **/
-    ISpecialPurchaseRules getRules();
+    /** Set the requirements for this building
+     * @param requirements the building requirements **/
+    IBuilding setRequirements(String... requirements);
+
+    /** This is the ticks between a builder placing a block, defaults to 20
+     * @param time the ticks*/
+    IBuilding setTickTime(long time);
+
+    /** This is the y offset to place the building at, defaults to -1
+     * @param offsetY the offset*/
+    IBuilding setOffsetY(int offsetY);
 
     /** Returns the localised name of this building **/
     String getLocalisedName();
+
+    /** Returns the special rules for this building **/
+    ISpecialPurchaseRules getRules();
 
     /** How much gold this building costs **/
     long getCost();

@@ -5,7 +5,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public abstract class Placeable {
-    private int x, y, z;
+    protected int x, y, z;
 
     public Placeable init() {
         return this;

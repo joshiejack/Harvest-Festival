@@ -13,6 +13,12 @@ import org.apache.commons.lang3.Validate;
 public abstract class PlaceableHanging extends PlaceableEntity {
     private EnumFacing facing;
 
+    public PlaceableHanging() {}
+    public PlaceableHanging(EnumFacing facing, int x, int y, int z) {
+        super(x, y, z);
+        this.facing = facing;
+    }
+
     @Override
     public Entity getEntity(World world, BlockPos pos, Direction direction) {
         EntityHanging entity = getEntityHanging(world, pos, getFacing(direction.getMirror(), direction.getRotation()));

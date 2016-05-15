@@ -4,7 +4,7 @@ import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.blocks.BlockPreview.Direction;
 import joshie.harvest.buildings.Building;
 import joshie.harvest.buildings.BuildingRegistry;
-import joshie.harvest.buildings.loader.HFBuildings;
+import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.util.base.ItemHFBaseFML;
 import net.minecraft.entity.player.EntityPlayer;

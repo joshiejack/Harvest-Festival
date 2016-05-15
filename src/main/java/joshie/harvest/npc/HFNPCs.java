@@ -4,7 +4,7 @@ import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.npc.INPC;
-import joshie.harvest.buildings.loader.HFBuildings;
+import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import joshie.harvest.npc.entity.EntityNPCShopkeeper;
@@ -69,24 +69,24 @@ public class HFNPCs {
     }
 
     public static void init() {
-        GODDESS.setHome(HFBuildings.goddessPond, TownData.GODDESS);
-        ANIMAL_OWNER.setHome(HFBuildings.barn, TownData.JIM);
-        CAFE_OWNER.setHome(HFBuildings.cafe, TownData.LIARA);
-        SEED_OWNER.setHome(HFBuildings.carpenter, TownData.JADE);
-        DAUGHTER_1.setHome(HFBuildings.townhall, TownData.CLOE);
-        PRIEST.setHome(HFBuildings.townhall, TownData.TOWNHALL_ADULT_BEDROOM);
-        CLOCKMAKER_CHILD.setHome(HFBuildings.clockmaker, TownData.FENN);
-        CAFE_GRANNY.setHome(HFBuildings.cafe, TownData.KATLIN);
-        MAYOR.setHome(HFBuildings.townhall, TownData.JAMIE);
-        BUILDER.setHome(HFBuildings.carpenter, TownData.CARPENTER_DOWNSTAIRS);
-        TOOL_OWNER.setHome(HFBuildings.blacksmith, TownData.DANIEL);
-        DAUGHTER_2.setHome(HFBuildings.townhall, TownData.ABI);
-        CLOCK_WORKER.setHome(HFBuildings.clockmaker, TownData.TIBERIUS);
-        GS_OWNER.setHome(HFBuildings.supermarket, TownData.JENNI);
-        MINER.setHome(HFBuildings.miningHut, TownData.BRANDON);
-        FISHERMAN.setHome(HFBuildings.fishingHut, TownData.JACOB);
-        MILKMAID.setHome(HFBuildings.supermarket, TownData.CANDICE);
-        POULTRY.setHome(HFBuildings.poultryFarm, TownData.ONDRA);
+        GODDESS.setHome(HFBuildings.GODDESS_POND, TownData.GODDESS);
+        ANIMAL_OWNER.setHome(HFBuildings.BARN, TownData.JIM);
+        CAFE_OWNER.setHome(HFBuildings.CAFE, TownData.LIARA);
+        SEED_OWNER.setHome(HFBuildings.CARPENTER, TownData.JADE);
+        DAUGHTER_1.setHome(HFBuildings.TOWNHALL, TownData.CLOE);
+        PRIEST.setHome(HFBuildings.TOWNHALL, TownData.TOWNHALL_ADULT_BEDROOM);
+        CLOCKMAKER_CHILD.setHome(HFBuildings.CLOCKMAKER, TownData.FENN);
+        CAFE_GRANNY.setHome(HFBuildings.CAFE, TownData.KATLIN);
+        MAYOR.setHome(HFBuildings.TOWNHALL, TownData.JAMIE);
+        BUILDER.setHome(HFBuildings.CARPENTER, TownData.CARPENTER_DOWNSTAIRS);
+        TOOL_OWNER.setHome(HFBuildings.BLACKSMITH, TownData.DANIEL);
+        DAUGHTER_2.setHome(HFBuildings.TOWNHALL, TownData.ABI);
+        CLOCK_WORKER.setHome(HFBuildings.CLOCKMAKER, TownData.TIBERIUS);
+        GS_OWNER.setHome(HFBuildings.SUPERMARKET, TownData.JENNI);
+        MINER.setHome(HFBuildings.MINING_HUT, TownData.BRANDON);
+        FISHERMAN.setHome(HFBuildings.FISHING_HUT, TownData.JACOB);
+        MILKMAID.setHome(HFBuildings.SUPERMARKET, TownData.CANDICE);
+        POULTRY.setHome(HFBuildings.POULTRY_FARM, TownData.ONDRA);
     }
 
     @SideOnly(Side.CLIENT)

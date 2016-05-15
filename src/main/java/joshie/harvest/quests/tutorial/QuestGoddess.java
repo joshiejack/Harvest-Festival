@@ -2,7 +2,7 @@ package joshie.harvest.quests.tutorial;
 
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.blocks.HFBlocks;
-import joshie.harvest.buildings.loader.HFBuildings;
+import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.helpers.generic.OreDictionaryHelper;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.items.HFItems;
@@ -25,7 +25,7 @@ public class QuestGoddess extends Quest {
         if (previous == 0) {
             rewardItem(player, new ItemStack(HFBlocks.FLOWERS, 4, 0));
         } else if (previous == 1) {
-            rewardItem(player, HFBuildings.carpenter.getBlueprint());
+            rewardItem(player, HFBuildings.CARPENTER.getBlueprint());
             rewardItem(player, new ItemStack(Blocks.RED_FLOWER, 1, player.worldObj.rand.nextInt(8)));
         } else if (previous == 3) {
             ItemStack seeds = HFCrops.turnip.getSeedStack().copy();

@@ -8,6 +8,7 @@
 - Make NPCs leave for work early, and leave for home early
 - Add Schedules for NPCs, where they visit specific buildings at certain times
 - Schedule Based Conversations
+- Add Extra Chat Messages, and Conversations for all NPCs
 - Add the mining Dimension - J
     - Add Breakable rocks that drop specific things on different floors when broken with a hammer
     - Different Hammers should be able to break different rock sizes, with different amount of hits
@@ -21,9 +22,7 @@
     - Generate rooms in dimensions and keep track with the mine tracker
         - Different size and shaped rooms
 - Make all cooking equipment render things that they are cooking
-- Make the rotation of Blueprints make more sense - J
-- Change Blueprints to not be a block but an item that you hover and click where you want them place - J
-- Add Extra Chat Messages, and Conversations for all NPCs
+- Change Blueprints to not be a block but an item that you hover and click where you want them placed - J
 - Coin Render on hotbar
 - Add Axe Item - J
     - Basic (Breaks Small Twigs)
@@ -50,10 +49,8 @@
 - Loot Table JSON
     - See https://github.com/joshiejack/Harvest-Festival/blob/4fc81be862b9686cf00a3b8b1d262a8b7106aaaf/src/main/java/joshie/harvest/core/lib/LootStrings.java
     - See https://github.com/joshiejack/Harvest-Festival/blob/4fc81be862b9686cf00a3b8b1d262a8b7106aaaf/src/main/java/joshie/harvest/buildings/loader/HFBuildings.java#L51
-- Change Meals to use ResourceLocation Identifiers
-- Change NPCs to use ResourceLocation Identifiers
-- Change Items to  Item Enums + Change Item Registry Helper
-- Change Seeds to use ForgeControlledNameSpace and use metadata instead of NBT where appropriate
+- Change Items to Item Enums + Change Item Registry Helper
+- Change Crops, Seeds, NPCS to use ForgeControlledNameSpace and use metadata instead of NBT where appropriate
 - Add Sprinkler Block
 
 ###(S)ounds, (E)ffects, (A)nimations
@@ -77,22 +74,17 @@
     -E Items Spin
 
 ### To Check
-- NPCs walk home, if they fail they should teleport - J
 - Incubators will hatch chickens - J
 - Can Spawn the Goddess with the Flower Pot Trick - J
 - Can Spawn the Goddess with the Goddess Flower Trick - J
 - Can Spawn the Goddess by dropping relevant items in goddess water - J
-- All Crops render correctly - Y
-- All Crops grow correctly - J
-- All Crops drop the correct items - J
 - ASM For Snow - J
-- Hoes, Sickles, Watering Cans do their jobs - J
+- Sickles do their jobs - J
 - Troughs can be filled - J
 - Cows and Sheep will eat grass crop and from trough automatically - J
 - Animals will get sick if not fed for a few days and die - J
 - Animals will give better products when cared for (brushing, talking, milking/shearing, treats) - J
 - Animal Pregnancy is working correctly (Impregnanted via miracle potion, takes few days to hatch) - J
-- Buying Entities works correctly - J
 - All Cooking utensils work correctly - J
 - All Recipes can be successfully made - J
 - Stamina and Fatigue is doing the correct things - J
@@ -100,10 +92,8 @@
 - Gathering is saving
 
 ### To Fix
-- Rendering of Shops - J
 - Make Withered versions of crops be darker - J
 - Location of the flower in the spring season overlay - Y
-- Give the custom farmland block a name and texture/model - Y
 - Syncing Town Information to Players
 - When you can purchase buildings from a town
 
@@ -116,13 +106,21 @@
 - Make Spawn Cow Render the Cow
 - Make Spawn Sheep Render the Sheep
 - Make Spawn Chicken Render the Chicken
-- Mine Wall/Floor in world Rendering and Cookware in inventory renders
+- Mine Wall/Floor in inventory renders
 - Render Food/Liquids in Mixer correctly, render food on counter correctly - J
 
 ### Textures
 - Crop Grass Better Texture - Y
 - Farmland Texture (Wet and Dry), Maybe just a slightly darker version of vanilla?
 - Textures for the NPCs which we stole + New Selection for Ondra > Ashlee - Y
+- Optional (Entirely, Everything else is more important, this is just extra fluff if you want something to do ^_^)
+    - These wild items: http://fogu.com/hm6/chan8/wilditems.php (Block and item form, since they have to be gathered)
+    - Any meals that we could now make because of these gathering items
+    - Anything from the mines (not the creatures of course e.g.)
+    - http://fogu.com/hm6/chan5/mine4items.php
+    - http://fogu.com/hm6/chan5/mine3items.php
+    - http://fogu.com/hm6/chan5/mine2items.php
+    - http://fogu.com/hm6/chan5/mine1items.php
 
 ### Models + Textures
 - Rocks (Spring Mine (Ore Variation), Winter Mine Versions (Ore Variation), Overworld Rocks (Stone Only))

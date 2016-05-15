@@ -44,7 +44,7 @@ public class Building extends net.minecraftforge.fml.common.registry.IForgeRegis
     private  int stone = 64;
     private int offsetY = -1;
     private long tickTime = 20L;
-    
+
     @Expose
     public Placeable[] components; //Set to null after loading
 

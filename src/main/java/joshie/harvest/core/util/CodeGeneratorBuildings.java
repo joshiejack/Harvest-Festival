@@ -26,13 +26,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 
-import java.io.FileOutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.zip.GZIPOutputStream;
 
 public class CodeGeneratorBuildings {
 
@@ -126,11 +123,9 @@ public class CodeGeneratorBuildings {
 
             try {
                 String json = BuildingRegistry.getGson().toJson(building);
-                FileOutputStream output = new FileOutputStream("test.building");
-                Writer writer = new OutputStreamWriter(new GZIPOutputStream(output), "UTF-8");
+                PrintWriter writer = new PrintWriter("building.json", "UTF-8");
                 writer.write(json);
                 writer.close();
-                output.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }

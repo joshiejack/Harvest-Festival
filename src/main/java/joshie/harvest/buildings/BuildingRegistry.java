@@ -31,7 +31,7 @@ public class BuildingRegistry implements IBuildingRegistry {
 
     @Override
     public IBuilding registerBuilding(ResourceLocation resource, long cost, int wood, int stone) {
-        Building building = getGson().fromJson(ResourceLoader.getBuildingResource(resource, "buildings"), Building.class);
+        Building building = getGson().fromJson(ResourceLoader.getJSONResource(resource, "buildings"), Building.class);
         if (building != null) {
             building.setRegistryName(resource);
             building.initBuilding(cost, wood, stone);

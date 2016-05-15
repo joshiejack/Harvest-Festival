@@ -1,0 +1,6928 @@
+{
+  "components": [
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 0,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 0,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 0,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 0,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 0,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 0,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 0,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 0,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 0,
+        "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 0,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 0,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 2,
+        "y": 0,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:dirt",
+          "meta": 0
+        },
+        "x": 2,
+        "y": 0,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:dirt",
+          "meta": 1
+        },
+        "x": 2,
+        "y": 0,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 5
+        },
+        "x": 2,
+        "y": 0,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 2,
+        "y": 0,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 2,
+        "y": 0,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 2,
+        "y": 0,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 5
+        },
+        "x": 2,
+        "y": 0,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:dirt",
+          "meta": 0
+        },
+        "x": 2,
+        "y": 0,
+        "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:dirt",
+          "meta": 0
+        },
+        "x": 2,
+        "y": 0,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 2,
+        "y": 0,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 3,
+        "y": 0,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:dirt",
+          "meta": 1
+        },
+        "x": 3,
+        "y": 0,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:dirt",
+          "meta": 1
+        },
+        "x": 3,
+        "y": 0,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 5
+        },
+        "x": 3,
+        "y": 0,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 3,
+        "y": 0,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 5
+        },
+        "x": 3,
+        "y": 0,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 3,
+        "y": 0,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 5
+        },
+        "x": 3,
+        "y": 0,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:dirt",
+          "meta": 1
+        },
+        "x": 3,
+        "y": 0,
+        "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:dirt",
+          "meta": 0
+        },
+        "x": 3,
+        "y": 0,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 3,
+        "y": 0,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 4,
+        "y": 0,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:dirt",
+          "meta": 1
+        },
+        "x": 4,
+        "y": 0,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:dirt",
+          "meta": 1
+        },
+        "x": 4,
+        "y": 0,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 5
+        },
+        "x": 4,
+        "y": 0,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 4,
+        "y": 0,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 5
+        },
+        "x": 4,
+        "y": 0,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 4,
+        "y": 0,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 5
+        },
+        "x": 4,
+        "y": 0,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:dirt",
+          "meta": 1
+        },
+        "x": 4,
+        "y": 0,
+        "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:dirt",
+          "meta": 1
+        },
+        "x": 4,
+        "y": 0,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 4,
+        "y": 0,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 5,
+        "y": 0,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:dirt",
+          "meta": 1
+        },
+        "x": 5,
+        "y": 0,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:dirt",
+          "meta": 1
+        },
+        "x": 5,
+        "y": 0,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 5
+        },
+        "x": 5,
+        "y": 0,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 5,
+        "y": 0,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 5
+        },
+        "x": 5,
+        "y": 0,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 5,
+        "y": 0,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 5
+        },
+        "x": 5,
+        "y": 0,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:dirt",
+          "meta": 1
+        },
+        "x": 5,
+        "y": 0,
+        "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:dirt",
+          "meta": 1
+        },
+        "x": 5,
+        "y": 0,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 5,
+        "y": 0,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 6,
+        "y": 0,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:dirt",
+          "meta": 0
+        },
+        "x": 6,
+        "y": 0,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:dirt",
+          "meta": 0
+        },
+        "x": 6,
+        "y": 0,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 5
+        },
+        "x": 6,
+        "y": 0,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 6,
+        "y": 0,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 6,
+        "y": 0,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 6,
+        "y": 0,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 5
+        },
+        "x": 6,
+        "y": 0,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:dirt",
+          "meta": 1
+        },
+        "x": 6,
+        "y": 0,
+        "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:dirt",
+          "meta": 1
+        },
+        "x": 6,
+        "y": 0,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 6,
+        "y": 0,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 0,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 0,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 0,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 0,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 5
+        },
+        "x": 7,
+        "y": 0,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 5
+        },
+        "x": 7,
+        "y": 0,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 5
+        },
+        "x": 7,
+        "y": 0,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 0,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 0,
+        "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 0,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 0,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 2
+        },
+        "x": 0,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:trapdoor",
+          "meta": 14
+        },
+        "x": 0,
+        "y": 1,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:trapdoor",
+          "meta": 14
+        },
+        "x": 0,
+        "y": 1,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:fence",
+          "meta": 0
+        },
+        "x": 0,
+        "y": 1,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:trapdoor",
+          "meta": 14
+        },
+        "x": 0,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:trapdoor",
+          "meta": 14
+        },
+        "x": 0,
+        "y": 1,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:trapdoor",
+          "meta": 14
+        },
+        "x": 0,
+        "y": 1,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:fence",
+          "meta": 0
+        },
+        "x": 0,
+        "y": 1,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:trapdoor",
+          "meta": 14
+        },
+        "x": 0,
+        "y": 1,
+        "z": 9
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:trapdoor",
+          "meta": 14
+        },
+        "x": 0,
+        "y": 1,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 2
+        },
+        "x": 0,
+        "y": 1,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 4
+        },
+        "x": 1,
+        "y": 1,
+        "z": 0
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:stained_hardened_clay",
+          "meta": 12
+        },
+        "x": 1,
+        "y": 1,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:stained_hardened_clay",
+          "meta": 12
+        },
+        "x": 1,
+        "y": 1,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 1,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:stained_hardened_clay",
+          "meta": 12
+        },
+        "x": 1,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:stained_hardened_clay",
+          "meta": 12
+        },
+        "x": 1,
+        "y": 1,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:stained_hardened_clay",
+          "meta": 12
+        },
+        "x": 1,
+        "y": 1,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 1,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:stained_hardened_clay",
+          "meta": 12
+        },
+        "x": 1,
+        "y": 1,
+        "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:stained_hardened_clay",
+          "meta": 12
+        },
+        "x": 1,
+        "y": 1,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 1,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 3
+        },
+        "x": 1,
+        "y": 1,
+        "z": 12
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:trapdoor",
+          "meta": 12
+        },
+        "x": 2,
+        "y": 1,
+        "z": 0
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:stained_hardened_clay",
+          "meta": 12
+        },
+        "x": 2,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:hay_block",
+          "meta": 0
+        },
+        "x": 2,
+        "y": 1,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:red_flower",
+          "meta": 4
+        },
+        "x": 2,
+        "y": 1,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:fence",
+          "meta": 0
+        },
+        "x": 2,
+        "y": 1,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:trapdoor",
+          "meta": 15
+        },
+        "x": 2,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:trapdoor",
+          "meta": 15
+        },
+        "x": 2,
+        "y": 1,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:trapdoor",
+          "meta": 15
+        },
+        "x": 2,
+        "y": 1,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:fence",
+          "meta": 0
+        },
+        "x": 2,
+        "y": 1,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:hay_block",
+          "meta": 0
+        },
+        "x": 2,
+        "y": 1,
+        "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:hay_block",
+          "meta": 0
+        },
+        "x": 2,
+        "y": 1,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:stained_hardened_clay",
+          "meta": 12
+        },
+        "x": 2,
+        "y": 1,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:trapdoor",
+          "meta": 13
+        },
+        "x": 2,
+        "y": 1,
+        "z": 12
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:trapdoor",
+          "meta": 12
+        },
+        "x": 3,
+        "y": 1,
+        "z": 0
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:stained_hardened_clay",
+          "meta": 12
+        },
+        "x": 3,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:red_mushroom",
+          "meta": 0
+        },
+        "x": 3,
+        "y": 1,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:red_mushroom",
+          "meta": 0
+        },
+        "x": 3,
+        "y": 1,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:fence",
+          "meta": 0
+        },
+        "x": 3,
+        "y": 1,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableNPC",
+      "isBlock": false,
+      "theData": {
+        "homeString": "jimhome",
+        "npc": "jim",
+        "x": 3,
+        "y": 1,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 3,
+        "y": 1,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:fence",
+          "meta": 0
+        },
+        "x": 3,
+        "y": 1,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:hay_block",
+          "meta": 0
+        },
+        "x": 3,
+        "y": 1,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:stained_hardened_clay",
+          "meta": 12
+        },
+        "x": 3,
+        "y": 1,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:trapdoor",
+          "meta": 13
+        },
+        "x": 3,
+        "y": 1,
+        "z": 12
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:trapdoor",
+          "meta": 12
+        },
+        "x": 4,
+        "y": 1,
+        "z": 0
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:stained_hardened_clay",
+          "meta": 12
+        },
+        "x": 4,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:tallgrass",
+          "meta": 2
+        },
+        "x": 4,
+        "y": 1,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:brown_mushroom",
+          "meta": 0
+        },
+        "x": 4,
+        "y": 1,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:fence_gate",
+          "meta": 2
+        },
+        "x": 4,
+        "y": 1,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:fence_gate",
+          "meta": 0
+        },
+        "x": 4,
+        "y": 1,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:red_flower",
+          "meta": 2
+        },
+        "x": 4,
+        "y": 1,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:stained_hardened_clay",
+          "meta": 12
+        },
+        "x": 4,
+        "y": 1,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:trapdoor",
+          "meta": 13
+        },
+        "x": 4,
+        "y": 1,
+        "z": 12
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:trapdoor",
+          "meta": 12
+        },
+        "x": 5,
+        "y": 1,
+        "z": 0
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:stained_hardened_clay",
+          "meta": 12
+        },
+        "x": 5,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:brown_mushroom",
+          "meta": 0
+        },
+        "x": 5,
+        "y": 1,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:brown_mushroom",
+          "meta": 0
+        },
+        "x": 5,
+        "y": 1,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:fence",
+          "meta": 0
+        },
+        "x": 5,
+        "y": 1,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:fence",
+          "meta": 0
+        },
+        "x": 5,
+        "y": 1,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:yellow_flower",
+          "meta": 0
+        },
+        "x": 5,
+        "y": 1,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:stained_hardened_clay",
+          "meta": 12
+        },
+        "x": 5,
+        "y": 1,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:trapdoor",
+          "meta": 13
+        },
+        "x": 5,
+        "y": 1,
+        "z": 12
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:trapdoor",
+          "meta": 12
+        },
+        "x": 6,
+        "y": 1,
+        "z": 0
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:stained_hardened_clay",
+          "meta": 12
+        },
+        "x": 6,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:hay_block",
+          "meta": 8
+        },
+        "x": 6,
+        "y": 1,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:hay_block",
+          "meta": 8
+        },
+        "x": 6,
+        "y": 1,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:fence",
+          "meta": 0
+        },
+        "x": 6,
+        "y": 1,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:fence",
+          "meta": 0
+        },
+        "x": 6,
+        "y": 1,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:tallgrass",
+          "meta": 1
+        },
+        "x": 6,
+        "y": 1,
+        "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:cauldron",
+          "meta": 3
+        },
+        "x": 6,
+        "y": 1,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:stained_hardened_clay",
+          "meta": 12
+        },
+        "x": 6,
+        "y": 1,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:trapdoor",
+          "meta": 13
+        },
+        "x": 6,
+        "y": 1,
+        "z": 12
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 4
+        },
+        "x": 7,
+        "y": 1,
+        "z": 0
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:stained_hardened_clay",
+          "meta": 12
+        },
+        "x": 7,
+        "y": 1,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:stained_hardened_clay",
+          "meta": 12
+        },
+        "x": 7,
+        "y": 1,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 1,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:fence",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 1,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:fence",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 1,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 1,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:stained_hardened_clay",
+          "meta": 12
+        },
+        "x": 7,
+        "y": 1,
+        "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:stained_hardened_clay",
+          "meta": 12
+        },
+        "x": 7,
+        "y": 1,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 1,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 3
+        },
+        "x": 7,
+        "y": 1,
+        "z": 12
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 1
+        },
+        "x": 8,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:trapdoor",
+          "meta": 15
+        },
+        "x": 8,
+        "y": 1,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:trapdoor",
+          "meta": 15
+        },
+        "x": 8,
+        "y": 1,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:fence",
+          "meta": 0
+        },
+        "x": 8,
+        "y": 1,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:fence",
+          "meta": 0
+        },
+        "x": 8,
+        "y": 1,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:trapdoor",
+          "meta": 15
+        },
+        "x": 8,
+        "y": 1,
+        "z": 9
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:trapdoor",
+          "meta": 15
+        },
+        "x": 8,
+        "y": 1,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 1
+        },
+        "x": 8,
+        "y": 1,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 2
+        },
+        "x": 0,
+        "y": 2,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:fence",
+          "meta": 0
+        },
+        "x": 0,
+        "y": 2,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:fence",
+          "meta": 0
+        },
+        "x": 0,
+        "y": 2,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 2
+        },
+        "x": 0,
+        "y": 2,
+        "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 2,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 2,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 2,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 2,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 3
+        },
+        "x": 1,
+        "y": 2,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 2,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 2
+        },
+        "x": 1,
+        "y": 2,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 2,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 2,
+        "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 2,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 2,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 4
+        },
+        "x": 2,
+        "y": 2,
+        "z": 0
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 2,
+        "y": 2,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:red_mushroom",
+          "meta": 0
+        },
+        "x": 2,
+        "y": 2,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 1
+        },
+        "x": 2,
+        "y": 2,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:trapdoor",
+          "meta": 3
+        },
+        "x": 2,
+        "y": 2,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:vine",
+          "meta": 2
+        },
+        "x": 2,
+        "y": 2,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:vine",
+          "meta": 2
+        },
+        "x": 2,
+        "y": 2,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:trapdoor",
+          "meta": 3
+        },
+        "x": 2,
+        "y": 2,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 1
+        },
+        "x": 2,
+        "y": 2,
+        "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:hay_block",
+          "meta": 0
+        },
+        "x": 2,
+        "y": 2,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 2,
+        "y": 2,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 3
+        },
+        "x": 2,
+        "y": 2,
+        "z": 12
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:stained_glass_pane",
+          "meta": 14
+        },
+        "x": 3,
+        "y": 2,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:vine",
+          "meta": 4
+        },
+        "x": 3,
+        "y": 2,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:vine",
+          "meta": 2
+        },
+        "x": 3,
+        "y": 2,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:stained_glass_pane",
+          "meta": 14
+        },
+        "x": 3,
+        "y": 2,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:stained_glass_pane",
+          "meta": 14
+        },
+        "x": 4,
+        "y": 2,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:vine",
+          "meta": 4
+        },
+        "x": 4,
+        "y": 2,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:stained_glass_pane",
+          "meta": 14
+        },
+        "x": 4,
+        "y": 2,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:stained_glass_pane",
+          "meta": 14
+        },
+        "x": 5,
+        "y": 2,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:vine",
+          "meta": 1
+        },
+        "x": 5,
+        "y": 2,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:stained_glass_pane",
+          "meta": 14
+        },
+        "x": 5,
+        "y": 2,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 4
+        },
+        "x": 6,
+        "y": 2,
+        "z": 0
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 6,
+        "y": 2,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:hay_block",
+          "meta": 8
+        },
+        "x": 6,
+        "y": 2,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:hay_block",
+          "meta": 8
+        },
+        "x": 6,
+        "y": 2,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:trapdoor",
+          "meta": 2
+        },
+        "x": 6,
+        "y": 2,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:trapdoor",
+          "meta": 2
+        },
+        "x": 6,
+        "y": 2,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 2
+        },
+        "x": 6,
+        "y": 2,
+        "z": 9
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:vine",
+          "meta": 1
+        },
+        "x": 6,
+        "y": 2,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 6,
+        "y": 2,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 3
+        },
+        "x": 6,
+        "y": 2,
+        "z": 12
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 2,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 2,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 2,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 2,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:fence",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 2,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 2,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:fence",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 2,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 2,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 2,
+        "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 2,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 2,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 1
+        },
+        "x": 8,
+        "y": 2,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:fence",
+          "meta": 0
+        },
+        "x": 8,
+        "y": 2,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:fence",
+          "meta": 0
+        },
+        "x": 8,
+        "y": 2,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 1
+        },
+        "x": 8,
+        "y": 2,
+        "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 13
+        },
+        "x": 0,
+        "y": 3,
+        "z": 0
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 2
+        },
+        "x": 0,
+        "y": 3,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:fence",
+          "meta": 0
+        },
+        "x": 0,
+        "y": 3,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 2
+        },
+        "x": 0,
+        "y": 3,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:fence",
+          "meta": 0
+        },
+        "x": 0,
+        "y": 3,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 2
+        },
+        "x": 0,
+        "y": 3,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 13
+        },
+        "x": 0,
+        "y": 3,
+        "z": 12
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 13
+        },
+        "x": 1,
+        "y": 3,
+        "z": 0
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 3,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 3,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 3,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 3,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 7
+        },
+        "x": 1,
+        "y": 3,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 5
+        },
+        "x": 1,
+        "y": 3,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 6
+        },
+        "x": 1,
+        "y": 3,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 3,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 3,
+        "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 3,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 3,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 13
+        },
+        "x": 1,
+        "y": 3,
+        "z": 12
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 13
+        },
+        "x": 2,
+        "y": 3,
+        "z": 0
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 2,
+        "y": 3,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:vine",
+          "meta": 4
+        },
+        "x": 2,
+        "y": 3,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 1
+        },
+        "x": 2,
+        "y": 3,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:vine",
+          "meta": 2
+        },
+        "x": 2,
+        "y": 3,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:vine",
+          "meta": 2
+        },
+        "x": 2,
+        "y": 3,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 1
+        },
+        "x": 2,
+        "y": 3,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableFlowerPot",
+      "isBlock": true,
+      "theData": {
+        "canCactus": false,
+        "state": {
+          "name": "minecraft:flower_pot",
+          "meta": 0
+        },
+        "x": 2,
+        "y": 3,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 2,
+        "y": 3,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 13
+        },
+        "x": 2,
+        "y": 3,
+        "z": 12
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 13
+        },
+        "x": 3,
+        "y": 3,
+        "z": 0
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 3,
+        "y": 3,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:vine",
+          "meta": 4
+        },
+        "x": 3,
+        "y": 3,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 3,
+        "y": 3,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 13
+        },
+        "x": 3,
+        "y": 3,
+        "z": 12
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 13
+        },
+        "x": 4,
+        "y": 3,
+        "z": 0
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 4,
+        "y": 3,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:vine",
+          "meta": 4
+        },
+        "x": 4,
+        "y": 3,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableItemFrame",
+      "isBlock": false,
+      "theData": {
+        "chestType": "harvestfestival:frames/barn",
+        "stack": "minecraft:lead",
+        "rotation": 0,
+        "facing": "SOUTH",
+        "x": 4,
+        "y": 3,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 4,
+        "y": 3,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableItemFrame",
+      "isBlock": false,
+      "theData": {
+        "chestType": "harvestfestival:frames/barn",
+        "stack": "minecraft:lead",
+        "rotation": 0,
+        "facing": "NORTH",
+        "x": 4,
+        "y": 3,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 4,
+        "y": 3,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 13
+        },
+        "x": 4,
+        "y": 3,
+        "z": 12
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 13
+        },
+        "x": 5,
+        "y": 3,
+        "z": 0
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 5,
+        "y": 3,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:vine",
+          "meta": 1
+        },
+        "x": 5,
+        "y": 3,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 5,
+        "y": 3,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 13
+        },
+        "x": 5,
+        "y": 3,
+        "z": 12
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 13
+        },
+        "x": 6,
+        "y": 3,
+        "z": 0
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 6,
+        "y": 3,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableWeb",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:web",
+          "meta": 0
+        },
+        "x": 6,
+        "y": 3,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 2
+        },
+        "x": 6,
+        "y": 3,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 2
+        },
+        "x": 6,
+        "y": 3,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:vine",
+          "meta": 1
+        },
+        "x": 6,
+        "y": 3,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 6,
+        "y": 3,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 13
+        },
+        "x": 6,
+        "y": 3,
+        "z": 12
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 13
+        },
+        "x": 7,
+        "y": 3,
+        "z": 0
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 3,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 3,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 3,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 3,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 5
+        },
+        "x": 7,
+        "y": 3,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 5
+        },
+        "x": 7,
+        "y": 3,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 5
+        },
+        "x": 7,
+        "y": 3,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 3,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 3,
+        "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 3,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 3,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 13
+        },
+        "x": 7,
+        "y": 3,
+        "z": 12
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 13
+        },
+        "x": 8,
+        "y": 3,
+        "z": 0
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 1
+        },
+        "x": 8,
+        "y": 3,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:fence",
+          "meta": 0
+        },
+        "x": 8,
+        "y": 3,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:fence",
+          "meta": 0
+        },
+        "x": 8,
+        "y": 3,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 1
+        },
+        "x": 8,
+        "y": 3,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 13
+        },
+        "x": 8,
+        "y": 3,
+        "z": 12
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 5
+        },
+        "x": 0,
+        "y": 4,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 13
+        },
+        "x": 0,
+        "y": 4,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 5
+        },
+        "x": 0,
+        "y": 4,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 13
+        },
+        "x": 0,
+        "y": 4,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 13
+        },
+        "x": 0,
+        "y": 4,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 13
+        },
+        "x": 0,
+        "y": 4,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 5
+        },
+        "x": 0,
+        "y": 4,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 13
+        },
+        "x": 0,
+        "y": 4,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 5
+        },
+        "x": 0,
+        "y": 4,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 4,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 5
+        },
+        "x": 1,
+        "y": 4,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 5
+        },
+        "x": 1,
+        "y": 4,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 4,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 9
+        },
+        "x": 1,
+        "y": 4,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 9
+        },
+        "x": 1,
+        "y": 4,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 9
+        },
+        "x": 1,
+        "y": 4,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 4,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 5
+        },
+        "x": 1,
+        "y": 4,
+        "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 5
+        },
+        "x": 1,
+        "y": 4,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 4,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 1
+        },
+        "x": 2,
+        "y": 4,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 9
+        },
+        "x": 2,
+        "y": 4,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:torch",
+          "meta": 1
+        },
+        "x": 2,
+        "y": 4,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableItemFrame",
+      "isBlock": false,
+      "theData": {
+        "stack": "minecraft:trapdoor",
+        "rotation": 0,
+        "facing": "EAST",
+        "x": 2,
+        "y": 4,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:vine",
+          "meta": 2
+        },
+        "x": 2,
+        "y": 4,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 1
+        },
+        "x": 2,
+        "y": 4,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:vine",
+          "meta": 2
+        },
+        "x": 2,
+        "y": 4,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:torch",
+          "meta": 1
+        },
+        "x": 2,
+        "y": 4,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableItemFrame",
+      "isBlock": false,
+      "theData": {
+        "stack": "minecraft:trapdoor",
+        "rotation": 0,
+        "facing": "EAST",
+        "x": 2,
+        "y": 4,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 9
+        },
+        "x": 2,
+        "y": 4,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 1
+        },
+        "x": 2,
+        "y": 4,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 1
+        },
+        "x": 3,
+        "y": 4,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 9
+        },
+        "x": 3,
+        "y": 4,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 9
+        },
+        "x": 3,
+        "y": 4,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 1
+        },
+        "x": 3,
+        "y": 4,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 1
+        },
+        "x": 4,
+        "y": 4,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 9
+        },
+        "x": 4,
+        "y": 4,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 9
+        },
+        "x": 4,
+        "y": 4,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 1
+        },
+        "x": 4,
+        "y": 4,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 1
+        },
+        "x": 5,
+        "y": 4,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 9
+        },
+        "x": 5,
+        "y": 4,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 9
+        },
+        "x": 5,
+        "y": 4,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 1
+        },
+        "x": 5,
+        "y": 4,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 1
+        },
+        "x": 6,
+        "y": 4,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 9
+        },
+        "x": 6,
+        "y": 4,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:torch",
+          "meta": 2
+        },
+        "x": 6,
+        "y": 4,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableItemFrame",
+      "isBlock": false,
+      "theData": {
+        "stack": "minecraft:trapdoor",
+        "rotation": 0,
+        "facing": "WEST",
+        "x": 6,
+        "y": 4,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 2
+        },
+        "x": 6,
+        "y": 4,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:torch",
+          "meta": 2
+        },
+        "x": 6,
+        "y": 4,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableItemFrame",
+      "isBlock": false,
+      "theData": {
+        "stack": "minecraft:trapdoor",
+        "rotation": 0,
+        "facing": "WEST",
+        "x": 6,
+        "y": 4,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 9
+        },
+        "x": 6,
+        "y": 4,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 1
+        },
+        "x": 6,
+        "y": 4,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 4,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 4
+        },
+        "x": 7,
+        "y": 4,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 4
+        },
+        "x": 7,
+        "y": 4,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 4,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 9
+        },
+        "x": 7,
+        "y": 4,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 9
+        },
+        "x": 7,
+        "y": 4,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 9
+        },
+        "x": 7,
+        "y": 4,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 4,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 4
+        },
+        "x": 7,
+        "y": 4,
+        "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 4
+        },
+        "x": 7,
+        "y": 4,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 4,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 5
+        },
+        "x": 8,
+        "y": 4,
+        "z": 1
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 13
+        },
+        "x": 8,
+        "y": 4,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 5
+        },
+        "x": 8,
+        "y": 4,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 13
+        },
+        "x": 8,
+        "y": 4,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 13
+        },
+        "x": 8,
+        "y": 4,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 13
+        },
+        "x": 8,
+        "y": 4,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 5
+        },
+        "x": 8,
+        "y": 4,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 13
+        },
+        "x": 8,
+        "y": 4,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 5
+        },
+        "x": 8,
+        "y": 4,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 5
+        },
+        "x": 0,
+        "y": 5,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 2
+        },
+        "x": 0,
+        "y": 5,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:trapdoor",
+          "meta": 14
+        },
+        "x": 0,
+        "y": 5,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:trapdoor",
+          "meta": 14
+        },
+        "x": 0,
+        "y": 5,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 2
+        },
+        "x": 0,
+        "y": 5,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 5
+        },
+        "x": 0,
+        "y": 5,
+        "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 5,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 5,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 5,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 5,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 5,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 5,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 5,
+        "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 1
+        },
+        "x": 2,
+        "y": 5,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 2
+        },
+        "x": 2,
+        "y": 5,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:vine",
+          "meta": 2
+        },
+        "x": 2,
+        "y": 5,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:vine",
+          "meta": 2
+        },
+        "x": 2,
+        "y": 5,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:vine",
+          "meta": 2
+        },
+        "x": 2,
+        "y": 5,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 3
+        },
+        "x": 2,
+        "y": 5,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 1
+        },
+        "x": 2,
+        "y": 5,
+        "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 1
+        },
+        "x": 3,
+        "y": 5,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 2
+        },
+        "x": 3,
+        "y": 5,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableWeb",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:web",
+          "meta": 0
+        },
+        "x": 3,
+        "y": 5,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 3
+        },
+        "x": 3,
+        "y": 5,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 1
+        },
+        "x": 3,
+        "y": 5,
+        "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 1
+        },
+        "x": 4,
+        "y": 5,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 2
+        },
+        "x": 4,
+        "y": 5,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 3
+        },
+        "x": 4,
+        "y": 5,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 1
+        },
+        "x": 4,
+        "y": 5,
+        "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 1
+        },
+        "x": 5,
+        "y": 5,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 2
+        },
+        "x": 5,
+        "y": 5,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 3
+        },
+        "x": 5,
+        "y": 5,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 1
+        },
+        "x": 5,
+        "y": 5,
+        "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 1
+        },
+        "x": 6,
+        "y": 5,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 2
+        },
+        "x": 6,
+        "y": 5,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableWeb",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:web",
+          "meta": 0
+        },
+        "x": 6,
+        "y": 5,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 3
+        },
+        "x": 6,
+        "y": 5,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 1
+        },
+        "x": 6,
+        "y": 5,
+        "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 5,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 5,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 5,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 5,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 5,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:log",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 5,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 5,
+        "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 5
+        },
+        "x": 8,
+        "y": 5,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 1
+        },
+        "x": 8,
+        "y": 5,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:trapdoor",
+          "meta": 15
+        },
+        "x": 8,
+        "y": 5,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:trapdoor",
+          "meta": 15
+        },
+        "x": 8,
+        "y": 5,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 1
+        },
+        "x": 8,
+        "y": 5,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 5
+        },
+        "x": 8,
+        "y": 5,
+        "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:dark_oak_stairs",
+          "meta": 2
+        },
+        "x": 0,
+        "y": 6,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 2
+        },
+        "x": 0,
+        "y": 6,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 2
+        },
+        "x": 0,
+        "y": 6,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:dark_oak_stairs",
+          "meta": 3
+        },
+        "x": 0,
+        "y": 6,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 2
+        },
+        "x": 1,
+        "y": 6,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 6,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:fence",
+          "meta": 0
+        },
+        "x": 1,
+        "y": 6,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 6,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 3
+        },
+        "x": 1,
+        "y": 6,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 2
+        },
+        "x": 2,
+        "y": 6,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 7
+        },
+        "x": 2,
+        "y": 6,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 6
+        },
+        "x": 2,
+        "y": 6,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 3
+        },
+        "x": 2,
+        "y": 6,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 2
+        },
+        "x": 3,
+        "y": 6,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 7
+        },
+        "x": 3,
+        "y": 6,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 6
+        },
+        "x": 3,
+        "y": 6,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 3
+        },
+        "x": 3,
+        "y": 6,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 2
+        },
+        "x": 4,
+        "y": 6,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 7
+        },
+        "x": 4,
+        "y": 6,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 6
+        },
+        "x": 4,
+        "y": 6,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 3
+        },
+        "x": 4,
+        "y": 6,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 2
+        },
+        "x": 5,
+        "y": 6,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 7
+        },
+        "x": 5,
+        "y": 6,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 6
+        },
+        "x": 5,
+        "y": 6,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 3
+        },
+        "x": 5,
+        "y": 6,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 2
+        },
+        "x": 6,
+        "y": 6,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 7
+        },
+        "x": 6,
+        "y": 6,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 6
+        },
+        "x": 6,
+        "y": 6,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 3
+        },
+        "x": 6,
+        "y": 6,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 2
+        },
+        "x": 7,
+        "y": 6,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 6,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:fence",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 6,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 6,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 3
+        },
+        "x": 7,
+        "y": 6,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:dark_oak_stairs",
+          "meta": 2
+        },
+        "x": 8,
+        "y": 6,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 1
+        },
+        "x": 8,
+        "y": 6,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 1
+        },
+        "x": 8,
+        "y": 6,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:dark_oak_stairs",
+          "meta": 3
+        },
+        "x": 8,
+        "y": 6,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:dark_oak_stairs",
+          "meta": 7
+        },
+        "x": 0,
+        "y": 7,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:dark_oak_stairs",
+          "meta": 6
+        },
+        "x": 0,
+        "y": 7,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 4
+        },
+        "x": 1,
+        "y": 7,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 7,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:fence",
+          "meta": 0
+        },
+        "x": 1,
+        "y": 7,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 7,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 3
+        },
+        "x": 1,
+        "y": 7,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 2
+        },
+        "x": 2,
+        "y": 7,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 3
+        },
+        "x": 2,
+        "y": 7,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 2
+        },
+        "x": 3,
+        "y": 7,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 3
+        },
+        "x": 3,
+        "y": 7,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 2
+        },
+        "x": 4,
+        "y": 7,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 3
+        },
+        "x": 4,
+        "y": 7,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 2
+        },
+        "x": 5,
+        "y": 7,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableWeb",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:web",
+          "meta": 0
+        },
+        "x": 5,
+        "y": 7,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 3
+        },
+        "x": 5,
+        "y": 7,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 2
+        },
+        "x": 6,
+        "y": 7,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 3
+        },
+        "x": 6,
+        "y": 7,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 4
+        },
+        "x": 7,
+        "y": 7,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 7,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:fence",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 7,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 7,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_button",
+          "meta": 3
+        },
+        "x": 7,
+        "y": 7,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:dark_oak_stairs",
+          "meta": 7
+        },
+        "x": 8,
+        "y": 7,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:dark_oak_stairs",
+          "meta": 6
+        },
+        "x": 8,
+        "y": 7,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:dark_oak_stairs",
+          "meta": 2
+        },
+        "x": 0,
+        "y": 8,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 13
+        },
+        "x": 0,
+        "y": 8,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:dark_oak_stairs",
+          "meta": 3
+        },
+        "x": 0,
+        "y": 8,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 2
+        },
+        "x": 1,
+        "y": 8,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 8,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 3
+        },
+        "x": 1,
+        "y": 8,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 2
+        },
+        "x": 2,
+        "y": 8,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 2,
+        "y": 8,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 3
+        },
+        "x": 2,
+        "y": 8,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 2
+        },
+        "x": 3,
+        "y": 8,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 3,
+        "y": 8,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 3
+        },
+        "x": 3,
+        "y": 8,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 2
+        },
+        "x": 4,
+        "y": 8,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 4,
+        "y": 8,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 3
+        },
+        "x": 4,
+        "y": 8,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 2
+        },
+        "x": 5,
+        "y": 8,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 5,
+        "y": 8,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 3
+        },
+        "x": 5,
+        "y": 8,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 2
+        },
+        "x": 6,
+        "y": 8,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 6,
+        "y": 8,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 3
+        },
+        "x": 6,
+        "y": 8,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 2
+        },
+        "x": 7,
+        "y": 8,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:planks",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 8,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:spruce_stairs",
+          "meta": 3
+        },
+        "x": 7,
+        "y": 8,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:dark_oak_stairs",
+          "meta": 2
+        },
+        "x": 8,
+        "y": 8,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 13
+        },
+        "x": 8,
+        "y": 8,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:dark_oak_stairs",
+          "meta": 3
+        },
+        "x": 8,
+        "y": 8,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:dark_oak_stairs",
+          "meta": 1
+        },
+        "x": 0,
+        "y": 9,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 1
+        },
+        "x": 1,
+        "y": 9,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 1
+        },
+        "x": 2,
+        "y": 9,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 1
+        },
+        "x": 3,
+        "y": 9,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 1
+        },
+        "x": 4,
+        "y": 9,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 1
+        },
+        "x": 5,
+        "y": 9,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 1
+        },
+        "x": 6,
+        "y": 9,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:wooden_slab",
+          "meta": 1
+        },
+        "x": 7,
+        "y": 9,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:dark_oak_stairs",
+          "meta": 0
+        },
+        "x": 8,
+        "y": 9,
+        "z": 6
+      }
+    }
+  ]
+}

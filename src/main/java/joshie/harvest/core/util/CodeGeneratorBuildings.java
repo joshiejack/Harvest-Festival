@@ -1,11 +1,9 @@
 package joshie.harvest.core.util;
 
-import com.google.gson.GsonBuilder;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.buildings.Building;
-import joshie.harvest.buildings.BuildingRegistry.SuperClassExclusionStrategy;
-import joshie.harvest.buildings.loader.*;
+import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.PlaceableHelper;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
@@ -20,15 +18,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItemFrame;
 import net.minecraft.entity.item.EntityPainting;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntitySign;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
 import java.io.FileOutputStream;
@@ -130,13 +125,7 @@ public class CodeGeneratorBuildings {
             }
 
             try {
-                GsonBuilder builder = new GsonBuilder().setPrettyPrinting().setExclusionStrategies(new SuperClassExclusionStrategy());
-                builder.registerTypeAdapter(Placeable.class, new PlaceableAdapter());
-                builder.registerTypeAdapter(IBlockState.class, new StateAdapter());
-                builder.registerTypeAdapter(ItemStack.class, new StackAdapter());
-                builder.registerTypeAdapter(ResourceLocation.class, new ResourceAdapter());
-                builder.registerTypeAdapter(TextComponentString.class, new TextComponentAdapter());
-                String json = builder.create().toJson(building);
+                String json = BuildingRegistry.getGson().toJson(building);
                 FileOutputStream output = new FileOutputStream("test.building");
                 Writer writer = new OutputStreamWriter(new GZIPOutputStream(output), "UTF-8");
                 writer.write(json);

@@ -2,6 +2,7 @@ package joshie.harvest.buildings;
 
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
+import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.api.buildings.IBuildingRegistry;
@@ -33,13 +34,7 @@ public class BuildingRegistry implements IBuildingRegistry {
 
     @Override
     public IBuilding registerBuilding(ResourceLocation resource, long cost, int wood, int stone) {
-        GsonBuilder builder = new GsonBuilder().setPrettyPrinting().setExclusionStrategies(new SuperClassExclusionStrategy());
-        builder.registerTypeAdapter(Placeable.class, new PlaceableAdapter());
-        builder.registerTypeAdapter(IBlockState.class, new StateAdapter());
-        builder.registerTypeAdapter(ItemStack.class, new StackAdapter());
-        builder.registerTypeAdapter(ResourceLocation.class, new ResourceAdapter());
-        builder.registerTypeAdapter(TextComponentString.class, new TextComponentAdapter());
-        Building building = builder.create().fromJson(ResourceLoader.getBuildingResource(resource, "buildings"), Building.class);
+        Building building = getGson().fromJson(ResourceLoader.getBuildingResource(resource, "buildings"), Building.class);
         if (building != null) {
             building.setRegistryName(resource);
             building.initBuilding(cost, wood, stone);
@@ -49,7 +44,17 @@ public class BuildingRegistry implements IBuildingRegistry {
         return building;
     }
 
-    public static class SuperClassExclusionStrategy implements ExclusionStrategy {
+    public static Gson getGson() {
+        GsonBuilder builder = new GsonBuilder().setPrettyPrinting().setExclusionStrategies(new SuperClassExclusionStrategy());
+        builder.registerTypeAdapter(Placeable.class, new PlaceableAdapter());
+        builder.registerTypeAdapter(IBlockState.class, new StateAdapter());
+        builder.registerTypeAdapter(ItemStack.class, new StackAdapter());
+        builder.registerTypeAdapter(ResourceLocation.class, new ResourceAdapter());
+        builder.registerTypeAdapter(TextComponentString.class, new TextComponentAdapter());
+        return builder.create();
+    }
+
+    private static class SuperClassExclusionStrategy implements ExclusionStrategy {
         @Override
         public boolean shouldSkipClass(Class<?> clazz) {
             return false;

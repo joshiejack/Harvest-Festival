@@ -46,9 +46,10 @@ public class TownTrackerServer extends TownTracker {
         }
     }
 
-    private EntityNPCBuilder createBuilder(TownData town, EntityLivingBase entity) {
+    private EntityNPCBuilder createBuilder(EntityLivingBase entity) {
         EntityNPCBuilder builder = new EntityNPCBuilder(entity.worldObj);
         builder.setPositionAndUpdate(entity.posX, entity.posY, entity.posZ);
+        builder.resetSpawnHome();
         entity.worldObj.spawnEntityInWorld(entity);
         return builder;
     }
@@ -79,10 +80,10 @@ public class TownTrackerServer extends TownTracker {
                         }
                     }
 
-                    return builder == null ? createBuilder(town, player): builder;
+                    return builder == null ? createBuilder(player): builder;
                 }
             });
-        } catch (Exception e) { return createBuilder(town, player); }
+        } catch (Exception e) { return createBuilder(player); }
     }
 
     @Override

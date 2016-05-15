@@ -3,6 +3,7 @@ package joshie.harvest.npc.entity;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.buildings.Building;
 import joshie.harvest.buildings.BuildingStage;
+import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.ai.TaskHeadToBlock;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.Mirror;
@@ -22,7 +23,7 @@ public class EntityNPCBuilder extends EntityNPCShopkeeper {
     }
 
     public EntityNPCBuilder(World world) {
-        super(world);
+        super(world, HFNPCs.BUILDER);
     }
 
     @Override

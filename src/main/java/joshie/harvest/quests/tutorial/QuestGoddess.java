@@ -50,7 +50,7 @@ public class QuestGoddess extends Quest {
                 return "welcome"; //Greet the player, tell them to gather 64 logs for you, Give them 4 goddess flowers
             } else if (quest_stage == 1) {
                 //If the player has 64 logs, take them away
-                ItemStack held = player.getActiveItemStack();
+                ItemStack held = player.getHeldItemMainhand();
                 if (held != null) {
                     boolean isLogs = OreDictionaryHelper.isLogs(held);
                     if (isLogs && held.stackSize >= 64) {

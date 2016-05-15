@@ -106,6 +106,11 @@ public class BlockFlower extends BlockHFBaseEnum<FlowerType> implements IPlantab
     }
 
     @Override
+    public int getEntityLifeSpan(ItemStack stack, World world) {
+        return stack.getItemDamage() == FlowerType.GODDESS.ordinal() ? 100: 6000;
+    }
+
+    @Override
     public String getItemStackDisplayName(ItemStack stack) {
         return getEnumFromMeta(stack.getItemDamage()) == FlowerType.GODDESS ? AQUA + super.getItemStackDisplayName(stack) : super.getItemStackDisplayName(stack);
     }

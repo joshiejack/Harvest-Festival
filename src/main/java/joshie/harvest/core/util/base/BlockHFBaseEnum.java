@@ -16,6 +16,7 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -133,6 +134,10 @@ public abstract class BlockHFBaseEnum<E extends Enum<E> & IStringSerializable> e
         String unlocalized = getUnlocalizedName();
         String name = stack.getItem().getUnlocalizedName(stack);
         return Text.localizeFully(unlocalized + "." + name);
+    }
+
+    public int getEntityLifeSpan(ItemStack itemStack, World world) {
+        return 6000;
     }
 
     public int getSortValue(ItemStack stack) {

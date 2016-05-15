@@ -25,7 +25,7 @@ public abstract class TileCooking extends TileFaceable {
         }
     }
 
-    public static short COOK_TIMER = 100;
+    public static final int COOK_TIMER = 100;
     private boolean cooking;
     private short cookTimer = 0;
     private ArrayList<ItemStack> ingredients = new ArrayList<ItemStack>();

@@ -36,7 +36,7 @@ public class HFItems {
 
     //Misc
     public static final Item GENERAL = new ItemGeneral().setUnlocalizedName("general.item");
-    public static final Item MEAL = new ItemMeal().setUnlocalizedName("meal");
+    public static final ItemMeal MEAL = (ItemMeal) new ItemMeal().setUnlocalizedName("meal");
     public static final Item ANIMAL = new ItemAnimal().setUnlocalizedName("animal");
     public static final ItemTreat TREATS = (ItemTreat) new ItemTreat().setUnlocalizedName("treat");
     public static final Item SEEDS = new ItemHFSeeds().setUnlocalizedName("crops.seeds");

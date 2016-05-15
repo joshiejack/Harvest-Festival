@@ -30,7 +30,7 @@ public class PlaceableBlock extends Placeable {
 
     @Override
     public PlaceableBlock init() {
-        if (states == null) states = new EnumMap<Direction, IBlockState>(Direction.class);
+        if (states == null) states = new EnumMap<>(Direction.class);
         for (Direction direction: Direction.values()) {
             states.put(direction, direction.withDirection(state));
         }

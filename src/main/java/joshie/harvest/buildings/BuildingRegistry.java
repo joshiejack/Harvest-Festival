@@ -1,5 +1,7 @@
 package joshie.harvest.buildings;
 
+import com.google.gson.ExclusionStrategy;
+import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import joshie.harvest.api.buildings.IBuilding;
@@ -12,6 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.common.registry.FMLControlledNamespacedRegistry;
+import net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl;
 import net.minecraftforge.fml.common.registry.PersistentRegistryManager;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
@@ -42,7 +45,7 @@ public class BuildingRegistry implements IBuildingRegistry {
     }
 
     public static Gson getGson() {
-        GsonBuilder builder = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation();
+        GsonBuilder builder = new GsonBuilder().setPrettyPrinting().setExclusionStrategies(new SuperClassExclusionStrategy());
         builder.registerTypeAdapter(Placeable.class, new PlaceableAdapter());
         builder.registerTypeAdapter(IBlockState.class, new StateAdapter());
         builder.registerTypeAdapter(ItemStack.class, new StackAdapter());
@@ -50,4 +53,16 @@ public class BuildingRegistry implements IBuildingRegistry {
         builder.registerTypeAdapter(TextComponentString.class, new TextComponentAdapter());
         return builder.create();
     }
+
+    private static class SuperClassExclusionStrategy implements ExclusionStrategy {
+        @Override
+        public boolean shouldSkipClass(Class<?> clazz) {
+            return false;
+        }
+
+        @Override
+        public boolean shouldSkipField(FieldAttributes field) {
+            return field.getDeclaringClass().equals(Impl.class);
+       }
+   }
 }

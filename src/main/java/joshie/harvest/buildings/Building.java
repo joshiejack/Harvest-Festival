@@ -1,6 +1,5 @@
 package joshie.harvest.buildings;
 
-import com.google.gson.annotations.Expose;
 import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.api.shops.ISpecialPurchaseRules;
 import joshie.harvest.blocks.BlockPreview.Direction;
@@ -31,21 +30,20 @@ import java.util.List;
 
 public class Building extends net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl<Building> implements IBuilding {
     //Components
-    private HashMap<String, PlaceableNPC> npc_offsets = new HashMap<>();
-    private ArrayList<PlaceableBlock> block_list = new ArrayList<>();
-    private ArrayList<Placeable> full_list = new ArrayList<>();
+    private transient HashMap<String, PlaceableNPC> npc_offsets = new HashMap<>();
+    private transient ArrayList<PlaceableBlock> block_list = new ArrayList<>();
+    private transient ArrayList<Placeable> full_list = new ArrayList<>();
 
     //Costs and rules
-    private ISpecialPurchaseRules special = new SpecialRulesDefault();
-    private String toLocalise = "";
-    private ResourceLocation[] requirements = new ResourceLocation[0];
-    private long cost = 1000L;
-    private int wood = 64;
-    private  int stone = 64;
-    private int offsetY = -1;
-    private long tickTime = 20L;
+    private transient ISpecialPurchaseRules special = new SpecialRulesDefault();
+    private transient String toLocalise = "";
+    private transient ResourceLocation[] requirements = new ResourceLocation[0];
+    private transient long cost = 1000L;
+    private transient int wood = 64;
+    private transient  int stone = 64;
+    private transient int offsetY = -1;
+    private transient long tickTime = 20L;
 
-    @Expose
     public Placeable[] components; //Set to null after loading
 
     public Building(){}

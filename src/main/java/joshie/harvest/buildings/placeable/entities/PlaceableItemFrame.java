@@ -1,47 +1,26 @@
 package joshie.harvest.buildings.placeable.entities;
 
-import joshie.harvest.buildings.placeable.PlaceableHelper;
 import joshie.harvest.core.helpers.LootHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityHanging;
 import net.minecraft.entity.item.EntityItemFrame;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.UUID;
-
-import static net.minecraft.util.EnumFacing.NORTH;
-
 public class PlaceableItemFrame extends PlaceableHanging {
     private ResourceLocation chestType;
     private ItemStack stack;
     private int rotation;
 
-    public PlaceableItemFrame() {
-        super(NORTH, BlockPos.ORIGIN);
-    }
-
-    public PlaceableItemFrame(ItemStack stack, int rotation, EnumFacing facing, BlockPos offsetPos) {
-        super(facing, offsetPos);
-        this.rotation = rotation;
-        this.stack = stack;
-    }
-
-    public PlaceableItemFrame(ItemStack stack, int rotation, EnumFacing facing, int offsetX, int offsetY, int offsetZ) {
-        this(stack, rotation, facing, new BlockPos(offsetX, offsetY, offsetZ));
-    }
-
-    public PlaceableItemFrame(ItemStack stack, int rotation, EnumFacing facing, BlockPos offsetPos, ResourceLocation chestType) {
-        this(stack, rotation, facing, offsetPos);
+    public PlaceableItemFrame() {}
+    public PlaceableItemFrame(ResourceLocation chestType, ItemStack stack, int rotation, EnumFacing facing, int x, int y, int z) {
+        super(facing, x, y, z);
         this.chestType = chestType;
-    }
-
-    public PlaceableItemFrame(ItemStack stack, int rotation, EnumFacing facing, int offsetX, int offsetY, int offsetZ, ResourceLocation chestType) {
-        this(stack, rotation, facing, new BlockPos(offsetX, offsetY, offsetZ), chestType);
+        this.stack = stack;
+        this.rotation = rotation;
     }
 
     @Override
@@ -59,19 +38,9 @@ public class PlaceableItemFrame extends PlaceableHanging {
         return frame;
     }
 
-    public String getItemStack(ItemStack stack) {
-        if (stack == null) {
-            return "null";
-        }
-
-        String name = PlaceableHelper.getBestGuessName(stack);
-        return "new ItemStack(" + name + ", 1, " + stack.getItemDamage() + ")";
-    }
-
     @Override
-    public String getStringFor(Entity e, BlockPos pos) {
+    public PlaceableItemFrame getCopyFromEntity(Entity e, int x, int y, int z) {
         EntityItemFrame frame = (EntityItemFrame) e;
-        return "list.add(new PlaceableItemFrame(" + getItemStack(frame.getDisplayedItem()) + ", " + frame.getRotation() + ", EnumFacing." + frame.facingDirection.name().toUpperCase() +
-                ", new BlockPos(" + pos.getX() + ", " + pos.getY() + "," + pos.getZ() + ")));";
+        return new PlaceableItemFrame(null, frame.getDisplayedItem(), frame.getRotation(), frame.facingDirection, x, y, z);
     }
 }

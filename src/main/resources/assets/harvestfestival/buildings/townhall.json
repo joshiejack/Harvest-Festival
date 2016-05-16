@@ -1,14 +1,4 @@
 {
-  "requirements": [
-    "harvestfestival:miningHill",
-    "harvestfestival:miningHut",
-    "harvestfestival:goddessPond"
-  ],
-  "cost": 16400,
-  "wood": 768,
-  "stone": 256,
-  "offsetY": -1,
-  "tickTime": 20,
   "components": [
     {
       "type": "PlaceableBlock",
@@ -20536,7 +20526,7 @@
       }
     },
     {
-      "type": "PlaceableSignWall",
+      "type": "PlaceableSign",
       "isBlock": true,
       "theData": {
         "text": [

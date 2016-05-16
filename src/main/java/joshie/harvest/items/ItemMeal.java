@@ -4,14 +4,14 @@ import joshie.harvest.api.cooking.IAltItem;
 import joshie.harvest.api.cooking.IMeal;
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.cooking.FoodRegistry;
+import joshie.harvest.cooking.HFRecipes;
 import joshie.harvest.cooking.Recipe;
 import joshie.harvest.cooking.Utensil;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.config.General;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.util.Translate;
-import joshie.harvest.core.util.base.ItemHFBaseMeta;
-import net.minecraft.creativetab.CreativeTabs;
+import joshie.harvest.core.util.base.ItemHFBaseFML;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -31,15 +31,9 @@ import java.util.List;
 
 import static net.minecraft.util.text.TextFormatting.DARK_GRAY;
 
-public class ItemMeal extends ItemHFBaseMeta implements ICreativeSorted, IAltItem {
+public class ItemMeal extends ItemHFBaseFML<Recipe> implements ICreativeSorted, IAltItem {
     public ItemMeal() {
-        super(HFTab.COOKING);
-    }
-
-    //Irrelevant since we overwrite them, but it needs it specified
-    @Override
-    public int getMetaCount() {
-        return 1;
+        super(FoodRegistry.REGISTRY, HFTab.COOKING);
     }
 
     @Override
@@ -107,9 +101,14 @@ public class ItemMeal extends ItemHFBaseMeta implements ICreativeSorted, IAltIte
         }
     }
 
+    @Override
+    public Recipe getNullValue() {
+        return HFRecipes.NULL_RECIPE;
+    }
+
     //Apply all the relevant information about this meal to the meal stack
-    public static ItemStack cook(ItemStack stack, Recipe recipe, IMeal meal) {
-        stack.setItemDamage(FoodRegistry.REGISTRY.getIDForObject(recipe));
+    public ItemStack cook(Recipe recipe, IMeal meal) {
+        ItemStack stack = new ItemStack(this, 1, registry.getIDForObject(recipe));
         stack.setTagCompound(new NBTTagCompound());
         stack.getTagCompound().setInteger("FoodLevel", meal.getHunger());
         stack.getTagCompound().setFloat("FoodSaturation", meal.getSaturation());
@@ -121,16 +120,8 @@ public class ItemMeal extends ItemHFBaseMeta implements ICreativeSorted, IAltIte
     }
 
     @Override
-    public CreativeTabs[] getCreativeTabs() {
-        return new CreativeTabs[]{ HFTab.COOKING };
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs creative, List<ItemStack> list) {
-        for (Recipe recipe : FoodRegistry.REGISTRY.getValues()) {
-            list.add(cook(new ItemStack(item), recipe, recipe.getBestMeal()));
-        }
+    public ItemStack getCreativeStack(Item item, Recipe recipe) {
+        return cook(recipe, recipe.getBestMeal());
     }
 
     @Override

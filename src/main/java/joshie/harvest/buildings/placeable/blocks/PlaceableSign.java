@@ -1,23 +1,24 @@
 package joshie.harvest.buildings.placeable.blocks;
 
 import joshie.harvest.blocks.BlockPreview.Direction;
-import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntitySign;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
-public class PlaceableSignWall extends PlaceableBlock {
+public class PlaceableSign extends PlaceableBlock {
     private TextComponentString[] text;
 
-    public PlaceableSignWall(Block block, int meta, BlockPos offsetPos, String... text) {
-        super(block, meta, offsetPos.getX(), offsetPos.getY(), offsetPos.getZ());
-        this.text = new TextComponentString[]{new TextComponentString(text[0]), new TextComponentString(text[1]), new TextComponentString(text[2]), new TextComponentString(text[3])};
-    }
-
-    public PlaceableSignWall(Block block, int meta, int offsetX, int offsetY, int offsetZ, String... text) {
-        this(block, meta, new BlockPos(offsetX, offsetY, offsetZ), text);
+    public PlaceableSign() {}
+    public PlaceableSign(IBlockState state, int x, int y, int z, ITextComponent... text) {
+        super(state, x, y, z);
+        this.text = new TextComponentString[text.length];
+        for (int i = 0; i < text.length; i++) {
+            this.text[i] = (TextComponentString) text[i];
+        }
     }
 
     @Override

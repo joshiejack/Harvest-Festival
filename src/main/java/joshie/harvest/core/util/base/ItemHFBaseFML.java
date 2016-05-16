@@ -13,7 +13,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 
 public abstract class ItemHFBaseFML<E extends Impl<E>> extends ItemHFBase {
-    private FMLControlledNamespacedRegistry<E> registry;
+    protected FMLControlledNamespacedRegistry<E> registry;
     public ItemHFBaseFML(FMLControlledNamespacedRegistry<E> registry) {
         super();
         this.registry = registry;
@@ -37,6 +37,14 @@ public abstract class ItemHFBaseFML<E extends Impl<E>> extends ItemHFBase {
         return new ItemStack(this, 1, registry.getId(resource));
     }
 
+    public ItemStack getStackFromObject(E e) {
+        return new ItemStack(this, 1, registry.getIDForObject(e));
+    }
+
+    public ItemStack getCreativeStack(Item item, E e) {
+        return new ItemStack(item, 1, registry.getIDForObject(e));
+    }
+
     @Override
     public int getMetadata(int damage) {
         return damage;
@@ -56,7 +64,7 @@ public abstract class ItemHFBaseFML<E extends Impl<E>> extends ItemHFBase {
     public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
         for (E e: registry.getValues()) {
             if (isValidTab(tab, e)) {
-                list.add(new ItemStack(item, 1, registry.getIDForObject(e)));
+                list.add(getCreativeStack(item, e));
             }
         }
     }

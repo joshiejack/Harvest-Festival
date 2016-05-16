@@ -1,12 +1,4 @@
 {
-  "requirements": [
-    "harvestfestival:blacksmith"
-  ],
-  "cost": 3000,
-  "wood": 160,
-  "stone": 0,
-  "offsetY": -1,
-  "tickTime": 20,
   "components": [
     {
       "type": "PlaceableBlock",

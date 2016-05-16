@@ -10,18 +10,10 @@ import net.minecraft.world.World;
 public class PlaceablePainting extends PlaceableHanging {
     private String painting;
 
-    //Registration Purposes
-    public PlaceablePainting() {
-        super(EnumFacing.SOUTH, BlockPos.ORIGIN);
-    }
-
-    public PlaceablePainting(String painting, EnumFacing facing, BlockPos offsetPos) {
-        super(facing, offsetPos);
-        this.painting = painting;
-    }
-
-    public PlaceablePainting(String painting, EnumFacing facing, int offsetX, int offsetY, int offsetZ) {
-        this(painting, facing, new BlockPos(offsetX, offsetY, offsetZ));
+    public PlaceablePainting() {}
+    public PlaceablePainting(String name, EnumFacing facing, int x, int y, int z) {
+        super(facing, x, y, z);
+        this.painting = name;
     }
 
     @Override
@@ -30,9 +22,9 @@ public class PlaceablePainting extends PlaceableHanging {
     }
 
     @Override
-    public String getStringFor(Entity e, BlockPos pos) {
+    public PlaceablePainting getCopyFromEntity(Entity e, int x, int y, int z) {
         EntityPainting p = (EntityPainting) e;
-        return "list.add(new PlaceablePainting(\"" + p.art.title + "\", " + "EnumFacing." + p.facingDirection.name().toUpperCase() +
-                ", new BlockPos(" + pos.getX() + ", " + pos.getY() + "," + pos.getZ() + ")));";
+
+        return new PlaceablePainting(p.art.title, p.facingDirection, x, y, z);
     }
 }

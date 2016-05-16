@@ -1,12 +1,4 @@
 {
-  "requirements": [
-    "harvestfestival:supermarket"
-  ],
-  "cost": 3500,
-  "wood": 32,
-  "stone": 244,
-  "offsetY": -2,
-  "tickTime": 20,
   "components": [
     {
       "type": "PlaceableBlock",

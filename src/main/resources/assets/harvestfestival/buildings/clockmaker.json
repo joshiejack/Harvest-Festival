@@ -1,14 +1,4 @@
 {
-  "requirements": [
-    "harvestfestival:miningHill",
-    "harvestfestival:miningHut",
-    "harvestfestival:goddessPond"
-  ],
-  "cost": 6800,
-  "wood": 192,
-  "stone": 112,
-  "offsetY": -1,
-  "tickTime": 20,
   "components": [
     {
       "type": "PlaceableBlock",
@@ -3682,7 +3672,7 @@
       }
     },
     {
-      "type": "PlaceableSignWall",
+      "type": "PlaceableSign",
       "isBlock": true,
       "theData": {
         "text": [
@@ -3701,7 +3691,7 @@
       }
     },
     {
-      "type": "PlaceableSignWall",
+      "type": "PlaceableSign",
       "isBlock": true,
       "theData": {
         "text": [
@@ -3954,7 +3944,7 @@
       }
     },
     {
-      "type": "PlaceableSignWall",
+      "type": "PlaceableSign",
       "isBlock": true,
       "theData": {
         "text": [
@@ -4051,7 +4041,7 @@
       }
     },
     {
-      "type": "PlaceableSignWall",
+      "type": "PlaceableSign",
       "isBlock": true,
       "theData": {
         "text": [
@@ -4382,7 +4372,7 @@
       }
     },
     {
-      "type": "PlaceableSignWall",
+      "type": "PlaceableSign",
       "isBlock": true,
       "theData": {
         "text": [
@@ -4479,7 +4469,7 @@
       }
     },
     {
-      "type": "PlaceableSignWall",
+      "type": "PlaceableSign",
       "isBlock": true,
       "theData": {
         "text": [
@@ -4732,7 +4722,7 @@
       }
     },
     {
-      "type": "PlaceableSignWall",
+      "type": "PlaceableSign",
       "isBlock": true,
       "theData": {
         "text": [
@@ -4751,7 +4741,7 @@
       }
     },
     {
-      "type": "PlaceableSignWall",
+      "type": "PlaceableSign",
       "isBlock": true,
       "theData": {
         "text": [

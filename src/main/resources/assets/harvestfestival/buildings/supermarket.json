@@ -1,12 +1,4 @@
 {
-  "requirements": [
-    "harvestfestival:carpenter"
-  ],
-  "cost": 1280,
-  "wood": 512,
-  "stone": 320,
-  "offsetY": -10,
-  "tickTime": 5,
   "components": [
     {
       "type": "PlaceableBlock",
@@ -16847,7 +16839,7 @@
       }
     },
     {
-      "type": "PlaceableSignWall",
+      "type": "PlaceableSign",
       "isBlock": true,
       "theData": {
         "text": [
@@ -17074,7 +17066,7 @@
       }
     },
     {
-      "type": "PlaceableSignWall",
+      "type": "PlaceableSign",
       "isBlock": true,
       "theData": {
         "text": [
@@ -17158,7 +17150,7 @@
       }
     },
     {
-      "type": "PlaceableSignWall",
+      "type": "PlaceableSign",
       "isBlock": true,
       "theData": {
         "text": [
@@ -17177,7 +17169,7 @@
       }
     },
     {
-      "type": "PlaceableSignWall",
+      "type": "PlaceableSign",
       "isBlock": true,
       "theData": {
         "text": [
@@ -17261,7 +17253,7 @@
       }
     },
     {
-      "type": "PlaceableSignWall",
+      "type": "PlaceableSign",
       "isBlock": true,
       "theData": {
         "text": [
@@ -17371,7 +17363,7 @@
       }
     },
     {
-      "type": "PlaceableSignWall",
+      "type": "PlaceableSign",
       "isBlock": true,
       "theData": {
         "text": [
@@ -17429,7 +17421,7 @@
       }
     },
     {
-      "type": "PlaceableSignWall",
+      "type": "PlaceableSign",
       "isBlock": true,
       "theData": {
         "text": [
@@ -17864,7 +17856,7 @@
       }
     },
     {
-      "type": "PlaceableSignWall",
+      "type": "PlaceableSign",
       "isBlock": true,
       "theData": {
         "text": [
@@ -18052,7 +18044,7 @@
       }
     },
     {
-      "type": "PlaceableSignWall",
+      "type": "PlaceableSign",
       "isBlock": true,
       "theData": {
         "text": [
@@ -18071,7 +18063,7 @@
       }
     },
     {
-      "type": "PlaceableSignWall",
+      "type": "PlaceableSign",
       "isBlock": true,
       "theData": {
         "text": [
@@ -18259,7 +18251,7 @@
       }
     },
     {
-      "type": "PlaceableSignWall",
+      "type": "PlaceableSign",
       "isBlock": true,
       "theData": {
         "text": [
@@ -18694,7 +18686,7 @@
       }
     },
     {
-      "type": "PlaceableSignWall",
+      "type": "PlaceableSign",
       "isBlock": true,
       "theData": {
         "text": [
@@ -18752,7 +18744,7 @@
       }
     },
     {
-      "type": "PlaceableSignWall",
+      "type": "PlaceableSign",
       "isBlock": true,
       "theData": {
         "text": [
@@ -18810,7 +18802,7 @@
       }
     },
     {
-      "type": "PlaceableSignWall",
+      "type": "PlaceableSign",
       "isBlock": true,
       "theData": {
         "text": [

@@ -1,12 +1,4 @@
 {
-  "requirements": [
-    "harvestfestival:miningHut"
-  ],
-  "cost": 1000,
-  "wood": 0,
-  "stone": 64,
-  "offsetY": -4,
-  "tickTime": 20,
   "components": [
     {
       "type": "PlaceableBlock",

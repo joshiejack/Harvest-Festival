@@ -1,14 +1,4 @@
 {
-  "requirements": [
-    "harvestfestival:miningHill",
-    "harvestfestival:miningHut",
-    "harvestfestival:goddessPond"
-  ],
-  "cost": 10000,
-  "wood": 160,
-  "stone": 128,
-  "offsetY": 0,
-  "tickTime": 20,
   "components": [
     {
       "type": "PlaceableBlock",

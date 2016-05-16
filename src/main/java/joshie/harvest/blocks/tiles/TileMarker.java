@@ -33,12 +33,12 @@ public class TileMarker extends TileEntity {
     public List<PlaceableBlock> getList() {
         if (needsInit) {
             clone = new ArrayList<PlaceableBlock>();
-            for (PlaceableBlock block: building.getProvider().getPreviewList()) {
+            for (PlaceableBlock block: building.getPreviewList()) {
                 clone.add(block.copyWithOffset(getPos(), direction));
             }
         }
 
-        return building.getProvider().getPreviewList();
+        return building.getPreviewList();
     }
 
     public Building getBuilding() {

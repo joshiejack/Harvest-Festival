@@ -1,10 +1,11 @@
 package joshie.harvest.buildings.placeable.blocks;
 
-import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 
 public class PlaceableDecorative extends PlaceableBlock {
-    public PlaceableDecorative(Block block, int meta, int offsetX, int offsetY, int offsetZ) {
-        super(block, meta, offsetX, offsetY, offsetZ);
+    public PlaceableDecorative() {}
+    public PlaceableDecorative(IBlockState state, int x, int y, int z) {
+        super(state, x, y, z);
     }
 
     @Override

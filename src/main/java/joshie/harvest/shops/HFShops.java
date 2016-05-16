@@ -68,8 +68,8 @@ public class HFShops {
         CAFE.addItem(0, new ItemStack(Items.POTIONITEM));
         CAFE.addItem(300, HFApi.cooking.getMeal("salad"));
         CAFE.addItem(200, HFApi.cooking.getMeal("cookies"));
-        CAFE.addItem(300, HFApi.cooking.getMeal("juice.pineapple"));
-        CAFE.addItem(250, HFApi.cooking.getMeal("corn.baked"));
+        CAFE.addItem(300, HFApi.cooking.getMeal("juice_pineapple"));
+        CAFE.addItem(250, HFApi.cooking.getMeal("corn_baked"));
 
         CAFE.addOpening(MONDAY, 9500, 17000).addOpening(TUESDAY, 9500, 17000).addOpening(WEDNESDAY, 9500, 17000).addOpening(THURSDAY, 9500, 17000);
         CAFE.addOpening(FRIDAY, 9500, 17000).addOpening(SATURDAY, 9500, 17000).addOpening(SUNDAY, 9500, 17000);

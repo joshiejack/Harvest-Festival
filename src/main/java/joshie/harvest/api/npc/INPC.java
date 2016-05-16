@@ -1,5 +1,6 @@
 package joshie.harvest.api.npc;
 
+import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.shops.IShop;
@@ -21,7 +22,7 @@ public interface INPC extends IRelatable {
 
     /** Marks this NPCs home as this building group, with this name 
      * @return **/
-    public INPC setHome(ResourceLocation building, String name);
+    public INPC setHome(IBuilding building, String name);
 
     /** Set whether this npc uses alex skin or not */
     INPC setAlexSkin();

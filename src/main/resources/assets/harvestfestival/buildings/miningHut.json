@@ -1,13 +1,4 @@
 {
-  "requirements": [
-    "harvestfestival:poultryFarm",
-    "harvestfestival:barn"
-  ],
-  "cost": 3000,
-  "wood": 96,
-  "stone": 96,
-  "offsetY": -1,
-  "tickTime": 20,
   "components": [
     {
       "type": "PlaceableBlock",

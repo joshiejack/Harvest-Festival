@@ -1,5 +1,6 @@
 package joshie.harvest.cooking;
 
+import joshie.harvest.api.cooking.ICookingIngredient;
 import joshie.harvest.items.ItemGeneral;
 import net.minecraft.item.ItemStack;
 
@@ -8,6 +9,8 @@ import static joshie.harvest.core.helpers.RecipeHelper.*;
 import static joshie.harvest.items.HFItems.GENERAL;
 
 public class HFRecipes {
+    public static final Recipe NULL_RECIPE = new Recipe("null", new ICookingIngredient[0], new Meal(0, 0, 0, 0F, 0));
+
     public static void preInit() {
         //Recipes ; http://fogu.com/hm4/farm/stamina_chart.htm for numbers
         //Frying Pan

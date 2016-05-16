@@ -18,9 +18,14 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import java.util.ArrayList;
 
 public abstract class TileCooking extends TileFaceable {
-    public abstract static class TileCookingTicking extends TileCooking implements ITickable {}
+    public abstract static class TileCookingTicking extends TileCooking implements ITickable {
+        @Override
+        public void update() {
+            super.update();
+        }
+    }
 
-    public static short COOK_TIMER = 100;
+    public static final int COOK_TIMER = 100;
     private boolean cooking;
     private short cookTimer = 0;
     private ArrayList<ItemStack> ingredients = new ArrayList<ItemStack>();

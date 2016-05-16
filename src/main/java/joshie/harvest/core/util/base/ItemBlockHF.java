@@ -5,6 +5,7 @@ import joshie.harvest.core.HFTab;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 public class ItemBlockHF extends ItemBlock implements  ICreativeSorted {
     private final BlockHFBaseEnum block;
@@ -34,6 +35,12 @@ public class ItemBlockHF extends ItemBlock implements  ICreativeSorted {
     public int getMetadata(int damage) {
         return damage;
     }
+
+    @Override
+    public int getEntityLifespan(ItemStack itemStack, World world)  {
+        return block.getEntityLifeSpan(itemStack, world);
+    }
+
 
     @Override
     public String getUnlocalizedName(ItemStack stack) {

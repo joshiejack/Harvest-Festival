@@ -27,7 +27,7 @@ public class TownBuilding {
     }
 
     public BlockPos getRealCoordinatesFor(String npc_location) {
-        PlaceableNPC offsets = building.getProvider().getNPCOffset(npc_location);
+        PlaceableNPC offsets = building.getNPCOffset(npc_location);
         if (offsets == null) return null;
         return getRealCoordinatesFor(offsets);
     }

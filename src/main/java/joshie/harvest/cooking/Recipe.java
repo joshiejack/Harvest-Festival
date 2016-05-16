@@ -5,7 +5,6 @@ import joshie.harvest.api.cooking.IMeal;
 import joshie.harvest.api.cooking.IMealRecipe;
 import joshie.harvest.api.cooking.IUtensil;
 import joshie.harvest.items.HFItems;
-import joshie.harvest.items.ItemMeal;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.translation.I18n;
 
@@ -138,6 +137,6 @@ public class Recipe extends net.minecraftforge.fml.common.registry.IForgeRegistr
 
     @Override
     public ItemStack cook(IMeal meal) {
-        return ItemMeal.cook(new ItemStack(HFItems.MEAL), this, meal);
+        return HFItems.MEAL.cook(this, meal);
     }
 }

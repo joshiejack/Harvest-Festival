@@ -1,7 +1,7 @@
 package joshie.harvest.core;
 
 import joshie.harvest.animals.HFAnimals;
-import joshie.harvest.buildings.loader.HFBuildings;
+import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.HFIngredients;
 import joshie.harvest.cooking.HFRecipes;
@@ -24,7 +24,7 @@ import java.util.List;
 
 public class HFCommonProxy {
     private static final List<Class> LIST = new ArrayList<>();
-    private static final boolean ENABLE_LOGGING = true;
+    private static final boolean ENABLE_LOGGING = false;
 
     static {
         if (General.DEBUG_MODE) {

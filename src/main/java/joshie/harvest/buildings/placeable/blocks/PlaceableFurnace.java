@@ -1,9 +1,10 @@
 package joshie.harvest.buildings.placeable.blocks;
 
-import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 
 public class PlaceableFurnace extends PlaceableBlock {
-    public PlaceableFurnace(Block block, int meta, int offsetX, int offsetY, int offsetZ) {
-        super(block, meta, offsetX, offsetY, offsetZ);
+    public PlaceableFurnace() {}
+    public PlaceableFurnace(IBlockState state, int x, int y, int z) {
+        super(state, x, y, z);
     }
 }

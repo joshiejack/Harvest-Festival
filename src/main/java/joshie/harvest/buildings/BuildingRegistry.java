@@ -2,6 +2,7 @@ package joshie.harvest.buildings;
 
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
+import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.api.buildings.IBuildingRegistry;
@@ -27,28 +28,30 @@ public class BuildingRegistry implements IBuildingRegistry {
     }
 
     @Override
-    public ResourceLocation registerBuilding(ResourceLocation resource) {
+    public ResourceLocation getNameForBuilding(IBuilding building) {
+        return REGISTRY.getNameForObject((Building)building);
+    }
+
+    @Override
+    public IBuilding registerBuilding(ResourceLocation resource, long cost, int wood, int stone) {
+        Building building = getGson().fromJson(ResourceLoader.getJSONResource(resource, "buildings"), Building.class);
+        if (building != null) {
+            building.setRegistryName(resource);
+            building.initBuilding(cost, wood, stone);
+            REGISTRY.register(building);
+        }
+
+        return building;
+    }
+
+    public static Gson getGson() {
         GsonBuilder builder = new GsonBuilder().setPrettyPrinting().setExclusionStrategies(new SuperClassExclusionStrategy());
         builder.registerTypeAdapter(Placeable.class, new PlaceableAdapter());
         builder.registerTypeAdapter(IBlockState.class, new StateAdapter());
         builder.registerTypeAdapter(ItemStack.class, new StackAdapter());
         builder.registerTypeAdapter(ResourceLocation.class, new ResourceAdapter());
         builder.registerTypeAdapter(TextComponentString.class, new TextComponentAdapter());
-        Building building = builder.create().fromJson(ResourceLoader.getJSONResource(resource, "buildings"), Building.class);
-        if (building != null) {
-            BuildingProvider provider = new BuildingProvider();
-            provider.setList(building.components);
-            for (Placeable placeable: provider.getFullList()) {
-                provider.addToList(placeable);
-            }
-
-            building.setRegistryName(resource);
-            building.setProvider(provider);
-            building.components = null; //Clear the memory
-            REGISTRY.register(building);
-        }
-
-        return building.getRegistryName();
+        return builder.create();
     }
 
     private static class SuperClassExclusionStrategy implements ExclusionStrategy {
@@ -60,6 +63,6 @@ public class BuildingRegistry implements IBuildingRegistry {
         @Override
         public boolean shouldSkipField(FieldAttributes field) {
             return field.getDeclaringClass().equals(Impl.class);
-        }
-    }
+       }
+   }
 }

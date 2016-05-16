@@ -1,12 +1,4 @@
 {
-  "requirements": [
-    "harvestfestival:fishingHut"
-  ],
-  "cost": 1000,
-  "wood": 16,
-  "stone": 0,
-  "offsetY": 0,
-  "tickTime": 20,
   "components": [
     {
       "type": "PlaceableBlock",
@@ -1608,7 +1600,7 @@
       }
     },
     {
-      "type": "PlaceableSignWall",
+      "type": "PlaceableSign",
       "isBlock": true,
       "theData": {
         "text": [
@@ -1692,7 +1684,7 @@
       }
     },
     {
-      "type": "PlaceableSignWall",
+      "type": "PlaceableSign",
       "isBlock": true,
       "theData": {
         "text": [
@@ -1724,7 +1716,7 @@
       }
     },
     {
-      "type": "PlaceableSignWall",
+      "type": "PlaceableSign",
       "isBlock": true,
       "theData": {
         "text": [
@@ -1769,7 +1761,7 @@
       }
     },
     {
-      "type": "PlaceableSignWall",
+      "type": "PlaceableSign",
       "isBlock": true,
       "theData": {
         "text": [
@@ -1801,7 +1793,7 @@
       }
     },
     {
-      "type": "PlaceableSignWall",
+      "type": "PlaceableSign",
       "isBlock": true,
       "theData": {
         "text": [

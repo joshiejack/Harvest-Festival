@@ -13,13 +13,9 @@ import org.apache.commons.lang3.Validate;
 public abstract class PlaceableHanging extends PlaceableEntity {
     private EnumFacing facing;
 
-    public PlaceableHanging() {
-        super(BlockPos.ORIGIN);
-        this.facing = EnumFacing.NORTH;
-    }
-
-    public PlaceableHanging(EnumFacing facing, BlockPos offsetPos) {
-        super(offsetPos);
+    public PlaceableHanging() {}
+    public PlaceableHanging(EnumFacing facing, int x, int y, int z) {
+        super(x, y, z);
         this.facing = facing;
     }
 

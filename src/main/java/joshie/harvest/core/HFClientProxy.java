@@ -16,12 +16,10 @@ public class HFClientProxy extends HFCommonProxy {
 
     public void setBlockModelResourceLocation(Item item, String name) {
         name = name.replace(".", "_");
-        if (item != null) {
-            if (item instanceof ItemBlockHF) {
-                ((ItemBlockHF)item).getBlock().registerModels(item, name);
-            } else {
-                ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(new ResourceLocation(HFModInfo.MODID, name), "inventory"));
-            }
+        if(item instanceof ItemBlockHF){
+            ((ItemBlockHF) item).getBlock().registerModels(item, name);
+        } else if(item != null){
+            ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(new ResourceLocation(HFModInfo.MODID, name), "inventory"));
         }
     }
 }

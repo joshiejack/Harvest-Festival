@@ -1,22 +1,24 @@
 package joshie.harvest.blocks.tiles;
 
-import joshie.harvest.core.network.PacketHandler;
-import joshie.harvest.core.network.PacketSyncFilled;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.Packet;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+
+import javax.annotation.Nullable;
 
 public class TileFillable extends TileEntity {
     private boolean isFilled = false;
 
-    public IMessage getPacket() {
-        return new PacketSyncFilled(this, isFilled);
+    @Nullable
+    @Override
+    public SPacketUpdateTileEntity getUpdatePacket()  {
+        return new SPacketUpdateTileEntity(getPos(), 1, writeToNBT(new NBTTagCompound()));
     }
 
     @Override
-    public Packet<?> getDescriptionPacket() {
-        return PacketHandler.getPacket(getPacket());
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet) {
+        readFromNBT(packet.getNbtCompound());
     }
 
     public boolean isFilled() {
@@ -36,8 +38,9 @@ public class TileFillable extends TileEntity {
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound nbt) {
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
         nbt.setBoolean("IsFilled", isFilled);
+        return nbt;
     }
 }

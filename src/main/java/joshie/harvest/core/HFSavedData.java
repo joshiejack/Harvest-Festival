@@ -126,7 +126,7 @@ public class HFSavedData extends WorldSavedData {
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound nbt) {
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         NBTTagCompound tag_calendar = new NBTTagCompound();
         calendar.writeToNBT(tag_calendar);
         nbt.setTag("Calendar", tag_calendar);
@@ -153,5 +153,6 @@ public class HFSavedData extends WorldSavedData {
         }
 
         nbt.setTag("PlayerTracker", tag_list_players);
+        return nbt;
     }
 }

@@ -14,7 +14,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.WorldProviderSurface;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -128,14 +128,14 @@ public class WeatherProvider extends WorldProviderSurface {
     public boolean canSnowAt(BlockPos pos, boolean checkLight) {
         Weather weather = HFTrackers.getCalendar().getTodaysWeather();
         if (weather == Weather.SNOW || weather == Weather.BLIZZARD) {
-            BiomeGenBase biomegenbase = worldObj.getBiomeGenForCoords(pos);
-            float f = biomegenbase.getFloatTemperature(pos);
+            Biome biome = worldObj.getBiomeGenForCoords(pos);
+            float f = biome.getFloatTemperature(pos);
 
             if (f > 0.15F) {
                 if (!checkLight) {
                     return true;
                 } else {
-                    if (biomegenbase.canRain()) {
+                    if (biome.canRain()) {
                         if (pos.getY() >= 0 && pos.getY() < 256 && worldObj.getLightFor(EnumSkyBlock.BLOCK, pos) < 10) {
                             IBlockState state = worldObj.getBlockState(pos);
 

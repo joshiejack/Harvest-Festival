@@ -1,13 +1,13 @@
 package joshie.harvest.blocks.tiles;
 
-import joshie.harvest.core.network.PacketHandler;
-import joshie.harvest.core.network.PacketSyncOrientation;
 import joshie.harvest.core.util.generic.IFaceable;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.Packet;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+
+import javax.annotation.Nullable;
 
 public class TileFaceable extends TileEntity implements IFaceable {
     protected EnumFacing orientation = EnumFacing.NORTH;
@@ -22,13 +22,15 @@ public class TileFaceable extends TileEntity implements IFaceable {
         return orientation;
     }
 
-    public IMessage getPacket() {
-        return new PacketSyncOrientation(worldObj.provider.getDimension(), getPos(), orientation);
+    @Nullable
+    @Override
+    public SPacketUpdateTileEntity getUpdatePacket()  {
+        return new SPacketUpdateTileEntity(getPos(), 1, writeToNBT(new NBTTagCompound()));
     }
 
     @Override
-    public Packet<?> getDescriptionPacket() {
-        return PacketHandler.getPacket(getPacket());
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet) {
+        readFromNBT(packet.getNbtCompound());
     }
 
     @Override
@@ -38,10 +40,12 @@ public class TileFaceable extends TileEntity implements IFaceable {
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound nbt) {
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
         if (orientation != null) {
             nbt.setString("Facing", orientation.name());
         }
+
+        return nbt;
     }
 }

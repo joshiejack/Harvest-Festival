@@ -84,7 +84,7 @@ public class GoddessHandler {
 
                         if (water == 2 && flower == 2) {
                             if (!event.getWorld().isRemote) {
-                                event.getWorld().playAuxSFX(2005, event.getPos(), 0);
+                                event.getWorld().playEvent(2005, event.getPos(), 0);
                                 if (event.getWorld().rand.nextInt(5) == 0) {
                                     EntityNPC goddess = NPCHelper.getEntityForNPC(event.getWorld(), HFNPCs.GODDESS);
                                     goddess.setPosition(event.getPos().getX(), event.getPos().getY() + 1, event.getPos().getZ());

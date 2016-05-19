@@ -276,7 +276,7 @@ public class BlockCrop extends BlockHFBaseEnum<Stage> implements IPlantable, IGr
     }
 
     @Override
-    public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block neighborBlock) {
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block neighborBlock) {
         if (!world.isRemote) {
             IBlockState soil = world.getBlockState(pos.down());
             ICrop crop = HFApi.crops.getCropAtLocation(world, pos).getCrop();

@@ -4,16 +4,15 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.IAltItem;
 import joshie.harvest.api.cooking.IUtensil;
 import joshie.harvest.cooking.Utensil;
+import joshie.harvest.core.helpers.generic.MCServerHelper;
 import joshie.harvest.core.helpers.generic.StackHelper;
-import joshie.harvest.core.network.PacketHandler;
-import joshie.harvest.core.network.PacketSyncCooking;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.Packet;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 
 import java.util.ArrayList;
 
@@ -119,13 +118,11 @@ public abstract class TileCooking extends TileFaceable {
     }
 
     //Called Clientside to update the client
-    public void setFromPacket(boolean isCooking, ArrayList<ItemStack> ingredientList, ItemStack resultStack) {
+    @Override
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet) {
+        super.onDataPacket(net, packet);
         int size = ingredients.size();
-        cooking = isCooking;
-        ingredients = ingredientList;
-        result = resultStack;
-
-        if (isCooking) {
+        if (cooking) {
             rotations[size] = worldObj.rand.nextFloat() * 360F;
             offset1[size] = 0.5F - worldObj.rand.nextFloat();
             offset2[size] = worldObj.rand.nextFloat() / 1.75F;
@@ -133,21 +130,12 @@ public abstract class TileCooking extends TileFaceable {
         }
     }
 
-    public IMessage getPacket() {
-        return new PacketSyncCooking(worldObj.provider.getDimension(), getPos(), orientation, cooking, ingredients, result);
-    }
-
-    @Override
-    public Packet<?> getDescriptionPacket() {
-        return PacketHandler.getPacket(getPacket());
-    }
-
     @Override
     public void markDirty() {
         super.markDirty();
 
         if (!worldObj.isRemote) {
-            PacketHandler.sendAround(getPacket(), this);
+            MCServerHelper.markForUpdate(worldObj, getPos());
         }
     }
 
@@ -169,7 +157,7 @@ public abstract class TileCooking extends TileFaceable {
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound nbt) {
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
         nbt.setBoolean("IsCooking", cooking);
         nbt.setShort("CookingTimer", cookTimer);
@@ -186,6 +174,8 @@ public abstract class TileCooking extends TileFaceable {
         if (result != null) {
             StackHelper.writeItemStackToNBT(nbt, result);
         }
+
+        return nbt;
     }
 
     public boolean isAbove(Utensil utensil) {

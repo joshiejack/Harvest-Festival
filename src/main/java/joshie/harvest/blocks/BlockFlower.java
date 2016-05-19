@@ -60,8 +60,8 @@ public class BlockFlower extends BlockHFBaseEnum<FlowerType> implements IPlantab
     }
 
     @Override
-    public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block neighborBlock) {
-        super.onNeighborBlockChange(world, pos, state, neighborBlock);
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block neighborBlock) {
+        super.neighborChanged(state, world, pos, neighborBlock);
         checkAndDropBlock(world, pos, state);
     }
 

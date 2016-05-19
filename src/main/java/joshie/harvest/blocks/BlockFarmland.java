@@ -82,8 +82,8 @@ public class BlockFarmland extends BlockHFBaseEnum<Moisture> {
     }
 
     @Override
-    public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock) {
-        super.onNeighborBlockChange(worldIn, pos, state, neighborBlock);
+    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block neighborBlock) {
+        super.neighborChanged(state, worldIn, pos, neighborBlock);
 
         if (worldIn.getBlockState(pos.up()).getMaterial().isSolid()) {
             worldIn.setBlockState(pos, Blocks.DIRT.getDefaultState());

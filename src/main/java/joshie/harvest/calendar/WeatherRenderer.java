@@ -18,7 +18,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.client.IRenderHandler;
 
 import java.util.Random;
@@ -53,11 +53,11 @@ public class WeatherRenderer extends IRenderHandler {
             for (int l = 0; l < k; ++l) {
                 BlockPos pos1 = world.getPrecipitationHeight(pos.add(random.nextInt(i) - random.nextInt(i), 0, random.nextInt(i) - random.nextInt(i)));
 
-                BiomeGenBase genBase = world.getBiomeGenForCoords(pos1);
+                Biome biome = world.getBiomeGenForCoords(pos1);
                 BlockPos pos2 = pos1.down();
                 IBlockState state = world.getBlockState(pos2);
 
-                if (pos1.getY() <= pos.getY() + i && pos1.getY() >= pos.getY() - i && genBase.canRain() && genBase.getFloatTemperature(pos1) >= 0.15F && !weather.isSnow()) {
+                if (pos1.getY() <= pos.getY() + i && pos1.getY() >= pos.getY() - i && biome.canRain() && biome.getFloatTemperature(pos1) >= 0.15F && !weather.isSnow()) {
                     double d3 = random.nextDouble();
                     double d4 = random.nextDouble();
                     AxisAlignedBB aabb = state.getBoundingBox(world, pos2);
@@ -146,9 +146,9 @@ public class WeatherRenderer extends IRenderHandler {
                     int i2 = (k1 - k + 16) * 32 + l1 - i + 16;
                     double d3 = renderer.rainXCoords[i2] * 0.5F;
                     double d4 = renderer.rainYCoords[i2] * 0.5F;
-                    BiomeGenBase genBase = world.getBiomeGenForCoords(mutablePos);
+                    Biome biome = world.getBiomeGenForCoords(mutablePos);
 
-                    if (genBase.canRain() || genBase.getEnableSnow()) {
+                    if (biome.canRain() || biome.getEnableSnow()) {
                         int j2 = world.getPrecipitationHeight(mutablePos).getY();
                         int k2 = j - i1;
                         int l2 = j + i1;
@@ -169,8 +169,8 @@ public class WeatherRenderer extends IRenderHandler {
 
                         if (k2 != l2) {
                             renderer.random.setSeed((long) (l1 * l1 * 3121 + l1 * 45238971 ^ k1 * k1 * 418711 + k1 * 13761));
-                            mutablePos.set(l1, k2, k1);
-                            float f2 = genBase.getFloatTemperature(mutablePos);
+                            mutablePos.setPos(l1, k2, k1);
+                            float f2 = biome.getFloatTemperature(mutablePos);
 
                             if (world.getBiomeProvider().getTemperatureAtHeight(f2, j2) >= 0.15F && !weather.isSnow()) {
                                 if (j1 != 0) {
@@ -188,7 +188,7 @@ public class WeatherRenderer extends IRenderHandler {
 
                                 float f3 = MathHelper.sqrt_double(d6 * d6 + d7 * d7) / (float) i1;
                                 float f4 = ((1.0F - f3 * f3) * 0.5F + 0.5F) * f;
-                                mutablePos.set(l1, i3, k1);
+                                mutablePos.setPos(l1, i3, k1);
                                 int j3 = world.getCombinedLight(mutablePos, 0);
                                 int k3 = j3 >> 16 & 65535;
                                 int l3 = j3 & 65535;
@@ -215,7 +215,7 @@ public class WeatherRenderer extends IRenderHandler {
                                 double d12 = (double) ((float) k1 + 0.5F) - entity.posZ;
                                 float f6 = MathHelper.sqrt_double(d11 * d11 + d12 * d12) / (float) i1;
                                 float f5 = ((1.0F - f6 * f6) * 0.3F + 0.5F) * f;
-                                mutablePos.set(l1, i3, k1);
+                                mutablePos.setPos(l1, i3, k1);
                                 int i4 = (world.getCombinedLight(mutablePos, 0) * 3 + 15728880) / 4;
                                 int j4 = i4 >> 16 & 65535;
                                 int k4 = i4 & 65535;

@@ -6,14 +6,15 @@ import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.buildings.Building;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
-import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSyncMarker;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.Packet;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,9 +54,15 @@ public class TileMarker extends TileEntity {
         return direction;
     }
 
+    @Nullable
     @Override
-    public Packet<?> getDescriptionPacket() {
-        return PacketHandler.getPacket(getPacket());
+    public SPacketUpdateTileEntity getUpdatePacket()  {
+        return new SPacketUpdateTileEntity(getPos(), 1, writeToNBT(new NBTTagCompound()));
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet) {
+        readFromNBT(packet.getNbtCompound());
     }
 
     @Override
@@ -70,12 +77,14 @@ public class TileMarker extends TileEntity {
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound nbt) {
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
         nbt.setBoolean("Init", needsInit);
         nbt.setString("Direction", direction.name());
         if (building != null) {
             nbt.setString("Building", BuildingRegistry.REGISTRY.getNameForObject(building).toString());
         }
+
+        return nbt;
     }
 }

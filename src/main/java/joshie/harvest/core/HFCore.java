@@ -50,8 +50,6 @@ public class HFCore {
         PacketHandler.registerPacket(PacketSyncMarriage.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketSyncGifted.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketSyncStats.class, Side.CLIENT);
-        PacketHandler.registerPacket(PacketSyncCooking.class, Side.CLIENT);
-        PacketHandler.registerPacket(PacketSyncOrientation.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketSyncBirthday.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketPurchaseItem.class, Side.SERVER);
         PacketHandler.registerPacket(PacketFreeze.class, Side.SERVER);

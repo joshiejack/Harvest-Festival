@@ -29,7 +29,7 @@ public class QuestHelper {
             sendToServer(new PacketQuestDecreaseHeld(amount));
         } else {
             player.inventory.decrStackSize(player.inventory.currentItem, amount);
-            ((EntityPlayerMP) player).playerNetServerHandler.sendPacket(new SPacketSetSlot(-1, -1, player.getActiveItemStack()));
+            ((EntityPlayerMP) player).connection.sendPacket(new SPacketSetSlot(-1, -1, player.getActiveItemStack()));
         }
     }
 

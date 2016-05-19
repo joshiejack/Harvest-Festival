@@ -10,8 +10,8 @@ import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.core.helpers.TownHelper;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
+import joshie.harvest.core.helpers.generic.MCServerHelper;
 import joshie.harvest.items.HFItems;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -161,8 +161,7 @@ public class Building extends net.minecraftforge.fml.common.registry.IForgeRegis
             for (Placeable placeable: full_list) placeable.place(world, pos, direction, ConstructionStage.DECORATE);
             for (Placeable placeable: full_list) placeable.place(world, pos, direction, ConstructionStage.MOVEIN);
             TownHelper.getClosestTownToBlockPosOrCreate(world.provider.getDimension(), pos).addBuilding(this, direction, pos);
-            IBlockState state = world.getBlockState(pos);
-            world.markAndNotifyBlock(pos, world.getChunkFromBlockCoords(pos), state, state, 2);
+            MCServerHelper.markForUpdate(world, pos);
         } else if (world.isRemote) MCClientHelper.refresh();
 
 

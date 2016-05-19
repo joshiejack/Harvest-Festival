@@ -1,8 +1,6 @@
 package joshie.harvest.buildings.placeable.blocks;
 
 import joshie.harvest.blocks.BlockPreview.Direction;
-import joshie.harvest.core.network.PacketHandler;
-import joshie.harvest.core.network.PacketSyncOrientation;
 import joshie.harvest.core.util.generic.IFaceable;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -25,7 +23,7 @@ public class PlaceableIFaceable extends PlaceableBlock {
         if (tile instanceof IFaceable) {
             EnumFacing orientation = direction.getRotation().rotate(direction.getMirror().mirror(this.facing));
             ((IFaceable) tile).setFacing(orientation);
-            PacketHandler.sendAround(new PacketSyncOrientation(world.provider.getDimension(), pos, orientation), tile);
+            //PacketHandler.sendAround(new PacketSyncOrientation(world.provider.getDimension(), pos, orientation), tile);
         }
     }
 }

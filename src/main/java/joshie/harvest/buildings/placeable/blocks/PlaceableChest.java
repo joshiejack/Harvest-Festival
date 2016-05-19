@@ -19,7 +19,7 @@ public class PlaceableChest extends PlaceableBlock {
     public void postPlace(World world, BlockPos pos, Direction direction) {
         TileEntity tile = world.getTileEntity(pos);
         if (chestType != null && tile instanceof TileEntityChest) {
-            ((TileEntityChest)tile).setLoot(chestType, world.rand.nextLong());
+            ((TileEntityChest)tile).setLootTable(chestType, world.rand.nextLong());
         }
     }
 }

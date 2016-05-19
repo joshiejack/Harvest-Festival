@@ -6,6 +6,7 @@ import joshie.harvest.blocks.BlockFarmland.Moisture;
 import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.ItemHelper;
+import joshie.harvest.core.helpers.generic.MCServerHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -39,7 +40,7 @@ public class CropHelper {
     //Returns false if the soil is no longer farmland and should be converted to dirt
     public static boolean dehydrate(World world, BlockPos pos, IBlockState state) {
         world.setBlockState(pos, HFBlocks.FARMLAND.getStateFromEnum(Moisture.DRY), 2);
-        world.markAndNotifyBlock(pos, world.getChunkFromBlockCoords(pos), state, state, 2);
+        MCServerHelper.markForUpdate(world, pos, state);
         return true;
     }
 

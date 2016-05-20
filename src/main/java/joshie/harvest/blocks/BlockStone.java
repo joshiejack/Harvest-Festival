@@ -2,20 +2,25 @@ package joshie.harvest.blocks;
 
 import joshie.harvest.blocks.BlockStone.Type;
 import joshie.harvest.core.HFTab;
+import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.Translate;
 import joshie.harvest.core.util.base.BlockHFBaseEnum;
 import joshie.harvest.core.util.generic.Text;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -24,8 +29,18 @@ import java.util.List;
 
 public class BlockStone extends BlockHFBaseEnum<Type> {
     public enum Type implements IStringSerializable {
-        REAL, DECORATIVE_BLANK, DECORATIVE_PURPLE, DECORATIVE_SILVER, DECORATIVE_GREEN, DECORATIVE_BLUE, DECORATIVE_RED,
-        REAL_WINTER, DECORATIVE_BLANK_WINTER, DECORATIVE_PURPLE_WINTER, DECORATIVE_SILVER_WINTER, DECORATIVE_GREEN_WINTER, DECORATIVE_BLUE_WINTER, DECORATIVE_RED_WINTER;
+        REAL(true), DECORATIVE_BLANK, DECORATIVE_PURPLE, DECORATIVE_SILVER, DECORATIVE_GREEN, DECORATIVE_BLUE, DECORATIVE_RED,
+        REAL_WINTER(true), DECORATIVE_BLANK_WINTER, DECORATIVE_PURPLE_WINTER, DECORATIVE_SILVER_WINTER, DECORATIVE_GREEN_WINTER, DECORATIVE_BLUE_WINTER, DECORATIVE_RED_WINTER;
+
+        private final boolean isReal;
+
+        Type() {
+            this.isReal = false;
+        }
+
+        Type(boolean isReal) {
+            this.isReal = isReal;
+        }
 
         @Override
         public String getName() {
@@ -89,6 +104,17 @@ public class BlockStone extends BlockHFBaseEnum<Type> {
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
-        if (stack.getItemDamage() != 0) list.add(Translate.translate("tooltip.dirt"));
+        int adjusted = Math.max(0, Math.min(Type.values().length, stack.getItemDamage()));
+        Type type = Type.values()[adjusted];
+        if (!type.isReal) {
+            list.add(Translate.translate("tooltip.dirt"));
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void registerModels(Item item, String name) {
+        for (int i = 0; i < values.length; i++) {
+            ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(new ResourceLocation(HFModInfo.MODID, "mine/mine_wall_" + getEnumFromMeta(i).getName()), "inventory"));
+        }
     }
 }

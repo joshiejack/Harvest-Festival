@@ -14,7 +14,9 @@ public class TileFaceable extends TileEntity implements IFaceable {
 
     @Override
     public void setFacing(EnumFacing dir) {
-        orientation = dir;
+        if (dir == EnumFacing.DOWN || dir == EnumFacing.UP) {
+            orientation = EnumFacing.NORTH;
+        } else orientation = dir;
     }
 
     @Override

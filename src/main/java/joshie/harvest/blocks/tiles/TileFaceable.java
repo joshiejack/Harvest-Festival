@@ -36,14 +36,14 @@ public class TileFaceable extends TileEntity implements IFaceable {
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
-        orientation = EnumFacing.valueOf(nbt.getString("Facing"));
+        orientation = EnumFacing.values()[(nbt.getInteger("Orientation"))];
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
         if (orientation != null) {
-            nbt.setString("Facing", orientation.name());
+            nbt.setInteger("Orientation", orientation.ordinal());
         }
 
         return nbt;

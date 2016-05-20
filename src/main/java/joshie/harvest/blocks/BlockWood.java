@@ -11,7 +11,7 @@ import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.base.BlockHFBaseEnumRotatableMeta;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -29,13 +29,24 @@ import net.minecraft.world.World;
 import static joshie.harvest.api.HFApi.shipping;
 import static joshie.harvest.blocks.BlockWood.Woodware.NEST;
 import static joshie.harvest.blocks.BlockWood.Woodware.SHIPPING;
+import static joshie.harvest.blocks.BlockWood.Woodware.TROUGH;
+import static net.minecraft.util.EnumFacing.*;
 
 public class BlockWood extends BlockHFBaseEnumRotatableMeta<Woodware> {
     private static final AxisAlignedBB SHIPPING_AABB = new AxisAlignedBB(0D, 0D, 0D, 1D, 0.6D, 1D);
-    public static final PropertyBool FILLED = PropertyBool.create("filled");
+    public static final PropertyEnum<Type> TYPE = PropertyEnum.create("type", Type.class);
 
     public enum Woodware implements IStringSerializable {
         SHIPPING, NEST, TROUGH;
+
+        @Override
+        public String getName() {
+            return toString().toLowerCase();
+        }
+    }
+
+    public enum Type implements IStringSerializable {
+        NORMAL, FILLED, END_EMPTY, END_FILLED, MIDDLE_EMPTY, MIDDLE_FILLED;
 
         @Override
         public String getName() {
@@ -47,12 +58,13 @@ public class BlockWood extends BlockHFBaseEnumRotatableMeta<Woodware> {
         super(Material.WOOD, Woodware.class);
         setHardness(1.5F);
         setSoundType(SoundType.WOOD);
+        setDefaultState(getDefaultState().withProperty(TYPE, Type.NORMAL));
     }
 
     @Override
     protected BlockStateContainer createBlockState() {
-        if(property == null) return new BlockStateContainer(this, temporary, FACING, FILLED);
-        return new BlockStateContainer(this, property, FACING, FILLED);
+        if(property == null) return new BlockStateContainer(this, temporary, FACING, TYPE);
+        return new BlockStateContainer(this, property, FACING, TYPE);
     }
 
     @Override
@@ -118,11 +130,37 @@ public class BlockWood extends BlockHFBaseEnumRotatableMeta<Woodware> {
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof TileFillable) {
-            IBlockState state1 = state.withProperty(FILLED, ((TileFillable)tile).isFilled());
-            return state1;
+            boolean isFilled = ((TileFillable)tile).isFilled();
+            if (tile instanceof TileTrough) {
+                boolean north = isTrough(NORTH, world, pos);
+                boolean east = isTrough(EAST, world, pos);
+                boolean south = isTrough(SOUTH, world, pos);
+                boolean west = isTrough(WEST, world, pos);
+                boolean northEast = isTrough(NORTH, world, pos.offset(EAST));
+                boolean northWest = isTrough(NORTH, world, pos.offset(WEST));
+                boolean southEast = isTrough(SOUTH, world, pos.offset(EAST));
+                boolean southWest = isTrough(SOUTH, world, pos.offset(WEST));
+                if (north && !south) return isFilled ? state.withProperty(TYPE, Type.END_FILLED).withProperty(FACING, EAST) : state.withProperty(TYPE, Type.END_EMPTY).withProperty(FACING, EAST);
+                if (south && !north) return isFilled ? state.withProperty(TYPE, Type.END_FILLED).withProperty(FACING, EAST) : state.withProperty(TYPE, Type.END_EMPTY).withProperty(FACING, WEST);
+                if (south && north) return isFilled ? state.withProperty(TYPE, Type.MIDDLE_FILLED).withProperty(FACING, EAST) : state.withProperty(TYPE, Type.MIDDLE_EMPTY).withProperty(FACING, EAST);
+                if (west && east && !northWest && !southWest && !southEast && !northEast) return isFilled ? state.withProperty(TYPE, Type.MIDDLE_FILLED).withProperty(FACING, EAST) : state.withProperty(TYPE, Type.MIDDLE_EMPTY).withProperty(FACING, SOUTH);
+                if (east && (!west || northWest || southWest) && !southEast && !northEast) return isFilled ? state.withProperty(TYPE, Type.END_FILLED).withProperty(FACING, EAST) : state.withProperty(TYPE, Type.END_EMPTY).withProperty(FACING, SOUTH);
+                if (west && (!east || northEast || southEast) && !northWest && !southWest) return isFilled ? state.withProperty(TYPE, Type.END_FILLED).withProperty(FACING, EAST) : state.withProperty(TYPE, Type.END_EMPTY).withProperty(FACING, NORTH);
+            }
+
+            return isFilled ? state.withProperty(TYPE, Type.FILLED) : state.withProperty(TYPE, Type.NORMAL);
         }
 
         return state;
+    }
+
+    private boolean isTrough(EnumFacing facing, IBlockAccess world, BlockPos pos) {
+        IBlockState state = world.getBlockState(pos.offset(facing));
+        if (state.getBlock() == this) {
+            return state.getValue(property) == TROUGH;
+        }
+
+        return false;
     }
 
     @Override

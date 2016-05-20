@@ -7,6 +7,12 @@ import net.minecraft.util.EnumParticleTypes;
 
 public abstract class TileHeatable extends TileCookingTicking {
     @Override
+    public void doRenderUpdate() {
+        super.doRenderUpdate();
+        worldObj.markBlockRangeForRenderUpdate(getPos().down(), getPos().down());
+    }
+
+    @Override
     public void animate() {
         EnumFacing orientation = ((TileOven)worldObj.getTileEntity(pos.down())).orientation;
         if (orientation == EnumFacing.NORTH || orientation == EnumFacing.SOUTH) {

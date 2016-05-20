@@ -10,7 +10,7 @@ import net.minecraft.util.EnumFacing;
 import javax.annotation.Nullable;
 
 public class TileFaceable extends TileEntity implements IFaceable {
-    protected EnumFacing orientation = EnumFacing.NORTH;
+    protected EnumFacing orientation;
 
     @Override
     public void setFacing(EnumFacing dir) {
@@ -38,14 +38,17 @@ public class TileFaceable extends TileEntity implements IFaceable {
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
-        orientation = EnumFacing.values()[(nbt.getInteger("Orientation"))];
+        orientation = EnumFacing.byName(nbt.getString("Orientation"));
+        if (orientation == null) {
+            orientation = EnumFacing.NORTH;
+        }
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
         if (orientation != null) {
-            nbt.setInteger("Orientation", orientation.ordinal());
+            nbt.setString("Orientation", orientation.getName2());
         }
 
         return nbt;

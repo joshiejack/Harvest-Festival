@@ -10,7 +10,6 @@ import joshie.harvest.core.util.base.BlockHFBaseEnumRotatableTile;
 import joshie.harvest.core.util.generic.IFaceable;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -37,8 +36,6 @@ public class BlockCookware extends BlockHFBaseEnumRotatableTile<Cookware> {
     private static final AxisAlignedBB FRYING_PAN_AABB = new AxisAlignedBB(0.2F, 0F, 0.2F, 0.8F, 0.15F, 0.8F);
     private static final AxisAlignedBB MIXER_AABB = new AxisAlignedBB(0.275F, 0F, 0.275F, 0.725F, 0.725F, 0.725F);
     private static final AxisAlignedBB POT_AABB = new AxisAlignedBB(0.2F, 0F, 0.2F, 0.8F, 0.375F, 0.8F);
-    private static final PropertyBool OUTER_CORNER = PropertyBool.create("outer");
-    private static final PropertyBool INNER_CORNER = PropertyBool.create("inner");
     private static Item cookware = null;
 
     public enum Cookware implements IStringSerializable {
@@ -59,13 +56,12 @@ public class BlockCookware extends BlockHFBaseEnumRotatableTile<Cookware> {
         super(Material.PISTON, Cookware.class, HFTab.COOKING);
         setHardness(2.5F);
         setSoundType(SoundType.METAL);
-        setDefaultState(getDefaultState().withProperty(OUTER_CORNER, false).withProperty(INNER_CORNER, false));
     }
 
     @Override
     protected BlockStateContainer createBlockState() {
-        if(property == null) return new BlockStateContainer(this, temporary, FACING, OUTER_CORNER, INNER_CORNER);
-        return new BlockStateContainer(this, property, FACING, OUTER_CORNER, INNER_CORNER);
+        if(property == null) return new BlockStateContainer(this, temporary, FACING);
+        return new BlockStateContainer(this, property, FACING);
     }
 
     @Override
@@ -214,16 +210,16 @@ public class BlockCookware extends BlockHFBaseEnumRotatableTile<Cookware> {
             EnumFacing westFacing = getFacing(WEST, world, pos);
 
             //Inner Corner
-            if (northFacing == WEST && westFacing == NORTH) return state.withProperty(INNER_CORNER, true).withProperty(OUTER_CORNER, false).withProperty(FACING, WEST);
-            if (southFacing == WEST && westFacing == SOUTH) return state.withProperty(INNER_CORNER, true).withProperty(OUTER_CORNER, false).withProperty(FACING, SOUTH);
-            if (southFacing == EAST && eastFacing == SOUTH) return state.withProperty(INNER_CORNER, true).withProperty(OUTER_CORNER, false).withProperty(FACING, EAST);
-            if (northFacing == EAST && eastFacing == NORTH) return state.withProperty(INNER_CORNER, true).withProperty(OUTER_CORNER, false).withProperty(FACING, NORTH);
+            if (northFacing == WEST && westFacing == NORTH) return state.withProperty(property, COUNTER_IC).withProperty(FACING, WEST);
+            if (southFacing == WEST && westFacing == SOUTH) return state.withProperty(property, COUNTER_IC).withProperty(FACING, SOUTH);
+            if (southFacing == EAST && eastFacing == SOUTH) return state.withProperty(property, COUNTER_IC).withProperty(FACING, EAST);
+            if (northFacing == EAST && eastFacing == NORTH) return state.withProperty(property, COUNTER_IC).withProperty(FACING, NORTH);
 
             //Outer Corner
-            if (northFacing == EAST && westFacing == SOUTH) return state.withProperty(INNER_CORNER, false).withProperty(OUTER_CORNER, true).withProperty(FACING, EAST);
-            if (southFacing == EAST && westFacing == NORTH) return state.withProperty(INNER_CORNER, false).withProperty(OUTER_CORNER, true).withProperty(FACING, NORTH);
-            if (southFacing == WEST && eastFacing == NORTH) return state.withProperty(INNER_CORNER, false).withProperty(OUTER_CORNER, true).withProperty(FACING, WEST);
-            if (northFacing == WEST && eastFacing == SOUTH) return state.withProperty(INNER_CORNER, false).withProperty(OUTER_CORNER, true).withProperty(FACING, SOUTH);
+            if (northFacing == EAST && westFacing == SOUTH) return state.withProperty(property, COUNTER_OC).withProperty(FACING, EAST);
+            if (southFacing == EAST && westFacing == NORTH) return state.withProperty(property, COUNTER_OC).withProperty(FACING, NORTH);
+            if (southFacing == WEST && eastFacing == NORTH) return state.withProperty(property, COUNTER_OC).withProperty(FACING, WEST);
+            if (northFacing == WEST && eastFacing == SOUTH) return state.withProperty(property, COUNTER_OC).withProperty(FACING, SOUTH);
         }
 
         return ret;

@@ -29,6 +29,7 @@ public abstract class TileCooking extends TileFaceable {
     private short cookTimer = 0;
     private ArrayList<ItemStack> ingredients = new ArrayList<ItemStack>();
     private ItemStack result;
+    private int last;
 
     public float[] rotations = new float[20];
     public float[] offset1 = new float[20];
@@ -100,6 +101,7 @@ public abstract class TileCooking extends TileFaceable {
             if (worldObj.isRemote) return true;
             ItemStack clone = getRealIngredient(stack);
             clone.stackSize = 1;
+            this.last = this.ingredients.size();
             this.ingredients.add(clone);
             this.cooking = true;
             this.cookTimer = 0;
@@ -121,22 +123,29 @@ public abstract class TileCooking extends TileFaceable {
     @Override
     public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet) {
         super.onDataPacket(net, packet);
-        int size = ingredients.size();
         if (cooking) {
-            rotations[size] = worldObj.rand.nextFloat() * 360F;
-            offset1[size] = 0.5F - worldObj.rand.nextFloat();
-            offset2[size] = worldObj.rand.nextFloat() / 1.75F;
-            heightOffset[size] = 0.5F + (ingredients.size() * 0.001F);
+            rotations[last] = worldObj.rand.nextFloat() * 360F;
+            offset1[last] = 0.5F - worldObj.rand.nextFloat();
+            offset2[last] = worldObj.rand.nextFloat() / 1.75F;
+            heightOffset[last] = 0.5F + (ingredients.size() * 0.001F);
         }
+
+        doRenderUpdate();
+    }
+
+    protected void doRenderUpdate() {
+        worldObj.markBlockRangeForRenderUpdate(getPos(), getPos());
     }
 
     @Override
     public void markDirty() {
-        super.markDirty();
-
         if (!worldObj.isRemote) {
             MCServerHelper.markForUpdate(worldObj, getPos());
+            MCServerHelper.markForUpdate(worldObj, getPos().down());
+
         }
+
+        super.markDirty();
     }
 
     @Override
@@ -144,6 +153,8 @@ public abstract class TileCooking extends TileFaceable {
         super.readFromNBT(nbt);
         cooking = nbt.getBoolean("IsCooking");
         cookTimer = nbt.getShort("CookingTimer");
+        last = nbt.getByte("Last");
+        ingredients = new ArrayList<>();
         if (nbt.hasKey("IngredientsInside")) {
             NBTTagList is = nbt.getTagList("IngredientsInside", 10);
             for (int i = 0; i < is.tagCount(); i++) {
@@ -153,7 +164,7 @@ public abstract class TileCooking extends TileFaceable {
 
         if (nbt.hasKey("Count")) {
             result = StackHelper.getItemStackFromNBT(nbt);
-        }
+        } else result = null;
     }
 
     @Override
@@ -161,6 +172,7 @@ public abstract class TileCooking extends TileFaceable {
         super.writeToNBT(nbt);
         nbt.setBoolean("IsCooking", cooking);
         nbt.setShort("CookingTimer", cookTimer);
+        nbt.setByte("Last", (byte) last);
         //Write out the saved Ingredients
         if (ingredients.size() > 0) {
             NBTTagList is = new NBTTagList();

@@ -1,5 +1,6 @@
 {
 "textures": {
+    "particle": "harvestfestival:models/trough",
     "texture": "harvestfestival:models/trough"
 },
 "elements": [ 

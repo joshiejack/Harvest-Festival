@@ -15,6 +15,6 @@ public class MCServerHelper {
     }
 
     public static void markForUpdate(World world, BlockPos pos, IBlockState state) {
-        world.markAndNotifyBlock(pos, world.getChunkFromBlockCoords(pos), state, state, 2);
+        world.notifyBlockUpdate(pos, state, state, 2);
     }
 }

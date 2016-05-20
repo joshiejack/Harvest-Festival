@@ -40,9 +40,8 @@ public class HFCore {
         CommandManager.INSTANCE.registerCommand(new HFCommandWeather());
 
         //Register Packets
+        PacketHandler.registerPacket(PacketSetCalendar.class);
         PacketHandler.registerPacket(PacketCropRequest.class, Side.SERVER);
-        PacketHandler.registerPacket(PacketSetCalendar.class, Side.CLIENT);
-        PacketHandler.registerPacket(PacketSetCalendar.class, Side.SERVER);
         PacketHandler.registerPacket(PacketSyncForecast.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketSyncCrop.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketSyncGold.class, Side.CLIENT);
@@ -57,6 +56,7 @@ public class HFCore {
         PacketHandler.registerPacket(PacketSyncFridge.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketWateringCan.class, Side.SERVER);
         PacketHandler.registerPacket(PacketDismount.class, Side.SERVER);
+        PacketHandler.registerPacket(PacketRenderUpdate.class, Side.CLIENT);
 
         //Animal Packets
         PacketHandler.registerPacket(PacketSyncEverything.class, Side.CLIENT);
@@ -65,14 +65,12 @@ public class HFCore {
         PacketHandler.registerPacket(PacketSyncProductsProduced.class, Side.CLIENT);
 
         //Quest Packets
+        PacketHandler.registerPacket(PacketQuestCompleted.class);
+        PacketHandler.registerPacket(PacketQuestSetStage.class);
         PacketHandler.registerPacket(PacketQuestSetAvailable.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketQuestSetCurrent.class, Side.CLIENT);
-        PacketHandler.registerPacket(PacketQuestCompleted.class, Side.CLIENT);
-        PacketHandler.registerPacket(PacketQuestCompleted.class, Side.SERVER);
         PacketHandler.registerPacket(PacketQuestStart.class, Side.SERVER);
         PacketHandler.registerPacket(PacketQuestDecreaseHeld.class, Side.SERVER);
-        PacketHandler.registerPacket(PacketQuestSetStage.class, Side.CLIENT);
-        PacketHandler.registerPacket(PacketQuestSetStage.class, Side.SERVER);
     }
 
     public static void postInit() {

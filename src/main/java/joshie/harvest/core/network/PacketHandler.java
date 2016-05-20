@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.relauncher.Side;
 
@@ -45,5 +46,9 @@ public class PacketHandler {
     public static void sendAround(IMessage packet, TileEntity tile) {
         BlockPos pos = tile.getPos(); //Damn you!
         sendAround(packet, tile.getWorld().provider.getDimension(), pos.getX(), pos.getY(), pos.getZ());
+    }
+
+    public static void sendRefreshPacket(World world, BlockPos pos) {
+        sendAround(new PacketRenderUpdate(), world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ());
     }
 }

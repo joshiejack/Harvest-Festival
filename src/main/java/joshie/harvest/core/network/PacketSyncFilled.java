@@ -7,24 +7,24 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 
 public class PacketSyncFilled extends AbstractPacketLocation {
-    private boolean isFilled;
+    private int isFilled;
 
     public PacketSyncFilled() {}
-    public PacketSyncFilled(TileEntity tile, boolean hasEgg) {
+    public PacketSyncFilled(TileEntity tile, int isFilled) {
         super(tile);
-        this.isFilled = hasEgg;
+        this.isFilled = isFilled;
     }
 
     @Override
     public void toBytes(ByteBuf buffer) {
         super.toBytes(buffer);
-        buffer.writeBoolean(isFilled);
+        buffer.writeByte(isFilled);
     }
 
     @Override
     public void fromBytes(ByteBuf buffer) {
         super.fromBytes(buffer);
-        isFilled = buffer.readBoolean();
+        isFilled = buffer.readByte();
     }
 
     public void handlePacket(EntityPlayer player) {

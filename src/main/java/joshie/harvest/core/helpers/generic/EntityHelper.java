@@ -2,6 +2,7 @@ package joshie.harvest.core.helpers.generic;
 
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,6 +11,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
+import java.util.List;
 import java.util.UUID;
 
 public class EntityHelper {
@@ -56,5 +58,9 @@ public class EntityHelper {
 
     public static boolean isFakePlayer(EntityPlayer player) {
         return player instanceof FakePlayer || player.getGameProfile().getName().equals("CoFH") || player.getGameProfile().getName().startsWith("[Thaumcraft");
+    }
+
+    public static <T extends Entity> List<T> getEntities(Class<? extends T> t, World world, double size) {
+        return world.getEntitiesWithinAABB(t, Block.FULL_BLOCK_AABB.expand(size, size, size));
     }
 }

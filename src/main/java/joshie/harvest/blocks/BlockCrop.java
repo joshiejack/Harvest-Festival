@@ -407,7 +407,7 @@ public class BlockCrop extends BlockHFBaseEnum<Stage> implements IPlantable, IGr
     }
 
     @Override
-    public boolean canFeedAnimal(IAnimalTracked tracked, World world, BlockPos pos) {
+    public boolean canFeedAnimal(IAnimalTracked tracked, World world, BlockPos pos, IBlockState state) {
         if (AnimalHelper.eatsGrass(tracked)) {
             ICropData crop = HFApi.crops.getCropAtLocation(world, pos);
             ICrop theCrop = crop.getCrop();

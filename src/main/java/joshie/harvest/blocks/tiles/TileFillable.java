@@ -2,6 +2,7 @@ package joshie.harvest.blocks.tiles;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.IDailyTickable;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
@@ -10,7 +11,8 @@ import net.minecraft.tileentity.TileEntity;
 import javax.annotation.Nullable;
 
 public abstract class TileFillable extends TileEntity implements IDailyTickable {
-    private boolean isFilled = false;
+    public static final int MAX_FILL = 7;
+    protected int fillAmount;
 
     @Nullable
     @Override
@@ -23,14 +25,20 @@ public abstract class TileFillable extends TileEntity implements IDailyTickable 
         readFromNBT(packet.getNbtCompound());
     }
 
-    public boolean isFilled() {
-        return isFilled;
+    public abstract boolean onActivated(ItemStack held);
+
+    public int getFillAmount() {
+        return fillAmount;
     }
 
-    public void setFilled(boolean isFilled) {
-        this.isFilled = isFilled;
+    public void add(int amount) {
+        setFilled(fillAmount + amount);
+    }
+
+    public void setFilled(int isFilled) {
+        this.fillAmount = isFilled;
         worldObj.notifyBlockUpdate(getPos(), worldObj.getBlockState(getPos()), getWorld().getBlockState(getPos()), 3);
-        this.markDirty();
+        markDirty();
     }
 
     @Override
@@ -50,13 +58,13 @@ public abstract class TileFillable extends TileEntity implements IDailyTickable 
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
-        isFilled = nbt.getBoolean("IsFilled");
+        fillAmount = nbt.getByte("IsFilled");
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
-        nbt.setBoolean("IsFilled", isFilled);
+        nbt.setByte("IsFilled", (byte) fillAmount);
         return nbt;
     }
 }

@@ -1,12 +1,13 @@
 package joshie.harvest.blocks;
 
+import joshie.harvest.api.animals.IAnimalFeeder;
+import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.blocks.BlockWood.Woodware;
 import joshie.harvest.blocks.tiles.TileFillable;
 import joshie.harvest.blocks.tiles.TileNest;
 import joshie.harvest.blocks.tiles.TileTrough;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.helpers.ToolHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.base.BlockHFBaseEnumRotatableMeta;
 import net.minecraft.block.SoundType;
@@ -27,12 +28,11 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import static joshie.harvest.api.HFApi.shipping;
-import static joshie.harvest.blocks.BlockWood.Woodware.NEST;
 import static joshie.harvest.blocks.BlockWood.Woodware.SHIPPING;
 import static joshie.harvest.blocks.BlockWood.Woodware.TROUGH;
 import static net.minecraft.util.EnumFacing.*;
 
-public class BlockWood extends BlockHFBaseEnumRotatableMeta<Woodware> {
+public class BlockWood extends BlockHFBaseEnumRotatableMeta<Woodware> implements IAnimalFeeder {
     private static final AxisAlignedBB SHIPPING_AABB = new AxisAlignedBB(0D, 0D, 0D, 1D, 0.6D, 1D);
     public static final PropertyEnum<Type> TYPE = PropertyEnum.create("type", Type.class);
 
@@ -97,11 +97,10 @@ public class BlockWood extends BlockHFBaseEnumRotatableMeta<Woodware> {
                 held.splitStack(1);
                 return true;
             }
-        } else if (wood == NEST) {
-            if (held != null && ToolHelper.isEgg(held)) {
-                held.splitStack(1);
-                ((TileNest)world.getTileEntity(pos)).setFilled(true);
-                return true;
+        } else if (held != null) {
+            TileEntity tile = world.getTileEntity(pos);
+            if (tile instanceof TileFillable) {
+                return ((TileFillable)tile).onActivated(held);
             }
         }
 
@@ -130,7 +129,7 @@ public class BlockWood extends BlockHFBaseEnumRotatableMeta<Woodware> {
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof TileFillable) {
-            boolean isFilled = ((TileFillable)tile).isFilled();
+            boolean isFilled = ((TileFillable)tile).getFillAmount() > 0;
             if (tile instanceof TileTrough) {
                 boolean north = isTrough(NORTH, world, pos);
                 boolean east = isTrough(EAST, world, pos);
@@ -141,11 +140,11 @@ public class BlockWood extends BlockHFBaseEnumRotatableMeta<Woodware> {
                 boolean southEast = isTrough(SOUTH, world, pos.offset(EAST));
                 boolean southWest = isTrough(SOUTH, world, pos.offset(WEST));
                 if (north && !south) return isFilled ? state.withProperty(TYPE, Type.END_FILLED).withProperty(FACING, EAST) : state.withProperty(TYPE, Type.END_EMPTY).withProperty(FACING, EAST);
-                if (south && !north) return isFilled ? state.withProperty(TYPE, Type.END_FILLED).withProperty(FACING, EAST) : state.withProperty(TYPE, Type.END_EMPTY).withProperty(FACING, WEST);
+                if (south && !north) return isFilled ? state.withProperty(TYPE, Type.END_FILLED).withProperty(FACING, WEST) : state.withProperty(TYPE, Type.END_EMPTY).withProperty(FACING, WEST);
                 if (south && north) return isFilled ? state.withProperty(TYPE, Type.MIDDLE_FILLED).withProperty(FACING, EAST) : state.withProperty(TYPE, Type.MIDDLE_EMPTY).withProperty(FACING, EAST);
-                if (west && east && !northWest && !southWest && !southEast && !northEast) return isFilled ? state.withProperty(TYPE, Type.MIDDLE_FILLED).withProperty(FACING, EAST) : state.withProperty(TYPE, Type.MIDDLE_EMPTY).withProperty(FACING, SOUTH);
-                if (east && (!west || northWest || southWest) && !southEast && !northEast) return isFilled ? state.withProperty(TYPE, Type.END_FILLED).withProperty(FACING, EAST) : state.withProperty(TYPE, Type.END_EMPTY).withProperty(FACING, SOUTH);
-                if (west && (!east || northEast || southEast) && !northWest && !southWest) return isFilled ? state.withProperty(TYPE, Type.END_FILLED).withProperty(FACING, EAST) : state.withProperty(TYPE, Type.END_EMPTY).withProperty(FACING, NORTH);
+                if (west && east && !northWest && !southWest && !southEast && !northEast) return isFilled ? state.withProperty(TYPE, Type.MIDDLE_FILLED).withProperty(FACING, SOUTH) : state.withProperty(TYPE, Type.MIDDLE_EMPTY).withProperty(FACING, SOUTH);
+                if (east && (!west || northWest || southWest) && !southEast && !northEast) return isFilled ? state.withProperty(TYPE, Type.END_FILLED).withProperty(FACING, SOUTH) : state.withProperty(TYPE, Type.END_EMPTY).withProperty(FACING, SOUTH);
+                if (west && (!east || northEast || southEast) && !northWest && !southWest) return isFilled ? state.withProperty(TYPE, Type.END_FILLED).withProperty(FACING, NORTH) : state.withProperty(TYPE, Type.END_EMPTY).withProperty(FACING, NORTH);
             }
 
             return isFilled ? state.withProperty(TYPE, Type.FILLED) : state.withProperty(TYPE, Type.NORMAL);
@@ -162,6 +161,23 @@ public class BlockWood extends BlockHFBaseEnumRotatableMeta<Woodware> {
 
         return false;
     }
+
+    @Override
+    public boolean canFeedAnimal(IAnimalTracked tracked, World world, BlockPos pos, IBlockState state) {
+        if (isTrough(EnumFacing.DOWN, world, pos.up())) {
+            TileEntity tile = world.getTileEntity(pos);
+            if (tile instanceof TileFillable) {
+                TileFillable fillable = ((TileFillable)tile);
+                if (fillable.getFillAmount() > 0) {
+                    fillable.setFilled(fillable.getFillAmount() - 1);
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
 
     @Override
     public boolean isValidTab(CreativeTabs tab, Woodware wood) {

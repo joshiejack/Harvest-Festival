@@ -75,7 +75,6 @@
 
 ### To Check
 - Incubators will hatch chickens - J
-- Can Spawn the Goddess with the Goddess Flower Trick - J
 - Can Spawn the Goddess by dropping relevant items in goddess water - J
 - ASM For Snow - J
 - Sickles do their jobs - J

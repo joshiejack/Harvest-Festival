@@ -141,9 +141,6 @@
 - Chicken Feeding Tray (For chickens to be fed from) (Squares in the middle)
     - Should be symmetrical one rotation
     - Empty Model, Full Model
-- Sprinkler Block
-    - Just a simple shape in the centre, water effects will be done by J
-    - Was thinking against it BUT, I'd rather have sprinklers running on a server than do a team system.
 
 ### Questing Tasks
 - Spawning the NPC Builder Quest

@@ -1,5 +1,10 @@
 package joshie.harvest.blocks.tiles;
 
-public class TileTrough extends TileFillable {
+import net.minecraft.world.World;
 
+public class TileTrough extends TileFillable {
+    @Override
+    public void newDay(World world) {
+
+    }
 }

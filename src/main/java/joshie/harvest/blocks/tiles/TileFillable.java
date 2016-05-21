@@ -1,5 +1,7 @@
 package joshie.harvest.blocks.tiles;
 
+import joshie.harvest.api.HFApi;
+import joshie.harvest.api.core.IDailyTickable;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
@@ -7,7 +9,7 @@ import net.minecraft.tileentity.TileEntity;
 
 import javax.annotation.Nullable;
 
-public class TileFillable extends TileEntity {
+public abstract class TileFillable extends TileEntity implements IDailyTickable {
     private boolean isFilled = false;
 
     @Nullable
@@ -29,6 +31,20 @@ public class TileFillable extends TileEntity {
         this.isFilled = isFilled;
         worldObj.notifyBlockUpdate(getPos(), worldObj.getBlockState(getPos()), getWorld().getBlockState(getPos()), 3);
         this.markDirty();
+    }
+
+    @Override
+    public void validate() {
+        super.validate();
+        //Update the ticker
+        HFApi.tickable.addTickable(worldObj, this);
+    }
+
+    @Override
+    public void invalidate() {
+        super.invalidate();
+        //Update the ticker
+        HFApi.tickable.removeTickable(worldObj, this);
     }
 
     @Override

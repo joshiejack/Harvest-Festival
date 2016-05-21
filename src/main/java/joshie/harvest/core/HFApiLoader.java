@@ -27,5 +27,6 @@ public class HFApiLoader {
         HFApi.quests = new QuestRegistry();
         HFApi.relations = new RelationshipHelper();
         HFApi.shipping = new ShippingRegistry();
+        HFApi.tickable = new HFDailyTickable();
     }
 }

@@ -4,6 +4,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.api.core.ISeasonData;
+import joshie.harvest.core.HFDailyTickable;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSetCalendar;
@@ -95,6 +96,7 @@ public class CalendarServer extends Calendar {
         date.setDay(day).setSeason(season).setYear(year);
         PacketHandler.sendToEveryone(new PacketSetCalendar(date));
 
+        HFDailyTickable.newDay(world);
         HFTrackers.getCropTracker().newDay(world);
         HFTrackers.getAnimalTracker().newDay();
         HFTrackers.getMineTracker().newDay();

@@ -135,9 +135,6 @@
     - Medium
     - Small
 - For the two chicken things seed this image http://hm11-cdn.fogu.com/animal_basics02.jpg
-- Chicken Nest (For chickens to lay eggs in), (Top with the eggs)
-    - Should be symmetrical, one rotation
-    - Empty Model, Model with Small Egg, Model with Medium Egg, Model with Large Egg
 - Chicken Feeding Tray (For chickens to be fed from) (Squares in the middle)
     - Should be symmetrical one rotation
     - Empty Model, Full Model

@@ -134,10 +134,6 @@
     - Large
     - Medium
     - Small
-- For the two chicken things seed this image http://hm11-cdn.fogu.com/animal_basics02.jpg
-- Chicken Feeding Tray (For chickens to be fed from) (Squares in the middle)
-    - Should be symmetrical one rotation
-    - Empty Model, Full Model
 
 ### Questing Tasks
 - Spawning the NPC Builder Quest

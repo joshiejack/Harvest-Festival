@@ -2,19 +2,16 @@ package joshie.harvest.blocks.tiles;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.IDailyTickable;
+import joshie.harvest.core.helpers.generic.MCServerHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
-import javax.annotation.Nullable;
-
 public abstract class TileFillable extends TileEntity implements IDailyTickable {
-    public static final int MAX_FILL = 7;
     protected int fillAmount;
 
-    @Nullable
     @Override
     public SPacketUpdateTileEntity getUpdatePacket()  {
         return new SPacketUpdateTileEntity(getPos(), 1, writeToNBT(new NBTTagCompound()));
@@ -37,7 +34,7 @@ public abstract class TileFillable extends TileEntity implements IDailyTickable 
 
     public void setFilled(int isFilled) {
         this.fillAmount = isFilled;
-        worldObj.notifyBlockUpdate(getPos(), worldObj.getBlockState(getPos()), getWorld().getBlockState(getPos()), 3);
+        MCServerHelper.markForUpdate(worldObj, getPos(), 3);
         markDirty();
     }
 
@@ -63,8 +60,7 @@ public abstract class TileFillable extends TileEntity implements IDailyTickable 
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
-        super.writeToNBT(nbt);
         nbt.setByte("IsFilled", (byte) fillAmount);
-        return nbt;
+        return super.writeToNBT(nbt);
     }
 }

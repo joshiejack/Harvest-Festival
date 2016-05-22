@@ -16,6 +16,7 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -129,24 +130,26 @@ public class BlockWood extends BlockHFBaseEnumRotatableMeta<Woodware> implements
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof TileFillable) {
-            boolean isFilled = ((TileFillable)tile).getFillAmount() > 0;
+
             if (tile instanceof TileTrough) {
+                boolean isFilled = ((TileTrough)tile).getMaster().getFillAmount() > 0;
                 boolean north = isTrough(NORTH, world, pos);
                 boolean east = isTrough(EAST, world, pos);
                 boolean south = isTrough(SOUTH, world, pos);
                 boolean west = isTrough(WEST, world, pos);
-                boolean northEast = isTrough(NORTH, world, pos.offset(EAST));
-                boolean northWest = isTrough(NORTH, world, pos.offset(WEST));
-                boolean southEast = isTrough(SOUTH, world, pos.offset(EAST));
-                boolean southWest = isTrough(SOUTH, world, pos.offset(WEST));
+                //boolean northEast = isTrough(NORTH, world, pos.offset(EAST));
+                //boolean northWest = isTrough(NORTH, world, pos.offset(WEST));
+                //boolean southEast = isTrough(SOUTH, world, pos.offset(EAST));
+                //boolean southWest = isTrough(SOUTH, world, pos.offset(WEST));
                 if (north && !south) return isFilled ? state.withProperty(TYPE, Type.END_FILLED).withProperty(FACING, EAST) : state.withProperty(TYPE, Type.END_EMPTY).withProperty(FACING, EAST);
                 if (south && !north) return isFilled ? state.withProperty(TYPE, Type.END_FILLED).withProperty(FACING, WEST) : state.withProperty(TYPE, Type.END_EMPTY).withProperty(FACING, WEST);
                 if (south && north) return isFilled ? state.withProperty(TYPE, Type.MIDDLE_FILLED).withProperty(FACING, EAST) : state.withProperty(TYPE, Type.MIDDLE_EMPTY).withProperty(FACING, EAST);
-                if (west && east && !northWest && !southWest && !southEast && !northEast) return isFilled ? state.withProperty(TYPE, Type.MIDDLE_FILLED).withProperty(FACING, SOUTH) : state.withProperty(TYPE, Type.MIDDLE_EMPTY).withProperty(FACING, SOUTH);
-                if (east && (!west || northWest || southWest) && !southEast && !northEast) return isFilled ? state.withProperty(TYPE, Type.END_FILLED).withProperty(FACING, SOUTH) : state.withProperty(TYPE, Type.END_EMPTY).withProperty(FACING, SOUTH);
-                if (west && (!east || northEast || southEast) && !northWest && !southWest) return isFilled ? state.withProperty(TYPE, Type.END_FILLED).withProperty(FACING, NORTH) : state.withProperty(TYPE, Type.END_EMPTY).withProperty(FACING, NORTH);
+                if (west && east) return isFilled ? state.withProperty(TYPE, Type.MIDDLE_FILLED).withProperty(FACING, SOUTH) : state.withProperty(TYPE, Type.MIDDLE_EMPTY).withProperty(FACING, SOUTH);
+                if (east && !west) return isFilled ? state.withProperty(TYPE, Type.END_FILLED).withProperty(FACING, SOUTH) : state.withProperty(TYPE, Type.END_EMPTY).withProperty(FACING, SOUTH);
+                if (west && !east) return isFilled ? state.withProperty(TYPE, Type.END_FILLED).withProperty(FACING, NORTH) : state.withProperty(TYPE, Type.END_EMPTY).withProperty(FACING, NORTH);
             }
 
+            boolean isFilled = ((TileFillable)tile).getFillAmount() > 0;
             return isFilled ? state.withProperty(TYPE, Type.FILLED) : state.withProperty(TYPE, Type.NORMAL);
         }
 
@@ -156,7 +159,9 @@ public class BlockWood extends BlockHFBaseEnumRotatableMeta<Woodware> implements
     private boolean isTrough(EnumFacing facing, IBlockAccess world, BlockPos pos) {
         IBlockState state = world.getBlockState(pos.offset(facing));
         if (state.getBlock() == this) {
-            return state.getValue(property) == TROUGH;
+            if(state.getValue(property) == TROUGH) {
+                return (((TileTrough)world.getTileEntity(pos)).getMaster() == ((TileTrough)world.getTileEntity(pos.offset(facing))).getMaster());
+            }
         }
 
         return false;
@@ -178,6 +183,22 @@ public class BlockWood extends BlockHFBaseEnumRotatableMeta<Woodware> implements
         return false;
     }
 
+    @Override
+    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+        super.onBlockPlacedBy(world, pos, state, placer, stack);
+        if (getEnumFromState(state) == TROUGH) {
+            ((TileTrough)world.getTileEntity(pos)).onPlaced();
+        }
+    }
+
+    @Override
+    public void breakBlock(World world, BlockPos pos, IBlockState state) {
+        if (getEnumFromState(state) == TROUGH) {
+            ((TileTrough)world.getTileEntity(pos)).onRemoved();
+        }
+
+        super.breakBlock(world, pos, state);
+    }
 
     @Override
     public boolean isValidTab(CreativeTabs tab, Woodware wood) {

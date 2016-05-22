@@ -17,4 +17,12 @@ public class MCServerHelper {
     public static void markForUpdate(World world, BlockPos pos, IBlockState state) {
         world.notifyBlockUpdate(pos, state, state, 2);
     }
+
+    public static void markForUpdate(World world, BlockPos pos, IBlockState state, int value) {
+        world.notifyBlockUpdate(pos, state, state, value);
+    }
+
+    public static void markForUpdate(World world, BlockPos pos, int value) {
+        markForUpdate(world, pos, world.getBlockState(pos), value);
+    }
 }

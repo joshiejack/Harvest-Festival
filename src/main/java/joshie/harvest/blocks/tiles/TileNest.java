@@ -6,6 +6,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class TileNest extends TileFillable implements IDailyTickable {
+    private static final int MAX_FILL = 7;
+
     @Override
     public boolean onActivated(ItemStack held) {
         if (ToolHelper.isEgg(held)) {

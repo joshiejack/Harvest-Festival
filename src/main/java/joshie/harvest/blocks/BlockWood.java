@@ -137,10 +137,6 @@ public class BlockWood extends BlockHFBaseEnumRotatableMeta<Woodware> implements
                 boolean east = isTrough(EAST, world, pos);
                 boolean south = isTrough(SOUTH, world, pos);
                 boolean west = isTrough(WEST, world, pos);
-                //boolean northEast = isTrough(NORTH, world, pos.offset(EAST));
-                //boolean northWest = isTrough(NORTH, world, pos.offset(WEST));
-                //boolean southEast = isTrough(SOUTH, world, pos.offset(EAST));
-                //boolean southWest = isTrough(SOUTH, world, pos.offset(WEST));
                 if (north && !south) return isFilled ? state.withProperty(TYPE, Type.END_FILLED).withProperty(FACING, EAST) : state.withProperty(TYPE, Type.END_EMPTY).withProperty(FACING, EAST);
                 if (south && !north) return isFilled ? state.withProperty(TYPE, Type.END_FILLED).withProperty(FACING, WEST) : state.withProperty(TYPE, Type.END_EMPTY).withProperty(FACING, WEST);
                 if (south && north) return isFilled ? state.withProperty(TYPE, Type.MIDDLE_FILLED).withProperty(FACING, EAST) : state.withProperty(TYPE, Type.MIDDLE_EMPTY).withProperty(FACING, EAST);
@@ -159,7 +155,7 @@ public class BlockWood extends BlockHFBaseEnumRotatableMeta<Woodware> implements
     private boolean isTrough(EnumFacing facing, IBlockAccess world, BlockPos pos) {
         IBlockState state = world.getBlockState(pos.offset(facing));
         if (state.getBlock() == this) {
-            if(state.getValue(property) == TROUGH) {
+            if(getEnumFromState(state) == TROUGH) {
                 return (((TileTrough)world.getTileEntity(pos)).getMaster() == ((TileTrough)world.getTileEntity(pos.offset(facing))).getMaster());
             }
         }
@@ -169,14 +165,12 @@ public class BlockWood extends BlockHFBaseEnumRotatableMeta<Woodware> implements
 
     @Override
     public boolean canFeedAnimal(IAnimalTracked tracked, World world, BlockPos pos, IBlockState state) {
-        if (isTrough(EnumFacing.DOWN, world, pos.up())) {
-            TileEntity tile = world.getTileEntity(pos);
-            if (tile instanceof TileFillable) {
-                TileFillable fillable = ((TileFillable)tile);
-                if (fillable.getFillAmount() > 0) {
-                    fillable.setFilled(fillable.getFillAmount() - 1);
-                    return true;
-                }
+        if (getEnumFromState(state) == TROUGH) {
+            TileTrough master = ((TileTrough)world.getTileEntity(pos)).getMaster();
+            if (master.getFillAmount() > 0) {
+                master.add(-1);
+                //Good ol master block
+                return true;
             }
         }
 

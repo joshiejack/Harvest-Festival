@@ -17,6 +17,7 @@ import static net.minecraft.util.EnumFacing.*;
 public class TileTrough extends TileFillable {
     private static final AnimalFoodType[] GRASS = new AnimalFoodType[] { AnimalFoodType.GRASS };
     private static final int MAX_WIDTH = 3;
+    private boolean facingX;
     private int offsetX;
     private int offsetZ;
     private int size;
@@ -37,6 +38,13 @@ public class TileTrough extends TileFillable {
                 int offsetX = trough.getPos().getX() - getPos().getX();
                 int offsetZ = trough.getPos().getZ() - getPos().getZ();
                 if (offsetX != 0 && offsetZ != 0) return false;
+                if (trough.size > 1) {
+                    if (trough.facingX && offsetX != 0) return false;
+                    else if (!trough.facingX && offsetZ != 0) return false;
+                }
+
+                if (offsetZ != 0) trough.facingX = true;
+                if (offsetX != 0) trough.facingX = false;
                 this.offsetX = offsetX;
                 this.offsetZ = offsetZ;
                 trough.size++; //Increase the trough size
@@ -101,6 +109,7 @@ public class TileTrough extends TileFillable {
     public void onRemoved() {
         int volume = getMaster().getFillAmount();
         int size = Math.max(0, getMaster().size - 1);
+        boolean facingX = getMaster().facingX;
         TileTrough master = getMaster();
         if (getMaster() == this) {
             BlockPos newMaster = getNewMaster();
@@ -111,6 +120,7 @@ public class TileTrough extends TileFillable {
 
         master.setFilled(Math.min(7 * size, volume)); //Update the volume in the new master
         master.size = size;
+        master.facingX = facingX;
         master.markDirty();
     }
 
@@ -168,6 +178,7 @@ public class TileTrough extends TileFillable {
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
+        facingX = nbt.getBoolean("FacingX");
         offsetX = nbt.getInteger("OffsetX");
         offsetZ = nbt.getInteger("OffsetZ");
         size = nbt.getByte("Size");
@@ -175,6 +186,7 @@ public class TileTrough extends TileFillable {
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+        nbt.setBoolean("FacingX", facingX);
         nbt.setInteger("OffsetX", offsetX);
         nbt.setInteger("OffsetZ", offsetZ);
         nbt.setByte("Size", (byte) size);

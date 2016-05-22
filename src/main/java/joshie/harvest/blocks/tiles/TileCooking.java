@@ -169,7 +169,6 @@ public abstract class TileCooking extends TileFaceable {
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
-        super.writeToNBT(nbt);
         nbt.setBoolean("IsCooking", cooking);
         nbt.setShort("CookingTimer", cookTimer);
         nbt.setByte("Last", (byte) last);
@@ -187,7 +186,7 @@ public abstract class TileCooking extends TileFaceable {
             StackHelper.writeItemStackToNBT(nbt, result);
         }
 
-        return nbt;
+        return super.writeToNBT(nbt);
     }
 
     public boolean isAbove(Utensil utensil) {

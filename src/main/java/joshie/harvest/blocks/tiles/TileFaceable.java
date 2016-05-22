@@ -4,12 +4,11 @@ import joshie.harvest.core.util.generic.IFaceable;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 
 import javax.annotation.Nullable;
 
-public class TileFaceable extends TileEntity implements IFaceable {
+public class TileFaceable extends TileHarvest implements IFaceable {
     protected EnumFacing orientation;
 
     @Override
@@ -39,18 +38,17 @@ public class TileFaceable extends TileEntity implements IFaceable {
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
         orientation = EnumFacing.byName(nbt.getString("Orientation"));
-        if (orientation == null) {
+        if (orientation == null || orientation == EnumFacing.DOWN || orientation == EnumFacing.UP) {
             orientation = EnumFacing.NORTH;
         }
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
-        super.writeToNBT(nbt);
         if (orientation != null) {
             nbt.setString("Orientation", orientation.getName2());
         }
 
-        return nbt;
+        return super.writeToNBT(nbt);
     }
 }

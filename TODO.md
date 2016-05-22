@@ -78,9 +78,6 @@
 - Can Spawn the Goddess by dropping relevant items in goddess water - J
 - ASM For Snow - J
 - Sickles do their jobs - J
-- Troughs can be filled - J
-- Cows and Sheep will eat grass crop and from trough automatically - J
-- Animals will get sick if not fed for a few days and die - J
 - Animals will give better products when cared for (brushing, talking, milking/shearing, treats) - J
 - Animal Pregnancy is working correctly (Impregnanted via miracle potion, takes few days to hatch) - J
 - All Cooking utensils work correctly - J

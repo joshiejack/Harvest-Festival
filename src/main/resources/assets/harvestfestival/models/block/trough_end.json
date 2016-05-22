@@ -81,10 +81,12 @@
     }
 },
 {
+    "__comment": "Hay",
     "from": [ 0, 4, 2 ],
     "to": [ 14, 11, 14 ],
     "faces": {
-        "up":    { "uv": [ 0, 9, 7, 15 ], "texture": "#texture" }
+        "up":    { "uv": [ 0, 9, 7, 15 ], "texture": "#texture" },
+        "west":  { "uv": [ 0, 9, 6, 12.5 ], "texture": "#texture" }
     }
 }
 ]

@@ -134,16 +134,6 @@
     - Large
     - Medium
     - Small
-- For the two chicken things seed this image http://hm11-cdn.fogu.com/animal_basics02.jpg
-- Chicken Nest (For chickens to lay eggs in), (Top with the eggs)
-    - Should be symmetrical, one rotation
-    - Empty Model, Model with Small Egg, Model with Medium Egg, Model with Large Egg
-- Chicken Feeding Tray (For chickens to be fed from) (Squares in the middle)
-    - Should be symmetrical one rotation
-    - Empty Model, Full Model
-- Sprinkler Block
-    - Just a simple shape in the centre, water effects will be done by J
-    - Was thinking against it BUT, I'd rather have sprinklers running on a server than do a team system.
 
 ### Questing Tasks
 - Spawning the NPC Builder Quest

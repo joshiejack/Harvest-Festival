@@ -17,12 +17,12 @@ public class CropTrackerClient extends CropTracker {
             PacketHandler.sendToServer(new PacketCropRequest(world, pos));
         }
 
-        return data != null ? data : new CropData(pos, world.provider.getDimension());
+        return data != null ? data : new CropData(pos);
     }
 
     public void updateClient(int dimension, BlockPos position, ICropData data, boolean isRemoval) {
         if (isRemoval) {
-            getDimensionData(dimension).remove(position);
-        } else getDimensionData(dimension).put(position, data);
+            this.cropTracker.remove(position);
+        } else this.cropTracker.put(position, data);
     }
 }

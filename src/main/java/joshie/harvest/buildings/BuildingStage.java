@@ -57,7 +57,7 @@ public class BuildingStage {
 
 
                 TownData data = TownHelper.getClosestTownToEntityOrCreate(entity);
-                data.addBuilding(building, direction, pos);
+                data.addBuilding(world, building, direction, pos);
                 entity.resetSpawnHome();
             }
         } else {

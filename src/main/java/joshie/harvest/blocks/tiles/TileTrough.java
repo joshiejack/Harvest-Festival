@@ -1,7 +1,6 @@
 package joshie.harvest.blocks.tiles;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.core.helpers.generic.EntityHelper;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -12,10 +11,10 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import static joshie.harvest.api.animals.AnimalFoodType.GRASS;
 import static net.minecraft.util.EnumFacing.*;
 
 public class TileTrough extends TileFillable {
-    private static final AnimalFoodType[] GRASS = new AnimalFoodType[] { AnimalFoodType.GRASS };
     private static final int MAX_WIDTH = 3;
     private boolean facingX;
     private int offsetX;
@@ -126,7 +125,7 @@ public class TileTrough extends TileFillable {
 
     @Override
     public boolean onActivated(ItemStack held) {
-        if (HFApi.animals.canEat(GRASS, held)) {
+        if (HFApi.animals.canEat(held, GRASS)) {
             TileTrough master = getMaster();
             if (master != null) {
                 boolean processed = false;

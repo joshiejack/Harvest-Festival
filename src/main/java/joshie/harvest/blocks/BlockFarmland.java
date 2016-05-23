@@ -1,5 +1,6 @@
 package joshie.harvest.blocks;
 
+import joshie.harvest.api.core.IDailyTickableBlock;
 import joshie.harvest.blocks.BlockFarmland.Moisture;
 import joshie.harvest.core.util.base.BlockHFBaseEnum;
 import net.minecraft.block.Block;
@@ -22,14 +23,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
-public class BlockFarmland extends BlockHFBaseEnum<Moisture> {
+public class BlockFarmland extends BlockHFBaseEnum<Moisture> implements IDailyTickableBlock {
     private final AxisAlignedBB FARMLAND_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.9375D, 1.0D);
     private final IBlockState DRY;
     private final IBlockState WET;
 
     public BlockFarmland() {
         super(Material.GROUND, Moisture.class, null);
-        setTickRandomly(true);
+        setTickRandomly(false);
         setLightOpacity(255);
         setSoundType(SoundType.GROUND);
         DRY = getStateFromEnum(Moisture.DRY);
@@ -76,9 +77,21 @@ public class BlockFarmland extends BlockHFBaseEnum<Moisture> {
         }
     }
 
+    @Override
+    public boolean newDay(World world, BlockPos pos, IBlockState state) {
+        if (state != WET && world.isRainingAt(pos.up())) {
+            world.setBlockState(pos, WET, 2);
+        } else {
+            if (state == WET) world.setBlockState(pos, DRY, 2);
+            else if (state == DRY && (!hasCrops(world, pos))) world.setBlockState(pos, Blocks.DIRT.getDefaultState(), 2);
+        }
+
+        return world.getBlockState(pos).getBlock() == this;
+    }
+
     private boolean hasCrops(World worldIn, BlockPos pos)  {
         Block block = worldIn.getBlockState(pos.up()).getBlock();
-        return block instanceof net.minecraftforge.common.IPlantable && canSustainPlant(worldIn.getBlockState(pos), worldIn, pos, net.minecraft.util.EnumFacing.UP, (net.minecraftforge.common.IPlantable)block);
+        return block instanceof net.minecraftforge.common.IPlantable;
     }
 
     @Override

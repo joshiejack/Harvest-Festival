@@ -6,6 +6,7 @@ import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.HashMap;
@@ -56,9 +57,9 @@ public class TownData {
         return uuid;
     }
     
-    public void addBuilding(Building building, Direction direction, BlockPos pos) {
+    public void addBuilding(World world, Building building, Direction direction, BlockPos pos) {
         buildings.put(BuildingRegistry.REGISTRY.getNameForObject(building), new TownBuilding(building, direction, pos));
-        HFTrackers.markDirty();
+        HFTrackers.markDirty(world);
     }
 
     public boolean hasBuilding(ResourceLocation resource) {

@@ -4,16 +4,17 @@ import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.network.penguin.PenguinPacket;
 import net.minecraft.entity.player.EntityPlayer;
 
-public class PacketSetCalendar extends PenguinPacket {
+public class PacketSetCalendar extends AbstractPacketDimension {
+    private int dimension;
     private int day;
     private Season season;
     private int year;
     
     public PacketSetCalendar() {}
-    public PacketSetCalendar(ICalendarDate date) {
+    public PacketSetCalendar(int dimension, ICalendarDate date) {
+        super(dimension);
         this.day = date.getDay();
         this.season = date.getSeason();
         this.year = date.getYear();
@@ -21,6 +22,7 @@ public class PacketSetCalendar extends PenguinPacket {
 
     @Override
     public void toBytes(ByteBuf buf) {
+        super.toBytes(buf);
         buf.writeByte(day);
         buf.writeByte(season.ordinal());
         buf.writeShort(year);
@@ -28,6 +30,7 @@ public class PacketSetCalendar extends PenguinPacket {
 
     @Override
     public void fromBytes(ByteBuf buf) {
+        super.fromBytes(buf);
         day = buf.readByte();
         season = Season.values()[buf.readByte()];
         year = buf.readShort();
@@ -35,13 +38,13 @@ public class PacketSetCalendar extends PenguinPacket {
     
     @Override
     public void handlePacket(EntityPlayer player) {
-        ICalendarDate date = HFTrackers.getCalendar().getDate();
+        ICalendarDate date = HFTrackers.getCalendar(player.worldObj).getDate();
         Season previous = date.getSeason();
         date.setDay(day).setSeason(season).setYear(year);
-        
+
         //Refresh all Blocks in Render range
         //If the seasons are not the same, re-render the client
-        if(previous != season) {
+        if (previous != season) {
             joshie.harvest.core.helpers.generic.MCClientHelper.refresh();
         }
     }

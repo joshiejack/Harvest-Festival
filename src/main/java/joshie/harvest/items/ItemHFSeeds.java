@@ -122,7 +122,7 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
         if (player.canPlayerEdit(pos, facing, stack) && player.canPlayerEdit(pos.up(), facing, stack)) {
             IBlockState soil = world.getBlockState(pos.down());
             if (crop.getSoilHandler().canSustainPlant(soil, world, pos.up(), (IPlantable) HFBlocks.CROPS) && world.isAirBlock(pos.up())) {
-                HFTrackers.getCropTracker().plantCrop(player, world, pos.up(), crop, 1);
+                HFTrackers.getCropTracker(world).plantCrop(player, world, pos.up(), crop, 1);
 
                 if (!world.isRemote) {
                     world.setBlockState(pos.up(), HFBlocks.CROPS.getDefaultState());

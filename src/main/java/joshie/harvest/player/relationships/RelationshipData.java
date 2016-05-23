@@ -22,7 +22,7 @@ public abstract class RelationshipData {
 
     public void clear(IRelatable animal) {
         relationships.remove(animal);
-        HFTrackers.markDirty();
+        HFTrackers.markPlayersDirty();
     }
 
     protected int getRelationship(IRelatable relatable) {

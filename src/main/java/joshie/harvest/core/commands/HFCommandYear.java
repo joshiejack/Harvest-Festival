@@ -22,10 +22,10 @@ public class HFCommandYear extends HFCommandBase {
     public boolean execute(MinecraftServer server, ICommandSender sender, String[] parameters) {
         if (parameters != null && parameters.length == 1) {
             try {
-                Calendar calendar = HFTrackers.getCalendar();
+                Calendar calendar = HFTrackers.getCalendar(sender.getEntityWorld());
                 int year = Math.min(Integer.MAX_VALUE, Math.max(1, Integer.parseInt(parameters[0])));
                 calendar.getDate().setYear(year);
-                PacketHandler.sendToEveryone(new PacketSetCalendar(calendar.getDate()));
+                PacketHandler.sendToEveryone(new PacketSetCalendar(sender.getEntityWorld().provider.getDimension(), calendar.getDate()));
                 return true;
             } catch (NumberFormatException ignored) {
             }

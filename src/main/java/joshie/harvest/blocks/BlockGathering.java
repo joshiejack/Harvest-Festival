@@ -4,6 +4,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.blocks.BlockGathering.GatheringType;
 import joshie.harvest.core.HFTab;
+import joshie.harvest.core.helpers.WorldHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.base.BlockHFBaseEnumRotatableMeta;
 import net.minecraft.block.SoundType;
@@ -61,7 +62,7 @@ public class BlockGathering extends BlockHFBaseEnumRotatableMeta<GatheringType> 
 
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
-        Season season = HFApi.calendar.getToday().getSeason();
+        Season season = HFApi.calendar.getToday(WorldHelper.getWorld(world)).getSeason();
         if (season == Season.WINTER) {
             return state.withProperty(WINTER, true);
         } else return state.withProperty(WINTER, false);

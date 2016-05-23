@@ -16,12 +16,12 @@ import net.minecraft.world.World;
 
 public class CropHelper {
     public static IBlockState getBlockState(World world, BlockPos pos, PlantSection section, boolean withered) {
-        ICropData data = HFTrackers.getCropTracker().getCropDataForLocation(world, pos);
+        ICropData data = HFTrackers.getCropTracker(world).getCropDataForLocation(world, pos);
         return data.getCrop().getStateHandler().getState(section, data.getStage(), withered);
     }
 
     public static AxisAlignedBB getCropBoundingBox(World world, BlockPos pos, PlantSection section, boolean withered) {
-        ICropData data = HFTrackers.getCropTracker().getCropDataForLocation(world, pos);
+        ICropData data = HFTrackers.getCropTracker(world).getCropDataForLocation(world, pos);
         return data.getCrop().getStateHandler().getBoundingBox(section, data.getStage(), withered);
     }
 
@@ -30,7 +30,7 @@ public class CropHelper {
         IBlockState state = world.getBlockState(pos);
         boolean ret = !isHydrated(world, pos);
         if (ret) {
-            HFTrackers.getCropTracker().hydrate(world, pos.up(), state);
+            HFTrackers.getCropTracker(world).hydrate(world, pos.up(), state);
             world.setBlockState(pos, HFBlocks.FARMLAND.getStateFromEnum(Moisture.WET), 2);
         }
 
@@ -52,7 +52,7 @@ public class CropHelper {
 
     //Harvests the crop at this location
     public static boolean harvestCrop(EntityPlayer player, World world, BlockPos pos) {
-        ItemStack stack = HFTrackers.getCropTracker().harvest(player, world, pos);
+        ItemStack stack = HFTrackers.getCropTracker(world).harvest(player, world, pos);
         if (!world.isRemote && stack != null) {
             ItemHelper.dropBlockAsItem(world, pos.getX(), pos.getY(), pos.getZ(), stack);
         }

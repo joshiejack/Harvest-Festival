@@ -2,11 +2,13 @@ package joshie.harvest.player.tracking;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.crops.ICrop;
+import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.helpers.NBTHelper.ISaveable;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.HashSet;
@@ -46,6 +48,25 @@ public class TrackingData {
         @Override
         public int hashCode() {
             return getKey() == null ? 0: getKey().hashCode();
+        }
+    }
+
+    public static class BlockStack extends HolderStack<BlockStack, BlockPos> {
+        public BlockPos pos;
+
+        @Override
+        public void readFromNBT(NBTTagCompound tag) {
+            pos = NBTHelper.readBlockPos("Pos", tag);
+        }
+
+        @Override
+        public void writeToNBT(NBTTagCompound tag) {
+            NBTHelper.writeBlockPos("Pos", tag, pos);
+        }
+
+        @Override
+        public BlockPos getKey() {
+            return pos;
         }
     }
 

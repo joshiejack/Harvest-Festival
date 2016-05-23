@@ -38,7 +38,7 @@ public class BlockSnowSheet extends BlockSnow {
 
     @Override
     public void fillWithRain(World world, BlockPos pos) {
-        if (HFTrackers.getCalendar().getDate().getSeason() == Season.WINTER) {
+        if (HFTrackers.getCalendar(world).getDate().getSeason() == Season.WINTER) {
             IBlockState state = world.getBlockState(pos);
             int meta = state.getValue(LAYERS);
             if (meta < 15) {

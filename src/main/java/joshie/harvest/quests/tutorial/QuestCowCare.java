@@ -61,7 +61,7 @@ public class QuestCowCare extends Quest {
                                 increaseStage(player);
                             }
 
-                            HFTrackers.markDirty();
+                            HFTrackers.markDirty(target.getEntityWorld());
                         }
                     }
                 }

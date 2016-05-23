@@ -1,5 +1,6 @@
 package joshie.harvest.items;
 
+import joshie.harvest.api.HFApi;
 import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.core.helpers.PlayerHelper;
 import joshie.harvest.core.helpers.generic.DirectionHelper;
@@ -78,11 +79,13 @@ public class ItemHoe extends ItemBaseTool {
                             doParticles(stack, player, world, new BlockPos(x2, pos.getY(), z2));
                             if (!world.isRemote) {
                                 world.setBlockState(new BlockPos(x2, pos.getY(), z2), HFBlocks.FARMLAND.getDefaultState());
+                                HFApi.tickable.addTickable(world, new BlockPos(x2, pos.getY(), z2));
                             }
                         }
                     }
                 }
             }
+
             return changed;
         }
     }

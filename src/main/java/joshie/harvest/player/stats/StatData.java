@@ -3,6 +3,7 @@ package joshie.harvest.player.stats;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.core.handlers.HFTrackers;
+import net.minecraft.world.World;
 
 public class StatData {
     protected ICalendarDate birthday = HFApi.calendar.newDate(0, null, 0);
@@ -28,17 +29,17 @@ public class StatData {
             this.fatigue = fatigueMin;
         }
         
-        HFTrackers.markDirty();
+        HFTrackers.markPlayersDirty();
     }
 
     public boolean isBirthdaySet() {
         return birthday.getSeason() != null && birthday.getDay() != 0 && birthday.getYear() != 0;
     }
 
-    public boolean setBirthday() {
+    public boolean setBirthday(World world) {
         if (!isBirthdaySet()) {
-            birthday = HFApi.calendar.cloneDate(HFApi.calendar.getToday());
-            HFTrackers.markDirty();
+            birthday = HFApi.calendar.cloneDate(HFApi.calendar.getToday(world));
+            HFTrackers.markPlayersDirty();
             return true;
         } else return false;
     }

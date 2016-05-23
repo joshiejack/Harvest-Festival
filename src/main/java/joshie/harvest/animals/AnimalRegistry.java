@@ -31,7 +31,7 @@ public class AnimalRegistry implements IAnimalHandler {
     }
 
     @Override
-    public boolean canEat(AnimalFoodType[] types, ItemStack stack) {
+    public boolean canEat(ItemStack stack, AnimalFoodType... types) {
         AnimalFoodType type = (AnimalFoodType) SafeStackHelper.getResult(stack, registry);
         if (type == null) return false;
         else {

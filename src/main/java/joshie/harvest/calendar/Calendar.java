@@ -23,7 +23,7 @@ public class Calendar {
 
     public void newDay(World world, long bedtime) {}
 
-    public void updateForecast() {}
+    public void updateForecast(World world) {}
 
     public Weather getForecast(int day) {
         day = Math.max(0, Math.min(6, day));
@@ -34,7 +34,7 @@ public class Calendar {
         return forecast[0] != null ? forecast[0] : Weather.SUNNY;
     }
 
-    public void setTodaysWeather(Weather weather) {}
+    public void setTodaysWeather(World world, Weather weather) {}
 
     public void setForecast(Weather[] forecast) {}
 

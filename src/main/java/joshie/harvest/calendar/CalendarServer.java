@@ -4,7 +4,6 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.api.core.ISeasonData;
-import joshie.harvest.core.HFDailyTickable;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSetCalendar;
@@ -17,12 +16,11 @@ import java.util.Random;
 
 public class CalendarServer extends Calendar {
     private static final Random rand = new Random();
-    private static float rainStrength;
 
     @Override
-    public void setTodaysWeather(Weather weather) {
+    public void setTodaysWeather(World world, Weather weather) {
         forecast[0] = weather;
-        updateForecast();
+        updateForecast(world);
     }
 
     public static boolean isWeatherDisabled(Weather weather) {
@@ -65,7 +63,7 @@ public class CalendarServer extends Calendar {
     }
 
     @Override
-    public void updateForecast() {
+    public void updateForecast(World world) {
         //If they're null set them
         for (int i = 0; i < 7; i++) {
             if (forecast[i] == null) {
@@ -74,7 +72,7 @@ public class CalendarServer extends Calendar {
         }
 
         updateWeatherStrength();
-        PacketHandler.sendToEveryone(new PacketSyncForecast(forecast));
+        PacketHandler.sendToEveryone(new PacketSyncForecast(world.provider.getDimension(), forecast));
     }
 
     @Override
@@ -94,13 +92,16 @@ public class CalendarServer extends Calendar {
         }
 
         date.setDay(day).setSeason(season).setYear(year);
-        PacketHandler.sendToEveryone(new PacketSetCalendar(date));
+        PacketHandler.sendToEveryone(new PacketSetCalendar(world.provider.getDimension(), date));
 
-        HFDailyTickable.newDay(world);
-        HFTrackers.getCropTracker().newDay(world);
-        HFTrackers.getAnimalTracker().newDay();
-        HFTrackers.getMineTracker().newDay();
-        HFTrackers.getTownTracker().newDay(world);
+        //Tick blocks, such as soil, troughs, and incubators
+        HFTrackers.getTickables(world).newDay(world);
+        //Tick crop blocks, to have them grow
+        HFTrackers.getCropTracker(world).newDay(world);
+        //Tick animals to update their data
+        HFTrackers.getAnimalTracker(world).newDay();
+        //Tick the town to update things like gathering
+        HFTrackers.getTownTracker(world).newDay(world);
 
         /** Setup the forecast for the next 7 days **/
         Weather[] newForecast = new Weather[7];
@@ -111,14 +112,14 @@ public class CalendarServer extends Calendar {
         }
 
         forecast = newForecast;
-        updateForecast();
+        updateForecast(world);
 
         //Update a player
         for (PlayerTrackerServer player : HFTrackers.getPlayerTrackers()) {
             player.newDay(bedtime);
         }
 
-        HFTrackers.markDirty();
+        HFTrackers.markDirty(world);
     }
 
     private Season getNextSeason(Season season) {
@@ -132,12 +133,14 @@ public class CalendarServer extends Calendar {
         }
     }
 
-    public void writeToNBT(NBTTagCompound nbt) {
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         date.writeToNBT(nbt);
         for (int i = 0; i < 7; i++) {
             Weather weather = forecast[i];
             if (weather == null) weather = Weather.SUNNY;
             nbt.setByte("ForecastDay" + i, (byte) weather.ordinal());
         }
+
+        return nbt;
     }
 }

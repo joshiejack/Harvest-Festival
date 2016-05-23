@@ -33,7 +33,7 @@ public class TownTrackerServer extends TownTracker {
             data = new HashSet<>();
             townData.put(dimension, data);
             if (dirty) {
-                HFTrackers.markDirty();
+                HFTrackers.markDirty(dimension);
             }
         }
 
@@ -92,7 +92,7 @@ public class TownTrackerServer extends TownTracker {
         getTownsForDimension(dimension, true).add(data);
         closestCache.invalidateAll(); //Reset the cache everytime we make a new town
         uuidMap.put(data.getID(), data);
-        HFTrackers.markDirty();
+        HFTrackers.markDirty(dimension);
         return data;
     }
 
@@ -138,7 +138,7 @@ public class TownTrackerServer extends TownTracker {
         }
     }
 
-    public void writeToNBT(NBTTagCompound nbt) {
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         NBTTagList dimensions = new NBTTagList();
         for (int dimension: townData.keys()) {
             if (townData.get(dimension).size() > 0) {
@@ -157,5 +157,6 @@ public class TownTrackerServer extends TownTracker {
         }
 
         nbt.setTag("TownData", dimensions);
+        return nbt;
     }
 }

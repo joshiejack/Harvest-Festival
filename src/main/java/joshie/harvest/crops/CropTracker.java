@@ -1,7 +1,5 @@
 package joshie.harvest.crops;
 
-import gnu.trove.map.TIntObjectMap;
-import gnu.trove.map.hash.TIntObjectHashMap;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
 import net.minecraft.block.state.IBlockState;
@@ -14,25 +12,11 @@ import net.minecraft.world.World;
 import java.util.HashMap;
 
 public class CropTracker {
-    protected TIntObjectMap<HashMap<BlockPos, ICropData>> dimensions = new TIntObjectHashMap<>();
-
-    protected HashMap<BlockPos, ICropData> getDimensionData(World world) {
-        return getDimensionData(world.provider.getDimension());
-    }
-
-    protected HashMap<BlockPos, ICropData> getDimensionData(int dimension) {
-        HashMap<BlockPos, ICropData> map = dimensions.get(dimension);
-        if (map == null) {
-            map = new HashMap<>();
-            dimensions.put(dimension, map);
-        }
-
-        return map;
-    }
+    protected HashMap<BlockPos, ICropData> cropTracker = new HashMap<>();
 
     public ICropData getCropDataForLocation(World world, BlockPos pos) {
-        ICropData data = getDimensionData(world.provider.getDimension()).get(pos);
-        return data != null ? data : new CropData(pos, world.provider.getDimension());
+        ICropData data = cropTracker.get(pos);
+        return data != null ? data : new CropData(pos);
     }
 
     public boolean canBonemeal(World world, BlockPos pos) {
@@ -62,7 +46,7 @@ public class CropTracker {
     }
 
     public void removeCrop(World world, BlockPos pos) {
-        getDimensionData(world.provider.getDimension()).remove(pos);
+        cropTracker.remove(pos);
     }
 
     public void hydrate(World world, BlockPos pos, IBlockState state) {}

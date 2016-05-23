@@ -16,7 +16,7 @@ public class StatDataServer extends StatData {
     
     public void setGold(EntityPlayerMP player, long amount) {
         gold = amount;
-        HFTrackers.markDirty();
+        HFTrackers.markPlayersDirty();
         syncGold(player);
     }
     

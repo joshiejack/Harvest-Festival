@@ -39,7 +39,7 @@ public class CalendarRender {
         } else if (event.getType() == ElementType.HOTBAR) {
             Minecraft mc = MCClientHelper.getMinecraft();
             mc.mcProfiler.startSection("calendarHUD");
-            Calendar calendar = HFTrackers.getCalendar();
+            Calendar calendar = HFTrackers.getCalendar(MCClientHelper.getWorld());
             ICalendarDate date = calendar.getDate();
             ISeasonData data = calendar.getSeasonData();
             GlStateManager.pushMatrix();
@@ -76,7 +76,7 @@ public class CalendarRender {
     @SubscribeEvent
     public void onFogRender(RenderFogEvent event) {
         if (!event.getState().getMaterial().isLiquid()) {
-            Weather weather = HFTrackers.getCalendar().getTodaysWeather();
+            Weather weather = HFTrackers.getCalendar(MCClientHelper.getWorld()).getTodaysWeather();
             if (weather == Weather.BLIZZARD) {
                 GlStateManager.glFogi(GL11.GL_FOG_MODE, GL11.GL_EXP);
                 GL11.glFogf(GL11.GL_FOG_DENSITY, 0.15F);
@@ -90,7 +90,7 @@ public class CalendarRender {
     @SubscribeEvent
     public void onFogColor(FogColors event) {
         if (!event.getState().getMaterial().isLiquid()) {
-            Weather weather = HFTrackers.getCalendar().getTodaysWeather();
+            Weather weather = HFTrackers.getCalendar(MCClientHelper.getWorld()).getTodaysWeather();
             if (weather == Weather.SNOW || weather == Weather.BLIZZARD) {
                 event.setRed(1F);
                 event.setBlue(1F);

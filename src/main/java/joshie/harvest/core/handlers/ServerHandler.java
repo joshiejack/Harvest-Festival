@@ -3,35 +3,20 @@ package joshie.harvest.core.handlers;
 import joshie.harvest.animals.AnimalTrackerServer;
 import joshie.harvest.calendar.CalendarServer;
 import joshie.harvest.core.HFSavedData;
+import joshie.harvest.core.tick.TickDailyServer;
 import joshie.harvest.crops.CropTrackerServer;
-import joshie.harvest.mining.MineTrackerServer;
 import joshie.harvest.npc.town.TownTrackerServer;
-import joshie.harvest.player.PlayerTrackerServer;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.world.World;
-
-import java.util.Collection;
-import java.util.UUID;
 
 public class ServerHandler extends SideHandler {
     private HFSavedData data;
 
     public ServerHandler(World world) {
-        data = (HFSavedData) world.loadItemData(HFSavedData.class, HFSavedData.DATA_NAME);
+        data = (HFSavedData) world.getPerWorldStorage().getOrLoadData(HFSavedData.class, HFSavedData.DATA_NAME);
         if (data == null) {
             data = new HFSavedData(HFSavedData.DATA_NAME);
-            world.setItemData(HFSavedData.DATA_NAME, data);
+            world.getPerWorldStorage().setData(HFSavedData.DATA_NAME, data);
         }
-    }
-    
-    public Collection<PlayerTrackerServer> getPlayerData() {
-        return data.getPlayerData();
-    }
-    
-    @Override
-    public CalendarServer getCalendar() {
-        return data.getCalendar();
     }
 
     @Override
@@ -40,23 +25,17 @@ public class ServerHandler extends SideHandler {
     }
 
     @Override
+    public CalendarServer getCalendar() {
+        return data.getCalendar();
+    }
+
+    @Override
     public CropTrackerServer getCropTracker() {
         return data.getCropTracker();
     }
-    
-    @Override
-    public MineTrackerServer getMineTracker() {
-        return data.getMineTracker();
-    }
-    
-    @Override
-    public PlayerTrackerServer getPlayerTracker(EntityPlayer player) {
-        return data.getPlayerData((EntityPlayerMP) player);
-    }
-    
-    @Override
-    public PlayerTrackerServer getPlayerTracker(UUID uuid) {
-        return data.getPlayerData(uuid);
+
+    public TickDailyServer getTickables() {
+        return data.getTickables();
     }
 
     @Override

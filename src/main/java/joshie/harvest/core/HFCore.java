@@ -79,7 +79,6 @@ public class HFCore {
 
     @SideOnly(Side.CLIENT)
     public static void initClient() {
-        HFTrackers.resetClient();
         MinecraftForge.EVENT_BUS.register(new CalendarRender());
         MinecraftForge.EVENT_BUS.register(new RenderHandler());
     }

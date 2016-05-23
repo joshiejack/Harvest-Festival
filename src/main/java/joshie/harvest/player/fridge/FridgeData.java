@@ -82,7 +82,7 @@ public class FridgeData implements IInventory {
 
     @Override
     public void markDirty() {
-        HFTrackers.markDirty();
+        HFTrackers.markPlayersDirty();
     }
 
     @Override

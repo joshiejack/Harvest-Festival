@@ -31,7 +31,7 @@ public class ContainerNPCGift extends ContainerNPCBase {
                 ItemStack gift = player.getHeldItem(hand);
                 INPC theNpc = npc.getNPC();
                 int points = theNpc.getGiftValue(gift).getRelationPoints();
-                ICalendarDate today = HFTrackers.getCalendar().getDate();
+                ICalendarDate today = HFTrackers.getCalendar(player.worldObj).getDate();
                 ICalendarDate birthday = theNpc.getBirthday();
                 if (today.getSeason() == birthday.getSeason() && today.getDay() == birthday.getDay()) {
                     points *= 5;

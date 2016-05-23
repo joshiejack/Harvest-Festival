@@ -1,6 +1,5 @@
 package joshie.harvest.crops;
 
-import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.ICrop;
@@ -15,7 +14,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.network.ByteBufUtils;
 
 import java.util.Random;
 
@@ -27,10 +25,7 @@ public class CropData implements ICropData {
     private int daysWithoutWater; //The number of days this crop has gone without water
     private BlockPos pos;
 
-    public CropData() {
-    }
-
-    public CropData(BlockPos pos, int dimension) {
+    public CropData(BlockPos pos) {
         this.pos = pos;
         this.crop = HFCrops.null_crop;
     }
@@ -48,8 +43,8 @@ public class CropData implements ICropData {
         return this;
     }
 
-    private boolean isWrongSeason() {
-        Season toMatch = HFTrackers.getCalendar().getDate().getSeason();
+    private boolean isWrongSeason(World world) {
+        Season toMatch = HFTrackers.getCalendar(world).getDate().getSeason();
         for (Season season : crop.getSeasons()) {
             if (toMatch == season) return false;
         }
@@ -60,7 +55,7 @@ public class CropData implements ICropData {
     //Returns false if the crop was withered
     public boolean newDay(World world) {
         //Stage 1, Check how long the plant has been without water, If it's more than 2 days kill it
-        if ((crop.requiresWater() && daysWithoutWater > 2) || isWrongSeason()) {
+        if ((crop.requiresWater() && daysWithoutWater > 2) || isWrongSeason(world)) {
             return false;
         } else { //Stage 2: Now that we know, it has been watered, Update it's stage
             //If we aren't ticking randomly, Then increase the stage
@@ -155,6 +150,7 @@ public class CropData implements ICropData {
         if (crop == HFCrops.null_crop) isReal = false;
         stage = nbt.getByte("CurrentStage");
         daysWithoutWater = nbt.getShort("DaysWithoutWater");
+        System.out.println("Read in the crop: " + crop.getResource().toString());
     }
 
     @Override
@@ -164,26 +160,7 @@ public class CropData implements ICropData {
             nbt.setString("CropResource", crop.getResource().toString());
             nbt.setByte("CurrentStage", (byte) stage);
             nbt.setShort("DaysWithoutWater", (short) daysWithoutWater);
-        }
-    }
-
-    /* Packet Based */
-    public void toBytes(ByteBuf buf) {
-        if (crop != null) {
-            buf.writeBoolean(true);
-            buf.writeBoolean(isReal);
-            ByteBufUtils.writeUTF8String(buf, crop.getResource().toString());
-            buf.writeByte(stage);
-        }
-
-        buf.writeBoolean(false);
-    }
-
-    public void fromBytes(ByteBuf buf) {
-        if (buf.readBoolean()) {
-            isReal = buf.readBoolean();
-            crop = HFApi.crops.getCrop(new ResourceLocation(ByteBufUtils.readUTF8String(buf)));
-            stage = buf.readByte();
+            System.out.println("Wrote the crop: " + crop.getResource().toString());
         }
     }
 

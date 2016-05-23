@@ -5,12 +5,12 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 
 public interface ISeasonData {
-    public double getCelestialLengthFactor();
-    public float getCelestialAngleOffset();
-    public double getWeatherChance(Weather weather);
-    public int getSkyColor();
+    double getCelestialLengthFactor();
+    float getCelestialAngleOffset();
+    double getWeatherChance(Weather weather);
+    int getSkyColor();
     
-    public ResourceLocation getResource();
-    public String getLocalized();
-    public TextFormatting getTextColor();
+    ResourceLocation getResource();
+    String getLocalized();
+    TextFormatting getTextColor();
 }

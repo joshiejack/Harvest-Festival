@@ -25,9 +25,9 @@ public class HFCommandSeason extends HFCommandBase {
         if (parameters != null && parameters.length == 1) {
             for (Season season : Season.values()) {
                 if (StringUtils.equalsIgnoreCase(season.name(), parameters[0])) {
-                    Calendar calendar = HFTrackers.getCalendar();
+                    Calendar calendar = HFTrackers.getCalendar(sender.getEntityWorld());
                     calendar.getDate().setSeason(season);
-                    PacketHandler.sendToEveryone(new PacketSetCalendar(calendar.getDate()));
+                    PacketHandler.sendToEveryone(new PacketSetCalendar(sender.getEntityWorld().provider.getDimension(), calendar.getDate()));
                     return true;
                 }
             }

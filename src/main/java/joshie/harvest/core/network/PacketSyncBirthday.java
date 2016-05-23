@@ -13,9 +13,7 @@ public class PacketSyncBirthday extends PenguinPacket {
     private Season season;
     private int year;
 
-    public PacketSyncBirthday() {
-    }
-
+    public PacketSyncBirthday() {}
     public PacketSyncBirthday(ICalendarDate date) {
         this.day = date.getDay();
         this.season = date.getSeason();

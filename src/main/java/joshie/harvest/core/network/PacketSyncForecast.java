@@ -3,20 +3,21 @@ package joshie.harvest.core.network;
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.network.penguin.PenguinPacket;
 import net.minecraft.entity.player.EntityPlayer;
 
-public class PacketSyncForecast extends PenguinPacket {
+public class PacketSyncForecast extends AbstractPacketDimension {
     private Weather[] forecast;
 
     public PacketSyncForecast() {}
 
-    public PacketSyncForecast(Weather[] forecast) {
+    public PacketSyncForecast(int dimension, Weather[] forecast) {
+        super(dimension);
         this.forecast = forecast;
     }
 
     @Override
     public void toBytes(ByteBuf buf) {
+        super.toBytes(buf);
         for (int i = 0; i < 7; i++) {
             buf.writeByte(forecast[i].ordinal());
         }
@@ -24,6 +25,7 @@ public class PacketSyncForecast extends PenguinPacket {
 
     @Override
     public void fromBytes(ByteBuf buf) {
+        super.fromBytes(buf);
         forecast = new Weather[7];
         for (int i = 0; i < 7; i++) {
             forecast[i] = Weather.values()[buf.readByte()];
@@ -32,6 +34,6 @@ public class PacketSyncForecast extends PenguinPacket {
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        HFTrackers.getCalendar().setForecast(forecast);
+        HFTrackers.getCalendar(player.worldObj).setForecast(forecast);
     }
 }

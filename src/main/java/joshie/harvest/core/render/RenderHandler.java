@@ -28,7 +28,7 @@ public class RenderHandler {
     //Orange Leaves in Autumn
     @SubscribeEvent
     public void getFoliageColor(GetFoliageColor event) {
-        if (HFTrackers.getCalendar().getDate().getSeason() == Season.AUTUMN) {
+        if (HFTrackers.getCalendar(MCClientHelper.getWorld()).getDate().getSeason() == Season.AUTUMN) {
             event.setNewColor(0xFF9900);
         }
     }

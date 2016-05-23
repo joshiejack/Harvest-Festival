@@ -49,7 +49,7 @@ public class WeatherRenderer extends IRenderHandler {
                 k = 0;
             }
 
-            Weather weather = HFTrackers.getCalendar().getTodaysWeather();
+            Weather weather = HFTrackers.getCalendar(world).getTodaysWeather();
             for (int l = 0; l < k; ++l) {
                 BlockPos pos1 = world.getPrecipitationHeight(pos.add(random.nextInt(i) - random.nextInt(i), 0, random.nextInt(i) - random.nextInt(i)));
 
@@ -92,7 +92,7 @@ public class WeatherRenderer extends IRenderHandler {
 
     @Override
     public void render(float rain, WorldClient world, Minecraft mc) {
-        Weather weather = HFTrackers.getCalendar().getTodaysWeather();
+        Weather weather = HFTrackers.getCalendar(world).getTodaysWeather();
         EntityRenderer renderer = mc.entityRenderer;
         float f = mc.theWorld.getRainStrength(rain);
         if (f > 0.0F) {

@@ -23,14 +23,14 @@ public class AnimalEvents {
     public void onEntityLoaded(EntityJoinWorldEvent event) {
         Entity entity = event.getEntity();
         if (entity instanceof IAnimalTracked) {
-            HFTrackers.getAnimalTracker().onJoinWorld(((IAnimalTracked) entity).getData());
+            HFTrackers.getAnimalTracker(event.getWorld()).onJoinWorld(((IAnimalTracked) entity).getData());
         }
     }
 
     @SubscribeEvent
     public void onEntityDeath(LivingDeathEvent event) {
         if (event.getEntityLiving() instanceof IAnimalTracked) {
-            HFTrackers.getAnimalTracker().onDeath(((IAnimalTracked) event.getEntityLiving()));
+            HFTrackers.getAnimalTracker(event.getEntityLiving().worldObj).onDeath(((IAnimalTracked) event.getEntityLiving()));
         }
     }
 

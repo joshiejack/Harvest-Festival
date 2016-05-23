@@ -5,8 +5,11 @@ import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.crops.CropData;
+import net.minecraft.client.network.NetHandlerPlayClient;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.fml.common.network.ByteBufUtils;
 
 public class PacketSyncCrop extends AbstractPacketLocation {
     private boolean isRemoval;
@@ -29,7 +32,9 @@ public class PacketSyncCrop extends AbstractPacketLocation {
         super.toBytes(buf);
         buf.writeBoolean(isRemoval);
         if (!isRemoval) {
-            data.toBytes(buf);
+            NBTTagCompound tag = new NBTTagCompound();
+            data.writeToNBT(tag);
+            ByteBufUtils.writeTag(buf, tag);
         }
     }
 
@@ -38,14 +43,24 @@ public class PacketSyncCrop extends AbstractPacketLocation {
         super.fromBytes(buf);
         isRemoval = buf.readBoolean();
         if (!isRemoval) {
-            data = new CropData(pos, dim);
-            data.fromBytes(buf);
+            data = new CropData(pos);
+            NBTTagCompound tag = ByteBufUtils.readTag(buf);
+            data.readFromNBT(tag);
+        }
+    }
+
+    @Override
+    public void handleQueuedClient(NetHandlerPlayClient handler) {
+        if (MCClientHelper.getWorld().provider.getDimension() == dim) {
+            handlePacket(MCClientHelper.getPlayer());
         }
     }
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        HFTrackers.getCropTracker().updateClient(dim, pos, data, isRemoval);
-        MCClientHelper.refresh(dim, pos);
+        if (player != null) {
+            HFTrackers.getCropTracker(player.worldObj).updateClient(dim, pos, data, isRemoval);
+            MCClientHelper.refresh(dim, pos);
+        }
     }
 }

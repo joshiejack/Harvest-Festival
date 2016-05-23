@@ -5,6 +5,7 @@ import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.core.ISeasonData;
 import joshie.harvest.core.handlers.HFTrackers;
+import net.minecraft.world.World;
 
 import java.util.EnumMap;
 
@@ -21,8 +22,8 @@ public class CalendarHelper implements ICalendar {
     }
 
     @Override
-    public ICalendarDate getToday() {
-        return HFTrackers.getCalendar().getDate();
+    public ICalendarDate getToday(World world) {
+        return HFTrackers.getCalendar(world).getDate();
     }
 
     @Override

@@ -6,7 +6,6 @@ import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.animals.IAnimalType;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.relations.IRelatableDataHandler;
-import joshie.harvest.player.relationships.RelationshipHelper;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
@@ -52,7 +51,7 @@ public class EntityHarvestSheep extends EntitySheep implements IAnimalTracked {
     public boolean processInteract(EntityPlayer player, EnumHand hand, ItemStack stack) {
         ItemStack held = player.getActiveItemStack();
         if (held != null) {
-            if (HFApi.animals.canEat(type.getFoodTypes(), held)) {
+            if (HFApi.animals.canEat(held, type.getFoodTypes())) {
                 if (!worldObj.isRemote) {
                     data.feed(player);
                 }

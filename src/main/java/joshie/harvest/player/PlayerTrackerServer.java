@@ -7,7 +7,6 @@ import joshie.harvest.player.fridge.FridgeDataServer;
 import joshie.harvest.player.quests.QuestDataServer;
 import joshie.harvest.player.relationships.RelationshipDataServer;
 import joshie.harvest.player.stats.StatDataServer;
-import joshie.harvest.npc.town.TownDataServer;
 import joshie.harvest.player.tracking.TrackingDataServer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
@@ -91,7 +90,7 @@ public class PlayerTrackerServer extends PlayerTracker {
             syncPlayerStats(player); //Resync everything
         }
 
-        HFTrackers.markDirty();
+        HFTrackers.markPlayersDirty();
     }
 
     public void syncPlayerStats(EntityPlayerMP player) {
@@ -111,12 +110,13 @@ public class PlayerTrackerServer extends PlayerTracker {
         tracking.readFromNBT(nbt);
     }
 
-    public void writeToNBT(NBTTagCompound nbt) {
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         nbt.setString("UUID", uuid.toString());
         fridge.writeToNBT(nbt);
         quests.writeToNBT(nbt);
         relationships.writeToNBT(nbt);
         stats.writeToNBT(nbt);
         tracking.writeToNBT(nbt);
+        return nbt;
     }
 }

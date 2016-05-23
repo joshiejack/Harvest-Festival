@@ -48,7 +48,7 @@ public class MineTrackerServer extends MineTracker {
         WorldLocation key = getKey(world, pos);
         MineData data = map.get(key);
         data.getMine().complete(world, pos, blocks);
-        HFTrackers.markDirty();
+        HFTrackers.markDirty(world);
     }
 
     public void destroyLevel(World world, BlockPos pos) {
@@ -58,7 +58,7 @@ public class MineTrackerServer extends MineTracker {
             return;
         } else {
             data.getLevel().destroy();
-            HFTrackers.markDirty();
+            HFTrackers.markDirty(world);
         }
     }
 
@@ -84,7 +84,7 @@ public class MineTrackerServer extends MineTracker {
         }
     }
 
-    public void writeToNBT(NBTTagCompound nbt) {
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         //Save the mine data
         NBTTagList mine = new NBTTagList();
         for (Mine m : mines) {
@@ -105,5 +105,6 @@ public class MineTrackerServer extends MineTracker {
         }
 
         nbt.setTag("MineMappings", mapping);
+        return nbt;
     }
 }

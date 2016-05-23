@@ -1,6 +1,5 @@
 package joshie.harvest.crops;
 
-import gnu.trove.map.TIntObjectMap;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.calendar.Weekday;
@@ -11,6 +10,7 @@ import joshie.harvest.blocks.BlockCrop.Stage;
 import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.CropHelper;
+import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.network.PacketSyncCrop;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFarmland;
@@ -38,8 +38,8 @@ public class CropTrackerServer extends CropTracker {
     @Override
     public void newDay(World world) {
         ArrayList<Pair<BlockPos, ICropData>> toWither = new ArrayList<>(); //Create a new wither list
-        Weekday day = HFTrackers.getCalendar().getDate().getWeekday();
-        Iterator<Map.Entry<BlockPos, ICropData>> iter = getDimensionData(world).entrySet().iterator();
+        Weekday day = HFTrackers.getCalendar(world).getDate().getWeekday();
+        Iterator<Map.Entry<BlockPos, ICropData>> iter = cropTracker.entrySet().iterator();
         while (iter.hasNext()) {
             Map.Entry<BlockPos, ICropData> entry = iter.next();
             BlockPos position = entry.getKey();
@@ -63,13 +63,7 @@ public class CropTrackerServer extends CropTracker {
             }
         }
 
-        //Dehydrate the farmland that a crop underneath it, Forcefully
-        Iterator<BlockPos> it = getDimensionData(world).keySet().iterator();
-        while (it.hasNext()) {
-            BlockPos position = it.next();
-            CropHelper.dehydrate(world, position.down(), world.getBlockState(position.down()));
-        }
-
+        //Wither crops
         Iterator<Pair<BlockPos, ICropData>> wither = toWither.iterator();
         while (wither.hasNext()) {
             Pair<BlockPos, ICropData> data = wither.next();
@@ -83,9 +77,9 @@ public class CropTrackerServer extends CropTracker {
     //Updates the world, so we know it has rained!
     @Override
     public void doRain(World world) {
-        if (!HFTrackers.getCalendar().getDate().equals(lastRain)) {
-            lastRain = HFApi.calendar.cloneDate(HFTrackers.getCalendar().getDate());
-            for (BlockPos position : getDimensionData(world).keySet()) {
+        if (!HFTrackers.getCalendar(world).getDate().equals(lastRain)) {
+            lastRain = HFApi.calendar.cloneDate(HFTrackers.getCalendar(world).getDate());
+            for (BlockPos position : cropTracker.keySet()) {
                 IBlockState state = world.getBlockState(position);
                 hydrate(world, position, state);
                 world.setBlockState(position.down(), state.withProperty(BlockFarmland.MOISTURE, 7), 2);
@@ -96,7 +90,7 @@ public class CropTrackerServer extends CropTracker {
     //Sends an update packet
     @Override
     public void sendUpdateToClient(EntityPlayerMP player, World world, BlockPos pos) {
-        ICropData data = getDimensionData(world).get(pos);
+        ICropData data = cropTracker.get(pos);
         if (data == null) {
             sendToClient(new PacketSyncCrop(world.provider.getDimension(), pos), player);
         } else sendToClient(new PacketSyncCrop(world.provider.getDimension(), pos, data), player);
@@ -108,7 +102,7 @@ public class CropTrackerServer extends CropTracker {
         ICropData data = getCropDataForLocation(world, pos);
         data.grow(world);
         sendToEveryone(new PacketSyncCrop(world.provider.getDimension(), pos, data));
-        HFTrackers.markDirty();
+        HFTrackers.markDirty(world);
     }
 
     @Override
@@ -120,9 +114,9 @@ public class CropTrackerServer extends CropTracker {
 
         data.setCrop(player, crop, stage);
 
-        getDimensionData(world).put(pos, data);
+        cropTracker.put(pos, data);
         sendToEveryone(new PacketSyncCrop(world.provider.getDimension(), pos, data));
-        HFTrackers.markDirty();
+        HFTrackers.markDirty(world);
         return true;
     }
 
@@ -140,7 +134,7 @@ public class CropTrackerServer extends CropTracker {
                 HFTrackers.getServerPlayerTracker(player).getTracking().onHarvested(data.getCrop());
             }
 
-            HFTrackers.markDirty();
+            HFTrackers.markDirty(world);
             sendToEveryone(new PacketSyncCrop(world.provider.getDimension(), pos, data));
             return harvest;
         } else return null;
@@ -149,7 +143,7 @@ public class CropTrackerServer extends CropTracker {
     @Override
     public void hydrate(World world, BlockPos pos, IBlockState state) {
         getCropDataForLocation(world, pos).setHydrated();
-        HFTrackers.markDirty();
+        HFTrackers.markDirty(world);
     }
 
     @Override
@@ -166,47 +160,31 @@ public class CropTrackerServer extends CropTracker {
     public void removeCrop(World world, BlockPos pos) {
         super.removeCrop(world, pos);
         sendToEveryone(new PacketSyncCrop(world.provider.getDimension(), pos));
-        HFTrackers.markDirty();
+        HFTrackers.markDirty(world);
     }
 
     public void readFromNBT(NBTTagCompound nbt) {
-        NBTTagList crops = nbt.getTagList("CropData", 10);
-        for (int i = 0; i < crops.tagCount(); i++) {
-            NBTTagCompound tag = crops.getCompoundTagAt(i);
-            int dimension = tag.getInteger("Dimension");
-            HashMap<BlockPos, ICropData> cropMap = getDimensionData(dimension);
-            NBTTagList dataList = tag.getTagList("Data", 10);
-            for (int j = 0; j < dataList.tagCount(); j++) {
-                NBTTagCompound data = dataList.getCompoundTagAt(j);
-                BlockPos pos = new BlockPos(data.getInteger("X"), data.getInteger("Y"), data.getInteger("Z"));
-                ICropData cropData = new CropData(pos, dimension);
-                cropData.readFromNBT(data);
-                cropMap.put(pos, cropData);
-            }
+        cropTracker = new HashMap<>();
+        NBTTagList dataList = nbt.getTagList("Data", 10);
+        for (int j = 0; j < dataList.tagCount(); j++) {
+            NBTTagCompound data = dataList.getCompoundTagAt(j);
+            BlockPos pos = NBTHelper.readBlockPos("", data);
+            ICropData cropData = new CropData(pos);
+            cropData.readFromNBT(data);
+            this.cropTracker.put(pos, cropData);
         }
     }
 
-    public void writeToNBT(NBTTagCompound nbt) {
-        NBTTagList crops = new NBTTagList();
-        TIntObjectMap<HashMap<BlockPos, ICropData>> map = this.dimensions;
-        for (int entry: map.keys()) {
-            NBTTagCompound tag = new NBTTagCompound();
-            tag.setInteger("Dimension", entry);
-            NBTTagList dataList = new NBTTagList();
-            HashMap<BlockPos, ICropData> cropMap = map.get(entry);
-            for (BlockPos pos: cropMap.keySet()) {
-                NBTTagCompound data = new NBTTagCompound();
-                data.setInteger("X", pos.getX());
-                data.setInteger("Y", pos.getY());
-                data.setInteger("Z", pos.getZ());
-                cropMap.get(pos).writeToNBT(data);
-                dataList.appendTag(data);
-            }
-
-            tag.setTag("Data", dataList);
-            crops.appendTag(tag);
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+        NBTTagList dataList = new NBTTagList();
+        for (BlockPos pos: cropTracker.keySet()) {
+            NBTTagCompound data = new NBTTagCompound();
+            NBTHelper.writeBlockPos("", data, pos);
+            cropTracker.get(pos).writeToNBT(data);
+            dataList.appendTag(data);
         }
 
-        nbt.setTag("CropData", crops);
+        nbt.setTag("Data", dataList);
+        return nbt;
     }
 }

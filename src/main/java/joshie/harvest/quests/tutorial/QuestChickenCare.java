@@ -43,7 +43,7 @@ public class QuestChickenCare extends Quest {
                             increaseStage(player);
                         }
 
-                        HFTrackers.markDirty();
+                        HFTrackers.markPlayersDirty();
                     }
                 }
             }
@@ -61,7 +61,7 @@ public class QuestChickenCare extends Quest {
                         increaseStage(player);
                     }
 
-                    HFTrackers.markDirty();
+                    HFTrackers.markPlayersDirty();
                 }
             }
         }

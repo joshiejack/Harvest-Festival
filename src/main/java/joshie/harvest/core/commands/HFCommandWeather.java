@@ -22,7 +22,7 @@ public class HFCommandWeather extends HFCommandBase {
         if (parameters != null && parameters.length == 1) {
             for (Weather weather : Weather.values()) {
                 if (StringUtils.equalsIgnoreCase(weather.name(), parameters[0])) {
-                    HFTrackers.getCalendar().setTodaysWeather(weather);
+                    HFTrackers.getCalendar(sender.getEntityWorld()).setTodaysWeather(sender.getEntityWorld(), weather);
                     return true;
                 }
             }

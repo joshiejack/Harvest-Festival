@@ -22,14 +22,14 @@ public class TrackingDataServer extends TrackingData {
 
     public void onHarvested(ICrop crop) {
         CollectionHelper.mergeCollection(new CropHolderStack(crop), cropTracker);
-        HFTrackers.markDirty();
+        HFTrackers.markPlayersDirty();
     }
 
     public boolean addForShipping(ItemStack item) {
         long sell = HFApi.shipping.getSellValue(item);
         SellHolderStack stack = new SellHolderStack(item, sell);
         CollectionHelper.mergeCollection(stack, toBeShipped);
-        HFTrackers.markDirty();
+        HFTrackers.markPlayersDirty();
         return sell >= 0;
     }
 

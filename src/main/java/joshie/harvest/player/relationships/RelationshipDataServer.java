@@ -52,7 +52,7 @@ public class RelationshipDataServer extends RelationshipData {
     public void affectRelationship(EntityPlayer player, IRelatable relatable, int amount) {
         int newValue = Math.max(0, Math.min(NPC.marriageRequirement, getRelationship(relatable) + amount));
         relationships.put(relatable, newValue);
-        HFTrackers.markDirty();
+        HFTrackers.markPlayersDirty();
         syncRelationship((EntityPlayerMP) player, relatable, newValue, true);
     }
 

@@ -62,7 +62,7 @@ public class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEn
 
     public TownData getHomeTown() {
         if (homeTown == null) {
-            if (townID != null) homeTown = TownHelper.getTownByID(townID);
+            if (townID != null) homeTown = TownHelper.getTownByID(worldObj, townID);
             else {
                 homeTown = TownHelper.getClosestTownToEntityOrCreate(this);
                 townID = homeTown.getID(); //Set the town id when we create one

@@ -43,7 +43,7 @@ public class QuestDataServer extends QuestData {
             q.setStage(stage);
         }
 
-        HFTrackers.markDirty();
+        HFTrackers.markPlayersDirty();
     }
     
     @Override
@@ -85,7 +85,7 @@ public class QuestDataServer extends QuestData {
             }
         }
 
-        HFTrackers.markDirty();
+        HFTrackers.markPlayersDirty();
     }
 
     public void readFromNBT(NBTTagCompound nbt) {

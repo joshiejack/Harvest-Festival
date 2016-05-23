@@ -1,6 +1,5 @@
 package joshie.harvest.player.stats;
 
-import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSyncBirthday;
 import joshie.harvest.core.network.PacketSyncGold;
@@ -16,7 +15,6 @@ public class StatDataServer extends StatData {
     
     public void setGold(EntityPlayerMP player, long amount) {
         gold = amount;
-        HFTrackers.markPlayersDirty();
         syncGold(player);
     }
     

@@ -2,7 +2,6 @@ package joshie.harvest.player.stats;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.ICalendarDate;
-import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.world.World;
 
 public class StatData {
@@ -28,8 +27,6 @@ public class StatData {
         if (this.fatigue <= fatigueMin) {
             this.fatigue = fatigueMin;
         }
-        
-        HFTrackers.markPlayersDirty();
     }
 
     public boolean isBirthdaySet() {
@@ -39,7 +36,6 @@ public class StatData {
     public boolean setBirthday(World world) {
         if (!isBirthdaySet()) {
             birthday = HFApi.calendar.cloneDate(HFApi.calendar.getToday(world));
-            HFTrackers.markPlayersDirty();
             return true;
         } else return false;
     }

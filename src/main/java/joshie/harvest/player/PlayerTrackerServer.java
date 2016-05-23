@@ -1,6 +1,5 @@
 package joshie.harvest.player;
 
-import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.helpers.generic.EntityHelper;
 import joshie.harvest.player.fridge.FridgeDataServer;
@@ -23,14 +22,6 @@ public class PlayerTrackerServer extends PlayerTracker {
     //References to the player and uuid this refers to
     private EntityPlayerMP player; //No Direct calling, it's a cache value
     private UUID uuid; //SHOULD NOT BE CALLED, EXCEPT BY GET AND CREATE PLAYER
-
-    public PlayerTrackerServer() {
-        fridge = new FridgeDataServer();
-        quests = new QuestDataServer(this);
-        relationships = new RelationshipDataServer();
-        stats = new StatDataServer();
-        tracking = new TrackingDataServer();
-    }
 
     public PlayerTrackerServer(EntityPlayerMP player) {
         this.player = player;
@@ -89,8 +80,6 @@ public class PlayerTrackerServer extends PlayerTracker {
             stats.newDay(bedtime, tracking.newDay());
             syncPlayerStats(player); //Resync everything
         }
-
-        HFTrackers.markPlayersDirty();
     }
 
     public void syncPlayerStats(EntityPlayerMP player) {
@@ -102,7 +91,6 @@ public class PlayerTrackerServer extends PlayerTracker {
     }
 
     public void readFromNBT(NBTTagCompound nbt) {
-        uuid = UUID.fromString(nbt.getString("UUID"));
         fridge.readFromNBT(nbt);
         quests.readFromNBT(nbt);
         relationships.readFromNBT(nbt);
@@ -111,7 +99,6 @@ public class PlayerTrackerServer extends PlayerTracker {
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
-        nbt.setString("UUID", uuid.toString());
         fridge.writeToNBT(nbt);
         quests.writeToNBT(nbt);
         relationships.writeToNBT(nbt);

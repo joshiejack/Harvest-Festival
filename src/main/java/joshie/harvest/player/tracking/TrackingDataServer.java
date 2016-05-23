@@ -2,7 +2,6 @@ package joshie.harvest.player.tracking;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.crops.ICrop;
-import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.helpers.generic.CollectionHelper;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -22,14 +21,12 @@ public class TrackingDataServer extends TrackingData {
 
     public void onHarvested(ICrop crop) {
         CollectionHelper.mergeCollection(new CropHolderStack(crop), cropTracker);
-        HFTrackers.markPlayersDirty();
     }
 
     public boolean addForShipping(ItemStack item) {
         long sell = HFApi.shipping.getSellValue(item);
         SellHolderStack stack = new SellHolderStack(item, sell);
         CollectionHelper.mergeCollection(stack, toBeShipped);
-        HFTrackers.markPlayersDirty();
         return sell >= 0;
     }
 

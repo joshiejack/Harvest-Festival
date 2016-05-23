@@ -113,10 +113,6 @@ public class HFTrackers {
         SERVER_WORLDS.get(dimension).markDirty();
     }
 
-    public static void markPlayersDirty() {
-        //SERVER_WORLDS.get(0).markDirty();
-    }
-
     public static TickDailyServer getTickables(World world) {
         return SERVER_WORLDS.get(world.provider.getDimension()).getTickables();
     }

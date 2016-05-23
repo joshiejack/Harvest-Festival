@@ -2,7 +2,6 @@ package joshie.harvest.player.quests;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.quest.IQuest;
-import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.network.quests.PacketQuestSetAvailable;
 import joshie.harvest.core.network.quests.PacketQuestSetCurrent;
 import joshie.harvest.player.PlayerTracker;
@@ -42,8 +41,6 @@ public class QuestDataServer extends QuestData {
         if (q != null) {
             q.setStage(stage);
         }
-
-        HFTrackers.markPlayersDirty();
     }
     
     @Override
@@ -84,8 +81,6 @@ public class QuestDataServer extends QuestData {
                 }
             }
         }
-
-        HFTrackers.markPlayersDirty();
     }
 
     public void readFromNBT(NBTTagCompound nbt) {

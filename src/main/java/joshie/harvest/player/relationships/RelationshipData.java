@@ -2,7 +2,6 @@ package joshie.harvest.player.relationships;
 
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.core.config.NPC;
-import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.util.Translate;
 import net.minecraft.entity.player.EntityPlayer;
 
@@ -22,7 +21,6 @@ public abstract class RelationshipData {
 
     public void clear(IRelatable animal) {
         relationships.remove(animal);
-        HFTrackers.markPlayersDirty();
     }
 
     protected int getRelationship(IRelatable relatable) {

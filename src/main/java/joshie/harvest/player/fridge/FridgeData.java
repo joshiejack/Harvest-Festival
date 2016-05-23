@@ -1,7 +1,6 @@
 package joshie.harvest.player.fridge;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ItemStackHelper;
@@ -81,9 +80,7 @@ public class FridgeData implements IInventory {
     }
 
     @Override
-    public void markDirty() {
-        HFTrackers.markPlayersDirty();
-    }
+    public void markDirty() {}
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer player) {

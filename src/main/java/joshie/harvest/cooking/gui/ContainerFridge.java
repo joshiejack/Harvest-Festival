@@ -40,7 +40,7 @@ public class ContainerFridge extends ContainerBase {
         int low = size + 27;
         int high = low + 9;
         ItemStack newStack = null;
-        final Slot slot = (Slot) inventorySlots.get(slotID);
+        final Slot slot = inventorySlots.get(slotID);
 
         if (slot != null && slot.getHasStack()) {
             ItemStack stack = slot.getStack();
@@ -55,7 +55,7 @@ public class ContainerFridge extends ContainerBase {
             } else if (slotID >= low && slotID < high && !mergeItemStack(stack, size, low, false)) return null;
 
             if (stack.stackSize == 0) {
-                slot.putStack((ItemStack) null);
+                slot.putStack(null);
             } else {
                 slot.onSlotChanged();
             }

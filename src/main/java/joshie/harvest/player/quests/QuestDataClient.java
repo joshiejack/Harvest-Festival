@@ -63,7 +63,7 @@ public class QuestDataClient extends QuestData {
             for (IQuest q : available) {
                 if (!current.contains(q) && q.handlesScript(npc.getNPC())) {
                     try {
-                        IQuest quest = ((IQuest) q.getClass().newInstance()).setUniqueName(q.getUniqueName()).setStage(0); //Set the current quest to your new 
+                        IQuest quest = q.getClass().newInstance().setUniqueName(q.getUniqueName()).setStage(0); //Set the current quest to your new
                         current.add(quest);
                         sendToServer(new PacketQuestStart(q));
                         String script = quest.getScript(player, npc);

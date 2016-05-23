@@ -53,7 +53,7 @@ public class BlockCrop extends BlockHFBaseEnum<Stage> implements IPlantable, IGr
         private final boolean isWithered;
         private final PlantSection section;
 
-        private Stage(boolean isWithered, PlantSection section) {
+        Stage(boolean isWithered, PlantSection section) {
             this.isWithered = isWithered;
             this.section = section;
         }

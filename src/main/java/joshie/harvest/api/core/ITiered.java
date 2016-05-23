@@ -10,9 +10,9 @@ public interface ITiered {
      *  
      *  @param  stack   the item
      *  @return         the tier **/
-    public ToolTier getTier(ItemStack stack);
+    ToolTier getTier(ItemStack stack);
 
-    public static enum ToolTier {
-        BASIC, COPPER, SILVER, GOLD, MYSTRIL, CURSED, BLESSED, MYTHIC;
+    enum ToolTier {
+        BASIC, COPPER, SILVER, GOLD, MYSTRIL, CURSED, BLESSED, MYTHIC
     }
 }

@@ -61,7 +61,7 @@ public class PurchaseableEntity implements IPurchaseable {
         Entity entity = null;
         try {
             if (eClass != null) {
-                entity = (Entity) eClass.getConstructor(new Class[]{World.class}).newInstance(world);
+                entity = eClass.getConstructor(new Class[]{World.class}).newInstance(world);
             }
         } catch (Exception exception) {
             exception.printStackTrace();

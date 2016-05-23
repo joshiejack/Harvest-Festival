@@ -27,7 +27,7 @@ public class QuestDataServer extends QuestData {
     public boolean startQuest(IQuest q) {
         if (current.size() < 10) {
             try {
-                IQuest quest = ((IQuest) q.getClass().newInstance()).setUniqueName(q.getUniqueName()).setStage(0); //Set the current quest to your new 
+                IQuest quest = q.getClass().newInstance().setUniqueName(q.getUniqueName()).setStage(0); //Set the current quest to your new
                 current.add(quest);
                 syncQuest(q, (EntityPlayerMP) master.getAndCreatePlayer());
             } catch (Exception ignored) {}
@@ -90,7 +90,7 @@ public class QuestDataServer extends QuestData {
                 NBTTagCompound tag = list.getCompoundTagAt(i);
                 IQuest q = HFApi.quests.get(tag.getString("QuestID"));
                 try {
-                    IQuest quest = ((IQuest) q.getClass().newInstance()).setUniqueName(q.getUniqueName());
+                    IQuest quest = q.getClass().newInstance().setUniqueName(q.getUniqueName());
                     quest.readFromNBT(tag);
                     current.add(quest);
                 } catch (Exception e) {}

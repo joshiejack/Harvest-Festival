@@ -51,7 +51,7 @@ public class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEn
     public UUID townID;
 
     public enum Mode {
-        DEFAULT, GIFT;
+        DEFAULT, GIFT
     }
 
     public EntityNPC(E entity) {
@@ -227,7 +227,7 @@ public class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEn
     protected void kill() {
         setDead(); //Kill the existing mofo
         //Respawn a new bugger
-        EntityNPC clone = getNewEntity((E)this);
+        EntityNPC clone = getNewEntity(this);
         BlockPos home = getHomeCoordinates();
         if (home != null) {
             clone.setPositionAndUpdate(home.getX() + 0.5D, home.getY() + 0.5D, home.getZ() + 0.5D);

@@ -120,13 +120,12 @@ public class StackHelper {
 
     public static Item getItemByText(String str) {
         str = str.replace("%20", " ");
-        Item item = (Item) Item.REGISTRY.getObject(new ResourceLocation(str));
+        Item item = Item.REGISTRY.getObject(new ResourceLocation(str));
         if (item == null) {
             try {
                 Item item1 = Item.getItemById(Integer.parseInt(str));
                 item = item1;
             } catch (NumberFormatException numberformatexception) {
-                ;
             }
         }
 

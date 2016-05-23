@@ -60,8 +60,9 @@ public class TrackingData {
         }
 
         @Override
-        public void writeToNBT(NBTTagCompound tag) {
+        public NBTTagCompound writeToNBT(NBTTagCompound tag) {
             NBTHelper.writeBlockPos("Pos", tag, pos);
+            return tag;
         }
 
         @Override
@@ -97,11 +98,13 @@ public class TrackingData {
         }
 
         @Override
-        public void writeToNBT(NBTTagCompound tag) {
+        public NBTTagCompound writeToNBT(NBTTagCompound tag) {
             if (crop != null) {
                 tag.setString("CropResource", crop.getResource().toString());
                 tag.setInteger("SellAmount", amount);
             }
+
+            return tag;
         }
     }
 
@@ -134,10 +137,11 @@ public class TrackingData {
         }
 
         @Override
-        public void writeToNBT(NBTTagCompound tag) {
+        public NBTTagCompound writeToNBT(NBTTagCompound tag) {
             super.writeToNBT(tag);
             tag.setInteger("SellAmount", amount);
             tag.setLong("SellValue", sell);
+            return tag;
         }
     }
 
@@ -175,8 +179,9 @@ public class TrackingData {
         }
 
         @Override
-        public void writeToNBT(NBTTagCompound tag) {
+        public NBTTagCompound writeToNBT(NBTTagCompound tag) {
             tag.setString("ItemName", Item.REGISTRY.getNameForObject(item).toString());
+            return tag;
         }
     }
 
@@ -214,9 +219,10 @@ public class TrackingData {
         }
 
         @Override
-        public void writeToNBT(NBTTagCompound tag) {
+        public NBTTagCompound writeToNBT(NBTTagCompound tag) {
             tag.setString("ItemName", Item.REGISTRY.getNameForObject(item).toString());
             tag.setInteger("ItemMeta", meta);
+            return tag;
         }
     }
 }

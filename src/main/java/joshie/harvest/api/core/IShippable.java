@@ -11,5 +11,5 @@ public interface IShippable {
      *  
      *  @param  stack   the item
      *  @return         the value the item is shipped for**/
-    public long getSellValue(ItemStack stack);
+    long getSellValue(ItemStack stack);
 }

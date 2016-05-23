@@ -4,27 +4,27 @@ import net.minecraft.entity.passive.EntityAnimal;
 
 public interface IAnimalType {
     /** Return a simple name for this animal type **/
-    public String getName();
+    String getName();
     
     /** Return an array of food type this animal can consume **/
-    public AnimalFoodType[] getFoodTypes();
+    AnimalFoodType[] getFoodTypes();
 
     /** Return the minimum lifespan for this animal type **/
-    public int getMinLifespan();
+    int getMinLifespan();
     
     /** Return the maximum lifespan for this animal type **/
-    public int getMaxLifespan();
+    int getMaxLifespan();
 
     /** Return the number of days between producing products **/
-    public int getDaysBetweenProduction();
+    int getDaysBetweenProduction();
     
     /** How many generic treats this animal needs to up it's productivity **/
-    public int getGenericTreatCount();
+    int getGenericTreatCount();
     
     /** How many typed treats this animal needs to up it's productivity **/
-    public int getTypeTreatCount();
+    int getTypeTreatCount();
 
     /** Called to make this animal produce it a product on a new day 
      * @param data tracking **/
-    public void newDay(IAnimalData data, EntityAnimal entity);
+    void newDay(IAnimalData data, EntityAnimal entity);
 }

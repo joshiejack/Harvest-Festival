@@ -8,5 +8,5 @@ import java.util.List;
  *  default, special way. */
 public interface ISpecialRecipeHandler {
     /** Returns the result of this recipe for this item **/
-    public ItemStack getResult(IUtensil utensil, List<ItemStack> ingredients);
+    ItemStack getResult(IUtensil utensil, List<ItemStack> ingredients);
 }

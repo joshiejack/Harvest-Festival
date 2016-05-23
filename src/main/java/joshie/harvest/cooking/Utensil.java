@@ -7,7 +7,7 @@ public enum Utensil implements IUtensil {
 
     private final int cost;
 
-    private Utensil(int cost) {
+    Utensil(int cost) {
         this.cost = cost;
     }
 

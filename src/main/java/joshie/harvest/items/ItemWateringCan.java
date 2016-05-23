@@ -76,7 +76,7 @@ public class ItemWateringCan extends ItemBaseTool implements IFluidContainerItem
     public double getDurabilityForDisplay(ItemStack stack) {
         if (stack.hasTagCompound()) {
             int water = stack.getTagCompound().getByte("Water");
-            return (double) (128D - water) / 128D;
+            return (128D - water) / 128D;
         } else return 0D;
     }
 

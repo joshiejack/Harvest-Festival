@@ -34,7 +34,7 @@ public class PacketQuestSetCurrent extends PenguinPacket {
             IQuest q = HFApi.quests.get(ByteBufUtils.readUTF8String(buf));
 
             try {
-                quest = ((Quest) q.getClass().newInstance()).setUniqueName(q.getUniqueName());
+                quest = q.getClass().newInstance().setUniqueName(q.getUniqueName());
                 quest.fromBytes(buf);
             } catch (Exception e) {}
         }

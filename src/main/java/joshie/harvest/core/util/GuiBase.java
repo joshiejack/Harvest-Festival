@@ -63,17 +63,11 @@ public abstract class GuiBase extends GuiContainer {
         return 46;
     }
 
-    public void drawForeground(int x, int y) {
-        return;
-    }
+    public void drawForeground(int x, int y) {}
 
-    public void drawBackground(float f, int x, int y) {
-        return;
-    }
+    public void drawBackground(float f, int x, int y) {}
 
-    public void drawBackground(int x, int y) {
-        return;
-    }
+    public void drawBackground(int x, int y) {}
     
     public void addTooltip(List<String> list) {
         tooltip.addAll(list);

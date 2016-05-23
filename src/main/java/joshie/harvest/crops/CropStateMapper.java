@@ -12,7 +12,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.ResourceLocation;
 
 import java.util.Map;
 
@@ -41,7 +40,7 @@ public class CropStateMapper extends StateMapperBase {
     @Override
     protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
         Map <IProperty<?>, Comparable<? >> map = Maps. < IProperty<?>, Comparable<? >> newLinkedHashMap(state.getProperties());
-        return new ModelResourceLocation((ResourceLocation)Block.REGISTRY.getNameForObject(state.getBlock()), getPropertyString(map));
+        return new ModelResourceLocation(Block.REGISTRY.getNameForObject(state.getBlock()), getPropertyString(map));
     }
 
     protected ModelResourceLocation getCropResourceLocation(ICrop crop, IBlockState state) {

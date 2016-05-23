@@ -7,8 +7,8 @@ import net.minecraft.item.ItemStack;
 
 public class Meal implements IMeal {
     static final ItemStack BURNT = new ItemStack(HFItems.MEAL);
-    private static double hunger_modifier = 1.0D;
-    private static double saturation_modifier = 1.0D;
+    private static final double HUNGER_MODIFIER = 1.0D;
+    private static final double SATURATION_MODIFIER = 1.0D;
 
     private int stamina = 0;
     private int fatigue = 0;
@@ -23,8 +23,8 @@ public class Meal implements IMeal {
     public Meal(int stamina, int fatigue, int hunger, float saturation, int eatTime) {
         this.stamina = stamina;
         this.fatigue = fatigue;
-        this.hunger = (int) (hunger * hunger_modifier);
-        this.saturation = (float) (saturation * saturation_modifier);
+        this.hunger = (int) (hunger * HUNGER_MODIFIER);
+        this.saturation = (float) (saturation * SATURATION_MODIFIER);
         this.eatTime = eatTime;
     }
 

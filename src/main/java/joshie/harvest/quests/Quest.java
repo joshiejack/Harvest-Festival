@@ -59,7 +59,7 @@ public abstract class Quest implements IQuest {
         this.quest_stage++;
         if (!player.worldObj.isRemote) {
             //Send Packet to increase stage to client
-            sendToClient(new PacketQuestSetStage(this, this.quest_stage), (EntityPlayerMP) player);
+            sendToClient(new PacketQuestSetStage(this, this.quest_stage), player);
         } else {
             //Send Packet to increase stage to server
             sendToServer(new PacketQuestSetStage(this, this.quest_stage));

@@ -31,11 +31,11 @@ import static joshie.harvest.npc.NPC.Gender.MALE;
 
 public class NPC implements INPC {
     public enum Gender {
-        MALE, FEMALE;
+        MALE, FEMALE
     }
 
     public enum Age {
-        CHILD, ADULT, ELDER;
+        CHILD, ADULT, ELDER
     }
 
     protected List<IConditionalGreeting> conditionals = new ArrayList<IConditionalGreeting>(256);

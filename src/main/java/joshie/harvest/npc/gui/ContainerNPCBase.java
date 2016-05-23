@@ -15,6 +15,6 @@ public class ContainerNPCBase extends ContainerBase {
     @Override
     public void onContainerClosed(EntityPlayer player) {
         super.onContainerClosed(player);
-        npc.setTalking((EntityPlayer) null);
+        npc.setTalking(null);
     }
 }

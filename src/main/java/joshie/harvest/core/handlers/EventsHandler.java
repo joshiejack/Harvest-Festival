@@ -17,7 +17,6 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerChangedDimensionEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ServerTickEvent;
@@ -120,10 +119,5 @@ public class EventsHandler {
             PlayerTrackerServer data = HFTrackers.getServerPlayerTracker(player);
             data.syncPlayerStats(player);
         }
-    }
-
-    @SubscribeEvent
-    public void onChangeDimension(PlayerChangedDimensionEvent event) {
-
     }
 }

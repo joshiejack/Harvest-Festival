@@ -59,7 +59,7 @@ public abstract class BlockHFBaseEnumRotatableTile<E extends Enum<E> & IStringSe
 
     @Override
     public IBlockState withRotation(IBlockState state, Rotation rot) {
-        return state.withProperty(FACING, rot.rotate((EnumFacing)state.getValue(FACING)));
+        return state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
     }
 
     @Override

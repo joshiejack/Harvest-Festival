@@ -20,7 +20,7 @@ public class ContainerNPCShop extends ContainerBase {
     @Override
     public void onContainerClosed(EntityPlayer player) {
         super.onContainerClosed(player);
-        npc.setTalking((EntityPlayer) null);
+        npc.setTalking(null);
         HashSet<IQuest> quests = QuestHelper.getCurrentQuest(player);
         for (IQuest quest : quests) {
             if (quest != null) {

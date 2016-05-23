@@ -40,7 +40,7 @@ public class BuildingStage {
         return index < building.getFullList().size() ? building.getFullList().get(index).getTransformedPosition(pos, direction): pos;
     }
 
-    public BlockPos build(World world) {
+    public void build(World world) {
         if (index >= building.getFullList().size()) {
             if (stage == ConstructionStage.BUILD) {
                 stage = ConstructionStage.DECORATE;
@@ -65,14 +65,14 @@ public class BuildingStage {
                 Placeable block = building.getFullList().get(index);
                 if (block.place(world, pos, direction, stage)) {
                     index++;
-                    return block.getTransformedPosition(pos, direction);
+                    return;
                 }
 
                 index++;
             }
         }
 
-        return pos;
+        return;
     }
 
     public long getTickTime() {

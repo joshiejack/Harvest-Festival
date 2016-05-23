@@ -211,13 +211,13 @@ public class GuiNPCShop extends GuiNPCBase {
         return 10;
     }
 
-    private static enum Number {
+    private enum Number {
         ZERO(1, 9), ONE(11, 7), TWO(19, 9), THREE(29, 8), FOUR(38, 9), FIVE(48, 8), SIX(57, 9), SEVEN(67, 8), EIGHT(76, 8), NINE(85, 9), COMMA(95, 4);
 
         private final int xStart;
         private final int width;
 
-        private Number(int x, int w) {
+        Number(int x, int w) {
             this.xStart = x;
             this.width = w;
         }

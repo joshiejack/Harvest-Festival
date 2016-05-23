@@ -8,5 +8,5 @@ public enum AnimalFoodType {
     SEED, //Chickens
     VEGETABLE, //Horse, Pig
     FRUIT, //Horse, Pig
-    GRASS; //Horse, Cow, Sheep
+    GRASS //Horse, Cow, Sheep
 }

@@ -10,8 +10,8 @@ import joshie.harvest.api.relations.IRelatableProvider;
  *  or their will be serious issues... */
 public interface IAnimalTracked extends IRelatable, IRelatableProvider {
     /** Return animal type details **/
-    public IAnimalType getType();
+    IAnimalType getType();
     
     /** Return animal data **/
-    public IAnimalData getData();
+    IAnimalData getData();
 }

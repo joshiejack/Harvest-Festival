@@ -105,7 +105,7 @@ public class NBTHelper {
     }
 
     public interface ISaveable {
-        public void readFromNBT(NBTTagCompound tag);
-        public void writeToNBT(NBTTagCompound tag);
+        void readFromNBT(NBTTagCompound tag);
+        NBTTagCompound writeToNBT(NBTTagCompound tag);
     }
 }

@@ -28,7 +28,7 @@ public class ChatFontRenderer {
         private final int yPosition2;
         private final int width;
 
-        private Char(char c, int x, int y, int w) {
+        Char(char c, int x, int y, int w) {
             this.character = c;
             this.xPosition = x;
             this.yPosition = y;
@@ -36,11 +36,11 @@ public class ChatFontRenderer {
             this.width = w;
         }
 
-        private Char(char c, int x, int w) {
+        Char(char c, int x, int w) {
             this(c, x, 2, w);
         }
 
-        private Char(char c, int x) {
+        Char(char c, int x) {
             this(c, x, 10);
         }
     }

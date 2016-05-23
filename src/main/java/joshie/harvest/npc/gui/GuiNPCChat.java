@@ -16,12 +16,12 @@ import java.util.Arrays;
 /** Renders a chat script **/
 public class GuiNPCChat extends GuiNPCBase {
     private static final int MAX_LINES_PER_PAGE = 3;
-    protected String[][] script; //This is an array of [page][line], with line ALWAYS beign a length of MAX_LINES ^
-    protected int page; //Current page displayed
-    protected int line; //Current lines displayed
-    protected double character; //A ticker, Determines what character we should be displaying
-    protected boolean finished; //Whether the text has finished displaying
-    protected boolean executed; //Whether the whole thing was executed
+    private String[][] script; //This is an array of [page][line], with line ALWAYS beign a length of MAX_LINES ^
+    private int page; //Current page displayed
+    private int line; //Current lines displayed
+    private double character; //A ticker, Determines what character we should be displaying
+    private boolean finished; //Whether the text has finished displaying
+    private boolean executed; //Whether the whole thing was executed
     private boolean isScriptInit = false;
     private int nextGui = -1;
 
@@ -104,7 +104,7 @@ public class GuiNPCChat extends GuiNPCBase {
                 //Convert the next line in to a char array
                 char[] todisplay = script[page][line].toCharArray();
                 if (todisplay.length > 0) {
-                    if (new String("" + todisplay[0]).equals("@")) {
+                    if (("" + todisplay[0]).equals("@")) {
                         character = todisplay.length;
                     }
 

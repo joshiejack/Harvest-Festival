@@ -76,6 +76,6 @@ public abstract class Placeable {
     }
 
     public enum ConstructionStage {
-        BUILD, PAINT, DECORATE, MOVEIN, FINISHED;
+        BUILD, PAINT, DECORATE, MOVEIN, FINISHED
     }
 }

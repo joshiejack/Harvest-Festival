@@ -7,5 +7,5 @@ import java.util.Random;
 
 public interface IDropHandler {
     /** Return the item dropped, return null if the item was the default for this crop **/
-    public ItemStack getDrop(Random rand, Item item);
+    ItemStack getDrop(Random rand, Item item);
 }

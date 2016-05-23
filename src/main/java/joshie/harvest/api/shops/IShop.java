@@ -15,19 +15,19 @@ public interface IShop {
     *  @param      world the world the player is in
     *  @param      player the player (can be null if checking if the npcs ai should return)
     *  @return     true if shop is open, false if its closed */
-    public boolean isOpen(World world, EntityPlayer player);
+   boolean isOpen(World world, EntityPlayer player);
 
     /** Returns a list of every purchaseable item
      *  in this shop */
-    public List<IPurchaseable> getContents(EntityPlayer player);
+    List<IPurchaseable> getContents(EntityPlayer player);
 
     /** Add a new purchaseable to this shop **/
-    public IShop addItem(IPurchaseable item);
+    IShop addItem(IPurchaseable item);
 
     /** Convenience method for basic items
      *  @param      cost how much this costs in gold
      *  @param      stack the items you get for this purchase**/
-    public IShop addItem(long cost, ItemStack... stack);
+    IShop addItem(long cost, ItemStack... stack);
 
     /** Add some opening hours for this shop, based on difficulty, and day of the week
      *  No point in adding peaceful hours. Shops are always open 24 hours in peaceful.
@@ -35,21 +35,21 @@ public interface IShop {
      *  @param      day the day of the week
      *  @param      opening the opening time (0-24000)
      *  @param      closing the closing time (0-24000) **/
-    public IShop addOpening(EnumDifficulty difficulty, Weekday day, int opening, int closing);
+    IShop addOpening(EnumDifficulty difficulty, Weekday day, int opening, int closing);
 
     /** Hours, auto adjusts based on difficulty instead of manually adding **/
-    public IShop addOpening(Weekday day, int opening, int closing);
+    IShop addOpening(Weekday day, int opening, int closing);
 
     /** Return the welcome message for this shop **/
-    public String getWelcome();
+    String getWelcome();
 
     /** Return the gui handler for this shop
      *  This is called whenever we are displaying the
      *  gui for the shop, in order to render the background;  */
     @SideOnly(Side.CLIENT)
-    public IShopGuiOverlay getGuiOverlay();
+    IShopGuiOverlay getGuiOverlay();
 
     /** Make sure you only call this on the client **/
     @SideOnly(Side.CLIENT)
-    public IShop setGuiOverlay(IShopGuiOverlay overlay);
+    IShop setGuiOverlay(IShopGuiOverlay overlay);
 }

@@ -56,7 +56,7 @@ public class Building extends net.minecraftforge.fml.common.registry.IForgeRegis
         }
 
         if (getRegistryName() != null) {
-            this.toLocalise = getRegistryName().getResourceDomain().toString().toLowerCase() + ".structures." + getRegistryName().getResourcePath().toLowerCase();
+            this.toLocalise = getRegistryName().getResourceDomain().toLowerCase() + ".structures." + getRegistryName().getResourcePath().toLowerCase();
         }
 
         this.cost = cost;

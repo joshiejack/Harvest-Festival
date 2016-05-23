@@ -19,7 +19,7 @@ public class EntityHelper {
     public static EntityAnimal getAnimalFromUUID(int dimension, UUID uuid) {
         World world = MCServerHelper.getWorld(dimension);
         for (int i = 0; i < world.loadedEntityList.size(); i++) {
-            Entity entity = (Entity) world.loadedEntityList.get(i);
+            Entity entity = world.loadedEntityList.get(i);
             if (entity instanceof EntityAnimal) {
                 if (UUIDHelper.getEntityUUID(entity).equals(uuid)) {
                     return (EntityAnimal) entity;
@@ -33,7 +33,7 @@ public class EntityHelper {
     public static EntityNPCBuilder getBuilderFromUUID(int dimension, UUID uuid) {
         World world = MCServerHelper.getWorld(dimension);
         for (int i = 0; i < world.loadedEntityList.size(); i++) {
-            Entity entity = (Entity) world.loadedEntityList.get(i);
+            Entity entity = world.loadedEntityList.get(i);
             if (entity instanceof EntityNPCBuilder) {
                 if (UUIDHelper.getEntityUUID(entity).equals(uuid)) {
                     return (EntityNPCBuilder) entity;

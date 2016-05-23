@@ -5,8 +5,8 @@ import net.minecraft.world.World;
 
 
 public interface ICalendar {
-    public ICalendarDate getToday(World world);
-    public ICalendarDate cloneDate(ICalendarDate date);
-    public ICalendarDate newDate(int day, Season season, int year);
-    public ISeasonData getDataForSeason(Season season);
+    ICalendarDate getToday(World world);
+    ICalendarDate cloneDate(ICalendarDate date);
+    ICalendarDate newDate(int day, Season season, int year);
+    ISeasonData getDataForSeason(Season season);
 }

@@ -9,8 +9,8 @@ public interface IShopRegistry {
      * @param       unlocalised name of the shop
      * @param       npc the npc
      * @return      the shop*/
-    public IShop newShop(String unlocalised, INPC npc);
+    IShop newShop(String unlocalised, INPC npc);
     
     /** Grabs an existing shop based on it's unlocalised name **/
-    public IShop getShop(String unlocalised);
+    IShop getShop(String unlocalised);
 }

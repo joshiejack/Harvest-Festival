@@ -6,5 +6,5 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.IPlantable;
 
 public interface ISoilHandler {
-    public boolean canSustainPlant(IBlockState state, IBlockAccess access, BlockPos pos, IPlantable plantable);
+    boolean canSustainPlant(IBlockState state, IBlockAccess access, BlockPos pos, IPlantable plantable);
 }

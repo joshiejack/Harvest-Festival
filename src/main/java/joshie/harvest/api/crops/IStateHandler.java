@@ -14,7 +14,7 @@ public interface IStateHandler {
     /** Return the correct block state for this stage **/
     IBlockState getState(PlantSection section, int stage, boolean withered);
 
-    public enum PlantSection {
-        TOP, BOTTOM;
+    enum PlantSection {
+        TOP, BOTTOM
     }
 }

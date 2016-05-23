@@ -24,7 +24,7 @@ public class HFRecipeFixes {
     }
 
     public static void fixRecipes(Item fix, String name) {
-        for (IRecipe recipe : (ArrayList<IRecipe>) CraftingManager.getInstance().getRecipeList()) {
+        for (IRecipe recipe : CraftingManager.getInstance().getRecipeList()) {
             if (recipe instanceof ShapedRecipes) {
                 overrideShaped((ShapedRecipes) recipe, fix);
             } else if (recipe instanceof ShapelessRecipes) {

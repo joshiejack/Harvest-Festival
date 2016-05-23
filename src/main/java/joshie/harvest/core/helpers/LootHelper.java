@@ -102,7 +102,7 @@ public class LootHelper {
         }
     }
 
-    public static final ItemStack getStack(World world, EntityPlayer player, ResourceLocation lootTable) {
+    public static ItemStack getStack(World world, EntityPlayer player, ResourceLocation lootTable) {
         long lootTableSeed = world.rand.nextLong();
         LootTable loottable = world.getLootTableManager().getLootTableFromLocation(lootTable);
         Random random;

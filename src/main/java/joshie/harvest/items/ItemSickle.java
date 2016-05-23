@@ -89,7 +89,9 @@ public class ItemSickle extends ItemBaseTool implements IBreakCrops {
                             block.removedByPlayer(state, world, newPos, player, true);
                         }
 
-                        displayParticle(world, newPos, EnumParticleTypes.BLOCK_CRACK, Blocks.TALLGRASS.getDefaultState());
+                        boolean isWithered = BlockCrop.isWithered(world.getBlockState(newPos));
+                        IBlockState particleState = isWithered ? Blocks.TALLGRASS.getDefaultState() : Blocks.CARROTS.getDefaultState();
+                        displayParticle(world, newPos, EnumParticleTypes.BLOCK_CRACK, particleState);
                         playSound(world, newPos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS);
                         PlayerHelper.performTask(player, stack, getExhaustionRate(stack));
                     }

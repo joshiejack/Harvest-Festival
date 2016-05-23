@@ -50,7 +50,7 @@
     - See https://github.com/joshiejack/Harvest-Festival/blob/4fc81be862b9686cf00a3b8b1d262a8b7106aaaf/src/main/java/joshie/harvest/core/lib/LootStrings.java
     - See https://github.com/joshiejack/Harvest-Festival/blob/4fc81be862b9686cf00a3b8b1d262a8b7106aaaf/src/main/java/joshie/harvest/buildings/loader/HFBuildings.java#L51
 - Change Items to Item Enums + Change Item Registry Helper
-- Change Crops, Seeds, NPCS to use ForgeControlledNameSpace and use metadata instead of NBT where appropriate
+- Change Crops/Seeds, NPCS to use ForgeControlledNameSpace and use metadata instead of NBT where appropriate
 - Add Sprinkler Block
 
 ###(S)ounds, (E)ffects, (A)nimations
@@ -77,12 +77,10 @@
 - Incubators will hatch chickens - J
 - Can Spawn the Goddess by dropping relevant items in goddess water - J
 - ASM For Snow - J
-- Sickles do their jobs - J
 - Animals will give better products when cared for (brushing, talking, milking/shearing, treats) - J
 - Animal Pregnancy is working correctly (Impregnanted via miracle potion, takes few days to hatch) - J
 - All Cooking utensils work correctly - J
 - All Recipes can be successfully made - J
-- Stamina and Fatigue is doing the correct things - J
 - Cursed Tools are giving cursed effects - J
 - Gathering is saving
 
@@ -97,11 +95,10 @@
 - Make Blueprints Item Render
 - Make Spawn NPC Render the NPC
 - Mine Floor Connected Textures and Random Texture Overlays - Y, J?
-- Mine Wall Random Textures - Y
 - Make Spawn Cow Render the Cow
 - Make Spawn Sheep Render the Sheep
 - Make Spawn Chicken Render the Chicken
-- Mine Wall/Floor in inventory renders
+- Mine Floor in inventory renders
 - Goddess Water Texture
 - Render Food/Liquids in Mixer correctly, render food on counter correctly - J
 

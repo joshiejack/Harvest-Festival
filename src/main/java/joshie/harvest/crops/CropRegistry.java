@@ -29,7 +29,7 @@ public class CropRegistry implements ICropRegistry {
 
     @Override
     public ICropData getCropAtLocation(World world, BlockPos pos) {
-        PlantSection section = BlockCrop.getSection(world, pos);
+        PlantSection section = BlockCrop.getSection(world.getBlockState(pos));
         return section == PlantSection.BOTTOM ? HFTrackers.getCropTracker(world).getCropDataForLocation(world, pos) : HFTrackers.getCropTracker(world).getCropDataForLocation(world, pos.down());
     }
 

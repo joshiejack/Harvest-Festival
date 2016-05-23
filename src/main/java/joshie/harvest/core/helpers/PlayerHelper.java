@@ -42,7 +42,7 @@ public class PlayerHelper {
             affectFatigue = true;
         } else {
             //If the players fatigue > 255, Make them faint
-            if (!player.worldObj.isRemote) {
+            if (!player.worldObj.isRemote) { //TODO: Re-enable this
                 // MinecraftServer.getServer().getConfigurationManager().respawnPlayer((EntityPlayerMP) player, player.worldObj.provider.dimensionId, true);
             }
 

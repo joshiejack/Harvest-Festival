@@ -54,7 +54,7 @@ public class BlockCrop extends BlockHFBaseEnum<Stage> implements IPlantable, IGr
         private final PlantSection section;
 
         private Stage(boolean isWithered, PlantSection section) {
-            this.isWithered = true;
+            this.isWithered = isWithered;
             this.section = section;
         }
 
@@ -187,8 +187,7 @@ public class BlockCrop extends BlockHFBaseEnum<Stage> implements IPlantable, IGr
         return ((IBreakCrops) held.getItem()).getStrengthVSCrops(player, world, pos, state, held);
     }
 
-    public static PlantSection getSection(IBlockAccess world, BlockPos pos) {
-        IBlockState state = world.getBlockState(pos);
+    public static PlantSection getSection(IBlockState state) {
         int stage = state.getBlock().getMetaFromState(state); //Can't get the Enum from state, because this method is static.
         PlantSection section = BOTTOM;
         if (stage == Stage.WITHERED_DOUBLE.ordinal() || stage == Stage.FRESH_DOUBLE.ordinal()) {
@@ -196,6 +195,11 @@ public class BlockCrop extends BlockHFBaseEnum<Stage> implements IPlantable, IGr
         }
 
         return section;
+    }
+
+    public static boolean isWithered(IBlockState state) {
+        int stage = state.getBlock().getMetaFromState(state); //Can't get the Enum from state, because this method is static.
+        return stage == Stage.WITHERED.ordinal() || stage == Stage.WITHERED_DOUBLE.ordinal();
     }
 
     @Override
@@ -261,7 +265,7 @@ public class BlockCrop extends BlockHFBaseEnum<Stage> implements IPlantable, IGr
         if (stage == Stage.WITHERED || stage == Stage.WITHERED_DOUBLE) return false; //If Withered with suck!
         if (player.isSneaking()) return false;
         else {
-            PlantSection section = getSection(world, pos);
+            PlantSection section = getSection(state);
             ICropData data = HFApi.crops.getCropAtLocation(world, pos);
             if (data == null || data.getCrop().requiresSickle() || data.getCrop().growsToSide() != null) {
                 return false;
@@ -294,7 +298,7 @@ public class BlockCrop extends BlockHFBaseEnum<Stage> implements IPlantable, IGr
         if (stage == Stage.WITHERED || stage == Stage.WITHERED_DOUBLE)
             return world.setBlockToAir(pos); //JUST KILL IT IF WITHERED
 
-        PlantSection section = getSection(world, pos);
+        PlantSection section = getSection(state);
         ICropData data = HFApi.crops.getCropAtLocation(world, pos);
         if (data == null) {
             return super.removedByPlayer(state, world, pos, player, willHarvest);

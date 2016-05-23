@@ -105,7 +105,7 @@ public class QuestDataServer extends QuestData {
         }
     }
 
-    public void writeToNBT(NBTTagCompound nbt) {
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         NBTTagList quests = new NBTTagList();
         for (IQuest s : current) {
             NBTTagCompound tag = new NBTTagCompound();
@@ -124,5 +124,6 @@ public class QuestDataServer extends QuestData {
         }
 
         nbt.setTag("FinishedQuests", done);
+        return nbt;
     }
 }

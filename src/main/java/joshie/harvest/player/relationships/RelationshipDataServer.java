@@ -131,7 +131,7 @@ public class RelationshipDataServer extends RelationshipData {
         }
     }
 
-    public void writeToNBT(NBTTagCompound nbt) {
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         //Saving Relationships
         NBTTagList relationList = new NBTTagList();
         for (Map.Entry<IRelatable, Integer> entry : relationships.entrySet()) {
@@ -184,5 +184,6 @@ public class RelationshipDataServer extends RelationshipData {
         }
 
         nbt.setTag("MarriedTo", marriedList);
+        return nbt;
     }
 }

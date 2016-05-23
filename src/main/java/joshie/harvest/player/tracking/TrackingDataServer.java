@@ -54,7 +54,7 @@ public class TrackingDataServer extends TrackingData {
         toBeShipped = NBTHelper.readHashSet(SellHolderStack.class, nbt.getTagList("ToBeShipped", 10));
     }
 
-    public void writeToNBT(NBTTagCompound nbt) {
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         //Saving the CropsHarvested
         nbt.setTag("CropsHarvested", NBTHelper.writeCollection(cropTracker));
         //Saving the Sold List
@@ -63,5 +63,6 @@ public class TrackingDataServer extends TrackingData {
         nbt.setTag("ItemsObtained", NBTHelper.writeCollection(obtained));
         //Saving the to be shipped list
         nbt.setTag("ToBeShipped", NBTHelper.writeCollection(toBeShipped));
+        return nbt;
     }
 }

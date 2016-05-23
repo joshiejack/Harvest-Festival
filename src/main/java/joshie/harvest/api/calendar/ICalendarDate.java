@@ -33,5 +33,5 @@ public interface ICalendarDate {
     public void readFromNBT(NBTTagCompound nbt);
 
     /** Writes the date to nbt **/
-    public void writeToNBT(NBTTagCompound nbt);
+    NBTTagCompound writeToNBT(NBTTagCompound nbt);
 }

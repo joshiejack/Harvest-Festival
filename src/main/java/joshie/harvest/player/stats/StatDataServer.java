@@ -51,7 +51,7 @@ public class StatDataServer extends StatData {
     }
 
     public void readFromNBT(NBTTagCompound nbt) {
-        birthday.readFromNBT(nbt);
+        birthday.readFromNBT(nbt.getCompoundTag("Birthday"));
         stamina = nbt.getDouble("Stamina");
         fatigue = nbt.getDouble("Fatigue");
         gold = nbt.getLong("Gold");
@@ -59,12 +59,13 @@ public class StatDataServer extends StatData {
         fatigueMin = nbt.getDouble("FatigueMin");
     }
 
-    public void writeToNBT(NBTTagCompound nbt) {
-        birthday.writeToNBT(nbt);
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+        nbt.setTag("Birthday", birthday.writeToNBT(new NBTTagCompound()));
         nbt.setDouble("Stamina", stamina);
         nbt.setDouble("Fatigue", fatigue);
         nbt.setLong("Gold", gold);
         nbt.setDouble("StaminaMax", staminaMax);
         nbt.setDouble("FatigueMin", fatigueMin);
+        return nbt;
     }
 }

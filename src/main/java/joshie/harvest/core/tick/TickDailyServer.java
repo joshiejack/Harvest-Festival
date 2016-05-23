@@ -60,7 +60,7 @@ public class TickDailyServer {
 
     public void readFromNBT(NBTTagCompound tag) {
         blockTicks = new HashSet<>();
-        NBTTagList dataList = tag.getTagList("BlockPositions", 10);
+        NBTTagList dataList = tag.getTagList("Positions", 10);
         for (int j = 0; j < dataList.tagCount(); j++) {
             NBTTagCompound data = dataList.getCompoundTagAt(j);
             blockTicks.add(NBTHelper.readBlockPos("", data));
@@ -75,7 +75,7 @@ public class TickDailyServer {
             dataList.appendTag(data);
         }
 
-        tag.setTag("BlockPositions", dataList);
+        tag.setTag("Positions", dataList);
         return tag;
     }
 }

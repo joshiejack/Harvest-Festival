@@ -2,8 +2,6 @@ package joshie.harvest.npc.town;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import gnu.trove.map.TIntObjectMap;
-import gnu.trove.map.hash.TIntObjectHashMap;
 import joshie.harvest.core.config.NPC;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
@@ -25,23 +23,19 @@ public class TownTrackerServer extends TownTracker {
     private final Cache<Pair<Integer, BlockPos>, TownData> closestCache = CacheBuilder.newBuilder().build();
     private final Cache<Pair<Integer, BlockPos>, EntityNPCBuilder> closestBuilder = CacheBuilder.newBuilder().build();
     private final HashMap<UUID, TownData> uuidMap = new HashMap<>();
-    private TIntObjectMap<Set<TownDataServer>> townData = new TIntObjectHashMap<>();
+    private Set<TownDataServer> townData;
 
-    private Set<TownDataServer> getTownsForDimension(int dimension, boolean dirty) {
-        Set<TownDataServer> data = townData.get(dimension);
-        if (data == null) {
-            data = new HashSet<>();
-            townData.put(dimension, data);
-            if (dirty) {
-                HFTrackers.markDirty(dimension);
-            }
+    private Set<TownDataServer> getTownsForDimension(int dimension) {
+        if (townData == null) {
+            townData = new HashSet<>();
+            HFTrackers.markDirty(dimension);
         }
 
-        return data;
+        return townData;
     }
 
     public void newDay(World world) {
-        for (TownDataServer town: getTownsForDimension(world.provider.getDimension(), true)) {
+        for (TownDataServer town: getTownsForDimension(world.provider.getDimension())) {
             town.newDay(world);
         }
     }
@@ -89,7 +83,7 @@ public class TownTrackerServer extends TownTracker {
     @Override
     public TownData createNewTown(int dimension, BlockPos pos) {
         TownDataServer data = new TownDataServer(pos);
-        getTownsForDimension(dimension, true).add(data);
+        getTownsForDimension(dimension).add(data);
         closestCache.invalidateAll(); //Reset the cache everytime we make a new town
         uuidMap.put(data.getID(), data);
         HFTrackers.markDirty(dimension);
@@ -102,7 +96,7 @@ public class TownTrackerServer extends TownTracker {
             return closestCache.get(Pair.of(dimension, pos), new Callable<TownData>() {
                 @Override
                 public TownData call() throws Exception {
-                    Set<TownDataServer> towns = getTownsForDimension(dimension, true);
+                    Set<TownDataServer> towns = getTownsForDimension(dimension);
                     TownData closest = null;
                     double thatTownDistance = Double.MAX_VALUE;
                     for (TownDataServer town: towns) {
@@ -117,46 +111,29 @@ public class TownTrackerServer extends TownTracker {
                 }
             });
         } catch (Exception e) { e.printStackTrace(); return NULL_TOWN; }
-
-
     }
 
     public void readFromNBT(NBTTagCompound nbt) {
-        NBTTagList dimensions = nbt.getTagList("TownData", 10);
-        for (int i = 0; i < dimensions.tagCount(); i++) {
-            NBTTagCompound tag = dimensions.getCompoundTagAt(i);
-            int dimension_id = tag.getInteger("DimensionID");
-            Set<TownDataServer> data = getTownsForDimension(dimension_id, false);
-            NBTTagList dimensionTowns = tag.getTagList("DimensionTowns", 10);
-            for (int j = 0; j < dimensionTowns.tagCount(); j++) {
-                NBTTagCompound townData = dimensionTowns.getCompoundTagAt(j);
-                TownDataServer theData = new TownDataServer();
-                theData.readFromNBT(townData);
-                uuidMap.put(theData.getID(), theData);
-                data.add(theData);
-            }
+        townData = new HashSet<>();
+        NBTTagList dimensionTowns = nbt.getTagList("Towns", 10);
+        for (int j = 0; j < dimensionTowns.tagCount(); j++) {
+            NBTTagCompound tag = dimensionTowns.getCompoundTagAt(j);
+            TownDataServer theData = new TownDataServer();
+            theData.readFromNBT(tag);
+            uuidMap.put(theData.getID(), theData);
+            townData.add(theData);
         }
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
-        NBTTagList dimensions = new NBTTagList();
-        for (int dimension: townData.keys()) {
-            if (townData.get(dimension).size() > 0) {
-                NBTTagCompound tag = new NBTTagCompound();
-                NBTTagList town_list = new NBTTagList();
-                tag.setInteger("DimensionID", dimension);
-                for (TownDataServer data: townData.get(dimension)) {
-                    NBTTagCompound townData = new NBTTagCompound();
-                    data.writeToNBT(townData);
-                    town_list.appendTag(townData);
-                }
-
-                tag.setTag("DimensionTowns", town_list);
-                dimensions.appendTag(tag);
-            }
+        NBTTagList town_list = new NBTTagList();
+        for (TownDataServer data: townData) {
+            NBTTagCompound townData = new NBTTagCompound();
+            data.writeToNBT(townData);
+            town_list.appendTag(townData);
         }
 
-        nbt.setTag("TownData", dimensions);
+        nbt.setTag("Towns", town_list);
         return nbt;
     }
 }

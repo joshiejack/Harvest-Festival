@@ -165,7 +165,7 @@ public class CropTrackerServer extends CropTracker {
 
     public void readFromNBT(NBTTagCompound nbt) {
         cropTracker = new HashMap<>();
-        NBTTagList dataList = nbt.getTagList("Data", 10);
+        NBTTagList dataList = nbt.getTagList("Crops", 10);
         for (int j = 0; j < dataList.tagCount(); j++) {
             NBTTagCompound data = dataList.getCompoundTagAt(j);
             BlockPos pos = NBTHelper.readBlockPos("", data);
@@ -184,7 +184,7 @@ public class CropTrackerServer extends CropTracker {
             dataList.appendTag(data);
         }
 
-        nbt.setTag("Data", dataList);
+        nbt.setTag("Crops", dataList);
         return nbt;
     }
 }

@@ -91,19 +91,19 @@ public class PlayerTrackerServer extends PlayerTracker {
     }
 
     public void readFromNBT(NBTTagCompound nbt) {
-        fridge.readFromNBT(nbt);
-        quests.readFromNBT(nbt);
-        relationships.readFromNBT(nbt);
-        stats.readFromNBT(nbt);
-        tracking.readFromNBT(nbt);
+        fridge.readFromNBT(nbt.getCompoundTag("Fridge"));
+        quests.readFromNBT(nbt.getCompoundTag("Quests"));
+        relationships.readFromNBT(nbt.getCompoundTag("Relationships"));
+        stats.readFromNBT(nbt.getCompoundTag("Stats"));
+        tracking.readFromNBT(nbt.getCompoundTag("Tracking"));
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
-        fridge.writeToNBT(nbt);
-        quests.writeToNBT(nbt);
-        relationships.writeToNBT(nbt);
-        stats.writeToNBT(nbt);
-        tracking.writeToNBT(nbt);
+        nbt.setTag("Fridge", fridge.writeToNBT(new NBTTagCompound()));
+        nbt.setTag("Quests", quests.writeToNBT(new NBTTagCompound()));
+        nbt.setTag("Relationships", relationships.writeToNBT(new NBTTagCompound()));
+        nbt.setTag("Stats", stats.writeToNBT(new NBTTagCompound()));
+        nbt.setTag("Tracking", tracking.writeToNBT(new NBTTagCompound()));
         return nbt;
     }
 }

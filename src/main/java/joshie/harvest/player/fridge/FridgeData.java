@@ -129,7 +129,7 @@ public class FridgeData implements IInventory {
         }
     }
 
-    public void writeToNBT(NBTTagCompound nbt) {
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         NBTTagList itemList = new NBTTagList();
         for (int i = 0; i < inventory.length; i++) {
             ItemStack stack = inventory[i];
@@ -142,5 +142,6 @@ public class FridgeData implements IInventory {
         }
 
         nbt.setTag("FridgeContents", itemList);
+        return nbt;
     }
 }

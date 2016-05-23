@@ -129,17 +129,20 @@ public class CalendarServer extends Calendar {
     public void readFromNBT(NBTTagCompound nbt) {
         date.readFromNBT(nbt);
         for (int i = 0; i < 7; i++) {
-            forecast[i] = Weather.values()[nbt.getByte("ForecastDay" + i)];
+            forecast[i] = Weather.values()[nbt.getCompoundTag("Forecast").getByte("Day" + i)];
         }
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         date.writeToNBT(nbt);
+        NBTTagCompound tag = new NBTTagCompound();
         for (int i = 0; i < 7; i++) {
             Weather weather = forecast[i];
             if (weather == null) weather = Weather.SUNNY;
-            nbt.setByte("ForecastDay" + i, (byte) weather.ordinal());
+            tag.setByte("Day" + i, (byte) weather.ordinal());
         }
+
+        nbt.setTag("Forecast", tag);
 
         return nbt;
     }

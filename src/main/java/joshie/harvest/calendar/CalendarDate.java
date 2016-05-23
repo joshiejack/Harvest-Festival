@@ -82,16 +82,17 @@ public class CalendarDate implements ICalendarDate {
     }
 
     public void readFromNBT(NBTTagCompound nbt) {
-        day = nbt.getByte("DayOfMonth");
+        day = nbt.getByte("Day");
         season = Season.values()[nbt.getByte("Season")];
         year = nbt.getShort("Year");
         data = HFApi.calendar.getDataForSeason(season);
     }
 
-    public void writeToNBT(NBTTagCompound nbt) {
-        nbt.setByte("DayOfMonth", (byte) day);
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+        nbt.setByte("Day", (byte) day);
         nbt.setByte("Season", (byte) season.ordinal());
         nbt.setShort("Year", (short) year);
+        return nbt;
     }
 
     @Override

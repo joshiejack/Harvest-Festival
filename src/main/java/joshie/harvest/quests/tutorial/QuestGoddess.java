@@ -5,7 +5,6 @@ import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.helpers.generic.OreDictionaryHelper;
 import joshie.harvest.crops.HFCrops;
-import joshie.harvest.items.HFItems;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.quests.Quest;
 import net.minecraft.entity.player.EntityPlayer;
@@ -28,7 +27,7 @@ public class QuestGoddess extends Quest {
             rewardItem(player, HFBuildings.CARPENTER.getBlueprint());
             rewardItem(player, new ItemStack(Blocks.RED_FLOWER, 1, player.worldObj.rand.nextInt(8)));
         } else if (previous == 3) {
-            ItemStack seeds = HFCrops.turnip.getSeedStack().copy();
+            ItemStack seeds = HFCrops.TURNIP.getSeedStack().copy();
             seeds.stackSize = 10;
             rewardItem(player, seeds);
         }
@@ -37,9 +36,9 @@ public class QuestGoddess extends Quest {
     @Override
     public void claim(EntityPlayer player) {
         rewardGold(player, 1000);
-        rewardItem(player, new ItemStack(HFItems.HOE));
-        rewardItem(player, new ItemStack(HFItems.WATERING_CAN));
-        rewardItem(player, new ItemStack(HFItems.SICKLE));
+        rewardItem(player, new ItemStack(HFCrops.HOE));
+        rewardItem(player, new ItemStack(HFCrops.WATERING_CAN));
+        rewardItem(player, new ItemStack(HFCrops.SICKLE));
     }
 
     @Override

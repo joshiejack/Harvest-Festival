@@ -1,8 +1,8 @@
 package joshie.harvest.crops.blocks;
 
 import joshie.harvest.api.core.IDailyTickableBlock;
+import joshie.harvest.crops.HFCrops;
 import joshie.harvest.crops.blocks.BlockHFFarmland.Moisture;
-import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.core.util.base.BlockHFBaseEnum;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -125,7 +125,7 @@ public class BlockHFFarmland extends BlockHFBaseEnum<Moisture> implements IDaily
             case EAST:
                 IBlockState iblockstate = blockAccess.getBlockState(pos.offset(side));
                 Block block = iblockstate.getBlock();
-                return !iblockstate.isOpaqueCube() && block != HFBlocks.FARMLAND && block != Blocks.GRASS_PATH;
+                return !iblockstate.isOpaqueCube() && block != HFCrops.FARMLAND && block != Blocks.GRASS_PATH;
             default:
                 return super.shouldSideBeRendered(blockState, blockAccess, pos, side);
         }

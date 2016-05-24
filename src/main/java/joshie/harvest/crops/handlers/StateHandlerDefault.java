@@ -4,8 +4,8 @@ import com.google.common.collect.ImmutableList;
 import gnu.trove.map.TIntObjectMap;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.IStateHandler;
+import joshie.harvest.crops.HFCrops;
 import joshie.harvest.crops.blocks.BlockHFCrops;
-import joshie.harvest.blocks.HFBlocks;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -22,7 +22,7 @@ public class StateHandlerDefault implements IStateHandler {
     public StateHandlerDefault(int maximum) {
         this.maximum = maximum;
         this.stages = PropertyInteger.create("stage", 1, maximum);
-        this.stateContainer = new BlockStateContainer(HFBlocks.CROPS, stages);
+        this.stateContainer = new BlockStateContainer(HFCrops.CROPS, stages);
         this.defaultState = stateContainer.getBaseState().withProperty(stages, Integer.valueOf(1));
     }
 

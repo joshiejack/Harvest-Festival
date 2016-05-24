@@ -257,9 +257,15 @@ harvestfestival.woodware.trough=Food Trough
 harvestfestival.flowers.goddess=Goddess Flower
 harvestfestival.flowers.weed=Weed
 
-harvestfestival.gathering.branch=Branch
-harvestfestival.gathering.rock=Rock
-harvestfestival.gathering.stump=Stump
+harvestfestival.gathering.branch.small=Small Branch
+harvestfestival.gathering.branch.medium=Medium Branch
+harvestfestival.gathering.branch.large=Large Branch
+harvestfestival.gathering.rock.small=Small Rock
+harvestfestival.gathering.rock.medium=Medium Rock
+harvestfestival.gathering.rock.large=Large Rock
+harvestfestival.gathering.stump.small=Small Stump
+arvestfestival.gathering.stump.medium=Medium Stump
+arvestfestival.gathering.stump.large=Large Stump
 
 harvestfestival.dirt.real=Mine Floor
 harvestfestival.dirt.decorative=Mine Floor

@@ -35,7 +35,7 @@ public class QuestTomatoes extends Quest {
         } else if (player.getActiveItemStack() != null) {
             ItemStack held = player.getActiveItemStack();
             if (held.stackSize >= 10) {
-                if (HFCrops.tomato.matches(held)) {
+                if (HFCrops.TOMATO.matches(held)) {
                     takeHeldStack(player, 10);
                     completeQuest(player, this);
                     return getLocalized("finish");
@@ -50,7 +50,7 @@ public class QuestTomatoes extends Quest {
 
     @Override
     public void claim(EntityPlayer player) {
-        rewardGold(player, HFCrops.tomato.getSellValue(HFCrops.tomato.getCropStack()) * 15);
+        rewardGold(player, HFCrops.TOMATO.getSellValue(HFCrops.TOMATO.getCropStack()) * 15);
         rewardRelations(player, HFNPCs.GODDESS, 1000);
     }
 }

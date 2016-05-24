@@ -4,7 +4,6 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
-import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.core.config.Crops;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.crops.blocks.BlockHFCrops;
@@ -24,7 +23,7 @@ public class CropData implements ICropData {
 
     public CropData(BlockPos pos) {
         this.pos = pos;
-        this.crop = HFCrops.null_crop;
+        this.crop = HFCrops.NULL_CROP;
     }
 
     @Override
@@ -76,7 +75,7 @@ public class CropData implements ICropData {
 
             //If the crop has become double add in the new block
             if (crop.isDouble(stage)) {
-                world.setBlockState(pos.up(), HFBlocks.CROPS.getStateFromEnum(BlockHFCrops.Stage.FRESH_DOUBLE), 2);
+                world.setBlockState(pos.up(), HFCrops.CROPS.getStateFromEnum(BlockHFCrops.Stage.FRESH_DOUBLE), 2);
             }
 
             //If the crop grows a block to the side
@@ -114,7 +113,7 @@ public class CropData implements ICropData {
 
     @Override
     public ICrop getCrop() {
-        return crop != null ? crop : HFCrops.null_crop;
+        return crop != null ? crop : HFCrops.NULL_CROP;
     }
 
     public boolean canGrow() {
@@ -144,7 +143,7 @@ public class CropData implements ICropData {
     public void readFromNBT(NBTTagCompound nbt) {
         crop = HFApi.crops.getCrop(new ResourceLocation(nbt.getString("CropResource")));
         isReal = nbt.getBoolean("IsReal");
-        if (crop == HFCrops.null_crop) isReal = false;
+        if (crop == HFCrops.NULL_CROP) isReal = false;
         stage = nbt.getByte("CurrentStage");
         daysWithoutWater = nbt.getShort("DaysWithoutWater");
     }

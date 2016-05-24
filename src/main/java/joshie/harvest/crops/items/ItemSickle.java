@@ -1,9 +1,10 @@
-package joshie.harvest.items;
+package joshie.harvest.crops.items;
 
 import joshie.harvest.api.crops.IBreakCrops;
 import joshie.harvest.crops.blocks.BlockHFCrops;
 import joshie.harvest.core.helpers.PlayerHelper;
 import joshie.harvest.core.helpers.generic.DirectionHelper;
+import joshie.harvest.items.ItemBaseTool;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -19,8 +20,7 @@ import net.minecraft.world.World;
 
 public class ItemSickle extends ItemBaseTool implements IBreakCrops {
     @Override
-    public int getFront(ItemStack stack) {
-        ToolTier tier = getTier(stack);
+    public int getFront(ToolTier tier) {
         switch (tier) {
             case BASIC:
             case COPPER:
@@ -42,8 +42,7 @@ public class ItemSickle extends ItemBaseTool implements IBreakCrops {
     }
 
     @Override
-    public int getSides(ItemStack stack) {
-        ToolTier tier = getTier(stack);
+    public int getSides(ToolTier tier) {
         switch (tier) {
             case BASIC:
                 return 0;
@@ -79,9 +78,10 @@ public class ItemSickle extends ItemBaseTool implements IBreakCrops {
                 return 0F;
             }
 
+            ToolTier tier = getTier(stack);
             //Facing North, We Want East and West to be 1, left * this.left
-            for (int x2 = getXMinus(stack, front, pos.getX()); x2 <= getXPlus(stack, front, pos.getX()); x2++) {
-                for (int z2 = getZMinus(stack, front, pos.getZ()); z2 <= getZPlus(stack, front, pos.getZ()); z2++) {
+            for (int x2 = getXMinus(tier, front, pos.getX()); x2 <= getXPlus(tier, front, pos.getX()); x2++) {
+                for (int z2 = getZMinus(tier, front, pos.getZ()); z2 <= getZPlus(tier, front, pos.getZ()); z2++) {
                     BlockPos newPos = new BlockPos(x2, pos.getY(), z2);
                     Block block = world.getBlockState(newPos).getBlock();
                     if (block instanceof BlockHFCrops) {

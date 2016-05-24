@@ -13,7 +13,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
@@ -95,7 +95,7 @@ public class BlockGathering extends BlockHFBaseEnum<GatheringType> {
         }
     }
 
-    public void smashBlock(World world, BlockPos pos, IBlockState state, EntityLivingBase entity, ToolTier tier) {
+    public void smashBlock(World world, BlockPos pos, IBlockState state, ToolTier tier) {
         GatheringType type = getEnumFromState(state);
         boolean smashed = false;
 
@@ -118,7 +118,18 @@ public class BlockGathering extends BlockHFBaseEnum<GatheringType> {
     }
 
     @Override
+    protected boolean isValidTab(CreativeTabs tab, GatheringType e) {
+        if (e == ORE_SMALL || e == ORE_MEDIUM || e == ORE_LARGE) return tab == HFTab.MINING;
+        else return tab == getCreativeTabToDisplayOn();
+    }
+
+    @Override
     public int getSortValue(ItemStack stack) {
-        return CreativeSort.TROUGH;
+        GatheringType type = getEnumFromMeta(stack.getItemDamage());
+        if (type == BRANCH_SMALL || type == BRANCH_MEDIUM || type == BRANCH_LARGE) {
+            return CreativeSort.TROUGH + 1;
+        } else if (type == STUMP_SMALL || type == STUMP_MEDIUM || type == STUMP_LARGE) {
+            return CreativeSort.TROUGH + 2;
+        } return CreativeSort.TROUGH + 3;
     }
 }

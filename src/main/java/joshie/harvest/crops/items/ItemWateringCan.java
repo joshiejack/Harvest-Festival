@@ -1,13 +1,13 @@
-package joshie.harvest.items;
+package joshie.harvest.crops.items;
 
 import joshie.harvest.core.helpers.CropHelper;
 import joshie.harvest.core.helpers.PlayerHelper;
-import joshie.harvest.core.network.PacketHandler;
-import joshie.harvest.core.network.PacketWateringCan;
 import joshie.harvest.crops.blocks.BlockHFFarmland;
+import joshie.harvest.items.ItemBaseTool;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
@@ -22,10 +22,11 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidContainerItem;
 
+import javax.annotation.Nullable;
+
 public class ItemWateringCan extends ItemBaseTool implements IFluidContainerItem {
     @Override
-    public int getFront(ItemStack stack) {
-        ToolTier tier = getTier(stack);
+    public int getFront(ToolTier tier) {
         switch (tier) {
             case BASIC:
             case COPPER:
@@ -47,8 +48,7 @@ public class ItemWateringCan extends ItemBaseTool implements IFluidContainerItem
     }
 
     @Override
-    public int getSides(ItemStack stack) {
-        ToolTier tier = getTier(stack);
+    public int getSides(ToolTier tier) {
         switch (tier) {
             case BASIC:
                 return 0;
@@ -137,18 +137,8 @@ public class ItemWateringCan extends ItemBaseTool implements IFluidContainerItem
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
-        attemptToFill(world, player, stack);
-        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
-    }
-
-    @Override
-    public EnumActionResult onItemUseFirst(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, EnumHand hand) {
-        if (!world.isRemote) return EnumActionResult.FAIL;
-        else {
-            onItemUse(stack, player, world, pos, hand, facing, hitX, hitY, hitZ);
-            PacketHandler.sendToServer(new PacketWateringCan(stack, world, pos));
-            return EnumActionResult.SUCCESS;
-        }
+        if(attemptToFill(world, player, stack))  return new ActionResult<>(EnumActionResult.SUCCESS, stack);
+        else return super.onItemRightClick(stack, world, player, hand);
     }
 
     private EnumActionResult hydrate(EntityPlayer player, ItemStack stack, World world, BlockPos pos) {
@@ -177,33 +167,31 @@ public class ItemWateringCan extends ItemBaseTool implements IFluidContainerItem
     }
 
     @Override
-    public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        if (attemptToFill(world, player, stack)) {
-            return EnumActionResult.PASS;
-        } else {
-            EnumFacing front = joshie.harvest.core.helpers.generic.DirectionHelper.getFacingFromEntity(player);
+    protected void onFinishedCharging(World world, EntityLivingBase entity, @Nullable RayTraceResult result, ItemStack stack, ToolTier tier) {
+        if (result != null && entity instanceof EntityPlayer) {
+            EntityPlayer player = (EntityPlayer) entity;
+            BlockPos pos = result.getBlockPos();
+            EnumFacing front = joshie.harvest.core.helpers.generic.DirectionHelper.getFacingFromEntity(entity);
             Block initial = world.getBlockState(pos).getBlock();
             if (!(initial instanceof BlockHFFarmland) && (!(initial instanceof IPlantable))) {
-                return EnumActionResult.FAIL;
+                return;
             }
 
-            EnumActionResult watered = EnumActionResult.FAIL;
             //Facing North, We Want East and West to be 1, left * this.left
             for (int y2 = pos.getY() - 1; y2 <= pos.getY(); y2++) {
-                for (int x2 = getXMinus(stack, front, pos.getX()); x2 <= getXPlus(stack, front, pos.getX()); x2++) {
-                    for (int z2 = getZMinus(stack, front, pos.getZ()); z2 <= getZPlus(stack, front, pos.getZ()); z2++) {
+                for (int x2 = getXMinus(tier, front, pos.getX()); x2 <= getXPlus(tier, front, pos.getX()); x2++) {
+                    for (int z2 = getZMinus(tier, front, pos.getZ()); z2 <= getZPlus(tier, front, pos.getZ()); z2++) {
                         if (getCapacity(stack) > 0) {
                             Block block = world.getBlockState(new BlockPos(x2, y2, z2)).getBlock();
                             if (block instanceof IPlantable) {
-                                watered = hydrate(player, stack, world, new BlockPos(x2, y2 - 1, z2));
+                                hydrate(player, stack, world, new BlockPos(x2, y2 - 1, z2));
                             } else if (block instanceof BlockHFFarmland) {
-                                watered = hydrate(player, stack, world, new BlockPos(x2, y2, z2));
+                                hydrate(player, stack, world, new BlockPos(x2, y2, z2));
                             }
                         }
                     }
                 }
             }
-            return watered;
         }
     }
 }

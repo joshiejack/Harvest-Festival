@@ -2,8 +2,10 @@ package joshie.harvest.blocks;
 
 import joshie.harvest.blocks.BlockFlower.FlowerType;
 import joshie.harvest.core.HFTab;
+import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.Translate;
 import joshie.harvest.core.util.base.BlockHFBaseEnum;
+import joshie.harvest.crops.HFCrops;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -25,6 +27,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
+import static joshie.harvest.blocks.BlockFlower.FlowerType.WEED;
 import static net.minecraft.util.text.TextFormatting.AQUA;
 import static net.minecraftforge.common.EnumPlantType.Plains;
 
@@ -56,7 +59,7 @@ public class BlockFlower extends BlockHFBaseEnum<FlowerType> implements IPlantab
     }
 
     protected boolean canSustainBush(IBlockState state) {
-        return state.getBlock() == Blocks.GRASS || state.getBlock() == Blocks.DIRT || state.getBlock() == Blocks.FARMLAND || state.getBlock() == HFBlocks.FARMLAND;
+        return state.getBlock() == Blocks.GRASS || state.getBlock() == Blocks.DIRT || state.getBlock() == Blocks.FARMLAND || state.getBlock() == HFCrops.FARMLAND;
     }
 
     @Override
@@ -131,12 +134,13 @@ public class BlockFlower extends BlockHFBaseEnum<FlowerType> implements IPlantab
 
     @SideOnly(Side.CLIENT)
     protected boolean isValidTab(CreativeTabs tab, FlowerType flower) {
-        if (flower == FlowerType.WEED) return tab == HFTab.GATHERING;
+        if (flower == WEED) return tab == HFTab.GATHERING;
         return tab == getCreativeTabToDisplayOn();
     }
 
     @Override
     public int getSortValue(ItemStack stack) {
-        return -10;
+        if (stack.getItemDamage() == WEED.ordinal()) return CreativeSort.TROUGH - 1;
+        else return -10;
     }
 }

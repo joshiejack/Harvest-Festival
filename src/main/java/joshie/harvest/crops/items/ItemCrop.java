@@ -1,4 +1,4 @@
-package joshie.harvest.items;
+package joshie.harvest.crops.items;
 
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.api.core.IShippable;
@@ -25,7 +25,7 @@ public class ItemCrop extends ItemHFBase implements IShippable, ICropProvider, I
 
     @Override
     public long getSellValue(ItemStack stack) {
-        if (crop == HFCrops.grass) return 0;
+        if (crop == HFCrops.GRASS) return 0;
         else {
             return crop.getSellValue(stack);
         }

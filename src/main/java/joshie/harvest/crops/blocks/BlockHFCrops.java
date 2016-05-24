@@ -414,7 +414,7 @@ public class BlockHFCrops extends BlockHFBaseEnum<Stage> implements IPlantable, 
         if (AnimalHelper.eatsGrass(tracked)) {
             ICropData crop = HFApi.crops.getCropAtLocation(world, pos);
             ICrop theCrop = crop.getCrop();
-            if (theCrop == HFCrops.grass) {
+            if (theCrop == HFCrops.GRASS) {
                 int stage = crop.getStage();
                 if (stage > 5) {
                     HFTrackers.getCropTracker(world).plantCrop(tracked.getData().getOwner(), pos, theCrop, stage - 5);

@@ -2,8 +2,8 @@ package joshie.harvest.crops.handlers;
 
 import com.google.common.collect.ImmutableList;
 import joshie.harvest.api.crops.IStateHandler;
+import joshie.harvest.crops.HFCrops;
 import joshie.harvest.crops.blocks.BlockHFCrops;
-import joshie.harvest.blocks.HFBlocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.AxisAlignedBB;
 
@@ -15,7 +15,7 @@ public class StateHandlerNull implements IStateHandler {
     protected IBlockState state;
 
     public StateHandlerNull() {
-        state = HFBlocks.CROPS.getDefaultState();
+        state = HFCrops.CROPS.getDefaultState();
         List<IBlockState> list = new ArrayList<IBlockState>();
         list.add(state);
         stateContainer = ImmutableList.<IBlockState>copyOf(list);

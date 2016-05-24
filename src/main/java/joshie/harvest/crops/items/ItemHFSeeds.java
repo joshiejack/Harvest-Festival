@@ -1,11 +1,10 @@
-package joshie.harvest.items;
+package joshie.harvest.crops.items;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.api.core.ISeasonData;
 import joshie.harvest.api.crops.ICrop;
-import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.config.Crops;
 import joshie.harvest.core.handlers.HFTrackers;
@@ -13,7 +12,7 @@ import joshie.harvest.core.helpers.SeedHelper;
 import joshie.harvest.core.helpers.generic.RegistryHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.Translate;
-import joshie.harvest.crops.Crop;
+import joshie.harvest.crops.HFCrops;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -32,8 +31,9 @@ import java.util.List;
 public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
 
     public ItemHFSeeds() {
-        super(HFBlocks.CROPS, HFBlocks.FARMLAND);
+        super(HFCrops.CROPS, HFCrops.FARMLAND);
         setCreativeTab(HFTab.FARMING);
+        setMaxDamage(Short.MAX_VALUE); //You know, max damage yo
         setHasSubtypes(true);
     }
 
@@ -47,10 +47,6 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
         super.setUnlocalizedName(name);
         RegistryHelper.registerItem(this, name);
         return this;
-    }
-
-    public int getMetaCount() {
-        return Crop.CROPS.size();
     }
 
     @Override
@@ -122,7 +118,7 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
                 HFTrackers.getCropTracker(world).plantCrop(player, pos.up(), crop, 1);
 
                 if (!world.isRemote) {
-                    world.setBlockState(pos.up(), HFBlocks.CROPS.getDefaultState());
+                    world.setBlockState(pos.up(), HFCrops.CROPS.getDefaultState());
                 }
 
                 planted++;
@@ -144,23 +140,4 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
             list.add(SeedHelper.getSeedsFromCrop(crop));
         }
     }
-
-    /*//Agricraft
-    @Optional.Method(modid = "AgriCraft")
-    @Override
-    public CropOverride getOverride(TileEntityCrop crop) {
-        return HFAgricraftOverride.getCropOverride(crop);
-    }
-
-    @Optional.Method(modid = "AgriCraft")
-    @Override
-    public boolean hasGrowthRequirement() {
-        return false;
-    }
-
-    @Optional.Method(modid = "AgriCraft")
-    @Override
-    public GrowthRequirement getGrowthRequirement() {
-        return null;
-    }*/
 }

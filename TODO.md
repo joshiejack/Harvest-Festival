@@ -24,27 +24,13 @@
 - Make all cooking equipment render things that they are cooking
 - Change Blueprints to not be a block but an item that you hover and click where you want them placed - J
 - Coin Render on hotbar
-- Add Axe Item - J
-    - Basic (Breaks Small Twigs)
-    - Copper (Breaks Medium Twigs)
-    - Silver (Breaks Small Stumps)
-    - Gold (Breaks Large Twigs)
-    - Mystril (Breaks Medium Stumps)
-    - Cursed/Blessed (Breaks Large Stumps)
-    - Mythic (Fells whole trees)
+- Make Mythic Axe Fell Whole Trees
+- Make Axes have an AOE that will break all branches/stumps
 - Add Basic Items to spawn that can be gathered (Expanded Later)- J
     - Rocks
         - Small - > Gives 1 Stone
         - Medium - > Gives 4 Stone
         - Large > Gives 10 Stone
-    - Stumps
-        - Small - > Gives 3 Wood
-        - Medium - > Gives 6 Wood
-        - Large > Gives 12 Wood
-    - Breakable Twigs
-        - Small > Gives 1 Wood
-        - Medium > Gives 2 Wood
-        - Large > Gives 4 Wood
 - Change Ondra to Ashlee, make female - Y
 - Loot Table JSON
     - See https://github.com/joshiejack/Harvest-Festival/blob/4fc81be862b9686cf00a3b8b1d262a8b7106aaaf/src/main/java/joshie/harvest/core/lib/LootStrings.java

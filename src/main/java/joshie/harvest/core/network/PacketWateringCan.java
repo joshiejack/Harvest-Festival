@@ -1,7 +1,7 @@
 package joshie.harvest.core.network;
 
 import io.netty.buffer.ByteBuf;
-import joshie.harvest.items.HFItems;
+import joshie.harvest.crops.HFCrops;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
@@ -35,6 +35,6 @@ public class PacketWateringCan extends AbstractPacketLocation {
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        HFItems.WATERING_CAN.onItemUse(stack, player, DimensionManager.getWorld(dim), pos, player.getActiveHand(), EnumFacing.DOWN, 0, 0, 0);
+        HFCrops.WATERING_CAN.onItemUse(stack, player, DimensionManager.getWorld(dim), pos, player.getActiveHand(), EnumFacing.DOWN, 0, 0, 0);
     }
 }

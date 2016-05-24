@@ -5,13 +5,13 @@ import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.calendar.Weekday;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
-import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.CropHelper;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.helpers.NBTHelper.ISaveable;
 import joshie.harvest.core.network.PacketSyncCrop;
 import joshie.harvest.crops.CropData;
+import joshie.harvest.crops.HFCrops;
 import joshie.harvest.crops.blocks.BlockHFCrops;
 import joshie.harvest.crops.blocks.BlockHFCrops.Stage;
 import net.minecraft.block.Block;
@@ -150,10 +150,10 @@ public class CropTrackerServer extends CropTracker implements ISaveable {
     @Override
     public void setWithered(BlockPos pos, ICropData data) {
         if (data.getCrop().isDouble(data.getStage())) {
-            getWorld().setBlockState(pos.up(), HFBlocks.CROPS.getStateFromEnum(BlockHFCrops.Stage.WITHERED_DOUBLE), 2);
+            getWorld().setBlockState(pos.up(), HFCrops.CROPS.getStateFromEnum(BlockHFCrops.Stage.WITHERED_DOUBLE), 2);
         }
 
-        getWorld().setBlockState(pos, HFBlocks.CROPS.getStateFromEnum(Stage.WITHERED), 2);
+        getWorld().setBlockState(pos, HFCrops.CROPS.getStateFromEnum(Stage.WITHERED), 2);
         plantCrop(null, pos, data.getCrop(), data.getStage());
     }
 

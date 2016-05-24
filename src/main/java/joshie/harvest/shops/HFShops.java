@@ -43,7 +43,7 @@ public class HFShops {
 
     private static void registerBarn() {
         BARN = HFApi.shops.newShop("barn", HFNPCs.ANIMAL_OWNER);
-        BARN.addItem(20, HFCrops.grass.getCropStack());
+        BARN.addItem(20, HFCrops.GRASS.getCropStack());
         BARN.addItem(1000, new ItemStack(HFItems.GENERAL, 1, ItemGeneral.MEDICINE));
         BARN.addItem(new PurchaseableEntity(EntityHarvestSheep.class, 4000, new ItemStack(HFItems.ANIMAL, 1, ItemAnimal.SHEEP), true));
         BARN.addItem(new PurchaseableEntity(EntityHarvestCow.class, 5000, new ItemStack(HFItems.ANIMAL, 1, ItemAnimal.COW), true));

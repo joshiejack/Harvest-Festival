@@ -2,9 +2,9 @@ package joshie.harvest.core.helpers;
 
 import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
+import joshie.harvest.crops.HFCrops;
 import joshie.harvest.crops.blocks.BlockHFFarmland;
 import joshie.harvest.crops.blocks.BlockHFFarmland.Moisture;
-import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.ItemHelper;
 import joshie.harvest.core.helpers.generic.MCServerHelper;
@@ -32,7 +32,7 @@ public class CropHelper {
         boolean ret = !isHydrated(world, pos);
         if (ret) {
             HFTrackers.getCropTracker(world).hydrate(pos.up(), state);
-            world.setBlockState(pos, HFBlocks.FARMLAND.getStateFromEnum(Moisture.WET), 2);
+            world.setBlockState(pos, HFCrops.FARMLAND.getStateFromEnum(Moisture.WET), 2);
         }
 
         return ret;
@@ -40,7 +40,7 @@ public class CropHelper {
 
     //Returns false if the soil is no longer farmland and should be converted to dirt
     public static boolean dehydrate(World world, BlockPos pos, IBlockState state) {
-        world.setBlockState(pos, HFBlocks.FARMLAND.getStateFromEnum(Moisture.DRY), 2);
+        world.setBlockState(pos, HFCrops.FARMLAND.getStateFromEnum(Moisture.DRY), 2);
         MCServerHelper.markForUpdate(world, pos, state);
         return true;
     }
@@ -48,7 +48,7 @@ public class CropHelper {
     //Returns whether the farmland is hydrated
     public static boolean isHydrated(World world, BlockPos pos) {
         IBlockState state = world.getBlockState(pos);
-        return state.getBlock() instanceof BlockHFFarmland && HFBlocks.FARMLAND.getEnumFromState(state) == Moisture.WET;
+        return state.getBlock() instanceof BlockHFFarmland && HFCrops.FARMLAND.getEnumFromState(state) == Moisture.WET;
     }
 
     //Harvests the crop at this location

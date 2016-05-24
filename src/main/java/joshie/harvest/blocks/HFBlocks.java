@@ -10,9 +10,6 @@ import joshie.harvest.cooking.render.SpecialRendererPot;
 import joshie.harvest.core.helpers.generic.RegistryHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.base.BlockHFBaseEnum;
-import joshie.harvest.crops.CropStateMapper;
-import joshie.harvest.crops.blocks.BlockHFCrops;
-import joshie.harvest.crops.blocks.BlockHFFarmland;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.IBlockColor;
@@ -24,7 +21,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.biome.BiomeColorHelper;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -39,8 +35,6 @@ public class HFBlocks {
 
     //Cooking & Farming
     public static final BlockHFBaseEnum COOKWARE = new BlockCookware().setUnlocalizedName("cookware");
-    public static final BlockHFBaseEnum FARMLAND = new BlockHFFarmland().setUnlocalizedName("farmland");
-    public static final BlockHFBaseEnum CROPS = new BlockHFCrops().setUnlocalizedName("crops.block");
     public static final BlockFlower FLOWERS = (BlockFlower) new BlockFlower().setUnlocalizedName("flowers");
     //Mine
     public static final BlockHFBaseEnum STONE = new BlockStone().setUnlocalizedName("stone");
@@ -60,8 +54,6 @@ public class HFBlocks {
 
     @SideOnly(Side.CLIENT)
     public static void preInitClient() {
-        ModelLoader.setCustomStateMapper(CROPS, new CropStateMapper());
-        ModelLoader.setCustomStateMapper(FARMLAND, new CropStateMapper());
         ClientRegistry.bindTileEntitySpecialRenderer(TileMarker.class, new PreviewRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TileFryingPan.class, new SpecialRendererFryingPan());
         ClientRegistry.bindTileEntitySpecialRenderer(TilePot.class, new SpecialRendererPot());

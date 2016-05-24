@@ -19,7 +19,7 @@ public class GiftsYulif extends Gifts {
             return GOOD;
         }
 
-        if (HFCrops.corn.matches(stack) || HFCrops.pineapple.matches(stack)) {
+        if (HFCrops.CORN.matches(stack) || HFCrops.PINEAPPLE.matches(stack)) {
             return GOOD;
         }
 

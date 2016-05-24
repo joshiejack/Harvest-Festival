@@ -5,7 +5,6 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.crops.blocks.BlockHFCrops;
 import joshie.harvest.crops.blocks.BlockHFFarmland.Moisture;
-import joshie.harvest.blocks.HFBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
@@ -30,8 +29,8 @@ public class CropStateMapper extends StateMapperBase {
                 }
             }
         } else {
-            mapStateModelLocations.put(HFBlocks.FARMLAND.getStateFromEnum(Moisture.DRY), getModelResourceLocation(Blocks.FARMLAND.getStateFromMeta(0)));
-            mapStateModelLocations.put(HFBlocks.FARMLAND.getStateFromEnum(Moisture.WET), getModelResourceLocation(Blocks.FARMLAND.getStateFromMeta(7)));
+            mapStateModelLocations.put(HFCrops.FARMLAND.getStateFromEnum(Moisture.DRY), getModelResourceLocation(Blocks.FARMLAND.getStateFromMeta(0)));
+            mapStateModelLocations.put(HFCrops.FARMLAND.getStateFromEnum(Moisture.WET), getModelResourceLocation(Blocks.FARMLAND.getStateFromMeta(7)));
         }
 
         return mapStateModelLocations;

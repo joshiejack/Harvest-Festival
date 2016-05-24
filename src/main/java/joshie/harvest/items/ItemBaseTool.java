@@ -11,6 +11,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -23,6 +24,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public abstract class ItemBaseTool extends ItemBaseSingle implements ILevelable, ITiered, ICreativeSorted {
@@ -32,6 +34,11 @@ public abstract class ItemBaseTool extends ItemBaseSingle implements ILevelable,
     public ItemBaseTool() {
         setMaxStackSize(1);
         setHasSubtypes(true);
+    }
+
+    @Override
+    public ItemBaseTool setUnlocalizedName(String name) {
+        return (ItemBaseTool) super.setUnlocalizedName(name);
     }
 
     public ItemStack getStack(ToolTier tier) {
@@ -73,46 +80,68 @@ public abstract class ItemBaseTool extends ItemBaseSingle implements ILevelable,
         return ToolTier.values()[safe];
     }
 
-    public boolean canCharge(ItemStack stack) {
+    protected boolean canCharge(ItemStack stack) {
         NBTTagCompound tag = stack.getSubCompound("Data", true);
         int amount = tag.getInteger("Charge");
         return amount < getTier(stack).ordinal() + 1;
     }
 
-    public int getCharge(ItemStack stack) {
+    private int getCharge(ItemStack stack) {
         return stack.getSubCompound("Data", true).getInteger("Charge");
     }
 
-    public void setCharge(ItemStack stack, int amount) {
+    private void setCharge(ItemStack stack, int amount) {
         stack.getSubCompound("Data", true).setInteger("Charge", amount);
+    }
+
+    private void increaseCharge(ItemStack stack, int amount) {
+        setCharge(stack, getCharge(stack) + amount);
+    }
+
+    @Override
+    public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
+        return oldStack.getItem() != newStack.getItem() || oldStack.getItemDamage() != newStack.getItemDamage();
+    }
+
+    @Override
+    public EnumAction getItemUseAction(ItemStack stack) {
+        return EnumAction.BOW;
     }
 
     @Override
     public int getMaxItemUseDuration(ItemStack stack) {
-        return canCharge(stack) ? 32 : 0;
+        return canCharge(stack) ? 16 : 320000;
     }
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer playerIn, EnumHand hand) {
-        if (canCharge(stack)) {
-            System.out.println("Going");
-            playerIn.setActiveHand(hand);
-            return new ActionResult(EnumActionResult.SUCCESS, stack);
-        } else return new ActionResult<>(EnumActionResult.PASS, stack);
+        playerIn.setActiveHand(hand);
+        return new ActionResult(EnumActionResult.SUCCESS, stack);
     }
 
     @Override
     public ItemStack onItemUseFinish(ItemStack stack, World world, EntityLivingBase entityLiving) {
-        NBTTagCompound tag = stack.getSubCompound("Data", true);
-        tag.setInteger("Charge", tag.getInteger("Charge") + 1);
+        if (canCharge(stack)) {
+            increaseCharge(stack, 1);
+        }
+
         return stack;
     }
 
-    public int getFront(ItemStack stack) {
+    @Override
+    public void onPlayerStoppedUsing(ItemStack stack, World world, EntityLivingBase entity, int timeLeft) {
+        int charge = (Math.min(7, Math.max(0, getCharge(stack))));
+        setCharge(stack, 0); //Reset the charge
+        onFinishedCharging(world, entity, getMovingObjectPositionFromPlayer(world, entity), stack, ToolTier.values()[charge]);
+    }
+
+    protected void onFinishedCharging(World world, EntityLivingBase entity, @Nullable RayTraceResult result, ItemStack stack, ToolTier toolTier) {}
+
+    public int getFront(ToolTier tier) {
         return 0;
     }
 
-    public int getSides(ItemStack stack) {
+    public int getSides(ToolTier tier) {
         return 0;
     }
 
@@ -161,43 +190,43 @@ public abstract class ItemBaseTool extends ItemBaseSingle implements ILevelable,
         }
     }
 
-    protected int getXMinus(ItemStack stack, EnumFacing facing, int x) {
+    protected int getXMinus(ToolTier tier, EnumFacing facing, int x) {
         if (facing == EnumFacing.NORTH) {
-            return x - getSides(stack);
+            return x - getSides(tier);
         } else if (facing == EnumFacing.SOUTH) {
-            return x - getSides(stack);
+            return x - getSides(tier);
         } else if (facing == EnumFacing.EAST) {
-            return x - getFront(stack);
+            return x - getFront(tier);
         } else return x;
     }
 
-    protected int getXPlus(ItemStack stack, EnumFacing facing, int x) {
+    protected int getXPlus(ToolTier tier, EnumFacing facing, int x) {
         if (facing == EnumFacing.NORTH) {
-            return x + getSides(stack);
+            return x + getSides(tier);
         } else if (facing == EnumFacing.SOUTH) {
-            return x + getSides(stack);
+            return x + getSides(tier);
         } else if (facing == EnumFacing.WEST) {
-            return x + getFront(stack);
+            return x + getFront(tier);
         } else return x;
     }
 
-    protected int getZMinus(ItemStack stack, EnumFacing facing, int z) {
+    protected int getZMinus(ToolTier tier, EnumFacing facing, int z) {
         if (facing == EnumFacing.SOUTH) {
-            return z - getFront(stack);
+            return z - getFront(tier);
         } else if (facing == EnumFacing.WEST) {
-            return z - getSides(stack);
+            return z - getSides(tier);
         } else if (facing == EnumFacing.EAST) {
-            return z - getSides(stack);
+            return z - getSides(tier);
         } else return z;
     }
 
-    protected int getZPlus(ItemStack stack, EnumFacing facing, int z) {
+    protected int getZPlus(ToolTier tier, EnumFacing facing, int z) {
         if (facing == EnumFacing.NORTH) {
-            return z + getFront(stack);
+            return z + getFront(tier);
         } else if (facing == EnumFacing.WEST) {
-            return z + getSides(stack);
+            return z + getSides(tier);
         } else if (facing == EnumFacing.EAST) {
-            return z + getSides(stack);
+            return z + getSides(tier);
         } else return z;
     }
 

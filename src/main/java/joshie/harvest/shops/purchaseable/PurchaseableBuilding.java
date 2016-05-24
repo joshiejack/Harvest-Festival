@@ -41,7 +41,7 @@ public class PurchaseableBuilding extends Purchaseable {
 
     @Override
     public boolean canList(World world, EntityPlayer player) {
-        return !HFTrackers.getTownTracker(world).getClosestTownToBlockPos(player.dimension, new BlockPos(player)).hasBuilding(resource) && building.getRules().canBuy(world, player) && building.hasRequirements(player);
+        return !HFTrackers.getTownTracker(world).getClosestTownToBlockPos(new BlockPos(player)).hasBuilding(resource) && building.getRules().canBuy(world, player) && building.hasRequirements(player);
     }
 
     @Override

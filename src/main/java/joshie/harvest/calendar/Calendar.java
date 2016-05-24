@@ -10,15 +10,21 @@ public abstract class Calendar {
     protected float rainStrength;
     protected float stormStrength;
 
+    protected World world;
+
+    public void setWorld(World world) {
+        this.world = world;
+    }
+
     public abstract ICalendarDate getDate();
 
     public ISeasonData getSeasonData() {
         return getDate().getSeasonData();
     }
 
-    public void newDay(World world, long bedtime) {}
+    public void newDay() {}
 
-    public void updateForecast(World world) {}
+    public void updateForecast() {}
 
     public Weather getForecast(int day) {
         day = Math.max(0, Math.min(6, day));
@@ -29,7 +35,7 @@ public abstract class Calendar {
         return forecast[0] != null ? forecast[0] : Weather.SUNNY;
     }
 
-    public void setTodaysWeather(World world, Weather weather) {}
+    public void setTodaysWeather(Weather weather) {}
 
     public void setForecast(Weather[] forecast) {}
 

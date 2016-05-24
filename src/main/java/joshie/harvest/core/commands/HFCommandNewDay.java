@@ -17,7 +17,7 @@ public class HFCommandNewDay extends HFCommandBase {
 
     @Override
     public boolean execute(MinecraftServer server, ICommandSender sender, String[] parameters) {
-        EventsHandler.newDay(sender.getEntityWorld(), true);
+        EventsHandler.newDay(sender.getEntityWorld());
         return true;
     }
 }

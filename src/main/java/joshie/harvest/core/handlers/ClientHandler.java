@@ -2,7 +2,7 @@ package joshie.harvest.core.handlers;
 
 import joshie.harvest.animals.AnimalTrackerClient;
 import joshie.harvest.calendar.CalendarClient;
-import joshie.harvest.crops.CropTrackerClient;
+import joshie.harvest.crops.tracker.CropTrackerClient;
 import joshie.harvest.npc.town.TownTrackerClient;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -16,7 +16,10 @@ public class ClientHandler extends SideHandler {
     private TownTrackerClient town = new TownTrackerClient();
 
     public ClientHandler(World world) {
+        animals.setWorld(world);
+        calendar.setWorld(world);
         crops.setWorld(world);
+        town.setWorld(world);
     }
 
     @Override

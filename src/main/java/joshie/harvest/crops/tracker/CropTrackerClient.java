@@ -1,8 +1,10 @@
-package joshie.harvest.crops;
+package joshie.harvest.crops.tracker;
 
 import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.core.network.PacketCropRequest;
 import joshie.harvest.core.network.PacketHandler;
+import joshie.harvest.crops.CropData;
+import joshie.harvest.crops.HFCrops;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;

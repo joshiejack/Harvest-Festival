@@ -20,7 +20,7 @@ import java.util.Collection;
 import java.util.HashMap;
 
 public class CropRegistry implements ICropRegistry {
-    private final HashMap<Pair<Item, Integer>, ICrop> providers = new HashMap<Pair<Item, Integer>, ICrop>();
+    private final HashMap<Pair<Item, Integer>, ICrop> providers = new HashMap<>();
 
     @Override
     public ICrop getCrop(ResourceLocation resource) {
@@ -36,12 +36,6 @@ public class CropRegistry implements ICropRegistry {
     @Override
     public ICrop registerCrop(ResourceLocation resource, int cost, int sell, int stages, int regrow, int year, int color, Season... seasons) {
         return new Crop(resource, seasons, cost, sell, stages, regrow, year, color);
-    }
-
-    @Override
-    public ICrop registerCrop(ICrop crop) {
-        Crop.CROPS.put(crop.getResource(), crop);
-        return crop;
     }
 
     @Override

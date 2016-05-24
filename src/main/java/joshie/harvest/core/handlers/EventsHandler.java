@@ -94,15 +94,23 @@ public class EventsHandler {
         for (World world: FMLCommonHandler.instance().getMinecraftServerInstance().worldServers) {
             if (world != null) {
                 if (world.getWorldTime() % TICKS_PER_DAY == 0) {
-                    newDay(world, false);
+                    newDay(world);
                 }
             }
         }
     }
 
     //New day
-    public static void newDay(final World world, final boolean forced) {
-        HFTrackers.getCalendar(world).newDay(world, CalendarHelper.getTime(world));
+    public static void newDay(final World world) {
+        HFTrackers.getCalendar(world).newDay();
+        HFTrackers.getTickables(world).newDay();
+        HFTrackers.getCropTracker(world).newDay();
+        HFTrackers.getAnimalTracker(world).newDay();
+        HFTrackers.getTownTracker(world).newDay();
+        HFTrackers.markDirty(world);
+        for (PlayerTrackerServer player : HFTrackers.getPlayerTrackers()) {
+            player.newDay(CalendarHelper.getTime(world));
+        }
     }
 
     //Sync data on login

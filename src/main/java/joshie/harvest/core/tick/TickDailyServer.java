@@ -16,8 +16,13 @@ import java.util.Set;
 public class TickDailyServer {
     private Set<IDailyTickable> tickables = new HashSet<>();
     private Set<BlockPos> blockTicks = new HashSet<>();
+    private World world;
 
-    public void newDay(World world) {
+    public void setWorld(World world) {
+        this.world = world;
+    }
+
+    public void newDay() {
         //Tick the tickable entities
         Iterator<IDailyTickable> ticking = tickables.iterator();
         while (ticking.hasNext()) {

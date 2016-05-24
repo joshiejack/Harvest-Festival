@@ -1,4 +1,4 @@
-package joshie.harvest.crops;
+package joshie.harvest.crops.tracker;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.ICalendarDate;
@@ -9,7 +9,9 @@ import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.CropHelper;
 import joshie.harvest.core.helpers.NBTHelper;
+import joshie.harvest.core.helpers.NBTHelper.ISaveable;
 import joshie.harvest.core.network.PacketSyncCrop;
+import joshie.harvest.crops.CropData;
 import joshie.harvest.crops.blocks.BlockHFCrops;
 import joshie.harvest.crops.blocks.BlockHFCrops.Stage;
 import net.minecraft.block.Block;
@@ -33,7 +35,7 @@ import static joshie.harvest.core.network.PacketHandler.sendToClient;
 import static joshie.harvest.core.network.PacketHandler.sendToEveryone;
 
 //Handles the Data for the crops rather than using TE Data
-public class CropTrackerServer extends CropTracker {
+public class CropTrackerServer extends CropTracker implements ISaveable {
     @Override
     public void newDay() {
         ArrayList<Pair<BlockPos, ICropData>> toWither = new ArrayList<>(); //Create a new wither list
@@ -162,6 +164,7 @@ public class CropTrackerServer extends CropTracker {
         HFTrackers.markDirty(world);
     }
 
+    @Override
     public void readFromNBT(NBTTagCompound nbt) {
         cropTracker = new HashMap<>();
         NBTTagList dataList = nbt.getTagList("Crops", 10);
@@ -174,6 +177,7 @@ public class CropTrackerServer extends CropTracker {
         }
     }
 
+    @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         NBTTagList dataList = new NBTTagList();
         for (BlockPos pos: cropTracker.keySet()) {

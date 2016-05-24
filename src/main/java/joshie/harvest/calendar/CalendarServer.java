@@ -5,11 +5,9 @@ import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.api.core.ISeasonData;
-import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSetCalendar;
 import joshie.harvest.core.network.PacketSyncForecast;
-import joshie.harvest.player.PlayerTrackerServer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
@@ -21,10 +19,10 @@ import static joshie.harvest.core.config.Calendar.DAYS_PER_SEASON;
 public class CalendarServer extends Calendar {
     private final ICalendarDate DATE = HFApi.calendar.newDate(0, SPRING, 1);
     private static final Random rand = new Random();
-    private World world;
 
+    @Override
     public void setWorld(World world) {
-        this.world = world;
+        super.setWorld(world);
         recalculate(world);
     }
 
@@ -34,9 +32,9 @@ public class CalendarServer extends Calendar {
     }
 
     @Override
-    public void setTodaysWeather(World world, Weather weather) {
+    public void setTodaysWeather(Weather weather) {
         forecast[0] = weather;
-        updateForecast(world);
+        updateForecast();
     }
 
     public static boolean isWeatherDisabled(Weather weather) {
@@ -79,7 +77,7 @@ public class CalendarServer extends Calendar {
     }
 
     @Override
-    public void updateForecast(World world) {
+    public void updateForecast() {
         //If they're null set them
         for (int i = 0; i < 7; i++) {
             if (forecast[i] == null) {
@@ -97,36 +95,22 @@ public class CalendarServer extends Calendar {
     }
 
     @Override
-    public void newDay(World world, long bedtime) {
+    public void newDay() {
         recalculate(world); //Update the date
         PacketHandler.sendToEveryone(new PacketSetCalendar(world.provider.getDimension(), getDate())); //Sync the new date
-
-        //Tick blocks, such as soil, troughs, and incubators
-        HFTrackers.getTickables(world).newDay(world);
-        //Tick crop blocks, to have them grow
-        HFTrackers.getCropTracker(world).newDay();
-        //Tick animals to update their data
-        HFTrackers.getAnimalTracker(world).newDay();
-        //Tick the town to update things like gathering
-        HFTrackers.getTownTracker(world).newDay(world);
 
         /** Setup the forecast for the next 7 days **/
         Weather[] newForecast = new Weather[7];
 
         //Copy over the old forecast
-        for (int i = 1; i <= 6; i++) {
+        /*for (int i = 1; i <= 6; i++) {
             newForecast[i - 1] = forecast[i];
-        }
+        }*/
+
+        System.arraycopy(forecast, 1, newForecast, 0, 6);
 
         forecast = newForecast;
-        updateForecast(world);
-
-        //Update a player
-        for (PlayerTrackerServer player : HFTrackers.getPlayerTrackers()) {
-            player.newDay(bedtime);
-        }
-
-        HFTrackers.markDirty(world);
+        updateForecast();
     }
 
     private Season getNextSeason(Season season) {

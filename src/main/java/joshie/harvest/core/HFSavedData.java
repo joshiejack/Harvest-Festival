@@ -4,7 +4,7 @@ import joshie.harvest.animals.AnimalTrackerServer;
 import joshie.harvest.calendar.CalendarServer;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.tick.TickDailyServer;
-import joshie.harvest.crops.CropTrackerServer;
+import joshie.harvest.crops.tracker.CropTrackerServer;
 import joshie.harvest.npc.town.TownTrackerServer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
@@ -24,8 +24,11 @@ public class HFSavedData extends WorldSavedData {
     }
 
     public void setWorld(World world) {
+        animals.setWorld(world);
         calendar.setWorld(world);
         crops.setWorld(world);
+        ticking.setWorld(world);
+        towns.setWorld(world);
     }
 
     public AnimalTrackerServer getAnimalTracker() {

@@ -12,9 +12,6 @@ public interface ICropRegistry {
     /** Registers a crop with some specific information **/
     ICrop registerCrop(ResourceLocation resource, int cost, int sell, int stages, int regrow, int year, int color, Season... seasons);
 
-    /** Registers a crop, ensure that your crop returns the correct getResource() **/
-    ICrop registerCrop(ICrop crop);
-
     /** Returns a crop from the resource location **/
     ICrop getCrop(ResourceLocation resource);
     

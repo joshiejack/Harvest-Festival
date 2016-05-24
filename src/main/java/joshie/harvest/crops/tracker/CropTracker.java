@@ -1,7 +1,8 @@
-package joshie.harvest.crops;
+package joshie.harvest.crops.tracker;
 
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
+import joshie.harvest.crops.CropData;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;

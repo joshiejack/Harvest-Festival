@@ -13,9 +13,9 @@ import java.util.UUID;
 
 public class TownHelper {
     public static TownData getClosestTownToBlockPosOrCreate(World world, BlockPos pos) {
-        TownData data = HFTrackers.getTownTracker(world).getClosestTownToBlockPos(world.provider.getDimension(), pos);
+        TownData data = HFTrackers.getTownTracker(world).getClosestTownToBlockPos(pos);
         if (data == TownTracker.NULL_TOWN) {
-            data = HFTrackers.getTownTracker(world).createNewTown(world.provider.getDimension(), pos);
+            data = HFTrackers.getTownTracker(world).createNewTown(pos);
         }
 
         return data;
@@ -23,13 +23,13 @@ public class TownHelper {
 
     /** Called from shops **/
     public static TownData getClosestTownToPlayer(EntityLivingBase player) {
-        return HFTrackers.getTownTracker(player.worldObj).getClosestTownToBlockPos(player.dimension, new BlockPos(player));
+        return HFTrackers.getTownTracker(player.worldObj).getClosestTownToBlockPos(new BlockPos(player));
     }
 
     public static TownData getClosestTownToEntityOrCreate(EntityLiving entity) {
-        TownData data = HFTrackers.getTownTracker(entity.worldObj).getClosestTownToBlockPos(entity.dimension, new BlockPos(entity));
+        TownData data = HFTrackers.getTownTracker(entity.worldObj).getClosestTownToBlockPos(new BlockPos(entity));
         if (data == TownTracker.NULL_TOWN) {
-            data = HFTrackers.getTownTracker(entity.worldObj).createNewTown(entity.dimension, new BlockPos(entity));
+            data = HFTrackers.getTownTracker(entity.worldObj).createNewTown(new BlockPos(entity));
         }
 
         return data;

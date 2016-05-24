@@ -7,7 +7,7 @@ import joshie.harvest.calendar.Calendar;
 import joshie.harvest.calendar.CalendarServer;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.tick.TickDailyServer;
-import joshie.harvest.crops.CropTracker;
+import joshie.harvest.crops.tracker.CropTracker;
 import joshie.harvest.npc.town.TownTracker;
 import joshie.harvest.player.PlayerTracker;
 import joshie.harvest.player.PlayerTrackerClient;

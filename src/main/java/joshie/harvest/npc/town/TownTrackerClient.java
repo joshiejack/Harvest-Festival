@@ -4,7 +4,7 @@ import net.minecraft.util.math.BlockPos;
 
 public class TownTrackerClient extends TownTracker {
     @Override
-    public TownData createNewTown(int dimension, BlockPos pos) {
+    public TownData createNewTown(BlockPos pos) {
         return new TownDataClient();
     }
 }

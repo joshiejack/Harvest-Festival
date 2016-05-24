@@ -11,7 +11,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -20,22 +19,13 @@ import java.util.UUID;
 import java.util.concurrent.Callable;
 
 public class TownTrackerServer extends TownTracker {
-    private final Cache<Pair<Integer, BlockPos>, TownData> closestCache = CacheBuilder.newBuilder().build();
-    private final Cache<Pair<Integer, BlockPos>, EntityNPCBuilder> closestBuilder = CacheBuilder.newBuilder().build();
+    private final Cache<BlockPos, TownData> closestCache = CacheBuilder.newBuilder().build();
+    private final Cache<BlockPos, EntityNPCBuilder> closestBuilder = CacheBuilder.newBuilder().build();
     private final HashMap<UUID, TownData> uuidMap = new HashMap<>();
-    private Set<TownDataServer> townData;
+    private Set<TownDataServer> townData = new HashSet<>();
 
-    private Set<TownDataServer> getTownsForDimension(int dimension) {
-        if (townData == null) {
-            townData = new HashSet<>();
-            HFTrackers.markDirty(dimension);
-        }
-
-        return townData;
-    }
-
-    public void newDay(World world) {
-        for (TownDataServer town: getTownsForDimension(world.provider.getDimension())) {
+    public void newDay() {
+        for (TownDataServer town: townData) {
             town.newDay(world);
         }
     }
@@ -56,10 +46,9 @@ public class TownTrackerServer extends TownTracker {
 
     @Override
     public EntityNPCBuilder getBuilderOrCreate(final TownData town, final EntityLivingBase player) {
-        final int dimension = player.dimension;
         final BlockPos pos = new BlockPos(player);
         try {
-            return closestBuilder.get(Pair.of(dimension, pos), new Callable<EntityNPCBuilder>() {
+            return closestBuilder.get(pos, new Callable<EntityNPCBuilder>() {
                 @Override
                 public EntityNPCBuilder call() throws Exception {
                     World world = player.worldObj;
@@ -81,25 +70,24 @@ public class TownTrackerServer extends TownTracker {
     }
 
     @Override
-    public TownData createNewTown(int dimension, BlockPos pos) {
+    public TownData createNewTown(BlockPos pos) {
         TownDataServer data = new TownDataServer(pos);
-        getTownsForDimension(dimension).add(data);
+        townData.add(data);
         closestCache.invalidateAll(); //Reset the cache everytime we make a new town
         uuidMap.put(data.getID(), data);
-        HFTrackers.markDirty(dimension);
+        HFTrackers.markDirty(world);
         return data;
     }
 
     @Override
-    public TownData getClosestTownToBlockPos(final int dimension, final BlockPos pos) {
+    public TownData getClosestTownToBlockPos(final BlockPos pos) {
         try {
-            return closestCache.get(Pair.of(dimension, pos), new Callable<TownData>() {
+            return closestCache.get(pos, new Callable<TownData>() {
                 @Override
                 public TownData call() throws Exception {
-                    Set<TownDataServer> towns = getTownsForDimension(dimension);
                     TownData closest = null;
                     double thatTownDistance = Double.MAX_VALUE;
-                    for (TownDataServer town: towns) {
+                    for (TownDataServer town: townData) {
                         double thisTownDistance = town.getTownCentre().getDistance(pos.getX(), pos.getY(), pos.getZ());
                         if (closest == null || thisTownDistance < thatTownDistance) {
                             thatTownDistance = thisTownDistance;

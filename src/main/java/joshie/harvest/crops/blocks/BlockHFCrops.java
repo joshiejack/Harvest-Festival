@@ -47,7 +47,7 @@ import static joshie.harvest.api.crops.IStateHandler.PlantSection.TOP;
 import static joshie.harvest.core.helpers.CropHelper.harvestCrop;
 
 public class BlockHFCrops extends BlockHFBaseEnum<Stage> implements IPlantable, IGrowable, IAnimalFeeder {
-    public enum Stage implements IStringSerializable {
+       public enum Stage implements IStringSerializable {
         FRESH(false, BOTTOM), WITHERED(false, BOTTOM), FRESH_DOUBLE(false, TOP), WITHERED_DOUBLE(true, TOP);
 
         private final boolean isWithered;

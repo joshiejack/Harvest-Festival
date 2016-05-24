@@ -81,17 +81,19 @@ public class CalendarDate implements ICalendarDate {
         return Weekday.values()[joshie.harvest.core.helpers.CalendarHelper.getElapsedDays(world.getWorldTime()) % 7];
     }
 
+    @Override
     public void readFromNBT(NBTTagCompound nbt) {
-        day = nbt.getByte("Day");
+        day = nbt.getInteger("Day");
         season = Season.values()[nbt.getByte("Season")];
-        year = nbt.getShort("Year");
+        year = nbt.getInteger("Year");
         data = HFApi.calendar.getDataForSeason(season);
     }
 
+    @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
-        nbt.setByte("Day", (byte) day);
+        nbt.setInteger("Day", day);
         nbt.setByte("Season", (byte) season.ordinal());
-        nbt.setShort("Year", (short) year);
+        nbt.setInteger("Year", year);
         return nbt;
     }
 

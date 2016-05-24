@@ -2,7 +2,6 @@ package joshie.harvest.core.helpers;
 
 import gnu.trove.map.TIntObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
-import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.core.config.Calendar;
@@ -13,35 +12,35 @@ import static joshie.harvest.core.config.Calendar.DAYS_PER_SEASON;
 import static joshie.harvest.core.config.Calendar.TICKS_PER_DAY;
 
 public class CalendarHelper {
+    private static final TIntObjectMap<Season> dimensionSeasons = new TIntObjectHashMap<>();
     private static final TIntObjectMap<Season> seasons = new TIntObjectHashMap<>();
     static {
         seasons.put(0, SPRING);
         seasons.put(1, SUMMER);
         seasons.put(2, AUTUMN);
         seasons.put(3, WINTER);
-    }
 
-    public static ICalendarDate getDate(World world) {
-        long time = world.getWorldTime();
-        return HFApi.calendar.newDate(getDay(time), getSeason(time), getYear(time));
+        //Add End and Nether Seasons as permenant
+        dimensionSeasons.put(-1, NETHER);
+        dimensionSeasons.put(1, END);
     }
 
     public static void setDate(World world, ICalendarDate date) {
         long time = world.getWorldTime();
-        date.setDay(getDay(time)).setSeason(getSeason(time)).setYear(getYear(time));
+        date.setDay(getDay(world, time)).setSeason(getSeason(world, time)).setYear(getYear(time));
     }
 
     public static int getYear(long totalTime) {
         return (int) Math.floor(getElapsedDays(totalTime) / 4 / DAYS_PER_SEASON);
     }
 
-    public static Season getSeason(long totalTime) {
-        Season season = seasons.get(Math.max(0, (int)Math.floor((getElapsedDays(totalTime) / DAYS_PER_SEASON) % 4)));
-        return season == null ? WINTER : season;
+    public static Season getSeason(World world, long totalTime) {
+        Season season = dimensionSeasons.get(world.provider.getDimension());
+        return season == null ? seasons.get(Math.max(0, (int)Math.floor((getElapsedDays(totalTime) / DAYS_PER_SEASON) % 4))) : season;
     }
 
-    public static int getDay(long totalTime) {
-        return getElapsedDays(totalTime) % DAYS_PER_SEASON;
+    public static int getDay(World world, long totalTime) {
+        return dimensionSeasons.containsKey(world.provider.getDimension()) ? getElapsedDays(totalTime) : getElapsedDays(totalTime) % DAYS_PER_SEASON;
     }
 
     public static int getElapsedDays(long totalTime) {

@@ -7,7 +7,6 @@ import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.entity.player.EntityPlayer;
 
 public class PacketSetCalendar extends AbstractPacketDimension {
-    private int dimension;
     private int day;
     private Season season;
     private int year;
@@ -23,17 +22,17 @@ public class PacketSetCalendar extends AbstractPacketDimension {
     @Override
     public void toBytes(ByteBuf buf) {
         super.toBytes(buf);
-        buf.writeByte(day);
+        buf.writeInt(day);
         buf.writeByte(season.ordinal());
-        buf.writeShort(year);
+        buf.writeInt(year);
     }
 
     @Override
     public void fromBytes(ByteBuf buf) {
         super.fromBytes(buf);
-        day = buf.readByte();
+        day = buf.readInt();
         season = Season.values()[buf.readByte()];
-        year = buf.readShort();
+        year = buf.readInt();
     }
     
     @Override

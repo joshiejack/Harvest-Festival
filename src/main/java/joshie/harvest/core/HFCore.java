@@ -4,7 +4,10 @@ import joshie.harvest.HarvestFestival;
 import joshie.harvest.animals.AnimalEvents;
 import joshie.harvest.calendar.CalendarRender;
 import joshie.harvest.core.commands.*;
-import joshie.harvest.core.handlers.*;
+import joshie.harvest.core.handlers.DisableHandler;
+import joshie.harvest.core.handlers.EventsHandler;
+import joshie.harvest.core.handlers.GoddessHandler;
+import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.network.*;
 import joshie.harvest.core.network.animals.PacketSyncDaysNotFed;
 import joshie.harvest.core.network.animals.PacketSyncEverything;
@@ -37,6 +40,7 @@ public class HFCore {
         CommandManager.INSTANCE.registerCommand(new HFCommandDay());
         CommandManager.INSTANCE.registerCommand(new HFCommandYear());
         CommandManager.INSTANCE.registerCommand(new HFCommandNewDay());
+        CommandManager.INSTANCE.registerCommand(new HFCommandTime());
         CommandManager.INSTANCE.registerCommand(new HFCommandWeather());
 
         //Register Packets

@@ -41,7 +41,7 @@ public class CropData implements ICropData {
     }
 
     private boolean isWrongSeason(World world) {
-        Season toMatch = HFTrackers.getCalendar(world).getDate().getSeason();
+        Season toMatch = HFTrackers.getCalendar(world).getSeasonAt(pos);
         for (Season season : crop.getSeasons()) {
             if (toMatch == season) return false;
         }

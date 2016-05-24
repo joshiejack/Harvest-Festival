@@ -3,8 +3,6 @@ package joshie.harvest.core.commands;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.core.network.PacketHandler;
-import joshie.harvest.core.network.PacketSetCalendar;
 import net.minecraft.command.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
@@ -28,10 +26,6 @@ public class CommandManager extends CommandBase implements ICommand {
 
     public void registerCommand(HFCommandBase command) {
         commands.put(command.getCommandName(), command);
-    }
-
-    public HFCommandBase getCommandFromString(String name) {
-        return commands.get(name);
     }
 
     public Map<String, HFCommandBase> getCommands() {
@@ -68,9 +62,12 @@ public class CommandManager extends CommandBase implements ICommand {
     public void onCommandSend(CommandEvent event) throws CommandNotFoundException, NumberInvalidException {
         //Update the calendar
         if (event.getCommand().getCommandName().equals("time")) {
-            World world = event.getSender().getEntityWorld();
-            HFTrackers.getCalendar(world).recalculate(world);
-            PacketHandler.sendToEveryone(new PacketSetCalendar(world.provider.getDimension(), HFTrackers.getCalendar(world).getDate())); //Sync the new date
+            try {
+                event.getCommand().execute(FMLCommonHandler.instance().getMinecraftServerInstance(), event.getSender(), event.getParameters());
+                World world = event.getSender().getEntityWorld();
+                HFTrackers.getCalendar(world).recalculateAndUpdate();
+                event.setCanceled(true);
+            } catch (Exception e) {}
         } else {
             //Otherwise process the command
             if (event.getCommand() == this && event.getParameters().length > 0) {
@@ -109,7 +106,7 @@ public class CommandManager extends CommandBase implements ICommand {
 
     @Override
     public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] parameters, BlockPos pos) {
-        return new ArrayList<String>();
+        return new ArrayList<>();
     }
 
     @Override

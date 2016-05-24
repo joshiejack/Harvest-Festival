@@ -23,7 +23,7 @@ public class HFCommandDay extends HFCommandBase {
         if (parameters != null && parameters.length == 1) {
             try {
                 Calendar calendar = HFTrackers.getCalendar(sender.getEntityWorld());
-                int day = Math.min(joshie.harvest.core.config.Calendar.DAYS_PER_SEASON, Math.max(1, Integer.parseInt(parameters[0])));
+                int day = Math.min(joshie.harvest.core.config.Calendar.DAYS_PER_SEASON, Math.max(1, parseInt(parameters[0])));
 
 
                 calendar.getDate().setDay(day);

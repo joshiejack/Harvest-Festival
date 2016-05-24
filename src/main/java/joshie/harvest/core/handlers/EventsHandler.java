@@ -2,6 +2,7 @@ package joshie.harvest.core.handlers;
 
 import joshie.harvest.core.helpers.CalendarHelper;
 import joshie.harvest.core.helpers.UUIDHelper;
+import joshie.harvest.core.helpers.generic.MCServerHelper;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSetCalendar;
 import joshie.harvest.player.PlayerTrackerServer;
@@ -16,6 +17,7 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerChangedDimensionEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ServerTickEvent;
@@ -123,6 +125,13 @@ public class EventsHandler {
             HFTrackers.getTownTracker(event.player.worldObj).syncToPlayer(player);
             PlayerTrackerServer data = HFTrackers.getServerPlayerTracker(player);
             data.syncPlayerStats(player);
+        }
+    }
+
+    @SubscribeEvent
+    public void onChangeDimension(PlayerChangedDimensionEvent event) {
+        if (event.player instanceof EntityPlayerMP) {
+            PacketHandler.sendToClient(new PacketSetCalendar(event.toDim, HFTrackers.getCalendar(MCServerHelper.getWorld(event.toDim)).getDate()), event.player);
         }
     }
 }

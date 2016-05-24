@@ -1,10 +1,11 @@
 package joshie.harvest.calendar;
 
 import joshie.harvest.api.calendar.ICalendarDate;
+import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.api.core.ISeasonData;
 import joshie.harvest.core.HFTracker;
-import net.minecraft.world.World;
+import net.minecraft.util.math.BlockPos;
 
 public abstract class Calendar extends HFTracker {
     protected Weather[] forecast = new Weather[7];
@@ -15,6 +16,10 @@ public abstract class Calendar extends HFTracker {
 
     public ISeasonData getSeasonData() {
         return getDate().getSeasonData();
+    }
+
+    public Season getSeasonAt(BlockPos pos) {
+        return getDate().getSeason();
     }
 
     public void newDay() {}
@@ -66,5 +71,6 @@ public abstract class Calendar extends HFTracker {
         }
     }
 
-    public void recalculate(World world) {}
+    public void recalculate() {}
+    public void recalculateAndUpdate() {}
 }

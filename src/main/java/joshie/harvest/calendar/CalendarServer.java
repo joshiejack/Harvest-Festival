@@ -24,7 +24,7 @@ public class CalendarServer extends Calendar implements ISaveable {
     @Override
     public void setWorld(World world) {
         super.setWorld(world);
-        recalculate(world);
+        recalculate();
     }
 
     @Override
@@ -91,15 +91,19 @@ public class CalendarServer extends Calendar implements ISaveable {
     }
 
     @Override
-    public void recalculate(World world) {
-        joshie.harvest.core.helpers.CalendarHelper.setDate(world, DATE);
+    public void recalculate() {
+        joshie.harvest.core.helpers.CalendarHelper.setDate(getWorld(), DATE);
+    }
+
+    @Override
+    public void recalculateAndUpdate() {
+        joshie.harvest.core.helpers.CalendarHelper.setDate(getWorld(), DATE);
+        PacketHandler.sendToEveryone(new PacketSetCalendar(getDimension(), getDate())); //Sync the new date
     }
 
     @Override
     public void newDay() {
-        recalculate(getWorld()); //Update the date
-        PacketHandler.sendToEveryone(new PacketSetCalendar(getDimension(), getDate())); //Sync the new date
-
+        recalculateAndUpdate(); //Update the date
         /** Setup the forecast for the next 7 days **/
         Weather[] newForecast = new Weather[7];
 

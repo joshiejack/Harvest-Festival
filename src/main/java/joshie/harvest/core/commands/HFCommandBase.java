@@ -25,4 +25,10 @@ public abstract class HFCommandBase implements Comparable<Object> {
     public int compareTo(Object o) {
         return getCommandName().compareTo(((HFCommandBase) o).getCommandName());
     }
+
+    protected int parseInt(String string) {
+        try {
+            return Integer.parseInt(string);
+        } catch (Exception e) { return  0; }
+    }
 }

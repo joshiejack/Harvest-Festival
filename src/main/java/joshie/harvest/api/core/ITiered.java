@@ -13,6 +13,10 @@ public interface ITiered {
     ToolTier getTier(ItemStack stack);
 
     enum ToolTier {
-        BASIC, COPPER, SILVER, GOLD, MYSTRIL, CURSED, BLESSED, MYTHIC
+        BASIC, COPPER, SILVER, GOLD, MYSTRIL, CURSED, BLESSED, MYTHIC;
+
+        public boolean isGreaterThanOrEqualTo(ToolTier tier) {
+            return this.ordinal() >= tier.ordinal() || ((tier == CURSED || tier == BLESSED) && (this == CURSED || this == BLESSED));
+        }
     }
 }

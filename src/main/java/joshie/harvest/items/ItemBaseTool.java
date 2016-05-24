@@ -8,13 +8,17 @@ import joshie.harvest.core.util.Translate;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -67,6 +71,41 @@ public abstract class ItemBaseTool extends ItemBaseSingle implements ILevelable,
     public ToolTier getTier(ItemStack stack) {
         int safe = Math.min(Math.max(0, stack.getItemDamage()), (ToolTier.values().length - 1));
         return ToolTier.values()[safe];
+    }
+
+    public boolean canCharge(ItemStack stack) {
+        NBTTagCompound tag = stack.getSubCompound("Data", true);
+        int amount = tag.getInteger("Charge");
+        return amount < getTier(stack).ordinal() + 1;
+    }
+
+    public int getCharge(ItemStack stack) {
+        return stack.getSubCompound("Data", true).getInteger("Charge");
+    }
+
+    public void setCharge(ItemStack stack, int amount) {
+        stack.getSubCompound("Data", true).setInteger("Charge", amount);
+    }
+
+    @Override
+    public int getMaxItemUseDuration(ItemStack stack) {
+        return canCharge(stack) ? 32 : 0;
+    }
+
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer playerIn, EnumHand hand) {
+        if (canCharge(stack)) {
+            System.out.println("Going");
+            playerIn.setActiveHand(hand);
+            return new ActionResult(EnumActionResult.SUCCESS, stack);
+        } else return new ActionResult<>(EnumActionResult.PASS, stack);
+    }
+
+    @Override
+    public ItemStack onItemUseFinish(ItemStack stack, World world, EntityLivingBase entityLiving) {
+        NBTTagCompound tag = stack.getSubCompound("Data", true);
+        tag.setInteger("Charge", tag.getInteger("Charge") + 1);
+        return stack;
     }
 
     public int getFront(ItemStack stack) {
@@ -185,5 +224,27 @@ public abstract class ItemBaseTool extends ItemBaseSingle implements ILevelable,
     @SideOnly(Side.CLIENT)
     public boolean isFull3D() {
         return true;
+    }
+
+    protected RayTraceResult getMovingObjectPositionFromPlayer(World world, EntityLivingBase entity) {
+        float f = entity.rotationPitch;
+        float f1 = entity.rotationYaw;
+        double d0 = entity.posX;
+        double d1 = entity.posY + (double)entity.getEyeHeight();
+        double d2 = entity.posZ;
+        Vec3d vec3 = new Vec3d(d0, d1, d2);
+        float f2 = MathHelper.cos(-f1 * 0.017453292F - (float)Math.PI);
+        float f3 = MathHelper.sin(-f1 * 0.017453292F - (float)Math.PI);
+        float f4 = -MathHelper.cos(-f * 0.017453292F);
+        float f5 = MathHelper.sin(-f * 0.017453292F);
+        float f6 = f3 * f4;
+        float f7 = f2 * f4;
+        double d3 = 5.0D;
+        if (entity instanceof EntityPlayerMP) {
+            d3 = ((EntityPlayerMP) entity).interactionManager.getBlockReachDistance();
+        }
+
+        Vec3d vec31 = vec3.addVector((double)f6 * d3, (double)f5 * d3, (double)f7 * d3);
+        return world.rayTraceBlocks(vec3, vec31, false, true, false);
     }
 }

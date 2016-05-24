@@ -5,8 +5,8 @@ import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.calendar.Weekday;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
-import joshie.harvest.blocks.BlockCrop;
-import joshie.harvest.blocks.BlockCrop.Stage;
+import joshie.harvest.crops.blocks.BlockHFCrops;
+import joshie.harvest.crops.blocks.BlockHFCrops.Stage;
 import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.CropHelper;
@@ -38,7 +38,7 @@ public class CropTrackerServer extends CropTracker {
     @Override
     public void newDay(World world) {
         ArrayList<Pair<BlockPos, ICropData>> toWither = new ArrayList<>(); //Create a new wither list
-        Weekday day = HFTrackers.getCalendar(world).getDate().getWeekday();
+        Weekday day = HFTrackers.getCalendar(world).getDate().getWeekday(world);
         Iterator<Map.Entry<BlockPos, ICropData>> iter = cropTracker.entrySet().iterator();
         while (iter.hasNext()) {
             Map.Entry<BlockPos, ICropData> entry = iter.next();
@@ -149,7 +149,7 @@ public class CropTrackerServer extends CropTracker {
     @Override
     public void setWithered(World world, BlockPos pos, ICropData data) {
         if (data.getCrop().isDouble(data.getStage())) {
-            world.setBlockState(pos.up(), HFBlocks.CROPS.getStateFromEnum(BlockCrop.Stage.WITHERED_DOUBLE), 2);
+            world.setBlockState(pos.up(), HFBlocks.CROPS.getStateFromEnum(BlockHFCrops.Stage.WITHERED_DOUBLE), 2);
         }
 
         world.setBlockState(pos, HFBlocks.CROPS.getStateFromEnum(Stage.WITHERED), 2);

@@ -17,6 +17,8 @@ public class ServerHandler extends SideHandler {
             data = new HFSavedData(HFSavedData.DATA_NAME);
             world.getPerWorldStorage().setData(HFSavedData.DATA_NAME, data);
         }
+
+        data.setWorld(world);
     }
 
     @Override

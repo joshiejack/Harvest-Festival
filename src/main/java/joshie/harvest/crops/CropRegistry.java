@@ -6,7 +6,7 @@ import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.api.crops.ICropRegistry;
 import joshie.harvest.api.crops.ICropProvider;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
-import joshie.harvest.blocks.BlockCrop;
+import joshie.harvest.crops.blocks.BlockHFCrops;
 import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -29,7 +29,7 @@ public class CropRegistry implements ICropRegistry {
 
     @Override
     public ICropData getCropAtLocation(World world, BlockPos pos) {
-        PlantSection section = BlockCrop.getSection(world.getBlockState(pos));
+        PlantSection section = BlockHFCrops.getSection(world.getBlockState(pos));
         return section == PlantSection.BOTTOM ? HFTrackers.getCropTracker(world).getCropDataForLocation(world, pos) : HFTrackers.getCropTracker(world).getCropDataForLocation(world, pos.down());
     }
 

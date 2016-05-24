@@ -11,6 +11,8 @@ import joshie.harvest.core.helpers.generic.RegistryHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.base.BlockHFBaseEnum;
 import joshie.harvest.crops.CropStateMapper;
+import joshie.harvest.crops.blocks.BlockHFCrops;
+import joshie.harvest.crops.blocks.BlockHFFarmland;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.IBlockColor;
@@ -37,8 +39,8 @@ public class HFBlocks {
 
     //Cooking & Farming
     public static final BlockHFBaseEnum COOKWARE = new BlockCookware().setUnlocalizedName("cookware");
-    public static final BlockHFBaseEnum FARMLAND = new BlockFarmland().setUnlocalizedName("farmland");
-    public static final BlockHFBaseEnum CROPS = new BlockCrop().setUnlocalizedName("crops.block");
+    public static final BlockHFBaseEnum FARMLAND = new BlockHFFarmland().setUnlocalizedName("farmland");
+    public static final BlockHFBaseEnum CROPS = new BlockHFCrops().setUnlocalizedName("crops.block");
     public static final BlockFlower FLOWERS = (BlockFlower) new BlockFlower().setUnlocalizedName("flowers");
     //Mine
     public static final BlockHFBaseEnum STONE = new BlockStone().setUnlocalizedName("stone");

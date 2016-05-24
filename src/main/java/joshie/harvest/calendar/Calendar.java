@@ -1,24 +1,19 @@
 package joshie.harvest.calendar;
 
-import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.ICalendarDate;
-import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.api.core.ISeasonData;
 import net.minecraft.world.World;
 
-public class Calendar {
-    protected ICalendarDate date = HFApi.calendar.newDate(1, Season.SPRING, 1);
+public abstract class Calendar {
     protected Weather[] forecast = new Weather[7];
     protected float rainStrength;
     protected float stormStrength;
 
-    public ICalendarDate getDate() {
-        return date;
-    }
+    public abstract ICalendarDate getDate();
 
     public ISeasonData getSeasonData() {
-        return date.getSeasonData();
+        return getDate().getSeasonData();
     }
 
     public void newDay(World world, long bedtime) {}
@@ -69,4 +64,6 @@ public class Calendar {
                 break;
         }
     }
+
+    public void recalculate(World world) {}
 }

@@ -1,4 +1,4 @@
-package joshie.harvest.blocks;
+package joshie.harvest.crops.blocks;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.IAnimalFeeder;
@@ -8,7 +8,7 @@ import joshie.harvest.api.crops.IBreakCrops;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
-import joshie.harvest.blocks.BlockCrop.Stage;
+import joshie.harvest.crops.blocks.BlockHFCrops.Stage;
 import joshie.harvest.core.config.Crops;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.AnimalHelper;
@@ -46,7 +46,7 @@ import static joshie.harvest.api.crops.IStateHandler.PlantSection.BOTTOM;
 import static joshie.harvest.api.crops.IStateHandler.PlantSection.TOP;
 import static joshie.harvest.core.helpers.CropHelper.harvestCrop;
 
-public class BlockCrop extends BlockHFBaseEnum<Stage> implements IPlantable, IGrowable, IAnimalFeeder {
+public class BlockHFCrops extends BlockHFBaseEnum<Stage> implements IPlantable, IGrowable, IAnimalFeeder {
     public enum Stage implements IStringSerializable {
         FRESH(false, BOTTOM), WITHERED(false, BOTTOM), FRESH_DOUBLE(false, TOP), WITHERED_DOUBLE(true, TOP);
 
@@ -74,7 +74,7 @@ public class BlockCrop extends BlockHFBaseEnum<Stage> implements IPlantable, IGr
 
     public static final AxisAlignedBB CROP_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D);
 
-    public BlockCrop() {
+    public BlockHFCrops() {
         super(Material.PLANTS, Stage.class, null);
         setBlockUnbreakable();
         setSoundType(SoundType.GROUND);
@@ -282,10 +282,9 @@ public class BlockCrop extends BlockHFBaseEnum<Stage> implements IPlantable, IGr
     @Override
     public void neighborChanged(IBlockState state, World world, BlockPos pos, Block neighborBlock) {
         if (!world.isRemote) {
-            IBlockState soil = world.getBlockState(pos.down());
             ICrop crop = HFApi.crops.getCropAtLocation(world, pos).getCrop();
             if (crop != null && crop.getSoilHandler() != null) {
-                if (!crop.getSoilHandler().canSustainPlant(soil, world, pos, this)) {
+                if (!crop.getSoilHandler().canSustainCrop(world, pos.down(), world.getBlockState(pos.down()), crop)) {
                     world.setBlockToAir(pos);
                 }
             }

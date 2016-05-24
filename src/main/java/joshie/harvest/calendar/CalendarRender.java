@@ -52,12 +52,12 @@ public class CalendarRender {
             //Enlarge the Day
             GlStateManager.pushMatrix();
             GlStateManager.scale(1.4F, 1.4F, 1.4F);
-            mc.fontRendererObj.drawStringWithShadow(data.getLocalized() + " " + date.getDay(), 30, 7, 0xFFFFFFFF);
+            mc.fontRendererObj.drawStringWithShadow(data.getLocalized() + " " + (date.getDay() + 1), 30, 7, 0xFFFFFFFF);
             GlStateManager.popMatrix();
 
             GlStateManager.pushMatrix();
             String time = formatTime(CalendarHelper.getScaledTime((int) CalendarHelper.getTime(MCClientHelper.getWorld())));
-            mc.fontRendererObj.drawStringWithShadow("(" + date.getWeekday().name().substring(0, 3) + ")" + "  " + time, 42, 23, 0xFFFFFFFF);
+            mc.fontRendererObj.drawStringWithShadow("(" + date.getWeekday(mc.theWorld).name().substring(0, 3) + ")" + "  " + time, 42, 23, 0xFFFFFFFF);
             GlStateManager.popMatrix();
 
             mc.getTextureManager().bindTexture(HFModInfo.elements);

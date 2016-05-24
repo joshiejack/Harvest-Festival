@@ -4,10 +4,10 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
-import joshie.harvest.blocks.BlockCrop;
 import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.core.config.Crops;
 import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.crops.blocks.BlockHFCrops;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -15,10 +15,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.Random;
-
 public class CropData implements ICropData {
-    private static final Random rand = new Random();
     private boolean isReal; //Is true if there actually is a plant here, rather than a placeholder
     private ICrop crop; //The Crop Type of this plant
     private int stage; //The stage it is currently at
@@ -79,7 +76,7 @@ public class CropData implements ICropData {
 
             //If the crop has become double add in the new block
             if (crop.isDouble(stage)) {
-                world.setBlockState(pos.up(), HFBlocks.CROPS.getStateFromEnum(BlockCrop.Stage.FRESH_DOUBLE), 2);
+                world.setBlockState(pos.up(), HFBlocks.CROPS.getStateFromEnum(BlockHFCrops.Stage.FRESH_DOUBLE), 2);
             }
 
             //If the crop grows a block to the side

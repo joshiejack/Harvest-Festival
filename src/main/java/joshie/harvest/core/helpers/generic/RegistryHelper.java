@@ -1,7 +1,7 @@
 package joshie.harvest.core.helpers.generic;
 
 import joshie.harvest.HarvestFestival;
-import joshie.harvest.blocks.BlockCrop;
+import joshie.harvest.crops.blocks.BlockHFCrops;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.base.BlockHFBaseEnum;
 import joshie.harvest.core.util.base.ItemBlockHF;
@@ -70,7 +70,7 @@ public class RegistryHelper {
         GameRegistry.register(block, resource);
         GameRegistry.register(item, resource);
 
-        if (!(block instanceof BlockCrop)) {
+        if (!(block instanceof BlockHFCrops)) {
             HarvestFestival.proxy.setBlockModelResourceLocation(Item.getItemFromBlock(block), name);
         }
 

@@ -14,7 +14,6 @@ import joshie.harvest.core.helpers.generic.RegistryHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.Translate;
 import joshie.harvest.crops.Crop;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -25,7 +24,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -120,8 +118,7 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
 
     private int plantSeedAt(EntityPlayer player, ItemStack stack, World world, BlockPos pos, EnumFacing facing, ICrop crop, int planted) {
         if (player.canPlayerEdit(pos, facing, stack) && player.canPlayerEdit(pos.up(), facing, stack)) {
-            IBlockState soil = world.getBlockState(pos.down());
-            if (crop.getSoilHandler().canSustainPlant(soil, world, pos.up(), (IPlantable) HFBlocks.CROPS) && world.isAirBlock(pos.up())) {
+            if (crop.getSoilHandler().canSustainCrop(world, pos.down(), world.getBlockState(pos.down()), crop) && world.isAirBlock(pos.up())) {
                 HFTrackers.getCropTracker(world).plantCrop(player, world, pos.up(), crop, 1);
 
                 if (!world.isRemote) {

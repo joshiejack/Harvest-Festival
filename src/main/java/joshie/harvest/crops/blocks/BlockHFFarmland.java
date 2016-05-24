@@ -1,7 +1,8 @@
-package joshie.harvest.blocks;
+package joshie.harvest.crops.blocks;
 
 import joshie.harvest.api.core.IDailyTickableBlock;
-import joshie.harvest.blocks.BlockFarmland.Moisture;
+import joshie.harvest.crops.blocks.BlockHFFarmland.Moisture;
+import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.core.util.base.BlockHFBaseEnum;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -23,12 +24,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
-public class BlockFarmland extends BlockHFBaseEnum<Moisture> implements IDailyTickableBlock {
+public class BlockHFFarmland extends BlockHFBaseEnum<Moisture> implements IDailyTickableBlock {
     private final AxisAlignedBB FARMLAND_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.9375D, 1.0D);
     private final IBlockState DRY;
     private final IBlockState WET;
 
-    public BlockFarmland() {
+    public BlockHFFarmland() {
         super(Material.GROUND, Moisture.class, null);
         setTickRandomly(false);
         setLightOpacity(255);

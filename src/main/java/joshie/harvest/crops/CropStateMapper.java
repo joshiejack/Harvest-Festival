@@ -3,8 +3,8 @@ package joshie.harvest.crops;
 import com.google.common.collect.Maps;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.crops.ICrop;
-import joshie.harvest.blocks.BlockCrop;
-import joshie.harvest.blocks.BlockFarmland.Moisture;
+import joshie.harvest.crops.blocks.BlockHFCrops;
+import joshie.harvest.crops.blocks.BlockHFFarmland.Moisture;
 import joshie.harvest.blocks.HFBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
@@ -18,7 +18,7 @@ import java.util.Map;
 public class CropStateMapper extends StateMapperBase {
     @Override
     public Map<IBlockState, ModelResourceLocation> putStateModelLocations(Block blockIn) {
-        if (blockIn instanceof BlockCrop) {
+        if (blockIn instanceof BlockHFCrops) {
             for (IBlockState iblockstate : blockIn.getBlockState().getValidStates()) {
                 mapStateModelLocations.put(iblockstate, getModelResourceLocation(iblockstate));
             }

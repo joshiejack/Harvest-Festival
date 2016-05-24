@@ -1,6 +1,5 @@
 package joshie.harvest.core.handlers;
 
-import joshie.harvest.core.config.Calendar;
 import joshie.harvest.core.helpers.CalendarHelper;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.network.PacketHandler;
@@ -26,6 +25,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+
+import static joshie.harvest.core.config.Calendar.TICKS_PER_DAY;
 
 public class EventsHandler {
     public static ServerHandler NETHER;
@@ -92,7 +93,7 @@ public class EventsHandler {
         if (event.phase != Phase.END) return;
         for (World world: FMLCommonHandler.instance().getMinecraftServerInstance().worldServers) {
             if (world != null) {
-                if (world.getTotalWorldTime() % Calendar.TICKS_PER_DAY == 0) {
+                if (world.getWorldTime() % TICKS_PER_DAY == 0) {
                     newDay(world, false);
                 }
             }
@@ -101,11 +102,7 @@ public class EventsHandler {
 
     //New day
     public static void newDay(final World world, final boolean forced) {
-        int daysPassed = CalendarHelper.getTotalDays(HFTrackers.getCalendar(world).getDate());
-        int serverDays = (int) Math.floor(world.getWorldTime() / Calendar.TICKS_PER_DAY);
-        if (daysPassed <= serverDays || forced) {
-            HFTrackers.getCalendar(world).newDay(world, CalendarHelper.getTime(world));
-        }
+        HFTrackers.getCalendar(world).newDay(world, CalendarHelper.getTime(world));
     }
 
     //Sync data on login

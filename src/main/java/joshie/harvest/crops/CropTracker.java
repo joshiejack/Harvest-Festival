@@ -28,11 +28,6 @@ public class CropTracker {
         return true;
     }
 
-    public ItemStack getHarvest(EntityPlayer player, World world, BlockPos pos) {
-        ICropData data = getCropDataForLocation(world, pos);
-        return data.harvest(player, false);
-    }
-
     public ItemStack harvest(EntityPlayer player, World world, BlockPos pos) {
         ICropData data = getCropDataForLocation(world, pos);
         ItemStack harvest = data.harvest(player, true);

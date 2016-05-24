@@ -2,11 +2,12 @@ package joshie.harvest.api.calendar;
 
 import joshie.harvest.api.core.ISeasonData;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
 
 
 public interface ICalendarDate {
     /** Returns the weekday **/
-    Weekday getWeekday();
+    Weekday getWeekday(World world);
     
     /** Returns the day **/
     int getDay();

@@ -113,6 +113,7 @@ public class WeatherProvider extends WorldProviderSurface {
     @Override
     public float calculateCelestialAngle(long worldTime, float partialTicks) {
         ISeasonData data = HFTrackers.getCalendar(worldObj).getDate().getSeasonData();
+        if (data == null) return 1F;
         int time = (int) (worldTime % Calendar.TICKS_PER_DAY);
         double fac = data.getCelestialLengthFactor();
         float chylex = (float) (clamp(0, 1000D, time) + 11000D * (clamp(0, 11000D, time - 1000D) / 11000D) * fac + clamp(0, 1000D, time - 12000D) + 11000D * (clamp(0, 11000D, time - 12000D) / 11000D) * (2 - fac));

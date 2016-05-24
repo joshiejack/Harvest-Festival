@@ -14,6 +14,7 @@ import joshie.harvest.crops.handlers.StateHandlerDefault;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.StringUtils;
@@ -45,6 +46,7 @@ public class Crop implements ICrop {
     protected int bag_color;
     protected int doubleStage;
     protected AnimalFoodType foodType;
+    protected EnumPlantType type;
 
     public Crop() {}
 
@@ -79,6 +81,7 @@ public class Crop implements ICrop {
         this.doubleStage = Integer.MAX_VALUE;
         this.dropHandler = null;
         this.growsToSide = null;
+        this.type = EnumPlantType.Crop;
         CROPS.put(key, this);
     }
 
@@ -109,6 +112,12 @@ public class Crop implements ICrop {
     @Override
     public ICrop setAnimalFoodType(AnimalFoodType foodType) {
         this.foodType = foodType;
+        return this;
+    }
+
+    @Override
+    public ICrop setPlantType(EnumPlantType plantType) {
+        this.type = plantType;
         return this;
     }
 
@@ -278,6 +287,11 @@ public class Crop implements ICrop {
     @Override
     public boolean matches(ItemStack stack) {
         return (stack.getItem() == getCropStack().getItem());
+    }
+
+    @Override
+    public EnumPlantType getPlantType() {
+        return type;
     }
 
     @Override

@@ -2,7 +2,7 @@ package joshie.harvest.crops.handlers;
 
 import com.google.common.collect.ImmutableList;
 import joshie.harvest.api.crops.IStateHandler;
-import joshie.harvest.blocks.BlockCrop;
+import joshie.harvest.crops.blocks.BlockHFCrops;
 import joshie.harvest.blocks.HFBlocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -28,7 +28,7 @@ public class StateHandlerNull implements IStateHandler {
 
     @Override
     public AxisAlignedBB getBoundingBox(PlantSection section, int stage, boolean withered) {
-        return BlockCrop.CROP_AABB;
+        return BlockHFCrops.CROP_AABB;
     }
 
     @Override

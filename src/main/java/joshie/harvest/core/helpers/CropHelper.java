@@ -2,7 +2,8 @@ package joshie.harvest.core.helpers;
 
 import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
-import joshie.harvest.blocks.BlockFarmland.Moisture;
+import joshie.harvest.crops.blocks.BlockHFFarmland;
+import joshie.harvest.crops.blocks.BlockHFFarmland.Moisture;
 import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.ItemHelper;
@@ -47,7 +48,7 @@ public class CropHelper {
     //Returns whether the farmland is hydrated
     public static boolean isHydrated(World world, BlockPos pos) {
         IBlockState state = world.getBlockState(pos);
-        return state.getBlock() instanceof joshie.harvest.blocks.BlockFarmland && HFBlocks.FARMLAND.getEnumFromState(state) == Moisture.WET;
+        return state.getBlock() instanceof BlockHFFarmland && HFBlocks.FARMLAND.getEnumFromState(state) == Moisture.WET;
     }
 
     //Harvests the crop at this location

@@ -1,7 +1,7 @@
 package joshie.harvest.items;
 
 import joshie.harvest.api.crops.IBreakCrops;
-import joshie.harvest.blocks.BlockCrop;
+import joshie.harvest.crops.blocks.BlockHFCrops;
 import joshie.harvest.core.helpers.PlayerHelper;
 import joshie.harvest.core.helpers.generic.DirectionHelper;
 import net.minecraft.block.Block;
@@ -75,7 +75,7 @@ public class ItemSickle extends ItemBaseTool implements IBreakCrops {
         else {
             EnumFacing front = DirectionHelper.getFacingFromEntity(player);
             Block initial = world.getBlockState(pos).getBlock();
-            if (!(initial instanceof BlockCrop)) {
+            if (!(initial instanceof BlockHFCrops)) {
                 return 0F;
             }
 
@@ -84,12 +84,12 @@ public class ItemSickle extends ItemBaseTool implements IBreakCrops {
                 for (int z2 = getZMinus(stack, front, pos.getZ()); z2 <= getZPlus(stack, front, pos.getZ()); z2++) {
                     BlockPos newPos = new BlockPos(x2, pos.getY(), z2);
                     Block block = world.getBlockState(newPos).getBlock();
-                    if (block instanceof BlockCrop) {
+                    if (block instanceof BlockHFCrops) {
                         if (!world.isRemote) {
                             block.removedByPlayer(state, world, newPos, player, true);
                         }
 
-                        boolean isWithered = BlockCrop.isWithered(world.getBlockState(newPos));
+                        boolean isWithered = BlockHFCrops.isWithered(world.getBlockState(newPos));
                         IBlockState particleState = isWithered ? Blocks.TALLGRASS.getDefaultState() : Blocks.CARROTS.getDefaultState();
                         displayParticle(world, newPos, EnumParticleTypes.BLOCK_CRACK, particleState);
                         playSound(world, newPos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS);

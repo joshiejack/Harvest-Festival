@@ -7,6 +7,7 @@ import joshie.harvest.core.tick.TickDailyServer;
 import joshie.harvest.crops.CropTrackerServer;
 import joshie.harvest.npc.town.TownTrackerServer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
 import net.minecraft.world.WorldSavedData;
 
 public class HFSavedData extends WorldSavedData {
@@ -20,6 +21,10 @@ public class HFSavedData extends WorldSavedData {
 
     public HFSavedData(String string) {
         super(string);
+    }
+
+    public void setWorld(World world) {
+        calendar.setWorld(world);
     }
 
     public AnimalTrackerServer getAnimalTracker() {

@@ -24,6 +24,8 @@ public class HFCommandDay extends HFCommandBase {
             try {
                 Calendar calendar = HFTrackers.getCalendar(sender.getEntityWorld());
                 int day = Math.min(joshie.harvest.core.config.Calendar.DAYS_PER_SEASON, Math.max(1, Integer.parseInt(parameters[0])));
+
+
                 calendar.getDate().setDay(day);
                 PacketHandler.sendToEveryone(new PacketSetCalendar(sender.getEntityWorld().provider.getDimension(), calendar.getDate()));
                 return true;

@@ -2,7 +2,7 @@ package joshie.harvest.crops.handlers;
 
 import gnu.trove.map.TIntObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
-import joshie.harvest.blocks.BlockCrop;
+import joshie.harvest.crops.blocks.BlockHFCrops;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.AxisAlignedBB;
 
@@ -33,7 +33,7 @@ public class StateHandlerGrass extends StateHandlerDefault {
             ret = CROP_AABB.get((stage + 6));
         }
 
-        return ret == null ? BlockCrop.CROP_AABB : ret;
+        return ret == null ? BlockHFCrops.CROP_AABB : ret;
     }
 
     @Override

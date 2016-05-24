@@ -1,6 +1,7 @@
 package joshie.harvest.calendar;
 
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.api.core.ISeasonData;
@@ -14,8 +15,23 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
+import static joshie.harvest.api.calendar.Season.SPRING;
+import static joshie.harvest.core.config.Calendar.DAYS_PER_SEASON;
+
 public class CalendarServer extends Calendar {
+    private final ICalendarDate DATE = HFApi.calendar.newDate(0, SPRING, 1);
     private static final Random rand = new Random();
+    private World world;
+
+    public void setWorld(World world) {
+        this.world = world;
+        recalculate(world);
+    }
+
+    @Override
+    public ICalendarDate getDate() {
+        return DATE;
+    }
 
     @Override
     public void setTodaysWeather(World world, Weather weather) {
@@ -41,7 +57,7 @@ public class CalendarServer extends Calendar {
     }
 
     public Weather getRandomWeather(int day, Season season) {
-        if (day > joshie.harvest.core.config.Calendar.DAYS_PER_SEASON) {
+        if (day > DAYS_PER_SEASON) {
             season = getNextSeason(season);
         }
 
@@ -67,7 +83,7 @@ public class CalendarServer extends Calendar {
         //If they're null set them
         for (int i = 0; i < 7; i++) {
             if (forecast[i] == null) {
-                forecast[i] = getRandomWeather(date.getDay() + i, date.getSeason());
+                forecast[i] = getRandomWeather(getDate().getDay() + i, getDate().getSeason());
             }
         }
 
@@ -76,23 +92,14 @@ public class CalendarServer extends Calendar {
     }
 
     @Override
+    public void recalculate(World world) {
+        joshie.harvest.core.helpers.CalendarHelper.setDate(world, DATE);
+    }
+
+    @Override
     public void newDay(World world, long bedtime) {
-        int day = date.getDay();
-        Season season = date.getSeason();
-        int year = date.getYear();
-
-        if (day < joshie.harvest.core.config.Calendar.DAYS_PER_SEASON) {
-            day++;
-        } else {
-            season = getNextSeason(season);
-            day = 1;
-            if (season == Season.SPRING) {
-                year++;
-            }
-        }
-
-        date.setDay(day).setSeason(season).setYear(year);
-        PacketHandler.sendToEveryone(new PacketSetCalendar(world.provider.getDimension(), date));
+        recalculate(world); //Update the date
+        PacketHandler.sendToEveryone(new PacketSetCalendar(world.provider.getDimension(), getDate())); //Sync the new date
 
         //Tick blocks, such as soil, troughs, and incubators
         HFTrackers.getTickables(world).newDay(world);
@@ -127,14 +134,14 @@ public class CalendarServer extends Calendar {
     }
 
     public void readFromNBT(NBTTagCompound nbt) {
-        date.readFromNBT(nbt);
+        //date.readFromNBT(nbt);
         for (int i = 0; i < 7; i++) {
             forecast[i] = Weather.values()[nbt.getCompoundTag("Forecast").getByte("Day" + i)];
         }
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
-        date.writeToNBT(nbt);
+        //date.writeToNBT(nbt);
         NBTTagCompound tag = new NBTTagCompound();
         for (int i = 0; i < 7; i++) {
             Weather weather = forecast[i];

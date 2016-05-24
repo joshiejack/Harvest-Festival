@@ -19,6 +19,10 @@ public class CalendarHelper implements ICalendar {
         data.put(Season.SUMMER, new SeasonData(Season.SUMMER, 7972863, 0.4D, 0.0011F, YELLOW, 0xFFFF4D, 95D, 75D, 100D, 0D, 0D));
         data.put(Season.AUTUMN, new SeasonData(Season.AUTUMN, 0x8CBED6, 1.08D, -0.07F, GOLD, 0x8C4600, 50D, 100D, 0D, 0D, 0D));
         data.put(Season.WINTER, new SeasonData(Season.WINTER, 0xFFFFFF, 1.56D, -0.1375F, BLUE, 0xFFFFFF, 45D, 0D, 0D, 90D, 100D));
+
+        //TODO: Give these real values
+        data.put(Season.NETHER, new SeasonData(Season.NETHER, 7972863, 0.4D, 0.0011F, RED, 0xFFFF4D, 95D, 75D, 100D, 0D, 0D));
+        data.put(Season.END, new SeasonData(Season.END, 7972863, 0.4D, 0.0011F, GRAY, 0xFFFF4D, 95D, 75D, 100D, 0D, 0D));
     }
 
     @Override

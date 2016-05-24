@@ -6,6 +6,7 @@ import joshie.harvest.api.core.IShippable;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.EnumPlantType;
 
 public interface ICrop extends IShippable {
     /** Returns this crop in seed form, with default stats
@@ -86,6 +87,9 @@ public interface ICrop extends IShippable {
      * @return      whether the passed in stack is this crop */
     boolean matches(ItemStack stack);
 
+    /** Returns the plant type of this crop, by default returns Crop **/
+    EnumPlantType getPlantType();
+
     /** Associates this crop with the item
      * @param       item of this crop
      * @return      the instance*/
@@ -126,4 +130,7 @@ public interface ICrop extends IShippable {
     
     /** Set the animal food type of this crop, Crops default to vegetable **/
     ICrop setAnimalFoodType(AnimalFoodType type);
+
+    /** Set the plant type of this crop **/
+    ICrop setPlantType(EnumPlantType plantType);
 }

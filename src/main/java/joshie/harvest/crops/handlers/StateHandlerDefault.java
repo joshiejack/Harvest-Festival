@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableList;
 import gnu.trove.map.TIntObjectMap;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.IStateHandler;
-import joshie.harvest.blocks.BlockCrop;
+import joshie.harvest.crops.blocks.BlockHFCrops;
 import joshie.harvest.blocks.HFBlocks;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
@@ -37,7 +37,7 @@ public class StateHandlerDefault implements IStateHandler {
 
     @Override
     public AxisAlignedBB getBoundingBox(PlantSection section, int stage, boolean withered) {
-        return BlockCrop.CROP_AABB;
+        return BlockHFCrops.CROP_AABB;
     }
 
     @Override

@@ -5,8 +5,8 @@ import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weekday;
 import joshie.harvest.api.core.ISeasonData;
-import joshie.harvest.core.helpers.CalendarHelper;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
 
 public class CalendarDate implements ICalendarDate {
     private int day;
@@ -77,8 +77,8 @@ public class CalendarDate implements ICalendarDate {
     }
 
     @Override
-    public Weekday getWeekday() {
-        return Weekday.values()[CalendarHelper.getTotalDays(this) % 7];
+    public Weekday getWeekday(World world) {
+        return Weekday.values()[joshie.harvest.core.helpers.CalendarHelper.getElapsedDays(world.getWorldTime()) % 7];
     }
 
     public void readFromNBT(NBTTagCompound nbt) {

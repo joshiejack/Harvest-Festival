@@ -1,7 +1,10 @@
 package joshie.harvest.core.commands;
 
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.lib.HFModInfo;
+import joshie.harvest.core.network.PacketHandler;
+import joshie.harvest.core.network.PacketSetCalendar;
 import net.minecraft.command.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
@@ -63,15 +66,23 @@ public class CommandManager extends CommandBase implements ICommand {
 
     @SubscribeEvent
     public void onCommandSend(CommandEvent event) throws CommandNotFoundException, NumberInvalidException {
-        if (event.getCommand() == this && event.getParameters().length > 0) {
-            if (getWorld(event.getSender()).isRemote) event.setCanceled(true);
-            else {
-                String commandName = event.getParameters()[0];
-                HFCommandBase command = commands.get(commandName);
-                if (command == null || !event.getSender().canCommandSenderUseCommand(command.getPermissionLevel().ordinal(), commandName)) {
-                    event.setCanceled(true);
-                } else {
-                    processCommand(event, command);
+        //Update the calendar
+        if (event.getCommand().getCommandName().equals("time")) {
+            World world = event.getSender().getEntityWorld();
+            HFTrackers.getCalendar(world).recalculate(world);
+            PacketHandler.sendToEveryone(new PacketSetCalendar(world.provider.getDimension(), HFTrackers.getCalendar(world).getDate())); //Sync the new date
+        } else {
+            //Otherwise process the command
+            if (event.getCommand() == this && event.getParameters().length > 0) {
+                if (getWorld(event.getSender()).isRemote) event.setCanceled(true);
+                else {
+                    String commandName = event.getParameters()[0];
+                    HFCommandBase command = commands.get(commandName);
+                    if (command == null || !event.getSender().canCommandSenderUseCommand(command.getPermissionLevel().ordinal(), commandName)) {
+                        event.setCanceled(true);
+                    } else {
+                        processCommand(event, command);
+                    }
                 }
             }
         }

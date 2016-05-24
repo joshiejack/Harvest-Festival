@@ -4,21 +4,19 @@ import joshie.harvest.animals.AnimalTrackerClient;
 import joshie.harvest.calendar.CalendarClient;
 import joshie.harvest.crops.CropTrackerClient;
 import joshie.harvest.npc.town.TownTrackerClient;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class ClientHandler extends SideHandler {
-    private AnimalTrackerClient animals;
-    private CalendarClient calendar;
-    private CropTrackerClient crops;
-    private TownTrackerClient town;
-    
-    public ClientHandler() {
-        animals = new AnimalTrackerClient();
-        calendar = new CalendarClient();
-        crops = new CropTrackerClient();
-        town = new TownTrackerClient();
+    private AnimalTrackerClient animals = new AnimalTrackerClient();
+    private CalendarClient calendar = new CalendarClient();
+    private CropTrackerClient crops = new CropTrackerClient();
+    private TownTrackerClient town = new TownTrackerClient();
+
+    public ClientHandler(World world) {
+        crops.setWorld(world);
     }
 
     @Override

@@ -58,8 +58,8 @@ public class PacketSyncCrop extends AbstractPacketLocation {
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        if (player != null) {
-            HFTrackers.getCropTracker(player.worldObj).updateClient(dim, pos, data, isRemoval);
+        if (player != null) { //TODO: Check this is working, as i removed the dimension parameter, so it may not work correctly in dimensions
+            HFTrackers.getCropTracker(player.worldObj).updateClient(pos, data, isRemoval);
             MCClientHelper.refresh(dim, pos);
         }
     }

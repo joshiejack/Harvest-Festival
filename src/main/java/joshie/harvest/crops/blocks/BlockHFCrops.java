@@ -108,7 +108,7 @@ public class BlockHFCrops extends BlockHFBaseEnum<Stage> implements IPlantable, 
                     float chance = getGrowthChance(this, world, pos);
                     if (rand.nextInt((int) (25.0F / chance) + 1) == 0) {
                         //We are Growing!
-                        HFTrackers.getCropTracker(world).grow(world, pos);
+                        HFTrackers.getCropTracker(world).grow(pos);
                     }
                 }
             }
@@ -318,7 +318,7 @@ public class BlockHFCrops extends BlockHFBaseEnum<Stage> implements IPlantable, 
     public void breakBlock(World world, BlockPos pos, IBlockState state) {
         Stage stage = getEnumFromState(state);
         if (stage == Stage.FRESH || stage == Stage.WITHERED) {
-            HFTrackers.getCropTracker(world).removeCrop(world, pos);
+            HFTrackers.getCropTracker(world).removeCrop(pos);
         } else if (stage == Stage.FRESH_DOUBLE || stage == Stage.WITHERED_DOUBLE) {
             world.setBlockToAir(pos.down());
         }
@@ -386,12 +386,12 @@ public class BlockHFCrops extends BlockHFBaseEnum<Stage> implements IPlantable, 
                 ICropData crop = HFApi.crops.getCropAtLocation(world, pos);
                 for (Season season: crop.getCrop().getSeasons()) {
                     if (HFApi.calendar.getToday(world).getSeason() == season) {
-                        return HFTrackers.getCropTracker(world).canBonemeal(world, pos);
+                        return HFTrackers.getCropTracker(world).canBonemeal(pos);
                     }
                 }
 
                 return false;
-            } else return HFTrackers.getCropTracker(world).canBonemeal(world, pos);
+            } else return HFTrackers.getCropTracker(world).canBonemeal(pos);
         } else return false;
     }
 
@@ -406,7 +406,7 @@ public class BlockHFCrops extends BlockHFBaseEnum<Stage> implements IPlantable, 
     //Apply the bonemeal and grow!
     @Override
     public void grow(World world, Random rand, BlockPos pos, IBlockState state) {
-        HFTrackers.getCropTracker(world).grow(world, pos);
+        HFTrackers.getCropTracker(world).grow(pos);
     }
 
     @Override
@@ -417,7 +417,7 @@ public class BlockHFCrops extends BlockHFBaseEnum<Stage> implements IPlantable, 
             if (theCrop == HFCrops.grass) {
                 int stage = crop.getStage();
                 if (stage > 5) {
-                    HFTrackers.getCropTracker(world).plantCrop(tracked.getData().getOwner(), world, pos, theCrop, stage - 5);
+                    HFTrackers.getCropTracker(world).plantCrop(tracked.getData().getOwner(), pos, theCrop, stage - 5);
                     return true;
                 }
             }

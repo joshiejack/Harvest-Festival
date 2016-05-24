@@ -15,7 +15,7 @@ public class PacketCropRequest extends AbstractPacketLocation {
 
     @Override
     public boolean handleServerPacket(EntityPlayerMP player) {
-        HFTrackers.getCropTracker(player.worldObj).sendUpdateToClient(player, getWorld(dim), pos);
+        HFTrackers.getCropTracker(getWorld(dim)).sendUpdateToClient(player, pos);
         return true;
     }
 }

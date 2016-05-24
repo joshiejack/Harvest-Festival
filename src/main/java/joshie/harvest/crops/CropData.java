@@ -147,7 +147,6 @@ public class CropData implements ICropData {
         if (crop == HFCrops.null_crop) isReal = false;
         stage = nbt.getByte("CurrentStage");
         daysWithoutWater = nbt.getShort("DaysWithoutWater");
-        System.out.println("Read in the crop: " + crop.getResource().toString());
     }
 
     @Override
@@ -157,7 +156,6 @@ public class CropData implements ICropData {
             nbt.setString("CropResource", crop.getResource().toString());
             nbt.setByte("CurrentStage", (byte) stage);
             nbt.setShort("DaysWithoutWater", (short) daysWithoutWater);
-            System.out.println("Wrote the crop: " + crop.getResource().toString());
         }
     }
 

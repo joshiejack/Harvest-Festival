@@ -104,7 +104,7 @@ public class CalendarServer extends Calendar {
         //Tick blocks, such as soil, troughs, and incubators
         HFTrackers.getTickables(world).newDay(world);
         //Tick crop blocks, to have them grow
-        HFTrackers.getCropTracker(world).newDay(world);
+        HFTrackers.getCropTracker(world).newDay();
         //Tick animals to update their data
         HFTrackers.getAnimalTracker(world).newDay();
         //Tick the town to update things like gathering

@@ -5,13 +5,13 @@ import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.calendar.Weekday;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
-import joshie.harvest.crops.blocks.BlockHFCrops;
-import joshie.harvest.crops.blocks.BlockHFCrops.Stage;
 import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.CropHelper;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.network.PacketSyncCrop;
+import joshie.harvest.crops.blocks.BlockHFCrops;
+import joshie.harvest.crops.blocks.BlockHFCrops.Stage;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.state.IBlockState;
@@ -21,7 +21,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 import org.apache.commons.lang3.tuple.Pair;
 
@@ -36,7 +35,7 @@ import static joshie.harvest.core.network.PacketHandler.sendToEveryone;
 //Handles the Data for the crops rather than using TE Data
 public class CropTrackerServer extends CropTracker {
     @Override
-    public void newDay(World world) {
+    public void newDay() {
         ArrayList<Pair<BlockPos, ICropData>> toWither = new ArrayList<>(); //Create a new wither list
         Weekday day = HFTrackers.getCalendar(world).getDate().getWeekday(world);
         Iterator<Map.Entry<BlockPos, ICropData>> iter = cropTracker.entrySet().iterator();
@@ -68,7 +67,7 @@ public class CropTrackerServer extends CropTracker {
         while (wither.hasNext()) {
             Pair<BlockPos, ICropData> data = wither.next();
             wither.remove();
-            setWithered(world, data.getKey(), data.getValue());
+            setWithered(data.getKey(), data.getValue());
         }
     }
 
@@ -76,12 +75,12 @@ public class CropTrackerServer extends CropTracker {
 
     //Updates the world, so we know it has rained!
     @Override
-    public void doRain(World world) {
+    public void doRain() {
         if (!HFTrackers.getCalendar(world).getDate().equals(lastRain)) {
             lastRain = HFApi.calendar.cloneDate(HFTrackers.getCalendar(world).getDate());
             for (BlockPos position : cropTracker.keySet()) {
                 IBlockState state = world.getBlockState(position);
-                hydrate(world, position, state);
+                hydrate(position, state);
                 world.setBlockState(position.down(), state.withProperty(BlockFarmland.MOISTURE, 7), 2);
             }
         }
@@ -89,7 +88,7 @@ public class CropTrackerServer extends CropTracker {
 
     //Sends an update packet
     @Override
-    public void sendUpdateToClient(EntityPlayerMP player, World world, BlockPos pos) {
+    public void sendUpdateToClient(EntityPlayerMP player, BlockPos pos) {
         ICropData data = cropTracker.get(pos);
         if (data == null) {
             sendToClient(new PacketSyncCrop(world.provider.getDimension(), pos), player);
@@ -98,16 +97,16 @@ public class CropTrackerServer extends CropTracker {
 
     //Causes a growth of the crop at this location, Notifies the clients
     @Override
-    public void grow(World world, BlockPos pos) {
-        ICropData data = getCropDataForLocation(world, pos);
+    public void grow(BlockPos pos) {
+        ICropData data = getCropDataForLocation(pos);
         data.grow(world);
         sendToEveryone(new PacketSyncCrop(world.provider.getDimension(), pos, data));
         HFTrackers.markDirty(world);
     }
 
     @Override
-    public boolean plantCrop(EntityPlayer player, World world, BlockPos pos, ICrop crop, int stage) {
-        ICropData data = getCropDataForLocation(world, pos);
+    public boolean plantCrop(EntityPlayer player, BlockPos pos, ICrop crop, int stage) {
+        ICropData data = getCropDataForLocation(pos);
         if (CropHelper.isHydrated(world, pos.down())) {
             data.setHydrated();
         }
@@ -121,12 +120,12 @@ public class CropTrackerServer extends CropTracker {
     }
 
     @Override
-    public ItemStack harvest(EntityPlayer player, World world, BlockPos pos) {
-        ICropData data = getCropDataForLocation(world, pos);
+    public ItemStack harvest(EntityPlayer player, BlockPos pos) {
+        ICropData data = getCropDataForLocation(pos);
         ItemStack harvest = data.harvest(player, true);
         if (harvest != null) {
             if (data.getCrop().getRegrowStage() <= 0) {
-                removeCrop(world, pos);
+                removeCrop(pos);
                 world.setBlockToAir(pos);
             }
 
@@ -141,24 +140,24 @@ public class CropTrackerServer extends CropTracker {
     }
 
     @Override
-    public void hydrate(World world, BlockPos pos, IBlockState state) {
-        getCropDataForLocation(world, pos).setHydrated();
+    public void hydrate(BlockPos pos, IBlockState state) {
+        getCropDataForLocation(pos).setHydrated();
         HFTrackers.markDirty(world);
     }
 
     @Override
-    public void setWithered(World world, BlockPos pos, ICropData data) {
+    public void setWithered(BlockPos pos, ICropData data) {
         if (data.getCrop().isDouble(data.getStage())) {
             world.setBlockState(pos.up(), HFBlocks.CROPS.getStateFromEnum(BlockHFCrops.Stage.WITHERED_DOUBLE), 2);
         }
 
         world.setBlockState(pos, HFBlocks.CROPS.getStateFromEnum(Stage.WITHERED), 2);
-        plantCrop(null, world, pos, data.getCrop(), data.getStage());
+        plantCrop(null, pos, data.getCrop(), data.getStage());
     }
 
     @Override
-    public void removeCrop(World world, BlockPos pos) {
-        super.removeCrop(world, pos);
+    public void removeCrop(BlockPos pos) {
+        super.removeCrop(pos);
         sendToEveryone(new PacketSyncCrop(world.provider.getDimension(), pos));
         HFTrackers.markDirty(world);
     }

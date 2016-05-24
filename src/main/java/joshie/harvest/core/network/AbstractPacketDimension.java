@@ -24,8 +24,6 @@ public abstract class AbstractPacketDimension extends PenguinPacket {
 
     @Override
     public void handleQueuedClient(NetHandlerPlayClient handler) {
-        System.out.println("Day received");
-        System.out.println(MCClientHelper.getWorld().provider.getDimension() + " ..."  + dimension);
         if (MCClientHelper.getWorld().provider.getDimension() == dimension) {
             handlePacket(MCClientHelper.getPlayer());
         }

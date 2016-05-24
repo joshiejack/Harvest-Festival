@@ -13,42 +13,47 @@ import java.util.HashMap;
 
 public class CropTracker {
     protected HashMap<BlockPos, ICropData> cropTracker = new HashMap<>();
+    protected World world;
 
-    public ICropData getCropDataForLocation(World world, BlockPos pos) {
+    public void setWorld(World world) {
+        this.world = world;
+    }
+
+    public ICropData getCropDataForLocation(BlockPos pos) {
         ICropData data = cropTracker.get(pos);
         return data != null ? data : new CropData(pos);
     }
 
-    public boolean canBonemeal(World world, BlockPos pos) {
-        ICropData data = getCropDataForLocation(world, pos);
+    public boolean canBonemeal(BlockPos pos) {
+        ICropData data = getCropDataForLocation(pos);
         return data.getStage() < data.getCrop().getStages();
     }
 
-    public boolean plantCrop(EntityPlayer player, World world, BlockPos pos, ICrop crop, int stage) {
+    public boolean plantCrop(EntityPlayer player, BlockPos pos, ICrop crop, int stage) {
         return true;
     }
 
-    public ItemStack harvest(EntityPlayer player, World world, BlockPos pos) {
-        ICropData data = getCropDataForLocation(world, pos);
+    public ItemStack harvest(EntityPlayer player, BlockPos pos) {
+        ICropData data = getCropDataForLocation(pos);
         ItemStack harvest = data.harvest(player, true);
         if (harvest != null) {
             if (data.getCrop().getRegrowStage() < 0) {
-                removeCrop(world, pos);
+                removeCrop(pos);
             }
 
             return harvest;
         } else return null;
     }
 
-    public void removeCrop(World world, BlockPos pos) {
+    public void removeCrop(BlockPos pos) {
         cropTracker.remove(pos);
     }
 
-    public void hydrate(World world, BlockPos pos, IBlockState state) {}
-    public void setWithered(World world, BlockPos pos, ICropData data) {}
-    public void grow(World world, BlockPos pos) {}
-    public void newDay(World world) {}
-    public void sendUpdateToClient(EntityPlayerMP player, World world, BlockPos pos) {}
-    public void updateClient(int dimension, BlockPos position, ICropData data, boolean isRemoval) {}
-    public void doRain(World world) {}
+    public void hydrate(BlockPos pos, IBlockState state) {}
+    public void setWithered(BlockPos pos, ICropData data) {}
+    public void grow(BlockPos pos) {}
+    public void newDay() {}
+    public void sendUpdateToClient(EntityPlayerMP player, BlockPos pos) {}
+    public void updateClient(BlockPos position, ICropData data, boolean isRemoval) {}
+    public void doRain() {}
 }

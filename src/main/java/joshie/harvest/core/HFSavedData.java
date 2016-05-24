@@ -13,8 +13,8 @@ import net.minecraft.world.WorldSavedData;
 public class HFSavedData extends WorldSavedData {
     public static final String DATA_NAME = HFModInfo.CAPNAME + "-Data";
 
-    private CalendarServer calendar = new CalendarServer();
     private AnimalTrackerServer animals = new AnimalTrackerServer();
+    private CalendarServer calendar = new CalendarServer();
     private CropTrackerServer crops = new CropTrackerServer();
     private TickDailyServer ticking = new TickDailyServer();
     private TownTrackerServer towns = new TownTrackerServer();
@@ -25,6 +25,7 @@ public class HFSavedData extends WorldSavedData {
 
     public void setWorld(World world) {
         calendar.setWorld(world);
+        crops.setWorld(world);
     }
 
     public AnimalTrackerServer getAnimalTracker() {

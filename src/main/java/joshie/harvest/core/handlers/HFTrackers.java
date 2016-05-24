@@ -14,7 +14,6 @@ import joshie.harvest.player.PlayerTrackerClient;
 import joshie.harvest.player.PlayerTrackerServer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -48,36 +47,33 @@ public class HFTrackers {
         CLIENT_PLAYER = new PlayerTrackerClient();
     }
 
-    private static SideHandler getClient(int dimension) {
+    private static SideHandler getClient(World world) {
+        int dimension = world.provider.getDimension();
         SideHandler handler = CLIENT_WORLDS.get(dimension);
         if (handler == null) {
-            handler = new ClientHandler();
+            handler = new ClientHandler(world);
             CLIENT_WORLDS.put(dimension, handler);
         }
 
         return handler;
     }
 
-    private static SideHandler getHandler(int dimension) {
-        return isServer() ? SERVER_WORLDS.get(dimension) : getClient(dimension);
-    }
-
-    private static boolean isServer() {
-        return FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER;
+    private static SideHandler getHandler(World world) {
+        return !world.isRemote ? SERVER_WORLDS.get(world.provider.getDimension()) : getClient(world);
     }
 
     public static Calendar getCalendar(World world) {
         if (!world.isRemote) {
             return SERVER_WORLDS.get(world.provider.getDimension()) == null ? TEMP_CALENDAR : SERVER_WORLDS.get(world.provider.getDimension()).getCalendar();
-        } else return getClient(world.provider.getDimension()).getCalendar();
+        } else return getClient(world).getCalendar();
     }
 
     public static AnimalTracker getAnimalTracker(World world) {
-        return getHandler(world.provider.getDimension()).getAnimalTracker();
+        return getHandler(world).getAnimalTracker();
     }
 
     public static CropTracker getCropTracker(World world) {
-        return getHandler(world.provider.getDimension()).getCropTracker();
+        return getHandler(world).getCropTracker();
     }
 
     public static PlayerTracker getPlayerTracker(EntityPlayer player) {
@@ -85,7 +81,7 @@ public class HFTrackers {
     }
 
     public static TownTracker getTownTracker(World world) {
-        return getHandler(world.provider.getDimension()).getTownTracker();
+        return getHandler(world).getTownTracker();
     }
     
     public static Collection<PlayerTrackerServer> getPlayerTrackers() {

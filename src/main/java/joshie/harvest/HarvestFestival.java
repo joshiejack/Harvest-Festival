@@ -3,11 +3,8 @@ package joshie.harvest;
 import joshie.harvest.core.HFApiLoader;
 import joshie.harvest.core.HFCommonProxy;
 import joshie.harvest.core.commands.CommandManager;
-import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -38,7 +35,7 @@ public class HarvestFestival {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        root = new File(event.getModConfigurationDirectory() + File.separator + MODID);
+        root = new File(event.getModConfigurationDirectory(), MODID);
         proxy.load("preInit");
     }
 

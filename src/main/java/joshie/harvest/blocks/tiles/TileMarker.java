@@ -47,7 +47,7 @@ public class TileMarker extends TileEntity {
     }
 
     public IMessage getPacket() {
-        return new PacketSyncMarker(new WorldLocation(worldObj.provider.getDimension(), pos), building);
+        return new PacketSyncMarker(worldObj.provider.getDimension(), pos, building);
     }
 
     public Direction getDirection() {

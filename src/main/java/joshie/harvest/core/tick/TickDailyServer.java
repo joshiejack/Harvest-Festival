@@ -2,25 +2,21 @@ package joshie.harvest.core.tick;
 
 import joshie.harvest.api.core.IDailyTickable;
 import joshie.harvest.api.core.IDailyTickableBlock;
+import joshie.harvest.core.HFTracker;
 import joshie.harvest.core.helpers.NBTHelper;
+import joshie.harvest.core.helpers.NBTHelper.ISaveable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-public class TickDailyServer {
+public class TickDailyServer extends HFTracker implements ISaveable {
     private Set<IDailyTickable> tickables = new HashSet<>();
     private Set<BlockPos> blockTicks = new HashSet<>();
-    private World world;
-
-    public void setWorld(World world) {
-        this.world = world;
-    }
 
     public void newDay() {
         //Tick the tickable entities
@@ -29,7 +25,7 @@ public class TickDailyServer {
             IDailyTickable tickable = ticking.next();
             if (tickable == null || tickable.isInvalid()) {
                 ticking.remove();
-            } else tickable.newDay(world);
+            } else tickable.newDay(getWorld());
         }
 
         //Tick the tickable blocks
@@ -38,10 +34,10 @@ public class TickDailyServer {
             BlockPos pos = position.next();
             if (pos == null) {
                 position.remove();
-            } else if (world.isBlockLoaded(pos)) {
-                IBlockState state = world.getBlockState(pos);
+            } else if (getWorld().isBlockLoaded(pos)) {
+                IBlockState state = getWorld().getBlockState(pos);
                 if (state.getBlock() instanceof IDailyTickableBlock) {
-                    if(!((IDailyTickableBlock) state.getBlock()).newDay(world, pos, state)) position.remove();
+                    if(!((IDailyTickableBlock) state.getBlock()).newDay(getWorld(), pos, state)) position.remove();
                 } else position.remove(); //If this block isn't daily tickable, remove it
             }
         }
@@ -63,6 +59,7 @@ public class TickDailyServer {
         tickables.remove(tickable);
     }
 
+    @Override
     public void readFromNBT(NBTTagCompound tag) {
         blockTicks = new HashSet<>();
         NBTTagList dataList = tag.getTagList("Positions", 10);
@@ -72,6 +69,7 @@ public class TickDailyServer {
         }
     }
 
+    @Override
     public NBTTagCompound writeToNBT(NBTTagCompound tag) {
         NBTTagList dataList = new NBTTagList();
         for (BlockPos pos: blockTicks) {

@@ -2,23 +2,18 @@ package joshie.harvest.crops.tracker;
 
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
+import joshie.harvest.core.HFTracker;
 import joshie.harvest.crops.CropData;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
 import java.util.HashMap;
 
-public class CropTracker {
-    protected HashMap<BlockPos, ICropData> cropTracker = new HashMap<>();
-    protected World world;
-
-    public void setWorld(World world) {
-        this.world = world;
-    }
+public class CropTracker extends HFTracker {
+    HashMap<BlockPos, ICropData> cropTracker = new HashMap<>();
 
     public ICropData getCropDataForLocation(BlockPos pos) {
         ICropData data = cropTracker.get(pos);

@@ -5,6 +5,7 @@ import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.api.core.ISeasonData;
+import joshie.harvest.core.helpers.NBTHelper.ISaveable;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSetCalendar;
 import joshie.harvest.core.network.PacketSyncForecast;
@@ -16,7 +17,7 @@ import java.util.Random;
 import static joshie.harvest.api.calendar.Season.SPRING;
 import static joshie.harvest.core.config.Calendar.DAYS_PER_SEASON;
 
-public class CalendarServer extends Calendar {
+public class CalendarServer extends Calendar implements ISaveable {
     private final ICalendarDate DATE = HFApi.calendar.newDate(0, SPRING, 1);
     private static final Random rand = new Random();
 
@@ -86,7 +87,7 @@ public class CalendarServer extends Calendar {
         }
 
         updateWeatherStrength();
-        PacketHandler.sendToEveryone(new PacketSyncForecast(world.provider.getDimension(), forecast));
+        PacketHandler.sendToEveryone(new PacketSyncForecast(getDimension(), forecast));
     }
 
     @Override
@@ -96,8 +97,8 @@ public class CalendarServer extends Calendar {
 
     @Override
     public void newDay() {
-        recalculate(world); //Update the date
-        PacketHandler.sendToEveryone(new PacketSetCalendar(world.provider.getDimension(), getDate())); //Sync the new date
+        recalculate(getWorld()); //Update the date
+        PacketHandler.sendToEveryone(new PacketSetCalendar(getDimension(), getDate())); //Sync the new date
 
         /** Setup the forecast for the next 7 days **/
         Weather[] newForecast = new Weather[7];
@@ -117,15 +118,15 @@ public class CalendarServer extends Calendar {
         return season.ordinal() < Season.values().length - 1 ? Season.values()[season.ordinal() + 1] : Season.values()[0];
     }
 
+    @Override
     public void readFromNBT(NBTTagCompound nbt) {
-        //date.readFromNBT(nbt);
         for (int i = 0; i < 7; i++) {
             forecast[i] = Weather.values()[nbt.getCompoundTag("Forecast").getByte("Day" + i)];
         }
     }
 
+    @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
-        //date.writeToNBT(nbt);
         NBTTagCompound tag = new NBTTagCompound();
         for (int i = 0; i < 7; i++) {
             Weather weather = forecast[i];

@@ -3,14 +3,13 @@ package joshie.harvest.core.network;
 import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
 import static joshie.harvest.core.helpers.generic.MCServerHelper.getWorld;
 
 public class PacketCropRequest extends AbstractPacketLocation {
     public PacketCropRequest() { }
-    public PacketCropRequest(World world, BlockPos pos) {
-        super(world.provider.getDimension(), pos);
+    public PacketCropRequest(int dimension, BlockPos pos) {
+        super(dimension, pos);
     }
 
     @Override

@@ -39,7 +39,7 @@ public class CropTrackerServer extends CropTracker implements ISaveable {
     @Override
     public void newDay() {
         ArrayList<Pair<BlockPos, ICropData>> toWither = new ArrayList<>(); //Create a new wither list
-        Weekday day = HFTrackers.getCalendar(world).getDate().getWeekday(world);
+        Weekday day = HFTrackers.getCalendar(getWorld()).getDate().getWeekday(getWorld());
         Iterator<Map.Entry<BlockPos, ICropData>> iter = cropTracker.entrySet().iterator();
         while (iter.hasNext()) {
             Map.Entry<BlockPos, ICropData> entry = iter.next();
@@ -47,7 +47,7 @@ public class CropTrackerServer extends CropTracker implements ISaveable {
             ICropData data = entry.getValue();
             boolean removed = false;
             if (day == Weekday.FRIDAY) {
-                Block block = world.getBlockState(position).getBlock();
+                Block block = getWorld().getBlockState(position).getBlock();
                 if (!(block instanceof IPlantable)) {
                     iter.remove();
                     removed = true; //We have removed this crop from our memory
@@ -55,11 +55,11 @@ public class CropTrackerServer extends CropTracker implements ISaveable {
             }
 
             if (data.canGrow() && !removed) {
-                boolean alive = data.newDay(world);
+                boolean alive = data.newDay(getWorld());
                 if (!alive) {
                     toWither.add(Pair.of(position, data));
                 } else { //Send a packet with the new data to the clients
-                    sendToEveryone(new PacketSyncCrop(world.provider.getDimension(), position, data));
+                    sendToEveryone(new PacketSyncCrop(getDimension(), position, data));
                 }
             }
         }
@@ -78,12 +78,12 @@ public class CropTrackerServer extends CropTracker implements ISaveable {
     //Updates the world, so we know it has rained!
     @Override
     public void doRain() {
-        if (!HFTrackers.getCalendar(world).getDate().equals(lastRain)) {
-            lastRain = HFApi.calendar.cloneDate(HFTrackers.getCalendar(world).getDate());
+        if (!HFTrackers.getCalendar(getWorld()).getDate().equals(lastRain)) {
+            lastRain = HFApi.calendar.cloneDate(HFTrackers.getCalendar(getWorld()).getDate());
             for (BlockPos position : cropTracker.keySet()) {
-                IBlockState state = world.getBlockState(position);
+                IBlockState state = getWorld().getBlockState(position);
                 hydrate(position, state);
-                world.setBlockState(position.down(), state.withProperty(BlockFarmland.MOISTURE, 7), 2);
+                getWorld().setBlockState(position.down(), state.withProperty(BlockFarmland.MOISTURE, 7), 2);
             }
         }
     }
@@ -93,31 +93,31 @@ public class CropTrackerServer extends CropTracker implements ISaveable {
     public void sendUpdateToClient(EntityPlayerMP player, BlockPos pos) {
         ICropData data = cropTracker.get(pos);
         if (data == null) {
-            sendToClient(new PacketSyncCrop(world.provider.getDimension(), pos), player);
-        } else sendToClient(new PacketSyncCrop(world.provider.getDimension(), pos, data), player);
+            sendToClient(new PacketSyncCrop(getDimension(), pos), player);
+        } else sendToClient(new PacketSyncCrop(getDimension(), pos, data), player);
     }
 
     //Causes a growth of the crop at this location, Notifies the clients
     @Override
     public void grow(BlockPos pos) {
         ICropData data = getCropDataForLocation(pos);
-        data.grow(world);
-        sendToEveryone(new PacketSyncCrop(world.provider.getDimension(), pos, data));
-        HFTrackers.markDirty(world);
+        data.grow(getWorld());
+        sendToEveryone(new PacketSyncCrop(getDimension(), pos, data));
+        HFTrackers.markDirty(getDimension());
     }
 
     @Override
     public boolean plantCrop(EntityPlayer player, BlockPos pos, ICrop crop, int stage) {
         ICropData data = getCropDataForLocation(pos);
-        if (CropHelper.isHydrated(world, pos.down())) {
+        if (CropHelper.isHydrated(getWorld(), pos.down())) {
             data.setHydrated();
         }
 
         data.setCrop(player, crop, stage);
 
         cropTracker.put(pos, data);
-        sendToEveryone(new PacketSyncCrop(world.provider.getDimension(), pos, data));
-        HFTrackers.markDirty(world);
+        sendToEveryone(new PacketSyncCrop(getDimension(), pos, data));
+        HFTrackers.markDirty(getDimension());
         return true;
     }
 
@@ -128,15 +128,15 @@ public class CropTrackerServer extends CropTracker implements ISaveable {
         if (harvest != null) {
             if (data.getCrop().getRegrowStage() <= 0) {
                 removeCrop(pos);
-                world.setBlockToAir(pos);
+                getWorld().setBlockToAir(pos);
             }
 
             if (player != null) {
                 HFTrackers.getServerPlayerTracker(player).getTracking().onHarvested(data.getCrop());
             }
 
-            HFTrackers.markDirty(world);
-            sendToEveryone(new PacketSyncCrop(world.provider.getDimension(), pos, data));
+            HFTrackers.markDirty(getDimension());
+            sendToEveryone(new PacketSyncCrop(getDimension(), pos, data));
             return harvest;
         } else return null;
     }
@@ -144,24 +144,24 @@ public class CropTrackerServer extends CropTracker implements ISaveable {
     @Override
     public void hydrate(BlockPos pos, IBlockState state) {
         getCropDataForLocation(pos).setHydrated();
-        HFTrackers.markDirty(world);
+        HFTrackers.markDirty(getDimension());
     }
 
     @Override
     public void setWithered(BlockPos pos, ICropData data) {
         if (data.getCrop().isDouble(data.getStage())) {
-            world.setBlockState(pos.up(), HFBlocks.CROPS.getStateFromEnum(BlockHFCrops.Stage.WITHERED_DOUBLE), 2);
+            getWorld().setBlockState(pos.up(), HFBlocks.CROPS.getStateFromEnum(BlockHFCrops.Stage.WITHERED_DOUBLE), 2);
         }
 
-        world.setBlockState(pos, HFBlocks.CROPS.getStateFromEnum(Stage.WITHERED), 2);
+        getWorld().setBlockState(pos, HFBlocks.CROPS.getStateFromEnum(Stage.WITHERED), 2);
         plantCrop(null, pos, data.getCrop(), data.getStage());
     }
 
     @Override
     public void removeCrop(BlockPos pos) {
         super.removeCrop(pos);
-        sendToEveryone(new PacketSyncCrop(world.provider.getDimension(), pos));
-        HFTrackers.markDirty(world);
+        sendToEveryone(new PacketSyncCrop(getDimension(), pos));
+        HFTrackers.markDirty(getDimension());
     }
 
     @Override

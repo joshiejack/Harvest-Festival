@@ -26,7 +26,7 @@ public class TownTrackerServer extends TownTracker {
 
     public void newDay() {
         for (TownDataServer town: townData) {
-            town.newDay(world);
+            town.newDay(getWorld());
         }
     }
 
@@ -75,7 +75,7 @@ public class TownTrackerServer extends TownTracker {
         townData.add(data);
         closestCache.invalidateAll(); //Reset the cache everytime we make a new town
         uuidMap.put(data.getID(), data);
-        HFTrackers.markDirty(world);
+        HFTrackers.markDirty(getDimension());
         return data;
     }
 

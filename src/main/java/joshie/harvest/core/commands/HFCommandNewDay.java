@@ -1,8 +1,9 @@
 package joshie.harvest.core.commands;
 
-import joshie.harvest.core.handlers.EventsHandler;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
+
+import static joshie.harvest.core.config.Calendar.TICKS_PER_DAY;
 
 public class HFCommandNewDay extends HFCommandBase {
     @Override
@@ -17,7 +18,8 @@ public class HFCommandNewDay extends HFCommandBase {
 
     @Override
     public boolean execute(MinecraftServer server, ICommandSender sender, String[] parameters) {
-        EventsHandler.newDay(sender.getEntityWorld());
+        long i = sender.getEntityWorld().getWorldTime() + TICKS_PER_DAY;
+        sender.getEntityWorld().setWorldTime((i - i % TICKS_PER_DAY) - 1);
         return true;
     }
 }

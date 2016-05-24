@@ -1,20 +1,15 @@
 package joshie.harvest.npc.town;
 
+import joshie.harvest.core.HFTracker;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
 import java.util.UUID;
 
-public abstract class TownTracker {
+public abstract class TownTracker extends HFTracker {
     public static final TownData NULL_TOWN = new TownData().setUUID(UUID.fromString("5b529b64-62dc-35df-416c-05e0210f6ab0"));
-    protected World world;
-
-    public void setWorld(World world) {
-        this.world = world;
-    }
 
     public TownData getClosestTownToBlockPos(BlockPos pos) {
         return NULL_TOWN;

@@ -3,18 +3,13 @@ package joshie.harvest.calendar;
 import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.api.core.ISeasonData;
+import joshie.harvest.core.HFTracker;
 import net.minecraft.world.World;
 
-public abstract class Calendar {
+public abstract class Calendar extends HFTracker {
     protected Weather[] forecast = new Weather[7];
     protected float rainStrength;
-    protected float stormStrength;
-
-    protected World world;
-
-    public void setWorld(World world) {
-        this.world = world;
-    }
+    private float stormStrength;
 
     public abstract ICalendarDate getDate();
 

@@ -1,12 +1,11 @@
-package joshie.harvest.core.network.quests;
+package joshie.harvest.quests.packets;
 
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.quest.IQuest;
-import joshie.harvest.core.helpers.QuestHelper;
+import joshie.harvest.quests.QuestHelper;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.network.penguin.PenguinPacket;
-import joshie.harvest.quests.Quest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 

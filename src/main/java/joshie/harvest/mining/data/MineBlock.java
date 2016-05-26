@@ -1,6 +1,5 @@
 package joshie.harvest.mining.data;
 
-import joshie.harvest.api.WorldLocation;
 import net.minecraft.util.math.BlockPos;
 
 public abstract class MineBlock extends WorldLocation {

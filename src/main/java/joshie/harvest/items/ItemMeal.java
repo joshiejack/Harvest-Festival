@@ -10,8 +10,8 @@ import joshie.harvest.cooking.Utensil;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.config.General;
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.util.Translate;
 import joshie.harvest.core.util.base.ItemHFBaseFML;
+import joshie.harvest.core.util.generic.Text;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -42,7 +42,7 @@ public class ItemMeal extends ItemHFBaseFML<Recipe> implements ICreativeSorted, 
             return FoodRegistry.REGISTRY.getObjectById(stack.getItemDamage()).getDisplayName();
         } else {
             int meta = Math.min(Utensil.values().length - 1, stack.getItemDamage());
-            return DARK_GRAY + Translate.translate("meal.burnt." + Utensil.values()[meta].name().replace("_", ".").toLowerCase());
+            return DARK_GRAY + Text.translate("meal.burnt." + Utensil.values()[meta].name().replace("_", ".").toLowerCase());
         }
     }
 
@@ -51,10 +51,10 @@ public class ItemMeal extends ItemHFBaseFML<Recipe> implements ICreativeSorted, 
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean debug) {
         if (General.DEBUG_MODE && debug) {
             if (stack.hasTagCompound()) {
-                list.add(Translate.translate("meal.level") + " : " + stack.getTagCompound().getInteger("FoodLevel"));
-                list.add(Translate.translate("meal.sat") + " : " + stack.getTagCompound().getFloat("FoodSaturation"));
-                list.add(Translate.translate("meal.stamina") + " : " + stack.getTagCompound().getInteger("FoodStamina"));
-                list.add(Translate.translate("meal.fatigue") + " : " + stack.getTagCompound().getInteger("FoodFatigue"));
+                list.add(Text.translate("meal.level") + " : " + stack.getTagCompound().getInteger("FoodLevel"));
+                list.add(Text.translate("meal.sat") + " : " + stack.getTagCompound().getFloat("FoodSaturation"));
+                list.add(Text.translate("meal.stamina") + " : " + stack.getTagCompound().getInteger("FoodStamina"));
+                list.add(Text.translate("meal.fatigue") + " : " + stack.getTagCompound().getInteger("FoodFatigue"));
             }
         }
     }

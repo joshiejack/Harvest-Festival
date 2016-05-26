@@ -1,9 +1,10 @@
 package joshie.harvest.animals;
 
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.*;
-import joshie.harvest.core.helpers.SafeStackHelper;
-import joshie.harvest.core.util.SafeStack;
+import joshie.harvest.player.tracking.TrackingData.AbstractItemHolder;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityCow;
@@ -16,7 +17,8 @@ import java.util.HashMap;
 
 public class AnimalRegistry implements IAnimalHandler {
     private final HashMap<String, IAnimalType> types = new HashMap<>();
-    private final HashMap<SafeStack, AnimalFoodType> registry = new HashMap<>();
+    private final HashMap<AbstractItemHolder, AnimalFoodType> registry = new HashMap<>();
+    private final Multimap<Item, AbstractItemHolder> keyMap = HashMultimap.create();
 
     //Internal Convenience method
     static void registerFoodsAsType(AnimalFoodType type, Item... items) {
@@ -27,12 +29,14 @@ public class AnimalRegistry implements IAnimalHandler {
 
     @Override
     public void registerFoodAsType(ItemStack stack, AnimalFoodType type) {
-        registry.put(SafeStackHelper.getSafeStackType(stack), type);
+        AbstractItemHolder holder = AbstractItemHolder.getStack(stack);
+        keyMap.get(stack.getItem()).add(holder);
+        registry.put(holder, type);
     }
 
     @Override
     public boolean canEat(ItemStack stack, AnimalFoodType... types) {
-        AnimalFoodType type = (AnimalFoodType) SafeStackHelper.getResult(stack, registry);
+        AnimalFoodType type = registry.get(AbstractItemHolder.getHolder(stack, keyMap));
         if (type == null) return false;
         else {
             for (AnimalFoodType t : types) {
@@ -50,12 +54,12 @@ public class AnimalRegistry implements IAnimalHandler {
 
     @Override
     public IAnimalType getTypeFromString(String string) {
-        return types.get(string);
+        return types.get(string.toLowerCase());
     }
 
     @Override
     public void registerType(String key, IAnimalType type) {
-        types.put(key, type);
+        types.put(key.toLowerCase(), type);
     }
 
     @Override

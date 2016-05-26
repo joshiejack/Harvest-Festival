@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.util.HashSet;
 
-import static joshie.harvest.core.helpers.QuestHelper.getCurrentQuest;
+import static joshie.harvest.quests.QuestHelper.getCurrentQuest;
 
 public class QuestEvents {
     @SubscribeEvent(priority = EventPriority.HIGH)

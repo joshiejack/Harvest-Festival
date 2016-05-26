@@ -1,8 +1,6 @@
 package joshie.harvest.crops;
 
 import com.google.common.collect.Maps;
-import joshie.harvest.api.HFApi;
-import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.crops.blocks.BlockHFCrops;
 import joshie.harvest.crops.blocks.BlockHFFarmland.Moisture;
 import net.minecraft.block.Block;
@@ -22,7 +20,7 @@ public class CropStateMapper extends StateMapperBase {
                 mapStateModelLocations.put(iblockstate, getModelResourceLocation(iblockstate));
             }
 
-            for (ICrop crop : HFApi.crops.getCrops()) {
+            for (Crop crop : CropRegistry.REGISTRY.getValues()) {
                 if (crop.getStateHandler().getValidStates() == null) continue;
                 for (IBlockState state : crop.getStateHandler().getValidStates()) {
                     mapStateModelLocations.put(state, getCropResourceLocation(crop, state));
@@ -42,8 +40,8 @@ public class CropStateMapper extends StateMapperBase {
         return new ModelResourceLocation(Block.REGISTRY.getNameForObject(state.getBlock()), getPropertyString(map));
     }
 
-    protected ModelResourceLocation getCropResourceLocation(ICrop crop, IBlockState state) {
+    protected ModelResourceLocation getCropResourceLocation(Crop crop, IBlockState state) {
         Map <IProperty<?>, Comparable<? >> map = Maps. < IProperty<?>, Comparable<? >> newLinkedHashMap(state.getProperties());
-        return new ModelResourceLocation(crop.getResource().getResourceDomain() + ":crops_block_" + crop.getResource().getResourcePath(), this.getPropertyString(map));
+        return new ModelResourceLocation(crop.getRegistryName().getResourceDomain() + ":crops_block_" + crop.getRegistryName().getResourcePath(), this.getPropertyString(map));
     }
 }

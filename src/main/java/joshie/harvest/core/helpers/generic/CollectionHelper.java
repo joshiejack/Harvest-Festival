@@ -1,12 +1,12 @@
 package joshie.harvest.core.helpers.generic;
 
-import joshie.harvest.player.tracking.TrackingData.HolderStack;
+import joshie.harvest.player.tracking.TrackingData.AbstractHolder;
 
 import java.util.Collection;
 import java.util.Map;
 
 public class CollectionHelper {
-    public static <T extends HolderStack> T mergeCollection(T t, Collection<T> collection) {
+    public static <T extends AbstractHolder> T mergeCollection(T t, Collection<T> collection) {
         if (!collection.contains(t)) {
             collection.add(t); //Just add the collection
             return t;
@@ -22,7 +22,7 @@ public class CollectionHelper {
         }
     }
 
-    public static <K, V extends HolderStack> void mergeMap(K key, V value, Map<K, V> map) {
+    public static <K, V extends AbstractHolder> void mergeMap(K key, V value, Map<K, V> map) {
         V existing = map.get(key);
         if (existing == null) {
             map.put(key, value);

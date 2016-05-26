@@ -1,6 +1,6 @@
 package joshie.harvest.mining;
 
-import joshie.harvest.api.WorldLocation;
+import joshie.harvest.mining.data.WorldLocation;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.mining.data.Mine;

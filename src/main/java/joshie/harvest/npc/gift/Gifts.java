@@ -1,9 +1,9 @@
 package joshie.harvest.npc.gift;
 
 import com.google.common.collect.HashMultimap;
-import joshie.harvest.player.tracking.TrackingData.GiftHolder;
+import joshie.harvest.player.tracking.TrackingData.AbstractItemHolder;
 import joshie.harvest.player.tracking.TrackingData.ItemHolder;
-import joshie.harvest.player.tracking.TrackingData.ItemHolderStack;
+import joshie.harvest.player.tracking.TrackingData.ItemStackHolder;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -11,15 +11,15 @@ import net.minecraft.item.ItemStack;
 import java.util.HashMap;
 
 public abstract class Gifts {
-    private static HashMap<GiftHolder, Category[]> gifts = new HashMap<>();
-    private static HashMultimap<Item, GiftHolder> keyMap = HashMultimap.create();
+    private static HashMap<AbstractItemHolder, Category[]> gifts = new HashMap<>();
+    private static HashMultimap<Item, AbstractItemHolder> keyMap = HashMultimap.create();
 
     public Quality getQuality(ItemStack stack) {
         return Quality.DECENT;
     }
 
-    private GiftHolder getHolder(ItemStack stack) {
-        for (GiftHolder holder: keyMap.get(stack.getItem())) {
+    private AbstractItemHolder getHolder(ItemStack stack) {
+        for (AbstractItemHolder holder: keyMap.get(stack.getItem())) {
             if (holder.matches(stack)) return holder;
         }
 
@@ -27,7 +27,7 @@ public abstract class Gifts {
     }
 
     public boolean is(ItemStack stack, Category category) {
-        GiftHolder holder = getHolder(stack);
+        AbstractItemHolder holder = getHolder(stack);
         if (holder == null) return false;
         Category[] categories = gifts.get(holder);
         if (categories == null || categories.length < 1) return false;
@@ -49,7 +49,7 @@ public abstract class Gifts {
     }
 
     public static void assignStack(ItemStack stack, Category... categories) {
-        ItemHolderStack holder = new ItemHolderStack(stack);
+        ItemStackHolder holder = new ItemStackHolder(stack);
         keyMap.get(stack.getItem()).add(holder);
         gifts.put(holder, categories);
     }

@@ -9,8 +9,6 @@ import java.util.Random;
 public class DropHandlerMelon implements IDropHandler {
     @Override
     public ItemStack getDrop(Random rand, Item item) {
-        ItemStack melon = new ItemStack(item);
-        melon.stackSize = 3 + rand.nextInt(5);
-        return melon;
+        return new ItemStack(item, 3 + rand.nextInt(5));
     }
 }

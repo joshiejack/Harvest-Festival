@@ -1,6 +1,6 @@
 package joshie.harvest.npc.gift;
 
-import joshie.harvest.items.HFItems;
+import joshie.harvest.animals.HFAnimals;
 import net.minecraft.item.ItemStack;
 
 import static joshie.harvest.npc.gift.Gifts.Quality.*;
@@ -8,7 +8,7 @@ import static joshie.harvest.npc.gift.Gifts.Quality.*;
 public class GiftsKatlin extends Gifts {
     @Override
     public Quality getQuality(ItemStack stack) {
-        if (stack.getItem() == HFItems.WOOL) {
+        if (stack.getItem() == HFAnimals.WOOL) {
             return AWESOME;
         }
 

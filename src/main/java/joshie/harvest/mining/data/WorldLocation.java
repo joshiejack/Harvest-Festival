@@ -1,4 +1,4 @@
-package joshie.harvest.api;
+package joshie.harvest.mining.data;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.nbt.NBTTagCompound;

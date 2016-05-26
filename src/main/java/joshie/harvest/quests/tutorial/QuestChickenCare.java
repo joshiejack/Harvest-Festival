@@ -1,13 +1,13 @@
 package joshie.harvest.quests.tutorial;
 
 import io.netty.buffer.ByteBuf;
+import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quest.IQuest;
 import joshie.harvest.core.helpers.SizeableHelper;
 import joshie.harvest.core.helpers.generic.ItemHelper;
-import joshie.harvest.core.lib.SizeableMeta;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.quests.Quest;
@@ -22,7 +22,7 @@ import net.minecraft.util.math.BlockPos;
 
 import java.util.HashSet;
 
-import static joshie.harvest.core.helpers.QuestHelper.completeQuest;
+import static joshie.harvest.quests.QuestHelper.completeQuest;
 public class QuestChickenCare extends Quest {
     private boolean hasThrown;
     private boolean hasFed;
@@ -92,7 +92,7 @@ public class QuestChickenCare extends Quest {
 
     @Override
     public void claim(EntityPlayer player) {
-        ItemHelper.spawnByEntity(player, SizeableHelper.getSizeable(SizeableMeta.EGG, 1, Size.LARGE));
+        ItemHelper.spawnByEntity(player, SizeableHelper.getSizeable(HFAnimals.EGG, 1, Size.LARGE));
     }
 
     @Override

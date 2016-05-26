@@ -1,4 +1,4 @@
-package joshie.harvest.core.network.quests;
+package joshie.harvest.quests.packets;
 
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.core.network.penguin.PenguinPacket;

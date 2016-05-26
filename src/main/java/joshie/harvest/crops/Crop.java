@@ -7,8 +7,7 @@ import joshie.harvest.api.crops.IDropHandler;
 import joshie.harvest.api.crops.ISoilHandler;
 import joshie.harvest.api.crops.IStateHandler;
 import joshie.harvest.core.helpers.SeedHelper;
-import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.core.util.Translate;
+import joshie.harvest.core.util.generic.Text;
 import joshie.harvest.crops.handlers.SoilHandlers;
 import joshie.harvest.crops.handlers.StateHandlerDefault;
 import net.minecraft.block.Block;
@@ -19,17 +18,14 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.HashMap;
 import java.util.Random;
 
-public class Crop implements ICrop {
-    public static final HashMap<ResourceLocation, ICrop> CROPS = new HashMap<ResourceLocation, ICrop>();
+public class Crop extends net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl<Crop> implements ICrop {
     private static final Random rand = new Random();
 
     //CropData
     @SideOnly(Side.CLIENT)
     protected IStateHandler iconHandler;
-    protected ResourceLocation resource = new ResourceLocation(HFModInfo.MODID, "null_crop");
     protected ISoilHandler soilHandler;
     protected IDropHandler dropHandler;
     protected Block growsToSide;
@@ -65,7 +61,6 @@ public class Crop implements ICrop {
     }
 
     public Crop(ResourceLocation key, Season[] seasons, int cost, int sell, int stages, int regrow, int year, int color) {
-        this.resource = key;
         this.seasons = seasons;
         this.cost = cost;
         this.sell = sell;
@@ -76,77 +71,78 @@ public class Crop implements ICrop {
         this.foodType = AnimalFoodType.VEGETABLE;
         this.bag_color = color;
         this.iconHandler = new StateHandlerDefault(this);
-        this.soilHandler = SoilHandlers.farmland;
+        this.soilHandler = SoilHandlers.FARMLAND;
         this.needsWatering = true;
         this.doubleStage = Integer.MAX_VALUE;
         this.dropHandler = null;
         this.growsToSide = null;
         this.type = EnumPlantType.Crop;
-        CROPS.put(key, this);
+        this.setRegistryName(key);
+        CropRegistry.REGISTRY.register(this);
     }
 
     @Override
-    public ICrop setHasAlternativeName() {
+    public Crop setHasAlternativeName() {
         this.alternativeName = true;
         return this;
     }
 
     @Override
-    public ICrop setItem(ItemStack item) {
+    public Crop setItem(ItemStack item) {
         this.item = item;
         return this;
     }
 
     @Override
-    public ICrop setStateHandler(IStateHandler handler) {
+    public Crop setStateHandler(IStateHandler handler) {
         this.iconHandler = handler;
         return this;
     }
 
     @Override
-    public ICrop setRequiresSickle() {
+    public Crop setRequiresSickle() {
         this.requiresSickle = true;
         return this;
     }
 
     @Override
-    public ICrop setAnimalFoodType(AnimalFoodType foodType) {
+    public Crop setAnimalFoodType(AnimalFoodType foodType) {
         this.foodType = foodType;
         return this;
     }
 
     @Override
-    public ICrop setPlantType(EnumPlantType plantType) {
+    public Crop setPlantType(EnumPlantType plantType) {
         this.type = plantType;
         return this;
     }
 
     @Override
-    public ICrop setNoWaterRequirements() {
+    public Crop setNoWaterRequirements() {
         this.needsWatering = false;
         return this;
     }
 
     @Override
-    public ICrop setSoilRequirements(ISoilHandler handler) {
+    public Crop setSoilRequirements(ISoilHandler handler) {
         this.soilHandler = handler;
         return this;
     }
 
     @Override
-    public ICrop setBecomesDouble(int doubleStage) {
+    public Crop setBecomesDouble(int doubleStage) {
         this.doubleStage = doubleStage;
         return this;
     }
 
     @Override
-    public ICrop setDropHandler(IDropHandler handler) {
+    public Crop setDropHandler(IDropHandler handler) {
         this.dropHandler = handler;
         return this;
     }
 
     @Override
-    public ICrop setGrowsToSide(Block block) {
+    public Crop setGrowsToSide(Block block) {
         this.growsToSide = block;
         return this;
     }
@@ -294,11 +290,6 @@ public class Crop implements ICrop {
         return type;
     }
 
-    @Override
-    public ResourceLocation getResource() {
-        return resource;
-    }
-
     /**
      * Gets the localized crop name for this crop
      *
@@ -307,7 +298,7 @@ public class Crop implements ICrop {
      */
     public String getLocalizedName(boolean isItem) {
         String suffix = alternativeName ? ((isItem) ? ".item" : ".block") : "";
-        return Translate.translate(resource.getResourceDomain(), "crop." + StringUtils.replace(resource.getResourcePath(), "_", ".") + suffix);
+        return Text.translate(getRegistryName().getResourceDomain(), "crop." + StringUtils.replace(getRegistryName().getResourcePath(), "_", ".") + suffix);
     }
 
     /**
@@ -317,9 +308,9 @@ public class Crop implements ICrop {
      */
     public String getSeedsName() {
         String suffix = alternativeName ? ".block" : "";
-        String name = Translate.translate(resource.getResourceDomain(), "crop." + StringUtils.replace(resource.getResourcePath(), "_", ".") + suffix);
-        String seeds = Translate.translate("crop.seeds");
-        String text = Translate.translate("crop.seeds.format.standard");
+        String name = Text.translate(getRegistryName().getResourceDomain(), "crop." + StringUtils.replace(getRegistryName().getResourcePath(), "_", ".") + suffix);
+        String seeds = Text.translate("crop.seeds");
+        String text = Text.translate("crop.seeds.format.standard");
         text = StringUtils.replace(text, "%C", name);
         text = StringUtils.replace(text, "%S", seeds);
         return text;
@@ -327,11 +318,11 @@ public class Crop implements ICrop {
 
     @Override
     public boolean equals(Object o) {
-        return o == this || o instanceof ICrop && getResource().equals(((ICrop) o).getResource());
+        return o == this || o instanceof ICrop && getRegistryName().equals(((Crop) o).getRegistryName());
     }
 
     @Override
     public int hashCode() {
-        return resource.hashCode();
+        return getRegistryName().hashCode();
     }
 }

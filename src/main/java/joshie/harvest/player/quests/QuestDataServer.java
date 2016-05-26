@@ -2,8 +2,8 @@ package joshie.harvest.player.quests;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.quest.IQuest;
-import joshie.harvest.core.network.quests.PacketQuestSetAvailable;
-import joshie.harvest.core.network.quests.PacketQuestSetCurrent;
+import joshie.harvest.quests.packets.PacketQuestSetAvailable;
+import joshie.harvest.quests.packets.PacketQuestSetCurrent;
 import joshie.harvest.player.PlayerTracker;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;

@@ -11,7 +11,7 @@ import net.minecraft.item.ItemStack;
 
 import java.util.HashSet;
 
-import static joshie.harvest.core.helpers.QuestHelper.*;
+import static joshie.harvest.quests.QuestHelper.*;
 
 public class QuestTomatoes extends Quest {
     @Override

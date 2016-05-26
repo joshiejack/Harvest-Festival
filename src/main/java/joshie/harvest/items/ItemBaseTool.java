@@ -4,7 +4,7 @@ import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.api.core.ILevelable;
 import joshie.harvest.api.core.ITiered;
 import joshie.harvest.core.lib.CreativeSort;
-import joshie.harvest.core.util.Translate;
+import joshie.harvest.core.util.generic.Text;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -57,7 +57,7 @@ public abstract class ItemBaseTool extends ItemBaseSingle implements ILevelable,
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        return Translate.translate(super.getUnlocalizedName().replace("item.", "") + "." + getTier(stack).name().toLowerCase());
+        return Text.translate(super.getUnlocalizedName().replace("item.", "") + "." + getTier(stack).name().toLowerCase());
     }
 
     @Override

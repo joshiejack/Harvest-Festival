@@ -127,9 +127,9 @@ public class BlockGathering extends BlockHFBaseEnum<GatheringType> {
     public int getSortValue(ItemStack stack) {
         GatheringType type = getEnumFromMeta(stack.getItemDamage());
         if (type == BRANCH_SMALL || type == BRANCH_MEDIUM || type == BRANCH_LARGE) {
-            return CreativeSort.TROUGH + 1;
+            return CreativeSort.TOOLS - 3;
         } else if (type == STUMP_SMALL || type == STUMP_MEDIUM || type == STUMP_LARGE) {
-            return CreativeSort.TROUGH + 2;
-        } return CreativeSort.TROUGH + 3;
+            return CreativeSort.TOOLS - 2;
+        } return CreativeSort.TOOLS - 1;
     }
 }

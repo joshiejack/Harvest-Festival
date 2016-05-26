@@ -1,4 +1,4 @@
-package joshie.harvest.crops.tracker;
+package joshie.harvest.crops;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.ICalendarDate;
@@ -10,8 +10,6 @@ import joshie.harvest.core.helpers.CropHelper;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.helpers.NBTHelper.ISaveable;
 import joshie.harvest.core.network.PacketSyncCrop;
-import joshie.harvest.crops.CropData;
-import joshie.harvest.crops.HFCrops;
 import joshie.harvest.crops.blocks.BlockHFCrops;
 import joshie.harvest.crops.blocks.BlockHFCrops.Stage;
 import net.minecraft.block.Block;

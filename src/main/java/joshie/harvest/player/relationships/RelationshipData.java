@@ -2,7 +2,7 @@ package joshie.harvest.player.relationships;
 
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.core.config.NPC;
-import joshie.harvest.core.util.Translate;
+import joshie.harvest.core.util.generic.Text;
 import net.minecraft.entity.player.EntityPlayer;
 
 import java.util.HashMap;
@@ -62,6 +62,6 @@ public abstract class RelationshipData {
     }
 
     public String getLover() {
-        return Translate.translate("nolover");
+        return Text.translate("nolover");
     }
 }

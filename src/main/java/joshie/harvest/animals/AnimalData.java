@@ -1,6 +1,7 @@
 package joshie.harvest.animals;
 
 import io.netty.buffer.ByteBuf;
+import joshie.harvest.animals.item.ItemAnimalTreat.Treat;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
@@ -14,8 +15,6 @@ import joshie.harvest.core.network.animals.PacketSyncDaysNotFed;
 import joshie.harvest.core.network.animals.PacketSyncEverything;
 import joshie.harvest.core.network.animals.PacketSyncHealthiness;
 import joshie.harvest.core.network.animals.PacketSyncProductsProduced;
-import joshie.harvest.items.HFItems;
-import joshie.harvest.items.ItemTreat;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
@@ -307,13 +306,13 @@ public class AnimalData implements IAnimalData {
     @Override
     public boolean treat(ItemStack stack, EntityPlayer player) {
         if (!treated) {
-            treated = stack.getItem() == HFItems.TREATS && stack.getItemDamage() == ItemTreat.GENERIC;
+            treated = HFAnimals.TREATS.getEnumFromStack(stack) == Treat.GENERIC;
             if (treated) {
                 genericTreats++;
                 affectRelationship(player, 1);
                 return true;
             } else {
-                treated = ItemTreat.getTreatTypeFromStack(stack) == type;
+                treated = HFApi.animals.getTypeFromString(HFAnimals.TREATS.getEnumFromStack(stack).name()) == type;
                 if (treated) {
                     typeTreats++;
                     affectRelationship(player, 2);

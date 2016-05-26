@@ -1,8 +1,8 @@
 package joshie.harvest.player.quests;
 
 import joshie.harvest.api.quest.IQuest;
-import joshie.harvest.core.network.quests.PacketQuestCompleted;
-import joshie.harvest.core.network.quests.PacketQuestStart;
+import joshie.harvest.quests.packets.PacketQuestCompleted;
+import joshie.harvest.quests.packets.PacketQuestStart;
 import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;

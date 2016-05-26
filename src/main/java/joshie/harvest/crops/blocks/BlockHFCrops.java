@@ -8,7 +8,6 @@ import joshie.harvest.api.crops.IBreakCrops;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
-import joshie.harvest.crops.blocks.BlockHFCrops.Stage;
 import joshie.harvest.core.config.Crops;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.AnimalHelper;
@@ -17,7 +16,9 @@ import joshie.harvest.core.helpers.SeedHelper;
 import joshie.harvest.core.helpers.WorldHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.base.BlockHFBaseEnum;
+import joshie.harvest.crops.Crop;
 import joshie.harvest.crops.HFCrops;
+import joshie.harvest.crops.blocks.BlockHFCrops.Stage;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
@@ -342,7 +343,7 @@ public class BlockHFCrops extends BlockHFBaseEnum<Stage> implements IPlantable, 
         if (getEnumFromState(state) == Stage.WITHERED) return new ItemStack(Blocks.DEADBUSH); //It's Dead soo???
 
         ICropData data = HFApi.crops.getCropAtLocation(world, pos);
-        return SeedHelper.getSeedsFromCrop(data.getCrop());
+        return SeedHelper.getSeedsFromCrop((Crop) data.getCrop());
     }
 
     @Override

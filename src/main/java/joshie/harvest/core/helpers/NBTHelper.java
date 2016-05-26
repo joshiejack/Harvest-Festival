@@ -1,7 +1,7 @@
 package joshie.harvest.core.helpers;
 
 import joshie.harvest.player.tracking.TrackingData.HolderMapStack;
-import joshie.harvest.player.tracking.TrackingData.HolderStack;
+import joshie.harvest.player.tracking.TrackingData.AbstractHolder;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -10,7 +10,7 @@ import net.minecraft.util.math.BlockPos;
 import java.util.*;
 
 public class NBTHelper {
-    private static <C extends Collection, H extends HolderStack> C readCollection(Class<C> c, Class<H> h, NBTTagList list) {
+    private static <C extends Collection, H extends AbstractHolder> C readCollection(Class<C> c, Class<H> h, NBTTagList list) {
         try {
             C collection = c.newInstance();
             for (int i = 0; i < list.tagCount(); i++) {
@@ -30,18 +30,18 @@ public class NBTHelper {
         } catch (Exception e) { return  null; }
     }
 
-    public static <H extends HolderStack> ArrayList<H> readList(Class<H> h, NBTTagList list) {
+    public static <H extends AbstractHolder> ArrayList<H> readList(Class<H> h, NBTTagList list) {
         return readCollection(ArrayList.class, h, list);
     }
 
-    public static <H extends HolderStack> HashSet<H> readHashSet(Class<H> h, NBTTagList list) {
+    public static <H extends AbstractHolder> HashSet<H> readHashSet(Class<H> h, NBTTagList list) {
         return readCollection(HashSet.class, h, list);
     }
 
-    public static <C extends Collection<? extends HolderStack>> NBTTagList writeCollection(C set) {
+    public static <C extends Collection<? extends AbstractHolder>> NBTTagList writeCollection(C set) {
         NBTTagList list = new NBTTagList();
         if (set != null) {
-            for (HolderStack stack : set) {
+            for (AbstractHolder stack : set) {
                 NBTTagCompound tag = new NBTTagCompound();
                 stack.writeToNBT(tag);
                 list.appendTag(tag);

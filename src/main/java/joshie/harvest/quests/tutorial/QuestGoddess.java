@@ -11,7 +11,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
-import static joshie.harvest.core.helpers.QuestHelper.*;
+import static joshie.harvest.quests.QuestHelper.*;
 public class QuestGoddess extends Quest {   
     @Override
     protected INPC[] getNPCs() {

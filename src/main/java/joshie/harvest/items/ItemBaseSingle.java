@@ -2,7 +2,7 @@ package joshie.harvest.items;
 
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.helpers.generic.RegistryHelper;
-import joshie.harvest.core.util.Translate;
+import joshie.harvest.core.util.generic.Text;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -25,6 +25,6 @@ public class ItemBaseSingle extends Item {
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        return Translate.translate(super.getUnlocalizedName().replace("item.", ""));
+        return Text.translate(super.getUnlocalizedName().replace("item.", ""));
     }
 }

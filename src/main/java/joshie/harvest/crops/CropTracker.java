@@ -1,4 +1,4 @@
-package joshie.harvest.crops.tracker;
+package joshie.harvest.crops;
 
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;

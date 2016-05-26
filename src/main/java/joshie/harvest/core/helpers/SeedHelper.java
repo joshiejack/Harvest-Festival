@@ -1,26 +1,18 @@
 package joshie.harvest.core.helpers;
 
-import joshie.harvest.api.HFApi;
 import joshie.harvest.api.crops.ICrop;
+import joshie.harvest.crops.Crop;
+import joshie.harvest.crops.CropRegistry;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ResourceLocation;
 
 public class SeedHelper {
     public static ICrop getCropFromSeed(ItemStack stack) {
-        if (!stack.hasTagCompound()) {
-            return HFCrops.NULL_CROP;
-        }
-
-        ResourceLocation resource = new ResourceLocation(stack.getTagCompound().getString("ResourceSeedName"));
-        return HFApi.crops.getCrop(resource);
+        Crop crop = CropRegistry.REGISTRY.getObjectById(stack.getItemDamage());
+        return crop == null ? HFCrops.NULL_CROP : crop;
     }
 
-    public static ItemStack getSeedsFromCrop(ICrop crop) {
-        ItemStack seeds = new ItemStack(HFCrops.SEEDS);
-        seeds.setTagCompound(new NBTTagCompound());
-        seeds.getTagCompound().setString("ResourceSeedName", crop.getResource().toString());
-        return seeds;
+    public static ItemStack getSeedsFromCrop(Crop crop) {
+        return new ItemStack(HFCrops.SEEDS, 1, CropRegistry.REGISTRY.getId(crop));
     }
 }

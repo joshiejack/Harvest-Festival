@@ -1,4 +1,4 @@
-package joshie.harvest.core.tick;
+package joshie.harvest.core.handlers;
 
 import joshie.harvest.api.core.IDailyTickable;
 import joshie.harvest.api.core.IDailyTickableBlock;

@@ -1,16 +1,17 @@
 package joshie.harvest.shops;
 
+import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.animals.entity.EntityHarvestSheep;
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.shops.IShop;
 import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.buildings.Building;
 import joshie.harvest.buildings.BuildingRegistry;
+import joshie.harvest.crops.Crop;
+import joshie.harvest.crops.CropRegistry;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.items.HFItems;
-import joshie.harvest.items.ItemAnimal;
 import joshie.harvest.items.ItemGeneral;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.shops.purchaseable.*;
@@ -20,6 +21,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import static joshie.harvest.animals.item.ItemAnimalSpawner.Spawner.*;
+import static joshie.harvest.animals.item.ItemAnimalTool.Tool.*;
 import static joshie.harvest.api.calendar.Weekday.*;
 
 public class HFShops {
@@ -44,10 +47,10 @@ public class HFShops {
     private static void registerBarn() {
         BARN = HFApi.shops.newShop("barn", HFNPCs.ANIMAL_OWNER);
         BARN.addItem(20, HFCrops.GRASS.getCropStack());
-        BARN.addItem(1000, new ItemStack(HFItems.GENERAL, 1, ItemGeneral.MEDICINE));
-        BARN.addItem(new PurchaseableEntity(EntityHarvestSheep.class, 4000, new ItemStack(HFItems.ANIMAL, 1, ItemAnimal.SHEEP), true));
-        BARN.addItem(new PurchaseableEntity(EntityHarvestCow.class, 5000, new ItemStack(HFItems.ANIMAL, 1, ItemAnimal.COW), true));
-        BARN.addItem(3000, new ItemStack(HFItems.GENERAL, 1, ItemGeneral.MIRACLE));
+        BARN.addItem(1000, HFAnimals.TOOLS.getStackFromEnum(MEDICINE));
+        BARN.addItem(new PurchaseableEntity(EntityHarvestSheep.class, 4000, HFAnimals.ANIMAL.getStackFromEnum(SHEEP), true));
+        BARN.addItem(new PurchaseableEntity(EntityHarvestCow.class, 5000, HFAnimals.ANIMAL.getStackFromEnum(COW), true));
+        BARN.addItem(3000, HFAnimals.TOOLS.getStackFromEnum(MIRACLE_POTION));
 
         BARN.addOpening(MONDAY, 10000, 15000).addOpening(TUESDAY, 10000, 15000).addOpening(WEDNESDAY, 10000, 15000);
         BARN.addOpening(THURSDAY, 10000, 15000).addOpening(FRIDAY, 10000, 15000).addOpening(SATURDAY, 10000, 15000);
@@ -55,8 +58,8 @@ public class HFShops {
 
     private static void registerBlacksmith() {
         BLACKSMITH = HFApi.shops.newShop("blacksmith", HFNPCs.TOOL_OWNER);
-        BLACKSMITH.addItem(800, new ItemStack(HFItems.GENERAL, 1, ItemGeneral.BRUSH));
-        BLACKSMITH.addItem(2000, new ItemStack(HFItems.GENERAL, 1, ItemGeneral.MILKER));
+        BLACKSMITH.addItem(800, HFAnimals.TOOLS.getStackFromEnum(BRUSH));
+        BLACKSMITH.addItem(2000, HFAnimals.TOOLS.getStackFromEnum(MILKER));
         BLACKSMITH.addItem(1800, new ItemStack(Items.SHEARS));
 
         BLACKSMITH.addOpening(SUNDAY, 10000, 16000).addOpening(MONDAY, 10000, 16000).addOpening(TUESDAY, 10000, 16000);
@@ -87,9 +90,9 @@ public class HFShops {
 
     private static void registerPoultry() {
         POULTRY = HFApi.shops.newShop("poultry", HFNPCs.POULTRY);
-        POULTRY.addItem(new PurchaseableEntity(EntityChicken.class, 1500, new ItemStack(HFItems.ANIMAL, 1, ItemAnimal.CHICKEN), false));
-        POULTRY.addItem(1000, new ItemStack(HFItems.GENERAL, 1, ItemGeneral.MEDICINE));
-        POULTRY.addItem(10, new ItemStack(HFItems.GENERAL, 1, ItemGeneral.CHICKEN_FEED));
+        POULTRY.addItem(new PurchaseableEntity(EntityChicken.class, 1500, HFAnimals.ANIMAL.getStackFromEnum(CHICKEN), false));
+        POULTRY.addItem(1000, HFAnimals.TOOLS.getStackFromEnum(MEDICINE));
+        POULTRY.addItem(10, HFAnimals.TOOLS.getStackFromEnum(CHICKEN_FEED));
 
         POULTRY.addOpening(MONDAY, 11000, 16000).addOpening(TUESDAY, 11000, 16000).addOpening(WEDNESDAY, 11000, 16000);
         POULTRY.addOpening(THURSDAY, 11000, 16000).addOpening(FRIDAY, 11000, 16000).addOpening(SATURDAY, 11000, 16000);
@@ -97,9 +100,10 @@ public class HFShops {
 
     private static void registerSupermarket() {
         SUPERMARKET = HFApi.shops.newShop("general", HFNPCs.GS_OWNER);
-        for (ICrop crop : HFApi.crops.getCrops()) {
+        for (Crop crop : CropRegistry.REGISTRY.getValues()) {
             SUPERMARKET.addItem(new PurchaseableCropSeeds(crop));
         }
+
         SUPERMARKET.addItem(100, new ItemStack(Items.BREAD));
         SUPERMARKET.addItem(50, new ItemStack(HFItems.GENERAL, 1, ItemGeneral.FLOUR));
         SUPERMARKET.addItem(100, new ItemStack(HFItems.GENERAL, 1, ItemGeneral.CHOCOLATE));

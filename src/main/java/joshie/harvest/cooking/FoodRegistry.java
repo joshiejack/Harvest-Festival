@@ -1,10 +1,11 @@
 package joshie.harvest.cooking;
 
 import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import joshie.harvest.api.cooking.*;
-import joshie.harvest.core.helpers.SafeStackHelper;
-import joshie.harvest.core.util.SafeStack;
+import joshie.harvest.player.tracking.TrackingData.AbstractItemHolder;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.FMLControlledNamespacedRegistry;
@@ -21,12 +22,15 @@ public class FoodRegistry implements IFoodRegistry {
     public static final FMLControlledNamespacedRegistry<Recipe> REGISTRY = PersistentRegistryManager.createRegistry(new ResourceLocation(MODID, "meals"), Recipe.class, null, 10, 32000, true, null, null, null);
     private final HashMap<String, ICookingIngredient> components = new HashMap<>();
     private final HashSet<ISpecialRecipeHandler> specials = new HashSet<>();
-    private final Multimap<SafeStack, ICookingIngredient> registry = ArrayListMultimap.create();
+    private final Multimap<AbstractItemHolder, ICookingIngredient> registry = ArrayListMultimap.create();
+    private final Multimap<Item, AbstractItemHolder> keyMap = HashMultimap.create();
 
     @Override
     public void register(ItemStack stack, ICookingIngredient component) {
         if (stack == null || stack.getItem() == null || component == null) return; //Fail silently
-        registry.get(SafeStackHelper.getSafeStackType(stack)).add(component);
+        AbstractItemHolder holder = AbstractItemHolder.getStack(stack);
+        keyMap.get(stack.getItem()).add(holder);
+        registry.get(holder).add(component);
 
         //Register the component
         if (!components.containsKey(component.getUnlocalizedName())) {
@@ -46,7 +50,7 @@ public class FoodRegistry implements IFoodRegistry {
 
     @Override
     public List<ICookingIngredient> getCookingComponents(ItemStack stack) {
-        return (List<ICookingIngredient>) SafeStackHelper.getResult(stack, registry);
+        return (List<ICookingIngredient>) registry.get(AbstractItemHolder.getHolder(stack, keyMap));
     }
 
     @Override
@@ -66,7 +70,7 @@ public class FoodRegistry implements IFoodRegistry {
 
     @Override
     public ResourceLocation getFluid(ItemStack ingredient) {
-        List<ICookingIngredient> components = ((List<ICookingIngredient>) SafeStackHelper.getResult(ingredient, registry));
+        List<ICookingIngredient> components = getCookingComponents(ingredient);
         return components.size() < 1 ? null : components.get(0).getFluid();
     }
 

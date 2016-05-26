@@ -36,7 +36,7 @@
     - See https://github.com/joshiejack/Harvest-Festival/blob/4fc81be862b9686cf00a3b8b1d262a8b7106aaaf/src/main/java/joshie/harvest/core/lib/LootStrings.java
     - See https://github.com/joshiejack/Harvest-Festival/blob/4fc81be862b9686cf00a3b8b1d262a8b7106aaaf/src/main/java/joshie/harvest/buildings/loader/HFBuildings.java#L51
 - Change Items to Item Enums + Change Item Registry Helper
-- Change Crops/Seeds, NPCS to use ForgeControlledNameSpace and use metadata instead of NBT where appropriate
+- Change NPCS to use ForgeControlledNameSpace and use metadata instead of NBT where appropriate
 - Add Sprinkler Block
 
 ###(S)ounds, (E)ffects, (A)nimations

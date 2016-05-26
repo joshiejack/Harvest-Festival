@@ -6,6 +6,7 @@ import joshie.harvest.api.calendar.ICalendar;
 import joshie.harvest.api.cooking.IFoodRegistry;
 import joshie.harvest.api.core.IDailyTickableRegistry;
 import joshie.harvest.api.core.IShippingRegistry;
+import joshie.harvest.api.core.ISizeableRegistry;
 import joshie.harvest.api.crops.ICropRegistry;
 import joshie.harvest.api.gathering.IGatheringRegistry;
 import joshie.harvest.api.npc.INPCRegistry;
@@ -29,4 +30,5 @@ public class HFApi {
     public static IQuestRegistry quests = null;
     public static IRelationships relations = null;
     public static IShippingRegistry shipping = null;
+    public static ISizeableRegistry sizeable = null;
 }

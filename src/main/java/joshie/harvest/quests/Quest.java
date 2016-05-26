@@ -3,12 +3,11 @@ package joshie.harvest.quests;
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quest.IQuest;
-import joshie.harvest.core.network.quests.PacketQuestSetStage;
-import joshie.harvest.core.util.Translate;
+import joshie.harvest.quests.packets.PacketQuestSetStage;
+import joshie.harvest.core.util.generic.Text;
 import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -109,7 +108,7 @@ public abstract class Quest implements IQuest {
 
     //Translates a key, to up to 10 lines for the language
     protected String getLocalized(String quest) {
-        return Translate.translate("quest." + name + "." + quest.replace("_", ""));
+        return Text.translate("quest." + name + "." + quest.replace("_", ""));
     }
 
     /**

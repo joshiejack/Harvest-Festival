@@ -1,9 +1,12 @@
 package joshie.harvest.core.lib;
 
 public class CreativeSort {
-    public static int CROPS = 0;
-    public static int TOOLS = 1;
-    public static int SEEDS = 9;
-    public static int TROUGH = 10;
-    public static int SIZEABLE = 11;
+    public static final int CROPS = 0;
+    public static final int TOOLS = 1;
+    public static final int SEEDS = 9;
+    public static final int TROUGH = 10;
+    public static final int SIZEABLE = 11;
+    public static final int ANIMAL_TREAT = 100;
+    public static final int GENERAL_ITEM = 102;
+    public static final int NONE = 500;
 }

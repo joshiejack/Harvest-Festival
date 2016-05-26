@@ -8,7 +8,6 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.relations.IRelatableDataHandler;
 import joshie.harvest.api.shops.IShop;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.core.util.Translate;
 import joshie.harvest.core.util.generic.Text;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.gift.Gifts;
@@ -222,7 +221,7 @@ public class NPC implements INPC {
     //Returns the localized name of this character
     @Override
     public String getLocalizedName() {
-        return Translate.translate("npc." + getUnlocalizedName() + ".name");
+        return Text.translate("npc." + getUnlocalizedName() + ".name");
     }
 
     @Override

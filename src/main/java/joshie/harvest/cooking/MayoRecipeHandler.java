@@ -1,5 +1,6 @@
 package joshie.harvest.cooking;
 
+import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.ISpecialRecipeHandler;
 import joshie.harvest.api.cooking.IUtensil;
@@ -18,7 +19,7 @@ public class MayoRecipeHandler implements ISpecialRecipeHandler {
         ItemStack egg = is0Oil ? ingredients.get(1) : ingredients.get(0);
         if (HFApi.cooking.getCookingComponents(oil).contains(HFIngredients.oil)) {
             if (HFApi.cooking.getCookingComponents(egg).contains(HFIngredients.egg)) {
-                return new ItemStack(HFItems.MAYONNAISE, 1, egg.getItemDamage());
+                return new ItemStack(HFAnimals.MAYONNAISE, 1, egg.getItemDamage());
             }
         }
         return null;

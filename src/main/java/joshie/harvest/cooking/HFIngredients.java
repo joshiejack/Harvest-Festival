@@ -1,5 +1,6 @@
 package joshie.harvest.cooking;
 
+import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.ICookingIngredient;
 import joshie.harvest.cooking.render.MappingEvent;
@@ -174,12 +175,12 @@ public class HFIngredients {
         HFApi.cooking.register(new ItemStack(Items.MELON, 1, OreDictionary.WILDCARD_VALUE), watermelon);
         HFApi.cooking.register(new ItemStack(Blocks.MELON_BLOCK, 1, OreDictionary.WILDCARD_VALUE), watermelon);
         HFApi.cooking.register(new ItemStack(Items.BREAD, 1, OreDictionary.WILDCARD_VALUE), bread);
-        HFApi.cooking.register(new ItemStack(HFItems.EGG), egg);
+        HFApi.cooking.register(new ItemStack(HFAnimals.EGG), egg);
         HFApi.cooking.register(new ItemStack(Items.EGG, 1, OreDictionary.WILDCARD_VALUE), egg);
         HFApi.cooking.register(new ItemStack(Items.FISH, 1, OreDictionary.WILDCARD_VALUE), fish);
-        HFApi.cooking.register(new ItemStack(HFItems.MILK), milk);
+        HFApi.cooking.register(new ItemStack(HFAnimals.MILK), milk);
         HFApi.cooking.register(new ItemStack(Items.MILK_BUCKET, 1, OreDictionary.WILDCARD_VALUE), milk);
-        HFApi.cooking.register(new ItemStack(HFItems.MAYONNAISE), mayonnaise);
+        HFApi.cooking.register(new ItemStack(HFAnimals.MAYONNAISE), mayonnaise);
         HFApi.cooking.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.BUTTER), butter);
         HFApi.cooking.register(HFApi.cooking.getBestMeal("butter"), butter);
         HFApi.cooking.register(HFApi.cooking.getBestMeal("egg.boiled"), boiled_egg);

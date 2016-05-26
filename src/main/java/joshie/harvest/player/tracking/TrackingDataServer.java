@@ -20,7 +20,7 @@ public class TrackingDataServer extends TrackingData {
     }
 
     public void onHarvested(ICrop crop) {
-        CollectionHelper.mergeCollection(new CropHolderStack(crop), cropTracker);
+        CollectionHelper.mergeCollection(new CropSoldStack(crop), cropTracker);
     }
 
     public boolean addForShipping(ItemStack item) {
@@ -44,24 +44,16 @@ public class TrackingDataServer extends TrackingData {
     }
 
     public void readFromNBT(NBTTagCompound nbt) {
-        //Read in the CropsHarvested
-        cropTracker = NBTHelper.readHashSet(CropHolderStack.class, nbt.getTagList("CropsHarvested", 10));
-        //Read in the ItemsSold
+        cropTracker = NBTHelper.readHashSet(CropSoldStack.class, nbt.getTagList("CropsHarvested", 10));
         sellTracker = NBTHelper.readHashSet(SellHolderStack.class, nbt.getTagList("ItemsSold", 10));
-        //Read in the Obtained List
-        obtained = NBTHelper.readHashSet(ItemHolderStack.class, nbt.getTagList("ItemsObtained", 10));
-        //Read in the ToBeShippedList
+        obtained = NBTHelper.readHashSet(ItemStackHolder.class, nbt.getTagList("ItemsObtained", 10));
         toBeShipped = NBTHelper.readHashSet(SellHolderStack.class, nbt.getTagList("ToBeShipped", 10));
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
-        //Saving the CropsHarvested
         nbt.setTag("CropsHarvested", NBTHelper.writeCollection(cropTracker));
-        //Saving the Sold List
         nbt.setTag("ItemsSold", NBTHelper.writeCollection(sellTracker));
-        //Saving the Obtained List
         nbt.setTag("ItemsObtained", NBTHelper.writeCollection(obtained));
-        //Saving the to be shipped list
         nbt.setTag("ToBeShipped", NBTHelper.writeCollection(toBeShipped));
         return nbt;
     }

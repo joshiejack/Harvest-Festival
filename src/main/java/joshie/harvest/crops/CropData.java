@@ -1,6 +1,5 @@
 package joshie.harvest.crops;
 
-import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
@@ -16,7 +15,7 @@ import net.minecraft.world.World;
 
 public class CropData implements ICropData {
     private boolean isReal; //Is true if there actually is a plant here, rather than a placeholder
-    private ICrop crop; //The Crop Type of this plant
+    private Crop crop; //The Crop Type of this plant
     private int stage; //The stage it is currently at
     private int daysWithoutWater; //The number of days this crop has gone without water
     private BlockPos pos;
@@ -28,7 +27,7 @@ public class CropData implements ICropData {
 
     @Override
     public ICropData setCrop(EntityPlayer owner, ICrop crop, int stage) {
-        this.crop = crop;
+        this.crop = (Crop) crop;
 
         if (crop.isDouble(this.stage) && !crop.isDouble(stage)) {
             owner.worldObj.setBlockToAir(pos.up());
@@ -103,7 +102,7 @@ public class CropData implements ICropData {
     }
 
     public ResourceLocation getResource() {
-        return crop.getResource();
+        return crop.getRegistryName();
     }
 
     @Override
@@ -141,7 +140,7 @@ public class CropData implements ICropData {
 
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
-        crop = HFApi.crops.getCrop(new ResourceLocation(nbt.getString("CropResource")));
+        crop = CropRegistry.REGISTRY.getObject(new ResourceLocation(nbt.getString("CropResource")));
         isReal = nbt.getBoolean("IsReal");
         if (crop == HFCrops.NULL_CROP) isReal = false;
         stage = nbt.getByte("CurrentStage");
@@ -152,7 +151,7 @@ public class CropData implements ICropData {
     public void writeToNBT(NBTTagCompound nbt) {
         if (crop != null) {
             nbt.setBoolean("IsReal", isReal);
-            nbt.setString("CropResource", crop.getResource().toString());
+            nbt.setString("CropResource", crop.getRegistryName().toString());
             nbt.setByte("CurrentStage", (byte) stage);
             nbt.setShort("DaysWithoutWater", (short) daysWithoutWater);
         }

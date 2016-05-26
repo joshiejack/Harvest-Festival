@@ -3,8 +3,8 @@ package joshie.harvest.blocks;
 import joshie.harvest.blocks.BlockFlower.FlowerType;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.lib.CreativeSort;
-import joshie.harvest.core.util.Translate;
 import joshie.harvest.core.util.base.BlockHFBaseEnum;
+import joshie.harvest.core.util.generic.Text;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -128,7 +128,7 @@ public class BlockFlower extends BlockHFBaseEnum<FlowerType> implements IPlantab
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
         if (getEnumFromMeta(stack.getItemDamage()) == FlowerType.GODDESS) {
-            list.add(Translate.translate("tooltip.flower"));
+            list.add(Text.translate("tooltip.flower"));
         }
     }
 
@@ -140,7 +140,7 @@ public class BlockFlower extends BlockHFBaseEnum<FlowerType> implements IPlantab
 
     @Override
     public int getSortValue(ItemStack stack) {
-        if (stack.getItemDamage() == WEED.ordinal()) return CreativeSort.TROUGH - 1;
+        if (stack.getItemDamage() == WEED.ordinal()) return CreativeSort.TOOLS - 4;
         else return -10;
     }
 }

@@ -3,7 +3,6 @@ package joshie.harvest.blocks;
 import joshie.harvest.blocks.BlockStone.Type;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.core.util.Translate;
 import joshie.harvest.core.util.base.BlockHFBaseEnum;
 import joshie.harvest.core.util.generic.Text;
 import net.minecraft.block.SoundType;
@@ -107,7 +106,7 @@ public class BlockStone extends BlockHFBaseEnum<Type> {
         int adjusted = Math.max(0, Math.min(Type.values().length, stack.getItemDamage()));
         Type type = Type.values()[adjusted];
         if (!type.isReal) {
-            list.add(Translate.translate("tooltip.dirt"));
+            list.add(Text.translate("tooltip.dirt"));
         }
     }
 

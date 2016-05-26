@@ -1,14 +1,13 @@
-package joshie.harvest.core.helpers;
+package joshie.harvest.quests;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quest.IQuest;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.ItemHelper;
-import joshie.harvest.core.network.quests.PacketQuestDecreaseHeld;
 import joshie.harvest.core.util.generic.IdiotException;
 import joshie.harvest.player.quests.QuestData;
-import joshie.harvest.quests.Quest;
+import joshie.harvest.quests.packets.PacketQuestDecreaseHeld;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;

@@ -6,8 +6,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.Collection;
-
 public interface ICropRegistry {
     /** Registers a crop with some specific information **/
     ICrop registerCrop(ResourceLocation resource, int cost, int sell, int stages, int regrow, int year, int color, Season... seasons);
@@ -17,9 +15,6 @@ public interface ICropRegistry {
     
     /** Will NEVER return null, however it may have an instance of 'null_crop' **/
     ICropData getCropAtLocation(World world, BlockPos pos);
-
-    /** Returns a collection of all registered crops **/
-    Collection<ICrop> getCrops();
 
     /** Alternative if you don't want to implement ICropProvider **/
     ICrop registerCropProvider(ItemStack stack, ICrop crop);

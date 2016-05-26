@@ -1,18 +1,22 @@
 package joshie.harvest.core.helpers;
 
+import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.items.HFItems;
 import joshie.harvest.items.ItemBaseTool;
 import joshie.harvest.items.ItemGeneral;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
+import static joshie.harvest.animals.item.ItemAnimalTool.Tool.BRUSH;
+import static joshie.harvest.animals.item.ItemAnimalTool.Tool.MILKER;
+
 public class ToolHelper {
     public static boolean isMilker(ItemStack stack) {
-        return stack.getItem() == HFItems.GENERAL && stack.getItemDamage() == ItemGeneral.MILKER;
+        return HFAnimals.TOOLS.getEnumFromStack(stack) == MILKER;
     }
 
     public static boolean isBrush(ItemStack stack) {
-        return stack.getItem() == HFItems.GENERAL && stack.getItemDamage() == ItemGeneral.BRUSH;
+        return HFAnimals.TOOLS.getEnumFromStack(stack) == BRUSH;
     }
 
     public static boolean isBlueFeather(ItemStack stack) {
@@ -33,6 +37,6 @@ public class ToolHelper {
     }
 
     public static boolean isEgg(ItemStack heldItem) {
-        return heldItem.getItem() == HFItems.EGG;
+        return heldItem.getItem() == HFAnimals.EGG;
     }
 }

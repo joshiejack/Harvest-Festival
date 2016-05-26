@@ -13,7 +13,6 @@ import joshie.harvest.core.network.animals.PacketSyncDaysNotFed;
 import joshie.harvest.core.network.animals.PacketSyncEverything;
 import joshie.harvest.core.network.animals.PacketSyncHealthiness;
 import joshie.harvest.core.network.animals.PacketSyncProductsProduced;
-import joshie.harvest.core.network.quests.*;
 import joshie.harvest.core.render.RenderHandler;
 import joshie.harvest.core.util.WorldDestroyer;
 import joshie.harvest.quests.QuestEvents;
@@ -67,14 +66,6 @@ public class HFCore {
         PacketHandler.registerPacket(PacketSyncHealthiness.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketSyncDaysNotFed.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketSyncProductsProduced.class, Side.CLIENT);
-
-        //Quest Packets
-        PacketHandler.registerPacket(PacketQuestCompleted.class);
-        PacketHandler.registerPacket(PacketQuestSetStage.class);
-        PacketHandler.registerPacket(PacketQuestSetAvailable.class, Side.CLIENT);
-        PacketHandler.registerPacket(PacketQuestSetCurrent.class, Side.CLIENT);
-        PacketHandler.registerPacket(PacketQuestStart.class, Side.SERVER);
-        PacketHandler.registerPacket(PacketQuestDecreaseHeld.class, Side.SERVER);
     }
 
     public static void postInit() {

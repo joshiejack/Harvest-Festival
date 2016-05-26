@@ -1,37 +1,33 @@
 package joshie.harvest.core.helpers;
 
+import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.core.ISizeable.Size;
-import joshie.harvest.core.lib.SizeableMeta;
-import joshie.harvest.items.HFItems;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class SizeableHelper {
-    public static ItemStack getSizeable(SizeableMeta meta, int amount, Size size) {
-        return new ItemStack(HFItems.getSizedItem(meta), amount, size.ordinal());
-    }
-
-    public static Size getSize(int meta) {
-        return Size.values()[Math.min(2, meta)];
+    public static ItemStack getSizeable(Item item, int amount, Size size) {
+        return new ItemStack(item, amount, size.ordinal());
     }
     
     public static ItemStack getEgg(EntityPlayer player, IAnimalTracked tracked) {
-        return SizeableHelper.getSizeable(player, tracked, SizeableMeta.EGG);
+        return SizeableHelper.getSizeable(player, tracked, HFAnimals.EGG);
     }
     
     public static ItemStack getMilk(EntityPlayer player, IAnimalTracked tracked) {
-        return SizeableHelper.getSizeable(player, tracked, SizeableMeta.MILK);
+        return SizeableHelper.getSizeable(player, tracked, HFAnimals.MILK);
     }
 
-    public static ItemStack getSizeable(EntityPlayer player, IAnimalTracked tracked, SizeableMeta milk) {
+    public static ItemStack getSizeable(EntityPlayer player, IAnimalTracked tracked, Item item) {
         Size size = null;
         int relationship = HFApi.relations.getAdjustedRelationshipValue(player, tracked);
         for (Size s: Size.values()) {
             if (relationship >= s.getRelationshipRequirement()) size = s;
         }
         
-        return SizeableHelper.getSizeable(SizeableMeta.MILK, tracked.getData().getProductsPerDay() , size);
+        return SizeableHelper.getSizeable(item, tracked.getData().getProductsPerDay() , size);
     }
 }

@@ -11,7 +11,9 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.SeedHelper;
 import joshie.harvest.core.helpers.generic.RegistryHelper;
 import joshie.harvest.core.lib.CreativeSort;
-import joshie.harvest.core.util.Translate;
+import joshie.harvest.core.util.generic.Text;
+import joshie.harvest.crops.Crop;
+import joshie.harvest.crops.CropRegistry;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -38,6 +40,11 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
     }
 
     @Override
+    public boolean showDurabilityBar(ItemStack stack) {
+        return false;
+    }
+
+    @Override
     public int getSortValue(ItemStack stack) {
         return CreativeSort.SEEDS;
     }
@@ -51,18 +58,13 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        if (!stack.hasTagCompound()) {
-            return Translate.translate("crop.seeds.corrupted");
-        }
-
         ICrop crop = SeedHelper.getCropFromSeed(stack);
-        return (crop == null) ? Translate.translate("crop.seeds.useless") : crop.getSeedsName();
+        return (crop == null) ? Text.translate("crop.seeds.useless") : crop.getSeedsName();
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean debug) {
-        if (!stack.hasTagCompound()) return;
         ICrop crop = SeedHelper.getCropFromSeed(stack);
         if (crop != null) {
             for (Season season : crop.getSeasons()) {
@@ -74,7 +76,7 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
 
     @Override
     public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        if (facing != EnumFacing.UP || !stack.hasTagCompound()) {
+        if (facing != EnumFacing.UP) {
             return EnumActionResult.FAIL;
         } else {
             ICrop crop = SeedHelper.getCropFromSeed(stack);
@@ -136,7 +138,7 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
-        for (ICrop crop : HFApi.crops.getCrops()) {
+        for (Crop crop : CropRegistry.REGISTRY.getValues()) {
             list.add(SeedHelper.getSeedsFromCrop(crop));
         }
     }

@@ -21,6 +21,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
@@ -44,7 +45,7 @@ public class HFCrops {
     public static final Item SEEDS = new ItemHFSeeds().setUnlocalizedName("crops.seeds");
 
     //Dummy Crop
-    public static final ICrop NULL_CROP = new Crop().setStateHandler(new StateHandlerNull());
+    public static final Crop NULL_CROP = new Crop().setStateHandler(new StateHandlerNull());
 
     //Spring Crops
     public static final ICrop TURNIP = registerCrop("turnip", 120, 60, 5, 0, 0, 0xFFFFFF, SPRING).setStateHandler(new StateHandlerTurnip());
@@ -73,6 +74,9 @@ public class HFCrops {
     public static final ICrop GRASS = registerCrop("grass", 500, 0, 11, 0, 0, 0x7AC958, SPRING, SUMMER, AUTUMN).setAnimalFoodType(AnimalFoodType.GRASS).setBecomesDouble(6).setHasAlternativeName().setRequiresSickle().setNoWaterRequirements().setStateHandler(new StateHandlerGrass());
     public static final ICrop WHEAT = registerCrop("wheat", 150, 100, 28, 0, 0, 0XEAC715, SPRING, SUMMER, AUTUMN).setAnimalFoodType(AnimalFoodType.GRASS).setRequiresSickle().setStateHandler(new StateHandlerWheat());
 
+    //Nether Crop
+    public static final ICrop NETHER_WART = registerCrop("nether_wart", 25000, 10, 4, 1, 5, 0x8B0000, NETHER).setStateHandler(new StateHandlerNetherWart()).setPlantType(EnumPlantType.Nether).setNoWaterRequirements().setSoilRequirements(SoilHandlers.SOUL_SAND).setDropHandler(new DropHandlerNetherWart());
+
     public static void preInit() {
         registerVanillaCrop(Items.WHEAT, WHEAT);
         registerVanillaCrop(Items.CARROT, CARROT);
@@ -80,17 +84,18 @@ public class HFCrops {
         registerVanillaCrop(Items.BEETROOT, BEETROOT);
         registerVanillaCrop(Items.MELON, WATERMELON);
         registerVanillaCrop(Blocks.PUMPKIN, PUMPKIN);
+        registerVanillaCrop(Items.NETHER_WART, NETHER_WART);
 
         //Add a new crop item for things that do not have an item yet :D
-        for (ICrop crop : HFApi.crops.getCrops()) {
+        for (Crop crop : CropRegistry.REGISTRY.getValues()) {
             if (!crop.hasItemAssigned()) {
-                crop.setItem(new ItemStack(new ItemCrop(crop).setUnlocalizedName("crop." + crop.getResource().getResourcePath()), 1, 0));
+                crop.setItem(new ItemStack(new ItemCrop(crop).setUnlocalizedName("crop." + crop.getRegistryName().getResourcePath()), 1, 0));
             }
 
             //Register always in the ore dictionary
             ItemStack clone = crop.getCropStack().copy();
             clone.setItemDamage(OreDictionary.WILDCARD_VALUE);
-            String name = "crop" + WordUtils.capitalizeFully(crop.getResource().getResourcePath().replace("_", " ").replace(" ", ""));
+            String name = "crop" + WordUtils.capitalizeFully(crop.getRegistryName().getResourcePath().replace("_", " ").replace(" ", ""));
             if (!isInDictionary(name, clone)) {
                 OreDictionary.registerOre(name, clone);
             }
@@ -99,8 +104,9 @@ public class HFCrops {
 
     @SideOnly(Side.CLIENT)
     public static void preInitClient() {
-        ModelLoader.setCustomStateMapper(CROPS, new CropStateMapper());
-        ModelLoader.setCustomStateMapper(FARMLAND, new CropStateMapper());
+        CropStateMapper mapper = new CropStateMapper();
+        ModelLoader.setCustomStateMapper(CROPS, mapper);
+        ModelLoader.setCustomStateMapper(FARMLAND, mapper);
     }
 
     @SideOnly(Side.CLIENT)
@@ -108,7 +114,6 @@ public class HFCrops {
         Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new IItemColor() {
             @Override
             public int getColorFromItemstack(ItemStack stack, int tintIndex) {
-                if (!stack.hasTagCompound()) return -1;
                 ICrop crop = SeedHelper.getCropFromSeed(stack);
                 return crop != null ? crop.getColor() : -1;
             }

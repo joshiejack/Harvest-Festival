@@ -24,6 +24,12 @@ harvestfestival.animal.chicken=Chicken
 entity.HarvestFestival.HarvestCow.name=Cow
 entity.HarvestFestival.HarvestSheep.name=Sheep
 entity.HarvestFestival.HarvestChicken.name=Chicken
+#Animal Related Items
+harvestfestival.tool.milker=Milker
+harvestfestival.tool.brush=Animal Brush
+harvestfestival.tool.medicine=Animal Medicine
+harvestfestival.tool.chicken.feed=Chicken Feed
+harvestfestival.tool.miracle.potion=Miracle Potion
 
 #Buildings
 harvestfestival.structures.barn=Blueprint: Animal Ranch
@@ -75,13 +81,10 @@ harvestfestival.crop.tomato=Tomato
 harvestfestival.crop.turnip=Turnip
 harvestfestival.crop.watermelon=Watermelon
 harvestfestival.crop.wheat=Wheat
+harvestfestival.crop.nether.wart=Nether Wart
 
 #General Items
 harvestfestival.general.item.feather.blue=Blue Feather
-harvestfestival.general.item.milker=Milker
-harvestfestival.general.item.brush=Animal Brush
-harvestfestival.general.item.medicine=Animal Medicine
-harvestfestival.general.item.feed=Chicken Feed
 harvestfestival.general.item.ore.junk=Junk Ore
 harvestfestival.general.item.ore.copper=Copper Ore
 harvestfestival.general.item.ore.silver=Silver Ore
@@ -95,7 +98,7 @@ harvestfestival.general.item.oil=Cooking Oil
 harvestfestival.general.item.riceball=Riceballharvestfestival.general.item.butter=Butter
 
 harvestfestival.general.item.salt=Salt
-harvestfestival.general.item.miracle.potion=Miracle Potion
+
 harvestfestival.general.item.chocolate=Chocolate
 
 #Meals
@@ -260,12 +263,15 @@ harvestfestival.flowers.weed=Weed
 harvestfestival.gathering.branch.small=Small Branch
 harvestfestival.gathering.branch.medium=Medium Branch
 harvestfestival.gathering.branch.large=Large Branch
+harvestfestival.gathering.stump.small=Small Stump
+harvestfestival.gathering.stump.medium=Medium Stump
+harvestfestival.gathering.stump.large=Large Stump
 harvestfestival.gathering.rock.small=Small Rock
 harvestfestival.gathering.rock.medium=Medium Rock
 harvestfestival.gathering.rock.large=Large Rock
-harvestfestival.gathering.stump.small=Small Stump
-arvestfestival.gathering.stump.medium=Medium Stump
-arvestfestival.gathering.stump.large=Large Stump
+harvestfestival.gathering.ore.small=Small Ore Rock
+harvestfestival.gathering.ore.medium=Medium Ore Rock
+harvestfestival.gathering.ore.large=Large Ore Rock
 
 harvestfestival.dirt.real=Mine Floor
 harvestfestival.dirt.decorative=Mine Floor

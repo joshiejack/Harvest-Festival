@@ -5,9 +5,9 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.core.IShippable;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.EnumPlantType;
 
+/** This is returned when you create a new crop **/
 public interface ICrop extends IShippable {
     /** Returns this crop in seed form, with default stats
      *  @return     the itemstack for this crop as seeds **/
@@ -16,25 +16,22 @@ public interface ICrop extends IShippable {
     /** Return this crop in item form, with default stats
      *  @return     the itemstack for this crop as an item **/
     ItemStack getCropStack();
-    
+
     /** Harvested stack **/
     ItemStack getHarvested();
 
-    /** Returns the resource location for this crop **/
-    ResourceLocation getResource();
-
-    /** Returns the localized name for this crop 
+    /** Returns the localized name for this crop
      * @param       isItem true if we are asking for the crops item name,
      *              false if we are asking for it's block name
-     *              
+     *
      * @return      the localized name*/
     String getLocalizedName(boolean isItem);
-    
-    /** Returns the localized name for this seed 
+
+    /** Returns the localized name for this seed
      * @return      the localized name for this crop as seeds*/
     String getSeedsName();
 
-    /** Returns how many stages this crop has 
+    /** Returns how many stages this crop has
      * @return      the total number of stages*/
     int getStages();
 
@@ -43,7 +40,7 @@ public interface ICrop extends IShippable {
 
     /** The colour of the seed bag */
     int getColor();
-    
+
     /** The year this seed becomes available for purchase **/
     int getPurchaseYear();
 
@@ -58,19 +55,19 @@ public interface ICrop extends IShippable {
 
     /** The seasons this crop can grow in **/
     Season[] getSeasons();
-    
+
     /** Returns the render handler this crop uses **/
     IStateHandler getStateHandler();
 
     /** Return the soil handler for this crop **/
     ISoilHandler getSoilHandler();
-  
+
     /** Whether this crop requires a sickle to be harvested **/
     boolean requiresSickle();
-    
+
     /** Whether this crop requires water to grow **/
     boolean requiresWater();
-    
+
     /** Whether or not an item was assigned to this crop yet **/
     boolean hasItemAssigned();
 
@@ -82,7 +79,7 @@ public interface ICrop extends IShippable {
     Block growsToSide();
 
     /** Returns true when the itemstack matches this crop
-     * 
+     *
      * @param       stack the itemstack
      * @return      whether the passed in stack is this crop */
     boolean matches(ItemStack stack);
@@ -104,30 +101,30 @@ public interface ICrop extends IShippable {
      *  it will use a different name for it's block and item form.
      * @return      the ICrop */
     ICrop setHasAlternativeName();
-   
+
     /** If you call this when creating a crop
      *  It will require a sickle to be harvested  */
     ICrop setRequiresSickle();
-    
-    /** If you call this when creating a crop, 
+
+    /** If you call this when creating a crop,
      *  It will not need to be watered **/
     ICrop setNoWaterRequirements();
-    
+
     /** If you call this when creating a crop,
      *  The handler will called when trying to plant the crop,
      *  So you can specify whether this crop is allowed to be placed
      *  on this type of soil or whatever. */
     ICrop setSoilRequirements(ISoilHandler handler);
-    
+
     /** Sets the stage at which this crop becomes double tall **/
     ICrop setBecomesDouble(int doubleStage);
-    
+
     /** Associates this crop with this drop handler **/
     ICrop setDropHandler(IDropHandler handler);
-    
+
     /** Sets that this crop grows to the side (pumpkins and melons) **/
     ICrop setGrowsToSide(Block block);
-    
+
     /** Set the animal food type of this crop, Crops default to vegetable **/
     ICrop setAnimalFoodType(AnimalFoodType type);
 

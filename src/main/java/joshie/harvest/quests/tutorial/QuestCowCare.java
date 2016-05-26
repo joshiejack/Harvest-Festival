@@ -1,6 +1,7 @@
 package joshie.harvest.quests.tutorial;
 
 import io.netty.buffer.ByteBuf;
+import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ISizeable.Size;
@@ -10,9 +11,6 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.SizeableHelper;
 import joshie.harvest.core.helpers.ToolHelper;
 import joshie.harvest.core.helpers.generic.ItemHelper;
-import joshie.harvest.core.lib.SizeableMeta;
-import joshie.harvest.items.HFItems;
-import joshie.harvest.items.ItemGeneral;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.quests.Quest;
@@ -24,7 +22,9 @@ import net.minecraft.nbt.NBTTagCompound;
 
 import java.util.HashSet;
 
-import static joshie.harvest.core.helpers.QuestHelper.completeQuest;
+import static joshie.harvest.animals.item.ItemAnimalTool.Tool.BRUSH;
+import static joshie.harvest.animals.item.ItemAnimalTool.Tool.MILKER;
+import static joshie.harvest.quests.QuestHelper.completeQuest;
 
 public class QuestCowCare extends Quest {
     private boolean hasCollected;
@@ -73,8 +73,8 @@ public class QuestCowCare extends Quest {
     public void onClosedChat(EntityPlayer player, EntityNPC npc) {
         if (!hasCollected && quest_stage == 2 && npc.getNPC() == HFNPCs.ANIMAL_OWNER) {
             hasCollected = true;
-            ItemHelper.addToPlayerInventory(player, new ItemStack(HFItems.GENERAL, 1, ItemGeneral.MILKER));
-            ItemHelper.addToPlayerInventory(player, new ItemStack(HFItems.GENERAL, 1, ItemGeneral.BRUSH));
+            ItemHelper.addToPlayerInventory(player, HFAnimals.TOOLS.getStackFromEnum(MILKER));
+            ItemHelper.addToPlayerInventory(player, HFAnimals.TOOLS.getStackFromEnum(BRUSH));
         }
     }
 
@@ -121,7 +121,7 @@ public class QuestCowCare extends Quest {
 
     @Override
     public void claim(EntityPlayer player) {
-        ItemHelper.spawnByEntity(player, SizeableHelper.getSizeable(SizeableMeta.MILK, 1, Size.LARGE));
+        ItemHelper.spawnByEntity(player, SizeableHelper.getSizeable(HFAnimals.MILK, 1, Size.LARGE));
     }
 
     @Override

@@ -3,6 +3,9 @@ package joshie.harvest.animals;
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.animals.entity.EntityHarvestSheep;
+import joshie.harvest.animals.item.ItemAnimalSpawner;
+import joshie.harvest.animals.item.ItemAnimalTool;
+import joshie.harvest.animals.item.ItemAnimalTreat;
 import joshie.harvest.animals.render.ModelHarvestCow;
 import joshie.harvest.animals.render.ModelHarvestSheep;
 import joshie.harvest.animals.render.RenderHarvestAnimal;
@@ -10,40 +13,55 @@ import joshie.harvest.animals.type.AnimalChicken;
 import joshie.harvest.animals.type.AnimalCow;
 import joshie.harvest.animals.type.AnimalSheep;
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.animals.AnimalFoodType;
-import joshie.harvest.api.crops.ICrop;
-import joshie.harvest.items.HFItems;
-import joshie.harvest.items.ItemGeneral;
+import joshie.harvest.core.util.base.ItemHFEnum;
+import joshie.harvest.crops.Crop;
+import joshie.harvest.crops.CropRegistry;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.Item;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import static joshie.harvest.animals.AnimalRegistry.registerFoodsAsType;
+import static joshie.harvest.animals.item.ItemAnimalTool.Tool.CHICKEN_FEED;
+import static joshie.harvest.api.HFApi.animals;
+import static joshie.harvest.api.animals.AnimalFoodType.*;
+import static net.minecraftforge.fml.common.registry.EntityRegistry.registerModEntity;
+
 public class HFAnimals {
+    //Animal Items
+    public static final ItemHFEnum ANIMAL = new ItemAnimalSpawner().setUnlocalizedName("animal");
+    public static final ItemHFEnum TOOLS = new ItemAnimalTool().setUnlocalizedName("tool.animal");
+    public static final ItemHFEnum TREATS = new ItemAnimalTreat().setUnlocalizedName("treat");
+
+    //Sizeable Animal Products
+    public static final Item EGG = HFApi.sizeable.createSizedItem("egg", 50, 60, 80);
+    public static final Item MILK = HFApi.sizeable.createSizedItem("milk", 100, 150, 200);
+    public static final Item MAYONNAISE = HFApi.sizeable.createSizedItem("mayonnaise", 300, 400, 500);
+    public static final Item WOOL = HFApi.sizeable.createSizedItem("wool", 100, 400, 500);
+
     public static void preInit() {
-        EntityRegistry.registerModEntity(EntityHarvestCow.class, "HarvestCow", 5, HarvestFestival.instance, 150, 3, true);
-        EntityRegistry.registerModEntity(EntityHarvestSheep.class, "HarvestSheep", 6, HarvestFestival.instance, 150, 3, true);
-        AnimalRegistry.registerFoodsAsType(AnimalFoodType.CHICKEN, Items.CHICKEN, Items.COOKED_CHICKEN);
-        AnimalRegistry.registerFoodsAsType(AnimalFoodType.FISH, Items.FISH, Items.COOKED_FISH);
-        AnimalRegistry.registerFoodsAsType(AnimalFoodType.FRUIT, Items.APPLE, Items.MELON);
-        AnimalRegistry.registerFoodsAsType(AnimalFoodType.GRASS, Items.WHEAT);
-        AnimalRegistry.registerFoodsAsType(AnimalFoodType.REDMEAT, Items.PORKCHOP, Items.BEEF, Items.COOKED_PORKCHOP, Items.COOKED_BEEF);
-        AnimalRegistry.registerFoodsAsType(AnimalFoodType.SEED, Items.MELON_SEEDS, Items.WHEAT_SEEDS, Items.PUMPKIN_SEEDS);
-        AnimalRegistry.registerFoodsAsType(AnimalFoodType.VEGETABLE, Items.CARROT);
-        HFApi.animals.registerFoodAsType(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.CHICKEN_FEED), AnimalFoodType.SEED);
-        HFApi.animals.registerType("cow", new AnimalCow());
-        HFApi.animals.registerType("sheep", new AnimalSheep());
-        HFApi.animals.registerType("chicken", new AnimalChicken());
+        registerModEntity(EntityHarvestCow.class, "HarvestCow", 5, HarvestFestival.instance, 150, 3, true);
+        registerModEntity(EntityHarvestSheep.class, "HarvestSheep", 6, HarvestFestival.instance, 150, 3, true);
+        registerFoodsAsType(CHICKEN, Items.CHICKEN, Items.COOKED_CHICKEN);
+        registerFoodsAsType(FISH, Items.FISH, Items.COOKED_FISH);
+        registerFoodsAsType(FRUIT, Items.APPLE, Items.MELON);
+        registerFoodsAsType(GRASS, Items.WHEAT);
+        registerFoodsAsType(REDMEAT, Items.PORKCHOP, Items.BEEF, Items.COOKED_PORKCHOP, Items.COOKED_BEEF);
+        registerFoodsAsType(SEED, Items.MELON_SEEDS, Items.WHEAT_SEEDS, Items.PUMPKIN_SEEDS);
+        registerFoodsAsType(VEGETABLE, Items.CARROT);
+        animals.registerFoodAsType(TOOLS.getStackFromEnum(CHICKEN_FEED), SEED);
+        animals.registerType("cow", new AnimalCow());
+        animals.registerType("sheep", new AnimalSheep());
+        animals.registerType("chicken", new AnimalChicken());
     }
 
     public static void init() {
-        for (ICrop crop : HFApi.crops.getCrops()) {
-            HFApi.animals.registerFoodAsType(crop.getCropStack(), crop.getFoodType());
+        for (Crop crop : CropRegistry.REGISTRY.getValues()) {
+            animals.registerFoodAsType(crop.getCropStack(), crop.getFoodType());
         }
     }
 

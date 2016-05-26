@@ -1,12 +1,10 @@
 package joshie.harvest.api.core;
 
-import net.minecraft.item.ItemStack;
-
 /** Items that implement this, come in small, medium and large **/
 public interface ISizeable {
-    Size getSize(ItemStack stack);
+    long getValue(Size size);
 
-    enum Size {
+    public enum Size {
         SMALL(0), MEDIUM(20000), LARGE(40000);
 
         private final int relationship;

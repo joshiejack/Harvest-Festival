@@ -3,7 +3,7 @@ package joshie.harvest.npc.gui;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.NPCHelper;
-import joshie.harvest.core.util.Translate;
+import joshie.harvest.core.util.generic.Text;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.player.stats.StatData;
 import net.minecraft.entity.player.EntityPlayer;
@@ -35,7 +35,7 @@ public class GuiNPCChat extends GuiNPCBase {
 
         if (npc.getLover() != null) {
             string = string.replace("%rE", npc.getLover().getNPC().getUnlocalizedName());
-        } else string = string.replace("%rE", Translate.translate("nolover"));
+        } else string = string.replace("%rE", Text.translate("nolover"));
 
         return string.replace("%rP", HFTrackers.getClientPlayerTracker().getRelationships().getLover());
     }

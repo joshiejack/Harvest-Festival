@@ -7,13 +7,14 @@ import joshie.harvest.api.crops.ICropProvider;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.base.ItemHFBase;
+import joshie.harvest.crops.Crop;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.item.ItemStack;
 
 public class ItemCrop extends ItemHFBase implements IShippable, ICropProvider, ICreativeSorted {
-    private ICrop crop;
+    private Crop crop;
 
-    public ItemCrop(ICrop crop) {
+    public ItemCrop(Crop crop) {
         setCreativeTab(HFTab.FARMING);
         this.crop = crop;
     }
@@ -43,6 +44,6 @@ public class ItemCrop extends ItemHFBase implements IShippable, ICropProvider, I
 
     @Override
     public String getName(ItemStack stack) {
-        return crop.getResource().getResourcePath();
+        return crop.getRegistryName().getResourcePath();
     }
 }

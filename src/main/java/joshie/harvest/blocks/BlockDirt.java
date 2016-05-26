@@ -3,8 +3,8 @@ package joshie.harvest.blocks;
 import joshie.harvest.blocks.BlockDirt.Types;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.config.General;
-import joshie.harvest.core.util.Translate;
 import joshie.harvest.core.util.base.BlockHFBaseEnum;
+import joshie.harvest.core.util.generic.Text;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -42,7 +42,7 @@ public class BlockDirt extends BlockHFBaseEnum<Types> {
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
-        if (stack.getItemDamage() == 1) list.add(Translate.translate("tooltip.dirt"));
+        if (stack.getItemDamage() == 1) list.add(Text.translate("tooltip.dirt"));
     }
 
     @Override

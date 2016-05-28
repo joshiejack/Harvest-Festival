@@ -27,6 +27,7 @@ public abstract class TileFillable extends TileDaily implements IDailyTickable {
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
+        int prevFill = fillAmount;
         fillAmount = nbt.getByte("IsFilled");
     }
 

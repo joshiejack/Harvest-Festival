@@ -1,6 +1,6 @@
 package joshie.harvest.cooking.render;
 
-import joshie.harvest.blocks.tiles.TilePot;
+import joshie.harvest.cooking.blocks.TilePot;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;

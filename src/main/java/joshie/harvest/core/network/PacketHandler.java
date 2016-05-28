@@ -1,12 +1,12 @@
 package joshie.harvest.core.network;
 
+import joshie.harvest.blocks.tiles.TileHarvest;
 import joshie.harvest.core.network.penguin.PenguinNetwork;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.relauncher.Side;
 
@@ -48,7 +48,16 @@ public class PacketHandler {
         sendAround(packet, tile.getWorld().provider.getDimension(), pos.getX(), pos.getY(), pos.getZ());
     }
 
-    public static void sendRefreshPacket(World world, BlockPos pos) {
-        sendAround(new PacketRenderUpdate(), world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ());
+    public static void sendRefreshPacket(TileHarvest tile) {
+        Packet<?> pkt = tile.getUpdatePacket();
+        if (pkt != null) {
+            tile.hasChanged = true;
+
+            for (EntityPlayer player: tile.getWorld().playerEntities) {
+                ((EntityPlayerMP) player).connection.sendPacket(pkt);
+            }
+
+            tile.hasChanged = false;
+        }
     }
 }

@@ -1,6 +1,6 @@
 package joshie.harvest.cooking.render;
 
-import joshie.harvest.blocks.tiles.TileFryingPan;
+import joshie.harvest.cooking.blocks.TileFryingPan;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;

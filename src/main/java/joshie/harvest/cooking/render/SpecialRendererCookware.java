@@ -1,7 +1,7 @@
 package joshie.harvest.cooking.render;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.blocks.tiles.TileCooking;
+import joshie.harvest.cooking.blocks.TileCooking;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;

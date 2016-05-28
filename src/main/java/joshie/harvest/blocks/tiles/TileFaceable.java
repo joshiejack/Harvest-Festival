@@ -9,7 +9,7 @@ import net.minecraft.util.EnumFacing;
 import javax.annotation.Nullable;
 
 public class TileFaceable extends TileHarvest implements IFaceable {
-    protected EnumFacing orientation;
+    public EnumFacing orientation;
 
     @Override
     public void setFacing(EnumFacing dir) {

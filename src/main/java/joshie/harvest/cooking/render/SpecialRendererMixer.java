@@ -1,6 +1,6 @@
 package joshie.harvest.cooking.render;
 
-import joshie.harvest.blocks.tiles.TileMixer;
+import joshie.harvest.cooking.blocks.TileMixer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;

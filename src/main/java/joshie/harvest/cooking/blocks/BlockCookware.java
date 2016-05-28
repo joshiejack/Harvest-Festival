@@ -1,8 +1,8 @@
-package joshie.harvest.blocks;
+package joshie.harvest.cooking.blocks;
 
 import joshie.harvest.HarvestFestival;
-import joshie.harvest.blocks.BlockCookware.Cookware;
-import joshie.harvest.blocks.tiles.*;
+import joshie.harvest.cooking.HFCooking;
+import joshie.harvest.cooking.blocks.BlockCookware.Cookware;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.helpers.generic.ItemHelper;
@@ -29,7 +29,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import static joshie.harvest.blocks.BlockCookware.Cookware.*;
+import static joshie.harvest.cooking.blocks.BlockCookware.Cookware.*;
 import static net.minecraft.util.EnumFacing.*;
 
 public class BlockCookware extends BlockHFBaseEnumRotatableTile<Cookware> {
@@ -146,7 +146,7 @@ public class BlockCookware extends BlockHFBaseEnumRotatableTile<Cookware> {
     }
 
     public static boolean isCookware(ItemStack stack) {
-        if (cookware == null) cookware = Item.getItemFromBlock(HFBlocks.COOKWARE);
+        if (cookware == null) cookware = Item.getItemFromBlock(HFCooking.COOKWARE);
         return stack.getItem() == cookware;
     }
 

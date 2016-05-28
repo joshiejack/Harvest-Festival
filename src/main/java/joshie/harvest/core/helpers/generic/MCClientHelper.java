@@ -38,7 +38,7 @@ public class MCClientHelper {
 
     public static void refresh(int dimension, BlockPos pos) {
         if (getWorld().provider.getDimension() == dimension) {
-            getWorld().markBlockRangeForRenderUpdate(pos.getX(), pos.getY(), pos.getZ(), pos.getX(), pos.getY(), pos.getZ());
+            getWorld().markBlockRangeForRenderUpdate(pos, pos);
         }
     }
 

@@ -1,7 +1,8 @@
-package joshie.harvest.blocks.tiles;
+package joshie.harvest.animals.blocks;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.IAnimalTracked;
+import joshie.harvest.blocks.tiles.TileFillable;
 import joshie.harvest.core.helpers.generic.EntityHelper;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.item.ItemStack;

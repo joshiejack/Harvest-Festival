@@ -1,6 +1,6 @@
 package joshie.harvest.cooking.render;
 
-import joshie.harvest.blocks.tiles.TileCounter;
+import joshie.harvest.cooking.blocks.TileCounter;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;

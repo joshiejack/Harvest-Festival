@@ -9,6 +9,8 @@ import joshie.harvest.animals.item.ItemAnimalTreat;
 import joshie.harvest.animals.render.ModelHarvestCow;
 import joshie.harvest.animals.render.ModelHarvestSheep;
 import joshie.harvest.animals.render.RenderHarvestAnimal;
+import joshie.harvest.animals.blocks.TileNest;
+import joshie.harvest.animals.blocks.TileTrough;
 import joshie.harvest.animals.type.AnimalChicken;
 import joshie.harvest.animals.type.AnimalCow;
 import joshie.harvest.animals.type.AnimalSheep;
@@ -29,6 +31,7 @@ import static joshie.harvest.animals.AnimalRegistry.registerFoodsAsType;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.CHICKEN_FEED;
 import static joshie.harvest.api.HFApi.animals;
 import static joshie.harvest.api.animals.AnimalFoodType.*;
+import static joshie.harvest.core.helpers.generic.RegistryHelper.registerTiles;
 import static net.minecraftforge.fml.common.registry.EntityRegistry.registerModEntity;
 
 public class HFAnimals {
@@ -57,6 +60,7 @@ public class HFAnimals {
         animals.registerType("cow", new AnimalCow());
         animals.registerType("sheep", new AnimalSheep());
         animals.registerType("chicken", new AnimalChicken());
+        registerTiles(TileNest.class, TileTrough.class);
     }
 
     public static void init() {

@@ -60,7 +60,6 @@
     -E Items Spin
 
 ### To Check
-- Incubators will hatch chickens - J
 - Can Spawn the Goddess by dropping relevant items in goddess water - J
 - ASM For Snow - J
 - Animals will give better products when cared for (brushing, talking, milking/shearing, treats) - J

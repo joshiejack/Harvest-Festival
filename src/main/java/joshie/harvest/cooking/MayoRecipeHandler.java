@@ -22,6 +22,7 @@ public class MayoRecipeHandler implements ISpecialRecipeHandler {
                 return new ItemStack(HFAnimals.MAYONNAISE, 1, egg.getItemDamage());
             }
         }
+
         return null;
     }
 }

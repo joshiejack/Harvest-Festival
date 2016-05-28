@@ -1,11 +1,11 @@
 package joshie.harvest.blocks;
 
+import joshie.harvest.animals.blocks.TileNest;
+import joshie.harvest.animals.blocks.TileTrough;
 import joshie.harvest.api.animals.IAnimalFeeder;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.blocks.BlockWood.Woodware;
 import joshie.harvest.blocks.tiles.TileFillable;
-import joshie.harvest.blocks.tiles.TileNest;
-import joshie.harvest.blocks.tiles.TileTrough;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.lib.CreativeSort;
@@ -35,6 +35,12 @@ import static net.minecraft.util.EnumFacing.*;
 
 public class BlockWood extends BlockHFBaseEnumRotatableMeta<Woodware> implements IAnimalFeeder {
     private static final AxisAlignedBB SHIPPING_AABB = new AxisAlignedBB(0D, 0D, 0D, 1D, 0.6D, 1D);
+    private static final AxisAlignedBB NEST_NORTH_AABB = new AxisAlignedBB(0.05D, 0D, 0.3D, 0.95D, 0.7D, 0.95);
+    private static final AxisAlignedBB NEST_SOUTH_AABB = new AxisAlignedBB(0.05D, 0D, 0.05D, 0.95D, 0.7D, 0.7);
+    private static final AxisAlignedBB NEST_WEST_AABB = new AxisAlignedBB(0.3D, 0D, 0.05D, 0.95D, 0.7D, 0.95);
+    private static final AxisAlignedBB NEST_EAST_AABB = new AxisAlignedBB(0.05D, 0D, 0.05D, 0.7D, 0.7D, 0.95);
+    private static final AxisAlignedBB TROUGH_AABB =  new AxisAlignedBB(0D, 0D, 0D, 1D, 0.75D, 1D);
+
     public static final PropertyEnum<Type> TYPE = PropertyEnum.create("type", Type.class);
 
     public enum Woodware implements IStringSerializable {
@@ -79,6 +85,19 @@ public class BlockWood extends BlockHFBaseEnumRotatableMeta<Woodware> implements
         switch (wood) {
             case SHIPPING:
                 return SHIPPING_AABB;
+            case NEST:
+                switch (state.getValue(FACING)) {
+                    case NORTH:
+                        return NEST_NORTH_AABB;
+                    case SOUTH:
+                        return NEST_SOUTH_AABB;
+                    case WEST:
+                        return NEST_WEST_AABB;
+                    case EAST:
+                        return NEST_EAST_AABB;
+                }
+            case TROUGH:
+                return TROUGH_AABB;
             default:
                 return FULL_BLOCK_AABB;
         }

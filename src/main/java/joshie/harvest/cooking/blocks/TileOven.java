@@ -1,7 +1,7 @@
-package joshie.harvest.blocks.tiles;
+package joshie.harvest.cooking.blocks;
 
 import joshie.harvest.api.cooking.IUtensil;
-import joshie.harvest.blocks.tiles.TileCooking.TileCookingTicking;
+import joshie.harvest.cooking.blocks.TileCooking.TileCookingTicking;
 import joshie.harvest.cooking.Utensil;
 
 public class TileOven extends TileCookingTicking {

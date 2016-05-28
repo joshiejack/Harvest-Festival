@@ -1,8 +1,9 @@
-package joshie.harvest.blocks.tiles;
+package joshie.harvest.cooking.blocks;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.IAltItem;
 import joshie.harvest.api.cooking.IUtensil;
+import joshie.harvest.blocks.tiles.TileFaceable;
 import joshie.harvest.cooking.Utensil;
 import joshie.harvest.core.helpers.generic.MCServerHelper;
 import joshie.harvest.core.helpers.generic.StackHelper;

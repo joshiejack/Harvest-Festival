@@ -42,6 +42,10 @@ public class PlaceableBlock extends Placeable {
         return state.getBlock();
     }
 
+    public IBlockState getState() {
+        return state;
+    }
+
     public IBlockState getTransformedState(Direction direction) {
         return direction.withDirection(state);
     }

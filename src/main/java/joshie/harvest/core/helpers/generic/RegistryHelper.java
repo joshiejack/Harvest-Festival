@@ -3,7 +3,7 @@ package joshie.harvest.core.helpers.generic;
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.core.util.base.BlockHFEnum;
 import joshie.harvest.core.util.base.ItemBlockHF;
-import joshie.harvest.core.util.base.ItemHFBaseFML;
+import joshie.harvest.core.util.base.ItemHFFML;
 import joshie.harvest.core.util.base.ItemHFEnum;
 import joshie.harvest.core.util.generic.Library;
 import joshie.harvest.crops.blocks.BlockHFCrops;
@@ -37,7 +37,7 @@ public class RegistryHelper {
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
             if (item instanceof ItemHFSeeds) {
                 ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(new ResourceLocation(MODID, "crops_seeds"), "inventory"));
-            } else if (item instanceof ItemHFBaseFML) {
+            } else if (item instanceof ItemHFFML) {
 
             } else if (item instanceof ItemHFEnum) {
                 ((ItemHFEnum)item).registerModels(item, name);

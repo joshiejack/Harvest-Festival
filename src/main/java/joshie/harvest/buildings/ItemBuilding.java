@@ -1,12 +1,9 @@
-package joshie.harvest.items;
+package joshie.harvest.buildings;
 
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.blocks.BlockPreview.Direction;
-import joshie.harvest.buildings.Building;
-import joshie.harvest.buildings.BuildingRegistry;
-import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.util.base.ItemHFBaseFML;
+import joshie.harvest.core.util.base.ItemHFFML;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
@@ -15,7 +12,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class ItemBuilding extends ItemHFBaseFML<Building> implements ICreativeSorted {
+public class ItemBuilding extends ItemHFFML<Building> implements ICreativeSorted {
     public ItemBuilding() {
         super(BuildingRegistry.REGISTRY, HFTab.TOWN);
     }

@@ -7,7 +7,6 @@ import joshie.harvest.cooking.blocks.*;
 import joshie.harvest.cooking.render.*;
 import joshie.harvest.core.helpers.ModelHelper;
 import joshie.harvest.core.util.base.BlockHFEnum;
-import joshie.harvest.items.HFItems;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.util.ResourceLocation;
@@ -20,8 +19,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import static joshie.harvest.core.helpers.generic.RegistryHelper.registerTiles;
 
 public class HFCooking {
-    //Cooking & Farming
+    //Cooking
     public static final BlockHFEnum COOKWARE = new BlockCookware().setUnlocalizedName("cookware");
+    public static final ItemMeal MEAL = (ItemMeal) new ItemMeal().setUnlocalizedName("meal");
 
     public static void preInit() {
         HFApi.cooking.registerRecipeHandler(new MayoRecipeHandler());
@@ -30,7 +30,7 @@ public class HFCooking {
 
     @SideOnly(Side.CLIENT)
     public static void preInitClient() {
-        ModelLoader.setCustomMeshDefinition(HFItems.MEAL, new MealDefinition());
+        ModelLoader.setCustomMeshDefinition(MEAL, new MealDefinition());
         ClientRegistry.bindTileEntitySpecialRenderer(TileMarker.class, new PreviewRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TileFryingPan.class, new SpecialRendererFryingPan());
         ClientRegistry.bindTileEntitySpecialRenderer(TilePot.class, new SpecialRendererPot());
@@ -43,13 +43,13 @@ public class HFCooking {
     public static void initClient() {
         for (Recipe recipe : FoodRegistry.REGISTRY.getValues()) {
             ModelResourceLocation model = new ModelResourceLocation(new ResourceLocation(recipe.getRegistryName().getResourceDomain(), "meals/" + recipe.getRegistryName().getResourcePath()), "inventory");
-            ModelBakery.registerItemVariants(HFItems.MEAL, model);
+            ModelBakery.registerItemVariants(MEAL, model);
             MealDefinition.registerMeal(recipe, model);
         }
 
         for (Utensil utensil: Utensil.values()) {
             ModelResourceLocation model = ModelHelper.getModelForItem("meals/burnt" + utensil.name());
-            ModelBakery.registerItemVariants(HFItems.MEAL, model);
+            ModelBakery.registerItemVariants(MEAL, model);
             MealDefinition.registerBurnt(utensil.ordinal(), model);
         }
     }

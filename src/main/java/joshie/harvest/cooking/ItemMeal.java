@@ -1,16 +1,12 @@
-package joshie.harvest.items;
+package joshie.harvest.cooking;
 
 import joshie.harvest.api.cooking.IAltItem;
 import joshie.harvest.api.cooking.IMeal;
 import joshie.harvest.api.core.ICreativeSorted;
-import joshie.harvest.cooking.FoodRegistry;
-import joshie.harvest.cooking.HFRecipes;
-import joshie.harvest.cooking.Recipe;
-import joshie.harvest.cooking.Utensil;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.config.General;
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.util.base.ItemHFBaseFML;
+import joshie.harvest.core.util.base.ItemHFFML;
 import joshie.harvest.core.util.generic.Text;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -31,7 +27,7 @@ import java.util.List;
 
 import static net.minecraft.util.text.TextFormatting.DARK_GRAY;
 
-public class ItemMeal extends ItemHFBaseFML<Recipe> implements ICreativeSorted, IAltItem {
+public class ItemMeal extends ItemHFFML<Recipe> implements ICreativeSorted, IAltItem {
     public ItemMeal() {
         super(FoodRegistry.REGISTRY, HFTab.COOKING);
     }

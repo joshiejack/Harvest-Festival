@@ -1,7 +1,7 @@
 package joshie.harvest.items;
 
 import joshie.harvest.core.helpers.generic.MCClientHelper;
-import joshie.harvest.core.util.CodeGeneratorBuildings;
+import joshie.harvest.buildings.loader.CodeGeneratorBuildings;
 import joshie.harvest.core.util.base.ItemHFBaseMeta;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

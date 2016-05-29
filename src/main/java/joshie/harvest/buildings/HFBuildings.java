@@ -4,7 +4,7 @@ import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.core.util.base.FMLDefinition;
-import joshie.harvest.items.HFItems;
+import joshie.harvest.core.util.base.ItemHFFML;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.util.ResourceLocation;
@@ -14,6 +14,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.Level;
 
 public class HFBuildings {
+    public static final ItemHFFML STRUCTURES = new ItemBuilding().setUnlocalizedName("structures");
+
     public static final Building null_building = new Building();
     public static final IBuilding BARN = registerBuilding("barn", 3000L, 160, 0).setRequirements("blacksmith");
     public static final IBuilding BLACKSMITH = registerBuilding("blacksmith", 3500L, 32, 244).setRequirements("supermarket").setOffsetY(-2);
@@ -40,14 +42,14 @@ public class HFBuildings {
     @SideOnly(Side.CLIENT)
     public static void preInitClient() {
         definition = new FMLDefinition<>(BuildingRegistry.REGISTRY);
-        ModelLoader.setCustomMeshDefinition(HFItems.STRUCTURES, definition);
+        ModelLoader.setCustomMeshDefinition(STRUCTURES, definition);
     }
 
     @SideOnly(Side.CLIENT)
     public static void initClient() {
         for (Building building : BuildingRegistry.REGISTRY.getValues()) {
             ModelResourceLocation model = new ModelResourceLocation(new ResourceLocation(building.getRegistryName().getResourceDomain(), "buildings/" + building.getRegistryName().getResourcePath()), "inventory");
-            ModelBakery.registerItemVariants(HFItems.STRUCTURES, model);
+            ModelBakery.registerItemVariants(STRUCTURES, model);
             definition.register(building, model);
         }
     }

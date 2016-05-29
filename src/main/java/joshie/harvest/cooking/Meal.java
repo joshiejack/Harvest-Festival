@@ -2,11 +2,10 @@ package joshie.harvest.cooking;
 
 import joshie.harvest.api.cooking.ICookingIngredient;
 import joshie.harvest.api.cooking.IMeal;
-import joshie.harvest.items.HFItems;
 import net.minecraft.item.ItemStack;
 
 public class Meal implements IMeal {
-    static final ItemStack BURNT = new ItemStack(HFItems.MEAL);
+    static final ItemStack BURNT = new ItemStack(HFCooking.MEAL);
     private static final double HUNGER_MODIFIER = 1.0D;
     private static final double SATURATION_MODIFIER = 1.0D;
 

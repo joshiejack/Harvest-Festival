@@ -7,11 +7,11 @@ import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.Placeable.ConstructionStage;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
+import joshie.harvest.buildings.placeable.blocks.PlaceableDecorative;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.core.helpers.TownHelper;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.helpers.generic.MCServerHelper;
-import joshie.harvest.items.HFItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -70,7 +70,9 @@ public class Building extends net.minecraftforge.fml.common.registry.IForgeRegis
         if (placeable instanceof PlaceableBlock) {
             PlaceableBlock block = (PlaceableBlock) placeable;
             if (block.getBlock() != Blocks.AIR) {
-                block_list.add((PlaceableBlock) placeable);
+                if (!(block instanceof PlaceableDecorative)) {
+                    block_list.add((PlaceableBlock) placeable);
+                }
             }
         }
 
@@ -148,7 +150,7 @@ public class Building extends net.minecraftforge.fml.common.registry.IForgeRegis
 
     @Override
     public ItemStack getSpawner() {
-        return HFItems.STRUCTURES.getStackFromObject(this);
+        return HFBuildings.STRUCTURES.getStackFromObject(this);
     }
 
     @Override

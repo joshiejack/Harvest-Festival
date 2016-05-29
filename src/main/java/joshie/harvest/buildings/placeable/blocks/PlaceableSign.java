@@ -9,7 +9,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
-public class PlaceableSign extends PlaceableBlock {
+public class PlaceableSign extends PlaceableDecorative {
     private TextComponentString[] text;
 
     public PlaceableSign() {}
@@ -19,11 +19,6 @@ public class PlaceableSign extends PlaceableBlock {
         for (int i = 0; i < text.length; i++) {
             this.text[i] = (TextComponentString) text[i];
         }
-    }
-
-    @Override
-    public boolean canPlace(ConstructionStage stage) {
-        return stage == ConstructionStage.DECORATE;
     }
 
     @Override

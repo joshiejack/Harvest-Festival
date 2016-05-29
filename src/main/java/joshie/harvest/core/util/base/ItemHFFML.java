@@ -12,18 +12,24 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public abstract class ItemHFBaseFML<E extends Impl<E>> extends ItemHFBase {
+public abstract class ItemHFFML<E extends Impl<E>> extends ItemHFBase {
     protected FMLControlledNamespacedRegistry<E> registry;
-    public ItemHFBaseFML(FMLControlledNamespacedRegistry<E> registry) {
+    public ItemHFFML(FMLControlledNamespacedRegistry<E> registry) {
         super();
         this.registry = registry;
         setHasSubtypes(true);
     }
 
-    public ItemHFBaseFML(FMLControlledNamespacedRegistry<E> registry, CreativeTabs tab) {
+    public ItemHFFML(FMLControlledNamespacedRegistry<E> registry, CreativeTabs tab) {
         super(tab);
         this.registry = registry;
         setHasSubtypes(true);
+    }
+
+    @Override
+    public ItemHFFML setUnlocalizedName(String name) {
+        super.setUnlocalizedName(name);
+        return this;
     }
 
     public abstract E getNullValue();

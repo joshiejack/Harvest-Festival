@@ -14,17 +14,12 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 
-public class PlaceableFlowerPot extends PlaceableBlock {
+public class PlaceableFlowerPot extends PlaceableDecorative {
     private boolean canCactus;
 
     public PlaceableFlowerPot() {}
     public PlaceableFlowerPot(IBlockState state, int x, int y, int z) {
         super(state, x, y, z);
-    }
-
-    @Override
-    public boolean canPlace(ConstructionStage stage) {
-        return stage == ConstructionStage.DECORATE;
     }
 
     @Override

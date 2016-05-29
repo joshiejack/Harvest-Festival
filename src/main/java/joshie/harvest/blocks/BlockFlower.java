@@ -140,7 +140,7 @@ public class BlockFlower extends BlockHFEnum<FlowerType> implements IPlantable {
 
     @Override
     public int getSortValue(ItemStack stack) {
-        if (stack.getItemDamage() == WEED.ordinal()) return CreativeSort.TOOLS - 4;
+        if (stack.getItemDamage() == WEED.ordinal()) return CreativeSort.TOOLS - 10;
         else return -10;
     }
 }

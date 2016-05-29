@@ -1,4 +1,4 @@
-package joshie.harvest.core.util;
+package joshie.harvest.buildings.loader;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.INPC;

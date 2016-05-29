@@ -1,5 +1,6 @@
 package joshie.harvest.items;
 
+import joshie.harvest.buildings.ItemBuilding;
 import joshie.harvest.core.config.General;
 import net.minecraft.item.Item;
 
@@ -10,10 +11,7 @@ public class HFItems {
 
     //Misc
     public static final Item GENERAL = new ItemGeneral().setUnlocalizedName("general.item");
-    public static final ItemMeal MEAL = (ItemMeal) new ItemMeal().setUnlocalizedName("meal");
 
-    //Misc
-    public static final ItemBuilding STRUCTURES = (ItemBuilding) new ItemBuilding().setUnlocalizedName("structures");
     public static final Item SPAWNER_NPC = new ItemNPCSpawner().setUnlocalizedName("spawner.npc");
 
     public static void preInit() {

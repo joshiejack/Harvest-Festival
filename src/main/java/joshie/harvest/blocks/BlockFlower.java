@@ -3,7 +3,7 @@ package joshie.harvest.blocks;
 import joshie.harvest.blocks.BlockFlower.FlowerType;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.lib.CreativeSort;
-import joshie.harvest.core.util.base.BlockHFBaseEnum;
+import joshie.harvest.core.util.base.BlockHFEnum;
 import joshie.harvest.core.util.generic.Text;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.block.Block;
@@ -31,7 +31,7 @@ import static joshie.harvest.blocks.BlockFlower.FlowerType.WEED;
 import static net.minecraft.util.text.TextFormatting.AQUA;
 import static net.minecraftforge.common.EnumPlantType.Plains;
 
-public class BlockFlower extends BlockHFBaseEnum<FlowerType> implements IPlantable {
+public class BlockFlower extends BlockHFEnum<FlowerType> implements IPlantable {
     protected static final AxisAlignedBB FLOWER_AABB = new AxisAlignedBB(0.30000001192092896D, 0.0D, 0.30000001192092896D, 0.699999988079071D, 0.6000000238418579D, 0.699999988079071D);
 
     public BlockFlower() {

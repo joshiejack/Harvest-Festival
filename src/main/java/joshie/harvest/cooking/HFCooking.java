@@ -6,7 +6,7 @@ import joshie.harvest.buildings.render.PreviewRender;
 import joshie.harvest.cooking.blocks.*;
 import joshie.harvest.cooking.render.*;
 import joshie.harvest.core.helpers.ModelHelper;
-import joshie.harvest.core.util.base.BlockHFBaseEnum;
+import joshie.harvest.core.util.base.BlockHFEnum;
 import joshie.harvest.items.HFItems;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -21,7 +21,7 @@ import static joshie.harvest.core.helpers.generic.RegistryHelper.registerTiles;
 
 public class HFCooking {
     //Cooking & Farming
-    public static final BlockHFBaseEnum COOKWARE = new BlockCookware().setUnlocalizedName("cookware");
+    public static final BlockHFEnum COOKWARE = new BlockCookware().setUnlocalizedName("cookware");
 
     public static void preInit() {
         HFApi.cooking.registerRecipeHandler(new MayoRecipeHandler());

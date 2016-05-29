@@ -24,13 +24,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 import java.util.Random;
 
-public abstract class BlockHFBaseEnum<E extends Enum<E> & IStringSerializable> extends BlockHFBase {
+public abstract class BlockHFEnum<E extends Enum<E> & IStringSerializable> extends BlockHFBase {
     protected static PropertyEnum<?> temporary;
     protected final PropertyEnum<E> property;
     protected final E[] values;
 
     //Main Constructor
-    public BlockHFBaseEnum(Material material, Class<E> clazz, CreativeTabs tab) {
+    public BlockHFEnum(Material material, Class<E> clazz, CreativeTabs tab) {
         super(preInit(material, clazz), tab);
         property = (PropertyEnum<E>) temporary;
         values = clazz.getEnumConstants();
@@ -52,7 +52,7 @@ public abstract class BlockHFBaseEnum<E extends Enum<E> & IStringSerializable> e
     }
 
     //Constructor default to farming tab
-    public BlockHFBaseEnum(Material material, Class<E> clazz) {
+    public BlockHFEnum(Material material, Class<E> clazz) {
         this(material, clazz, HFTab.FARMING);
     }
 
@@ -125,7 +125,7 @@ public abstract class BlockHFBaseEnum<E extends Enum<E> & IStringSerializable> e
     }
 
     @Override
-    public BlockHFBaseEnum setUnlocalizedName(String name) {
+    public BlockHFEnum setUnlocalizedName(String name) {
         super.setUnlocalizedName(name);
         return this;
     }

@@ -6,7 +6,7 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.core.helpers.SeedHelper;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.core.util.base.BlockHFBaseEnum;
+import joshie.harvest.core.util.base.BlockHFEnum;
 import joshie.harvest.crops.blocks.BlockHFCrops;
 import joshie.harvest.crops.blocks.BlockHFFarmland;
 import joshie.harvest.crops.handlers.*;
@@ -33,8 +33,8 @@ import static joshie.harvest.core.HFTab.FARMING;
 
 public class HFCrops {
     //Crops and Custom Farmland
-    public static final BlockHFBaseEnum CROPS = new BlockHFCrops().setUnlocalizedName("crops.block");
-    public static final BlockHFBaseEnum FARMLAND = new BlockHFFarmland().setUnlocalizedName("farmland");
+    public static final BlockHFEnum CROPS = new BlockHFCrops().setUnlocalizedName("crops.block");
+    public static final BlockHFEnum FARMLAND = new BlockHFFarmland().setUnlocalizedName("farmland");
 
     //Farming Tools
     public static final ItemBaseTool HOE = new ItemHoe().setUnlocalizedName("hoe");

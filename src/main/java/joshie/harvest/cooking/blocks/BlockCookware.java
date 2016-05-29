@@ -6,7 +6,7 @@ import joshie.harvest.cooking.blocks.BlockCookware.Cookware;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.helpers.generic.ItemHelper;
-import joshie.harvest.core.util.base.BlockHFBaseEnumRotatableTile;
+import joshie.harvest.core.util.base.BlockHFEnumRotatableTile;
 import joshie.harvest.core.util.generic.IFaceable;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -32,7 +32,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import static joshie.harvest.cooking.blocks.BlockCookware.Cookware.*;
 import static net.minecraft.util.EnumFacing.*;
 
-public class BlockCookware extends BlockHFBaseEnumRotatableTile<Cookware> {
+public class BlockCookware extends BlockHFEnumRotatableTile<Cookware> {
     private static final AxisAlignedBB FRYING_PAN_AABB = new AxisAlignedBB(0.2F, 0F, 0.2F, 0.8F, 0.15F, 0.8F);
     private static final AxisAlignedBB MIXER_AABB = new AxisAlignedBB(0.275F, 0F, 0.275F, 0.725F, 0.725F, 0.725F);
     private static final AxisAlignedBB POT_AABB = new AxisAlignedBB(0.2F, 0F, 0.2F, 0.8F, 0.375F, 0.8F);

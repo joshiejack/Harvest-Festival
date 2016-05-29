@@ -18,16 +18,16 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public abstract class BlockHFBaseEnumRotatableMeta<E extends Enum<E> & IStringSerializable> extends BlockHFBaseEnum<E> {
+public abstract class BlockHFEnumRotatableMeta<E extends Enum<E> & IStringSerializable> extends BlockHFEnum<E> {
     protected static final PropertyDirection FACING = BlockHorizontal.FACING;
     //Main Constructor
-    public BlockHFBaseEnumRotatableMeta(Material material, Class<E> clazz, CreativeTabs tab) {
+    public BlockHFEnumRotatableMeta(Material material, Class<E> clazz, CreativeTabs tab) {
         super(material, clazz, tab);
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
     }
 
     //Constructor default to farming tab
-    public BlockHFBaseEnumRotatableMeta(Material material, Class<E> clazz) {
+    public BlockHFEnumRotatableMeta(Material material, Class<E> clazz) {
         this(material, clazz, HFTab.FARMING);
     }
 

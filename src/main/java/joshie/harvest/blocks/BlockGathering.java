@@ -7,7 +7,7 @@ import joshie.harvest.blocks.BlockGathering.GatheringType;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.helpers.WorldHelper;
 import joshie.harvest.core.lib.CreativeSort;
-import joshie.harvest.core.util.base.BlockHFBaseEnum;
+import joshie.harvest.core.util.base.BlockHFEnum;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
@@ -25,7 +25,7 @@ import net.minecraft.world.World;
 import static joshie.harvest.api.core.ITiered.ToolTier.*;
 import static joshie.harvest.blocks.BlockGathering.GatheringType.*;
 
-public class BlockGathering extends BlockHFBaseEnum<GatheringType> {
+public class BlockGathering extends BlockHFEnum<GatheringType> {
     public static final PropertyBool WINTER = PropertyBool.create("winter");
 
     public enum GatheringType implements IStringSerializable {
@@ -127,9 +127,9 @@ public class BlockGathering extends BlockHFBaseEnum<GatheringType> {
     public int getSortValue(ItemStack stack) {
         GatheringType type = getEnumFromMeta(stack.getItemDamage());
         if (type == BRANCH_SMALL || type == BRANCH_MEDIUM || type == BRANCH_LARGE) {
-            return CreativeSort.TOOLS - 3;
+            return CreativeSort.TOOLS - 4;
         } else if (type == STUMP_SMALL || type == STUMP_MEDIUM || type == STUMP_LARGE) {
-            return CreativeSort.TOOLS - 2;
-        } return CreativeSort.TOOLS - 1;
+            return CreativeSort.TOOLS - 3;
+        } return CreativeSort.TOOLS - 2;
     }
 }

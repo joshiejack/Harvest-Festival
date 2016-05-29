@@ -8,7 +8,7 @@ import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.config.General;
 import joshie.harvest.core.helpers.TownHelper;
-import joshie.harvest.core.util.base.BlockHFBaseEnum;
+import joshie.harvest.core.util.base.BlockHFEnum;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -31,7 +31,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import java.util.HashMap;
 import java.util.List;
 
-public class BlockPreview extends BlockHFBaseEnum<Direction> {
+public class BlockPreview extends BlockHFEnum<Direction> {
     public ItemStack getItemStack(Building building) {
         ItemStack stack = new ItemStack(this);
         stack.setTagCompound(new NBTTagCompound());

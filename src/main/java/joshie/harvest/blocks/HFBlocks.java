@@ -3,7 +3,7 @@ package joshie.harvest.blocks;
 import joshie.harvest.blocks.BlockFlower.FlowerType;
 import joshie.harvest.blocks.tiles.TileMarker;
 import joshie.harvest.core.helpers.generic.RegistryHelper;
-import joshie.harvest.core.util.base.BlockHFBaseEnum;
+import joshie.harvest.core.util.base.BlockHFEnum;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.IBlockColor;
@@ -21,21 +21,23 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import static joshie.harvest.core.lib.HFModInfo.MODID;
+
 public class HFBlocks {
     //Fluid
-    public static final Fluid GODDESS = registerFluid(new Fluid("hf_goddess_water", new ResourceLocation("blocks/hf_goddess_water_still"), new ResourceLocation("blocks/hf_goddess_water_flow")).setRarity(EnumRarity.RARE));
+    public static final Fluid GODDESS = registerFluid(new Fluid("hf_goddess_water", new ResourceLocation(MODID, "blocks/goddess_still"), new ResourceLocation(MODID, "blocks/goddess_flow")).setRarity(EnumRarity.RARE));
     public static final BlockFluidClassic GODDESS_WATER = new BlockGoddessWater(GODDESS).setUnlocalizedName("goddess.water");
 
     public static final BlockFlower FLOWERS = (BlockFlower) new BlockFlower().setUnlocalizedName("flowers");
     //Mine
-    public static final BlockHFBaseEnum STONE = new BlockStone().setUnlocalizedName("stone");
-    public static final BlockHFBaseEnum DIRT = new BlockDirt().setUnlocalizedName("dirt");
+    public static final BlockHFEnum STONE = new BlockStone().setUnlocalizedName("stone");
+    public static final BlockHFEnum DIRT = new BlockDirt().setUnlocalizedName("dirt");
     //Misc
-    public static final BlockHFBaseEnum WOOD_MACHINES = new BlockWood().setUnlocalizedName("woodware");
+    public static final BlockHFEnum WOOD_MACHINES = new BlockWood().setUnlocalizedName("woodware");
     public static final BlockPreview PREVIEW = (BlockPreview) new BlockPreview().setUnlocalizedName("preview");
 
     //Gathering
-    public static final BlockHFBaseEnum GATHERING = new BlockGathering().setUnlocalizedName("gathering");
+    public static final BlockHFEnum GATHERING = new BlockGathering().setUnlocalizedName("gathering");
 
     public static void preInit() {
         GODDESS.setBlock(GODDESS_WATER);

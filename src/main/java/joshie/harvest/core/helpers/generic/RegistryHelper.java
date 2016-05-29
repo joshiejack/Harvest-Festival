@@ -1,7 +1,7 @@
 package joshie.harvest.core.helpers.generic;
 
 import joshie.harvest.HarvestFestival;
-import joshie.harvest.core.util.base.BlockHFBaseEnum;
+import joshie.harvest.core.util.base.BlockHFEnum;
 import joshie.harvest.core.util.base.ItemBlockHF;
 import joshie.harvest.core.util.base.ItemHFBaseFML;
 import joshie.harvest.core.util.base.ItemHFEnum;
@@ -70,7 +70,7 @@ public class RegistryHelper {
 
     public static Block registerBlock(Block block, String name) {
         ResourceLocation resource = new ResourceLocation(MODID, name.replace(".", "_"));
-        ItemBlock item = block instanceof BlockHFBaseEnum ? new ItemBlockHF((BlockHFBaseEnum)block) : new ItemBlock(block);
+        ItemBlock item = block instanceof BlockHFEnum ? new ItemBlockHF((BlockHFEnum)block) : new ItemBlock(block);
         GameRegistry.register(block, resource);
         GameRegistry.register(item, resource);
 

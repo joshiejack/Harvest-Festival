@@ -8,9 +8,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class ItemBlockHF extends ItemBlock implements  ICreativeSorted {
-    private final BlockHFBaseEnum block;
+    private final BlockHFEnum block;
 
-    public ItemBlockHF(BlockHFBaseEnum block) {
+    public ItemBlockHF(BlockHFEnum block) {
         super(block);
         this.block = block;
         setHasSubtypes(true);
@@ -27,7 +27,7 @@ public class ItemBlockHF extends ItemBlock implements  ICreativeSorted {
     }
 
     @Override
-    public BlockHFBaseEnum getBlock() {
+    public BlockHFEnum getBlock() {
         return block;
     }
 

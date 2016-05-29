@@ -21,11 +21,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public abstract class BlockHFBaseEnumRotatableTile<E extends Enum<E> & IStringSerializable> extends BlockHFBaseEnum<E> {
+public abstract class BlockHFEnumRotatableTile<E extends Enum<E> & IStringSerializable> extends BlockHFEnum<E> {
     protected static final PropertyDirection FACING = BlockHorizontal.FACING;
 
     //Main Constructor
-    public BlockHFBaseEnumRotatableTile(Material material, Class<E> clazz, CreativeTabs tab) {
+    public BlockHFEnumRotatableTile(Material material, Class<E> clazz, CreativeTabs tab) {
         super(material, clazz, tab);
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
     }

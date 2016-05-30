@@ -36,11 +36,15 @@ public class AnimalRegistry implements IAnimalHandler {
 
     @Override
     public boolean canEat(ItemStack stack, AnimalFoodType... types) {
-        AnimalFoodType type = registry.get(AbstractItemHolder.getHolder(stack, keyMap));
-        if (type == null) return false;
-        else {
-            for (AnimalFoodType t : types) {
-                if (type == t) return true;
+        for (AbstractItemHolder holder: keyMap.get(stack.getItem())) {
+            if (holder.matches(stack)) {
+                AnimalFoodType type = registry.get(holder);
+                if (type == null) continue;
+                else {
+                    for (AnimalFoodType t: types) {
+                        if (type == t) return true;
+                    }
+                }
             }
         }
 

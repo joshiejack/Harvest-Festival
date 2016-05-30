@@ -11,10 +11,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.FMLControlledNamespacedRegistry;
 import net.minecraftforge.fml.common.registry.PersistentRegistryManager;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
@@ -50,7 +47,11 @@ public class FoodRegistry implements IFoodRegistry {
 
     @Override
     public List<ICookingIngredient> getCookingComponents(ItemStack stack) {
-        return (List<ICookingIngredient>) registry.get(AbstractItemHolder.getHolder(stack, keyMap));
+        for (AbstractItemHolder holder: keyMap.get(stack.getItem())) {
+            if (holder.matches(stack)) return (List<ICookingIngredient>) registry.get(holder);
+        }
+
+        return new ArrayList<>();
     }
 
     @Override

@@ -4,7 +4,7 @@
 - J = Joshie
 
 ### To Do
-- Register Vanilla Items and HFItems as gift types
+- Register HFItems as gift types
 - Make NPCs leave for work early, and leave for home early
 - Add Schedules for NPCs, where they visit specific buildings at certain times
 - Schedule Based Conversations

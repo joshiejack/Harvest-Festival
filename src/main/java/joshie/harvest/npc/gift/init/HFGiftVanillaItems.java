@@ -182,5 +182,15 @@ public class HFGiftVanillaItems {
         assign(RECORD_WARD, RARE);
         assign(RECORD_11, RARE);
         assign(RECORD_WAIT, RARE);
+        assign(PRISMARINE_SHARD, PRETTY, WATERY);
+        assign(PRISMARINE_CRYSTALS, PRETTY, RARE, WATERY);
+        assign(BANNER, BATTLE, KNITTING);
+        assign(END_CRYSTAL, RARE, SCARY);
+        assign(ELYTRA, RARE, TECHNOLOGY);
+        assign(CHORUS_FRUIT, NATURE, SCARY, FARMING);
+        assign(CHORUS_FRUIT_POPPED, NATURE, SCARY, FARMING);
+        assign(BEETROOT_SEEDS, NATURE, CHEAP, FARMING);
+        assign(BEETROOT, NATURE, COOKING, FARMING);
+        assign(BEETROOT_SOUP, NATURE, COOKING);
     }
 }

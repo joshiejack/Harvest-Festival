@@ -1,15 +1,14 @@
 package joshie.harvest.player.tracking;
 
-import com.google.common.collect.Multimap;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ISizeable;
 import joshie.harvest.api.core.ISizedProvider;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropProvider;
+import joshie.harvest.core.handlers.SizeableRegistry;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.helpers.NBTHelper.ISaveable;
 import joshie.harvest.core.lib.Sizeable;
-import joshie.harvest.core.handlers.SizeableRegistry;
 import joshie.harvest.crops.Crop;
 import joshie.harvest.crops.CropRegistry;
 import net.minecraft.item.Item;
@@ -156,14 +155,6 @@ public class TrackingData {
             else if (stack.getItem() instanceof ISizedProvider) return new SizeableHolder(((ISizedProvider)stack.getItem()).getSizeable(stack));
             else if (stack.getItemDamage() == OreDictionary.WILDCARD_VALUE) return new ItemHolder(stack.getItem());
             else return new ItemStackHolder(stack);
-        }
-
-        public static AbstractItemHolder getHolder(ItemStack stack, Multimap<Item, AbstractItemHolder> keyMap) {
-            for (AbstractItemHolder holder: keyMap.get(stack.getItem())) {
-                if (holder.matches(stack)) return holder;
-            }
-
-            return null;
         }
 
         public abstract boolean matches(ItemStack stack);

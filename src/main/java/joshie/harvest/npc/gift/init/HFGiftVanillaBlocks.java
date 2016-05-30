@@ -142,5 +142,15 @@ public class HFGiftVanillaBlocks {
         assign(DOUBLE_PLANT, CUTE, NATURE, PRETTY);
         assign(STAINED_GLASS, CONSTRUCTION);
         assign(STAINED_GLASS_PANE, CONSTRUCTION);
+        assign(PRISMARINE, WATERY);
+        assign(SEA_LANTERN, WATERY, PRETTY);
+        assign(STANDING_BANNER, BATTLE);
+        assign(RED_SANDSTONE, CONSTRUCTION);
+        assign(RED_SANDSTONE_STAIRS, CONSTRUCTION);
+        assign(PURPUR_BLOCK, CUTE, GIRLY, CONSTRUCTION);
+        assign(PURPUR_PILLAR, CUTE, GIRLY, CONSTRUCTION);
+        assign(PURPUR_SLAB, CUTE, GIRLY, CONSTRUCTION);
+        assign(PURPUR_STAIRS, CUTE, GIRLY, CONSTRUCTION);
+        assign(END_BRICKS, DANGER, CONSTRUCTION);
     }
 }

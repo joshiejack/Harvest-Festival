@@ -18,21 +18,15 @@ public abstract class Gifts {
         return Quality.DECENT;
     }
 
-    private AbstractItemHolder getHolder(ItemStack stack) {
-        for (AbstractItemHolder holder: keyMap.get(stack.getItem())) {
-            if (holder.matches(stack)) return holder;
-        }
-
-        return null;
-    }
-
     public boolean is(ItemStack stack, Category category) {
-        AbstractItemHolder holder = getHolder(stack);
-        if (holder == null) return false;
-        Category[] categories = gifts.get(holder);
-        if (categories == null || categories.length < 1) return false;
-        for (Category cat : categories) {
-            if (cat == category) return true;
+        for (AbstractItemHolder holder: keyMap.get(stack.getItem())) {
+            if (holder.matches(stack)) {
+                Category[] categories = gifts.get(holder);
+                if (categories == null || categories.length < 1) continue;
+                for (Category cat: categories) {
+                    if (cat == category) return true;
+                }
+            }
         }
 
         return false;
@@ -52,6 +46,10 @@ public abstract class Gifts {
         ItemStackHolder holder = new ItemStackHolder(stack);
         keyMap.get(stack.getItem()).add(holder);
         gifts.put(holder, categories);
+    }
+
+    public static void assignModID(String mod, Category... categories) {
+
     }
 
     public static void assign(Object object, Category... category) {

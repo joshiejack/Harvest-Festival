@@ -17,7 +17,6 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.lwjgl.opengl.GL11;
 
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -77,12 +76,11 @@ public class CalendarRender {
     public void onFogRender(RenderFogEvent event) {
         if (!event.getState().getMaterial().isLiquid()) {
             Weather weather = HFTrackers.getCalendar(MCClientHelper.getWorld()).getTodaysWeather();
+            if (weather.isSnow()) GlStateManager.setFogEnd(Math.min(event.getFarPlaneDistance(), 192.0F) * 0.5F);
             if (weather == Weather.BLIZZARD) {
-                GlStateManager.glFogi(GL11.GL_FOG_MODE, GL11.GL_EXP);
-                GL11.glFogf(GL11.GL_FOG_DENSITY, 0.15F);
+                GlStateManager.setFogStart(-200F);
             } else if (weather == Weather.SNOW) {
-                GlStateManager.glFogi(GL11.GL_FOG_MODE, GL11.GL_EXP);
-                GL11.glFogf(GL11.GL_FOG_DENSITY, 0.01F);
+                GlStateManager.setFogStart(0F);
             }
         }
     }

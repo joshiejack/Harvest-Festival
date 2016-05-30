@@ -62,8 +62,6 @@
 ### To Check
 - Can Spawn the Goddess by dropping relevant items in goddess water - J
 - ASM For Snow - J
-- Animals will give better products when cared for (brushing, talking, milking/shearing, treats) - J
-- Animal Pregnancy is working correctly (Impregnanted via miracle potion, takes few days to hatch) - J
 - All Cooking utensils work correctly - J
 - All Recipes can be successfully made - J
 - Cursed Tools are giving cursed effects - J

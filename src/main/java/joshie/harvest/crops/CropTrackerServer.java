@@ -13,7 +13,6 @@ import joshie.harvest.core.network.PacketSyncCrop;
 import joshie.harvest.crops.blocks.BlockHFCrops;
 import joshie.harvest.crops.blocks.BlockHFCrops.Stage;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -79,9 +78,7 @@ public class CropTrackerServer extends CropTracker implements ISaveable {
         if (!HFTrackers.getCalendar(getWorld()).getDate().equals(lastRain)) {
             lastRain = HFApi.calendar.cloneDate(HFTrackers.getCalendar(getWorld()).getDate());
             for (BlockPos position : cropTracker.keySet()) {
-                IBlockState state = getWorld().getBlockState(position);
-                hydrate(position, state);
-                getWorld().setBlockState(position.down(), state.withProperty(BlockFarmland.MOISTURE, 7), 2);
+                CropHelper.hydrate(getWorld(), position.down());
             }
         }
     }

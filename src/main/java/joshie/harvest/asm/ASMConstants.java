@@ -30,7 +30,9 @@ public class ASMConstants {
     public static final String STACK = "net.minecraft.item.ItemStack";
     public static final String STATE = "net.minecraft.block.state.IBlockState";
     public static final String WORLD = "net.minecraft.world.World";
+    public static final String WORLDCLIENT = "net.minecraft.client.multiplayer.WorldClient";
 
     //Harvest Festival
     public static final String WEATHER_RENDERER = "joshie.harvest.calendar.WeatherRenderer";
+    public static final String HFTRACKER = "joshie.harvest.core.handlers.HFTrackers";
 }

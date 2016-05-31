@@ -10,6 +10,8 @@ import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.npc.gui.ContainerNPC;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.event.EntityViewRenderEvent.FogColors;
 import net.minecraftforge.client.event.EntityViewRenderEvent.RenderFogEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -72,15 +74,35 @@ public class CalendarRender {
         }
     }
 
+    private static final BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+
     @SubscribeEvent
     public void onFogRender(RenderFogEvent event) {
         if (!event.getState().getMaterial().isLiquid()) {
-            Weather weather = HFTrackers.getCalendar(MCClientHelper.getWorld()).getTodaysWeather();
-            if (weather.isSnow()) GlStateManager.setFogEnd(Math.min(event.getFarPlaneDistance(), 192.0F) * 0.5F);
-            if (weather == Weather.BLIZZARD) {
-                GlStateManager.setFogStart(-200F);
-            } else if (weather == Weather.SNOW) {
-                GlStateManager.setFogStart(0F);
+            Minecraft mc = MCClientHelper.getMinecraft();
+            blockpos$mutableblockpos.setPos(mc.thePlayer.posX, mc.thePlayer.posY, mc.thePlayer.posZ);
+            int i1 = mc.gameSettings.fancyGraphics ? 10 : 5;
+            int j = MathHelper.floor_double(mc.thePlayer.posY);
+            int j2 = mc.theWorld.getPrecipitationHeight(blockpos$mutableblockpos).getY();
+            int k2 = j - i1;
+            int l2 = j + i1;
+
+            if (k2 < j2) {
+                k2 = j2;
+            }
+
+            if (l2 < j2) {
+                l2 = j2;
+            }
+
+            if (k2 != l2) {
+                Weather weather = HFTrackers.getCalendar(mc.theWorld).getTodaysWeather();
+                if (weather.isSnow()) GlStateManager.setFogEnd(Math.min(event.getFarPlaneDistance(), 192.0F) * 0.5F);
+                if (weather == Weather.BLIZZARD) {
+                    GlStateManager.setFogStart(-200F);
+                } else if (weather == Weather.SNOW) {
+                    GlStateManager.setFogStart(0F);
+                }
             }
         }
     }

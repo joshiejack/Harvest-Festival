@@ -21,9 +21,6 @@ public class HFOverride implements IFMLLoadingPlugin, IClassTransformer {
     static {
         asm.add(new SnowTransformer());
         asm.add(new WeatherTransformer());
-        //TODO: Future Plugins
-        //transformers.add(new PamTransformer());
-
         GsonBuilder builder = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping();
         Gson gson = builder.create();
         HFConfig.initASM(gson);

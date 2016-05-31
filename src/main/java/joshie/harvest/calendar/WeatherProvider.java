@@ -21,12 +21,12 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WeatherProvider extends WorldProviderSurface {
-    private static final IRenderHandler weather = new WeatherRenderer();
+    private static final IRenderHandler WEATHER_RENDERER = new WeatherRenderer();
 
     @SideOnly(Side.CLIENT)
     @Override
     public IRenderHandler getWeatherRenderer() {
-        return weather;
+        return WEATHER_RENDERER;
     }
 
     @SideOnly(Side.CLIENT)

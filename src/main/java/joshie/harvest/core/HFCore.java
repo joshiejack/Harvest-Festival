@@ -68,13 +68,13 @@ public class HFCore {
         PacketHandler.registerPacket(PacketSyncProductsProduced.class, Side.CLIENT);
     }
 
-    public static void postInit() {
-        WorldDestroyer.replaceWorldProvider();
-    }
-
     @SideOnly(Side.CLIENT)
     public static void initClient() {
         MinecraftForge.EVENT_BUS.register(new CalendarRender());
         MinecraftForge.EVENT_BUS.register(new RenderHandler());
+    }
+
+    public static void postInit() {
+        WorldDestroyer.replaceWorldProvider();
     }
 }

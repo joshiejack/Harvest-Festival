@@ -28,6 +28,8 @@ public class PacketSyncEverything extends AbstractSyncAnimal {
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        (getAnimal()).getData().fromBytes(buf);
+        if (getAnimal() != null) {
+            (getAnimal()).getData().fromBytes(buf);
+        }
     }
 }

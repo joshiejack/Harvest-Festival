@@ -153,12 +153,14 @@ public class BlockWood extends BlockHFEnumRotatableMeta<Woodware> implements IAn
             if (tile instanceof TileTrough) {
                 boolean isFilled = ((TileTrough)tile).getMaster().getFillAmount() > 0;
                 boolean north = isTrough(NORTH, world, pos);
-                boolean east = isTrough(EAST, world, pos);
                 boolean south = isTrough(SOUTH, world, pos);
-                boolean west = isTrough(WEST, world, pos);
+
                 if (north && !south) return isFilled ? state.withProperty(TYPE, Type.END_FILLED).withProperty(FACING, EAST) : state.withProperty(TYPE, Type.END_EMPTY).withProperty(FACING, EAST);
                 if (south && !north) return isFilled ? state.withProperty(TYPE, Type.END_FILLED).withProperty(FACING, WEST) : state.withProperty(TYPE, Type.END_EMPTY).withProperty(FACING, WEST);
                 if (south && north) return isFilled ? state.withProperty(TYPE, Type.MIDDLE_FILLED).withProperty(FACING, EAST) : state.withProperty(TYPE, Type.MIDDLE_EMPTY).withProperty(FACING, EAST);
+
+                boolean east = isTrough(EAST, world, pos);
+                boolean west = isTrough(WEST, world, pos);
                 if (west && east) return isFilled ? state.withProperty(TYPE, Type.MIDDLE_FILLED).withProperty(FACING, SOUTH) : state.withProperty(TYPE, Type.MIDDLE_EMPTY).withProperty(FACING, SOUTH);
                 if (east && !west) return isFilled ? state.withProperty(TYPE, Type.END_FILLED).withProperty(FACING, SOUTH) : state.withProperty(TYPE, Type.END_EMPTY).withProperty(FACING, SOUTH);
                 if (west && !east) return isFilled ? state.withProperty(TYPE, Type.END_FILLED).withProperty(FACING, NORTH) : state.withProperty(TYPE, Type.END_EMPTY).withProperty(FACING, NORTH);

@@ -11,19 +11,9 @@ public class PenguinPacketHandler implements IMessageHandler<PenguinPacket, IMes
     @Override
     public IMessage onMessage(final PenguinPacket message, final MessageContext ctx) {
         if (ctx.side == Side.CLIENT) {
-            Minecraft.getMinecraft().addScheduledTask(new Runnable() {
-                @Override
-                public void run() {
-                    message.handleQueuedClient(ctx.getClientHandler());
-                }
-            });
+            Minecraft.getMinecraft().addScheduledTask(() -> message.handleQueuedClient(ctx.getClientHandler()));
         } else {
-            FMLCommonHandler.instance().getMinecraftServerInstance().addScheduledTask(new Runnable() {
-                @Override
-                public void run() {
-                    message.handleQueuedServer(ctx.getServerHandler());
-                }
-            });
+            FMLCommonHandler.instance().getMinecraftServerInstance().addScheduledTask(() -> message.handleQueuedServer(ctx.getServerHandler()));
         }
 
         return null;

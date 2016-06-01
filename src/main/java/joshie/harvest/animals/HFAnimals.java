@@ -1,6 +1,8 @@
 package joshie.harvest.animals;
 
 import joshie.harvest.HarvestFestival;
+import joshie.harvest.animals.blocks.TileNest;
+import joshie.harvest.animals.blocks.TileTrough;
 import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.animals.entity.EntityHarvestSheep;
 import joshie.harvest.animals.item.ItemAnimalSpawner;
@@ -9,8 +11,6 @@ import joshie.harvest.animals.item.ItemAnimalTreat;
 import joshie.harvest.animals.render.ModelHarvestCow;
 import joshie.harvest.animals.render.ModelHarvestSheep;
 import joshie.harvest.animals.render.RenderHarvestAnimal;
-import joshie.harvest.animals.blocks.TileNest;
-import joshie.harvest.animals.blocks.TileTrough;
 import joshie.harvest.animals.type.AnimalChicken;
 import joshie.harvest.animals.type.AnimalCow;
 import joshie.harvest.animals.type.AnimalSheep;

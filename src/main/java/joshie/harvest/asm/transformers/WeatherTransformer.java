@@ -35,7 +35,6 @@ public class WeatherTransformer extends AbstractASM {
                         /** Cancels the rendering of rain particles if the weather type returns false on isRain **/
                         Label l0 = new Label();
                         mv.visitLabel(l0);
-                        mv.visitLineNumber(22, l0);
                         mv.visitVarInsn(ALOAD, 0);
                         String mc = !HFOverride.isObfuscated ? "mc" : "field_78531_r";
                         mv.visitFieldInsn(GETFIELD, toInternalClassName(ENTITY_RENDERER), mc, toDescriptor(MINECRAFT));
@@ -48,7 +47,6 @@ public class WeatherTransformer extends AbstractASM {
                         mv.visitJumpInsn(IFNE, l1);
                         mv.visitInsn(RETURN);
                         mv.visitLabel(l1);
-                        mv.visitLineNumber(23, l1);
                         mv.visitFrame(Opcodes.F_SAME, 0, null, 0, null);
                         mv.visitInsn(RETURN);
                         super.visitCode();

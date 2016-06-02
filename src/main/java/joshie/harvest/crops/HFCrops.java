@@ -4,11 +4,11 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.ICrop;
+import joshie.harvest.core.config.Crops;
 import joshie.harvest.core.helpers.SeedHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.base.BlockHFEnum;
 import joshie.harvest.crops.blocks.BlockHFCrops;
-import joshie.harvest.crops.blocks.BlockHFFarmland;
 import joshie.harvest.crops.handlers.*;
 import joshie.harvest.crops.items.*;
 import joshie.harvest.items.ItemBaseTool;
@@ -22,6 +22,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.EnumPlantType;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
@@ -34,7 +35,6 @@ import static joshie.harvest.core.HFTab.FARMING;
 public class HFCrops {
     //Crops and Custom Farmland
     public static final BlockHFEnum CROPS = new BlockHFCrops().setUnlocalizedName("crops.block");
-    public static final BlockHFEnum FARMLAND = new BlockHFFarmland().setUnlocalizedName("farmland");
 
     //Farming Tools
     public static final ItemBaseTool HOE = new ItemHoe().setUnlocalizedName("hoe");
@@ -95,10 +95,16 @@ public class HFCrops {
             //Register always in the ore dictionary
             ItemStack clone = crop.getCropStack().copy();
             clone.setItemDamage(OreDictionary.WILDCARD_VALUE);
-            String name = "crop" + WordUtils.capitalizeFully(crop.getRegistryName().getResourcePath().replace("_", " ").replace(" ", ""));
+
+            String name = "crop" + WordUtils.capitalizeFully(crop.getRegistryName().getResourcePath(), '_').replace("_", "");
             if (!isInDictionary(name, clone)) {
                 OreDictionary.registerOre(name, clone);
             }
+        }
+
+        MinecraftForge.EVENT_BUS.register(new BlockHFCrops.EventHandler());
+        if (Crops.disableVanillaMoisture) {
+            Blocks.FARMLAND.setTickRandomly(false);
         }
     }
 
@@ -106,7 +112,6 @@ public class HFCrops {
     public static void preInitClient() {
         CropStateMapper mapper = new CropStateMapper();
         ModelLoader.setCustomStateMapper(CROPS, mapper);
-        ModelLoader.setCustomStateMapper(FARMLAND, mapper);
     }
 
     @SideOnly(Side.CLIENT)

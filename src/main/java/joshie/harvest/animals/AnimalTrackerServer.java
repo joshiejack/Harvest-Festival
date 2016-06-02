@@ -12,7 +12,7 @@ import java.util.Iterator;
 
 public class AnimalTrackerServer extends AnimalTracker {
     private static final DamageSource natural_causes = new DamageSource("natural").setDamageBypassesArmor();
-    private HashSet<IAnimalData> animals = new HashSet<IAnimalData>();
+    private HashSet<IAnimalData> animals = new HashSet<>();
 
     @Override
     public void onJoinWorld(IAnimalData animal) {
@@ -21,9 +21,11 @@ public class AnimalTrackerServer extends AnimalTracker {
 
     @Override
     public void onDeath(IAnimalTracked animal) {
-        animals.remove(animal.getData());
-        for (PlayerTracker tracker : HFTrackers.getPlayerTrackers()) {
-            tracker.getRelationships().clear(animal);
+        if (!animal.getData().hasDied()) {
+            animals.remove(animal.getData());
+            for (PlayerTracker tracker : HFTrackers.getPlayerTrackers()) {
+                tracker.getRelationships().clear(animal);
+            }
         }
     }
 
@@ -37,6 +39,9 @@ public class AnimalTrackerServer extends AnimalTracker {
                 EntityAnimal animal = data.getAnimal();
                 if (animal != null) {
                     animal.attackEntityFrom(natural_causes, 1000F);
+                    for (PlayerTracker tracker : HFTrackers.getPlayerTrackers()) {
+                        tracker.getRelationships().clear((IAnimalTracked)animal);
+                    }
                 }
             }
         }

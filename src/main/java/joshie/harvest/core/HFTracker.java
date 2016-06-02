@@ -14,7 +14,7 @@ public abstract class HFTracker {
     }
 
     protected World getWorld() {
-        if (world.get() == null) {
+        if (world == null || world.get() == null) {
             world = new WeakReference<>(DimensionManager.getWorld(id));
         }
 

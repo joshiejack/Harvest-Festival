@@ -38,6 +38,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.event.entity.player.UseHoeEvent;
+import net.minecraftforge.event.world.BlockEvent.BreakEvent;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -357,6 +361,23 @@ public class BlockHFCrops extends BlockHFEnum<Stage> implements IPlantable, IGro
                 return CropHelper.getBlockState(world, pos, stage.getSection(), stage.isWithered());
             }
         } else return state;
+    }
+
+    public static class EventHandler {
+        @SubscribeEvent(priority = EventPriority.LOWEST)
+        public void onDirtTilled(UseHoeEvent event) {
+            if (!event.getWorld().isRemote) {
+                HFApi.tickable.addTickable(event.getWorld(), event.getPos(), HFApi.tickable.getTickableFromBlock(Blocks.FARMLAND));
+            }
+        }
+
+        @SubscribeEvent
+        public void onBlockBreak(BreakEvent event) {
+            IBlockState above = event.getWorld().getBlockState(event.getPos().up());
+            if (above .getBlock() == HFCrops.CROPS) {
+                event.setCanceled(true);
+            }
+        }
     }
 
     /*@Override

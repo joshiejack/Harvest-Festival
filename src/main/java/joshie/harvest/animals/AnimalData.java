@@ -49,6 +49,7 @@ public class AnimalData implements IAnimalData {
 
     private boolean isSick; //Whether the animal is sick or not
     private boolean wasSick; //Whether the animal was previously sick
+    private boolean hasDied; //Whether this animal is classed as dead
 
     //Product based stuff
     private int daysPassed; //How many days have passed so far
@@ -68,6 +69,11 @@ public class AnimalData implements IAnimalData {
         this.relatable = animal;
         this.data = animal.getData();
         this.type = animal.getType();
+    }
+
+    @Override
+    public boolean hasDied() {
+        return hasDied;
     }
 
     private int getDeathChance() {
@@ -97,6 +103,7 @@ public class AnimalData implements IAnimalData {
             if (currentLifespan > type.getMaxLifespan() || healthiness <= -120) return false;
             if (currentLifespan > type.getMinLifespan() || healthiness < 0) {
                 if (rand.nextInt(getDeathChance()) == 0) {
+                    hasDied = true;
                     return false;
                 }
             }

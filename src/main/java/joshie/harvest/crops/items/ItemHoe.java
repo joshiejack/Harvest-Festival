@@ -1,10 +1,8 @@
 package joshie.harvest.crops.items;
 
-import joshie.harvest.api.HFApi;
 import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.core.helpers.PlayerHelper;
 import joshie.harvest.core.helpers.generic.DirectionHelper;
-import joshie.harvest.crops.HFCrops;
 import joshie.harvest.items.ItemBaseTool;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
@@ -18,6 +16,9 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.player.UseHoeEvent;
+import net.minecraftforge.fml.common.eventhandler.Event.Result;
 
 import javax.annotation.Nullable;
 
@@ -64,6 +65,16 @@ public class ItemHoe extends ItemBaseTool {
         }
     }
 
+    private boolean canHoe(EntityPlayer player, ItemStack stack, World world, BlockPos pos) {
+        UseHoeEvent event = new UseHoeEvent(player, stack.copy(), world, pos);
+        if (MinecraftForge.EVENT_BUS.post(event)) return false;
+        if (event.getResult() == Result.ALLOW) {
+            return true;
+        }
+
+        return false;
+    }
+
     @Override
     protected void onFinishedCharging(World world, EntityLivingBase entity, @Nullable RayTraceResult result, ItemStack stack, ToolTier tier) {
         if (result != null && entity instanceof EntityPlayer) {
@@ -82,10 +93,10 @@ public class ItemHoe extends ItemBaseTool {
                         Block block = world.getBlockState(new BlockPos(x2, pos.getY(), z2)).getBlock();
                         if (world.isAirBlock(pos.up())) {
                             if ((block == Blocks.GRASS || block == Blocks.DIRT)) {
+                                if (!canHoe(player, stack, world, pos)) continue;
                                 doParticles(stack, player, world, new BlockPos(x2, pos.getY(), z2));
                                 if (!world.isRemote) {
-                                    world.setBlockState(new BlockPos(x2, pos.getY(), z2), HFCrops.FARMLAND.getDefaultState());
-                                    HFApi.tickable.addTickable(world, new BlockPos(x2, pos.getY(), z2));
+                                    world.setBlockState(new BlockPos(x2, pos.getY(), z2), Blocks.FARMLAND.getDefaultState());
                                 }
                             }
                         }

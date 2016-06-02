@@ -4,17 +4,19 @@ import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.ItemHelper;
-import joshie.harvest.crops.HFCrops;
-import joshie.harvest.crops.blocks.BlockHFFarmland;
-import joshie.harvest.crops.blocks.BlockHFFarmland.Moisture;
+import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class CropHelper {
+    public static final IBlockState WET_SOIL = Blocks.FARMLAND.getDefaultState().withProperty(BlockFarmland.MOISTURE, 7);
+    public static final IBlockState DRY_SOIL = Blocks.FARMLAND.getDefaultState().withProperty(BlockFarmland.MOISTURE, 0);
+
     public static IBlockState getBlockState(World world, BlockPos pos, PlantSection section, boolean withered) {
         ICropData data = HFTrackers.getCropTracker(world).getCropDataForLocation(pos);
         return data.getCrop().getStateHandler().getState(section, data.getStage(), withered);
@@ -31,7 +33,7 @@ public class CropHelper {
         boolean ret = !isHydrated(world, pos);
         if (ret) {
             HFTrackers.getCropTracker(world).hydrate(pos.up(), state);
-            world.setBlockState(pos, HFCrops.FARMLAND.getStateFromEnum(Moisture.WET), 2);
+            world.setBlockState(pos, WET_SOIL);
         }
 
         return ret;
@@ -39,8 +41,7 @@ public class CropHelper {
 
     //Returns whether the farmland is hydrated
     public static boolean isHydrated(World world, BlockPos pos) {
-        IBlockState state = world.getBlockState(pos);
-        return state.getBlock() instanceof BlockHFFarmland && HFCrops.FARMLAND.getEnumFromState(state) == Moisture.WET;
+        return world.getBlockState(pos) == WET_SOIL;
     }
 
     //Harvests the crop at this location

@@ -8,6 +8,7 @@ public class Crops {
     public static boolean alwaysGrow;
     public static boolean disableVanillaHoe;
     public static boolean disableVanillaSeeds;
+    public static boolean disableVanillaMoisture;
 
     public static void init() {
         alwaysGrow = getBoolean("Crops > Always Grow", false, "This setting when set to true, will make crops grow based on random tick instead of day by day, Take note that this also affects the number of seeds a crop bag will plant. It will only plant 3 seeds instead of a 3x3");
@@ -15,5 +16,6 @@ public class Crops {
         seasonalBonemeal = getBoolean("Crops > Seasonal Bonemeal", true, "If you have bonemeal enabled, with this setting active, bonemeal will only work when the crop is in season");
         disableVanillaSeeds = getBoolean("Disable Vanilla Seeds", false, "If this is true, vanilla seeds will not plant their crops");
         disableVanillaHoe = getBoolean("Disable Vanilla Hoe", false, "If this is true, vanilla hoes will not till dirt");
+        disableVanillaMoisture = getBoolean("Disable Vanilla Moisture", true, "If this is set to true then farmland will not automatically become wet, and must be watered, it will also not automatically revert to dirt. (Basically disables random ticks for farmland)");
     }
 }

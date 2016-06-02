@@ -87,7 +87,6 @@
 
 ### Textures
 - Crop Grass Better Texture - Y
-- Farmland Texture (Wet and Dry), Maybe just a slightly darker version of vanilla?
 - Textures for the NPCs which we stole + New Selection for Ondra > Ashlee - Y
 - Optional (Entirely, Everything else is more important, this is just extra fluff if you want something to do ^_^)
     - These wild items: http://fogu.com/hm6/chan8/wilditems.php (Block and item form, since they have to be gathered)

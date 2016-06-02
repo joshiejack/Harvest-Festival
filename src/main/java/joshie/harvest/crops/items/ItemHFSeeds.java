@@ -30,10 +30,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
+import static net.minecraft.init.Blocks.FARMLAND;
+
 public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
 
     public ItemHFSeeds() {
-        super(HFCrops.CROPS, HFCrops.FARMLAND);
+        super(HFCrops.CROPS, FARMLAND);
         setCreativeTab(HFTab.FARMING);
         setMaxDamage(Short.MAX_VALUE); //You know, max damage yo
         setHasSubtypes(true);

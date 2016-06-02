@@ -24,6 +24,9 @@ public interface IAnimalData {
     /** Call to check whether the animal is hungry or not **/
     boolean isHungry();
 
+    /** Returns true if this animal recently died **/
+    boolean hasDied();
+
     /** Called when a new day passes for this animal
      *  should return false if this change causes the animal to die.*/
     boolean newDay();

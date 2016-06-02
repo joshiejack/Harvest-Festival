@@ -47,8 +47,6 @@ public class WeatherTransformer extends AbstractASM {
                         mv.visitJumpInsn(IFNE, l1);
                         mv.visitInsn(RETURN);
                         mv.visitLabel(l1);
-                        mv.visitFrame(Opcodes.F_SAME, 0, null, 0, null);
-                        mv.visitInsn(RETURN);
                         super.visitCode();
                     }
                 };

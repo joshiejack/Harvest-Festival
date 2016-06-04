@@ -75,10 +75,21 @@ public class CalendarRender {
     }
 
     private static final BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+    private static double fogStart = 1D;
+    private static double fogTarget = 1D;
 
     @SubscribeEvent
     public void onFogRender(RenderFogEvent event) {
         if (!event.getState().getMaterial().isLiquid()) {
+            //Update the fog smoothly
+            if (fogTarget != fogStart) {
+                if (fogTarget > fogStart) {
+                    fogStart += 1D;
+                } else if (fogTarget < fogStart) {
+                    fogStart -= 1D;
+                }
+            }
+
             Minecraft mc = MCClientHelper.getMinecraft();
             blockpos$mutableblockpos.setPos(mc.thePlayer.posX, mc.thePlayer.posY, mc.thePlayer.posZ);
             int i1 = mc.gameSettings.fancyGraphics ? 10 : 5;
@@ -95,15 +106,23 @@ public class CalendarRender {
                 l2 = j2;
             }
 
+            Weather weather = HFTrackers.getCalendar(mc.theWorld).getTodaysWeather();
             if (k2 != l2) {
-                Weather weather = HFTrackers.getCalendar(mc.theWorld).getTodaysWeather();
-                if (weather.isSnow()) GlStateManager.setFogEnd(Math.min(event.getFarPlaneDistance(), 192.0F) * 0.5F);
                 if (weather == Weather.BLIZZARD) {
-                    GlStateManager.setFogStart(-200F);
+                    fogTarget = -200D;
                 } else if (weather == Weather.SNOW) {
-                    GlStateManager.setFogStart(0F);
-                }
+                    fogTarget = 0D;
+                } else fogTarget = 1D;
+            } else fogTarget = 1D;
+
+            //If we're snow or resetting the target
+            if (weather.isSnow() || fogTarget != fogStart) {
+                GlStateManager.setFogEnd(Math.min(event.getFarPlaneDistance(), 192.0F) * 0.5F);
+                GlStateManager.setFogStart((float) fogStart);
             }
+        } else {
+            fogStart = 1D;
+            fogTarget = 1D;
         }
     }
 

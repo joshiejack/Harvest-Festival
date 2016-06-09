@@ -61,7 +61,7 @@ public class WeatherRenderer extends IRenderHandler {
                     double d3 = (double)renderer.rainXCoords[i2] * 0.5D;
                     double d4 = (double)renderer.rainYCoords[i2] * 0.5D;
                     blockpos$mutableblockpos.setPos(l1, 0, k1);
-                    Biome biome = world.getBiomeGenForCoords(blockpos$mutableblockpos);
+                    Biome biome = world.getBiome(blockpos$mutableblockpos);
 
                     if (biome.canRain() || biome.getEnableSnow()) {
                         int j2 = world.getPrecipitationHeight(blockpos$mutableblockpos).getY();

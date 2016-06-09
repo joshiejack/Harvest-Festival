@@ -130,7 +130,7 @@ public class WeatherProvider extends WorldProviderSurface {
     public boolean canSnowAt(BlockPos pos, boolean checkLight) {
         Weather weather = HFTrackers.getCalendar(worldObj).getTodaysWeather();
         if (weather == Weather.SNOW || weather == Weather.BLIZZARD) {
-            Biome biome = worldObj.getBiomeGenForCoords(pos);
+            Biome biome = worldObj.getBiome(pos);
             float f = biome.getFloatTemperature(pos);
 
             if (f > 0.15F) {

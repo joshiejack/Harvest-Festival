@@ -27,7 +27,7 @@ public class TaskGoHome implements INPCTask {
             return (entity.worldObj.canBlockSeeSky(mutablePos));
         }
 
-        if ((!entity.worldObj.isDaytime() || entity.worldObj.isRaining() || !entity.worldObj.getBiomeGenForCoords(mutablePos).canRain()) && !entity.worldObj.provider.getHasNoSky()) { //If it's raining or night, send the npc home
+        if ((!entity.worldObj.isDaytime() || entity.worldObj.isRaining() || !entity.worldObj.getBiome(mutablePos).canRain()) && !entity.worldObj.provider.getHasNoSky()) { //If it's raining or night, send the npc home
             //If the entity is not inside
             return (entity.worldObj.canBlockSeeSky(mutablePos)); //If she can see the sky continue executing
         } else return false;

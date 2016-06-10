@@ -2,10 +2,13 @@ package joshie.harvest.asm;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import joshie.harvest.asm.transformers.*;
+import joshie.harvest.asm.transformers.AbstractASM;
+import joshie.harvest.asm.transformers.SnowTransformer;
+import joshie.harvest.asm.transformers.WeatherTransformer;
 import joshie.harvest.core.config.HFConfig;
 import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
+import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin.MCVersion;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
@@ -14,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+@MCVersion("1.9.4")
 public class HFOverride implements IFMLLoadingPlugin, IClassTransformer {
     public static boolean isObfuscated = false;
     private static List<AbstractASM> asm = new ArrayList<AbstractASM>();

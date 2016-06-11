@@ -25,13 +25,13 @@ public class HFTrackers {
 
     //The Client worlds
     @SideOnly(Side.CLIENT)
-    private static TIntObjectMap<SideHandler> CLIENT_WORLDS = new TIntObjectHashMap<>();
+    private static TIntObjectMap<SideHandler> CLIENT_WORLDS;
     //The Server worlds
     private static final TIntObjectMap<ServerHandler> SERVER_WORLDS = new TIntObjectHashMap<>();
 
     //The Client player
     @SideOnly(Side.CLIENT)
-    private static PlayerTrackerClient CLIENT_PLAYER;
+    private static PlayerTracker CLIENT_PLAYER;
 
     //Server Players
     private static HashMap<UUID, PlayerTrackerServer> SERVER_PLAYERS = new HashMap<>();
@@ -46,6 +46,7 @@ public class HFTrackers {
         CLIENT_PLAYER = new PlayerTrackerClient();
     }
 
+    @SideOnly(Side.CLIENT)
     private static SideHandler getClient(World world) {
         int dimension = world.provider.getDimension();
         SideHandler handler = CLIENT_WORLDS.get(dimension);
@@ -89,7 +90,7 @@ public class HFTrackers {
     
     @SideOnly(Side.CLIENT)
     public static PlayerTrackerClient getClientPlayerTracker() {
-        return CLIENT_PLAYER;
+        return (PlayerTrackerClient) CLIENT_PLAYER;
     }
     
     public static PlayerTrackerServer getServerPlayerTracker(EntityPlayer player) {

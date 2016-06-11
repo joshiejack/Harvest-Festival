@@ -14,8 +14,6 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.EnumPlantType;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Random;
@@ -24,7 +22,6 @@ public class Crop extends net.minecraftforge.fml.common.registry.IForgeRegistryE
     private static final Random rand = new Random();
 
     //CropData
-    @SideOnly(Side.CLIENT)
     protected IStateHandler iconHandler;
     protected ISoilHandler soilHandler;
     protected IDropHandler dropHandler;

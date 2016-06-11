@@ -21,12 +21,15 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WeatherProvider extends WorldProviderSurface {
-    private static final IRenderHandler WEATHER_RENDERER = new WeatherRenderer();
+    @SideOnly(Side.CLIENT)
+    private IRenderHandler WEATHER_RENDERER;
 
     @SideOnly(Side.CLIENT)
     @Override
     public IRenderHandler getWeatherRenderer() {
         if (!Calendar.ENABLE_FORECAST) return null;
+        if (WEATHER_RENDERER != null) return WEATHER_RENDERER;
+        else WEATHER_RENDERER = new WeatherRenderer();
         return WEATHER_RENDERER;
     }
 
@@ -39,6 +42,7 @@ public class WeatherProvider extends WorldProviderSurface {
     }
 
     @SideOnly(Side.CLIENT)
+    @Override
     public float getSunBrightness(float f) {
         if (!Calendar.ENABLE_SEASONAL_SKY) return super.getSunBrightness(f);
         float brightness = worldObj.getSunBrightnessBody(f);

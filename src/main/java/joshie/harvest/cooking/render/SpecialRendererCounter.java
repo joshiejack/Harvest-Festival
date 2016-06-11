@@ -9,7 +9,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class SpecialRendererCounter extends SpecialRendererCookware<TileCounter> {
     @Override
     public void translateIngredient(boolean isBlock, float position, float rotation, float offset1, float offset2) {
-        GlStateManager.translate(0.5F, -0.1F, 0.5F);
+        GlStateManager.translate(0.5F, 0.75F, 0.5F);
         GlStateManager.scale(0.5F, 0.5F, 0.5F);
         if (!isBlock) {
             GlStateManager.rotate(-90, 1F, 0F, 0F);

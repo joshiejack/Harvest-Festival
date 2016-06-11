@@ -183,11 +183,11 @@ public class HFIngredients {
         HFApi.cooking.register(new ItemStack(HFAnimals.MAYONNAISE), mayonnaise);
         HFApi.cooking.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.BUTTER), butter);
         HFApi.cooking.register(HFApi.cooking.getBestMeal("butter"), butter);
-        HFApi.cooking.register(HFApi.cooking.getBestMeal("egg.boiled"), boiled_egg);
+        HFApi.cooking.register(HFApi.cooking.getBestMeal("egg_boiled"), boiled_egg);
         HFApi.cooking.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.SASHIMI), sashimi);
         HFApi.cooking.register(HFApi.cooking.getBestMeal("sashimi"), sashimi);
         HFApi.cooking.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.EGG_SCRAMBLED), scrambled_egg);
-        HFApi.cooking.register(HFApi.cooking.getBestMeal("egg.scrambled"), scrambled_egg);
+        HFApi.cooking.register(HFApi.cooking.getBestMeal("egg_scrambled"), scrambled_egg);
         HFApi.cooking.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.COOKIES), cookies);
         HFApi.cooking.register(HFApi.cooking.getBestMeal("cookies"), cookies);
         HFApi.cooking.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.KETCHUP), ketchup);

@@ -83,7 +83,7 @@
 - Make Spawn Chicken Render the Chicken
 - Mine Floor in inventory renders
 - Goddess Water Texture
-- Render Food/Liquids in Mixer correctly, render food on counter correctly - J
+- Render Food/Liquids in Mixer correctly - J
 
 ### Textures
 - Crop Grass Better Texture - Y

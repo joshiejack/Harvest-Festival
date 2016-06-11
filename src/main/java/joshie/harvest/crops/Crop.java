@@ -315,7 +315,7 @@ public class Crop extends net.minecraftforge.fml.common.registry.IForgeRegistryE
 
     @Override
     public boolean equals(Object o) {
-        return o == this || o instanceof ICrop && getRegistryName().equals(((Crop) o).getRegistryName());
+        return o == this || o instanceof Crop && getRegistryName().equals(((Crop) o).getRegistryName());
     }
 
     @Override

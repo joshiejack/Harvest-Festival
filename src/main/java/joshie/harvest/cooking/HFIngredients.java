@@ -159,8 +159,8 @@ public class HFIngredients {
         HFApi.cooking.register(HFCrops.CUCUMBER.getCropStack(), cucumber);
         HFApi.cooking.register(HFCrops.STRAWBERRY.getCropStack(), strawberry);
         HFApi.cooking.register(HFCrops.CABBAGE.getCropStack(), cabbage);
-        HFApi.cooking.register(HFCrops.TOMATO.getCropStack(), tomato);
         HFApi.cooking.register(HFCrops.ONION.getCropStack(), onion);
+        HFApi.cooking.register(HFCrops.TOMATO.getCropStack(), tomato);
         HFApi.cooking.register(HFCrops.CORN.getCropStack(), corn);
         HFApi.cooking.register(HFCrops.PUMPKIN.getCropStack(), pumpkin);
         HFApi.cooking.register(new ItemStack(Blocks.PUMPKIN, 1, OreDictionary.WILDCARD_VALUE), pumpkin);

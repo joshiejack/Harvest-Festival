@@ -55,8 +55,8 @@ public class HFCrops {
     public static final ICrop CABBAGE = registerCrop("cabbage", 500, 250, 15, 0, 8, 0x8FFF40, SPRING).setStateHandler(new StateHandlerCabbage());
 
     //Summer Crops
-    public static final ICrop TOMATO = registerCrop("tomato", 150, 80, 8, 0, 0, 0XDCC307, SUMMER).setStateHandler(new StateHandlerOnion());
-    public static final ICrop ONION = registerCrop("onion", 200, 60, 10, 7, 0, 0XE60820, SUMMER).setAnimalFoodType(FRUIT).setStateHandler(new StateHandlerTomato());
+    public static final ICrop ONION = registerCrop("onion", 150, 80, 8, 0, 0, 0XDCC307, SUMMER).setStateHandler(new StateHandlerOnion());
+    public static final ICrop TOMATO = registerCrop("tomato", 200, 60, 10, 7, 0, 0XE60820, SUMMER).setAnimalFoodType(FRUIT).setStateHandler(new StateHandlerTomato());
     public static final ICrop CORN = registerCrop("corn", 300, 100, 15, 12, 0, 0XD4BD45, SUMMER).setStateHandler(new StateHandlerCorn());
     public static final ICrop PUMPKIN = registerCrop("pumpkin", 500, 125, 15, 0, 3, 0XE09A39, SUMMER).setGrowsToSide(Blocks.PUMPKIN).setStateHandler(new StateHandlerStem(Blocks.PUMPKIN));
     public static final ICrop PINEAPPLE = registerCrop("pineapple", 1000, 500, 21, 5, 8, 0XD7CF00, SUMMER).setAnimalFoodType(FRUIT).setStateHandler(new StateHandlerPineapple());

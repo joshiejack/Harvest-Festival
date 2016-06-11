@@ -68,10 +68,10 @@
 - Gathering is saving
 
 ### To Fix
-- Make Withered versions of crops be darker - J
 - Location of the flower in the spring season overlay - Y
 - Syncing Town Information to Players
 - When you can purchase buildings from a town
+- Fix Hoes
 
 ### Rendering
 - Make Blueprints Render in World

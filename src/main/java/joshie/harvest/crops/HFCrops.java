@@ -13,13 +13,17 @@ import joshie.harvest.crops.handlers.*;
 import joshie.harvest.crops.items.*;
 import joshie.harvest.items.ItemBaseTool;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.MinecraftForge;
@@ -27,6 +31,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 import org.apache.commons.lang3.text.WordUtils;
+
+import javax.annotation.Nullable;
 
 import static joshie.harvest.api.animals.AnimalFoodType.FRUIT;
 import static joshie.harvest.api.calendar.Season.*;
@@ -123,6 +129,19 @@ public class HFCrops {
                 return crop != null ? crop.getColor() : -1;
             }
         }, SEEDS);
+
+        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(new IBlockColor() {
+            @Override
+            public int colorMultiplier(IBlockState state, @Nullable IBlockAccess world, @Nullable BlockPos pos, int tintIndex) {
+                if (world != null && pos != null) {
+                    if (BlockHFCrops.isWithered(world.getBlockState(pos))) {
+                        return 0xA64DFF;
+                    }
+                }
+
+                return -1;
+            }
+        }, CROPS);
     }
 
     private static void registerVanillaCrop(Item item, ICrop crop) {

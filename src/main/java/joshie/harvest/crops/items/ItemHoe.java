@@ -1,6 +1,5 @@
 package joshie.harvest.crops.items;
 
-import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.core.helpers.PlayerHelper;
 import joshie.harvest.core.helpers.generic.DirectionHelper;
 import joshie.harvest.items.ItemBaseTool;
@@ -84,7 +83,7 @@ public class ItemHoe extends ItemBaseTool {
             if (!player.canPlayerEdit(pos.offset(front), front, stack)) return;
             else {
                 Block initial = world.getBlockState(pos).getBlock();
-                if (!(world.isAirBlock(pos.up()) && (initial == Blocks.GRASS || initial == Blocks.DIRT || initial == HFBlocks.DIRT))) {
+                if (!(world.isAirBlock(pos.up()) && (initial == Blocks.GRASS || initial == Blocks.DIRT))) {
                     return;
                 }
 

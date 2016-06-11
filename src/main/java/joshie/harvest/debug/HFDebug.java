@@ -26,7 +26,7 @@ public class HFDebug {
             //Stages
             for (int i = 1; i <= crop.amount; i++) {
                 String stage = "{\n" +
-                        "  \"parent\": \"block/crop\",\n" +
+                        "  \"parent\": \"harvestfestival:block/tinted_crop\",\n" +
                         "  \"textures\": {\n" +
                         "    \"crop\": \"harvestfestival:blocks/crops/" + crop.name + "_" + i + "\"\n" +
                         "  }\n" +

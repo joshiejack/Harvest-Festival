@@ -1,5 +1,5 @@
 {
-  "parent": "block/crop",
+  "parent": "harvestfestival:block/tinted_crop",
   "textures": {
     "crop": "harvestfestival:blocks/crops/tomato_1"
   }

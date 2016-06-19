@@ -3,7 +3,7 @@ package joshie.harvest.buildings.loader;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.buildings.Building;
-import joshie.harvest.buildings.BuildingRegistry;
+import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.PlaceableHelper;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
@@ -122,7 +122,7 @@ public class CodeGeneratorBuildings {
             }
 
             try {
-                String json = BuildingRegistry.getGson().toJson(building);
+                String json = HFBuildings.getGson().toJson(building);
                 PrintWriter writer = new PrintWriter("building.json", "UTF-8");
                 writer.write(json);
                 writer.close();

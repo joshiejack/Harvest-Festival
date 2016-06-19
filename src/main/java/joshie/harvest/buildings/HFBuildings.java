@@ -1,14 +1,25 @@
 package joshie.harvest.buildings;
 
+import com.google.gson.ExclusionStrategy;
+import com.google.gson.FieldAttributes;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.buildings.IBuilding;
+import joshie.harvest.buildings.loader.*;
+import joshie.harvest.buildings.placeable.Placeable;
+import joshie.harvest.core.helpers.ResourceLoader;
 import joshie.harvest.core.util.base.FMLDefinition;
 import joshie.harvest.core.util.base.ItemHFFML;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.Level;
@@ -45,6 +56,16 @@ public class HFBuildings {
         ModelLoader.setCustomMeshDefinition(STRUCTURES, definition);
     }
 
+    //Reload the Building data at this stage
+    public static void init() {
+        for (Building building: BuildingRegistry.REGISTRY.getValues()) {
+            building.initBuilding(getBuilding(building.getRegistryName()));
+        }
+
+        //Clear out the unused Gson
+        gson = null;
+    }
+
     @SideOnly(Side.CLIENT)
     public static void initClient() {
         for (Building building : BuildingRegistry.REGISTRY.getValues()) {
@@ -54,7 +75,7 @@ public class HFBuildings {
         }
     }
 
-    public static void init() {
+    public static void postInit() {
         //Barn Frame
         /*ChestGenHooks.addItem(LootStrings.BARN_FRAME, new WeightedRandomChestContent(new ItemStack(Items.WHEAT), 3, 7, 10));
         ChestGenHooks.addItem(LootStrings.BARN_FRAME, new WeightedRandomChestContent(new ItemStack(Items.CARROT), 3, 7, 10));
@@ -236,5 +257,37 @@ public class HFBuildings {
 
     private static IBuilding registerBuilding(String building, long cost, int wood, int stone) {
         return HFApi.buildings.registerBuilding(new ResourceLocation("harvestfestival", building), cost, wood, stone);
+    }
+
+    private static Gson gson; //Temporary
+    private static Building getBuilding(ResourceLocation resource) {
+        return getGson().fromJson(ResourceLoader.getJSONResource(resource, "buildings"), Building.class);
+    }
+
+    public static Gson getGson() {
+        //Create the gson if it's null
+        if (gson == null) {
+            GsonBuilder builder = new GsonBuilder().setPrettyPrinting().setExclusionStrategies(new SuperClassExclusionStrategy());
+            builder.registerTypeAdapter(Placeable.class, new PlaceableAdapter());
+            builder.registerTypeAdapter(IBlockState.class, new StateAdapter());
+            builder.registerTypeAdapter(ItemStack.class, new StackAdapter());
+            builder.registerTypeAdapter(ResourceLocation.class, new ResourceAdapter());
+            builder.registerTypeAdapter(TextComponentString.class, new TextComponentAdapter());
+            gson = builder.create();
+        }
+
+        return gson;
+    }
+
+    private static class SuperClassExclusionStrategy implements ExclusionStrategy {
+        @Override
+        public boolean shouldSkipClass(Class<?> clazz) {
+            return false;
+        }
+
+        @Override
+        public boolean shouldSkipField(FieldAttributes field) {
+            return field.getDeclaringClass().equals(Impl.class);
+        }
     }
 }

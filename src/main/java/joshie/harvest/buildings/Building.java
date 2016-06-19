@@ -48,23 +48,26 @@ public class Building extends net.minecraftforge.fml.common.registry.IForgeRegis
 
     public Building(){}
 
-    public void initBuilding(long cost, int wood, int stone) {
+    public Building setCosts(long cost, int wood, int stone) {
+        this.cost = cost;
+        this.wood = wood;
+        this.stone = stone;
+        return this;
+    }
+
+    public void initBuilding(Building building) {
         full_list = new ArrayList<>();
-        Collections.addAll(full_list, components);
+        Collections.addAll(full_list, building.components);
         for (Placeable placeable: full_list) {
             addToList(placeable);
         }
 
-        if (getRegistryName() != null) {
-            this.toLocalise = getRegistryName().getResourceDomain().toLowerCase() + ".structures." + getRegistryName().getResourcePath().toLowerCase();
+        if (this.getRegistryName() != null) {
+            this.toLocalise = this.getRegistryName().getResourceDomain().toLowerCase() + ".structures." + this.getRegistryName().getResourcePath().toLowerCase();
         }
 
-        this.cost = cost;
-        this.wood = wood;
-        this.stone = stone;
-
-        components = null;
-    }
+        this.components = null; //Wipe out my components
+     }
 
     public void addToList(Placeable placeable) {
         if (placeable instanceof PlaceableBlock) {

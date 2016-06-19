@@ -85,13 +85,6 @@ public class RegistryHelper {
         return block;
     }
 
-    //Short hand for registering tile entities
-    public static void registerTiles(String mod, Class<? extends TileEntity>... tiles) {
-        for (Class<? extends TileEntity> tile : tiles) {
-            GameRegistry.registerTileEntity(tile, mod + ":" + tile.getSimpleName());
-        }
-    }
-
     public static void registerTiles(Class<? extends TileEntity>... tiles) {
         for (Class<? extends TileEntity> tile : tiles) {
             GameRegistry.registerTileEntity(tile, MODID + ":" + tile.getSimpleName().replace("Tile", "").toLowerCase());

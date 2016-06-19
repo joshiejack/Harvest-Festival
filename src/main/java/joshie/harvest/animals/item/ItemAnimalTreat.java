@@ -10,7 +10,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 
-public class ItemAnimalTreat extends ItemHFEnum<Treat> implements ICreativeSorted {
+public class ItemAnimalTreat extends ItemHFEnum<ItemAnimalTreat, Treat> implements ICreativeSorted {
     public enum Treat {
         COW, SHEEP, CHICKEN, GENERIC
     }

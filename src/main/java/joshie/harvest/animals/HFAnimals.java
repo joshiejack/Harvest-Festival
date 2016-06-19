@@ -36,9 +36,9 @@ import static net.minecraftforge.fml.common.registry.EntityRegistry.registerModE
 
 public class HFAnimals {
     //Animal Items
-    public static final ItemHFEnum ANIMAL = new ItemAnimalSpawner().setUnlocalizedName("animal");
-    public static final ItemHFEnum TOOLS = new ItemAnimalTool().setUnlocalizedName("tool.animal");
-    public static final ItemHFEnum TREATS = new ItemAnimalTreat().setUnlocalizedName("treat");
+    public static final ItemAnimalSpawner ANIMAL = new ItemAnimalSpawner().setUnlocalizedName("animal");
+    public static final ItemAnimalTool TOOLS = new ItemAnimalTool().setUnlocalizedName("tool.animal");
+    public static final ItemAnimalTreat TREATS = new ItemAnimalTreat().setUnlocalizedName("treat");
 
     //Sizeable Animal Products
     public static final Item EGG = HFApi.sizeable.createSizedItem("egg", 50, 60, 80);

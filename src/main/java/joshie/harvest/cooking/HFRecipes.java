@@ -1,12 +1,11 @@
 package joshie.harvest.cooking;
 
 import joshie.harvest.api.cooking.ICookingIngredient;
-import joshie.harvest.items.ItemGeneral;
-import net.minecraft.item.ItemStack;
+import joshie.harvest.cooking.items.ItemIngredients;
 
+import static joshie.harvest.cooking.HFCooking.INGREDIENTS;
 import static joshie.harvest.cooking.HFIngredients.*;
 import static joshie.harvest.core.helpers.RecipeHelper.*;
-import static joshie.harvest.items.HFItems.GENERAL;
 
 public class HFRecipes {
     public static final Recipe NULL_RECIPE = new Recipe("null", new ICookingIngredient[0], new Meal(0, 0, 0, 0F, 0));
@@ -19,7 +18,7 @@ public class HFRecipes {
         addFryingPanRecipe("popcorn", 30, -1, corn).setOptionalIngredients(butter, salt);
         addFryingPanRecipe("cornflakes", 10, -2, corn, milk).setOptionalIngredients(sugar);
         addFryingPanRecipe("eggplant_happy", 30, -2, eggplant).setOptionalIngredients(sugar);
-        addFryingPanRecipe("egg_scrambled", 40, -3, egg, oil).setOptionalIngredients(butter, mayonnaise, salt).setAlternativeTexture(new ItemStack(GENERAL, 1, ItemGeneral.EGG_SCRAMBLED));
+        addFryingPanRecipe("egg_scrambled", 40, -3, egg, oil).setOptionalIngredients(butter, mayonnaise, salt).setAlternativeTexture(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.EGG_SCRAMBLED));
         addFryingPanRecipe("omelet", 50, -4, egg, oil, milk).setOptionalIngredients(salt);
         addFryingPanRecipe("omelet_rice", 60, -4, egg, milk, oil, riceball).setOptionalIngredients(cabbage, onion, mushroom, green_pepper, salt);
         addFryingPanRecipe("toast_french", 30, -2, egg, bread, oil, sugar).setOptionalIngredients(butter);
@@ -35,8 +34,8 @@ public class HFRecipes {
         addMixerRecipe("milk_strawberry", 30, -15, strawberry, milk).setOptionalIngredients(sugar);
         addMixerRecipe("juice_vegetable", 20, -20, juice_vegetable).setOptionalIngredients(cucumber, onion, cabbage, tomato, spinach, carrot, green_pepper, turnip, salt); //Yo this doesnt make any sense. It requires Vegetable Juice to make iteslf?
         addMixerRecipe("latte_vegetable", 30, -20, juice_vegetable, milk).setOptionalIngredients(cucumber, onion, cabbage, tomato, spinach, carrot, green_pepper, turnip, salt);
-        addMixerRecipe("ketchup", 1, 0, tomato, onion).setOptionalIngredients(salt, sugar).setAlternativeTexture(new ItemStack(GENERAL, 1, ItemGeneral.KETCHUP));
-        addMixerRecipe("butter", false, 1, 0, milk).setOptionalIngredients(salt).setAlternativeTexture(new ItemStack(GENERAL, 1, ItemGeneral.BUTTER));
+        addMixerRecipe("ketchup", 1, 0, tomato, onion).setOptionalIngredients(salt, sugar).setAlternativeTexture(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.KETCHUP));
+        addMixerRecipe("butter", false, 1, 0, milk).setOptionalIngredients(salt).setAlternativeTexture(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.BUTTER));
         addMixerRecipe("fishsticks", false, 5, -1, fish).setOptionalIngredients(salt);
 
         //Hand
@@ -45,7 +44,7 @@ public class HFRecipes {
         addNoUtensilRecipe("salad", 10, -3, salad_ingredient).setOptionalIngredients(mushroom, cucumber, cabbage, tomato, carrot, salt);
         addNoUtensilRecipe("sandwich", 8, -2, bread, sandwich_ingredient).setOptionalIngredients(butter, tomato, cucumber, salt, mayonnaise, mushroom);
         addNoUtensilRecipe("sushi", 30, -5, sashimi, riceball);
-        addNoUtensilRecipe("sashimi", 22, -4, fish).setAlternativeTexture(new ItemStack(GENERAL, 1, ItemGeneral.SASHIMI));
+        addNoUtensilRecipe("sashimi", 22, -4, fish).setAlternativeTexture(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.SASHIMI));
         addNoUtensilRecipe("sashimi_chirashi", 50, -7, sashimi, scrambled_egg, riceball, sashimi_vegetable);
 
         //Pot
@@ -72,7 +71,7 @@ public class HFRecipes {
         addOvenRecipe("dinnerroll", 9, -2, egg, milk, butter);
         //      addOvenRecipe("bun.jam", 40, -5, egg, milk, jam); //Numbers missing
         addOvenRecipe("doria", 25, -3, onion, butter, milk, riceball, flour);
-        addOvenRecipe("cookies", 15, -5, egg, flour, butter).setOptionalIngredients(sugar).setAlternativeTexture(new ItemStack(GENERAL, 1, ItemGeneral.COOKIES));
+        addOvenRecipe("cookies", 15, -5, egg, flour, butter).setOptionalIngredients(sugar).setAlternativeTexture(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.COOKIES));
         addOvenRecipe("cookies_chocolate", 30, -5, cookies, chocolate);
         //      addOvenRecipe("cake", 46, -11, egg, flour, butter, fruit_ingredient).setOptionalIngredients(egg, flour, butter, orange, pineapple, strawberry, peach, grape_wild); //Ingredients missing
         addOvenRecipe("cake_chocolate", 70, -8, egg, flour, butter, chocolate).setOptionalIngredients(sugar, pineapple, apple, strawberry);

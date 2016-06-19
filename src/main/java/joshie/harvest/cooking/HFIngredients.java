@@ -3,6 +3,7 @@ package joshie.harvest.cooking;
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.ICookingIngredient;
+import joshie.harvest.cooking.items.ItemIngredients;
 import joshie.harvest.cooking.render.MappingEvent;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.items.HFItems;
@@ -11,6 +12,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
+
+import static joshie.harvest.cooking.HFCooking.INGREDIENTS;
 
 public class HFIngredients {
     /**
@@ -181,8 +184,8 @@ public class HFIngredients {
         HFApi.cooking.register(new ItemStack(HFAnimals.MILK), milk);
         HFApi.cooking.register(new ItemStack(Items.MILK_BUCKET, 1, OreDictionary.WILDCARD_VALUE), milk);
         HFApi.cooking.register(new ItemStack(HFAnimals.MAYONNAISE), mayonnaise);
-        HFApi.cooking.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.BUTTER), butter);
-        HFApi.cooking.register(HFApi.cooking.getBestMeal("butter"), butter);
+        HFApi.cooking.register(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.BUTTER), butter);
+        HFApi.cooking.register(HFApi.cooking.getBestMeal("butter"), boiled_egg);
         HFApi.cooking.register(HFApi.cooking.getBestMeal("egg_boiled"), boiled_egg);
         HFApi.cooking.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.SASHIMI), sashimi);
         HFApi.cooking.register(HFApi.cooking.getBestMeal("sashimi"), sashimi);

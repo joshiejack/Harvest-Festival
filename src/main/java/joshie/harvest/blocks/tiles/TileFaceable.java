@@ -20,7 +20,7 @@ public class TileFaceable extends TileHarvest implements IFaceable {
 
     @Override
     public EnumFacing getFacing() {
-        return orientation;
+        return orientation != null ? orientation : EnumFacing.NORTH;
     }
 
     @Nullable

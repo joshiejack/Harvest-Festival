@@ -61,8 +61,6 @@
 
 ### To Check
 - ASM For Snow - J
-- All Cooking utensils work correctly - J
-- All Recipes can be successfully made - J
 - Cursed Tools are giving cursed effects - J
 - Gathering is saving
 
@@ -82,7 +80,6 @@
 - Make Spawn Chicken Render the Chicken
 - Mine Floor in inventory renders
 - Goddess Water Texture
-- Render Food/Liquids in Mixer correctly - J
 
 ### Textures
 - Crop Grass Better Texture - Y

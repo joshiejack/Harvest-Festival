@@ -16,7 +16,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public abstract class ItemHFEnum<E extends Enum<E>> extends ItemHFBase implements ICreativeSorted {
+public abstract class ItemHFEnum<I extends ItemHFEnum, E extends Enum<E>> extends ItemHFBase implements ICreativeSorted {
     protected final E[] values;
     protected final String prefix;
 
@@ -35,9 +35,9 @@ public abstract class ItemHFEnum<E extends Enum<E>> extends ItemHFBase implement
     }
 
     @Override
-    public ItemHFEnum setUnlocalizedName(String name) {
+    public I setUnlocalizedName(String name) {
         super.setUnlocalizedName(name);
-        return this;
+        return (I) this;
     }
 
     @Override

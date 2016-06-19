@@ -19,7 +19,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
-public class ItemSizeable extends ItemHFEnum<Size> implements IShippable, ICreativeSorted, ISizedProvider {
+public class ItemSizeable extends ItemHFEnum<ItemHFEnum, Size> implements IShippable, ICreativeSorted, ISizedProvider {
     private final Sizeable sizeable;
     private final String unlocalised;
 

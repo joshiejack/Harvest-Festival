@@ -1,8 +1,12 @@
-package joshie.harvest.cooking;
+package joshie.harvest.cooking.items;
 
 import joshie.harvest.api.cooking.IAltItem;
 import joshie.harvest.api.cooking.IMeal;
 import joshie.harvest.api.core.ICreativeSorted;
+import joshie.harvest.cooking.FoodRegistry;
+import joshie.harvest.cooking.HFRecipes;
+import joshie.harvest.cooking.Recipe;
+import joshie.harvest.cooking.Utensil;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.config.General;
 import joshie.harvest.core.handlers.HFTrackers;

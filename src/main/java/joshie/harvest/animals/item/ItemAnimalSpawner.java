@@ -13,7 +13,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class ItemAnimalSpawner extends ItemHFEnum<Spawner> {
+public class ItemAnimalSpawner extends ItemHFEnum<ItemAnimalSpawner, Spawner> {
     public enum Spawner {
         COW, SHEEP, CHICKEN;
     }

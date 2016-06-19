@@ -24,7 +24,7 @@ import java.util.HashMap;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.*;
 import static net.minecraft.util.text.TextFormatting.AQUA;
 
-public class ItemAnimalTool extends ItemHFEnum<Tool> implements ICreativeSorted {
+public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> implements ICreativeSorted {
     public enum Tool {
         MILKER, BRUSH, MEDICINE, CHICKEN_FEED, MIRACLE_POTION
     }

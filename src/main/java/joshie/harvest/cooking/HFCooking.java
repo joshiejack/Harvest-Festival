@@ -1,9 +1,12 @@
 package joshie.harvest.cooking;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.blocks.tiles.*;
+import joshie.harvest.blocks.tiles.TileMarker;
 import joshie.harvest.buildings.render.PreviewRender;
 import joshie.harvest.cooking.blocks.*;
+import joshie.harvest.cooking.items.ItemIngredients;
+import joshie.harvest.cooking.items.ItemMeal;
+import joshie.harvest.cooking.items.ItemUtensil;
 import joshie.harvest.cooking.render.*;
 import joshie.harvest.core.helpers.ModelHelper;
 import joshie.harvest.core.util.base.BlockHFEnum;
@@ -22,10 +25,12 @@ public class HFCooking {
     //Cooking
     public static final BlockHFEnum COOKWARE = new BlockCookware().setUnlocalizedName("cookware");
     public static final ItemMeal MEAL = (ItemMeal) new ItemMeal().setUnlocalizedName("meal");
+    public static final ItemUtensil UTENSILS = new ItemUtensil().setUnlocalizedName("utensils");
+    public static final ItemIngredients INGREDIENTS = new ItemIngredients().setUnlocalizedName("ingredients");
 
     public static void preInit() {
         HFApi.cooking.registerRecipeHandler(new MayoRecipeHandler());
-        registerTiles(TileFridge.class, TileFryingPan.class, TileCounter.class, TileMarker.class, TileMixer.class, TileOven.class, TilePot.class);
+        registerTiles(TileFridge.class, TileFryingPan.class, TileCounter.class, TileMixer.class, TileOven.class, TilePot.class);
     }
 
     @SideOnly(Side.CLIENT)

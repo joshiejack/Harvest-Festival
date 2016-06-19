@@ -40,7 +40,7 @@ public abstract class SpecialRendererCookware<T extends TileCooking> extends Til
         ArrayList<ItemStack> ingredients = tile.getIngredients();
         ItemStack result = tile.getResult();
         if (result != null) {
-            renderResult(result);
+            renderResult(tile, result);
         }
 
         int fluidId = 0;
@@ -60,9 +60,13 @@ public abstract class SpecialRendererCookware<T extends TileCooking> extends Til
     public void renderFluid(int i, World world, ResourceLocation fluid) {}
 
     public abstract void translateIngredient(boolean isBlock, float position, float rotation, float offset1, float offset2);
-    public abstract void translateResult(boolean isBlock);
+    public void translateResult(boolean isBlock) {}
 
-    private void renderIngredient(ItemStack stack, float position, float rotation, float offset1, float offset2) {
+    public void translateResult(T t, boolean isBlock) {
+        translateResult(isBlock);
+    }
+
+    protected void renderIngredient(ItemStack stack, float position, float rotation, float offset1, float offset2) {
         GlStateManager.pushMatrix();
         RenderHelper.disableStandardItemLighting();
         GlStateManager.enableBlend();
@@ -84,7 +88,7 @@ public abstract class SpecialRendererCookware<T extends TileCooking> extends Til
         GlStateManager.popMatrix();
     }
 
-    private void renderResult(ItemStack stack) {
+    private void renderResult(T t, ItemStack stack) {
         GlStateManager.pushMatrix();
         RenderHelper.disableStandardItemLighting();
         GlStateManager.enableBlend();
@@ -96,7 +100,7 @@ public abstract class SpecialRendererCookware<T extends TileCooking> extends Til
             GL11.glShadeModel(GL11.GL_FLAT);
         }
 
-        translateResult(stack.getItem() instanceof ItemBlock);
+        translateResult(t, stack.getItem() instanceof ItemBlock);
         GlStateManager.blendFunc(GL11.GL_CONSTANT_ALPHA, GL11.GL_ONE_MINUS_CONSTANT_ALPHA);
         GL14.glBlendColor(1F, 1F, 1F, 1F);
         MINECRAFT.getRenderItem().renderItem(stack, FIXED);
@@ -106,7 +110,7 @@ public abstract class SpecialRendererCookware<T extends TileCooking> extends Til
         GlStateManager.popMatrix();
     }
 
-    protected void renderFluid(ResourceLocation fluid, float x, float y, float z, float size) {
+    protected void renderFluidPlane(ResourceLocation fluid, float x, float y, float z, float size) {
         GlStateManager.pushMatrix();
         GlStateManager.translate(x, y, z);
         RenderHelper.disableStandardItemLighting();
@@ -127,6 +131,78 @@ public abstract class SpecialRendererCookware<T extends TileCooking> extends Til
             vb.pos(size / 2f, 0, -size / 2f).tex(uMax, vMin).endVertex();
             vb.pos(-size / 2f, 0, -size / 2f).tex(uMin, vMin).endVertex();
             vb.pos(-size / 2f, 0, size / 2f).tex(uMin, vMax).endVertex();
+            tessellator.draw();
+        }
+
+        GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+        GlStateManager.disableBlend();
+        RenderHelper.enableStandardItemLighting();
+        GlStateManager.popMatrix();
+    }
+
+    protected void renderFluidCube(ResourceLocation fluid, float x, float y, float z, float size) {
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(x, y, z);
+        RenderHelper.disableStandardItemLighting();
+        GlStateManager.enableBlend();
+        GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+        Tessellator tessellator = Tessellator.getInstance();
+        VertexBuffer vb = tessellator.getBuffer();
+        TextureAtlasSprite sprite = MINECRAFT.getTextureMapBlocks().getTextureExtry(fluid.toString());
+        if (sprite != null) {
+            MINECRAFT.renderEngine.bindTexture(LOCATION_BLOCKS_TEXTURE);
+            double uMin = (double) sprite.getMinU();
+            double uMax = (double) sprite.getMaxU();
+            double vMin = (double) sprite.getMinV();
+            double vMax = (double) sprite.getMaxV();
+
+            //Draw Top
+            //
+            vb.begin(7, POSITION_TEX);
+            vb.pos(size / 2f, 0, size / 2f).tex(uMax, vMax).endVertex();
+            vb.pos(size / 2f, 0, -size / 2f).tex(uMax, vMin).endVertex();
+            vb.pos(-size / 2f, 0, -size / 2f).tex(uMin, vMin).endVertex();
+            vb.pos(-size / 2f, 0, size / 2f).tex(uMin, vMax).endVertex();
+            tessellator.draw();
+
+            //Draw Bottom
+            vb.begin(7, POSITION_TEX);
+            vb.pos(size / 2f, -size / 2f, -size / 2f).tex(uMax, vMax).endVertex();//Top Right
+            vb.pos(size / 2f, -size / 2f, size / 2f).tex(uMax, vMin).endVertex(); //Top Left
+            vb.pos(-size / 2f, -size / 2f, size / 2f).tex(uMin, vMin).endVertex(); //Bottom Left
+            vb.pos(-size / 2f, -size / 2f, -size / 2f).tex(uMin, vMax).endVertex(); //Bottom Right
+            tessellator.draw();
+
+            //Draw Side 1
+            vb.begin(7, POSITION_TEX);
+            vb.pos(-size / 2f, 0, size / 2f).tex(uMax, vMax).endVertex();
+            vb.pos(-size / 2f, 0, -size / 2f).tex(uMax, vMin).endVertex();
+            vb.pos(-size / 2f, -size / 2f, -size / 2f).tex(uMin, vMin).endVertex();
+            vb.pos(-size / 2f, -size / 2f, size / 2f).tex(uMin, vMax).endVertex();
+            tessellator.draw();
+
+            //Draw Side 2
+            vb.begin(7, POSITION_TEX);
+            vb.pos(size / 2f, 0, -size / 2f).tex(uMax, vMax).endVertex();
+            vb.pos(size / 2f, 0, size / 2f).tex(uMax, vMin).endVertex();
+            vb.pos(size / 2f, -size / 2f, size / 2f).tex(uMin, vMin).endVertex();
+            vb.pos(size / 2f, -size / 2f, -size / 2f).tex(uMin, vMax).endVertex();
+            tessellator.draw();
+
+            //Draw Side 3
+            vb.begin(7, POSITION_TEX);
+            vb.pos(size / 2f, 0, size / 2f).tex(uMax, vMax).endVertex(); // Top Right
+            vb.pos(-size / 2f, 0, size / 2f).tex(uMax, vMin).endVertex(); //Top Left
+            vb.pos(-size / 2f, -size / 2f, size / 2f).tex(uMin, vMin).endVertex(); //Bottom Left
+            vb.pos(size / 2f, -size / 2f, size / 2f).tex(uMin, vMax).endVertex(); //Bottom Right
+            tessellator.draw();
+
+            //Draw Side 2
+            vb.begin(7, POSITION_TEX);
+            vb.pos(-size / 2f, 0, -size / 2f).tex(uMax, vMax).endVertex(); //Top Right
+            vb.pos(size / 2f, 0, -size / 2f).tex(uMax, vMin).endVertex(); //Top Left
+            vb.pos(size / 2f, -size / 2f, -size / 2f).tex(uMin, vMin).endVertex(); //Bottom Left
+            vb.pos(-size / 2f, -size / 2f, -size / 2f).tex(uMin, vMax).endVertex(); //Bottom Right
             tessellator.draw();
         }
 

@@ -31,6 +31,7 @@ public abstract class TileCooking extends TileFaceable {
     private ArrayList<ItemStack> ingredients = new ArrayList<ItemStack>();
     private ItemStack result;
     private int last;
+    private boolean isInit = false;
 
     public float[] rotations = new float[20];
     public float[] offset1 = new float[20];
@@ -124,6 +125,22 @@ public abstract class TileCooking extends TileFaceable {
     @Override
     public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet) {
         super.onDataPacket(net, packet);
+
+        //Update the renderer
+        doRenderUpdate();
+    }
+
+    @Override
+    public void handleUpdateTag(NBTTagCompound tag) {
+        if (!isInit) {
+            isInit = true;
+            doRenderUpdate();
+        }
+
+        super.handleUpdateTag(tag);
+    }
+
+    protected void doRenderUpdate() {
         if (cooking) {
             rotations[last] = worldObj.rand.nextFloat() * 360F;
             offset1[last] = 0.5F - worldObj.rand.nextFloat();
@@ -131,10 +148,6 @@ public abstract class TileCooking extends TileFaceable {
             heightOffset[last] = 0.5F + (ingredients.size() * 0.001F);
         }
 
-        doRenderUpdate();
-    }
-
-    protected void doRenderUpdate() {
         worldObj.markBlockRangeForRenderUpdate(getPos(), getPos());
     }
 
@@ -143,7 +156,6 @@ public abstract class TileCooking extends TileFaceable {
         if (!worldObj.isRemote) {
             MCServerHelper.markForUpdate(worldObj, getPos());
             MCServerHelper.markForUpdate(worldObj, getPos().down());
-
         }
 
         super.markDirty();

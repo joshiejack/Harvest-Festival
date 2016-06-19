@@ -7,15 +7,19 @@ import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityFlowerPot;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.item.ItemExpireEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+import java.util.List;
 
 public class GoddessHandler {
     private static Item goddess;
@@ -23,6 +27,26 @@ public class GoddessHandler {
     public static boolean isGoddessFlower(ItemStack stack) {
         if (goddess == null) goddess = Item.getItemFromBlock(HFBlocks.FLOWERS);
         return stack.getItem() == goddess && stack.getItemDamage() == FlowerType.GODDESS.ordinal();
+    }
+
+    public static void spawnGoddess(World world, Entity entity) {
+        spawnGoddess(world, entity.posX, entity.posY, entity.posZ);
+    }
+
+    public static void spawnGoddess(World world, double x, double y, double z) {
+        List<EntityNPC> npcs = world.getEntitiesWithinAABB(EntityNPC.class, new AxisAlignedBB(x - 0.5F, y - 0.5F, z - 0.5F, x + 0.5F, y + 0.5F, z + 0.5F).expand(32D, 32D, 32D));
+        EntityNPC goddess = null;
+        for (EntityNPC npc: npcs) {
+            if (npc.getNPC() == HFNPCs.GODDESS) {
+                goddess = npc;
+                break;
+            }
+        }
+
+        goddess = goddess != null ? goddess : NPCHelper.getEntityForNPC(world, HFNPCs.GODDESS);
+        goddess.setPosition((int) x, (int) y + 1, (int) z);
+        goddess.resetSpawnHome();
+        world.spawnEntityInWorld(goddess);
     }
 
     //Goddess flower spawns goddess
@@ -34,10 +58,7 @@ public class GoddessHandler {
             if (stack != null) {
                 if (isGoddessFlower(stack)) {
                     if (event.getEntityItem().isInsideOfMaterial(Material.WATER)) {
-                        EntityNPC goddess = NPCHelper.getEntityForNPC(world, HFNPCs.GODDESS);
-                        goddess.setPosition((int) event.getEntityItem().posX, (int) event.getEntityItem().posY + 1, (int) event.getEntityItem().posZ);
-                        goddess.resetSpawnHome();
-                        world.spawnEntityInWorld(goddess);
+                        spawnGoddess(world, event.getEntityItem());
                     } else {
                         event.setExtraLife(5900);
                         event.setCanceled(true);
@@ -86,10 +107,7 @@ public class GoddessHandler {
                             if (!event.getWorld().isRemote) {
                                 event.getWorld().playEvent(2005, event.getPos(), 0);
                                 if (event.getWorld().rand.nextInt(5) == 0) {
-                                    EntityNPC goddess = NPCHelper.getEntityForNPC(event.getWorld(), HFNPCs.GODDESS);
-                                    goddess.setPosition(event.getPos().getX(), event.getPos().getY() + 1, event.getPos().getZ());
-                                    goddess.resetSpawnHome();
-                                    event.getWorld().spawnEntityInWorld(goddess);
+                                    spawnGoddess(event.getWorld(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ());
                                     lastGoddess = System.currentTimeMillis();
                                 }
                             }

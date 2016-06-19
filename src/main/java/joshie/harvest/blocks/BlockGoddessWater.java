@@ -1,14 +1,22 @@
 package joshie.harvest.blocks;
 
+import joshie.harvest.api.HFApi;
+import joshie.harvest.core.handlers.GoddessHandler;
 import joshie.harvest.core.helpers.generic.RegistryHelper;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockBush;
+import net.minecraft.block.BlockCrops;
+import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
@@ -16,7 +24,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
-import java.util.Random;
 
 public class BlockGoddessWater extends BlockFluidClassic {
     public BlockGoddessWater(Fluid fluid) {
@@ -28,15 +35,26 @@ public class BlockGoddessWater extends BlockFluidClassic {
         return null;
     }
 
-    private int tick;
-
     @Override
-    public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
-        super.updateTick(world, pos, state, rand);
-        tick++;
+    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
+        if (!world.isRemote && entity instanceof EntityItem) {
+            ItemStack stack = ((EntityItem)entity).getEntityItem();
+            if (stack != null) {
+                boolean spawn = false;
+                if (stack.getItem() instanceof ItemBlock) {
+                    Block block = Block.getBlockFromItem(stack.getItem());
+                    if (block instanceof BlockCrops || block instanceof BlockLeaves || block instanceof BlockBush) {
+                        spawn = true;
+                    }
+                } else if (HFApi.crops.getCropFromStack(stack) != null) {
+                    spawn = true;
+                }
 
-        if (tick % 15 == 0 && !world.isRemote && world instanceof WorldServer) {
-            //TODO: Accept items to summon goddess
+                if (spawn) {
+                    GoddessHandler.spawnGoddess(world, entity);
+                    entity.setDead();
+                }
+            }
         }
     }
 

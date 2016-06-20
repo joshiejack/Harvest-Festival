@@ -4562,7 +4562,7 @@
       "isBlock": false,
       "theData": {
         "homeString": "katlinhome",
-        "npc": "katlin",
+        "npc": "harvestfestival:katlin",
         "x": 5,
         "y": 2,
         "z": 11
@@ -10306,7 +10306,7 @@
       "isBlock": false,
       "theData": {
         "homeString": "liarahome",
-        "npc": "liara",
+        "npc": "harvestfestival:liara",
         "x": 7,
         "y": 5,
         "z": 10

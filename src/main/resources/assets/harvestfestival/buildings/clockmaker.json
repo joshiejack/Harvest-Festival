@@ -1383,7 +1383,7 @@
       "isBlock": false,
       "theData": {
         "homeString": "tiberiushome",
-        "npc": "tiberius",
+        "npc": "harvestfestival:tiberius",
         "x": 5,
         "y": 1,
         "z": 4
@@ -5428,7 +5428,7 @@
       "isBlock": false,
       "theData": {
         "homeString": "fennhome",
-        "npc": "fenn",
+        "npc": "harvestfestival:fenn",
         "x": 6,
         "y": 5,
         "z": 3

@@ -1670,7 +1670,7 @@
       "isBlock": false,
       "theData": {
         "homeString": "ondrahome",
-        "npc": "ondra",
+        "npc": "harvestfestival:ondra",
         "x": 6,
         "y": 1,
         "z": 4

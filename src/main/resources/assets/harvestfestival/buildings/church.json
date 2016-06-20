@@ -3747,7 +3747,7 @@
       "isBlock": false,
       "theData": {
         "homeString": "thomaswork",
-        "npc": "thomas",
+        "npc": "harvestfestival:thomas",
         "x": 2,
         "y": 3,
         "z": 4

@@ -3132,7 +3132,7 @@
       "isBlock": false,
       "theData": {
         "homeString": "jadehome",
-        "npc": "jade",
+        "npc": "harvestfestival:jade",
         "x": 4,
         "y": 4,
         "z": 3

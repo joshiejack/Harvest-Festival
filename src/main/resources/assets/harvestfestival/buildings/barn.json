@@ -1552,7 +1552,7 @@
       "isBlock": false,
       "theData": {
         "homeString": "jimhome",
-        "npc": "jim",
+        "npc": "harvestfestival:jim",
         "x": 3,
         "y": 1,
         "z": 6

@@ -2986,7 +2986,7 @@
       "isBlock": false,
       "theData": {
         "homeString": "jennihome",
-        "npc": "jenni",
+        "npc": "harvestfestival:jenni",
         "x": 5,
         "y": 4,
         "z": 11
@@ -21981,7 +21981,7 @@
       "isBlock": false,
       "theData": {
         "homeString": "candicehome",
-        "npc": "candice",
+        "npc": "harvestfestival:candice",
         "x": 8,
         "y": 15,
         "z": 10

@@ -889,7 +889,7 @@
       "isBlock": false,
       "theData": {
         "homeString": "jacobhome",
-        "npc": "jacob",
+        "npc": "harvestfestival:jacob",
         "x": 5,
         "y": 1,
         "z": 3

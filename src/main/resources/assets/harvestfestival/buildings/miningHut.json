@@ -1605,7 +1605,7 @@
       "isBlock": false,
       "theData": {
         "homeString": "brandonhome",
-        "npc": "brandon",
+        "npc": "harvestfestival:brandon",
         "x": 4,
         "y": 1,
         "z": 9

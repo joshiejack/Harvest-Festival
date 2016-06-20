@@ -9365,7 +9365,7 @@
       "isBlock": false,
       "theData": {
         "homeString": "goddesspond",
-        "npc": "goddess",
+        "npc": "harvestfestival:goddess",
         "x": 12,
         "y": 3,
         "z": 10

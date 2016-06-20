@@ -9368,7 +9368,7 @@
       "isBlock": false,
       "theData": {
         "homeString": "mayorhome",
-        "npc": "jamie",
+        "npc": "harvestfestival:jamie",
         "x": 5,
         "y": 2,
         "z": 10
@@ -21017,7 +21017,7 @@
       "isBlock": false,
       "theData": {
         "homeString": "cloehome",
-        "npc": "cloe",
+        "npc": "harvestfestival:cloe",
         "x": 5,
         "y": 5,
         "z": 3
@@ -21470,7 +21470,7 @@
       "isBlock": false,
       "theData": {
         "homeString": "abihome",
-        "npc": "abi",
+        "npc": "harvestfestival:abi",
         "x": 6,
         "y": 5,
         "z": 17

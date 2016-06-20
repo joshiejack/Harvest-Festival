@@ -1223,7 +1223,7 @@
       "isBlock": false,
       "theData": {
         "homeString": "danielhome",
-        "npc": "daniel",
+        "npc": "harvestfestival:daniel",
         "x": 4,
         "y": 2,
         "z": 8

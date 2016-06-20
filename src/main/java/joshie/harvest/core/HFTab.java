@@ -104,7 +104,7 @@ public class HFTab extends CreativeTabs {
     public static void preInit() {
         HFTab.TOWN.setStack(new ItemStack(HFBuildings.STRUCTURES, 1, 0));
         HFTab.MINING.setStack(new ItemStack(HFBlocks.STONE, 1, 0));
-        HFTab.FARMING.setStack(new ItemStack(HFCrops.HOE, 1, 0));
+        HFTab.FARMING.setStack(HFCrops.STRAWBERRY.getCropStack());
         HFTab.COOKING.setStack(HFApi.cooking.getMeal("salad"));
         HFTab.GATHERING.setStack(new ItemStack(HFItems.AXE, 1, 0));
     }

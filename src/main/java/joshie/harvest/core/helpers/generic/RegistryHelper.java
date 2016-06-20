@@ -27,6 +27,7 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.Level;
 
 import java.util.ArrayList;
@@ -99,6 +100,7 @@ public class RegistryHelper {
         }
     }
 
+    @SideOnly(Side.CLIENT)
     public static void registerEntityRendererItem(ItemStack stack, ModelBase model) {
         String name = model.getClass().getSimpleName().replace("ModelHarvest", "").toLowerCase();
         Class fake = FakeTileHelper.getFakeClass("Fake" + name, HFModInfo.FAKEANIMAL);
@@ -108,6 +110,7 @@ public class RegistryHelper {
         }
     }
 
+    @SideOnly(Side.CLIENT)
     public static void registerNPCRendererItem(NPC npc) {
         Class fake = FakeTileHelper.getFakeClass(npc.getRegistryName().toString().replace(":", ""), HFModInfo.FAKENPC);
         if (fake != null) {

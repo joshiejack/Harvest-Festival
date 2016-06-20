@@ -1,6 +1,6 @@
 package joshie.harvest.buildings.placeable;
 
-import joshie.harvest.blocks.BlockPreview.Direction;
+import joshie.harvest.core.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 

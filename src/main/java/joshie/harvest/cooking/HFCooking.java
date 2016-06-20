@@ -1,8 +1,6 @@
 package joshie.harvest.cooking;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.blocks.tiles.TileMarker;
-import joshie.harvest.buildings.render.PreviewRender;
 import joshie.harvest.cooking.blocks.*;
 import joshie.harvest.cooking.items.ItemIngredients;
 import joshie.harvest.cooking.items.ItemMeal;
@@ -36,7 +34,6 @@ public class HFCooking {
     @SideOnly(Side.CLIENT)
     public static void preInitClient() {
         ModelLoader.setCustomMeshDefinition(MEAL, new MealDefinition());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileMarker.class, new PreviewRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TileFryingPan.class, new SpecialRendererFryingPan());
         ClientRegistry.bindTileEntitySpecialRenderer(TilePot.class, new SpecialRendererPot());
         ClientRegistry.bindTileEntitySpecialRenderer(TileCounter.class, new SpecialRendererCounter());

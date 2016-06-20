@@ -3,6 +3,7 @@ package joshie.harvest.core.helpers;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.shops.IShop;
 import joshie.harvest.core.handlers.GuiHandler;
+import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import joshie.harvest.npc.entity.EntityNPCShopkeeper;
@@ -17,7 +18,7 @@ public class NPCHelper {
         return TownHelper.getClosestTownToEntityOrCreate(entity).getCoordinatesFor(npc.getHome());
     }
 
-    public static EntityNPC getEntityForNPC(World world, INPC npc) {
+    public static EntityNPC getEntityForNPC(World world, NPC npc) {
         if (npc.isBuilder()) {
             return new EntityNPCBuilder(world, npc);
         } else if (npc.getShop() != null) {

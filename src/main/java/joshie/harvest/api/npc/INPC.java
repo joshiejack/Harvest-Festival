@@ -33,9 +33,6 @@ public interface INPC extends IRelatable {
 
     /** Returns this render offset for this NPC**/
     float getOffset();
-    
-    /** Returns the unlocalised name for this NPC **/
-    String getUnlocalizedName();
 
     /** Returns the localised name for this NPC **/
     String getLocalizedName();

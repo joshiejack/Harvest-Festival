@@ -201,7 +201,7 @@ public class ModelHarvestSheep extends ModelBase {
             GlStateManager.popMatrix();
         } else {
             EntitySheep sheep = (EntitySheep) entity;
-            if (sheep.getSheared()) {
+            if (sheep != null && sheep.getSheared()) {
                 this.setShearedAngles(f, f1, f2, f3, f4, f5, entity);
                 this.sheared_frontLeftLeg.render(f5);
                 this.earLeft.render(f5);

@@ -9,6 +9,8 @@ public class HFModInfo {
     public static final String CAPNAME = "HF";
     public static final String BLOCKSNAME = "HFBlocks";
     public static final String COMMANDNAME = "hf";
+    public static final String FAKENPC = "joshie.harvest.npc.render.FakeNPCRenderer.FakeNPCTile";
+    public static final String FAKEANIMAL = "joshie.harvest.animals.render.FakeAnimalRenderer.FakeAnimalTile";
     
     public static final String VERSION = "@VERSION@";
 

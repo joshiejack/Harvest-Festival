@@ -4,6 +4,7 @@ import joshie.harvest.blocks.BlockFlower.FlowerType;
 import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.npc.HFNPCs;
+import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -43,7 +44,7 @@ public class GoddessHandler {
             }
         }
 
-        goddess = goddess != null ? goddess : NPCHelper.getEntityForNPC(world, HFNPCs.GODDESS);
+        goddess = goddess != null ? goddess : NPCHelper.getEntityForNPC(world, (NPC) HFNPCs.GODDESS);
         goddess.setPosition((int) x, (int) y + 1, (int) z);
         goddess.resetSpawnHome();
         world.spawnEntityInWorld(goddess);

@@ -18,9 +18,9 @@ harvestfestival.tooltip.mythic_stone=Used to Upgrade
 harvestfestival.tooltip.flower=Caller of the Goddess
 
 #Animals
-harvestfestival.animal.cow=Cow
-harvestfestival.animal.sheep=Sheep
-harvestfestival.animal.chicken=Chicken
+harvestfestival.spawner.cow=Cow
+harvestfestival.spawner.sheep=Sheep
+harvestfestival.spawner.chicken=Chicken
 entity.HarvestFestival.HarvestCow.name=Cow
 entity.HarvestFestival.HarvestSheep.name=Sheep
 entity.HarvestFestival.HarvestChicken.name=Chicken

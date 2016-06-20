@@ -1,6 +1,6 @@
 package joshie.harvest.npc.town;
 
-import joshie.harvest.blocks.BlockPreview.Direction;
+import joshie.harvest.core.util.Direction;
 import joshie.harvest.buildings.Building;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.core.handlers.HFTrackers;

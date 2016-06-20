@@ -2,8 +2,7 @@ package joshie.harvest.buildings;
 
 import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.api.shops.ISpecialPurchaseRules;
-import joshie.harvest.blocks.BlockPreview.Direction;
-import joshie.harvest.blocks.HFBlocks;
+import joshie.harvest.core.util.Direction;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.Placeable.ConstructionStage;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
@@ -148,7 +147,7 @@ public class Building extends net.minecraftforge.fml.common.registry.IForgeRegis
 
     @Override
     public ItemStack getBlueprint() {
-        return HFBlocks.PREVIEW.getItemStack(this);
+        return HFBuildings.BLUEPRINTS.getStackFromObject(this);
     }
 
     @Override

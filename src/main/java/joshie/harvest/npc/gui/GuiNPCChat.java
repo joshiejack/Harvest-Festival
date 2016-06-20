@@ -30,11 +30,11 @@ public class GuiNPCChat extends GuiNPCBase {
         StatData stats = HFTrackers.getClientPlayerTracker().getStats();
         string = string.replace("<BR>", SystemUtils.LINE_SEPARATOR);
         string = string.replace("%p", player.getDisplayNameString());
-        string = string.replace("%e", npc.getNPC().getUnlocalizedName());
+        string = string.replace("%e", npc.getNPC().getLocalizedName());
         string = string.replace("%$", "" + stats.getGold());
 
         if (npc.getLover() != null) {
-            string = string.replace("%rE", npc.getLover().getNPC().getUnlocalizedName());
+            string = string.replace("%rE", npc.getLover().getNPC().getLocalizedName());
         } else string = string.replace("%rE", Text.translate("nolover"));
 
         return string.replace("%rP", HFTrackers.getClientPlayerTracker().getRelationships().getLover());

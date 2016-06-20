@@ -55,7 +55,6 @@ public class HFCore {
         PacketHandler.registerPacket(PacketSyncBirthday.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketPurchaseItem.class, Side.SERVER);
         PacketHandler.registerPacket(PacketFreeze.class, Side.SERVER);
-        PacketHandler.registerPacket(PacketSyncMarker.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketSyncFridge.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketWateringCan.class, Side.SERVER);
         PacketHandler.registerPacket(PacketDismount.class, Side.SERVER);

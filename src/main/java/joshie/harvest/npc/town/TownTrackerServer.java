@@ -34,7 +34,7 @@ public class TownTrackerServer extends TownTracker {
         EntityNPCBuilder builder = new EntityNPCBuilder(entity.worldObj);
         builder.setPositionAndUpdate(entity.posX, entity.posY, entity.posZ);
         builder.resetSpawnHome();
-        entity.worldObj.spawnEntityInWorld(entity);
+        entity.worldObj.spawnEntityInWorld(builder);
         return builder;
     }
 

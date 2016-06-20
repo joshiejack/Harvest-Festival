@@ -3,6 +3,7 @@ package joshie.harvest.npc;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.api.calendar.ICalendarDate;
+import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.npc.IConditionalGreeting;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.relations.IRelatableDataHandler;
@@ -23,12 +24,13 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.npc.NPC.Age.ADULT;
 import static joshie.harvest.npc.NPC.Age.CHILD;
 import static joshie.harvest.npc.NPC.Gender.FEMALE;
 import static joshie.harvest.npc.NPC.Gender.MALE;
 
-public class NPC implements INPC {
+public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl<NPC> implements INPC {
     public enum Gender {
         MALE, FEMALE
     }
@@ -42,7 +44,6 @@ public class NPC implements INPC {
     protected String nothanks = "PASS!...";
     protected String accept = "WHAT?";
     protected String reject = "NO!";
-    protected String name;
 
     private Age age;
     private Gender gender;
@@ -58,8 +59,11 @@ public class NPC implements INPC {
     private int outsideColor;
     private boolean alex;
 
-    public NPC(String name, Gender gender, Age age, ICalendarDate birthday, int insideColor, int outsideColor) {
-        this.name = name;
+    public NPC() {
+        this(new ResourceLocation(MODID, "null"), Gender.MALE, Age.ADULT, HFApi.calendar.newDate(1, Season.SPRING, 1), 0, 0);
+    }
+
+    public NPC(ResourceLocation resource, Gender gender, Age age, ICalendarDate birthday, int insideColor, int outsideColor) {
         this.gender = gender;
         this.age = age;
         this.height = 1F;
@@ -68,33 +72,35 @@ public class NPC implements INPC {
         this.insideColor = insideColor;
         this.outsideColor = outsideColor;
 
+        String MODID = resource.getResourceDomain();
+        String name = resource.getResourcePath();
         String gift = StringUtils.capitalize(name);
         try {
             gifts = (Gifts) Class.forName(HFModInfo.JAVAPATH + "npc.gift.Gifts" + gift).newInstance();
         } catch (Exception ignored) {}
 
-        String key = HFModInfo.MODID + ".npc." + name + ".accept";
+        String key = MODID + ".npc." + name + ".accept";
         accept = Text.localize(key);
-        key = HFModInfo.MODID + ".npc." + name + ".reject";
+        key = MODID + ".npc." + name + ".reject";
         reject = Text.localize(key);
-        key = HFModInfo.MODID + ".npc." + name + ".gift.reject";
+        key = MODID + ".npc." + name + ".gift.reject";
         nothanks = Text.localize(key);
-        if (nothanks.equals(key)) nothanks = Text.localize(HFModInfo.MODID + ".npc.generic." + age.name().toLowerCase() + ".gift.reject");
+        if (nothanks.equals(key)) nothanks = Text.localize(MODID + ".npc.generic." + age.name().toLowerCase() + ".gift.reject");
 
         for (int i = 0; i < 6; i++) {
-            key = HFModInfo.MODID + ".npc." + name + ".gift." + Quality.values()[i].name().toLowerCase();
+            key = MODID + ".npc." + name + ".gift." + Quality.values()[i].name().toLowerCase();
             String translated = Text.localize(key);
             if (!translated.equals(key)) {
                 thanks.add(translated);
             } else {
-                key = HFModInfo.MODID + ".npc.generic." + age.name().toLowerCase() + ".gift." + Quality.values()[i].name().toLowerCase();
+                key = MODID + ".npc.generic." + age.name().toLowerCase() + ".gift." + Quality.values()[i].name().toLowerCase();
                 translated = Text.localize(key);
                 thanks.add(translated);
             }
         }
 
         for (int i = 1; i <= 32; i++) {
-            key = HFModInfo.MODID + ".npc." + name + ".greeting" + i;
+            key = MODID + ".npc." + name + ".greeting" + i;
             String greeting = Text.localize(key);
             if (!greeting.equals(key)) {
                 conditionals.add(new GreetingGeneric(greeting));
@@ -102,14 +108,14 @@ public class NPC implements INPC {
 
             //Adding Generic Child Greetings
             if (age == CHILD) {
-                key = HFModInfo.MODID + ".npc.generic.child.greeting" + i;
+                key = MODID + ".npc.generic.child.greeting" + i;
                 greeting = Text.localize(key);
                 if (!greeting.equals(key)) {
                     conditionals.add(new GreetingGeneric(greeting));
                 }
             } else {
                 //Add Generic Adult Greetings
-                key = HFModInfo.MODID + ".npc.generic.adult.greeting" + i;
+                key = MODID + ".npc.generic.adult.greeting" + i;
                 greeting = Text.localize(key);
                 if (!greeting.equals(key)) {
                     conditionals.add(new GreetingGeneric(greeting));
@@ -117,14 +123,14 @@ public class NPC implements INPC {
 
                 if (gender == MALE) {
                     //Add Generic Male Greetings
-                    key = HFModInfo.MODID + ".npc.generic.male.greeting" + i;
+                    key = MODID + ".npc.generic.male.greeting" + i;
                     greeting = Text.localize(key);
                     if (!greeting.equals(key)) {
                         conditionals.add(new GreetingGeneric(greeting));
                     }
                 } else if (gender == FEMALE) {
                     //Add Generic Female Greetings
-                    key = HFModInfo.MODID + ".npc.generic.female.greeting" + i;
+                    key = MODID + ".npc.generic.female.greeting" + i;
                     greeting = Text.localize(key);
                     if (!greeting.equals(key)) {
                         conditionals.add(new GreetingGeneric(greeting));
@@ -134,6 +140,8 @@ public class NPC implements INPC {
         }
 
         Collections.shuffle(conditionals);
+        setRegistryName(resource);
+        NPCRegistry.REGISTRY.register(this);
     }
 
     @Override
@@ -212,16 +220,10 @@ public class NPC implements INPC {
         return home;
     }
 
-    //Return the name of this character
-    @Override
-    public String getUnlocalizedName() {
-        return name;
-    }
-
     //Returns the localized name of this character
     @Override
     public String getLocalizedName() {
-        return Text.translate("npc." + getUnlocalizedName() + ".name");
+        return Text.localize(getRegistryName().getResourceDomain() + ".npc." + getRegistryName().getResourcePath() + ".name");
     }
 
     @Override
@@ -305,11 +307,11 @@ public class NPC implements INPC {
         if (o == null) return false;
         if (o == this) return true;
         if (o.getClass() != this.getClass()) return false;
-        return name.equals(((NPC) o).name);
+        return getRegistryName().equals(((NPC) o).getRegistryName());
     }
 
     @Override
     public int hashCode() {
-        return name.hashCode();
+        return getRegistryName().hashCode();
     }
 }

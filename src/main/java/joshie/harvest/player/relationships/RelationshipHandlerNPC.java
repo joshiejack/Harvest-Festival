@@ -1,11 +1,12 @@
 package joshie.harvest.player.relationships;
 
 import io.netty.buffer.ByteBuf;
-import joshie.harvest.api.HFApi;
-import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.relations.IRelatableDataHandler;
+import joshie.harvest.npc.NPC;
+import joshie.harvest.npc.NPCRegistry;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 
 public class RelationshipHandlerNPC implements IRelatableDataHandler {
@@ -19,17 +20,17 @@ public class RelationshipHandlerNPC implements IRelatableDataHandler {
         return new RelationshipHandlerNPC();
     }
 
-    private INPC npc;
+    private NPC npc;
 
     @Override
     public void toBytes(IRelatable relatable, ByteBuf buf) {
-        npc = (INPC) relatable;
-        ByteBufUtils.writeUTF8String(buf, npc.getUnlocalizedName());
+        npc = (NPC) relatable;
+        ByteBufUtils.writeUTF8String(buf, npc.getRegistryName().toString());
     }
 
     @Override
     public void fromBytes(ByteBuf buf) {
-        npc = HFApi.npc.get(ByteBufUtils.readUTF8String(buf));
+        npc = NPCRegistry.REGISTRY.getObject(new ResourceLocation(ByteBufUtils.readUTF8String(buf)));
     }
 
     @Override
@@ -39,11 +40,11 @@ public class RelationshipHandlerNPC implements IRelatableDataHandler {
 
     @Override
     public IRelatable readFromNBT(NBTTagCompound tag) {
-        return HFApi.npc.get(tag.getString("NPC"));
+        return NPCRegistry.REGISTRY.getObject(new ResourceLocation(tag.getString("NPC")));
     }
 
     @Override
     public void writeToNBT(IRelatable relatable, NBTTagCompound tag) {
-        tag.setString("NPC", ((INPC) relatable).getUnlocalizedName());
+        tag.setString("NPC", ((NPC) relatable).getRegistryName().toString());
     }
 }

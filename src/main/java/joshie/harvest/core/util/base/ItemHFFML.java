@@ -12,7 +12,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public abstract class ItemHFFML<E extends Impl<E>> extends ItemHFBase {
+public abstract class ItemHFFML<I extends ItemHFFML, E extends Impl<E>> extends ItemHFBase {
     protected FMLControlledNamespacedRegistry<E> registry;
     public ItemHFFML(FMLControlledNamespacedRegistry<E> registry) {
         super();
@@ -27,9 +27,14 @@ public abstract class ItemHFFML<E extends Impl<E>> extends ItemHFBase {
     }
 
     @Override
-    public ItemHFFML setUnlocalizedName(String name) {
+    public I setUnlocalizedName(String name) {
         super.setUnlocalizedName(name);
-        return this;
+        return (I) this;
+    }
+
+    @Override
+    public String getUnlocalizedName(ItemStack stack) {
+        return getName(stack);
     }
 
     public abstract E getNullValue();
@@ -69,9 +74,12 @@ public abstract class ItemHFFML<E extends Impl<E>> extends ItemHFBase {
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
         for (E e: registry.getValues()) {
-            if (isValidTab(tab, e)) {
+            if (isValidTab(tab, e) && e != getNullValue()) {
                 list.add(getCreativeStack(item, e));
             }
         }
     }
+
+    @SideOnly(Side.CLIENT)
+    public void registerModels(Item item, String name) {}
 }

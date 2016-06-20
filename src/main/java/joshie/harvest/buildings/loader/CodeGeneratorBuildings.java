@@ -1,7 +1,5 @@
 package joshie.harvest.buildings.loader;
 
-import joshie.harvest.api.HFApi;
-import joshie.harvest.api.npc.INPC;
 import joshie.harvest.buildings.Building;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.buildings.placeable.Placeable;
@@ -9,6 +7,8 @@ import joshie.harvest.buildings.placeable.PlaceableHelper;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.core.util.generic.IFaceable;
+import joshie.harvest.npc.NPC;
+import joshie.harvest.npc.NPCRegistry;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import joshie.harvest.npc.entity.EntityNPCShopkeeper;
@@ -21,6 +21,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntitySign;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
@@ -75,8 +76,8 @@ public class CodeGeneratorBuildings {
                             String field = name;
                             if (name.startsWith("npc.")) {
                                 field = name.replace("npc.", "");
-                                INPC npc = HFApi.npc.get(field);
-                                String npcField = npc == null ? "" : npc.getUnlocalizedName();
+                                NPC npc = NPCRegistry.REGISTRY.getObject(new ResourceLocation(field));
+                                String npcField = npc == null ? "" : npc.getRegistryName().toString();
                                 ret.add(new PlaceableNPC(field, npcField, x, y, z));
                                 ret.add(new PlaceableBlock(Blocks.AIR.getDefaultState(), x, y, z));
                                 continue;

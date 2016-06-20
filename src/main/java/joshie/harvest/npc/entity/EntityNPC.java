@@ -2,16 +2,15 @@ package joshie.harvest.npc.entity;
 
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.HarvestFestival;
-import joshie.harvest.api.HFApi;
-import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.npc.ai.INPCTask;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.relations.IRelatableProvider;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.core.helpers.TownHelper;
-import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.npc.HFNPCs;
+import joshie.harvest.npc.NPC;
+import joshie.harvest.npc.NPCRegistry;
 import joshie.harvest.npc.entity.ai.EntityAINPC;
 import joshie.harvest.npc.town.TownData;
 import net.minecraft.entity.EntityAgeable;
@@ -39,7 +38,7 @@ import java.util.UUID;
 public class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEntityAdditionalSpawnData, IRelatableProvider {
     private boolean init;
     private INPCTask task; //Currently executing task
-    protected INPC npc;
+    protected NPC npc;
     protected EntityNPC lover;
     private EntityPlayer talkingTo;
     private boolean isPlaying;
@@ -73,10 +72,10 @@ public class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEn
     }
 
     public EntityNPC(World world) {
-        this(world, HFNPCs.GODDESS);
+        this(world, (NPC) HFNPCs.GODDESS);
     }
 
-    public EntityNPC(World world, INPC npc) {
+    public EntityNPC(World world, NPC npc) {
         super(world);
         this.npc = npc;
         this.enablePersistence();
@@ -137,10 +136,10 @@ public class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEn
     }
 
     public ResourceLocation getSkin() {
-        return new ResourceLocation(HFModInfo.MODID + ":" + "textures/entity/" + npc.getUnlocalizedName() + ".png");
+        return new ResourceLocation(npc.getRegistryName().getResourceDomain() + ":" + "textures/entity/" + npc.getRegistryName().getResourcePath() + ".png");
     }
 
-    public INPC getNPC() {
+    public NPC getNPC() {
         return npc;
     }
 
@@ -263,14 +262,14 @@ public class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEn
         super.readEntityFromNBT(nbt);
         spawned = NBTHelper.readBlockPos("Original", nbt);
         townID = NBTHelper.readUUID("Town", nbt);
-        npc = HFApi.npc.get(nbt.getString("NPC"));
+        npc = NPCRegistry.REGISTRY.getObject(new ResourceLocation(nbt.getString("NPC")));
     }
 
     @Override
     public void writeEntityToNBT(NBTTagCompound nbt) {
         super.writeEntityToNBT(nbt);
         if (npc != null) {
-            nbt.setString("NPC", npc.getUnlocalizedName());
+            nbt.setString("NPC", npc.getRegistryName().toString());
         }
 
         NBTHelper.writeUUID("Town", nbt, townID);
@@ -280,7 +279,7 @@ public class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEn
     @Override
     public void writeSpawnData(ByteBuf buf) {
         if (npc != null) {
-            char[] name = npc.getUnlocalizedName().toCharArray();
+            char[] name = npc.getRegistryName().toString().toCharArray();
             buf.writeByte(name.length);
             for (char c : name) {
                 buf.writeChar(c);
@@ -297,9 +296,9 @@ public class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEn
             name[i] = buf.readChar();
         }
 
-        npc = HFApi.npc.get(new String(name));
+        npc = NPCRegistry.REGISTRY.getObject(new ResourceLocation(new String(name)));
         if (npc == null) {
-            npc = HFNPCs.GODDESS;
+            npc = (NPC) HFNPCs.GODDESS;
         }
 
         townID = UUID.fromString(ByteBufUtils.readUTF8String(buf));
@@ -307,6 +306,6 @@ public class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEn
 
     @Override
     public EntityAgeable createChild(EntityAgeable ageable) {
-        return new EntityNPC(worldObj, HFNPCs.GODDESS);
+        return new EntityNPC(worldObj, (NPC) HFNPCs.GODDESS);
     }
 }

@@ -1,6 +1,6 @@
 package joshie.harvest.buildings.placeable.entities;
 
-import joshie.harvest.blocks.BlockPreview.Direction;
+import joshie.harvest.core.util.Direction;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityHanging;
 import net.minecraft.util.EnumFacing;

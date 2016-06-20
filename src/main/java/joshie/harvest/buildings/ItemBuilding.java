@@ -1,7 +1,7 @@
 package joshie.harvest.buildings;
 
 import joshie.harvest.api.core.ICreativeSorted;
-import joshie.harvest.blocks.BlockPreview.Direction;
+import joshie.harvest.core.util.Direction;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.util.base.ItemHFFML;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,14 +12,9 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class ItemBuilding extends ItemHFFML<Building> implements ICreativeSorted {
+public class ItemBuilding extends ItemHFFML<ItemBuilding, Building> implements ICreativeSorted {
     public ItemBuilding() {
         super(BuildingRegistry.REGISTRY, HFTab.TOWN);
-    }
-
-    @Override
-    public String getUnlocalizedName(ItemStack stack) {
-        return getName(stack);
     }
 
     @Override

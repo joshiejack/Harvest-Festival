@@ -1,7 +1,7 @@
 package joshie.harvest.items;
 
-import joshie.harvest.buildings.ItemBuilding;
 import joshie.harvest.core.config.General;
+import joshie.harvest.core.util.base.ItemHFFML;
 import net.minecraft.item.Item;
 
 public class HFItems {
@@ -11,8 +11,6 @@ public class HFItems {
 
     //Misc
     public static final Item GENERAL = new ItemGeneral().setUnlocalizedName("general.item");
-
-    public static final Item SPAWNER_NPC = new ItemNPCSpawner().setUnlocalizedName("spawner.npc");
 
     public static void preInit() {
         //Add the debug item

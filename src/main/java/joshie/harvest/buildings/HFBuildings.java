@@ -7,11 +7,11 @@ import com.google.gson.GsonBuilder;
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.buildings.IBuilding;
+import joshie.harvest.buildings.items.ItemBlueprint;
 import joshie.harvest.buildings.loader.*;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.core.helpers.ResourceLoader;
 import joshie.harvest.core.util.base.FMLDefinition;
-import joshie.harvest.core.util.base.ItemHFFML;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -25,7 +25,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.Level;
 
 public class HFBuildings {
-    public static final ItemHFFML STRUCTURES = new ItemBuilding().setUnlocalizedName("structures");
+    public static final ItemBuilding STRUCTURES = new ItemBuilding().setUnlocalizedName("structures");
+    public static final ItemBlueprint BLUEPRINTS = new ItemBlueprint().setUnlocalizedName("blueprints");
 
     public static final Building null_building = new Building();
     public static final IBuilding BARN = registerBuilding("barn", 3000L, 160, 0).setRequirements("blacksmith");

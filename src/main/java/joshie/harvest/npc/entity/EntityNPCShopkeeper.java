@@ -1,6 +1,6 @@
 package joshie.harvest.npc.entity;
 
-import joshie.harvest.api.npc.INPC;
+import joshie.harvest.npc.NPC;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
@@ -21,7 +21,7 @@ public class EntityNPCShopkeeper extends EntityNPC<EntityNPCShopkeeper> {
         super(world);
     }
 
-    public EntityNPCShopkeeper(World world, INPC npc) {
+    public EntityNPCShopkeeper(World world, NPC npc) {
         super(world, npc);
     }
 

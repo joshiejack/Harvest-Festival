@@ -1,6 +1,6 @@
 package joshie.harvest.buildings;
 
-import joshie.harvest.blocks.BlockPreview.Direction;
+import joshie.harvest.core.util.Direction;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.Placeable.ConstructionStage;
 import joshie.harvest.core.helpers.TownHelper;

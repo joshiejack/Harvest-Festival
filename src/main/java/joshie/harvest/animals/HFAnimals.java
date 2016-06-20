@@ -15,7 +15,7 @@ import joshie.harvest.animals.type.AnimalChicken;
 import joshie.harvest.animals.type.AnimalCow;
 import joshie.harvest.animals.type.AnimalSheep;
 import joshie.harvest.api.HFApi;
-import joshie.harvest.core.util.base.ItemHFEnum;
+import joshie.harvest.core.helpers.generic.RegistryHelper;
 import joshie.harvest.crops.Crop;
 import joshie.harvest.crops.CropRegistry;
 import net.minecraft.client.renderer.entity.Render;
@@ -28,6 +28,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import static joshie.harvest.animals.AnimalRegistry.registerFoodsAsType;
+import static joshie.harvest.animals.item.ItemAnimalSpawner.Spawner.COW;
+import static joshie.harvest.animals.item.ItemAnimalSpawner.Spawner.SHEEP;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.CHICKEN_FEED;
 import static joshie.harvest.api.HFApi.animals;
 import static joshie.harvest.api.animals.AnimalFoodType.*;
@@ -47,8 +49,8 @@ public class HFAnimals {
     public static final Item WOOL = HFApi.sizeable.createSizedItem("wool", 100, 400, 500);
 
     public static void preInit() {
-        registerModEntity(EntityHarvestCow.class, "HarvestCow", 5, HarvestFestival.instance, 150, 3, true);
-        registerModEntity(EntityHarvestSheep.class, "HarvestSheep", 6, HarvestFestival.instance, 150, 3, true);
+        registerModEntity(EntityHarvestCow.class, "cow", 5, HarvestFestival.instance, 150, 3, true);
+        registerModEntity(EntityHarvestSheep.class, "sheep", 6, HarvestFestival.instance, 150, 3, true);
         registerFoodsAsType(CHICKEN, Items.CHICKEN, Items.COOKED_CHICKEN);
         registerFoodsAsType(FISH, Items.FISH, Items.COOKED_FISH);
         registerFoodsAsType(FRUIT, Items.APPLE, Items.MELON);
@@ -61,12 +63,6 @@ public class HFAnimals {
         animals.registerType("sheep", new AnimalSheep());
         animals.registerType("chicken", new AnimalChicken());
         registerTiles(TileNest.class, TileTrough.class);
-    }
-
-    public static void init() {
-        for (Crop crop : CropRegistry.REGISTRY.getValues()) {
-            animals.registerFoodAsType(crop.getCropStack(), crop.getFoodType());
-        }
     }
 
     @SideOnly(Side.CLIENT)
@@ -86,5 +82,15 @@ public class HFAnimals {
                 return new RenderHarvestAnimal(manager, new ModelHarvestSheep(), "sheep");
             }
         });
+
+
+        RegistryHelper.registerEntityRendererItem(ANIMAL.getStackFromEnum(COW), new ModelHarvestCow());
+        RegistryHelper.registerEntityRendererItem(ANIMAL.getStackFromEnum(SHEEP), new ModelHarvestSheep());
+    }
+
+    public static void init() {
+        for (Crop crop : CropRegistry.REGISTRY.getValues()) {
+            animals.registerFoodAsType(crop.getCropStack(), crop.getFoodType());
+        }
     }
 }

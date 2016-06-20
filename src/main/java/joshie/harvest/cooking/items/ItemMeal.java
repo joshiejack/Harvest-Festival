@@ -31,7 +31,7 @@ import java.util.List;
 
 import static net.minecraft.util.text.TextFormatting.DARK_GRAY;
 
-public class ItemMeal extends ItemHFFML<Recipe> implements ICreativeSorted, IAltItem {
+public class ItemMeal extends ItemHFFML<ItemMeal, Recipe> implements ICreativeSorted, IAltItem {
     public ItemMeal() {
         super(FoodRegistry.REGISTRY, HFTab.COOKING);
     }

@@ -1,8 +1,6 @@
 package joshie.harvest.blocks;
 
 import joshie.harvest.blocks.BlockFlower.FlowerType;
-import joshie.harvest.blocks.tiles.TileMarker;
-import joshie.harvest.core.helpers.generic.RegistryHelper;
 import joshie.harvest.core.util.base.BlockHFEnum;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -34,14 +32,12 @@ public class HFBlocks {
     public static final BlockHFEnum DIRT = new BlockDirt().setUnlocalizedName("dirt");
     //Misc
     public static final BlockHFEnum WOOD_MACHINES = new BlockWood().setUnlocalizedName("woodware");
-    public static final BlockPreview PREVIEW = (BlockPreview) new BlockPreview().setUnlocalizedName("preview");
 
     //Gathering
     public static final BlockHFEnum GATHERING = new BlockGathering().setUnlocalizedName("gathering");
 
     public static void preInit() {
         GODDESS.setBlock(GODDESS_WATER);
-        RegistryHelper.registerTiles(TileMarker.class);
     }
 
     @SideOnly(Side.CLIENT)

@@ -1,6 +1,6 @@
 package joshie.harvest.buildings.placeable.blocks;
 
-import joshie.harvest.blocks.BlockPreview.Direction;
+import joshie.harvest.core.util.Direction;
 import joshie.harvest.core.util.generic.IFaceable;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;

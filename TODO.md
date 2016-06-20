@@ -21,8 +21,7 @@
     - Add Free Standing ladders
     - Generate rooms in dimensions and keep track with the mine tracker
         - Different size and shaped rooms
-- Make all cooking equipment render things that they are cooking
-- Change Blueprints to not be a block but an item that you hover and click where you want them placed - J
+- Change Blueprints to so that you can hover and click where you want them placed with a preview of the building - J
 - Coin Render on hotbar
 - Make Mythic Axe Fell Whole Trees
 - Make Axes have an AOE that will break all branches/stumps
@@ -36,7 +35,6 @@
     - See https://github.com/joshiejack/Harvest-Festival/blob/4fc81be862b9686cf00a3b8b1d262a8b7106aaaf/src/main/java/joshie/harvest/core/lib/LootStrings.java
     - See https://github.com/joshiejack/Harvest-Festival/blob/4fc81be862b9686cf00a3b8b1d262a8b7106aaaf/src/main/java/joshie/harvest/buildings/loader/HFBuildings.java#L51
 - Change Items to Item Enums + Change Item Registry Helper
-- Change NPCS to use ForgeControlledNameSpace and use metadata instead of NBT where appropriate
 - Add Sprinkler Block
 
 ###(S)ounds, (E)ffects, (A)nimations
@@ -72,13 +70,9 @@
 
 ### Rendering
 - Make Blueprints Render in World
-- Make Blueprints Item Render
-- Make Spawn NPC Render the NPC
 - Mine Floor Connected Textures and Random Texture Overlays - Y, J?
-- Make Spawn Cow Render the Cow
-- Make Spawn Sheep Render the Sheep
-- Make Spawn Chicken Render the Chicken
 - Mine Floor in inventory renders
+- Make Spawn Chicken Render the Chicken
 - Goddess Water Texture
 
 ### Textures
@@ -94,6 +88,7 @@
     - http://fogu.com/hm6/chan5/mine1items.php
 
 ### Models + Textures
+- HarvestChicken - J
 - Rocks (Spring Mine (Ore Variation), Winter Mine Versions (Ore Variation), Overworld Rocks (Stone Only))
     - Large                                                
     - Medium                                               

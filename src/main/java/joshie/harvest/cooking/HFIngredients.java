@@ -3,17 +3,14 @@ package joshie.harvest.cooking;
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.ICookingIngredient;
-import joshie.harvest.cooking.items.ItemIngredients;
 import joshie.harvest.cooking.render.MappingEvent;
 import joshie.harvest.crops.HFCrops;
-import joshie.harvest.items.HFItems;
-import joshie.harvest.items.ItemGeneral;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
-import static joshie.harvest.cooking.HFCooking.INGREDIENTS;
+import static joshie.harvest.cooking.items.ItemIngredients.Ingredient.*;
 
 public class HFIngredients {
     /**
@@ -149,13 +146,13 @@ public class HFIngredients {
     }
 
     public static void init() {
-        HFApi.cooking.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.SALT), salt);
+        HFApi.cooking.register(HFCooking.INGREDIENTS.getStackFromEnum(SALT), salt);
         HFApi.cooking.register(new ItemStack(Items.SUGAR, 1, OreDictionary.WILDCARD_VALUE), sugar);
         HFApi.cooking.register(new ItemStack(Items.APPLE, 1, OreDictionary.WILDCARD_VALUE), apple);
-        HFApi.cooking.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.CHOCOLATE), chocolate);
-        HFApi.cooking.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.FLOUR), flour);
-        HFApi.cooking.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.OIL), oil);
-        HFApi.cooking.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.RICEBALL), riceball);
+        HFApi.cooking.register(HFCooking.INGREDIENTS.getStackFromEnum(CHOCOLATE), chocolate);
+        HFApi.cooking.register(HFCooking.INGREDIENTS.getStackFromEnum(FLOUR), flour);
+        HFApi.cooking.register(HFCooking.INGREDIENTS.getStackFromEnum(OIL), oil);
+        HFApi.cooking.register(HFCooking.INGREDIENTS.getStackFromEnum(RICEBALL), riceball);
         HFApi.cooking.register(HFCrops.TURNIP.getCropStack(), turnip);
         HFApi.cooking.register(HFCrops.POTATO.getCropStack(), potato);
         HFApi.cooking.register(new ItemStack(Items.POTATO, 1, OreDictionary.WILDCARD_VALUE), potato);
@@ -184,16 +181,16 @@ public class HFIngredients {
         HFApi.cooking.register(new ItemStack(HFAnimals.MILK), milk);
         HFApi.cooking.register(new ItemStack(Items.MILK_BUCKET, 1, OreDictionary.WILDCARD_VALUE), milk);
         HFApi.cooking.register(new ItemStack(HFAnimals.MAYONNAISE), mayonnaise);
-        HFApi.cooking.register(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.BUTTER), butter);
+        HFApi.cooking.register(HFCooking.INGREDIENTS.getStackFromEnum(BUTTER), butter);
         HFApi.cooking.register(HFApi.cooking.getBestMeal("butter"), boiled_egg);
         HFApi.cooking.register(HFApi.cooking.getBestMeal("egg_boiled"), boiled_egg);
-        HFApi.cooking.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.SASHIMI), sashimi);
+        HFApi.cooking.register(HFCooking.INGREDIENTS.getStackFromEnum(SASHIMI), sashimi);
         HFApi.cooking.register(HFApi.cooking.getBestMeal("sashimi"), sashimi);
-        HFApi.cooking.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.EGG_SCRAMBLED), scrambled_egg);
+        HFApi.cooking.register(HFCooking.INGREDIENTS.getStackFromEnum(EGG_SCRAMBLED), scrambled_egg);
         HFApi.cooking.register(HFApi.cooking.getBestMeal("egg_scrambled"), scrambled_egg);
-        HFApi.cooking.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.COOKIES), cookies);
+        HFApi.cooking.register(HFCooking.INGREDIENTS.getStackFromEnum(COOKIES), cookies);
         HFApi.cooking.register(HFApi.cooking.getBestMeal("cookies"), cookies);
-        HFApi.cooking.register(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.KETCHUP), ketchup);
+        HFApi.cooking.register(HFCooking.INGREDIENTS.getStackFromEnum(KETCHUP), ketchup);
         HFApi.cooking.register(HFApi.cooking.getBestMeal("ketchup"), ketchup);
         HFApi.cooking.register(new ItemStack(Blocks.BROWN_MUSHROOM, 1, OreDictionary.WILDCARD_VALUE), brown_mushroom);
         HFApi.cooking.register(new ItemStack(Blocks.RED_MUSHROOM, 1, OreDictionary.WILDCARD_VALUE), red_mushroom);

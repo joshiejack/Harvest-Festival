@@ -92,14 +92,8 @@ harvestfestival.general.item.ore.gold=Gold Ore
 harvestfestival.general.item.ore.mystril=Mystril Ore
 harvestfestival.general.item.stone.mythic=Mythic Stone
 harvestfestival.general.item.shoot.bamboo=Bamboo Shoot
-harvestfestival.general.item.flour=Flour
+
 harvestfestival.general.item.mushroom.matsutake=Matsutake Mushroom
-harvestfestival.general.item.oil=Cooking Oil
-harvestfestival.general.item.riceball=Riceballharvestfestival.general.item.butter=Butter
-
-harvestfestival.general.item.salt=Salt
-
-harvestfestival.general.item.chocolate=Chocolate
 
 #Meals
 harvestfestival.meal.level=Restores
@@ -164,6 +158,21 @@ harvestfestival.meal.burnt.pot=Failed Pot Dish
 harvestfestival.meal.burnt.frying.pan=Failed Frying Pan Meal
 harvestfestival.meal.burnt.mixer=Failed Mixer Dish
 harvestfestival.meal.burnt.oven=Failed Oven Dish
+
+#Ingredients
+harvestfestival.ingredient.butter=Butter
+harvestfestival.ingredient.cookies=Cookies
+harvestfestival.ingredient.egg.scrambled=Cookies
+harvestfestival.ingredient.ketchup=Ketchup
+harvestfestival.ingredient.sashimi=Sashimi
+harvestfestival.ingredient.oil=Cooking Oil
+harvestfestival.ingredient.riceball=Riceball
+harvestfestival.ingredient.salt=Salt
+harvestfestival.ingredient.flour=Flour
+harvestfestival.ingredient.chocolate=Chocolate
+
+#Utensils
+harvestfestival.utensil.blade=Mixer Blade
 
 #Sizeables
 harvestfestival.sizeable.format=%S %P

@@ -8,6 +8,7 @@ import joshie.harvest.api.shops.IShop;
 import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.buildings.Building;
 import joshie.harvest.buildings.BuildingRegistry;
+import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.crops.Crop;
 import joshie.harvest.crops.CropRegistry;
 import joshie.harvest.crops.HFCrops;
@@ -24,6 +25,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import static joshie.harvest.animals.item.ItemAnimalSpawner.Spawner.*;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.*;
 import static joshie.harvest.api.calendar.Weekday.*;
+import static joshie.harvest.cooking.items.ItemIngredients.Ingredient.*;
 
 public class HFShops {
     public static IShop BARN;
@@ -105,11 +107,11 @@ public class HFShops {
         }
 
         SUPERMARKET.addItem(100, new ItemStack(Items.BREAD));
-        SUPERMARKET.addItem(50, new ItemStack(HFItems.GENERAL, 1, ItemGeneral.FLOUR));
-        SUPERMARKET.addItem(100, new ItemStack(HFItems.GENERAL, 1, ItemGeneral.CHOCOLATE));
-        SUPERMARKET.addItem(50, new ItemStack(HFItems.GENERAL, 1, ItemGeneral.OIL));
-        SUPERMARKET.addItem(100, new ItemStack(HFItems.GENERAL, 1, ItemGeneral.RICEBALL));
-        SUPERMARKET.addItem(25, new ItemStack(HFItems.GENERAL, 1, ItemGeneral.SALT));
+        SUPERMARKET.addItem(50, HFCooking.INGREDIENTS.getStackFromEnum(FLOUR));
+        SUPERMARKET.addItem(100, HFCooking.INGREDIENTS.getStackFromEnum(CHOCOLATE));
+        SUPERMARKET.addItem(50, HFCooking.INGREDIENTS.getStackFromEnum(OIL));
+        SUPERMARKET.addItem(100, HFCooking.INGREDIENTS.getStackFromEnum(RICEBALL));
+        SUPERMARKET.addItem(25, HFCooking.INGREDIENTS.getStackFromEnum(SALT));
         SUPERMARKET.addItem(new PurchaseableBlueFeather(1000, new ItemStack(HFItems.GENERAL, 1, ItemGeneral.BLUE_FEATHER)));
 
         SUPERMARKET.addOpening(MONDAY, 9000, 17000).addOpening(TUESDAY, 9000, 17000).addOpening(THURSDAY, 9000, 17000);

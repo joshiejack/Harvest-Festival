@@ -82,10 +82,6 @@ public abstract class ItemHFEnum<I extends ItemHFEnum, E extends Enum<E>> extend
         return new CreativeTabs[]{ HFTab.FARMING, HFTab.COOKING, HFTab.MINING, HFTab.TOWN, HFTab.GATHERING };
     }
 
-    public boolean isActive(E e) {
-        return true;
-    }
-
     @Override
     public int getSortValue(ItemStack stack) {
         return CreativeSort.NONE;
@@ -95,7 +91,7 @@ public abstract class ItemHFEnum<I extends ItemHFEnum, E extends Enum<E>> extend
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
         for (E e: values) {
-            if (isActive(e) && isValidTab(tab, e)) {
+            if (isValidTab(tab, e)) {
                 list.add(new ItemStack(item, 1, e.ordinal()));
             }
         }

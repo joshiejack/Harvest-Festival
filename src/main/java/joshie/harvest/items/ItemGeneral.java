@@ -22,16 +22,6 @@ public class ItemGeneral extends ItemHFBaseMeta implements ICreativeSorted {
     public static final int GOLD_ORE = 4;
     public static final int MYSTRIL_ORE = 5;
     public static final int MYTHIC_STONE = 6;
-    public static final int FLOUR = 7;
-    public static final int OIL = 8;
-    public static final int RICEBALL = 9;
-    public static final int SALT = 10;
-    public static final int CHOCOLATE = 11;
-    public static final int BUTTER = 12;
-    public static final int EGG_SCRAMBLED = 13;
-    public static final int COOKIES = 14;
-    public static final int SASHIMI = 15;
-    public static final int KETCHUP = 16;
 
     @Override
     public int getMetaCount() {
@@ -60,26 +50,6 @@ public class ItemGeneral extends ItemHFBaseMeta implements ICreativeSorted {
                 return "ore_mystril";
             case MYTHIC_STONE:
                 return "stone_mythic";
-            case FLOUR:
-                return "flour";
-            case OIL:
-                return "oil";
-            case RICEBALL:
-                return "riceball";
-            case SALT:
-                return "salt";
-            case CHOCOLATE:
-                return "chocolate";
-            case BUTTER:
-                return "butter";
-            case EGG_SCRAMBLED:
-                return "egg_scrambled";
-            case COOKIES:
-                return "cookies";
-            case SASHIMI:
-                return "sashimi";
-            case KETCHUP:
-                return "ketchup";
             default:
                 return "invalid";
         }
@@ -97,12 +67,6 @@ public class ItemGeneral extends ItemHFBaseMeta implements ICreativeSorted {
             case MYSTRIL_ORE:
             case MYTHIC_STONE:
                 return tab == HFTab.MINING;
-            case FLOUR:
-            case OIL:
-            case RICEBALL:
-            case SALT:
-            case CHOCOLATE:
-                return tab == HFTab.COOKING;
             default:
                 return false;
         }

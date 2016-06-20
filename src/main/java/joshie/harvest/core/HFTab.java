@@ -2,12 +2,12 @@ package joshie.harvest.core;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ICreativeSorted;
-import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.items.HFItems;
+import joshie.harvest.items.ItemGeneral;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -103,7 +103,7 @@ public class HFTab extends CreativeTabs {
 
     public static void preInit() {
         HFTab.TOWN.setStack(new ItemStack(HFBuildings.STRUCTURES, 1, 0));
-        HFTab.MINING.setStack(new ItemStack(HFBlocks.STONE, 1, 0));
+        HFTab.MINING.setStack(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.JUNK_ORE));
         HFTab.FARMING.setStack(HFCrops.STRAWBERRY.getCropStack());
         HFTab.COOKING.setStack(HFApi.cooking.getMeal("salad"));
         HFTab.GATHERING.setStack(new ItemStack(HFItems.AXE, 1, 0));

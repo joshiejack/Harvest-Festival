@@ -40,10 +40,14 @@ public class ItemNPCSpawner extends ItemHFFML<ItemNPCSpawner, NPC> {
     public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         NPC npc = getObjectFromStack(stack);
         if (npc != null) {
-            EntityNPC entity = NPCHelper.getEntityForNPC(world, npc);
-            entity.setPosition(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5);
-            entity.resetSpawnHome();
-            world.spawnEntityInWorld(entity);
+            if (!world.isRemote) {
+                EntityNPC entity = NPCHelper.getEntityForNPC(world, npc);
+                entity.setPosition(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5);
+                entity.resetSpawnHome();
+                world.spawnEntityInWorld(entity);
+            }
+
+            stack.splitStack(1);
             return EnumActionResult.SUCCESS;
         }
 

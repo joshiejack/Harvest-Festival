@@ -2,8 +2,10 @@ package joshie.harvest.core;
 
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.animals.AnimalEvents;
+import joshie.harvest.calendar.CalendarHUD;
 import joshie.harvest.calendar.CalendarRender;
 import joshie.harvest.core.commands.*;
+import joshie.harvest.core.config.Calendar;
 import joshie.harvest.core.handlers.DisableHandler;
 import joshie.harvest.core.handlers.EventsHandler;
 import joshie.harvest.core.handlers.GoddessHandler;
@@ -69,6 +71,7 @@ public class HFCore {
 
     @SideOnly(Side.CLIENT)
     public static void initClient() {
+        if (Calendar.ENABLE_DATE_HUD || Calendar.ENABLE_GOLD_HUD) MinecraftForge.EVENT_BUS.register(new CalendarHUD());
         MinecraftForge.EVENT_BUS.register(new CalendarRender());
         MinecraftForge.EVENT_BUS.register(new RenderHandler());
     }

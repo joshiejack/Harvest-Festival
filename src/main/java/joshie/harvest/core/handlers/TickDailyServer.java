@@ -10,6 +10,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -23,12 +24,19 @@ public class TickDailyServer extends HFTracker implements ISaveable {
 
     public void newDay() {
         //Tick the tickable entities
+        Set<IDailyTickable> invalid = new HashSet<>();
         Iterator<IDailyTickable> ticking = tickables.iterator();
         while (ticking.hasNext()) {
             IDailyTickable tickable = ticking.next();
             if (tickable == null || tickable.isInvalid()) {
+                invalid.add(tickable);
                 ticking.remove();
             } else tickable.newDay(getWorld());
+        }
+
+        //Remove the invalid states
+        for (IDailyTickable tickable: invalid) {
+            tickable.onInvalidated();
         }
 
         //Tick the tickable blocks
@@ -69,16 +77,24 @@ public class TickDailyServer extends HFTracker implements ISaveable {
     }
 
     @Override
+    public void setWorld(World world) {
+        super.setWorld(world);
+
+        for (BlockPos pos: blockTicks.keySet()) {
+            IDailyTickableBlock tickable = HFApi.tickable.getTickableFromBlock(getWorld().getBlockState(pos).getBlock());
+            if (tickable != null) {
+                blockTicks.put(pos, tickable); //Load in the tickables once the world is actually loaded
+            } else blockTicks.remove(pos);
+        }
+    }
+
+    @Override
     public void readFromNBT(NBTTagCompound tag) {
         blockTicks = new HashMap<>();
         NBTTagList dataList = tag.getTagList("Positions", 10);
         for (int j = 0; j < dataList.tagCount(); j++) {
             NBTTagCompound data = dataList.getCompoundTagAt(j);
-            BlockPos pos = NBTHelper.readBlockPos("", data);
-            IDailyTickableBlock tickable = HFApi.tickable.getTickableFromBlock(getWorld().getBlockState(pos).getBlock());
-            if (tickable != null) {
-                blockTicks.put(pos, tickable);
-            }
+            blockTicks.put(NBTHelper.readBlockPos("", data), null);
         }
     }
 

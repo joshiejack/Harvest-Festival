@@ -4,9 +4,7 @@ import gnu.trove.map.TIntObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
 import joshie.harvest.animals.AnimalTracker;
 import joshie.harvest.calendar.Calendar;
-import joshie.harvest.calendar.CalendarServer;
 import joshie.harvest.core.helpers.UUIDHelper;
-import joshie.harvest.crops.CropTracker;
 import joshie.harvest.npc.town.TownTracker;
 import joshie.harvest.player.PlayerTracker;
 import joshie.harvest.player.PlayerTrackerClient;
@@ -21,13 +19,11 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public class HFTrackers {
-    private static final CalendarServer TEMP_CALENDAR = new CalendarServer();
-
     //The Client worlds
     @SideOnly(Side.CLIENT)
     private static TIntObjectMap<SideHandler> CLIENT_WORLDS;
     //The Server worlds
-    private static final TIntObjectMap<ServerHandler> SERVER_WORLDS = new TIntObjectHashMap<>();
+    private static TIntObjectMap<ServerHandler> SERVER_WORLDS = new TIntObjectHashMap<>();
 
     //The Client player
     @SideOnly(Side.CLIENT)
@@ -36,8 +32,8 @@ public class HFTrackers {
     //Server Players
     private static HashMap<UUID, PlayerTrackerServer> SERVER_PLAYERS = new HashMap<>();
 
-    public static void resetWorld(World world) {
-        SERVER_WORLDS.put(world.provider.getDimension(), new ServerHandler(world));
+    public static void resetServer() {
+        SERVER_WORLDS = new TIntObjectHashMap<>();
     }
 
     @SideOnly(Side.CLIENT)
@@ -51,29 +47,35 @@ public class HFTrackers {
         int dimension = world.provider.getDimension();
         SideHandler handler = CLIENT_WORLDS.get(dimension);
         if (handler == null) {
-            handler = new ClientHandler(world);
+            handler = new ClientHandler();
             CLIENT_WORLDS.put(dimension, handler);
+            handler.setWorld(world);
+        }
+
+        return handler;
+    }
+
+    private static ServerHandler getServer(World world) {
+        ServerHandler handler = SERVER_WORLDS.get(world.provider.getDimension());
+        if (handler == null) {
+            handler = new ServerHandler(world); //Create a new handler
+            SERVER_WORLDS.put(world.provider.getDimension(), handler);
+            handler.setWorld(world); //Mark the world for the handler
         }
 
         return handler;
     }
 
     private static SideHandler getHandler(World world) {
-        return !world.isRemote ? SERVER_WORLDS.get(world.provider.getDimension()) : getClient(world);
+        return !world.isRemote ? getServer(world) : getClient(world);
     }
 
     public static Calendar getCalendar(World world) {
-        if (!world.isRemote) {
-            return SERVER_WORLDS.get(world.provider.getDimension()) == null ? TEMP_CALENDAR : SERVER_WORLDS.get(world.provider.getDimension()).getCalendar();
-        } else return getClient(world).getCalendar();
+        return getHandler(world).getCalendar();
     }
 
     public static AnimalTracker getAnimalTracker(World world) {
         return getHandler(world).getAnimalTracker();
-    }
-
-    public static CropTracker getCropTracker(World world) {
-        return getHandler(world).getCropTracker();
     }
 
     public static PlayerTracker getPlayerTracker(EntityPlayer player) {
@@ -110,6 +112,6 @@ public class HFTrackers {
     }
 
     public static TickDailyServer getTickables(World world) {
-        return SERVER_WORLDS.get(world.provider.getDimension()).getTickables();
+        return getServer(world).getTickables();
     }
 }

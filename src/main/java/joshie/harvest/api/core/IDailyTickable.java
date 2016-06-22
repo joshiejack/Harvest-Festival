@@ -12,4 +12,7 @@ public interface IDailyTickable {
 
     /** Return true if this is invalid **/
     boolean isInvalid();
+
+    /** Called after new day once the block is invalid **/
+    void onInvalidated();
 }

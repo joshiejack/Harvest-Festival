@@ -26,7 +26,7 @@ public class HFDailyTickable implements IDailyTickableRegistry {
 
             @Override
             public boolean newDay(World world, BlockPos pos, IBlockState state) {
-                if (state != WET_SOIL && world.isRainingAt(pos.up())) {
+                if (state != WET_SOIL && world.isRainingAt(pos.up(2))) {
                     world.setBlockState(pos, WET_SOIL, 2);
                 } else {
                     if (state == WET_SOIL) world.setBlockState(pos, DRY_SOIL, 2);

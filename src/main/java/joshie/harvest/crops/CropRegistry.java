@@ -8,6 +8,8 @@ import joshie.harvest.api.crops.ICropRegistry;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.crops.blocks.BlockHFCrops;
+import joshie.harvest.crops.blocks.TileCrop;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -18,9 +20,14 @@ import net.minecraftforge.fml.common.registry.PersistentRegistryManager;
 import net.minecraftforge.oredict.OreDictionary;
 import org.apache.commons.lang3.tuple.Pair;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 
+import static joshie.harvest.core.helpers.CropHelper.WET_SOIL;
+import static joshie.harvest.core.helpers.CropHelper.isWetSoil;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
+import static joshie.harvest.crops.blocks.BlockHFCrops.Stage.FRESH;
+import static joshie.harvest.crops.blocks.BlockHFCrops.Stage.FRESH_DOUBLE;
 
 public class CropRegistry implements ICropRegistry {
     public static final FMLControlledNamespacedRegistry<Crop> REGISTRY = PersistentRegistryManager.createRegistry(new ResourceLocation(MODID, "crops"), Crop.class, null, 0, 32000, true, null, null, null);
@@ -29,12 +36,6 @@ public class CropRegistry implements ICropRegistry {
     @Override
     public ICrop getCrop(ResourceLocation resource) {
         return REGISTRY.getObject(resource);
-    }
-
-    @Override
-    public ICropData getCropAtLocation(World world, BlockPos pos) {
-        PlantSection section = BlockHFCrops.getSection(world.getBlockState(pos));
-        return section == PlantSection.BOTTOM ? HFTrackers.getCropTracker(world).getCropDataForLocation(pos) : HFTrackers.getCropTracker(world).getCropDataForLocation(pos.down());
     }
 
     @Override
@@ -56,5 +57,72 @@ public class CropRegistry implements ICropRegistry {
 
         ICrop crop = providers.get(Pair.of(stack.getItem(), OreDictionary.WILDCARD_VALUE));
         return crop != null ? crop : providers.get(Pair.of(stack.getItem(), stack.getItemDamage()));
+    }
+
+    @Override
+    public ICropData getCropAtLocation(World world, BlockPos pos) {
+        PlantSection section = BlockHFCrops.getSection(world.getBlockState(pos));
+        if (section == null) return null;
+        if (section == PlantSection.BOTTOM) return ((TileCrop)world.getTileEntity(pos)).getData();
+        else if (section == PlantSection.TOP) return ((TileCrop)world.getTileEntity(pos.down())).getData();
+        else return null;
+    }
+
+    @Override
+    public void plantCrop(@Nullable EntityPlayer player, World world, BlockPos pos, ICrop theCrop, int stage) {
+        world.setBlockState(pos, HFCrops.CROPS.getStateFromEnum(FRESH));
+        if (theCrop.isDouble(stage)) {
+            world.setBlockState(pos.up(), HFCrops.CROPS.getStateFromEnum(FRESH_DOUBLE));
+        }
+
+        TileCrop tile = (TileCrop) world.getTileEntity(pos);
+        CropData data = tile.getData();
+        if (isWetSoil(world, pos.down())) {
+            data.setHydrated();
+        }
+
+        data.setCrop(theCrop, stage);
+        tile.saveAndRefresh();
+    }
+
+    @Override
+    public ItemStack harvestCrop(@Nullable EntityPlayer player, World world, BlockPos pos) {
+        TileCrop tile = world.getTileEntity(pos) instanceof TileCrop ? (TileCrop) world.getTileEntity(pos) : null;
+        if (tile != null) {
+            CropData data = tile.getData();
+            ItemStack harvest = data.harvest(player, true);
+            if (harvest != null) {
+                if (data.getCrop().getRegrowStage() <= 0) {
+                    if (!world.isRemote) {
+                        world.setBlockToAir(pos);
+                    }
+                } else tile.saveAndRefresh();
+
+                if (player != null && !world.isRemote) {
+                    HFTrackers.getServerPlayerTracker(player).getTracking().onHarvested(data.getCrop());
+                }
+
+                return harvest;
+            } else return null;
+        } else return null;
+    }
+
+    @Override
+    public boolean hydrateSoil(@Nullable EntityPlayer player, World world, BlockPos pos) {
+        boolean ret = false;
+        if (!isWetSoil(world, pos)) {
+            world.setBlockState(pos, WET_SOIL);
+            ret = true;
+        }
+
+        //Now that the soil has been hydrated, hydrate the crop
+        TileCrop crop = world.getTileEntity(pos.up()) instanceof TileCrop ? (TileCrop) world.getTileEntity(pos.up()) : null;
+        if (crop != null && !crop.getData().isWatered()) {
+            crop.getData().setHydrated();
+            crop.markDirty();
+            return true;
+        }
+
+        return ret;
     }
 }

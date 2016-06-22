@@ -3,7 +3,6 @@ package joshie.harvest.core.handlers;
 import joshie.harvest.animals.AnimalTrackerServer;
 import joshie.harvest.calendar.CalendarServer;
 import joshie.harvest.core.HFSavedData;
-import joshie.harvest.crops.CropTrackerServer;
 import joshie.harvest.npc.town.TownTrackerServer;
 import net.minecraft.world.World;
 
@@ -16,7 +15,10 @@ public class ServerHandler extends SideHandler {
             data = new HFSavedData(HFSavedData.DATA_NAME);
             world.getPerWorldStorage().setData(HFSavedData.DATA_NAME, data);
         }
+    }
 
+    @Override
+    public void setWorld(World world) {
         data.setWorld(world);
     }
 
@@ -28,11 +30,6 @@ public class ServerHandler extends SideHandler {
     @Override
     public CalendarServer getCalendar() {
         return data.getCalendar();
-    }
-
-    @Override
-    public CropTrackerServer getCropTracker() {
-        return data.getCropTracker();
     }
 
     public TickDailyServer getTickables() {

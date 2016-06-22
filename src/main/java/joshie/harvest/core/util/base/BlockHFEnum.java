@@ -24,7 +24,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 import java.util.Random;
 
-public abstract class BlockHFEnum<E extends Enum<E> & IStringSerializable> extends BlockHFBase {
+public abstract class BlockHFEnum<B extends BlockHFEnum, E extends Enum<E> & IStringSerializable> extends BlockHFBase {
     protected static PropertyEnum<?> temporary;
     protected final PropertyEnum<E> property;
     protected final E[] values;
@@ -125,9 +125,9 @@ public abstract class BlockHFEnum<E extends Enum<E> & IStringSerializable> exten
     }
 
     @Override
-    public BlockHFEnum setUnlocalizedName(String name) {
+    public B setUnlocalizedName(String name) {
         super.setUnlocalizedName(name);
-        return this;
+        return (B) this;
     }
 
     public String getItemStackDisplayName(ItemStack stack) {

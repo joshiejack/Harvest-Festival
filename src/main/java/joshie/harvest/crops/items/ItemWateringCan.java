@@ -1,7 +1,9 @@
 package joshie.harvest.crops.items;
 
-import joshie.harvest.core.helpers.CropHelper;
+import joshie.harvest.api.HFApi;
+import joshie.harvest.api.crops.IStateHandler.PlantSection;
 import joshie.harvest.core.helpers.PlayerHelper;
+import joshie.harvest.crops.blocks.BlockHFCrops;
 import joshie.harvest.items.ItemBaseTool;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -141,7 +143,7 @@ public class ItemWateringCan extends ItemBaseTool implements IFluidContainerItem
     }
 
     private EnumActionResult hydrate(EntityPlayer player, ItemStack stack, World world, BlockPos pos) {
-        if (CropHelper.hydrate(world, pos)) {
+        if (HFApi.crops.hydrateSoil(player, world, pos)) {
             displayParticle(world, pos, EnumParticleTypes.WATER_SPLASH, Blocks.WATER.getDefaultState());
             playSound(world, pos, SoundEvents.ENTITY_GENERIC_SWIM, SoundCategory.NEUTRAL);
             PlayerHelper.performTask(player, stack, getExhaustionRate(stack));
@@ -181,11 +183,14 @@ public class ItemWateringCan extends ItemBaseTool implements IFluidContainerItem
                 for (int x2 = getXMinus(tier, front, pos.getX()); x2 <= getXPlus(tier, front, pos.getX()); x2++) {
                     for (int z2 = getZMinus(tier, front, pos.getZ()); z2 <= getZPlus(tier, front, pos.getZ()); z2++) {
                         if (getCapacity(stack) > 0) {
-                            Block block = world.getBlockState(new BlockPos(x2, y2, z2)).getBlock();
-                            if (block instanceof IPlantable) {
-                                hydrate(player, stack, world, new BlockPos(x2, y2 - 1, z2));
-                            } else if (block == Blocks.FARMLAND) {
-                                hydrate(player, stack, world, new BlockPos(x2, y2, z2));
+                            BlockPos position = new BlockPos(x2, y2, z2);
+                            IBlockState state = world.getBlockState(position);
+                            PlantSection section = BlockHFCrops.getSection(state);
+                            if (section != null) {
+                                int down = section == PlantSection.BOTTOM ? 1 : 2;
+                                hydrate(player, stack, world, position.down(down));
+                            } else if (state.getBlock() == Blocks.FARMLAND) {
+                                hydrate(player, stack, world, position);
                             }
                         }
                     }

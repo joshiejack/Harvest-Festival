@@ -3,6 +3,7 @@ package joshie.harvest;
 import joshie.harvest.core.HFApiLoader;
 import joshie.harvest.core.HFCommonProxy;
 import joshie.harvest.core.commands.CommandManager;
+import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
 import net.minecraftforge.fml.common.Mod;
@@ -60,5 +61,7 @@ public class HarvestFestival {
         if (manager instanceof ServerCommandManager) {
             ((ServerCommandManager) manager).registerCommand(CommandManager.INSTANCE);
         }
+
+        HFTrackers.resetServer();
     }
 }

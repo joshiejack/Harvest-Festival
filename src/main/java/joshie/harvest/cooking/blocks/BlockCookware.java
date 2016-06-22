@@ -32,7 +32,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import static joshie.harvest.cooking.blocks.BlockCookware.Cookware.*;
 import static net.minecraft.util.EnumFacing.*;
 
-public class BlockCookware extends BlockHFEnumRotatableTile<Cookware> {
+public class BlockCookware extends BlockHFEnumRotatableTile<BlockCookware, Cookware> {
     private static final AxisAlignedBB FRYING_PAN_AABB = new AxisAlignedBB(0.2F, 0F, 0.2F, 0.8F, 0.15F, 0.8F);
     private static final AxisAlignedBB MIXER_AABB = new AxisAlignedBB(0.275F, 0F, 0.275F, 0.725F, 0.725F, 0.725F);
     private static final AxisAlignedBB POT_AABB = new AxisAlignedBB(0.2F, 0F, 0.2F, 0.8F, 0.375F, 0.8F);

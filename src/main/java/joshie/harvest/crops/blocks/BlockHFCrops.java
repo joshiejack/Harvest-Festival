@@ -9,7 +9,6 @@ import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
 import joshie.harvest.core.config.Crops;
-import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.AnimalHelper;
 import joshie.harvest.core.helpers.CropHelper;
 import joshie.harvest.core.helpers.SeedHelper;
@@ -19,6 +18,7 @@ import joshie.harvest.core.util.base.BlockHFEnum;
 import joshie.harvest.crops.Crop;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.crops.blocks.BlockHFCrops.Stage;
+import joshie.harvest.crops.blocks.TileCrop.TileWithered;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
@@ -29,6 +29,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -50,8 +51,9 @@ import java.util.Random;
 import static joshie.harvest.api.crops.IStateHandler.PlantSection.BOTTOM;
 import static joshie.harvest.api.crops.IStateHandler.PlantSection.TOP;
 import static joshie.harvest.core.helpers.CropHelper.harvestCrop;
+import static joshie.harvest.crops.blocks.BlockHFCrops.Stage.*;
 
-public class BlockHFCrops extends BlockHFEnum<Stage> implements IPlantable, IGrowable, IAnimalFeeder {
+public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IPlantable, IGrowable, IAnimalFeeder {
        public enum Stage implements IStringSerializable {
         FRESH(false, BOTTOM), WITHERED(false, BOTTOM), FRESH_DOUBLE(false, TOP), WITHERED_DOUBLE(true, TOP);
 
@@ -83,7 +85,7 @@ public class BlockHFCrops extends BlockHFEnum<Stage> implements IPlantable, IGro
         super(Material.PLANTS, Stage.class, null);
         setBlockUnbreakable();
         setSoundType(SoundType.GROUND);
-        setTickRandomly(Crops.alwaysGrow);
+        setTickRandomly(true);
         disableStats();
     }
 
@@ -105,15 +107,15 @@ public class BlockHFCrops extends BlockHFEnum<Stage> implements IPlantable, IGro
     //Only called if crops are set to tick randomly
     @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
-        if (Crops.alwaysGrow) {
-            if (!world.isRemote) {
+        if (!world.isRemote) {
+            if (Crops.alwaysGrow) {
                 Stage stage = getEnumFromState(state);
                 if (stage == Stage.WITHERED) return; //If withered do nothing
                 if (world.getLightFromNeighbors(pos.up()) >= 9) {
                     float chance = getGrowthChance(this, world, pos);
                     if (rand.nextInt((int) (25.0F / chance) + 1) == 0) {
                         //We are Growing!
-                        HFTrackers.getCropTracker(world).grow(pos);
+                        grow(world, rand, pos, state);
                     }
                 }
             }
@@ -171,7 +173,7 @@ public class BlockHFCrops extends BlockHFEnum<Stage> implements IPlantable, IGro
         Stage aboveStage = getEnumFromState(stateUp);
         Stage thisStage = getEnumFromState(state);
         if (stateUp.getBlock() == this) {
-            if (thisStage == Stage.FRESH) return aboveStage == Stage.FRESH_DOUBLE;
+            if (thisStage == FRESH) return aboveStage == Stage.FRESH_DOUBLE;
             else if (thisStage == Stage.WITHERED) return aboveStage == Stage.WITHERED_DOUBLE;
         }
         return false;
@@ -193,6 +195,7 @@ public class BlockHFCrops extends BlockHFEnum<Stage> implements IPlantable, IGro
     }
 
     public static PlantSection getSection(IBlockState state) {
+        if (state.getBlock() != HFCrops.CROPS) return null;
         int stage = state.getBlock().getMetaFromState(state); //Can't get the Enum from state, because this method is static.
         PlantSection section = BOTTOM;
         if (stage == Stage.WITHERED_DOUBLE.ordinal() || stage == Stage.FRESH_DOUBLE.ordinal()) {
@@ -211,58 +214,6 @@ public class BlockHFCrops extends BlockHFEnum<Stage> implements IPlantable, IGro
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
         return null;
     }
-
-    /* //TODO: Fix Hit effects
-    @Override
-    @SideOnly(Side.CLIENT)
-    public boolean addHitEffects(IBlockState state, World world, RayTraceResult rayTraceResult, EffectRenderer effectRenderer) {
-        BlockPos pos = rayTraceResult.getBlockPos();
-        EnumFacing facing = rayTraceResult.sideHit;
-
-        //^ setup vars
-        Block block = state.getBlock();
-        if (state.getMaterial() != Material.AIR) {
-            AxisAlignedBB aabb = block.getBoundingBox(state, world, pos);
-            float f = 0.1F;
-            double d0 = (double) pos.getX() + world.rand.nextDouble() * (aabb.maxX - aabb.minX) - (double) (f * 2.0F) + (double) f + aabb.minX;
-            double d1 = (double) pos.getY() + world.rand.nextDouble() * (aabb.maxY - aabb.minY - (double) (f * 2.0F)) + (double) f + aabb.minY;
-            double d2 = (double) pos.getZ() + world.rand.nextDouble() * (aabb.maxZ - aabb.minZ - (double) (f * 2.0F)) + (double) f + aabb.minZ;
-
-            if (facing == EnumFacing.DOWN || facing == EnumFacing.UP) {
-                d1 = (double) pos.getY() + aabb.maxY - (double) f;
-            }
-
-            if (facing == EnumFacing.NORTH || facing == EnumFacing.SOUTH) {
-                d2 = (double) pos.getZ() + aabb.minZ - (double) f;
-            }
-
-            if (facing == EnumFacing.WEST || facing == EnumFacing.EAST) {
-                d0 = (double) pos.getX() + aabb.minX - (double) f;
-            }
-
-            effectRenderer.addEffect((new EntityCropDigFX(Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getParticleIcon(Item.getItemFromBlock(this)), world, d0, d1, d2, pos.getX(), pos.getY(), pos.getZ(), world.getBlockState(pos)))/*.applyColourMultiplier(pos)*.multiplyVelocity(0.2F).multipleParticleScaleBy(0.6F));
-        }
-        return true;
-    } */
-
-    /*
-    @Override
-    @SideOnly(Side.CLIENT)
-    public boolean addDestroyEffects(World world, BlockPos pos, EffectRenderer effectRenderer) {
-        int b0 = 4;
-        for (int i1 = 0; i1 < b0; ++i1) {
-            for (int j1 = 0; j1 < b0; ++j1) {
-                for (int k1 = 0; k1 < b0; ++k1) {
-                    double d0 = (double) pos.getX() + ((double) i1 + 0.5D) / (double) b0;
-                    double d1 = (double) pos.getY() + ((double) j1 + 0.5D) / (double) b0;
-
-                    //TODO: Fix Block Crop destroy effects
-                    //effectRenderer.addEffect((new EntityCropDigFX(Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getParticleIcon(Item.getItemFromBlock(this)), world, d0, d1, d2, d0 - (double) pos.getX() - 0.5D, d1 - (double) pos.getY() - 0.5D, d2 - (double) pos.getZ() - 0.5D, world.getBlockState(pos)))/*.applyColourMultiplier(pos));
-                }
-            }
-        }
-        return true;
-    } */
 
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
@@ -322,8 +273,13 @@ public class BlockHFCrops extends BlockHFEnum<Stage> implements IPlantable, IGro
     @Override
     public void breakBlock(World world, BlockPos pos, IBlockState state) {
         Stage stage = getEnumFromState(state);
-        if (stage == Stage.FRESH || stage == Stage.WITHERED) {
-            HFTrackers.getCropTracker(world).removeCrop(pos);
+        if (stage == FRESH || stage == Stage.WITHERED) {
+            if (world.getBlockState(pos.up()).getBlock() == this) {
+                Stage above = getEnumFromState(world.getBlockState(pos.up()));
+                if (above == FRESH_DOUBLE || stage == WITHERED_DOUBLE) {
+                    world.setBlockToAir(pos.up());
+                }
+            }
         } else if (stage == Stage.FRESH_DOUBLE || stage == Stage.WITHERED_DOUBLE) {
             world.setBlockToAir(pos.down());
         }
@@ -380,13 +336,6 @@ public class BlockHFCrops extends BlockHFEnum<Stage> implements IPlantable, IGro
         }
     }
 
-    /*@Override
-    @SideOnly(Side.CLIENT) //TODO Is no longer in Block. Moved to Minecraft.getMinecraft().getItemColors.registerItemColorHandler()
-    public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
-        int meta = world.getBlockMetadata(x, y, z);
-        return meta == WITHERED ? 0x333333 : super.colorMultiplier(world, x, y, z); //Darken the dead shit
-    }*/
-
     @Override
     public EnumPlantType getPlantType(IBlockAccess world, BlockPos pos) {
         return EnumPlantType.Crop;
@@ -408,13 +357,18 @@ public class BlockHFCrops extends BlockHFEnum<Stage> implements IPlantable, IGro
                 ICropData crop = HFApi.crops.getCropAtLocation(world, pos);
                 for (Season season: crop.getCrop().getSeasons()) {
                     if (HFApi.calendar.getToday(world).getSeason() == season) {
-                        return HFTrackers.getCropTracker(world).canBonemeal(pos);
+                        return canGrow(world, pos, state);
                     }
                 }
 
                 return false;
-            } else return HFTrackers.getCropTracker(world).canBonemeal(pos);
+            } else return canGrow(world, pos, state);
         } else return false;
+    }
+
+    public boolean canGrow(World world, BlockPos pos, IBlockState state) {
+        TileCrop crop = getEnumFromState(state).section == TOP ? (TileCrop) world.getTileEntity(pos.down()): (TileCrop) world.getTileEntity(pos);
+        return crop.getData().getStage() < crop.getData().getCrop().getStages();
     }
 
     /* Only called server side **/
@@ -428,7 +382,9 @@ public class BlockHFCrops extends BlockHFEnum<Stage> implements IPlantable, IGro
     //Apply the bonemeal and grow!
     @Override
     public void grow(World world, Random rand, BlockPos pos, IBlockState state) {
-        HFTrackers.getCropTracker(world).grow(pos);
+        TileCrop crop = getEnumFromState(state).section == TOP ? (TileCrop) world.getTileEntity(pos.down()): (TileCrop) world.getTileEntity(pos);
+        crop.getData().grow(world);
+        crop.saveAndRefresh();
     }
 
     @Override
@@ -439,13 +395,23 @@ public class BlockHFCrops extends BlockHFEnum<Stage> implements IPlantable, IGro
             if (theCrop == HFCrops.GRASS) {
                 int stage = crop.getStage();
                 if (stage > 5) {
-                    HFTrackers.getCropTracker(world).plantCrop(tracked.getData().getOwner(), pos, theCrop, stage - 5);
+                    HFApi.crops.plantCrop(tracked.getData().getOwner(), world, pos, theCrop, stage - 5);
                     return true;
                 }
             }
         }
 
         return false;
+    }
+
+    @Override
+    public boolean hasTileEntity(IBlockState state) {
+        return getEnumFromState(state).section == BOTTOM;
+    }
+
+    @Override
+    public TileEntity createTileEntity(World world, IBlockState state) {
+        return getEnumFromState(state).isWithered() ? new TileWithered() : new TileCrop();
     }
 
     @Override

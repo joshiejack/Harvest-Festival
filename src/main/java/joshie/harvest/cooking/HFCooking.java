@@ -7,7 +7,6 @@ import joshie.harvest.cooking.items.ItemMeal;
 import joshie.harvest.cooking.items.ItemUtensil;
 import joshie.harvest.cooking.render.*;
 import joshie.harvest.core.helpers.ModelHelper;
-import joshie.harvest.core.util.base.BlockHFEnum;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.util.ResourceLocation;
@@ -21,8 +20,8 @@ import static joshie.harvest.core.helpers.generic.RegistryHelper.registerTiles;
 
 public class HFCooking {
     //Cooking
-    public static final BlockHFEnum COOKWARE = new BlockCookware().setUnlocalizedName("cookware");
-    public static final ItemMeal MEAL = (ItemMeal) new ItemMeal().setUnlocalizedName("meal");
+    public static final BlockCookware COOKWARE = new BlockCookware().setUnlocalizedName("cookware");
+    public static final ItemMeal MEAL = new ItemMeal().setUnlocalizedName("meal");
     public static final ItemUtensil UTENSILS = new ItemUtensil().setUnlocalizedName("utensils");
     public static final ItemIngredients INGREDIENTS = new ItemIngredients().setUnlocalizedName("ingredients");
 

@@ -13,8 +13,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
+
 public class CropData implements ICropData {
-    private boolean isReal; //Is true if there actually is a plant here, rather than a placeholder
     private Crop crop; //The Crop Type of this plant
     private int stage; //The stage it is currently at
     private int daysWithoutWater; //The number of days this crop has gone without water
@@ -25,21 +26,15 @@ public class CropData implements ICropData {
         this.crop = HFCrops.NULL_CROP;
     }
 
-    @Override
-    public ICropData setCrop(EntityPlayer owner, ICrop crop, int stage) {
+    public ICropData setCrop(ICrop crop, int stage) {
         this.crop = (Crop) crop;
-
-        if (crop.isDouble(this.stage) && !crop.isDouble(stage)) {
-            owner.worldObj.setBlockToAir(pos.up());
-        }
-
         this.stage = stage;
-        this.isReal = true;
         return this;
     }
 
     private boolean isWrongSeason(World world) {
         Season toMatch = HFTrackers.getCalendar(world).getSeasonAt(pos);
+        if (crop == null || crop.getSeasons() == null) return true;
         for (Season season : crop.getSeasons()) {
             if (toMatch == season) return false;
         }
@@ -50,7 +45,7 @@ public class CropData implements ICropData {
     //Returns false if the crop was withered
     public boolean newDay(World world) {
         //Stage 1, Check how long the plant has been without water, If it's more than 2 days kill it
-        if ((crop.requiresWater() && daysWithoutWater > 2) || isWrongSeason(world)) {
+        if (crop == null || (crop.requiresWater() && daysWithoutWater > 2) || isWrongSeason(world)) {
             return false;
         } else { //Stage 2: Now that we know, it has been watered, Update it's stage
             //If we aren't ticking randomly, Then increase the stage
@@ -115,13 +110,7 @@ public class CropData implements ICropData {
         return crop != null ? crop : HFCrops.NULL_CROP;
     }
 
-    public boolean canGrow() {
-        //TODO: Fix PlayHelperifOn...
-        //(PlayerHelper.isOnlineOrFriendsAre(owner));
-        return isReal;
-    }
-
-    public ItemStack harvest(EntityPlayer player, boolean doHarvest) {
+    public ItemStack harvest(@Nullable EntityPlayer player, boolean doHarvest) {
         if (crop == null) return null;
         if (stage >= crop.getStages()) {
             if (doHarvest) {
@@ -138,23 +127,24 @@ public class CropData implements ICropData {
         daysWithoutWater = 0;
     }
 
-    @Override
+    public boolean isWatered() {
+        return daysWithoutWater == 0;
+    }
+
     public void readFromNBT(NBTTagCompound nbt) {
         crop = CropRegistry.REGISTRY.getObject(new ResourceLocation(nbt.getString("CropResource")));
-        isReal = nbt.getBoolean("IsReal");
-        if (crop == HFCrops.NULL_CROP) isReal = false;
         stage = nbt.getByte("CurrentStage");
         daysWithoutWater = nbt.getShort("DaysWithoutWater");
     }
 
-    @Override
-    public void writeToNBT(NBTTagCompound nbt) {
-        if (crop != null) {
-            nbt.setBoolean("IsReal", isReal);
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+        if (crop != null && crop != HFCrops.NULL_CROP) {
             nbt.setString("CropResource", crop.getRegistryName().toString());
             nbt.setByte("CurrentStage", (byte) stage);
             nbt.setShort("DaysWithoutWater", (short) daysWithoutWater);
         }
+
+        return nbt;
     }
 
     @Override

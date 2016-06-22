@@ -7,7 +7,6 @@ import joshie.harvest.api.core.ISeasonData;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.config.Crops;
-import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.SeedHelper;
 import joshie.harvest.core.helpers.generic.RegistryHelper;
 import joshie.harvest.core.lib.CreativeSort;
@@ -119,12 +118,11 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
     private int plantSeedAt(EntityPlayer player, ItemStack stack, World world, BlockPos pos, EnumFacing facing, ICrop crop, int planted) {
         if (player.canPlayerEdit(pos, facing, stack) && player.canPlayerEdit(pos.up(), facing, stack)) {
             if (crop.getSoilHandler().canSustainCrop(world, pos, world.getBlockState(pos), crop) && world.isAirBlock(pos.up())) {
-                HFTrackers.getCropTracker(world).plantCrop(player, pos.up(), crop, 1);
-
                 if (!world.isRemote) {
                     world.setBlockState(pos.up(), HFCrops.CROPS.getDefaultState());
                 }
 
+                HFApi.crops.plantCrop(player, world, pos.up(), crop, 1);
                 planted++;
 
                 if (Crops.alwaysGrow) {

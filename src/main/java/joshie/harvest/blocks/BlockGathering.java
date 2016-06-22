@@ -25,7 +25,7 @@ import net.minecraft.world.World;
 import static joshie.harvest.api.core.ITiered.ToolTier.*;
 import static joshie.harvest.blocks.BlockGathering.GatheringType.*;
 
-public class BlockGathering extends BlockHFEnum<GatheringType> {
+public class BlockGathering extends BlockHFEnum<BlockGathering, GatheringType> {
     public static final PropertyBool WINTER = PropertyBool.create("winter");
 
     public enum GatheringType implements IStringSerializable {

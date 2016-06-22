@@ -1,6 +1,5 @@
 package joshie.harvest.animals.blocks;
 
-import joshie.harvest.api.core.IDailyTickable;
 import joshie.harvest.blocks.tiles.TileFillable;
 import joshie.harvest.core.helpers.ToolHelper;
 import net.minecraft.entity.passive.EntityChicken;
@@ -9,7 +8,7 @@ import net.minecraft.world.World;
 
 import static joshie.harvest.core.network.PacketHandler.sendRefreshPacket;
 
-public class TileNest extends TileFillable implements IDailyTickable {
+public class TileNest extends TileFillable {
     private static final int MAX_FILL = 7;
 
     @Override

@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public abstract class BlockHFEnumRotatableMeta<E extends Enum<E> & IStringSerializable> extends BlockHFEnum<E> {
+public abstract class BlockHFEnumRotatableMeta<B extends BlockHFEnumRotatableMeta, E extends Enum<E> & IStringSerializable> extends BlockHFEnum<B, E> {
     protected static final PropertyDirection FACING = BlockHorizontal.FACING;
     //Main Constructor
     public BlockHFEnumRotatableMeta(Material material, Class<E> clazz, CreativeTabs tab) {

@@ -26,7 +26,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BlockStone extends BlockHFEnum<Type> {
+public class BlockStone extends BlockHFEnum<BlockStone, Type> {
     public enum Type implements IStringSerializable {
         REAL(true), DECORATIVE_BLANK, DECORATIVE_PURPLE, DECORATIVE_SILVER, DECORATIVE_GREEN, DECORATIVE_BLUE, DECORATIVE_RED,
         REAL_WINTER(true), DECORATIVE_BLANK_WINTER, DECORATIVE_PURPLE_WINTER, DECORATIVE_SILVER_WINTER, DECORATIVE_GREEN_WINTER, DECORATIVE_BLUE_WINTER, DECORATIVE_RED_WINTER;

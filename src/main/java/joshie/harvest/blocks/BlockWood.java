@@ -33,7 +33,7 @@ import static joshie.harvest.blocks.BlockWood.Woodware.SHIPPING;
 import static joshie.harvest.blocks.BlockWood.Woodware.TROUGH;
 import static net.minecraft.util.EnumFacing.*;
 
-public class BlockWood extends BlockHFEnumRotatableMeta<Woodware> implements IAnimalFeeder {
+public class BlockWood extends BlockHFEnumRotatableMeta<BlockWood, Woodware> implements IAnimalFeeder {
     private static final AxisAlignedBB SHIPPING_AABB = new AxisAlignedBB(0D, 0D, 0D, 1D, 0.6D, 1D);
     private static final AxisAlignedBB NEST_NORTH_AABB = new AxisAlignedBB(0.05D, 0D, 0.3D, 0.95D, 0.7D, 0.95);
     private static final AxisAlignedBB NEST_SOUTH_AABB = new AxisAlignedBB(0.05D, 0D, 0.05D, 0.95D, 0.7D, 0.7);

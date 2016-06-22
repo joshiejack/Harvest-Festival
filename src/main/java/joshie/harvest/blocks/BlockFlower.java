@@ -30,7 +30,7 @@ import static joshie.harvest.blocks.BlockFlower.FlowerType.WEED;
 import static net.minecraft.util.text.TextFormatting.AQUA;
 import static net.minecraftforge.common.EnumPlantType.Plains;
 
-public class BlockFlower extends BlockHFEnum<FlowerType> implements IPlantable {
+public class BlockFlower extends BlockHFEnum<BlockFlower, FlowerType> implements IPlantable {
     protected static final AxisAlignedBB FLOWER_AABB = new AxisAlignedBB(0.30000001192092896D, 0.0D, 0.30000001192092896D, 0.699999988079071D, 0.6000000238418579D, 0.699999988079071D);
 
     public BlockFlower() {

@@ -14,7 +14,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerChangedDimensionEvent;
@@ -31,16 +30,6 @@ import java.io.FileOutputStream;
 import static joshie.harvest.core.config.Calendar.TICKS_PER_DAY;
 
 public class EventsHandler {
-    public static ServerHandler NETHER;
-
-    //Setup the Server
-    @SubscribeEvent
-    public void onLoad(WorldEvent.Load event) {
-        if (!event.getWorld().isRemote) {
-            HFTrackers.resetWorld(event.getWorld());
-        }
-    }
-
     //Setup the Client
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
@@ -106,7 +95,6 @@ public class EventsHandler {
     public static void newDay(final World world) {
         HFTrackers.getCalendar(world).newDay();
         HFTrackers.getTickables(world).newDay();
-        HFTrackers.getCropTracker(world).newDay();
         HFTrackers.getAnimalTracker(world).newDay();
         HFTrackers.getTownTracker(world).newDay();
         HFTrackers.markDirty(world);

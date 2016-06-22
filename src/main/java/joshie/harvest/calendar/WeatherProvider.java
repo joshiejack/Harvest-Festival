@@ -175,10 +175,6 @@ public class WeatherProvider extends WorldProviderSurface {
             joshie.harvest.calendar.Calendar calendar = HFTrackers.getCalendar(worldObj);
             float rainStrength = calendar.getTodaysRainStrength();
             float thunderStrength = calendar.getTodaysStormStrength();
-            if (calendar.getTodaysWeather().isRain()) {
-                HFTrackers.getCropTracker(worldObj).doRain();
-            }
-
             if (worldObj.rainingStrength > rainStrength) {
                 worldObj.rainingStrength -= 0.01F;
             } else if (worldObj.rainingStrength < rainStrength) {

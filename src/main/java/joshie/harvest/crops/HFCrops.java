@@ -6,9 +6,11 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.core.config.Crops;
 import joshie.harvest.core.helpers.SeedHelper;
+import joshie.harvest.core.helpers.generic.RegistryHelper;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.core.util.base.BlockHFEnum;
 import joshie.harvest.crops.blocks.BlockHFCrops;
+import joshie.harvest.crops.blocks.TileCrop;
+import joshie.harvest.crops.blocks.TileCrop.TileWithered;
 import joshie.harvest.crops.handlers.*;
 import joshie.harvest.crops.items.*;
 import joshie.harvest.items.ItemBaseTool;
@@ -40,7 +42,7 @@ import static joshie.harvest.core.HFTab.FARMING;
 
 public class HFCrops {
     //Crops and Custom Farmland
-    public static final BlockHFEnum CROPS = new BlockHFCrops().setUnlocalizedName("crops.block");
+    public static final BlockHFCrops CROPS = new BlockHFCrops().setUnlocalizedName("crops.block");
 
     //Farming Tools
     public static final ItemBaseTool HOE = new ItemHoe().setUnlocalizedName("hoe");
@@ -108,6 +110,7 @@ public class HFCrops {
             }
         }
 
+        RegistryHelper.registerTiles(TileCrop.class, TileWithered.class);
         MinecraftForge.EVENT_BUS.register(new BlockHFCrops.EventHandler());
         if (Crops.disableVanillaMoisture) {
             Blocks.FARMLAND.setTickRandomly(false);

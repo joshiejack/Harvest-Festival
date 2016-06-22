@@ -66,8 +66,9 @@ public class ItemHoe extends ItemBaseTool {
 
     private boolean canHoe(EntityPlayer player, ItemStack stack, World world, BlockPos pos) {
         UseHoeEvent event = new UseHoeEvent(player, stack.copy(), world, pos);
+        event.setResult(Result.ALLOW); //Default to allow?
         if (MinecraftForge.EVENT_BUS.post(event)) return false;
-        if (event.getResult() == Result.ALLOW) {
+        if (event.getResult() != Result.DENY) {
             return true;
         }
 

@@ -32,7 +32,7 @@ public class CalendarHUD {
             GlStateManager.pushMatrix();
             GlStateManager.enableBlend();
             GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-            if (!joshie.harvest.core.config.Calendar.ENABLE_DATE_HUD) {
+            if (joshie.harvest.core.config.Calendar.ENABLE_DATE_HUD) {
                 Calendar calendar = HFTrackers.getCalendar(MCClientHelper.getWorld());
                 ICalendarDate date = calendar.getDate();
                 ISeasonData data = calendar.getSeasonData();
@@ -52,7 +52,7 @@ public class CalendarHUD {
                 GlStateManager.popMatrix();
             }
 
-            if (!joshie.harvest.core.config.Calendar.ENABLE_GOLD_HUD) {
+            if (joshie.harvest.core.config.Calendar.ENABLE_GOLD_HUD) {
                 mc.getTextureManager().bindTexture(HFModInfo.elements);
                 String text = NumberFormat.getNumberInstance(Locale.US).format(HFTrackers.getClientPlayerTracker().getStats().getGold());
                 int width = event.getResolution().getScaledWidth();

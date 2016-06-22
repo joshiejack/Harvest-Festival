@@ -1,7 +1,6 @@
 package joshie.harvest.blocks;
 
 import joshie.harvest.blocks.BlockFlower.FlowerType;
-import joshie.harvest.core.util.base.BlockHFEnum;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.IBlockColor;
@@ -13,7 +12,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.biome.BiomeColorHelper;
-import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -24,17 +22,17 @@ import static joshie.harvest.core.lib.HFModInfo.MODID;
 public class HFBlocks {
     //Fluid
     public static final Fluid GODDESS = registerFluid(new Fluid("goddess_water", new ResourceLocation(MODID, "blocks/goddess_still"), new ResourceLocation(MODID, "blocks/goddess_flow")).setRarity(EnumRarity.RARE));
-    public static final BlockFluidClassic GODDESS_WATER = new BlockGoddessWater(GODDESS).setUnlocalizedName("goddess.water");
+    public static final BlockGoddessWater GODDESS_WATER = new BlockGoddessWater(GODDESS).setUnlocalizedName("goddess.water");
 
-    public static final BlockFlower FLOWERS = (BlockFlower) new BlockFlower().setUnlocalizedName("flowers");
+    public static final BlockFlower FLOWERS = new BlockFlower().setUnlocalizedName("flowers");
     //Mine
-    public static final BlockHFEnum STONE = new BlockStone().setUnlocalizedName("stone");
-    public static final BlockHFEnum DIRT = new BlockDirt().setUnlocalizedName("dirt");
+    public static final BlockStone STONE = new BlockStone().setUnlocalizedName("stone");
+    public static final BlockDirt DIRT = new BlockDirt().setUnlocalizedName("dirt");
     //Misc
-    public static final BlockHFEnum WOOD_MACHINES = new BlockWood().setUnlocalizedName("woodware");
+    public static final BlockWood WOOD_MACHINES = new BlockWood().setUnlocalizedName("woodware");
 
     //Gathering
-    public static final BlockHFEnum GATHERING = new BlockGathering().setUnlocalizedName("gathering");
+    public static final BlockGathering GATHERING = new BlockGathering().setUnlocalizedName("gathering");
 
     public static void preInit() {
         GODDESS.setBlock(GODDESS_WATER);

@@ -21,7 +21,6 @@ public abstract class HFTracker {
         return world.get();
     }
 
-
     public void setWorld(World world) {
         this.world = new WeakReference<>(world);
         this.id = world.provider.getDimension();

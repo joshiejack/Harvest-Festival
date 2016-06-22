@@ -24,7 +24,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BlockDirt extends BlockHFEnum<Types> {
+public class BlockDirt extends BlockHFEnum<BlockDirt, Types> {
     public enum Types implements IStringSerializable {
         REAL, DECORATIVE;
 

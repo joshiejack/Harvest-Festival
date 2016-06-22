@@ -274,6 +274,6 @@ public abstract class ItemBaseTool extends ItemBaseSingle implements ILevelable,
         }
 
         Vec3d vec31 = vec3.addVector((double)f6 * d3, (double)f5 * d3, (double)f7 * d3);
-        return world.rayTraceBlocks(vec3, vec31, false, true, false);
+        return world.rayTraceBlocks(vec3, vec31, false, false, false);
     }
 }

@@ -46,9 +46,7 @@ public class HFCore {
 
         //Register Packets
         PacketHandler.registerPacket(PacketSetCalendar.class);
-        PacketHandler.registerPacket(PacketCropRequest.class, Side.SERVER);
         PacketHandler.registerPacket(PacketSyncForecast.class, Side.CLIENT);
-        PacketHandler.registerPacket(PacketSyncCrop.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketSyncGold.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketSyncRelationship.class, Side.CLIENT);
         PacketHandler.registerPacket(PacketSyncMarriage.class, Side.CLIENT);

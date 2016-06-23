@@ -80,7 +80,8 @@ public class TickDailyServer extends HFTracker implements ISaveable {
     public void setWorld(World world) {
         super.setWorld(world);
 
-        for (BlockPos pos: blockTicks.keySet()) {
+        Set<BlockPos> positions = new HashSet(blockTicks.keySet());
+        for (BlockPos pos: positions) {
             IDailyTickableBlock tickable = HFApi.tickable.getTickableFromBlock(getWorld().getBlockState(pos).getBlock());
             if (tickable != null) {
                 blockTicks.put(pos, tickable); //Load in the tickables once the world is actually loaded

@@ -9,6 +9,7 @@ import joshie.harvest.api.crops.IStateHandler.PlantSection;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.crops.blocks.BlockHFCrops;
 import joshie.harvest.crops.blocks.TileCrop;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -24,6 +25,7 @@ import javax.annotation.Nullable;
 import java.util.HashMap;
 
 import static joshie.harvest.core.helpers.CropHelper.WET_SOIL;
+import static joshie.harvest.core.helpers.CropHelper.isSoil;
 import static joshie.harvest.core.helpers.CropHelper.isWetSoil;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.crops.blocks.BlockHFCrops.Stage.FRESH;
@@ -76,12 +78,7 @@ public class CropRegistry implements ICropRegistry {
         }
 
         TileCrop tile = (TileCrop) world.getTileEntity(pos);
-        CropData data = tile.getData();
-        if (isWetSoil(world, pos.down())) {
-            data.setHydrated();
-        }
-
-        data.setCrop(theCrop, stage);
+        tile.getData().setCrop(theCrop, stage);
         tile.saveAndRefresh();
     }
 
@@ -110,17 +107,10 @@ public class CropRegistry implements ICropRegistry {
     @Override
     public boolean hydrateSoil(@Nullable EntityPlayer player, World world, BlockPos pos) {
         boolean ret = false;
-        if (!isWetSoil(world, pos)) {
+        IBlockState state = world.getBlockState(pos);
+        if (isSoil(state) && !isWetSoil(state)) {
             world.setBlockState(pos, WET_SOIL);
             ret = true;
-        }
-
-        //Now that the soil has been hydrated, hydrate the crop
-        TileCrop crop = world.getTileEntity(pos.up()) instanceof TileCrop ? (TileCrop) world.getTileEntity(pos.up()) : null;
-        if (crop != null && !crop.getData().isWatered()) {
-            crop.getData().setHydrated();
-            crop.markDirty();
-            return true;
         }
 
         return ret;

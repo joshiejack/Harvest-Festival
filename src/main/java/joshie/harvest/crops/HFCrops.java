@@ -7,10 +7,11 @@ import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.core.config.Crops;
 import joshie.harvest.core.helpers.SeedHelper;
 import joshie.harvest.core.helpers.generic.RegistryHelper;
-import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.crops.blocks.BlockHFCrops;
+import joshie.harvest.crops.blocks.BlockSprinkler;
 import joshie.harvest.crops.blocks.TileCrop;
 import joshie.harvest.crops.blocks.TileCrop.TileWithered;
+import joshie.harvest.crops.blocks.TileSprinkler;
 import joshie.harvest.crops.handlers.*;
 import joshie.harvest.crops.items.*;
 import joshie.harvest.items.ItemBaseTool;
@@ -39,10 +40,12 @@ import javax.annotation.Nullable;
 import static joshie.harvest.api.animals.AnimalFoodType.FRUIT;
 import static joshie.harvest.api.calendar.Season.*;
 import static joshie.harvest.core.HFTab.FARMING;
+import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class HFCrops {
     //Crops and Custom Farmland
     public static final BlockHFCrops CROPS = new BlockHFCrops().setUnlocalizedName("crops.block");
+    public static final BlockSprinkler SPRINKLER = new BlockSprinkler().setUnlocalizedName("sprinkler");
 
     //Farming Tools
     public static final ItemBaseTool HOE = new ItemHoe().setUnlocalizedName("hoe");
@@ -51,9 +54,6 @@ public class HFCrops {
 
     //Seed Bag Item
     public static final Item SEEDS = new ItemHFSeeds().setUnlocalizedName("crops.seeds");
-
-    //Dummy Crop
-    public static final Crop NULL_CROP = new Crop().setStateHandler(new StateHandlerNull());
 
     //Spring Crops
     public static final ICrop TURNIP = registerCrop("turnip", 120, 60, 5, 0, 0, 0xFFFFFF, SPRING).setStateHandler(new StateHandlerTurnip());
@@ -110,7 +110,7 @@ public class HFCrops {
             }
         }
 
-        RegistryHelper.registerTiles(TileCrop.class, TileWithered.class);
+        RegistryHelper.registerTiles(TileCrop.class, TileWithered.class, TileSprinkler.class);
         MinecraftForge.EVENT_BUS.register(new BlockHFCrops.EventHandler());
         if (Crops.disableVanillaMoisture) {
             Blocks.FARMLAND.setTickRandomly(false);
@@ -128,7 +128,7 @@ public class HFCrops {
         Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new IItemColor() {
             @Override
             public int getColorFromItemstack(ItemStack stack, int tintIndex) {
-                ICrop crop = SeedHelper.getCropFromSeed(stack);
+                Crop crop = SeedHelper.getCropFromSeed(stack);
                 return crop != null ? crop.getColor() : -1;
             }
         }, SEEDS);
@@ -160,7 +160,7 @@ public class HFCrops {
     }
 
     private static ICrop registerCrop(String name, int cost, int sell, int stages, int regrow, int year, int color, Season... seasons) {
-        return HFApi.crops.registerCrop(new ResourceLocation(HFModInfo.MODID, name), cost, sell, stages, regrow, year, color, seasons);
+        return HFApi.crops.registerCrop(new ResourceLocation(MODID, name), cost, sell, stages, regrow, year, color, seasons);
     }
 
     private static boolean isInDictionary(String name, ItemStack stack) {

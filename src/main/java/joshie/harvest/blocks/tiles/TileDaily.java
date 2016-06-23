@@ -19,9 +19,6 @@ public abstract class TileDaily extends TileHarvest implements IDailyTickable {
         HFApi.tickable.removeTickable(worldObj, this);
     }
 
-    @Override
-    public void onInvalidated() {}
-
     public void saveAndRefresh() {
         MCServerHelper.markForUpdate(worldObj, getPos(), 3);
         markDirty();

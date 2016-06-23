@@ -1,6 +1,7 @@
 {
 "textures": {
-    "texture": "models/sprinkler"
+    "particle": "harvestfestival:models/sprinkler",
+    "texture": "harvestfestival:models/sprinkler"
 },
 "elements": [ 
 {

@@ -24,7 +24,7 @@ public interface ICropRegistry {
      *  @return the ICrop**/
     ICrop getCropFromStack(ItemStack stack);
 
-    /** Will NEVER return null, however it may have an instance of 'null_crop'
+    /** Fetch the crop at this location, will return null if there is no crop there
      *  @param world the world
      *  @param pos the block position
      *  @return the crop data the loation**/

@@ -85,7 +85,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
         super(Material.PLANTS, Stage.class, null);
         setBlockUnbreakable();
         setSoundType(SoundType.GROUND);
-        setTickRandomly(true);
+        setTickRandomly(Crops.alwaysGrow);
         disableStats();
     }
 
@@ -383,7 +383,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
     @Override
     public void grow(World world, Random rand, BlockPos pos, IBlockState state) {
         TileCrop crop = getEnumFromState(state).section == TOP ? (TileCrop) world.getTileEntity(pos.down()): (TileCrop) world.getTileEntity(pos);
-        crop.getData().grow(world);
+        crop.getData().grow(world, pos);
         crop.saveAndRefresh();
     }
 

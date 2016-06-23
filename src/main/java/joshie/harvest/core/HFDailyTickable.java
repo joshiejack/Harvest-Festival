@@ -12,6 +12,7 @@ import net.minecraft.world.World;
 
 import java.util.HashMap;
 
+import static joshie.harvest.core.helpers.CropHelper.DRYING_SOIL;
 import static joshie.harvest.core.helpers.CropHelper.DRY_SOIL;
 import static joshie.harvest.core.helpers.CropHelper.WET_SOIL;
 
@@ -29,7 +30,8 @@ public class HFDailyTickable implements IDailyTickableRegistry {
                 if (state != WET_SOIL && world.isRainingAt(pos.up(2))) {
                     world.setBlockState(pos, WET_SOIL, 2);
                 } else {
-                    if (state == WET_SOIL) world.setBlockState(pos, DRY_SOIL, 2);
+                    if (state == WET_SOIL) world.setBlockState(pos, DRYING_SOIL, 2);
+                    else if (state == DRYING_SOIL) world.setBlockState(pos, DRY_SOIL, 2);
                     else if (state == DRY_SOIL && (!hasCrops(world, pos))) world.setBlockState(pos, Blocks.DIRT.getDefaultState(), 2);
                 }
 

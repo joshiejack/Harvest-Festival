@@ -18,6 +18,7 @@ import static joshie.harvest.api.crops.IStateHandler.PlantSection.TOP;
 
 public class CropHelper {
     public static final IBlockState WET_SOIL = Blocks.FARMLAND.getDefaultState().withProperty(BlockFarmland.MOISTURE, 7);
+    public static final IBlockState DRYING_SOIL = Blocks.FARMLAND.getDefaultState().withProperty(BlockFarmland.MOISTURE, 3);
     public static final IBlockState DRY_SOIL = Blocks.FARMLAND.getDefaultState().withProperty(BlockFarmland.MOISTURE, 0);
 
     public static IBlockState getBlockState(World world, BlockPos pos, PlantSection section, boolean withered) {
@@ -31,9 +32,12 @@ public class CropHelper {
     }
 
     //Returns whether the farmland is hydrated
-    public static boolean isWetSoil(World world, BlockPos pos) {
-        IBlockState state = world.getBlockState(pos);
-        return state.getBlock() == Blocks.FARMLAND && state == WET_SOIL;
+    public static boolean isWetSoil(IBlockState state) {
+        return state == WET_SOIL;
+    }
+
+    public static boolean isSoil(IBlockState state) {
+        return state.getBlock() == Blocks.FARMLAND;
     }
 
     //Harvests the crop at this location

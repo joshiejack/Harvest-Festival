@@ -5,8 +5,6 @@ import joshie.harvest.core.network.penguin.PenguinNetwork;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.Packet;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.relauncher.Side;
 
@@ -35,29 +33,15 @@ public class PacketHandler {
         INSTANCE.sendToEveryone(message);
     }
 
-    public static void sendAround(IMessage packet, int dim, double x, double y, double z) {
-        INSTANCE.sendToAllAround(packet, dim, x, y, z);
-    }
-
-    public static Packet<?> getPacket(IMessage packet) {
-        return INSTANCE.getPacketFrom(packet);
-    }
-
-    public static void sendAround(IMessage packet, TileEntity tile) {
-        BlockPos pos = tile.getPos(); //Damn you!
-        sendAround(packet, tile.getWorld().provider.getDimension(), pos.getX(), pos.getY(), pos.getZ());
-    }
-
     public static void sendRefreshPacket(TileHarvest tile) {
+        tile.hasChanged = true;
         Packet<?> pkt = tile.getUpdatePacket();
         if (pkt != null) {
-            tile.hasChanged = true;
-
             for (EntityPlayer player: tile.getWorld().playerEntities) {
                 ((EntityPlayerMP) player).connection.sendPacket(pkt);
             }
-
-            tile.hasChanged = false;
         }
+
+        tile.hasChanged = false;
     }
 }

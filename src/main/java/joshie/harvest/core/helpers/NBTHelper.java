@@ -1,15 +1,27 @@
 package joshie.harvest.core.helpers;
 
-import joshie.harvest.player.tracking.TrackingData.HolderMapStack;
+import joshie.harvest.blocks.tiles.TileHarvest;
+import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.player.tracking.TrackingData.AbstractHolder;
+import joshie.harvest.player.tracking.TrackingData.HolderMapStack;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 import java.util.*;
 
 public class NBTHelper {
+    public static void copyTileData(TileHarvest tile, World world, BlockPos pos, IBlockState state) {
+        NBTTagCompound data = tile.writeToNBT(new NBTTagCompound()); //Save the old data
+        world.setBlockState(pos, state, 2);
+        TileHarvest tile2 = (TileHarvest) world.getTileEntity(pos);
+        tile2.readFromNBT(data); //Copy over the data as we change the state
+        PacketHandler.sendRefreshPacket(tile2);
+    }
+
     private static <C extends Collection, H extends AbstractHolder> C readCollection(Class<C> c, Class<H> h, NBTTagList list) {
         try {
             C collection = c.newInstance();

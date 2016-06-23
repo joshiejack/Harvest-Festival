@@ -10,7 +10,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
 import static joshie.harvest.api.animals.AnimalFoodType.GRASS;
 import static net.minecraft.util.EnumFacing.*;
@@ -165,8 +164,8 @@ public class TileTrough extends TileFillable {
     }
 
     @Override
-    public void newDay(World world) {
-        for (EntityAnimal animal: EntityHelper.getEntities(EntityAnimal.class, world, 32D)) {
+    public void newDay() {
+        for (EntityAnimal animal: EntityHelper.getEntities(EntityAnimal.class, getWorld(), 32D)) {
             if (animal instanceof IAnimalTracked) { //Feed all the local animals
                 if (hasFoodAndFeed()) {
                     ((IAnimalTracked) animal).getData().feed(null);

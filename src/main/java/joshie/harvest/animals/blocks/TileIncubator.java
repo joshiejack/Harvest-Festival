@@ -5,7 +5,6 @@ import joshie.harvest.blocks.tiles.TileFillableSizedFaceable;
 import joshie.harvest.core.helpers.ToolHelper;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 
 import static joshie.harvest.core.network.PacketHandler.sendRefreshPacket;
 
@@ -26,13 +25,13 @@ public class TileIncubator extends TileFillableSizedFaceable {
     }
 
     @Override
-    public void newDay(World world) {
+    public void newDay() {
         if (fillAmount > 0) {
             fillAmount--;
 
             if (fillAmount == 0) {
                 EntityChicken chicken = new EntityChicken(worldObj);
-                chicken.setPositionAndUpdate(getPos().getX() + 3 * world.rand.nextDouble(), getPos().getY() + world.rand.nextDouble(), getPos().getZ() + 3 * world.rand.nextDouble());
+                chicken.setPositionAndUpdate(getPos().getX() + 3 * getWorld().rand.nextDouble(), getPos().getY() + getWorld().rand.nextDouble(), getPos().getZ() + 3 * getWorld().rand.nextDouble());
                 worldObj.spawnEntityInWorld(chicken);
             }
 

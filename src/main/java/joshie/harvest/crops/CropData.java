@@ -19,12 +19,6 @@ public class CropData implements ICropData {
     private Crop crop; //The Crop Type of this plant
     private int stage; //The stage it is currently at
     private int daysWithoutWater; //The number of days this crop has gone without water
-    private BlockPos pos;
-
-    public CropData(BlockPos pos) {
-        this.pos = pos;
-        this.crop = HFCrops.NULL_CROP;
-    }
 
     public ICropData setCrop(ICrop crop, int stage) {
         this.crop = (Crop) crop;
@@ -32,7 +26,7 @@ public class CropData implements ICropData {
         return this;
     }
 
-    private boolean isWrongSeason(World world) {
+    private boolean isWrongSeason(World world, BlockPos pos) {
         Season toMatch = HFTrackers.getCalendar(world).getSeasonAt(pos);
         if (crop == null || crop.getSeasons() == null) return true;
         for (Season season : crop.getSeasons()) {
@@ -43,14 +37,16 @@ public class CropData implements ICropData {
     }
 
     //Returns false if the crop was withered
-    public boolean newDay(World world) {
+    public boolean newDay(World world, BlockPos pos) {
         //Stage 1, Check how long the plant has been without water, If it's more than 2 days kill it
-        if (crop == null || (crop.requiresWater() && daysWithoutWater > 2) || isWrongSeason(world)) {
+        if (crop == null || (crop.requiresWater() && daysWithoutWater > 2) || isWrongSeason(world, pos)) {
             return false;
         } else { //Stage 2: Now that we know, it has been watered, Update it's stage
             //If we aren't ticking randomly, Then increase the stage
             if (!Crops.alwaysGrow) {
-                grow(world);
+                if (daysWithoutWater == 0 || !crop.requiresWater()) {
+                    grow(world, pos);
+                }
             }
         }
 
@@ -60,30 +56,28 @@ public class CropData implements ICropData {
     }
 
     @Override
-    public void grow(World world) {
-        if (daysWithoutWater == 0 || !crop.requiresWater()) {
-            //Increase the stage of this crop
-            if (stage < crop.getStages()) {
-                stage++;
-            }
+    public void grow(World world, BlockPos pos) {
+        //Increase the stage of this crop
+        if (stage < crop.getStages()) {
+            stage++;
+        }
 
-            //If the crop has become double add in the new block
-            if (crop.isDouble(stage)) {
-                world.setBlockState(pos.up(), HFCrops.CROPS.getStateFromEnum(BlockHFCrops.Stage.FRESH_DOUBLE), 2);
-            }
+        //If the crop has become double add in the new block
+        if (crop.isDouble(stage)) {
+            world.setBlockState(pos.up(), HFCrops.CROPS.getStateFromEnum(BlockHFCrops.Stage.FRESH_DOUBLE), 2);
+        }
 
-            //If the crop grows a block to the side
-            if (crop.growsToSide() != null) {
-                if (stage == crop.getStages()) {
-                    if (!attemptToGrowToSide(world)) {
-                        stage--; //If we failed to grow, decrease the growth stage
-                    }
+        //If the crop grows a block to the side
+        if (crop.growsToSide() != null) {
+            if (stage == crop.getStages()) {
+                if (!attemptToGrowToSide(world, pos)) {
+                    stage--; //If we failed to grow, decrease the growth stage
                 }
             }
         }
     }
 
-    private boolean attemptToGrowToSide(World world) {
+    private boolean attemptToGrowToSide(World world, BlockPos pos) {
         if (world.isAirBlock(pos.add(1, 0, 0))) { //If it's air, then let's grow some shit
             return world.setBlockState(pos.add(1, 0, 0), crop.growsToSide().getStateFromMeta(0), 2); //0 = x-
         } else if (world.isAirBlock(pos.add(0, 0, -1))) {
@@ -107,7 +101,7 @@ public class CropData implements ICropData {
 
     @Override
     public ICrop getCrop() {
-        return crop != null ? crop : HFCrops.NULL_CROP;
+        return crop;
     }
 
     public ItemStack harvest(@Nullable EntityPlayer player, boolean doHarvest) {
@@ -127,18 +121,16 @@ public class CropData implements ICropData {
         daysWithoutWater = 0;
     }
 
-    public boolean isWatered() {
-        return daysWithoutWater == 0;
-    }
-
     public void readFromNBT(NBTTagCompound nbt) {
-        crop = CropRegistry.REGISTRY.getObject(new ResourceLocation(nbt.getString("CropResource")));
-        stage = nbt.getByte("CurrentStage");
-        daysWithoutWater = nbt.getShort("DaysWithoutWater");
+        if (nbt.hasKey("CropResource")) {
+            crop = CropRegistry.REGISTRY.getObject(new ResourceLocation(nbt.getString("CropResource")));
+            stage = nbt.getByte("CurrentStage");
+            daysWithoutWater = nbt.getShort("DaysWithoutWater");
+        }
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
-        if (crop != null && crop != HFCrops.NULL_CROP) {
+        if (crop != null) {
             nbt.setString("CropResource", crop.getRegistryName().toString());
             nbt.setByte("CurrentStage", (byte) stage);
             nbt.setShort("DaysWithoutWater", (short) daysWithoutWater);

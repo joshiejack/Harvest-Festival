@@ -59,14 +59,14 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        ICrop crop = SeedHelper.getCropFromSeed(stack);
+        Crop crop = SeedHelper.getCropFromSeed(stack);
         return (crop == null) ? Text.translate("crop.seeds.useless") : crop.getSeedsName();
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean debug) {
-        ICrop crop = SeedHelper.getCropFromSeed(stack);
+        Crop crop = SeedHelper.getCropFromSeed(stack);
         if (crop != null) {
             for (Season season : crop.getSeasons()) {
                 ISeasonData data = HFApi.calendar.getDataForSeason(season);
@@ -80,7 +80,7 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
         if (facing != EnumFacing.UP) {
             return EnumActionResult.FAIL;
         } else {
-            ICrop crop = SeedHelper.getCropFromSeed(stack);
+            Crop crop = SeedHelper.getCropFromSeed(stack);
             if (crop != null) {
                 int planted = 0;
                 if (player.isSneaking()) {

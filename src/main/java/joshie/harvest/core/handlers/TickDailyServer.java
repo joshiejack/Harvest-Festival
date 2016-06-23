@@ -19,25 +19,17 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 public class TickDailyServer extends HFTracker implements ISaveable {
+    private Set<Runnable> queue = new HashSet <>();
+    private Set<IDailyTickable> priority = new HashSet<>();
     private Set<IDailyTickable> tickables = new HashSet<>();
     private HashMap<BlockPos, IDailyTickableBlock> blockTicks = new HashMap<>();
 
     public void newDay() {
-        //Tick the tickable entities
-        Set<IDailyTickable> invalid = new HashSet<>();
-        Iterator<IDailyTickable> ticking = tickables.iterator();
-        while (ticking.hasNext()) {
-            IDailyTickable tickable = ticking.next();
-            if (tickable == null || tickable.isInvalid()) {
-                invalid.add(tickable);
-                ticking.remove();
-            } else tickable.newDay(getWorld());
-        }
+        //Process the queue
+        queue.forEach((r) -> r.run());
 
-        //Remove the invalid states
-        for (IDailyTickable tickable: invalid) {
-            tickable.onInvalidated();
-        }
+        //Process high priority tickables
+        processTickables(priority);
 
         //Tick the tickable blocks
         Iterator<Entry<BlockPos, IDailyTickableBlock>> position = blockTicks.entrySet().iterator();
@@ -56,24 +48,41 @@ public class TickDailyServer extends HFTracker implements ISaveable {
                 } else position.remove(); //If this block isn't daily tickable, remove it
             }
         }
+
+        //Process the other tickables
+        processTickables(tickables);
     }
 
-    public void add(BlockPos pos, IDailyTickableBlock daily) {
-        blockTicks.put(pos, daily);
-        HFTrackers.markDirty(getDimension());
+    public void processTickables(Set<IDailyTickable> tickables) {
+        Iterator<IDailyTickable> ticking = tickables.iterator();
+        while (ticking.hasNext()) {
+            IDailyTickable tickable = ticking.next();
+            if (tickable == null || tickable.isInvalid()) {
+                ticking.remove();
+            } else tickable.newDay();
+        }
     }
 
-    public void remove(BlockPos pos) {
-        blockTicks.remove(pos);
-        HFTrackers.markDirty(getDimension());
+    public void add(final BlockPos pos, final IDailyTickableBlock daily) {
+        queue.add(() ->  {
+            blockTicks.put(pos, daily); HFTrackers.markDirty(getDimension());
+        });
     }
 
-    public void add(IDailyTickable tickable) {
-        tickables.add(tickable);
+    public void remove(final BlockPos pos) {
+        queue.add(() ->  {
+            blockTicks.remove(pos); HFTrackers.markDirty(getDimension());
+        });
     }
 
-    public void remove(IDailyTickable tickable) {
-        tickables.remove(tickable);
+    public void add(final IDailyTickable tickable) {
+        if (tickable.isPriority()) queue.add(() -> priority.add(tickable));
+        else queue.add(() -> tickables.add(tickable));
+    }
+
+    public void remove(final IDailyTickable tickable) {
+        if (tickable.isPriority()) queue.add(() -> priority.remove(tickable));
+        else queue.add(() -> tickables.remove(tickable));
     }
 
     @Override

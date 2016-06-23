@@ -1,18 +1,17 @@
 package joshie.harvest.api.core;
 
 
-import net.minecraft.world.World;
-
 /** This is a capability for ticking tile entities, and entities once daily **/
 public interface IDailyTickable {
     /** Called when the day ticks over
-     *  @param world, always use this, rather than other types
      *  @return return true if the tile should still tick daily**/
-    void newDay(World world);
+    void newDay();
 
     /** Return true if this is invalid **/
     boolean isInvalid();
 
-    /** Called after new day once the block is invalid **/
-    void onInvalidated();
+    /** Return true if this is a priority tickable and should get run first **/
+    default boolean isPriority() {
+        return false;
+    }
 }

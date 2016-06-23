@@ -68,6 +68,7 @@
 - When you can purchase buildings from a town
 
 ### Rendering
+- Animate Oven to open/close when putting things in/out
 - Make Blueprints Render in World
 - Mine Floor Connected Textures and Random Texture Overlays - Y, J?
 - Mine Floor in inventory renders
@@ -88,6 +89,7 @@
 
 ### Models + Textures
 - HarvestChicken - J
+- Make Small/Medium/Large Incubator models by combining incubator with nest
 - Rocks (Spring Mine (Ore Variation), Winter Mine Versions (Ore Variation), Overworld Rocks (Stone Only))
     - Large                                                
     - Medium                                               

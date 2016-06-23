@@ -13,7 +13,7 @@ public class FridgeData implements IInventory {
     protected ItemStack[] inventory;
 
     public FridgeData() {
-        inventory = new ItemStack[64];
+        inventory = new ItemStack[54];
     }
 
     @Override

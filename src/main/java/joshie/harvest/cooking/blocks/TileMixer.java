@@ -1,12 +1,9 @@
 package joshie.harvest.cooking.blocks;
 
 import joshie.harvest.api.cooking.IUtensil;
-import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.Utensil;
 import joshie.harvest.cooking.blocks.TileCooking.TileCookingTicking;
 import net.minecraft.item.ItemStack;
-
-import static joshie.harvest.cooking.items.ItemUtensil.Utensil.BLADE;
 
 public class TileMixer extends TileCookingTicking {
     private static final float MAX_OFFSET1 = 0.5F;
@@ -14,7 +11,7 @@ public class TileMixer extends TileCookingTicking {
     private static final float MAX_OFFSET2 = 0F / 1.75F;
     private static final float MIN_OFFSET2 = 1F / 1.75F;
 
-    public static final ItemStack BLADE_STACK = HFCooking.UTENSILS.getStackFromEnum(BLADE);
+    public static ItemStack BLADE_STACK;
     public float blade = 0F;
 
     @Override

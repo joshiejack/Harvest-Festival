@@ -62,11 +62,9 @@ public class RegistryHelper {
                     String subItemName = item.getUnlocalizedName(stack).replace("item.", "").replace(".", "_");
 
                     ModelLoader.setCustomModelResourceLocation(item, item.getDamage(stack), new ModelResourceLocation(new ResourceLocation(MODID, subItemName), "inventory"));
-                    HarvestFestival.LOGGER.log(Level.INFO, "Sub item name " + subItemName);
                 }
             } else {
                 ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(new ResourceLocation(MODID, name), "inventory"));
-                HarvestFestival.LOGGER.log(Level.INFO, "Item Name " + name);
             }
         }
 

@@ -8,7 +8,7 @@ public class GuiFridge extends GuiBase {
     private final FridgeData fridge;
 
     public GuiFridge(IInventory playerInv, FridgeData fridge) {
-        super(new ContainerFridge(playerInv, fridge), "fridge", 0);
+        super(new ContainerFridge(playerInv, fridge), "fridge", 56);
         this.fridge = fridge;
     }
 }

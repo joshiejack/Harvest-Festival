@@ -1,11 +1,13 @@
 package joshie.harvest.cooking.gui;
 
 import joshie.harvest.api.HFApi;
+import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.core.util.ContainerBase;
 import joshie.harvest.player.fridge.FridgeData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 
 public class ContainerFridge extends ContainerBase {
@@ -13,8 +15,13 @@ public class ContainerFridge extends ContainerBase {
 
     public ContainerFridge(IInventory inventory, FridgeData storage) {
         this.storage = storage;
-        addSlotToContainer(new Slot(storage, 0, 1, 1));
-        bindPlayerInventory(inventory, 0);
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 9; j++) {
+                addSlotToContainer(new Slot(storage, j + i * 9, 8 + j * 18, (i * 18) + 18));
+            }
+        }
+
+        bindPlayerInventory(inventory, 56);
     }
 
     private void bindPlayerInventory(IInventory playerInventory, int yOffset) {
@@ -48,7 +55,7 @@ public class ContainerFridge extends ContainerBase {
 
             if (slotID < size) {
                 if (!mergeItemStack(stack, size, high, true)) return null;
-            } else if (HFApi.cooking.getCookingComponents(stack).size() > 0) {
+            } else if (stack.getItem() == HFCooking.MEAL || HFApi.cooking.getCookingComponents(stack).size() > 0 || stack.getItem() instanceof ItemFood) {
                 if (!mergeItemStack(stack, 0, storage.getSizeInventory(), false)) return null;
             } else if (slotID >= size && slotID < low) {
                 if (!mergeItemStack(stack, low, high, false)) return null;

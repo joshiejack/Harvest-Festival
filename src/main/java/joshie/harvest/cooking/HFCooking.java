@@ -16,6 +16,8 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import static joshie.harvest.cooking.blocks.TileMixer.BLADE_STACK;
+import static joshie.harvest.cooking.items.ItemUtensil.Utensil.BLADE;
 import static joshie.harvest.core.helpers.generic.RegistryHelper.registerTiles;
 
 public class HFCooking {
@@ -26,6 +28,7 @@ public class HFCooking {
     public static final ItemIngredients INGREDIENTS = new ItemIngredients().setUnlocalizedName("ingredients");
 
     public static void preInit() {
+        BLADE_STACK = UTENSILS.getStackFromEnum(BLADE);
         HFApi.cooking.registerRecipeHandler(new MayoRecipeHandler());
         registerTiles(TileFridge.class, TileFryingPan.class, TileCounter.class, TileMixer.class, TileOven.class, TilePot.class);
     }

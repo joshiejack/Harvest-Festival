@@ -1,6 +1,8 @@
 package joshie.harvest.core.util.base;
 
+import joshie.harvest.core.HFTab;
 import joshie.harvest.core.helpers.generic.DirectionHelper;
+import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.generic.IFaceable;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
@@ -28,6 +30,10 @@ public abstract class BlockHFEnumRotatableTile<B extends BlockHFEnumRotatableTil
     public BlockHFEnumRotatableTile(Material material, Class<E> clazz, CreativeTabs tab) {
         super(material, clazz, tab);
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+    }
+
+    public BlockHFEnumRotatableTile(Material material, Class<E> clazz) {
+        this(material, clazz, HFTab.FARMING);
     }
 
     @Override
@@ -78,5 +84,15 @@ public abstract class BlockHFEnumRotatableTile<B extends BlockHFEnumRotatableTil
         }
 
         return state;
+    }
+
+    @Override
+    public boolean hasTileEntity(IBlockState state) {
+        return true;
+    }
+
+    @Override
+    public int getSortValue(ItemStack stack) {
+        return CreativeSort.TROUGH;
     }
 }

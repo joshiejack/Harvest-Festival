@@ -4,7 +4,7 @@ import joshie.harvest.core.util.generic.IFaceable;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 
-public class TileFaceable extends TileHarvest implements IFaceable {
+public abstract class TileFillableSizedFaceable extends TileFillableSized implements IFaceable {
     public EnumFacing orientation;
 
     @Override

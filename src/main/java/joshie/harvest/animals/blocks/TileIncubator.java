@@ -1,6 +1,7 @@
 package joshie.harvest.animals.blocks;
 
-import joshie.harvest.blocks.tiles.TileFillable;
+import joshie.harvest.api.HFApi;
+import joshie.harvest.blocks.tiles.TileFillableSizedFaceable;
 import joshie.harvest.core.helpers.ToolHelper;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.item.ItemStack;
@@ -8,14 +9,14 @@ import net.minecraft.world.World;
 
 import static joshie.harvest.core.network.PacketHandler.sendRefreshPacket;
 
-public class TileNest extends TileFillable {
+public class TileIncubator extends TileFillableSizedFaceable {
     private static final int MAX_FILL = 7;
 
     @Override
     public boolean onActivated(ItemStack held) {
         if (ToolHelper.isEgg(held)) {
             if (fillAmount == 0) {
-                setFilled(MAX_FILL);
+                setFilled(HFApi.sizeable.getSizeableFromStack(held).getRight(), MAX_FILL);
                 held.splitStack(1);
                 return true;
             }

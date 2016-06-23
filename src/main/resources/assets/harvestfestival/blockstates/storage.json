@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north,storage=shipping":  { "model": "harvestfestival:shipping_box" },
+    "facing=south,storage=shipping":  { "model": "harvestfestival:shipping_box", "y": 180 },
+    "facing=east,storage=shipping": { "model": "harvestfestival:shipping_box", "y": 90 },
+    "facing=west,storage=shipping": { "model": "harvestfestival:shipping_box", "y": 270 }
+  }
+}

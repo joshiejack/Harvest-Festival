@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "facing=north,section=single_empty,trough=wood":  { "model": "harvestfestival:trough_single_empty" },
+    "facing=south,section=single_empty,trough=wood":  { "model": "harvestfestival:trough_single_empty", "y": 180 },
+    "facing=east,section=single_empty,trough=wood": { "model": "harvestfestival:trough_single_empty", "y": 90 },
+    "facing=west,section=single_empty,trough=wood": { "model": "harvestfestival:trough_single_empty", "y": 270 },
+    "facing=north,section=single_filled,trough=wood":  { "model": "harvestfestival:trough_single" },
+    "facing=south,section=single_filled,trough=wood":  { "model": "harvestfestival:trough_single", "y": 180 },
+    "facing=east,section=single_filled,trough=wood": { "model": "harvestfestival:trough_single", "y": 90 },
+    "facing=west,section=single_filled,trough=wood": { "model": "harvestfestival:trough_single", "y": 270 },
+    "facing=north,section=end_empty,trough=wood":  { "model": "harvestfestival:trough_end_empty" },
+    "facing=south,section=end_empty,trough=wood":  { "model": "harvestfestival:trough_end_empty", "y": 180 },
+    "facing=east,section=end_empty,trough=wood": { "model": "harvestfestival:trough_end_empty", "y": 90 },
+    "facing=west,section=end_empty,trough=wood": { "model": "harvestfestival:trough_end_empty", "y": 270 },
+    "facing=north,section=end_filled,trough=wood":  { "model": "harvestfestival:trough_end" },
+    "facing=south,section=end_filled,trough=wood":  { "model": "harvestfestival:trough_end", "y": 180 },
+    "facing=east,section=end_filled,trough=wood": { "model": "harvestfestival:trough_end", "y": 90 },
+    "facing=west,section=end_filled,trough=wood": { "model": "harvestfestival:trough_end", "y": 270 },
+    "facing=north,section=middle_empty,trough=wood":  { "model": "harvestfestival:trough_middle_empty" },
+    "facing=south,section=middle_empty,trough=wood":  { "model": "harvestfestival:trough_middle_empty", "y": 180 },
+    "facing=east,section=middle_empty,trough=wood": { "model": "harvestfestival:trough_middle_empty", "y": 90 },
+    "facing=west,section=middle_empty,trough=wood": { "model": "harvestfestival:trough_middle_empty", "y": 270 },
+    "facing=north,section=middle_filled,trough=wood":  { "model": "harvestfestival:trough_middle" },
+    "facing=south,section=middle_filled,trough=wood":  { "model": "harvestfestival:trough_middle", "y": 180 },
+    "facing=east,section=middle_filled,trough=wood": { "model": "harvestfestival:trough_middle", "y": 90 },
+    "facing=west,section=middle_filled,trough=wood": { "model": "harvestfestival:trough_middle", "y": 270 }
+  }
+}

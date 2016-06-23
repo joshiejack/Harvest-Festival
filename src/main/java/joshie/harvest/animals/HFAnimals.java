@@ -1,7 +1,8 @@
 package joshie.harvest.animals;
 
 import joshie.harvest.HarvestFestival;
-import joshie.harvest.animals.blocks.TileNest;
+import joshie.harvest.animals.blocks.BlockSizedStorage;
+import joshie.harvest.animals.blocks.TileIncubator;
 import joshie.harvest.animals.blocks.TileTrough;
 import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.animals.entity.EntityHarvestSheep;
@@ -15,6 +16,7 @@ import joshie.harvest.animals.type.AnimalChicken;
 import joshie.harvest.animals.type.AnimalCow;
 import joshie.harvest.animals.type.AnimalSheep;
 import joshie.harvest.api.HFApi;
+import joshie.harvest.animals.blocks.BlockTrough;
 import joshie.harvest.core.helpers.generic.RegistryHelper;
 import joshie.harvest.crops.Crop;
 import joshie.harvest.crops.CropRegistry;
@@ -48,6 +50,10 @@ public class HFAnimals {
     public static final Item MAYONNAISE = HFApi.sizeable.createSizedItem("mayonnaise", 300, 400, 500);
     public static final Item WOOL = HFApi.sizeable.createSizedItem("wool", 100, 400, 500);
 
+    //Animal Blocks
+    public static final BlockTrough TROUGH = new BlockTrough().setUnlocalizedName("trough");
+    public static final BlockSizedStorage SIZED = new BlockSizedStorage().setUnlocalizedName("sized");
+
     public static void preInit() {
         registerModEntity(EntityHarvestCow.class, "cow", 5, HarvestFestival.instance, 150, 3, true);
         registerModEntity(EntityHarvestSheep.class, "sheep", 6, HarvestFestival.instance, 150, 3, true);
@@ -62,7 +68,7 @@ public class HFAnimals {
         animals.registerType("cow", new AnimalCow());
         animals.registerType("sheep", new AnimalSheep());
         animals.registerType("chicken", new AnimalChicken());
-        registerTiles(TileNest.class, TileTrough.class);
+        registerTiles(TileIncubator.class, TileTrough.class);
     }
 
     @SideOnly(Side.CLIENT)

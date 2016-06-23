@@ -29,7 +29,7 @@ public class HFBlocks {
     public static final BlockStone STONE = new BlockStone().setUnlocalizedName("stone");
     public static final BlockDirt DIRT = new BlockDirt().setUnlocalizedName("dirt");
     //Misc
-    public static final BlockWood WOOD_MACHINES = new BlockWood().setUnlocalizedName("woodware");
+    public static final BlockStorage STORAGE = new BlockStorage().setUnlocalizedName("storage");
 
     //Gathering
     public static final BlockGathering GATHERING = new BlockGathering().setUnlocalizedName("gathering");

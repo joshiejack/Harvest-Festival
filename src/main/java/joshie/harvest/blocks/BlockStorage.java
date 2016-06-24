@@ -1,16 +1,20 @@
 package joshie.harvest.blocks;
 
 import joshie.harvest.blocks.BlockStorage.Storage;
+import joshie.harvest.blocks.tiles.TileShipping;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.lib.CreativeSort;
-import joshie.harvest.core.util.base.BlockHFEnumRotatableMeta;
+import joshie.harvest.core.util.base.BlockHFEnumRotatableTile;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
@@ -22,7 +26,7 @@ import net.minecraft.world.World;
 import static joshie.harvest.api.HFApi.shipping;
 import static joshie.harvest.blocks.BlockStorage.Storage.SHIPPING;
 
-public class BlockStorage extends BlockHFEnumRotatableMeta<BlockStorage, Storage> {
+public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage> {
     private static final AxisAlignedBB SHIPPING_AABB = new AxisAlignedBB(0D, 0D, 0D, 1D, 0.6D, 1D);
 
     public enum Storage implements IStringSerializable {
@@ -73,6 +77,20 @@ public class BlockStorage extends BlockHFEnumRotatableMeta<BlockStorage, Storage
         }
 
         return false;
+    }
+
+    @Override
+    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase entity, ItemStack stack) {
+        super.onBlockPlacedBy(world, pos, state, entity, stack);
+
+        if (entity instanceof  EntityPlayer && getEnumFromState(state) == SHIPPING) {
+            ((TileShipping)world.getTileEntity(pos)).setOwner(UUIDHelper.getPlayerUUID((EntityPlayer) entity));
+        }
+    }
+
+    @Override
+    public TileEntity createTileEntity(World world, IBlockState state) {
+        return new TileShipping();
     }
 
     @Override

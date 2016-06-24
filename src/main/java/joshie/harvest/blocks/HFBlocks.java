@@ -1,6 +1,8 @@
 package joshie.harvest.blocks;
 
 import joshie.harvest.blocks.BlockFlower.FlowerType;
+import joshie.harvest.blocks.tiles.TileShipping;
+import joshie.harvest.core.helpers.generic.RegistryHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.IBlockColor;
@@ -36,6 +38,7 @@ public class HFBlocks {
 
     public static void preInit() {
         GODDESS.setBlock(GODDESS_WATER);
+        RegistryHelper.registerTiles(TileShipping.class);
     }
 
     @SideOnly(Side.CLIENT)

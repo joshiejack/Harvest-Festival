@@ -18,17 +18,6 @@ import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 
 public class TileSprinkler extends TileDaily implements ITickable {
-    protected FluidTank tank = new FluidTank(Fluid.BUCKET_VOLUME) {
-        @Override
-        public boolean canFillFluidType(FluidStack fluid) {
-            return fluid.getFluid() == FluidRegistry.WATER;
-        }
-    };
-
-    public FluidTank getTank() {
-        return tank;
-    }
-
     @Override
     public void update() {
         if (worldObj.isRemote && tank.getFluidAmount() > 1) {
@@ -80,6 +69,19 @@ public class TileSprinkler extends TileDaily implements ITickable {
         tank.writeToNBT(tag);
         return super.writeToNBT(tag);
     }
+
+    /** Capabilities **/
+    protected FluidTank tank = new FluidTank(Fluid.BUCKET_VOLUME) {
+        @Override
+        public boolean canFillFluidType(FluidStack fluid) {
+            return fluid.getFluid() == FluidRegistry.WATER;
+        }
+    };
+
+    public FluidTank getTank() {
+        return tank;
+    }
+
 
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {

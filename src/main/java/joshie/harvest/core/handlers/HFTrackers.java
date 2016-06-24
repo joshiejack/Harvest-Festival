@@ -79,7 +79,7 @@ public class HFTrackers {
     }
 
     public static PlayerTracker getPlayerTracker(EntityPlayer player) {
-        return player.worldObj.isRemote ? CLIENT_PLAYER : SERVER_PLAYERS.get(UUIDHelper.getPlayerUUID(player));
+        return player.worldObj.isRemote ? CLIENT_PLAYER : getServerPlayerTracker(player);
     }
 
     public static TownTracker getTownTracker(World world) {
@@ -97,6 +97,10 @@ public class HFTrackers {
     
     public static PlayerTrackerServer getServerPlayerTracker(EntityPlayer player) {
         return SERVER_PLAYERS.get(UUIDHelper.getPlayerUUID(player));
+    }
+
+    public static PlayerTrackerServer getServerPlayerTracker(UUID uuid) {
+        return SERVER_PLAYERS.get(uuid);
     }
 
     public static void setPlayerData(EntityPlayer player, PlayerTrackerServer data) {

@@ -1,26 +1,22 @@
 package joshie.harvest.mining;
 
-import joshie.harvest.api.core.ITiered.ToolTier;
-import joshie.harvest.crops.HFCrops;
-import joshie.harvest.items.HFItems;
-import joshie.harvest.mining.loot.LootCursed;
-import joshie.harvest.mining.loot.LootMythic;
-import joshie.harvest.mining.loot.MiningLoot;
-import net.minecraft.item.ItemStack;
-
-import static joshie.harvest.mining.loot.MiningLoot.FloorType.*;
-import static joshie.harvest.items.ItemGeneral.*;
+import joshie.harvest.mining.items.ItemOre;
+import joshie.harvest.mining.loot.*;
+import net.minecraft.world.storage.loot.conditions.LootConditionManager;
 
 public class HFMining {
+    public static final ItemOre ORE = new ItemOre().setUnlocalizedName("ore");
+
     public static void preInit() {
-        MiningLoot.registerLoot(ALL_FLOORS, new ItemStack(HFItems.GENERAL, 1, JUNK_ORE), 30D);
-        MiningLoot.registerLoot(ALL_FLOORS, new ItemStack(HFItems.GENERAL, 1, COPPER_ORE), 15D);
-        MiningLoot.registerLoot(ALL_FLOORS, new ItemStack(HFItems.GENERAL, 1, SILVER_ORE), 7.5D);
-        MiningLoot.registerLoot(GOLD_FLOOR, new ItemStack(HFItems.GENERAL, 1, GOLD_ORE), 5D);
-        MiningLoot.registerLoot(MYSTRIL_FLOOR, new ItemStack(HFItems.GENERAL, 1, MYSTRIL_ORE), 1D);
-        MiningLoot.registerLoot(MYTHIC_FLOOR, new LootMythic(new ItemStack(HFItems.GENERAL, 1, MYTHIC_STONE), 1D));
+        LootConditionManager.registerCondition(new Between.Serializer());
+        LootConditionManager.registerCondition(new EndsIn.Serializer());
+        LootConditionManager.registerCondition(new Exact.Serializer());
+        LootConditionManager.registerCondition(new MultipleOf.Serializer());
+        LootConditionManager.registerCondition(new Obtained.Serializer());
+
+        /*
         MiningLoot.registerLoot(CURSED_FLOOR, new LootCursed(new ItemStack(HFCrops.HOE, 1, ToolTier.CURSED.ordinal()), 1D));
         MiningLoot.registerLoot(CURSED_FLOOR, new LootCursed(new ItemStack(HFCrops.WATERING_CAN, 1, ToolTier.CURSED.ordinal()), 1D));
-        MiningLoot.registerLoot(CURSED_FLOOR, new LootCursed(new ItemStack(HFCrops.SICKLE, 1, ToolTier.CURSED.ordinal()), 1D));
+        MiningLoot.registerLoot(CURSED_FLOOR, new LootCursed(new ItemStack(HFCrops.SICKLE, 1, ToolTier.CURSED.ordinal()), 1D)); */
     }
 }

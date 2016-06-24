@@ -32,6 +32,8 @@ public class LootStrings {
     public static final ResourceLocation BLACKSMITH_CHEST = register("chests/blacksmith");
     public static final ResourceLocation BLACKSMITH_FRAME = register("frames/blacksmith");
     public static final ResourceLocation BARN_FRAME = register("frames/barn");
+    public static final ResourceLocation MINE_SPRING = register("gameplay/mining_spring");
+    public static final ResourceLocation MINE_WINTER = register("gameplay/mining_winter");
 
     private static ResourceLocation register(String id) {
         return LootTableList.register(new ResourceLocation(HFModInfo.MODID, id));

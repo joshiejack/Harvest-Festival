@@ -98,8 +98,7 @@ public class BlockDirt extends BlockHFEnum<BlockDirt, Types> {
         return false;
     }
 
-    //MINE STUFF
-    
+
     /*
     @Override
     public void onBlockDestroyedByPlayer(World world, int x, int y, int z, int side) {

@@ -84,16 +84,16 @@ harvestfestival.crop.wheat=Wheat
 harvestfestival.crop.nether.wart=Nether Wart
 
 #General Items
-harvestfestival.general.item.feather.blue=Blue Feather
-harvestfestival.general.item.ore.junk=Junk Ore
-harvestfestival.general.item.ore.copper=Copper Ore
-harvestfestival.general.item.ore.silver=Silver Ore
-harvestfestival.general.item.ore.gold=Gold Ore
-harvestfestival.general.item.ore.mystril=Mystril Ore
-harvestfestival.general.item.stone.mythic=Mythic Stone
-harvestfestival.general.item.shoot.bamboo=Bamboo Shoot
+harvestfestival.general.feather.blue=Blue Feather
+harvestfestival.ore.junk=Junk Ore
+harvestfestival.ore.copper=Copper Ore
+harvestfestival.ore.silver=Silver Ore
+harvestfestival.ore.gold=Gold Ore
+harvestfestival.ore.mystril=Mystril Ore
+harvestfestival.ore.mythic=Mythic Stone
+harvestfestival.general.shoot.bamboo=Bamboo Shoot
 
-harvestfestival.general.item.mushroom.matsutake=Matsutake Mushroom
+harvestfestival.general.mushroom.matsutake=Matsutake Mushroom
 
 #Meals
 harvestfestival.meal.level=Restores

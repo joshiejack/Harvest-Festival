@@ -8,12 +8,15 @@ import joshie.harvest.core.HFTab;
 import joshie.harvest.core.helpers.WorldHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.base.BlockHFEnum;
+import joshie.harvest.items.HFItems;
+import joshie.harvest.mining.MiningHelper;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
@@ -80,7 +83,7 @@ public class BlockGathering extends BlockHFEnum<BlockGathering, GatheringType> {
         } else return state.withProperty(WINTER, false);
     }
 
-    public ItemStack getDrop(GatheringType type) {
+    public ItemStack getDrop(World world, BlockPos pos, EntityPlayer player, GatheringType type, float luck) {
         switch (type) {
             case BRANCH_SMALL: return new ItemStack(Blocks.LOG, 1);
             case BRANCH_MEDIUM: return new ItemStack(Blocks.LOG, 2);
@@ -91,28 +94,36 @@ public class BlockGathering extends BlockHFEnum<BlockGathering, GatheringType> {
             case ROCK_SMALL: return new ItemStack(Blocks.STONE, 1);
             case ROCK_MEDIUM: return new ItemStack(Blocks.STONE, 4);
             case ROCK_LARGE: return new ItemStack(Blocks.STONE, 4);
+            case ORE_SMALL: return MiningHelper.getLoot(world, pos, player, 0F + luck);
+            case ORE_MEDIUM: return MiningHelper.getLoot(world, pos, player, 1F + luck);
+            case ORE_LARGE: return MiningHelper.getLoot(world, pos, player, 3F + luck);
             default: return null;
         }
     }
 
-    public void smashBlock(World world, BlockPos pos, IBlockState state, ToolTier tier) {
-        GatheringType type = getEnumFromState(state);
-        boolean smashed = false;
+    public void smashBlock(EntityPlayer player, World world, BlockPos pos, IBlockState state, ItemStack stack, ToolTier tier) {
+        if (!world.isRemote) {
+            GatheringType type = getEnumFromState(state);
+            boolean smashed = false;
+            float luck = 0F;
+            if (stack.getItem() == HFItems.AXE && !type.isRock) {
+                if (tier.isGreaterThanOrEqualTo(BASIC) && type == BRANCH_SMALL) smashed = true;
+                if (tier.isGreaterThanOrEqualTo(COPPER) && type == BRANCH_MEDIUM) smashed = true;
+                if (tier.isGreaterThanOrEqualTo(SILVER) && type == STUMP_SMALL) smashed = true;
+                if (tier.isGreaterThanOrEqualTo(GOLD) && type == BRANCH_LARGE) smashed = true;
+                if (tier.isGreaterThanOrEqualTo(MYSTRIL) && type == STUMP_MEDIUM) smashed = true;
+                if (tier.isGreaterThanOrEqualTo(CURSED) && type == STUMP_LARGE) smashed = true;
+            } else if (stack.getItem() == HFItems.HAMMER) {
+                smashed = true;
+                luck = tier.ordinal() * 0.25F;
+            }
 
-        if (!type.isRock) {
-            if (tier.isGreaterThanOrEqualTo(BASIC) && type == BRANCH_SMALL) smashed = true;
-            if (tier.isGreaterThanOrEqualTo(COPPER) && type == BRANCH_MEDIUM) smashed = true;
-            if (tier.isGreaterThanOrEqualTo(SILVER) && type == STUMP_SMALL) smashed = true;
-            if (tier.isGreaterThanOrEqualTo(GOLD) && type == BRANCH_LARGE) smashed = true;
-            if (tier.isGreaterThanOrEqualTo(MYSTRIL) && type == STUMP_MEDIUM) smashed = true;
-            if (tier.isGreaterThanOrEqualTo(CURSED) && type == STUMP_LARGE) smashed = true;
-        }
-
-        if (smashed) {
-            world.setBlockToAir(pos);
-            ItemStack drop = getDrop(type);
-            if (drop != null) {
-                spawnAsEntity(world, pos, getDrop(type));
+            if (smashed) {
+                world.setBlockToAir(pos);
+                ItemStack drop = getDrop(world, pos, player, type, luck);
+                if (drop != null) {
+                    spawnAsEntity(world, pos, drop);
+                }
             }
         }
     }

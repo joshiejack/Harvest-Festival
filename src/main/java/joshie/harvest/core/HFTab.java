@@ -7,7 +7,7 @@ import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.items.HFItems;
-import joshie.harvest.items.ItemGeneral;
+import joshie.harvest.mining.HFMining;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -18,6 +18,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+import static joshie.harvest.mining.items.ItemOre.Ore.JUNK;
 
 public class HFTab extends CreativeTabs {
     public static final HFTab TOWN = new HFTab("town");
@@ -103,7 +105,7 @@ public class HFTab extends CreativeTabs {
 
     public static void preInit() {
         HFTab.TOWN.setStack(new ItemStack(HFBuildings.STRUCTURES, 1, 0));
-        HFTab.MINING.setStack(new ItemStack(HFItems.GENERAL, 1, ItemGeneral.JUNK_ORE));
+        HFTab.MINING.setStack(HFMining.ORE.getStackFromEnum(JUNK));
         HFTab.FARMING.setStack(HFCrops.STRAWBERRY.getCropStack());
         HFTab.COOKING.setStack(HFApi.cooking.getMeal("salad"));
         HFTab.GATHERING.setStack(new ItemStack(HFItems.AXE, 1, 0));

@@ -20,18 +20,34 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 public class TileSprinkler extends TileDaily implements ITickable {
     @Override
     public void update() {
-        if (worldObj.isRemote && tank.getFluidAmount() > 1) {
-            int setting = (2 - Minecraft.getMinecraft().gameSettings.particleSetting);
+        if (!worldObj.isRemote) {
+        } else {
+            if (worldObj.isRemote && tank.getFluidAmount() > 1) {
+                int setting = (2 - Minecraft.getMinecraft().gameSettings.particleSetting);
 
-            for (int i = 0; i < setting * 32; i++) {
-                double one = worldObj.rand.nextDouble() - 0.5D;
-                double two = worldObj.rand.nextDouble() - 0.5D;
+                for (int i = 0; i < setting * 32; i++) {
+                    double one = worldObj.rand.nextDouble() - 0.5D;
+                    double two = worldObj.rand.nextDouble() - 0.5D;
 
-                worldObj.spawnParticle(EnumParticleTypes.WATER_SPLASH, getPos().getX() + 0.5D, getPos().getY() + 0.7D, getPos().getZ() + 0.5D, one, 0D, two);
-                worldObj.spawnParticle(EnumParticleTypes.WATER_SPLASH, getPos().getX() + 0.5D, getPos().getY() + 0.7D, getPos().getZ() + 0.5D, one - 0.05D, 0D, two - 0.05D);
-                worldObj.spawnParticle(EnumParticleTypes.WATER_SPLASH, getPos().getX() + 0.5D, getPos().getY() + 0.7D, getPos().getZ() + 0.5D, one - 0.05D, 0D, two + 0.05D);
-                worldObj.spawnParticle(EnumParticleTypes.WATER_SPLASH, getPos().getX() + 0.5D, getPos().getY() + 0.7D, getPos().getZ() + 0.5D, one + 0.05D, 0D, two -0.05D);
-                worldObj.spawnParticle(EnumParticleTypes.WATER_SPLASH, getPos().getX() + 0.5D, getPos().getY() + 0.7D, getPos().getZ() + 0.5D, one + 0.05D, 0D, two + 0.05D);
+                    worldObj.spawnParticle(EnumParticleTypes.WATER_SPLASH, getPos().getX() + 0.5D, getPos().getY() + 0.7D, getPos().getZ() + 0.5D, one, 0D, two);
+                    worldObj.spawnParticle(EnumParticleTypes.WATER_SPLASH, getPos().getX() + 0.5D, getPos().getY() + 0.7D, getPos().getZ() + 0.5D, one - 0.05D, 0D, two - 0.05D);
+                    worldObj.spawnParticle(EnumParticleTypes.WATER_SPLASH, getPos().getX() + 0.5D, getPos().getY() + 0.7D, getPos().getZ() + 0.5D, one - 0.05D, 0D, two + 0.05D);
+                    worldObj.spawnParticle(EnumParticleTypes.WATER_SPLASH, getPos().getX() + 0.5D, getPos().getY() + 0.7D, getPos().getZ() + 0.5D, one + 0.05D, 0D, two - 0.05D);
+                    worldObj.spawnParticle(EnumParticleTypes.WATER_SPLASH, getPos().getX() + 0.5D, getPos().getY() + 0.7D, getPos().getZ() + 0.5D, one + 0.05D, 0D, two + 0.05D);
+                }
+            }
+        }
+    }
+
+    public void hydrateSoil() {
+        for (int x = -4; x <= 4; x++) {
+            for (int z = -4; z <= 4; z++) {
+                for (int y = 0; y >= -1; y--) {
+                    BlockPos position = new BlockPos(getPos().getX() + x, getPos().getY() + y, getPos().getZ() + z);
+                    if (!position.equals(getPos())) {
+                        HFApi.crops.hydrateSoil(null, getWorld(), position);
+                    }
+                }
             }
         }
     }
@@ -41,17 +57,7 @@ public class TileSprinkler extends TileDaily implements ITickable {
         if (tank.getFluidAmount() > 1) {
             //Reduce the amount in the tank
             tank.drainInternal(Crops.sprinklerDrain, true);
-            for (int x = -4; x <= 4; x++) {
-                for (int z = -4; z <= 4; z++) {
-                    for (int y = 0; y >= -1; y--) {
-                        BlockPos position = new BlockPos(getPos().getX() + x, getPos().getY() + y, getPos().getZ() + z);
-                        if (!position.equals(getPos())) {
-                            HFApi.crops.hydrateSoil(null, getWorld(), position);
-                        }
-                    }
-                }
-            }
-
+            hydrateSoil();
             if (tank.getFluidAmount() <= 1) {
                 PacketHandler.sendRefreshPacket(this);
             }

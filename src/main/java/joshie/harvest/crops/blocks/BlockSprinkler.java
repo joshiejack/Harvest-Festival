@@ -66,13 +66,18 @@ public class BlockSprinkler extends BlockHFEnum<BlockSprinkler, Sprinkler> {
         if (heldItem != null) {
             TileEntity tile = worldIn.getTileEntity(pos);
             if (tile instanceof TileSprinkler) {
-                ItemStack result = FluidUtil.tryEmptyContainer(heldItem, ((TileSprinkler)tile).getTank(), 1000, player, true);
+                TileSprinkler sprinkler = ((TileSprinkler)tile);
+                ItemStack result = FluidUtil.tryEmptyContainer(heldItem, sprinkler.getTank(), 1000, player, true);
                 if (result != null) {
                     if (result.stackSize > 0) {
                         player.setHeldItem(hand, result);
                     }
 
-                    ((TileSprinkler)tile).saveAndRefresh();
+                    if (!worldIn.isRemote) {
+                        sprinkler.hydrateSoil();
+                    }
+
+                    sprinkler.saveAndRefresh();
 
                     return true;
                 }

@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
+import net.minecraftforge.common.util.FakePlayer;
 
 import java.util.Random;
 
@@ -55,5 +56,9 @@ public class PlayerHelper {
         }
 
         stats.affectStats(affectStamina ? -amount : 0D, affectFatigue ? amount : 0D);
+    }
+
+    public static boolean isFakePlayer(EntityPlayer player) {
+        return player instanceof FakePlayer;
     }
 }

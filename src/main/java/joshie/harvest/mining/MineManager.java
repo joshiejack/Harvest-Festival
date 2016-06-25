@@ -6,6 +6,8 @@ import joshie.harvest.core.helpers.NBTHelper;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.WorldServer;
 
+import static joshie.harvest.mining.MiningChunk.FLOOR_HEIGHT;
+
 public class MineManager {
     private static final int CHUNK_BOUNDARY = 3;
     private WorldServer world;
@@ -23,7 +25,7 @@ public class MineManager {
 
     private int getIndex(int chunkX, int chunkY, int chunkZ) {
         int x = (int) Math.floor(chunkX / CHUNK_BOUNDARY); //3x3 Chunks
-        int y = (int) Math.floor(chunkY / 5); //5x5 Height
+        int y = (int) Math.floor(chunkY / FLOOR_HEIGHT); // Height
         int z = (int) Math.floor(chunkZ / CHUNK_BOUNDARY); //3x3 Chunks
         int result = x;
         result = 31 * result + z;

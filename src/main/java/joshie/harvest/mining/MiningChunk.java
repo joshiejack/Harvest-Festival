@@ -23,6 +23,8 @@ public class MiningChunk implements IChunkGenerator {
     private static final IBlockState WALLS = HFBlocks.STONE.getDefaultState();
     private static final IBlockState FLOORS = HFBlocks.DIRT.getDefaultState();
     protected static IBlockState AIR = Blocks.AIR.getDefaultState();
+    protected static final int FLOOR_HEIGHT = 6;
+    protected static final int CEILING = FLOOR_HEIGHT * 42;
     private final World worldObj;
     private Biome[] biomesForGeneration;
 
@@ -34,7 +36,7 @@ public class MiningChunk implements IChunkGenerator {
 
     public void setBlocksInChunk(int chunkX, int chunkZ, ChunkPrimer primer) {
         if (chunkX >= 0 && chunkZ >= 0) {
-            for (int y = 250; y >= 0; y--) {
+            for (int y = CEILING; y >= 0; y--) {
                 int width = manager.getWidth(chunkX, chunkZ, y);
                 int length = manager.getLength(chunkX, chunkZ, y);
                 int startX  = manager.getStartX(chunkX, y, chunkZ, width);
@@ -43,16 +45,16 @@ public class MiningChunk implements IChunkGenerator {
                     for (int z = 0; z < 16; z++) {
                         primer.setBlockState(x, y, z, WALLS);
                         if (x >= startX && x < width + startX && z >= startZ && z < length + startZ) {
-                            if (y % 5 == 0) {
+                            if (y % FLOOR_HEIGHT == 0) {
                                 primer.setBlockState(x, y, z, FLOORS);
-                                for (int j = 1; j <= 3; j++) {
+                                for (int j = 1; j <= FLOOR_HEIGHT - 2; j++) {
                                     primer.setBlockState(x, y + j, z, Blocks.AIR.getDefaultState());
                                 }
                             }
                         }
 
                         //Some extra spacing
-                        if (y % 5 == 0) {
+                        if (y % FLOOR_HEIGHT == 0) {
                             for (int i = 0; i < 3; ++i) {
                                 int x2 = Math.min(Math.max(0, x + (worldObj.rand.nextInt(8) - worldObj.rand.nextInt(8))), 15);
                                 int z2 = Math.min(Math.max(0, z + (worldObj.rand.nextInt(8) - worldObj.rand.nextInt(8))), 15);
@@ -64,7 +66,7 @@ public class MiningChunk implements IChunkGenerator {
 
                                         if (primer.getBlockState(x3, y, z3) == FLOORS) {
                                             primer.setBlockState(x2, y, z2, FLOORS);
-                                            for (int k = 1; k <= 3; k++) {
+                                            for (int k = 1; k <= FLOOR_HEIGHT - 2; k++) {
                                                 primer.setBlockState(x2, y + k, z2, AIR);
                                             }
                                         }
@@ -76,7 +78,7 @@ public class MiningChunk implements IChunkGenerator {
                 }
             }
 
-            for (int y = 250; y < 255; y++) {
+            for (int y = CEILING; y < 255; y++) {
                 for (int x = 0; x < 16; x++) {
                     for (int z = 0; z < 16; z++) {
                         primer.setBlockState(x, y, z, WALLS);

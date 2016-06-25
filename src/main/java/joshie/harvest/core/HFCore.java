@@ -25,6 +25,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class HFCore {
     public static void preInit() {
+        WorldDestroyer.replaceWorldProvider();
+
         //Register Events
         MinecraftForge.EVENT_BUS.register(new EventsHandler());
         MinecraftForge.EVENT_BUS.register(new AnimalEvents());
@@ -43,6 +45,7 @@ public class HFCore {
         CommandManager.INSTANCE.registerCommand(new HFCommandNewDay());
         CommandManager.INSTANCE.registerCommand(new HFCommandTime());
         CommandManager.INSTANCE.registerCommand(new HFCommandWeather());
+        CommandManager.INSTANCE.registerCommand(new HFCommandMine());
 
         //Register Packets
         PacketHandler.registerPacket(PacketSetCalendar.class);
@@ -75,6 +78,6 @@ public class HFCore {
     }
 
     public static void postInit() {
-        WorldDestroyer.replaceWorldProvider();
+
     }
 }

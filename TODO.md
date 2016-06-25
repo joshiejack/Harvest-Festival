@@ -9,7 +9,7 @@
 - Add Schedules for NPCs, where they visit specific buildings at certain times
 - Schedule Based Conversations
 - Add Extra Chat Messages, and Conversations for all NPCs
-- Add the mining Dimension - J
+- Mining Dimension Stuff
     - Add Breakable rocks that drop specific things on different floors when broken with a hammer
     - Different Hammers should be able to break different rock sizes, with different amount of hits
     - Would be cool to hold down the hammer with right click, which makes the player jump then do a smash instead of 'mining it'
@@ -19,8 +19,6 @@
     - Add an Overlay while in the dimension that tells you the name of the mine aka Spring Mine or Winter Mine
     - Add an Overlay that tells you what floor you are on
     - Add Free Standing ladders
-    - Generate rooms in dimensions and keep track with the mine tracker
-        - Different size and shaped rooms
 - Change Blueprints to so that you can hover and click where you want them placed with a preview of the building - J
 - Coin Render on hotbar
 - Make Mythic Axe Fell Whole Trees
@@ -65,6 +63,7 @@
 - Location of the flower in the spring season overlay - Y
 - Syncing Town Information to Players
 - When you can purchase buildings from a town
+- Day, Season, Year Commands
 
 ### Rendering
 - Animate Oven to open/close when putting things in/out

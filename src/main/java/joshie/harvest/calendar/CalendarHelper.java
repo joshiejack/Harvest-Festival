@@ -5,6 +5,7 @@ import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.core.ISeasonData;
 import joshie.harvest.core.handlers.HFTrackers;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.EnumMap;
@@ -26,7 +27,7 @@ public class CalendarHelper implements ICalendar {
     }
 
     @Override
-    public ICalendarDate getToday(World world) {
+    public ICalendarDate getDate(World world) {
         return HFTrackers.getCalendar(world).getDate();
     }
 
@@ -43,5 +44,10 @@ public class CalendarHelper implements ICalendar {
     @Override
     public ISeasonData getDataForSeason(Season season) {
         return data.get(season);
+    }
+
+    @Override
+    public Season getSeasonAtCoordinates(World world, BlockPos pos) {
+        return HFTrackers.getCalendar(world).getSeasonAt(pos);
     }
 }

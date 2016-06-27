@@ -25,15 +25,8 @@ public class HFBlocks {
     //Fluid
     public static final Fluid GODDESS = registerFluid(new Fluid("goddess_water", new ResourceLocation(MODID, "blocks/goddess_still"), new ResourceLocation(MODID, "blocks/goddess_flow")).setRarity(EnumRarity.RARE));
     public static final BlockGoddessWater GODDESS_WATER = new BlockGoddessWater(GODDESS).setUnlocalizedName("goddess.water");
-
     public static final BlockFlower FLOWERS = new BlockFlower().setUnlocalizedName("flowers");
-    //Mine
-    public static final BlockStone STONE = new BlockStone().setUnlocalizedName("stone");
-    public static final BlockDirt DIRT = new BlockDirt().setUnlocalizedName("dirt");
-    //Misc
     public static final BlockStorage STORAGE = new BlockStorage().setUnlocalizedName("storage");
-
-    //Gathering
     public static final BlockGathering GATHERING = new BlockGathering().setUnlocalizedName("gathering");
 
     public static void preInit() {

@@ -1,10 +1,14 @@
-package joshie.harvest.blocks;
+package joshie.harvest.mining.blocks;
 
-import joshie.harvest.blocks.BlockStone.Type;
+import joshie.harvest.api.HFApi;
+import joshie.harvest.api.calendar.Season;
 import joshie.harvest.core.HFTab;
+import joshie.harvest.core.helpers.WorldHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.base.BlockHFEnum;
 import joshie.harvest.core.util.generic.Text;
+import joshie.harvest.mining.HFMining;
+import joshie.harvest.mining.blocks.BlockStone.Type;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -26,10 +30,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.ArrayList;
 import java.util.List;
 
+import static joshie.harvest.mining.blocks.BlockStone.Type.REAL;
+import static joshie.harvest.mining.blocks.BlockStone.Type.REAL_WINTER;
+
 public class BlockStone extends BlockHFEnum<BlockStone, Type> {
     public enum Type implements IStringSerializable {
         REAL(true), DECORATIVE_BLANK, DECORATIVE_PURPLE, DECORATIVE_SILVER, DECORATIVE_GREEN, DECORATIVE_BLUE, DECORATIVE_RED,
-        REAL_WINTER(true), DECORATIVE_BLANK_WINTER, DECORATIVE_PURPLE_WINTER, DECORATIVE_SILVER_WINTER, DECORATIVE_GREEN_WINTER, DECORATIVE_BLUE_WINTER, DECORATIVE_RED_WINTER;
+        REAL_WINTER(true), DECORATIVE_BLANK_WINTER, DECORATIVE_PURPLE_WINTER, DECORATIVE_SILVER_WINTER, DECORATIVE_GREEN_WINTER, DECORATIVE_BLUE_WINTER, DECORATIVE_RED_WINTER,
+        HOLE;
 
         private final boolean isReal;
 
@@ -39,6 +47,10 @@ public class BlockStone extends BlockHFEnum<BlockStone, Type> {
 
         Type(boolean isReal) {
             this.isReal = isReal;
+        }
+
+        public boolean isReal() {
+            return isReal;
         }
 
         @Override
@@ -81,8 +93,8 @@ public class BlockStone extends BlockHFEnum<BlockStone, Type> {
     @Override
     public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
         ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
-        if (getEnumFromState(world.getBlockState(pos)) != Type.REAL) {
-            ret.add(new ItemStack(HFBlocks.STONE, 1, 1));
+        if (getEnumFromState(world.getBlockState(pos)) != REAL) {
+            ret.add(new ItemStack(HFMining.STONE, 1, 1));
         }
 
         return ret;
@@ -91,6 +103,14 @@ public class BlockStone extends BlockHFEnum<BlockStone, Type> {
     @Override
     public boolean canSilkHarvest(World world, BlockPos pos, IBlockState state, EntityPlayer player) {
         return false;
+    }
+
+    @Override
+    public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos) {
+        if(getEnumFromState(state).isReal) {
+            Season season = HFApi.calendar.getSeasonAtCoordinates(WorldHelper.getWorld(world), pos);
+            return season == Season.WINTER ? state.withProperty(property, REAL_WINTER) : state.withProperty(property, REAL);
+        } else return state;
     }
 
     @Override

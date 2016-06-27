@@ -35,7 +35,7 @@ public class StatData {
 
     public boolean setBirthday(World world) {
         if (!isBirthdaySet()) {
-            birthday = HFApi.calendar.cloneDate(HFApi.calendar.getToday(world));
+            birthday = HFApi.calendar.cloneDate(HFApi.calendar.getDate(world));
             return true;
         } else return false;
     }

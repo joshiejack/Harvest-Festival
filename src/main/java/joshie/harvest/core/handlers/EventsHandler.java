@@ -85,7 +85,12 @@ public class EventsHandler {
         for (World world: FMLCommonHandler.instance().getMinecraftServerInstance().worldServers) {
             if (world != null) {
                 if (world.getWorldTime() % TICKS_PER_DAY == 0) {
-                    newDay(world);
+                    newDay(world); //Perform everything
+                    if (world.provider.getDimension() == 0) { //If it's the overworld, tick the player trackers
+                        for (PlayerTrackerServer player : HFTrackers.getPlayerTrackers()) {
+                            player.newDay(CalendarHelper.getTime(world));
+                        }
+                    }
                 }
             }
         }
@@ -98,9 +103,6 @@ public class EventsHandler {
         HFTrackers.getAnimalTracker(world).newDay();
         HFTrackers.getTownTracker(world).newDay();
         HFTrackers.markDirty(world);
-        for (PlayerTrackerServer player : HFTrackers.getPlayerTrackers()) {
-            player.newDay(CalendarHelper.getTime(world));
-        }
     }
 
     //Sync data on login

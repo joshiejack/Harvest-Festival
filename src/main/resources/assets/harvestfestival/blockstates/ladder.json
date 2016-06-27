@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north,ladder=wood":  { "model": "harvestfestival:ladder" },
+    "facing=south,ladder=wood":  { "model": "harvestfestival:ladder", "y": 180 },
+    "facing=east,ladder=wood": { "model": "harvestfestival:ladder", "y": 90 },
+    "facing=west,ladder=wood": { "model": "harvestfestival:ladder", "y": 270 }
+  }
+}

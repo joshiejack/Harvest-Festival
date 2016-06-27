@@ -35,7 +35,7 @@ public class GatheringData {
             for (int i = 0; i < 64 && placed < 10; i++) {
                 BlockPos pos = building.pos.add(32 - world.rand.nextInt(64), 4 - world.rand.nextInt(8), 32 - world.rand.nextInt(64));
                 if (world.getBlockState(pos).getBlock() == Blocks.GRASS && world.isAirBlock(pos.up())) {
-                    IBlockState random = HFApi.gathering.getRandomStateForSeason(world, HFApi.calendar.getToday(world).getSeason());
+                    IBlockState random = HFApi.gathering.getRandomStateForSeason(world, HFApi.calendar.getDate(world).getSeason());
                     if (world.setBlockState(pos.up(), random, 2)) {
                         locations.add(new GatheringLocation(random, pos.up()));
                         placed++;

@@ -1,7 +1,9 @@
 package joshie.harvest.core.helpers;
 
 import gnu.trove.map.TIntIntMap;
+import gnu.trove.map.TIntLongMap;
 import gnu.trove.map.hash.TIntIntHashMap;
+import gnu.trove.map.hash.TIntLongHashMap;
 import joshie.harvest.blocks.tiles.TileHarvest;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.player.tracking.TrackingData.AbstractHolder;
@@ -87,6 +89,32 @@ public class NBTHelper {
                 if (holder.getKey() != null) {
                     map.put(holder, (V) holder.getValue());
                 }
+            } catch (Exception e) {}
+        }
+
+        return map;
+    }
+
+    public static NBTTagList writeLongMap(TIntLongMap map) {
+        NBTTagList list = new NBTTagList();
+        for (int key: map.keys()) {
+            NBTTagCompound tag = new NBTTagCompound();
+            tag.setInteger("Key", key);
+            tag.setLong("Value", map.get(key));
+            list.appendTag(tag);
+        }
+
+        return list;
+    }
+
+    public static TIntLongMap readLongMap(NBTTagList list) {
+        TIntLongMap map = new TIntLongHashMap();
+        for (int j = 0; j < list.tagCount(); j++) {
+            NBTTagCompound tag = list.getCompoundTagAt(j);
+            try {
+                int key = tag.getInteger("Key");
+                long value = tag.getLong("Value");
+                map.put(key, value);
             } catch (Exception e) {}
         }
 

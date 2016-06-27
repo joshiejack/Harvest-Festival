@@ -5,7 +5,6 @@ import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.animals.entity.EntityHarvestSheep;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.shops.IShop;
-import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.buildings.Building;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.cooking.HFCooking;
@@ -14,6 +13,9 @@ import joshie.harvest.crops.CropRegistry;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.items.HFItems;
 import joshie.harvest.items.ItemGeneral;
+import joshie.harvest.mining.HFMining;
+import joshie.harvest.mining.blocks.BlockStone;
+import joshie.harvest.mining.blocks.BlockStone.Type;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.shops.purchaseable.*;
 import net.minecraft.entity.passive.EntityChicken;
@@ -120,8 +122,13 @@ public class HFShops {
 
     private static void registerMiner() {
         MINER = HFApi.shops.newShop("miner", HFNPCs.MINER);
-        MINER.addItem(new PurchaseableDirt(1000, new ItemStack(HFBlocks.DIRT, 16, 1)));
-        MINER.addItem(new PurchaseableStone(1000, new ItemStack(HFBlocks.STONE, 16, 1)));
+        MINER.addItem(new PurchaseableDirt(1000, new ItemStack(HFMining.DIRT, 16, 1)));
+
+        for (Type type: BlockStone.Type.values()) {
+            if (!type.isReal()) {
+                MINER.addItem(new PurchaseableStone(1000, new ItemStack(HFMining.STONE, 16, type.ordinal())));
+            }
+        }
 
         MINER.addOpening(MONDAY, 11000, 16000).addOpening(TUESDAY, 11000, 16000).addOpening(WEDNESDAY, 11000, 16000); //You decide what time it will be open yoshie
         MINER.addOpening(THURSDAY, 11000, 16000).addOpening(FRIDAY, 11000, 16000).addOpening(SATURDAY, 11000, 16000);

@@ -5,6 +5,7 @@ import joshie.harvest.core.HFTab;
 import joshie.harvest.core.config.General;
 import joshie.harvest.core.util.base.BlockHFEnum;
 import joshie.harvest.core.util.generic.Text;
+import joshie.harvest.mining.HFMining;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -87,7 +88,7 @@ public class BlockDirt extends BlockHFEnum<BlockDirt, Types> {
     public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
         List<ItemStack> ret = new ArrayList<ItemStack>();
         if (getEnumFromState(world.getBlockState(pos)) == Types.DECORATIVE) {
-            ret.add(new ItemStack(HFBlocks.DIRT, 1, 1));
+            ret.add(new ItemStack(HFMining.DIRT, 1, 1));
         }
 
         return ret;

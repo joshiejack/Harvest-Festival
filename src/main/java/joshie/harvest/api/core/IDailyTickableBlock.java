@@ -9,6 +9,8 @@ import net.minecraft.world.World;
 public interface IDailyTickableBlock {
     /** Called when the day ticks over
      *  @param world, always use this, rather than other types
+     *  @param pos the position of the block
+     *  @param state the block state
      *  @return return true if the tile block still exists, it will get automatically removed if it's false**/
     boolean newDay(World world, BlockPos pos, IBlockState state);
 }

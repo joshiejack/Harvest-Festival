@@ -27,6 +27,7 @@
     "type=decorative_silver_winter": { "model": "harvestfestival:mine/mine_wall2_winter" },
     "type=decorative_green_winter": { "model": "harvestfestival:mine/mine_wall3_winter" },
     "type=decorative_blue_winter": { "model": "harvestfestival:mine/mine_wall4_winter" },
-    "type=decorative_red_winter": { "model": "harvestfestival:mine/mine_wall5_winter" }
+    "type=decorative_red_winter": { "model": "harvestfestival:mine/mine_wall5_winter" },
+    "type=hole": { "model": "harvestfestival:/mine/mine_hole" }
   }
 }

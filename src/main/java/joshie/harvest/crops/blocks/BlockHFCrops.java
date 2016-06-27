@@ -356,7 +356,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
             if (Crops.seasonalBonemeal) {
                 ICropData crop = HFApi.crops.getCropAtLocation(world, pos);
                 for (Season season: crop.getCrop().getSeasons()) {
-                    if (HFApi.calendar.getToday(world).getSeason() == season) {
+                    if (HFApi.calendar.getSeasonAtCoordinates(world, pos) == season) {
                         return canGrow(world, pos, state);
                     }
                 }

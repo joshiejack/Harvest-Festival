@@ -77,7 +77,7 @@ public class BlockGathering extends BlockHFEnum<BlockGathering, GatheringType> {
 
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
-        Season season = HFApi.calendar.getToday(WorldHelper.getWorld(world)).getSeason();
+        Season season = HFApi.calendar.getDate(WorldHelper.getWorld(world)).getSeason();
         if (season == Season.WINTER) {
             return state.withProperty(WINTER, true);
         } else return state.withProperty(WINTER, false);

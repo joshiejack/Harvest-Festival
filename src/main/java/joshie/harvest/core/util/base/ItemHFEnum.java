@@ -98,7 +98,7 @@ public abstract class ItemHFEnum<I extends ItemHFEnum, E extends Enum<E>> extend
     }
 
     protected String getPrefix(E e) {
-        return e.getClass().getSimpleName();
+        return e.getClass().getSimpleName().toLowerCase();
     }
 
     @SideOnly(Side.CLIENT)

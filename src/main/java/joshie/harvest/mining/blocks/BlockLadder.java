@@ -6,12 +6,10 @@ import joshie.harvest.mining.blocks.BlockLadder.Ladder;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.*;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockLadder extends BlockHFEnumRotatableMeta<BlockLadder, Ladder> {
     protected static final AxisAlignedBB LADDER_EAST_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.1875D, 1.0D, 1.0D);
@@ -33,22 +31,6 @@ public class BlockLadder extends BlockHFEnumRotatableMeta<BlockLadder, Ladder> {
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
-        return BlockRenderLayer.CUTOUT;
-    }
-
-    @Override
-    public boolean isFullCube(IBlockState state) {
-        return false;
-    }
-
-    @Override
-    public boolean isOpaqueCube(IBlockState state) {
-        return false;
-    }
-
-    @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
         switch (state.getValue(FACING)) {
             case NORTH:
@@ -63,15 +45,7 @@ public class BlockLadder extends BlockHFEnumRotatableMeta<BlockLadder, Ladder> {
         }
     }
 
-    @Override
-    public IBlockState withRotation(IBlockState state, Rotation rot) {
-        return state.withProperty(FACING, rot.rotate((EnumFacing)state.getValue(FACING)));
-    }
 
-    @Override
-    public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
-        return state.withRotation(mirrorIn.toRotation((EnumFacing)state.getValue(FACING)));
-    }
 
     @Override
     public boolean isLadder(IBlockState state, IBlockAccess world, BlockPos pos, EntityLivingBase entity) {

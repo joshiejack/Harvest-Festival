@@ -18,7 +18,6 @@
     - Add Portal blocks that look like ladders that players can place, that will take you down one floor of the mine
     - Add an Overlay while in the dimension that tells you the name of the mine aka Spring Mine or Winter Mine
     - Add an Overlay that tells you what floor you are on
-    - Add Free Standing ladders
 - Change Blueprints to so that you can hover and click where you want them placed with a preview of the building - J
 - Coin Render on hotbar
 - Make Mythic Axe Fell Whole Trees

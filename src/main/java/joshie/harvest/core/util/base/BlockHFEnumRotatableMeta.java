@@ -10,13 +10,12 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class BlockHFEnumRotatableMeta<B extends BlockHFEnumRotatableMeta, E extends Enum<E> & IStringSerializable> extends BlockHFEnum<B, E> {
     protected static final PropertyDirection FACING = BlockHorizontal.FACING;
@@ -65,23 +64,12 @@ public abstract class BlockHFEnumRotatableMeta<B extends BlockHFEnumRotatableMet
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
-        return BlockRenderLayer.CUTOUT_MIPPED;
+    public IBlockState withRotation(IBlockState state, Rotation rot) {
+        return state.withProperty(FACING, rot.rotate((EnumFacing)state.getValue(FACING)));
     }
 
     @Override
-    public boolean isFullCube(IBlockState blockState) {
-        return false;
-    }
-
-    @Override
-    public boolean isOpaqueCube(IBlockState blockState) {
-        return false;
-    }
-
-    @Override
-    public boolean isVisuallyOpaque() {
-        return false;
+    public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
+        return state.withRotation(mirrorIn.toRotation((EnumFacing)state.getValue(FACING)));
     }
 }

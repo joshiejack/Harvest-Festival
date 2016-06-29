@@ -19,7 +19,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import static joshie.harvest.mining.items.ItemOre.Ore.JUNK;
+import static joshie.harvest.mining.blocks.BlockOre.Ore.JUNK;
 
 public class HFTab extends CreativeTabs {
     public static final HFTab TOWN = new HFTab("town");

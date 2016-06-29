@@ -3,7 +3,7 @@ package joshie.harvest.blocks;
 import joshie.harvest.blocks.BlockDirt.Types;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.config.General;
-import joshie.harvest.core.util.base.BlockHFEnum;
+import joshie.harvest.core.util.base.BlockHFEnumCube;
 import joshie.harvest.core.util.generic.Text;
 import joshie.harvest.mining.HFMining;
 import net.minecraft.block.SoundType;
@@ -25,7 +25,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BlockDirt extends BlockHFEnum<BlockDirt, Types> {
+public class BlockDirt extends BlockHFEnumCube<BlockDirt, Types> {
     public enum Types implements IStringSerializable {
         REAL, DECORATIVE;
 

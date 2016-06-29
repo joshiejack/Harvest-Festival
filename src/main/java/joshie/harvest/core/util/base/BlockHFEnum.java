@@ -12,6 +12,7 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -87,6 +88,14 @@ public abstract class BlockHFEnum<B extends BlockHFEnum, E extends Enum<E> & ISt
         return values[meta];
     }
 
+    public E getEnumFromStack(ItemStack stack) {
+        return getEnumFromMeta(stack.getItemDamage());
+    }
+
+    public ItemStack getStackFromEnum(E e) {
+        return new ItemStack(this, 1, e.ordinal());
+    }
+
     @Override
     public int getMetaFromState(IBlockState state) {
         return (state.getValue(property)).ordinal();
@@ -142,6 +151,22 @@ public abstract class BlockHFEnum<B extends BlockHFEnum, E extends Enum<E> & ISt
 
     public int getSortValue(ItemStack stack) {
         return 0;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getBlockLayer() {
+        return BlockRenderLayer.CUTOUT;
+    }
+
+    @Override
+    public boolean isFullCube(IBlockState blockState) {
+        return false;
+    }
+
+    @Override
+    public boolean isOpaqueCube(IBlockState blockState) {
+        return false;
     }
 
     @Override

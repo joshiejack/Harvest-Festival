@@ -83,17 +83,20 @@ public class BlockSizedStorage extends BlockHFEnumRotatableTile<BlockSizedStorag
         IFaceable tile = (IFaceable) world.getTileEntity(pos);
         SizedStorage storage = getEnumFromState(state);
         switch (storage) {
-            case INCUBATOR:
-                switch (tile.getFacing()) {
-                    case NORTH:
-                        return NEST_NORTH_AABB;
-                    case SOUTH:
-                        return NEST_SOUTH_AABB;
-                    case WEST:
-                        return NEST_WEST_AABB;
-                    case EAST:
-                        return NEST_EAST_AABB;
-                }
+            case INCUBATOR: {
+                if (tile != null) {
+                    switch (tile.getFacing()) {
+                        case NORTH:
+                            return NEST_NORTH_AABB;
+                        case SOUTH:
+                            return NEST_SOUTH_AABB;
+                        case WEST:
+                            return NEST_WEST_AABB;
+                        case EAST:
+                            return NEST_EAST_AABB;
+                    }
+                } else return FULL_BLOCK_AABB;
+            }
             default:
                 return FULL_BLOCK_AABB;
         }

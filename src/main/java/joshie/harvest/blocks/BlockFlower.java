@@ -13,7 +13,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -93,11 +92,6 @@ public class BlockFlower extends BlockHFEnum<BlockFlower, FlowerType> implements
     }
 
     @Override
-    public boolean isOpaqueCube(IBlockState state) {
-        return false;
-    }
-
-    @Override
     public EnumPlantType getPlantType(IBlockAccess world, BlockPos pos) {
         return Plains;
     }
@@ -115,12 +109,6 @@ public class BlockFlower extends BlockHFEnum<BlockFlower, FlowerType> implements
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
         return getEnumFromMeta(stack.getItemDamage()) == FlowerType.GODDESS ? AQUA + super.getItemStackDisplayName(stack) : super.getItemStackDisplayName(stack);
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()  {
-        return BlockRenderLayer.CUTOUT;
     }
 
     @Override

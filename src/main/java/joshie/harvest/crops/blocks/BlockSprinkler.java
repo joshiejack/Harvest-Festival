@@ -48,21 +48,6 @@ public class BlockSprinkler extends BlockHFEnum<BlockSprinkler, Sprinkler> {
     }
 
     @Override
-    public boolean isFullCube(IBlockState blockState) {
-        return false;
-    }
-
-    @Override
-    public boolean isOpaqueCube(IBlockState blockState) {
-        return false;
-    }
-
-    @Override
-    public boolean isVisuallyOpaque() {
-        return false;
-    }
-
-    @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
         if (heldItem != null) {
             TileEntity tile = worldIn.getTileEntity(pos);

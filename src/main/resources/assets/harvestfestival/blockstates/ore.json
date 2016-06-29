@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "ore=copper": [
+      { "model": "harvestfestival:mine/ore_copper", "weight": 1 },
+      { "model": "harvestfestival:mine/ore_copper", "weight": 1, "y": 90 },
+      { "model": "harvestfestival:mine/ore_copper", "weight": 1, "y": 180 },
+      { "model": "harvestfestival:mine/ore_copper", "weight": 1, "y": 270 }
+    ]
+  }
+}

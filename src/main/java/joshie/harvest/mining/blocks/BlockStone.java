@@ -5,7 +5,7 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.helpers.WorldHelper;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.core.util.base.BlockHFEnum;
+import joshie.harvest.core.util.base.BlockHFEnumCube;
 import joshie.harvest.core.util.generic.Text;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.blocks.BlockStone.Type;
@@ -33,7 +33,7 @@ import java.util.List;
 import static joshie.harvest.mining.blocks.BlockStone.Type.REAL;
 import static joshie.harvest.mining.blocks.BlockStone.Type.REAL_WINTER;
 
-public class BlockStone extends BlockHFEnum<BlockStone, Type> {
+public class BlockStone extends BlockHFEnumCube<BlockStone, Type> {
     public enum Type implements IStringSerializable {
         REAL(true), DECORATIVE_BLANK, DECORATIVE_PURPLE, DECORATIVE_SILVER, DECORATIVE_GREEN, DECORATIVE_BLUE, DECORATIVE_RED,
         REAL_WINTER(true), DECORATIVE_BLANK_WINTER, DECORATIVE_PURPLE_WINTER, DECORATIVE_SILVER_WINTER, DECORATIVE_GREEN_WINTER, DECORATIVE_BLUE_WINTER, DECORATIVE_RED_WINTER,

@@ -1,28 +1,37 @@
-package joshie.harvest.mining.items;
+package joshie.harvest.mining.blocks;
 
-import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.util.base.ItemHFEnum;
+import joshie.harvest.core.util.base.BlockHFEnum;
 import joshie.harvest.core.util.generic.Text;
-import joshie.harvest.mining.items.ItemOre.Ore;
+import joshie.harvest.mining.blocks.BlockOre.Ore;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IStringSerializable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-import static joshie.harvest.mining.items.ItemOre.Ore.MYTHIC;
+import static joshie.harvest.mining.blocks.BlockOre.Ore.MYTHIC;
 import static net.minecraft.util.text.TextFormatting.GREEN;
 import static net.minecraft.util.text.TextFormatting.WHITE;
 
-public class ItemOre extends ItemHFEnum<ItemOre, Ore> implements ICreativeSorted {
-    public enum Ore {
+public class BlockOre extends BlockHFEnum<BlockOre, Ore> {
+    public enum Ore implements IStringSerializable {
         JUNK, COPPER, SILVER, GOLD, MYSTRIL, MYTHIC;
+
+        @Override
+        public String getName() {
+            return name().toLowerCase();
+        }
     }
 
-    public ItemOre() {
-        super(HFTab.MINING, Ore.class);
+    public BlockOre() {
+        super(Material.ROCK, Ore.class, HFTab.MINING);
+        setHardness(1.5F);
+        setSoundType(SoundType.STONE);
     }
 
     @Override

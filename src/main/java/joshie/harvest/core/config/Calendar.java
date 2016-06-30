@@ -16,6 +16,12 @@ public class Calendar {
     public static boolean ENABLE_BLIZZARD;
     public static boolean ENABLE_DATE_HUD;
     public static boolean ENABLE_GOLD_HUD;
+    public static boolean ENABLE_HUD_XZ;
+    public static int HUD_XSTART;
+    public static int HUD_ZSTART;
+    public static int HUD_XEND;
+    public static int HUD_ZEND;
+    public static int HUD_DIMENSION;
 
     public static void init() {
         DAYS_PER_SEASON = getInteger("Days per Season", 30);
@@ -30,5 +36,15 @@ public class Calendar {
         ENABLE_BLIZZARD = getBoolean("Weather > Enable Blizzard", true);
         ENABLE_DATE_HUD = getBoolean("HUD > Enable Data", true);
         ENABLE_GOLD_HUD = getBoolean("HUD > Enable Gold", true);
+        ENABLE_HUD_XZ = getBoolean("HUD > Coordinates", true);
+        if (ENABLE_HUD_XZ) {
+            ENABLE_DATE_HUD = true;
+            ENABLE_GOLD_HUD = true;
+            HUD_DIMENSION = getInteger("HUD > Dimension", 0);
+            HUD_XSTART = getInteger("HUD > XStart", 0, "This number must be lower than XEnd");
+            HUD_ZSTART = getInteger("HUD > ZStart", 0, "This number must be lower than ZEnd");
+            HUD_XEND = getInteger("HUD > XEnd", 100, "This number must be higher than XStart");
+            HUD_ZEND = getInteger("HUD > ZEnd", 100, "This number must be higher than ZStart");
+        }
     }
 }

@@ -51,9 +51,8 @@ harvestfestival.structures.null=Blueprint: Invalid
 #Cheat Items (Translators don't bother tranlating these, I just use them to help with dev)
 harvestfestival.cheat.coord.setter=[BuildingGen] Coordinate Setter
 harvestfestival.cheat.code.generator=[BuildingGen] Code Generator
-harvestfestival.cheat.render.generator=[RenderGen] Rotation Generator
-harvestfestival.cheat.meta.checker=[Helper] Meta Checker
-harvestfestival.cheat.chunk.tester=[Helper] Chunk Tester
+harvestfestival.cheat.npc.killer=Instant Entity Killer
+harv
 
 #Crops
 harvestfestival.crop.seeds.format.standard=%C %S

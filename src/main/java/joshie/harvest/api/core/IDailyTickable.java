@@ -7,9 +7,6 @@ public interface IDailyTickable {
      *  @return return true if the tile should still tick daily**/
     void newDay();
 
-    /** Return true if this is invalid **/
-    boolean isInvalid();
-
     /** Return true if this is a priority tickable and should get run first **/
     default boolean isPriority() {
         return false;

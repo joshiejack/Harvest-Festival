@@ -3,6 +3,7 @@ package joshie.harvest.items;
 import joshie.harvest.buildings.loader.CodeGeneratorBuildings;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.util.base.ItemHFBaseMeta;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
@@ -14,12 +15,13 @@ import net.minecraft.world.World;
 public class ItemCheat extends ItemHFBaseMeta {
     private static final int COORD_SETTER = 0;
     private static final int CODE_GENERATOR = 1;
+    private static final int NPC_KILER = 2;
     private static BlockPos pos1;
     private static BlockPos pos2;
 
     @Override
     public int getMetaCount() {
-        return 2;
+        return 3;
     }
 
     @Override
@@ -48,12 +50,24 @@ public class ItemCheat extends ItemHFBaseMeta {
     }
 
     @Override
+    public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity) {
+        if (stack.getItemDamage() == NPC_KILER) {
+            entity.setDead();
+            return true;
+        }
+
+        return false;
+    }
+
+    @Override
     public String getName(ItemStack stack) {
         switch (stack.getItemDamage()) {
             case COORD_SETTER:
                 return "coord_setter";
             case CODE_GENERATOR:
                 return "code_generator";
+            case NPC_KILER:
+                return "npc_killer";
             default:
                 return "invalid";
         }

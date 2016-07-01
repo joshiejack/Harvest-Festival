@@ -39,7 +39,6 @@ public class CalendarHUD {
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void onRenderOverlay(RenderGameOverlayEvent.Pre event) {
-        System.out.println(HUD_XSTART);
         if (!ENABLE_HUD_XZ || isClientInPosition()) {
             if (event.getType() == ElementType.HOTBAR) {
                 Minecraft mc = MCClientHelper.getMinecraft();

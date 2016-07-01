@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 @MCVersion("1.9.4")
-public class HFOverride implements IFMLLoadingPlugin, IClassTransformer {
+public class HFTransformer implements IFMLLoadingPlugin, IClassTransformer {
     public static boolean isObfuscated = false;
     private static List<AbstractASM> asm = new ArrayList<AbstractASM>();
 
@@ -54,7 +54,7 @@ public class HFOverride implements IFMLLoadingPlugin, IClassTransformer {
 
     @Override
     public String[] getASMTransformerClass() {
-        return new String[]{HFOverride.class.getName()};
+        return new String[]{ HFTransformer.class.getName() };
     }
 
     @Override
@@ -69,7 +69,7 @@ public class HFOverride implements IFMLLoadingPlugin, IClassTransformer {
 
     @Override
     public void injectData(Map<String, Object> data) {
-        HFOverride.isObfuscated = ((Boolean) data.get("runtimeDeobfuscationEnabled"));
+        HFTransformer.isObfuscated = ((Boolean) data.get("runtimeDeobfuscationEnabled"));
     }
 
     @Override

@@ -63,7 +63,7 @@ processResources
 jar {
     manifest {
         attributes 'FMLAT': 'harvestfestival_at.cfg'
-        attributes 'FMLCorePlugin': 'joshie.harvest.asm.HFOverride'
+        attributes 'FMLCorePlugin': 'joshie.harvest.asm.HFTransformer'
         attributes 'FMLCorePluginContainsFMLMod': 'true'
     }
 }

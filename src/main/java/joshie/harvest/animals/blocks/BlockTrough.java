@@ -1,8 +1,8 @@
 package joshie.harvest.animals.blocks;
 
+import joshie.harvest.animals.blocks.BlockTrough.Trough;
 import joshie.harvest.api.animals.IAnimalFeeder;
 import joshie.harvest.api.animals.IAnimalTracked;
-import joshie.harvest.animals.blocks.BlockTrough.Trough;
 import joshie.harvest.blocks.tiles.TileFillable;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.lib.CreativeSort;
@@ -13,6 +13,7 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -25,11 +26,15 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
+import java.util.List;
+
 import static joshie.harvest.animals.blocks.BlockTrough.Trough.WOOD;
 import static net.minecraft.util.EnumFacing.*;
 
 public class BlockTrough extends BlockHFEnumRotatableMeta<BlockTrough, Trough> implements IAnimalFeeder {
     private static final AxisAlignedBB TROUGH_AABB =  new AxisAlignedBB(0D, 0D, 0D, 1D, 0.75D, 1D);
+    private static final AxisAlignedBB TROUGH_COLLISION =  new AxisAlignedBB(0D, 0D, 0D, 1D, 1.5D, 1D);
 
     public static final PropertyEnum<Section> SECTION = PropertyEnum.create("section", Section.class);
 
@@ -70,14 +75,14 @@ public class BlockTrough extends BlockHFEnumRotatableMeta<BlockTrough, Trough> i
     }
 
     @Override
+    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn) {
+        if (entityIn instanceof EntityPlayer) addCollisionBoxToList(pos, entityBox, collidingBoxes, TROUGH_AABB);
+        else addCollisionBoxToList(pos, entityBox, collidingBoxes, TROUGH_COLLISION);
+    }
+
+    @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
-        Trough wood = getEnumFromState(state);
-        switch (wood) {
-            case WOOD:
-                return TROUGH_AABB;
-            default:
-                return FULL_BLOCK_AABB;
-        }
+        return TROUGH_AABB;
     }
 
     @Override

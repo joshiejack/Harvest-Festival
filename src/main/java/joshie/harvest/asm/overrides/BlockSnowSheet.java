@@ -1,6 +1,5 @@
 package joshie.harvest.asm.overrides;
 
-import joshie.harvest.api.calendar.Season;
 import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.block.BlockSnow;
 import net.minecraft.block.state.IBlockState;
@@ -38,10 +37,10 @@ public class BlockSnowSheet extends BlockSnow {
 
     @Override
     public void fillWithRain(World world, BlockPos pos) {
-        if (HFTrackers.getCalendar(world).getDate().getSeason() == Season.WINTER) {
+        if (HFTrackers.getCalendar(world).getTodaysWeather().isRain()) {
             IBlockState state = world.getBlockState(pos);
             int meta = state.getValue(LAYERS);
-            if (meta < 15) {
+            if (meta < 8) {
                 world.setBlockState(pos, state.withProperty(LAYERS, meta + 1), 2);
             }
         }

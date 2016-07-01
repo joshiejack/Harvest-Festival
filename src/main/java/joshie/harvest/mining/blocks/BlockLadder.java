@@ -45,8 +45,6 @@ public class BlockLadder extends BlockHFEnumRotatableMeta<BlockLadder, Ladder> {
         }
     }
 
-
-
     @Override
     public boolean isLadder(IBlockState state, IBlockAccess world, BlockPos pos, EntityLivingBase entity) {
         return true;

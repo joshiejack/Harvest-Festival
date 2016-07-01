@@ -63,15 +63,16 @@ public class MiningChunk implements IChunkGenerator {
     }
 
     public void setBlocksInChunk(int chunkX, int chunkZ, ChunkPrimer primer) {
-        if (chunkX >= 0 && chunkZ >= 0) {
-            for (int i = 0; i < 16; i++) {
-                for (int j = 0; j < 16; j++) {
-                    for (int k = 0; k < 250; k++) {
-                        setBlockState(primer, i, k, j, WALLS, chunkX, chunkZ);
-                    }
+        //Set the chunk to wall blocks
+        for (int i = 0; i < 16; i++) {
+            for (int j = 0; j < 16; j++) {
+                for (int k = 0; k < 250; k++) {
+                    setBlockState(primer, i, k, j, WALLS, chunkX, chunkZ);
                 }
             }
+        }
 
+        if (chunkX >= 0 && chunkZ >= 0) {
             for (int chunkY = 0; chunkY < 250; chunkY += FLOOR_HEIGHT) {
                 IBlockState[][] states = getMineGeneration(chunkX, chunkY, chunkZ);
                 rand.setSeed(manager.getSeed(getIndex(chunkX, chunkY, chunkZ)));

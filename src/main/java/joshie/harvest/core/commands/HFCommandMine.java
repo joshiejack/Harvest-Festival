@@ -30,11 +30,13 @@ public class HFCommandMine extends HFCommandBase {
             player.addExperienceLevel(0); //Fix levels
             worldServer.getMinecraftServer().getPlayerList().transferPlayerToDimension((player), MINING_ID, new MiningTeleporter(worldServer, world.provider.getSpawnCoordinate()));
 
-            player.setPositionAndUpdate(world.provider.getSpawnCoordinate().getX(), world.provider.getSpawnCoordinate().getY(), world.provider.getSpawnCoordinate().getZ());
-            if (oldDimension == 1) {
+            if (player != null) {
                 player.setPositionAndUpdate(world.provider.getSpawnCoordinate().getX(), world.provider.getSpawnCoordinate().getY(), world.provider.getSpawnCoordinate().getZ());
-                world.spawnEntityInWorld(player);
-                world.updateEntityWithOptionalForce(player, false);
+                if (oldDimension == 1) {
+                    player.setPositionAndUpdate(world.provider.getSpawnCoordinate().getX(), world.provider.getSpawnCoordinate().getY(), world.provider.getSpawnCoordinate().getZ());
+                    world.spawnEntityInWorld(player);
+                    world.updateEntityWithOptionalForce(player, false);
+                }
             }
 
             return true;

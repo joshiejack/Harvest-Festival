@@ -51,6 +51,7 @@ import java.util.Random;
 import static joshie.harvest.api.crops.IStateHandler.PlantSection.BOTTOM;
 import static joshie.harvest.api.crops.IStateHandler.PlantSection.TOP;
 import static joshie.harvest.core.helpers.CropHelper.harvestCrop;
+import static joshie.harvest.core.network.PacketHandler.sendRefreshPacket;
 import static joshie.harvest.crops.blocks.BlockHFCrops.Stage.*;
 
 public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IPlantable, IGrowable, IAnimalFeeder {
@@ -385,6 +386,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
         TileCrop crop = getEnumFromState(state).section == TOP ? (TileCrop) world.getTileEntity(pos.down()): (TileCrop) world.getTileEntity(pos);
         crop.getData().grow(world, pos);
         crop.saveAndRefresh();
+        sendRefreshPacket(crop);
     }
 
     @Override

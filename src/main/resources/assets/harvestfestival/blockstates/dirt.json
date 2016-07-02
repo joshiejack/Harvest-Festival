@@ -7,16 +7,16 @@
   "variants": {
     "types": {
       "real": {
-        "textures": { "all": "harvestfestival:blocks/ctm/dirt" }
+        "textures": { "all": "harvestfestival:blocks/dirt" }
       },
       "real_winter": {
-        "textures": { "all": "harvestfestival:blocks/ctm/dirt_winter" }
+        "textures": { "all": "harvestfestival:blocks/dirt_winter" }
       },
       "decorative": {
-        "textures": { "all": "harvestfestival:blocks/ctm/dirt" }
+        "textures": { "all": "harvestfestival:blocks/dirt" }
       },
       "decorative_winter": {
-        "textures": { "all": "harvestfestival:blocks/ctm/dirt_winter" }
+        "textures": { "all": "harvestfestival:blocks/dirt_winter" }
       }
     }
   }

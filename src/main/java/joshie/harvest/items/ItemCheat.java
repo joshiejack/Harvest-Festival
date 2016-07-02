@@ -2,32 +2,44 @@ package joshie.harvest.items;
 
 import joshie.harvest.buildings.loader.CodeGeneratorBuildings;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
-import joshie.harvest.core.util.base.ItemHFBaseMeta;
+import joshie.harvest.core.lib.CreativeSort;
+import joshie.harvest.core.util.base.ItemHFEnum;
+import joshie.harvest.items.ItemCheat.Cheat;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class ItemCheat extends ItemHFBaseMeta {
-    private static final int COORD_SETTER = 0;
-    private static final int CODE_GENERATOR = 1;
-    private static final int NPC_KILER = 2;
+import static joshie.harvest.items.ItemCheat.Cheat.CODE_GENERATOR;
+import static joshie.harvest.items.ItemCheat.Cheat.COORD_SETTER;
+import static joshie.harvest.items.ItemCheat.Cheat.NPC_KILLER;
+
+public class ItemCheat extends ItemHFEnum<ItemCheat, Cheat> {
+    public enum Cheat implements IStringSerializable {
+        COORD_SETTER, CODE_GENERATOR, NPC_KILLER;
+
+        @Override
+        public String getName() {
+            return name().toLowerCase();
+        }
+    }
+
+    public ItemCheat() {
+        super(Cheat.class);
+    }
+
     private static BlockPos pos1;
     private static BlockPos pos2;
 
     @Override
-    public int getMetaCount() {
-        return 3;
-    }
-
-    @Override
     public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         int damage = stack.getItemDamage();
-        if (damage == COORD_SETTER) {
+        if (damage == COORD_SETTER.ordinal()) {
             if (player.isSneaking()) {
                 pos2 = pos;
                 if (world.isRemote) {
@@ -41,7 +53,7 @@ public class ItemCheat extends ItemHFBaseMeta {
             }
 
             return EnumActionResult.SUCCESS;
-        } else if (damage == CODE_GENERATOR && pos1 != null && pos2 != null) {
+        } else if (damage == CODE_GENERATOR.ordinal() && pos1 != null && pos2 != null) {
             new CodeGeneratorBuildings(world, pos1.getX(), pos1.getY(), pos1.getZ(), pos2.getX(), pos2.getY(), pos2.getZ()).getCode(player.isSneaking());
             return EnumActionResult.SUCCESS;
         }
@@ -51,7 +63,7 @@ public class ItemCheat extends ItemHFBaseMeta {
 
     @Override
     public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity) {
-        if (stack.getItemDamage() == NPC_KILER) {
+        if (stack.getItemDamage() == NPC_KILLER.ordinal()) {
             entity.setDead();
             return true;
         }
@@ -60,16 +72,7 @@ public class ItemCheat extends ItemHFBaseMeta {
     }
 
     @Override
-    public String getName(ItemStack stack) {
-        switch (stack.getItemDamage()) {
-            case COORD_SETTER:
-                return "coord_setter";
-            case CODE_GENERATOR:
-                return "code_generator";
-            case NPC_KILER:
-                return "npc_killer";
-            default:
-                return "invalid";
-        }
+    public int getSortValue(ItemStack stack) {
+        return CreativeSort.LAST;
     }
 }

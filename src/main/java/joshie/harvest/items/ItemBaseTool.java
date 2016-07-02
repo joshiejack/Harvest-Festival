@@ -132,7 +132,9 @@ public abstract class ItemBaseTool extends ItemBaseSingle implements ILevelable,
     public void onPlayerStoppedUsing(ItemStack stack, World world, EntityLivingBase entity, int timeLeft) {
         int charge = (Math.min(7, Math.max(0, getCharge(stack))));
         setCharge(stack, 0); //Reset the charge
-        onFinishedCharging(world, entity, getMovingObjectPositionFromPlayer(world, entity), stack, ToolTier.values()[charge]);
+        if (!world.isRemote) {
+            onFinishedCharging(world, entity, getMovingObjectPositionFromPlayer(world, entity), stack, ToolTier.values()[charge]);
+        }
     }
 
     protected void onFinishedCharging(World world, EntityLivingBase entity, @Nullable RayTraceResult result, ItemStack stack, ToolTier toolTier) {}

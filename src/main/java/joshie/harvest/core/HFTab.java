@@ -19,7 +19,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import static joshie.harvest.mining.blocks.BlockOre.Ore.JUNK;
+import static joshie.harvest.mining.items.ItemMaterial.Material.JUNK;
+
 
 public class HFTab extends CreativeTabs {
     public static final HFTab TOWN = new HFTab("town");
@@ -105,7 +106,7 @@ public class HFTab extends CreativeTabs {
 
     public static void preInit() {
         HFTab.TOWN.setStack(new ItemStack(HFBuildings.STRUCTURES, 1, 0));
-        HFTab.MINING.setStack(HFMining.ORE.getStackFromEnum(JUNK));
+        HFTab.MINING.setStack(HFMining.MATERIALS.getStackFromEnum(JUNK));
         HFTab.FARMING.setStack(HFCrops.STRAWBERRY.getCropStack());
         HFTab.COOKING.setStack(HFApi.cooking.getMeal("salad"));
         HFTab.GATHERING.setStack(new ItemStack(HFItems.AXE, 1, 0));

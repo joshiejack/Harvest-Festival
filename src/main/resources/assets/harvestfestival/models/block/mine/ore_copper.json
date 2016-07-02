@@ -2,7 +2,7 @@
   "parent": "block/cube_all",
   "textures": {
     "particle": "harvestfestival:blocks/ore_copper",
-    "base": "harvestfestival:blocks/ore_base",
+    "base": "harvestfestival:blocks/rock_copper",
     "ore": "harvestfestival:blocks/ore_copper"
   },
   "elements": [

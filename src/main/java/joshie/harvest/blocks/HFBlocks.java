@@ -27,7 +27,8 @@ public class HFBlocks {
     public static final BlockGoddessWater GODDESS_WATER = new BlockGoddessWater(GODDESS).setUnlocalizedName("goddess.water");
     public static final BlockFlower FLOWERS = new BlockFlower().setUnlocalizedName("flowers");
     public static final BlockStorage STORAGE = new BlockStorage().setUnlocalizedName("storage");
-    public static final BlockGathering GATHERING = new BlockGathering().setUnlocalizedName("gathering");
+    public static final BlockRock ROCK = new BlockRock().setUnlocalizedName("rock");
+    public static final BlockWood WOOD = new BlockWood().setUnlocalizedName("wood");
 
     public static void preInit() {
         GODDESS.setBlock(GODDESS_WATER);

@@ -15,6 +15,7 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -25,8 +26,13 @@ import static joshie.harvest.animals.item.ItemAnimalTool.Tool.*;
 import static net.minecraft.util.text.TextFormatting.AQUA;
 
 public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> implements ICreativeSorted {
-    public enum Tool {
-        MILKER, BRUSH, MEDICINE, CHICKEN_FEED, MIRACLE_POTION
+    public enum Tool implements IStringSerializable {
+        MILKER, BRUSH, MEDICINE, CHICKEN_FEED, MIRACLE_POTION;
+
+        @Override
+        public String getName() {
+            return name().toLowerCase();
+        }
     }
 
     public ItemAnimalTool() {

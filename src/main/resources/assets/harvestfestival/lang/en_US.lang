@@ -84,12 +84,6 @@ harvestfestival.crop.nether.wart=Nether Wart
 
 #General Items
 harvestfestival.general.feather.blue=Blue Feather
-harvestfestival.ore.junk=Junk Ore
-harvestfestival.ore.copper=Copper Ore
-harvestfestival.ore.silver=Silver Ore
-harvestfestival.ore.gold=Gold Ore
-harvestfestival.ore.mystril=Mystril Ore
-harvestfestival.ore.mythic=Mythic Stone
 harvestfestival.general.shoot.bamboo=Bamboo Shoot
 
 harvestfestival.general.mushroom.matsutake=Matsutake Mushroom
@@ -269,24 +263,39 @@ harvestfestival.sprinkler.wood=Sprinkler
 harvestfestival.flowers.goddess=Goddess Flower
 harvestfestival.flowers.weed=Weed
 
-harvestfestival.gathering.branch.small=Small Branch
-harvestfestival.gathering.branch.medium=Medium Branch
-harvestfestival.gathering.branch.large=Large Branch
-harvestfestival.gathering.stump.small=Small Stump
-harvestfestival.gathering.stump.medium=Medium Stump
-harvestfestival.gathering.stump.large=Large Stump
-harvestfestival.gathering.rock.small=Small Rock
-harvestfestival.gathering.rock.medium=Medium Rock
-harvestfestival.gathering.rock.large=Large Rock
-harvestfestival.gathering.ore.small=Small Ore Rock
-harvestfestival.gathering.ore.medium=Medium Ore Rock
-harvestfestival.gathering.ore.large=Large Ore Rock
+harvestfestival.wood.branch.small=Small Branch
+harvestfestival.wood.branch.medium=Medium Branch
+harvestfestival.wood.branch.large=Large Branch
+harvestfestival.wood.stump.small=Small Stump
+harvestfestival.wood.stump.medium=Medium Stump
+harvestfestival.wood.stump.large=Large Stump
+harvestfestival.rock.stone.small=Small Rock
+harvestfestival.rock.stone.medium=Medium Rock
+harvestfestival.rock.stone.large=Large Rock
+harvestfestival.rock.boulder.small=Small Boulder
+harvestfestival.rock.boulder.medium=Medium Boulder
+harvestfestival.rock.boulder.large=Large Boulder
 
+#Mine Blocks
 harvestfestival.dirt.real=Mine Floor
 harvestfestival.dirt.decorative=Mine Floor
 harvestfestival.stone.real=Mine Wall
 harvestfestival.stone.decorative=Mine Wall
 harvestfestival.ladder.wood=Mine Ladder
+harvestfestival.ore.rock=Rock
+harvestfestival.ore.copper=Copper Node
+harvestfestival.ore.silver=Silver Node
+harvestfestival.ore.gold=Gold Node
+harvestfestival.ore.mystril=Mystril Node
+harvestfestival.ore.gem=Gem Node
+
+#Mine Materials
+harvestfestival.materials.junk=Junk Ore
+harvestfestival.materials.copper=Copper Ore
+harvestfestival.materials.silver=Silver Ore
+harvestfestival.materials.gold=Gold Ore
+harvestfestival.materials.mystril=Mystril Ore
+harvestfestival.materials.mythic=Mythic Stone
 
 tile.goddess.water.name=Goddess Water
 

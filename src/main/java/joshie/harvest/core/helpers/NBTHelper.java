@@ -1,8 +1,8 @@
 package joshie.harvest.core.helpers;
 
-import gnu.trove.map.TIntIntMap;
+import gnu.trove.list.TIntList;
+import gnu.trove.list.array.TIntArrayList;
 import gnu.trove.map.TIntLongMap;
-import gnu.trove.map.hash.TIntIntHashMap;
 import gnu.trove.map.hash.TIntLongHashMap;
 import joshie.harvest.blocks.tiles.TileHarvest;
 import joshie.harvest.core.network.PacketHandler;
@@ -121,30 +121,27 @@ public class NBTHelper {
         return map;
     }
 
-    public static NBTTagList writeIntMap(TIntIntMap map) {
+    public static NBTTagList writeIntList(TIntList map) {
         NBTTagList list = new NBTTagList();
-        for (int key: map.keys()) {
+        for (int value: map.toArray()) {
             NBTTagCompound tag = new NBTTagCompound();
-            tag.setInteger("Key", key);
-            tag.setInteger("Value", map.get(key));
+            tag.setLong("Value", value);
             list.appendTag(tag);
         }
 
         return list;
     }
 
-    public static TIntIntMap readMap(NBTTagList list) {
-        TIntIntMap map = new TIntIntHashMap();
+    public static TIntList readIntList(NBTTagList list) {
+        TIntList ret = new TIntArrayList();
         for (int j = 0; j < list.tagCount(); j++) {
             NBTTagCompound tag = list.getCompoundTagAt(j);
             try {
-                int key = tag.getInteger("Key");
-                int value = tag.getInteger("Value");
-                map.put(key, value);
+                ret.add(tag.getInteger("Value"));
             } catch (Exception e) {}
         }
 
-        return map;
+        return ret;
     }
 
     public static BlockPos readBlockPos(String prefix, NBTTagCompound tag) {

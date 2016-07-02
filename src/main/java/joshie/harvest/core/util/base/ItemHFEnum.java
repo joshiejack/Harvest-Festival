@@ -3,20 +3,19 @@ package joshie.harvest.core.util.base;
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.lib.CreativeSort;
-import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.generic.Text;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.IStringSerializable;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public abstract class ItemHFEnum<I extends ItemHFEnum, E extends Enum<E>> extends ItemHFBase implements ICreativeSorted {
+public abstract class ItemHFEnum<I extends ItemHFEnum, E extends Enum<E> & IStringSerializable> extends ItemHFBase implements ICreativeSorted {
     protected final E[] values;
     protected final String prefix;
 
@@ -67,6 +66,10 @@ public abstract class ItemHFEnum<I extends ItemHFEnum, E extends Enum<E>> extend
         return new ItemStack(this, 1, e.ordinal());
     }
 
+    public ItemStack getStackFromEnum(E e, int size) {
+        return new ItemStack(this, size, e.ordinal());
+    }
+
     @Override
     public String getUnlocalizedName(ItemStack stack) {
         return prefix + "_" + getEnumFromStack(stack).name().toLowerCase();
@@ -103,8 +106,8 @@ public abstract class ItemHFEnum<I extends ItemHFEnum, E extends Enum<E>> extend
 
     @SideOnly(Side.CLIENT)
     public void registerModels(Item item, String name) {
-        for (int i = 0; i < values.length; i++) {
-            ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(new ResourceLocation(HFModInfo.MODID, getPrefix(values[i]) + "_" + values[i].name().toLowerCase()), "inventory"));
+        for (E e: values) {
+            ModelLoader.setCustomModelResourceLocation(item, e.ordinal(), new ModelResourceLocation(getRegistryName(), e.getName()));
         }
     }
 }

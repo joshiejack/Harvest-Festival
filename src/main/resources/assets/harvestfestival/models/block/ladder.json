@@ -1,5 +1,6 @@
 {"parent": "block/block",
 "textures": {
+    "particle": "harvestfestival:models/ladder",
     "main": "harvestfestival:models/ladder"
 },
 "elements": [ 

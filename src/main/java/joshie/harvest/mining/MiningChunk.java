@@ -19,6 +19,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
+import static joshie.harvest.mining.HFMining.ORE;
 import static joshie.harvest.mining.MineManager.CHUNK_BOUNDARY;
 
 public class MiningChunk implements IChunkGenerator {
@@ -43,14 +44,18 @@ public class MiningChunk implements IChunkGenerator {
         x = Math.min(15, Math.max(0, x));
         y = Math.min(255, Math.max(0, y));
         z = Math.min(15, Math.max(0, z));
-        primer.setBlockState(x, y, z, state);
+        if (primer.getBlockState(x, y, z).getBlock() != ORE) {
+            primer.setBlockState(x, y, z, state);
 
-        if (state.getBlock() == FLOORS.getBlock()) {
-            int realX = (chunkX * 16) + x;
-            int realZ = (chunkZ * 16) + z;
+            if (state.getBlock() == FLOORS.getBlock()) {
+                int realX = (chunkX * 16) + x;
+                int realZ = (chunkZ * 16) + z;
 
-            if (rand.nextInt(256) == 0) {
-                HFApi.tickable.addTickable(worldObj, new BlockPos(realX, y, realZ), HFApi.tickable.getTickableFromBlock(FLOORS.getBlock()));
+                if (rand.nextInt(256) == 0) {
+                    HFApi.tickable.addTickable(worldObj, new BlockPos(realX, y, realZ), HFApi.tickable.getTickableFromBlock(FLOORS.getBlock()));
+                    IBlockState theState = MiningTicker.getBlockState(rand, MiningTicker.getFloor(chunkX, y));
+                    primer.setBlockState(x, y + 1, z, theState);
+                }
             }
         }
     }
@@ -66,7 +71,7 @@ public class MiningChunk implements IChunkGenerator {
         //Set the chunk to wall blocks
         for (int i = 0; i < 16; i++) {
             for (int j = 0; j < 16; j++) {
-                for (int k = 0; k < 250; k++) {
+                for (int k = 0; k < 252; k++) {
                     setBlockState(primer, i, k, j, WALLS, chunkX, chunkZ);
                 }
             }
@@ -133,16 +138,6 @@ public class MiningChunk implements IChunkGenerator {
         }
     }
 
-    private int getIndex(int chunkX, int chunkY, int chunkZ) {
-        int x = (int) Math.floor(chunkX / CHUNK_BOUNDARY); //3x3 Chunks
-        int y = (int) Math.floor(chunkY / FLOOR_HEIGHT); // Height
-        int z = (int) Math.floor(chunkZ / CHUNK_BOUNDARY); //3x3 Chunks
-        int result = x;
-        result = 31 * result + z;
-        result = 31 * result + y;
-        return result;
-    }
-
     private int clamp(int number) {
         return Math.max(0, Math.min((CHUNK_BOUNDARY * 16) - 1, number));
     }
@@ -154,6 +149,16 @@ public class MiningChunk implements IChunkGenerator {
     private IBlockState[][] getBooleanFromMap(TIntObjectMap<IBlockState[][]> map, int index) {
         map.putIfAbsent(index, new IBlockState[16][16]);
         return map.get(index);
+    }
+
+    private int getIndex(int chunkX, int chunkY, int chunkZ) {
+        int x = (int) Math.floor(chunkX / CHUNK_BOUNDARY); //3x3 Chunks
+        int y = (int) Math.floor(chunkY / MiningChunk.FLOOR_HEIGHT); // Height
+        int z = (int) Math.floor(chunkZ / CHUNK_BOUNDARY); //3x3 Chunks
+        int result = x;
+        result = 31 * result + z;
+        result = 31 * result + y;
+        return result;
     }
 
     public IBlockState[][] getMineGeneration(int chunkX, int chunkY, int chunkZ) {

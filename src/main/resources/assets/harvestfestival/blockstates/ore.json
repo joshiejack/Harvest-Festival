@@ -5,6 +5,18 @@
       { "model": "harvestfestival:mine/ore_copper", "weight": 1, "y": 90 },
       { "model": "harvestfestival:mine/ore_copper", "weight": 1, "y": 180 },
       { "model": "harvestfestival:mine/ore_copper", "weight": 1, "y": 270 }
+    ],
+    "ore=silver": [
+      { "model": "harvestfestival:mine/ore_silver", "weight": 1 },
+      { "model": "harvestfestival:mine/ore_silver", "weight": 1, "y": 90 },
+      { "model": "harvestfestival:mine/ore_silver", "weight": 1, "y": 180 },
+      { "model": "harvestfestival:mine/ore_silver", "weight": 1, "y": 270 }
+    ],
+    "ore=gold": [
+      { "model": "harvestfestival:mine/ore_gold", "weight": 1 },
+      { "model": "harvestfestival:mine/ore_gold", "weight": 1, "y": 90 },
+      { "model": "harvestfestival:mine/ore_gold", "weight": 1, "y": 180 },
+      { "model": "harvestfestival:mine/ore_gold", "weight": 1, "y": 270 }
     ]
   }
 }

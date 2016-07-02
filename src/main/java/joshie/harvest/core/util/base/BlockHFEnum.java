@@ -1,7 +1,6 @@
 package joshie.harvest.core.util.base;
 
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.generic.IHasMetaItem;
 import joshie.harvest.core.util.generic.Text;
 import net.minecraft.block.material.Material;
@@ -14,7 +13,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -182,7 +180,7 @@ public abstract class BlockHFEnum<B extends BlockHFEnum, E extends Enum<E> & ISt
     @SideOnly(Side.CLIENT)
     public void registerModels(Item item, String name) {
         for (int i = 0; i < values.length; i++) {
-            ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(new ResourceLocation(HFModInfo.MODID, property.getName() + "_" + getEnumFromMeta(i).getName()), "inventory"));
+            ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(getRegistryName(), property.getName() + "=" + getEnumFromMeta(i).getName()));
         }
     }
 }

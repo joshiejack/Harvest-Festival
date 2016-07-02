@@ -3,19 +3,28 @@ package joshie.harvest.animals.item;
 import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.animals.entity.EntityHarvestSheep;
 import joshie.harvest.animals.item.ItemAnimalSpawner.Spawner;
+import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.base.ItemHFEnum;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemAnimalSpawner extends ItemHFEnum<ItemAnimalSpawner, Spawner> {
-    public enum Spawner {
+    public enum Spawner implements IStringSerializable {
         COW, SHEEP, CHICKEN;
+
+        @Override
+        public String getName() {
+            return name().toLowerCase();
+        }
     }
 
     public ItemAnimalSpawner() {
@@ -42,5 +51,13 @@ public class ItemAnimalSpawner extends ItemHFEnum<ItemAnimalSpawner, Spawner> {
         }
 
         return EnumActionResult.FAIL;
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void registerModels(Item item, String name) {
+        for (int i = 0; i < values.length; i++) {
+            ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(new ResourceLocation(HFModInfo.MODID, getPrefix(values[i]) + "_" + values[i].name().toLowerCase()), "inventory"));
+        }
     }
 }

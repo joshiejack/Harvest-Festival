@@ -7,8 +7,10 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
@@ -16,6 +18,9 @@ import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class BlockHFEnumRotatableMeta<B extends BlockHFEnumRotatableMeta, E extends Enum<E> & IStringSerializable> extends BlockHFEnum<B, E> {
     protected static final PropertyDirection FACING = BlockHorizontal.FACING;
@@ -71,5 +76,18 @@ public abstract class BlockHFEnumRotatableMeta<B extends BlockHFEnumRotatableMet
     @Override
     public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
         return state.withRotation(mirrorIn.toRotation((EnumFacing)state.getValue(FACING)));
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void registerModels(Item item, String name) {
+        for (int i = 0; i < values.length; i++) {
+            if (Character.toLowerCase(property.getName().charAt(0)) < Character.toLowerCase('f')) {
+                ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(getRegistryName(), property.getName() + "=" + getEnumFromMeta(i).getName() + ",facing=north"));
+            } else {
+                ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(getRegistryName(), "facing=north" + property.getName() + "=" + getEnumFromMeta(i).getName()));
+            }
+
+        }
     }
 }

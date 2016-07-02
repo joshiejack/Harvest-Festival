@@ -1,0 +1,19 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-item",
+    "model": "forge:item-layer"
+  },
+  "variants": {
+    "butter": [{ "textures": { "layer0": "harvestfestival:items/meals/butter_alt" }}],
+    "chocolate": [{ "textures": { "layer0": "harvestfestival:items/chocolate" }}],
+    "cookies": [{ "textures": { "layer0": "harvestfestival:items/meals/cookies_alt" }}],
+    "egg_scrambled": [{ "textures": { "layer0": "harvestfestival:items/meals/egg_scrambled_alt" }}],
+    "flour": [{ "textures": { "layer0": "harvestfestival:items/flour" }}],
+    "ketchup": [{ "textures": { "layer0": "harvestfestival:items/meals/ketchup_alt" }}],
+    "oil": [{ "textures": { "layer0": "harvestfestival:items/oil" }}],
+    "riceball": [{ "textures": { "layer0": "harvestfestival:items/riceball" }}],
+    "salt": [{ "textures": { "layer0": "harvestfestival:items/salt" }}],
+    "sashimi": [{ "textures": { "layer0": "harvestfestival:items/meals/sashimi_alt" }}]
+  }
+}

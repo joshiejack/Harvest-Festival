@@ -1,32 +1,39 @@
 package joshie.harvest.mining.blocks;
 
+import joshie.harvest.api.calendar.Season;
+import joshie.harvest.api.gathering.ISmashable;
 import joshie.harvest.core.HFTab;
+import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.lib.LootStrings;
 import joshie.harvest.core.util.base.BlockHFEnum;
-import joshie.harvest.core.util.generic.Text;
+import joshie.harvest.mining.HFMining;
+import joshie.harvest.mining.MiningHelper;
 import joshie.harvest.mining.blocks.BlockOre.Ore;
+import joshie.harvest.mining.items.ItemMaterial;
 import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.List;
+import static joshie.harvest.api.gathering.ISmashable.ToolType.HAMMER;
+import static net.minecraft.block.material.Material.ROCK;
 
-import static joshie.harvest.mining.blocks.BlockOre.Ore.MYTHIC;
-import static net.minecraft.util.text.TextFormatting.GREEN;
-import static net.minecraft.util.text.TextFormatting.WHITE;
-
-public class BlockOre extends BlockHFEnum<BlockOre, Ore> {
+public class BlockOre extends BlockHFEnum<BlockOre, Ore> implements ISmashable {
     private static final AxisAlignedBB COPPER_AABB = new AxisAlignedBB(0.1D, 0.0D, 0.1D, 0.9D, 0.8D, 0.9D);
 
     public enum Ore implements IStringSerializable {
-        JUNK, COPPER, SILVER, GOLD, MYSTRIL, MYTHIC;
+        ROCK, COPPER, SILVER, GOLD, MYSTRIL, GEM;
 
         @Override
         public String getName() {
@@ -35,7 +42,7 @@ public class BlockOre extends BlockHFEnum<BlockOre, Ore> {
     }
 
     public BlockOre() {
-        super(Material.ROCK, Ore.class, HFTab.MINING);
+        super(ROCK, Ore.class, HFTab.MINING);
         setHardness(1.5F);
         setSoundType(SoundType.STONE);
     }
@@ -46,25 +53,46 @@ public class BlockOre extends BlockHFEnum<BlockOre, Ore> {
     }
 
     @Override
-    public String getItemStackDisplayName(ItemStack stack) {
-        switch (getEnumFromStack(stack)) {
-            case MYTHIC:
-                return GREEN + super.getItemStackDisplayName(stack);
-            default:
-                return WHITE + super.getItemStackDisplayName(stack);
-        }
+    public ToolType getToolType() {
+        return HAMMER;
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
-        if (getEnumFromStack(stack) == MYTHIC) {
-            list.add(Text.translate("tooltip.mythic_stone"));
+    public ItemStack getDrop(EntityPlayer player, World world, BlockPos pos, IBlockState state, float luck) {
+        Ore ore = getEnumFromState(state);
+        switch (ore) {
+            case ROCK: {
+                ResourceLocation loot = HFTrackers.getCalendar(world).getSeasonAt(pos) == Season.WINTER ? LootStrings.MINE_WINTER : LootStrings.MINE_SPRING;
+                return MiningHelper.getLoot(loot, world, player, luck);
+            }
+
+            case COPPER:
+                return HFMining.MATERIALS.getStackFromEnum(ItemMaterial.Material.COPPER, 1 + world.rand.nextInt(5));
+            case SILVER:
+                return HFMining.MATERIALS.getStackFromEnum(ItemMaterial.Material.SILVER, 1 + world.rand.nextInt(3));
+            case GOLD:
+                return HFMining.MATERIALS.getStackFromEnum(ItemMaterial.Material.GOLD, 1 + world.rand.nextInt(2));
+            case MYSTRIL:
+                return HFMining.MATERIALS.getStackFromEnum(ItemMaterial.Material.MYSTRIL);
+            case GEM: {
+                ResourceLocation loot = HFTrackers.getCalendar(world).getSeasonAt(pos) == Season.WINTER ? LootStrings.MINE_WINTER_GEM : LootStrings.MINE_SPRING_GEM;
+                return MiningHelper.getLoot(loot, world, player, luck);
+            }
+            default:
+                return null;
         }
     }
 
     @Override
     public int getSortValue(ItemStack stack) {
-        return 10 + stack.getItemDamage();
+        return 1;
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void registerModels(Item item, String name) {
+        for (int i = 0; i < values.length; i++) {
+            ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(getRegistryName(), property.getName() + "=" + getEnumFromMeta(i).getName()));
+        }
     }
 }

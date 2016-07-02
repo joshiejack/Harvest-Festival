@@ -1,0 +1,13 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-item",
+    "model": "forge:item-layer"
+  },
+  "variants": {
+    "chicken": [{ "textures": { "layer0": "harvestfestival:items/treats/chicken" }}],
+    "cow": [{ "textures": { "layer0": "harvestfestival:items/treats/cow" }}],
+    "generic": [{ "textures": { "layer0": "harvestfestival:items/treats/generic" }}],
+    "sheep": [{ "textures": { "layer0": "harvestfestival:items/treats/sheep" }}]
+  }
+}

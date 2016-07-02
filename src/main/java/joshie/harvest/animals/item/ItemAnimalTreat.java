@@ -9,10 +9,16 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.IStringSerializable;
 
 public class ItemAnimalTreat extends ItemHFEnum<ItemAnimalTreat, Treat> implements ICreativeSorted {
-    public enum Treat {
-        COW, SHEEP, CHICKEN, GENERIC
+    public enum Treat implements IStringSerializable {
+        COW, SHEEP, CHICKEN, GENERIC;
+
+        @Override
+        public String getName() {
+            return name().toLowerCase();
+        }
     }
 
     public ItemAnimalTreat() {

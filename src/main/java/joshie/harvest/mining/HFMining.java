@@ -5,6 +5,7 @@ import joshie.harvest.blocks.BlockDirt;
 import joshie.harvest.mining.blocks.BlockLadder;
 import joshie.harvest.mining.blocks.BlockOre;
 import joshie.harvest.mining.blocks.BlockStone;
+import joshie.harvest.mining.items.ItemMaterial;
 import joshie.harvest.mining.loot.*;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.storage.loot.conditions.LootConditionManager;
@@ -19,6 +20,7 @@ public class HFMining {
     public static final BlockStone STONE = new BlockStone().setUnlocalizedName("stone");
     public static final BlockDirt DIRT = new BlockDirt().setUnlocalizedName("dirt");
     public static final BlockLadder LADDER = new BlockLadder().setUnlocalizedName("ladder");
+    public static final ItemMaterial MATERIALS = new ItemMaterial().setUnlocalizedName("materials");
 
     public static void preInit() {
         DimensionManager.registerDimension(MINING_ID, MINE_WORLD);

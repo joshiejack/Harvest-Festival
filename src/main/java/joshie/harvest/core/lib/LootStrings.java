@@ -34,6 +34,8 @@ public class LootStrings {
     public static final ResourceLocation BARN_FRAME = register("frames/barn");
     public static final ResourceLocation MINE_SPRING = register("gameplay/mining_spring");
     public static final ResourceLocation MINE_WINTER = register("gameplay/mining_winter");
+    public static final ResourceLocation MINE_SPRING_GEM = register("gameplay/mining_spring_gems");
+    public static final ResourceLocation MINE_WINTER_GEM = register("gameplay/mining_winter_gems");
 
     private static ResourceLocation register(String id) {
         return LootTableList.register(new ResourceLocation(HFModInfo.MODID, id));

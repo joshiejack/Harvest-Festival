@@ -1,0 +1,12 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-item",
+    "model": "forge:item-layer"
+  },
+  "variants": {
+    "small": [{ "textures": { "layer0": "harvestfestival:items/milk_small" }}],
+    "medium": [{ "textures": { "layer0": "harvestfestival:items/milk_medium" }}],
+    "large": [{ "textures": { "layer0": "harvestfestival:items/milk_large" }}]
+  }
+}

@@ -6,13 +6,13 @@
       "entries": [
         {
           "type": "item",
-          "name": "harvestfestival:ore",
+          "name": "harvestfestival:materials",
           "entryName": "junk_ore",
-          "weight": 30
+          "weight": 60
         },
         {
           "type": "item",
-          "name": "harvestfestival:ore",
+          "name": "harvestfestival:materials",
           "entryName": "copper_ore",
           "weight": 15,
           "functions": [
@@ -24,7 +24,7 @@
         },
         {
           "type": "item",
-          "name": "harvestfestival:ore",
+          "name": "harvestfestival:materials",
           "entryName": "silver_ore",
           "weight": 7,
           "functions": [
@@ -36,7 +36,7 @@
         },
         {
           "type": "item",
-          "name": "harvestfestival:ore",
+          "name": "harvestfestival:materials",
           "entryName": "gold_ore",
           "weight": 5,
           "functions": [
@@ -55,7 +55,7 @@
         },
         {
           "type": "item",
-          "name": "harvestfestival:ore",
+          "name": "harvestfestival:materials",
           "entryName": "mystril_ore",
           "weight": 1,
           "functions": [

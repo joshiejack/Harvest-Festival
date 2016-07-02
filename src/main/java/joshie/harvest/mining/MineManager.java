@@ -49,6 +49,10 @@ public class MineManager {
         return seeds.get(mapIndex);
     }
 
+    private int getDoneID(int chunkX, int chunkZ) {
+        return chunkX << 12 | chunkZ << 8;
+    }
+
     public void readFromNBT(NBTTagCompound tag) {
         seeds = NBTHelper.readLongMap(tag.getTagList("Seeds", 10));
     }

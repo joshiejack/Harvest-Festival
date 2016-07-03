@@ -16,10 +16,6 @@ import static joshie.harvest.mining.HFMining.MINE_WORLD;
 public class MiningProvider extends WorldProvider {
     private MineManager manager = null;
 
-    public MineManager getManager() {
-        return manager;
-    }
-
     @Override
     public void createBiomeProvider() {
         biomeProvider = new BiomeProviderSingle(Biomes.VOID);
@@ -38,7 +34,7 @@ public class MiningProvider extends WorldProvider {
 
     @Override
     public BlockPos getSpawnCoordinate() {
-        return new BlockPos(5, 246, 5);
+        return manager.getSpawnCoordinate();
     }
 
     @SideOnly(Side.CLIENT)

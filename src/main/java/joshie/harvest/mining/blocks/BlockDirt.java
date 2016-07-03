@@ -1,11 +1,11 @@
-package joshie.harvest.blocks;
+package joshie.harvest.mining.blocks;
 
-import joshie.harvest.blocks.BlockDirt.Types;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.config.General;
 import joshie.harvest.core.util.base.BlockHFEnumCube;
 import joshie.harvest.core.util.generic.Text;
 import joshie.harvest.mining.HFMining;
+import joshie.harvest.mining.blocks.BlockDirt.Types;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -14,16 +14,21 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static joshie.harvest.mining.blocks.BlockDirt.Types.DECORATIVE;
+import static joshie.harvest.mining.blocks.BlockDirt.Types.REAL;
 
 public class BlockDirt extends BlockHFEnumCube<BlockDirt, Types> {
     public enum Types implements IStringSerializable {
@@ -57,14 +62,17 @@ public class BlockDirt extends BlockHFEnumCube<BlockDirt, Types> {
     //TECHNICAL/
     @Override
     public float getBlockHardness(IBlockState state, World world, BlockPos pos) {
-        switch (getEnumFromState(state)) {
-            case REAL:
-                return -1.0F;
-            case DECORATIVE:
-                return 4F;
-            default:
-                return 4F;
-        }
+        return getEnumFromState(state) == REAL ? -1F: 4F;
+    }
+
+    @Override
+    public boolean canEntityDestroy(IBlockState state, IBlockAccess world, BlockPos pos, Entity entity) {
+        return getEnumFromState(state) != REAL;
+    }
+
+    @Override
+    public float getExplosionResistance(World world, BlockPos pos, Entity exploder, Explosion explosion) {
+        return getEnumFromState(world.getBlockState(pos)) == REAL ? 6000000.0F : 12.0F;
     }
 
     @Override
@@ -73,21 +81,9 @@ public class BlockDirt extends BlockHFEnumCube<BlockDirt, Types> {
     }
 
     @Override
-    public float getExplosionResistance(World world, BlockPos pos, Entity exploder, Explosion explosion) {
-        switch (getEnumFromState(world.getBlockState(pos))) {
-            case REAL:
-                return 6000000.0F;
-            case DECORATIVE:
-                return 12.0F;
-            default:
-                return 5;
-        }
-    }
-
-    @Override
     public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
         List<ItemStack> ret = new ArrayList<ItemStack>();
-        if (getEnumFromState(world.getBlockState(pos)) == Types.DECORATIVE) {
+        if (getEnumFromState(world.getBlockState(pos)) == DECORATIVE) {
             ret.add(new ItemStack(HFMining.DIRT, 1, 1));
         }
 
@@ -99,22 +95,8 @@ public class BlockDirt extends BlockHFEnumCube<BlockDirt, Types> {
         return false;
     }
 
-
-    /*
     @Override
-    public void onBlockDestroyedByPlayer(World world, int x, int y, int z, int side) {
-        if (world.rand.nextInt(3) == 0) {
-            //MineHelper.caveIn(world, x, y, z);
-        }
+    public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, net.minecraftforge.common.IPlantable plantable) {
+        return plantable.getPlantType(world, pos.up()) == EnumPlantType.Plains;
     }
-    
-    @Override
-    public float getPlayerRelativeBlockHardness(EntityPlayer player, World world, int x, int y, int z) {
-        return !EntityHelper.isFakePlayer(player) ? 0.025F : super.getPlayerRelativeBlockHardness(player, world, x, y, z);
-    }
-        */
-
-    //Normal height = 12 floors, y91 = On a hill = 17 floors, On an extreme hills = y120 = 23 floors
-    //private static int MAXIMUM_FLOORS = 23;
-
 }

@@ -290,12 +290,12 @@ harvestfestival.ore.mystril=Mystril Node
 harvestfestival.ore.gem=Gem Node
 
 #Mine Materials
-harvestfestival.materials.junk=Junk Ore
-harvestfestival.materials.copper=Copper Ore
-harvestfestival.materials.silver=Silver Ore
-harvestfestival.materials.gold=Gold Ore
-harvestfestival.materials.mystril=Mystril Ore
-harvestfestival.materials.mythic=Mythic Stone
+harvestfestival.material.junk=Junk Ore
+harvestfestival.material.copper=Copper Ore
+harvestfestival.material.silver=Silver Ore
+harvestfestival.material.gold=Gold Ore
+harvestfestival.material.mystril=Mystril Ore
+harvestfestival.material.mythic=Mythic Stone
 
 tile.goddess.water.name=Goddess Water
 

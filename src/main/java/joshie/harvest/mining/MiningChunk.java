@@ -56,6 +56,11 @@ public class MiningChunk implements IChunkGenerator {
                     IBlockState theState = MiningTicker.getBlockState(rand, MiningTicker.getFloor(chunkX, y));
                     primer.setBlockState(x, y + 1, z, theState);
                 }
+
+                //If this was the first floor
+                if (MiningTicker.getFloor(chunkX, y) == 1) {
+                    manager.setSpawnForMine((int)Math.floor(chunkZ / CHUNK_BOUNDARY), realX, y + 1, realZ);
+                }
             }
         }
     }

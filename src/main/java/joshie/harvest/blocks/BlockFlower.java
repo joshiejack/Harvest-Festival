@@ -11,7 +11,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -57,7 +56,7 @@ public class BlockFlower extends BlockHFEnum<BlockFlower, FlowerType> implements
     }
 
     protected boolean canSustainBush(IBlockState state) {
-        return state.getBlock() == Blocks.GRASS || state.getBlock() == Blocks.DIRT || state.getBlock() == Blocks.FARMLAND;
+        return state.getMaterial() == Material.GROUND;
     }
 
     @Override
@@ -78,6 +77,7 @@ public class BlockFlower extends BlockHFEnum<BlockFlower, FlowerType> implements
             IBlockState soil = world.getBlockState(pos.down());
             return soil.getBlock().canSustainPlant(soil, world, pos.down(), net.minecraft.util.EnumFacing.UP, this);
         }
+
         return this.canSustainBush(world.getBlockState(pos.down()));
     }
 

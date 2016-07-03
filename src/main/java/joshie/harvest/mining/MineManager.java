@@ -7,6 +7,7 @@ import gnu.trove.map.hash.TIntObjectHashMap;
 import joshie.harvest.core.helpers.NBTHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.WorldServer;
 
 public class MineManager {
@@ -15,9 +16,23 @@ public class MineManager {
     private TIntLongMap seeds = new TIntLongHashMap();
     private TIntObjectMap<TIntObjectMap<IBlockState[][]>> generation = new TIntObjectHashMap();
     private TIntObjectMap<int[]> coordinates = new TIntObjectHashMap();
+    private TIntObjectMap<BlockPos> spawnCoordinates = new TIntObjectHashMap<>();
 
     public MineManager(WorldServer world) {
         this.world = world;
+    }
+
+    public BlockPos getSpawnCoordinate() {
+        BlockPos ret = spawnCoordinates.get(0);
+        if (ret == null) {
+            return new BlockPos(0, 0, 0);
+        }
+
+        return ret;
+    }
+
+    public void setSpawnForMine(int mineID, int x, int y, int z) {
+        spawnCoordinates.putIfAbsent(mineID, new BlockPos(x, y, z));
     }
 
     public TIntObjectMap<IBlockState[][]> getStateMap(int mapIndex) {
@@ -49,15 +64,13 @@ public class MineManager {
         return seeds.get(mapIndex);
     }
 
-    private int getDoneID(int chunkX, int chunkZ) {
-        return chunkX << 12 | chunkZ << 8;
-    }
-
     public void readFromNBT(NBTTagCompound tag) {
         seeds = NBTHelper.readLongMap(tag.getTagList("Seeds", 10));
+        spawnCoordinates = NBTHelper.readPositionMap(tag.getTagList("Coordinates", 10));
     }
     public NBTTagCompound writeToNBT(NBTTagCompound tag) {
         tag.setTag("Seeds", NBTHelper.writeLongMap(seeds));
+        tag.setTag("Coordinates", NBTHelper.writePositionMap(spawnCoordinates));
         return tag;
     }
 }

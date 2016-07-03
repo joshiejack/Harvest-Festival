@@ -25,6 +25,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
@@ -223,8 +224,7 @@ public class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEn
     }
 
     @Override
-    protected void kill() {
-        setDead(); //Kill the existing mofo
+    public void onDeath(DamageSource cause) {
         //Respawn a new bugger
         EntityNPC clone = getNewEntity(this);
         BlockPos home = getHomeCoordinates();
@@ -233,6 +233,8 @@ public class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEn
             clone.resetSpawnHome();
             worldObj.spawnEntityInWorld(clone);
         }
+
+        super.onDeath(cause); //Kill the entity
     }
 
     public BlockPos getHomeCoordinates() {

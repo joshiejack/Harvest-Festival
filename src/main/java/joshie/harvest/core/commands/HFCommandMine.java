@@ -25,18 +25,16 @@ public class HFCommandMine extends HFCommandBase {
         WorldServer worldServer = server.worldServerForDimension(MINING_ID);
         World world = sender.getEntityWorld();
         int oldDimension = world.provider.getDimension();
-        if (sender instanceof EntityPlayerMP) {
+        if (world != null && sender instanceof EntityPlayerMP) {
             EntityPlayerMP player = ((EntityPlayerMP)sender);
             player.addExperienceLevel(0); //Fix levels
             worldServer.getMinecraftServer().getPlayerList().transferPlayerToDimension((player), MINING_ID, new MiningTeleporter(worldServer, world.provider.getSpawnCoordinate()));
 
-            if (player != null) {
+            player.setPositionAndUpdate(world.provider.getSpawnCoordinate().getX(), world.provider.getSpawnCoordinate().getY(), world.provider.getSpawnCoordinate().getZ());
+            if (oldDimension == 1) {
                 player.setPositionAndUpdate(world.provider.getSpawnCoordinate().getX(), world.provider.getSpawnCoordinate().getY(), world.provider.getSpawnCoordinate().getZ());
-                if (oldDimension == 1) {
-                    player.setPositionAndUpdate(world.provider.getSpawnCoordinate().getX(), world.provider.getSpawnCoordinate().getY(), world.provider.getSpawnCoordinate().getZ());
-                    world.spawnEntityInWorld(player);
-                    world.updateEntityWithOptionalForce(player, false);
-                }
+                world.spawnEntityInWorld(player);
+                world.updateEntityWithOptionalForce(player, false);
             }
 
             return true;

@@ -1,7 +1,7 @@
 package joshie.harvest.mining;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.blocks.BlockDirt;
+import joshie.harvest.mining.blocks.BlockDirt;
 import joshie.harvest.mining.blocks.BlockLadder;
 import joshie.harvest.mining.blocks.BlockOre;
 import joshie.harvest.mining.blocks.BlockStone;

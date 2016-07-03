@@ -67,27 +67,22 @@ public class BlockStone extends BlockHFEnumCube<BlockStone, Type> {
     //TECHNICAL
     @Override
     public float getBlockHardness(IBlockState state, World world, BlockPos pos) {
-        switch (getEnumFromState(state)) {
-            case REAL:
-                return -1.0F;
-            default:
-                return 4F;
-        }
+        return getEnumFromState(state) == REAL ? -1F: 4F;
+    }
+
+    @Override
+    public boolean canEntityDestroy(IBlockState state, IBlockAccess world, BlockPos pos, Entity entity) {
+        return getEnumFromState(state) != REAL;
+    }
+
+    @Override
+    public float getExplosionResistance(World world, BlockPos pos, Entity exploder, Explosion explosion) {
+        return getEnumFromState(world.getBlockState(pos)) == REAL ? 60000000F : 14F;
     }
 
     @Override
     public int getToolLevel(Type type) {
         return 2;
-    }
-
-    @Override
-    public float getExplosionResistance(World world, BlockPos pos, Entity exploder, Explosion explosion) {
-        switch (getEnumFromState(world.getBlockState(pos))) {
-            case REAL:
-                return 6000000.0F;
-            default:
-                return 14.0F;
-        }
     }
 
     @Override

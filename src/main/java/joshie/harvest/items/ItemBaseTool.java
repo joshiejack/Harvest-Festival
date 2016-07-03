@@ -83,7 +83,7 @@ public abstract class ItemBaseTool extends ItemBaseSingle implements ILevelable,
     protected boolean canCharge(ItemStack stack) {
         NBTTagCompound tag = stack.getSubCompound("Data", true);
         int amount = tag.getInteger("Charge");
-        return amount < getTier(stack).ordinal() + 1;
+        return amount < getTier(stack).ordinal();
     }
 
     private int getCharge(ItemStack stack) {
@@ -100,7 +100,7 @@ public abstract class ItemBaseTool extends ItemBaseSingle implements ILevelable,
 
     @Override
     public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
-        return oldStack.getItem() != newStack.getItem() || oldStack.getItemDamage() != newStack.getItemDamage();
+        return super.shouldCauseReequipAnimation(oldStack, newStack, slotChanged);
     }
 
     @Override
@@ -110,7 +110,7 @@ public abstract class ItemBaseTool extends ItemBaseSingle implements ILevelable,
 
     @Override
     public int getMaxItemUseDuration(ItemStack stack) {
-        return canCharge(stack) ? 16 : 320000;
+        return 32000;
     }
 
     @Override
@@ -120,20 +120,24 @@ public abstract class ItemBaseTool extends ItemBaseSingle implements ILevelable,
     }
 
     @Override
-    public ItemStack onItemUseFinish(ItemStack stack, World world, EntityLivingBase entityLiving) {
-        if (canCharge(stack)) {
-            increaseCharge(stack, 1);
+    public void onUsingTick(ItemStack stack, EntityLivingBase player, int count) {
+        if (count <= 31995 && count % 32 == 0) {
+            if (canCharge(stack)) {
+                increaseCharge(stack, 1);
+            }
         }
-
-        return stack;
     }
 
     @Override
     public void onPlayerStoppedUsing(ItemStack stack, World world, EntityLivingBase entity, int timeLeft) {
-        int charge = (Math.min(7, Math.max(0, getCharge(stack))));
-        setCharge(stack, 0); //Reset the charge
-        if (!world.isRemote) {
-            onFinishedCharging(world, entity, getMovingObjectPositionFromPlayer(world, entity), stack, ToolTier.values()[charge]);
+        if (timeLeft <= 31973) {
+            int charge = (Math.min(7, Math.max(0, getCharge(stack))));
+            setCharge(stack, 0); //Reset the charge
+            if (!world.isRemote) {
+                onFinishedCharging(world, entity, getMovingObjectPositionFromPlayer(world, entity), stack, ToolTier.values()[charge]);
+            }
+
+            entity.moveEntity(0D, 1D, 0D);
         }
     }
 

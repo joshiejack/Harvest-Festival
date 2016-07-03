@@ -1,0 +1,66 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-block",
+    "model": "cube_all"
+  },
+  "variants": {
+    "rock=stone_small": [
+      { "model": "harvestfestival:gathering/stone_small", "textures": { "particle": "harvestfestival:blocks/stone0"}, "weight": 1 },
+      { "model": "harvestfestival:gathering/stone_small", "textures": { "particle": "harvestfestival:blocks/stone1"}, "weight": 1 },
+      { "model": "harvestfestival:gathering/stone_small", "textures": { "particle": "harvestfestival:blocks/stone2"}, "weight": 1 },
+      { "model": "harvestfestival:gathering/stone_small", "textures": { "particle": "harvestfestival:blocks/stone0"}, "weight": 1, "y": 90 },
+      { "model": "harvestfestival:gathering/stone_small", "textures": { "particle": "harvestfestival:blocks/stone1"}, "weight": 1, "y": 90 },
+      { "model": "harvestfestival:gathering/stone_small", "textures": { "particle": "harvestfestival:blocks/stone2"}, "weight": 1, "y": 90 },
+      { "model": "harvestfestival:gathering/stone_small", "textures": { "particle": "harvestfestival:blocks/stone0"}, "weight": 1, "y": 180 },
+      { "model": "harvestfestival:gathering/stone_small", "textures": { "particle": "harvestfestival:blocks/stone1"}, "weight": 1, "y": 180 },
+      { "model": "harvestfestival:gathering/stone_small", "textures": { "particle": "harvestfestival:blocks/stone2"}, "weight": 1, "y": 180 },
+      { "model": "harvestfestival:gathering/stone_small", "textures": { "particle": "harvestfestival:blocks/stone0"}, "weight": 1, "y": 270 },
+      { "model": "harvestfestival:gathering/stone_small", "textures": { "particle": "harvestfestival:blocks/stone1"}, "weight": 1, "y": 270 },
+      { "model": "harvestfestival:gathering/stone_small", "textures": { "particle": "harvestfestival:blocks/stone2"}, "weight": 1, "y": 270 }
+    ],
+    "rock=stone_medium": [
+      { "model": "harvestfestival:gathering/stone_medium", "textures": { "particle": "harvestfestival:blocks/stone0"}, "weight": 1 },
+      { "model": "harvestfestival:gathering/stone_medium", "textures": { "particle": "harvestfestival:blocks/stone1"}, "weight": 1 },
+      { "model": "harvestfestival:gathering/stone_medium", "textures": { "particle": "harvestfestival:blocks/stone2"}, "weight": 1 },
+      { "model": "harvestfestival:gathering/stone_medium", "textures": { "particle": "harvestfestival:blocks/stone0"}, "weight": 1, "y": 90 },
+      { "model": "harvestfestival:gathering/stone_medium", "textures": { "particle": "harvestfestival:blocks/stone1"}, "weight": 1, "y": 90 },
+      { "model": "harvestfestival:gathering/stone_medium", "textures": { "particle": "harvestfestival:blocks/stone2"}, "weight": 1, "y": 90 },
+      { "model": "harvestfestival:gathering/stone_medium", "textures": { "particle": "harvestfestival:blocks/stone0"}, "weight": 1, "y": 180 },
+      { "model": "harvestfestival:gathering/stone_medium", "textures": { "particle": "harvestfestival:blocks/stone1"}, "weight": 1, "y": 180 },
+      { "model": "harvestfestival:gathering/stone_medium", "textures": { "particle": "harvestfestival:blocks/stone2"}, "weight": 1, "y": 180 },
+      { "model": "harvestfestival:gathering/stone_medium", "textures": { "particle": "harvestfestival:blocks/stone0"}, "weight": 1, "y": 270 },
+      { "model": "harvestfestival:gathering/stone_medium", "textures": { "particle": "harvestfestival:blocks/stone1"}, "weight": 1, "y": 270 },
+      { "model": "harvestfestival:gathering/stone_medium", "textures": { "particle": "harvestfestival:blocks/stone2"}, "weight": 1, "y": 270 }
+    ],
+    "rock=stone_large": [
+      { "model": "harvestfestival:gathering/stone_large", "textures": { "particle": "harvestfestival:blocks/stone0"}, "weight": 1 },
+      { "model": "harvestfestival:gathering/stone_large", "textures": { "particle": "harvestfestival:blocks/stone1"}, "weight": 1 },
+      { "model": "harvestfestival:gathering/stone_large", "textures": { "particle": "harvestfestival:blocks/stone2"}, "weight": 1 },
+      { "model": "harvestfestival:gathering/stone_large", "textures": { "particle": "harvestfestival:blocks/stone0"}, "weight": 1, "y": 90 },
+      { "model": "harvestfestival:gathering/stone_large", "textures": { "particle": "harvestfestival:blocks/stone1"}, "weight": 1, "y": 90 },
+      { "model": "harvestfestival:gathering/stone_large", "textures": { "particle": "harvestfestival:blocks/stone2"}, "weight": 1, "y": 90 },
+      { "model": "harvestfestival:gathering/stone_large", "textures": { "particle": "harvestfestival:blocks/stone0"}, "weight": 1, "y": 180 },
+      { "model": "harvestfestival:gathering/stone_large", "textures": { "particle": "harvestfestival:blocks/stone1"}, "weight": 1, "y": 180 },
+      { "model": "harvestfestival:gathering/stone_large", "textures": { "particle": "harvestfestival:blocks/stone2"}, "weight": 1, "y": 180 },
+      { "model": "harvestfestival:gathering/stone_large", "textures": { "particle": "harvestfestival:blocks/stone0"}, "weight": 1, "y": 270 },
+      { "model": "harvestfestival:gathering/stone_large", "textures": { "particle": "harvestfestival:blocks/stone1"}, "weight": 1, "y": 270 },
+      { "model": "harvestfestival:gathering/stone_large", "textures": { "particle": "harvestfestival:blocks/stone2"}, "weight": 1, "y": 270 }
+    ],
+    "rock=boulder_small": [
+      { "model": "harvestfestival:gathering/boulder_small", "textures": { "particle": "harvestfestival:blocks/stone0"}, "weight": 1 },
+      { "model": "harvestfestival:gathering/boulder_small", "textures": { "particle": "harvestfestival:blocks/stone1"}, "weight": 1 },
+      { "model": "harvestfestival:gathering/boulder_small", "textures": { "particle": "harvestfestival:blocks/stone2"}, "weight": 1 }
+    ],
+    "rock=boulder_medium": [
+      { "model": "harvestfestival:gathering/boulder_medium", "textures": { "particle": "harvestfestival:blocks/stone0"}, "weight": 1 },
+      { "model": "harvestfestival:gathering/boulder_medium", "textures": { "particle": "harvestfestival:blocks/stone1"}, "weight": 1 },
+      { "model": "harvestfestival:gathering/boulder_medium", "textures": { "particle": "harvestfestival:blocks/stone2"}, "weight": 1 }
+    ],
+    "rock=boulder_large": [
+      { "model": "harvestfestival:gathering/boulder_large", "textures": { "particle": "harvestfestival:blocks/stone0"}, "weight": 1 },
+      { "model": "harvestfestival:gathering/boulder_large", "textures": { "particle": "harvestfestival:blocks/stone1"}, "weight": 1 },
+      { "model": "harvestfestival:gathering/boulder_large", "textures": { "particle": "harvestfestival:blocks/stone2"}, "weight": 1 }
+    ]
+  }
+}

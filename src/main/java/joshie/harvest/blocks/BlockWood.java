@@ -1,18 +1,13 @@
 package joshie.harvest.blocks;
 
-import joshie.harvest.api.HFApi;
-import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.api.gathering.ISmashable;
 import joshie.harvest.blocks.BlockWood.Wood;
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.helpers.WorldHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.base.BlockHFEnum;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.PropertyBool;
-import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -28,8 +23,6 @@ import static joshie.harvest.api.gathering.ISmashable.ToolType.AXE;
 import static joshie.harvest.blocks.BlockWood.Wood.*;
 
 public class BlockWood extends BlockHFEnum<BlockWood, Wood> implements ISmashable {
-    public static final PropertyBool WINTER = PropertyBool.create("winter");
-
     public enum Wood implements IStringSerializable {
         BRANCH_SMALL, BRANCH_MEDIUM, BRANCH_LARGE, STUMP_SMALL, STUMP_MEDIUM, STUMP_LARGE;
 
@@ -45,11 +38,6 @@ public class BlockWood extends BlockHFEnum<BlockWood, Wood> implements ISmashabl
         setSoundType(SoundType.WOOD);
     }
 
-    @Override
-    protected BlockStateContainer createBlockState() {
-        if(property == null) return new BlockStateContainer(this, temporary, WINTER);
-        return new BlockStateContainer(this, property, WINTER);
-    }
 
     @Override
     public String getToolType(Wood type) {
@@ -65,14 +53,6 @@ public class BlockWood extends BlockHFEnum<BlockWood, Wood> implements ISmashabl
             default:
                 return FULL_BLOCK_AABB;
         }
-    }
-
-    @Override
-    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
-        Season season = HFApi.calendar.getDate(WorldHelper.getWorld(world)).getSeason();
-        if (season == Season.WINTER) {
-            return state.withProperty(WINTER, true);
-        } else return state.withProperty(WINTER, false);
     }
 
     @Override

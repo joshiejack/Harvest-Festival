@@ -10,9 +10,6 @@
 - Schedule Based Conversations
 - Add Extra Chat Messages, and Conversations for all NPCs
 - Mining Dimension Stuff
-    - Add Breakable rocks that drop specific things on different floors when broken with a hammer
-    - Different Hammers should be able to break different rock sizes, with different amount of hits
-    - Would be cool to hold down the hammer with right click, which makes the player jump then do a smash instead of 'mining it'
     - Add Portal blocks to mines that teleport you to the dimension
     - Add Portal blocks that teleport you further down floors
     - Add Portal blocks that look like ladders that players can place, that will take you down one floor of the mine
@@ -22,11 +19,6 @@
 - Coin Render on hotbar
 - Make Mythic Axe Fell Whole Trees
 - Make Axes have an AOE that will break all branches/stumps
-- Add Basic Items to spawn that can be gathered (Expanded Later)- J
-    - Rocks
-        - Small - > Gives 1 Stone
-        - Medium - > Gives 4 Stone
-        - Large > Gives 10 Stone
 - Change Ondra to Ashlee, make female - Y
 - Loot Table JSON
     - See https://github.com/joshiejack/Harvest-Festival/blob/4fc81be862b9686cf00a3b8b1d262a8b7106aaaf/src/main/java/joshie/harvest/core/lib/LootStrings.java
@@ -87,15 +79,11 @@
 ### Models + Textures
 - HarvestChicken - J
 - Make Small/Medium/Large Incubator models by combining incubator with nest
-- Rocks (Spring Mine (Ore Variation), Winter Mine Versions (Ore Variation), Overworld Rocks (Stone Only))
-    - Large                                                
-    - Medium                                               
-    - Small                                                
-- Branch - Y
+- Branch - J
     - Large
     - Medium
     - Small
-- Stump - Y
+- Stump - J
     - Large
     - Medium
     - Small

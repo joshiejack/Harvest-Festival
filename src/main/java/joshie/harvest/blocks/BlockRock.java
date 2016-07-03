@@ -1,23 +1,19 @@
 package joshie.harvest.blocks;
 
-import joshie.harvest.api.HFApi;
-import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.api.gathering.ISmashable;
 import joshie.harvest.blocks.BlockRock.Rock;
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.helpers.WorldHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.base.BlockHFEnum;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.PropertyBool;
-import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -26,8 +22,8 @@ import static joshie.harvest.api.core.ITiered.ToolTier.*;
 import static joshie.harvest.api.gathering.ISmashable.ToolType.HAMMER;
 
 public class BlockRock extends BlockHFEnum<BlockRock, Rock> implements ISmashable {
-    public static final PropertyBool WINTER = PropertyBool.create("winter");
-
+    private static final AxisAlignedBB STONE_SMALL_AABB = new AxisAlignedBB(0.15D, 0.0D, 0.15D, 0.85D, 0.15D, 0.85D);
+    private static final AxisAlignedBB STONE_MEDIUM_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.2D, 1.0D);
     public enum Rock implements IStringSerializable {
         STONE_SMALL, STONE_MEDIUM, STONE_LARGE, BOULDER_SMALL, BOULDER_MEDIUM, BOULDER_LARGE;
 
@@ -44,17 +40,16 @@ public class BlockRock extends BlockHFEnum<BlockRock, Rock> implements ISmashabl
     }
 
     @Override
-    protected BlockStateContainer createBlockState() {
-        if(property == null) return new BlockStateContainer(this, temporary, WINTER);
-        return new BlockStateContainer(this, property, WINTER);
-    }
-
-    @Override
-    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
-        Season season = HFApi.calendar.getDate(WorldHelper.getWorld(world)).getSeason();
-        if (season == Season.WINTER) {
-            return state.withProperty(WINTER, true);
-        } else return state.withProperty(WINTER, false);
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+        switch (getEnumFromState(state)) {
+            case STONE_SMALL: return STONE_SMALL_AABB;
+            case STONE_MEDIUM: return STONE_MEDIUM_AABB;
+            case STONE_LARGE: return new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.3D, 1.0D);
+            case BOULDER_SMALL: new AxisAlignedBB(0.15D, 0.0D, 0.15D, 0.85D, 0.15D, 0.85D);
+            case BOULDER_MEDIUM: new AxisAlignedBB(0.15D, 0.0D, 0.15D, 0.85D, 0.15D, 0.85D);
+            case BOULDER_LARGE: new AxisAlignedBB(0.15D, 0.0D, 0.15D, 0.85D, 0.15D, 0.85D);
+            default: return new AxisAlignedBB(0.1D, 0.0D, 0.1D, 0.9D, 0.8D, 0.9D);
+        }
     }
 
     @Override
@@ -64,8 +59,7 @@ public class BlockRock extends BlockHFEnum<BlockRock, Rock> implements ISmashabl
 
     @Override
     public ItemStack getDrop(EntityPlayer player, World world, BlockPos pos, IBlockState state, float luck) {
-        Rock type = getEnumFromState(state);
-        switch (type) {
+        switch (getEnumFromState(state)) {
             case STONE_SMALL: return new ItemStack(Blocks.STONE, 1);
             case STONE_MEDIUM: return new ItemStack(Blocks.STONE, 2);
             case STONE_LARGE: return new ItemStack(Blocks.STONE, 4);

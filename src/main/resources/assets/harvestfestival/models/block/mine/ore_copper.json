@@ -7,6 +7,7 @@
   },
   "elements": [
     {
+      "__comment": "centre_base",
       "from": [ 3, 0, 3 ],
       "to": [ 13, 9, 13 ],
       "faces": {
@@ -19,6 +20,7 @@
       }
     },
     {
+      "__comment": "east_side",
       "from": [ 13, 0, 4 ],
       "to": [ 15, 7, 12 ],
       "faces": {
@@ -31,6 +33,7 @@
       }
     },
     {
+      "__comment": "west_side",
       "from": [ 1, 0, 4 ],
       "to": [ 3, 7, 12 ],
       "faces": {
@@ -43,6 +46,7 @@
       }
     },
     {
+      "__comment": "north_side",
       "from": [ 4, 0, 1 ],
       "to": [ 12, 7, 3 ],
       "faces": {
@@ -55,6 +59,7 @@
       }
     },
     {
+      "__comment": "south_side",
       "from": [ 4, 0, 13 ],
       "to": [ 12, 7, 15 ],
       "faces": {
@@ -67,6 +72,7 @@
       }
     },
     {
+      "__comment": "centre_top",
       "from": [ 4, 9, 4 ],
       "to": [ 12, 11, 12 ],
       "faces": {
@@ -79,8 +85,10 @@
       }
     },
     {
-      "from": [ 2.5, 9.5, 5 ],
-      "to": [ 4, 10.5, 7 ],
+      "__comment": "ore0",
+      "from": [ 3, 9, 5 ],
+      "to": [ 4.5, 10, 7 ],
+      "rotation": { "origin": [ 3, 9, 5 ], "axis": "y", "angle": 22.5 },
       "faces": {
         "down":  { "uv": [ 3, 2, 7.5, 7 ], "texture": "#ore" },
         "up":    { "uv": [ 3, 2, 7.5, 7 ], "texture": "#ore" },
@@ -91,8 +99,10 @@
       }
     },
     {
+      "__comment": "ore1",
       "from": [ 5.5, 9.5, 12 ],
       "to": [ 7.5, 10.5, 13 ],
+      "rotation": { "origin": [ 5.5, 10.5, 12 ], "axis": "x", "angle": 22.5 },
       "faces": {
         "down":  { "uv": [ 10.5, 2.5, 15.5, 8 ], "texture": "#ore" },
         "up":    { "uv": [ 10.5, 2.5, 15.5, 8 ], "texture": "#ore" },
@@ -103,8 +113,10 @@
       }
     },
     {
-      "from": [ 13, 7.5, 8 ],
-      "to": [ 14.5, 8.5, 10 ],
+      "__comment": "ore2",
+      "from": [ 12.5, 7.5, 8 ],
+      "to": [ 14, 8.5, 10 ],
+      "rotation": { "origin": [ 12.5, 8.5, 8 ], "axis": "z", "angle": 22.5 },
       "faces": {
         "down":  { "uv": [ 12.5, 0, 16, 4 ], "texture": "#ore" },
         "up":    { "uv": [ 12.5, 0, 16, 4 ], "texture": "#ore" },
@@ -115,8 +127,10 @@
       }
     },
     {
-      "from": [ 5, 7.5, 1.5 ],
-      "to": [ 7, 8.5, 3 ],
+      "__comment": "ore3",
+      "from": [ 5, 7.5, 2 ],
+      "to": [ 7, 8.5, 3.5 ],
+      "rotation": { "origin": [ 5, 8.5, 2 ], "axis": "x", "angle": 22.5 },
       "faces": {
         "down":  { "uv": [ 5.5, 7, 9.5, 10.5 ], "texture": "#ore" },
         "up":    { "uv": [ 5.5, 7, 9.5, 10.5 ], "texture": "#ore" },
@@ -127,8 +141,10 @@
       }
     },
     {
-      "from": [ 8, 11, 5 ],
-      "to": [ 11, 13, 8 ],
+      "__comment": "ore4",
+      "from": [ 7, 10.5, 6.5 ],
+      "to": [ 10, 12.5, 9.5 ],
+      "rotation": { "origin": [ 7, 12.5, 6.5 ], "axis": "x", "angle": 22.5 },
       "faces": {
         "down":  { "uv": [ 3, 3.5, 12.5, 12 ], "texture": "#ore" },
         "up":    { "uv": [ 3, 3.5, 12.5, 12 ], "rotation": 90, "texture": "#ore" },
@@ -139,8 +155,10 @@
       }
     },
     {
-      "from": [ 0, 2, 7.5 ],
-      "to": [ 1, 5, 10.5 ],
+      "__comment": "ore5",
+      "from": [ 0, 2.125, 6.8125 ],
+      "to": [ 1, 5.125, 9.8125 ],
+      "rotation": { "origin": [ 0, 5.125, 6.8125 ], "axis": "x", "angle": -22.5 },
       "faces": {
         "down":  { "uv": [ 8.5, 1.5, 11.5, 9.5 ], "texture": "#ore" },
         "up":    { "uv": [ 8.5, 1.5, 11.5, 9.5 ], "texture": "#ore" },
@@ -151,8 +169,10 @@
       }
     },
     {
+      "__comment": "ore6",
       "from": [ 15, 1.5, 5.5 ],
       "to": [ 16, 3.5, 7.5 ],
+      "rotation": { "origin": [ 15, 1.5, 5.5 ], "axis": "y", "angle": -22.5 },
       "faces": {
         "down":  { "uv": [ 11.5, 3.5, 15.5, 8 ], "texture": "#ore" },
         "up":    { "uv": [ 11.5, 3.5, 15.5, 8 ], "texture": "#ore" },
@@ -163,8 +183,10 @@
       }
     },
     {
-      "from": [ 6, 2, 15 ],
-      "to": [ 11.5, 5.5, 16 ],
+      "__comment": "ore7",
+      "from": [ 6, 2, 14 ],
+      "to": [ 11.5, 5.5, 15 ],
+      "rotation": { "origin": [ 6, 5.5, 14 ], "axis": "x", "angle": -22.5 },
       "faces": {
         "down":  { "uv": [ 9, 8.5, 14.5, 9.5 ], "texture": "#ore" },
         "up":    { "uv": [ 9, 8.5, 14.5, 9.5 ], "texture": "#ore" },
@@ -175,8 +197,10 @@
       }
     },
     {
-      "from": [ 7.5, 2.5, 0 ],
-      "to": [ 10.5, 5.5, 1 ],
+      "__comment": "ore8",
+      "from": [ 6.5, 2.5, 1 ],
+      "to": [ 9.5, 5.5, 2 ],
+      "rotation": { "origin": [ 6.5, 2.5, 1 ], "axis": "y", "angle": 22.5 },
       "faces": {
         "down":  { "uv": [ 9, 3.5, 15, 5.5 ], "texture": "#ore" },
         "up":    { "uv": [ 9, 3.5, 15, 5.5 ], "texture": "#ore" },

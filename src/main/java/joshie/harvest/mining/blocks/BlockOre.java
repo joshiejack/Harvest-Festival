@@ -12,9 +12,7 @@ import joshie.harvest.mining.blocks.BlockOre.Ore;
 import joshie.harvest.mining.items.ItemMaterial;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.ResourceLocation;
@@ -22,9 +20,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import static joshie.harvest.api.gathering.ISmashable.ToolType.HAMMER;
 import static net.minecraft.block.material.Material.ROCK;
@@ -86,13 +81,5 @@ public class BlockOre extends BlockHFEnum<BlockOre, Ore> implements ISmashable {
     @Override
     public int getSortValue(ItemStack stack) {
         return 1;
-    }
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public void registerModels(Item item, String name) {
-        for (int i = 0; i < values.length; i++) {
-            ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(getRegistryName(), property.getName() + "=" + getEnumFromMeta(i).getName()));
-        }
     }
 }

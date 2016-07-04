@@ -1,5 +1,6 @@
 package joshie.harvest.npc.gift;
 
+import joshie.harvest.api.npc.gift.GiftCategory;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -11,11 +12,11 @@ public class GiftsFenn extends Gifts {
             return Quality.AWESOME;
         }
 
-        if (is(stack, Category.NATURE)) {
+        if (GiftRegistry.is(stack, GiftCategory.NATURE)) {
             return Quality.GOOD;
         }
 
-        if (is(stack, Category.PRETTY)) {
+        if (GiftRegistry.is(stack, GiftCategory.PRETTY)) {
             return Quality.BAD;
         }
 

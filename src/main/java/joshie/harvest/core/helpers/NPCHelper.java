@@ -4,26 +4,27 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.shops.IShop;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.npc.NPC;
-import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.npc.entity.AbstractEntityNPC;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import joshie.harvest.npc.entity.EntityNPCShopkeeper;
+import joshie.harvest.npc.entity.EntityNPCVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class NPCHelper {
-    public static BlockPos getHomeForEntity(EntityNPC entity) {
+    public static BlockPos getHomeForEntity(AbstractEntityNPC entity) {
         INPC npc = entity.getNPC();
         if (npc.getHome() == null) return null;
         return TownHelper.getClosestTownToEntityOrCreate(entity).getCoordinatesFor(npc.getHome());
     }
 
-    public static EntityNPC getEntityForNPC(World world, NPC npc) {
+    public static AbstractEntityNPC getEntityForNPC(World world, NPC npc) {
         if (npc.isBuilder()) {
             return new EntityNPCBuilder(world, npc);
         } else if (npc.getShop() != null) {
             return new EntityNPCShopkeeper(world, npc);
-        } else return new EntityNPC(world, npc);
+        } else return new EntityNPCVillager(world, npc);
     }
 
     public static boolean isShopOpen(INPC npc, World world, EntityPlayer player) {

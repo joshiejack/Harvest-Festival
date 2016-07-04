@@ -1,6 +1,7 @@
 package joshie.harvest.npc.gift;
 
 import joshie.harvest.animals.HFAnimals;
+import joshie.harvest.api.npc.gift.GiftCategory;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
@@ -11,11 +12,11 @@ public class GiftsCandice extends Gifts {
             return Quality.AWESOME;
         }
 
-        if (is(stack, Category.ANIMALS)) {
+        if (GiftRegistry.is(stack, GiftCategory.ANIMALS)) {
             return Quality.GOOD;
         }
 
-        if (is(stack, Category.COOKING)) {
+        if (GiftRegistry.is(stack, GiftCategory.COOKING)) {
             return Quality.BAD;
         }
 

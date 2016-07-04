@@ -5,9 +5,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 
 public class EntityAITalkingTo extends EntityAIBase {
-    private EntityNPC npc;
+    private AbstractEntityNPC npc;
 
-    public EntityAITalkingTo(EntityNPC npc) {
+    public EntityAITalkingTo(AbstractEntityNPC npc) {
         this.npc = npc;
         this.setMutexBits(5);
     }

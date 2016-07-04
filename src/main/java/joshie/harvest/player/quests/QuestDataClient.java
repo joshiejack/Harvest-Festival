@@ -3,7 +3,7 @@ package joshie.harvest.player.quests;
 import joshie.harvest.api.quest.IQuest;
 import joshie.harvest.quests.packets.PacketQuestCompleted;
 import joshie.harvest.quests.packets.PacketQuestStart;
-import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.npc.entity.AbstractEntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -48,7 +48,7 @@ public class QuestDataClient extends QuestData {
 
     //Returns a single lined script
     @Override
-    public String getScript(EntityPlayer player, EntityNPC npc) {      
+    public String getScript(EntityPlayer player, AbstractEntityNPC npc) {
         if (current != null) {
             for (IQuest q : current) {
                 if (q.handlesScript(npc.getNPC())) {

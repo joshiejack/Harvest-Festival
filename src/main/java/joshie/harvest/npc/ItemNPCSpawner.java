@@ -3,7 +3,7 @@ package joshie.harvest.npc;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.core.util.base.ItemHFFML;
-import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.npc.entity.AbstractEntityNPC;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -41,7 +41,7 @@ public class ItemNPCSpawner extends ItemHFFML<ItemNPCSpawner, NPC> {
         NPC npc = getObjectFromStack(stack);
         if (npc != null) {
             if (!world.isRemote) {
-                EntityNPC entity = NPCHelper.getEntityForNPC(world, npc);
+                AbstractEntityNPC entity = NPCHelper.getEntityForNPC(world, npc);
                 entity.setPosition(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5);
                 entity.resetSpawnHome();
                 world.spawnEntityInWorld(entity);

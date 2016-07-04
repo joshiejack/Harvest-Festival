@@ -4,7 +4,7 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quest.IQuest;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.npc.HFNPCs;
-import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.npc.entity.AbstractEntityNPC;
 import joshie.harvest.quests.Quest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -28,7 +28,7 @@ public class QuestTomatoes extends Quest {
     }
 
     @Override
-    public String getScript(EntityPlayer player, EntityNPC npc) {
+    public String getScript(EntityPlayer player, AbstractEntityNPC npc) {
         if (quest_stage == 0) {
             increaseStage(player);
             return getLocalized("start");

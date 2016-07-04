@@ -1,8 +1,8 @@
 package joshie.harvest.api.npc;
 
 import joshie.harvest.api.calendar.Season;
-import joshie.harvest.npc.NPC.Age;
-import joshie.harvest.npc.NPC.Gender;
+import joshie.harvest.api.npc.INPC.Age;
+import joshie.harvest.api.npc.INPC.Gender;
 import net.minecraft.util.ResourceLocation;
 
 public interface INPCRegistry {

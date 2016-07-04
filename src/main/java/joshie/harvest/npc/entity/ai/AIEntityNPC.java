@@ -1,16 +1,15 @@
 package joshie.harvest.npc.entity.ai;
 
-import joshie.harvest.api.npc.ai.INPCTask;
-import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.npc.entity.AbstractEntityNPC;
 import net.minecraft.entity.ai.EntityAIBase;
 
 import java.util.ArrayList;
 
-public class EntityAINPC extends EntityAIBase {
-    private static final ArrayList<INPCTask> tasks = new ArrayList<>();
-    private EntityNPC npc;
+public class AIEntityNPC extends EntityAIBase {
+    private static final ArrayList<AbstractTask> tasks = new ArrayList<>();
+    private AbstractEntityNPC npc;
 
-    public EntityAINPC(EntityNPC npc) {
+    public AIEntityNPC(AbstractEntityNPC npc) {
         this.npc = npc;
     }
 
@@ -22,8 +21,8 @@ public class EntityAINPC extends EntityAIBase {
     public boolean shouldExecute() {
         if (npc.getTask() != null) return true;
         else {
-            for (INPCTask task: tasks) {
-                if (task.shouldExecute(npc, npc.getNPC())) {
+            for (AbstractTask task: tasks) {
+                if (task.shouldExecute(npc)) {
                     npc.setTask(task);
                     return true;
                 }
@@ -36,7 +35,7 @@ public class EntityAINPC extends EntityAIBase {
     @Override
     public boolean continueExecuting() {
         if (npc.getTask() != null) {
-            if (npc.getTask().shouldTerminate(npc, npc.getNPC())) {
+            if (npc.getTask().shouldTerminate(npc)) {
                 npc.setTask(null);
             }
         }
@@ -46,6 +45,6 @@ public class EntityAINPC extends EntityAIBase {
 
     @Override
     public void startExecuting() {
-        npc.getTask().execute(npc, npc.getNPC());
+        npc.getTask().execute(npc);
     }
 }

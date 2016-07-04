@@ -9,9 +9,9 @@ import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.core.util.generic.IFaceable;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.NPCRegistry;
-import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import joshie.harvest.npc.entity.EntityNPCShopkeeper;
+import joshie.harvest.npc.entity.EntityNPCVillager;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -63,7 +63,7 @@ public class CodeGeneratorBuildings {
                         Set<Entity> entityList = new HashSet();
                         entityList.addAll(getEntities(EntityPainting.class, x1 + x, y1 + y, z1 + z));
                         entityList.addAll(getEntities(EntityItemFrame.class, x1 + x, y1 + y, z1 + z));
-                        entityList.addAll(getEntities(EntityNPC.class, x1 + x, y1 + y, z1 + z));
+                        entityList.addAll(getEntities(EntityNPCVillager.class, x1 + x, y1 + y, z1 + z));
                         entityList.addAll(getEntities(EntityNPCBuilder.class, x1 + x, y1 + y, z1 + z));
                         entityList.addAll(getEntities(EntityNPCShopkeeper.class, x1 + x, y1 + y, z1 + z));
 

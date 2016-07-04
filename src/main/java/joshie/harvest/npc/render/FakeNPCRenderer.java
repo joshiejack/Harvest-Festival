@@ -1,9 +1,10 @@
 package joshie.harvest.npc.render;
 
+import joshie.harvest.api.npc.INPC.Age;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.npc.NPC;
-import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.npc.entity.AbstractEntityNPC;
 import joshie.harvest.npc.render.FakeNPCRenderer.FakeNPCTile;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -11,12 +12,12 @@ import net.minecraft.tileentity.TileEntity;
 
 public class FakeNPCRenderer extends TileEntitySpecialRenderer<FakeNPCTile> {
     private ModelNPC model;
-    private EntityNPC entity;
+    private AbstractEntityNPC entity;
     private NPC npc;
 
     public FakeNPCRenderer(NPC npc) {
         this.model = new ModelNPC(npc.isAlexSkin());
-        this.model.isChild = npc.isChild();
+        this.model.isChild = npc.getAge() == Age.CHILD;
         this.npc = npc;
     }
 
@@ -35,7 +36,7 @@ public class FakeNPCRenderer extends TileEntitySpecialRenderer<FakeNPCTile> {
         GlStateManager.scale(-1.0F, -1.0F, 1.0F);
         GlStateManager.translate(0.0F, -1.501F, 0.0F);
         bindTexture(getNPC().getSkin());
-        model.isChild = npc.isChild();
+        model.isChild = npc.getAge() == Age.CHILD;
         model.render(getNPC(), 0F, 0F, 0F, 0F, 0F, 0.0625F);
         GlStateManager.disableRescaleNormal();
         GlStateManager.enableCull();
@@ -43,7 +44,7 @@ public class FakeNPCRenderer extends TileEntitySpecialRenderer<FakeNPCTile> {
         GlStateManager.popMatrix();
     }
 
-    private EntityNPC getNPC() {
+    private AbstractEntityNPC getNPC() {
         if (entity == null) {
             entity = NPCHelper.getEntityForNPC(MCClientHelper.getWorld(), npc);
         }

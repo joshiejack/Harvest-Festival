@@ -1,20 +1,18 @@
 package joshie.harvest.npc.entity.ai;
 
-import joshie.harvest.api.npc.INPC;
-import joshie.harvest.api.npc.ai.INPCTask;
-import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.npc.entity.AbstractEntityNPC;
 import net.minecraft.util.math.BlockPos;
 
-public class TaskHeadToBlock implements INPCTask {
+public class TaskHeadToBlock extends AbstractTask {
     public BlockPos go;
 
     @Override
-    public boolean shouldTerminate(EntityNPC entity, INPC npc) {
+    public boolean shouldTerminate(AbstractEntityNPC entity) {
         return go == null || entity.getDistanceSq(go) < 5D;
     }
 
     @Override
-    public boolean shouldExecute(EntityNPC entity, INPC npc) {
+    public boolean shouldExecute(AbstractEntityNPC entity) {
         return true;
     }
 
@@ -24,11 +22,11 @@ public class TaskHeadToBlock implements INPCTask {
     }
 
     @Override
-    public void execute(EntityNPC entity, INPC npc) {
+    public void execute(AbstractEntityNPC entity) {
         entity.getNavigator().tryMoveToXYZ((double) go.getX() + 0.5D, (double) go.getY(), (double) go.getZ() + 0.5D, 1.0D);
     }
 
-    public INPCTask setLocation(BlockPos go) {
+    public AbstractTask setLocation(BlockPos go) {
         this.go = go;
         return this;
     }

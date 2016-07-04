@@ -20,7 +20,7 @@ import java.util.Map;
 @MCVersion("1.9.4")
 public class HFTransformer implements IFMLLoadingPlugin, IClassTransformer {
     public static boolean isObfuscated = false;
-    private static List<AbstractASM> asm = new ArrayList<AbstractASM>();
+    private static List<AbstractASM> asm = new ArrayList<>();
 
     static {
         asm.add(new SnowTransformer());

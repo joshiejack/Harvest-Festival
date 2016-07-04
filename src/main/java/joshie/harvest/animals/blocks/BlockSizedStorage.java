@@ -2,7 +2,6 @@ package joshie.harvest.animals.blocks;
 
 import joshie.harvest.animals.blocks.BlockSizedStorage.SizedStorage;
 import joshie.harvest.api.core.ISizeable.Size;
-import joshie.harvest.blocks.tiles.TileFillable;
 import joshie.harvest.blocks.tiles.TileFillableSized;
 import joshie.harvest.core.util.base.BlockHFEnumRotatableTile;
 import joshie.harvest.core.util.generic.IFaceable;
@@ -112,8 +111,8 @@ public class BlockSizedStorage extends BlockHFEnumRotatableTile<BlockSizedStorag
         if (player.isSneaking()) return false;
         else if (held != null) {
             TileEntity tile = world.getTileEntity(pos);
-            if (tile instanceof TileFillable) {
-                return ((TileFillable)tile).onActivated(held);
+            if (tile instanceof TileFillableSized) {
+                return ((TileFillableSized)tile).onActivated(held);
             }
         }
 

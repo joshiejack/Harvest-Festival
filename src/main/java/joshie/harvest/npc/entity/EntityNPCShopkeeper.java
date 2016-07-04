@@ -4,18 +4,8 @@ import joshie.harvest.npc.NPC;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
-public class EntityNPCShopkeeper extends EntityNPC<EntityNPCShopkeeper> {
+public class EntityNPCShopkeeper extends AbstractEntityNPC<EntityNPCShopkeeper> {
     private boolean isWorking;
-
-    public EntityNPCShopkeeper(EntityNPCShopkeeper entity) {
-        super(entity);
-        isWorking = entity.isWorking;
-    }
-
-    @Override
-    public EntityNPCShopkeeper getNewEntity(EntityNPC entity) {
-        return new EntityNPCShopkeeper((EntityNPCShopkeeper)entity);
-    }
 
     public EntityNPCShopkeeper(World world) {
         super(world);
@@ -25,8 +15,18 @@ public class EntityNPCShopkeeper extends EntityNPC<EntityNPCShopkeeper> {
         super(world, npc);
     }
 
+    public EntityNPCShopkeeper(EntityNPCShopkeeper entity) {
+        super(entity);
+        isWorking = entity.isWorking;
+    }
+
     @Override
-    protected void updateTasks() {
+    public EntityNPCShopkeeper getNewEntity(EntityNPCShopkeeper entity) {
+        return new EntityNPCShopkeeper(entity);
+    }
+
+    @Override
+    protected void updateAITasks() {
         if (npc.getShop() != null) {
             if (!isWorking) {
                 if (npc.getShop().isOpen(worldObj, null)) {
@@ -35,6 +35,10 @@ public class EntityNPCShopkeeper extends EntityNPC<EntityNPCShopkeeper> {
             } else if (worldObj.getWorldTime() % 200 == 0 && !npc.getShop().isOpen(worldObj, null)) {
                 isWorking = false;
             }
+        }
+
+        if (!isWorking) {
+            super.updateAITasks();
         }
     }
 

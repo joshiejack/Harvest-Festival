@@ -1,5 +1,6 @@
 package joshie.harvest.npc.gift;
 
+import joshie.harvest.api.npc.gift.GiftCategory;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
@@ -10,11 +11,11 @@ public class GiftsJacob extends Gifts {
             return Quality.AWESOME;
         }
 
-        if (is(stack, Category.WATERY)) {
+        if (GiftRegistry.is(stack, GiftCategory.WATERY)) {
             return Quality.GOOD;
         }
 
-        if (is(stack, Category.MINING)) {
+        if (GiftRegistry.is(stack, GiftCategory.MINING)) {
             return Quality.BAD;
         }
 

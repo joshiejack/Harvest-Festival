@@ -5,7 +5,7 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.ToolHelper;
 import joshie.harvest.npc.HFNPCs;
-import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.npc.entity.AbstractEntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
@@ -13,10 +13,10 @@ import net.minecraft.util.EnumHand;
 
 public class ContainerNPCGift extends ContainerNPCBase {
     //The Fridge CAN be null
-    private EntityNPC npc;
+    private AbstractEntityNPC npc;
     private EnumHand hand;
 
-    public ContainerNPCGift(EntityNPC npc, InventoryPlayer playerInventory, EnumHand hand) {
+    public ContainerNPCGift(AbstractEntityNPC npc, InventoryPlayer playerInventory, EnumHand hand) {
         super(npc, playerInventory);
         this.npc = npc;
         this.hand = hand;

@@ -18,22 +18,22 @@ public class EntityNPCBuilder extends EntityNPCShopkeeper {
     public BlockPos headTowards = null;
     private int tick;
 
-    public EntityNPCBuilder(EntityNPCBuilder entity) {
-        super(entity);
-        building = entity.building;
+    public EntityNPCBuilder(World world, INPC npc) {
+        super(world, (NPC) npc);
     }
 
     public EntityNPCBuilder(World world) {
         super(world, (NPC) HFNPCs.BUILDER);
     }
 
-    @Override
-    public EntityNPCBuilder getNewEntity(EntityNPC entity) {
-        return new EntityNPCBuilder((EntityNPCBuilder)entity);
+    public EntityNPCBuilder(EntityNPCBuilder entity) {
+        super(entity);
+        building = entity.building;
     }
 
-    public EntityNPCBuilder(World world, INPC npc) {
-        super(world, (NPC) npc);
+    @Override
+    public EntityNPCBuilder getNewEntity(EntityNPCShopkeeper entity) {
+        return new EntityNPCBuilder((EntityNPCBuilder) entity);
     }
 
     public boolean isBuilding() {
@@ -41,9 +41,9 @@ public class EntityNPCBuilder extends EntityNPCShopkeeper {
     }
 
     @Override
-    protected void updateTasks() {
+    protected void updateAITasks() {
         if (building == null) {
-            super.updateTasks();
+            super.updateAITasks();
         } else {
             if (!worldObj.isRemote) {
                 if (tick % building.getTickTime() == 0) {

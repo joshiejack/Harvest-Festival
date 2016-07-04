@@ -7,6 +7,7 @@
         }
     },
 "textures": {
+    "particle": "harvestfestival:models/incubator",
     "main": "harvestfestival:models/incubator"
 },
 "elements": [ 

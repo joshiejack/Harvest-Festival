@@ -5,7 +5,7 @@ import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.NPC;
-import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.npc.entity.AbstractEntityNPC;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -35,9 +35,9 @@ public class GoddessHandler {
     }
 
     public static void spawnGoddess(World world, double x, double y, double z) {
-        List<EntityNPC> npcs = world.getEntitiesWithinAABB(EntityNPC.class, new AxisAlignedBB(x - 0.5F, y - 0.5F, z - 0.5F, x + 0.5F, y + 0.5F, z + 0.5F).expand(32D, 32D, 32D));
-        EntityNPC goddess = null;
-        for (EntityNPC npc: npcs) {
+        List<AbstractEntityNPC> npcs = world.getEntitiesWithinAABB(AbstractEntityNPC.class, new AxisAlignedBB(x - 0.5F, y - 0.5F, z - 0.5F, x + 0.5F, y + 0.5F, z + 0.5F).expand(32D, 32D, 32D));
+        AbstractEntityNPC goddess = null;
+        for (AbstractEntityNPC npc: npcs) {
             if (npc.getNPC() == HFNPCs.GODDESS) {
                 goddess = npc;
                 break;

@@ -4,7 +4,7 @@ import joshie.harvest.HarvestFestival;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.generic.Text;
-import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.npc.entity.AbstractEntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
 
 import java.io.IOException;
@@ -18,7 +18,7 @@ public class GuiNPCSelect extends GuiNPCBase {
     public byte optionsTotal;
     public byte selected;
 
-    public GuiNPCSelect(EntityNPC npc, EntityPlayer player, int next) {
+    public GuiNPCSelect(AbstractEntityNPC npc, EntityPlayer player, int next) {
         super(npc, player, next);
         optionsTotal = 0;
         text = Arrays.copyOf(selection.getText(), selection.getText().length);
@@ -129,7 +129,7 @@ public class GuiNPCSelect extends GuiNPCBase {
         }
 
         /** Called when the option is selected **/
-        public void onSelected(EntityNPC npc, EntityPlayer player, int option) {
+        public void onSelected(AbstractEntityNPC npc, EntityPlayer player, int option) {
             if (option == 1) {
                 if (npc.getNPC().isBuilder()) player.openGui(HarvestFestival.instance, GuiHandler.SHOP_BUILDER, player.worldObj, npc.getEntityId(), 0, 0);
                 else player.openGui(HarvestFestival.instance, GuiHandler.SHOP_MENU, player.worldObj, npc.getEntityId(), 0, 0);

@@ -5,7 +5,7 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quest.IQuest;
 import joshie.harvest.quests.packets.PacketQuestSetStage;
 import joshie.harvest.core.util.generic.Text;
-import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.npc.entity.AbstractEntityNPC;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -138,7 +138,7 @@ public abstract class Quest implements IQuest {
     //Return the script
     @SideOnly(Side.CLIENT)
     @Override
-    public String getScript(EntityPlayer player, EntityNPC npc) {
+    public String getScript(EntityPlayer player, AbstractEntityNPC npc) {
         String script = getScript(player, npc.getNPC());
         return script == null ? null : getLocalized(script);
     }
@@ -192,20 +192,20 @@ public abstract class Quest implements IQuest {
     }
 
     //Called serverside when you close the chat with an npc
-    public void onClosedChat(EntityPlayer player, EntityNPC npc) {
+    public void onClosedChat(EntityPlayer player, AbstractEntityNPC npc) {
     }
 
     @Override
     public void onRightClickBlock(EntityPlayer player, BlockPos pos, EnumFacing face) {
     }
 
-    public void select(EntityPlayer player, EntityNPC npc, int option) {
+    public void select(EntityPlayer player, AbstractEntityNPC npc, int option) {
     }
 
-    public void confirm(EntityPlayer player, EntityNPC npc) {
+    public void confirm(EntityPlayer player, AbstractEntityNPC npc) {
     }
 
-    public void cancel(EntityPlayer player, EntityNPC npc) {
+    public void cancel(EntityPlayer player, AbstractEntityNPC npc) {
     }
 
     @Override

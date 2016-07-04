@@ -4,9 +4,17 @@
     "facing=south,fill=empty,sizedstorage=incubator":  { "model": "harvestfestival:incubator", "y": 180 },
     "facing=east,fill=empty,sizedstorage=incubator": { "model": "harvestfestival:incubator", "y": 90 },
     "facing=west,fill=empty,sizedstorage=incubator": { "model": "harvestfestival:incubator", "y": 270 },
-    "facing=north,fill=medium,sizedstorage=incubator":  { "model": "harvestfestival:egg" },
-    "facing=south,fill=medium,sizedstorage=incubator":  { "model": "harvestfestival:egg", "y": 180 },
-    "facing=east,fill=medium,sizedstorage=incubator": { "model": "harvestfestival:egg", "y": 90 },
-    "facing=west,fill=medium,sizedstorage=incubator": { "model": "harvestfestival:egg", "y": 270 }
+    "facing=north,fill=small,sizedstorage=incubator":  { "model": "harvestfestival:incubator_small" },
+    "facing=south,fill=small,sizedstorage=incubator":  { "model": "harvestfestival:incubator_small", "y": 180 },
+    "facing=east,fill=small,sizedstorage=incubator": { "model": "harvestfestival:incubator_small", "y": 90 },
+    "facing=west,fill=small,sizedstorage=incubator": { "model": "harvestfestival:incubator_small", "y": 270 },
+    "facing=north,fill=medium,sizedstorage=incubator":  { "model": "harvestfestival:incubator_medium" },
+    "facing=south,fill=medium,sizedstorage=incubator":  { "model": "harvestfestival:incubator_medium", "y": 180 },
+    "facing=east,fill=medium,sizedstorage=incubator": { "model": "harvestfestival:incubator_medium", "y": 90 },
+    "facing=west,fill=medium,sizedstorage=incubator": { "model": "harvestfestival:incubator_medium", "y": 270 },
+    "facing=north,fill=large,sizedstorage=incubator":  { "model": "harvestfestival:incubator_large" },
+    "facing=south,fill=large,sizedstorage=incubator":  { "model": "harvestfestival:incubator_large", "y": 180 },
+    "facing=east,fill=large,sizedstorage=incubator": { "model": "harvestfestival:incubator_large", "y": 90 },
+    "facing=west,fill=large,sizedstorage=incubator": { "model": "harvestfestival:incubator_large", "y": 270 }
   }
 }

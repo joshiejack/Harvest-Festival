@@ -1669,8 +1669,8 @@
       "type": "PlaceableNPC",
       "isBlock": false,
       "theData": {
-        "homeString": "ondrahome",
-        "npc": "harvestfestival:ondra",
+        "homeString": "ashleehome",
+        "npc": "harvestfestival:ashlee",
         "x": 6,
         "y": 1,
         "z": 4

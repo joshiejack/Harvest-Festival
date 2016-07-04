@@ -2,7 +2,8 @@ package joshie.harvest.npc.entity;
 
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.HarvestFestival;
-import joshie.harvest.api.npc.ai.INPCTask;
+import joshie.harvest.api.npc.INPC.Age;
+import joshie.harvest.npc.entity.ai.AbstractTask;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.relations.IRelatableProvider;
 import joshie.harvest.core.helpers.NBTHelper;
@@ -11,7 +12,7 @@ import joshie.harvest.core.helpers.TownHelper;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.NPCRegistry;
-import joshie.harvest.npc.entity.ai.EntityAINPC;
+import joshie.harvest.npc.entity.ai.AIEntityNPC;
 import joshie.harvest.npc.town.TownData;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
@@ -20,14 +21,11 @@ import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathNavigateGround;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -36,25 +34,23 @@ import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 
 import java.util.UUID;
 
-public class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEntityAdditionalSpawnData, IRelatableProvider {
-    private boolean init;
-    private INPCTask task; //Currently executing task
+public abstract class AbstractEntityNPC<E extends AbstractEntityNPC> extends EntityAgeable implements IEntityAdditionalSpawnData, IRelatableProvider {
+    protected AbstractTask task; //Currently executing task
     protected NPC npc;
-    protected EntityNPC lover;
-    private EntityPlayer talkingTo;
-    private boolean isPlaying;
-    private Mode mode = Mode.DEFAULT;
-    public int lastTeleport;
-    public boolean hideName = true;
-    public BlockPos spawned;
-    public TownData homeTown;
-    public UUID townID;
+    protected AbstractEntityNPC lover;
+    protected EntityPlayer talkingTo;
+    protected boolean isPlaying;
+    protected Mode mode = Mode.DEFAULT;
+    protected int lastTeleport;
+    protected BlockPos spawned;
+    protected TownData homeTown;
+    protected UUID townID;
 
     public enum Mode {
         DEFAULT, GIFT
     }
 
-    public EntityNPC(E entity) {
+    public AbstractEntityNPC(E entity) {
         this(entity.worldObj, entity.npc);
         npc = entity.getNPC();
         lover = entity.lover;
@@ -72,25 +68,26 @@ public class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEn
         return homeTown;
     }
 
-    public EntityNPC(World world) {
+    public AbstractEntityNPC(World world) {
         this(world, (NPC) HFNPCs.GODDESS);
     }
 
-    public EntityNPC(World world, NPC npc) {
+    public AbstractEntityNPC(World world, NPC npc) {
         super(world);
         this.npc = npc;
         this.enablePersistence();
         setSize(0.6F, (1.8F * npc.getHeight()));
     }
 
-    public EntityNPC getNewEntity(EntityNPC entity) {
-        return new EntityNPC(entity);
-    }
+    protected abstract E getNewEntity(E entity);
 
     public void resetSpawnHome() {
         this.homeTown = TownHelper.getClosestTownToEntityOrCreate(this);
         this.townID = homeTown.getID();
         this.spawned = homeTown.getCoordinatesFor(getNPC().getHome());
+        if (this.spawned == null) {
+            this.spawned = new BlockPos(this);
+        }
     }
 
     @Override
@@ -98,11 +95,11 @@ public class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEn
         return npc;
     }
 
-    public INPCTask getTask() {
+    public AbstractTask getTask() {
         return task;
     }
 
-    public void setTask(INPCTask task) {
+    public void setTask(AbstractTask task) {
         this.task = task;
     }
 
@@ -120,12 +117,12 @@ public class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEn
         tasks.addTask(1, new EntityAIAvoidEntity<EntityZombie>(this, EntityZombie.class, 8.0F, 0.6D, 0.6D));
         tasks.addTask(1, new EntityAITalkingTo(this));
         tasks.addTask(1, new EntityAILookAtPlayer(this));
-        tasks.addTask(2, new EntityAINPC(this));
+        tasks.addTask(2, new AIEntityNPC(this));
         tasks.addTask(3, new EntityAIRestrictOpenDoor(this));
         tasks.addTask(4, new EntityAIOpenDoor(this, true));
         tasks.addTask(8, new EntityAIPlay(this, 0.32D));
         tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 3.0F, 1.0F));
-        tasks.addTask(9, new EntityAIWatchClosest(this, EntityNPC.class, 5.0F, 0.02F));
+        tasks.addTask(9, new EntityAIWatchClosest(this, AbstractEntityNPC.class, 5.0F, 0.02F));
         tasks.addTask(9, new EntityAIWander(this, 0.6D));
         tasks.addTask(10, new EntityAIWatchClosest(this, EntityLiving.class, 8.0F));
     }
@@ -144,7 +141,7 @@ public class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEn
         return npc;
     }
 
-    public EntityNPC getLover() {
+    public AbstractEntityNPC getLover() {
         return lover;
     }
 
@@ -159,23 +156,6 @@ public class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEn
     @Override
     public String getName() {
         return npc.getLocalizedName();
-    }
-
-    @Override
-    protected void updateAITasks() {
-        updateTasks();
-    }
-
-    protected void updateTasks() {
-        if (this.lastTeleport > 0) {
-            this.lastTeleport--;
-        }
-
-        if (!isTalking()) {
-            super.updateAITasks();
-        } else {
-            addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 200, 0, true, false));
-        }
     }
 
     public boolean isTalking() {
@@ -200,7 +180,7 @@ public class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEn
 
     @Override
     public boolean isChild() {
-        return npc.isChild();
+        return npc.getAge() == Age.CHILD;
     }
 
     @Override
@@ -211,27 +191,19 @@ public class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEn
     @Override
     protected void onDeathUpdate() {
         super.onDeathUpdate();
-        ++deathTime;
-        if (deathTime == 20) {
-            kill();
-            for (int k = 0; k < 20; ++k) {
-                double d2 = rand.nextGaussian() * 0.02D;
-                double d0 = rand.nextGaussian() * 0.02D;
-                double d1 = rand.nextGaussian() * 0.02D;
-                worldObj.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, posX + (double)(rand.nextFloat() * width * 2.0F) - (double)width, posY + (double)(rand.nextFloat() * height), posZ + (double)(rand.nextFloat() * width * 2.0F) - (double)width, d2, d0, d1, new int[0]);
-            }
-        }
     }
 
     @Override
     public void onDeath(DamageSource cause) {
         //Respawn a new bugger
-        EntityNPC clone = getNewEntity(this);
-        BlockPos home = getHomeCoordinates();
-        if (home != null) {
-            clone.setPositionAndUpdate(home.getX() + 0.5D, home.getY() + 0.5D, home.getZ() + 0.5D);
-            clone.resetSpawnHome();
-            worldObj.spawnEntityInWorld(clone);
+        if (npc.respawns()) {
+            E clone = getNewEntity((E) this);
+            BlockPos home = getHomeCoordinates();
+            if (home != null) {
+                clone.setPositionAndUpdate(home.getX() + 0.5D, home.getY() + 0.5D, home.getZ() + 0.5D);
+                clone.resetSpawnHome();
+                worldObj.spawnEntityInWorld(clone);
+            }
         }
 
         super.onDeath(cause); //Kill the entity
@@ -308,6 +280,6 @@ public class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEn
 
     @Override
     public EntityAgeable createChild(EntityAgeable ageable) {
-        return new EntityNPC(worldObj, (NPC) HFNPCs.GODDESS);
+        return getNewEntity((E)ageable);
     }
 }

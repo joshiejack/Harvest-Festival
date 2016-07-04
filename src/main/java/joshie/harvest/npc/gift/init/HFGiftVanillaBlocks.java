@@ -1,7 +1,7 @@
 package joshie.harvest.npc.gift.init;
 
-import static joshie.harvest.npc.gift.Gifts.Category.*;
-import static joshie.harvest.npc.gift.Gifts.assign;
+import static joshie.harvest.api.npc.gift.GiftCategory.*;
+import static joshie.harvest.npc.gift.GiftRegistry.assign;
 import static net.minecraft.init.Blocks.*;
 
 public class HFGiftVanillaBlocks {

@@ -1,13 +1,10 @@
 package joshie.harvest.asm.transformers;
 
-import joshie.harvest.asm.ASMHelper;
 import joshie.harvest.asm.HFTransformer;
 import joshie.harvest.core.config.ASM;
 import org.objectweb.asm.*;
 
-import static joshie.harvest.asm.ASMConstants.*;
-import static joshie.harvest.asm.ASMHelper.toDescriptor;
-import static joshie.harvest.asm.ASMHelper.toInternalClassName;
+import static net.minecraftforge.fml.common.Loader.MC_VERSION;
 import static org.objectweb.asm.Opcodes.*;
 
 public class WeatherTransformer extends AbstractASM {
@@ -18,7 +15,9 @@ public class WeatherTransformer extends AbstractASM {
 
     @Override
     public boolean isClass(String name) {
-        return name.equals(ENTITY_RENDERER) || name.equals("bnd");
+        return name.equals("net.minecraft.client.renderer.EntityRenderer") ||
+                (MC_VERSION.equals("1.9.4") && name.equals("bnd")) ||
+                (MC_VERSION.equals("1.10.2") && name.equals("bnz"));
     }
 
     @Override
@@ -34,7 +33,7 @@ public class WeatherTransformer extends AbstractASM {
         @Override
         public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {
             MethodVisitor visitor = super.visitMethod(access, name, desc, signature, exceptions);
-            if (desc.equals(ASMHelper.toMethodDescriptor("V")) && (name.equals("addRainParticles") || name.equals("func_78484_h") || name.equals("p"))) {
+            if (desc.equals("()V") && (name.equals("addRainParticles") || name.equals("func_78484_h") || name.equals("p"))) {
                 return new MethodVisitor(Opcodes.ASM4, visitor) {
                     @Override
                     public void visitCode() {
@@ -43,10 +42,10 @@ public class WeatherTransformer extends AbstractASM {
                         mv.visitLabel(l0);
                         mv.visitVarInsn(ALOAD, 0);
                         String mc = !HFTransformer.isObfuscated ? "mc" : "field_78531_r";
-                        mv.visitFieldInsn(GETFIELD, toInternalClassName(ENTITY_RENDERER), mc, toDescriptor(MINECRAFT));
+                        mv.visitFieldInsn(GETFIELD, "net/minecraft/client/renderer/EntityRenderer", mc, "Lnet/minecraft/client/Minecraft;");
                         String theWorld = !HFTransformer.isObfuscated ? "theWorld" : "field_71441_e";
-                        mv.visitFieldInsn(GETFIELD, toInternalClassName(MINECRAFT), theWorld, toDescriptor(WORLDCLIENT));
-                        mv.visitMethodInsn(INVOKESTATIC, toInternalClassName(HFTRACKER), "getCalendar", "(Lnet/minecraft/world/World;)Ljoshie/harvest/calendar/Calendar;", false);
+                        mv.visitFieldInsn(GETFIELD, "net/minecraft/client/Minecraft", theWorld, "Lnet/minecraft/client/multiplayer/WorldClient;");
+                        mv.visitMethodInsn(INVOKESTATIC, "joshie/harvest/core/handlers/HFTrackers", "getCalendar", "(Lnet/minecraft/world/World;)Ljoshie/harvest/calendar/Calendar;", false);
                         mv.visitMethodInsn(INVOKEVIRTUAL, "joshie/harvest/calendar/Calendar", "getTodaysWeather", "()Ljoshie/harvest/api/calendar/Weather;", false);
                         mv.visitMethodInsn(INVOKEVIRTUAL, "joshie/harvest/api/calendar/Weather", "isRain", "()Z", false);
                         Label l1 = new Label();

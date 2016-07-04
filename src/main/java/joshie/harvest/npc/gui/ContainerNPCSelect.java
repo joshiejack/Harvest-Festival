@@ -1,10 +1,10 @@
 package joshie.harvest.npc.gui;
 
-import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.npc.entity.AbstractEntityNPC;
 import net.minecraft.entity.player.InventoryPlayer;
 
 public class ContainerNPCSelect extends ContainerNPCBase {
-    public ContainerNPCSelect(EntityNPC npc, InventoryPlayer playerInventory) {
+    public ContainerNPCSelect(AbstractEntityNPC npc, InventoryPlayer playerInventory) {
         super(npc, playerInventory);
     }
 }

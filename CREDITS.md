@@ -30,7 +30,7 @@
 
 (Yulif) - Mix of http://www.planetminecraft.com/skin/world-champion-bloxer-pixel-styled-looks-way-better-in-3d/ and http://www.planetminecraft.com/skin/your-generic-builder/
 
-(Ondra) - http://www.minecraftskins.com/skin/4737491/sleepy/
+(Ashlee) - http://www.minecraftskins.com/skin/4737491/sleepy/
 
 (Candice) - Her skin
 

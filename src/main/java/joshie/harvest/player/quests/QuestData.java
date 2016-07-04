@@ -1,7 +1,7 @@
 package joshie.harvest.player.quests;
 
 import joshie.harvest.api.quest.IQuest;
-import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.npc.entity.AbstractEntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
 
 import java.util.HashSet;
@@ -26,7 +26,7 @@ public abstract class QuestData {
 
     }
 
-    public String getScript(EntityPlayer player, EntityNPC npc) {
+    public String getScript(EntityPlayer player, AbstractEntityNPC npc) {
         return "";
     }
 

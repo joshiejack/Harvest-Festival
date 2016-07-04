@@ -331,7 +331,7 @@ harvestfestival.npc.brandon.name=Brandon
 harvestfestival.npc.thomas.name=Tomas
 harvestfestival.npc.candice.name=Candice
 harvestfestival.npc.yulif.name=Yulif
-harvestfestival.npc.ondra.name=Ondra
+harvestfestival.npc.ashlee.name=Ashlee
 
 ## NOTE FOR TRANSLATORS, READ
 # When translating these, do not directly translate, just come up with your own
@@ -347,6 +347,8 @@ harvestfestival.npc.ondra.name=Ondra
 # %p = Players Name
 # %e = NPC Name
 #Conversations
+#Error
+harvestfestival.npc.error=Unable to find the translation for the key: %s or the key %s
 #Generic - Children
 harvestfestival.npc.generic.child.greeting1=WOW you're really tall!
 harvestfestival.npc.generic.child.greeting2=Do you wanna play with me?
@@ -354,12 +356,13 @@ harvestfestival.npc.generic.child.greeting3=Have you heard of Minecraft? It's my
 harvestfestival.npc.generic.child.greeting4=Good day!
 harvestfestival.npc.generic.child.greeting5=My parents told me not to talk to strangers...!
 
-#Generic - Adults/Elders
+#Generic - Adults
 harvestfestival.npc.generic.adult.greeting1=What do you need? I'm here to help.
 harvestfestival.npc.generic.adult.greeting2=It's been a long time since I last saw you! How have you been?
-harvestfestival.npc.generic.adult.greeting3=Great weather, eh?
-harvestfestival.npc.generic.adult.greeting4=What terrible weather!
-harvestfestival.npc.generic.adult.greeting5=What are you looking at?!
+harvestfestival.npc.generic.adult.greeting3=What are you looking at?!
+
+#Generic - Elder
+harvestfestival.npc.generic.elder.greeting1=Good day youngun, what have you been up to?
 
 #Generic - Male
 harvestfestival.npc.generic.male.greeting1=Hey, how's it hanging?
@@ -367,6 +370,10 @@ harvestfestival.npc.generic.male.greeting2=Want to have a beer?
 
 #Generic - Female
 harvestfestival.npc.generic.female.greeting1=Hello %p! I hope you're feeling well! It's such a beautiful day isn't it?
+
+#Generic - Weather
+harvestfestival.npc.generic.weather.good=Great weather, eh?
+harvestfestival.npc.generic.weather.bad=What terrible weather!
 
 #Generic Adult Thanks
 harvestfestival.npc.generic.adult.gift.awesome=Wow thanks so much for the awesome gift! I love it.
@@ -514,12 +521,12 @@ harvestfestival.npc.yulif.greeting3=Have you seen Jim? Isn't he just?
 harvestfestival.npc.yulif.greeting4=I am tired of all this hard work, When will you appreciate my buildings?
 harvestfestival.npc.yulif.greeting5=I am tired of wandering around, I am dying right now.
 
-#Ondra
-harvestfestival.npc.ondra.greeting1=I sure love plucking chickens!
-harvestfestival.npc.ondra.greeting2=I am so tired, working with chickens is such hard work!
-harvestfestival.npc.ondra.greeting3=From this day forward, I hope I can sleep better.
-harvestfestival.npc.ondra.greeting4=Most chicken handlers hate foxes, I love them. They're so furry, like me!
-harvestfestival.npc.ondra.greeting5=Cluck, Cluck, Cluck Clucking. When will these chicks just shut the Cluck up!
+#Ashlee
+harvestfestival.npc.ashlee.greeting1=I sure love plucking chickens!
+harvestfestival.npc.ashlee.greeting2=I am so tired, working with chickens is such hard work!
+harvestfestival.npc.ashlee.greeting3=From this day forward, I hope I can sleep better.
+harvestfestival.npc.ashlee.greeting4=Most chicken handlers hate foxes, I love them. They're so furry, like me!
+harvestfestival.npc.ashlee.greeting5=Cluck, Cluck, Cluck Clucking. When will these chicks just shut the Cluck up!
 
 ###Shop greetings
 #General Store

@@ -52,7 +52,7 @@ public class BlockFlower extends BlockHFEnum<BlockFlower, FlowerType> implements
     @Override
     public boolean canPlaceBlockAt(World world, BlockPos pos) {
         IBlockState soil = world.getBlockState(pos.down());
-        return super.canPlaceBlockAt(world, pos) && canBlockStay(world, pos, soil);
+        return super.canPlaceBlockAt(world, pos) && canBlockStay(world, pos.down(), soil);
     }
 
     protected boolean canSustainBush(IBlockState state) {

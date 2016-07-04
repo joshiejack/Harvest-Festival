@@ -1,9 +1,10 @@
 package joshie.harvest.npc.gift;
 
+import joshie.harvest.api.npc.gift.GiftCategory;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
-import static joshie.harvest.npc.gift.Gifts.Quality.*;
+import static joshie.harvest.api.npc.gift.IGiftHandler.Quality.*;
 
 public class GiftsTiberius extends Gifts {
     @Override
@@ -13,11 +14,11 @@ public class GiftsTiberius extends Gifts {
             return stack.getItemDamage() == 8233 ? AWESOME : GOOD;
         }
 
-        if (is(stack, Category.BATTLE)) {
+        if (GiftRegistry.is(stack, GiftCategory.BATTLE)) {
             return Quality.GOOD;
         }
 
-        if (is(stack, Category.GIRLY)) {
+        if (GiftRegistry.is(stack, GiftCategory.GIRLY)) {
             return Quality.BAD;
         }
 

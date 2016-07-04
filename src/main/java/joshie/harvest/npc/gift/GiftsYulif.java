@@ -1,12 +1,13 @@
 package joshie.harvest.npc.gift;
 
+import joshie.harvest.api.npc.gift.GiftCategory;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import static joshie.harvest.npc.gift.Gifts.Quality.*;
+import static joshie.harvest.api.npc.gift.IGiftHandler.Quality.*;
 
 public class GiftsYulif extends Gifts {
     @Override
@@ -23,11 +24,11 @@ public class GiftsYulif extends Gifts {
             return GOOD;
         }
 
-        if (is(stack, Category.CONSTRUCTION)) {
+        if (GiftRegistry.is(stack, GiftCategory.CONSTRUCTION)) {
             return Quality.GOOD;
         }
 
-        if (is(stack, Category.FARMING)) {
+        if (GiftRegistry.is(stack, GiftCategory.FARMING)) {
             return Quality.BAD;
         }
 

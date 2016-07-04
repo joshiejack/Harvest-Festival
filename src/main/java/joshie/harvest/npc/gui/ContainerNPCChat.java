@@ -3,7 +3,7 @@ package joshie.harvest.npc.gui;
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.npc.HFNPCs;
-import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.npc.entity.AbstractEntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 
@@ -11,7 +11,7 @@ public class ContainerNPCChat extends ContainerNPCBase {
     private int nextGui = -1;
     private boolean open = false;
 
-    public ContainerNPCChat(EntityNPC npc, InventoryPlayer playerInventory, int nextGui) {
+    public ContainerNPCChat(AbstractEntityNPC npc, InventoryPlayer playerInventory, int nextGui) {
         super(npc, playerInventory);
         this.nextGui = nextGui;
         this.open = true;

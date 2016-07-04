@@ -6,50 +6,40 @@ import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.npc.IConditionalGreeting;
 import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.npc.NPCBuildEvent;
+import joshie.harvest.api.npc.gift.IGiftHandler;
+import joshie.harvest.api.npc.gift.IGiftHandler.Quality;
 import joshie.harvest.api.relations.IRelatableDataHandler;
 import joshie.harvest.api.shops.IShop;
-import joshie.harvest.core.lib.HFModInfo;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.util.generic.Text;
-import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.gift.Gifts;
-import joshie.harvest.npc.gift.Gifts.Quality;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import org.apache.commons.lang3.StringUtils;
+import net.minecraftforge.common.MinecraftForge;
+import org.apache.commons.lang3.text.WordUtils;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
+import static joshie.harvest.api.npc.INPC.Age.ADULT;
+import static joshie.harvest.api.npc.INPC.Age.CHILD;
+import static joshie.harvest.core.lib.HFModInfo.GIFTPATH;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
-import static joshie.harvest.npc.NPC.Age.ADULT;
-import static joshie.harvest.npc.NPC.Age.CHILD;
-import static joshie.harvest.npc.NPC.Gender.FEMALE;
-import static joshie.harvest.npc.NPC.Gender.MALE;
 
 public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl<NPC> implements INPC {
-    public enum Gender {
-        MALE, FEMALE
-    }
-
-    public enum Age {
-        CHILD, ADULT, ELDER
-    }
-
-    protected List<IConditionalGreeting> conditionals = new ArrayList<IConditionalGreeting>(256);
-    protected ArrayList<String> thanks = new ArrayList<String>(6);
-    protected String nothanks = "PASS!...";
-    protected String accept = "WHAT?";
-    protected String reject = "NO!";
+    private List<IConditionalGreeting> conditionals = new ArrayList<>(256);
+    private String generalLocalizationKey;
+    private String localizationKey;
 
     private Age age;
     private Gender gender;
     private float height;
     private float offset;
-    private Gifts gifts;
+    private IGiftHandler gifts;
     private boolean isBuilder;
     private IShop shop;
     private ICalendarDate birthday;
@@ -64,93 +54,47 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
     }
 
     public NPC(ResourceLocation resource, Gender gender, Age age, ICalendarDate birthday, int insideColor, int outsideColor) {
-        this.gender = gender;
+        String MODID = resource.getResourceDomain();
+        String name = resource.getResourcePath();
         this.age = age;
+        this.gender = gender;
         this.height = 1F;
         this.birthday = birthday;
         this.doesRespawn = true;
         this.insideColor = insideColor;
         this.outsideColor = outsideColor;
-
-        String MODID = resource.getResourceDomain();
-        String name = resource.getResourcePath();
-        String gift = StringUtils.capitalize(name);
-        try {
-            gifts = (Gifts) Class.forName(HFModInfo.JAVAPATH + "npc.gift.Gifts" + gift).newInstance();
-        } catch (Exception ignored) {}
-
-        String key = MODID + ".npc." + name + ".accept";
-        accept = Text.localize(key);
-        key = MODID + ".npc." + name + ".reject";
-        reject = Text.localize(key);
-        key = MODID + ".npc." + name + ".gift.reject";
-        nothanks = Text.localize(key);
-        if (nothanks.equals(key)) nothanks = Text.localize(MODID + ".npc.generic." + age.name().toLowerCase() + ".gift.reject");
-
-        for (int i = 0; i < 6; i++) {
-            key = MODID + ".npc." + name + ".gift." + Quality.values()[i].name().toLowerCase();
-            String translated = Text.localize(key);
-            if (!translated.equals(key)) {
-                thanks.add(translated);
-            } else {
-                key = MODID + ".npc.generic." + age.name().toLowerCase() + ".gift." + Quality.values()[i].name().toLowerCase();
-                translated = Text.localize(key);
-                thanks.add(translated);
+        this.localizationKey = MODID + ".npc." + name + ".";
+        this.generalLocalizationKey = MODID + ".npc.generic." + age.name().toLowerCase() + ".";
+        this.conditionals.add(new GreetingMultiple(name + ".greeting"));
+        this.conditionals.add(new GreetingMultiple("generic." + age.name().toLowerCase() + ".greeting"));
+        this.conditionals.add(new GreetingMultiple("generic." + gender.name().toLowerCase() + ".greeting"));
+        this.conditionals.add(new GreetingSingle("generic.weather.good") {
+            @Override
+            public boolean canDisplay(EntityPlayer player) {
+                return HFTrackers.getCalendar(player.worldObj).getTodaysWeather().isSunny();
             }
-        }
+        });
 
-        for (int i = 1; i <= 32; i++) {
-            key = MODID + ".npc." + name + ".greeting" + i;
-            String greeting = Text.localize(key);
-            if (!greeting.equals(key)) {
-                conditionals.add(new GreetingGeneric(greeting));
+        this.conditionals.add(new GreetingSingle("generic.weather.bad") {
+            @Override
+            public boolean canDisplay(EntityPlayer player) {
+                return HFTrackers.getCalendar(player.worldObj).getTodaysWeather().isUndesirable();
             }
+        });
 
-            //Adding Generic Child Greetings
-            if (age == CHILD) {
-                key = MODID + ".npc.generic.child.greeting" + i;
-                greeting = Text.localize(key);
-                if (!greeting.equals(key)) {
-                    conditionals.add(new GreetingGeneric(greeting));
-                }
-            } else {
-                //Add Generic Adult Greetings
-                key = MODID + ".npc.generic.adult.greeting" + i;
-                greeting = Text.localize(key);
-                if (!greeting.equals(key)) {
-                    conditionals.add(new GreetingGeneric(greeting));
-                }
-
-                if (gender == MALE) {
-                    //Add Generic Male Greetings
-                    key = MODID + ".npc.generic.male.greeting" + i;
-                    greeting = Text.localize(key);
-                    if (!greeting.equals(key)) {
-                        conditionals.add(new GreetingGeneric(greeting));
-                    }
-                } else if (gender == FEMALE) {
-                    //Add Generic Female Greetings
-                    key = MODID + ".npc.generic.female.greeting" + i;
-                    greeting = Text.localize(key);
-                    if (!greeting.equals(key)) {
-                        conditionals.add(new GreetingGeneric(greeting));
-                    }
-                }
-            }
-        }
-
-        Collections.shuffle(conditionals);
-        setRegistryName(resource);
+        this.setRegistryName(resource);
+        this.setupGifts();
         NPCRegistry.REGISTRY.register(this);
+        MinecraftForge.EVENT_BUS.post(new NPCBuildEvent(this, this.conditionals));
     }
 
-    @Override
+    @Override //IRelatable
     public IRelatableDataHandler getDataHandler() {
         return HFApi.relations.getDataHandler("npc");
     }
 
     @Override
-    public NPC setIsBuilder() {
+    public INPC setIsBuilder() {
         isBuilder = true;
         return this;
     }
@@ -181,8 +125,36 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
     }
 
     @Override
-    public boolean isChild() {
-        return age == CHILD;
+    public INPC setNoRespawn() {
+        this.doesRespawn = false;
+        return this;
+    }
+
+    @Override
+    public INPC setGiftHandler(IGiftHandler handler) {
+        gifts = handler;
+        return this;
+    }
+
+    public void setupGifts() {
+        if (getRegistryName().getResourceDomain().equals(MODID)) {
+            try {
+                this.gifts = (IGiftHandler) Class.forName(GIFTPATH + WordUtils.capitalize(getRegistryName().getResourcePath())).newInstance();
+            } catch (Exception e) {}
+        }
+
+        //Backup
+        if (this.gifts == null) this.gifts = Gifts.INSTANCE;
+    }
+
+    @Override
+    public Age getAge() {
+        return age;
+    }
+
+    @Override
+    public Gender getGender() {
+        return gender;
     }
 
     @Override
@@ -190,12 +162,10 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
         return age == ADULT;
     }
 
-    @Override
     public float getHeight() {
         return height;
     }
 
-    @Override
     public float getOffset() {
         return offset;
     }
@@ -226,33 +196,35 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
         return Text.localize(getRegistryName().getResourceDomain() + ".npc." + getRegistryName().getResourcePath() + ".name");
     }
 
-    @Override
     public int getBedtime() {
-        return isChild() ? 19000 : 23000;
+        return age == CHILD ? 19000 : 23000;
     }
 
-    private static class Priority implements Comparator<Object> {
-        @Override
-        public int compare(Object o1, Object o2) {
-            int i1 = ((IConditionalGreeting) o1).getPriority();
-            int i2 = ((IConditionalGreeting) o2).getPriority();
-            return i1 == i2 ? 0 : i1 > i2 ? 1 : -1;
-        }
-
+    public String getLocalizationKey() {
+        return localizationKey;
     }
 
-    //Returns the script that this character should at this point
-    @Override
+    public String getGeneralLocalizationKey() {
+        return generalLocalizationKey;
+    }
+
+    //Returns the script that this character should say at this point
     public String getGreeting(EntityPlayer player) {
         if (conditionals.size() == 0) {
             return "JOSHIE IS STOOPID AND FORGOT WELCOME LANG";
         }
 
         Collections.shuffle(conditionals);
-        Collections.sort(conditionals, new Priority());
+        Collections.sort(conditionals, (o1, o2) -> {
+            int i1 = o1.getPriority();
+            int i2 = o2.getPriority();
+            return i1 == i2 ? 0 : i1 > i2 ? 1 : -1;
+        });
+
         for (IConditionalGreeting greeting : conditionals) {
             if (greeting.canDisplay(player)) {
-                return greeting.getText();
+                if (greeting.getMaximumAlternatives() > 1) return Text.getRandomSpeech(this, greeting.getUnlocalizedText(), greeting.getMaximumAlternatives());
+                else return Text.localize(greeting.getUnlocalizedText());
             }
         }
 
@@ -261,45 +233,24 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
 
     @Override
     public Quality getGiftValue(ItemStack stack) {
+        if (gifts == null) return Quality.DECENT;
         return gifts.getQuality(stack);
     }
 
-    @Override
-    public String getThanks(Quality value) {
-        return thanks.get(value.ordinal());
-    }
-
-    @Override
-    public String getNoThanks() {
-        return nothanks;
-    }
-
-    @Override
-    public String getAcceptProposal() {
-        return accept;
-    }
-
-    public String getRejectProposal() {
-        return reject;
-    }
-
-    @Override
     public int getInsideColor() {
         return insideColor;
     }
 
-    @Override
     public int getOutsideColor() {
         return outsideColor;
     }
 
-    @Override
     public boolean isAlexSkin() {
         return alex;
     }
 
-    public void onContainerClosed(EntityPlayer player, EntityNPC npc) {
-        return;
+    public boolean respawns() {
+        return doesRespawn;
     }
 
     @Override

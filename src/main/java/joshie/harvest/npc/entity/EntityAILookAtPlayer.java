@@ -4,9 +4,9 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
 
 public class EntityAILookAtPlayer extends EntityAIWatchClosest {
-    private final EntityNPC npc;
+    private final AbstractEntityNPC npc;
 
-    public EntityAILookAtPlayer(EntityNPC npc) {
+    public EntityAILookAtPlayer(AbstractEntityNPC npc) {
         super(npc, EntityPlayer.class, 8.0F);
         this.npc = npc;
     }

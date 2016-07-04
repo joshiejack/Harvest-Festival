@@ -3,7 +3,7 @@ package joshie.harvest.core.handlers;
 import joshie.harvest.cooking.gui.ContainerFridge;
 import joshie.harvest.cooking.gui.GuiFridge;
 import joshie.harvest.core.helpers.NPCHelper;
-import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.npc.entity.AbstractEntityNPC;
 import joshie.harvest.npc.gui.*;
 import joshie.harvest.shops.gui.ContainerNPCBuilderShop;
 import joshie.harvest.shops.gui.ContainerNPCShop;
@@ -26,14 +26,14 @@ public class GuiHandler implements IGuiHandler {
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int entityID, int nextGui, int hand) {
         switch (ID) {
-            case NPC:           return new ContainerNPCChat((EntityNPC) world.getEntityByID(entityID), player.inventory, nextGui);
-            case SHOP_WELCOME:  return new ContainerNPCChat((EntityNPC) world.getEntityByID(entityID), player.inventory, SHOP_OPTIONS);
-            case SHOP_MENU:     return new ContainerNPCShop((EntityNPC) world.getEntityByID(entityID), player.inventory);
-            case SHOP_BUILDER:  return new ContainerNPCBuilderShop((EntityNPC) world.getEntityByID(entityID), player.inventory);
-            case GIFT:          return new ContainerNPCGift((EntityNPC) world.getEntityByID(entityID), player.inventory, EnumHand.values()[hand]);
+            case NPC:           return new ContainerNPCChat((AbstractEntityNPC) world.getEntityByID(entityID), player.inventory, nextGui);
+            case SHOP_WELCOME:  return new ContainerNPCChat((AbstractEntityNPC) world.getEntityByID(entityID), player.inventory, SHOP_OPTIONS);
+            case SHOP_MENU:     return new ContainerNPCShop((AbstractEntityNPC) world.getEntityByID(entityID), player.inventory);
+            case SHOP_BUILDER:  return new ContainerNPCBuilderShop((AbstractEntityNPC) world.getEntityByID(entityID), player.inventory);
+            case GIFT:          return new ContainerNPCGift((AbstractEntityNPC) world.getEntityByID(entityID), player.inventory, EnumHand.values()[hand]);
             case FRIDGE:        return new ContainerFridge(player.inventory, HFTrackers.getServerPlayerTracker(player).getFridge());
             case SHOP_OPTIONS:    {
-                EntityNPC npc = (EntityNPC) world.getEntityByID(entityID);
+                AbstractEntityNPC npc = (AbstractEntityNPC) world.getEntityByID(entityID);
                 if (NPCHelper.isShopOpen(npc.getNPC(), world, player)) {
                     return new ContainerNPCSelect(npc, player.inventory);
                 } else return new ContainerNPC(npc, player.inventory);
@@ -46,14 +46,14 @@ public class GuiHandler implements IGuiHandler {
     @Override
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int entityID, int nextGui, int hand) {
         switch (ID) {
-            case NPC:           return new GuiNPCChat((EntityNPC) world.getEntityByID(entityID), player, nextGui);
-            case SHOP_WELCOME:  return new GuiNPCChat((EntityNPC) world.getEntityByID(entityID), player, SHOP_OPTIONS);
-            case SHOP_MENU:     return new GuiNPCShop((EntityNPC) world.getEntityByID(entityID), player);
-            case SHOP_BUILDER:  return new GuiNPCBuilderShop((EntityNPC) world.getEntityByID(entityID), player);
-            case GIFT:          return new GuiNPCGift((EntityNPC) world.getEntityByID(entityID), player, EnumHand.values()[hand]);
+            case NPC:           return new GuiNPCChat((AbstractEntityNPC) world.getEntityByID(entityID), player, nextGui);
+            case SHOP_WELCOME:  return new GuiNPCChat((AbstractEntityNPC) world.getEntityByID(entityID), player, SHOP_OPTIONS);
+            case SHOP_MENU:     return new GuiNPCShop((AbstractEntityNPC) world.getEntityByID(entityID), player);
+            case SHOP_BUILDER:  return new GuiNPCBuilderShop((AbstractEntityNPC) world.getEntityByID(entityID), player);
+            case GIFT:          return new GuiNPCGift((AbstractEntityNPC) world.getEntityByID(entityID), player, EnumHand.values()[hand]);
             case FRIDGE:        return new GuiFridge(player.inventory, HFTrackers.getClientPlayerTracker().getFridge());
             case SHOP_OPTIONS:    {
-                EntityNPC npc = (EntityNPC) world.getEntityByID(entityID);
+                AbstractEntityNPC npc = (AbstractEntityNPC) world.getEntityByID(entityID);
                 if (NPCHelper.isShopOpen(npc.getNPC(), world, player)) {
                     return new GuiNPCSelect(npc, player, nextGui);
                 } else return new GuiNPCChat(npc, player, nextGui);

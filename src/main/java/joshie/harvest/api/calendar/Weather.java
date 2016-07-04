@@ -14,4 +14,12 @@ public enum Weather {
     public boolean isBadWeather() {
         return this == TYPHOON || this == BLIZZARD;
     }
+
+    public boolean isUndesirable() {
+        return isBadWeather() || isRain();
+    }
+
+    public boolean isSunny() {
+        return this == SUNNY;
+    }
 }

@@ -1,5 +1,6 @@
 package joshie.harvest.npc.gift;
 
+import joshie.harvest.api.npc.gift.GiftCategory;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
@@ -10,11 +11,11 @@ public class GiftsJamie extends Gifts {
             return Quality.AWESOME;
         }
 
-        if (is(stack, Category.RARE)) {
+        if (GiftRegistry.is(stack, GiftCategory.RARE)) {
             return Quality.GOOD;
         }
 
-        if (is(stack, Category.ANIMALS)) {
+        if (GiftRegistry.is(stack, GiftCategory.ANIMALS)) {
             return Quality.BAD;
         }
 

@@ -9,12 +9,12 @@ import java.util.Iterator;
 import java.util.List;
 
 public class EntityAIPlay extends EntityAIBase {
-    private EntityNPC npc;
+    private AbstractEntityNPC npc;
     private EntityLivingBase targetVillager;
     private double field_75261_c;
     private int playTime;
 
-    public EntityAIPlay(EntityNPC npc, double p_i1646_2_) {
+    public EntityAIPlay(AbstractEntityNPC npc, double p_i1646_2_) {
         this.npc = npc;
         this.field_75261_c = p_i1646_2_;
         this.setMutexBits(1);
@@ -27,12 +27,12 @@ public class EntityAIPlay extends EntityAIBase {
         } else if (npc.getRNG().nextInt(400) != 0) {
             return false;
         } else {
-            List<EntityNPC> list = npc.worldObj.getEntitiesWithinAABB(EntityNPC.class, npc.getEntityBoundingBox().expand(6.0D, 3.0D, 6.0D));
+            List<AbstractEntityNPC> list = npc.worldObj.getEntitiesWithinAABB(AbstractEntityNPC.class, npc.getEntityBoundingBox().expand(6.0D, 3.0D, 6.0D));
             double d0 = Double.MAX_VALUE;
-            Iterator<EntityNPC> iterator = list.iterator();
+            Iterator<AbstractEntityNPC> iterator = list.iterator();
 
             while (iterator.hasNext()) {
-                EntityNPC entityvillager = iterator.next();
+                AbstractEntityNPC entityvillager = iterator.next();
 
                 if (entityvillager != npc && !entityvillager.isPlaying() && entityvillager.getGrowingAge() < 0) {
                     double d1 = entityvillager.getDistanceSqToEntity(this.npc);

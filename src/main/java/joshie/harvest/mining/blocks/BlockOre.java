@@ -29,7 +29,7 @@ public class BlockOre extends BlockHFEnum<BlockOre, Ore> implements ISmashable {
     private static final AxisAlignedBB COPPER_AABB = new AxisAlignedBB(0.1D, 0.0D, 0.1D, 0.9D, 0.8D, 0.9D);
 
     public enum Ore implements IStringSerializable {
-        ROCK, COPPER, SILVER, GOLD, MYSTRIL, GEM;
+        ROCK, COPPER, SILVER, GOLD, MYSTRIL, /*GEM*/;
 
         @Override
         public String getName() {
@@ -69,11 +69,11 @@ public class BlockOre extends BlockHFEnum<BlockOre, Ore> implements ISmashable {
             case GOLD:
                 return HFMining.MATERIALS.getStackFromEnum(ItemMaterial.Material.GOLD, 1 + world.rand.nextInt(2));
             case MYSTRIL:
-                return HFMining.MATERIALS.getStackFromEnum(ItemMaterial.Material.MYSTRIL);
+                return HFMining.MATERIALS.getStackFromEnum(ItemMaterial.Material.MYSTRIL); /*
             case GEM: {
                 ResourceLocation loot = HFTrackers.getCalendar(world).getSeasonAt(pos) == Season.WINTER ? LootStrings.MINE_WINTER_GEM : LootStrings.MINE_SPRING_GEM;
                 return MiningHelper.getLoot(loot, world, player, luck);
-            }
+            } */
             default:
                 return null;
         }

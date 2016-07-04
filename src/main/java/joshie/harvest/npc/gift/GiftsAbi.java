@@ -1,22 +1,16 @@
 package joshie.harvest.npc.gift;
 
-import net.minecraft.init.Items;
+import joshie.harvest.api.npc.gift.IGiftHandler;
 import net.minecraft.item.ItemStack;
 
-public class GiftsAbi extends Gifts {
+import static joshie.harvest.api.npc.gift.GiftCategory.CUTE;
+import static joshie.harvest.api.npc.gift.GiftCategory.SCARY;
+import static joshie.harvest.api.npc.gift.IGiftHandler.Quality.*;
+import static net.minecraft.init.Items.SUGAR;
+
+public class GiftsAbi implements IGiftHandler {
     @Override
     public Quality getQuality(ItemStack stack) {
-        if (stack.getItem() == Items.SUGAR) {
-            return Quality.AWESOME;
-        }
-
-        if (is(stack, Category.CUTE)) {
-            return Quality.GOOD;
-        }
-
-        if (is(stack, Category.SCARY)) {
-            return Quality.BAD;
-        }
-        return Quality.DECENT;
+        return stack.getItem() == SUGAR ? AWESOME : GiftRegistry.is(stack, CUTE) ? GOOD : GiftRegistry.is(stack, SCARY) ? BAD : DECENT;
     }
 }

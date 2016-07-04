@@ -19,7 +19,6 @@
 - Coin Render on hotbar
 - Make Mythic Axe Fell Whole Trees
 - Make Axes have an AOE that will break all branches/stumps
-- Change Ondra to Ashlee, make female - Y
 - Loot Table JSON
     - See https://github.com/joshiejack/Harvest-Festival/blob/4fc81be862b9686cf00a3b8b1d262a8b7106aaaf/src/main/java/joshie/harvest/core/lib/LootStrings.java
     - See https://github.com/joshiejack/Harvest-Festival/blob/4fc81be862b9686cf00a3b8b1d262a8b7106aaaf/src/main/java/joshie/harvest/buildings/loader/HFBuildings.java#L51
@@ -46,7 +45,6 @@
     -E Items Spin
 
 ### To Check
-- ASM For Snow - J
 - Cursed Tools are giving cursed effects - J
 - Gathering is saving
 
@@ -61,7 +59,6 @@
 - Make Blueprints Render in World
 - Mine Floor Connected Textures and Random Texture Overlays - Y, J?
 - Mine Floor in inventory renders
-- Make Spawn Chicken Render the Chicken
 - Goddess Water Texture
 
 ### Textures
@@ -79,14 +76,6 @@
 ### Models + Textures
 - HarvestChicken - J
 - Make Small/Medium/Large Incubator models by combining incubator with nest
-- Branch - J
-    - Large
-    - Medium
-    - Small
-- Stump - J
-    - Large
-    - Medium
-    - Small
 
 ### Questing Tasks
 - Spawning the NPC Builder Quest

@@ -12,7 +12,7 @@ import joshie.harvest.core.helpers.SizeableHelper;
 import joshie.harvest.core.helpers.ToolHelper;
 import joshie.harvest.core.helpers.generic.ItemHelper;
 import joshie.harvest.npc.HFNPCs;
-import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.npc.entity.AbstractEntityNPC;
 import joshie.harvest.quests.Quest;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -70,7 +70,7 @@ public class QuestCowCare extends Quest {
     }
 
     @Override
-    public void onClosedChat(EntityPlayer player, EntityNPC npc) {
+    public void onClosedChat(EntityPlayer player, AbstractEntityNPC npc) {
         if (!hasCollected && quest_stage == 2 && npc.getNPC() == HFNPCs.ANIMAL_OWNER) {
             hasCollected = true;
             ItemHelper.addToPlayerInventory(player, HFAnimals.TOOLS.getStackFromEnum(MILKER));
@@ -92,7 +92,7 @@ public class QuestCowCare extends Quest {
     }
 
     @Override
-    public String getScript(EntityPlayer player, EntityNPC npc) {
+    public String getScript(EntityPlayer player, AbstractEntityNPC npc) {
         if (quest_stage == 0) {
             if (npc.getNPC() == HFNPCs.GODDESS) {
                 increaseStage(player);

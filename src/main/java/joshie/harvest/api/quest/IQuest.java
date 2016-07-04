@@ -2,7 +2,7 @@ package joshie.harvest.api.quest;
 
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.npc.INPC;
-import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.npc.entity.AbstractEntityNPC;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -31,7 +31,7 @@ public interface IQuest {
     boolean handlesScript(INPC npc);
 
     /** Get the quest script **/
-    String getScript(EntityPlayer player, EntityNPC npc);
+    String getScript(EntityPlayer player, AbstractEntityNPC npc);
 
     /** Called serverside to claim the reward **/
     void claim(EntityPlayer entityPlayer);
@@ -49,13 +49,13 @@ public interface IQuest {
     void fromBytes(ByteBuf buf);
 
     /** Called when a player closes chat while this quest is active **/
-    void onClosedChat(EntityPlayer player, EntityNPC npc);
+    void onClosedChat(EntityPlayer player, AbstractEntityNPC npc);
 
     /** Called when a quest option is confirmed **/
-    void confirm(EntityPlayer player, EntityNPC npc);
+    void confirm(EntityPlayer player, AbstractEntityNPC npc);
 
     /** Called when a question option is cancelled **/
-    void cancel(EntityPlayer player, EntityNPC npc);
+    void cancel(EntityPlayer player, AbstractEntityNPC npc);
 
     /** Called when the quest is active and on interacting with an entity **/
     void onEntityInteract(EntityPlayer entityPlayer, Entity target);

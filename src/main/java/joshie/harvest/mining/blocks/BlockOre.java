@@ -4,6 +4,7 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.gathering.ISmashable;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.lib.LootStrings;
 import joshie.harvest.core.util.base.BlockHFEnum;
 import joshie.harvest.mining.HFMining;
@@ -80,6 +81,6 @@ public class BlockOre extends BlockHFEnum<BlockOre, Ore> implements ISmashable {
 
     @Override
     public int getSortValue(ItemStack stack) {
-        return 1;
+        return CreativeSort.TOOLS - 20 + stack.getItemDamage();
     }
 }

@@ -24,6 +24,11 @@ import static joshie.harvest.api.gathering.ISmashable.ToolType.HAMMER;
 public class BlockRock extends BlockHFEnum<BlockRock, Rock> implements ISmashable {
     private static final AxisAlignedBB STONE_SMALL_AABB = new AxisAlignedBB(0.15D, 0.0D, 0.15D, 0.85D, 0.15D, 0.85D);
     private static final AxisAlignedBB STONE_MEDIUM_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.2D, 1.0D);
+    private static final AxisAlignedBB STONE_LARGE_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.3D, 1.0D);
+    private static final AxisAlignedBB BOULDER_SMALL_AABB = new AxisAlignedBB(0.225D, 0.0D, 0.225D, 0.775D, 0.25D, 0.775D);
+    private static final AxisAlignedBB BOULDER_MEDIUM_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.35D, 1.0D);
+    private static final AxisAlignedBB BOULDER_LARGE_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.6D, 1.0D);
+
     public enum Rock implements IStringSerializable {
         STONE_SMALL, STONE_MEDIUM, STONE_LARGE, BOULDER_SMALL, BOULDER_MEDIUM, BOULDER_LARGE;
 
@@ -44,11 +49,11 @@ public class BlockRock extends BlockHFEnum<BlockRock, Rock> implements ISmashabl
         switch (getEnumFromState(state)) {
             case STONE_SMALL: return STONE_SMALL_AABB;
             case STONE_MEDIUM: return STONE_MEDIUM_AABB;
-            case STONE_LARGE: return new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.3D, 1.0D);
-            case BOULDER_SMALL: new AxisAlignedBB(0.15D, 0.0D, 0.15D, 0.85D, 0.15D, 0.85D);
-            case BOULDER_MEDIUM: new AxisAlignedBB(0.15D, 0.0D, 0.15D, 0.85D, 0.15D, 0.85D);
-            case BOULDER_LARGE: new AxisAlignedBB(0.15D, 0.0D, 0.15D, 0.85D, 0.15D, 0.85D);
-            default: return new AxisAlignedBB(0.1D, 0.0D, 0.1D, 0.9D, 0.8D, 0.9D);
+            case STONE_LARGE: return STONE_LARGE_AABB;
+            case BOULDER_SMALL: return BOULDER_SMALL_AABB;
+            case BOULDER_MEDIUM: return BOULDER_MEDIUM_AABB;
+            case BOULDER_LARGE: return BOULDER_LARGE_AABB;
+            default: return BOULDER_LARGE_AABB;
         }
     }
 
@@ -85,6 +90,6 @@ public class BlockRock extends BlockHFEnum<BlockRock, Rock> implements ISmashabl
 
     @Override
     public int getSortValue(ItemStack stack) {
-        return CreativeSort.TOOLS - 2;
+        return CreativeSort.TOOLS - 30 + stack.getItemDamage();
     }
 }

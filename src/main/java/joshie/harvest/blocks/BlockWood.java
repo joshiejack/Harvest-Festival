@@ -20,9 +20,15 @@ import net.minecraft.world.World;
 
 import static joshie.harvest.api.core.ITiered.ToolTier.*;
 import static joshie.harvest.api.gathering.ISmashable.ToolType.AXE;
-import static joshie.harvest.blocks.BlockWood.Wood.*;
 
 public class BlockWood extends BlockHFEnum<BlockWood, Wood> implements ISmashable {
+    private static final AxisAlignedBB BRANCH_SMALL_AABB = new AxisAlignedBB(0.15D, 0.0D, 0.15D, 0.85D, 0.15D, 0.85D);
+    private static final AxisAlignedBB BRANCH_MEDIUM_AABB = new AxisAlignedBB(0.15D, 0.0D, 0.15D, 0.85D, 0.25D, 0.85D);
+    private static final AxisAlignedBB BRANCH_LARGE_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.9D, 1.0D);
+    private static final AxisAlignedBB STUMP_SMALL_AABB = new AxisAlignedBB(0.2D, 0.0D, 0.2D, 0.8D, 0.25D, 0.8D);
+    private static final AxisAlignedBB STUMP_MEDIUM_AABB = new AxisAlignedBB(0.1D, 0.0D, 0.1D, 0.9D, 0.35D, 0.9D);
+    private static final AxisAlignedBB STUMP_LARGE_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D);
+
     public enum Wood implements IStringSerializable {
         BRANCH_SMALL, BRANCH_MEDIUM, BRANCH_LARGE, STUMP_SMALL, STUMP_MEDIUM, STUMP_LARGE;
 
@@ -45,13 +51,15 @@ public class BlockWood extends BlockHFEnum<BlockWood, Wood> implements ISmashabl
     }
 
     @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
-        Wood type = getEnumFromState(state);
-        switch (type) {
-            case BRANCH_SMALL:
-                return new AxisAlignedBB(0D, 0D, 0D, 1D, 0.6D, 1D);
-            default:
-                return FULL_BLOCK_AABB;
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+        switch (getEnumFromState(state)) {
+            case BRANCH_SMALL: return BRANCH_SMALL_AABB;
+            case BRANCH_MEDIUM: return BRANCH_MEDIUM_AABB;
+            case BRANCH_LARGE: return BRANCH_LARGE_AABB;
+            case STUMP_SMALL: return STUMP_SMALL_AABB;
+            case STUMP_MEDIUM: return STUMP_MEDIUM_AABB;
+            case STUMP_LARGE: return STUMP_LARGE_AABB;
+            default: return STUMP_LARGE_AABB;
         }
     }
 
@@ -66,9 +74,9 @@ public class BlockWood extends BlockHFEnum<BlockWood, Wood> implements ISmashabl
         switch (type) {
             case BRANCH_SMALL: return new ItemStack(Blocks.LOG, 1);
             case BRANCH_MEDIUM: return new ItemStack(Blocks.LOG, 2);
-            case BRANCH_LARGE: return new ItemStack(Blocks.LOG, 4);
+            case BRANCH_LARGE: return new ItemStack(Blocks.LOG, 6);
             case STUMP_SMALL: return new ItemStack(Blocks.LOG, 3);
-            case STUMP_MEDIUM: return new ItemStack(Blocks.LOG, 6);
+            case STUMP_MEDIUM: return new ItemStack(Blocks.LOG, 4);
             case STUMP_LARGE: return new ItemStack(Blocks.LOG, 12);
             default: return null;
         }
@@ -79,9 +87,9 @@ public class BlockWood extends BlockHFEnum<BlockWood, Wood> implements ISmashabl
         switch (getEnumFromState(state)) {
             case BRANCH_SMALL: return BASIC;
             case BRANCH_MEDIUM: return COPPER;
-            case BRANCH_LARGE: return GOLD;
+            case BRANCH_LARGE: return MYSTRIL;
             case STUMP_SMALL: return SILVER;
-            case STUMP_MEDIUM: return MYSTRIL;
+            case STUMP_MEDIUM: return GOLD;
             case STUMP_LARGE: return CURSED;
             default: return null;
         }
@@ -89,11 +97,6 @@ public class BlockWood extends BlockHFEnum<BlockWood, Wood> implements ISmashabl
 
     @Override
     public int getSortValue(ItemStack stack) {
-        Wood type = getEnumFromMeta(stack.getItemDamage());
-        if (type == BRANCH_SMALL || type == BRANCH_MEDIUM || type == BRANCH_LARGE) {
-            return CreativeSort.TOOLS - 4;
-        } else if (type == STUMP_SMALL || type == STUMP_MEDIUM || type == STUMP_LARGE) {
-            return CreativeSort.TOOLS - 3;
-        } return CreativeSort.TOOLS - 2;
+        return CreativeSort.TOOLS - 50 + stack.getItemDamage();
     }
 }

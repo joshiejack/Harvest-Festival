@@ -3,7 +3,6 @@ package joshie.harvest.npc.entity;
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.npc.INPC.Age;
-import joshie.harvest.npc.entity.ai.AbstractTask;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.relations.IRelatableProvider;
 import joshie.harvest.core.helpers.NBTHelper;
@@ -13,6 +12,7 @@ import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.NPCRegistry;
 import joshie.harvest.npc.entity.ai.AIEntityNPC;
+import joshie.harvest.npc.entity.ai.AbstractTask;
 import joshie.harvest.npc.town.TownData;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
@@ -206,7 +206,11 @@ public abstract class AbstractEntityNPC<E extends AbstractEntityNPC> extends Ent
             }
         }
 
-        super.onDeath(cause); //Kill the entity
+        if (!this.dead) {
+            this.dead = true;
+            this.getCombatTracker().reset();
+            this.worldObj.setEntityState(this, (byte)3);
+        }
     }
 
     public BlockPos getHomeCoordinates() {

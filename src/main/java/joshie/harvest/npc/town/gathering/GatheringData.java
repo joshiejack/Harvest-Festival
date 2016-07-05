@@ -22,7 +22,7 @@ public class GatheringData {
         //Remove all previous locations
         for (GatheringLocation location : previous) {
             IBlockState state = world.getBlockState(location.pos);
-            if (state.getBlock() == location.block) {
+            if (state.getBlock() == location.block && state.getBlock().getMetaFromState(state) == location.meta) {
                 if (state.getBlock().getMetaFromState(state) == location.meta) {
                     world.setBlockToAir(location.pos);
                 }
@@ -32,7 +32,7 @@ public class GatheringData {
         //Create some new spawn spots based on where we have buildings
         for (TownBuilding building : buildings) {
             int placed = 0;
-            for (int i = 0; i < 64 && placed < 10; i++) {
+            for (int i = 0; i < 256 && placed < 10; i++) {
                 BlockPos pos = building.pos.add(32 - world.rand.nextInt(64), 4 - world.rand.nextInt(8), 32 - world.rand.nextInt(64));
                 if (world.getBlockState(pos).getBlock() == Blocks.GRASS && world.isAirBlock(pos.up())) {
                     IBlockState random = HFApi.gathering.getRandomStateForSeason(world, HFApi.calendar.getDate(world).getSeason());

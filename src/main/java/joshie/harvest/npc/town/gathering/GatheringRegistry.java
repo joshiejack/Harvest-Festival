@@ -12,16 +12,15 @@ import java.util.TreeMap;
 public class GatheringRegistry implements IGatheringRegistry {
     private final EnumMap<Season, WeightedState> gatherings = new EnumMap<>(Season.class);
 
-    public GatheringRegistry() {
-        gatherings.put(Season.SPRING, new WeightedState());
-        gatherings.put(Season.SUMMER, new WeightedState());
-        gatherings.put(Season.AUTUMN, new WeightedState());
-        gatherings.put(Season.WINTER, new WeightedState());
-    }
-
     @Override
     public void registerGathering(Season season, IBlockState state, double weight) {
-        gatherings.get(season).add(state, weight);
+        WeightedState weightedState = gatherings.get(season);
+        if (weightedState == null) {
+            weightedState = new WeightedState();
+            gatherings.put(season, weightedState);
+        }
+
+        weightedState.add(state, weight);
     }
 
     @Override

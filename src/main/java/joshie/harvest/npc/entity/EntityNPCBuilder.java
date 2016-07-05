@@ -3,6 +3,7 @@ package joshie.harvest.npc.entity;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.buildings.Building;
 import joshie.harvest.buildings.BuildingStage;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.entity.ai.TaskHeadToBlock;
@@ -20,15 +21,24 @@ public class EntityNPCBuilder extends EntityNPCShopkeeper {
 
     public EntityNPCBuilder(World world, INPC npc) {
         super(world, (NPC) npc);
+        if (!world.isRemote) {
+            HFTrackers.getTownTracker(world).addBuilder(this);
+        }
     }
 
     public EntityNPCBuilder(World world) {
         super(world, (NPC) HFNPCs.BUILDER);
+        if (!world.isRemote) {
+            HFTrackers.getTownTracker(world).addBuilder(this);
+        }
     }
 
     public EntityNPCBuilder(EntityNPCBuilder entity) {
         super(entity);
         building = entity.building;
+        if (!worldObj.isRemote) {
+            HFTrackers.getTownTracker(entity.worldObj).addBuilder(this);
+        }
     }
 
     @Override

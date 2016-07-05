@@ -10,12 +10,8 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.Callable;
 
 public class TownTrackerServer extends TownTracker {
@@ -23,10 +19,23 @@ public class TownTrackerServer extends TownTracker {
     private final Cache<BlockPos, EntityNPCBuilder> closestBuilder = CacheBuilder.newBuilder().build();
     private final HashMap<UUID, TownData> uuidMap = new HashMap<>();
     private Set<TownDataServer> townData = new HashSet<>();
+    private Set<EntityNPCBuilder> builders = new HashSet<>();
 
     public void newDay() {
         for (TownDataServer town: townData) {
             town.newDay(getWorld());
+        }
+    }
+
+    @Override
+    public void addBuilder(EntityNPCBuilder npc) {
+        builders.add(npc);
+        //Update the list, Removing any that are actually dead
+        Iterator<EntityNPCBuilder> it = builders.iterator();
+        while (it.hasNext()) {
+            if (!it.next().isEntityAlive()) {
+                it.remove();
+            }
         }
     }
 
@@ -51,14 +60,15 @@ public class TownTrackerServer extends TownTracker {
             return closestBuilder.get(pos, new Callable<EntityNPCBuilder>() {
                 @Override
                 public EntityNPCBuilder call() throws Exception {
-                    World world = player.worldObj;
                     EntityNPCBuilder builder = null;
                     double thatNPCDistance = Double.MAX_VALUE;
-                    for (Entity entity: world.loadedEntityList) {
+                    //Attempt to grab the loaded entity first
+                    for (Entity entity: builders) {
                         if (entity instanceof EntityNPCBuilder && ((EntityNPCBuilder)entity).getHomeTown() == town) {
                             double thisNPCDistance = town.getTownCentre().distanceSqToCenter(entity.posX, entity.posY, entity.posZ);
                             if (builder == null || thisNPCDistance < thatNPCDistance) {
                                 builder = (EntityNPCBuilder) entity;
+                                thatNPCDistance = thisNPCDistance;
                             }
                         }
                     }

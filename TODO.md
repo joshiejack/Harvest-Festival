@@ -46,7 +46,6 @@
 
 ### To Check
 - Cursed Tools are giving cursed effects - J
-- Gathering is saving
 
 ### To Fix
 - Location of the flower in the spring season overlay - Y
@@ -75,7 +74,6 @@
 
 ### Models + Textures
 - HarvestChicken - J
-- Make Small/Medium/Large Incubator models by combining incubator with nest
 
 ### Questing Tasks
 - Spawning the NPC Builder Quest

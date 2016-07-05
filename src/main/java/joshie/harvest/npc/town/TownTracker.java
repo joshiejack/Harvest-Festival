@@ -28,4 +28,6 @@ public abstract class TownTracker extends HFTracker {
     }
 
     public void newDay() {}
+
+    public void addBuilder(EntityNPCBuilder npc) {}
 }

@@ -27,7 +27,7 @@ public class GatheringLocation {
 
     public void writeToNBT(NBTTagCompound tag) {
         NBTHelper.writeBlockPos("Location", tag, pos);
-        tag.setString("Block", Block.REGISTRY.getNameForObject(block).getResourcePath());
+        tag.setString("Block", Block.REGISTRY.getNameForObject(block).toString());
         tag.setInteger("Meta", meta);
     }
 }

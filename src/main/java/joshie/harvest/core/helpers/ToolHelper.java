@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.BRUSH;
+import static joshie.harvest.animals.item.ItemAnimalTool.Tool.CHICKEN_FEED;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.MILKER;
 
 public class ToolHelper {
@@ -38,5 +39,9 @@ public class ToolHelper {
 
     public static boolean isEgg(ItemStack heldItem) {
         return heldItem.getItem() == HFAnimals.EGG;
+    }
+
+    public static boolean isChickenFeed(ItemStack stack) {
+        return HFAnimals.TOOLS.getEnumFromStack(stack) == CHICKEN_FEED;
     }
 }

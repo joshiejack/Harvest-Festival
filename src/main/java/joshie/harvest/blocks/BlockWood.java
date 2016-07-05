@@ -40,7 +40,7 @@ public class BlockWood extends BlockHFEnum<BlockWood, Wood> implements ISmashabl
 
     public BlockWood() {
         super(Material.WOOD, Wood.class, HFTab.GATHERING);
-        setHardness(1.5F);
+        setHardness(0.5F);
         setSoundType(SoundType.WOOD);
     }
 

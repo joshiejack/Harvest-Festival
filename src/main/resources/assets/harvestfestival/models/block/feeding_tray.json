@@ -1,6 +1,7 @@
 {
 "textures": {
-    "texture": "models/feeding_tray_filled"
+    "particle": "harvestfestival:models/feeding_tray_filled",
+    "texture": "harvestfestival:models/feeding_tray_filled"
 },
 "elements": [ 
 {

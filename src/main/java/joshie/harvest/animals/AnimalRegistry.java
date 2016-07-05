@@ -35,6 +35,15 @@ public class AnimalRegistry implements IAnimalHandler {
     }
 
     @Override
+    public boolean canAnimalEatFoodType(IAnimalTracked tracked, AnimalFoodType type) {
+        for (AnimalFoodType t: tracked.getType().getFoodTypes()) {
+            if (t == type) return true;
+        }
+
+        return false;
+    }
+
+    @Override
     public boolean canEat(ItemStack stack, AnimalFoodType... types) {
         for (AbstractItemHolder holder: keyMap.get(stack.getItem())) {
             if (holder.matches(stack)) {

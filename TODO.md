@@ -52,6 +52,7 @@
 - Syncing Town Information to Players
 - When you can purchase buildings from a town
 - Day, Season, Year Commands
+- Crash when putting things in the feeder
 
 ### Rendering
 - Animate Oven to open/close when putting things in/out

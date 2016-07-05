@@ -26,16 +26,13 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.EnumMap;
-
-import static joshie.harvest.animals.blocks.BlockSizedStorage.Fill.*;
+import static joshie.harvest.animals.blocks.BlockSizedStorage.Fill.EMPTY;
 
 public class BlockSizedStorage extends BlockHFEnumRotatableTile<BlockSizedStorage, SizedStorage> {
     private static final AxisAlignedBB NEST_NORTH_AABB = new AxisAlignedBB(0.05D, 0D, 0.3D, 0.95D, 0.7D, 0.95);
     private static final AxisAlignedBB NEST_SOUTH_AABB = new AxisAlignedBB(0.05D, 0D, 0.05D, 0.95D, 0.7D, 0.7);
     private static final AxisAlignedBB NEST_WEST_AABB = new AxisAlignedBB(0.3D, 0D, 0.05D, 0.95D, 0.7D, 0.95);
     private static final AxisAlignedBB NEST_EAST_AABB = new AxisAlignedBB(0.05D, 0D, 0.05D, 0.7D, 0.7D, 0.95);
-
     public static final PropertyEnum<Fill> FILL = PropertyEnum.create("fill", Fill.class);
 
     public enum SizedStorage implements IStringSerializable {
@@ -50,7 +47,9 @@ public class BlockSizedStorage extends BlockHFEnumRotatableTile<BlockSizedStorag
     public enum Fill implements IStringSerializable {
         EMPTY, SMALL, MEDIUM, LARGE;
 
-        public static final EnumMap<Size, Fill> conversion = new EnumMap(Size.class);
+        public static Fill getFillFromSize(Size size) {
+            return size == Size.SMALL ? SMALL : size == Size.MEDIUM ? MEDIUM : LARGE;
+        }
 
         @Override
         public String getName() {
@@ -58,17 +57,11 @@ public class BlockSizedStorage extends BlockHFEnumRotatableTile<BlockSizedStorag
         }
     }
 
-    static {
-        conversion.put(Size.SMALL, SMALL);
-        conversion.put(Size.MEDIUM, MEDIUM);
-        conversion.put(Size.LARGE, LARGE);
-    }
-
     public BlockSizedStorage() {
         super(Material.WOOD, SizedStorage.class);
         setHardness(1.5F);
         setSoundType(SoundType.WOOD);
-        setDefaultState(getDefaultState().withProperty(FILL, Fill.EMPTY));
+        setDefaultState(getDefaultState().withProperty(FILL, EMPTY));
     }
 
     @Override
@@ -85,25 +78,20 @@ public class BlockSizedStorage extends BlockHFEnumRotatableTile<BlockSizedStorag
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
         IFaceable tile = (IFaceable) world.getTileEntity(pos);
-        SizedStorage storage = getEnumFromState(state);
-        switch (storage) {
-            case INCUBATOR: {
-                if (tile != null) {
-                    switch (tile.getFacing()) {
-                        case NORTH:
-                            return NEST_NORTH_AABB;
-                        case SOUTH:
-                            return NEST_SOUTH_AABB;
-                        case WEST:
-                            return NEST_WEST_AABB;
-                        case EAST:
-                            return NEST_EAST_AABB;
-                    }
-                } else return FULL_BLOCK_AABB;
+        if (tile != null) {
+            switch (tile.getFacing()) {
+                case NORTH:
+                    return NEST_NORTH_AABB;
+                case SOUTH:
+                    return NEST_SOUTH_AABB;
+                case WEST:
+                    return NEST_WEST_AABB;
+                case EAST:
+                    return NEST_EAST_AABB;
+                default:
+                    return FULL_BLOCK_AABB;
             }
-            default:
-                return FULL_BLOCK_AABB;
-        }
+        } else return FULL_BLOCK_AABB;
     }
 
     @Override
@@ -121,20 +109,14 @@ public class BlockSizedStorage extends BlockHFEnumRotatableTile<BlockSizedStorag
 
     @Override
     public TileEntity createTileEntity(World world, IBlockState state) {
-        SizedStorage storage = getEnumFromState(state);
-        switch (storage) {
-            case INCUBATOR:
-                return new TileIncubator();
-            default:
-                return null;
-        }
+        return new TileIncubator();
     }
 
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
         TileFillableSized tile = (TileFillableSized) world.getTileEntity(pos);
         boolean isFilled = tile.getFillAmount() > 0;
-        IBlockState theState = isFilled ? state.withProperty(FILL, conversion.get(tile.getSize())) : state.withProperty(FILL, EMPTY);
+        IBlockState theState = isFilled ? state.withProperty(FILL, Fill.getFillFromSize(tile.getSize())) : state.withProperty(FILL, EMPTY);
         return super.getActualState(theState, world, pos);
     }
 

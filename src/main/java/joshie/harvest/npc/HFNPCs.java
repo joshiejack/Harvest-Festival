@@ -12,10 +12,7 @@ import joshie.harvest.npc.entity.EntityNPCBuilder;
 import joshie.harvest.npc.entity.EntityNPCShopkeeper;
 import joshie.harvest.npc.entity.EntityNPCVillager;
 import joshie.harvest.npc.render.RenderNPC;
-import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -119,11 +116,6 @@ public class HFNPCs {
     }
 
     private static <E extends AbstractEntityNPC> void registerNPCRendering(Class<E> entityClass) {
-        RenderingRegistry.registerEntityRenderingHandler(entityClass, new IRenderFactory<E>() {
-            @Override
-            public Render<? super E> createRenderFor(RenderManager manager) {
-                return new RenderNPC(manager);
-            }
-        });
+        RenderingRegistry.registerEntityRenderingHandler(entityClass, RenderNPC :: new);
     }
 }

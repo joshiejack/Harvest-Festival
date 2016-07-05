@@ -146,7 +146,7 @@ public class TileTrough extends TileFillable {
     }
 
     private boolean hasRoomAndFill() {
-        if (fillAmount < (7 * size)) {
+        if (fillAmount < (2 * size)) {
             setFilled(getFillAmount() + 1);
             return true;
         }
@@ -167,8 +167,9 @@ public class TileTrough extends TileFillable {
     public void newDay() {
         for (EntityAnimal animal: EntityHelper.getEntities(EntityAnimal.class, getWorld(), 32D)) {
             if (animal instanceof IAnimalTracked) { //Feed all the local animals
-                if (hasFoodAndFeed()) {
-                    ((IAnimalTracked) animal).getData().feed(null);
+                IAnimalTracked tracked = ((IAnimalTracked) animal);
+                if (HFApi.animals.canAnimalEatFoodType(tracked, GRASS) && hasFoodAndFeed()) {
+                    tracked.getData().feed(null);
                 } else break;
             }
         }

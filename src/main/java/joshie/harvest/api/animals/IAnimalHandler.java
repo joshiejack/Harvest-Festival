@@ -4,6 +4,11 @@ import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.item.ItemStack;
 
 public interface IAnimalHandler {
+    /** Call this to check if the animal can eat a specific type of food
+     *  @param tracked      the animal
+     *  @param type         the food type **/
+    boolean canAnimalEatFoodType(IAnimalTracked tracked, AnimalFoodType type);
+
     /** Returns true if the item type matches any of the food types **/
     boolean canEat(ItemStack held, AnimalFoodType... types);
 

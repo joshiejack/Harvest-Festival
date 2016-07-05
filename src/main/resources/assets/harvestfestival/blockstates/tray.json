@@ -1,0 +1,15 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-block",
+    "model": "cube_all"
+  },
+  "variants": {
+    "tray=nest_empty":  { "model": "harvestfestival:nest" },
+    "tray=small_chicken":  { "model": "harvestfestival:nest_small" },
+    "tray=medium_chicken": { "model": "harvestfestival:nest_medium" },
+    "tray=large_chicken": { "model": "harvestfestival:nest_large" },
+    "tray=feeder_empty":  { "model": "harvestfestival:feeding_tray", "textures": { "texture": "harvestfestival:models/feeding_tray"} },
+    "tray=feeder_full":  { "model": "harvestfestival:feeding_tray" }
+  }
+}

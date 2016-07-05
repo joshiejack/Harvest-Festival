@@ -123,7 +123,7 @@ public class HFBuildings {
 
         //Poultry Chest
         /*ChestGenHooks.addItem(LootStrings.POULTRY_CHEST, new WeightedRandomChestContent(new ItemStack(HFItems.general, 1, ItemGeneral.CHICKEN_FEED), 8, 24, 10));
-        ChestGenHooks.addItem(LootStrings.POULTRY_CHEST, new WeightedRandomChestContent(new ItemStack(HFItems.treats, 1, ItemTreat.CHICKEN), 1, 2, 5));
+        ChestGenHooks.addItem(LootStrings.POULTRY_CHEST, new WeightedRandomChestContent(new ItemStack(HFItems.treats, 1, ItemTreat.SIZED), 1, 2, 5));
         ChestGenHooks.addItem(LootStrings.POULTRY_CHEST, new WeightedRandomChestContent(new ItemStack(HFItems.egg, 1, 0), 1, 2, 5));*/
 
         //Mining Frame

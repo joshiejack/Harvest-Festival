@@ -1,4 +1,4 @@
-package joshie.harvest.items;
+package joshie.harvest.core.util.base;
 
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.api.core.ILevelable;

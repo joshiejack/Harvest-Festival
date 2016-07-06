@@ -1,4 +1,4 @@
-package joshie.harvest.npc.town;
+package joshie.harvest.town;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;

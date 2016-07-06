@@ -2,7 +2,7 @@ package joshie.harvest.core.handlers;
 
 import joshie.harvest.animals.AnimalTrackerClient;
 import joshie.harvest.calendar.CalendarClient;
-import joshie.harvest.npc.town.TownTrackerClient;
+import joshie.harvest.town.TownTrackerClient;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;

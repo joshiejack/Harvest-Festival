@@ -5,7 +5,7 @@ import gnu.trove.map.hash.TIntObjectHashMap;
 import joshie.harvest.animals.AnimalTracker;
 import joshie.harvest.calendar.Calendar;
 import joshie.harvest.core.helpers.UUIDHelper;
-import joshie.harvest.npc.town.TownTracker;
+import joshie.harvest.town.TownTracker;
 import joshie.harvest.player.PlayerTracker;
 import joshie.harvest.player.PlayerTrackerClient;
 import joshie.harvest.player.PlayerTrackerServer;

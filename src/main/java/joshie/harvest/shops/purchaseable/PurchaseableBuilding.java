@@ -6,7 +6,7 @@ import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.helpers.TownHelper;
-import joshie.harvest.npc.town.TownData;
+import joshie.harvest.town.TownData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;

@@ -1,7 +1,7 @@
 package joshie.harvest.npc.gui;
 
 import joshie.harvest.HarvestFestival;
-import joshie.harvest.api.HFApi;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.AbstractEntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,7 +21,7 @@ public class ContainerNPCChat extends ContainerNPCBase {
     public void onContainerClosed(EntityPlayer player) {
         super.onContainerClosed(player);
         if (!player.worldObj.isRemote) {
-            HFApi.relations.talkTo(player, npc.getRelatable());
+            HFTrackers.getPlayerTracker(player).getRelationships().talkTo(player, npc.getRelatable());
         }
 
         //Kill the goddess

@@ -3,7 +3,7 @@ package joshie.harvest.core.handlers;
 import joshie.harvest.animals.AnimalTrackerServer;
 import joshie.harvest.calendar.CalendarServer;
 import joshie.harvest.core.HFSavedData;
-import joshie.harvest.npc.town.TownTrackerServer;
+import joshie.harvest.town.TownTrackerServer;
 import net.minecraft.world.World;
 
 public class ServerHandler extends SideHandler {

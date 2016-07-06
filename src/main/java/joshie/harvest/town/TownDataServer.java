@@ -1,8 +1,8 @@
-package joshie.harvest.npc.town;
+package joshie.harvest.town;
 
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.core.helpers.NBTHelper;
-import joshie.harvest.npc.town.gathering.GatheringData;
+import joshie.harvest.gathering.GatheringData;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ResourceLocation;

@@ -9,10 +9,9 @@ import joshie.harvest.api.core.IShippingRegistry;
 import joshie.harvest.api.core.ISizeableRegistry;
 import joshie.harvest.api.crops.ICropRegistry;
 import joshie.harvest.api.gathering.IGatheringRegistry;
-import joshie.harvest.api.npc.gift.IGiftRegistry;
 import joshie.harvest.api.npc.INPCRegistry;
+import joshie.harvest.api.player.IPlayerHelper;
 import joshie.harvest.api.quest.IQuestRegistry;
-import joshie.harvest.api.relations.IRelationships;
 import joshie.harvest.api.shops.IShopRegistry;
 
 /**
@@ -23,14 +22,13 @@ public class HFApi {
     public static IBuildingRegistry buildings = null;
     public static ICalendar calendar = null;
     public static ICropRegistry crops = null;
-    public static IDailyTickableRegistry tickable = null;
     public static IFoodRegistry cooking = null;
     public static IGatheringRegistry gathering = null;
-    public static IGiftRegistry gifts = null;
     public static INPCRegistry npc = null;
+    public static IPlayerHelper player = null;
     public static IShopRegistry shops = null;
     public static IQuestRegistry quests = null;
-    public static IRelationships relations = null;
     public static IShippingRegistry shipping = null;
     public static ISizeableRegistry sizeable = null;
+    public static IDailyTickableRegistry tickable = null;
 }

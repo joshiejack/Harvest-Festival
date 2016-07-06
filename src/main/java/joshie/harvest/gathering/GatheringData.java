@@ -1,7 +1,7 @@
-package joshie.harvest.npc.town.gathering;
+package joshie.harvest.gathering;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.npc.town.TownBuilding;
+import joshie.harvest.town.TownBuilding;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;

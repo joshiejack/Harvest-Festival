@@ -4,9 +4,11 @@ import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.npc.INPC;
-import joshie.harvest.api.npc.INPC.Age;
-import joshie.harvest.api.npc.INPC.Gender;
+import joshie.harvest.api.npc.INPCRegistry.Age;
+import joshie.harvest.api.npc.INPCRegistry.Gender;
 import joshie.harvest.core.helpers.generic.RegistryHelper;
+import joshie.harvest.npc.items.ItemNPCSpawner;
+import joshie.harvest.gathering.items.ItemNPCTool;
 import joshie.harvest.npc.entity.AbstractEntityNPC;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import joshie.harvest.npc.entity.EntityNPCShopkeeper;
@@ -19,12 +21,12 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import static joshie.harvest.api.calendar.Season.*;
-import static joshie.harvest.api.npc.INPC.Age.*;
-import static joshie.harvest.api.npc.INPC.Gender.FEMALE;
-import static joshie.harvest.api.npc.INPC.Gender.MALE;
+import static joshie.harvest.api.npc.INPCRegistry.Age.*;
+import static joshie.harvest.api.npc.INPCRegistry.Gender.FEMALE;
+import static joshie.harvest.api.npc.INPCRegistry.Gender.MALE;
 import static joshie.harvest.buildings.HFBuildings.*;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
-import static joshie.harvest.npc.town.TownData.*;
+import static joshie.harvest.town.TownData.*;
 
 public class HFNPCs {
     public static final NPC NULL_NPC = new NPC();
@@ -49,6 +51,7 @@ public class HFNPCs {
 
     //Item
     public static final ItemNPCSpawner SPAWNER_NPC = new ItemNPCSpawner().setUnlocalizedName("spawner.npc");
+    public static final ItemNPCTool TOOLS = new ItemNPCTool().setUnlocalizedName("tool.npc");
 
     public static void preInit() {
         EntityRegistry.registerModEntity(EntityNPCVillager.class, "NPC", 0, HarvestFestival.instance, 80, 3, true);

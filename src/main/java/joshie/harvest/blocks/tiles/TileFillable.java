@@ -14,7 +14,7 @@ public abstract class TileFillable extends TileDaily implements IDailyTickable {
         return fillAmount;
     }
 
-    public void add(int amount) {
+    public void adjustFill(int amount) {
         setFilled(fillAmount + amount);
     }
 

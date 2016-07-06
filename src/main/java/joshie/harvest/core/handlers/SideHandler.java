@@ -2,7 +2,7 @@ package joshie.harvest.core.handlers;
 
 import joshie.harvest.animals.AnimalTracker;
 import joshie.harvest.calendar.Calendar;
-import joshie.harvest.npc.town.TownTracker;
+import joshie.harvest.town.TownTracker;
 import net.minecraft.world.World;
 
 public abstract class SideHandler {

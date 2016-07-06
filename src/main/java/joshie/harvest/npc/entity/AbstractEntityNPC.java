@@ -2,7 +2,7 @@ package joshie.harvest.npc.entity;
 
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.HarvestFestival;
-import joshie.harvest.api.npc.INPC.Age;
+import joshie.harvest.api.npc.INPCRegistry;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.relations.IRelatableProvider;
 import joshie.harvest.core.helpers.NBTHelper;
@@ -11,9 +11,8 @@ import joshie.harvest.core.helpers.TownHelper;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.NPCRegistry;
-import joshie.harvest.npc.entity.ai.AIEntityNPC;
-import joshie.harvest.npc.entity.ai.AbstractTask;
-import joshie.harvest.npc.town.TownData;
+import joshie.harvest.npc.entity.ai.*;
+import joshie.harvest.town.TownData;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -105,7 +104,7 @@ public abstract class AbstractEntityNPC<E extends AbstractEntityNPC> extends Ent
 
     @Override
     public void onUpdate() {
-        if (!joshie.harvest.core.config.NPC.freezeNPC) {
+        if (!joshie.harvest.core.config.NPC.FREZZE_NPCS) {
             super.onUpdate();
         }
     }
@@ -120,7 +119,7 @@ public abstract class AbstractEntityNPC<E extends AbstractEntityNPC> extends Ent
         tasks.addTask(2, new AIEntityNPC(this));
         tasks.addTask(3, new EntityAIRestrictOpenDoor(this));
         tasks.addTask(4, new EntityAIOpenDoor(this, true));
-        tasks.addTask(8, new EntityAIPlay(this, 0.32D));
+        tasks.addTask(8, new joshie.harvest.npc.entity.ai.EntityAIPlay(this, 0.32D));
         tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 3.0F, 1.0F));
         tasks.addTask(9, new EntityAIWatchClosest(this, AbstractEntityNPC.class, 5.0F, 0.02F));
         tasks.addTask(9, new EntityAIWander(this, 0.6D));
@@ -180,7 +179,7 @@ public abstract class AbstractEntityNPC<E extends AbstractEntityNPC> extends Ent
 
     @Override
     public boolean isChild() {
-        return npc.getAge() == Age.CHILD;
+        return npc.getAge() == INPCRegistry.Age.CHILD;
     }
 
     @Override

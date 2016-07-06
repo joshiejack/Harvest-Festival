@@ -1,6 +1,8 @@
 package joshie.harvest.animals.blocks;
 
 import joshie.harvest.animals.blocks.BlockTrough.Trough;
+import joshie.harvest.api.HFApi;
+import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.animals.IAnimalFeeder;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.blocks.tiles.TileFillable;
@@ -153,11 +155,11 @@ public class BlockTrough extends BlockHFEnumRotatableMeta<BlockTrough, Trough> i
     }
 
     @Override
-    public boolean canFeedAnimal(IAnimalTracked tracked, World world, BlockPos pos, IBlockState state) {
-        if (getEnumFromState(state) == WOOD) {
-            TileTrough master = ((TileTrough)world.getTileEntity(pos)).getMaster();
+    public boolean feedAnimal(IAnimalTracked tracked, World world, BlockPos pos, IBlockState state) {
+        if (HFApi.animals.canAnimalEatFoodType(tracked, AnimalFoodType.GRASS)) {
+            TileTrough master = ((TileTrough) world.getTileEntity(pos)).getMaster();
             if (master.getFillAmount() > 0) {
-                master.add(-1);
+                master.adjustFill(-1);
                 //Good ol master block
                 return true;
             }

@@ -1,4 +1,4 @@
-package joshie.harvest.npc.town.gathering;
+package joshie.harvest.gathering;
 
 import joshie.harvest.core.helpers.NBTHelper;
 import net.minecraft.block.Block;

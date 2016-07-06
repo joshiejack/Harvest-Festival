@@ -2,8 +2,8 @@ package joshie.harvest.core.helpers;
 
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
-import joshie.harvest.npc.town.TownData;
-import joshie.harvest.npc.town.TownTracker;
+import joshie.harvest.town.TownData;
+import joshie.harvest.town.TownTracker;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.BlockPos;

@@ -390,7 +390,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
     }
 
     @Override
-    public boolean canFeedAnimal(IAnimalTracked tracked, World world, BlockPos pos, IBlockState state) {
+    public boolean feedAnimal(IAnimalTracked tracked, World world, BlockPos pos, IBlockState state) {
         if (AnimalHelper.eatsGrass(tracked)) {
             ICropData crop = HFApi.crops.getCropAtLocation(world, pos);
             ICrop theCrop = crop.getCrop();

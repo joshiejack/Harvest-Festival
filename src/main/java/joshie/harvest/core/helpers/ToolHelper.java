@@ -1,15 +1,16 @@
 package joshie.harvest.core.helpers;
 
 import joshie.harvest.animals.HFAnimals;
-import joshie.harvest.items.HFItems;
-import joshie.harvest.items.ItemBaseTool;
-import joshie.harvest.items.ItemGeneral;
+import joshie.harvest.cooking.HFCooking;
+import joshie.harvest.core.util.base.ItemBaseTool;
+import joshie.harvest.npc.HFNPCs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.BRUSH;
-import static joshie.harvest.animals.item.ItemAnimalTool.Tool.CHICKEN_FEED;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.MILKER;
+import static joshie.harvest.cooking.items.ItemIngredients.Ingredient.OIL;
+import static joshie.harvest.gathering.items.ItemNPCTool.NPCTool.BLUE_FEATHER;
 
 public class ToolHelper {
     public static boolean isMilker(ItemStack stack) {
@@ -21,7 +22,15 @@ public class ToolHelper {
     }
 
     public static boolean isBlueFeather(ItemStack stack) {
-        return stack.getItem() == HFItems.GENERAL && stack.getItemDamage() == ItemGeneral.BLUE_FEATHER;
+        return HFNPCs.TOOLS.getEnumFromStack(stack) == BLUE_FEATHER;
+    }
+
+    public static boolean isEgg(ItemStack heldItem) {
+        return heldItem.getItem() == HFAnimals.EGG;
+    }
+
+    public static boolean isOil(ItemStack stack) {
+        return HFCooking.INGREDIENTS.getEnumFromStack(stack) == OIL;
     }
 
     public static void levelTool(ItemStack stack) {
@@ -35,13 +44,5 @@ public class ToolHelper {
             double newLevel = Math.min(100D, level + increase);
             stack.getTagCompound().setDouble("Level", newLevel);
         }
-    }
-
-    public static boolean isEgg(ItemStack heldItem) {
-        return heldItem.getItem() == HFAnimals.EGG;
-    }
-
-    public static boolean isChickenFeed(ItemStack stack) {
-        return HFAnimals.TOOLS.getEnumFromStack(stack) == CHICKEN_FEED;
     }
 }

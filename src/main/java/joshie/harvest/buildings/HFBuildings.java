@@ -12,6 +12,7 @@ import joshie.harvest.buildings.loader.*;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.core.helpers.ResourceLoader;
 import joshie.harvest.core.util.base.FMLDefinition;
+import joshie.harvest.buildings.items.ItemCheat;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -27,6 +28,7 @@ import org.apache.logging.log4j.Level;
 public class HFBuildings {
     public static final ItemBuilding STRUCTURES = new ItemBuilding().setUnlocalizedName("structures");
     public static final ItemBlueprint BLUEPRINTS = new ItemBlueprint().setUnlocalizedName("blueprints");
+    public static final ItemCheat CHEAT = new ItemCheat().setUnlocalizedName("cheat");
 
     public static final Building null_building = new Building();
     public static final IBuilding BARN = registerBuilding("barn", 3000L, 160, 0).setRequirements("blacksmith");
@@ -43,6 +45,7 @@ public class HFBuildings {
     public static final IBuilding POULTRY_FARM = registerBuilding("poultryFarm", 2000L, 160, 0).setRequirements("blacksmith").setOffsetY(0);
     public static final IBuilding SUPERMARKET = registerBuilding("supermarket", 1280L, 512, 320).setRequirements("carpenter").setOffsetY(-10).setTickTime(5);
     public static final IBuilding TOWNHALL = registerBuilding("townhall", 16400L, 768, 256).setRequirements("miningHill", "miningHut", "goddessPond");
+
 
     @SideOnly(Side.CLIENT)
     private static FMLDefinition definition;

@@ -5,7 +5,7 @@ import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.Placeable.ConstructionStage;
 import joshie.harvest.core.helpers.TownHelper;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
-import joshie.harvest.npc.town.TownData;
+import joshie.harvest.town.TownData;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.ResourceLocation;

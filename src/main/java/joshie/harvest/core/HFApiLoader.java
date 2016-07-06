@@ -8,10 +8,9 @@ import joshie.harvest.cooking.FoodRegistry;
 import joshie.harvest.core.handlers.ShippingRegistry;
 import joshie.harvest.core.handlers.SizeableRegistry;
 import joshie.harvest.crops.CropRegistry;
+import joshie.harvest.gathering.GatheringRegistry;
 import joshie.harvest.npc.NPCRegistry;
-import joshie.harvest.npc.gift.GiftRegistry;
-import joshie.harvest.npc.town.gathering.GatheringRegistry;
-import joshie.harvest.player.relationships.RelationshipHelper;
+import joshie.harvest.player.PlayerHelper;
 import joshie.harvest.quests.QuestRegistry;
 import joshie.harvest.shops.ShopRegistry;
 
@@ -24,11 +23,10 @@ public class HFApiLoader {
         HFApi.crops = new CropRegistry();
         HFApi.cooking = new FoodRegistry();
         HFApi.gathering = new GatheringRegistry();
-        HFApi.gifts = new GiftRegistry();
         HFApi.npc = new NPCRegistry();
+        HFApi.player = new PlayerHelper();
         HFApi.shops = new ShopRegistry();
         HFApi.quests = new QuestRegistry();
-        HFApi.relations = new RelationshipHelper();
         HFApi.shipping = new ShippingRegistry();
         HFApi.sizeable = new SizeableRegistry();
         HFApi.tickable = new HFDailyTickable();

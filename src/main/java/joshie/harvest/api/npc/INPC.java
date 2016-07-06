@@ -2,6 +2,8 @@ package joshie.harvest.api.npc;
 
 import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.api.calendar.ICalendarDate;
+import joshie.harvest.api.npc.INPCRegistry.Age;
+import joshie.harvest.api.npc.INPCRegistry.Gender;
 import joshie.harvest.api.npc.gift.IGiftHandler;
 import joshie.harvest.api.npc.gift.IGiftHandler.Quality;
 import joshie.harvest.api.relations.IRelatable;
@@ -75,11 +77,4 @@ public interface INPC extends IRelatable {
     /** Returns true if this npc is a builder **/
     boolean isBuilder();
 
-    enum Gender {
-        MALE, FEMALE
-    }
-
-    enum Age {
-        CHILD, ADULT, ELDER
-    }
 }

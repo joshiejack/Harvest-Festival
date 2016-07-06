@@ -4,7 +4,7 @@ import joshie.harvest.animals.AnimalTrackerServer;
 import joshie.harvest.calendar.CalendarServer;
 import joshie.harvest.core.handlers.TickDailyServer;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.npc.town.TownTrackerServer;
+import joshie.harvest.town.TownTrackerServer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldSavedData;

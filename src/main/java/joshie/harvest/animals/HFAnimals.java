@@ -87,7 +87,6 @@ public class HFAnimals {
             }
         });
 
-
         RegistryHelper.registerEntityRendererItem(ANIMAL.getStackFromEnum(COW), new ModelHarvestCow());
         RegistryHelper.registerEntityRendererItem(ANIMAL.getStackFromEnum(SHEEP), new ModelHarvestSheep());
     }

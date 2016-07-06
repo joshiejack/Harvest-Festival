@@ -1,5 +1,6 @@
-package joshie.harvest.npc.entity;
+package joshie.harvest.npc.entity.ai;
 
+import joshie.harvest.npc.entity.AbstractEntityNPC;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.RandomPositionGenerator;

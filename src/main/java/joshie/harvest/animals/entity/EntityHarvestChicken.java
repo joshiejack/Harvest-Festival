@@ -23,11 +23,13 @@ public class EntityHarvestChicken extends EntityChicken implements IAnimalTracke
         type = HFApi.animals.getType(this);
         data = HFApi.animals.newData(this);
         timeUntilNextEgg = Integer.MAX_VALUE;
+        tasks.addTask(3, new EntityAIEat(this));
+        tasks.addTask(3, new EntityLayEgg(this));
     }
 
     @Override
     public IRelatableDataHandler getDataHandler() {
-        return HFApi.relations.getDataHandler("entity");
+        return HFApi.player.getRelationshipHelper().getDataHandler("entity");
     }
 
     @Override

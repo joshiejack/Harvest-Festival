@@ -8,6 +8,7 @@ import joshie.harvest.api.animals.IAnimalType;
 import joshie.harvest.api.animals.IMilkable;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.relations.IRelatableDataHandler;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.SizeableHelper;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.passive.EntityCow;
@@ -33,7 +34,7 @@ public class EntityHarvestCow extends EntityCow implements IAnimalTracked, IEnti
 
     @Override
     public IRelatableDataHandler getDataHandler() {
-        return HFApi.relations.getDataHandler("entity");
+        return HFApi.player.getRelationshipHelper().getDataHandler("entity");
     }
 
     @Override
@@ -89,7 +90,7 @@ public class EntityHarvestCow extends EntityCow implements IAnimalTracked, IEnti
                 playSound(s, 2F, getSoundPitch());
             }
 
-            HFApi.relations.talkTo(player, this);
+            HFTrackers.getPlayerTracker(player).getRelationships().talkTo(player, this);
             return true;
         }
 

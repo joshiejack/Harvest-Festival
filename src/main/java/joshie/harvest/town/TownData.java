@@ -1,4 +1,4 @@
-package joshie.harvest.npc.town;
+package joshie.harvest.town;
 
 import joshie.harvest.core.util.Direction;
 import joshie.harvest.buildings.Building;

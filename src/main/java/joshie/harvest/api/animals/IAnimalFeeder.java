@@ -6,5 +6,11 @@ import net.minecraft.world.World;
 
 /** Implement this on blocks that are able to feed animals **/
 public interface IAnimalFeeder {
-    boolean canFeedAnimal(IAnimalTracked tracked, World world, BlockPos pos, IBlockState state);
+    /** Call this to feed the animal, returns true if it was possible
+     * @param tracked       the animal to be fed
+     * @param world         the world object
+     * @param pos           the position of the feeder
+     * @param state         the state of the block
+     * @return  if the animal was fed */
+    boolean feedAnimal(IAnimalTracked tracked, World world, BlockPos pos, IBlockState state);
 }

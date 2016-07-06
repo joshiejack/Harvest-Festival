@@ -6,6 +6,9 @@ import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.npc.IConditionalGreeting;
 import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.npc.INPCRegistry;
+import joshie.harvest.api.npc.INPCRegistry.Age;
+import joshie.harvest.api.npc.INPCRegistry.Gender;
 import joshie.harvest.api.npc.NPCBuildEvent;
 import joshie.harvest.api.npc.gift.IGiftHandler;
 import joshie.harvest.api.npc.gift.IGiftHandler.Quality;
@@ -25,8 +28,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static joshie.harvest.api.npc.INPC.Age.ADULT;
-import static joshie.harvest.api.npc.INPC.Age.CHILD;
+import static joshie.harvest.api.npc.INPCRegistry.Age.ADULT;
+import static joshie.harvest.api.npc.INPCRegistry.Age.CHILD;
 import static joshie.harvest.core.lib.HFModInfo.GIFTPATH;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
@@ -50,7 +53,7 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
     private boolean alex;
 
     public NPC() {
-        this(new ResourceLocation(MODID, "null"), Gender.MALE, Age.ADULT, HFApi.calendar.newDate(1, Season.SPRING, 1), 0, 0);
+        this(new ResourceLocation(MODID, "null"), INPCRegistry.Gender.MALE, INPCRegistry.Age.ADULT, HFApi.calendar.newDate(1, Season.SPRING, 1), 0, 0);
     }
 
     public NPC(ResourceLocation resource, Gender gender, Age age, ICalendarDate birthday, int insideColor, int outsideColor) {
@@ -90,7 +93,7 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
 
     @Override //IRelatable
     public IRelatableDataHandler getDataHandler() {
-        return HFApi.relations.getDataHandler("npc");
+        return HFApi.player.getRelationshipHelper().getDataHandler("npc");
     }
 
     @Override

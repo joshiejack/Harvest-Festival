@@ -129,7 +129,7 @@ public class TileTrough extends TileFillable {
             TileTrough master = getMaster();
             if (master != null) {
                 boolean processed = false;
-                for (int i = 0; i < 7 && held.stackSize > 0; i++) {
+                for (int i = 0; i < 6 && held.stackSize > 0; i++) {
                     if (held.stackSize >= 1) {
                         if (master.hasRoomAndFill()) {
                             held.splitStack(1);
@@ -168,7 +168,7 @@ public class TileTrough extends TileFillable {
         for (EntityAnimal animal: EntityHelper.getEntities(EntityAnimal.class, getWorld(), 32D)) {
             if (animal instanceof IAnimalTracked) { //Feed all the local animals
                 IAnimalTracked tracked = ((IAnimalTracked) animal);
-                if (HFApi.animals.canAnimalEatFoodType(tracked, GRASS) && hasFoodAndFeed()) {
+                if (tracked.getData().isHungry() && HFApi.animals.canAnimalEatFoodType(tracked, GRASS) && hasFoodAndFeed()) {
                     tracked.getData().feed(null);
                 } else break;
             }

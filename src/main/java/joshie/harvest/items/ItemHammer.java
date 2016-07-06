@@ -2,6 +2,7 @@ package joshie.harvest.items;
 
 import joshie.harvest.api.gathering.ISmashable;
 import joshie.harvest.core.HFTab;
+import joshie.harvest.core.util.base.ItemBaseTool;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;

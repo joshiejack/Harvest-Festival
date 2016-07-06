@@ -8,6 +8,7 @@ import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.animals.IAnimalType;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.core.config.Animals;
+import joshie.harvest.core.config.NPC;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.helpers.generic.EntityHelper;
@@ -86,8 +87,8 @@ public class AnimalData implements IAnimalData {
         }
 
         //Gets the adjusted relationship, 0-65k
-        int relationship = HFApi.relations.getAdjustedRelationshipValue(owner, relatable);
-        double chance = (relationship / (double) HFApi.relations.getMaximumRelationshipValue()) * 200;
+        int relationship = HFApi.player.getRelationshipHelper().getRelationship(owner, relatable);
+        double chance = (relationship / (double) NPC.MAX_FRIENDSHIP) * 200;
         chance += healthiness;
         if (chance <= 1) {
             chance = 1D;

@@ -6,7 +6,6 @@
   },
   "variants": {
     "coord_setter": [{ "textures": { "layer0": "harvestfestival:items/coord_setter" }}],
-    "code_generator": [{ "textures": { "layer0": "harvestfestival:items/code_generator" }}],
-    "npc_killer": [{ "textures": { "layer0": "harvestfestival:items/npc_killer" }}]
+    "code_generator": [{ "textures": { "layer0": "harvestfestival:items/code_generator" }}]
   }
 }

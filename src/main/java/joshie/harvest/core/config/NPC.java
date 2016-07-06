@@ -4,14 +4,14 @@ import static joshie.harvest.core.helpers.generic.ConfigHelper.getDouble;
 import static joshie.harvest.core.helpers.generic.ConfigHelper.getInteger;
 
 public class NPC {
-    public static boolean freezeNPC = false;
-    public static int maximumFriendship;
-    public static int marriageRequirement;
-    public static double townDistance;
+    public static boolean FREZZE_NPCS = false;
+    public static int MAX_FRIENDSHIP;
+    public static int MARRIAGE_REQUIREMENT;
+    public static double TOWN_DISTANCE;
 
     public static void init() {
-        maximumFriendship = getInteger("Maximum Friendship", 65535);
-        marriageRequirement = getInteger("Marriage Requirement", 60000);
-        townDistance = getDouble("Distance Between Towns", 256D);
+        MAX_FRIENDSHIP = getInteger("Maximum Friendship", 65535);
+        MARRIAGE_REQUIREMENT = getInteger("Marriage Requirement", 60000);
+        TOWN_DISTANCE = getDouble("Distance Between Towns", 256D);
     }
 }

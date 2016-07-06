@@ -10,22 +10,20 @@ import net.minecraft.item.ItemStack;
 import static joshie.harvest.api.animals.AnimalFoodType.SEED;
 
 public class TileFeeder extends TileFillable {
-
-
     @Override
     public boolean onActivated(ItemStack held) {
         if (HFApi.animals.canEat(held, SEED)) {
             boolean processed = false;
-            for (int i = 0; i < 7 && held.stackSize > 0; i++) {
+            for (int i = 0; i < 10 && held.stackSize > 0; i++) {
                 if (held.stackSize >= 1) {
                     if (hasRoomAndFill()) {
                         held.splitStack(1);
                         processed = true;
                     } else break;
                 }
-
-                return processed;
             }
+
+            return processed;
         }
 
         return false;
@@ -54,7 +52,7 @@ public class TileFeeder extends TileFillable {
         for (EntityAnimal animal: EntityHelper.getEntities(EntityAnimal.class, getWorld(), 32D)) {
             if (animal instanceof IAnimalTracked) { //Feed all the local animals
                 IAnimalTracked tracked = ((IAnimalTracked) animal);
-                if (HFApi.animals.canAnimalEatFoodType(tracked, SEED) && hasFoodAndFeed()) {
+                if (tracked.getData().isHungry() && HFApi.animals.canAnimalEatFoodType(tracked, SEED) && hasFoodAndFeed()) {
                     tracked.getData().feed(null);
                 } else break;
             }

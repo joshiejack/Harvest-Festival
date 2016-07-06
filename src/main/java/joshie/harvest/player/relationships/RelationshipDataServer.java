@@ -49,7 +49,7 @@ public class RelationshipDataServer extends RelationshipData {
 
     @Override
     public void affectRelationship(EntityPlayer player, IRelatable relatable, int amount) {
-        int newValue = Math.max(0, Math.min(NPC.marriageRequirement, getRelationship(relatable) + amount));
+        int newValue = Math.max(0, Math.min(NPC.MARRIAGE_REQUIREMENT, getRelationship(relatable) + amount));
         relationships.put(relatable, newValue);
         syncRelationship((EntityPlayerMP) player, relatable, newValue, true);
     }
@@ -95,7 +95,7 @@ public class RelationshipDataServer extends RelationshipData {
         NBTTagList relationList = nbt.getTagList("Relationships", 10);
         for (int i = 0; i < relationList.tagCount(); i++) {
             NBTTagCompound tag = relationList.getCompoundTagAt(i);
-            IRelatableDataHandler data = HFApi.relations.getDataHandler(tag.getString("Handler"));
+            IRelatableDataHandler data = HFApi.player.getRelationshipHelper().getDataHandler(tag.getString("Handler"));
             IRelatable relatable = data.readFromNBT(tag);
             if (relatable != null) {
                 int value = tag.getInteger("Value");
@@ -107,7 +107,7 @@ public class RelationshipDataServer extends RelationshipData {
         NBTTagList talkedList = nbt.getTagList("TalkedTo", 10);
         for (int i = 0; i < talkedList.tagCount(); i++) {
             NBTTagCompound tag = talkedList.getCompoundTagAt(i);
-            IRelatableDataHandler data = HFApi.relations.getDataHandler(tag.getString("Handler"));
+            IRelatableDataHandler data = HFApi.player.getRelationshipHelper().getDataHandler(tag.getString("Handler"));
             IRelatable relatable = data.readFromNBT(tag);
             if (relatable != null) talked.add(relatable);
         }
@@ -116,7 +116,7 @@ public class RelationshipDataServer extends RelationshipData {
         NBTTagList giftedList = nbt.getTagList("Gifted", 10);
         for (int i = 0; i < giftedList.tagCount(); i++) {
             NBTTagCompound tag = giftedList.getCompoundTagAt(i);
-            IRelatableDataHandler data = HFApi.relations.getDataHandler(tag.getString("Handler"));
+            IRelatableDataHandler data = HFApi.player.getRelationshipHelper().getDataHandler(tag.getString("Handler"));
             IRelatable relatable = data.readFromNBT(tag);
             if (relatable != null) gifted.add(relatable);
         }
@@ -125,7 +125,7 @@ public class RelationshipDataServer extends RelationshipData {
         NBTTagList marriedList = nbt.getTagList("MarriedTo", 10);
         for (int i = 0; i < marriedList.tagCount(); i++) {
             NBTTagCompound tag = marriedList.getCompoundTagAt(i);
-            IRelatableDataHandler data = HFApi.relations.getDataHandler(tag.getString("Handler"));
+            IRelatableDataHandler data = HFApi.player.getRelationshipHelper().getDataHandler(tag.getString("Handler"));
             IRelatable relatable = data.readFromNBT(tag);
             if (relatable != null) marriedTo.add(relatable);
         }

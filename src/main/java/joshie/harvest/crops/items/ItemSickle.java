@@ -4,7 +4,7 @@ import joshie.harvest.api.crops.IBreakCrops;
 import joshie.harvest.crops.blocks.BlockHFCrops;
 import joshie.harvest.core.helpers.PlayerHelper;
 import joshie.harvest.core.helpers.generic.DirectionHelper;
-import joshie.harvest.items.ItemBaseTool;
+import joshie.harvest.core.util.base.ItemBaseTool;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

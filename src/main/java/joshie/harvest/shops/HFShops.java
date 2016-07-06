@@ -11,8 +11,6 @@ import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.crops.Crop;
 import joshie.harvest.crops.CropRegistry;
 import joshie.harvest.crops.HFCrops;
-import joshie.harvest.items.HFItems;
-import joshie.harvest.items.ItemGeneral;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.blocks.BlockStone;
 import joshie.harvest.mining.blocks.BlockStone.Type;
@@ -28,6 +26,7 @@ import static joshie.harvest.animals.item.ItemAnimalSpawner.Spawner.*;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.*;
 import static joshie.harvest.api.calendar.Weekday.*;
 import static joshie.harvest.cooking.items.ItemIngredients.Ingredient.*;
+import static joshie.harvest.gathering.items.ItemNPCTool.NPCTool.BLUE_FEATHER;
 
 public class HFShops {
     public static IShop BARN;
@@ -114,7 +113,7 @@ public class HFShops {
         SUPERMARKET.addItem(50, HFCooking.INGREDIENTS.getStackFromEnum(OIL));
         SUPERMARKET.addItem(100, HFCooking.INGREDIENTS.getStackFromEnum(RICEBALL));
         SUPERMARKET.addItem(25, HFCooking.INGREDIENTS.getStackFromEnum(SALT));
-        SUPERMARKET.addItem(new PurchaseableBlueFeather(1000, new ItemStack(HFItems.GENERAL, 1, ItemGeneral.BLUE_FEATHER)));
+        SUPERMARKET.addItem(new PurchaseableBlueFeather(1000, HFNPCs.TOOLS.getStackFromEnum(BLUE_FEATHER)));
 
         SUPERMARKET.addOpening(MONDAY, 9000, 17000).addOpening(TUESDAY, 9000, 17000).addOpening(THURSDAY, 9000, 17000);
         SUPERMARKET.addOpening(FRIDAY, 9000, 17000).addOpening(SATURDAY, 11000, 15000);

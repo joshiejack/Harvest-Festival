@@ -1,6 +1,7 @@
 package joshie.harvest.core.network;
 
 import io.netty.buffer.ByteBuf;
+import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.relations.IRelatableDataHandler;
@@ -8,6 +9,7 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.network.penguin.PenguinPacket;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
+import org.apache.logging.log4j.Level;
 
 public class PacketSyncRelationship extends PenguinPacket {
     private IRelatableDataHandler handler;
@@ -35,15 +37,18 @@ public class PacketSyncRelationship extends PenguinPacket {
     public void fromBytes(ByteBuf buf) {
         value = buf.readInt();
         particles = buf.readBoolean();
-        String handlerName = ByteBufUtils.readUTF8String(buf);
-        handler = HFApi.relations.getDataHandler(handlerName).copy();
-        handler.fromBytes(buf);
+
+        try {
+            String handlerName = ByteBufUtils.readUTF8String(buf);
+            handler = HFApi.player.getRelationshipHelper().getDataHandler(handlerName).getClass().newInstance();
+            relatable = handler.fromBytes(buf);
+        } catch (Exception e) { HarvestFestival.LOGGER.log(Level.ERROR, "Failed to read a sync gift packet correctly"); }
     }
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        IRelatable relatable = handler.onMessage(particles);
         if (relatable != null) {
+            handler.onMessage(relatable, particles);
             HFTrackers.getClientPlayerTracker().getRelationships().setRelationship(relatable, value);
         }
     }

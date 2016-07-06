@@ -3,7 +3,6 @@ package joshie.harvest.animals.item;
 import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.animals.entity.EntityHarvestSheep;
 import joshie.harvest.animals.item.ItemAnimalSpawner.Spawner;
-import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.base.ItemHFEnum;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.EntityAgeable;
@@ -16,6 +15,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class ItemAnimalSpawner extends ItemHFEnum<ItemAnimalSpawner, Spawner> {
     public enum Spawner implements IStringSerializable {
@@ -46,8 +47,10 @@ public class ItemAnimalSpawner extends ItemHFEnum<ItemAnimalSpawner, Spawner> {
     public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (!world.isRemote) {
             EntityAgeable entity = getEntityFromEnum(world, getEnumFromStack(stack));
-            entity.setPosition(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5);
-            world.spawnEntityInWorld(entity);
+            if (entity != null) {
+                entity.setPosition(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5);
+                world.spawnEntityInWorld(entity);
+            }
         }
 
         return EnumActionResult.FAIL;
@@ -57,7 +60,7 @@ public class ItemAnimalSpawner extends ItemHFEnum<ItemAnimalSpawner, Spawner> {
     @Override
     public void registerModels(Item item, String name) {
         for (int i = 0; i < values.length; i++) {
-            ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(new ResourceLocation(HFModInfo.MODID, getPrefix(values[i]) + "_" + values[i].name().toLowerCase()), "inventory"));
+            ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(new ResourceLocation(MODID, getPrefix(values[i]) + "_" + values[i].name().toLowerCase()), "inventory"));
         }
     }
 }

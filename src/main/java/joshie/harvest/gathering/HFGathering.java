@@ -1,13 +1,17 @@
-package joshie.harvest.npc.town.gathering;
+package joshie.harvest.gathering;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.blocks.BlockFlower.FlowerType;
 import joshie.harvest.blocks.HFBlocks;
+import joshie.harvest.gathering.items.ItemAxe;
+import joshie.harvest.core.util.base.ItemBaseTool;
 
 import static joshie.harvest.blocks.BlockRock.Rock.*;
 import static joshie.harvest.blocks.BlockWood.Wood.*;
 
 public class HFGathering {
+    public static final ItemBaseTool AXE = new ItemAxe().setUnlocalizedName("axe");
+
     public static void init() {
         HFApi.gathering.registerGathering(HFBlocks.WOOD.getStateFromEnum(BRANCH_SMALL), 8D);
         HFApi.gathering.registerGathering(HFBlocks.WOOD.getStateFromEnum(BRANCH_MEDIUM), 5D);

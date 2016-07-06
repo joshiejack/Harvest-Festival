@@ -1,4 +1,4 @@
-package joshie.harvest.npc.town.gathering;
+package joshie.harvest.gathering;
 
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.gathering.IGatheringRegistry;

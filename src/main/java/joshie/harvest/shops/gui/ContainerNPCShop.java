@@ -1,10 +1,10 @@
 package joshie.harvest.shops.gui;
 
-import joshie.harvest.api.HFApi;
 import joshie.harvest.api.quest.IQuest;
-import joshie.harvest.quests.QuestHelper;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.util.ContainerBase;
 import joshie.harvest.npc.entity.AbstractEntityNPC;
+import joshie.harvest.quests.QuestHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 
@@ -29,7 +29,7 @@ public class ContainerNPCShop extends ContainerBase {
         }
 
         if (!player.worldObj.isRemote) {
-            HFApi.relations.talkTo(player, npc.getRelatable());
+            HFTrackers.getPlayerTracker(player).getRelationships().talkTo(player, npc.getRelatable());
         }
     }
 }

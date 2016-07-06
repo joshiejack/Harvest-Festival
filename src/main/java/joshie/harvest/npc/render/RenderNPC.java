@@ -1,6 +1,6 @@
 package joshie.harvest.npc.render;
 
-import joshie.harvest.api.npc.INPC.Age;
+import joshie.harvest.api.npc.INPCRegistry;
 import joshie.harvest.npc.entity.AbstractEntityNPC;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -51,7 +51,7 @@ public class RenderNPC extends RenderLiving<AbstractEntityNPC> {
     public void doRender(AbstractEntityNPC npc, double x, double y, double z, float entityYaw, float partialTicks) {
         updateModel(npc);
         GlStateManager.pushMatrix();
-        if (npc.getNPC().getAge() == Age.CHILD) {
+        if (npc.getNPC().getAge() == INPCRegistry.Age.CHILD) {
             getMainModel().isChild = true;
             mainModel.isChild = true;
             if (getMainModel() != null) {

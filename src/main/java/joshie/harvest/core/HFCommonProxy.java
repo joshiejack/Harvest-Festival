@@ -13,7 +13,7 @@ import joshie.harvest.items.HFItems;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.gift.init.HFGifts;
-import joshie.harvest.npc.town.gathering.HFGathering;
+import joshie.harvest.gathering.HFGathering;
 import joshie.harvest.plugins.HFPlugins;
 import joshie.harvest.quests.HFQuests;
 import joshie.harvest.shops.HFShops;

@@ -14,7 +14,7 @@ import joshie.harvest.crops.blocks.TileCrop.TileWithered;
 import joshie.harvest.crops.blocks.TileSprinkler;
 import joshie.harvest.crops.handlers.*;
 import joshie.harvest.crops.items.*;
-import joshie.harvest.items.ItemBaseTool;
+import joshie.harvest.core.util.base.ItemBaseTool;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;

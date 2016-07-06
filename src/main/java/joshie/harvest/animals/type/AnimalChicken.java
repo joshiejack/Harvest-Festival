@@ -1,15 +1,6 @@
 package joshie.harvest.animals.type;
 
-import joshie.harvest.animals.entity.EntityHarvestChicken;
-import joshie.harvest.api.animals.IAnimalData;
-import joshie.harvest.core.helpers.SizeableHelper;
-import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
-import net.minecraft.item.ItemStack;
-
 import static joshie.harvest.api.animals.AnimalFoodType.SEED;
-import static joshie.harvest.core.helpers.generic.ItemHelper.spawnByEntity;
 
 public class AnimalChicken extends AbstractAnimal {
     public AnimalChicken() {
@@ -29,15 +20,5 @@ public class AnimalChicken extends AbstractAnimal {
     @Override
     public int getTypeTreatCount() {
         return 29;
-    }
-
-    @Override
-    public void newDay(IAnimalData data, EntityAnimal entity) {
-        EntityPlayer player = data.getOwner();
-        if (player != null) {
-            ItemStack egg = SizeableHelper.getEgg(player, (EntityHarvestChicken) entity);
-            entity.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (entity.worldObj.rand.nextFloat() - entity.worldObj.rand.nextFloat()) * 0.2F + 1.0F);
-            spawnByEntity(entity, egg);
-        }
     }
 }

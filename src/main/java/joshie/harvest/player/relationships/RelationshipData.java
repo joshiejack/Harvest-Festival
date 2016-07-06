@@ -38,7 +38,7 @@ public abstract class RelationshipData {
     public boolean propose(EntityPlayer player, IRelatable relatable) {
         if (!marriedTo.contains(relatable)) {
             int value = getRelationship(relatable);
-            if (value >= NPC.marriageRequirement) {
+            if (value >= NPC.MARRIAGE_REQUIREMENT) {
                 marriedTo.add(relatable);
                 affectRelationship(player, relatable, 1000);
                 return true;
@@ -53,7 +53,7 @@ public abstract class RelationshipData {
     public boolean isEllegibleToMarry() {
         for (IRelatable relatable : relationships.keySet()) {
             int value = getRelationship(relatable);
-            if (value >= NPC.marriageRequirement) {
+            if (value >= NPC.MARRIAGE_REQUIREMENT) {
                 return true;
             }
         }

@@ -1,4 +1,4 @@
-package joshie.harvest.items;
+package joshie.harvest.core.util.base;
 
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.helpers.generic.RegistryHelper;

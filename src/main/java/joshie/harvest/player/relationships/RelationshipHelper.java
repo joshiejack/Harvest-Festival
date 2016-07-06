@@ -28,22 +28,17 @@ public class RelationshipHelper implements IRelationships {
     }
 
     @Override
-    public void talkTo(EntityPlayer player, IRelatable relatable) {
-        HFTrackers.getPlayerTracker(player).getRelationships().talkTo(player, relatable);
-    }
-
-    @Override
     public void adjustRelationship(EntityPlayer player, IRelatable relatable, int amount) {
         HFTrackers.getPlayerTracker(player).getRelationships().affectRelationship(player, relatable, amount);
     }
 
     @Override
-    public int getAdjustedRelationshipValue(EntityPlayer player, IRelatable relatable) {
+    public int getRelationship(EntityPlayer player, IRelatable relatable) {
         return HFTrackers.getPlayerTracker(player).getRelationships().getRelationship(relatable);
     }
 
     @Override
     public int getMaximumRelationshipValue() {
-        return NPC.maximumFriendship;
+        return NPC.MAX_FRIENDSHIP;
     }
 }

@@ -1,4 +1,4 @@
-package joshie.harvest.npc.town;
+package joshie.harvest.town;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
@@ -105,7 +105,7 @@ public class TownTrackerServer extends TownTracker {
                         }
                     }
 
-                    return thatTownDistance > NPC.townDistance || closest == null ? NULL_TOWN: closest;
+                    return thatTownDistance > NPC.TOWN_DISTANCE || closest == null ? NULL_TOWN: closest;
                 }
             });
         } catch (Exception e) { e.printStackTrace(); return NULL_TOWN; }

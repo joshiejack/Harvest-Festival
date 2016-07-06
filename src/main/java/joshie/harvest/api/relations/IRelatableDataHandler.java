@@ -3,7 +3,7 @@ package joshie.harvest.api.relations;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.nbt.NBTTagCompound;
 
-public interface IRelatableDataHandler {
+public interface IRelatableDataHandler<I extends IRelatable> {
     /** Copy cat **/
     IRelatableDataHandler copy();
     
@@ -11,18 +11,21 @@ public interface IRelatableDataHandler {
     String name();
 
     /** Write this to bytebuf **/
-    void toBytes(IRelatable relatable, ByteBuf buf);
+    void toBytes(I relatable, ByteBuf buf);
 
     /** Read this from bytebuf **/
-    void fromBytes(ByteBuf buf);
+    I fromBytes(ByteBuf buf);
     
     /** Handling **/
-    IRelatable onMessage(boolean particles);
+    default void onMessage(I relatable, boolean particles) {}
 
-    /** Called when reading from nbt **/
-    IRelatable readFromNBT(NBTTagCompound tag);
+    /** Called when reading from nbt
+     * @param tag       the nbt tag to read
+     * @return a new instance of this relatable**/
+    I readFromNBT(NBTTagCompound tag);
 
     /** Write this to nbt 
-     * @param relatable **/
-    void writeToNBT(IRelatable relatable, NBTTagCompound tag);
+     * @param relatable     the relatable
+     * @param tag           the tag to write to**/
+    void writeToNBT(I relatable, NBTTagCompound tag);
 }

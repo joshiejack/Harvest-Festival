@@ -9,6 +9,6 @@ public class PacketFreeze extends PenguinPacket {
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        NPC.freezeNPC = true;
+        NPC.FREZZE_NPCS = true;
     }
 }

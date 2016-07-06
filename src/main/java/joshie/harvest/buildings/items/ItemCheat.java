@@ -1,11 +1,10 @@
-package joshie.harvest.items;
+package joshie.harvest.buildings.items;
 
 import joshie.harvest.buildings.loader.CodeGeneratorBuildings;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.base.ItemHFEnum;
-import joshie.harvest.items.ItemCheat.Cheat;
-import net.minecraft.entity.Entity;
+import joshie.harvest.buildings.items.ItemCheat.Cheat;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
@@ -15,13 +14,12 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import static joshie.harvest.items.ItemCheat.Cheat.CODE_GENERATOR;
-import static joshie.harvest.items.ItemCheat.Cheat.COORD_SETTER;
-import static joshie.harvest.items.ItemCheat.Cheat.NPC_KILLER;
+import static joshie.harvest.buildings.items.ItemCheat.Cheat.CODE_GENERATOR;
+import static joshie.harvest.buildings.items.ItemCheat.Cheat.COORD_SETTER;
 
 public class ItemCheat extends ItemHFEnum<ItemCheat, Cheat> {
     public enum Cheat implements IStringSerializable {
-        COORD_SETTER, CODE_GENERATOR, NPC_KILLER;
+        COORD_SETTER, CODE_GENERATOR;
 
         @Override
         public String getName() {
@@ -59,16 +57,6 @@ public class ItemCheat extends ItemHFEnum<ItemCheat, Cheat> {
         }
 
         return EnumActionResult.SUCCESS;
-    }
-
-    @Override
-    public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity) {
-        if (stack.getItemDamage() == NPC_KILLER.ordinal()) {
-            entity.setDead();
-            return true;
-        }
-
-        return false;
     }
 
     @Override

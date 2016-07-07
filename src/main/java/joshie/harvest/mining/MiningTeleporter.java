@@ -17,8 +17,8 @@ public class MiningTeleporter extends Teleporter {
 
     @Override
     public void placeInPortal(Entity entity, float rotationYaw) {
-        //world.getBlockState(pos);
-        //entity.setPositionAndUpdate(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D);
+        world.getBlockState(pos);
+        entity.setPositionAndUpdate(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D);
         entity.motionX = 0.0f;
         entity.motionY = 0.0f;
         entity.motionZ = 0.0f;

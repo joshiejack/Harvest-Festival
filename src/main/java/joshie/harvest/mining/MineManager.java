@@ -8,24 +8,34 @@ import joshie.harvest.core.helpers.NBTHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.WorldServer;
+import net.minecraft.world.WorldSavedData;
 
-public class MineManager {
+import java.util.Random;
+
+public class MineManager extends WorldSavedData {
     public static final int CHUNK_BOUNDARY = 10;
-    private WorldServer world;
+    private static final Random rand = new Random(326723423L);
     private TIntLongMap seeds = new TIntLongHashMap();
     private TIntObjectMap<TIntObjectMap<IBlockState[][]>> generation = new TIntObjectHashMap();
     private TIntObjectMap<int[]> coordinates = new TIntObjectHashMap();
     private TIntObjectMap<BlockPos> spawnCoordinates = new TIntObjectHashMap<>();
 
-    public MineManager(WorldServer world) {
-        this.world = world;
+    public MineManager(String string) {
+        super(string);
     }
 
-    public BlockPos getSpawnCoordinate() {
-        BlockPos ret = spawnCoordinates.get(0);
+    public boolean areCoordinatesDefault(int mineID) {
+        return getSpawnCoordinateForMine(mineID).equals(new BlockPos(0, 254, mineID * CHUNK_BOUNDARY * 16));
+    }
+
+    public boolean areCoordinatesGenerated(int mineID) {
+        return spawnCoordinates.containsKey(mineID);
+    }
+
+    public BlockPos getSpawnCoordinateForMine(int mineID) {
+        BlockPos ret = spawnCoordinates.get(mineID);
         if (ret == null) {
-            return new BlockPos(0, 0, 0);
+            return new BlockPos(0, 254, mineID * CHUNK_BOUNDARY * 16);
         }
 
         return ret;
@@ -60,14 +70,17 @@ public class MineManager {
     }
 
     public long getSeed(int mapIndex) {
-        seeds.putIfAbsent(mapIndex, world.rand.nextLong());
+        seeds.putIfAbsent(mapIndex, rand.nextLong());
         return seeds.get(mapIndex);
     }
 
+    @Override
     public void readFromNBT(NBTTagCompound tag) {
         seeds = NBTHelper.readLongMap(tag.getTagList("Seeds", 10));
         spawnCoordinates = NBTHelper.readPositionMap(tag.getTagList("Coordinates", 10));
     }
+
+    @Override
     public NBTTagCompound writeToNBT(NBTTagCompound tag) {
         tag.setTag("Seeds", NBTHelper.writeLongMap(seeds));
         tag.setTag("Coordinates", NBTHelper.writePositionMap(spawnCoordinates));

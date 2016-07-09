@@ -283,8 +283,8 @@ harvestfestival.rock.boulder.medium=Medium Boulder
 harvestfestival.rock.boulder.large=Large Boulder
 
 #Mine Blocks
-harvestfestival.dirt.real=Mine Floor
-harvestfestival.dirt.decorative=Mine Floor
+harvestfestival.dirt=Mine Floor
+harvestfestival.hole=Mine Hole
 harvestfestival.stone.real=Mine Wall
 harvestfestival.stone.decorative=Mine Wall
 harvestfestival.ladder.wood=Mine Ladder
@@ -294,6 +294,7 @@ harvestfestival.ore.silver=Silver Node
 harvestfestival.ore.gold=Gold Node
 harvestfestival.ore.mystril=Mystril Node
 harvestfestival.ore.gem=Gem Node
+harvestfestival.portal=Mine Portal
 
 #Mine Materials
 harvestfestival.material.junk=Junk Ore

@@ -30,6 +30,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.ArrayList;
 import java.util.List;
 
+import static joshie.harvest.mining.blocks.BlockStone.Type.HOLE;
 import static joshie.harvest.mining.blocks.BlockStone.Type.REAL;
 import static joshie.harvest.mining.blocks.BlockStone.Type.REAL_WINTER;
 
@@ -55,13 +56,13 @@ public class BlockStone extends BlockHFEnumCube<BlockStone, Type> {
 
         @Override
         public String getName() {
-            return toString().toLowerCase();
+            return name().toLowerCase();
         }
     }
 
     public BlockStone() {
         super(Material.ROCK, Type.class, HFTab.MINING);
-        setSoundType(SoundType.METAL);
+        setSoundType(SoundType.STONE);
     }
 
     //TECHNICAL
@@ -101,7 +102,7 @@ public class BlockStone extends BlockHFEnumCube<BlockStone, Type> {
     }
 
     @Override
-    public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos) {
+    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
         if(getEnumFromState(state).isReal) {
             Season season = HFApi.calendar.getSeasonAtCoordinates(WorldHelper.getWorld(world), pos);
             return season == Season.WINTER ? state.withProperty(property, REAL_WINTER) : state.withProperty(property, REAL);
@@ -110,6 +111,7 @@ public class BlockStone extends BlockHFEnumCube<BlockStone, Type> {
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
+        if (getEnumFromStack(stack) == HOLE) return Text.translate("hole");
         String unlocalized = getUnlocalizedName();
         String name = stack.getItemDamage() != 0 ? "decorative" : stack.getItem().getUnlocalizedName(stack);
         return Text.localizeFully(unlocalized + "." + name);
@@ -120,7 +122,7 @@ public class BlockStone extends BlockHFEnumCube<BlockStone, Type> {
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
         int adjusted = Math.max(0, Math.min(Type.values().length, stack.getItemDamage()));
         Type type = Type.values()[adjusted];
-        if (!type.isReal) {
+        if (!type.isReal && type != HOLE) {
             list.add(Text.translate("tooltip.dirt"));
         }
     }

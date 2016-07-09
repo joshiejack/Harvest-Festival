@@ -1,23 +1,62 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "transform": "forge:default-block",
-    "model": "cube_all"
+    "textures": {
+      "tl": "harvestfestival:blocks/mine/dirt_outer",
+      "tr": "harvestfestival:blocks/mine/dirt_outer",
+      "bl": "harvestfestival:blocks/mine/dirt_outer",
+      "br": "harvestfestival:blocks/mine/dirt_outer"
+    },
+    "model": "harvestfestival:connected_top"
   },
   "variants": {
-    "types": {
-      "real": {
-        "textures": { "all": "harvestfestival:blocks/dirt" }
-      },
-      "real_winter": {
-        "textures": { "all": "harvestfestival:blocks/dirt_winter" }
-      },
-      "decorative": {
-        "textures": { "all": "harvestfestival:blocks/dirt" }
-      },
-      "decorative_winter": {
-        "textures": { "all": "harvestfestival:blocks/dirt_winter" }
-      }
+    "nw": {
+      "blank": { "textures": { "tl": "harvestfestival:blocks/mine/dirt_blank" }} ,
+      "inner": { "textures": { "tl": "harvestfestival:blocks/mine/dirt_inner" }},
+      "vertical": { "textures": { "tl": "harvestfestival:blocks/mine/dirt_vertical" }},
+      "horizontal": { "textures": { "tl": "harvestfestival:blocks/mine/dirt_horizontal" }},
+      "outer": { "textures": { "tl": "harvestfestival:blocks/mine/dirt_outer" }}
+    },
+    "ne": {
+      "blank": { "textures": { "tr": "harvestfestival:blocks/mine/dirt_blank" }},
+      "inner": { "textures": { "tr": "harvestfestival:blocks/mine/dirt_inner" }},
+      "vertical": { "textures": { "tr": "harvestfestival:blocks/mine/dirt_vertical" }},
+      "horizontal": { "textures": { "tr": "harvestfestival:blocks/mine/dirt_horizontal" }},
+      "outer": { "textures": { "tr": "harvestfestival:blocks/mine/dirt_outer" }}
+    },
+    "sw": {
+      "blank": { "textures": { "bl": "harvestfestival:blocks/mine/dirt_blank" }},
+      "inner": { "textures": { "bl": "harvestfestival:blocks/mine/dirt_inner" }},
+      "vertical": { "textures": { "bl": "harvestfestival:blocks/mine/dirt_vertical" }},
+      "horizontal": { "textures": { "bl": "harvestfestival:blocks/mine/dirt_horizontal" }},
+      "outer": { "textures": { "bl": "harvestfestival:blocks/mine/dirt_outer" }}
+    },
+    "se": {
+      "blank": { "textures": { "br": "harvestfestival:blocks/mine/dirt_blank" }},
+      "inner": { "textures": { "br": "harvestfestival:blocks/mine/dirt_inner" }},
+      "vertical": { "textures": { "br": "harvestfestival:blocks/mine/dirt_vertical" }},
+      "horizontal": { "textures": { "br": "harvestfestival:blocks/mine/dirt_horizontal" }},
+      "outer": { "textures": { "br": "harvestfestival:blocks/mine/dirt_outer" }}
+    },
+    "texture": {
+      "blank": { "textures": { "overlay": "harvestfestival:blocks/mine/overlays/blank" }},
+      "bones1": { "textures": { "overlay": "harvestfestival:blocks/mine/overlays/bones1" }},
+      "bones2": { "textures": { "overlay": "harvestfestival:blocks/mine/overlays/bones2" }},
+      "bones3": { "textures": { "overlay": "harvestfestival:blocks/mine/overlays/bones3" }},
+      "bones4": { "textures": { "overlay": "harvestfestival:blocks/mine/overlays/bones4" }},
+      "grass1": { "textures": { "overlay": "harvestfestival:blocks/mine/overlays/grass1" }},
+      "leaves1": { "textures": { "overlay": "harvestfestival:blocks/mine/overlays/leaves1" }},
+      "leaves2": { "textures": { "overlay": "harvestfestival:blocks/mine/overlays/leaves2" }},
+      "leaves3": { "textures": { "overlay": "harvestfestival:blocks/mine/overlays/leaves3" }},
+      "leaves4": { "textures": { "overlay": "harvestfestival:blocks/mine/overlays/leaves4" }},
+      "pebble1": { "textures": { "overlay": "harvestfestival:blocks/mine/overlays/pebble1" }},
+      "pebble2": { "textures": { "overlay": "harvestfestival:blocks/mine/overlays/pebble2" }},
+      "pebble3": { "textures": { "overlay": "harvestfestival:blocks/mine/overlays/pebble3" }},
+      "pebble4": { "textures": { "overlay": "harvestfestival:blocks/mine/overlays/pebble4" }},
+      "pebble5": { "textures": { "overlay": "harvestfestival:blocks/mine/overlays/pebble5" }},
+      "pebble6": { "textures": { "overlay": "harvestfestival:blocks/mine/overlays/pebble6" }},
+      "rock1": { "textures": { "overlay": "harvestfestival:blocks/mine/overlays/rock1" }},
+      "rock2": { "textures": { "overlay": "harvestfestival:blocks/mine/overlays/rock2" }}
     }
   }
 }

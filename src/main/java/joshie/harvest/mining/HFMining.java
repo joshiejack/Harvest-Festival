@@ -1,10 +1,7 @@
 package joshie.harvest.mining;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.mining.blocks.BlockDirt;
-import joshie.harvest.mining.blocks.BlockLadder;
-import joshie.harvest.mining.blocks.BlockOre;
-import joshie.harvest.mining.blocks.BlockStone;
+import joshie.harvest.mining.blocks.*;
 import joshie.harvest.mining.items.ItemMaterial;
 import joshie.harvest.mining.loot.*;
 import net.minecraft.world.DimensionType;
@@ -18,8 +15,9 @@ public class HFMining {
 
     public static final BlockOre ORE = new BlockOre().setUnlocalizedName("ore");
     public static final BlockStone STONE = new BlockStone().setUnlocalizedName("stone");
-    public static final BlockDirt DIRT = new BlockDirt().setUnlocalizedName("dirt");
+    public static final BlockDirt DIRT = new BlockDirt().setUnlocalizedName("dirt").setBlockUnbreakable();
     public static final BlockLadder LADDER = new BlockLadder().setUnlocalizedName("ladder");
+    public static final BlockPortal PORTAL = new BlockPortal().setUnlocalizedName("portal");
     public static final ItemMaterial MATERIALS = new ItemMaterial().setUnlocalizedName("materials");
 
     public static void preInit() {

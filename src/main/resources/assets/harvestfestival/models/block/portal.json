@@ -1,0 +1,21 @@
+{
+  "parent": "block/block",
+  "textures": {
+    "particle": "harvestfestival:blocks/mine/portal_mine_tl",
+    "wall": "harvestfestival:blocks/mine_wall"
+  },
+  "elements": [
+    {
+      "from": [ 0, 0, 0 ],
+      "to": [ 16, 16, 16 ],
+      "faces": {
+        "down":  { "uv": [ 16, 16, 0, 0 ], "texture": "#wall" },
+        "up":    { "uv": [ 0, 0, 16, 16 ], "texture": "#wall" },
+        "north": { "uv": [ 0, 0, 16, 16 ], "texture": "#wall" },
+        "south": { "uv": [ 16, 0, 0, 16 ], "texture": "#wall" },
+        "west":  { "uv": [ 16, 0, 0, 16 ], "texture": "#particle", "uvlock": true },
+        "east":  { "uv": [ 0, 0, 16, 16 ], "texture": "#particle", "uvlock": true }
+      }
+    }
+  ]
+}

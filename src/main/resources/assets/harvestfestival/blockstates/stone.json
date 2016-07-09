@@ -16,18 +16,18 @@
       { "model": "harvestfestival:mine/mine_wall4_winter", "weight": 1 },
       { "model": "harvestfestival:mine/mine_wall5_winter", "weight": 1 }
     ],
-    "type=decorative_none": { "model": "harvestfestival:mine/mine_wall" },
+    "type=decorative_blank": { "model": "harvestfestival:mine/mine_wall" },
     "type=decorative_purple": { "model": "harvestfestival:mine/mine_wall1" },
     "type=decorative_silver": { "model": "harvestfestival:mine/mine_wall2" },
     "type=decorative_green": { "model": "harvestfestival:mine/mine_wall3" },
     "type=decorative_blue": { "model": "harvestfestival:mine/mine_wall4" },
     "type=decorative_red": { "model": "harvestfestival:mine/mine_wall5" },
-    "type=decorative_none_winter": { "model": "harvestfestival:mine/mine_wall_winter" },
+    "type=decorative_blank_winter": { "model": "harvestfestival:mine/mine_wall_winter" },
     "type=decorative_purple_winter": { "model": "harvestfestival:mine/mine_wall1_winter" },
     "type=decorative_silver_winter": { "model": "harvestfestival:mine/mine_wall2_winter" },
     "type=decorative_green_winter": { "model": "harvestfestival:mine/mine_wall3_winter" },
     "type=decorative_blue_winter": { "model": "harvestfestival:mine/mine_wall4_winter" },
     "type=decorative_red_winter": { "model": "harvestfestival:mine/mine_wall5_winter" },
-    "type=hole": { "model": "harvestfestival:/mine/mine_hole" }
+    "type=hole": { "model": "harvestfestival:mine/mine_hole" }
   }
 }

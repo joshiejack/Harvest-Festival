@@ -2,7 +2,6 @@ package joshie.harvest.core.util.base;
 
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.util.generic.IHasMetaItem;
-import joshie.harvest.core.util.generic.Text;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -15,7 +14,6 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -23,7 +21,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 import java.util.Random;
 
-public abstract class BlockHFEnum<B extends BlockHFEnum, E extends Enum<E> & IStringSerializable> extends BlockHFBase {
+public abstract class BlockHFEnum<B extends BlockHFEnum, E extends Enum<E> & IStringSerializable> extends BlockHFBase<B> {
     protected static PropertyEnum<?> temporary;
     protected final PropertyEnum<E> property;
     protected final E[] values;
@@ -137,20 +135,6 @@ public abstract class BlockHFEnum<B extends BlockHFEnum, E extends Enum<E> & ISt
         return (B) this;
     }
 
-    public String getItemStackDisplayName(ItemStack stack) {
-        String unlocalized = getUnlocalizedName();
-        String name = stack.getItem().getUnlocalizedName(stack);
-        return Text.localizeFully(unlocalized + "." + name);
-    }
-
-    public int getEntityLifeSpan(ItemStack itemStack, World world) {
-        return 6000;
-    }
-
-    public int getSortValue(ItemStack stack) {
-        return 0;
-    }
-
     @Override
     @SideOnly(Side.CLIENT)
     public BlockRenderLayer getBlockLayer() {
@@ -165,6 +149,11 @@ public abstract class BlockHFEnum<B extends BlockHFEnum, E extends Enum<E> & ISt
     @Override
     public boolean isOpaqueCube(IBlockState blockState) {
         return false;
+    }
+
+    @Override
+    public String getUnlocalizedName(ItemStack stack) {
+        return getEnumFromMeta(stack.getItemDamage()).name().toLowerCase();
     }
 
     @Override

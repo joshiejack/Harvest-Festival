@@ -85,9 +85,8 @@ public abstract class BlockHFEnumRotatableMeta<B extends BlockHFEnumRotatableMet
             if (Character.toLowerCase(property.getName().charAt(0)) < Character.toLowerCase('f')) {
                 ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(getRegistryName(), property.getName() + "=" + getEnumFromMeta(i).getName() + ",facing=north"));
             } else {
-                ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(getRegistryName(), "facing=north" + property.getName() + "=" + getEnumFromMeta(i).getName()));
+                ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(getRegistryName(), "facing=north," + property.getName() + "=" + getEnumFromMeta(i).getName()));
             }
-
         }
     }
 }

@@ -10,9 +10,8 @@
 - Schedule Based Conversations
 - Add Extra Chat Messages, and Conversations for all NPCs
 - Mining Dimension Stuff
-    - Add Portal blocks to mines that teleport you to the dimension
-    - Add Portal blocks that teleport you further down floors
-    - Add Portal blocks that look like ladders that players can place, that will take you down one floor of the mine
+    - Make Portal Walls Teleport you to/from the dimension
+    - Make Portal Holes Teleport you down a random number of floors
     - Add an Overlay while in the dimension that tells you the name of the mine aka Spring Mine or Winter Mine
     - Add an Overlay that tells you what floor you are on
 - Change Blueprints to so that you can hover and click where you want them placed with a preview of the building - J
@@ -52,13 +51,11 @@
 - Syncing Town Information to Players
 - When you can purchase buildings from a town
 - Day, Season, Year Commands
-- Crash when putting things in the feeder
+- Workout how to use the weighting system in conjunction with forge states, so i don't have to use my own hacked together weighting system...
 
 ### Rendering
 - Animate Oven to open/close when putting things in/out
 - Make Blueprints Render in World
-- Mine Floor Connected Textures and Random Texture Overlays - Y, J?
-- Mine Floor in inventory renders
 - Goddess Water Texture
 
 ### Textures

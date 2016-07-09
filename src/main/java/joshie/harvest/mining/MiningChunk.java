@@ -25,11 +25,12 @@ import static joshie.harvest.mining.MineManager.CHUNK_BOUNDARY;
 public class MiningChunk implements IChunkGenerator {
     private MineManager manager;
     private Random rand;
-    public static IBlockState WALLS = HFMining.STONE.getDefaultState();
-    public static IBlockState FLOORS = HFMining.DIRT.getDefaultState();
-    public static IBlockState LADDER = HFMining.LADDER.getDefaultState();
-    public static IBlockState AIR = Blocks.AIR.getDefaultState();
-    protected static final int FLOOR_HEIGHT = 6;
+    private static final IBlockState WALLS = HFMining.STONE.getDefaultState();
+    private static final IBlockState FLOORS = HFMining.DIRT.getDefaultState();
+    private static final IBlockState LADDER = HFMining.LADDER.getDefaultState();
+    private static final IBlockState AIR = Blocks.AIR.getDefaultState();
+    private static final IBlockState PORTAL = HFMining.PORTAL.getDefaultState();
+    static final int FLOOR_HEIGHT = 6;
     
     private final World worldObj;
     private Biome[] biomesForGeneration;
@@ -48,10 +49,11 @@ public class MiningChunk implements IChunkGenerator {
             primer.setBlockState(x, y, z, state);
 
             if (state.getBlock() == FLOORS.getBlock()) {
-                int realX = (chunkX * 16) + x;
-                int realZ = (chunkZ * 16) + z;
+                int chance = 5 + rand.nextInt(60);
+                if (rand.nextInt(chance) == 0) {
+                    int realX = (chunkX * 16) + x;
+                    int realZ = (chunkZ * 16) + z;
 
-                if (rand.nextInt(256) == 0) {
                     HFApi.tickable.addTickable(worldObj, new BlockPos(realX, y, realZ), HFApi.tickable.getTickableFromBlock(FLOORS.getBlock()));
                     IBlockState theState = MiningTicker.getBlockState(rand, MiningTicker.getFloor(chunkX, y));
                     primer.setBlockState(x, y + 1, z, theState);
@@ -71,7 +73,7 @@ public class MiningChunk implements IChunkGenerator {
         return primer.getBlockState(x, y, z);
     }
 
-    public void setBlocksInChunk(int chunkX, int chunkZ, ChunkPrimer primer) {
+    private void setBlocksInChunk(int chunkX, int chunkZ, ChunkPrimer primer) {
         //Set the chunk to wall blocks
         for (int i = 0; i < 16; i++) {
             for (int j = 0; j < 16; j++) {
@@ -84,7 +86,7 @@ public class MiningChunk implements IChunkGenerator {
         if (chunkX >= 0 && chunkZ >= 0) {
             for (int chunkY = 0; chunkY < 250; chunkY += FLOOR_HEIGHT) {
                 IBlockState[][] states = getMineGeneration(chunkX, chunkY, chunkZ);
-                rand.setSeed(manager.getSeed(getIndex(chunkX, chunkY, chunkZ)));
+                rand.setSeed(getIndex(chunkX, chunkY, chunkZ) * worldObj.getSeed());
 
                 //Set the floor blocks
                 for (int i = 0; i < 16; i++) {
@@ -133,6 +135,7 @@ public class MiningChunk implements IChunkGenerator {
                                     setBlockState(primer, i, belowY, j, FLOORS, chunkX, chunkZ);
                                 for (int y = 1; y <= FLOOR_HEIGHT; y++) {
                                     setBlockState(primer, i, belowY + y, j, theState, chunkX, chunkZ);
+                                    setBlockState(primer, i, belowY + y + 4 + 1, j, AIR, chunkX, chunkZ);
                                 }
                             }
                         }
@@ -160,24 +163,24 @@ public class MiningChunk implements IChunkGenerator {
     private void setXSpawn(ChunkPrimer primer, int x, int y, int z, int chunkX, int chunkZ) {
         int realX = (chunkX * 16) + x;
         int realZ = (chunkZ * 16) + z;
-        setBlockState(primer, x, y, z, Blocks.GOLD_BLOCK.getDefaultState(), chunkX, chunkZ);
-        setBlockState(primer, x - 1, y, z, Blocks.GOLD_BLOCK.getDefaultState(), chunkX, chunkZ);
-        setBlockState(primer, x + 1, y, z, Blocks.GOLD_BLOCK.getDefaultState(), chunkX, chunkZ);
-        setBlockState(primer, x, y + 1, z, Blocks.GOLD_BLOCK.getDefaultState(), chunkX, chunkZ);
-        setBlockState(primer, x - 1, y + 1, z, Blocks.GOLD_BLOCK.getDefaultState(), chunkX, chunkZ);
-        setBlockState(primer, x + 1, y + 1, z, Blocks.GOLD_BLOCK.getDefaultState(), chunkX, chunkZ);
+        setBlockState(primer, x, y, z, PORTAL, chunkX, chunkZ);
+        setBlockState(primer, x - 1, y, z, PORTAL, chunkX, chunkZ);
+        setBlockState(primer, x + 1, y, z, PORTAL, chunkX, chunkZ);
+        setBlockState(primer, x, y + 1, z, PORTAL, chunkX, chunkZ);
+        setBlockState(primer, x - 1, y + 1, z, PORTAL, chunkX, chunkZ);
+        setBlockState(primer, x + 1, y + 1, z, PORTAL, chunkX, chunkZ);
         manager.setSpawnForMine(getMineID(chunkZ), realX, y, realZ);
     }
 
     private void setZSpawn(ChunkPrimer primer, int x, int y, int z, int chunkX, int chunkZ) {
         int realX = (chunkX * 16) + x;
         int realZ = (chunkZ * 16) + z;
-        setBlockState(primer, x, y, z, Blocks.GOLD_BLOCK.getDefaultState(), chunkX, chunkZ);
-        setBlockState(primer, x, y, z - 1, Blocks.GOLD_BLOCK.getDefaultState(), chunkX, chunkZ);
-        setBlockState(primer, x, y, z + 1, Blocks.GOLD_BLOCK.getDefaultState(), chunkX, chunkZ);
-        setBlockState(primer, x, y + 1, z, Blocks.GOLD_BLOCK.getDefaultState(), chunkX, chunkZ);
-        setBlockState(primer, x, y + 1, z - 1, Blocks.GOLD_BLOCK.getDefaultState(), chunkX, chunkZ);
-        setBlockState(primer, x, y + 1, z + 1, Blocks.GOLD_BLOCK.getDefaultState(), chunkX, chunkZ);
+        setBlockState(primer, x, y, z, PORTAL, chunkX, chunkZ);
+        setBlockState(primer, x, y, z - 1, PORTAL, chunkX, chunkZ);
+        setBlockState(primer, x, y, z + 1, PORTAL, chunkX, chunkZ);
+        setBlockState(primer, x, y + 1, z, PORTAL, chunkX, chunkZ);
+        setBlockState(primer, x, y + 1, z - 1, PORTAL, chunkX, chunkZ);
+        setBlockState(primer, x, y + 1, z + 1, PORTAL, chunkX, chunkZ);
         manager.setSpawnForMine(getMineID(chunkZ), realX, y, realZ);
     }
 
@@ -222,13 +225,13 @@ public class MiningChunk implements IChunkGenerator {
         return result;
     }
 
-    public IBlockState[][] getMineGeneration(int chunkX, int chunkY, int chunkZ) {
+    private IBlockState[][] getMineGeneration(int chunkX, int chunkY, int chunkZ) {
         int mapIndex = getIndex(chunkX, chunkY, chunkZ);
         //Put if absent
         if (!manager.containsStateKey(mapIndex)) {
             IBlockState[][] blockStateMap = new IBlockState[CHUNK_BOUNDARY * 16][CHUNK_BOUNDARY * 16];
             boolean first = true;
-            rand.setSeed(manager.getSeed(mapIndex));
+            rand.setSeed(mapIndex * worldObj.getSeed());
             int startX = 50 + rand.nextInt(110);
             int endX = 50 + rand.nextInt(110);
             int startZ = 50 + rand.nextInt(110);

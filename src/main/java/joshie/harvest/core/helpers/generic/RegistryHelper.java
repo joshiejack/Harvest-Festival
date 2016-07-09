@@ -3,10 +3,7 @@ package joshie.harvest.core.helpers.generic;
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.animals.render.FakeAnimalRenderer;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.core.util.base.BlockHFEnum;
-import joshie.harvest.core.util.base.ItemBlockHF;
-import joshie.harvest.core.util.base.ItemHFEnum;
-import joshie.harvest.core.util.base.ItemHFFML;
+import joshie.harvest.core.util.base.*;
 import joshie.harvest.core.util.generic.Library;
 import joshie.harvest.crops.blocks.BlockHFCrops;
 import joshie.harvest.crops.items.ItemHFSeeds;
@@ -77,7 +74,7 @@ public class RegistryHelper {
 
     public static Block registerBlock(Block block, String name) {
         ResourceLocation resource = new ResourceLocation(MODID, name.replace(".", "_"));
-        ItemBlock item = block instanceof BlockHFEnum ? new ItemBlockHF((BlockHFEnum)block) : new ItemBlock(block);
+        ItemBlock item = block instanceof BlockHFBase ? new ItemBlockHF((BlockHFBase) block) : new ItemBlock(block);
         GameRegistry.register(block, resource);
         GameRegistry.register(item, resource);
 

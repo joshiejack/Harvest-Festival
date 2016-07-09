@@ -69,11 +69,6 @@ public class MineManager extends WorldSavedData {
         return coordinates.get(mapIndex)[position];
     }
 
-    public long getSeed(int mapIndex) {
-        seeds.putIfAbsent(mapIndex, rand.nextLong());
-        return seeds.get(mapIndex);
-    }
-
     @Override
     public void readFromNBT(NBTTagCompound tag) {
         seeds = NBTHelper.readLongMap(tag.getTagList("Seeds", 10));

@@ -1,0 +1,47 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-block",
+    "model": "harvestfestival:portal"
+  },
+  "variants": {
+    "portal": {
+      "mine_tl": { "textures": { "particle": "harvestfestival:blocks/mine/portal_mine_tl" }},
+      "mine_tm": { "textures": { "particle": "harvestfestival:blocks/mine/portal_mine_tm" }},
+      "mine_tr": { "textures": { "particle": "harvestfestival:blocks/mine/portal_mine_tr" }},
+      "mine_bl": { "textures": { "particle": "harvestfestival:blocks/mine/portal_mine_bl" }},
+      "mine_bm": { "textures": { "particle": "harvestfestival:blocks/mine/portal_mine_bm" }},
+      "mine_br": { "textures": { "particle": "harvestfestival:blocks/mine/portal_mine_br" }},
+      "winter_tl": { "textures": { "particle": "harvestfestival:blocks/mine/portal_winter_tl" }},
+      "winter_tm": { "textures": { "particle": "harvestfestival:blocks/mine/portal_winter_tm" }},
+      "winter_tr": { "textures": { "particle": "harvestfestival:blocks/mine/portal_winter_tr" }},
+      "winter_bl": { "textures": { "particle": "harvestfestival:blocks/mine/portal_winter_bl" }},
+      "winter_bm": { "textures": { "particle": "harvestfestival:blocks/mine/portal_winter_bm" }},
+      "winter_br": { "textures": { "particle": "harvestfestival:blocks/mine/portal_winter_br" }},
+      "stone_tl": { "textures": { "particle": "harvestfestival:blocks/mine/portal_stone_tl" }},
+      "stone_tm": { "textures": { "particle": "harvestfestival:blocks/mine/portal_stone_tm" }},
+      "stone_tr": { "textures": { "particle": "harvestfestival:blocks/mine/portal_stone_tr" }},
+      "stone_bl": { "textures": { "particle": "harvestfestival:blocks/mine/portal_stone_bl" }},
+      "stone_bm": { "textures": { "particle": "harvestfestival:blocks/mine/portal_stone_bm" }},
+      "stone_br": { "textures": { "particle": "harvestfestival:blocks/mine/portal_stone_br" }},
+      "mine_tl_ew": { "textures": { "particle": "harvestfestival:blocks/mine/portal_mine_tl" }, "y": 270 },
+      "mine_tm_ew": { "textures": { "particle": "harvestfestival:blocks/mine/portal_mine_tm" }, "y": 270 },
+      "mine_tr_ew": { "textures": { "particle": "harvestfestival:blocks/mine/portal_mine_tr" }, "y": 270 },
+      "mine_bl_ew": { "textures": { "particle": "harvestfestival:blocks/mine/portal_mine_bl" }, "y": 270 },
+      "mine_bm_ew": { "textures": { "particle": "harvestfestival:blocks/mine/portal_mine_bm" }, "y": 270 },
+      "mine_br_ew": { "textures": { "particle": "harvestfestival:blocks/mine/portal_mine_br" }, "y": 270 },
+      "winter_tl_ew": { "textures": { "particle": "harvestfestival:blocks/mine/portal_winter_tl" }, "y": 270 },
+      "winter_tm_ew": { "textures": { "particle": "harvestfestival:blocks/mine/portal_winter_tm" }, "y": 270 },
+      "winter_tr_ew": { "textures": { "particle": "harvestfestival:blocks/mine/portal_winter_tr" }, "y": 270 },
+      "winter_bl_ew": { "textures": { "particle": "harvestfestival:blocks/mine/portal_winter_bl" }, "y": 270 },
+      "winter_bm_ew": { "textures": { "particle": "harvestfestival:blocks/mine/portal_winter_bm" }, "y": 270 },
+      "winter_br_ew": { "textures": { "particle": "harvestfestival:blocks/mine/portal_winter_br" }, "y": 270 },
+      "stone_tl_ew": { "textures": { "particle": "harvestfestival:blocks/mine/portal_stone_tl" }, "y": 270 },
+      "stone_tm_ew": { "textures": { "particle": "harvestfestival:blocks/mine/portal_stone_tm" }, "y": 270 },
+      "stone_tr_ew": { "textures": { "particle": "harvestfestival:blocks/mine/portal_stone_tr" }, "y": 270 },
+      "stone_bl_ew": { "textures": { "particle": "harvestfestival:blocks/mine/portal_stone_bl" }, "y": 270 },
+      "stone_bm_ew": { "textures": { "particle": "harvestfestival:blocks/mine/portal_stone_bm" }, "y": 270 },
+      "stone_br_ew": { "textures": { "particle": "harvestfestival:blocks/mine/portal_stone_br" }, "y": 270 }
+    }
+  }
+}

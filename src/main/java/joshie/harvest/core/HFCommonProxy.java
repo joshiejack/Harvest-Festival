@@ -1,6 +1,7 @@
 package joshie.harvest.core;
 
 import joshie.harvest.animals.HFAnimals;
+import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.HFIngredients;
@@ -9,11 +10,11 @@ import joshie.harvest.core.config.General;
 import joshie.harvest.core.config.HFConfig;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.debug.HFDebug;
+import joshie.harvest.gathering.HFGathering;
 import joshie.harvest.items.HFItems;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.gift.init.HFGifts;
-import joshie.harvest.gathering.HFGathering;
 import joshie.harvest.plugins.HFPlugins;
 import joshie.harvest.quests.HFQuests;
 import joshie.harvest.shops.HFShops;
@@ -37,7 +38,7 @@ public class HFCommonProxy {
         LIST.add(HFCrops.class);
         LIST.add(HFNPCs.class);
         LIST.add(HFBuildings.class);
-        LIST.add(joshie.harvest.blocks.HFBlocks.class);
+        LIST.add(HFBlocks.class);
         LIST.add(HFItems.class);
         LIST.add(HFCooking.class);
         LIST.add(HFIngredients.class);
@@ -57,13 +58,19 @@ public class HFCommonProxy {
         for (Class c : LIST) {
             try { //Attempt to load default
                 c.getMethod(stage).invoke(null);
-            } catch (Exception e) { if (ENABLE_LOGGING) e.printStackTrace(); }
+            } catch (NoClassDefFoundError | NoSuchMethodException e) { }
+              catch (Exception e) {
+                 if (ENABLE_LOGGING) e.printStackTrace();
+             }
 
             //Attempt to load client side only
             if (isClient()) {
                 try { //Attempt to load default
                     c.getMethod(stage + "Client").invoke(null);
-                } catch (Exception e) { if (ENABLE_LOGGING) e.printStackTrace();  }
+                } catch (NoClassDefFoundError | NoSuchMethodException e) { }
+                catch (Exception e) {
+                    if (ENABLE_LOGGING) e.printStackTrace();
+                }
             }
         }
     }

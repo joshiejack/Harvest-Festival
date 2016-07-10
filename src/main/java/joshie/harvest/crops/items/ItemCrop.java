@@ -41,9 +41,4 @@ public class ItemCrop extends ItemHFBase implements IShippable, ICropProvider, I
     public String getItemStackDisplayName(ItemStack stack) {
         return crop.getLocalizedName(true);
     }
-
-    @Override
-    public String getName(ItemStack stack) {
-        return crop.getRegistryName().getResourcePath();
-    }
 }

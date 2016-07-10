@@ -11,7 +11,6 @@ import joshie.harvest.mining.blocks.BlockPortal.Portal;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -111,10 +110,6 @@ public class BlockPortal extends BlockHFEnum<BlockPortal, Portal> {
         }
     }
 
-    protected boolean isValidTab(CreativeTabs tab, Portal portal) {
-        return false;
-    }
-
     private boolean isSameBlock(IBlockAccess world, BlockPos pos) {
         return world.getBlockState(pos).getBlock() == this;
     }
@@ -152,5 +147,10 @@ public class BlockPortal extends BlockHFEnum<BlockPortal, Portal> {
             if (connectedEast) return type == WINTER ? getStateFromEnum(WINTER_BM_EW) : type == MINE ? getStateFromEnum(MINE_BM_EW) : getStateFromEnum(STONE_BM_EW);
             return type == WINTER ? getStateFromEnum(WINTER_BM) : type == MINE ? getStateFromEnum(MINE_BM) : getStateFromEnum(STONE_BM);
         } else return state;
+    }
+
+    @Override
+    protected boolean shouldDisplayInCreative(Portal e) {
+        return false;
     }
 }

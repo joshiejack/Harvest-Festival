@@ -3,7 +3,6 @@ package joshie.harvest.cooking.items;
 import joshie.harvest.cooking.items.ItemUtensil.Utensil;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.util.base.ItemHFEnum;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.IStringSerializable;
 
 public class ItemUtensil extends ItemHFEnum<ItemUtensil, Utensil> {
@@ -21,7 +20,7 @@ public class ItemUtensil extends ItemHFEnum<ItemUtensil, Utensil> {
     }
 
     @Override
-    public boolean isValidTab(CreativeTabs tab, Utensil ingredient) {
+    public boolean shouldDisplayInCreative(Utensil ingredient) {
         return false;
     }
 }

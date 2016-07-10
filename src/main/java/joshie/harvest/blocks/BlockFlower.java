@@ -11,7 +11,6 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -29,7 +28,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-import static joshie.harvest.blocks.BlockFlower.FlowerType.WEED;
 import static net.minecraft.util.text.TextFormatting.AQUA;
 import static net.minecraftforge.common.EnumPlantType.Plains;
 
@@ -37,7 +35,7 @@ public class BlockFlower extends BlockHFEnum<BlockFlower, FlowerType> implements
     protected static final AxisAlignedBB FLOWER_AABB = new AxisAlignedBB(0.30000001192092896D, 0.0D, 0.30000001192092896D, 0.699999988079071D, 0.6000000238418579D, 0.699999988079071D);
 
     public BlockFlower() {
-        super(Material.PLANTS, FlowerType.class, HFTab.TOWN);
+        super(Material.PLANTS, FlowerType.class, HFTab.GATHERING);
         setSoundType(SoundType.GROUND);
     }
 
@@ -124,16 +122,9 @@ public class BlockFlower extends BlockHFEnum<BlockFlower, FlowerType> implements
         }
     }
 
-    @SideOnly(Side.CLIENT)
-    protected boolean isValidTab(CreativeTabs tab, FlowerType flower) {
-        if (flower == WEED) return tab == HFTab.GATHERING;
-        return tab == getCreativeTabToDisplayOn();
-    }
-
     @Override
     public int getSortValue(ItemStack stack) {
-        if (stack.getItemDamage() == WEED.ordinal()) return CreativeSort.TOOLS - 100;
-        else return -10;
+        return CreativeSort.TOOLS - 100;
     }
 
     @SideOnly(Side.CLIENT)

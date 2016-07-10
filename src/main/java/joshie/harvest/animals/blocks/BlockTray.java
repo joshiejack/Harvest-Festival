@@ -15,7 +15,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -159,8 +158,8 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
     }
 
     @Override
-    protected boolean isValidTab(CreativeTabs tab, Tray tray) {
-        return tray.isEmpty() && super.isValidTab(tab, tray);
+    protected boolean shouldDisplayInCreative(Tray tray) {
+        return tray.isEmpty();
     }
 
     @Override

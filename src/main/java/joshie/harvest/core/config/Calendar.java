@@ -36,7 +36,7 @@ public class Calendar {
         ENABLE_BLIZZARD = getBoolean("Weather > Enable Blizzard", true);
         ENABLE_DATE_HUD = getBoolean("HUD > Enable Data", true);
         ENABLE_GOLD_HUD = getBoolean("HUD > Enable Gold", true);
-        ENABLE_HUD_XZ = getBoolean("HUD > Coordinates", true);
+        ENABLE_HUD_XZ = getBoolean("HUD > Coordinates", false);
         if (ENABLE_HUD_XZ) {
             ENABLE_DATE_HUD = true;
             ENABLE_GOLD_HUD = true;

@@ -2,7 +2,6 @@ package joshie.harvest.blocks;
 
 import joshie.harvest.blocks.BlockStorage.Storage;
 import joshie.harvest.blocks.tiles.TileShipping;
-import joshie.harvest.core.HFTab;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.lib.CreativeSort;
@@ -10,7 +9,6 @@ import joshie.harvest.core.util.base.BlockHFEnumRotatableTile;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -91,11 +89,6 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
     @Override
     public TileEntity createTileEntity(World world, IBlockState state) {
         return new TileShipping();
-    }
-
-    @Override
-    public boolean isValidTab(CreativeTabs tab, Storage wood) {
-        return tab == HFTab.FARMING;
     }
 
     @Override

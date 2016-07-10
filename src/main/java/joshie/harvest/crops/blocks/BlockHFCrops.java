@@ -15,6 +15,7 @@ import joshie.harvest.core.helpers.SeedHelper;
 import joshie.harvest.core.helpers.WorldHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.base.BlockHFEnum;
+import joshie.harvest.core.util.base.ItemBlockHF;
 import joshie.harvest.crops.Crop;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.crops.blocks.BlockHFCrops.Stage;
@@ -414,6 +415,11 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
     @Override
     public TileEntity createTileEntity(World world, IBlockState state) {
         return getEnumFromState(state).isWithered() ? new TileWithered() : new TileCrop();
+    }
+
+    @Override
+    public ItemBlockHF getItemBlock() {
+        return null;
     }
 
     @Override

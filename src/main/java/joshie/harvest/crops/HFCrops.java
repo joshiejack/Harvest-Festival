@@ -44,17 +44,17 @@ import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class HFCrops {
     //Crops and Custom Farmland
-    public static final BlockHFCrops CROPS = new BlockHFCrops().setUnlocalizedName("crops.block");
-    public static final BlockSprinkler SPRINKLER = new BlockSprinkler().setUnlocalizedName("sprinkler");
+    public static final BlockHFCrops CROPS = new BlockHFCrops().register("crops_block");
+    public static final BlockSprinkler SPRINKLER = new BlockSprinkler().register("sprinkler");
 
 
     //Farming Tools
-    public static final ItemBaseTool HOE = new ItemHoe().setUnlocalizedName("hoe");
-    public static final ItemBaseTool SICKLE = new ItemSickle().setUnlocalizedName("sickle");
-    public static final ItemBaseTool WATERING_CAN = new ItemWateringCan().setUnlocalizedName("wateringcan");
+    public static final ItemBaseTool HOE = new ItemHoe().register("hoe");
+    public static final ItemBaseTool SICKLE = new ItemSickle().register("sickle");
+    public static final ItemBaseTool WATERING_CAN = new ItemWateringCan().register("wateringcan");
 
     //Seed Bag Item
-    public static final Item SEEDS = new ItemHFSeeds().setUnlocalizedName("crops.seeds");
+    public static final Item SEEDS = new ItemHFSeeds().register("crops_seeds");
 
     //Spring Crops
     public static final ICrop TURNIP = registerCrop("turnip", 120, 60, 5, 0, 0, 0xFFFFFF, SPRING).setStateHandler(new StateHandlerTurnip());
@@ -98,7 +98,7 @@ public class HFCrops {
         //Add a new crop item for things that do not have an item yet :D
         for (Crop crop : CropRegistry.REGISTRY.getValues()) {
             if (!crop.hasItemAssigned()) {
-                crop.setItem(new ItemStack(new ItemCrop(crop).setUnlocalizedName("crop." + crop.getRegistryName().getResourcePath()), 1, 0));
+                crop.setItem(new ItemStack(new ItemCrop(crop).register("crop_" + crop.getRegistryName().getResourcePath()), 1, 0));
             }
 
             //Register always in the ore dictionary

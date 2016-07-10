@@ -1,7 +1,6 @@
 package joshie.harvest.core.util.base;
 
 import joshie.harvest.api.core.ICreativeSorted;
-import joshie.harvest.core.HFTab;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.generic.Text;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -15,7 +14,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public abstract class ItemHFEnum<I extends ItemHFEnum, E extends Enum<E> & IStringSerializable> extends ItemHFBase implements ICreativeSorted {
+public abstract class ItemHFEnum<I extends ItemHFEnum, E extends Enum<E> & IStringSerializable> extends ItemHFBase<I> implements ICreativeSorted {
     protected final E[] values;
     protected final String prefix;
 
@@ -42,10 +41,6 @@ public abstract class ItemHFEnum<I extends ItemHFEnum, E extends Enum<E> & IStri
     @Override
     public int getMetadata(int damage) {
         return damage;
-    }
-
-    public boolean isValidTab(CreativeTabs tab, E e) {
-        return tab == getCreativeTab();
     }
 
     public E getEnumFromStack(ItemStack stack) {
@@ -81,20 +76,19 @@ public abstract class ItemHFEnum<I extends ItemHFEnum, E extends Enum<E> & IStri
     }
 
     @Override
-    public CreativeTabs[] getCreativeTabs() {
-        return new CreativeTabs[]{ HFTab.FARMING, HFTab.COOKING, HFTab.MINING, HFTab.TOWN, HFTab.GATHERING };
-    }
-
-    @Override
     public int getSortValue(ItemStack stack) {
         return CreativeSort.NONE;
+    }
+
+    public boolean shouldDisplayInCreative(E e) {
+        return true;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
         for (E e: values) {
-            if (isValidTab(tab, e)) {
+            if (shouldDisplayInCreative(e)) {
                 list.add(new ItemStack(item, 1, e.ordinal()));
             }
         }
@@ -105,6 +99,7 @@ public abstract class ItemHFEnum<I extends ItemHFEnum, E extends Enum<E> & IStri
     }
 
     @SideOnly(Side.CLIENT)
+    @Override
     public void registerModels(Item item, String name) {
         for (E e: values) {
             ModelLoader.setCustomModelResourceLocation(item, e.ordinal(), new ModelResourceLocation(getRegistryName(), e.getName()));

@@ -26,9 +26,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.Level;
 
 public class HFBuildings {
-    public static final ItemBuilding STRUCTURES = new ItemBuilding().setUnlocalizedName("structures");
-    public static final ItemBlueprint BLUEPRINTS = new ItemBlueprint().setUnlocalizedName("blueprints");
-    public static final ItemCheat CHEAT = new ItemCheat().setUnlocalizedName("cheat");
+    public static final ItemBuilding STRUCTURES = new ItemBuilding().register("structures");
+    public static final ItemBlueprint BLUEPRINTS = new ItemBlueprint().register("blueprints");
+    public static final ItemCheat CHEAT = new ItemCheat().register("cheat");
 
     public static final Building null_building = new Building();
     public static final IBuilding BARN = registerBuilding("barn", 3000L, 160, 0).setRequirements("blacksmith");

@@ -13,12 +13,12 @@ import static joshie.harvest.core.config.General.MINING_ID;
 public class HFMining {
     public static final DimensionType MINE_WORLD = DimensionType.register("The Mine", "_hf_mine", MINING_ID, MiningProvider.class, false);
 
-    public static final BlockOre ORE = new BlockOre().setUnlocalizedName("ore");
-    public static final BlockStone STONE = new BlockStone().setUnlocalizedName("stone");
-    public static final BlockDirt DIRT = new BlockDirt().setUnlocalizedName("dirt").setBlockUnbreakable();
-    public static final BlockLadder LADDER = new BlockLadder().setUnlocalizedName("ladder");
-    public static final BlockPortal PORTAL = new BlockPortal().setUnlocalizedName("portal");
-    public static final ItemMaterial MATERIALS = new ItemMaterial().setUnlocalizedName("materials");
+    public static final BlockOre ORE = new BlockOre().register("ore");
+    public static final BlockStone STONE = new BlockStone().register("stone");
+    public static final BlockDirt DIRT = new BlockDirt().setBlockUnbreakable().register("dirt");
+    public static final BlockLadder LADDER = new BlockLadder().register("ladder");
+    public static final BlockPortal PORTAL = new BlockPortal().setBlockUnbreakable().register("portal");
+    public static final ItemMaterial MATERIALS = new ItemMaterial().register("materials");
 
     public static void preInit() {
         DimensionManager.registerDimension(MINING_ID, MINE_WORLD);

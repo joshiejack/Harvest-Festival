@@ -22,10 +22,10 @@ import static joshie.harvest.core.helpers.generic.RegistryHelper.registerTiles;
 
 public class HFCooking {
     //Cooking
-    public static final BlockCookware COOKWARE = new BlockCookware().setUnlocalizedName("cookware");
-    public static final ItemMeal MEAL = new ItemMeal().setUnlocalizedName("meal");
-    public static final ItemUtensil UTENSILS = new ItemUtensil().setUnlocalizedName("utensils");
-    public static final ItemIngredients INGREDIENTS = new ItemIngredients().setUnlocalizedName("ingredients");
+    public static final BlockCookware COOKWARE = new BlockCookware().register("cookware");
+    public static final ItemMeal MEAL = new ItemMeal().register("meal");
+    public static final ItemUtensil UTENSILS = new ItemUtensil().register("utensils");
+    public static final ItemIngredients INGREDIENTS = new ItemIngredients().register("ingredients");
 
     public static void preInit() {
         BLADE_STACK = UTENSILS.getStackFromEnum(BLADE);

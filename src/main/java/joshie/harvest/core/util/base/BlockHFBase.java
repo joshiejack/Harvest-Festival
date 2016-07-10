@@ -1,8 +1,6 @@
 package joshie.harvest.core.util.base;
 
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.helpers.generic.RegistryHelper;
-import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.generic.Text;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -14,8 +12,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public abstract class BlockHFBase<B extends BlockHFBase> extends Block {
     private String unlocalizedName;
@@ -31,12 +32,18 @@ public abstract class BlockHFBase<B extends BlockHFBase> extends Block {
         this(material, HFTab.FARMING);
     }
 
-    @Override
-    public B setUnlocalizedName(String name) {
-        super.setUnlocalizedName(name);
-        RegistryHelper.registerBlock(this, name);
-        this.unlocalizedName = HFModInfo.MODID + "." + name;
+    public B register(String name) {
+        this.unlocalizedName = MODID + "." + name.replace("_", ".");
+        setUnlocalizedName(name.replace("_", "."));
+        setRegistryName(new ResourceLocation(MODID, name));
+        GameRegistry.register(this);
+        ItemBlockHF item = getItemBlock();
+        if (item != null) item.register(name);
         return (B) this;
+    }
+
+    public ItemBlockHF getItemBlock() {
+        return new ItemBlockHF(this);
     }
 
     @Override
@@ -75,6 +82,6 @@ public abstract class BlockHFBase<B extends BlockHFBase> extends Block {
 
     @SideOnly(Side.CLIENT)
     public void registerModels(Item item, String name) {
-        ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(new ResourceLocation(HFModInfo.MODID, name), "inventory"));
+        ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(new ResourceLocation(MODID, name), "inventory"));
     }
 }

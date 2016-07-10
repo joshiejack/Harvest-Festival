@@ -2,7 +2,6 @@ package joshie.harvest.blocks;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.core.handlers.GoddessHandler;
-import joshie.harvest.core.helpers.generic.RegistryHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockCrops;
@@ -15,15 +14,19 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
+
+import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class BlockGoddessWater extends BlockFluidClassic {
     public BlockGoddessWater(Fluid fluid) {
@@ -58,10 +61,14 @@ public class BlockGoddessWater extends BlockFluidClassic {
         }
     }
 
-    @Override
-    public BlockGoddessWater setUnlocalizedName(String name) {
-        super.setUnlocalizedName(name);
-        RegistryHelper.registerBlock(this, name);
+    public BlockGoddessWater register(String name) {
+        setUnlocalizedName(name.replace("_", "."));
+        setRegistryName(new ResourceLocation(MODID, name));
+        GameRegistry.register(this);
+        ItemBlock item = new ItemBlock(this);
+        item.setUnlocalizedName(name.replace("_", "."));
+        item.setRegistryName(new ResourceLocation(MODID, name));
+        GameRegistry.register(item);
         return this;
     }
 

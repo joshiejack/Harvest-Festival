@@ -25,7 +25,7 @@ public class SizeableRegistry implements ISizeableRegistry {
     @Override
     public Item createSizedItem(String name, long sellSmall, long sellMedium, long sellLarge) {
         Sizeable meta = (Sizeable) registerSizeable(new ResourceLocation(MODID, name), sellSmall, sellMedium, sellLarge);
-        return new ItemSizeable(name, meta).setUnlocalizedName(name.toLowerCase());
+        return new ItemSizeable(name, meta).register(name.toLowerCase());
     }
 
     @Override

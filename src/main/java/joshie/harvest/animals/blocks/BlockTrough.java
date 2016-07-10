@@ -186,11 +186,6 @@ public class BlockTrough extends BlockHFEnumRotatableMeta<BlockTrough, Trough> i
     }
 
     @Override
-    public boolean isValidTab(CreativeTabs tab, Trough wood) {
-        return tab == HFTab.FARMING;
-    }
-
-    @Override
     public int getSortValue(ItemStack stack) {
         return CreativeSort.TROUGH;
     }

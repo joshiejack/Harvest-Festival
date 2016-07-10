@@ -1,15 +1,24 @@
 package joshie.harvest.core.util.base;
 
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.helpers.generic.RegistryHelper;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.core.util.generic.Text;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-public abstract class ItemHFBase extends Item {
+import java.util.ArrayList;
+import java.util.List;
 
+import static joshie.harvest.core.lib.HFModInfo.MODID;
+
+public abstract class ItemHFBase<I extends ItemHFBase> extends Item {
     public ItemHFBase() {
         this(HFTab.FARMING);
     }
@@ -18,11 +27,15 @@ public abstract class ItemHFBase extends Item {
         setCreativeTab(tab);
     }
 
-    @Override
-    public Item setUnlocalizedName(String name) {
-        super.setUnlocalizedName(name);
-        RegistryHelper.registerItem(this, name);
-        return this;
+    public I register(String name) {
+        setUnlocalizedName(name.replace("_", "."));
+        setRegistryName(new ResourceLocation(MODID, name));
+        GameRegistry.register(this);
+        if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
+            registerModels(this, name);
+        }
+
+        return (I) this;
     }
 
     @Override
@@ -30,18 +43,23 @@ public abstract class ItemHFBase extends Item {
         return HFModInfo.MODID + "." + super.getUnlocalizedName().replace("item.", "");
     }
 
-    @Override
-    public String getUnlocalizedName(ItemStack stack) {
-        return super.getUnlocalizedName(stack) + "_" + getName(stack);
-    }
+    @SideOnly(Side.CLIENT)
+    public void registerModels(Item item, String name) {
+        if (item.getHasSubtypes()) {
+            List<ItemStack> subItems = new ArrayList<ItemStack>();
+            if (item.getCreativeTabs().length > 0) {
+                for (CreativeTabs tab : item.getCreativeTabs()) {
+                    item.getSubItems(item, tab, subItems);
+                }
+            }
 
-    @Override
-    public String getItemStackDisplayName(ItemStack stack) {
-        String name = getName(stack).replaceAll("(.)([A-Z])", "$1$2").toLowerCase();
-        return Text.localize(getUnlocalizedName() + "." + name.replace("_", "."));
-    }
+            for (ItemStack stack : subItems) {
+                String subItemName = item.getUnlocalizedName(stack).replace("item.", "").replace(".", "_");
 
-    public String getName(ItemStack stack) {
-        return "name";
+                ModelLoader.setCustomModelResourceLocation(item, item.getDamage(stack), new ModelResourceLocation(new ResourceLocation(MODID, subItemName), "inventory"));
+            }
+        } else {
+            ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(new ResourceLocation(MODID, name), "inventory"));
+        }
     }
 }

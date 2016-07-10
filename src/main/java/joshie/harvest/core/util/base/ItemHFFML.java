@@ -1,6 +1,5 @@
 package joshie.harvest.core.util.base;
 
-import joshie.harvest.core.HFTab;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -12,7 +11,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public abstract class ItemHFFML<I extends ItemHFFML, E extends Impl<E>> extends ItemHFBase {
+public abstract class ItemHFFML<I extends ItemHFFML, E extends Impl<E>> extends ItemHFBase<I> {
     protected FMLControlledNamespacedRegistry<E> registry;
     public ItemHFFML(FMLControlledNamespacedRegistry<E> registry) {
         super();
@@ -30,11 +29,6 @@ public abstract class ItemHFFML<I extends ItemHFFML, E extends Impl<E>> extends 
     public I setUnlocalizedName(String name) {
         super.setUnlocalizedName(name);
         return (I) this;
-    }
-
-    @Override
-    public String getUnlocalizedName(ItemStack stack) {
-        return getName(stack);
     }
 
     public abstract E getNullValue();
@@ -61,20 +55,15 @@ public abstract class ItemHFFML<I extends ItemHFFML, E extends Impl<E>> extends 
         return damage;
     }
 
-    public boolean isValidTab(CreativeTabs tab, E e) {
-        return tab == getCreativeTab();
-    }
-
-    @Override
-    public CreativeTabs[] getCreativeTabs() {
-        return new CreativeTabs[]{HFTab.FARMING, HFTab.COOKING, HFTab.MINING, HFTab.TOWN, HFTab.GATHERING};
+    public boolean shouldDisplayInCreative(E e) {
+        return true;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
         for (E e: registry.getValues()) {
-            if (isValidTab(tab, e) && e != getNullValue()) {
+            if (shouldDisplayInCreative(e) && e != getNullValue()) {
                 list.add(getCreativeStack(item, e));
             }
         }

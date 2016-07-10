@@ -24,11 +24,11 @@ import static joshie.harvest.core.lib.HFModInfo.MODID;
 public class HFBlocks {
     //Fluid
     public static final Fluid GODDESS = registerFluid(new Fluid("goddess_water", new ResourceLocation(MODID, "blocks/goddess_still"), new ResourceLocation(MODID, "blocks/goddess_flow")).setRarity(EnumRarity.RARE));
-    public static final BlockGoddessWater GODDESS_WATER = new BlockGoddessWater(GODDESS).setUnlocalizedName("goddess.water");
-    public static final BlockFlower FLOWERS = new BlockFlower().setUnlocalizedName("flowers");
-    public static final BlockStorage STORAGE = new BlockStorage().setUnlocalizedName("storage");
-    public static final BlockRock ROCK = new BlockRock().setUnlocalizedName("rock");
-    public static final BlockWood WOOD = new BlockWood().setUnlocalizedName("wood");
+    public static final BlockGoddessWater GODDESS_WATER = new BlockGoddessWater(GODDESS).register("goddess_water");
+    public static final BlockFlower FLOWERS = new BlockFlower().register("flowers");
+    public static final BlockStorage STORAGE = new BlockStorage().register("storage");
+    public static final BlockRock ROCK = new BlockRock().register("rock");
+    public static final BlockWood WOOD = new BlockWood().register("wood");
 
     public static void preInit() {
         GODDESS.setBlock(GODDESS_WATER);

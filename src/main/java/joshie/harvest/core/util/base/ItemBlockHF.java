@@ -1,24 +1,23 @@
 package joshie.harvest.core.util.base;
 
 import joshie.harvest.api.core.ICreativeSorted;
-import joshie.harvest.core.HFTab;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
 
-public class ItemBlockHF extends ItemBlock implements  ICreativeSorted {
+import static joshie.harvest.core.lib.HFModInfo.MODID;
+
+public class ItemBlockHF extends ItemBlock implements ICreativeSorted {
     private final BlockHFBase block;
 
     public ItemBlockHF(BlockHFBase block) {
         super(block);
         this.block = block;
         setHasSubtypes(true);
-    }
-
-    @Override
-    public CreativeTabs[] getCreativeTabs() {
-        return new CreativeTabs[]{ HFTab.FARMING, HFTab.COOKING, HFTab.MINING, HFTab.TOWN, HFTab.GATHERING };
     }
 
     @Override
@@ -50,5 +49,14 @@ public class ItemBlockHF extends ItemBlock implements  ICreativeSorted {
     @Override
     public int getSortValue(ItemStack stack) {
         return block.getSortValue(stack);
+    }
+
+    public void register(String name) {
+        setUnlocalizedName(name.replace("_", "."));
+        setRegistryName(new ResourceLocation(MODID, name));
+        GameRegistry.register(this);
+        if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
+            block.registerModels(this, name);
+        }
     }
 }

@@ -12,7 +12,6 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -263,8 +262,7 @@ public class BlockCookware extends BlockHFEnumRotatableTile<BlockCookware, Cookw
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    protected boolean isValidTab(CreativeTabs tab, Cookware cookware) {
-        return cookware.isReal? super.isValidTab(tab, cookware) : false;
+    protected boolean shouldDisplayInCreative(Cookware cookware) {
+        return cookware.isReal;
     }
 }

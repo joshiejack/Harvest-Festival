@@ -50,8 +50,8 @@ public class HFNPCs {
     public static INPC POULTRY; //Poultry Farm Owner                 (POULTRY FARM)
 
     //Item
-    public static final ItemNPCSpawner SPAWNER_NPC = new ItemNPCSpawner().setUnlocalizedName("spawner.npc");
-    public static final ItemNPCTool TOOLS = new ItemNPCTool().setUnlocalizedName("tool.npc");
+    public static final ItemNPCSpawner SPAWNER_NPC = new ItemNPCSpawner().register("spawner_npc");
+    public static final ItemNPCTool TOOLS = new ItemNPCTool().register("tool_npc");
 
     public static void preInit() {
         EntityRegistry.registerModEntity(EntityNPCVillager.class, "NPC", 0, HarvestFestival.instance, 80, 3, true);

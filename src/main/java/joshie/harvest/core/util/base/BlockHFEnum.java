@@ -125,16 +125,6 @@ public abstract class BlockHFEnum<B extends BlockHFEnum, E extends Enum<E> & ISt
         return ((IHasMetaItem) Item.getItemFromBlock(this)).getName(new ItemStack(this, 1, i));
     }
 
-    protected boolean isValidTab(CreativeTabs tab, E e) {
-        return tab == getCreativeTabToDisplayOn();
-    }
-
-    @Override
-    public B setUnlocalizedName(String name) {
-        super.setUnlocalizedName(name);
-        return (B) this;
-    }
-
     @Override
     @SideOnly(Side.CLIENT)
     public BlockRenderLayer getBlockLayer() {
@@ -156,11 +146,15 @@ public abstract class BlockHFEnum<B extends BlockHFEnum, E extends Enum<E> & ISt
         return getEnumFromMeta(stack.getItemDamage()).name().toLowerCase();
     }
 
+    protected boolean shouldDisplayInCreative(E e) {
+        return true;
+    }
+
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
         for (E e : values) {
-            if (isValidTab(tab, e)) {
+            if (shouldDisplayInCreative(e)) {
                 list.add(new ItemStack(item, 1, e.ordinal()));
             }
         }

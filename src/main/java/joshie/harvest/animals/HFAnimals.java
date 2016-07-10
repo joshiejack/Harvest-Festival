@@ -37,9 +37,9 @@ import static net.minecraftforge.fml.common.registry.EntityRegistry.registerModE
 
 public class HFAnimals {
     //Animal Items
-    public static final ItemAnimalSpawner ANIMAL = new ItemAnimalSpawner().setUnlocalizedName("animal");
-    public static final ItemAnimalTool TOOLS = new ItemAnimalTool().setUnlocalizedName("tool.animal");
-    public static final ItemAnimalTreat TREATS = new ItemAnimalTreat().setUnlocalizedName("treat");
+    public static final ItemAnimalSpawner ANIMAL = new ItemAnimalSpawner().register("animal");
+    public static final ItemAnimalTool TOOLS = new ItemAnimalTool().register("tool_animal");
+    public static final ItemAnimalTreat TREATS = new ItemAnimalTreat().register("treat");
 
     //Sizeable Animal Products
     public static final Item EGG = HFApi.sizeable.createSizedItem("egg", 50, 60, 80);
@@ -48,9 +48,9 @@ public class HFAnimals {
     public static final Item WOOL = HFApi.sizeable.createSizedItem("wool", 100, 400, 500);
 
     //Animal Blocks
-    public static final BlockTrough TROUGH = new BlockTrough().setUnlocalizedName("trough");
-    public static final BlockSizedStorage SIZED = new BlockSizedStorage().setUnlocalizedName("sized");
-    public static final BlockTray TRAY = new BlockTray().setUnlocalizedName("tray");
+    public static final BlockTrough TROUGH = new BlockTrough().register("trough");
+    public static final BlockSizedStorage SIZED = new BlockSizedStorage().register("sized");
+    public static final BlockTray TRAY = new BlockTray().register("tray");
 
     public static void preInit() {
         registerModEntity(EntityHarvestCow.class, "cow", 5, HarvestFestival.instance, 150, 3, true);

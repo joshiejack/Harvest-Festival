@@ -10,7 +10,7 @@ import static joshie.harvest.blocks.BlockRock.Rock.*;
 import static joshie.harvest.blocks.BlockWood.Wood.*;
 
 public class HFGathering {
-    public static final ItemBaseTool AXE = new ItemAxe().setUnlocalizedName("axe");
+    public static final ItemBaseTool AXE = new ItemAxe().register("axe");
 
     public static void init() {
         HFApi.gathering.registerGathering(HFBlocks.WOOD.getStateFromEnum(BRANCH_SMALL), 8D);

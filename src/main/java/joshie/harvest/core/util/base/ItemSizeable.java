@@ -5,10 +5,9 @@ import joshie.harvest.api.core.IShippable;
 import joshie.harvest.api.core.ISizeable;
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.api.core.ISizedProvider;
-import joshie.harvest.core.HFTab;
+import joshie.harvest.core.handlers.SizeableRegistry;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.lib.Sizeable;
-import joshie.harvest.core.handlers.SizeableRegistry;
 import joshie.harvest.core.util.generic.Text;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -52,7 +51,7 @@ public class ItemSizeable extends ItemHFEnum<ItemHFEnum, Size> implements IShipp
 
     @Override
     public String getUnlocalizedName(ItemStack stack) {
-        return getName(stack) + "_" + getSize(stack).toString().toLowerCase();
+        return unlocalised.toLowerCase() + "_" + getSize(stack).toString().toLowerCase();
     }
 
     @Override
@@ -64,16 +63,6 @@ public class ItemSizeable extends ItemHFEnum<ItemHFEnum, Size> implements IShipp
         text = StringUtils.replace(text, "%S", size);
         text = StringUtils.replace(text, "%P", name);
         return text;
-    }
-
-    @Override
-    public String getName(ItemStack stack) {
-        return unlocalised.toLowerCase();
-    }
-
-    @Override
-    public CreativeTabs[] getCreativeTabs() {
-        return new CreativeTabs[]{ HFTab.FARMING };
     }
 
     @Override

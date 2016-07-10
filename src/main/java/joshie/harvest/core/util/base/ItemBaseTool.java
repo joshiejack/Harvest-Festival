@@ -27,18 +27,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public abstract class ItemBaseTool extends ItemBaseSingle implements ILevelable, ITiered, ICreativeSorted {
+public abstract class ItemBaseTool extends ItemHFBase<ItemBaseTool> implements ILevelable, ITiered, ICreativeSorted {
     /**
      * Create a tool
      */
     public ItemBaseTool() {
         setMaxStackSize(1);
         setHasSubtypes(true);
-    }
-
-    @Override
-    public ItemBaseTool setUnlocalizedName(String name) {
-        return (ItemBaseTool) super.setUnlocalizedName(name);
     }
 
     public ItemStack getStack(ToolTier tier) {
@@ -57,7 +52,7 @@ public abstract class ItemBaseTool extends ItemBaseSingle implements ILevelable,
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        return Text.translate(super.getUnlocalizedName().replace("item.", "") + "." + getTier(stack).name().toLowerCase());
+        return Text.localize(super.getUnlocalizedName().replace("item.", "") + "." + getTier(stack).name().toLowerCase());
     }
 
     @Override

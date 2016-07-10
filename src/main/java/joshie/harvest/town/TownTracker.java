@@ -1,7 +1,9 @@
 package joshie.harvest.town;
 
 import joshie.harvest.core.HFTracker;
+import joshie.harvest.core.util.Direction;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
@@ -30,4 +32,16 @@ public abstract class TownTracker extends HFTracker {
     public void newDay() {}
 
     public void addBuilder(EntityNPCBuilder npc) {}
+
+    public BlockPos getCoordinatesForOverworldMine(Entity entity, int mineID) {
+        return entity instanceof EntityPlayer ? ((EntityPlayer) entity).getBedLocation() : entity.worldObj.getSpawnPoint();
+    }
+
+    public int getMineIDFromCoordinates(BlockPos pos) {
+        return -1;
+    }
+
+    public Direction getMineOrientation(int mineID) {
+        return Direction.MN_R0;
+    }
 }

@@ -2,22 +2,33 @@ package joshie.harvest.town;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
+import com.google.common.collect.BiMap;
+import com.google.common.collect.HashBiMap;
 import joshie.harvest.core.config.NPC;
 import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.util.Direction;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.*;
+import java.util.Map.Entry;
 import java.util.concurrent.Callable;
 
+import static joshie.harvest.core.lib.HFModInfo.MODID;
+import static joshie.harvest.core.util.Direction.MN_R0;
+
 public class TownTrackerServer extends TownTracker {
+    private static final ResourceLocation MINE = new ResourceLocation(MODID, "miningHill");
     private final Cache<BlockPos, TownData> closestCache = CacheBuilder.newBuilder().build();
     private final Cache<BlockPos, EntityNPCBuilder> closestBuilder = CacheBuilder.newBuilder().build();
     private final HashMap<UUID, TownData> uuidMap = new HashMap<>();
+    private BiMap<UUID, Integer> townIDs = HashBiMap.create();
     private Set<TownDataServer> townData = new HashSet<>();
     private Set<EntityNPCBuilder> builders = new HashSet<>();
 
@@ -37,6 +48,48 @@ public class TownTrackerServer extends TownTracker {
                 it.remove();
             }
         }
+    }
+
+    @Override
+    public BlockPos getCoordinatesForOverworldMine(Entity entity, int mineID) {
+        BlockPos default_ = super.getCoordinatesForOverworldMine(entity, mineID);
+        UUID uuid = townIDs.inverse().get(mineID);
+        if (uuid == null) return default_;
+        TownData data = uuidMap.get(uuid);
+        if (data == null || !data.hasBuilding(MINE)) return default_;
+        return data.getCoordinatesFor(Pair.of(MINE, TownData.MINE_ENTRANCE));
+    }
+
+    @Override
+    public Direction getMineOrientation(int mineID) {
+        UUID uuid = townIDs.inverse().get(mineID);
+        if (uuid == null) return MN_R0;
+        TownData data = uuidMap.get(uuid);
+        if (data == null || !data.hasBuilding(MINE)) return Direction.MN_R0;
+        return data.getFacingFor(Pair.of(MINE, TownData.MINE_ENTRANCE));
+    }
+
+    @Override
+    public int getMineIDFromCoordinates(BlockPos pos) {
+        TownData data = getClosestTownToBlockPos(pos);
+        if (data == null) return -1;
+        if (!data.hasBuilding(MINE)) return -1;
+        if (townIDs.containsKey(data.getID())) {
+            return townIDs.get(data.getID());
+        } else return matchUUIDWithMineID(data.getID());
+    }
+
+    private int matchUUIDWithMineID(UUID uuid) {
+        for (int i = 0; i < 32000; i++) { //Add a mineid to uuid entry
+            if (townIDs.inverse().containsKey(i)) continue;
+            else {
+                townIDs.put(uuid, i);
+                HFTrackers.markDirty(getDimension());
+                return i;
+            }
+        }
+
+        return 0;
     }
 
     private EntityNPCBuilder createBuilder(EntityLivingBase entity) {
@@ -85,6 +138,7 @@ public class TownTrackerServer extends TownTracker {
         townData.add(data);
         closestCache.invalidateAll(); //Reset the cache everytime we make a new town
         uuidMap.put(data.getID(), data);
+        matchUUIDWithMineID(data.getID());
         HFTrackers.markDirty(getDimension());
         return data;
     }
@@ -121,6 +175,15 @@ public class TownTrackerServer extends TownTracker {
             uuidMap.put(theData.getID(), theData);
             townData.add(theData);
         }
+
+        townIDs = HashBiMap.create();
+        NBTTagList ids = nbt.getTagList("IDs", 10);
+        for (int j = 0; j < ids.tagCount(); j++) {
+            NBTTagCompound tag = ids.getCompoundTagAt(j);
+            int id = tag.getInteger("ID");
+            UUID uuid = UUID.fromString(tag.getString("UUID"));
+            townIDs.put(uuid, id);
+        }
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
@@ -132,6 +195,17 @@ public class TownTrackerServer extends TownTracker {
         }
 
         nbt.setTag("Towns", town_list);
+
+        //Ids
+        NBTTagList ids = new NBTTagList();
+        for (Entry<UUID, Integer> entry: townIDs.entrySet()) {
+            NBTTagCompound tag = new NBTTagCompound();
+            tag.setInteger("ID", entry.getValue());
+            tag.setString("UUID", entry.getKey().toString());
+            ids.appendTag(tag);
+        }
+
+        nbt.setTag("IDs", ids);
         return nbt;
     }
 }

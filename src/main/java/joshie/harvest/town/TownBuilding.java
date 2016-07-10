@@ -22,6 +22,10 @@ public class TownBuilding {
         this.pos = pos;
     }
 
+    public Direction getFacing() {
+        return direction;
+    }
+
     public BlockPos getRealCoordinatesFor(Placeable placeable) {
         return placeable.getTransformedPosition(pos, direction);
     }

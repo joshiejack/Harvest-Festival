@@ -10,8 +10,7 @@
 - Schedule Based Conversations
 - Add Extra Chat Messages, and Conversations for all NPCs
 - Mining Dimension Stuff
-    - Make Portal Walls Teleport you to/from the dimension
-    - Make Portal Holes Teleport you down a random number of floors
+    - Add the hole block on the bottom of each stack of floors, so that you can teleport to the next stack of mines
     - Add an Overlay while in the dimension that tells you the name of the mine aka Spring Mine or Winter Mine
     - Add an Overlay that tells you what floor you are on
 - Change Blueprints to so that you can hover and click where you want them placed with a preview of the building - J

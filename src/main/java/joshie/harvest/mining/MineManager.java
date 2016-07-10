@@ -8,25 +8,16 @@ import joshie.harvest.core.helpers.NBTHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.WorldSavedData;
 
 import java.util.Random;
 
-public class MineManager extends WorldSavedData {
+public class MineManager  {
     public static final int CHUNK_BOUNDARY = 10;
     private static final Random rand = new Random(326723423L);
     private TIntLongMap seeds = new TIntLongHashMap();
     private TIntObjectMap<TIntObjectMap<IBlockState[][]>> generation = new TIntObjectHashMap();
     private TIntObjectMap<int[]> coordinates = new TIntObjectHashMap();
     private TIntObjectMap<BlockPos> spawnCoordinates = new TIntObjectHashMap<>();
-
-    public MineManager(String string) {
-        super(string);
-    }
-
-    public boolean areCoordinatesDefault(int mineID) {
-        return getSpawnCoordinateForMine(mineID).equals(new BlockPos(0, 254, mineID * CHUNK_BOUNDARY * 16));
-    }
 
     public boolean areCoordinatesGenerated(int mineID) {
         return spawnCoordinates.containsKey(mineID);
@@ -69,15 +60,12 @@ public class MineManager extends WorldSavedData {
         return coordinates.get(mapIndex)[position];
     }
 
-    @Override
-    public void readFromNBT(NBTTagCompound tag) {
-        seeds = NBTHelper.readLongMap(tag.getTagList("Seeds", 10));
+    public MineManager(NBTTagCompound tag) {
         spawnCoordinates = NBTHelper.readPositionMap(tag.getTagList("Coordinates", 10));
     }
 
-    @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound tag) {
-        tag.setTag("Seeds", NBTHelper.writeLongMap(seeds));
+    public NBTTagCompound getCompound() {
+        NBTTagCompound tag = new NBTTagCompound();
         tag.setTag("Coordinates", NBTHelper.writePositionMap(spawnCoordinates));
         return tag;
     }

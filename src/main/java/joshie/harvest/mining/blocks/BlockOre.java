@@ -11,16 +11,20 @@ import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.MiningHelper;
 import joshie.harvest.mining.blocks.BlockOre.Ore;
 import joshie.harvest.mining.items.ItemMaterial;
+import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 
 import static joshie.harvest.api.gathering.ISmashable.ToolType.HAMMER;
 import static net.minecraft.block.material.Material.ROCK;
@@ -56,6 +60,12 @@ public class BlockOre extends BlockHFEnum<BlockOre, Ore> implements ISmashable {
     @Override
     public ItemStack getDrop(EntityPlayer player, World world, BlockPos pos, IBlockState state, float luck) {
         Ore ore = getEnumFromState(state);
+
+        if (world instanceof WorldServer) {
+            WorldServer server = ((WorldServer)world);
+            server.spawnParticle(EnumParticleTypes.BLOCK_CRACK, pos.getX(), pos.getY(), pos.getZ(), 10, 0.5D, 0.5D, 0.5D, 0.0D, new int[] {Block.getStateId(Blocks.DIRT.getDefaultState())});
+        }
+
         switch (ore) {
             case ROCK: {
                 ResourceLocation loot = HFTrackers.getCalendar(world).getSeasonAt(pos) == Season.WINTER ? LootStrings.MINE_WINTER : LootStrings.MINE_SPRING;

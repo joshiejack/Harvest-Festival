@@ -80,6 +80,12 @@ public class TownData {
         return building.getRealCoordinatesFor(home.getValue());
     }
 
+    public Direction getFacingFor(Pair<ResourceLocation, String> home) {
+        TownBuilding building = buildings.get(home.getKey());
+        if (building == null) return null;
+        return building.getFacing();
+    }
+
     public BlockPos getTownCentre() {
         return townCentre;
     }

@@ -20,13 +20,8 @@ public class MiningProvider extends WorldProvider {
     public void createBiomeProvider() {
         biomeProvider = new BiomeProviderSingle(Biomes.VOID);
         hasNoSky = true;
-        if (worldObj instanceof WorldServer) {
-            manager = (MineManager) worldObj.getPerWorldStorage().getOrLoadData(MineManager.class, "mine_data");
-            if (manager == null) {
-                manager = new MineManager("mine_data");
-                worldObj.getPerWorldStorage().setData("mine_data", manager);
-            }
-        }
+        NBTTagCompound tag = worldObj.getWorldInfo().getDimensionData(MINE_WORLD);
+        manager = worldObj instanceof WorldServer ? new MineManager(tag.getCompoundTag("MineManager")) : null;
     }
 
     @Override
@@ -65,8 +60,11 @@ public class MiningProvider extends WorldProvider {
 
     @Override
     public void onWorldSave() {
+        NBTTagCompound tag = new NBTTagCompound();
         if (manager != null) {
-            worldObj.getWorldInfo().setDimensionData(MINE_WORLD, manager.writeToNBT(new NBTTagCompound()));
+            tag.setTag("MineManager", manager.getCompound());
         }
+
+        worldObj.getWorldInfo().setDimensionData(MINE_WORLD, tag);
     }
 }

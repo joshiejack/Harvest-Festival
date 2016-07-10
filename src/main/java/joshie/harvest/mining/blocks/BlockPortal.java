@@ -6,7 +6,7 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.WorldHelper;
 import joshie.harvest.core.util.base.BlockHFEnum;
 import joshie.harvest.core.util.generic.Text;
-import joshie.harvest.mining.HFMining;
+import joshie.harvest.mining.MiningHelper;
 import joshie.harvest.mining.blocks.BlockPortal.Portal;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -16,6 +16,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
@@ -26,20 +27,26 @@ import static joshie.harvest.mining.blocks.BlockPortal.Type.*;
 
 
 public class BlockPortal extends BlockHFEnum<BlockPortal, Portal> {
+    protected static final AxisAlignedBB AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 1.0D, 0.9375D);
+
     public enum Portal implements IStringSerializable {
         MINE_TL, MINE_TM, MINE_TR, MINE_BL, MINE_BM, MINE_BR,
-        WINTER_TL, WINTER_TM, WINTER_TR, WINTER_BL, WINTER_BM, WINTER_BR,
-        STONE_TL, STONE_TM, STONE_TR, STONE_BL, STONE_BM, STONE_BR,
         MINE_TL_EW, MINE_TM_EW, MINE_TR_EW, MINE_BL_EW, MINE_BM_EW, MINE_BR_EW,
+        WINTER_TL, WINTER_TM, WINTER_TR, WINTER_BL, WINTER_BM, WINTER_BR,
         WINTER_TL_EW, WINTER_TM_EW, WINTER_TR_EW, WINTER_BL_EW, WINTER_BM_EW, WINTER_BR_EW,
+        STONE_TL, STONE_TM, STONE_TR, STONE_BL, STONE_BM, STONE_BR,
         STONE_TL_EW, STONE_TM_EW, STONE_TR_EW, STONE_BL_EW, STONE_BM_EW, STONE_BR_EW;
 
         public boolean isMine() {
-            return ordinal() <= WINTER_BR.ordinal();
+            return ordinal() <= WINTER_BR_EW.ordinal();
         }
 
         public boolean isStone() {
             return ordinal() >= STONE_TL.ordinal();
+        }
+
+        public boolean isEW() {
+            return ordinal() % 12 >= 6;
         }
 
         @Override
@@ -84,6 +91,26 @@ public class BlockPortal extends BlockHFEnum<BlockPortal, Portal> {
         return Text.localizeFully(getUnlocalizedName());
     }
 
+    @Override
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos) {
+        return AABB;
+    }
+
+    @Override
+    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
+        if (!world.isRemote) {
+            IBlockState actual = getActualState(state, world, pos);
+            if (actual.getBlock() == this) {
+                Portal portal = getEnumFromState(actual);
+                if (portal.isMine()) {
+                    MiningHelper.teleportToOverworld(entity);
+                } else {
+                    MiningHelper.teleportToMine(entity);
+                }
+            }
+        }
+    }
+
     protected boolean isValidTab(CreativeTabs tab, Portal portal) {
         return false;
     }
@@ -124,6 +151,6 @@ public class BlockPortal extends BlockHFEnum<BlockPortal, Portal> {
         } else if(connectedUp && ((connectedEast && connectedWest) || (connectedNorth && connectedSouth))) {
             if (connectedEast) return type == WINTER ? getStateFromEnum(WINTER_BM_EW) : type == MINE ? getStateFromEnum(MINE_BM_EW) : getStateFromEnum(STONE_BM_EW);
             return type == WINTER ? getStateFromEnum(WINTER_BM) : type == MINE ? getStateFromEnum(MINE_BM) : getStateFromEnum(STONE_BM);
-        } else return HFMining.STONE.getDefaultState();
+        } else return state;
     }
 }

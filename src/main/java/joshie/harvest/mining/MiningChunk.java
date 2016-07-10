@@ -49,7 +49,7 @@ public class MiningChunk implements IChunkGenerator {
             primer.setBlockState(x, y, z, state);
 
             if (state.getBlock() == FLOORS.getBlock()) {
-                int chance = 5 + rand.nextInt(60);
+                int chance = 4 + rand.nextInt(46);
                 if (rand.nextInt(chance) == 0) {
                     int realX = (chunkX * 16) + x;
                     int realZ = (chunkZ * 16) + z;
@@ -60,10 +60,6 @@ public class MiningChunk implements IChunkGenerator {
                 }
             }
         }
-    }
-
-    private int getMineID(int chunkZ) {
-        return (int)Math.floor(chunkZ / CHUNK_BOUNDARY);
     }
 
     public IBlockState getBlockState(ChunkPrimer primer, int x, int y, int z) {
@@ -142,7 +138,7 @@ public class MiningChunk implements IChunkGenerator {
                     }
                 }
 
-                int mineID = getMineID(chunkZ);
+                int mineID = MiningHelper.getMineID(chunkZ);
                 if (MiningTicker.getFloor(chunkX, chunkY) == 1 && !manager.areCoordinatesGenerated(mineID)) {
                     for (int x = 0; x < 16; x++) {
                         for (int z = 0; z < 16; z++) {
@@ -158,6 +154,15 @@ public class MiningChunk implements IChunkGenerator {
                 }
             }
         }
+
+        //Fix the ceiling
+        for (int i = 0; i < 16; i++) {
+            for (int j = 0; j < 16; j++) {
+                for (int k = 0; k < 252; k++) {
+                    setBlockState(primer, i, 251, j, WALLS, chunkX, chunkZ);
+                }
+            }
+        }
     }
 
     private void setXSpawn(ChunkPrimer primer, int x, int y, int z, int chunkX, int chunkZ) {
@@ -169,7 +174,7 @@ public class MiningChunk implements IChunkGenerator {
         setBlockState(primer, x, y + 1, z, PORTAL, chunkX, chunkZ);
         setBlockState(primer, x - 1, y + 1, z, PORTAL, chunkX, chunkZ);
         setBlockState(primer, x + 1, y + 1, z, PORTAL, chunkX, chunkZ);
-        manager.setSpawnForMine(getMineID(chunkZ), realX, y, realZ);
+        manager.setSpawnForMine(MiningHelper.getMineID(chunkZ), realX, y, realZ);
     }
 
     private void setZSpawn(ChunkPrimer primer, int x, int y, int z, int chunkX, int chunkZ) {
@@ -181,7 +186,7 @@ public class MiningChunk implements IChunkGenerator {
         setBlockState(primer, x, y + 1, z, PORTAL, chunkX, chunkZ);
         setBlockState(primer, x, y + 1, z - 1, PORTAL, chunkX, chunkZ);
         setBlockState(primer, x, y + 1, z + 1, PORTAL, chunkX, chunkZ);
-        manager.setSpawnForMine(getMineID(chunkZ), realX, y, realZ);
+        manager.setSpawnForMine(MiningHelper.getMineID(chunkZ), realX, y, realZ);
     }
 
     private boolean isXLineWall(ChunkPrimer primer, int x, int y, int z) {
@@ -236,7 +241,7 @@ public class MiningChunk implements IChunkGenerator {
             int endX = 50 + rand.nextInt(110);
             int startZ = 50 + rand.nextInt(110);
             int endZ = 50 + rand.nextInt(110);
-            int ladderDistance = 10 + rand.nextInt(55);
+            int ladderDistance = 10 + rand.nextInt(40);
             int differenceMin = 5 + rand.nextInt(27);
             int endDistance = (differenceMin * 4) - 1;
             int maxLoop = 1 + rand.nextInt(7);
@@ -356,7 +361,7 @@ public class MiningChunk implements IChunkGenerator {
                             int z3 = clamp(pos.getZ());
 
                             if (pos.getX() < 0 || pos.getX() >= blockStateMap.length) continue;
-                            if (pos.getZ() < 0 || pos.getZ() > blockStateMap[pos.getX()].length) continue;
+                            if (pos.getZ() < 0 || pos.getZ() >= blockStateMap[pos.getX()].length) continue;
                             if (blockStateMap[x3][z3] == FLOORS) {
                                 int chance = 2;
                                 if (rand.nextInt(150) == 0) {
@@ -372,7 +377,7 @@ public class MiningChunk implements IChunkGenerator {
                                 int lStart = rand.nextInt(chance);
                                 int lEnd = rand.nextInt(chance);
                                 for (int x4 = -wStart; x4 <= wEnd; x4++) {
-                                    for (int z4 = -lStart; z4 < lEnd; z4++) {
+                                    for (int z4 = -lStart; z4 <= lEnd; z4++) {
                                         if (x4 != z4 && blockStateMap[clamp(x2 + x4)][clamp(z2 + z4)] != LADDER) {
                                             blockStateMap[clamp(x2 + x4)][clamp(z2 + z4)] = FLOORS;
                                             differenceX = startX > x ? startX - x : x - startX;

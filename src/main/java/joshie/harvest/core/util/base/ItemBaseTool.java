@@ -136,8 +136,6 @@ public abstract class ItemBaseTool extends ItemBaseSingle implements ILevelable,
             if (!world.isRemote) {
                 onFinishedCharging(world, entity, getMovingObjectPositionFromPlayer(world, entity), stack, ToolTier.values()[charge]);
             }
-
-            entity.moveEntity(0D, 1D, 0D);
         }
     }
 

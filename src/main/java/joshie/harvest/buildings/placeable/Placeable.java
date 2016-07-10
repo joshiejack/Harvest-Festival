@@ -32,6 +32,7 @@ public abstract class Placeable {
     }
 
     public boolean place(World world, BlockPos pos, Direction direction, ConstructionStage stage) {
+        if (world.getBlockState(pos).getBlockHardness(world, pos) == -1F) return true;
         if (canPlace(stage)) {
             return place(world, getTransformedPosition(pos, direction), direction);
         } else return false;

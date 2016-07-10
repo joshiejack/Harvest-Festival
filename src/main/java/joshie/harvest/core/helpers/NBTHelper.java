@@ -115,7 +115,7 @@ public class NBTHelper {
                 int key = tag.getInteger("Key");
                 long value = tag.getLong("Value");
                 map.put(key, value);
-            } catch (Exception e) {}
+            } catch (Exception e) { e.printStackTrace(); }
         }
 
         return map;
@@ -141,7 +141,7 @@ public class NBTHelper {
                 int key = tag.getInteger("Key");
                 BlockPos value = readBlockPos("Value", tag);
                 ret.put(key, value);
-            } catch (Exception e) {}
+            } catch (Exception e) { e.printStackTrace(); }
         }
 
         return ret;

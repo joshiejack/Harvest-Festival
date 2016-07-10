@@ -88,54 +88,53 @@ public class HFIngredients {
         sashimi_vegetable = HFApi.cooking.newCategory("sashimi_vegetable");
 
         //Seasonings
-        salt = HFApi.cooking.newIngredient("salt", 0, 0, 0, 0.01F, 0);
-        sugar = HFApi.cooking.newIngredient("sugar", 1, 0, 0, 0F, 0);
+        salt = HFApi.cooking.newIngredient("salt", 0, 0.05F, -5F, 0);
+        sugar = HFApi.cooking.newIngredient("sugar", 2, 0.05F, 0F, 0);
 
-        //Store Bought
-        chocolate = HFApi.cooking.newIngredient("chocolate", 5, -10, 1, 0.05F, 4);
-        flour = HFApi.cooking.newIngredient("flour", 0, 0, 0, 0.1F, 4);
-        oil = HFApi.cooking.newIngredient("oil", 0, -2, 0, 0F, 2).setFluid(MappingEvent.OIL);
-        riceball = HFApi.cooking.newIngredient("riceball", 6, -3, 1, 0.085F, 16);
+        //Store Bought ///Stamina, Fatigue, Hunger, Saturation >
+        chocolate = HFApi.cooking.newIngredient("chocolate", 1, 0.28F, -10F, 4);
+        flour = HFApi.cooking.newIngredient("flour", 0, 0.3F, 0F, 4);
+        oil = HFApi.cooking.newIngredient("oil", 0, 0.0F, -3F, 2).setFluid(MappingEvent.OIL);
+        riceball = HFApi.cooking.newIngredient("riceball", 1, 0.34F, -3F, 16);
 
         //Sizeables
-        egg = HFApi.cooking.newIngredient("egg", 6, 0, 0, 0.075F, 10);
-        mayonnaise = HFApi.cooking.newIngredient("mayonnaise", 6, -1, 1, 0.8F, 8);
-        milk = HFApi.cooking.newIngredient("milk", 5, -2, 0, 0.04F, 6).setFluid(MappingEvent.MILK);
+        egg = HFApi.cooking.newIngredient("egg", 1, 0.34F, 0F, 10);
+        mayonnaise = HFApi.cooking.newIngredient("mayonnaise", 1, 0.25F, -1F, 8);
+        milk = HFApi.cooking.newIngredient("milk", 1, 0.2F, -2F, 6).setFluid(MappingEvent.MILK);
 
         //Crops
-        turnip = HFApi.cooking.newIngredient("turnip", 2, -1, 1, 0.033F, 8);
-        potato = HFApi.cooking.newIngredient("potato", 5, -1, 1, 0.08F, 16);
-        cucumber = HFApi.cooking.newIngredient("cucumber", 3, -1, 1, 0.02F, 4);
-        strawberry = HFApi.cooking.newIngredient("strawberry", 3, -2, 1, 0.025F, 8);
-        cabbage = HFApi.cooking.newIngredient("cabbage", 3, -3, 1, 0.05F, 8);
-        tomato = HFApi.cooking.newIngredient("tomato", 2, -1, 1, 0.035F, 10);
-        onion = HFApi.cooking.newIngredient("onion", 2, -2, 1, 0.03F, 8);
-        corn = HFApi.cooking.newIngredient("corn", 5, -3, 1, 0.0375F, 16);
-        pumpkin = HFApi.cooking.newIngredient("pumpkin", 4, -1, 2, 0.06F, 16);
-        pineapple = HFApi.cooking.newIngredient("pineapple", 3, -3, 1, 0.055F, 16);
-        eggplant = HFApi.cooking.newIngredient("eggplant", 2, -3, 1, 0.05F, 8);
-        carrot = HFApi.cooking.newIngredient("carrot", 2, -2, 1, 0.035F, 6);
-        sweet_potato = HFApi.cooking.newIngredient("potato_sweet", 6, -2, 1, 0.04F, 16);
-        spinach = HFApi.cooking.newIngredient("spinach", 3, -4, 1, 0.022F, 8);
-        green_pepper = HFApi.cooking.newIngredient("pepper_green", 4, -2, 1, 0.03F, 12);
+        turnip = HFApi.cooking.newIngredient("turnip", 1, 0.12F, -1F, 8);
+        potato = HFApi.cooking.newIngredient("potato", 2, 0.28F, -1F, 16);
+        cucumber = HFApi.cooking.newIngredient("cucumber", 1, 0.18F, -1F, 4);
+        strawberry = HFApi.cooking.newIngredient("strawberry", 1, 0.18F, -2F, 8);
+        cabbage = HFApi.cooking.newIngredient("cabbage", 1, 0.18F, -3F, 8);
+        tomato = HFApi.cooking.newIngredient("tomato", 1, 0.12F, -1F, 10);
+        onion = HFApi.cooking.newIngredient("onion", 1, 0.12F, -2F, 8);
+        corn = HFApi.cooking.newIngredient("corn", 2, 0.28F, -3F, 16);
+        pumpkin = HFApi.cooking.newIngredient("pumpkin", 2, 0.22F, -1F, 16);
+        pineapple = HFApi.cooking.newIngredient("pineapple", 1, 0.18F, -3F, 16);
+        eggplant = HFApi.cooking.newIngredient("eggplant", 1, 0.12F, -3F, 8);
+        carrot = HFApi.cooking.newIngredient("carrot", 1, 0.12F, -2F, 6);
+        sweet_potato = HFApi.cooking.newIngredient("sweet_potato", 2, 0.34F, -2F, 16);
+        spinach = HFApi.cooking.newIngredient("spinach", 1, 0.17F, -4F, 8);
+        green_pepper = HFApi.cooking.newIngredient("green_pepper", 2, 0.22F, -2F, 12);
 
         //Vanilla Stuff
-        apple = HFApi.cooking.newIngredient("apple", 2, -1, 1, 0.015F, 6);
-        bread = HFApi.cooking.newIngredient("bread", 8, -6, 3, 0.06F, 24);
-        fish = HFApi.cooking.newIngredient("fish", 5, -5, 2, 0.1F, 16);
-        watermelon = HFApi.cooking.newIngredient("watermelon", 1, -1, 1, 0.05F, 4);
-        wheat = HFApi.cooking.newIngredient("wheat", 6, -3, 1, 0.0275F, 16);
-        red_mushroom = HFApi.cooking.newIngredient("mushroom_red", 2, -1, 1, 0.02F, 8);
-        brown_mushroom = HFApi.cooking.newIngredient("mushroom_brown", 2, -1, 1, 0.02F, 8);
+        apple = HFApi.cooking.newIngredient("apple", 1, 0.12F, -1F, 6);
+        bread = HFApi.cooking.newIngredient("bread", 3, 0.46F, -6F, 24);
+        fish = HFApi.cooking.newIngredient("fish", 2, 0.28F, -5F, 16);
+        watermelon = HFApi.cooking.newIngredient("watermelon", 1, 0.06F, -1F, 4);
+        wheat = HFApi.cooking.newIngredient("wheat", 2, 0.34F, -3F, 16);
+        red_mushroom = HFApi.cooking.newIngredient("red_mushroom", 1, 0.12F, -1F, 8);
+        brown_mushroom = HFApi.cooking.newIngredient("brown_mushroom", 1, 0.12F, -1F, 8);
 
         //Meals
-        butter = HFApi.cooking.newIngredient("butter", 6, -1, 0, 0.01F, 6);
-        boiled_egg = HFApi.cooking.newIngredient("egg.boiled", 10, -1, 2, 0.06F, 8);
-        sashimi = HFApi.cooking.newIngredient("sashimi", 11, -2, 2, 0.07F, 10);
-        scrambled_egg = HFApi.cooking.newIngredient("egg.scrambled", 20, -1, 1, 0.05F, 6);
-        cookies = HFApi.cooking.newIngredient("cookies", 15, -2, 1, 0.03F, 4);
-        //Idk if the numbers are right, check it yoshie
-        ketchup = HFApi.cooking.newIngredient("ketchup", 2, -1, 1, 0.033F, 8);
+        butter = HFApi.cooking.newIngredient("butter", 0, 0.17F, -1F, 6);
+        boiled_egg = HFApi.cooking.newIngredient("boiled_egg", 3, 0.58F, -1F, 8);
+        sashimi = HFApi.cooking.newIngredient("sashimi", 4, 0.62F, -2F, 10);
+        scrambled_egg = HFApi.cooking.newIngredient("scrambled_egg", 6, 1.07F, -1F, 6);
+        cookies = HFApi.cooking.newIngredient("cookies", 5, 0.86F, -2F, 4);
+        ketchup = HFApi.cooking.newIngredient("ketchup", 0, 0.06F, -1F, 2);
 
         //Add ingredients to the categories
         mushroom.add(red_mushroom, brown_mushroom);

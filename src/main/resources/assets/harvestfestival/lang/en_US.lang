@@ -85,10 +85,9 @@ harvestfestival.general.shoot.bamboo=Bamboo Shoot
 harvestfestival.general.mushroom.matsutake=Matsutake Mushroom
 
 #Meals
-harvestfestival.meal.level=Restores
+harvestfestival.meal.hunger=Restores
 harvestfestival.meal.sat=Fills
-harvestfestival.meal.stamina=Stamina
-harvestfestival.meal.fatigue=Fatigue
+harvestfestival.meal.exhaust=Exhausts
 harvestfestival.meal.fry.stir=Stir Fry
 harvestfestival.meal.rice.fried=Fried Rice
 harvestfestival.meal.pancake.savoury=Savoury Pancake

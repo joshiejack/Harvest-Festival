@@ -8,30 +8,28 @@ public class Meal implements IMeal {
     static final ItemStack BURNT = new ItemStack(HFCooking.MEAL);
     private static final double HUNGER_MODIFIER = 1.0D;
     private static final double SATURATION_MODIFIER = 1.0D;
+    private static final double EXHAUSTION_MODIFIER = 1.0D;
 
-    private int stamina = 0;
-    private int fatigue = 0;
     private int hunger = 0;
     private float saturation = 0;
+    private float exhaustion = 0;
     private int eatTime = 32;
     private boolean isLiquid = false;
     private ItemStack alt = null;
     private int hunger_cap = 20;
     private float saturation_cap = 2F;
 
-    public Meal(int stamina, int fatigue, int hunger, float saturation, int eatTime) {
-        this.stamina = stamina;
-        this.fatigue = fatigue;
+    public Meal(int hunger, float saturation, float exhaustion, int eatTime) {
         this.hunger = (int) (hunger * HUNGER_MODIFIER);
         this.saturation = (float) (saturation * SATURATION_MODIFIER);
+        this.exhaustion =  (float) (exhaustion * EXHAUSTION_MODIFIER);
         this.eatTime = eatTime;
     }
 
     public Meal(IMeal meal) {
-        this.stamina = meal.getStamina();
-        this.fatigue = meal.getFatigue();
         this.hunger = meal.getHunger();
         this.saturation = meal.getSaturation();
+        this.exhaustion = meal.getExhaustion();
         this.eatTime = meal.getEatTime();
         this.isLiquid = meal.isDrink();
         this.alt = meal.getAlternativeItem();
@@ -67,13 +65,8 @@ public class Meal implements IMeal {
     }
 
     @Override
-    public int getStamina() {
-        return stamina;
-    }
-
-    @Override
-    public int getFatigue() {
-        return fatigue;
+    public float getExhaustion() {
+        return exhaustion;
     }
 
     @Override
@@ -99,10 +92,9 @@ public class Meal implements IMeal {
     @Override
     public IMeal addIngredient(ICookingIngredient ingredient) {
         this.eatTime += ingredient.getEatTime();
-        this.stamina += ingredient.getStamina();
-        this.fatigue += ingredient.getFatigue();
         this.hunger += ingredient.getHunger();
         this.saturation += ingredient.getSaturation();
+        this.exhaustion += ingredient.getExhaustion();
         this.hunger = Math.min(hunger_cap, this.hunger);
         this.saturation = Math.min(saturation_cap, this.saturation);
         return this;

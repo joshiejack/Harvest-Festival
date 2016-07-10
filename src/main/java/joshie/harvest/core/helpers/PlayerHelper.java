@@ -1,11 +1,7 @@
 package joshie.harvest.core.helpers;
 
-import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.player.stats.StatData;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.common.util.FakePlayer;
 
 import java.util.Random;
@@ -18,9 +14,9 @@ public class PlayerHelper {
      **/
     public static void performTask(EntityPlayer player, ItemStack stack, double amount) {
         ToolHelper.levelTool(stack);
-
         if (player.capabilities.isCreativeMode) return; //If the player is in creative don't exhaust them
-        StatData stats = HFTrackers.getPlayerTracker(player).getStats();
+        //TODO:
+        /*
         double stamina = stats.getStamina();
         double fatigue = stats.getFatigue();
         boolean affectFatigue = false;
@@ -52,10 +48,7 @@ public class PlayerHelper {
 
             fatigue = -fatigue + 100;
             stamina = -stamina + 20;
-            stats.affectStats(stamina, fatigue);
-        }
-
-        stats.affectStats(affectStamina ? -amount : 0D, affectFatigue ? amount : 0D);
+        } */
     }
 
     public static boolean isFakePlayer(EntityPlayer player) {

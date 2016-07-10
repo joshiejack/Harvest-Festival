@@ -49,12 +49,11 @@ public interface IFoodRegistry {
      *  @param      unlocalised the unlocalised name, this needs to be unique
      *          The food stats are how much this ingredient affects recipes
      *          when it gets added to them as optional ingredients;
-     *  @param      stamina the stamina this ingredient restores
-     *  @param      fatigue the fatigue this ingredient adds (use negative to remove fatigue)
      *  @param      hunger the hunger (vanilla) this ingredient fills
      *  @param      saturation the saturation (vanilla) this ingredient fills
+     *  @param      exhaustion     how much exhaustion this ingredient adds
      *  @param      eatTimer the eatTimer, this is how many ticks extra this adds to eating time **/
-    ICookingIngredient newIngredient(String unlocalised, int stamina, int fatigue, int hunger, float saturation, int eatTimer);
+    ICookingIngredient newIngredient(String unlocalised, int hunger, float saturation, float exhaustion, int eatTimer);
 
     /** Returns a fluid for this ingredient if it's valid
      *  This is called by the client when rendering, to determine how to rend the item.
@@ -74,15 +73,14 @@ public interface IFoodRegistry {
      *
      * @param key            the resource path for this meal (i.e. harvestfestival:cookies)
      * @param utensil        the utensil this meal requires
-     * @param stamina        how much staminia this meal adds
-     * @param fatigue        how much fatigue this meal adds
      * @param hunger         how much hunger this meal fills
-     * @param saturation     how much saturation this meal providers
+     * @param saturation     how much saturation this meal provides
+     * @param exhaustion     how much exhaustion this meal adds
      * @param eatTimer       how long this meal should take to eat
      * @param ingredients    the ingredients for this recipe, use getIngredient to grab any of the default ingredients
      * @return  the recipe that was added, where you can manipulate it further if neccessary
      */
-    IMealRecipe addMeal(ResourceLocation key, IUtensil utensil, int stamina, int fatigue, int hunger, float saturation, int eatTimer, ICookingIngredient... ingredients);
+    IMealRecipe addMeal(ResourceLocation key, IUtensil utensil, int hunger, float saturation, float exhaustion, int eatTimer, ICookingIngredient... ingredients);
 
     /** Returns a resulting itemstack for the ingredients input
      *  @param      utensil the utensil in use

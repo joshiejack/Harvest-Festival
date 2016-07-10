@@ -30,15 +30,12 @@ public interface ICookingIngredient {
     /** @return     ingredients eat time **/
     int getEatTime();
 
-    /** @return     ingredients stamina boost **/
-    int getStamina();
-
-    /** @return     ingredients fatigue boost **/
-    int getFatigue();
-
     /** @return     ingredients hunger value **/
     int getHunger();
     
     /** @return     ingredients saturation value **/
     float getSaturation();
+
+    /** @return     ingredients exhuastion change **/
+    float getExhaustion();
 }

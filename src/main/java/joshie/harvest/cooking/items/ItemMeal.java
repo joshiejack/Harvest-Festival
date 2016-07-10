@@ -9,7 +9,6 @@ import joshie.harvest.cooking.Recipe;
 import joshie.harvest.cooking.Utensil;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.config.General;
-import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.util.base.ItemHFFML;
 import joshie.harvest.core.util.generic.Text;
 import net.minecraft.entity.EntityLivingBase;
@@ -51,10 +50,9 @@ public class ItemMeal extends ItemHFFML<ItemMeal, Recipe> implements ICreativeSo
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean debug) {
         if (General.DEBUG_MODE && debug) {
             if (stack.hasTagCompound()) {
-                list.add(Text.translate("meal.level") + " : " + stack.getTagCompound().getInteger("FoodLevel"));
+                list.add(Text.translate("meal.hunger") + " : " + stack.getTagCompound().getInteger("FoodLevel"));
                 list.add(Text.translate("meal.sat") + " : " + stack.getTagCompound().getFloat("FoodSaturation"));
-                list.add(Text.translate("meal.stamina") + " : " + stack.getTagCompound().getInteger("FoodStamina"));
-                list.add(Text.translate("meal.fatigue") + " : " + stack.getTagCompound().getInteger("FoodFatigue"));
+                list.add(Text.translate("meal.exhaust") + " : " + stack.getTagCompound().getInteger("FoodExhaustion"));
             }
         }
     }
@@ -64,12 +62,11 @@ public class ItemMeal extends ItemHFFML<ItemMeal, Recipe> implements ICreativeSo
         if (stack.hasTagCompound() && entityLiving instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) entityLiving;
             if (!player.capabilities.isCreativeMode) --stack.stackSize;
-            int level = stack.getTagCompound().getInteger("FoodLevel");
-            float sat = stack.getTagCompound().getFloat("FoodSaturation");
-            int stamina = stack.getTagCompound().getInteger("FoodStamina");
-            int fatigue = stack.getTagCompound().getInteger("FoodFatigue");
-            HFTrackers.getPlayerTracker(player).getStats().affectStats(stamina, fatigue);
-            player.getFoodStats().addStats(level, sat);
+            int hunger = stack.getTagCompound().getInteger("FoodLevel");
+            float saturation = stack.getTagCompound().getFloat("FoodSaturation");
+            float exhaustion = stack.getTagCompound().getFloat("FoodExhaustion");
+            player.getFoodStats().addStats(hunger, saturation);
+            player.getFoodStats().addExhaustion(exhaustion);
             world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
 
             return stack;
@@ -112,8 +109,7 @@ public class ItemMeal extends ItemHFFML<ItemMeal, Recipe> implements ICreativeSo
         stack.setTagCompound(new NBTTagCompound());
         stack.getTagCompound().setInteger("FoodLevel", meal.getHunger());
         stack.getTagCompound().setFloat("FoodSaturation", meal.getSaturation());
-        stack.getTagCompound().setInteger("FoodStamina", meal.getStamina());
-        stack.getTagCompound().setInteger("FoodFatigue", meal.getFatigue());
+        stack.getTagCompound().setFloat("FoodExhaustion", meal.getExhaustion());
         stack.getTagCompound().setBoolean("IsDrink", meal.isDrink());
         stack.getTagCompound().setInteger("EatTime", meal.getEatTime());
         return stack;

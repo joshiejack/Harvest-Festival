@@ -8,26 +8,17 @@ import java.util.HashSet;
 public class Ingredient implements ICookingIngredient {
     private HashSet<Ingredient> equivalents = new HashSet<Ingredient>();
     private String unlocalized;
-    public int stamina;
-    public int fatigue;
-    public int hunger;
-    public float saturation;
-    public int eatTime;
+    private int hunger;
+    private float saturation;
+    private float exhaustion;
+    private int eatTime;
     public ResourceLocation fluid;
 
-    /**
-     * @param stamina    - how much this restored stamina
-     * @param fatigue    - how much this adds to fatigue
-     * @param hunger     - how much minecraft hunger restores
-     * @param saturation - how much minecraft saturation restores
-     * @param eatTime    - how long this adds to eat time
-     */
-    public Ingredient(String unlocalized, int stamina, int fatigue, int hunger, float saturation, int eatTime) {
+    public Ingredient(String unlocalized, int hunger, float saturation, float exhaustion, int eatTime) {
         this.unlocalized = unlocalized;
-        this.stamina = stamina;
-        this.fatigue = fatigue;
         this.hunger = hunger;
         this.saturation = saturation;
+        this.exhaustion = exhaustion;
         this.eatTime = eatTime;
         equivalents.add(this);
     }
@@ -77,16 +68,6 @@ public class Ingredient implements ICookingIngredient {
     }
 
     @Override
-    public int getStamina() {
-        return stamina;
-    }
-
-    @Override
-    public int getFatigue() {
-        return fatigue;
-    }
-
-    @Override
     public int getHunger() {
         return hunger;
     }
@@ -94,6 +75,11 @@ public class Ingredient implements ICookingIngredient {
     @Override
     public float getSaturation() {
         return saturation;
+    }
+
+    @Override
+    public float getExhaustion() {
+        return exhaustion;
     }
 
     /**

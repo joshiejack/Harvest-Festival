@@ -14,11 +14,8 @@ public interface IMeal {
     /** @return     how much saturation the meal provides **/
     float getSaturation();
 
-    /** @return     how much stamina the meal adds **/
-    int getStamina();
-
-    /** @return     how much fatigue the meal adds **/
-    int getFatigue();
+    /** @return     how much exhaustion the meal adds **/
+    float getExhaustion();
 
     /** @return     whether the meal is drunk (rather than eaten) **/
     boolean isDrink();

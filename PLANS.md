@@ -10,23 +10,13 @@ Stage 1 (0.5.0)
 * Buildings
 * Relationships
 * Harvest Goddess
- -> Fancy Particle Animation on Spawnage
 * Add Brushes, and Talk to Animals
- -> Joshie you cray
-* Stamina & Fatique (http://www.gamefaqs.com/ds/925581-harvest-moon-ds/faqs/56021, http://uk.ign.com/faqs/2007/harvest-moon-ds-cooking-and-recipe-faq-735108)
- -> Special Stone from the Mine where you can review your Stamina and Fatique, sort of like the Sanity Checker from TC4
-  -> Stamina & Fatique Bar Texture
 * Recipe Book
- -> Recipes are split in certain categories (Dinner, Dessert)
- -> Sort of like Lore Expansion where you collect notes for each lore but in this for each recipe?
-* Basic Gathering
-
-Stage 1.5? (Could go in Stage 1 or 2)
-* Additional Gathering Items
+* Gathering Items
 * Jewels, Emeralds, Gems
 
 Stage 2 (0.6.0) - Expansive Events
-* More General Items
+* More General Items + Additional Gathering Items
 * Flower Crops
 * Fishing
  -> Fishing Rods

@@ -11,6 +11,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.FMLControlledNamespacedRegistry;
 import net.minecraftforge.fml.common.registry.PersistentRegistryManager;
 
+import java.text.DecimalFormat;
 import java.util.*;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
@@ -65,8 +66,13 @@ public class FoodRegistry implements IFoodRegistry {
     }
 
     @Override
-    public ICookingIngredient newIngredient(String unlocalized, int stamina, int fatigue, int hunger, float saturation, int eatTimer) {
-        return new Ingredient(unlocalized, stamina, fatigue, hunger, saturation, eatTimer);
+    public ICookingIngredient newIngredient(String unlocalized, int hunger, float saturation, float exhaustion, int eatTimer) {
+        return new Ingredient(unlocalized, hunger, saturation, exhaustion, eatTimer);
+    }
+
+    float roundTwoDecimals(float d) {
+        DecimalFormat twoDForm = new DecimalFormat("#.##");
+        return Float.valueOf(twoDForm.format(d));
     }
 
     @Override
@@ -85,9 +91,9 @@ public class FoodRegistry implements IFoodRegistry {
     }
 
     @Override
-    public IMealRecipe addMeal(ResourceLocation key, IUtensil utensil, int stamina, int fatigue, int hunger, float saturation, int eatTimer, ICookingIngredient... components) {
+    public IMealRecipe addMeal(ResourceLocation key, IUtensil utensil, int hunger, float saturation, float exhaustion, int eatTimer, ICookingIngredient... components) {
         String unlocalised = key.getResourceDomain() + ".meal." + key.getResourcePath().replace("_", ".");
-        Recipe recipe = new Recipe(unlocalised, components, new Meal(stamina, fatigue, hunger, saturation, eatTimer));
+        Recipe recipe = new Recipe(unlocalised, components, new Meal(hunger, saturation, exhaustion, eatTimer));
         recipe.setRegistryName(key);
         recipe.setRequiredTool(utensil);
         REGISTRY.register(recipe);

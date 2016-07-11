@@ -73,6 +73,9 @@
 - Harvest Goddess
     -S Magical Spawning
     -E Particle Effect
+- Priest Blessing
+    - S Particles when he gives you it back
+    - E Magical Sound when he gives you it back
 
 ### To Fix
 - Workout how to use the weighting system in conjunction with forge states, so i don't have to use my own hacked together weighting system...
@@ -105,5 +108,4 @@
 - Spawning the NPC Builder Quest
 - Welcome to 'Harvest Festival' Quests
 - Blacksmith Upgrade Tool Quests
-- Priest Bless Tools Quests
 - Unlock Mixer, Frying Pan, Pot, Oven for purchase quests

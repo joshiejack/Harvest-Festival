@@ -81,7 +81,7 @@ public abstract class Quest implements IQuest {
     //This is only called client side
     @Override
     public boolean canStart(EntityPlayer player, HashSet<IQuest> active, HashSet<IQuest> finished) {
-        if (finished.contains(this) && !isRepeatable()) {
+        if (!isRepeatable() && finished.contains(this)) {
             return false;
         }
 

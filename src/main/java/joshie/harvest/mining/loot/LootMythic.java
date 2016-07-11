@@ -21,6 +21,7 @@ public class LootMythic extends LootChance {
         super(stack, chance);
     }
 
+    @Override
     public boolean canPlayerObtain(EntityPlayer player) {
         TrackingData stats = HFTrackers.getPlayerTracker(player).getTracking();
         return stats.hasObtainedItem(hoe) && stats.hasObtainedItem(sickle) && stats.hasObtainedItem(watering) && stats.hasObtainedItem(axe) && stats.hasObtainedItem(hammer);

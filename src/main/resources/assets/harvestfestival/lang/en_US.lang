@@ -576,3 +576,8 @@ harvestfestival.quest.tutorial.farming.jade.complete=Why thank you very much, th
 harvestfestival.quest.tutorial.farming.jade.goddess=Don't you think you should be heading back to see the Harvest Goddess, I heard she was after some seeds.
 harvestfestival.quest.tutorial.farming.completed=Well that is just perfect, you have some seeds! I would love for you to keep them. I even have some other things for you to help you get started farming. Jade is an aspiring farmer, and I'm sure if you visit her, she can give you some tips on how to get started using these new tools. I also have some spare gold for you, that was donated by those who want to move in, to help you on your way. If you would like to learn more about gold, and how to expand the town, you should go and talk to Yulif.
 
+## Priest Blessing Quest
+harvestfestival.quest.trade.cursed.accept=Thank you very much youngun, I can now bless your tools. That'll be 10000 Gold thanks!
+harvestfestival.quest.trade.cursed.tool=It looks like you don't have any cursed tools currently, if you want me to bless them, come back when you do.
+harvestfestival.quest.trade.cursed.gold=Ahh I see you have a cursed tool! For a small fee of 10000 Gold I can bless it for you and remove that curse.
+harvestfestival.quest.trade.cursed.reject=I understand you now have a cursed tool, if you bring me that tool and 10000 Gold I can bless it.

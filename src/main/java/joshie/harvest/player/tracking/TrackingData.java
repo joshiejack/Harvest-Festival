@@ -28,8 +28,8 @@ public class TrackingData {
 
 
     //TODO: Track Mystril tools and blessed tools
-    public void addAsObtained(ItemStackHolder stack) {
-        obtained.add(stack);
+    public void addAsObtained(ItemStack stack) {
+        obtained.add(new ItemStackHolder(stack));
     }
 
     public boolean hasObtainedItem(ItemStack stack) {

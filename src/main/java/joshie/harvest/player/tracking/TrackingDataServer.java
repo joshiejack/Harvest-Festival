@@ -19,6 +19,10 @@ public class TrackingDataServer extends TrackingData {
         // TODO Auto-generated method stub
     }
 
+    public void addAsObtained(ItemStack stack) {
+        obtained.add(new ItemStackHolder(stack));
+    }
+
     public void onHarvested(ICrop crop) {
         CollectionHelper.mergeCollection(new CropSoldStack(crop), cropTracker);
     }

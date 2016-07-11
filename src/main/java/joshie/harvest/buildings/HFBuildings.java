@@ -8,6 +8,7 @@ import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.buildings.items.ItemBlueprint;
+import joshie.harvest.buildings.items.ItemBuilding;
 import joshie.harvest.buildings.loader.*;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.core.helpers.ResourceLoader;

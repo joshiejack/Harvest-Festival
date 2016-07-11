@@ -1,21 +1,20 @@
 package joshie.harvest.core.helpers;
 
-import gnu.trove.map.TIntLongMap;
 import gnu.trove.map.TIntObjectMap;
-import gnu.trove.map.hash.TIntLongHashMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
 import joshie.harvest.blocks.tiles.TileHarvest;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.player.tracking.TrackingData.AbstractHolder;
-import joshie.harvest.player.tracking.TrackingData.HolderMapStack;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.UUID;
 
 public class NBTHelper {
     public static void copyTileData(TileHarvest tile, World world, BlockPos pos, IBlockState state) {
@@ -65,60 +64,6 @@ public class NBTHelper {
         }
 
         return list;
-    }
-
-    public static <C extends ISaveable, I extends ISaveable> NBTBase writeMap(HashMap<C, I> map) {
-        NBTTagList list = new NBTTagList();
-        for (C c: map.keySet()) {
-            NBTTagCompound tag = new NBTTagCompound();
-            c.writeToNBT(tag);
-            map.get(c).writeToNBT(tag);
-            list.appendTag(tag);
-        }
-
-        return list;
-    }
-
-    public static <K extends HolderMapStack, V> HashMap<K, V> readMap(Class<K> c, NBTTagList list) {
-        HashMap<K, V> map = new HashMap();
-        for (int j = 0; j < list.tagCount(); j++) {
-            NBTTagCompound tag = list.getCompoundTagAt(j);
-            try {
-                K holder = c.newInstance();
-                holder.readFromNBT(tag);
-                if (holder.getKey() != null) {
-                    map.put(holder, (V) holder.getValue());
-                }
-            } catch (Exception e) {}
-        }
-
-        return map;
-    }
-
-    public static NBTTagList writeLongMap(TIntLongMap map) {
-        NBTTagList list = new NBTTagList();
-        for (int key: map.keys()) {
-            NBTTagCompound tag = new NBTTagCompound();
-            tag.setInteger("Key", key);
-            tag.setLong("Value", map.get(key));
-            list.appendTag(tag);
-        }
-
-        return list;
-    }
-
-    public static TIntLongMap readLongMap(NBTTagList list) {
-        TIntLongMap map = new TIntLongHashMap();
-        for (int j = 0; j < list.tagCount(); j++) {
-            NBTTagCompound tag = list.getCompoundTagAt(j);
-            try {
-                int key = tag.getInteger("Key");
-                long value = tag.getLong("Value");
-                map.put(key, value);
-            } catch (Exception e) { e.printStackTrace(); }
-        }
-
-        return map;
     }
 
     public static NBTTagList writePositionMap(TIntObjectMap<BlockPos> map) {

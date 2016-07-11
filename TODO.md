@@ -3,6 +3,7 @@
 - Add Schedules for NPCs, where they visit specific buildings at certain times
 - Schedule Based Conversations
 - Add Extra Chat Messages, and Conversations for all NPCs
+- Adjust the npc chat to display more correctly?
 
 ### Mining Dimension Stuff
 - Add the hole block on the bottom of each stack of floors, so that you can teleport to the next stack of mines
@@ -32,10 +33,11 @@
 - Coin Render on hotbar
 
 ### Recipe Rewrite
-- Recipes are learnt, and have an item which is a page for a book
+- Recipes have an item which is a page for a book, which is how you learn to do new recipes
 - Add pages to your recipe book item
 - Select a recipe in the recipe book
 - Have all the items required in your inventory and automatically get placed in utensils
+- You can always perform every recipe, you'll just learn every recipe evnetually
 
 ### Tedium
 - Register HFItems as gift types

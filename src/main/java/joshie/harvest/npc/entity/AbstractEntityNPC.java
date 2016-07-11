@@ -5,6 +5,7 @@ import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.npc.INPCRegistry;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.relations.IRelatableProvider;
+import joshie.harvest.buildings.Building;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.core.helpers.TownHelper;
@@ -22,9 +23,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathNavigateGround;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
@@ -45,6 +44,8 @@ public abstract class AbstractEntityNPC<E extends AbstractEntityNPC> extends Ent
     protected BlockPos spawned;
     protected TownData homeTown;
     protected UUID townID;
+
+
 
     public enum Mode {
         DEFAULT, GIFT

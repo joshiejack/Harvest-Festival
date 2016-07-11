@@ -11,7 +11,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.FMLControlledNamespacedRegistry;
 import net.minecraftforge.fml.common.registry.PersistentRegistryManager;
 
-import java.text.DecimalFormat;
 import java.util.*;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
@@ -68,11 +67,6 @@ public class FoodRegistry implements IFoodRegistry {
     @Override
     public ICookingIngredient newIngredient(String unlocalized, int hunger, float saturation, float exhaustion, int eatTimer) {
         return new Ingredient(unlocalized, hunger, saturation, exhaustion, eatTimer);
-    }
-
-    float roundTwoDecimals(float d) {
-        DecimalFormat twoDForm = new DecimalFormat("#.##");
-        return Float.valueOf(twoDForm.format(d));
     }
 
     @Override

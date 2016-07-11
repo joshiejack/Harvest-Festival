@@ -1,6 +1,10 @@
-package joshie.harvest.buildings;
+package joshie.harvest.buildings.items;
 
 import joshie.harvest.api.core.ICreativeSorted;
+import joshie.harvest.buildings.Building;
+import joshie.harvest.buildings.BuildingRegistry;
+import joshie.harvest.buildings.HFBuildings;
+import joshie.harvest.core.helpers.TownHelper;
 import joshie.harvest.core.util.Direction;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.util.base.ItemHFFML;
@@ -20,7 +24,7 @@ public class ItemBuilding extends ItemHFFML<ItemBuilding, Building> implements I
     @Override
     public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         Building building = getObjectFromStack(stack);
-        if (building != null) {
+        if (building != null && !TownHelper.getClosestTownToPlayer(player).hasBuilding(building.getRegistryName())) {
             Direction direction = Direction.values()[world.rand.nextInt(Direction.values().length)];
             return building.generate(world, pos, direction.getMirror(), direction.getRotation());
         }

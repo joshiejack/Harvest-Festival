@@ -54,11 +54,11 @@ public class GuiNPCSelect extends GuiNPCBase {
 
         int position = selected + optionsStart;
         if (position == 1.5) {
-            drawTexturedModalRect(20, 159, 0, 32, 19, 8);
+            drawTexturedModalRect(20, 158, 0, 32, 19, 8);
         } else if (position == 2) {
-            drawTexturedModalRect(20, 169, 0, 32, 19, 8);
+            drawTexturedModalRect(20, 168, 0, 32, 19, 8);
         } else if (position == 3) {
-            drawTexturedModalRect(20, 179, 0, 32, 19, 8);
+            drawTexturedModalRect(20, 178, 0, 32, 19, 8);
         }
     }
 

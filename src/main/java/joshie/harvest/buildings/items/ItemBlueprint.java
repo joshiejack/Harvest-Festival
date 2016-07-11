@@ -56,7 +56,7 @@ public class ItemBlueprint extends ItemHFFML<ItemBlueprint, Building> implements
 
             Direction direction = Direction.withMirrorAndRotation(mirror, rotation);
             EntityNPCBuilder builder = TownHelper.getClosestBuilderToEntityOrCreate(player);
-            if (builder != null && !builder.isBuilding()) {
+            if (builder != null && !builder.isBuilding() && !TownHelper.getClosestTownToPlayer(player).hasBuilding(building.getRegistryName())) {
                 builder.setPosition(pos.getX(), pos.up().getY(), pos.getZ()); //Teleport the builder to the position
                 builder.startBuilding(building, pos.up(), direction.getMirror(), direction.getRotation());
                 stack.splitStack(1);

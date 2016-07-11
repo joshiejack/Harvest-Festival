@@ -17,7 +17,6 @@ import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
-import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -32,6 +31,8 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 
 import java.util.UUID;
+
+import static joshie.harvest.api.npc.INPC.Location.HOME;
 
 public abstract class AbstractEntityNPC<E extends AbstractEntityNPC> extends EntityAgeable implements IEntityAdditionalSpawnData, IRelatableProvider {
     protected AbstractTask task; //Currently executing task
@@ -83,7 +84,7 @@ public abstract class AbstractEntityNPC<E extends AbstractEntityNPC> extends Ent
     public void resetSpawnHome() {
         this.homeTown = TownHelper.getClosestTownToEntityOrCreate(this);
         this.townID = homeTown.getID();
-        this.spawned = homeTown.getCoordinatesFor(getNPC().getHome());
+        this.spawned = homeTown.getCoordinatesFor(getNPC().getLocation(HOME));
         if (this.spawned == null) {
             this.spawned = new BlockPos(this);
         }
@@ -113,13 +114,12 @@ public abstract class AbstractEntityNPC<E extends AbstractEntityNPC> extends Ent
     protected void initEntityAI() {
         ((PathNavigateGround) this.getNavigator()).setBreakDoors(true);
         tasks.addTask(0, new EntityAISwimming(this));
-        tasks.addTask(1, new EntityAIAvoidEntity<EntityZombie>(this, EntityZombie.class, 8.0F, 0.6D, 0.6D));
         tasks.addTask(1, new EntityAITalkingTo(this));
         tasks.addTask(1, new EntityAILookAtPlayer(this));
-        tasks.addTask(2, new AIEntityNPC(this));
         tasks.addTask(3, new EntityAIRestrictOpenDoor(this));
         tasks.addTask(4, new EntityAIOpenDoor(this, true));
-        tasks.addTask(8, new joshie.harvest.npc.entity.ai.EntityAIPlay(this, 0.32D));
+        tasks.addTask(5, new EntityAISchedule(this));
+        tasks.addTask(6, new AIEntityNPC(this));
         tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 3.0F, 1.0F));
         tasks.addTask(9, new EntityAIWatchClosest(this, AbstractEntityNPC.class, 5.0F, 0.02F));
         tasks.addTask(9, new EntityAIWander(this, 0.6D));

@@ -12,6 +12,7 @@ public class HFModInfo {
     public static final String FAKENPC = "joshie.harvest.npc.render.FakeNPCRenderer.FakeNPCTile";
     public static final String FAKEANIMAL = "joshie.harvest.animals.render.FakeAnimalRenderer.FakeAnimalTile";
     public static final String GIFTPATH = "joshie.harvest.npc.gift.Gifts";
+    public static final String SCHEDULEPATH = "joshie.harvest.npc.schedule.Schedule";
     
     public static final String VERSION = "@VERSION@";
 

@@ -1,6 +1,5 @@
 package joshie.harvest.shops.purchaseable;
 
-import joshie.harvest.api.HFApi;
 import joshie.harvest.buildings.Building;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.core.handlers.HFTrackers;
@@ -31,7 +30,7 @@ public class PurchaseableBuilding extends Purchaseable {
     @Override
     public boolean canBuy(World world, EntityPlayer player) {
         TownData town = TownHelper.getClosestTownToPlayer(player);
-        if (town.hasBuilding(HFApi.buildings.getNameForBuilding(building))) return false;
+        if (town.hasBuilding(resource)) return false;
         int wood = InventoryHelper.getCount(player, "logWood");
         if (wood < building.getWoodCount()) return false;
         int stone = InventoryHelper.getCount(player, "stone");

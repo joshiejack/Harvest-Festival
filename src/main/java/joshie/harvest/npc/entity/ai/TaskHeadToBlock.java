@@ -17,11 +17,6 @@ public class TaskHeadToBlock extends AbstractTask {
     }
 
     @Override
-    public boolean demandOnly() {
-        return true;
-    }
-
-    @Override
     public void execute(AbstractEntityNPC entity) {
         entity.getNavigator().tryMoveToXYZ((double) go.getX() + 0.5D, (double) go.getY(), (double) go.getZ() + 0.5D, 1.0D);
     }

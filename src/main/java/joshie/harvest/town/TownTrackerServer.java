@@ -4,6 +4,8 @@ import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
+import joshie.harvest.api.buildings.BuildingLocation;
+import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.config.NPC;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.util.Direction;
@@ -12,19 +14,17 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.*;
 import java.util.Map.Entry;
 import java.util.concurrent.Callable;
 
-import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.core.util.Direction.MN_R0;
+import static joshie.harvest.town.TownData.MINE_ENTRANCE;
 
 public class TownTrackerServer extends TownTracker {
-    private static final ResourceLocation MINE = new ResourceLocation(MODID, "miningHill");
+    private static final BuildingLocation MINE = new BuildingLocation(HFBuildings.MINING_HILL, MINE_ENTRANCE);
     private final Cache<BlockPos, TownData> closestCache = CacheBuilder.newBuilder().build();
     private final Cache<BlockPos, EntityNPCBuilder> closestBuilder = CacheBuilder.newBuilder().build();
     private final HashMap<UUID, TownData> uuidMap = new HashMap<>();
@@ -56,8 +56,8 @@ public class TownTrackerServer extends TownTracker {
         UUID uuid = townIDs.inverse().get(mineID);
         if (uuid == null) return default_;
         TownData data = uuidMap.get(uuid);
-        if (data == null || !data.hasBuilding(MINE)) return default_;
-        return data.getCoordinatesFor(Pair.of(MINE, TownData.MINE_ENTRANCE));
+        if (data == null || !data.hasBuilding(MINE.getResource())) return default_;
+        return data.getCoordinatesFor(MINE);
     }
 
     @Override
@@ -65,15 +65,15 @@ public class TownTrackerServer extends TownTracker {
         UUID uuid = townIDs.inverse().get(mineID);
         if (uuid == null) return MN_R0;
         TownData data = uuidMap.get(uuid);
-        if (data == null || !data.hasBuilding(MINE)) return Direction.MN_R0;
-        return data.getFacingFor(Pair.of(MINE, TownData.MINE_ENTRANCE));
+        if (data == null || !data.hasBuilding(MINE.getResource())) return Direction.MN_R0;
+        return data.getFacingFor(MINE.getResource());
     }
 
     @Override
     public int getMineIDFromCoordinates(BlockPos pos) {
         TownData data = getClosestTownToBlockPos(pos);
         if (data == null) return -1;
-        if (!data.hasBuilding(MINE)) return -1;
+        if (!data.hasBuilding(MINE.getResource())) return -1;
         if (townIDs.containsKey(data.getID())) {
             return townIDs.get(data.getID());
         } else return matchUUIDWithMineID(data.getID());

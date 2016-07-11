@@ -1,5 +1,6 @@
 package joshie.harvest.core.helpers;
 
+import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.shops.IShop;
 import joshie.harvest.core.handlers.GuiHandler;
@@ -12,11 +13,24 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import static joshie.harvest.api.npc.INPC.Location.HOME;
+import static joshie.harvest.api.npc.INPC.Location.WORK;
+
 public class NPCHelper {
+    public static BlockPos getCoordinatesForLocation(AbstractEntityNPC entity, BuildingLocation location) {
+        return TownHelper.getClosestTownToEntityOrCreate(entity).getCoordinatesFor(location);
+    }
+
     public static BlockPos getHomeForEntity(AbstractEntityNPC entity) {
         INPC npc = entity.getNPC();
-        if (npc.getHome() == null) return null;
-        return TownHelper.getClosestTownToEntityOrCreate(entity).getCoordinatesFor(npc.getHome());
+        if (npc.getLocation(HOME) == null) return null;
+        return TownHelper.getClosestTownToEntityOrCreate(entity).getCoordinatesFor(npc.getLocation(HOME));
+    }
+
+    public static BlockPos getWorkForEntity(AbstractEntityNPC entity) {
+        INPC npc = entity.getNPC();
+        if (npc.getLocation(WORK) == null) return null;
+        return TownHelper.getClosestTownToEntityOrCreate(entity).getCoordinatesFor(npc.getLocation(WORK));
     }
 
     public static AbstractEntityNPC getEntityForNPC(World world, NPC npc) {

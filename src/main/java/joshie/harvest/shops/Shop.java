@@ -20,6 +20,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -93,7 +94,7 @@ public class Shop implements IShop {
      * Whether or not the shop is currently open at this time or season
      **/
     @Override
-    public boolean isOpen(World world, EntityPlayer player) {
+    public boolean isOpen(World world, @Nullable EntityPlayer player) {
         if (world.getDifficulty() == EnumDifficulty.PEACEFUL) return true;
         Weekday day = HFTrackers.getCalendar(world).getDate().getWeekday(world);
         OpeningHours hours = open.get(world.getDifficulty()).opening.get(day);
@@ -105,6 +106,19 @@ public class Shop implements IShop {
             boolean isOpen = daytime >= scaledOpening && daytime <= scaledClosing;
             if (!isOpen) return false;
             else return player == null || getContents(player).size() > 0;
+        }
+    }
+
+    @Override
+    public boolean isPreparingToOpen(World world) {
+        if (world.getDifficulty() == EnumDifficulty.PEACEFUL) return false;
+        Weekday day = HFTrackers.getCalendar(world).getDate().getWeekday(world);
+        OpeningHours hours = open.get(world.getDifficulty()).opening.get(day);
+        if (hours == null) return false;
+        else {
+            long daytime = CalendarHelper.getTime(world); //0-23999 by default
+            int hourHalfBeforeWork = fix(CalendarHelper.getScaledTime(hours.open) - 1500);
+            return daytime >= hourHalfBeforeWork;
         }
     }
 

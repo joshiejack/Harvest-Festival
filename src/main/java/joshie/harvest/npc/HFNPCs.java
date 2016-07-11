@@ -21,6 +21,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import static joshie.harvest.api.calendar.Season.*;
+import static joshie.harvest.api.npc.INPC.Location.HOME;
+import static joshie.harvest.api.npc.INPC.Location.WORK;
 import static joshie.harvest.api.npc.INPCRegistry.Age.*;
 import static joshie.harvest.api.npc.INPCRegistry.Gender.FEMALE;
 import static joshie.harvest.api.npc.INPCRegistry.Gender.MALE;
@@ -87,24 +89,24 @@ public class HFNPCs {
     }
 
     public static void init() {
-        GODDESS.setHome(GODDESS_POND, GODDESS_HOME);
-        ANIMAL_OWNER.setHome(BARN, JIM_HOME);
-        CAFE_OWNER.setHome(CAFE, LIARA_HOME);
-        SEED_OWNER.setHome(CARPENTER, JADE_HOME);
-        DAUGHTER_1.setHome(TOWNHALL, CLOE_HOME);
-        PRIEST.setHome(TOWNHALL, TOWNHALL_ADULT_BEDROOM);
-        CLOCKMAKER_CHILD.setHome(CLOCKMAKER, FENN_HOME);
-        CAFE_GRANNY.setHome(CAFE, KATLIN_HOME);
-        MAYOR.setHome(TOWNHALL, JAMIE_HOME);
-        BUILDER.setHome(CARPENTER, CARPENTER_DOWNSTAIRS);
-        TOOL_OWNER.setHome(BLACKSMITH, DANIEL_HOME);
-        DAUGHTER_2.setHome(TOWNHALL, ABI_HOME);
-        CLOCK_WORKER.setHome(CLOCKMAKER, TIBERIUS_HOME);
-        GS_OWNER.setHome(SUPERMARKET, JENNI_HOME);
-        MINER.setHome(MINING_HUT, BRANDON_HOME);
-        FISHERMAN.setHome(FISHING_HUT, JACOB_HOME);
-        MILKMAID.setHome(SUPERMARKET, CANDICE_HOME);
-        POULTRY.setHome(POULTRY_FARM, ASHLEE_HOME);
+        GODDESS.setLocation(HOME, GODDESS_POND, GODDESS_HOME);
+        ANIMAL_OWNER.setLocation(HOME, BARN, JIM_HOME).setLocation(WORK, BARN, JIM_HOME);
+        CAFE_OWNER.setLocation(HOME, CAFE, LIARA_HOME).setLocation(WORK, CAFE, CAFE_TILL);
+        SEED_OWNER.setLocation(HOME, CARPENTER, JADE_HOME).setLocation(WORK, CARPENTER, JADE_HOME);
+        DAUGHTER_1.setLocation(HOME, TOWNHALL, CLOE_HOME);
+        PRIEST.setLocation(HOME, TOWNHALL, TOWNHALL_ADULT_BEDROOM).setLocation(WORK, CHURCH, THOMAS);
+        CLOCKMAKER_CHILD.setLocation(HOME, CLOCKMAKER, FENN_HOME);
+        CAFE_GRANNY.setLocation(HOME, CAFE, KATLIN_HOME);
+        MAYOR.setLocation(HOME, TOWNHALL, JAMIE_HOME).setLocation(WORK, TOWNHALL, TOWNHALL_CENTRE);
+        BUILDER.setLocation(HOME, CARPENTER, CARPENTER_DOWNSTAIRS).setLocation(WORK, CARPENTER, CARPENTER_DOOR);
+        TOOL_OWNER.setLocation(HOME, BLACKSMITH, DANIEL_HOME).setLocation(WORK, BLACKSMITH, DANIEL_HOME);
+        DAUGHTER_2.setLocation(HOME, TOWNHALL, ABI_HOME);
+        CLOCK_WORKER.setLocation(HOME, CLOCKMAKER, TIBERIUS_HOME);
+        GS_OWNER.setLocation(HOME, SUPERMARKET, JENNI_HOME).setLocation(WORK, SUPERMARKET, MARKET_TILL);
+        MINER.setLocation(HOME, MINING_HUT, BRANDON_HOME).setLocation(WORK, MINING_HUT, MINER_GRAVEL);
+        FISHERMAN.setLocation(HOME, FISHING_HUT, JACOB_HOME).setLocation(WORK, FISHING_HUT, JACOB_HOME);
+        MILKMAID.setLocation(HOME, SUPERMARKET, CANDICE_HOME).setLocation(WORK, BARN, JIM_HOME);
+        POULTRY.setLocation(HOME, POULTRY_FARM, ASHLEE_HOME).setLocation(WORK, POULTRY_FARM, ASHLEE_HOME);
     }
 
     @SideOnly(Side.CLIENT)

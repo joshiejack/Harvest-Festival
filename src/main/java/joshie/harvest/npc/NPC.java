@@ -1,37 +1,35 @@
 package joshie.harvest.npc;
 
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.calendar.Season;
-import joshie.harvest.api.npc.IConditionalGreeting;
-import joshie.harvest.api.npc.INPC;
-import joshie.harvest.api.npc.INPCRegistry;
+import joshie.harvest.api.npc.*;
 import joshie.harvest.api.npc.INPCRegistry.Age;
 import joshie.harvest.api.npc.INPCRegistry.Gender;
-import joshie.harvest.api.npc.NPCBuildEvent;
 import joshie.harvest.api.npc.gift.IGiftHandler;
 import joshie.harvest.api.npc.gift.IGiftHandler.Quality;
 import joshie.harvest.api.relations.IRelatableDataHandler;
 import joshie.harvest.api.shops.IShop;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.util.generic.Text;
-import joshie.harvest.npc.gift.Gifts;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import org.apache.commons.lang3.text.WordUtils;
-import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.EnumMap;
 import java.util.List;
 
 import static joshie.harvest.api.npc.INPCRegistry.Age.ADULT;
 import static joshie.harvest.api.npc.INPCRegistry.Age.CHILD;
 import static joshie.harvest.core.lib.HFModInfo.GIFTPATH;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
+import static joshie.harvest.core.lib.HFModInfo.SCHEDULEPATH;
 
 public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl<NPC> implements INPC {
     private List<IConditionalGreeting> conditionals = new ArrayList<>(256);
@@ -43,10 +41,11 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
     private float height;
     private float offset;
     private IGiftHandler gifts;
+    private ISchedule schedule;
     private boolean isBuilder;
     private IShop shop;
     private ICalendarDate birthday;
-    private Pair<ResourceLocation, String> home;
+    private EnumMap<Location, BuildingLocation> locations;
     private boolean doesRespawn;
     private int insideColor;
     private int outsideColor;
@@ -85,8 +84,10 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
             }
         });
 
+        this.locations = new EnumMap<>(Location.class);
         this.setRegistryName(resource);
         this.setupGifts();
+        this.setupSchedules();
         NPCRegistry.REGISTRY.register(this);
         MinecraftForge.EVENT_BUS.post(new NPCBuildEvent(this, this.conditionals));
     }
@@ -116,8 +117,8 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
     }
 
     @Override
-    public INPC setHome(IBuilding building, String home_location) {
-        this.home = Pair.of(HFApi.buildings.getNameForBuilding(building), home_location);
+    public INPC setLocation(Location location, IBuilding building, String home_location) {
+        this.locations.put(location, new BuildingLocation(building, home_location));
         return this;
     }
 
@@ -139,6 +140,12 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
         return this;
     }
 
+    @Override
+    public INPC setScheduleHandler(ISchedule handler) {
+        schedule = handler;
+        return this;
+    }
+
     public void setupGifts() {
         if (getRegistryName().getResourceDomain().equals(MODID)) {
             try {
@@ -147,7 +154,17 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
         }
 
         //Backup
-        if (this.gifts == null) this.gifts = Gifts.INSTANCE;
+        if (this.gifts == null) this.gifts = new IGiftHandler() {};
+    }
+
+    private void setupSchedules() {
+        if (getRegistryName().getResourceDomain().equals(MODID)) {
+            try {
+                this.schedule = (ISchedule) Class.forName(SCHEDULEPATH + WordUtils.capitalize(getRegistryName().getResourcePath())).newInstance();
+            } catch (Exception e) {}
+        }
+
+        if (this.schedule == null) this.schedule = new ISchedule() {}; //Stick to the default
     }
 
     @Override
@@ -189,8 +206,8 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
     }
 
     @Override
-    public Pair<ResourceLocation, String> getHome() {
-        return home;
+    public BuildingLocation getLocation(Location residence) {
+        return locations.get(residence);
     }
 
     //Returns the localized name of this character
@@ -238,6 +255,10 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
     public Quality getGiftValue(ItemStack stack) {
         if (gifts == null) return Quality.DECENT;
         return gifts.getQuality(stack);
+    }
+
+    public ISchedule getScheduler() {
+        return schedule;
     }
 
     public int getInsideColor() {

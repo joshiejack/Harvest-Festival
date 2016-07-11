@@ -7,7 +7,9 @@ public interface IGiftHandler {
     /** Return the quality of this gift based on the passed in stack
      *  @param stack    the item
      * @return  the quality of the item in the npcs opinion */
-    Quality getQuality(ItemStack stack);
+    default Quality getQuality(ItemStack stack) {
+        return Quality.DECENT;
+    }
 
     /** Quality of the gifts **/
     enum Quality {

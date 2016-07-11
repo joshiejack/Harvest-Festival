@@ -1,13 +1,13 @@
 package joshie.harvest.town;
 
-import joshie.harvest.core.util.Direction;
+import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.buildings.Building;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -62,8 +62,8 @@ public class TownData {
         HFTrackers.markDirty(world);
     }
 
-    public boolean hasBuilding(ResourceLocation resource) {
-        return buildings.get(resource) != null;
+    public boolean hasBuilding(ResourceLocation building) {
+        return buildings.get(building) != null;
     }
 
     public boolean hasBuildings(ResourceLocation[] buildings) {
@@ -74,14 +74,14 @@ public class TownData {
         return true;
     }
 
-    public BlockPos getCoordinatesFor(Pair<ResourceLocation, String> home) {
-        TownBuilding building = buildings.get(home.getKey());
+    public BlockPos getCoordinatesFor(BuildingLocation location) {
+        TownBuilding building = buildings.get(location.getResource());
         if (building == null) return null;
-        return building.getRealCoordinatesFor(home.getValue());
+        return building.getRealCoordinatesFor(location.getLocation());
     }
 
-    public Direction getFacingFor(Pair<ResourceLocation, String> home) {
-        TownBuilding building = buildings.get(home.getKey());
+    public Direction getFacingFor(ResourceLocation resource) {
+        TownBuilding building = buildings.get(resource);
         if (building == null) return null;
         return building.getFacing();
     }

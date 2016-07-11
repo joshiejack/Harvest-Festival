@@ -6,7 +6,7 @@ import joshie.harvest.npc.entity.AbstractEntityNPC;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 
-public class TaskGoHome extends AbstractTask {
+public class TaskSchedule extends AbstractTask {
     public long attemptTimer;
 
     @Override

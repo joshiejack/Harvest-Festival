@@ -8,14 +8,19 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public interface IShop {
-   /** Whether the shop is currently open
-    *  @param      world the world the player is in
-    *  @param      player the player (can be null if checking if the npcs ai should return)
-    *  @return     true if shop is open, false if its closed */
-   boolean isOpen(World world, EntityPlayer player);
+    /** Whether the shop is currently open
+     *  @param      world the world the player is in
+     *  @param      player the player (can be null if checking if the npcs ai should return)
+     *  @return     true if shop is open, false if its closed */
+    boolean isOpen(World world, @Nullable EntityPlayer player);
+
+    /** If this shop is going to open soon
+     * @return whether it will open soon or not */
+    boolean isPreparingToOpen(World world);
 
     /** Returns a list of every purchaseable item
      *  in this shop */

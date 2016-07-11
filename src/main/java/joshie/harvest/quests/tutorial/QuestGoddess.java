@@ -82,7 +82,7 @@ public class QuestGoddess extends Quest {
                 //Explain that overtime, different buildings will open up that they can build
                 //And they should ideally keep expanding the town, so that they can grow their farm
                 //Explain a little backstory about why the town was destroyed, and why they needed
-                //your help and funding to rebuild their home. Thank the player for their help
+                //your help and funding to rebuild their work. Thank the player for their help
                 //Give the player 1000 gold
                 completeQuest(player, this);
                 return "completed";

@@ -4,6 +4,7 @@ import gnu.trove.map.TIntObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
 import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.calendar.Season;
+import joshie.harvest.api.calendar.Weekday;
 import joshie.harvest.core.config.Calendar;
 import net.minecraft.world.World;
 
@@ -14,6 +15,7 @@ import static joshie.harvest.core.config.Calendar.TICKS_PER_DAY;
 public class CalendarHelper {
     private static final TIntObjectMap<Season> dimensionSeasons = new TIntObjectHashMap<>();
     private static final TIntObjectMap<Season> seasons = new TIntObjectHashMap<>();
+    private static final Weekday[] DAYS;
     static {
         seasons.put(0, SPRING);
         seasons.put(1, SUMMER);
@@ -23,11 +25,20 @@ public class CalendarHelper {
         //Add End and Nether Seasons as permenant
         dimensionSeasons.put(-1, NETHER);
         dimensionSeasons.put(1, END);
+        DAYS = Weekday.class.getEnumConstants();
+    }
+
+    public static Weekday getWeekday(int days) {
+        return DAYS[days % 7];
+    }
+
+    public static Weekday getWeekday(long time) {
+        return getWeekday(getElapsedDays(time));
     }
 
     public static void setDate(World world, ICalendarDate date) {
         long time = world.getWorldTime();
-        date.setDay(getDay(world, time)).setSeason(getSeason(world, time)).setYear(getYear(time));
+        date.setWeekday(getWeekday(time)).setDay(getDay(world, time)).setSeason(getSeason(world, time)).setYear(getYear(time));
     }
 
     public static int getYear(long totalTime) {
@@ -45,6 +56,13 @@ public class CalendarHelper {
 
     public static int getElapsedDays(long totalTime) {
         return (int) (totalTime / TICKS_PER_DAY);
+    }
+
+    public static int getTotalDays(int day, Season season, int year) {
+        int current_days = day;
+        int season_days = Calendar.DAYS_PER_SEASON * season.ordinal();
+        int year_days = (year - 1) * (Calendar.DAYS_PER_SEASON * 4);
+        return current_days + season_days + year_days;
     }
 
     public static int getTotalDays(ICalendarDate date) {

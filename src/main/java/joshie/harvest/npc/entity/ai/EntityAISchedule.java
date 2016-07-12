@@ -1,6 +1,8 @@
 package joshie.harvest.npc.entity.ai;
 
 import joshie.harvest.api.buildings.BuildingLocation;
+import joshie.harvest.api.calendar.ICalendarDate;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.CalendarHelper;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.npc.entity.AbstractEntityNPC;
@@ -20,7 +22,8 @@ public class EntityAISchedule extends EntityAIBase {
 
     @Override
     public boolean shouldExecute() {
-        location = npc.getNPC().getScheduler().getTarget(npc.worldObj, npc, npc.getNPC(), CalendarHelper.getTime(npc.worldObj));
+        ICalendarDate date = HFTrackers.getCalendar(npc.worldObj).getDate();
+        location = npc.getNPC().getScheduler().getTarget(npc.worldObj, npc, npc.getNPC(), date.getSeason(), date.getWeekday(), CalendarHelper.getTime(npc.worldObj));
         target = NPCHelper.getCoordinatesForLocation(npc, location);
         attemptTimer = 0L;
         return target != null && npc.getDistanceSq(target) > 16D;
@@ -40,7 +43,8 @@ public class EntityAISchedule extends EntityAIBase {
 
     @Override
     public void startExecuting() {
-        location = npc.getNPC().getScheduler().getTarget(npc.worldObj, npc, npc.getNPC(), CalendarHelper.getTime(npc.worldObj));
+        ICalendarDate date = HFTrackers.getCalendar(npc.worldObj).getDate();
+        location = npc.getNPC().getScheduler().getTarget(npc.worldObj, npc, npc.getNPC(), date.getSeason(), date.getWeekday(), CalendarHelper.getTime(npc.worldObj));
         target = NPCHelper.getCoordinatesForLocation(npc, location);
         if (target != null) {
             if (attemptTimer < 1000L) {

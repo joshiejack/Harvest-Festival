@@ -5,7 +5,6 @@ import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.npc.INPCRegistry;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.relations.IRelatableProvider;
-import joshie.harvest.buildings.Building;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.core.helpers.TownHelper;
@@ -120,7 +119,7 @@ public abstract class AbstractEntityNPC<E extends AbstractEntityNPC> extends Ent
         tasks.addTask(3, new EntityAIRestrictOpenDoor(this));
         tasks.addTask(4, new EntityAIOpenDoor(this, true));
         tasks.addTask(5, new EntityAISchedule(this));
-        tasks.addTask(6, new AIEntityNPC(this));
+        tasks.addTask(6, new EntityAITask(this));
         tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 3.0F, 1.0F));
         tasks.addTask(9, new EntityAIWatchClosest(this, AbstractEntityNPC.class, 5.0F, 0.02F));
         tasks.addTask(9, new EntityAIWander(this, 0.6D));

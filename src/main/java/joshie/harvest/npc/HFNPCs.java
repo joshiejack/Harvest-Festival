@@ -7,6 +7,7 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.npc.INPCRegistry.Age;
 import joshie.harvest.api.npc.INPCRegistry.Gender;
 import joshie.harvest.core.helpers.generic.RegistryHelper;
+import joshie.harvest.npc.greeting.GreetingLocation;
 import joshie.harvest.npc.items.ItemNPCSpawner;
 import joshie.harvest.gathering.items.ItemNPCTool;
 import joshie.harvest.npc.entity.AbstractEntityNPC;
@@ -104,7 +105,7 @@ public class HFNPCs {
         CLOCK_WORKER.setLocation(HOME, CLOCKMAKER, TIBERIUS_HOME);
         GS_OWNER.setLocation(HOME, SUPERMARKET, JENNI_HOME).setLocation(WORK, SUPERMARKET, MARKET_TILL);
         MINER.setLocation(HOME, MINING_HUT, BRANDON_HOME).setLocation(WORK, MINING_HUT, MINER_GRAVEL);
-        FISHERMAN.setLocation(HOME, FISHING_HUT, JACOB_HOME);
+        FISHERMAN.setLocation(HOME, FISHING_HUT, JACOB_HOME).addGreeting(new GreetingLocation(FISHING_HOLE, FISHING_POND));
         MILKMAID.setLocation(HOME, SUPERMARKET, CANDICE_HOME).setLocation(WORK, BARN, JIM_HOME);
         POULTRY.setLocation(HOME, POULTRY_FARM, ASHLEE_HOME).setLocation(WORK, POULTRY_FARM, ASHLEE_HOME);
     }

@@ -8,6 +8,7 @@ import joshie.harvest.core.helpers.TownHelper;
 import joshie.harvest.core.util.Direction;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.util.base.ItemHFFML;
+import joshie.harvest.core.util.generic.Text;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
@@ -39,7 +40,7 @@ public class ItemBuilding extends ItemHFFML<ItemBuilding, Building> implements I
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        return "[SPAWN] " + getObjectFromStack(stack).getLocalisedName();
+        return Text.format("harvestfestival.structures.spawn", getObjectFromStack(stack).getLocalisedName());
     }
 
     @Override

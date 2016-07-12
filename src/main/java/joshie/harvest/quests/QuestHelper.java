@@ -2,7 +2,6 @@ package joshie.harvest.quests;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.INPC;
-import joshie.harvest.api.quest.IQuest;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.ItemHelper;
 import joshie.harvest.core.util.generic.IdiotException;
@@ -32,7 +31,7 @@ public class QuestHelper {
         }
     }
 
-    public static HashSet<IQuest> getCurrentQuest(EntityPlayer player) {
+    public static HashSet<Quest> getCurrentQuest(EntityPlayer player) {
         return HFTrackers.getPlayerTracker(player).getQuests().getCurrent();
     }
 
@@ -55,26 +54,26 @@ public class QuestHelper {
         ItemHelper.addToPlayerInventory(player, stack);
     }
 
-    public static void markCompleted(EntityPlayer player, IQuest quest) {
+    public static void markCompleted(EntityPlayer player, Quest quest) {
         HFTrackers.getPlayerTracker(player).getQuests().markCompleted(quest, false);
     }
 
-    public static void markAvailable(EntityPlayer player, IQuest quest) {
+    public static void markAvailable(EntityPlayer player, Quest quest) {
         HFTrackers.getPlayerTracker(player).getQuests().setAvailable(quest);
     }
 
-    public static void markAsCurrent(EntityPlayer player, IQuest quest) {
+    public static void markAsCurrent(EntityPlayer player, Quest quest) {
         HFTrackers.getPlayerTracker(player).getQuests().addAsCurrent(quest);
     }
 
-    public static void setQuestStage(EntityPlayer player, IQuest quest, int stage) {
+    public static void setQuestStage(EntityPlayer player, Quest quest, int stage) {
         QuestData stats = HFTrackers.getPlayerTracker(player).getQuests();
         int previous = stats.getAQuest(quest).getStage();
         stats.setStage(quest, stage);
         quest.onStageChanged(player, previous, stage);
     }
 
-    public static void startQuest(EntityPlayer player, IQuest quest) {
+    public static void startQuest(EntityPlayer player, Quest quest) {
         HFTrackers.getPlayerTracker(player).getQuests().startQuest(quest);
     }
 }

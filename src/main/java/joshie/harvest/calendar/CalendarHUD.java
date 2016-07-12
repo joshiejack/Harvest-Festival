@@ -62,7 +62,7 @@ public class CalendarHUD {
 
                     GlStateManager.pushMatrix();
                     String time = formatTime(joshie.harvest.core.helpers.CalendarHelper.getScaledTime((int) joshie.harvest.core.helpers.CalendarHelper.getTime(MCClientHelper.getWorld())));
-                    mc.fontRendererObj.drawStringWithShadow("(" + date.getWeekday(mc.theWorld).name().substring(0, 3) + ")" + "  " + time, 42, 23, 0xFFFFFFFF);
+                    mc.fontRendererObj.drawStringWithShadow("(" + date.getWeekday().name().substring(0, 3) + ")" + "  " + time, 42, 23, 0xFFFFFFFF);
                     GlStateManager.popMatrix();
                 }
 

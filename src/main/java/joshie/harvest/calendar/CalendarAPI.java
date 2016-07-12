@@ -12,10 +12,10 @@ import java.util.EnumMap;
 
 import static net.minecraft.util.text.TextFormatting.*;
 
-public class CalendarHelper implements ICalendar {
+public class CalendarAPI implements ICalendar {
     private final EnumMap<Season, SeasonData> data = new EnumMap<>(Season.class);
 
-    public CalendarHelper() {
+    public CalendarAPI() {
         data.put(Season.SPRING, new SeasonData(Season.SPRING, 0x87CEFA, 0.65D, 0.0F, GREEN, 0x00D900, 80D, 100D, 0D, 0D, 0D));
         data.put(Season.SUMMER, new SeasonData(Season.SUMMER, 7972863, 0.4D, 0.0011F, YELLOW, 0xFFFF4D, 95D, 75D, 100D, 0D, 0D));
         data.put(Season.AUTUMN, new SeasonData(Season.AUTUMN, 0x8CBED6, 1.08D, -0.07F, GOLD, 0x8C4600, 50D, 100D, 0D, 0D, 0D));

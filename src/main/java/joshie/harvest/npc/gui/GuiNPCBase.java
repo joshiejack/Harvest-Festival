@@ -33,11 +33,11 @@ public class GuiNPCBase extends GuiBase {
         GlStateManager.pushMatrix();
         GlStateManager.enableBlend();
         mc.renderEngine.bindTexture(chatbox);
-        drawTexturedModalRect(x, y + 150, 0, 150, 256, 46);
+        drawTexturedModalRect(x, y + 150, 0, 150, 256, 51);
         ChatFontRenderer.colorise(npc.getNPC().getInsideColor());
-        drawTexturedModalRect(x, y + 150, 0, 100, 256, 46);
+        drawTexturedModalRect(x, y + 150, 0, 100, 256, 51);
         ChatFontRenderer.colorise(npc.getNPC().getOutsideColor());
-        drawTexturedModalRect(x, y + 150, 0, 50, 256, 46);
+        drawTexturedModalRect(x, y + 150, 0, 50, 256, 51);
         GlStateManager.color(1F, 1F, 1F, 1F);
         GlStateManager.disableBlend();
         GlStateManager.popMatrix();
@@ -66,7 +66,6 @@ public class GuiNPCBase extends GuiBase {
 
     public void endChat() {
         player.closeScreen();
-
         if (nextGui != -1) {
             player.openGui(HarvestFestival.instance, nextGui, player.worldObj, npc.getEntityId(), 0, 0);
         }

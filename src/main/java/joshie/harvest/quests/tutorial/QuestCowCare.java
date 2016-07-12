@@ -1,29 +1,29 @@
 package joshie.harvest.quests.tutorial;
 
-import io.netty.buffer.ByteBuf;
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.entity.EntityHarvestCow;
-import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.api.npc.INPC;
-import joshie.harvest.api.quest.IQuest;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.SizeableHelper;
 import joshie.harvest.core.helpers.ToolHelper;
 import joshie.harvest.core.helpers.generic.ItemHelper;
-import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.AbstractEntityNPC;
 import joshie.harvest.quests.Quest;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-import java.util.HashSet;
+import java.util.Set;
 
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.BRUSH;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.MILKER;
+import static joshie.harvest.npc.HFNPCs.ANIMAL_OWNER;
+import static joshie.harvest.npc.HFNPCs.GODDESS;
+import static joshie.harvest.quests.HFQuests.TUTORIAL_FARMING;
 import static joshie.harvest.quests.QuestHelper.completeQuest;
 
 public class QuestCowCare extends Quest {
@@ -31,6 +31,15 @@ public class QuestCowCare extends Quest {
     private boolean hasFed;
     private boolean hasBrushed;
     private boolean hasMilked;
+
+    public QuestCowCare() {
+        setNPCs(ANIMAL_OWNER, GODDESS);
+    }
+
+    @Override
+    public boolean canStartQuest(EntityPlayer player, Set<Quest> active, Set<Quest> finished) {
+        return finished.contains(TUTORIAL_FARMING);
+    }
 
     @Override
     public void onEntityInteract(EntityPlayer player, Entity target) {
@@ -71,46 +80,34 @@ public class QuestCowCare extends Quest {
 
     @Override
     public void onClosedChat(EntityPlayer player, AbstractEntityNPC npc) {
-        if (!hasCollected && quest_stage == 2 && npc.getNPC() == HFNPCs.ANIMAL_OWNER) {
+        if (!hasCollected && quest_stage == 2 && npc.getNPC() == ANIMAL_OWNER) {
             hasCollected = true;
             ItemHelper.addToPlayerInventory(player, HFAnimals.TOOLS.getStackFromEnum(MILKER));
             ItemHelper.addToPlayerInventory(player, HFAnimals.TOOLS.getStackFromEnum(BRUSH));
         }
     }
 
-    @Override
-    public boolean canStart(EntityPlayer player, HashSet<IQuest> active, HashSet<IQuest> finished) {
-        if (!super.canStart(player, active, finished)) return false;
-        else {
-            return finished.contains(HFApi.quests.get("tutorial.tomatoes")); //This quest is unlocked when we have completed tomato quest
-        }
-    }
 
     @Override
-    public INPC[] getNPCs() {
-        return new INPC[]{HFNPCs.ANIMAL_OWNER, HFNPCs.GODDESS};
-    }
-
-    @Override
-    public String getScript(EntityPlayer player, AbstractEntityNPC npc) {
+    public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
         if (quest_stage == 0) {
-            if (npc.getNPC() == HFNPCs.GODDESS) {
+            if (npc == GODDESS) {
                 increaseStage(player);
                 return getLocalized("start"); //Goddess tells you to go and talk to jeremy
             }
         } else if (quest_stage == 1) {
-            if (npc.getNPC() == HFNPCs.GODDESS) {
+            if (npc == GODDESS) {
                 return getLocalized("go"); //Goddess reminds you you should be talking to jeremy
             } else {
                 increaseStage(player);
                 return getLocalized("care"); //Jeremy tells you how caring for cows works
             }
         } else if (quest_stage == 2) {
-            if (npc.getNPC() == HFNPCs.ANIMAL_OWNER) {
+            if (npc == ANIMAL_OWNER) {
                 return getLocalized("reminder");
             }
         } else if (quest_stage == 3) { //Jeremy expects you to have brushed 1 cow, fed 1 cow and to have milked 1 cow
-            if (npc.getNPC() == HFNPCs.ANIMAL_OWNER) {
+            if (npc == ANIMAL_OWNER) {
                 completeQuest(player, this);
                 return getLocalized("finish");
             }
@@ -134,29 +131,12 @@ public class QuestCowCare extends Quest {
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound nbt) {
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
         nbt.setBoolean("HasCollected", hasCollected);
         nbt.setBoolean("HasFed", hasFed);
         nbt.setBoolean("HasBrushed", hasBrushed);
         nbt.setBoolean("HasMilked", hasMilked);
-    }
-
-    @Override
-    public void toBytes(ByteBuf buf) {
-        super.toBytes(buf);
-        buf.writeBoolean(hasCollected);
-        buf.writeBoolean(hasFed);
-        buf.writeBoolean(hasBrushed);
-        buf.writeBoolean(hasMilked);
-    }
-
-    @Override
-    public void fromBytes(ByteBuf buf) {
-        super.fromBytes(buf);
-        hasCollected = buf.readBoolean();
-        hasFed = buf.readBoolean();
-        hasBrushed = buf.readBoolean();
-        hasMilked = buf.readBoolean();
+        return nbt;
     }
 }

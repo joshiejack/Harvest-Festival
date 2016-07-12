@@ -96,7 +96,7 @@ public class Shop implements IShop {
     @Override
     public boolean isOpen(World world, @Nullable EntityPlayer player) {
         if (world.getDifficulty() == EnumDifficulty.PEACEFUL) return true;
-        Weekday day = HFTrackers.getCalendar(world).getDate().getWeekday(world);
+        Weekday day = HFTrackers.getCalendar(world).getDate().getWeekday();
         OpeningHours hours = open.get(world.getDifficulty()).opening.get(day);
         if (hours == null) return false;
         else {
@@ -112,7 +112,7 @@ public class Shop implements IShop {
     @Override
     public boolean isPreparingToOpen(World world) {
         if (world.getDifficulty() == EnumDifficulty.PEACEFUL) return false;
-        Weekday day = HFTrackers.getCalendar(world).getDate().getWeekday(world);
+        Weekday day = HFTrackers.getCalendar(world).getDate().getWeekday();
         OpeningHours hours = open.get(world.getDifficulty()).opening.get(day);
         if (hours == null) return false;
         else {

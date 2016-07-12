@@ -1,16 +1,18 @@
 package joshie.harvest.quests.trade;
 
 import joshie.harvest.api.npc.INPC;
-import joshie.harvest.api.quest.IQuest;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.gathering.HFGathering;
 import joshie.harvest.items.HFItems;
 import joshie.harvest.quests.Quest;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.HashSet;
+import java.util.Set;
 
 import static joshie.harvest.api.core.ITiered.ToolTier.CURSED;
 import static joshie.harvest.npc.HFNPCs.PRIEST;
@@ -23,21 +25,13 @@ public class QuestBless extends Quest {
     private static final ItemStack axe = HFGathering.AXE.getStack(CURSED);
     private static final ItemStack hammer = HFItems.HAMMER.getStack(CURSED);
 
-    private boolean isHolding(EntityPlayer player, ItemStack stack) {
-        return player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == stack.getItem() && player.getHeldItemMainhand().getItemDamage() == stack.getItemDamage();
+    public QuestBless() {
+        setNPCs(PRIEST);
     }
 
     @Override
-    public boolean canStart(EntityPlayer player, HashSet<IQuest> active, HashSet<IQuest> finished) {
-        if (!super.canStart(player, active, finished)) return false;
-        else {
-            return isHolding(player, hoe) || isHolding(player, sickle) || isHolding(player, watering) || isHolding(player, axe) || isHolding(player, hammer);
-        }
-    }
-
-    @Override
-    protected boolean isRepeatable() {
-        return true;
+    public boolean canStartQuest(EntityPlayer player, Set<Quest> active, Set<Quest> finished) {
+        return isHolding(player, hoe) || isHolding(player, sickle) || isHolding(player, watering) || isHolding(player, axe) || isHolding(player, hammer);
     }
 
     @Override
@@ -48,13 +42,9 @@ public class QuestBless extends Quest {
         rewardItem(player, new ItemStack(stack.getItem(), 1, stack.getItemDamage() + 1));
     }
 
+    @SideOnly(Side.CLIENT)
     @Override
-    protected INPC[] getNPCs() {
-        return new INPC[] { PRIEST };
-    }
-
-    @Override
-    public String getScript(EntityPlayer player, INPC npc) {
+    public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
         boolean hasGold = HFTrackers.getPlayerTracker(player).getStats().getGold() >= 10000L;
         boolean hasTool = isHolding(player, hoe) || isHolding(player, sickle) || isHolding(player, watering) || isHolding(player, axe) || isHolding(player, hammer);
         if (hasGold && hasTool) {
@@ -65,5 +55,9 @@ public class QuestBless extends Quest {
         } else if (hasTool) {
             return "gold";
         } else return "reject";
+    }
+
+    private boolean isHolding(EntityPlayer player, ItemStack stack) {
+        return player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == stack.getItem() && player.getHeldItemMainhand().getItemDamage() == stack.getItemDamage();
     }
 }

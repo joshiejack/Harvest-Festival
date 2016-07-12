@@ -1,17 +1,13 @@
 package joshie.harvest.quests.tutorial;
 
-import io.netty.buffer.ByteBuf;
 import joshie.harvest.animals.HFAnimals;
-import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.api.npc.INPC;
-import joshie.harvest.api.quest.IQuest;
 import joshie.harvest.core.helpers.SizeableHelper;
 import joshie.harvest.core.helpers.generic.ItemHelper;
-import joshie.harvest.npc.HFNPCs;
-import joshie.harvest.npc.entity.AbstractEntityNPC;
 import joshie.harvest.quests.Quest;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -20,12 +16,23 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 
-import java.util.HashSet;
+import java.util.Set;
 
+import static joshie.harvest.npc.HFNPCs.ANIMAL_OWNER;
+import static joshie.harvest.quests.HFQuests.TUTORIAL_COW;
 import static joshie.harvest.quests.QuestHelper.completeQuest;
 public class QuestChickenCare extends Quest {
     private boolean hasThrown;
     private boolean hasFed;
+
+    public QuestChickenCare() {
+        setNPCs(ANIMAL_OWNER);
+    }
+
+    @Override
+    public boolean canStartQuest(EntityPlayer player, Set<Quest> active, Set<Quest> finished) {
+        return finished.contains(TUTORIAL_COW); //Quest is unlocked when you have chickens
+    }
 
     @Override
     public void onEntityInteract(EntityPlayer player, Entity target) {
@@ -63,20 +70,7 @@ public class QuestChickenCare extends Quest {
     }
 
     @Override
-    public boolean canStart(EntityPlayer player, HashSet<IQuest> active, HashSet<IQuest> finished) {
-        if (!super.canStart(player, active, finished)) return false;
-        else {
-            return finished.contains(HFApi.quests.get("tutorial.cow")); //Quest is unlocked when you have chickens
-        }
-    }
-
-    @Override
-    public INPC[] getNPCs() {
-        return new INPC[]{HFNPCs.ANIMAL_OWNER};
-    }
-
-    @Override
-    public String getScript(EntityPlayer player, AbstractEntityNPC npc) {
+    public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
         if (quest_stage == 0) {
             increaseStage(player);
             return getLocalized("start"); //Jeremy tells you all about how to care for chickens
@@ -103,23 +97,10 @@ public class QuestChickenCare extends Quest {
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound nbt) {
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
         nbt.setBoolean("HasThrown", hasThrown);
         nbt.setBoolean("HasFed", hasFed);
-    }
-
-    @Override
-    public void toBytes(ByteBuf buf) {
-        super.toBytes(buf);
-        buf.writeBoolean(hasThrown);
-        buf.writeBoolean(hasFed);
-    }
-
-    @Override
-    public void fromBytes(ByteBuf buf) {
-        super.fromBytes(buf);
-        hasThrown = buf.readBoolean();
-        hasFed = buf.readBoolean();
+        return nbt;
     }
 }

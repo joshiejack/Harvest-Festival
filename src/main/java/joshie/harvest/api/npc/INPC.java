@@ -49,6 +49,11 @@ public interface INPC extends IRelatable {
      * @return the npc **/
     INPC setNoRespawn();
 
+    /** Allows you to add additional greetings to npcs
+     *  @param greeting the greeting type
+     *  @return the npc**/
+    INPC addGreeting(IConditionalGreeting greeting);
+
     /** Returns the localised name for this NPC **/
     String getLocalizedName();
 

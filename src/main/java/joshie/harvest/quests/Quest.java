@@ -1,214 +1,164 @@
 package joshie.harvest.quests;
 
-import io.netty.buffer.ByteBuf;
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.INPC;
-import joshie.harvest.api.quest.IQuest;
-import joshie.harvest.quests.packets.PacketQuestSetStage;
-import joshie.harvest.core.util.generic.Text;
 import joshie.harvest.npc.entity.AbstractEntityNPC;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.translation.I18n;
+import net.minecraftforge.fml.common.registry.FMLControlledNamespacedRegistry;
+import net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl;
+import net.minecraftforge.fml.common.registry.PersistentRegistryManager;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.HashSet;
+import java.util.Collections;
 import java.util.Set;
 
-import static joshie.harvest.core.network.PacketHandler.sendToClient;
-import static joshie.harvest.core.network.PacketHandler.sendToServer;
-
-public abstract class Quest implements IQuest {
-    protected String name;
+public abstract class Quest extends Impl<Quest> {
+    /** DO NOT MODIFY THE ENTRIES IN THE REGISTRY, ALWAYS MAKE A COPY OF THE QUESTS **/
+    public static final FMLControlledNamespacedRegistry<Quest> REGISTRY = PersistentRegistryManager.createRegistry(new ResourceLocation("harvestfestival", "quests"), Quest.class, null, 0, 32000, true, null, null, null);
     protected int quest_stage;
-    protected Set<IQuest> required;
+    private Set<Quest> required;
+    private INPC[] npcs;
 
-    public Quest() {
+    public Quest() {}
+
+    /** Returns a set of quests that are required to start this one
+     * @return set of required quests **/
+    public final Set<Quest> getRequired() {
+        return required;
     }
 
-    @Override
-    public IQuest setStage(int quest_stage) {
-        this.quest_stage = quest_stage;
+    /** Returns a list of npcs that this quest lines uses */
+    public final INPC[] getNPCs() {
+        return npcs;
+    }
+
+    /** Called to check if this quest is able to be started, after all other checks are performed
+     *
+     * @param player    the player we are checking for
+     * @param active    the quests the player currently has active
+     * @param finished  the quests the player has completed currently
+     * @return true if they can start this quest, false otherwise
+     */
+    public boolean canStartQuest(EntityPlayer player, Set<Quest> active, Set<Quest> finished) {
+        return true;
+    }
+
+    /** Call this to add quests as a requirement for your existing quests
+     * @param quests    quests to add as a requirement**/
+    public final Quest addRequirement(Quest... quests) {
+        Collections.addAll(required, quests);
         return this;
     }
 
-    @Override
+    /** Call this to set the npcs that handle this quest
+     * @param npcs    the npcs **/
+    public final Quest setNPCs(INPC... npcs) {
+        this.npcs = npcs;
+        return this;
+    }
+
     public int getStage() {
         return quest_stage;
     }
 
-    @Override
-    public IQuest setUniqueName(String name) {
-        this.name = name;
-        return this;
-    }
-
-    @Override
-    public String getUniqueName() {
-        return name;
-    }
-
     /**
      * ENSURE YOU ONLY EVER CALL THIS ON ONE SIDE
+     * Use this to increase the stage
+     * @param player    the player we're increasing the stage for
      **/
-    protected void increaseStage(EntityPlayer player) {
+    protected final void increaseStage(EntityPlayer player) {
         int previous = this.quest_stage;
         this.quest_stage++;
-        if (!player.worldObj.isRemote) {
-            //Send Packet to increase stage to client
-            sendToClient(new PacketQuestSetStage(this, this.quest_stage), player);
-        } else {
-            //Send Packet to increase stage to server
-            sendToServer(new PacketQuestSetStage(this, this.quest_stage));
-        }
-
+        HFApi.player.syncQuest(this, player);
         onStageChanged(player, previous, quest_stage);
     }
 
-    protected boolean isRepeatable() {
+    /** Try not to ever call this internally, ALWAYS use increaseStage
+     *  @param quest_stage the stage of the quests  **/
+    public final Quest setStage(int quest_stage) {
+        this.quest_stage = quest_stage;
+        return this;
+    }
+
+    public boolean isRepeatable() {
         return false;
     }
 
-    public int getOptions() {
-        return 0;
-    }
-
-    public void onSelected(EntityPlayer player, int option) {
-    }
-
-    //This is only called client side
-    @Override
-    public boolean canStart(EntityPlayer player, HashSet<IQuest> active, HashSet<IQuest> finished) {
-        if (!isRepeatable() && finished.contains(this)) {
-            return false;
-        }
-
-        if (required != null) {
-            if (!finished.containsAll(required)) {
-                return false;
-            }
-        }
-
-        //Loops through all the active quests, if any of the quests contain npcs that are used by this quest, we can not start it
-        for (IQuest a : active) {
-            for (INPC npc : getNPCs()) {
-                if (a.handlesScript(npc)) {
-                    return false;
-                }
-            }
-        }
-
-        return true;
-    }
-
-    //Return a list of all the npcs involved in this quest
-    protected abstract INPC[] getNPCs();
-
-    //Translates a key, to up to 10 lines for the language
-    protected String getLocalized(String quest) {
-        return Text.translate("quest." + name + "." + quest.replace("_", ""));
-    }
-
-    /**
-     * Exposed to quest_stage
-     */
-    //Return true if the script will determine, thisNPC's script at the current stage   
+    /** Return the localised name of the result of getScript
+     * @param quest short form name **/
     @SideOnly(Side.CLIENT)
-    @Override
-    public boolean handlesScript(INPC npc) {
-        for (INPC n : getNPCs()) {
-            if (n.equals(npc)) {
-                return true;
-            }
-        }
-
-        return false;
+    public String getLocalized(String quest) {
+        return I18n.translateToLocal(getRegistryName().getResourceDomain() + ".quest." + getRegistryName().getResourcePath() + "." + quest.replace("_", ""));
     }
 
+    /** Return the script, in a simple unlocalised form
+     *  This will get run through getLocalized, this is
+     *  so you can return shorter, simple strings by default
+     * @param player    the player who is talking
+     * @param entity    the entity for the npc they're interacting with
+     * @param npc       the npc type they're interacting with
+     * @return  the script*/
     @SideOnly(Side.CLIENT)
-    public String getScript(EntityPlayer player, INPC npc) {
+    public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
         return null;
     }
 
-    /**
-     * Exposed to quest_stage, is only called client side, must sync any changes
-     */
-    //Return the script
-    @SideOnly(Side.CLIENT)
-    @Override
-    public String getScript(EntityPlayer player, AbstractEntityNPC npc) {
-        String script = getScript(player, npc.getNPC());
-        return script == null ? null : getLocalized(script);
-    }
-
     //Called Serverside, to claim the reward
-    @Override
     public void claim(EntityPlayer player) {
         return;
     }
 
-    @Override
+    /** This is used when you want the quest to have options to select from
+     *  You can return different values based on stage
+     *  You can have a maximimum of 3 options**/
+    public int getOptions() {
+        return 0;
+    }
+
+    public void onSelected(EntityPlayer player, int option) {}
+
+    /** Called to load data about this quest
+     * @param nbt the nbt tag **/
     public void readFromNBT(NBTTagCompound nbt) {
         quest_stage = nbt.getShort("Completed");
     }
 
-    @Override
-    public void writeToNBT(NBTTagCompound nbt) {
+    /** Called to write data about this quest
+     * @param nbt the nbt tag to write to
+     * @return the nbt tag**/
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         nbt.setShort("Completed", (short) quest_stage);
-    }
-
-    @Override
-    public void toBytes(ByteBuf buf) {
-        buf.writeShort(quest_stage);
-    }
-
-    @Override
-    public void fromBytes(ByteBuf buf) {
-        quest_stage = buf.readShort();
+        return nbt;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (o == null) return false;
-        if (o == this) return true;
-        if (!(o instanceof IQuest)) return false;
-
-        return name.equals(((IQuest) o).getUniqueName());
+        return o instanceof Quest && getRegistryName() != null && getRegistryName().equals(((Quest) o).getRegistryName());
     }
 
     @Override
     public int hashCode() {
-        return name.hashCode();
+        return getRegistryName() == null? 0 : getRegistryName().hashCode();
     }
 
     /****
-     * EVENTS
+     * EVENTS - Called automatically from vanilla events or npc specific ones
      ****/
     //Called When a player interacts with an animal
-    @Override
-    public void onEntityInteract(EntityPlayer player, Entity target) {
-    }
-
+    public void onEntityInteract(EntityPlayer player, Entity target) {}
     //Called serverside when you close the chat with an npc
-    public void onClosedChat(EntityPlayer player, AbstractEntityNPC npc) {
-    }
-
-    @Override
-    public void onRightClickBlock(EntityPlayer player, BlockPos pos, EnumFacing face) {
-    }
-
-    public void select(EntityPlayer player, AbstractEntityNPC npc, int option) {
-    }
-
-    public void confirm(EntityPlayer player, AbstractEntityNPC npc) {
-    }
-
-    public void cancel(EntityPlayer player, AbstractEntityNPC npc) {
-    }
-
-    @Override
-    public void onStageChanged(EntityPlayer player, int previous, int stage) {
-    }
+    public void onClosedChat(EntityPlayer player, AbstractEntityNPC npc) { }
+    public void onRightClickBlock(EntityPlayer player, BlockPos pos, EnumFacing face) { }
+    public void select(EntityPlayer player, AbstractEntityNPC npc, int option) {}
+    public void confirm(EntityPlayer player, AbstractEntityNPC npc) {}
+    public void cancel(EntityPlayer player, AbstractEntityNPC npc) {}
+    public void onStageChanged(EntityPlayer player, int previous, int stage) { }
 }

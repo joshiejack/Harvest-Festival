@@ -8,6 +8,7 @@ import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.helpers.TownHelper;
 import joshie.harvest.core.util.base.ItemHFFML;
+import joshie.harvest.core.util.generic.Text;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
@@ -74,7 +75,7 @@ public class ItemBlueprint extends ItemHFFML<ItemBlueprint, Building> implements
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        return getObjectFromStack(stack).getLocalisedName();
+        return Text.format("harvestfestival.structures.blueprint", getObjectFromStack(stack).getLocalisedName());
     }
 
     @Override

@@ -9,6 +9,7 @@ import joshie.harvest.npc.entity.AbstractEntityNPC;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import joshie.harvest.npc.entity.EntityNPCShopkeeper;
 import joshie.harvest.npc.entity.EntityNPCVillager;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -17,7 +18,7 @@ import static joshie.harvest.api.npc.INPC.Location.HOME;
 import static joshie.harvest.api.npc.INPC.Location.WORK;
 
 public class NPCHelper {
-    public static BlockPos getCoordinatesForLocation(AbstractEntityNPC entity, BuildingLocation location) {
+    public static BlockPos getCoordinatesForLocation(EntityLivingBase entity, BuildingLocation location) {
         return TownHelper.getClosestTownToEntityOrCreate(entity).getCoordinatesFor(location);
     }
 

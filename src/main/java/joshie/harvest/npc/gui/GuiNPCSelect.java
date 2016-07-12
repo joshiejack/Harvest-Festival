@@ -123,18 +123,13 @@ public class GuiNPCSelect extends GuiNPCBase {
             return lines;
         }
 
-        /** Return a value between 2-3 **/
-        public int getMaxOptions() {
-            return 2;
-        }
-
         /** Called when the option is selected **/
         public void onSelected(AbstractEntityNPC npc, EntityPlayer player, int option) {
             if (option == 1) {
                 if (npc.getNPC().isBuilder()) player.openGui(HarvestFestival.instance, GuiHandler.SHOP_BUILDER, player.worldObj, npc.getEntityId(), 0, 0);
                 else player.openGui(HarvestFestival.instance, GuiHandler.SHOP_MENU, player.worldObj, npc.getEntityId(), 0, 0);
             } else if (option == 2) {
-                player.openGui(HarvestFestival.instance, GuiHandler.NPC, player.worldObj, npc.getEntityId(), 0, 0);
+                player.openGui(HarvestFestival.instance, GuiHandler.NPC, player.worldObj, npc.getEntityId(), -1, 0);
             }
         }
     }

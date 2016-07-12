@@ -4,7 +4,6 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import joshie.harvest.town.TownData;
 import joshie.harvest.town.TownTracker;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -26,7 +25,7 @@ public class TownHelper {
         return HFTrackers.getTownTracker(player.worldObj).getClosestTownToBlockPos(new BlockPos(player));
     }
 
-    public static TownData getClosestTownToEntityOrCreate(EntityLiving entity) {
+    public static TownData getClosestTownToEntityOrCreate(EntityLivingBase entity) {
         TownData data = HFTrackers.getTownTracker(entity.worldObj).getClosestTownToBlockPos(new BlockPos(entity));
         if (data == TownTracker.NULL_TOWN) {
             data = HFTrackers.getTownTracker(entity.worldObj).createNewTown(new BlockPos(entity));

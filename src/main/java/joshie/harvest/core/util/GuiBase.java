@@ -155,8 +155,8 @@ public abstract class GuiBase extends GuiContainer {
     }
 
     @Override
-    protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
-        super.mouseClicked(mouseX, mouseY, mouseButton);
+    protected void mouseClicked(int x, int y, int mouseButton) throws IOException {
+        super.mouseClicked(x, y, mouseButton);
         onMouseClick(mouseX, mouseY);
     }
 

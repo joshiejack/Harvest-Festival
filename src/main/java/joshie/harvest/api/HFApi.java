@@ -11,7 +11,6 @@ import joshie.harvest.api.crops.ICropRegistry;
 import joshie.harvest.api.gathering.IGatheringRegistry;
 import joshie.harvest.api.npc.INPCRegistry;
 import joshie.harvest.api.player.IPlayerHelper;
-import joshie.harvest.api.quest.IQuestRegistry;
 import joshie.harvest.api.shops.IShopRegistry;
 
 /**
@@ -27,7 +26,6 @@ public class HFApi {
     public static INPCRegistry npc = null;
     public static IPlayerHelper player = null;
     public static IShopRegistry shops = null;
-    public static IQuestRegistry quests = null;
     public static IShippingRegistry shipping = null;
     public static ISizeableRegistry sizeable = null;
     public static IDailyTickableRegistry tickable = null;

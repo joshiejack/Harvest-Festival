@@ -14,6 +14,8 @@ import joshie.harvest.api.relations.IRelatableDataHandler;
 import joshie.harvest.api.shops.IShop;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.util.generic.Text;
+import joshie.harvest.npc.greeting.GreetingMultiple;
+import joshie.harvest.npc.greeting.GreetingSingle;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -143,6 +145,12 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
     @Override
     public INPC setScheduleHandler(ISchedule handler) {
         schedule = handler;
+        return this;
+    }
+
+    @Override
+    public INPC addGreeting(IConditionalGreeting greeting) {
+        this.conditionals.add(greeting);
         return this;
     }
 

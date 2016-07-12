@@ -1,10 +1,10 @@
 package joshie.harvest.npc.gui;
 
-import joshie.harvest.api.quest.IQuest;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.util.ContainerBase;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.AbstractEntityNPC;
+import joshie.harvest.quests.Quest;
 import joshie.harvest.quests.QuestHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -23,8 +23,8 @@ public class ContainerNPC extends ContainerBase {
     public void onContainerClosed(EntityPlayer player) {
         super.onContainerClosed(player);
         npc.setTalking(null);
-        HashSet<IQuest> quests = QuestHelper.getCurrentQuest(player);
-        for (IQuest quest : quests) {
+        HashSet<Quest> quests = QuestHelper.getCurrentQuest(player);
+        for (Quest quest : quests) {
             if (quest != null) {
                 quest.onClosedChat(player, npc);
             }

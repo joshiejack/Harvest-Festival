@@ -1,9 +1,10 @@
 package joshie.harvest.player.quests;
 
-import joshie.harvest.api.quest.IQuest;
+import joshie.harvest.api.npc.INPC;
+import joshie.harvest.npc.entity.AbstractEntityNPC;
+import joshie.harvest.quests.Quest;
 import joshie.harvest.quests.packets.PacketQuestCompleted;
 import joshie.harvest.quests.packets.PacketQuestStart;
-import joshie.harvest.npc.entity.AbstractEntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -14,45 +15,50 @@ import static joshie.harvest.core.network.PacketHandler.sendToServer;
 
 @SideOnly(Side.CLIENT)
 public class QuestDataClient extends QuestData {
-    private HashSet<IQuest> available = new HashSet<IQuest>();
+    private HashSet<Quest> available = new HashSet<>();
     
     //Adds a quest to the current list
     @Override
-    public void addAsCurrent(IQuest quest) {
+    public void addAsCurrent(Quest quest) {
         current.add(quest);
     }
 
     @Override
-    public void markCompleted(IQuest quest, boolean sendPacket) {
+    public void markCompleted(Quest quest, boolean sendPacket) {
         markCompleted(quest);
         sendToServer(new PacketQuestCompleted(quest));
     }
     
     //Removes the quest from the current and available lists
-    public void markCompleted(IQuest quest) {
+    public void markCompleted(Quest quest) {
         available.remove(quest);
         current.remove(quest);
     }
 
     @Override
-    public void setAvailable(IQuest quest) {    
+    public void setAvailable(Quest quest) {
         available.add(quest);
     }
 
     //Called to change the current quests stage
     @Override
-    public void setStage(IQuest quest, int stage) {
-        IQuest q = getAQuest(quest);
+    public void setStage(Quest quest, int stage) {
+        Quest q = getAQuest(quest);
         if (q != null) q.setStage(stage);
+    }
+
+    private String getScript(Quest quest, EntityPlayer player, AbstractEntityNPC entity) {
+        String script = quest.getScript(player, entity, entity.getNPC());
+        return script == null ? null : quest.getLocalized(script);
     }
 
     //Returns a single lined script
     @Override
     public String getScript(EntityPlayer player, AbstractEntityNPC npc) {
         if (current != null) {
-            for (IQuest q : current) {
-                if (q.handlesScript(npc.getNPC())) {
-                    String script = q.getScript(player, npc);
+            for (Quest q : current) {
+                if (handlesScript(q, npc.getNPC())) {
+                    String script = getScript(q, player, npc);
                     if (script != null) return script;
                 }
             }
@@ -60,13 +66,13 @@ public class QuestDataClient extends QuestData {
 
         //If we didn't return a current quest, search for a new one
         if (current.size() < 10) {
-            for (IQuest q : available) {
-                if (!current.contains(q) && q.handlesScript(npc.getNPC())) {
+            for (Quest q : available) {
+                if (!current.contains(q) && handlesScript(q, npc.getNPC())) {
                     try {
-                        IQuest quest = q.getClass().newInstance().setUniqueName(q.getUniqueName()).setStage(0); //Set the current quest to your new
+                        Quest quest = q.getClass().newInstance().setRegistryName(q.getRegistryName()).setStage(0); //Set the current quest to your new
                         current.add(quest);
                         sendToServer(new PacketQuestStart(q));
-                        String script = quest.getScript(player, npc);
+                        String script = getScript(q, player, npc);
                         if (script != null) return script;
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -76,5 +82,17 @@ public class QuestDataClient extends QuestData {
         }
 
         return null;
+    }
+
+    private boolean handlesScript(Quest quest, INPC npc) {
+        INPC[] npcs = quest.getNPCs();
+        if (npcs == null) return false;
+        else {
+            for (INPC n: npcs) {
+                if (n.equals(npc)) return true;
+            }
+        }
+
+        return false;
     }
 }

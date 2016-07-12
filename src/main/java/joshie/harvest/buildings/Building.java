@@ -2,7 +2,6 @@ package joshie.harvest.buildings;
 
 import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.api.shops.ISpecialPurchaseRules;
-import joshie.harvest.core.util.Direction;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.Placeable.ConstructionStage;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
@@ -11,6 +10,7 @@ import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.core.helpers.TownHelper;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.helpers.generic.MCServerHelper;
+import joshie.harvest.core.util.Direction;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -21,13 +21,14 @@ import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-public class Building extends net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl<Building> implements IBuilding {
+public class Building extends Impl<Building> implements IBuilding {
     //Components
     private transient HashMap<String, PlaceableNPC> npc_offsets = new HashMap<>();
     private transient ArrayList<PlaceableBlock> block_list = new ArrayList<>();

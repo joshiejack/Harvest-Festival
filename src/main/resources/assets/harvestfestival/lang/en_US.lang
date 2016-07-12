@@ -32,21 +32,23 @@ harvestfestival.tool.chicken.feed=Chicken Feed
 harvestfestival.tool.miracle.potion=Miracle Potion
 
 #Buildings
-harvestfestival.structures.barn=Blueprint: Animal Ranch
-harvestfestival.structures.blacksmith=Blueprint: Blacksmith
-harvestfestival.structures.cafe=Blueprint: Cafe
-harvestfestival.structures.carpenter=Blueprint: Carpenter
-harvestfestival.structures.church=Blueprint: Church
-harvestfestival.structures.clockmaker=Blueprint: Clockmaker
-harvestfestival.structures.fishinghole=Blueprint: Fishing Hole
-harvestfestival.structures.fishinghut=Blueprint: Fishing Hut
-harvestfestival.structures.goddesspond=Blueprint: Goddess Pond
-harvestfestival.structures.mininghill=Blueprint: Mining Hill
-harvestfestival.structures.mininghut=Blueprint: Mining Hut
-harvestfestival.structures.poultryfarm=Blueprint: Poultry Farm
-harvestfestival.structures.supermarket=Blueprint: General Store
-harvestfestival.structures.townhall=Blueprint: Townhall
-harvestfestival.structures.null=Blueprint: Invalid
+harvestfestival.structures.blueprint=Blueprint: %s
+harvestfestival.structures.spawn=[SPAWN]
+harvestfestival.structures.barn=Animal Ranch
+harvestfestival.structures.blacksmith=Blacksmith
+harvestfestival.structures.cafe=Cafe
+harvestfestival.structures.carpenter=Carpenter
+harvestfestival.structures.church=Church
+harvestfestival.structures.clockmaker=Clockmaker
+harvestfestival.structures.fishinghole=Fishing Hole
+harvestfestival.structures.fishinghut=Fishing Hut
+harvestfestival.structures.goddesspond=Goddess Pond
+harvestfestival.structures.mininghill=Mining Hill
+harvestfestival.structures.mininghut=Mining Hut
+harvestfestival.structures.poultryfarm=Poultry Farm
+harvestfestival.structures.supermarket=General Store
+harvestfestival.structures.townhall=Townhall
+harvestfestival.structures.null=Invalid
 
 #Cheat Items (Translators don't bother tranlating these, I just use them to help with dev)
 harvestfestival.cheat.coord.setter=[BuildingGen] Coordinate Setter

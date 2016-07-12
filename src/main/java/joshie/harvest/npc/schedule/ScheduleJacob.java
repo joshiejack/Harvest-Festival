@@ -1,21 +1,22 @@
 package joshie.harvest.npc.schedule;
 
 import joshie.harvest.api.buildings.BuildingLocation;
+import joshie.harvest.api.calendar.Season;
+import joshie.harvest.api.calendar.Weekday;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.npc.ISchedule;
-import joshie.harvest.buildings.HFBuildings;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.world.World;
 
 import static joshie.harvest.api.npc.INPC.Location.HOME;
-import static joshie.harvest.town.TownData.FISHING_POND;
+import static joshie.harvest.npc.schedule.ScheduleLocations.GODDESS;
+import static joshie.harvest.npc.schedule.ScheduleLocations.POND;
 
 public class ScheduleJacob implements ISchedule {
-    private static final BuildingLocation POND = new BuildingLocation(HFBuildings.FISHING_HOLE, FISHING_POND);
-
     @Override
-    public BuildingLocation getTarget(World world, EntityLiving entity, INPC npc, long time) {
-        if (time >= 5000L && time <= 9000L) return new BuildingLocation(HFBuildings.FISHING_HOLE, FISHING_POND);
+    public BuildingLocation getTarget(World world, EntityLiving entity, INPC npc, Season season, Weekday weekday, long time) {
+        if (time >= 5000L && time <= 9000L) return POND;
+        if (time >= 9000L && time <= 11000L) return GODDESS;
         else return npc.getLocation(HOME);
     }
 }

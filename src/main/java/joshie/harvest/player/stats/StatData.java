@@ -4,8 +4,10 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.ICalendarDate;
 import net.minecraft.world.World;
 
+import static joshie.harvest.api.calendar.Season.NETHER;
+
 public class StatData {
-    protected ICalendarDate birthday = HFApi.calendar.newDate(0, null, 0);
+    protected ICalendarDate birthday = HFApi.calendar.newDate(0, NETHER, 0);
     protected long gold;
 
     public ICalendarDate getBirthday() {
@@ -13,7 +15,7 @@ public class StatData {
     }
 
     public boolean isBirthdaySet() {
-        return birthday.getSeason() != null && birthday.getDay() != 0 && birthday.getYear() != 0;
+        return birthday.getSeason() != NETHER && birthday.getDay() != 0 && birthday.getYear() != 0;
     }
 
     public boolean setBirthday(World world) {

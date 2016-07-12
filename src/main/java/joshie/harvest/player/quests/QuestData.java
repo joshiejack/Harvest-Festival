@@ -1,21 +1,21 @@
 package joshie.harvest.player.quests;
 
-import joshie.harvest.api.quest.IQuest;
 import joshie.harvest.npc.entity.AbstractEntityNPC;
+import joshie.harvest.quests.Quest;
 import net.minecraft.entity.player.EntityPlayer;
 
 import java.util.HashSet;
 
 public abstract class QuestData {
-    protected HashSet<IQuest> current = new HashSet<IQuest>(10);
+    protected HashSet<Quest> current = new HashSet<Quest>(10);
 
-    public HashSet<IQuest> getCurrent() {
+    public HashSet<Quest> getCurrent() {
         return current;
     }
 
-    public IQuest getAQuest(IQuest quest) {
+    public Quest getAQuest(Quest quest) {
         if (current != null) {
-            for (IQuest q : current) {
+            for (Quest q : current) {
                 if (q.equals(quest)) {
                     return q;
                 }
@@ -30,9 +30,9 @@ public abstract class QuestData {
         return "";
     }
 
-    public abstract void markCompleted(IQuest quest, boolean sendPacket);
-    public void setAvailable(IQuest quest) {}
-    public void addAsCurrent(IQuest quest) {}
-    public abstract void setStage(IQuest theQuest, int stage);
-    public boolean startQuest(IQuest quest) { return false; }
+    public abstract void markCompleted(Quest quest, boolean sendPacket);
+    public void setAvailable(Quest quest) {}
+    public void addAsCurrent(Quest quest) {}
+    public abstract void setStage(Quest theQuest, int stage);
+    public boolean startQuest(Quest quest) { return false; }
 }

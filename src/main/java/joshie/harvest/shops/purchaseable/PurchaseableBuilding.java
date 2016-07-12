@@ -77,6 +77,6 @@ public class PurchaseableBuilding extends Purchaseable {
     }
 
     public String getName() {
-        return stacks[0].getDisplayName();
+        return building.getLocalisedName();
     }
 }

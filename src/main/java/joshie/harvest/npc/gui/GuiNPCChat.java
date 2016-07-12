@@ -15,7 +15,7 @@ import java.util.Arrays;
 
 /** Renders a chat script **/
 public class GuiNPCChat extends GuiNPCBase {
-    private static final int MAX_LINES_PER_PAGE = 3;
+    private static final int MAX_LINES_PER_PAGE = 4;
     private String[][] script; //This is an array of [page][line], with line ALWAYS beign a length of MAX_LINES ^
     private int page; //Current page displayed
     private int line; //Current lines displayed
@@ -94,7 +94,7 @@ public class GuiNPCChat extends GuiNPCBase {
         for (int i = 0; i < line; i++) {
             String text = script[page][i];
             if (text != null) {
-                fontRendererObj.drawStringWithShadow(text, 22, 158 + (i * 10), 0xFFFFFF);
+                fontRendererObj.drawStringWithShadow(text, 22, 157 + (i * 10), 0xFFFFFF);
             }
         }
 
@@ -122,7 +122,7 @@ public class GuiNPCChat extends GuiNPCBase {
                 }
 
                 //Draw the characters as we go.
-                fontRendererObj.drawStringWithShadow(new String(fordisplay), 22, 158 + (line * 10), 0xFFFFFF);
+                fontRendererObj.drawStringWithShadow(new String(fordisplay), 22, 157 + (line * 10), 0xFFFFFF);
 
                 //Now if we have completed the entire array, let's reset the position and increase the line
                 if (fordisplay.length >= todisplay.length) {
@@ -149,8 +149,8 @@ public class GuiNPCChat extends GuiNPCBase {
     protected void nextChat() {
         if (!finished) {
             finished = true;
-            line = 3;
-        } else if (finished && page < (script.length - 1)) {
+            line = MAX_LINES_PER_PAGE;
+        } else if (page < (script.length - 1)) {
             finished = false; //Reset the page being finished
             line = 0; //Reset the line we are currently reading
             page++; //Reset the page we are currently reading

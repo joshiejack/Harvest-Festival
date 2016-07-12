@@ -5,17 +5,18 @@ import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.helpers.generic.OreDictionaryHelper;
 import joshie.harvest.crops.HFCrops;
-import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.quests.Quest;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
+import static joshie.harvest.npc.HFNPCs.GODDESS;
+import static joshie.harvest.npc.HFNPCs.SEED_OWNER;
 import static joshie.harvest.quests.QuestHelper.*;
 public class QuestGoddess extends Quest {   
-    @Override
-    protected INPC[] getNPCs() {
-        return new INPC[] { HFNPCs.GODDESS, HFNPCs.SEED_OWNER };
+    public QuestGoddess() {
+        setNPCs(GODDESS, SEED_OWNER);
     }
     
     @Override
@@ -42,8 +43,8 @@ public class QuestGoddess extends Quest {
     }
 
     @Override
-    public String getScript(EntityPlayer player, INPC npc) {       
-        if (npc == HFNPCs.GODDESS) {
+    public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+        if (npc == GODDESS) {
             if (quest_stage == 0) {
                 increaseStage(player);
                 return "welcome"; //Greet the player, tell them to gather 64 logs for you, Give them 4 goddess flowers
@@ -87,7 +88,7 @@ public class QuestGoddess extends Quest {
                 completeQuest(player, this);
                 return "completed";
             }
-        } else if (npc == HFNPCs.SEED_OWNER) {
+        } else if (npc == SEED_OWNER) {
             if (quest_stage == 2) {
                 //I am jade, and i like flowers and i will give you seeds
                 increaseStage(player);

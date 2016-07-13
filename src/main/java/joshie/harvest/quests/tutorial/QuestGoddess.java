@@ -1,11 +1,12 @@
 package joshie.harvest.quests.tutorial;
 
+import joshie.harvest.api.HFRegister;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.helpers.generic.OreDictionaryHelper;
 import joshie.harvest.crops.HFCrops;
-import joshie.harvest.quests.Quest;
+import joshie.harvest.api.quests.Quest;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -14,6 +15,8 @@ import net.minecraft.item.ItemStack;
 import static joshie.harvest.npc.HFNPCs.GODDESS;
 import static joshie.harvest.npc.HFNPCs.SEED_OWNER;
 import static joshie.harvest.quests.QuestHelper.*;
+
+@HFRegister(path = "tutorial.farming")
 public class QuestGoddess extends Quest {   
     public QuestGoddess() {
         setNPCs(GODDESS, SEED_OWNER);
@@ -85,7 +88,7 @@ public class QuestGoddess extends Quest {
                 //Explain a little backstory about why the town was destroyed, and why they needed
                 //your help and funding to rebuild their work. Thank the player for their help
                 //Give the player 1000 gold
-                completeQuest(player, this);
+                complete(player);
                 return "completed";
             }
         } else if (npc == SEED_OWNER) {

@@ -54,5 +54,30 @@ public class SizeableRegistry implements ISizeableRegistry {
         return sizeable != null ? sizeable : providers.get(Pair.of(stack.getItem(), stack.getItemDamage()));
     }
 
+    private Pair<ISizeable, Size> getPair(ItemStack stack) {
+        Pair<ISizeable, Size> sizeable = providers.get(Pair.of(stack.getItem(), OreDictionary.WILDCARD_VALUE));
+        return sizeable != null ? sizeable : providers.get(Pair.of(stack.getItem(), stack.getItemDamage()));
+    }
+
+    @Override
+    public ISizeable getSizeable(ItemStack stack) {
+        if (stack.getItem() instanceof ISizedProvider) {
+            return ((ISizedProvider)stack.getItem()).getSizeable(stack);
+        }
+
+        Pair<ISizeable, Size> sizeable = getSizeableFromStack(stack);
+        return sizeable != null ? sizeable.getKey() : null;
+    }
+
+    @Override
+    public Size getSize(ItemStack stack) {
+        if (stack.getItem() instanceof ISizedProvider) {
+            return ((ISizedProvider)stack.getItem()).getSize(stack);
+        }
+
+        Pair<ISizeable, Size> sizeable = getSizeableFromStack(stack);
+        return sizeable != null ? sizeable.getValue() : null;
+    }
+
 
 }

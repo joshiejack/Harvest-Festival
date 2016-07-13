@@ -2,14 +2,15 @@ package joshie.harvest.quests.tutorial;
 
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.entity.EntityHarvestCow;
+import joshie.harvest.api.HFRegister;
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.SizeableHelper;
 import joshie.harvest.core.helpers.ToolHelper;
 import joshie.harvest.core.helpers.generic.ItemHelper;
-import joshie.harvest.npc.entity.AbstractEntityNPC;
-import joshie.harvest.quests.Quest;
+import joshie.harvest.quests.QuestHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,10 +24,10 @@ import static joshie.harvest.animals.item.ItemAnimalTool.Tool.BRUSH;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.MILKER;
 import static joshie.harvest.npc.HFNPCs.ANIMAL_OWNER;
 import static joshie.harvest.npc.HFNPCs.GODDESS;
-import static joshie.harvest.quests.HFQuests.TUTORIAL_FARMING;
-import static joshie.harvest.quests.QuestHelper.completeQuest;
 
+@HFRegister(path = "tutorial.cow")
 public class QuestCowCare extends Quest {
+    private static final Quest TUTORIAL_FARMING = QuestHelper.getQuest("tutorial.farming");
     private boolean hasCollected;
     private boolean hasFed;
     private boolean hasBrushed;
@@ -79,8 +80,8 @@ public class QuestCowCare extends Quest {
     }
 
     @Override
-    public void onClosedChat(EntityPlayer player, AbstractEntityNPC npc) {
-        if (!hasCollected && quest_stage == 2 && npc.getNPC() == ANIMAL_OWNER) {
+    public void onClosedChat(EntityPlayer player, EntityLiving entity, INPC npc) {
+        if (!hasCollected && quest_stage == 2 && npc == ANIMAL_OWNER) {
             hasCollected = true;
             ItemHelper.addToPlayerInventory(player, HFAnimals.TOOLS.getStackFromEnum(MILKER));
             ItemHelper.addToPlayerInventory(player, HFAnimals.TOOLS.getStackFromEnum(BRUSH));
@@ -93,23 +94,23 @@ public class QuestCowCare extends Quest {
         if (quest_stage == 0) {
             if (npc == GODDESS) {
                 increaseStage(player);
-                return getLocalized("start"); //Goddess tells you to go and talk to jeremy
+                return "start"; //Goddess tells you to go and talk to jeremy
             }
         } else if (quest_stage == 1) {
             if (npc == GODDESS) {
-                return getLocalized("go"); //Goddess reminds you you should be talking to jeremy
+                return "go"; //Goddess reminds you you should be talking to jeremy
             } else {
                 increaseStage(player);
-                return getLocalized("care"); //Jeremy tells you how caring for cows works
+                return "care"; //Jeremy tells you how caring for cows works
             }
         } else if (quest_stage == 2) {
             if (npc == ANIMAL_OWNER) {
-                return getLocalized("reminder");
+                return "reminder";
             }
         } else if (quest_stage == 3) { //Jeremy expects you to have brushed 1 cow, fed 1 cow and to have milked 1 cow
             if (npc == ANIMAL_OWNER) {
-                completeQuest(player, this);
-                return getLocalized("finish");
+                complete(player);
+                return "finish";
             }
         }
 

@@ -1,11 +1,13 @@
 package joshie.harvest.quests.tutorial;
 
 import joshie.harvest.animals.HFAnimals;
+import joshie.harvest.api.HFRegister;
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.helpers.SizeableHelper;
 import joshie.harvest.core.helpers.generic.ItemHelper;
-import joshie.harvest.quests.Quest;
+import joshie.harvest.quests.QuestHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.passive.EntityChicken;
@@ -19,9 +21,10 @@ import net.minecraft.util.math.BlockPos;
 import java.util.Set;
 
 import static joshie.harvest.npc.HFNPCs.ANIMAL_OWNER;
-import static joshie.harvest.quests.HFQuests.TUTORIAL_COW;
-import static joshie.harvest.quests.QuestHelper.completeQuest;
+
+@HFRegister(path = "tutorial.chicken")
 public class QuestChickenCare extends Quest {
+    private static final Quest TUTORIAL_COW = QuestHelper.getQuest("tutorial.cow");
     private boolean hasThrown;
     private boolean hasFed;
 
@@ -73,12 +76,12 @@ public class QuestChickenCare extends Quest {
     public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
         if (quest_stage == 0) {
             increaseStage(player);
-            return getLocalized("start"); //Jeremy tells you all about how to care for chickens
+            return "start"; //Jeremy tells you all about how to care for chickens
         } else if (quest_stage == 1) {
-            return getLocalized("care"); //Reminds you to go pick up and throw a chicken, as well as feed one seeds
+            return "care"; //Reminds you to go pick up and throw a chicken, as well as feed one seeds
         } else if (quest_stage == 2) {
-            completeQuest(player, this);
-            return getLocalized("finish");
+            complete(player);
+            return "finish";
         }
 
         return null;

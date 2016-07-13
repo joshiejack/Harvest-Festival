@@ -1,9 +1,7 @@
 ### NPCS, Conversations & AI
-- Make NPCs leave for work early, and leave for home early
 - Add Schedules for NPCs, where they visit specific buildings at certain times
 - Schedule Based Conversations
 - Add Extra Chat Messages, and Conversations for all NPCs
-- Adjust the npc chat to display more correctly?
 
 ### Mining Dimension Stuff
 - Add the hole block on the bottom of each stack of floors, so that you can teleport to the next stack of mines
@@ -30,7 +28,7 @@
 ### Rendering/Modeling
 - HarvestChicken
 - Change Blueprints to so that you can hover and click where you want them placed with a preview of the building
-- Coin Render on hotbar
+- Allow repositioning of coin/seasons huds
 
 ### Recipe Rewrite
 - Recipes have an item which is a page for a book, which is how you learn to do new recipes
@@ -79,13 +77,13 @@
 
 ### To Fix
 - Workout how to use the weighting system in conjunction with forge states, so i don't have to use my own hacked together weighting system...
-- Day, Season, Year Commands
 - Goddess Water Texture
 - Location of the flower in the spring season overlay
 
 ### Textures
 - Crop Grass Better Texture
 - Textures for the NPCs which we stole + New Selection for Ondra > Ashlee
+- Texture for Johan the Trader
 
 ### Jewels & Jewel Rock
 - Make Render for Jewel Rock - J

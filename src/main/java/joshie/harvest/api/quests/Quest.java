@@ -1,8 +1,7 @@
-package joshie.harvest.quests;
+package joshie.harvest.api.quests;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.INPC;
-import joshie.harvest.npc.entity.AbstractEntityNPC;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,12 +10,14 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
+import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.registry.FMLControlledNamespacedRegistry;
 import net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl;
 import net.minecraftforge.fml.common.registry.PersistentRegistryManager;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.Set;
 
@@ -51,6 +52,17 @@ public abstract class Quest extends Impl<Quest> {
         return true;
     }
 
+    /** Whether or not this quest is repeatable **/
+    public boolean isRepeatable() {
+        return false;
+    }
+
+    /** Quests that return true here, count towards the quest limit,
+     *  You should return false for very simple quests, such as the default trader ones, or the blessing of tools */
+    public boolean isRealQuest() {
+        return true;
+    }
+
     /** Call this to add quests as a requirement for your existing quests
      * @param quests    quests to add as a requirement**/
     public final Quest addRequirement(Quest... quests) {
@@ -65,7 +77,8 @@ public abstract class Quest extends Impl<Quest> {
         return this;
     }
 
-    public int getStage() {
+    /** Returns the stage of this quest **/
+    public final int getStage() {
         return quest_stage;
     }
 
@@ -74,11 +87,14 @@ public abstract class Quest extends Impl<Quest> {
      * Use this to increase the stage
      * @param player    the player we're increasing the stage for
      **/
-    protected final void increaseStage(EntityPlayer player) {
-        int previous = this.quest_stage;
-        this.quest_stage++;
-        HFApi.player.syncQuest(this, player);
-        onStageChanged(player, previous, quest_stage);
+    public final void increaseStage(EntityPlayer player) {
+        if (!player.worldObj.isRemote) {
+            int previous = this.quest_stage;
+            this.quest_stage++;
+            onStageChanged(player, previous, quest_stage);
+        }
+
+        HFApi.player.getQuestHelper().increaseStage(this, player);
     }
 
     /** Try not to ever call this internally, ALWAYS use increaseStage
@@ -86,10 +102,6 @@ public abstract class Quest extends Impl<Quest> {
     public final Quest setStage(int quest_stage) {
         this.quest_stage = quest_stage;
         return this;
-    }
-
-    public boolean isRepeatable() {
-        return false;
     }
 
     /** Return the localised name of the result of getScript
@@ -106,24 +118,34 @@ public abstract class Quest extends Impl<Quest> {
      * @param entity    the entity for the npc they're interacting with
      * @param npc       the npc type they're interacting with
      * @return  the script*/
+    @Nullable
     @SideOnly(Side.CLIENT)
     public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
         return null;
     }
 
-    //Called Serverside, to claim the reward
-    public void claim(EntityPlayer player) {
-        return;
-    }
-
     /** This is used when you want the quest to have options to select from
-     *  You can return different values based on stage
-     *  You can have a maximimum of 3 options**/
-    public int getOptions() {
-        return 0;
+     *  You can return this based on the stage */
+    @Nullable
+    public Selection getSelection() {
+        return null;
     }
 
-    public void onSelected(EntityPlayer player, int option) {}
+    /** Called SERVER side only, when the stage changes
+     *  You are free to manipulate data here, as it gets synced to the client
+     * @param player        the player
+     * @param previous      the previous stage
+     * @param stage         the current stage */
+    public void onStageChanged(EntityPlayer player, int previous, int stage) {}
+
+    /** Call to complete a quest, only call this on one side
+     * @param player    the player to complete the quest for **/
+    public final void complete(EntityPlayer player) {
+        HFApi.player.getQuestHelper().completeQuest(this, player);
+    }
+
+    /** Called on the serverside when a quest is completed **/
+    public void claim(EntityPlayer player) {}
 
     /** Called to load data about this quest
      * @param nbt the nbt tag **/
@@ -152,13 +174,44 @@ public abstract class Quest extends Impl<Quest> {
     /****
      * EVENTS - Called automatically from vanilla events or npc specific ones
      ****/
-    //Called When a player interacts with an animal
     public void onEntityInteract(EntityPlayer player, Entity target) {}
-    //Called serverside when you close the chat with an npc
-    public void onClosedChat(EntityPlayer player, AbstractEntityNPC npc) { }
-    public void onRightClickBlock(EntityPlayer player, BlockPos pos, EnumFacing face) { }
-    public void select(EntityPlayer player, AbstractEntityNPC npc, int option) {}
-    public void confirm(EntityPlayer player, AbstractEntityNPC npc) {}
-    public void cancel(EntityPlayer player, AbstractEntityNPC npc) {}
-    public void onStageChanged(EntityPlayer player, int previous, int stage) { }
+    public void onClosedChat(EntityPlayer player, EntityLiving entity, INPC npc) { }
+    public void onRightClickBlock(EntityPlayer player, BlockPos pos, EnumFacing face) {}
+
+    /** Used for selection menus **/
+    public static abstract class Selection<Q extends Quest> {
+        private String[] lines;
+
+        public Selection(String title, String line1, String line2) {
+            this.lines = new String[3];
+            this.lines[0] = title;
+            this.lines[1] = line1;
+            this.lines[2] = line2;
+        }
+
+        public Selection(String title, String line1, String line2, String line3) {
+            this.lines = new String[4];
+            this.lines[0] = title;
+            this.lines[1] = line1;
+            this.lines[2] = line2;
+            this.lines[3] = line3;
+        }
+
+        /** Returns the unlocalised text **/
+        public final String[] getText() {
+            return lines;
+        }
+
+        /** Called when these options are selected
+         * @param player        the player interacting
+         * @param entity        the entity the player is interacting with
+         * @param npc           the npc associated with the entity
+         * @param option        which option they selected (1/2/3)
+         * @param quest         the quest object associated with this
+         * @return return what happens next,
+         *              return DENY to close the options menu
+         *              return ALLOW to open the npc chat window
+         *              return DEFAULT to do nothing*/
+        public abstract Result onSelected(EntityPlayer player, EntityLiving entity, INPC npc, Q quest, int option);
+    }
 }

@@ -344,6 +344,7 @@ harvestfestival.npc.thomas.name=Tomas
 harvestfestival.npc.candice.name=Candice
 harvestfestival.npc.yulif.name=Yulif
 harvestfestival.npc.ashlee.name=Ashlee
+harvestfestival.npc.girafi.name=Johan
 
 ## NOTE FOR TRANSLATORS, READ
 # When translating these, do not directly translate, just come up with your own
@@ -515,10 +516,11 @@ harvestfestival.npc.brandon.greeting6=The other day when I was in the mines, I h
 
 #Tomas
 harvestfestival.npc.thomas.greeting1=I will save you from your sins.
-harvestfestival.npc.thomas.greeting2=Remember if you every need anything cursed, blessed I will be happy to help.
+harvestfestival.npc.thomas.greeting2=Remember if you ever need anything cursed, blessed I will be happy to help.
 harvestfestival.npc.thomas.greeting3=Only he can save you now.
 harvestfestival.npc.thomas.greeting4=The lord's grace, is shining down upon you.
 harvestfestival.npc.thomas.greeting5=If you want to marry someone you need a bigger bed.
+harvestfestival.npc.thomas.greeting6=If you ever come across a cursed tool, bring it to me and I can bless it for 10000 Gold.
 
 #Candice
 harvestfestival.npc.candice.greeting1=Do you know what I love about milking the most? Sharing it with friends, like Jenni! Sometimes we just get it all over us. So it's nice to have a helping hand to clean up the mess.
@@ -539,6 +541,13 @@ harvestfestival.npc.ashlee.greeting2=I am so tired, working with chickens is suc
 harvestfestival.npc.ashlee.greeting3=From this day forward, I hope I can sleep better.
 harvestfestival.npc.ashlee.greeting4=Most chicken handlers hate foxes, I love them. They're so furry, like me!
 harvestfestival.npc.ashlee.greeting5=Cluck, Cluck, Cluck Clucking. When will these chicks just shut the Cluck up!
+
+#Girafi
+harvestfestival.npc.girafi.greeting1=Why hello fellow human, I am a humble trader, if you have any eggs, milk or wool I'll happily trade my own from the vanilla world!
+harvestfestival.npc.girafi.greeting2=Good day sir, I've been planning my next trip for a while, and I'm thinking I'll head to Denmark.
+harvestfestival.npc.girafi.greeting3=It's wonderful to see you again!
+harvestfestival.npc.girafi.greeting4=I could talk all day about my adventures out in the world, did I tell you about this one time that I strangled a squid and...
+harvestfestival.npc.girafi.greeting5=Hallo, hoe goes it?
 
 ###Shop greetings
 #General Store
@@ -579,7 +588,20 @@ harvestfestival.quest.tutorial.farming.jade.goddess=Don't you think you should b
 harvestfestival.quest.tutorial.farming.completed=Well that is just perfect, you have some seeds! I would love for you to keep them. I even have some other things for you to help you get started farming. Jade is an aspiring farmer, and I'm sure if you visit her, she can give you some tips on how to get started using these new tools. I also have some spare gold for you, that was donated by those who want to move in, to help you on your way. If you would like to learn more about gold, and how to expand the town, you should go and talk to Yulif.
 
 ## Priest Blessing Quest
-harvestfestival.quest.trade.cursed.accept=Thank you very much youngun, I can now bless your tools. That'll be 10000 Gold thanks!
-harvestfestival.quest.trade.cursed.tool=It looks like you don't have any cursed tools currently, if you want me to bless them, come back when you do.
+harvestfestival.quest.trade.cursed.accept=Thank you very much youngun, I can now bless your tools! It will take a little while, so come back in three days.
 harvestfestival.quest.trade.cursed.gold=Ahh I see you have a cursed tool! For a small fee of 10000 Gold I can bless it for you and remove that curse.
-harvestfestival.quest.trade.cursed.reject=I understand you now have a cursed tool, if you bring me that tool and 10000 Gold I can bless it.
+harvestfestival.quest.trade.cursed.wait=It's nice to see you, the blessing of your tools is going well, it will take a little bit longer, please come back in %s days
+harvestfestival.quest.trade.cursed.done=Your %s is now ready! All blessed for you! Here take it!
+
+##Trader Jonny Quest
+harvestfestival.quest.trade.vanilla.egg=Thank you very much for these here eggs. I will happily trade them for some from my homeland.
+harvestfestival.quest.trade.vanilla.milk=These bottles of milk sure look delicious! Take this bucket of milk as a thank you.
+harvestfestival.quest.trade.vanilla.wool=Your wool is so fine, it will make great clothes. Please take this wool, better for building with!
+
+##Test Quest
+harvestfestival.quest.test.start=Hello and Welcome to BTM, I have a very important question to ask.
+harvestfestival.quest.test.question=Which team are you?
+harvestfestival.quest.test.red=@Team Valor
+harvestfestival.quest.test.yellow=@Team Instinct
+harvestfestival.quest.test.blue=@Team Mystic
+harvestfestival.quest.test.done=Thanks for taking part in our survey.

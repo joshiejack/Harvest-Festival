@@ -26,7 +26,11 @@ public class GuiHandler implements IGuiHandler {
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int entityID, int nextGui, int hand) {
         switch (ID) {
-            case NPC:           return new ContainerNPCChat((AbstractEntityNPC) world.getEntityByID(entityID), player.inventory, nextGui);
+            case NPC: {
+                AbstractEntityNPC npc = (AbstractEntityNPC) world.getEntityByID(entityID);
+                if (hand != -1) return new ContainerNPCSelect(npc, player.inventory);
+                return new ContainerNPCChat((AbstractEntityNPC) world.getEntityByID(entityID), player.inventory, nextGui);
+            }
             case SHOP_WELCOME:  return new ContainerNPCChat((AbstractEntityNPC) world.getEntityByID(entityID), player.inventory, SHOP_OPTIONS);
             case SHOP_MENU:     return new ContainerNPCShop((AbstractEntityNPC) world.getEntityByID(entityID), player.inventory);
             case SHOP_BUILDER:  return new ContainerNPCBuilderShop((AbstractEntityNPC) world.getEntityByID(entityID), player.inventory);
@@ -46,7 +50,12 @@ public class GuiHandler implements IGuiHandler {
     @Override
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int entityID, int nextGui, int hand) {
         switch (ID) {
-            case NPC:           return new GuiNPCChat((AbstractEntityNPC) world.getEntityByID(entityID), player, nextGui);
+            case NPC: {
+                AbstractEntityNPC npc = (AbstractEntityNPC) world.getEntityByID(entityID);
+                if (hand != -1) return new GuiNPCSelect(npc, player, nextGui, hand);
+                return new GuiNPCChat((AbstractEntityNPC) world.getEntityByID(entityID), player, nextGui);
+            }
+
             case SHOP_WELCOME:  return new GuiNPCChat((AbstractEntityNPC) world.getEntityByID(entityID), player, SHOP_OPTIONS);
             case SHOP_MENU:     return new GuiNPCShop((AbstractEntityNPC) world.getEntityByID(entityID), player);
             case SHOP_BUILDER:  return new GuiNPCBuilderShop((AbstractEntityNPC) world.getEntityByID(entityID), player);
@@ -55,7 +64,7 @@ public class GuiHandler implements IGuiHandler {
             case SHOP_OPTIONS:    {
                 AbstractEntityNPC npc = (AbstractEntityNPC) world.getEntityByID(entityID);
                 if (NPCHelper.isShopOpen(npc.getNPC(), world, player)) {
-                    return new GuiNPCSelect(npc, player, nextGui);
+                    return new GuiNPCSelect(npc, player, nextGui, -1);
                 } else return new GuiNPCChat(npc, player, nextGui);
             }
             default:            return null;

@@ -2,23 +2,37 @@ package joshie.harvest.quests;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.player.IQuestHelper;
+import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.ItemHelper;
 import joshie.harvest.core.util.generic.IdiotException;
 import joshie.harvest.player.quests.QuestData;
 import joshie.harvest.quests.packets.PacketQuestDecreaseHeld;
+import joshie.harvest.quests.packets.PacketQuestIncrease;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.play.server.SPacketSetSlot;
+import net.minecraft.util.ResourceLocation;
 
 import java.util.HashSet;
 
+import static joshie.harvest.core.lib.HFModInfo.MODID;
+import static joshie.harvest.core.network.PacketHandler.sendToClient;
 import static joshie.harvest.core.network.PacketHandler.sendToServer;
 
-public class QuestHelper {
-    public static void completeQuest(EntityPlayer player, Quest quest) {
+public class QuestHelper implements IQuestHelper {
+    @Override
+    public void completeQuest(Quest quest, EntityPlayer player) {
         HFTrackers.getPlayerTracker(player).getQuests().markCompleted(quest, true);
+    }
+
+    @Override
+    public void increaseStage(Quest quest, EntityPlayer player) {
+        if (!player.worldObj.isRemote) sendToClient(new PacketQuestIncrease(quest, quest.writeToNBT(new NBTTagCompound())), player);
+        else sendToServer(new PacketQuestIncrease(quest));
     }
 
     public static void takeHeldStack(EntityPlayer player, int amount) {
@@ -75,5 +89,11 @@ public class QuestHelper {
 
     public static void startQuest(EntityPlayer player, Quest quest) {
         HFTrackers.getPlayerTracker(player).getQuests().startQuest(quest);
+    }
+
+    public static Quest getQuest(String name) {
+        try {
+            return Quest.REGISTRY.getObject(new ResourceLocation(MODID, name));
+        } catch (Exception e) { return null; }
     }
 }

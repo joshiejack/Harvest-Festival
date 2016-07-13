@@ -4,7 +4,7 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.util.ContainerBase;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.AbstractEntityNPC;
-import joshie.harvest.quests.Quest;
+import joshie.harvest.api.quests.Quest;
 import joshie.harvest.quests.QuestHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -26,7 +26,7 @@ public class ContainerNPC extends ContainerBase {
         HashSet<Quest> quests = QuestHelper.getCurrentQuest(player);
         for (Quest quest : quests) {
             if (quest != null) {
-                quest.onClosedChat(player, npc);
+                quest.onClosedChat(player, npc, npc.getNPC());
             }
         }
 

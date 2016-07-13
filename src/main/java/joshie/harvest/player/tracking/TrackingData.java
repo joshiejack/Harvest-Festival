@@ -214,7 +214,7 @@ public class TrackingData {
 
         @Override
         public boolean matches(ItemStack stack) {
-            return HFApi.sizeable.getSizeableFromStack(stack).getLeft() == sizeable;
+            return HFApi.sizeable.getSizeable(stack) == sizeable;
         }
 
         @Override

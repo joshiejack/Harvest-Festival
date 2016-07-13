@@ -38,6 +38,7 @@ public class HarvestFestival {
     public void preInit(FMLPreInitializationEvent event) {
         root = new File(event.getModConfigurationDirectory(), MODID);
         proxy.load("preInit");
+        HFApiLoader.load(event.getAsmData());
     }
 
     @EventHandler

@@ -7,13 +7,13 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.npc.INPCRegistry.Age;
 import joshie.harvest.api.npc.INPCRegistry.Gender;
 import joshie.harvest.core.helpers.generic.RegistryHelper;
-import joshie.harvest.npc.greeting.GreetingLocation;
-import joshie.harvest.npc.items.ItemNPCSpawner;
 import joshie.harvest.gathering.items.ItemNPCTool;
 import joshie.harvest.npc.entity.AbstractEntityNPC;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import joshie.harvest.npc.entity.EntityNPCShopkeeper;
 import joshie.harvest.npc.entity.EntityNPCVillager;
+import joshie.harvest.npc.greeting.GreetingLocation;
+import joshie.harvest.npc.items.ItemNPCSpawner;
 import joshie.harvest.npc.render.RenderNPC;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -51,6 +51,7 @@ public class HFNPCs {
     public static INPC MILKMAID; //Works in the Barn, Milking Cows   (GENERAL STORE)
     public static INPC BUILDER; //Builds stuff for the players       (SPAWN)
     public static INPC POULTRY; //Poultry Farm Owner                 (POULTRY FARM)
+    public static INPC TRADER; //Trader                              (GENERAL STORE)
 
     //Item
     public static final ItemNPCSpawner SPAWNER_NPC = new ItemNPCSpawner().register("spawner_npc");
@@ -79,7 +80,7 @@ public class HFNPCs {
         FISHERMAN = register("jacob", MALE, ADULT, 28, AUTUMN, 0x7396FF, 0x0036D9);
         MILKMAID = register("candice", FEMALE, ADULT, 5, AUTUMN, 0xF65FAB, 0xF21985);
         POULTRY = register("ashlee", FEMALE, ADULT, 16, AUTUMN, 0xFF8000, 0x46008C);
-
+        TRADER = register("girafi", MALE, ADULT, 2, AUTUMN,  0xFFFFFF, 0xC60C30);
     }
 
     @SideOnly(Side.CLIENT)
@@ -108,6 +109,7 @@ public class HFNPCs {
         FISHERMAN.setLocation(HOME, FISHING_HUT, JACOB_HOME).addGreeting(new GreetingLocation(FISHING_HOLE, FISHING_POND));
         MILKMAID.setLocation(HOME, SUPERMARKET, CANDICE_HOME).setLocation(WORK, BARN, JIM_HOME);
         POULTRY.setLocation(HOME, POULTRY_FARM, ASHLEE_HOME).setLocation(WORK, POULTRY_FARM, ASHLEE_HOME);
+        TRADER.setLocation(HOME, TOWNHALL, TOWNHALL_RIGHT_WING).setLocation(WORK, SUPERMARKET, MARKET_STOREFRONT);
     }
 
     @SideOnly(Side.CLIENT)

@@ -19,4 +19,12 @@ public interface ISizeableRegistry {
 
     /** Returns the sizeable type for this item **/
     Pair<ISizeable, Size> getSizeableFromStack(ItemStack stack);
+
+    /** Returns the sizeable type for this stack
+     *  @param stack the item to check */
+    ISizeable getSizeable(ItemStack stack);
+
+    /** Returns the size of this item
+     *  @param stack the item to check */
+    Size getSize(ItemStack stack);
 }

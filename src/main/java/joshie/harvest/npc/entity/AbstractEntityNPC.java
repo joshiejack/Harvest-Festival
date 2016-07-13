@@ -31,6 +31,7 @@ import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import java.util.UUID;
 
 import static joshie.harvest.api.npc.INPC.Location.HOME;
+import static joshie.harvest.core.handlers.GuiHandler.GIFT;
 
 public abstract class AbstractEntityNPC<E extends AbstractEntityNPC> extends EntityAgeable implements IEntityAdditionalSpawnData, IRelatableProvider {
     protected AbstractTask task; //Currently executing task
@@ -224,7 +225,9 @@ public abstract class AbstractEntityNPC<E extends AbstractEntityNPC> extends Ent
         boolean flag = held != null && held.getItem() == Items.SPAWN_EGG;
         if (!flag && isEntityAlive()) {
             if (!worldObj.isRemote) {
-                player.openGui(HarvestFestival.instance, NPCHelper.getGuiIDForNPC(npc, worldObj, player, player.isSneaking() && held != null), worldObj, getEntityId(), -1, player.getActiveHand().ordinal());
+                int guiID = NPCHelper.getGuiIDForNPC(npc, worldObj, player, player.isSneaking() && held != null);
+                int third = guiID == GIFT ? player.getActiveHand().ordinal() : -1;
+                player.openGui(HarvestFestival.instance, guiID, worldObj, getEntityId(), -1, third);
                 setTalking(player);
             }
 

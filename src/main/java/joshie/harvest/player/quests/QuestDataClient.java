@@ -2,7 +2,7 @@ package joshie.harvest.player.quests;
 
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.npc.entity.AbstractEntityNPC;
-import joshie.harvest.quests.Quest;
+import joshie.harvest.api.quests.Quest;
 import joshie.harvest.quests.packets.PacketQuestCompleted;
 import joshie.harvest.quests.packets.PacketQuestStart;
 import net.minecraft.entity.player.EntityPlayer;
@@ -31,7 +31,10 @@ public class QuestDataClient extends QuestData {
     
     //Removes the quest from the current and available lists
     public void markCompleted(Quest quest) {
-        available.remove(quest);
+        if (!quest.isRepeatable()) {
+            available.remove(quest);
+        }
+
         current.remove(quest);
     }
 
@@ -53,6 +56,18 @@ public class QuestDataClient extends QuestData {
     }
 
     //Returns a single lined script
+    public Quest getSelection(AbstractEntityNPC npc) {
+        if (current != null) {
+            for (Quest q : current) {
+                if (handlesScript(q, npc.getNPC())) {
+                    if (q.getSelection() != null) return q;
+                }
+            }
+        }
+
+        return null;
+    }
+
     @Override
     public String getScript(EntityPlayer player, AbstractEntityNPC npc) {
         if (current != null) {

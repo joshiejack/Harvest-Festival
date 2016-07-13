@@ -3,7 +3,7 @@ package joshie.harvest.quests.packets;
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.network.penguin.PenguinPacket;
-import joshie.harvest.quests.Quest;
+import joshie.harvest.api.quests.Quest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.network.ByteBufUtils;

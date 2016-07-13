@@ -1,13 +1,13 @@
 package joshie.harvest.player.quests;
 
 import joshie.harvest.npc.entity.AbstractEntityNPC;
-import joshie.harvest.quests.Quest;
+import joshie.harvest.api.quests.Quest;
 import net.minecraft.entity.player.EntityPlayer;
 
 import java.util.HashSet;
 
 public abstract class QuestData {
-    protected HashSet<Quest> current = new HashSet<Quest>(10);
+    protected HashSet<Quest> current = new HashSet<>(100);
 
     public HashSet<Quest> getCurrent() {
         return current;
@@ -15,6 +15,12 @@ public abstract class QuestData {
 
     public Quest getAQuest(Quest quest) {
         if (current != null) {
+            //Create the quest if it doesn't exist
+            if (!quest.isRealQuest() && !current.contains(quest)) {
+                startQuest(quest);
+            }
+
+            //Search the quests for the real version
             for (Quest q : current) {
                 if (q.equals(quest)) {
                     return q;

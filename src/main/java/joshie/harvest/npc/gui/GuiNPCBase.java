@@ -67,7 +67,7 @@ public class GuiNPCBase extends GuiBase {
     public void endChat() {
         player.closeScreen();
         if (nextGui != -1) {
-            player.openGui(HarvestFestival.instance, nextGui, player.worldObj, npc.getEntityId(), 0, 0);
+            player.openGui(HarvestFestival.instance, nextGui, player.worldObj, npc.getEntityId(), 0, -1);
         }
     }
 }

@@ -2,7 +2,7 @@ package joshie.harvest.player.quests;
 
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.player.PlayerTracker;
-import joshie.harvest.quests.Quest;
+import joshie.harvest.api.quests.Quest;
 import joshie.harvest.quests.packets.PacketQuestSetAvailable;
 import joshie.harvest.quests.packets.PacketQuestSetCurrent;
 import net.minecraft.entity.player.EntityPlayer;
@@ -28,7 +28,7 @@ public class QuestDataServer extends QuestData {
     //Called to start a quest, is called clientside, by the startquest packet
     @Override
     public boolean startQuest(Quest q) {
-        if (current.size() < 10) {
+        if (current.size() < 10 || !q.isRealQuest()) {
             try {
                 Quest quest = q.getClass().newInstance().setRegistryName(q.getRegistryName()).setStage(0); //Set the current quest to your new
                 current.add(quest);
@@ -87,7 +87,7 @@ public class QuestDataServer extends QuestData {
     }
 
     private boolean canStart(Quest quest, EntityPlayer player, HashSet<Quest> active, HashSet<Quest> finished) {
-        if (!quest.isRepeatable() && finished.contains(this)) {
+        if (!quest.isRepeatable() && finished.contains(quest)) {
             return false;
         }
 

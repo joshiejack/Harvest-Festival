@@ -5,6 +5,7 @@ import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.api.core.ISeasonData;
+import joshie.harvest.core.helpers.CalendarHelper;
 import joshie.harvest.core.helpers.NBTHelper.ISaveable;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSetCalendar;
@@ -92,12 +93,12 @@ public class CalendarServer extends Calendar implements ISaveable {
 
     @Override
     public void recalculate() {
-        joshie.harvest.core.helpers.CalendarHelper.setDate(getWorld(), DATE);
+        CalendarHelper.setDate(getWorld(), DATE);
     }
 
     @Override
     public void recalculateAndUpdate() {
-        joshie.harvest.core.helpers.CalendarHelper.setDate(getWorld(), DATE);
+        CalendarHelper.setDate(getWorld(), DATE);
         PacketHandler.sendToEveryone(new PacketSetCalendar(getDimension(), getDate())); //Sync the new date
     }
 

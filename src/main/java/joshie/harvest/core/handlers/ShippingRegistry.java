@@ -31,8 +31,8 @@ public class ShippingRegistry implements IShippingRegistry {
         if (crop != null) return crop.getSellValue(stack);
 
         //Special case Sizeables
-        Pair<ISizeable, ISizeable.Size> sizeable = HFApi.sizeable.getSizeableFromStack(stack);
-        if (sizeable != null) return sizeable.getLeft().getValue(sizeable.getRight());
+        ISizeable sizeable = HFApi.sizeable.getSizeable(stack);
+        if (sizeable != null) return sizeable.getValue(HFApi.sizeable.getSize(stack));
 
         //Wildcard
         Long value = registry.get(Pair.of(stack.getItem(), OreDictionary.WILDCARD_VALUE));

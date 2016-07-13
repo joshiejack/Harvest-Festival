@@ -1,16 +1,13 @@
 package joshie.harvest.player;
 
 import joshie.harvest.api.player.IPlayerHelper;
+import joshie.harvest.api.player.IQuestHelper;
 import joshie.harvest.api.relations.IRelationships;
 import joshie.harvest.player.relationships.RelationshipHelper;
-import joshie.harvest.quests.Quest;
-import joshie.harvest.quests.packets.PacketQuestSetStage;
-import net.minecraft.entity.player.EntityPlayer;
-
-import static joshie.harvest.core.network.PacketHandler.sendToClient;
-import static joshie.harvest.core.network.PacketHandler.sendToServer;
+import joshie.harvest.quests.QuestHelper;
 
 public class PlayerAPI implements IPlayerHelper {
+    private final IQuestHelper quests = new QuestHelper();
     private final IRelationships relations = new RelationshipHelper();
 
     @Override
@@ -19,11 +16,7 @@ public class PlayerAPI implements IPlayerHelper {
     }
 
     @Override
-    public void syncQuest(Quest quest, EntityPlayer player) {
-        if (!player.worldObj.isRemote) {
-            sendToClient(new PacketQuestSetStage(quest, quest.getStage()), player);
-        } else {
-            sendToServer(new PacketQuestSetStage(quest, quest.getStage()));
-        }
+    public IQuestHelper getQuestHelper() {
+        return quests;
     }
 }

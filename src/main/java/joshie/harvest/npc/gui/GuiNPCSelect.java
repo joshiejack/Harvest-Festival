@@ -1,40 +1,58 @@
 package joshie.harvest.npc.gui;
 
 import joshie.harvest.HarvestFestival;
+import joshie.harvest.api.npc.INPC;
 import joshie.harvest.core.handlers.GuiHandler;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.generic.Text;
 import joshie.harvest.npc.entity.AbstractEntityNPC;
+import joshie.harvest.api.quests.Quest;
+import joshie.harvest.api.quests.Quest.Selection;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.fml.common.eventhandler.Event.Result;
 
 import java.io.IOException;
 import java.util.Arrays;
 
 /** Renders a selection menu gui **/
 public class GuiNPCSelect extends GuiNPCBase {
-    private static final ShopSelection selection = new ShopSelection();
-    public String[] text;
-    public byte optionsStart;
-    public byte optionsTotal;
-    public byte selected;
+    private static final Selection SHOPS = new ShopSelection();
+    private Selection selection = new ShopSelection();
+    private Quest quest;
+    private String[] text;
+    private int optionsStart;
+    private int optionsTotal;
+    private int selected;
 
-    public GuiNPCSelect(AbstractEntityNPC npc, EntityPlayer player, int next) {
+    public GuiNPCSelect(AbstractEntityNPC npc, EntityPlayer player, int next, int selectionType) {
         super(npc, player, next);
-        optionsTotal = 0;
-        text = Arrays.copyOf(selection.getText(), selection.getText().length);
-        selected = 1;
-        boolean optionStarted = false;
-        for (int i = 0; i < text.length; i++) {
-            String original = text[i];
-            String replaced = replace(text[i]);
-            if (!original.equals(replaced)) {
-                if (!optionStarted) {
-                    optionStarted = true;
-                    optionsStart = (byte) i;
+        if (selectionType == -1) selection = SHOPS;
+        else {
+            quest = HFTrackers.getClientPlayerTracker().getQuests().getAQuest(Quest.REGISTRY.getObjectById(selectionType));
+            selection = quest.getSelection();
+        }
+
+        if (selection == null || selection.getText() == null) player.closeScreen();
+        else {
+            optionsTotal = 0;
+            text = Arrays.copyOf(selection.getText(), selection.getText().length);
+            selected = 1;
+            boolean optionStarted = false;
+            for (int i = 0; i < text.length; i++) {
+                String original = Text.localize(text[i]);
+                String replaced = replace(original);
+                if (!original.equals(replaced)) {
+                    if (!optionStarted) {
+                        optionStarted = true;
+                        optionsStart = (byte) i;
+                    }
+
+                    optionsTotal++;
                 }
 
                 text[i] = replaced;
-                optionsTotal++;
             }
         }
     }
@@ -46,19 +64,23 @@ public class GuiNPCSelect extends GuiNPCBase {
     @Override
     public void drawForeground(int x, int y) {
         super.drawForeground(x, y);
-        for (int i = 0; i < text.length; i++) {
-            fontRendererObj.drawStringWithShadow(text[i], 22, 158 + (i * 10), 0xFFFFFF);
-        }
+        if (text != null) {
+            for (int i = 0; i < text.length; i++) {
+                fontRendererObj.drawStringWithShadow(text[i], 22, 158 + (i * 10), 0xFFFFFF);
+            }
 
-        mc.renderEngine.bindTexture(HFModInfo.elements);
+            mc.renderEngine.bindTexture(HFModInfo.elements);
 
-        int position = selected + optionsStart;
-        if (position == 1.5) {
-            drawTexturedModalRect(20, 158, 0, 32, 19, 8);
-        } else if (position == 2) {
-            drawTexturedModalRect(20, 168, 0, 32, 19, 8);
-        } else if (position == 3) {
-            drawTexturedModalRect(20, 178, 0, 32, 19, 8);
+            int position = selected + optionsStart;
+            if (position == 1) {
+                drawTexturedModalRect(20, 158, 0, 32, 19, 8);
+            } else if (position == 2) {
+                drawTexturedModalRect(20, 168, 0, 32, 19, 8);
+            } else if (position == 3) {
+                drawTexturedModalRect(20, 178, 0, 32, 19, 8);
+            } else if (position == 4) {
+                drawTexturedModalRect(20, 188, 0, 32, 19, 8);
+            }
         }
     }
 
@@ -89,48 +111,57 @@ public class GuiNPCSelect extends GuiNPCBase {
 
         //Enter or Spacebar or Q
         if (key == 28 || key == 57 || character == 'q') {
-            selection.onSelected(npc, player, selected);
+            select();
         }
     }
+
+    private boolean isValidOption(int option) {
+        int min = optionsStart; //1
+        int max = optionsStart + optionsTotal; //2
+        return option >= min && option <= max;
+    }
+
 
     @Override
     public void onMouseClick(int mouseX, int mouseY) {
-        if (mouseY >= 158 && mouseY <= 166 && optionsTotal == 3) {
-            if (selected == 1) selection.onSelected(npc, player, selected);
-            else selected = 1;
-        } else if (mouseY >= 168 && mouseY <= 176 && optionsTotal >= 2) {
-            int check = optionsTotal == 3 ? 2 : 1;
-            if (selected == check) selection.onSelected(npc, player, selected);
-            else selected = (byte) check;
-        } else if (mouseY >= 178 && mouseY <= 186 && optionsTotal >= 1) {
-            int check = optionsTotal == 3 ? 3 : optionsTotal == 2 ? 2 : 1;
-            if (selected == check) selection.onSelected(npc, player, selected);
-            else selected = (byte) check;
-        } else selection.onSelected(npc, player, selected);
+        if (selection != null) {
+            if (mouseY >= 158 && mouseY <= 166 && isValidOption(0)) {
+                selected = 1;
+                select();
+            } else if (mouseY >= 168 && mouseY <= 176 && isValidOption(1)) {
+                selected = optionsStart == 0 ? 2 : 1;
+                select();
+            } else if (mouseY >= 178 && mouseY <= 186 && isValidOption(2)) {
+                selected = (optionsStart == 0) ? 3 : (optionsStart == 1) ? 2 : 1;
+                select();
+            } else if (mouseY >= 188 && mouseY <= 196 && isValidOption(3)) {
+                selected = (optionsStart == 0) ? 4 : (optionsStart == 1) ? 3 : (optionsStart == 2) ? 2 : 1;
+                select();
+            }
+        }
     }
 
-    public static class ShopSelection {
-        private String[] lines = new String[3];
+    private void select() {
+        Result result = selection.onSelected(player, npc, npc.getNPC(), quest, selected);
+        if (result == Result.ALLOW) player.openGui(HarvestFestival.instance, GuiHandler.NPC, player.worldObj, npc.getEntityId(), -1, -1);
+        else if (result == Result.DENY) player.closeScreen();
+    }
 
+    public static class ShopSelection extends Selection {
         public ShopSelection() {
-            lines[0] = Text.translate("shop.general.options");
-            lines[1] = Text.translate("shop.general.options.shop");
-            lines[2] = Text.translate("shop.general.options.chat");
-        }
-
-        /** Return the text **/
-        public String[] getText() {
-            return lines;
+            super("harvestfestival.shop.general.options", "harvestfestival.shop.general.options.shop", "harvestfestival.shop.general.options.chat");
         }
 
         /** Called when the option is selected **/
-        public void onSelected(AbstractEntityNPC npc, EntityPlayer player, int option) {
+        @Override
+        public Result onSelected(EntityPlayer player, EntityLiving entity, INPC npc, Quest quest, int option) {
             if (option == 1) {
-                if (npc.getNPC().isBuilder()) player.openGui(HarvestFestival.instance, GuiHandler.SHOP_BUILDER, player.worldObj, npc.getEntityId(), 0, 0);
-                else player.openGui(HarvestFestival.instance, GuiHandler.SHOP_MENU, player.worldObj, npc.getEntityId(), 0, 0);
-            } else if (option == 2) {
-                player.openGui(HarvestFestival.instance, GuiHandler.NPC, player.worldObj, npc.getEntityId(), -1, 0);
+                if (npc.isBuilder()) player.openGui(HarvestFestival.instance, GuiHandler.SHOP_BUILDER, player.worldObj, entity.getEntityId(), 0, 0);
+                else player.openGui(HarvestFestival.instance, GuiHandler.SHOP_MENU, player.worldObj, entity.getEntityId(), 0, 0);
+                return Result.DEFAULT;
             }
+
+            return Result.ALLOW;
         }
     }
 }

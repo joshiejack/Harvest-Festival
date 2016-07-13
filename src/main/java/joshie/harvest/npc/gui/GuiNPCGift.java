@@ -1,5 +1,6 @@
 package joshie.harvest.npc.gui;
 
+import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.gift.IGiftHandler.Quality;
 import joshie.harvest.core.config.NPC;
@@ -31,5 +32,14 @@ public class GuiNPCGift extends GuiNPCChat {
         } else if (HFTrackers.getClientPlayerTracker().getRelationships().gift(player, npc.getRelatable(), value.getRelationPoints())) {
             return Text.getSpeech(npc, "gift." + value.name().toLowerCase());
         } else return Text.getSpeech(npc, "gift.reject");
+    }
+
+    @Override
+    public void endChat() {
+        player.closeScreen();
+
+        if (nextGui != -1) {
+            player.openGui(HarvestFestival.instance, nextGui, player.worldObj, npc.getEntityId(), 0, -1);
+        }
     }
 }

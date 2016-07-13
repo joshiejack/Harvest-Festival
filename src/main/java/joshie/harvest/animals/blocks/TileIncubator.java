@@ -15,7 +15,7 @@ public class TileIncubator extends TileFillableSizedFaceable {
     public boolean onActivated(ItemStack held) {
         if (ToolHelper.isEgg(held)) {
             if (fillAmount == 0) {
-                setFilled(HFApi.sizeable.getSizeableFromStack(held).getRight(), MAX_FILL);
+                setFilled(HFApi.sizeable.getSize(held), MAX_FILL);
                 held.splitStack(1);
                 return true;
             }

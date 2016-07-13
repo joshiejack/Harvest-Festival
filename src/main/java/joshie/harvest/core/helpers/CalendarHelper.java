@@ -29,7 +29,9 @@ public class CalendarHelper {
     }
 
     public static Weekday getWeekday(int days) {
-        return DAYS[days % 7];
+        int modulus = days % 7;
+        if (modulus < 0) modulus = 0;
+        return DAYS[modulus];
     }
 
     public static Weekday getWeekday(long time) {
@@ -60,27 +62,31 @@ public class CalendarHelper {
 
     public static int getTotalDays(int day, Season season, int year) {
         int current_days = day;
-        int season_days = Calendar.DAYS_PER_SEASON * season.ordinal();
-        int year_days = (year - 1) * (Calendar.DAYS_PER_SEASON * 4);
+        int season_days = DAYS_PER_SEASON * season.ordinal();
+        int year_days = (year - 1) * (DAYS_PER_SEASON * 4);
         return current_days + season_days + year_days;
     }
 
     public static int getTotalDays(ICalendarDate date) {
         int current_days = date.getDay();
         int season_days = Calendar.DAYS_PER_SEASON * date.getSeason().ordinal();
-        int year_days = (date.getYear() - 1) * (Calendar.DAYS_PER_SEASON * 4);
+        int year_days = (date.getYear() - 1) * (DAYS_PER_SEASON * 4);
         return current_days + season_days + year_days;
     }
 
     public static int getYearsPassed(ICalendarDate birthday, ICalendarDate date) {
         int current_total_days = getTotalDays(date);
         int birthday_total_days = getTotalDays(birthday);
-        int one_year = Calendar.DAYS_PER_SEASON * 4;
+        int one_year = DAYS_PER_SEASON * 4;
         
         int years_passed = current_total_days / one_year; 
         int birthday_years = birthday_total_days / one_year;
                 
         return years_passed - birthday_years;
+    }
+
+    public static long getTime(int day, Season season, int year) {
+        return (getTotalDays(day, season, year)) * TICKS_PER_DAY;
     }
 
     public static long getTime(World world) {

@@ -1,11 +1,13 @@
 package joshie.harvest.npc.gui;
 
+import joshie.harvest.HarvestFestival;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.core.util.generic.Text;
 import joshie.harvest.npc.entity.AbstractEntityNPC;
 import joshie.harvest.player.stats.StatData;
+import joshie.harvest.api.quests.Quest;
 import net.minecraft.entity.player.EntityPlayer;
 import org.apache.commons.lang3.SystemUtils;
 import org.apache.commons.lang3.text.WordUtils;
@@ -13,17 +15,19 @@ import org.apache.commons.lang3.text.WordUtils;
 import java.io.IOException;
 import java.util.Arrays;
 
+import static joshie.harvest.core.handlers.GuiHandler.NPC;
+
 /** Renders a chat script **/
 public class GuiNPCChat extends GuiNPCBase {
+    public static final String USE_OPTIONS2 = "harvestfestival.OPENOPTIONS2";
+    public static final String USE_OPTIONS3 = "harvestfestival.OPENOPTIONS3";
     private static final int MAX_LINES_PER_PAGE = 4;
     private String[][] script; //This is an array of [page][line], with line ALWAYS beign a length of MAX_LINES ^
     private int page; //Current page displayed
     private int line; //Current lines displayed
     private double character; //A ticker, Determines what character we should be displaying
     private boolean finished; //Whether the text has finished displaying
-    private boolean executed; //Whether the whole thing was executed
     private boolean isScriptInit = false;
-    private int nextGui = -1;
 
     private String format(String string) {
         if (string == null) return "FORGOT SOME TEXT DUMBASS";
@@ -47,24 +51,22 @@ public class GuiNPCChat extends GuiNPCBase {
 
     private boolean buildScript() {
         String[] original = WordUtils.wrap(format(getScript()), 39).split(SystemUtils.LINE_SEPARATOR);
-        if (original != null) {
-            int size = original.length / MAX_LINES_PER_PAGE;
-            boolean isRemainder = original.length % MAX_LINES_PER_PAGE == 0;
-            if (!isRemainder) {
-                size++;
+        int size = original.length / MAX_LINES_PER_PAGE;
+        boolean isRemainder = original.length % MAX_LINES_PER_PAGE == 0;
+        if (!isRemainder) {
+            size++;
+        }
+
+        int start = 0;
+        script = new String[size][MAX_LINES_PER_PAGE];
+        for (int i = 0; i < size; i++) {
+            int length = ((start + MAX_LINES_PER_PAGE) > original.length) ? original.length : (start + MAX_LINES_PER_PAGE);
+            String[] subtext = Arrays.copyOfRange(original, start, length);
+            for (int j = 0; j < subtext.length; j++) {
+                script[i][j] = subtext[j];
             }
 
-            int start = 0;
-            script = new String[size][MAX_LINES_PER_PAGE];
-            for (int i = 0; i < size; i++) {
-                int length = ((start + MAX_LINES_PER_PAGE) > original.length) ? original.length : (start + MAX_LINES_PER_PAGE);
-                String[] subtext = Arrays.copyOfRange(original, start, length);
-                for (int j = 0; j < subtext.length; j++) {
-                    script[i][j] = subtext[j];
-                }
-
-                start = start + MAX_LINES_PER_PAGE;
-            }
+            start = start + MAX_LINES_PER_PAGE;
         }
 
         return true;
@@ -146,7 +148,7 @@ public class GuiNPCChat extends GuiNPCBase {
         nextChat();
     }
 
-    protected void nextChat() {
+    private void nextChat() {
         if (!finished) {
             finished = true;
             line = MAX_LINES_PER_PAGE;
@@ -155,8 +157,19 @@ public class GuiNPCChat extends GuiNPCBase {
             line = 0; //Reset the line we are currently reading
             page++; //Reset the page we are currently reading
         } else {
-            executed = true;
             endChat();
+        }
+    }
+
+    @Override
+    public void endChat() {
+        player.closeScreen();
+
+        Quest selection = HFTrackers.getClientPlayerTracker().getQuests().getSelection(npc);
+        if (selection != null) {
+            player.openGui(HarvestFestival.instance, NPC, player.worldObj, npc.getEntityId(), 0, Quest.REGISTRY.getId(Quest.REGISTRY.getObject(selection.getRegistryName())));
+        } else if (nextGui != -1) {
+            player.openGui(HarvestFestival.instance, nextGui, player.worldObj, npc.getEntityId(), 0, -1);
         }
     }
 

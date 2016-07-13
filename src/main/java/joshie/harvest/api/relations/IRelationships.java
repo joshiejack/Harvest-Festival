@@ -6,6 +6,8 @@ public interface IRelationships {
     /** Register a data handler **/
     void registerDataHandler(IRelatableDataHandler handler);
 
+    /** Return the data handler for this object
+     *  @param name the name of the data handler **/
     IRelatableDataHandler getDataHandler(String name);
 
     /** Call this to add or remove relationship points

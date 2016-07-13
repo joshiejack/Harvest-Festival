@@ -3,7 +3,7 @@ package joshie.harvest.quests.packets;
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.network.penguin.PenguinPacket;
-import joshie.harvest.quests.Quest;
+import joshie.harvest.api.quests.Quest;
 import joshie.harvest.quests.QuestHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;

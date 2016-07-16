@@ -35,7 +35,7 @@ public class Building extends Impl<Building> implements IBuilding {
     private transient ArrayList<Placeable> full_list = new ArrayList<>();
 
     //Costs and rules
-    private transient ISpecialPurchaseRules special = new SpecialRulesDefault();
+    private transient ISpecialPurchaseRules special = (w, p) -> true;
     private transient String toLocalise = "";
     private transient ResourceLocation[] requirements = new ResourceLocation[0];
     private transient long cost = 1000L;

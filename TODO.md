@@ -85,7 +85,6 @@
 - Fix Sync of bonemealing crops
 - Fix item render of animals
 - Fix item render of sprinkler so that it's slightly rotated
-- Rightclicking feeding trays with the appropriate item fills them
 - Make sprinkler sorting in creative after seeds, not in the middle of them 
 - Fix item render of Mine Hole
 - Fix item render of NPCs

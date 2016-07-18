@@ -87,6 +87,6 @@ public class BlockSprinkler extends BlockHFEnum<BlockSprinkler, Sprinkler> {
 
     @Override
     public int getSortValue(ItemStack stack) {
-        return CreativeSort.TROUGH - 1;
+        return CreativeSort.TROUGH;
     }
 }

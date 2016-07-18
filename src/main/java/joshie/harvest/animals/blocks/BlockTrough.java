@@ -6,7 +6,6 @@ import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.animals.IAnimalFeeder;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.blocks.tiles.TileFillable;
-import joshie.harvest.core.HFTab;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.base.BlockHFEnumRotatableMeta;
 import net.minecraft.block.SoundType;
@@ -15,7 +14,6 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -138,6 +136,8 @@ public class BlockTrough extends BlockHFEnumRotatableMeta<BlockTrough, Trough> i
             if (west && east) return isFilled ? state.withProperty(SECTION, Section.MIDDLE_FILLED).withProperty(FACING, SOUTH) : state.withProperty(SECTION, Section.MIDDLE_EMPTY).withProperty(FACING, SOUTH);
             if (east && !west) return isFilled ? state.withProperty(SECTION, Section.END_FILLED).withProperty(FACING, SOUTH) : state.withProperty(SECTION, Section.END_EMPTY).withProperty(FACING, SOUTH);
             if (west && !east) return isFilled ? state.withProperty(SECTION, Section.END_FILLED).withProperty(FACING, NORTH) : state.withProperty(SECTION, Section.END_EMPTY).withProperty(FACING, NORTH);
+
+            return isFilled ? state.withProperty(SECTION, Section.SINGLE_FILLED): state.withProperty(SECTION, Section.SINGLE_EMPTY);
         }
 
         return state;

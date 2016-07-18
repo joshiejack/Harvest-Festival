@@ -79,15 +79,7 @@
 - Workout how to use the weighting system in conjunction with forge states, so i don't have to use my own hacked together weighting system...
 - Goddess Water Texture
 - Location of the flower in the spring season overlay
-- Hitbox of Troughs 2 high so mobs dont jump over it
-- Fix render of single trough
-- Being able to take wheat out of trough when they are full
-- Fix Sync of bonemealing crops
-- Fix item render of animals
-- Fix item render of sprinkler so that it's slightly rotated
-- Make sprinkler sorting in creative after seeds, not in the middle of them 
 - Fix item render of Mine Hole
-- Fix item render of NPCs
 
 
 ### Textures

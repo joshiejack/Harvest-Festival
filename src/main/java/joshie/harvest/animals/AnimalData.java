@@ -7,8 +7,6 @@ import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.animals.IAnimalType;
 import joshie.harvest.api.relations.IRelatable;
-import joshie.harvest.core.config.Animals;
-import joshie.harvest.core.config.NPC;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.helpers.generic.EntityHelper;
@@ -16,6 +14,7 @@ import joshie.harvest.core.network.animals.PacketSyncDaysNotFed;
 import joshie.harvest.core.network.animals.PacketSyncEverything;
 import joshie.harvest.core.network.animals.PacketSyncHealthiness;
 import joshie.harvest.core.network.animals.PacketSyncProductsProduced;
+import joshie.harvest.npc.HFNPCs;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
@@ -88,7 +87,7 @@ public class AnimalData implements IAnimalData {
 
         //Gets the adjusted relationship, 0-65k
         int relationship = HFApi.player.getRelationshipHelper().getRelationship(owner, relatable);
-        double chance = (relationship / (double) NPC.MAX_FRIENDSHIP) * 200;
+        double chance = (relationship / (double) HFNPCs.MAX_FRIENDSHIP) * 200;
         chance += healthiness;
         if (chance <= 1) {
             chance = 1D;
@@ -190,7 +189,7 @@ public class AnimalData implements IAnimalData {
             //Pregnancy Test!
             if (isPregnant) {
                 daysPregnant++;
-                if (daysPregnant >= Animals.PREGNANCY_TIMER) {
+                if (daysPregnant >= HFAnimals.PREGNANCY_TIMER) {
                     isPregnant = false;
                     daysPregnant = 0;
                     giveBirth();
@@ -345,8 +344,8 @@ public class AnimalData implements IAnimalData {
     private void giveBirth() {
         int count = 1;
         //Chance for litters up to 5
-        for (int i = 0; i < (Animals.MAX_LITTER_SIZE - 1); i++) {
-            if (rand.nextDouble() * 100 <= Animals.LITTER_EXTRA_CHANCE) {
+        for (int i = 0; i < (HFAnimals.MAX_LITTER_SIZE - 1); i++) {
+            if (rand.nextDouble() * 100 <= HFAnimals.LITTER_EXTRA_CHANCE) {
                 count++;
             }
         }
@@ -354,7 +353,7 @@ public class AnimalData implements IAnimalData {
         //Lay that litter!
         for (int i = 0; i < count; i++) {
             EntityAgeable baby = animal.createChild(animal);
-            baby.setGrowingAge(-(24000 * Animals.AGING_TIMER));
+            baby.setGrowingAge(-(24000 * HFAnimals.AGING_TIMER));
             baby.setLocationAndAngles(animal.posX, animal.posY, animal.posZ, 0.0F, 0.0F);
             animal.worldObj.spawnEntityInWorld(baby);
         }

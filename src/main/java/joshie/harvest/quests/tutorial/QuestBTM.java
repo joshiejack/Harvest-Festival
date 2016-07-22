@@ -16,7 +16,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import static joshie.harvest.npc.HFNPCs.CAFE_OWNER;
 import static joshie.harvest.quests.QuestHelper.rewardItem;
 
-@HFRegister(path = "test")
+@HFRegister(data = "test")
 public class QuestBTM extends Quest {
     private static final Selection selection = new TeamSelection();
     private int selected;

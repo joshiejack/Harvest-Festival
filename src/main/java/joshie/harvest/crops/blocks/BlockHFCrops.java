@@ -8,7 +8,6 @@ import joshie.harvest.api.crops.IBreakCrops;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
-import joshie.harvest.core.config.Crops;
 import joshie.harvest.core.helpers.AnimalHelper;
 import joshie.harvest.core.helpers.CropHelper;
 import joshie.harvest.core.helpers.SeedHelper;
@@ -87,7 +86,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
         super(Material.PLANTS, Stage.class, null);
         setBlockUnbreakable();
         setSoundType(SoundType.GROUND);
-        setTickRandomly(Crops.alwaysGrow);
+        setTickRandomly(HFCrops.ALWAYS_GROW);
         disableStats();
     }
 
@@ -110,7 +109,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
     @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
         if (!world.isRemote) {
-            if (Crops.alwaysGrow) {
+            if (HFCrops.ALWAYS_GROW) {
                 Stage stage = getEnumFromState(state);
                 if (stage == Stage.WITHERED) return; //If withered do nothing
                 if (world.getLightFromNeighbors(pos.up()) >= 9) {
@@ -354,8 +353,8 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
     @Override
     public boolean canGrow(World world, BlockPos pos, IBlockState state, boolean isClient) {
         if (getEnumFromState(state) == Stage.WITHERED) return false; //It's dead it can't grow...
-        if (Crops.enableBonemeal) {
-            if (Crops.seasonalBonemeal) {
+        if (HFCrops.ENABLE_BONEMEAL) {
+            if (HFCrops.SEASONAL_BONEMEAL) {
                 ICropData crop = HFApi.crops.getCropAtLocation(world, pos);
                 for (Season season: crop.getCrop().getSeasons()) {
                     if (HFApi.calendar.getSeasonAtCoordinates(world, pos) == season) {

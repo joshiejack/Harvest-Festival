@@ -7,8 +7,8 @@ import joshie.harvest.cooking.FoodRegistry;
 import joshie.harvest.cooking.HFRecipes;
 import joshie.harvest.cooking.Recipe;
 import joshie.harvest.cooking.Utensil;
+import joshie.harvest.core.HFCore;
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.config.General;
 import joshie.harvest.core.util.base.ItemHFFML;
 import joshie.harvest.core.util.generic.Text;
 import net.minecraft.entity.EntityLivingBase;
@@ -48,7 +48,7 @@ public class ItemMeal extends ItemHFFML<ItemMeal, Recipe> implements ICreativeSo
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean debug) {
-        if (General.DEBUG_MODE && debug) {
+        if (HFCore.DEBUG_MODE && debug) {
             if (stack.hasTagCompound()) {
                 list.add(Text.translate("meal.hunger") + " : " + stack.getTagCompound().getInteger("FoodLevel"));
                 list.add(Text.translate("meal.sat") + " : " + stack.getTagCompound().getFloat("FoodSaturation"));

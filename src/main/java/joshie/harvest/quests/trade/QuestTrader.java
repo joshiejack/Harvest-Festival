@@ -18,7 +18,7 @@ import static joshie.harvest.npc.HFNPCs.TRADER;
 import static joshie.harvest.quests.QuestHelper.rewardItem;
 import static joshie.harvest.quests.QuestHelper.takeHeldStack;
 
-@HFRegister(path = "trade.vanilla")
+@HFRegister(data = "trade.vanilla")
 public class QuestTrader extends QuestTrade {
     public QuestTrader() {
         setNPCs(TRADER);

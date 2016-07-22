@@ -1,5 +1,6 @@
 package joshie.harvest.quests;
 
+import joshie.harvest.api.HFRegister;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.helpers.PlayerHelper;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -10,8 +11,8 @@ import java.util.HashSet;
 
 import static joshie.harvest.quests.QuestHelper.getCurrentQuest;
 
+@HFRegister(data = "events")
 public class QuestEvents {
-
     @SubscribeEvent(priority = EventPriority.HIGH)
     public void onEntityInteract(PlayerInteractEvent.EntityInteract event) {
         if (!PlayerHelper.isFakePlayer(event.getEntityPlayer())) {

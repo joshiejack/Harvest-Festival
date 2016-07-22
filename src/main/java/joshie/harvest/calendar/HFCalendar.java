@@ -1,9 +1,9 @@
-package joshie.harvest.core.config;
+package joshie.harvest.calendar;
 
 import static joshie.harvest.core.helpers.generic.ConfigHelper.getBoolean;
 import static joshie.harvest.core.helpers.generic.ConfigHelper.getInteger;
 
-public class Calendar {
+public class HFCalendar {
     public static int DAYS_PER_SEASON;
     public static long TICKS_PER_DAY;
     public static boolean ENABLE_DAY_LENGTH;

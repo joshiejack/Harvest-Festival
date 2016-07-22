@@ -4,10 +4,15 @@ import joshie.harvest.animals.render.FakeAnimalRenderer;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.render.FakeNPCRenderer;
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.client.ForgeHooksClient;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -41,5 +46,16 @@ public class RegistryHelper {
             ForgeHooksClient.registerTESRItemStack(stack.getItem(), stack.getItemDamage(), fake);
             ClientRegistry.bindTileEntitySpecialRenderer(fake, new FakeNPCRenderer(npc));
         }
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static void registerFluidBlockRendering(Block block, String name) {
+        final ModelResourceLocation fluidLocation = new ModelResourceLocation(MODID + ":fluids", name);
+        ModelLoader.setCustomStateMapper(block, new StateMapperBase() {
+            @Override
+            protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
+                return fluidLocation;
+            }
+        });
     }
 }

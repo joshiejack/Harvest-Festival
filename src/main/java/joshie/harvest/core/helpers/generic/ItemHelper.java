@@ -1,6 +1,6 @@
 package joshie.harvest.core.helpers.generic;
 
-import joshie.harvest.core.config.Calendar;
+import joshie.harvest.calendar.HFCalendar;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
@@ -27,7 +27,7 @@ public class ItemHelper {
     
     //Items Spawned by entities last 1 day
     public static void spawnByEntity(Entity entity, ItemStack stack) {
-        spawnItem(entity.worldObj, entity.posX, entity.posY, entity.posZ, stack, false, (int)Calendar.TICKS_PER_DAY, 0, 0);
+        spawnItem(entity.worldObj, entity.posX, entity.posY, entity.posZ, stack, false, (int) HFCalendar.TICKS_PER_DAY, 0, 0);
     }
 
     public static void spawnItem(World world, int x, int y, int z, ItemStack stack, boolean random) {

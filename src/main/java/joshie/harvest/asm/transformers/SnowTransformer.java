@@ -1,6 +1,6 @@
 package joshie.harvest.asm.transformers;
 
-import joshie.harvest.core.config.ASM;
+import joshie.harvest.core.HFConfig.ASM;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.tree.*;

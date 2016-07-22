@@ -2,10 +2,10 @@ package joshie.harvest.npc.gui;
 
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
-import joshie.harvest.core.config.NPC;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.ChatFontRenderer;
 import joshie.harvest.core.util.GuiBase;
+import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.AbstractEntityNPC;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
@@ -47,7 +47,7 @@ public class GuiNPCBase extends GuiBase {
 
     private void drawHeart(int value) {
         GlStateManager.color(1F, 1F, 1F, 1F);
-        int xPos = (int) ((((double) value / (NPC.MAX_FRIENDSHIP))) * 7);
+        int xPos = (int) ((((double) value / (HFNPCs.MAX_FRIENDSHIP))) * 7);
         drawTexturedModalRect(240, 130, 0, 0, 25, 25);
         drawTexturedModalRect(240, 130, 25 + (25 * xPos), 0, 25, 25);
     }

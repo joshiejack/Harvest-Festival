@@ -1,10 +1,10 @@
-package joshie.harvest.core.config;
+package joshie.harvest.core;
 
 import com.google.gson.Gson;
+import com.google.gson.annotations.SerializedName;
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.core.helpers.generic.ConfigHelper;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.plugins.HFPlugins;
 import net.minecraftforge.common.config.Configuration;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.Level;
@@ -20,12 +20,7 @@ public class HFConfig {
 
     public static void preInit() {
         initConfig("General");
-        initConfig("Animals");
-        initConfig("Calendar");
-        initConfig("Cooking");
-        initConfig("Crops");
-        initConfig("NPC");
-        HFPlugins.loadConfigs();
+       // HFPlugins.loadConfigs();
     }
 
     public static void initConfig(String name) {
@@ -33,8 +28,8 @@ public class HFConfig {
         try {
             config.load();
             ConfigHelper.setConfig(config);
-            Class<?> clazz = Class.forName(HFModInfo.JAVAPATH + "core.config." + name);
-            Method method = clazz.getMethod("init");
+            Class<?> clazz = Class.forName(HFModInfo.JAVAPATH + name.toLowerCase() + ".HF" + name);
+            Method method = clazz.getMethod("configure");
             method.invoke(null);
         } catch (Exception e) {
             HarvestFestival.LOGGER.log(Level.ERROR, HFModInfo.MODNAME + " failed to load in it's " + name + " config");
@@ -59,5 +54,14 @@ public class HFConfig {
                 HFConfig.asm = gson.fromJson(FileUtils.readFileToString(file), ASM.class);
             } catch (Exception ignored) {}
         }
+    }
+
+    /* This class is loaded via json for the config */
+    public static class ASM {
+        @SerializedName("Snow > Enable Override")
+        public boolean SNOW_OVERRIDE = true;
+
+        @SerializedName("Rain > Fix Particles when Snowing")
+        public boolean RAIN_OVERRIDE = true;
     }
 }

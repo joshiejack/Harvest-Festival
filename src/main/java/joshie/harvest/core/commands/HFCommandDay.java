@@ -7,7 +7,7 @@ import joshie.harvest.core.helpers.CalendarHelper;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
 
-import static joshie.harvest.core.config.Calendar.DAYS_PER_SEASON;
+import static joshie.harvest.calendar.HFCalendar.DAYS_PER_SEASON;
 
 public class HFCommandDay extends HFCommandBase {
     @Override

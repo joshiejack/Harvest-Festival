@@ -3,11 +3,11 @@ package joshie.harvest.player.relationships;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.relations.IRelatableDataHandler;
-import joshie.harvest.core.config.NPC;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.network.PacketSyncGifted;
 import joshie.harvest.core.network.PacketSyncMarriage;
 import joshie.harvest.core.network.PacketSyncRelationship;
+import joshie.harvest.npc.HFNPCs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
@@ -49,7 +49,7 @@ public class RelationshipDataServer extends RelationshipData {
 
     @Override
     public void affectRelationship(EntityPlayer player, IRelatable relatable, int amount) {
-        int newValue = Math.max(0, Math.min(NPC.MARRIAGE_REQUIREMENT, getRelationship(relatable) + amount));
+        int newValue = Math.max(0, Math.min(HFNPCs.MARRIAGE_REQUIREMENT, getRelationship(relatable) + amount));
         relationships.put(relatable, newValue);
         syncRelationship((EntityPlayerMP) player, relatable, newValue, true);
     }

@@ -22,7 +22,7 @@ import java.util.Set;
 
 import static joshie.harvest.npc.HFNPCs.ANIMAL_OWNER;
 
-@HFRegister(path = "tutorial.chicken")
+@HFRegister(data = "tutorial.chicken")
 public class QuestChickenCare extends Quest {
     private static final Quest TUTORIAL_COW = QuestHelper.getQuest("tutorial.cow");
     private boolean hasThrown;

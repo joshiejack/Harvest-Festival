@@ -105,13 +105,6 @@ public abstract class AbstractEntityNPC<E extends AbstractEntityNPC> extends Ent
     }
 
     @Override
-    public void onUpdate() {
-        if (!joshie.harvest.core.config.NPC.FREZZE_NPCS) {
-            super.onUpdate();
-        }
-    }
-
-    @Override
     protected void initEntityAI() {
         ((PathNavigateGround) this.getNavigator()).setBreakDoors(true);
         tasks.addTask(0, new EntityAISwimming(this));

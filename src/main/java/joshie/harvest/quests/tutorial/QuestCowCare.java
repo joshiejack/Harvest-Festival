@@ -25,7 +25,7 @@ import static joshie.harvest.animals.item.ItemAnimalTool.Tool.MILKER;
 import static joshie.harvest.npc.HFNPCs.ANIMAL_OWNER;
 import static joshie.harvest.npc.HFNPCs.GODDESS;
 
-@HFRegister(path = "tutorial.cow")
+@HFRegister(data = "tutorial.cow")
 public class QuestCowCare extends Quest {
     private static final Quest TUTORIAL_FARMING = QuestHelper.getQuest("tutorial.farming");
     private boolean hasCollected;

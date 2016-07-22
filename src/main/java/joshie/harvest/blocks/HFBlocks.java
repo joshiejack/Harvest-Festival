@@ -3,11 +3,8 @@ package joshie.harvest.blocks;
 import joshie.harvest.blocks.BlockFlower.FlowerType;
 import joshie.harvest.blocks.tiles.TileShipping;
 import joshie.harvest.core.helpers.generic.RegistryHelper;
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.item.EnumRarity;
@@ -17,7 +14,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.biome.BiomeColorHelper;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -55,18 +51,6 @@ public class HFBlocks {
                 return FLOWERS.getEnumFromMeta(stack.getItemDamage()).isColored() ? ColorizerFoliage.getFoliageColorBasic() : -1;
             }
         }, FLOWERS);
-    }
-
-    @SideOnly(Side.CLIENT)
-    public static void registerFluidBlockRendering(Block block, String name) {
-        final ModelResourceLocation fluidLocation = new ModelResourceLocation(MODID + ":fluids", name);
-
-        ModelLoader.setCustomStateMapper(block, new StateMapperBase() {
-            @Override
-            protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
-                return fluidLocation;
-            }
-        });
     }
 
     private static Fluid registerFluid(Fluid fluid) {

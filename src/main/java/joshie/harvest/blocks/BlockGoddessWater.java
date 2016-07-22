@@ -2,6 +2,7 @@ package joshie.harvest.blocks;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.core.handlers.GoddessHandler;
+import joshie.harvest.core.helpers.generic.RegistryHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockCrops;
@@ -69,7 +70,7 @@ public class BlockGoddessWater extends BlockFluidClassic {
         item.setUnlocalizedName(name.replace("_", "."));
         item.setRegistryName(new ResourceLocation(MODID, name));
         GameRegistry.register(item);
-        HFBlocks.registerFluidBlockRendering(this, name);
+        RegistryHelper.registerFluidBlockRendering(this, name);
         return this;
     }
 

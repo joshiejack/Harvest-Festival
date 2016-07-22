@@ -3,10 +3,10 @@ package joshie.harvest.npc.gui;
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.gift.IGiftHandler.Quality;
-import joshie.harvest.core.config.NPC;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.ToolHelper;
 import joshie.harvest.core.util.generic.Text;
+import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.AbstractEntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -26,7 +26,7 @@ public class GuiNPCGift extends GuiNPCChat {
     public String getScript() {
         if (ToolHelper.isBlueFeather(gift)) {
             int relationship = HFApi.player.getRelationshipHelper().getRelationship(player, npc.getNPC());
-            if (relationship >= NPC.MARRIAGE_REQUIREMENT && npc.getNPC().isMarriageCandidate()) {
+            if (relationship >= HFNPCs.MARRIAGE_REQUIREMENT && npc.getNPC().isMarriageCandidate()) {
                 return Text.getSpeech(npc, "marriage.accept");
             } else return Text.getSpeech(npc, "marriage.reject");
         } else if (HFTrackers.getClientPlayerTracker().getRelationships().gift(player, npc.getRelatable(), value.getRelationPoints())) {

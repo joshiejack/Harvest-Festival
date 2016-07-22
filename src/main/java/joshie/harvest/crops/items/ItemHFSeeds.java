@@ -6,7 +6,6 @@ import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.api.core.ISeasonData;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.config.Crops;
 import joshie.harvest.core.helpers.SeedHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.generic.Text;
@@ -91,7 +90,7 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
                             }
 
                             if (planted < 0) {
-                                if (Crops.alwaysGrow) {
+                                if (HFCrops.ALWAYS_GROW) {
                                     planted = 2;
                                     break labelTop;
                                 }
@@ -122,7 +121,7 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
                 HFApi.crops.plantCrop(player, world, pos.up(), crop, 1);
                 planted++;
 
-                if (Crops.alwaysGrow) {
+                if (HFCrops.ALWAYS_GROW) {
                     if (planted >= 2) {
                         return -1;
                     }

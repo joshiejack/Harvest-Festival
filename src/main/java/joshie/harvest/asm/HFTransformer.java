@@ -5,7 +5,7 @@ import com.google.gson.GsonBuilder;
 import joshie.harvest.asm.transformers.AbstractASM;
 import joshie.harvest.asm.transformers.SnowTransformer;
 import joshie.harvest.asm.transformers.WeatherTransformer;
-import joshie.harvest.core.config.HFConfig;
+import joshie.harvest.core.HFConfig;
 import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin.MCVersion;

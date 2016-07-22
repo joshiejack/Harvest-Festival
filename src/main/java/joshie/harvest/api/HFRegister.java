@@ -4,9 +4,11 @@ package joshie.harvest.api;
  *  @see joshie.harvest.api.quests.Quest
  */
 public @interface HFRegister {
-    /** Return the resource domain **/
-    String domain() default "harvestfestival";
+    /** Return the mod id **/
+    String mod() default "harvestfestival";
 
-    /** Return the resource path **/
-    String path();
+    /** Extra data,
+     * for most things this is simply the resource path
+     * You can also have this be "events" to have it autoamtically registered to the event bus**/
+    String data();
 }

@@ -3,6 +3,7 @@ package joshie.harvest.crops.items;
 import joshie.harvest.core.helpers.PlayerHelper;
 import joshie.harvest.core.helpers.generic.DirectionHelper;
 import joshie.harvest.core.util.base.ItemBaseTool;
+import joshie.harvest.crops.HFCrops;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -65,6 +66,7 @@ public class ItemHoe extends ItemBaseTool {
     }
 
     private boolean canHoe(EntityPlayer player, ItemStack stack, World world, BlockPos pos) {
+        if (HFCrops.DISABLE_VANILLA_HOE) return true;
         UseHoeEvent event = new UseHoeEvent(player, stack.copy(), world, pos);
         event.setResult(Result.ALLOW); //Default to allow?
         if (MinecraftForge.EVENT_BUS.post(event)) return false;

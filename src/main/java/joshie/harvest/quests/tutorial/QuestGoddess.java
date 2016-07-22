@@ -16,7 +16,7 @@ import static joshie.harvest.npc.HFNPCs.GODDESS;
 import static joshie.harvest.npc.HFNPCs.SEED_OWNER;
 import static joshie.harvest.quests.QuestHelper.*;
 
-@HFRegister(path = "tutorial.farming")
+@HFRegister(data = "tutorial.farming")
 public class QuestGoddess extends Quest {   
     public QuestGoddess() {
         setNPCs(GODDESS, SEED_OWNER);

@@ -1,7 +1,7 @@
 package joshie.harvest.asm.transformers;
 
 import joshie.harvest.asm.HFTransformer;
-import joshie.harvest.core.config.ASM;
+import joshie.harvest.core.HFConfig.ASM;
 import org.objectweb.asm.*;
 
 import static net.minecraftforge.fml.common.Loader.MC_VERSION;

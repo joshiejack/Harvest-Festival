@@ -8,7 +8,7 @@ import net.minecraft.world.DimensionType;
 import net.minecraft.world.storage.loot.conditions.LootConditionManager;
 import net.minecraftforge.common.DimensionManager;
 
-import static joshie.harvest.core.config.General.MINING_ID;
+import static joshie.harvest.core.HFCore.MINING_ID;
 
 public class HFMining {
     public static final DimensionType MINE_WORLD = DimensionType.register("The Mine", "_hf_mine", MINING_ID, MiningProvider.class, false);

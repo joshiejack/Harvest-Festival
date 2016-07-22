@@ -5,12 +5,12 @@ import gnu.trove.map.hash.TIntObjectHashMap;
 import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weekday;
-import joshie.harvest.core.config.Calendar;
+import joshie.harvest.calendar.HFCalendar;
 import net.minecraft.world.World;
 
 import static joshie.harvest.api.calendar.Season.*;
-import static joshie.harvest.core.config.Calendar.DAYS_PER_SEASON;
-import static joshie.harvest.core.config.Calendar.TICKS_PER_DAY;
+import static joshie.harvest.calendar.HFCalendar.DAYS_PER_SEASON;
+import static joshie.harvest.calendar.HFCalendar.TICKS_PER_DAY;
 
 public class CalendarHelper {
     private static final TIntObjectMap<Season> dimensionSeasons = new TIntObjectHashMap<>();
@@ -69,7 +69,7 @@ public class CalendarHelper {
 
     public static int getTotalDays(ICalendarDate date) {
         int current_days = date.getDay();
-        int season_days = Calendar.DAYS_PER_SEASON * date.getSeason().ordinal();
+        int season_days = HFCalendar.DAYS_PER_SEASON * date.getSeason().ordinal();
         int year_days = (date.getYear() - 1) * (DAYS_PER_SEASON * 4);
         return current_days + season_days + year_days;
     }

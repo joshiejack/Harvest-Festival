@@ -3,7 +3,7 @@ package joshie.harvest.core.commands;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
 
-import static joshie.harvest.core.config.Calendar.TICKS_PER_DAY;
+import static joshie.harvest.calendar.HFCalendar.TICKS_PER_DAY;
 
 public class HFCommandNewDay extends HFCommandBase {
     @Override

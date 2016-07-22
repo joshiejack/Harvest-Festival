@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 import static joshie.harvest.api.calendar.Season.SPRING;
-import static joshie.harvest.core.config.Calendar.DAYS_PER_SEASON;
+import static joshie.harvest.calendar.HFCalendar.DAYS_PER_SEASON;
 
 public class CalendarServer extends Calendar implements ISaveable {
     private final ICalendarDate DATE = HFApi.calendar.newDate(0, SPRING, 1);
@@ -42,15 +42,15 @@ public class CalendarServer extends Calendar implements ISaveable {
     public static boolean isWeatherDisabled(Weather weather) {
         switch (weather) {
             case SUNNY:
-                return joshie.harvest.core.config.Calendar.ENABLE_SUNNY;
+                return HFCalendar.ENABLE_SUNNY;
             case RAIN:
-                return joshie.harvest.core.config.Calendar.ENABLE_RAIN;
+                return HFCalendar.ENABLE_RAIN;
             case TYPHOON:
-                return joshie.harvest.core.config.Calendar.ENABLE_TYPHOON;
+                return HFCalendar.ENABLE_TYPHOON;
             case SNOW:
-                return joshie.harvest.core.config.Calendar.ENABLE_SNOW;
+                return HFCalendar.ENABLE_SNOW;
             case BLIZZARD:
-                return joshie.harvest.core.config.Calendar.ENABLE_BLIZZARD;
+                return HFCalendar.ENABLE_BLIZZARD;
             default:
                 return false;
         }

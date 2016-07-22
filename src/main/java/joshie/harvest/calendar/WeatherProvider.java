@@ -3,7 +3,6 @@ package joshie.harvest.calendar;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.api.core.ISeasonData;
-import joshie.harvest.core.config.Calendar;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import net.minecraft.block.material.Material;
@@ -27,7 +26,7 @@ public class WeatherProvider extends WorldProviderSurface {
     @SideOnly(Side.CLIENT)
     @Override
     public IRenderHandler getWeatherRenderer() {
-        if (!Calendar.ENABLE_FORECAST) return null;
+        if (!HFCalendar.ENABLE_FORECAST) return null;
         if (WEATHER_RENDERER != null) return WEATHER_RENDERER;
         else WEATHER_RENDERER = new WeatherRenderer();
         return WEATHER_RENDERER;
@@ -36,7 +35,7 @@ public class WeatherProvider extends WorldProviderSurface {
     @SideOnly(Side.CLIENT)
     @Override
     public float getStarBrightness(float f) {
-        if (!Calendar.ENABLE_SEASONAL_SKY) return super.getStarBrightness(f);
+        if (!HFCalendar.ENABLE_SEASONAL_SKY) return super.getStarBrightness(f);
         float brightness = super.getStarBrightness(f);
         return HFTrackers.getCalendar(MCClientHelper.getWorld()).getDate().getSeason() == Season.WINTER ? brightness * 1.25F : brightness;
     }
@@ -44,7 +43,7 @@ public class WeatherProvider extends WorldProviderSurface {
     @SideOnly(Side.CLIENT)
     @Override
     public float getSunBrightness(float f) {
-        if (!Calendar.ENABLE_SEASONAL_SKY) return super.getSunBrightness(f);
+        if (!HFCalendar.ENABLE_SEASONAL_SKY) return super.getSunBrightness(f);
         float brightness = worldObj.getSunBrightnessBody(f);
         return HFTrackers.getCalendar(MCClientHelper.getWorld()).getDate().getSeason() == Season.SUMMER ? brightness * 1.25F : brightness;
     }
@@ -52,7 +51,7 @@ public class WeatherProvider extends WorldProviderSurface {
     @SideOnly(Side.CLIENT)
     @Override
     public Vec3d getSkyColor(Entity cameraEntity, float partialTicks) {
-        if (!Calendar.ENABLE_SEASONAL_SKY) return super.getSkyColor(cameraEntity, partialTicks);
+        if (!HFCalendar.ENABLE_SEASONAL_SKY) return super.getSkyColor(cameraEntity, partialTicks);
         float f1 = worldObj.getCelestialAngle(partialTicks);
         float f2 = MathHelper.cos(f1 * (float) Math.PI * 2.0F) * 2.0F + 0.5F;
 
@@ -120,25 +119,25 @@ public class WeatherProvider extends WorldProviderSurface {
      **/
     @Override
     public float calculateCelestialAngle(long worldTime, float partialTicks) {
-        if (!Calendar.ENABLE_DAY_LENGTH) return super.calculateCelestialAngle(worldTime, partialTicks);
+        if (!HFCalendar.ENABLE_DAY_LENGTH) return super.calculateCelestialAngle(worldTime, partialTicks);
         ISeasonData data = HFTrackers.getCalendar(worldObj).getDate().getSeasonData();
         if (data == null) return 1F;
-        int time = (int) (worldTime % Calendar.TICKS_PER_DAY);
+        int time = (int) (worldTime % HFCalendar.TICKS_PER_DAY);
         double fac = data.getCelestialLengthFactor();
         float chylex = (float) (clamp(0, 1000D, time) + 11000D * (clamp(0, 11000D, time - 1000D) / 11000D) * fac + clamp(0, 1000D, time - 12000D) + 11000D * (clamp(0, 11000D, time - 12000D) / 11000D) * (2 - fac));
-        float angle = (chylex / Calendar.TICKS_PER_DAY) - 0.25F;
+        float angle = (chylex / HFCalendar.TICKS_PER_DAY) - 0.25F;
         return angle + data.getCelestialAngleOffset();
     }
 
     @Override
     public boolean isBlockHighHumidity(BlockPos pos) {
-        if (!Calendar.ENABLE_FORECAST) return super.isBlockHighHumidity(pos);
+        if (!HFCalendar.ENABLE_FORECAST) return super.isBlockHighHumidity(pos);
         return HFTrackers.getCalendar(worldObj).getDate().getSeason() != Season.SUMMER && super.isBlockHighHumidity(pos);
     }
 
     @Override
     public boolean canSnowAt(BlockPos pos, boolean checkLight) {
-        if (!Calendar.ENABLE_FORECAST) return super.canSnowAt(pos, checkLight);
+        if (!HFCalendar.ENABLE_FORECAST) return super.canSnowAt(pos, checkLight);
         Weather weather = HFTrackers.getCalendar(worldObj).getTodaysWeather();
         if (weather == Weather.SNOW || weather == Weather.BLIZZARD) {
             Biome biome = worldObj.getBiome(pos);
@@ -165,12 +164,12 @@ public class WeatherProvider extends WorldProviderSurface {
 
     @Override
     public void resetRainAndThunder() {
-        if (!Calendar.ENABLE_FORECAST) super.resetRainAndThunder();
+        if (!HFCalendar.ENABLE_FORECAST) super.resetRainAndThunder();
     }
 
     @Override
     public void updateWeather() {
-        if (!Calendar.ENABLE_FORECAST) super.updateWeather();
+        if (!HFCalendar.ENABLE_FORECAST) super.updateWeather();
         if (!worldObj.isRemote) {
             joshie.harvest.calendar.Calendar calendar = HFTrackers.getCalendar(worldObj);
             float rainStrength = calendar.getTodaysRainStrength();

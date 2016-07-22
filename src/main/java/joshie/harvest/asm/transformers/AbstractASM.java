@@ -1,6 +1,6 @@
 package joshie.harvest.asm.transformers;
 
-import joshie.harvest.core.config.ASM;
+import joshie.harvest.core.HFConfig.ASM;
 import net.minecraft.tileentity.TileEntityChest;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;

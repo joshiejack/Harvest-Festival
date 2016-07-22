@@ -28,6 +28,8 @@ import static joshie.harvest.api.npc.INPCRegistry.Age.*;
 import static joshie.harvest.api.npc.INPCRegistry.Gender.FEMALE;
 import static joshie.harvest.api.npc.INPCRegistry.Gender.MALE;
 import static joshie.harvest.buildings.HFBuildings.*;
+import static joshie.harvest.core.helpers.generic.ConfigHelper.getDouble;
+import static joshie.harvest.core.helpers.generic.ConfigHelper.getInteger;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.town.TownData.*;
 
@@ -125,5 +127,16 @@ public class HFNPCs {
 
     private static <E extends AbstractEntityNPC> void registerNPCRendering(Class<E> entityClass) {
         RenderingRegistry.registerEntityRenderingHandler(entityClass, RenderNPC :: new);
+    }
+
+    //Configure
+    public static int MAX_FRIENDSHIP;
+    public static int MARRIAGE_REQUIREMENT;
+    public static double TOWN_DISTANCE;
+
+    public static void configure() {
+        MAX_FRIENDSHIP = getInteger("Maximum Friendship", 65535);
+        MARRIAGE_REQUIREMENT = getInteger("Marriage Requirement", 60000);
+        TOWN_DISTANCE = getDouble("Distance Between Towns", 256D);
     }
 }

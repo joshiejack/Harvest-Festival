@@ -25,7 +25,7 @@ import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
-import static joshie.harvest.core.config.General.MINING_ID;
+import static joshie.harvest.core.HFCore.MINING_ID;
 import static joshie.harvest.mining.MineManager.CHUNK_BOUNDARY;
 
 public class MiningHelper {

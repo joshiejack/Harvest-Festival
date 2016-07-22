@@ -1,5 +1,6 @@
 package joshie.harvest.core.handlers;
 
+import joshie.harvest.api.HFRegister;
 import joshie.harvest.blocks.BlockFlower.FlowerType;
 import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.core.helpers.NPCHelper;
@@ -22,6 +23,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.util.List;
 
+@HFRegister(data = "events")
 public class GoddessHandler {
     private static Item goddess;
 

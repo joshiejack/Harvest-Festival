@@ -6,9 +6,9 @@ import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.buildings.HFBuildings;
-import joshie.harvest.core.config.NPC;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.util.Direction;
+import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -159,7 +159,7 @@ public class TownTrackerServer extends TownTracker {
                         }
                     }
 
-                    return thatTownDistance > NPC.TOWN_DISTANCE || closest == null ? NULL_TOWN: closest;
+                    return thatTownDistance > HFNPCs.TOWN_DISTANCE || closest == null ? NULL_TOWN: closest;
                 }
             });
         } catch (Exception e) { e.printStackTrace(); return NULL_TOWN; }

@@ -4,7 +4,6 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.ICrop;
-import joshie.harvest.core.config.Crops;
 import joshie.harvest.core.helpers.SeedHelper;
 import joshie.harvest.core.helpers.generic.RegistryHelper;
 import joshie.harvest.crops.blocks.BlockHFCrops;
@@ -40,6 +39,8 @@ import javax.annotation.Nullable;
 import static joshie.harvest.api.animals.AnimalFoodType.FRUIT;
 import static joshie.harvest.api.calendar.Season.*;
 import static joshie.harvest.core.HFTab.FARMING;
+import static joshie.harvest.core.helpers.generic.ConfigHelper.getBoolean;
+import static joshie.harvest.core.helpers.generic.ConfigHelper.getInteger;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class HFCrops {
@@ -113,7 +114,7 @@ public class HFCrops {
 
         RegistryHelper.registerTiles(TileCrop.class, TileWithered.class, TileSprinkler.class);
         MinecraftForge.EVENT_BUS.register(new BlockHFCrops.EventHandler());
-        if (Crops.disableVanillaMoisture) {
+        if (DISABLE_VANILLA_MOISTURE) {
             Blocks.FARMLAND.setTickRandomly(false);
         }
     }
@@ -172,5 +173,24 @@ public class HFCrops {
         }
 
         return false;
+    }
+
+    //Configure
+    public static boolean SEASONAL_BONEMEAL;
+    public static boolean ENABLE_BONEMEAL;
+    public static boolean ALWAYS_GROW;
+    public static boolean DISABLE_VANILLA_HOE;
+    public static boolean DISABLE_VANILLA_SEEDS;
+    public static boolean DISABLE_VANILLA_MOISTURE;
+    public static int SPRINKLER_DRAIN_RATE;
+
+    public static void configure() {
+        ALWAYS_GROW = getBoolean("Crops > Always Grow", false, "This setting when set to true, will make crops grow based on random tick instead of day by day, Take note that this also affects the number of seeds a crop bag will plant. It will only plant 3 seeds instead of a 3x3");
+        ENABLE_BONEMEAL = getBoolean("Crops > Enable Bonemeal", false, "Enabling this will allow you to use bonemeal on plants to grow them.");
+        SEASONAL_BONEMEAL = getBoolean("Crops > Seasonal Bonemeal", true, "If you have bonemeal enabled, with this setting active, bonemeal will only work when the crop is in season");
+        DISABLE_VANILLA_SEEDS = getBoolean("Disable Vanilla Seeds", false, "If this is true, vanilla seeds will not plant their crops");
+        DISABLE_VANILLA_HOE = getBoolean("Disable Other Hoes", false, "If this is true, vanilla hoes will not till dirt");
+        DISABLE_VANILLA_MOISTURE = getBoolean("Disable Vanilla Moisture", true, "If this is set to true then farmland will not automatically become wet, and must be watered, it will also not automatically revert to dirt. (Basically disables random ticks for farmland)");
+        SPRINKLER_DRAIN_RATE = getInteger("Sprinkler > Daily Consumption", 250, "This number NEEDs to be a factor of 1000, Otherwise you'll have trouble refilling the sprinkler manually. Acceptable values are: 1, 2, 4, 5, 8, 10, 20, 25, 40, 50, 100, 125, 200, 250, 500, 1000");
     }
 }

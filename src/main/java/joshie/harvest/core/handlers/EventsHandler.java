@@ -1,5 +1,6 @@
 package joshie.harvest.core.handlers;
 
+import joshie.harvest.api.HFRegister;
 import joshie.harvest.core.helpers.CalendarHelper;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.helpers.generic.MCServerHelper;
@@ -27,8 +28,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
-import static joshie.harvest.core.config.Calendar.TICKS_PER_DAY;
+import static joshie.harvest.calendar.HFCalendar.TICKS_PER_DAY;
 
+@HFRegister(data = "events")
 public class EventsHandler {
     //Setup the Client
     @SideOnly(Side.CLIENT)

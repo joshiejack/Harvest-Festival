@@ -15,12 +15,14 @@ import joshie.harvest.npc.NPCRegistry;
 import joshie.harvest.player.PlayerAPI;
 import joshie.harvest.shops.ShopRegistry;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.discovery.ASMDataTable;
 import net.minecraftforge.fml.common.discovery.ASMDataTable.ASMData;
 import net.minecraftforge.fml.common.registry.FMLControlledNamespacedRegistry;
 import net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl;
 
 import javax.annotation.Nonnull;
+import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -56,11 +58,19 @@ public class HFApiLoader {
         for (ASMDataTable.ASMData asmData : asmDatas) {
             try {
                 Map<String, Object> data = asmData.getAnnotationInfo();
-                String domain = data.get("domain") != null ? (String) data.get("domain"): "harvestfestival";
-                String path = (String) data.get("path");
-                ResourceLocation resource = new ResourceLocation(domain, path);
                 Class clazz = Class.forName(asmData.getClassName());
-                load(Quest.class, Quest.REGISTRY, resource, clazz);
+                String extra = (String) data.get("data");
+                if (extra.equals("events")) {
+                    Method register = clazz.getMethod("register");
+                    if (register == null || ((Boolean)register.invoke(null))) {
+                        MinecraftForge.EVENT_BUS.register(clazz.newInstance());
+                    }
+
+                } else {
+                    String domain = data.get("mod") != null ? (String) data.get("mod") : "harvestfestival";
+                    ResourceLocation resource = new ResourceLocation(domain, extra);
+                    load(Quest.class, Quest.REGISTRY, resource, clazz);
+                }
             } catch (Exception e) { e.printStackTrace(); }
         }
     }

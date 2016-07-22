@@ -3,7 +3,6 @@ package joshie.harvest.crops;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
-import joshie.harvest.core.config.Crops;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.crops.blocks.BlockHFCrops;
 import net.minecraft.entity.player.EntityPlayer;
@@ -43,7 +42,7 @@ public class CropData implements ICropData {
             return false;
         } else { //Stage 2: Now that we know, it has been watered, Update it's stage
             //If we aren't ticking randomly, Then increase the stage
-            if (!Crops.alwaysGrow) {
+            if (!HFCrops.ALWAYS_GROW) {
                 if (daysWithoutWater == 0 || !crop.requiresWater()) {
                     grow(world, pos);
                 }

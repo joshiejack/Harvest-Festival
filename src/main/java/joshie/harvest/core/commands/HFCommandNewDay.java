@@ -1,10 +1,12 @@
 package joshie.harvest.core.commands;
 
+import joshie.harvest.api.HFRegister;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
 
 import static joshie.harvest.calendar.HFCalendar.TICKS_PER_DAY;
 
+@HFRegister
 public class HFCommandNewDay extends HFCommandBase {
     @Override
     public String getCommandName() {

@@ -1,5 +1,6 @@
 package joshie.harvest.core.commands;
 
+import joshie.harvest.api.HFRegister;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.lib.HFModInfo;
@@ -20,6 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@HFRegister(data = "events")
 public class CommandManager extends CommandBase implements ICommand {
     public static final CommandManager INSTANCE = new CommandManager();
     private HashMap<String, HFCommandBase> commands = new HashMap<String, HFCommandBase>();

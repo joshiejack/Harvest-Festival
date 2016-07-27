@@ -1,5 +1,6 @@
 package joshie.harvest.animals;
 
+import joshie.harvest.animals.entity.EntityHarvestChicken;
 import joshie.harvest.api.HFRegister;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.core.handlers.HFTrackers;
@@ -35,18 +36,18 @@ public class AnimalEvents {
         }
     }
 
-    /* When right clicking chickens, will place them on the players head **/
+    /* When right clicking chickens, will throw any harvest chickens on your head **/
     //TODO: Allow stack of doom (mount chickens on chickens)
     @HFRegister(data = "events")
     public static class PickupChicken {
         public static boolean register() { return HFAnimals.PICKUP_CHICKENS; }
 
         @SubscribeEvent
-        public void onRightClickGround(PlayerInteractEvent.LeftClickBlock event) {
+        public void onRightClickGround(PlayerInteractEvent.RightClickBlock event) {
             if (event.getEntityPlayer().worldObj.isRemote) {
                 EntityPlayer player = event.getEntityPlayer();
-                if (player.getRidingEntity() instanceof EntityChicken) {
-                    EntityChicken chicken = (EntityChicken) player.getRidingEntity();
+                if (player.getRidingEntity() instanceof EntityHarvestChicken) {
+                    EntityHarvestChicken chicken = (EntityHarvestChicken) player.getRidingEntity();
                     chicken.startRiding(null);
                     chicken.rotationPitch = player.rotationPitch;
                     chicken.rotationYaw = player.rotationYaw;

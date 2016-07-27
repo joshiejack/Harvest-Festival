@@ -2,8 +2,11 @@ package joshie.harvest.core.network.animals;
 
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.animals.IAnimalData;
+import joshie.harvest.core.network.Packet;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.fml.relauncher.Side;
 
+@Packet(isSided = true, side = Side.CLIENT)
 public class PacketSyncEverything extends AbstractSyncAnimal {
     protected IAnimalData data;
     protected ByteBuf buf;

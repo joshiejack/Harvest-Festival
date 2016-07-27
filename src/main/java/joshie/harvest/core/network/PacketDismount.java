@@ -4,7 +4,9 @@ import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.core.network.penguin.PenguinPacket;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.fml.relauncher.Side;
 
+@Packet(isSided = true, side = Side.SERVER)
 public class PacketDismount extends PenguinPacket {
     public PacketDismount() {}
 

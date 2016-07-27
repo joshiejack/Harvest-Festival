@@ -9,7 +9,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
+import net.minecraftforge.fml.relauncher.Side;
 
+@Packet(isSided = true, side = Side.SERVER)
 public class PacketWateringCan extends AbstractPacketLocation {
     private ItemStack stack;
 

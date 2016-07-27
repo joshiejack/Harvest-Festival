@@ -6,7 +6,9 @@ import joshie.harvest.core.helpers.ShopHelper;
 import joshie.harvest.core.network.penguin.PenguinPacket;
 import joshie.harvest.shops.Shop;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraftforge.fml.relauncher.Side;
 
+@Packet(isSided = true, side = Side.SERVER)
 public class PacketPurchaseItem extends PenguinPacket {
     private int purchaseable_id;
 

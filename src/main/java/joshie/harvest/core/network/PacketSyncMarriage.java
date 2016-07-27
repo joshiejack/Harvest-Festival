@@ -9,8 +9,10 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.network.penguin.PenguinPacket;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
+import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.Level;
 
+@Packet(isSided = true, side = Side.CLIENT)
 public class PacketSyncMarriage extends PenguinPacket {
     private IRelatable relatable;
     private boolean divorce;

@@ -1,18 +1,12 @@
 package joshie.harvest.asm.transformers;
 
 import joshie.harvest.asm.HFTransformer;
-import joshie.harvest.core.HFConfig.ASM;
 import org.objectweb.asm.*;
 
 import static net.minecraftforge.fml.common.Loader.MC_VERSION;
 import static org.objectweb.asm.Opcodes.*;
 
 public class WeatherTransformer extends AbstractASM {
-    @Override
-    public boolean isActive(ASM config) {
-        return config.RAIN_OVERRIDE;
-    }
-
     @Override
     public boolean isClass(String name) {
         return name.equals("net.minecraft.client.renderer.EntityRenderer") ||

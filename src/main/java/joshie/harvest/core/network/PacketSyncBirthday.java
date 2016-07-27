@@ -7,7 +7,9 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.network.penguin.PenguinPacket;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.fml.relauncher.Side;
 
+@Packet(isSided = true, side = Side.CLIENT)
 public class PacketSyncBirthday extends PenguinPacket {
     private int day;
     private Season season;

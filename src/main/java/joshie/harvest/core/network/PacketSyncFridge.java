@@ -7,7 +7,9 @@ import joshie.harvest.player.fridge.FridgeData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
+import net.minecraftforge.fml.relauncher.Side;
 
+@Packet(isSided = true, side = Side.CLIENT)
 public class PacketSyncFridge extends PenguinPacket {
     private NBTTagCompound nbt;
 

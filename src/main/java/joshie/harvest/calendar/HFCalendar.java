@@ -23,7 +23,7 @@ public class HFCalendar {
     public static int HUD_ZEND;
     public static int HUD_DIMENSION;
 
-    public static void init() {
+    public static void configure() {
         DAYS_PER_SEASON = getInteger("Days per Season", 30);
         TICKS_PER_DAY = getInteger("Ticks per Day", 24000);
         ENABLE_DAY_LENGTH = getBoolean("Day Length > Enable Difference per Season", true);

@@ -8,7 +8,6 @@ public class ConfigHelper {
 
     public static void setConfig(Configuration config) {
         ConfigHelper.config = config;
-        ConfigHelper.category = "General";
     }
 
     public static void setCategory(String category) {
@@ -24,15 +23,15 @@ public class ConfigHelper {
     }
 
     public static int getInteger(String name, int dft) {
-        return config.get(name, name, dft).getInt();
+        return config.get(category, name, dft).getInt();
     }
     
     public static int getInteger(String name, int dft, String comment) {
-        return config.get(name, name, dft, comment).getInt();
+        return config.get(category, name, dft, comment).getInt();
     }
     
     public static double getDouble(String name, double dft) {
-        return config.get(name, name, dft).getDouble();
+        return config.get(category, name, dft).getDouble();
     }
 
     public static long getLong(String name, long dft) {

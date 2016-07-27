@@ -1,6 +1,5 @@
 package joshie.harvest.asm.transformers;
 
-import joshie.harvest.core.HFConfig.ASM;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.tree.*;
@@ -8,12 +7,7 @@ import org.objectweb.asm.tree.*;
 import static net.minecraftforge.fml.common.Loader.MC_VERSION;
 
 public class SnowTransformer extends AbstractASM {
-    public static final String SNOW = "joshie/harvest/asm/overrides/BlockSnowSheet";
-
-    @Override
-    public boolean isActive(ASM config) {
-        return config.SNOW_OVERRIDE;
-    }
+    private static final String SNOW = "joshie/harvest/asm/overrides/BlockSnowSheet";
 
     @Override
     public boolean isClass(String name) {

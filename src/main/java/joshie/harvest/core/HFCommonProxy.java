@@ -8,8 +8,6 @@ import joshie.harvest.calendar.HFCalendar;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.HFIngredients;
 import joshie.harvest.cooking.HFRecipes;
-import joshie.harvest.core.helpers.generic.ConfigHelper;
-import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.debug.HFDebug;
 import joshie.harvest.gathering.HFGathering;
@@ -27,6 +25,10 @@ import java.io.File;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+
+import static joshie.harvest.core.helpers.generic.ConfigHelper.setCategory;
+import static joshie.harvest.core.helpers.generic.ConfigHelper.setConfig;
+import static joshie.harvest.core.lib.HFModInfo.MODNAME;
 
 public class HFCommonProxy {
     private static final List<Class> LIST = new ArrayList<>();
@@ -58,19 +60,20 @@ public class HFCommonProxy {
         LIST.add(HFRecipeFixes.class);
     }
 
-    public void configure() {
+    public void configure(File file) {
+        Configuration config = new Configuration(file);
         for (Class c : LIST) {
             try {
                 Method configure = c.getMethod("configure");
                 if (configure != null) {
                     String name = c.getSimpleName().replace("HF", "");
-                    Configuration config = new Configuration(new File(HarvestFestival.root, name.replaceAll("(.)([A-Z])", "$1-$2").toLowerCase() + ".cfg"));
                     try {
                         config.load();
-                        ConfigHelper.setConfig(config);
+                        setConfig(config);
+                        setCategory(name);
                         configure.invoke(null);
                     } catch (Exception e) {
-                        HarvestFestival.LOGGER.log(Level.ERROR, HFModInfo.MODNAME + " failed to load in it's " + name + " config");
+                        HarvestFestival.LOGGER.log(Level.ERROR, MODNAME + " failed to load in it's " + name + " config");
                         e.printStackTrace();
                     } finally {
                         config.save();

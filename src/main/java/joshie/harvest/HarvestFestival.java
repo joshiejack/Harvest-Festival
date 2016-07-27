@@ -14,8 +14,6 @@ import net.minecraftforge.fml.common.event.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.File;
-
 import static joshie.harvest.core.lib.HFModInfo.*;
 
 @Mod(modid = MODID, name = MODNAME, version = VERSION)
@@ -27,7 +25,6 @@ public class HarvestFestival {
 
     @Instance(MODID)
     public static HarvestFestival instance;
-    public static File root;
 
     @EventHandler
     public void onConstruction(FMLConstructionEvent event) {
@@ -36,8 +33,7 @@ public class HarvestFestival {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        root = new File(event.getModConfigurationDirectory(), MODID);
-        proxy.configure();
+        proxy.configure(event.getSuggestedConfigurationFile());
         proxy.load("preInit");
         //Load in extra data, and register events
         HFApiLoader.load(event.getAsmData());

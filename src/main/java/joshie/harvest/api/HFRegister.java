@@ -10,5 +10,5 @@ public @interface HFRegister {
     /** Extra data,
      * for most things this is simply the resource path
      * You can also have this be "events" to have it autoamtically registered to the event bus**/
-    String data();
+    String data() default "";
 }

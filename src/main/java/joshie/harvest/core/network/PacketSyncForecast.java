@@ -4,7 +4,9 @@ import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.fml.relauncher.Side;
 
+@Packet(isSided = true, side = Side.CLIENT)
 public class PacketSyncForecast extends AbstractPacketDimension {
     private Weather[] forecast;
 

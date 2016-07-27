@@ -6,6 +6,7 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.entity.player.EntityPlayer;
 
+@Packet
 public class PacketSetCalendar extends AbstractPacketDimension {
     private int day;
     private Season season;

@@ -1,9 +1,11 @@
 package joshie.harvest.core.commands;
 
+import joshie.harvest.api.HFRegister;
 import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
 
+@HFRegister
 public class HFCommandTime extends HFCommandBase {
     @Override
     public String getCommandName() {

@@ -1,6 +1,8 @@
 package joshie.harvest.quests.packets;
 
 import io.netty.buffer.ByteBuf;
+import joshie.harvest.core.network.Packet;
+import joshie.harvest.core.network.Packet.Side;
 import joshie.harvest.core.network.penguin.PenguinPacket;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.quests.QuestHelper;
@@ -8,6 +10,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 
+@Packet(side = Side.SERVER)
 public class PacketQuestStart extends PenguinPacket {
     private Quest quest;
 

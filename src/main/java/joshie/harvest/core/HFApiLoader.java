@@ -96,12 +96,12 @@ public class HFApiLoader {
 
         HashMap<String, Pair<Side, Class>> sidedPackets = new HashMap();
         HashMap<String, Class> unsidedPackets = new HashMap();
-        topLoop:
         for (ASMDataTable.ASMData asmData : asmDatas) {
+            Class<?> asmClass = null;
             try {
-                Class<?> asmClass = Class.forName(asmData.getClassName());
+                asmClass = Class.forName(asmData.getClassName());
                 Map<String, Object> data = asmData.getAnnotationInfo();
-                String s = ReflectionHelper.getPrivateValue(ModAnnotation.EnumHolder.class, (ModAnnotation.EnumHolder) data.get("side"), "value");
+                String s = data.get("side") != null ? ReflectionHelper.getPrivateValue(ModAnnotation.EnumHolder.class, (ModAnnotation.EnumHolder) data.get("side"), "value") : "BOTH";
                 Side side = s.equals("CLIENT") ? Side.CLIENT : s.equals("SERVER") ? Side.SERVER: null;
                 if (side == null) unsidedPackets.put(asmClass.getSimpleName(), asmClass);
                 else sidedPackets.put(asmClass.getSimpleName(), Pair.of(side, (Class)asmClass));

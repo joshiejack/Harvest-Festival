@@ -23,6 +23,7 @@ import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import javax.annotation.Nullable;
 
 public class ItemHoe extends ItemBaseTool {
+
     @Override
     public int getFront(ToolTier tier) {
         switch (tier) {
@@ -75,6 +76,15 @@ public class ItemHoe extends ItemBaseTool {
         }
 
         return false;
+    }
+
+    @Override
+    public void onPlayerStoppedUsing(ItemStack stack, World world, EntityLivingBase entity, int timeLeft) {
+        int charge = (Math.min(7, Math.max(0, getCharge(stack))));
+        setCharge(stack, 0); //Reset the charge
+        if (!world.isRemote) {
+            onFinishedCharging(world, entity, getMovingObjectPositionFromPlayer(world, entity), stack, ToolTier.values()[charge]);
+        }
     }
 
     @Override

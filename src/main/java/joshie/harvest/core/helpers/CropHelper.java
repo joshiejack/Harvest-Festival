@@ -28,6 +28,7 @@ public class CropHelper {
 
     public static AxisAlignedBB getCropBoundingBox(World world, BlockPos pos, PlantSection section, boolean withered) {
         ICropData data = section == TOP ? ((TileCrop) world.getTileEntity(pos.down())).getData(): ((TileCrop) world.getTileEntity(pos)).getData();
+        if (data.getCrop() == null) return null; //Hopefully prevent a nullpointer in a race condition
         return data.getCrop().getStateHandler().getBoundingBox(section, data.getStage(), withered);
     }
 

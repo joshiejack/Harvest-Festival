@@ -317,16 +317,20 @@ public class AnimalData implements IAnimalData {
             if (treated) {
                 genericTreats++;
                 affectRelationship(player, 1);
+                treated = !HFAnimals.OP_ANIMALS;
                 return true;
             } else {
                 treated = HFApi.animals.getTypeFromString(HFAnimals.TREATS.getEnumFromStack(stack).name()) == type;
                 if (treated) {
                     typeTreats++;
                     affectRelationship(player, 2);
+                    treated = !HFAnimals.OP_ANIMALS;
                     return true;
                 }
             }
         }
+
+
 
         return false;
     }

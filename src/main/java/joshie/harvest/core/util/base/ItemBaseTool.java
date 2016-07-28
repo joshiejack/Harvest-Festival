@@ -81,15 +81,15 @@ public abstract class ItemBaseTool extends ItemHFBase<ItemBaseTool> implements I
         return amount < getTier(stack).ordinal();
     }
 
-    private int getCharge(ItemStack stack) {
+    protected int getCharge(ItemStack stack) {
         return stack.getSubCompound("Data", true).getInteger("Charge");
     }
 
-    private void setCharge(ItemStack stack, int amount) {
+    protected void setCharge(ItemStack stack, int amount) {
         stack.getSubCompound("Data", true).setInteger("Charge", amount);
     }
 
-    private void increaseCharge(ItemStack stack, int amount) {
+    protected void increaseCharge(ItemStack stack, int amount) {
         setCharge(stack, getCharge(stack) + amount);
     }
 

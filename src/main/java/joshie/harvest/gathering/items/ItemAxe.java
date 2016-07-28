@@ -2,6 +2,7 @@ package joshie.harvest.gathering.items;
 
 import joshie.harvest.api.gathering.ISmashable;
 import joshie.harvest.core.HFTab;
+import joshie.harvest.core.helpers.PlayerHelper;
 import joshie.harvest.core.util.base.ItemBaseTool;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -22,11 +23,14 @@ public class ItemAxe extends ItemBaseTool {
     @Override
     public void onFinishedCharging(World world, EntityLivingBase entity, @Nullable RayTraceResult result, ItemStack stack, ToolTier tier) {
         if (result != null && entity instanceof EntityPlayer) {
+            EntityPlayer player = (EntityPlayer)entity;
             IBlockState state = world.getBlockState(result.getBlockPos());
             if (state.getBlock() instanceof ISmashable) {
                 ISmashable smashable = ((ISmashable)state.getBlock());
                 if (smashable.getToolType() == AXE) {
-                    smashable.smashBlock((EntityPlayer)entity, world, result.getBlockPos(), state, tier);
+                    if(smashable.smashBlock(player, world, result.getBlockPos(), state, tier)) {
+                        PlayerHelper.performTask(player, stack, getExhaustionRate(stack));
+                    }
                 }
             }
         }

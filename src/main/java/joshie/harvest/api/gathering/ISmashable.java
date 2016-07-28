@@ -31,8 +31,9 @@ public interface ISmashable {
      * @param world     the world
      * @param pos       the location of the block
      * @param state     the blocks state
-     * @param tier      the tier of the tool used */
-    default void smashBlock(EntityPlayer player, World world, BlockPos pos, IBlockState state, ToolTier tier) {
+     * @param tier      the tier of the tool used
+     * @return return true if something was smashed*/
+    default boolean smashBlock(EntityPlayer player, World world, BlockPos pos, IBlockState state, ToolTier tier) {
         ToolTier required = getRequiredTier(state);
         if (required != null && tier.isGreaterThanOrEqualTo(required)) {
             float luck = tier.ordinal() * 0.25F;
@@ -41,7 +42,9 @@ public interface ISmashable {
             if (drop != null) {
                 spawnAsEntity(world, pos, drop);
             }
-        }
+
+            return true;
+        } else return false;
     }
 
     /** The result of breaking this block

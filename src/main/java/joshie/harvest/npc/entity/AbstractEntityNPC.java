@@ -251,12 +251,9 @@ public abstract class AbstractEntityNPC<E extends AbstractEntityNPC> extends Ent
 
     @Override
     public void writeSpawnData(ByteBuf buf) {
+        buf.writeBoolean(npc != null);
         if (npc != null) {
-            char[] name = npc.getRegistryName().toString().toCharArray();
-            buf.writeByte(name.length);
-            for (char c : name) {
-                buf.writeChar(c);
-            }
+            ByteBufUtils.writeUTF8String(buf, npc.getRegistryName().toString());
         }
 
         ByteBufUtils.writeUTF8String(buf, townID.toString());
@@ -264,16 +261,8 @@ public abstract class AbstractEntityNPC<E extends AbstractEntityNPC> extends Ent
 
     @Override
     public void readSpawnData(ByteBuf buf) {
-        char[] name = new char[buf.readByte()];
-        for (int i = 0; i < name.length; i++) {
-            name[i] = buf.readChar();
-        }
-
-        npc = NPCRegistry.REGISTRY.getObject(new ResourceLocation(new String(name)));
-        if (npc == null) {
-            npc = (NPC) HFNPCs.GODDESS;
-        }
-
+        String name = buf.readBoolean() ? ByteBufUtils.readUTF8String(buf) : "";
+        npc = name.equals("") ? (NPC) HFNPCs.GODDESS : NPCRegistry.REGISTRY.getObject(new ResourceLocation(name));
         townID = UUID.fromString(ByteBufUtils.readUTF8String(buf));
     }
 

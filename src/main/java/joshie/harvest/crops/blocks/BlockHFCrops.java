@@ -287,11 +287,11 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
     }
 
     @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
-        TileCrop crop = (TileCrop) world.getTileEntity(pos);
-        if (crop != null) {
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess access, BlockPos pos) {
+        World world = WorldHelper.getWorld(access);
+        if (world != null) {
             Stage stage = getEnumFromState(state);
-            AxisAlignedBB aabb = CropHelper.getCropBoundingBox(crop.getWorld(), pos, stage.getSection(), stage.isWithered());
+            AxisAlignedBB aabb = CropHelper.getCropBoundingBox(world, pos, stage.getSection(), stage.isWithered());
             return aabb != null ? aabb : CROP_AABB;
         } else return CROP_AABB;
     }

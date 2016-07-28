@@ -4,9 +4,8 @@ import io.netty.buffer.ByteBuf;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.network.penguin.PenguinPacket;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraftforge.fml.relauncher.Side;
-
-@Packet(isSided = true, side = Side.CLIENT)
+import joshie.harvest.core.network.Packet.Side;
+@Packet(side = Side.CLIENT)
 public class PacketSyncGold extends PenguinPacket {
     private long gold;
 

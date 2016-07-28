@@ -1,5 +1,6 @@
-package joshie.harvest.core.commands;
+package joshie.harvest.calendar.command;
 
+import joshie.harvest.api.HFCommand;
 import joshie.harvest.api.HFRegister;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.calendar.Calendar;
@@ -8,18 +9,16 @@ import joshie.harvest.core.helpers.CalendarHelper;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
 
-import static joshie.harvest.calendar.HFCalendar.DAYS_PER_SEASON;
-
 @HFRegister
-public class HFCommandDay extends HFCommandBase {
+public class HFCommandYear extends HFCommand {
     @Override
     public String getCommandName() {
-        return "day";
+        return "year";
     }
 
     @Override
     public String getUsage() {
-        return "<day>";
+        return "<year>";
     }
 
     @Override
@@ -27,15 +26,16 @@ public class HFCommandDay extends HFCommandBase {
         if (parameters != null && parameters.length == 1) {
             try {
                 Calendar calendar = HFTrackers.getCalendar(sender.getEntityWorld());
-                int day = Math.min(DAYS_PER_SEASON, Math.max(1, parseInt(parameters[0]))) - 1;
+                int day = calendar.getDate().getDay();
                 Season season = calendar.getDate().getSeason();
-                int year = Math.max(1, calendar.getDate().getYear());
-                long time = CalendarHelper.getTime(day, season, year);
-                sender.getEntityWorld().setWorldTime(time);
+                int year = Math.min(Integer.MAX_VALUE, Math.max(1, Integer.parseInt(parameters[0])));
+                sender.getEntityWorld().setWorldTime(CalendarHelper.getTime(day, season, year));
                 calendar.recalculateAndUpdate();
                 return true;
-            } catch (NumberFormatException ignored) {}
+            } catch (NumberFormatException ignored) {
+            }
         }
+
         return false;
     }
 }

@@ -108,6 +108,7 @@ public class HFAnimals {
     public static int AGING_TIMER;
     public static int PREGNANCY_TIMER;
     public static int CHICKEN_TIMER;
+    public static boolean OP_ANIMALS;
 
     public static void configure() {
         CAN_SPAWN = getBoolean("Enable Animal Natural Spawning", false);
@@ -118,5 +119,6 @@ public class HFAnimals {
         MAX_LITTER_SIZE = getInteger("Pregnancy: Max litter size", 5);
         LITTER_EXTRA_CHANCE = getInteger("Pregnancy: Chance of extra birth", 4);
         AGING_TIMER = getInteger("Maturity: Number of days", 14);
+        OP_ANIMALS = getBoolean("Old Mcdonald had a Farm", false);
     }
 }

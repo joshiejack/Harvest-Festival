@@ -1,9 +1,7 @@
 package joshie.harvest.mining.loot;
 
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.crops.HFCrops;
-import joshie.harvest.items.HFItems;
-import joshie.harvest.gathering.HFGathering;
+import joshie.harvest.tools.HFTools;
 import joshie.harvest.player.tracking.TrackingData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -11,11 +9,11 @@ import net.minecraft.item.ItemStack;
 import static joshie.harvest.api.core.ITiered.ToolTier.BLESSED;
 
 public class LootMythic extends LootChance {
-    private static final ItemStack hoe = HFCrops.HOE.getStack(BLESSED);
-    private static final ItemStack sickle = HFCrops.SICKLE.getStack(BLESSED);
-    private static final ItemStack watering = HFCrops.WATERING_CAN.getStack(BLESSED);
-    private static final ItemStack axe = HFGathering.AXE.getStack(BLESSED);
-    private static final ItemStack hammer = HFItems.HAMMER.getStack(BLESSED);
+    private static final ItemStack hoe = HFTools.HOE.getStack(BLESSED);
+    private static final ItemStack sickle = HFTools.SICKLE.getStack(BLESSED);
+    private static final ItemStack watering = HFTools.WATERING_CAN.getStack(BLESSED);
+    private static final ItemStack axe = HFTools.AXE.getStack(BLESSED);
+    private static final ItemStack hammer = HFTools.HAMMER.getStack(BLESSED);
 
     public LootMythic(ItemStack stack, double chance) {
         super(stack, chance);

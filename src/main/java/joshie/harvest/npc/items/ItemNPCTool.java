@@ -1,14 +1,14 @@
-package joshie.harvest.gathering.items;
+package joshie.harvest.npc.items;
 
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.util.base.ItemHFEnum;
-import joshie.harvest.gathering.items.ItemNPCTool.NPCTool;
+import joshie.harvest.npc.items.ItemNPCTool.NPCTool;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 
-import static joshie.harvest.gathering.items.ItemNPCTool.NPCTool.NPC_KILLER;
+import static joshie.harvest.npc.items.ItemNPCTool.NPCTool.NPC_KILLER;
 import static net.minecraft.util.text.TextFormatting.AQUA;
 
 public class ItemNPCTool extends ItemHFEnum<ItemNPCTool, NPCTool> {

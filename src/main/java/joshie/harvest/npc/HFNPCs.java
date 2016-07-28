@@ -7,7 +7,7 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.npc.INPCRegistry.Age;
 import joshie.harvest.api.npc.INPCRegistry.Gender;
 import joshie.harvest.core.helpers.generic.RegistryHelper;
-import joshie.harvest.gathering.items.ItemNPCTool;
+import joshie.harvest.npc.items.ItemNPCTool;
 import joshie.harvest.npc.entity.AbstractEntityNPC;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import joshie.harvest.npc.entity.EntityNPCShopkeeper;

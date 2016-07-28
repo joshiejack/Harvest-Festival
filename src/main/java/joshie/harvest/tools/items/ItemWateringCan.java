@@ -1,4 +1,4 @@
-package joshie.harvest.crops.items;
+package joshie.harvest.tools.items;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;

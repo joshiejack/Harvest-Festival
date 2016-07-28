@@ -1,6 +1,7 @@
 package joshie.harvest.animals.entity;
 
 import io.netty.buffer.ByteBuf;
+import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
@@ -64,16 +65,15 @@ public class EntityHarvestCow extends EntityCow implements IAnimalTracked, IEnti
             player.dropItem(product, false);
         }
 
-        if (!worldObj.isRemote) {
+        if (!worldObj.isRemote && !HFAnimals.OP_ANIMALS) {
             data.setProduced();
         }
     }
 
     @Override
     public boolean processInteract(EntityPlayer player, EnumHand hand, ItemStack stack) {
-        ItemStack held = player.getActiveItemStack();
-        if (held != null) {
-            if (HFApi.animals.canEat(held, type.getFoodTypes())) {
+        if (stack != null) {
+            if (HFApi.animals.canEat(stack, type.getFoodTypes())) {
                 if (!worldObj.isRemote) {
                     data.feed(player);
                 }

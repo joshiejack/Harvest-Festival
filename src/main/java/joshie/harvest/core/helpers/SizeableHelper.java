@@ -21,6 +21,10 @@ public class SizeableHelper {
         return SizeableHelper.getSizeable(player, tracked, HFAnimals.MILK);
     }
 
+    public static ItemStack getWool(EntityPlayer player, IAnimalTracked tracked) {
+        return SizeableHelper.getSizeable(player, tracked, HFAnimals.WOOL);
+    }
+
     public static ItemStack getSizeable(EntityPlayer player, IAnimalTracked tracked, Item item) {
         Size size = null;
         int relationship = HFApi.player.getRelationshipHelper().getRelationship(player, tracked);

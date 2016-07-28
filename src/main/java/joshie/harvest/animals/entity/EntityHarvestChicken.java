@@ -49,9 +49,8 @@ public class EntityHarvestChicken extends EntityChicken implements IAnimalTracke
 
     @Override
     public boolean processInteract(EntityPlayer player, EnumHand hand, ItemStack stack) {
-        ItemStack held = player.getActiveItemStack();
-        if (held != null) {
-            if (HFApi.animals.canEat(held, type.getFoodTypes())) {
+        if (stack != null) {
+            if (HFApi.animals.canEat(stack, type.getFoodTypes())) {
                 if (!worldObj.isRemote) {
                     data.feed(player);
                 }

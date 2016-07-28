@@ -26,7 +26,7 @@ import static joshie.harvest.animals.item.ItemAnimalSpawner.Spawner.*;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.*;
 import static joshie.harvest.api.calendar.Weekday.*;
 import static joshie.harvest.cooking.items.ItemIngredients.Ingredient.*;
-import static joshie.harvest.gathering.items.ItemNPCTool.NPCTool.BLUE_FEATHER;
+import static joshie.harvest.npc.items.ItemNPCTool.NPCTool.BLUE_FEATHER;
 
 public class HFShops {
     public static IShop BARN;

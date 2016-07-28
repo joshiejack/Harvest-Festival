@@ -7,7 +7,7 @@ import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.mining.HFMining;
-import joshie.harvest.gathering.HFGathering;
+import joshie.harvest.tools.HFTools;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -109,6 +109,6 @@ public class HFTab extends CreativeTabs {
         HFTab.MINING.setStack(HFMining.MATERIALS.getStackFromEnum(JUNK));
         HFTab.FARMING.setStack(HFCrops.STRAWBERRY.getCropStack());
         HFTab.COOKING.setStack(HFApi.cooking.getMeal("salad"));
-        HFTab.GATHERING.setStack(new ItemStack(HFGathering.AXE, 1, 0));
+        HFTab.GATHERING.setStack(new ItemStack(HFTools.AXE, 1, 0));
     }
 }

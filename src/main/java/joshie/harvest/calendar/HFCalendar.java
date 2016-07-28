@@ -1,5 +1,9 @@
 package joshie.harvest.calendar;
 
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import static joshie.harvest.core.helpers.generic.ConfigHelper.getBoolean;
 import static joshie.harvest.core.helpers.generic.ConfigHelper.getInteger;
 
@@ -28,7 +32,7 @@ public class HFCalendar {
         TICKS_PER_DAY = getInteger("Ticks per Day", 24000);
         ENABLE_DAY_LENGTH = getBoolean("Day Length > Enable Difference per Season", true);
         ENABLE_SEASONAL_SKY = getBoolean("Sky > Enable Difference per Season", true);
-        ENABLE_FORECAST = getBoolean("Weather > Enable Daily System", true);
+        ENABLE_FORECAST = getBoolean("Weather > Enable Weather System", true);
         ENABLE_SUNNY = getBoolean("Weather > Enable Sunny", true);
         ENABLE_RAIN = getBoolean("Weather > Enable Rain", true);
         ENABLE_TYPHOON = getBoolean("Weather > Enable Typhoon", true);
@@ -46,5 +50,10 @@ public class HFCalendar {
             HUD_XEND = getInteger("HUD > XEnd", 100, "This number must be higher than XStart");
             HUD_ZEND = getInteger("HUD > ZEnd", 100, "This number must be higher than ZStart");
         }
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static void preInitClient() {
+        MinecraftForge.EVENT_BUS.register(new CalendarRender());
     }
 }

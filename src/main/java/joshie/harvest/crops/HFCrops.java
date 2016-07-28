@@ -6,14 +6,16 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.core.helpers.SeedHelper;
 import joshie.harvest.core.helpers.generic.RegistryHelper;
+import joshie.harvest.core.util.base.ItemBaseTool;
 import joshie.harvest.crops.blocks.BlockHFCrops;
 import joshie.harvest.crops.blocks.BlockSprinkler;
 import joshie.harvest.crops.blocks.TileCrop;
 import joshie.harvest.crops.blocks.TileCrop.TileWithered;
 import joshie.harvest.crops.blocks.TileSprinkler;
 import joshie.harvest.crops.handlers.*;
-import joshie.harvest.crops.items.*;
-import joshie.harvest.core.util.base.ItemBaseTool;
+import joshie.harvest.crops.items.ItemCrop;
+import joshie.harvest.crops.items.ItemHFSeeds;
+import joshie.harvest.tools.items.ItemWateringCan;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -48,11 +50,6 @@ public class HFCrops {
     public static final BlockHFCrops CROPS = new BlockHFCrops().register("crops_block");
     public static final BlockSprinkler SPRINKLER = new BlockSprinkler().register("sprinkler");
 
-
-    //Farming Tools
-    public static final ItemBaseTool HOE = new ItemHoe().register("hoe");
-    public static final ItemBaseTool SICKLE = new ItemSickle().register("sickle");
-    public static final ItemBaseTool WATERING_CAN = new ItemWateringCan().register("wateringcan");
 
     //Seed Bag Item
     public static final Item SEEDS = new ItemHFSeeds().register("crops_seeds");

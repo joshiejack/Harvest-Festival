@@ -1,5 +1,6 @@
-package joshie.harvest.core.commands;
+package joshie.harvest.calendar.command;
 
+import joshie.harvest.api.HFCommand;
 import joshie.harvest.api.HFRegister;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.calendar.Calendar;
@@ -10,7 +11,7 @@ import net.minecraft.server.MinecraftServer;
 import org.apache.commons.lang3.StringUtils;
 
 @HFRegister
-public class HFCommandSeason extends HFCommandBase {
+public class HFCommandSeason extends HFCommand {
     @Override
     public String getCommandName() {
         return "season";

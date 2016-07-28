@@ -2,14 +2,14 @@ package joshie.harvest.core.network;
 
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.network.Packet.Side;
 import joshie.harvest.core.network.penguin.PenguinPacket;
 import joshie.harvest.player.fridge.FridgeData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
-import net.minecraftforge.fml.relauncher.Side;
 
-@Packet(isSided = true, side = Side.CLIENT)
+@Packet(side = Side.CLIENT)
 public class PacketSyncFridge extends PenguinPacket {
     private NBTTagCompound nbt;
 

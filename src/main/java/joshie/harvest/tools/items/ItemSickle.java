@@ -1,4 +1,4 @@
-package joshie.harvest.crops.items;
+package joshie.harvest.tools.items;
 
 import joshie.harvest.api.crops.IBreakCrops;
 import joshie.harvest.crops.blocks.BlockHFCrops;

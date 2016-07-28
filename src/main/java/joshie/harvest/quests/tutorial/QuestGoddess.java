@@ -7,6 +7,7 @@ import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.helpers.generic.OreDictionaryHelper;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.api.quests.Quest;
+import joshie.harvest.tools.HFTools;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -40,9 +41,9 @@ public class QuestGoddess extends Quest {
     @Override
     public void claim(EntityPlayer player) {
         rewardGold(player, 1000);
-        rewardItem(player, new ItemStack(HFCrops.HOE));
-        rewardItem(player, new ItemStack(HFCrops.WATERING_CAN));
-        rewardItem(player, new ItemStack(HFCrops.SICKLE));
+        rewardItem(player, new ItemStack(HFTools.HOE));
+        rewardItem(player, new ItemStack(HFTools.WATERING_CAN));
+        rewardItem(player, new ItemStack(HFTools.SICKLE));
     }
 
     @Override

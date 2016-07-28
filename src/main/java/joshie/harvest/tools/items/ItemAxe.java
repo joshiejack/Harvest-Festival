@@ -1,4 +1,4 @@
-package joshie.harvest.gathering.items;
+package joshie.harvest.tools.items;
 
 import joshie.harvest.api.gathering.ISmashable;
 import joshie.harvest.core.HFTab;

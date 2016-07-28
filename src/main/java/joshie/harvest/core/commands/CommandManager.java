@@ -1,5 +1,6 @@
 package joshie.harvest.core.commands;
 
+import joshie.harvest.api.HFCommand;
 import joshie.harvest.api.HFRegister;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
@@ -24,19 +25,19 @@ import java.util.Map;
 @HFRegister(data = "events")
 public class CommandManager extends CommandBase implements ICommand {
     public static final CommandManager INSTANCE = new CommandManager();
-    private HashMap<String, HFCommandBase> commands = new HashMap<String, HFCommandBase>();
+    private HashMap<String, HFCommand> commands = new HashMap<String, HFCommand>();
 
-    public void registerCommand(HFCommandBase command) {
+    public void registerCommand(HFCommand command) {
         commands.put(command.getCommandName(), command);
     }
 
-    public Map<String, HFCommandBase> getCommands() {
+    public Map<String, HFCommand> getCommands() {
         return commands;
     }
 
-    public List<HFCommandBase> getPossibleCommands(ICommandSender sender) {
-        ArrayList<HFCommandBase> list = new ArrayList<HFCommandBase>();
-        for (HFCommandBase command : commands.values()) {
+    public List<HFCommand> getPossibleCommands(ICommandSender sender) {
+        ArrayList<HFCommand> list = new ArrayList<HFCommand>();
+        for (HFCommand command : commands.values()) {
             if (sender.canCommandSenderUseCommand(command.getPermissionLevel().ordinal(), command.getCommandName())) {
                 list.add(command);
             }
@@ -76,7 +77,7 @@ public class CommandManager extends CommandBase implements ICommand {
                 if (getWorld(event.getSender()).isRemote) event.setCanceled(true);
                 else {
                     String commandName = event.getParameters()[0];
-                    HFCommandBase command = commands.get(commandName);
+                    HFCommand command = commands.get(commandName);
                     if (command == null || !event.getSender().canCommandSenderUseCommand(command.getPermissionLevel().ordinal(), commandName)) {
                         event.setCanceled(true);
                     } else {
@@ -88,7 +89,7 @@ public class CommandManager extends CommandBase implements ICommand {
     }
 
     //Attempt to process the command, throw wrong usage otherwise
-    private void processCommand(CommandEvent event, HFCommandBase command) throws CommandNotFoundException, NumberInvalidException {
+    private void processCommand(CommandEvent event, HFCommand command) throws CommandNotFoundException, NumberInvalidException {
         String[] args = new String[event.getParameters().length - 1];
         System.arraycopy(event.getParameters(), 1, args, 0, args.length);
         if (!command.execute(FMLCommonHandler.instance().getMinecraftServerInstance(), event.getSender(), args)) {
@@ -96,13 +97,13 @@ public class CommandManager extends CommandBase implements ICommand {
         }
     }
 
-    static void throwError(ICommandSender sender, HFCommandBase command) {
+    static void throwError(ICommandSender sender, HFCommand command) {
         TextComponentTranslation textComponents = new TextComponentTranslation(getUsage(command), 0);
         textComponents.getStyle().setColor(TextFormatting.RED);
         sender.addChatMessage(textComponents);
     }
 
-    static String getUsage(HFCommandBase command) {
+    static String getUsage(HFCommand command) {
         return "/" + INSTANCE.getCommandName() + " " + command.getCommandName() + " " + command.getUsage();
     }
 

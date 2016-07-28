@@ -1,7 +1,7 @@
 package joshie.harvest.core.network;
 
 import io.netty.buffer.ByteBuf;
-import joshie.harvest.crops.HFCrops;
+import joshie.harvest.tools.HFTools;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
@@ -9,9 +9,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
-import net.minecraftforge.fml.relauncher.Side;
-
-@Packet(isSided = true, side = Side.SERVER)
+import joshie.harvest.core.network.Packet.Side;
+@Packet(side = Side.SERVER)
 public class PacketWateringCan extends AbstractPacketLocation {
     private ItemStack stack;
 
@@ -37,6 +36,6 @@ public class PacketWateringCan extends AbstractPacketLocation {
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        HFCrops.WATERING_CAN.onItemUse(stack, player, DimensionManager.getWorld(dim), pos, player.getActiveHand(), EnumFacing.DOWN, 0, 0, 0);
+        HFTools.WATERING_CAN.onItemUse(stack, player, DimensionManager.getWorld(dim), pos, player.getActiveHand(), EnumFacing.DOWN, 0, 0, 0);
     }
 }

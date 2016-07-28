@@ -1,4 +1,4 @@
-package joshie.harvest.crops.items;
+package joshie.harvest.tools.items;
 
 import joshie.harvest.core.helpers.PlayerHelper;
 import joshie.harvest.core.helpers.generic.DirectionHelper;

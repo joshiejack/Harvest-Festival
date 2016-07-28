@@ -36,6 +36,11 @@ public class HFBlocks {
     }
 
     @SideOnly(Side.CLIENT)
+    public static void preInitClient() {
+        RegistryHelper.registerFluidBlockRendering(GODDESS_WATER, "goddess_water");
+    }
+
+    @SideOnly(Side.CLIENT)
     public static void initClient() {
         Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(new IBlockColor() {
             public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {

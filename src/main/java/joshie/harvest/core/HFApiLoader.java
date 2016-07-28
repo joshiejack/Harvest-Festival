@@ -9,7 +9,7 @@ import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.calendar.CalendarAPI;
 import joshie.harvest.cooking.FoodRegistry;
 import joshie.harvest.core.commands.CommandManager;
-import joshie.harvest.core.commands.HFCommandBase;
+import joshie.harvest.api.HFCommand;
 import joshie.harvest.core.handlers.ShippingRegistry;
 import joshie.harvest.core.handlers.SizeableRegistry;
 import joshie.harvest.core.network.Packet;
@@ -61,16 +61,16 @@ public class HFApiLoader {
         } catch (Exception e) {}
     }
 
-    public static void load(@Nonnull ASMDataTable asm) {
+    public static void load(@Nonnull ASMDataTable asm, boolean isClient) {
         String annotationClassName = HFRegister.class.getCanonicalName();
         Set<ASMData> asmDatas = new HashSet<>(asm.getAll(annotationClassName));
         for (ASMDataTable.ASMData asmData : asmDatas) {
             try {
                 Map<String, Object> data = asmData.getAnnotationInfo();
                 Class clazz = Class.forName(asmData.getClassName());
-                String extra = (String) data.get("data");
-                if (HFCommandBase.class.isAssignableFrom(clazz)) {
-                    CommandManager.INSTANCE.registerCommand((HFCommandBase) clazz.newInstance());
+                String extra = data.get("data") != null ? (String) data.get("data") : "";
+                if (HFCommand.class.isAssignableFrom(clazz)) {
+                    CommandManager.INSTANCE.registerCommand((HFCommand) clazz.newInstance());
                 } else if (extra.equals("events")) {
                     Method register = getMethod(clazz, "register");
                     if (register == null || ((Boolean)register.invoke(null))) {
@@ -101,12 +101,10 @@ public class HFApiLoader {
             try {
                 Class<?> asmClass = Class.forName(asmData.getClassName());
                 Map<String, Object> data = asmData.getAnnotationInfo();
-                boolean isSided = data.get("isSided") != null ? (Boolean) data.get("isSided") : false;
-                if (isSided) {
-                    String s = ReflectionHelper.getPrivateValue(ModAnnotation.EnumHolder.class, (ModAnnotation.EnumHolder) data.get("side"), "value");
-                    Side side = s.equals("CLIENT") ? Side.CLIENT : Side.SERVER;
-                    sidedPackets.put(asmClass.getSimpleName(), Pair.of(side, (Class)asmClass));
-                } else unsidedPackets.put(asmClass.getSimpleName(), asmClass);
+                String s = ReflectionHelper.getPrivateValue(ModAnnotation.EnumHolder.class, (ModAnnotation.EnumHolder) data.get("side"), "value");
+                Side side = s.equals("CLIENT") ? Side.CLIENT : s.equals("SERVER") ? Side.SERVER: null;
+                if (side == null) unsidedPackets.put(asmClass.getSimpleName(), asmClass);
+                else sidedPackets.put(asmClass.getSimpleName(), Pair.of(side, (Class)asmClass));
             } catch (Exception e) { e.printStackTrace(); }
         }
 

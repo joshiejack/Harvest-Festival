@@ -1,6 +1,5 @@
 package joshie.harvest.calendar;
 
-import joshie.harvest.api.HFRegister;
 import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
@@ -17,7 +16,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-@HFRegister
 public class CalendarRender {
     private static final BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
     private static double fogStart = 1D;
@@ -33,6 +31,7 @@ public class CalendarRender {
         }
     }
 
+    @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void onFogRender(RenderFogEvent event) {
         if (!event.getState().getMaterial().isLiquid()) {
@@ -81,6 +80,7 @@ public class CalendarRender {
         }
     }
 
+    @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void onFogColor(FogColors event) {
         if (!event.getState().getMaterial().isLiquid()) {

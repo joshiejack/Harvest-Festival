@@ -1,5 +1,6 @@
 package joshie.harvest.core.commands;
 
+import joshie.harvest.api.HFCommand;
 import joshie.harvest.api.HFRegister;
 import net.minecraft.command.CommandNotFoundException;
 import net.minecraft.command.ICommandSender;
@@ -15,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 @HFRegister
-public class HFCommandHelp extends HFCommandBase {
+public class HFCommandHelp extends HFCommand {
     @Override
     public String getCommandName() {
         return "help";
@@ -28,7 +29,7 @@ public class HFCommandHelp extends HFCommandBase {
 
     @Override
     public boolean execute(MinecraftServer server, ICommandSender sender, String[] parameters) throws CommandNotFoundException, NumberInvalidException {
-        List<HFCommandBase> list = this.getSortedPossibleCommands(sender);
+        List<HFCommand> list = this.getSortedPossibleCommands(sender);
         int i0 = 7;
         int i = (list.size() - 1) / i0;
         int k;
@@ -36,8 +37,8 @@ public class HFCommandHelp extends HFCommandBase {
         try {
             k = parameters.length == 0 ? 0 : net.minecraft.command.CommandBase.parseInt(parameters[0], 1, i + 1) - 1;
         } catch (NumberInvalidException numberinvalidexception) {
-            Map<String, HFCommandBase> map = this.getCommands();
-            HFCommandBase icommand = map.get(parameters[0]);
+            Map<String, HFCommand> map = this.getCommands();
+            HFCommand icommand = map.get(parameters[0]);
 
             if (icommand != null) {
                 CommandManager.throwError(sender, icommand);
@@ -57,7 +58,7 @@ public class HFCommandHelp extends HFCommandBase {
         sender.addChatMessage(componentTranslation1);
 
         for (int l = k * i0; l < j; ++l) {
-            HFCommandBase icommand1 = list.get(l);
+            HFCommand icommand1 = list.get(l);
             TextComponentTranslation componentTranslation = new TextComponentTranslation(CommandManager.getUsage(icommand1));
             componentTranslation.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/" + icommand1.getCommandName() + " "));
             sender.addChatMessage(componentTranslation);
@@ -66,12 +67,12 @@ public class HFCommandHelp extends HFCommandBase {
         return true;
     }
 
-    private Map<String, HFCommandBase> getCommands() {
+    private Map<String, HFCommand> getCommands() {
         return CommandManager.INSTANCE.getCommands();
     }
 
-    private List<HFCommandBase> getSortedPossibleCommands(ICommandSender sender) {
-        List<HFCommandBase> list = CommandManager.INSTANCE.getPossibleCommands(sender);
+    private List<HFCommand> getSortedPossibleCommands(ICommandSender sender) {
+        List<HFCommand> list = CommandManager.INSTANCE.getPossibleCommands(sender);
         Collections.sort(list);
         return list;
     }

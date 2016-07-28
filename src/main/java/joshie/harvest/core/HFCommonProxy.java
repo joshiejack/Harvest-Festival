@@ -11,7 +11,7 @@ import joshie.harvest.cooking.HFRecipes;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.debug.HFDebug;
 import joshie.harvest.gathering.HFGathering;
-import joshie.harvest.items.HFItems;
+import joshie.harvest.tools.HFTools;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.gift.init.HFGifts;
@@ -19,6 +19,7 @@ import joshie.harvest.plugins.HFPlugins;
 import joshie.harvest.quests.HFQuests;
 import joshie.harvest.shops.HFShops;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.common.discovery.ASMDataTable;
 import org.apache.logging.log4j.Level;
 
 import java.io.File;
@@ -46,7 +47,7 @@ public class HFCommonProxy {
         LIST.add(HFNPCs.class);
         LIST.add(HFBuildings.class);
         LIST.add(HFBlocks.class);
-        LIST.add(HFItems.class);
+        LIST.add(HFTools.class);
         LIST.add(HFCooking.class);
         LIST.add(HFIngredients.class);
         LIST.add(HFRecipes.class);
@@ -107,5 +108,9 @@ public class HFCommonProxy {
 
     public boolean isClient() {
         return false;
+    }
+
+    public void loadAPI(ASMDataTable data) {
+        HFApiLoader.load(data, isClient());
     }
 }

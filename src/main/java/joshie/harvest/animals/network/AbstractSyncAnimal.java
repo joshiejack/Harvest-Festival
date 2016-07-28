@@ -1,4 +1,4 @@
-package joshie.harvest.core.network.animals;
+package joshie.harvest.animals.network;
 
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.animals.IAnimalTracked;

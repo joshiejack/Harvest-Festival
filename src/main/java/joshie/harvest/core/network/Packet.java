@@ -1,7 +1,5 @@
 package joshie.harvest.core.network;
 
-import net.minecraftforge.fml.relauncher.Side;
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -11,8 +9,9 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 public @interface Packet {
     /** The side this packet is for **/
-    Side side() default Side.CLIENT;
+    Side side() default Side.BOTH;
 
-    /** If this packet should be registered on one side **/
-    boolean isSided() default false;
+    enum Side {
+        CLIENT, SERVER, BOTH;
+    }
 }

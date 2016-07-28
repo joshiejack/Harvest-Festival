@@ -35,8 +35,7 @@ public class HarvestFestival {
     public void preInit(FMLPreInitializationEvent event) {
         proxy.configure(event.getSuggestedConfigurationFile());
         proxy.load("preInit");
-        //Load in extra data, and register events
-        HFApiLoader.load(event.getAsmData());
+        proxy.loadAPI(event.getAsmData());
     }
 
     @EventHandler

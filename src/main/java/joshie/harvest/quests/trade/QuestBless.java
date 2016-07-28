@@ -8,9 +8,7 @@ import joshie.harvest.calendar.CalendarDate;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.CalendarHelper;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
-import joshie.harvest.crops.HFCrops;
-import joshie.harvest.gathering.HFGathering;
-import joshie.harvest.items.HFItems;
+import joshie.harvest.tools.HFTools;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -26,11 +24,11 @@ import static joshie.harvest.quests.QuestHelper.*;
 
 @HFRegister(data = "trade.cursed")
 public class QuestBless extends QuestTrade {
-    private static final ItemStack hoe = HFCrops.HOE.getStack(CURSED);
-    private static final ItemStack sickle = HFCrops.SICKLE.getStack(CURSED);
-    private static final ItemStack watering = HFCrops.WATERING_CAN.getStack(CURSED);
-    private static final ItemStack axe = HFGathering.AXE.getStack(CURSED);
-    private static final ItemStack hammer = HFItems.HAMMER.getStack(CURSED);
+    private static final ItemStack hoe = HFTools.HOE.getStack(CURSED);
+    private static final ItemStack sickle = HFTools.SICKLE.getStack(CURSED);
+    private static final ItemStack watering = HFTools.WATERING_CAN.getStack(CURSED);
+    private static final ItemStack axe = HFTools.AXE.getStack(CURSED);
+    private static final ItemStack hammer = HFTools.HAMMER.getStack(CURSED);
     private ICalendarDate date;
     private ItemStack tool;
 

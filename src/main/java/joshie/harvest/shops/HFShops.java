@@ -104,7 +104,9 @@ public class HFShops {
     private static void registerSupermarket() {
         SUPERMARKET = HFApi.shops.newShop("general", HFNPCs.GS_OWNER);
         for (Crop crop : CropRegistry.REGISTRY.getValues()) {
-            SUPERMARKET.addItem(new PurchaseableCropSeeds(crop));
+            if (crop != HFCrops.NULL_CROP) {
+                SUPERMARKET.addItem(new PurchaseableCropSeeds(crop));
+            }
         }
 
         SUPERMARKET.addItem(100, new ItemStack(Items.BREAD));

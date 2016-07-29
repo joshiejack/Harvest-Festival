@@ -18,6 +18,8 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.Random;
 
+import static joshie.harvest.core.lib.HFModInfo.MODID;
+
 public class Crop extends net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl<Crop> implements ICrop {
     private static final Random rand = new Random();
 
@@ -41,7 +43,9 @@ public class Crop extends net.minecraftforge.fml.common.registry.IForgeRegistryE
     protected AnimalFoodType foodType;
     protected EnumPlantType type;
 
-    public Crop() {}
+    public Crop() {
+        this(new ResourceLocation(MODID, "null_crop"), Season.SPRING, 0, 0, 1, 0, 0, 0);
+    }
 
     /**
      * Constructor for crop
@@ -54,7 +58,7 @@ public class Crop extends net.minecraftforge.fml.common.registry.IForgeRegistryE
      * @param year        the year in which this crop can be purchased
      */
     public Crop(ResourceLocation key, Season season, int cost, int sell, int stages, int regrow, int year, int color) {
-        this(key, new Season[]{season}, cost, sell, stages, regrow, year, color);
+        this(key, new Season[]{ season }, cost, sell, stages, regrow, year, color);
     }
 
     public Crop(ResourceLocation key, Season[] seasons, int cost, int sell, int stages, int regrow, int year, int color) {

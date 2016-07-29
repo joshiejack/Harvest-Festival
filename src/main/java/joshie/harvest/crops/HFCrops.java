@@ -6,7 +6,6 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.core.helpers.SeedHelper;
 import joshie.harvest.core.helpers.generic.RegistryHelper;
-import joshie.harvest.core.util.base.ItemBaseTool;
 import joshie.harvest.crops.blocks.BlockHFCrops;
 import joshie.harvest.crops.blocks.BlockSprinkler;
 import joshie.harvest.crops.blocks.TileCrop;
@@ -15,7 +14,6 @@ import joshie.harvest.crops.blocks.TileSprinkler;
 import joshie.harvest.crops.handlers.*;
 import joshie.harvest.crops.items.ItemCrop;
 import joshie.harvest.crops.items.ItemHFSeeds;
-import joshie.harvest.tools.items.ItemWateringCan;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -53,6 +51,9 @@ public class HFCrops {
 
     //Seed Bag Item
     public static final Item SEEDS = new ItemHFSeeds().register("crops_seeds");
+
+    //Null Crop
+    public static final Crop NULL_CROP = new Crop();
 
     //Spring Crops
     public static final ICrop TURNIP = registerCrop("turnip", 120, 60, 5, 0, 0, 0xFFFFFF, SPRING).setStateHandler(new StateHandlerTurnip());

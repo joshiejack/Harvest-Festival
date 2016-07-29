@@ -135,7 +135,9 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
         for (Crop crop : CropRegistry.REGISTRY.getValues()) {
-            list.add(SeedHelper.getSeedsFromCrop(crop));
+            if (crop != HFCrops.NULL_CROP) {
+                list.add(SeedHelper.getSeedsFromCrop(crop));
+            }
         }
     }
 

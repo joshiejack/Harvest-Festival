@@ -2,7 +2,6 @@ package joshie.harvest.quests.packets;
 
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.quests.Quest;
-import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.network.Packet;
 import joshie.harvest.core.network.Packet.Side;
 import joshie.harvest.core.network.penguin.PenguinPacket;
@@ -32,6 +31,6 @@ public class PacketQuestSetAvailable extends PenguinPacket {
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        QuestHelper.markAvailable(MCClientHelper.getPlayer(), quest);
+        QuestHelper.markAvailable(player, quest);
     }
 }

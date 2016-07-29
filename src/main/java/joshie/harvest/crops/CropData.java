@@ -12,10 +12,11 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class CropData implements ICropData {
-    private Crop crop; //The Crop Type of this plant
+    private Crop crop = HFCrops.NULL_CROP; //The Crop Type of this plant
     private int stage; //The stage it is currently at
     private int daysWithoutWater; //The number of days this crop has gone without water
 
@@ -99,6 +100,7 @@ public class CropData implements ICropData {
     }
 
     @Override
+    @Nonnull
     public ICrop getCrop() {
         return crop;
     }
@@ -126,6 +128,8 @@ public class CropData implements ICropData {
             stage = nbt.getByte("CurrentStage");
             daysWithoutWater = nbt.getShort("DaysWithoutWater");
         }
+
+        if (crop == null) crop = HFCrops.NULL_CROP;
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {

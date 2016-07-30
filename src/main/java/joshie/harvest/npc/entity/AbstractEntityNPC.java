@@ -188,21 +188,23 @@ public abstract class AbstractEntityNPC<E extends AbstractEntityNPC> extends Ent
 
     @Override
     public void onDeath(DamageSource cause) {
-        //Respawn a new bugger
-        if (npc.respawns()) {
-            E clone = getNewEntity((E) this);
-            BlockPos home = getHomeCoordinates();
-            if (home != null) {
-                clone.setPositionAndUpdate(home.getX() + 0.5D, home.getY() + 0.5D, home.getZ() + 0.5D);
-                clone.resetSpawnHome();
-                worldObj.spawnEntityInWorld(clone);
+        if (cause != DamageSource.outOfWorld) {
+            //Respawn a new bugger
+            if (npc.respawns()) {
+                E clone = getNewEntity((E) this);
+                BlockPos home = getHomeCoordinates();
+                if (home != null) {
+                    clone.setPositionAndUpdate(home.getX() + 0.5D, home.getY() + 0.5D, home.getZ() + 0.5D);
+                    clone.resetSpawnHome();
+                    worldObj.spawnEntityInWorld(clone);
+                }
             }
-        }
 
-        if (!this.dead) {
-            this.dead = true;
-            this.getCombatTracker().reset();
-            this.worldObj.setEntityState(this, (byte)3);
+            if (!this.dead) {
+                this.dead = true;
+                this.getCombatTracker().reset();
+                this.worldObj.setEntityState(this, (byte) 3);
+            }
         }
     }
 

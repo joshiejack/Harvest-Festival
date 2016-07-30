@@ -156,7 +156,7 @@ public class ItemWateringCan extends ItemBaseTool implements IFluidContainerItem
 
     private boolean attemptToFill(World world, EntityPlayer player, ItemStack stack) {
         RayTraceResult rayTraceResult = this.rayTrace(world, player, true);
-        if (rayTraceResult.typeOfHit == RayTraceResult.Type.BLOCK) {
+        if (rayTraceResult != null && rayTraceResult.typeOfHit == RayTraceResult.Type.BLOCK) {
             IBlockState state = world.getBlockState(rayTraceResult.getBlockPos());
             if (state.getMaterial() == Material.WATER) {
                 return fill(stack, new FluidStack(FluidRegistry.WATER, 128), true) > 0;

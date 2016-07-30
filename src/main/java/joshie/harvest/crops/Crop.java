@@ -44,7 +44,7 @@ public class Crop extends net.minecraftforge.fml.common.registry.IForgeRegistryE
     protected EnumPlantType type;
 
     public Crop() {
-        this(new ResourceLocation(MODID, "null_crop"), Season.SPRING, 0, 0, 1, 0, 0, 0);
+        this(new ResourceLocation(MODID, "null_crop"), Season.SPRING, 0, 0, 3, 0, 0, 0);
     }
 
     /**

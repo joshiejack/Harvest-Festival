@@ -79,6 +79,15 @@ public class ItemHoe extends ItemBaseTool {
     }
 
     @Override
+    public void onUsingTick(ItemStack stack, EntityLivingBase player, int count) {
+        if (count <= 31995 && count % 16 == 0) {
+            if (canCharge(stack)) {
+                increaseCharge(stack, 1);
+            }
+        }
+    }
+
+    @Override
     public void onPlayerStoppedUsing(ItemStack stack, World world, EntityLivingBase entity, int timeLeft) {
         int charge = (Math.min(7, Math.max(0, getCharge(stack))));
         setCharge(stack, 0); //Reset the charge

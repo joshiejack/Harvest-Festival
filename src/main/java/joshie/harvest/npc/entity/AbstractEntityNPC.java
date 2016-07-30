@@ -188,7 +188,8 @@ public abstract class AbstractEntityNPC<E extends AbstractEntityNPC> extends Ent
 
     @Override
     public void onDeath(DamageSource cause) {
-        if (cause != DamageSource.outOfWorld) {
+        if (net.minecraftforge.common.ForgeHooks.onLivingDeath(this, cause)) return;
+        if (!this.dead && this.posY >= -32D) {
             //Respawn a new bugger
             if (npc.respawns()) {
                 E clone = getNewEntity((E) this);
@@ -199,13 +200,11 @@ public abstract class AbstractEntityNPC<E extends AbstractEntityNPC> extends Ent
                     worldObj.spawnEntityInWorld(clone);
                 }
             }
-
-            if (!this.dead) {
-                this.dead = true;
-                this.getCombatTracker().reset();
-                this.worldObj.setEntityState(this, (byte) 3);
-            }
         }
+
+        this.dead = true;
+        this.getCombatTracker().reset();
+        this.worldObj.setEntityState(this, (byte) 3);
     }
 
     public BlockPos getHomeCoordinates() {

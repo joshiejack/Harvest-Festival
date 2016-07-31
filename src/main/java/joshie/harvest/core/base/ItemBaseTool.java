@@ -144,26 +144,26 @@ public abstract class ItemBaseTool extends ItemHFBase<ItemBaseTool> implements I
         return 0;
     }
 
-    public double getExhaustionRate(ItemStack stack) {
+    public float getExhaustionRate(ItemStack stack) {
         ToolTier tier = getTier(stack);
         switch (tier) {
             case BASIC:
-                return 3D;
+                return 3F;
             case COPPER:
-                return 2.5D;
+                return 2.5F;
             case SILVER:
             case GOLD:
-                return 2D;
+                return 2F;
             case MYSTRIL:
-                return 1.5D;
+                return 1.5F;
             case CURSED:
-                return 10D;
+                return 10F;
             case BLESSED:
-                return 1D;
+                return 1F;
             case MYTHIC:
-                return 0.5D;
+                return 0.5F;
             default:
-                return 0;
+                return 1F;
         }
     }
 

@@ -8,6 +8,7 @@ import joshie.harvest.api.shops.IShop;
 import joshie.harvest.buildings.Building;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.cooking.HFCooking;
+import joshie.harvest.core.util.HFLoader;
 import joshie.harvest.crops.Crop;
 import joshie.harvest.crops.CropRegistry;
 import joshie.harvest.crops.HFCrops;
@@ -28,6 +29,7 @@ import static joshie.harvest.api.calendar.Weekday.*;
 import static joshie.harvest.cooking.items.ItemIngredients.Ingredient.*;
 import static joshie.harvest.npc.items.ItemNPCTool.NPCTool.BLUE_FEATHER;
 
+@HFLoader
 public class HFShops {
     public static IShop BARN;
     public static IShop BLACKSMITH;

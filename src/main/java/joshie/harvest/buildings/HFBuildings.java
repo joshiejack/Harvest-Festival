@@ -12,8 +12,9 @@ import joshie.harvest.buildings.items.ItemBuilding;
 import joshie.harvest.buildings.items.ItemCheat;
 import joshie.harvest.buildings.loader.*;
 import joshie.harvest.buildings.placeable.Placeable;
-import joshie.harvest.core.helpers.ResourceLoader;
 import joshie.harvest.core.base.FMLDefinition;
+import joshie.harvest.core.helpers.ResourceLoader;
+import joshie.harvest.core.util.HFLoader;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -26,6 +27,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.Level;
 
+import static joshie.harvest.core.lib.LoadOrder.HFBUILDING;
+
+@HFLoader(priority = HFBUILDING)
 public class HFBuildings {
     public static final ItemBuilding STRUCTURES = new ItemBuilding().register("structures");
     public static final ItemBlueprint BLUEPRINTS = new ItemBlueprint().register("blueprints");

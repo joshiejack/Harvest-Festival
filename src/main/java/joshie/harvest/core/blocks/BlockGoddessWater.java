@@ -1,4 +1,4 @@
-package joshie.harvest.blocks;
+package joshie.harvest.core.blocks;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.core.handlers.GoddessHandler;

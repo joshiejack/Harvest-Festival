@@ -1,6 +1,6 @@
 package joshie.harvest.core.network;
 
-import joshie.harvest.blocks.tiles.TileHarvest;
+import joshie.harvest.core.base.TileHarvest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.Packet;

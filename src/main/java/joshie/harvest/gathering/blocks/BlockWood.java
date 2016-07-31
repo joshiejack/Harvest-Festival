@@ -1,8 +1,8 @@
-package joshie.harvest.blocks;
+package joshie.harvest.gathering.blocks;
 
 import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.api.gathering.ISmashable;
-import joshie.harvest.blocks.BlockWood.Wood;
+import joshie.harvest.gathering.blocks.BlockWood.Wood;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.base.BlockHFEnum;

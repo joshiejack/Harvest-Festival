@@ -2,8 +2,8 @@ package joshie.harvest.quests.tutorial;
 
 import joshie.harvest.api.HFRegister;
 import joshie.harvest.api.npc.INPC;
-import joshie.harvest.blocks.HFBlocks;
 import joshie.harvest.buildings.HFBuildings;
+import joshie.harvest.core.HFCore;
 import joshie.harvest.core.helpers.generic.OreDictionaryHelper;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.api.quests.Quest;
@@ -27,7 +27,7 @@ public class QuestGoddess extends Quest {
     public void onStageChanged(EntityPlayer player, int previous, int stage) {
         //On completion of stage 0, give the player 4 goddess flowers
         if (previous == 0) {
-            rewardItem(player, new ItemStack(HFBlocks.FLOWERS, 4, 0));
+            rewardItem(player, new ItemStack(HFCore.FLOWERS, 4, 0));
         } else if (previous == 1) {
             rewardItem(player, HFBuildings.CARPENTER.getBlueprint());
             rewardItem(player, new ItemStack(Blocks.RED_FLOWER, 1, player.worldObj.rand.nextInt(8)));

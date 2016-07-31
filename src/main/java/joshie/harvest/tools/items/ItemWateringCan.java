@@ -2,7 +2,7 @@ package joshie.harvest.tools.items;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
-import joshie.harvest.core.helpers.PlayerHelper;
+import joshie.harvest.core.helpers.ToolHelper;
 import joshie.harvest.crops.blocks.BlockHFCrops;
 import joshie.harvest.core.base.ItemBaseTool;
 import net.minecraft.block.Block;
@@ -146,7 +146,7 @@ public class ItemWateringCan extends ItemBaseTool implements IFluidContainerItem
         if (HFApi.crops.hydrateSoil(player, world, pos)) {
             displayParticle(world, pos, EnumParticleTypes.WATER_SPLASH, Blocks.WATER.getDefaultState());
             playSound(world, pos, SoundEvents.ENTITY_GENERIC_SWIM, SoundCategory.NEUTRAL);
-            PlayerHelper.performTask(player, stack, getExhaustionRate(stack));
+            ToolHelper.performTask(player, stack, getExhaustionRate(stack));
             if (!player.capabilities.isCreativeMode) {
                 drain(stack, 1, true);
             }

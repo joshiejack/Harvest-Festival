@@ -7,6 +7,7 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.npc.INPCRegistry.Age;
 import joshie.harvest.api.npc.INPCRegistry.Gender;
 import joshie.harvest.core.helpers.generic.RegistryHelper;
+import joshie.harvest.core.util.HFLoader;
 import joshie.harvest.npc.items.ItemNPCTool;
 import joshie.harvest.npc.entity.AbstractEntityNPC;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
@@ -31,8 +32,10 @@ import static joshie.harvest.buildings.HFBuildings.*;
 import static joshie.harvest.core.helpers.generic.ConfigHelper.getDouble;
 import static joshie.harvest.core.helpers.generic.ConfigHelper.getInteger;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
+import static joshie.harvest.core.lib.LoadOrder.HFNPCS;
 import static joshie.harvest.town.TownData.*;
 
+@HFLoader(priority = HFNPCS)
 public class HFNPCs {
     public static final NPC NULL_NPC = new NPC();
     public static INPC GODDESS; //The Goddess                        (SPAWN)

@@ -1,27 +1,34 @@
 package joshie.harvest.gathering;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.blocks.BlockFlower.FlowerType;
-import joshie.harvest.blocks.HFBlocks;
+import joshie.harvest.core.blocks.BlockFlower.FlowerType;
+import joshie.harvest.core.util.HFLoader;
+import joshie.harvest.gathering.blocks.BlockRock;
+import joshie.harvest.gathering.blocks.BlockWood;
+import joshie.harvest.core.HFCore;
 
-import static joshie.harvest.blocks.BlockRock.Rock.*;
-import static joshie.harvest.blocks.BlockWood.Wood.*;
+import static joshie.harvest.gathering.blocks.BlockRock.Rock.*;
+import static joshie.harvest.gathering.blocks.BlockWood.Wood.*;
 
+@HFLoader
 public class HFGathering {
+    private static final BlockRock ROCK = new BlockRock().register("rock");
+    private static final BlockWood WOOD = new BlockWood().register("wood");
 
+    public static void preInit() {}
     public static void init() {
-        HFApi.gathering.registerGathering(HFBlocks.WOOD.getStateFromEnum(BRANCH_SMALL), 8D);
-        HFApi.gathering.registerGathering(HFBlocks.WOOD.getStateFromEnum(BRANCH_MEDIUM), 5D);
-        HFApi.gathering.registerGathering(HFBlocks.WOOD.getStateFromEnum(BRANCH_LARGE), 3D);
-        HFApi.gathering.registerGathering(HFBlocks.ROCK.getStateFromEnum(STONE_SMALL), 8D);
-        HFApi.gathering.registerGathering(HFBlocks.ROCK.getStateFromEnum(STONE_MEDIUM), 5D);
-        HFApi.gathering.registerGathering(HFBlocks.ROCK.getStateFromEnum(STONE_LARGE), 3D);
-        HFApi.gathering.registerGathering(HFBlocks.WOOD.getStateFromEnum(STUMP_SMALL), 3D);
-        HFApi.gathering.registerGathering(HFBlocks.WOOD.getStateFromEnum(STUMP_MEDIUM), 2D);
-        HFApi.gathering.registerGathering(HFBlocks.WOOD.getStateFromEnum(STUMP_LARGE), 1D);
-        HFApi.gathering.registerGathering(HFBlocks.ROCK.getStateFromEnum(BOULDER_SMALL), 3D);
-        HFApi.gathering.registerGathering(HFBlocks.ROCK.getStateFromEnum(BOULDER_MEDIUM), 2D);
-        HFApi.gathering.registerGathering(HFBlocks.ROCK.getStateFromEnum(BOULDER_LARGE), 1D);
-        HFApi.gathering.registerGathering(HFBlocks.FLOWERS.getStateFromEnum(FlowerType.WEED), 10D);
+        HFApi.gathering.registerGathering(WOOD.getStateFromEnum(BRANCH_SMALL), 8D);
+        HFApi.gathering.registerGathering(WOOD.getStateFromEnum(BRANCH_MEDIUM), 5D);
+        HFApi.gathering.registerGathering(WOOD.getStateFromEnum(BRANCH_LARGE), 3D);
+        HFApi.gathering.registerGathering(ROCK.getStateFromEnum(STONE_SMALL), 8D);
+        HFApi.gathering.registerGathering(ROCK.getStateFromEnum(STONE_MEDIUM), 5D);
+        HFApi.gathering.registerGathering(ROCK.getStateFromEnum(STONE_LARGE), 3D);
+        HFApi.gathering.registerGathering(WOOD.getStateFromEnum(STUMP_SMALL), 3D);
+        HFApi.gathering.registerGathering(WOOD.getStateFromEnum(STUMP_MEDIUM), 2D);
+        HFApi.gathering.registerGathering(WOOD.getStateFromEnum(STUMP_LARGE), 1D);
+        HFApi.gathering.registerGathering(ROCK.getStateFromEnum(BOULDER_SMALL), 3D);
+        HFApi.gathering.registerGathering(ROCK.getStateFromEnum(BOULDER_MEDIUM), 2D);
+        HFApi.gathering.registerGathering(ROCK.getStateFromEnum(BOULDER_LARGE), 1D);
+        HFApi.gathering.registerGathering(HFCore.FLOWERS.getStateFromEnum(FlowerType.WEED), 10D);
     }
 }

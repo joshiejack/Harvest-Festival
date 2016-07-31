@@ -1,7 +1,7 @@
 package joshie.harvest.core.handlers;
 
-import joshie.harvest.blocks.BlockFlower.FlowerType;
-import joshie.harvest.blocks.HFBlocks;
+import joshie.harvest.core.blocks.BlockFlower.FlowerType;
+import joshie.harvest.core.HFCore;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.core.util.HFEvents;
 import joshie.harvest.npc.HFNPCs;
@@ -28,7 +28,7 @@ public class GoddessHandler {
     private static Item goddess;
 
     public static boolean isGoddessFlower(ItemStack stack) {
-        if (goddess == null) goddess = Item.getItemFromBlock(HFBlocks.FLOWERS);
+        if (goddess == null) goddess = Item.getItemFromBlock(HFCore.FLOWERS);
         return stack.getItem() == goddess && stack.getItemDamage() == FlowerType.GODDESS.ordinal();
     }
 

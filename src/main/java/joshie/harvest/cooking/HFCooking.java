@@ -7,6 +7,7 @@ import joshie.harvest.cooking.items.ItemMeal;
 import joshie.harvest.cooking.items.ItemUtensil;
 import joshie.harvest.cooking.render.*;
 import joshie.harvest.core.helpers.ModelHelper;
+import joshie.harvest.core.util.HFLoader;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.util.ResourceLocation;
@@ -18,7 +19,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import static joshie.harvest.cooking.blocks.TileMixer.BLADE_STACK;
 import static joshie.harvest.cooking.items.ItemUtensil.Utensil.BLADE;
 import static joshie.harvest.core.helpers.generic.RegistryHelper.registerTiles;
+import static joshie.harvest.core.lib.LoadOrder.HFCOOKING;
 
+@HFLoader(priority = HFCOOKING)
 public class HFCooking {
     //Cooking
     public static final BlockCookware COOKWARE = new BlockCookware().register("cookware");

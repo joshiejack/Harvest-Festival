@@ -1,10 +1,12 @@
 package joshie.harvest.plugins;
 
 import joshie.harvest.HarvestFestival;
+import joshie.harvest.core.util.HFLoader;
 import org.apache.logging.log4j.Level;
 
 import java.util.ArrayList;
 
+@HFLoader(priority = 0)
 public class HFPlugins {
     public static ArrayList<Plugin> plugins = new ArrayList<Plugin>();
     private static ArrayList<PluginData> data = new ArrayList<PluginData>();

@@ -1,8 +1,8 @@
 package joshie.harvest.tools.items;
 
 import joshie.harvest.api.crops.IBreakCrops;
+import joshie.harvest.core.helpers.ToolHelper;
 import joshie.harvest.crops.blocks.BlockHFCrops;
-import joshie.harvest.core.helpers.PlayerHelper;
 import joshie.harvest.core.helpers.generic.DirectionHelper;
 import joshie.harvest.core.base.ItemBaseTool;
 import net.minecraft.block.Block;
@@ -93,7 +93,7 @@ public class ItemSickle extends ItemBaseTool implements IBreakCrops {
                         IBlockState particleState = isWithered ? Blocks.TALLGRASS.getDefaultState() : Blocks.CARROTS.getDefaultState();
                         displayParticle(world, newPos, EnumParticleTypes.BLOCK_CRACK, particleState);
                         playSound(world, newPos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS);
-                        PlayerHelper.performTask(player, stack, getExhaustionRate(stack));
+                        ToolHelper.performTask(player, stack, getExhaustionRate(stack));
                     }
                 }
             }

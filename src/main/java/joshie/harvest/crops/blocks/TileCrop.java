@@ -1,6 +1,6 @@
 package joshie.harvest.crops.blocks;
 
-import joshie.harvest.blocks.tiles.TileDaily;
+import joshie.harvest.core.base.TileDaily;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.crops.CropData;
 import joshie.harvest.crops.HFCrops;

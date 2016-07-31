@@ -1,8 +1,9 @@
 package joshie.harvest.quests;
 
 import joshie.harvest.api.quests.Quest;
-import joshie.harvest.core.helpers.PlayerHelper;
 import joshie.harvest.core.util.HFEvents;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -13,9 +14,13 @@ import static joshie.harvest.quests.QuestHelper.getCurrentQuest;
 
 @HFEvents
 public class QuestEvents {
+    private boolean isFakePlayer(EntityPlayer player) {
+        return player instanceof FakePlayer;
+    }
+
     @SubscribeEvent(priority = EventPriority.HIGH)
     public void onEntityInteract(PlayerInteractEvent.EntityInteract event) {
-        if (!PlayerHelper.isFakePlayer(event.getEntityPlayer())) {
+        if (!isFakePlayer(event.getEntityPlayer())) {
             HashSet<Quest> quests = getCurrentQuest(event.getEntityPlayer());
             for (Quest quest : quests) {
                 if (quest != null) {
@@ -27,7 +32,7 @@ public class QuestEvents {
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public void onRightClickGround(PlayerInteractEvent.RightClickBlock event) {
-        if (!PlayerHelper.isFakePlayer(event.getEntityPlayer())) {
+        if (!isFakePlayer(event.getEntityPlayer())) {
             HashSet<Quest> quests = getCurrentQuest(event.getEntityPlayer());
             for (Quest quest : quests) {
                 if (quest != null) {

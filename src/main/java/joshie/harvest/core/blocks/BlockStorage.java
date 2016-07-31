@@ -1,7 +1,6 @@
-package joshie.harvest.blocks;
+package joshie.harvest.core.blocks;
 
-import joshie.harvest.blocks.BlockStorage.Storage;
-import joshie.harvest.blocks.tiles.TileShipping;
+import joshie.harvest.core.blocks.BlockStorage.Storage;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.lib.CreativeSort;
@@ -22,7 +21,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import static joshie.harvest.api.HFApi.shipping;
-import static joshie.harvest.blocks.BlockStorage.Storage.SHIPPING;
+import static joshie.harvest.core.blocks.BlockStorage.Storage.SHIPPING;
 
 public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage> {
     private static final AxisAlignedBB SHIPPING_AABB = new AxisAlignedBB(0D, 0D, 0D, 1D, 0.6D, 1D);

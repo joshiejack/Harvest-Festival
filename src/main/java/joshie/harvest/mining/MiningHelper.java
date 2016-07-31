@@ -1,18 +1,14 @@
 package joshie.harvest.mining;
 
 import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.helpers.generic.EntityHelper;
 import joshie.harvest.core.util.Direction;
 import joshie.harvest.mining.blocks.BlockPortal.Portal;
 import joshie.harvest.town.TownTracker;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.play.server.SPacketUpdateHealth;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
@@ -23,9 +19,8 @@ import net.minecraft.world.WorldServerMulti;
 import net.minecraft.world.storage.loot.LootContext;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
-import static joshie.harvest.core.HFCore.MINING_ID;
+import static joshie.harvest.mining.HFMining.MINING_ID;
 import static joshie.harvest.mining.MineManager.CHUNK_BOUNDARY;
 
 public class MiningHelper {
@@ -99,7 +94,7 @@ public class MiningHelper {
         WorldServer newWorld = server.worldServerForDimension(MINING_ID);
         preloadChunks(newWorld, mineID);
         BlockPos spawn = modifySpawnAndPlayerRotation(newWorld, ((MiningProvider)newWorld.provider).getSpawnCoordinateForMine(mineID), entity);
-        return teleport(entity, MINING_ID, spawn);
+        return EntityHelper.teleport(entity, MINING_ID, spawn);
     }
 
     public static boolean teleportToOverworld(Entity entity) {
@@ -118,40 +113,6 @@ public class MiningHelper {
             entity.rotationYaw = 0F;
         }
 
-        return teleport(entity, 0, spawn);
-    }
-
-    public static boolean teleport(Entity entity, int dimension, BlockPos spawn) {
-        MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
-        WorldServer oldWorld = server.worldServerForDimension(entity.getEntityWorld().provider.getDimension());
-        WorldServer newWorld = server.worldServerForDimension(dimension);
-        if (entity instanceof EntityPlayer) {
-            EntityPlayerMP player = (EntityPlayerMP) entity;
-            if (!player.worldObj.isRemote) {
-                ReflectionHelper.setPrivateValue(EntityPlayerMP.class, player, true, "invulnerableDimensionChange", "field_184851_cj");
-                newWorld.getMinecraftServer().getPlayerList().transferPlayerToDimension(player, dimension, new MiningTeleporter(newWorld, spawn));
-                player.setPositionAndUpdate(spawn.getX(), spawn.getY(), spawn.getZ());
-                player.worldObj.updateEntityWithOptionalForce(player, false);
-                player.connection.sendPacket(new SPacketUpdateHealth(player.getHealth(), player.getFoodStats().getFoodLevel(), player.getFoodStats().getSaturationLevel()));
-            }
-        } else if (!entity.worldObj.isRemote) {
-            NBTTagCompound tag = new NBTTagCompound();
-            entity.writeToNBTOptional(tag);
-            entity.setDead();
-            Entity teleportedEntity = EntityList.createEntityFromNBT(tag, newWorld);
-            if (teleportedEntity != null) {
-                teleportedEntity.setPositionAndUpdate(spawn.getX(), spawn.getY(), spawn.getZ());
-                teleportedEntity.forceSpawn = true;
-                newWorld.spawnEntityInWorld(teleportedEntity);
-                teleportedEntity.setWorld(newWorld);
-                teleportedEntity.timeUntilPortal = teleportedEntity instanceof EntityPlayer ? 150 : 20;
-            }
-
-            oldWorld.resetUpdateEntityTick();
-            newWorld.resetUpdateEntityTick();
-        }
-
-        entity.timeUntilPortal = entity instanceof EntityLiving ? 150 : 20;
-        return true;
+        return EntityHelper.teleport(entity, 0, spawn);
     }
 }

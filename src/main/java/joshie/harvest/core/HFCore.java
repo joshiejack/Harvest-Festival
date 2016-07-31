@@ -1,25 +1,75 @@
 package joshie.harvest.core;
 
 import joshie.harvest.HarvestFestival;
+import joshie.harvest.core.blocks.BlockFlower;
+import joshie.harvest.core.blocks.BlockFlower.FlowerType;
+import joshie.harvest.core.blocks.BlockGoddessWater;
+import joshie.harvest.core.blocks.BlockStorage;
+import joshie.harvest.core.blocks.TileShipping;
 import joshie.harvest.core.handlers.GuiHandler;
-import joshie.harvest.core.util.WorldDestroyer;
+import joshie.harvest.core.helpers.generic.RegistryHelper;
+import joshie.harvest.core.util.HFLoader;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.color.IBlockColor;
+import net.minecraft.client.renderer.color.IItemColor;
+import net.minecraft.item.EnumRarity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.ColorizerFoliage;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.biome.BiomeColorHelper;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-import static joshie.harvest.core.helpers.generic.ConfigHelper.getInteger;
+import static joshie.harvest.core.lib.HFModInfo.MODID;
+import static joshie.harvest.core.lib.LoadOrder.HFCORE;
 
+@HFLoader(priority = HFCORE)
 public class HFCore {
-     public static void preInit() {
-        WorldDestroyer.replaceWorldProvider();
-        NetworkRegistry.INSTANCE.registerGuiHandler(HarvestFestival.instance, new GuiHandler());
+    public static final Fluid GODDESS = registerFluid(new Fluid("goddess_water", new ResourceLocation(MODID, "blocks/goddess_still"), new ResourceLocation(MODID, "blocks/goddess_flow")).setRarity(EnumRarity.RARE));
+    public static final BlockGoddessWater GODDESS_WATER = new BlockGoddessWater(GODDESS).register("goddess_water");
+    public static final BlockFlower FLOWERS = new BlockFlower().register("flowers");
+    public static final BlockStorage STORAGE = new BlockStorage().register("storage");
+
+    public static void preInit() {
+         NetworkRegistry.INSTANCE.registerGuiHandler(HarvestFestival.instance, new GuiHandler());
+         RegistryHelper.registerTiles(TileShipping.class);
+         GODDESS.setBlock(GODDESS_WATER);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static void preInitClient() {
+        RegistryHelper.registerFluidBlockRendering(GODDESS_WATER, "goddess_water");
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static void initClient() {
+        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(new IBlockColor() {
+            public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
+                FlowerType type = HFCore.FLOWERS.getEnumFromState(state);
+                if (!type.isColored()) return -1;
+                return worldIn != null && pos != null ? BiomeColorHelper.getFoliageColorAtPos(worldIn, pos) : ColorizerFoliage.getFoliageColorBasic();
+            }
+        }, HFCore.FLOWERS);
+
+        Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new IItemColor() {
+            @Override
+            public int getColorFromItemstack(ItemStack stack, int tintIndex) {
+                return HFCore.FLOWERS.getEnumFromMeta(stack.getItemDamage()).isColored() ? ColorizerFoliage.getFoliageColorBasic() : -1;
+            }
+        }, HFCore.FLOWERS);
+    }
+
+    private static Fluid registerFluid(Fluid fluid) {
+        FluidRegistry.registerFluid(fluid);
+        return fluid;
     }
 
     //Configure
     public static boolean DEBUG_MODE = true;
-    public static int MINING_ID;
-    public static int OVERWORLD_ID;
-
-    public static void configure () {
-        OVERWORLD_ID = getInteger("Overworld ID", 3);
-        MINING_ID = getInteger("Mining World ID", 4);
-    }
 }

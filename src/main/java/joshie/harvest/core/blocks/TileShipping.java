@@ -1,5 +1,6 @@
-package joshie.harvest.blocks.tiles;
+package joshie.harvest.core.blocks;
 
+import joshie.harvest.core.base.TileFaceable;
 import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

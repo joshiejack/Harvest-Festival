@@ -1,7 +1,7 @@
 package joshie.harvest.crops.blocks;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.blocks.tiles.TileDaily;
+import joshie.harvest.core.base.TileDaily;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.client.Minecraft;

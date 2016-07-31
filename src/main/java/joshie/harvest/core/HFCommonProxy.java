@@ -1,29 +1,17 @@
 package joshie.harvest.core;
 
 import joshie.harvest.HarvestFestival;
-import joshie.harvest.animals.HFAnimals;
-import joshie.harvest.blocks.HFBlocks;
-import joshie.harvest.buildings.HFBuildings;
-import joshie.harvest.calendar.HFCalendar;
-import joshie.harvest.cooking.HFCooking;
-import joshie.harvest.cooking.HFIngredients;
-import joshie.harvest.cooking.HFRecipes;
-import joshie.harvest.crops.HFCrops;
-import joshie.harvest.gathering.HFGathering;
-import joshie.harvest.mining.HFMining;
-import joshie.harvest.npc.HFNPCs;
-import joshie.harvest.npc.gift.init.HFGifts;
-import joshie.harvest.plugins.HFPlugins;
-import joshie.harvest.shops.HFShops;
-import joshie.harvest.tools.HFTools;
+import joshie.harvest.core.util.HFLoader;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.discovery.ASMDataTable;
+import net.minecraftforge.fml.common.discovery.ASMDataTable.ASMData;
+import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.Level;
 
+import javax.annotation.Nonnull;
 import java.io.File;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import static joshie.harvest.core.helpers.generic.ConfigHelper.setCategory;
 import static joshie.harvest.core.helpers.generic.ConfigHelper.setConfig;
@@ -34,24 +22,53 @@ public class HFCommonProxy {
     private static final boolean ENABLE_LOGGING = false;
 
     static {
-        LIST.add(HFCore.class);
-        LIST.add(HFPlugins.class);
-        LIST.add(HFCalendar.class);
-        LIST.add(HFCrops.class);
-        LIST.add(HFNPCs.class);
-        LIST.add(HFBuildings.class);
-        LIST.add(HFBlocks.class);
-        LIST.add(HFTools.class);
-        LIST.add(HFCooking.class);
-        LIST.add(HFIngredients.class);
-        LIST.add(HFRecipes.class);
-        LIST.add(HFShops.class);
-        LIST.add(HFMining.class);
-        LIST.add(HFGathering.class);
-        LIST.add(HFGifts.class);
-        LIST.add(HFAnimals.class);
-        LIST.add(HFTab.class);
-        LIST.add(HFRecipeFixes.class);
+        //LIST.add(HFCore.class);
+        //LIST.add(HFCalendar.class);
+        //LIST.add(HFCrops.class);
+        //LIST.add(HFNPCs.class); //After Crops
+        //LIST.add(HFBuildings.class); //After NPCS
+        //LIST.add(HFTools.class); //After Most Everything
+        //LIST.add(HFCooking.class); //After Crops
+        //LIST.add(HFIngredients.class); //After Cooking
+        //LIST.add(HFRecipes.class); //After Ingredients
+        //LIST.add(HFMining.class); //After Most Everything
+        //LIST.add(HFGathering.class); //After Most Everything
+        //LIST.add(HFGifts.class); //After Every Item is loaded
+        //LIST.add(HFAnimals.class); //After Crops
+        //LIST.add(HFShops.class); //After Most Everything
+        //LIST.add(HFTab.class); //After Every Item is loaded
+        //LIST.add(HFPlugins.class); //After Every Item is loaded
+        //LIST.add(HFRecipeFixes.class); //After Every Item is loaded
+    }
+
+    public void setup(@Nonnull ASMDataTable table) {
+        List<Pair<Integer, String>> unsorted = new ArrayList<>();
+        Set<ASMData> datas = new HashSet<>(table.getAll(HFLoader.class.getCanonicalName()));
+        for (ASMDataTable.ASMData data : datas) {
+            try {
+                String clazz = data.getClassName();
+                Map<String, Object> map = data.getAnnotationInfo();
+                int value = map.get("priority") != null? (int) map.get("priority"): 1;
+                unsorted.add(Pair.of(value, clazz));
+            } catch (Exception e) { e.printStackTrace(); }
+        }
+
+        //Now that we have gathered all the classes, let's sort them by priority
+        Comparator<Pair<Integer, String>> priority = new Comparator<Pair<Integer, String>>() {
+            @Override
+            public int compare(Pair<Integer, String> str1, Pair<Integer, String> str2) {
+                return str1.getLeft() < str2.getLeft() ? 1: str1.getLeft() > str2.getLeft() ? -1 : 0;
+            }
+        };
+
+        Collections.sort(unsorted, priority);
+
+        //Add Everything to the real LIST
+        for (Pair<Integer, String> entry: unsorted) {
+            try {
+                LIST.add(Class.forName(entry.getRight()));
+            } catch (Exception e) {}
+        }
     }
 
     public void configure(File file) {
@@ -97,6 +114,10 @@ public class HFCommonProxy {
                 }
             }
         }
+    }
+
+    public void clear() {
+        LIST.clear();
     }
 
     public boolean isClient() {

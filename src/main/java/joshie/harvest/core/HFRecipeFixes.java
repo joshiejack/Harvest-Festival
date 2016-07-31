@@ -1,5 +1,6 @@
 package joshie.harvest.core;
 
+import joshie.harvest.core.util.HFLoader;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -15,6 +16,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 
+@HFLoader(priority = 0)
 public class HFRecipeFixes {
     public static void complete() {
         fixRecipes(Items.EGG, null);

@@ -4,6 +4,7 @@ import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.ICookingIngredient;
 import joshie.harvest.cooking.render.MappingEvent;
+import joshie.harvest.core.util.HFLoader;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -11,35 +12,29 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 import static joshie.harvest.cooking.items.ItemIngredients.Ingredient.*;
+import static joshie.harvest.core.lib.LoadOrder.HFINGREDIENTS;
 
+@HFLoader(priority = HFINGREDIENTS)
 public class HFIngredients {
-    /**
-     * Categories
-     **/
+    //Categories
     public static ICookingIngredient mushroom;
     public static ICookingIngredient juice_vegetable;
     public static ICookingIngredient salad_ingredient;
     public static ICookingIngredient sandwich_ingredient;
     public static ICookingIngredient sashimi_vegetable;
 
-    /**
-     * Seasonings
-     **/
+    //Seasonings
     public static ICookingIngredient salt;
     public static ICookingIngredient sugar;
 
-    /**
-     * Created
-     **/
+    //Meals
     public static ICookingIngredient butter;
     public static ICookingIngredient boiled_egg;
     public static ICookingIngredient sashimi;
     public static ICookingIngredient scrambled_egg;
     public static ICookingIngredient cookies;
 
-    /**
-     * Other stuff
-     **/
+    //Random Stuff
     public static ICookingIngredient apple;
     public static ICookingIngredient chocolate;
     public static ICookingIngredient egg;
@@ -51,9 +46,7 @@ public class HFIngredients {
     public static ICookingIngredient mayonnaise;
     public static ICookingIngredient ketchup;
 
-    /**
-     * Crops
-     **/
+    //Crops
     public static ICookingIngredient turnip;
     public static ICookingIngredient potato;
     public static ICookingIngredient cucumber;

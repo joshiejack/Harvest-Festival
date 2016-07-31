@@ -1,8 +1,8 @@
 package joshie.harvest.mining;
 
 import joshie.harvest.api.core.IDailyTickableBlock;
-import joshie.harvest.blocks.BlockFlower.FlowerType;
-import joshie.harvest.blocks.HFBlocks;
+import joshie.harvest.core.blocks.BlockFlower.FlowerType;
+import joshie.harvest.core.HFCore;
 import joshie.harvest.mining.blocks.BlockOre.Ore;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -45,9 +45,9 @@ public class MiningTicker implements IDailyTickableBlock {
     public boolean newDay(World world, BlockPos pos, IBlockState state) {
         BlockPos up = pos.up();
         IBlockState above = world.getBlockState(up);
-        if (above.getBlock() == Blocks.AIR || above.getBlock() == ORE || above.getBlock() == HFBlocks.FLOWERS) {
+        if (above.getBlock() == Blocks.AIR || above.getBlock() == ORE || above.getBlock() == HFCore.FLOWERS) {
             int floor = getFloor(world.getChunkFromBlockCoords(pos).xPosition, pos.getY());
-            if (world.rand.nextInt(8) == 0) world.setBlockState(up, HFBlocks.FLOWERS.getStateFromEnum(FlowerType.WEED));
+            if (world.rand.nextInt(8) == 0) world.setBlockState(up, HFCore.FLOWERS.getStateFromEnum(FlowerType.WEED));
             else world.setBlockState(up, getBlockState(world.rand, floor));
         }
 

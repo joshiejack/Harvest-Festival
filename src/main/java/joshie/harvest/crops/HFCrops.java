@@ -6,6 +6,7 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.core.helpers.SeedHelper;
 import joshie.harvest.core.helpers.generic.RegistryHelper;
+import joshie.harvest.core.util.HFLoader;
 import joshie.harvest.crops.blocks.BlockHFCrops;
 import joshie.harvest.crops.blocks.BlockSprinkler;
 import joshie.harvest.crops.blocks.TileCrop;
@@ -41,7 +42,9 @@ import static joshie.harvest.core.HFTab.FARMING;
 import static joshie.harvest.core.helpers.generic.ConfigHelper.getBoolean;
 import static joshie.harvest.core.helpers.generic.ConfigHelper.getInteger;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
+import static joshie.harvest.core.lib.LoadOrder.HFCROPS;
 
+@HFLoader(priority = HFCROPS)
 public class HFCrops {
     //Crops and Custom Farmland
     public static final BlockHFCrops CROPS = new BlockHFCrops().register("crops_block");

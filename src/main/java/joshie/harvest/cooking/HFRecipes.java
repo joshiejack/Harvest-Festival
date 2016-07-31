@@ -2,11 +2,13 @@ package joshie.harvest.cooking;
 
 import joshie.harvest.api.cooking.ICookingIngredient;
 import joshie.harvest.cooking.items.ItemIngredients;
+import joshie.harvest.core.util.HFLoader;
 
 import static joshie.harvest.cooking.HFCooking.INGREDIENTS;
 import static joshie.harvest.cooking.HFIngredients.*;
 import static joshie.harvest.core.helpers.RecipeHelper.*;
 
+@HFLoader
 public class HFRecipes {
     public static final Recipe NULL_RECIPE = new Recipe("null", new ICookingIngredient[0], new Meal(0, 0F, 0F, 0));
 

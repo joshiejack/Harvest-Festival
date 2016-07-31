@@ -15,6 +15,7 @@ import joshie.harvest.animals.type.AnimalCow;
 import joshie.harvest.animals.type.AnimalSheep;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.core.helpers.generic.RegistryHelper;
+import joshie.harvest.core.util.HFLoader;
 import joshie.harvest.crops.Crop;
 import joshie.harvest.crops.CropRegistry;
 import net.minecraft.client.renderer.entity.Render;
@@ -37,6 +38,7 @@ import static joshie.harvest.core.helpers.generic.ConfigHelper.getInteger;
 import static joshie.harvest.core.helpers.generic.RegistryHelper.registerTiles;
 import static net.minecraftforge.fml.common.registry.EntityRegistry.registerModEntity;
 
+@HFLoader
 public class HFAnimals {
     //Animal Items
     public static final ItemAnimalSpawner ANIMAL = new ItemAnimalSpawner().register("animal");

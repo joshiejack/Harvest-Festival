@@ -1,7 +1,7 @@
 package joshie.harvest.animals.packets;
 
 import io.netty.buffer.ByteBuf;
-import joshie.harvest.blocks.tiles.TileFillable;
+import joshie.harvest.core.base.TileFillable;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.network.PenguinPacketLocation;
 import net.minecraft.entity.player.EntityPlayer;

@@ -5,6 +5,7 @@ import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.lib.HFModInfo;
+import joshie.harvest.core.util.HFLoader;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.tools.HFTools;
@@ -22,6 +23,7 @@ import java.util.List;
 import static joshie.harvest.mining.items.ItemMaterial.Material.JUNK;
 
 
+@HFLoader(priority = 0)
 public class HFTab extends CreativeTabs {
     public static final HFTab TOWN = new HFTab("town");
     public static final HFTab MINING = new HFTab("mining");

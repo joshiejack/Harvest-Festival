@@ -16,14 +16,9 @@
 - Syncing Town Information to Players
 - When you can purchase buildings from a town
 - Make tools consume hunger/add exhaustion when used
-- Add custom potion effect called "Fatigued", added to when they have less than three haunches
-- Fatigue potion effect will tick down, it can be removed by eating
+- (Fatigue) When a player is fatigued they will walk slower, and sometimes lose their vision
 - Add Config option to restore your hunger when you sleep (off by default)
-- When a player is fatigued they will walk slower, and sometimes lose their vision
-- Add Custom potion effect called "Exhausted", added when a player has one haunch or less
-- Player will walk even slower, have even more frequest vision loss, and will sometimes be nauseous
-- When the exhausted potion effect completes, the player will be sent back to their spawn bed,
-  where they will be immediately put to sleep, with their hunger restored (effectively they die BUT they keep their inventory)
+- (Exhaustion) Player will walk even slower, have even more frequent vision loss, and will sometimes be nauseous
 
 ### Rendering/Modeling
 - HarvestChicken

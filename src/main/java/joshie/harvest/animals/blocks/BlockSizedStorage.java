@@ -2,7 +2,7 @@ package joshie.harvest.animals.blocks;
 
 import joshie.harvest.animals.blocks.BlockSizedStorage.SizedStorage;
 import joshie.harvest.api.core.ISizeable.Size;
-import joshie.harvest.blocks.tiles.TileFillableSized;
+import joshie.harvest.core.base.TileFillableSized;
 import joshie.harvest.core.base.BlockHFEnumRotatableTile;
 import joshie.harvest.core.util.IFaceable;
 import net.minecraft.block.SoundType;

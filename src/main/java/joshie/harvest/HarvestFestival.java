@@ -33,6 +33,7 @@ public class HarvestFestival {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+        proxy.setup(event.getAsmData()); //Load all the classes
         proxy.configure(event.getSuggestedConfigurationFile());
         proxy.load("preInit");
         proxy.loadAPI(event.getAsmData());
@@ -51,6 +52,7 @@ public class HarvestFestival {
     @EventHandler
     public void onLoadComplete(FMLLoadCompleteEvent event) {
         proxy.load("complete");
+        proxy.clear();
     }
 
     @EventHandler

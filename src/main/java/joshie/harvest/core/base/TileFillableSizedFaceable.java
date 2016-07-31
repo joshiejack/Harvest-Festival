@@ -1,10 +1,10 @@
-package joshie.harvest.blocks.tiles;
+package joshie.harvest.core.base;
 
 import joshie.harvest.core.util.IFaceable;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 
-public class TileFaceable extends TileHarvest implements IFaceable {
+public abstract class TileFillableSizedFaceable extends TileFillableSized implements IFaceable {
     public EnumFacing orientation;
 
     @Override

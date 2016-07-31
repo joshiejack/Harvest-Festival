@@ -1,6 +1,6 @@
-package joshie.harvest.blocks;
+package joshie.harvest.core.blocks;
 
-import joshie.harvest.blocks.BlockFlower.FlowerType;
+import joshie.harvest.core.blocks.BlockFlower.FlowerType;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.lib.HFModInfo;

@@ -1,6 +1,6 @@
 package joshie.harvest.tools.items;
 
-import joshie.harvest.core.helpers.PlayerHelper;
+import joshie.harvest.core.helpers.ToolHelper;
 import joshie.harvest.core.helpers.generic.DirectionHelper;
 import joshie.harvest.core.base.ItemBaseTool;
 import joshie.harvest.crops.HFCrops;
@@ -130,6 +130,6 @@ public class ItemHoe extends ItemBaseTool {
     private void doParticles(ItemStack stack, EntityPlayer player, World world, BlockPos pos) {
         displayParticle(world, pos, EnumParticleTypes.BLOCK_CRACK, Blocks.DIRT.getDefaultState());
         playSound(world, pos, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS);
-        PlayerHelper.performTask(player, stack, getExhaustionRate(stack));
+        ToolHelper.performTask(player, stack, getExhaustionRate(stack));
     }
 }

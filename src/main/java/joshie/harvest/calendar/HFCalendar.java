@@ -1,9 +1,16 @@
 package joshie.harvest.calendar;
 
+import joshie.harvest.core.util.HFLoader;
+import net.minecraft.world.DimensionType;
+import net.minecraftforge.common.DimensionManager;
+
 import static joshie.harvest.core.helpers.generic.ConfigHelper.getBoolean;
 import static joshie.harvest.core.helpers.generic.ConfigHelper.getInteger;
+import static joshie.harvest.core.lib.LoadOrder.HFCALENDAR;
 
+@HFLoader(priority = HFCALENDAR)
 public class HFCalendar {
+    private static DimensionType SEASONS;
     public static int DAYS_PER_SEASON;
     public static long TICKS_PER_DAY;
     public static boolean ENABLE_DAY_LENGTH;
@@ -22,8 +29,17 @@ public class HFCalendar {
     public static int HUD_XEND;
     public static int HUD_ZEND;
     public static int HUD_DIMENSION;
+    public static int OVERWORLD_ID;
 
+    public static void preInit() {
+        SEASONS = DimensionType.register("seasons", "seasons", OVERWORLD_ID, WeatherProvider.class, true);
+        DimensionManager.unregisterDimension(0);
+        DimensionManager.registerDimension(0, SEASONS);
+    }
+
+    //Configuration
     public static void configure() {
+        OVERWORLD_ID = getInteger("Overworld ID", 3);
         DAYS_PER_SEASON = getInteger("Days per Season", 30);
         TICKS_PER_DAY = getInteger("Ticks per Day", 24000);
         ENABLE_DAY_LENGTH = getBoolean("Day Length > Enable Difference per Season", true);

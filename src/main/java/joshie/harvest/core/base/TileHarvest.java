@@ -1,4 +1,4 @@
-package joshie.harvest.blocks.tiles;
+package joshie.harvest.core.base;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;

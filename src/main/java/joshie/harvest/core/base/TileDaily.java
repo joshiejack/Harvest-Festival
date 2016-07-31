@@ -1,4 +1,4 @@
-package joshie.harvest.blocks.tiles;
+package joshie.harvest.core.base;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.IDailyTickable;

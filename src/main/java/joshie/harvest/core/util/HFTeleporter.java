@@ -1,15 +1,15 @@
-package joshie.harvest.mining;
+package joshie.harvest.core.util;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
 
-public class MiningTeleporter extends Teleporter {
+public class HFTeleporter extends Teleporter {
     private final WorldServer world;
     private final BlockPos pos;
 
-    public MiningTeleporter(WorldServer world, BlockPos pos) {
+    public HFTeleporter(WorldServer world, BlockPos pos) {
         super(world);
         this.pos = pos;
         this.world = world;

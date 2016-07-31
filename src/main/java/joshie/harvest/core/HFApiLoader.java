@@ -3,16 +3,17 @@ package joshie.harvest.core;
 import com.google.common.collect.Lists;
 import joshie.harvest.animals.AnimalRegistry;
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.HFCommand;
 import joshie.harvest.api.HFRegister;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.calendar.CalendarAPI;
 import joshie.harvest.cooking.FoodRegistry;
 import joshie.harvest.core.commands.CommandManager;
-import joshie.harvest.api.HFCommand;
 import joshie.harvest.core.handlers.ShippingRegistry;
 import joshie.harvest.core.handlers.SizeableRegistry;
 import joshie.harvest.core.network.Packet;
+import joshie.harvest.core.util.HFEvents;
 import joshie.harvest.crops.CropRegistry;
 import joshie.harvest.gathering.GatheringRegistry;
 import joshie.harvest.npc.NPCRegistry;
@@ -62,6 +63,12 @@ public class HFApiLoader {
     }
 
     public static void load(@Nonnull ASMDataTable asm, boolean isClient) {
+        registerEverything(asm);
+        registerEvents(asm, isClient);
+        registerPackets(asm);
+    }
+
+    public static void registerEverything(@Nonnull ASMDataTable asm) {
         String annotationClassName = HFRegister.class.getCanonicalName();
         Set<ASMData> asmDatas = new HashSet<>(asm.getAll(annotationClassName));
         for (ASMDataTable.ASMData asmData : asmDatas) {
@@ -71,13 +78,6 @@ public class HFApiLoader {
                 String extra = data.get("data") != null ? (String) data.get("data") : "";
                 if (HFCommand.class.isAssignableFrom(clazz)) {
                     CommandManager.INSTANCE.registerCommand((HFCommand) clazz.newInstance());
-                } else if (extra.equals("events")) {
-                    Method register = getMethod(clazz, "register");
-                    if (register == null || ((Boolean)register.invoke(null))) {
-                        Field INSTANCE = getField(clazz, "INSTANCE");
-                        if (INSTANCE == null) MinecraftForge.EVENT_BUS.register(clazz.newInstance());
-                        else MinecraftForge.EVENT_BUS.register(INSTANCE.get(null));
-                    }
                 } else {
                     String domain = data.get("mod") != null ? (String) data.get("mod") : "harvestfestival";
                     ResourceLocation resource = new ResourceLocation(domain, extra);
@@ -85,9 +85,26 @@ public class HFApiLoader {
                 }
             } catch (Exception e) { e.printStackTrace(); }
         }
+    }
 
-        //Load in Packets
-        registerPackets(asm);
+    private static void registerEvents(@Nonnull ASMDataTable asmDataTable, boolean isClient) {
+        String annotationClassName = HFEvents.class.getCanonicalName();
+        Set<ASMData> asmDatas = new HashSet<>(asmDataTable.getAll(annotationClassName));
+        for (ASMDataTable.ASMData asmData : asmDatas) {
+            try {
+                Map<String, Object> data = asmData.getAnnotationInfo();
+                String side = data.get("value") != null ? ReflectionHelper.getPrivateValue(ModAnnotation.EnumHolder.class, (ModAnnotation.EnumHolder) data.get("value"), "value") : "";
+                if ((side.equals("CLIENT") && isClient) || side.equals("")) {
+                    Class clazz = Class.forName(asmData.getClassName());
+                    Method register = getMethod(clazz, "register");
+                    if (register == null || ((Boolean)register.invoke(null))) {
+                        Field INSTANCE = getField(clazz, "INSTANCE");
+                        if (INSTANCE == null) MinecraftForge.EVENT_BUS.register(clazz.newInstance());
+                        else MinecraftForge.EVENT_BUS.register(INSTANCE.get(null));
+                    }
+                }
+            } catch (Exception e) {}
+        }
     }
 
     private static void registerPackets(@Nonnull ASMDataTable asmDataTable) {
@@ -97,11 +114,10 @@ public class HFApiLoader {
         HashMap<String, Pair<Side, Class>> sidedPackets = new HashMap();
         HashMap<String, Class> unsidedPackets = new HashMap();
         for (ASMDataTable.ASMData asmData : asmDatas) {
-            Class<?> asmClass = null;
             try {
-                asmClass = Class.forName(asmData.getClassName());
+                Class<?> asmClass = Class.forName(asmData.getClassName());
                 Map<String, Object> data = asmData.getAnnotationInfo();
-                String s = data.get("side") != null ? ReflectionHelper.getPrivateValue(ModAnnotation.EnumHolder.class, (ModAnnotation.EnumHolder) data.get("side"), "value") : "BOTH";
+                String s = data.get("value") != null ? ReflectionHelper.getPrivateValue(ModAnnotation.EnumHolder.class, (ModAnnotation.EnumHolder) data.get("value"), "value") : "BOTH";
                 Side side = s.equals("CLIENT") ? Side.CLIENT : s.equals("SERVER") ? Side.SERVER: null;
                 if (side == null) unsidedPackets.put(asmClass.getSimpleName(), asmClass);
                 else sidedPackets.put(asmClass.getSimpleName(), Pair.of(side, (Class)asmClass));

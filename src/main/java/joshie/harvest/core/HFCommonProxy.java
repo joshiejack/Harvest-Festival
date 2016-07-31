@@ -9,7 +9,6 @@ import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.HFIngredients;
 import joshie.harvest.cooking.HFRecipes;
 import joshie.harvest.crops.HFCrops;
-import joshie.harvest.debug.HFDebug;
 import joshie.harvest.gathering.HFGathering;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.npc.HFNPCs;
@@ -35,10 +34,6 @@ public class HFCommonProxy {
     private static final boolean ENABLE_LOGGING = false;
 
     static {
-        if (HFCore.DEBUG_MODE) {
-            LIST.add(HFDebug.class);
-        }
-
         LIST.add(HFCore.class);
         LIST.add(HFPlugins.class);
         LIST.add(HFCalendar.class);

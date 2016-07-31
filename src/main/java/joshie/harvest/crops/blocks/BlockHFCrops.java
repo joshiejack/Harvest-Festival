@@ -13,8 +13,9 @@ import joshie.harvest.core.helpers.CropHelper;
 import joshie.harvest.core.helpers.SeedHelper;
 import joshie.harvest.core.helpers.WorldHelper;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.core.util.base.BlockHFEnum;
-import joshie.harvest.core.util.base.ItemBlockHF;
+import joshie.harvest.core.base.BlockHFEnum;
+import joshie.harvest.core.util.HFEvents;
+import joshie.harvest.core.base.ItemBlockHF;
 import joshie.harvest.crops.Crop;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.crops.blocks.BlockHFCrops.Stage;
@@ -322,6 +323,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
         } else return state;
     }
 
+    @HFEvents
     public static class EventHandler {
         @SubscribeEvent(priority = EventPriority.LOWEST)
         public void onDirtTilled(UseHoeEvent event) {

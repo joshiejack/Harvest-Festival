@@ -1,7 +1,7 @@
 package joshie.harvest.npc.items;
 
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.util.base.ItemHFEnum;
+import joshie.harvest.core.base.ItemHFEnum;
 import joshie.harvest.npc.items.ItemNPCTool.NPCTool;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;

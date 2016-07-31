@@ -6,7 +6,7 @@ import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.PlaceableHelper;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
-import joshie.harvest.core.util.generic.IFaceable;
+import joshie.harvest.core.util.IFaceable;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.NPCRegistry;
 import joshie.harvest.npc.entity.EntityNPCBuilder;

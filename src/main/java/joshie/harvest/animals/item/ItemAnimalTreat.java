@@ -4,7 +4,7 @@ import joshie.harvest.animals.item.ItemAnimalTreat.Treat;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.core.lib.CreativeSort;
-import joshie.harvest.core.util.base.ItemHFEnum;
+import joshie.harvest.core.base.ItemHFEnum;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

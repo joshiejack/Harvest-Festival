@@ -6,7 +6,7 @@ import joshie.harvest.api.player.IQuestHelper;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.ItemHelper;
-import joshie.harvest.core.util.generic.IdiotException;
+import joshie.harvest.core.util.IdiotException;
 import joshie.harvest.player.quests.QuestData;
 import joshie.harvest.quests.packets.PacketQuestDecreaseHeld;
 import joshie.harvest.quests.packets.PacketQuestIncrease;

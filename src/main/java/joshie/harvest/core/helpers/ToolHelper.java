@@ -2,7 +2,7 @@ package joshie.harvest.core.helpers;
 
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.cooking.HFCooking;
-import joshie.harvest.core.util.base.ItemBaseTool;
+import joshie.harvest.core.base.ItemBaseTool;
 import joshie.harvest.npc.HFNPCs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

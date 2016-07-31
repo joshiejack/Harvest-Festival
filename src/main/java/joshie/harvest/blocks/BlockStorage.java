@@ -5,7 +5,7 @@ import joshie.harvest.blocks.tiles.TileShipping;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.lib.CreativeSort;
-import joshie.harvest.core.util.base.BlockHFEnumRotatableTile;
+import joshie.harvest.core.base.BlockHFEnumRotatableTile;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

@@ -8,8 +8,8 @@ import joshie.harvest.api.core.ISeasonData;
 import joshie.harvest.core.helpers.CalendarHelper;
 import joshie.harvest.core.helpers.NBTHelper.ISaveable;
 import joshie.harvest.core.network.PacketHandler;
-import joshie.harvest.core.network.PacketSetCalendar;
-import joshie.harvest.core.network.PacketSyncForecast;
+import joshie.harvest.calendar.packets.PacketSetCalendar;
+import joshie.harvest.calendar.packets.PacketSyncForecast;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 

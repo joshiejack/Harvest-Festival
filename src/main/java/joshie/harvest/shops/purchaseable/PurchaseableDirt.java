@@ -1,6 +1,6 @@
 package joshie.harvest.shops.purchaseable;
 
-import joshie.harvest.core.util.generic.Text;
+import joshie.harvest.core.util.Text;
 import net.minecraft.item.ItemStack;
 
 import java.util.List;

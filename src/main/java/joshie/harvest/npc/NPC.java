@@ -13,7 +13,7 @@ import joshie.harvest.api.npc.gift.IGiftHandler.Quality;
 import joshie.harvest.api.relations.IRelatableDataHandler;
 import joshie.harvest.api.shops.IShop;
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.util.generic.Text;
+import joshie.harvest.core.util.Text;
 import joshie.harvest.npc.greeting.GreetingMultiple;
 import joshie.harvest.npc.greeting.GreetingSingle;
 import net.minecraft.entity.player.EntityPlayer;

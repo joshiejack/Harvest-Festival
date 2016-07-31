@@ -1,6 +1,6 @@
 package joshie.harvest.blocks.tiles;
 
-import joshie.harvest.core.util.generic.IFaceable;
+import joshie.harvest.core.util.IFaceable;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 

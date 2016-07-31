@@ -1,7 +1,7 @@
 package joshie.harvest.buildings.placeable.blocks;
 
 import joshie.harvest.core.util.Direction;
-import joshie.harvest.core.util.generic.IFaceable;
+import joshie.harvest.core.util.IFaceable;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;

@@ -1,8 +1,10 @@
 package joshie.harvest.calendar;
 
+import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
+import joshie.harvest.core.util.HFEvents;
 import joshie.harvest.npc.gui.ContainerNPC;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -12,16 +14,16 @@ import net.minecraftforge.client.event.EntityViewRenderEvent.FogColors;
 import net.minecraftforge.client.event.EntityViewRenderEvent.RenderFogEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
+import net.minecraftforge.event.terraingen.BiomeEvent.GetFoliageColor;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
+@HFEvents(Side.CLIENT)
 public class CalendarRender {
     private static final BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
     private static double fogStart = 1D;
     private static double fogTarget = 1D;
 
-    @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void onRenderOverlay(RenderGameOverlayEvent.Pre event) {
         if (event.getType() == ElementType.CROSSHAIRS) {
@@ -31,7 +33,6 @@ public class CalendarRender {
         }
     }
 
-    @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void onFogRender(RenderFogEvent event) {
         if (!event.getState().getMaterial().isLiquid()) {
@@ -80,7 +81,6 @@ public class CalendarRender {
         }
     }
 
-    @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void onFogColor(FogColors event) {
         if (!event.getState().getMaterial().isLiquid()) {
@@ -90,6 +90,14 @@ public class CalendarRender {
                 event.setBlue(1F);
                 event.setGreen(1F);
             }
+        }
+    }
+
+    //Orange Leaves in Autumn
+    @SubscribeEvent
+    public void getFoliageColor(GetFoliageColor event) {
+        if (HFTrackers.getCalendar(MCClientHelper.getWorld()).getDate().getSeason() == Season.AUTUMN) {
+            event.setNewColor(0xFF9900);
         }
     }
 }

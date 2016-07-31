@@ -28,7 +28,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.EnumPlantType;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
@@ -96,22 +95,23 @@ public class HFCrops {
 
         //Add a new crop item for things that do not have an item yet :D
         for (Crop crop : CropRegistry.REGISTRY.getValues()) {
-            if (!crop.hasItemAssigned()) {
-                crop.setItem(new ItemStack(new ItemCrop(crop).register("crop_" + crop.getRegistryName().getResourcePath()), 1, 0));
-            }
+            if (crop != NULL_CROP) {
+                if (!crop.hasItemAssigned()) {
+                    crop.setItem(new ItemStack(new ItemCrop(crop).register("crop_" + crop.getRegistryName().getResourcePath()), 1, 0));
+                }
 
-            //Register always in the ore dictionary
-            ItemStack clone = crop.getCropStack().copy();
-            clone.setItemDamage(OreDictionary.WILDCARD_VALUE);
+                //Register always in the ore dictionary
+                ItemStack clone = crop.getCropStack().copy();
+                clone.setItemDamage(OreDictionary.WILDCARD_VALUE);
 
-            String name = "crop" + WordUtils.capitalizeFully(crop.getRegistryName().getResourcePath(), '_').replace("_", "");
-            if (!isInDictionary(name, clone)) {
-                OreDictionary.registerOre(name, clone);
+                String name = "crop" + WordUtils.capitalizeFully(crop.getRegistryName().getResourcePath(), '_').replace("_", "");
+                if (!isInDictionary(name, clone)) {
+                    OreDictionary.registerOre(name, clone);
+                }
             }
         }
 
         RegistryHelper.registerTiles(TileCrop.class, TileWithered.class, TileSprinkler.class);
-        MinecraftForge.EVENT_BUS.register(new BlockHFCrops.EventHandler());
         if (DISABLE_VANILLA_MOISTURE) {
             Blocks.FARMLAND.setTickRandomly(false);
         }

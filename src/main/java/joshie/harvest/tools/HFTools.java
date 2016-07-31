@@ -1,11 +1,7 @@
 package joshie.harvest.tools;
 
-import joshie.harvest.core.util.base.ItemBaseTool;
+import joshie.harvest.core.base.ItemBaseTool;
 import joshie.harvest.tools.items.*;
-import joshie.harvest.tools.render.RenderToolLevel;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class HFTools {
     public static final ItemBaseTool HAMMER = new ItemHammer().register("hammer");
@@ -17,8 +13,4 @@ public class HFTools {
     public static final ItemBaseTool WATERING_CAN = new ItemWateringCan().register("wateringcan");
 
     public static void preInit() {}
-    @SideOnly(Side.CLIENT)
-    public static void preInitClient() {
-        MinecraftForge.EVENT_BUS.register(new RenderToolLevel());
-    }
 }

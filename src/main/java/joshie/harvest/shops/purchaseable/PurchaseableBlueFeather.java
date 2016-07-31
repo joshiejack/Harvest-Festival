@@ -2,7 +2,7 @@ package joshie.harvest.shops.purchaseable;
 
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
-import joshie.harvest.core.util.generic.Text;
+import joshie.harvest.core.util.Text;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;

@@ -6,7 +6,7 @@ import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.animals.IMilkable;
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.core.lib.CreativeSort;
-import joshie.harvest.core.util.base.ItemHFEnum;
+import joshie.harvest.core.base.ItemHFEnum;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityChicken;

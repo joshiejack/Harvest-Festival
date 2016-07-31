@@ -5,7 +5,7 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.core.util.generic.Text;
+import joshie.harvest.core.util.Text;
 import joshie.harvest.npc.entity.AbstractEntityNPC;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.Quest.Selection;

@@ -7,7 +7,7 @@ import joshie.harvest.api.animals.IAnimalFeeder;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.blocks.tiles.TileFillable;
 import joshie.harvest.core.lib.CreativeSort;
-import joshie.harvest.core.util.base.BlockHFEnumRotatableMeta;
+import joshie.harvest.core.base.BlockHFEnumRotatableMeta;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;

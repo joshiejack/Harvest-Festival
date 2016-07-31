@@ -8,7 +8,7 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.CalendarHelper;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.core.util.generic.Text;
+import joshie.harvest.core.util.Text;
 import joshie.harvest.shops.purchaseable.Purchaseable;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;

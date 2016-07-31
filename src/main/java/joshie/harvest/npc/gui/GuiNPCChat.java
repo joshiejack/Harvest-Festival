@@ -4,7 +4,7 @@ import joshie.harvest.HarvestFestival;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.NPCHelper;
-import joshie.harvest.core.util.generic.Text;
+import joshie.harvest.core.util.Text;
 import joshie.harvest.npc.entity.AbstractEntityNPC;
 import joshie.harvest.player.stats.StatData;
 import joshie.harvest.api.quests.Quest;

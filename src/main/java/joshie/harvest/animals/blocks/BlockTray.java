@@ -10,7 +10,7 @@ import joshie.harvest.api.animals.INest;
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.blocks.tiles.TileFillable;
 import joshie.harvest.core.lib.CreativeSort;
-import joshie.harvest.core.util.base.BlockHFEnum;
+import joshie.harvest.core.base.BlockHFEnum;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;

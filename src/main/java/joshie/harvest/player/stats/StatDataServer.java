@@ -1,8 +1,8 @@
 package joshie.harvest.player.stats;
 
 import joshie.harvest.core.network.PacketHandler;
-import joshie.harvest.core.network.PacketSyncBirthday;
-import joshie.harvest.core.network.PacketSyncGold;
+import joshie.harvest.player.packets.PacketSyncBirthday;
+import joshie.harvest.player.packets.PacketSyncGold;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 

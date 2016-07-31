@@ -5,6 +5,7 @@ import joshie.harvest.api.core.ITiered;
 import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.lib.HFModInfo;
+import joshie.harvest.core.util.HFEvents;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
@@ -22,16 +23,15 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Mouse;
 
 import java.lang.reflect.Field;
 import java.util.List;
 
+@HFEvents(Side.CLIENT)
 public class RenderToolLevel {
     private static final Field THE_SLOT = ReflectionHelper.findField(GuiContainer.class, ObfuscationReflectionHelper.remapFieldNames(GuiContainer.class.getName(), "theSlot", "field_147006_u", "u"));
 
-    @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void renderTick(TickEvent.RenderTickEvent event) {
         if (event.phase != Phase.END) return;
@@ -63,7 +63,6 @@ public class RenderToolLevel {
         }
     }
 
-    @SideOnly(Side.CLIENT)
     private void drawToolProgress(GuiScreen gui, int x, int y, ToolTier tier, int level, FontRenderer font) {
         GlStateManager.disableRescaleNormal();
         RenderHelper.disableStandardItemLighting();

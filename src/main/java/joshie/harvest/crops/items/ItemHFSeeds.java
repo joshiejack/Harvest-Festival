@@ -8,7 +8,7 @@ import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.helpers.SeedHelper;
 import joshie.harvest.core.lib.CreativeSort;
-import joshie.harvest.core.util.generic.Text;
+import joshie.harvest.core.util.Text;
 import joshie.harvest.crops.Crop;
 import joshie.harvest.crops.CropRegistry;
 import joshie.harvest.crops.HFCrops;

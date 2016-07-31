@@ -5,13 +5,14 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/** Implement this on my packets to have them registered **/
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface Packet {
     /** The side this packet is for **/
-    Side side() default Side.BOTH;
+    Side value() default Side.BOTH;
 
     enum Side {
-        CLIENT, SERVER, BOTH;
+        CLIENT, SERVER, BOTH
     }
 }

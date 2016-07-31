@@ -1,6 +1,6 @@
 package joshie.harvest.core.helpers.generic;
 
-import joshie.harvest.core.network.AbstractPacketLocation;
+import joshie.harvest.core.network.PenguinPacketLocation;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -74,7 +74,7 @@ public class MCClientHelper {
         return new Point(mousepos.x - guiLeft, mousepos.y - guiTop);
     }
 
-    public static TileEntity getTile(AbstractPacketLocation message) {
+    public static TileEntity getTile(PenguinPacketLocation message) {
         return getWorld().getTileEntity(message.pos);
     }
 }

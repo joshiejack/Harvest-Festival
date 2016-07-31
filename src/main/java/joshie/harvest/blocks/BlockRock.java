@@ -5,7 +5,7 @@ import joshie.harvest.api.gathering.ISmashable;
 import joshie.harvest.blocks.BlockRock.Rock;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.lib.CreativeSort;
-import joshie.harvest.core.util.base.BlockHFEnum;
+import joshie.harvest.core.base.BlockHFEnum;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

@@ -1,7 +1,7 @@
 package joshie.harvest.player.fridge;
 
 import joshie.harvest.core.network.PacketHandler;
-import joshie.harvest.core.network.PacketSyncFridge;
+import joshie.harvest.player.packets.PacketSyncFridge;
 import net.minecraft.entity.player.EntityPlayerMP;
 
 public class FridgeDataServer extends FridgeData {

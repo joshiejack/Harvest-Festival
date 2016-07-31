@@ -3,10 +3,10 @@ package joshie.harvest.quests.packets;
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.core.network.Packet;
 import joshie.harvest.core.network.Packet.Side;
-import joshie.harvest.core.network.penguin.PenguinPacket;
+import joshie.harvest.core.network.PenguinPacket;
 import net.minecraft.entity.player.EntityPlayer;
 
-@Packet(side = Side.SERVER)
+@Packet(Side.SERVER)
 public class PacketQuestDecreaseHeld extends PenguinPacket {
     private int amount;
     

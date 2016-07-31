@@ -1,6 +1,7 @@
 package joshie.harvest.api;
 
 /** Annotate any of the following, to have them automatically registered
+ *  @see joshie.harvest.api.HFCommand
  *  @see joshie.harvest.api.quests.Quest
  */
 public @interface HFRegister {

@@ -3,8 +3,6 @@ package joshie.harvest.gathering;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.blocks.BlockFlower.FlowerType;
 import joshie.harvest.blocks.HFBlocks;
-import joshie.harvest.tools.items.ItemAxe;
-import joshie.harvest.core.util.base.ItemBaseTool;
 
 import static joshie.harvest.blocks.BlockRock.Rock.*;
 import static joshie.harvest.blocks.BlockWood.Wood.*;

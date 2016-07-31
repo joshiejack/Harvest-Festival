@@ -6,7 +6,7 @@ import joshie.harvest.core.HFTab;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.lib.LootStrings;
-import joshie.harvest.core.util.base.BlockHFEnum;
+import joshie.harvest.core.base.BlockHFEnum;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.MiningHelper;
 import joshie.harvest.mining.blocks.BlockOre.Ore;

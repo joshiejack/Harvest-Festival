@@ -2,7 +2,7 @@ package joshie.harvest.shops.purchaseable;
 
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.shops.IPurchaseable;
-import joshie.harvest.core.util.generic.Text;
+import joshie.harvest.core.util.Text;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;

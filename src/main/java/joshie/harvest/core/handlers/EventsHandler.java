@@ -1,11 +1,11 @@
 package joshie.harvest.core.handlers;
 
-import joshie.harvest.api.HFRegister;
 import joshie.harvest.core.helpers.CalendarHelper;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.helpers.generic.MCServerHelper;
 import joshie.harvest.core.network.PacketHandler;
-import joshie.harvest.core.network.PacketSetCalendar;
+import joshie.harvest.calendar.packets.PacketSetCalendar;
+import joshie.harvest.core.util.HFEvents;
 import joshie.harvest.player.PlayerTrackerServer;
 import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.gui.GuiWorldSelection;
@@ -30,14 +30,16 @@ import java.io.FileOutputStream;
 
 import static joshie.harvest.calendar.HFCalendar.TICKS_PER_DAY;
 
-@HFRegister(data = "events")
+@HFEvents
 public class EventsHandler {
-    //Setup the Client
-    @SideOnly(Side.CLIENT)
-    @SubscribeEvent
-    public void onOpenGui(GuiOpenEvent event) {
-        if (event.getGui() instanceof GuiWorldSelection || event.getGui() instanceof GuiMultiplayer) {
-            HFTrackers.resetClient();
+    @HFEvents
+    public static class ClientReset {
+        @SideOnly(Side.CLIENT)
+        @SubscribeEvent
+        public void onOpenGui(GuiOpenEvent event) {
+            if (event.getGui() instanceof GuiWorldSelection || event.getGui() instanceof GuiMultiplayer) {
+                HFTrackers.resetClient();
+            }
         }
     }
 

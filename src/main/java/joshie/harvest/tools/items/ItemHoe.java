@@ -2,7 +2,7 @@ package joshie.harvest.tools.items;
 
 import joshie.harvest.core.helpers.PlayerHelper;
 import joshie.harvest.core.helpers.generic.DirectionHelper;
-import joshie.harvest.core.util.base.ItemBaseTool;
+import joshie.harvest.core.base.ItemBaseTool;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;

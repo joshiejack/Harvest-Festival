@@ -1,7 +1,7 @@
 package joshie.harvest.mining.blocks;
 
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.util.base.BlockHFEnumRotatableMeta;
+import joshie.harvest.core.base.BlockHFEnumRotatableMeta;
 import joshie.harvest.mining.blocks.BlockLadder.Ladder;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

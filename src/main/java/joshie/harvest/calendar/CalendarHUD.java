@@ -5,6 +5,7 @@ import joshie.harvest.api.core.ISeasonData;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.lib.HFModInfo;
+import joshie.harvest.core.util.HFEvents;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,14 +13,16 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.text.NumberFormat;
 import java.util.Locale;
 
 import static joshie.harvest.calendar.HFCalendar.*;
 
+@HFEvents(Side.CLIENT)
 public class CalendarHUD {
+    public static boolean register() { return HFCalendar.ENABLE_DATE_HUD || HFCalendar.ENABLE_GOLD_HUD; }
+
     private String formatTime(int time) {
         int hour = time / 1000;
         int minute = (int) ((double) (time % 1000) / 20 * 1.2);
@@ -36,7 +39,6 @@ public class CalendarHUD {
     }
 
 
-    @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void onRenderOverlay(RenderGameOverlayEvent.Pre event) {
         if (!ENABLE_HUD_XZ || isClientInPosition()) {

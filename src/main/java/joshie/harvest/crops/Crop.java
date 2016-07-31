@@ -7,7 +7,7 @@ import joshie.harvest.api.crops.IDropHandler;
 import joshie.harvest.api.crops.ISoilHandler;
 import joshie.harvest.api.crops.IStateHandler;
 import joshie.harvest.core.helpers.SeedHelper;
-import joshie.harvest.core.util.generic.Text;
+import joshie.harvest.core.util.Text;
 import joshie.harvest.crops.handlers.SoilHandlers;
 import joshie.harvest.crops.handlers.StateHandlerDefault;
 import net.minecraft.block.Block;

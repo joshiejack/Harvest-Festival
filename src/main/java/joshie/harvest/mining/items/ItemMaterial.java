@@ -1,8 +1,8 @@
 package joshie.harvest.mining.items;
 
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.util.base.ItemHFEnum;
-import joshie.harvest.core.util.generic.Text;
+import joshie.harvest.core.base.ItemHFEnum;
+import joshie.harvest.core.util.Text;
 import joshie.harvest.mining.items.ItemMaterial.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

@@ -16,5 +16,4 @@ public class NPCEvents extends PlayerEvent {
             super(player, npc);
         }
     }
-
 }

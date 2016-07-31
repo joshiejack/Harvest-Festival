@@ -5,7 +5,7 @@ import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.api.core.ISizeableRegistry;
 import joshie.harvest.api.core.ISizedProvider;
 import joshie.harvest.core.lib.Sizeable;
-import joshie.harvest.core.util.base.ItemSizeable;
+import joshie.harvest.core.base.ItemSizeable;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;

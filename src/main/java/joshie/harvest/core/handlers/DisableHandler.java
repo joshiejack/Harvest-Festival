@@ -1,6 +1,6 @@
 package joshie.harvest.core.handlers;
 
-import joshie.harvest.api.HFRegister;
+import joshie.harvest.core.util.HFEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -18,7 +18,7 @@ import static net.minecraft.init.Items.*;
 
 public class DisableHandler {
     /* Disables vanilla seeds from being able to be planted **/
-    @HFRegister(data = "events")
+    @HFEvents
     public static class DisableVanillaSeeds {
         private static final Set<Item> BLACKLIST = new HashSet<>();
 
@@ -46,7 +46,7 @@ public class DisableHandler {
     }
 
     /* Disables vanilla eggs from spawning chickens **/
-    @HFRegister(data = "events")
+    @HFEvents
     public static class DisableEggSpawning {
         public static boolean register() { return DISABLE_SPAWN_CHICKEN; }
 
@@ -62,7 +62,7 @@ public class DisableHandler {
     }
 
     /* Disables the use of vanilla hoes **/
-    @HFRegister(data = "events")
+    @HFEvents
     public static class DisableHoes {
         public static boolean register() { return DISABLE_VANILLA_HOE; }
 

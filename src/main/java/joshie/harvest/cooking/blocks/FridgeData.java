@@ -1,6 +1,7 @@
-package joshie.harvest.player.fridge;
+package joshie.harvest.cooking.blocks;
 
 import joshie.harvest.api.HFApi;
+import joshie.harvest.core.helpers.NBTHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ItemStackHelper;
@@ -11,9 +12,12 @@ import net.minecraft.util.text.ITextComponent;
 
 public class FridgeData implements IInventory {
     protected ItemStack[] inventory;
+    private TileFridge tile;
 
-    public FridgeData() {
+
+    public FridgeData(TileFridge tile) {
         inventory = new ItemStack[54];
+        this.tile = tile;
     }
 
     @Override
@@ -76,11 +80,13 @@ public class FridgeData implements IInventory {
 
     @Override
     public int getInventoryStackLimit() {
-        return 64;
+        return 512;
     }
 
     @Override
-    public void markDirty() {}
+    public void markDirty() {
+        this.tile.markDirty();
+    }
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer player) {
@@ -106,8 +112,7 @@ public class FridgeData implements IInventory {
     }
 
     @Override
-    public void setField(int id, int value) {
-    }
+    public void setField(int id, int value) {}
 
     @Override
     public int getFieldCount() {
@@ -115,8 +120,7 @@ public class FridgeData implements IInventory {
     }
 
     @Override
-    public void clear() {
-    }
+    public void clear() {}
 
     public void readFromNBT(NBTTagCompound nbt) {
         NBTTagList tagList = nbt.getTagList("FridgeContents", 10);
@@ -124,7 +128,7 @@ public class FridgeData implements IInventory {
             NBTTagCompound tag = tagList.getCompoundTagAt(i);
             byte slot = tag.getByte("Slot");
             if (slot >= 0 && slot < inventory.length) {
-                inventory[slot] = ItemStack.loadItemStackFromNBT(tag);
+                inventory[slot] = NBTHelper.readItemStack(tag);
             }
         }
     }
@@ -136,7 +140,7 @@ public class FridgeData implements IInventory {
             if (stack != null) {
                 NBTTagCompound tag = new NBTTagCompound();
                 tag.setByte("Slot", (byte) i);
-                stack.writeToNBT(tag);
+                NBTHelper.writeItemStack(stack, tag);
                 itemList.appendTag(tag);
             }
         }

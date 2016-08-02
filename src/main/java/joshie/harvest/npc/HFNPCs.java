@@ -138,8 +138,8 @@ public class HFNPCs {
     public static double TOWN_DISTANCE;
 
     public static void configure() {
-        MAX_FRIENDSHIP = getInteger("Maximum Friendship", 65535);
-        MARRIAGE_REQUIREMENT = getInteger("Marriage Requirement", 60000);
-        TOWN_DISTANCE = getDouble("Distance Between Towns", 256D);
+        MAX_FRIENDSHIP = getInteger("Maximum friendship", 65535);
+        MARRIAGE_REQUIREMENT = getInteger("Marriage requirement", 60000);
+        TOWN_DISTANCE = getDouble("Distance between towns", 256D);
     }
 }

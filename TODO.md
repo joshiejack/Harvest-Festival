@@ -15,10 +15,6 @@
 - Cursed Tools have negative effect
 - Syncing Town Information to Players
 - When you can purchase buildings from a town
-- Make tools consume hunger/add exhaustion when used
-- (Fatigue) When a player is fatigued they will walk slower, and sometimes lose their vision
-- Add Config option to restore your hunger when you sleep (off by default)
-- (Exhaustion) Player will walk even slower, have even more frequent vision loss, and will sometimes be nauseous
 
 ### Rendering/Modeling
 - HarvestChicken
@@ -72,10 +68,8 @@
 
 ### To Fix
 - Workout how to use the weighting system in conjunction with forge states, so i don't have to use my own hacked together weighting system...
-- Goddess Water Texture
 - Location of the flower in the spring season overlay
 - Fix item render of Mine Hole
-
 
 ### Textures
 - Crop Grass Better Texture

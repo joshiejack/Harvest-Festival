@@ -1,5 +1,6 @@
 package joshie.harvest.core.handlers;
 
+import joshie.harvest.cooking.blocks.TileFridge;
 import joshie.harvest.cooking.gui.ContainerFridge;
 import joshie.harvest.cooking.gui.GuiFridge;
 import joshie.harvest.core.helpers.NPCHelper;
@@ -11,6 +12,7 @@ import joshie.harvest.shops.gui.GuiNPCBuilderShop;
 import joshie.harvest.shops.gui.GuiNPCShop;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 
@@ -35,7 +37,7 @@ public class GuiHandler implements IGuiHandler {
             case SHOP_MENU:     return new ContainerNPCShop((AbstractEntityNPC) world.getEntityByID(entityID), player.inventory);
             case SHOP_BUILDER:  return new ContainerNPCBuilderShop((AbstractEntityNPC) world.getEntityByID(entityID), player.inventory);
             case GIFT:          return new ContainerNPCGift((AbstractEntityNPC) world.getEntityByID(entityID), player.inventory, EnumHand.values()[hand]);
-            case FRIDGE:        return new ContainerFridge(player.inventory, HFTrackers.getServerPlayerTracker(player).getFridge());
+            case FRIDGE:        return new ContainerFridge(player.inventory, (TileFridge) world.getTileEntity(new BlockPos(entityID, nextGui, hand)));
             case SHOP_OPTIONS:    {
                 AbstractEntityNPC npc = (AbstractEntityNPC) world.getEntityByID(entityID);
                 if (NPCHelper.isShopOpen(npc.getNPC(), world, player)) {
@@ -60,7 +62,7 @@ public class GuiHandler implements IGuiHandler {
             case SHOP_MENU:     return new GuiNPCShop((AbstractEntityNPC) world.getEntityByID(entityID), player);
             case SHOP_BUILDER:  return new GuiNPCBuilderShop((AbstractEntityNPC) world.getEntityByID(entityID), player);
             case GIFT:          return new GuiNPCGift((AbstractEntityNPC) world.getEntityByID(entityID), player, EnumHand.values()[hand]);
-            case FRIDGE:        return new GuiFridge(player.inventory, HFTrackers.getClientPlayerTracker().getFridge());
+            case FRIDGE:        return new GuiFridge(player.inventory, (TileFridge) world.getTileEntity(new BlockPos(entityID, nextGui, hand)));
             case SHOP_OPTIONS:    {
                 AbstractEntityNPC npc = (AbstractEntityNPC) world.getEntityByID(entityID);
                 if (NPCHelper.isShopOpen(npc.getNPC(), world, player)) {

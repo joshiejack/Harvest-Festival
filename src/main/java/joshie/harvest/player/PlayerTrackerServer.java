@@ -2,7 +2,6 @@ package joshie.harvest.player;
 
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.helpers.generic.EntityHelper;
-import joshie.harvest.player.fridge.FridgeDataServer;
 import joshie.harvest.player.quests.QuestDataServer;
 import joshie.harvest.player.relationships.RelationshipDataServer;
 import joshie.harvest.player.stats.StatDataServer;
@@ -13,7 +12,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import java.util.UUID;
 
 public class PlayerTrackerServer extends PlayerTracker {
-    private FridgeDataServer fridge;
     private QuestDataServer quests;
     private RelationshipDataServer relationships;
     private StatDataServer stats;
@@ -26,7 +24,6 @@ public class PlayerTrackerServer extends PlayerTracker {
     public PlayerTrackerServer(EntityPlayerMP player) {
         this.player = player;
         uuid = UUIDHelper.getPlayerUUID(player);
-        fridge = new FridgeDataServer();
         quests = new QuestDataServer(this);
         relationships = new RelationshipDataServer();
         stats = new StatDataServer();
@@ -46,11 +43,6 @@ public class PlayerTrackerServer extends PlayerTracker {
     @Override
     public UUID getUUID() {
         return uuid;
-    }
-
-    @Override
-    public FridgeDataServer getFridge() {
-        return fridge;
     }
 
     @Override
@@ -83,7 +75,6 @@ public class PlayerTrackerServer extends PlayerTracker {
     }
 
     public void syncPlayerStats(EntityPlayerMP player) {
-        fridge.sync(player);
         quests.sync(player);
         relationships.sync(player);
         stats.sync(player);
@@ -91,7 +82,6 @@ public class PlayerTrackerServer extends PlayerTracker {
     }
 
     public void readFromNBT(NBTTagCompound nbt) {
-        fridge.readFromNBT(nbt.getCompoundTag("Fridge"));
         quests.readFromNBT(nbt.getCompoundTag("Quests"));
         relationships.readFromNBT(nbt.getCompoundTag("Relationships"));
         stats.readFromNBT(nbt.getCompoundTag("Stats"));
@@ -99,7 +89,6 @@ public class PlayerTrackerServer extends PlayerTracker {
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
-        nbt.setTag("Fridge", fridge.writeToNBT(new NBTTagCompound()));
         nbt.setTag("Quests", quests.writeToNBT(new NBTTagCompound()));
         nbt.setTag("Relationships", relationships.writeToNBT(new NBTTagCompound()));
         nbt.setTag("Stats", stats.writeToNBT(new NBTTagCompound()));

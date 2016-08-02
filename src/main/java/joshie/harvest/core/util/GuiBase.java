@@ -160,6 +160,5 @@ public abstract class GuiBase extends GuiContainer {
         onMouseClick(mouseX, mouseY);
     }
 
-    protected void onMouseClick(int mouseX, int mouseY) {
-    }
+    protected void onMouseClick(int mouseX, int mouseY) {}
 }

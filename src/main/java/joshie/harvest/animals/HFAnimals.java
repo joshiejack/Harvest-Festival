@@ -113,14 +113,14 @@ public class HFAnimals {
     public static boolean OP_ANIMALS;
 
     public static void configure() {
-        CAN_SPAWN = getBoolean("Enable Animal Natural Spawning", false);
-        DISABLE_SPAWN_CHICKEN = getBoolean("Disable Chickens from Eggs", false);
-        PICKUP_CHICKENS = getBoolean("Enable Placing of Chickens on your head", true);
-        PREGNANCY_TIMER = getInteger("Pregnancy: Number of days", 7);
+        CAN_SPAWN = getBoolean("Enable animal natural spawning", false);
+        DISABLE_SPAWN_CHICKEN = getBoolean("Disable vanilla chickens from eggs", false);
+        PICKUP_CHICKENS = getBoolean("Enable placing of chickens on your head", true);
+        PREGNANCY_TIMER = getInteger("Pregnancy > Number of days", 7);
         CHICKEN_TIMER = HFAnimals.PREGNANCY_TIMER / 2;
-        MAX_LITTER_SIZE = getInteger("Pregnancy: Max litter size", 5);
-        LITTER_EXTRA_CHANCE = getInteger("Pregnancy: Chance of extra birth", 4);
-        AGING_TIMER = getInteger("Maturity: Number of days", 14);
-        OP_ANIMALS = getBoolean("Old Mcdonald had a Farm", false);
+        MAX_LITTER_SIZE = getInteger("Pregnancy > Max litter size", 5);
+        LITTER_EXTRA_CHANCE = getInteger("Pregnancy > Chance of extra birth", 4);
+        AGING_TIMER = getInteger("Number of days animals take to mature", 14);
+        OP_ANIMALS = getBoolean("Old Mcdonald had a farm", false);
     }
 }

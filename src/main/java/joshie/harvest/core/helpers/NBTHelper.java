@@ -6,8 +6,11 @@ import joshie.harvest.core.base.TileHarvest;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.player.tracking.TrackingData.AbstractHolder;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -120,5 +123,36 @@ public class NBTHelper {
     public interface ISaveable {
         void readFromNBT(NBTTagCompound tag);
         NBTTagCompound writeToNBT(NBTTagCompound tag);
+    }
+
+    public static ItemStack readItemStack(NBTTagCompound nbt) {
+        ItemStack stack = new ItemStack(Item.getByNameOrId(nbt.getString("id")));
+        stack.stackSize = nbt.getInteger("Count");
+        int damage = nbt.getShort("Damage");
+
+        if (damage < 0){
+            damage = 0;
+        }
+
+        stack.setItemDamage(damage);
+        if (nbt.hasKey("tag", 10)) {
+            stack.setTagCompound(nbt.getCompoundTag("tag"));
+            stack.getItem().updateItemStackNBT(stack.getTagCompound());
+        } else stack.setTagCompound(null);
+
+        return stack;
+    }
+
+    public static NBTTagCompound writeItemStack(ItemStack stack, NBTTagCompound nbt) {
+        ResourceLocation resourcelocation = Item.REGISTRY.getNameForObject(stack.getItem());
+        nbt.setString("id", resourcelocation == null ? "minecraft:air" : resourcelocation.toString());
+        nbt.setInteger("Count", stack.stackSize);
+        nbt.setShort("Damage", (short)stack.getItemDamage());
+
+        if (stack.getTagCompound() != null) {
+            nbt.setTag("tag", stack.getTagCompound());
+        }
+
+        return nbt;
     }
 }

@@ -4,9 +4,9 @@ import joshie.harvest.HarvestFestival;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.blocks.BlockCookware.Cookware;
 import joshie.harvest.core.HFTab;
+import joshie.harvest.core.base.BlockHFEnumRotatableTile;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.helpers.generic.ItemHelper;
-import joshie.harvest.core.base.BlockHFEnumRotatableTile;
 import joshie.harvest.core.util.IFaceable;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -104,7 +104,8 @@ public class BlockCookware extends BlockHFEnumRotatableTile<BlockCookware, Cookw
         Cookware cookware = getEnumFromState(state);
         if (player.isSneaking()) return false;
         else if (cookware == FRIDGE || cookware == FRIDGE_TOP) {
-            player.openGui(HarvestFestival.instance, GuiHandler.FRIDGE, world, pos.getX(), pos.getY(), pos.getZ());
+            int y = cookware == FRIDGE_TOP ? pos.getY() - 1 : pos.getY();
+            player.openGui(HarvestFestival.instance, GuiHandler.FRIDGE, world, pos.getX(), y, pos.getZ());
             return true;
         } else if (cookware == COUNTER) {
             ItemStack held = player.getHeldItem(hand);

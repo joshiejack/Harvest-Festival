@@ -2,7 +2,6 @@ package joshie.harvest.player;
 
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
-import joshie.harvest.player.fridge.FridgeData;
 import joshie.harvest.player.quests.QuestDataClient;
 import joshie.harvest.player.relationships.RelationshipDataClient;
 import joshie.harvest.player.stats.StatDataClient;
@@ -15,7 +14,6 @@ import java.util.UUID;
 
 @SideOnly(Side.CLIENT)
 public class PlayerTrackerClient extends PlayerTracker {
-    protected FridgeData fridge = new FridgeData();
     private QuestDataClient quests = new QuestDataClient();
     private RelationshipDataClient relationships = new RelationshipDataClient();
     private StatDataClient stats = new StatDataClient();
@@ -29,15 +27,6 @@ public class PlayerTrackerClient extends PlayerTracker {
     @Override
     public UUID getUUID() {
         return UUIDHelper.getPlayerUUID(getAndCreatePlayer());
-    }
-
-    @Override
-    public FridgeData getFridge() {
-        return fridge;
-    }
-
-    public void setFridge(FridgeData fridge) {
-        this.fridge = fridge;
     }
 
     @Override

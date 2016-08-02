@@ -1,6 +1,5 @@
 package joshie.harvest.player;
 
-import joshie.harvest.player.fridge.FridgeData;
 import joshie.harvest.player.quests.QuestData;
 import joshie.harvest.player.relationships.RelationshipData;
 import joshie.harvest.player.stats.StatData;
@@ -13,8 +12,6 @@ public abstract class PlayerTracker {
     public abstract EntityPlayer getAndCreatePlayer();
 
     public abstract UUID getUUID();
-
-    public abstract FridgeData getFridge();
 
     public abstract QuestData getQuests();
 

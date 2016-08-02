@@ -40,18 +40,18 @@ public class HFCalendar {
     //Configuration
     public static void configure() {
         OVERWORLD_ID = getInteger("Overworld ID", 3);
-        DAYS_PER_SEASON = getInteger("Days per Season", 30);
-        TICKS_PER_DAY = getInteger("Ticks per Day", 24000);
-        ENABLE_DAY_LENGTH = getBoolean("Day Length > Enable Difference per Season", true);
-        ENABLE_SEASONAL_SKY = getBoolean("Sky > Enable Difference per Season", true);
-        ENABLE_FORECAST = getBoolean("Weather > Enable Weather System", true);
-        ENABLE_SUNNY = getBoolean("Weather > Enable Sunny", true);
-        ENABLE_RAIN = getBoolean("Weather > Enable Rain", true);
-        ENABLE_TYPHOON = getBoolean("Weather > Enable Typhoon", true);
-        ENABLE_SNOW = getBoolean("Weather > Enable Snow", true);
-        ENABLE_BLIZZARD = getBoolean("Weather > Enable Blizzard", true);
-        ENABLE_DATE_HUD = getBoolean("HUD > Enable Data", true);
-        ENABLE_GOLD_HUD = getBoolean("HUD > Enable Gold", true);
+        DAYS_PER_SEASON = getInteger("Days per season", 30);
+        TICKS_PER_DAY = getInteger("Ticks per day", 24000);
+        ENABLE_DAY_LENGTH = getBoolean("Seasons > Different day length", true);
+        ENABLE_SEASONAL_SKY = getBoolean("Seasons > Different sky appearance", true);
+        ENABLE_FORECAST = getBoolean("Weather > Enable weather system", true);
+        ENABLE_SUNNY = getBoolean("Weather > Enable sunny", true);
+        ENABLE_RAIN = getBoolean("Weather > Enable rain", true);
+        ENABLE_TYPHOON = getBoolean("Weather > Enable typhoon", true);
+        ENABLE_SNOW = getBoolean("Weather > Enable snow", true);
+        ENABLE_BLIZZARD = getBoolean("Weather > Enable blizzard", true);
+        ENABLE_DATE_HUD = getBoolean("HUD > Enable data", true);
+        ENABLE_GOLD_HUD = getBoolean("HUD > Enable gold", true);
         ENABLE_HUD_XZ = getBoolean("HUD > Coordinates", false);
         if (ENABLE_HUD_XZ) {
             ENABLE_DATE_HUD = true;

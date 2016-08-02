@@ -35,6 +35,6 @@ public class HFMining {
     public static int MINING_ID;
 
     public static void configure() {
-        MINING_ID = getInteger("Mining World ID", 4);
+        MINING_ID = getInteger("Mining world ID", 4);
     }
 }

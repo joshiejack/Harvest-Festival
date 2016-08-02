@@ -5,6 +5,7 @@ import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.animals.IMilkable;
 import joshie.harvest.api.core.ICreativeSorted;
+import joshie.harvest.core.helpers.ToolHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.base.ItemHFEnum;
 import net.minecraft.entity.EntityLivingBase;
@@ -65,6 +66,8 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> implements 
             if (milkable != null) {
                 milkable.milk(player);
             }
+
+            ToolHelper.consumeHunger(player, 4F);
         }
 
         return stack;
@@ -97,6 +100,7 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> implements 
             }
         }
 
+        ToolHelper.consumeHunger(player, 5F);
         return true;
     }
 
@@ -112,6 +116,7 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> implements 
             }
         }
 
+        ToolHelper.consumeHunger(player, 4F);
         return true;
     }
 

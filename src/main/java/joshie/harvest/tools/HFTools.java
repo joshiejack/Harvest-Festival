@@ -39,13 +39,15 @@ public class HFTools {
     //Configuration
     public static float EXHAUSTION_AMOUNT;
     public static boolean RESTORE_HUNGER_ON_SLEEP;
-    public static boolean ATTACKING_CONSUMES_HUNGER;
     public static boolean HF_CONSUME_HUNGER;
+    public static boolean ATTACK_FAINTING;
+    public static boolean BLOCK_FAINTING;
 
     public static void configure() {
         EXHAUSTION_AMOUNT = 4F / getInteger("Actions per half haunch", 27);
         RESTORE_HUNGER_ON_SLEEP = getBoolean("Restore hunger on sleep", true);
-        ATTACKING_CONSUMES_HUNGER = getBoolean("Attack entities consumes hunger", true);
         HF_CONSUME_HUNGER = getBoolean("Performing Harvest Festival actions consumes hunger", true);
+        ATTACK_FAINTING = getBoolean("Attack entities has chance of fainting", false);
+        BLOCK_FAINTING = getBoolean("Breaking blocks has chance of fainting", false);
     }
 }

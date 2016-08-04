@@ -7,6 +7,7 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
+import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
@@ -17,12 +18,22 @@ import static joshie.harvest.tools.HFTools.FATIGUE;
 @HFEvents
 public class ToolEvents {
     @HFEvents
-    public static class AttackEvent {
-        public static boolean register () {  return HFTools.ATTACKING_CONSUMES_HUNGER; }
+    public static class AttackFainting {
+        public static boolean register() { return HFTools.ATTACK_FAINTING; }
 
         @SubscribeEvent
-        public void onAttackEntity (AttackEntityEvent event){
-            ToolHelper.consumeHunger(event.getEntityPlayer(), 1F);
+        public void onAttackEntity(AttackEntityEvent event){
+            ToolHelper.consumeHunger(event.getEntityPlayer(), 0F);
+        }
+    }
+
+    @HFEvents
+    public static class BreakFainting {
+        public static boolean register() { return HFTools.BLOCK_FAINTING; }
+
+        @SubscribeEvent
+        public void onHarvestBlock(HarvestDropsEvent event){
+            ToolHelper.consumeHunger(event.getHarvester(), 0F);
         }
     }
 

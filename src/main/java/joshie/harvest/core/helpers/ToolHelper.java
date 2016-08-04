@@ -67,8 +67,9 @@ public class ToolHelper {
     }
 
     public static void consumeHunger(EntityPlayer player, float amount) {
+        if (player == null) return; //No null players allowed
         int level = player.getFoodStats().getFoodLevel();
-        player.getFoodStats().addExhaustion(HFTools.EXHAUSTION_AMOUNT * amount); //Add Exhaustion
+        if (amount > 0F) player.getFoodStats().addExhaustion(HFTools.EXHAUSTION_AMOUNT * amount); //Add Exhaustion
         if (level > 2 && level <= 6) {
             player.removePotionEffect(EXHAUSTION); //Don't ever have fatigue/exhaustion at same time
             player.addPotionEffect(new PotionEffect(FATIGUE, 6000));

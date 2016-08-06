@@ -24,7 +24,7 @@ public class Crop extends net.minecraftforge.fml.common.registry.IForgeRegistryE
     private static final Random rand = new Random();
 
     //CropData
-    protected IStateHandler iconHandler;
+    protected IStateHandler stateHandler;
     protected ISoilHandler soilHandler;
     protected IDropHandler dropHandler;
     protected Block growsToSide;
@@ -71,7 +71,7 @@ public class Crop extends net.minecraftforge.fml.common.registry.IForgeRegistryE
         this.alternativeName = false;
         this.foodType = AnimalFoodType.VEGETABLE;
         this.bag_color = color;
-        this.iconHandler = new StateHandlerDefault(this);
+        this.stateHandler = new StateHandlerDefault(this);
         this.soilHandler = SoilHandlers.FARMLAND;
         this.needsWatering = true;
         this.doubleStage = Integer.MAX_VALUE;
@@ -96,7 +96,7 @@ public class Crop extends net.minecraftforge.fml.common.registry.IForgeRegistryE
 
     @Override
     public Crop setStateHandler(IStateHandler handler) {
-        this.iconHandler = handler;
+        this.stateHandler = handler;
         return this;
     }
 
@@ -278,7 +278,7 @@ public class Crop extends net.minecraftforge.fml.common.registry.IForgeRegistryE
 
     @Override
     public IStateHandler getStateHandler() {
-        return iconHandler;
+        return stateHandler;
     }
 
     @Override

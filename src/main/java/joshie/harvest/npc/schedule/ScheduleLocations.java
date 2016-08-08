@@ -12,4 +12,9 @@ public class ScheduleLocations {
     static final BuildingLocation POULTRYBUILDING = new BuildingLocation(POULTRY_FARM, ASHLEE_HOME);
     static final BuildingLocation TOWNHALLLEFT = new BuildingLocation(TOWNHALL, TOWNHALL_LEFT_WING);
     static final BuildingLocation CHURCHINSIDE = new BuildingLocation(CHURCH, THOMAS);
+    static final BuildingLocation GENERALFRONT = new BuildingLocation(SUPERMARKET, MARKET_STOREFRONT);
+    static final BuildingLocation CARPENTERFRONT = new BuildingLocation(CARPENTER, CARPENTER_DOOR);
+    static final BuildingLocation CHURCHFRONT = new BuildingLocation(CHURCH, CHURCH_FRONT);
+    static final BuildingLocation MINEENTRANCE = new BuildingLocation(MINING_HILL, MINE_ENTRANCE);
+    static final BuildingLocation MINEHUTENTRANCE = new BuildingLocation(MINING_HUT, MINER_FRONT);
 }

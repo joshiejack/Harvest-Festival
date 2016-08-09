@@ -2,14 +2,14 @@ package joshie.harvest.animals;
 
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.animals.blocks.*;
+import joshie.harvest.animals.entity.EntityHarvestChicken;
 import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.animals.entity.EntityHarvestSheep;
 import joshie.harvest.animals.item.ItemAnimalSpawner;
+import joshie.harvest.animals.item.ItemAnimalSpawner.Spawner;
 import joshie.harvest.animals.item.ItemAnimalTool;
 import joshie.harvest.animals.item.ItemAnimalTreat;
-import joshie.harvest.animals.render.ModelHarvestCow;
-import joshie.harvest.animals.render.ModelHarvestSheep;
-import joshie.harvest.animals.render.RenderHarvestAnimal;
+import joshie.harvest.animals.render.*;
 import joshie.harvest.animals.type.AnimalChicken;
 import joshie.harvest.animals.type.AnimalCow;
 import joshie.harvest.animals.type.AnimalSheep;
@@ -28,8 +28,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import static joshie.harvest.animals.AnimalRegistry.registerFoodsAsType;
-import static joshie.harvest.animals.item.ItemAnimalSpawner.Spawner.COW;
-import static joshie.harvest.animals.item.ItemAnimalSpawner.Spawner.SHEEP;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.CHICKEN_FEED;
 import static joshie.harvest.api.HFApi.animals;
 import static joshie.harvest.api.animals.AnimalFoodType.*;
@@ -59,6 +57,7 @@ public class HFAnimals {
     public static void preInit() {
         registerModEntity(EntityHarvestCow.class, "cow", 5, HarvestFestival.instance, 150, 3, true);
         registerModEntity(EntityHarvestSheep.class, "sheep", 6, HarvestFestival.instance, 150, 3, true);
+        registerModEntity(EntityHarvestChicken.class, "chicken", 7, HarvestFestival.instance, 150, 3, true);
         registerFoodsAsType(CHICKEN, Items.CHICKEN, Items.COOKED_CHICKEN);
         registerFoodsAsType(FISH, Items.FISH, Items.COOKED_FISH);
         registerFoodsAsType(FRUIT, Items.APPLE, Items.MELON);
@@ -87,12 +86,21 @@ public class HFAnimals {
         RenderingRegistry.registerEntityRenderingHandler(EntityHarvestSheep.class, new IRenderFactory<EntityHarvestSheep>() {
             @Override
             public Render<? super EntityHarvestSheep> createRenderFor(RenderManager manager) {
-                return new RenderHarvestAnimal(manager, new ModelHarvestSheep(), "sheep");
+                return new RenderHarvestSheep(manager);
             }
         });
 
-        RegistryHelper.registerEntityRendererItem(ANIMAL.getStackFromEnum(COW), new ModelHarvestCow());
-        RegistryHelper.registerEntityRendererItem(ANIMAL.getStackFromEnum(SHEEP), new ModelHarvestSheep());
+        //Register the chicken
+        RenderingRegistry.registerEntityRenderingHandler(EntityHarvestChicken.class, new IRenderFactory<EntityHarvestChicken>() {
+            @Override
+            public Render<? super EntityHarvestChicken> createRenderFor(RenderManager manager) {
+                return new RenderHarvestChicken(manager);
+            }
+        });
+
+        RegistryHelper.registerEntityRendererItem(ANIMAL.getStackFromEnum(Spawner.COW), new ModelHarvestCow());
+        RegistryHelper.registerEntityRendererItem(ANIMAL.getStackFromEnum(Spawner.SHEEP), new ModelHarvestSheep());
+        RegistryHelper.registerEntityRendererItem(ANIMAL.getStackFromEnum(Spawner.CHICKEN), new ModelHarvestChicken());
     }
 
     public static void init() {

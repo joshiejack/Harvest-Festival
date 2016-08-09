@@ -16,7 +16,6 @@
 - When you can purchase buildings from a town
 
 ### Rendering/Modeling
-- HarvestChicken
 - Change Blueprints to so that you can hover and click where you want them placed with a preview of the building
 - Allow repositioning of coin/seasons huds
 

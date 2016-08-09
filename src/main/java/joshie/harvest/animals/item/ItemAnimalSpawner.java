@@ -1,5 +1,6 @@
 package joshie.harvest.animals.item;
 
+import joshie.harvest.animals.entity.EntityHarvestChicken;
 import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.animals.entity.EntityHarvestSheep;
 import joshie.harvest.animals.item.ItemAnimalSpawner.Spawner;
@@ -38,6 +39,8 @@ public class ItemAnimalSpawner extends ItemHFEnum<ItemAnimalSpawner, Spawner> {
                 return new EntityHarvestCow(world);
             case SHEEP:
                 return new EntityHarvestSheep(world);
+            case CHICKEN:
+                return new EntityHarvestChicken(world);
             default:
                 return null;
         }
@@ -48,6 +51,7 @@ public class ItemAnimalSpawner extends ItemHFEnum<ItemAnimalSpawner, Spawner> {
         if (!world.isRemote) {
             EntityAgeable entity = getEntityFromEnum(world, getEnumFromStack(stack));
             if (entity != null) {
+                if (player.isSneaking()) entity.setGrowingAge(-24000);
                 entity.setPosition(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5);
                 world.spawnEntityInWorld(entity);
             }

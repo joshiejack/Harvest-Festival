@@ -18,6 +18,7 @@ public class MineManager  {
     private TIntObjectMap<TIntObjectMap<IBlockState[][]>> generation = new TIntObjectHashMap();
     private TIntObjectMap<int[]> coordinates = new TIntObjectHashMap();
     private TIntObjectMap<BlockPos> spawnCoordinates = new TIntObjectHashMap<>();
+    private TIntObjectMap<BlockPos> portalCoordinates = new TIntObjectHashMap<>();
 
     public boolean areCoordinatesGenerated(int mineID) {
         return spawnCoordinates.containsKey(mineID);

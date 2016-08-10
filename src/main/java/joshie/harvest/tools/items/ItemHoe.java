@@ -21,8 +21,12 @@ import net.minecraftforge.event.entity.player.UseHoeEvent;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 
 import javax.annotation.Nullable;
+import java.util.HashSet;
 
 public class ItemHoe extends ItemBaseTool {
+    public ItemHoe() {
+        super("hoe", new HashSet<>());
+    }
 
     @Override
     public int getFront(ToolTier tier) {

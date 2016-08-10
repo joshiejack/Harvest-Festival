@@ -18,7 +18,13 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import java.util.HashSet;
+
 public class ItemSickle extends ItemBaseTool implements IBreakCrops {
+    public ItemSickle() {
+        super("sickle", new HashSet<>());
+    }
+
     @Override
     public int getFront(ToolTier tier) {
         switch (tier) {

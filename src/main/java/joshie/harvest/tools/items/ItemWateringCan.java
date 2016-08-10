@@ -22,10 +22,18 @@ import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidContainerItem;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
+import java.util.HashSet;
+import java.util.List;
 
 public class ItemWateringCan extends ItemBaseTool implements IFluidContainerItem {
+    public ItemWateringCan() {
+        super("watering_can", new HashSet<>());
+    }
+
     @Override
     public int getFront(ToolTier tier) {
         switch (tier) {
@@ -67,6 +75,11 @@ public class ItemWateringCan extends ItemBaseTool implements IFluidContainerItem
             default:
                 return 0;
         }
+    }
+
+    @Override
+    public boolean canBeDamaged() {
+        return false;
     }
 
     @Override
@@ -195,6 +208,14 @@ public class ItemWateringCan extends ItemBaseTool implements IFluidContainerItem
                     }
                 }
             }
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+        if (advanced) {
+            tooltip.add("Water: " + getCapacity(stack));
+            tooltip.add("Level: " + getLevel(stack));
         }
     }
 }

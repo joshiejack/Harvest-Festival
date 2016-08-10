@@ -3,6 +3,7 @@ package joshie.harvest.core.base;
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.api.core.ILevelable;
 import joshie.harvest.api.core.ITiered;
+import joshie.harvest.core.helpers.ToolHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.Text;
 import net.minecraft.block.Block;
@@ -26,14 +27,19 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Set;
 
 public abstract class ItemBaseTool extends ItemHFBase<ItemBaseTool> implements ILevelable, ITiered, ICreativeSorted {
+    private final Set<Block> effectiveBlocks;
+    private final String toolClass;
     /**
      * Create a tool
      */
-    public ItemBaseTool() {
+    public ItemBaseTool(String toolClass, Set<Block> effective) {
         setMaxStackSize(1);
         setHasSubtypes(true);
+        this.effectiveBlocks = effective;
+        this.toolClass = toolClass;
     }
 
     public ItemStack getStack(ToolTier tier) {
@@ -53,11 +59,6 @@ public abstract class ItemBaseTool extends ItemHFBase<ItemBaseTool> implements I
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
         return Text.localize(super.getUnlocalizedName().replace("item.", "") + "." + getTier(stack).name().toLowerCase());
-    }
-
-    @Override
-    public boolean showDurabilityBar(ItemStack stack) {
-        return false;
     }
 
     @Override
@@ -94,6 +95,43 @@ public abstract class ItemBaseTool extends ItemHFBase<ItemBaseTool> implements I
     }
 
     @Override
+    public boolean showDurabilityBar(ItemStack stack) {
+        return getDurabilityForDisplay(stack) > 0D;
+    }
+
+    @Override
+    public double getDurabilityForDisplay(ItemStack stack)  {
+        return (double) getDamageForDisplay(stack) / (double)getMaximumToolDamage(stack);
+    }
+
+    public boolean canBeDamaged() {
+        return true;
+    }
+
+    protected int getDamageForDisplay(ItemStack stack) {
+        return stack.getSubCompound("Data", true).getInteger("Damage");
+    }
+
+    public boolean canUseAndDamage(ItemStack stack) {
+        if (getDamageForDisplay(stack) + 1 < getMaximumToolDamage(stack) || !canBeDamaged()) {
+            return true;
+        } else return false;
+    }
+
+    @Override
+    public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving) {
+        if (canBeDamaged()) {
+            if (this.effectiveBlocks.contains(state.getBlock())) {
+                ToolHelper.levelTool(stack);
+            }
+
+            stack.getSubCompound("Data", true).setInteger("Damage", getDamageForDisplay(stack) + 1);
+        }
+
+        return true;
+    }
+
+    @Override
     public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
         return super.shouldCauseReequipAnimation(oldStack, newStack, slotChanged);
     }
@@ -110,8 +148,10 @@ public abstract class ItemBaseTool extends ItemHFBase<ItemBaseTool> implements I
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer playerIn, EnumHand hand) {
-        playerIn.setActiveHand(hand);
-        return new ActionResult(EnumActionResult.SUCCESS, stack);
+        if (canUseAndDamage(stack)) {
+            playerIn.setActiveHand(hand);
+            return new ActionResult(EnumActionResult.SUCCESS, stack);
+        } else return new ActionResult<>(EnumActionResult.PASS, stack);
     }
 
     @Override
@@ -184,6 +224,86 @@ public abstract class ItemBaseTool extends ItemHFBase<ItemBaseTool> implements I
                 return 0.0784313725490196D;
             case MYTHIC:
                 return 0.0392156862745098D;
+            default:
+                return 0;
+        }
+    }
+
+    public int getMaximumToolDamage(ItemStack stack) {
+        ToolTier tier = getTier(stack);
+        switch (tier) {
+            case BASIC:
+                return 256;
+            case COPPER:
+                return 512;
+            case SILVER:
+                return 1024;
+            case GOLD:
+                return 2048;
+            case MYSTRIL:
+                return 4096;
+            case CURSED:
+            case BLESSED:
+                return 8192;
+            case MYTHIC:
+                return 16384;
+            default:
+                return 0;
+        }
+    }
+
+    public float getEffiency(ItemStack stack) {
+        ToolTier tier = getTier(stack);
+        float effiency = 0F;
+        switch (tier) {
+            case BASIC:
+                effiency = 1.25F;
+                break;
+            case COPPER:
+                effiency = 2.5F;
+                break;
+            case SILVER:
+                effiency =  5F;
+                break;
+            case GOLD:
+                effiency =  7.5F;
+                break;
+            case MYSTRIL:
+                effiency =  10F;
+                break;
+            case CURSED:
+            case BLESSED:
+                effiency =  15F;
+                break;
+            case MYTHIC:
+                effiency =  20F;
+                break;
+        }
+
+        return Math.max(effiency, ((getLevel(stack) + 1) /50F) * effiency);
+    }
+
+    @Override
+    public int getHarvestLevel(ItemStack stack, String toolClass) {
+        if (!toolClass.equals(this.toolClass)) return 0;
+        if (!canUseAndDamage(stack)) return 0;
+        ToolTier tier = getTier(stack);
+        switch (tier) {
+            case BASIC:
+                return 1;
+            case COPPER:
+                return 2;
+            case SILVER:
+                return 3;
+            case GOLD:
+                return 4;
+            case MYSTRIL:
+                return 5;
+            case CURSED:
+            case BLESSED:
+                return 6;
+            case MYTHIC:
+                return 7;
             default:
                 return 0;
         }
@@ -274,5 +394,35 @@ public abstract class ItemBaseTool extends ItemHFBase<ItemBaseTool> implements I
 
         Vec3d vec31 = vec3.addVector((double)f6 * d3, (double)f5 * d3, (double)f7 * d3);
         return world.rayTraceBlocks(vec3, vec31, false, false, false);
+    }
+
+    //Tools
+    @Override
+    public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
+        return false;
+    }
+
+    @Override
+    public Set<String> getToolClasses(ItemStack stack) {
+        return toolClass != null ? com.google.common.collect.ImmutableSet.of(toolClass) : super.getToolClasses(stack);
+    }
+
+    @Override
+    public float getStrVsBlock(ItemStack stack, IBlockState state) {
+        for (String type : getToolClasses(stack)) {
+            if (state.getBlock().isToolEffective(type, state))
+                return getEffiency(stack);
+        }
+
+        return this.effectiveBlocks.contains(state.getBlock()) ? getEffiency(stack) : 1.0F;
+    }
+
+
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+        if (advanced) {
+            tooltip.add("Durability: " + getDamageForDisplay(stack));
+            tooltip.add("Level: " + getLevel(stack));
+        }
     }
 }

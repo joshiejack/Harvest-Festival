@@ -1,5 +1,4 @@
 ### NPCS, Conversations & AI
-- Schedule Based Conversations
 - Add Extra Chat Messages, and Conversations for all NPCs
 
 ### Mining Dimension Stuff
@@ -8,7 +7,6 @@
 - Add an Overlay that tells you what floor you are on
 
 ### Functionality
-- Make Mythic Axe Fell Whole Trees
 - Make Axes have an AOE that will break all branches/stumps
 - Cursed Tools have negative effect
 - Syncing Town Information to Players

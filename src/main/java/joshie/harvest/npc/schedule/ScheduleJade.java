@@ -9,14 +9,13 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.world.World;
 
 import static joshie.harvest.api.npc.INPC.Location.HOME;
-import static joshie.harvest.npc.schedule.ScheduleLocations.GODDESS;
-import static joshie.harvest.npc.schedule.ScheduleLocations.POND;
+import static joshie.harvest.npc.schedule.ScheduleLocations.*;
 
-public class ScheduleJacob implements ISchedule {
+public class ScheduleJade implements ISchedule {
     @Override
-    public BuildingLocation getTarget(World world, EntityLiving entity, INPC npc, Season season, Weekday weekday, long time) {
-        if (time >= 5000L && time <= 9000L) return POND;
-        else if (time >= 9000L && time <= 11000L) return GODDESS;
+    public BuildingLocation getTarget(World world, EntityLiving entity, INPC npc, Season season, Weekday day, long time) {
+        if (time >= 5000L && time <= 9000L) return CARPENTERDOWN;
+        else if (time >= 9000L && time <= 17000L) return CARPENTERFRONT;
         else return npc.getLocation(HOME);
     }
 }

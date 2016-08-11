@@ -1,5 +1,4 @@
 ### NPCS, Conversations & AI
-- Add Schedules for NPCs, where they visit specific buildings at certain times
 - Schedule Based Conversations
 - Add Extra Chat Messages, and Conversations for all NPCs
 

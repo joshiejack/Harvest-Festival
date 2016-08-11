@@ -5,18 +5,18 @@ import joshie.harvest.api.npc.gift.IGiftHandler;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
-public class GiftsAbi implements IGiftHandler {
+public class GiftsGirafi implements IGiftHandler {
     @Override
     public Quality getQuality(ItemStack stack) {
-        if (stack.getItem() == Items.SUGAR) {
+        if (stack.getItem() == Items.WHEAT) {
             return Quality.AWESOME;
         }
 
-        if (GiftRegistry.is(stack, GiftCategory.CUTE)) {
+        if (GiftRegistry.is(stack, GiftCategory.ANIMALS)) {
             return Quality.GOOD;
         }
 
-        if (GiftRegistry.is(stack, GiftCategory.SCARY)) {
+        if (GiftRegistry.is(stack, GiftCategory.CONSTRUCTION)) {
             return Quality.BAD;
         }
 

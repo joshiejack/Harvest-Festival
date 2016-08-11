@@ -1,10 +1,10 @@
 package joshie.harvest.core.commands;
 
 import joshie.harvest.api.HFCommand;
-import joshie.harvest.api.HFRegister;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.lib.HFModInfo;
+import joshie.harvest.core.util.HFEvents;
 import net.minecraft.command.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
@@ -22,10 +22,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@HFRegister(data = "events")
+@HFEvents
 public class CommandManager extends CommandBase implements ICommand {
     public static final CommandManager INSTANCE = new CommandManager();
-    private HashMap<String, HFCommand> commands = new HashMap<String, HFCommand>();
+    private HashMap<String, HFCommand> commands = new HashMap<>();
 
     public void registerCommand(HFCommand command) {
         commands.put(command.getCommandName(), command);
@@ -36,7 +36,7 @@ public class CommandManager extends CommandBase implements ICommand {
     }
 
     public List<HFCommand> getPossibleCommands(ICommandSender sender) {
-        ArrayList<HFCommand> list = new ArrayList<HFCommand>();
+        ArrayList<HFCommand> list = new ArrayList<>();
         for (HFCommand command : commands.values()) {
             if (sender.canCommandSenderUseCommand(command.getPermissionLevel().ordinal(), command.getCommandName())) {
                 list.add(command);

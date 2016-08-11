@@ -13,7 +13,7 @@ harvestfestival.check.lead=On lead after purchase.
 harvestfestival.commands.help.header=--- Showing hf.help page %d of %d (/hf.help <page>) ---
 
 #Tooltips
-harvestfestival.tooltip.dirt=Cosmetical
+harvestfestival.tooltip.cosmetic=Cosmetic
 harvestfestival.tooltip.mythic_stone=Used to Upgrade
 harvestfestival.tooltip.flower=Caller of the Goddess
 
@@ -289,6 +289,9 @@ harvestfestival.rock.boulder.large=Large Boulder
 
 #Mine Blocks
 harvestfestival.dirt=Mine Floor
+harvestfestival.dirt.winter=Mine Floor
+harvestfestival.dirt.decorative=Mine Floor
+harvestfestival.dirt.decorative.winter=Mine Floor
 harvestfestival.hole=Mine Hole
 harvestfestival.stone.real=Mine Wall
 harvestfestival.stone.decorative=Mine Wall

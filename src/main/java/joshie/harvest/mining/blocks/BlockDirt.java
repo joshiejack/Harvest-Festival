@@ -2,10 +2,11 @@ package joshie.harvest.mining.blocks;
 
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.core.HFTab;
+import joshie.harvest.core.base.BlockHFBase;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.WorldHelper;
-import joshie.harvest.core.base.BlockHFBase;
 import joshie.harvest.core.util.Text;
+import joshie.harvest.mining.HFMining;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
@@ -22,6 +23,7 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.WeightedRandom;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
@@ -47,7 +49,7 @@ public class BlockDirt extends BlockHFBase<BlockDirt> {
 
         private final int weight;
 
-        private TextureType(int weight) {
+        TextureType(int weight) {
             this.weight = weight;
         }
 
@@ -59,13 +61,14 @@ public class BlockDirt extends BlockHFBase<BlockDirt> {
 
     public enum TextureStyle implements IStringSerializable {
         BLANK, INNER, VERTICAL, HORIZONTAL, OUTER;
+
         @Override
         public String getName() {
             return name().toLowerCase();
         }
     }
 
-    public static class WeightedTexture extends WeightedRandom.Item {
+    private static class WeightedTexture extends WeightedRandom.Item {
         public TextureType type;
 
         public WeightedTexture(TextureType type) {
@@ -75,7 +78,7 @@ public class BlockDirt extends BlockHFBase<BlockDirt> {
     }
 
     protected final List<WeightedTexture> textures;
-    protected final int totalWeight;
+    private final int totalWeight;
 
     public BlockDirt() {
         super(Material.GROUND, HFTab.MINING);
@@ -108,7 +111,7 @@ public class BlockDirt extends BlockHFBase<BlockDirt> {
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
-        if (stack.getItemDamage() == 1) list.add(Text.translate("tooltip.dirt"));
+        if (stack.getItem() == Item.getItemFromBlock(HFMining.DIRT_DECORATIVE)) list.add(TextFormatting.YELLOW + Text.translate("tooltip.cosmetic"));
     }
 
     //TECHNICAL/
@@ -128,10 +131,10 @@ public class BlockDirt extends BlockHFBase<BlockDirt> {
     }
 
     private boolean isSameBlock(IBlockAccess world, BlockPos pos) {
-        return world.getBlockState(pos).getBlock() == this;
+        return world.getBlockState(pos).getBlock().getClass() == this.getClass();
     }
 
-    private TextureStyle getStateFromBoolean(boolean one, boolean two, boolean three, boolean winter) {
+    private TextureStyle getStateFromBoolean(boolean one, boolean two, boolean three) {
         if (one && !two && !three) return VERTICAL;
         if (!one && two && !three) return  HORIZONTAL;
         if (one && two && !three) return INNER;
@@ -151,6 +154,11 @@ public class BlockDirt extends BlockHFBase<BlockDirt> {
         return BlockRenderLayer.CUTOUT;
     }
 
+    public IBlockState getBaseStateFromSeason(IBlockState state, boolean winter) {
+        if (state.getBlock() == HFMining.DIRT || state.getBlock() == HFMining.DIRT_WINTER) return winter ? HFMining.DIRT_WINTER.getDefaultState() : HFMining.DIRT.getDefaultState();
+        else return winter ? HFMining.DIRT_DECORATIVE_WINTER.getDefaultState() : HFMining.DIRT_DECORATIVE.getDefaultState();
+    }
+
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
         boolean north = isSameBlock(world, pos.north());
@@ -162,16 +170,17 @@ public class BlockDirt extends BlockHFBase<BlockDirt> {
         boolean southEast = south && east && isSameBlock(world, pos.south().east());
         boolean southWest = south && west && isSameBlock(world, pos.south().west());
         boolean winter = HFTrackers.getCalendar(WorldHelper.getWorld(world)).getSeasonAt(pos) == Season.WINTER;
-        TextureStyle ne = getStateFromBoolean(north, east, northEast, winter);
-        TextureStyle nw = getStateFromBoolean(north, west, northWest, winter);
-        TextureStyle se = getStateFromBoolean(south, east, southEast, winter);
-        TextureStyle sw = getStateFromBoolean(south, west, southWest, winter);
-        state = state.withProperty(NORTH_EAST, ne);
-        state = state.withProperty(NORTH_WEST, nw);
-        state = state.withProperty(SOUTH_EAST, se);
-        state = state.withProperty(SOUTH_WEST, sw);
-        state = state.withProperty(TEXTURE, getStyleFromPos(MathHelper.getPositionRandom(pos)));
-        return state;
+        TextureStyle ne = getStateFromBoolean(north, east, northEast);
+        TextureStyle nw = getStateFromBoolean(north, west, northWest);
+        TextureStyle se = getStateFromBoolean(south, east, southEast);
+        TextureStyle sw = getStateFromBoolean(south, west, southWest);
+        IBlockState theState = getBaseStateFromSeason(state, winter);
+        theState = theState.withProperty(NORTH_EAST, ne);
+        theState = theState.withProperty(NORTH_WEST, nw);
+        theState = theState.withProperty(SOUTH_EAST, se);
+        theState = theState.withProperty(SOUTH_WEST, sw);
+        theState = theState.withProperty(TEXTURE, getStyleFromPos(MathHelper.getPositionRandom(pos)));
+        return theState;
     }
 
     @SideOnly(Side.CLIENT)

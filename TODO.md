@@ -62,7 +62,6 @@
     - E Magical Sound when he gives you it back
 
 ### To Fix
-- Workout how to use the weighting system in conjunction with forge states, so i don't have to use my own hacked together weighting system...
 - Location of the flower in the spring season overlay
 - Fix item render of Mine Hole
 
@@ -70,11 +69,13 @@
 - Crop Grass Better Texture
 - Textures for the NPCs which we stole + New Selection for Ondra > Ashlee
 - Texture for Johan the Trader
+- Winter Portal
 
 ### Jewels & Jewel Rock
-- Make Render for Jewel Rock - J
+##Coding
+- Make Render for Jewel Rock
 - Add Diamonds and Emeralds as spawnable from Jewel Rock
-### Textures For them
+## Textures
 - Amethyst
 - Agate
 - Fluorite

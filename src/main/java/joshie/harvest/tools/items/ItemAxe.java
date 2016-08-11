@@ -76,20 +76,15 @@ public class ItemAxe extends ItemBaseTool {
                 if (world.isAirBlock(pos)) return true;
                 Block block = state.getBlock();
                 if (!world.isRemote) {
-                    int cancel = ForgeHooks.onBlockBreakEvent(world, ((EntityPlayerMP) player).interactionManager.getGameType(), (EntityPlayerMP) player, pos);
-                    if (cancel == -1) {
-                        return true;
-                    }
-
+                    int experience = ForgeHooks.onBlockBreakEvent(world, ((EntityPlayerMP) player).interactionManager.getGameType(), (EntityPlayerMP) player, pos);
+                    if (experience == -1)   return true;
                     if (block.removedByPlayer(state, world, pos, player, true)) {
                         block.onBlockDestroyedByPlayer(world, pos, state);
                         block.harvestBlock(world, player, pos, state, null, null);
-                        block.dropXpOnBlockBreak(world, pos, cancel);
+                        block.dropXpOnBlockBreak(world, pos, experience);
                     }
 
-                    // always send block update to client
-                    EntityPlayerMP mpPlayer = (EntityPlayerMP) player;
-                    mpPlayer.connection.sendPacket(new SPacketBlockChange(world, pos));
+                    ((EntityPlayerMP) player).connection.sendPacket(new SPacketBlockChange(world, pos));
                 }
 
                 return true;

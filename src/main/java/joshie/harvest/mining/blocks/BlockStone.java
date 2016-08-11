@@ -20,6 +20,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -123,7 +124,7 @@ public class BlockStone extends BlockHFEnumCube<BlockStone, Type> {
         int adjusted = Math.max(0, Math.min(Type.values().length, stack.getItemDamage()));
         Type type = Type.values()[adjusted];
         if (!type.isReal && type != HOLE) {
-            list.add(Text.translate("tooltip.dirt"));
+            list.add(TextFormatting.YELLOW + Text.translate("tooltip.cosmetic"));
         }
     }
 

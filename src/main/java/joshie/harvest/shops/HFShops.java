@@ -125,11 +125,12 @@ public class HFShops {
 
     private static void registerMiner() {
         MINER = HFApi.shops.newShop("miner", HFNPCs.MINER);
-        MINER.addItem(new PurchaseableDirt(1000, new ItemStack(HFMining.DIRT, 16, 1)));
+        MINER.addItem(new PurchaseableDecorative(1000, new ItemStack(HFMining.DIRT_DECORATIVE, 16, 1)));
+        MINER.addItem(new PurchaseableDecorative(1000, new ItemStack(HFMining.DIRT_DECORATIVE_WINTER, 16, 1)));
 
         for (Type type: BlockStone.Type.values()) {
             if (!type.isReal()) {
-                MINER.addItem(new PurchaseableStone(1000, new ItemStack(HFMining.STONE, 16, type.ordinal())));
+                MINER.addItem(new PurchaseableDecorative(1000, new ItemStack(HFMining.STONE, 16, type.ordinal())));
             }
         }
 

@@ -8,9 +8,9 @@ import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvest.buildings.placeable.blocks.PlaceableDecorative;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.core.helpers.TownHelper;
-import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.helpers.generic.MCServerHelper;
 import joshie.harvest.core.util.Direction;
+import net.minecraft.block.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -43,6 +43,8 @@ public class Building extends Impl<Building> implements IBuilding {
     private transient  int stone = 64;
     private transient int offsetY = -1;
     private transient long tickTime = 20L;
+    private transient int width;
+    private transient int length;
 
     public Placeable[] components; //Set to null after loading
 
@@ -69,12 +71,18 @@ public class Building extends Impl<Building> implements IBuilding {
         this.components = null; //Wipe out my components
      }
 
+    private boolean isValidBlock(Block block) {
+        return block.isFullCube(block.getDefaultState()) || block instanceof BlockStairs || block instanceof BlockSlab || block instanceof BlockPane || block instanceof BlockLeaves || block instanceof BlockFence || block instanceof BlockWall;
+    }
+
     public void addToList(Placeable placeable) {
         if (placeable instanceof PlaceableBlock) {
             PlaceableBlock block = (PlaceableBlock) placeable;
-            if (block.getBlock() != Blocks.AIR) {
-                if (!(block instanceof PlaceableDecorative)) {
-                    block_list.add((PlaceableBlock) placeable);
+            if (block.getOffsetPos().getY() >= -getOffsetY()) {
+                if (block.getBlock() != Blocks.AIR) {
+                    if (!(block instanceof PlaceableDecorative) && isValidBlock(block.getBlock())) {
+                        block_list.add((PlaceableBlock) placeable);
+                    }
                 }
             }
         }
@@ -110,8 +118,10 @@ public class Building extends Impl<Building> implements IBuilding {
     }
 
     @Override
-    public IBuilding setOffsetY(int offsetY) {
+    public IBuilding setOffset(int width, int offsetY, int length) {
+        this.width = width;
         this.offsetY = offsetY;
+        this.length = length;
         return this;
     }
 
@@ -160,14 +170,13 @@ public class Building extends Impl<Building> implements IBuilding {
     public EnumActionResult generate(World world, BlockPos pos, Mirror mirror, Rotation rotation) {
         if (!world.isRemote && full_list != null) {
             Direction direction = Direction.withMirrorAndRotation(mirror, rotation);
-            pos = pos.up(offsetY).up();
             for (Placeable placeable: full_list) placeable.place(world, pos, direction, ConstructionStage.BUILD);
             for (Placeable placeable: full_list) placeable.place(world, pos, direction, ConstructionStage.PAINT);
             for (Placeable placeable: full_list) placeable.place(world, pos, direction, ConstructionStage.DECORATE);
             for (Placeable placeable: full_list) placeable.place(world, pos, direction, ConstructionStage.MOVEIN);
             TownHelper.getClosestTownToBlockPosOrCreate(world, pos).addBuilding(world, this, direction, pos);
             MCServerHelper.markForUpdate(world, pos);
-        } else if (world.isRemote) MCClientHelper.refresh();
+        }
 
 
         return EnumActionResult.SUCCESS;
@@ -195,6 +204,14 @@ public class Building extends Impl<Building> implements IBuilding {
 
     public boolean hasRequirements(EntityPlayer player) {
         return TownHelper.getClosestTownToPlayer(player).hasBuildings(requirements);
+    }
+
+    public int getLength() {
+        return length;
+    }
+
+    public int getWidth() {
+        return width;
     }
 
     @Override

@@ -43,7 +43,7 @@ public abstract class Placeable {
         return new BlockPos(pos.getX() + adjusted.getX(), pos.getY() + adjusted.getY(), pos.getZ() + adjusted.getZ());
     }
 
-    private BlockPos transformBlockPos(Direction direction) {
+    public BlockPos transformBlockPos(Direction direction) {
         int i = getX();
         int j = getY();
         int k = getZ();

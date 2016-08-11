@@ -24,8 +24,10 @@ public interface IBuilding {
     IBuilding setTickTime(long time);
 
     /** This is the y offset to place the building at, defaults to -1
-     * @param offsetY the offset*/
-    IBuilding setOffsetY(int offsetY);
+     * @param width the width of the building
+     * @param heightOffset the offset, ideally use negative number
+     * @param length the length of the building*/
+    IBuilding setOffset(int width, int heightOffset, int length);
 
     /** Returns the localised name of this building **/
     String getLocalisedName();

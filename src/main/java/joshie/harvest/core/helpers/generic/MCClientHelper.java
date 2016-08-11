@@ -2,9 +2,9 @@ package joshie.harvest.core.helpers.generic;
 
 import joshie.harvest.core.network.PenguinPacketLocation;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
@@ -23,7 +23,7 @@ public class MCClientHelper {
         return FMLClientHandler.instance().getClient();
     }
 
-    public static EntityPlayer getPlayer() {
+    public static EntityPlayerSP getPlayer() {
         return getMinecraft().thePlayer;
     }
 

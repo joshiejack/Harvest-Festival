@@ -33,7 +33,7 @@ harvestfestival.tool.miracle.potion=Miracle Potion
 
 #Buildings
 harvestfestival.structures.blueprint=Blueprint: %s
-harvestfestival.structures.spawn=[SPAWN]
+harvestfestival.structures.spawn=[SPAWN] %s
 harvestfestival.structures.barn=Animal Ranch
 harvestfestival.structures.blacksmith=Blacksmith
 harvestfestival.structures.cafe=Cafe

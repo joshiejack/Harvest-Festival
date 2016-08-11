@@ -8,15 +8,15 @@ import net.minecraft.item.ItemStack;
 public class GiftsGirafi implements IGiftHandler {
     @Override
     public Quality getQuality(ItemStack stack) {
-        if (stack.getItem() == Items.WHEAT) {
+        if (stack.getItem() == Items.POTATO) {
             return Quality.AWESOME;
         }
 
-        if (GiftRegistry.is(stack, GiftCategory.ANIMALS)) {
+        if (GiftRegistry.is(stack, GiftCategory.ANIMALS) || GiftRegistry.is(stack, GiftCategory.TECHNOLOGY)) {
             return Quality.GOOD;
         }
 
-        if (GiftRegistry.is(stack, GiftCategory.CONSTRUCTION)) {
+        if (GiftRegistry.is(stack, GiftCategory.GIRLY) || GiftRegistry.is(stack, GiftCategory.KNITTING)) {
             return Quality.BAD;
         }
 

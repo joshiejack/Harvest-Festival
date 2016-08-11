@@ -13,8 +13,9 @@
 - When you can purchase buildings from a town
 
 ### Rendering/Modeling
-- Change Blueprints to so that you can hover and click where you want them placed with a preview of the building
 - Allow repositioning of coin/seasons huds
+- Add Support for shift clicking buildings to change their rotation/mirror status
+- Fix Building position for mirrored buildings
 
 ### Recipe Rewrite
 - Recipes have an item which is a page for a book, which is how you learn to do new recipes

@@ -63,6 +63,7 @@
     - E Magical Sound when he gives you it back
 
 ### To Fix
+- Switch dirt to a Smart Model
 - Location of the flower in the spring season overlay
 - Fix item render of Mine Hole
 

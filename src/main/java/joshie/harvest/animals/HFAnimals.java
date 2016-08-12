@@ -18,6 +18,7 @@ import joshie.harvest.core.helpers.generic.RegistryHelper;
 import joshie.harvest.core.util.HFLoader;
 import joshie.harvest.crops.Crop;
 import joshie.harvest.crops.CropRegistry;
+import joshie.harvest.crops.HFCrops;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.init.Items;
@@ -105,6 +106,7 @@ public class HFAnimals {
 
     public static void init() {
         for (Crop crop : CropRegistry.REGISTRY.getValues()) {
+            if (crop == HFCrops.NULL_CROP) continue;
             animals.registerFoodAsType(crop.getCropStack(), crop.getFoodType());
         }
     }

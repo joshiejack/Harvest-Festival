@@ -19,7 +19,7 @@ import static joshie.harvest.core.lib.HFModInfo.MODNAME;
 
 public class HFCommonProxy {
     private static final List<Class> LIST = new ArrayList<>();
-    private static final boolean ENABLE_LOGGING = false;
+    private static final boolean ENABLE_LOGGING = true;
 
     static {
         //LIST.add(HFCore.class);

@@ -4,6 +4,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.ICrop;
+import joshie.harvest.core.base.FMLDefinition;
 import joshie.harvest.core.helpers.SeedHelper;
 import joshie.harvest.core.helpers.generic.RegistryHelper;
 import joshie.harvest.core.util.HFLoader;
@@ -18,6 +19,8 @@ import joshie.harvest.crops.items.ItemHFSeeds;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.block.model.ModelBakery;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.init.Blocks;
@@ -27,6 +30,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.storage.loot.functions.LootFunctionManager;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.fml.relauncher.Side;
@@ -52,7 +56,8 @@ public class HFCrops {
 
 
     //Seed Bag Item
-    public static final Item SEEDS = new ItemHFSeeds().register("crops_seeds");
+    public static final ItemHFSeeds SEEDS = new ItemHFSeeds().register("crops_seeds");
+    public static final ItemCrop CROP = new ItemCrop().register("crops");
 
     //Null Crop
     public static final Crop NULL_CROP = new Crop();
@@ -87,7 +92,13 @@ public class HFCrops {
     //Nether Crop
     public static final ICrop NETHER_WART = registerCrop("nether_wart", 25000, 10, 4, 1, 5, 0x8B0000, NETHER).setStateHandler(new StateHandlerNetherWart()).setPlantType(EnumPlantType.Nether).setNoWaterRequirements().setSoilRequirements(SoilHandlers.SOUL_SAND).setDropHandler(new DropHandlerNetherWart());
 
+    @SideOnly(Side.CLIENT)
+    private static FMLDefinition definition;
+
     public static void preInit() {
+        //Register the crop serializer
+        LootFunctionManager.registerFunction(new SetCropType.Serializer());
+
         registerVanillaCrop(Items.WHEAT, WHEAT);
         registerVanillaCrop(Items.CARROT, CARROT);
         registerVanillaCrop(Items.POTATO, POTATO);
@@ -100,7 +111,7 @@ public class HFCrops {
         for (Crop crop : CropRegistry.REGISTRY.getValues()) {
             if (crop != NULL_CROP) {
                 if (!crop.hasItemAssigned()) {
-                    crop.setItem(new ItemStack(new ItemCrop(crop).register("crop_" + crop.getRegistryName().getResourcePath()), 1, 0));
+                    crop.setItem(CROP.getStackFromObject(crop));
                 }
 
                 //Register always in the ore dictionary
@@ -124,6 +135,8 @@ public class HFCrops {
     public static void preInitClient() {
         CropStateMapper mapper = new CropStateMapper();
         ModelLoader.setCustomStateMapper(CROPS, mapper);
+        definition = new FMLDefinition<>(CropRegistry.REGISTRY);
+        ModelLoader.setCustomMeshDefinition(CROP, definition);
     }
 
     @SideOnly(Side.CLIENT)
@@ -148,6 +161,16 @@ public class HFCrops {
                 return -1;
             }
         }, CROPS);
+
+        //Register the models
+        for (Crop crop : CropRegistry.REGISTRY.getValues()) {
+            if (crop == NULL_CROP) continue; //Ignore null crop
+            if (crop.getCropStack().getItem() == CROP) {
+                ModelResourceLocation model = new ModelResourceLocation(new ResourceLocation(crop.getRegistryName().getResourceDomain(), "crops/" + crop.getRegistryName().getResourcePath()), "inventory");
+                ModelBakery.registerItemVariants(CROP, model);
+                definition.register(crop, model);
+            }
+        }
     }
 
     private static void registerVanillaCrop(Item item, ICrop crop) {

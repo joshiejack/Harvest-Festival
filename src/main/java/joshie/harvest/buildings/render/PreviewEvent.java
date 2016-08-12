@@ -25,7 +25,7 @@ import org.apache.commons.lang3.tuple.Triple;
 @HFEvents(Side.CLIENT)
 public class PreviewEvent {
     private static final BuildingRenderer RENDERER = new BuildingRenderer();
-    
+
     private boolean isBuildingItem(ItemStack stack) {
         return stack.getItem() == HFBuildings.BLUEPRINTS || stack.getItem() == HFBuildings.STRUCTURES;
     }

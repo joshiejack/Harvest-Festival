@@ -16,8 +16,8 @@ public class FMLDefinition<E extends Impl<E>> implements ItemMeshDefinition {
         this.registry = registry;
     }
 
-    public void register(E recipe, ModelResourceLocation resource) {
-        models.put(recipe, resource);
+    public void register(E object, ModelResourceLocation resource) {
+        models.put(object, resource);
     }
 
     @Override

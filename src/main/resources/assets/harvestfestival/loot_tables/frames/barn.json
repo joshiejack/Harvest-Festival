@@ -54,18 +54,18 @@
         },
         {
           "type": "item",
-          "name": "harvestfestival:general_item",
+          "name": "harvestfestival:tool_animal",
           "weight": 1,
           "functions": [
             {
               "function": "set_data",
-              "data": 3
+              "data": 1
             }
           ]
         },
         {
           "type": "item",
-          "name": "harvestfestival:crop_grass",
+          "name": "harvestfestival:crop",
           "weight": 6,
           "functions": [
             {
@@ -74,6 +74,10 @@
                 "min": 4,
                 "max": 9
               }
+            },
+            {
+              "function": "hf_set_crop",
+              "crop": "grass"
             }
           ]
         }

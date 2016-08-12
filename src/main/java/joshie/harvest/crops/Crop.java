@@ -14,13 +14,14 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.EnumPlantType;
+import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Random;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
-public class Crop extends net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl<Crop> implements ICrop {
+public class Crop extends IForgeRegistryEntry.Impl<Crop> implements ICrop {
     private static final Random rand = new Random();
 
     //CropData

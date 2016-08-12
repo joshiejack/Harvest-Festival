@@ -7,6 +7,7 @@ import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.buildings.render.BuildingKey;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.ItemHFFML;
+import joshie.harvest.core.helpers.TownHelper;
 import joshie.harvest.core.helpers.generic.BuildingHelper;
 import joshie.harvest.core.util.Text;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,7 +27,7 @@ public class ItemBuilding extends ItemHFFML<ItemBuilding, Building> implements I
     @Override
     public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
         Building building = getObjectFromStack(stack);
-        if (building != null) {
+        if (building != null && !TownHelper.getClosestTownToPlayer(player).hasBuilding(building.getRegistryName())) {
             RayTraceResult raytrace = BuildingHelper.rayTrace(player, 128, 0F);
             if (raytrace == null || raytrace.getBlockPos() == null || raytrace.sideHit != EnumFacing.UP) {
                 return new ActionResult(EnumActionResult.PASS, stack);

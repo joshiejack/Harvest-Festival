@@ -12,8 +12,8 @@ import net.minecraft.world.World;
 public class BuildingRenderer {
     private final Direction direction;
     private final Building building;
-    private VertexBuffer buffer;
-    private BlockPos pos;
+    private final VertexBuffer buffer;
+    private final BlockPos pos;
 
     public BuildingRenderer(World world, BuildingKey key) {
         this.direction = Direction.withMirrorAndRotation(key.getMirror(), key.getRotation());

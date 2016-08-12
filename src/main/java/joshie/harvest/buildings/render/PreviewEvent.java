@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit;
 public class PreviewEvent {
     //Cache Values
     private static final Cache<BuildingKey, BuildingRenderer> CACHE = CacheBuilder.newBuilder().expireAfterWrite(1L, TimeUnit.MINUTES).maximumSize(128).build();
-    private BuildingVertexUploader vboUploader = new BuildingVertexUploader();
+    private BuildingVertexUploader vertexUploader = new BuildingVertexUploader();
     private ItemStack held; //Cache the held itemstack
     private Building building; //Cache the building value
 
@@ -86,7 +86,7 @@ public class PreviewEvent {
             double posZ = player.prevPosZ + (player.posZ - player.prevPosZ) * partialTick;
             GlStateManager.translate(-posX, -posY, -posZ);
             GlStateManager.translate(pos.getX(), pos.getY(), pos.getZ());
-            vboUploader.draw(renderer.getBuffer());
+            vertexUploader.draw(renderer.getBuffer());
             GlStateManager.translate(-pos.getX(), -pos.getY(), -pos.getZ());
             GlStateManager.translate(posX, posY, posZ);
             GlStateManager.popMatrix();

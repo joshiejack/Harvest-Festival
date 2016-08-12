@@ -1,14 +1,15 @@
 package joshie.harvest.buildings.items;
 
 import joshie.harvest.api.core.ICreativeSorted;
-import joshie.harvest.core.helpers.generic.BuildingHelper;
-import joshie.harvest.core.util.Direction;
 import joshie.harvest.buildings.Building;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.buildings.HFBuildings;
+import joshie.harvest.buildings.render.BuildingKey;
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.helpers.TownHelper;
 import joshie.harvest.core.base.ItemHFFML;
+import joshie.harvest.core.helpers.TownHelper;
+import joshie.harvest.core.helpers.generic.BuildingHelper;
+import joshie.harvest.core.util.Direction;
 import joshie.harvest.core.util.Text;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -22,7 +23,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.apache.commons.lang3.tuple.Triple;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
@@ -51,10 +51,10 @@ public class ItemBlueprint extends ItemHFFML<ItemBlueprint, Building> implements
                 return new ActionResult(EnumActionResult.PASS, stack);
             }
 
-            Triple<BlockPos, Mirror, Rotation> triple = BuildingHelper.getPositioning(world, raytrace, building, player, hand);
-            Direction direction = Direction.withMirrorAndRotation(triple.getMiddle(), triple.getRight());
+            BuildingKey key = BuildingHelper.getPositioning(world, raytrace, building, player, hand);
+            Direction direction = Direction.withMirrorAndRotation(key.getMirror(), key.getRotation());
             EntityNPCBuilder builder = TownHelper.getClosestBuilderToEntityOrCreate(player);
-            BlockPos pos = triple.getLeft();
+            BlockPos pos = key.getPos();
             if (builder != null && !builder.isBuilding() && !TownHelper.getClosestTownToPlayer(player).hasBuilding(building.getRegistryName())) {
                 builder.setPosition(pos.getX(), pos.up().getY(), pos.getZ()); //Teleport the builder to the position
                 builder.startBuilding(building, pos.up(), direction.getMirror(), direction.getRotation());

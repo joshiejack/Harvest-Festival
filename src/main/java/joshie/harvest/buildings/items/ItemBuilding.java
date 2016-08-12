@@ -4,17 +4,19 @@ import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.buildings.Building;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.buildings.HFBuildings;
+import joshie.harvest.buildings.render.BuildingKey;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.ItemHFFML;
 import joshie.harvest.core.helpers.generic.BuildingHelper;
 import joshie.harvest.core.util.Text;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import org.apache.commons.lang3.tuple.Triple;
 
 public class ItemBuilding extends ItemHFFML<ItemBuilding, Building> implements ICreativeSorted {
     public ItemBuilding() {
@@ -30,8 +32,8 @@ public class ItemBuilding extends ItemHFFML<ItemBuilding, Building> implements I
                 return new ActionResult(EnumActionResult.PASS, stack);
             }
 
-            Triple<BlockPos, Mirror, Rotation> triple = BuildingHelper.getPositioning(world, raytrace, building, player, hand);
-            return new ActionResult<>(building.generate(world, triple.getLeft(), triple.getMiddle(), triple.getRight()), stack);
+            BuildingKey key = BuildingHelper.getPositioning(world, raytrace, building, player, hand);
+            return new ActionResult<>(building.generate(world, key.getPos(), key.getMirror(), key.getRotation()), stack);
         }
 
         return new ActionResult(EnumActionResult.PASS, stack);

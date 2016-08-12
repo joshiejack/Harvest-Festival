@@ -1,6 +1,7 @@
 package joshie.harvest.core.helpers.generic;
 
 import joshie.harvest.buildings.Building;
+import joshie.harvest.buildings.render.BuildingKey;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,7 +13,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import org.apache.commons.lang3.tuple.Triple;
+
+import javax.annotation.Nonnull;
 
 public class BuildingHelper {
     public static Vec3d getPositionEyes(EntityPlayer player, float partialTicks) {
@@ -33,7 +35,8 @@ public class BuildingHelper {
         return player.worldObj.rayTraceBlocks(vec3d, vec3d2, false, false, true);
     }
 
-    public static Triple<BlockPos, Mirror, Rotation> getPositioning(World world, RayTraceResult raytrace, Building building, EntityPlayer player, EnumHand hand) {
+    @Nonnull
+    public static BuildingKey getPositioning(World world, RayTraceResult raytrace, Building building, EntityPlayer player, EnumHand hand) {
         BlockPos cachedBlock = raytrace.getBlockPos().offset(raytrace.sideHit);
         cachedBlock = cachedBlock.up(building.getOffsetY());
         IBlockState state = world.getBlockState(raytrace.getBlockPos());
@@ -60,6 +63,6 @@ public class BuildingHelper {
         else if (facing == EnumFacing.SOUTH) cachedBlock = cachedBlock.offset(facing, length).offset(EnumFacing.WEST, width);
         else if (facing == EnumFacing.EAST) cachedBlock = cachedBlock.offset(facing, length).offset(EnumFacing.SOUTH, width);
         else if (facing == EnumFacing.WEST) cachedBlock = cachedBlock.offset(facing, length).offset(EnumFacing.NORTH, width);
-        return Triple.of(cachedBlock, mirror, rotation);
+        return BuildingKey.of(cachedBlock, mirror, rotation, building);
     }
 }

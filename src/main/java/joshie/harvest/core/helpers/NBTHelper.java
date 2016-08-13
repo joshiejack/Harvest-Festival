@@ -126,7 +126,9 @@ public class NBTHelper {
     }
 
     public static ItemStack readItemStack(NBTTagCompound nbt) {
-        ItemStack stack = new ItemStack(Item.getByNameOrId(nbt.getString("id")));
+        Item item = Item.getByNameOrId(nbt.getString("id"));
+        if (item == null) return null; //DIE!
+        ItemStack stack = new ItemStack(item);
         stack.stackSize = nbt.getInteger("Count");
         int damage = nbt.getShort("Damage");
 

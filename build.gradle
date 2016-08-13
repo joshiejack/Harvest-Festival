@@ -67,3 +67,5 @@ jar {
         attributes 'FMLCorePluginContainsFMLMod': 'true'
     }
 }
+
+idea { module { inheritOutputDirs = true } }

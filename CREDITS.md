@@ -55,3 +55,6 @@ Seasons HUD > CyanideX
 ## Buildings
 
 Harvest Goddess Pond - http://www.planetminecraft.com/project/waterfall-pond-d/
+
+##Sounds
+Frying Pan Sizzle: http://www.freesound.org/people/purge63/sounds/94227/

@@ -3,8 +3,8 @@ package joshie.harvest.cooking.blocks;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.IAltItem;
 import joshie.harvest.api.cooking.IUtensil;
-import joshie.harvest.core.base.TileFaceable;
 import joshie.harvest.cooking.Utensil;
+import joshie.harvest.core.base.TileFaceable;
 import joshie.harvest.core.helpers.generic.MCServerHelper;
 import joshie.harvest.core.helpers.generic.StackHelper;
 import net.minecraft.item.ItemStack;
@@ -46,6 +46,10 @@ public abstract class TileCooking extends TileFaceable {
         return cooking;
     }
 
+    public int getCookTimer() {
+        return cookTimer;
+    }
+
     public boolean hasPrerequisites() {
         return true;
     }
@@ -74,6 +78,7 @@ public abstract class TileCooking extends TileFaceable {
     }
 
     public void update() {
+        if (isCooking()) animate();
         //If we are server side perform the actions
         if (!worldObj.isRemote) {
             if (cooking) {
@@ -81,7 +86,7 @@ public abstract class TileCooking extends TileFaceable {
                 if (cookTimer >= getCookingTime()) {
                     result = HFApi.cooking.getResult(getUtensil(), ingredients);
                     cooking = false;
-                    ingredients = new ArrayList<ItemStack>();
+                    ingredients = new ArrayList<>();
                     cookTimer = 0;
                     this.markDirty();
                 }
@@ -91,7 +96,7 @@ public abstract class TileCooking extends TileFaceable {
                     this.markDirty();
                 }
             }
-        } else if (isCooking()) animate();
+        }
     }
 
     //Returns true if this was a valid ingredient to add

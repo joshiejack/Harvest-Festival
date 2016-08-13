@@ -70,5 +70,6 @@ public abstract class ItemHFFML<I extends ItemHFFML, E extends Impl<E>> extends 
     }
 
     @SideOnly(Side.CLIENT)
+    @Override
     public void registerModels(Item item, String name) {}
 }

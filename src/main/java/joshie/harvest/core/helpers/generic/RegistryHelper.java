@@ -11,6 +11,8 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -22,6 +24,13 @@ import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.npc.HFNPCs.SPAWNER_NPC;
 
 public class RegistryHelper {
+    public static void registerSounds(String... sounds) {
+        for (String sound : sounds) {
+            ResourceLocation resource = new ResourceLocation(MODID, sound);
+            GameRegistry.register(new SoundEvent(resource), resource);
+        }
+    }
+
     public static void registerTiles(Class<? extends TileEntity>... tiles) {
         for (Class<? extends TileEntity> tile : tiles) {
             GameRegistry.registerTileEntity(tile, MODID + ":" + tile.getSimpleName().replace("Tile", "").toLowerCase());

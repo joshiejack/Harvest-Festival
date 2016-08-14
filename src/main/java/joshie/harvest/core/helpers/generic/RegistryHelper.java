@@ -1,6 +1,6 @@
 package joshie.harvest.core.helpers.generic;
 
-import joshie.harvest.animals.render.FakeAnimalRenderer;
+import joshie.harvest.core.render.FakeEntityRenderer;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.render.FakeNPCRenderer;
@@ -19,6 +19,7 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.commons.lang3.text.WordUtils;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.npc.HFNPCs.SPAWNER_NPC;
@@ -38,12 +39,11 @@ public class RegistryHelper {
     }
 
     @SideOnly(Side.CLIENT)
-    public static void registerEntityRendererItem(ItemStack stack, ModelBase model) {
-        String name = model.getClass().getSimpleName().replace("ModelHarvest", "").toLowerCase();
-        Class fake = FakeTileHelper.getFakeClass("Fake" + name, HFModInfo.FAKEANIMAL);
+    public static void registerEntityRendererItem(String name, ItemStack stack, ModelBase model) {
+        Class fake = FakeTileHelper.getFakeClass("Fake" + WordUtils.capitalizeFully(name.replace("_", " ")).replace(" ", ""), HFModInfo.FAKEANIMAL);
         if (fake != null) {
             ForgeHooksClient.registerTESRItemStack(stack.getItem(), stack.getItemDamage(), fake);
-            ClientRegistry.bindTileEntitySpecialRenderer(fake, new FakeAnimalRenderer(name, model));
+            ClientRegistry.bindTileEntitySpecialRenderer(fake, new FakeEntityRenderer(name, model));
         }
     }
 

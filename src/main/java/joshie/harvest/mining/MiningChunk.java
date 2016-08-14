@@ -1,8 +1,13 @@
 package joshie.harvest.mining;
 
+import com.google.common.collect.Lists;
 import gnu.trove.map.TIntObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
 import joshie.harvest.api.HFApi;
+import joshie.harvest.mining.entity.EntityDarkChick;
+import joshie.harvest.mining.entity.EntityDarkChicken;
+import joshie.harvest.mining.entity.EntityDarkCow;
+import joshie.harvest.mining.entity.EntityDarkSheep;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
@@ -30,7 +35,15 @@ public class MiningChunk implements IChunkGenerator {
     private static final IBlockState LADDER = HFMining.LADDER.getDefaultState();
     private static final IBlockState AIR = Blocks.AIR.getDefaultState();
     private static final IBlockState PORTAL = HFMining.PORTAL.getDefaultState();
+    protected static final List<Biome.SpawnListEntry> MONSTERS = Lists.newArrayList();
     static final int FLOOR_HEIGHT = 6;
+
+    static {
+        MONSTERS.add(new Biome.SpawnListEntry(EntityDarkChick.class, 100, 4, 4));
+        MONSTERS.add(new Biome.SpawnListEntry(EntityDarkChicken.class, 50, 4, 4));
+        MONSTERS.add(new Biome.SpawnListEntry(EntityDarkSheep.class, 30, 4, 4));
+        MONSTERS.add(new Biome.SpawnListEntry(EntityDarkCow.class, 15, 4, 4));
+    }
     
     private final World worldObj;
     private Biome[] biomesForGeneration;
@@ -453,7 +466,9 @@ public class MiningChunk implements IChunkGenerator {
 
     @Override
     public List<Biome.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos) {
-        return this.worldObj.getBiome(pos).getSpawnableList(creatureType);
+        if (creatureType == EnumCreatureType.MONSTER) {
+            return MONSTERS;
+        } else return this.worldObj.getBiome(pos).getSpawnableList(creatureType);
     }
 
     @Nullable

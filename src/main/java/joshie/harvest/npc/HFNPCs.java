@@ -7,6 +7,7 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.npc.INPCRegistry.Age;
 import joshie.harvest.api.npc.INPCRegistry.Gender;
 import joshie.harvest.core.helpers.generic.RegistryHelper;
+import joshie.harvest.core.lib.EntityIDs;
 import joshie.harvest.core.util.HFLoader;
 import joshie.harvest.npc.items.ItemNPCTool;
 import joshie.harvest.npc.entity.AbstractEntityNPC;
@@ -63,9 +64,9 @@ public class HFNPCs {
     public static final ItemNPCTool TOOLS = new ItemNPCTool().register("tool_npc");
 
     public static void preInit() {
-        EntityRegistry.registerModEntity(EntityNPCVillager.class, "NPC", 0, HarvestFestival.instance, 80, 3, true);
-        EntityRegistry.registerModEntity(EntityNPCBuilder.class, "NPCBuilder", 2, HarvestFestival.instance, 80, 3, true);
-        EntityRegistry.registerModEntity(EntityNPCShopkeeper.class, "NPCShopkeeper", 3, HarvestFestival.instance, 80, 3, true);
+        EntityRegistry.registerModEntity(EntityNPCVillager.class, "NPC", EntityIDs.VILLAGER, HarvestFestival.instance, 80, 3, true);
+        EntityRegistry.registerModEntity(EntityNPCBuilder.class, "NPCBuilder", EntityIDs.BUILDER, HarvestFestival.instance, 80, 3, true);
+        EntityRegistry.registerModEntity(EntityNPCShopkeeper.class, "NPCShopkeeper", EntityIDs.SHOPKEEPER, HarvestFestival.instance, 80, 3, true);
 
         GODDESS = register("goddess", FEMALE, ADULT, 8, SPRING, 0x8CEED3, 0x4EC485).setHeight(1.2F, 0.05F);
         ANIMAL_OWNER = register("jim", MALE, ADULT, 26, SPRING, 0x888888, 0x000000);

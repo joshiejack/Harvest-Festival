@@ -15,6 +15,7 @@ import joshie.harvest.animals.type.AnimalCow;
 import joshie.harvest.animals.type.AnimalSheep;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.core.helpers.generic.RegistryHelper;
+import joshie.harvest.core.lib.EntityIDs;
 import joshie.harvest.core.util.HFLoader;
 import joshie.harvest.crops.Crop;
 import joshie.harvest.crops.CropRegistry;
@@ -56,9 +57,9 @@ public class HFAnimals {
     public static final BlockTray TRAY = new BlockTray().register("tray");
 
     public static void preInit() {
-        registerModEntity(EntityHarvestCow.class, "cow", 5, HarvestFestival.instance, 150, 3, true);
-        registerModEntity(EntityHarvestSheep.class, "sheep", 6, HarvestFestival.instance, 150, 3, true);
-        registerModEntity(EntityHarvestChicken.class, "chicken", 7, HarvestFestival.instance, 150, 3, true);
+        registerModEntity(EntityHarvestCow.class, "cow", EntityIDs.COW, HarvestFestival.instance, 150, 3, true);
+        registerModEntity(EntityHarvestSheep.class, "sheep", EntityIDs.SHEEP, HarvestFestival.instance, 150, 3, true);
+        registerModEntity(EntityHarvestChicken.class, "chicken", EntityIDs.CHICKEN, HarvestFestival.instance, 150, 3, true);
         registerFoodsAsType(CHICKEN, Items.CHICKEN, Items.COOKED_CHICKEN);
         registerFoodsAsType(FISH, Items.FISH, Items.COOKED_FISH);
         registerFoodsAsType(FRUIT, Items.APPLE, Items.MELON);
@@ -99,9 +100,9 @@ public class HFAnimals {
             }
         });
 
-        RegistryHelper.registerEntityRendererItem(ANIMAL.getStackFromEnum(Spawner.COW), new ModelHarvestCow());
-        RegistryHelper.registerEntityRendererItem(ANIMAL.getStackFromEnum(Spawner.SHEEP), new ModelHarvestSheep());
-        RegistryHelper.registerEntityRendererItem(ANIMAL.getStackFromEnum(Spawner.CHICKEN), new ModelHarvestChicken());
+        RegistryHelper.registerEntityRendererItem("cow_adult", ANIMAL.getStackFromEnum(Spawner.COW), new ModelHarvestCow());
+        RegistryHelper.registerEntityRendererItem("sheep_adult", ANIMAL.getStackFromEnum(Spawner.SHEEP), new ModelHarvestSheep());
+        RegistryHelper.registerEntityRendererItem("chicken_adult", ANIMAL.getStackFromEnum(Spawner.CHICKEN), new ModelHarvestChicken());
     }
 
     public static void init() {

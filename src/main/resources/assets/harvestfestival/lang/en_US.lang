@@ -312,6 +312,16 @@ harvestfestival.material.gold=Gold Ore
 harvestfestival.material.mystril=Mystril Ore
 harvestfestival.material.mythic=Mythic Stone
 
+#Mine Mobs
+harvestfestival.darkspawner.cow=Dark Cow
+harvestfestival.darkspawner.sheep=Dark Sheep
+harvestfestival.darkspawner.chicken=Dark Chicken
+harvestfestival.darkspawner.chick=Dark Chick
+entity.harvestfestival.dark_cow.name=Dark Cow
+entity.harvestfestival.dark_sheep.name=Dark Sheep
+entity.harvestfestival.dark_chicken.name=Dark Chicken
+entity.harvestfestival.dark_chick.name=Dark Chick
+
 tile.goddess.water.name=Goddess Water
 
 #Seasons

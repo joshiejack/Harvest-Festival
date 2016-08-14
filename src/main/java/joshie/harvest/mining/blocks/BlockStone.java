@@ -3,9 +3,9 @@ package joshie.harvest.mining.blocks;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.core.HFTab;
+import joshie.harvest.core.base.BlockHFEnumCube;
 import joshie.harvest.core.helpers.WorldHelper;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.core.base.BlockHFEnumCube;
 import joshie.harvest.core.util.Text;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.blocks.BlockStone.Type;
@@ -31,9 +31,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.ArrayList;
 import java.util.List;
 
-import static joshie.harvest.mining.blocks.BlockStone.Type.HOLE;
-import static joshie.harvest.mining.blocks.BlockStone.Type.REAL;
-import static joshie.harvest.mining.blocks.BlockStone.Type.REAL_WINTER;
+import static joshie.harvest.mining.blocks.BlockStone.Type.*;
 
 public class BlockStone extends BlockHFEnumCube<BlockStone, Type> {
     public enum Type implements IStringSerializable {
@@ -99,6 +97,11 @@ public class BlockStone extends BlockHFEnumCube<BlockStone, Type> {
 
     @Override
     public boolean canSilkHarvest(World world, BlockPos pos, IBlockState state, EntityPlayer player) {
+        return false;
+    }
+
+    @Override
+    public boolean canCreatureSpawn(IBlockState state, IBlockAccess world, BlockPos pos, net.minecraft.entity.EntityLiving.SpawnPlacementType type) {
         return false;
     }
 

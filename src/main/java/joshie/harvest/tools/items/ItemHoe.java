@@ -1,8 +1,8 @@
 package joshie.harvest.tools.items;
 
+import joshie.harvest.core.base.ItemToolChargeable;
 import joshie.harvest.core.helpers.ToolHelper;
 import joshie.harvest.core.helpers.generic.DirectionHelper;
-import joshie.harvest.core.base.ItemTool;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
@@ -23,7 +23,7 @@ import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import javax.annotation.Nullable;
 import java.util.HashSet;
 
-public class ItemHoe extends ItemTool {
+public class ItemHoe extends ItemToolChargeable {
     public ItemHoe() {
         super("hoe", new HashSet<>());
     }

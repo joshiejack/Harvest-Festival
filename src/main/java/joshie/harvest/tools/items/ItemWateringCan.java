@@ -2,9 +2,9 @@ package joshie.harvest.tools.items;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
+import joshie.harvest.core.base.ItemToolChargeable;
 import joshie.harvest.core.helpers.ToolHelper;
 import joshie.harvest.crops.blocks.BlockHFCrops;
-import joshie.harvest.core.base.ItemTool;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -29,7 +29,7 @@ import javax.annotation.Nullable;
 import java.util.HashSet;
 import java.util.List;
 
-public class ItemWateringCan extends ItemTool implements IFluidContainerItem {
+public class ItemWateringCan extends ItemToolChargeable implements IFluidContainerItem {
     public ItemWateringCan() {
         super("watering_can", new HashSet<>());
     }

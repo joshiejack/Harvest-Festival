@@ -3,14 +3,16 @@ package joshie.harvest.mining.blocks;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.gathering.ISmashable;
 import joshie.harvest.core.HFTab;
+import joshie.harvest.core.base.BlockHFSmashable;
+import joshie.harvest.core.base.ItemToolSmashing;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.lib.LootStrings;
-import joshie.harvest.core.base.BlockHFEnum;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.MiningHelper;
 import joshie.harvest.mining.blocks.BlockOre.Ore;
 import joshie.harvest.mining.items.ItemMaterial;
+import joshie.harvest.tools.HFTools;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
@@ -29,7 +31,7 @@ import net.minecraft.world.WorldServer;
 import static joshie.harvest.api.gathering.ISmashable.ToolType.HAMMER;
 import static net.minecraft.block.material.Material.ROCK;
 
-public class BlockOre extends BlockHFEnum<BlockOre, Ore> implements ISmashable {
+public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmashable {
     private static final AxisAlignedBB COPPER_AABB = new AxisAlignedBB(0.1D, 0.0D, 0.1D, 0.9D, 0.8D, 0.9D);
 
     public enum Ore implements IStringSerializable {
@@ -55,6 +57,11 @@ public class BlockOre extends BlockHFEnum<BlockOre, Ore> implements ISmashable {
     @Override
     public ToolType getToolType() {
         return HAMMER;
+    }
+
+    @Override
+    public ItemToolSmashing getTool() {
+        return HFTools.HAMMER;
     }
 
     @Override

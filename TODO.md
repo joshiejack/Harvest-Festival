@@ -43,9 +43,6 @@
 - Counter
     -S Chopping
     -A Player Chopping
-- Mixer
-    -S Whirring
-    -E Items Spin
 - Smashing Rocks
     -S Smashing
     -E Particle effects

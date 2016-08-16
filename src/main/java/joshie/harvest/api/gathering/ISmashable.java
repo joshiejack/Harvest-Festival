@@ -36,11 +36,13 @@ public interface ISmashable {
     default boolean smashBlock(EntityPlayer player, World world, BlockPos pos, IBlockState state, ToolTier tier) {
         ToolTier required = getRequiredTier(state);
         if (required != null && tier.isGreaterThanOrEqualTo(required)) {
-            float luck = tier.ordinal() * 0.25F;
-            world.setBlockToAir(pos);
-            ItemStack drop = getDrop(player, world, pos, state, luck);
-            if (drop != null) {
-                spawnAsEntity(world, pos, drop);
+            if (!world.isRemote) {
+                float luck = tier.ordinal() * 0.25F;
+                world.setBlockToAir(pos);
+                ItemStack drop = getDrop(player, world, pos, state, luck);
+                if (drop != null) {
+                    spawnAsEntity(world, pos, drop);
+                }
             }
 
             return true;

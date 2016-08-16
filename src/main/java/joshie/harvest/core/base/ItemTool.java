@@ -15,8 +15,10 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.*;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
@@ -25,11 +27,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Set;
 
-public abstract class ItemTool extends ItemHFBase<ItemTool> implements ILevelable, ITiered, ICreativeSorted {
+public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> implements ILevelable, ITiered, ICreativeSorted {
     private final Set<Block> effectiveBlocks;
     private final String toolClass;
     /**
@@ -74,28 +75,6 @@ public abstract class ItemTool extends ItemHFBase<ItemTool> implements ILevelabl
     public ToolTier getTier(ItemStack stack) {
         int safe = Math.min(Math.max(0, stack.getItemDamage()), (ToolTier.values().length - 1));
         return ToolTier.values()[safe];
-    }
-
-    protected int getMaxCharge(ItemStack stack) {
-        return getTier(stack).ordinal();
-    }
-
-    protected boolean canCharge(ItemStack stack) {
-        NBTTagCompound tag = stack.getSubCompound("Data", true);
-        int amount = tag.getInteger("Charge");
-        return amount < getMaxCharge(stack);
-    }
-
-    protected int getCharge(ItemStack stack) {
-        return stack.getSubCompound("Data", true).getInteger("Charge");
-    }
-
-    protected void setCharge(ItemStack stack, int amount) {
-        stack.getSubCompound("Data", true).setInteger("Charge", amount);
-    }
-
-    protected void increaseCharge(ItemStack stack, int amount) {
-        setCharge(stack, getCharge(stack) + amount);
     }
 
     @Override
@@ -150,39 +129,7 @@ public abstract class ItemTool extends ItemHFBase<ItemTool> implements ILevelabl
         return 32000;
     }
 
-    @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer playerIn, EnumHand hand) {
-        if (canUseAndDamage(stack)) {
-            playerIn.setActiveHand(hand);
-            return new ActionResult(EnumActionResult.SUCCESS, stack);
-        } else return new ActionResult<>(EnumActionResult.PASS, stack);
-    }
 
-    @Override
-    public void onUsingTick(ItemStack stack, EntityLivingBase player, int count) {
-        if (count <= 31995 && count % 32 == 0) {
-            if (canCharge(stack)) {
-                increaseCharge(stack, 1);
-            }
-        }
-    }
-
-    protected ToolTier getChargeTier(ItemStack stack, int charge) {
-        return ToolTier.values()[charge];
-    }
-
-    @Override
-    public void onPlayerStoppedUsing(ItemStack stack, World world, EntityLivingBase entity, int timeLeft) {
-        if (timeLeft <= 31973) {
-            int charge = (Math.min(7, Math.max(0, getCharge(stack))));
-            setCharge(stack, 0); //Reset the charge
-            if (!world.isRemote) {
-                onFinishedCharging(world, entity, getMovingObjectPositionFromPlayer(world, entity), stack, getChargeTier(stack, charge));
-            }
-        }
-    }
-
-    protected void onFinishedCharging(World world, EntityLivingBase entity, @Nullable RayTraceResult result, ItemStack stack, ToolTier toolTier) {}
 
     public int getFront(ToolTier tier) {
         return 0;

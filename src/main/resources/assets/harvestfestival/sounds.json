@@ -1,3 +1,6 @@
 {
-  "frying_pan": { "category": "block", "sounds":["harvestfestival:frying_pan"], "subtitle": "harvestfestival.subtitle.fryingpan" }
+  "frying_pan": { "category": "block", "sounds":["harvestfestival:frying_pan"], "subtitle": "harvestfestival.subtitle.fryingpan" },
+  "mixer": { "category": "block", "sounds":["harvestfestival:mixer"], "subtitle": "harvestfestival.subtitle.mixer" },
+  "smash_rock": { "category": "block", "sounds":["harvestfestival:smash_rock"], "subtitle": "harvestfestival.subtitle.smashrock" },
+  "smash_wood": { "category": "block", "sounds":["harvestfestival:smash_wood"], "subtitle": "harvestfestival.subtitle.smashwood" }
 }

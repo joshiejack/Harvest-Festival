@@ -1,11 +1,12 @@
 package joshie.harvest.gathering.blocks;
 
 import joshie.harvest.api.core.ITiered.ToolTier;
-import joshie.harvest.api.gathering.ISmashable;
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.base.BlockHFEnum;
+import joshie.harvest.core.base.BlockHFSmashable;
+import joshie.harvest.core.base.ItemToolSmashing;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.gathering.blocks.BlockWood.Wood;
+import joshie.harvest.tools.HFTools;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -21,7 +22,7 @@ import net.minecraft.world.World;
 import static joshie.harvest.api.core.ITiered.ToolTier.*;
 import static joshie.harvest.api.gathering.ISmashable.ToolType.AXE;
 
-public class BlockWood extends BlockHFEnum<BlockWood, Wood> implements ISmashable {
+public class BlockWood extends BlockHFSmashable<BlockWood, Wood> {
     private static final AxisAlignedBB BRANCH_SMALL_AABB = new AxisAlignedBB(0.15D, 0.0D, 0.15D, 0.85D, 0.15D, 0.85D);
     private static final AxisAlignedBB BRANCH_MEDIUM_AABB = new AxisAlignedBB(0.15D, 0.0D, 0.15D, 0.85D, 0.25D, 0.85D);
     private static final AxisAlignedBB BRANCH_LARGE_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.9D, 1.0D);
@@ -69,6 +70,11 @@ public class BlockWood extends BlockHFEnum<BlockWood, Wood> implements ISmashabl
     }
 
     @Override
+    public ItemToolSmashing getTool() {
+        return HFTools.AXE;
+    }
+
+    @Override
     public ItemStack getDrop(EntityPlayer player, World world, BlockPos pos, IBlockState state, float luck) {
         Wood type = getEnumFromState(state);
         switch (type) {
@@ -98,26 +104,6 @@ public class BlockWood extends BlockHFEnum<BlockWood, Wood> implements ISmashabl
     @Deprecated
     public float getBlockHardness(IBlockState state, World world, BlockPos pos) {
         return getToolLevel(getEnumFromState(state));
-    }
-
-    @Override
-    protected int getToolLevel(Wood wood) {
-        switch (wood) {
-            case BRANCH_SMALL:
-                return 1;
-            case BRANCH_MEDIUM:
-                return 2;
-            case STUMP_SMALL:
-                return 3;
-            case BRANCH_LARGE:
-                return 4;
-            case STUMP_MEDIUM:
-                return 5;
-            case STUMP_LARGE:
-                return 6;
-            default:
-                return 0;
-        }
     }
 
     @Override

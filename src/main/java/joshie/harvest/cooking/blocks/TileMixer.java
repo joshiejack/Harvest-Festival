@@ -2,7 +2,9 @@ package joshie.harvest.cooking.blocks;
 
 import joshie.harvest.cooking.Utensil;
 import joshie.harvest.cooking.blocks.TileCooking.TileCookingTicking;
+import joshie.harvest.core.lib.HFSounds;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.SoundCategory;
 
 public class TileMixer extends TileCookingTicking {
     private static final float MAX_OFFSET1 = 0.5F;
@@ -27,6 +29,8 @@ public class TileMixer extends TileCookingTicking {
         }
 
         blade += 100F;
+        //Play the sound effect
+        if (getCookTimer() == 1) worldObj.playSound(null, getPos(), HFSounds.MIXER, SoundCategory.BLOCKS, 0.9F, 1F);
     }
 
     private float clampOffset1(float f) {

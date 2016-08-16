@@ -58,3 +58,6 @@ Harvest Goddess Pond - http://www.planetminecraft.com/project/waterfall-pond-d/
 
 ##Sounds
 Frying Pan Sizzle: http://www.freesound.org/people/purge63/sounds/94227/
+Mixer Whirr: http://www.freesound.org/people/VSokorelos/sounds/346170/
+Smash Rock: http://www.freesound.org/people/luffy/sounds/17289/
+Smash Wood: http://www.freesound.org/people/skinhat/sounds/31168/

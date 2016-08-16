@@ -1,6 +1,8 @@
 package joshie.harvest.tools;
 
 import joshie.harvest.core.base.ItemTool;
+import joshie.harvest.core.base.ItemToolChargeable;
+import joshie.harvest.core.base.ItemToolSmashing;
 import joshie.harvest.core.util.HFLoader;
 import joshie.harvest.tools.items.*;
 import net.minecraft.potion.Potion;
@@ -9,19 +11,20 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import static joshie.harvest.core.helpers.generic.ConfigHelper.getBoolean;
 import static joshie.harvest.core.helpers.generic.ConfigHelper.getInteger;
+import static joshie.harvest.core.helpers.generic.RegistryHelper.registerSounds;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static net.minecraft.entity.SharedMonsterAttributes.ATTACK_SPEED;
 import static net.minecraft.entity.SharedMonsterAttributes.MOVEMENT_SPEED;
 
 @HFLoader
 public class HFTools {
-    public static final ItemTool HAMMER = new ItemHammer().register("hammer");
-    public static final ItemTool AXE = new ItemAxe().register("axe");
+    public static final ItemToolSmashing HAMMER = new ItemHammer().register("hammer");
+    public static final ItemToolSmashing AXE = new ItemAxe().register("axe");
 
     //Farming Tools
-    public static final ItemTool HOE = new ItemHoe().register("hoe");
     public static final ItemTool SICKLE = new ItemSickle().register("sickle");
-    public static final ItemTool WATERING_CAN = new ItemWateringCan().register("wateringcan");
+    public static final ItemToolChargeable HOE = new ItemHoe().register("hoe");
+    public static final ItemToolChargeable WATERING_CAN = new ItemWateringCan().register("wateringcan");
 
     //Potion Effects
     public static final Potion FATIGUE = registerPotion("fatigue", 0xD9D900, 0, 0).registerPotionAttributeModifier(MOVEMENT_SPEED, "8107BC5E-7CF8-4030-440C-514C1F160890", -0.10000000596046448D, 2);
@@ -29,7 +32,10 @@ public class HFTools {
             .registerPotionAttributeModifier(MOVEMENT_SPEED, "8107BC5D-5CF8-4030-440C-314C1E160890", -0.50000000596046448D, 2)
             .registerPotionAttributeModifier(ATTACK_SPEED, "8107BC5D-5CF8-4030-440C-314C1E160891", -0.50000000596046448D, 2);
 
-    public static void preInit() {}
+    public static void preInit() {
+        registerSounds("smash_rock", "smash_wood");
+    }
+
     private static Potion registerPotion(String name, int color, int x, int y) {
         ResourceLocation location = new ResourceLocation(MODID, name);
         Potion potion = new HFPotion(MODID + ".effect." + name, color, x, y).setRegistryName(location);

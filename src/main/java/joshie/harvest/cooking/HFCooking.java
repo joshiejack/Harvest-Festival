@@ -33,7 +33,7 @@ public class HFCooking {
     public static void preInit() {
         BLADE_STACK = UTENSILS.getStackFromEnum(BLADE);
         HFApi.cooking.registerRecipeHandler(new MayoRecipeHandler());
-        registerSounds("frying_pan");
+        registerSounds("frying_pan", "mixer");
         registerTiles(TileFridge.class, TileFryingPan.class, TileCounter.class, TileMixer.class, TileOven.class, TilePot.class);
     }
 

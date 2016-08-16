@@ -20,7 +20,7 @@ import net.minecraft.world.World;
 
 import java.util.HashSet;
 
-public class ItemSickle extends ItemTool implements IBreakCrops {
+public class ItemSickle extends ItemTool<ItemHoe> implements IBreakCrops {
     public ItemSickle() {
         super("sickle", new HashSet<>());
     }

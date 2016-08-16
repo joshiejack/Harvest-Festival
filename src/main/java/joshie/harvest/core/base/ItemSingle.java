@@ -5,12 +5,12 @@ import joshie.harvest.core.util.Text;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 
-public class ItemBaseSingle<I extends ItemBaseSingle> extends ItemHFBase<I> {
-    public ItemBaseSingle() {
+public class ItemSingle<I extends ItemSingle> extends ItemHFBase<I> {
+    public ItemSingle() {
         setCreativeTab(HFTab.FARMING);
     }
 
-    public ItemBaseSingle(CreativeTabs tab) {
+    public ItemSingle(CreativeTabs tab) {
         super(tab);
     }
 

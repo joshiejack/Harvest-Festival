@@ -2,7 +2,7 @@ package joshie.harvest.core.helpers;
 
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.cooking.HFCooking;
-import joshie.harvest.core.base.ItemBaseTool;
+import joshie.harvest.core.base.ItemTool;
 import joshie.harvest.core.helpers.generic.EntityHelper;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.tools.HFTools;
@@ -51,7 +51,7 @@ public class ToolHelper {
             stack.getTagCompound().setDouble("Level", 0D);
         } else {
             double level = stack.getTagCompound().getDouble("Level");
-            double increase = ((ItemBaseTool) stack.getItem()).getLevelIncrease(stack);
+            double increase = ((ItemTool) stack.getItem()).getLevelIncrease(stack);
             double newLevel = Math.min(100D, level + increase);
             stack.getTagCompound().setDouble("Level", newLevel);
         }

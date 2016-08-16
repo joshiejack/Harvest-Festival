@@ -39,27 +39,29 @@ public class ItemBlueprint extends ItemHFFML<ItemBlueprint, Building> implements
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
-        //Create a builder
-        if (!world.isRemote) {
-            TownHelper.getClosestBuilderToEntityOrCreate(player);
-        }
-
-        Building building = getObjectFromStack(stack);
-        if (building != null && !TownHelper.getClosestTownToPlayer(player).hasBuilding(building.getRegistryName())) {
-            RayTraceResult raytrace = BuildingHelper.rayTrace(player, 128, 1F);
-            if (raytrace == null || raytrace.getBlockPos() == null || raytrace.sideHit != EnumFacing.UP) {
-                return new ActionResult(EnumActionResult.PASS, stack);
+        if (world.provider.getDimension() == 0) {
+            //Create a builder
+            if (!world.isRemote) {
+                TownHelper.getClosestBuilderToEntityOrCreate(player);
             }
 
-            BuildingKey key = BuildingHelper.getPositioning(world, raytrace, building, player, hand);
-            Direction direction = Direction.withMirrorAndRotation(key.getMirror(), key.getRotation());
-            EntityNPCBuilder builder = TownHelper.getClosestBuilderToEntityOrCreate(player);
-            BlockPos pos = key.getPos();
-            if (builder != null && !builder.isBuilding() && !TownHelper.getClosestTownToPlayer(player).hasBuilding(building.getRegistryName())) {
-                builder.setPosition(pos.getX(), pos.up().getY(), pos.getZ()); //Teleport the builder to the position
-                builder.startBuilding(building, pos.up(), direction.getMirror(), direction.getRotation());
-                stack.splitStack(1);
-                return new ActionResult<>(EnumActionResult.SUCCESS, stack);
+            Building building = getObjectFromStack(stack);
+            if (building != null && !TownHelper.getClosestTownToPlayer(player).hasBuilding(building.getRegistryName())) {
+                RayTraceResult raytrace = BuildingHelper.rayTrace(player, 128, 1F);
+                if (raytrace == null || raytrace.getBlockPos() == null || raytrace.sideHit != EnumFacing.UP) {
+                    return new ActionResult(EnumActionResult.PASS, stack);
+                }
+
+                BuildingKey key = BuildingHelper.getPositioning(world, raytrace, building, player, hand);
+                Direction direction = Direction.withMirrorAndRotation(key.getMirror(), key.getRotation());
+                EntityNPCBuilder builder = TownHelper.getClosestBuilderToEntityOrCreate(player);
+                BlockPos pos = key.getPos();
+                if (builder != null && !builder.isBuilding() && !TownHelper.getClosestTownToPlayer(player).hasBuilding(building.getRegistryName())) {
+                    builder.setPosition(pos.getX(), pos.up().getY(), pos.getZ()); //Teleport the builder to the position
+                    builder.startBuilding(building, pos.up(), direction.getMirror(), direction.getRotation());
+                    stack.splitStack(1);
+                    return new ActionResult<>(EnumActionResult.SUCCESS, stack);
+                }
             }
         }
 

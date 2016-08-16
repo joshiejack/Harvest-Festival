@@ -1,10 +1,9 @@
 package joshie.harvest.tools.items;
 
 import com.google.common.collect.Sets;
-import joshie.harvest.api.gathering.ISmashable;
+import joshie.harvest.api.gathering.ISmashable.ToolType;
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.base.ItemBaseTool;
-import joshie.harvest.core.helpers.ToolHelper;
+import joshie.harvest.core.base.ItemToolSmash;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -16,7 +15,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.server.SPacketBlockChange;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.MinecraftForge;
@@ -24,13 +22,10 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 
-import javax.annotation.Nullable;
 import java.util.Set;
 import java.util.Stack;
 
-import static joshie.harvest.api.gathering.ISmashable.ToolType.AXE;
-
-public class ItemAxe extends ItemBaseTool {
+public class ItemAxe extends ItemToolSmash {
     private static final Set<Block> EFFECTIVE_ON = Sets.newHashSet(Blocks.PLANKS, Blocks.BOOKSHELF, Blocks.LOG, Blocks.LOG2, Blocks.CHEST, Blocks.PUMPKIN, Blocks.LIT_PUMPKIN, Blocks.MELON_BLOCK, Blocks.LADDER, Blocks.WOODEN_BUTTON, Blocks.WOODEN_PRESSURE_PLATE);
 
     public ItemAxe() {
@@ -38,6 +33,10 @@ public class ItemAxe extends ItemBaseTool {
         setCreativeTab(HFTab.GATHERING);
     }
 
+    @Override
+    public ToolType getToolType() {
+        return ToolType.AXE;
+    }
 
     public static class ChopTree {
         private final Stack<BlockPos> stack;
@@ -133,22 +132,5 @@ public class ItemAxe extends ItemBaseTool {
     public float getStrVsBlock(ItemStack stack, IBlockState state) {
         Material material = state.getMaterial();
         return material != Material.WOOD && material != Material.PLANTS && material != Material.VINE ? super.getStrVsBlock(stack, state) : this.getEffiency(stack);
-    }
-
-    @Override
-    public void onFinishedCharging(World world, EntityLivingBase entity, @Nullable RayTraceResult result, ItemStack stack, ToolTier tier) {
-        if (result != null && entity instanceof EntityPlayer) {
-            EntityPlayer player = (EntityPlayer)entity;
-            IBlockState state = world.getBlockState(result.getBlockPos());
-            if (state.getBlock() instanceof ISmashable) {
-                ISmashable smashable = ((ISmashable)state.getBlock());
-                if (smashable.getToolType() == AXE) {
-                    if(smashable.smashBlock(player, world, result.getBlockPos(), state, tier)) {
-                        ToolHelper.performTask(player, stack, getExhaustionRate(stack));
-                        onBlockDestroyed(stack, world, state, result.getBlockPos(), entity);
-                    }
-                }
-            }
-        }
     }
 }

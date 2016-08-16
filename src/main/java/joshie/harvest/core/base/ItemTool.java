@@ -29,13 +29,13 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Set;
 
-public abstract class ItemBaseTool extends ItemHFBase<ItemBaseTool> implements ILevelable, ITiered, ICreativeSorted {
+public abstract class ItemTool extends ItemHFBase<ItemTool> implements ILevelable, ITiered, ICreativeSorted {
     private final Set<Block> effectiveBlocks;
     private final String toolClass;
     /**
      * Create a tool
      */
-    public ItemBaseTool(String toolClass, Set<Block> effective) {
+    public ItemTool(String toolClass, Set<Block> effective) {
         setMaxStackSize(1);
         setHasSubtypes(true);
         this.effectiveBlocks = effective;

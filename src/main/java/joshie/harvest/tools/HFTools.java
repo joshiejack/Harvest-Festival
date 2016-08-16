@@ -1,6 +1,6 @@
 package joshie.harvest.tools;
 
-import joshie.harvest.core.base.ItemBaseTool;
+import joshie.harvest.core.base.ItemTool;
 import joshie.harvest.core.util.HFLoader;
 import joshie.harvest.tools.items.*;
 import net.minecraft.potion.Potion;
@@ -15,13 +15,13 @@ import static net.minecraft.entity.SharedMonsterAttributes.MOVEMENT_SPEED;
 
 @HFLoader
 public class HFTools {
-    public static final ItemBaseTool HAMMER = new ItemHammer().register("hammer");
-    public static final ItemBaseTool AXE = new ItemAxe().register("axe");
+    public static final ItemTool HAMMER = new ItemHammer().register("hammer");
+    public static final ItemTool AXE = new ItemAxe().register("axe");
 
     //Farming Tools
-    public static final ItemBaseTool HOE = new ItemHoe().register("hoe");
-    public static final ItemBaseTool SICKLE = new ItemSickle().register("sickle");
-    public static final ItemBaseTool WATERING_CAN = new ItemWateringCan().register("wateringcan");
+    public static final ItemTool HOE = new ItemHoe().register("hoe");
+    public static final ItemTool SICKLE = new ItemSickle().register("sickle");
+    public static final ItemTool WATERING_CAN = new ItemWateringCan().register("wateringcan");
 
     //Potion Effects
     public static final Potion FATIGUE = registerPotion("fatigue", 0xD9D900, 0, 0).registerPotionAttributeModifier(MOVEMENT_SPEED, "8107BC5E-7CF8-4030-440C-514C1F160890", -0.10000000596046448D, 2);

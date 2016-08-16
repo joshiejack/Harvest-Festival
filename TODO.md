@@ -7,7 +7,6 @@
 - Add an Overlay that tells you what floor you are on
 
 ### Functionality
-- Make Axes have an AOE that will break all branches/stumps
 - Cursed Tools have negative effect
 - Syncing Town Information to Players
 - When you can purchase buildings from a town

@@ -4,7 +4,7 @@ import joshie.harvest.api.crops.IBreakCrops;
 import joshie.harvest.core.helpers.ToolHelper;
 import joshie.harvest.crops.blocks.BlockHFCrops;
 import joshie.harvest.core.helpers.generic.DirectionHelper;
-import joshie.harvest.core.base.ItemBaseTool;
+import joshie.harvest.core.base.ItemTool;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -20,7 +20,7 @@ import net.minecraft.world.World;
 
 import java.util.HashSet;
 
-public class ItemSickle extends ItemBaseTool implements IBreakCrops {
+public class ItemSickle extends ItemTool implements IBreakCrops {
     public ItemSickle() {
         super("sickle", new HashSet<>());
     }

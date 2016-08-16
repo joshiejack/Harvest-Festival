@@ -43,12 +43,6 @@
 - Counter
     -S Chopping
     -A Player Chopping
-- Smashing Rocks
-    -S Smashing
-    -E Particle effects
-- Chopping Wood
-    -S Chopping
-    -E Particle effects
 - Harvest Goddess
     -S Magical Spawning
     -E Particle Effect
@@ -57,7 +51,6 @@
     - E Magical Sound when he gives you it back
 
 ### To Fix
-- Switch dirt to a Smart Model
 - Location of the flower in the spring season overlay
 - Fix item render of Mine Hole
 

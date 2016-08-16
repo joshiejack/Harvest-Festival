@@ -17,6 +17,7 @@ import joshie.harvest.mining.items.ItemDarkSpawner;
 import joshie.harvest.mining.items.ItemDarkSpawner.DarkSpawner;
 import joshie.harvest.mining.items.ItemMaterial;
 import joshie.harvest.mining.loot.*;
+import joshie.harvest.mining.render.BakedDirt;
 import joshie.harvest.mining.render.RenderDarkChick;
 import joshie.harvest.mining.render.RenderDarkChicken;
 import joshie.harvest.mining.render.RenderDarkMob;
@@ -24,6 +25,7 @@ import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.storage.loot.conditions.LootConditionManager;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -38,9 +40,7 @@ public class HFMining {
     public static final BlockOre ORE = new BlockOre().register("ore");
     public static final BlockStone STONE = new BlockStone().register("stone");
     public static final BlockDirt DIRT = new BlockDirt().setBlockUnbreakable().register("dirt");
-    public static final BlockDirt DIRT_WINTER = new BlockDirt().setBlockUnbreakable().register("dirt_winter");
     public static final BlockDirt DIRT_DECORATIVE = new BlockDirt().register("dirt_decorative");
-    public static final BlockDirt DIRT_DECORATIVE_WINTER = new BlockDirt().register("dirt_decorative_winter");
     public static final BlockLadder LADDER = new BlockLadder().register("ladder");
     public static final BlockPortal PORTAL = new BlockPortal().setBlockUnbreakable().register("portal");
     public static final ItemMaterial MATERIALS = new ItemMaterial().register("materials");
@@ -64,6 +64,8 @@ public class HFMining {
 
     @SideOnly(Side.CLIENT)
     public static void preInitClient() {
+        ModelLoader.setCustomStateMapper(DIRT, new BakedDirt.StateMapper());
+
         //Register the dark cow
         RenderingRegistry.registerEntityRenderingHandler(EntityDarkCow.class, new IRenderFactory<EntityDarkCow>() {
             @Override

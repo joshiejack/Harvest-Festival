@@ -133,8 +133,7 @@ public class HFCrops {
 
     @SideOnly(Side.CLIENT)
     public static void preInitClient() {
-        CropStateMapper mapper = new CropStateMapper();
-        ModelLoader.setCustomStateMapper(CROPS, mapper);
+        ModelLoader.setCustomStateMapper(CROPS, new CropStateMapper());
         definition = new FMLDefinition<>(CropRegistry.REGISTRY);
         ModelLoader.setCustomMeshDefinition(CROP, definition);
     }

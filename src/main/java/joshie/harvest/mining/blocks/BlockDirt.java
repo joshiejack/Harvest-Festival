@@ -20,9 +20,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.WeightedRandom;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -31,7 +29,6 @@ import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static joshie.harvest.mining.blocks.BlockDirt.TextureStyle.*;
@@ -41,44 +38,16 @@ public class BlockDirt extends BlockHFBase<BlockDirt> {
     public static final PropertyEnum NORTH_WEST = PropertyEnum.create("nw", TextureStyle.class);
     public static final PropertyEnum SOUTH_EAST = PropertyEnum.create("se", TextureStyle.class);
     public static final PropertyEnum SOUTH_WEST = PropertyEnum.create("sw", TextureStyle.class);
-    public static final PropertyEnum TEXTURE = PropertyEnum.create("texture", TextureType.class);
-
-    public enum TextureType implements IStringSerializable {
-        BLANK(150), BONES1(1), BONES2(1), BONES3(1), BONES4(1), GRASS1(7), LEAVES1(4), LEAVES2(4), LEAVES3(1), LEAVES4(1),
-        PEBBLE1(4), PEBBLE2(4), PEBBLE3(3), PEBBLE4(1), PEBBLE5(2), PEBBLE6(2), ROCK1(4), ROCK2(4);
-
-        private final int weight;
-
-        TextureType(int weight) {
-            this.weight = weight;
-        }
-
-        @Override
-        public String getName() {
-            return name().toLowerCase();
-        }
-    }
 
     public enum TextureStyle implements IStringSerializable {
-        BLANK, INNER, VERTICAL, HORIZONTAL, OUTER;
+        BLANK, INNER, VERTICAL, HORIZONTAL, OUTER,
+        BLANK_WINTER, INNER_WINTER, VERTICAL_WINTER, HORIZONTAL_WINTER, OUTER_WINTER;
 
         @Override
         public String getName() {
             return name().toLowerCase();
         }
     }
-
-    private static class WeightedTexture extends WeightedRandom.Item {
-        public TextureType type;
-
-        public WeightedTexture(TextureType type) {
-            super(type.weight);
-            this.type = type;
-        }
-    }
-
-    protected final List<WeightedTexture> textures;
-    private final int totalWeight;
 
     public BlockDirt() {
         super(Material.GROUND, HFTab.MINING);
@@ -87,20 +56,12 @@ public class BlockDirt extends BlockHFBase<BlockDirt> {
                 .withProperty(NORTH_EAST, OUTER)
                 .withProperty(NORTH_WEST, OUTER)
                 .withProperty(SOUTH_EAST, OUTER)
-                .withProperty(SOUTH_WEST, OUTER)
-                .withProperty(TEXTURE, TextureType.BLANK));
-
-        textures = new ArrayList<>();
-        for (TextureType type: TextureType.values()) {
-            textures.add(new WeightedTexture(type));
-        }
-
-        totalWeight = WeightedRandom.getTotalWeight(textures);
+                .withProperty(SOUTH_WEST, OUTER));
     }
 
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, NORTH_EAST, NORTH_WEST, SOUTH_EAST, SOUTH_WEST, TEXTURE);
+        return new BlockStateContainer(this, NORTH_EAST, NORTH_WEST, SOUTH_EAST, SOUTH_WEST);
     }
 
     @Override
@@ -134,29 +95,20 @@ public class BlockDirt extends BlockHFBase<BlockDirt> {
         return world.getBlockState(pos).getBlock().getClass() == this.getClass();
     }
 
-    private TextureStyle getStateFromBoolean(boolean one, boolean two, boolean three) {
-        if (one && !two && !three) return VERTICAL;
-        if (!one && two && !three) return  HORIZONTAL;
-        if (one && two && !three) return INNER;
-        if (!one && two) return HORIZONTAL;
-        if (one && !two) return VERTICAL;
-        if (one) return BLANK;
-        return OUTER;
-    }
-
-    private TextureType getStyleFromPos(long rand) {
-        return (WeightedRandom.getRandomItem(textures, Math.abs((int)rand >> 16) % totalWeight)).type;
+    private TextureStyle getStateFromBoolean(boolean one, boolean two, boolean three, boolean winter) {
+        if (one && !two && !three) return winter ? VERTICAL_WINTER : VERTICAL;
+        if (!one && two && !three) return  winter ? HORIZONTAL_WINTER : HORIZONTAL;
+        if (one && two && !three) return winter ? INNER_WINTER : INNER;
+        if (!one && two) return winter ? HORIZONTAL_WINTER : HORIZONTAL;
+        if (one && !two) return winter ? VERTICAL_WINTER : VERTICAL;
+        if (one) return winter ? BLANK_WINTER : BLANK;
+        return winter ? OUTER_WINTER : OUTER;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public BlockRenderLayer getBlockLayer() {
         return BlockRenderLayer.CUTOUT;
-    }
-
-    public IBlockState getBaseStateFromSeason(IBlockState state, boolean winter) {
-        if (state.getBlock() == HFMining.DIRT || state.getBlock() == HFMining.DIRT_WINTER) return winter ? HFMining.DIRT_WINTER.getDefaultState() : HFMining.DIRT.getDefaultState();
-        else return winter ? HFMining.DIRT_DECORATIVE_WINTER.getDefaultState() : HFMining.DIRT_DECORATIVE.getDefaultState();
     }
 
     @Override
@@ -170,17 +122,11 @@ public class BlockDirt extends BlockHFBase<BlockDirt> {
         boolean southEast = south && east && isSameBlock(world, pos.south().east());
         boolean southWest = south && west && isSameBlock(world, pos.south().west());
         boolean winter = HFTrackers.getCalendar(WorldHelper.getWorld(world)).getSeasonAt(pos) == Season.WINTER;
-        TextureStyle ne = getStateFromBoolean(north, east, northEast);
-        TextureStyle nw = getStateFromBoolean(north, west, northWest);
-        TextureStyle se = getStateFromBoolean(south, east, southEast);
-        TextureStyle sw = getStateFromBoolean(south, west, southWest);
-        IBlockState theState = getBaseStateFromSeason(state, winter);
-        theState = theState.withProperty(NORTH_EAST, ne);
-        theState = theState.withProperty(NORTH_WEST, nw);
-        theState = theState.withProperty(SOUTH_EAST, se);
-        theState = theState.withProperty(SOUTH_WEST, sw);
-        theState = theState.withProperty(TEXTURE, getStyleFromPos(MathHelper.getPositionRandom(pos)));
-        return theState;
+        TextureStyle ne = getStateFromBoolean(north, east, northEast, winter);
+        TextureStyle nw = getStateFromBoolean(north, west, northWest, winter);
+        TextureStyle se = getStateFromBoolean(south, east, southEast, winter);
+        TextureStyle sw = getStateFromBoolean(south, west, southWest, winter);
+        return state.withProperty(NORTH_EAST, ne).withProperty(NORTH_WEST, nw).withProperty(SOUTH_EAST, se).withProperty(SOUTH_WEST, sw);
     }
 
     @SideOnly(Side.CLIENT)

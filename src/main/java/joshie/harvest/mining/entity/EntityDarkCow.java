@@ -35,6 +35,11 @@ public class EntityDarkCow extends EntityMob {
     }
 
     @Override
+    protected boolean isValidLightLevel() {
+        return true;
+    }
+
+    @Override
     protected SoundEvent getAmbientSound() {
         return SoundEvents.ENTITY_COW_AMBIENT;
     }

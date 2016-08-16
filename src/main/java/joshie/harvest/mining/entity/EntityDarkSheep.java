@@ -35,6 +35,11 @@ public class EntityDarkSheep extends EntityMob {
     }
 
     @Override
+    protected boolean isValidLightLevel() {
+        return true;
+    }
+
+    @Override
     protected SoundEvent getAmbientSound() {
         return SoundEvents.ENTITY_SHEEP_AMBIENT;
     }

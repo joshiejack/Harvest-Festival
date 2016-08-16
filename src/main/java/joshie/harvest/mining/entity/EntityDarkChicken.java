@@ -44,6 +44,11 @@ public class EntityDarkChicken extends EntityMob {
     }
 
     @Override
+    protected boolean isValidLightLevel() {
+        return true;
+    }
+
+    @Override
     public void onLivingUpdate() {
         super.onLivingUpdate();
         this.oFlap = this.wingRotation;

@@ -3,7 +3,6 @@ package joshie.harvest.cooking;
 import joshie.harvest.api.cooking.ICookingIngredient;
 import joshie.harvest.api.cooking.IMeal;
 import joshie.harvest.api.cooking.IMealRecipe;
-import joshie.harvest.api.cooking.IUtensil;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.translation.I18n;
 
@@ -16,7 +15,7 @@ public class Recipe extends net.minecraftforge.fml.common.registry.IForgeRegistr
     private final ICookingIngredient[] requiredIngredients;
 
     //Optional Extras
-    private IUtensil requiredTool;
+    private Utensil requiredTool;
     private ICookingIngredient[] optionalIngredients;
 
     public Recipe(String unlocalised, ICookingIngredient[] ingredients, IMeal result) {
@@ -37,7 +36,7 @@ public class Recipe extends net.minecraftforge.fml.common.registry.IForgeRegistr
     }
 
     @Override
-    public IMealRecipe setRequiredTool(IUtensil tool) {
+    public IMealRecipe setRequiredTool(Utensil tool) {
         this.requiredTool = tool;
         return this;
     }
@@ -84,7 +83,7 @@ public class Recipe extends net.minecraftforge.fml.common.registry.IForgeRegistr
     }
 
     @Override
-    public IMeal getMeal(IUtensil utensil, HashSet<ICookingIngredient> ingredients) {
+    public IMeal getMeal(Utensil utensil, HashSet<ICookingIngredient> ingredients) {
         if (ingredients == null || ingredients.size() < 1 || utensil != requiredTool)
             return null; //If we have no utensils, or not enough recipes remove them all
 

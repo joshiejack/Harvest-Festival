@@ -1,13 +1,12 @@
 package joshie.harvest.cooking.blocks;
 
-import joshie.harvest.api.cooking.IUtensil;
 import joshie.harvest.cooking.Utensil;
 import joshie.harvest.core.lib.HFSounds;
 import net.minecraft.util.SoundCategory;
 
 public class TileFryingPan extends TileHeatable {
     @Override
-    public IUtensil getUtensil() {
+    public Utensil getUtensil() {
         return Utensil.FRYING_PAN;
     }
 

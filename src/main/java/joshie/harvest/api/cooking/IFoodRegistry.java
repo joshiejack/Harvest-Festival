@@ -1,5 +1,6 @@
 package joshie.harvest.api.cooking;
 
+import joshie.harvest.cooking.Utensil;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
@@ -67,7 +68,7 @@ public interface IFoodRegistry {
      * 
      * @param       unlocalized name
      * @return      the utensil */
-    IUtensil getUtensil(String unlocalized);
+    Utensil getUtensil(String unlocalized);
 
     /** Add this meal to the recipe registry,
      *
@@ -80,13 +81,13 @@ public interface IFoodRegistry {
      * @param ingredients    the ingredients for this recipe, use getIngredient to grab any of the default ingredients
      * @return  the recipe that was added, where you can manipulate it further if neccessary
      */
-    IMealRecipe addMeal(ResourceLocation key, IUtensil utensil, int hunger, float saturation, float exhaustion, int eatTimer, ICookingIngredient... ingredients);
+    IMealRecipe addMeal(ResourceLocation key, Utensil utensil, int hunger, float saturation, float exhaustion, int eatTimer, ICookingIngredient... ingredients);
 
     /** Returns a resulting itemstack for the ingredients input
      *  @param      utensil the utensil in use
      *  @param      ingredients the ingredients
      *  @return     the resulting item */
-    ItemStack getResult(IUtensil utensil, List<ItemStack> ingredients);
+    ItemStack getResult(Utensil utensil, List<ItemStack> ingredients);
 
     /** Returns a default copy of this meal
      *  @param name     this is the resource path of the name, if it's a harvestfestival meal you can just use the name,

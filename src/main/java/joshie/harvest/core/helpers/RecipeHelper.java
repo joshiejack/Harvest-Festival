@@ -3,18 +3,17 @@ package joshie.harvest.core.helpers;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.ICookingIngredient;
 import joshie.harvest.api.cooking.IMealRecipe;
-import joshie.harvest.api.cooking.IUtensil;
 import joshie.harvest.cooking.Utensil;
 import net.minecraft.util.ResourceLocation;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class RecipeHelper {
-    private static IMealRecipe addRecipe(String mealname, IUtensil utensil, int hunger, float saturation, float exhaustion, int eatTimer, ICookingIngredient... ingredients) {
+    private static IMealRecipe addRecipe(String mealname, Utensil utensil, int hunger, float saturation, float exhaustion, int eatTimer, ICookingIngredient... ingredients) {
         return HFApi.cooking.addMeal(new ResourceLocation(MODID, mealname), utensil, hunger, saturation, exhaustion, eatTimer, ingredients);
     }
     
-    private static IMealRecipe addRecipe(String mealname, IUtensil utensil, int hunger, float saturation, float exhaustion, boolean drink, ICookingIngredient... ingredients) {
+    private static IMealRecipe addRecipe(String mealname, Utensil utensil, int hunger, float saturation, float exhaustion, boolean drink, ICookingIngredient... ingredients) {
         int timer = drink ? 8:  4 + (int) (hunger * saturation * 4);
         IMealRecipe ret = addRecipe(mealname, utensil, hunger, saturation, exhaustion, timer, ingredients);
         return drink? ret.setIsDrink(): ret;

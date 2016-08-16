@@ -1,6 +1,5 @@
 package joshie.harvest.cooking.blocks;
 
-import joshie.harvest.api.cooking.IUtensil;
 import joshie.harvest.cooking.Utensil;
 
 public class TileCounter extends TileCooking {
@@ -10,7 +9,7 @@ public class TileCounter extends TileCooking {
     }
 
     @Override
-    public IUtensil getUtensil() {
+    public Utensil getUtensil() {
         return Utensil.COUNTER;
     }
 }

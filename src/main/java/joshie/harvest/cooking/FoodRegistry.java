@@ -76,7 +76,7 @@ public class FoodRegistry implements IFoodRegistry {
     }
 
     @Override
-    public IUtensil getUtensil(String unlocalized) {
+    public Utensil getUtensil(String unlocalized) {
         for (Utensil utensil : Utensil.values()) {
             if (utensil.name().equalsIgnoreCase(unlocalized)) return utensil;
         }
@@ -85,7 +85,7 @@ public class FoodRegistry implements IFoodRegistry {
     }
 
     @Override
-    public IMealRecipe addMeal(ResourceLocation key, IUtensil utensil, int hunger, float saturation, float exhaustion, int eatTimer, ICookingIngredient... components) {
+    public IMealRecipe addMeal(ResourceLocation key, Utensil utensil, int hunger, float saturation, float exhaustion, int eatTimer, ICookingIngredient... components) {
         String unlocalised = key.getResourceDomain() + ".meal." + key.getResourcePath().replace("_", ".");
         Recipe recipe = new Recipe(unlocalised, components, new Meal(hunger, saturation, exhaustion, eatTimer));
         recipe.setRegistryName(key);
@@ -119,7 +119,7 @@ public class FoodRegistry implements IFoodRegistry {
     }
 
     @Override
-    public ItemStack getResult(IUtensil utensil, List<ItemStack> ingredients) {
+    public ItemStack getResult(Utensil utensil, List<ItemStack> ingredients) {
         //Check the special recipes first
         for (ISpecialRecipeHandler recipe : specials) {
             ItemStack ret = recipe.getResult(utensil, ingredients);

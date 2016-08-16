@@ -1,6 +1,5 @@
 package joshie.harvest.cooking.blocks;
 
-import joshie.harvest.api.cooking.IUtensil;
 import joshie.harvest.cooking.Utensil;
 import joshie.harvest.cooking.blocks.TileCooking.TileCookingTicking;
 import net.minecraft.item.ItemStack;
@@ -39,7 +38,7 @@ public class TileMixer extends TileCookingTicking {
     }
 
     @Override
-    public IUtensil getUtensil() {
+    public Utensil getUtensil() {
         return Utensil.MIXER;
     }
 

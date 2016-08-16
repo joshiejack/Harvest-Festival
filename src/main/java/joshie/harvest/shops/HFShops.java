@@ -26,6 +26,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import static joshie.harvest.animals.item.ItemAnimalSpawner.Spawner.*;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.*;
 import static joshie.harvest.api.calendar.Weekday.*;
+import static joshie.harvest.cooking.HFCooking.COOKWARE;
+import static joshie.harvest.cooking.blocks.BlockCookware.Cookware.*;
 import static joshie.harvest.cooking.items.ItemIngredients.Ingredient.*;
 import static joshie.harvest.npc.items.ItemNPCTool.NPCTool.BLUE_FEATHER;
 
@@ -78,6 +80,14 @@ public class HFShops {
         CAFE.addItem(200, HFApi.cooking.getMeal("cookies"));
         CAFE.addItem(300, HFApi.cooking.getMeal("juice_pineapple"));
         CAFE.addItem(250, HFApi.cooking.getMeal("corn_baked"));
+
+        //Allow the purchasing of cookware at the weekends
+        CAFE.addItem(new PurchaseableCookware(COOKWARE.getStackFromEnum(COUNTER), 250, null));
+        CAFE.addItem(new PurchaseableCookware(COOKWARE.getStackFromEnum(FRIDGE), 3000, null));
+        CAFE.addItem(new PurchaseableCookware(COOKWARE.getStackFromEnum(OVEN_OFF), 2500, null));
+        CAFE.addItem(new PurchaseableCookware(COOKWARE.getStackFromEnum(FRYING_PAN), 1500, COOKWARE.getStackFromEnum(OVEN_OFF)));
+        CAFE.addItem(new PurchaseableCookware(COOKWARE.getStackFromEnum(POT), 1000, COOKWARE.getStackFromEnum(OVEN_OFF)));
+        CAFE.addItem(new PurchaseableCookware(COOKWARE.getStackFromEnum(MIXER), 1200, COOKWARE.getStackFromEnum(COUNTER)));
 
         CAFE.addOpening(MONDAY, 9500, 17000).addOpening(TUESDAY, 9500, 17000).addOpening(WEDNESDAY, 9500, 17000).addOpening(THURSDAY, 9500, 17000);
         CAFE.addOpening(FRIDAY, 9500, 17000).addOpening(SATURDAY, 9500, 17000).addOpening(SUNDAY, 9500, 17000);

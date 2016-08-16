@@ -1,5 +1,6 @@
 package joshie.harvest.api.cooking;
 
+import joshie.harvest.cooking.Utensil;
 import net.minecraft.item.ItemStack;
 
 import java.util.HashSet;
@@ -13,7 +14,7 @@ public interface IMealRecipe {
      * @param       utensil the utensil
      * @param       ingredients the ingredients
      * @return      the meal returned, returns null if the recipe is not valid */
-    IMeal getMeal(IUtensil utensil, HashSet<ICookingIngredient> ingredients);
+    IMeal getMeal(Utensil utensil, HashSet<ICookingIngredient> ingredients);
     
     /** @return     the basic meal **/
     IMeal getMeal();
@@ -31,7 +32,7 @@ public interface IMealRecipe {
      * 
      * @param       tool the utensil
      * @return      the meal  */
-    IMealRecipe setRequiredTool(IUtensil tool);
+    IMealRecipe setRequiredTool(Utensil tool);
 
     /** Marks the meal as something you drink, not eat **/
     IMealRecipe setIsDrink();

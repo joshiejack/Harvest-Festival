@@ -26,7 +26,7 @@ public class Purchaseable implements IPurchaseable {
 
     @Override
     public boolean canList(World world, EntityPlayer player) {
-        return true;
+        return canBuy(world, player);
     }
 
     @Override

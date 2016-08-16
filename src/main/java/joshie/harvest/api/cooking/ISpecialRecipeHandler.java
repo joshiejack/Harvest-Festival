@@ -1,5 +1,6 @@
 package joshie.harvest.api.cooking;
 
+import joshie.harvest.cooking.Utensil;
 import net.minecraft.item.ItemStack;
 
 import java.util.List;
@@ -8,5 +9,5 @@ import java.util.List;
  *  default, special way. */
 public interface ISpecialRecipeHandler {
     /** Returns the result of this recipe for this item **/
-    ItemStack getResult(IUtensil utensil, List<ItemStack> ingredients);
+    ItemStack getResult(Utensil utensil, List<ItemStack> ingredients);
 }

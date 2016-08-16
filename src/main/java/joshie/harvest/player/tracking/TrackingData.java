@@ -20,11 +20,12 @@ import net.minecraftforge.oredict.OreDictionary;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.HashSet;
+import java.util.Set;
 
 public class TrackingData {
-    HashSet<CropSoldStack> cropTracker = new HashSet<>(); //Crops that have been harvested
-    HashSet<SellHolderStack> sellTracker = new HashSet<>(); //Items That have been sold
-    HashSet<ItemStackHolder> obtained = new HashSet<>(); //Items that have been obtained
+    Set<CropSoldStack> cropTracker = new HashSet<>(); //Crops that have been harvested
+    Set<SellHolderStack> sellTracker = new HashSet<>(); //Items That have been sold
+    Set<ItemStackHolder> obtained = new HashSet<>(); //Items that have been obtained
 
 
     //TODO: Track Mystril tools and blessed tools

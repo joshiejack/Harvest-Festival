@@ -2,7 +2,6 @@ package joshie.harvest.cooking.blocks;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.IAltItem;
-import joshie.harvest.api.cooking.IUtensil;
 import joshie.harvest.cooking.Utensil;
 import joshie.harvest.core.base.TileFaceable;
 import joshie.harvest.core.helpers.generic.MCServerHelper;
@@ -40,7 +39,7 @@ public abstract class TileCooking extends TileFaceable {
 
     public TileCooking() {}
 
-    public abstract IUtensil getUtensil();
+    public abstract Utensil getUtensil();
 
     public boolean isCooking() {
         return cooking;

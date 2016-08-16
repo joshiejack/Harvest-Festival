@@ -2,10 +2,10 @@ package joshie.harvest.gathering.blocks;
 
 import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.api.gathering.ISmashable;
-import joshie.harvest.gathering.blocks.BlockWood.Wood;
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.base.BlockHFEnum;
+import joshie.harvest.core.lib.CreativeSort;
+import joshie.harvest.gathering.blocks.BlockWood.Wood;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -39,8 +39,8 @@ public class BlockWood extends BlockHFEnum<BlockWood, Wood> implements ISmashabl
     }
 
     public BlockWood() {
-        super(Material.WOOD, Wood.class, HFTab.GATHERING);
-        setHardness(0.5F);
+        super(Material.ROCK, Wood.class, HFTab.GATHERING);
+        setHardness(2F);
         setSoundType(SoundType.WOOD);
     }
 
@@ -92,6 +92,31 @@ public class BlockWood extends BlockHFEnum<BlockWood, Wood> implements ISmashabl
             case STUMP_MEDIUM: return GOLD;
             case STUMP_LARGE: return CURSED;
             default: return null;
+        }
+    }
+
+    @Deprecated
+    public float getBlockHardness(IBlockState state, World world, BlockPos pos) {
+        return getToolLevel(getEnumFromState(state));
+    }
+
+    @Override
+    protected int getToolLevel(Wood wood) {
+        switch (wood) {
+            case BRANCH_SMALL:
+                return 1;
+            case BRANCH_MEDIUM:
+                return 2;
+            case STUMP_SMALL:
+                return 3;
+            case BRANCH_LARGE:
+                return 4;
+            case STUMP_MEDIUM:
+                return 5;
+            case STUMP_LARGE:
+                return 6;
+            default:
+                return 0;
         }
     }
 

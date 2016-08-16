@@ -2,10 +2,10 @@ package joshie.harvest.gathering.blocks;
 
 import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.api.gathering.ISmashable;
-import joshie.harvest.gathering.blocks.BlockRock.Rock;
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.base.BlockHFEnum;
+import joshie.harvest.core.lib.CreativeSort;
+import joshie.harvest.gathering.blocks.BlockRock.Rock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -85,6 +85,31 @@ public class BlockRock extends BlockHFEnum<BlockRock, Rock> implements ISmashabl
             case BOULDER_MEDIUM: return MYSTRIL;
             case BOULDER_LARGE: return CURSED;
             default: return null;
+        }
+    }
+
+    @Deprecated
+    public float getBlockHardness(IBlockState state, World world, BlockPos pos) {
+        return getToolLevel(getEnumFromState(state)) * 2;
+    }
+
+    @Override
+    protected int getToolLevel(Rock rock) {
+        switch (rock) {
+            case STONE_SMALL:
+                return 1;
+            case STONE_MEDIUM:
+                return 2;
+            case BOULDER_SMALL:
+                return 3;
+            case STONE_LARGE:
+                return 4;
+            case BOULDER_MEDIUM:
+                return 5;
+            case BOULDER_LARGE:
+                return 6;
+            default:
+                return 0;
         }
     }
 

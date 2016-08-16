@@ -37,11 +37,6 @@ public abstract class BlockHFEnum<B extends BlockHFEnum, E extends Enum<E> & ISt
         }
     }
 
-    private static Material preInit(Material material, PropertyEnum<?> property) {
-        temporary = property;
-        return material;
-    }
-
     private static Material preInit(Material material, Class clazz) {
         temporary = PropertyEnum.create(clazz.getSimpleName().toLowerCase(), clazz);
         return material;

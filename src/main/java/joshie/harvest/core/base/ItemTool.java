@@ -76,10 +76,14 @@ public abstract class ItemTool extends ItemHFBase<ItemTool> implements ILevelabl
         return ToolTier.values()[safe];
     }
 
+    protected int getMaxCharge(ItemStack stack) {
+        return getTier(stack).ordinal();
+    }
+
     protected boolean canCharge(ItemStack stack) {
         NBTTagCompound tag = stack.getSubCompound("Data", true);
         int amount = tag.getInteger("Charge");
-        return amount < getTier(stack).ordinal();
+        return amount < getMaxCharge(stack);
     }
 
     protected int getCharge(ItemStack stack) {
@@ -163,13 +167,17 @@ public abstract class ItemTool extends ItemHFBase<ItemTool> implements ILevelabl
         }
     }
 
+    protected ToolTier getChargeTier(ItemStack stack, int charge) {
+        return ToolTier.values()[charge];
+    }
+
     @Override
     public void onPlayerStoppedUsing(ItemStack stack, World world, EntityLivingBase entity, int timeLeft) {
         if (timeLeft <= 31973) {
             int charge = (Math.min(7, Math.max(0, getCharge(stack))));
             setCharge(stack, 0); //Reset the charge
             if (!world.isRemote) {
-                onFinishedCharging(world, entity, getMovingObjectPositionFromPlayer(world, entity), stack, ToolTier.values()[charge]);
+                onFinishedCharging(world, entity, getMovingObjectPositionFromPlayer(world, entity), stack, getChargeTier(stack, charge));
             }
         }
     }

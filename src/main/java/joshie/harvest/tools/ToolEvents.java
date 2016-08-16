@@ -37,6 +37,11 @@ public class ToolEvents {
         }
     }
 
+    @HFEvents
+    public static class CursedTools {
+
+    }
+
     @SubscribeEvent
     public void onPlayerTick(PlayerTickEvent event) {
         if (event.phase != Phase.END || event.player.worldObj.getTotalWorldTime() %20 != 0) return;

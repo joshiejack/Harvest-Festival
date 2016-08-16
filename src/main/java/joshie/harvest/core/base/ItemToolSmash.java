@@ -23,6 +23,16 @@ public abstract class ItemToolSmash extends ItemTool {
     }
 
     @Override
+    protected int getMaxCharge(ItemStack stack) {
+        return 1;
+    }
+
+    @Override
+    protected ToolTier getChargeTier(ItemStack stack, int charge) {
+        return getTier(stack);
+    }
+
+    @Override
     public int getSides(ToolTier tier) {
         return getFront(tier);
     }

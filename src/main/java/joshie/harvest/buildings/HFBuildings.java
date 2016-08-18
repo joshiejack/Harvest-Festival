@@ -16,8 +16,6 @@ import joshie.harvest.core.base.FMLDefinition;
 import joshie.harvest.core.helpers.ResourceLoader;
 import joshie.harvest.core.util.HFLoader;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.block.model.ModelBakery;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentString;
@@ -51,18 +49,13 @@ public class HFBuildings {
     public static final IBuilding SUPERMARKET = registerBuilding("supermarket", 1280L, 512, 320).setRequirements("carpenter").setOffset(11, -10, 12).setTickTime(5);
     public static final IBuilding TOWNHALL = registerBuilding("townhall", 16400L, 768, 256).setRequirements("miningHill", "miningHut", "goddessPond").setOffset(10, -1, 17);
 
-
-    @SideOnly(Side.CLIENT)
-    private static FMLDefinition definition;
-
     public static void preInit() {
         HarvestFestival.LOGGER.log(Level.INFO, "Creating Harvest Festival Buildings!");
     }
 
     @SideOnly(Side.CLIENT)
     public static void preInitClient() {
-        definition = new FMLDefinition<>(BuildingRegistry.REGISTRY);
-        ModelLoader.setCustomMeshDefinition(STRUCTURES, definition);
+        ModelLoader.setCustomMeshDefinition(STRUCTURES, new FMLDefinition<>(STRUCTURES, "buildings", BuildingRegistry.REGISTRY));
     }
 
     //Reload the Building data at this stage
@@ -77,11 +70,7 @@ public class HFBuildings {
 
     @SideOnly(Side.CLIENT)
     public static void initClient() {
-        for (Building building : BuildingRegistry.REGISTRY.getValues()) {
-            ModelResourceLocation model = new ModelResourceLocation(new ResourceLocation(building.getRegistryName().getResourceDomain(), "buildings/" + building.getRegistryName().getResourcePath()), "inventory");
-            ModelBakery.registerItemVariants(STRUCTURES, model);
-            definition.register(building, model);
-        }
+        FMLDefinition.getDefinition("buildings").registerEverything();
     }
 
     public static void postInit() {

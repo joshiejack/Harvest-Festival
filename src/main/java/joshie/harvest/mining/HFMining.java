@@ -65,6 +65,7 @@ public class HFMining {
     @SideOnly(Side.CLIENT)
     public static void preInitClient() {
         ModelLoader.setCustomStateMapper(DIRT, new BakedDirt.StateMapper());
+        ModelLoader.setCustomStateMapper(DIRT_DECORATIVE, new BakedDirt.StateMapper());
 
         //Register the dark cow
         RenderingRegistry.registerEntityRenderingHandler(EntityDarkCow.class, new IRenderFactory<EntityDarkCow>() {

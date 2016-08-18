@@ -19,8 +19,6 @@ import joshie.harvest.crops.items.ItemHFSeeds;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.block.model.ModelBakery;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.init.Blocks;
@@ -92,9 +90,6 @@ public class HFCrops {
     //Nether Crop
     public static final ICrop NETHER_WART = registerCrop("nether_wart", 25000, 10, 4, 1, 5, 0x8B0000, NETHER).setStateHandler(new StateHandlerNetherWart()).setPlantType(EnumPlantType.Nether).setNoWaterRequirements().setSoilRequirements(SoilHandlers.SOUL_SAND).setDropHandler(new DropHandlerNetherWart());
 
-    @SideOnly(Side.CLIENT)
-    private static FMLDefinition definition;
-
     public static void preInit() {
         //Register the crop serializer
         LootFunctionManager.registerFunction(new SetCropType.Serializer());
@@ -134,8 +129,7 @@ public class HFCrops {
     @SideOnly(Side.CLIENT)
     public static void preInitClient() {
         ModelLoader.setCustomStateMapper(CROPS, new CropStateMapper());
-        definition = new FMLDefinition<>(CropRegistry.REGISTRY);
-        ModelLoader.setCustomMeshDefinition(CROP, definition);
+        ModelLoader.setCustomMeshDefinition(CROP, new FMLDefinition<>("crops", CropRegistry.REGISTRY));
     }
 
     @SideOnly(Side.CLIENT)
@@ -162,14 +156,7 @@ public class HFCrops {
         }, CROPS);
 
         //Register the models
-        for (Crop crop : CropRegistry.REGISTRY.getValues()) {
-            if (crop == NULL_CROP) continue; //Ignore null crop
-            if (crop.getCropStack().getItem() == CROP) {
-                ModelResourceLocation model = new ModelResourceLocation(new ResourceLocation(crop.getRegistryName().getResourceDomain(), "crops/" + crop.getRegistryName().getResourcePath()), "inventory");
-                ModelBakery.registerItemVariants(CROP, model);
-                definition.register(crop, model);
-            }
-        }
+        FMLDefinition.getDefinition("crops").registerEverything(CROP);
     }
 
     private static void registerVanillaCrop(Item item, ICrop crop) {

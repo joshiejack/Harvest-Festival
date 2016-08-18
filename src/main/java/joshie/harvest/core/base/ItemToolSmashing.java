@@ -50,17 +50,17 @@ public abstract class ItemToolSmashing extends ItemTool<ItemToolSmashing> {
 
     @Override
     protected int getXPlus(ToolTier tier, EnumFacing facing, int x) {
-        return x + getSides(tier);
+        return x + getFront(tier);
     }
 
     @Override
     protected int getZMinus(ToolTier tier, EnumFacing facing, int z) {
-        return z - getSides(tier);
+        return z - getFront(tier);
     }
 
     @Override
     protected int getZPlus(ToolTier tier, EnumFacing facing, int z) {
-        return z + getSides(tier);
+        return z + getFront(tier);
     }
 
     public abstract ToolType getToolType();

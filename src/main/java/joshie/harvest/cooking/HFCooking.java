@@ -40,6 +40,7 @@ public class HFCooking {
     @SideOnly(Side.CLIENT)
     public static void preInitClient() {
         ModelLoader.setCustomMeshDefinition(MEAL, new MealDefinition());
+        ModelBakery.registerItemVariants(MEAL); //Null
         ClientRegistry.bindTileEntitySpecialRenderer(TileFryingPan.class, new SpecialRendererFryingPan());
         ClientRegistry.bindTileEntitySpecialRenderer(TilePot.class, new SpecialRendererPot());
         ClientRegistry.bindTileEntitySpecialRenderer(TileCounter.class, new SpecialRendererCounter());

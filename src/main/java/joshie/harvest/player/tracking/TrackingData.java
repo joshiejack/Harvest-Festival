@@ -161,6 +161,35 @@ public class TrackingData {
         public abstract boolean matches(ItemStack stack);
     }
 
+    public static class ModHolder extends AbstractItemHolder<ModHolder, String> {
+        private String mod;
+
+        public ModHolder(String mod) {
+            this.mod = mod;
+        }
+
+        @Override
+        public boolean matches(ItemStack stack) {
+            return Item.REGISTRY.getNameForObject(stack.getItem()).getResourceDomain().equals(mod);
+        }
+
+        @Override
+        public String getKey() {
+            return null;
+        }
+
+        @Override
+        public void readFromNBT(NBTTagCompound tag) {
+            mod = tag.getString("Mod");
+        }
+
+        @Override
+        public NBTTagCompound writeToNBT(NBTTagCompound tag) {
+            tag.setString("Mod", mod);
+            return tag;
+        }
+    }
+
     public static class CropHolder extends AbstractItemHolder<CropHolder, Crop> {
         private Crop crop;
 

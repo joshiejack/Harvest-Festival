@@ -5,6 +5,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
@@ -33,20 +34,23 @@ public abstract class BlockHFSmashable<B extends BlockHFSmashable, E extends Enu
 
     @Override
     public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)  {
-        if (!worldIn.isRemote && !worldIn.restoringBlockSnapshots) {
-            ItemStack stack = getDrop(harvesters.get(), worldIn, pos, state, fortune);
-            if (stack != null) {
-                List<ItemStack> items = new ArrayList<>();
-                items.add(stack);
-                chance = net.minecraftforge.event.ForgeEventFactory.fireBlockHarvesting(items, worldIn, pos, state, fortune, chance, false, harvesters.get());
+        Item held = harvesters.get().getHeldItemMainhand() != null ? harvesters.get().getHeldItemMainhand().getItem() : null;
+        if (held != null && held == getTool()) {
+            if (!worldIn.isRemote && !worldIn.restoringBlockSnapshots) {
+                ItemStack stack = getDrop(harvesters.get(), worldIn, pos, state, fortune);
+                if (stack != null) {
+                    List<ItemStack> items = new ArrayList<>();
+                    items.add(stack);
+                    chance = net.minecraftforge.event.ForgeEventFactory.fireBlockHarvesting(items, worldIn, pos, state, fortune, chance, false, harvesters.get());
 
-                for (ItemStack item : items) {
-                    if (worldIn.rand.nextFloat() <= chance) {
-                        spawnAsEntity(worldIn, pos, item);
+                    for (ItemStack item : items) {
+                        if (worldIn.rand.nextFloat() <= chance) {
+                            spawnAsEntity(worldIn, pos, item);
+                        }
                     }
                 }
             }
-        }
+        } else super.dropBlockAsItemWithChance(worldIn, pos, state, chance, fortune);
     }
 
     @Override

@@ -1,10 +1,7 @@
 package joshie.harvest.mining.blocks;
 
-import joshie.harvest.api.HFApi;
-import joshie.harvest.api.calendar.Season;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.BlockHFEnumCube;
-import joshie.harvest.core.helpers.WorldHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.Text;
 import joshie.harvest.mining.HFMining;
@@ -31,26 +28,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.ArrayList;
 import java.util.List;
 
-import static joshie.harvest.mining.blocks.BlockStone.Type.*;
+import static joshie.harvest.mining.blocks.BlockStone.Type.HOLE;
+import static joshie.harvest.mining.blocks.BlockStone.Type.REAL;
 
 public class BlockStone extends BlockHFEnumCube<BlockStone, Type> {
     public enum Type implements IStringSerializable {
-        REAL(true), DECORATIVE_BLANK, DECORATIVE_PURPLE, DECORATIVE_SILVER, DECORATIVE_GREEN, DECORATIVE_BLUE, DECORATIVE_RED,
-        REAL_WINTER(true), DECORATIVE_BLANK_WINTER, DECORATIVE_PURPLE_WINTER, DECORATIVE_SILVER_WINTER, DECORATIVE_GREEN_WINTER, DECORATIVE_BLUE_WINTER, DECORATIVE_RED_WINTER,
-        HOLE;
-
-        private final boolean isReal;
-
-        Type() {
-            this.isReal = false;
-        }
-
-        Type(boolean isReal) {
-            this.isReal = isReal;
-        }
+        REAL, DECORATIVE_BLANK, DECORATIVE_PURPLE, DECORATIVE_SILVER, DECORATIVE_GREEN, DECORATIVE_BLUE, DECORATIVE_RED, HOLE;
 
         public boolean isReal() {
-            return isReal;
+            return this == REAL;
         }
 
         @Override
@@ -106,14 +92,6 @@ public class BlockStone extends BlockHFEnumCube<BlockStone, Type> {
     }
 
     @Override
-    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
-        if(getEnumFromState(state).isReal) {
-            Season season = HFApi.calendar.getSeasonAtCoordinates(WorldHelper.getWorld(world), pos);
-            return season == Season.WINTER ? state.withProperty(property, REAL_WINTER) : state.withProperty(property, REAL);
-        } else return state;
-    }
-
-    @Override
     public String getItemStackDisplayName(ItemStack stack) {
         if (getEnumFromStack(stack) == HOLE) return Text.translate("hole");
         String unlocalized = getUnlocalizedName();
@@ -126,7 +104,7 @@ public class BlockStone extends BlockHFEnumCube<BlockStone, Type> {
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
         int adjusted = Math.max(0, Math.min(Type.values().length, stack.getItemDamage()));
         Type type = Type.values()[adjusted];
-        if (!type.isReal && type != HOLE) {
+        if (!type.isReal() && type != HOLE) {
             list.add(TextFormatting.YELLOW + Text.translate("tooltip.cosmetic"));
         }
     }

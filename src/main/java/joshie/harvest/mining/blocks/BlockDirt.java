@@ -1,10 +1,7 @@
 package joshie.harvest.mining.blocks;
 
-import joshie.harvest.api.calendar.Season;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.BlockHFBase;
-import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.helpers.WorldHelper;
 import joshie.harvest.core.util.Text;
 import joshie.harvest.mining.HFMining;
 import net.minecraft.block.SoundType;
@@ -29,6 +26,7 @@ import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static joshie.harvest.mining.blocks.BlockDirt.TextureStyle.*;
@@ -40,8 +38,7 @@ public class BlockDirt extends BlockHFBase<BlockDirt> {
     public static final PropertyEnum SOUTH_WEST = PropertyEnum.create("sw", TextureStyle.class);
 
     public enum TextureStyle implements IStringSerializable {
-        BLANK, INNER, VERTICAL, HORIZONTAL, OUTER,
-        BLANK_WINTER, INNER_WINTER, VERTICAL_WINTER, HORIZONTAL_WINTER, OUTER_WINTER;
+        BLANK, INNER, VERTICAL, HORIZONTAL, OUTER;
 
         @Override
         public String getName() {
@@ -95,14 +92,14 @@ public class BlockDirt extends BlockHFBase<BlockDirt> {
         return world.getBlockState(pos).getBlock().getClass() == this.getClass();
     }
 
-    private TextureStyle getStateFromBoolean(boolean one, boolean two, boolean three, boolean winter) {
-        if (one && !two && !three) return winter ? VERTICAL_WINTER : VERTICAL;
-        if (!one && two && !three) return  winter ? HORIZONTAL_WINTER : HORIZONTAL;
-        if (one && two && !three) return winter ? INNER_WINTER : INNER;
-        if (!one && two) return winter ? HORIZONTAL_WINTER : HORIZONTAL;
-        if (one && !two) return winter ? VERTICAL_WINTER : VERTICAL;
-        if (one) return winter ? BLANK_WINTER : BLANK;
-        return winter ? OUTER_WINTER : OUTER;
+    private TextureStyle getStateFromBoolean(boolean one, boolean two, boolean three) {
+        if (one && !two && !three) return VERTICAL;
+        if (!one && two && !three) return  HORIZONTAL;
+        if (one && two && !three) return INNER;
+        if (!one && two) return HORIZONTAL;
+        if (one && !two) return VERTICAL;
+        if (one) return BLANK;
+        return OUTER;
     }
 
     @Override
@@ -110,6 +107,8 @@ public class BlockDirt extends BlockHFBase<BlockDirt> {
     public BlockRenderLayer getBlockLayer() {
         return BlockRenderLayer.CUTOUT;
     }
+
+    public static final List<String> STATES = new ArrayList<>();
 
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
@@ -121,17 +120,16 @@ public class BlockDirt extends BlockHFBase<BlockDirt> {
         boolean northWest = north && west && isSameBlock(world, pos.north().west());
         boolean southEast = south && east && isSameBlock(world, pos.south().east());
         boolean southWest = south && west && isSameBlock(world, pos.south().west());
-        boolean winter = HFTrackers.getCalendar(WorldHelper.getWorld(world)).getSeasonAt(pos) == Season.WINTER;
-        TextureStyle ne = getStateFromBoolean(north, east, northEast, winter);
-        TextureStyle nw = getStateFromBoolean(north, west, northWest, winter);
-        TextureStyle se = getStateFromBoolean(south, east, southEast, winter);
-        TextureStyle sw = getStateFromBoolean(south, west, southWest, winter);
+        TextureStyle ne = getStateFromBoolean(north, east, northEast);
+        TextureStyle nw = getStateFromBoolean(north, west, northWest);
+        TextureStyle se = getStateFromBoolean(south, east, southEast);
+        TextureStyle sw = getStateFromBoolean(south, west, southWest);
         return state.withProperty(NORTH_EAST, ne).withProperty(NORTH_WEST, nw).withProperty(SOUTH_EAST, se).withProperty(SOUTH_WEST, sw);
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public void registerModels(Item item, String name) {
-        ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(getRegistryName(), "ne=outer,nw=outer,se=outer,sw=outer,texture=blank"));
+        ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(getRegistryName(), "ne=outer,nw=outer,se=outer,sw=outer"));
     }
 }

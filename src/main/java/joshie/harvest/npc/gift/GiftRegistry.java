@@ -6,6 +6,7 @@ import joshie.harvest.api.npc.gift.IGiftRegistry;
 import joshie.harvest.player.tracking.TrackingData.AbstractItemHolder;
 import joshie.harvest.player.tracking.TrackingData.ItemHolder;
 import joshie.harvest.player.tracking.TrackingData.ItemStackHolder;
+import joshie.harvest.player.tracking.TrackingData.ModHolder;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -39,7 +40,14 @@ public class GiftRegistry implements IGiftRegistry {
     }
 
     public static void assignModID(String mod, GiftCategory... categories) {
+        ModHolder holder = new ModHolder(mod);
+        for (Item item: Item.REGISTRY) {
+            if (item.getRegistryName().getResourceDomain().equals(mod)) {
+                KEY_MAP.get(item).add(holder);
+            }
+        }
 
+        GIFTS.put(holder, categories);
     }
 
     public static boolean is(ItemStack stack, GiftCategory category) {

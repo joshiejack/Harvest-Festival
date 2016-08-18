@@ -1,10 +1,8 @@
 package joshie.harvest.mining.blocks;
 
-import joshie.harvest.api.calendar.Season;
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.helpers.WorldHelper;
 import joshie.harvest.core.base.BlockHFEnum;
+import joshie.harvest.core.helpers.WorldHelper;
 import joshie.harvest.core.util.Text;
 import joshie.harvest.mining.MiningHelper;
 import joshie.harvest.mining.blocks.BlockPortal.Portal;
@@ -22,7 +20,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import static joshie.harvest.mining.blocks.BlockPortal.Portal.*;
-import static joshie.harvest.mining.blocks.BlockPortal.Type.*;
+import static joshie.harvest.mining.blocks.BlockPortal.Type.MINE;
+import static joshie.harvest.mining.blocks.BlockPortal.Type.OVERWORLD;
 
 
 public class BlockPortal extends BlockHFEnum<BlockPortal, Portal> {
@@ -102,9 +101,9 @@ public class BlockPortal extends BlockHFEnum<BlockPortal, Portal> {
             if (actual.getBlock() == this) {
                 Portal portal = getEnumFromState(actual);
                 if (portal.isMine()) {
-                    MiningHelper.teleportToOverworld(entity);
+                   MiningHelper.teleportToOverworld(entity);
                 } else {
-                    MiningHelper.teleportToMine(entity);
+                   MiningHelper.teleportToMine(entity);
                 }
             }
         }
@@ -115,13 +114,13 @@ public class BlockPortal extends BlockHFEnum<BlockPortal, Portal> {
     }
 
     protected enum Type {
-        MINE, WINTER, OVERWORLD;
+        MINE, OVERWORLD;
     }
 
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess access, BlockPos pos) {
         World world = WorldHelper.getWorld(access);
-        Type type = HFTrackers.getCalendar(world).getSeasonAt(pos) == Season.WINTER ? WINTER : world.provider.getDimension() == 0 ? OVERWORLD : MINE;
+        Type type = world.provider.getDimension() == 0 ? OVERWORLD : MINE;
         boolean connectedUp = isSameBlock(access, pos.up());
         boolean connectedDown = isSameBlock(access, pos.down());
         boolean connectedEast = isSameBlock(access, pos.east());
@@ -129,23 +128,23 @@ public class BlockPortal extends BlockHFEnum<BlockPortal, Portal> {
         boolean connectedSouth = isSameBlock(access, pos.south());
         boolean connectedNorth = isSameBlock(access, pos.north());
         if (connectedDown && ((!connectedEast && connectedWest) || (connectedNorth && !connectedSouth))) {
-            if (connectedWest) return type == WINTER ? getStateFromEnum(WINTER_TL_EW) : type == MINE ? getStateFromEnum(MINE_TL_EW) : getStateFromEnum(STONE_TL_EW);
-            else return type == WINTER ? getStateFromEnum(WINTER_TL) : type == MINE ? getStateFromEnum(MINE_TL) : getStateFromEnum(STONE_TL);
+            if (connectedWest) return type == MINE ? getStateFromEnum(MINE_TL_EW) : getStateFromEnum(STONE_TL_EW);
+            else return type == MINE ? getStateFromEnum(MINE_TL) : getStateFromEnum(STONE_TL);
         } else if (connectedDown && ((connectedEast && !connectedWest) || (!connectedNorth && connectedSouth))) {
-            if (connectedEast) return type == WINTER ? getStateFromEnum(WINTER_TR_EW) : type == MINE ? getStateFromEnum(MINE_TR_EW) : getStateFromEnum(STONE_TR_EW);
-            return type == WINTER ? getStateFromEnum(WINTER_TR) : type == MINE ? getStateFromEnum(MINE_TR) : getStateFromEnum(STONE_TR);
+            if (connectedEast) return type == MINE ? getStateFromEnum(MINE_TR_EW) : getStateFromEnum(STONE_TR_EW);
+            return type == MINE ? getStateFromEnum(MINE_TR) : getStateFromEnum(STONE_TR);
         } else if (connectedDown && ((connectedEast && connectedWest) || (connectedNorth && connectedSouth))) {
-            if (connectedWest) return type == WINTER ? getStateFromEnum(WINTER_TM_EW) : type == MINE ? getStateFromEnum(MINE_TM_EW) : getStateFromEnum(STONE_TM_EW);
-            return type == WINTER ? getStateFromEnum(WINTER_TM) : type == MINE ? getStateFromEnum(MINE_TM) : getStateFromEnum(STONE_TM);
+            if (connectedWest) return type == MINE ? getStateFromEnum(MINE_TM_EW) : getStateFromEnum(STONE_TM_EW);
+            return type == MINE ? getStateFromEnum(MINE_TM) : getStateFromEnum(STONE_TM);
         } else if (connectedUp && ((!connectedEast && connectedWest) || (connectedNorth && !connectedSouth))) {
-            if (connectedWest) return type == WINTER ? getStateFromEnum(WINTER_BL_EW) : type == MINE ? getStateFromEnum(MINE_BL_EW) : getStateFromEnum(STONE_BL_EW);
-            return type == WINTER ? getStateFromEnum(WINTER_BL) : type == MINE ? getStateFromEnum(MINE_BL) : getStateFromEnum(STONE_BL);
+            if (connectedWest) return type == MINE ? getStateFromEnum(MINE_BL_EW) : getStateFromEnum(STONE_BL_EW);
+            return type == MINE ? getStateFromEnum(MINE_BL) : getStateFromEnum(STONE_BL);
         } else if (connectedUp && ((connectedEast && !connectedWest) || (!connectedNorth && connectedSouth))) {
-            if (connectedEast) return type == WINTER ? getStateFromEnum(WINTER_BR_EW) : type == MINE ? getStateFromEnum(MINE_BR_EW) : getStateFromEnum(STONE_BR_EW);
-            return type == WINTER ? getStateFromEnum(WINTER_BR) : type == MINE ? getStateFromEnum(MINE_BR) : getStateFromEnum(STONE_BR);
+            if (connectedEast) return type == MINE ? getStateFromEnum(MINE_BR_EW) : getStateFromEnum(STONE_BR_EW);
+            return type == MINE ? getStateFromEnum(MINE_BR) : getStateFromEnum(STONE_BR);
         } else if(connectedUp && ((connectedEast && connectedWest) || (connectedNorth && connectedSouth))) {
-            if (connectedEast) return type == WINTER ? getStateFromEnum(WINTER_BM_EW) : type == MINE ? getStateFromEnum(MINE_BM_EW) : getStateFromEnum(STONE_BM_EW);
-            return type == WINTER ? getStateFromEnum(WINTER_BM) : type == MINE ? getStateFromEnum(MINE_BM) : getStateFromEnum(STONE_BM);
+            if (connectedEast) return type == MINE ? getStateFromEnum(MINE_BM_EW) : getStateFromEnum(STONE_BM_EW);
+            return type == MINE ? getStateFromEnum(MINE_BM) : getStateFromEnum(STONE_BM);
         } else return state;
     }
 

@@ -14,6 +14,7 @@ import java.util.HashMap;
 public class MealDefinition implements ItemMeshDefinition {
     private static HashMap<Recipe, ModelResourceLocation> models = new HashMap<>();
     private static TIntObjectMap<ModelResourceLocation> burnt = new TIntObjectHashMap<>();
+
     public static void registerMeal(Recipe recipe, ModelResourceLocation resource) {
         models.put(recipe, resource);
     }

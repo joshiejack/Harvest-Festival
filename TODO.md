@@ -52,7 +52,8 @@
 
 ### To Fix
 - Location of the flower in the spring season overlay
-- Fix item render of Mine Hole
+- Fix item render of Mine Hole/Floor
+- Regeneratin of ores in the mine
 
 ### Textures
 - Crop Grass Better Texture

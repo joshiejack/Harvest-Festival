@@ -62,7 +62,7 @@ public class MiningChunk implements IChunkGenerator {
             primer.setBlockState(x, y, z, state);
 
             if (state.getBlock() == FLOORS.getBlock()) {
-                int chance = 4 + rand.nextInt(46);
+                int chance = 46 + rand.nextInt(44);
                 if (rand.nextInt(chance) == 0) {
                     int realX = (chunkX * 16) + x;
                     int realZ = (chunkZ * 16) + z;

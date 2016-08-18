@@ -12,48 +12,28 @@
       "inner": { "textures": { "tl": "harvestfestival:blocks/mine/dirt_inner" }},
       "vertical": { "textures": { "tl": "harvestfestival:blocks/mine/dirt_vertical" }},
       "horizontal": { "textures": { "tl": "harvestfestival:blocks/mine/dirt_horizontal" }},
-      "outer": { "textures": { "tl": "harvestfestival:blocks/mine/dirt_outer" }},
-      "blank_winter": { "model": "harvestfestival:connected_top_winter", "textures": { "tl": "harvestfestival:blocks/mine/winter_blank" }} ,
-      "inner_winter": { "model": "harvestfestival:connected_top_winter", "textures": { "tl": "harvestfestival:blocks/mine/winter_inner" }},
-      "vertical_winter": { "model": "harvestfestival:connected_top_winter", "textures": { "tl": "harvestfestival:blocks/mine/winter_vertical" }},
-      "horizontal_winter": { "model": "harvestfestival:connected_top_winter", "textures": { "tl": "harvestfestival:blocks/mine/winter_horizontal" }},
-      "outer_winter": { "model": "harvestfestival:connected_top_winter", "textures": { "tl": "harvestfestival:blocks/mine/winter_outer" }}
+      "outer": { "textures": { "tl": "harvestfestival:blocks/mine/dirt_outer" }}
     },
     "ne": {
       "blank": { "textures": { "tr": "harvestfestival:blocks/mine/dirt_blank" }},
       "inner": { "textures": { "tr": "harvestfestival:blocks/mine/dirt_inner" }},
       "vertical": { "textures": { "tr": "harvestfestival:blocks/mine/dirt_vertical" }},
       "horizontal": { "textures": { "tr": "harvestfestival:blocks/mine/dirt_horizontal" }},
-      "outer": { "textures": { "tr": "harvestfestival:blocks/mine/dirt_outer" }},
-      "blank_winter": { "model": "harvestfestival:connected_top_winter", "textures": { "tr": "harvestfestival:blocks/mine/winter_blank" }},
-      "inner_winter": { "model": "harvestfestival:connected_top_winter", "textures": { "tr": "harvestfestival:blocks/mine/winter_inner" }},
-      "vertical_winter": { "model": "harvestfestival:connected_top_winter", "textures": { "tr": "harvestfestival:blocks/mine/winter_vertical" }},
-      "horizontal_winter": { "model": "harvestfestival:connected_top_winter", "textures": { "tr": "harvestfestival:blocks/mine/winter_horizontal" }},
-      "outer_winter": { "model": "harvestfestival:connected_top_winter", "textures": { "tr": "harvestfestival:blocks/mine/winter_outer" }}
+      "outer": { "textures": { "tr": "harvestfestival:blocks/mine/dirt_outer" }}
     },
     "sw": {
       "blank": { "textures": { "bl": "harvestfestival:blocks/mine/dirt_blank" }},
       "inner": { "textures": { "bl": "harvestfestival:blocks/mine/dirt_inner" }},
       "vertical": { "textures": { "bl": "harvestfestival:blocks/mine/dirt_vertical" }},
       "horizontal": { "textures": { "bl": "harvestfestival:blocks/mine/dirt_horizontal" }},
-      "outer": { "textures": { "bl": "harvestfestival:blocks/mine/dirt_outer" }},
-      "blank_winter": { "model": "harvestfestival:connected_top_winter", "textures": { "bl": "harvestfestival:blocks/mine/winter_blank" }},
-      "inner_winter": { "model": "harvestfestival:connected_top_winter", "textures": { "bl": "harvestfestival:blocks/mine/winter_inner" }},
-      "vertical_winter": { "model": "harvestfestival:connected_top_winter", "textures": { "bl": "harvestfestival:blocks/mine/winter_vertical" }},
-      "horizontal_winter": { "model": "harvestfestival:connected_top_winter", "textures": { "bl": "harvestfestival:blocks/mine/winter_horizontal" }},
-      "outer_winter": { "model": "harvestfestival:connected_top_winter", "textures": { "bl": "harvestfestival:blocks/mine/winter_outer" }}
+      "outer": { "textures": { "bl": "harvestfestival:blocks/mine/dirt_outer" }}
     },
     "se": {
       "blank": { "textures": { "br": "harvestfestival:blocks/mine/dirt_blank" }},
       "inner": { "textures": { "br": "harvestfestival:blocks/mine/dirt_inner" }},
       "vertical": { "textures": { "br": "harvestfestival:blocks/mine/dirt_vertical" }},
       "horizontal": { "textures": { "br": "harvestfestival:blocks/mine/dirt_horizontal" }},
-      "outer": { "textures": { "br": "harvestfestival:blocks/mine/dirt_outer" }},
-      "blank_winter": { "model": "harvestfestival:connected_top_winter", "textures": { "br": "harvestfestival:blocks/mine/winter_blank" }},
-      "inner_winter": { "model": "harvestfestival:connected_top_winter", "textures": { "br": "harvestfestival:blocks/mine/winter_inner" }},
-      "vertical_winter": { "model": "harvestfestival:connected_top_winter", "textures": { "br": "harvestfestival:blocks/mine/winter_vertical" }},
-      "horizontal_winter": { "model": "harvestfestival:connected_top_winter", "textures": { "br": "harvestfestival:blocks/mine/winter_horizontal" }},
-      "outer_winter": { "model": "harvestfestival:connected_top_winter", "textures": { "br": "harvestfestival:blocks/mine/winter_outer" }}
+      "outer": { "textures": { "br": "harvestfestival:blocks/mine/dirt_outer" }}
     }
   }
 }

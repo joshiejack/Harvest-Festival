@@ -1,6 +1,6 @@
 package joshie.harvest.animals.render;
 
-import joshie.harvest.core.util.ModelHF;
+import joshie.harvest.core.render.ModelHF;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;

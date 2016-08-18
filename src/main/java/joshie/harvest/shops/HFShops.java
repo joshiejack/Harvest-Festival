@@ -41,7 +41,7 @@ public class HFShops {
     public static IShop SUPERMARKET;
     public static IShop MINER;
 
-    public static void preInit() {
+    public static void init() {
         registerBarn();
         registerBlacksmith();
         registerCafe();

@@ -51,6 +51,7 @@ public class PreviewEvent {
             RayTraceResult raytrace = BuildingHelper.rayTrace(player, 128, 0F);
             if (raytrace == null || raytrace.getBlockPos() == null || raytrace.sideHit != EnumFacing.UP) return null;
             else {
+
                 try {
                     BuildingKey key = BuildingHelper.getPositioning(world, raytrace, building, player, hand);
                     return CACHE.get(key, new Callable<BuildingRenderer>() {

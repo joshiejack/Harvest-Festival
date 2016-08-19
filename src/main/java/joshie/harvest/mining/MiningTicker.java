@@ -25,15 +25,16 @@ public class MiningTicker implements IDailyTickableBlock {
     private static final int COPPER_CHANCE = 14;
 
     public static final int MAX_FLOORS = (int) Math.floor(256D/FLOOR_HEIGHT);
+
     public static int getFloor(int xPosition, int posY) {
         int chunkIndex = (int) Math.floor(((double)xPosition) / CHUNK_BOUNDARY);
         int floorIndex = (int) (MAX_FLOORS - Math.floor(((double)posY) / FLOOR_HEIGHT));
-        int floor = (chunkIndex * MAX_FLOORS) + floorIndex;
-        return floor; //Return the floor
+        return (chunkIndex * MAX_FLOORS) + floorIndex; //Floor
     }
 
     public static IBlockState getBlockState(Random rand, int floor) {
         Ore ore = Ore.ROCK;
+        if (rand.nextInt(16) == 0) return HFCore.FLOWERS.getStateFromEnum(FlowerType.WEED);
         if (floor >= MYSTRIL_FLOOR && rand.nextInt(MYSTRIL_CHANCE) <= floor) ore = Ore.MYSTRIL;
         else if (floor >= GOLD_FLOOR && rand.nextInt(GOLD_CHANCE) <= floor) ore = Ore.GOLD;
         else if (floor >= SILVER_FLOOR && rand.nextInt(SILVER_CHANCE) <= floor) ore = Ore.SILVER;
@@ -47,7 +48,7 @@ public class MiningTicker implements IDailyTickableBlock {
         IBlockState above = world.getBlockState(up);
         if (above.getBlock() == Blocks.AIR || above.getBlock() == ORE || above.getBlock() == HFCore.FLOWERS) {
             int floor = getFloor(world.getChunkFromBlockCoords(pos).xPosition, pos.getY());
-            if (world.rand.nextInt(8) == 0) world.setBlockState(up, HFCore.FLOWERS.getStateFromEnum(FlowerType.WEED));
+            if (world.rand.nextInt(32) == 0) world.setBlockState(up, HFCore.FLOWERS.getStateFromEnum(FlowerType.WEED));
             else world.setBlockState(up, getBlockState(world.rand, floor));
         }
 

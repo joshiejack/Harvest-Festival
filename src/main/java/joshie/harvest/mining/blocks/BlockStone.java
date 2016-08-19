@@ -28,12 +28,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.ArrayList;
 import java.util.List;
 
-import static joshie.harvest.mining.blocks.BlockStone.Type.HOLE;
 import static joshie.harvest.mining.blocks.BlockStone.Type.REAL;
 
 public class BlockStone extends BlockHFEnumCube<BlockStone, Type> {
     public enum Type implements IStringSerializable {
-        REAL, DECORATIVE_BLANK, DECORATIVE_PURPLE, DECORATIVE_SILVER, DECORATIVE_GREEN, DECORATIVE_BLUE, DECORATIVE_RED, HOLE;
+        REAL, DECORATIVE_BLANK, DECORATIVE_PURPLE, DECORATIVE_SILVER, DECORATIVE_GREEN, DECORATIVE_BLUE, DECORATIVE_RED;
 
         public boolean isReal() {
             return this == REAL;
@@ -93,7 +92,6 @@ public class BlockStone extends BlockHFEnumCube<BlockStone, Type> {
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        if (getEnumFromStack(stack) == HOLE) return Text.translate("hole");
         String unlocalized = getUnlocalizedName();
         String name = stack.getItemDamage() != 0 ? "decorative" : stack.getItem().getUnlocalizedName(stack);
         return Text.localizeFully(unlocalized + "." + name);
@@ -104,7 +102,7 @@ public class BlockStone extends BlockHFEnumCube<BlockStone, Type> {
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
         int adjusted = Math.max(0, Math.min(Type.values().length, stack.getItemDamage()));
         Type type = Type.values()[adjusted];
-        if (!type.isReal() && type != HOLE) {
+        if (!type.isReal()) {
             list.add(TextFormatting.YELLOW + Text.translate("tooltip.cosmetic"));
         }
     }

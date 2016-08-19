@@ -4,10 +4,12 @@ import com.google.common.collect.Lists;
 import gnu.trove.map.TIntObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
 import joshie.harvest.api.HFApi;
+import joshie.harvest.core.HFCore;
 import joshie.harvest.mining.entity.EntityDarkChick;
 import joshie.harvest.mining.entity.EntityDarkChicken;
 import joshie.harvest.mining.entity.EntityDarkCow;
 import joshie.harvest.mining.entity.EntityDarkSheep;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
@@ -24,7 +26,6 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
-import static joshie.harvest.mining.HFMining.ORE;
 import static joshie.harvest.mining.MineManager.CHUNK_BOUNDARY;
 
 public class MiningChunk implements IChunkGenerator {
@@ -35,14 +36,19 @@ public class MiningChunk implements IChunkGenerator {
     private static final IBlockState LADDER = HFMining.LADDER.getDefaultState();
     private static final IBlockState AIR = Blocks.AIR.getDefaultState();
     private static final IBlockState PORTAL = HFMining.PORTAL.getDefaultState();
+    private static final IBlockState ORE = HFMining.ORE.getDefaultState();
     protected static final List<Biome.SpawnListEntry> MONSTERS = Lists.newArrayList();
+    protected static final List<Block> IRREPLACABLE = Lists.newArrayList();
     static final int FLOOR_HEIGHT = 6;
 
     static {
-        MONSTERS.add(new Biome.SpawnListEntry(EntityDarkChick.class, 100, 4, 4));
-        MONSTERS.add(new Biome.SpawnListEntry(EntityDarkChicken.class, 50, 4, 4));
-        MONSTERS.add(new Biome.SpawnListEntry(EntityDarkSheep.class, 30, 4, 4));
-        MONSTERS.add(new Biome.SpawnListEntry(EntityDarkCow.class, 15, 4, 4));
+        MONSTERS.add(new Biome.SpawnListEntry(EntityDarkChick.class, 100, 5, 11));
+        MONSTERS.add(new Biome.SpawnListEntry(EntityDarkChicken.class, 50, 3, 7));
+        MONSTERS.add(new Biome.SpawnListEntry(EntityDarkSheep.class, 30, 2, 5));
+        MONSTERS.add(new Biome.SpawnListEntry(EntityDarkCow.class, 15, 1, 3));
+        IRREPLACABLE.add(ORE.getBlock());
+        IRREPLACABLE.add(HFCore.FLOWERS);
+        IRREPLACABLE.add(HFMining.PORTAL);
     }
     
     private final World worldObj;
@@ -58,19 +64,23 @@ public class MiningChunk implements IChunkGenerator {
         x = Math.min(15, Math.max(0, x));
         y = Math.min(255, Math.max(0, y));
         z = Math.min(15, Math.max(0, z));
-        if (primer.getBlockState(x, y, z).getBlock() != ORE && primer.getBlockState(x, y, z).getBlock() != Blocks.GOLD_BLOCK) {
+        if (state.getBlock() == PORTAL.getBlock()) {
             primer.setBlockState(x, y, z, state);
-
-            if (state.getBlock() == FLOORS.getBlock()) {
-                int chance = 46 + rand.nextInt(44);
-                if (rand.nextInt(chance) == 0) {
-                    int realX = (chunkX * 16) + x;
-                    int realZ = (chunkZ * 16) + z;
-
+        } else if (state.getBlock() == ORE.getBlock()) {
+            if (primer.getBlockState(x, y, z).getBlock() != Blocks.LADDER && primer.getBlockState(x, y, z).getBlock() != PORTAL.getBlock()) {
+                primer.setBlockState(x, y, z, FLOORS);
+                int realX = (chunkX * 16) + x;
+                int realZ = (chunkZ * 16) + z;
+                if (primer.getBlockState(x, y + 1, z).getBlock() != Blocks.LADDER) {
                     HFApi.tickable.addTickable(worldObj, new BlockPos(realX, y, realZ), HFApi.tickable.getTickableFromBlock(FLOORS.getBlock()));
                     IBlockState theState = MiningTicker.getBlockState(rand, MiningTicker.getFloor(chunkX, y));
                     primer.setBlockState(x, y + 1, z, theState);
                 }
+            }
+        } else {
+            Block block = primer.getBlockState(x, y, z).getBlock();
+            if ((!IRREPLACABLE.contains(block) && state == AIR) || state != AIR) {
+                primer.setBlockState(x, y, z, state);
             }
         }
     }
@@ -80,6 +90,10 @@ public class MiningChunk implements IChunkGenerator {
         y = Math.min(255, Math.max(0, y));
         z = Math.min(15, Math.max(0, z));
         return primer.getBlockState(x, y, z);
+    }
+
+    private boolean isFloorWithPortal(int floor) {
+        return floor % MiningTicker.MAX_FLOORS == 1 || floor % MiningTicker.MAX_FLOORS == 0;
     }
 
     private void setBlocksInChunk(int chunkX, int chunkZ, ChunkPrimer primer) {
@@ -100,8 +114,8 @@ public class MiningChunk implements IChunkGenerator {
                 //Set the floor blocks
                 for (int i = 0; i < 16; i++) {
                     for (int j = 0; j < 16; j++) {
-                        if (states[i][j] == FLOORS) {
-                            setBlockState(primer, i, chunkY, j, FLOORS, chunkX, chunkZ);
+                        if (states[i][j] == FLOORS || states[i][j] == ORE) {
+                            setBlockState(primer, i, chunkY, j, states[i][j], chunkX, chunkZ);
                             for (int k = 0; k < 3; k++) {
                                 int width = 1 + rand.nextInt(1);
                                 int length = 1 + rand.nextInt(1);
@@ -111,8 +125,8 @@ public class MiningChunk implements IChunkGenerator {
                                             if (enumFacing == EnumFacing.DOWN || enumFacing == EnumFacing.UP) continue;
                                             BlockPos pos = new BlockPos(i + x4, chunkY, j + z4);
                                             BlockPos offset = pos.offset(enumFacing);
-                                            if (x4 != z4 && getBlockState(primer, offset.getX(), offset.getY(), offset.getZ()) == FLOORS && rand.nextBoolean()) {
-                                                setBlockState(primer, pos.getX(), chunkY, pos.getZ(), FLOORS, chunkX, chunkZ);
+                                            if (x4 != z4 && getBlockState(primer, offset.getX(), offset.getY(), offset.getZ()) == states[i][j] && rand.nextBoolean()) {
+                                                setBlockState(primer, pos.getX(), chunkY, pos.getZ(), states[i][j], chunkX, chunkZ);
                                                 for (int y = 1; y <= FLOOR_HEIGHT - 2; y++) {
                                                     setBlockState(primer, pos.getX(), chunkY + y, pos.getZ(), AIR, chunkX, chunkZ);
                                                 }
@@ -150,21 +164,6 @@ public class MiningChunk implements IChunkGenerator {
                         }
                     }
                 }
-
-                int mineID = MiningHelper.getMineID(chunkZ);
-                if (MiningTicker.getFloor(chunkX, chunkY) == 1 && !manager.areCoordinatesGenerated(mineID)) {
-                    for (int x = 0; x < 16; x++) {
-                        for (int z = 0; z < 16; z++) {
-                            if (isXLineWall(primer, x, chunkY + 1, z) && isXLineAir(primer, x, chunkY + 1, z)) {
-                                setXSpawn(primer, x, chunkY + 1, z, chunkX, chunkZ);
-                                return;
-                            } else if (isZLineWall(primer, x, chunkY + 1, z) && isZLineAir(primer, x, chunkY + 1, z)) {
-                                setZSpawn(primer, x, chunkY + 1, z, chunkX, chunkZ);
-                                return;
-                            }
-                        }
-                    }
-                }
             }
         }
 
@@ -176,9 +175,34 @@ public class MiningChunk implements IChunkGenerator {
                 }
             }
         }
+
+        //Place the Spawn Portals
+        for (int chunkY = 0; chunkY < 250; chunkY += FLOOR_HEIGHT) {
+            int mineID = MiningHelper.getMineID(chunkZ);
+            int floor = MiningTicker.getFloor(chunkX, chunkY);
+            if (floor != 0 && isFloorWithPortal(floor) && !manager.areCoordinatesGenerated(mineID, floor)) {
+                placePortals(primer, mineID, floor, chunkX, chunkY, chunkZ);
+            }
+        }
     }
 
-    private void setXSpawn(ChunkPrimer primer, int x, int y, int z, int chunkX, int chunkZ) {
+    private void placePortals(ChunkPrimer primer, int mineID, int floor, int chunkX, int chunkY, int chunkZ) {
+        if (isFloorWithPortal(floor) && !manager.areCoordinatesGenerated(mineID, floor)) {
+            for (int x = 0; x < 16; x++) {
+                for (int z = 0; z < 16; z++) {
+                    if (isXLineWall(primer, x, chunkY + 1, z) && isXLineAir(primer, x, chunkY + 1, z)) {
+                        setXSpawn(floor, primer, x, chunkY + 1, z, chunkX, chunkZ);
+                        return;
+                    } else if (isZLineWall(primer, x, chunkY + 1, z) && isZLineAir(primer, x, chunkY + 1, z)) {
+                        setZSpawn(floor, primer, x, chunkY + 1, z, chunkX, chunkZ);
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
+    private void setXSpawn(int floor, ChunkPrimer primer, int x, int y, int z, int chunkX, int chunkZ) {
         int realX = (chunkX * 16) + x;
         int realZ = (chunkZ * 16) + z;
         setBlockState(primer, x, y, z, PORTAL, chunkX, chunkZ);
@@ -187,10 +211,10 @@ public class MiningChunk implements IChunkGenerator {
         setBlockState(primer, x, y + 1, z, PORTAL, chunkX, chunkZ);
         setBlockState(primer, x - 1, y + 1, z, PORTAL, chunkX, chunkZ);
         setBlockState(primer, x + 1, y + 1, z, PORTAL, chunkX, chunkZ);
-        manager.setSpawnForMine(MiningHelper.getMineID(chunkZ), realX, y, realZ);
+        manager.setSpawnForMine(MiningHelper.getMineID(chunkZ), floor, realX, y, realZ);
     }
 
-    private void setZSpawn(ChunkPrimer primer, int x, int y, int z, int chunkX, int chunkZ) {
+    private void setZSpawn(int floor, ChunkPrimer primer, int x, int y, int z, int chunkX, int chunkZ) {
         int realX = (chunkX * 16) + x;
         int realZ = (chunkZ * 16) + z;
         setBlockState(primer, x, y, z, PORTAL, chunkX, chunkZ);
@@ -199,7 +223,7 @@ public class MiningChunk implements IChunkGenerator {
         setBlockState(primer, x, y + 1, z, PORTAL, chunkX, chunkZ);
         setBlockState(primer, x, y + 1, z - 1, PORTAL, chunkX, chunkZ);
         setBlockState(primer, x, y + 1, z + 1, PORTAL, chunkX, chunkZ);
-        manager.setSpawnForMine(MiningHelper.getMineID(chunkZ), realX, y, realZ);
+        manager.setSpawnForMine(MiningHelper.getMineID(chunkZ), floor, realX, y, realZ);
     }
 
     private boolean isXLineWall(ChunkPrimer primer, int x, int y, int z) {
@@ -254,19 +278,20 @@ public class MiningChunk implements IChunkGenerator {
             int endX = 50 + rand.nextInt(110);
             int startZ = 50 + rand.nextInt(110);
             int endZ = 50 + rand.nextInt(110);
-            int ladderDistance = 10 + rand.nextInt(40);
+            int ladderDistance = 5 + rand.nextInt(35);
             int differenceMin = 5 + rand.nextInt(27);
             int endDistance = (differenceMin * 4) - 1;
-            int maxLoop = 1 + rand.nextInt(7);
+            int maxLoop = 1 + rand.nextInt(5);
             int endChangeChanceX = 30 + rand.nextInt(21);
             int endChangeChanceZ = 30 + rand.nextInt(21);
             int changeMinX = 25 + rand.nextInt(56);
             int changeMinZ = 25 + rand.nextInt(56);
             int randXChange = 10 + rand.nextInt(71);
             int randZChange = 10 + rand.nextInt(71);
-            int randXTime = 5 + rand.nextInt(16);
-            int randZTime = 5 + rand.nextInt(16);
-            int radius = 2 + rand.nextInt(6);
+            int randXTime = 7 + rand.nextInt(16);
+            int randZTime = 7 + rand.nextInt(16);
+            int radius = 2 + rand.nextInt(5);
+            int oreChance = rand.nextInt(5) == 0 ? 10 + rand.nextInt(15) : 25 + rand.nextInt(25);
             for (int k = 0; k < maxLoop; k++) {
                 if (first) {
                     first = false;
@@ -306,7 +331,8 @@ public class MiningChunk implements IChunkGenerator {
                              int z = startZ + l;
                              int x2 = clamp(x);
                              int z2 = clamp(z);
-                             blockStateMap[x2][z2] = FLOORS; //Mark as floor
+                             IBlockState state = rand.nextInt(oreChance) == 0 ? ORE: FLOORS;
+                             blockStateMap[x2][z2] = state; //Force it in
                         }
                     }
 
@@ -327,6 +353,11 @@ public class MiningChunk implements IChunkGenerator {
                             if (z > endZ) z--;
                         }
 
+                        if (blockStateMap[clamp(x)][clamp(z)] != LADDER) {
+                            IBlockState state = rand.nextInt(oreChance) == 0 ? ORE: FLOORS;
+                            blockStateMap[clamp(x)][clamp(z)] = state; //Force it in
+                        }
+
                         option = rand.nextInt(16);
                         if (option == 0) {
                             if (x > endX) x++;
@@ -336,6 +367,11 @@ public class MiningChunk implements IChunkGenerator {
                             if (z > endZ) z++;
                         } else if (option == 3) {
                             if (z < endZ) z--;
+                        }
+
+                        if (blockStateMap[clamp(x)][clamp(z)] != LADDER) {
+                            IBlockState state = rand.nextInt(oreChance) == 0 ? ORE: FLOORS;
+                            blockStateMap[clamp(x)][clamp(z)] = state; //Force it in
                         }
 
                         boolean regenEndX = false;
@@ -375,24 +411,16 @@ public class MiningChunk implements IChunkGenerator {
 
                             if (pos.getX() < 0 || pos.getX() >= blockStateMap.length) continue;
                             if (pos.getZ() < 0 || pos.getZ() >= blockStateMap[pos.getX()].length) continue;
-                            if (blockStateMap[x3][z3] == FLOORS) {
-                                int chance = 2;
-                                if (rand.nextInt(150) == 0) {
-                                    chance = 5;
-                                } else if (rand.nextInt(100) == 0)  {
-                                    chance = 4;
-                                } if (rand.nextInt(3) >= 1) {
-                                    chance = 3;
-                                }
-
-                                int wStart = rand.nextInt(chance);
-                                int wEnd = rand.nextInt(chance);
-                                int lStart = rand.nextInt(chance);
-                                int lEnd = rand.nextInt(chance);
+                            if (blockStateMap[x3][z3] == FLOORS || blockStateMap[x3][z3] == ORE) {
+                                int wStart = rand.nextInt(2);
+                                int wEnd = rand.nextInt(2);
+                                int lStart = rand.nextInt(2);
+                                int lEnd = rand.nextInt(2);
                                 for (int x4 = -wStart; x4 <= wEnd; x4++) {
                                     for (int z4 = -lStart; z4 <= lEnd; z4++) {
                                         if (x4 != z4 && blockStateMap[clamp(x2 + x4)][clamp(z2 + z4)] != LADDER) {
-                                            blockStateMap[clamp(x2 + x4)][clamp(z2 + z4)] = FLOORS;
+                                            IBlockState state = rand.nextInt(oreChance) == 0 ? ORE: FLOORS;
+                                            blockStateMap[clamp(x2 + x4)][clamp(z2 + z4)] = state;
                                             differenceX = startX > x ? startX - x : x - startX;
                                             differenceZ = startZ > z ? startZ - z : z - startZ;
                                             if ((differenceX >= ladderDistance || differenceZ >= ladderDistance) && !manager.containsCoordinatesKey(mapIndex)) {
@@ -435,8 +463,7 @@ public class MiningChunk implements IChunkGenerator {
         int chunkXIndex = chunkX % CHUNK_BOUNDARY;
         int chunkZIndex = chunkZ % CHUNK_BOUNDARY;
         int checkIndex = getChunkIndexFromCoordinates(chunkXIndex, chunkZIndex);
-        IBlockState[][] result = map.get(checkIndex);
-        return result;
+        return map.get(checkIndex);
     }
 
     @Override

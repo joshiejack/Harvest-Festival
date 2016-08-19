@@ -10,10 +10,8 @@ import static net.minecraftforge.fml.common.Loader.MC_VERSION;
 import static org.objectweb.asm.Opcodes.*;
 
 /** This gives me a hook in to renderByItem so i can do what vanilla does
- *  with my entities, to render them in the inventory,
- *  this may seem bad, but before i was simply creating
- *  a bunch of fake tile entities and renderers,
- *  so i could do this, which added a lot of bloat,
+ *  with my entities, to render them in the inventory, this may seem bad, but before i was simply creating
+ *  a bunch of fake tile entities and renderers, so i could do this, which added a lot of bloat,
  *  doing it this way i can pass the renderers the stack **/
 public class RenderItemTransformer extends AbstractASM {
     /** Added at the start of renderByItem to render my special renderers **/
@@ -55,7 +53,7 @@ public class RenderItemTransformer extends AbstractASM {
                         Label l0 = new Label();
                         mv.visitLabel(l0);
                         mv.visitVarInsn(ALOAD, 1);
-                        mv.visitMethodInsn(INVOKESTATIC, "joshie/harvest/asm/transformers/RenderTransformer", "render", "(Lnet/minecraft/item/ItemStack;)Z", false);
+                        mv.visitMethodInsn(INVOKESTATIC, "joshie/harvest/asm/transformers/RenderItemTransformer", "render", "(Lnet/minecraft/item/ItemStack;)Z", false);
                         Label l1 = new Label();
                         mv.visitJumpInsn(IFEQ, l1);
                         mv.visitInsn(RETURN);

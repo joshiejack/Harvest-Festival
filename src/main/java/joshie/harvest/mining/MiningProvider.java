@@ -31,11 +31,15 @@ public class MiningProvider extends WorldProvider {
 
     @Override
     public BlockPos getSpawnCoordinate() {
-        return getSpawnCoordinateForMine(0);
+        return getSpawnCoordinateForMine(0, 1);
     }
 
-    public BlockPos getSpawnCoordinateForMine(int mineID) {
-        return manager.getSpawnCoordinateForMine(mineID);
+    public BlockPos getSpawnCoordinateForMine(int mineID, int floor) {
+        return manager.getSpawnCoordinateForMine(mineID, floor);
+    }
+
+    public boolean areCoordinatesGenerated(int mineID, int floor) {
+        return manager.areCoordinatesGenerated(mineID, floor);
     }
 
     @SideOnly(Side.CLIENT)

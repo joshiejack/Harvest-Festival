@@ -1,31 +1,24 @@
 package joshie.harvest.mining;
 
-import gnu.trove.map.TIntLongMap;
 import gnu.trove.map.TIntObjectMap;
-import gnu.trove.map.hash.TIntLongHashMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
 import joshie.harvest.core.helpers.NBTHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
 
-import java.util.Random;
-
 public class MineManager  {
     public static final int CHUNK_BOUNDARY = 10;
-    private static final Random rand = new Random(326723423L);
-    private TIntLongMap seeds = new TIntLongHashMap();
     private TIntObjectMap<TIntObjectMap<IBlockState[][]>> generation = new TIntObjectHashMap();
     private TIntObjectMap<int[]> coordinates = new TIntObjectHashMap();
-    private TIntObjectMap<BlockPos> spawnCoordinates = new TIntObjectHashMap<>();
-    private TIntObjectMap<BlockPos> portalCoordinates = new TIntObjectHashMap<>();
+    private TIntObjectMap<TIntObjectMap<BlockPos>> portalCoordinates = new TIntObjectHashMap<>();
 
-    public boolean areCoordinatesGenerated(int mineID) {
-        return spawnCoordinates.containsKey(mineID);
+    public boolean areCoordinatesGenerated(int mineID, int floor) {
+        return getCoordinateMap(mineID).containsKey(floor);
     }
 
-    public BlockPos getSpawnCoordinateForMine(int mineID) {
-        BlockPos ret = spawnCoordinates.get(mineID);
+    public BlockPos getSpawnCoordinateForMine(int mineID, int floor) {
+        BlockPos ret = getCoordinateMap(mineID).get(floor);
         if (ret == null) {
             return new BlockPos(0, 254, mineID * CHUNK_BOUNDARY * 16);
         }
@@ -33,8 +26,18 @@ public class MineManager  {
         return ret;
     }
 
-    public void setSpawnForMine(int mineID, int x, int y, int z) {
-        spawnCoordinates.putIfAbsent(mineID, new BlockPos(x, y, z));
+    private TIntObjectMap<BlockPos> getCoordinateMap(int mineID) {
+        TIntObjectMap<BlockPos> map = portalCoordinates.get(mineID);
+        if (map == null) {
+            map = new TIntObjectHashMap<>();
+            portalCoordinates.put(mineID, map);
+        }
+
+        return map;
+    }
+
+    public void setSpawnForMine(int mineID, int floor, int x, int y, int z) {
+        getCoordinateMap(mineID).putIfAbsent(floor, new BlockPos(x, y, z));
     }
 
     public TIntObjectMap<IBlockState[][]> getStateMap(int mapIndex) {
@@ -62,12 +65,12 @@ public class MineManager  {
     }
 
     public MineManager(NBTTagCompound tag) {
-        spawnCoordinates = NBTHelper.readPositionMap(tag.getTagList("Coordinates", 10));
+        portalCoordinates = NBTHelper.readPositionCollection(tag.getTagList("PortalCoordinates", 10));
     }
 
     public NBTTagCompound getCompound() {
         NBTTagCompound tag = new NBTTagCompound();
-        tag.setTag("Coordinates", NBTHelper.writePositionMap(spawnCoordinates));
+        tag.setTag("PortalCoordinates", NBTHelper.writePositionCollection(portalCoordinates));
         return tag;
     }
 }

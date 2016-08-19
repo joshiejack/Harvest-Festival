@@ -81,6 +81,18 @@ public class NBTHelper {
         return list;
     }
 
+    public static NBTTagList writePositionCollection(TIntObjectMap<TIntObjectMap<BlockPos>> mapMap) {
+        NBTTagList idList = new NBTTagList();
+        for (int mapKey: mapMap.keys()) {
+            NBTTagCompound compound = new NBTTagCompound();
+            compound.setInteger("Key", mapKey);
+            compound.setTag("Value", writePositionMap(mapMap.get(mapKey)));
+            idList.appendTag(compound);
+        }
+
+        return idList;
+    }
+
     public static TIntObjectMap<BlockPos> readPositionMap(NBTTagList list) {
         TIntObjectMap<BlockPos> ret = new TIntObjectHashMap<>();
         for (int j = 0; j < list.tagCount(); j++) {
@@ -93,6 +105,20 @@ public class NBTHelper {
         }
 
         return ret;
+    }
+
+    public static TIntObjectMap<TIntObjectMap<BlockPos>> readPositionCollection(NBTTagList list) {
+        TIntObjectMap<TIntObjectMap<BlockPos>> mapMap = new TIntObjectHashMap<>();
+        for (int j = 0; j < list.tagCount(); j++) {
+            NBTTagCompound tag = list.getCompoundTagAt(j);
+            try {
+                int key = tag.getInteger("Key");
+                TIntObjectMap<BlockPos> map = readPositionMap(tag.getTagList("Value", 10));
+                mapMap.put(key, map);
+            } catch (Exception e) {}
+        }
+
+        return mapMap;
     }
 
     public static BlockPos readBlockPos(String prefix, NBTTagCompound tag) {
@@ -119,6 +145,8 @@ public class NBTHelper {
             nbt.setString(prefix + "UUID", uuid.toString());
         }
     }
+
+
 
     public interface ISaveable {
         void readFromNBT(NBTTagCompound tag);

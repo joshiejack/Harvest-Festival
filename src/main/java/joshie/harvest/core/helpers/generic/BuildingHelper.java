@@ -45,7 +45,7 @@ public class BuildingHelper {
         }
 
         EnumFacing facing = DirectionHelper.getFacingFromEntity(player).getOpposite();
-        Mirror mirror = hand == EnumHand.OFF_HAND ? player.isSneaking() ? Mirror.FRONT_BACK : Mirror.LEFT_RIGHT : Mirror.NONE;
+        Mirror mirror = Mirror.NONE;
         Rotation rotation = Rotation.NONE;
         if (facing == EnumFacing.NORTH) {
             rotation = Rotation.CLOCKWISE_90;

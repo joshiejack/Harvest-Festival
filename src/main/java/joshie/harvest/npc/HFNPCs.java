@@ -6,18 +6,23 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.npc.INPCRegistry.Age;
 import joshie.harvest.api.npc.INPCRegistry.Gender;
-import joshie.harvest.core.helpers.generic.RegistryHelper;
+import joshie.harvest.core.HFClientProxy;
 import joshie.harvest.core.lib.EntityIDs;
 import joshie.harvest.core.util.HFLoader;
-import joshie.harvest.npc.items.ItemNPCTool;
 import joshie.harvest.npc.entity.AbstractEntityNPC;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import joshie.harvest.npc.entity.EntityNPCShopkeeper;
 import joshie.harvest.npc.entity.EntityNPCVillager;
 import joshie.harvest.npc.greeting.GreetingLocation;
 import joshie.harvest.npc.items.ItemNPCSpawner;
+import joshie.harvest.npc.items.ItemNPCTool;
+import joshie.harvest.npc.render.NPCItemRenderer;
+import joshie.harvest.npc.render.NPCItemRenderer.NPCTile;
 import joshie.harvest.npc.render.RenderNPC;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.ForgeHooksClient;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -120,8 +125,11 @@ public class HFNPCs {
 
     @SideOnly(Side.CLIENT)
     public static void initClient() {
+        HFClientProxy.RENDER_MAP.put(SPAWNER_NPC, NPCTile.INSTANCE);
+        ClientRegistry.bindTileEntitySpecialRenderer(NPCTile.class, new NPCItemRenderer());
         for (NPC npc: NPCRegistry.REGISTRY) {
-            RegistryHelper.registerNPCRendererItem(npc);
+            ItemStack stack = SPAWNER_NPC.getStackFromObject(npc);
+            ForgeHooksClient.registerTESRItemStack(stack.getItem(), stack.getItemDamage(), NPCTile.class);
         }
     }
 

@@ -3,7 +3,10 @@ package joshie.harvest.animals.render;
 import joshie.harvest.animals.entity.EntityHarvestChicken;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class RenderHarvestChicken extends RenderHarvestAnimal<EntityHarvestChicken> {
     public RenderHarvestChicken(RenderManager manager) {
         super(manager, new ModelHarvestChicken(), "chicken");

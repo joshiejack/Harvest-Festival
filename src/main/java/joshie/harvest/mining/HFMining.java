@@ -17,10 +17,7 @@ import joshie.harvest.mining.items.ItemDarkSpawner;
 import joshie.harvest.mining.items.ItemDarkSpawner.DarkSpawner;
 import joshie.harvest.mining.items.ItemMaterial;
 import joshie.harvest.mining.loot.*;
-import joshie.harvest.mining.render.BakedDirt;
-import joshie.harvest.mining.render.RenderDarkChick;
-import joshie.harvest.mining.render.RenderDarkChicken;
-import joshie.harvest.mining.render.RenderDarkMob;
+import joshie.harvest.mining.render.*;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.world.DimensionType;
@@ -99,10 +96,12 @@ public class HFMining {
             }
         });
 
-        RegistryHelper.registerEntityRendererItem("dark_cow", DARK_SPAWNER.getStackFromEnum(DarkSpawner.COW), new ModelHarvestCow.Adult());
-        RegistryHelper.registerEntityRendererItem("dark_sheep", DARK_SPAWNER.getStackFromEnum(DarkSpawner.SHEEP), new ModelHarvestSheep.Wooly());
-        RegistryHelper.registerEntityRendererItem("dark_chicken", DARK_SPAWNER.getStackFromEnum(DarkSpawner.CHICKEN), new ModelHarvestChicken.Adult());
-        RegistryHelper.registerEntityRendererItem("dark_chick", DARK_SPAWNER.getStackFromEnum(DarkSpawner.CHICK), new ModelHarvestChicken.Child());
+        //Register the dark spawner
+        RegistryHelper.registerEntityRenderer(DARK_SPAWNER, FakeAnimalsItemRenderer.INSTANCE);
+        FakeAnimalsItemRenderer.INSTANCE.register(DarkSpawner.COW, "dark_cow", new ModelHarvestCow.Adult());
+        FakeAnimalsItemRenderer.INSTANCE.register(DarkSpawner.SHEEP, "dark_sheep", new ModelHarvestSheep.Wooly());
+        FakeAnimalsItemRenderer.INSTANCE.register(DarkSpawner.CHICKEN, "dark_chicken", new ModelHarvestChicken.Adult());
+        FakeAnimalsItemRenderer.INSTANCE.register(DarkSpawner.CHICK, "dark_chick", new ModelHarvestChicken.Child());
     }
 
     public static int MINING_ID;

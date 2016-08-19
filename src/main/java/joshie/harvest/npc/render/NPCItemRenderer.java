@@ -1,28 +1,29 @@
 package joshie.harvest.npc.render;
 
 import joshie.harvest.api.npc.INPCRegistry;
-import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
+import joshie.harvest.core.render.FakeEntityRenderer.EntityItemRenderer;
 import joshie.harvest.npc.NPC;
+import joshie.harvest.npc.NPCRegistry;
 import joshie.harvest.npc.entity.AbstractEntityNPC;
-import joshie.harvest.npc.render.FakeNPCRenderer.FakeNPCTile;
+import joshie.harvest.npc.entity.EntityNPCVillager;
+import joshie.harvest.npc.render.NPCItemRenderer.NPCTile;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.tileentity.TileEntity;
 
-public class FakeNPCRenderer extends TileEntitySpecialRenderer<FakeNPCTile> {
+public class NPCItemRenderer extends TileEntitySpecialRenderer<NPCTile> {
+    private ModelNPC modelAlex;
+    private ModelNPC modelSteve;
+    private AbstractEntityNPC fake;
     private ModelNPC model;
-    private AbstractEntityNPC entity;
-    private NPC npc;
 
-    public FakeNPCRenderer(NPC npc) {
-        this.model = new ModelNPC(npc.isAlexSkin());
-        this.model.isChild = npc.getAge() == INPCRegistry.Age.CHILD;
-        this.npc = npc;
+    public NPCItemRenderer() {
+        this.modelAlex = new ModelNPC(true);
+        this.modelSteve = new ModelNPC(false);
     }
 
     @Override
-    public void renderTileEntityAt(FakeNPCTile fake, double x, double y, double z, float partialTicks, int destroyStage) {
+    public void renderTileEntityAt(NPCTile fake, double x, double y, double z, float partialTicks, int destroyStage) {
         GlStateManager.pushMatrix();
         GlStateManager.translate(0.5F, -0.05F, 0.5F);
         GlStateManager.scale(-0.75F, 0.75F, 0.75F);
@@ -35,8 +36,9 @@ public class FakeNPCRenderer extends TileEntitySpecialRenderer<FakeNPCTile> {
         GlStateManager.enableRescaleNormal();
         GlStateManager.scale(-1.0F, -1.0F, 1.0F);
         GlStateManager.translate(0.0F, -1.501F, 0.0F);
-        bindTexture(getNPC().getSkin());
-        model.isChild = npc.getAge() == INPCRegistry.Age.CHILD;
+        bindTexture(fake.npc.getSkin());
+        model = fake.npc.isAlexSkin() ? modelAlex : modelSteve;
+        model.isChild = fake.npc.getAge() == INPCRegistry.Age.CHILD;
         model.render(getNPC(), 0F, 0F, 0F, 0F, 0F, 0.0625F);
         GlStateManager.disableRescaleNormal();
         GlStateManager.enableCull();
@@ -45,12 +47,17 @@ public class FakeNPCRenderer extends TileEntitySpecialRenderer<FakeNPCTile> {
     }
 
     private AbstractEntityNPC getNPC() {
-        if (entity == null) {
-            entity = NPCHelper.getEntityForNPC(MCClientHelper.getWorld(), npc);
-        }
-
-        return entity;
+        if (fake == null) fake = new EntityNPCVillager(MCClientHelper.getWorld());
+        return fake;
     }
 
-    public abstract static class FakeNPCTile extends TileEntity {}
+    public static class NPCTile extends EntityItemRenderer {
+        public static final NPCTile INSTANCE = new NPCTile();
+        public NPC npc;
+
+        @Override
+        public void setID(int id) {
+            this.npc = NPCRegistry.REGISTRY.getObjectById(id);
+        }
+    }
 }

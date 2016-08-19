@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 
+
 public class ModelHarvestCow extends ModelBase {
     private final Adult adult;
     private final Child child;

@@ -44,8 +44,7 @@ public abstract class AbstractEntityNPC<E extends AbstractEntityNPC> extends Ent
     protected BlockPos spawned;
     protected TownData homeTown;
     protected UUID townID;
-
-
+    private ResourceLocation skin;
 
     public enum Mode {
         DEFAULT, GIFT
@@ -124,10 +123,6 @@ public abstract class AbstractEntityNPC<E extends AbstractEntityNPC> extends Ent
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D);
-    }
-
-    public ResourceLocation getSkin() {
-        return new ResourceLocation(npc.getRegistryName().getResourceDomain() + ":" + "textures/entity/" + npc.getRegistryName().getResourcePath() + ".png");
     }
 
     public NPC getNPC() {

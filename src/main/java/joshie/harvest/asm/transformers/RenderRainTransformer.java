@@ -6,7 +6,7 @@ import org.objectweb.asm.*;
 import static net.minecraftforge.fml.common.Loader.MC_VERSION;
 import static org.objectweb.asm.Opcodes.*;
 
-public class WeatherTransformer extends AbstractASM {
+public class RenderRainTransformer extends AbstractASM {
     @Override
     public boolean isClass(String name) {
         return name.equals("net.minecraft.client.renderer.EntityRenderer") ||

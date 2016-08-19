@@ -1,14 +1,16 @@
 package joshie.harvest.core.helpers.generic;
 
+import joshie.harvest.core.HFClientProxy;
 import joshie.harvest.core.render.FakeEntityRenderer;
-import joshie.harvest.core.lib.HFModInfo;
+import joshie.harvest.core.render.FakeEntityRenderer.EntityItemRenderer;
 import joshie.harvest.npc.NPC;
-import joshie.harvest.npc.render.FakeNPCRenderer;
+import joshie.harvest.npc.render.NPCItemRenderer;
+import joshie.harvest.npc.render.NPCItemRenderer.NPCTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
@@ -19,7 +21,6 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.apache.commons.lang3.text.WordUtils;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.npc.HFNPCs.SPAWNER_NPC;
@@ -39,22 +40,10 @@ public class RegistryHelper {
     }
 
     @SideOnly(Side.CLIENT)
-    public static void registerEntityRendererItem(String name, ItemStack stack, ModelBase model) {
-        Class fake = FakeTileHelper.getFakeClass("Fake" + WordUtils.capitalizeFully(name.replace("_", " ")).replace(" ", ""), HFModInfo.FAKEANIMAL);
-        if (fake != null) {
-            ForgeHooksClient.registerTESRItemStack(stack.getItem(), stack.getItemDamage(), fake);
-            ClientRegistry.bindTileEntitySpecialRenderer(fake, new FakeEntityRenderer(name, model));
-        }
-    }
-
-    @SideOnly(Side.CLIENT)
     public static void registerNPCRendererItem(NPC npc) {
-        Class fake = FakeTileHelper.getFakeClass(npc.getRegistryName().toString().replace(":", ""), HFModInfo.FAKENPC);
-        if (fake != null) {
-            ItemStack stack = SPAWNER_NPC.getStackFromObject(npc);
-            ForgeHooksClient.registerTESRItemStack(stack.getItem(), stack.getItemDamage(), fake);
-            ClientRegistry.bindTileEntitySpecialRenderer(fake, new FakeNPCRenderer(npc));
-        }
+        ItemStack stack = SPAWNER_NPC.getStackFromObject(npc);
+        ForgeHooksClient.registerTESRItemStack(stack.getItem(), stack.getItemDamage(), NPCTile.class);
+        ClientRegistry.bindTileEntitySpecialRenderer(NPCTile.class, new NPCItemRenderer());
     }
 
     @SideOnly(Side.CLIENT)
@@ -66,5 +55,11 @@ public class RegistryHelper {
                 return fluidLocation;
             }
         });
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static void registerEntityRenderer(Item item, EntityItemRenderer instance) {
+        HFClientProxy.RENDER_MAP.put(item, instance);
+        ClientRegistry.bindTileEntitySpecialRenderer(instance.getClass(), FakeEntityRenderer.INSTANCE);
     }
 }

@@ -28,7 +28,7 @@ public class RenderNPC extends RenderLiving<AbstractEntityNPC> {
 
     @Override
     protected ResourceLocation getEntityTexture(AbstractEntityNPC npc) {
-        return npc.getSkin();
+        return npc.getNPC().getSkin();
     }
 
     @Override

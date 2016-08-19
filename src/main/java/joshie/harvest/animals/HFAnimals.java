@@ -100,9 +100,10 @@ public class HFAnimals {
             }
         });
 
-        RegistryHelper.registerEntityRendererItem("cow_adult", ANIMAL.getStackFromEnum(Spawner.COW), new ModelHarvestCow());
-        RegistryHelper.registerEntityRendererItem("sheep_adult", ANIMAL.getStackFromEnum(Spawner.SHEEP), new ModelHarvestSheep());
-        RegistryHelper.registerEntityRendererItem("chicken_adult", ANIMAL.getStackFromEnum(Spawner.CHICKEN), new ModelHarvestChicken());
+        RegistryHelper.registerEntityRenderer(ANIMAL, AnimalItemRenderer.INSTANCE);
+        AnimalItemRenderer.INSTANCE.register(Spawner.COW, "cow_adult", new ModelHarvestCow.Adult());
+        AnimalItemRenderer.INSTANCE.register(Spawner.SHEEP, "sheep_adult", new ModelHarvestSheep.Wooly());
+        AnimalItemRenderer.INSTANCE.register(Spawner.CHICKEN, "chicken_adult", new ModelHarvestChicken.Adult());
     }
 
     public static void init() {

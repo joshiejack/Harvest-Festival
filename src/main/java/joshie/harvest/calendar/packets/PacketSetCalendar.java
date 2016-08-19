@@ -19,7 +19,7 @@ public class PacketSetCalendar extends PenguinPacketDimension {
     public PacketSetCalendar() {}
     public PacketSetCalendar(int dimension, ICalendarDate date) {
         super(dimension);
-        this.weekday = weekday;
+        this.weekday = date.getWeekday();
         this.day = date.getDay();
         this.season = date.getSeason();
         this.year = date.getYear();

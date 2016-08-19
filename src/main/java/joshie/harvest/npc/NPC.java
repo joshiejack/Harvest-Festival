@@ -29,14 +29,13 @@ import java.util.List;
 
 import static joshie.harvest.api.npc.INPCRegistry.Age.ADULT;
 import static joshie.harvest.api.npc.INPCRegistry.Age.CHILD;
-import static joshie.harvest.core.lib.HFModInfo.GIFTPATH;
-import static joshie.harvest.core.lib.HFModInfo.MODID;
-import static joshie.harvest.core.lib.HFModInfo.SCHEDULEPATH;
+import static joshie.harvest.core.lib.HFModInfo.*;
 
 public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl<NPC> implements INPC {
     private List<IConditionalGreeting> conditionals = new ArrayList<>(256);
     private String generalLocalizationKey;
     private String localizationKey;
+    private ResourceLocation skin;
 
     private Age age;
     private Gender gender;
@@ -69,6 +68,7 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
         this.outsideColor = outsideColor;
         this.localizationKey = MODID + ".npc." + name + ".";
         this.generalLocalizationKey = MODID + ".npc.generic." + age.name().toLowerCase() + ".";
+        this.skin = new ResourceLocation(MODID, "textures/entity/" + name + ".png");
         this.conditionals.add(new GreetingMultiple(name + ".greeting"));
         this.conditionals.add(new GreetingMultiple("generic." + age.name().toLowerCase() + ".greeting"));
         this.conditionals.add(new GreetingMultiple("generic." + gender.name().toLowerCase() + ".greeting"));
@@ -222,6 +222,10 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
     @Override
     public String getLocalizedName() {
         return Text.localize(getRegistryName().getResourceDomain() + ".npc." + getRegistryName().getResourcePath() + ".name");
+    }
+
+    public ResourceLocation getSkin() {
+        return skin;
     }
 
     public int getBedtime() {

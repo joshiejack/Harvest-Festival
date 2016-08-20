@@ -26,7 +26,6 @@ import static joshie.harvest.core.lib.HFModInfo.MODID;
 public class ItemNPCSpawner extends ItemHFFML<ItemNPCSpawner, NPC> {
     public ItemNPCSpawner() {
         super(NPCRegistry.REGISTRY, HFTab.TOWN);
-        setMaxDamage(32000);
     }
 
     @Override
@@ -64,6 +63,8 @@ public class ItemNPCSpawner extends ItemHFFML<ItemNPCSpawner, NPC> {
 
     @SideOnly(Side.CLIENT)
     public void registerModels(Item item, String name) {
-        ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(new ResourceLocation(MODID, "spawner_npc"), "inventory"));
+        for (NPC npc: registry) {
+            ModelLoader.setCustomModelResourceLocation(item, registry.getId(npc), new ModelResourceLocation(new ResourceLocation(MODID, "spawner_npc"), "inventory"));
+        }
     }
 }

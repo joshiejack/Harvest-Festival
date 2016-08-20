@@ -16,10 +16,11 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.Callable;
+import java.util.concurrent.TimeUnit;
 
 public abstract class TownTracker extends HFTracker {
     public static final TownData NULL_TOWN = new TownData().setUUID(UUID.fromString("5b529b64-62dc-35df-416c-05e0210f6ab0"));
-    protected final Cache<BlockPos, TownData> closestCache = CacheBuilder.newBuilder().build();
+    protected final Cache<BlockPos, TownData> closestCache = CacheBuilder.newBuilder().expireAfterWrite(1, TimeUnit.MINUTES).maximumSize(512).build();
     protected final HashMap<UUID, TownData> uuidMap = new HashMap<>();
     protected Set<TownData> townData = new HashSet<>();
 

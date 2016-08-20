@@ -14,8 +14,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.HashMap;
-import java.util.UUID;
+import java.util.*;
 
 public class TownData {
     public static final String CARPENTER_DOWNSTAIRS = "yulifhome";
@@ -54,7 +53,7 @@ public class TownData {
     public static final String GODDESS_HOME = "goddesspond";
     //END NPC NAME OF LOCATIONS **/
     
-    protected HashMap<ResourceLocation, TownBuilding> buildings = new HashMap<>();
+    protected Map<ResourceLocation, TownBuilding> buildings = new HashMap<>();
     protected BlockPos townCentre;
     protected UUID uuid;
 

@@ -13,6 +13,7 @@ import joshie.harvest.buildings.items.ItemCheat;
 import joshie.harvest.buildings.loader.*;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.core.base.FMLDefinition;
+import joshie.harvest.core.base.FMLIdentical;
 import joshie.harvest.core.helpers.ResourceLoader;
 import joshie.harvest.core.util.HFLoader;
 import net.minecraft.block.state.IBlockState;
@@ -25,12 +26,13 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.Level;
 
+import static joshie.harvest.cooking.HFCooking.RECIPE;
 import static joshie.harvest.core.lib.LoadOrder.HFBUILDING;
 
 @HFLoader(priority = HFBUILDING)
 public class HFBuildings {
     public static final ItemBuilding STRUCTURES = new ItemBuilding().register("structures");
-    public static final ItemBlueprint BLUEPRINTS = new ItemBlueprint().register("blueprints");
+    public static final ItemBlueprint BLUEPRINTS = new ItemBlueprint().register("blueprint");
     public static final ItemCheat CHEAT = new ItemCheat().register("cheat");
 
     public static final Building null_building = new Building();
@@ -56,6 +58,7 @@ public class HFBuildings {
     @SideOnly(Side.CLIENT)
     public static void preInitClient() {
         ModelLoader.setCustomMeshDefinition(STRUCTURES, new FMLDefinition<>(STRUCTURES, "buildings", BuildingRegistry.REGISTRY));
+        ModelLoader.setCustomMeshDefinition(BLUEPRINTS, new FMLIdentical(BLUEPRINTS));
     }
 
     //Reload the Building data at this stage

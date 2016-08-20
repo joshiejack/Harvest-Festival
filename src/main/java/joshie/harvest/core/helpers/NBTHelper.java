@@ -10,14 +10,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.UUID;
+import java.util.*;
 
 public class NBTHelper {
     public static void copyTileData(TileHarvest tile, World world, BlockPos pos, IBlockState state) {
@@ -146,6 +144,23 @@ public class NBTHelper {
         }
     }
 
+    public static Set<ResourceLocation> readResourceSet(NBTTagList list) {
+        Set<ResourceLocation> set = new HashSet<>();
+        for (int i = 0; i < list.tagCount(); i++) {
+            set.add(new ResourceLocation(list.getStringTagAt(i)));
+        }
+
+        return set;
+    }
+
+    public static NBTTagList writeResourceSet(Set<ResourceLocation> resources) {
+        NBTTagList list = new NBTTagList();
+        for (ResourceLocation resource: resources) {
+            list.appendTag(new NBTTagString(resource.toString()));
+        }
+
+        return list;
+    }
 
 
     public interface ISaveable {

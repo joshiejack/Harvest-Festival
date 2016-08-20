@@ -17,8 +17,8 @@ public class FMLDefinition<E extends Impl<E>> implements ItemMeshDefinition {
     private static final HashMap<String, FMLDefinition> DEFINITIONS = new HashMap<>();
     private FMLControlledNamespacedRegistry<E> registry;
     private HashMap<E, ModelResourceLocation> models = new HashMap<>();
-    private ItemHFFML item;
     private String name;
+    protected ItemHFFML item;
 
     public FMLDefinition(ItemHFFML item, String name, FMLControlledNamespacedRegistry<E> registry) {
         this.registry = registry;

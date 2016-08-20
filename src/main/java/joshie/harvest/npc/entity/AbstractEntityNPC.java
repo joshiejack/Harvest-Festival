@@ -5,6 +5,7 @@ import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.npc.INPCRegistry;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.relations.IRelatableProvider;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.core.helpers.TownHelper;
@@ -13,6 +14,7 @@ import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.NPCRegistry;
 import joshie.harvest.npc.entity.ai.*;
 import joshie.harvest.town.TownData;
+import joshie.harvest.town.TownDataServer;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -40,11 +42,9 @@ public abstract class AbstractEntityNPC<E extends AbstractEntityNPC> extends Ent
     protected EntityPlayer talkingTo;
     protected boolean isPlaying;
     protected Mode mode = Mode.DEFAULT;
-    protected int lastTeleport;
     protected BlockPos spawned;
     protected TownData homeTown;
     protected UUID townID;
-    private ResourceLocation skin;
 
     public enum Mode {
         DEFAULT, GIFT
@@ -56,7 +56,7 @@ public abstract class AbstractEntityNPC<E extends AbstractEntityNPC> extends Ent
         lover = entity.lover;
     }
 
-    public TownData getHomeTown() {
+    public <T extends TownData> T getHomeTown() {
         if (homeTown == null) {
             if (townID != null) homeTown = TownHelper.getTownByID(worldObj, townID);
             else {
@@ -65,7 +65,7 @@ public abstract class AbstractEntityNPC<E extends AbstractEntityNPC> extends Ent
             }
         }
 
-        return homeTown;
+        return (T) homeTown;
     }
 
     public AbstractEntityNPC(World world) {
@@ -183,23 +183,15 @@ public abstract class AbstractEntityNPC<E extends AbstractEntityNPC> extends Ent
 
     @Override
     public void onDeath(DamageSource cause) {
-        if (net.minecraftforge.common.ForgeHooks.onLivingDeath(this, cause)) return;
-        if (!this.dead && this.posY >= -32D) {
+        if (!worldObj.isRemote && this.posY >= -32D) {
             //Respawn a new bugger
             if (npc.respawns()) {
-                E clone = getNewEntity((E) this);
-                BlockPos home = getHomeCoordinates();
-                if (home != null) {
-                    clone.setPositionAndUpdate(home.getX() + 0.5D, home.getY() + 0.5D, home.getZ() + 0.5D);
-                    clone.resetSpawnHome();
-                    worldObj.spawnEntityInWorld(clone);
-                }
+                this.<TownDataServer>getHomeTown().markNPCDead(getNPC().getRegistryName());
+                HFTrackers.markDirty(worldObj); //Mark this npc as dead, ready for tomorrow to be reborn
             }
         }
 
-        this.dead = true;
-        this.getCombatTracker().reset();
-        this.worldObj.setEntityState(this, (byte) 3);
+        super.onDeath(cause);
     }
 
     public BlockPos getHomeCoordinates() {

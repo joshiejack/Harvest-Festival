@@ -2,24 +2,24 @@ package joshie.harvest.cooking.render;
 
 import gnu.trove.map.TIntObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
-import joshie.harvest.cooking.FoodRegistry;
 import joshie.harvest.cooking.Recipe;
 import joshie.harvest.cooking.Utensil;
-import net.minecraft.client.renderer.ItemMeshDefinition;
+import joshie.harvest.core.base.FMLDefinition;
+import joshie.harvest.core.base.ItemHFFML;
+import joshie.harvest.core.helpers.ModelHelper;
+import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.registry.FMLControlledNamespacedRegistry;
 
-import java.util.HashMap;
+public class MealDefinition extends FMLDefinition<Recipe> {
+    private TIntObjectMap<ModelResourceLocation> burnt = new TIntObjectHashMap<>();
 
-public class MealDefinition implements ItemMeshDefinition {
-    private static HashMap<Recipe, ModelResourceLocation> models = new HashMap<>();
-    private static TIntObjectMap<ModelResourceLocation> burnt = new TIntObjectHashMap<>();
-
-    public static void registerMeal(Recipe recipe, ModelResourceLocation resource) {
-        models.put(recipe, resource);
+    public MealDefinition(ItemHFFML item, String name, FMLControlledNamespacedRegistry<Recipe> registry) {
+        super(item, name, registry);
     }
 
-    public static void registerBurnt(int damage, ModelResourceLocation resource) {
+    public void registerBurnt(int damage, ModelResourceLocation resource) {
         burnt.put(damage, resource);
     }
 
@@ -32,10 +32,20 @@ public class MealDefinition implements ItemMeshDefinition {
     }
 
     @Override
+    public void registerEverything() {
+        super.registerEverything();
+        //Register the burnt meals
+        for (Utensil utensil: Utensil.values()) {
+            ModelResourceLocation model = ModelHelper.getModelForItem("meals/burnt" + utensil.name());
+            ModelBakery.registerItemVariants(item, model);
+            registerBurnt(utensil.ordinal(), model);
+        }
+    }
+
+    @Override
     public ModelResourceLocation getModelLocation(ItemStack stack) {
         if (stack.hasTagCompound()) {
-            ModelResourceLocation resource = models.get(FoodRegistry.REGISTRY.getObjectById(stack.getItemDamage()));
-            if (resource != null) return resource;
+            return super.getModelLocation(stack);
         }
 
         return burnt.get(getMetaFromStack(stack));

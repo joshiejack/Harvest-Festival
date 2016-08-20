@@ -235,6 +235,7 @@ harvestfestival.axe.mythic=Mythic Axe
 #Effects
 harvestfestival.effect.fatigue=Fatigued
 harvestfestival.effect.exhaustion=Exhausted
+harvestfestival.effect.cursed=Cursed
 
 #Treats
 harvestfestival.treat.cow=Cow Treat

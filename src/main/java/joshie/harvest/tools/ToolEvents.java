@@ -1,9 +1,13 @@
 package joshie.harvest.tools;
 
+import joshie.harvest.api.core.ITiered.ToolTier;
+import joshie.harvest.core.base.ItemTool;
 import joshie.harvest.core.helpers.ToolHelper;
 import joshie.harvest.core.util.HFEvents;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
@@ -11,6 +15,9 @@ import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import static joshie.harvest.tools.HFTools.EXHAUSTION;
 import static joshie.harvest.tools.HFTools.FATIGUE;
@@ -39,7 +46,25 @@ public class ToolEvents {
 
     @HFEvents
     public static class CursedTools {
+        @SubscribeEvent
+        public void openContainer(PlayerTickEvent event) {
+            if (!event.player.capabilities.isCreativeMode && event.player.worldObj.getTotalWorldTime() % 200 == 0) {
+                int level = 0;
+                Set<Item> added = new HashSet<>();
+                for (ItemStack stack : event.player.inventory.mainInventory) {
+                    if (stack != null && !added.contains(stack.getItem()) && stack.getItem() instanceof ItemTool) {
+                        if (((ItemTool) stack.getItem()).getTier(stack) == ToolTier.CURSED) {
+                            added.add(stack.getItem());
+                            level++;
+                        }
+                    }
+                }
 
+                if (level > 0) {
+                    event.player.addPotionEffect(new PotionEffect(HFTools.CURSED, 200, level - 1, true, false));
+                }
+            }
+        }
     }
 
     @SubscribeEvent

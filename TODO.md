@@ -1,10 +1,13 @@
-### High Priority
+### Fixes
 - Fix Building render building messed up in mesa?
+- Allow repositioning of coin/seasons huds
 
-### Medium Priority
-- Cursed Tools have negative effect
+### Textures
+- Cursed Potion Effect Icon
 - Textures for the NPCs which we stole + New Selection for Ondra > Ashlee
 - Texture for Johan the Trader
+- Location of the flower in the spring season overlay
+- Crop Grass Better Texture
 
 ## Recipe Rewrite
 - Recipes have an item which is a page for a book, which is how you learn to do new recipes
@@ -39,11 +42,6 @@
 - Priest Blessing
     - S Particles when he gives you it back
     - E Magical Sound when he gives you it back
-
-### Low Priority
-- Allow repositioning of coin/seasons huds
-- Location of the flower in the spring season overlay
-- Crop Grass Better Texture
 
 ### NPCS, Conversations & AI
 - Add Extra Chat Messages, and Conversations for all NPCs

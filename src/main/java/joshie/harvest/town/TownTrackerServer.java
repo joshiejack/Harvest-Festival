@@ -42,7 +42,6 @@ public class TownTrackerServer extends TownTracker {
         PacketHandler.sendToClient(new PacketSyncTowns(townData), player);
     }
 
-    @Override
     public void addBuilder(EntityNPCBuilder npc) {
         builders.add(npc);
         //Update the list, Removing any that are actually dead

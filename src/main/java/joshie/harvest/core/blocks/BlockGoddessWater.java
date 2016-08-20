@@ -65,10 +65,6 @@ public class BlockGoddessWater extends BlockFluidClassic {
         setUnlocalizedName(name.replace("_", "."));
         setRegistryName(new ResourceLocation(MODID, name));
         GameRegistry.register(this);
-        ItemBlock item = new ItemBlock(this);
-        item.setUnlocalizedName(name.replace("_", "."));
-        item.setRegistryName(new ResourceLocation(MODID, name));
-        GameRegistry.register(item);
         return this;
     }
 

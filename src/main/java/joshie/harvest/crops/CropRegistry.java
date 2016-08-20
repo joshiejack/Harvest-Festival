@@ -9,6 +9,7 @@ import joshie.harvest.api.crops.IStateHandler.PlantSection;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.crops.blocks.BlockHFCrops;
 import joshie.harvest.crops.blocks.TileCrop;
+import joshie.harvest.player.PlayerTrackerServer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -96,7 +97,7 @@ public class CropRegistry implements ICropRegistry {
                 } else tile.saveAndRefresh();
 
                 if (player != null && !world.isRemote) {
-                    HFTrackers.getServerPlayerTracker(player).getTracking().onHarvested(data.getCrop());
+                    HFTrackers.<PlayerTrackerServer>getPlayerTracker(player).getTracking().onHarvested(data.getCrop());
                 }
 
                 return harvest;

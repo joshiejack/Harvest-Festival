@@ -15,11 +15,6 @@ public class AnimalTrackerServer extends AnimalTracker {
     private HashSet<IAnimalData> animals = new HashSet<>();
 
     @Override
-    public void onJoinWorld(IAnimalData animal) {
-        animals.add(animal);
-    }
-
-    @Override
     public void onDeath(IAnimalTracked animal) {
         if (!animal.getData().hasDied()) {
             animals.remove(animal.getData());
@@ -29,7 +24,10 @@ public class AnimalTrackerServer extends AnimalTracker {
         }
     }
 
-    @Override
+    public void onJoinWorld(IAnimalData animal) {
+        animals.add(animal);
+    }
+
     public void newDay() {
         Iterator<IAnimalData> iterator = animals.iterator();
         while (iterator.hasNext()) {

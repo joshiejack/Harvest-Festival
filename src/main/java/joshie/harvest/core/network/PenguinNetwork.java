@@ -33,6 +33,10 @@ public class PenguinNetwork {
         INSTANCE.sendToAll(message);
     }
 
+    public void sendToDimension(int dimension, IMessage message) {
+        INSTANCE.sendToDimension(message, dimension);
+    }
+
     public void sendToAllAround(IMessage packet, int dim, double x, double y, double z) {
         INSTANCE.sendToAllAround(packet, new TargetPoint(dim, x, y, z, 172));
     }

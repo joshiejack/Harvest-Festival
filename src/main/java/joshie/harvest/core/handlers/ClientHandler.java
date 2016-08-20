@@ -36,4 +36,8 @@ public class ClientHandler extends SideHandler {
     public TownTrackerClient getTownTracker() {
         return town;
     }
+
+    public boolean getSex() {
+        return true;
+    }
 }

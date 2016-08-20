@@ -7,11 +7,14 @@ import com.google.common.collect.HashBiMap;
 import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.util.Direction;
-import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
+import joshie.harvest.town.packets.PacketNewTown;
+import joshie.harvest.town.packets.PacketSyncTowns;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.math.BlockPos;
@@ -25,17 +28,18 @@ import static joshie.harvest.town.TownData.MINE_ENTRANCE;
 
 public class TownTrackerServer extends TownTracker {
     private static final BuildingLocation MINE = new BuildingLocation(HFBuildings.MINING_HILL, MINE_ENTRANCE);
-    private final Cache<BlockPos, TownData> closestCache = CacheBuilder.newBuilder().build();
     private final Cache<BlockPos, EntityNPCBuilder> closestBuilder = CacheBuilder.newBuilder().build();
-    private final HashMap<UUID, TownData> uuidMap = new HashMap<>();
     private BiMap<UUID, Integer> townIDs = HashBiMap.create();
-    private Set<TownDataServer> townData = new HashSet<>();
     private Set<EntityNPCBuilder> builders = new HashSet<>();
 
     public void newDay() {
-        for (TownDataServer town: townData) {
+        for (TownData town: townData) {
             town.newDay(getWorld());
         }
+    }
+
+    public void syncToPlayer(EntityPlayer player) {
+        PacketHandler.sendToClient(new PacketSyncTowns(townData), player);
     }
 
     @Override
@@ -101,12 +105,6 @@ public class TownTrackerServer extends TownTracker {
     }
 
     @Override
-    public TownData getTownByID(UUID townID) {
-        TownData result = uuidMap.get(townID);
-        return result == null ? NULL_TOWN : result;
-    }
-
-    @Override
     public EntityNPCBuilder getBuilderOrCreate(final TownData town, final EntityLivingBase player) {
         final BlockPos pos = new BlockPos(player);
         try {
@@ -139,30 +137,9 @@ public class TownTrackerServer extends TownTracker {
         closestCache.invalidateAll(); //Reset the cache everytime we make a new town
         uuidMap.put(data.getID(), data);
         matchUUIDWithMineID(data.getID());
+        PacketHandler.sendToDimension(getDimension(), new PacketNewTown(data)); //Sync to everyone on this dimension
         HFTrackers.markDirty(getDimension());
         return data;
-    }
-
-    @Override
-    public TownData getClosestTownToBlockPos(final BlockPos pos) {
-        try {
-            return closestCache.get(pos, new Callable<TownData>() {
-                @Override
-                public TownData call() throws Exception {
-                    TownData closest = null;
-                    double thatTownDistance = Double.MAX_VALUE;
-                    for (TownDataServer town: townData) {
-                        double thisTownDistance = town.getTownCentre().getDistance(pos.getX(), pos.getY(), pos.getZ());
-                        if (closest == null || thisTownDistance < thatTownDistance) {
-                            thatTownDistance = thisTownDistance;
-                            closest = town;
-                        }
-                    }
-
-                    return thatTownDistance > HFNPCs.TOWN_DISTANCE || closest == null ? NULL_TOWN: closest;
-                }
-            });
-        } catch (Exception e) { e.printStackTrace(); return NULL_TOWN; }
     }
 
     public void readFromNBT(NBTTagCompound nbt) {
@@ -188,7 +165,7 @@ public class TownTrackerServer extends TownTracker {
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         NBTTagList town_list = new NBTTagList();
-        for (TownDataServer data: townData) {
+        for (TownData data: townData) {
             NBTTagCompound townData = new NBTTagCompound();
             data.writeToNBT(townData);
             town_list.appendTag(townData);

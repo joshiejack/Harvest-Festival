@@ -3,7 +3,7 @@ package joshie.harvest.calendar.command;
 import joshie.harvest.api.HFCommand;
 import joshie.harvest.api.HFRegister;
 import joshie.harvest.api.calendar.Season;
-import joshie.harvest.calendar.Calendar;
+import joshie.harvest.calendar.CalendarServer;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.CalendarHelper;
 import net.minecraft.command.ICommandSender;
@@ -27,7 +27,7 @@ public class HFCommandDay extends HFCommand {
     public boolean execute(MinecraftServer server, ICommandSender sender, String[] parameters) {
         if (parameters != null && parameters.length == 1) {
             try {
-                Calendar calendar = HFTrackers.getCalendar(sender.getEntityWorld());
+                CalendarServer calendar = HFTrackers.getCalendar(sender.getEntityWorld());
                 int day = Math.min(DAYS_PER_SEASON, Math.max(1, parseInt(parameters[0]))) - 1;
                 Season season = calendar.getDate().getSeason();
                 int year = Math.max(1, calendar.getDate().getYear());

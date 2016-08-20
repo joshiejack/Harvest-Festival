@@ -5,10 +5,10 @@ import gnu.trove.map.hash.TIntObjectHashMap;
 import joshie.harvest.animals.AnimalTracker;
 import joshie.harvest.calendar.Calendar;
 import joshie.harvest.core.helpers.UUIDHelper;
-import joshie.harvest.town.TownTracker;
 import joshie.harvest.player.PlayerTracker;
 import joshie.harvest.player.PlayerTrackerClient;
 import joshie.harvest.player.PlayerTrackerServer;
+import joshie.harvest.town.TownTracker;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -70,20 +70,24 @@ public class HFTrackers {
         return !world.isRemote ? getServer(world) : getClient(world);
     }
 
-    public static Calendar getCalendar(World world) {
-        return getHandler(world).getCalendar();
+    @SuppressWarnings("unchecked")
+    public static <C extends Calendar> C getCalendar(World world) {
+        return (C) getHandler(world).getCalendar();
     }
 
-    public static AnimalTracker getAnimalTracker(World world) {
-        return getHandler(world).getAnimalTracker();
+    @SuppressWarnings("unchecked")
+    public static <A extends AnimalTracker> A getAnimalTracker(World world) {
+        return (A) getHandler(world).getAnimalTracker();
     }
 
-    public static PlayerTracker getPlayerTracker(EntityPlayer player) {
-        return player.worldObj.isRemote ? CLIENT_PLAYER : getServerPlayerTracker(player);
+    @SuppressWarnings("unchecked")
+    public static <P extends PlayerTracker> P getPlayerTracker(EntityPlayer player) {
+        return player.worldObj.isRemote ? (P) CLIENT_PLAYER : (P) SERVER_PLAYERS.get(UUIDHelper.getPlayerUUID(player));
     }
 
-    public static TownTracker getTownTracker(World world) {
-        return getHandler(world).getTownTracker();
+    @SuppressWarnings("unchecked")
+    public static <T extends TownTracker> T getTownTracker(World world) {
+        return (T) getHandler(world).getTownTracker();
     }
     
     public static Collection<PlayerTrackerServer> getPlayerTrackers() {
@@ -94,12 +98,8 @@ public class HFTrackers {
     public static PlayerTrackerClient getClientPlayerTracker() {
         return (PlayerTrackerClient) CLIENT_PLAYER;
     }
-    
-    public static PlayerTrackerServer getServerPlayerTracker(EntityPlayer player) {
-        return SERVER_PLAYERS.get(UUIDHelper.getPlayerUUID(player));
-    }
 
-    public static PlayerTrackerServer getServerPlayerTracker(UUID uuid) {
+    public static PlayerTrackerServer getPlayerTrackerFromUUID(UUID uuid) {
         return SERVER_PLAYERS.get(uuid);
     }
 

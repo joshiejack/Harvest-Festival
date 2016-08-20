@@ -32,6 +32,10 @@ public class PacketHandler {
         INSTANCE.sendToEveryone(message);
     }
 
+    public static void sendToDimension(int dimension, IMessage message) {
+        INSTANCE.sendToDimension(dimension, message);
+    }
+
     public static void sendRefreshPacket(TileHarvest tile) {
         tile.hasChanged = true;
         Packet<?> pkt = tile.getUpdatePacket();

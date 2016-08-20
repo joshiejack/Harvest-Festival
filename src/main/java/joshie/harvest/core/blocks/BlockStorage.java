@@ -5,6 +5,7 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.base.BlockHFEnumRotatableTile;
+import joshie.harvest.player.PlayerTrackerServer;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -65,7 +66,7 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
             long sell = shipping.getSellValue(held);
             if (sell > 0) {
                 if (!world.isRemote) {
-                    HFTrackers.getServerPlayerTracker(player).getTracking().addForShipping(held.copy());
+                    HFTrackers.<PlayerTrackerServer>getPlayerTracker(player).getTracking().addForShipping(held.copy());
                 }
 
                 held.splitStack(1);

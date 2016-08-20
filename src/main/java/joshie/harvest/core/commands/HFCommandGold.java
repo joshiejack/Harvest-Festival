@@ -3,6 +3,7 @@ package joshie.harvest.core.commands;
 import joshie.harvest.api.HFCommand;
 import joshie.harvest.api.HFRegister;
 import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.player.stats.StatDataServer;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -28,7 +29,7 @@ public class HFCommandGold extends HFCommand {
                 boolean set = !(parameters.length == 1 || parameters[0].equals("add"));
 
                 EntityPlayerMP player = ((EntityPlayerMP) sender);
-                StatDataServer stats = HFTrackers.getServerPlayerTracker(player).getStats();
+                StatDataServer stats = HFTrackers.<PlayerTrackerServer>getPlayerTracker(player).getStats();
                 if (set) {
                     stats.setGold(player, amount);
                 } else stats.addGold(player, amount);

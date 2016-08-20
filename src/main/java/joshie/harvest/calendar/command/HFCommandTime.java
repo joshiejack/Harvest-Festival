@@ -2,6 +2,7 @@ package joshie.harvest.calendar.command;
 
 import joshie.harvest.api.HFCommand;
 import joshie.harvest.api.HFRegister;
+import joshie.harvest.calendar.CalendarServer;
 import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
@@ -33,14 +34,14 @@ public class HFCommandTime extends HFCommand {
                 }
 
                 sender.getEntityWorld().setWorldTime(i1);
-                HFTrackers.getCalendar(sender.getEntityWorld()).recalculateAndUpdate();
+                HFTrackers.<CalendarServer>getCalendar(sender.getEntityWorld()).recalculateAndUpdate();
                 return true;
             }
 
             if (parameters[0].equals("add")) {
                 int l = parseInt(parameters[1]);
                 sender.getEntityWorld().setWorldTime(sender.getEntityWorld().getWorldTime() + l);
-                HFTrackers.getCalendar(sender.getEntityWorld()).recalculateAndUpdate();
+                HFTrackers.<CalendarServer>getCalendar(sender.getEntityWorld()).recalculateAndUpdate();
                 return true;
             }
         }

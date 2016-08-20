@@ -7,6 +7,7 @@ import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.ItemHelper;
 import joshie.harvest.core.util.IdiotException;
+import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.player.quests.QuestData;
 import joshie.harvest.quests.packets.PacketQuestDecreaseHeld;
 import joshie.harvest.quests.packets.PacketQuestIncrease;
@@ -56,7 +57,7 @@ public class QuestHelper implements IQuestHelper {
         if (player.worldObj.isRemote) {
             throw new IdiotException("Joshie shouldn't be rewarding anyone with gold client side");
         } else {
-            HFTrackers.getServerPlayerTracker(player).getStats().addGold((EntityPlayerMP) player, amount);
+            HFTrackers.<PlayerTrackerServer>getPlayerTracker(player).getStats().addGold((EntityPlayerMP) player, amount);
         }
     }
 

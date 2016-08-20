@@ -27,7 +27,7 @@ public class ContainerNPCGift extends ContainerNPCBase {
         super.onContainerClosed(player);
 
         if (!player.worldObj.isRemote) {
-            if (HFTrackers.getServerPlayerTracker(player).getRelationships().gift(player, npc.getRelatable(), 0)) {
+            if (HFTrackers.getPlayerTracker(player).getRelationships().gift(player, npc.getRelatable(), 0)) {
                 ItemStack gift = player.getHeldItem(hand);
                 INPC theNpc = npc.getNPC();
                 int points = theNpc.getGiftValue(gift).getRelationPoints();

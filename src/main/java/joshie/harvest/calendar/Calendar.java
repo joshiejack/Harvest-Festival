@@ -22,10 +22,6 @@ public abstract class Calendar extends HFTracker {
         return getDate().getSeason();
     }
 
-    public void newDay() {}
-
-    public void updateForecast() {}
-
     public Weather getForecast(int day) {
         day = Math.max(0, Math.min(6, day));
         return forecast[day];
@@ -34,10 +30,6 @@ public abstract class Calendar extends HFTracker {
     public Weather getTodaysWeather() {
         return forecast[0] != null ? forecast[0] : Weather.SUNNY;
     }
-
-    public void setTodaysWeather(Weather weather) {}
-
-    public void setForecast(Weather[] forecast) {}
 
     public float getTodaysRainStrength() {
         return rainStrength;
@@ -70,7 +62,4 @@ public abstract class Calendar extends HFTracker {
                 break;
         }
     }
-
-    public void recalculate() {}
-    public void recalculateAndUpdate() {}
 }

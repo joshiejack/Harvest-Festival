@@ -4,7 +4,12 @@ import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.buildings.Building;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.helpers.NBTHelper;
+import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.util.Direction;
+import joshie.harvest.town.packets.PacketNewBuilding;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -58,8 +63,14 @@ public class TownData {
     }
     
     public void addBuilding(World world, Building building, Direction direction, BlockPos pos) {
-        buildings.put(BuildingRegistry.REGISTRY.getNameForObject(building), new TownBuilding(building, direction, pos));
+        TownBuilding newBuilding = new TownBuilding(building, direction, pos);
+        buildings.put(BuildingRegistry.REGISTRY.getNameForObject(building), newBuilding);
+        PacketHandler.sendToDimension(world.provider.getDimension(), new PacketNewBuilding(uuid, newBuilding));
         HFTrackers.markDirty(world);
+    }
+
+    public void addBuilding(TownBuilding building) {
+        buildings.put(BuildingRegistry.REGISTRY.getNameForObject(building.building), building);
     }
 
     public boolean hasBuilding(ResourceLocation building) {
@@ -73,6 +84,8 @@ public class TownData {
 
         return true;
     }
+
+    public void newDay(World world) {}
 
     public BlockPos getCoordinatesFor(BuildingLocation location) {
         TownBuilding building = buildings.get(location.getResource());
@@ -88,6 +101,31 @@ public class TownData {
 
     public BlockPos getTownCentre() {
         return townCentre;
+    }
+
+    public void readFromNBT(NBTTagCompound nbt) {
+        uuid = NBTHelper.readUUID("Town", nbt);
+        townCentre = NBTHelper.readBlockPos("TownCentre", nbt);
+        NBTTagList list = nbt.getTagList("TownBuildingList", 10);
+        for (int i = 0; i < list.tagCount(); i++) {
+            NBTTagCompound tag = list.getCompoundTagAt(i);
+            TownBuilding building = new TownBuilding();
+            building.readFromNBT(tag);
+            buildings.put(BuildingRegistry.REGISTRY.getNameForObject(building.building), building);
+        }
+    }
+
+    public void writeToNBT(NBTTagCompound nbt) {
+        NBTHelper.writeBlockPos("TownCentre", nbt, townCentre);
+        NBTHelper.writeUUID("Town", nbt, uuid);
+        NBTTagList list = new NBTTagList();
+        for (ResourceLocation name : buildings.keySet()) {
+            NBTTagCompound tag = new NBTTagCompound();
+            buildings.get(name).writeToNBT(tag);
+            list.appendTag(tag);
+        }
+
+        nbt.setTag("TownBuildingList", list);
     }
 
     @Override

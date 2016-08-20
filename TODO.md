@@ -1,6 +1,4 @@
 ### High Priority
-- Syncing Town Information to Players
-- When you can purchase buildings from a town
 - Fix Building render building messed up in mesa?
 
 ### Medium Priority

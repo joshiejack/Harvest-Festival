@@ -1,12 +1,15 @@
 package joshie.harvest.core.handlers;
 
+import joshie.harvest.animals.AnimalTrackerServer;
+import joshie.harvest.calendar.CalendarServer;
+import joshie.harvest.calendar.packets.PacketSetCalendar;
 import joshie.harvest.core.helpers.CalendarHelper;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.helpers.generic.MCServerHelper;
 import joshie.harvest.core.network.PacketHandler;
-import joshie.harvest.calendar.packets.PacketSetCalendar;
 import joshie.harvest.core.util.HFEvents;
 import joshie.harvest.player.PlayerTrackerServer;
+import joshie.harvest.town.TownTrackerServer;
 import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraft.client.gui.GuiWorldSelection;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -73,7 +76,7 @@ public class EventsHandler {
     @SubscribeEvent
     public void onPlayerSave(PlayerEvent.SaveToFile event) {
         try {
-            PlayerTrackerServer data = HFTrackers.getServerPlayerTracker(event.getEntityPlayer());
+            PlayerTrackerServer data = HFTrackers.getPlayerTracker(event.getEntityPlayer());
             File file = new File(getFolder(event.getPlayerDirectory()), UUIDHelper.getPlayerUUID(event.getEntityPlayer()) + ".dat");
             NBTTagCompound tag = data.writeToNBT(new NBTTagCompound());
             FileOutputStream fileoutputstream = new FileOutputStream(file);
@@ -102,10 +105,10 @@ public class EventsHandler {
 
     //New day
     public static void newDay(final World world) {
-        HFTrackers.getCalendar(world).newDay();
+        HFTrackers.<CalendarServer>getCalendar(world).newDay();
         HFTrackers.getTickables(world).newDay();
-        HFTrackers.getAnimalTracker(world).newDay();
-        HFTrackers.getTownTracker(world).newDay();
+        HFTrackers.<AnimalTrackerServer>getAnimalTracker(world).newDay();
+        HFTrackers.<TownTrackerServer>getTownTracker(world).newDay();
         HFTrackers.markDirty(world);
     }
 
@@ -115,9 +118,9 @@ public class EventsHandler {
         if (event.player instanceof EntityPlayerMP) {
             EntityPlayerMP player = (EntityPlayerMP) event.player;
             HFTrackers.getPlayerTracker(player).getStats().setBirthday(FMLCommonHandler.instance().getMinecraftServerInstance().worldServers[0]); //Set birthday to overworld date
-            PacketHandler.sendToClient(new PacketSetCalendar(player.worldObj.provider.getDimension(), HFTrackers.getCalendar(player.worldObj).getDate()), player);
-            HFTrackers.getTownTracker(event.player.worldObj).syncToPlayer(player);
-            PlayerTrackerServer data = HFTrackers.getServerPlayerTracker(player);
+            PacketHandler.sendToDimension(player.worldObj.provider.getDimension(), new PacketSetCalendar(HFTrackers.getCalendar(player.worldObj).getDate()));
+            HFTrackers.<TownTrackerServer>getTownTracker(event.player.worldObj).syncToPlayer(player);
+            PlayerTrackerServer data = HFTrackers.getPlayerTracker(player);
             data.syncPlayerStats(player);
         }
     }
@@ -125,7 +128,9 @@ public class EventsHandler {
     @SubscribeEvent
     public void onChangeDimension(PlayerChangedDimensionEvent event) {
         if (event.player instanceof EntityPlayerMP) {
-            PacketHandler.sendToClient(new PacketSetCalendar(event.toDim, HFTrackers.getCalendar(MCServerHelper.getWorld(event.toDim)).getDate()), event.player);
+            World world = MCServerHelper.getWorld(event.toDim);
+            PacketHandler.sendToDimension(event.toDim, new PacketSetCalendar(HFTrackers.getCalendar(world).getDate()));
+            HFTrackers.<TownTrackerServer>getTownTracker(world).syncToPlayer(event.player); //Resync the town data
         }
     }
 }

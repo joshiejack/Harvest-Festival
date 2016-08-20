@@ -129,7 +129,12 @@ public class HFCrops {
     @SideOnly(Side.CLIENT)
     public static void preInitClient() {
         ModelLoader.setCustomStateMapper(CROPS, new CropStateMapper());
-        ModelLoader.setCustomMeshDefinition(CROP, new FMLDefinition<>(CROP, "crops", CropRegistry.REGISTRY));
+        ModelLoader.setCustomMeshDefinition(CROP, new FMLDefinition<Crop>(CROP, "crops", CropRegistry.REGISTRY) {
+            @Override
+            public boolean shouldSkip(Crop crop) {
+                return super.shouldSkip(crop) || crop.getCropStack().getItem() != CROP;
+            }
+        });
     }
 
     @SideOnly(Side.CLIENT)

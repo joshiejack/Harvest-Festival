@@ -1,6 +1,7 @@
 package joshie.harvest.core.commands;
 
 import joshie.harvest.api.HFCommand;
+import joshie.harvest.calendar.CalendarServer;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.lib.HFModInfo;
@@ -68,7 +69,7 @@ public class CommandManager extends CommandBase implements ICommand {
             try {
                 event.getCommand().execute(FMLCommonHandler.instance().getMinecraftServerInstance(), event.getSender(), event.getParameters());
                 World world = event.getSender().getEntityWorld();
-                HFTrackers.getCalendar(world).recalculateAndUpdate();
+                HFTrackers.<CalendarServer>getCalendar(world).recalculateAndUpdate();
                 event.setCanceled(true);
             } catch (Exception e) {}
         } else {

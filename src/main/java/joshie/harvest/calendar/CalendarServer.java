@@ -33,7 +33,6 @@ public class CalendarServer extends Calendar implements ISaveable {
         return DATE;
     }
 
-    @Override
     public void setTodaysWeather(Weather weather) {
         forecast[0] = weather;
         updateForecast();
@@ -78,7 +77,6 @@ public class CalendarServer extends Calendar implements ISaveable {
         return rainStrength;
     }
 
-    @Override
     public void updateForecast() {
         //If they're null set them
         for (int i = 0; i < 7; i++) {
@@ -88,21 +86,18 @@ public class CalendarServer extends Calendar implements ISaveable {
         }
 
         updateWeatherStrength();
-        PacketHandler.sendToEveryone(new PacketSyncForecast(getDimension(), forecast));
+        PacketHandler.sendToDimension(getDimension(), new PacketSyncForecast(forecast));
     }
 
-    @Override
     public void recalculate() {
         CalendarHelper.setDate(getWorld(), DATE);
     }
 
-    @Override
     public void recalculateAndUpdate() {
         CalendarHelper.setDate(getWorld(), DATE);
-        PacketHandler.sendToEveryone(new PacketSetCalendar(getDimension(), getDate())); //Sync the new date
+        PacketHandler.sendToDimension(getDimension(), new PacketSetCalendar(getDate())); //Sync the new date
     }
 
-    @Override
     public void newDay() {
         recalculateAndUpdate(); //Update the date
         /** Setup the forecast for the next 7 days **/

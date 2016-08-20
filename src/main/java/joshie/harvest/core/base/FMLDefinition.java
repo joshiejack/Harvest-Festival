@@ -33,9 +33,13 @@ public class FMLDefinition<E extends Impl<E>> implements ItemMeshDefinition {
         return DEFINITIONS.get(name);
     }
 
+    public boolean shouldSkip(E e) {
+        return e == item.getNullValue();
+    }
+
     public void registerEverything() {
         for (E e : registry.getValues()) {
-            if (e == item.getNullValue()) continue; //Don't register the null
+            if (shouldSkip(e)) continue; //Don't register the null
             ModelResourceLocation model = new ModelResourceLocation(new ResourceLocation(e.getRegistryName().getResourceDomain(), name + "/" + e.getRegistryName().getResourcePath()), "inventory");
             ModelBakery.registerItemVariants(item, model);
             models.put(e, model);

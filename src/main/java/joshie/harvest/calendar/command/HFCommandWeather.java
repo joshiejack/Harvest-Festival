@@ -3,6 +3,7 @@ package joshie.harvest.calendar.command;
 import joshie.harvest.api.HFCommand;
 import joshie.harvest.api.HFRegister;
 import joshie.harvest.api.calendar.Weather;
+import joshie.harvest.calendar.CalendarServer;
 import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
@@ -25,7 +26,7 @@ public class HFCommandWeather extends HFCommand {
         if (parameters != null && parameters.length == 1) {
             for (Weather weather : Weather.values()) {
                 if (StringUtils.equalsIgnoreCase(weather.name(), parameters[0])) {
-                    HFTrackers.getCalendar(sender.getEntityWorld()).setTodaysWeather(weather);
+                    HFTrackers.<CalendarServer>getCalendar(sender.getEntityWorld()).setTodaysWeather(weather);
                     return true;
                 }
             }

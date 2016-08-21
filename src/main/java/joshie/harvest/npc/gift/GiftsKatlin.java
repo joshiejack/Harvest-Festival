@@ -1,6 +1,7 @@
 package joshie.harvest.npc.gift;
 
 import joshie.harvest.animals.HFAnimals;
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.gift.GiftCategory;
 import net.minecraft.item.ItemStack;
 
@@ -13,11 +14,11 @@ public class GiftsKatlin extends Gifts {
             return AWESOME;
         }
 
-        if (isGiftType(stack, GiftCategory.KNITTING)) {
+        if (HFApi.npc.getGifts().isGiftType(stack, GiftCategory.KNITTING)) {
             return GOOD;
         }
 
-        if (isGiftType(stack, GiftCategory.TECHNOLOGY)) {
+        if (HFApi.npc.getGifts().isGiftType(stack, GiftCategory.TECHNOLOGY)) {
             return BAD;
         }
 

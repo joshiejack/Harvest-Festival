@@ -3,6 +3,9 @@ package joshie.harvest.api.npc.gift;
 import net.minecraft.item.ItemStack;
 
 public interface IGiftRegistry {
+    /** Assign a block, item, stack, or mod **/
+    void assignGeneric(Object object, GiftCategory... categories);
+
     /** Register a gift type
      *  @param stack    the itemstack, use OreDictionary.WILDCARD_VALUE if you want it to only match the item
      *  @param categories the categories to match**/

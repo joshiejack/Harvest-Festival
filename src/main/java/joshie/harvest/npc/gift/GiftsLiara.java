@@ -1,5 +1,6 @@
 package joshie.harvest.npc.gift;
 
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.gift.GiftCategory;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.items.ItemIngredients.Ingredient;
@@ -12,11 +13,11 @@ public class GiftsLiara extends Gifts {
             return Quality.AWESOME;
         }
 
-        if (isGiftType(stack, GiftCategory.COOKING)) {
+        if (HFApi.npc.getGifts().isGiftType(stack, GiftCategory.COOKING)) {
             return Quality.GOOD;
         }
 
-        if (isGiftType(stack, GiftCategory.KNITTING)) {
+        if (HFApi.npc.getGifts().isGiftType(stack, GiftCategory.KNITTING)) {
             return Quality.BAD;
         }
 

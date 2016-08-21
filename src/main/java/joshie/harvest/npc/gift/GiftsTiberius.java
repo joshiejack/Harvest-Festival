@@ -1,5 +1,6 @@
 package joshie.harvest.npc.gift;
 
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.gift.GiftCategory;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -14,11 +15,11 @@ public class GiftsTiberius extends Gifts {
             return stack.getItemDamage() == 8233 ? AWESOME : GOOD;
         }
 
-        if (isGiftType(stack, GiftCategory.BATTLE)) {
+        if (HFApi.npc.getGifts().isGiftType(stack, GiftCategory.BATTLE)) {
             return Quality.GOOD;
         }
 
-        if (isGiftType(stack, GiftCategory.GIRLY)) {
+        if (HFApi.npc.getGifts().isGiftType(stack, GiftCategory.GIRLY)) {
             return Quality.BAD;
         }
 

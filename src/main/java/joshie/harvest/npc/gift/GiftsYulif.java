@@ -1,5 +1,6 @@
 package joshie.harvest.npc.gift;
 
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.gift.GiftCategory;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.init.Blocks;
@@ -24,11 +25,11 @@ public class GiftsYulif extends Gifts {
             return GOOD;
         }
 
-        if (isGiftType(stack, GiftCategory.CONSTRUCTION)) {
+        if (HFApi.npc.getGifts().isGiftType(stack, GiftCategory.CONSTRUCTION)) {
             return Quality.GOOD;
         }
 
-        if (isGiftType(stack, GiftCategory.FARMING)) {
+        if (HFApi.npc.getGifts().isGiftType(stack, GiftCategory.FARMING)) {
             return Quality.BAD;
         }
 

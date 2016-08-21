@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class GiftRegistry implements IGiftRegistry {
-    private static final HolderRegistry<GiftCategory[]> registry = new HolderRegistry<GiftCategory[]>() {
+    private final HolderRegistry<GiftCategory[]> registry = new HolderRegistry<GiftCategory[]>() {
         @Override
         public boolean matches(GiftCategory[] external, GiftCategory[] internal) {
             for (GiftCategory e: external) {
@@ -38,10 +38,12 @@ public class GiftRegistry implements IGiftRegistry {
     }
 
     //For my own sanity....
-    public void assign(Object object, GiftCategory... category) {
-        if (object instanceof Item) assignItem((Item)object, category);
-        else if (object instanceof Block) assignBlock((Block)object, category);
-        else if (object instanceof ItemStack) assignStack((ItemStack)object, category);
+    @Override
+    public void assignGeneric(Object object, GiftCategory... categories) {
+        if (object instanceof Item) assignItem((Item)object, categories);
+        else if (object instanceof Block) assignBlock((Block)object, categories);
+        else if (object instanceof ItemStack) assignStack((ItemStack)object, categories);
+        else if (object instanceof String) assignMod((String) object, categories);
     }
 
     private void assignItem(Item item, GiftCategory... categories) {

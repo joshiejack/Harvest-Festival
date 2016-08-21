@@ -1,5 +1,6 @@
 package joshie.harvest.npc.gift;
 
+import joshie.harvest.api.HFApi;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
@@ -12,11 +13,11 @@ public class GiftsGirafi extends Gifts {
             return Quality.AWESOME;
         }
 
-        if (isGiftType(stack, ANIMALS, TECHNOLOGY)) {
+        if (HFApi.npc.getGifts().isGiftType(stack, ANIMALS, TECHNOLOGY)) {
             return Quality.GOOD;
         }
 
-        if (isGiftType(stack, GIRLY, KNITTING)) {
+        if (HFApi.npc.getGifts().isGiftType(stack, GIRLY, KNITTING)) {
             return Quality.BAD;
         }
 

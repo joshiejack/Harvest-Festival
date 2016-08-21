@@ -1,5 +1,6 @@
 package joshie.harvest.npc.gift;
 
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.gift.GiftCategory;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -12,11 +13,11 @@ public class GiftsThomas extends Gifts {
             return Quality.AWESOME;
         }
 
-        if (isGiftType(stack, GiftCategory.DANGER)) {
+        if (HFApi.npc.getGifts().isGiftType(stack, GiftCategory.DANGER)) {
             return Quality.GOOD;
         }
 
-        if (isGiftType(stack, GiftCategory.BATTLE)) {
+        if (HFApi.npc.getGifts().isGiftType(stack, GiftCategory.BATTLE)) {
             return Quality.BAD;
         }
         return Quality.DECENT;

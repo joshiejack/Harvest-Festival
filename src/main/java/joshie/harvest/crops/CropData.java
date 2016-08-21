@@ -101,7 +101,7 @@ public class CropData implements ICropData {
 
     @Override
     @Nonnull
-    public ICrop getCrop() {
+    public Crop getCrop() {
         return crop;
     }
 

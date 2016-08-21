@@ -1,8 +1,8 @@
 package joshie.harvest.player.quests;
 
 import joshie.harvest.api.npc.INPC;
-import joshie.harvest.player.PlayerTracker;
 import joshie.harvest.api.quests.Quest;
+import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.quests.packets.PacketQuestSetAvailable;
 import joshie.harvest.quests.packets.PacketQuestSetCurrent;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,8 +20,8 @@ import static joshie.harvest.core.network.PacketHandler.sendToClient;
 public class QuestDataServer extends QuestData {
     private HashSet<Quest> finished = new HashSet<>();
 
-    public PlayerTracker master;
-    public QuestDataServer(PlayerTracker master) {
+    public PlayerTrackerServer master;
+    public QuestDataServer(PlayerTrackerServer master) {
         this.master = master;
     }
 

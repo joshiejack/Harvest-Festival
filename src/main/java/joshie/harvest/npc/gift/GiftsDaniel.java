@@ -11,11 +11,11 @@ public class GiftsDaniel extends Gifts {
             return Quality.AWESOME;
         }
 
-        if (GiftRegistry.is(stack, GiftCategory.TOOLS)) {
+        if (isGiftType(stack, GiftCategory.TOOLS)) {
             return Quality.GOOD;
         }
 
-        if (GiftRegistry.is(stack, GiftCategory.WATERY)) {
+        if (isGiftType(stack, GiftCategory.WATERY)) {
             return Quality.BAD;
         }
 

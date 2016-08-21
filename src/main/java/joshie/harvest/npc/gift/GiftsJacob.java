@@ -11,11 +11,11 @@ public class GiftsJacob extends Gifts {
             return Quality.AWESOME;
         }
 
-        if (GiftRegistry.is(stack, GiftCategory.WATERY)) {
+        if (isGiftType(stack, GiftCategory.WATERY)) {
             return Quality.GOOD;
         }
 
-        if (GiftRegistry.is(stack, GiftCategory.MINING)) {
+        if (isGiftType(stack, GiftCategory.MINING)) {
             return Quality.BAD;
         }
 

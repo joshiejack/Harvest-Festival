@@ -5,11 +5,10 @@ import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.api.core.ISeasonData;
-import joshie.harvest.core.helpers.CalendarHelper;
-import joshie.harvest.core.helpers.NBTHelper.ISaveable;
-import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.calendar.packets.PacketSetCalendar;
 import joshie.harvest.calendar.packets.PacketSyncForecast;
+import joshie.harvest.core.helpers.CalendarHelper;
+import joshie.harvest.core.network.PacketHandler;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
@@ -18,7 +17,7 @@ import java.util.Random;
 import static joshie.harvest.api.calendar.Season.SPRING;
 import static joshie.harvest.calendar.HFCalendar.DAYS_PER_SEASON;
 
-public class CalendarServer extends Calendar implements ISaveable {
+public class CalendarServer extends Calendar {
     private final ICalendarDate DATE = HFApi.calendar.newDate(0, SPRING, 1);
     private static final Random rand = new Random();
 
@@ -118,14 +117,12 @@ public class CalendarServer extends Calendar implements ISaveable {
         return season.ordinal() < Season.values().length - 1 ? Season.values()[season.ordinal() + 1] : Season.values()[0];
     }
 
-    @Override
     public void readFromNBT(NBTTagCompound nbt) {
         for (int i = 0; i < 7; i++) {
             forecast[i] = Weather.values()[nbt.getCompoundTag("Forecast").getByte("Day" + i)];
         }
     }
 
-    @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         NBTTagCompound tag = new NBTTagCompound();
         for (int i = 0; i < 7; i++) {

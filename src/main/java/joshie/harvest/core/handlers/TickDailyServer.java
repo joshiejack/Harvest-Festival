@@ -5,7 +5,6 @@ import joshie.harvest.api.core.IDailyTickable;
 import joshie.harvest.api.core.IDailyTickableBlock;
 import joshie.harvest.core.HFTracker;
 import joshie.harvest.core.helpers.NBTHelper;
-import joshie.harvest.core.helpers.NBTHelper.ISaveable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -19,7 +18,7 @@ import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.Set;
 
-public class TickDailyServer extends HFTracker implements ISaveable {
+public class TickDailyServer extends HFTracker {
     private Set<Runnable> queue = new HashSet <>();
     private Set<IDailyTickable> priority = new HashSet<>();
     private Set<IDailyTickable> tickables = new HashSet<>();
@@ -99,7 +98,6 @@ public class TickDailyServer extends HFTracker implements ISaveable {
         }
     }
 
-    @Override
     public void readFromNBT(NBTTagCompound tag) {
         blockTicks = new HashMap<>();
         NBTTagList dataList = tag.getTagList("Positions", 10);
@@ -109,7 +107,6 @@ public class TickDailyServer extends HFTracker implements ISaveable {
         }
     }
 
-    @Override
     public NBTTagCompound writeToNBT(NBTTagCompound tag) {
         NBTTagList dataList = new NBTTagList();
         for (BlockPos pos: blockTicks.keySet()) {

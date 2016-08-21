@@ -11,11 +11,11 @@ public class GiftsJenni extends Gifts {
             return Quality.AWESOME;
         }
 
-        if (GiftRegistry.is(stack, GiftCategory.GIRLY)) {
+        if (isGiftType(stack, GiftCategory.GIRLY)) {
             return Quality.GOOD;
         }
 
-        if (GiftRegistry.is(stack, GiftCategory.TOOLS)) {
+        if (isGiftType(stack, GiftCategory.TOOLS)) {
             return Quality.BAD;
         }
 

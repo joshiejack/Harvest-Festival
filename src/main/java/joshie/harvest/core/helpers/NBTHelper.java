@@ -4,7 +4,7 @@ import gnu.trove.map.TIntObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
 import joshie.harvest.core.base.TileHarvest;
 import joshie.harvest.core.network.PacketHandler;
-import joshie.harvest.player.tracking.TrackingData.AbstractHolder;
+import joshie.harvest.core.util.holders.AbstractHolder;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -26,15 +26,12 @@ public class NBTHelper {
         PacketHandler.sendRefreshPacket(tile2);
     }
 
+    @SuppressWarnings("unchecked")
     private static <C extends Collection, H extends AbstractHolder> C readCollection(Class<C> c, Class<H> h, NBTTagList list) {
         try {
             C collection = c.newInstance();
             for (int i = 0; i < list.tagCount(); i++) {
-                H stack = h.newInstance();
-                stack.readFromNBT(list.getCompoundTagAt(i));
-                if (stack.getKey() != null) {
-                    collection.add(stack);
-                }
+                collection.add(h.getMethod("readFromNBT", NBTTagCompound.class).invoke(null, list.getCompoundTagAt(i)));
             }
 
             return collection;
@@ -46,10 +43,12 @@ public class NBTHelper {
         } catch (Exception e) { return  null; }
     }
 
+    @SuppressWarnings("unchecked")
     public static <H extends AbstractHolder> ArrayList<H> readList(Class<H> h, NBTTagList list) {
         return readCollection(ArrayList.class, h, list);
     }
 
+    @SuppressWarnings("unchecked")
     public static <H extends AbstractHolder> HashSet<H> readHashSet(Class<H> h, NBTTagList list) {
         return readCollection(HashSet.class, h, list);
     }
@@ -160,12 +159,6 @@ public class NBTHelper {
         }
 
         return list;
-    }
-
-
-    public interface ISaveable {
-        void readFromNBT(NBTTagCompound tag);
-        NBTTagCompound writeToNBT(NBTTagCompound tag);
     }
 
     public static ItemStack readItemStack(NBTTagCompound nbt) {

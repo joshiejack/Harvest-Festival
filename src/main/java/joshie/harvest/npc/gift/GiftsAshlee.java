@@ -11,11 +11,11 @@ public class GiftsAshlee extends Gifts {
             return Quality.AWESOME;
         }
 
-        if (GiftRegistry.is(stack, GiftCategory.TECHNOLOGY)) {
+        if (isGiftType(stack, GiftCategory.TECHNOLOGY)) {
             return Quality.GOOD;
         }
 
-        if (GiftRegistry.is(stack, GiftCategory.DANGER)) {
+        if (isGiftType(stack, GiftCategory.DANGER)) {
             return Quality.BAD;
         }
 

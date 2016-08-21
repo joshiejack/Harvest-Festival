@@ -12,11 +12,11 @@ public class GiftsThomas extends Gifts {
             return Quality.AWESOME;
         }
 
-        if (GiftRegistry.is(stack, GiftCategory.DANGER)) {
+        if (isGiftType(stack, GiftCategory.DANGER)) {
             return Quality.GOOD;
         }
 
-        if (GiftRegistry.is(stack, GiftCategory.BATTLE)) {
+        if (isGiftType(stack, GiftCategory.BATTLE)) {
             return Quality.BAD;
         }
         return Quality.DECENT;

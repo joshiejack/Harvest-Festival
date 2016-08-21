@@ -12,11 +12,11 @@ public class GiftsFenn extends Gifts {
             return Quality.AWESOME;
         }
 
-        if (GiftRegistry.is(stack, GiftCategory.NATURE)) {
+        if (isGiftType(stack, GiftCategory.NATURE)) {
             return Quality.GOOD;
         }
 
-        if (GiftRegistry.is(stack, GiftCategory.PRETTY)) {
+        if (isGiftType(stack, GiftCategory.PRETTY)) {
             return Quality.BAD;
         }
 

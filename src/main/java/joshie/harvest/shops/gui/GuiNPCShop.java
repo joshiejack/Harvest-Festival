@@ -10,7 +10,7 @@ import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.shops.packets.PacketPurchaseItem;
 import joshie.harvest.npc.entity.AbstractEntityNPC;
 import joshie.harvest.npc.gui.GuiNPCBase;
-import joshie.harvest.player.stats.StatDataClient;
+import joshie.harvest.player.stats.StatsClient;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -24,7 +24,7 @@ public class GuiNPCShop extends GuiNPCBase {
     protected static final ResourceLocation gui_texture = new ResourceLocation(HFModInfo.MODID, "textures/gui/shop.png");
     protected static final ResourceLocation number_texture = new ResourceLocation(HFModInfo.MODID, "lang/en_US/shops.png");
     protected static final ResourceLocation shelve_texture = new ResourceLocation(HFModInfo.MODID, "textures/gui/shop_extra.png");
-    protected StatDataClient stats;
+    protected StatsClient stats;
     protected List<IPurchaseable> contents;
     protected IShopGuiOverlay overlay;
     protected int start;

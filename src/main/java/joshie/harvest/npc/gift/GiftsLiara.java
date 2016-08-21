@@ -12,11 +12,11 @@ public class GiftsLiara extends Gifts {
             return Quality.AWESOME;
         }
 
-        if (GiftRegistry.is(stack, GiftCategory.COOKING)) {
+        if (isGiftType(stack, GiftCategory.COOKING)) {
             return Quality.GOOD;
         }
 
-        if (GiftRegistry.is(stack, GiftCategory.KNITTING)) {
+        if (isGiftType(stack, GiftCategory.KNITTING)) {
             return Quality.BAD;
         }
 

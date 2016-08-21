@@ -6,7 +6,7 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.core.util.Text;
 import joshie.harvest.npc.entity.AbstractEntityNPC;
-import joshie.harvest.player.stats.StatData;
+import joshie.harvest.player.stats.Stats;
 import joshie.harvest.api.quests.Quest;
 import net.minecraft.entity.player.EntityPlayer;
 import org.apache.commons.lang3.SystemUtils;
@@ -31,7 +31,7 @@ public class GuiNPCChat extends GuiNPCBase {
 
     private String format(String string) {
         if (string == null) return "FORGOT SOME TEXT DUMBASS";
-        StatData stats = HFTrackers.getClientPlayerTracker().getStats();
+        Stats stats = HFTrackers.getClientPlayerTracker().getStats();
         string = string.replace("<BR>", SystemUtils.LINE_SEPARATOR);
         string = string.replace("%p", player.getDisplayNameString());
         string = string.replace("%e", npc.getNPC().getLocalizedName());

@@ -13,14 +13,15 @@ public class GiftsKatlin extends Gifts {
             return AWESOME;
         }
 
-        if (GiftRegistry.is(stack, GiftCategory.KNITTING)) {
+        if (isGiftType(stack, GiftCategory.KNITTING)) {
             return GOOD;
         }
 
-        if (GiftRegistry.is(stack, GiftCategory.TECHNOLOGY)) {
+        if (isGiftType(stack, GiftCategory.TECHNOLOGY)) {
             return BAD;
         }
 
         return DECENT;
     }
+
 }

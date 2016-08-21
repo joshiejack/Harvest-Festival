@@ -24,11 +24,11 @@ public class GiftsYulif extends Gifts {
             return GOOD;
         }
 
-        if (GiftRegistry.is(stack, GiftCategory.CONSTRUCTION)) {
+        if (isGiftType(stack, GiftCategory.CONSTRUCTION)) {
             return Quality.GOOD;
         }
 
-        if (GiftRegistry.is(stack, GiftCategory.FARMING)) {
+        if (isGiftType(stack, GiftCategory.FARMING)) {
             return Quality.BAD;
         }
 

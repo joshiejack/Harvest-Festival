@@ -11,11 +11,11 @@ public class GiftsJamie extends Gifts {
             return Quality.AWESOME;
         }
 
-        if (GiftRegistry.is(stack, GiftCategory.RARE)) {
+        if (isGiftType(stack, GiftCategory.RARE)) {
             return Quality.GOOD;
         }
 
-        if (GiftRegistry.is(stack, GiftCategory.ANIMALS)) {
+        if (isGiftType(stack, GiftCategory.ANIMALS)) {
             return Quality.BAD;
         }
 

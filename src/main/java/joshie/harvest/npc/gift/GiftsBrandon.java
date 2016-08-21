@@ -11,11 +11,11 @@ public class GiftsBrandon extends Gifts {
             return Quality.AWESOME;
         }
 
-        if (GiftRegistry.is(stack, GiftCategory.MINING)) {
+        if (isGiftType(stack, GiftCategory.MINING)) {
             return Quality.GOOD;
         }
 
-        if (GiftRegistry.is(stack, GiftCategory.NATURE)) {
+        if (isGiftType(stack, GiftCategory.NATURE)) {
             return Quality.BAD;
         }
 

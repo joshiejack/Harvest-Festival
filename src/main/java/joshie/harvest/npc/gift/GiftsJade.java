@@ -11,11 +11,11 @@ public class GiftsJade extends Gifts {
             return Quality.AWESOME;
         }
 
-        if (GiftRegistry.is(stack, GiftCategory.FARMING)) {
+        if (isGiftType(stack, GiftCategory.FARMING)) {
             return Quality.GOOD;
         }
 
-        if (GiftRegistry.is(stack, GiftCategory.MINING)) {
+        if (isGiftType(stack, GiftCategory.MINING)) {
             return Quality.BAD;
         }
         return Quality.DECENT;

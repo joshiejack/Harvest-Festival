@@ -1,9 +1,16 @@
 package joshie.harvest.player.tracking;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.helpers.generic.CollectionHelper;
+import joshie.harvest.core.network.PacketHandler;
+import joshie.harvest.core.util.holders.CropSoldStack;
+import joshie.harvest.core.util.holders.ItemStackHolder;
+import joshie.harvest.core.util.holders.SellHolderStack;
+import joshie.harvest.crops.Crop;
+import joshie.harvest.player.PlayerTrackerServer;
+import joshie.harvest.player.packets.PacketSyncObtained;
+import joshie.harvest.player.packets.PacketSyncObtainedSet;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -11,25 +18,31 @@ import net.minecraft.nbt.NBTTagCompound;
 import java.util.HashSet;
 import java.util.Iterator;
 
-public class TrackingDataServer extends TrackingData {
+public class TrackingServer extends Tracking {
     private HashSet<SellHolderStack> toBeShipped = new HashSet<>(); //What needs to be sold
 
-    //TODO: Sync Stats for reading in a gui
+    public PlayerTrackerServer master;
+    public TrackingServer(PlayerTrackerServer master) {
+        this.master = master;
+    }
+
     public void sync(EntityPlayerMP player) {
-        // TODO Auto-generated method stub
+        PacketHandler.sendToClient(new PacketSyncObtainedSet(obtained), player);
     }
 
+    @Override
     public void addAsObtained(ItemStack stack) {
-        obtained.add(new ItemStackHolder(stack));
+        obtained.add(ItemStackHolder.of(stack));
+        PacketHandler.sendToClient(new PacketSyncObtained(stack), master.getAndCreatePlayer());
     }
 
-    public void onHarvested(ICrop crop) {
-        CollectionHelper.mergeCollection(new CropSoldStack(crop), cropTracker);
+    public void onHarvested(Crop crop) {
+        CollectionHelper.mergeCollection(CropSoldStack.of(crop), cropTracker);
     }
 
     public boolean addForShipping(ItemStack item) {
         long sell = HFApi.shipping.getSellValue(item);
-        SellHolderStack stack = new SellHolderStack(item, sell);
+        SellHolderStack stack = SellHolderStack.of(item, sell);
         CollectionHelper.mergeCollection(stack, toBeShipped);
         return sell >= 0;
     }
@@ -39,7 +52,7 @@ public class TrackingDataServer extends TrackingData {
         Iterator<SellHolderStack> forSale = toBeShipped.iterator();
         while (forSale.hasNext()) {
             SellHolderStack stack = forSale.next();
-            sold += stack.sell;
+            sold += stack.getSellValue();
             CollectionHelper.mergeCollection(stack, sellTracker);
             forSale.remove();
         }

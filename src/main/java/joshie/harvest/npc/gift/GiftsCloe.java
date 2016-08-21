@@ -11,11 +11,11 @@ public class GiftsCloe extends Gifts {
             return Quality.AWESOME;
         }
 
-        if (GiftRegistry.is(stack, GiftCategory.SCARY)) {
+        if (isGiftType(stack, GiftCategory.SCARY)) {
             return Quality.GOOD;
         }
 
-        if (GiftRegistry.is(stack, GiftCategory.CUTE)) {
+        if (isGiftType(stack, GiftCategory.CUTE)) {
             return Quality.BAD;
         }
 

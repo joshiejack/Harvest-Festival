@@ -14,11 +14,11 @@ public class GiftsTiberius extends Gifts {
             return stack.getItemDamage() == 8233 ? AWESOME : GOOD;
         }
 
-        if (GiftRegistry.is(stack, GiftCategory.BATTLE)) {
+        if (isGiftType(stack, GiftCategory.BATTLE)) {
             return Quality.GOOD;
         }
 
-        if (GiftRegistry.is(stack, GiftCategory.GIRLY)) {
+        if (isGiftType(stack, GiftCategory.GIRLY)) {
             return Quality.BAD;
         }
 

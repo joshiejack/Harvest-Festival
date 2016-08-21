@@ -1,10 +1,8 @@
 package joshie.harvest.animals;
 
-import com.google.common.collect.HashMultimap;
-import com.google.common.collect.Multimap;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.*;
-import joshie.harvest.player.tracking.TrackingData.AbstractItemHolder;
+import joshie.harvest.core.util.holders.HolderRegistry;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityCow;
@@ -17,8 +15,9 @@ import java.util.HashMap;
 
 public class AnimalRegistry implements IAnimalHandler {
     private final HashMap<String, IAnimalType> types = new HashMap<>();
-    private final HashMap<AbstractItemHolder, AnimalFoodType> registry = new HashMap<>();
-    private final Multimap<Item, AbstractItemHolder> keyMap = HashMultimap.create();
+    //private final HashMap<AbstractItemHolder, AnimalFoodType> registry = new HashMap<>();
+    //private final Multimap<Item, AbstractItemHolder> keyMap = HashMultimap.create();
+    private final HolderRegistry<AnimalFoodType> registry = new HolderRegistry<>();
 
     //Internal Convenience method
     static void registerFoodsAsType(AnimalFoodType type, Item... items) {
@@ -29,9 +28,7 @@ public class AnimalRegistry implements IAnimalHandler {
 
     @Override
     public void registerFoodAsType(ItemStack stack, AnimalFoodType type) {
-        AbstractItemHolder holder = AbstractItemHolder.getStack(stack);
-        keyMap.get(stack.getItem()).add(holder);
-        registry.put(holder, type);
+        registry.registerItem(stack, type);
     }
 
     @Override
@@ -45,16 +42,8 @@ public class AnimalRegistry implements IAnimalHandler {
 
     @Override
     public boolean canEat(ItemStack stack, AnimalFoodType... types) {
-        for (AbstractItemHolder holder: keyMap.get(stack.getItem())) {
-            if (holder.matches(stack)) {
-                AnimalFoodType type = registry.get(holder);
-                if (type == null) continue;
-                else {
-                    for (AnimalFoodType t: types) {
-                        if (type == t) return true;
-                    }
-                }
-            }
+        for (AnimalFoodType type: types) {
+            if (registry.matches(stack, type)) return true;
         }
 
         return false;

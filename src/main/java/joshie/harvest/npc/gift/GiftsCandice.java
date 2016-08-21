@@ -12,11 +12,11 @@ public class GiftsCandice extends Gifts {
             return Quality.AWESOME;
         }
 
-        if (GiftRegistry.is(stack, GiftCategory.ANIMALS)) {
+        if (isGiftType(stack, GiftCategory.ANIMALS)) {
             return Quality.GOOD;
         }
 
-        if (GiftRegistry.is(stack, GiftCategory.COOKING)) {
+        if (isGiftType(stack, GiftCategory.COOKING)) {
             return Quality.BAD;
         }
 

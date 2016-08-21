@@ -4,7 +4,7 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import joshie.harvest.api.cooking.*;
-import joshie.harvest.player.tracking.TrackingData.AbstractItemHolder;
+import joshie.harvest.core.util.holders.AbstractItemHolder;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;

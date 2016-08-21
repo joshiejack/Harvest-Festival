@@ -12,11 +12,11 @@ public class GiftsGoddess extends Gifts {
             return Quality.AWESOME;
         }
 
-        if (GiftRegistry.is(stack, GiftCategory.PRETTY)) {
+        if (isGiftType(stack, GiftCategory.PRETTY)) {
             return Quality.GOOD;
         }
 
-        if (GiftRegistry.is(stack, GiftCategory.CHEAP)) {
+        if (isGiftType(stack, GiftCategory.CHEAP)) {
             return Quality.BAD;
         }
 

@@ -1,9 +1,8 @@
 package joshie.harvest.cooking.gui;
 
-import joshie.harvest.cooking.blocks.FridgeData;
 import joshie.harvest.cooking.blocks.TileFridge;
 import joshie.harvest.core.util.ContainerBase.SlotHF;
-import joshie.harvest.core.util.GuiBase;
+import joshie.harvest.core.util.GuiBaseContainer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -11,14 +10,12 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.util.ResourceLocation;
 
-public class GuiFridge extends GuiBase {
+public class GuiFridge extends GuiBaseContainer {
     private FridgeFont font;
     private FontRenderer temp;
-    private final FridgeData fridge;
 
     public GuiFridge(IInventory playerInv, TileFridge fridge) {
         super(new ContainerFridge(playerInv, fridge), "fridge", 56);
-        this.fridge = fridge.getContents();
     }
 
     @Override

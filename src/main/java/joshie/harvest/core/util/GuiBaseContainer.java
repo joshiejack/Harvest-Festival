@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public abstract class GuiBase extends GuiContainer {
+public abstract class GuiBaseContainer extends GuiContainer {
     protected boolean hasInventory;
     private String name;
     private static ResourceLocation TEXTURE;
@@ -24,7 +24,7 @@ public abstract class GuiBase extends GuiContainer {
     private ArrayList<String> tooltip = new ArrayList<String>();
     protected int mouseWheel;
 
-    public GuiBase(ContainerBase container, String texture, int yOffset) {
+    public GuiBaseContainer(ContainerBase container, String texture, int yOffset) {
         super(container);
         TEXTURE = new ResourceLocation(HFModInfo.MODID, "textures/gui/" + texture + ".png");
         ySize += yOffset;
@@ -50,7 +50,6 @@ public abstract class GuiBase extends GuiContainer {
         int x = (width - xSize) / 2;
         int y = (height - ySize) / 2;
         drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
-        drawBackground(f, i, j);
         drawBackground(x, y);
         drawTooltip(tooltip, i, j);
     }
@@ -64,9 +63,6 @@ public abstract class GuiBase extends GuiContainer {
     }
 
     public void drawForeground(int x, int y) {}
-
-    public void drawBackground(float f, int x, int y) {}
-
     public void drawBackground(int x, int y) {}
     
     public void addTooltip(List<String> list) {
@@ -146,11 +142,9 @@ public abstract class GuiBase extends GuiContainer {
     public void handleMouseInput() throws IOException {
         int x = Mouse.getEventX() * width / mc.displayWidth;
         int y = height - Mouse.getEventY() * height / mc.displayHeight - 1;
-
         mouseX = x - guiLeft;
         mouseY = y - guiTop;
         mouseWheel = Mouse.getDWheel();
-
         super.handleMouseInput();
     }
 

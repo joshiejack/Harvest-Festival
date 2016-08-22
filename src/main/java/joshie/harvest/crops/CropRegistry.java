@@ -6,10 +6,8 @@ import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.api.crops.ICropProvider;
 import joshie.harvest.api.crops.ICropRegistry;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
-import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.crops.blocks.BlockHFCrops;
 import joshie.harvest.crops.blocks.TileCrop;
-import joshie.harvest.player.PlayerTrackerServer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -25,9 +23,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import javax.annotation.Nullable;
 import java.util.HashMap;
 
-import static joshie.harvest.core.helpers.CropHelper.WET_SOIL;
-import static joshie.harvest.core.helpers.CropHelper.isSoil;
-import static joshie.harvest.core.helpers.CropHelper.isWetSoil;
+import static joshie.harvest.core.helpers.CropHelper.*;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.crops.blocks.BlockHFCrops.Stage.FRESH;
 import static joshie.harvest.crops.blocks.BlockHFCrops.Stage.FRESH_DOUBLE;
@@ -96,9 +92,10 @@ public class CropRegistry implements ICropRegistry {
                     }
                 } else tile.saveAndRefresh();
 
+                /*//TODO: Add stat tracking, displayable on client
                 if (player != null && !world.isRemote) {
                     HFTrackers.<PlayerTrackerServer>getPlayerTracker(player).getTracking().onHarvested(data.getCrop());
-                }
+                } */
 
                 return harvest;
             } else return null;

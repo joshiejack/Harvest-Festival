@@ -86,10 +86,13 @@ harvestfestival.crop.nether.wart=Nether Wart
 harvestfestival.general.shoot.bamboo=Bamboo Shoot
 harvestfestival.general.mushroom.matsutake=Matsutake Mushroom
 
-#Meals
+#Cookbook
+harvestfestival.utensils=Utensils
 harvestfestival.cookbook=Recipe Book
 harvestfestival.recipe.format=%s Recipe
 harvestfestival.recipe.invalid=Junk Recipe
+
+#Meals
 harvestfestival.meal.hunger=Restores
 harvestfestival.meal.sat=Fills
 harvestfestival.meal.exhaust=Exhausts

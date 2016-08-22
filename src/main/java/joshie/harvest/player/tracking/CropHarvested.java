@@ -1,32 +1,33 @@
-package joshie.harvest.core.util.holders;
+package joshie.harvest.player.tracking;
 
+import joshie.harvest.core.util.holders.AbstractDataHolder;
 import joshie.harvest.crops.Crop;
 import joshie.harvest.crops.CropRegistry;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 
-public class CropSoldStack extends AbstractDataHolder<CropSoldStack> {
+public class CropHarvested extends AbstractDataHolder<CropHarvested> {
     private final Crop crop;
     private int amount; //Amount of this item sold
 
-    private CropSoldStack(Crop crop, int amount) {
+    private CropHarvested(Crop crop, int amount) {
         this.crop = crop;
         this.amount = amount;
     }
 
-    public static CropSoldStack of(Crop crop) {
-        return new CropSoldStack(crop, 1);
+    public static CropHarvested of(Crop crop) {
+        return new CropHarvested(crop, 1);
     }
 
     @Override
-    public void merge(CropSoldStack stack) {
+    public void merge(CropHarvested stack) {
         this.amount += stack.amount;
     }
 
-    public static CropSoldStack readFromNBT(NBTTagCompound tag) {
+    public static CropHarvested readFromNBT(NBTTagCompound tag) {
         Crop crop = CropRegistry.REGISTRY.getObject(new ResourceLocation(tag.getString("CropResource")));
         int amount = tag.getInteger("SellAmount");
-        return new CropSoldStack(crop, amount);
+        return new CropHarvested(crop, amount);
     }
 
     @Override
@@ -43,7 +44,7 @@ public class CropSoldStack extends AbstractDataHolder<CropSoldStack> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CropSoldStack that = (CropSoldStack) o;
+        CropHarvested that = (CropHarvested) o;
         return crop != null ? crop.equals(that.crop) : that.crop == null;
     }
 

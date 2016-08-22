@@ -4,14 +4,14 @@ import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.ChatFontRenderer;
-import joshie.harvest.core.util.GuiBase;
+import joshie.harvest.core.util.GuiBaseContainer;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.AbstractEntityNPC;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 
-public class GuiNPCBase extends GuiBase {
+public class GuiNPCBase extends GuiBaseContainer {
     private static final ResourceLocation chatbox = new ResourceLocation(HFModInfo.MODID, "textures/gui/chatbox.png");
     protected AbstractEntityNPC npc;
     protected EntityPlayer player;
@@ -41,7 +41,6 @@ public class GuiNPCBase extends GuiBase {
         GlStateManager.color(1F, 1F, 1F, 1F);
         GlStateManager.disableBlend();
         GlStateManager.popMatrix();
-
         ChatFontRenderer.render(this, x, y, npc.getName(), npc.getNPC().getInsideColor(), npc.getNPC().getOutsideColor());
     }
 

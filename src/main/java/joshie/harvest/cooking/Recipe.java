@@ -29,6 +29,10 @@ public class Recipe extends net.minecraftforge.fml.common.registry.IForgeRegistr
         return I18n.translateToLocal(name);
     }
 
+    public Utensil getRequiredTool() {
+        return requiredTool;
+    }
+
     @Override
     public IMealRecipe setOptionalIngredients(ICookingIngredient... ingredients) {
         this.optionalIngredients = ingredients;

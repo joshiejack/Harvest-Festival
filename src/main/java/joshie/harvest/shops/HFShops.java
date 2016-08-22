@@ -26,6 +26,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import static joshie.harvest.animals.item.ItemAnimalSpawner.Spawner.*;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.*;
 import static joshie.harvest.api.calendar.Weekday.*;
+import static joshie.harvest.cooking.HFCooking.COOKBOOK;
 import static joshie.harvest.cooking.HFCooking.COOKWARE;
 import static joshie.harvest.cooking.blocks.BlockCookware.Cookware.*;
 import static joshie.harvest.cooking.items.ItemIngredients.Ingredient.*;
@@ -82,6 +83,7 @@ public class HFShops {
         CAFE.addItem(250, HFApi.cooking.getMeal("corn_baked"));
 
         //Allow the purchasing of cookware at the weekends
+        CAFE.addItem(new PurchaseableCookware(new ItemStack(COOKBOOK), 50, null));
         CAFE.addItem(new PurchaseableCookware(COOKWARE.getStackFromEnum(COUNTER), 250, null));
         CAFE.addItem(new PurchaseableCookware(COOKWARE.getStackFromEnum(FRIDGE), 3000, null));
         CAFE.addItem(new PurchaseableCookware(COOKWARE.getStackFromEnum(OVEN_OFF), 2500, null));

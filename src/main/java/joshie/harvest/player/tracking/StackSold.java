@@ -1,25 +1,26 @@
-package joshie.harvest.core.util.holders;
+package joshie.harvest.player.tracking;
 
+import joshie.harvest.core.util.holders.AbstractDataHolder;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 
-public class SellHolderStack extends AbstractDataHolder<SellHolderStack> {
+public class StackSold extends AbstractDataHolder<StackSold> {
     private final Item item;
     private final int meta;
     private int amount; //Amount of this item sold
     private long sell; //Amount of money made from this item
 
-    private SellHolderStack(Item item, int meta, int amount, long sell) {
+    private StackSold(Item item, int meta, int amount, long sell) {
         this.item = item;
         this.meta = meta;
         this.amount = amount;
         this.sell = sell;
     }
 
-    public static SellHolderStack of(ItemStack stack, long sell) {
-        return new SellHolderStack(stack.getItem(), stack.getItemDamage(), stack.stackSize, sell);
+    public static StackSold of(ItemStack stack, long sell) {
+        return new StackSold(stack.getItem(), stack.getItemDamage(), stack.stackSize, sell);
     }
 
     public long getSellValue() {
@@ -27,17 +28,17 @@ public class SellHolderStack extends AbstractDataHolder<SellHolderStack> {
     }
 
     @Override
-    public void merge(SellHolderStack stack) {
+    public void merge(StackSold stack) {
         amount += stack.amount;
         sell += stack.sell;
     }
 
-    public static SellHolderStack readFromNBT(NBTTagCompound tag) {
+    public static StackSold readFromNBT(NBTTagCompound tag) {
         Item item = Item.REGISTRY.getObject(new ResourceLocation(tag.getString("ItemName")));
         int meta = tag.getInteger("ItemMeta");
         int amount = tag.getInteger("SellAmount");
         long sell = tag.getLong("SellValue");
-        return new SellHolderStack(item, meta, amount, sell);
+        return new StackSold(item, meta, amount, sell);
     }
 
     @Override
@@ -53,7 +54,7 @@ public class SellHolderStack extends AbstractDataHolder<SellHolderStack> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        SellHolderStack that = (SellHolderStack) o;
+        StackSold that = (StackSold) o;
         if (meta != that.meta) return false;
         return item != null ? item.equals(that.item) : that.item == null;
 

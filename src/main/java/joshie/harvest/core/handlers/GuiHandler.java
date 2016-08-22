@@ -2,6 +2,7 @@ package joshie.harvest.core.handlers;
 
 import joshie.harvest.cooking.blocks.TileFridge;
 import joshie.harvest.cooking.gui.ContainerFridge;
+import joshie.harvest.cooking.gui.GuiCookbook;
 import joshie.harvest.cooking.gui.GuiFridge;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.npc.entity.AbstractEntityNPC;
@@ -24,6 +25,7 @@ public class GuiHandler implements IGuiHandler {
     public static final int SHOP_BUILDER = 4;
     public static final int SHOP_OPTIONS = 5;
     public static final int SHOP_WELCOME = 6;
+    public static final int COOKBOOK = 7;
 
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int entityID, int nextGui, int hand) {
@@ -63,6 +65,7 @@ public class GuiHandler implements IGuiHandler {
             case SHOP_BUILDER:  return new GuiNPCBuilderShop((AbstractEntityNPC) world.getEntityByID(entityID), player);
             case GIFT:          return new GuiNPCGift((AbstractEntityNPC) world.getEntityByID(entityID), player, EnumHand.values()[hand]);
             case FRIDGE:        return new GuiFridge(player.inventory, (TileFridge) world.getTileEntity(new BlockPos(entityID, nextGui, hand)));
+            case COOKBOOK:      return new GuiCookbook();
             case SHOP_OPTIONS:    {
                 AbstractEntityNPC npc = (AbstractEntityNPC) world.getEntityByID(entityID);
                 if (NPCHelper.isShopOpen(npc.getNPC(), world, player)) {

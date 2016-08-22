@@ -21,7 +21,7 @@ public class PurchaseableCookware extends Purchaseable {
     @Override
     public boolean canBuy(World world, EntityPlayer player) {
         Weekday weekday = HFTrackers.getCalendar(world).getDate().getWeekday();
-        return weekday == Weekday.SATURDAY || weekday == Weekday.SUNDAY && hasRequiredItem(player);
+        return (weekday == Weekday.SATURDAY || weekday == Weekday.SUNDAY) && hasRequiredItem(player);
     }
 
     @Override

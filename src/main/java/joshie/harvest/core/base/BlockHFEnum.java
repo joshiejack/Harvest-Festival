@@ -23,11 +23,13 @@ import java.util.Random;
 public abstract class BlockHFEnum<B extends BlockHFEnum, E extends Enum<E> & IStringSerializable> extends BlockHFBase<B> {
     protected static PropertyEnum<?> temporary;
     protected final PropertyEnum<E> property;
+    protected final Class<E> enumClass;
     protected final E[] values;
 
     //Main Constructor
     public BlockHFEnum(Material material, Class<E> clazz, CreativeTabs tab) {
         super(preInit(material, clazz), tab);
+        enumClass = clazz;
         property = (PropertyEnum<E>) temporary;
         values = clazz.getEnumConstants();
         setDefaultState(blockState.getBaseState());
@@ -84,6 +86,10 @@ public abstract class BlockHFEnum<B extends BlockHFEnum, E extends Enum<E> & ISt
 
     public ItemStack getStackFromEnum(E e) {
         return new ItemStack(this, 1, e.ordinal());
+    }
+
+    public ItemStack getStackFromEnumString(String name) {
+        return getStackFromEnum(Enum.valueOf(enumClass, name.toUpperCase()));
     }
 
     @Override

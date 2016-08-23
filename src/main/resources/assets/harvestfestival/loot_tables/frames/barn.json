@@ -1,6 +1,7 @@
 {
   "pools": [
     {
+      "name": "barn",
       "rolls": 1,
       "entries": [
         {
@@ -43,29 +44,31 @@
         },
         {
           "type": "item",
-          "name": "harvestfestival:general_item",
+          "name": "harvestfestival:tool_animal",
+          "entryName": "brush",
           "weight": 3,
           "functions": [
             {
-              "function": "set_data",
-              "data": 2
+              "function": "hf_set_enum",
+              "enum": "brush"
             }
           ]
         },
         {
           "type": "item",
           "name": "harvestfestival:tool_animal",
+          "entryName": "medicine",
           "weight": 1,
           "functions": [
             {
-              "function": "set_data",
-              "data": 1
+              "function": "hf_set_enum",
+              "enum": "medicine"
             }
           ]
         },
         {
           "type": "item",
-          "name": "harvestfestival:crop",
+          "name": "harvestfestival:crops",
           "weight": 6,
           "functions": [
             {

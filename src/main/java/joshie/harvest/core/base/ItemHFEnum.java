@@ -15,11 +15,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 
 public abstract class ItemHFEnum<I extends ItemHFEnum, E extends Enum<E> & IStringSerializable> extends ItemHFBase<I> implements ICreativeSorted {
+    protected final Class<E> enumClass;
     protected final E[] values;
     protected final String prefix;
 
     public ItemHFEnum(Class<E> clazz) {
         super();
+        enumClass = clazz;
         values = clazz.getEnumConstants();
         prefix = clazz.getSimpleName().toLowerCase();
         setHasSubtypes(true);
@@ -27,6 +29,7 @@ public abstract class ItemHFEnum<I extends ItemHFEnum, E extends Enum<E> & IStri
 
     public ItemHFEnum(CreativeTabs tab, Class<E> clazz) {
         super(tab);
+        enumClass = clazz;
         values = clazz.getEnumConstants();
         prefix = clazz.getSimpleName().toLowerCase();
         setHasSubtypes(true);
@@ -63,6 +66,10 @@ public abstract class ItemHFEnum<I extends ItemHFEnum, E extends Enum<E> & IStri
 
     public ItemStack getStackFromEnum(E e, int size) {
         return new ItemStack(this, size, e.ordinal());
+    }
+
+    public ItemStack getStackFromEnumString(String name) {
+        return getStackFromEnum(Enum.valueOf(enumClass, name.toUpperCase()));
     }
 
     @Override

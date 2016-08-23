@@ -10,13 +10,14 @@ import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.conditions.LootCondition;
 import net.minecraft.world.storage.loot.functions.LootFunction;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 
-/**
- * This loot condition checks the biome of the bobber
- **/
 public class SetCropType extends LootFunction {
+    private static final Random rand = new Random();
     private final String crop;
 
     public SetCropType(LootCondition[] conditionsIn, String crop) {
@@ -25,7 +26,14 @@ public class SetCropType extends LootFunction {
     }
 
     public ItemStack apply(ItemStack stack, Random rand, LootContext context) {
+        if (crop.equals("random")) return random();
         return HFApi.crops.getCrop(new ResourceLocation(crop)).getCropStack();
+    }
+
+    public ItemStack random() {
+        List<Crop> cropList = new ArrayList<>(CropRegistry.REGISTRY.getValues());
+        Collections.shuffle(cropList);
+        return cropList.get(0).getCropStack();
     }
 
     public static class Serializer extends LootFunction.Serializer<SetCropType> {

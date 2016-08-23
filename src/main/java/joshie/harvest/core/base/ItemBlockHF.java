@@ -40,7 +40,6 @@ public class ItemBlockHF extends ItemBlock implements ICreativeSorted {
         return block.getEntityLifeSpan(itemStack, world);
     }
 
-
     @Override
     public String getUnlocalizedName(ItemStack stack) {
         return block.getUnlocalizedName(stack);

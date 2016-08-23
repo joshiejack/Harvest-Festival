@@ -20,6 +20,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.biome.BiomeColorHelper;
+import net.minecraft.world.storage.loot.functions.LootFunctionManager;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
@@ -37,9 +38,10 @@ public class HFCore {
     public static final BlockStorage STORAGE = new BlockStorage().register("storage");
 
     public static void preInit() {
-         NetworkRegistry.INSTANCE.registerGuiHandler(HarvestFestival.instance, new GuiHandler());
-         RegistryHelper.registerTiles(TileShipping.class);
-         GODDESS.setBlock(GODDESS_WATER);
+        NetworkRegistry.INSTANCE.registerGuiHandler(HarvestFestival.instance, new GuiHandler());
+        LootFunctionManager.registerFunction(new SetEnum.Serializer());
+        RegistryHelper.registerTiles(TileShipping.class);
+        GODDESS.setBlock(GODDESS_WATER);
     }
 
     @SideOnly(Side.CLIENT)

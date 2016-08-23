@@ -91,12 +91,6 @@ public class HFBuildings {
         ChestGenHooks.addItem(LootStrings.BLACKSMITH_FRAME, new WeightedRandomChestContent(new ItemStack(Items.IRON_SHOVEL), 1, 1, 6));
         ChestGenHooks.addItem(LootStrings.BLACKSMITH_FRAME, new WeightedRandomChestContent(new ItemStack(Items.IRON_PICKAXE), 1, 1, 1));*/
 
-        //Blacksmith Chest
-        /*ChestGenHooks.addItem(LootStrings.BLACKSMITH_CHEST, new WeightedRandomChestContent(new ItemStack(Items.IRON_INGOT), 2, 5, 4));
-        ChestGenHooks.addItem(LootStrings.BLACKSMITH_CHEST, new WeightedRandomChestContent(new ItemStack(Items.LAVA_BUCKET), 1, 2, 2));
-        ChestGenHooks.addItem(LootStrings.BLACKSMITH_CHEST, new WeightedRandomChestContent(new ItemStack(Items.COAL), 3, 33, 6));
-        ChestGenHooks.addItem(LootStrings.BLACKSMITH_CHEST, new WeightedRandomChestContent(new ItemStack(Items.LEATHER), 13, 64, 10));*/
-
         //Church Frame
         /*ChestGenHooks.addItem(LootStrings.CHURCH_FRAME, new WeightedRandomChestContent(new ItemStack(Items.BOOK), 3, 9, 10));
         ChestGenHooks.addItem(LootStrings.CHURCH_FRAME, new WeightedRandomChestContent(new ItemStack(Items.GOLD_INGOT), 1, 7, 2));
@@ -109,12 +103,6 @@ public class HFBuildings {
         /*ChestGenHooks.addItem(LootStrings.FISHING_FRAME, new WeightedRandomChestContent(new ItemStack(Items.FISHING_ROD), 1, 1, 10));
         ChestGenHooks.addItem(LootStrings.FISHING_FRAME, new WeightedRandomChestContent(new ItemStack(Items.LEATHER_BOOTS), 1, 1, 5));
         ChestGenHooks.addItem(LootStrings.FISHING_FRAME, new WeightedRandomChestContent(new ItemStack(Items.POTIONITEM, 1, 8269), 1, 1, 1));*/
-
-        //Fishing Chest
-        /*ChestGenHooks.addItem(LootStrings.FISHING_CHEST, new WeightedRandomChestContent(new ItemStack(Items.FISH, 1, 0), 3, 33, 10));
-        ChestGenHooks.addItem(LootStrings.FISHING_CHEST, new WeightedRandomChestContent(new ItemStack(Items.FISH, 1, 1), 2, 22, 10));
-        ChestGenHooks.addItem(LootStrings.FISHING_CHEST, new WeightedRandomChestContent(new ItemStack(Items.FISH, 1, 3), 1, 11, 5));
-        ChestGenHooks.addItem(LootStrings.FISHING_CHEST, new WeightedRandomChestContent(new ItemStack(Items.FISH, 1, 2), 1, 3, 1));*/
 
         //Poultry Frame
         /*ChestGenHooks.addItem(LootStrings.POULTRY_FRAME, new WeightedRandomChestContent(HFCrops.wheat.getCropStack(), 3, 9, 5));
@@ -132,14 +120,6 @@ public class HFBuildings {
         ChestGenHooks.addItem(LootStrings.MINING_FRAME, new WeightedRandomChestContent(new ItemStack(Blocks.TORCH), 7, 21, 10));
         ChestGenHooks.addItem(LootStrings.MINING_FRAME, new WeightedRandomChestContent(new ItemStack(Blocks.TNT), 2, 3, 4));*/
 
-        //Mining Chest
-        /*ChestGenHooks.addItem(LootStrings.MINING_CHEST, new WeightedRandomChestContent(new ItemStack(Blocks.IRON_ORE), 1, 3, 10));
-        ChestGenHooks.addItem(LootStrings.MINING_CHEST, new WeightedRandomChestContent(new ItemStack(Blocks.DIAMOND_ORE), 1, 1, 1));
-        ChestGenHooks.addItem(LootStrings.MINING_CHEST, new WeightedRandomChestContent(new ItemStack(Blocks.GOLD_ORE), 1, 2, 3));
-        ChestGenHooks.addItem(LootStrings.MINING_CHEST, new WeightedRandomChestContent(new ItemStack(Blocks.COAL_ORE), 2, 7, 10));
-        ChestGenHooks.addItem(LootStrings.MINING_CHEST, new WeightedRandomChestContent(new ItemStack(Blocks.LAPIS_ORE), 1, 3, 5));
-        ChestGenHooks.addItem(LootStrings.MINING_CHEST, new WeightedRandomChestContent(new ItemStack(Blocks.STONE), 7, 21, 10));*/
-
         //Cafe Frame
         /*ChestGenHooks.addItem(LootStrings.CAFE_FRAME, new WeightedRandomChestContent(new ItemStack(Items.MUSHROOM_STEW), 1, 1, 10));
         ChestGenHooks.addItem(LootStrings.CAFE_FRAME, new WeightedRandomChestContent(new ItemStack(Items.COOKED_BEEF), 1, 3, 15));
@@ -147,12 +127,6 @@ public class HFBuildings {
         ChestGenHooks.addItem(LootStrings.CAFE_FRAME, new WeightedRandomChestContent(new ItemStack(Items.PUMPKIN_PIE), 1, 1, 8));
         ChestGenHooks.addItem(LootStrings.CAFE_FRAME, new WeightedRandomChestContent(new ItemStack(Items.BAKED_POTATO), 1, 2, 6));
         ChestGenHooks.addItem(LootStrings.CAFE_FRAME, new WeightedRandomChestContent(new ItemStack(Items.BREAD), 2, 3, 7));*/
-
-        //Cafe Chest
-        /*ChestGenHooks.addItem(LootStrings.CAFE_CHEST, new WeightedRandomChestContent(new ItemStack(Items.SUGAR), 7, 21, 10));
-        ChestGenHooks.addItem(LootStrings.CAFE_CHEST, new WeightedRandomChestContent(new ItemStack(Items.APPLE), 5, 11, 8));
-        ChestGenHooks.addItem(LootStrings.CAFE_CHEST, new WeightedRandomChestContent(new ItemStack(Items.BOWL), 10, 20, 4));
-        ChestGenHooks.addItem(LootStrings.CAFE_CHEST, new WeightedRandomChestContent(new ItemStack(Items.DYE, 1, 3), 2, 3, 5));*/
 
         //Townhall Hall Frame
         /*ChestGenHooks.addItem(LootStrings.TOWNHALL_HALL_FRAME, new WeightedRandomChestContent(new ItemStack(Items.PAPER), 2, 5, 10));
@@ -207,10 +181,6 @@ public class HFBuildings {
         ChestGenHooks.addItem(LootStrings.MARKET_BEDROOM_FRAME, new WeightedRandomChestContent(new ItemStack(Items.DYE, 1, 0), 2, 3, 10));
         ChestGenHooks.addItem(LootStrings.MARKET_BEDROOM_FRAME, new WeightedRandomChestContent(new ItemStack(Items.PAPER), 2, 3, 5));*/
 
-        //Market Bedroom Chests
-        /*ChestGenHooks.addItem(LootStrings.MARKET_BEDROOM_CHESTS, new WeightedRandomChestContent(new ItemStack(Items.MELON), 3, 7, 7));
-        ChestGenHooks.addItem(LootStrings.MARKET_BEDROOM_CHESTS, new WeightedRandomChestContent(new ItemStack(Items.BREAD), 1, 3, 10));*/
-
         //Market Basement Chests
         /*ChestGenHooks.addItem(LootStrings.MARKET_BASEMENT_CHESTS, new WeightedRandomChestContent(new ItemStack(Items.SUGAR), 3, 7, 9));
         ChestGenHooks.addItem(LootStrings.MARKET_BASEMENT_CHESTS, new WeightedRandomChestContent(new ItemStack(HFItems.general, 1, ItemGeneral.SALT), 2, 3, 8));
@@ -223,12 +193,6 @@ public class HFBuildings {
         ChestGenHooks.addItem(LootStrings.CLOCKMAKER_FRAME, new WeightedRandomChestContent(new ItemStack(Items.GOLD_NUGGET), 2, 3, 8));
         ChestGenHooks.addItem(LootStrings.CLOCKMAKER_FRAME, new WeightedRandomChestContent(new ItemStack(Items.GOLD_INGOT), 1, 3, 2));
         ChestGenHooks.addItem(LootStrings.CLOCKMAKER_FRAME, new WeightedRandomChestContent(new ItemStack(Items.CLOCK), 1, 1, 5));*/
-
-        //Chest for Clockmaker
-        /*ChestGenHooks.addItem(LootStrings.CLOCKMAKER_CHEST, new WeightedRandomChestContent(new ItemStack(Items.COOKED_BEEF), 3, 7, 10));
-        ChestGenHooks.addItem(LootStrings.CLOCKMAKER_CHEST, new WeightedRandomChestContent(new ItemStack(Items.COOKED_CHICKEN), 2, 3, 10));
-        ChestGenHooks.addItem(LootStrings.CLOCKMAKER_CHEST, new WeightedRandomChestContent(new ItemStack(Items.COOKED_PORKCHOP), 1, 3, 10));
-        ChestGenHooks.addItem(LootStrings.CLOCKMAKER_CHEST, new WeightedRandomChestContent(new ItemStack(Items.BAKED_POTATO), 1, 1, 10));*/
 
         //Item Frame generations for Carpenter
         /*ChestGenHooks.addItem(LootStrings.CARPENTER_FRAME, new WeightedRandomChestContent(new ItemStack(Items.STICK), 3, 7, 10));

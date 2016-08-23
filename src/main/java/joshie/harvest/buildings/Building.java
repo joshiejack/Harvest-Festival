@@ -229,7 +229,7 @@ public class Building extends Impl<Building> implements IBuilding {
     }
 
     public boolean canPurchase() {
-        return canPurchase();
+        return isPurchaseable;
     }
 
     public boolean canHaveMultiple() {

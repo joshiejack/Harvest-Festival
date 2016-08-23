@@ -14,7 +14,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 public class TownData {
     public static final String CARPENTER_DOWNSTAIRS = "yulifhome";
@@ -110,7 +112,9 @@ public class TownData {
             NBTTagCompound tag = list.getCompoundTagAt(i);
             TownBuilding building = new TownBuilding();
             building.readFromNBT(tag);
-            buildings.put(BuildingRegistry.REGISTRY.getNameForObject(building.building), building);
+            if (building.building != null) {
+                buildings.put(BuildingRegistry.REGISTRY.getNameForObject(building.building), building);
+            }
         }
     }
 

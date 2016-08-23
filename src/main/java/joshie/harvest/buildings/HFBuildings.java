@@ -35,7 +35,6 @@ public class HFBuildings {
     public static final ItemCheat CHEAT = new ItemCheat().register("cheat");
 
     public static final Building null_building = new Building();
-    public static final IBuilding SHIPPING = registerBuilding("shipping", 0L, 16, 0).setOffset(0, -1, 0).setMultiple();
     public static final IBuilding BARN = registerBuilding("barn", 3000L, 160, 0).setRequirements("blacksmith").setOffset(6, -1, 8);
     public static final IBuilding BLACKSMITH = registerBuilding("blacksmith", 3500L, 32, 244).setRequirements("supermarket").setOffset(3, -2, 6);
     public static final IBuilding CAFE = registerBuilding("cafe", 8800L, 320, 160).setRequirements("miningHill", "miningHut", "goddessPond").setOffset(7, -1, 10);

@@ -6,16 +6,23 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class PurchaseableCookware extends Purchaseable {
-    private ItemStack required;
+public class PurchaseableWeekend extends Purchaseable {
+    private ItemStack[] required;
 
-    public PurchaseableCookware(ItemStack stack, long cost, ItemStack required) {
-        super(cost, new ItemStack[] { stack });
+    public PurchaseableWeekend(long cost, ItemStack stack, ItemStack... required) {
+        super(cost, stack);
         this.required = required;
     }
 
     private boolean hasRequiredItem(EntityPlayer player) {
-        return required == null || HFTrackers.getPlayerTracker(player).getTracking().hasObtainedItem(required);
+        if (required == null || required.length == 0) return true;
+        else {
+            for (ItemStack stack: required) {
+                if (!HFTrackers.getPlayerTracker(player).getTracking().hasObtainedItem(stack)) return false;
+            }
+
+            return true;
+        }
     }
 
     @Override

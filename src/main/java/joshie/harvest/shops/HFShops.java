@@ -4,19 +4,24 @@ import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.animals.entity.EntityHarvestSheep;
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.api.shops.IShop;
 import joshie.harvest.buildings.Building;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.cooking.HFCooking;
+import joshie.harvest.core.HFCore;
+import joshie.harvest.core.blocks.BlockStorage.Storage;
 import joshie.harvest.core.util.HFLoader;
 import joshie.harvest.crops.Crop;
 import joshie.harvest.crops.CropRegistry;
 import joshie.harvest.crops.HFCrops;
+import joshie.harvest.crops.blocks.BlockSprinkler.Sprinkler;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.blocks.BlockStone;
 import joshie.harvest.mining.blocks.BlockStone.Type;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.shops.purchaseable.*;
+import joshie.harvest.tools.HFTools;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -70,6 +75,15 @@ public class HFShops {
         BLACKSMITH.addItem(2000, HFAnimals.TOOLS.getStackFromEnum(MILKER));
         BLACKSMITH.addItem(1800, new ItemStack(Items.SHEARS));
 
+        //Allow the purchasing of special tools at the weekend, and special blocks
+        BLACKSMITH.addItem(new PurchaseableWeekend(250, HFTools.HOE.getStack(ToolTier.BASIC)));
+        BLACKSMITH.addItem(new PurchaseableWeekend(250, HFTools.SICKLE.getStack(ToolTier.BASIC)));
+        BLACKSMITH.addItem(new PurchaseableWeekend(500, HFTools.WATERING_CAN.getStack(ToolTier.BASIC)));
+        BLACKSMITH.addItem(new PurchaseableWeekend(1000, HFTools.AXE.getStack(ToolTier.BASIC)));
+        BLACKSMITH.addItem(new PurchaseableWeekend(1000, HFTools.HAMMER.getStack(ToolTier.BASIC)));
+        BLACKSMITH.addItem(new PurchaseableWeekend(100, HFCore.STORAGE.getStackFromEnum(Storage.SHIPPING)));
+        BLACKSMITH.addItem(new PurchaseableWeekend(3000, HFCrops.SPRINKLER.getStackFromEnum(Sprinkler.WOOD)));
+
         BLACKSMITH.addOpening(SUNDAY, 10000, 16000).addOpening(MONDAY, 10000, 16000).addOpening(TUESDAY, 10000, 16000);
         BLACKSMITH.addOpening(WEDNESDAY, 10000, 16000).addOpening(FRIDAY, 10000, 16000).addOpening(SATURDAY, 10000, 16000);
     }
@@ -83,13 +97,13 @@ public class HFShops {
         CAFE.addItem(250, HFApi.cooking.getMeal("corn_baked"));
 
         //Allow the purchasing of cookware at the weekends
-        CAFE.addItem(new PurchaseableCookware(new ItemStack(COOKBOOK), 50, null));
-        CAFE.addItem(new PurchaseableCookware(COOKWARE.getStackFromEnum(COUNTER), 250, null));
-        CAFE.addItem(new PurchaseableCookware(COOKWARE.getStackFromEnum(FRIDGE), 3000, null));
-        CAFE.addItem(new PurchaseableCookware(COOKWARE.getStackFromEnum(OVEN_OFF), 2500, null));
-        CAFE.addItem(new PurchaseableCookware(COOKWARE.getStackFromEnum(FRYING_PAN), 1500, COOKWARE.getStackFromEnum(OVEN_OFF)));
-        CAFE.addItem(new PurchaseableCookware(COOKWARE.getStackFromEnum(POT), 1000, COOKWARE.getStackFromEnum(OVEN_OFF)));
-        CAFE.addItem(new PurchaseableCookware(COOKWARE.getStackFromEnum(MIXER), 1200, COOKWARE.getStackFromEnum(COUNTER)));
+        CAFE.addItem(new PurchaseableWeekend(50, new ItemStack(COOKBOOK)));
+        CAFE.addItem(new PurchaseableWeekend(250, COOKWARE.getStackFromEnum(COUNTER)));
+        CAFE.addItem(new PurchaseableWeekend(3000, COOKWARE.getStackFromEnum(FRIDGE)));
+        CAFE.addItem(new PurchaseableWeekend(2500, COOKWARE.getStackFromEnum(OVEN_OFF)));
+        CAFE.addItem(new PurchaseableWeekend(1500, COOKWARE.getStackFromEnum(FRYING_PAN), COOKWARE.getStackFromEnum(OVEN_OFF)));
+        CAFE.addItem(new PurchaseableWeekend(1000, COOKWARE.getStackFromEnum(POT), COOKWARE.getStackFromEnum(OVEN_OFF)));
+        CAFE.addItem(new PurchaseableWeekend(1200, COOKWARE.getStackFromEnum(MIXER), COOKWARE.getStackFromEnum(COUNTER)));
 
         CAFE.addOpening(MONDAY, 9500, 17000).addOpening(TUESDAY, 9500, 17000).addOpening(WEDNESDAY, 9500, 17000).addOpening(THURSDAY, 9500, 17000);
         CAFE.addOpening(FRIDAY, 9500, 17000).addOpening(SATURDAY, 9500, 17000).addOpening(SUNDAY, 9500, 17000);

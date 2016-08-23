@@ -6,6 +6,10 @@ public class ConfigHelper {
     private static Configuration config;
     private static String category = "General";
 
+    public static Configuration getConfig() {
+        return config;
+    }
+
     public static void setConfig(Configuration config) {
         ConfigHelper.config = config;
     }
@@ -36,5 +40,9 @@ public class ConfigHelper {
 
     public static long getLong(String name, long dft) {
         return Long.parseLong(config.get(name, name, "" + dft).getString());
+    }
+
+    public static void setInteger(String name, int dft) {
+        config.get(category, name, dft).set(dft);
     }
 }

@@ -1,15 +1,17 @@
 package joshie.harvest.calendar;
 
+import joshie.harvest.core.helpers.generic.ConfigHelper;
 import joshie.harvest.core.util.HFLoader;
 import net.minecraft.world.DimensionType;
 import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.common.config.Configuration;
 
-import static joshie.harvest.core.helpers.generic.ConfigHelper.getBoolean;
-import static joshie.harvest.core.helpers.generic.ConfigHelper.getInteger;
+import static joshie.harvest.core.helpers.generic.ConfigHelper.*;
 import static joshie.harvest.core.lib.LoadOrder.HFCALENDAR;
 
 @HFLoader(priority = HFCALENDAR)
 public class HFCalendar {
+    public static Configuration CONFIG;
     private static DimensionType SEASONS;
     public static int DAYS_PER_SEASON;
     public static long TICKS_PER_DAY;
@@ -30,6 +32,10 @@ public class HFCalendar {
     public static int HUD_ZEND;
     public static int HUD_DIMENSION;
     public static int OVERWORLD_ID;
+    public static int X_CALENDAR;
+    public static int Y_CALENDAR;
+    public static int X_GOLD;
+    public static int Y_GOLD;
 
     public static void preInit() {
         SEASONS = DimensionType.register("seasons", "seasons", OVERWORLD_ID, WeatherProvider.class, true);
@@ -37,8 +43,19 @@ public class HFCalendar {
         DimensionManager.registerDimension(0, SEASONS);
     }
 
+    public static void save() {
+        ConfigHelper.setConfig(CONFIG);
+        ConfigHelper.setCategory("calendar");
+        setInteger("HUD > Calendar X", X_CALENDAR);
+        setInteger("HUD > Calendar Y", Y_CALENDAR);
+        setInteger("HUD > Gold X", X_GOLD);
+        setInteger("HUD > Gold Y", Y_GOLD);
+        CONFIG.save();
+    }
+
     //Configuration
     public static void configure() {
+        CONFIG = ConfigHelper.getConfig();
         OVERWORLD_ID = getInteger("Overworld ID", 3);
         DAYS_PER_SEASON = getInteger("Days per season", 30);
         TICKS_PER_DAY = getInteger("Ticks per day", 24000);
@@ -50,6 +67,10 @@ public class HFCalendar {
         ENABLE_TYPHOON = getBoolean("Weather > Enable typhoon", true);
         ENABLE_SNOW = getBoolean("Weather > Enable snow", true);
         ENABLE_BLIZZARD = getBoolean("Weather > Enable blizzard", true);
+        X_CALENDAR = getInteger("HUD > Calendar X", 0);
+        Y_CALENDAR = getInteger("HUD > Calendar Y", 0);
+        X_GOLD = getInteger("HUD > Gold X", 0);
+        Y_GOLD = getInteger("HUD > Gold Y", 0);
         ENABLE_DATE_HUD = getBoolean("HUD > Enable data", true);
         ENABLE_GOLD_HUD = getBoolean("HUD > Enable gold", true);
         ENABLE_HUD_XZ = getBoolean("HUD > Coordinates", false);

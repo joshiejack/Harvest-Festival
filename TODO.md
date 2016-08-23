@@ -1,6 +1,5 @@
 ### Fixes
 - Fix Building render building messed up in mesa?
-- Allow repositioning of coin/seasons huds
 
 ### Textures
 - Cursed Potion Effect Icon

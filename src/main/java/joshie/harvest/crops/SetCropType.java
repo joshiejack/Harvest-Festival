@@ -3,7 +3,6 @@ package joshie.harvest.crops;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
-import joshie.harvest.api.HFApi;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootContext;
@@ -17,7 +16,7 @@ import java.util.Random;
 
 
 public class SetCropType extends LootFunction {
-    private static final Random rand = new Random();
+    private static List<Crop> cropsList;
     private final String crop;
 
     public SetCropType(LootCondition[] conditionsIn, String crop) {
@@ -26,14 +25,16 @@ public class SetCropType extends LootFunction {
     }
 
     public ItemStack apply(ItemStack stack, Random rand, LootContext context) {
-        if (crop.equals("random")) return random();
-        return HFApi.crops.getCrop(new ResourceLocation(crop)).getCropStack();
+        if (crop.equals("randomCrop")) return random(true);
+        if (crop.equals("randomSeed")) return random(false);
+        stack.setItemDamage(CropRegistry.REGISTRY.getId(new ResourceLocation(crop)));
+        return stack;
     }
 
-    public ItemStack random() {
-        List<Crop> cropList = new ArrayList<>(CropRegistry.REGISTRY.getValues());
-        Collections.shuffle(cropList);
-        return cropList.get(0).getCropStack();
+    public ItemStack random(boolean crop) {
+        if (cropsList == null) cropsList = new ArrayList<>(CropRegistry.REGISTRY.getValues());
+        Collections.shuffle(cropsList);
+        return crop ? cropsList.get(0).getCropStack() : cropsList.get(0).getSeedStack();
     }
 
     public static class Serializer extends LootFunction.Serializer<SetCropType> {

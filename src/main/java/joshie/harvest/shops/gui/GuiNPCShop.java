@@ -123,12 +123,13 @@ public class GuiNPCShop extends GuiNPCBase {
         int pos = 0;
         char[] digits = String.valueOf(gold).toCharArray();
         for (int i = (digits.length - 1); i >= 0; i--) {
-            Number num = null;
+            Number num;
             if (pos == 3) {
                 pos = -1;
                 num = Number.COMMA;
                 i++;
             } else num = Number.values()[Character.getNumericValue(digits[i])];
+
             width += num.getWidth();
             drawTexturedModalRect((x + 230) - width, y + 16, num.getX(), 232, num.getWidth(), 12);
 

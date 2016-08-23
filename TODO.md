@@ -1,22 +1,10 @@
 ### Fixes
-- Fix Building render building messed up in mesa?
-
-### Textures
-- Cursed Potion Effect Icon
-- Textures for the NPCs which we stole + New Selection for Ondra > Ashlee
-- Texture for Johan the Trader
-- Location of the flower in the spring season overlay
-- Crop Grass Better Texture
+- Fix Building render building sometimes messing up
+- Fix Miner shop gui
 
 ## Recipe Rewrite
 - Select a recipe in the recipe book
 - Have all the items required in your inventory and automatically get placed in utensils
-
-## Questing Tasks
-- Spawning the NPC Builder Quest
-- Welcome to 'Harvest Festival' Quests
-- Blacksmith Upgrade Tool Quests
-- Unlock Mixer, Frying Pan, Pot, Oven for purchase quests
 
 ##(S)ounds, (E)ffects, (A)nimations
 - Pot
@@ -31,10 +19,21 @@
 - Harvest Goddess
     -E Particle Effect
 
-### NPCS, Conversations & AI
-- Add Extra Chat Messages, and Conversations for all NPCs
+### Textures
+- Cursed Potion Effect Icon
+- Textures for the NPCs which we stole + New Selection for Ondra > Ashlee
+- Texture for Johan the Trader
+- Crop Grass Better Texture
+- Fix the left most leaf in the autumn texture again
+
+## Questing Tasks
+- Spawning the NPC Builder Quest
+- Welcome to 'Harvest Festival' Quests
+- Blacksmith Upgrade Tool Quests
+- Unlock Mixer, Frying Pan, Pot, Oven for purchase quests
 
 ## Tedium
+- Add Extra Chat Messages, and Conversations for all NPCs
 - Register HFItems as gift types
 - Loot Table JSON
 - See https://github.com/joshiejack/Harvest-Festival/blob/4fc81be862b9686cf00a3b8b1d262a8b7106aaaf/src/main/java/joshie/harvest/core/lib/LootStrings.java

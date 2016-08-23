@@ -46,7 +46,7 @@ public class ItemBlueprint extends ItemHFFML<ItemBlueprint, Building> implements
             }
 
             Building building = getObjectFromStack(stack);
-            if (building != null && !TownHelper.getClosestTownToPlayer(player).hasBuilding(building.getRegistryName())) {
+            if (building != null && (building.canHaveMultiple() || !TownHelper.getClosestTownToPlayer(player).hasBuilding(building.getRegistryName()))) {
                 RayTraceResult raytrace = BuildingHelper.rayTrace(player, 128, 1F);
                 if (raytrace == null || raytrace.getBlockPos() == null || raytrace.sideHit != EnumFacing.UP) {
                     return new ActionResult(EnumActionResult.PASS, stack);

@@ -45,6 +45,8 @@ public class Building extends Impl<Building> implements IBuilding {
     private transient long tickTime = 20L;
     private transient int width;
     private transient int length;
+    private transient boolean canHaveMultiple;
+    private transient boolean isPurchaseable = true;
 
     public Placeable[] components; //Set to null after loading
 
@@ -132,6 +134,18 @@ public class Building extends Impl<Building> implements IBuilding {
     }
 
     @Override
+    public IBuilding setMultiple() {
+        this.canHaveMultiple = true;
+        return this;
+    }
+
+    @Override
+    public IBuilding setNoPurchase() {
+        this.isPurchaseable = false;
+        return this;
+    }
+
+    @Override
     public ISpecialPurchaseRules getRules() {
         return special;
     }
@@ -212,6 +226,14 @@ public class Building extends Impl<Building> implements IBuilding {
 
     public int getWidth() {
         return width;
+    }
+
+    public boolean canPurchase() {
+        return canPurchase();
+    }
+
+    public boolean canHaveMultiple() {
+        return canHaveMultiple;
     }
 
     @Override

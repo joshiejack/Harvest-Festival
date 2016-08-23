@@ -48,6 +48,7 @@ harvestfestival.structures.mininghut=Mining Hut
 harvestfestival.structures.poultryfarm=Poultry Farm
 harvestfestival.structures.supermarket=General Store
 harvestfestival.structures.townhall=Townhall
+harvestfestival.structures.shipping=Shipping Box
 harvestfestival.structures.null=Invalid
 
 #Cheat Items (Translators don't bother tranlating these, I just use them to help with dev)

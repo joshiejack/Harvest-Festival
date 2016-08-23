@@ -29,6 +29,12 @@ public interface IBuilding {
      * @param length the length of the building*/
     IBuilding setOffset(int width, int heightOffset, int length);
 
+    /** Allows multiple of this building **/
+    IBuilding setMultiple();
+
+    /** Mark a building as not purchaseable **/
+    IBuilding setNoPurchase();
+
     /** Returns the localised name of this building **/
     String getLocalisedName();
 

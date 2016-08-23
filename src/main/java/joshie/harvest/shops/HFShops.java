@@ -112,7 +112,9 @@ public class HFShops {
     private static void registerCarpenter() {
         CARPENTER = HFApi.shops.newShop("carpenter", HFNPCs.BUILDER);
         for (Building building : BuildingRegistry.REGISTRY.getValues()) {
-            CARPENTER.addItem(new PurchaseableBuilding(building));
+            if (building.canPurchase()) {
+                CARPENTER.addItem(new PurchaseableBuilding(building));
+            }
         }
 
         CARPENTER.addOpening(MONDAY, 11000, 16000).addOpening(TUESDAY, 11000, 16000).addOpening(WEDNESDAY, 11000, 16000);

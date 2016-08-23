@@ -1,5 +1,7 @@
 package joshie.harvest.cooking.gui;
 
+import joshie.harvest.cooking.Utensil;
+
 public abstract class Page {
     protected GuiCookbook gui;
 
@@ -12,4 +14,8 @@ public abstract class Page {
     public abstract void mouseClicked(int mouseX, int mouseY);
 
     public abstract Page getOwner();
+
+    public Utensil getUtensil() {
+        return null;
+    }
 }

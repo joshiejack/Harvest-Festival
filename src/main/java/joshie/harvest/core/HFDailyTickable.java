@@ -4,6 +4,7 @@ import joshie.harvest.api.core.IDailyTickable;
 import joshie.harvest.api.core.IDailyTickableBlock;
 import joshie.harvest.api.core.IDailyTickableRegistry;
 import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.util.HFApiImplementation;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -16,9 +17,12 @@ import static joshie.harvest.core.helpers.CropHelper.DRYING_SOIL;
 import static joshie.harvest.core.helpers.CropHelper.DRY_SOIL;
 import static joshie.harvest.core.helpers.CropHelper.WET_SOIL;
 
+@HFApiImplementation
 public class HFDailyTickable implements IDailyTickableRegistry {
+    public static final HFDailyTickable INSTANCE = new HFDailyTickable();
     private final HashMap<Block, IDailyTickableBlock> registry = new HashMap<>();
-    public HFDailyTickable() {
+
+    private HFDailyTickable() {
         registry.put(Blocks.FARMLAND, new IDailyTickableBlock() {
             private boolean hasCrops(World worldIn, BlockPos pos)  {
                 Block block = worldIn.getBlockState(pos.up()).getBlock();

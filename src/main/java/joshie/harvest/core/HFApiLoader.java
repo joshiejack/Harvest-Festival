@@ -1,24 +1,14 @@
 package joshie.harvest.core;
 
 import com.google.common.collect.Lists;
-import joshie.harvest.animals.AnimalRegistry;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.HFCommand;
 import joshie.harvest.api.HFRegister;
 import joshie.harvest.api.quests.Quest;
-import joshie.harvest.buildings.BuildingRegistry;
-import joshie.harvest.calendar.CalendarAPI;
-import joshie.harvest.cooking.FoodRegistry;
 import joshie.harvest.core.commands.CommandManager;
-import joshie.harvest.core.handlers.ShippingRegistry;
-import joshie.harvest.core.handlers.SizeableRegistry;
 import joshie.harvest.core.network.Packet;
+import joshie.harvest.core.util.HFApiImplementation;
 import joshie.harvest.core.util.HFEvents;
-import joshie.harvest.crops.CropRegistry;
-import joshie.harvest.gathering.GatheringRegistry;
-import joshie.harvest.npc.NPCRegistry;
-import joshie.harvest.player.PlayerAPI;
-import joshie.harvest.shops.ShopRegistry;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.discovery.ASMDataTable;
@@ -38,23 +28,28 @@ import java.util.*;
 import static joshie.harvest.core.network.PacketHandler.registerPacket;
 
 public class HFApiLoader {
-    public static void init() {
-        //Register API Handlers
-        HFApi.animals = new AnimalRegistry();
-        HFApi.buildings = new BuildingRegistry();
-        HFApi.calendar = new CalendarAPI();
-        HFApi.crops = new CropRegistry();
-        HFApi.cooking = new FoodRegistry();
-        HFApi.gathering = new GatheringRegistry();
-        HFApi.npc = new NPCRegistry();
-        HFApi.player = new PlayerAPI();
-        HFApi.shops = new ShopRegistry();
-        HFApi.shipping = new ShippingRegistry();
-        HFApi.sizeable = new SizeableRegistry();
-        HFApi.tickable = new HFDailyTickable();
+    public static void init(@Nonnull ASMDataTable table) {
+        Set<ASMData> datas = new HashSet<>(table.getAll(HFApiImplementation.class.getCanonicalName()));
+        for (ASMDataTable.ASMData data : datas) {
+            try {
+                Class clazz = Class.forName(data.getClassName());
+                Object instance = clazz.getField("INSTANCE").get(null);
+                Class[] interfaces = clazz.getInterfaces();
+                if (interfaces != null && interfaces.length > 0) {
+                    for (Class inter: interfaces) {
+                        for (Field f: HFApi.class.getFields()) {
+                            if (f.getType().equals(inter)) {
+                                f.set(null, instance);
+                            }
+                        }
+                    }
+                }
+            } catch (Exception e) { e.printStackTrace(); }
+        }
     }
 
-    public static <I extends Impl> void load(Class type, FMLControlledNamespacedRegistry registry, ResourceLocation resource, Class<I> clazz) {
+    @SuppressWarnings("unchecked")
+    private static <I extends Impl> void load(Class type, FMLControlledNamespacedRegistry registry, ResourceLocation resource, Class<I> clazz) {
         try {
             if (type.isAssignableFrom(clazz)) {
                 registry.register(clazz.newInstance().setRegistryName(resource));
@@ -68,7 +63,7 @@ public class HFApiLoader {
         registerPackets(asm);
     }
 
-    public static void registerEverything(@Nonnull ASMDataTable asm) {
+    private static void registerEverything(@Nonnull ASMDataTable asm) {
         String annotationClassName = HFRegister.class.getCanonicalName();
         Set<ASMData> asmDatas = new HashSet<>(asm.getAll(annotationClassName));
         for (ASMDataTable.ASMData asmData : asmDatas) {
@@ -107,6 +102,7 @@ public class HFApiLoader {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private static void registerPackets(@Nonnull ASMDataTable asmDataTable) {
         String annotationClassName = Packet.class.getCanonicalName();
         Set<ASMData> asmDatas = new HashSet<>(asmDataTable.getAll(annotationClassName));
@@ -160,6 +156,7 @@ public class HFApiLoader {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private static Method getMethod(Class clazz, String method) {
         try {
             return clazz.getMethod(method);

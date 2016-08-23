@@ -6,6 +6,7 @@ import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.api.crops.ICropProvider;
 import joshie.harvest.api.crops.ICropRegistry;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
+import joshie.harvest.core.util.HFApiImplementation;
 import joshie.harvest.crops.blocks.BlockHFCrops;
 import joshie.harvest.crops.blocks.TileCrop;
 import net.minecraft.block.state.IBlockState;
@@ -28,8 +29,10 @@ import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.crops.blocks.BlockHFCrops.Stage.FRESH;
 import static joshie.harvest.crops.blocks.BlockHFCrops.Stage.FRESH_DOUBLE;
 
+@HFApiImplementation
 public class CropRegistry implements ICropRegistry {
     public static final FMLControlledNamespacedRegistry<Crop> REGISTRY = PersistentRegistryManager.createRegistry(new ResourceLocation(MODID, "crops"), Crop.class, null, 0, 32000, true, null, null, null);
+    public static final CropRegistry INSTANCE = new CropRegistry();
     private final HashMap<Pair<Item, Integer>, ICrop> providers = new HashMap<>();
 
     @Override

@@ -6,6 +6,7 @@ import joshie.harvest.api.core.ISizeableRegistry;
 import joshie.harvest.api.core.ISizedProvider;
 import joshie.harvest.core.lib.Sizeable;
 import joshie.harvest.core.base.ItemSizeable;
+import joshie.harvest.core.util.HFApiImplementation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -18,9 +19,13 @@ import java.util.HashMap;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
+@HFApiImplementation
 public class SizeableRegistry implements ISizeableRegistry {
     public static final FMLControlledNamespacedRegistry<Sizeable> REGISTRY = PersistentRegistryManager.createRegistry(new ResourceLocation(MODID, "sizeables"), Sizeable.class, null, 0, 32000, true, null, null, null);
+    public static final SizeableRegistry INSTANCE = new SizeableRegistry();
     private final HashMap<Pair<Item, Integer>, Pair<ISizeable, Size>> providers = new HashMap<>();
+
+    private SizeableRegistry() {}
 
     @Override
     public Item createSizedItem(String name, long sellSmall, long sellMedium, long sellLarge) {

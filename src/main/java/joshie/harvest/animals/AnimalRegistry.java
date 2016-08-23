@@ -2,6 +2,7 @@ package joshie.harvest.animals;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.*;
+import joshie.harvest.core.util.HFApiImplementation;
 import joshie.harvest.core.util.holders.HolderRegistry;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityChicken;
@@ -13,11 +14,15 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.HashMap;
 
+@HFApiImplementation
 public class AnimalRegistry implements IAnimalHandler {
+    public static final AnimalRegistry INSTANCE = new AnimalRegistry();
     private final HashMap<String, IAnimalType> types = new HashMap<>();
     //private final HashMap<AbstractItemHolder, AnimalFoodType> registry = new HashMap<>();
     //private final Multimap<Item, AbstractItemHolder> keyMap = HashMultimap.create();
     private final HolderRegistry<AnimalFoodType> registry = new HolderRegistry<>();
+
+    private AnimalRegistry() {}
 
     //Internal Convenience method
     static void registerFoodsAsType(AnimalFoodType type, Item... items) {

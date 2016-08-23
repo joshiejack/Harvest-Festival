@@ -28,7 +28,7 @@ public class HarvestFestival {
 
     @EventHandler
     public void onConstruction(FMLConstructionEvent event) {
-        HFApiLoader.init(); //Load in the api once construction is done
+        HFApiLoader.init(event.getASMHarvestedData()); //Load in the api once construction is done
     }
 
     @EventHandler

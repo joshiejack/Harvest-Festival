@@ -60,6 +60,11 @@ public class PageRecipeList extends Page {
         return MASTER;
     }
 
+    @Override
+    public Utensil getUtensil() {
+        return utensil;
+    }
+
     public ItemStack getItem() {
         return RENDER_MAP.get(utensil);
     }

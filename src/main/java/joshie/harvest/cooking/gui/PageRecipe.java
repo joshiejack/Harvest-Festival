@@ -1,10 +1,19 @@
 package joshie.harvest.cooking.gui;
 
+import joshie.harvest.api.cooking.ICookingIngredient;
 import joshie.harvest.cooking.FoodRegistry;
 import joshie.harvest.cooking.Recipe;
+import joshie.harvest.cooking.Utensil;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
+import static joshie.harvest.cooking.gui.GuiCookbook.LEFT_GUI;
 
 public class PageRecipe extends Page {
     private static final HashMap<Recipe, PageRecipe> recipeMap = new HashMap<>();
@@ -19,9 +28,12 @@ public class PageRecipe extends Page {
     }
 
     private final Recipe recipe;
+    private final List<CyclingStack> list = new ArrayList<>();
+    private final ItemStack stack;
 
     public PageRecipe(Recipe recipe) {
         this.recipe = recipe;
+        this.stack = recipe.cook(recipe.getMeal());
     }
 
     @Override
@@ -34,12 +46,66 @@ public class PageRecipe extends Page {
     }
 
     public ItemStack getItem() {
-        return recipe.cook(recipe.getMeal());
+        return stack;
+    }
+
+    @Override
+    public Utensil getUtensil() {
+        return recipe.getRequiredTool();
+    }
+
+    @Override
+    public PageRecipe initGui(GuiCookbook gui) {
+        super.initGui(gui);
+        list.clear();
+        int x = 165;
+        for (int y = 0; y < recipe.getRequiredIngredients().length; y++) {
+            list.add(new CyclingStack(x, 35 + y * 16, recipe.getRequiredIngredients()[y]));
+        }
+
+        return this;
     }
 
     @Override
     public void draw(int mouseX, int mouseY) {
+        int left = ((36-getRecipeName().length()) * 2);
+        ItemStack stack = getItem();
+        gui.drawString(left, 20, TextFormatting.BOLD + "" + TextFormatting.UNDERLINE + getRecipeName());
+        gui.drawBox(25, 30, 110, 1, 0xFFB0A483);
+        gui.drawBox(26, 31, 110, 1, 0xFF9C8C63);
+        gui.drawString(60, 35, TextFormatting.BOLD + "Hunger");
+        gui.mc.getTextureManager().bindTexture(new ResourceLocation("textures/gui/icons.png"));
+        int hunger = stack.getTagCompound().getInteger("FoodLevel");
+        GlStateManager.color(1F, 1F, 1F);
+        for (int i = 0; i < hunger; i++) {
+            if (i % 2 == 0) {
+                gui.drawTexture((i * 4) + 58, 46, 16, 27, 9, 9);
+            }
 
+            if (i + 1 < hunger && i % 2 == 0) {
+                gui.drawTexture((i * 4) + 58, 46, 52, 27, 9, 9);
+            } else if (i % 2 == 0) {
+                gui.drawTexture((i * 4) + 58, 46, 61, 27, 9, 9);
+            }
+        }
+
+        gui.drawBox(25, 60, 110, 1, 0xFFB0A483);
+        gui.drawBox(26, 61, 110, 1, 0xFF9C8C63);
+        gui.drawString(25, 65, TextFormatting.BOLD + "" + TextFormatting.UNDERLINE + "Description:");
+        gui.drawString(25, 78, "");
+
+        float saturation = stack.getTagCompound().getFloat("FoodSaturation");
+
+        gui.drawStack(22, 30, getItem(), 2F);
+        //Bottom
+        GlStateManager.enableAlpha();
+        //Right Page
+        gui.drawString(190, 20, TextFormatting.BOLD + "" + TextFormatting.UNDERLINE + "Recipe");
+        gui.drawBox(170, 30, 110, 1, 0xFFB0A483);
+        gui.drawBox(171, 31, 110, 1, 0xFF9C8C63);
+        for (CyclingStack cycling: list) {
+            cycling.render(gui);
+        }
     }
 
     @Override
@@ -58,5 +124,57 @@ public class PageRecipe extends Page {
     @Override
     public int hashCode() {
         return recipe != null ? recipe.hashCode() : 0;
+    }
+
+    public static boolean hasIngredientInInventory(ICookingIngredient ingredient) {
+        for (ICookingIngredient inInventory: GuiCookbook.ingredients) {
+            if (ingredient.isEqual(inInventory)) return true;
+        }
+
+        return false;
+    }
+
+    public static class CyclingStack {
+        private final int x;
+        private final int y;
+        private final List<ItemStack> stacks;
+        private final ICookingIngredient ingredient;
+        private ItemStack stack;
+        private int ticker;
+        private int index;
+
+        @SuppressWarnings("unchecked")
+        public CyclingStack(int x, int y, ICookingIngredient ingredient) {
+            this.x = x;
+            this.y = y;
+            this.stacks = FoodRegistry.INSTANCE.getStacksForIngredient(ingredient);
+            this.ingredient = ingredient;
+        }
+
+        public void render(GuiCookbook gui) {
+            if (stacks.size() > 0) {
+                ticker++;
+
+                if (ticker % 128 == 0 || stack == null) {
+                    stack = stacks.get(index); //Pick out the stack
+                    index++;
+                    if (index >= stacks.size()) {
+                        index = 0; //Reset the index
+                    }
+                }
+
+                gui.drawStack(x, y, stack, 1F);
+                boolean isInInventory = hasIngredientInInventory(ingredient);
+                TextFormatting formatting = isInInventory ? TextFormatting.DARK_GREEN : TextFormatting.RED;
+                gui.drawString(x + 20, y + 6, formatting + stack.getDisplayName());
+                GlStateManager.disableDepth();
+                gui.mc.getTextureManager().bindTexture(LEFT_GUI);
+                if (isInInventory) {
+                    gui.drawTexture(x + 8, y + 10, 31, 248, 10, 8);
+                } else gui.drawTexture(x + 9, y + 10, 41, 248, 7, 8);
+
+                GlStateManager.enableDepth();
+            }
+        }
     }
 }

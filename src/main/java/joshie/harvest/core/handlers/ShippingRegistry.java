@@ -5,6 +5,7 @@ import joshie.harvest.api.core.IShippable;
 import joshie.harvest.api.core.IShippingRegistry;
 import joshie.harvest.api.core.ISizeable;
 import joshie.harvest.api.crops.ICrop;
+import joshie.harvest.core.util.HFApiImplementation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
@@ -12,8 +13,12 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.HashMap;
 
+@HFApiImplementation
 public class ShippingRegistry implements IShippingRegistry {
+    public static final ShippingRegistry INSTANCE = new ShippingRegistry();
     private final HashMap<Pair<Item, Integer>, Long> registry = new HashMap<>();
+
+    private ShippingRegistry() {}
 
     @Override
     public void registerSellable(ItemStack stack, long value) {

@@ -174,7 +174,7 @@ public class HFIngredients {
         HFApi.cooking.register(new ItemStack(Items.MILK_BUCKET, 1, OreDictionary.WILDCARD_VALUE), milk);
         HFApi.cooking.register(new ItemStack(HFAnimals.MAYONNAISE), mayonnaise);
         HFApi.cooking.register(HFCooking.INGREDIENTS.getStackFromEnum(BUTTER), butter);
-        HFApi.cooking.register(HFApi.cooking.getBestMeal("butter"), boiled_egg);
+        HFApi.cooking.register(HFApi.cooking.getBestMeal("butter"), butter);
         HFApi.cooking.register(HFApi.cooking.getBestMeal("egg_boiled"), boiled_egg);
         HFApi.cooking.register(HFCooking.INGREDIENTS.getStackFromEnum(SASHIMI), sashimi);
         HFApi.cooking.register(HFApi.cooking.getBestMeal("sashimi"), sashimi);

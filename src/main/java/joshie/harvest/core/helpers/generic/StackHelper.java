@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.JsonToNBT;
@@ -12,7 +13,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class StackHelper {
@@ -198,5 +202,18 @@ public class StackHelper {
             stack.setTagCompound(tag.getCompoundTag("tag"));
         }
         return stack;
+    }
+
+    private static final List<ItemStack> allStacks = new ArrayList<>();
+
+    @SideOnly(Side.CLIENT)
+    public static List<ItemStack> getAllStacks() {
+        if (allStacks.size() == 0) {
+            for (CreativeTabs tab: CreativeTabs.CREATIVE_TAB_ARRAY) {
+                tab.displayAllRelevantItems(allStacks);
+            }
+        }
+
+        return allStacks;
     }
 }

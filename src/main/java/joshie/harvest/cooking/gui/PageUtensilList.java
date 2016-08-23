@@ -45,7 +45,7 @@ public class PageUtensilList extends Page {
             if (hoverX && hoverY) {
                 GlStateManager.color(1F, 1F, 1F);
                 gui.mc.getTextureManager().bindTexture(LEFT_GUI);
-                gui.drawTexture(163, 23 + i * 31, 131, 222, 124, 33);
+                gui.drawTexture(163, 23 + i * 31, 131, 222, 125, 34);
                 gui.drawString(202, 37 + i * 31, TextFormatting.ITALIC + stack.getDisplayName());
             } else gui.drawString(202, 37 + i * 31, stack.getDisplayName());
             gui.drawStack(167, 26 + i * 31, stack, 1.9F);

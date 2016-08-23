@@ -10,11 +10,8 @@
 - Crop Grass Better Texture
 
 ## Recipe Rewrite
-- Recipes have an item which is a page for a book, which is how you learn to do new recipes
-- Add pages to your recipe book item
 - Select a recipe in the recipe book
 - Have all the items required in your inventory and automatically get placed in utensils
-- You can always perform every recipe, you'll just learn every recipe evnetually
 
 ## Questing Tasks
 - Spawning the NPC Builder Quest
@@ -24,24 +21,16 @@
 
 ##(S)ounds, (E)ffects, (A)nimations
 - Pot
-    -S Bubbling
     -E Bubbles
 - Oven
-    -S Fire Flicker
-    -S Timer Ping when Done
-    -A Open Door when placing stuff in
+    -AS Open Door when placing stuff in, Play sound
 - Fridge
-    -S Hummmm
-    -E Open Door
+    -AS Open Door, Play Sound
 - Counter
-    -S Chopping
+    -S Rebalance length of chopping sounds
     -A Player Chopping
 - Harvest Goddess
-    -S Magical Spawning
     -E Particle Effect
-- Priest Blessing
-    - S Particles when he gives you it back
-    - E Magical Sound when he gives you it back
 
 ### NPCS, Conversations & AI
 - Add Extra Chat Messages, and Conversations for all NPCs

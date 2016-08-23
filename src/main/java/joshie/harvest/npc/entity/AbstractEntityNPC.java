@@ -9,6 +9,7 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.core.helpers.TownHelper;
+import joshie.harvest.core.lib.HFSounds;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.NPCRegistry;
@@ -24,7 +25,10 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathNavigateGround;
-import net.minecraft.util.*;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
@@ -252,6 +256,10 @@ public abstract class AbstractEntityNPC<E extends AbstractEntityNPC> extends Ent
         String name = buf.readBoolean() ? ByteBufUtils.readUTF8String(buf) : "";
         npc = name.equals("") ? (NPC) HFNPCs.GODDESS : NPCRegistry.REGISTRY.getObject(new ResourceLocation(name));
         townID = UUID.fromString(ByteBufUtils.readUTF8String(buf));
+
+        if (getNPC() == HFNPCs.GODDESS) {
+            worldObj.playSound(posX, posY, posZ, HFSounds.GODDESS_SPAWN, SoundCategory.NEUTRAL, 1F, 1F, true);
+        }
     }
 
     @Override

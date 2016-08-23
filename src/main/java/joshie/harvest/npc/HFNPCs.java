@@ -39,6 +39,7 @@ import static joshie.harvest.api.npc.INPCRegistry.Gender.MALE;
 import static joshie.harvest.buildings.HFBuildings.*;
 import static joshie.harvest.core.helpers.generic.ConfigHelper.getDouble;
 import static joshie.harvest.core.helpers.generic.ConfigHelper.getInteger;
+import static joshie.harvest.core.helpers.generic.RegistryHelper.registerSounds;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.core.lib.LoadOrder.HFNPCS;
 import static joshie.harvest.town.TownData.*;
@@ -74,7 +75,7 @@ public class HFNPCs {
         EntityRegistry.registerModEntity(EntityNPCVillager.class, "NPC", EntityIDs.VILLAGER, HarvestFestival.instance, 80, 3, true);
         EntityRegistry.registerModEntity(EntityNPCBuilder.class, "NPCBuilder", EntityIDs.BUILDER, HarvestFestival.instance, 80, 3, true);
         EntityRegistry.registerModEntity(EntityNPCShopkeeper.class, "NPCShopkeeper", EntityIDs.SHOPKEEPER, HarvestFestival.instance, 80, 3, true);
-
+        registerSounds("goddess", "blessing");
         GODDESS = register("goddess", FEMALE, ADULT, 8, SPRING, 0x8CEED3, 0x4EC485).setHeight(1.2F, 0.05F);
         ANIMAL_OWNER = register("jim", MALE, ADULT, 26, SPRING, 0x888888, 0x000000);
         CAFE_OWNER = register("liara", FEMALE, ADULT, 17, SPRING, 0xA64DFF, 0x46008C);

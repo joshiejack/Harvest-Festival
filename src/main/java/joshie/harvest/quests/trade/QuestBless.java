@@ -8,11 +8,14 @@ import joshie.harvest.calendar.CalendarDate;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.CalendarHelper;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
+import joshie.harvest.core.lib.HFSounds;
 import joshie.harvest.tools.HFTools;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -69,6 +72,11 @@ public class QuestBless extends QuestTrade {
             ICalendarDate today = HFTrackers.getCalendar(MCClientHelper.getWorld()).getDate();
             if (getDifference(date, today) >= 3) {
                 complete(player);
+                player.worldObj.playSound(player, player.posX, player.posY, player.posZ, HFSounds.BLESS_TOOL, SoundCategory.NEUTRAL, 0.25F, 1F);
+                for (int i = 0; i < 32; i++) {
+                    player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, entity.posX + player.worldObj.rand.nextFloat() + player.worldObj.rand.nextFloat() - 1F, entity.posY + 0.25D + entity.worldObj.rand.nextFloat() + entity.worldObj.rand.nextFloat(), entity.posZ + player.worldObj.rand.nextFloat() + player.worldObj.rand.nextFloat() - 1F, 0, 0, 0);
+                }
+
                 return "done";
             }
 

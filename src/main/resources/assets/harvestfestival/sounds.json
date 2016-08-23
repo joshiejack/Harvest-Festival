@@ -1,6 +1,14 @@
 {
+  "counter": { "category": "block", "sounds":["harvestfestival:counter1", "harvestfestival:counter2", "harvestfestival:counter3", "harvestfestival:counter4", "harvestfestival:counter5"], "subtitle": "harvestfestival.subtitle.counter" },
+  "fridge": { "category": "block", "sounds":["harvestfestival:fridge"], "subtitle": "harvestfestival.subtitle.fridge" },
   "frying_pan": { "category": "block", "sounds":["harvestfestival:frying_pan"], "subtitle": "harvestfestival.subtitle.fryingpan" },
   "mixer": { "category": "block", "sounds":["harvestfestival:mixer"], "subtitle": "harvestfestival.subtitle.mixer" },
+  "oven": { "category": "block", "sounds":["harvestfestival:oven"], "subtitle": "harvestfestival.subtitle.oven" },
+  "oven_door": { "category": "block", "sounds":["harvestfestival:oven_door"], "subtitle": "harvestfestival.subtitle.ovendoor" },
+  "oven_done": { "category": "block", "sounds":["harvestfestival:oven_done"], "subtitle": "harvestfestival.subtitle.ovendone" },
+  "pot": { "category": "block", "sounds":["harvestfestival:pot"], "subtitle": "harvestfestival.subtitle.pot" },
   "smash_rock": { "category": "block", "sounds":["harvestfestival:smash_rock"], "subtitle": "harvestfestival.subtitle.smashrock" },
-  "smash_wood": { "category": "block", "sounds":["harvestfestival:smash_wood"], "subtitle": "harvestfestival.subtitle.smashwood" }
+  "smash_wood": { "category": "block", "sounds":["harvestfestival:smash_wood"], "subtitle": "harvestfestival.subtitle.smashwood" },
+  "blessing": { "category": "neutral", "sounds":["harvestfestival:blessing"], "subtitle": "harvestfestival.subtitle.blessing" },
+  "goddess": { "category": "neutral", "sounds":["harvestfestival:goddess"], "subtitle": "harvestfestival.subtitle.godddess" }
 }

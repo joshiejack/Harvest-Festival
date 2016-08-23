@@ -93,9 +93,6 @@ public class PageRecipe extends Page {
         gui.drawBox(26, 61, 110, 1, 0xFF9C8C63);
         gui.drawString(25, 65, TextFormatting.BOLD + "" + TextFormatting.UNDERLINE + "Description:");
         gui.drawString(25, 78, "");
-
-        float saturation = stack.getTagCompound().getFloat("FoodSaturation");
-
         gui.drawStack(22, 30, getItem(), 2F);
         //Bottom
         GlStateManager.enableAlpha();

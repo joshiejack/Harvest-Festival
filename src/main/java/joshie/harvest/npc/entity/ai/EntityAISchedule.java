@@ -45,6 +45,7 @@ public class EntityAISchedule extends EntityAIBase {
             return false;
         }
 
+        if (target == null) return false;
         return npc.getDistanceSq(target) > 1D;
     }
 

@@ -16,6 +16,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -93,7 +94,7 @@ public class Shop implements IShop {
         return Text.getRandomSpeech(resourceLocation, unlocalizedName + ".greeting", 10);
     }
 
-    public List<IPurchaseable> getContents(EntityPlayer player) {
+    public List<IPurchaseable> getContents(@Nonnull EntityPlayer player) {
         List<IPurchaseable> contents = new ArrayList<>();
         for (IPurchaseable purchaseable : this.contents) {
             if (purchaseable.canList(player.worldObj, player)) {
@@ -114,7 +115,7 @@ public class Shop implements IShop {
             int scaledOpening = CalendarHelper.getScaledTime(hours.open);
             int scaledClosing = CalendarHelper.getScaledTime(hours.close);
             boolean isOpen = daytime >= scaledOpening && daytime <= scaledClosing;
-            return isOpen && player == null || getContents(player).size() > 0;
+            return isOpen && (player == null || getContents(player).size() > 0);
         }
     }
 

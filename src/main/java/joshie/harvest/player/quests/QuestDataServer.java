@@ -58,7 +58,7 @@ public class QuestDataServer extends QuestData {
             q.claim(master.getAndCreatePlayer());
             finished.add(q);
             current.remove(q);
-            sync((EntityPlayerMP) master.getAndCreatePlayer());
+            sync(master.getAndCreatePlayer());
         }
     }
     

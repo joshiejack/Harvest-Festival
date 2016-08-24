@@ -169,7 +169,8 @@ public class HFIngredients {
         HFApi.cooking.register(new ItemStack(Items.BREAD, 1, OreDictionary.WILDCARD_VALUE), bread);
         HFApi.cooking.register(new ItemStack(HFAnimals.EGG), egg);
         HFApi.cooking.register(new ItemStack(Items.EGG, 1, OreDictionary.WILDCARD_VALUE), egg);
-        HFApi.cooking.register(new ItemStack(Items.FISH, 1, OreDictionary.WILDCARD_VALUE), fish);
+        HFApi.cooking.register(new ItemStack(Items.FISH, 1, 0), fish);
+        HFApi.cooking.register(new ItemStack(Items.FISH, 1, 1), fish);
         HFApi.cooking.register(new ItemStack(HFAnimals.MILK), milk);
         HFApi.cooking.register(new ItemStack(Items.MILK_BUCKET, 1, OreDictionary.WILDCARD_VALUE), milk);
         HFApi.cooking.register(new ItemStack(HFAnimals.MAYONNAISE), mayonnaise);

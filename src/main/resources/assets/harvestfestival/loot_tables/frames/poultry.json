@@ -1,3 +1,47 @@
 {
-
+  "pools": [
+    {
+      "name": "poultry",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "harvestfestival:crops",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 3,
+                "max": 9
+              }
+            },
+            {
+              "function": "hf_set_crop",
+              "crop": "wheat"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:seeds",
+          "entryName": "wheat",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "hf_set_enum",
+              "enum": "wheat"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 3
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

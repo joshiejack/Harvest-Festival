@@ -7,30 +7,12 @@
         {
           "type": "item",
           "name": "minecraft:apple",
-          "weight": 8,
-          "functions": [
-            {
-              "function": "set_count",
-              "count": {
-                "min": 1,
-                "max": 1
-              }
-            }
-          ]
+          "weight": 8
         },
         {
           "type": "item",
           "name": "minecraft:carrot",
-          "weight": 8,
-          "functions": [
-            {
-              "function": "set_count",
-              "count": {
-                "min": 1,
-                "max": 1
-              }
-            }
-          ]
+          "weight": 8
         },
         {
           "type": "item",
@@ -62,16 +44,9 @@
         },
         {
           "type": "item",
-          "name": "harvestfestival:crop_seeds",
+          "name": "harvestfestival:crops_seeds",
           "weight": 3,
           "functions": [
-            {
-              "function": "set_count",
-              "count": {
-                "min": 1,
-                "max": 1
-              }
-            },
             {
               "function": "hf_set_crop",
               "crop": "randomSeed"

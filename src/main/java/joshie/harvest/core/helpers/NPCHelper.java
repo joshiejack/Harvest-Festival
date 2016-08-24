@@ -2,13 +2,13 @@ package joshie.harvest.core.helpers;
 
 import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.npc.INPC;
-import joshie.harvest.api.shops.IShop;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.entity.AbstractEntityNPC;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import joshie.harvest.npc.entity.EntityNPCShopkeeper;
 import joshie.harvest.npc.entity.EntityNPCVillager;
+import joshie.harvest.shops.Shop;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
@@ -42,8 +42,8 @@ public class NPCHelper {
         } else return new EntityNPCVillager(world, npc);
     }
 
-    public static boolean isShopOpen(INPC npc, World world, EntityPlayer player) {
-        IShop shop = npc.getShop();
+    public static boolean isShopOpen(NPC npc, World world, EntityPlayer player) {
+        Shop shop = npc.getShop();
         if (shop != null && shop.isOpen(world, player) && shop.getContents(player).size() > 0) {
             return true;
         }
@@ -51,7 +51,7 @@ public class NPCHelper {
         return false;
     }
 
-    public static int getGuiIDForNPC(INPC npc, World world, EntityPlayer player, boolean isGifting) {
+    public static int getGuiIDForNPC(NPC npc, World world, EntityPlayer player, boolean isGifting) {
         if (isShopOpen(npc, world, player)) {
             return GuiHandler.SHOP_WELCOME;
         }

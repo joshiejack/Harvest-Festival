@@ -9,13 +9,15 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
+import javax.annotation.Nonnull;
+
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class FakeEntityRenderer extends TileEntitySpecialRenderer<EntityItemRenderer> {
     public static final FakeEntityRenderer INSTANCE = new FakeEntityRenderer();
 
     @Override
-    public void renderTileEntityAt(EntityItemRenderer fake, double x, double y, double z, float partialTicks, int destroyStage) {
+    public void renderTileEntityAt(@Nonnull EntityItemRenderer fake, double x, double y, double z, float partialTicks, int destroyStage) {
          GlStateManager.pushMatrix();
          GlStateManager.translate(0.5F, -0.05F, 0.5F);
          GlStateManager.scale(-0.75F, 0.75F, 0.75F);

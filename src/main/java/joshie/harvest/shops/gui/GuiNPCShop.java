@@ -1,7 +1,6 @@
 package joshie.harvest.shops.gui;
 
 import joshie.harvest.api.shops.IPurchaseable;
-import joshie.harvest.api.shops.IShop;
 import joshie.harvest.api.shops.IShopGuiOverlay;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.StackHelper;
@@ -11,6 +10,7 @@ import joshie.harvest.core.util.ShopFontRenderer;
 import joshie.harvest.npc.entity.AbstractEntityNPC;
 import joshie.harvest.npc.gui.GuiNPCBase;
 import joshie.harvest.player.stats.StatsClient;
+import joshie.harvest.shops.Shop;
 import joshie.harvest.shops.packets.PacketPurchaseItem;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,7 +29,7 @@ public class GuiNPCShop extends GuiNPCBase {
     protected StatsClient stats;
     protected List<IPurchaseable> contents;
     protected IShopGuiOverlay overlay;
-    protected IShop shop;
+    protected Shop shop;
     protected int start;
 
     public GuiNPCShop(AbstractEntityNPC npc, EntityPlayer player) {

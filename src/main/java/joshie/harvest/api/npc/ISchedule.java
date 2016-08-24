@@ -7,7 +7,6 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.world.World;
 
 import static joshie.harvest.api.npc.INPC.Location.HOME;
-import static joshie.harvest.api.npc.INPC.Location.WORK;
 
 /** This is the schedule for npcs **/
 public interface ISchedule {
@@ -21,9 +20,6 @@ public interface ISchedule {
      * @param time      the current time, scaled from 0-23999 In real time, so 0 = midnight, 6000 = 6am
      * @return the building */
     default BuildingLocation getTarget(World world, EntityLiving entity, INPC npc, Season season, Weekday day, long time) {
-        if (npc.getShop() != null && npc.getShop().isOpen(world, null)) return npc.getLocation(WORK);
-        else {
-            return npc.getLocation(HOME);
-        }
+        return npc.getLocation(HOME);
     }
 }

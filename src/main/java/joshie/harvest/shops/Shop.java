@@ -6,124 +6,33 @@ import joshie.harvest.api.shops.IShop;
 import joshie.harvest.api.shops.IShopGuiOverlay;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.CalendarHelper;
-import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.util.Text;
 import joshie.harvest.shops.purchaseable.Purchaseable;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-import static joshie.harvest.core.lib.HFModInfo.MODID;
-
 public class Shop implements IShop {
-    public static final List<IPurchaseable> registers = new ArrayList<>();
+    public static final List<IPurchaseable> allItems = new ArrayList<>();
     private List<IPurchaseable> contents = new ArrayList<>();
-    private List<String> greetings = new ArrayList<>();
     private HashMap<EnumDifficulty, OpeningSettings> open = new HashMap<>();
-    private final String name;
-    private int last;
-
-    public Shop(String name) {
-        for (int i = 1; i < 32; i++) {
-            String key = MODID + ".shop." + name + ".greeting" + i;
-            String greeting = Text.localize(key);
-            if (!greeting.equals(key)) {
-                greetings.add(greeting);
-            }
-        }
-
-        Collections.shuffle(greetings);
-        this.name = MODID + ".shop." + name;
-    }
-
-    @Override
-    public String getLocalizedName() {
-        return Text.localize(name);
-    }
-
+    private final ResourceLocation resourceLocation;
+    private final String unlocalizedName;
     @SideOnly(Side.CLIENT)
-    public IShopGuiOverlay overlay;
+    private IShopGuiOverlay overlay;
 
-    @SideOnly(Side.CLIENT)
-    public IShop setGuiOverlay(IShopGuiOverlay overlay) {
-        this.overlay = overlay;
-        return this;
-    }
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public IShopGuiOverlay getGuiOverlay() {
-        return overlay;
-    }
-
-    /**
-     * Returns the location of the shops name
-     **/
-    public ResourceLocation getResource() {
-        ResourceLocation shop_texture = new ResourceLocation(MODID + ":lang/" + FMLCommonHandler.instance().getCurrentLanguage() + "/shops.png");
-        try {
-            MCClientHelper.getMinecraft().renderEngine.getTexture(shop_texture).loadTexture(Minecraft.getMinecraft().getResourceManager());
-        } catch (Exception e) {
-            shop_texture = new ResourceLocation(MODID + ":lang/en_US/shops.png");
-        }
-
-        return shop_texture;
-    }
-
-    @Override
-    public List<IPurchaseable> getContents(EntityPlayer player) {
-        List<IPurchaseable> contents = new ArrayList<IPurchaseable>();
-        for (IPurchaseable purchaseable : this.contents) {
-            if (purchaseable.canList(player.worldObj, player)) {
-                contents.add(purchaseable);
-            }
-        }
-
-        return contents;
-    }
-
-    /**
-     * Whether or not the shop is currently open at this time or season
-     **/
-    @Override
-    public boolean isOpen(World world, @Nullable EntityPlayer player) {
-        if (world.getDifficulty() == EnumDifficulty.PEACEFUL) return true;
-        Weekday day = HFTrackers.getCalendar(world).getDate().getWeekday();
-        OpeningHours hours = open.get(world.getDifficulty()).opening.get(day);
-        if (hours == null) return false;
-        else {
-            long daytime = CalendarHelper.getTime(world); //0-23999 by default      
-            int scaledOpening = CalendarHelper.getScaledTime(hours.open);
-            int scaledClosing = CalendarHelper.getScaledTime(hours.close);
-            boolean isOpen = daytime >= scaledOpening && daytime <= scaledClosing;
-            if (!isOpen) return false;
-            else return player == null || getContents(player).size() > 0;
-        }
-    }
-
-    @Override
-    public boolean isPreparingToOpen(World world) {
-        if (world.getDifficulty() == EnumDifficulty.PEACEFUL) return false;
-        Weekday day = HFTrackers.getCalendar(world).getDate().getWeekday();
-        OpeningHours hours = open.get(world.getDifficulty()).opening.get(day);
-        if (hours == null) return false;
-        else {
-            long daytime = CalendarHelper.getTime(world); //0-23999 by default
-            int hourHalfBeforeWork = fix(CalendarHelper.getScaledTime(hours.open) - 1500);
-            return daytime >= hourHalfBeforeWork;
-        }
+    public Shop(ResourceLocation resource) {
+        resourceLocation = resource;
+        unlocalizedName = resource.getResourceDomain() + ".shop." + resource.getResourcePath();
     }
 
     @Override
@@ -133,10 +42,6 @@ public class Shop implements IShop {
         settings.opening.put(day, hours);
         open.put(difficulty, settings);
         return this;
-    }
-
-    public int fix(int i) {
-        return Math.min(24000, Math.max(0, i));
     }
 
     @Override
@@ -159,7 +64,7 @@ public class Shop implements IShop {
     @Override
     public IShop addItem(IPurchaseable item) {
         this.contents.add(item);
-        registers.add(item);
+        allItems.add(item);
         return this;
     }
 
@@ -168,38 +73,81 @@ public class Shop implements IShop {
         return addItem(new Purchaseable(cost, items));
     }
 
-    /**
-     * Return the welcome message for this shop
-     **/
+    @SideOnly(Side.CLIENT)
     @Override
+    public IShop setGuiOverlay(IShopGuiOverlay overlay) {
+        this.overlay = overlay;
+        return this;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public IShopGuiOverlay getGuiOverlay() {
+        return overlay;
+    }
+
+    public String getLocalizedName() {
+        return Text.localize(unlocalizedName);
+    }
+
     public String getWelcome() {
-        if (greetings.size() == 0) {
-            return "JOSHIE IS STOOPID AND FORGOT WELCOME LANG";
+        return Text.getRandomSpeech(resourceLocation, unlocalizedName + ".greeting", 10);
+    }
+
+    public List<IPurchaseable> getContents(EntityPlayer player) {
+        List<IPurchaseable> contents = new ArrayList<>();
+        for (IPurchaseable purchaseable : this.contents) {
+            if (purchaseable.canList(player.worldObj, player)) {
+                contents.add(purchaseable);
+            }
         }
 
-        if (last < (greetings.size() - 1)) {
-            last++;
-        } else last = 0;
+        return contents;
+    }
 
-        return greetings.get(last);
+    public boolean isOpen(World world, @Nullable EntityPlayer player) {
+        if (world.getDifficulty() == EnumDifficulty.PEACEFUL) return true;
+        Weekday day = HFTrackers.getCalendar(world).getDate().getWeekday();
+        OpeningHours hours = open.get(world.getDifficulty()).opening.get(day);
+        if (hours == null) return false;
+        else {
+            long daytime = CalendarHelper.getTime(world); //0-23999 by default      
+            int scaledOpening = CalendarHelper.getScaledTime(hours.open);
+            int scaledClosing = CalendarHelper.getScaledTime(hours.close);
+            boolean isOpen = daytime >= scaledOpening && daytime <= scaledClosing;
+            return isOpen && player == null || getContents(player).size() > 0;
+        }
+    }
+
+    public boolean isPreparingToOpen(World world) {
+        if (world.getDifficulty() == EnumDifficulty.PEACEFUL) return false;
+        Weekday day = HFTrackers.getCalendar(world).getDate().getWeekday();
+        OpeningHours hours = open.get(world.getDifficulty()).opening.get(day);
+        if (hours == null) return false;
+        else {
+            long daytime = CalendarHelper.getTime(world); //0-23999 by default
+            int hourHalfBeforeWork = fix(CalendarHelper.getScaledTime(hours.open) - 1500);
+            return daytime >= hourHalfBeforeWork;
+        }
+    }
+
+    private int fix(int i) {
+        return Math.min(24000, Math.max(0, i));
     }
 
     private static class OpeningSettings {
-        private HashMap<Weekday, OpeningHours> opening = new HashMap<Weekday, OpeningHours>();
+        private HashMap<Weekday, OpeningHours> opening = new HashMap<>();
     }
 
-    /**
-     * The integers in here are as follows
+    /** The integers in here are as follows
      * 1000 = 1 AM
      * 2500 = 2:30am
      * 18000 = 6PM
-     * etc.
-     */
+     * etc. */
     private static class OpeningHours {
         private int open;
         private int close;
 
-        public OpeningHours(int open, int close) {
+        OpeningHours(int open, int close) {
             this.open = open;
             this.close = close;
         }

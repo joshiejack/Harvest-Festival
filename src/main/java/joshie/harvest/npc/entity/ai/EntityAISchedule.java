@@ -9,6 +9,8 @@ import joshie.harvest.npc.entity.AbstractEntityNPC;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.util.math.BlockPos;
 
+import static joshie.harvest.api.npc.INPC.Location.WORK;
+
 public class EntityAISchedule extends EntityAIBase {
     private AbstractEntityNPC npc;
     private long attemptTimer;
@@ -20,10 +22,15 @@ public class EntityAISchedule extends EntityAIBase {
         this.setMutexBits(3);
     }
 
+    private BuildingLocation getLocation(ICalendarDate date) {
+        if (npc.getNPC().getShop() != null && npc.getNPC().getShop().isOpen(npc.worldObj, null)) return npc.getNPC().getLocation(WORK);
+        else return npc.getNPC().getScheduler().getTarget(npc.worldObj, npc, npc.getNPC(), date.getSeason(), date.getWeekday(), CalendarHelper.getTime(npc.worldObj));
+    }
+
     @Override
     public boolean shouldExecute() {
         ICalendarDate date = HFTrackers.getCalendar(npc.worldObj).getDate();
-        location = npc.getNPC().getScheduler().getTarget(npc.worldObj, npc, npc.getNPC(), date.getSeason(), date.getWeekday(), CalendarHelper.getTime(npc.worldObj));
+        location = getLocation(date);
         target = NPCHelper.getCoordinatesForLocation(npc, location);
         attemptTimer = 0L;
         return target != null && npc.getDistanceSq(target) > 16D;

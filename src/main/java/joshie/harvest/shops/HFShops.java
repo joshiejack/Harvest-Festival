@@ -25,6 +25,7 @@ import joshie.harvest.tools.HFTools;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 
 import static joshie.harvest.animals.item.ItemAnimalSpawner.Spawner.*;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.*;
@@ -33,6 +34,7 @@ import static joshie.harvest.cooking.HFCooking.COOKBOOK;
 import static joshie.harvest.cooking.HFCooking.COOKWARE;
 import static joshie.harvest.cooking.blocks.BlockCookware.Cookware.*;
 import static joshie.harvest.cooking.items.ItemIngredients.Ingredient.*;
+import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.npc.items.ItemNPCTool.NPCTool.BLUE_FEATHER;
 
 @HFLoader
@@ -56,7 +58,7 @@ public class HFShops {
     }
 
     private static void registerBarn() {
-        BARN = HFApi.shops.newShop("barn", HFNPCs.ANIMAL_OWNER);
+        BARN = HFApi.shops.newShop(new ResourceLocation(MODID, "barn"), HFNPCs.ANIMAL_OWNER);
         BARN.addItem(20, HFCrops.GRASS.getCropStack());
         BARN.addItem(1000, HFAnimals.TOOLS.getStackFromEnum(MEDICINE));
         BARN.addItem(new PurchaseableEntity(EntityHarvestSheep.class, 4000, HFAnimals.ANIMAL.getStackFromEnum(SHEEP), true));
@@ -68,7 +70,7 @@ public class HFShops {
     }
 
     private static void registerBlacksmith() {
-        BLACKSMITH = HFApi.shops.newShop("blacksmith", HFNPCs.TOOL_OWNER);
+        BLACKSMITH = HFApi.shops.newShop(new ResourceLocation(MODID, "blacksmith"), HFNPCs.TOOL_OWNER);
         BLACKSMITH.addItem(800, HFAnimals.TOOLS.getStackFromEnum(BRUSH));
         BLACKSMITH.addItem(2000, HFAnimals.TOOLS.getStackFromEnum(MILKER));
         BLACKSMITH.addItem(1800, new ItemStack(Items.SHEARS));
@@ -87,7 +89,7 @@ public class HFShops {
     }
 
     private static void registerCafe() {
-        CAFE = HFApi.shops.newShop("cafe", HFNPCs.CAFE_OWNER);
+        CAFE = HFApi.shops.newShop(new ResourceLocation(MODID, "cafe"), HFNPCs.CAFE_OWNER);
         CAFE.addItem(0, new ItemStack(Items.POTIONITEM));
         CAFE.addItem(300, HFApi.cooking.getMeal("salad"));
         CAFE.addItem(200, HFApi.cooking.getMeal("cookies"));
@@ -108,7 +110,7 @@ public class HFShops {
     }
 
     private static void registerCarpenter() {
-        CARPENTER = HFApi.shops.newShop("carpenter", HFNPCs.BUILDER);
+        CARPENTER = HFApi.shops.newShop(new ResourceLocation(MODID, "carpenter"), HFNPCs.BUILDER);
         for (Building building : BuildingRegistry.REGISTRY.getValues()) {
             if (building.canPurchase()) {
                 CARPENTER.addItem(new PurchaseableBuilding(building));
@@ -121,7 +123,7 @@ public class HFShops {
     }
 
     private static void registerPoultry() {
-        POULTRY = HFApi.shops.newShop("poultry", HFNPCs.POULTRY);
+        POULTRY = HFApi.shops.newShop(new ResourceLocation(MODID, "poultry"), HFNPCs.POULTRY);
         POULTRY.addItem(new PurchaseableEntity(EntityChicken.class, 1500, HFAnimals.ANIMAL.getStackFromEnum(CHICKEN), false));
         POULTRY.addItem(1000, HFAnimals.TOOLS.getStackFromEnum(MEDICINE));
         POULTRY.addItem(10, HFAnimals.TOOLS.getStackFromEnum(CHICKEN_FEED));
@@ -131,7 +133,7 @@ public class HFShops {
     }
 
     private static void registerSupermarket() {
-        SUPERMARKET = HFApi.shops.newShop("general", HFNPCs.GS_OWNER);
+        SUPERMARKET = HFApi.shops.newShop(new ResourceLocation(MODID, "general"), HFNPCs.GS_OWNER);
         for (Crop crop : CropRegistry.REGISTRY.getValues()) {
             if (crop != HFCrops.NULL_CROP) {
                 SUPERMARKET.addItem(new PurchaseableCropSeeds(crop));
@@ -151,7 +153,7 @@ public class HFShops {
     }
 
     private static void registerMiner() {
-        MINER = HFApi.shops.newShop("miner", HFNPCs.MINER);
+        MINER = HFApi.shops.newShop(new ResourceLocation(MODID, "miner"), HFNPCs.MINER);
         MINER.addItem(new PurchaseableDecorative(1000, new ItemStack(HFMining.DIRT_DECORATIVE, 16, 1)));
 
         for (Type type: BlockStone.Type.values()) {

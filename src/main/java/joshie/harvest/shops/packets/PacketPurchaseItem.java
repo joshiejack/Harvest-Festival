@@ -15,8 +15,8 @@ public class PacketPurchaseItem extends PenguinPacket {
 
     public PacketPurchaseItem() {}
     public PacketPurchaseItem(IPurchaseable purchaseable) {
-        for (int i = 0; i < Shop.registers.size(); i++) {
-            IPurchaseable purchase = Shop.registers.get(i);
+        for (int i = 0; i < Shop.allItems.size(); i++) {
+            IPurchaseable purchase = Shop.allItems.get(i);
             if (purchase.equals(purchaseable)) {
                 purchaseable_id = i;
                 break;
@@ -36,7 +36,7 @@ public class PacketPurchaseItem extends PenguinPacket {
 
     @Override
     public boolean handleServerPacket(EntityPlayerMP player) {
-        IPurchaseable purchaseable = Shop.registers.get(purchaseable_id);
+        IPurchaseable purchaseable = Shop.allItems.get(purchaseable_id);
         if (purchaseable.canBuy(player.worldObj, player)) {
             if (ShopHelper.purchase(player, purchaseable, purchaseable.getCost())) {
                 player.closeScreen();

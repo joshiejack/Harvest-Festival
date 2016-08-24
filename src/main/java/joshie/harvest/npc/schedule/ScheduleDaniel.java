@@ -9,18 +9,14 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.world.World;
 
 import static joshie.harvest.api.npc.INPC.Location.HOME;
-import static joshie.harvest.api.npc.INPC.Location.WORK;
 import static joshie.harvest.npc.schedule.ScheduleLocations.*;
 
 public class ScheduleDaniel implements ISchedule {
     @Override
     public BuildingLocation getTarget(World world, EntityLiving entity, INPC npc, Season season, Weekday day, long time) {
-        if (npc.getShop() != null && npc.getShop().isOpen(world, null)) return npc.getLocation(WORK);
-        else {
-            if (time >= 5000L && time <= 9000L) return CAFEFRONT;
-            else if (time >= 9000L && time <= 11000L) return BLACKSMITHFRONT;
-            else if (time >= 15000L && time <= 19000L) return TOWNHALLENTRANCE;
-            else return npc.getLocation(HOME);
-        }
+        if (time >= 5000L && time <= 9000L) return CAFEFRONT;
+        else if (time >= 9000L && time <= 11000L) return BLACKSMITHFRONT;
+        else if (time >= 15000L && time <= 19000L) return TOWNHALLENTRANCE;
+        else return npc.getLocation(HOME);
     }
 }

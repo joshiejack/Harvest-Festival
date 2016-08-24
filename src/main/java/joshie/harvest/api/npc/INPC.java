@@ -68,10 +68,6 @@ public interface INPC extends IRelatable {
      *  @return the npcs gender **/
     Gender getGender();
 
-    /** Returns this shop that is associated with this npc
-     *  the shop can be null, if there is no shop. */
-    IShop getShop();
-
     /** Returns this quality of this gift **/
     Quality getGiftValue(ItemStack gift);
 

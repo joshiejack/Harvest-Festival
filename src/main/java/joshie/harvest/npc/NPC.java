@@ -16,6 +16,7 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.util.Text;
 import joshie.harvest.npc.greeting.GreetingMultiple;
 import joshie.harvest.npc.greeting.GreetingSingle;
+import joshie.harvest.shops.Shop;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -44,7 +45,7 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
     private IGiftHandler gifts;
     private ISchedule schedule;
     private boolean isBuilder;
-    private IShop shop;
+    private Shop shop;
     private ICalendarDate birthday;
     private EnumMap<Location, BuildingLocation> locations;
     private boolean doesRespawn;
@@ -114,7 +115,7 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
 
     @Override
     public INPC setShop(IShop shop) {
-        this.shop = shop;
+        this.shop = (Shop) shop;
         return this;
     }
 
@@ -203,8 +204,7 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
         return isBuilder;
     }
 
-    @Override
-    public IShop getShop() {
+    public Shop getShop() {
         return shop;
     }
 
@@ -255,7 +255,7 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
 
         for (IConditionalGreeting greeting : conditionals) {
             if (greeting.canDisplay(player)) {
-                if (greeting.getMaximumAlternatives() > 1) return Text.getRandomSpeech(this, greeting.getUnlocalizedText(), greeting.getMaximumAlternatives());
+                if (greeting.getMaximumAlternatives() > 1) return Text.getRandomSpeech(getRegistryName(), greeting.getUnlocalizedText(), greeting.getMaximumAlternatives());
                 else return Text.localize(greeting.getUnlocalizedText());
             }
         }

@@ -4,26 +4,27 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.shops.IShop;
 import joshie.harvest.api.shops.IShopRegistry;
 import joshie.harvest.core.util.HFApiImplementation;
+import net.minecraft.util.ResourceLocation;
 
 import java.util.HashMap;
 
 @HFApiImplementation
 public class ShopRegistry implements IShopRegistry {
     public static final ShopRegistry INSTANCE = new ShopRegistry();
-    private final HashMap<String, IShop> shops = new HashMap<>();
+    private final HashMap<ResourceLocation, IShop> shops = new HashMap<>();
 
     private ShopRegistry() {}
 
     @Override
-    public IShop newShop(String unlocalised, INPC npc) {
-        IShop shop = new Shop(unlocalised);
+    public IShop newShop(ResourceLocation resource, INPC npc) {
+        IShop shop = new Shop(resource);
         npc.setShop(shop);
-        shops.put(unlocalised, shop);
+        shops.put(resource, shop);
         return shop;
     }
 
     @Override
-    public IShop getShop(String unlocalised) {
-        return shops.get(unlocalised);
+    public IShop getShop(ResourceLocation resource) {
+        return shops.get(resource);
     }
 }

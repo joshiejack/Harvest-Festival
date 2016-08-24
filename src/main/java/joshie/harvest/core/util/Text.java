@@ -34,10 +34,10 @@ public class Text {
         return "en_US";
     }
 
-    public static String getRandomSpeech(final NPC npc, final String text, final int maximumAlternatives) {
+    public static String getRandomSpeech(final ResourceLocation resource, final String text, final int maximumAlternatives) {
         int maximum = 1;
         try {
-            final Triple<String, String, ResourceLocation> key = Triple.of(getLang(), text, npc.getRegistryName());
+            final Triple<String, String, ResourceLocation> key = Triple.of(getLang(), text, resource);
             maximum = TRANSLATION_CACHE.get(key, new Callable<Integer>() {
                 @Override
                 public Integer call() throws Exception {

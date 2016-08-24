@@ -10,7 +10,6 @@
 - Fridge
     -AS Open Door, Play Sound
 - Counter
-    -S Rebalance length of chopping sounds
     -A Player Chopping
 - Harvest Goddess
     -E Particle Effect

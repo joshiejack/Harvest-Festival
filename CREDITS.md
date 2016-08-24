@@ -39,3 +39,4 @@ Smash Rock: http://www.freesound.org/people/luffy/sounds/17289/
 Smash Wood: http://www.freesound.org/people/skinhat/sounds/31168/
 Goddess Spawn: http://www.freesound.org/people/Chocobaggy/sounds/252681/
 Tool Blessing: http://www.freesound.org/people/rhodesmas/sounds/320652/
+Recipe Learnt: http://www.freesound.org/people/LittleRobotSoundFactory/sounds/270404/

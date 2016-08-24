@@ -31,7 +31,7 @@ public class HFCooking {
     public static void preInit() {
         BLADE_STACK = UTENSILS.getStackFromEnum(BLADE);
         HFApi.cooking.registerRecipeHandler(new MayoRecipeHandler());
-        registerSounds("counter", "fridge", "frying_pan", "mixer", "oven", "oven_done", "oven_door", "pot");
+        registerSounds("counter", "fridge", "frying_pan", "mixer", "oven", "oven_done", "oven_door", "pot", "recipe");
         registerTiles(TileFridge.class, TileFryingPan.class, TileCounter.class, TileMixer.class, TileOven.class, TilePot.class);
     }
 

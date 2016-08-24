@@ -136,12 +136,10 @@ public abstract class TileCooking extends TileFaceable {
 
     @Override
     public void handleUpdateTag(NBTTagCompound tag) {
-        if (!isInit) {
-            isInit = true;
-            doRenderUpdate();
-        }
-
         super.handleUpdateTag(tag);
+
+        //Updated the renderer
+        doRenderUpdate();
     }
 
     protected void doRenderUpdate() {

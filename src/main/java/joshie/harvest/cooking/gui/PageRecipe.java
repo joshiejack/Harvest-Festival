@@ -117,21 +117,24 @@ public class PageRecipe extends Page {
         //Cook Button
         GlStateManager.color(1F, 1F, 1F);
         gui.mc.getTextureManager().bindTexture(LEFT_GUI);
-        int y = mouseX >= 236 && mouseX <= 287 && mouseY >= 148 && mouseY <= 176 ? 129: 101;
+        int y = mouseX >= 236 && mouseX <= 287 && mouseY >= 148 && mouseY <= 176 ? 129 : 101;
         gui.drawTexture(236, 148, 0, y, 51, 28);
     }
 
     @Override
     public void mouseClicked(int mouseX, int mouseY) {
-        if(mouseX >= 236 && mouseX <= 287 && mouseY >= 148 && mouseY <= 176 && CookingHelper.hasAllIngredients(recipe, GuiCookbook.ingredients)) {
-            String utensil = TextFormatting.YELLOW + PageRecipeList.get(recipe.getRequiredTool()).getItem().getDisplayName() + TextFormatting.RESET;
-            String name = TextFormatting.YELLOW + recipe.getDisplayName() + TextFormatting.RESET;
-            if (CookingHelper.tryPlaceIngredients(MCClientHelper.getPlayer(), recipe)) {
-                PacketHandler.sendToServer(new PacketSelectRecipe(recipe));
-                MCClientHelper.getPlayer().closeScreen(); //Close this gui
-                ChatHelper.displayChat(TextFormatting.GREEN + Text.translate("meal.success") + TextFormatting.WHITE  + " " + Text.format("harvestfestival.meal.success.description", utensil, name));
-            } else ChatHelper.displayChat(TextFormatting.RED + Text.translate("meal.failure") + TextFormatting.WHITE +  " " + Text.format("harvestfestival.meal.failure.description", utensil, name));
-        } else ChatHelper.displayChat(TextFormatting.RED + Text.translate("meal.missing") + TextFormatting.WHITE +  " " + Text.translate("meal.missing.description"));
+        if(mouseX >= 236 && mouseX <= 287 && mouseY >= 148 && mouseY <= 176) {
+            if (CookingHelper.hasAllIngredients(recipe, GuiCookbook.ingredients)) {
+                String utensil = TextFormatting.YELLOW + PageRecipeList.get(recipe.getRequiredTool()).getItem().getDisplayName() + TextFormatting.RESET;
+                String name = TextFormatting.YELLOW + recipe.getDisplayName() + TextFormatting.RESET;
+                if (CookingHelper.tryPlaceIngredients(MCClientHelper.getPlayer(), recipe)) {
+                    PacketHandler.sendToServer(new PacketSelectRecipe(recipe));
+                    MCClientHelper.getPlayer().closeScreen(); //Close this gui
+                    ChatHelper.displayChat(TextFormatting.GREEN + Text.translate("meal.success") + TextFormatting.WHITE + " " + Text.format("harvestfestival.meal.success.description", utensil, name));
+                } else
+                    ChatHelper.displayChat(TextFormatting.RED + Text.translate("meal.failure") + TextFormatting.WHITE + " " + Text.format("harvestfestival.meal.failure.description", utensil, name));
+            } else ChatHelper.displayChat(TextFormatting.RED + Text.translate("meal.missing") + TextFormatting.WHITE +  " " + Text.translate("meal.missing.description"));
+        }
     }
 
     @Override

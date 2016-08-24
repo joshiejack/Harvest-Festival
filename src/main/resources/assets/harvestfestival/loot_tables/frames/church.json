@@ -31,8 +31,14 @@
         },
         {
           "type": "item",
-          "name": "minecraft:potionitem",
-          "weight": 1
+          "name": "minecraft:potion",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Potion:regeneration}"
+            }
+          ]
         }
       ]
     }

@@ -6,13 +6,13 @@
       "entries": [
         {
           "type": "item",
-          "entryName": "potion2",
+          "entryName": "potion1",
           "name": "minecraft:potion",
           "weight": 10,
           "functions": [
             {
-              "function": "set_data",
-              "data": 8201
+              "function": "minecraft:set_nbt",
+              "tag": "{Potion:strength}"
             }
           ]
         },
@@ -23,8 +23,8 @@
           "weight": 5,
           "functions": [
             {
-              "function": "set_data",
-              "data": 8233
+              "function": "minecraft:set_nbt",
+              "tag": "{Potion:strong_strength}"
             }
           ]
         },
@@ -35,8 +35,8 @@
           "weight": 7,
           "functions": [
             {
-              "function": "set_data",
-              "data": 8265
+              "function": "minecraft:set_nbt",
+              "tag": "{Potion:long_strength}"
             }
           ]
         }

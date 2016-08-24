@@ -1,6 +1,7 @@
 {
   "pools": [
     {
+      "name": "blacksmith",
       "rolls": 1,
       "entries": [
         {

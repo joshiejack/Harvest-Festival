@@ -7,6 +7,7 @@
         {
           "type": "item",
           "name": "harvestfestival:crops",
+          "entryName": "turnip",
           "weight": 10,
           "functions": [
             {
@@ -17,18 +18,13 @@
         },
         {
           "type": "item",
-          "name": "harvestfestival:crops",
-          "weight": 5,
-          "functions": [
-            {
-              "function": "hf_set_crop",
-              "crop": "potato"
-            }
-          ]
+          "name": "minecraft:potato",
+          "weight": 5
         },
         {
           "type": "item",
           "name": "harvestfestival:crops",
+          "entryName": "cucumber",
           "weight": 1,
           "functions": [
             {

@@ -6,6 +6,7 @@
       "entries": [
         {
           "type": "item",
+          "entryName": "potion2",
           "name": "minecraft:potion",
           "weight": 10,
           "functions": [
@@ -17,6 +18,7 @@
         },
         {
           "type": "item",
+          "entryName": "potion2",
           "name": "minecraft:potion",
           "weight": 5,
           "functions": [
@@ -29,6 +31,7 @@
         {
           "type": "item",
           "name": "minecraft:potion",
+          "entryName": "potion3",
           "weight": 7,
           "functions": [
             {

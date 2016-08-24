@@ -14,6 +14,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import static joshie.harvest.core.lib.HFModInfo.MODID;
+
 
 public class SetCropType extends LootFunction {
     private static List<Crop> cropsList;
@@ -27,7 +29,8 @@ public class SetCropType extends LootFunction {
     public ItemStack apply(ItemStack stack, Random rand, LootContext context) {
         if (crop.equals("randomCrop")) return random(true);
         if (crop.equals("randomSeed")) return random(false);
-        stack.setItemDamage(CropRegistry.REGISTRY.getId(new ResourceLocation(crop)));
+        ResourceLocation resource = crop.contains(":") ? new ResourceLocation(crop) : new ResourceLocation(MODID, crop);
+        stack.setItemDamage(CropRegistry.REGISTRY.getId(resource));
         return stack;
     }
 

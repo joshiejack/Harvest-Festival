@@ -1,6 +1,7 @@
 {
   "pools": [
     {
+      "name": "miner",
       "rolls": 1,
       "entries": [
         {

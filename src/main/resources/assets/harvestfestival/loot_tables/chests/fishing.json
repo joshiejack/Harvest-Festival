@@ -1,11 +1,13 @@
 {
   "pools": [
     {
+      "name": "fishing",
       "rolls": 1,
       "entries": [
         {
           "type": "item",
           "name": "minecraft:fish",
+          "entryName": "cod",
           "weight": 10,
           "functions": [
             {
@@ -24,6 +26,7 @@
         {
           "type": "item",
           "name": "minecraft:fish",
+          "entryName": "salmon",
           "weight": 10,
           "functions": [
             {
@@ -42,6 +45,7 @@
         {
           "type": "item",
           "name": "minecraft:fish",
+          "entryName": "pufferfish",
           "weight": 5,
           "functions": [
             {
@@ -60,6 +64,7 @@
         {
           "type": "item",
           "name": "minecraft:fish",
+          "entryName": "clownfish",
           "weight": 1,
           "functions": [
             {

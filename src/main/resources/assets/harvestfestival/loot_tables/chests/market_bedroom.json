@@ -1,6 +1,7 @@
 {
   "pools": [
     {
+      "name": "market_bedroom",
       "rolls": 1,
       "entries": [
         {

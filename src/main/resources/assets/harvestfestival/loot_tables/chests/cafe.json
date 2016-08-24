@@ -1,6 +1,7 @@
 {
   "pools": [
     {
+      "name": "cafe",
       "rolls": 1,
       "entries": [
         {
@@ -48,6 +49,7 @@
         {
           "type": "item",
           "name": "minecraft:dye",
+          "entryName": "cocoa_beans",
           "weight": 5,
           "functions": [
             {

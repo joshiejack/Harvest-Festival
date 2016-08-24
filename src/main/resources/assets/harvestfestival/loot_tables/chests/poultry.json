@@ -1,3 +1,67 @@
 {
-
+  "pools": [
+    {
+      "name": "poultry",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "harvestfestival:tool_animal",
+          "entryName": "chicken_feed",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "hf_set_enum",
+              "enum": "chicken_feed"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 8,
+                "max": 24
+              }
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:treat",
+          "entryName": "treat_generic",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "hf_set_enum",
+              "enum": "generic"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 2
+              }
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:egg",
+          "entryName": "egg_small",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "hf_set_enum",
+              "enum": "small"
+            },
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

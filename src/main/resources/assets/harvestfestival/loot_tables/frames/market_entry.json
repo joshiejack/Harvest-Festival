@@ -1,3 +1,43 @@
 {
-
+  "pools": [
+    {
+      "name": "market_entry",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "harvestfestival:crops",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "hf_set_crop",
+              "crop": "turnip"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:crops",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "hf_set_crop",
+              "crop": "potato"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "name": "harvestfestival:crops",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "hf_set_crop",
+              "crop": "cucumber"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

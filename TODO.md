@@ -34,9 +34,7 @@
 ## Tedium
 - Add Extra Chat Messages, and Conversations for all NPCs
 - Register HFItems as gift types
-- Loot Table JSON
-- See https://github.com/joshiejack/Harvest-Festival/blob/4fc81be862b9686cf00a3b8b1d262a8b7106aaaf/src/main/java/joshie/harvest/core/lib/LootStrings.java
-- See https://github.com/joshiejack/Harvest-Festival/blob/4fc81be862b9686cf00a3b8b1d262a8b7106aaaf/src/main/java/joshie/harvest/buildings/loader/HFBuildings.java#L51
+- Loot Table: Chest amount of rolls
 
 ## Jewels & Jewel Rock
 #Coding

@@ -7,16 +7,7 @@
         {
           "type": "item",
           "name": "minecraft:writable_book",
-          "weight": 10,
-          "functions": [
-            {
-              "function": "set_count",
-              "count": {
-                "min": 1,
-                "max": 3
-              }
-            }
-          ]
+          "weight": 10
         },
         {
           "type": "item",
@@ -32,29 +23,13 @@
             {
               "function": "set_data",
               "data": 0
-            },
-            {
-              "function": "set_count",
-              "count": {
-                "min": 3,
-                "max": 9
-              }
             }
           ]
         },
         {
           "type": "item",
           "name": "minecraft:emerald",
-          "weight": 3,
-          "functions": [
-            {
-              "function": "set_count",
-              "count": {
-                "min": 1,
-                "max": 3
-              }
-            }
-          ]
+          "weight": 3
         }
       ]
     }

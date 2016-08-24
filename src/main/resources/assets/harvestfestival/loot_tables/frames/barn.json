@@ -7,30 +7,12 @@
         {
           "type": "item",
           "name": "minecraft:wheat",
-          "weight": 10,
-          "functions": [
-            {
-              "function": "set_count",
-              "count": {
-                "min": 3,
-                "max": 7
-              }
-            }
-          ]
+          "weight": 10
         },
         {
           "type": "item",
           "name": "minecraft:carrot",
-          "weight": 10,
-          "functions": [
-            {
-              "function": "set_count",
-              "count": {
-                "min": 3,
-                "max": 7
-              }
-            }
-          ]
+          "weight": 10
         },
         {
           "type": "item",
@@ -71,13 +53,6 @@
           "name": "harvestfestival:crops",
           "weight": 6,
           "functions": [
-            {
-              "function": "set_count",
-              "count": {
-                "min": 4,
-                "max": 9
-              }
-            },
             {
               "function": "hf_set_crop",
               "crop": "grass"

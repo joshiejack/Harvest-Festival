@@ -7,30 +7,12 @@
         {
           "type": "item",
           "name": "minecraft:paper",
-          "weight": 15,
-          "functions": [
-            {
-              "function": "set_count",
-              "count": {
-                "min": 2,
-                "max": 5
-              }
-            }
-          ]
+          "weight": 15
         },
         {
           "type": "item",
           "name": "minecraft:sign",
-          "weight": 15,
-          "functions": [
-            {
-              "function": "set_count",
-              "count": {
-                "min": 2,
-                "max": 5
-              }
-            }
-          ]
+          "weight": 15
         }
       ]
     }

@@ -2,7 +2,7 @@
   "pools": [
     {
       "name": "carpenter_jade",
-      "rolls": 1,
+      "rolls": 7,
       "entries": [
         {
           "type": "item",

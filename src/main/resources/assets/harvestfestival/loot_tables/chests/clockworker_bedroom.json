@@ -2,7 +2,7 @@
   "pools": [
     {
       "name": "clockworker_bedroom",
-      "rolls": 1,
+      "rolls": 3,
       "entries": [
         {
           "type": "item",

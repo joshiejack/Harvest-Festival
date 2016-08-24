@@ -2,7 +2,7 @@
   "pools": [
     {
       "name": "fishing",
-      "rolls": 1,
+      "rolls": 11,
       "entries": [
         {
           "type": "item",

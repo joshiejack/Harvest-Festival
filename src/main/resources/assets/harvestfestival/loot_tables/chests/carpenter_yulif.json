@@ -2,7 +2,7 @@
   "pools": [
     {
       "name": "carpenter_yulif",
-      "rolls": 1,
+      "rolls": 5,
       "entries": [
         {
           "type": "item",

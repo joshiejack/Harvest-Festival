@@ -2,7 +2,7 @@
   "pools": [
     {
       "name": "market_basement",
-      "rolls": 1,
+      "rolls": 7,
       "entries": [
         {
           "type": "item",

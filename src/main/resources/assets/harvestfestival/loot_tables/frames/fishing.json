@@ -16,7 +16,7 @@
         },
         {
           "type": "item",
-          "name": "minecraft:potionitem",
+          "name": "minecraft:potion",
           "weight": 1,
           "functions": [
             {

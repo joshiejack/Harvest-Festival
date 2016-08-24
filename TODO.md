@@ -34,7 +34,6 @@
 ## Tedium
 - Add Extra Chat Messages, and Conversations for all NPCs
 - Register HFItems as gift types
-- Loot Table: Chest amount of rolls
 
 ## Jewels & Jewel Rock
 #Coding

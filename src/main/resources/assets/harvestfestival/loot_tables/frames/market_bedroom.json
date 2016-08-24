@@ -18,29 +18,14 @@
             {
               "function": "set_data",
               "data": 0
-            },
-            {
-              "function": "set_count",
-              "count": {
-                "min": 2,
-                "max": 3
-              }
+            }
             }
           ]
         },
         {
           "type": "item",
           "name": "minecraft:paper",
-          "weight": 5,
-          "functions": [
-            {
-              "function": "set_count",
-              "count": {
-                "min": 2,
-                "max": 3
-              }
-            }
-          ]
+          "weight": 5
         }
       ]
     }

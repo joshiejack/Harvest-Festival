@@ -2,7 +2,7 @@
   "pools": [
     {
       "name": "poultry",
-      "rolls": 1,
+      "rolls": 2,
       "entries": [
         {
           "type": "item",

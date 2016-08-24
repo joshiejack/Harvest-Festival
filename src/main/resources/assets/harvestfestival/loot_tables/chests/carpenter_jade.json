@@ -34,7 +34,7 @@
         },
         {
           "type": "item",
-          "name": "red_flower:dye",
+          "name": "red_flower",
           "weight": 15,
           "functions": [
             {
@@ -48,7 +48,7 @@
         },
         {
           "type": "item",
-          "name": "yellow_flower:dye",
+          "name": "yellow_flower",
           "weight": 10,
           "functions": [
             {

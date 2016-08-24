@@ -76,15 +76,6 @@ public class HFBuildings {
     }
 
     public static void postInit() {
-        //Barn Frame
-        /*ChestGenHooks.addItem(LootStrings.BARN_FRAME, new WeightedRandomChestContent(new ItemStack(Items.WHEAT), 3, 7, 10));
-        ChestGenHooks.addItem(LootStrings.BARN_FRAME, new WeightedRandomChestContent(new ItemStack(Items.CARROT), 3, 7, 10));
-        ChestGenHooks.addItem(LootStrings.BARN_FRAME, new WeightedRandomChestContent(new ItemStack(Items.LEAD), 1, 1, 8));
-        ChestGenHooks.addItem(LootStrings.BARN_FRAME, new WeightedRandomChestContent(new ItemStack(Items.CARROT_ON_A_STICK), 1, 1, 1));
-        ChestGenHooks.addItem(LootStrings.BARN_FRAME, new WeightedRandomChestContent(new ItemStack(HFItems.general, 1, ItemGeneral.BRUSH), 1, 1, 3));
-        ChestGenHooks.addItem(LootStrings.BARN_FRAME, new WeightedRandomChestContent(new ItemStack(HFItems.general, 1, ItemGeneral.MEDICINE), 1, 3, 1));
-        ChestGenHooks.addItem(LootStrings.BARN_FRAME, new WeightedRandomChestContent(HFCrops.grass.getCropStack(), 4, 9, 6));*/
-
         //Blacksmith Frame
         /*ChestGenHooks.addItem(LootStrings.BLACKSMITH_FRAME, new WeightedRandomChestContent(new ItemStack(Items.IRON_AXE), 1, 1, 10));
         ChestGenHooks.addItem(LootStrings.BLACKSMITH_FRAME, new WeightedRandomChestContent(new ItemStack(Items.IRON_SWORD), 1, 1, 3));

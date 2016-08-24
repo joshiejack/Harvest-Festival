@@ -1,7 +1,3 @@
-## Recipe Rewrite
-- Select a recipe in the recipe book
-- Have all the items required in your inventory and automatically get placed in utensils
-
 ##(S)ounds, (E)ffects, (A)nimations
 - Pot
     -E Bubbles
@@ -9,12 +5,11 @@
     -AS Open Door when placing stuff in, Play sound
 - Fridge
     -AS Open Door, Play Sound
-- Counter
-    -A Player Chopping
 - Harvest Goddess
     -E Particle Effect
 
 ### Textures
+- Kitchen Knife (Looks good when right clicking)
 - New Textures for the following NPCS
     - Jeimmi the Mayor                  (For some reason based on my brother, even those she's an older lady)
     - Johan the Trader                  (Based on Girafi)

@@ -94,6 +94,14 @@ harvestfestival.recipe.format=%s Recipe
 harvestfestival.recipe.invalid=Junk Recipe
 
 #Meals
+harvestfestival.meal.missing=Impossible!
+harvestfestival.meal.missing.description=You are still missing some ingredients
+harvestfestival.meal.success=Success!
+harvestfestival.meal.success.description=We found "%s", now placing the ingredients in order to make "%s"
+harvestfestival.meal.failure=Failed!
+harvestfestival.meal.failure.description=We could not find a "%s" to place the ingredients for "%s"
+harvestfestival.meal.description=Description:
+harvestfestival.meal.recipe=Recipe
 harvestfestival.meal.hunger=Restores
 harvestfestival.meal.sat=Fills
 harvestfestival.meal.exhaust=Exhausts
@@ -170,6 +178,7 @@ harvestfestival.ingredient.chocolate=Chocolate
 
 #Utensils
 harvestfestival.utensil.blade=Mixer Blade
+harvestfestival.utensil.knife=Kitchen Knife
 
 #Sizeables
 harvestfestival.sizeable.format=%S %P

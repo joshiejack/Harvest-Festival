@@ -32,8 +32,10 @@ import static joshie.harvest.animals.item.ItemAnimalTool.Tool.*;
 import static joshie.harvest.api.calendar.Weekday.*;
 import static joshie.harvest.cooking.HFCooking.COOKBOOK;
 import static joshie.harvest.cooking.HFCooking.COOKWARE;
+import static joshie.harvest.cooking.HFCooking.UTENSILS;
 import static joshie.harvest.cooking.blocks.BlockCookware.Cookware.*;
 import static joshie.harvest.cooking.items.ItemIngredients.Ingredient.*;
+import static joshie.harvest.cooking.items.ItemUtensil.Utensil.KNIFE;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.npc.items.ItemNPCTool.NPCTool.BLUE_FEATHER;
 
@@ -97,7 +99,8 @@ public class HFShops {
         CAFE.addItem(250, HFApi.cooking.getMeal("corn_baked"));
 
         //Allow the purchasing of cookware at the weekends
-        CAFE.addItem(new PurchaseableWeekend(50, new ItemStack(COOKBOOK)));
+        CAFE.addItem(new PurchaseableWeekend(25, new ItemStack(COOKBOOK)));
+        CAFE.addItem(new PurchaseableWeekend(50, UTENSILS.getStackFromEnum(KNIFE)));
         CAFE.addItem(new PurchaseableWeekend(250, COOKWARE.getStackFromEnum(COUNTER)));
         CAFE.addItem(new PurchaseableWeekend(3000, COOKWARE.getStackFromEnum(FRIDGE)));
         CAFE.addItem(new PurchaseableWeekend(2500, COOKWARE.getStackFromEnum(OVEN_OFF)));

@@ -1,9 +1,15 @@
 package joshie.harvest.cooking.gui;
 
 import joshie.harvest.api.cooking.ICookingIngredient;
+import joshie.harvest.cooking.CookingHelper;
 import joshie.harvest.cooking.FoodRegistry;
 import joshie.harvest.cooking.Recipe;
 import joshie.harvest.cooking.Utensil;
+import joshie.harvest.cooking.packets.PacketSelectRecipe;
+import joshie.harvest.core.helpers.ChatHelper;
+import joshie.harvest.core.helpers.generic.MCClientHelper;
+import joshie.harvest.core.network.PacketHandler;
+import joshie.harvest.core.util.Text;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -14,6 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import static joshie.harvest.cooking.gui.GuiCookbook.LEFT_GUI;
+import static joshie.harvest.cooking.gui.GuiCookbook.ingredients;
 
 public class PageRecipe extends Page {
     private static final HashMap<Recipe, PageRecipe> recipeMap = new HashMap<>();
@@ -30,10 +37,12 @@ public class PageRecipe extends Page {
     private final Recipe recipe;
     private final List<CyclingStack> list = new ArrayList<>();
     private final ItemStack stack;
+    private final String description;
 
     public PageRecipe(Recipe recipe) {
         this.recipe = recipe;
         this.stack = recipe.cook(recipe.getMeal());
+        this.description = recipe.getRegistryName().getResourceDomain() + ".meal." + recipe.getRegistryName().getResourcePath() + ".description";
     }
 
     @Override
@@ -73,7 +82,7 @@ public class PageRecipe extends Page {
         gui.drawString(left, 20, TextFormatting.BOLD + "" + TextFormatting.UNDERLINE + getRecipeName());
         gui.drawBox(25, 30, 110, 1, 0xFFB0A483);
         gui.drawBox(26, 31, 110, 1, 0xFF9C8C63);
-        gui.drawString(60, 35, TextFormatting.BOLD + "Hunger");
+        gui.drawString(60, 35, TextFormatting.BOLD + Text.translate("meal.hunger"));
         gui.mc.getTextureManager().bindTexture(new ResourceLocation("textures/gui/icons.png"));
         int hunger = stack.getTagCompound().getInteger("FoodLevel");
         GlStateManager.color(1F, 1F, 1F);
@@ -91,23 +100,38 @@ public class PageRecipe extends Page {
 
         gui.drawBox(25, 60, 110, 1, 0xFFB0A483);
         gui.drawBox(26, 61, 110, 1, 0xFF9C8C63);
-        gui.drawString(25, 65, TextFormatting.BOLD + "" + TextFormatting.UNDERLINE + "Description:");
-        gui.drawString(25, 78, "");
+        gui.drawString(25, 65, TextFormatting.BOLD + "" + TextFormatting.UNDERLINE + Text.translate("meal.description"));
+        gui.drawString(25, 78, Text.localize(description));
         gui.drawStack(22, 30, getItem(), 2F);
         //Bottom
+
         GlStateManager.enableAlpha();
         //Right Page
-        gui.drawString(190, 20, TextFormatting.BOLD + "" + TextFormatting.UNDERLINE + "Recipe");
+        gui.drawString(190, 20, TextFormatting.BOLD + "" + TextFormatting.UNDERLINE + Text.translate("meal.recipe"));
         gui.drawBox(170, 30, 110, 1, 0xFFB0A483);
         gui.drawBox(171, 31, 110, 1, 0xFF9C8C63);
         for (CyclingStack cycling: list) {
             cycling.render(gui);
         }
+
+        //Cook Button
+        GlStateManager.color(1F, 1F, 1F);
+        gui.mc.getTextureManager().bindTexture(LEFT_GUI);
+        int y = mouseX >= 236 && mouseX <= 287 && mouseY >= 148 && mouseY <= 176 ? 129: 101;
+        gui.drawTexture(236, 148, 0, y, 51, 28);
     }
 
     @Override
     public void mouseClicked(int mouseX, int mouseY) {
-
+        if(mouseX >= 236 && mouseX <= 287 && mouseY >= 148 && mouseY <= 176 && CookingHelper.hasAllIngredients(recipe, GuiCookbook.ingredients)) {
+            String utensil = TextFormatting.YELLOW + PageRecipeList.get(recipe.getRequiredTool()).getItem().getDisplayName() + TextFormatting.RESET;
+            String name = TextFormatting.YELLOW + recipe.getDisplayName() + TextFormatting.RESET;
+            if (CookingHelper.tryPlaceIngredients(MCClientHelper.getPlayer(), recipe)) {
+                PacketHandler.sendToServer(new PacketSelectRecipe(recipe));
+                MCClientHelper.getPlayer().closeScreen(); //Close this gui
+                ChatHelper.displayChat(TextFormatting.GREEN + Text.translate("meal.success") + TextFormatting.WHITE  + " " + Text.format("harvestfestival.meal.success.description", utensil, name));
+            } else ChatHelper.displayChat(TextFormatting.RED + Text.translate("meal.failure") + TextFormatting.WHITE +  " " + Text.format("harvestfestival.meal.failure.description", utensil, name));
+        } else ChatHelper.displayChat(TextFormatting.RED + Text.translate("meal.missing") + TextFormatting.WHITE +  " " + Text.translate("meal.missing.description"));
     }
 
     @Override
@@ -121,14 +145,6 @@ public class PageRecipe extends Page {
     @Override
     public int hashCode() {
         return recipe != null ? recipe.hashCode() : 0;
-    }
-
-    public static boolean hasIngredientInInventory(ICookingIngredient ingredient) {
-        for (ICookingIngredient inInventory: GuiCookbook.ingredients) {
-            if (ingredient.isEqual(inInventory)) return true;
-        }
-
-        return false;
     }
 
     public static class CyclingStack {
@@ -161,7 +177,7 @@ public class PageRecipe extends Page {
                 }
 
                 gui.drawStack(x, y, stack, 1F);
-                boolean isInInventory = hasIngredientInInventory(ingredient);
+                boolean isInInventory = CookingHelper.hasIngredientInInventory(ingredients, ingredient);
                 TextFormatting formatting = isInInventory ? TextFormatting.DARK_GREEN : TextFormatting.RED;
                 gui.drawString(x + 20, y + 6, formatting + stack.getDisplayName());
                 GlStateManager.disableDepth();

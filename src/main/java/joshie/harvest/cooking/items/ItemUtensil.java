@@ -5,9 +5,11 @@ import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.ItemHFEnum;
 import net.minecraft.util.IStringSerializable;
 
+import static joshie.harvest.cooking.items.ItemUtensil.Utensil.KNIFE;
+
 public class ItemUtensil extends ItemHFEnum<ItemUtensil, Utensil> {
     public enum Utensil implements IStringSerializable {
-        BLADE;
+        BLADE, KNIFE;
 
         @Override
         public String getName() {
@@ -21,6 +23,6 @@ public class ItemUtensil extends ItemHFEnum<ItemUtensil, Utensil> {
 
     @Override
     public boolean shouldDisplayInCreative(Utensil ingredient) {
-        return false;
+        return ingredient == KNIFE;
     }
 }

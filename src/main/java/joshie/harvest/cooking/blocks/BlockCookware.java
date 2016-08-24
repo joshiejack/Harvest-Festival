@@ -6,6 +6,7 @@ import joshie.harvest.cooking.blocks.BlockCookware.Cookware;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.BlockHFEnumRotatableTile;
 import joshie.harvest.core.handlers.GuiHandler;
+import joshie.harvest.core.helpers.ToolHelper;
 import joshie.harvest.core.helpers.generic.ItemHelper;
 import joshie.harvest.core.util.IFaceable;
 import net.minecraft.block.SoundType;
@@ -100,28 +101,19 @@ public class BlockCookware extends BlockHFEnumRotatableTile<BlockCookware, Cookw
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack held, EnumFacing side, float hitX, float hitY, float hitZ) {
         Cookware cookware = getEnumFromState(state);
         if (player.isSneaking()) return false;
         else if (cookware == FRIDGE || cookware == FRIDGE_TOP) {
             int y = cookware == FRIDGE_TOP ? pos.getY() - 1 : pos.getY();
             player.openGui(HarvestFestival.instance, GuiHandler.FRIDGE, world, pos.getX(), y, pos.getZ());
             return true;
-        } else if (cookware == COUNTER) {
-            ItemStack held = player.getHeldItem(hand);
-            TileEntity tile;
-            if (cookware == COUNTER) tile = world.getTileEntity(pos);
-            else tile = world.getTileEntity(pos.down());
-            if (!(tile instanceof TileCounter)) return false;
-            if (held == null) {
-                ((TileCooking) tile).update();
-            }
         }
 
+        //Cooking System
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof TileCooking) {
             TileCooking cooking = (TileCooking) tile;
-            ItemStack held = player.getHeldItem(hand);
             if (!cooking.canAddItems()) {
                 if (!player.inventory.addItemStackToInventory(cooking.getResult())) {
                     if (!world.isRemote) {
@@ -131,13 +123,25 @@ public class BlockCookware extends BlockHFEnumRotatableTile<BlockCookware, Cookw
 
                 cooking.clear();
                 return true;
-            } else if (held != null && !isCookware(held)) {
-                if (cooking.addIngredient(held)) {
-                    if (!player.capabilities.isCreativeMode) {
-                        player.inventory.decrStackSize(player.inventory.currentItem, 1);
+            }  else if (held != null) {
+                if (ToolHelper.isKnife(held)) {
+                    if (cookware == COUNTER || world.getTileEntity(pos.down()) instanceof TileCounter) {
+                        cooking = cookware == COUNTER ? cooking : (TileCooking) world.getTileEntity(pos.down());
+                        if (cooking != null) {
+                            cooking.update(); //Activate
+                            return true;
+                        }
                     }
 
-                    return true;
+                    return false;
+                } else if (!isCookware(held)) {
+                    if (cooking.addIngredient(held)) {
+                        if (!player.capabilities.isCreativeMode) {
+                            player.inventory.decrStackSize(player.inventory.currentItem, 1);
+                        }
+
+                        return true;
+                    }
                 }
             }
         }

@@ -5,6 +5,7 @@
     "model": "forge:item-layer"
   },
   "variants": {
-    "blade": [{ "textures": { "layer0": "harvestfestival:items/blade" }}]
+    "blade": [{ "textures": { "layer0": "harvestfestival:items/blade" }}],
+    "knife": [{ "textures": { "layer0": "harvestfestival:items/knife" }}]
   }
 }

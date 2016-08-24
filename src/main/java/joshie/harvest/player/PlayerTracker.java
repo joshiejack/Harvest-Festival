@@ -10,14 +10,9 @@ import java.util.UUID;
 
 public abstract class PlayerTracker {
     public abstract EntityPlayer getAndCreatePlayer();
-
     public abstract UUID getUUID();
-
     public abstract QuestData getQuests();
-
     public abstract RelationshipData getRelationships();
-
     public abstract Stats getStats();
-
     public abstract Tracking getTracking();
 }

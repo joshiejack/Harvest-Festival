@@ -54,12 +54,16 @@ public class GuiCookbook extends GuiScreen {
         if (page.getUtensil() != null) {
             //Draw the background buttons
             GlStateManager.color(1F, 1F, 1F);
+            boolean hoverX = mouseX >= 307 && mouseX <= 333;
             for (int i = 0; i < Utensil.values().length; i++) {
                 Utensil tool = Utensil.values()[i];
-                mc.getTextureManager().bindTexture(LEFT_GUI);
-                int theY = page.getUtensil() == tool ? 66: 0;
-                drawTexture(308, 16 + i * 36, 0, theY, 26, 34);
-                drawStack(308, 25 + i * 36, PageRecipeList.get(tool).getItem(), 1F);
+                if (PageRecipeList.get(tool).hasRecipes()) {
+                    mc.getTextureManager().bindTexture(LEFT_GUI);
+                    boolean hoverY = mouseY >= 16 + i * 36 && mouseY <= 50 + i * 36;
+                    int theY = page.getUtensil() == tool ? 66 : hoverX && hoverY ? 33: 0;
+                    drawTexture(308, 16 + i * 36, 0, theY, 26, 34);
+                    drawStack(308, 25 + i * 36, PageRecipeList.get(tool).getItem(), 1F);
+                }
             }
         }
 
@@ -78,6 +82,21 @@ public class GuiCookbook extends GuiScreen {
         int mouseX = x -centreX;
         int mouseY = y - centreY;
         page.mouseClicked(mouseX, mouseY);
+        //Draw the utensil buttons
+        if (page.getUtensil() != null) {
+            boolean hoverX = mouseX >= 307 && mouseX <= 333;
+            for (int i = 0; i < Utensil.values().length; i++) {
+                Utensil tool = Utensil.values()[i];
+                if (PageRecipeList.get(tool).hasRecipes()) {
+                    boolean hoverY = mouseY >= 16 + i * 36 && mouseY <= 50 + i * 36;
+                    if (hoverX && hoverY) {
+                        setPage(PageRecipeList.get(tool));
+                    }
+                }
+            }
+        }
+
+
         if (page.getOwner() != page && mouseX >= 24 && mouseX <= 39 && mouseY >= 168 && mouseY <= 178) {
             setPage(page.getOwner());
         }

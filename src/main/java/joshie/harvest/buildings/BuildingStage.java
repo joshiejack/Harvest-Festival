@@ -43,12 +43,12 @@ public class BuildingStage {
     public void build(World world) {
         if (index >= building.getFullList().size()) {
             if (stage == ConstructionStage.BUILD) {
-                stage = ConstructionStage.DECORATE;
-                index = 0;
-            } else if (stage == ConstructionStage.DECORATE) {
                 stage = ConstructionStage.PAINT;
                 index = 0;
             } else if (stage == ConstructionStage.PAINT) {
+                stage = ConstructionStage.DECORATE;
+                index = 0;
+            } else if (stage == ConstructionStage.DECORATE) {
                 stage = ConstructionStage.MOVEIN;
                 index = 0;
             } else if (stage == ConstructionStage.MOVEIN) {

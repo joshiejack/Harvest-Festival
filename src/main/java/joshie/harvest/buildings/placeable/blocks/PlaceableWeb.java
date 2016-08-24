@@ -12,7 +12,7 @@ public class PlaceableWeb extends PlaceableDecorative {
     }
 
     @Override
-    public boolean prePlace (World world, BlockPos pos, Direction direction) {
-        return world.rand.nextInt() == 3 && super.prePlace(world, pos, direction);
+    public void postPlace (World world, BlockPos pos, Direction direction) {
+        if (world.rand.nextInt(3) != 0) world.setBlockToAir(pos);
     }
 }

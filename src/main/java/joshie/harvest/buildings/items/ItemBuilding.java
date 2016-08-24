@@ -19,6 +19,8 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
+import static joshie.harvest.core.HFCore.DEBUG_MODE;
+
 public class ItemBuilding extends ItemHFFML<ItemBuilding, Building> implements ICreativeSorted {
     public ItemBuilding() {
         super(BuildingRegistry.REGISTRY, HFTab.TOWN);
@@ -27,7 +29,7 @@ public class ItemBuilding extends ItemHFFML<ItemBuilding, Building> implements I
     @Override
     public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
         Building building = getObjectFromStack(stack);
-        if (world.provider.getDimension() == 0 && building != null && (building.canHaveMultiple() || !TownHelper.getClosestTownToPlayer(player).hasBuilding(building.getRegistryName()))) {
+        if (world.provider.getDimension() == 0 && building != null && (DEBUG_MODE || building.canHaveMultiple() || !TownHelper.getClosestTownToPlayer(player).hasBuilding(building.getRegistryName()))) {
             RayTraceResult raytrace = BuildingHelper.rayTrace(player, 128, 0F);
             if (raytrace == null || raytrace.getBlockPos() == null || raytrace.sideHit != EnumFacing.UP) {
                 return new ActionResult(EnumActionResult.PASS, stack);

@@ -57,4 +57,7 @@ public interface IShop {
     /** Make sure you only call this on the client **/
     @SideOnly(Side.CLIENT)
     IShop setGuiOverlay(IShopGuiOverlay overlay);
+
+    /** Returns the localized name of the shop **/
+    String getLocalizedName();
 }

@@ -7,7 +7,6 @@ import joshie.harvest.api.shops.IShopGuiOverlay;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.CalendarHelper;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
-import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.Text;
 import joshie.harvest.shops.purchaseable.Purchaseable;
 import net.minecraft.client.Minecraft;
@@ -26,16 +25,19 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import static joshie.harvest.core.lib.HFModInfo.MODID;
+
 public class Shop implements IShop {
-    public static final List<IPurchaseable> registers = new ArrayList<IPurchaseable>();
-    private List<IPurchaseable> contents = new ArrayList<IPurchaseable>();
-    private List<String> greetings = new ArrayList<String>();
-    private HashMap<EnumDifficulty, OpeningSettings> open = new HashMap<EnumDifficulty, OpeningSettings>();
+    public static final List<IPurchaseable> registers = new ArrayList<>();
+    private List<IPurchaseable> contents = new ArrayList<>();
+    private List<String> greetings = new ArrayList<>();
+    private HashMap<EnumDifficulty, OpeningSettings> open = new HashMap<>();
+    private final String name;
     private int last;
 
     public Shop(String name) {
         for (int i = 1; i < 32; i++) {
-            String key = HFModInfo.MODID + ".shop." + name + ".greeting" + i;
+            String key = MODID + ".shop." + name + ".greeting" + i;
             String greeting = Text.localize(key);
             if (!greeting.equals(key)) {
                 greetings.add(greeting);
@@ -43,6 +45,12 @@ public class Shop implements IShop {
         }
 
         Collections.shuffle(greetings);
+        this.name = MODID + ".shop." + name;
+    }
+
+    @Override
+    public String getLocalizedName() {
+        return Text.localize(name);
     }
 
     @SideOnly(Side.CLIENT)
@@ -57,10 +65,6 @@ public class Shop implements IShop {
     @SideOnly(Side.CLIENT)
     @Override
     public IShopGuiOverlay getGuiOverlay() {
-        if (overlay == null) {
-            overlay = new ShopGui(0);
-        }
-
         return overlay;
     }
 
@@ -68,11 +72,11 @@ public class Shop implements IShop {
      * Returns the location of the shops name
      **/
     public ResourceLocation getResource() {
-        ResourceLocation shop_texture = new ResourceLocation(HFModInfo.MODID + ":lang/" + FMLCommonHandler.instance().getCurrentLanguage() + "/shops.png");
+        ResourceLocation shop_texture = new ResourceLocation(MODID + ":lang/" + FMLCommonHandler.instance().getCurrentLanguage() + "/shops.png");
         try {
             MCClientHelper.getMinecraft().renderEngine.getTexture(shop_texture).loadTexture(Minecraft.getMinecraft().getResourceManager());
         } catch (Exception e) {
-            shop_texture = new ResourceLocation(HFModInfo.MODID + ":lang/en_US/shops.png");
+            shop_texture = new ResourceLocation(MODID + ":lang/en_US/shops.png");
         }
 
         return shop_texture;

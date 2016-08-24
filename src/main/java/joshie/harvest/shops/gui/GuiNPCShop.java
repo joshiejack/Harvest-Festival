@@ -7,16 +7,18 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.StackHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.network.PacketHandler;
-import joshie.harvest.shops.packets.PacketPurchaseItem;
+import joshie.harvest.core.util.ShopFontRenderer;
 import joshie.harvest.npc.entity.AbstractEntityNPC;
 import joshie.harvest.npc.gui.GuiNPCBase;
 import joshie.harvest.player.stats.StatsClient;
+import joshie.harvest.shops.packets.PacketPurchaseItem;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,12 +29,13 @@ public class GuiNPCShop extends GuiNPCBase {
     protected StatsClient stats;
     protected List<IPurchaseable> contents;
     protected IShopGuiOverlay overlay;
+    protected IShop shop;
     protected int start;
 
     public GuiNPCShop(AbstractEntityNPC npc, EntityPlayer player) {
         super(npc, player, -1);
 
-        IShop shop = npc.getNPC().getShop();
+        shop = npc.getNPC().getShop();
         if (shop == null || !shop.isOpen(player.worldObj, player)) player.closeScreen();
         overlay = shop.getGuiOverlay();
         contents = shop.getContents(player);
@@ -51,7 +54,8 @@ public class GuiNPCShop extends GuiNPCBase {
         GlStateManager.enableBlend();
         mc.renderEngine.bindTexture(gui_texture);
         drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
-        overlay.renderOverlay(this, x, y, xSize, ySize);
+        if (overlay != null) overlay.renderOverlay(this, x, y, xSize, ySize);
+        ShopFontRenderer.render(this, x + 20, y + 16, shop.getLocalizedName(), false);
         drawCoinage(x, y, stats.getGold());
         drawShelves(x, y);
         mc.renderEngine.bindTexture(shelve_texture);
@@ -117,25 +121,13 @@ public class GuiNPCShop extends GuiNPCBase {
         }
     }
 
+    private static DecimalFormat formatter = new DecimalFormat("#,###");
+
     private void drawCoinage(int x, int y, long gold) {
         mc.renderEngine.bindTexture(number_texture);
         int width = 0;
-        int pos = 0;
-        char[] digits = String.valueOf(gold).toCharArray();
-        for (int i = (digits.length - 1); i >= 0; i--) {
-            Number num;
-            if (pos == 3) {
-                pos = -1;
-                num = Number.COMMA;
-                i++;
-            } else num = Number.values()[Character.getNumericValue(digits[i])];
-
-            width += num.getWidth();
-            drawTexturedModalRect((x + 230) - width, y + 16, num.getX(), 232, num.getWidth(), 12);
-
-            pos++;
-        }
-
+        String formatted = String.valueOf(formatter.format(gold));
+        ShopFontRenderer.render(this, x + 210, y + 16, formatted, true);
         GlStateManager.disableDepth();
         mc.renderEngine.bindTexture(HFModInfo.elements);
         mc.ingameGUI.drawTexturedModalRect((x + 230) - width - 15, y + 15, 244, 0, 12, 12);
@@ -210,25 +202,5 @@ public class GuiNPCShop extends GuiNPCBase {
 
     public int getMax() {
         return 10;
-    }
-
-    private enum Number {
-        ZERO(1, 9), ONE(11, 7), TWO(19, 9), THREE(29, 8), FOUR(38, 9), FIVE(48, 8), SIX(57, 9), SEVEN(67, 8), EIGHT(76, 8), NINE(85, 9), COMMA(95, 4);
-
-        private final int xStart;
-        private final int width;
-
-        Number(int x, int w) {
-            this.xStart = x;
-            this.width = w;
-        }
-
-        public int getX() {
-            return xStart;
-        }
-
-        public int getWidth() {
-            return width;
-        }
     }
 }

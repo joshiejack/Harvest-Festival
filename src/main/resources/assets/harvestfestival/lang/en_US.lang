@@ -576,6 +576,7 @@ harvestfestival.npc.girafi.greeting5=Hallo, hoe goes it?
 
 ###Shop greetings
 #General Store
+harvestfestival.shop.general=General Store
 harvestfestival.shop.general.greeting1=Welcome to the General Store, how may I help you?
 harvestfestival.shop.general.greeting2=We're always in stock, can I help?
 harvestfestival.shop.general.greeting3=This store is the best in town! What do you need?
@@ -584,16 +585,34 @@ harvestfestival.shop.general.options.shop=@Shop
 harvestfestival.shop.general.options.chat=@Chat
 
 #Poultry Farm
+harvestfestival.shop.poultry=Poultry Farm
 harvestfestival.shop.poultry.greeting1=Chickens provide essentials for us, what can I help you with?
 harvestfestival.shop.poultry.greeting2=The Poultry Farm has been here for 300 years, what do you desire?
 
 #Cafe
+harvestfestival.shop.cafe=Café
 harvestfestival.shop.cafe.greeting1=Food come and get it! Yes?
 harvestfestival.shop.cafe.greeting2=Serving it all up, welcome!
 
 #Animal Ranch
+harvestfestival.shop.barn=Animal Ranch
 harvestfestival.shop.barn.greeting1=We don't just sell animals, we sell em strong!
 harvestfestival.shop.barn.greeting2=Welcome to the ranch, do you need anything?
+
+#Blacksmith
+harvestfestival.shop.blacksmith=Blacksmith
+harvestfestival.shop.blacksmith.greeting1=Come one and all and see my wares!
+harvestfestival.shop.blacksmith.greeting2=Always happy to sell you some fine tools.
+
+#Carpenter
+harvestfestival.shop.carpenter=Carpenter
+harvestfestival.shop.carpenter.greeting1=Looking for a new building, let me help you.
+harvestfestival.shop.carpenter.greeting2=I've got the best blueprints around.
+
+#Carpenter
+harvestfestival.shop.miner=Miners' Wares
+harvestfestival.shop.miner.greeting1=I've got some rare materials right here!
+harvestfestival.shop.miner.greeting2=Come and get your rare gems!
 
 #Miscellaneous
 harvestfestival.marriage=Gift for Marriage

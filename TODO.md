@@ -1,6 +1,5 @@
 ### Fixes
 - Fix Building render building sometimes messing up
-- Fix Miner shop gui
 
 ## Recipe Rewrite
 - Select a recipe in the recipe book

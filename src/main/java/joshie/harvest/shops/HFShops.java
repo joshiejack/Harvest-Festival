@@ -25,8 +25,6 @@ import joshie.harvest.tools.HFTools;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import static joshie.harvest.animals.item.ItemAnimalSpawner.Spawner.*;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.*;
@@ -164,17 +162,5 @@ public class HFShops {
 
         MINER.addOpening(MONDAY, 11000, 16000).addOpening(TUESDAY, 11000, 16000).addOpening(WEDNESDAY, 11000, 16000); //You decide what time it will be open yoshie
         MINER.addOpening(THURSDAY, 11000, 16000).addOpening(FRIDAY, 11000, 16000).addOpening(SATURDAY, 11000, 16000);
-    }
-
-
-    @SideOnly(Side.CLIENT)
-    public static void initClient() {
-        BARN.setGuiOverlay(new ShopGui(67));
-        BLACKSMITH.setGuiOverlay(new ShopGui(132));
-        CAFE.setGuiOverlay(new ShopGui(100));
-        CARPENTER.setGuiOverlay(new ShopGui(199));
-        SUPERMARKET.setGuiOverlay(new ShopGui(166));
-        POULTRY.setGuiOverlay(new ShopGui(34));
-        MINER.setGuiOverlay(new ShopGui(15)); //Look into this yoshie
     }
 }

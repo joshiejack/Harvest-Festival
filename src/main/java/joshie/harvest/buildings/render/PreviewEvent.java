@@ -57,7 +57,7 @@ public class PreviewEvent {
                     return CACHE.get(key, new Callable<BuildingRenderer>() {
                         @Override
                         public BuildingRenderer call() throws Exception {
-                            return new BuildingRenderer(world, key);
+                            return new BuildingRenderer(key);
                         }
                     });
                 } catch (Exception e) { return null; }

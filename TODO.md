@@ -1,6 +1,3 @@
-### Fixes
-- Fix Building render building sometimes messing up
-
 ## Recipe Rewrite
 - Select a recipe in the recipe book
 - Have all the items required in your inventory and automatically get placed in utensils

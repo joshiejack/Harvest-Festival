@@ -3,7 +3,7 @@ package joshie.harvest.cooking.packets;
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.cooking.CookingHelper;
 import joshie.harvest.cooking.FoodRegistry;
-import joshie.harvest.cooking.Recipe;
+import joshie.harvest.cooking.recipe.Recipe;
 import joshie.harvest.core.network.Packet;
 import joshie.harvest.core.network.Packet.Side;
 import joshie.harvest.core.network.PenguinPacket;

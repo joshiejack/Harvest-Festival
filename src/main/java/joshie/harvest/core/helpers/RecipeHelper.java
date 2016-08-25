@@ -4,8 +4,10 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.ICookingIngredient;
 import joshie.harvest.api.cooking.IMealRecipe;
 import joshie.harvest.cooking.Utensil;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
+import static joshie.harvest.cooking.Utensil.*;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class RecipeHelper {
@@ -20,30 +22,50 @@ public class RecipeHelper {
     }
     
     public static IMealRecipe addFryingPanRecipe(String mealname, int hunger, float saturation, float exhaustion, ICookingIngredient... ingredients) {
-        return addRecipe(mealname, Utensil.FRYING_PAN, hunger, saturation, exhaustion, false, ingredients);
+        return addRecipe(mealname, FRYING_PAN, hunger, saturation, exhaustion, false, ingredients);
+    }
+
+    public static void addFryingPanRecipe(ItemStack result, ICookingIngredient... ingredients) {
+        HFApi.cooking.addRecipe(result, FRYING_PAN, ingredients);
     }
     
     public static IMealRecipe addMixerRecipe(String mealname, boolean isDrink, int hunger, float saturation, float exhaustion, ICookingIngredient... ingredients) {
-        return addRecipe(mealname, Utensil.MIXER, hunger, saturation, exhaustion, isDrink, ingredients);
+        return addRecipe(mealname, MIXER, hunger, saturation, exhaustion, isDrink, ingredients);
     }
     
     public static IMealRecipe addMixerRecipe(String mealname, int hunger, float saturation, float exhaustion, ICookingIngredient... ingredients) {
-        return addRecipe(mealname, Utensil.MIXER, hunger, saturation, exhaustion, true, ingredients);
+        return addRecipe(mealname, MIXER, hunger, saturation, exhaustion, true, ingredients);
+    }
+
+    public static void addMixerRecipe(ItemStack result, ICookingIngredient... ingredients) {
+        HFApi.cooking.addRecipe(result, MIXER, ingredients);
     }
     
     public static IMealRecipe addNoUtensilRecipe(String mealname, int hunger, float saturation, float exhaustion, ICookingIngredient... ingredients) {
-        return addRecipe(mealname, Utensil.COUNTER, hunger, saturation, exhaustion, false, ingredients);
+        return addRecipe(mealname, COUNTER, hunger, saturation, exhaustion, false, ingredients);
+    }
+
+    public static void addNoUtensilRecipe(ItemStack result, ICookingIngredient... ingredients) {
+        HFApi.cooking.addRecipe(result, COUNTER, ingredients);
     }
     
     public static IMealRecipe addPotRecipe(String mealname, boolean isDrink, int hunger, float saturation, float exhaustion, ICookingIngredient... ingredients) {
-        return addRecipe(mealname, Utensil.POT, hunger, saturation, exhaustion, isDrink, ingredients);
+        return addRecipe(mealname, POT, hunger, saturation, exhaustion, isDrink, ingredients);
     }
     
     public static IMealRecipe addPotRecipe(String mealname, int hunger, float saturation, float exhaustion, ICookingIngredient... ingredients) {
-        return addRecipe(mealname, Utensil.POT, hunger, saturation, exhaustion, false, ingredients);
+        return addRecipe(mealname, POT, hunger, saturation, exhaustion, false, ingredients);
+    }
+
+    public static void addPotRecipe(ItemStack result, ICookingIngredient... ingredients) {
+        HFApi.cooking.addRecipe(result, POT, ingredients);
     }
     
     public static IMealRecipe addOvenRecipe(String mealname, int hunger, float saturation, float exhaustion, ICookingIngredient... ingredients) {
-        return addRecipe(mealname, Utensil.OVEN, hunger, saturation, exhaustion, false, ingredients);
+        return addRecipe(mealname, OVEN, hunger, saturation, exhaustion, false, ingredients);
+    }
+
+    public static void addOvenRecipe(ItemStack result, ICookingIngredient... ingredients) {
+        HFApi.cooking.addRecipe(result, OVEN, ingredients);
     }
 }

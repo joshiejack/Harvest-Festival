@@ -3,7 +3,7 @@ package joshie.harvest.cooking.gui;
 import joshie.harvest.api.cooking.ICookingIngredient;
 import joshie.harvest.cooking.CookingHelper;
 import joshie.harvest.cooking.FoodRegistry;
-import joshie.harvest.cooking.Recipe;
+import joshie.harvest.cooking.recipe.Recipe;
 import joshie.harvest.cooking.Utensil;
 import joshie.harvest.cooking.packets.PacketSelectRecipe;
 import joshie.harvest.core.helpers.ChatHelper;

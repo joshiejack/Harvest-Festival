@@ -1,7 +1,7 @@
 package joshie.harvest.cooking.gui;
 
 import joshie.harvest.cooking.FoodRegistry;
-import joshie.harvest.cooking.Recipe;
+import joshie.harvest.cooking.recipe.Recipe;
 import joshie.harvest.cooking.Utensil;
 import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.item.ItemStack;

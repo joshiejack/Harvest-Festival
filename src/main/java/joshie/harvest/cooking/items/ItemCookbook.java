@@ -5,7 +5,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.ICookingIngredient;
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.cooking.CookingHelper;
-import joshie.harvest.cooking.Recipe;
+import joshie.harvest.cooking.recipe.Recipe;
 import joshie.harvest.cooking.blocks.TileCooking;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.ItemHFBase;

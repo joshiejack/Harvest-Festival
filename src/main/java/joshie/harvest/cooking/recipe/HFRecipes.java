@@ -1,11 +1,14 @@
-package joshie.harvest.cooking;
+package joshie.harvest.cooking.recipe;
 
 import joshie.harvest.api.cooking.ICookingIngredient;
+import joshie.harvest.cooking.Meal;
 import joshie.harvest.cooking.items.ItemIngredients;
 import joshie.harvest.core.util.HFLoader;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 
 import static joshie.harvest.cooking.HFCooking.INGREDIENTS;
-import static joshie.harvest.cooking.HFIngredients.*;
+import static joshie.harvest.cooking.recipe.HFIngredients.*;
 import static joshie.harvest.core.helpers.RecipeHelper.*;
 
 @HFLoader
@@ -41,6 +44,9 @@ public class HFRecipes {
         addMixerRecipe("butter", false, 1, 0.03F, 0F, milk).setOptionalIngredients(salt).setAlternativeTexture(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.BUTTER));
         addMixerRecipe("fishsticks", false, 1, 0.14F, -2F, fish).setOptionalIngredients(salt);
 
+        //Vanilla Mix Recipes
+        addMixerRecipe(new ItemStack(Items.BEETROOT_SOUP), beetroot);
+
         //Hand
         addNoUtensilRecipe("turnip_pickled", 2, 0.17F, -4F, turnip).setOptionalIngredients(salt);
         addNoUtensilRecipe("cucumber_pickled", 2, 0.17F, -3F, cucumber).setOptionalIngredients(salt);
@@ -65,6 +71,10 @@ public class HFRecipes {
         addPotRecipe("stew_pumpkin", true, 2, 0.23F, -2F, pumpkin).setOptionalIngredients(sugar, salt);
         addPotRecipe("stew_fish", 2, 0.2F, -2F, fish).setOptionalIngredients(salt);
 
+        //Vanilla Pot Recipes
+        addPotRecipe(new ItemStack(Items.RABBIT_STEW), potato, carrot, RABBIT, mushroom);
+        addPotRecipe(new ItemStack(Items.MUSHROOM_STEW), red_mushroom, brown_mushroom);
+
         //Oven
         addOvenRecipe("corn_baked", 2, 0.2F, -2F, corn).setOptionalIngredients(oil, butter, salt);
         addOvenRecipe("riceballs_toasted", 3, 0.34F, -2F, riceball).setOptionalIngredients(sugar, salt);
@@ -74,5 +84,17 @@ public class HFRecipes {
         addOvenRecipe("cookies", 4, 0.43F, -10F, egg, flour, butter).setOptionalIngredients(sugar).setAlternativeTexture(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.COOKIES));
         addOvenRecipe("cookies_chocolate", 9, 0.86F, -10F, cookies, chocolate);
         addOvenRecipe("cake_chocolate", 20, 2.0F, -16F, egg, flour, butter, chocolate).setOptionalIngredients(sugar, pineapple, apple, strawberry);
+
+        //Vanilla Oven Recipes
+        addOvenRecipe(new ItemStack(Items.BREAD), wheat);
+        addOvenRecipe(new ItemStack(Items.BAKED_POTATO), potato);
+        addOvenRecipe(new ItemStack(Items.COOKED_CHICKEN), CHICKEN);
+        addOvenRecipe(new ItemStack(Items.COOKED_BEEF), BEEF);
+        addOvenRecipe(new ItemStack(Items.COOKED_PORKCHOP), PORK);
+        addOvenRecipe(new ItemStack(Items.COOKED_MUTTON), MUTTON);
+        addOvenRecipe(new ItemStack(Items.COOKED_RABBIT), RABBIT);
+        addOvenRecipe(new ItemStack(Items.COOKED_FISH, 1, 0), COD);
+        addOvenRecipe(new ItemStack(Items.COOKED_FISH, 1, 1), SALMON);
+        addOvenRecipe(new ItemStack(Items.PUMPKIN_PIE), pumpkin, sugar, egg);
     }
 }

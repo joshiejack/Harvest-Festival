@@ -4,6 +4,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.ICookingIngredient;
 import joshie.harvest.cooking.blocks.TileCooking;
 import joshie.harvest.cooking.items.ItemCookbook;
+import joshie.harvest.cooking.recipe.Recipe;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;

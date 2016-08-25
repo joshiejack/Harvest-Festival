@@ -1,6 +1,6 @@
 package joshie.harvest.player.tracking;
 
-import joshie.harvest.cooking.Recipe;
+import joshie.harvest.cooking.recipe.Recipe;
 import joshie.harvest.core.util.holders.ItemStackHolder;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;

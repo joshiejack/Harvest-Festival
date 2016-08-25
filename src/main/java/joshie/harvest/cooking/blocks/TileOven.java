@@ -15,9 +15,9 @@ public class TileOven extends TileCookingTicking {
     public void animate() {
         super.animate();
 
-        if (getCookTimer() == 1) worldObj.playSound(null, getPos(), HFSounds.OVEN, SoundCategory.BLOCKS, 1F, 1F);
+        if (getCookTimer() == 1) worldObj.playSound(null, getPos(), HFSounds.OVEN, SoundCategory.BLOCKS, 2F, 1F);
         else if (getCookTimer() >= getCookingTime() - 1) {
-            worldObj.playSound(null, getPos(), HFSounds.OVEN_DONE, SoundCategory.BLOCKS, 1F, 1F);
+            worldObj.playSound(null, getPos(), HFSounds.OVEN_DONE, SoundCategory.BLOCKS, 2F, 1F);
         }
     }
 }

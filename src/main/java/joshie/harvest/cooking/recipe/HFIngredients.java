@@ -1,8 +1,9 @@
-package joshie.harvest.cooking;
+package joshie.harvest.cooking.recipe;
 
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.ICookingIngredient;
+import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.render.MappingEvent;
 import joshie.harvest.core.util.HFLoader;
 import joshie.harvest.crops.HFCrops;
@@ -22,6 +23,7 @@ public class HFIngredients {
     public static ICookingIngredient salad_ingredient;
     public static ICookingIngredient sandwich_ingredient;
     public static ICookingIngredient sashimi_vegetable;
+    public static ICookingIngredient fish;
 
     //Seasonings
     public static ICookingIngredient salt;
@@ -38,7 +40,6 @@ public class HFIngredients {
     public static ICookingIngredient apple;
     public static ICookingIngredient chocolate;
     public static ICookingIngredient egg;
-    public static ICookingIngredient fish;
     public static ICookingIngredient flour;
     public static ICookingIngredient oil;
     public static ICookingIngredient riceball;
@@ -62,6 +63,16 @@ public class HFIngredients {
     public static ICookingIngredient sweet_potato;
     public static ICookingIngredient spinach;
     public static ICookingIngredient green_pepper;
+    public static ICookingIngredient beetroot;
+
+    //Meats
+    public static final ICookingIngredient CHICKEN = HFApi.cooking.newIngredient("chicken", 2, 0.3F, 0F, 8);
+    public static final ICookingIngredient PORK = HFApi.cooking.newIngredient("pork", 3, 0.35F, 0F, 8);
+    public static final ICookingIngredient BEEF = HFApi.cooking.newIngredient("beef", 4, 0.4F, 0F, 12);
+    public static final ICookingIngredient RABBIT = HFApi.cooking.newIngredient("rabbit", 2, 0.4F, 0F, 4);
+    public static final ICookingIngredient MUTTON = HFApi.cooking.newIngredient("mutton", 1, 0.5F, 0F, 12);
+    public static final ICookingIngredient SALMON = HFApi.cooking.newIngredient("salmon", 2, 0.4F, 0F, 4);
+    public static final ICookingIngredient COD = HFApi.cooking.newIngredient("cod", 1, 0.5F, 0F, 12);
 
     /**
      * Vanilla foods
@@ -79,6 +90,7 @@ public class HFIngredients {
         salad_ingredient = HFApi.cooking.newCategory("salad_ingredient");
         sandwich_ingredient = HFApi.cooking.newCategory("sandwich_ingredient");
         sashimi_vegetable = HFApi.cooking.newCategory("sashimi_vegetable");
+        fish = HFApi.cooking.newCategory("fish");
 
         //Seasonings
         salt = HFApi.cooking.newIngredient("salt", 0, 0.05F, -5F, 0);
@@ -120,6 +132,7 @@ public class HFIngredients {
         wheat = HFApi.cooking.newIngredient("wheat", 2, 0.34F, -3F, 16);
         red_mushroom = HFApi.cooking.newIngredient("red_mushroom", 1, 0.12F, -1F, 8);
         brown_mushroom = HFApi.cooking.newIngredient("brown_mushroom", 1, 0.12F, -1F, 8);
+        beetroot = HFApi.cooking.newIngredient("beetroot", 1, 0.05F, -1F, 4);
 
         //Meals
         butter = HFApi.cooking.newIngredient("butter", 0, 0.17F, -1F, 6);
@@ -135,6 +148,7 @@ public class HFIngredients {
         salad_ingredient.add(cucumber, carrot, tomato, cabbage, brown_mushroom);
         sandwich_ingredient.add(cucumber, tomato, mayonnaise, brown_mushroom, boiled_egg);
         sashimi_vegetable.add(cucumber, tomato, onion, eggplant);
+        fish.add(SALMON, COD);
     }
 
     public static void init() {
@@ -148,6 +162,8 @@ public class HFIngredients {
         HFApi.cooking.register(HFCrops.TURNIP.getCropStack(), turnip);
         HFApi.cooking.register(HFCrops.POTATO.getCropStack(), potato);
         HFApi.cooking.register(new ItemStack(Items.POTATO, 1, OreDictionary.WILDCARD_VALUE), potato);
+        HFApi.cooking.register(HFCrops.BEETROOT.getCropStack(), beetroot);
+        HFApi.cooking.register(new ItemStack(Items.BEETROOT, 1, OreDictionary.WILDCARD_VALUE), beetroot);
         HFApi.cooking.register(HFCrops.CUCUMBER.getCropStack(), cucumber);
         HFApi.cooking.register(HFCrops.STRAWBERRY.getCropStack(), strawberry);
         HFApi.cooking.register(HFCrops.CABBAGE.getCropStack(), cabbage);
@@ -169,8 +185,6 @@ public class HFIngredients {
         HFApi.cooking.register(new ItemStack(Items.BREAD, 1, OreDictionary.WILDCARD_VALUE), bread);
         HFApi.cooking.register(new ItemStack(HFAnimals.EGG), egg);
         HFApi.cooking.register(new ItemStack(Items.EGG, 1, OreDictionary.WILDCARD_VALUE), egg);
-        HFApi.cooking.register(new ItemStack(Items.FISH, 1, 0), fish);
-        HFApi.cooking.register(new ItemStack(Items.FISH, 1, 1), fish);
         HFApi.cooking.register(new ItemStack(HFAnimals.MILK), milk);
         HFApi.cooking.register(new ItemStack(Items.MILK_BUCKET, 1, OreDictionary.WILDCARD_VALUE), milk);
         HFApi.cooking.register(new ItemStack(HFAnimals.MAYONNAISE), mayonnaise);
@@ -187,5 +201,14 @@ public class HFIngredients {
         HFApi.cooking.register(HFApi.cooking.getBestMeal("ketchup"), ketchup);
         HFApi.cooking.register(new ItemStack(Blocks.BROWN_MUSHROOM, 1, OreDictionary.WILDCARD_VALUE), brown_mushroom);
         HFApi.cooking.register(new ItemStack(Blocks.RED_MUSHROOM, 1, OreDictionary.WILDCARD_VALUE), red_mushroom);
+
+        //Meats
+        HFApi.cooking.register(new ItemStack(Items.FISH, 1, 0), COD);
+        HFApi.cooking.register(new ItemStack(Items.FISH, 1, 1), SALMON);
+        HFApi.cooking.register(new ItemStack(Items.CHICKEN), CHICKEN);
+        HFApi.cooking.register(new ItemStack(Items.RABBIT), RABBIT);
+        HFApi.cooking.register(new ItemStack(Items.BEEF), BEEF);
+        HFApi.cooking.register(new ItemStack(Items.PORKCHOP), PORK);
+        HFApi.cooking.register(new ItemStack(Items.MUTTON), MUTTON);
     }
 }

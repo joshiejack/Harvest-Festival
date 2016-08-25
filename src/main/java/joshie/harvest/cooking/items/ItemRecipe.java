@@ -2,8 +2,8 @@ package joshie.harvest.cooking.items;
 
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.cooking.FoodRegistry;
-import joshie.harvest.cooking.HFRecipes;
-import joshie.harvest.cooking.Recipe;
+import joshie.harvest.cooking.recipe.HFRecipes;
+import joshie.harvest.cooking.recipe.Recipe;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.ItemHFFML;
 import joshie.harvest.core.handlers.HFTrackers;

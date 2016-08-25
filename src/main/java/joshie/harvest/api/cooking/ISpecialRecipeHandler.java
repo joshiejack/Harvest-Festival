@@ -5,9 +5,11 @@ import net.minecraft.item.ItemStack;
 
 import java.util.List;
 
-/** Implement this on items that should handle recipes in a non
- *  default, special way. */
+/** Register your recipe handler, to handle special recipe types **/
 public interface ISpecialRecipeHandler {
-    /** Returns the result of this recipe for this item **/
-    ItemStack getResult(Utensil utensil, List<ItemStack> ingredients);
+    /** Returns the result of this recipe for this item
+     *  @param utensil  the utensil being used
+     *  @param stacks   the items input to the recipe
+     *  @param ingredients the ingredient value of the stacks**/
+    ItemStack getResult(Utensil utensil, List<ItemStack> stacks, List<ICookingIngredient> ingredients);
 }

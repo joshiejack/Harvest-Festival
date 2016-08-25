@@ -2,7 +2,7 @@ package joshie.harvest.cooking.render;
 
 import gnu.trove.map.TIntObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
-import joshie.harvest.cooking.Recipe;
+import joshie.harvest.cooking.recipe.Recipe;
 import joshie.harvest.cooking.Utensil;
 import joshie.harvest.core.base.FMLDefinition;
 import joshie.harvest.core.base.ItemHFFML;

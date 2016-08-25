@@ -6,6 +6,9 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import joshie.harvest.api.cooking.*;
+import joshie.harvest.cooking.recipe.Ingredient;
+import joshie.harvest.cooking.recipe.Recipe;
+import joshie.harvest.cooking.recipe.RecipeStack;
 import joshie.harvest.core.util.HFApiImplementation;
 import joshie.harvest.core.util.holders.AbstractItemHolder;
 import joshie.harvest.core.util.holders.ItemStackHolder;
@@ -26,7 +29,7 @@ public class FoodRegistry implements IFoodRegistry {
     public static final FMLControlledNamespacedRegistry<Recipe> REGISTRY = PersistentRegistryManager.createRegistry(new ResourceLocation(MODID, "meals"), Recipe.class, null, 10, 32000, true, null, null, null);
     public static final FoodRegistry INSTANCE = new FoodRegistry();
     private final Map<String, ICookingIngredient> components = new HashMap<>();
-    private final Set<ISpecialRecipeHandler> specials = new HashSet<>();
+    private final Set<ISpecialRecipeHandler> handlers = new HashSet<>();
     private final Multimap<AbstractItemHolder, ICookingIngredient> registry = ArrayListMultimap.create();
     private final Multimap<Item, AbstractItemHolder> keyMap = HashMultimap.create();
     private final Cache<ICookingIngredient, List<ItemStack>> ingredientToStacks = CacheBuilder.newBuilder().maximumSize(512).build();
@@ -75,7 +78,7 @@ public class FoodRegistry implements IFoodRegistry {
 
     @Override
     public void registerRecipeHandler(ISpecialRecipeHandler handler) {
-        specials.add(handler);
+        handlers.add(handler);
     }
 
     @Override
@@ -128,6 +131,11 @@ public class FoodRegistry implements IFoodRegistry {
     }
 
     @Override
+    public void addRecipe(ItemStack output, Utensil utensil, ICookingIngredient... ingredients) {
+        RecipeStack.INSTANCE.addRecipe(output, utensil, ingredients);
+    }
+
+    @Override
     public ItemStack getBestMeal(String string) {
         ResourceLocation location = string.contains(":") ? new ResourceLocation(string) : new ResourceLocation(MODID, string);
         for (Recipe recipe : REGISTRY.getValues()) {
@@ -153,24 +161,19 @@ public class FoodRegistry implements IFoodRegistry {
 
     @Override
     public ItemStack getResult(Utensil utensil, List<ItemStack> ingredients) {
-        //Check the special recipes first
-        for (ISpecialRecipeHandler recipe : specials) {
-            ItemStack ret = recipe.getResult(utensil, ingredients);
-            if (ret != null) {
-                return ret;
+        //Convert all the stacks in to their relevant ingredients
+        List<ICookingIngredient> components = new ArrayList<>();
+        for (ItemStack stack : ingredients) {
+            for (ICookingIngredient ingredient: getCookingComponents(stack)) {
+                if (!components.contains(ingredient)) components.add(ingredient);
             }
         }
 
-        //Convert all the stacks in to their relevant ingredients
-        HashSet<ICookingIngredient> components = new HashSet<>();
-        for (ItemStack stack : ingredients) {
-            components.addAll(getCookingComponents(stack));
-        }
-
-        for (Recipe recipe : REGISTRY.getValues()) {
-            IMeal meal = recipe.getMeal(utensil, components);
-            if (meal != null) {
-                return recipe.cook(meal);
+        //Check the special recipes first
+        for (ISpecialRecipeHandler recipe : handlers) {
+            ItemStack ret = recipe.getResult(utensil, ingredients, components);
+            if (ret != null) {
+                return ret;
             }
         }
 

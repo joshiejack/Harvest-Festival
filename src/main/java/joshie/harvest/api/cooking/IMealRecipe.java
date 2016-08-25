@@ -3,7 +3,7 @@ package joshie.harvest.api.cooking;
 import joshie.harvest.cooking.Utensil;
 import net.minecraft.item.ItemStack;
 
-import java.util.HashSet;
+import java.util.List;
 
 public interface IMealRecipe {
     /** Returns the name of the meal **/
@@ -14,7 +14,7 @@ public interface IMealRecipe {
      * @param       utensil the utensil
      * @param       ingredients the ingredients
      * @return      the meal returned, returns null if the recipe is not valid */
-    IMeal getMeal(Utensil utensil, HashSet<ICookingIngredient> ingredients);
+    IMeal getMeal(Utensil utensil, List<ICookingIngredient> ingredients);
     
     /** @return     the basic meal **/
     IMeal getMeal();

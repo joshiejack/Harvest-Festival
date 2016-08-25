@@ -88,6 +88,13 @@ public interface IFoodRegistry {
      */
     IMealRecipe addMeal(ResourceLocation key, Utensil utensil, int hunger, float saturation, float exhaustion, int eatTimer, ICookingIngredient... ingredients);
 
+    /** Add a recipe, with a custom stack output
+     *  Use case for such thing is wheat > bread
+     * @param output    the output item
+     * @param utensil   the utensil
+     * @param ingredients the ingredients */
+    void addRecipe(ItemStack output, Utensil utensil, ICookingIngredient... ingredients);
+
     /** Returns a resulting itemstack for the ingredients input
      *  @param      utensil the utensil in use
      *  @param      ingredients the ingredients

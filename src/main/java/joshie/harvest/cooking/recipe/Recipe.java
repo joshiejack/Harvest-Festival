@@ -1,15 +1,18 @@
-package joshie.harvest.cooking;
+package joshie.harvest.cooking.recipe;
 
 import joshie.harvest.api.cooking.ICookingIngredient;
 import joshie.harvest.api.cooking.IMeal;
 import joshie.harvest.api.cooking.IMealRecipe;
+import joshie.harvest.cooking.HFCooking;
+import joshie.harvest.cooking.Meal;
+import joshie.harvest.cooking.Utensil;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.translation.I18n;
+import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
-public class Recipe extends net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl<Recipe> implements IMealRecipe {
+public class Recipe extends IForgeRegistryEntry.Impl<Recipe> implements IMealRecipe {
     private final String name;
     public final IMeal result;
     private final ICookingIngredient[] requiredIngredients;
@@ -80,7 +83,7 @@ public class Recipe extends net.minecraftforge.fml.common.registry.IForgeRegistr
         return false;
     }
 
-    private boolean ingredientListContains(Set<ICookingIngredient> ingredients, ICookingIngredient required) {
+    private boolean ingredientListContains(List<ICookingIngredient> ingredients, ICookingIngredient required) {
         //Now we should loop through all the ingredient passed in
         for (ICookingIngredient passed : ingredients) {
             if (required.isEqual(passed))
@@ -91,7 +94,7 @@ public class Recipe extends net.minecraftforge.fml.common.registry.IForgeRegistr
     }
 
     @Override
-    public IMeal getMeal(Utensil utensil, HashSet<ICookingIngredient> ingredients) {
+    public IMeal getMeal(Utensil utensil, List<ICookingIngredient> ingredients) {
         if (ingredients == null || ingredients.size() < 1 || utensil != requiredTool)
             return null; //If we have no utensils, or not enough recipes remove them all
 

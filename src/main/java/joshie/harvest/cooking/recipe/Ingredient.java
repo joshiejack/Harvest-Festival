@@ -1,4 +1,4 @@
-package joshie.harvest.cooking;
+package joshie.harvest.cooking.recipe;
 
 import joshie.harvest.api.cooking.ICookingIngredient;
 import net.minecraft.util.ResourceLocation;
@@ -6,7 +6,7 @@ import net.minecraft.util.ResourceLocation;
 import java.util.HashSet;
 
 public class Ingredient implements ICookingIngredient {
-    private HashSet<Ingredient> equivalents = new HashSet<Ingredient>();
+    private HashSet<Ingredient> equivalents = new HashSet<>();
     private String unlocalized;
     private int hunger;
     private float saturation;

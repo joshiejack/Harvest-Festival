@@ -4,12 +4,11 @@ import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.shops.IPurchaseable;
 import joshie.harvest.core.helpers.ShopHelper;
 import joshie.harvest.core.network.Packet;
-import joshie.harvest.core.network.Packet.Side;
 import joshie.harvest.core.network.PenguinPacket;
 import joshie.harvest.shops.Shop;
 import net.minecraft.entity.player.EntityPlayerMP;
 
-@Packet(Side.SERVER)
+@Packet
 public class PacketPurchaseItem extends PenguinPacket {
     private int purchaseable_id;
 
@@ -37,11 +36,13 @@ public class PacketPurchaseItem extends PenguinPacket {
     @Override
     public boolean handleServerPacket(EntityPlayerMP player) {
         IPurchaseable purchaseable = Shop.allItems.get(purchaseable_id);
-        if (purchaseable.canBuy(player.worldObj, player)) {
-            if (ShopHelper.purchase(player, purchaseable, purchaseable.getCost())) {
-                player.closeScreen();
+        if (!player.worldObj.isRemote) {
+            if (purchaseable.canBuy(player.worldObj, player)) {
+                if (ShopHelper.purchase(player, purchaseable, purchaseable.getCost())) {
+                    player.closeScreen();
+                }
             }
-        }
+        } else purchaseable.onPurchased(player);
 
         return true;
     }

@@ -5,8 +5,6 @@
     -AS Open Door when placing stuff in, Play sound
 - Fridge
     -AS Open Door, Play Sound
-- Harvest Goddess
-    -E Particle Effect
 
 ### Textures
 - Kitchen Knife (Looks good when right clicking)

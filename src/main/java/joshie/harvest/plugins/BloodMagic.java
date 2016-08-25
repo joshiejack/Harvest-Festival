@@ -8,8 +8,10 @@ import net.minecraft.init.Items;
 import net.minecraft.init.PotionTypes;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 
 import static joshie.harvest.api.calendar.Weekday.SATURDAY;
@@ -32,9 +34,22 @@ public class BloodMagic {
         BLOODMAGE.addItem(3000, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.REGENERATION));
         BLOODMAGE.addItem(4000, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.LONG_REGENERATION));
         BLOODMAGE.addItem(5000, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.STRONG_REGENERATION));
-        //TODO: unfilled or semi-filled tartaric gems, I don't wanna api, so need to investigate the nbt data myself :P
-        //BLOODMAGE.addItem(100, ItemSoulGem);
+        BLOODMAGE.addItem(1200, getSoulGem(32));
+        BLOODMAGE.addItem(2000, getSoulGem(64));
         BLOODMAGE.addOpening(WEDNESDAY, 19000, 24000).addOpening(WEDNESDAY, 0, 5000).addOpening(SATURDAY, 18000, 24000).addOpening(SATURDAY, 0, 3500);
+
+        //Make NPCs Give 0 LP
+        FMLInterModComms.sendMessage("bloodmagic", "sacrificeValue", "EntityNPCBuilder;0");
+        FMLInterModComms.sendMessage("bloodmagic", "sacrificeValue", "EntityNPCGoddess;0");
+        FMLInterModComms.sendMessage("bloodmagic", "sacrificeValue", "EntityNPCShopkeeper;0");
+        FMLInterModComms.sendMessage("bloodmagic", "sacrificeValue", "EntityNPCVillager;0");
+    }
+
+    private static ItemStack getSoulGem(int amount) {
+        ItemStack stack = new ItemStack(ItemSoulGem);
+        stack.setTagCompound(new NBTTagCompound());
+        stack.getTagCompound().setDouble("souls", amount);
+        return stack;
     }
 }
 

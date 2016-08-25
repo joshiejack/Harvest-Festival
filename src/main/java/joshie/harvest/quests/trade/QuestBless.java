@@ -21,6 +21,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import static joshie.harvest.api.core.ITiered.ToolTier.CURSED;
+import static joshie.harvest.core.helpers.generic.ItemHelper.spawnXP;
 import static joshie.harvest.npc.HFNPCs.PRIEST;
 import static joshie.harvest.quests.QuestHelper.*;
 
@@ -98,6 +99,7 @@ public class QuestBless extends QuestTrade {
     @Override
     public void claim(EntityPlayer player) {
         rewardItem(player, tool);
+        spawnXP(player.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ, 5);
     }
 
     @Override

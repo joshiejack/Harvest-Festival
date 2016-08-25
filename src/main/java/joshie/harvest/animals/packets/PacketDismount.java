@@ -14,7 +14,7 @@ public class PacketDismount extends PenguinPacket {
     @Override
     public void handlePacket(EntityPlayer player) {
         EntityAnimal entity = (EntityAnimal) player.getRidingEntity();
-        entity.startRiding(null);
+        entity.dismountRidingEntity();
         entity.rotationPitch = player.rotationPitch;
         entity.rotationYaw = player.rotationYaw;
         entity.moveRelative(0F, 1.0F, 1.25F);

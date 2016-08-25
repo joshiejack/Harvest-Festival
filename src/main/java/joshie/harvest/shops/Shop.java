@@ -69,7 +69,7 @@ public class Shop implements IShop {
             this.contents.add(item);
             allItems.add(item);
         }
-        
+
         return this;
     }
 

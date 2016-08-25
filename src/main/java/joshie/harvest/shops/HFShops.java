@@ -1,6 +1,7 @@
 package joshie.harvest.shops;
 
 import joshie.harvest.animals.HFAnimals;
+import joshie.harvest.animals.entity.EntityHarvestChicken;
 import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.animals.entity.EntityHarvestSheep;
 import joshie.harvest.api.HFApi;
@@ -22,7 +23,6 @@ import joshie.harvest.mining.blocks.BlockStone.Type;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.shops.purchaseable.*;
 import joshie.harvest.tools.HFTools;
-import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -30,9 +30,7 @@ import net.minecraft.util.ResourceLocation;
 import static joshie.harvest.animals.item.ItemAnimalSpawner.Spawner.*;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.*;
 import static joshie.harvest.api.calendar.Weekday.*;
-import static joshie.harvest.cooking.HFCooking.COOKBOOK;
-import static joshie.harvest.cooking.HFCooking.COOKWARE;
-import static joshie.harvest.cooking.HFCooking.UTENSILS;
+import static joshie.harvest.cooking.HFCooking.*;
 import static joshie.harvest.cooking.blocks.BlockCookware.Cookware.*;
 import static joshie.harvest.cooking.items.ItemIngredients.Ingredient.*;
 import static joshie.harvest.cooking.items.ItemUtensil.Utensil.KNIFE;
@@ -127,7 +125,7 @@ public class HFShops {
 
     private static void registerPoultry() {
         POULTRY = HFApi.shops.newShop(new ResourceLocation(MODID, "poultry"), HFNPCs.POULTRY);
-        POULTRY.addItem(new PurchaseableEntity(EntityChicken.class, 1500, HFAnimals.ANIMAL.getStackFromEnum(CHICKEN), false));
+        POULTRY.addItem(new PurchaseableEntity(EntityHarvestChicken.class, 1500, HFAnimals.ANIMAL.getStackFromEnum(CHICKEN), false));
         POULTRY.addItem(1000, HFAnimals.TOOLS.getStackFromEnum(MEDICINE));
         POULTRY.addItem(10, HFAnimals.TOOLS.getStackFromEnum(CHICKEN_FEED));
 

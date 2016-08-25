@@ -1,10 +1,7 @@
 package joshie.harvest.animals;
 
-import joshie.harvest.animals.entity.EntityHarvestChicken;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.animals.packets.PacketDismount;
-import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.util.HFEvents;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityChicken;
@@ -19,6 +16,8 @@ import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
+
+import java.util.List;
 
 @HFEvents
 public class AnimalEvents {
@@ -46,13 +45,13 @@ public class AnimalEvents {
         @SubscribeEvent
         public void onRightClickGround(PlayerInteractEvent.RightClickBlock event) {
             EntityPlayer player = event.getEntityPlayer();
-            if (player.getRidingEntity() instanceof EntityHarvestChicken) {
-                EntityHarvestChicken chicken = (EntityHarvestChicken) player.getRidingEntity();
-                chicken.startRiding(null);
-                chicken.rotationPitch = player.rotationPitch;
-                chicken.rotationYaw = player.rotationYaw;
-                chicken.moveRelative(0F, 1.0F, 1.25F);
-                PacketHandler.sendToServer(new PacketDismount());
+            List<Entity> passengers = event.getEntity().getPassengers();
+            for (int i = passengers.size() - 1; i >= 0; --i) {
+                Entity entity = passengers.get(i);
+                entity.dismountRidingEntity();
+                entity.rotationPitch = player.rotationPitch;
+                entity.rotationYaw = player.rotationYaw;
+                entity.moveRelative(0F, 1.0F, 1.25F);
             }
         }
     }

@@ -77,7 +77,7 @@ public class PurchaseableEntity implements IPurchaseable {
             theEntity.setPosition(player.posX, player.posY, player.posZ);
             if (!lead) {
                 player.worldObj.spawnEntityInWorld(theEntity);
-                theEntity.startRiding(player);
+                theEntity.startRiding(player, true);
             } else {
                 ((EntityAnimal) theEntity).setLeashedToEntity(player, true);
                 ((IAnimalTracked) theEntity).getData().setOwner(player);

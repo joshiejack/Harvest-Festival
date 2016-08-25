@@ -16,6 +16,7 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -69,7 +70,16 @@ public class EntityHarvestSheep extends EntitySheep implements IAnimalTracked {
             return false;
         }
 
-        HFTrackers.getPlayerTracker(player).getRelationships().talkTo(player, this);
+        if (worldObj.rand.nextFloat() < 0.33F) {
+            SoundEvent s = getAmbientSound();
+            if (s != null) {
+                playSound(s, 2F, getSoundPitch());
+            }
+
+            HFTrackers.getPlayerTracker(player).getRelationships().talkTo(player, this);
+            return true;
+        }
+
         return true;
     }
 

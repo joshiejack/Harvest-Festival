@@ -7,14 +7,11 @@ import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 public class ItemHelper {
     public static void addToPlayerInventory(EntityPlayer player, ItemStack stack) {
-        if (!player.inventory.addItemStackToInventory(stack)) {
-            if (!player.worldObj.isRemote) {
-                spawnItem(player.worldObj, player.posX, player.posY, player.posZ, stack, false, 0, 0, 0);
-            }
-        }
+        ItemHandlerHelper.giveItemToPlayer(player, stack);
     }
 
     public static void addToPlayerInventory(EntityPlayer player, World world, int x, int y, int z, ItemStack stack) {

@@ -3,9 +3,10 @@ package joshie.harvest.core;
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.core.util.HFLoader;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.discovery.ASMDataTable;
 import net.minecraftforge.fml.common.discovery.ASMDataTable.ASMData;
-import org.apache.commons.lang3.tuple.Pair;
+import org.apache.commons.lang3.tuple.Triple;
 import org.apache.logging.log4j.Level;
 
 import javax.annotation.Nonnull;
@@ -42,21 +43,22 @@ public class HFCommonProxy {
     }
 
     public void setup(@Nonnull ASMDataTable table) {
-        List<Pair<Integer, String>> unsorted = new ArrayList<>();
+        List<Triple<Integer, String, String>> unsorted = new ArrayList<>();
         Set<ASMData> datas = new HashSet<>(table.getAll(HFLoader.class.getCanonicalName()));
         for (ASMDataTable.ASMData data : datas) {
             try {
                 String clazz = data.getClassName();
                 Map<String, Object> map = data.getAnnotationInfo();
-                int value = map.get("priority") != null? (int) map.get("priority"): 1;
-                unsorted.add(Pair.of(value, clazz));
+                String mods = map.get("mods") != null ? (String) map.get("mods") : "";
+                int value = mods.equals("") ? map.get("priority") != null? (int) map.get("priority"): 1: -5000;
+                unsorted.add(Triple.of(value, mods, clazz));
             } catch (Exception e) { e.printStackTrace(); }
         }
 
         //Now that we have gathered all the classes, let's sort them by priority
-        Comparator<Pair<Integer, String>> priority = new Comparator<Pair<Integer, String>>() {
+        Comparator<Triple<Integer, String, String>> priority = new Comparator<Triple<Integer, String, String>>() {
             @Override
-            public int compare(Pair<Integer, String> str1, Pair<Integer, String> str2) {
+            public int compare(Triple<Integer, String, String> str1, Triple<Integer, String, String> str2) {
                 return str1.getLeft() < str2.getLeft() ? 1: str1.getLeft() > str2.getLeft() ? -1 : 0;
             }
         };
@@ -64,8 +66,16 @@ public class HFCommonProxy {
         Collections.sort(unsorted, priority);
 
         //Add Everything to the real LIST
-        for (Pair<Integer, String> entry: unsorted) {
+        triple:
+        for (Triple<Integer, String, String> entry: unsorted) {
             try {
+                if (!entry.getMiddle().equals("")) {
+                    String[] mods = entry.getMiddle().replace(" ", "").split(",");
+                    for (String mod : mods) {
+                        if (!Loader.isModLoaded(mod)) continue triple;
+                    }
+                }
+
                 LIST.add(Class.forName(entry.getRight()));
             } catch (Exception e) {}
         }

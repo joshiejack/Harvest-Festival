@@ -18,6 +18,10 @@ public class ItemStackHolder extends AbstractItemHolder {
         return new ItemStackHolder(stack.getItem(), stack.getItemDamage());
     }
 
+    public static ItemStackHolder of(Item item, int meta) {
+        return new ItemStackHolder(item, meta);
+    }
+
     @Override
     public boolean matches(ItemStack stack) {
         return stack.getItem() == item && stack.getItemDamage() == meta;

@@ -21,6 +21,11 @@ public interface IFoodRegistry {
      * @param handler */
     void registerRecipeHandler(ISpecialRecipeHandler handler);
 
+    /** Call this if you don't wish to implement IKnife,
+     *  Use OreDictionary.WILDCARD_VALUE if metadata doesn't matter
+     * @param stack the knife stack */
+    void registerKnife(ItemStack stack);
+
     /** Returns a set of all the components this stack provides
      * 
      * @param       stack the stack

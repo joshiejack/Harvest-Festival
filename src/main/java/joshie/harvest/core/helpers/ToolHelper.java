@@ -1,8 +1,8 @@
 package joshie.harvest.core.helpers;
 
 import joshie.harvest.animals.HFAnimals;
+import joshie.harvest.cooking.FoodRegistry;
 import joshie.harvest.cooking.HFCooking;
-import joshie.harvest.cooking.items.ItemUtensil.Utensil;
 import joshie.harvest.core.base.ItemTool;
 import joshie.harvest.core.helpers.generic.EntityHelper;
 import joshie.harvest.npc.HFNPCs;
@@ -46,7 +46,7 @@ public class ToolHelper {
     }
 
     public static boolean isKnife(ItemStack stack) {
-        return stack.getItem() == HFCooking.UTENSILS && HFCooking.UTENSILS.getEnumFromStack(stack) == Utensil.KNIFE;
+        return FoodRegistry.INSTANCE.isKnife(stack);
     }
 
     public static void levelTool(ItemStack stack) {

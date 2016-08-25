@@ -8,11 +8,13 @@ import com.google.common.collect.Multimap;
 import joshie.harvest.api.cooking.*;
 import joshie.harvest.core.util.HFApiImplementation;
 import joshie.harvest.core.util.holders.AbstractItemHolder;
+import joshie.harvest.core.util.holders.ItemStackHolder;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.FMLControlledNamespacedRegistry;
 import net.minecraftforge.fml.common.registry.PersistentRegistryManager;
+import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.*;
 import java.util.concurrent.Callable;
@@ -23,11 +25,12 @@ import static joshie.harvest.core.lib.HFModInfo.MODID;
 public class FoodRegistry implements IFoodRegistry {
     public static final FMLControlledNamespacedRegistry<Recipe> REGISTRY = PersistentRegistryManager.createRegistry(new ResourceLocation(MODID, "meals"), Recipe.class, null, 10, 32000, true, null, null, null);
     public static final FoodRegistry INSTANCE = new FoodRegistry();
-    private final HashMap<String, ICookingIngredient> components = new HashMap<>();
-    private final HashSet<ISpecialRecipeHandler> specials = new HashSet<>();
+    private final Map<String, ICookingIngredient> components = new HashMap<>();
+    private final Set<ISpecialRecipeHandler> specials = new HashSet<>();
     private final Multimap<AbstractItemHolder, ICookingIngredient> registry = ArrayListMultimap.create();
     private final Multimap<Item, AbstractItemHolder> keyMap = HashMultimap.create();
     private final Cache<ICookingIngredient, List<ItemStack>> ingredientToStacks = CacheBuilder.newBuilder().maximumSize(512).build();
+    private final Set<ItemStackHolder> knives = new HashSet<>();
 
     private FoodRegistry(){}
 
@@ -58,6 +61,11 @@ public class FoodRegistry implements IFoodRegistry {
         if (!components.containsKey(component.getUnlocalizedName())) {
             components.put(component.getUnlocalizedName(), component);
         }
+    }
+
+    @Override
+    public void registerKnife(ItemStack stack) {
+        knives.add(ItemStackHolder.of(stack));
     }
 
     @Override
@@ -169,5 +177,13 @@ public class FoodRegistry implements IFoodRegistry {
         ItemStack burnt = Meal.BURNT.copy();
         burnt.setItemDamage(utensil.ordinal());
         return burnt;
+    }
+
+    public boolean isKnife(ItemStack stack) {
+        if (stack.getItem() instanceof IKnife) {
+            return ((IKnife)stack.getItem()).isKnife(stack);
+        }
+
+        return knives.contains(ItemStackHolder.of(stack)) || knives.contains(ItemStackHolder.of(stack.getItem(), OreDictionary.WILDCARD_VALUE));
     }
 }

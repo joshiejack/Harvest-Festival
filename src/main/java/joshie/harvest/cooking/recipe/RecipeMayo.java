@@ -17,8 +17,8 @@ public class RecipeMayo implements ISpecialRecipeHandler {
         boolean is0Oil = ToolHelper.isOil(stacks.get(0));
         ItemStack oil = is0Oil ? stacks.get(0) : stacks.get(1);
         ItemStack egg = is0Oil ? stacks.get(1) : stacks.get(0);
-        if (HFApi.cooking.getCookingComponents(oil).contains(HFIngredients.oil)) {
-            if (HFApi.cooking.getCookingComponents(egg).contains(HFIngredients.egg)) {
+        if (HFApi.cooking.getCookingComponents(oil).contains(HFIngredients.OIL)) {
+            if (HFApi.cooking.getCookingComponents(egg).contains(HFIngredients.EGG)) {
                 return new ItemStack(HFAnimals.MAYONNAISE, 1, egg.getItemDamage());
             }
         }

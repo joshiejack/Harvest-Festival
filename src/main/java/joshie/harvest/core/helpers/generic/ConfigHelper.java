@@ -45,4 +45,8 @@ public class ConfigHelper {
     public static void setInteger(String name, int dft) {
         config.get(category, name, dft).set(dft);
     }
+
+    public static void setBoolean(String name, boolean dft) {
+        config.get(category, name, dft).set(dft);
+    }
 }

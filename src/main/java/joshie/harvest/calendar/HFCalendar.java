@@ -50,8 +50,10 @@ public class HFCalendar {
         ConfigHelper.setCategory("calendar");
         setInteger("HUD > Calendar X", X_CALENDAR);
         setInteger("HUD > Calendar Y", Y_CALENDAR);
+        setBoolean("HUD > Calendar Hide Texture", HIDE_CALENDAR_TEXTURE);
         setInteger("HUD > Gold X", X_GOLD);
         setInteger("HUD > Gold Y", Y_GOLD);
+        setBoolean("HUD > Gold Hide Texture", HIDE_GOLD_TEXTURE);
         CONFIG.save();
     }
 

@@ -1,8 +1,3 @@
-##(S)ounds, (E)ffects, (A)nimations
-- Pot
-    -E Bubbles
-- Oven
-    -AS Open Door when placing stuff in, Play sound
 - Fridge
     -AS Open Door, Play Sound
 

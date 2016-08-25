@@ -1,7 +1,7 @@
 package joshie.harvest.quests.trade;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.HFRegister;
+import joshie.harvest.api.HFQuest;
 import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.calendar.CalendarDate;
@@ -26,7 +26,7 @@ import static joshie.harvest.npc.HFNPCs.PRIEST;
 import static joshie.harvest.quests.QuestHelper.*;
 
 
-@HFRegister(data = "trade.cursed")
+@HFQuest(data = "trade.cursed")
 public class QuestBless extends QuestTrade {
     private static final ItemStack hoe = HFTools.HOE.getStack(CURSED);
     private static final ItemStack sickle = HFTools.SICKLE.getStack(CURSED);

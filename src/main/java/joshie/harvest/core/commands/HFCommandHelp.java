@@ -1,7 +1,7 @@
 package joshie.harvest.core.commands;
 
 import joshie.harvest.api.HFCommand;
-import joshie.harvest.api.HFRegister;
+import joshie.harvest.api.HFQuest;
 import net.minecraft.command.CommandNotFoundException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.NumberInvalidException;
@@ -15,7 +15,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-@HFRegister
+@HFQuest
 public class HFCommandHelp extends HFCommand {
     @Override
     public String getCommandName() {

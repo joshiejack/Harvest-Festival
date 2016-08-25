@@ -1,6 +1,6 @@
 package joshie.harvest.quests.tutorial;
 
-import joshie.harvest.api.HFRegister;
+import joshie.harvest.api.HFQuest;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.quests.AbstractSelection;
@@ -16,7 +16,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import static joshie.harvest.npc.HFNPCs.CAFE_OWNER;
 import static joshie.harvest.quests.QuestHelper.rewardItem;
 
-@HFRegister(data = "test")
+@HFQuest(data = "test")
 public class QuestBTM extends Quest {
     private static final Selection selection = new TeamSelection();
     private int selected;

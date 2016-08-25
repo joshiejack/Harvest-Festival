@@ -1,12 +1,12 @@
 package joshie.harvest.quests.tutorial;
 
-import joshie.harvest.api.HFRegister;
+import joshie.harvest.api.HFQuest;
 import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.quests.Quest;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.helpers.generic.OreDictionaryHelper;
 import joshie.harvest.crops.HFCrops;
-import joshie.harvest.api.quests.Quest;
 import joshie.harvest.tools.HFTools;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,8 +17,8 @@ import static joshie.harvest.npc.HFNPCs.GODDESS;
 import static joshie.harvest.npc.HFNPCs.SEED_OWNER;
 import static joshie.harvest.quests.QuestHelper.*;
 
-@HFRegister(data = "tutorial.farming")
-public class QuestGoddess extends Quest {   
+@HFQuest(data = "tutorial.farming")
+public class QuestGoddess extends Quest {
     public QuestGoddess() {
         setNPCs(GODDESS, SEED_OWNER);
     }

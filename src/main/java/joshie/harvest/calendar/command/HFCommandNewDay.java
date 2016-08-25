@@ -1,13 +1,13 @@
 package joshie.harvest.calendar.command;
 
 import joshie.harvest.api.HFCommand;
-import joshie.harvest.api.HFRegister;
+import joshie.harvest.api.HFQuest;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
 
 import static joshie.harvest.calendar.HFCalendar.TICKS_PER_DAY;
 
-@HFRegister
+@HFQuest
 public class HFCommandNewDay extends HFCommand {
     @Override
     public String getCommandName() {

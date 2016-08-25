@@ -29,7 +29,7 @@ public abstract class SpecialRendererCookware<T extends TileCooking> extends Til
     public static final Minecraft MINECRAFT = Minecraft.getMinecraft();
 
     @Override
-    public final void renderTileEntityAt(T tile, double x, double y, double z, float tick, int destroyStage) {
+    public void renderTileEntityAt(T tile, double x, double y, double z, float tick, int destroyStage) {
         GlStateManager.pushMatrix();
         GlStateManager.translate(x, y, z);
         renderCookware(tile);

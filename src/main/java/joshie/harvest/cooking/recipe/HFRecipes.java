@@ -1,6 +1,7 @@
 package joshie.harvest.cooking.recipe;
 
 import joshie.harvest.api.cooking.ICookingIngredient;
+import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.Meal;
 import joshie.harvest.cooking.items.ItemIngredients;
 import joshie.harvest.core.util.HFLoader;
@@ -46,6 +47,7 @@ public class HFRecipes {
 
         //Vanilla Mix Recipes
         addMixerRecipe(new ItemStack(Items.BEETROOT_SOUP), BEETROOT, TOMATO, ONION, OIL);
+        addMixerRecipe(HFCooking.INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.FLOUR), WHEAT);
 
         //Hand
         addNoUtensilRecipe("turnip_pickled", 2, 0.17F, -4F, TURNIP).setOptionalIngredients(SALT);
@@ -86,7 +88,7 @@ public class HFRecipes {
         addOvenRecipe("cake_chocolate", 20, 2.0F, -16F, EGG, FLOUR, BUTTER, CHOCOLATE).setOptionalIngredients(SUGAR, PINEAPPLE, APPLE, STRAWBERRY);
 
         //Vanilla Oven Recipes
-        addOvenRecipe(new ItemStack(Items.BREAD), WHEAT);
+        addOvenRecipe(new ItemStack(Items.BREAD), FLOUR);
         addOvenRecipe(new ItemStack(Items.BAKED_POTATO), POTATO);
         addOvenRecipe(new ItemStack(Items.COOKED_CHICKEN), CHICKEN);
         addOvenRecipe(new ItemStack(Items.COOKED_BEEF), BEEF);

@@ -1,7 +1,7 @@
 package joshie.harvest.quests.tutorial;
 
 import joshie.harvest.animals.HFAnimals;
-import joshie.harvest.api.HFRegister;
+import joshie.harvest.api.HFQuest;
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.Quest;
@@ -22,9 +22,9 @@ import java.util.Set;
 
 import static joshie.harvest.npc.HFNPCs.ANIMAL_OWNER;
 
-@HFRegister(data = "tutorial.chicken")
+@HFQuest(data = "tutorial.chicken")
 public class QuestChickenCare extends Quest {
-    private static final Quest TUTORIAL_COW = QuestHelper.getQuest("tutorial.cow");
+    private static final joshie.harvest.api.quests.Quest TUTORIAL_COW = QuestHelper.getQuest("tutorial.cow");
     private boolean hasThrown;
     private boolean hasFed;
 
@@ -33,7 +33,7 @@ public class QuestChickenCare extends Quest {
     }
 
     @Override
-    public boolean canStartQuest(EntityPlayer player, Set<Quest> active, Set<Quest> finished) {
+    public boolean canStartQuest(EntityPlayer player, Set<joshie.harvest.api.quests.Quest> active, Set<joshie.harvest.api.quests.Quest> finished) {
         return finished.contains(TUTORIAL_COW); //Quest is unlocked when you have chickens
     }
 

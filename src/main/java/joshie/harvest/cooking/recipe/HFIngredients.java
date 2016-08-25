@@ -96,17 +96,15 @@ public class HFIngredients {
 
     public static void init() {
         HFApi.cooking.register(HFCooking.INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.SALT), SALT);
-        HFApi.cooking.register(new ItemStack(Items.SUGAR, 1, OreDictionary.WILDCARD_VALUE), SUGAR);
-        HFApi.cooking.register(new ItemStack(Items.APPLE, 1, OreDictionary.WILDCARD_VALUE), APPLE);
+        HFApi.cooking.register(new ItemStack(Items.SUGAR), SUGAR);
+        HFApi.cooking.register(new ItemStack(Items.APPLE), APPLE);
         HFApi.cooking.register(HFCooking.INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.CHOCOLATE), CHOCOLATE);
         HFApi.cooking.register(HFCooking.INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.FLOUR), FLOUR);
         HFApi.cooking.register(HFCooking.INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.OIL), OIL);
         HFApi.cooking.register(HFCooking.INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.RICEBALL), RICEBALL);
         HFApi.cooking.register(HFCrops.TURNIP.getCropStack(), TURNIP);
         HFApi.cooking.register(HFCrops.POTATO.getCropStack(), POTATO);
-        HFApi.cooking.register(new ItemStack(Items.POTATO, 1, OreDictionary.WILDCARD_VALUE), POTATO);
         HFApi.cooking.register(HFCrops.BEETROOT.getCropStack(), BEETROOT);
-        HFApi.cooking.register(new ItemStack(Items.BEETROOT, 1, OreDictionary.WILDCARD_VALUE), BEETROOT);
         HFApi.cooking.register(HFCrops.CUCUMBER.getCropStack(), CUCUMBER);
         HFApi.cooking.register(HFCrops.STRAWBERRY.getCropStack(), STRAWBERRY);
         HFApi.cooking.register(HFCrops.CABBAGE.getCropStack(), CABBAGE);
@@ -114,11 +112,9 @@ public class HFIngredients {
         HFApi.cooking.register(HFCrops.TOMATO.getCropStack(), TOMATO);
         HFApi.cooking.register(HFCrops.CORN.getCropStack(), CORN);
         HFApi.cooking.register(HFCrops.PUMPKIN.getCropStack(), PUMPKIN);
-        HFApi.cooking.register(new ItemStack(Blocks.PUMPKIN, 1, OreDictionary.WILDCARD_VALUE), PUMPKIN);
         HFApi.cooking.register(HFCrops.PINEAPPLE.getCropStack(), PINEAPPLE);
         HFApi.cooking.register(HFCrops.EGGPLANT.getCropStack(), EGGPLANT);
         HFApi.cooking.register(HFCrops.CARROT.getCropStack(), CARROT);
-        HFApi.cooking.register(new ItemStack(Items.CARROT, 1, OreDictionary.WILDCARD_VALUE), CARROT);
         HFApi.cooking.register(HFCrops.SWEET_POTATO.getCropStack(), SWEET_POTATO);
         HFApi.cooking.register(HFCrops.SPINACH.getCropStack(), SPINACH);
         HFApi.cooking.register(HFCrops.GREEN_PEPPER.getCropStack(), GREEN_PEPPER);
@@ -128,7 +124,7 @@ public class HFIngredients {
         HFApi.cooking.register(new ItemStack(Items.BREAD), BREAD);
         HFApi.cooking.register(new ItemStack(Items.BAKED_POTATO), BAKED_POTATO);
         HFApi.cooking.register(new ItemStack(HFAnimals.EGG), EGG);
-        HFApi.cooking.register(new ItemStack(Items.EGG, 1, OreDictionary.WILDCARD_VALUE), EGG);
+        HFApi.cooking.register(new ItemStack(Items.EGG), EGG);
         HFApi.cooking.register(new ItemStack(HFAnimals.MILK), MILK);
         HFApi.cooking.register(new ItemStack(Items.MILK_BUCKET, 1, OreDictionary.WILDCARD_VALUE), MILK);
         HFApi.cooking.register(new ItemStack(HFAnimals.MAYONNAISE), MAYONNAISE);
@@ -143,8 +139,8 @@ public class HFIngredients {
         HFApi.cooking.register(HFApi.cooking.getBestMeal("cookies"), COOKIES);
         HFApi.cooking.register(HFCooking.INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.KETCHUP), KETCHUP);
         HFApi.cooking.register(HFApi.cooking.getBestMeal("ketchup"), KETCHUP);
-        HFApi.cooking.register(new ItemStack(Blocks.BROWN_MUSHROOM, 1, OreDictionary.WILDCARD_VALUE), BROWN_MUSHROOM);
-        HFApi.cooking.register(new ItemStack(Blocks.RED_MUSHROOM, 1, OreDictionary.WILDCARD_VALUE), RED_MUSHROOM);
+        HFApi.cooking.register(new ItemStack(Blocks.BROWN_MUSHROOM), BROWN_MUSHROOM);
+        HFApi.cooking.register(new ItemStack(Blocks.RED_MUSHROOM), RED_MUSHROOM);
 
         //Meats
         HFApi.cooking.register(new ItemStack(Items.FISH, 1, 0), COD);

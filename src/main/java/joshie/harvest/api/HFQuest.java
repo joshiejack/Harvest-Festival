@@ -4,7 +4,7 @@ package joshie.harvest.api;
  *  @see joshie.harvest.api.HFCommand
  *  @see joshie.harvest.api.quests.Quest
  */
-public @interface HFRegister {
+public @interface HFQuest {
     /** Return the mod id **/
     String mod() default "harvestfestival";
 

@@ -2,7 +2,7 @@ package joshie.harvest.quests.trade;
 
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.HFRegister;
+import joshie.harvest.api.HFQuest;
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.api.npc.INPC;
 import net.minecraft.entity.EntityLiving;
@@ -18,7 +18,7 @@ import static joshie.harvest.npc.HFNPCs.TRADER;
 import static joshie.harvest.quests.QuestHelper.rewardItem;
 import static joshie.harvest.quests.QuestHelper.takeHeldStack;
 
-@HFRegister(data = "trade.vanilla")
+@HFQuest(data = "trade.vanilla")
 public class QuestTrader extends QuestTrade {
     public QuestTrader() {
         setNPCs(TRADER);

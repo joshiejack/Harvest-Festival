@@ -2,7 +2,7 @@ package joshie.harvest.quests.tutorial;
 
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.entity.EntityHarvestCow;
-import joshie.harvest.api.HFRegister;
+import joshie.harvest.api.HFQuest;
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.Quest;
@@ -25,9 +25,9 @@ import static joshie.harvest.animals.item.ItemAnimalTool.Tool.MILKER;
 import static joshie.harvest.npc.HFNPCs.ANIMAL_OWNER;
 import static joshie.harvest.npc.HFNPCs.GODDESS;
 
-@HFRegister(data = "tutorial.cow")
+@HFQuest(data = "tutorial.cow")
 public class QuestCowCare extends Quest {
-    private static final Quest TUTORIAL_FARMING = QuestHelper.getQuest("tutorial.farming");
+    private static final joshie.harvest.api.quests.Quest TUTORIAL_FARMING = QuestHelper.getQuest("tutorial.farming");
     private boolean hasCollected;
     private boolean hasFed;
     private boolean hasBrushed;
@@ -38,7 +38,7 @@ public class QuestCowCare extends Quest {
     }
 
     @Override
-    public boolean canStartQuest(EntityPlayer player, Set<Quest> active, Set<Quest> finished) {
+    public boolean canStartQuest(EntityPlayer player, Set<joshie.harvest.api.quests.Quest> active, Set<joshie.harvest.api.quests.Quest> finished) {
         return finished.contains(TUTORIAL_FARMING);
     }
 

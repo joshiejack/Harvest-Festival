@@ -3,8 +3,7 @@ package joshie.harvest.core;
 import com.google.common.collect.Lists;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.HFCommand;
-import joshie.harvest.api.HFRegister;
-import joshie.harvest.api.quests.Quest;
+import joshie.harvest.api.HFQuest;
 import joshie.harvest.core.commands.CommandManager;
 import joshie.harvest.core.network.Packet;
 import joshie.harvest.core.util.HFApiImplementation;
@@ -64,7 +63,7 @@ public class HFApiLoader {
     }
 
     private static void registerEverything(@Nonnull ASMDataTable asm) {
-        String annotationClassName = HFRegister.class.getCanonicalName();
+        String annotationClassName = HFQuest.class.getCanonicalName();
         Set<ASMData> asmDatas = new HashSet<>(asm.getAll(annotationClassName));
         for (ASMDataTable.ASMData asmData : asmDatas) {
             try {
@@ -76,7 +75,7 @@ public class HFApiLoader {
                 } else {
                     String domain = data.get("mod") != null ? (String) data.get("mod") : "harvestfestival";
                     ResourceLocation resource = new ResourceLocation(domain, extra);
-                    load(Quest.class, Quest.REGISTRY, resource, clazz);
+                    load(joshie.harvest.api.quests.Quest.class, joshie.harvest.api.quests.Quest.REGISTRY, resource, clazz);
                 }
             } catch (Exception e) { e.printStackTrace(); }
         }

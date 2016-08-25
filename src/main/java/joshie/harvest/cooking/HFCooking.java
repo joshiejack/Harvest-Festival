@@ -48,6 +48,8 @@ public class HFCooking {
         ClientRegistry.bindTileEntitySpecialRenderer(TilePot.class, new SpecialRendererPot());
         ClientRegistry.bindTileEntitySpecialRenderer(TileCounter.class, new SpecialRendererCounter());
         ClientRegistry.bindTileEntitySpecialRenderer(TileMixer.class, new SpecialRendererMixer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileOven.class, new SpecialRendererOven());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileFridge.class, new SpecialRendererFridge());
     }
 
     @SideOnly(Side.CLIENT)

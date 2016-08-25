@@ -4,8 +4,10 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.IAltItem;
 import joshie.harvest.cooking.Utensil;
 import joshie.harvest.core.base.TileFaceable;
+import joshie.harvest.core.helpers.generic.ItemHelper;
 import joshie.harvest.core.helpers.generic.MCServerHelper;
 import joshie.harvest.core.helpers.generic.StackHelper;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -28,9 +30,8 @@ public abstract class TileCooking extends TileFaceable {
     private boolean cooking;
     private short cookTimer = 0;
     private ArrayList<ItemStack> ingredients = new ArrayList<>();
-    private ItemStack result;
+    protected ItemStack result;
     private int last;
-    private boolean isInit = false;
 
     public float[] rotations = new float[20];
     public float[] offset1 = new float[20];
@@ -53,7 +54,7 @@ public abstract class TileCooking extends TileFaceable {
         return true;
     }
 
-    public boolean canAddItems() {
+    public boolean isFinishedCooking() {
         return result == null;
     }
 
@@ -66,8 +67,9 @@ public abstract class TileCooking extends TileFaceable {
     }
 
     //reset everything ready for the next cooking batch
-    public void clear() {
-        result = null;
+    public void giveToPlayer(EntityPlayer player) {
+        ItemHelper.addToPlayerInventory(player, getResult());
+        result = null; //Clear out the result
     }
 
     public void animate() {}

@@ -2,13 +2,81 @@ package joshie.harvest.cooking.blocks;
 
 import joshie.harvest.cooking.Utensil;
 import joshie.harvest.cooking.blocks.TileCooking.TileCookingTicking;
+import joshie.harvest.core.helpers.generic.ItemHelper;
 import joshie.harvest.core.lib.HFSounds;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundCategory;
 
 public class TileOven extends TileCookingTicking {
+    public float prevLidAngle;
+    public float lidAngle;
+    private boolean animating;
+    private boolean up;
+    private EntityPlayer givePlayer;
+    private int giveTimer = 0;
+
     @Override
     public Utensil getUtensil() {
         return Utensil.OVEN;
+    }
+
+    @Override
+    public void giveToPlayer(EntityPlayer player) {
+        if (givePlayer == null) { //Play the sound if we can remove an ingredient
+            worldObj.playSound(null, getPos().getX(), getPos().getY() + 0.5D, getPos().getZ(), HFSounds.OVEN_DOOR, SoundCategory.BLOCKS, 2F, worldObj.rand.nextFloat() * 0.1F + 0.9F);
+            if (worldObj.isRemote) animating = true;
+            givePlayer = player;
+            giveTimer = 15;
+        }
+    }
+
+    @Override
+    public boolean addIngredient(ItemStack stack) {
+        boolean ret = super.addIngredient(stack);
+        if (ret) { //Play the sound if we add an ingredient
+            worldObj.playSound(null, getPos().getX(), getPos().getY() + 0.5D, getPos().getZ(), HFSounds.OVEN_DOOR, SoundCategory.BLOCKS, 2F, worldObj.rand.nextFloat() * 0.1F + 0.9F);
+            if (worldObj.isRemote) animating = true;
+            return true;
+        } else return false;
+    }
+
+    @Override
+    public void update() {
+        super.update();
+        if (giveTimer > 0) {
+            giveTimer--;
+            if (giveTimer <= 0) {
+                ItemHelper.addToPlayerInventory(givePlayer, getResult());
+                result = null; //Clear out the result
+                givePlayer = null;
+                giveTimer = 0;
+            }
+        }
+
+        //Only do render updates on the client
+        if (worldObj.isRemote) {
+            prevLidAngle = lidAngle;
+            float f1 = 0.025F;
+            if (animating) {
+                if (up) {
+                    lidAngle -= f1;
+                } else {
+                    lidAngle += f1;
+                }
+
+                if (lidAngle < -0.25F) {
+                    lidAngle = -0.25F;
+                    up = false; //Once we hit critical, go down instead
+                }
+
+                if (lidAngle > 0.0F) {
+                    lidAngle = 0.0F;
+                    animating = false;
+                    up = true;
+                }
+            }
+        }
     }
 
     @Override

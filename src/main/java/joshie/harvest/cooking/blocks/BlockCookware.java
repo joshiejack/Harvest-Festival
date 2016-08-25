@@ -7,7 +7,6 @@ import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.BlockHFEnumRotatableTile;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.helpers.ToolHelper;
-import joshie.harvest.core.helpers.generic.ItemHelper;
 import joshie.harvest.core.util.IFaceable;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -114,14 +113,8 @@ public class BlockCookware extends BlockHFEnumRotatableTile<BlockCookware, Cookw
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof TileCooking) {
             TileCooking cooking = (TileCooking) tile;
-            if (!cooking.canAddItems()) {
-                if (!player.inventory.addItemStackToInventory(cooking.getResult())) {
-                    if (!world.isRemote) {
-                        ItemHelper.spawnItem(world, pos.getX(), pos.getY() + 1, pos.getZ(), cooking.getResult());
-                    }
-                }
-
-                cooking.clear();
+            if (!cooking.isFinishedCooking()) {
+                cooking.giveToPlayer(player);
                 return true;
             }  else if (held != null) {
                 if (ToolHelper.isKnife(held)) {

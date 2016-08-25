@@ -18,12 +18,12 @@ import static joshie.harvest.core.lib.LoadOrder.HFINGREDIENTS;
 @HFLoader(priority = HFINGREDIENTS)
 public class HFIngredients {
     //Categories
-    public static ICookingIngredient mushroom;
-    public static ICookingIngredient juice_vegetable;
-    public static ICookingIngredient salad_ingredient;
-    public static ICookingIngredient sandwich_ingredient;
-    public static ICookingIngredient sashimi_vegetable;
-    public static ICookingIngredient fish;
+    public static final ICookingIngredient MUSHROOM = HFApi.cooking.newCategory("mushroom");
+    public static final ICookingIngredient JUICE_VEGETABLE = HFApi.cooking.newCategory("vegetable_juice");
+    public static final ICookingIngredient SALAD_INGREDIENT = HFApi.cooking.newCategory("salad_ingredient");
+    public static final ICookingIngredient SANDWICH_INGREDIENT = HFApi.cooking.newCategory("sandwich_ingredient");
+    public static final ICookingIngredient SASHIMI_VEGETABLE = HFApi.cooking.newCategory("sashimi_vegetable");
+    public static final ICookingIngredient FISH = HFApi.cooking.newCategory("fish");
 
     //Seasonings
     public static ICookingIngredient salt;
@@ -84,14 +84,6 @@ public class HFIngredients {
     public static ICookingIngredient brown_mushroom;
 
     public static void preInit() {
-        //Categories
-        mushroom = HFApi.cooking.newCategory("mushroom");
-        juice_vegetable = HFApi.cooking.newCategory("vegetable_juice");
-        salad_ingredient = HFApi.cooking.newCategory("salad_ingredient");
-        sandwich_ingredient = HFApi.cooking.newCategory("sandwich_ingredient");
-        sashimi_vegetable = HFApi.cooking.newCategory("sashimi_vegetable");
-        fish = HFApi.cooking.newCategory("fish");
-
         //Seasonings
         salt = HFApi.cooking.newIngredient("salt", 0, 0.05F, -5F, 0);
         sugar = HFApi.cooking.newIngredient("sugar", 2, 0.05F, 0F, 0);
@@ -127,7 +119,6 @@ public class HFIngredients {
         //Vanilla Stuff
         apple = HFApi.cooking.newIngredient("apple", 1, 0.12F, -1F, 6);
         bread = HFApi.cooking.newIngredient("bread", 3, 0.46F, -6F, 24);
-        fish = HFApi.cooking.newIngredient("fish", 2, 0.28F, -5F, 16);
         watermelon = HFApi.cooking.newIngredient("watermelon", 1, 0.06F, -1F, 4);
         wheat = HFApi.cooking.newIngredient("wheat", 2, 0.34F, -3F, 16);
         red_mushroom = HFApi.cooking.newIngredient("red_mushroom", 1, 0.12F, -1F, 8);
@@ -143,12 +134,12 @@ public class HFIngredients {
         ketchup = HFApi.cooking.newIngredient("ketchup", 0, 0.06F, -1F, 2);
 
         //Add ingredients to the categories
-        mushroom.add(red_mushroom, brown_mushroom);
-        juice_vegetable.add(turnip, cucumber, cabbage, tomato, onion, carrot, spinach, green_pepper);
-        salad_ingredient.add(cucumber, carrot, tomato, cabbage, brown_mushroom);
-        sandwich_ingredient.add(cucumber, tomato, mayonnaise, brown_mushroom, boiled_egg);
-        sashimi_vegetable.add(cucumber, tomato, onion, eggplant);
-        fish.add(SALMON, COD);
+        MUSHROOM.add(red_mushroom, brown_mushroom);
+        JUICE_VEGETABLE.add(turnip, cucumber, cabbage, tomato, onion, carrot, spinach, green_pepper);
+        SALAD_INGREDIENT.add(cucumber, carrot, tomato, cabbage, brown_mushroom);
+        SANDWICH_INGREDIENT.add(cucumber, tomato, mayonnaise, brown_mushroom, boiled_egg);
+        SASHIMI_VEGETABLE.add(cucumber, tomato, onion, eggplant);
+        FISH.add(SALMON, COD);
     }
 
     public static void init() {

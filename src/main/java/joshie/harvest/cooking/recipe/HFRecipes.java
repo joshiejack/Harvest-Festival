@@ -26,10 +26,10 @@ public class HFRecipes {
         addFryingPanRecipe("eggplant_happy", 8, 0.85F, -4F, eggplant).setOptionalIngredients(sugar);
         addFryingPanRecipe("egg_scrambled", 11, 1.14F, -6F, egg, oil).setOptionalIngredients(butter, mayonnaise, salt).setAlternativeTexture(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.EGG_SCRAMBLED));
         addFryingPanRecipe("omelet", 14, 1.43F, -8F, egg, oil, milk).setOptionalIngredients(salt);
-        addFryingPanRecipe("omelet_rice", 17, 1.71F, -8F, egg, milk, oil, riceball).setOptionalIngredients(cabbage, onion, mushroom, green_pepper, salt);
+        addFryingPanRecipe("omelet_rice", 17, 1.71F, -8F, egg, milk, oil, riceball).setOptionalIngredients(cabbage, onion, MUSHROOM, green_pepper, salt);
         addFryingPanRecipe("toast_french", 9, 0.86F, -4F, egg, bread, oil, sugar).setOptionalIngredients(butter);
         addFryingPanRecipe("doughnut", 9, 0.86F, -4F, egg, milk, butter, flour, oil);
-        addFryingPanRecipe("fish_grilled", 9, 1.14F, -2F, fish, oil, salt);
+        addFryingPanRecipe("fish_grilled", 9, 1.14F, -2F, FISH, oil, salt);
         addFryingPanRecipe("pancake", 6, 0.57F, -6F, egg, milk, flour, oil).setOptionalIngredients(sugar, butter);
         addFryingPanRecipe("potsticker", 7, 0.71F, -2F, cabbage, onion, flour, oil);
         addFryingPanRecipe("risotto", 10, 1.0F, -2F, tomato, onion, riceball, oil);
@@ -38,11 +38,11 @@ public class HFRecipes {
         addMixerRecipe("juice_pineapple", 2, 1.43F, -30F, pineapple).setOptionalIngredients(salt, sugar);
         addMixerRecipe("juice_tomato", 6, 0.57F, -40F, tomato).setOptionalIngredients(salt);
         addMixerRecipe("milk_strawberry", 9, 0.86F, -30F, strawberry, milk).setOptionalIngredients(sugar);
-        addMixerRecipe("juice_vegetable", 6, 0.57F, -40F, juice_vegetable).setOptionalIngredients(cucumber, onion, cabbage, tomato, spinach, carrot, green_pepper, turnip, salt); //Yo this doesnt make any sense. It requires Vegetable Juice to make iteslf?
-        addMixerRecipe("latte_vegetable", 9, 0.86F, -40F, juice_vegetable, milk).setOptionalIngredients(cucumber, onion, cabbage, tomato, spinach, carrot, green_pepper, turnip, salt);
+        addMixerRecipe("juice_vegetable", 6, 0.57F, -40F, JUICE_VEGETABLE).setOptionalIngredients(cucumber, onion, cabbage, tomato, spinach, carrot, green_pepper, turnip, salt); //Yo this doesnt make any sense. It requires Vegetable Juice to make iteslf?
+        addMixerRecipe("latte_vegetable", 9, 0.86F, -40F, JUICE_VEGETABLE, milk).setOptionalIngredients(cucumber, onion, cabbage, tomato, spinach, carrot, green_pepper, turnip, salt);
         addMixerRecipe("ketchup", 1, 0.03F, 0F, tomato, onion).setOptionalIngredients(salt, sugar).setAlternativeTexture(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.KETCHUP));
         addMixerRecipe("butter", false, 1, 0.03F, 0F, milk).setOptionalIngredients(salt).setAlternativeTexture(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.BUTTER));
-        addMixerRecipe("fishsticks", false, 1, 0.14F, -2F, fish).setOptionalIngredients(salt);
+        addMixerRecipe("fishsticks", false, 1, 0.14F, -2F, FISH).setOptionalIngredients(salt);
 
         //Vanilla Mix Recipes
         addMixerRecipe(new ItemStack(Items.BEETROOT_SOUP), beetroot);
@@ -50,11 +50,11 @@ public class HFRecipes {
         //Hand
         addNoUtensilRecipe("turnip_pickled", 2, 0.17F, -4F, turnip).setOptionalIngredients(salt);
         addNoUtensilRecipe("cucumber_pickled", 2, 0.17F, -3F, cucumber).setOptionalIngredients(salt);
-        addNoUtensilRecipe("salad", 3, 0.29F, -6F, salad_ingredient).setOptionalIngredients(mushroom, cucumber, cabbage, tomato, carrot, salt);
-        addNoUtensilRecipe("sandwich", 2, 0.23F, -4F, bread, sandwich_ingredient).setOptionalIngredients(butter, tomato, cucumber, salt, mayonnaise, mushroom);
+        addNoUtensilRecipe("salad", 3, 0.29F, -6F, SALAD_INGREDIENT).setOptionalIngredients(MUSHROOM, cucumber, cabbage, tomato, carrot, salt);
+        addNoUtensilRecipe("sandwich", 2, 0.23F, -4F, bread, SANDWICH_INGREDIENT).setOptionalIngredients(butter, tomato, cucumber, salt, mayonnaise, MUSHROOM);
         addNoUtensilRecipe("sushi", 9, 0.86F,  -10F, sashimi, riceball);
-        addNoUtensilRecipe("sashimi", 6, 0.63F, -8F, fish).setAlternativeTexture(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.SASHIMI));
-        addNoUtensilRecipe("sashimi_chirashi", 14, 1.43F, -14F, sashimi, scrambled_egg, riceball, sashimi_vegetable);
+        addNoUtensilRecipe("sashimi", 6, 0.63F, -8F, FISH).setAlternativeTexture(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.SASHIMI));
+        addNoUtensilRecipe("sashimi_chirashi", 14, 1.43F, -14F, sashimi, scrambled_egg, riceball, SASHIMI_VEGETABLE);
 
         //Pot
         addPotRecipe("milk_hot", true, 6, 0.57F, -20F, milk).setOptionalIngredients(sugar);
@@ -67,12 +67,12 @@ public class HFRecipes {
         addPotRecipe("soup_rice", 3, 0.29F, -4F, riceball);
         addPotRecipe("porridge", 2, 0.23F, -4F, milk, riceball).setOptionalIngredients(sugar);
         addPotRecipe("egg_overrice", 6, 0.34F, -2F, egg, riceball).setOptionalIngredients(salt);
-        addPotRecipe("stew", 9, 0.86F, -2F, milk, flour).setOptionalIngredients(eggplant, onion, potato, carrot, green_pepper, fish, salt);
+        addPotRecipe("stew", 9, 0.86F, -2F, milk, flour).setOptionalIngredients(eggplant, onion, potato, carrot, green_pepper, FISH, salt);
         addPotRecipe("stew_pumpkin", true, 2, 0.23F, -2F, pumpkin).setOptionalIngredients(sugar, salt);
-        addPotRecipe("stew_fish", 2, 0.2F, -2F, fish).setOptionalIngredients(salt);
+        addPotRecipe("stew_fish", 2, 0.2F, -2F, FISH).setOptionalIngredients(salt);
 
         //Vanilla Pot Recipes
-        addPotRecipe(new ItemStack(Items.RABBIT_STEW), potato, carrot, RABBIT, mushroom);
+        addPotRecipe(new ItemStack(Items.RABBIT_STEW), potato, carrot, RABBIT, MUSHROOM);
         addPotRecipe(new ItemStack(Items.MUSHROOM_STEW), red_mushroom, brown_mushroom);
 
         //Oven

@@ -1,15 +1,23 @@
 package joshie.harvest.town;
 
+import joshie.harvest.buildings.Building;
+import joshie.harvest.buildings.BuildingStage;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.gathering.GatheringData;
+import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.NPCRegistry;
 import joshie.harvest.npc.entity.AbstractEntityNPC;
+import joshie.harvest.npc.entity.EntityNPCBuilder;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.Mirror;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -17,7 +25,7 @@ import java.util.UUID;
 
 public class TownDataServer extends TownData {
     public GatheringData gathering = new GatheringData();
-    protected Set<ResourceLocation> deadVillagers = new HashSet<>();
+    private Set<ResourceLocation> deadVillagers = new HashSet<>();
 
     public TownDataServer() {}
     public TownDataServer(BlockPos pos) {
@@ -27,6 +35,26 @@ public class TownDataServer extends TownData {
 
     public void markNPCDead(ResourceLocation name) {
         deadVillagers.add(name);
+    }
+
+    public EntityNPCBuilder getBuilder(WorldServer world) {
+        return (EntityNPCBuilder) world.getEntityFromUuid(getID());
+    }
+
+    public boolean setBuilding(World world, Building building, BlockPos pos, Mirror mirror, Rotation rotation) {
+        BuildingStage stage = new BuildingStage(building, pos, mirror, rotation);
+        if (!this.building.contains(stage)) {
+            this.building.addLast(stage);
+            HFTrackers.markDirty(world);
+            return true;
+        }
+
+        return false;
+    }
+
+    public void finishBuilding(World world) {
+        this.building.removeFirst(); //Remove the first building
+        HFTrackers.markDirty(world);
     }
 
     @Override
@@ -39,6 +67,7 @@ public class TownDataServer extends TownData {
             entity.resetSpawnHome();
             BlockPos pos = entity.getHomeCoordinates();
             entity.setPositionAndUpdate(pos.getX(), pos.getY() + 0.5, pos.getZ());
+            if (npc == HFNPCs.BUILDER) entity.setUniqueId(getID()); //Keep the Unique ID the same
             world.spawnEntityInWorld(entity);
         }
 

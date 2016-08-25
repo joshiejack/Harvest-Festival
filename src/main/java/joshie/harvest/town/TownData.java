@@ -3,6 +3,7 @@ package joshie.harvest.town;
 import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.buildings.Building;
 import joshie.harvest.buildings.BuildingRegistry;
+import joshie.harvest.buildings.BuildingStage;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.network.PacketHandler;
@@ -14,9 +15,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class TownData {
     public static final String CARPENTER_DOWNSTAIRS = "yulifhome";
@@ -56,11 +55,16 @@ public class TownData {
     //END NPC NAME OF LOCATIONS **/
     
     protected Map<ResourceLocation, TownBuilding> buildings = new HashMap<>();
+    protected LinkedList<BuildingStage> building = new LinkedList();
     protected BlockPos townCentre;
     protected UUID uuid;
 
     public UUID getID() {
         return uuid;
+    }
+
+    public BuildingStage getCurrentlyBuilding() {
+        return building.size() > 0 ? building.getFirst() : null;
     }
     
     public void addBuilding(World world, Building building, Direction direction, BlockPos pos) {
@@ -116,6 +120,13 @@ public class TownData {
                 buildings.put(BuildingRegistry.REGISTRY.getNameForObject(building.building), building);
             }
         }
+
+        //Currently Building
+        NBTTagList currently = nbt.getTagList("CurrentlyBuilding", 10);
+        for (int i = 0; i < currently.tagCount(); i++) {
+            NBTTagCompound tag = currently.getCompoundTagAt(i);
+            building.add(BuildingStage.readFromNBT(tag));
+        }
     }
 
     public void writeToNBT(NBTTagCompound nbt) {
@@ -129,6 +140,16 @@ public class TownData {
         }
 
         nbt.setTag("TownBuildingList", list);
+
+        //Currently
+        NBTTagList currently = new NBTTagList();
+        for (BuildingStage stage: building) {
+            NBTTagCompound tag = new NBTTagCompound();
+            stage.writeToNBT(tag);
+            currently.appendTag(tag);
+        }
+
+        nbt.setTag("CurrentlyBuilding", currently);
     }
 
     @Override

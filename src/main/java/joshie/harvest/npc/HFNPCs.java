@@ -10,10 +10,7 @@ import joshie.harvest.core.HFClientProxy;
 import joshie.harvest.core.base.FMLIdentical;
 import joshie.harvest.core.lib.EntityIDs;
 import joshie.harvest.core.util.HFLoader;
-import joshie.harvest.npc.entity.AbstractEntityNPC;
-import joshie.harvest.npc.entity.EntityNPCBuilder;
-import joshie.harvest.npc.entity.EntityNPCShopkeeper;
-import joshie.harvest.npc.entity.EntityNPCVillager;
+import joshie.harvest.npc.entity.*;
 import joshie.harvest.npc.greeting.GreetingLocation;
 import joshie.harvest.npc.items.ItemNPCSpawner;
 import joshie.harvest.npc.items.ItemNPCTool;
@@ -72,11 +69,12 @@ public class HFNPCs {
     public static final ItemNPCTool TOOLS = new ItemNPCTool().register("tool_npc");
 
     public static void preInit() {
-        EntityRegistry.registerModEntity(EntityNPCVillager.class, "NPC", EntityIDs.VILLAGER, HarvestFestival.instance, 80, 3, true);
-        EntityRegistry.registerModEntity(EntityNPCBuilder.class, "NPCBuilder", EntityIDs.BUILDER, HarvestFestival.instance, 80, 3, true);
-        EntityRegistry.registerModEntity(EntityNPCShopkeeper.class, "NPCShopkeeper", EntityIDs.SHOPKEEPER, HarvestFestival.instance, 80, 3, true);
+        EntityRegistry.registerModEntity(EntityNPCVillager.class, "villager", EntityIDs.VILLAGER, HarvestFestival.instance, 80, 3, true);
+        EntityRegistry.registerModEntity(EntityNPCBuilder.class, "builder", EntityIDs.BUILDER, HarvestFestival.instance, 80, 3, true);
+        EntityRegistry.registerModEntity(EntityNPCShopkeeper.class, "shopkeeper", EntityIDs.SHOPKEEPER, HarvestFestival.instance, 80, 3, true);
+        EntityRegistry.registerModEntity(EntityNPCGoddess.class, "goddess", EntityIDs.GODDESS, HarvestFestival.instance, 80, 3, true);
         registerSounds("goddess", "blessing");
-        GODDESS = register("goddess", FEMALE, ADULT, 8, SPRING, 0x8CEED3, 0x4EC485).setHeight(1.2F, 0.05F);
+        GODDESS = register("goddess", FEMALE, ADULT, 8, SPRING, 0x8CEED3, 0x4EC485).setHeight(1.2F, 0.6F);
         ANIMAL_OWNER = register("jim", MALE, ADULT, 26, SPRING, 0x888888, 0x000000);
         CAFE_OWNER = register("liara", FEMALE, ADULT, 17, SPRING, 0xA64DFF, 0x46008C);
         SEED_OWNER = register("jade", FEMALE, ADULT, 14, SPRING, 0x9326FF, 0x46008C);
@@ -103,6 +101,7 @@ public class HFNPCs {
         registerNPCRendering(EntityNPCVillager.class);
         registerNPCRendering(EntityNPCBuilder.class);
         registerNPCRendering(EntityNPCShopkeeper.class);
+        registerNPCRendering(EntityNPCGoddess.class);
     }
 
     public static void init() {

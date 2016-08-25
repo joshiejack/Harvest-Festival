@@ -1,7 +1,5 @@
 package joshie.harvest.town;
 
-import com.google.common.cache.Cache;
-import com.google.common.cache.CacheBuilder;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import joshie.harvest.api.buildings.BuildingLocation;
@@ -13,24 +11,22 @@ import joshie.harvest.npc.entity.EntityNPCBuilder;
 import joshie.harvest.town.packets.PacketNewTown;
 import joshie.harvest.town.packets.PacketSyncTowns;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
-import java.util.*;
+import java.util.HashSet;
 import java.util.Map.Entry;
-import java.util.concurrent.Callable;
+import java.util.UUID;
 
 import static joshie.harvest.core.util.Direction.MN_R0;
 import static joshie.harvest.town.TownData.MINE_ENTRANCE;
 
 public class TownTrackerServer extends TownTracker {
     private static final BuildingLocation MINE = new BuildingLocation(HFBuildings.MINING_HILL, MINE_ENTRANCE);
-    private final Cache<BlockPos, EntityNPCBuilder> closestBuilder = CacheBuilder.newBuilder().build();
     private BiMap<UUID, Integer> townIDs = HashBiMap.create();
-    private Set<EntityNPCBuilder> builders = new HashSet<>();
 
     public void newDay() {
         for (TownData town: townData) {
@@ -40,17 +36,6 @@ public class TownTrackerServer extends TownTracker {
 
     public void syncToPlayer(EntityPlayer player) {
         PacketHandler.sendToClient(new PacketSyncTowns(townData), player);
-    }
-
-    public void addBuilder(EntityNPCBuilder npc) {
-        builders.add(npc);
-        //Update the list, Removing any that are actually dead
-        Iterator<EntityNPCBuilder> it = builders.iterator();
-        while (it.hasNext()) {
-            if (!it.next().isEntityAlive()) {
-                it.remove();
-            }
-        }
     }
 
     @Override
@@ -95,43 +80,24 @@ public class TownTrackerServer extends TownTracker {
         return 0;
     }
 
-    private EntityNPCBuilder createBuilder(EntityLivingBase entity) {
-        EntityNPCBuilder builder = new EntityNPCBuilder(entity.worldObj);
-        builder.setPositionAndUpdate(entity.posX, entity.posY, entity.posZ);
-        builder.resetSpawnHome();
-        entity.worldObj.spawnEntityInWorld(builder);
-        return builder;
-    }
-
-    @Override
-    public EntityNPCBuilder getBuilderOrCreate(final TownData town, final EntityLivingBase player) {
-        final BlockPos pos = new BlockPos(player);
-        try {
-            return closestBuilder.get(pos, new Callable<EntityNPCBuilder>() {
-                @Override
-                public EntityNPCBuilder call() throws Exception {
-                    EntityNPCBuilder builder = null;
-                    double thatNPCDistance = Double.MAX_VALUE;
-                    //Attempt to grab the loaded entity first
-                    for (Entity entity: builders) {
-                        if (entity instanceof EntityNPCBuilder && ((EntityNPCBuilder)entity).getHomeTown() == town) {
-                            double thisNPCDistance = town.getTownCentre().distanceSqToCenter(entity.posX, entity.posY, entity.posZ);
-                            if (builder == null || thisNPCDistance < thatNPCDistance) {
-                                builder = (EntityNPCBuilder) entity;
-                                thatNPCDistance = thisNPCDistance;
-                            }
-                        }
-                    }
-
-                    return builder == null ? createBuilder(player): builder;
-                }
-            });
-        } catch (Exception e) { return createBuilder(player); }
+    public void createNewBuilder(BlockPos pos, TownDataServer data) {
+        World world = getWorld();
+        EntityNPCBuilder creator = new EntityNPCBuilder(world);
+        creator.setPositionAndUpdate(pos.getX(), pos.getY() + 0.5D, pos.getZ());
+        creator.setSpawnHome(data); //Set the spawn town
+        creator.setUniqueId(data.getID()); //Marking the builder as having the same data
+        world.spawnEntityInWorld(creator); //Towns owner now spawned
     }
 
     @Override
     public TownData createNewTown(BlockPos pos) {
+        World world = getWorld();
+        EntityNPCBuilder creator = new EntityNPCBuilder(world);
         TownDataServer data = new TownDataServer(pos);
+        creator.setSpawnHome(data); //Set the spawn town
+        creator.setUniqueId(data.getID()); //Marking the builder as having the same data
+        creator.setPositionAndUpdate(pos.getX(), pos.getY() + 0.5D, pos.getZ());
+        world.spawnEntityInWorld(creator); //Towns owner now spawned
         townData.add(data);
         closestCache.invalidateAll(); //Reset the cache everytime we make a new town
         uuidMap.put(data.getID(), data);

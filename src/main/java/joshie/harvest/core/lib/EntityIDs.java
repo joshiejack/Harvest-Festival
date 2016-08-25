@@ -11,4 +11,5 @@ public class EntityIDs {
     public static final int DARK_SHEEP = 7;
     public static final int DARK_CHICKEN = 8;
     public static final int DARK_CHICK = 9;
+    public static final int GODDESS = 10;
 }

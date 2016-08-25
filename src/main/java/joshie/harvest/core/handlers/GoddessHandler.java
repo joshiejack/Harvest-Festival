@@ -47,7 +47,7 @@ public class GoddessHandler {
         }
 
         goddess = goddess != null ? goddess : NPCHelper.getEntityForNPC(world, (NPC) HFNPCs.GODDESS);
-        goddess.setPosition((int) x, (int) y + 1, (int) z);
+        goddess.setPosition(x, y + 1, z);
         goddess.resetSpawnHome();
         world.spawnEntityInWorld(goddess);
     }
@@ -110,7 +110,7 @@ public class GoddessHandler {
                             if (!event.getWorld().isRemote) {
                                 event.getWorld().playEvent(2005, event.getPos(), 0);
                                 if (event.getWorld().rand.nextInt(5) == 0) {
-                                    spawnGoddess(event.getWorld(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ());
+                                    spawnGoddess(event.getWorld(), event.getPos().getX() + 0.5, event.getPos().getY() - 0.9, event.getPos().getZ() + 0.5);
                                     lastGoddess = System.currentTimeMillis();
                                 }
                             }

@@ -34,13 +34,17 @@ public class PacketEdit extends PenguinPacket {
         if (gold) {
             CalendarHUD.editingCalendar = false;
             CalendarHUD.editingGold = true;
-            MCClientHelper.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new TextComponentString(TextFormatting.GOLD + "Editing the gold hud position, use wasd or arrow keys to move"));
-            MCClientHelper.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new TextComponentString(TextFormatting.GOLD + "   Press Enter to finish editing"));
+            MCClientHelper.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new TextComponentString(TextFormatting.GOLD + "Open a gui to edit the gold hud position"));
+            MCClientHelper.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new TextComponentString(TextFormatting.GOLD + "   WASD/Arrows to move around"));
+            MCClientHelper.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new TextComponentString(TextFormatting.GOLD + "   H to Hide/Show the textures"));
+            MCClientHelper.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new TextComponentString(TextFormatting.GOLD + "   Enter to Finish Editing"));
         } else {
             CalendarHUD.editingCalendar = true;
             CalendarHUD.editingGold = false;
-            MCClientHelper.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new TextComponentString(TextFormatting.GOLD + "Editing the date hud position, use wasd or arrow keys to move"));
-            MCClientHelper.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new TextComponentString(TextFormatting.GOLD + "   Press Enter to finish editing"));
+            MCClientHelper.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new TextComponentString(TextFormatting.GOLD + "Open a gui to edit the date hud position"));
+            MCClientHelper.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new TextComponentString(TextFormatting.GOLD + "   WASD/Arrows to move around"));
+            MCClientHelper.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new TextComponentString(TextFormatting.GOLD + "   H to Hide/Show the textures"));
+            MCClientHelper.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new TextComponentString(TextFormatting.GOLD + "   Enter to Finish Editing"));
         }
     }
 }

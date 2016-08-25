@@ -22,7 +22,7 @@ public class PurchaseableBuilding extends PurchaseableBuilder {
 
     @Override
     public boolean isPurchaseable(World world, EntityPlayer player) {
-        TownData town = TownHelper.getClosestTownToPlayer(player);
+        TownData town = TownHelper.getClosestTownToEntity(player);
         if (town.hasBuilding(resource)) return false;
         return building.getRules().canBuy(world, player) && building.hasRequirements(player);
     }

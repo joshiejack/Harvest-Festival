@@ -157,7 +157,7 @@ public class HFShops {
 
     private static void registerMiner() {
         MINER = HFApi.shops.newShop(new ResourceLocation(MODID, "miner"), HFNPCs.MINER);
-        MINER.addItem(new PurchaseableDecorative(1000, new ItemStack(HFMining.DIRT_DECORATIVE, 16, 1)));
+        MINER.addItem(new PurchaseableDecorative(1000, new ItemStack(HFMining.DIRT_DECORATIVE, 16, 0)));
 
         for (Type type: BlockStone.Type.values()) {
             if (!type.isReal()) {

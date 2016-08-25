@@ -9,13 +9,13 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.core.helpers.TownHelper;
-import joshie.harvest.core.lib.HFSounds;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.NPCRegistry;
 import joshie.harvest.npc.entity.ai.*;
 import joshie.harvest.town.TownData;
 import joshie.harvest.town.TownDataServer;
+import joshie.harvest.town.TownTracker;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -28,7 +28,6 @@ import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
@@ -60,11 +59,12 @@ public abstract class AbstractEntityNPC<E extends AbstractEntityNPC> extends Ent
         lover = entity.lover;
     }
 
+    @SuppressWarnings("unchecked")
     public <T extends TownData> T getHomeTown() {
         if (homeTown == null) {
             if (townID != null) homeTown = TownHelper.getTownByID(worldObj, townID);
             else {
-                homeTown = TownHelper.getClosestTownToEntityOrCreate(this);
+                homeTown = TownHelper.getClosestTownToEntity(this);
                 townID = homeTown.getID(); //Set the town id when we create one
             }
         }
@@ -73,7 +73,7 @@ public abstract class AbstractEntityNPC<E extends AbstractEntityNPC> extends Ent
     }
 
     public AbstractEntityNPC(World world) {
-        this(world, (NPC) HFNPCs.GODDESS);
+        this(world, (NPC) HFNPCs.MAYOR);
     }
 
     public AbstractEntityNPC(World world, NPC npc) {
@@ -86,11 +86,28 @@ public abstract class AbstractEntityNPC<E extends AbstractEntityNPC> extends Ent
     protected abstract E getNewEntity(E entity);
 
     public void resetSpawnHome() {
-        this.homeTown = TownHelper.getClosestTownToEntityOrCreate(this);
-        this.townID = homeTown.getID();
-        this.spawned = homeTown.getCoordinatesFor(getNPC().getLocation(HOME));
-        if (this.spawned == null) {
-            this.spawned = new BlockPos(this);
+        TownHelper.ensureTownExists(worldObj, new BlockPos(this)); //Force a town to exist near this entity
+        this.homeTown = TownHelper.getClosestTownToEntity(this);
+        //A town cannot exist without a builder
+        if (this.homeTown == TownTracker.NULL_TOWN) this.setDead();
+        else {
+            this.townID = homeTown.getID();
+            this.spawned = homeTown.getCoordinatesFor(getNPC().getLocation(HOME));
+            if (this.spawned == null) {
+                this.spawned = new BlockPos(this);
+            }
+        }
+    }
+
+    public void setSpawnHome(TownData data) {
+        this.homeTown = data;
+        if (this.homeTown == TownTracker.NULL_TOWN) this.setDead();
+        else {
+            this.townID = homeTown.getID();
+            this.spawned = homeTown.getCoordinatesFor(getNPC().getLocation(HOME));
+            if (this.spawned == null) {
+                this.spawned = new BlockPos(this);
+            }
         }
     }
 
@@ -109,11 +126,11 @@ public abstract class AbstractEntityNPC<E extends AbstractEntityNPC> extends Ent
 
     @Override
     protected void initEntityAI() {
+        ((PathNavigateGround) this.getNavigator()).setEnterDoors(true);
         ((PathNavigateGround) this.getNavigator()).setBreakDoors(true);
         tasks.addTask(0, new EntityAISwimming(this));
         tasks.addTask(1, new EntityAITalkingTo(this));
         tasks.addTask(1, new EntityAILookAtPlayer(this));
-        tasks.addTask(3, new EntityAIRestrictOpenDoor(this));
         tasks.addTask(4, new EntityAIOpenDoor(this, true));
         tasks.addTask(5, new EntityAISchedule(this));
         tasks.addTask(6, new EntityAITask(this));
@@ -254,12 +271,8 @@ public abstract class AbstractEntityNPC<E extends AbstractEntityNPC> extends Ent
     @Override
     public void readSpawnData(ByteBuf buf) {
         String name = buf.readBoolean() ? ByteBufUtils.readUTF8String(buf) : "";
-        npc = name.equals("") ? (NPC) HFNPCs.GODDESS : NPCRegistry.REGISTRY.getObject(new ResourceLocation(name));
+        npc = name.equals("") ? (NPC) HFNPCs.MAYOR : NPCRegistry.REGISTRY.getObject(new ResourceLocation(name));
         townID = UUID.fromString(ByteBufUtils.readUTF8String(buf));
-
-        if (getNPC() == HFNPCs.GODDESS) {
-            worldObj.playSound(posX, posY, posZ, HFSounds.GODDESS_SPAWN, SoundCategory.NEUTRAL, 1F, 1F, true);
-        }
     }
 
     @Override

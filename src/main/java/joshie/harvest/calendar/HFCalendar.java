@@ -32,6 +32,8 @@ public class HFCalendar {
     public static int HUD_ZEND;
     public static int HUD_DIMENSION;
     public static int OVERWORLD_ID;
+    public static boolean HIDE_CALENDAR_TEXTURE;
+    public static boolean HIDE_GOLD_TEXTURE;
     public static int X_CALENDAR;
     public static int Y_CALENDAR;
     public static int X_GOLD;
@@ -67,8 +69,10 @@ public class HFCalendar {
         ENABLE_TYPHOON = getBoolean("Weather > Enable typhoon", true);
         ENABLE_SNOW = getBoolean("Weather > Enable snow", true);
         ENABLE_BLIZZARD = getBoolean("Weather > Enable blizzard", true);
+        HIDE_CALENDAR_TEXTURE = getBoolean("HUD > Calendar Hide Texture", false);
         X_CALENDAR = getInteger("HUD > Calendar X", 0);
         Y_CALENDAR = getInteger("HUD > Calendar Y", 0);
+        HIDE_GOLD_TEXTURE = getBoolean("HUD > Gold Hide Texture", false);
         X_GOLD = getInteger("HUD > Gold X", 0);
         Y_GOLD = getInteger("HUD > Gold Y", 0);
         ENABLE_DATE_HUD = getBoolean("HUD > Enable data", true);

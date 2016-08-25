@@ -51,7 +51,9 @@ public class CalendarHUD {
             event.setCanceled(true);
             Keyboard.enableRepeatEvents(true);
             boolean save = false;
-            if (Keyboard.isKeyDown(Keyboard.KEY_W) || Keyboard.isKeyDown(Keyboard.KEY_UP)) {
+            if (Keyboard.isKeyDown(Keyboard.KEY_H)) {
+                if (editingCalendar) HFCalendar.HIDE_CALENDAR_TEXTURE = !HFCalendar.HIDE_CALENDAR_TEXTURE; else HFCalendar.HIDE_GOLD_TEXTURE = !HFCalendar.HIDE_GOLD_TEXTURE;
+            } else if (Keyboard.isKeyDown(Keyboard.KEY_W) || Keyboard.isKeyDown(Keyboard.KEY_UP)) {
                 if (editingCalendar) HFCalendar.Y_CALENDAR--; else HFCalendar.Y_GOLD--;
             } else if (Keyboard.isKeyDown(Keyboard.KEY_S) || Keyboard.isKeyDown(Keyboard.KEY_DOWN)) {
                 if (editingCalendar) HFCalendar.Y_CALENDAR++; else HFCalendar.Y_GOLD++;
@@ -88,17 +90,20 @@ public class CalendarHUD {
                 GlStateManager.pushMatrix();
                 GlStateManager.enableBlend();
                 GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+                int maxWidth = event.getResolution().getScaledWidth();
+                int maxHeight = event.getResolution().getScaledHeight();
                 if (HFCalendar.ENABLE_DATE_HUD) {
                     Calendar calendar = HFTrackers.getCalendar(MCClientHelper.getWorld());
                     ICalendarDate date = calendar.getDate();
                     ISeasonData data = calendar.getSeasonData();
                     GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-                    int maxWidth = event.getResolution().getScaledWidth();
-                    int maxHeight = event.getResolution().getScaledHeight();
+
                     float adjustedX = ((HFCalendar.X_CALENDAR / 100F) * maxWidth);
                     float adjustedY = ((HFCalendar.Y_CALENDAR / 100F) * maxHeight);
-                    mc.renderEngine.bindTexture(data.getResource());
-                    mc.ingameGUI.drawTexturedModalRect(adjustedX - 44, adjustedY - 35, 0, 0, 256, 110);
+                    if (!HFCalendar.HIDE_CALENDAR_TEXTURE) {
+                        mc.renderEngine.bindTexture(data.getResource());
+                        mc.ingameGUI.drawTexturedModalRect(adjustedX - 44, adjustedY - 35, 0, 0, 256, 110);
+                    }
 
                     //Enlarge the Day
                     GlStateManager.pushMatrix();
@@ -114,13 +119,14 @@ public class CalendarHUD {
                 }
 
                 if (HFCalendar.ENABLE_GOLD_HUD) {
-                    mc.getTextureManager().bindTexture(HFModInfo.elements);
                     String text = NumberFormat.getNumberInstance(Locale.US).format(HFTrackers.getClientPlayerTracker().getStats().getGold());
-                    int maxWidth = event.getResolution().getScaledWidth();
-                    int maxHeight = event.getResolution().getScaledHeight();
                     float adjustedX = ((HFCalendar.X_GOLD / 100F) * maxWidth);
                     float adjustedY = ((HFCalendar.Y_GOLD / 100F) * maxHeight);
-                    mc.ingameGUI.drawTexturedModalRect(maxWidth - mc.fontRendererObj.getStringWidth(text) - 20 + adjustedX, 2 + adjustedY, 244, 0, 12, 12);
+                    if (!HIDE_GOLD_TEXTURE) {
+                        mc.getTextureManager().bindTexture(HFModInfo.elements);
+                        mc.ingameGUI.drawTexturedModalRect(maxWidth - mc.fontRendererObj.getStringWidth(text) - 20 + adjustedX, 2 + adjustedY, 244, 0, 12, 12);
+                    }
+
                     int coinWidth = maxWidth - mc.fontRendererObj.getStringWidth(text) - 5 + (int) adjustedX;
                     mc.fontRendererObj.drawStringWithShadow(text, coinWidth, 5 + adjustedY, 0xFFFFFFFF);
                 }

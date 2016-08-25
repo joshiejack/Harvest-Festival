@@ -5,9 +5,7 @@ import com.google.common.cache.CacheBuilder;
 import joshie.harvest.core.HFTracker;
 import joshie.harvest.core.util.Direction;
 import joshie.harvest.npc.HFNPCs;
-import joshie.harvest.npc.entity.EntityNPCBuilder;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 
@@ -26,6 +24,7 @@ public abstract class TownTracker extends HFTracker {
 
     public TownData getClosestTownToBlockPos(final BlockPos pos) {
         try {
+            closestCache.cleanUp();
             return closestCache.get(pos, new Callable<TownData>() {
                 @Override
                 public TownData call() throws Exception {
@@ -46,10 +45,6 @@ public abstract class TownTracker extends HFTracker {
     }
 
     public abstract TownData createNewTown(BlockPos blockPos);
-
-    public EntityNPCBuilder getBuilderOrCreate(TownData town, EntityLivingBase player) {
-        return new EntityNPCBuilder(player.worldObj);
-    }
 
     public TownData getTownByID(UUID townID) {
         TownData result = uuidMap.get(townID);

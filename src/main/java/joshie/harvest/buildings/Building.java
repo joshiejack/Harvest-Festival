@@ -188,7 +188,7 @@ public class Building extends Impl<Building> implements IBuilding {
             for (Placeable placeable: full_list) placeable.place(world, pos, direction, ConstructionStage.DECORATE);
             for (Placeable placeable: full_list) placeable.place(world, pos, direction, ConstructionStage.PAINT);
             for (Placeable placeable: full_list) placeable.place(world, pos, direction, ConstructionStage.MOVEIN);
-            TownHelper.getClosestTownToBlockPosOrCreate(world, pos).addBuilding(world, this, direction, pos);
+            TownHelper.getClosestTownToBlockPos(world, pos).addBuilding(world, this, direction, pos);
             MCServerHelper.markForUpdate(world, pos);
         }
 
@@ -217,7 +217,7 @@ public class Building extends Impl<Building> implements IBuilding {
     }
 
     public boolean hasRequirements(EntityPlayer player) {
-        return TownHelper.getClosestTownToPlayer(player).hasBuildings(requirements);
+        return TownHelper.getClosestTownToEntity(player).hasBuildings(requirements);
     }
 
     public int getLength() {

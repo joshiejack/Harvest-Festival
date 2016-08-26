@@ -32,7 +32,7 @@ public class ItemHammer extends ItemToolSmashing {
 
     @Override
     public void playSound(World world, BlockPos pos) {
-        playSound(world, pos, HFSounds.SMASH_ROCK, SoundCategory.BLOCKS);
+        world.playSound(null, pos, HFSounds.SMASH_ROCK, SoundCategory.BLOCKS, world.rand.nextFloat() * 0.45F, world.rand.nextFloat() * 1.0F + 0.5F);
     }
 
     @Override

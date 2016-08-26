@@ -11,7 +11,7 @@ public abstract class Page {
     }
 
     public abstract void draw(int mouseX, int mouseY);
-    public abstract void mouseClicked(int mouseX, int mouseY);
+    public abstract boolean mouseClicked(int mouseX, int mouseY);
 
     public abstract Page getOwner();
 

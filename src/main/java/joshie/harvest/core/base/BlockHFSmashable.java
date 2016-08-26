@@ -5,14 +5,9 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public abstract class BlockHFSmashable<B extends BlockHFSmashable, E extends Enum<E> & IStringSerializable> extends BlockHFEnum<B, E> implements ISmashable {
     //Main Constructor
@@ -34,23 +29,13 @@ public abstract class BlockHFSmashable<B extends BlockHFSmashable, E extends Enu
 
     @Override
     public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)  {
-        Item held = harvesters.get().getHeldItemMainhand() != null ? harvesters.get().getHeldItemMainhand().getItem() : null;
-        if (held != null && held == getTool()) {
-            if (!worldIn.isRemote && !worldIn.restoringBlockSnapshots) {
-                ItemStack stack = getDrop(harvesters.get(), worldIn, pos, state, fortune);
-                if (stack != null) {
-                    List<ItemStack> items = new ArrayList<>();
-                    items.add(stack);
-                    chance = net.minecraftforge.event.ForgeEventFactory.fireBlockHarvesting(items, worldIn, pos, state, fortune, chance, false, harvesters.get());
+        if (isDroppable(getEnumFromState(state))) {
+            super.dropBlockAsItemWithChance(worldIn, pos, state, chance, fortune);
+        }
+    }
 
-                    for (ItemStack item : items) {
-                        if (worldIn.rand.nextFloat() <= chance) {
-                            spawnAsEntity(worldIn, pos, item);
-                        }
-                    }
-                }
-            }
-        } else super.dropBlockAsItemWithChance(worldIn, pos, state, chance, fortune);
+    protected boolean isDroppable(E e) {
+        return false;
     }
 
     @Override

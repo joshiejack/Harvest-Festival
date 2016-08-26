@@ -81,7 +81,7 @@ public class GuiCookbook extends GuiScreen {
         super.mouseClicked(x, y, mouseButton);
         int mouseX = x -centreX;
         int mouseY = y - centreY;
-        page.mouseClicked(mouseX, mouseY);
+        if (page.mouseClicked(mouseX, mouseY)) return;
         //Draw the utensil buttons
         if (page.getUtensil() != null) {
             boolean hoverX = mouseX >= 307 && mouseX <= 333;
@@ -91,19 +91,21 @@ public class GuiCookbook extends GuiScreen {
                     boolean hoverY = mouseY >= 16 + i * 36 && mouseY <= 50 + i * 36;
                     if (hoverX && hoverY) {
                         setPage(PageRecipeList.get(tool));
+                        return; //Don't continue
                     }
                 }
             }
         }
 
 
-        if (page.getOwner() != page && mouseX >= 24 && mouseX <= 39 && mouseY >= 168 && mouseY <= 178) {
+        if (page.getOwner() != page && mouseX >= 24 && mouseX <= 39 && mouseY >= 168 && mouseY <= 178 || mouseButton == 1) {
             setPage(page.getOwner());
         }
     }
 
-    public void setPage(Page page) {
+    public boolean setPage(Page page) {
         GuiCookbook.page = page.initGui(this);
+        return true;
     }
 
     public void drawString(int x, int y, String text) {

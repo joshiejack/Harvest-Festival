@@ -12,6 +12,7 @@ import joshie.harvest.npc.gui.GuiNPCBase;
 import joshie.harvest.player.stats.StatsClient;
 import joshie.harvest.shops.Shop;
 import joshie.harvest.shops.packets.PacketPurchaseItem;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -124,13 +125,11 @@ public class GuiNPCShop extends GuiNPCBase {
     private static DecimalFormat formatter = new DecimalFormat("#,###");
 
     private void drawCoinage(int x, int y, long gold) {
-        mc.renderEngine.bindTexture(number_texture);
-        int width = 0;
         String formatted = String.valueOf(formatter.format(gold));
         ShopFontRenderer.render(this, x + 210, y + 16, formatted, true);
         GlStateManager.disableDepth();
         mc.renderEngine.bindTexture(HFModInfo.elements);
-        mc.ingameGUI.drawTexturedModalRect((x + 230) - width - 15, y + 15, 244, 0, 12, 12);
+        mc.ingameGUI.drawTexturedModalRect((x + 230) - 15, y + 15, 244, 0, 12, 12);
         GlStateManager.enableDepth();
     }
 
@@ -167,7 +166,9 @@ public class GuiNPCShop extends GuiNPCBase {
 
                 if (stats.getGold() - purchaseable.getCost() >= 0) {
                     if (mouseY >= posY + 20 && mouseY <= posY + 52 && mouseX >= posX && mouseX <= posX + 32) {
-                        PacketHandler.sendToServer(new PacketPurchaseItem(purchaseable));
+                        for (int j = 0; j < (GuiScreen.isShiftKeyDown() ? 64: 1); j++) {
+                            PacketHandler.sendToServer(new PacketPurchaseItem(purchaseable));
+                        }
                     }
                 }
 

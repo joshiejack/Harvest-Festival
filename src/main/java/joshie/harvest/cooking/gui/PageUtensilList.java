@@ -53,13 +53,15 @@ public class PageUtensilList extends Page {
     }
 
     @Override
-    public void mouseClicked(int mouseX, int mouseY) {
+    public boolean mouseClicked(int mouseX, int mouseY) {
         boolean hoverX = mouseX >= 166 && mouseX <= 288;
         for (int i = 0; i < pages.size(); i++) {
             boolean hoverY = mouseY >= 21 + 31 * i && mouseY <= 21 + 31 * i + 30;
             if (hoverX && hoverY) {
-                gui.setPage(pages.get(i));
+                return gui.setPage(pages.get(i));
             }
         }
+
+        return false;
     }
 }

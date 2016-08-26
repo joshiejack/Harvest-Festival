@@ -122,7 +122,7 @@ public class PageRecipe extends Page {
     }
 
     @Override
-    public void mouseClicked(int mouseX, int mouseY) {
+    public boolean mouseClicked(int mouseX, int mouseY) {
         if(mouseX >= 236 && mouseX <= 287 && mouseY >= 148 && mouseY <= 176) {
             if (CookingHelper.hasAllIngredients(recipe, GuiCookbook.ingredients)) {
                 String utensil = TextFormatting.YELLOW + PageRecipeList.get(recipe.getRequiredTool()).getItem().getDisplayName() + TextFormatting.RESET;
@@ -134,7 +134,9 @@ public class PageRecipe extends Page {
                 } else
                     ChatHelper.displayChat(TextFormatting.RED + Text.translate("meal.failure") + TextFormatting.WHITE + " " + Text.format("harvestfestival.meal.failure.description", utensil, name));
             } else ChatHelper.displayChat(TextFormatting.RED + Text.translate("meal.missing") + TextFormatting.WHITE +  " " + Text.translate("meal.missing.description"));
-        }
+
+            return true;
+        } else return false;
     }
 
     @Override

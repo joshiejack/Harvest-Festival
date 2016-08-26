@@ -23,6 +23,7 @@ import joshie.harvest.mining.blocks.BlockStone.Type;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.shops.purchaseable.*;
 import joshie.harvest.tools.HFTools;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -119,6 +120,8 @@ public class HFShops {
         }
 
         CARPENTER.addItem(new PurchaseableBuilder(0, 16, 0, HFCore.STORAGE.getStackFromEnum(Storage.SHIPPING)));
+        CARPENTER.addItem(new PurchaseableBuilder(0, 0, 100, new ItemStack(Blocks.LOG)));
+        CARPENTER.addItem(new PurchaseableBuilder(0, 0, 50, new ItemStack(Blocks.STONE)));
         CARPENTER.addOpening(MONDAY, 11000, 16000).addOpening(TUESDAY, 11000, 16000).addOpening(WEDNESDAY, 11000, 16000);
         CARPENTER.addOpening(THURSDAY, 11000, 16000).addOpening(FRIDAY, 11000, 16000).addOpening(SUNDAY, 11000, 16000);
     }

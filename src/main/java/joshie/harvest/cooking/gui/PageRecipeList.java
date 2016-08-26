@@ -107,7 +107,7 @@ public class PageRecipeList extends Page {
     }
 
     @Override
-    public void mouseClicked(int mouseX, int mouseY) {
+    public boolean mouseClicked(int mouseX, int mouseY) {
         //Click the left hand side
         int maxLeft = Math.min(10, recipes.size());
         if (maxLeft > 0) {
@@ -115,7 +115,7 @@ public class PageRecipeList extends Page {
             for (int i = 0; i < maxLeft; i++) {
                 boolean hoverY = mouseY >= 22 + i * 14 && mouseY <= 35 + i * 14;
                 if (hoverX && hoverY) {
-                    gui.setPage(recipes.get(i));
+                    return gui.setPage(recipes.get(i));
                 }
             }
         }
@@ -127,10 +127,12 @@ public class PageRecipeList extends Page {
                 int i = j - 10;
                 boolean hoverY = mouseY >= 22 + i * 14 && mouseY <= 35 + i * 14;
                 if (hoverX && hoverY) {
-                    gui.setPage(recipes.get(j));
+                    return gui.setPage(recipes.get(j));
                 }
             }
         }
+
+        return false;
     }
 
     @Override

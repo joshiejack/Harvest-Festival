@@ -6,18 +6,18 @@ import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.ChatFontRenderer;
 import joshie.harvest.core.util.GuiBaseContainer;
 import joshie.harvest.npc.HFNPCs;
-import joshie.harvest.npc.entity.AbstractEntityNPC;
+import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 
 public class GuiNPCBase extends GuiBaseContainer {
     private static final ResourceLocation chatbox = new ResourceLocation(HFModInfo.MODID, "textures/gui/chatbox.png");
-    protected AbstractEntityNPC npc;
+    protected EntityNPC npc;
     protected EntityPlayer player;
     protected int nextGui;
 
-    public GuiNPCBase(AbstractEntityNPC eNpc, EntityPlayer ePlayer, int next) {
+    public GuiNPCBase(EntityNPC eNpc, EntityPlayer ePlayer, int next) {
         super(new ContainerNPC(eNpc, ePlayer.inventory), "chat", 0);
 
         hasInventory = false;

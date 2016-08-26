@@ -2,7 +2,7 @@ package joshie.harvest.shops.gui;
 
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.util.ContainerBase;
-import joshie.harvest.npc.entity.AbstractEntityNPC;
+import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.quests.QuestHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,9 +11,9 @@ import net.minecraft.entity.player.InventoryPlayer;
 import java.util.HashSet;
 
 public class ContainerNPCShop extends ContainerBase {
-    private AbstractEntityNPC npc;
+    private EntityNPC npc;
 
-    public ContainerNPCShop(AbstractEntityNPC npc, InventoryPlayer playerInventory) {
+    public ContainerNPCShop(EntityNPC npc, InventoryPlayer playerInventory) {
         this.npc = npc;
     }
 

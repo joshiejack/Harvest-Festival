@@ -2,7 +2,7 @@ package joshie.harvest.npc.entity.ai;
 
 import joshie.harvest.core.helpers.CalendarHelper;
 import joshie.harvest.core.helpers.NPCHelper;
-import joshie.harvest.npc.entity.AbstractEntityNPC;
+import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 
@@ -10,14 +10,14 @@ public class TaskGoHome extends AbstractTask {
     public long attemptTimer;
 
     @Override
-    public boolean shouldTerminate(AbstractEntityNPC entity) {
+    public boolean shouldTerminate(EntityNPC entity) {
         BlockPos home = NPCHelper.getHomeForEntity(entity);
         if (home == null) return true;
         return entity.getDistanceSq(home) < 1D;
     }
 
     @Override
-    public boolean shouldExecute(AbstractEntityNPC entity) {
+    public boolean shouldExecute(EntityNPC entity) {
         BlockPos.MutableBlockPos mutablePos = new BlockPos.MutableBlockPos(MathHelper.floor_double(entity.posX), MathHelper.floor_double(entity.posY), MathHelper.floor_double(entity.posZ));
         int bedTime = CalendarHelper.getScaledTime(entity.getNPC().getBedtime() - 1500);
         long time = CalendarHelper.getTime(entity.worldObj);
@@ -32,7 +32,7 @@ public class TaskGoHome extends AbstractTask {
     }
 
     @Override
-    public void execute(AbstractEntityNPC entity) {
+    public void execute(EntityNPC entity) {
         BlockPos go = NPCHelper.getHomeForEntity(entity);
         if (go != null) {
             if (attemptTimer < 1000L) {

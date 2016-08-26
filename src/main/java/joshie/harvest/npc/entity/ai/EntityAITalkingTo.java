@@ -1,14 +1,14 @@
 package joshie.harvest.npc.entity.ai;
 
-import joshie.harvest.npc.entity.AbstractEntityNPC;
+import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 
 public class EntityAITalkingTo extends EntityAIBase {
-    private AbstractEntityNPC npc;
+    private EntityNPC npc;
 
-    public EntityAITalkingTo(AbstractEntityNPC npc) {
+    public EntityAITalkingTo(EntityNPC npc) {
         this.npc = npc;
         this.setMutexBits(5);
     }

@@ -28,7 +28,13 @@ import static net.minecraft.util.text.TextFormatting.AQUA;
 
 public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> implements ICreativeSorted {
     public enum Tool implements IStringSerializable {
-        MILKER, BRUSH, MEDICINE, CHICKEN_FEED, MIRACLE_POTION;
+        MILKER(true), BRUSH(true), MEDICINE(false), CHICKEN_FEED(false), MIRACLE_POTION(false);
+
+        private final boolean isDamageable;
+
+        Tool(boolean isDamageable) {
+            this.isDamageable = isDamageable;
+        }
 
         @Override
         public String getName() {
@@ -67,6 +73,7 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> implements 
                 milkable.milk(player);
             }
 
+            stack.getSubCompound("Data", true).setInteger("Damage", getDamageForDisplay(stack) + 1);
             ToolHelper.consumeHunger(player, 4F);
         }
 
@@ -104,7 +111,7 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> implements 
         return true;
     }
 
-    private boolean clean(EntityPlayer player, EntityAnimal animal, IAnimalData data) {
+    private boolean clean(EntityPlayer player, ItemStack held, EntityAnimal animal, IAnimalData data) {
         if (!player.worldObj.isRemote) {
             data.clean(player);
         } else {
@@ -116,6 +123,7 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> implements 
             }
         }
 
+        held.getSubCompound("Data", true).setInteger("Damage", getDamageForDisplay(held) + 1);
         ToolHelper.consumeHunger(player, 4F);
         return true;
     }
@@ -126,7 +134,7 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> implements 
             IAnimalData data = ((IAnimalTracked) living).getData();
             Tool tool = getEnumFromStack(stack);
             if (tool == BRUSH && !(living instanceof EntityChicken)) {
-                return clean(player, (EntityAnimal) living, data);
+                return clean(player, stack, (EntityAnimal) living, data);
             } else if (tool == MEDICINE) {
                 return heal(player, data, stack);
             } else if (tool == MIRACLE_POTION && !(living instanceof EntityChicken)) {
@@ -138,7 +146,23 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> implements 
         return false;
     }
 
+    @Override
+    public boolean showDurabilityBar(ItemStack stack) {
+        return getDurabilityForDisplay(stack) > 0D;
+    }
 
+    @Override
+    public double getDurabilityForDisplay(ItemStack stack)  {
+        return canBeDamaged(stack) ? ((double) getDamageForDisplay(stack) / 128D) : 0;
+    }
+
+    protected int getDamageForDisplay(ItemStack stack) {
+        return stack.getSubCompound("Data", true).getInteger("Damage");
+    }
+
+    public boolean canBeDamaged(ItemStack stack) {
+        return getEnumFromStack(stack).isDamageable;
+    }
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {

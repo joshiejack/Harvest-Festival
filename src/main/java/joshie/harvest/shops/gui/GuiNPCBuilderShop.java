@@ -4,7 +4,7 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.StackHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.network.PacketHandler;
-import joshie.harvest.npc.entity.AbstractEntityNPC;
+import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.shops.packets.PacketPurchaseItem;
 import joshie.harvest.shops.purchaseable.PurchaseableBuilder;
 import net.minecraft.client.renderer.GlStateManager;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GuiNPCBuilderShop extends GuiNPCShop {
-    public GuiNPCBuilderShop(AbstractEntityNPC npc, EntityPlayer player) {
+    public GuiNPCBuilderShop(EntityNPC npc, EntityPlayer player) {
         super(npc, player);
     }
 

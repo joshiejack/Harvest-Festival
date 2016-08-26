@@ -3,7 +3,7 @@ package joshie.harvest.core.util;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import joshie.harvest.npc.NPC;
-import joshie.harvest.npc.entity.AbstractEntityNPC;
+import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
 import org.apache.commons.lang3.tuple.Triple;
@@ -17,7 +17,7 @@ public class Text {
     private static final Cache<Triple<String, String, ResourceLocation>, Integer> TRANSLATION_CACHE = CacheBuilder.newBuilder().build();
     private static final Random rand = new Random();
 
-    public static String getSpeech(AbstractEntityNPC npc, String text) {
+    public static String getSpeech(EntityNPC npc, String text) {
         return getSpeech(npc.getNPC(), text);
     }
 

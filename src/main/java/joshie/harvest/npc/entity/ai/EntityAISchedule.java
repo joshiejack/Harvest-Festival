@@ -5,19 +5,19 @@ import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.CalendarHelper;
 import joshie.harvest.core.helpers.NPCHelper;
-import joshie.harvest.npc.entity.AbstractEntityNPC;
+import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.util.math.BlockPos;
 
 import static joshie.harvest.api.npc.INPC.Location.WORK;
 
 public class EntityAISchedule extends EntityAIBase {
-    private AbstractEntityNPC npc;
+    private EntityNPC npc;
     private long attemptTimer;
     private BuildingLocation location;
     private BlockPos target;
 
-    public EntityAISchedule(AbstractEntityNPC npc) {
+    public EntityAISchedule(EntityNPC npc) {
         this.npc = npc;
         this.setMutexBits(3);
     }

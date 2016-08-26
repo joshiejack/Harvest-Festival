@@ -1,13 +1,13 @@
 package joshie.harvest.npc.entity.ai;
 
-import joshie.harvest.npc.entity.AbstractEntityNPC;
+import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
 
 public class EntityAILookAtPlayer extends EntityAIWatchClosest {
-    private final AbstractEntityNPC npc;
+    private final EntityNPC npc;
 
-    public EntityAILookAtPlayer(AbstractEntityNPC npc) {
+    public EntityAILookAtPlayer(EntityNPC npc) {
         super(npc, EntityPlayer.class, 8.0F);
         this.npc = npc;
     }

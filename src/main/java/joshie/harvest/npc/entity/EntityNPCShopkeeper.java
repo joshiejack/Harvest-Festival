@@ -4,7 +4,7 @@ import joshie.harvest.npc.NPC;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
-public class EntityNPCShopkeeper extends AbstractEntityNPC<EntityNPCShopkeeper> {
+public class EntityNPCShopkeeper extends EntityNPCHuman<EntityNPCShopkeeper> {
     private boolean isWorking;
 
     public EntityNPCShopkeeper(World world) {

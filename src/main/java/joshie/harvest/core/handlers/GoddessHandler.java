@@ -79,7 +79,7 @@ public class GoddessHandler {
             if (held != null && held.getItem() == Items.STICK) {
                 if (world.getBlockState(event.getPos()).getBlock() == Blocks.FLOWER_POT) {
                     TileEntityFlowerPot tile = (TileEntityFlowerPot) world.getTileEntity(event.getPos());
-                    if (tile.getFlowerPotItem() != null) {
+                    if (tile != null  && tile.getFlowerPotItem() != null) {
                         Block xMinus = world.getBlockState(event.getPos().add(-1, -1, 0)).getBlock();
                         Block xPlus = world.getBlockState(event.getPos().add(1, -1, 0)).getBlock();
                         Block zMinus = world.getBlockState(event.getPos().add(0, -1, -1)).getBlock();
@@ -107,7 +107,7 @@ public class GoddessHandler {
                         if (water == 2 && flower == 2) {
                             if (!world.isRemote) {
                                 world.playEvent(2005, event.getPos(), 0);
-                                if (world.rand.nextInt(5) == 0) {
+                                if (world.rand.nextInt(9) == 0) {
                                     world.setBlockState(event.getPos(), HFCore.FLOWERS.getStateFromEnum(FlowerType.GODDESS));
                                     world.playSound(null, player.posX, player.posY, player.posZ, HFSounds.GODDESS_SPAWN, SoundCategory.NEUTRAL, 1F, 1F);
                                     lastGoddess = System.currentTimeMillis();

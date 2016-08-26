@@ -5,7 +5,7 @@ import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.core.util.Text;
-import joshie.harvest.npc.entity.AbstractEntityNPC;
+import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.player.stats.Stats;
 import joshie.harvest.api.quests.Quest;
 import net.minecraft.entity.player.EntityPlayer;
@@ -44,7 +44,7 @@ public class GuiNPCChat extends GuiNPCBase {
         return string.replace("%rP", HFTrackers.getClientPlayerTracker().getRelationships().getLover());
     }
 
-    public GuiNPCChat(AbstractEntityNPC npc, EntityPlayer player, int nextGui) {
+    public GuiNPCChat(EntityNPC npc, EntityPlayer player, int nextGui) {
         super(npc, player, nextGui);
         isScriptInit = false;
     }

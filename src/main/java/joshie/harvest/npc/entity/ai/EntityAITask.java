@@ -1,12 +1,12 @@
 package joshie.harvest.npc.entity.ai;
 
-import joshie.harvest.npc.entity.AbstractEntityNPC;
+import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.ai.EntityAIBase;
 
 public class EntityAITask extends EntityAIBase {
-    private AbstractEntityNPC npc;
+    private EntityNPC npc;
 
-    public EntityAITask(AbstractEntityNPC npc) {
+    public EntityAITask(EntityNPC npc) {
         this.npc = npc;
         this.setMutexBits(5);
     }

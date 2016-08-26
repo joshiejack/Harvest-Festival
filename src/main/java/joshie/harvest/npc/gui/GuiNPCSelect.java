@@ -6,7 +6,7 @@ import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.Text;
-import joshie.harvest.npc.entity.AbstractEntityNPC;
+import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.Quest.Selection;
 import net.minecraft.entity.EntityLiving;
@@ -26,7 +26,7 @@ public class GuiNPCSelect extends GuiNPCBase {
     private int optionsTotal;
     private int selected;
 
-    public GuiNPCSelect(AbstractEntityNPC npc, EntityPlayer player, int next, int selectionType) {
+    public GuiNPCSelect(EntityNPC npc, EntityPlayer player, int next, int selectionType) {
         super(npc, player, next);
         if (selectionType == -1) selection = SHOPS;
         else {

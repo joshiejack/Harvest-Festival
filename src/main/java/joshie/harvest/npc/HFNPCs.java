@@ -140,7 +140,7 @@ public class HFNPCs {
         return HFApi.npc.register(new ResourceLocation(MODID, name), gender, age, dayOfBirth, seasonOfBirth, insideColor, outsideColor);
     }
 
-    private static <E extends AbstractEntityNPC> void registerNPCRendering(Class<E> entityClass) {
+    private static <E extends EntityNPC> void registerNPCRendering(Class<E> entityClass) {
         RenderingRegistry.registerEntityRenderingHandler(entityClass, RenderNPC :: new);
     }
 

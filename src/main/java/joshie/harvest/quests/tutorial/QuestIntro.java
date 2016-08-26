@@ -1,0 +1,65 @@
+package joshie.harvest.quests.tutorial;
+
+import joshie.harvest.api.HFQuest;
+import joshie.harvest.api.npc.INPC;
+import joshie.harvest.buildings.Building;
+import joshie.harvest.buildings.HFBuildings;
+import joshie.harvest.core.HFCore;
+import joshie.harvest.crops.HFCrops;
+import joshie.harvest.quests.QuestQuestion;
+import joshie.harvest.tools.HFTools;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.eventhandler.Event.Result;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import static joshie.harvest.npc.HFNPCs.GODDESS;
+import static joshie.harvest.quests.QuestHelper.rewardGold;
+import static joshie.harvest.quests.QuestHelper.rewardItem;
+
+@HFQuest(data = "tutorial.intro")
+public class QuestIntro extends QuestQuestion {
+    public QuestIntro() {
+        super(new IntroSelection());
+        setNPCs(GODDESS);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+        if (quest_stage == 0) return "hello";
+        else if (quest_stage == 1) {
+            complete(player);
+            return "backstory";
+        } else return null;
+    }
+
+    @Override
+    public void claim(EntityPlayer player) {
+        if (quest_stage == 0) { //We were not new
+            rewardItem(player, new ItemStack(HFTools.HOE));
+            rewardItem(player, new ItemStack(HFTools.WATERING_CAN));
+            rewardItem(player, new ItemStack(HFCrops.TURNIP.getCropStack().getItem(), 16));
+            rewardItem(player, HFBuildings.BLUEPRINTS.getStackFromObject((Building)HFBuildings.CARPENTER));
+            rewardGold(player, 2000);
+        } else rewardItem(player, new ItemStack(HFCore.FLOWERS, 4, 0));
+    }
+
+    private static class IntroSelection extends QuestSelection<QuestIntro> {
+        public IntroSelection() {
+            super("tutorial.intro.question", "tutorial.intro.yes", "tutorial.intro.no");
+        }
+
+        @Override
+        public Result onSelected(EntityPlayer player, EntityLiving entity, INPC npc, QuestIntro quest, int option) {
+            if (option == 1) { //If it's our first time, start tutorials
+                quest.increaseStage(player);
+                return Result.ALLOW;
+            } else { //If it's not then give the player the essentials to get started
+                quest.complete(player);
+                return Result.DENY;
+            }
+        }
+    }
+}

@@ -20,20 +20,20 @@ public class NPCHelper {
         return TownHelper.getClosestTownToEntity(entity).getCoordinatesFor(location);
     }
 
-    public static BlockPos getHomeForEntity(AbstractEntityNPC entity) {
+    public static BlockPos getHomeForEntity(EntityNPC entity) {
         INPC npc = entity.getNPC();
         if (npc.getLocation(HOME) == null) return null;
         return TownHelper.getClosestTownToEntity(entity).getCoordinatesFor(npc.getLocation(HOME));
     }
 
-    public static BlockPos getWorkForEntity(AbstractEntityNPC entity) {
+    public static BlockPos getWorkForEntity(EntityNPC entity) {
         INPC npc = entity.getNPC();
         if (npc.getLocation(WORK) == null) return null;
         return TownHelper.getClosestTownToEntity(entity).getCoordinatesFor(npc.getLocation(WORK));
     }
 
     @SuppressWarnings("unchecked")
-    public static <N extends AbstractEntityNPC> N getEntityForNPC(World world, NPC npc) {
+    public static <N extends EntityNPC> N getEntityForNPC(World world, NPC npc) {
         if (npc.isBuilder()) {
             return (N) new EntityNPCBuilder(world, npc);
         } else if (npc.getShop() != null) {

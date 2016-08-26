@@ -1,7 +1,7 @@
 package joshie.harvest.npc.render;
 
 import joshie.harvest.api.npc.INPCRegistry;
-import joshie.harvest.npc.entity.AbstractEntityNPC;
+import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -14,7 +14,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class RenderNPC extends RenderLiving<AbstractEntityNPC> {
+public class RenderNPC extends RenderLiving<EntityNPC> {
     private static final ModelNPC STEVE = new ModelNPC(false);
     private static final ModelNPC ALEX = new ModelNPC(true);
 
@@ -27,7 +27,7 @@ public class RenderNPC extends RenderLiving<AbstractEntityNPC> {
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(AbstractEntityNPC npc) {
+    protected ResourceLocation getEntityTexture(EntityNPC npc) {
         return npc.getNPC().getSkin();
     }
 
@@ -37,18 +37,18 @@ public class RenderNPC extends RenderLiving<AbstractEntityNPC> {
     }
 
     @Override
-    protected void preRenderCallback(AbstractEntityNPC npc, float partialTickTime) {
+    protected void preRenderCallback(EntityNPC npc, float partialTickTime) {
         GlStateManager.scale(0.9375F, 0.9375F, 0.9375F);
     }
 
     @Override
-    protected boolean canRenderName(AbstractEntityNPC npc) {
+    protected boolean canRenderName(EntityNPC npc) {
         return false;
     }
 
     //Renders the Entity
     @Override
-    public void doRender(AbstractEntityNPC npc, double x, double y, double z, float entityYaw, float partialTicks) {
+    public void doRender(EntityNPC npc, double x, double y, double z, float entityYaw, float partialTicks) {
         updateModel(npc);
         GlStateManager.pushMatrix();
         if (npc.getNPC().getAge() == INPCRegistry.Age.CHILD) {
@@ -70,7 +70,7 @@ public class RenderNPC extends RenderLiving<AbstractEntityNPC> {
         GlStateManager.popMatrix();
     }
 
-    private void updateModel(AbstractEntityNPC npc) {
+    private void updateModel(EntityNPC npc) {
         mainModel = npc.getNPC().isAlexSkin() ? ALEX : STEVE;
     }
 }

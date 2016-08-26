@@ -5,7 +5,7 @@ import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.render.FakeEntityRenderer.EntityItemRenderer;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.NPCRegistry;
-import joshie.harvest.npc.entity.AbstractEntityNPC;
+import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.entity.EntityNPCVillager;
 import joshie.harvest.npc.render.NPCItemRenderer.NPCTile;
 import net.minecraft.client.renderer.GlStateManager;
@@ -14,7 +14,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 public class NPCItemRenderer extends TileEntitySpecialRenderer<NPCTile> {
     private ModelNPC modelAlex;
     private ModelNPC modelSteve;
-    private AbstractEntityNPC fake;
+    private EntityNPC fake;
     private ModelNPC model;
 
     public NPCItemRenderer() {
@@ -46,7 +46,7 @@ public class NPCItemRenderer extends TileEntitySpecialRenderer<NPCTile> {
         GlStateManager.popMatrix();
     }
 
-    private AbstractEntityNPC getNPC() {
+    private EntityNPC getNPC() {
         if (fake == null) fake = new EntityNPCVillager(MCClientHelper.getWorld());
         return fake;
     }

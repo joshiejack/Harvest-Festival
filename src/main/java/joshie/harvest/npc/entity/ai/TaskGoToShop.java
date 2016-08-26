@@ -1,26 +1,26 @@
 package joshie.harvest.npc.entity.ai;
 
 import joshie.harvest.core.helpers.NPCHelper;
-import joshie.harvest.npc.entity.AbstractEntityNPC;
+import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.util.math.BlockPos;
 
 public class TaskGoToShop extends AbstractTask {
     public long attemptTimer;
 
     @Override
-    public boolean shouldTerminate(AbstractEntityNPC entity) {
+    public boolean shouldTerminate(EntityNPC entity) {
         BlockPos work = NPCHelper.getWorkForEntity(entity);
         if (work == null) return true;
         return !entity.getNPC().getShop().isOpen(entity.worldObj, null);
     }
 
     @Override
-    public boolean shouldExecute(AbstractEntityNPC entity) {
+    public boolean shouldExecute(EntityNPC entity) {
         return entity.getNPC().getShop().isPreparingToOpen(entity.worldObj) || entity.getNPC().getShop().isOpen(entity.worldObj, null);
     }
 
     @Override
-    public void execute(AbstractEntityNPC entity) {
+    public void execute(EntityNPC entity) {
         //Travel to work, if at work, stay at the work position
         BlockPos work = NPCHelper.getWorkForEntity(entity);
         if (work != null) {

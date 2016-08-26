@@ -1,7 +1,7 @@
 package joshie.harvest.player.quests;
 
 import joshie.harvest.api.npc.INPC;
-import joshie.harvest.npc.entity.AbstractEntityNPC;
+import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.quests.packets.PacketQuestCompleted;
 import joshie.harvest.quests.packets.PacketQuestStart;
@@ -50,13 +50,13 @@ public class QuestDataClient extends QuestData {
         if (q != null) q.setStage(stage);
     }
 
-    private String getScript(Quest quest, EntityPlayer player, AbstractEntityNPC entity) {
+    private String getScript(Quest quest, EntityPlayer player, EntityNPC entity) {
         String script = quest.getScript(player, entity, entity.getNPC());
         return script == null ? null : quest.getLocalized(script);
     }
 
     //Returns a single lined script
-    public Quest getSelection(AbstractEntityNPC npc) {
+    public Quest getSelection(EntityNPC npc) {
         if (current != null) {
             for (Quest q : current) {
                 if (handlesScript(q, npc.getNPC())) {
@@ -69,7 +69,7 @@ public class QuestDataClient extends QuestData {
     }
 
     @Override
-    public String getScript(EntityPlayer player, AbstractEntityNPC npc) {
+    public String getScript(EntityPlayer player, EntityNPC npc) {
         if (current != null) {
             for (Quest q : current) {
                 if (handlesScript(q, npc.getNPC())) {

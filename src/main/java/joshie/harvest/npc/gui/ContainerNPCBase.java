@@ -1,14 +1,14 @@
 package joshie.harvest.npc.gui;
 
 import joshie.harvest.core.util.ContainerBase;
-import joshie.harvest.npc.entity.AbstractEntityNPC;
+import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 
 public class ContainerNPCBase extends ContainerBase {
-    protected AbstractEntityNPC npc;
+    protected EntityNPC npc;
 
-    public ContainerNPCBase(AbstractEntityNPC npc, InventoryPlayer playerInventory) {
+    public ContainerNPCBase(EntityNPC npc, InventoryPlayer playerInventory) {
         this.npc = npc;
     }
 

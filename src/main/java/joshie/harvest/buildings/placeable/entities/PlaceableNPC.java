@@ -4,7 +4,7 @@ import joshie.harvest.core.util.Direction;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.NPCRegistry;
-import joshie.harvest.npc.entity.AbstractEntityNPC;
+import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -32,7 +32,7 @@ public class PlaceableNPC extends PlaceableEntity {
     public Entity getEntity(World world, BlockPos pos, Direction direction) {
         if (npc == null || npc.equals("")) return null;
         NPC inpc = NPCRegistry.REGISTRY.getObject(new ResourceLocation(npc)); if (inpc == null) return null;
-        AbstractEntityNPC entity = NPCHelper.getEntityForNPC(world, inpc);
+        EntityNPC entity = NPCHelper.getEntityForNPC(world, inpc);
         entity.setPosition(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
         entity.resetSpawnHome();
         return entity;
@@ -40,7 +40,7 @@ public class PlaceableNPC extends PlaceableEntity {
 
     @Override
     public PlaceableNPC getCopyFromEntity(Entity e, int x, int y, int z) {
-        AbstractEntityNPC npc = (AbstractEntityNPC) e;
+        EntityNPC npc = (EntityNPC) e;
         return new PlaceableNPC("", npc.getNPC().getRegistryName().toString(), x, y, z);
     }
 

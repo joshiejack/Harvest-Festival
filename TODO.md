@@ -22,6 +22,7 @@
 - Fix the left most leaf in the autumn texture again
 
 ## Questing Tasks
+- Lang: harvestfestival.quest.tutorial.intro.backstory [INSERT BACKSTORY HERE]
 - Spawning the NPC Builder Quest
 - Welcome to 'Harvest Festival' Quests
 - Blacksmith Upgrade Tool Quests

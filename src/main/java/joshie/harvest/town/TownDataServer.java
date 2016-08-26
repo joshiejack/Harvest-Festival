@@ -9,7 +9,7 @@ import joshie.harvest.gathering.GatheringData;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.NPCRegistry;
-import joshie.harvest.npc.entity.AbstractEntityNPC;
+import joshie.harvest.npc.entity.EntityNPCHuman;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.Mirror;
@@ -62,13 +62,15 @@ public class TownDataServer extends TownData {
         gathering.newDay(world, buildings.values());
         for (ResourceLocation villager: deadVillagers) {
             NPC npc = NPCRegistry.REGISTRY.getObject(villager);
-            AbstractEntityNPC entity = NPCHelper.getEntityForNPC(world, npc);
-            entity.setPosition(townCentre.getX(), townCentre.getY(), townCentre.getZ());
-            entity.resetSpawnHome();
-            BlockPos pos = entity.getHomeCoordinates();
-            entity.setPositionAndUpdate(pos.getX(), pos.getY() + 0.5, pos.getZ());
-            if (npc == HFNPCs.BUILDER) entity.setUniqueId(getID()); //Keep the Unique ID the same
-            world.spawnEntityInWorld(entity);
+            if (npc != HFNPCs.GODDESS) {
+                EntityNPCHuman entity = NPCHelper.getEntityForNPC(world, npc);
+                entity.setPosition(townCentre.getX(), townCentre.getY(), townCentre.getZ());
+                entity.resetSpawnHome();
+                BlockPos pos = entity.getHomeCoordinates();
+                entity.setPositionAndUpdate(pos.getX(), pos.getY() + 0.5, pos.getZ());
+                if (npc == HFNPCs.BUILDER) entity.setUniqueId(getID()); //Keep the Unique ID the same
+                world.spawnEntityInWorld(entity);
+            }
         }
 
         deadVillagers = new HashSet<>(); //Reset the dead villagers

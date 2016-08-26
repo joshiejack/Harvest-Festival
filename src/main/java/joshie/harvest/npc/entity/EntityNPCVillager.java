@@ -4,7 +4,7 @@ import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.NPC;
 import net.minecraft.world.World;
 
-public class EntityNPCVillager extends AbstractEntityNPC<EntityNPCVillager> {
+public class EntityNPCVillager extends EntityNPCHuman<EntityNPCVillager> {
     public EntityNPCVillager(World world) {
         super(world, (NPC) HFNPCs.GODDESS);
     }

@@ -4,8 +4,7 @@ import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.ToolHelper;
-import joshie.harvest.npc.HFNPCs;
-import joshie.harvest.npc.entity.AbstractEntityNPC;
+import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
@@ -13,10 +12,10 @@ import net.minecraft.util.EnumHand;
 
 public class ContainerNPCGift extends ContainerNPCBase {
     //The Fridge CAN be null
-    private AbstractEntityNPC npc;
+    private EntityNPC npc;
     private EnumHand hand;
 
-    public ContainerNPCGift(AbstractEntityNPC npc, InventoryPlayer playerInventory, EnumHand hand) {
+    public ContainerNPCGift(EntityNPC npc, InventoryPlayer playerInventory, EnumHand hand) {
         super(npc, playerInventory);
         this.npc = npc;
         this.hand = hand;
@@ -44,11 +43,6 @@ public class ContainerNPCGift extends ContainerNPCBase {
                 HFTrackers.getPlayerTracker(player).getRelationships().gift(player, theNpc, points);
                 player.inventory.decrStackSize(player.inventory.currentItem, 1);
             }
-        }
-
-        //Kill the goddess
-        if (npc.getNPC() == HFNPCs.GODDESS) {
-            npc.setDead();
         }
     }
 }

@@ -7,7 +7,7 @@ import joshie.harvest.core.helpers.generic.StackHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.util.ShopFontRenderer;
-import joshie.harvest.npc.entity.AbstractEntityNPC;
+import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.gui.GuiNPCBase;
 import joshie.harvest.player.stats.StatsClient;
 import joshie.harvest.shops.Shop;
@@ -33,7 +33,7 @@ public class GuiNPCShop extends GuiNPCBase {
     protected Shop shop;
     protected int start;
 
-    public GuiNPCShop(AbstractEntityNPC npc, EntityPlayer player) {
+    public GuiNPCShop(EntityNPC npc, EntityPlayer player) {
         super(npc, player, -1);
 
         shop = npc.getNPC().getShop();

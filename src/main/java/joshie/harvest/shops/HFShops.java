@@ -28,6 +28,9 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
+import static joshie.harvest.animals.blocks.BlockSizedStorage.SizedStorage.INCUBATOR;
+import static joshie.harvest.animals.blocks.BlockTray.Tray.NEST_EMPTY;
+import static joshie.harvest.animals.blocks.BlockTrough.Trough.WOOD;
 import static joshie.harvest.animals.item.ItemAnimalSpawner.Spawner.*;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.*;
 import static joshie.harvest.api.calendar.Weekday.*;
@@ -65,6 +68,7 @@ public class HFShops {
         BARN.addItem(new PurchaseableEntity(EntityHarvestSheep.class, 4000, HFAnimals.ANIMAL.getStackFromEnum(SHEEP), true));
         BARN.addItem(new PurchaseableEntity(EntityHarvestCow.class, 5000, HFAnimals.ANIMAL.getStackFromEnum(COW), true));
         BARN.addItem(3000, HFAnimals.TOOLS.getStackFromEnum(MIRACLE_POTION));
+        BARN.addItem(500, HFAnimals.TROUGH.getStackFromEnum(WOOD));
 
         BARN.addOpening(MONDAY, 10000, 15000).addOpening(TUESDAY, 10000, 15000).addOpening(WEDNESDAY, 10000, 15000);
         BARN.addOpening(THURSDAY, 10000, 15000).addOpening(FRIDAY, 10000, 15000).addOpening(SATURDAY, 10000, 15000);
@@ -77,11 +81,11 @@ public class HFShops {
         BLACKSMITH.addItem(1800, new ItemStack(Items.SHEARS));
 
         //Allow the purchasing of special tools at the weekend, and special blocks
-        BLACKSMITH.addItem(new PurchaseableWeekend(250, HFTools.HOE.getStack(ToolTier.BASIC)));
-        BLACKSMITH.addItem(new PurchaseableWeekend(250, HFTools.SICKLE.getStack(ToolTier.BASIC)));
-        BLACKSMITH.addItem(new PurchaseableWeekend(500, HFTools.WATERING_CAN.getStack(ToolTier.BASIC)));
-        BLACKSMITH.addItem(new PurchaseableWeekend(1000, HFTools.AXE.getStack(ToolTier.BASIC)));
-        BLACKSMITH.addItem(new PurchaseableWeekend(1000, HFTools.HAMMER.getStack(ToolTier.BASIC)));
+        BLACKSMITH.addItem(250, HFTools.HOE.getStack(ToolTier.BASIC));
+        BLACKSMITH.addItem(250, HFTools.SICKLE.getStack(ToolTier.BASIC));
+        BLACKSMITH.addItem(500, HFTools.WATERING_CAN.getStack(ToolTier.BASIC));
+        BLACKSMITH.addItem(1000, HFTools.AXE.getStack(ToolTier.BASIC));
+        BLACKSMITH.addItem(1000, HFTools.HAMMER.getStack(ToolTier.BASIC));
         BLACKSMITH.addItem(new PurchaseableWeekend(100, HFCore.STORAGE.getStackFromEnum(Storage.SHIPPING)));
         BLACKSMITH.addItem(new PurchaseableWeekend(3000, HFCrops.SPRINKLER.getStackFromEnum(Sprinkler.WOOD)));
 
@@ -131,6 +135,8 @@ public class HFShops {
         POULTRY.addItem(new PurchaseableEntity(EntityHarvestChicken.class, 1500, HFAnimals.ANIMAL.getStackFromEnum(CHICKEN), false));
         POULTRY.addItem(1000, HFAnimals.TOOLS.getStackFromEnum(MEDICINE));
         POULTRY.addItem(10, HFAnimals.TOOLS.getStackFromEnum(CHICKEN_FEED));
+        POULTRY.addItem(500, HFAnimals.TRAY.getStackFromEnum(NEST_EMPTY));
+        POULTRY.addItem(7500, HFAnimals.SIZED.getStackFromEnum(INCUBATOR));
 
         POULTRY.addOpening(MONDAY, 11000, 16000).addOpening(TUESDAY, 11000, 16000).addOpening(WEDNESDAY, 11000, 16000);
         POULTRY.addOpening(THURSDAY, 11000, 16000).addOpening(FRIDAY, 11000, 16000).addOpening(SATURDAY, 11000, 16000);

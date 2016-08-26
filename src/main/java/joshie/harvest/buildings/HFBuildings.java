@@ -35,20 +35,20 @@ public class HFBuildings {
     public static final ItemCheat CHEAT = new ItemCheat().register("cheat");
 
     public static final Building null_building = new Building();
-    public static final IBuilding BARN = registerBuilding("barn", 3000L, 160, 0).setRequirements("blacksmith").setOffset(6, -1, 8);
-    public static final IBuilding BLACKSMITH = registerBuilding("blacksmith", 3500L, 32, 244).setRequirements("supermarket").setOffset(3, -2, 6);
-    public static final IBuilding CAFE = registerBuilding("cafe", 8800L, 320, 160).setRequirements("miningHill", "miningHut", "goddessPond").setOffset(7, -1, 10);
+    public static final IBuilding BARN = registerBuilding("barn", 3000L, 160, 0).setRequirements("carpenter").setOffset(6, -1, 8);
+    public static final IBuilding BLACKSMITH = registerBuilding("blacksmith", 3500L, 32, 244).setRequirements("supermarket", "barn", "poultryFarm").setOffset(3, -2, 6);
+    public static final IBuilding CAFE = registerBuilding("cafe", 8800L, 320, 160).setRequirements("blacksmith", "miningHill", "goddessPond").setOffset(7, -1, 10);
     public static final IBuilding CARPENTER = registerBuilding("carpenter", 0L, 0, 0).setSpecialRules((w, p) -> false).setOffset(3, -1, 8);
-    public static final IBuilding CHURCH = registerBuilding("church", 10000L, 160, 128).setRequirements("miningHill", "miningHut", "goddessPond").setOffset(4, -1, 13);
-    public static final IBuilding CLOCKMAKER = registerBuilding("clockmaker", 6800L, 192, 112).setRequirements("miningHill", "miningHut", "goddessPond").setOffset(3, -1, 10);
+    public static final IBuilding CHURCH = registerBuilding("church", 10000L, 160, 128).setRequirements("blacksmith", "miningHill", "goddessPond").setOffset(4, -1, 13);
+    public static final IBuilding CLOCKMAKER = registerBuilding("clockmaker", 6800L, 192, 112).setRequirements("blacksmith", "miningHill", "goddessPond").setOffset(3, -1, 10);
     public static final IBuilding FISHING_HOLE = registerBuilding("fishingHole", 1000L, 16, 0).setRequirements("fishingHut").setOffset(3, -4, 7);
-    public static final IBuilding FISHING_HUT = registerBuilding("fishingHut", 6000L, 96, 0).setRequirements("miningHill", "miningHut", "goddessPond").setOffset(3, -1, 10);
+    public static final IBuilding FISHING_HUT = registerBuilding("fishingHut", 6000L, 96, 0).setRequirements("miningHill", "goddessPond").setOffset(3, -1, 10);
     public static final IBuilding GODDESS_POND = registerBuilding("goddessPond", 250L, 32, 0).setOffset(9, -1, 17);
     public static final IBuilding MINING_HILL = registerBuilding("miningHill", 1000L, 0, 64).setRequirements("miningHut").setOffset(8, -3, 11);
-    public static final IBuilding MINING_HUT = registerBuilding("miningHut", 3000L, 96, 96).setRequirements("poultryFarm", "barn").setOffset(10, -1, 10);
-    public static final IBuilding POULTRY_FARM = registerBuilding("poultryFarm", 2000L, 160, 0).setRequirements("blacksmith").setOffset(4, 0, 12);
+    public static final IBuilding MINING_HUT = registerBuilding("miningHut", 3000L, 96, 96).setRequirements("supermarket", "barn", "poultryFarm").setOffset(10, -1, 10);
+    public static final IBuilding POULTRY_FARM = registerBuilding("poultryFarm", 2000L, 160, 0).setRequirements("carpenter").setOffset(4, 0, 12);
     public static final IBuilding SUPERMARKET = registerBuilding("supermarket", 1280L, 512, 320).setRequirements("carpenter").setOffset(11, -10, 12).setTickTime(5);
-    public static final IBuilding TOWNHALL = registerBuilding("townhall", 16400L, 768, 256).setRequirements("miningHill", "miningHut", "goddessPond").setOffset(10, -1, 17);
+    public static final IBuilding TOWNHALL = registerBuilding("townhall", 16400L, 768, 256).setRequirements("blacksmith", "miningHill", "goddessPond").setOffset(10, -1, 17);
 
     public static void preInit() {
         HarvestFestival.LOGGER.log(Level.INFO, "Creating Harvest Festival Buildings!");

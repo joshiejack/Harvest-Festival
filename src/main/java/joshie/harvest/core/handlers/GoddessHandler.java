@@ -3,18 +3,21 @@ package joshie.harvest.core.handlers;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.blocks.BlockFlower.FlowerType;
 import joshie.harvest.core.helpers.NPCHelper;
+import joshie.harvest.core.lib.HFSounds;
 import joshie.harvest.core.util.HFEvents;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.NPC;
-import joshie.harvest.npc.entity.AbstractEntityNPC;
+import joshie.harvest.npc.entity.EntityNPCGoddess;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityFlowerPot;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.item.ItemExpireEvent;
@@ -32,21 +35,14 @@ public class GoddessHandler {
         return stack.getItem() == goddess && stack.getItemDamage() == FlowerType.GODDESS.ordinal();
     }
 
-    public static void spawnGoddess(World world, Entity entity) {
-        spawnGoddess(world, entity.posX, entity.posY, entity.posZ);
+    public static void spawnGoddess(World world, Entity entity, boolean flower) {
+        spawnGoddess(world, entity.posX, entity.posY, entity.posZ, flower);
     }
 
-    public static void spawnGoddess(World world, double x, double y, double z) {
-        List<AbstractEntityNPC> npcs = world.getEntitiesWithinAABB(AbstractEntityNPC.class, new AxisAlignedBB(x - 0.5F, y - 0.5F, z - 0.5F, x + 0.5F, y + 0.5F, z + 0.5F).expand(32D, 32D, 32D));
-        AbstractEntityNPC goddess = null;
-        for (AbstractEntityNPC npc: npcs) {
-            if (npc.getNPC() == HFNPCs.GODDESS) {
-                goddess = npc;
-                break;
-            }
-        }
-
-        goddess = goddess != null ? goddess : NPCHelper.getEntityForNPC(world, (NPC) HFNPCs.GODDESS);
+    public static void spawnGoddess(World world, double x, double y, double z, boolean flower) {
+        List<EntityNPCGoddess> npcs = world.getEntitiesWithinAABB(EntityNPCGoddess.class, new AxisAlignedBB(x - 0.5F, y - 0.5F, z - 0.5F, x + 0.5F, y + 0.5F, z + 0.5F).expand(32D, 32D, 32D));
+        EntityNPCGoddess goddess = npcs.size() > 0 ? npcs.get(0) : NPCHelper.getEntityForNPC(world, (NPC) HFNPCs.GODDESS);
+        if (flower) goddess.setFlower();
         goddess.setPosition(x, y + 1, z);
         goddess.resetSpawnHome();
         world.spawnEntityInWorld(goddess);
@@ -61,7 +57,7 @@ public class GoddessHandler {
             if (stack != null) {
                 if (isGoddessFlower(stack)) {
                     if (event.getEntityItem().isInsideOfMaterial(Material.WATER)) {
-                        spawnGoddess(world, event.getEntityItem());
+                        spawnGoddess(world, event.getEntityItem(), true);
                     } else {
                         event.setExtraLife(5900);
                         event.setCanceled(true);
@@ -77,15 +73,17 @@ public class GoddessHandler {
     @SubscribeEvent
     public void onInteract(PlayerInteractEvent.RightClickBlock event) {
         if (System.currentTimeMillis() - lastGoddess >= 1000L) {
+            EntityPlayer player = event.getEntityPlayer();
+            World world = event.getWorld();
             ItemStack held = event.getItemStack();
             if (held != null && held.getItem() == Items.STICK) {
-                if (event.getWorld().getBlockState(event.getPos()).getBlock() == Blocks.FLOWER_POT) {
-                    TileEntityFlowerPot tile = (TileEntityFlowerPot) event.getWorld().getTileEntity(event.getPos());
-                    if (tile.getFlowerPotItem() == Item.getItemFromBlock(Blocks.YELLOW_FLOWER)) {
-                        Block xMinus = event.getWorld().getBlockState(event.getPos().add(-1, -1, 0)).getBlock();
-                        Block xPlus = event.getWorld().getBlockState(event.getPos().add(1, -1, 0)).getBlock();
-                        Block zMinus = event.getWorld().getBlockState(event.getPos().add(0, -1, -1)).getBlock();
-                        Block zPlus = event.getWorld().getBlockState(event.getPos().add(0, -1, 1)).getBlock();
+                if (world.getBlockState(event.getPos()).getBlock() == Blocks.FLOWER_POT) {
+                    TileEntityFlowerPot tile = (TileEntityFlowerPot) world.getTileEntity(event.getPos());
+                    if (tile.getFlowerPotItem() != null) {
+                        Block xMinus = world.getBlockState(event.getPos().add(-1, -1, 0)).getBlock();
+                        Block xPlus = world.getBlockState(event.getPos().add(1, -1, 0)).getBlock();
+                        Block zMinus = world.getBlockState(event.getPos().add(0, -1, -1)).getBlock();
+                        Block zPlus = world.getBlockState(event.getPos().add(0, -1, 1)).getBlock();
                         int water = 0;
                         int flower = 0;
 
@@ -93,10 +91,10 @@ public class GoddessHandler {
                         if (xPlus == Blocks.WATER) water++;
                         if (zMinus == Blocks.WATER) water++;
                         if (zPlus == Blocks.WATER) water++;
-                        xMinus = event.getWorld().getBlockState(event.getPos().add(-1, 0, 0)).getBlock();
-                        xPlus = event.getWorld().getBlockState(event.getPos().add(1, 0, 0)).getBlock();
-                        zMinus = event.getWorld().getBlockState(event.getPos().add(0, 0, -1)).getBlock();
-                        zPlus = event.getWorld().getBlockState(event.getPos().add(0, 0, 1)).getBlock();
+                        xMinus = world.getBlockState(event.getPos().add(-1, 0, 0)).getBlock();
+                        xPlus = world.getBlockState(event.getPos().add(1, 0, 0)).getBlock();
+                        zMinus = world.getBlockState(event.getPos().add(0, 0, -1)).getBlock();
+                        zPlus = world.getBlockState(event.getPos().add(0, 0, 1)).getBlock();
                         if (xMinus == Blocks.RED_FLOWER || xMinus == Blocks.DOUBLE_PLANT || xMinus == Blocks.TALLGRASS)
                             flower++;
                         if (xPlus == Blocks.RED_FLOWER || xPlus == Blocks.DOUBLE_PLANT || xPlus == Blocks.TALLGRASS)
@@ -107,10 +105,11 @@ public class GoddessHandler {
                             flower++;
 
                         if (water == 2 && flower == 2) {
-                            if (!event.getWorld().isRemote) {
-                                event.getWorld().playEvent(2005, event.getPos(), 0);
-                                if (event.getWorld().rand.nextInt(5) == 0) {
-                                    spawnGoddess(event.getWorld(), event.getPos().getX() + 0.5, event.getPos().getY() - 0.9, event.getPos().getZ() + 0.5);
+                            if (!world.isRemote) {
+                                world.playEvent(2005, event.getPos(), 0);
+                                if (world.rand.nextInt(5) == 0) {
+                                    world.setBlockState(event.getPos(), HFCore.FLOWERS.getStateFromEnum(FlowerType.GODDESS));
+                                    world.playSound(null, player.posX, player.posY, player.posZ, HFSounds.GODDESS_SPAWN, SoundCategory.NEUTRAL, 1F, 1F);
                                     lastGoddess = System.currentTimeMillis();
                                 }
                             }

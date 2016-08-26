@@ -1,9 +1,13 @@
 package joshie.harvest.npc.gui;
 
 import joshie.harvest.HarvestFestival;
+import joshie.harvest.core.HFCore;
+import joshie.harvest.core.blocks.BlockFlower.FlowerType;
 import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.helpers.generic.ItemHelper;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.AbstractEntityNPC;
+import joshie.harvest.npc.entity.EntityNPCGoddess;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 
@@ -26,6 +30,7 @@ public class ContainerNPCChat extends ContainerNPCBase {
 
         //Kill the goddess
         if (npc.getNPC() == HFNPCs.GODDESS) {
+            if (((EntityNPCGoddess)npc).getFlower()) ItemHelper.spawnByEntity(npc, HFCore.FLOWERS.getStackFromEnum(FlowerType.GODDESS));
             npc.setDead();
         }
 

@@ -32,14 +32,15 @@ public class NPCHelper {
         return TownHelper.getClosestTownToEntity(entity).getCoordinatesFor(npc.getLocation(WORK));
     }
 
-    public static AbstractEntityNPC getEntityForNPC(World world, NPC npc) {
+    @SuppressWarnings("unchecked")
+    public static <N extends AbstractEntityNPC> N getEntityForNPC(World world, NPC npc) {
         if (npc.isBuilder()) {
-            return new EntityNPCBuilder(world, npc);
+            return (N) new EntityNPCBuilder(world, npc);
         } else if (npc.getShop() != null) {
-            return new EntityNPCShopkeeper(world, npc);
+            return (N) new EntityNPCShopkeeper(world, npc);
         } if (npc == HFNPCs.GODDESS) {
-            return new EntityNPCGoddess(world, npc);
-        } else return new EntityNPCVillager(world, npc);
+            return (N) new EntityNPCGoddess(world, npc);
+        } else return (N) new EntityNPCVillager(world, npc);
     }
 
     public static boolean isShopOpen(NPC npc, World world, EntityPlayer player) {

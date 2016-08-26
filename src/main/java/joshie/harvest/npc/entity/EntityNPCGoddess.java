@@ -22,6 +22,8 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 import java.util.UUID;
 
 public class EntityNPCGoddess extends AbstractEntityNPC<EntityNPCGoddess> {
+    private boolean flower;
+
     public EntityNPCGoddess(World world) {
         super(world, (NPC) HFNPCs.GODDESS);
         setSize(0.6F, (2F * npc.getHeight()));
@@ -59,6 +61,14 @@ public class EntityNPCGoddess extends AbstractEntityNPC<EntityNPCGoddess> {
         prevLimbSwingAmount = 0F;
         limbSwing = 0F; //Keep those limbs still
         limbSwingAmount = 0F;
+    }
+
+    public boolean getFlower() {
+        return flower;
+    }
+
+    public void setFlower() {
+        flower = true;
     }
 
     @Override

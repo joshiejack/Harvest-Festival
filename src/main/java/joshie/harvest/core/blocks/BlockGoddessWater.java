@@ -54,7 +54,7 @@ public class BlockGoddessWater extends BlockFluidClassic {
                 }
 
                 if (spawn) {
-                    GoddessHandler.spawnGoddess(world, entity);
+                    GoddessHandler.spawnGoddess(world, entity, false);
                     entity.setDead();
                 }
             }

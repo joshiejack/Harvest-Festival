@@ -1,0 +1,21 @@
+package joshie.harvest.quests.recipes;
+
+import joshie.harvest.api.HFQuest;
+import joshie.harvest.api.quests.Quest;
+import joshie.harvest.core.lib.HFQuests;
+import joshie.harvest.npc.HFNPCs;
+import net.minecraft.entity.player.EntityPlayer;
+
+import java.util.Set;
+
+@HFQuest(data = "recipe.toast.french")
+public class QuestFrenchToast extends QuestRecipe {
+    public QuestFrenchToast() {
+        super("toast_french", HFNPCs.SEED_OWNER, 10000);
+    }
+
+    @Override
+    public boolean canStartQuest(EntityPlayer player, Set<Quest> active, Set<Quest> finished) {
+        return finished.contains(HFQuests.RECIPE_TOAST);
+    }
+}

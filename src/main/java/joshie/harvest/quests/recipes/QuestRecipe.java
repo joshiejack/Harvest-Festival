@@ -4,6 +4,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.cooking.CookingHelper;
+import joshie.harvest.core.lib.HFQuests;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
@@ -23,7 +24,7 @@ public class QuestRecipe extends Quest {
 
     @Override
     public boolean canStartQuest(EntityPlayer player, Set<Quest> active, Set<Quest> finished) {
-        return true;
+        return finished.contains(HFQuests.TUTORIAL_CAFE);
     }
 
     @Override
@@ -35,6 +36,7 @@ public class QuestRecipe extends Quest {
     @Override
     public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
         if (HFApi.player.getRelationshipHelper().getRelationship(player, npc) >= relationship) {
+            complete(player);
             return "text";
         } else return null;
     }

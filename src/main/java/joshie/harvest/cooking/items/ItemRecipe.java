@@ -42,7 +42,7 @@ public class ItemRecipe extends ItemHFFML<ItemRecipe, Recipe> implements ICreati
         if (recipe != null && HFTrackers.getPlayerTracker(player).getTracking().learnRecipe(recipe)) {
             if (!player.capabilities.isCreativeMode) stack.stackSize--; //Decrease the stack
             world.playSound(player.posX, player.posY, player.posZ, HFSounds.RECIPE, SoundCategory.NEUTRAL, 0.8F, 1F, true);
-            ChatHelper.displayChat(Text.translate("meal.learnt") + TextFormatting.YELLOW + recipe.getDisplayName());
+            ChatHelper.displayChat(Text.translate("meal.learnt") + " " + TextFormatting.YELLOW + recipe.getDisplayName());
             return new ActionResult<>(EnumActionResult.SUCCESS, stack);
         }
 

@@ -1,9 +1,13 @@
-## Questing Tasks
-- Todo is on paper!
-
-## Tedium
-- Add Extra Chat Messages, and Conversations for all NPCs
+## Coding
+- Add methods for obtaining all recipes
+- Improve the main page of the recipe book
+- Add lang for extra chatting
+- Add lang for all the quests
+- Add lang for all the recipes
 - Register HFItems as gift types
+#Mine
+- Make Render for Jewel Rock
+- Add Diamonds and Emeralds as spawnable from Jewel Rock
 
 ### Textures
 - Kitchen Knife (Looks good when right clicking)
@@ -25,12 +29,7 @@
 - Cursed Potion Effect Icon
 - Crop Grass Better Texture
 - Fix the left most leaf in the autumn texture again
-
-## Jewels & Jewel Rock
-#Coding
-- Make Render for Jewel Rock
-- Add Diamonds and Emeralds as spawnable from Jewel Rock
-# Textures
+#Mine
 - Amethyst
 - Agate
 - Fluorite

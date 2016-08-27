@@ -38,7 +38,7 @@ public class HFRecipes {
         //Mixer
         addMixerRecipe("juice_pineapple", 2, 1.43F, -30F, PINEAPPLE).setOptionalIngredients(SALT, SUGAR);
         addMixerRecipe("juice_tomato", 6, 0.57F, -40F, TOMATO).setOptionalIngredients(SALT);
-        addMixerRecipe("milk_strawberry", 9, 0.86F, -30F, STRAWBERRY, MILK).setOptionalIngredients(SUGAR);
+        addMixerRecipe("milk_strawberry", 9, 0.86F, -30F, STRAWBERRY, MILK).setOptionalIngredients(SUGAR); //Candice 10000RP Recipe
         addMixerRecipe("juice_vegetable", 6, 0.57F, -40F, JUICE_VEGETABLE).setOptionalIngredients(CUCUMBER, ONION, CABBAGE, TOMATO, SPINACH, CARROT, GREEN_PEPPER, TURNIP, SALT); //Yo this doesnt make any sense. It requires Vegetable Juice to make iteslf?
         addMixerRecipe("latte_vegetable", 9, 0.86F, -40F, JUICE_VEGETABLE, MILK).setOptionalIngredients(CUCUMBER, ONION, CABBAGE, TOMATO, SPINACH, CARROT, GREEN_PEPPER, TURNIP, SALT);
         addMixerRecipe("ketchup", 1, 0.03F, 0F, TOMATO, ONION).setOptionalIngredients(SALT, SUGAR).setAlternativeTexture(INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.KETCHUP));
@@ -59,7 +59,7 @@ public class HFRecipes {
         addNoUtensilRecipe("sashimi_chirashi", 14, 1.43F, -14F, SASHIMI, SCRAMBLED_EGG, RICEBALL, SASHIMI_VEGETABLE);
 
         //Pot
-        addPotRecipe("milk_hot", true, 6, 0.57F, -20F, MILK).setOptionalIngredients(SUGAR);
+        addPotRecipe("milk_hot", true, 6, 0.57F, -20F, MILK).setOptionalIngredients(SUGAR); //Candice 5000RP Recipe
         addPotRecipe("chocolate_hot", true, 3, 0.29F, -30F, MILK, CHOCOLATE).setOptionalIngredients(SUGAR);
         addPotRecipe("egg_boiled", 6, 0.57F, -4F, EGG).setOptionalIngredients(SALT);
         addPotRecipe("spinach_boiled", 6, 0.57F, -2F, SPINACH);

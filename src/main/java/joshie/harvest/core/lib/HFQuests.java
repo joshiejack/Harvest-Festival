@@ -4,6 +4,7 @@ import joshie.harvest.api.quests.Quest;
 import joshie.harvest.quests.QuestHelper;
 
 public class HFQuests {
+    //Tutorial
     public static final Quest TUTORIAL_INTRO = QuestHelper.getQuest("tutorial.intro");
     public static final Quest TUTORIAL_CARPENTER = QuestHelper.getQuest("tutorial.carpenter");
     public static final Quest TUTORIAL_CROPS = QuestHelper.getQuest("tutorial.crops");
@@ -13,4 +14,7 @@ public class HFQuests {
     public static final Quest TUTORIAL_POULTRY = QuestHelper.getQuest("tutorial.poultry");
     public static final Quest TUTORIAL_SUPERMARKET = QuestHelper.getQuest("tutorial.supermarket");
     public static final Quest TUTORIAL_UPGRADING = QuestHelper.getQuest("tutorial.upgrading");
+
+    //Recipes
+    public static final Quest RECIPE_HOT_MILK = QuestHelper.getQuest("recipe.milk.hot");
 }

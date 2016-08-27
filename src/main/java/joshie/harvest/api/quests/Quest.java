@@ -113,7 +113,7 @@ public abstract class Quest extends Impl<Quest> {
     /** This is used when you want the quest to have options to select from
      *  You can return this based on the stage */
     @Nullable
-    public Selection getSelection() {
+    public Selection getSelection(INPC npc) {
         return null;
     }
 
@@ -204,7 +204,7 @@ public abstract class Quest extends Impl<Quest> {
     public void onRightClickBlock(EntityPlayer player, BlockPos pos, EnumFacing face) {}
 
     public enum EventsHandled {
-        ENTITYINTERACT, CLOSEDCHAT, RIGHTCLICK;
+        ENTITYINTERACT, CLOSEDCHAT, RIGHTCLICK, BUILDINGADD;
     }
 
     /** Used for selection menus **/

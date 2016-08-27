@@ -50,7 +50,7 @@ public class HFRecipes {
         addMixerRecipe(HFCooking.INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.FLOUR), WHEAT);
 
         //Hand
-        addNoUtensilRecipe("turnip_pickled", 2, 0.17F, -4F, TURNIP).setOptionalIngredients(SALT);
+        addNoUtensilRecipe("turnip_pickled", 2, 0.17F, -4F, TURNIP).setOptionalIngredients(SALT); //Cafe Reward
         addNoUtensilRecipe("cucumber_pickled", 2, 0.17F, -3F, CUCUMBER).setOptionalIngredients(SALT);
         addNoUtensilRecipe("salad", 3, 0.29F, -6F, SALAD_INGREDIENT).setOptionalIngredients(MUSHROOM, CUCUMBER, CABBAGE, TOMATO, CARROT, SALT);
         addNoUtensilRecipe("sandwich", 2, 0.23F, -4F, BREAD, SANDWICH_INGREDIENT).setOptionalIngredients(BUTTER, TOMATO, CUCUMBER, SALT, MAYONNAISE, MUSHROOM);

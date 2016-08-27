@@ -8,13 +8,20 @@ import joshie.harvest.cooking.recipe.Recipe;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.HashSet;
 import java.util.Set;
 
+import static joshie.harvest.core.lib.HFModInfo.MODID;
+
 public class CookingHelper {
+    public static ItemStack getRecipe(String name) {
+        Recipe recipe = FoodRegistry.REGISTRY.getObject(new ResourceLocation(MODID, name));
+        return HFCooking.RECIPE.getStackFromObject(recipe);
+    }
 
     public static boolean hasIngredientInInventory(Set<ICookingIngredient> ingredients, ICookingIngredient ingredient) {
         for (ICookingIngredient inInventory: ingredients) {

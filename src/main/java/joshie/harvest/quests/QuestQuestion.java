@@ -16,7 +16,7 @@ public abstract class QuestQuestion extends Quest {
     }
 
     @Override
-    public Selection getSelection() {
+    public Selection getSelection(INPC npc) {
         return quest_stage <= 0 ? selection : null;
     }
 

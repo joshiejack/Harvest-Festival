@@ -67,7 +67,7 @@ public class QuestDataClient extends QuestData {
         if (current != null) {
             for (Quest q : current) {
                 if (handlesScript(q, npc.getNPC())) {
-                    if (q.getSelection() != null) return q;
+                    if (q.getSelection(npc.getNPC()) != null) return q;
                 }
             }
         }

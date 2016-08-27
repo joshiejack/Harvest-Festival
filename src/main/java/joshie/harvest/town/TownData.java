@@ -1,6 +1,7 @@
 package joshie.harvest.town;
 
 import joshie.harvest.api.buildings.BuildingLocation;
+import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.buildings.Building;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.buildings.BuildingStage;
@@ -80,6 +81,10 @@ public class TownData {
 
     public boolean hasBuilding(ResourceLocation building) {
         return buildings.get(building) != null;
+    }
+
+    public boolean hasBuilding(IBuilding building) {
+        return buildings.get(((Building)building).getRegistryName()) != null;
     }
 
     public boolean hasBuildings(ResourceLocation[] buildings) {

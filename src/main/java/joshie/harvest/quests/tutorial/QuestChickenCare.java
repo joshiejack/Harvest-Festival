@@ -4,11 +4,9 @@ import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.entity.EntityHarvestChicken;
 import joshie.harvest.animals.item.ItemAnimalTool.Tool;
 import joshie.harvest.api.HFQuest;
-import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.helpers.InventoryHelper;
-import joshie.harvest.core.helpers.SizeableHelper;
 import joshie.harvest.core.lib.HFQuests;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.quests.QuestQuestion;
@@ -17,6 +15,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemEgg;
 import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
@@ -26,7 +26,6 @@ import net.minecraft.util.math.BlockPos;
 
 import java.util.Set;
 
-import static joshie.harvest.animals.blocks.BlockTray.Tray.FEEDER_EMPTY;
 import static joshie.harvest.animals.blocks.BlockTray.Tray.NEST_EMPTY;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.CHICKEN_FEED;
 import static joshie.harvest.npc.HFNPCs.GODDESS;
@@ -125,19 +124,31 @@ public class QuestChickenCare extends QuestQuestion {
             //She also explains that for chickens to lay eggs they need a nesting box
             //Chickens will lay their eggs in here and you can then collect them and ship them off
             //The goddess now asks the player to return when they have one egg from the special chickens
+            attempted = false;
             increaseStage(player);
             return "egg";
         } else if (quest_stage == 5) {
             ItemStack held = player.getHeldItemMainhand();
-            if (held != null && held.getItem() == HFAnimals.EGG) {
-                complete(player);
-                //The goddess thanks the player for their time and gives them a reward of a large egg
-                //She explains this is a valuable egg from the best of chickens, you'll have to take care
-                //Of yours properly if you wish to look after it. She also heard that yulif had a spare cow
-                //And that you should go talk to him if you want it
-                return "complete";
-                //The goddess reminds you that she wants an egg from one of the special chickens
-            } else return "reminder.egg";
+            if (held != null) {
+                if (held.getItem() == HFAnimals.EGG) {
+                    complete(player);
+                    //The goddess thanks the player for their time and gives them a reward of a large egg
+                    //She explains this is a valuable egg from the best of chickens, you'll have to take care
+                    //Of yours properly if you wish to look after it. She also heard that yulif had a spare cow
+                    //And that you should go talk to him if you want it
+                    return "complete";
+                } else if (attempted && held.getItem() == Item.getItemFromBlock(Blocks.HAY_BLOCK)) {
+                    rewardItem(player, HFAnimals.TRAY.getStackFromEnum(NEST_EMPTY));
+                    takeHeldStack(player, 1);
+                    //Thanks the player for the hay, and reminds them to get her an egg
+                    return "reminder.nest";
+                }
+            }
+
+            //The goddess reminds you that she wants an egg from one of the special chickens
+            //She also tells that if you lost the nest, bring her a hay bale
+            attempted = true;
+            return "reminder.egg";
         }
 
         return null;
@@ -149,9 +160,13 @@ public class QuestChickenCare extends QuestQuestion {
             rewardEntity(player, "harvestfestival.chicken");
             rewardItem(player, new ItemStack(HFAnimals.TOOLS, 16, CHICKEN_FEED.ordinal()));
         } else if (previous == 2) {
-            rewardItem(player, HFAnimals.TRAY.getStackFromEnum(FEEDER_EMPTY));
             rewardItem(player, HFAnimals.TRAY.getStackFromEnum(NEST_EMPTY));
         }
+    }
+
+    @Override
+    public boolean canReward(ItemStack stack) {
+        return stack.isItemEqual(HFAnimals.TOOLS.getStackFromEnum(CHICKEN_FEED)) || stack.isItemEqual(HFAnimals.TRAY.getStackFromEnum(NEST_EMPTY));
     }
 
     @Override
@@ -161,11 +176,8 @@ public class QuestChickenCare extends QuestQuestion {
 
     @Override
     public void claim(EntityPlayer player) {
-        rewardItem(player, SizeableHelper.getSizeable(HFAnimals.EGG, 1, Size.LARGE));
-
         if (quest_stage == 0) {
             rewardItem(player, new ItemStack(HFAnimals.TOOLS, 16, CHICKEN_FEED.ordinal()));
-            rewardItem(player, HFAnimals.TRAY.getStackFromEnum(FEEDER_EMPTY));
             rewardItem(player, HFAnimals.TRAY.getStackFromEnum(NEST_EMPTY));
 
             //Spawn the chicken on the players head

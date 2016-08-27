@@ -7,6 +7,7 @@ import joshie.harvest.cooking.recipe.Recipe;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.ItemHFFML;
 import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.helpers.ChatHelper;
 import joshie.harvest.core.lib.HFSounds;
 import joshie.harvest.core.util.Text;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,6 +16,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
@@ -40,6 +42,7 @@ public class ItemRecipe extends ItemHFFML<ItemRecipe, Recipe> implements ICreati
         if (recipe != null && HFTrackers.getPlayerTracker(player).getTracking().learnRecipe(recipe)) {
             if (!player.capabilities.isCreativeMode) stack.stackSize--; //Decrease the stack
             world.playSound(player.posX, player.posY, player.posZ, HFSounds.RECIPE, SoundCategory.NEUTRAL, 0.8F, 1F, true);
+            ChatHelper.displayChat(Text.translate("meal.learnt") + TextFormatting.YELLOW + recipe.getDisplayName());
             return new ActionResult<>(EnumActionResult.SUCCESS, stack);
         }
 

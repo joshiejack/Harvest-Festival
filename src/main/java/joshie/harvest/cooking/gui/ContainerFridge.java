@@ -9,10 +9,11 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
 public class ContainerFridge extends ContainerBase {
-    private final FridgeData fridge;
+    private final TileFridge fridge;
 
-    public ContainerFridge(IInventory inventory, TileFridge fridge) {
-        this.fridge = fridge.getContents();
+    public ContainerFridge(EntityPlayer player, IInventory inventory, TileFridge fridge) {
+        this.fridge = fridge;
+        fridge.getContents().openInventory(player);
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 9; j++) {
                 addSlotToContainer(new SlotFridge(fridge.getContents(), j + i * 9, 8 + j * 18, (i * 18) + 18));
@@ -41,12 +42,18 @@ public class ContainerFridge extends ContainerBase {
 
     @Override
     public boolean canInteractWith(EntityPlayer player) {
-        return fridge.isUseableByPlayer(player);
+        return fridge.getContents().isUseableByPlayer(player);
+    }
+
+    @Override
+    public void onContainerClosed(EntityPlayer playerIn) {
+        super.onContainerClosed(playerIn);
+        fridge.getContents().closeInventory(playerIn);
     }
 
     @Override
     public ItemStack transferStackInSlot(EntityPlayer player, int slotID) {
-        int size = fridge.getSizeInventory();
+        int size = fridge.getContents().getSizeInventory();
         int low = size + 27;
         int high = low + 9;
         ItemStack newStack = null;
@@ -59,7 +66,7 @@ public class ContainerFridge extends ContainerBase {
             if (slotID < size) {
                 if (!mergeItemStack(stack, size, high, true)) return null;
             } else if (TileFridge.isValid(stack)) {
-                if (!mergeItemStack(stack, 0, fridge.getSizeInventory(), false)) return null;
+                if (!mergeItemStack(stack, 0, fridge.getContents().getSizeInventory(), false)) return null;
             } else if (slotID >= size && slotID < low) {
                 if (!mergeItemStack(stack, low, high, false)) return null;
             } else if (slotID >= low && slotID < high && !mergeItemStack(stack, size, low, false)) return null;

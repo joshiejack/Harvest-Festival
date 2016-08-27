@@ -6,15 +6,15 @@ import joshie.harvest.api.HFQuest;
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.Quest;
-import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.SizeableHelper;
 import joshie.harvest.core.helpers.ToolHelper;
 import joshie.harvest.core.helpers.generic.ItemHelper;
-import joshie.harvest.quests.QuestHelper;
+import joshie.harvest.crops.HFCrops;
+import joshie.harvest.quests.QuestQuestion;
+import joshie.harvest.quests.TutorialSelection;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -22,24 +22,24 @@ import java.util.Set;
 
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.BRUSH;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.MILKER;
-import static joshie.harvest.npc.HFNPCs.ANIMAL_OWNER;
-import static joshie.harvest.npc.HFNPCs.GODDESS;
+import static joshie.harvest.core.lib.HFQuests.TUTORIAL_CHICKEN;
+import static joshie.harvest.npc.HFNPCs.*;
 
 @HFQuest(data = "tutorial.cow")
-public class QuestCowCare extends Quest {
-    private static final joshie.harvest.api.quests.Quest TUTORIAL_FARMING = QuestHelper.getQuest("tutorial.farming");
+public class QuestCowCare extends QuestQuestion {
     private boolean hasCollected;
     private boolean hasFed;
     private boolean hasBrushed;
     private boolean hasMilked;
 
     public QuestCowCare() {
-        setNPCs(ANIMAL_OWNER, GODDESS);
+        super(new TutorialSelection("cow"));
+        setNPCs(BUILDER);
     }
 
     @Override
-    public boolean canStartQuest(EntityPlayer player, Set<joshie.harvest.api.quests.Quest> active, Set<joshie.harvest.api.quests.Quest> finished) {
-        return finished.contains(TUTORIAL_FARMING);
+    public boolean canStartQuest(EntityPlayer player, Set<Quest> active, Set<Quest> finished) {
+        return finished.contains(TUTORIAL_CHICKEN);
     }
 
     @Override
@@ -49,29 +49,15 @@ public class QuestCowCare extends Quest {
                 EntityHarvestCow cow = (EntityHarvestCow) target;
                 ItemStack held = player.getActiveItemStack();
                 if (held != null) {
-                    boolean hasChanged = false;
-                    if (!hasFed && held.getItem() == Items.WHEAT) {
+                    if (!hasFed && held.isItemEqual(HFCrops.GRASS.getCropStack())) {
                         hasFed = true;
-                        hasChanged = true;
+                        if(!player.worldObj.isRemote) increaseStage(player);
                     } else if (!hasBrushed && ToolHelper.isBrush(held)) {
                         hasBrushed = true;
-                        hasChanged = true;
                     } else if (!hasMilked && ToolHelper.isMilker(held)) {
                         if (cow.getData().canProduce()) {
                             hasMilked = true;
-                            hasChanged = true;
-                        }
-                    }
-
-                    //If something changed, let the server know
-                    if (hasChanged) {
-                        if (!player.worldObj.isRemote) {
-                            //If all three are completed, increase the stage
-                            if (hasFed && hasBrushed && hasMilked) {
-                                increaseStage(player);
-                            }
-
-                            HFTrackers.markDirty(target.getEntityWorld());
+                            if(!player.worldObj.isRemote) increaseStage(player);
                         }
                     }
                 }

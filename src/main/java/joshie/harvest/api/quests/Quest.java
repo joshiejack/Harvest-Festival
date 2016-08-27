@@ -19,24 +19,15 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Set;
 
 public abstract class Quest extends Impl<Quest> {
     /** DO NOT MODIFY THE ENTRIES IN THE REGISTRY, ALWAYS MAKE A COPY OF THE QUESTS **/
     public static final FMLControlledNamespacedRegistry<Quest> REGISTRY = PersistentRegistryManager.createRegistry(new ResourceLocation("harvestfestival", "quests"), Quest.class, null, 0, 32000, true, null, null, null);
-    private Set<Quest> required = new HashSet<>();
     protected int quest_stage;
     private INPC[] npcs;
 
     public Quest() {}
-
-    /** Returns a set of quests that are required to start this one
-     * @return set of required quests **/
-    public final Set<Quest> getRequired() {
-        return required;
-    }
 
     /** Returns a list of npcs that this quest lines uses */
     public final INPC[] getNPCs() {
@@ -63,13 +54,6 @@ public abstract class Quest extends Impl<Quest> {
      *  You should return false for very simple quests, such as the default trader ones, or the blessing of tools */
     public boolean isRealQuest() {
         return true;
-    }
-
-    /** Call this to add quests as a requirement for your existing quests
-     * @param quests    quests to add as a requirement**/
-    public final Quest addRequirement(Quest... quests) {
-        Collections.addAll(required, quests);
-        return this;
     }
 
     /** Call this to set the npcs that handle this quest
@@ -256,7 +240,7 @@ public abstract class Quest extends Impl<Quest> {
          * @return return what happens next,
          *              return DENY to close the options menu
          *              return ALLOW to open the npc chat window
-         *              return DEFAULT to do nothing*/
+         *              return DEFAULT to do nothing */
         public abstract Result onSelected(EntityPlayer player, EntityLiving entity, INPC npc, Q quest, int option);
     }
 }

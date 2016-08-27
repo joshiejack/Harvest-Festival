@@ -7,12 +7,19 @@ import joshie.harvest.core.lib.HFSounds;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundCategory;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileOven extends TileCookingTicking {
+    @SideOnly(Side.CLIENT)
     public float prevLidAngle;
+    @SideOnly(Side.CLIENT)
     public float lidAngle;
+    @SideOnly(Side.CLIENT)
     private boolean animating;
-    private boolean up;
+    @SideOnly(Side.CLIENT)
+    private boolean up = true;
+
     private EntityPlayer givePlayer;
     private int giveTimer = 0;
 

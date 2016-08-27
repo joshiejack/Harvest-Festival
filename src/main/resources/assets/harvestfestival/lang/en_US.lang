@@ -94,6 +94,7 @@ harvestfestival.recipe.format=%s Recipe
 harvestfestival.recipe.invalid=Junk Recipe
 
 #Meals
+harvestfestival.meal.learnt=New Recipe Learnt!
 harvestfestival.meal.missing=Impossible!
 harvestfestival.meal.missing.description=You are still missing some ingredients
 harvestfestival.meal.success=Success!
@@ -154,6 +155,7 @@ harvestfestival.meal.doria=Doria
 harvestfestival.meal.cookies=Cookies
 harvestfestival.meal.cookies.chocolate=Chocolate Cookies
 harvestfestival.meal.cake.chocolate=Chocolate Cake
+harvestfestival.meal.cake.chocolate.description=Deeply rich chocolate cake, one to surprise all the family. Moist and Delicious! Add some fruit for something extra.
 harvestfestival.meal.toast.french=French Toast
 harvestfestival.meal.doughnut=Doughnut
 harvestfestival.meal.fish.grilled=Grilled Fish
@@ -660,6 +662,7 @@ harvestfestival.subtitle.fryingpan=Sizzle
 harvestfestival.subtitle.counter=Chopping
 harvestfestival.subtitle.fridge=Fridge Door
 harvestfestival.subtitle.mixer=Whirring
+harvestfestival.subtitle.oven=Oven Hum
 harvestfestival.subtitle.ovendoor=Oven Door
 harvestfestival.subtitle.ovendone=Oven Done Ping
 harvestfestival.subtitle.pot=Bubbling

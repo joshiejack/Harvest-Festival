@@ -14,7 +14,6 @@ import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.ResourceLocation;
 
 import java.util.HashSet;
-import java.util.Set;
 
 import static joshie.harvest.core.network.PacketHandler.sendToClient;
 
@@ -98,13 +97,6 @@ public class QuestDataServer extends QuestData {
     private boolean canStart(Quest quest, EntityPlayer player, HashSet<Quest> active, HashSet<Quest> finished) {
         if (!quest.isRepeatable() && finished.contains(quest)) {
             return false;
-        }
-
-        Set<Quest> required = quest.getRequired();
-        if (required != null) {
-            if (!finished.containsAll(required)) {
-                return false;
-            }
         }
 
         //Loops through all the active quests, if any of the quests contain npcs that are used by this quest, we can not start it

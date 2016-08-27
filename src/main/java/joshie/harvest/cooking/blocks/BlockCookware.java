@@ -105,6 +105,14 @@ public class BlockCookware extends BlockHFEnumRotatableTile<BlockCookware, Cookw
         if (player.isSneaking()) return false;
         else if (cookware == FRIDGE || cookware == FRIDGE_TOP) {
             int y = cookware == FRIDGE_TOP ? pos.getY() - 1 : pos.getY();
+            if (world.isRemote) {
+                TileFridge fridge = ((TileFridge) world.getTileEntity(new BlockPos(pos.getX(), y, pos.getZ())));
+                if (fridge != null) {
+                    if (cookware == FRIDGE_TOP) fridge.animatingTop = true;
+                    else if (cookware == FRIDGE) fridge.animatingBottom = true;
+                }
+            }
+
             player.openGui(HarvestFestival.instance, GuiHandler.FRIDGE, world, pos.getX(), y, pos.getZ());
             return true;
         }

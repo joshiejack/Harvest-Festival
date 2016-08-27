@@ -2,18 +2,20 @@ package joshie.harvest.cooking.blocks;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.core.helpers.NBTHelper;
+import joshie.harvest.core.lib.HFSounds;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.ITextComponent;
 
 public class FridgeData implements IInventory {
     protected ItemStack[] inventory;
     private TileFridge tile;
-
+    private int players;
 
     public FridgeData(TileFridge tile) {
         inventory = new ItemStack[54];
@@ -95,10 +97,24 @@ public class FridgeData implements IInventory {
 
     @Override
     public void openInventory(EntityPlayer player) {
+        players++;
+        if (players < 0) {
+            players = 0;
+        }
+
+        player.worldObj.addBlockEvent(tile.getPos(), tile.getBlockType(), 1, players);
+        tile.getWorld().playSound(null, tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), HFSounds.FRIDGE, SoundCategory.BLOCKS, 2F, tile.getWorld().rand.nextFloat() * 0.1F + 0.9F);
     }
 
     @Override
     public void closeInventory(EntityPlayer player) {
+        players--;
+        if (players < 0) {
+            players = 0;
+        }
+
+        player.worldObj.addBlockEvent(tile.getPos(), tile.getBlockType(), 1, players);
+        tile.getWorld().playSound(null, tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), HFSounds.FRIDGE, SoundCategory.BLOCKS, 2F, tile.getWorld().rand.nextFloat() * 0.1F + 0.9F);
     }
 
     @Override
@@ -106,17 +122,21 @@ public class FridgeData implements IInventory {
         return HFApi.cooking.getCookingComponents(stack).size() > 0;
     }
 
+
     @Override
     public int getField(int id) {
         return 0;
     }
 
     @Override
-    public void setField(int id, int value) {}
+    public void setField(int id, int value) {
+        if (id == 1) players = value;
+
+    }
 
     @Override
     public int getFieldCount() {
-        return 0;
+        return players;
     }
 
     @Override

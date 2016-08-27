@@ -6,6 +6,7 @@ import joshie.harvest.core.util.GuiBaseContainer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.util.ResourceLocation;
@@ -14,8 +15,8 @@ public class GuiFridge extends GuiBaseContainer {
     private FridgeFont font;
     private FontRenderer temp;
 
-    public GuiFridge(IInventory playerInv, TileFridge fridge) {
-        super(new ContainerFridge(playerInv, fridge), "fridge", 56);
+    public GuiFridge(EntityPlayer player, IInventory playerInv, TileFridge fridge) {
+        super(new ContainerFridge(player, playerInv, fridge), "fridge", 56);
     }
 
     @Override

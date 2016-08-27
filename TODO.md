@@ -1,8 +1,13 @@
-- Fridge
-    -AS Open Door, Play Sound
+## Questing Tasks
+- Todo is on paper!
+
+## Tedium
+- Add Extra Chat Messages, and Conversations for all NPCs
+- Register HFItems as gift types
 
 ### Textures
 - Kitchen Knife (Looks good when right clicking)
+- Inside of Fridge Door (fridge_door.png edit)
 - New Textures for the following NPCS
     - Jeimmi the Mayor                  (For some reason based on my brother, even those she's an older lady)
     - Johan the Trader                  (Based on Girafi)
@@ -20,17 +25,6 @@
 - Cursed Potion Effect Icon
 - Crop Grass Better Texture
 - Fix the left most leaf in the autumn texture again
-
-## Questing Tasks
-- Lang: harvestfestival.quest.tutorial.intro.backstory [INSERT BACKSTORY HERE]
-- Spawning the NPC Builder Quest
-- Welcome to 'Harvest Festival' Quests
-- Blacksmith Upgrade Tool Quests
-- Unlock Mixer, Frying Pan, Pot, Oven for purchase quests
-
-## Tedium
-- Add Extra Chat Messages, and Conversations for all NPCs
-- Register HFItems as gift types
 
 ## Jewels & Jewel Rock
 #Coding

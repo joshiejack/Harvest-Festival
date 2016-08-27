@@ -39,7 +39,7 @@ public class GuiHandler implements IGuiHandler {
             case SHOP_MENU:     return new ContainerNPCShop((EntityNPC) world.getEntityByID(entityID), player.inventory);
             case SHOP_BUILDER:  return new ContainerNPCBuilderShop((EntityNPC) world.getEntityByID(entityID), player.inventory);
             case GIFT:          return new ContainerNPCGift((EntityNPC) world.getEntityByID(entityID), player.inventory, EnumHand.values()[hand]);
-            case FRIDGE:        return new ContainerFridge(player.inventory, (TileFridge) world.getTileEntity(new BlockPos(entityID, nextGui, hand)));
+            case FRIDGE:        return new ContainerFridge(player, player.inventory, (TileFridge) world.getTileEntity(new BlockPos(entityID, nextGui, hand)));
             case SHOP_OPTIONS:    {
                 EntityNPC npc = (EntityNPC) world.getEntityByID(entityID);
                 if (NPCHelper.isShopOpen(npc.getNPC(), world, player)) {
@@ -64,7 +64,7 @@ public class GuiHandler implements IGuiHandler {
             case SHOP_MENU:     return new GuiNPCShop((EntityNPC) world.getEntityByID(entityID), player);
             case SHOP_BUILDER:  return new GuiNPCBuilderShop((EntityNPC) world.getEntityByID(entityID), player);
             case GIFT:          return new GuiNPCGift((EntityNPC) world.getEntityByID(entityID), player, EnumHand.values()[hand]);
-            case FRIDGE:        return new GuiFridge(player.inventory, (TileFridge) world.getTileEntity(new BlockPos(entityID, nextGui, hand)));
+            case FRIDGE:        return new GuiFridge(player, player.inventory, (TileFridge) world.getTileEntity(new BlockPos(entityID, nextGui, hand)));
             case COOKBOOK:      return new GuiCookbook();
             case SHOP_OPTIONS:    {
                 EntityNPC npc = (EntityNPC) world.getEntityByID(entityID);

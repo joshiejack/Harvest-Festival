@@ -13,6 +13,7 @@ import java.util.List;
 public class RecipeMayo implements ISpecialRecipeHandler {
     @Override
     public ItemStack getResult(Utensil utensil, List<ItemStack> stacks, List<ICookingIngredient> ingredients) {
+        if (utensil != Utensil.COUNTER) return null;
         if (stacks.size() != 2) return null;
         boolean is0Oil = ToolHelper.isOil(stacks.get(0));
         ItemStack oil = is0Oil ? stacks.get(0) : stacks.get(1);

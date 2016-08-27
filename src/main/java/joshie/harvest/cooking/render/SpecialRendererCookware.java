@@ -88,7 +88,7 @@ public abstract class SpecialRendererCookware<T extends TileCooking> extends Til
         GlStateManager.popMatrix();
     }
 
-    private void renderResult(T t, ItemStack stack) {
+    protected void renderResult(T t, ItemStack stack) {
         GlStateManager.pushMatrix();
         RenderHelper.disableStandardItemLighting();
         GlStateManager.enableBlend();

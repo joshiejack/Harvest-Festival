@@ -1,7 +1,6 @@
 package joshie.harvest.quests.tutorial;
 
 import joshie.harvest.api.HFQuest;
-import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.helpers.InventoryHelper;
@@ -12,21 +11,19 @@ import joshie.harvest.quests.TutorialSelection;
 import joshie.harvest.tools.HFTools;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import java.util.Set;
 
+import static joshie.harvest.api.core.ITiered.ToolTier.BASIC;
 import static joshie.harvest.core.helpers.InventoryHelper.SearchType.FLOWER;
 import static joshie.harvest.core.lib.HFQuests.TUTORIAL_CARPENTER;
 import static joshie.harvest.npc.HFNPCs.SEED_OWNER;
+import static joshie.harvest.tools.HFTools.WATERING_CAN;
 
 @HFQuest(data = "tutorial.crops")
 public class QuestCrops extends QuestQuestion {
-    private static final ItemStack HOE = HFTools.HOE.getStack(ToolTier.BASIC);
-    private static final ItemStack WATERING_CAN = HFTools.WATERING_CAN.getStack(ToolTier.BASIC);
-    private static final ItemStack TURNIP_SEEDS = HFCrops.TURNIP.getSeedStack();
-    private static final ItemStack TURNIPS = new ItemStack(HFCrops.TURNIP.getCropStack().getItem(), 9);
-
     private boolean attempted;
 
     public QuestCrops() {
@@ -57,21 +54,21 @@ public class QuestCrops extends QuestQuestion {
             ItemStack held = player.getHeldItemMainhand();
             if (attempted && held != null) {
                 if (held.stackSize >= 10 && InventoryHelper.SPECIAL.matches(held, SearchType.FLOWER)) {
-                    rewardItem(player, TURNIP_SEEDS.copy());
+                    rewardItem(player, HFCrops.TURNIP.getSeedStack());
                     takeHeldStack(player, 10);
                     //Jade thanks the player for the flowers, and gives them turnip seeds
                     return "thanks.flowers";
                 } else if (InventoryHelper.SPECIAL.matches(held, SearchType.HOE)) {
-                    rewardItem(player, HOE.copy());
+                    rewardItem(player, HFTools.HOE.getStack(BASIC));
                     takeHeldStack(player, 1);
                     //Jade thanks the player for the hoe and gives them a hf hoe
                     return "thanks.hoe";
                 } else if (InventoryHelper.SPECIAL.matches(held, SearchType.BUCKET)) {
-                    rewardItem(player, WATERING_CAN.copy());
+                    rewardItem(player, HFTools.WATERING_CAN.getStack(BASIC));
                     takeHeldStack(player, 1);
                     //Jade thanks the player for the bucket and gives them a watering can
                     return "thanks.bucket";
-                } else if (InventoryHelper.ITEM_STACK.matches(held, TURNIPS)) {
+                } else if (held.stackSize >= 9 && InventoryHelper.ITEM_STACK.matches(held, HFCrops.TURNIP.getCropStack())) {
                     //Jade thanks the player for the turnips, She tells the player you know what
                     //Thanks but you can keep them, She tells the player she doesn't want you to have wasted your time
                     //to make her happy, she then informs you that you can sell your crops for money
@@ -102,24 +99,26 @@ public class QuestCrops extends QuestQuestion {
 
     @Override
     public boolean canReward(ItemStack stack) {
-        return InventoryHelper.SPECIAL.matches(stack, FLOWER) || stack.isItemEqual(HOE) || stack.isItemEqual(WATERING_CAN) || stack.isItemEqual(TURNIP_SEEDS);
+        return InventoryHelper.SPECIAL.matches(stack, FLOWER) || stack.isItemEqual(HFTools.HOE.getStack(BASIC)) || stack.isItemEqual(HFTools.WATERING_CAN.getStack(BASIC)) || stack.isItemEqual(HFCrops.TURNIP.getSeedStack());
     }
 
     @Override
     public void onStageChanged(EntityPlayer player, int previous, int stage) {
         if (previous == 0) { //Give the player the basic tools to get started with farming
-            rewardItem(player, HOE.copy());
-            rewardItem(player, WATERING_CAN.copy());
-            rewardItem(player, new ItemStack(TURNIP_SEEDS.getItem(), 3));
+            rewardItem(player, HFTools.HOE.getStack(BASIC));
+            rewardItem(player, HFTools.WATERING_CAN.getStack(BASIC));
+            Item seeds = HFCrops.TURNIP.getCropStack().getItem();
+            rewardItem(player, new ItemStack(seeds, 3));
         }
     }
 
     @Override
     public void claim(EntityPlayer player) {
         if (quest_stage == 0) { //We were not new
-            rewardItem(player, HOE.copy());
-            rewardItem(player, WATERING_CAN.copy());
-            rewardItem(player, new ItemStack(TURNIP_SEEDS.getItem(), 3));
+            rewardItem(player, HFTools.HOE.getStack(BASIC));
+            rewardItem(player, HFTools.WATERING_CAN.getStack(BASIC));
+            Item seeds = HFCrops.TURNIP.getCropStack().getItem();
+            rewardItem(player, new ItemStack(seeds, 3));
         }
     }
 }

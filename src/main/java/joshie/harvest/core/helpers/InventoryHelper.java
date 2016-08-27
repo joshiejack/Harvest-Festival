@@ -11,6 +11,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import javax.annotation.Nonnull;
 
 import static joshie.harvest.core.helpers.InventoryHelper.SearchType.BUCKET;
+import static joshie.harvest.core.helpers.InventoryHelper.SearchType.FLOWER;
 import static joshie.harvest.core.helpers.InventoryHelper.SearchType.HOE;
 
 public class InventoryHelper {
@@ -35,7 +36,7 @@ public class InventoryHelper {
     public static final Matcher<SearchType> SPECIAL = new Matcher<SearchType>() {
         @Override
         public boolean matches(ItemStack stack, SearchType type) {
-            if (type.equals(SPECIAL)) {
+            if (type.equals(FLOWER)) {
                 return stack.getItem() == Item.getItemFromBlock(Blocks.RED_FLOWER) || stack.getItem() == Item.getItemFromBlock(Blocks.YELLOW_FLOWER);
             } else if (type.equals(HOE)) {
                 return stack.getItem() instanceof ItemHoe;

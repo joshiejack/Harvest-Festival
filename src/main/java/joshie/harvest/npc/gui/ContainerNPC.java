@@ -8,7 +8,9 @@ import joshie.harvest.quests.QuestHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 
-import java.util.HashSet;
+import java.util.Set;
+
+import static joshie.harvest.api.quests.Quest.EventsHandled.CLOSEDCHAT;
 
 public class ContainerNPC extends ContainerBase {
     //The Fridge CAN be null
@@ -22,11 +24,9 @@ public class ContainerNPC extends ContainerBase {
     public void onContainerClosed(EntityPlayer player) {
         super.onContainerClosed(player);
         npc.setTalking(null);
-        HashSet<Quest> quests = QuestHelper.getCurrentQuest(player);
+        Set<Quest> quests = QuestHelper.getHandledQuests(player, CLOSEDCHAT);
         for (Quest quest : quests) {
-            if (quest != null) {
-                quest.onClosedChat(player, npc, npc.getNPC());
-            }
+            quest.onClosedChat(player, npc, npc.getNPC());
         }
 
         if (!player.worldObj.isRemote) {

@@ -15,11 +15,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import static joshie.harvest.npc.HFNPCs.TRADER;
-import static joshie.harvest.quests.QuestHelper.rewardItem;
-import static joshie.harvest.quests.QuestHelper.takeHeldStack;
 
 @HFQuest(data = "trade.vanilla")
 public class QuestTrader extends QuestTrade {
+    private static final Item WOOL = Item.getItemFromBlock(Blocks.WOOL);
+
     public QuestTrader() {
         setNPCs(TRADER);
     }
@@ -47,7 +47,7 @@ public class QuestTrader extends QuestTrade {
         int amount = stack.stackSize;
         if (size == Size.MEDIUM) amount *= 2;
         else if (size == Size.LARGE) amount *= 3;
-        Item item = stack.getItem() == HFAnimals.EGG ? Items.EGG : stack.getItem() == HFAnimals.MILK ? Items.MILK_BUCKET : Item.getItemFromBlock(Blocks.WOOL);
+        Item item = stack.getItem() == HFAnimals.EGG ? Items.EGG : stack.getItem() == HFAnimals.MILK ? Items.MILK_BUCKET : WOOL;
         rewardItem(player, new ItemStack(item, amount));
     }
 

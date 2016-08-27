@@ -23,7 +23,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import static joshie.harvest.api.core.ITiered.ToolTier.CURSED;
 import static joshie.harvest.core.helpers.generic.ItemHelper.spawnXP;
 import static joshie.harvest.npc.HFNPCs.PRIEST;
-import static joshie.harvest.quests.QuestHelper.*;
 
 
 @HFQuest(data = "trade.cursed")

@@ -6,7 +6,6 @@ import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.IDropHandler;
 import joshie.harvest.api.crops.ISoilHandler;
 import joshie.harvest.api.crops.IStateHandler;
-import joshie.harvest.core.helpers.SeedHelper;
 import joshie.harvest.core.util.Text;
 import joshie.harvest.crops.handlers.SoilHandlers;
 import joshie.harvest.crops.handlers.StateHandlerDefault;
@@ -264,7 +263,7 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements ICrop {
 
     @Override
     public ItemStack getSeedStack() {
-        return SeedHelper.getSeedsFromCrop(this);
+        return HFCrops.SEEDS.getStackFromCrop(this);
     }
 
     @Override

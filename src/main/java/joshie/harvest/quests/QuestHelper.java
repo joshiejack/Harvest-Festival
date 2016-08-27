@@ -4,13 +4,19 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.player.IQuestHelper;
 import joshie.harvest.api.quests.Quest;
+import joshie.harvest.api.quests.Quest.EventsHandled;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.ItemHelper;
+import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.util.IdiotException;
 import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.player.quests.QuestData;
 import joshie.harvest.quests.packets.PacketQuestDecreaseHeld;
 import joshie.harvest.quests.packets.PacketQuestIncrease;
+import joshie.harvest.quests.packets.PacketRequestEntity;
+import joshie.harvest.quests.packets.PacketRequestItem;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -19,6 +25,7 @@ import net.minecraft.network.play.server.SPacketSetSlot;
 import net.minecraft.util.ResourceLocation;
 
 import java.util.HashSet;
+import java.util.Set;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.core.network.PacketHandler.sendToClient;
@@ -36,7 +43,11 @@ public class QuestHelper implements IQuestHelper {
         else sendToServer(new PacketQuestIncrease(quest));
     }
 
-    public static void takeHeldStack(EntityPlayer player, int amount) {
+    /**************************
+     * REWARDS
+     *****************************/
+    @Override
+    public void takeHeldStack(EntityPlayer player, int amount) {
         if (player.worldObj.isRemote) {
             player.inventory.decrStackSize(player.inventory.currentItem, amount);
             sendToServer(new PacketQuestDecreaseHeld(amount));
@@ -46,27 +57,45 @@ public class QuestHelper implements IQuestHelper {
         }
     }
 
-    public static HashSet<Quest> getCurrentQuest(EntityPlayer player) {
-        return HFTrackers.getPlayerTracker(player).getQuests().getCurrent();
+    @Override
+    public void rewardItem(Quest quest, EntityPlayer player, ItemStack stack) {
+        if (player.worldObj.isRemote) {
+            PacketHandler.sendToServer(new PacketRequestItem(quest, stack));
+        } else ItemHelper.addToPlayerInventory(player, stack);
     }
 
-    /**************************
-     * REWARDS
-     *****************************/
-    public static void rewardGold(EntityPlayer player, long amount) {
+    @Override
+    public void rewardGold(EntityPlayer player, long amount) {
         if (player.worldObj.isRemote) {
-            throw new IdiotException("Joshie shouldn't be rewarding anyone with gold client side");
+            throw new IdiotException("You shouldn't be rewarding anyone with gold client side");
         } else {
             HFTrackers.<PlayerTrackerServer>getPlayerTracker(player).getStats().addGold((EntityPlayerMP) player, amount);
         }
     }
 
-    public static void rewardRelations(EntityPlayer player, INPC npc, int amount) {
-        HFApi.player.getRelationshipHelper().adjustRelationship(player, npc, amount);
+    @Override
+    public void rewardEntity(Quest quest, EntityPlayer player, String entity) {
+        if (player.worldObj.isRemote) {
+            PacketHandler.sendToServer(new PacketRequestEntity(quest, entity));
+        } else {
+            Entity theEntity = EntityList.createEntityByIDFromName(entity, player.worldObj);
+            if (theEntity != null) {
+                theEntity.setPosition(player.posX, player.posY, player.posZ);
+                player.worldObj.spawnEntityInWorld(theEntity);
+            }
+        }
     }
 
-    public static void rewardItem(EntityPlayer player, ItemStack stack) {
-        ItemHelper.addToPlayerInventory(player, stack);
+    public static Set<Quest> getHandledQuests(EntityPlayer player, EventsHandled events) {
+        return HFTrackers.getPlayerTracker(player).getQuests().getHandled(events);
+    }
+
+    public static HashSet<Quest> getCurrentQuest(EntityPlayer player) {
+        return HFTrackers.getPlayerTracker(player).getQuests().getCurrent();
+    }
+
+    public static void rewardRelations(EntityPlayer player, INPC npc, int amount) {
+        HFApi.player.getRelationshipHelper().adjustRelationship(player, npc, amount);
     }
 
     public static void markCompleted(EntityPlayer player, Quest quest) {

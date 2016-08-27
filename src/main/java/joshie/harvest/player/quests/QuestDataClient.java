@@ -1,6 +1,7 @@
 package joshie.harvest.player.quests;
 
 import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.quests.Quest.EventsHandled;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.quests.packets.PacketQuestCompleted;
@@ -21,6 +22,9 @@ public class QuestDataClient extends QuestData {
     @Override
     public void addAsCurrent(Quest quest) {
         current.add(quest);
+        for (EventsHandled handled: quest.getHandledEvents()) {
+            eventHandlers.get(handled).add(quest);
+        }
     }
 
     @Override
@@ -36,6 +40,9 @@ public class QuestDataClient extends QuestData {
         }
 
         current.remove(quest);
+        for (EventsHandled handled: quest.getHandledEvents()) {
+            eventHandlers.get(handled).remove(quest);
+        }
     }
 
     @Override
@@ -86,6 +93,10 @@ public class QuestDataClient extends QuestData {
                     try {
                         Quest quest = q.getClass().newInstance().setRegistryName(q.getRegistryName()).setStage(0); //Set the current quest to your new
                         current.add(quest);
+                        for (EventsHandled handled: quest.getHandledEvents()) {
+                            eventHandlers.get(handled).add(quest);
+                        }
+
                         sendToServer(new PacketQuestStart(q));
                         String script = getScript(q, player, npc);
                         if (script != null) return script;

@@ -8,9 +8,10 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import java.util.HashSet;
+import java.util.Set;
 
-import static joshie.harvest.quests.QuestHelper.getCurrentQuest;
+import static joshie.harvest.api.quests.Quest.EventsHandled.ENTITYINTERACT;
+import static joshie.harvest.api.quests.Quest.EventsHandled.RIGHTCLICK;
 
 @HFEvents
 public class QuestEvents {
@@ -21,11 +22,9 @@ public class QuestEvents {
     @SubscribeEvent(priority = EventPriority.HIGH)
     public void onEntityInteract(PlayerInteractEvent.EntityInteract event) {
         if (!isFakePlayer(event.getEntityPlayer())) {
-            HashSet<Quest> quests = getCurrentQuest(event.getEntityPlayer());
+            Set<Quest> quests = QuestHelper.getHandledQuests(event.getEntityPlayer(), ENTITYINTERACT);
             for (Quest quest : quests) {
-                if (quest != null) {
-                    quest.onEntityInteract(event.getEntityPlayer(), event.getTarget());
-                }
+                quest.onEntityInteract(event.getEntityPlayer(), event.getTarget());
             }
         }
     }
@@ -33,11 +32,9 @@ public class QuestEvents {
     @SubscribeEvent(priority = EventPriority.HIGH)
     public void onRightClickGround(PlayerInteractEvent.RightClickBlock event) {
         if (!isFakePlayer(event.getEntityPlayer())) {
-            HashSet<Quest> quests = getCurrentQuest(event.getEntityPlayer());
+            Set<Quest> quests = QuestHelper.getHandledQuests(event.getEntityPlayer(), RIGHTCLICK);
             for (Quest quest : quests) {
-                if (quest != null) {
-                    quest.onRightClickBlock(event.getEntityPlayer(), event.getPos(), event.getFace());
-                }
+                quest.onRightClickBlock(event.getEntityPlayer(), event.getPos(), event.getFace());
             }
         }
     }

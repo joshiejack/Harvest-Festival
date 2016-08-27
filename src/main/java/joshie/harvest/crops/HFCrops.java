@@ -5,7 +5,6 @@ import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.core.base.FMLDefinition;
-import joshie.harvest.core.helpers.SeedHelper;
 import joshie.harvest.core.helpers.generic.RegistryHelper;
 import joshie.harvest.core.util.HFLoader;
 import joshie.harvest.crops.blocks.BlockHFCrops;
@@ -142,7 +141,7 @@ public class HFCrops {
         Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new IItemColor() {
             @Override
             public int getColorFromItemstack(ItemStack stack, int tintIndex) {
-                Crop crop = SeedHelper.getCropFromSeed(stack);
+                Crop crop = HFCrops.SEEDS.getCropFromStack(stack);
                 return crop != null ? crop.getColor() : -1;
             }
         }, SEEDS);

@@ -6,7 +6,6 @@ import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.api.core.ISeasonData;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.helpers.SeedHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.Text;
 import joshie.harvest.crops.Crop;
@@ -55,14 +54,14 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        Crop crop = SeedHelper.getCropFromSeed(stack);
+        Crop crop = getCropFromStack(stack);
         return (crop == null) ? Text.translate("crop.seeds.useless") : crop.getSeedsName();
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean debug) {
-        Crop crop = SeedHelper.getCropFromSeed(stack);
+        Crop crop = getCropFromStack(stack);
         if (crop != null) {
             for (Season season : crop.getSeasons()) {
                 ISeasonData data = HFApi.calendar.getDataForSeason(season);
@@ -76,7 +75,7 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
         if (facing != EnumFacing.UP) {
             return EnumActionResult.FAIL;
         } else {
-            Crop crop = SeedHelper.getCropFromSeed(stack);
+            Crop crop = getCropFromStack(stack);
             if (crop != null) {
                 int planted = 0;
                 if (player.isSneaking()) {
@@ -131,12 +130,20 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
         return planted;
     }
 
+    public ItemStack getStackFromCrop(Crop crop) {
+        return new ItemStack(this, 1, CropRegistry.REGISTRY.getId(crop));
+    }
+
+    public Crop getCropFromStack(ItemStack stack) {
+        return CropRegistry.REGISTRY.getObjectById(stack.getItemDamage());
+    }
+
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
         for (Crop crop : CropRegistry.REGISTRY.getValues()) {
             if (crop != HFCrops.NULL_CROP) {
-                list.add(SeedHelper.getSeedsFromCrop(crop));
+                list.add(getStackFromCrop(crop));
             }
         }
     }
@@ -144,13 +151,13 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
     public ItemHFSeeds register(String name) {
         setUnlocalizedName(name.replace("_", "."));
         setRegistryName(new ResourceLocation(MODID, name));
-        GameRegistry.register(this);
-        if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
-            registerModels(this, name);
-        }
-
-        return this;
+    GameRegistry.register(this);
+    if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
+        registerModels(this, name);
     }
+
+    return this;
+}
 
     @SideOnly(Side.CLIENT)
     public void registerModels(Item item, String name) {

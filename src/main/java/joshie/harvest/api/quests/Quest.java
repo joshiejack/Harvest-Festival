@@ -5,6 +5,7 @@ import joshie.harvest.api.npc.INPC;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
@@ -139,10 +140,46 @@ public abstract class Quest extends Impl<Quest> {
      * @param stage         the current stage */
     public void onStageChanged(EntityPlayer player, int previous, int stage) {}
 
-    /** Call to complete a quest, only call this on one side
+    /** Call to complete a quest, MUST BE CALLED ON ONE SIDE ONLY
      * @param player    the player to complete the quest for **/
     public final void complete(EntityPlayer player) {
         HFApi.player.getQuestHelper().completeQuest(this, player);
+    }
+
+    /** Call this to reward the player with an item
+     *  MUST BE CALLED ON ONE SIDE ONLY **/
+    public final void takeHeldStack(EntityPlayer player, int amount) {
+        HFApi.player.getQuestHelper().takeHeldStack(player, amount);
+    }
+
+    /** Call this to reward the player with an item
+     *  MUST BE CALLED ON ONE SIDE ONLY **/
+    public final void rewardItem(EntityPlayer player, ItemStack stack) {
+        HFApi.player.getQuestHelper().rewardItem(this, player, stack);
+    }
+
+    /** Call this to reward the player with gold, SERVER CALLS ONLINE **/
+    public final void rewardGold(EntityPlayer player, long gold) {
+        HFApi.player.getQuestHelper().rewardGold(player, gold);
+    }
+
+    /** Spawns an entity, call this on one side only **/
+    public final void rewardEntity(EntityPlayer player, String entity) {
+        HFApi.player.getQuestHelper().rewardEntity(this, player, entity);
+    }
+
+    /** Called when attempting to spawn an entity from the client **/
+    public boolean canSpawnEntity(String entity) {
+        return false;
+    }
+
+    /** Whether this item can be rewarded or not,
+     *  You do NOT need to worry about this if you are rewarding items on the server
+     *  This is only ever called when the client requests an item
+     * @param stack the stack attempting to be rewarded
+     * @return whether this item can be rewarded **/
+    public boolean canReward(ItemStack stack) {
+        return false;
     }
 
     /** Called on the serverside when a quest is completed **/
@@ -175,9 +212,16 @@ public abstract class Quest extends Impl<Quest> {
     /****
      * EVENTS - Called automatically from vanilla events or npc specific ones
      ****/
+
+    //You need to return the events that get handled, so that they will get called
+    public EventsHandled[] getHandledEvents() { return new EventsHandled[0]; }
     public void onEntityInteract(EntityPlayer player, Entity target) {}
     public void onClosedChat(EntityPlayer player, EntityLiving entity, INPC npc) { }
     public void onRightClickBlock(EntityPlayer player, BlockPos pos, EnumFacing face) {}
+
+    public enum EventsHandled {
+        ENTITYINTERACT, CLOSEDCHAT, RIGHTCLICK;
+    }
 
     /** Used for selection menus **/
     public static abstract class Selection<Q extends Quest> {

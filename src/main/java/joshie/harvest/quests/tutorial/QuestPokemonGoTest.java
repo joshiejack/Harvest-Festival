@@ -14,14 +14,13 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import static joshie.harvest.npc.HFNPCs.CAFE_OWNER;
-import static joshie.harvest.quests.QuestHelper.rewardItem;
 
 @HFQuest(data = "test")
-public class QuestBTM extends Quest {
+public class QuestPokemonGoTest extends Quest {
     private static final Selection selection = new TeamSelection();
     private int selected;
 
-    public QuestBTM() {
+    public QuestPokemonGoTest() {
         setNPCs(CAFE_OWNER);
     }
 
@@ -61,13 +60,13 @@ public class QuestBTM extends Quest {
         return nbt;
     }
 
-    private static class TeamSelection extends AbstractSelection<QuestBTM> {
+    private static class TeamSelection extends AbstractSelection<QuestPokemonGoTest> {
         public TeamSelection() {
             super("test.question", "test.red", "test.yellow", "test.blue");
         }
 
         @Override
-        public Result onSelected(EntityPlayer player, EntityLiving entity, INPC npc, QuestBTM quest, int option) {
+        public Result onSelected(EntityPlayer player, EntityLiving entity, INPC npc, QuestPokemonGoTest quest, int option) {
             quest.selected = option;
             quest.increaseStage(player);
             return Result.ALLOW;

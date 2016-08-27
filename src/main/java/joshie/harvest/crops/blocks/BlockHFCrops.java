@@ -8,14 +8,13 @@ import joshie.harvest.api.crops.IBreakCrops;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
+import joshie.harvest.core.base.BlockHFEnum;
+import joshie.harvest.core.base.ItemBlockHF;
 import joshie.harvest.core.helpers.AnimalHelper;
 import joshie.harvest.core.helpers.CropHelper;
-import joshie.harvest.core.helpers.SeedHelper;
 import joshie.harvest.core.helpers.WorldHelper;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.core.base.BlockHFEnum;
 import joshie.harvest.core.util.HFEvents;
-import joshie.harvest.core.base.ItemBlockHF;
 import joshie.harvest.crops.Crop;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.crops.blocks.BlockHFCrops.Stage;
@@ -307,7 +306,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
         if (getEnumFromState(state) == Stage.WITHERED) return new ItemStack(Blocks.DEADBUSH); //It's Dead soo???
 
         ICropData data = HFApi.crops.getCropAtLocation(world, pos);
-        return SeedHelper.getSeedsFromCrop((Crop) data.getCrop());
+        return HFCrops.SEEDS.getStackFromCrop((Crop)data.getCrop());
     }
 
     @Override

@@ -1,5 +1,6 @@
 package joshie.harvest.api.shops;
 
+import joshie.harvest.api.buildings.ISpecialPurchaseRules;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;

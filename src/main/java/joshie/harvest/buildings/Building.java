@@ -1,7 +1,7 @@
 package joshie.harvest.buildings;
 
 import joshie.harvest.api.buildings.IBuilding;
-import joshie.harvest.api.shops.ISpecialPurchaseRules;
+import joshie.harvest.api.buildings.ISpecialPurchaseRules;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.Placeable.ConstructionStage;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;

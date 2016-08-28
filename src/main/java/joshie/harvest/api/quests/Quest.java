@@ -92,6 +92,7 @@ public abstract class Quest extends Impl<Quest> {
 
     /** Return the localised name of the result of getScript
      * @param quest short form name **/
+    @SuppressWarnings("deprecation")
     @SideOnly(Side.CLIENT)
     public String getLocalized(String quest) {
         return I18n.translateToLocal(getRegistryName().getResourceDomain() + ".quest." + getRegistryName().getResourcePath() + "." + quest.replace("_", ""));
@@ -204,7 +205,7 @@ public abstract class Quest extends Impl<Quest> {
     public void onRightClickBlock(EntityPlayer player, BlockPos pos, EnumFacing face) {}
 
     public enum EventsHandled {
-        ENTITYINTERACT, CLOSEDCHAT, RIGHTCLICK, BUILDINGADD;
+        ENTITYINTERACT, CLOSEDCHAT, RIGHTCLICK, BUILDINGADD
     }
 
     /** Used for selection menus **/

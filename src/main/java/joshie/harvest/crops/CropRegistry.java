@@ -94,11 +94,6 @@ public class CropRegistry implements ICropRegistry {
                     }
                 } else tile.saveAndRefresh();
 
-                /*//TODO: Add stat tracking, displayable on client
-                if (player != null && !world.isRemote) {
-                    HFTrackers.<PlayerTrackerServer>getPlayerTracker(player).getTracking().onHarvested(data.getCrop());
-                } */
-
                 return harvest;
             } else return null;
         } else return null;

@@ -76,6 +76,7 @@ public class BlockSizedStorage extends BlockHFEnumRotatableTile<BlockSizedStorag
         return "axe";
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
         IFaceable tile = (IFaceable) world.getTileEntity(pos);

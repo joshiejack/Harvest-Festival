@@ -27,6 +27,7 @@ public abstract class BlockHFEnum<B extends BlockHFEnum, E extends Enum<E> & ISt
     protected final E[] values;
 
     //Main Constructor
+    @SuppressWarnings("unchecked")
     public BlockHFEnum(Material material, Class<E> clazz, CreativeTabs tab) {
         super(preInit(material, clazz), tab);
         enumClass = clazz;
@@ -55,6 +56,7 @@ public abstract class BlockHFEnum<B extends BlockHFEnum, E extends Enum<E> & ISt
         return new BlockStateContainer(this, property);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public IBlockState getStateFromMeta(int meta) {
         return getDefaultState().withProperty(property, getEnumFromMeta(meta));
@@ -127,11 +129,13 @@ public abstract class BlockHFEnum<B extends BlockHFEnum, E extends Enum<E> & ISt
         return BlockRenderLayer.CUTOUT;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public boolean isFullCube(IBlockState blockState) {
         return false;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public boolean isOpaqueCube(IBlockState blockState) {
         return false;

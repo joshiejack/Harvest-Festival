@@ -35,6 +35,7 @@ public class BuildingHelper {
         return player.worldObj.rayTraceBlocks(vec3d, vec3d2, false, false, true);
     }
 
+    @SuppressWarnings("deprecation")
     @Nonnull
     public static BuildingKey getPositioning(World world, RayTraceResult raytrace, Building building, EntityPlayer player, EnumHand hand) {
         BlockPos cachedBlock = raytrace.getBlockPos().offset(raytrace.sideHit);

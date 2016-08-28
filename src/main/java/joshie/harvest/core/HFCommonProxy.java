@@ -81,6 +81,7 @@ public class HFCommonProxy {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public void configure(File file) {
         Configuration config = new Configuration(file);
         for (Class c : LIST) {

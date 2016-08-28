@@ -17,8 +17,8 @@ public abstract class GuiBaseContainer extends GuiContainer {
     protected boolean hasInventory;
     private String name;
     private static ResourceLocation TEXTURE;
-    private int nameHeight = 5;
-    private int inventOffset = 3;
+    private static final int nameHeight = 5;
+    private static final int inventOffset = 3;
     protected int mouseX = 0;
     protected int mouseY = 0;
     private ArrayList<String> tooltip = new ArrayList<String>();

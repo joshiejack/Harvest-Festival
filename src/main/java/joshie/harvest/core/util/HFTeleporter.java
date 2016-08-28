@@ -6,13 +6,8 @@ import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
 
 public class HFTeleporter extends Teleporter {
-    private final WorldServer world;
-    private final BlockPos pos;
-
     public HFTeleporter(WorldServer world, BlockPos pos) {
         super(world);
-        this.pos = pos;
-        this.world = world;
     }
 
     @Override

@@ -24,6 +24,7 @@ public class EntityDarkSheep extends EntityMob {
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.33000000417232513D);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     protected void initEntityAI() {
         this.tasks.addTask(0, new EntityAISwimming(this));

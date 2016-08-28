@@ -186,6 +186,7 @@ public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable imple
         npc = name.equals("") ? (NPC) HFNPCs.MAYOR : NPCRegistry.REGISTRY.getObject(new ResourceLocation(name));
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public EntityAgeable createChild(EntityAgeable ageable) {
         return getNewEntity((E)ageable);

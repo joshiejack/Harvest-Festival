@@ -56,6 +56,7 @@ public class HFAnimals {
     public static final BlockSizedStorage SIZED = new BlockSizedStorage().register("sized");
     public static final BlockTray TRAY = new BlockTray().register("tray");
 
+    @SuppressWarnings("unchecked")
     public static void preInit() {
         registerModEntity(EntityHarvestCow.class, "cow", EntityIDs.COW, HarvestFestival.instance, 150, 3, true);
         registerModEntity(EntityHarvestSheep.class, "sheep", EntityIDs.SHEEP, HarvestFestival.instance, 150, 3, true);

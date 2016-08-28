@@ -20,8 +20,7 @@ public interface IConditionalGreeting {
      * @return the UNLOCALIZED text **/
     String getUnlocalizedText();
     
-    /** Return the priority
-     *  @param  **/
+    /** Return the priority **/
     default int getPriority() {
         return 0;
     }

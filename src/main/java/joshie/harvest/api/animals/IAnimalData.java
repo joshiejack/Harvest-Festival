@@ -51,7 +51,7 @@ public interface IAnimalData {
 
     /** Feed this animal
      *  May pass a null player if feeding is automated
-     *  @param player*/
+     *  @param player   the player */
     void feed(@Nullable EntityPlayer player);
 
     /** Heal the animal

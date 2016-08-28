@@ -17,6 +17,7 @@ public class StateAdapter implements JsonSerializer<IBlockState>, JsonDeserializ
         return result;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public IBlockState deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         JsonObject jsonObject = json.getAsJsonObject();

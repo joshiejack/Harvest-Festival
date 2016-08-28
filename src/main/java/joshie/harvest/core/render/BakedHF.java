@@ -44,6 +44,7 @@ public abstract class BakedHF implements IBakedModel {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public ItemCameraTransforms getItemCameraTransforms() {
         return parent.getItemCameraTransforms();
     }

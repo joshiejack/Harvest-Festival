@@ -52,6 +52,7 @@ public class SeasonData {
         return resource;
     }
 
+    @SuppressWarnings("deprecation")
     public String getLocalized() {
         return I18n.translateToLocal(MODID + ".season." + season.name().toLowerCase());
     }

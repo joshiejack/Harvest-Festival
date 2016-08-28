@@ -48,6 +48,7 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
         return "axe";
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
         Storage storage = getEnumFromState(state);

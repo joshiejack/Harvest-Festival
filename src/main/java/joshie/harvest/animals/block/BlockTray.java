@@ -70,6 +70,7 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
         return "axe";
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
         return getEnumFromState(state).isFeeder() ? FEEDER_AABB : NEST_AABB;
@@ -146,6 +147,7 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
         return getEnumFromState(state).isFeeder() ? new TileFeeder() : null;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
         TileEntity tile = world.getTileEntity(pos);

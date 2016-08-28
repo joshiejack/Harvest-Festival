@@ -47,20 +47,22 @@ public class CodeGeneratorBuildings {
         this.z2 = zStart < zEnd ? zEnd : zStart;
     }
 
+    @SuppressWarnings("unchecked")
     public ArrayList<Entity> getEntities(Class clazz, int x, int y, int z) {
         return (ArrayList<Entity>) world.getEntitiesWithinAABB(clazz, new AxisAlignedBB(new BlockPos(x, y, z)));
     }
 
+
     public void getCode(boolean air) {
         if (!world.isRemote) {
-            ArrayList<Placeable> ret = new ArrayList();
+            ArrayList<Placeable> ret = new ArrayList<>();
             Set all = new HashSet();
             int i = 0;
             for (int y = 0; y <= y2 - y1; y++) {
                 for (int x = 0; x <= x2 - x1; x++) {
                     for (int z = 0; z <= z2 - z1; z++) {
 
-                        Set<Entity> entityList = new HashSet();
+                        Set<Entity> entityList = new HashSet<>();
                         entityList.addAll(getEntities(EntityPainting.class, x1 + x, y1 + y, z1 + z));
                         entityList.addAll(getEntities(EntityItemFrame.class, x1 + x, y1 + y, z1 + z));
                         entityList.addAll(getEntities(EntityNPCVillager.class, x1 + x, y1 + y, z1 + z));

@@ -13,7 +13,6 @@ import net.minecraft.util.ResourceLocation;
 
 public class GuiFridge extends GuiBaseContainer {
     private FridgeFont font;
-    private FontRenderer temp;
 
     public GuiFridge(EntityPlayer player, IInventory playerInv, TileFridge fridge) {
         super(new ContainerFridge(player, playerInv, fridge), "fridge", 56);
@@ -28,7 +27,7 @@ public class GuiFridge extends GuiBaseContainer {
     @Override
     public void drawSlot(Slot slotIn) {
         if (slotIn instanceof SlotHF) {
-            temp = fontRendererObj;
+            FontRenderer temp = fontRendererObj;
             fontRendererObj = font;
             super.drawSlot(slotIn);
             fontRendererObj = temp;

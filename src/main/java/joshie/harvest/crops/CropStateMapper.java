@@ -29,12 +29,12 @@ public class CropStateMapper extends StateMapperBase {
 
     @Override
     protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
-        Map <IProperty<?>, Comparable<? >> map = Maps. < IProperty<?>, Comparable<? >> newLinkedHashMap(state.getProperties());
+        Map <IProperty<?>, Comparable<? >> map = Maps.newLinkedHashMap(state.getProperties());
         return new ModelResourceLocation(Block.REGISTRY.getNameForObject(state.getBlock()), getPropertyString(map));
     }
 
     private ModelResourceLocation getCropResourceLocation(Crop crop, IBlockState state) {
-        Map <IProperty<?>, Comparable<? >> map = Maps. < IProperty<?>, Comparable<? >> newLinkedHashMap(state.getProperties());
+        Map <IProperty<?>, Comparable<? >> map = Maps.newLinkedHashMap(state.getProperties());
         return new ModelResourceLocation(crop.getRegistryName().getResourceDomain() + ":crops_block_" + crop.getRegistryName().getResourcePath(), this.getPropertyString(map));
     }
 }

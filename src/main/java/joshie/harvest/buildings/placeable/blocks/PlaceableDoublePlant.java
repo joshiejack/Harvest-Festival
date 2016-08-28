@@ -11,6 +11,7 @@ public class PlaceableDoublePlant extends PlaceableDecorative {
         super(state, x, y, z);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void postPlace(World world, BlockPos pos, Direction direction) {
         world.setBlockState(pos.up(), state.getBlock().getStateFromMeta(8), 2);

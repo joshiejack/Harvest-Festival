@@ -113,6 +113,7 @@ public class BlockDirt extends BlockHFBase<BlockDirt> {
 
     public static final Cache<BlockPos, IBlockState> CACHE_STATE = CacheBuilder.newBuilder().expireAfterWrite(1, TimeUnit.MINUTES).maximumSize(1024).build();
 
+    @SuppressWarnings("deprecation, unchecked")
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
         try {

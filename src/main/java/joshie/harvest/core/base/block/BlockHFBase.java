@@ -33,6 +33,7 @@ public abstract class BlockHFBase<B extends BlockHFBase> extends Block {
         this(material, HFTab.FARMING);
     }
 
+    @SuppressWarnings("unchecked")
     public B register(String name) {
         this.unlocalizedName = MODID + "." + name.replace("_", ".");
         setUnlocalizedName(name.replace("_", "."));
@@ -47,6 +48,7 @@ public abstract class BlockHFBase<B extends BlockHFBase> extends Block {
         return new ItemBlockHF(this);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public B setBlockUnbreakable() {
         super.setBlockUnbreakable();

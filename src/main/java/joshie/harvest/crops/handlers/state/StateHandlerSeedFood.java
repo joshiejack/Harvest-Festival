@@ -8,6 +8,7 @@ public class StateHandlerSeedFood extends StateHandlerVanilla {
         super(block);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public IBlockState getState(PlantSection section, int stage, boolean withered) {
         if (stage == 1) return block.getStateFromMeta(0);

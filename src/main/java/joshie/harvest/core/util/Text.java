@@ -55,26 +55,32 @@ public class Text {
         return localize(text + random);
     }
 
+    @SuppressWarnings("deprecation")
     public static String format(String key, Object... data) {
         return I18n.translateToLocalFormatted(key, data);
     }
 
+    @SuppressWarnings("deprecation")
     public static String localize(String key) {
         return I18n.translateToLocal(key);
     }
 
+    @SuppressWarnings("deprecation")
     public static String localizeFully(String key) {
         return I18n.translateToLocal(key.replace("_", "."));
     }
 
+    @SuppressWarnings("deprecation")
     public static String translate(String s) {
         return I18n.translateToLocal(MODID + "." + s);
     }
 
+    @SuppressWarnings("deprecation")
     public static String translate(String mod, String s) {
         return I18n.translateToLocal(mod + "." + s);
     }
 
+    @SuppressWarnings("deprecation")
     public static boolean canTranslate(String key) {
         return I18n.canTranslate(key);
     }

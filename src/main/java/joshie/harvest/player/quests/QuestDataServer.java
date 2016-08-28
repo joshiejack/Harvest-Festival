@@ -36,7 +36,7 @@ public class QuestDataServer extends QuestData {
                     eventHandlers.get(handled).add(quest);
                 }
 
-                syncQuest(q, (EntityPlayerMP) master.getAndCreatePlayer());
+                syncQuest(q, master.getAndCreatePlayer());
             } catch (Exception ignored) {}
             return true;
         } else return false;

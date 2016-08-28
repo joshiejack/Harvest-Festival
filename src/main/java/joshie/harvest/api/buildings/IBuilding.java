@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 /** Building interaction **/
 public interface IBuilding {
     /** This will add some special purchasing rules for the building in question
-     * @param rules
+     * @param rules the special rules
      * @return the building  */
     IBuilding setSpecialRules(ISpecialPurchaseRules rules);
 

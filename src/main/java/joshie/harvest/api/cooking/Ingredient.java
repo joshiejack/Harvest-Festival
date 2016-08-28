@@ -39,8 +39,7 @@ public final class Ingredient {
      *  add(apple, banana, pineapple);
      *  You could recreate this with the newIngredient
      *  by setting stats to 0, but this is for convenience.
-     * @param       unlocalized name
-     * @return      the component */
+     * @param       unlocalized name  */
     public Ingredient(String unlocalized) {
         this.unlocalized = unlocalized;
         equivalents.add(this);
@@ -94,9 +93,8 @@ public final class Ingredient {
      *  and the ingredient should be the item you're checking
      *  i.e. this class = juice_vegetable
      *
-     * @param ingredient
-     * @return
-     */
+     * @param ingredient    the ingredient
+     * @return if they are equal **/
     public boolean isEqual(Ingredient ingredient) {
         for (Ingredient i : equivalents) { //Return true if the item passed in matches this one
             if (i.getUnlocalized().equals(ingredient.getUnlocalized()))

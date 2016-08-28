@@ -39,6 +39,7 @@ public class RegistryHelper {
         }
     }
 
+    @SuppressWarnings("deprecation")
     @SideOnly(Side.CLIENT)
     public static void registerNPCRendererItem(NPC npc) {
         ItemStack stack = SPAWNER_NPC.getStackFromObject(npc);

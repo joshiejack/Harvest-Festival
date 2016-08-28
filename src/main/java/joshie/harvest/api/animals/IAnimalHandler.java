@@ -15,9 +15,9 @@ public interface IAnimalHandler {
     void registerFoodAsType(ItemStack stack, AnimalFoodType type);
     
     /** Create a new animal data
-     * @param animal
+     * @param animal    the animal
      * @param type      you can pass the string, if you want to get a registered type, e.g. cow, sheep or sheep
-     * @returns the data **/
+     * @return the data **/
     IAnimalData newData(IAnimalTracked animal, String type);
     
     /** Returns an animal type based on the string name **/

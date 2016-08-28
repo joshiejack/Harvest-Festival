@@ -36,6 +36,7 @@ public class ChatHelper {
         return ret;
     }
 
+    @SuppressWarnings("deprecation")
     private static String[] localise(String... strings) {
         String[] newstrings = new String[strings.length];
         for (int i = 0; i < newstrings.length; i++) {

@@ -17,8 +17,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 
 public class TrackingServer extends Tracking {
-    //TODO: Add stat tracking, displayable on client  || private Set<CropHarvested> cropTracker = new HashSet<>(); //Crops that have been harvested
-    //TODO: Add stat tracking, displayable on client  || private Set<StackSold> sellTracker = new HashSet<>(); //Items That have been sold
     private HashSet<StackSold> toBeShipped = new HashSet<>(); //What needs to be sold
 
     public PlayerTrackerServer master;
@@ -37,11 +35,6 @@ public class TrackingServer extends Tracking {
         PacketHandler.sendToClient(new PacketSyncObtained(stack), master.getAndCreatePlayer());
     }
 
-    /*TODO: Add stat tracking, displayable on client ||
-    public void onHarvested(Crop crop) {
-        CollectionHelper.mergeCollection(CropHarvested.of(crop), cropTracker);
-    }*/
-
     public boolean addForShipping(ItemStack item) {
         long sell = HFApi.shipping.getSellValue(item);
         StackSold stack = StackSold.of(item, sell);
@@ -55,7 +48,6 @@ public class TrackingServer extends Tracking {
         while (forSale.hasNext()) {
             StackSold stack = forSale.next();
             sold += stack.getSellValue();
-            //TODO: Add stat tracking, displayable on client || CollectionHelper.mergeCollection(stack, sellTracker);
             forSale.remove();
         }
 
@@ -63,16 +55,12 @@ public class TrackingServer extends Tracking {
     }
 
     public void readFromNBT(NBTTagCompound nbt) {
-        //TODO: Add stat tracking, displayable on client || cropTracker = NBTHelper.readHashSet(CropHarvested.class, nbt.getTagList("CropsHarvested", 10));
-        //TODO: Add stat tracking, displayable on client || sellTracker = NBTHelper.readHashSet(StackSold.class, nbt.getTagList("ItemsSold", 10));
         obtained = NBTHelper.readHashSet(ItemStackHolder.class, nbt.getTagList("ItemsObtained", 10));
         toBeShipped = NBTHelper.readHashSet(StackSold.class, nbt.getTagList("ToBeShipped", 10));
         recipes = NBTHelper.readResourceSet(nbt.getTagList("Recipes", 8));
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
-        //TODO: Add stat tracking, displayable on client  || nbt.setTag("CropsHarvested", NBTHelper.writeCollection(cropTracker));
-        //TODO: Add stat tracking, displayable on client  || nbt.setTag("ItemsSold", NBTHelper.writeCollection(sellTracker));
         nbt.setTag("ItemsObtained", NBTHelper.writeCollection(obtained));
         nbt.setTag("ToBeShipped", NBTHelper.writeCollection(toBeShipped));
         nbt.setTag("Recipes", NBTHelper.writeResourceSet(recipes));

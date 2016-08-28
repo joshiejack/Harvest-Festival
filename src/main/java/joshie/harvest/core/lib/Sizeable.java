@@ -2,8 +2,9 @@ package joshie.harvest.core.lib;
 
 import joshie.harvest.api.core.ISizeable;
 import net.minecraft.item.Item;
+import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
 
-public class Sizeable extends net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl<Sizeable> implements ISizeable {
+public class Sizeable extends IForgeRegistryEntry.Impl<Sizeable> implements ISizeable {
     private long small, medium, large;
     private Item item;
 

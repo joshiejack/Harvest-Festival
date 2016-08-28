@@ -13,6 +13,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class AnimalItemRenderer extends EntityItemRenderer {
     public static final AnimalItemRenderer INSTANCE = new AnimalItemRenderer();
 
+    @SuppressWarnings("deprecation")
     public void register(Spawner spawner, String name, ModelBase model) {
         map.put(spawner.ordinal(), new RenderPair(name, model));
         ForgeHooksClient.registerTESRItemStack(HFAnimals.ANIMAL, spawner.ordinal(), this.getClass());

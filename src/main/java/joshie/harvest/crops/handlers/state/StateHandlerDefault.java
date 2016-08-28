@@ -21,7 +21,7 @@ public class StateHandlerDefault implements IStateHandler {
         this.maximum = maximum;
         this.stages = PropertyInteger.create("stage", 1, maximum);
         this.stateContainer = new BlockStateContainer(HFCrops.CROPS, stages);
-        this.defaultState = stateContainer.getBaseState().withProperty(stages, Integer.valueOf(1));
+        this.defaultState = stateContainer.getBaseState().withProperty(stages, 1);
     }
 
     public StateHandlerDefault(ICrop crop) {
@@ -44,6 +44,6 @@ public class StateHandlerDefault implements IStateHandler {
     }
 
     protected IBlockState getState(int stage) {
-        return defaultState.withProperty(stages, Integer.valueOf(stage));
+        return defaultState.withProperty(stages, stage);
     }
 }

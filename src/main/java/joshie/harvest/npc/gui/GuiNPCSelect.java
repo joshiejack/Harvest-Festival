@@ -141,14 +141,15 @@ public class GuiNPCSelect extends GuiNPCBase {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private void select() {
         Result result = selection.onSelected(player, npc, npc.getNPC(), quest, selected);
         if (result == Result.ALLOW) player.openGui(HarvestFestival.instance, GuiHandler.NPC, player.worldObj, npc.getEntityId(), -1, -1);
         else if (result == Result.DENY) player.closeScreen();
     }
 
-    public static class ShopSelection extends Selection {
-        public ShopSelection() {
+    private static class ShopSelection extends Selection {
+        ShopSelection() {
             super("harvestfestival.shop.general.options", "harvestfestival.shop.general.options.shop", "harvestfestival.shop.general.options.chat");
         }
 

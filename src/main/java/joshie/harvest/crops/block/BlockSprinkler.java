@@ -38,11 +38,13 @@ public class BlockSprinkler extends BlockHFEnum<BlockSprinkler, Sprinkler> {
         }
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
         return WOOD_AABB;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World world, BlockPos pos) {
         return NULL_AABB;

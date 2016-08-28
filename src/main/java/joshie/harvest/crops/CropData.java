@@ -65,6 +65,7 @@ public class CropData implements ICropData {
         }
     }
 
+    @SuppressWarnings("deprecation")
     private boolean attemptToGrowToSide(World world, BlockPos pos) {
         if (world.isAirBlock(pos.add(1, 0, 0))) { //If it's air, then let's grow some shit
             return world.setBlockState(pos.add(1, 0, 0), crop.growsToSide().getStateFromMeta(0), 2); //0 = x-

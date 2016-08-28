@@ -69,6 +69,7 @@ public class BlockPortal extends BlockHFEnum<BlockPortal, Portal> {
         return state.getBlock() == this ? getEnumFromState(state).ordinal() % 6 : 0;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public float getBlockHardness(IBlockState state, World world, BlockPos pos) {
         return -1F;
@@ -94,6 +95,7 @@ public class BlockPortal extends BlockHFEnum<BlockPortal, Portal> {
         return Text.localizeFully(getUnlocalizedName());
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos) {
         return AABB;
@@ -121,9 +123,10 @@ public class BlockPortal extends BlockHFEnum<BlockPortal, Portal> {
     }
 
     protected enum Type {
-        MINE, INTERNAL, OVERWORLD;
+        MINE, INTERNAL, OVERWORLD
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess access, BlockPos pos) {
         World world = WorldHelper.getWorld(access);

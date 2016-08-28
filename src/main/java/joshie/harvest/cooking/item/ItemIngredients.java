@@ -12,11 +12,11 @@ public class ItemIngredients extends ItemHFEnum<ItemIngredients, Ingredient> {
 
         private final boolean isReal;
 
-        private Ingredient() {
+        Ingredient() {
             isReal = true;
         }
 
-        private Ingredient(boolean isReal) {
+        Ingredient(boolean isReal) {
             this.isReal = isReal;
         }
 

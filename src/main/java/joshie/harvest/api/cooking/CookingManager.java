@@ -13,7 +13,7 @@ public interface CookingManager {
     
     /** Registers a special recipe handler, called before the normal
      *  recipes are ever processed
-     * @param handler */
+     * @param handler   the handler */
     void registerRecipeHandler(RecipeHandler handler);
 
     /** Call this if you don't wish to implement IKnife,

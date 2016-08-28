@@ -76,11 +76,13 @@ public class BlockCookware extends BlockHFEnumRotatableTile<BlockCookware, Cookw
         return cookware == COUNTER ? "axe" : "pickaxe";
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public Material getMaterial(IBlockState state) {
         return getEnumFromState(state) == COUNTER ? Material.WOOD : super.getMaterial(state);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
         Cookware cookware = getEnumFromState(state);

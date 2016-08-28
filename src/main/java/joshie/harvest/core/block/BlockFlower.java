@@ -62,6 +62,7 @@ public class BlockFlower extends BlockHFEnum<BlockFlower, FlowerType> implements
         return state.getMaterial() == Material.GROUND;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void neighborChanged(IBlockState state, World world, BlockPos pos, Block neighborBlock) {
         super.neighborChanged(state, world, pos, neighborBlock);
@@ -84,11 +85,13 @@ public class BlockFlower extends BlockHFEnum<BlockFlower, FlowerType> implements
         return this.canSustainBush(world.getBlockState(pos.down()));
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
         return FLOWER_AABB;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World world, BlockPos pos) {
         return NULL_AABB;

@@ -126,6 +126,7 @@ public class HFNPCs {
         TRADER.setLocation(HOME, TOWNHALL, TOWNHALL_RIGHT_WING).setLocation(WORK, SUPERMARKET, MARKET_STOREFRONT);
     }
 
+    @SuppressWarnings("deprecation")
     @SideOnly(Side.CLIENT)
     public static void initClient() {
         HFClientProxy.RENDER_MAP.put(SPAWNER_NPC, NPCTile.INSTANCE);

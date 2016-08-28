@@ -50,6 +50,7 @@ public class BlockStone extends BlockHFEnumCube<BlockStone, Type> {
     }
 
     //TECHNICAL
+    @SuppressWarnings("deprecation")
     @Override
     public float getBlockHardness(IBlockState state, World world, BlockPos pos) {
         return getEnumFromState(state) == REAL ? -1F: 4F;

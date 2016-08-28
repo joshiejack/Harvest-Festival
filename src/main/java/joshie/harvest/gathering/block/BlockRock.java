@@ -45,6 +45,7 @@ public class BlockRock extends BlockHFSmashable<BlockRock, Rock> {
         setSoundType(SoundType.STONE);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
         switch (getEnumFromState(state)) {
@@ -94,6 +95,7 @@ public class BlockRock extends BlockHFSmashable<BlockRock, Rock> {
         }
     }
 
+    @SuppressWarnings("deprecation")
     @Deprecated
     public float getBlockHardness(IBlockState state, World world, BlockPos pos) {
         return getToolLevel(getEnumFromState(state)) * 2;

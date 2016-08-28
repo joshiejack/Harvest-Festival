@@ -73,6 +73,7 @@ public class Building extends Impl<Building> implements IBuilding {
         this.components = null; //Wipe out my components
      }
 
+    @SuppressWarnings("deprecation")
     private boolean isValidBlock(Block block) {
         return block.isFullCube(block.getDefaultState()) || block instanceof BlockStairs || block instanceof BlockSlab || block instanceof BlockPane || block instanceof BlockLeaves || block instanceof BlockFence || block instanceof BlockWall;
     }
@@ -150,6 +151,7 @@ public class Building extends Impl<Building> implements IBuilding {
         return special;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public String getLocalisedName() {
         return I18n.translateToLocal(toLocalise);

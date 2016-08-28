@@ -15,7 +15,6 @@ public class NPCItemRenderer extends TileEntitySpecialRenderer<NPCTile> {
     private ModelNPC modelAlex;
     private ModelNPC modelSteve;
     private EntityNPC fake;
-    private ModelNPC model;
 
     public NPCItemRenderer() {
         this.modelAlex = new ModelNPC(true);
@@ -37,7 +36,7 @@ public class NPCItemRenderer extends TileEntitySpecialRenderer<NPCTile> {
         GlStateManager.scale(-1.0F, -1.0F, 1.0F);
         GlStateManager.translate(0.0F, -1.501F, 0.0F);
         bindTexture(fake.npc.getSkin());
-        model = fake.npc.isAlexSkin() ? modelAlex : modelSteve;
+        ModelNPC model = fake.npc.isAlexSkin() ? modelAlex : modelSteve;
         model.isChild = fake.npc.getAge() == INPCRegistry.Age.CHILD;
         model.render(getNPC(), 0F, 0F, 0F, 0F, 0F, 0.0625F);
         GlStateManager.disableRescaleNormal();

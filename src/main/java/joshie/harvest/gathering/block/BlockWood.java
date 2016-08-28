@@ -51,6 +51,7 @@ public class BlockWood extends BlockHFSmashable<BlockWood, Wood> {
         return "axe";
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
         switch (getEnumFromState(state)) {
@@ -117,7 +118,8 @@ public class BlockWood extends BlockHFSmashable<BlockWood, Wood> {
         }
     }
 
-    @Deprecated
+    @SuppressWarnings("deprecation")
+    @Override
     public float getBlockHardness(IBlockState state, World world, BlockPos pos) {
         return getToolLevel(getEnumFromState(state));
     }

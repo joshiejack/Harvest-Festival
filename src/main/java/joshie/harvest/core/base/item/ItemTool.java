@@ -308,7 +308,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
         for (int j = 0; j < 60D; j++) {
             double d8 = (pos.getX()) + world.rand.nextFloat();
             double d9 = (pos.getZ()) + world.rand.nextFloat();
-            world.spawnParticle(particle, d8, pos.getY() + 1.0D - 0.125D, d9, 0, 0, 0, new int[]{Block.getStateId(state)});
+            world.spawnParticle(particle, d8, pos.getY() + 1.0D - 0.125D, d9, 0, 0, 0, Block.getStateId(state));
         }
     }
 

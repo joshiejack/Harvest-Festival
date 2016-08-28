@@ -44,6 +44,7 @@ public class QuestBless extends QuestTrade {
         return (nowDays - thenDays);
     }
 
+    @SuppressWarnings("deprecation")
     @SideOnly(Side.CLIENT)
     @Override
     public String getLocalized(String quest) {

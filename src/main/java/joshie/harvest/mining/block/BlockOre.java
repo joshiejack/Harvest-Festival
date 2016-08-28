@@ -49,6 +49,7 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
         setSoundType(SoundType.STONE);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
         return COPPER_AABB;
@@ -70,7 +71,7 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
 
         if (world instanceof WorldServer) {
             WorldServer server = ((WorldServer)world);
-            server.spawnParticle(EnumParticleTypes.BLOCK_CRACK, pos.getX(), pos.getY(), pos.getZ(), 10, 0.5D, 0.5D, 0.5D, 0.0D, new int[] {Block.getStateId(Blocks.DIRT.getDefaultState())});
+            server.spawnParticle(EnumParticleTypes.BLOCK_CRACK, pos.getX(), pos.getY(), pos.getZ(), 10, 0.5D, 0.5D, 0.5D, 0.0D, Block.getStateId(Blocks.DIRT.getDefaultState()));
         }
 
         switch (ore) {

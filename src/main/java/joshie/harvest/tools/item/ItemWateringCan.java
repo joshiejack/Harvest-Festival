@@ -29,6 +29,7 @@ import javax.annotation.Nullable;
 import java.util.HashSet;
 import java.util.List;
 
+//TODO: Switch to Capbility for Water Supply
 public class ItemWateringCan extends ItemToolChargeable implements IFluidContainerItem {
     public ItemWateringCan() {
         super("watering_can", new HashSet<>());

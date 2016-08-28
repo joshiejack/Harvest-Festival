@@ -22,6 +22,7 @@ public class CollectionHelper {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public static <K, V extends AbstractDataHolder> void mergeMap(K key, V value, Map<K, V> map) {
         V existing = map.get(key);
         if (existing == null) {

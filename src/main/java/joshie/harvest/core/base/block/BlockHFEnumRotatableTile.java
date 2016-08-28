@@ -66,6 +66,7 @@ public abstract class BlockHFEnumRotatableTile<B extends BlockHFEnumRotatableTil
         return false;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public IBlockState withRotation(IBlockState state, Rotation rot) {
         return state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
@@ -79,6 +80,7 @@ public abstract class BlockHFEnumRotatableTile<B extends BlockHFEnumRotatableTil
         }
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
         TileEntity tile = world.getTileEntity(pos);

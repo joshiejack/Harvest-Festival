@@ -93,6 +93,7 @@ public class QuestUpgrade extends QuestTrade {
         }
     }
 
+    @SuppressWarnings("deprecation")
     @SideOnly(Side.CLIENT)
     @Override
     public String getLocalized(String quest) {

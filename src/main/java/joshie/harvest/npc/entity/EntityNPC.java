@@ -5,7 +5,7 @@ import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.npc.INPCRegistry;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.relations.IRelatableProvider;
-import joshie.harvest.core.helpers.NPCHelper;
+import joshie.harvest.npc.NPCHelper;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.NPCRegistry;

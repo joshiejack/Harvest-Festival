@@ -2,7 +2,7 @@ package joshie.harvest.core.base;
 
 import joshie.harvest.api.gathering.ISmashable;
 import joshie.harvest.api.gathering.ISmashable.ToolType;
-import joshie.harvest.core.helpers.ToolHelper;
+import joshie.harvest.tools.ToolHelper;
 import joshie.harvest.core.helpers.generic.DirectionHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;

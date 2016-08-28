@@ -1,7 +1,7 @@
-package joshie.harvest.core.commands;
+package joshie.harvest.player.commands;
 
-import joshie.harvest.api.HFCommand;
-import joshie.harvest.api.HFQuest;
+import joshie.harvest.core.commands.AbstractHFCommand;
+import joshie.harvest.core.commands.AbstractHFCommand.HFCommand;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.player.stats.StatsServer;
@@ -9,8 +9,8 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 
-@HFQuest
-public class HFCommandGold extends HFCommand {
+@HFCommand
+public class HFCommandGold extends AbstractHFCommand {
     @Override
     public String getCommandName() {
         return "gold";

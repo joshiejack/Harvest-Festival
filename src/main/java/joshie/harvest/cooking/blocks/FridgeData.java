@@ -1,6 +1,7 @@
 package joshie.harvest.cooking.blocks;
 
 import joshie.harvest.api.HFApi;
+import joshie.harvest.cooking.tile.TileFridge;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.lib.HFSounds;
 import net.minecraft.entity.player.EntityPlayer;
@@ -119,7 +120,7 @@ public class FridgeData implements IInventory {
 
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack stack) {
-        return HFApi.cooking.getCookingComponents(stack).size() > 0;
+        return HFApi.cooking.isIngredient(stack);
     }
 
 

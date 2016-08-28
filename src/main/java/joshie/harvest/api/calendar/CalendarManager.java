@@ -7,7 +7,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 
-public interface ICalendar {
+public interface CalendarManager {
     /** Register a new season provider for your world,
      * @param dimension     the dimension id
      * @param provider      the season provider */

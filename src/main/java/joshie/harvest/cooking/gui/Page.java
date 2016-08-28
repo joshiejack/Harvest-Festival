@@ -1,6 +1,6 @@
 package joshie.harvest.cooking.gui;
 
-import joshie.harvest.cooking.Utensil;
+import joshie.harvest.api.cooking.Utensil;
 
 public abstract class Page {
     protected GuiCookbook gui;

@@ -1,10 +1,9 @@
-package joshie.harvest.core.helpers;
+package joshie.harvest.npc;
 
 import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.core.handlers.GuiHandler;
-import joshie.harvest.npc.HFNPCs;
-import joshie.harvest.npc.NPC;
+import joshie.harvest.town.TownHelper;
 import joshie.harvest.npc.entity.*;
 import joshie.harvest.shops.Shop;
 import net.minecraft.entity.EntityLivingBase;

@@ -1,12 +1,12 @@
 package joshie.harvest.cooking.items;
 
 import joshie.harvest.HarvestFestival;
-import joshie.harvest.api.HFApi;
-import joshie.harvest.api.cooking.ICookingIngredient;
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.cooking.CookingHelper;
-import joshie.harvest.cooking.recipe.Recipe;
-import joshie.harvest.cooking.blocks.TileCooking;
+import joshie.harvest.cooking.CookingAPI;
+import joshie.harvest.api.cooking.Ingredient;
+import joshie.harvest.cooking.recipe.MealImpl;
+import joshie.harvest.cooking.tile.TileCooking;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.ItemHFBase;
 import joshie.harvest.core.handlers.GuiHandler;
@@ -37,18 +37,18 @@ public class ItemCookbook extends ItemHFBase<ItemCookbook> implements ICreativeS
         return 1000;
     }
 
-    private static boolean isIngredient(ICookingIngredient ingredient, List<ICookingIngredient> set) {
-        for (ICookingIngredient check: set) {
+    private static boolean isIngredient(Ingredient ingredient, List<Ingredient> set) {
+        for (Ingredient check: set) {
             if(ingredient.isEqual(check)) return true;
         }
 
         return false;
     }
 
-    private static ItemStack getAndRemoveIngredient(ICookingIngredient ingredient, EntityPlayer player) {
+    private static ItemStack getAndRemoveIngredient(Ingredient ingredient, EntityPlayer player) {
         for (int i = 0; i < player.inventory.mainInventory.length; i++) {
             ItemStack stack = player.inventory.mainInventory[i];
-            if (stack != null && isIngredient(ingredient, HFApi.cooking.getCookingComponents(stack))) {
+            if (stack != null && isIngredient(ingredient, CookingAPI.INSTANCE.getCookingComponents(stack))) {
                 ItemStack ret = stack.splitStack(1);
                 if (stack.stackSize <= 0) player.inventory.mainInventory[i] = null; //Clear
                 return ret;
@@ -58,11 +58,11 @@ public class ItemCookbook extends ItemHFBase<ItemCookbook> implements ICreativeS
         return null;
     }
 
-    public static boolean cook(TileCooking cooking, EntityPlayer player, Recipe selected) {
+    public static boolean cook(TileCooking cooking, EntityPlayer player, MealImpl selected) {
         if (selected != null) {
             if (!CookingHelper.hasAllIngredients(selected, player)) return false;
             else {
-                for (ICookingIngredient ingredient : selected.getRequiredIngredients()) {
+                for (Ingredient ingredient : selected.getRequiredIngredients()) {
                     ItemStack ret = getAndRemoveIngredient(ingredient, player);
                     if (ret == null) return false;
                     else cooking.addIngredient(ret);

@@ -1,6 +1,6 @@
 package joshie.harvest.buildings.placeable.entities;
 
-import joshie.harvest.core.helpers.LootHelper;
+import joshie.harvest.buildings.LootHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityHanging;
 import net.minecraft.entity.item.EntityItemFrame;

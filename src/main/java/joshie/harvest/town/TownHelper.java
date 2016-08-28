@@ -1,10 +1,6 @@
-package joshie.harvest.core.helpers;
+package joshie.harvest.town;
 
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.town.TownData;
-import joshie.harvest.town.TownDataServer;
-import joshie.harvest.town.TownTracker;
-import joshie.harvest.town.TownTrackerServer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

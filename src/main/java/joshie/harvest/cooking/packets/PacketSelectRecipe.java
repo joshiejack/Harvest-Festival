@@ -2,8 +2,8 @@ package joshie.harvest.cooking.packets;
 
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.cooking.CookingHelper;
-import joshie.harvest.cooking.FoodRegistry;
-import joshie.harvest.cooking.recipe.Recipe;
+import joshie.harvest.cooking.CookingAPI;
+import joshie.harvest.cooking.recipe.MealImpl;
 import joshie.harvest.core.network.Packet;
 import joshie.harvest.core.network.Packet.Side;
 import joshie.harvest.core.network.PenguinPacket;
@@ -13,10 +13,10 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 
 @Packet(Side.SERVER)
 public class PacketSelectRecipe extends PenguinPacket {
-    private Recipe recipe;
+    private MealImpl recipe;
 
     public PacketSelectRecipe() {}
-    public PacketSelectRecipe(Recipe recipe) {
+    public PacketSelectRecipe(MealImpl recipe) {
         this.recipe = recipe;
     }
 
@@ -27,7 +27,7 @@ public class PacketSelectRecipe extends PenguinPacket {
 
     @Override
     public void fromBytes(ByteBuf from) {
-        recipe = FoodRegistry.REGISTRY.getObject(new ResourceLocation(ByteBufUtils.readUTF8String(from)));
+        recipe = CookingAPI.REGISTRY.getObject(new ResourceLocation(ByteBufUtils.readUTF8String(from)));
     }
 
     @Override

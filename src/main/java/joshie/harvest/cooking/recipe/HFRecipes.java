@@ -1,20 +1,22 @@
 package joshie.harvest.cooking.recipe;
 
-import joshie.harvest.api.cooking.ICookingIngredient;
+import joshie.harvest.api.cooking.Ingredient;
 import joshie.harvest.cooking.HFCooking;
-import joshie.harvest.cooking.Meal;
+import joshie.harvest.cooking.gui.PageRecipe;
 import joshie.harvest.cooking.items.ItemIngredients;
 import joshie.harvest.core.util.HFLoader;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import static joshie.harvest.cooking.HFCooking.INGREDIENTS;
 import static joshie.harvest.cooking.recipe.HFIngredients.*;
-import static joshie.harvest.core.helpers.RecipeHelper.*;
+import static joshie.harvest.cooking.recipe.RecipeHelper.*;
 
 @HFLoader
 public class HFRecipes {
-    public static final Recipe NULL_RECIPE = new Recipe("null", new ICookingIngredient[0], new Meal(0, 0F, 0F, 0));
+    public static final MealImpl NULL_RECIPE = new MealImpl("null", new Ingredient[0], new MealBuilder(0, 0F, 0F, 0));
 
     public static void preInit() {
         //Recipes ; http://fogu.com/hm4/farm/stamina_chart.htm for numbers
@@ -98,5 +100,10 @@ public class HFRecipes {
         addOvenRecipe(new ItemStack(Items.COOKED_FISH, 1, 0), COD);
         addOvenRecipe(new ItemStack(Items.COOKED_FISH, 1, 1), SALMON);
         addOvenRecipe(new ItemStack(Items.PUMPKIN_PIE), PUMPKIN, SUGAR, EGG);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static void remapClient() {
+        PageRecipe.reset();
     }
 }

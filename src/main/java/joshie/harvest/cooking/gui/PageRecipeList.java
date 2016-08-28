@@ -1,32 +1,34 @@
 package joshie.harvest.cooking.gui;
 
-import joshie.harvest.cooking.FoodRegistry;
-import joshie.harvest.cooking.recipe.Recipe;
-import joshie.harvest.cooking.Utensil;
+import joshie.harvest.api.cooking.Utensil;
+import joshie.harvest.cooking.CookingAPI;
+import joshie.harvest.cooking.recipe.MealImpl;
 import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
-import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.List;
 
 import static joshie.harvest.cooking.HFCooking.COOKWARE;
 import static joshie.harvest.cooking.blocks.BlockCookware.Cookware.*;
 import static joshie.harvest.cooking.gui.GuiCookbook.MASTER;
+import static joshie.harvest.cooking.gui.GuiCookbook.MAX_UTENSILS_DISPLAY;
 
 /** Display the recipe list **/
 public class PageRecipeList extends Page {
-    private static final EnumMap<Utensil, PageRecipeList> UTENSIL_PAGES = new EnumMap<>(Utensil.class);
-    private static final EnumMap<Utensil, ItemStack> RENDER_MAP = new EnumMap<>(Utensil.class);
+    private static final HashMap<Utensil, PageRecipeList> UTENSIL_PAGES = new HashMap<>();
+    private static final HashMap<Utensil, ItemStack> RENDER_MAP = new HashMap<>();
     static {
         RENDER_MAP.put(Utensil.COUNTER, COOKWARE.getStackFromEnum(COUNTER));
         RENDER_MAP.put(Utensil.FRYING_PAN, COOKWARE.getStackFromEnum(FRYING_PAN));
         RENDER_MAP.put(Utensil.MIXER, COOKWARE.getStackFromEnum(MIXER));
         RENDER_MAP.put(Utensil.OVEN, COOKWARE.getStackFromEnum(OVEN_ON));
         RENDER_MAP.put(Utensil.POT, COOKWARE.getStackFromEnum(POT));
-        for (Utensil utensil: Utensil.values()) {
+        for (int i = 0; i < MAX_UTENSILS_DISPLAY; i++) {
+            Utensil utensil = Utensil.getUtensilFromIndex(i);
             UTENSIL_PAGES.put(utensil, new PageRecipeList(utensil));
         }
     }
@@ -46,7 +48,7 @@ public class PageRecipeList extends Page {
         super.initGui(gui);
         recipes = new ArrayList<>();
         for (ResourceLocation resource: HFTrackers.getClientPlayerTracker().getTracking().getLearntRecipes()) {
-            Recipe recipe = FoodRegistry.REGISTRY.getObject(resource);
+            MealImpl recipe = CookingAPI.REGISTRY.getObject(resource);
             if (recipe.getRequiredTool() == utensil) {
                 recipes.add(PageRecipe.of(recipe));
             }

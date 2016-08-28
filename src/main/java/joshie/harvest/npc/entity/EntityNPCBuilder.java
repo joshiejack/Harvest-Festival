@@ -2,7 +2,7 @@ package joshie.harvest.npc.entity;
 
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.buildings.BuildingStage;
-import joshie.harvest.core.helpers.TownHelper;
+import joshie.harvest.town.TownHelper;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.entity.ai.TaskHeadToBlock;

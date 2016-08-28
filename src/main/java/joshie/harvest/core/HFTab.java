@@ -106,7 +106,8 @@ public class HFTab extends CreativeTabs {
         this.icon = stack;
     }
 
-    public static void preInit() {
+    public static void remap() {
+        System.out.println("REMAPPING");
         HFTab.TOWN.setStack(new ItemStack(HFBuildings.STRUCTURES, 1, 0));
         HFTab.MINING.setStack(HFMining.MATERIALS.getStackFromEnum(JUNK));
         HFTab.FARMING.setStack(HFCrops.STRAWBERRY.getCropStack());

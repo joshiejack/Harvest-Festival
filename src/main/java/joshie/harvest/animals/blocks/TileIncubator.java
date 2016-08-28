@@ -2,7 +2,7 @@ package joshie.harvest.animals.blocks;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.core.base.TileFillableSizedFaceable;
-import joshie.harvest.core.helpers.ToolHelper;
+import joshie.harvest.tools.ToolHelper;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.item.ItemStack;
 

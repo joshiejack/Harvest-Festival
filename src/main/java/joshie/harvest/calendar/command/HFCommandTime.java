@@ -1,15 +1,15 @@
 package joshie.harvest.calendar.command;
 
-import joshie.harvest.api.HFCommand;
-import joshie.harvest.api.HFQuest;
 import joshie.harvest.calendar.CalendarServer;
+import joshie.harvest.core.commands.AbstractHFCommand;
+import joshie.harvest.core.commands.AbstractHFCommand.HFCommand;
 import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.WorldServer;
 
-@HFQuest
-public class HFCommandTime extends HFCommand {
+@HFCommand
+public class HFCommandTime extends AbstractHFCommand {
     @Override
     public String getCommandName() {
         return "time";

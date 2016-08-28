@@ -1,7 +1,7 @@
 package joshie.harvest.tools.items;
 
 import joshie.harvest.core.base.ItemToolChargeable;
-import joshie.harvest.core.helpers.ToolHelper;
+import joshie.harvest.tools.ToolHelper;
 import joshie.harvest.core.helpers.generic.DirectionHelper;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.block.Block;

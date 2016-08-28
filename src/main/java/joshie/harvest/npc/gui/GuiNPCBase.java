@@ -18,7 +18,7 @@ public class GuiNPCBase extends GuiBaseContainer {
     protected int nextGui;
 
     public GuiNPCBase(EntityNPC eNpc, EntityPlayer ePlayer, int next) {
-        super(new ContainerNPC(eNpc, ePlayer.inventory), "chat", 0);
+        super(new ContainerNPCBase(eNpc, ePlayer.inventory), "chat", 0);
 
         hasInventory = false;
         npc = eNpc;

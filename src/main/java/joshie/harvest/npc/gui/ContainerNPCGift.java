@@ -4,7 +4,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.helpers.ToolHelper;
+import joshie.harvest.tools.ToolHelper;
 import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;

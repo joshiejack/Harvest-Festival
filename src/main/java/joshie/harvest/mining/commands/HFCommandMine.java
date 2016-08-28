@@ -1,6 +1,6 @@
 package joshie.harvest.mining.commands;
 
-import joshie.harvest.api.HFCommand;
+import joshie.harvest.core.commands.AbstractHFCommand;
 import joshie.harvest.api.HFQuest;
 import joshie.harvest.mining.MiningHelper;
 import net.minecraft.command.ICommandSender;
@@ -8,7 +8,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.server.MinecraftServer;
 
 @HFQuest
-public class HFCommandMine extends HFCommand {
+public class HFCommandMine extends AbstractHFCommand {
     @Override
     public String getCommandName() {
         return "mine";

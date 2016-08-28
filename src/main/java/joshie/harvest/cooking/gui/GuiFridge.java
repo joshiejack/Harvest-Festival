@@ -1,6 +1,6 @@
 package joshie.harvest.cooking.gui;
 
-import joshie.harvest.cooking.blocks.TileFridge;
+import joshie.harvest.cooking.tile.TileFridge;
 import joshie.harvest.core.util.ContainerBase.SlotHF;
 import joshie.harvest.core.util.GuiBaseContainer;
 import net.minecraft.client.Minecraft;

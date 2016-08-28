@@ -4,7 +4,7 @@ import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.gift.IGiftHandler.Quality;
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.helpers.ToolHelper;
+import joshie.harvest.tools.ToolHelper;
 import joshie.harvest.core.util.Text;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.EntityNPC;

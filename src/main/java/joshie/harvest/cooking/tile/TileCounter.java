@@ -1,6 +1,6 @@
-package joshie.harvest.cooking.blocks;
+package joshie.harvest.cooking.tile;
 
-import joshie.harvest.cooking.Utensil;
+import joshie.harvest.api.cooking.Utensil;
 import joshie.harvest.core.lib.HFSounds;
 import net.minecraft.util.SoundCategory;
 

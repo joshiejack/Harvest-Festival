@@ -1,9 +1,19 @@
 package joshie.harvest.api;
 
+import joshie.harvest.core.commands.AbstractHFCommand;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
 /** Annotate any of the following, to have them automatically registered
- *  @see joshie.harvest.api.HFCommand
+ *  @see AbstractHFCommand
  *  @see joshie.harvest.api.quests.Quest
  */
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE)
 public @interface HFQuest {
     /** Extra data,
      * for most things this is simply the resource path

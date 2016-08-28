@@ -52,7 +52,11 @@ public class HarvestFestival {
     @EventHandler
     public void onLoadComplete(FMLLoadCompleteEvent event) {
         proxy.load("complete");
-        proxy.clear();
+    }
+
+    @EventHandler
+    public void onMapping(FMLModIdMappingEvent event) {
+        proxy.load("remap");
     }
 
     @EventHandler

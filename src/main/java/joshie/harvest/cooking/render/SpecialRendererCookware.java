@@ -1,7 +1,7 @@
 package joshie.harvest.cooking.render;
 
-import joshie.harvest.api.HFApi;
-import joshie.harvest.cooking.blocks.TileCooking;
+import joshie.harvest.cooking.CookingAPI;
+import joshie.harvest.cooking.tile.TileCooking;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
@@ -47,7 +47,7 @@ public abstract class SpecialRendererCookware<T extends TileCooking> extends Til
         int max = ingredients.size();
         for (int i = 0; i < max; i++) {
             ItemStack ingredient = ingredients.get(i);
-            ResourceLocation fluid = HFApi.cooking.getFluid(ingredient);
+            ResourceLocation fluid = CookingAPI.INSTANCE.getFluid(ingredient);
             if (fluid == null) {
                 renderIngredient(ingredient, tile.heightOffset[i], tile.rotations[i], tile.offset1[i], tile.offset2[i]);
             } else {

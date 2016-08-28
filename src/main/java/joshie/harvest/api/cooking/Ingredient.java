@@ -1,0 +1,108 @@
+package joshie.harvest.api.cooking;
+
+import net.minecraft.util.ResourceLocation;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+
+public final class Ingredient {
+    public static final Map<String, Ingredient> INGREDIENTS = new HashMap<>();
+    private final HashSet<Ingredient> equivalents = new HashSet<>();
+    private final String unlocalized;
+    private int hunger;
+    private float saturation;
+    private float exhaustion;
+    private int eatTime;
+    public ResourceLocation fluid;
+
+    /** Creates a new ingredient type for usage in cooking
+     *  @param      unlocalized the unlocalised name, this needs to be unique
+     *          The food stats are how much this ingredient affects recipes
+     *          when it gets added to them as optional ingredients;
+     *  @param      hunger the hunger (vanilla) this ingredient fills
+     *  @param      saturation the saturation (vanilla) this ingredient fills
+     *  @param      exhaustion     how much exhaustion this ingredient adds
+     *  @param      eatTime the eatTimer, this is how many ticks extra this adds to eating time **/
+    public Ingredient(String unlocalized, int hunger, float saturation, float exhaustion, int eatTime) {
+        this.unlocalized = unlocalized;
+        this.hunger = hunger;
+        this.saturation = saturation;
+        this.exhaustion = exhaustion;
+        this.eatTime = eatTime;
+        equivalents.add(this);
+        INGREDIENTS.put(unlocalized, this);
+    }
+
+    /** Creates a new cooking category, e.g. "fruit"
+     *  To add things to this category, simple call
+     *  add(apple, banana, pineapple);
+     *  You could recreate this with the newIngredient
+     *  by setting stats to 0, but this is for convenience.
+     * @param       unlocalized name
+     * @return      the component */
+    public Ingredient(String unlocalized) {
+        this.unlocalized = unlocalized;
+        equivalents.add(this);
+        INGREDIENTS.put(unlocalized, this);
+    }
+
+    /** Add additional ingredients as equivalents,
+     *  You pretty much use this only on categories ingredients
+     * @param ingredients    the ingredients to add*/
+    public Ingredient add(Ingredient... ingredients) {
+        for (Ingredient component : ingredients) {
+            equivalents.add(component);
+        }
+
+        return this;
+    }
+
+    /** If this ingredient should display as a fluid, put the path to that fluid here**/
+    public Ingredient setFluid(ResourceLocation fluid) {
+        this.fluid = fluid;
+        return this;
+    }
+
+    public ResourceLocation getFluid() {
+        return fluid;
+    }
+
+    public String getUnlocalized() {
+        return unlocalized;
+    }
+
+    public int getEatTime() {
+        return eatTime;
+    }
+
+    public int getHunger() {
+        return hunger;
+    }
+
+    public float getSaturation() {
+        return saturation;
+    }
+
+    public float getExhaustion() {
+        return exhaustion;
+    }
+
+
+    /** With this if you are wanting to test for a category,
+     *  this instance should be the categories instance
+     *  and the ingredient should be the item you're checking
+     *  i.e. this class = juice_vegetable
+     *
+     * @param ingredient
+     * @return
+     */
+    public boolean isEqual(Ingredient ingredient) {
+        for (Ingredient i : equivalents) { //Return true if the item passed in matches this one
+            if (i.getUnlocalized().equals(ingredient.getUnlocalized()))
+                return true; //Loops the equivalents list, this item is contained in that list by default
+        }
+
+        return false;
+    }
+}

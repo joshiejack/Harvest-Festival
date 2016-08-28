@@ -1,11 +1,11 @@
 package joshie.harvest.cooking.gui;
 
-import joshie.harvest.api.cooking.ICookingIngredient;
+import joshie.harvest.api.cooking.Ingredient;
+import joshie.harvest.api.cooking.Utensil;
+import joshie.harvest.cooking.CookingAPI;
 import joshie.harvest.cooking.CookingHelper;
-import joshie.harvest.cooking.FoodRegistry;
-import joshie.harvest.cooking.recipe.Recipe;
-import joshie.harvest.cooking.Utensil;
 import joshie.harvest.cooking.packets.PacketSelectRecipe;
+import joshie.harvest.cooking.recipe.MealImpl;
 import joshie.harvest.core.helpers.ChatHelper;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.network.PacketHandler;
@@ -23,23 +23,25 @@ import static joshie.harvest.cooking.gui.GuiCookbook.LEFT_GUI;
 import static joshie.harvest.cooking.gui.GuiCookbook.ingredients;
 
 public class PageRecipe extends Page {
-    private static final HashMap<Recipe, PageRecipe> recipeMap = new HashMap<>();
-    static {
-        for (Recipe recipe: FoodRegistry.REGISTRY) {
+    private static final HashMap<MealImpl, PageRecipe> recipeMap = new HashMap<>();
+    public static void reset() {
+        recipeMap.clear();
+
+        for (MealImpl recipe: CookingAPI.REGISTRY) {
             recipeMap.put(recipe, new PageRecipe(recipe));
         }
     }
 
-    public static PageRecipe of(Recipe recipe) {
+    public static PageRecipe of(MealImpl recipe) {
         return recipeMap.get(recipe);
     }
 
-    private final Recipe recipe;
+    private final MealImpl recipe;
     private final List<CyclingStack> list = new ArrayList<>();
     private final ItemStack stack;
     private final String description;
 
-    public PageRecipe(Recipe recipe) {
+    public PageRecipe(MealImpl recipe) {
         this.recipe = recipe;
         this.stack = recipe.cook(recipe.getMeal());
         this.description = recipe.getRegistryName().getResourceDomain() + ".meal." + recipe.getRegistryName().getResourcePath().replace("_", ".") + ".description";
@@ -156,16 +158,16 @@ public class PageRecipe extends Page {
         private final int x;
         private final int y;
         private final List<ItemStack> stacks;
-        private final ICookingIngredient ingredient;
+        private final Ingredient ingredient;
         private ItemStack stack;
         private int ticker;
         private int index;
 
         @SuppressWarnings("unchecked")
-        public CyclingStack(int x, int y, ICookingIngredient ingredient) {
+        public CyclingStack(int x, int y, Ingredient ingredient) {
             this.x = x;
             this.y = y;
-            this.stacks = FoodRegistry.INSTANCE.getStacksForIngredient(ingredient);
+            this.stacks = CookingAPI.INSTANCE.getStacksForIngredient(ingredient);
             this.ingredient = ingredient;
         }
 

@@ -1,8 +1,8 @@
-package joshie.harvest.cooking.blocks;
+package joshie.harvest.cooking.tile;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.IAltItem;
-import joshie.harvest.cooking.Utensil;
+import joshie.harvest.api.cooking.Utensil;
 import joshie.harvest.core.base.TileFaceable;
 import joshie.harvest.core.helpers.generic.ItemHelper;
 import joshie.harvest.core.helpers.generic.MCServerHelper;
@@ -104,7 +104,7 @@ public abstract class TileCooking extends TileFaceable {
     public boolean addIngredient(ItemStack stack) {
         if (ingredients.size() >= 20) return false;
         if (!hasPrerequisites()) return false;
-        if (HFApi.cooking.getCookingComponents(stack).size() < 1) return false;
+        if (!HFApi.cooking.isIngredient(stack)) return false;
         else {
             if (worldObj.isRemote) return true;
             ItemStack clone = getRealIngredient(stack);

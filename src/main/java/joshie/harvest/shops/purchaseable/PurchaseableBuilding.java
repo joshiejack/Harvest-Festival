@@ -3,7 +3,7 @@ package joshie.harvest.shops.purchaseable;
 import joshie.harvest.buildings.Building;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.helpers.TownHelper;
+import joshie.harvest.town.TownHelper;
 import joshie.harvest.town.TownData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;

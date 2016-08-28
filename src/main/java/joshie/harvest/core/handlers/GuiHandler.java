@@ -1,10 +1,10 @@
 package joshie.harvest.core.handlers;
 
-import joshie.harvest.cooking.blocks.TileFridge;
+import joshie.harvest.cooking.tile.TileFridge;
 import joshie.harvest.cooking.gui.ContainerFridge;
 import joshie.harvest.cooking.gui.GuiCookbook;
 import joshie.harvest.cooking.gui.GuiFridge;
-import joshie.harvest.core.helpers.NPCHelper;
+import joshie.harvest.npc.NPCHelper;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.gui.*;
 import joshie.harvest.shops.gui.ContainerNPCBuilderShop;

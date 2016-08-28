@@ -4,7 +4,7 @@ import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.buildings.IBuilding;
 import joshie.harvest.api.npc.IConditionalGreeting;
 import joshie.harvest.buildings.Building;
-import joshie.harvest.core.helpers.NPCHelper;
+import joshie.harvest.npc.NPCHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 

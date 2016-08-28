@@ -1,10 +1,9 @@
 package joshie.harvest.cooking;
 
-import joshie.harvest.api.HFApi;
-import joshie.harvest.api.cooking.ICookingIngredient;
-import joshie.harvest.cooking.blocks.TileCooking;
+import joshie.harvest.api.cooking.Ingredient;
 import joshie.harvest.cooking.items.ItemCookbook;
-import joshie.harvest.cooking.recipe.Recipe;
+import joshie.harvest.cooking.recipe.MealImpl;
+import joshie.harvest.cooking.tile.TileCooking;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -19,31 +18,31 @@ import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class CookingHelper {
     public static ItemStack getRecipe(String name) {
-        Recipe recipe = FoodRegistry.REGISTRY.getObject(new ResourceLocation(MODID, name));
+        MealImpl recipe = CookingAPI.REGISTRY.getObject(new ResourceLocation(MODID, name));
         return HFCooking.RECIPE.getStackFromObject(recipe);
     }
 
-    public static boolean hasIngredientInInventory(Set<ICookingIngredient> ingredients, ICookingIngredient ingredient) {
-        for (ICookingIngredient inInventory: ingredients) {
+    public static boolean hasIngredientInInventory(Set<Ingredient> ingredients, Ingredient ingredient) {
+        for (Ingredient inInventory: ingredients) {
             if (ingredient.isEqual(inInventory)) return true;
         }
 
         return false;
     }
 
-    public static boolean hasAllIngredients(Recipe recipe, Set<ICookingIngredient> ingredients) {
-        for (ICookingIngredient ingredient: recipe.getRequiredIngredients()) {
+    public static boolean hasAllIngredients(MealImpl recipe, Set<Ingredient> ingredients) {
+        for (Ingredient ingredient: recipe.getRequiredIngredients()) {
             if (!hasIngredientInInventory(ingredients, ingredient)) return false;
         }
 
         return true;
     }
 
-    public static boolean hasAllIngredients(Recipe recipe, EntityPlayer player) {
-        Set<ICookingIngredient> ingredients = new HashSet<>();
+    public static boolean hasAllIngredients(MealImpl recipe, EntityPlayer player) {
+        Set<Ingredient> ingredients = new HashSet<>();
         for (ItemStack stack: player.inventory.mainInventory) {
             if (stack != null) {
-                ingredients.addAll(HFApi.cooking.getCookingComponents(stack));
+                ingredients.addAll(CookingAPI.INSTANCE.getCookingComponents(stack));
             }
         }
 
@@ -51,7 +50,7 @@ public class CookingHelper {
         return hasAllIngredients(recipe, ingredients);
     }
 
-    public static boolean tryPlaceIngredients(EntityPlayer player, Recipe recipe) {
+    public static boolean tryPlaceIngredients(EntityPlayer player, MealImpl recipe) {
         World world = player.worldObj;
         BlockPos pos = new BlockPos(player);
         int reach = player.capabilities.isCreativeMode ? 5 : 4;

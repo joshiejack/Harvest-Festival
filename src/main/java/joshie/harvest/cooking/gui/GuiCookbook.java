@@ -1,8 +1,8 @@
 package joshie.harvest.cooking.gui;
 
-import joshie.harvest.api.HFApi;
-import joshie.harvest.api.cooking.ICookingIngredient;
-import joshie.harvest.cooking.Utensil;
+import joshie.harvest.api.cooking.Ingredient;
+import joshie.harvest.api.cooking.Utensil;
+import joshie.harvest.cooking.CookingAPI;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.helpers.generic.StackHelper;
 import joshie.harvest.core.lib.HFModInfo;
@@ -19,9 +19,10 @@ public class GuiCookbook extends GuiScreen {
     public static final ResourceLocation LEFT_GUI = new ResourceLocation(HFModInfo.MODID, "textures/gui/book_cooking_left.png");
     public static final ResourceLocation RIGHT_GUI = new ResourceLocation(HFModInfo.MODID, "textures/gui/book_cooking_right.png");
     public static final PageUtensilList MASTER = new PageUtensilList();
-    public static final Set<ICookingIngredient> ingredients = new HashSet<>();
+    public static final Set<Ingredient> ingredients = new HashSet<>();
     private static final int imageWidth = 154;
     private static final int imageHeight = 204;
+    static final int MAX_UTENSILS_DISPLAY = 5;
 
     private static Page page;
     private int centreX;
@@ -32,7 +33,7 @@ public class GuiCookbook extends GuiScreen {
         ingredients.clear();
         for (ItemStack stack: MCClientHelper.getPlayer().inventory.mainInventory) {
             if (stack != null) {
-                ingredients.addAll(HFApi.cooking.getCookingComponents(stack));
+                ingredients.addAll(CookingAPI.INSTANCE.getCookingComponents(stack));
             }
         }
 
@@ -55,8 +56,8 @@ public class GuiCookbook extends GuiScreen {
             //Draw the background buttons
             GlStateManager.color(1F, 1F, 1F);
             boolean hoverX = mouseX >= 307 && mouseX <= 333;
-            for (int i = 0; i < Utensil.values().length; i++) {
-                Utensil tool = Utensil.values()[i];
+            for (int i = 0; i < MAX_UTENSILS_DISPLAY; i++) {
+                Utensil tool = Utensil.getUtensilFromIndex(i);
                 if (PageRecipeList.get(tool).hasRecipes()) {
                     mc.getTextureManager().bindTexture(LEFT_GUI);
                     boolean hoverY = mouseY >= 16 + i * 36 && mouseY <= 50 + i * 36;
@@ -85,8 +86,8 @@ public class GuiCookbook extends GuiScreen {
         //Draw the utensil buttons
         if (page.getUtensil() != null) {
             boolean hoverX = mouseX >= 307 && mouseX <= 333;
-            for (int i = 0; i < Utensil.values().length; i++) {
-                Utensil tool = Utensil.values()[i];
+            for (int i = 0; i < MAX_UTENSILS_DISPLAY; i++) {
+                Utensil tool = Utensil.getUtensilFromIndex(i);
                 if (PageRecipeList.get(tool).hasRecipes()) {
                     boolean hoverY = mouseY >= 16 + i * 36 && mouseY <= 50 + i * 36;
                     if (hoverX && hoverY) {

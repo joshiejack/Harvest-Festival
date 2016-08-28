@@ -1,12 +1,11 @@
-package joshie.harvest.core.helpers;
+package joshie.harvest.tools;
 
 import joshie.harvest.animals.HFAnimals;
-import joshie.harvest.cooking.FoodRegistry;
+import joshie.harvest.api.HFApi;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.core.base.ItemTool;
 import joshie.harvest.core.helpers.generic.EntityHelper;
 import joshie.harvest.npc.HFNPCs;
-import joshie.harvest.tools.HFTools;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
@@ -46,7 +45,7 @@ public class ToolHelper {
     }
 
     public static boolean isKnife(ItemStack stack) {
-        return FoodRegistry.INSTANCE.isKnife(stack);
+        return HFApi.cooking.isKnife(stack);
     }
 
     public static void levelTool(ItemStack stack) {

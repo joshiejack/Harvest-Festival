@@ -7,7 +7,7 @@ import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.buildings.render.BuildingKey;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.ItemHFFML;
-import joshie.harvest.core.helpers.TownHelper;
+import joshie.harvest.town.TownHelper;
 import joshie.harvest.core.helpers.generic.BuildingHelper;
 import joshie.harvest.core.util.Direction;
 import joshie.harvest.core.util.Text;

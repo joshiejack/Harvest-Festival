@@ -1,11 +1,20 @@
-package joshie.harvest.api;
+package joshie.harvest.core.commands;
 
 import net.minecraft.command.CommandNotFoundException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.NumberInvalidException;
 import net.minecraft.server.MinecraftServer;
 
-public abstract class HFCommand implements Comparable<Object> {
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+public abstract class AbstractHFCommand implements Comparable<Object> {
+    @Retention(RetentionPolicy.RUNTIME)
+    @Target(ElementType.TYPE)
+    public @interface HFCommand {}
+
     /** Return the command name **/
     public abstract String getCommandName();
 
@@ -28,7 +37,7 @@ public abstract class HFCommand implements Comparable<Object> {
 
     @Override
     public int compareTo(Object o) {
-        return getCommandName().compareTo(((HFCommand) o).getCommandName());
+        return getCommandName().compareTo(((AbstractHFCommand) o).getCommandName());
     }
 
     /** Helper for parsing integers **/

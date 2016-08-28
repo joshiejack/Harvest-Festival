@@ -4,7 +4,7 @@ import joshie.harvest.buildings.Building;
 import joshie.harvest.buildings.BuildingStage;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.NBTHelper;
-import joshie.harvest.core.helpers.NPCHelper;
+import joshie.harvest.npc.NPCHelper;
 import joshie.harvest.gathering.GatheringData;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.NPC;

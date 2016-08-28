@@ -14,7 +14,6 @@ import joshie.harvest.buildings.loader.*;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.core.base.FMLDefinition;
 import joshie.harvest.core.base.FMLIdentical;
-import joshie.harvest.core.helpers.ResourceLoader;
 import joshie.harvest.core.util.HFLoader;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;

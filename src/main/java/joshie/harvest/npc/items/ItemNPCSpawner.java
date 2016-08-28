@@ -1,7 +1,7 @@
 package joshie.harvest.npc.items;
 
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.helpers.NPCHelper;
+import joshie.harvest.npc.NPCHelper;
 import joshie.harvest.core.base.ItemHFFML;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.NPC;

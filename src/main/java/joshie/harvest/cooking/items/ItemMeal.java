@@ -1,12 +1,11 @@
 package joshie.harvest.cooking.items;
 
 import joshie.harvest.api.cooking.IAltItem;
-import joshie.harvest.api.cooking.IMeal;
+import joshie.harvest.api.cooking.Utensil;
 import joshie.harvest.api.core.ICreativeSorted;
-import joshie.harvest.cooking.FoodRegistry;
+import joshie.harvest.cooking.CookingAPI;
 import joshie.harvest.cooking.recipe.HFRecipes;
-import joshie.harvest.cooking.recipe.Recipe;
-import joshie.harvest.cooking.Utensil;
+import joshie.harvest.cooking.recipe.MealImpl;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.ItemHFFML;
@@ -17,7 +16,6 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
@@ -30,19 +28,17 @@ import java.util.List;
 
 import static net.minecraft.util.text.TextFormatting.DARK_GRAY;
 
-public class ItemMeal extends ItemHFFML<ItemMeal, Recipe> implements ICreativeSorted, IAltItem {
+public class ItemMeal extends ItemHFFML<ItemMeal, MealImpl> implements ICreativeSorted, IAltItem {
     public ItemMeal() {
-        super(FoodRegistry.REGISTRY, HFTab.COOKING);
+        super(CookingAPI.REGISTRY, HFTab.COOKING);
     }
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
         if (stack.getItemDamage() >= 10) {
-            return FoodRegistry.REGISTRY.getObjectById(stack.getItemDamage()).getDisplayName();
-        } else {
-            int meta = Math.min(Utensil.values().length - 1, stack.getItemDamage());
-            return DARK_GRAY + Text.translate("meal.burnt." + Utensil.values()[meta].name().replace("_", ".").toLowerCase());
-        }
+            return CookingAPI.REGISTRY.getObjectById(stack.getItemDamage()).getDisplayName();
+        } else return DARK_GRAY + Text.localize(Utensil.getUtensilFromIndex(stack.getItemDamage()).getUnlocalizedName());
+
     }
 
     @Override
@@ -99,25 +95,13 @@ public class ItemMeal extends ItemHFFML<ItemMeal, Recipe> implements ICreativeSo
     }
 
     @Override
-    public Recipe getNullValue() {
+    public MealImpl getNullValue() {
         return HFRecipes.NULL_RECIPE;
     }
 
-    //Apply all the relevant information about this meal to the meal stack
-    public ItemStack cook(Recipe recipe, IMeal meal) {
-        ItemStack stack = new ItemStack(this, 1, registry.getIDForObject(recipe));
-        stack.setTagCompound(new NBTTagCompound());
-        stack.getTagCompound().setInteger("FoodLevel", meal.getHunger());
-        stack.getTagCompound().setFloat("FoodSaturation", meal.getSaturation());
-        stack.getTagCompound().setFloat("FoodExhaustion", meal.getExhaustion());
-        stack.getTagCompound().setBoolean("IsDrink", meal.isDrink());
-        stack.getTagCompound().setInteger("EatTime", meal.getEatTime());
-        return stack;
-    }
-
     @Override
-    public ItemStack getCreativeStack(Item item, Recipe recipe) {
-        return cook(recipe, recipe.getBestMeal());
+    public ItemStack getCreativeStack(Item item, MealImpl recipe) {
+        return recipe.cook(recipe.getBestMeal());
     }
 
     @Override
@@ -127,9 +111,9 @@ public class ItemMeal extends ItemHFFML<ItemMeal, Recipe> implements ICreativeSo
 
     @Override
     public ItemStack getAlternativeWhenCooking(ItemStack stack) {
-        Recipe recipe = FoodRegistry.REGISTRY.getObjectById(stack.getItemDamage());
+        MealImpl recipe = CookingAPI.REGISTRY.getObjectById(stack.getItemDamage());
         if (recipe != null) {
-            return recipe.getMeal().getAlternativeItem();
+            return recipe.getAlternativeItem();
         }
 
         return null;

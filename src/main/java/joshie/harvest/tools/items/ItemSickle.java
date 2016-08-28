@@ -1,7 +1,7 @@
 package joshie.harvest.tools.items;
 
 import joshie.harvest.api.crops.IBreakCrops;
-import joshie.harvest.core.helpers.ToolHelper;
+import joshie.harvest.tools.ToolHelper;
 import joshie.harvest.crops.blocks.BlockHFCrops;
 import joshie.harvest.core.helpers.generic.DirectionHelper;
 import joshie.harvest.core.base.ItemTool;

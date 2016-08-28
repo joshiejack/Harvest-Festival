@@ -2,7 +2,7 @@ package joshie.harvest.buildings;
 
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.Placeable.ConstructionStage;
-import joshie.harvest.core.helpers.TownHelper;
+import joshie.harvest.town.TownHelper;
 import joshie.harvest.core.util.Direction;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.Mirror;

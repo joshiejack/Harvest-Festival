@@ -1,9 +1,9 @@
 package joshie.harvest.cooking.items;
 
 import joshie.harvest.api.core.ICreativeSorted;
-import joshie.harvest.cooking.FoodRegistry;
+import joshie.harvest.cooking.CookingAPI;
 import joshie.harvest.cooking.recipe.HFRecipes;
-import joshie.harvest.cooking.recipe.Recipe;
+import joshie.harvest.cooking.recipe.MealImpl;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.ItemHFFML;
 import joshie.harvest.core.handlers.HFTrackers;
@@ -22,15 +22,15 @@ import net.minecraft.world.World;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static net.minecraft.util.text.TextFormatting.DARK_GRAY;
 
-public class ItemRecipe extends ItemHFFML<ItemRecipe, Recipe> implements ICreativeSorted {
+public class ItemRecipe extends ItemHFFML<ItemRecipe, MealImpl> implements ICreativeSorted {
     public ItemRecipe() {
-        super(FoodRegistry.REGISTRY, HFTab.COOKING);
+        super(CookingAPI.REGISTRY, HFTab.COOKING);
     }
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
         if (stack.getItemDamage() >= 10) {
-            return Text.format(MODID + ".recipe.format", FoodRegistry.REGISTRY.getObjectById(stack.getItemDamage()).getDisplayName());
+            return Text.format(MODID + ".recipe.format", CookingAPI.REGISTRY.getObjectById(stack.getItemDamage()).getDisplayName());
         } else {
             return DARK_GRAY + Text.translate("recipe.invalid");
         }
@@ -38,7 +38,7 @@ public class ItemRecipe extends ItemHFFML<ItemRecipe, Recipe> implements ICreati
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
-        Recipe recipe = getObjectFromStack(stack);
+        MealImpl recipe = getObjectFromStack(stack);
         if (recipe != null && HFTrackers.getPlayerTracker(player).getTracking().learnRecipe(recipe)) {
             if (!player.capabilities.isCreativeMode) stack.stackSize--; //Decrease the stack
             world.playSound(player.posX, player.posY, player.posZ, HFSounds.RECIPE, SoundCategory.NEUTRAL, 0.8F, 1F, true);
@@ -50,7 +50,7 @@ public class ItemRecipe extends ItemHFFML<ItemRecipe, Recipe> implements ICreati
     }
 
     @Override
-    public Recipe getNullValue() {
+    public MealImpl getNullValue() {
         return HFRecipes.NULL_RECIPE;
     }
 

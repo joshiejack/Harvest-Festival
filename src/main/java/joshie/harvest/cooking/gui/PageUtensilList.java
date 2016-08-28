@@ -1,6 +1,6 @@
 package joshie.harvest.cooking.gui;
 
-import joshie.harvest.cooking.Utensil;
+import joshie.harvest.api.cooking.Utensil;
 import joshie.harvest.core.util.Text;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;
@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static joshie.harvest.cooking.gui.GuiCookbook.LEFT_GUI;
+import static joshie.harvest.cooking.gui.GuiCookbook.MAX_UTENSILS_DISPLAY;
 
 /** Display the utensils **/
 public class PageUtensilList extends Page {
@@ -19,7 +20,8 @@ public class PageUtensilList extends Page {
     public PageUtensilList initGui(GuiCookbook gui) {
         super.initGui(gui);
         pages = new ArrayList<>();
-        for (Utensil utensil: Utensil.values()) {
+        for (int i = 0; i < MAX_UTENSILS_DISPLAY; i++) {
+            Utensil utensil = Utensil.getUtensilFromIndex(i);
             PageRecipeList page = PageRecipeList.get(utensil);
             if (page.initGui(gui).hasRecipes()) {
                 pages.add(page);

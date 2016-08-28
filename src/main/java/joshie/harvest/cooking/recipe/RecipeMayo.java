@@ -1,25 +1,22 @@
 package joshie.harvest.cooking.recipe;
 
 import joshie.harvest.animals.HFAnimals;
-import joshie.harvest.api.HFApi;
-import joshie.harvest.api.cooking.ICookingIngredient;
-import joshie.harvest.api.cooking.ISpecialRecipeHandler;
-import joshie.harvest.cooking.Utensil;
-import joshie.harvest.core.helpers.ToolHelper;
+import joshie.harvest.api.cooking.Ingredient;
+import joshie.harvest.api.cooking.RecipeHandler;
+import joshie.harvest.api.cooking.Utensil;
+import joshie.harvest.tools.ToolHelper;
 import net.minecraft.item.ItemStack;
 
 import java.util.List;
 
-public class RecipeMayo implements ISpecialRecipeHandler {
+public class RecipeMayo implements RecipeHandler {
     @Override
-    public ItemStack getResult(Utensil utensil, List<ItemStack> stacks, List<ICookingIngredient> ingredients) {
+    public ItemStack getResult(Utensil utensil, List<ItemStack> stacks, List<Ingredient> ingredients) {
         if (utensil != Utensil.COUNTER) return null;
         if (stacks.size() != 2) return null;
-        boolean is0Oil = ToolHelper.isOil(stacks.get(0));
-        ItemStack oil = is0Oil ? stacks.get(0) : stacks.get(1);
-        ItemStack egg = is0Oil ? stacks.get(1) : stacks.get(0);
-        if (HFApi.cooking.getCookingComponents(oil).contains(HFIngredients.OIL)) {
-            if (HFApi.cooking.getCookingComponents(egg).contains(HFIngredients.EGG)) {
+        ItemStack egg = ToolHelper.isOil(stacks.get(0)) ? stacks.get(1) : stacks.get(0);
+        if (ingredients.contains(HFIngredients.OIL) && ingredients.contains(HFIngredients.OIL)) {
+            if (ingredients.contains(HFIngredients.EGG)) {
                 return new ItemStack(HFAnimals.MAYONNAISE, 1, egg.getItemDamage());
             }
         }

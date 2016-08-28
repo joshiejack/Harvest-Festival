@@ -3,7 +3,7 @@ package joshie.harvest.core.base;
 import joshie.harvest.api.core.ICreativeSorted;
 import joshie.harvest.api.core.ILevelable;
 import joshie.harvest.api.core.ITiered;
-import joshie.harvest.core.helpers.ToolHelper;
+import joshie.harvest.tools.ToolHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.Text;
 import net.minecraft.block.Block;

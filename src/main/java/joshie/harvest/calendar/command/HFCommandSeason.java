@@ -1,17 +1,17 @@
 package joshie.harvest.calendar.command;
 
-import joshie.harvest.api.HFCommand;
-import joshie.harvest.api.HFQuest;
 import joshie.harvest.api.calendar.Season;
-import joshie.harvest.calendar.CalendarServer;
-import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.calendar.CalendarHelper;
+import joshie.harvest.calendar.CalendarServer;
+import joshie.harvest.core.commands.AbstractHFCommand;
+import joshie.harvest.core.commands.AbstractHFCommand.HFCommand;
+import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
 import org.apache.commons.lang3.StringUtils;
 
-@HFQuest
-public class HFCommandSeason extends HFCommand {
+@HFCommand
+public class HFCommandSeason extends AbstractHFCommand {
     @Override
     public String getCommandName() {
         return "season";

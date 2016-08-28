@@ -52,7 +52,7 @@ public class HFShops {
     public static IShop SUPERMARKET;
     public static IShop MINER;
 
-    public static void init() {
+    public static void remap() {
         registerBarn();
         registerBlacksmith();
         registerCafe();

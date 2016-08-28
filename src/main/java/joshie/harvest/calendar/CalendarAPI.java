@@ -3,6 +3,7 @@ package joshie.harvest.calendar;
 import gnu.trove.map.TIntObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
 import joshie.harvest.api.calendar.*;
+import joshie.harvest.api.calendar.CalendarManager;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.util.HFApiImplementation;
 import net.minecraft.util.math.BlockPos;
@@ -14,7 +15,7 @@ import java.util.EnumMap;
 import static net.minecraft.util.text.TextFormatting.*;
 
 @HFApiImplementation
-public class CalendarAPI implements ICalendar {
+public class CalendarAPI implements CalendarManager {
     public static final CalendarAPI INSTANCE = new CalendarAPI();
     private final EnumMap<Season, SeasonData> data = new EnumMap<>(Season.class);
     private final TIntObjectMap<SeasonProvider> providers = new TIntObjectHashMap<>();

@@ -1,21 +1,20 @@
 package joshie.harvest.cooking.recipe;
 
-import joshie.harvest.api.cooking.ICookingIngredient;
-import joshie.harvest.api.cooking.IMeal;
-import joshie.harvest.api.cooking.ISpecialRecipeHandler;
-import joshie.harvest.cooking.FoodRegistry;
-import joshie.harvest.cooking.Utensil;
+import joshie.harvest.api.cooking.Ingredient;
+import joshie.harvest.api.cooking.RecipeHandler;
+import joshie.harvest.api.cooking.Utensil;
+import joshie.harvest.cooking.CookingAPI;
 import net.minecraft.item.ItemStack;
 
 import java.util.List;
 
-public class RecipeMeal implements ISpecialRecipeHandler {
+public class RecipeMeal implements RecipeHandler {
     @Override
-    public ItemStack getResult(Utensil utensil, List<ItemStack> stacks, List<ICookingIngredient> ingredients) {
-        for (Recipe recipe : FoodRegistry.REGISTRY) {
-            IMeal meal = recipe.getMeal(utensil, ingredients);
+    public ItemStack getResult(Utensil utensil, List<ItemStack> stacks, List<Ingredient> ingredients) {
+        for (MealImpl recipe : CookingAPI.REGISTRY) {
+            ItemStack meal = recipe.getResult(utensil, ingredients);
             if (meal != null) {
-                return recipe.cook(meal);
+                return meal;
             }
         }
 

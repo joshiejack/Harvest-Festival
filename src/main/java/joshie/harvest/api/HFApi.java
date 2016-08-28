@@ -2,8 +2,8 @@ package joshie.harvest.api;
 
 import joshie.harvest.api.animals.IAnimalHandler;
 import joshie.harvest.api.buildings.IBuildingRegistry;
-import joshie.harvest.api.calendar.ICalendar;
-import joshie.harvest.api.cooking.IFoodRegistry;
+import joshie.harvest.api.calendar.CalendarManager;
+import joshie.harvest.api.cooking.CookingManager;
 import joshie.harvest.api.core.IDailyTickableRegistry;
 import joshie.harvest.api.core.IShippingRegistry;
 import joshie.harvest.api.core.ISizeableRegistry;
@@ -19,9 +19,9 @@ import joshie.harvest.api.shops.IShopRegistry;
 public class HFApi {
     public static IAnimalHandler animals = null;
     public static IBuildingRegistry buildings = null;
-    public static ICalendar calendar = null;
+    public static CalendarManager calendar = null;
     public static ICropRegistry crops = null;
-    public static IFoodRegistry cooking = null;
+    public static CookingManager cooking = null;
     public static IGatheringRegistry gathering = null;
     public static INPCRegistry npc = null;
     public static IPlayerHelper player = null;

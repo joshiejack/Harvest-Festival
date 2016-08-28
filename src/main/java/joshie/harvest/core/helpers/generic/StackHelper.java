@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StackHelper {
-
+    @SideOnly(Side.CLIENT)
     public static void drawStack(ItemStack stack, int left, int top, float size) {
         GlStateManager.disableAlpha();
         GlStateManager.pushMatrix();

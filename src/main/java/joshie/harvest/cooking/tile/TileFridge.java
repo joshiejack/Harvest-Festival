@@ -1,7 +1,8 @@
-package joshie.harvest.cooking.blocks;
+package joshie.harvest.cooking.tile;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.cooking.HFCooking;
+import joshie.harvest.cooking.blocks.FridgeData;
 import joshie.harvest.core.base.TileFaceable;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
@@ -33,7 +34,7 @@ public class TileFridge extends TileFaceable implements ITickable {
     protected FridgeData data = new FridgeData(this);
 
     public static boolean isValid(ItemStack stack) {
-        return stack.getItem() == HFCooking.MEAL || HFApi.cooking.getCookingComponents(stack).size() > 0 || stack.getItem() instanceof ItemFood;
+        return stack.getItem() == HFCooking.MEAL || HFApi.cooking.isIngredient(stack) || stack.getItem() instanceof ItemFood;
     }
 
     public FridgeData getContents() {

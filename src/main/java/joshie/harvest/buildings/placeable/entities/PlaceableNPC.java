@@ -1,7 +1,7 @@
 package joshie.harvest.buildings.placeable.entities;
 
 import joshie.harvest.core.util.Direction;
-import joshie.harvest.core.helpers.NPCHelper;
+import joshie.harvest.npc.NPCHelper;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.NPCRegistry;
 import joshie.harvest.npc.entity.EntityNPC;

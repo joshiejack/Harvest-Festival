@@ -4,7 +4,7 @@ import joshie.harvest.api.HFQuest;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.buildings.HFBuildings;
-import joshie.harvest.core.helpers.TownHelper;
+import joshie.harvest.town.TownHelper;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;

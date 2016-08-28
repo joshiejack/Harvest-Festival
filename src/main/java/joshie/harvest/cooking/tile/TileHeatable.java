@@ -1,7 +1,7 @@
-package joshie.harvest.cooking.blocks;
+package joshie.harvest.cooking.tile;
 
-import joshie.harvest.cooking.blocks.TileCooking.TileCookingTicking;
-import joshie.harvest.cooking.Utensil;
+import joshie.harvest.cooking.tile.TileCooking.TileCookingTicking;
+import joshie.harvest.api.cooking.Utensil;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 

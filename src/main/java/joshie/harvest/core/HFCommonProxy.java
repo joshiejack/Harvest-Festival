@@ -126,10 +126,6 @@ public class HFCommonProxy {
         }
     }
 
-    public void clear() {
-        LIST.clear();
-    }
-
     public boolean isClient() {
         return false;
     }

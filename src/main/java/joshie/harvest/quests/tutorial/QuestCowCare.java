@@ -7,7 +7,7 @@ import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.helpers.SizeableHelper;
-import joshie.harvest.core.helpers.ToolHelper;
+import joshie.harvest.tools.ToolHelper;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.quests.QuestQuestion;
 import joshie.harvest.quests.TutorialSelection;

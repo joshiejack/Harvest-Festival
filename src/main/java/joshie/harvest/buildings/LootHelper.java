@@ -1,4 +1,4 @@
-package joshie.harvest.core.helpers;
+package joshie.harvest.buildings;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -13,7 +13,7 @@ import net.minecraft.world.storage.loot.LootTable;
 
 import java.util.Random;
 
-import static joshie.harvest.core.helpers.LootHelper.FakeInventory.INVENTORY;
+import static joshie.harvest.buildings.LootHelper.FakeInventory.INVENTORY;
 
 public class LootHelper {
     protected static class FakeInventory implements IInventory {

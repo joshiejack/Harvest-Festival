@@ -5,7 +5,7 @@ import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.buildings.HFBuildings;
-import joshie.harvest.core.helpers.TownHelper;
+import joshie.harvest.town.TownHelper;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.items.ItemMaterial.Material;
 import joshie.harvest.quests.QuestQuestion;

@@ -2,8 +2,9 @@ package joshie.harvest.core;
 
 import com.google.common.collect.Lists;
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.HFCommand;
 import joshie.harvest.api.HFQuest;
+import joshie.harvest.core.commands.AbstractHFCommand;
+import joshie.harvest.core.commands.AbstractHFCommand.HFCommand;
 import joshie.harvest.core.commands.CommandManager;
 import joshie.harvest.core.network.Packet;
 import joshie.harvest.core.util.HFApiImplementation;
@@ -57,25 +58,35 @@ public class HFApiLoader {
     }
 
     public static void load(@Nonnull ASMDataTable asm, boolean isClient) {
-        registerEverything(asm);
+        registerQuests(asm);
         registerEvents(asm, isClient);
         registerPackets(asm);
+        registerCommands(asm);
     }
 
-    private static void registerEverything(@Nonnull ASMDataTable asm) {
+    private static void registerQuests(@Nonnull ASMDataTable asm) {
         String annotationClassName = HFQuest.class.getCanonicalName();
         Set<ASMData> asmDatas = new HashSet<>(asm.getAll(annotationClassName));
         for (ASMDataTable.ASMData asmData : asmDatas) {
             try {
                 Map<String, Object> data = asmData.getAnnotationInfo();
                 Class clazz = Class.forName(asmData.getClassName());
-                String extra = data.get("data") != null ? (String) data.get("data") : "";
-                if (HFCommand.class.isAssignableFrom(clazz)) {
-                    CommandManager.INSTANCE.registerCommand((HFCommand) clazz.newInstance());
-                } else {
-                    String domain = data.get("mod") != null ? (String) data.get("mod") : "harvestfestival";
-                    ResourceLocation resource = new ResourceLocation(domain, extra);
-                    load(joshie.harvest.api.quests.Quest.class, joshie.harvest.api.quests.Quest.REGISTRY, resource, clazz);
+                String extra = data.get("value") != null ? (String) data.get("value") : "";
+                String domain = data.get("mod") != null ? (String) data.get("mod") : "harvestfestival";
+                ResourceLocation resource = new ResourceLocation(domain, extra);
+                load(joshie.harvest.api.quests.Quest.class, joshie.harvest.api.quests.Quest.REGISTRY, resource, clazz);
+            } catch (Exception e) { e.printStackTrace(); }
+        }
+    }
+
+    private static void registerCommands(@Nonnull ASMDataTable asm) {
+        String annotationClassName = HFCommand.class.getCanonicalName();
+        Set<ASMData> asmDatas = new HashSet<>(asm.getAll(annotationClassName));
+        for (ASMDataTable.ASMData asmData : asmDatas) {
+            try {
+                Class clazz = Class.forName(asmData.getClassName());
+                if (AbstractHFCommand.class.isAssignableFrom(clazz)) {
+                    CommandManager.INSTANCE.registerCommand((AbstractHFCommand) clazz.newInstance());
                 }
             } catch (Exception e) { e.printStackTrace(); }
         }

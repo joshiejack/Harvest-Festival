@@ -16,7 +16,7 @@ import java.util.Set;
 import static joshie.harvest.core.lib.HFQuests.TUTORIAL_CROPS;
 import static joshie.harvest.npc.HFNPCs.*;
 
-@HFQuest(data = "tutorial.supermarket")
+@HFQuest("tutorial.supermarket")
 public class QuestSupermarket extends Quest {
     public QuestSupermarket() {
         setNPCs(SEED_OWNER, GS_OWNER, MILKMAID);

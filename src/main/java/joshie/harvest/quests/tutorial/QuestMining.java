@@ -20,7 +20,7 @@ import java.util.Set;
 import static joshie.harvest.core.lib.HFQuests.*;
 import static joshie.harvest.npc.HFNPCs.*;
 
-@HFQuest(data = "tutorial.upgrading")
+@HFQuest("tutorial.upgrading")
 public class QuestMining extends QuestQuestion {
     public QuestMining() {
         super(new TutorialSelection("upgrading"));
@@ -43,6 +43,11 @@ public class QuestMining extends QuestQuestion {
             String suffix = ((joshie.harvest.npc.NPC)npc).getRegistryName().getResourceDomain();
             boolean blacksmith = TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.BLACKSMITH);
             //They tell the player that they should go and visit the blacksmith
+            //They should all have a slight variation
+            //So this is like
+            //reminder.blacksmith.yulif, reminder.blacksmith.goddess, reminder.blacksmith.jim
+            //reminder.blacksmith.jenni, reminder.blacksmith.candice, reminder.blacksmith.jade
+            //reminder.blacksmith.brandon
             if (blacksmith) return "reminder.blacksmith." + suffix;
             //Builder, Goddess, Barn Owner, General Store Owner, Seed Owner and Milkmaid
             //All tell the player that they should probably get a mine and a blacksmith built

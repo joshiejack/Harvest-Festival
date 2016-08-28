@@ -16,7 +16,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import static joshie.harvest.npc.HFNPCs.TRADER;
 
-@HFQuest(data = "trade.vanilla")
+@HFQuest("trade.vanilla")
 public class QuestTrader extends QuestTrade {
     private static final Item WOOL = Item.getItemFromBlock(Blocks.WOOL);
 

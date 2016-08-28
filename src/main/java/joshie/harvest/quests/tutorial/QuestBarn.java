@@ -20,7 +20,7 @@ import static joshie.harvest.animals.blocks.BlockTrough.Trough.WOOD;
 import static joshie.harvest.core.lib.HFQuests.TUTORIAL_COW;
 import static joshie.harvest.npc.HFNPCs.*;
 
-@HFQuest(data = "tutorial.barn")
+@HFQuest("tutorial.barn")
 public class QuestBarn extends Quest {
     public QuestBarn() {
         setNPCs(BUILDER, ANIMAL_OWNER);

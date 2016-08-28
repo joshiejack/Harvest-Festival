@@ -28,7 +28,7 @@ import static joshie.harvest.core.helpers.generic.ItemHelper.spawnXP;
 import static joshie.harvest.npc.HFNPCs.TOOL_OWNER;
 
 
-@HFQuest(data = "trade.upgrade")
+@HFQuest("trade.upgrade")
 public class QuestUpgrade extends QuestTrade {
     private ICalendarDate date;
     private ItemStack tool;

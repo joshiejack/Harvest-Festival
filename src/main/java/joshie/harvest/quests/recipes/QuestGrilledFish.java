@@ -8,7 +8,7 @@ import net.minecraft.entity.player.EntityPlayer;
 
 import java.util.Set;
 
-@HFQuest(data = "recipe.fish.grilled")
+@HFQuest("recipe.fish.grilled")
 public class QuestGrilledFish extends QuestRecipe {
     public QuestGrilledFish() {
         super("fish_grilled", HFNPCs.FISHERMAN, 10000);

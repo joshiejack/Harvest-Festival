@@ -18,7 +18,7 @@ import java.util.Set;
 import static joshie.harvest.core.lib.HFQuests.TUTORIAL_UPGRADING;
 import static joshie.harvest.npc.HFNPCs.CAFE_OWNER;
 
-@HFQuest(data = "tutorial.cafe")
+@HFQuest("tutorial.cafe")
 public class QuestCafe extends QuestQuestion {
     public QuestCafe() {
         super(new TutorialSelection("cafe"));

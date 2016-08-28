@@ -17,7 +17,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import static joshie.harvest.npc.HFNPCs.GODDESS;
 
-@HFQuest(data = "tutorial.intro")
+@HFQuest("tutorial.intro")
 public class QuestIntro extends QuestQuestion {
     public QuestIntro() {
         super(new TutorialSelection("intro"));

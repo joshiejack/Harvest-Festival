@@ -1,5 +1,4 @@
 ## Coding
-- Add methods for obtaining all recipes
 - Improve the main page of the recipe book
 - Add lang for extra chatting
 - Add lang for all the quests

@@ -30,7 +30,7 @@ import static joshie.harvest.animals.blocks.BlockTray.Tray.NEST_EMPTY;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.CHICKEN_FEED;
 import static joshie.harvest.npc.HFNPCs.GODDESS;
 
-@HFQuest(data = "tutorial.chicken")
+@HFQuest("tutorial.chicken")
 public class QuestChickenCare extends QuestQuestion {
     private boolean attempted;
     private boolean hasThrown;

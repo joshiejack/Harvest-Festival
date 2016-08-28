@@ -8,7 +8,7 @@ import net.minecraft.entity.player.EntityPlayer;
 
 import java.util.Set;
 
-@HFQuest(data = "recipe.cake.chocolate")
+@HFQuest("recipe.cake.chocolate")
 public class QuestChocolateCake extends QuestRecipe {
     public QuestChocolateCake() {
         super("cake_chocolate", HFNPCs.BUILDER, 10000);

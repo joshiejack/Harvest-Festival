@@ -22,7 +22,7 @@ import static joshie.harvest.core.lib.HFQuests.TUTORIAL_CARPENTER;
 import static joshie.harvest.npc.HFNPCs.SEED_OWNER;
 import static joshie.harvest.tools.HFTools.WATERING_CAN;
 
-@HFQuest(data = "tutorial.crops")
+@HFQuest("tutorial.crops")
 public class QuestCrops extends QuestQuestion {
     private boolean attempted;
 

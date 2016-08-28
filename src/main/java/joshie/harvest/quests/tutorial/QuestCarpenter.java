@@ -17,7 +17,7 @@ import static joshie.harvest.core.helpers.InventoryHelper.SearchType.FLOWER;
 import static joshie.harvest.core.lib.HFQuests.TUTORIAL_INTRO;
 import static joshie.harvest.npc.HFNPCs.*;
 
-@HFQuest(data = "tutorial.carpenter")
+@HFQuest("tutorial.carpenter")
 public class QuestCarpenter extends Quest {
     private boolean attempted = false;
 

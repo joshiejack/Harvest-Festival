@@ -8,7 +8,7 @@ import net.minecraft.entity.player.EntityPlayer;
 
 import java.util.Set;
 
-@HFQuest(data = "recipe.fries.french")
+@HFQuest("recipe.fries.french")
 public class QuestFrenchFries extends QuestRecipe {
     public QuestFrenchFries() {
         super("fries_french", HFNPCs.TRADER, 10000);

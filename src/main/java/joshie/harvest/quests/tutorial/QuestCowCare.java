@@ -27,7 +27,7 @@ import static joshie.harvest.animals.item.ItemAnimalTool.Tool.MILKER;
 import static joshie.harvest.core.lib.HFQuests.TUTORIAL_CHICKEN;
 import static joshie.harvest.npc.HFNPCs.BUILDER;
 
-@HFQuest(data = "tutorial.cow")
+@HFQuest("tutorial.cow")
 public class QuestCowCare extends QuestQuestion {
     private boolean attempted;
     private boolean hasFed;

@@ -15,7 +15,7 @@ import java.util.Set;
 import static joshie.harvest.core.lib.HFQuests.TUTORIAL_UPGRADING;
 import static joshie.harvest.npc.HFNPCs.GODDESS;
 
-@HFQuest(data = "tutorial.pond")
+@HFQuest("tutorial.pond")
 public class QuestPond extends Quest {
     public QuestPond() {
         setNPCs(GODDESS);

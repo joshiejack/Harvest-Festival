@@ -21,7 +21,7 @@ import static joshie.harvest.core.lib.HFQuests.TUTORIAL_CHICKEN;
 import static joshie.harvest.npc.HFNPCs.GODDESS;
 import static joshie.harvest.npc.HFNPCs.POULTRY;
 
-@HFQuest(data = "tutorial.poultry")
+@HFQuest("tutorial.poultry")
 public class QuestPoultry extends Quest {
     public QuestPoultry() {
         setNPCs(GODDESS, POULTRY);

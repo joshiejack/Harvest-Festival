@@ -25,7 +25,7 @@ import static joshie.harvest.core.helpers.generic.ItemHelper.spawnXP;
 import static joshie.harvest.npc.HFNPCs.PRIEST;
 
 
-@HFQuest(data = "trade.cursed")
+@HFQuest("trade.cursed")
 public class QuestBless extends QuestTrade {
     private static final ItemStack hoe = HFTools.HOE.getStack(CURSED);
     private static final ItemStack sickle = HFTools.SICKLE.getStack(CURSED);

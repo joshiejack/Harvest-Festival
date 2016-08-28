@@ -5,11 +5,11 @@ package joshie.harvest.api;
  *  @see joshie.harvest.api.quests.Quest
  */
 public @interface HFQuest {
-    /** Return the mod id **/
-    String mod() default "harvestfestival";
-
     /** Extra data,
      * for most things this is simply the resource path
      * You can also have this be "events" to have it autoamtically registered to the event bus**/
-    String data() default "";
+    String value() default "";
+
+    /** Return the mod id **/
+    String mod() default "harvestfestival";
 }

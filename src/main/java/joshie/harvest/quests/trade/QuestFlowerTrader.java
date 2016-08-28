@@ -20,7 +20,7 @@ import java.util.Set;
 import static joshie.harvest.api.calendar.Season.*;
 import static joshie.harvest.npc.HFNPCs.SEED_OWNER;
 
-@HFQuest(data = "trade.seeds")
+@HFQuest("trade.seeds")
 public class QuestFlowerTrader extends QuestTrade {
     public QuestFlowerTrader() {
         setNPCs(SEED_OWNER);

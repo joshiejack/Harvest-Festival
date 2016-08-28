@@ -33,6 +33,7 @@ import static joshie.harvest.animals.blocks.BlockTray.Tray.NEST_EMPTY;
 import static joshie.harvest.animals.blocks.BlockTrough.Trough.WOOD;
 import static joshie.harvest.animals.item.ItemAnimalSpawner.Spawner.*;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.*;
+import static joshie.harvest.api.calendar.Season.*;
 import static joshie.harvest.api.calendar.Weekday.*;
 import static joshie.harvest.cooking.HFCooking.*;
 import static joshie.harvest.cooking.blocks.BlockCookware.Cookware.*;
@@ -110,6 +111,26 @@ public class HFShops {
         CAFE.addItem(new PurchaseableWeekend(1500, COOKWARE.getStackFromEnum(FRYING_PAN), COOKWARE.getStackFromEnum(OVEN_OFF)));
         CAFE.addItem(new PurchaseableWeekend(1000, COOKWARE.getStackFromEnum(POT), COOKWARE.getStackFromEnum(OVEN_OFF)));
         CAFE.addItem(new PurchaseableWeekend(1200, COOKWARE.getStackFromEnum(MIXER), COOKWARE.getStackFromEnum(COUNTER)));
+
+        //Add recipes for purchase
+        CAFE.addItem(new PurchaseableRecipe(SPRING, MONDAY, "juice_vegetable"));
+        CAFE.addItem(new PurchaseableRecipe(SPRING, TUESDAY, "sushi"));
+        CAFE.addItem(new PurchaseableRecipe(SPRING, WEDNESDAY, "sashimi"));
+        CAFE.addItem(new PurchaseableRecipe(SPRING, THURSDAY, "sashimi_chirashi"));
+        CAFE.addItem(new PurchaseableRecipe(SPRING, FRIDAY, "cucumber_pickled"));
+        CAFE.addItem(new PurchaseableRecipe(SUMMER, SATURDAY, "juice_tomato"));
+        CAFE.addItem(new PurchaseableRecipe(SUMMER, SUNDAY, "cornflakes"));
+        CAFE.addItem(new PurchaseableRecipe(SUMMER, MONDAY, "ketchup"));
+        CAFE.addItem(new PurchaseableRecipe(SUMMER, TUESDAY, "stew_pumpkin"));
+        CAFE.addItem(new PurchaseableRecipe(SUMMER, THURSDAY, "doria"));
+        CAFE.addItem(new PurchaseableRecipe(AUTUMN, TUESDAY, "eggplant_happy"));
+        CAFE.addItem(new PurchaseableRecipe(AUTUMN, WEDNESDAY, "sandwich"));
+        CAFE.addItem(new PurchaseableRecipe(AUTUMN, SATURDAY, "spinach_boiled"));
+        CAFE.addItem(new PurchaseableRecipe(AUTUMN, SUNDAY, "riceballs_toasted"));
+        CAFE.addItem(new PurchaseableRecipe(WINTER, MONDAY, "omelet"));
+        CAFE.addItem(new PurchaseableRecipe(WINTER, TUESDAY, "egg_boiled"));
+        CAFE.addItem(new PurchaseableRecipe(WINTER, WEDNESDAY, "egg_overrice"));
+        CAFE.addItem(new PurchaseableRecipe(WINTER, FRIDAY, "pancake"));
 
         CAFE.addOpening(MONDAY, 9500, 17000).addOpening(TUESDAY, 9500, 17000).addOpening(WEDNESDAY, 9500, 17000).addOpening(THURSDAY, 9500, 17000);
         CAFE.addOpening(FRIDAY, 9500, 17000).addOpening(SATURDAY, 9500, 17000).addOpening(SUNDAY, 9500, 17000);

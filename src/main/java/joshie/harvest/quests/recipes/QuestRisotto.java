@@ -8,14 +8,14 @@ import net.minecraft.entity.player.EntityPlayer;
 
 import java.util.Set;
 
-@HFQuest("recipe.cookies")
-public class QuestCookies extends QuestRecipe {
-    public QuestCookies() {
-        super("cookies", HFNPCs.CAFE_OWNER, 7500);
+@HFQuest("recipe.risotto")
+public class QuestRisotto extends QuestRecipe {
+    public QuestRisotto() {
+        super("risotto", HFNPCs.DAUGHTER_1, 10000);
     }
 
     @Override
     public boolean canStartQuest(EntityPlayer player, Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(HFQuests.RECIPE_HOT_CHOCOLATE);
+        return finished.contains(HFQuests.RECIPE_NOODLES);
     }
 }

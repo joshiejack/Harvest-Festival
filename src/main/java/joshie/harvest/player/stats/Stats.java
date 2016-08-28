@@ -1,15 +1,14 @@
 package joshie.harvest.player.stats;
 
-import joshie.harvest.api.HFApi;
-import joshie.harvest.api.calendar.ICalendarDate;
+import joshie.harvest.api.calendar.CalendarDate;
 
-import static joshie.harvest.api.calendar.Season.NETHER;
+import static joshie.harvest.api.calendar.Season.WINTER;
 
 public abstract class Stats {
-    protected ICalendarDate birthday = HFApi.calendar.newDate(0, NETHER, 0);
+    protected CalendarDate birthday = new CalendarDate(0, WINTER, 0);
     protected long gold;
 
-    public ICalendarDate getBirthday() {
+    public CalendarDate getBirthday() {
         return birthday;
     }
 

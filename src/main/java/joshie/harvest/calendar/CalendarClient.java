@@ -1,7 +1,6 @@
 package joshie.harvest.calendar;
 
-import joshie.harvest.api.HFApi;
-import joshie.harvest.api.calendar.ICalendarDate;
+import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weather;
 import net.minecraftforge.fml.relauncher.Side;
@@ -9,13 +8,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class CalendarClient extends Calendar {
-    protected ICalendarDate date = HFApi.calendar.newDate(1, Season.SPRING, 1);
+    protected CalendarDate date = new CalendarDate(1, Season.SPRING, 1);
 
     @Override
-    public ICalendarDate getDate() {
+    public CalendarDate getDate() {
         return date;
     }
 
+    /* ############# Weather ################*/
     public void setForecast(Weather[] forecast) {
         this.forecast = forecast;
         updateWeatherStrength();

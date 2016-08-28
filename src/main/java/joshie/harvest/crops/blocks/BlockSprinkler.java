@@ -3,6 +3,7 @@ package joshie.harvest.crops.blocks;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.base.BlockHFEnum;
 import joshie.harvest.crops.blocks.BlockSprinkler.Sprinkler;
+import joshie.harvest.crops.tile.TileSprinkler;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

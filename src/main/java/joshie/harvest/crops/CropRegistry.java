@@ -9,7 +9,7 @@ import joshie.harvest.api.crops.IStateHandler.PlantSection;
 import joshie.harvest.core.util.HFApiImplementation;
 import joshie.harvest.core.util.holders.ItemStackHolder;
 import joshie.harvest.crops.blocks.BlockHFCrops;
-import joshie.harvest.crops.blocks.TileCrop;
+import joshie.harvest.crops.tile.TileCrop;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -23,7 +23,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import javax.annotation.Nullable;
 import java.util.HashMap;
 
-import static joshie.harvest.core.helpers.CropHelper.*;
+import static joshie.harvest.crops.CropHelper.*;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.crops.blocks.BlockHFCrops.Stage.FRESH;
 import static joshie.harvest.crops.blocks.BlockHFCrops.Stage.FRESH_DOUBLE;

@@ -7,7 +7,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 
 public class ContainerNPCChat extends ContainerNPCBase {
-    private int nextGui = -1;
     private boolean open = false;
 
     public ContainerNPCChat(EntityNPC npc, InventoryPlayer playerInventory, int nextGui) {

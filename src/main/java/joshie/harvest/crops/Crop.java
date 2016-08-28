@@ -4,11 +4,10 @@ import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.IDropHandler;
-import joshie.harvest.api.crops.ISoilHandler;
+import joshie.harvest.api.crops.IGrowthHandler;
 import joshie.harvest.api.crops.IStateHandler;
 import joshie.harvest.core.util.Text;
-import joshie.harvest.crops.handlers.SoilHandlers;
-import joshie.harvest.crops.handlers.StateHandlerDefault;
+import joshie.harvest.crops.handlers.state.StateHandlerDefault;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -25,7 +24,7 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements ICrop {
 
     //CropData
     protected IStateHandler stateHandler;
-    protected ISoilHandler soilHandler;
+    protected IGrowthHandler growthHandler;
     protected IDropHandler dropHandler;
     protected Block growsToSide;
     protected boolean needsWatering;
@@ -72,7 +71,7 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements ICrop {
         this.foodType = AnimalFoodType.VEGETABLE;
         this.bag_color = color;
         this.stateHandler = new StateHandlerDefault(this);
-        this.soilHandler = SoilHandlers.FARMLAND;
+        this.growthHandler = HFCrops.FARMLAND;
         this.needsWatering = true;
         this.doubleStage = Integer.MAX_VALUE;
         this.dropHandler = null;
@@ -125,8 +124,8 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements ICrop {
     }
 
     @Override
-    public Crop setSoilRequirements(ISoilHandler handler) {
-        this.soilHandler = handler;
+    public Crop setSoilRequirements(IGrowthHandler handler) {
+        this.growthHandler = handler;
         return this;
     }
 
@@ -234,8 +233,8 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements ICrop {
     }
 
     @Override
-    public ISoilHandler getSoilHandler() {
-        return soilHandler;
+    public IGrowthHandler getGrowthHandler() {
+        return growthHandler;
     }
 
     /**

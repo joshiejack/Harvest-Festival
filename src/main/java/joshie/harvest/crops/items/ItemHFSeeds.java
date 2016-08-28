@@ -1,9 +1,7 @@
 package joshie.harvest.crops.items;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.core.ICreativeSorted;
-import joshie.harvest.api.core.ISeasonData;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.lib.CreativeSort;
@@ -62,12 +60,7 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean debug) {
         Crop crop = getCropFromStack(stack);
-        if (crop != null) {
-            for (Season season : crop.getSeasons()) {
-                ISeasonData data = HFApi.calendar.getDataForSeason(season);
-                list.add(data.getTextColor() + data.getLocalized());
-            }
-        }
+        if (crop != null) crop.getGrowthHandler().addInformation(list, crop, debug);
     }
 
     @Override
@@ -112,7 +105,7 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
 
     private int plantSeedAt(EntityPlayer player, ItemStack stack, World world, BlockPos pos, EnumFacing facing, ICrop crop, int planted) {
         if (player.canPlayerEdit(pos, facing, stack) && player.canPlayerEdit(pos.up(), facing, stack)) {
-            if (crop.getSoilHandler().canSustainCrop(world, pos, world.getBlockState(pos), crop) && world.isAirBlock(pos.up())) {
+            if (crop.getGrowthHandler().canSustainCrop(world, pos, world.getBlockState(pos), crop) && world.isAirBlock(pos.up())) {
                 if (!world.isRemote) {
                     world.setBlockState(pos.up(), HFCrops.CROPS.getDefaultState(), 2);
                 }

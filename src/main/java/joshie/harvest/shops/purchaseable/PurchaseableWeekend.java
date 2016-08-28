@@ -1,5 +1,6 @@
 package joshie.harvest.shops.purchaseable;
 
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Weekday;
 import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,7 +28,7 @@ public class PurchaseableWeekend extends Purchaseable {
 
     @Override
     public boolean canBuy(World world, EntityPlayer player) {
-        Weekday weekday = HFTrackers.getCalendar(world).getDate().getWeekday();
+        Weekday weekday = HFApi.calendar.getDate(world).getWeekday();
         return (weekday == Weekday.SATURDAY || weekday == Weekday.SUNDAY) && hasRequiredItem(player);
     }
 

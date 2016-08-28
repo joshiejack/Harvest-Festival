@@ -1,10 +1,10 @@
 package joshie.harvest.npc;
 
-import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.npc.INPCRegistry;
 import joshie.harvest.api.npc.gift.IGiftRegistry;
+import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.core.util.HFApiImplementation;
 import joshie.harvest.npc.gift.GiftRegistry;
 import net.minecraft.util.ResourceLocation;
@@ -23,7 +23,7 @@ public class NPCRegistry implements INPCRegistry {
 
     @Override
     public INPC register(ResourceLocation resource, Gender gender, Age age, int dayOfBirth, Season seasonOfBirth, int insideColor, int outsideColor) {
-        return new NPC(resource, gender, age, HFApi.calendar.newDate(dayOfBirth, seasonOfBirth, 1), insideColor, outsideColor);
+        return new NPC(resource, gender, age, new CalendarDate(dayOfBirth, seasonOfBirth, 1), insideColor, outsideColor);
     }
 
     @Override

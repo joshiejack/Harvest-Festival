@@ -1,6 +1,7 @@
 package joshie.harvest.player.stats;
 
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.player.packets.PacketSyncBirthday;
 import joshie.harvest.player.packets.PacketSyncGold;
@@ -10,16 +11,17 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-import static joshie.harvest.api.calendar.Season.NETHER;
+import static joshie.harvest.api.calendar.Season.WINTER;
+
 
 public class StatsServer extends Stats {
     private boolean isBirthdaySet() {
-        return birthday.getSeason() != NETHER && birthday.getDay() != 0 && birthday.getYear() != 0;
+        return birthday.getSeason() != WINTER && birthday.getDay() != 0 && birthday.getYear() != 0;
     }
 
     public boolean setBirthday(World world) {
         if (!isBirthdaySet()) {
-            birthday = HFApi.calendar.cloneDate(HFApi.calendar.getDate(world));
+            birthday = HFApi.calendar.getDate(world).copy();
             return true;
         } else return false;
     }
@@ -48,12 +50,12 @@ public class StatsServer extends Stats {
     }
 
     public void readFromNBT(NBTTagCompound nbt) {
-        birthday.readFromNBT(nbt.getCompoundTag("Birthday"));
+        birthday = CalendarDate.fromNBT(nbt.getCompoundTag("Birthday"));
         gold = nbt.getLong("Gold");
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
-        nbt.setTag("Birthday", birthday.writeToNBT(new NBTTagCompound()));
+        nbt.setTag("Birthday", birthday.toNBT());
         nbt.setLong("Gold", gold);
         return nbt;
     }

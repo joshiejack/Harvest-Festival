@@ -13,9 +13,9 @@ import net.minecraft.world.World;
 
 import java.util.HashMap;
 
-import static joshie.harvest.core.helpers.CropHelper.DRYING_SOIL;
-import static joshie.harvest.core.helpers.CropHelper.DRY_SOIL;
-import static joshie.harvest.core.helpers.CropHelper.WET_SOIL;
+import static joshie.harvest.crops.CropHelper.DRYING_SOIL;
+import static joshie.harvest.crops.CropHelper.DRY_SOIL;
+import static joshie.harvest.crops.CropHelper.WET_SOIL;
 
 @HFApiImplementation
 public class HFDailyTickable implements IDailyTickableRegistry {

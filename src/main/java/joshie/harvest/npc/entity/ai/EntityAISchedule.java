@@ -1,9 +1,9 @@
 package joshie.harvest.npc.entity.ai;
 
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.buildings.BuildingLocation;
-import joshie.harvest.api.calendar.ICalendarDate;
-import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.helpers.CalendarHelper;
+import joshie.harvest.api.calendar.CalendarDate;
+import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -22,14 +22,14 @@ public class EntityAISchedule extends EntityAIBase {
         this.setMutexBits(3);
     }
 
-    private BuildingLocation getLocation(ICalendarDate date) {
+    private BuildingLocation getLocation(CalendarDate date) {
         if (npc.getNPC().getShop() != null && npc.getNPC().getShop().isOpen(npc.worldObj, null)) return npc.getNPC().getLocation(WORK);
         else return npc.getNPC().getScheduler().getTarget(npc.worldObj, npc, npc.getNPC(), date.getSeason(), date.getWeekday(), CalendarHelper.getTime(npc.worldObj));
     }
 
     @Override
     public boolean shouldExecute() {
-        ICalendarDate date = HFTrackers.getCalendar(npc.worldObj).getDate();
+        CalendarDate date = HFApi.calendar.getDate(npc.worldObj);
         location = getLocation(date);
         target = NPCHelper.getCoordinatesForLocation(npc, location);
         attemptTimer = 0L;
@@ -51,7 +51,7 @@ public class EntityAISchedule extends EntityAIBase {
 
     @Override
     public void startExecuting() {
-        ICalendarDate date = HFTrackers.getCalendar(npc.worldObj).getDate();
+        CalendarDate date = HFApi.calendar.getDate(npc.worldObj);
         location = getLocation(date);
         target = NPCHelper.getCoordinatesForLocation(npc, location);
         if (target != null) {

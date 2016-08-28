@@ -1,12 +1,12 @@
 package joshie.harvest.shops;
 
 import com.google.common.collect.HashMultimap;
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Weekday;
 import joshie.harvest.api.shops.IPurchaseable;
 import joshie.harvest.api.shops.IShop;
 import joshie.harvest.api.shops.IShopGuiOverlay;
-import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.helpers.CalendarHelper;
+import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.util.Text;
 import joshie.harvest.shops.purchaseable.Purchaseable;
 import net.minecraft.entity.player.EntityPlayer;
@@ -111,7 +111,7 @@ public class Shop implements IShop {
 
     public boolean isOpen(World world, @Nullable EntityPlayer player) {
         if (world.getDifficulty() == EnumDifficulty.PEACEFUL) return true;
-        Weekday day = HFTrackers.getCalendar(world).getDate().getWeekday();
+        Weekday day = HFApi.calendar.getDate(world).getWeekday();
         for (OpeningSettings settings: open.get(world.getDifficulty())) {
             OpeningHours hours = settings.opening.get(day);
             if (hours != null) {
@@ -128,7 +128,7 @@ public class Shop implements IShop {
 
     public boolean isPreparingToOpen(World world) {
         if (world.getDifficulty() == EnumDifficulty.PEACEFUL) return false;
-        Weekday day = HFTrackers.getCalendar(world).getDate().getWeekday();
+        Weekday day = HFApi.calendar.getDate(world).getWeekday();
         for (OpeningSettings settings: open.get(world.getDifficulty())) {
             OpeningHours hours = settings.opening.get(day);
             if (hours != null) {

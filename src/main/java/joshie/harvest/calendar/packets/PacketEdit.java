@@ -1,7 +1,7 @@
 package joshie.harvest.calendar.packets;
 
 import io.netty.buffer.ByteBuf;
-import joshie.harvest.calendar.CalendarHUD;
+import joshie.harvest.calendar.render.CalendarHUD;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.network.Packet;
 import joshie.harvest.core.network.Packet.Side;

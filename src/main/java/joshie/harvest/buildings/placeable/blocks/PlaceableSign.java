@@ -25,7 +25,9 @@ public class PlaceableSign extends PlaceableDecorative {
     public void postPlace (World world, BlockPos pos, Direction direction) {
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof TileEntitySign) {
-            //((TileEntitySign) tile).signText = text; //TODO: Fix signs
+            for (int i = 0; i < 4; ++i) {
+                ((TileEntitySign) tile).signText[i] = text[i];
+            }
         }
     }
 }

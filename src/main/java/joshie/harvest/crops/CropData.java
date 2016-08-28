@@ -1,9 +1,7 @@
 package joshie.harvest.crops;
 
-import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
-import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.crops.blocks.BlockHFCrops;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -26,20 +24,10 @@ public class CropData implements ICropData {
         return this;
     }
 
-    private boolean isWrongSeason(World world, BlockPos pos) {
-        Season toMatch = HFTrackers.getCalendar(world).getSeasonAt(pos);
-        if (crop == null || crop.getSeasons() == null) return true;
-        for (Season season : crop.getSeasons()) {
-            if (toMatch == season) return false;
-        }
-
-        return true;
-    }
-
     //Returns false if the crop was withered
     public boolean newDay(World world, BlockPos pos) {
         //Stage 1, Check how long the plant has been without water, If it's more than 2 days kill it
-        if (crop == null || (crop.requiresWater() && daysWithoutWater > 2) || isWrongSeason(world, pos)) {
+        if (crop == null || (crop.requiresWater() && daysWithoutWater > 2) || crop.getGrowthHandler().canGrow(world, pos, crop)) {
             return false;
         } else { //Stage 2: Now that we know, it has been watered, Update it's stage
             //If we aren't ticking randomly, Then increase the stage

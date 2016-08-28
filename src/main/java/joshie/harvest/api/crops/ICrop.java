@@ -60,7 +60,7 @@ public interface ICrop extends IShippable {
     IStateHandler getStateHandler();
 
     /** Return the soil handler for this crop **/
-    ISoilHandler getSoilHandler();
+    IGrowthHandler getGrowthHandler();
 
     /** Whether this crop requires a sickle to be harvested **/
     boolean requiresSickle();
@@ -114,7 +114,7 @@ public interface ICrop extends IShippable {
      *  The handler will called when trying to plant the crop,
      *  So you can specify whether this crop is allowed to be placed
      *  on this type of soil or whatever. */
-    ICrop setSoilRequirements(ISoilHandler handler);
+    ICrop setSoilRequirements(IGrowthHandler handler);
 
     /** Sets the stage at which this crop becomes double tall **/
     ICrop setBecomesDouble(int doubleStage);

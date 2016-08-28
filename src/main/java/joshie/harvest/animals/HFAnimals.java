@@ -20,11 +20,8 @@ import joshie.harvest.core.util.HFLoader;
 import joshie.harvest.crops.Crop;
 import joshie.harvest.crops.CropRegistry;
 import joshie.harvest.crops.HFCrops;
-import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -76,30 +73,9 @@ public class HFAnimals {
 
     @SideOnly(Side.CLIENT)
     public static void preInitClient() {
-        //Register the cow
-        RenderingRegistry.registerEntityRenderingHandler(EntityHarvestCow.class, new IRenderFactory<EntityHarvestCow>() {
-            @Override
-            public Render<? super EntityHarvestCow> createRenderFor(RenderManager manager) {
-                return new RenderHarvestAnimal(manager, new ModelHarvestCow(), "cow");
-            }
-        });
-
-        //Register the sheep
-        RenderingRegistry.registerEntityRenderingHandler(EntityHarvestSheep.class, new IRenderFactory<EntityHarvestSheep>() {
-            @Override
-            public Render<? super EntityHarvestSheep> createRenderFor(RenderManager manager) {
-                return new RenderHarvestSheep(manager);
-            }
-        });
-
-        //Register the chicken
-        RenderingRegistry.registerEntityRenderingHandler(EntityHarvestChicken.class, new IRenderFactory<EntityHarvestChicken>() {
-            @Override
-            public Render<? super EntityHarvestChicken> createRenderFor(RenderManager manager) {
-                return new RenderHarvestChicken(manager);
-            }
-        });
-
+        RenderingRegistry.registerEntityRenderingHandler(EntityHarvestCow.class, RenderHarvestCow:: new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityHarvestSheep.class, RenderHarvestSheep:: new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityHarvestChicken.class, RenderHarvestChicken:: new);
         RegistryHelper.registerEntityRenderer(ANIMAL, AnimalItemRenderer.INSTANCE);
         AnimalItemRenderer.INSTANCE.register(Spawner.COW, "cow_adult", new ModelHarvestCow.Adult());
         AnimalItemRenderer.INSTANCE.register(Spawner.SHEEP, "sheep_adult", new ModelHarvestSheep.Wooly());

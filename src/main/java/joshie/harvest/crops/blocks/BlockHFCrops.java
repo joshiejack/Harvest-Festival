@@ -1,24 +1,24 @@
 package joshie.harvest.crops.blocks;
 
+import joshie.harvest.animals.AnimalHelper;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.IAnimalFeeder;
 import joshie.harvest.api.animals.IAnimalTracked;
-import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.IBreakCrops;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
 import joshie.harvest.core.base.BlockHFEnum;
 import joshie.harvest.core.base.ItemBlockHF;
-import joshie.harvest.core.helpers.AnimalHelper;
-import joshie.harvest.core.helpers.CropHelper;
 import joshie.harvest.core.helpers.WorldHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.HFEvents;
 import joshie.harvest.crops.Crop;
+import joshie.harvest.crops.CropHelper;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.crops.blocks.BlockHFCrops.Stage;
-import joshie.harvest.crops.blocks.TileCrop.TileWithered;
+import joshie.harvest.crops.tile.TileCrop;
+import joshie.harvest.crops.tile.TileCrop.TileWithered;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
@@ -50,8 +50,8 @@ import java.util.Random;
 
 import static joshie.harvest.api.crops.IStateHandler.PlantSection.BOTTOM;
 import static joshie.harvest.api.crops.IStateHandler.PlantSection.TOP;
-import static joshie.harvest.core.helpers.CropHelper.harvestCrop;
 import static joshie.harvest.core.network.PacketHandler.sendRefreshPacket;
+import static joshie.harvest.crops.CropHelper.harvestCrop;
 import static joshie.harvest.crops.blocks.BlockHFCrops.Stage.*;
 
 public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IPlantable, IGrowable, IAnimalFeeder {
@@ -240,8 +240,8 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
     public void neighborChanged(IBlockState state, World world, BlockPos pos, Block neighborBlock) {
         if (!world.isRemote) {
             ICrop crop = HFApi.crops.getCropAtLocation(world, pos).getCrop();
-            if (crop != null && crop.getSoilHandler() != null) {
-                if (!crop.getSoilHandler().canSustainCrop(world, pos.down(), world.getBlockState(pos.down()), crop)) {
+            if (crop != null && crop.getGrowthHandler() != null) {
+                if (!crop.getGrowthHandler().canSustainCrop(world, pos.down(), world.getBlockState(pos.down()), crop)) {
                     world.setBlockToAir(pos);
                 }
             }
@@ -359,10 +359,8 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
         if (HFCrops.ENABLE_BONEMEAL) {
             if (HFCrops.SEASONAL_BONEMEAL) {
                 ICropData crop = HFApi.crops.getCropAtLocation(world, pos);
-                for (Season season: crop.getCrop().getSeasons()) {
-                    if (HFApi.calendar.getSeasonAtCoordinates(world, pos) == season) {
-                        return canGrow(world, pos, state);
-                    }
+                if (crop.getCrop().getGrowthHandler().canGrow(world, pos, crop.getCrop())) {
+                    return canGrow(world, pos, state);
                 }
 
                 return false;

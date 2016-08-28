@@ -5,7 +5,7 @@ import joshie.harvest.api.HFQuest;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.calendar.CalendarServer;
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.helpers.CalendarHelper;
+import joshie.harvest.calendar.CalendarHelper;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
 import org.apache.commons.lang3.StringUtils;
@@ -31,7 +31,7 @@ public class HFCommandSeason extends HFCommand {
                     int day = calendar.getDate().getDay();
                     int year = Math.max(1, calendar.getDate().getYear());
                     sender.getEntityWorld().setWorldTime(CalendarHelper.getTime(day, season, year));
-                    calendar.recalculateAndUpdate();
+                    calendar.recalculateAndUpdate(sender.getEntityWorld());
                     return true;
                 }
             }

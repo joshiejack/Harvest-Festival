@@ -2,11 +2,10 @@ package joshie.harvest.quests.trade;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.HFQuest;
-import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.npc.INPC;
-import joshie.harvest.calendar.CalendarDate;
+import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.helpers.CalendarHelper;
+import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.lib.HFSounds;
 import joshie.harvest.tools.HFTools;
@@ -32,14 +31,14 @@ public class QuestBless extends QuestTrade {
     private static final ItemStack watering = HFTools.WATERING_CAN.getStack(CURSED);
     private static final ItemStack axe = HFTools.AXE.getStack(CURSED);
     private static final ItemStack hammer = HFTools.HAMMER.getStack(CURSED);
-    private ICalendarDate date;
+    private CalendarDate date;
     private ItemStack tool;
 
     public QuestBless() {
         setNPCs(PRIEST);
     }
 
-    private int getDifference(ICalendarDate then, ICalendarDate now) {
+    private int getDifference(CalendarDate then, CalendarDate now) {
         int thenDays = CalendarHelper.getTotalDays(then);
         int nowDays = CalendarHelper.getTotalDays(now);
         return (nowDays - thenDays);
@@ -49,7 +48,7 @@ public class QuestBless extends QuestTrade {
     @Override
     public String getLocalized(String quest) {
         if (quest.equals("wait")) {
-            ICalendarDate today = HFTrackers.getCalendar(MCClientHelper.getWorld()).getDate();
+            CalendarDate today = HFApi.calendar.getDate(MCClientHelper.getWorld());
             return I18n.translateToLocalFormatted("harvestfestival.quest.trade.cursed.wait", 3 - (getDifference(date, today)));
         } else if (quest.equals("done")) {
             return I18n.translateToLocalFormatted("harvestfestival.quest.trade.cursed.done", tool.getDisplayName());
@@ -69,7 +68,7 @@ public class QuestBless extends QuestTrade {
                 return "gold";
             } else return null;
         } else {
-            ICalendarDate today = HFTrackers.getCalendar(MCClientHelper.getWorld()).getDate();
+            CalendarDate today = HFApi.calendar.getDate(MCClientHelper.getWorld());
             if (getDifference(date, today) >= 3) {
                 complete(player);
                 player.worldObj.playSound(player, player.posX, player.posY, player.posZ, HFSounds.BLESS_TOOL, SoundCategory.NEUTRAL, 0.25F, 1F);
@@ -87,7 +86,7 @@ public class QuestBless extends QuestTrade {
     @Override
     public void onStageChanged(EntityPlayer player, int previous, int stage) {
         if (previous == 0) {
-            date = HFApi.calendar.cloneDate(HFTrackers.getCalendar(player.worldObj).getDate());
+            date = HFApi.calendar.getDate(player.worldObj).copy();
             ItemStack stack = player.getHeldItemMainhand().copy();
             tool = new ItemStack(stack.getItem(), 1, stack.getItemDamage() + 1);
             rewardGold(player, -10000L);
@@ -105,8 +104,7 @@ public class QuestBless extends QuestTrade {
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
         if (nbt.hasKey("Date")) {
-            date = new CalendarDate();
-            date.readFromNBT(nbt.getCompoundTag("Date"));
+            date = CalendarDate.fromNBT(nbt.getCompoundTag("Date"));
             tool = ItemStack.loadItemStackFromNBT(nbt.getCompoundTag("Item"));
         }
     }
@@ -117,7 +115,7 @@ public class QuestBless extends QuestTrade {
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
         if (date != null) {
-            nbt.setTag("Date", date.writeToNBT(new NBTTagCompound()));
+            nbt.setTag("Date", date.toNBT());
             nbt.setTag("Item", tool.writeToNBT(new NBTTagCompound()));
         }
 

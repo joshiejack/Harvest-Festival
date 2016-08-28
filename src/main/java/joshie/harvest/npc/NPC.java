@@ -3,7 +3,7 @@ package joshie.harvest.npc;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.buildings.IBuilding;
-import joshie.harvest.api.calendar.ICalendarDate;
+import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.npc.*;
 import joshie.harvest.api.npc.INPCRegistry.Age;
@@ -12,7 +12,6 @@ import joshie.harvest.api.npc.gift.IGiftHandler;
 import joshie.harvest.api.npc.gift.IGiftHandler.Quality;
 import joshie.harvest.api.relations.IRelatableDataHandler;
 import joshie.harvest.api.shops.IShop;
-import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.util.Text;
 import joshie.harvest.npc.greeting.GreetingMultiple;
 import joshie.harvest.npc.greeting.GreetingSingle;
@@ -46,7 +45,7 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
     private ISchedule schedule;
     private boolean isBuilder;
     private Shop shop;
-    private ICalendarDate birthday;
+    private CalendarDate birthday;
     private EnumMap<Location, BuildingLocation> locations;
     private boolean doesRespawn;
     private int insideColor;
@@ -54,10 +53,10 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
     private boolean alex;
 
     public NPC() {
-        this(new ResourceLocation(MODID, "null"), INPCRegistry.Gender.MALE, INPCRegistry.Age.ADULT, HFApi.calendar.newDate(1, Season.SPRING, 1), 0, 0);
+        this(new ResourceLocation(MODID, "null"), INPCRegistry.Gender.MALE, INPCRegistry.Age.ADULT, new CalendarDate(1, Season.SPRING, 1), 0, 0);
     }
 
-    public NPC(ResourceLocation resource, Gender gender, Age age, ICalendarDate birthday, int insideColor, int outsideColor) {
+    public NPC(ResourceLocation resource, Gender gender, Age age, CalendarDate birthday, int insideColor, int outsideColor) {
         String MODID = resource.getResourceDomain();
         String name = resource.getResourcePath();
         this.age = age;
@@ -76,14 +75,14 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
         this.conditionals.add(new GreetingSingle("generic.weather.good") {
             @Override
             public boolean canDisplay(EntityPlayer player) {
-                return HFTrackers.getCalendar(player.worldObj).getTodaysWeather().isSunny();
+                return HFApi.calendar.getWeather(player.worldObj).isSunny();
             }
         });
 
         this.conditionals.add(new GreetingSingle("generic.weather.bad") {
             @Override
             public boolean canDisplay(EntityPlayer player) {
-                return HFTrackers.getCalendar(player.worldObj).getTodaysWeather().isUndesirable();
+                return HFApi.calendar.getWeather(player.worldObj).isUndesirable();
             }
         });
 
@@ -209,7 +208,7 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
     }
 
     @Override
-    public ICalendarDate getBirthday() {
+    public CalendarDate getBirthday() {
         return birthday;
     }
 

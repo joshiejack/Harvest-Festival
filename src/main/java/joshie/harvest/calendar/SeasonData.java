@@ -2,13 +2,13 @@ package joshie.harvest.calendar;
 
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weather;
-import joshie.harvest.api.core.ISeasonData;
-import joshie.harvest.core.lib.HFModInfo;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 
-public class SeasonData implements ISeasonData {
+import static joshie.harvest.core.lib.HFModInfo.MODID;
+
+public class SeasonData {
     public final Season season;
     private final ResourceLocation resource;
     private final int skyColor;
@@ -16,17 +16,15 @@ public class SeasonData implements ISeasonData {
     private final float celestialAngleOffset;
     private final double[] chances;
     private final TextFormatting textColor;
-    public final int seasonColor;
 
-    public SeasonData(Season season, int color, double factor, float angle, TextFormatting textColor, int seasonColor, double sunny, double rain, double typhoon, double snow, double blizzard) {
+    public SeasonData(Season season, int color, double factor, float angle, TextFormatting textColor, double sunny, double rain, double typhoon, double snow, double blizzard) {
         this.season = season;
-        this.resource = new ResourceLocation(HFModInfo.MODID, "textures/hud/" + season.name().toLowerCase() + ".png");
+        this.resource = new ResourceLocation(MODID, "textures/hud/" + season.name().toLowerCase() + ".png");
         this.skyColor = color;
         this.celestialLengthFactor = factor;
         this.celestialAngleOffset = angle;
         this.textColor = textColor;
-        this.seasonColor = seasonColor;
-        this.chances = new double[6];
+        this.chances = new double[5];
         this.chances[0] = sunny;
         this.chances[1] = rain;
         this.chances[2] = typhoon;
@@ -34,37 +32,30 @@ public class SeasonData implements ISeasonData {
         this.chances[4] = blizzard;
     }
 
-    @Override
     public double getCelestialLengthFactor() {
         return celestialLengthFactor;
     }
 
-    @Override
     public float getCelestialAngleOffset() {
         return celestialAngleOffset;
     }
 
-    @Override
     public double getWeatherChance(Weather weather) {
         return chances[weather.ordinal()];
     }
 
-    @Override
     public int getSkyColor() {
         return skyColor;
     }
 
-    @Override
     public ResourceLocation getResource() {
         return resource;
     }
 
-    @Override
     public String getLocalized() {
-        return I18n.translateToLocal(HFModInfo.MODID + ".season." + season.name().toLowerCase());
+        return I18n.translateToLocal(MODID + ".season." + season.name().toLowerCase());
     }
 
-    @Override
     public TextFormatting getTextColor() {
         return textColor;
     }

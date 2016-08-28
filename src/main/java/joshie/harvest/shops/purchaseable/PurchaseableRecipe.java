@@ -1,10 +1,10 @@
 package joshie.harvest.shops.purchaseable;
 
-import joshie.harvest.api.calendar.ICalendarDate;
+import joshie.harvest.api.HFApi;
+import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weekday;
 import joshie.harvest.cooking.CookingHelper;
-import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
@@ -20,7 +20,7 @@ public class PurchaseableRecipe extends Purchaseable {
 
     @Override
     public boolean canBuy(World world, EntityPlayer player) {
-        ICalendarDate date = HFTrackers.getCalendar(world).getDate();
+        CalendarDate date = HFApi.calendar.getDate(world);
         return date.getWeekday() == weekday && date.getSeason() == season;
     }
 }

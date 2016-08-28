@@ -69,7 +69,7 @@ public class CommandManager extends CommandBase implements ICommand {
             try {
                 event.getCommand().execute(FMLCommonHandler.instance().getMinecraftServerInstance(), event.getSender(), event.getParameters());
                 World world = event.getSender().getEntityWorld();
-                HFTrackers.<CalendarServer>getCalendar(world).recalculateAndUpdate();
+                HFTrackers.<CalendarServer>getCalendar(world).recalculateAndUpdate(world);
                 event.setCanceled(true);
             } catch (Exception e) {}
         } else {

@@ -2,13 +2,13 @@ package joshie.harvest.api.npc;
 
 import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.buildings.IBuilding;
-import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.npc.INPCRegistry.Age;
 import joshie.harvest.api.npc.INPCRegistry.Gender;
 import joshie.harvest.api.npc.gift.IGiftHandler;
 import joshie.harvest.api.npc.gift.IGiftHandler.Quality;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.shops.IShop;
+import joshie.harvest.api.calendar.CalendarDate;
 import net.minecraft.item.ItemStack;
 
 public interface INPC extends IRelatable {
@@ -58,7 +58,7 @@ public interface INPC extends IRelatable {
     String getLocalizedName();
 
     /** Returns the birthday of this npc **/
-    ICalendarDate getBirthday();
+    CalendarDate getBirthday();
 
     /** Gets the age of this npc
      *  @return the npcs age **/

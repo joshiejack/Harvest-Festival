@@ -6,6 +6,7 @@ import joshie.harvest.calendar.CalendarServer;
 import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.WorldServer;
 
 @HFQuest
 public class HFCommandTime extends HFCommand {
@@ -33,15 +34,24 @@ public class HFCommandTime extends HFCommand {
                     i1 = parseInt(parameters[1]);
                 }
 
-                sender.getEntityWorld().setWorldTime(i1);
-                HFTrackers.<CalendarServer>getCalendar(sender.getEntityWorld()).recalculateAndUpdate();
+                for (int i = 0; i < server.worldServers.length; ++i) {
+                    WorldServer worldserver = server.worldServers[i];
+                    worldserver.setWorldTime(i1);
+                }
+
+                //TODO: Make set time also add time
+                HFTrackers.<CalendarServer>getCalendar(server.worldServers[0]).recalculateAndUpdate(server.worldServers[0]);
                 return true;
             }
 
             if (parameters[0].equals("add")) {
                 int l = parseInt(parameters[1]);
-                sender.getEntityWorld().setWorldTime(sender.getEntityWorld().getWorldTime() + l);
-                HFTrackers.<CalendarServer>getCalendar(sender.getEntityWorld()).recalculateAndUpdate();
+                for (int i = 0; i < server.worldServers.length; ++i) {
+                    WorldServer worldserver = server.worldServers[i];
+                    worldserver.setWorldTime(worldserver.getWorldTime() + l);
+                }
+
+                HFTrackers.<CalendarServer>getCalendar(server.worldServers[0]).recalculateAndUpdate(server.worldServers[0]);
                 return true;
             }
         }

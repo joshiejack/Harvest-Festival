@@ -4,6 +4,9 @@ import gnu.trove.map.TIntObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
 import joshie.harvest.animals.AnimalTracker;
 import joshie.harvest.calendar.Calendar;
+import joshie.harvest.calendar.CalendarClient;
+import joshie.harvest.calendar.CalendarLoader;
+import joshie.harvest.calendar.CalendarServer;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.player.PlayerTracker;
 import joshie.harvest.player.PlayerTrackerClient;
@@ -19,27 +22,20 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public class HFTrackers {
-    //The Client worlds
+    /*####################World Based Trackers##########################*/
     @SideOnly(Side.CLIENT)
     private static TIntObjectMap<SideHandler> CLIENT_WORLDS;
-    //The Server worlds
     private static TIntObjectMap<ServerHandler> SERVER_WORLDS = new TIntObjectHashMap<>();
-
-    //The Client player
-    @SideOnly(Side.CLIENT)
-    private static PlayerTracker CLIENT_PLAYER;
-
-    //Server Players
-    private static HashMap<UUID, PlayerTrackerServer> SERVER_PLAYERS = new HashMap<>();
-
-    public static void resetServer() {
-        SERVER_WORLDS = new TIntObjectHashMap<>();
-    }
 
     @SideOnly(Side.CLIENT)
     public static void resetClient() {
         CLIENT_WORLDS = new TIntObjectHashMap<>();
         CLIENT_PLAYER = new PlayerTrackerClient();
+        CLIENT_CALENDAR = new CalendarClient();
+    }
+
+    public static void resetServer() {
+        SERVER_WORLDS = new TIntObjectHashMap<>();
     }
 
     @SideOnly(Side.CLIENT)
@@ -71,25 +67,50 @@ public class HFTrackers {
     }
 
     @SuppressWarnings("unchecked")
-    public static <C extends Calendar> C getCalendar(World world) {
-        return (C) getHandler(world).getCalendar();
-    }
-
-    @SuppressWarnings("unchecked")
     public static <A extends AnimalTracker> A getAnimalTracker(World world) {
         return (A) getHandler(world).getAnimalTracker();
-    }
-
-    @SuppressWarnings("unchecked")
-    public static <P extends PlayerTracker> P getPlayerTracker(EntityPlayer player) {
-        return player.worldObj.isRemote ? (P) CLIENT_PLAYER : (P) SERVER_PLAYERS.get(UUIDHelper.getPlayerUUID(player));
     }
 
     @SuppressWarnings("unchecked")
     public static <T extends TownTracker> T getTownTracker(World world) {
         return (T) getHandler(world).getTownTracker();
     }
-    
+
+    public static TickDailyServer getTickables(World world) {
+        return getServer(world).getTickables();
+    }
+
+    public static void markDirty(World world) {
+        SERVER_WORLDS.get(world.provider.getDimension()).markDirty();
+    }
+
+    public static void markDirty(int dimension) {
+        SERVER_WORLDS.get(dimension).markDirty();
+    }
+
+    /*####################Calendar Trackers##########################*/
+    @SideOnly(Side.CLIENT)
+    private static Calendar CLIENT_CALENDAR;
+    private static CalendarServer SERVER_CALENDAR;
+
+    @SuppressWarnings("unchecked")
+    public static <C extends Calendar> C getCalendar(World world) {
+        return (world.isRemote) ? (C) CLIENT_CALENDAR : (C) SERVER_CALENDAR;
+    }
+
+    public static void setServerCalendar(CalendarServer calendar) {
+        SERVER_CALENDAR = calendar;
+    }
+
+    public static void markCalendarDirty() {
+        CalendarLoader.data.markDirty();
+    }
+
+    /*####################Player Trackers#############################*/
+    @SideOnly(Side.CLIENT)
+    private static PlayerTracker CLIENT_PLAYER;
+    private static HashMap<UUID, PlayerTrackerServer> SERVER_PLAYERS = new HashMap<>();
+
     public static Collection<PlayerTrackerServer> getPlayerTrackers() {
         return SERVER_PLAYERS.values();
     }
@@ -103,19 +124,12 @@ public class HFTrackers {
         return SERVER_PLAYERS.get(uuid);
     }
 
+    @SuppressWarnings("unchecked")
+    public static <P extends PlayerTracker> P getPlayerTracker(EntityPlayer player) {
+        return player.worldObj.isRemote ? (P) CLIENT_PLAYER : (P) SERVER_PLAYERS.get(UUIDHelper.getPlayerUUID(player));
+    }
+
     public static void setPlayerData(EntityPlayer player, PlayerTrackerServer data) {
         SERVER_PLAYERS.put(UUIDHelper.getPlayerUUID(player), data);
-    }
-
-    public static void markDirty(World world) {
-        SERVER_WORLDS.get(world.provider.getDimension()).markDirty();
-    }
-
-    public static void markDirty(int dimension) {
-        SERVER_WORLDS.get(dimension).markDirty();
-    }
-
-    public static TickDailyServer getTickables(World world) {
-        return getServer(world).getTickables();
     }
 }

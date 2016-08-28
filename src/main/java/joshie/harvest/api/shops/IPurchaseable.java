@@ -3,6 +3,8 @@ package joshie.harvest.api.shops;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
@@ -22,5 +24,6 @@ public interface IPurchaseable extends ISpecialPurchaseRules {
     boolean onPurchased(EntityPlayer player);
 
     /** Display tooltip for this item **/
+    @SideOnly(Side.CLIENT)
     void addTooltip(List<String> list);
 }

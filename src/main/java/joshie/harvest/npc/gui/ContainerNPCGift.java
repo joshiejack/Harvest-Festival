@@ -1,7 +1,8 @@
 package joshie.harvest.npc.gui;
 
-import joshie.harvest.api.calendar.ICalendarDate;
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.ToolHelper;
 import joshie.harvest.npc.entity.EntityNPC;
@@ -30,9 +31,8 @@ public class ContainerNPCGift extends ContainerNPCBase {
                 ItemStack gift = player.getHeldItem(hand);
                 INPC theNpc = npc.getNPC();
                 int points = theNpc.getGiftValue(gift).getRelationPoints();
-                ICalendarDate today = HFTrackers.getCalendar(player.worldObj).getDate();
-                ICalendarDate birthday = theNpc.getBirthday();
-                if (today.getSeason() == birthday.getSeason() && today.getDay() == birthday.getDay()) {
+                CalendarDate today = HFApi.calendar.getDate(player.worldObj);
+                if (today.isSameDay(theNpc.getBirthday())) {
                     points *= 5;
                 }
 

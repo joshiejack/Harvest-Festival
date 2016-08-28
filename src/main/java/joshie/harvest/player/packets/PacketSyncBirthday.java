@@ -1,9 +1,8 @@
 package joshie.harvest.player.packets;
 
 import io.netty.buffer.ByteBuf;
-import joshie.harvest.api.HFApi;
-import joshie.harvest.api.calendar.ICalendarDate;
 import joshie.harvest.api.calendar.Season;
+import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.network.Packet;
 import joshie.harvest.core.network.PenguinPacket;
@@ -16,7 +15,7 @@ public class PacketSyncBirthday extends PenguinPacket {
     private int year;
 
     public PacketSyncBirthday() {}
-    public PacketSyncBirthday(ICalendarDate date) {
+    public PacketSyncBirthday(CalendarDate date) {
         this.day = date.getDay();
         this.season = date.getSeason();
         this.year = date.getYear();
@@ -38,6 +37,6 @@ public class PacketSyncBirthday extends PenguinPacket {
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        HFTrackers.getClientPlayerTracker().getStats().setBirthday(HFApi.calendar.newDate(day, season, year));
+        HFTrackers.getClientPlayerTracker().getStats().setBirthday(new CalendarDate(day, season, year));
     }
 }

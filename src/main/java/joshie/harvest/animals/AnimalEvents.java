@@ -37,7 +37,6 @@ public class AnimalEvents {
     }
 
     /* When right clicking chickens, will throw any harvest chickens on your head **/
-    //TODO: Allow stack of doom (mount chickens on chickens)
     @HFEvents(Side.CLIENT)
     public static class PickupChicken {
         public static boolean register() { return HFAnimals.PICKUP_CHICKENS; }
@@ -48,10 +47,11 @@ public class AnimalEvents {
             List<Entity> passengers = event.getEntity().getPassengers();
             for (int i = passengers.size() - 1; i >= 0; --i) {
                 Entity entity = passengers.get(i);
+                entity.removePassengers();
                 entity.dismountRidingEntity();
                 entity.rotationPitch = player.rotationPitch;
                 entity.rotationYaw = player.rotationYaw;
-                entity.moveRelative(0F, 1.0F, 1.25F);
+                entity.moveRelative(0F, 1.0F, 1.05F);
             }
         }
     }

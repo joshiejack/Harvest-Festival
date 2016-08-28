@@ -1,11 +1,11 @@
 package joshie.harvest.mining.blocks;
 
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.gathering.ISmashable;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.BlockHFSmashable;
 import joshie.harvest.core.base.ItemToolSmashing;
-import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.lib.LootStrings;
 import joshie.harvest.mining.HFMining;
@@ -75,7 +75,7 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
 
         switch (ore) {
             case ROCK: {
-                ResourceLocation loot = HFTrackers.getCalendar(world).getSeasonAt(pos) == Season.WINTER ? LootStrings.MINE_WINTER : LootStrings.MINE_SPRING;
+                ResourceLocation loot = HFApi.calendar.getDate(world).getSeason() == Season.WINTER ? LootStrings.MINE_WINTER : LootStrings.MINE_SPRING;
                 return MiningHelper.getLoot(loot, world, player, luck);
             }
 

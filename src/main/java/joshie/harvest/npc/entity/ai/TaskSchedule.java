@@ -1,6 +1,6 @@
 package joshie.harvest.npc.entity.ai;
 
-import joshie.harvest.core.helpers.CalendarHelper;
+import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.helpers.NPCHelper;
 import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.util.math.BlockPos;

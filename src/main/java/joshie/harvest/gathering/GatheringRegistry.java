@@ -6,6 +6,7 @@ import joshie.harvest.core.util.HFApiImplementation;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.EnumMap;
 import java.util.NavigableMap;
 import java.util.TreeMap;
@@ -36,7 +37,8 @@ public class GatheringRegistry implements IGatheringRegistry {
     }
 
     @Override
-    public IBlockState getRandomStateForSeason(World world, Season season) {
+    public IBlockState getRandomStateForSeason(World world, @Nullable Season season) {
+        if (season == null) return null;
         return gatherings.get(season).get(world);
     }
 

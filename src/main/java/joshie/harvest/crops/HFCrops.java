@@ -4,15 +4,21 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.ICrop;
+import joshie.harvest.api.crops.IGrowthHandler;
 import joshie.harvest.core.base.FMLDefinition;
 import joshie.harvest.core.helpers.generic.RegistryHelper;
 import joshie.harvest.core.util.HFLoader;
 import joshie.harvest.crops.blocks.BlockHFCrops;
 import joshie.harvest.crops.blocks.BlockSprinkler;
-import joshie.harvest.crops.blocks.TileCrop;
-import joshie.harvest.crops.blocks.TileCrop.TileWithered;
-import joshie.harvest.crops.blocks.TileSprinkler;
-import joshie.harvest.crops.handlers.*;
+import joshie.harvest.crops.tile.TileCrop;
+import joshie.harvest.crops.tile.TileCrop.TileWithered;
+import joshie.harvest.crops.tile.TileSprinkler;
+import joshie.harvest.crops.handlers.drop.DropHandlerMelon;
+import joshie.harvest.crops.handlers.drop.DropHandlerNetherWart;
+import joshie.harvest.crops.handlers.drop.DropHandlerPotato;
+import joshie.harvest.crops.handlers.growth.GrowthHandlerNether;
+import joshie.harvest.crops.handlers.growth.GrowthHandlerSeasonal;
+import joshie.harvest.crops.handlers.state.*;
 import joshie.harvest.crops.items.ItemCrop;
 import joshie.harvest.crops.items.ItemHFSeeds;
 import net.minecraft.block.Block;
@@ -50,7 +56,8 @@ public class HFCrops {
     //Crops and Custom Farmland
     public static final BlockHFCrops CROPS = new BlockHFCrops().register("crops_block");
     public static final BlockSprinkler SPRINKLER = new BlockSprinkler().register("sprinkler");
-
+    public static final IGrowthHandler FARMLAND = new GrowthHandlerSeasonal(EnumPlantType.Crop, Blocks.FARMLAND);
+    public static final IGrowthHandler SOUL_SAND = new GrowthHandlerNether(EnumPlantType.Nether, Blocks.SOUL_SAND);
 
     //Seed Bag Item
     public static final ItemHFSeeds SEEDS = new ItemHFSeeds().register("crops_seeds");
@@ -87,7 +94,8 @@ public class HFCrops {
     public static final ICrop WHEAT = registerCrop("wheat", 150, 100, 28, 0, 0, 0XEAC715, SPRING, SUMMER, AUTUMN).setAnimalFoodType(AnimalFoodType.GRASS).setRequiresSickle().setStateHandler(new StateHandlerWheat());
 
     //Nether Crop
-    public static final ICrop NETHER_WART = registerCrop("nether_wart", 25000, 10, 4, 1, 5, 0x8B0000, NETHER).setStateHandler(new StateHandlerNetherWart()).setPlantType(EnumPlantType.Nether).setNoWaterRequirements().setSoilRequirements(SoilHandlers.SOUL_SAND).setDropHandler(new DropHandlerNetherWart());
+    public static final ICrop NETHER_WART = registerCrop("nether_wart", 25000, 10, 4, 1, 5, 0x8B0000).setStateHandler(new StateHandlerNetherWart()).setPlantType(EnumPlantType.Nether).setNoWaterRequirements().setSoilRequirements(SOUL_SAND).setDropHandler(new DropHandlerNetherWart());
+
 
     public static void preInit() {
         //Register the crop serializer

@@ -1,6 +1,7 @@
 package joshie.harvest.gathering;
 
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.calendar.Season;
 import joshie.harvest.town.TownBuilding;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -30,13 +31,14 @@ public class GatheringData {
         }
 
         //Create some new spawn spots based on where we have buildings
+        Season season = HFApi.calendar.getDate(world).getSeason();
         for (TownBuilding building : buildings) {
             int placed = 0;
             for (int i = 0; i < 256 && placed < 10; i++) {
                 BlockPos pos = building.pos.add(32 - world.rand.nextInt(64), 4 - world.rand.nextInt(8), 32 - world.rand.nextInt(64));
                 if (world.getBlockState(pos).getBlock() == Blocks.GRASS && world.isAirBlock(pos.up())) {
-                    IBlockState random = HFApi.gathering.getRandomStateForSeason(world, HFApi.calendar.getDate(world).getSeason());
-                    if (world.setBlockState(pos.up(), random, 2)) {
+                    IBlockState random = HFApi.gathering.getRandomStateForSeason(world, season);
+                    if (random != null && world.setBlockState(pos.up(), random, 2)) {
                         locations.add(new GatheringLocation(random, pos.up()));
                         placed++;
                     }

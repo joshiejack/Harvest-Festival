@@ -32,7 +32,7 @@ public class GuiHandler implements IGuiHandler {
         switch (ID) {
             case NPC: {
                 EntityNPC npc = (EntityNPC) world.getEntityByID(entityID);
-                if (hand != -1) return new ContainerNPCSelect(npc, player.inventory);
+                if (hand != -1) return new ContainerNPCBase(npc, player.inventory);
                 return new ContainerNPCChat((EntityNPC) world.getEntityByID(entityID), player.inventory, nextGui);
             }
             case SHOP_WELCOME:  return new ContainerNPCChat((EntityNPC) world.getEntityByID(entityID), player.inventory, SHOP_OPTIONS);
@@ -40,13 +40,7 @@ public class GuiHandler implements IGuiHandler {
             case SHOP_BUILDER:  return new ContainerNPCBuilderShop((EntityNPC) world.getEntityByID(entityID), player.inventory);
             case GIFT:          return new ContainerNPCGift((EntityNPC) world.getEntityByID(entityID), player.inventory, EnumHand.values()[hand]);
             case FRIDGE:        return new ContainerFridge(player, player.inventory, (TileFridge) world.getTileEntity(new BlockPos(entityID, nextGui, hand)));
-            case SHOP_OPTIONS:    {
-                EntityNPC npc = (EntityNPC) world.getEntityByID(entityID);
-                if (NPCHelper.isShopOpen(npc.getNPC(), world, player)) {
-                    return new ContainerNPCSelect(npc, player.inventory);
-                } else return new ContainerNPC(npc, player.inventory);
-            }
-            
+            case SHOP_OPTIONS:  return new ContainerNPCBase((EntityNPC) world.getEntityByID(entityID), player.inventory);
             default:            return null;
         }
     }

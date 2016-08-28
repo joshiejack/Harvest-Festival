@@ -1,21 +1,11 @@
 package joshie.harvest.api.relations;
 
-import io.netty.buffer.ByteBuf;
 import net.minecraft.nbt.NBTTagCompound;
 
 public interface IRelatableDataHandler<I extends IRelatable> {
-    /** Copy cat **/
-    IRelatableDataHandler copy();
-    
     /** The name of this data handler **/
     String name();
 
-    /** Write this to bytebuf **/
-    void toBytes(I relatable, ByteBuf buf);
-
-    /** Read this from bytebuf **/
-    I fromBytes(ByteBuf buf);
-    
     /** Handling **/
     default void onMessage(I relatable, boolean particles) {}
 

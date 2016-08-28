@@ -6,7 +6,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 public interface IAnimalData {
+    /** Returns the animal type **/
+    IAnimalType getType();
+
     /** Returns the instanceof this animal
      *  May return null if the animal got lost somehow **/
     EntityAnimal getAnimal();
@@ -19,7 +25,7 @@ public interface IAnimalData {
     int getProductsPerDay();
 
     /** Marks this player as the animals owner **/
-    void setOwner(EntityPlayer player);
+    void setOwner(@Nonnull EntityPlayer player);
     
     /** Call to check whether the animal is hungry or not **/
     boolean isHungry();
@@ -38,38 +44,38 @@ public interface IAnimalData {
     void setProduced();
 
     /** Clean this animal */
-    void clean(EntityPlayer player);
+    void clean(@Nullable EntityPlayer player);
 
     /** Called when this animal is dismounted from a players head*/
-    void dismount(EntityPlayer player);
+    void dismount(@Nullable EntityPlayer player);
 
     /** Feed this animal
-     *  May pass a null player if feeding is automated */
-    void feed(EntityPlayer player);
+     *  May pass a null player if feeding is automated
+     *  @param player*/
+    void feed(@Nullable EntityPlayer player);
 
     /** Heal the animal
      *  @return     returns true if it was healed from a sickness */
-    boolean heal(EntityPlayer player);
+    boolean heal(@Nullable EntityPlayer player);
 
-    /** Treat the animal for this day, returns true if the animal wasn't already treated **/
-    boolean treat(ItemStack stack, EntityPlayer player);
+    /** Treat the animal for this day, returns true if the animal wasn't already treated
+     *  @param stack        the item used to treat the animal
+     *  @param player       the player**/
+    boolean treat(ItemStack stack, @Nullable EntityPlayer player);
 
     /** Attempt to impregnate the animal
      *  return true if sucessful */
-    boolean impregnate(EntityPlayer player);
+    boolean impregnate(@Nullable EntityPlayer player);
 
-    /** Syncs any important data to the connected clients **/
-    void toBytes(ByteBuf buf);
-    void fromBytes(ByteBuf buf);
-
-    /** Read information from nbt **/
-    void readFromNBT(NBTTagCompound nbt);
-
-    /** Write information to nbt **/
-    void writeToNBT(NBTTagCompound nbt);
-
-    /** Setters **/
-    void setHealthiness(byte healthiness);
-    void setDaysNotFed(byte daysNotFed);
+    void setHealthiness(int healthiness);
+    void setDaysNotFed(int daysNotFed);
     void setProductsProduced(boolean producedProducts);
+    //Call this in your entities writeSpawnData
+    void toBytes(ByteBuf buf);
+    //Call this in your entities readSpawnData
+    void fromBytes(ByteBuf buf);
+    //Call this in your entities readEntityFromNBT
+    void readFromNBT(NBTTagCompound nbt);
+    //Call this in your entities writeToNBT
+    void writeToNBT(NBTTagCompound nbt);
 }

@@ -4,7 +4,7 @@ import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.api.cooking.Ingredient;
 import joshie.harvest.cooking.CookingAPI;
 import joshie.harvest.cooking.HFCooking;
-import joshie.harvest.cooking.items.ItemIngredients;
+import joshie.harvest.cooking.item.ItemIngredients;
 import joshie.harvest.cooking.render.MappingEvent;
 import joshie.harvest.core.util.HFLoader;
 import joshie.harvest.crops.HFCrops;
@@ -13,7 +13,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
-import static joshie.harvest.cooking.items.ItemIngredients.Ingredient.EGG_SCRAMBLED;
+import static joshie.harvest.cooking.item.ItemIngredients.Ingredient.EGG_SCRAMBLED;
 import static joshie.harvest.core.lib.LoadOrder.HFINGREDIENTS;
 
 @HFLoader(priority = HFINGREDIENTS)

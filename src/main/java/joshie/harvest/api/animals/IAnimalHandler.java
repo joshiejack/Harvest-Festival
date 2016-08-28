@@ -1,6 +1,5 @@
 package joshie.harvest.api.animals;
 
-import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.item.ItemStack;
 
 public interface IAnimalHandler {
@@ -15,14 +14,14 @@ public interface IAnimalHandler {
     /** Register an item as a specific food type **/
     void registerFoodAsType(ItemStack stack, AnimalFoodType type);
     
-    /** Creates a new animal data **/
-    IAnimalData newData(IAnimalTracked animal);
+    /** Create a new animal data
+     * @param animal
+     * @param type      you can pass the string, if you want to get a registered type, e.g. cow, sheep or sheep
+     * @returns the data **/
+    IAnimalData newData(IAnimalTracked animal, String type);
     
     /** Returns an animal type based on the string name **/
     IAnimalType getTypeFromString(String string);
-
-    /** Returns an animal type based on the entity **/
-    IAnimalType getType(EntityAnimal animal);
 
     /** Register an animal type **/
     void registerType(String key, IAnimalType type);

@@ -1,6 +1,6 @@
 package joshie.harvest.core.helpers.generic;
 
-import joshie.harvest.core.util.holders.AbstractDataHolder;
+import joshie.harvest.core.util.holder.AbstractDataHolder;
 
 import java.util.Collection;
 import java.util.Map;

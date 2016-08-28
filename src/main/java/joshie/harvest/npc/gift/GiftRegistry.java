@@ -2,7 +2,7 @@ package joshie.harvest.npc.gift;
 
 import joshie.harvest.api.npc.gift.GiftCategory;
 import joshie.harvest.api.npc.gift.IGiftRegistry;
-import joshie.harvest.core.util.holders.HolderRegistry;
+import joshie.harvest.core.util.holder.HolderRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

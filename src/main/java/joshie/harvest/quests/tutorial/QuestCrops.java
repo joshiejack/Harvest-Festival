@@ -1,6 +1,6 @@
 package joshie.harvest.quests.tutorial;
 
-import joshie.harvest.api.HFQuest;
+import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.helpers.InventoryHelper;
@@ -20,7 +20,6 @@ import static joshie.harvest.api.core.ITiered.ToolTier.BASIC;
 import static joshie.harvest.core.helpers.InventoryHelper.SearchType.FLOWER;
 import static joshie.harvest.core.lib.HFQuests.TUTORIAL_CARPENTER;
 import static joshie.harvest.npc.HFNPCs.SEED_OWNER;
-import static joshie.harvest.tools.HFTools.WATERING_CAN;
 
 @HFQuest("tutorial.crops")
 public class QuestCrops extends QuestQuestion {

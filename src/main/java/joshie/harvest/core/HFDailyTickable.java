@@ -1,8 +1,8 @@
 package joshie.harvest.core;
 
-import joshie.harvest.api.core.IDailyTickable;
-import joshie.harvest.api.core.IDailyTickableBlock;
-import joshie.harvest.api.core.IDailyTickableRegistry;
+import joshie.harvest.api.ticking.IDailyTickable;
+import joshie.harvest.api.ticking.IDailyTickableBlock;
+import joshie.harvest.api.ticking.IDailyTickableRegistry;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.util.HFApiImplementation;
 import net.minecraft.block.Block;

@@ -1,10 +1,10 @@
 package joshie.harvest.tools;
 
-import joshie.harvest.core.base.ItemTool;
-import joshie.harvest.core.base.ItemToolChargeable;
-import joshie.harvest.core.base.ItemToolSmashing;
+import joshie.harvest.core.base.item.ItemTool;
+import joshie.harvest.core.base.item.ItemToolChargeable;
+import joshie.harvest.core.base.item.ItemToolSmashing;
 import joshie.harvest.core.util.HFLoader;
-import joshie.harvest.tools.items.*;
+import joshie.harvest.tools.item.*;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;

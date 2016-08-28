@@ -1,7 +1,7 @@
 package joshie.harvest.cooking;
 
 import joshie.harvest.api.cooking.Ingredient;
-import joshie.harvest.cooking.items.ItemCookbook;
+import joshie.harvest.cooking.item.ItemCookbook;
 import joshie.harvest.cooking.recipe.MealImpl;
 import joshie.harvest.cooking.tile.TileCooking;
 import net.minecraft.entity.player.EntityPlayer;

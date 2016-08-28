@@ -4,15 +4,18 @@ import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.relations.IRelatableDataHandler;
 import joshie.harvest.api.relations.IRelationships;
 import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.util.HFApiImplementation;
 import joshie.harvest.npc.HFNPCs;
 import net.minecraft.entity.player.EntityPlayer;
 
 import java.util.HashMap;
 
+@HFApiImplementation
 public class RelationshipHelper implements IRelationships {
+    public static final RelationshipHelper INSTANCE = new RelationshipHelper();
     private final HashMap<String, IRelatableDataHandler> dataHandlers = new HashMap<>();
 
-    public RelationshipHelper() {
+    private RelationshipHelper() {
         registerDataHandler(new RelationshipHandlerEntity());
         registerDataHandler(new RelationshipHandlerNPC());
     }

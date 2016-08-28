@@ -3,7 +3,7 @@ package joshie.harvest.cooking.recipe;
 import joshie.harvest.api.cooking.Ingredient;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.gui.PageRecipe;
-import joshie.harvest.cooking.items.ItemIngredients;
+import joshie.harvest.cooking.item.ItemIngredients;
 import joshie.harvest.core.util.HFLoader;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;

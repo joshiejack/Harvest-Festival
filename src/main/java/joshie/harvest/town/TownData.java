@@ -9,7 +9,7 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.util.Direction;
-import joshie.harvest.town.packets.PacketNewBuilding;
+import joshie.harvest.town.packet.PacketNewBuilding;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ResourceLocation;

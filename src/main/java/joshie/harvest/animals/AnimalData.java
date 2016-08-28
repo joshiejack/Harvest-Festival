@@ -2,6 +2,10 @@ package joshie.harvest.animals;
 
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.animals.item.ItemAnimalTreat.Treat;
+import joshie.harvest.animals.packet.PacketSyncDaysNotFed;
+import joshie.harvest.animals.packet.PacketSyncEverything;
+import joshie.harvest.animals.packet.PacketSyncHealthiness;
+import joshie.harvest.animals.packet.PacketSyncProductsProduced;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
@@ -10,10 +14,6 @@ import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.helpers.generic.EntityHelper;
-import joshie.harvest.animals.packets.PacketSyncDaysNotFed;
-import joshie.harvest.animals.packets.PacketSyncEverything;
-import joshie.harvest.animals.packets.PacketSyncHealthiness;
-import joshie.harvest.animals.packets.PacketSyncProductsProduced;
 import joshie.harvest.npc.HFNPCs;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -25,6 +25,8 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.Random;
 import java.util.UUID;
 
@@ -64,11 +66,16 @@ public class AnimalData implements IAnimalData {
     private boolean isPregnant;
     private int daysPregnant;
 
-    public AnimalData(IAnimalTracked animal) {
+    public AnimalData(IAnimalTracked animal, IAnimalType type) {
         this.animal = (EntityAnimal) animal;
         this.relatable = animal;
         this.data = animal.getData();
-        this.type = animal.getType();
+        this.type = type;
+    }
+
+    @Override
+    public IAnimalType getType() {
+        return type;
     }
 
     @Override
@@ -86,7 +93,7 @@ public class AnimalData implements IAnimalData {
         }
 
         //Gets the adjusted relationship, 0-65k
-        int relationship = HFApi.player.getRelationshipHelper().getRelationship(owner, relatable);
+        int relationship = HFApi.relationships.getRelationship(owner, relatable);
         double chance = (relationship / (double) HFNPCs.MAX_FRIENDSHIP) * 200;
         chance += healthiness;
         if (chance <= 1) {
@@ -248,7 +255,7 @@ public class AnimalData implements IAnimalData {
     }
 
     @Override
-    public void setOwner(EntityPlayer player) {
+    public void setOwner(@Nonnull EntityPlayer player) {
         this.owner = player;
         this.o_uuid = UUIDHelper.getPlayerUUID(player);
     }
@@ -265,7 +272,7 @@ public class AnimalData implements IAnimalData {
     }
 
     @Override
-    public void clean(EntityPlayer player) {
+    public void clean(@Nullable EntityPlayer player) {
         if (cleanliness < Byte.MAX_VALUE) {
             cleanliness = (byte) Math.min(Byte.MAX_VALUE, cleanliness + 10);
             if (cleanliness >= Byte.MAX_VALUE) {
@@ -289,7 +296,7 @@ public class AnimalData implements IAnimalData {
     }
 
     @Override
-    public void feed(EntityPlayer player) {
+    public void feed(@Nullable EntityPlayer player) {
         if (daysNotFed >= 0) {
             daysNotFed = -1;
             affectRelationship(player, 5);
@@ -298,7 +305,7 @@ public class AnimalData implements IAnimalData {
     }
 
     @Override
-    public boolean heal(EntityPlayer player) {
+    public boolean heal(@Nullable EntityPlayer player) {
         if (healthiness < 27) {
             healthiness += 100;
             if (healthiness >= 0) {
@@ -311,7 +318,7 @@ public class AnimalData implements IAnimalData {
     }
 
     @Override
-    public boolean treat(ItemStack stack, EntityPlayer player) {
+    public boolean treat(ItemStack stack, @Nullable EntityPlayer player) {
         if (!treated) {
             treated = HFAnimals.TREATS.getEnumFromStack(stack) == Treat.GENERIC;
             if (treated) {
@@ -361,6 +368,21 @@ public class AnimalData implements IAnimalData {
             baby.setLocationAndAngles(animal.posX, animal.posY, animal.posZ, 0.0F, 0.0F);
             animal.worldObj.spawnEntityInWorld(baby);
         }
+    }
+
+    @Override
+    public void setHealthiness(int healthiness) {
+        this.healthiness = healthiness;
+    }
+
+    @Override
+    public void setDaysNotFed(int daysNotFed) {
+        this.daysNotFed = daysNotFed;
+    }
+
+    @Override
+    public void setProductsProduced(boolean producedProducts) {
+        this.producedProducts = producedProducts;
     }
 
     @Override
@@ -432,23 +454,5 @@ public class AnimalData implements IAnimalData {
 
         nbt.setBoolean("IsPregnant", isPregnant);
         nbt.setByte("DaysPregnant", (byte) daysPregnant);
-    }
-
-    /**
-     * Setters
-     **/
-    @Override
-    public void setHealthiness(byte healthiness) {
-        this.healthiness = healthiness;
-    }
-
-    @Override
-    public void setDaysNotFed(byte daysNotFed) {
-        this.daysNotFed = daysNotFed;
-    }
-
-    @Override
-    public void setProductsProduced(boolean producedProducts) {
-        this.producedProducts = producedProducts;
     }
 }

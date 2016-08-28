@@ -3,7 +3,7 @@ package joshie.harvest.mining;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.EntityHelper;
 import joshie.harvest.core.util.Direction;
-import joshie.harvest.mining.blocks.BlockPortal.Portal;
+import joshie.harvest.mining.block.BlockPortal.Portal;
 import joshie.harvest.town.TownTracker;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;

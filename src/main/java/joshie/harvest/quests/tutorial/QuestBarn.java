@@ -1,7 +1,7 @@
 package joshie.harvest.quests.tutorial;
 
 import joshie.harvest.animals.HFAnimals;
-import joshie.harvest.api.HFQuest;
+import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.Quest;
@@ -16,7 +16,7 @@ import net.minecraft.item.ItemStack;
 
 import java.util.Set;
 
-import static joshie.harvest.animals.blocks.BlockTrough.Trough.WOOD;
+import static joshie.harvest.animals.block.BlockTrough.Trough.WOOD;
 import static joshie.harvest.core.lib.HFQuests.TUTORIAL_COW;
 import static joshie.harvest.npc.HFNPCs.*;
 

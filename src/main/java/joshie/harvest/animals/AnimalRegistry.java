@@ -3,11 +3,7 @@ package joshie.harvest.animals;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.*;
 import joshie.harvest.core.util.HFApiImplementation;
-import joshie.harvest.core.util.holders.HolderRegistry;
-import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.passive.EntityChicken;
-import net.minecraft.entity.passive.EntityCow;
-import net.minecraft.entity.passive.EntitySheep;
+import joshie.harvest.core.util.holder.HolderRegistry;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
@@ -18,8 +14,6 @@ import java.util.HashMap;
 public class AnimalRegistry implements IAnimalHandler {
     public static final AnimalRegistry INSTANCE = new AnimalRegistry();
     private final HashMap<String, IAnimalType> types = new HashMap<>();
-    //private final HashMap<AbstractItemHolder, AnimalFoodType> registry = new HashMap<>();
-    //private final Multimap<Item, AbstractItemHolder> keyMap = HashMultimap.create();
     private final HolderRegistry<AnimalFoodType> registry = new HolderRegistry<>();
 
     private AnimalRegistry() {}
@@ -38,7 +32,7 @@ public class AnimalRegistry implements IAnimalHandler {
 
     @Override
     public boolean canAnimalEatFoodType(IAnimalTracked tracked, AnimalFoodType type) {
-        for (AnimalFoodType t: tracked.getType().getFoodTypes()) {
+        for (AnimalFoodType t: tracked.getData().getType().getFoodTypes()) {
             if (t == type) return true;
         }
 
@@ -55,13 +49,8 @@ public class AnimalRegistry implements IAnimalHandler {
     }
 
     @Override
-    public IAnimalData newData(IAnimalTracked animal) {
-        return new AnimalData(animal);
-    }
-
-    @Override
-    public IAnimalType getTypeFromString(String string) {
-        return types.get(string.toLowerCase());
+    public IAnimalData newData(IAnimalTracked animal, String type) {
+        return new AnimalData(animal, types.get(type));
     }
 
     @Override
@@ -70,13 +59,7 @@ public class AnimalRegistry implements IAnimalHandler {
     }
 
     @Override
-    public IAnimalType getType(EntityAnimal animal) {
-        if (animal instanceof EntityCow) {
-            return types.get("cow");
-        } else if (animal instanceof EntitySheep) {
-            return types.get("sheep");
-        } else if (animal instanceof EntityChicken) {
-            return types.get("chicken");
-        } else return null;
+    public IAnimalType getTypeFromString(String string) {
+        return types.get(string.toLowerCase());
     }
 }

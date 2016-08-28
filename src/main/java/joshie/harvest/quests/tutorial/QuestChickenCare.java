@@ -3,7 +3,7 @@ package joshie.harvest.quests.tutorial;
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.entity.EntityHarvestChicken;
 import joshie.harvest.animals.item.ItemAnimalTool.Tool;
-import joshie.harvest.api.HFQuest;
+import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.helpers.InventoryHelper;
@@ -26,7 +26,7 @@ import net.minecraft.util.math.BlockPos;
 
 import java.util.Set;
 
-import static joshie.harvest.animals.blocks.BlockTray.Tray.NEST_EMPTY;
+import static joshie.harvest.animals.block.BlockTray.Tray.NEST_EMPTY;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.CHICKEN_FEED;
 import static joshie.harvest.npc.HFNPCs.GODDESS;
 

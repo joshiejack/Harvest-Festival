@@ -2,16 +2,15 @@ package joshie.harvest.animals.item;
 
 import joshie.harvest.animals.item.ItemAnimalTreat.Treat;
 import joshie.harvest.api.animals.IAnimalTracked;
-import joshie.harvest.api.core.ICreativeSorted;
+import joshie.harvest.core.base.item.ItemHFEnum;
 import joshie.harvest.core.lib.CreativeSort;
-import joshie.harvest.core.base.ItemHFEnum;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
 
-public class ItemAnimalTreat extends ItemHFEnum<ItemAnimalTreat, Treat> implements ICreativeSorted {
+public class ItemAnimalTreat extends ItemHFEnum<ItemAnimalTreat, Treat> {
     public enum Treat implements IStringSerializable {
         COW, SHEEP, CHICKEN, GENERIC;
 

@@ -11,7 +11,7 @@ import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.gui.GuiNPCBase;
 import joshie.harvest.player.stats.StatsClient;
 import joshie.harvest.shops.Shop;
-import joshie.harvest.shops.packets.PacketPurchaseItem;
+import joshie.harvest.shops.packet.PacketPurchaseItem;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;

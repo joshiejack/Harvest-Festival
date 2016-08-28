@@ -1,11 +1,11 @@
 package joshie.harvest.core;
 
 import joshie.harvest.HarvestFestival;
-import joshie.harvest.core.blocks.BlockFlower;
-import joshie.harvest.core.blocks.BlockFlower.FlowerType;
-import joshie.harvest.core.blocks.BlockGoddessWater;
-import joshie.harvest.core.blocks.BlockStorage;
-import joshie.harvest.core.blocks.TileShipping;
+import joshie.harvest.core.block.BlockFlower;
+import joshie.harvest.core.block.BlockFlower.FlowerType;
+import joshie.harvest.core.block.BlockGoddessWater;
+import joshie.harvest.core.block.BlockStorage;
+import joshie.harvest.core.tile.TileShipping;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.helpers.generic.RegistryHelper;
 import joshie.harvest.core.util.HFLoader;

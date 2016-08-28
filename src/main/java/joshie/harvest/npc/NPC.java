@@ -96,7 +96,7 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
 
     @Override //IRelatable
     public IRelatableDataHandler getDataHandler() {
-        return HFApi.player.getRelationshipHelper().getDataHandler("npc");
+        return HFApi.relationships.getDataHandler("npc");
     }
 
     @Override

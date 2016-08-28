@@ -1,8 +1,8 @@
 package joshie.harvest.cooking;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.cooking.blocks.BlockCookware;
-import joshie.harvest.cooking.items.*;
+import joshie.harvest.cooking.block.BlockCookware;
+import joshie.harvest.cooking.item.*;
 import joshie.harvest.cooking.recipe.RecipeMayo;
 import joshie.harvest.cooking.recipe.RecipeMeal;
 import joshie.harvest.cooking.recipe.RecipeStack;
@@ -17,8 +17,8 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import static joshie.harvest.cooking.items.ItemUtensil.Utensil.BLADE;
-import static joshie.harvest.cooking.items.ItemUtensil.Utensil.KNIFE;
+import static joshie.harvest.cooking.item.ItemUtensil.Utensil.BLADE;
+import static joshie.harvest.cooking.item.ItemUtensil.Utensil.KNIFE;
 import static joshie.harvest.cooking.tile.TileMixer.BLADE_STACK;
 import static joshie.harvest.core.helpers.generic.RegistryHelper.registerSounds;
 import static joshie.harvest.core.helpers.generic.RegistryHelper.registerTiles;

@@ -2,7 +2,7 @@ package joshie.harvest.animals.type;
 
 import static joshie.harvest.api.animals.AnimalFoodType.SEED;
 
-public class AnimalChicken extends AbstractAnimal {
+public class AnimalChicken extends AnimalAbstract {
     public AnimalChicken() {
         super("chicken", 3, 10, SEED);
     }

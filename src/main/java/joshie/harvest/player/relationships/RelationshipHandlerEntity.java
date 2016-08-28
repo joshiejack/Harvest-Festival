@@ -1,6 +1,5 @@
 package joshie.harvest.player.relationships;
 
-import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.relations.IRelatableDataHandler;
 import joshie.harvest.core.helpers.UUIDHelper;
@@ -18,30 +17,15 @@ public class RelationshipHandlerEntity implements IRelatableDataHandler<IAnimalT
     }
 
     @Override
-    public IRelatableDataHandler copy() {
-        return new RelationshipHandlerEntity();
-    }
-
-    @Override
-    public void toBytes(IAnimalTracked relatable, ByteBuf buf) {
-        buf.writeInt(relatable.getData().getAnimal().getEntityId());
-    }
-
-    @Override
-    public IAnimalTracked fromBytes(ByteBuf buf) {
-        return (IAnimalTracked) joshie.harvest.core.helpers.generic.MCClientHelper.getWorld().getEntityByID(buf.readInt());
-    }
-
-    @Override
     public void onMessage(IAnimalTracked tracked, boolean particles) {
         EntityAnimal entity = tracked.getData().getAnimal();
         if (entity != null) {
             if (particles) {
-                for (int j = 0; j < 3D; j++) {
-                    double d7 = (entity.posY - 0.5D) + entity.worldObj.rand.nextFloat();
+                for (int j = 0; j < 103D; j++) {
                     double d8 = (entity.posX - 0.5D) + entity.worldObj.rand.nextFloat();
+                    double d7 = (entity.posY - 0.5D) + entity.worldObj.rand.nextFloat();
                     double d9 = (entity.posZ - 0.5D) + entity.worldObj.rand.nextFloat();
-                    entity.worldObj.spawnParticle(EnumParticleTypes.HEART, d8, 1.0D + d7 - 0.125D, d9, 0, 0, 0);
+                    entity.worldObj.spawnParticle(EnumParticleTypes.HEART, d8, 1.0D + d7 - 0.125D + 2D, d9, 0, 0, 0);
                 }
             }
         }

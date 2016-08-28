@@ -1,7 +1,7 @@
 package joshie.harvest.core.handlers;
 
 import joshie.harvest.core.HFCore;
-import joshie.harvest.core.blocks.BlockFlower.FlowerType;
+import joshie.harvest.core.block.BlockFlower.FlowerType;
 import joshie.harvest.npc.NPCHelper;
 import joshie.harvest.core.lib.HFSounds;
 import joshie.harvest.core.util.HFEvents;

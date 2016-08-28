@@ -23,24 +23,24 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements ICrop {
     private static final Random rand = new Random();
 
     //CropData
-    protected IStateHandler stateHandler;
-    protected IGrowthHandler growthHandler;
-    protected IDropHandler dropHandler;
-    protected Block growsToSide;
-    protected boolean needsWatering;
-    protected boolean alternativeName;
-    protected boolean requiresSickle;
-    protected ItemStack item;
-    protected Season[] seasons;
-    protected int cost;
-    protected int sell;
-    protected int stages;
-    protected int regrow;
+    private IStateHandler stateHandler;
+    private IGrowthHandler growthHandler;
+    private IDropHandler dropHandler;
+    private Block growsToSide;
+    private boolean needsWatering;
+    private boolean alternativeName;
+    private boolean requiresSickle;
+    private ItemStack item;
+    private Season[] seasons;
+    private int cost;
+    private int sell;
+    private int stages;
+    private int regrow;
     protected int year;
-    protected int bag_color;
-    protected int doubleStage;
-    protected AnimalFoodType foodType;
-    protected EnumPlantType type;
+    private int bag_color;
+    private int doubleStage;
+    private AnimalFoodType foodType;
+    private EnumPlantType type;
 
     public Crop() {
         this(new ResourceLocation(MODID, "null_crop"), Season.SPRING, 0, 0, 3, 0, 0, 0);

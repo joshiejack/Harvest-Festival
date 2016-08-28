@@ -2,8 +2,8 @@ package joshie.harvest.cooking.tile;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.cooking.HFCooking;
-import joshie.harvest.cooking.blocks.FridgeData;
-import joshie.harvest.core.base.TileFaceable;
+import joshie.harvest.cooking.block.FridgeData;
+import joshie.harvest.core.base.tile.TileFaceable;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

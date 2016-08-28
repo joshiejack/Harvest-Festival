@@ -3,7 +3,7 @@ package joshie.harvest.buildings.items;
 import joshie.harvest.buildings.loader.CodeGeneratorBuildings;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.lib.CreativeSort;
-import joshie.harvest.core.base.ItemHFEnum;
+import joshie.harvest.core.base.item.ItemHFEnum;
 import joshie.harvest.buildings.items.ItemCheat.Cheat;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

@@ -5,7 +5,7 @@ import gnu.trove.map.hash.TIntObjectHashMap;
 import joshie.harvest.api.cooking.Utensil;
 import joshie.harvest.cooking.recipe.MealImpl;
 import joshie.harvest.core.base.FMLDefinition;
-import joshie.harvest.core.base.ItemHFFML;
+import joshie.harvest.core.base.item.ItemHFFML;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.ItemStack;

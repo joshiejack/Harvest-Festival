@@ -35,7 +35,7 @@ public class QuestRecipe extends Quest {
     @SideOnly(Side.CLIENT)
     @Override
     public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
-        if (HFApi.player.getRelationshipHelper().getRelationship(player, npc) >= relationship) {
+        if (HFApi.relationships.getRelationship(player, npc) >= relationship) {
             complete(player);
             return "text";
         } else return null;

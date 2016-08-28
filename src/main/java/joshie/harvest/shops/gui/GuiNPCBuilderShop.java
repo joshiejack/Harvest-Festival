@@ -5,7 +5,7 @@ import joshie.harvest.core.helpers.generic.StackHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.npc.entity.EntityNPC;
-import joshie.harvest.shops.packets.PacketPurchaseItem;
+import joshie.harvest.shops.packet.PacketPurchaseItem;
 import joshie.harvest.shops.purchaseable.PurchaseableBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;

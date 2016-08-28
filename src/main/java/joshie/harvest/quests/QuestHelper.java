@@ -2,7 +2,7 @@ package joshie.harvest.quests;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.INPC;
-import joshie.harvest.api.player.IQuestHelper;
+import joshie.harvest.api.quests.IQuestHelper;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.Quest.EventsHandled;
 import joshie.harvest.core.handlers.HFTrackers;
@@ -11,10 +11,10 @@ import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.util.IdiotException;
 import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.player.quests.QuestData;
-import joshie.harvest.quests.packets.PacketQuestDecreaseHeld;
-import joshie.harvest.quests.packets.PacketQuestIncrease;
-import joshie.harvest.quests.packets.PacketRequestEntity;
-import joshie.harvest.quests.packets.PacketRequestItem;
+import joshie.harvest.quests.packet.PacketQuestDecreaseHeld;
+import joshie.harvest.quests.packet.PacketQuestIncrease;
+import joshie.harvest.quests.packet.PacketRequestEntity;
+import joshie.harvest.quests.packet.PacketRequestItem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
@@ -32,6 +32,10 @@ import static joshie.harvest.core.network.PacketHandler.sendToClient;
 import static joshie.harvest.core.network.PacketHandler.sendToServer;
 
 public class QuestHelper implements IQuestHelper {
+    public static final QuestHelper INSTANCE = new QuestHelper();
+
+    private QuestHelper() {}
+
     @Override
     public void completeQuest(Quest quest, EntityPlayer player) {
         HFTrackers.getPlayerTracker(player).getQuests().markCompleted(quest, true);
@@ -95,7 +99,7 @@ public class QuestHelper implements IQuestHelper {
     }
 
     public static void rewardRelations(EntityPlayer player, INPC npc, int amount) {
-        HFApi.player.getRelationshipHelper().adjustRelationship(player, npc, amount);
+        HFApi.relationships.adjustRelationship(player, npc, amount);
     }
 
     public static void markCompleted(EntityPlayer player, Quest quest) {

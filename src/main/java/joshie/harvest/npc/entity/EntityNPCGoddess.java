@@ -2,7 +2,7 @@ package joshie.harvest.npc.entity;
 
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.core.HFCore;
-import joshie.harvest.core.blocks.BlockFlower.FlowerType;
+import joshie.harvest.core.block.BlockFlower.FlowerType;
 import joshie.harvest.core.helpers.generic.ItemHelper;
 import joshie.harvest.core.lib.HFSounds;
 import joshie.harvest.npc.HFNPCs;

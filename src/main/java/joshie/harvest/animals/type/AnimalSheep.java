@@ -5,7 +5,7 @@ import net.minecraft.entity.passive.EntityAnimal;
 
 import static joshie.harvest.api.animals.AnimalFoodType.GRASS;
 
-public class AnimalSheep extends AbstractAnimal {  
+public class AnimalSheep extends AnimalAbstract {
     public AnimalSheep() {
         super("sheep", 8, 12, GRASS);
     }

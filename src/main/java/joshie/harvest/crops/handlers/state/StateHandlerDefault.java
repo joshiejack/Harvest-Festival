@@ -1,11 +1,10 @@
 package joshie.harvest.crops.handlers.state;
 
 import com.google.common.collect.ImmutableList;
-import gnu.trove.map.TIntObjectMap;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.IStateHandler;
 import joshie.harvest.crops.HFCrops;
-import joshie.harvest.crops.blocks.BlockHFCrops;
+import joshie.harvest.crops.block.BlockHFCrops;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -16,7 +15,6 @@ public class StateHandlerDefault implements IStateHandler {
     protected PropertyInteger stages;
     protected IBlockState defaultState;
 
-    protected TIntObjectMap<IBlockState> statesMap;
     protected final int maximum;
 
     public StateHandlerDefault(int maximum) {

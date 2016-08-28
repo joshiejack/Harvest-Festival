@@ -1,7 +1,7 @@
 package joshie.harvest.core;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.core.ICreativeSorted;
+import joshie.harvest.core.util.ICreativeSorted;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.lib.HFModInfo;
@@ -20,7 +20,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import static joshie.harvest.mining.items.ItemMaterial.Material.JUNK;
+import static joshie.harvest.mining.item.ItemMaterial.Material.JUNK;
 
 
 @HFLoader(priority = 0)
@@ -107,7 +107,6 @@ public class HFTab extends CreativeTabs {
     }
 
     public static void remap() {
-        System.out.println("REMAPPING");
         HFTab.TOWN.setStack(new ItemStack(HFBuildings.STRUCTURES, 1, 0));
         HFTab.MINING.setStack(HFMining.MATERIALS.getStackFromEnum(JUNK));
         HFTab.FARMING.setStack(HFCrops.STRAWBERRY.getCropStack());

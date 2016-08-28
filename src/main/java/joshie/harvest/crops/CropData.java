@@ -2,7 +2,7 @@ package joshie.harvest.crops;
 
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
-import joshie.harvest.crops.blocks.BlockHFCrops;
+import joshie.harvest.crops.block.BlockHFCrops;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

@@ -3,7 +3,7 @@ package joshie.harvest.npc.gift;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.gift.GiftCategory;
 import joshie.harvest.cooking.HFCooking;
-import joshie.harvest.cooking.items.ItemIngredients.Ingredient;
+import joshie.harvest.cooking.item.ItemIngredients.Ingredient;
 import net.minecraft.item.ItemStack;
 
 public class GiftsLiara extends Gifts {

@@ -1,12 +1,12 @@
 package joshie.harvest.quests.tutorial;
 
-import joshie.harvest.api.HFQuest;
+import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.cooking.CookingHelper;
 import joshie.harvest.cooking.HFCooking;
-import joshie.harvest.cooking.blocks.BlockCookware.Cookware;
-import joshie.harvest.cooking.items.ItemUtensil.Utensil;
+import joshie.harvest.cooking.block.BlockCookware.Cookware;
+import joshie.harvest.cooking.item.ItemUtensil.Utensil;
 import joshie.harvest.quests.QuestQuestion;
 import joshie.harvest.quests.TutorialSelection;
 import net.minecraft.entity.EntityLiving;

@@ -1,6 +1,6 @@
 package joshie.harvest.calendar.command;
 
-import joshie.harvest.calendar.packets.PacketEdit;
+import joshie.harvest.calendar.packet.PacketEdit;
 import joshie.harvest.core.commands.AbstractHFCommand;
 import joshie.harvest.core.commands.AbstractHFCommand.HFCommand;
 import joshie.harvest.core.network.PacketHandler;

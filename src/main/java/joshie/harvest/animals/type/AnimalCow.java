@@ -2,7 +2,7 @@ package joshie.harvest.animals.type;
 
 import static joshie.harvest.api.animals.AnimalFoodType.GRASS;
 
-public class AnimalCow extends AbstractAnimal {
+public class AnimalCow extends AnimalAbstract {
     public AnimalCow() {
         super("cow", 12, 20, GRASS);
     }

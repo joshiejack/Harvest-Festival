@@ -1,7 +1,7 @@
 package joshie.harvest.quests.trade;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.HFQuest;
+import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.core.handlers.HFTrackers;

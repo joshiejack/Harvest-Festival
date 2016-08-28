@@ -1,6 +1,6 @@
 package joshie.harvest.quests.recipes;
 
-import joshie.harvest.api.HFQuest;
+import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.npc.HFNPCs;
 
 @HFQuest("recipe.fish.stew")

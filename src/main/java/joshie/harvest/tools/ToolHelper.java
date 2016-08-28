@@ -3,7 +3,7 @@ package joshie.harvest.tools;
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.cooking.HFCooking;
-import joshie.harvest.core.base.ItemTool;
+import joshie.harvest.core.base.item.ItemTool;
 import joshie.harvest.core.helpers.generic.EntityHelper;
 import joshie.harvest.npc.HFNPCs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,8 +18,8 @@ import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.BRUSH;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.MILKER;
-import static joshie.harvest.cooking.items.ItemIngredients.Ingredient.OIL;
-import static joshie.harvest.npc.items.ItemNPCTool.NPCTool.BLUE_FEATHER;
+import static joshie.harvest.cooking.item.ItemIngredients.Ingredient.OIL;
+import static joshie.harvest.npc.item.ItemNPCTool.NPCTool.BLUE_FEATHER;
 import static joshie.harvest.tools.HFTools.EXHAUSTION;
 import static joshie.harvest.tools.HFTools.FATIGUE;
 

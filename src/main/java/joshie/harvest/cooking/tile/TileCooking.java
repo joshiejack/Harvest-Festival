@@ -3,7 +3,7 @@ package joshie.harvest.cooking.tile;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.IAltItem;
 import joshie.harvest.api.cooking.Utensil;
-import joshie.harvest.core.base.TileFaceable;
+import joshie.harvest.core.base.tile.TileFaceable;
 import joshie.harvest.core.helpers.generic.ItemHelper;
 import joshie.harvest.core.helpers.generic.MCServerHelper;
 import joshie.harvest.core.helpers.generic.StackHelper;

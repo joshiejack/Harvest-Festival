@@ -4,7 +4,7 @@ import joshie.harvest.api.cooking.Ingredient;
 import joshie.harvest.api.cooking.Utensil;
 import joshie.harvest.cooking.CookingAPI;
 import joshie.harvest.cooking.CookingHelper;
-import joshie.harvest.cooking.packets.PacketSelectRecipe;
+import joshie.harvest.cooking.packet.PacketSelectRecipe;
 import joshie.harvest.cooking.recipe.MealImpl;
 import joshie.harvest.core.helpers.ChatHelper;
 import joshie.harvest.core.helpers.generic.MCClientHelper;

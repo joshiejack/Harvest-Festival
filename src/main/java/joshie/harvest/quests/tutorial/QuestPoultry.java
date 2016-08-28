@@ -1,7 +1,7 @@
 package joshie.harvest.quests.tutorial;
 
 import joshie.harvest.animals.HFAnimals;
-import joshie.harvest.api.HFQuest;
+import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.Quest;
@@ -15,7 +15,7 @@ import net.minecraft.item.ItemStack;
 
 import java.util.Set;
 
-import static joshie.harvest.animals.blocks.BlockTray.Tray.FEEDER_EMPTY;
+import static joshie.harvest.animals.block.BlockTray.Tray.FEEDER_EMPTY;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.CHICKEN_FEED;
 import static joshie.harvest.core.lib.HFQuests.TUTORIAL_CHICKEN;
 import static joshie.harvest.npc.HFNPCs.GODDESS;

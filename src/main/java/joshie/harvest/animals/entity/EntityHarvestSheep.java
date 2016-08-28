@@ -1,12 +1,10 @@
 package joshie.harvest.animals.entity;
 
+import io.netty.buffer.ByteBuf;
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
-import joshie.harvest.api.animals.IAnimalType;
-import joshie.harvest.api.relations.IRelatable;
-import joshie.harvest.api.relations.IRelatableDataHandler;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.SizeableHelper;
 import net.minecraft.entity.EntityAgeable;
@@ -24,26 +22,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EntityHarvestSheep extends EntitySheep implements IAnimalTracked {
-    private IAnimalData data;
-    private IAnimalType type;
+    private final IAnimalData data;
 
     public EntityHarvestSheep(World world) {
         super(world);
         setSize(1.4F, 1.4F);
-        type = HFApi.animals.getType(this);
-        data = HFApi.animals.newData(this);
+        data = HFApi.animals.newData(this, "sheep");
         tasks.addTask(3, new EntityAIEat(this));
         tasks.removeTask(entityAIEatGrass);
-    }
-    
-    @Override
-    public IRelatableDataHandler getDataHandler() {
-        return HFApi.player.getRelationshipHelper().getDataHandler("entity");
-    }
-    
-    @Override
-    public IRelatable getRelatable() {
-        return this;
     }
 
     @Override
@@ -52,14 +38,9 @@ public class EntityHarvestSheep extends EntitySheep implements IAnimalTracked {
     }
 
     @Override
-    public IAnimalType getType() {
-        return type;
-    }
-
-    @Override
     public boolean processInteract(EntityPlayer player, EnumHand hand, ItemStack stack) {
         if (stack != null) {
-            if (HFApi.animals.canEat(stack, type.getFoodTypes())) {
+            if (HFApi.animals.canEat(stack, data.getType().getFoodTypes())) {
                 if (!worldObj.isRemote) {
                     data.feed(player);
                 }
@@ -105,6 +86,17 @@ public class EntityHarvestSheep extends EntitySheep implements IAnimalTracked {
     @Override
     public EntitySheep createChild(EntityAgeable ageable) {
         return new EntityHarvestSheep(worldObj);
+    }
+
+    /*################### Data ############## */
+    @Override
+    public void writeSpawnData(ByteBuf buffer) {
+        data.toBytes(buffer);
+    }
+
+    @Override
+    public void readSpawnData(ByteBuf buffer) {
+        data.fromBytes(buffer);
     }
 
     @Override

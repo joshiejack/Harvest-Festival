@@ -2,7 +2,7 @@ package joshie.harvest.crops.handlers.state;
 
 import com.google.common.collect.ImmutableList;
 import joshie.harvest.api.crops.IStateHandler;
-import joshie.harvest.crops.blocks.BlockHFCrops;
+import joshie.harvest.crops.block.BlockHFCrops;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.AxisAlignedBB;

@@ -1,9 +1,9 @@
 package joshie.harvest.mining;
 
-import joshie.harvest.api.core.IDailyTickableBlock;
-import joshie.harvest.core.blocks.BlockFlower.FlowerType;
+import joshie.harvest.api.ticking.IDailyTickableBlock;
+import joshie.harvest.core.block.BlockFlower.FlowerType;
 import joshie.harvest.core.HFCore;
-import joshie.harvest.mining.blocks.BlockOre.Ore;
+import joshie.harvest.mining.block.BlockOre.Ore;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;

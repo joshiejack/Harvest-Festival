@@ -5,10 +5,7 @@ import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
-import joshie.harvest.api.animals.IAnimalType;
 import joshie.harvest.api.animals.IMilkable;
-import joshie.harvest.api.relations.IRelatable;
-import joshie.harvest.api.relations.IRelatableDataHandler;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.SizeableHelper;
 import net.minecraft.entity.EntityAgeable;
@@ -19,38 +16,20 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 
-public class EntityHarvestCow extends EntityCow implements IAnimalTracked, IEntityAdditionalSpawnData, IMilkable {
-    private IAnimalData data;
-    private IAnimalType type;
+public class EntityHarvestCow extends EntityCow implements IAnimalTracked, IMilkable {
+    private final IAnimalData data;
 
     public EntityHarvestCow(World world) {
         super(world);
         setSize(1.4F, 1.4F);
-        type = HFApi.animals.getType(this);
-        data = HFApi.animals.newData(this);
+        data = HFApi.animals.newData(this, "cow");
         tasks.addTask(3, new EntityAIEat(this));
-    }
-
-    @Override
-    public IRelatableDataHandler getDataHandler() {
-        return HFApi.player.getRelationshipHelper().getDataHandler("entity");
-    }
-
-    @Override
-    public IRelatable getRelatable() {
-        return this;
     }
 
     @Override
     public IAnimalData getData() {
         return data;
-    }
-
-    @Override
-    public IAnimalType getType() {
-        return type;
     }
 
     @Override
@@ -73,7 +52,7 @@ public class EntityHarvestCow extends EntityCow implements IAnimalTracked, IEnti
     @Override
     public boolean processInteract(EntityPlayer player, EnumHand hand, ItemStack stack) {
         if (stack != null) {
-            if (HFApi.animals.canEat(stack, type.getFoodTypes())) {
+            if (HFApi.animals.canEat(stack, data.getType().getFoodTypes())) {
                 if (!worldObj.isRemote) {
                     data.feed(player);
                 }
@@ -102,6 +81,7 @@ public class EntityHarvestCow extends EntityCow implements IAnimalTracked, IEnti
         return new EntityHarvestCow(this.worldObj);
     }
 
+    /*################### Data ############## */
     @Override
     public void writeSpawnData(ByteBuf buffer) {
         data.toBytes(buffer);

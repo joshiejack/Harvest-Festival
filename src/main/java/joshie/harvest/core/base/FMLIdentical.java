@@ -1,5 +1,6 @@
 package joshie.harvest.core.base;
 
+import joshie.harvest.core.base.item.ItemHFFML;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;

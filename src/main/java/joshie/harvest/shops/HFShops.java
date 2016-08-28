@@ -11,15 +11,15 @@ import joshie.harvest.buildings.Building;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.core.HFCore;
-import joshie.harvest.core.blocks.BlockStorage.Storage;
+import joshie.harvest.core.block.BlockStorage.Storage;
 import joshie.harvest.core.util.HFLoader;
 import joshie.harvest.crops.Crop;
 import joshie.harvest.crops.CropRegistry;
 import joshie.harvest.crops.HFCrops;
-import joshie.harvest.crops.blocks.BlockSprinkler.Sprinkler;
+import joshie.harvest.crops.block.BlockSprinkler.Sprinkler;
 import joshie.harvest.mining.HFMining;
-import joshie.harvest.mining.blocks.BlockStone;
-import joshie.harvest.mining.blocks.BlockStone.Type;
+import joshie.harvest.mining.block.BlockStone;
+import joshie.harvest.mining.block.BlockStone.Type;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.shops.purchaseable.*;
 import joshie.harvest.tools.HFTools;
@@ -28,19 +28,19 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-import static joshie.harvest.animals.blocks.BlockSizedStorage.SizedStorage.INCUBATOR;
-import static joshie.harvest.animals.blocks.BlockTray.Tray.NEST_EMPTY;
-import static joshie.harvest.animals.blocks.BlockTrough.Trough.WOOD;
+import static joshie.harvest.animals.block.BlockSizedStorage.SizedStorage.INCUBATOR;
+import static joshie.harvest.animals.block.BlockTray.Tray.NEST_EMPTY;
+import static joshie.harvest.animals.block.BlockTrough.Trough.WOOD;
 import static joshie.harvest.animals.item.ItemAnimalSpawner.Spawner.*;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.*;
 import static joshie.harvest.api.calendar.Season.*;
 import static joshie.harvest.api.calendar.Weekday.*;
 import static joshie.harvest.cooking.HFCooking.*;
-import static joshie.harvest.cooking.blocks.BlockCookware.Cookware.*;
-import static joshie.harvest.cooking.items.ItemIngredients.Ingredient.*;
-import static joshie.harvest.cooking.items.ItemUtensil.Utensil.KNIFE;
+import static joshie.harvest.cooking.block.BlockCookware.Cookware.*;
+import static joshie.harvest.cooking.item.ItemIngredients.Ingredient.*;
+import static joshie.harvest.cooking.item.ItemUtensil.Utensil.KNIFE;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
-import static joshie.harvest.npc.items.ItemNPCTool.NPCTool.BLUE_FEATHER;
+import static joshie.harvest.npc.item.ItemNPCTool.NPCTool.BLUE_FEATHER;
 
 @HFLoader
 public class HFShops {

@@ -4,9 +4,9 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.relations.IRelatableDataHandler;
 import joshie.harvest.core.network.PacketHandler;
-import joshie.harvest.player.packets.PacketSyncGifted;
-import joshie.harvest.player.packets.PacketSyncMarriage;
-import joshie.harvest.player.packets.PacketSyncRelationship;
+import joshie.harvest.player.packet.PacketSyncGifted;
+import joshie.harvest.player.packet.PacketSyncMarriage;
+import joshie.harvest.player.packet.PacketSyncRelationship;
 import joshie.harvest.npc.HFNPCs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -95,7 +95,7 @@ public class RelationshipDataServer extends RelationshipData {
         NBTTagList relationList = nbt.getTagList("Relationships", 10);
         for (int i = 0; i < relationList.tagCount(); i++) {
             NBTTagCompound tag = relationList.getCompoundTagAt(i);
-            IRelatableDataHandler data = HFApi.player.getRelationshipHelper().getDataHandler(tag.getString("Handler"));
+            IRelatableDataHandler data = HFApi.relationships.getDataHandler(tag.getString("Handler"));
             IRelatable relatable = data.readFromNBT(tag);
             if (relatable != null) {
                 int value = tag.getInteger("Value");
@@ -107,7 +107,7 @@ public class RelationshipDataServer extends RelationshipData {
         NBTTagList talkedList = nbt.getTagList("TalkedTo", 10);
         for (int i = 0; i < talkedList.tagCount(); i++) {
             NBTTagCompound tag = talkedList.getCompoundTagAt(i);
-            IRelatableDataHandler data = HFApi.player.getRelationshipHelper().getDataHandler(tag.getString("Handler"));
+            IRelatableDataHandler data = HFApi.relationships.getDataHandler(tag.getString("Handler"));
             IRelatable relatable = data.readFromNBT(tag);
             if (relatable != null) talked.add(relatable);
         }
@@ -116,7 +116,7 @@ public class RelationshipDataServer extends RelationshipData {
         NBTTagList giftedList = nbt.getTagList("Gifted", 10);
         for (int i = 0; i < giftedList.tagCount(); i++) {
             NBTTagCompound tag = giftedList.getCompoundTagAt(i);
-            IRelatableDataHandler data = HFApi.player.getRelationshipHelper().getDataHandler(tag.getString("Handler"));
+            IRelatableDataHandler data = HFApi.relationships.getDataHandler(tag.getString("Handler"));
             IRelatable relatable = data.readFromNBT(tag);
             if (relatable != null) gifted.add(relatable);
         }
@@ -125,7 +125,7 @@ public class RelationshipDataServer extends RelationshipData {
         NBTTagList marriedList = nbt.getTagList("MarriedTo", 10);
         for (int i = 0; i < marriedList.tagCount(); i++) {
             NBTTagCompound tag = marriedList.getCompoundTagAt(i);
-            IRelatableDataHandler data = HFApi.player.getRelationshipHelper().getDataHandler(tag.getString("Handler"));
+            IRelatableDataHandler data = HFApi.relationships.getDataHandler(tag.getString("Handler"));
             IRelatable relatable = data.readFromNBT(tag);
             if (relatable != null) marriedTo.add(relatable);
         }

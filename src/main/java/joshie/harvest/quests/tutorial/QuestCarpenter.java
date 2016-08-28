@@ -1,6 +1,6 @@
 package joshie.harvest.quests.tutorial;
 
-import joshie.harvest.api.HFQuest;
+import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.buildings.HFBuildings;

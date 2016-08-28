@@ -2,7 +2,7 @@ package joshie.harvest.core;
 
 import com.google.common.collect.Lists;
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.HFQuest;
+import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.core.commands.AbstractHFCommand;
 import joshie.harvest.core.commands.AbstractHFCommand.HFCommand;
 import joshie.harvest.core.commands.CommandManager;

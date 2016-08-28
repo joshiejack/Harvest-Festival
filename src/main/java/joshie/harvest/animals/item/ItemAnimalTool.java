@@ -4,10 +4,9 @@ import joshie.harvest.animals.item.ItemAnimalTool.Tool;
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.animals.IMilkable;
-import joshie.harvest.api.core.ICreativeSorted;
-import joshie.harvest.tools.ToolHelper;
+import joshie.harvest.core.base.item.ItemHFEnum;
 import joshie.harvest.core.lib.CreativeSort;
-import joshie.harvest.core.base.ItemHFEnum;
+import joshie.harvest.tools.ToolHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityChicken;
@@ -26,7 +25,7 @@ import java.util.HashMap;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.*;
 import static net.minecraft.util.text.TextFormatting.AQUA;
 
-public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> implements ICreativeSorted {
+public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> {
     public enum Tool implements IStringSerializable {
         MILKER(true), BRUSH(true), MEDICINE(false), CHICKEN_FEED(false), MIRACLE_POTION(false);
 

@@ -1,11 +1,11 @@
 package joshie.harvest.crops.tile;
 
-import joshie.harvest.core.base.TileDaily;
+import joshie.harvest.core.base.tile.TileDaily;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.crops.CropData;
 import joshie.harvest.crops.HFCrops;
-import joshie.harvest.crops.blocks.BlockHFCrops;
-import joshie.harvest.crops.blocks.BlockHFCrops.Stage;
+import joshie.harvest.crops.block.BlockHFCrops;
+import joshie.harvest.crops.block.BlockHFCrops.Stage;
 import net.minecraft.nbt.NBTTagCompound;
 
 import static joshie.harvest.crops.CropHelper.isWetSoil;

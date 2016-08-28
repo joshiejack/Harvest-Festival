@@ -1,6 +1,6 @@
 package joshie.harvest.quests.recipes;
 
-import joshie.harvest.api.HFQuest;
+import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.lib.HFQuests;
 import joshie.harvest.npc.HFNPCs;

@@ -1,12 +1,12 @@
 package joshie.harvest.buildings.items;
 
-import joshie.harvest.api.core.ICreativeSorted;
+import joshie.harvest.core.util.ICreativeSorted;
 import joshie.harvest.buildings.Building;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.buildings.render.BuildingKey;
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.base.ItemHFFML;
+import joshie.harvest.core.base.item.ItemHFFML;
 import joshie.harvest.town.TownHelper;
 import joshie.harvest.core.helpers.generic.BuildingHelper;
 import joshie.harvest.core.util.Direction;

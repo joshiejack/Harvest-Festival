@@ -80,7 +80,7 @@ public abstract class Quest extends Impl<Quest> {
             onStageChanged(player, previous, quest_stage);
         }
 
-        HFApi.player.getQuestHelper().increaseStage(this, player);
+        HFApi.quests.increaseStage(this, player);
     }
 
     /** Try not to ever call this internally, ALWAYS use increaseStage
@@ -127,29 +127,29 @@ public abstract class Quest extends Impl<Quest> {
     /** Call to complete a quest, MUST BE CALLED ON ONE SIDE ONLY
      * @param player    the player to complete the quest for **/
     public final void complete(EntityPlayer player) {
-        HFApi.player.getQuestHelper().completeQuest(this, player);
+        HFApi.quests.completeQuest(this, player);
     }
 
     /** Call this to reward the player with an item
      *  MUST BE CALLED ON ONE SIDE ONLY **/
     public final void takeHeldStack(EntityPlayer player, int amount) {
-        HFApi.player.getQuestHelper().takeHeldStack(player, amount);
+        HFApi.quests.takeHeldStack(player, amount);
     }
 
     /** Call this to reward the player with an item
      *  MUST BE CALLED ON ONE SIDE ONLY **/
     public final void rewardItem(EntityPlayer player, ItemStack stack) {
-        HFApi.player.getQuestHelper().rewardItem(this, player, stack);
+        HFApi.quests.rewardItem(this, player, stack);
     }
 
     /** Call this to reward the player with gold, SERVER CALLS ONLINE **/
     public final void rewardGold(EntityPlayer player, long gold) {
-        HFApi.player.getQuestHelper().rewardGold(player, gold);
+        HFApi.quests.rewardGold(player, gold);
     }
 
     /** Spawns an entity, call this on one side only **/
     public final void rewardEntity(EntityPlayer player, String entity) {
-        HFApi.player.getQuestHelper().rewardEntity(this, player, entity);
+        HFApi.quests.rewardEntity(this, player, entity);
     }
 
     /** Called when attempting to spawn an entity from the client **/

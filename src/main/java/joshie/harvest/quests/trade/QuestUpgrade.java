@@ -1,17 +1,17 @@
 package joshie.harvest.quests.trade;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.HFQuest;
+import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.calendar.CalendarDate;
-import joshie.harvest.core.base.ItemTool;
+import joshie.harvest.core.base.item.ItemTool;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.mining.HFMining;
-import joshie.harvest.mining.items.ItemMaterial.Material;
+import joshie.harvest.mining.item.ItemMaterial.Material;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;

@@ -3,7 +3,7 @@ package joshie.harvest.mining.render;
 import joshie.harvest.core.render.FakeEntityRenderer.EntityItemRenderer;
 import joshie.harvest.core.render.FakeEntityRenderer.RenderPair;
 import joshie.harvest.mining.HFMining;
-import joshie.harvest.mining.items.ItemDarkSpawner.DarkSpawner;
+import joshie.harvest.mining.item.ItemDarkSpawner.DarkSpawner;
 import net.minecraft.client.model.ModelBase;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.fml.relauncher.Side;

@@ -47,6 +47,10 @@ public class AnimalEvents {
             List<Entity> passengers = event.getEntity().getPassengers();
             for (int i = passengers.size() - 1; i >= 0; --i) {
                 Entity entity = passengers.get(i);
+                if (entity instanceof IAnimalTracked) {
+                    ((IAnimalTracked)entity).getData().dismount(player);
+                }
+
                 entity.removePassengers();
                 entity.dismountRidingEntity();
                 entity.rotationPitch = player.rotationPitch;

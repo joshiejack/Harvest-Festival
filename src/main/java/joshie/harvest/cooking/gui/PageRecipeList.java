@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import static joshie.harvest.cooking.HFCooking.COOKWARE;
-import static joshie.harvest.cooking.blocks.BlockCookware.Cookware.*;
+import static joshie.harvest.cooking.block.BlockCookware.Cookware.*;
 import static joshie.harvest.cooking.gui.GuiCookbook.MASTER;
 import static joshie.harvest.cooking.gui.GuiCookbook.MAX_UTENSILS_DISPLAY;
 

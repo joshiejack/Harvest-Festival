@@ -1,14 +1,14 @@
 package joshie.harvest.gathering;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.core.blocks.BlockFlower.FlowerType;
+import joshie.harvest.core.block.BlockFlower.FlowerType;
 import joshie.harvest.core.util.HFLoader;
-import joshie.harvest.gathering.blocks.BlockRock;
-import joshie.harvest.gathering.blocks.BlockWood;
+import joshie.harvest.gathering.block.BlockRock;
+import joshie.harvest.gathering.block.BlockWood;
 import joshie.harvest.core.HFCore;
 
-import static joshie.harvest.gathering.blocks.BlockRock.Rock.*;
-import static joshie.harvest.gathering.blocks.BlockWood.Wood.*;
+import static joshie.harvest.gathering.block.BlockRock.Rock.*;
+import static joshie.harvest.gathering.block.BlockWood.Wood.*;
 
 @HFLoader
 public class HFGathering {

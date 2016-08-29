@@ -1,5 +1,4 @@
 ## Design
-- Redesign main page of recipe book
 - Add lang for extra chatting
 - Add lang for all the quests
 - Add lang for all the recipes

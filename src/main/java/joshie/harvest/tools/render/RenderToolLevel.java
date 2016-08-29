@@ -32,7 +32,7 @@ public class RenderToolLevel {
 
             int k = level < 10 ? 65 : level < 100 ? 70 : 80;
             int i1 = event.getX();
-            int j1 = event.getY() + 18 + (12 * (event.getLines().size() - 1));
+            int j1 = event.getY() + 18 + (11 * (event.getLines().size() - 1));
             int k1 = 7;
 
             if (i1 + k > gui.width) {

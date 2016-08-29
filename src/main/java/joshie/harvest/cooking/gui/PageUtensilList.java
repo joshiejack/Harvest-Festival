@@ -5,6 +5,7 @@ import joshie.harvest.core.util.Text;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
+import org.apache.commons.lang3.StringEscapeUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +40,11 @@ public class PageUtensilList extends Page {
     @Override
     public void draw(int mouseX, int mouseY) {
         boolean hoverX = mouseX >= 166 && mouseX <= 288;
-        gui.drawString(20, 20, Text.translate("cookbook"));
+        //Left
+        gui.drawString(45, 13, TextFormatting.BOLD + "" + TextFormatting.UNDERLINE + Text.translate("cookbook"));
+        gui.drawString(25, 25, StringEscapeUtils.unescapeJava(Text.translate("meal.intro")));
+
+        //Right
         gui.drawString(205, 13, TextFormatting.BOLD + "" + TextFormatting.UNDERLINE + Text.translate("utensils"));
         for (int i = 0; i < pages.size(); i++) {
             ItemStack stack = pages.get(i).getItem();

@@ -1,8 +1,10 @@
 package joshie.harvest.api.quests;
 
-import joshie.harvest.api.quests.Quest;
+import joshie.harvest.api.quests.Quest.EventType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+
+import java.util.Set;
 
 public interface IQuestHelper {
     /** Increases the stage of the quest
@@ -40,4 +42,10 @@ public interface IQuestHelper {
      * @param player    the player
      * @param entity    the entity */
     void rewardEntity(Quest quest, EntityPlayer player, String entity);
+
+    /** Returns all the quests, that need to be called for this EventType
+     *  If there are none, the set will be empty
+     * @param player    the player
+     * @param type      the event type     */
+    Set<Quest> getHandledQuests(EntityPlayer player, EventType type);
 }

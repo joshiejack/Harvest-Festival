@@ -95,6 +95,7 @@ harvestfestival.recipe.invalid=Junk Recipe
 
 #Meals
 harvestfestival.meal.learnt=New Recipe Learnt!
+harvestfestival.meal.intro=Welcome to the build your own recipe book. Inside you can often find nothing! You'll need to teach yourself a few recipes first, you can buy some from the café.\n\nThere's also a rumour going around that the townspeople have some secret recipes of their own, perhaps you should get to know them too.
 harvestfestival.meal.missing=Impossible!
 harvestfestival.meal.missing.description=You are still missing some ingredients
 harvestfestival.meal.success=Success!
@@ -391,8 +392,8 @@ harvestfestival.npc.girafi.name=Johan
 # have to do in order to complete the quest in question.
 #Key-Codes for conversations
 # %$ = Money - Player has
-# %rP = Player's Romantic Interest's name
-# %rE = Entity's Romantic Interest's name
+# %P = Player's Romantic Interest's name
+# %E = Entity's Romantic Interest's name
 # %p = Players Name
 # %e = NPC Name
 #Conversations

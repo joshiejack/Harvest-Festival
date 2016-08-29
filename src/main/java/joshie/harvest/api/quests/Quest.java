@@ -199,13 +199,15 @@ public abstract class Quest extends Impl<Quest> {
      ****/
 
     //You need to return the events that get handled, so that they will get called
-    public EventsHandled[] getHandledEvents() { return new EventsHandled[0]; }
+    public EventType[] getHandledEvents() { return new EventType[0]; }
     public void onEntityInteract(EntityPlayer player, Entity target) {}
     public void onClosedChat(EntityPlayer player, EntityLiving entity, INPC npc) { }
     public void onRightClickBlock(EntityPlayer player, BlockPos pos, EnumFacing face) {}
 
-    public enum EventsHandled {
-        ENTITYINTERACT, CLOSEDCHAT, RIGHTCLICK, BUILDINGADD
+    public static class EventType {
+        public static final EventType ENTITY_INTERACT = new EventType();
+        public static final EventType CLOSED_CHAT = new EventType();
+        public static final EventType RIGHT_CLICK_BLOCK = new EventType();
     }
 
     /** Used for selection menus **/

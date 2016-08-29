@@ -2,7 +2,7 @@ package joshie.harvest.player.quests;
 
 import com.google.common.collect.HashMultimap;
 import joshie.harvest.api.quests.Quest;
-import joshie.harvest.api.quests.Quest.EventsHandled;
+import joshie.harvest.api.quests.Quest.EventType;
 import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
 
@@ -11,13 +11,13 @@ import java.util.Set;
 
 public abstract class QuestData {
     protected HashSet<Quest> current = new HashSet<>(100);
-    protected HashMultimap<EventsHandled, Quest> eventHandlers = HashMultimap.create();
+    protected HashMultimap<EventType, Quest> eventHandlers = HashMultimap.create();
 
     public HashSet<Quest> getCurrent() {
         return current;
     }
 
-    public Set<Quest> getHandled(EventsHandled events) {
+    public Set<Quest> getHandled(EventType events) {
         return eventHandlers.get(events);
     }
 

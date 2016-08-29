@@ -2,7 +2,7 @@ package joshie.harvest.player.quests;
 
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.Quest;
-import joshie.harvest.api.quests.Quest.EventsHandled;
+import joshie.harvest.api.quests.Quest.EventType;
 import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.quests.packet.PacketQuestSetAvailable;
 import joshie.harvest.quests.packet.PacketQuestSetCurrent;
@@ -32,7 +32,7 @@ public class QuestDataServer extends QuestData {
             try {
                 Quest quest = q.getClass().newInstance().setRegistryName(q.getRegistryName()).setStage(0); //Set the current quest to your new
                 current.add(quest);
-                for (EventsHandled handled: quest.getHandledEvents()) {
+                for (EventType handled: quest.getHandledEvents()) {
                     eventHandlers.get(handled).add(quest);
                 }
 
@@ -62,7 +62,7 @@ public class QuestDataServer extends QuestData {
             q.claim(master.getAndCreatePlayer());
             finished.add(q);
             current.remove(q);
-            for (EventsHandled handled: q.getHandledEvents()) {
+            for (EventType handled: q.getHandledEvents()) {
                 eventHandlers.get(handled).remove(q);
             }
 
@@ -126,7 +126,7 @@ public class QuestDataServer extends QuestData {
                     Quest quest = q.getClass().newInstance().setRegistryName(q.getRegistryName());
                     quest.readFromNBT(tag);
                     current.add(quest);
-                    for (EventsHandled handled: quest.getHandledEvents()) {
+                    for (EventType handled: quest.getHandledEvents()) {
                         eventHandlers.get(handled).add(q);
                     }
                 } catch (Exception e) {}

@@ -4,7 +4,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.IQuestHelper;
 import joshie.harvest.api.quests.Quest;
-import joshie.harvest.api.quests.Quest.EventsHandled;
+import joshie.harvest.api.quests.Quest.EventType;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.ItemHelper;
 import joshie.harvest.core.network.PacketHandler;
@@ -23,6 +23,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.play.server.SPacketSetSlot;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.util.FakePlayer;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -90,7 +91,15 @@ public class QuestHelper implements IQuestHelper {
         }
     }
 
-    public static Set<Quest> getHandledQuests(EntityPlayer player, EventsHandled events) {
+    private static final Set<Quest> EMPTY = new HashSet<>();
+
+    private boolean isFakePlayer(EntityPlayer player) {
+        return player instanceof FakePlayer;
+    }
+
+    @Override
+    public Set<Quest> getHandledQuests(EntityPlayer player, EventType events) {
+        if (isFakePlayer(player)) return EMPTY;
         return HFTrackers.getPlayerTracker(player).getQuests().getHandled(events);
     }
 

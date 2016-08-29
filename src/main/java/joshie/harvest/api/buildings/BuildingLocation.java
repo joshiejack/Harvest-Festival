@@ -7,7 +7,7 @@ public class BuildingLocation {
     private ResourceLocation building;
     private String location;
 
-    public BuildingLocation(IBuilding building, String location) {
+    public BuildingLocation(Building building, String location) {
         this.building = HFApi.buildings.getNameForBuilding(building);
         this.location = location;
     }

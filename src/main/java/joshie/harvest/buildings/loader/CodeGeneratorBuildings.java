@@ -1,6 +1,6 @@
 package joshie.harvest.buildings.loader;
 
-import joshie.harvest.buildings.Building;
+import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.PlaceableHelper;
@@ -75,12 +75,11 @@ public class CodeGeneratorBuildings {
                         if (block == Blocks.CHEST) {
                             TileEntityChest chest = (TileEntityChest) world.getTileEntity(new BlockPos(x1 + x, y1 + y, z1 + z));
                             String name = chest.getName();
-                            String field = name;
                             if (name.startsWith("npc.")) {
-                                field = name.replace("npc.", "");
-                                NPC npc = NPCRegistry.REGISTRY.getObject(new ResourceLocation(field));
+                                name = name.replace("npc.", "");
+                                NPC npc = NPCRegistry.REGISTRY.getValue(new ResourceLocation(name));
                                 String npcField = npc == null ? "" : npc.getRegistryName().toString();
-                                ret.add(new PlaceableNPC(field, npcField, x, y, z));
+                                ret.add(new PlaceableNPC(name, npcField, x, y, z));
                                 ret.add(new PlaceableBlock(Blocks.AIR.getDefaultState(), x, y, z));
                                 continue;
                             }
@@ -118,7 +117,7 @@ public class CodeGeneratorBuildings {
                 }
             }
 
-            Building building = new Building();
+            BuildingImpl building = new BuildingImpl();
             building.components = new Placeable[ret.size()];
             for (int j = 0; j < ret.size(); j++) {
                 building.components[j] = ret.get(j);

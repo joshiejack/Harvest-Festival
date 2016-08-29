@@ -31,7 +31,7 @@ public class PlaceableNPC extends PlaceableEntity {
     @Override
     public Entity getEntity(World world, BlockPos pos, Direction direction) {
         if (npc == null || npc.equals("")) return null;
-        NPC inpc = NPCRegistry.REGISTRY.getObject(new ResourceLocation(npc)); if (inpc == null) return null;
+        NPC inpc = NPCRegistry.REGISTRY.getValue(new ResourceLocation(npc)); if (inpc == null) return null;
         EntityNPC entity = NPCHelper.getEntityForNPC(world, inpc);
         entity.setPosition(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
         entity.resetSpawnHome();

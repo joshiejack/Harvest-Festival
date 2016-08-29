@@ -6,7 +6,6 @@ import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.item.ItemStack;
 import org.objectweb.asm.*;
 
-import static net.minecraftforge.fml.common.Loader.MC_VERSION;
 import static org.objectweb.asm.Opcodes.*;
 
 /** This gives me a hook in to renderByItem so i can do what vanilla does
@@ -27,9 +26,7 @@ public class RenderItemTransformer extends AbstractASM {
 
     @Override
     public boolean isClass(String name) {
-        return name.equals("net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer") ||
-                (MC_VERSION.equals("1.9.4") && name.equals("bnb")) ||
-                (MC_VERSION.equals("1.10.2") && name.equals("bnx"));
+        return name.equals("net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer") || name.equals("bnx");
     }
 
     @Override

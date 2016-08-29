@@ -18,7 +18,7 @@ import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class CookingHelper {
     public static ItemStack getRecipe(String name) {
-        MealImpl recipe = CookingAPI.REGISTRY.getObject(new ResourceLocation(MODID, name));
+        MealImpl recipe = CookingAPI.REGISTRY.getValue(new ResourceLocation(MODID, name));
         return HFCooking.RECIPE.getStackFromObject(recipe);
     }
 

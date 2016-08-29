@@ -33,7 +33,7 @@ public class PacketQuestSetCurrent extends PenguinPacket {
     public void fromBytes(ByteBuf buf) {
         boolean isNull = buf.readBoolean();
         if (!isNull) {
-            Quest q = Quest.REGISTRY.getObject(new ResourceLocation(ByteBufUtils.readUTF8String(buf)));
+            Quest q = Quest.REGISTRY.getValue(new ResourceLocation(ByteBufUtils.readUTF8String(buf)));
 
             try {
                 quest = q.getClass().newInstance().setRegistryName(q.getRegistryName());

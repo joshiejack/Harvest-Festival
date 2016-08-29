@@ -27,7 +27,7 @@ public class PacketSelectRecipe extends PenguinPacket {
 
     @Override
     public void fromBytes(ByteBuf from) {
-        recipe = CookingAPI.REGISTRY.getObject(new ResourceLocation(ByteBufUtils.readUTF8String(from)));
+        recipe = CookingAPI.REGISTRY.getValue(new ResourceLocation(ByteBufUtils.readUTF8String(from)));
     }
 
     @Override

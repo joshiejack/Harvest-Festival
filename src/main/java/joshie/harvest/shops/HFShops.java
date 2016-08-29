@@ -7,7 +7,7 @@ import joshie.harvest.animals.entity.EntityHarvestSheep;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.api.shops.IShop;
-import joshie.harvest.buildings.Building;
+import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.core.HFCore;
@@ -138,7 +138,7 @@ public class HFShops {
 
     private static void registerCarpenter() {
         CARPENTER = HFApi.shops.newShop(new ResourceLocation(MODID, "carpenter"), HFNPCs.BUILDER);
-        for (Building building : BuildingRegistry.REGISTRY.getValues()) {
+        for (BuildingImpl building : BuildingRegistry.REGISTRY.getValues()) {
             if (building.canPurchase()) {
                 CARPENTER.addItem(new PurchaseableBuilding(building));
             }

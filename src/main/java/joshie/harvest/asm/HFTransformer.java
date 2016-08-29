@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-@MCVersion("1.9.4")
+@MCVersion("1.10.2")
 public class HFTransformer implements IFMLLoadingPlugin, IClassTransformer {
     public static boolean isObfuscated = false;
     private static List<AbstractASM> asm = new ArrayList<>();

@@ -2,7 +2,7 @@ package joshie.harvest.quests.tutorial;
 
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.npc.INPC;
-import joshie.harvest.buildings.Building;
+import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.lib.HFQuests;
@@ -41,7 +41,7 @@ public class QuestIntro extends QuestQuestion {
     public void claim(EntityPlayer player) {
         if (quest_stage == 0) { //We were not new
             HFQuests.TUTORIAL_CARPENTER.complete(player);
-            rewardItem(player, HFBuildings.BLUEPRINTS.getStackFromObject((Building)HFBuildings.CARPENTER));
+            rewardItem(player, HFBuildings.BLUEPRINTS.getStackFromObject((BuildingImpl)HFBuildings.CARPENTER));
         } else rewardItem(player, new ItemStack(HFCore.FLOWERS, 4, 0));
     }
 

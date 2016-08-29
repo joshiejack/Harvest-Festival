@@ -4,7 +4,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.FMLControlledNamespacedRegistry;
+import net.minecraftforge.fml.common.registry.IForgeRegistry;
 import net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -12,14 +12,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 
 public abstract class ItemHFFML<I extends ItemHFFML, E extends Impl<E>> extends ItemHFBase<I> {
-    protected FMLControlledNamespacedRegistry<E> registry;
-    public ItemHFFML(FMLControlledNamespacedRegistry<E> registry) {
+    protected IForgeRegistry<E> registry;
+    public ItemHFFML(IForgeRegistry<E> registry) {
         super();
         this.registry = registry;
         setHasSubtypes(true);
     }
 
-    public ItemHFFML(FMLControlledNamespacedRegistry<E> registry, CreativeTabs tab) {
+    public ItemHFFML(IForgeRegistry<E> registry, CreativeTabs tab) {
         super(tab);
         this.registry = registry;
         setHasSubtypes(true);
@@ -34,20 +34,20 @@ public abstract class ItemHFFML<I extends ItemHFFML, E extends Impl<E>> extends 
     public abstract E getNullValue();
 
     public E getObjectFromStack(ItemStack stack) {
-        E e = registry.getObjectById(stack.getItemDamage());
+        E e = registry.getValues().get(stack.getItemDamage());
         return e != null ? e: getNullValue();
     }
 
     public ItemStack getStackFromResource(ResourceLocation resource) {
-        return new ItemStack(this, 1, registry.getId(resource));
+        return new ItemStack(this, 1, registry.getValues().indexOf(registry.getValue(resource)));
     }
 
     public ItemStack getStackFromObject(E e) {
-        return new ItemStack(this, 1, registry.getIDForObject(e));
+        return new ItemStack(this, 1, registry.getValues().indexOf(e));
     }
 
     public ItemStack getCreativeStack(Item item, E e) {
-        return new ItemStack(item, 1, registry.getIDForObject(e));
+        return new ItemStack(item, 1, registry.getValues().indexOf(e));
     }
 
     @Override

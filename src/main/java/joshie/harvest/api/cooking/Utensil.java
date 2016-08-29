@@ -55,7 +55,7 @@ public class Utensil {
     }
 
     public static Utensil getUtensilFromIndex(int index) {
-        return UTENSILS[Math.max(0, Math.min(UTENSILS.length, index))];
+        return UTENSILS[Math.max(0, Math.min(UTENSILS.length - 1, index))];
     }
 
     private static int getNextID() {

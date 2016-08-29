@@ -6,7 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.buildings.IBuilding;
+import joshie.harvest.api.buildings.Building;
 import joshie.harvest.buildings.items.ItemBlueprint;
 import joshie.harvest.buildings.items.ItemBuilding;
 import joshie.harvest.buildings.items.ItemCheat;
@@ -33,21 +33,21 @@ public class HFBuildings {
     public static final ItemBlueprint BLUEPRINTS = new ItemBlueprint().register("blueprint");
     public static final ItemCheat CHEAT = new ItemCheat().register("cheat");
 
-    public static final Building null_building = new Building();
-    public static final IBuilding BARN = registerBuilding("barn", 3000L, 160, 0).setRequirements("carpenter").setOffset(6, -1, 8);
-    public static final IBuilding BLACKSMITH = registerBuilding("blacksmith", 3500L, 32, 244).setRequirements("supermarket", "barn", "poultryFarm").setOffset(3, -2, 6);
-    public static final IBuilding CAFE = registerBuilding("cafe", 8800L, 320, 160).setRequirements("miningHill", "goddessPond").setOffset(7, -1, 10);
-    public static final IBuilding CARPENTER = registerBuilding("carpenter", 0L, 0, 0).setSpecialRules((w, p) -> false).setOffset(3, -1, 8);
-    public static final IBuilding CHURCH = registerBuilding("church", 10000L, 160, 128).setRequirements("miningHill", "goddessPond").setOffset(4, -1, 13);
-    public static final IBuilding CLOCKMAKER = registerBuilding("clockmaker", 6800L, 192, 112).setRequirements("miningHill", "goddessPond").setOffset(3, -1, 10);
-    public static final IBuilding FISHING_HOLE = registerBuilding("fishingHole", 1000L, 16, 0).setRequirements("fishingHut").setOffset(3, -4, 7);
-    public static final IBuilding FISHING_HUT = registerBuilding("fishingHut", 6000L, 96, 0).setRequirements("miningHill", "goddessPond").setOffset(3, -1, 10);
-    public static final IBuilding GODDESS_POND = registerBuilding("goddessPond", 250L, 32, 0).setRequirements("blacksmith").setOffset(9, -1, 17);
-    public static final IBuilding MINING_HILL = registerBuilding("miningHill", 1000L, 0, 64).setRequirements("miningHut").setOffset(8, -3, 11);
-    public static final IBuilding MINING_HUT = registerBuilding("miningHut", 3000L, 96, 96).setRequirements("supermarket", "barn", "poultryFarm").setOffset(10, -1, 10);
-    public static final IBuilding POULTRY_FARM = registerBuilding("poultryFarm", 2000L, 160, 0).setRequirements("carpenter").setOffset(4, 0, 12);
-    public static final IBuilding SUPERMARKET = registerBuilding("supermarket", 1280L, 512, 320).setRequirements("carpenter").setOffset(11, -10, 12).setTickTime(5);
-    public static final IBuilding TOWNHALL = registerBuilding("townhall", 16400L, 768, 256).setRequirements("blacksmith", "miningHill", "goddessPond").setOffset(10, -1, 17);
+    public static final BuildingImpl null_building = new BuildingImpl();
+    public static final Building BARN = registerBuilding("barn", 3000L, 160, 0).setRequirements("carpenter").setOffset(6, -1, 8);
+    public static final Building BLACKSMITH = registerBuilding("blacksmith", 3500L, 32, 244).setRequirements("supermarket", "barn", "poultryFarm").setOffset(3, -2, 6);
+    public static final Building CAFE = registerBuilding("cafe", 8800L, 320, 160).setRequirements("miningHill", "goddessPond").setOffset(7, -1, 10);
+    public static final Building CARPENTER = registerBuilding("carpenter", 0L, 0, 0).setSpecialRules((w, p) -> false).setOffset(3, -1, 8);
+    public static final Building CHURCH = registerBuilding("church", 10000L, 160, 128).setRequirements("miningHill", "goddessPond").setOffset(4, -1, 13);
+    public static final Building CLOCKMAKER = registerBuilding("clockmaker", 6800L, 192, 112).setRequirements("miningHill", "goddessPond").setOffset(3, -1, 10);
+    public static final Building FISHING_HOLE = registerBuilding("fishingHole", 1000L, 16, 0).setRequirements("fishingHut").setOffset(3, -4, 7);
+    public static final Building FISHING_HUT = registerBuilding("fishingHut", 6000L, 96, 0).setRequirements("miningHill", "goddessPond").setOffset(3, -1, 10);
+    public static final Building GODDESS_POND = registerBuilding("goddessPond", 250L, 32, 0).setRequirements("blacksmith").setOffset(9, -1, 17);
+    public static final Building MINING_HILL = registerBuilding("miningHill", 1000L, 0, 64).setRequirements("miningHut").setOffset(8, -3, 11);
+    public static final Building MINING_HUT = registerBuilding("miningHut", 3000L, 96, 96).setRequirements("supermarket", "barn", "poultryFarm").setOffset(10, -1, 10);
+    public static final Building POULTRY_FARM = registerBuilding("poultryFarm", 2000L, 160, 0).setRequirements("carpenter").setOffset(4, 0, 12);
+    public static final Building SUPERMARKET = registerBuilding("supermarket", 1280L, 512, 320).setRequirements("carpenter").setOffset(11, -10, 12).setTickTime(5);
+    public static final Building TOWNHALL = registerBuilding("townhall", 16400L, 768, 256).setRequirements("blacksmith", "miningHill", "goddessPond").setOffset(10, -1, 17);
 
     public static void preInit() {
         HarvestFestival.LOGGER.log(Level.INFO, "Creating Harvest Festival Buildings!");
@@ -61,7 +61,7 @@ public class HFBuildings {
 
     //Reload the Building data at this stage
     public static void init() {
-        for (Building building: BuildingRegistry.REGISTRY.getValues()) {
+        for (BuildingImpl building: BuildingRegistry.REGISTRY.getValues()) {
             building.initBuilding(getBuilding(building.getRegistryName()));
         }
 
@@ -74,13 +74,13 @@ public class HFBuildings {
         FMLDefinition.getDefinition("buildings").registerEverything();
     }
 
-    private static IBuilding registerBuilding(String building, long cost, int wood, int stone) {
+    private static Building registerBuilding(String building, long cost, int wood, int stone) {
         return HFApi.buildings.registerBuilding(new ResourceLocation("harvestfestival", building), cost, wood, stone);
     }
 
     private static Gson gson; //Temporary
-    private static Building getBuilding(ResourceLocation resource) {
-        return getGson().fromJson(ResourceLoader.getJSONResource(resource, "buildings"), Building.class);
+    private static BuildingImpl getBuilding(ResourceLocation resource) {
+        return getGson().fromJson(ResourceLoader.getJSONResource(resource, "buildings"), BuildingImpl.class);
     }
 
     public static Gson getGson() {

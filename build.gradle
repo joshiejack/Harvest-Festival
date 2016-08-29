@@ -35,7 +35,7 @@ minecraft {
     version = "${minecraft_version}-${forge_version}"
     runDir = "run"
     mappings = "${mappings_version}"
-    
+    coreMod = "joshie.harvest.asm.HFTransformer"
     replace "@VERSION@", "${mod_version}"
     replaceIn "HFModInfo.java"
 }

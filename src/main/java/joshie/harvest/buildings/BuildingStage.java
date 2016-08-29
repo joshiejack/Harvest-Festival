@@ -14,14 +14,14 @@ import net.minecraft.world.World;
 /** This data is used by the BuilderNPC, 
  * to know their current progress through a building project **/
 public class BuildingStage {
-    public Building building;
+    public BuildingImpl building;
     public Direction direction;
     public ConstructionStage stage;
     public int index;
     public BlockPos pos;
 
     public BuildingStage(){}
-    public BuildingStage(Building building, BlockPos pos, Mirror mirror, Rotation rotation) {
+    public BuildingStage(BuildingImpl building, BlockPos pos, Mirror mirror, Rotation rotation) {
         this.building = building;
         this.direction = Direction.withMirrorAndRotation(mirror, rotation);
         this.stage = ConstructionStage.BUILD;
@@ -91,7 +91,7 @@ public class BuildingStage {
 
     public static BuildingStage readFromNBT(NBTTagCompound nbt) {
         BuildingStage stage = new BuildingStage();
-        stage.building = BuildingRegistry.REGISTRY.getObject(new ResourceLocation(nbt.getString("CurrentlyBuilding")));
+        stage.building = BuildingRegistry.REGISTRY.getValue(new ResourceLocation(nbt.getString("CurrentlyBuilding")));
         stage.direction = Direction.valueOf(nbt.getString("Direction"));
         stage.pos = new BlockPos(nbt.getInteger("BuildingX"), nbt.getInteger("BuildingY"), nbt.getInteger("BuildingZ"));
 
@@ -104,7 +104,7 @@ public class BuildingStage {
     }
 
     public void writeToNBT(NBTTagCompound nbt) {
-        nbt.setString("CurrentlyBuilding", BuildingRegistry.REGISTRY.getNameForObject(building).toString());
+        nbt.setString("CurrentlyBuilding", BuildingRegistry.REGISTRY.getKey(building).toString());
         nbt.setString("Direction", direction.name());
         nbt.setInteger("BuildingX", pos.getX());
         nbt.setInteger("BuildingY", pos.getY());

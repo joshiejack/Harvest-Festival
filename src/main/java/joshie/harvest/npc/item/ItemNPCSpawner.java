@@ -64,7 +64,7 @@ public class ItemNPCSpawner extends ItemHFFML<ItemNPCSpawner, NPC> {
     @SideOnly(Side.CLIENT)
     public void registerModels(Item item, String name) {
         for (NPC npc: registry) {
-            ModelLoader.setCustomModelResourceLocation(item, registry.getId(npc), new ModelResourceLocation(new ResourceLocation(MODID, "spawner_npc"), "inventory"));
+            ModelLoader.setCustomModelResourceLocation(item, registry.getValues().indexOf(npc), new ModelResourceLocation(new ResourceLocation(MODID, "spawner_npc"), "inventory"));
         }
     }
 }

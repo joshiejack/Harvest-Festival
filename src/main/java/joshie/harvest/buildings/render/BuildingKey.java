@@ -1,6 +1,6 @@
 package joshie.harvest.buildings.render;
 
-import joshie.harvest.buildings.Building;
+import joshie.harvest.buildings.BuildingImpl;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
@@ -10,16 +10,16 @@ public class BuildingKey {
     private final BlockPos pos;
     private final Mirror mirror;
     private final Rotation rotation;
-    private final Building building;
+    private final BuildingImpl building;
 
-    public BuildingKey(BlockPos pos, Mirror mirror, Rotation rotation, Building building) {
+    public BuildingKey(BlockPos pos, Mirror mirror, Rotation rotation, BuildingImpl building) {
         this.pos = pos;
         this.mirror = mirror;
         this.rotation = rotation;
         this.building = building;
     }
 
-    public static BuildingKey of(BlockPos pos, Mirror mirror, Rotation rotation, Building building) {
+    public static BuildingKey of(BlockPos pos, Mirror mirror, Rotation rotation, BuildingImpl building) {
         return new BuildingKey(pos, mirror, rotation, building);
     }
 
@@ -35,7 +35,7 @@ public class BuildingKey {
         return rotation;
     }
 
-    public Building getBuilding() {
+    public BuildingImpl getBuilding() {
         return building;
     }
 

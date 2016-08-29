@@ -25,12 +25,12 @@ public class SizeableHolder extends AbstractItemHolder {
     }
 
     public static SizeableHolder readFromNBT(NBTTagCompound tag) {
-        return new SizeableHolder(SizeableRegistry.REGISTRY.getObject(new ResourceLocation(tag.getString("Sizeable"))));
+        return new SizeableHolder(SizeableRegistry.REGISTRY.getValue(new ResourceLocation(tag.getString("Sizeable"))));
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound tag) {
-        tag.setString("Sizeable", SizeableRegistry.REGISTRY.getNameForObject(sizeable).toString());
+        tag.setString("Sizeable", SizeableRegistry.REGISTRY.getKey(sizeable).toString());
         return tag;
     }
 

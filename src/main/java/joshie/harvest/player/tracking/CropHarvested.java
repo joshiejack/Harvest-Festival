@@ -25,7 +25,7 @@ public class CropHarvested extends AbstractDataHolder<CropHarvested> {
     }
 
     public static CropHarvested readFromNBT(NBTTagCompound tag) {
-        Crop crop = CropRegistry.REGISTRY.getObject(new ResourceLocation(tag.getString("CropResource")));
+        Crop crop = CropRegistry.REGISTRY.getValue(new ResourceLocation(tag.getString("CropResource")));
         int amount = tag.getInteger("SellAmount");
         return new CropHarvested(crop, amount);
     }

@@ -1,6 +1,6 @@
 package joshie.harvest.buildings;
 
-import joshie.harvest.api.buildings.IBuilding;
+import joshie.harvest.api.buildings.Building;
 import joshie.harvest.api.buildings.ISpecialPurchaseRules;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.Placeable.ConstructionStage;
@@ -28,7 +28,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-public class Building extends Impl<Building> implements IBuilding {
+public class BuildingImpl extends Impl<BuildingImpl> implements Building {
     //Components
     private transient HashMap<String, PlaceableNPC> npc_offsets = new HashMap<>();
     private transient ArrayList<PlaceableBlock> block_list = new ArrayList<>();
@@ -50,16 +50,16 @@ public class Building extends Impl<Building> implements IBuilding {
 
     public Placeable[] components; //Set to null after loading
 
-    public Building(){}
+    public BuildingImpl(){}
 
-    public Building setCosts(long cost, int wood, int stone) {
+    public BuildingImpl setCosts(long cost, int wood, int stone) {
         this.cost = cost;
         this.wood = wood;
         this.stone = stone;
         return this;
     }
 
-    public void initBuilding(Building building) {
+    public void initBuilding(BuildingImpl building) {
         full_list = new ArrayList<>();
         Collections.addAll(full_list, building.components);
         for (Placeable placeable: full_list) {
@@ -105,7 +105,7 @@ public class Building extends Impl<Building> implements IBuilding {
     }
 
     @Override
-    public IBuilding setRequirements(String... requirements) {
+    public Building setRequirements(String... requirements) {
         this.requirements = new ResourceLocation[requirements.length];
         for (int i = 0; i < requirements.length; i++) {
             this.requirements[i] = getResourceFromName(requirements[i]);
@@ -115,13 +115,13 @@ public class Building extends Impl<Building> implements IBuilding {
     }
 
     @Override
-    public IBuilding setTickTime(long time) {
+    public Building setTickTime(long time) {
         this.tickTime = time;
         return this;
     }
 
     @Override
-    public IBuilding setOffset(int width, int offsetY, int length) {
+    public Building setOffset(int width, int offsetY, int length) {
         this.width = width;
         this.offsetY = offsetY;
         this.length = length;
@@ -129,19 +129,19 @@ public class Building extends Impl<Building> implements IBuilding {
     }
 
     @Override
-    public IBuilding setSpecialRules(ISpecialPurchaseRules special) {
+    public Building setSpecialRules(ISpecialPurchaseRules special) {
         this.special = special;
         return this;
     }
 
     @Override
-    public IBuilding setMultiple() {
+    public Building setMultiple() {
         this.canHaveMultiple = true;
         return this;
     }
 
     @Override
-    public IBuilding setNoPurchase() {
+    public Building setNoPurchase() {
         this.isPurchaseable = false;
         return this;
     }
@@ -240,7 +240,7 @@ public class Building extends Impl<Building> implements IBuilding {
 
     @Override
     public boolean equals(Object o) {
-        return o instanceof Building && getRegistryName() != null && getRegistryName().equals(((Building) o).getRegistryName());
+        return o instanceof BuildingImpl && getRegistryName() != null && getRegistryName().equals(((BuildingImpl) o).getRegistryName());
     }
 
     @Override

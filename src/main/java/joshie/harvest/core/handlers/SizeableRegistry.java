@@ -4,14 +4,14 @@ import joshie.harvest.api.core.ISizeable;
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.api.core.ISizeableRegistry;
 import joshie.harvest.api.core.ISizedProvider;
-import joshie.harvest.core.lib.Sizeable;
 import joshie.harvest.core.base.item.ItemSizeable;
+import joshie.harvest.core.lib.Sizeable;
 import joshie.harvest.core.util.HFApiImplementation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.FMLControlledNamespacedRegistry;
-import net.minecraftforge.fml.common.registry.PersistentRegistryManager;
+import net.minecraftforge.fml.common.registry.IForgeRegistry;
+import net.minecraftforge.fml.common.registry.RegistryBuilder;
 import net.minecraftforge.oredict.OreDictionary;
 import org.apache.commons.lang3.tuple.Pair;
 
@@ -21,7 +21,7 @@ import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 @HFApiImplementation
 public class SizeableRegistry implements ISizeableRegistry {
-    public static final FMLControlledNamespacedRegistry<Sizeable> REGISTRY = PersistentRegistryManager.createRegistry(new ResourceLocation(MODID, "sizeables"), Sizeable.class, null, 0, 32000, true, null, null, null);
+    public static final IForgeRegistry<Sizeable> REGISTRY = new RegistryBuilder<Sizeable>().setName(new ResourceLocation("harvestfestival", "sizeables")).setType(Sizeable.class).setIDRange(0, 32000).create();
     public static final SizeableRegistry INSTANCE = new SizeableRegistry();
     private final HashMap<Pair<Item, Integer>, Pair<ISizeable, Size>> providers = new HashMap<>();
 

@@ -167,7 +167,7 @@ public class GuiNPCChat extends GuiNPCBase {
 
         Quest selection = HFTrackers.getClientPlayerTracker().getQuests().getSelection(npc);
         if (selection != null) {
-            player.openGui(HarvestFestival.instance, NPC, player.worldObj, npc.getEntityId(), 0, Quest.REGISTRY.getId(Quest.REGISTRY.getObject(selection.getRegistryName())));
+            player.openGui(HarvestFestival.instance, NPC, player.worldObj, npc.getEntityId(), 0, Quest.REGISTRY.getValues().indexOf(Quest.REGISTRY.getValue(selection.getRegistryName())));
         } else if (nextGui != -1) {
             player.openGui(HarvestFestival.instance, nextGui, player.worldObj, npc.getEntityId(), 0, -1);
         }

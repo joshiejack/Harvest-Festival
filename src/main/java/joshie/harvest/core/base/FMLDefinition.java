@@ -6,7 +6,7 @@ import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.FMLControlledNamespacedRegistry;
+import net.minecraftforge.fml.common.registry.IForgeRegistry;
 import net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -16,12 +16,12 @@ import java.util.HashMap;
 @SideOnly(Side.CLIENT)
 public class FMLDefinition<E extends Impl<E>> implements ItemMeshDefinition {
     private static final HashMap<String, FMLDefinition> DEFINITIONS = new HashMap<>();
-    private FMLControlledNamespacedRegistry<E> registry;
+    private IForgeRegistry<E> registry;
     private HashMap<E, ModelResourceLocation> models = new HashMap<>();
     private String name;
     protected ItemHFFML item;
 
-    public FMLDefinition(ItemHFFML item, String name, FMLControlledNamespacedRegistry<E> registry) {
+    public FMLDefinition(ItemHFFML item, String name, IForgeRegistry<E> registry) {
         this.registry = registry;
         this.name = name;
         this.item = item;
@@ -49,6 +49,6 @@ public class FMLDefinition<E extends Impl<E>> implements ItemMeshDefinition {
 
     @Override
     public ModelResourceLocation getModelLocation(ItemStack stack) {
-        return models.get(registry.getObjectById(stack.getItemDamage()));
+        return models.get(registry.getValues().get(stack.getItemDamage()));
     }
 }

@@ -1,6 +1,6 @@
 package joshie.harvest.buildings.render;
 
-import joshie.harvest.buildings.Building;
+import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvest.core.util.Direction;
 import net.minecraft.client.Minecraft;
@@ -10,7 +10,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 
 public class BuildingRenderer {
-    private final Building building;
+    private final BuildingImpl building;
     private final VertexBuffer buffer;
     private final BlockPos pos;
 
@@ -26,7 +26,7 @@ public class BuildingRenderer {
         }
     }
 
-    public Building getBuilding() {
+    public BuildingImpl getBuilding() {
         return building;
     }
 

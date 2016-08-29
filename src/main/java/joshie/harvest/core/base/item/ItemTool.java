@@ -1,11 +1,10 @@
 package joshie.harvest.core.base.item;
 
-import joshie.harvest.core.util.ICreativeSorted;
-import joshie.harvest.api.core.ILevelable;
 import joshie.harvest.api.core.ITiered;
-import joshie.harvest.tools.ToolHelper;
 import joshie.harvest.core.lib.CreativeSort;
+import joshie.harvest.core.util.ICreativeSorted;
 import joshie.harvest.core.util.Text;
+import joshie.harvest.tools.ToolHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -30,7 +29,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 import java.util.Set;
 
-public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> implements ILevelable, ITiered, ICreativeSorted {
+public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> implements ITiered, ICreativeSorted {
     private final Set<Block> effectiveBlocks;
     private final String toolClass;
     /**

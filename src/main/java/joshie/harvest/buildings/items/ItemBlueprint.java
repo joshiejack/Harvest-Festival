@@ -1,7 +1,7 @@
 package joshie.harvest.buildings.items;
 
 import joshie.harvest.core.util.ICreativeSorted;
-import joshie.harvest.buildings.Building;
+import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.buildings.render.BuildingKey;
@@ -29,7 +29,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemBlueprint extends ItemHFFML<ItemBlueprint, Building> implements ICreativeSorted {
+public class ItemBlueprint extends ItemHFFML<ItemBlueprint, BuildingImpl> implements ICreativeSorted {
     public ItemBlueprint() {
         super(BuildingRegistry.REGISTRY, HFTab.TOWN);
     }
@@ -48,7 +48,7 @@ public class ItemBlueprint extends ItemHFFML<ItemBlueprint, Building> implements
             }
 
             if (!world.isRemote) TownHelper.ensureTownExists(world, raytrace.getBlockPos());
-            Building building = getObjectFromStack(stack);
+            BuildingImpl building = getObjectFromStack(stack);
             if (building != null && (building.canHaveMultiple() || !TownHelper.getClosestTownToEntity(player).hasBuilding(building.getRegistryName()))) {
                 if (!world.isRemote) {
                     BuildingKey key = BuildingHelper.getPositioning(world, raytrace, building, player, hand);
@@ -71,7 +71,7 @@ public class ItemBlueprint extends ItemHFFML<ItemBlueprint, Building> implements
     }
 
     @Override
-    public Building getNullValue() {
+    public BuildingImpl getNullValue() {
         return HFBuildings.null_building;
     }
 
@@ -87,8 +87,8 @@ public class ItemBlueprint extends ItemHFFML<ItemBlueprint, Building> implements
 
     @SideOnly(Side.CLIENT)
     public void registerModels(Item item, String name) {
-        for (Building building: registry) {
-            ModelLoader.setCustomModelResourceLocation(item, registry.getId(building), new ModelResourceLocation(getRegistryName(), "inventory"));
+        for (BuildingImpl building: registry) {
+            ModelLoader.setCustomModelResourceLocation(item, registry.getValues().indexOf(building), new ModelResourceLocation(getRegistryName(), "inventory"));
         }
     }
 }

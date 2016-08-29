@@ -1,7 +1,7 @@
 package joshie.harvest.buildings.items;
 
 import joshie.harvest.core.util.ICreativeSorted;
-import joshie.harvest.buildings.Building;
+import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.buildings.render.BuildingKey;
@@ -21,14 +21,14 @@ import net.minecraft.world.World;
 
 import static joshie.harvest.core.HFCore.DEBUG_MODE;
 
-public class ItemBuilding extends ItemHFFML<ItemBuilding, Building> implements ICreativeSorted {
+public class ItemBuilding extends ItemHFFML<ItemBuilding, BuildingImpl> implements ICreativeSorted {
     public ItemBuilding() {
         super(BuildingRegistry.REGISTRY, HFTab.TOWN);
     }
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
-        Building building = getObjectFromStack(stack);
+        BuildingImpl building = getObjectFromStack(stack);
         if (world.provider.getDimension() == 0 && building != null && (DEBUG_MODE || building.canHaveMultiple() || !TownHelper.getClosestTownToEntity(player).hasBuilding(building.getRegistryName()))) {
             RayTraceResult raytrace = BuildingHelper.rayTrace(player, 128, 0F);
             if (raytrace == null || raytrace.getBlockPos() == null || raytrace.sideHit != EnumFacing.UP) {
@@ -44,7 +44,7 @@ public class ItemBuilding extends ItemHFFML<ItemBuilding, Building> implements I
     }
 
     @Override
-    public Building getNullValue() {
+    public BuildingImpl getNullValue() {
         return HFBuildings.null_building;
     }
 

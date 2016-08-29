@@ -14,7 +14,7 @@ public class RelationshipHandlerNPC implements IRelatableDataHandler<NPC> {
 
     @Override
     public NPC readFromNBT(NBTTagCompound tag) {
-        return NPCRegistry.REGISTRY.getObject(new ResourceLocation(tag.getString("NPC")));
+        return NPCRegistry.REGISTRY.getValue(new ResourceLocation(tag.getString("NPC")));
     }
 
     @Override

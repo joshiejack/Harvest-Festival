@@ -41,7 +41,7 @@ public class ItemSizeable extends ItemHFEnum<ItemHFEnum, Size> implements IShipp
 
     @Override
     public int getSortValue(ItemStack stack) {
-        return CreativeSort.SIZEABLE + stack.getItemDamage() + (SizeableRegistry.REGISTRY.getId(sizeable) * 3);
+        return CreativeSort.SIZEABLE + stack.getItemDamage() + (SizeableRegistry.REGISTRY.getValues().indexOf(sizeable) * 3);
     }
 
     @Override

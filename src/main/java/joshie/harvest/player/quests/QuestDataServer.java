@@ -121,7 +121,7 @@ public class QuestDataServer extends QuestData {
             NBTTagList list = nbt.getTagList("CurrentQuests", 10);
             for (int i = 0; i < list.tagCount(); i++) {
                 NBTTagCompound tag = list.getCompoundTagAt(i);
-                Quest q = Quest.REGISTRY.getObject(new ResourceLocation(tag.getString("QuestID")));
+                Quest q = Quest.REGISTRY.getValue(new ResourceLocation(tag.getString("QuestID")));
                 try {
                     Quest quest = q.getClass().newInstance().setRegistryName(q.getRegistryName());
                     quest.readFromNBT(tag);
@@ -136,7 +136,7 @@ public class QuestDataServer extends QuestData {
         if (nbt.hasKey("FinishedQuests")) {
             NBTTagList list = nbt.getTagList("FinishedQuests", 8);
             for (int i = 0; i < list.tagCount(); i++) {
-                finished.add(Quest.REGISTRY.getObject(new ResourceLocation((list.getStringTagAt(i)))));
+                finished.add(Quest.REGISTRY.getValue(new ResourceLocation((list.getStringTagAt(i)))));
             }
         }
     }

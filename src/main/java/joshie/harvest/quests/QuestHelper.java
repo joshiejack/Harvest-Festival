@@ -127,7 +127,7 @@ public class QuestHelper implements IQuestHelper {
 
     public static Quest getQuest(String name) {
         try {
-            return Quest.REGISTRY.getObject(new ResourceLocation(MODID, name));
+            return Quest.REGISTRY.getValue(new ResourceLocation(MODID, name));
         } catch (Exception e) { return null; }
     }
 }

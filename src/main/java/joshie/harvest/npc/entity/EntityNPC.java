@@ -161,7 +161,7 @@ public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable imple
     @Override
     public void readEntityFromNBT(NBTTagCompound nbt) {
         super.readEntityFromNBT(nbt);
-        npc = NPCRegistry.REGISTRY.getObject(new ResourceLocation(nbt.getString("NPC")));
+        npc = NPCRegistry.REGISTRY.getValue(new ResourceLocation(nbt.getString("NPC")));
     }
 
     @Override
@@ -183,7 +183,7 @@ public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable imple
     @Override
     public void readSpawnData(ByteBuf buf) {
         String name = buf.readBoolean() ? ByteBufUtils.readUTF8String(buf) : "";
-        npc = name.equals("") ? (NPC) HFNPCs.MAYOR : NPCRegistry.REGISTRY.getObject(new ResourceLocation(name));
+        npc = name.equals("") ? (NPC) HFNPCs.MAYOR : NPCRegistry.REGISTRY.getValue(new ResourceLocation(name));
     }
 
     @SuppressWarnings("unchecked")

@@ -1,21 +1,19 @@
 package joshie.harvest.npc;
 
+import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.npc.INPCRegistry;
 import joshie.harvest.api.npc.gift.IGiftRegistry;
-import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.core.util.HFApiImplementation;
 import joshie.harvest.npc.gift.GiftRegistry;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.FMLControlledNamespacedRegistry;
-import net.minecraftforge.fml.common.registry.PersistentRegistryManager;
-
-import static joshie.harvest.core.lib.HFModInfo.MODID;
+import net.minecraftforge.fml.common.registry.IForgeRegistry;
+import net.minecraftforge.fml.common.registry.RegistryBuilder;
 
 @HFApiImplementation
 public class NPCRegistry implements INPCRegistry {
-    public static final FMLControlledNamespacedRegistry<NPC> REGISTRY = PersistentRegistryManager.createRegistry(new ResourceLocation(MODID, "npcs"), NPC.class, null, 0, 32000, true, null, null, null);
+    public static final IForgeRegistry<NPC> REGISTRY = new RegistryBuilder<NPC>().setName(new ResourceLocation("harvestfestival", "npcs")).setType(NPC.class).setIDRange(0, 32000).create();
     public static final NPCRegistry INSTANCE = new NPCRegistry();
     private final IGiftRegistry gifts = new GiftRegistry();
 

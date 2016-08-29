@@ -48,7 +48,7 @@ public class PageRecipeList extends Page {
         super.initGui(gui);
         recipes = new ArrayList<>();
         for (ResourceLocation resource: HFTrackers.getClientPlayerTracker().getTracking().getLearntRecipes()) {
-            MealImpl recipe = CookingAPI.REGISTRY.getObject(resource);
+            MealImpl recipe = CookingAPI.REGISTRY.getValue(resource);
             if (recipe.getRequiredTool() == utensil) {
                 recipes.add(PageRecipe.of(recipe));
             }

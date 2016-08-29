@@ -35,8 +35,8 @@ public class ItemMeal extends ItemHFFML<ItemMeal, MealImpl> implements ICreative
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        if (stack.getItemDamage() >= 10) {
-            return CookingAPI.REGISTRY.getObjectById(stack.getItemDamage()).getDisplayName();
+        if (stack.getItemDamage() >= 100) {
+            return CookingAPI.REGISTRY.getValues().get(stack.getItemDamage()).getDisplayName();
         } else return DARK_GRAY + Text.localize(Utensil.getUtensilFromIndex(stack.getItemDamage()).getUnlocalizedName());
 
     }
@@ -111,7 +111,7 @@ public class ItemMeal extends ItemHFFML<ItemMeal, MealImpl> implements ICreative
 
     @Override
     public ItemStack getAlternativeWhenCooking(ItemStack stack) {
-        MealImpl recipe = CookingAPI.REGISTRY.getObjectById(stack.getItemDamage());
+        MealImpl recipe = CookingAPI.REGISTRY.getValues().get(stack.getItemDamage());
         if (recipe != null) {
             return recipe.getAlternativeItem();
         }

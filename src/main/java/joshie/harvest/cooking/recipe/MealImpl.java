@@ -147,6 +147,6 @@ public class MealImpl extends IForgeRegistryEntry.Impl<MealImpl> implements Meal
 
     //Apply all the relevant information about this meal to the meal stack
     public ItemStack cook(MealBuilder meal) {
-        return meal.cook(new ItemStack(HFCooking.MEAL, 1, CookingAPI.REGISTRY.getIDForObject(this)));
+        return meal.cook(new ItemStack(HFCooking.MEAL, 1, CookingAPI.REGISTRY.getValues().indexOf(this)));
     }
 }

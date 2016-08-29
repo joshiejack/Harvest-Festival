@@ -1,6 +1,6 @@
 package joshie.harvest.core.helpers.generic;
 
-import joshie.harvest.buildings.Building;
+import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.render.BuildingKey;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -37,7 +37,7 @@ public class BuildingHelper {
 
     @SuppressWarnings("deprecation")
     @Nonnull
-    public static BuildingKey getPositioning(World world, RayTraceResult raytrace, Building building, EntityPlayer player, EnumHand hand) {
+    public static BuildingKey getPositioning(World world, RayTraceResult raytrace, BuildingImpl building, EntityPlayer player, EnumHand hand) {
         BlockPos cachedBlock = raytrace.getBlockPos().offset(raytrace.sideHit);
         cachedBlock = cachedBlock.up(building.getOffsetY());
         IBlockState state = world.getBlockState(raytrace.getBlockPos());

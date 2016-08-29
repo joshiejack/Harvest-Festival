@@ -124,11 +124,11 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
     }
 
     public ItemStack getStackFromCrop(Crop crop) {
-        return new ItemStack(this, 1, CropRegistry.REGISTRY.getId(crop));
+        return new ItemStack(this, 1, CropRegistry.REGISTRY.getValues().indexOf(crop));
     }
 
     public Crop getCropFromStack(ItemStack stack) {
-        return CropRegistry.REGISTRY.getObjectById(stack.getItemDamage());
+        return CropRegistry.REGISTRY.getValues().get(stack.getItemDamage());
     }
 
     @Override

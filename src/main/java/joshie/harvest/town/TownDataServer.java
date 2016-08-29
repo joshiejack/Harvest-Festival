@@ -1,6 +1,6 @@
 package joshie.harvest.town;
 
-import joshie.harvest.buildings.Building;
+import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.BuildingStage;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.NBTHelper;
@@ -41,7 +41,7 @@ public class TownDataServer extends TownData {
         return (EntityNPCBuilder) world.getEntityFromUuid(getID());
     }
 
-    public boolean setBuilding(World world, Building building, BlockPos pos, Mirror mirror, Rotation rotation) {
+    public boolean setBuilding(World world, BuildingImpl building, BlockPos pos, Mirror mirror, Rotation rotation) {
         BuildingStage stage = new BuildingStage(building, pos, mirror, rotation);
         if (!this.building.contains(stage)) {
             this.building.addLast(stage);
@@ -61,7 +61,7 @@ public class TownDataServer extends TownData {
     public void newDay(World world) {
         gathering.newDay(world, buildings.values());
         for (ResourceLocation villager: deadVillagers) {
-            NPC npc = NPCRegistry.REGISTRY.getObject(villager);
+            NPC npc = NPCRegistry.REGISTRY.getValue(villager);
             if (npc != HFNPCs.GODDESS) {
                 EntityNPCHuman entity = NPCHelper.getEntityForNPC(world, npc);
                 entity.setPosition(townCentre.getX(), townCentre.getY(), townCentre.getZ());

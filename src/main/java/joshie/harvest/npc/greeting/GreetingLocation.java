@@ -1,9 +1,9 @@
 package joshie.harvest.npc.greeting;
 
 import joshie.harvest.api.buildings.BuildingLocation;
-import joshie.harvest.api.buildings.IBuilding;
+import joshie.harvest.api.buildings.Building;
 import joshie.harvest.api.npc.IConditionalGreeting;
-import joshie.harvest.buildings.Building;
+import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.npc.NPCHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
@@ -14,8 +14,8 @@ public class GreetingLocation implements IConditionalGreeting {
     private BuildingLocation location;
     private String text;
 
-    public GreetingLocation(IBuilding building, String area) {
-        Building location = (Building) building;
+    public GreetingLocation(Building building, String area) {
+        BuildingImpl location = (BuildingImpl) building;
         this.text = MODID + ".npc.location." + location.getRegistryName().getResourceDomain() + "." + location.getRegistryName().getResourcePath() + ".greeting";
         this.location = new BuildingLocation(location, area);
     }

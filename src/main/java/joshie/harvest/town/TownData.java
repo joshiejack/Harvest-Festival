@@ -1,8 +1,8 @@
 package joshie.harvest.town;
 
 import joshie.harvest.api.buildings.BuildingLocation;
-import joshie.harvest.api.buildings.IBuilding;
-import joshie.harvest.buildings.Building;
+import joshie.harvest.api.buildings.Building;
+import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.buildings.BuildingStage;
 import joshie.harvest.core.handlers.HFTrackers;
@@ -68,23 +68,23 @@ public class TownData {
         return building.size() > 0 ? building.getFirst() : null;
     }
     
-    public void addBuilding(World world, Building building, Direction direction, BlockPos pos) {
+    public void addBuilding(World world, BuildingImpl building, Direction direction, BlockPos pos) {
         TownBuilding newBuilding = new TownBuilding(building, direction, pos);
-        buildings.put(BuildingRegistry.REGISTRY.getNameForObject(building), newBuilding);
+        buildings.put(BuildingRegistry.REGISTRY.getKey(building), newBuilding);
         PacketHandler.sendToDimension(world.provider.getDimension(), new PacketNewBuilding(uuid, newBuilding));
         HFTrackers.markDirty(world);
     }
 
     public void addBuilding(TownBuilding building) {
-        buildings.put(BuildingRegistry.REGISTRY.getNameForObject(building.building), building);
+        buildings.put(BuildingRegistry.REGISTRY.getKey(building.building), building);
     }
 
     public boolean hasBuilding(ResourceLocation building) {
         return buildings.get(building) != null;
     }
 
-    public boolean hasBuilding(IBuilding building) {
-        return buildings.get(((Building)building).getRegistryName()) != null;
+    public boolean hasBuilding(Building building) {
+        return buildings.get(((BuildingImpl)building).getRegistryName()) != null;
     }
 
     public boolean hasBuildings(ResourceLocation[] buildings) {
@@ -122,7 +122,7 @@ public class TownData {
             TownBuilding building = new TownBuilding();
             building.readFromNBT(tag);
             if (building.building != null) {
-                buildings.put(BuildingRegistry.REGISTRY.getNameForObject(building.building), building);
+                buildings.put(BuildingRegistry.REGISTRY.getKey(building.building), building);
             }
         }
 

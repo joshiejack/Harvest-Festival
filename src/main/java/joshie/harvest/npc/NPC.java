@@ -2,7 +2,7 @@ package joshie.harvest.npc;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.buildings.BuildingLocation;
-import joshie.harvest.api.buildings.IBuilding;
+import joshie.harvest.api.buildings.Building;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.npc.*;
@@ -119,7 +119,7 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
     }
 
     @Override
-    public INPC setLocation(Location location, IBuilding building, String home_location) {
+    public INPC setLocation(Location location, Building building, String home_location) {
         this.locations.put(location, new BuildingLocation(building, home_location));
         return this;
     }

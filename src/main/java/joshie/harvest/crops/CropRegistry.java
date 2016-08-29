@@ -16,27 +16,26 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.registry.FMLControlledNamespacedRegistry;
-import net.minecraftforge.fml.common.registry.PersistentRegistryManager;
+import net.minecraftforge.fml.common.registry.IForgeRegistry;
+import net.minecraftforge.fml.common.registry.RegistryBuilder;
 import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
 
 import static joshie.harvest.crops.CropHelper.*;
-import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.crops.block.BlockHFCrops.Stage.FRESH;
 import static joshie.harvest.crops.block.BlockHFCrops.Stage.FRESH_DOUBLE;
 
 @HFApiImplementation
 public class CropRegistry implements ICropRegistry {
-    public static final FMLControlledNamespacedRegistry<Crop> REGISTRY = PersistentRegistryManager.createRegistry(new ResourceLocation(MODID, "crops"), Crop.class, null, 0, 32000, true, null, null, null);
+    public static final IForgeRegistry<Crop> REGISTRY = new RegistryBuilder<Crop>().setName(new ResourceLocation("harvestfestival", "crops")).setType(Crop.class).setIDRange(0, 32000).create();
     public static final CropRegistry INSTANCE = new CropRegistry();
     private final HashMap<ItemStackHolder, ICrop> providers = new HashMap<>();
 
     @Override
     public ICrop getCrop(ResourceLocation resource) {
-        return REGISTRY.getObject(resource);
+        return REGISTRY.getValue(resource);
     }
 
     @Override

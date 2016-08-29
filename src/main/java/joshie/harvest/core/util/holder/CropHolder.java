@@ -31,7 +31,7 @@ public class CropHolder extends AbstractItemHolder {
 
 
     public static CropHolder readFromNBT(NBTTagCompound tag) {
-        return new CropHolder(CropRegistry.REGISTRY.getObject(new ResourceLocation(tag.getString("CropResource"))));
+        return new CropHolder(CropRegistry.REGISTRY.getValue(new ResourceLocation(tag.getString("CropResource"))));
     }
 
     @Override

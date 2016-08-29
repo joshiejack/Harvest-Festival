@@ -113,7 +113,7 @@ public class CropData implements ICropData {
 
     public void readFromNBT(NBTTagCompound nbt) {
         if (nbt.hasKey("CropResource")) {
-            crop = CropRegistry.REGISTRY.getObject(new ResourceLocation(nbt.getString("CropResource")));
+            crop = CropRegistry.REGISTRY.getValue(new ResourceLocation(nbt.getString("CropResource")));
             stage = nbt.getByte("CurrentStage");
             daysWithoutWater = nbt.getShort("DaysWithoutWater");
         }

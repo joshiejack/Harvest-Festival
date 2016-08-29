@@ -30,7 +30,7 @@ public class PacketRequestEntity extends PenguinPacket {
 
     @Override
     public void fromBytes(ByteBuf buf) {
-        quest = Quest.REGISTRY.getObject(new ResourceLocation(ByteBufUtils.readUTF8String(buf)));
+        quest = Quest.REGISTRY.getValue(new ResourceLocation(ByteBufUtils.readUTF8String(buf)));
         entity = ByteBufUtils.readUTF8String(buf);
     }
 

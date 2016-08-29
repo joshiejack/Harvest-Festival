@@ -5,10 +5,12 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
-import joshie.harvest.api.cooking.*;
+import joshie.harvest.api.cooking.CookingManager;
 import joshie.harvest.api.cooking.Ingredient;
-import joshie.harvest.cooking.recipe.MealImpl;
+import joshie.harvest.api.cooking.RecipeHandler;
+import joshie.harvest.api.cooking.Utensil;
 import joshie.harvest.cooking.recipe.MealBuilder;
+import joshie.harvest.cooking.recipe.MealImpl;
 import joshie.harvest.cooking.recipe.RecipeStack;
 import joshie.harvest.core.util.HFApiImplementation;
 import joshie.harvest.core.util.holder.AbstractItemHolder;
@@ -16,8 +18,8 @@ import joshie.harvest.core.util.holder.ItemStackHolder;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.FMLControlledNamespacedRegistry;
-import net.minecraftforge.fml.common.registry.PersistentRegistryManager;
+import net.minecraftforge.fml.common.registry.IForgeRegistry;
+import net.minecraftforge.fml.common.registry.RegistryBuilder;
 import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.*;
@@ -27,7 +29,7 @@ import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 @HFApiImplementation
 public class CookingAPI implements CookingManager {
-    public static final FMLControlledNamespacedRegistry<MealImpl> REGISTRY = PersistentRegistryManager.createRegistry(new ResourceLocation(MODID, "meals"), MealImpl.class, null, 100, 32000, true, null, null, null);
+    public static final IForgeRegistry<MealImpl> REGISTRY = new RegistryBuilder<MealImpl>().setName(new ResourceLocation("harvestfestival", "meals")).setType(MealImpl.class).setIDRange(100, 32000).create();
     public static final CookingAPI INSTANCE = new CookingAPI();
     private final Set<RecipeHandler> handlers = new HashSet<>();
     private final Multimap<AbstractItemHolder, Ingredient> registry = ArrayListMultimap.create();

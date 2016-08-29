@@ -2,7 +2,7 @@ package joshie.harvest.buildings.render;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import joshie.harvest.buildings.Building;
+import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.helpers.generic.BuildingHelper;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
@@ -28,7 +28,7 @@ public class PreviewEvent {
     private static final Cache<BuildingKey, BuildingRenderer> CACHE = CacheBuilder.newBuilder().expireAfterWrite(1L, TimeUnit.MINUTES).maximumSize(128).build();
     private BuildingVertexUploader vertexUploader = new BuildingVertexUploader();
     private ItemStack held; //Cache the held itemstack
-    private Building building; //Cache the building value
+    private BuildingImpl building; //Cache the building value
 
     private BuildingRenderer getRenderer(World world, EntityPlayerSP player) {
         if (player == null) return null;

@@ -1,6 +1,6 @@
 package joshie.harvest.shops.purchaseable;
 
-import joshie.harvest.buildings.Building;
+import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.town.TownHelper;
@@ -12,12 +12,12 @@ import net.minecraft.world.World;
 
 public class PurchaseableBuilding extends PurchaseableBuilder {
     private ResourceLocation resource;
-    private Building building;
+    private BuildingImpl building;
 
-    public PurchaseableBuilding(Building building) {
+    public PurchaseableBuilding(BuildingImpl building) {
         super(building.getCost(), building.getWoodCount(), building.getStoneCount(), building.getBlueprint());
         this.building = building;
-        this.resource = BuildingRegistry.REGISTRY.getNameForObject(building);
+        this.resource = BuildingRegistry.REGISTRY.getKey(building);
     }
 
     @Override

@@ -8,31 +8,31 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 /** Building interaction **/
-public interface IBuilding {
+public interface Building {
     /** This will add some special purchasing rules for the building in question
      * @param rules the special rules
      * @return the building  */
-    IBuilding setSpecialRules(ISpecialPurchaseRules rules);
+    Building setSpecialRules(ISpecialPurchaseRules rules);
 
     /** Set the requirements for this building
      * @param requirements the building requirements **/
-    IBuilding setRequirements(String... requirements);
+    Building setRequirements(String... requirements);
 
     /** This is the ticks between a builder placing a block, defaults to 20
      * @param time the ticks*/
-    IBuilding setTickTime(long time);
+    Building setTickTime(long time);
 
     /** This is the y offset to place the building at, defaults to -1
      * @param width the width of the building
      * @param heightOffset the offset, ideally use negative number
      * @param length the length of the building*/
-    IBuilding setOffset(int width, int heightOffset, int length);
+    Building setOffset(int width, int heightOffset, int length);
 
     /** Allows multiple of this building **/
-    IBuilding setMultiple();
+    Building setMultiple();
 
     /** Mark a building as not purchaseable **/
-    IBuilding setNoPurchase();
+    Building setNoPurchase();
 
     /** Returns the localised name of this building **/
     String getLocalisedName();

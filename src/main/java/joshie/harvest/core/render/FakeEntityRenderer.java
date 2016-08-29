@@ -9,7 +9,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
-import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
@@ -17,25 +17,27 @@ public class FakeEntityRenderer extends TileEntitySpecialRenderer<EntityItemRend
     public static final FakeEntityRenderer INSTANCE = new FakeEntityRenderer();
 
     @Override
-    public void renderTileEntityAt(@Nonnull EntityItemRenderer fake, double x, double y, double z, float partialTicks, int destroyStage) {
-         GlStateManager.pushMatrix();
-         GlStateManager.translate(0.5F, -0.05F, 0.5F);
-         GlStateManager.scale(-0.75F, 0.75F, 0.75F);
-         GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
-         GlStateManager.rotate(135.0F, 0.0F, 1.0F, 0.0F);
-         GlStateManager.rotate(135.0F, 0.0F, 1.0F, 0.0F);
-         GlStateManager.rotate(180F, 1.0F, 0.0F, 0.0F);
-         GlStateManager.pushMatrix();
-         GlStateManager.disableCull();
-         GlStateManager.enableRescaleNormal();
-         GlStateManager.scale(-1.0F, -1.0F, 1.0F);
-         GlStateManager.translate(0.0F, -1.501F, 0.0F);
-         bindTexture(fake.render.texture);
-         fake.render.model.render(null, 0F, 0F, 0F, 0F, 0F, 0.0625F);
-         GlStateManager.disableRescaleNormal();
-         GlStateManager.enableCull();
-         GlStateManager.popMatrix();
-         GlStateManager.popMatrix();
+    public void renderTileEntityAt(@Nullable EntityItemRenderer fake, double x, double y, double z, float partialTicks, int destroyStage) {
+         if (fake != null) {
+             GlStateManager.pushMatrix();
+             GlStateManager.translate(0.5F, -0.05F, 0.5F);
+             GlStateManager.scale(-0.75F, 0.75F, 0.75F);
+             GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
+             GlStateManager.rotate(135.0F, 0.0F, 1.0F, 0.0F);
+             GlStateManager.rotate(135.0F, 0.0F, 1.0F, 0.0F);
+             GlStateManager.rotate(180F, 1.0F, 0.0F, 0.0F);
+             GlStateManager.pushMatrix();
+             GlStateManager.disableCull();
+             GlStateManager.enableRescaleNormal();
+             GlStateManager.scale(-1.0F, -1.0F, 1.0F);
+             GlStateManager.translate(0.0F, -1.501F, 0.0F);
+             bindTexture(fake.render.texture);
+             fake.render.model.render(null, 0F, 0F, 0F, 0F, 0F, 0.0625F);
+             GlStateManager.disableRescaleNormal();
+             GlStateManager.enableCull();
+             GlStateManager.popMatrix();
+             GlStateManager.popMatrix();
+         }
     }
 
     public abstract static class EntityItemRenderer extends TileEntity {

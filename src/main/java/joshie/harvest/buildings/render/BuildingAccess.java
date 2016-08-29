@@ -1,6 +1,6 @@
 package joshie.harvest.buildings.render;
 
-import joshie.harvest.buildings.Building;
+import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvest.core.util.Direction;
 import net.minecraft.block.state.IBlockState;
@@ -19,7 +19,7 @@ import java.util.HashMap;
 public class BuildingAccess implements IBlockAccess {
     private HashMap<BlockPos, IBlockState> mapping = new HashMap<>();
 
-    public BuildingAccess(Building building, Direction direction) {
+    public BuildingAccess(BuildingImpl building, Direction direction) {
         for (PlaceableBlock block: building.getPreviewList()) {
             mapping.put(block.transformBlockPos(direction), block.getTransformedState(direction));
         }
@@ -51,11 +51,6 @@ public class BuildingAccess implements IBlockAccess {
     @Override
     public Biome getBiome(BlockPos pos) {
         return Biomes.PLAINS;
-    }
-
-    @Override
-    public boolean extendedLevelsInChunkCache() {
-        return true;
     }
 
     @Override

@@ -30,7 +30,7 @@ public class ItemRecipe extends ItemHFFML<ItemRecipe, MealImpl> implements ICrea
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
         if (stack.getItemDamage() >= 10) {
-            return Text.format(MODID + ".recipe.format", CookingAPI.REGISTRY.getObjectById(stack.getItemDamage()).getDisplayName());
+            return Text.format(MODID + ".recipe.format", CookingAPI.REGISTRY.getValues().get(stack.getItemDamage()).getDisplayName());
         } else {
             return DARK_GRAY + Text.translate("recipe.invalid");
         }

@@ -13,6 +13,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -26,6 +27,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -80,6 +82,53 @@ public class BlockCookware extends BlockHFEnumRotatableTile<BlockCookware, Cookw
     @Override
     public Material getMaterial(IBlockState state) {
         return getEnumFromState(state) == COUNTER ? Material.WOOD : super.getMaterial(state);
+    }
+
+    @Override
+    @Deprecated
+    @SideOnly(Side.CLIENT)
+    public boolean shouldSideBeRendered(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side) {
+        if (getEnumFromState(state) == FRIDGE) {
+            AxisAlignedBB axisalignedbb = state.getBoundingBox(world, pos);
+            switch (side) {
+                case DOWN:
+                    if (axisalignedbb.minY > 0.0D) {
+                        return true;
+                    }
+
+                    break;
+                case UP:
+                    if (axisalignedbb.maxY < 1.0D) {
+                        return true;
+                    }
+
+                    break;
+                case NORTH:
+                    if (axisalignedbb.minZ > 0.0D) {
+                        return true;
+                    }
+
+                    break;
+                case SOUTH:
+                    if (axisalignedbb.maxZ < 1.0D) {
+                        return true;
+                    }
+
+                    break;
+                case WEST:
+                    if (axisalignedbb.minX > 0.0D) {
+                        return true;
+                    }
+
+                    break;
+                case EAST:
+                    if (axisalignedbb.maxX < 1.0D)  {
+                        return true;
+                    }
+            }
+
+            return !(world.getBlockState(pos.offset(side)).doesSideBlockRendering(world, pos.offset(side), side.getOpposite()) && world.getBlockState(pos.offset(side).up()).doesSideBlockRendering(world, pos.offset(side).up(), side.getOpposite()));
+        } else return super.shouldSideBeRendered(state, world, pos, side);
     }
 
     @SuppressWarnings("deprecation")
@@ -273,5 +322,17 @@ public class BlockCookware extends BlockHFEnumRotatableTile<BlockCookware, Cookw
     @Override
     protected boolean shouldDisplayInCreative(Cookware cookware) {
         return cookware.isReal;
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void registerModels(Item item, String name) {
+        for (int i = 0; i < values.length; i++) {
+            if (values[i] == FRIDGE || values[i] == FRIDGE_TOP) {
+                ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(getRegistryName(), "inventory_fridge"));
+            } else if(values[i] == OVEN_ON || values[i] == OVEN_OFF) {
+                ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(getRegistryName(), "inventory_oven"));
+            } else ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(getRegistryName(), property.getName() + "=" + getEnumFromMeta(i).getName() + ",facing=north"));
+        }
     }
 }

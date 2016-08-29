@@ -35,10 +35,8 @@ public class ItemMeal extends ItemHFFML<ItemMeal, MealImpl> implements ICreative
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        if (stack.getItemDamage() >= 100) {
-            return CookingAPI.REGISTRY.getValues().get(stack.getItemDamage()).getDisplayName();
-        } else return DARK_GRAY + Text.localize(Utensil.getUtensilFromIndex(stack.getItemDamage()).getUnlocalizedName());
-
+        MealImpl impl = stack.hasTagCompound() ? CookingAPI.REGISTRY.getValues().get(stack.getItemDamage()): null;
+        return impl != null ? impl.getDisplayName(): DARK_GRAY + Text.localize(Utensil.getUtensilFromIndex(stack.getItemDamage()).getUnlocalizedName());
     }
 
     @Override

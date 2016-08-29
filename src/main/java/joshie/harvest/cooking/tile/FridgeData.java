@@ -1,7 +1,6 @@
-package joshie.harvest.cooking.block;
+package joshie.harvest.cooking.tile;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.cooking.tile.TileFridge;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.lib.HFSounds;
 import net.minecraft.entity.player.EntityPlayer;

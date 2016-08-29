@@ -39,6 +39,8 @@
     "cookware=oven_on,facing=north":  { "model": "harvestfestival:oven_on" },
     "cookware=oven_on,facing=south":  { "model": "harvestfestival:oven_on", "y": 180 },
     "cookware=oven_on,facing=east": { "model": "harvestfestival:oven_on", "y": 90 },
-    "cookware=oven_on,facing=west": { "model": "harvestfestival:oven_on", "y": 270 }
+    "cookware=oven_on,facing=west": { "model": "harvestfestival:oven_on", "y": 270 },
+    "inventory_oven": { "model": "harvestfestival:oven_inventory" },
+    "inventory_fridge": { "model": "harvestfestival:fridge_inventory" }
   }
 }

@@ -2,7 +2,6 @@ package joshie.harvest.cooking.tile;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.cooking.HFCooking;
-import joshie.harvest.cooking.block.FridgeData;
 import joshie.harvest.core.base.tile.TileFaceable;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
@@ -30,7 +29,6 @@ public class TileFridge extends TileFaceable implements ITickable {
     public boolean animatingBottom;
     @SideOnly(Side.CLIENT)
     public boolean openBottom = true;
-
     protected FridgeData data = new FridgeData(this);
 
     public static boolean isValid(ItemStack stack) {

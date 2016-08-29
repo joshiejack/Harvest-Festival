@@ -12,7 +12,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.IForgeRegistry;
 
 public class MealDefinition extends FMLDefinition<MealImpl> {
-    public static final int MAX_UTENSILS_DISPLAY = 5;
     private TIntObjectMap<ModelResourceLocation> burnt = new TIntObjectHashMap<>();
 
     public MealDefinition(ItemHFFML item, String name, IForgeRegistry<MealImpl> registry) {

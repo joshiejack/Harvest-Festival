@@ -29,7 +29,7 @@ import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 @HFApiImplementation
 public class CookingAPI implements CookingManager {
-    public static final IForgeRegistry<MealImpl> REGISTRY = new RegistryBuilder<MealImpl>().setName(new ResourceLocation("harvestfestival", "meals")).setType(MealImpl.class).setIDRange(100, 32000).create();
+    public static final IForgeRegistry<MealImpl> REGISTRY = new RegistryBuilder<MealImpl>().setName(new ResourceLocation("harvestfestival", "meals")).setType(MealImpl.class).setIDRange(0, 32000).create();
     public static final CookingAPI INSTANCE = new CookingAPI();
     private final Set<RecipeHandler> handlers = new HashSet<>();
     private final Multimap<AbstractItemHolder, Ingredient> registry = ArrayListMultimap.create();

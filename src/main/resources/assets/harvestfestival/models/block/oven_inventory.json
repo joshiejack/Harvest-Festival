@@ -1,0 +1,189 @@
+{
+    "parent": "block/block",
+    "display": {
+        "gui": {
+            "rotation": [ 30, 225, 0 ],
+            "translation": [ 0, 0, 0],
+            "scale":[ 0.55, 0.55, 0.55 ]
+        }
+    },
+    "textures": {
+        "particle": "harvestfestival:models/oven",
+        "texture": "harvestfestival:models/oven",
+        "texture1": "harvestfestival:models/oven1_on"
+    },
+    "elements": [
+        {
+            "__comment": "OvenBottom",
+            "from": [ 3, 0, 2 ],
+            "to": [ 13, 3, 16 ],
+            "faces": {
+                "down":  { "uv": [ 9.5, 8.5, 14.5, 15.5 ], "texture": "#texture", "cullface": "down" },
+                "up":    { "uv": [ 4, 8.5, 9, 15.5 ], "texture": "#texture" },
+                "north": { "uv": [ 5.5, 2.5, 10.5, 1 ], "texture": "#texture1" },
+                "south": { "uv": [ 0.5, 6, 5, 7.5 ], "texture": "#texture", "cullface": "south" }
+            }
+        },
+        {
+            "__comment": "OvenEast",
+            "from": [ 0, 0, 2 ],
+            "to": [ 3, 15, 16 ],
+            "faces": {
+                "down":  { "uv": [ 3.5, 8, 2, 15.5 ], "texture": "#texture", "cullface": "down" },
+                "up":    { "uv": [ 3.5, 8, 2, 15.5 ], "texture": "#texture" },
+                "north": { "uv": [ 1.5, 8, 0, 15.5 ], "texture": "#texture" },
+                "south": { "uv": [ 3.5, 8, 2, 15.5 ], "texture": "#texture", "cullface": "south" },
+                "west":  { "uv": [ 7, 0, 0, 7.5 ], "texture": "#texture", "cullface": "west" },
+                "east":  { "uv": [ 14.5, 0, 7.5, 7.5 ], "texture": "#texture" }
+            }
+        },
+        {
+            "__comment": "OvenWest",
+            "from": [ 13, 0, 2 ],
+            "to": [ 16, 15, 16 ],
+            "faces": {
+                "down":  { "uv": [ 2, 8, 3.5, 15.5 ], "texture": "#texture", "cullface": "down" },
+                "up":    { "uv": [ 2, 8, 3.5, 15.5 ], "texture": "#texture" },
+                "north": { "uv": [ 0, 8, 1.5, 15.5 ], "texture": "#texture" },
+                "south": { "uv": [ 2, 8, 3.5, 15.5 ], "texture": "#texture", "cullface": "south" },
+                "west":  { "uv": [ 7.5, 0, 14.5, 7.5 ], "texture": "#texture" },
+                "east":  { "uv": [ 0, 0, 7, 7.5 ], "texture": "#texture", "cullface": "east" }
+            }
+        },
+        {
+            "__comment": "OvenTop",
+            "from": [ 3, 10, 2 ],
+            "to": [ 13, 15, 16 ],
+            "faces": {
+                "down":  { "uv": [ 11, 0, 16, 7 ], "texture": "#texture1" },
+                "up":    { "uv": [ 11.5, 8.5, 12, 9 ], "texture": "#texture" },
+                "north": { "uv": [ 5.5, 0, 10.5, 2.5 ], "texture": "#texture1" },
+                "south": { "uv": [ 0.5, 0, 5, 2.5 ], "texture": "#texture", "cullface": "south" }
+            }
+        },
+        {
+            "__comment": "OvenBack",
+            "from": [ 3, 3, 15 ],
+            "to": [ 13, 10, 16 ],
+            "faces": {
+                "north": { "uv": [ 0, 0, 5, 3.5 ], "texture": "#texture1" },
+                "south": { "uv": [ 0.5, 2.5, 5, 6 ], "texture": "#texture", "cullface": "south" }
+            }
+        },
+        {
+            "__comment": "Panel",
+            "from": [ 0, 0, 1 ],
+            "to": [ 16, 1, 2 ],
+            "faces": {
+                "down":  { "uv": [ 0, 7, 7, 7.5 ], "texture": "#texture", "cullface": "down" },
+                "up":    { "uv": [ 0, 7, 7, 7.5 ], "texture": "#texture" },
+                "north": { "uv": [ 0, 7, 7, 7.5 ], "texture": "#texture" },
+                "south": { "uv": [ 0, 7, 7, 7.5 ], "texture": "#texture" },
+                "west":  { "uv": [ 0, 7, 0.5, 7.5 ], "texture": "#texture", "cullface": "west" },
+                "east":  { "uv": [ 6.5, 7, 7, 7.5 ], "texture": "#texture", "cullface": "east" }
+            }
+        },
+        {
+            "__comment": "OvenPlateWest",
+            "from": [ 0, 15, 1 ],
+            "to": [ 1, 16, 16 ],
+            "faces": {
+                "down":  { "uv": [ 3.5, 8.5, 4, 16 ], "texture": "#texture1" },
+                "up":    { "uv": [ 2, 8.5, 2.5, 16 ], "texture": "#texture1", "cullface": "up" },
+                "north": { "uv": [ 0, 9.5, 0.5, 10 ], "texture": "#texture1" },
+                "south": { "uv": [ 2.5, 10, 3, 10.5 ], "texture": "#texture1", "cullface": "south" },
+                "west":  { "uv": [ 0, 11, 7.5, 11.5 ], "texture": "#texture1", "cullface": "west" },
+                "east":  { "uv": [ 0, 12, 7.5, 12.5 ], "texture": "#texture1" }
+            }
+        },
+        {
+            "__comment": "OvenRim",
+            "from": [ 0, 16, 15 ],
+            "to": [ 16, 17, 16 ],
+            "faces": {
+                "down":  { "uv": [ 0, 10.5, 8, 11 ], "texture": "#texture1", "cullface": "up" },
+                "up":    { "uv": [ 0, 11.5, 8, 12 ], "texture": "#texture1", "cullface": "up" },
+                "north": { "uv": [ 0, 9, 8, 9.5 ], "texture": "#texture1", "cullface": "up" },
+                "south": { "uv": [ 0, 14, 8, 14.5 ], "texture": "#texture1", "cullface": "up" },
+                "west":  { "uv": [ 5, 11, 5.5, 11.5 ], "texture": "#texture1", "cullface": "up" },
+                "east":  { "uv": [ 5.5, 13, 6, 13.5 ], "texture": "#texture1", "cullface": "up" }
+            }
+        },
+        {
+            "__comment": "OvenPlateEast",
+            "from": [ 15, 15, 1 ],
+            "to": [ 16, 16, 16 ],
+            "faces": {
+                "down":  { "uv": [ 0.5, 8.5, 1, 16 ], "texture": "#texture1" },
+                "up":    { "uv": [ 0, 8.5, 0.5, 16 ], "texture": "#texture1", "cullface": "up" },
+                "north": { "uv": [ 0, 9.5, 0.5, 10 ], "texture": "#texture1" },
+                "south": { "uv": [ 3, 10.5, 3.5, 11 ], "texture": "#texture1", "cullface": "south" },
+                "west":  { "uv": [ 0, 8, 7.5, 8.5 ], "texture": "#texture1" },
+                "east":  { "uv": [ 0, 8.5, 7.5, 9 ], "texture": "#texture1", "cullface": "east" }
+            }
+        },
+        {
+            "__comment": "OvenPlateSouth",
+            "from": [ 1, 15, 14 ],
+            "to": [ 15, 16, 16 ],
+            "faces": {
+                "down":  { "uv": [ 0, 9, 7, 9.5 ], "texture": "#texture1" },
+                "up":    { "uv": [ 0, 8, 7, 8.5 ], "texture": "#texture1", "cullface": "up" },
+                "north": { "uv": [ 0, 11, 7, 11.5 ], "texture": "#texture1" },
+                "south": { "uv": [ 0, 12, 7, 12.5 ], "texture": "#texture1", "cullface": "south" }
+            }
+        },
+        {
+            "__comment": "OvenPlateNorth",
+            "from": [ 1, 15, 1 ],
+            "to": [ 15, 16, 2 ],
+            "faces": {
+                "down":  { "uv": [ 0, 12.5, 7, 13 ], "texture": "#texture1" },
+                "up":    { "uv": [ 0, 11, 7, 11.5 ], "texture": "#texture1", "cullface": "up" },
+                "north": { "uv": [ 0, 14.5, 7, 15 ], "texture": "#texture1" },
+                "south": { "uv": [ 0, 11, 7, 11.5 ], "texture": "#texture1" }
+            }
+        },
+        {
+            "__comment": "OvenStove",
+            "from": [ 1, 15, 2 ],
+            "to": [ 15, 15.5, 14 ],
+            "faces": {
+                "up":    { "uv": [ 9, 10, 16, 16 ], "texture": "#texture1" }
+            }
+        },
+        {
+            "__comment": "OvenDoor",
+            "from": [ 3, 3, 1 ],
+            "to": [ 13, 10, 2 ],
+            "faces": {
+                "down":  { "uv": [ 5, 7, 0, 7.5 ], "texture": "#texture1" },
+                "up":    { "uv": [ 5, 4, 0, 4.5 ], "texture": "#texture1" },
+                "north": { "uv": [ 0, 4, 5, 7.5 ], "texture": "#texture1" },
+                "south": { "uv": [ 0, 4, 5, 7.5 ], "texture": "#texture1" },
+                "west":  { "uv": [ 4.5, 4, 5, 7.5 ], "texture": "#texture1" },
+                "east":  { "uv": [ 0, 4, 0.5, 7.5 ], "texture": "#texture1" }
+            }
+        },
+        {
+            "__comment": "OvenDoorHandle",
+            "from": [ 5.5, 8, 0.5 ],
+            "to": [ 10.5, 9, 1.5 ],
+            "faces": {
+                "down":  { "uv": [ 12, 8.5, 14.5, 9 ], "texture": "#texture1" },
+                "up":    { "uv": [ 12, 8, 14.5, 8.5 ], "texture": "#texture1" },
+                "north": { "uv": [ 12, 8.5, 14.5, 9 ], "texture": "#texture1" },
+                "west":  { "uv": [ 12, 8, 12.5, 8.5 ], "texture": "#texture1" },
+                "east":  { "uv": [ 12.5, 8, 13, 8.5 ], "texture": "#texture1" }
+            }
+        },
+        {
+            "__comment": "OvenGrid",
+            "from": [ 2.5, 3.5, 3 ],
+            "to": [ 13.5, 4.5, 14 ],
+            "faces": {
+                "up":    { "uv": [ 5.5, 2.5, 11, 8 ], "texture": "#texture1" }
+            }
+        }
+    ]
+}

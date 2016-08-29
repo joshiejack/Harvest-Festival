@@ -72,7 +72,7 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
         this.skin = new ResourceLocation(MODID, "textures/entity/" + name + ".png");
         this.conditionals.add(new GreetingMultiple(name + ".greeting"));
         this.conditionals.add(new GreetingMultiple("generic." + age.name().toLowerCase() + ".greeting"));
-        this.conditionals.add(new GreetingMultiple("generic." + gender.name().toLowerCase() + ".greeting"));
+        if (this.age != CHILD) this.conditionals.add(new GreetingMultiple("generic." + gender.name().toLowerCase() + ".greeting"));
         this.conditionals.add(new GreetingSingle("generic.weather.good") {
             @Override
             public boolean canDisplay(EntityPlayer player) {

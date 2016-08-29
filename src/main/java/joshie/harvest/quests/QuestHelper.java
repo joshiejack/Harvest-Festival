@@ -8,6 +8,7 @@ import joshie.harvest.api.quests.Quest.EventType;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.ItemHelper;
 import joshie.harvest.core.network.PacketHandler;
+import joshie.harvest.core.util.HFApiImplementation;
 import joshie.harvest.core.util.IdiotException;
 import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.player.quests.QuestData;
@@ -32,6 +33,7 @@ import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.core.network.PacketHandler.sendToClient;
 import static joshie.harvest.core.network.PacketHandler.sendToServer;
 
+@HFApiImplementation
 public class QuestHelper implements IQuestHelper {
     public static final QuestHelper INSTANCE = new QuestHelper();
 

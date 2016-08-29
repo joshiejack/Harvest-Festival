@@ -2,13 +2,13 @@ package joshie.harvest.npc.gift;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.gift.GiftCategory;
-import net.minecraft.init.Items;
+import net.minecraft.item.ItemFishingRod;
 import net.minecraft.item.ItemStack;
 
 public class GiftsJacob extends Gifts {
     @Override
     public Quality getQuality(ItemStack stack) {
-        if (stack.getItem() == Items.FISHING_ROD) {
+        if (stack.getItem() instanceof ItemFishingRod) {
             return Quality.AWESOME;
         }
 

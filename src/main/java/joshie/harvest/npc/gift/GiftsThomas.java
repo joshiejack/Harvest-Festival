@@ -13,13 +13,14 @@ public class GiftsThomas extends Gifts {
             return Quality.AWESOME;
         }
 
+        if (HFApi.npc.getGifts().isGiftType(stack, GiftCategory.BATTLE)) {
+            return Quality.BAD;
+        }
+
         if (HFApi.npc.getGifts().isGiftType(stack, GiftCategory.DANGER)) {
             return Quality.GOOD;
         }
 
-        if (HFApi.npc.getGifts().isGiftType(stack, GiftCategory.BATTLE)) {
-            return Quality.BAD;
-        }
         return Quality.DECENT;
     }
 }

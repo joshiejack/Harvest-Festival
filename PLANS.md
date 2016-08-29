@@ -18,6 +18,8 @@ Stage 1 (0.5.0)
 Stage 2 (0.6.0) - Expansive Events
 * More General Items + Additional Gathering Items
 * Flower Crops
+* Jewel Rocks
+ -> Amethyst, Agate, Fluorite, Peridot, Topaz, Ruby, Sandrose, Moonstone, Alexandrite, Pink Diamond, Orichalc, Adamantite
 * Fishing
  -> Fishing Rods
 * Fruit Trees

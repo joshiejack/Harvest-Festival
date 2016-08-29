@@ -1,12 +1,8 @@
-## Coding
-- Improve the main page of the recipe book
+## Design
+- Redesign main page of recipe book
 - Add lang for extra chatting
 - Add lang for all the quests
 - Add lang for all the recipes
-
-#Mine
-- Make Render for Jewel Rock
-- Add Diamonds and Emeralds as spawnable from Jewel Rock
 
 ### Textures
 - Kitchen Knife (Looks good when right clicking)
@@ -28,16 +24,3 @@
 - Cursed Potion Effect Icon
 - Crop Grass Better Texture
 - Fix the left most leaf in the autumn texture again
-#Mine
-- Amethyst
-- Agate
-- Fluorite
-- Peridot
-- Topaz
-- Ruby
-- Sandrose
-- Moonstone
-- Alexandrite
-- Pink Diamond
-- Orichalc
-- Adamantite

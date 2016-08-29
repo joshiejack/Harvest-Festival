@@ -1,9 +1,12 @@
 package joshie.harvest.npc.gift.init;
 
+import joshie.harvest.core.util.HFLoader;
+
 import static joshie.harvest.api.npc.gift.GiftCategory.*;
 import static net.minecraft.init.Items.*;
 
-public class HFGiftVanillaItems extends HFGiftsAbstract {
+@HFLoader(priority = 0)
+public class HFGiftsVanillaItems extends HFGiftsAbstract {
     public static void init() {
         assignGeneric(IRON_SHOVEL, TOOLS);
         assignGeneric(IRON_PICKAXE, MINING, TOOLS);

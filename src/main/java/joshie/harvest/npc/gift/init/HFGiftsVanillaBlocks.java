@@ -1,9 +1,12 @@
 package joshie.harvest.npc.gift.init;
 
+import joshie.harvest.core.util.HFLoader;
+
 import static joshie.harvest.api.npc.gift.GiftCategory.*;
 import static net.minecraft.init.Blocks.*;
 
-public class HFGiftVanillaBlocks extends HFGiftsAbstract {
+@HFLoader(priority = 0)
+public class HFGiftsVanillaBlocks extends HFGiftsAbstract {
     public static void init() {
         assignGeneric(STONE, MINING, CHEAP, CONSTRUCTION);
         assignGeneric(GRASS, NATURE);

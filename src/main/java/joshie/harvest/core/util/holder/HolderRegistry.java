@@ -16,6 +16,10 @@ public class HolderRegistry<R> {
     private final HashMap<AbstractItemHolder, R> registry = new HashMap<>();
     private final Multimap<Item, AbstractItemHolder> keyMap = HashMultimap.create();
 
+    public void removeItem(Item item) {
+        keyMap.removeAll(item);
+    }
+
     public void registerItem(ItemStack stack, R r) {
         AbstractItemHolder holder = getHolder(stack);
         keyMap.get(stack.getItem()).add(holder); //Link the item to various holders

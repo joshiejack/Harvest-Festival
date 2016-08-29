@@ -25,7 +25,7 @@ public class GiftsYulif extends Gifts {
             return GOOD;
         }
 
-        if (HFApi.npc.getGifts().isGiftType(stack, GiftCategory.CONSTRUCTION)) {
+        if (HFApi.npc.getGifts().isGiftType(stack, GiftCategory.CONSTRUCTION, GiftCategory.GATHERING)) {
             return Quality.GOOD;
         }
 

@@ -12,8 +12,8 @@ import static joshie.harvest.gathering.block.BlockWood.Wood.*;
 
 @HFLoader
 public class HFGathering {
-    private static final BlockRock ROCK = new BlockRock().register("rock");
-    private static final BlockWood WOOD = new BlockWood().register("wood");
+    public static final BlockRock ROCK = new BlockRock().register("rock");
+    public static final BlockWood WOOD = new BlockWood().register("wood");
 
     public static void preInit() {}
     public static void init() {

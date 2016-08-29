@@ -18,5 +18,6 @@ public enum GiftCategory {
     KNITTING,
     TECHNOLOGY,
     DANGER,
-    BATTLE
+    BATTLE,
+    GATHERING
 }

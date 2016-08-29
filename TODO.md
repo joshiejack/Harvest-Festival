@@ -1,6 +1,5 @@
 ## Coding
 - Improve the main page of the recipe book
-- Register HFItems as gift types
 - Add lang for extra chatting
 - Add lang for all the quests
 - Add lang for all the recipes

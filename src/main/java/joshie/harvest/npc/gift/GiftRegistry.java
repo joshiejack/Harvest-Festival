@@ -39,6 +39,11 @@ public class GiftRegistry implements IGiftRegistry {
 
     //For my own sanity....
     @Override
+    public void removeItem(Item item) {
+        registry.removeItem(item);
+    }
+
+    @Override
     public void assignGeneric(Object object, GiftCategory... categories) {
         if (object instanceof Item) assignItem((Item)object, categories);
         else if (object instanceof Block) assignBlock((Block)object, categories);

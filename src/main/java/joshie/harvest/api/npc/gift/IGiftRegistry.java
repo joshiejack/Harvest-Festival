@@ -1,8 +1,13 @@
 package joshie.harvest.api.npc.gift;
 
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public interface IGiftRegistry {
+    /** Removes an item from the registry
+     *  Dissosciating with all things, including mods**/
+    void removeItem(Item item);
+
     /** Assign a block, item, stack, or mod **/
     void assignGeneric(Object object, GiftCategory... categories);
 

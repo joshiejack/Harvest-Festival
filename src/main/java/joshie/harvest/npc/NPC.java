@@ -12,6 +12,7 @@ import joshie.harvest.api.npc.gift.IGiftHandler;
 import joshie.harvest.api.npc.gift.IGiftHandler.Quality;
 import joshie.harvest.api.relations.IRelatableDataHandler;
 import joshie.harvest.api.shops.IShop;
+import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.core.util.Text;
 import joshie.harvest.npc.greeting.GreetingMultiple;
 import joshie.harvest.npc.greeting.GreetingSingle;
@@ -264,7 +265,8 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
 
     @Override
     public Quality getGiftValue(ItemStack stack) {
-        if (gifts == null) return Quality.DECENT;
+        if (gifts == null) return Quality.DECENT; //Always dislike burnt food
+        if (stack.getItem() == HFCooking.MEAL && !stack.hasTagCompound()) return Quality.DISLIKE;
         return gifts.getQuality(stack);
     }
 

@@ -53,10 +53,10 @@ public class HolderRegistry<R> {
         return external == internal;
     }
 
-    public static AbstractItemHolder getHolder(ItemStack stack) {
-        if (stack.getItem() instanceof ICropProvider) return CropHolder.of((Crop)((ICropProvider)stack.getItem()).getCrop(stack));
+    private AbstractItemHolder getHolder(ItemStack stack) {
+        if (stack.getItemDamage() == OreDictionary.WILDCARD_VALUE) return ItemHolder.of(stack.getItem());
+        else if (stack.getItem() instanceof ICropProvider) return CropHolder.of((Crop)((ICropProvider)stack.getItem()).getCrop(stack));
         else if (stack.getItem() instanceof ISizedProvider) return SizeableHolder.of(((ISizedProvider)stack.getItem()).getSizeable(stack));
-        else if (stack.getItemDamage() == OreDictionary.WILDCARD_VALUE) return ItemHolder.of(stack.getItem());
         else return ItemStackHolder.of(stack);
     }
 }

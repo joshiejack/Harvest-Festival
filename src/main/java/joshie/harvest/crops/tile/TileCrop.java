@@ -8,6 +8,8 @@ import joshie.harvest.crops.block.BlockHFCrops;
 import joshie.harvest.crops.block.BlockHFCrops.Stage;
 import net.minecraft.nbt.NBTTagCompound;
 
+import javax.annotation.Nonnull;
+
 import static joshie.harvest.crops.CropHelper.isWetSoil;
 import static joshie.harvest.core.network.PacketHandler.sendRefreshPacket;
 
@@ -20,6 +22,7 @@ public class TileCrop extends TileDaily {
     protected CropData data = new CropData();
 
     //Return and create new data if it doesn't exist yet
+    @Nonnull
     public CropData getData() {
         return data;
     }

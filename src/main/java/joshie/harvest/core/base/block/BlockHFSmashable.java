@@ -30,13 +30,12 @@ public abstract class BlockHFSmashable<B extends BlockHFSmashable, E extends Enu
 
     @Override
     public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)  {
-        if (isDroppable(getEnumFromState(state))) {
-            super.dropBlockAsItemWithChance(worldIn, pos, state, chance, fortune);
+        if (!worldIn.isRemote && !worldIn.restoringBlockSnapshots)  {
+            EntityPlayer player = harvesters.get();
+            if (player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == getTool()) {
+                smashBlock(harvesters.get(), worldIn, pos, state, getTool().getTier(player.getHeldItemMainhand()));
+            }
         }
-    }
-
-    protected boolean isDroppable(E e) {
-        return false;
     }
 
     @Override

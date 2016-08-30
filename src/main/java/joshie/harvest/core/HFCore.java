@@ -1,13 +1,14 @@
 package joshie.harvest.core;
 
 import joshie.harvest.HarvestFestival;
-import joshie.harvest.core.item.ItemSizeable;
+import joshie.harvest.api.HFApi;
 import joshie.harvest.core.block.BlockFlower;
 import joshie.harvest.core.block.BlockFlower.FlowerType;
 import joshie.harvest.core.block.BlockGoddessWater;
 import joshie.harvest.core.block.BlockStorage;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.helpers.generic.RegistryHelper;
+import joshie.harvest.core.item.ItemSizeable;
 import joshie.harvest.core.render.SizeableDefinition;
 import joshie.harvest.core.tile.TileShipping;
 import joshie.harvest.core.util.HFLoader;
@@ -15,6 +16,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.color.IItemColor;
+import net.minecraft.init.Items;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -46,6 +48,13 @@ public class HFCore {
         LootFunctionManager.registerFunction(new SetEnum.Serializer());
         RegistryHelper.registerTiles(TileShipping.class);
         GODDESS.setBlock(GODDESS_WATER);
+
+        //Register sellables
+        HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 0), 50L);
+        HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 1), 120L);
+        HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 2), 200L);
+        HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 3), 200L);
+        HFApi.shipping.registerSellable(new ItemStack(Items.APPLE), 100L);
     }
 
     @SideOnly(Side.CLIENT)

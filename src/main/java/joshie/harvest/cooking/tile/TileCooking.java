@@ -73,13 +73,15 @@ public abstract class TileCooking extends TileFaceable {
     }
 
     public void takeBackLastStack(EntityPlayer player) {
-        ItemHelper.addToPlayerInventory(player, ingredients.get(ingredients.size() - 1));
-        ingredients.remove(ingredients.size() - 1); //Remove the last stack
-        if (worldObj.isRemote) return;
-        this.last = this.ingredients.size();
-        this.cooking = true;
-        this.cookTimer = 0;
-        this.markDirty();
+        if (ingredients.size() > 0) {
+            ItemHelper.addToPlayerInventory(player, ingredients.get(ingredients.size() - 1));
+            ingredients.remove(ingredients.size() - 1); //Remove the last stack
+            if (worldObj.isRemote) return;
+            this.last = this.ingredients.size();
+            this.cooking = true;
+            this.cookTimer = 0;
+            this.markDirty();
+        }
     }
 
     public void animate() {}

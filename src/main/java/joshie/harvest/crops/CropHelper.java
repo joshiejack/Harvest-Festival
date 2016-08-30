@@ -14,7 +14,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import static joshie.harvest.api.crops.IStateHandler.PlantSection.TOP;
+import static joshie.harvest.api.crops.IStateHandler.PlantSection.BOTTOM;
 
 public class CropHelper {
     public static final IBlockState WET_SOIL = Blocks.FARMLAND.getDefaultState().withProperty(BlockFarmland.MOISTURE, 7);
@@ -22,13 +22,21 @@ public class CropHelper {
     public static final IBlockState DRY_SOIL = Blocks.FARMLAND.getDefaultState().withProperty(BlockFarmland.MOISTURE, 0);
 
     public static IBlockState getBlockState(World world, BlockPos pos, PlantSection section, boolean withered) {
-        ICropData data = section == TOP ? ((TileCrop) world.getTileEntity(pos.down())).getData(): ((TileCrop) world.getTileEntity(pos)).getData();
+        ICropData data = getTile(world, pos, section).getData();
         return data.getCrop().getStateHandler().getState(section, data.getStage(), withered);
     }
 
     public static AxisAlignedBB getCropBoundingBox(World world, BlockPos pos, PlantSection section, boolean withered) {
-        ICropData data = section == TOP ? ((TileCrop) world.getTileEntity(pos.down())).getData(): ((TileCrop) world.getTileEntity(pos)).getData();
+        ICropData data = getTile(world, pos, section).getData();
         return data.getCrop().getStateHandler().getBoundingBox(section, data.getStage(), withered);
+    }
+
+    private static TileCrop getTile(World world, BlockPos pos, PlantSection section) {
+        if (section == BOTTOM) return (TileCrop) world.getTileEntity(pos);
+        else {
+            TileCrop down = ((TileCrop)world.getTileEntity(pos.down()));
+            return down == null ? (TileCrop) world.getTileEntity(pos): down;
+        }
     }
 
     //Returns whether the farmland is hydrated

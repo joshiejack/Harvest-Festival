@@ -4,14 +4,13 @@ import com.google.common.collect.Lists;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.core.commands.AbstractHFCommand;
-import joshie.harvest.core.commands.HFCommand;
 import joshie.harvest.core.commands.CommandManager;
+import joshie.harvest.core.commands.HFCommand;
 import joshie.harvest.core.network.Packet;
 import joshie.harvest.core.util.HFApiImplementation;
 import joshie.harvest.core.util.HFEvents;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.discovery.ASMDataTable;
 import net.minecraftforge.fml.common.discovery.ASMDataTable.ASMData;
 import net.minecraftforge.fml.common.discovery.asm.ModAnnotation;
@@ -153,10 +152,8 @@ public class HFApiLoader {
         for (String sided: namesSided) {
             Side side = sidedPackets.get(sided);
             try {
-                if (FMLCommonHandler.instance().getEffectiveSide() == side) {
-                    Class<?> asmClass = Class.forName(sided);
-                    registerPacket(asmClass, side);
-                }
+                Class<?> asmClass = Class.forName(sided);
+                registerPacket(asmClass, side);
             } catch (Exception e) {}
         }
 

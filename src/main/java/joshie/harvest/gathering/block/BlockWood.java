@@ -76,11 +76,6 @@ public class BlockWood extends BlockHFSmashable<BlockWood, Wood> {
     }
 
     @Override
-    protected boolean isDroppable(Wood wood) {
-        return wood == Wood.BRANCH_SMALL || wood == Wood.BRANCH_MEDIUM || wood == Wood.BRANCH_LARGE;
-    }
-
-    @Override
     public long getSellValue(ItemStack stack) {
         Wood type = getEnumFromStack(stack);
         switch (type) {

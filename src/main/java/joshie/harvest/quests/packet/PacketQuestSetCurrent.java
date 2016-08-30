@@ -2,7 +2,6 @@ package joshie.harvest.quests.packet;
 
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.quests.Quest;
-import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.network.Packet;
 import joshie.harvest.core.network.PenguinPacket;
 import joshie.harvest.quests.QuestHelper;
@@ -44,6 +43,6 @@ public class PacketQuestSetCurrent extends PenguinPacket {
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        QuestHelper.markAsCurrent(MCClientHelper.getPlayer(), quest);
+        QuestHelper.markAsCurrent(player, quest);
     }
 }

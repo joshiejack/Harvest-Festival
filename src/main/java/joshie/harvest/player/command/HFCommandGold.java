@@ -1,7 +1,7 @@
 package joshie.harvest.player.command;
 
 import joshie.harvest.core.commands.AbstractHFCommand;
-import joshie.harvest.core.commands.AbstractHFCommand.HFCommand;
+import joshie.harvest.core.commands.HFCommand;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.player.stats.StatsServer;

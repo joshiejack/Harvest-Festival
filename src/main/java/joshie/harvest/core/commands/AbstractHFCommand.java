@@ -5,16 +5,7 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.command.NumberInvalidException;
 import net.minecraft.server.MinecraftServer;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
 public abstract class AbstractHFCommand implements Comparable<Object> {
-    @Retention(RetentionPolicy.RUNTIME)
-    @Target(ElementType.TYPE)
-    public @interface HFCommand {}
-
     /** Return the command name **/
     public abstract String getCommandName();
 

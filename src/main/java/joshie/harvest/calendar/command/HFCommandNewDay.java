@@ -1,7 +1,7 @@
 package joshie.harvest.calendar.command;
 
 import joshie.harvest.core.commands.AbstractHFCommand;
-import joshie.harvest.core.commands.AbstractHFCommand.HFCommand;
+import joshie.harvest.core.commands.HFCommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
 

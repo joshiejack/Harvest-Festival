@@ -4,7 +4,7 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.calendar.CalendarServer;
 import joshie.harvest.core.commands.AbstractHFCommand;
-import joshie.harvest.core.commands.AbstractHFCommand.HFCommand;
+import joshie.harvest.core.commands.HFCommand;
 import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;

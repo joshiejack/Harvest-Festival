@@ -3,7 +3,7 @@ package joshie.harvest.calendar.command;
 import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.calendar.CalendarServer;
 import joshie.harvest.core.commands.AbstractHFCommand;
-import joshie.harvest.core.commands.AbstractHFCommand.HFCommand;
+import joshie.harvest.core.commands.HFCommand;
 import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;

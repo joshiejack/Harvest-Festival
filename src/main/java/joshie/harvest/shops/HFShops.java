@@ -145,8 +145,8 @@ public class HFShops {
         }
 
         CARPENTER.addItem(new PurchaseableBuilder(0, 16, 0, HFCore.STORAGE.getStackFromEnum(Storage.SHIPPING)));
-        CARPENTER.addItem(new PurchaseableBuilder(0, 0, 100, new ItemStack(Blocks.LOG)));
-        CARPENTER.addItem(new PurchaseableBuilder(0, 0, 50, new ItemStack(Blocks.STONE)));
+        CARPENTER.addItem(new PurchaseableBuilder(100, 0, 0, new ItemStack(Blocks.LOG)));
+        CARPENTER.addItem(new PurchaseableBuilder(50, 0, 0, new ItemStack(Blocks.STONE)));
         CARPENTER.addOpening(MONDAY, 11000, 16000).addOpening(TUESDAY, 11000, 16000).addOpening(WEDNESDAY, 11000, 16000);
         CARPENTER.addOpening(THURSDAY, 11000, 16000).addOpening(FRIDAY, 11000, 16000).addOpening(SUNDAY, 11000, 16000);
     }

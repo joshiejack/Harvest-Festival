@@ -2,7 +2,7 @@ package joshie.harvest.calendar.command;
 
 import joshie.harvest.calendar.packet.PacketEdit;
 import joshie.harvest.core.commands.AbstractHFCommand;
-import joshie.harvest.core.commands.AbstractHFCommand.HFCommand;
+import joshie.harvest.core.commands.HFCommand;
 import joshie.harvest.core.network.PacketHandler;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;

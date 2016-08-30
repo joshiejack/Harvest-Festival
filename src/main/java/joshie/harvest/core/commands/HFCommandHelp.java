@@ -1,6 +1,5 @@
 package joshie.harvest.core.commands;
 
-import joshie.harvest.core.commands.AbstractHFCommand.HFCommand;
 import net.minecraft.command.CommandNotFoundException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.NumberInvalidException;

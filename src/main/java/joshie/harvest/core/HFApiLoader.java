@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.core.commands.AbstractHFCommand;
-import joshie.harvest.core.commands.AbstractHFCommand.HFCommand;
+import joshie.harvest.core.commands.HFCommand;
 import joshie.harvest.core.commands.CommandManager;
 import joshie.harvest.core.network.Packet;
 import joshie.harvest.core.util.HFApiImplementation;

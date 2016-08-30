@@ -7,6 +7,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.NetHandlerPlayServer;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class PenguinPacket implements IMessage {
     public void handlePacket(EntityPlayer player) {}
@@ -21,6 +23,7 @@ public abstract class PenguinPacket implements IMessage {
     @Override
     public void fromBytes(ByteBuf from) {}
 
+    @SideOnly(Side.CLIENT)
     public void handleQueuedClient(NetHandlerPlayClient handler) {
         handlePacket(MCClientHelper.getPlayer());
     }

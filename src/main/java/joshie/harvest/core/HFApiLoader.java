@@ -11,6 +11,7 @@ import joshie.harvest.core.util.HFApiImplementation;
 import joshie.harvest.core.util.HFEvents;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.discovery.ASMDataTable;
 import net.minecraftforge.fml.common.discovery.ASMDataTable.ASMData;
 import net.minecraftforge.fml.common.discovery.asm.ModAnnotation;
@@ -18,7 +19,6 @@ import net.minecraftforge.fml.common.registry.IForgeRegistry;
 import net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
-import org.apache.commons.lang3.tuple.Pair;
 
 import javax.annotation.Nonnull;
 import java.lang.reflect.Field;
@@ -117,16 +117,15 @@ public class HFApiLoader {
         String annotationClassName = Packet.class.getCanonicalName();
         Set<ASMData> asmDatas = new HashSet<>(asmDataTable.getAll(annotationClassName));
 
-        HashMap<String, Pair<Side, Class>> sidedPackets = new HashMap();
-        HashMap<String, Class> unsidedPackets = new HashMap();
+        Map<String, Side> sidedPackets = new HashMap();
+        Map<String, String> unsidedPackets = new HashMap<>();
         for (ASMDataTable.ASMData asmData : asmDatas) {
             try {
-                Class<?> asmClass = Class.forName(asmData.getClassName());
                 Map<String, Object> data = asmData.getAnnotationInfo();
                 String s = data.get("value") != null ? ReflectionHelper.getPrivateValue(ModAnnotation.EnumHolder.class, (ModAnnotation.EnumHolder) data.get("value"), "value") : "BOTH";
                 Side side = s.equals("CLIENT") ? Side.CLIENT : s.equals("SERVER") ? Side.SERVER: null;
-                if (side == null) unsidedPackets.put(asmClass.getSimpleName(), asmClass);
-                else sidedPackets.put(asmClass.getSimpleName(), Pair.of(side, (Class)asmClass));
+                if (side == null) unsidedPackets.put(asmData.getClassName(), asmData.getClassName());
+                else sidedPackets.put(asmData.getClassName(), side);
             } catch (Exception e) { e.printStackTrace(); }
         }
 
@@ -152,16 +151,20 @@ public class HFApiLoader {
 
         //Register sided packets
         for (String sided: namesSided) {
-            Pair<Side, Class> result = sidedPackets.get(sided);
+            Side side = sidedPackets.get(sided);
             try {
-                registerPacket(result.getRight(), result.getLeft());
-            } catch (Exception e) { e.printStackTrace(); }
+                if (FMLCommonHandler.instance().getEffectiveSide() == side) {
+                    Class<?> asmClass = Class.forName(sided);
+                    registerPacket(asmClass, side);
+                }
+            } catch (Exception e) {}
         }
 
         //Register unsided packets
         for (String unsided: namesUnsided) {
             try {
-                registerPacket(unsidedPackets.get(unsided));
+                Class<?> asmClass = Class.forName(unsided);
+                registerPacket(asmClass);
             } catch (Exception e) { e.printStackTrace(); }
         }
     }

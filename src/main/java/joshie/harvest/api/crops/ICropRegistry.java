@@ -17,7 +17,7 @@ public interface ICropRegistry {
     ICrop getCrop(ResourceLocation resource);
 
     /** Alternative if you don't want to implement ICropProvider **/
-    ICrop registerCropProvider(ItemStack stack, ICrop crop);
+    void registerCropProvider(ItemStack stack, ResourceLocation crop);
 
     /** Return this crop this stack provides, or null if it provides none
      *  @param stack the item stack to check

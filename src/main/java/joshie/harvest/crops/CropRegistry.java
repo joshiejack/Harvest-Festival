@@ -1,5 +1,7 @@
 package joshie.harvest.crops;
 
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
@@ -21,7 +23,11 @@ import net.minecraftforge.fml.common.registry.RegistryBuilder;
 import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.concurrent.Callable;
 
 import static joshie.harvest.crops.CropHelper.*;
 import static joshie.harvest.crops.block.BlockHFCrops.Stage.FRESH;
@@ -31,10 +37,11 @@ import static joshie.harvest.crops.block.BlockHFCrops.Stage.FRESH_DOUBLE;
 public class CropRegistry implements ICropRegistry {
     public static final IForgeRegistry<Crop> REGISTRY = new RegistryBuilder<Crop>().setName(new ResourceLocation("harvestfestival", "crops")).setType(Crop.class).setIDRange(0, 32000).create();
     public static final CropRegistry INSTANCE = new CropRegistry();
-    private final HashMap<ItemStackHolder, ICrop> providers = new HashMap<>();
+    private final HashMap<ItemStackHolder, Crop> providers = new HashMap<>();
+    private final Cache<Crop, List<ItemStack>> cropToStacks = CacheBuilder.newBuilder().maximumSize(128).build();
 
     @Override
-    public ICrop getCrop(ResourceLocation resource) {
+    public Crop getCrop(ResourceLocation resource) {
         return REGISTRY.getValue(resource);
     }
 
@@ -44,9 +51,26 @@ public class CropRegistry implements ICropRegistry {
     }
 
     @Override
-    public ICrop registerCropProvider(ItemStack stack, ICrop crop) {
-        providers.put(ItemStackHolder.of(stack), crop);
-        return crop;
+    public void registerCropProvider(ItemStack stack, ResourceLocation crop) {
+        providers.put(ItemStackHolder.of(stack), getCrop(crop));
+    }
+
+    public List<ItemStack> getStacksForCrop(Crop crop) {
+        try {
+            return cropToStacks.get(crop, new Callable<List<ItemStack>>() {
+                @Override
+                public List<ItemStack> call() throws Exception {
+                    List<ItemStack> list = new ArrayList<>();
+                    for (Entry<ItemStackHolder, Crop> entry: providers.entrySet()) {
+                        if (entry.getValue().equals(crop)) {
+                            list.addAll(entry.getKey().getMatchingStacks());
+                        }
+                    }
+
+                    return list;
+                }
+            });
+        } catch (Exception e) { return new ArrayList<>(); }
     }
 
     @Override

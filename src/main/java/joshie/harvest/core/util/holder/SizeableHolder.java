@@ -1,11 +1,15 @@
 package joshie.harvest.core.util.holder;
 
+import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.handlers.SizeableRegistry;
 import joshie.harvest.core.lib.Sizeable;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SizeableHolder extends AbstractItemHolder {
     private final Sizeable sizeable;
@@ -16,6 +20,18 @@ public class SizeableHolder extends AbstractItemHolder {
 
     public static SizeableHolder of(Sizeable sizeable) {
         return new SizeableHolder(sizeable);
+    }
+
+    @Override
+    public List<ItemStack> getMatchingStacks() {
+        if (matchingStacks != null && matchingStacks.size() > 0) return matchingStacks;
+        else {
+            matchingStacks = new ArrayList<>();
+            matchingStacks.add(sizeable.getStack(Size.SMALL));
+            matchingStacks.add(sizeable.getStack(Size.MEDIUM));
+            matchingStacks.add(sizeable.getStack(Size.LARGE));
+            return matchingStacks;
+        }
     }
 
     @Override

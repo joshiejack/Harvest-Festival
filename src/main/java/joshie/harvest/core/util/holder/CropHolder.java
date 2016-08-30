@@ -8,6 +8,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CropHolder extends AbstractItemHolder {
     private final Crop crop;
 
@@ -20,6 +23,16 @@ public class CropHolder extends AbstractItemHolder {
     }
 
     @Override
+    public List<ItemStack> getMatchingStacks() {
+        if (matchingStacks != null && matchingStacks.size() > 0) return matchingStacks;
+        else {
+            matchingStacks = new ArrayList<>();
+            matchingStacks.addAll(CropRegistry.INSTANCE.getStacksForCrop(crop));
+            return matchingStacks;
+        }
+    }
+
+    @Override
     public boolean matches(ItemStack stack) {
         ICrop container = HFApi.crops.getCropFromStack(stack);
         if (container != null) {
@@ -28,7 +41,6 @@ public class CropHolder extends AbstractItemHolder {
 
         return false;
     }
-
 
     public static CropHolder readFromNBT(NBTTagCompound tag) {
         return new CropHolder(CropRegistry.REGISTRY.getValue(new ResourceLocation(tag.getString("CropResource"))));

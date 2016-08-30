@@ -5,6 +5,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ModHolder extends AbstractItemHolder {
     private final String mod;
 
@@ -14,6 +17,11 @@ public class ModHolder extends AbstractItemHolder {
 
     public static ModHolder of(String mod) {
         return new ModHolder(mod);
+    }
+
+    @Override
+    public List<ItemStack> getMatchingStacks() {
+        return new ArrayList<>();
     }
 
     @Override

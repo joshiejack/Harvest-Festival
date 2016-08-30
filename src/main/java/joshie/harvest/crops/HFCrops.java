@@ -172,13 +172,13 @@ public class HFCrops {
     }
 
     private static void registerVanillaCrop(Item item, ICrop crop) {
-        HFApi.crops.registerCropProvider(new ItemStack(item, 1, OreDictionary.WILDCARD_VALUE), crop);
+        HFApi.crops.registerCropProvider(new ItemStack(item, 1, OreDictionary.WILDCARD_VALUE), ((Crop)crop).getRegistryName());
         item.setCreativeTab(FARMING);
         crop.setItem(new ItemStack(item));
     }
 
     private static void registerVanillaCrop(Block block, ICrop crop) {
-        HFApi.crops.registerCropProvider(new ItemStack(block, 1, OreDictionary.WILDCARD_VALUE), crop);
+        HFApi.crops.registerCropProvider(new ItemStack(block, 1, OreDictionary.WILDCARD_VALUE), ((Crop)crop).getRegistryName());
         block.setCreativeTab(FARMING);
         crop.setItem(new ItemStack(block));
     }

@@ -5,6 +5,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ItemHolder extends AbstractItemHolder {
     private final Item item;
 
@@ -19,6 +22,16 @@ public class ItemHolder extends AbstractItemHolder {
     @Override
     public boolean matches(ItemStack stack) {
         return stack.getItem() == item;
+    }
+
+    @Override
+    public List<ItemStack> getMatchingStacks() {
+        if (matchingStacks != null && matchingStacks.size() > 0) return matchingStacks;
+        else {
+            matchingStacks = new ArrayList<>();
+            matchingStacks.add(new ItemStack(item));
+            return matchingStacks;
+        }
     }
 
     public static ItemHolder readFromNBT(NBTTagCompound tag) {

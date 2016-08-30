@@ -26,11 +26,13 @@ public class SetCropType extends LootFunction {
         this.crop = crop;
     }
 
+    @Override
     public ItemStack apply(ItemStack stack, Random rand, LootContext context) {
         if (crop.equals("randomCrop")) return random(true);
         if (crop.equals("randomSeed")) return random(false);
         ResourceLocation resource = crop.contains(":") ? new ResourceLocation(crop) : new ResourceLocation(MODID, crop);
-        stack.setItemDamage(CropRegistry.REGISTRY.getValues().indexOf(resource));
+        Crop theCrop = CropRegistry.REGISTRY.getValue(resource);
+        stack.setItemDamage(CropRegistry.REGISTRY.getValues().indexOf(theCrop));
         return stack;
     }
 

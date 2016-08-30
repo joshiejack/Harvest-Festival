@@ -20,11 +20,9 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 public class TileSprinkler extends TileDaily implements ITickable {
     @Override
     public void update() {
-        if (!worldObj.isRemote) {
-        } else {
-            if (worldObj.isRemote && tank.getFluidAmount() > 1) {
+        if (worldObj.isRemote) {
+            if (worldObj.getTotalWorldTime() % 5 == 0 && tank.getFluidAmount() > 1) {
                 int setting = (2 - Minecraft.getMinecraft().gameSettings.particleSetting);
-
                 for (int i = 0; i < setting * 32; i++) {
                     double one = worldObj.rand.nextDouble() - 0.5D;
                     double two = worldObj.rand.nextDouble() - 0.5D;

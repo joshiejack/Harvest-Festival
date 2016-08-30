@@ -106,8 +106,9 @@ public class QuestCrops extends QuestQuestion {
         if (previous == 0) { //Give the player the basic tools to get started with farming
             rewardItem(player, HFTools.HOE.getStack(BASIC));
             rewardItem(player, HFTools.WATERING_CAN.getStack(BASIC));
-            Item seeds = HFCrops.TURNIP.getCropStack().getItem();
-            rewardItem(player, new ItemStack(seeds, 3));
+            Item seeds = HFCrops.TURNIP.getSeedStack().getItem();
+            int damage = HFCrops.TURNIP.getSeedStack().getItemDamage();
+            rewardItem(player, new ItemStack(seeds, 3, damage));
         }
     }
 
@@ -116,8 +117,9 @@ public class QuestCrops extends QuestQuestion {
         if (quest_stage == 0) { //We were not new
             rewardItem(player, HFTools.HOE.getStack(BASIC));
             rewardItem(player, HFTools.WATERING_CAN.getStack(BASIC));
-            Item seeds = HFCrops.TURNIP.getCropStack().getItem();
-            rewardItem(player, new ItemStack(seeds, 3));
+            Item seeds = HFCrops.TURNIP.getSeedStack().getItem();
+            int damage = HFCrops.TURNIP.getSeedStack().getItemDamage();
+            rewardItem(player, new ItemStack(seeds, 3, damage));
         }
     }
 }

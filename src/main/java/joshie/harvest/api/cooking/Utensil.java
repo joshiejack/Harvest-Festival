@@ -42,7 +42,7 @@ public class Utensil {
      *  when a recipe is burnt */
     @SideOnly(Side.CLIENT)
     public ModelResourceLocation getModelForMeal() {
-        return new ModelResourceLocation(new ResourceLocation("harvestfestival", "meals/burnt" + label), "inventory");
+        return new ModelResourceLocation(new ResourceLocation("harvestfestival", "meals/burnt_" + label), "inventory");
     }
 
     /** Return the unlocalized name for this utensil when it's burnt **/

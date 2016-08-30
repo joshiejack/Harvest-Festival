@@ -74,17 +74,19 @@ public class PurchaseableEntity implements IPurchaseable {
 
     @Override
     public boolean onPurchased(EntityPlayer player) {
-        Entity theEntity = createEntity(player.worldObj);
-        if (theEntity != null) {
-            theEntity.setPosition(player.posX, player.posY, player.posZ);
-            if (!lead) {
-                theEntity.startRiding(player, true);
-                player.worldObj.spawnEntityInWorld(theEntity);
-            } else {
-                ((EntityAnimal) theEntity).setLeashedToEntity(player, true);
-                ((IAnimalTracked) theEntity).getData().setOwner(player);
-                ItemHelper.addToPlayerInventory(player, new ItemStack(Items.LEAD));
-                player.worldObj.spawnEntityInWorld(theEntity);
+        if (!player.worldObj.isRemote) {
+            Entity theEntity = createEntity(player.worldObj);
+            if (theEntity != null) {
+                theEntity.setPosition(player.posX, player.posY, player.posZ);
+                if (!lead) {
+                    theEntity.startRiding(player, true);
+                    player.worldObj.spawnEntityInWorld(theEntity);
+                } else {
+                    ((EntityAnimal) theEntity).setLeashedToEntity(player, true);
+                    ((IAnimalTracked) theEntity).getData().setOwner(player);
+                    ItemHelper.addToPlayerInventory(player, new ItemStack(Items.LEAD));
+                    player.worldObj.spawnEntityInWorld(theEntity);
+                }
             }
         }
 

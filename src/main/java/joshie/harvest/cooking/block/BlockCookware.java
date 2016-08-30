@@ -196,6 +196,8 @@ public class BlockCookware extends BlockHFEnumRotatableTile<BlockCookware, Cookw
                         return true;
                     }
                 }
+            } else {
+                cooking.takeBackLastStack(player);
             }
         }
 

@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MealImpl extends IForgeRegistryEntry.Impl<MealImpl> implements Meal {
@@ -16,13 +17,16 @@ public class MealImpl extends IForgeRegistryEntry.Impl<MealImpl> implements Meal
     public final MealBuilder result;
     private final Ingredient[] requiredIngredients;
     private ItemStack alt = null;
+    private List<ItemStack> basic;
+    private List<ItemStack> best;
 
     //Optional Extras
-    private Utensil requiredTool;
+    private final Utensil requiredTool;
     private Ingredient[] optionalIngredients;
 
-    public MealImpl(String unlocalised, Ingredient[] ingredients, MealBuilder result) {
+    public MealImpl(String unlocalised, Utensil utensil, Ingredient[] ingredients, MealBuilder result) {
         this.name = unlocalised;
+        this.requiredTool = utensil;
         this.requiredIngredients = ingredients;
         this.result = result;
     }
@@ -30,12 +34,6 @@ public class MealImpl extends IForgeRegistryEntry.Impl<MealImpl> implements Meal
     @Override
     public MealImpl setOptionalIngredients(Ingredient... ingredients) {
         this.optionalIngredients = ingredients;
-        return this;
-    }
-
-    @Override
-    public MealImpl setRequiredTool(Utensil tool) {
-        this.requiredTool = tool;
         return this;
     }
 
@@ -48,6 +46,12 @@ public class MealImpl extends IForgeRegistryEntry.Impl<MealImpl> implements Meal
     @Override
     public MealImpl setAlternativeTexture(ItemStack stack) {
         this.alt = stack;
+        return this;
+    }
+
+    @Override
+    public MealImpl setExhaustion(float value) {
+        this.result.setExhaustion(value);
         return this;
     }
 
@@ -87,17 +91,17 @@ public class MealImpl extends IForgeRegistryEntry.Impl<MealImpl> implements Meal
         return false;
     }
 
-    private boolean ingredientListContains(List<Ingredient> ingredients, Ingredient required) {
+    private Ingredient getIngredientIfInList(List<Ingredient> ingredients, Ingredient required) {
         //Now we should loop through all the ingredient passed in
         for (Ingredient passed : ingredients) {
             if (required.isEqual(passed))
-                return true; //If we found this ingredient in the list, then we can return it as true;
+                return passed; //If we found this ingredient in the list, then we can return it as true;
         }
 
-        return false; //We did not find the item, therefore we return false
+        return null; //We did not find the item, therefore we return false
     }
 
-    public ItemStack getResult(Utensil utensil, List<Ingredient> ingredients) {
+    public ItemStack getResult(Utensil utensil, List<ItemStack> stacks, List<Ingredient> ingredients) {
         if (ingredients == null || ingredients.size() < 1 || utensil != requiredTool)
             return null; //If we have no utensils, or not enough recipes remove them all
 
@@ -114,15 +118,16 @@ public class MealImpl extends IForgeRegistryEntry.Impl<MealImpl> implements Meal
          */
         for (Ingredient required : requiredIngredients) { //Loop through the required ingredients
             //If the ingredients list does NOT contain this item we should return null
-            if (!ingredientListContains(ingredients, required)) return null;
+            if (getIngredientIfInList(ingredients, required) == null) return null;
         }
 
         /** Final step is to build the meal **/
-        MealBuilder meal = new MealBuilder(result);
+        MealBuilder meal = new MealBuilder(result, stacks);
         if (optionalIngredients != null) { //Loop through optional ingredients
             for (Ingredient optional : optionalIngredients) {
-                if (ingredientListContains(ingredients, optional)) { //If the optional ingredients list has this item
-                    meal.addIngredient(optional);
+                Ingredient ingredient =  getIngredientIfInList(ingredients, optional);
+                if (ingredient != null) { //If the optional ingredients list has this item
+                    meal.addIngredient(ingredient);
                 }
             }
         }
@@ -131,11 +136,41 @@ public class MealImpl extends IForgeRegistryEntry.Impl<MealImpl> implements Meal
     }
 
     public MealBuilder getMeal() {
-        return new MealBuilder(result); //Clone the meal
+        return new MealBuilder(result, getIngredientsAsStacks(false)); //Clone the meal
+    }
+
+    private void addStack(List<ItemStack> list, Ingredient ingredient) {
+        List<ItemStack> stack = CookingAPI.INSTANCE.getStacksForIngredient(ingredient);
+        if (stack.size() > 0 && stack.get(0) != null) { //Add the first item that matches to the list
+            list.add(stack.get(0));
+        }
+    }
+
+    private List<ItemStack> getIngredientsAsStacks(boolean getBest) {
+        if (getBest) {
+            if (best != null) return best;
+            else {
+                best = new ArrayList<>();
+                for (Ingredient ingredient: requiredIngredients)
+                    addStack(best, ingredient);
+                if (optionalIngredients != null) {
+                    for (Ingredient ingredient : optionalIngredients)
+                        addStack(best, ingredient);
+                }
+
+                return best;
+            }
+        } else {
+            if (basic != null) return basic;
+            basic = new ArrayList<>();
+            for (Ingredient ingredient: requiredIngredients)
+                addStack(basic, ingredient);
+            return basic;
+        }
     }
 
     public MealBuilder getBestMeal() {
-        MealBuilder meal = new MealBuilder(result);
+        MealBuilder meal = new MealBuilder(result, getIngredientsAsStacks(true));
         if (optionalIngredients != null) {
             for (Ingredient i : optionalIngredients) {
                 meal.addIngredient(i);
@@ -144,6 +179,7 @@ public class MealImpl extends IForgeRegistryEntry.Impl<MealImpl> implements Meal
 
         return meal;
     }
+
 
     //Apply all the relevant information about this meal to the meal stack
     public ItemStack cook(MealBuilder meal) {

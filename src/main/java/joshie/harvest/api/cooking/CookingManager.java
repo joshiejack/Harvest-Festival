@@ -27,12 +27,11 @@ public interface CookingManager {
      * @param utensil        the utensil this meal requires
      * @param hunger         how much hunger this meal fills
      * @param saturation     how much saturation this meal provides
-     * @param exhaustion     how much exhaustion this meal adds
      * @param eatTimer       how long this meal should take to eat
      * @param ingredients    the ingredients for this recipe
      * @return  the recipe that was added, where you can manipulate it further if neccessary
      */
-    Meal addMeal(ResourceLocation key, Utensil utensil, int hunger, float saturation, float exhaustion, int eatTimer, Ingredient... ingredients);
+    Meal addMeal(ResourceLocation key, Utensil utensil, int hunger, float saturation, int eatTimer, Ingredient... ingredients);
 
     /** Add a recipe, with a custom stack output
      *  Use case for such thing is wheat > bread

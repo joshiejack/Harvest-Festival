@@ -77,7 +77,10 @@ public class HFCommonProxy {
                 }
 
                 LIST.add(Class.forName(entry.getRight()));
-            } catch (Exception e) {}
+            } catch (Exception e) {
+                HarvestFestival.LOGGER.log(Level.ERROR, "Harvest Festival failed to load the following class: " + entry.getMiddle());
+                HarvestFestival.LOGGER.log(Level.ERROR, "If this a mod related class, try updating your version of that mod before reporting");
+            }
         }
     }
 

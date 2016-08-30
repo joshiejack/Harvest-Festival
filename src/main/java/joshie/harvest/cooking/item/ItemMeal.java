@@ -2,7 +2,7 @@ package joshie.harvest.cooking.item;
 
 import joshie.harvest.api.cooking.IAltItem;
 import joshie.harvest.api.cooking.Utensil;
-import joshie.harvest.core.util.ICreativeSorted;
+import joshie.harvest.api.core.IShippable;
 import joshie.harvest.cooking.CookingAPI;
 import joshie.harvest.cooking.recipe.HFRecipes;
 import joshie.harvest.cooking.recipe.MealImpl;
@@ -28,7 +28,7 @@ import java.util.List;
 
 import static net.minecraft.util.text.TextFormatting.DARK_GRAY;
 
-public class ItemMeal extends ItemHFFML<ItemMeal, MealImpl> implements ICreativeSorted, IAltItem {
+public class ItemMeal extends ItemHFFML<ItemMeal, MealImpl> implements IAltItem, IShippable {
     public ItemMeal() {
         super(CookingAPI.REGISTRY, HFTab.COOKING);
     }
@@ -95,6 +95,12 @@ public class ItemMeal extends ItemHFFML<ItemMeal, MealImpl> implements ICreative
     @Override
     public MealImpl getNullValue() {
         return HFRecipes.NULL_RECIPE;
+    }
+
+    @Override
+    public long getSellValue(ItemStack stack) {
+        if (stack.getTagCompound() == null) return 0;
+        else return stack.getTagCompound().getLong("SellValue");
     }
 
     @Override

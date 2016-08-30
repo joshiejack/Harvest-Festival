@@ -25,7 +25,7 @@ public abstract class AbstractItemHolder extends AbstractHolder {
 
     @SideOnly(Side.CLIENT)
     public List<ItemStack> getMatchingStacks() {
-        if (matchingStacks != null) return matchingStacks;
+        if (matchingStacks != null && matchingStacks.size() > 0) return matchingStacks;
         else {
             matchingStacks = new ArrayList<>();
             for (ItemStack stack: StackHelper.getAllStacks()) {

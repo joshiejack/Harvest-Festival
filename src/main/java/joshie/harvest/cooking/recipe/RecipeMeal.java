@@ -12,7 +12,7 @@ public class RecipeMeal implements RecipeHandler {
     @Override
     public ItemStack getResult(Utensil utensil, List<ItemStack> stacks, List<Ingredient> ingredients) {
         for (MealImpl recipe : CookingAPI.REGISTRY) {
-            ItemStack meal = recipe.getResult(utensil, ingredients);
+            ItemStack meal = recipe.getResult(utensil, stacks, ingredients);
             if (meal != null) {
                 return meal;
             }

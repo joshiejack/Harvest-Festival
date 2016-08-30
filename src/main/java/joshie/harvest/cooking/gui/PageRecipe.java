@@ -74,6 +74,8 @@ public class PageRecipe extends Page {
             list.add(new CyclingStack(x, 35 + y * 16, recipe.getRequiredIngredients()[y]));
         }
 
+        System.out.println("Reinit gui");
+
         return this;
     }
 

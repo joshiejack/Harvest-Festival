@@ -1,5 +1,6 @@
 package joshie.harvest.core.base.item;
 
+import joshie.harvest.core.util.ICreativeSorted;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -11,7 +12,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public abstract class ItemHFFML<I extends ItemHFFML, E extends Impl<E>> extends ItemHFBase<I> {
+public abstract class ItemHFFML<I extends ItemHFFML, E extends Impl<E>> extends ItemHFBase<I> implements ICreativeSorted {
     protected IForgeRegistry<E> registry;
     public ItemHFFML(IForgeRegistry<E> registry) {
         super();

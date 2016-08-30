@@ -41,6 +41,8 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements ICrop {
     private int doubleStage;
     private AnimalFoodType foodType;
     private EnumPlantType type;
+    private int hunger;
+    private float saturation;
 
     public Crop() {
         this(new ResourceLocation(MODID, "null_crop"), Season.SPRING, 0, 0, 3, 0, 0, 0);
@@ -114,6 +116,13 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements ICrop {
     @Override
     public Crop setPlantType(EnumPlantType plantType) {
         this.type = plantType;
+        return this;
+    }
+
+    @Override
+    public Crop setFoodStats(int hunger, float saturation) {
+        this.hunger = hunger;
+        this.saturation = saturation;
         return this;
     }
 
@@ -258,6 +267,14 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements ICrop {
      **/
     public AnimalFoodType getFoodType() {
         return foodType;
+    }
+
+    public int getHunger() {
+        return hunger;
+    }
+
+    public float getSaturation() {
+        return saturation;
     }
 
     @Override

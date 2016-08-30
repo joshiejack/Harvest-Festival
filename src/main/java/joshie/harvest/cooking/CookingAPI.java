@@ -88,11 +88,10 @@ public class CookingAPI implements CookingManager {
     }
 
     @Override
-    public MealImpl addMeal(ResourceLocation key, Utensil utensil, int hunger, float saturation, float exhaustion, int eatTimer, Ingredient... components) {
+    public MealImpl addMeal(ResourceLocation key, Utensil utensil, int hunger, float saturation, int eatTimer, Ingredient... components) {
         String unlocalised = key.getResourceDomain() + ".meal." + key.getResourcePath().replace("_", ".");
-        MealImpl recipe = new MealImpl(unlocalised, components, new MealBuilder(hunger, saturation, exhaustion, eatTimer));
+        MealImpl recipe = new MealImpl(unlocalised, utensil, components, new MealBuilder(hunger, saturation, eatTimer));
         recipe.setRegistryName(key);
-        recipe.setRequiredTool(utensil);
         REGISTRY.register(recipe);
         return recipe;
     }

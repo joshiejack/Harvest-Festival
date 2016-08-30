@@ -4,6 +4,7 @@ import joshie.harvest.animals.item.ItemAnimalTool.Tool;
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.animals.IMilkable;
+import joshie.harvest.api.core.IShippable;
 import joshie.harvest.core.base.item.ItemHFEnum;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.tools.ToolHelper;
@@ -25,7 +26,7 @@ import java.util.HashMap;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.*;
 import static net.minecraft.util.text.TextFormatting.AQUA;
 
-public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> {
+public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> implements IShippable {
     public enum Tool implements IStringSerializable {
         MILKER(true), BRUSH(true), MEDICINE(false), CHICKEN_FEED(false), MIRACLE_POTION(false);
 
@@ -43,6 +44,11 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> {
 
     public ItemAnimalTool() {
         super(Tool.class);
+    }
+
+    @Override
+    public long getSellValue(ItemStack stack) {
+        return getEnumFromStack(stack) == CHICKEN_FEED ? 3 : 0;
     }
 
     @SideOnly(Side.CLIENT)

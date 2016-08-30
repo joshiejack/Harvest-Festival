@@ -21,15 +21,13 @@ public final class Ingredient {
      *          The food stats are how much this ingredient affects recipes
      *          when it gets added to them as optional ingredients;
      *  @param      hunger the hunger (vanilla) this ingredient fills
-     *  @param      saturation the saturation (vanilla) this ingredient fills
-     *  @param      exhaustion     how much exhaustion this ingredient adds
-     *  @param      eatTime the eatTimer, this is how many ticks extra this adds to eating time **/
-    public Ingredient(String unlocalized, int hunger, float saturation, float exhaustion, int eatTime) {
+     *  @param      saturation the saturation (vanilla) this ingredient fills **/
+    public Ingredient(String unlocalized, int hunger, float saturation) {
         this.unlocalized = unlocalized;
         this.hunger = hunger;
         this.saturation = saturation;
-        this.exhaustion = exhaustion;
-        this.eatTime = eatTime;
+        this.exhaustion = 0F;
+        this.eatTime = 4;
         equivalents.add(this);
         INGREDIENTS.put(unlocalized, this);
     }
@@ -63,6 +61,18 @@ public final class Ingredient {
         return this;
     }
 
+    /** Set how much exhaustion this add/removes **/
+    public Ingredient setExhaustion(float exhaustion) {
+        this.exhaustion = exhaustion;
+        return this;
+    }
+
+    /** Set how much this ingredient affects the eatimer **/
+    public Ingredient setEatTime(int eatTime) {
+        this.eatTime = eatTime;
+        return this;
+    }
+
     public ResourceLocation getFluid() {
         return fluid;
     }
@@ -86,7 +96,6 @@ public final class Ingredient {
     public float getExhaustion() {
         return exhaustion;
     }
-
 
     /** With this if you are wanting to test for a category,
      *  this instance should be the categories instance

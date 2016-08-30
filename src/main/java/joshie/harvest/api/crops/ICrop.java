@@ -130,4 +130,9 @@ public interface ICrop extends IShippable {
 
     /** Set the plant type of this crop **/
     ICrop setPlantType(EnumPlantType plantType);
+
+    /** Set the eat values
+     *  You don't need to worry about this if you are using your own custom item
+     *  As these values are only called for crops that are created by harvest festival **/
+    ICrop setFoodStats(int hunger, float saturation);
 }

@@ -39,9 +39,9 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
         NEST_EMPTY, SMALL_CHICKEN, MEDIUM_CHICKEN, LARGE_CHICKEN, FEEDER_EMPTY, FEEDER_FULL;
 
         public ItemStack getDrop() {
-            if (this == SMALL_CHICKEN) return new ItemStack(HFAnimals.EGG, 1, 0);
-            else if (this == MEDIUM_CHICKEN) return new ItemStack(HFAnimals.EGG, 1, 1);
-            else if (this == LARGE_CHICKEN) return new ItemStack(HFAnimals.EGG, 1, 2);
+            if (this == SMALL_CHICKEN) return HFAnimals.EGG.getStack(Size.SMALL);
+            else if (this == MEDIUM_CHICKEN) return HFAnimals.EGG.getStack(Size.MEDIUM);
+            else if (this == LARGE_CHICKEN) return HFAnimals.EGG.getStack(Size.LARGE);
             else return null;
         }
 

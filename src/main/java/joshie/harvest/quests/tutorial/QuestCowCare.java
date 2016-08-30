@@ -2,15 +2,14 @@ package joshie.harvest.quests.tutorial;
 
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.entity.EntityHarvestCow;
-import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
-import joshie.harvest.core.helpers.SizeableHelper;
-import joshie.harvest.tools.ToolHelper;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.quests.QuestQuestion;
 import joshie.harvest.quests.TutorialSelection;
+import joshie.harvest.tools.ToolHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -172,7 +171,7 @@ public class QuestCowCare extends QuestQuestion {
             rewardItem(player, HFAnimals.TOOLS.getStackFromEnum(MILKER));
         }
 
-        rewardItem(player, SizeableHelper.getSizeable(HFAnimals.MILK, 1, Size.LARGE));
+        rewardItem(player, HFAnimals.MILK.getStackOfSize(Size.LARGE, 1));
     }
 
     @Override

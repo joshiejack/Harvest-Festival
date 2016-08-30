@@ -2,6 +2,7 @@ package joshie.harvest.cooking.recipe;
 
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.api.cooking.Ingredient;
+import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.cooking.CookingAPI;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.item.ItemIngredients;
@@ -130,11 +131,11 @@ public class HFIngredients {
         CookingAPI.INSTANCE.register(new ItemStack(Blocks.MELON_BLOCK), WATERMELON);
         CookingAPI.INSTANCE.register(new ItemStack(Items.BREAD), BREAD);
         CookingAPI.INSTANCE.register(new ItemStack(Items.BAKED_POTATO), BAKED_POTATO);
-        CookingAPI.INSTANCE.register(new ItemStack(HFAnimals.EGG), EGG);
+        CookingAPI.INSTANCE.register(HFAnimals.EGG.getStack(Size.SMALL), EGG);
         CookingAPI.INSTANCE.register(new ItemStack(Items.EGG), EGG);
-        CookingAPI.INSTANCE.register(new ItemStack(HFAnimals.MILK), MILK);
+        CookingAPI.INSTANCE.register(HFAnimals.MILK.getStack(Size.SMALL), MILK);
         CookingAPI.INSTANCE.register(new ItemStack(Items.MILK_BUCKET, 1, OreDictionary.WILDCARD_VALUE), MILK);
-        CookingAPI.INSTANCE.register(new ItemStack(HFAnimals.MAYONNAISE), MAYONNAISE);
+        CookingAPI.INSTANCE.register(HFAnimals.MAYONNAISE.getStack(Size.SMALL), MAYONNAISE);
         CookingAPI.INSTANCE.register(HFCooking.INGREDIENTS.getStackFromEnum(ItemIngredients.Ingredient.BUTTER), BUTTER);
         CookingAPI.INSTANCE.register(CookingAPI.INSTANCE.getBestMeal("butter"), BUTTER);
         CookingAPI.INSTANCE.register(CookingAPI.INSTANCE.getBestMeal("egg_boiled"), BOILED_EGG);

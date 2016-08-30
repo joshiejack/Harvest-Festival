@@ -1,13 +1,15 @@
 package joshie.harvest.core;
 
 import joshie.harvest.HarvestFestival;
+import joshie.harvest.core.item.ItemSizeable;
 import joshie.harvest.core.block.BlockFlower;
 import joshie.harvest.core.block.BlockFlower.FlowerType;
 import joshie.harvest.core.block.BlockGoddessWater;
 import joshie.harvest.core.block.BlockStorage;
-import joshie.harvest.core.tile.TileShipping;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.helpers.generic.RegistryHelper;
+import joshie.harvest.core.render.SizeableDefinition;
+import joshie.harvest.core.tile.TileShipping;
 import joshie.harvest.core.util.HFLoader;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -21,6 +23,7 @@ import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraft.world.storage.loot.functions.LootFunctionManager;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
@@ -36,6 +39,7 @@ public class HFCore {
     public static final BlockGoddessWater GODDESS_WATER = new BlockGoddessWater(GODDESS).register("goddess_water");
     public static final BlockFlower FLOWERS = new BlockFlower().register("flowers");
     public static final BlockStorage STORAGE = new BlockStorage().register("storage");
+    public static final ItemSizeable SIZEABLE = new ItemSizeable().register("sizeable");
 
     public static void preInit() {
         NetworkRegistry.INSTANCE.registerGuiHandler(HarvestFestival.instance, new GuiHandler());
@@ -47,6 +51,7 @@ public class HFCore {
     @SideOnly(Side.CLIENT)
     public static void preInitClient() {
         RegistryHelper.registerFluidBlockRendering(GODDESS_WATER, "goddess_water");
+        ModelLoader.setCustomMeshDefinition(SIZEABLE, SizeableDefinition.INSTANCE);
     }
 
     @SideOnly(Side.CLIENT)
@@ -65,6 +70,9 @@ public class HFCore {
                 return HFCore.FLOWERS.getEnumFromMeta(stack.getItemDamage()).isColored() ? ColorizerFoliage.getFoliageColorBasic() : -1;
             }
         }, HFCore.FLOWERS);
+
+        //Register the models
+        SizeableDefinition.INSTANCE.registerEverything();
     }
 
     private static Fluid registerFluid(Fluid fluid) {

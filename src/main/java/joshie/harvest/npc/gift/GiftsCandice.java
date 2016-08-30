@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 public class GiftsCandice extends Gifts {
     @Override
     public Quality getQuality(ItemStack stack) {
-        if (stack.getItem() == Items.MILK_BUCKET || stack.getItem() == HFAnimals.MILK) {
+        if (stack.getItem() == Items.MILK_BUCKET || HFAnimals.MILK.matches(stack)) {
             return Quality.AWESOME;
         }
 

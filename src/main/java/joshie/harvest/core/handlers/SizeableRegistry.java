@@ -1,19 +1,15 @@
 package joshie.harvest.core.handlers;
 
-import joshie.harvest.api.core.ISizeable;
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.api.core.ISizeableRegistry;
 import joshie.harvest.api.core.ISizedProvider;
-import joshie.harvest.core.base.item.ItemSizeable;
 import joshie.harvest.core.lib.Sizeable;
 import joshie.harvest.core.util.HFApiImplementation;
-import net.minecraft.item.Item;
+import joshie.harvest.core.util.holder.ItemStackHolder;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.IForgeRegistry;
 import net.minecraftforge.fml.common.registry.RegistryBuilder;
-import net.minecraftforge.oredict.OreDictionary;
-import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.HashMap;
 
@@ -23,55 +19,20 @@ import static joshie.harvest.core.lib.HFModInfo.MODID;
 public class SizeableRegistry implements ISizeableRegistry {
     public static final IForgeRegistry<Sizeable> REGISTRY = new RegistryBuilder<Sizeable>().setName(new ResourceLocation("harvestfestival", "sizeables")).setType(Sizeable.class).setIDRange(0, 32000).create();
     public static final SizeableRegistry INSTANCE = new SizeableRegistry();
-    private final HashMap<Pair<Item, Integer>, Pair<ISizeable, Size>> providers = new HashMap<>();
+    private final HashMap<ItemStackHolder, Size> providers = new HashMap<>();
 
     private SizeableRegistry() {}
 
-    @Override
-    public Item createSizedItem(String name, long sellSmall, long sellMedium, long sellLarge) {
-        Sizeable meta = (Sizeable) registerSizeable(new ResourceLocation(MODID, name), sellSmall, sellMedium, sellLarge);
-        return new ItemSizeable(name, meta).register(name.toLowerCase());
-    }
-
-    @Override
-    public ISizeable registerSizeable(ResourceLocation key, long sellSmall, long sellMedium, long sellLarge) {
-        Sizeable meta = new Sizeable(sellSmall, sellMedium, sellLarge);
-        meta.setRegistryName(key);
+    public Sizeable registerSizeable(String name, long sellSmall, long sellMedium, long sellLarge) {
+        Sizeable meta = new Sizeable(name, sellSmall, sellMedium, sellLarge);
+        meta.setRegistryName(new ResourceLocation(MODID, name));
         REGISTRY.register(meta);
         return meta;
     }
 
     @Override
-    public ISizeable registerSizeableProvider(ItemStack stack, ISizeable sizeable, Size size) {
-        providers.put(Pair.of(stack.getItem(), stack.getItemDamage()), Pair.of(sizeable, size));
-        return sizeable;
-    }
-
-    @Override
-    public Pair<ISizeable, Size> getSizeableFromStack(ItemStack stack) {
-        if (stack.getItem() instanceof ISizedProvider) {
-            ISizeable sizeable = ((ISizedProvider)stack.getItem()).getSizeable(stack);
-            Size size = ((ISizedProvider)stack.getItem()).getSize(stack);
-            return Pair.of(sizeable, size);
-        }
-
-        Pair<ISizeable, Size> sizeable = providers.get(Pair.of(stack.getItem(), OreDictionary.WILDCARD_VALUE));
-        return sizeable != null ? sizeable : providers.get(Pair.of(stack.getItem(), stack.getItemDamage()));
-    }
-
-    private Pair<ISizeable, Size> getPair(ItemStack stack) {
-        Pair<ISizeable, Size> sizeable = providers.get(Pair.of(stack.getItem(), OreDictionary.WILDCARD_VALUE));
-        return sizeable != null ? sizeable : providers.get(Pair.of(stack.getItem(), stack.getItemDamage()));
-    }
-
-    @Override
-    public ISizeable getSizeable(ItemStack stack) {
-        if (stack.getItem() instanceof ISizedProvider) {
-            return ((ISizedProvider)stack.getItem()).getSizeable(stack);
-        }
-
-        Pair<ISizeable, Size> sizeable = getSizeableFromStack(stack);
-        return sizeable != null ? sizeable.getKey() : null;
+    public void registerStackAsSize(ItemStack stack, Size size) {
+        providers.put(ItemStackHolder.of(stack.getItem(), stack.getItemDamage()), size);
     }
 
     @Override
@@ -80,9 +41,6 @@ public class SizeableRegistry implements ISizeableRegistry {
             return ((ISizedProvider)stack.getItem()).getSize(stack);
         }
 
-        Pair<ISizeable, Size> sizeable = getSizeableFromStack(stack);
-        return sizeable != null ? sizeable.getValue() : null;
+        return providers.get(ItemStackHolder.of(stack));
     }
-
-
 }

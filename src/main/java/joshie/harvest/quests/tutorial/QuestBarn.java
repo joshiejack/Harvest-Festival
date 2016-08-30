@@ -1,15 +1,14 @@
 package joshie.harvest.quests.tutorial;
 
 import joshie.harvest.animals.HFAnimals;
-import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.buildings.HFBuildings;
-import joshie.harvest.core.helpers.SizeableHelper;
-import joshie.harvest.town.TownHelper;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.npc.HFNPCs;
+import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -18,7 +17,8 @@ import java.util.Set;
 
 import static joshie.harvest.animals.block.BlockTrough.Trough.WOOD;
 import static joshie.harvest.core.lib.HFQuests.TUTORIAL_COW;
-import static joshie.harvest.npc.HFNPCs.*;
+import static joshie.harvest.npc.HFNPCs.ANIMAL_OWNER;
+import static joshie.harvest.npc.HFNPCs.BUILDER;
 
 @HFQuest("tutorial.barn")
 public class QuestBarn extends Quest {
@@ -59,7 +59,7 @@ public class QuestBarn extends Quest {
     @Override
     public void claim(EntityPlayer player) {
         rewardItem(player, new ItemStack(HFCrops.GRASS.getCropStack().getItem(), 64, HFCrops.GRASS.getCropStack().getItemDamage()));
-        rewardItem(player, SizeableHelper.getSizeable(HFAnimals.MILK, 3, Size.LARGE));
+        rewardItem(player, HFAnimals.MILK.getStackOfSize(Size.LARGE, 3));
         rewardItem(player, HFAnimals.TROUGH.getStackFromEnum(WOOD));
     }
 }

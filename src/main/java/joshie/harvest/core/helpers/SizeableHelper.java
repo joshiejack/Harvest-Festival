@@ -4,6 +4,7 @@ import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.core.ISizeable.Size;
+import joshie.harvest.core.lib.Sizeable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -25,13 +26,13 @@ public class SizeableHelper {
         return SizeableHelper.getSizeable(player, tracked, HFAnimals.WOOL);
     }
 
-    public static ItemStack getSizeable(EntityPlayer player, IAnimalTracked tracked, Item item) {
+    public static ItemStack getSizeable(EntityPlayer player, IAnimalTracked tracked, Sizeable sizeable) {
         Size size = null;
         int relationship = HFApi.relationships.getRelationship(player, tracked);
         for (Size s: Size.values()) {
             if (relationship >= s.getRelationshipRequirement()) size = s;
         }
         
-        return SizeableHelper.getSizeable(item, tracked.getData().getProductsPerDay() , size);
+        return sizeable.getStackOfSize(size, tracked.getData().getProductsPerDay());
     }
 }

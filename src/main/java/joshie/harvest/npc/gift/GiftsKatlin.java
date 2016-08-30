@@ -10,7 +10,7 @@ import static joshie.harvest.api.npc.gift.IGiftHandler.Quality.*;
 public class GiftsKatlin extends Gifts {
     @Override
     public Quality getQuality(ItemStack stack) {
-        if (stack.getItem() == HFAnimals.WOOL) {
+        if (HFAnimals.WOOL.matches(stack)) {
             return AWESOME;
         }
 

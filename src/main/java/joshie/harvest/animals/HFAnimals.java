@@ -1,7 +1,9 @@
 package joshie.harvest.animals;
 
 import joshie.harvest.HarvestFestival;
-import joshie.harvest.animals.block.*;
+import joshie.harvest.animals.block.BlockSizedStorage;
+import joshie.harvest.animals.block.BlockTray;
+import joshie.harvest.animals.block.BlockTrough;
 import joshie.harvest.animals.entity.EntityHarvestChicken;
 import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.animals.entity.EntityHarvestSheep;
@@ -16,15 +18,15 @@ import joshie.harvest.animals.tile.TileTrough;
 import joshie.harvest.animals.type.AnimalChicken;
 import joshie.harvest.animals.type.AnimalCow;
 import joshie.harvest.animals.type.AnimalSheep;
-import joshie.harvest.api.HFApi;
+import joshie.harvest.core.handlers.SizeableRegistry;
 import joshie.harvest.core.helpers.generic.RegistryHelper;
 import joshie.harvest.core.lib.EntityIDs;
+import joshie.harvest.core.lib.Sizeable;
 import joshie.harvest.core.util.HFLoader;
 import joshie.harvest.crops.Crop;
 import joshie.harvest.crops.CropRegistry;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -45,16 +47,16 @@ public class HFAnimals {
     public static final ItemAnimalTool TOOLS = new ItemAnimalTool().register("tool_animal");
     public static final ItemAnimalTreat TREATS = new ItemAnimalTreat().register("treat");
 
-    //Sizeable Animal Products
-    public static final Item EGG = HFApi.sizeable.createSizedItem("egg", 50, 60, 80);
-    public static final Item MILK = HFApi.sizeable.createSizedItem("milk", 100, 150, 200);
-    public static final Item MAYONNAISE = HFApi.sizeable.createSizedItem("mayonnaise", 300, 400, 500);
-    public static final Item WOOL = HFApi.sizeable.createSizedItem("wool", 100, 400, 500);
-
     //Animal Blocks
     public static final BlockTrough TROUGH = new BlockTrough().register("trough");
     public static final BlockSizedStorage SIZED = new BlockSizedStorage().register("sized");
     public static final BlockTray TRAY = new BlockTray().register("tray");
+
+    //Sizeables
+    public static final Sizeable EGG = SizeableRegistry.INSTANCE.registerSizeable("egg", 50, 60, 80);
+    public static final Sizeable MILK = SizeableRegistry.INSTANCE.registerSizeable("milk", 100, 150, 200);
+    public static final Sizeable MAYONNAISE = SizeableRegistry.INSTANCE.registerSizeable("mayonnaise", 300, 400, 500);
+    public static final Sizeable WOOL = SizeableRegistry.INSTANCE.registerSizeable("wool", 100, 400, 500);
 
     @SuppressWarnings("unchecked")
     public static void preInit() {

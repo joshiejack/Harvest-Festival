@@ -1,14 +1,13 @@
 package joshie.harvest.quests.tutorial;
 
 import joshie.harvest.animals.HFAnimals;
-import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.buildings.HFBuildings;
-import joshie.harvest.core.helpers.SizeableHelper;
-import joshie.harvest.town.TownHelper;
 import joshie.harvest.npc.HFNPCs;
+import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -62,7 +61,7 @@ public class QuestPoultry extends Quest {
     @Override
     public void claim(EntityPlayer player) {
         rewardItem(player, new ItemStack(HFAnimals.TOOLS, 64, CHICKEN_FEED.ordinal()));
-        rewardItem(player, SizeableHelper.getSizeable(HFAnimals.EGG, 3, Size.LARGE));
+        rewardItem(player, HFAnimals.EGG.getStackOfSize(Size.LARGE, 3));
         rewardItem(player, HFAnimals.TRAY.getStackFromEnum(FEEDER_EMPTY));
     }
 }

@@ -1,10 +1,9 @@
-package joshie.harvest.core.base.item;
+package joshie.harvest.core.item;
 
-import joshie.harvest.core.util.ICreativeSorted;
 import joshie.harvest.api.core.IShippable;
-import joshie.harvest.api.core.ISizeable;
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.api.core.ISizedProvider;
+import joshie.harvest.core.base.item.ItemHFFML;
 import joshie.harvest.core.handlers.SizeableRegistry;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.lib.Sizeable;
@@ -18,20 +17,20 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
-public class ItemSizeable extends ItemHFEnum<ItemHFEnum, Size> implements IShippable, ICreativeSorted, ISizedProvider {
-    private final Sizeable sizeable;
-    private final String unlocalised;
-
-    public ItemSizeable(String name, Sizeable sizeable) {
-        super(Size.class);
-        this.sizeable = sizeable;
-        this.sizeable.setItem(this);
-        this.unlocalised = name;
+public class ItemSizeable extends ItemHFFML<ItemSizeable, Sizeable> implements IShippable, ISizedProvider {
+    public ItemSizeable() {
+        super(SizeableRegistry.REGISTRY);
     }
 
     @Override
-    public ISizeable getSizeable(ItemStack stack) {
-        return sizeable;
+    public Sizeable getNullValue() {
+        return null;
+    }
+
+    @Override
+    public Sizeable getObjectFromStack(ItemStack stack) {
+        int real = (int)Math.floor(stack.getItemDamage() / 3);
+        return SizeableRegistry.REGISTRY.getValues().get(real);
     }
 
     @Override
@@ -41,17 +40,17 @@ public class ItemSizeable extends ItemHFEnum<ItemHFEnum, Size> implements IShipp
 
     @Override
     public int getSortValue(ItemStack stack) {
-        return CreativeSort.SIZEABLE + stack.getItemDamage() + (SizeableRegistry.REGISTRY.getValues().indexOf(sizeable) * 3);
+        return CreativeSort.SIZEABLE + stack.getItemDamage() + (SizeableRegistry.REGISTRY.getValues().indexOf(getObjectFromStack(stack)) * 3);
     }
 
     @Override
     public long getSellValue(ItemStack stack) {
-        return getSizeable(stack).getValue(getSize(stack));
+        return getObjectFromStack(stack).getValue(getSize(stack));
     }
 
     @Override
     public String getUnlocalizedName(ItemStack stack) {
-        return unlocalised.toLowerCase() + "_" + getSize(stack).toString().toLowerCase();
+        return getObjectFromStack(stack).getUnlocalizedName().toLowerCase() + "_" + getSize(stack).toString().toLowerCase();
     }
 
     @Override
@@ -59,22 +58,19 @@ public class ItemSizeable extends ItemHFEnum<ItemHFEnum, Size> implements IShipp
         Size sizeof = getSize(stack);
         String text = Text.translate("sizeable.format");
         String size = Text.translate("sizeable." + sizeof.name().toLowerCase());
-        String name = Text.translate("sizeable." + unlocalised);
+        String name = Text.translate("sizeable." + getObjectFromStack(stack).getUnlocalizedName());
         text = StringUtils.replace(text, "%S", size);
         text = StringUtils.replace(text, "%P", name);
         return text;
     }
 
     @Override
-    protected String getPrefix(Size size) {
-        return unlocalised;
-    }
-
-    @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
-        for (Size size: Size.values()) {
-            list.add(new ItemStack(item, 1, size.ordinal()));
+        for (Sizeable sizeable: SizeableRegistry.REGISTRY) {
+            for (Size size: Size.values()) {
+                list.add(sizeable.getStack(size));
+            }
         }
     }
 }

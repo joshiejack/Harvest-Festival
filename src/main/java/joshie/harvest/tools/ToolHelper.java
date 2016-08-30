@@ -37,7 +37,7 @@ public class ToolHelper {
     }
 
     public static boolean isEgg(ItemStack stack) {
-        return stack.getItem() == HFAnimals.EGG;
+        return HFAnimals.EGG.matches(stack);
     }
 
     public static boolean isOil(ItemStack stack) {

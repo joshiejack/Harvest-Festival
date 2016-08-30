@@ -16,9 +16,9 @@ import java.util.HashMap;
 @SideOnly(Side.CLIENT)
 public class FMLDefinition<E extends Impl<E>> implements ItemMeshDefinition {
     private static final HashMap<String, FMLDefinition> DEFINITIONS = new HashMap<>();
-    private IForgeRegistry<E> registry;
-    private HashMap<E, ModelResourceLocation> models = new HashMap<>();
-    private String name;
+    protected IForgeRegistry<E> registry;
+    protected HashMap<E, ModelResourceLocation> models = new HashMap<>();
+    protected String name;
     protected ItemHFFML item;
 
     public FMLDefinition(ItemHFFML item, String name, IForgeRegistry<E> registry) {

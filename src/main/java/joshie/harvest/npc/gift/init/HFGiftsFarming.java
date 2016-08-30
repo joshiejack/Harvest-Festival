@@ -1,6 +1,7 @@
 package joshie.harvest.npc.gift.init;
 
 import joshie.harvest.animals.HFAnimals;
+import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.core.util.HFLoader;
 
@@ -8,9 +9,7 @@ import static joshie.harvest.animals.HFAnimals.*;
 import static joshie.harvest.api.npc.gift.GiftCategory.*;
 import static joshie.harvest.api.npc.gift.GiftCategory.TOOLS;
 import static joshie.harvest.core.HFCore.STORAGE;
-import static joshie.harvest.crops.HFCrops.CROP;
-import static joshie.harvest.crops.HFCrops.SEEDS;
-import static joshie.harvest.crops.HFCrops.SPRINKLER;
+import static joshie.harvest.crops.HFCrops.*;
 import static joshie.harvest.tools.HFTools.*;
 
 @HFLoader(priority = 0)
@@ -25,10 +24,9 @@ public class HFGiftsFarming extends HFGiftsAbstract {
         assignGeneric(HFAnimals.TOOLS, FARMING, ANIMALS);
         assignGeneric(SPRINKLER, FARMING, TECHNOLOGY);
         assignGeneric(CROP, FARMING, NATURE, COOKING);
-        assignGeneric(EGG, FARMING, ANIMALS, COOKING);
-        assignGeneric(MILK, FARMING, ANIMALS, COOKING);
-        assignGeneric(MAYONNAISE, FARMING, ANIMALS, COOKING);
-        assignGeneric(WOOL, FARMING, ANIMALS, KNITTING);
+        assignGeneric(WOOL.getStack(Size.SMALL), FARMING, ANIMALS, KNITTING);
+        assignGeneric(WOOL.getStack(Size.MEDIUM), FARMING, ANIMALS, KNITTING);
+        assignGeneric(WOOL.getStack(Size.LARGE), FARMING, ANIMALS, KNITTING, RARE);
         assignGeneric(SICKLE.getStack(ToolTier.BASIC), CHEAP, TOOLS, FARMING);
         assignGeneric(HOE.getStack(ToolTier.BASIC), CHEAP, TOOLS, FARMING);
         assignGeneric(WATERING_CAN.getStack(ToolTier.BASIC), CHEAP, TOOLS, FARMING);
@@ -53,6 +51,5 @@ public class HFGiftsFarming extends HFGiftsAbstract {
         assignGeneric(SICKLE.getStack(ToolTier.MYTHIC), RARE, TOOLS, FARMING);
         assignGeneric(HOE.getStack(ToolTier.MYTHIC), RARE, TOOLS, FARMING);
         assignGeneric(WATERING_CAN.getStack(ToolTier.MYTHIC), RARE, TOOLS, FARMING);
-
     }
 }

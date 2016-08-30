@@ -1,7 +1,8 @@
 package joshie.harvest.core.util.holder;
 
-import joshie.harvest.api.core.ISizedProvider;
 import joshie.harvest.api.crops.ICropProvider;
+import joshie.harvest.core.HFCore;
+import joshie.harvest.core.item.ItemSizeable;
 import joshie.harvest.core.helpers.generic.StackHelper;
 import joshie.harvest.crops.Crop;
 import net.minecraft.item.ItemStack;
@@ -18,7 +19,7 @@ public abstract class AbstractItemHolder extends AbstractHolder {
 
     public static AbstractItemHolder getStack(ItemStack stack) {
         if (stack.getItem() instanceof ICropProvider) return CropHolder.of((Crop)((ICropProvider)stack.getItem()).getCrop(stack));
-        else if (stack.getItem() instanceof ISizedProvider) return SizeableHolder.of(((ISizedProvider)stack.getItem()).getSizeable(stack));
+        else if (stack.getItem() instanceof ItemSizeable) return SizeableHolder.of(HFCore.SIZEABLE.getObjectFromStack(stack));
         else if (stack.getItemDamage() == OreDictionary.WILDCARD_VALUE) return ItemHolder.of(stack.getItem());
         else return ItemStackHolder.of(stack);
     }

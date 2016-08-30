@@ -1,7 +1,6 @@
 package joshie.harvest.core.util.holder;
 
-import joshie.harvest.api.HFApi;
-import joshie.harvest.api.core.ISizeable;
+import joshie.harvest.core.HFCore;
 import joshie.harvest.core.handlers.SizeableRegistry;
 import joshie.harvest.core.lib.Sizeable;
 import net.minecraft.item.ItemStack;
@@ -11,17 +10,17 @@ import net.minecraft.util.ResourceLocation;
 public class SizeableHolder extends AbstractItemHolder {
     private final Sizeable sizeable;
 
-    private SizeableHolder(ISizeable sizeable) {
-        this.sizeable = (Sizeable) sizeable;
+    private SizeableHolder(Sizeable sizeable) {
+        this.sizeable = sizeable;
     }
 
-    public static SizeableHolder of(ISizeable sizeable) {
+    public static SizeableHolder of(Sizeable sizeable) {
         return new SizeableHolder(sizeable);
     }
 
     @Override
     public boolean matches(ItemStack stack) {
-        return HFApi.sizeable.getSizeable(stack) == sizeable;
+        return HFCore.SIZEABLE.getObjectFromStack(stack) == sizeable;
     }
 
     public static SizeableHolder readFromNBT(NBTTagCompound tag) {

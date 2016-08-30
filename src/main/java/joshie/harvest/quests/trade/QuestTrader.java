@@ -2,9 +2,11 @@ package joshie.harvest.quests.trade;
 
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.quests.HFQuest;
+import joshie.harvest.core.HFCore;
+import joshie.harvest.core.lib.Sizeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -47,11 +49,12 @@ public class QuestTrader extends QuestTrade {
         int amount = stack.stackSize;
         if (size == Size.MEDIUM) amount *= 2;
         else if (size == Size.LARGE) amount *= 3;
-        Item item = stack.getItem() == HFAnimals.EGG ? Items.EGG : stack.getItem() == HFAnimals.MILK ? Items.MILK_BUCKET : WOOL;
+        Sizeable sizeable = HFCore.SIZEABLE.getObjectFromStack(stack);
+        Item item = sizeable == HFAnimals.EGG ? Items.EGG : sizeable == HFAnimals.MILK ? Items.MILK_BUCKET : WOOL;
         rewardItem(player, new ItemStack(item, amount));
     }
 
-    private boolean isHolding(EntityPlayer player, Item item) {
-        return player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == item;
+    private boolean isHolding(EntityPlayer player, Sizeable sizeable) {
+        return player.getHeldItemMainhand() != null && sizeable.matches(player.getHeldItemMainhand());
     }
 }

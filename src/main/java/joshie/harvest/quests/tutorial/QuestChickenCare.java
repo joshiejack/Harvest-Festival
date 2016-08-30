@@ -130,7 +130,7 @@ public class QuestChickenCare extends QuestQuestion {
         } else if (quest_stage == 5) {
             ItemStack held = player.getHeldItemMainhand();
             if (held != null) {
-                if (held.getItem() == HFAnimals.EGG) {
+                if (HFAnimals.EGG.matches(held)) {
                     complete(player);
                     //The goddess thanks the player for their time and gives them a reward of a large egg
                     //She explains this is a valuable egg from the best of chickens, you'll have to take care

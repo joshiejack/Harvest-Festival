@@ -3,7 +3,6 @@ package joshie.harvest.core.handlers;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.IShippable;
 import joshie.harvest.api.core.IShippingRegistry;
-import joshie.harvest.api.core.ISizeable;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.core.util.HFApiImplementation;
 import net.minecraft.item.Item;
@@ -34,10 +33,6 @@ public class ShippingRegistry implements IShippingRegistry {
         //Special case Crops
         ICrop crop = HFApi.crops.getCropFromStack(stack);
         if (crop != null) return crop.getSellValue(stack);
-
-        //Special case Sizeables
-        ISizeable sizeable = HFApi.sizeable.getSizeable(stack);
-        if (sizeable != null) return sizeable.getValue(HFApi.sizeable.getSize(stack));
 
         //Wildcard
         Long value = registry.get(Pair.of(stack.getItem(), OreDictionary.WILDCARD_VALUE));

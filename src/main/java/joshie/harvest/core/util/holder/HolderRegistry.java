@@ -2,8 +2,9 @@ package joshie.harvest.core.util.holder;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
-import joshie.harvest.api.core.ISizedProvider;
 import joshie.harvest.api.crops.ICropProvider;
+import joshie.harvest.core.HFCore;
+import joshie.harvest.core.item.ItemSizeable;
 import joshie.harvest.crops.Crop;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -56,7 +57,7 @@ public class HolderRegistry<R> {
     private AbstractItemHolder getHolder(ItemStack stack) {
         if (stack.getItemDamage() == OreDictionary.WILDCARD_VALUE) return ItemHolder.of(stack.getItem());
         else if (stack.getItem() instanceof ICropProvider) return CropHolder.of((Crop)((ICropProvider)stack.getItem()).getCrop(stack));
-        else if (stack.getItem() instanceof ISizedProvider) return SizeableHolder.of(((ISizedProvider)stack.getItem()).getSizeable(stack));
+        else if (stack.getItem() instanceof ItemSizeable) return SizeableHolder.of(HFCore.SIZEABLE.getObjectFromStack(stack));
         else return ItemStackHolder.of(stack);
     }
 }

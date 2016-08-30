@@ -1,5 +1,6 @@
 package joshie.harvest.mining.item;
 
+import joshie.harvest.api.core.IShippable;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemHFEnum;
 import joshie.harvest.core.util.Text;
@@ -16,7 +17,20 @@ import static joshie.harvest.mining.item.ItemMaterial.Material.MYTHIC;
 import static net.minecraft.util.text.TextFormatting.GREEN;
 import static net.minecraft.util.text.TextFormatting.WHITE;
 
-public class ItemMaterial extends ItemHFEnum<ItemMaterial, Material> {
+public class ItemMaterial extends ItemHFEnum<ItemMaterial, Material> implements IShippable {
+    @Override
+    public long getSellValue(ItemStack stack) {
+        switch (getEnumFromStack(stack)) {
+            case JUNK: return 1;
+            case COPPER: return 15;
+            case SILVER: return 20;
+            case GOLD: return 35;
+            case MYSTRIL: return 40;
+            case MYTHIC: return 20000;
+            default: return 0;
+        }
+    }
+
     public enum Material implements IStringSerializable {
         JUNK, COPPER, SILVER, GOLD, MYSTRIL, MYTHIC;
 

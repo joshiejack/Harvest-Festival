@@ -16,12 +16,7 @@ public class AnimalTrackerServer extends AnimalTracker {
 
     @Override
     public void onDeath(IAnimalTracked animal) {
-        if (!animal.getData().hasDied()) {
-            animals.remove(animal.getData());
-            for (PlayerTracker tracker : HFTrackers.getPlayerTrackers()) {
-                tracker.getRelationships().clear(animal);
-            }
-        }
+        animal.getData().setDead();
     }
 
     public void onJoinWorld(IAnimalData animal) {
@@ -33,8 +28,8 @@ public class AnimalTrackerServer extends AnimalTracker {
         while (iterator.hasNext()) {
             IAnimalData data = iterator.next();
             if (!data.newDay()) { //If the new day wasn't successful, remove the animal from your memory
-                iterator.remove();
                 EntityAnimal animal = data.getAnimal();
+                iterator.remove();
                 if (animal != null) {
                     animal.attackEntityFrom(natural_causes, 1000F);
                     for (PlayerTracker tracker : HFTrackers.getPlayerTrackers()) {

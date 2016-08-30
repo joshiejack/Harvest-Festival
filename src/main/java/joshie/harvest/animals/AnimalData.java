@@ -103,10 +103,15 @@ public class AnimalData implements IAnimalData {
         return (int) chance;
     }
 
+    public void setDead() {
+        this.hasDied = true;
+    }
+
     @Override
     public boolean newDay() {
         if (animal != null) {
             //Check if the animal is going to die
+            if (hasDied) return false;
             if (currentLifespan > type.getMaxLifespan() || healthiness <= -120) return false;
             if (currentLifespan > type.getMinLifespan() || healthiness < 0) {
                 if (rand.nextInt(getDeathChance()) == 0) {

@@ -43,6 +43,9 @@ public interface IAnimalData {
     /** Mark this animal as having produced a product today **/
     void setProduced();
 
+    /** Mark this animal as dead **/
+    void setDead();
+
     /** Clean this animal */
     void clean(@Nullable EntityPlayer player);
 

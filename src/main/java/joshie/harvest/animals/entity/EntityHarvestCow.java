@@ -55,6 +55,7 @@ public class EntityHarvestCow extends EntityCow implements IAnimalTracked, IMilk
             if (HFApi.animals.canEat(stack, data.getType().getFoodTypes())) {
                 if (!worldObj.isRemote) {
                     data.feed(player);
+                    if (!player.capabilities.isCreativeMode) stack.splitStack(1);
                 }
 
                 return true;

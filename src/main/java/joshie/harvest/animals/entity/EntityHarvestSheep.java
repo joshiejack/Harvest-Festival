@@ -43,6 +43,7 @@ public class EntityHarvestSheep extends EntitySheep implements IAnimalTracked {
             if (HFApi.animals.canEat(stack, data.getType().getFoodTypes())) {
                 if (!worldObj.isRemote) {
                     data.feed(player);
+                    if (!player.capabilities.isCreativeMode) stack.splitStack(1);
                 }
 
                 return true;

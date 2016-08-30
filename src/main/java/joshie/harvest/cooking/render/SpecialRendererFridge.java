@@ -14,8 +14,8 @@ import javax.annotation.Nonnull;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static net.minecraft.util.EnumFacing.*;
 
-@SideOnly(Side.CLIENT)
 @HFQuest
+@SideOnly(Side.CLIENT)
 public class SpecialRendererFridge extends TileEntitySpecialRenderer<TileFridge> {
     private static final ResourceLocation TEXTURE = new ResourceLocation(MODID, "textures/models/fridge_door.png");
     private final ModelFridgeDoor ovenModel = new ModelFridgeDoor();

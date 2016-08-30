@@ -1,9 +1,5 @@
 package joshie.harvest.asm.transformers;
 
-import joshie.harvest.core.HFClientProxy;
-import joshie.harvest.core.render.FakeEntityRenderer.EntityItemRenderer;
-import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
-import net.minecraft.item.ItemStack;
 import org.objectweb.asm.*;
 
 import static org.objectweb.asm.Opcodes.*;
@@ -13,17 +9,6 @@ import static org.objectweb.asm.Opcodes.*;
  *  a bunch of fake tile entities and renderers, so i could do this, which added a lot of bloat,
  *  doing it this way i can pass the renderers the stack **/
 public class RenderItemTransformer extends AbstractASM {
-    /** Added at the start of renderByItem to render my special renderers **/
-    public static boolean render(ItemStack stack) {
-        EntityItemRenderer tile = HFClientProxy.RENDER_MAP.get(stack.getItem());
-        if (tile == null) return false;
-        else {
-            tile.setID(stack.getItemDamage()); //Set the id and render the tile
-            TileEntityRendererDispatcher.instance.renderTileEntityAt(tile, 0.0D, 0.0D, 0.0D, 0.0F);
-            return true;
-        }
-    }
-
     @Override
     public boolean isClass(String name) {
         return name.equals("net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer") || name.equals("bnx");
@@ -50,7 +35,7 @@ public class RenderItemTransformer extends AbstractASM {
                         Label l0 = new Label();
                         mv.visitLabel(l0);
                         mv.visitVarInsn(ALOAD, 1);
-                        mv.visitMethodInsn(INVOKESTATIC, "joshie/harvest/asm/transformers/RenderItemTransformer", "render", "(Lnet/minecraft/item/ItemStack;)Z", false);
+                        mv.visitMethodInsn(INVOKESTATIC, "joshie/harvest/asm/hooks/RenderHook", "render", "(Lnet/minecraft/item/ItemStack;)Z", false);
                         Label l1 = new Label();
                         mv.visitJumpInsn(IFEQ, l1);
                         mv.visitInsn(RETURN);

@@ -6,6 +6,8 @@ import joshie.harvest.core.util.Text;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
@@ -27,6 +29,7 @@ public class PurchaseableBlueFeather extends Purchaseable {
         return stacks[0];
     }
 
+    @SideOnly(Side.CLIENT)
     @Override
     public void addTooltip(List<String> list) {
         list.add(/*Text.WHITE + */stacks[0].getDisplayName());

@@ -5,6 +5,8 @@ import joshie.harvest.core.helpers.generic.ItemHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
@@ -48,6 +50,7 @@ public class Purchaseable implements IPurchaseable {
         return false;
     }
 
+    @SideOnly(Side.CLIENT)
     @Override
     public void addTooltip(List<String> list) {
         for (ItemStack stack : stacks) {

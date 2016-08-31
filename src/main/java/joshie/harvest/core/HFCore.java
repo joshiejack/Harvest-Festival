@@ -46,6 +46,7 @@ public class HFCore {
     public static void preInit() {
         NetworkRegistry.INSTANCE.registerGuiHandler(HarvestFestival.instance, new GuiHandler());
         LootFunctionManager.registerFunction(new SetEnum.Serializer());
+        LootFunctionManager.registerFunction(new SetSizeable.Serializer());
         RegistryHelper.registerTiles(TileShipping.class);
         GODDESS.setBlock(GODDESS_WATER);
 

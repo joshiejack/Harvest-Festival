@@ -44,13 +44,14 @@
         },
         {
           "type": "item",
-          "name": "harvestfestival:egg",
+          "name": "harvestfestival:sizeable",
           "entryName": "egg_small",
           "weight": 5,
           "functions": [
             {
-              "function": "hf_set_enum",
-              "enum": "small"
+              "function": "hf_set_sizeable",
+              "sizeable": "egg",
+              "size": "small"
             },
             {
               "function": "set_count",

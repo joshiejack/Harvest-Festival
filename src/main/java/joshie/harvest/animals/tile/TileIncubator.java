@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import static joshie.harvest.core.network.PacketHandler.sendRefreshPacket;
 
 public class TileIncubator extends TileFillableSizedFaceable {
-    private static final int MAX_FILL = 1;
+    private static final int MAX_FILL = 7;
 
     @Override
     public boolean onActivated(ItemStack held) {

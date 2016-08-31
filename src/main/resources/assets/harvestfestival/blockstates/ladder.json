@@ -3,6 +3,10 @@
     "facing=north,ladder=wood":  { "model": "harvestfestival:ladder" },
     "facing=south,ladder=wood":  { "model": "harvestfestival:ladder", "y": 180 },
     "facing=east,ladder=wood": { "model": "harvestfestival:ladder", "y": 90 },
-    "facing=west,ladder=wood": { "model": "harvestfestival:ladder", "y": 270 }
+    "facing=west,ladder=wood": { "model": "harvestfestival:ladder", "y": 270 },
+    "facing=north,ladder=decorative":  { "model": "harvestfestival:ladder" },
+    "facing=south,ladder=decorative":  { "model": "harvestfestival:ladder", "y": 180 },
+    "facing=east,ladder=decorative": { "model": "harvestfestival:ladder", "y": 90 },
+    "facing=west,ladder=decorative": { "model": "harvestfestival:ladder", "y": 270 }
   }
 }

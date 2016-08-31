@@ -42,6 +42,11 @@ public abstract class BlockHFEnumRotatableMeta<B extends BlockHFEnumRotatableMet
     }
 
     @Override
+    public ItemStack getStackFromEnum(E e) {
+        return new ItemStack(this, 1, e.ordinal());
+    }
+
+    @Override
     public IBlockState getStateFromMeta(int meta) {
         return getDefaultState().withProperty(property, getEnumFromMeta(meta)).withProperty(FACING, getFacingFromMeta(meta));
     }

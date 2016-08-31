@@ -66,6 +66,23 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
     }
 
     @Override
+    protected int getToolLevel(Ore ore) {
+        switch (ore) {
+            case ROCK:
+            case COPPER:
+                return 1;
+            case SILVER:
+                return 2;
+            case GOLD:
+                return 3;
+            case MYSTRIL:
+                return 4;
+            default:
+                return 0;
+        }
+    }
+
+    @Override
     public ItemStack getDrop(EntityPlayer player, World world, BlockPos pos, IBlockState state, float luck) {
         Ore ore = getEnumFromState(state);
 

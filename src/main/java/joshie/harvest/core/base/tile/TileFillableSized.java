@@ -12,6 +12,10 @@ public abstract class TileFillableSized extends TileDaily {
     public abstract boolean onActivated(ItemStack held);
 
     public Size getSize() {
+        if (size == null) {
+            size = Size.MEDIUM;
+        }
+
         return size;
     }
 
@@ -44,7 +48,7 @@ public abstract class TileFillableSized extends TileDaily {
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         nbt.setByte("IsFilled", (byte) fillAmount);
-        nbt.setByte("Size", (byte) size.ordinal());
+        nbt.setByte("Size", (byte) getSize().ordinal());
         return super.writeToNBT(nbt);
     }
 }

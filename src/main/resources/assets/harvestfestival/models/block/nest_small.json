@@ -8,7 +8,7 @@
     },
 "textures": {
     "particle": "harvestfestival:models/nest",
-    "texture": "harvestfestival:models/nest"
+    "texture": "harvestfestival:models/nest",
     "egg": "harvestfestival:models/egg"
 },
 "elements": [ 

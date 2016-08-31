@@ -35,7 +35,7 @@ public class ItemSizeable extends ItemHFFML<ItemSizeable, Sizeable> implements I
 
     @Override
     public Size getSize(ItemStack stack) {
-        return Size.values()[Math.min(2, stack.getItemDamage())];
+        return Size.values()[Math.min(2, stack.getItemDamage() % 3)];
     }
 
     @Override

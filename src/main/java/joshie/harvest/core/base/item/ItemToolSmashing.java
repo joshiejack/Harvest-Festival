@@ -74,6 +74,7 @@ public abstract class ItemToolSmashing extends ItemTool<ItemToolSmashing> {
 
     public void smashBlock(World world, EntityPlayer player, BlockPos position, ItemStack stack, boolean jump) {
         ToolTier tier = jump ? getTier(stack) : ToolTier.BASIC;
+        int harvestLevel = getHarvestLevel(stack, "pickaxe");
         boolean smashed = false;
         EnumFacing front = DirectionHelper.getFacingFromEntity(player);
         for (int x = getXMinus(tier, front, position.getX()); x <= getXPlus(tier, front, position.getX()); x++) {
@@ -81,15 +82,18 @@ public abstract class ItemToolSmashing extends ItemTool<ItemToolSmashing> {
                 BlockPos pos = new BlockPos(x, position.getY(), z);
                 IBlockState state = world.getBlockState(pos);
                 if (state.getBlock() instanceof ISmashable) {
-                    ISmashable smashable = ((ISmashable) state.getBlock());
-                    if (smashable.getToolType() == getToolType()) {
-                        if (smashable.smashBlock(player, world, pos, state, tier)) {
-                            if (!world.isRemote) {
-                                ToolHelper.performTask(player, stack, getExhaustionRate(stack));
-                                onBlockDestroyed(stack, world, state, pos, player);
-                            }
+                    int requiredLevel = state.getBlock().getHarvestLevel(state);
+                    if (requiredLevel >= harvestLevel) {
+                        ISmashable smashable = ((ISmashable) state.getBlock());
+                        if (smashable.getToolType() == getToolType()) {
+                            if (smashable.smashBlock(player, world, pos, state, tier)) {
+                                if (!world.isRemote) {
+                                    ToolHelper.performTask(player, stack, getExhaustionRate(stack));
+                                    onBlockDestroyed(stack, world, state, pos, player);
+                                }
 
-                            smashed = true;
+                                smashed = true;
+                            }
                         }
                     }
                 }

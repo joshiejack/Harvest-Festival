@@ -19,8 +19,8 @@ public class EntityHarvestChicken extends EntityChicken implements IAnimalTracke
         super(world);
         data = HFApi.animals.newData(this, "chicken");
         timeUntilNextEgg = Integer.MAX_VALUE;
-        tasks.addTask(3, new EntityAIEat(this));
-        tasks.addTask(3, new EntityAILayEgg(this));
+        tasks.addTask(8, new EntityAIEat(this));
+        tasks.addTask(8, new EntityAILayEgg(this));
     }
 
     @Override

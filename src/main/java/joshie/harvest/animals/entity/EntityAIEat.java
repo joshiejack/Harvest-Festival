@@ -18,6 +18,7 @@ public class EntityAIEat extends EntityAIBase {
         this.worldObj = animal.getData().getAnimal().worldObj;
         this.animal = animal.getData().getAnimal();
         this.tracked = animal;
+        this.setMutexBits(2);
     }
 
     @Override

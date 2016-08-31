@@ -7,6 +7,7 @@ import joshie.harvest.core.helpers.generic.DirectionHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
@@ -18,6 +19,11 @@ import java.util.Set;
 public abstract class ItemToolSmashing extends ItemTool<ItemToolSmashing> {
     public ItemToolSmashing(String toolClass, Set<Block> effective) {
         super(toolClass, effective);
+    }
+
+    @Override
+    public EnumAction getItemUseAction(ItemStack stack) {
+        return EnumAction.NONE;
     }
 
     @Override

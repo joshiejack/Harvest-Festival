@@ -1,6 +1,7 @@
 package joshie.harvest.quests.trade;
 
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.core.ITiered;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.api.npc.INPC;
@@ -111,9 +112,11 @@ public class QuestUpgrade extends QuestTrade {
     }
 
     private double getLevel(EntityPlayer player) {
-        if (player.getHeldItemMainhand() == null) return 0D;
-        else if (player.getHeldItemMainhand().getTagCompound() == null) return 0;
-        return player.getHeldItemMainhand().getTagCompound().getDouble("Level");
+        ItemStack held = player.getHeldItemMainhand();
+        if (held == null) return 0D;
+        if (held.getItem() instanceof ITiered) {
+            return ((ITiered)held.getItem()).getLevel(held);
+        } else return 0D;
     }
 
     @SideOnly(Side.CLIENT)

@@ -62,13 +62,18 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
     }
 
     @Override
-    public int getLevel(ItemStack stack) {
-        if (!stack.hasTagCompound()) {
-            return 0;
-        }
-
-        return (int) stack.getTagCompound().getDouble("Level");
+    public double getLevel(ItemStack stack) {
+        return stack.getSubCompound("Data", true).getDouble("Level");
     }
+
+    @Override
+    public void levelTool(ItemStack stack) {
+        double level = stack.getSubCompound("Data", true).getDouble("Level");
+        double increase = getLevelIncrease(stack);
+        double newLevel = Math.min(100D, level + increase);
+        stack.getSubCompound("Data", true).setDouble("Level", newLevel);
+    }
+
 
     @Override
     public ToolTier getTier(ItemStack stack) {
@@ -127,8 +132,6 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
     public int getMaxItemUseDuration(ItemStack stack) {
         return 32000;
     }
-
-
 
     public int getFront(ToolTier tier) {
         return 0;
@@ -234,7 +237,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
                 break;
         }
 
-        return Math.max(effiency, ((getLevel(stack) + 1) /50F) * effiency);
+        return (float) Math.max(effiency, ((getLevel(stack) + 1) /50F) * effiency);
     }
 
     @Override

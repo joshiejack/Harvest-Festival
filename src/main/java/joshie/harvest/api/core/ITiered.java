@@ -10,7 +10,11 @@ public interface ITiered {
      *
      *  @param  stack   the item
      *  @return         the percentage complete **/
-    int getLevel(ItemStack stack);
+    double getLevel(ItemStack stack);
+
+    /** Increases the tools level
+     * @param stack the item **/
+    void levelTool(ItemStack stack);
 
     /** Returns the tier of this item
      *  

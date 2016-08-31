@@ -2,14 +2,13 @@ package joshie.harvest.tools;
 
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.core.ITiered;
 import joshie.harvest.cooking.HFCooking;
-import joshie.harvest.core.base.item.ItemTool;
 import joshie.harvest.core.helpers.generic.EntityHelper;
 import joshie.harvest.npc.HFNPCs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.FoodStats;
 import net.minecraft.util.math.BlockPos;
@@ -50,14 +49,8 @@ public class ToolHelper {
 
     public static void levelTool(ItemStack stack) {
         if (stack == null) return;
-        if (!stack.hasTagCompound()) {
-            stack.setTagCompound(new NBTTagCompound());
-            stack.getTagCompound().setDouble("Level", 0D);
-        } else {
-            double level = stack.getTagCompound().getDouble("Level");
-            double increase = ((ItemTool) stack.getItem()).getLevelIncrease(stack);
-            double newLevel = Math.min(100D, level + increase);
-            stack.getTagCompound().setDouble("Level", newLevel);
+        if (stack.getItem() instanceof ITiered) {
+            ((ITiered)stack.getItem()).levelTool(stack);
         }
     }
 
@@ -65,6 +58,7 @@ public class ToolHelper {
      * Should always be called client and server side
      **/
     public static void performTask(EntityPlayer player, ItemStack stack, float amount) {
+        levelTool(stack); //Level up the tool
         if (player.capabilities.isCreativeMode || !HFTools.HF_CONSUME_HUNGER) return; //If the player is in creative don't exhaust them
         consumeHunger(player, amount);
     }

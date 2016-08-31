@@ -22,7 +22,7 @@ public class RenderToolLevel {
         ItemStack stack = event.getStack();
         if (stack.getItem() instanceof ITiered) {
             ITiered tiered = ((ITiered)stack.getItem());
-            int level = tiered.getLevel(stack);
+            double level = tiered.getLevel(stack);
             ToolTier tier = tiered.getTier(stack);
             GuiScreen gui = Minecraft.getMinecraft().currentScreen;
             GlStateManager.disableRescaleNormal();
@@ -61,13 +61,13 @@ public class RenderToolLevel {
             gui.mc.renderEngine.bindTexture(HFModInfo.stars);
             gui.drawTexturedModalRect(i1 - 1, j1 - 1, 0, 8, 52, 9);
             int posY = tier != null && tier.ordinal() >= ToolTier.MYSTRIL.ordinal() ? 26 : 17;
-            int width = (level >> 1) + 2;
+            int width = ((int)level >> 1) + 2;
             gui.drawTexturedModalRect(i1 - 1, j1 - 1, 0, posY, width, 9);
 
             GlStateManager.pushMatrix();
             GlStateManager.disableBlend();
             GlStateManager.translate(53F, 0F, 0F);
-            gui.mc.fontRendererObj.drawString(level + "%", i1, j1, 0xFFFFFF);
+            gui.mc.fontRendererObj.drawString((int)level + "%", i1, j1, 0xFFFFFF);
             GlStateManager.enableBlend();
             GlStateManager.popMatrix();
 

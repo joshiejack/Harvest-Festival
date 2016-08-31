@@ -27,7 +27,7 @@ public class CropData implements ICropData {
     //Returns false if the crop was withered
     public boolean newDay(World world, BlockPos pos) {
         //Stage 1, Check how long the plant has been without water, If it's more than 2 days kill it
-        if (crop == null || (crop.requiresWater() && daysWithoutWater > 2) || crop.getGrowthHandler().canGrow(world, pos, crop)) {
+        if (crop == null || (crop.requiresWater() && daysWithoutWater > 2) || !crop.getGrowthHandler().canGrow(world, pos, crop)) {
             return false;
         } else { //Stage 2: Now that we know, it has been watered, Update it's stage
             //If we aren't ticking randomly, Then increase the stage

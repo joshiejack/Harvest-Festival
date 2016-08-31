@@ -9,7 +9,7 @@ import joshie.harvest.cooking.recipe.RecipeStack;
 import joshie.harvest.cooking.render.*;
 import joshie.harvest.cooking.tile.*;
 import joshie.harvest.core.base.FMLDefinition;
-import joshie.harvest.core.base.FMLIdentical;
+import joshie.harvest.core.base.MeshIdentical;
 import joshie.harvest.core.util.HFLoader;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.model.ModelLoader;
@@ -47,7 +47,7 @@ public class HFCooking {
     @SideOnly(Side.CLIENT)
     public static void preInitClient() {
         ModelLoader.setCustomMeshDefinition(MEAL, new MealDefinition(MEAL, "meals", CookingAPI.REGISTRY));
-        ModelLoader.setCustomMeshDefinition(RECIPE, new FMLIdentical(RECIPE));
+        ModelLoader.setCustomMeshDefinition(RECIPE, new MeshIdentical(RECIPE));
         ClientRegistry.bindTileEntitySpecialRenderer(TileFryingPan.class, new SpecialRendererFryingPan());
         ClientRegistry.bindTileEntitySpecialRenderer(TilePot.class, new SpecialRendererPot());
         ClientRegistry.bindTileEntitySpecialRenderer(TileCounter.class, new SpecialRendererCounter());

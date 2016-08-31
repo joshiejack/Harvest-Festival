@@ -1,15 +1,14 @@
 package joshie.harvest.crops.item;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.core.util.ICreativeSorted;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.lib.CreativeSort;
+import joshie.harvest.core.util.ICreativeSorted;
 import joshie.harvest.core.util.Text;
 import joshie.harvest.crops.Crop;
 import joshie.harvest.crops.CropRegistry;
 import joshie.harvest.crops.HFCrops;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -21,8 +20,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -36,7 +33,6 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
     public ItemHFSeeds() {
         super(HFCrops.CROPS, FARMLAND);
         setCreativeTab(HFTab.FARMING);
-        setMaxDamage(Short.MAX_VALUE); //You know, max damage yo
         setHasSubtypes(true);
     }
 
@@ -144,16 +140,7 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
     public ItemHFSeeds register(String name) {
         setUnlocalizedName(name.replace("_", "."));
         setRegistryName(new ResourceLocation(MODID, name));
-    GameRegistry.register(this);
-    if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
-        registerModels(this, name);
-    }
-
-    return this;
-}
-
-    @SideOnly(Side.CLIENT)
-    public void registerModels(Item item, String name) {
-        ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(new ResourceLocation(MODID, "crops_seeds"), "inventory"));
+        GameRegistry.register(this);
+        return this;
     }
 }

@@ -6,6 +6,7 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.IGrowthHandler;
 import joshie.harvest.core.base.FMLDefinition;
+import joshie.harvest.core.base.MeshIdentical;
 import joshie.harvest.core.helpers.generic.RegistryHelper;
 import joshie.harvest.core.util.HFLoader;
 import joshie.harvest.crops.block.BlockHFCrops;
@@ -135,6 +136,7 @@ public class HFCrops {
 
     @SideOnly(Side.CLIENT)
     public static void preInitClient() {
+        ModelLoader.setCustomMeshDefinition(SEEDS, new MeshIdentical(SEEDS));
         ModelLoader.setCustomStateMapper(CROPS, new CropStateMapper());
         ModelLoader.setCustomMeshDefinition(CROP, new FMLDefinition<Crop>(CROP, "crops", CropRegistry.REGISTRY) {
             @Override

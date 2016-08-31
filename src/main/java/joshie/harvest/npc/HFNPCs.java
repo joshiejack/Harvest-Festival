@@ -7,7 +7,7 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.npc.INPCRegistry.Age;
 import joshie.harvest.api.npc.INPCRegistry.Gender;
 import joshie.harvest.core.HFClientProxy;
-import joshie.harvest.core.base.FMLIdentical;
+import joshie.harvest.core.base.MeshIdentical;
 import joshie.harvest.core.lib.EntityIDs;
 import joshie.harvest.core.util.HFLoader;
 import joshie.harvest.npc.entity.*;
@@ -97,7 +97,7 @@ public class HFNPCs {
 
     @SideOnly(Side.CLIENT)
     public static void preInitClient() {
-        ModelLoader.setCustomMeshDefinition(SPAWNER_NPC, new FMLIdentical(SPAWNER_NPC));
+        ModelLoader.setCustomMeshDefinition(SPAWNER_NPC, new MeshIdentical(SPAWNER_NPC));
         registerNPCRendering(EntityNPCVillager.class);
         registerNPCRendering(EntityNPCBuilder.class);
         registerNPCRendering(EntityNPCShopkeeper.class);

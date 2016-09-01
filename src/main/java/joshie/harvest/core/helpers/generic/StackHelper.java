@@ -33,7 +33,8 @@ public class StackHelper {
         RenderHelper.enableGUIStandardItemLighting();
         Minecraft mc = MCClientHelper.getMinecraft();
         mc.getRenderItem().renderItemAndEffectIntoGUI(stack, (int) (left / size), (int) (top / size));
-        mc.getRenderItem().renderItemOverlayIntoGUI(mc.fontRendererObj, stack, (int) (left / size), (int) (top / size), "");
+        String display = stack.stackSize > 1 ? stack.stackSize + "" : "";
+        mc.getRenderItem().renderItemOverlayIntoGUI(mc.fontRendererObj, stack, (int) (left / size), (int) (top / size), display);
         RenderHelper.disableStandardItemLighting();
         GlStateManager.disableLighting();
         GlStateManager.popMatrix();

@@ -49,4 +49,12 @@ public class ConfigHelper {
     public static void setBoolean(String name, boolean dft) {
         config.get(category, name, dft).set(dft);
     }
+    
+    public static String getString(String name, String dft) {
+    	return config.get(category, name, dft).getString();
+    }
+    
+    public static String getString(String name, String dft, String comment) {
+    	return config.get(category, name, dft, comment).getString();
+    }
 }

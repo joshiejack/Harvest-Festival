@@ -1,5 +1,6 @@
 package joshie.harvest.buildings.items;
 
+import joshie.harvest.core.helpers.ChatHelper;
 import joshie.harvest.core.util.ICreativeSorted;
 import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.BuildingRegistry;
@@ -17,6 +18,7 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
 import static joshie.harvest.core.HFCore.DEBUG_MODE;
@@ -28,16 +30,23 @@ public class ItemBuilding extends ItemHFFML<ItemBuilding, BuildingImpl> implemen
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
-        BuildingImpl building = getObjectFromStack(stack);
-        if (world.provider.getDimension() == 0 && building != null && (DEBUG_MODE || building.canHaveMultiple() || !TownHelper.getClosestTownToEntity(player).hasBuilding(building.getRegistryName()))) {
-            RayTraceResult raytrace = BuildingHelper.rayTrace(player, 128, 0F);
-            if (raytrace == null || raytrace.getBlockPos() == null || raytrace.sideHit != EnumFacing.UP) {
-                return new ActionResult(EnumActionResult.PASS, stack);
-            }
+        if (world.provider.getDimension() == 0) {
+            BuildingImpl building = getObjectFromStack(stack);
+            if (building != null && (DEBUG_MODE || building.canHaveMultiple() || !TownHelper.getClosestTownToEntity(player).hasBuilding(building.getRegistryName()))) {
+                RayTraceResult raytrace = BuildingHelper.rayTrace(player, 128, 0F);
+                if (raytrace == null || raytrace.getBlockPos() == null || raytrace.sideHit != EnumFacing.UP) {
+                    return new ActionResult(EnumActionResult.PASS, stack);
+                }
 
-            if (!world.isRemote) TownHelper.ensureTownExists(world, raytrace.getBlockPos()); //Force a town to exist near where you clicked
-            BuildingKey key = BuildingHelper.getPositioning(world, raytrace, building, player, hand);
-            return new ActionResult<>(building.generate(world, key.getPos(), key.getMirror(), key.getRotation()), stack);
+                if (!world.isRemote) {
+                    TownHelper.ensureTownExists(world, raytrace.getBlockPos()); //Force a town to exist near where you clicked
+                }
+
+                BuildingKey key = BuildingHelper.getPositioning(world, raytrace, building, player, hand);
+                return new ActionResult<>(building.generate(world, key.getPos(), key.getMirror(), key.getRotation()), stack);
+            } else ChatHelper.displayChat(TextFormatting.RED + Text.translate("town.failure") + TextFormatting.WHITE + Text.translate("town.distance"));
+        } else if (world.isRemote) {
+            ChatHelper.displayChat(TextFormatting.RED + Text.translate("town.failure") + TextFormatting.WHITE + Text.translate("town.dimension"));
         }
 
         return new ActionResult(EnumActionResult.PASS, stack);

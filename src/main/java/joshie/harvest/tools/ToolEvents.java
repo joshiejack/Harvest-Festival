@@ -4,12 +4,14 @@ import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.core.base.item.ItemTool;
 import joshie.harvest.core.util.HFEvents;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
@@ -61,6 +63,18 @@ public class ToolEvents {
 
                 if (level > 0) {
                     event.player.addPotionEffect(new PotionEffect(HFTools.CURSED, 200, level - 1, true, false));
+                }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void onClick(PlayerInteractEvent.LeftClickBlock event) {
+        EntityPlayer player =  event.getEntityPlayer();
+        if (player.motionY <= -0.1F) {
+            if (player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == HFTools.HAMMER) {
+                if (event.getWorld().getBlockState(event.getPos()).getBlock() == Blocks.FARMLAND) {
+                    HFTools.HAMMER.smashBlock(event.getWorld(), player, event.getPos(), player.getHeldItemMainhand(), true);
                 }
             }
         }

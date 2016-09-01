@@ -30,10 +30,9 @@ public class ItemMiningTool extends ItemHFEnum<ItemMiningTool, MiningTool> {
     @Override
     public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
         if (getEnumFromStack(stack) == MiningTool.ESCAPE_ROPE && world.provider.getDimension() == HFMining.MINING_ID) {
-            ItemStack result = stack.copy();
-            if (!player.capabilities.isCreativeMode) result.splitStack(1);
+            stack.splitStack(1);
             if (!world.isRemote) MiningHelper.teleportToOverworld(player); //Back we go!
-            return new ActionResult(EnumActionResult.SUCCESS, result);
+            return new ActionResult(EnumActionResult.SUCCESS, stack);
         } else return new ActionResult(EnumActionResult.PASS, stack);
     }
 }

@@ -32,6 +32,9 @@ harvestfestival.tool.chicken.feed=Chicken Feed
 harvestfestival.tool.miracle.potion=Miracle Potion
 
 #Buildings
+harvestfestival.town.failed=Not Here!
+harvestfestival.town.dimension=Unfortunately towns can only be built in the Overworld, so try placing it there!
+harvestfestival.town.distance=You can only have one building per town, try placing this further away
 harvestfestival.structures.blueprint=Blueprint: %s
 harvestfestival.structures.spawn=[SPAWN] %s
 harvestfestival.structures.barn=Animal Ranch

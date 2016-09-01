@@ -34,7 +34,7 @@ public class EntityHarvestChicken extends EntityChicken implements IAnimalTracke
             if (HFApi.animals.canEat(stack, data.getType().getFoodTypes())) {
                 if (!worldObj.isRemote) {
                     data.feed(player);
-                    if (!player.capabilities.isCreativeMode) stack.splitStack(1);
+                    stack.splitStack(1);
                 }
 
                 return true;

@@ -59,7 +59,8 @@ public class ItemAnimalSpawner extends ItemHFEnum<ItemAnimalSpawner, Spawner> {
             }
         }
 
-        return EnumActionResult.FAIL;
+        stack.splitStack(1);
+        return EnumActionResult.SUCCESS;
     }
 
     @SideOnly(Side.CLIENT)

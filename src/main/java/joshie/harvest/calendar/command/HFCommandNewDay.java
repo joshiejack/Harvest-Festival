@@ -16,7 +16,7 @@ public class HFCommandNewDay extends AbstractHFCommand {
 
     @Override
     public String getUsage() {
-        return return "Usage: /hf newDay";
+        return "Usage: /hf newDay";
     }
 
     @Override

@@ -74,9 +74,9 @@ public abstract class Quest extends Impl<Quest> {
      * @param player    the player we're increasing the stage for
      **/
     public final void increaseStage(EntityPlayer player) {
+        int previous = this.quest_stage;
+        this.quest_stage++;
         if (!player.worldObj.isRemote) {
-            int previous = this.quest_stage;
-            this.quest_stage++;
             onStageChanged(player, previous, quest_stage);
         }
 

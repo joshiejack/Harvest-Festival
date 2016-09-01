@@ -4,15 +4,10 @@ import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.util.HFEvents;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.passive.EntityChicken;
-import net.minecraft.entity.passive.EntityCow;
-import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingSpawnEvent.CheckSpawn;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -56,20 +51,6 @@ public class AnimalEvents {
                 entity.rotationPitch = player.rotationPitch;
                 entity.rotationYaw = player.rotationYaw;
                 entity.moveRelative(0F, 1.0F, 1.05F);
-            }
-        }
-    }
-
-    /* Disables vanilla cows, chickens and sheep from spawning naturally if spawning is disabled **/
-    @HFEvents
-    public static class SpawnAttempt {
-        public static boolean register() { return !HFAnimals.CAN_SPAWN; }
-
-        @SubscribeEvent
-        public void onSpawnAttempt(CheckSpawn event) {
-            Class<? extends Entity> animal = event.getEntity().getClass();
-            if (animal == EntityCow.class || animal == EntitySheep.class || animal == EntityChicken.class) {
-                event.setResult(Result.DENY);
             }
         }
     }

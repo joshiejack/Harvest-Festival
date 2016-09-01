@@ -209,7 +209,7 @@ public class HFShops {
         MINER = HFApi.shops.newShop(new ResourceLocation(MODID, "miner"), HFNPCs.MINER);
         MINER.addItem(new PurchaseableDecorative(1000, new ItemStack(HFMining.DIRT_DECORATIVE, 16, 0)));
         MINER.addItem(new PurchaseableDecorative(500, HFMining.LADDER.getStackFromEnum(Ladder.DECORATIVE)));
-        MINER.addItem(new PurchaseableDecorative(150, HFMining.MINING_TOOL.getStackFromEnum(MiningTool.ESCAPE_ROPE)));
+        MINER.addItem(150, HFMining.MINING_TOOL.getStackFromEnum(MiningTool.ESCAPE_ROPE));
 
         for (Type type: BlockStone.Type.values()) {
             if (!type.isReal()) {

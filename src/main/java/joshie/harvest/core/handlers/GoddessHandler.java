@@ -35,17 +35,18 @@ public class GoddessHandler {
         return stack.getItem() == goddess && stack.getItemDamage() == FlowerType.GODDESS.ordinal();
     }
 
-    public static void spawnGoddess(World world, Entity entity, boolean flower) {
-        spawnGoddess(world, entity.posX, entity.posY, entity.posZ, flower);
+    public static boolean spawnGoddess(World world, Entity entity, boolean flower, boolean move) {
+        return spawnGoddess(world, entity.posX, entity.posY, entity.posZ, flower, move);
     }
 
-    public static void spawnGoddess(World world, double x, double y, double z, boolean flower) {
+    public static boolean spawnGoddess(World world, double x, double y, double z, boolean flower, boolean move) {
         List<EntityNPCGoddess> npcs = world.getEntitiesWithinAABB(EntityNPCGoddess.class, new AxisAlignedBB(x - 0.5F, y - 0.5F, z - 0.5F, x + 0.5F, y + 0.5F, z + 0.5F).expand(32D, 32D, 32D));
         EntityNPCGoddess goddess = npcs.size() > 0 ? npcs.get(0) : NPCHelper.getEntityForNPC(world, (NPC) HFNPCs.GODDESS);
         if (flower) goddess.setFlower();
-        goddess.setPosition(x, y + 1, z);
+        if (move || (goddess.posX == 0 && goddess.posY == 0 && goddess.posZ == 0)) goddess.setPosition(x, y + 1, z);
         goddess.resetSpawnHome();
         world.spawnEntityInWorld(goddess);
+        return npcs.size() > 0 && npcs.get(0) == goddess;
     }
 
     //Goddess flower spawns goddess
@@ -57,7 +58,7 @@ public class GoddessHandler {
             if (stack != null) {
                 if (isGoddessFlower(stack)) {
                     if (event.getEntityItem().isInsideOfMaterial(Material.WATER)) {
-                        spawnGoddess(world, event.getEntityItem(), true);
+                        spawnGoddess(world, event.getEntityItem(), true, true);
                     } else {
                         event.setExtraLife(5900);
                         event.setCanceled(true);

@@ -48,5 +48,5 @@ public abstract class AnimalAbstract implements IAnimalType {
     }
 
     @Override
-    public void newDay(IAnimalData data, EntityAnimal entity) {}
+    public void refreshProduct(IAnimalData data, EntityAnimal entity) {}
 }

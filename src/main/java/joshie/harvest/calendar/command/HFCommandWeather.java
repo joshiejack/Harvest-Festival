@@ -18,7 +18,7 @@ public class HFCommandWeather extends AbstractHFCommand {
 
     @Override
     public String getUsage() {
-        return "<weather>";
+        return "Usage: /hf weather <sunny|rain|snow|typhoon|blizzard>";
     }
 
     @Override

@@ -3,6 +3,7 @@ package joshie.harvest.calendar.command;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.calendar.CalendarServer;
+import joshie.harvest.calendar.HFCalendar;
 import joshie.harvest.core.commands.AbstractHFCommand;
 import joshie.harvest.core.commands.HFCommand;
 import joshie.harvest.core.handlers.HFTrackers;
@@ -20,7 +21,7 @@ public class HFCommandDay extends AbstractHFCommand {
 
     @Override
     public String getUsage() {
-        return "<day>";
+        return "Usage: /hf day <value>";
     }
 
     @Override
@@ -32,7 +33,8 @@ public class HFCommandDay extends AbstractHFCommand {
                 Season season = calendar.getDate().getSeason();
                 int year = Math.max(1, calendar.getDate().getYear());
                 long time = CalendarHelper.getTime(day, season, year);
-                sender.getEntityWorld().setWorldTime(time);
+                long leftover = server.worldServers[0].getWorldTime() % HFCalendar.TICKS_PER_DAY;
+                sender.getEntityWorld().setWorldTime(time + leftover);
                 calendar.recalculateAndUpdate(sender.getEntityWorld());
                 return true;
             } catch (NumberFormatException ignored) {}

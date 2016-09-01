@@ -2,17 +2,15 @@ package joshie.harvest.core.block;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.core.handlers.GoddessHandler;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockBush;
-import net.minecraft.block.BlockCrops;
-import net.minecraft.block.BlockLeaves;
+import joshie.harvest.core.util.holder.HolderRegistrySet;
+import joshie.harvest.npc.HFNPCs;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -29,6 +27,8 @@ import java.util.List;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class BlockGoddessWater extends BlockFluidClassic {
+    public static final HolderRegistrySet VALID_ITEMS = new HolderRegistrySet();
+
     public BlockGoddessWater(Fluid fluid) {
         super(fluid, Material.WATER);
     }
@@ -41,20 +41,15 @@ public class BlockGoddessWater extends BlockFluidClassic {
     @Override
     public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
         if (!world.isRemote && entity instanceof EntityItem) {
-            ItemStack stack = ((EntityItem)entity).getEntityItem();
-            if (stack != null) {
-                boolean spawn = false;
-                if (stack.getItem() instanceof ItemBlock) {
-                    Block block = Block.getBlockFromItem(stack.getItem());
-                    if (block instanceof BlockCrops || block instanceof BlockLeaves || block instanceof BlockBush) {
-                        spawn = true;
+            EntityItem item = ((EntityItem)entity);
+            ItemStack stack = item.getEntityItem();
+            if (VALID_ITEMS.contains(stack)) {
+                if (!GoddessHandler.spawnGoddess(world, entity, false, false)) {
+                    if (item.getThrower() != null) {
+                        EntityPlayer player = world.getPlayerEntityByName(item.getThrower());
+                        HFApi.relationships.adjustRelationship(player, HFNPCs.GODDESS, HFNPCs.GODDESS.getGiftValue(stack).getRelationPoints());
                     }
-                } else if (HFApi.crops.getCropFromStack(stack) != null) {
-                    spawn = true;
-                }
 
-                if (spawn) {
-                    GoddessHandler.spawnGoddess(world, entity, false);
                     entity.setDead();
                 }
             }

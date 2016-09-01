@@ -16,7 +16,7 @@ public class HFCommandMine extends AbstractHFCommand {
 
     @Override
     public String getUsage() {
-        return "mineID";
+        return "Usage: /hf mine <mineID>";
     }
 
     @Override

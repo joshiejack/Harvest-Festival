@@ -1,6 +1,8 @@
 package joshie.harvest.core.commands;
 
+import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.calendar.CalendarServer;
+import joshie.harvest.calendar.HFCalendar;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.lib.HFModInfo;
@@ -12,6 +14,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.event.CommandEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -61,15 +64,48 @@ public class CommandManager extends CommandBase implements ICommand {
         } else return MCClientHelper.getWorld();
     }
 
+
+
+    private boolean executeVanillaTime(MinecraftServer server, ICommandSender sender, String[] parameters) throws NumberInvalidException {
+        if (parameters.length > 1) {
+            if (parameters[0].equals("set")) {
+                long time = CalendarHelper.getElapsedDays(server.worldServers[0].getWorldTime()) * HFCalendar.TICKS_PER_DAY;
+                if (parameters[1].equals("force-day")) {
+                    time = 1000;
+                } else if (parameters[1].equals("force-night")) {
+                    time = 13000;
+                } else if (parameters[1].equals("force")) {
+                    time = parseInt(parameters[1]);
+                } else if (parameters[1].equals("day")) {
+                    time += 3000;
+                } else if (parameters[1].equals("night")) {
+                    time += 18000;
+                } else {
+                    time += parseInt(parameters[1]);
+                }
+
+                for (int i = 0; i < server.worldServers.length; ++i) {
+                    WorldServer worldserver = server.worldServers[i];
+                    worldserver.setWorldTime(time);
+                }
+
+                //TODO: Make set time also add time
+                HFTrackers.<CalendarServer>getCalendar(server.worldServers[0]).recalculateAndUpdate(server.worldServers[0]);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     @SubscribeEvent
     public void onCommandSend(CommandEvent event) throws CommandNotFoundException, NumberInvalidException {
         //Update the calendar
         if (event.getCommand().getCommandName().equals("time")) {
             try {
-                event.getCommand().execute(FMLCommonHandler.instance().getMinecraftServerInstance(), event.getSender(), event.getParameters());
-                World world = event.getSender().getEntityWorld();
-                HFTrackers.<CalendarServer>getCalendar(world).recalculateAndUpdate(world);
-                event.setCanceled(true);
+                if (executeVanillaTime(FMLCommonHandler.instance().getMinecraftServerInstance(), event.getSender(), event.getParameters())) {
+                    event.setCanceled(true);
+                }
             } catch (Exception e) {}
         } else {
             //Otherwise process the command
@@ -104,7 +140,7 @@ public class CommandManager extends CommandBase implements ICommand {
     }
 
     static String getUsage(AbstractHFCommand command) {
-        return "/" + INSTANCE.getCommandName() + " " + command.getCommandName() + " " + command.getUsage();
+        return command.getUsage();
     }
 
     @Override

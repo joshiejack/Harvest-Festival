@@ -8,6 +8,7 @@ import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.IGrowthHandler;
 import joshie.harvest.core.base.FMLDefinition;
 import joshie.harvest.core.base.MeshIdentical;
+import joshie.harvest.core.block.BlockGoddessWater;
 import joshie.harvest.core.helpers.generic.RegistryHelper;
 import joshie.harvest.core.util.HFLoader;
 import joshie.harvest.crops.block.BlockHFCrops;
@@ -126,6 +127,9 @@ public class HFCrops {
                 if (!isInDictionary(name, clone)) {
                     OreDictionary.registerOre(name, clone);
                 }
+
+                //Allow all crops to be throw in goddess water
+                BlockGoddessWater.VALID_ITEMS.registerItem(crop.getCropStack());
             }
         }
 

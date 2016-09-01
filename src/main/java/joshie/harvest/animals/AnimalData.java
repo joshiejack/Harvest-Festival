@@ -194,7 +194,7 @@ public class AnimalData implements IAnimalData {
                 if (daysPassed >= daysBetween) {
                     daysPassed = 0;
                     producedProducts = false;
-                    type.newDay(data, animal);
+                    type.refreshProduct(data, animal);
                 }
             }
 

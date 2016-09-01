@@ -1,5 +1,6 @@
 package joshie.harvest.shops;
 
+import joshie.harvest.HarvestFestival;
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.entity.EntityHarvestChicken;
 import joshie.harvest.animals.entity.EntityHarvestCow;
@@ -30,6 +31,9 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import org.apache.logging.log4j.Level;
+
+import java.util.HashMap;
 
 import static joshie.harvest.animals.block.BlockSizedStorage.SizedStorage.INCUBATOR;
 import static joshie.harvest.animals.block.BlockTray.Tray.NEST_EMPTY;
@@ -42,13 +46,10 @@ import static joshie.harvest.cooking.HFCooking.*;
 import static joshie.harvest.cooking.block.BlockCookware.Cookware.*;
 import static joshie.harvest.cooking.item.ItemIngredients.Ingredient.*;
 import static joshie.harvest.cooking.item.ItemUtensil.Utensil.KNIFE;
-import static joshie.harvest.core.lib.HFModInfo.MODID;
-import static joshie.harvest.npc.item.ItemNPCTool.NPCTool.BLUE_FEATHER;
-
-import java.util.HashMap;
-
 import static joshie.harvest.core.helpers.generic.ConfigHelper.getString;
 import static joshie.harvest.core.helpers.generic.ConfigHelper.setCategory;
+import static joshie.harvest.core.lib.HFModInfo.MODID;
+import static joshie.harvest.npc.item.ItemNPCTool.NPCTool.BLUE_FEATHER;
 
 @HFLoader
 public class HFShops {
@@ -92,7 +93,7 @@ public class HFShops {
         if(customShoppingList.containsKey(shopName)) {
         	String[] shopData = customShoppingList.get(shopName).split(",");
         	
-        	System.out.println("Adding " + shopData.length + " entries for " + shopName);
+        	HarvestFestival.LOGGER.log(Level.INFO, "Adding " + shopData.length + " entries for " + shopName);
         	
         	if(shopData.length == 0)
         		return;
@@ -103,9 +104,6 @@ public class HFShops {
         		if(shopEntry.length >= 5) {
 		        	// minecraft:feather:meta:amount:cost
 		        	String itemName = shopEntry[0] + ":" + shopEntry[1];
-		        	
-		        	System.out.println(itemName);
-		        	
 		        	int meta = Integer.parseInt(shopEntry[2]);
 		        	int amount = Integer.parseInt(shopEntry[3]);
 		        	int cost = Integer.parseInt(shopEntry[4]);

@@ -3,6 +3,7 @@ package joshie.harvest.calendar.command;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.calendar.CalendarServer;
+import joshie.harvest.calendar.HFCalendar;
 import joshie.harvest.core.commands.AbstractHFCommand;
 import joshie.harvest.core.commands.HFCommand;
 import joshie.harvest.core.handlers.HFTrackers;
@@ -19,7 +20,7 @@ public class HFCommandSeason extends AbstractHFCommand {
 
     @Override
     public String getUsage() {
-        return "<season>";
+        return "Usage: /hf season <spring|summer|autumn|winter>";
     }
 
     @Override
@@ -30,7 +31,8 @@ public class HFCommandSeason extends AbstractHFCommand {
                     CalendarServer calendar = HFTrackers.getCalendar(sender.getEntityWorld());
                     int day = calendar.getDate().getDay();
                     int year = Math.max(1, calendar.getDate().getYear());
-                    sender.getEntityWorld().setWorldTime(CalendarHelper.getTime(day, season, year));
+                    long leftover = server.worldServers[0].getWorldTime() % HFCalendar.TICKS_PER_DAY;
+                    sender.getEntityWorld().setWorldTime(CalendarHelper.getTime(day, season, year) + leftover);
                     calendar.recalculateAndUpdate(sender.getEntityWorld());
                     return true;
                 }

@@ -18,7 +18,7 @@ public class HFCommandGold extends AbstractHFCommand {
 
     @Override
     public String getUsage() {
-        return "<add|set> amount";
+        return "Usage: /hf gold <add|set> <value>";
     }
 
     @Override

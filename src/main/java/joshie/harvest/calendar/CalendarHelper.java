@@ -48,7 +48,7 @@ public class CalendarHelper {
         return getElapsedDays(totalTime) % DAYS_PER_SEASON;
     }
 
-    private static int getElapsedDays(long totalTime) {
+    public static int getElapsedDays(long totalTime) {
         return (int) (totalTime / TICKS_PER_DAY);
     }
 

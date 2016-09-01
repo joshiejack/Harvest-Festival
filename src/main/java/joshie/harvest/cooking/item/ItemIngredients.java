@@ -49,6 +49,7 @@ public class ItemIngredients extends ItemHFEnum<ItemIngredients, Ingredient> imp
             case SALT:
                 return 25;
             case CHOCOLATE:
+                return 85;
             default: return 0;
         }
     }

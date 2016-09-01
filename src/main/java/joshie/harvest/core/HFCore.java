@@ -16,6 +16,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.color.IItemColor;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
@@ -31,6 +32,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.oredict.OreDictionary;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.core.lib.LoadOrder.HFCORE;
@@ -58,6 +60,17 @@ public class HFCore {
         HFApi.shipping.registerSellable(new ItemStack(Items.APPLE), 100L);
         HFApi.shipping.registerSellable(new ItemStack(Items.SUGAR), 15L);
         HFApi.shipping.registerSellable(new ItemStack(Items.BREAD), 85L);
+        BlockGoddessWater.VALID_ITEMS.registerItem(new ItemStack(Items.APPLE));
+        BlockGoddessWater.VALID_ITEMS.registerItem(new ItemStack(Items.REEDS));
+        BlockGoddessWater.VALID_ITEMS.registerItem(new ItemStack(Blocks.WATERLILY));
+        BlockGoddessWater.VALID_ITEMS.registerItem(new ItemStack(Blocks.MELON_BLOCK));
+        BlockGoddessWater.VALID_ITEMS.registerItem(new ItemStack(Blocks.TALLGRASS, 1, OreDictionary.WILDCARD_VALUE));
+        BlockGoddessWater.VALID_ITEMS.registerItem(new ItemStack(Blocks.DOUBLE_PLANT, 1, OreDictionary.WILDCARD_VALUE));
+        BlockGoddessWater.VALID_ITEMS.registerItem(new ItemStack(Blocks.RED_FLOWER, 1, OreDictionary.WILDCARD_VALUE));
+        BlockGoddessWater.VALID_ITEMS.registerItem(new ItemStack(Blocks.YELLOW_FLOWER, 1, OreDictionary.WILDCARD_VALUE));
+        BlockGoddessWater.VALID_ITEMS.registerItem(new ItemStack(Blocks.VINE, 1, OreDictionary.WILDCARD_VALUE));
+        BlockGoddessWater.VALID_ITEMS.registerItem(new ItemStack(Blocks.LEAVES, 1, OreDictionary.WILDCARD_VALUE));
+        BlockGoddessWater.VALID_ITEMS.registerItem(new ItemStack(Blocks.LEAVES2, 1, OreDictionary.WILDCARD_VALUE));
     }
 
     @SideOnly(Side.CLIENT)

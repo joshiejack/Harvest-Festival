@@ -26,7 +26,7 @@ public class AnimalSheep extends AnimalAbstract {
     }
 
     @Override
-    public void newDay(IAnimalData data, EntityAnimal entity) {
+    public void refreshProduct(IAnimalData data, EntityAnimal entity) {
         entity.eatGrassBonus();
     }
 }

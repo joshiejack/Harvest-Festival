@@ -24,7 +24,7 @@ public interface IAnimalType {
     /** How many typed treats this animal needs to up it's productivity **/
     int getTypeTreatCount();
 
-    /** Called to make this animal produce it a product on a new day 
+    /** Called whenever an animal is reset to being able to produce again
      * @param data tracking **/
-    void newDay(IAnimalData data, EntityAnimal entity);
+    void refreshProduct(IAnimalData data, EntityAnimal entity);
 }

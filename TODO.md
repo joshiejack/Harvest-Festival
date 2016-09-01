@@ -5,6 +5,7 @@
 
 ### Textures
 - Kitchen Knife (Looks good when right clicking)
+- Escape Rope
 - Inside of Fridge Door (fridge_door.png edit)
 - New Textures for the following NPCS
     - Jeimmi the Mayor                  (For some reason based on my brother, even those she's an older lady)

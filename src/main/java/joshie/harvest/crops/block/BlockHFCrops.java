@@ -113,71 +113,13 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
                 Stage stage = getEnumFromState(state);
                 if (stage == Stage.WITHERED) return; //If withered do nothing
                 if (world.getLightFromNeighbors(pos.up()) >= 9) {
-                    float chance = getGrowthChance(this, world, pos);
-                    if (rand.nextInt((int) (25.0F / chance) + 1) == 0) {
+                    if (rand.nextInt(20) == 0) {
                         //We are Growing!
                         grow(world, rand, pos, state);
                     }
                 }
             }
         }
-    }
-
-    private static float getGrowthChance(Block block, World world, BlockPos pos) {
-        float f = 1.0F;
-        BlockPos posDown = pos.down();
-
-        for (int i = -1; i <= 1; ++i) {
-            for (int j = -1; j <= 1; ++j) {
-                float f1 = 0.0F;
-                IBlockState state = world.getBlockState(posDown.add(i, 0, j));
-
-                if (state.getBlock().canSustainPlant(state, world, posDown.add(i, 0, j), EnumFacing.UP, (IPlantable) block)) {
-                    f1 = 1.0F;
-
-                    if (state.getBlock().isFertile(world, posDown.add(i, 0, j))) {
-                        f1 = 3.0F;
-                    }
-                }
-
-                if (i != 0 || j != 0) {
-                    f1 /= 4.0F;
-                }
-
-                f += f1;
-            }
-        }
-
-        BlockPos posNorth = pos.north();
-        BlockPos posSouth = pos.south();
-        BlockPos posWest = pos.west();
-        BlockPos posEast = pos.east();
-        boolean xTrue = block == world.getBlockState(posWest).getBlock() || block == world.getBlockState(posEast).getBlock();
-        boolean yTrue = block == world.getBlockState(posNorth).getBlock() || block == world.getBlockState(posSouth).getBlock();
-
-        if (xTrue && yTrue) {
-            f /= 2.0F;
-        } else {
-            boolean cornerTrue = block == world.getBlockState(posWest.north()).getBlock() || block == world.getBlockState(posEast.north()).getBlock() || block == world.getBlockState(posEast.south()).getBlock() || block == world.getBlockState(posWest.south()).getBlock();
-
-            if (cornerTrue) {
-                f /= 2.0F;
-            }
-        }
-        return f;
-    }
-
-    @Override
-    public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable) {
-        IBlockState stateUp = world.getBlockState(pos.up());
-        if (stateUp.getBlock() != this) return false;
-        Stage aboveStage = getEnumFromState(stateUp);
-        Stage thisStage = getEnumFromState(state);
-        if (stateUp.getBlock() == this) {
-            if (thisStage == FRESH) return aboveStage == Stage.FRESH_DOUBLE;
-            else if (thisStage == Stage.WITHERED) return aboveStage == Stage.WITHERED_DOUBLE;
-        }
-        return false;
     }
 
     @SuppressWarnings("deprecation")
@@ -217,6 +159,14 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
         return null;
     }
 
+    public boolean canStay(World world, IBlockState state, BlockPos pos) {
+        ICrop crop = HFApi.crops.getCropAtLocation(world, pos).getCrop();
+        if (crop != null && crop.getGrowthHandler() != null) {
+            IBlockState down = world.getBlockState(pos.down());
+            return down.getBlock() == this || crop.getGrowthHandler().canSustainCrop(world, pos, state, crop);
+        } else return false;
+    }
+
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
         Stage stage = getEnumFromState(state);
@@ -241,11 +191,8 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
     @Override
     public void neighborChanged(IBlockState state, World world, BlockPos pos, Block neighborBlock) {
         if (!world.isRemote) {
-            ICrop crop = HFApi.crops.getCropAtLocation(world, pos).getCrop();
-            if (crop != null && crop.getGrowthHandler() != null) {
-                if (!crop.getGrowthHandler().canSustainCrop(world, pos.down(), world.getBlockState(pos.down()), crop)) {
-                    world.setBlockToAir(pos);
-                }
+            if (!canStay(world, state, pos)) {
+                //world.setBlockToAir(pos);
             }
         }
     }
@@ -263,7 +210,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
         }
 
         ICrop crop = data.getCrop();
-        boolean isSickle = player.getActiveItemStack() != null && player.getActiveItemStack().getItem() instanceof IBreakCrops;
+        boolean isSickle = player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() instanceof IBreakCrops;
         if (isSickle || !crop.requiresSickle()) {
             if (section == BOTTOM) {
                 harvestCrop(player, world, pos);

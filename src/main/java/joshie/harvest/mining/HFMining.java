@@ -16,6 +16,7 @@ import joshie.harvest.mining.entity.EntityDarkSheep;
 import joshie.harvest.mining.item.ItemDarkSpawner;
 import joshie.harvest.mining.item.ItemDarkSpawner.DarkSpawner;
 import joshie.harvest.mining.item.ItemMaterial;
+import joshie.harvest.mining.item.ItemMiningTool;
 import joshie.harvest.mining.loot.*;
 import joshie.harvest.mining.render.*;
 import net.minecraft.client.renderer.entity.Render;
@@ -42,6 +43,7 @@ public class HFMining {
     public static final BlockPortal PORTAL = new BlockPortal().setBlockUnbreakable().register("portal");
     public static final ItemMaterial MATERIALS = new ItemMaterial().register("materials");
     public static final ItemDarkSpawner DARK_SPAWNER = new ItemDarkSpawner().register("dark_spawner");
+    public static final ItemMiningTool MINING_TOOL = new ItemMiningTool().register("mining_tool");
     public static DimensionType MINE_WORLD;
 
     public static void preInit() {

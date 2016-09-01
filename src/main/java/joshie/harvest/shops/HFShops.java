@@ -18,8 +18,10 @@ import joshie.harvest.crops.CropRegistry;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.crops.block.BlockSprinkler.Sprinkler;
 import joshie.harvest.mining.HFMining;
+import joshie.harvest.mining.block.BlockLadder.Ladder;
 import joshie.harvest.mining.block.BlockStone;
 import joshie.harvest.mining.block.BlockStone.Type;
+import joshie.harvest.mining.item.ItemMiningTool.MiningTool;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.shops.purchaseable.*;
 import joshie.harvest.tools.HFTools;
@@ -206,6 +208,8 @@ public class HFShops {
     private static void registerMiner() {
         MINER = HFApi.shops.newShop(new ResourceLocation(MODID, "miner"), HFNPCs.MINER);
         MINER.addItem(new PurchaseableDecorative(1000, new ItemStack(HFMining.DIRT_DECORATIVE, 16, 0)));
+        MINER.addItem(new PurchaseableDecorative(500, HFMining.LADDER.getStackFromEnum(Ladder.DECORATIVE)));
+        MINER.addItem(new PurchaseableDecorative(150, HFMining.MINING_TOOL.getStackFromEnum(MiningTool.ESCAPE_ROPE)));
 
         for (Type type: BlockStone.Type.values()) {
             if (!type.isReal()) {

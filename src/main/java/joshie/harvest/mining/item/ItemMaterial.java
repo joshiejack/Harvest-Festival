@@ -18,19 +18,6 @@ import static net.minecraft.util.text.TextFormatting.GREEN;
 import static net.minecraft.util.text.TextFormatting.WHITE;
 
 public class ItemMaterial extends ItemHFEnum<ItemMaterial, Material> implements IShippable {
-    @Override
-    public long getSellValue(ItemStack stack) {
-        switch (getEnumFromStack(stack)) {
-            case JUNK: return 1;
-            case COPPER: return 15;
-            case SILVER: return 20;
-            case GOLD: return 35;
-            case MYSTRIL: return 40;
-            case MYTHIC: return 20000;
-            default: return 0;
-        }
-    }
-
     public enum Material implements IStringSerializable {
         JUNK, COPPER, SILVER, GOLD, MYSTRIL, MYTHIC;
 
@@ -42,6 +29,19 @@ public class ItemMaterial extends ItemHFEnum<ItemMaterial, Material> implements 
 
     public ItemMaterial() {
         super(HFTab.MINING, Material.class);
+    }
+
+    @Override
+    public long getSellValue(ItemStack stack) {
+        switch (getEnumFromStack(stack)) {
+            case JUNK: return 1;
+            case COPPER: return 15;
+            case SILVER: return 20;
+            case GOLD: return 35;
+            case MYSTRIL: return 40;
+            case MYTHIC: return 20000;
+            default: return 0;
+        }
     }
 
     @Override

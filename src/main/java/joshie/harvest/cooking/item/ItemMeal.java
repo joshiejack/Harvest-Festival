@@ -6,7 +6,6 @@ import joshie.harvest.api.core.IShippable;
 import joshie.harvest.cooking.CookingAPI;
 import joshie.harvest.cooking.recipe.HFRecipes;
 import joshie.harvest.cooking.recipe.MealImpl;
-import joshie.harvest.core.HFCore;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemHFFML;
 import joshie.harvest.core.util.Text;
@@ -42,7 +41,7 @@ public class ItemMeal extends ItemHFFML<ItemMeal, MealImpl> implements IAltItem,
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean debug) {
-        if (HFCore.DEBUG_MODE && debug) {
+        if (debug) {
             if (stack.hasTagCompound()) {
                 list.add(Text.translate("meal.hunger") + " : " + stack.getTagCompound().getInteger("FoodLevel"));
                 list.add(Text.translate("meal.sat") + " : " + stack.getTagCompound().getFloat("FoodSaturation"));

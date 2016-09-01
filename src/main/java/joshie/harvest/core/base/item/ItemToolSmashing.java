@@ -83,7 +83,7 @@ public abstract class ItemToolSmashing extends ItemTool<ItemToolSmashing> {
                 IBlockState state = world.getBlockState(pos);
                 if (state.getBlock() instanceof ISmashable) {
                     int requiredLevel = state.getBlock().getHarvestLevel(state);
-                    if (requiredLevel >= harvestLevel) {
+                    if (harvestLevel >= requiredLevel) {
                         ISmashable smashable = ((ISmashable) state.getBlock());
                         if (smashable.getToolType() == getToolType()) {
                             if (smashable.smashBlock(player, world, pos, state, tier)) {

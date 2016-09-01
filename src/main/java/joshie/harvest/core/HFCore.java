@@ -91,5 +91,5 @@ public class HFCore {
     }
 
     //Configure
-    public static boolean DEBUG_MODE = true;
+    public static boolean DEBUG_MODE = false;
 }

@@ -1,6 +1,5 @@
 package joshie.harvest.cooking.item;
 
-import joshie.harvest.core.util.ICreativeSorted;
 import joshie.harvest.cooking.CookingAPI;
 import joshie.harvest.cooking.recipe.HFRecipes;
 import joshie.harvest.cooking.recipe.MealImpl;
@@ -9,6 +8,7 @@ import joshie.harvest.core.base.item.ItemHFFML;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.ChatHelper;
 import joshie.harvest.core.lib.HFSounds;
+import joshie.harvest.core.util.ICreativeSorted;
 import joshie.harvest.core.util.Text;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -20,7 +20,6 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
-import static net.minecraft.util.text.TextFormatting.DARK_GRAY;
 
 public class ItemRecipe extends ItemHFFML<ItemRecipe, MealImpl> implements ICreativeSorted {
     public ItemRecipe() {
@@ -29,11 +28,7 @@ public class ItemRecipe extends ItemHFFML<ItemRecipe, MealImpl> implements ICrea
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        if (stack.getItemDamage() >= 10) {
-            return Text.format(MODID + ".recipe.format", CookingAPI.REGISTRY.getValues().get(stack.getItemDamage()).getDisplayName());
-        } else {
-            return DARK_GRAY + Text.translate("recipe.invalid");
-        }
+        return Text.format(MODID + ".recipe.format", CookingAPI.REGISTRY.getValues().get(stack.getItemDamage()).getDisplayName());
     }
 
     @Override

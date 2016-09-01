@@ -1,5 +1,6 @@
 package joshie.harvest.buildings.items;
 
+import joshie.harvest.core.helpers.ChatHelper;
 import joshie.harvest.core.util.ICreativeSorted;
 import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.BuildingRegistry;
@@ -23,6 +24,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.client.model.ModelLoader;
@@ -64,7 +66,9 @@ public class ItemBlueprint extends ItemHFFML<ItemBlueprint, BuildingImpl> implem
 
                 stack.splitStack(1);
                 return new ActionResult<>(EnumActionResult.SUCCESS, stack);
-            }
+            } else ChatHelper.displayChat(TextFormatting.RED + Text.translate("town.failure") + TextFormatting.WHITE + Text.translate("town.distance"));
+        } else if (world.isRemote) {
+            ChatHelper.displayChat(TextFormatting.RED + Text.translate("town.failure") + TextFormatting.WHITE + Text.translate("town.dimension"));
         }
 
         return new ActionResult(EnumActionResult.PASS, stack);

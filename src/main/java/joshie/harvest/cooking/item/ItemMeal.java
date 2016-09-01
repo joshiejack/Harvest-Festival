@@ -15,10 +15,7 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -46,6 +43,7 @@ public class ItemMeal extends ItemHFFML<ItemMeal, MealImpl> implements IAltItem,
                 list.add(Text.translate("meal.hunger") + " : " + stack.getTagCompound().getInteger("FoodLevel"));
                 list.add(Text.translate("meal.sat") + " : " + stack.getTagCompound().getFloat("FoodSaturation"));
                 list.add(Text.translate("meal.exhaust") + " : " + stack.getTagCompound().getInteger("FoodExhaustion"));
+                list.add(Text.translate("meal.sell") + " : " + stack.getTagCompound().getLong("SellValue"));
             }
         }
     }
@@ -105,6 +103,16 @@ public class ItemMeal extends ItemHFFML<ItemMeal, MealImpl> implements IAltItem,
     @Override
     public ItemStack getCreativeStack(Item item, MealImpl recipe) {
         return recipe.cook(recipe.getBestMeal());
+    }
+
+    @Override
+    public ItemStack getStackFromObject(MealImpl recipe) {
+        return getCreativeStack(this, recipe);
+    }
+
+    @Override
+    public ItemStack getStackFromResource(ResourceLocation resource) {
+        return getStackFromObject(registry.getValue(resource));
     }
 
     @Override

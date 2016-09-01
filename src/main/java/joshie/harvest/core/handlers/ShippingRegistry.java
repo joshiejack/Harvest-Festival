@@ -5,23 +5,19 @@ import joshie.harvest.api.core.IShippable;
 import joshie.harvest.api.core.IShippingRegistry;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.core.util.HFApiImplementation;
-import net.minecraft.item.Item;
+import joshie.harvest.core.util.holder.HolderRegistry;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
-import org.apache.commons.lang3.tuple.Pair;
-
-import java.util.HashMap;
 
 @HFApiImplementation
 public class ShippingRegistry implements IShippingRegistry {
     public static final ShippingRegistry INSTANCE = new ShippingRegistry();
-    private final HashMap<Pair<Item, Integer>, Long> registry = new HashMap<>();
+    private final HolderRegistry<Long> registry = new HolderRegistry<>();
 
     private ShippingRegistry() {}
 
     @Override
     public void registerSellable(ItemStack stack, long value) {
-        registry.put(Pair.of(stack.getItem(), stack.getItemDamage()), value);
+        registry.registerItem(stack, value);
     }
 
     @Override
@@ -32,16 +28,11 @@ public class ShippingRegistry implements IShippingRegistry {
 
         //Special case Crops
         ICrop crop = HFApi.crops.getCropFromStack(stack);
-        if (crop != null) return crop.getSellValue(stack);
+        if (crop != null) {
+            return crop.getSellValue(stack);
+        }
 
-        //Wildcard
-        Long value = registry.get(Pair.of(stack.getItem(), OreDictionary.WILDCARD_VALUE));
-        if (value != null) return value;
-
-        //Normal
-        value = registry.get(Pair.of(stack.getItem(), stack.getItemDamage()));
-        if (value != null) return value;
-
-        return 0;
+        Long value = registry.getValueOf(stack);
+        return value == null ? 0 : value;
     }
 }

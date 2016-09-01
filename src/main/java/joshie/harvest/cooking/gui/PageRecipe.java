@@ -24,7 +24,7 @@ import static joshie.harvest.cooking.gui.GuiCookbook.ingredients;
 
 public class PageRecipe extends Page {
     private static final HashMap<MealImpl, PageRecipe> recipeMap = new HashMap<>();
-    public static void reset() {
+    static {
         recipeMap.clear();
 
         for (MealImpl recipe: CookingAPI.REGISTRY) {

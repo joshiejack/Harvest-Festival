@@ -54,7 +54,7 @@ public class HFShops {
     public static IShop SUPERMARKET;
     public static IShop MINER;
 
-    public static void remap() {
+    public static void postInit() {
         registerBarn();
         registerBlacksmith();
         registerCafe();
@@ -99,10 +99,10 @@ public class HFShops {
     private static void registerCafe() {
         CAFE = HFApi.shops.newShop(new ResourceLocation(MODID, "cafe"), HFNPCs.CAFE_OWNER);
         CAFE.addItem(0, new ItemStack(Items.POTIONITEM));
-        CAFE.addItem(300, HFApi.cooking.getMeal("salad"));
-        CAFE.addItem(200, HFApi.cooking.getMeal("cookies"));
-        CAFE.addItem(300, HFApi.cooking.getMeal("juice_pineapple"));
-        CAFE.addItem(250, HFApi.cooking.getMeal("corn_baked"));
+        CAFE.addItem(new PurchaseableMeal(300, "salad"));
+        CAFE.addItem(new PurchaseableMeal(200, "cookies"));
+        CAFE.addItem(new PurchaseableMeal(300, "juice_pineapple"));
+        CAFE.addItem(new PurchaseableMeal(250, "corn_baked"));
 
         //Allow the purchasing of cookware at the weekends
         CAFE.addItem(new PurchaseableWeekend(25, new ItemStack(COOKBOOK)));

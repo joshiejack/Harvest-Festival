@@ -148,20 +148,16 @@ public class MealImpl extends IForgeRegistryEntry.Impl<MealImpl> implements Meal
 
     private List<ItemStack> getIngredientsAsStacks(boolean getBest) {
         if (getBest) {
-            if (best != null) return best;
-            else {
-                best = new ArrayList<>();
-                for (Ingredient ingredient: requiredIngredients)
+            best = new ArrayList<>();
+            for (Ingredient ingredient: requiredIngredients)
+                addStack(best, ingredient);
+            if (optionalIngredients != null) {
+                for (Ingredient ingredient : optionalIngredients)
                     addStack(best, ingredient);
-                if (optionalIngredients != null) {
-                    for (Ingredient ingredient : optionalIngredients)
-                        addStack(best, ingredient);
-                }
-
-                return best;
             }
+
+            return best;
         } else {
-            if (basic != null) return basic;
             basic = new ArrayList<>();
             for (Ingredient ingredient: requiredIngredients)
                 addStack(basic, ingredient);

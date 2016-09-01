@@ -1,18 +1,35 @@
 package joshie.harvest.shops.purchaseable;
 
+import joshie.harvest.buildings.BuildingImpl;
+import joshie.harvest.buildings.BuildingRegistry;
+import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.helpers.InventoryHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.IForgeRegistry;
 
-public class PurchaseableBuilder extends Purchaseable {
+public class PurchaseableBuilder extends PurchaseableFML<BuildingImpl> {
+    private ItemStack stack;
     private final int logs;
     private final int stone;
 
-    public PurchaseableBuilder(long cost, int logs, int stone, ItemStack stack) {
-        super(cost, stack);
+    public PurchaseableBuilder(long cost, int logs, int stone, String name) {
+        super(cost, name);
         this.logs = logs;
         this.stone = stone;
+    }
+
+    public PurchaseableBuilder(long cost, int logs, int stone, ItemStack stack) {
+        super(cost, "");
+        this.logs = logs;
+        this.stone = stone;
+        this.stack = stack;
+    }
+
+    @Override
+    public IForgeRegistry<BuildingImpl> getRegistry() {
+        return BuildingRegistry.REGISTRY;
     }
 
     @Override
@@ -27,6 +44,11 @@ public class PurchaseableBuilder extends Purchaseable {
     @Override
     public boolean canList(World world, EntityPlayer player) {
         return true;
+    }
+
+    @Override
+    public ItemStack getDisplayStack() {
+        return stack != null ? stack : HFBuildings.BLUEPRINTS.getStackFromObject(item);
     }
 
     @Override
@@ -67,10 +89,6 @@ public class PurchaseableBuilder extends Purchaseable {
     }
 
     public String getName() {
-        for (ItemStack stack : stacks) {
-            if (stack != null) return stack.getDisplayName();
-        }
-
-        return "";
+        return stack != null ? stack.getDisplayName() : getDisplayStack().getDisplayName();
     }
 }

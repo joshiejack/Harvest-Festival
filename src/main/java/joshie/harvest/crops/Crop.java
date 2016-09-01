@@ -2,6 +2,7 @@ package joshie.harvest.crops;
 
 import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.calendar.Season;
+import joshie.harvest.api.cooking.Ingredient;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.IDropHandler;
 import joshie.harvest.api.crops.IGrowthHandler;
@@ -9,6 +10,7 @@ import joshie.harvest.api.crops.IStateHandler;
 import joshie.harvest.core.util.Text;
 import joshie.harvest.crops.handlers.state.StateHandlerDefault;
 import net.minecraft.block.Block;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.EnumPlantType;
@@ -41,6 +43,7 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements ICrop {
     private int doubleStage;
     private AnimalFoodType foodType;
     private EnumPlantType type;
+    private Ingredient ingredient;
     private int hunger;
     private float saturation;
 
@@ -92,6 +95,11 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements ICrop {
     @Override
     public Crop setItem(ItemStack item) {
         this.item = item;
+        if (this.item.getItem() instanceof ItemFood) {
+            ItemFood food = (ItemFood)this.item.getItem();
+            setFoodStats(food.getHealAmount(item), food.getSaturationModifier(item));
+        }
+
         return this;
     }
 
@@ -123,6 +131,16 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements ICrop {
     public Crop setFoodStats(int hunger, float saturation) {
         this.hunger = hunger;
         this.saturation = saturation;
+        String name = getRegistryName().getResourcePath();
+        if (Ingredient.INGREDIENTS.containsKey(name)) {
+            this.ingredient = Ingredient.INGREDIENTS.get(name);
+        } else this.ingredient = new Ingredient(name, hunger, saturation);
+        return this;
+    }
+
+    @Override
+    public Crop setIngredient(Ingredient ingredient) {
+        this.ingredient = ingredient;
         return this;
     }
 
@@ -267,6 +285,11 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements ICrop {
      **/
     public AnimalFoodType getFoodType() {
         return foodType;
+    }
+
+    @Override
+    public Ingredient getIngredient() {
+        return ingredient;
     }
 
     public int getHunger() {

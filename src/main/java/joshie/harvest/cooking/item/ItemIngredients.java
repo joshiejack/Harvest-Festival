@@ -1,5 +1,6 @@
 package joshie.harvest.cooking.item;
 
+import joshie.harvest.api.core.IShippable;
 import joshie.harvest.cooking.item.ItemIngredients.Ingredient;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemHFEnum;
@@ -11,7 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 
-public class ItemIngredients extends ItemHFEnum<ItemIngredients, Ingredient> {
+public class ItemIngredients extends ItemHFEnum<ItemIngredients, Ingredient> implements IShippable {
     public enum Ingredient implements IStringSerializable {
         BUTTER(false), KETCHUP(false), COOKIES(false), EGG_SCRAMBLED(false), SASHIMI(false),
         FLOUR, OIL, RICEBALL, SALT, CHOCOLATE;
@@ -34,6 +35,22 @@ public class ItemIngredients extends ItemHFEnum<ItemIngredients, Ingredient> {
 
     public ItemIngredients() {
         super(HFTab.COOKING, Ingredient.class);
+    }
+
+    @Override
+    public long getSellValue(ItemStack stack) {
+        switch (getEnumFromStack(stack)) {
+            case FLOUR:
+                return 45;
+            case OIL:
+                return 45;
+            case RICEBALL:
+                return 85;
+            case SALT:
+                return 25;
+            case CHOCOLATE:
+            default: return 0;
+        }
     }
 
     @Override

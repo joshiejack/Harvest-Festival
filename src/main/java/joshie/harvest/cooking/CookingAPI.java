@@ -1,7 +1,5 @@
 package joshie.harvest.cooking;
 
-import com.google.common.cache.Cache;
-import com.google.common.cache.CacheBuilder;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
@@ -9,12 +7,16 @@ import joshie.harvest.api.cooking.CookingManager;
 import joshie.harvest.api.cooking.Ingredient;
 import joshie.harvest.api.cooking.RecipeHandler;
 import joshie.harvest.api.cooking.Utensil;
+import joshie.harvest.api.crops.ICropProvider;
 import joshie.harvest.cooking.recipe.MealBuilder;
 import joshie.harvest.cooking.recipe.MealImpl;
 import joshie.harvest.cooking.recipe.RecipeStack;
+import joshie.harvest.core.HFCore;
+import joshie.harvest.core.base.item.ItemHFFML;
+import joshie.harvest.core.item.ItemSizeable;
 import joshie.harvest.core.util.HFApiImplementation;
-import joshie.harvest.core.util.holder.AbstractItemHolder;
-import joshie.harvest.core.util.holder.ItemStackHolder;
+import joshie.harvest.core.util.holder.*;
+import joshie.harvest.crops.Crop;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -23,7 +25,6 @@ import net.minecraftforge.fml.common.registry.RegistryBuilder;
 import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.*;
-import java.util.concurrent.Callable;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
@@ -34,33 +35,41 @@ public class CookingAPI implements CookingManager {
     private final Set<RecipeHandler> handlers = new HashSet<>();
     private final Multimap<AbstractItemHolder, Ingredient> registry = ArrayListMultimap.create();
     private final Multimap<Item, AbstractItemHolder> keyMap = HashMultimap.create();
-    private final Cache<Ingredient, List<ItemStack>> ingredientToStacks = CacheBuilder.newBuilder().maximumSize(512).build();
     private final Set<ItemStackHolder> knives = new HashSet<>();
 
     private CookingAPI(){}
 
+    //Return the stacks, doesn't need cache as the result is cached
     public List<ItemStack> getStacksForIngredient(Ingredient ingredient) {
-        try {
-            return ingredientToStacks.get(ingredient, new Callable<List<ItemStack>>() {
-                @Override
-                public List<ItemStack> call() throws Exception {
-                    ArrayList<ItemStack> result = new ArrayList<>();
-                    for (Map.Entry<AbstractItemHolder, Ingredient> entry : registry.entries()) {
-                        if (ingredient.isEqual(entry.getValue())) result.addAll(entry.getKey().getMatchingStacks());
-                    }
+        ArrayList<ItemStack> result = new ArrayList<>();
+        for (Map.Entry<AbstractItemHolder, Ingredient> entry : registry.entries()) {
+            if (ingredient.isEqual(entry.getValue())) {
+                result.addAll(entry.getKey().getMatchingStacks());
+            }
+        }
 
-                    return result;
-                }
-            });
-        } catch (Exception e) { return new ArrayList<>(); }
+        return result;
+    }
+
+    public void remove(Item item) {
+        registry.removeAll(keyMap.get(item));
+        keyMap.removeAll(item);
     }
 
     @Override
     public void register(ItemStack stack, Ingredient component) {
         if (stack == null || stack.getItem() == null || component == null) return; //Fail silently
-        AbstractItemHolder holder = AbstractItemHolder.getStack(stack);
+        AbstractItemHolder holder = getHolder(stack);
         keyMap.get(stack.getItem()).add(holder);
         registry.get(holder).add(component);
+    }
+
+    private AbstractItemHolder getHolder(ItemStack stack) {
+        if (stack.getItemDamage() == OreDictionary.WILDCARD_VALUE) return ItemHolder.of(stack.getItem());
+        else if (stack.getItem() instanceof ItemSizeable) return SizeableHolder.of(HFCore.SIZEABLE.getObjectFromStack(stack));
+        else if (stack.getItem() instanceof ICropProvider) return CropHolder.of((Crop)((ICropProvider)stack.getItem()).getCrop(stack));
+        else if (stack.getItem() instanceof ItemHFFML) return FMLHolder.of(stack);
+        else return ItemStackHolder.of(stack);
     }
 
     @Override

@@ -27,12 +27,9 @@ public class ItemStackHolder extends AbstractItemHolder {
 
     @Override
     public List<ItemStack> getMatchingStacks() {
-        if (matchingStacks != null && matchingStacks.size() > 0) return matchingStacks;
-        else {
-            matchingStacks = new ArrayList<>();
-            matchingStacks.add(new ItemStack(item, 1, meta));
-            return matchingStacks;
-        }
+        matchingStacks = new ArrayList<>();
+        matchingStacks.add(new ItemStack(item, 1, meta));
+        return matchingStacks;
     }
 
     @Override

@@ -3,13 +3,10 @@ package joshie.harvest.cooking.recipe;
 import joshie.harvest.api.cooking.Ingredient;
 import joshie.harvest.api.cooking.Utensil;
 import joshie.harvest.cooking.HFCooking;
-import joshie.harvest.cooking.gui.PageRecipe;
 import joshie.harvest.cooking.item.ItemIngredients;
 import joshie.harvest.core.util.HFLoader;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import static joshie.harvest.cooking.HFCooking.INGREDIENTS;
 import static joshie.harvest.cooking.recipe.HFIngredients.*;
@@ -101,10 +98,5 @@ public class HFRecipes {
         addOvenRecipe(new ItemStack(Items.COOKED_FISH, 1, 0), COD);
         addOvenRecipe(new ItemStack(Items.COOKED_FISH, 1, 1), SALMON);
         addOvenRecipe(new ItemStack(Items.PUMPKIN_PIE), PUMPKIN, SUGAR, EGG);
-    }
-
-    @SideOnly(Side.CLIENT)
-    public static void remapClient() {
-        PageRecipe.reset();
     }
 }

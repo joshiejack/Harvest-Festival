@@ -15,8 +15,9 @@ public interface IPurchaseable extends ISpecialPurchaseRules {
     
     /** The cost of this product **/
     long getCost();
-    
+
     /** This is the itemstack that gets displayed in the shop view **/
+    @SideOnly(Side.CLIENT)
     ItemStack getDisplayStack();
     
     /** Called whenever this item is purchased

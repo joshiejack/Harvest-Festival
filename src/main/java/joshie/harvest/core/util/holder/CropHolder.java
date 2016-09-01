@@ -24,12 +24,9 @@ public class CropHolder extends AbstractItemHolder {
 
     @Override
     public List<ItemStack> getMatchingStacks() {
-        if (matchingStacks != null && matchingStacks.size() > 0) return matchingStacks;
-        else {
-            matchingStacks = new ArrayList<>();
-            matchingStacks.addAll(CropRegistry.INSTANCE.getStacksForCrop(crop));
-            return matchingStacks;
-        }
+        matchingStacks = new ArrayList<>();
+        matchingStacks.addAll(CropRegistry.INSTANCE.getStacksForCrop(crop));
+        return matchingStacks;
     }
 
     @Override

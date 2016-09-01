@@ -51,5 +51,15 @@ public class HFGiftsFarming extends HFGiftsAbstract {
         assignGeneric(SICKLE.getStack(ToolTier.MYTHIC), RARE, TOOLS, FARMING);
         assignGeneric(HOE.getStack(ToolTier.MYTHIC), RARE, TOOLS, FARMING);
         assignGeneric(WATERING_CAN.getStack(ToolTier.MYTHIC), RARE, TOOLS, FARMING);
+        //Stuffs
+        assignGeneric(EGG.getStack(Size.SMALL), FARMING, ANIMALS, COOKING);
+        assignGeneric(EGG.getStack(Size.MEDIUM), FARMING, ANIMALS, COOKING);
+        assignGeneric(EGG.getStack(Size.LARGE), FARMING, ANIMALS, COOKING, RARE);
+        assignGeneric(MILK.getStack(Size.SMALL), FARMING, ANIMALS, COOKING);
+        assignGeneric(MILK.getStack(Size.MEDIUM), FARMING, ANIMALS, COOKING);
+        assignGeneric(MILK.getStack(Size.LARGE), FARMING, ANIMALS, COOKING, RARE);
+        assignGeneric(MAYONNAISE.getStack(Size.SMALL), FARMING, ANIMALS, COOKING);
+        assignGeneric(MAYONNAISE.getStack(Size.MEDIUM), FARMING, ANIMALS, COOKING);
+        assignGeneric(MAYONNAISE.getStack(Size.LARGE), FARMING, ANIMALS, COOKING, RARE);
     }
 }

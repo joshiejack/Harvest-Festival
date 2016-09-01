@@ -108,6 +108,7 @@ harvestfestival.meal.failure.description=We could not find a %s to place the ing
 harvestfestival.meal.description=Description:
 harvestfestival.meal.recipe=Recipe
 harvestfestival.meal.hunger=Restores
+harvestfestival.meal.sell=Sells For
 harvestfestival.meal.sat=Fills
 harvestfestival.meal.exhaust=Exhausts
 harvestfestival.meal.fry.stir=Stir Fry

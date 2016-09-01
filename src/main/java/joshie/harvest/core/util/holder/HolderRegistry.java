@@ -4,6 +4,7 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import joshie.harvest.api.crops.ICropProvider;
 import joshie.harvest.core.HFCore;
+import joshie.harvest.core.base.item.ItemHFFML;
 import joshie.harvest.core.item.ItemSizeable;
 import joshie.harvest.crops.Crop;
 import net.minecraft.item.Item;
@@ -50,14 +51,26 @@ public class HolderRegistry<R> {
         return false;
     }
 
+    public R getValueOf(ItemStack stack) {
+        Collection<AbstractItemHolder> holders = keyMap.get(stack.getItem());
+        for (AbstractItemHolder holder: holders) {
+            if (holder.matches(stack)) {
+                return registry.get(holder);
+            }
+        }
+
+        return null;
+    }
+
     public boolean matches(R external, R internal) {
         return external == internal;
     }
 
     private AbstractItemHolder getHolder(ItemStack stack) {
         if (stack.getItemDamage() == OreDictionary.WILDCARD_VALUE) return ItemHolder.of(stack.getItem());
-        else if (stack.getItem() instanceof ICropProvider) return CropHolder.of((Crop)((ICropProvider)stack.getItem()).getCrop(stack));
         else if (stack.getItem() instanceof ItemSizeable) return SizeableHolder.of(HFCore.SIZEABLE.getObjectFromStack(stack));
+        else if (stack.getItem() instanceof ICropProvider) return CropHolder.of((Crop)((ICropProvider)stack.getItem()).getCrop(stack));
+        else if (stack.getItem() instanceof ItemHFFML) return FMLHolder.of(stack);
         else return ItemStackHolder.of(stack);
     }
 }

@@ -1,8 +1,11 @@
 package joshie.harvest.cooking.recipe;
 
+import com.google.common.collect.ConcurrentHashMultiset;
+import com.google.common.collect.Multiset;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.Ingredient;
 import joshie.harvest.cooking.HFCooking;
+import joshie.harvest.core.util.holder.ItemStackHolder;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -59,12 +62,16 @@ public class MealBuilder {
 
     public long getSellValue(List<ItemStack> stacks) {
         long value = 0;
+        Multiset<ItemStackHolder> added = ConcurrentHashMultiset.create();
         for (ItemStack stack: stacks) {
-            value += HFApi.shipping.getSellValue(stack);
+            ItemStackHolder holder = ItemStackHolder.of(stack);
+            added.add(holder); //Add items
+            float percentage = (25F + (75F / added.count(holder))) / 100F;
+            value += (int) (HFApi.shipping.getSellValue(stack) * percentage);
         }
 
         //Return an increased value so it's better than selling on it's own
-        return (long) (value * 1.25);
+        return (long) ((float)value * 1.25F);
     }
 
     public ItemStack cook(ItemStack stack) {

@@ -2,10 +2,13 @@ package joshie.harvest.api.crops;
 
 import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.calendar.Season;
+import joshie.harvest.api.cooking.Ingredient;
 import joshie.harvest.api.core.IShippable;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.EnumPlantType;
+
+import javax.annotation.Nullable;
 
 /** This is returned when you create a new crop **/
 public interface ICrop extends IShippable {
@@ -135,4 +138,13 @@ public interface ICrop extends IShippable {
      *  You don't need to worry about this if you are using your own custom item
      *  As these values are only called for crops that are created by harvest festival **/
     ICrop setFoodStats(int hunger, float saturation);
+
+    /** Returns the ingredient this crop is represented by
+     * Crops will only have an ingredient if setFoodStats was called
+     * or setItem was called with an ItemFood**/
+    @Nullable
+    Ingredient getIngredient();
+
+    /** Set an ingredient **/
+    ICrop setIngredient(Ingredient ingredient);
 }

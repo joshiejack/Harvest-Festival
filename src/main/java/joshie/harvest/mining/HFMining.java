@@ -43,7 +43,7 @@ public class HFMining {
     public static final BlockPortal PORTAL = new BlockPortal().setBlockUnbreakable().register("portal");
     public static final ItemMaterial MATERIALS = new ItemMaterial().register("materials");
     public static final ItemDarkSpawner DARK_SPAWNER = new ItemDarkSpawner().register("dark_spawner");
-    public static final ItemMiningTool MINING_TOOL = new ItemMiningTool().register("mining_tool");
+    public static final ItemMiningTool MINING_TOOL = new ItemMiningTool().register("tool_mining");
     public static DimensionType MINE_WORLD;
 
     public static void preInit() {

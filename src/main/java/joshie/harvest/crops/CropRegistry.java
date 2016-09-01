@@ -1,7 +1,5 @@
 package joshie.harvest.crops;
 
-import com.google.common.cache.Cache;
-import com.google.common.cache.CacheBuilder;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.ICrop;
 import joshie.harvest.api.crops.ICropData;
@@ -27,7 +25,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
-import java.util.concurrent.Callable;
 
 import static joshie.harvest.crops.CropHelper.*;
 import static joshie.harvest.crops.block.BlockHFCrops.Stage.FRESH;
@@ -38,7 +35,6 @@ public class CropRegistry implements ICropRegistry {
     public static final IForgeRegistry<Crop> REGISTRY = new RegistryBuilder<Crop>().setName(new ResourceLocation("harvestfestival", "crops")).setType(Crop.class).setIDRange(0, 32000).create();
     public static final CropRegistry INSTANCE = new CropRegistry();
     private final HashMap<ItemStackHolder, Crop> providers = new HashMap<>();
-    private final Cache<Crop, List<ItemStack>> cropToStacks = CacheBuilder.newBuilder().maximumSize(128).build();
 
     @Override
     public Crop getCrop(ResourceLocation resource) {
@@ -56,21 +52,18 @@ public class CropRegistry implements ICropRegistry {
     }
 
     public List<ItemStack> getStacksForCrop(Crop crop) {
-        try {
-            return cropToStacks.get(crop, new Callable<List<ItemStack>>() {
-                @Override
-                public List<ItemStack> call() throws Exception {
-                    List<ItemStack> list = new ArrayList<>();
-                    for (Entry<ItemStackHolder, Crop> entry: providers.entrySet()) {
-                        if (entry.getValue().equals(crop)) {
-                            list.addAll(entry.getKey().getMatchingStacks());
-                        }
-                    }
-
-                    return list;
+        List<ItemStack> list = new ArrayList<>();
+        list.add(crop.getCropStack());
+        ItemStackHolder holder = ItemStackHolder.of(crop.getCropStack());
+        for (Entry<ItemStackHolder, Crop> entry: providers.entrySet()) {
+            if (entry.getValue().equals(crop)) {
+                for (ItemStack stack: entry.getKey().getMatchingStacks()) {
+                    if (!holder.matches(stack)) list.add(stack);
                 }
-            });
-        } catch (Exception e) { return new ArrayList<>(); }
+            }
+        }
+
+        return list;
     }
 
     @Override

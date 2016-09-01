@@ -27,6 +27,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import static joshie.harvest.animals.block.BlockSizedStorage.SizedStorage.INCUBATOR;
 import static joshie.harvest.animals.block.BlockTray.Tray.NEST_EMPTY;
@@ -41,6 +42,8 @@ import static joshie.harvest.cooking.item.ItemIngredients.Ingredient.*;
 import static joshie.harvest.cooking.item.ItemUtensil.Utensil.KNIFE;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.npc.item.ItemNPCTool.NPCTool.BLUE_FEATHER;
+import static joshie.harvest.core.helpers.generic.ConfigHelper.getString;
+import static joshie.harvest.core.helpers.generic.ConfigHelper.setCategory;
 
 @HFLoader
 public class HFShops {
@@ -53,6 +56,8 @@ public class HFShops {
     public static IShop MINER;
 
     public static void remap() {
+    	getCustomShoppingList();
+    	
         registerBarn();
         registerBlacksmith();
         registerCafe();
@@ -60,6 +65,10 @@ public class HFShops {
         registerPoultry();
         registerSupermarket();
         registerMiner();
+    }
+    
+    private static void getCustomShoppingList() {
+    	
     }
 
     private static void registerBarn() {
@@ -97,6 +106,17 @@ public class HFShops {
     private static void registerCafe() {
         CAFE = HFApi.shops.newShop(new ResourceLocation(MODID, "cafe"), HFNPCs.CAFE_OWNER);
         CAFE.addItem(0, new ItemStack(Items.POTIONITEM));
+        
+        setCategory("custom");
+        String[] itemName = getString("customitem", "").split(",");
+        int amount = Integer.parseInt(itemName[1]);
+        int meta = Integer.parseInt(itemName[2]);
+        int cost = Integer.parseInt(itemName[3]);
+        
+        System.out.println(itemName);
+        
+        CAFE.addItem(cost, new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(itemName[0])), amount, meta));
+        
         CAFE.addItem(300, HFApi.cooking.getMeal("salad"));
         CAFE.addItem(200, HFApi.cooking.getMeal("cookies"));
         CAFE.addItem(300, HFApi.cooking.getMeal("juice_pineapple"));

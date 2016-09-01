@@ -44,6 +44,9 @@ import static joshie.harvest.cooking.item.ItemIngredients.Ingredient.*;
 import static joshie.harvest.cooking.item.ItemUtensil.Utensil.KNIFE;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.npc.item.ItemNPCTool.NPCTool.BLUE_FEATHER;
+
+import java.util.HashMap;
+
 import static joshie.harvest.core.helpers.generic.ConfigHelper.getString;
 import static joshie.harvest.core.helpers.generic.ConfigHelper.setCategory;
 
@@ -56,10 +59,10 @@ public class HFShops {
     public static IShop POULTRY;
     public static IShop SUPERMARKET;
     public static IShop MINER;
+    
+    private static HashMap<String, String> customShoppingList = new HashMap<>();
 
     public static void remap() {
-    	getCustomShoppingList();
-    	
         registerBarn();
         registerBlacksmith();
         registerCafe();
@@ -69,10 +72,66 @@ public class HFShops {
         registerMiner();
     }
     
+    
     private static void getCustomShoppingList() {
-    	
+        setCategory("shops");
+        
+        String[] shopCategories = new String[] {"BARN", "BLACKSMITH", "CAFE", "CARPENTER", "POULTRY", "SUPERMARKET", "MINER"};
+
+		for(int i = 0; i < shopCategories.length; i++) {
+	        String shopData = getString(shopCategories[i], "");
+
+	        if(shopData != null && shopData != "") {
+	        	customShoppingList.put(shopCategories[i], shopData);
+	        }
+		}
     }
 
+    
+    private static void addCustomItemToStore(IShop shop, String shopName) {
+        if(customShoppingList.containsKey(shopName)) {
+        	String[] shopData = customShoppingList.get(shopName).split(",");
+        	
+        	System.out.println("Adding " + shopData.length + " entries for " + shopName);
+        	
+        	if(shopData.length == 0)
+        		return;
+
+        	for(int i = 0; i < shopData.length; i++) {
+        		String[] shopEntry = shopData[i].split(":");
+        		
+        		if(shopEntry.length >= 5) {
+		        	// minecraft:feather:meta:amount:cost
+		        	String itemName = shopEntry[0] + ":" + shopEntry[1];
+		        	
+		        	System.out.println(itemName);
+		        	
+		        	int meta = Integer.parseInt(shopEntry[2]);
+		        	int amount = Integer.parseInt(shopEntry[3]);
+		        	int cost = Integer.parseInt(shopEntry[4]);
+		        	int logs = 0;
+		        	int stone = 0;
+
+		        	// make sure we have at least 1
+		        	if(amount < 1)
+		        		amount = 1;
+		        	
+		        	if(shop == CARPENTER) {
+		        		if(shopEntry.length >= 7) {
+		        			logs = Integer.parseInt(shopEntry[5]);
+			        		stone = Integer.parseInt(shopEntry[6]);
+		        		}
+		        		
+		        		shop.addItem(new PurchaseableBuilder(cost, logs, stone, new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(itemName)), amount, meta)));
+		        	} else {
+		        		shop.addItem(cost, new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(itemName)), amount, meta));
+		        	}
+        		}
+        	}
+        }
+    }
+    
+    
     private static void registerBarn() {
         BARN = HFApi.shops.newShop(new ResourceLocation(MODID, "barn"), HFNPCs.ANIMAL_OWNER);
         BARN.addItem(20, HFCrops.GRASS.getCropStack());
@@ -84,6 +143,8 @@ public class HFShops {
 
         BARN.addOpening(MONDAY, 10000, 15000).addOpening(TUESDAY, 10000, 15000).addOpening(WEDNESDAY, 10000, 15000);
         BARN.addOpening(THURSDAY, 10000, 15000).addOpening(FRIDAY, 10000, 15000).addOpening(SATURDAY, 10000, 15000);
+        
+        addCustomItemToStore(BARN, "BARN");
     }
 
     private static void registerBlacksmith() {
@@ -103,21 +164,13 @@ public class HFShops {
 
         BLACKSMITH.addOpening(SUNDAY, 10000, 16000).addOpening(MONDAY, 10000, 16000).addOpening(TUESDAY, 10000, 16000);
         BLACKSMITH.addOpening(WEDNESDAY, 10000, 16000).addOpening(FRIDAY, 10000, 16000).addOpening(SATURDAY, 10000, 16000);
+        
+        addCustomItemToStore(BLACKSMITH, "BLACKSMITH");
     }
 
     private static void registerCafe() {
         CAFE = HFApi.shops.newShop(new ResourceLocation(MODID, "cafe"), HFNPCs.CAFE_OWNER);
         CAFE.addItem(0, new ItemStack(Items.POTIONITEM));
-        
-        setCategory("custom");
-        String[] itemName = getString("customitem", "").split(",");
-        int amount = Integer.parseInt(itemName[1]);
-        int meta = Integer.parseInt(itemName[2]);
-        int cost = Integer.parseInt(itemName[3]);
-        
-        System.out.println(itemName);
-        
-        CAFE.addItem(cost, new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(itemName[0])), amount, meta));
         
         CAFE.addItem(300, HFApi.cooking.getMeal("salad"));
         CAFE.addItem(200, HFApi.cooking.getMeal("cookies"));
@@ -156,6 +209,8 @@ public class HFShops {
 
         CAFE.addOpening(MONDAY, 9500, 17000).addOpening(TUESDAY, 9500, 17000).addOpening(WEDNESDAY, 9500, 17000).addOpening(THURSDAY, 9500, 17000);
         CAFE.addOpening(FRIDAY, 9500, 17000).addOpening(SATURDAY, 9500, 17000).addOpening(SUNDAY, 9500, 17000);
+        
+        addCustomItemToStore(CAFE, "CAFE");
     }
 
     private static void registerCarpenter() {
@@ -171,6 +226,8 @@ public class HFShops {
         CARPENTER.addItem(new PurchaseableBuilder(50, 0, 0, new ItemStack(Blocks.STONE)));
         CARPENTER.addOpening(MONDAY, 11000, 16000).addOpening(TUESDAY, 11000, 16000).addOpening(WEDNESDAY, 11000, 16000);
         CARPENTER.addOpening(THURSDAY, 11000, 16000).addOpening(FRIDAY, 11000, 16000).addOpening(SUNDAY, 11000, 16000);
+        
+        addCustomItemToStore(CARPENTER, "CARPENTER");
     }
 
     private static void registerPoultry() {
@@ -183,6 +240,8 @@ public class HFShops {
 
         POULTRY.addOpening(MONDAY, 11000, 16000).addOpening(TUESDAY, 11000, 16000).addOpening(WEDNESDAY, 11000, 16000);
         POULTRY.addOpening(THURSDAY, 11000, 16000).addOpening(FRIDAY, 11000, 16000).addOpening(SATURDAY, 11000, 16000);
+        
+        addCustomItemToStore(POULTRY, "POULTRY");
     }
 
     private static void registerSupermarket() {
@@ -203,6 +262,8 @@ public class HFShops {
 
         SUPERMARKET.addOpening(MONDAY, 9000, 17000).addOpening(TUESDAY, 9000, 17000).addOpening(THURSDAY, 9000, 17000);
         SUPERMARKET.addOpening(FRIDAY, 9000, 17000).addOpening(SATURDAY, 11000, 15000);
+        
+        addCustomItemToStore(SUPERMARKET, "SUPERMARKET");
     }
 
     private static void registerMiner() {
@@ -219,5 +280,12 @@ public class HFShops {
 
         MINER.addOpening(MONDAY, 11000, 16000).addOpening(TUESDAY, 11000, 16000).addOpening(WEDNESDAY, 11000, 16000); //You decide what time it will be open yoshie
         MINER.addOpening(THURSDAY, 11000, 16000).addOpening(FRIDAY, 11000, 16000).addOpening(SATURDAY, 11000, 16000);
+        
+        addCustomItemToStore(MINER, "MINER");
+    }
+    
+    
+    public static void configure() {
+    	getCustomShoppingList();
     }
 }

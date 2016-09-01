@@ -60,6 +60,8 @@ public class ItemDarkSpawner extends ItemHFEnum<ItemDarkSpawner, DarkSpawner> {
             }
         }
 
+        stack.splitStack(1);
+
         return EnumActionResult.FAIL;
     }
 

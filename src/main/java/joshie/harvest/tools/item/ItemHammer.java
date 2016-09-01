@@ -9,6 +9,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundCategory;
@@ -39,6 +40,15 @@ public class ItemHammer extends ItemToolSmashing {
     public float getStrVsBlock(ItemStack stack, IBlockState state) {
         Material material = state.getMaterial();
         return material != Material.IRON && material != Material.ANVIL && material != Material.ROCK ? super.getStrVsBlock(stack, state) : this.getEffiency(stack);
+    }
+
+    @Override
+    public boolean onSmashed(EntityPlayer player, ItemStack stack, ToolTier tier, int harvestLevel, World world, BlockPos pos, IBlockState state) {
+        if (state.getBlock() == Blocks.FARMLAND) {
+            return world.setBlockState(pos, Blocks.DIRT.getDefaultState());
+        }
+
+        return super.onSmashed(player, stack, tier, harvestLevel, world, pos, state);
     }
 
     @Override

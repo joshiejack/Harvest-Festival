@@ -2,8 +2,8 @@ package joshie.harvest.core.base.item;
 
 import joshie.harvest.api.gathering.ISmashable;
 import joshie.harvest.api.gathering.ISmashable.ToolType;
-import joshie.harvest.tools.ToolHelper;
 import joshie.harvest.core.helpers.generic.DirectionHelper;
+import joshie.harvest.tools.ToolHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -72,6 +72,27 @@ public abstract class ItemToolSmashing extends ItemTool<ItemToolSmashing> {
     public abstract ToolType getToolType();
     public abstract void playSound(World world, BlockPos pos);
 
+    public boolean onSmashed(EntityPlayer player, ItemStack stack, ToolTier tier, int harvestLevel, World world, BlockPos pos, IBlockState state) {
+        if (state.getBlock() instanceof ISmashable) {
+            int requiredLevel = state.getBlock().getHarvestLevel(state);
+            if (harvestLevel >= requiredLevel) {
+                ISmashable smashable = ((ISmashable) state.getBlock());
+                if (smashable.getToolType() == getToolType()) {
+                    if (smashable.smashBlock(player, world, pos, state, tier)) {
+                        if (!world.isRemote) {
+                            ToolHelper.performTask(player, stack, getExhaustionRate(stack));
+                            onBlockDestroyed(stack, world, state, pos, player);
+                        }
+
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
     public void smashBlock(World world, EntityPlayer player, BlockPos position, ItemStack stack, boolean jump) {
         ToolTier tier = jump ? getTier(stack) : ToolTier.BASIC;
         int harvestLevel = getHarvestLevel(stack, "pickaxe");
@@ -81,21 +102,8 @@ public abstract class ItemToolSmashing extends ItemTool<ItemToolSmashing> {
             for (int z = getZMinus(tier, front, position.getZ()); z <= getZPlus(tier, front, position.getZ()); z++) {
                 BlockPos pos = new BlockPos(x, position.getY(), z);
                 IBlockState state = world.getBlockState(pos);
-                if (state.getBlock() instanceof ISmashable) {
-                    int requiredLevel = state.getBlock().getHarvestLevel(state);
-                    if (harvestLevel >= requiredLevel) {
-                        ISmashable smashable = ((ISmashable) state.getBlock());
-                        if (smashable.getToolType() == getToolType()) {
-                            if (smashable.smashBlock(player, world, pos, state, tier)) {
-                                if (!world.isRemote) {
-                                    ToolHelper.performTask(player, stack, getExhaustionRate(stack));
-                                    onBlockDestroyed(stack, world, state, pos, player);
-                                }
-
-                                smashed = true;
-                            }
-                        }
-                    }
+                if (onSmashed(player, stack, tier, harvestLevel, world, pos, state)) {
+                    smashed = true;
                 }
             }
         }

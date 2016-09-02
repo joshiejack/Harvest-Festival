@@ -7,6 +7,7 @@ import joshie.harvest.core.helpers.generic.EntityHelper;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.world.World;
 
 import java.util.UUID;
 
@@ -17,15 +18,15 @@ public class RelationshipHandlerEntity implements IRelatableDataHandler<IAnimalT
     }
 
     @Override
-    public void onMessage(IAnimalTracked tracked, boolean particles) {
+    public void onMessage(World world, IAnimalTracked tracked, boolean particles) {
         EntityAnimal entity = tracked.getData().getAnimal();
         if (entity != null) {
             if (particles) {
-                for (int j = 0; j < 103D; j++) {
-                    double d8 = (entity.posX - 0.5D) + entity.worldObj.rand.nextFloat();
-                    double d7 = (entity.posY - 0.5D) + entity.worldObj.rand.nextFloat();
-                    double d9 = (entity.posZ - 0.5D) + entity.worldObj.rand.nextFloat();
-                    entity.worldObj.spawnParticle(EnumParticleTypes.HEART, d8, 1.0D + d7 - 0.125D + 2D, d9, 0, 0, 0);
+                for (int j = 0; j < 3D; j++) {
+                    double x = (entity.posX - 0.5D) + entity.worldObj.rand.nextFloat();
+                    double y = (entity.posY - 0.5D) + entity.worldObj.rand.nextFloat();
+                    double z = (entity.posZ - 0.5D) + entity.worldObj.rand.nextFloat();
+                    world.spawnParticle(EnumParticleTypes.HEART, x, 1D + y - 0.125D, z, 0, 0, 0);
                 }
             }
         }

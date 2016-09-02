@@ -44,9 +44,9 @@ public class ItemBuilding extends ItemHFFML<ItemBuilding, BuildingImpl> implemen
 
                 BuildingKey key = BuildingHelper.getPositioning(world, raytrace, building, player, hand);
                 return new ActionResult<>(building.generate(world, key.getPos(), key.getMirror(), key.getRotation()), stack);
-            } else ChatHelper.displayChat(TextFormatting.RED + Text.translate("town.failure") + TextFormatting.WHITE + Text.translate("town.distance"));
+            } else ChatHelper.displayChat(TextFormatting.RED + Text.translate("town.failure") + " " + TextFormatting.WHITE + Text.translate("town.distance"));
         } else if (world.isRemote) {
-            ChatHelper.displayChat(TextFormatting.RED + Text.translate("town.failure") + TextFormatting.WHITE + Text.translate("town.dimension"));
+            ChatHelper.displayChat(TextFormatting.RED + Text.translate("town.failure") + " " + TextFormatting.WHITE + Text.translate("town.dimension"));
         }
 
         return new ActionResult(EnumActionResult.PASS, stack);

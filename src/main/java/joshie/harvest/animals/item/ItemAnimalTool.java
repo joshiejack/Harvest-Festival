@@ -27,6 +27,7 @@ import static joshie.harvest.animals.item.ItemAnimalTool.Tool.*;
 import static net.minecraft.util.text.TextFormatting.AQUA;
 
 public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> implements IShippable {
+    private static final double MAX_DAMAGE = 512;
     public enum Tool implements IStringSerializable {
         MILKER(true), BRUSH(true), MEDICINE(false), CHICKEN_FEED(false), MIRACLE_POTION(false);
 
@@ -70,19 +71,25 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> implements 
     private final HashMap<EntityPlayer, IMilkable> milkables = new HashMap<>();
 
     @Override
-    public ItemStack onItemUseFinish(ItemStack stack, World world, EntityLivingBase entityLiving) {
-        if (entityLiving instanceof EntityPlayer && getEnumFromStack(stack) == MILKER) {
+    public ItemStack onItemUseFinish(ItemStack held, World world, EntityLivingBase entityLiving) {
+        if (entityLiving instanceof EntityPlayer && getEnumFromStack(held) == MILKER) {
             EntityPlayer player = (EntityPlayer) entityLiving;
             IMilkable milkable = milkables.get(player);
             if (milkable != null) {
                 milkable.milk(player);
             }
 
-            stack.getSubCompound("Data", true).setInteger("Damage", getDamageForDisplay(stack) + 1);
+            int damage = getDamageForDisplay(held) + 1;
+            if (damage >= MAX_DAMAGE) {
+                held.splitStack(1);
+            } else {
+                held.getSubCompound("Data", true).setInteger("Damage", damage);
+            }
+
             ToolHelper.consumeHunger(player, 4F);
         }
 
-        return stack;
+        return held;
     }
 
     private boolean milk(EntityPlayer player, EnumHand hand, IMilkable milkable) {
@@ -128,7 +135,13 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> implements 
             }
         }
 
-        held.getSubCompound("Data", true).setInteger("Damage", getDamageForDisplay(held) + 1);
+        int damage = getDamageForDisplay(held) + 1;
+        if (damage >= MAX_DAMAGE) {
+            held.splitStack(1);
+        } else {
+            held.getSubCompound("Data", true).setInteger("Damage", damage);
+        }
+
         ToolHelper.consumeHunger(player, 4F);
         return true;
     }
@@ -158,7 +171,7 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> implements 
 
     @Override
     public double getDurabilityForDisplay(ItemStack stack)  {
-        return canBeDamaged(stack) ? ((double) getDamageForDisplay(stack) / 128D) : 0;
+        return canBeDamaged(stack) ? ((double) getDamageForDisplay(stack) / MAX_DAMAGE) : 0;
     }
 
     protected int getDamageForDisplay(ItemStack stack) {

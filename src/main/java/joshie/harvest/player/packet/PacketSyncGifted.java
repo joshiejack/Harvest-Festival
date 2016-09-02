@@ -47,7 +47,7 @@ public class PacketSyncGifted extends PenguinPacket {
     @Override
     public void handlePacket(EntityPlayer player) {
         if (relatable != null) {
-            handler.onMessage(relatable, false);
+            handler.onMessage(player.worldObj, relatable, false);
             HFTrackers.getClientPlayerTracker().getRelationships().setGifted(relatable, gifted);
         }
     }

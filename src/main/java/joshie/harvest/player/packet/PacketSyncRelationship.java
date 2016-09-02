@@ -53,7 +53,7 @@ public class PacketSyncRelationship extends PenguinPacket {
     @Override
     public void handlePacket(EntityPlayer player) {
         if (relatable != null) {
-            handler.onMessage(relatable, particles);
+            handler.onMessage(player.worldObj, relatable, particles);
             HFTrackers.getClientPlayerTracker().getRelationships().setRelationship(relatable, value);
         }
     }

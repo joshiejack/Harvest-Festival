@@ -1,13 +1,17 @@
 package joshie.harvest.api.relations;
 
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
 
 public interface IRelatableDataHandler<I extends IRelatable> {
     /** The name of this data handler **/
     String name();
 
-    /** Handling **/
-    default void onMessage(I relatable, boolean particles) {}
+    /** Handling
+     * @param world the world
+     * @param relatable the relatable
+     * @param particles to display particles or not**/
+    default void onMessage(World world, I relatable, boolean particles) {}
 
     /** Called when reading from nbt
      * @param tag       the nbt tag to read

@@ -66,9 +66,9 @@ public class ItemBlueprint extends ItemHFFML<ItemBlueprint, BuildingImpl> implem
 
                 stack.splitStack(1);
                 return new ActionResult<>(EnumActionResult.SUCCESS, stack);
-            } else ChatHelper.displayChat(TextFormatting.RED + Text.translate("town.failure") + TextFormatting.WHITE + Text.translate("town.distance"));
+            } else ChatHelper.displayChat(TextFormatting.RED + Text.translate("town.failure") + " " + TextFormatting.WHITE + Text.translate("town.distance"));
         } else if (world.isRemote) {
-            ChatHelper.displayChat(TextFormatting.RED + Text.translate("town.failure") + TextFormatting.WHITE + Text.translate("town.dimension"));
+            ChatHelper.displayChat(TextFormatting.RED + Text.translate("town.failure") + " " + TextFormatting.WHITE + Text.translate("town.dimension"));
         }
 
         return new ActionResult(EnumActionResult.PASS, stack);

@@ -41,7 +41,7 @@ public class BlockStone extends BlockHFEnumCube<BlockStone, Type> {
 
         @Override
         public String getName() {
-            return name().toLowerCase(Locale.US);
+            return name().toLowerCase(Locale.ENGLISH);
         }
     }
 

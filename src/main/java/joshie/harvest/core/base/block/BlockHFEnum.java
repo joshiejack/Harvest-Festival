@@ -42,7 +42,7 @@ public abstract class BlockHFEnum<B extends BlockHFEnum, E extends Enum<E> & ISt
     }
 
     private static Material preInit(Material material, Class clazz) {
-        temporary = PropertyEnum.create(clazz.getSimpleName().toLowerCase(Locale.US), clazz);
+        temporary = PropertyEnum.create(clazz.getSimpleName().toLowerCase(Locale.ENGLISH), clazz);
         return material;
     }
 
@@ -144,7 +144,7 @@ public abstract class BlockHFEnum<B extends BlockHFEnum, E extends Enum<E> & ISt
 
     @Override
     public String getUnlocalizedName(ItemStack stack) {
-        return getEnumFromMeta(stack.getItemDamage()).name().toLowerCase(Locale.US);
+        return getEnumFromMeta(stack.getItemDamage()).name().toLowerCase(Locale.ENGLISH);
     }
 
     protected boolean shouldDisplayInCreative(E e) {

@@ -18,7 +18,7 @@ public class ItemAnimalTreat extends ItemHFEnum<ItemAnimalTreat, Treat> {
 
         @Override
         public String getName() {
-            return name().toLowerCase(Locale.US);
+            return name().toLowerCase(Locale.ENGLISH);
         }
     }
 

@@ -32,7 +32,7 @@ public class GuiNPCGift extends GuiNPCChat {
                 return Text.getSpeech(npc, "marriage.accept");
             } else return Text.getSpeech(npc, "marriage.reject");
         } else if (HFTrackers.getClientPlayerTracker().getRelationships().gift(player, npc.getRelatable(), value.getRelationPoints())) {
-            return Text.getSpeech(npc, "gift." + value.name().toLowerCase(Locale.US));
+            return Text.getSpeech(npc, "gift." + value.name().toLowerCase(Locale.ENGLISH));
         } else return Text.getSpeech(npc, "gift.reject");
     }
 

@@ -31,7 +31,7 @@ public class ItemIngredients extends ItemHFEnum<ItemIngredients, Ingredient> imp
 
         @Override
         public String getName() {
-            return name().toLowerCase(Locale.US);
+            return name().toLowerCase(Locale.ENGLISH);
         }
     }
 

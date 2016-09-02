@@ -52,7 +52,7 @@ public class BlockCookware extends BlockHFEnumRotatableTile<BlockCookware, Cookw
 
         @Override
         public String getName() {
-            return toString().toLowerCase(Locale.US);
+            return toString().toLowerCase(Locale.ENGLISH);
         }
     }
 

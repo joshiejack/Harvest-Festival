@@ -50,7 +50,7 @@ public enum Direction implements IStringSerializable {
 
     @Override
     public String getName() {
-        return toString().toLowerCase(Locale.US);
+        return toString().toLowerCase(Locale.ENGLISH);
     }
 
     static {

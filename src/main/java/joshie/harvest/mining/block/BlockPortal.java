@@ -56,7 +56,7 @@ public class BlockPortal extends BlockHFEnum<BlockPortal, Portal> {
 
         @Override
         public String getName() {
-            return name().toLowerCase(Locale.US);
+            return name().toLowerCase(Locale.ENGLISH);
         }
     }
 

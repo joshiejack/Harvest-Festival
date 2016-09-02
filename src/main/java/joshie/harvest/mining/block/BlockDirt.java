@@ -46,7 +46,7 @@ public class BlockDirt extends BlockHFBase<BlockDirt> {
 
         @Override
         public String getName() {
-            return name().toLowerCase(Locale.US);
+            return name().toLowerCase(Locale.ENGLISH);
         }
     }
 

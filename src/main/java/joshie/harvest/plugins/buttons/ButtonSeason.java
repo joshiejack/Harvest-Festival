@@ -60,7 +60,7 @@ public class ButtonSeason extends ButtonMode<HFSeason> {
         @Nullable
         @Override
         public List<? extends ITextComponent> getTooltip() {
-            return Collections.singletonList(new TextComponentTranslation("harvestfestival.season." + season.name().toLowerCase(Locale.US)));
+            return Collections.singletonList(new TextComponentTranslation("harvestfestival.season." + season.name().toLowerCase(Locale.ENGLISH)));
         }
 
         @Override

@@ -51,14 +51,14 @@ public class ItemSizeable extends ItemHFFML<ItemSizeable, Sizeable> implements I
 
     @Override
     public String getUnlocalizedName(ItemStack stack) {
-        return getObjectFromStack(stack).getUnlocalizedName().toLowerCase(Locale.US) + "_" + getSize(stack).toString().toLowerCase(Locale.US);
+        return getObjectFromStack(stack).getUnlocalizedName().toLowerCase(Locale.ENGLISH) + "_" + getSize(stack).toString().toLowerCase(Locale.ENGLISH);
     }
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
         Size sizeof = getSize(stack);
         String text = Text.translate("sizeable.format");
-        String size = Text.translate("sizeable." + sizeof.name().toLowerCase(Locale.US));
+        String size = Text.translate("sizeable." + sizeof.name().toLowerCase(Locale.ENGLISH));
         String name = Text.translate("sizeable." + getObjectFromStack(stack).getUnlocalizedName());
         text = StringUtils.replace(text, "%S", size);
         text = StringUtils.replace(text, "%P", name);

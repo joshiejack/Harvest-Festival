@@ -43,7 +43,7 @@ public class BlockSizedStorage extends BlockHFEnumRotatableTile<BlockSizedStorag
 
         @Override
         public String getName() {
-            return toString().toLowerCase(Locale.US);
+            return toString().toLowerCase(Locale.ENGLISH);
         }
     }
 
@@ -56,7 +56,7 @@ public class BlockSizedStorage extends BlockHFEnumRotatableTile<BlockSizedStorag
 
         @Override
         public String getName() {
-            return toString().toLowerCase(Locale.US);
+            return toString().toLowerCase(Locale.ENGLISH);
         }
     }
 

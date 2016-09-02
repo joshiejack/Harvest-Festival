@@ -65,7 +65,7 @@ public class ButtonWeather extends ButtonMode<WeatherModes> {
         @Nullable
         @Override
         public List<? extends ITextComponent> getTooltip() {
-            return Collections.singletonList(new TextComponentTranslation("harvestfestival.weather." + weather.name().toLowerCase(Locale.US) + ".set"));
+            return Collections.singletonList(new TextComponentTranslation("harvestfestival.weather." + weather.name().toLowerCase(Locale.ENGLISH) + ".set"));
         }
 
         @Override

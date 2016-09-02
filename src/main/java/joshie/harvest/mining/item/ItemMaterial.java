@@ -24,7 +24,7 @@ public class ItemMaterial extends ItemHFEnum<ItemMaterial, Material> implements 
 
         @Override
         public String getName() {
-            return name().toLowerCase(Locale.US);
+            return name().toLowerCase(Locale.ENGLISH);
         }
     }
 

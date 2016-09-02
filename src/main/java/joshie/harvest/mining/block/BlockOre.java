@@ -41,7 +41,7 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
 
         @Override
         public String getName() {
-            return name().toLowerCase(Locale.US);
+            return name().toLowerCase(Locale.ENGLISH);
         }
     }
 

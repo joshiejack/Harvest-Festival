@@ -27,7 +27,7 @@ public class SizeableDefinition implements ItemMeshDefinition {
         for (Sizeable e : SizeableRegistry.REGISTRY) {
             EnumMap<Size, ModelResourceLocation> map = new EnumMap<>(Size.class);
             for (Size size: Size.values()) {
-                ModelResourceLocation model = new ModelResourceLocation(new ResourceLocation(e.getRegistryName().getResourceDomain(), e.getRegistryName().getResourcePath()), size.name().toLowerCase(Locale.US));
+                ModelResourceLocation model = new ModelResourceLocation(new ResourceLocation(e.getRegistryName().getResourceDomain(), e.getRegistryName().getResourcePath()), size.name().toLowerCase(Locale.ENGLISH));
                 ModelBakery.registerItemVariants(HFCore.SIZEABLE, model);
                 map.put(size, model);
             }

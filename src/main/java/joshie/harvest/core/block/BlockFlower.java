@@ -49,7 +49,7 @@ public class BlockFlower extends BlockHFEnum<BlockFlower, FlowerType> implements
 
         @Override
         public String getName() {
-            return toString().toLowerCase(Locale.US);
+            return toString().toLowerCase(Locale.ENGLISH);
         }
     }
 

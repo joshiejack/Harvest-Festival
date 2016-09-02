@@ -29,7 +29,7 @@ public class ItemDarkSpawner extends ItemHFEnum<ItemDarkSpawner, DarkSpawner> {
 
         @Override
         public String getName() {
-            return name().toLowerCase(Locale.US);
+            return name().toLowerCase(Locale.ENGLISH);
         }
     }
 
@@ -71,7 +71,7 @@ public class ItemDarkSpawner extends ItemHFEnum<ItemDarkSpawner, DarkSpawner> {
     @Override
     public void registerModels(Item item, String name) {
         for (int i = 0; i < values.length; i++) {
-            ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(new ResourceLocation(MODID, "dark_spawner_" + values[i].name().toLowerCase(Locale.US)), "inventory"));
+            ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(new ResourceLocation(MODID, "dark_spawner_" + values[i].name().toLowerCase(Locale.ENGLISH)), "inventory"));
         }
     }
 }

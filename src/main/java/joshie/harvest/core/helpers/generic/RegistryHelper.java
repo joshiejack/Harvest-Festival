@@ -37,7 +37,7 @@ public class RegistryHelper {
 
     public static void registerTiles(Class<? extends TileEntity>... tiles) {
         for (Class<? extends TileEntity> tile : tiles) {
-            GameRegistry.registerTileEntity(tile, MODID + ":" + tile.getSimpleName().replace("Tile", "").toLowerCase(Locale.US));
+            GameRegistry.registerTileEntity(tile, MODID + ":" + tile.getSimpleName().replace("Tile", "").toLowerCase(Locale.ENGLISH));
         }
     }
 

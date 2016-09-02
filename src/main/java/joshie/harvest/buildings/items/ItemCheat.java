@@ -25,7 +25,7 @@ public class ItemCheat extends ItemHFEnum<ItemCheat, Cheat> {
 
         @Override
         public String getName() {
-            return name().toLowerCase(Locale.US);
+            return name().toLowerCase(Locale.ENGLISH);
         }
     }
 

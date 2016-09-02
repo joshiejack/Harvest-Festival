@@ -37,7 +37,7 @@ public class BlockRock extends BlockHFSmashable<BlockRock, Rock> {
 
         @Override
         public String getName() {
-            return toString().toLowerCase(Locale.US);
+            return toString().toLowerCase(Locale.ENGLISH);
         }
     }
 

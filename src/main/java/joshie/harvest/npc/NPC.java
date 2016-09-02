@@ -65,11 +65,11 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
         this.insideColor = insideColor;
         this.outsideColor = outsideColor;
         this.localizationKey = MODID + ".npc." + name + ".";
-        this.generalLocalizationKey = MODID + ".npc.generic." + age.name().toLowerCase(Locale.US) + ".";
+        this.generalLocalizationKey = MODID + ".npc.generic." + age.name().toLowerCase(Locale.ENGLISH) + ".";
         this.skin = new ResourceLocation(MODID, "textures/entity/" + name + ".png");
         this.conditionals.add(new GreetingMultiple(name + ".greeting"));
-        this.conditionals.add(new GreetingMultiple("generic." + age.name().toLowerCase(Locale.US) + ".greeting"));
-        if (this.age != CHILD) this.conditionals.add(new GreetingMultiple("generic." + gender.name().toLowerCase(Locale.US) + ".greeting"));
+        this.conditionals.add(new GreetingMultiple("generic." + age.name().toLowerCase(Locale.ENGLISH) + ".greeting"));
+        if (this.age != CHILD) this.conditionals.add(new GreetingMultiple("generic." + gender.name().toLowerCase(Locale.ENGLISH) + ".greeting"));
         this.conditionals.add(new GreetingSingle("generic.weather.good") {
             @Override
             public boolean canDisplay(EntityPlayer player) {

@@ -49,7 +49,7 @@ public class Utensil {
 
     /** Return the unlocalized name for this utensil when it's burnt **/
     public String getUnlocalizedName() {
-        return "harvestfestival.meal.burnt." + label.replace("_", ".").toLowerCase(Locale.US);
+        return "harvestfestival.meal.burnt." + label.replace("_", ".").toLowerCase(Locale.ENGLISH);
     }
 
     public final int getIndex() {

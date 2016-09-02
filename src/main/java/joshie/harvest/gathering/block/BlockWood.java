@@ -37,7 +37,7 @@ public class BlockWood extends BlockHFSmashable<BlockWood, Wood> {
 
         @Override
         public String getName() {
-            return toString().toLowerCase(Locale.US);
+            return toString().toLowerCase(Locale.ENGLISH);
         }
     }
 

@@ -13,6 +13,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
+import static net.minecraft.util.text.TextFormatting.WHITE;
 
 public abstract class PurchaseableFML<I extends IForgeRegistryEntry.Impl<I>> implements IPurchaseable {
     protected I item;
@@ -50,5 +51,7 @@ public abstract class PurchaseableFML<I extends IForgeRegistryEntry.Impl<I>> imp
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void addTooltip(List<String> list) {}
+    public void addTooltip(List<String> list) {
+        list.add(WHITE + getDisplayStack().getDisplayName());
+    }
 }

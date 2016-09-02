@@ -35,7 +35,7 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
 
         @Override
         public String getName() {
-            return toString().toLowerCase(Locale.US);
+            return toString().toLowerCase(Locale.ENGLISH);
         }
     }
 

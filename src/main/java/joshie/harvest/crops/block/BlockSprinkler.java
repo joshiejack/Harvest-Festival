@@ -35,7 +35,7 @@ public class BlockSprinkler extends BlockHFEnum<BlockSprinkler, Sprinkler> {
 
         @Override
         public String getName() {
-            return toString().toLowerCase(Locale.US);
+            return toString().toLowerCase(Locale.ENGLISH);
         }
     }
 

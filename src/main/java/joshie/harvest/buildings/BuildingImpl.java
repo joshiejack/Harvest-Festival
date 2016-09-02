@@ -64,7 +64,7 @@ public class BuildingImpl extends Impl<BuildingImpl> implements Building {
         }
 
         if (this.getRegistryName() != null) {
-            this.toLocalise = this.getRegistryName().getResourceDomain().toLowerCase(Locale.US) + ".structures." + this.getRegistryName().getResourcePath().toLowerCase(Locale.US);
+            this.toLocalise = this.getRegistryName().getResourceDomain().toLowerCase(Locale.ENGLISH) + ".structures." + this.getRegistryName().getResourcePath().toLowerCase(Locale.ENGLISH);
         }
 
         this.components = null; //Wipe out my components

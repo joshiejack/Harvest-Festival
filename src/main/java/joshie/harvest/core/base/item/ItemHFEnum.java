@@ -24,7 +24,7 @@ public abstract class ItemHFEnum<I extends ItemHFEnum, E extends Enum<E> & IStri
         super();
         enumClass = clazz;
         values = clazz.getEnumConstants();
-        prefix = clazz.getSimpleName().toLowerCase(Locale.US);
+        prefix = clazz.getSimpleName().toLowerCase(Locale.ENGLISH);
         setHasSubtypes(true);
     }
 
@@ -32,7 +32,7 @@ public abstract class ItemHFEnum<I extends ItemHFEnum, E extends Enum<E> & IStri
         super(tab);
         enumClass = clazz;
         values = clazz.getEnumConstants();
-        prefix = clazz.getSimpleName().toLowerCase(Locale.US);
+        prefix = clazz.getSimpleName().toLowerCase(Locale.ENGLISH);
         setHasSubtypes(true);
     }
 
@@ -75,12 +75,12 @@ public abstract class ItemHFEnum<I extends ItemHFEnum, E extends Enum<E> & IStri
 
     @Override
     public String getUnlocalizedName(ItemStack stack) {
-        return prefix + "_" + getEnumFromStack(stack).name().toLowerCase(Locale.US);
+        return prefix + "_" + getEnumFromStack(stack).name().toLowerCase(Locale.ENGLISH);
     }
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        return Text.translate(getUnlocalizedName(stack).replaceAll("(.)([A-Z])", "$1$2").toLowerCase(Locale.US).replace("_", "."));
+        return Text.translate(getUnlocalizedName(stack).replaceAll("(.)([A-Z])", "$1$2").toLowerCase(Locale.ENGLISH).replace("_", "."));
     }
 
     @Override
@@ -103,7 +103,7 @@ public abstract class ItemHFEnum<I extends ItemHFEnum, E extends Enum<E> & IStri
     }
 
     protected String getPrefix(E e) {
-        return e.getClass().getSimpleName().toLowerCase(Locale.US);
+        return e.getClass().getSimpleName().toLowerCase(Locale.ENGLISH);
     }
 
     @SideOnly(Side.CLIENT)

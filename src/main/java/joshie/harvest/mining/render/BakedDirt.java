@@ -142,7 +142,7 @@ public class BakedDirt extends BakedHF {
         @SubscribeEvent
         public void onStitch(TextureStitchEvent event) {
             for (TextureType type: TextureType.values()) {
-                event.getMap().registerSprite(new ResourceLocation(MODID, "blocks/mine/overlays/" + type.name().toLowerCase(Locale.US)));
+                event.getMap().registerSprite(new ResourceLocation(MODID, "blocks/mine/overlays/" + type.name().toLowerCase(Locale.ENGLISH)));
             }
         }
 
@@ -153,7 +153,7 @@ public class BakedDirt extends BakedHF {
             IBakedModel overlay = registry.getObject(new ModelResourceLocation(new ResourceLocation(MODID, "dirt"), "overlay"));
             List<WeightedTexture> list = new ArrayList<>();
             for (TextureType type: TextureType.values()) {
-                TextureAtlasSprite sprite = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite("harvestfestival:blocks/mine/overlays/" + type.name().toLowerCase(Locale.US));
+                TextureAtlasSprite sprite = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite("harvestfestival:blocks/mine/overlays/" + type.name().toLowerCase(Locale.ENGLISH));
                 list.add(new WeightedTexture(sprite, type.weight));
             }
 

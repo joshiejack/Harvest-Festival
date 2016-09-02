@@ -40,7 +40,7 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> implements 
 
         @Override
         public String getName() {
-            return name().toLowerCase(Locale.US);
+            return name().toLowerCase(Locale.ENGLISH);
         }
     }
 

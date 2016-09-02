@@ -15,7 +15,7 @@ public class ItemUtensil extends ItemHFEnum<ItemUtensil, Utensil> {
 
         @Override
         public String getName() {
-            return name().toLowerCase(Locale.US);
+            return name().toLowerCase(Locale.ENGLISH);
         }
     }
 

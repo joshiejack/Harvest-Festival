@@ -12,6 +12,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
+import java.util.Locale;
 
 import static joshie.harvest.mining.item.ItemMaterial.Material.MYTHIC;
 import static net.minecraft.util.text.TextFormatting.GREEN;
@@ -23,7 +24,7 @@ public class ItemMaterial extends ItemHFEnum<ItemMaterial, Material> implements 
 
         @Override
         public String getName() {
-            return name().toLowerCase();
+            return name().toLowerCase(Locale.US);
         }
     }
 

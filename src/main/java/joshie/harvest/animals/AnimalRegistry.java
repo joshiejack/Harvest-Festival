@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.HashMap;
+import java.util.Locale;
 
 @HFApiImplementation
 public class AnimalRegistry implements IAnimalHandler {
@@ -55,11 +56,11 @@ public class AnimalRegistry implements IAnimalHandler {
 
     @Override
     public void registerType(String key, IAnimalType type) {
-        types.put(key.toLowerCase(), type);
+        types.put(key.toLowerCase(Locale.US), type);
     }
 
     @Override
     public IAnimalType getTypeFromString(String string) {
-        return types.get(string.toLowerCase());
+        return types.get(string.toLowerCase(Locale.US));
     }
 }

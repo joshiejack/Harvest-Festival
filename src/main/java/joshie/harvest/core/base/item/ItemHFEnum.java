@@ -1,7 +1,7 @@
 package joshie.harvest.core.base.item;
 
-import joshie.harvest.core.util.ICreativeSorted;
 import joshie.harvest.core.lib.CreativeSort;
+import joshie.harvest.core.util.ICreativeSorted;
 import joshie.harvest.core.util.Text;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
@@ -13,6 +13,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
+import java.util.Locale;
 
 public abstract class ItemHFEnum<I extends ItemHFEnum, E extends Enum<E> & IStringSerializable> extends ItemHFBase<I> implements ICreativeSorted {
     protected final Class<E> enumClass;
@@ -23,7 +24,7 @@ public abstract class ItemHFEnum<I extends ItemHFEnum, E extends Enum<E> & IStri
         super();
         enumClass = clazz;
         values = clazz.getEnumConstants();
-        prefix = clazz.getSimpleName().toLowerCase();
+        prefix = clazz.getSimpleName().toLowerCase(Locale.US);
         setHasSubtypes(true);
     }
 
@@ -31,7 +32,7 @@ public abstract class ItemHFEnum<I extends ItemHFEnum, E extends Enum<E> & IStri
         super(tab);
         enumClass = clazz;
         values = clazz.getEnumConstants();
-        prefix = clazz.getSimpleName().toLowerCase();
+        prefix = clazz.getSimpleName().toLowerCase(Locale.US);
         setHasSubtypes(true);
     }
 
@@ -74,12 +75,12 @@ public abstract class ItemHFEnum<I extends ItemHFEnum, E extends Enum<E> & IStri
 
     @Override
     public String getUnlocalizedName(ItemStack stack) {
-        return prefix + "_" + getEnumFromStack(stack).name().toLowerCase();
+        return prefix + "_" + getEnumFromStack(stack).name().toLowerCase(Locale.US);
     }
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        return Text.translate(getUnlocalizedName(stack).replaceAll("(.)([A-Z])", "$1$2").toLowerCase().replace("_", "."));
+        return Text.translate(getUnlocalizedName(stack).replaceAll("(.)([A-Z])", "$1$2").toLowerCase(Locale.US).replace("_", "."));
     }
 
     @Override
@@ -102,7 +103,7 @@ public abstract class ItemHFEnum<I extends ItemHFEnum, E extends Enum<E> & IStri
     }
 
     protected String getPrefix(E e) {
-        return e.getClass().getSimpleName().toLowerCase();
+        return e.getClass().getSimpleName().toLowerCase(Locale.US);
     }
 
     @SideOnly(Side.CLIENT)

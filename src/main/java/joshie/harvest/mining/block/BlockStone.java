@@ -27,6 +27,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import static joshie.harvest.mining.block.BlockStone.Type.REAL;
 
@@ -40,7 +41,7 @@ public class BlockStone extends BlockHFEnumCube<BlockStone, Type> {
 
         @Override
         public String getName() {
-            return name().toLowerCase();
+            return name().toLowerCase(Locale.US);
         }
     }
 

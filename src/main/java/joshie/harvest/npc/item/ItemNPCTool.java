@@ -8,6 +8,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 
+import java.util.Locale;
+
 import static joshie.harvest.npc.item.ItemNPCTool.NPCTool.NPC_KILLER;
 import static net.minecraft.util.text.TextFormatting.AQUA;
 
@@ -17,7 +19,7 @@ public class ItemNPCTool extends ItemHFEnum<ItemNPCTool, NPCTool> {
 
         @Override
         public String getName() {
-            return name().toLowerCase();
+            return name().toLowerCase(Locale.US);
         }
     }
 

@@ -1,7 +1,7 @@
 package joshie.harvest.crops.block;
 
-import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.base.block.BlockHFEnum;
+import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.crops.block.BlockSprinkler.Sprinkler;
 import joshie.harvest.crops.tile.TileSprinkler;
 import net.minecraft.block.SoundType;
@@ -20,6 +20,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidUtil;
 
 import javax.annotation.Nullable;
+import java.util.Locale;
 
 public class BlockSprinkler extends BlockHFEnum<BlockSprinkler, Sprinkler> {
     private static final AxisAlignedBB WOOD_AABB = new AxisAlignedBB(0.2D, 0D, 0.2D, 0.8D, 0.7D, 0.8D);
@@ -34,7 +35,7 @@ public class BlockSprinkler extends BlockHFEnum<BlockSprinkler, Sprinkler> {
 
         @Override
         public String getName() {
-            return toString().toLowerCase();
+            return toString().toLowerCase(Locale.US);
         }
     }
 

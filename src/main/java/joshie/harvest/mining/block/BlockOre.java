@@ -28,6 +28,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 
+import java.util.Locale;
+
 import static joshie.harvest.api.gathering.ISmashable.ToolType.HAMMER;
 import static net.minecraft.block.material.Material.ROCK;
 
@@ -39,7 +41,7 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
 
         @Override
         public String getName() {
-            return name().toLowerCase();
+            return name().toLowerCase(Locale.US);
         }
     }
 

@@ -22,6 +22,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
@@ -59,7 +60,7 @@ public class ButtonSeason extends ButtonMode<HFSeason> {
         @Nullable
         @Override
         public List<? extends ITextComponent> getTooltip() {
-            return Collections.singletonList(new TextComponentTranslation("harvestfestival.season." + season.name().toLowerCase()));
+            return Collections.singletonList(new TextComponentTranslation("harvestfestival.season." + season.name().toLowerCase(Locale.US)));
         }
 
         @Override

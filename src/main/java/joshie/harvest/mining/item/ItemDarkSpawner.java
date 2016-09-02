@@ -19,6 +19,8 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.Locale;
+
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class ItemDarkSpawner extends ItemHFEnum<ItemDarkSpawner, DarkSpawner> {
@@ -27,7 +29,7 @@ public class ItemDarkSpawner extends ItemHFEnum<ItemDarkSpawner, DarkSpawner> {
 
         @Override
         public String getName() {
-            return name().toLowerCase();
+            return name().toLowerCase(Locale.US);
         }
     }
 
@@ -69,7 +71,7 @@ public class ItemDarkSpawner extends ItemHFEnum<ItemDarkSpawner, DarkSpawner> {
     @Override
     public void registerModels(Item item, String name) {
         for (int i = 0; i < values.length; i++) {
-            ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(new ResourceLocation(MODID, "dark_spawner_" + values[i].name().toLowerCase()), "inventory"));
+            ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(new ResourceLocation(MODID, "dark_spawner_" + values[i].name().toLowerCase(Locale.US)), "inventory"));
         }
     }
 }

@@ -1,10 +1,10 @@
 package joshie.harvest.core.block;
 
+import joshie.harvest.core.base.block.BlockHFEnumRotatableTile;
 import joshie.harvest.core.block.BlockStorage.Storage;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.lib.CreativeSort;
-import joshie.harvest.core.base.block.BlockHFEnumRotatableTile;
 import joshie.harvest.core.tile.TileShipping;
 import joshie.harvest.player.PlayerTrackerServer;
 import net.minecraft.block.SoundType;
@@ -22,6 +22,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import java.util.Locale;
+
 import static joshie.harvest.api.HFApi.shipping;
 import static joshie.harvest.core.block.BlockStorage.Storage.SHIPPING;
 
@@ -33,7 +35,7 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
 
         @Override
         public String getName() {
-            return toString().toLowerCase();
+            return toString().toLowerCase(Locale.US);
         }
     }
 

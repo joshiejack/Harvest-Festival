@@ -389,6 +389,13 @@ harvestfestival.season.nether=Infernal
 harvestfestival.season.end=Devoid
 harvestfestival.year=Year
 
+#Weathers
+harvestfestival.weather.sunny.set=Set weather to sunny
+harvestfestival.weather.rain.set=Set weather to rain
+harvestfestival.weather.snow.set=Set weather to snow
+harvestfestival.weather.typhoon.set=Set weather to typhoon
+harvestfestival.weather.blizzard.set=Set weather to blizzard
+
 #NPC Tools
 harvestfestival.npctool.blue.feather=Blue Feather
 harvestfestival.npctool.npc.killer=Instant Entity Killer

@@ -13,13 +13,15 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.world.World;
 
+import java.util.Locale;
+
 public class ItemMiningTool extends ItemHFEnum<ItemMiningTool, MiningTool> {
     public enum MiningTool implements IStringSerializable {
         ESCAPE_ROPE;
 
         @Override
         public String getName() {
-            return name().toLowerCase();
+            return name().toLowerCase(Locale.US);
         }
     }
 

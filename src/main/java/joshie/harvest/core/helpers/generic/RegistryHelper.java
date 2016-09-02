@@ -22,6 +22,8 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.Locale;
+
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.npc.HFNPCs.SPAWNER_NPC;
 
@@ -35,7 +37,7 @@ public class RegistryHelper {
 
     public static void registerTiles(Class<? extends TileEntity>... tiles) {
         for (Class<? extends TileEntity> tile : tiles) {
-            GameRegistry.registerTileEntity(tile, MODID + ":" + tile.getSimpleName().replace("Tile", "").toLowerCase());
+            GameRegistry.registerTileEntity(tile, MODID + ":" + tile.getSimpleName().replace("Tile", "").toLowerCase(Locale.US));
         }
     }
 

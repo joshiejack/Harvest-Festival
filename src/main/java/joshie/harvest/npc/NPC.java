@@ -1,8 +1,8 @@
 package joshie.harvest.npc;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.buildings.Building;
+import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.npc.*;
@@ -23,10 +23,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import org.apache.commons.lang3.text.WordUtils;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.EnumMap;
-import java.util.List;
+import java.util.*;
 
 import static joshie.harvest.api.npc.INPCRegistry.Age.ADULT;
 import static joshie.harvest.api.npc.INPCRegistry.Age.CHILD;
@@ -68,11 +65,11 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
         this.insideColor = insideColor;
         this.outsideColor = outsideColor;
         this.localizationKey = MODID + ".npc." + name + ".";
-        this.generalLocalizationKey = MODID + ".npc.generic." + age.name().toLowerCase() + ".";
+        this.generalLocalizationKey = MODID + ".npc.generic." + age.name().toLowerCase(Locale.US) + ".";
         this.skin = new ResourceLocation(MODID, "textures/entity/" + name + ".png");
         this.conditionals.add(new GreetingMultiple(name + ".greeting"));
-        this.conditionals.add(new GreetingMultiple("generic." + age.name().toLowerCase() + ".greeting"));
-        if (this.age != CHILD) this.conditionals.add(new GreetingMultiple("generic." + gender.name().toLowerCase() + ".greeting"));
+        this.conditionals.add(new GreetingMultiple("generic." + age.name().toLowerCase(Locale.US) + ".greeting"));
+        if (this.age != CHILD) this.conditionals.add(new GreetingMultiple("generic." + gender.name().toLowerCase(Locale.US) + ".greeting"));
         this.conditionals.add(new GreetingSingle("generic.weather.good") {
             @Override
             public boolean canDisplay(EntityPlayer player) {

@@ -23,10 +23,7 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class BuildingImpl extends Impl<BuildingImpl> implements Building {
     //Components
@@ -67,7 +64,7 @@ public class BuildingImpl extends Impl<BuildingImpl> implements Building {
         }
 
         if (this.getRegistryName() != null) {
-            this.toLocalise = this.getRegistryName().getResourceDomain().toLowerCase() + ".structures." + this.getRegistryName().getResourcePath().toLowerCase();
+            this.toLocalise = this.getRegistryName().getResourceDomain().toLowerCase(Locale.US) + ".structures." + this.getRegistryName().getResourcePath().toLowerCase(Locale.US);
         }
 
         this.components = null; //Wipe out my components

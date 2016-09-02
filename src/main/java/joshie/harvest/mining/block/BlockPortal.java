@@ -20,6 +20,8 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import java.util.Locale;
+
 import static joshie.harvest.mining.block.BlockPortal.Portal.*;
 import static joshie.harvest.mining.block.BlockPortal.Type.MINE;
 import static joshie.harvest.mining.block.BlockPortal.Type.OVERWORLD;
@@ -54,7 +56,7 @@ public class BlockPortal extends BlockHFEnum<BlockPortal, Portal> {
 
         @Override
         public String getName() {
-            return name().toLowerCase();
+            return name().toLowerCase(Locale.US);
         }
     }
 

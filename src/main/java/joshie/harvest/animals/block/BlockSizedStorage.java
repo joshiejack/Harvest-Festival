@@ -27,6 +27,8 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.Locale;
+
 import static joshie.harvest.animals.block.BlockSizedStorage.Fill.EMPTY;
 
 public class BlockSizedStorage extends BlockHFEnumRotatableTile<BlockSizedStorage, SizedStorage> {
@@ -41,7 +43,7 @@ public class BlockSizedStorage extends BlockHFEnumRotatableTile<BlockSizedStorag
 
         @Override
         public String getName() {
-            return toString().toLowerCase();
+            return toString().toLowerCase(Locale.US);
         }
     }
 
@@ -54,7 +56,7 @@ public class BlockSizedStorage extends BlockHFEnumRotatableTile<BlockSizedStorag
 
         @Override
         public String getName() {
-            return toString().toLowerCase();
+            return toString().toLowerCase(Locale.US);
         }
     }
 

@@ -19,6 +19,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
+import java.util.Locale;
 
 import static joshie.harvest.mining.block.BlockLadder.Ladder.DECORATIVE;
 import static joshie.harvest.mining.block.BlockLadder.Ladder.WOOD;
@@ -34,7 +35,7 @@ public class BlockLadder extends BlockHFEnumRotatableMeta<BlockLadder, Ladder> {
 
         @Override
         public String getName() {
-            return toString().toLowerCase();
+            return toString().toLowerCase(Locale.US);
         }
     }
 

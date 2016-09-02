@@ -4,13 +4,15 @@ import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.gift.IGiftHandler.Quality;
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.tools.ToolHelper;
 import joshie.harvest.core.util.Text;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.tools.ToolHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
+
+import java.util.Locale;
 
 public class GuiNPCGift extends GuiNPCChat {
     private ItemStack gift;
@@ -30,7 +32,7 @@ public class GuiNPCGift extends GuiNPCChat {
                 return Text.getSpeech(npc, "marriage.accept");
             } else return Text.getSpeech(npc, "marriage.reject");
         } else if (HFTrackers.getClientPlayerTracker().getRelationships().gift(player, npc.getRelatable(), value.getRelationPoints())) {
-            return Text.getSpeech(npc, "gift." + value.name().toLowerCase());
+            return Text.getSpeech(npc, "gift." + value.name().toLowerCase(Locale.US));
         } else return Text.getSpeech(npc, "gift.reject");
     }
 

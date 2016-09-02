@@ -7,6 +7,7 @@ import net.minecraft.util.Rotation;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.HashMap;
+import java.util.Locale;
 
 public enum Direction implements IStringSerializable {
     MN_R0(Mirror.NONE, Rotation.NONE),
@@ -49,7 +50,7 @@ public enum Direction implements IStringSerializable {
 
     @Override
     public String getName() {
-        return toString().toLowerCase();
+        return toString().toLowerCase(Locale.US);
     }
 
     static {

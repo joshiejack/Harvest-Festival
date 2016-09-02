@@ -31,6 +31,8 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.Locale;
+
 import static joshie.harvest.cooking.block.BlockCookware.Cookware.*;
 import static net.minecraft.util.EnumFacing.*;
 
@@ -50,7 +52,7 @@ public class BlockCookware extends BlockHFEnumRotatableTile<BlockCookware, Cookw
 
         @Override
         public String getName() {
-            return toString().toLowerCase();
+            return toString().toLowerCase(Locale.US);
         }
     }
 

@@ -15,7 +15,6 @@ import java.util.List;
 public class BuildingVertexUploader extends WorldVertexBufferUploader {
     @Override
     public void draw(VertexBuffer vertexBufferIn) {
-        GlStateManager.enableTexture2D();
         if (vertexBufferIn.getVertexCount() > 0) {
             VertexFormat vertexformat = vertexBufferIn.getVertexFormat();
             int i = vertexformat.getNextOffset();
@@ -27,6 +26,7 @@ public class BuildingVertexUploader extends WorldVertexBufferUploader {
                 list.get(j).getUsage().preDraw(vertexformat, j, i, bytebuffer);
             }
 
+            GlStateManager.enableTexture2D();
             GlStateManager.glDrawArrays(vertexBufferIn.getDrawMode(), 0, vertexBufferIn.getVertexCount());
             int i1 = 0;
 

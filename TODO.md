@@ -24,3 +24,4 @@
 - Cursed Potion Effect Icon
 - Crop Grass Better Texture
 - Fix the left most leaf in the autumn texture again
+-Better Textures for the buttons plugin

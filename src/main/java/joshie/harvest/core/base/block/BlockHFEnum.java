@@ -18,6 +18,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 public abstract class BlockHFEnum<B extends BlockHFEnum, E extends Enum<E> & IStringSerializable> extends BlockHFBase<B> {
@@ -41,7 +42,7 @@ public abstract class BlockHFEnum<B extends BlockHFEnum, E extends Enum<E> & ISt
     }
 
     private static Material preInit(Material material, Class clazz) {
-        temporary = PropertyEnum.create(clazz.getSimpleName().toLowerCase(), clazz);
+        temporary = PropertyEnum.create(clazz.getSimpleName().toLowerCase(Locale.US), clazz);
         return material;
     }
 
@@ -143,7 +144,7 @@ public abstract class BlockHFEnum<B extends BlockHFEnum, E extends Enum<E> & ISt
 
     @Override
     public String getUnlocalizedName(ItemStack stack) {
-        return getEnumFromMeta(stack.getItemDamage()).name().toLowerCase();
+        return getEnumFromMeta(stack.getItemDamage()).name().toLowerCase(Locale.US);
     }
 
     protected boolean shouldDisplayInCreative(E e) {

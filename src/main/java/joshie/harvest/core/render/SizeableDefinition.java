@@ -12,6 +12,7 @@ import net.minecraft.util.ResourceLocation;
 
 import java.util.EnumMap;
 import java.util.HashMap;
+import java.util.Locale;
 
 
 public class SizeableDefinition implements ItemMeshDefinition {
@@ -26,7 +27,7 @@ public class SizeableDefinition implements ItemMeshDefinition {
         for (Sizeable e : SizeableRegistry.REGISTRY) {
             EnumMap<Size, ModelResourceLocation> map = new EnumMap<>(Size.class);
             for (Size size: Size.values()) {
-                ModelResourceLocation model = new ModelResourceLocation(new ResourceLocation(e.getRegistryName().getResourceDomain(), e.getRegistryName().getResourcePath()), size.name().toLowerCase());
+                ModelResourceLocation model = new ModelResourceLocation(new ResourceLocation(e.getRegistryName().getResourceDomain(), e.getRegistryName().getResourcePath()), size.name().toLowerCase(Locale.US));
                 ModelBakery.registerItemVariants(HFCore.SIZEABLE, model);
                 map.put(size, model);
             }

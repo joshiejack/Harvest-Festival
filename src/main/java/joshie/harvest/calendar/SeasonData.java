@@ -6,6 +6,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 
+import java.util.Locale;
+
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class SeasonData {
@@ -19,7 +21,7 @@ public class SeasonData {
 
     public SeasonData(Season season, int color, double factor, float angle, TextFormatting textColor, double sunny, double rain, double typhoon, double snow, double blizzard) {
         this.season = season;
-        this.resource = new ResourceLocation(MODID, "textures/hud/" + season.name().toLowerCase() + ".png");
+        this.resource = new ResourceLocation(MODID, "textures/hud/" + season.name().toLowerCase(Locale.US) + ".png");
         this.skyColor = color;
         this.celestialLengthFactor = factor;
         this.celestialAngleOffset = angle;
@@ -54,7 +56,7 @@ public class SeasonData {
 
     @SuppressWarnings("deprecation")
     public String getLocalized() {
-        return I18n.translateToLocal(MODID + ".season." + season.name().toLowerCase());
+        return I18n.translateToLocal(MODID + ".season." + season.name().toLowerCase(Locale.US));
     }
 
     public TextFormatting getTextColor() {

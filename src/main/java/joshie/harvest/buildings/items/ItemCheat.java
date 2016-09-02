@@ -1,10 +1,10 @@
 package joshie.harvest.buildings.items;
 
+import joshie.harvest.buildings.items.ItemCheat.Cheat;
 import joshie.harvest.buildings.loader.CodeGeneratorBuildings;
+import joshie.harvest.core.base.item.ItemHFEnum;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.lib.CreativeSort;
-import joshie.harvest.core.base.item.ItemHFEnum;
-import joshie.harvest.buildings.items.ItemCheat.Cheat;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
@@ -13,6 +13,8 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import java.util.Locale;
 
 import static joshie.harvest.buildings.items.ItemCheat.Cheat.CODE_GENERATOR;
 import static joshie.harvest.buildings.items.ItemCheat.Cheat.COORD_SETTER;
@@ -23,7 +25,7 @@ public class ItemCheat extends ItemHFEnum<ItemCheat, Cheat> {
 
         @Override
         public String getName() {
-            return name().toLowerCase();
+            return name().toLowerCase(Locale.US);
         }
     }
 

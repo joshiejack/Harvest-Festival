@@ -10,13 +10,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
 
+import java.util.Locale;
+
 public class ItemAnimalTreat extends ItemHFEnum<ItemAnimalTreat, Treat> {
     public enum Treat implements IStringSerializable {
         COW, SHEEP, CHICKEN, GENERIC;
 
         @Override
         public String getName() {
-            return name().toLowerCase();
+            return name().toLowerCase(Locale.US);
         }
     }
 

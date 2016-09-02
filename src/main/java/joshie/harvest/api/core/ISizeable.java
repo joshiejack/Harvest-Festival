@@ -2,6 +2,8 @@ package joshie.harvest.api.core;
 
 import net.minecraft.util.IStringSerializable;
 
+import java.util.Locale;
+
 /** Items that implement this, come in small, medium and large **/
 public interface ISizeable {
     long getValue(Size size);
@@ -21,7 +23,7 @@ public interface ISizeable {
 
         @Override
         public String getName() {
-            return name().toLowerCase();
+            return name().toLowerCase(Locale.US);
         }
     }
 }

@@ -1,10 +1,10 @@
 package joshie.harvest.core.block;
 
-import joshie.harvest.core.block.BlockFlower.FlowerType;
 import joshie.harvest.core.HFTab;
+import joshie.harvest.core.base.block.BlockHFEnum;
+import joshie.harvest.core.block.BlockFlower.FlowerType;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.core.base.block.BlockHFEnum;
 import joshie.harvest.core.util.Text;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -27,6 +27,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
+import java.util.Locale;
 
 import static net.minecraft.util.text.TextFormatting.AQUA;
 import static net.minecraftforge.common.EnumPlantType.Plains;
@@ -48,7 +49,7 @@ public class BlockFlower extends BlockHFEnum<BlockFlower, FlowerType> implements
 
         @Override
         public String getName() {
-            return toString().toLowerCase();
+            return toString().toLowerCase(Locale.US);
         }
     }
 

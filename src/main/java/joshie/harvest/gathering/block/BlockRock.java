@@ -19,6 +19,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import java.util.Locale;
+
 import static joshie.harvest.api.core.ITiered.ToolTier.*;
 import static joshie.harvest.api.gathering.ISmashable.ToolType.HAMMER;
 
@@ -35,7 +37,7 @@ public class BlockRock extends BlockHFSmashable<BlockRock, Rock> {
 
         @Override
         public String getName() {
-            return toString().toLowerCase();
+            return toString().toLowerCase(Locale.US);
         }
     }
 

@@ -5,6 +5,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.Locale;
+
 import static net.minecraft.creativetab.CreativeTabs.CREATIVE_TAB_ARRAY;
 
 public class Utensil {
@@ -47,7 +49,7 @@ public class Utensil {
 
     /** Return the unlocalized name for this utensil when it's burnt **/
     public String getUnlocalizedName() {
-        return "harvestfestival.meal.burnt." + label.replace("_", ".").toLowerCase();
+        return "harvestfestival.meal.burnt." + label.replace("_", ".").toLowerCase(Locale.US);
     }
 
     public final int getIndex() {

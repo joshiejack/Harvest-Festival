@@ -29,6 +29,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import java.util.Locale;
+
 import static joshie.harvest.animals.block.BlockTray.Tray.*;
 
 public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFeeder, INest {
@@ -55,7 +57,7 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
 
         @Override
         public String getName() {
-            return toString().toLowerCase();
+            return toString().toLowerCase(Locale.US);
         }
     }
 

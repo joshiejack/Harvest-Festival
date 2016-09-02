@@ -53,6 +53,11 @@ public class BlockFlower extends BlockHFEnum<BlockFlower, FlowerType> implements
     }
 
     @Override
+    public long getSellValue(ItemStack stack) {
+        return getEnumFromStack(stack) == FlowerType.WEED ? 1L : 0L;
+    }
+
+    @Override
     public boolean canPlaceBlockAt(World world, BlockPos pos) {
         IBlockState soil = world.getBlockState(pos.down());
         return super.canPlaceBlockAt(world, pos) && canBlockStay(world, pos.down(), soil);

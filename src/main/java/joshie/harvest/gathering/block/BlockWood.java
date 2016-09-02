@@ -77,13 +77,7 @@ public class BlockWood extends BlockHFSmashable<BlockWood, Wood> {
 
     @Override
     public long getSellValue(ItemStack stack) {
-        Wood type = getEnumFromStack(stack);
-        switch (type) {
-            case BRANCH_SMALL: return 5;
-            case BRANCH_MEDIUM: return 10;
-            case BRANCH_LARGE: return 0;
-            default: return 0;
-        }
+        return 1L;
     }
 
     @Override

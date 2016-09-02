@@ -45,6 +45,11 @@ public class BlockRock extends BlockHFSmashable<BlockRock, Rock> {
         setSoundType(SoundType.STONE);
     }
 
+    @Override
+    public long getSellValue(ItemStack stack) {
+        return 1L;
+    }
+
     @SuppressWarnings("deprecation")
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {

@@ -49,7 +49,7 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> implements 
 
     @Override
     public long getSellValue(ItemStack stack) {
-        return getEnumFromStack(stack) == CHICKEN_FEED ? 3 : 0;
+        return getEnumFromStack(stack) == CHICKEN_FEED ? 1 : 0;
     }
 
     @SideOnly(Side.CLIENT)

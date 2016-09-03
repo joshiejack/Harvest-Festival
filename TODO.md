@@ -2,9 +2,7 @@
 - Add lang for extra chatting
 - Add lang for all the quests
 - Add lang for all the recipes
-- Replace "Cook" texture with actual texture string in cooking book
 - Hovering over array of ingredients shows all of them in bar
-- Make text bold instead of curvy when hovering over it
 
 ### Textures
 - New Textures for the following NPCS

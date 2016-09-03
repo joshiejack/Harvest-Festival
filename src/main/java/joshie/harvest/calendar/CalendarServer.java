@@ -78,7 +78,7 @@ public class CalendarServer extends Calendar {
 
         SeasonData data = CalendarAPI.INSTANCE.getDataForSeason(season);
         for (Weather weather : Weather.values()) {
-            if (isWeatherDisabled(weather)) continue;
+            if (!isWeatherEnabled(weather)) continue;
             double chance = data.getWeatherChance(weather);
             if (rand.nextDouble() * 100D < chance) {
                 return weather;
@@ -88,7 +88,7 @@ public class CalendarServer extends Calendar {
         return Weather.SUNNY;
     }
 
-    private boolean isWeatherDisabled(Weather weather) {
+    private boolean isWeatherEnabled(Weather weather) {
         switch (weather) {
             case SUNNY:
                 return HFCalendar.ENABLE_SUNNY;

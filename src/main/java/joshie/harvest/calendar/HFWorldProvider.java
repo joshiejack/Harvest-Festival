@@ -134,7 +134,7 @@ public class HFWorldProvider extends WorldProviderSurface {
     @Override
     public boolean canSnowAt(BlockPos pos, boolean checkLight) {
         Weather weather = HFApi.calendar.getWeather(worldObj);
-        if (weather == Weather.SNOW || weather == Weather.BLIZZARD) {
+        if (weather.isSnow()) {
             Biome biome = worldObj.getBiome(pos);
             float f = biome.getFloatTemperature(pos);
 

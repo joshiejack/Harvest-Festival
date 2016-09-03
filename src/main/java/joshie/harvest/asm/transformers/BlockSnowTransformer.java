@@ -4,16 +4,12 @@ import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.tree.*;
 
-import static net.minecraftforge.fml.common.Loader.MC_VERSION;
-
-public class SnowTransformer extends AbstractASM {
-    private static final String SNOW = "joshie/harvest/asm/overrides/BlockSnowSheet";
+public class BlockSnowTransformer extends AbstractASM {
+    private static final String SNOW = "joshie/harvest/asm/BlockSnow";
 
     @Override
     public boolean isClass(String name) {
-        return name.equals("net.minecraft.block.Block") ||
-                (MC_VERSION.equals("1.9.4") && name.equals("ajt")) ||
-                (MC_VERSION.equals("1.10.2") && name.equals("afk"));
+        return name.equals("net.minecraft.block.Block") || name.equals("afk");
     }
 
     @Override
@@ -34,7 +30,7 @@ public class SnowTransformer extends AbstractASM {
                     AbstractInsnNode instruction = method.instructions.get(j);
                     if (instruction.getType() == AbstractInsnNode.LDC_INSN) {
                         LdcInsnNode ldcInstruction = (LdcInsnNode) instruction;
-                        if (ldcInstruction.cst.equals("SNOW_LAYER")) {
+                        if (ldcInstruction.cst.equals("snow_layer")) {
                             ((TypeInsnNode) method.instructions.get(j + 1)).desc = SNOW;
                             ((MethodInsnNode) method.instructions.get(j + 3)).owner = SNOW;
                             ((MethodInsnNode) method.instructions.get(j + 5)).owner = SNOW;

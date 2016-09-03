@@ -170,9 +170,9 @@ public class HFShops {
         CAFE = HFApi.shops.newShop(new ResourceLocation(MODID, "cafe"), HFNPCs.CAFE_OWNER);
         CAFE.addItem(0, new ItemStack(Items.POTIONITEM));
 
-        CAFE.addItem(new PurchaseableMeal(300, "salad"));
-        CAFE.addItem(new PurchaseableMeal(200, "cookies"));
-        CAFE.addItem(new PurchaseableMeal(300, "juice_pineapple"));
+        CAFE.addItem(new PurchaseableMeal(500, "salad"));
+        CAFE.addItem(new PurchaseableMeal(400, "cookies"));
+        CAFE.addItem(new PurchaseableMeal(750, "juice_pineapple"));
         CAFE.addItem(new PurchaseableMeal(250, "corn_baked"));
 
         //Allow the purchasing of cookware at the weekends

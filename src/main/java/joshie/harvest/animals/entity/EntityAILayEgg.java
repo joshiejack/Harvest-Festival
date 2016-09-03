@@ -32,7 +32,7 @@ public class EntityAILayEgg extends EntityAIBase {
 
     @Override
     public void updateTask() {
-        BlockPos position = new BlockPos(animal).add(worldObj.rand.nextInt(6) - 3, 0, worldObj.rand.nextInt(6) - 3);
+        BlockPos position = new BlockPos(animal).add(worldObj.rand.nextInt(8) - 4, 0, worldObj.rand.nextInt(8) - 4);
         IBlockState state = animal.worldObj.getBlockState(position);
         Block block = state.getBlock();
         if (block instanceof INest) {

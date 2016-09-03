@@ -15,16 +15,19 @@ public class CalendarLoader {
     @SubscribeEvent
     public void onWorldLoad(WorldEvent.Load event) {
         World world = event.getWorld();
-        //Load this data on one side only
-        if (world.provider.getDimension() == 0) {
-            data = (CalendarData) world.loadItemData(CalendarData.class, CALENDAR_NAME);
-            if (data == null) {
-                data = new CalendarData(CALENDAR_NAME);
-                world.setItemData(CALENDAR_NAME, data);
-            }
+        if (!world.isRemote) {
+            //Load this data on one side only
+            if (world.provider.getDimension() == 0) {
+                data = (CalendarData) world.getPerWorldStorage().getOrLoadData(CalendarData.class, CALENDAR_NAME);
+                if (data == null) {
+                    data = new CalendarData(CALENDAR_NAME);
+                    world.getPerWorldStorage().setData(CALENDAR_NAME, data);
+                }
 
-            data.getCalendar().setWorld(world);
-            HFTrackers.setServerCalendar(data.getCalendar());
+                data.getCalendar().setWorld(world);
+                data.getCalendar().recalculate(world);
+                HFTrackers.setServerCalendar(data.getCalendar());
+            }
         }
     }
 }

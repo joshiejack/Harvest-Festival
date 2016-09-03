@@ -4,7 +4,6 @@
 - Add lang for all the recipes
 
 ### Textures
-- Kitchen Knife (Looks good when right clicking)
 - Escape Rope
 - Inside of Fridge Door (fridge_door.png edit)
 - New Textures for the following NPCS
@@ -24,4 +23,4 @@
 - Cursed Potion Effect Icon
 - Crop Grass Better Texture
 - Fix the left most leaf in the autumn texture again
--Better Textures for the buttons plugin
+- Better Textures for the buttons plugin

@@ -1,8 +1,6 @@
 package joshie.harvest.asm;
 
-import joshie.harvest.asm.transformers.AbstractASM;
-import joshie.harvest.asm.transformers.RenderItemTransformer;
-import joshie.harvest.asm.transformers.RenderRainTransformer;
+import joshie.harvest.asm.transformers.*;
 import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin.MCVersion;
@@ -20,7 +18,7 @@ public class HFTransformer implements IFMLLoadingPlugin, IClassTransformer {
     private static List<AbstractASM> asm = new ArrayList<>();
 
     static {
-        //asm.add(new SnowTransformer()); //TODO: Update and use sub system
+        asm.add(new BlockSnowTransformer());
         asm.add(new RenderRainTransformer());
         asm.add(new RenderItemTransformer());
     }

@@ -7,6 +7,7 @@ import joshie.harvest.calendar.packet.PacketSetCalendar;
 import joshie.harvest.calendar.packet.PacketSyncForecast;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.network.PacketHandler;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
@@ -44,20 +45,27 @@ public class CalendarServer extends Calendar {
         else return SPRING;
     }
 
-    private void recalculate(World world) {
+    public void syncToPlayer(EntityPlayer player) {
+        PacketHandler.sendToClient(new PacketSetCalendar(DATE), player);
+        PacketHandler.sendToClient(new PacketSyncForecast(forecast), player);
+    }
+
+    public void recalculate(World world) {
         CalendarHelper.setDate(world, DATE);
         HFTrackers.markCalendarDirty();
     }
 
     public void recalculateAndUpdate(World world) {
         recalculate(world); //Recalc first
-        PacketHandler.sendToDimension(getDimension(), new PacketSetCalendar(DATE)); //Sync the new date
+        PacketHandler.sendToEveryone(new PacketSetCalendar(DATE)); //Sync the new date
     }
 
     /* ############# Weather ################*/
     public void setTodaysWeather(Weather weather) {
         forecast[0] = weather;
-        updateForecast();
+        updateWeatherStrength();
+        HFTrackers.markCalendarDirty();
+        PacketHandler.sendToEveryone(new PacketSyncForecast(forecast));
     }
 
     private Weather getRandomWeather(int day, Season season) {
@@ -104,25 +112,23 @@ public class CalendarServer extends Calendar {
 
         updateWeatherStrength();
         HFTrackers.markCalendarDirty();
-        PacketHandler.sendToDimension(getDimension(), new PacketSyncForecast(forecast));
+        PacketHandler.sendToEveryone(new PacketSyncForecast(forecast));
     }
 
     /* ############# Saving ################*/
     public void readFromNBT(NBTTagCompound nbt) {
         for (int i = 0; i < 7; i++) {
-            forecast[i] = Weather.values()[nbt.getCompoundTag("Forecast").getByte("Day" + i)];
+            forecast[i] = Weather.values()[nbt.getByte("Day" + i)];
         }
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
-        NBTTagCompound tag = new NBTTagCompound();
         for (int i = 0; i < 7; i++) {
             Weather weather = forecast[i];
             if (weather == null) weather = Weather.SUNNY;
-            tag.setByte("Day" + i, (byte) weather.ordinal());
+            nbt.setByte("Day" + i, (byte) weather.ordinal());
         }
 
-        nbt.setTag("Forecast", tag);
         return nbt;
     }
 }

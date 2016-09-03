@@ -9,6 +9,8 @@ import static org.objectweb.asm.Opcodes.*;
  *  a bunch of fake tile entities and renderers, so i could do this, which added a lot of bloat,
  *  doing it this way i can pass the renderers the stack **/
 public class RenderItemTransformer extends AbstractASM {
+    private static final String RENDER_HOOK = "joshie/harvest/asm/RenderHook";
+
     @Override
     public boolean isClass(String name) {
         return name.equals("net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer") || name.equals("bnx");
@@ -35,7 +37,7 @@ public class RenderItemTransformer extends AbstractASM {
                         Label l0 = new Label();
                         mv.visitLabel(l0);
                         mv.visitVarInsn(ALOAD, 1);
-                        mv.visitMethodInsn(INVOKESTATIC, "joshie/harvest/asm/hooks/RenderHook", "render", "(Lnet/minecraft/item/ItemStack;)Z", false);
+                        mv.visitMethodInsn(INVOKESTATIC, RENDER_HOOK, "render", "(Lnet/minecraft/item/ItemStack;)Z", false);
                         Label l1 = new Label();
                         mv.visitJumpInsn(IFEQ, l1);
                         mv.visitInsn(RETURN);

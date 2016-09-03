@@ -20,6 +20,7 @@ http://opengameart.org/content/lpc-farming-tilesets-magic-animations-and-ui-elem
 ## Other Textures
 Milk, Watering Cans, Wool, Bush, Ores > VapourDrive
 Mine Materials > VapourDrive, Balduran (http://balduranne.deviantart.com/)
+Knife > Potato
 Dust Overlays > Balduran (http://balduranne.deviantart.com/)
 Seasons HUD > CyanideX
 

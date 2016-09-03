@@ -68,19 +68,16 @@ public class EventsHandler {
         if (event.player instanceof EntityPlayerMP) {
             EntityPlayerMP player = (EntityPlayerMP) event.player;
             HFTrackers.<PlayerTrackerServer>getPlayerTracker(player).getStats().setBirthday(FMLCommonHandler.instance().getMinecraftServerInstance().worldServers[0]); //Set birthday to overworld date
-            HFTrackers.<CalendarServer>getCalendar(player.worldObj).recalculateAndUpdate(player.worldObj);
+            HFTrackers.<CalendarServer>getCalendar(player.worldObj).syncToPlayer(player);
             HFTrackers.<TownTrackerServer>getTownTracker(event.player.worldObj).syncToPlayer(player);
-            PlayerTrackerServer data = HFTrackers.getPlayerTracker(player);
-            data.syncPlayerStats(player);
+            HFTrackers.<PlayerTrackerServer>getPlayerTracker(player).syncPlayerStats(player);
         }
     }
 
     @SubscribeEvent
     public void onChangeDimension(PlayerChangedDimensionEvent event) {
         if (event.player instanceof EntityPlayerMP) {
-            World world = MCServerHelper.getWorld(event.toDim);
-            HFTrackers.<CalendarServer>getCalendar(world).recalculateAndUpdate(world);
-            HFTrackers.<TownTrackerServer>getTownTracker(world).syncToPlayer(event.player); //Resync the town data
+            HFTrackers.<TownTrackerServer>getTownTracker(MCServerHelper.getWorld(event.toDim)).syncToPlayer(event.player); //Resync the town data
         }
     }
 }

@@ -1,4 +1,4 @@
-package joshie.harvest.asm.hooks;
+package joshie.harvest.asm;
 
 import joshie.harvest.core.HFClientProxy;
 import joshie.harvest.core.render.FakeEntityRenderer.EntityItemRenderer;

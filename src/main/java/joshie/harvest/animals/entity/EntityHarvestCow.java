@@ -9,8 +9,10 @@ import joshie.harvest.api.animals.IMilkable;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.SizeableHelper;
 import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumHand;
@@ -24,7 +26,18 @@ public class EntityHarvestCow extends EntityCow implements IAnimalTracked, IMilk
         super(world);
         setSize(1.4F, 1.4F);
         data = HFApi.animals.newData(this, "cow");
-        tasks.addTask(3, new EntityAIEat(this));
+    }
+
+    @Override
+    protected void initEntityAI() {
+        tasks.addTask(0, new EntityAISwimming(this));
+        tasks.addTask(1, new EntityAIPanic(this, 2.0D));
+        tasks.addTask(3, new EntityAITempt(this, 1.25D, Items.WHEAT, false));
+        tasks.addTask(4, new EntityAIFollowParent(this, 1.25D));
+        tasks.addTask(5, new EntityAIEat(this));
+        tasks.addTask(6, new EntityAIWander(this, 1.0D));
+        tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
+        tasks.addTask(8, new EntityAILookIdle(this));
     }
 
     @Override

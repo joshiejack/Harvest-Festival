@@ -5,6 +5,7 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.calendar.packet.PacketSetCalendar;
 import joshie.harvest.calendar.packet.PacketSyncForecast;
+import joshie.harvest.calendar.packet.PacketSyncStrength;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.network.PacketHandler;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,9 +20,10 @@ import static joshie.harvest.calendar.HFCalendar.DAYS_PER_SEASON;
 public class CalendarServer extends Calendar {
     private CalendarDate DATE = new CalendarDate(0, SPRING, 1);
     private static final Random rand = new Random();
+    private CalendarData data;
 
-    @Override
-    public void setWorld(World world) {
+    public void setWorld(CalendarData data, World world) {
+        this.data = data;
         super.setWorld(world);
     }
 
@@ -48,6 +50,7 @@ public class CalendarServer extends Calendar {
     public void syncToPlayer(EntityPlayer player) {
         PacketHandler.sendToClient(new PacketSetCalendar(DATE), player);
         PacketHandler.sendToClient(new PacketSyncForecast(forecast), player);
+        PacketHandler.sendToClient(new PacketSyncStrength(rainStrength, stormStrength), player);
     }
 
     public void recalculate(World world) {
@@ -116,13 +119,21 @@ public class CalendarServer extends Calendar {
     }
 
     /* ############# Saving ################*/
+    public void markDirty() {
+        data.markDirty();
+    }
+
     public void readFromNBT(NBTTagCompound nbt) {
+        rainStrength = nbt.getFloat("Rain");
+        stormStrength = nbt.getFloat("Storm");
         for (int i = 0; i < 7; i++) {
             forecast[i] = Weather.values()[nbt.getByte("Day" + i)];
         }
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+        nbt.setFloat("Rain", rainStrength);
+        nbt.setFloat("Storm", stormStrength);
         for (int i = 0; i < 7; i++) {
             Weather weather = forecast[i];
             if (weather == null) weather = Weather.SUNNY;

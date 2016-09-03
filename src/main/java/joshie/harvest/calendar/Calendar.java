@@ -39,7 +39,7 @@ public abstract class Calendar extends HFTracker implements SeasonProvider {
     /* ############# Weather ################*/
     protected Weather[] forecast = new Weather[7];
     protected float rainStrength;
-    private float stormStrength;
+    protected float stormStrength;
 
     public Weather getTodaysWeather() {
         return forecast[0] != null ? forecast[0] : SUNNY;

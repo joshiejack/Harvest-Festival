@@ -20,4 +20,9 @@ public class CalendarClient extends Calendar {
         this.forecast = forecast;
         updateWeatherStrength();
     }
+
+    public void setStrength(float rain, float storm) {
+        this.rainStrength = rain;
+        this.stormStrength = storm;
+    }
 }

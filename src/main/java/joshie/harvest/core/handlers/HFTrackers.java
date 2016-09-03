@@ -5,9 +5,10 @@ import gnu.trove.map.hash.TIntObjectHashMap;
 import joshie.harvest.animals.AnimalTracker;
 import joshie.harvest.calendar.Calendar;
 import joshie.harvest.calendar.CalendarClient;
-import joshie.harvest.calendar.CalendarLoader;
+import joshie.harvest.calendar.CalendarData;
 import joshie.harvest.calendar.CalendarServer;
 import joshie.harvest.core.helpers.UUIDHelper;
+import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.player.PlayerTracker;
 import joshie.harvest.player.PlayerTrackerClient;
 import joshie.harvest.player.PlayerTrackerServer;
@@ -36,6 +37,7 @@ public class HFTrackers {
 
     public static void resetServer() {
         SERVER_WORLDS = new TIntObjectHashMap<>();
+        SERVER_CALENDAR = null;
     }
 
     @SideOnly(Side.CLIENT)
@@ -89,21 +91,34 @@ public class HFTrackers {
     }
 
     /*####################Calendar Trackers##########################*/
+    private static final String CALENDAR_NAME = HFModInfo.CAPNAME + "-Calendar";
     @SideOnly(Side.CLIENT)
     private static Calendar CLIENT_CALENDAR;
     private static CalendarServer SERVER_CALENDAR;
 
     @SuppressWarnings("unchecked")
     public static <C extends Calendar> C getCalendar(World world) {
-        return (world.isRemote) ? (C) CLIENT_CALENDAR : (C) SERVER_CALENDAR;
+        return (world.isRemote) ? (C) CLIENT_CALENDAR : (C) getServerCalendar(world);
     }
 
-    public static void setServerCalendar(CalendarServer calendar) {
-        SERVER_CALENDAR = calendar;
+    private static CalendarServer getServerCalendar(World overworld) {
+        if (SERVER_CALENDAR == null) {
+            CalendarData data = (CalendarData) overworld.getPerWorldStorage().getOrLoadData(CalendarData.class, CALENDAR_NAME);
+            if (data == null) {
+                data = new CalendarData(CALENDAR_NAME);
+                overworld.getPerWorldStorage().setData(CALENDAR_NAME, data);
+            }
+
+            SERVER_CALENDAR = data.getCalendar();
+            SERVER_CALENDAR.setWorld(data, overworld);
+            SERVER_CALENDAR.recalculate(overworld);
+        }
+
+        return SERVER_CALENDAR;
     }
 
     public static void markCalendarDirty() {
-        CalendarLoader.data.markDirty();
+        SERVER_CALENDAR.markDirty();
     }
 
     /*####################Player Trackers#############################*/

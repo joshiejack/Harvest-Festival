@@ -29,8 +29,8 @@ public class ItemUtensil extends ItemHFEnum<ItemUtensil, Utensil> {
     }
 
     @Override
-    public boolean shouldDisplayInCreative(Utensil ingredient) {
-        return ingredient == KNIFE;
+    public boolean shouldDisplayInCreative(Utensil utensil) {
+        return utensil == KNIFE;
     }
 
     @Override

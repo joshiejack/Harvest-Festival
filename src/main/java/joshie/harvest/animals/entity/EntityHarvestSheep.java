@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EntityHarvestSheep extends EntitySheep implements IAnimalTracked {
-    private final IAnimalData data;
+    private IAnimalData data;
 
     public EntityHarvestSheep(World world) {
         super(world);

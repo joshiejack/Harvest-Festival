@@ -13,9 +13,9 @@ public class EntityAILayEgg extends EntityAIBase {
     private EntityHarvestChicken animal;
     private IAnimalTracked tracked;
 
-    public EntityAILayEgg(IAnimalTracked animal) {
-        this.worldObj = animal.getData().getAnimal().worldObj;
-        this.animal = (EntityHarvestChicken) animal.getData().getAnimal();
+    public EntityAILayEgg(IAnimalTracked<EntityHarvestChicken> animal) {
+        this.worldObj = animal.getAsEntity().worldObj;
+        this.animal = animal.getAsEntity();
         this.tracked = animal;
         this.setMutexBits(3);
     }

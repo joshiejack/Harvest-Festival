@@ -18,15 +18,14 @@ import net.minecraft.world.World;
 
 import java.util.Set;
 
-public class EntityHarvestChicken extends EntityChicken implements IAnimalTracked {
+public class EntityHarvestChicken extends EntityChicken implements IAnimalTracked<EntityHarvestChicken> {
     private static final Set<Item> TEMPTATION_ITEMS = Sets.newHashSet(new Item[] {Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS});
     private final IAnimalData data;
 
     public EntityHarvestChicken(World world) {
         super(world);
-        data = HFApi.animals.newData(this, "chicken");
         timeUntilNextEgg = Integer.MAX_VALUE;
-
+        data = HFApi.animals.newData(this, "chicken");
     }
 
     @Override

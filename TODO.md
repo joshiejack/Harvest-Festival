@@ -2,10 +2,11 @@
 - Add lang for extra chatting
 - Add lang for all the quests
 - Add lang for all the recipes
+- Replace "Cook" texture with actual texture string in cooking book
+- Hovering over array of ingredients shows all of them in bar
+- Make text bold instead of curvy when hovering over it
 
 ### Textures
-- Escape Rope
-- Inside of Fridge Door (fridge_door.png edit)
 - New Textures for the following NPCS
     - Jeimmi the Mayor                  (For some reason based on my brother, even those she's an older lady)
     - Johan the Trader                  (Based on Girafi)
@@ -20,7 +21,5 @@
     - Yulife the Builder                (Based on Yulife)
 - Texture needs finishing
     - Suirienji the Clockmakers Son     (Based on Pokefenn)
-- Cursed Potion Effect Icon
-- Crop Grass Better Texture
-- Fix the left most leaf in the autumn texture again
+- Crop Grass Better Texture (Should I steal from Tides :P)
 - Better Textures for the buttons plugin

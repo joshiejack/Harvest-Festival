@@ -1,9 +1,12 @@
 package joshie.harvest.core.base.item;
 
 import joshie.harvest.api.core.ITiered;
+import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.ICreativeSorted;
 import joshie.harvest.core.util.Text;
+import joshie.harvest.mining.HFMining;
+import joshie.harvest.mining.item.ItemMaterial.Material;
 import joshie.harvest.tools.ToolHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -74,7 +77,6 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
         double newLevel = Math.min(100D, level + increase);
         stack.getSubCompound("Data", true).setDouble("Level", newLevel);
     }
-
 
     @Override
     public ToolTier getTier(ItemStack stack) {
@@ -357,7 +359,15 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
     //Tools
     @Override
     public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
-        return false;
+        switch(getTier(toRepair)) {
+            case BASIC: return InventoryHelper.isOreName(repair, "stone");
+            case COPPER: return InventoryHelper.ITEM_STACK.matches(repair, HFMining.MATERIALS.getStackFromEnum(Material.COPPER));
+            case SILVER: return InventoryHelper.ITEM_STACK.matches(repair, HFMining.MATERIALS.getStackFromEnum(Material.SILVER));
+            case GOLD: return InventoryHelper.ITEM_STACK.matches(repair, HFMining.MATERIALS.getStackFromEnum(Material.GOLD));
+            case MYSTRIL: return InventoryHelper.ITEM_STACK.matches(repair, HFMining.MATERIALS.getStackFromEnum(Material.MYSTRIL));
+            case MYTHIC: return InventoryHelper.ITEM_STACK.matches(repair, HFMining.MATERIALS.getStackFromEnum(Material.MYTHIC));
+            default: return false;
+        }
     }
 
     @Override

@@ -51,7 +51,7 @@ public class ItemBlueprint extends ItemHFFML<ItemBlueprint, BuildingImpl> implem
 
             if (!world.isRemote) TownHelper.ensureTownExists(world, raytrace.getBlockPos());
             BuildingImpl building = getObjectFromStack(stack);
-            if (building != null && (building.canHaveMultiple() || !TownHelper.getClosestTownToEntity(player).hasBuilding(building.getRegistryName()))) {
+            if (player.canPlayerEdit(raytrace.getBlockPos(), EnumFacing.DOWN, stack) && building != null && (building.canHaveMultiple() || !TownHelper.getClosestTownToEntity(player).hasBuilding(building.getRegistryName()))) {
                 if (!world.isRemote) {
                     BuildingKey key = BuildingHelper.getPositioning(world, raytrace, building, player, hand);
                     Direction direction = Direction.withMirrorAndRotation(key.getMirror(), key.getRotation());

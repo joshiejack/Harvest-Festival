@@ -31,13 +31,13 @@ public class ItemBuilding extends ItemHFFML<ItemBuilding, BuildingImpl> implemen
     @Override
     public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
         if (world.provider.getDimension() == 0) {
-            BuildingImpl building = getObjectFromStack(stack);
-            if (building != null && (DEBUG_MODE || building.canHaveMultiple() || !TownHelper.getClosestTownToEntity(player).hasBuilding(building.getRegistryName()))) {
-                RayTraceResult raytrace = BuildingHelper.rayTrace(player, 128, 0F);
-                if (raytrace == null || raytrace.getBlockPos() == null || raytrace.sideHit != EnumFacing.UP) {
-                    return new ActionResult(EnumActionResult.PASS, stack);
-                }
+            RayTraceResult raytrace = BuildingHelper.rayTrace(player, 128, 0F);
+            if (raytrace == null || raytrace.getBlockPos() == null || raytrace.sideHit != EnumFacing.UP) {
+                return new ActionResult(EnumActionResult.PASS, stack);
+            }
 
+            BuildingImpl building = getObjectFromStack(stack);
+            if (player.canPlayerEdit(raytrace.getBlockPos(), EnumFacing.DOWN, stack) && building != null && (DEBUG_MODE || building.canHaveMultiple() || !TownHelper.getClosestTownToEntity(player).hasBuilding(building.getRegistryName()))) {
                 if (!world.isRemote) {
                     TownHelper.ensureTownExists(world, raytrace.getBlockPos()); //Force a town to exist near where you clicked
                 }

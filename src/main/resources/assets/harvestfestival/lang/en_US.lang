@@ -600,6 +600,7 @@ harvestfestival.npc.thomas.greeting2=Remember if you ever need anything cursed, 
 harvestfestival.npc.thomas.greeting3=Only he can save you now.
 harvestfestival.npc.thomas.greeting4=The lord's grace, is shining down upon you.
 harvestfestival.npc.thomas.greeting5=If you ever come across a cursed tool, bring it to me and I can bless it for 10000 Gold.
+harvestfestival.npc.thomas.greeting6=I can repair blessed tools for 1000 gold.
 
 #Candice
 harvestfestival.npc.candice.greeting1=Do you know what I love about milking the most? Sharing it with friends! Sometimes we just get it all over us. So it's nice to have a helping hand to clean up the mess.
@@ -687,6 +688,10 @@ harvestfestival.quest.trade.cursed.accept=Thank you very much youngun, I can now
 harvestfestival.quest.trade.cursed.gold=Ahh I see you have a cursed tool! For a small fee of 10000 Gold I can bless it for you and remove that curse.
 harvestfestival.quest.trade.cursed.wait=It's nice to see you, the blessing of your tools is going well, it will take a little bit longer, please come back in %s days
 harvestfestival.quest.trade.cursed.done=Your %s is now ready! All blessed for you! Here take it!
+
+## Priest Repair Quests
+harvestfestival.quest.trade.bless.gold=Looks like you have a blessed tool. I can repair this for a small sum of 500 Gold.
+harvestfestival.quest.trade.bless.done=And with all the almighty power I hearby bless your %s once again and restore it's powers.
 
 ##Trader Jonny Quest
 harvestfestival.quest.trade.vanilla.egg=Thank you very much for these here eggs. I will happily trade them for some from my homeland.

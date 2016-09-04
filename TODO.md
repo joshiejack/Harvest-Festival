@@ -11,5 +11,4 @@
     - Jim the Barn Owner                (Based on SpitefulFox)
     - Tomas the Priest                  (Based on some kid from a server I played on)
     - Jade the Seed Gatherer            (Based on JadedCat)
-    - Yulife the Builder                (Based on Yulife)
 - Better Textures for the buttons plugin

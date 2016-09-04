@@ -5,7 +5,6 @@
 (Liara) - http://www.minecraftskins.com/skin/1559940/mess-hall-cook/
 (Jenni) - http://www.minecraftskins.com/skin/163960/recette-lemongrass/
 (Jim) - http://www.minecraftskins.com/skin/2527949/teen-cowboy/
-(Danieru) - http://www.minecraftskins.com/skin/2592695/medieval---blacksmith/
 (Jade) - Mix of http://www.minecraftskins.com/skin/3032752/purple-gardener/ and http://mod-minecraft.net/pink-haired-girl-skin/
 
 ## The Shop GUI Uses textures from

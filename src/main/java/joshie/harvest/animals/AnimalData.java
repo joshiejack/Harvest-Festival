@@ -10,7 +10,6 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.animals.IAnimalType;
-import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.EntityHelper;
 import joshie.harvest.npc.HFNPCs;
@@ -27,6 +26,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.lang.ref.WeakReference;
 import java.util.Random;
 import java.util.UUID;
 
@@ -35,12 +35,11 @@ import static joshie.harvest.core.network.PacketHandler.sendToEveryone;
 public class AnimalData implements IAnimalData {
     private static final Random rand = new Random();
 
+    private IAnimalTracked tracked;
     private EntityAnimal animal;
-    private IRelatable relatable;
-    private IAnimalData data;
     private IAnimalType type;
 
-    private EntityPlayer owner;
+    private WeakReference<EntityPlayer> owner;
     private UUID o_uuid;
 
     private int currentLifespan = 0; //How many days this animal has lived for
@@ -56,7 +55,7 @@ public class AnimalData implements IAnimalData {
     //Product based stuff
     private int daysPassed; //How many days have passed so far
     private int productsPerDay = 1; //The maximum number of products this animal can produce a day
-    private boolean producedProducts; //Whether the animal has produced products this day
+    private int producedProducts; //Whether the animal has produced products this day
     private boolean thrown; //Whether this animal has been thrown or not today, only affects chickens
     private boolean treated; //Whether this animal has had it's treat for today
     private int genericTreats; //Number of generic treats this animal had
@@ -68,8 +67,7 @@ public class AnimalData implements IAnimalData {
 
     public AnimalData(IAnimalTracked animal, IAnimalType type) {
         this.animal = (EntityAnimal) animal;
-        this.relatable = animal;
-        this.data = animal.getData();
+        this.tracked = animal;
         this.type = type;
     }
 
@@ -78,12 +76,7 @@ public class AnimalData implements IAnimalData {
         return type;
     }
 
-    @Override
-    public boolean hasDied() {
-        return hasDied;
-    }
-
-    protected int getDeathChance() {
+    private int getDeathChance() {
         //If the owner is offline, have a low chance of death
         EntityPlayer owner = getOwner();
         if (owner == null) return Integer.MAX_VALUE;
@@ -93,7 +86,7 @@ public class AnimalData implements IAnimalData {
         }
 
         //Gets the adjusted relationship, 0-65k
-        int relationship = HFApi.relationships.getRelationship(owner, relatable);
+        int relationship = HFApi.relationships.getRelationship(owner, tracked);
         double chance = (relationship / (double) HFNPCs.MAX_FRIENDSHIP) * 200;
         chance += healthiness;
         if (chance <= 1) {
@@ -107,7 +100,6 @@ public class AnimalData implements IAnimalData {
         this.hasDied = true;
     }
 
-    @Override
     public boolean newDay() {
         if (animal != null) {
             //Check if the animal is going to die
@@ -193,8 +185,8 @@ public class AnimalData implements IAnimalData {
             if (daysBetween > 0) {
                 if (daysPassed >= daysBetween) {
                     daysPassed = 0;
-                    producedProducts = false;
-                    type.refreshProduct(data, animal);
+                    producedProducts = 0;
+                    type.refreshProduct(this, animal);
                 }
             }
 
@@ -223,7 +215,6 @@ public class AnimalData implements IAnimalData {
         return daysNotFed >= 0;
     }
 
-    @Override
     public EntityAnimal getAnimal() {
         return animal;
     }
@@ -234,12 +225,12 @@ public class AnimalData implements IAnimalData {
     }
 
     private EntityPlayer getAndCreateOwner() {
-        if (o_uuid != null) {
-            if (owner == null) {
-                owner = EntityHelper.getPlayerFromUUID(o_uuid);
+        if (owner != null) return owner.get();
+        else {
+            if (o_uuid != null) {
+                owner = new WeakReference<>(EntityHelper.getPlayerFromUUID(o_uuid));
+                return owner.get();
             }
-
-            return owner;
         }
 
         return null;
@@ -260,24 +251,18 @@ public class AnimalData implements IAnimalData {
     }
 
     @Override
-    public UUID getOwnerID() {
-        return o_uuid;
-    }
-
-    @Override
     public void setOwner(@Nonnull UUID uuid) {
-        this.owner = EntityHelper.getPlayerFromUUID(o_uuid);
         this.o_uuid = uuid;
     }
 
     @Override
     public boolean canProduce() {
-        return healthiness > 0 && !producedProducts && productsPerDay > 0;
+        return healthiness > 0 && producedProducts < productsPerDay;
     }
 
     @Override
-    public void setProduced() {
-        producedProducts = true;
+    public void setProduced(int amount) {
+        producedProducts += amount;
         sendToEveryone(new PacketSyncProductsProduced(animal.getEntityId(), producedProducts));
     }
 
@@ -301,7 +286,7 @@ public class AnimalData implements IAnimalData {
 
     private void affectRelationship(EntityPlayer player, int amount) {
         if (player != null) {
-            HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().affectRelationship(player, relatable, amount);
+            HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().affectRelationship(player, tracked, amount);
         }
     }
 
@@ -377,23 +362,20 @@ public class AnimalData implements IAnimalData {
             baby.setGrowingAge(-(24000 * HFAnimals.AGING_TIMER));
             baby.setLocationAndAngles(animal.posX, animal.posY, animal.posZ, 0.0F, 0.0F);
             ((IAnimalTracked)baby).getData().setOwner(o_uuid);
-            int parent = HFTrackers.<PlayerTrackerServer>getPlayerTracker(animal.worldObj, o_uuid).getRelationships().getRelationship(relatable);
+            int parent = HFTrackers.<PlayerTrackerServer>getPlayerTracker(animal.worldObj, o_uuid).getRelationships().getRelationship(tracked);
             HFTrackers.getPlayerTracker(animal.worldObj, o_uuid).getRelationships().copyRelationship(getOwner(), parent, ((IAnimalTracked)baby), 50D);
         }
     }
 
-    @Override
     public void setHealthiness(int healthiness) {
         this.healthiness = healthiness;
     }
 
-    @Override
     public void setDaysNotFed(int daysNotFed) {
         this.daysNotFed = daysNotFed;
     }
 
-    @Override
-    public void setProductsProduced(boolean producedProducts) {
+    public void setProductsProduced(int producedProducts) {
         this.producedProducts = producedProducts;
     }
 
@@ -402,7 +384,7 @@ public class AnimalData implements IAnimalData {
         buf.writeByte(healthiness);
         buf.writeByte(daysNotFed);
         buf.writeByte(productsPerDay);
-        buf.writeBoolean(producedProducts);
+        buf.writeByte(producedProducts);
     }
 
     @Override
@@ -410,7 +392,7 @@ public class AnimalData implements IAnimalData {
         healthiness = buf.readByte();
         daysNotFed = buf.readByte();
         productsPerDay = buf.readByte();
-        producedProducts = buf.readBoolean();
+        producedProducts = buf.readByte();
     }
 
     @Override
@@ -433,7 +415,7 @@ public class AnimalData implements IAnimalData {
         thrown = nbt.getBoolean("Thrown");
         if (type.getDaysBetweenProduction() > 0) {
             productsPerDay = nbt.getByte("NumProducts");
-            producedProducts = nbt.getBoolean("ProducedProducts");
+            producedProducts = nbt.getByte("ProducedProducts");
         }
 
         isPregnant = nbt.getBoolean("IsPregnant");
@@ -461,7 +443,7 @@ public class AnimalData implements IAnimalData {
 
         if (type.getDaysBetweenProduction() > 0) {
             nbt.setByte("NumProducts", (byte) productsPerDay);
-            nbt.setBoolean("ProducedProducts", producedProducts);
+            nbt.setByte("ProducedProducts", (byte) producedProducts);
         }
 
         nbt.setBoolean("IsPregnant", isPregnant);

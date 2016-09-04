@@ -58,7 +58,7 @@ public class EntityHarvestCow extends EntityCow implements IAnimalTracked, IMilk
         }
 
         if (!worldObj.isRemote && !HFAnimals.OP_ANIMALS) {
-            data.setProduced();
+            data.setProduced(getData().getProductsPerDay());
         }
     }
 

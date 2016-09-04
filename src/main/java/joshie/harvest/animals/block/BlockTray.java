@@ -144,8 +144,8 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
             if (size == Size.SMALL) world.setBlockState(pos, getStateFromEnum(SMALL_CHICKEN));
             else if (size == Size.MEDIUM) world.setBlockState(pos, getStateFromEnum(MEDIUM_CHICKEN));
             else if (size == Size.LARGE) world.setBlockState(pos, getStateFromEnum(LARGE_CHICKEN));
-            EntityAnimal entity = tracked.getData().getAnimal();
-            tracked.getData().setProduced();
+            EntityAnimal entity = tracked.getAsEntity();
+            tracked.getData().setProduced(1);
             entity.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (entity.worldObj.rand.nextFloat() - entity.worldObj.rand.nextFloat()) * 0.2F + 1.0F);
             return true;
         }

@@ -28,6 +28,7 @@ public interface CalendarManager {
     @Nullable
     Season getSeasonAtCoordinates(World world, BlockPos pos);
 
-    /** Return todays weather **/
+    /** Return todays weather
+     * @param world a world object **/
     Weather getWeather(World world);
 }

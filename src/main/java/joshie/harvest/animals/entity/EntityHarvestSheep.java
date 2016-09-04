@@ -87,7 +87,7 @@ public class EntityHarvestSheep extends EntitySheep implements IAnimalTracked {
             ret.add(product);
             if (!worldObj.isRemote && !HFAnimals.OP_ANIMALS) {
                 setSheared(true);
-                data.setProduced();
+                data.setProduced(getData().getProductsPerDay());
             }
 
             playSound(SoundEvents.ENTITY_SHEEP_SHEAR, 1.0F, 1.0F);

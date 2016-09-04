@@ -1,7 +1,6 @@
 package joshie.harvest.api.animals;
 
 import io.netty.buffer.ByteBuf;
-import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -11,49 +10,40 @@ import javax.annotation.Nullable;
 import java.util.UUID;
 
 public interface IAnimalData {
-    /** Returns the animal type **/
+    /** @return the animal type that this data is tracking **/
     IAnimalType getType();
 
-    /** Returns the instanceof this animal
-     *  May return null if the animal got lost somehow **/
-    EntityAnimal getAnimal();
-    
     /** Returns the owner of this animal, if they are within range
-     *  @return     return null if the player isn't online or there is no owner **/
+     *  @return     return null if the player isn't online, no owner or not withing 128 blocks **/
+    @Nullable
     EntityPlayer getOwner();
 
-    /** Returns the number of products this animal can produce per day **/
+    /** @return the maximum number of products this animal can produce per day **/
     int getProductsPerDay();
-
-    /** Returns the owner **/
-    UUID getOwnerID();
 
     /** Marks this player as the animals owner **/
     void setOwner(@Nonnull UUID uuid);
-    
-    /** Call to check whether the animal is hungry or not **/
+
+    /** @return true if this animal is hungry **/
     boolean isHungry();
 
-    /** Returns true if this animal recently died **/
-    boolean hasDied();
-
-    /** Called when a new day passes for this animal
-     *  should return false if this change causes the animal to die.*/
-    boolean newDay();
-
-    /** Returns true if this animal can currently produce products **/
+    /** @return  true if this animal can currently produce products **/
     boolean canProduce();
 
-    /** Mark this animal as having produced a product today **/
-    void setProduced();
+    /** Mark this animal as having produced a product today
+     * @param amount the amount to count as having produced**/
+    void setProduced(int amount);
 
-    /** Mark this animal as dead **/
+    /** Mark this animal as having been died
+     *  The data for it will be removed when the day ticks over */
     void setDead();
 
-    /** Clean this animal */
+    /** Clean this animal
+     * @param player    the player cleaning the animal */
     void clean(@Nullable EntityPlayer player);
 
-    /** Called when this animal is dismounted from a players head*/
+    /** Called when this animal is dismounted from a players head
+     * @param player    the player the animal was riding */
     void dismount(@Nullable EntityPlayer player);
 
     /** Feed this animal
@@ -74,9 +64,7 @@ public interface IAnimalData {
      *  return true if sucessful */
     boolean impregnate(@Nullable EntityPlayer player);
 
-    void setHealthiness(int healthiness);
-    void setDaysNotFed(int daysNotFed);
-    void setProductsProduced(boolean producedProducts);
+    /** IMPORTANT:!!!::::::!;;;;;;;;; ****/
     //Call this in your entities writeSpawnData
     void toBytes(ByteBuf buf);
     //Call this in your entities readSpawnData

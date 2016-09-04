@@ -19,7 +19,7 @@ public class RelationshipHandlerEntity implements IRelatableDataHandler<IAnimalT
 
     @Override
     public void onMessage(World world, IAnimalTracked tracked, boolean particles) {
-        EntityAnimal entity = tracked.getData().getAnimal();
+        EntityAnimal entity = tracked.getAsEntity();
         if (entity != null) {
             if (particles) {
                 for (int j = 0; j < 3D; j++) {
@@ -40,8 +40,8 @@ public class RelationshipHandlerEntity implements IRelatableDataHandler<IAnimalT
     }
 
     @Override
-    public void writeToNBT(IAnimalTracked relatable, NBTTagCompound tag) {
-        tag.setString("UUID", UUIDHelper.getEntityUUID(relatable.getData().getAnimal()).toString());
-        tag.setInteger("Dimension", relatable.getData().getAnimal().worldObj.provider.getDimension());
+    public void writeToNBT(IAnimalTracked tracked, NBTTagCompound tag) {
+        tag.setString("UUID", UUIDHelper.getEntityUUID(tracked.getAsEntity()).toString());
+        tag.setInteger("Dimension", tracked.getAsEntity().worldObj.provider.getDimension());
     }
 }

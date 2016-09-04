@@ -9,6 +9,5 @@
     - Liara the Café Owner              (Based on Liara)
     - Jenni the General Store Owner     (Based on Othlon)
     - Jim the Barn Owner                (Based on SpitefulFox)
-    - Tomas the Priest                  (Based on some kid from a server I played on)
     - Jade the Seed Gatherer            (Based on JadedCat)
 - Better Textures for the buttons plugin

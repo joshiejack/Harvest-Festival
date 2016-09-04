@@ -17,7 +17,5 @@
     - Jakob the Fisherman               (Based on another kid from a server I played on)
     - Jade the Seed Gatherer            (Based on JadedCat)
     - Yulife the Builder                (Based on Yulife)
-- Texture needs finishing
-    - Suirienji the Clockmakers Son     (Based on Pokefenn)
 - Crop Grass Better Texture (Should I steal from Tides :P)
 - Better Textures for the buttons plugin

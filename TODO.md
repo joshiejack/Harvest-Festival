@@ -3,7 +3,6 @@
 - Add lang for all the quests
 - Add lang for all the recipes
 - Hovering over array of ingredients shows all of them in bar
-- Fix sprinkler gui render
 
 ### Textures
 - New Textures for the following NPCS

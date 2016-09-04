@@ -4,15 +4,16 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.relations.IRelatableDataHandler;
 import joshie.harvest.core.network.PacketHandler;
+import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.player.packet.PacketSyncGifted;
 import joshie.harvest.player.packet.PacketSyncMarriage;
 import joshie.harvest.player.packet.PacketSyncRelationship;
-import joshie.harvest.npc.HFNPCs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
+import javax.annotation.Nullable;
 import java.util.HashSet;
 import java.util.Map;
 
@@ -52,6 +53,15 @@ public class RelationshipDataServer extends RelationshipData {
         int newValue = Math.max(0, Math.min(HFNPCs.MARRIAGE_REQUIREMENT, getRelationship(relatable) + amount));
         relationships.put(relatable, newValue);
         syncRelationship((EntityPlayerMP) player, relatable, newValue, true);
+    }
+
+    @Override
+    public void copyRelationship(@Nullable EntityPlayer player,int adult, IRelatable baby, double percentage) {
+        int newValue = (int)(adult * (percentage / 100D));
+        relationships.put(baby, newValue);
+        if (player != null) {
+            syncRelationship((EntityPlayerMP) player, baby, newValue, true);
+        }
     }
 
     public void sync(EntityPlayerMP player) {

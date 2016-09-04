@@ -129,7 +129,7 @@ public class QuestUpgrade extends QuestTrade {
                 if (getLevel(player) != 100D) return "level";
 
                 required = getCost(holding);
-                boolean hasGold = HFTrackers.getPlayerTracker(player).getStats().getGold() >= required;
+                boolean hasGold = HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getGold() >= required;
                 //Blacksmith complains about not having enough gold to complete the upgrade
                 if (!hasGold) return "gold";
 

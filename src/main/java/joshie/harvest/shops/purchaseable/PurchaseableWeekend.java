@@ -19,7 +19,7 @@ public class PurchaseableWeekend extends Purchaseable {
         if (required == null || required.length == 0) return true;
         else {
             for (ItemStack stack: required) {
-                if (!HFTrackers.getPlayerTracker(player).getTracking().hasObtainedItem(stack)) return false;
+                if (!HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().hasObtainedItem(stack)) return false;
             }
 
             return true;
@@ -34,7 +34,7 @@ public class PurchaseableWeekend extends Purchaseable {
 
     @Override
     public boolean onPurchased(EntityPlayer player) {
-        HFTrackers.getPlayerTracker(player).getTracking().addAsObtained(stacks[0]);
+        HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().addAsObtained(stacks[0]);
         return super.onPurchased(player);
     }
 }

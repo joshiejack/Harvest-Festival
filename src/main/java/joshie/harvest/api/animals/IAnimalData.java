@@ -8,6 +8,7 @@ import net.minecraft.nbt.NBTTagCompound;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.UUID;
 
 public interface IAnimalData {
     /** Returns the animal type **/
@@ -24,8 +25,11 @@ public interface IAnimalData {
     /** Returns the number of products this animal can produce per day **/
     int getProductsPerDay();
 
+    /** Returns the owner **/
+    UUID getOwnerID();
+
     /** Marks this player as the animals owner **/
-    void setOwner(@Nonnull EntityPlayer player);
+    void setOwner(@Nonnull UUID uuid);
     
     /** Call to check whether the animal is hungry or not **/
     boolean isHungry();

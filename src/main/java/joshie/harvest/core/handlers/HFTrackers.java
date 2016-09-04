@@ -135,13 +135,13 @@ public class HFTrackers {
         return (PlayerTrackerClient) CLIENT_PLAYER;
     }
 
-    public static PlayerTrackerServer getPlayerTrackerFromUUID(UUID uuid) {
-        return SERVER_PLAYERS.get(uuid);
+    public static <P extends PlayerTracker> P getPlayerTrackerFromPlayer(EntityPlayer player) {
+        return getPlayerTracker(player.worldObj, UUIDHelper.getPlayerUUID(player));
     }
 
     @SuppressWarnings("unchecked")
-    public static <P extends PlayerTracker> P getPlayerTracker(EntityPlayer player) {
-        return player.worldObj.isRemote ? (P) CLIENT_PLAYER : (P) SERVER_PLAYERS.get(UUIDHelper.getPlayerUUID(player));
+    public static <P extends PlayerTracker> P getPlayerTracker(World world, UUID uuid) {
+        return world.isRemote ? (P) CLIENT_PLAYER : (P) SERVER_PLAYERS.get(uuid);
     }
 
     public static void setPlayerData(EntityPlayer player, PlayerTrackerServer data) {

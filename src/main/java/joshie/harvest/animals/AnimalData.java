@@ -12,9 +12,9 @@ import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.animals.IAnimalType;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.helpers.generic.EntityHelper;
 import joshie.harvest.npc.HFNPCs;
+import joshie.harvest.player.PlayerTrackerServer;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
@@ -83,7 +83,7 @@ public class AnimalData implements IAnimalData {
         return hasDied;
     }
 
-    private int getDeathChance() {
+    protected int getDeathChance() {
         //If the owner is offline, have a low chance of death
         EntityPlayer owner = getOwner();
         if (owner == null) return Integer.MAX_VALUE;
@@ -260,9 +260,14 @@ public class AnimalData implements IAnimalData {
     }
 
     @Override
-    public void setOwner(@Nonnull EntityPlayer player) {
-        this.owner = player;
-        this.o_uuid = UUIDHelper.getPlayerUUID(player);
+    public UUID getOwnerID() {
+        return o_uuid;
+    }
+
+    @Override
+    public void setOwner(@Nonnull UUID uuid) {
+        this.owner = EntityHelper.getPlayerFromUUID(o_uuid);
+        this.o_uuid = uuid;
     }
 
     @Override
@@ -296,7 +301,7 @@ public class AnimalData implements IAnimalData {
 
     private void affectRelationship(EntityPlayer player, int amount) {
         if (player != null) {
-            HFTrackers.getPlayerTracker(player).getRelationships().affectRelationship(player, relatable, amount);
+            HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().affectRelationship(player, relatable, amount);
         }
     }
 
@@ -371,7 +376,9 @@ public class AnimalData implements IAnimalData {
             EntityAgeable baby = animal.createChild(animal);
             baby.setGrowingAge(-(24000 * HFAnimals.AGING_TIMER));
             baby.setLocationAndAngles(animal.posX, animal.posY, animal.posZ, 0.0F, 0.0F);
-            animal.worldObj.spawnEntityInWorld(baby);
+            ((IAnimalTracked)baby).getData().setOwner(o_uuid);
+            int parent = HFTrackers.<PlayerTrackerServer>getPlayerTracker(animal.worldObj, o_uuid).getRelationships().getRelationship(relatable);
+            HFTrackers.getPlayerTracker(animal.worldObj, o_uuid).getRelationships().copyRelationship(getOwner(), parent, ((IAnimalTracked)baby), 50D);
         }
     }
 

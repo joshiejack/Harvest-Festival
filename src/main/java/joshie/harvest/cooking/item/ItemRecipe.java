@@ -34,7 +34,7 @@ public class ItemRecipe extends ItemHFFML<ItemRecipe, MealImpl> implements ICrea
     @Override
     public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
         MealImpl recipe = getObjectFromStack(stack);
-        if (recipe != null && HFTrackers.getPlayerTracker(player).getTracking().learnRecipe(recipe)) {
+        if (recipe != null && HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().learnRecipe(recipe)) {
             if (!player.capabilities.isCreativeMode) stack.stackSize--; //Decrease the stack
             world.playSound(player.posX, player.posY, player.posZ, HFSounds.RECIPE, SoundCategory.NEUTRAL, 0.8F, 1F, true);
             ChatHelper.displayChat(Text.translate("meal.learnt") + " " + TextFormatting.YELLOW + recipe.getDisplayName());

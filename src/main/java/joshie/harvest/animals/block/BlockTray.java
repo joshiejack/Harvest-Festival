@@ -2,6 +2,7 @@ package joshie.harvest.animals.block;
 
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.block.BlockTray.Tray;
+import joshie.harvest.animals.entity.EntityHarvestChicken;
 import joshie.harvest.animals.tile.TileFeeder;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalFoodType;
@@ -9,9 +10,10 @@ import joshie.harvest.api.animals.IAnimalFeeder;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.animals.INest;
 import joshie.harvest.api.core.ISizeable.Size;
-import joshie.harvest.core.base.tile.TileFillable;
-import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.base.block.BlockHFEnum;
+import joshie.harvest.core.base.tile.TileFillable;
+import joshie.harvest.core.helpers.UUIDHelper;
+import joshie.harvest.core.lib.CreativeSort;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -20,6 +22,7 @@ import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -85,7 +88,17 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
             Tray nest = getEnumFromState(state);
             if (nest.getDrop() != null) {
                 if (!world.isRemote) {
-                    Block.spawnAsEntity(world, pos, nest.getDrop());
+                    ItemStack drop = nest.getDrop();
+                    int relationship = 0;
+                    for (EntityHarvestChicken chicken: world.getEntitiesWithinAABB(EntityHarvestChicken.class, NEST_AABB.expand(32D, 8D, 32D))) {
+                        relationship = HFApi.relationships.getRelationship(player, chicken);
+                        break;
+                    }
+
+                    NBTTagCompound tag = drop.getSubCompound("Data", true);
+                    tag.setInteger("Relationship", relationship);
+                    tag.setString("Owner", UUIDHelper.getPlayerUUID(player).toString());
+                    Block.spawnAsEntity(world, pos, drop);
                     world.setBlockState(pos, getStateFromEnum(NEST_EMPTY));
                 }
 

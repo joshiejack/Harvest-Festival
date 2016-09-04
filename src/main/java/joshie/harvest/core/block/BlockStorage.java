@@ -70,7 +70,7 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
             long sell = shipping.getSellValue(held);
             if (sell > 0) {
                 if (!world.isRemote) {
-                    HFTrackers.<PlayerTrackerServer>getPlayerTracker(player).getTracking().addForShipping(held.copy());
+                    HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getTracking().addForShipping(held.copy());
                 }
 
                 held.splitStack(1);

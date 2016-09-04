@@ -5,6 +5,7 @@ import joshie.harvest.core.util.Text;
 import joshie.harvest.npc.HFNPCs;
 import net.minecraft.entity.player.EntityPlayer;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -12,6 +13,7 @@ public abstract class RelationshipData {
     public void talkTo(EntityPlayer player, IRelatable relatable) {}
     public boolean gift(EntityPlayer player, IRelatable relatable, int amount) { return false; }
     public void affectRelationship(EntityPlayer player, IRelatable relatable, int amount) {}
+    public void copyRelationship(@Nullable EntityPlayer player, int adult, IRelatable baby, double percentage) {}
     public void setRelationship(IRelatable relatable, int value) {}
     public void setMarriageState(IRelatable relatable, boolean divorce) {}
 
@@ -23,7 +25,7 @@ public abstract class RelationshipData {
         relationships.remove(animal);
     }
 
-    protected int getRelationship(IRelatable relatable) {
+    public int getRelationship(IRelatable relatable) {
         if (relationships.containsKey(relatable)) {
             return relationships.get(relatable);
         }

@@ -66,7 +66,7 @@ public class EntityHarvestChicken extends EntityChicken implements IAnimalTracke
     }
 
     @Override
-    public EntityChicken createChild(EntityAgeable ageable) {
+    public EntityHarvestChicken createChild(EntityAgeable ageable) {
         return new EntityHarvestChicken(worldObj);
     }
 

@@ -2,6 +2,7 @@ package joshie.harvest.core.tile;
 
 import joshie.harvest.core.base.tile.TileFaceable;
 import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.player.PlayerTrackerServer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.items.IItemHandler;
@@ -50,7 +51,7 @@ public class TileShipping extends TileFaceable {
             long sell = shipping.getSellValue(stack);
             if (sell > 0) {
                 if (!simulate && !getWorld().isRemote) {
-                    HFTrackers.getPlayerTrackerFromUUID(owner).getTracking().addForShipping(stack.copy());
+                    HFTrackers.<PlayerTrackerServer>getPlayerTracker(getWorld(), owner).getTracking().addForShipping(stack.copy());
                 }
 
                 ItemStack copy = stack.copy();

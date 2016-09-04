@@ -36,7 +36,7 @@ public class PacketRequestItem extends PenguinPacket {
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        Quest real = HFTrackers.getPlayerTracker(player).getQuests().getAQuest(quest);
+        Quest real = HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().getAQuest(quest);
         if (real.canReward(stack)) {
             ItemHelper.addToPlayerInventory(player, stack);
         }

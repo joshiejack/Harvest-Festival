@@ -60,7 +60,7 @@ public class QuestBless extends QuestTrade {
     @Override
     public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
         if (quest_stage == 0) {
-            boolean hasGold = HFTrackers.getPlayerTracker(player).getStats().getGold() >= 10000L;
+            boolean hasGold = HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getGold() >= 10000L;
             boolean hasTool = isHolding(player, hoe) || isHolding(player, sickle) || isHolding(player, watering) || isHolding(player, axe) || isHolding(player, hammer);
             if (hasGold && hasTool) {
                 increaseStage(player);

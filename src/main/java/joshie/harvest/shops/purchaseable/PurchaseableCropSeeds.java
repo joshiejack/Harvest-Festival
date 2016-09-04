@@ -39,7 +39,7 @@ public class PurchaseableCropSeeds implements IPurchaseable {
 
     @Override
     public boolean canBuy(World world, EntityPlayer player) {
-        CalendarDate playersBirthday = HFTrackers.getPlayerTracker(player).getStats().getBirthday();
+        CalendarDate playersBirthday = HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getBirthday();
         CalendarDate date = HFApi.calendar.getDate(world);
         if (!isCorrectSeason(date.getSeason())) return false;
         if (!crop.canPurchase()) return false;

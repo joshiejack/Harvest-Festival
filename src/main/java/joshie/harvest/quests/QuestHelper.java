@@ -41,7 +41,7 @@ public class QuestHelper implements IQuestHelper {
 
     @Override
     public void completeQuest(Quest quest, EntityPlayer player) {
-        HFTrackers.getPlayerTracker(player).getQuests().markCompleted(quest, true);
+        HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().markCompleted(quest, true);
     }
 
     @Override
@@ -76,7 +76,7 @@ public class QuestHelper implements IQuestHelper {
         if (player.worldObj.isRemote) {
             throw new IdiotException("You shouldn't be rewarding anyone with gold client side");
         } else {
-            HFTrackers.<PlayerTrackerServer>getPlayerTracker(player).getStats().addGold((EntityPlayerMP) player, amount);
+            HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getStats().addGold((EntityPlayerMP) player, amount);
         }
     }
 
@@ -102,11 +102,11 @@ public class QuestHelper implements IQuestHelper {
     @Override
     public Set<Quest> getHandledQuests(EntityPlayer player, EventType events) {
         if (isFakePlayer(player)) return EMPTY;
-        return HFTrackers.getPlayerTracker(player).getQuests().getHandled(events);
+        return HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().getHandled(events);
     }
 
     public static HashSet<Quest> getCurrentQuest(EntityPlayer player) {
-        return HFTrackers.getPlayerTracker(player).getQuests().getCurrent();
+        return HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().getCurrent();
     }
 
     public static void rewardRelations(EntityPlayer player, INPC npc, int amount) {
@@ -114,26 +114,26 @@ public class QuestHelper implements IQuestHelper {
     }
 
     public static void markCompleted(EntityPlayer player, Quest quest) {
-        HFTrackers.getPlayerTracker(player).getQuests().markCompleted(quest, false);
+        HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().markCompleted(quest, false);
     }
 
     public static void markAvailable(EntityPlayer player, Quest quest) {
-        HFTrackers.getPlayerTracker(player).getQuests().setAvailable(quest);
+        HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().setAvailable(quest);
     }
 
     public static void markAsCurrent(EntityPlayer player, Quest quest) {
-        HFTrackers.getPlayerTracker(player).getQuests().addAsCurrent(quest);
+        HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().addAsCurrent(quest);
     }
 
     public static void setQuestStage(EntityPlayer player, Quest quest, int stage) {
-        QuestData stats = HFTrackers.getPlayerTracker(player).getQuests();
+        QuestData stats = HFTrackers.getPlayerTrackerFromPlayer(player).getQuests();
         int previous = stats.getAQuest(quest).getStage();
         stats.setStage(quest, stage);
         quest.onStageChanged(player, previous, stage);
     }
 
     public static void startQuest(EntityPlayer player, Quest quest) {
-        HFTrackers.getPlayerTracker(player).getQuests().startQuest(quest);
+        HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().startQuest(quest);
     }
 
     public static Quest getQuest(String name) {

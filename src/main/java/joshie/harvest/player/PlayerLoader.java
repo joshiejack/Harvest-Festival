@@ -45,7 +45,7 @@ public class PlayerLoader {
     @SubscribeEvent
     public void onPlayerSave(PlayerEvent.SaveToFile event) {
         try {
-            PlayerTrackerServer data = HFTrackers.getPlayerTracker(event.getEntityPlayer());
+            PlayerTrackerServer data = HFTrackers.getPlayerTrackerFromPlayer(event.getEntityPlayer());
             File file = new File(getFolder(event.getPlayerDirectory()), UUIDHelper.getPlayerUUID(event.getEntityPlayer()) + ".dat");
             NBTTagCompound tag = data.writeToNBT(new NBTTagCompound());
             FileOutputStream fileoutputstream = new FileOutputStream(file);

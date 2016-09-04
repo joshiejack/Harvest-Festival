@@ -36,7 +36,7 @@ public class PacketRequestEntity extends PenguinPacket {
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        Quest real = HFTrackers.getPlayerTracker(player).getQuests().getAQuest(quest);
+        Quest real = HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().getAQuest(quest);
         if (real.canSpawnEntity(entity)) {
             Entity theEntity = EntityList.createEntityByIDFromName(entity, player.worldObj);
             if (theEntity != null) {

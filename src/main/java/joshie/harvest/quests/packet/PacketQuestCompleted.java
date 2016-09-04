@@ -31,6 +31,6 @@ public class PacketQuestCompleted extends PenguinPacket {
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        HFTrackers.getPlayerTracker(player).getQuests().markCompleted(quest, false);
+        HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().markCompleted(quest, false);
     }
 }

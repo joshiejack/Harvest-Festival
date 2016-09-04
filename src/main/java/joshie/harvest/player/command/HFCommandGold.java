@@ -29,7 +29,7 @@ public class HFCommandGold extends AbstractHFCommand {
                 boolean set = !(parameters.length == 1 || parameters[0].equals("add"));
 
                 EntityPlayerMP player = ((EntityPlayerMP) sender);
-                StatsServer stats = HFTrackers.<PlayerTrackerServer>getPlayerTracker(player).getStats();
+                StatsServer stats = HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getStats();
                 if (set) {
                     stats.setGold(player, amount);
                 } else stats.addGold(player, amount);

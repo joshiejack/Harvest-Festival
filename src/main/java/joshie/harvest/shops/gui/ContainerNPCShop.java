@@ -29,7 +29,7 @@ public class ContainerNPCShop extends ContainerBase {
         }
 
         if (!player.worldObj.isRemote) {
-            HFTrackers.getPlayerTracker(player).getRelationships().talkTo(player, npc.getRelatable());
+            HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().talkTo(player, npc.getRelatable());
         }
     }
 }

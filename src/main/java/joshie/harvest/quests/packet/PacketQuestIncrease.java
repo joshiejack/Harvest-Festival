@@ -41,7 +41,7 @@ public class PacketQuestIncrease extends PenguinPacket {
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        Quest real = HFTrackers.getPlayerTracker(player).getQuests().getAQuest(quest);
+        Quest real = HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().getAQuest(quest);
         if (real != null) {
             if (!player.worldObj.isRemote) real.increaseStage(player);
             else real.readFromNBT(tag);

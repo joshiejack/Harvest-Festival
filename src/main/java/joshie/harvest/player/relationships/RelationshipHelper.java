@@ -32,12 +32,12 @@ public class RelationshipHelper implements IRelationships {
 
     @Override
     public void adjustRelationship(EntityPlayer player, IRelatable relatable, int amount) {
-        HFTrackers.getPlayerTracker(player).getRelationships().affectRelationship(player, relatable, amount);
+        HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().affectRelationship(player, relatable, amount);
     }
 
     @Override
     public int getRelationship(EntityPlayer player, IRelatable relatable) {
-        return HFTrackers.getPlayerTracker(player).getRelationships().getRelationship(relatable);
+        return HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().getRelationship(relatable);
     }
 
     @Override

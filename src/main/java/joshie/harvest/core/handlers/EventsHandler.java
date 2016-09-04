@@ -67,10 +67,10 @@ public class EventsHandler {
     public void onPlayerLogin(PlayerLoggedInEvent event) {
         if (event.player instanceof EntityPlayerMP) {
             EntityPlayerMP player = (EntityPlayerMP) event.player;
-            HFTrackers.<PlayerTrackerServer>getPlayerTracker(player).getStats().setBirthday(FMLCommonHandler.instance().getMinecraftServerInstance().worldServers[0]); //Set birthday to overworld date
+            HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getStats().setBirthday(FMLCommonHandler.instance().getMinecraftServerInstance().worldServers[0]); //Set birthday to overworld date
             HFTrackers.<CalendarServer>getCalendar(player.worldObj).syncToPlayer(player);
             HFTrackers.<TownTrackerServer>getTownTracker(event.player.worldObj).syncToPlayer(player);
-            HFTrackers.<PlayerTrackerServer>getPlayerTracker(player).syncPlayerStats(player);
+            HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).syncPlayerStats(player);
         }
     }
 

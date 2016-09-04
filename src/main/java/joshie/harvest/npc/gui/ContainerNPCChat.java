@@ -19,7 +19,7 @@ public class ContainerNPCChat extends ContainerNPCBase {
     public void onContainerClosed(EntityPlayer player) {
         super.onContainerClosed(player);
         if (!player.worldObj.isRemote) {
-            HFTrackers.getPlayerTracker(player).getRelationships().talkTo(player, npc.getRelatable());
+            HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().talkTo(player, npc.getRelatable());
         }
 
         if (nextGui != -1 && open) {

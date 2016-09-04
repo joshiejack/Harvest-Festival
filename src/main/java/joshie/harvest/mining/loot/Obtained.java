@@ -27,7 +27,7 @@ public class Obtained implements LootCondition {
     public boolean testCondition(Random rand, LootContext context) {
         EntityPlayer player = (EntityPlayer) context.getKillerPlayer();
         if (player != null) {
-            return HFTrackers.getPlayerTracker(player).getTracking().hasObtainedItem(stack);
+            return HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().hasObtainedItem(stack);
         }
 
         return false;

@@ -27,7 +27,7 @@ public class ContainerNPCGift extends ContainerNPCBase {
         super.onContainerClosed(player);
 
         if (!player.worldObj.isRemote) {
-            if (HFTrackers.getPlayerTracker(player).getRelationships().gift(player, npc.getRelatable(), 0)) {
+            if (HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().gift(player, npc.getRelatable(), 0)) {
                 ItemStack gift = player.getHeldItem(hand);
                 INPC theNpc = npc.getNPC();
                 int points = theNpc.getGiftValue(gift).getRelationPoints();
@@ -37,10 +37,10 @@ public class ContainerNPCGift extends ContainerNPCBase {
                 }
 
                 if (ToolHelper.isBlueFeather(gift)) {
-                    HFTrackers.getPlayerTracker(player).getRelationships().propose(player, theNpc);
+                    HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().propose(player, theNpc);
                 }
 
-                HFTrackers.getPlayerTracker(player).getRelationships().gift(player, theNpc, points);
+                HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().gift(player, theNpc, points);
                 player.inventory.decrStackSize(player.inventory.currentItem, 1);
             }
         }

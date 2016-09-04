@@ -50,7 +50,7 @@ public class PacketPurchaseItem extends PenguinPacket {
     }
 
     private boolean purchase(EntityPlayerMP player, IPurchaseable purchaseable, long cost) {
-        StatsServer stats = HFTrackers.<PlayerTrackerServer>getPlayerTracker(player).getStats();
+        StatsServer stats = HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getStats();
         if (stats.getGold() - cost >= 0) {
             stats.addGold(player, -cost);
             PacketHandler.sendToClient(new PacketPurchaseItem(purchaseable), player); //Send the packet back

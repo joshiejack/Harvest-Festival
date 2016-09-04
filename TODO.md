@@ -6,7 +6,6 @@
 
 ### Textures
 - New Textures for the following NPCS
-    - Johan the Trader                  (Based on Girafi)
     - Ashlee the Poultry Farmer         (Based on Ashlee)
     - Liara the Café Owner              (Based on Liara)
     - Jenni the General Store Owner     (Based on Othlon)

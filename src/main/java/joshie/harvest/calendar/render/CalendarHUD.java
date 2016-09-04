@@ -2,12 +2,9 @@ package joshie.harvest.calendar.render;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
-import joshie.harvest.calendar.Calendar;
-import joshie.harvest.calendar.CalendarAPI;
-import joshie.harvest.calendar.HFCalendar;
-import joshie.harvest.calendar.SeasonData;
+import joshie.harvest.api.calendar.Season;
+import joshie.harvest.calendar.*;
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.HFEvents;
@@ -89,27 +86,30 @@ public class CalendarHUD {
             if (HFCalendar.ENABLE_DATE_HUD && isHUDVisible()) {
                 Calendar calendar = HFTrackers.getCalendar(MCClientHelper.getWorld());
                 CalendarDate date = calendar.getDate();
-                SeasonData data = CalendarAPI.INSTANCE.getDataForSeason(HFApi.calendar.getSeasonAtCoordinates(MCClientHelper.getWorld(), new BlockPos(MCClientHelper.getPlayer())));
-                GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+                Season season = HFApi.calendar.getSeasonAtCoordinates(MCClientHelper.getWorld(), new BlockPos(MCClientHelper.getPlayer()));
+                if (season != null) {
+                    SeasonData data = CalendarAPI.INSTANCE.getDataForSeason(season);
+                    GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 
-                float adjustedX = ((HFCalendar.X_CALENDAR / 100F) * maxWidth);
-                float adjustedY = ((HFCalendar.Y_CALENDAR / 100F) * maxHeight);
-                if (!HFCalendar.HIDE_CALENDAR_TEXTURE) {
-                    mc.renderEngine.bindTexture(data.getResource());
-                    mc.ingameGUI.drawTexturedModalRect(adjustedX - 44, adjustedY - 35, 0, 0, 256, 110);
+                    float adjustedX = ((HFCalendar.X_CALENDAR / 100F) * maxWidth);
+                    float adjustedY = ((HFCalendar.Y_CALENDAR / 100F) * maxHeight);
+                    if (!HFCalendar.HIDE_CALENDAR_TEXTURE) {
+                        mc.renderEngine.bindTexture(data.getResource());
+                        mc.ingameGUI.drawTexturedModalRect(adjustedX - 44, adjustedY - 35, 0, 0, 256, 110);
+                    }
+
+                    //Enlarge the Day
+                    GlStateManager.pushMatrix();
+                    GlStateManager.scale(1.4F, 1.4F, 1.4F);
+                    mc.fontRendererObj.drawStringWithShadow(season.getDisplayName() + " " + (date.getDay() + 1), (adjustedX / 1.4F) + 30, (adjustedY / 1.4F) + 7, 0xFFFFFFFF);
+                    GlStateManager.popMatrix();
+
+                    //Draw the time
+                    GlStateManager.pushMatrix();
+                    String time = formatTime(CalendarHelper.getScaledTime((int) CalendarHelper.getTime(MCClientHelper.getWorld())));
+                    mc.fontRendererObj.drawStringWithShadow("(" + date.getWeekday().name().substring(0, 3) + ")" + "  " + time, adjustedX + 42, adjustedY + 23, 0xFFFFFFFF);
+                    GlStateManager.popMatrix();
                 }
-
-                //Enlarge the Day
-                GlStateManager.pushMatrix();
-                GlStateManager.scale(1.4F, 1.4F, 1.4F);
-                mc.fontRendererObj.drawStringWithShadow(data.getLocalized() + " " + (date.getDay() + 1), (adjustedX / 1.4F) + 30, (adjustedY / 1.4F) + 7, 0xFFFFFFFF);
-                GlStateManager.popMatrix();
-
-                //Draw the time
-                GlStateManager.pushMatrix();
-                String time = formatTime(CalendarHelper.getScaledTime((int) CalendarHelper.getTime(MCClientHelper.getWorld())));
-                mc.fontRendererObj.drawStringWithShadow("(" + date.getWeekday().name().substring(0, 3) + ")" + "  " + time, adjustedX + 42, adjustedY + 23, 0xFFFFFFFF);
-                GlStateManager.popMatrix();
             }
 
             if (HFCalendar.ENABLE_GOLD_HUD) {

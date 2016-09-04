@@ -1,16 +1,14 @@
-package joshie.harvest.crops.handlers.state;
+package joshie.harvest.api.crops;
 
 import com.google.common.collect.ImmutableList;
-import joshie.harvest.api.crops.ICrop;
-import joshie.harvest.api.crops.IStateHandler;
-import joshie.harvest.crops.HFCrops;
-import joshie.harvest.crops.block.BlockHFCrops;
+import joshie.harvest.api.HFApi;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.AxisAlignedBB;
 
 public class StateHandlerDefault implements IStateHandler {
+    public static final AxisAlignedBB CROP_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D);
     protected BlockStateContainer stateContainer;
     protected PropertyInteger stages;
     protected IBlockState defaultState;
@@ -20,11 +18,11 @@ public class StateHandlerDefault implements IStateHandler {
     public StateHandlerDefault(int maximum) {
         this.maximum = maximum;
         this.stages = PropertyInteger.create("stage", 1, maximum);
-        this.stateContainer = new BlockStateContainer(HFCrops.CROPS, stages);
+        this.stateContainer = HFApi.crops.getStateContainer(stages);
         this.defaultState = stateContainer.getBaseState().withProperty(stages, 1);
     }
 
-    public StateHandlerDefault(ICrop crop) {
+    public StateHandlerDefault(Crop crop) {
         this(crop.getStages());
     }
 
@@ -35,7 +33,7 @@ public class StateHandlerDefault implements IStateHandler {
 
     @Override
     public AxisAlignedBB getBoundingBox(PlantSection section, int stage, boolean withered) {
-        return BlockHFCrops.CROP_AABB;
+        return CROP_AABB;
     }
 
     @Override

@@ -3,6 +3,7 @@ package joshie.harvest.crops;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
+import joshie.harvest.api.crops.Crop;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootContext;
@@ -31,13 +32,13 @@ public class SetCropType extends LootFunction {
         if (crop.equals("randomCrop")) return random(true);
         if (crop.equals("randomSeed")) return random(false);
         ResourceLocation resource = crop.contains(":") ? new ResourceLocation(crop) : new ResourceLocation(MODID, crop);
-        Crop theCrop = CropRegistry.REGISTRY.getValue(resource);
-        stack.setItemDamage(CropRegistry.REGISTRY.getValues().indexOf(theCrop));
+        Crop theCrop = Crop.REGISTRY.getValue(resource);
+        stack.setItemDamage(Crop.REGISTRY.getValues().indexOf(theCrop));
         return stack;
     }
 
     public ItemStack random(boolean crop) {
-        if (cropsList == null) cropsList = new ArrayList<>(CropRegistry.REGISTRY.getValues());
+        if (cropsList == null) cropsList = new ArrayList<>(Crop.REGISTRY.getValues());
         Collections.shuffle(cropsList);
         return crop ? cropsList.get(0).getCropStack() : cropsList.get(0).getSeedStack();
     }

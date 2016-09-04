@@ -1,13 +1,11 @@
 package joshie.harvest.crops.item;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.crops.ICrop;
+import joshie.harvest.api.crops.Crop;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.ICreativeSorted;
 import joshie.harvest.core.util.Text;
-import joshie.harvest.crops.Crop;
-import joshie.harvest.crops.CropRegistry;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -99,7 +97,7 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
         }
     }
 
-    private int plantSeedAt(EntityPlayer player, ItemStack stack, World world, BlockPos pos, EnumFacing facing, ICrop crop, int planted) {
+    private int plantSeedAt(EntityPlayer player, ItemStack stack, World world, BlockPos pos, EnumFacing facing, Crop crop, int planted) {
         if (player.canPlayerEdit(pos, facing, stack) && player.canPlayerEdit(pos.up(), facing, stack)) {
             if (crop.getGrowthHandler().canSustainCrop(world, pos, world.getBlockState(pos), crop) && world.isAirBlock(pos.up())) {
                 if (!world.isRemote) {
@@ -120,18 +118,18 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
     }
 
     public ItemStack getStackFromCrop(Crop crop) {
-        return new ItemStack(this, 1, CropRegistry.REGISTRY.getValues().indexOf(crop));
+        return new ItemStack(this, 1, Crop.REGISTRY.getValues().indexOf(crop));
     }
 
     public Crop getCropFromStack(ItemStack stack) {
-        return CropRegistry.REGISTRY.getValues().get(stack.getItemDamage());
+        return Crop.REGISTRY.getValues().get(stack.getItemDamage());
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
-        for (Crop crop : CropRegistry.REGISTRY.getValues()) {
-            if (crop != HFCrops.NULL_CROP) {
+        for (Crop crop : Crop.REGISTRY.getValues()) {
+            if (crop != Crop.NULL_CROP) {
                 list.add(getStackFromCrop(crop));
             }
         }

@@ -2,6 +2,7 @@ package joshie.harvest.crops.handlers.state;
 
 import gnu.trove.map.TIntObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
+import joshie.harvest.api.crops.StateHandlerDefault;
 import joshie.harvest.crops.block.BlockHFCrops;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.AxisAlignedBB;

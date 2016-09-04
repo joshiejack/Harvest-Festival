@@ -23,9 +23,7 @@ import joshie.harvest.core.helpers.generic.RegistryHelper;
 import joshie.harvest.core.lib.EntityIDs;
 import joshie.harvest.core.lib.Sizeable;
 import joshie.harvest.core.util.HFLoader;
-import joshie.harvest.crops.Crop;
-import joshie.harvest.crops.CropRegistry;
-import joshie.harvest.crops.HFCrops;
+import joshie.harvest.api.crops.Crop;
 import net.minecraft.init.Items;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -89,8 +87,8 @@ public class HFAnimals {
     }
 
     public static void init() {
-        for (Crop crop : CropRegistry.REGISTRY.getValues()) {
-            if (crop == HFCrops.NULL_CROP) continue;
+        for (Crop crop : Crop.REGISTRY.getValues()) {
+            if (crop == Crop.NULL_CROP) continue;
             animals.registerFoodAsType(crop.getCropStack(), crop.getFoodType());
         }
     }

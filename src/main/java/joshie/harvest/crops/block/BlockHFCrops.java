@@ -4,16 +4,15 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.animals.IAnimalFeeder;
 import joshie.harvest.api.animals.IAnimalTracked;
+import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.crops.IBreakCrops;
-import joshie.harvest.api.crops.ICrop;
-import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
 import joshie.harvest.core.base.block.BlockHFEnum;
 import joshie.harvest.core.base.item.ItemBlockHF;
 import joshie.harvest.core.helpers.WorldHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.HFEvents;
-import joshie.harvest.crops.Crop;
+import joshie.harvest.crops.CropData;
 import joshie.harvest.crops.CropHelper;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.crops.block.BlockHFCrops.Stage;
@@ -129,8 +128,8 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
     public float getPlayerRelativeBlockHardness(IBlockState state, EntityPlayer player, World world, BlockPos pos) {
         Stage stage = getEnumFromState(state);
         ItemStack held = player.getHeldItemMainhand();
-        ICropData crop = HFApi.crops.getCropAtLocation(world, pos);
-        if (crop.getCrop().growsToSide() != null && crop.getStage() == crop.getCrop().getStages()) {
+        CropData data = CropHelper.getCropDataAt(world, pos);
+        if (data.getCrop().growsToSide() != null && data.getStage() == data.getCrop().getStages()) {
             return 0F; //If the crop is fully grown, and grows to the side. Make it immune to destruction.
         }
 
@@ -161,7 +160,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
     }
 
     public boolean canStay(World world, IBlockState state, BlockPos pos) {
-        ICrop crop = HFApi.crops.getCropAtLocation(world, pos).getCrop();
+        Crop crop = HFApi.crops.getCropAtLocation(world, pos);
         if (crop != null && crop.getGrowthHandler() != null) {
             IBlockState down = world.getBlockState(pos.down());
             return down.getBlock() == this || crop.getGrowthHandler().canSustainCrop(world, pos, state, crop);
@@ -175,7 +174,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
         if (player.isSneaking()) return false;
         else {
             PlantSection section = getSection(state);
-            ICropData data = HFApi.crops.getCropAtLocation(world, pos);
+            CropData data = CropHelper.getCropDataAt(world, pos);
             if (data == null || data.getCrop().requiresSickle() || data.getCrop().growsToSide() != null) {
                 return false;
             } else {
@@ -205,12 +204,12 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
             return world.setBlockToAir(pos); //JUST KILL IT IF WITHERED
 
         PlantSection section = getSection(state);
-        ICropData data = HFApi.crops.getCropAtLocation(world, pos);
+        CropData data = CropHelper.getCropDataAt(world, pos);
         if (data == null) {
             return super.removedByPlayer(state, world, pos, player, willHarvest);
         }
 
-        ICrop crop = data.getCrop();
+        Crop crop = data.getCrop();
         boolean isSickle = player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() instanceof IBreakCrops;
         if (isSickle || !crop.requiresSickle()) {
             if (section == BOTTOM) {
@@ -257,8 +256,8 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
         if (getEnumFromState(state) == Stage.WITHERED) return new ItemStack(Blocks.DEADBUSH); //It's Dead soo???
 
-        ICropData data = HFApi.crops.getCropAtLocation(world, pos);
-        return HFCrops.SEEDS.getStackFromCrop((Crop)data.getCrop());
+        CropData data = CropHelper.getCropDataAt(world, pos);
+        return HFCrops.SEEDS.getStackFromCrop(data.getCrop());
     }
 
     @SuppressWarnings("deprecation")
@@ -311,8 +310,8 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
         if (getEnumFromState(state) == Stage.WITHERED) return false; //It's dead it can't grow...
         if (HFCrops.ENABLE_BONEMEAL) {
             if (HFCrops.SEASONAL_BONEMEAL) {
-                ICropData crop = HFApi.crops.getCropAtLocation(world, pos);
-                if (crop.getCrop().getGrowthHandler().canGrow(world, pos, crop.getCrop())) {
+                CropData data = CropHelper.getCropDataAt(world, pos);
+                if (data.getCrop().getGrowthHandler().canGrow(world, pos, data.getCrop())) {
                     return canGrow(world, pos, state);
                 }
 
@@ -346,10 +345,10 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
     @Override
     public boolean feedAnimal(IAnimalTracked tracked, World world, BlockPos pos, IBlockState state) {
         if (HFApi.animals.canAnimalEatFoodType(tracked, AnimalFoodType.GRASS)) {
-            ICropData crop = HFApi.crops.getCropAtLocation(world, pos);
-            ICrop theCrop = crop.getCrop();
+            CropData data = CropHelper.getCropDataAt(world, pos);
+            Crop theCrop = data.getCrop();
             if (theCrop == HFCrops.GRASS) {
-                int stage = crop.getStage();
+                int stage = data.getStage();
                 if (stage > 5) {
                     HFApi.crops.plantCrop(tracked.getData().getOwner(), world, pos, theCrop, stage - 5);
                     return true;

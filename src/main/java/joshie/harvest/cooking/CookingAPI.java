@@ -16,7 +16,7 @@ import joshie.harvest.core.base.item.ItemHFFML;
 import joshie.harvest.core.item.ItemSizeable;
 import joshie.harvest.core.util.HFApiImplementation;
 import joshie.harvest.core.util.holder.*;
-import joshie.harvest.crops.Crop;
+import joshie.harvest.api.crops.Crop;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;

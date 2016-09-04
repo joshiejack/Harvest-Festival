@@ -1,5 +1,6 @@
 package joshie.harvest.crops.handlers.state;
 
+import joshie.harvest.api.crops.StateHandlerDefault;
 import net.minecraft.block.state.IBlockState;
 
 public class StateHandlerCabbage extends StateHandlerDefault {

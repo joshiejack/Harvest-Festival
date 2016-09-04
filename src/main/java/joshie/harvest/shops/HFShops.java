@@ -14,8 +14,7 @@ import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.block.BlockStorage.Storage;
 import joshie.harvest.core.util.HFLoader;
-import joshie.harvest.crops.Crop;
-import joshie.harvest.crops.CropRegistry;
+import joshie.harvest.api.crops.Crop;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.crops.block.BlockSprinkler.Sprinkler;
 import joshie.harvest.mining.HFMining;
@@ -244,8 +243,8 @@ public class HFShops {
 
     private static void registerSupermarket() {
         SUPERMARKET = HFApi.shops.newShop(new ResourceLocation(MODID, "general"), HFNPCs.GS_OWNER);
-        for (Crop crop : CropRegistry.REGISTRY.getValues()) {
-            if (crop != HFCrops.NULL_CROP) {
+        for (Crop crop : Crop.REGISTRY.getValues()) {
+            if (crop != Crop.NULL_CROP) {
                 SUPERMARKET.addItem(new PurchaseableCropSeeds(crop));
             }
         }

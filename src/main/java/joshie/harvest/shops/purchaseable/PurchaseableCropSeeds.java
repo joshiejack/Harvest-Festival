@@ -3,11 +3,9 @@ package joshie.harvest.shops.purchaseable;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Season;
-import joshie.harvest.api.crops.ICrop;
+import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.shops.IPurchaseable;
-import joshie.harvest.calendar.CalendarAPI;
 import joshie.harvest.calendar.CalendarHelper;
-import joshie.harvest.calendar.SeasonData;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.ItemHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,9 +20,9 @@ import static net.minecraft.util.text.TextFormatting.WHITE;
 
 public class PurchaseableCropSeeds implements IPurchaseable {
     private ItemStack product;
-    private ICrop crop;
+    private Crop crop;
 
-    public PurchaseableCropSeeds(ICrop crop) {
+    public PurchaseableCropSeeds(Crop crop) {
         this.crop = crop;
         this.product = crop.getSeedStack();
     }
@@ -68,8 +66,7 @@ public class PurchaseableCropSeeds implements IPurchaseable {
     public void addTooltip(List<String> list) {
         list.add(WHITE + crop.getSeedsName());
         for (Season season : crop.getSeasons()) {
-            SeasonData data = CalendarAPI.INSTANCE.getDataForSeason(season);
-            list.add(data.getTextColor() + data.getLocalized());
+            list.add(season.getDisplayName());
         }
     }
 

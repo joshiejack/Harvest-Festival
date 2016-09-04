@@ -9,5 +9,5 @@ public interface ICropProvider {
      *  
      *  @param  stack   the item
      *  @return         the crop that it is providing **/
-    ICrop getCrop(ItemStack stack);
+    Crop getCrop(ItemStack stack);
 }

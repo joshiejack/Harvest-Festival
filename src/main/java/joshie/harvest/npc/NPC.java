@@ -163,7 +163,7 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
         if (this.gifts == null) this.gifts = new IGiftHandler() {};
     }
 
-    private void setupSchedules() {
+    public void setupSchedules() {
         if (getRegistryName().getResourceDomain().equals(MODID)) {
             try {
                 this.schedule = (ISchedule) Class.forName(SCHEDULEPATH + WordUtils.capitalize(getRegistryName().getResourcePath())).newInstance();

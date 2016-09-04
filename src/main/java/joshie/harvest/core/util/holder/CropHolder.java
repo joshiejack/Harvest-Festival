@@ -1,8 +1,7 @@
 package joshie.harvest.core.util.holder;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.crops.ICrop;
-import joshie.harvest.crops.Crop;
+import joshie.harvest.api.crops.Crop;
 import joshie.harvest.crops.CropRegistry;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -31,7 +30,7 @@ public class CropHolder extends AbstractItemHolder {
 
     @Override
     public boolean matches(ItemStack stack) {
-        ICrop container = HFApi.crops.getCropFromStack(stack);
+        Crop container = HFApi.crops.getCropFromStack(stack);
         if (container != null) {
             return container == crop;
         }
@@ -40,7 +39,7 @@ public class CropHolder extends AbstractItemHolder {
     }
 
     public static CropHolder readFromNBT(NBTTagCompound tag) {
-        return new CropHolder(CropRegistry.REGISTRY.getValue(new ResourceLocation(tag.getString("CropResource"))));
+        return new CropHolder(Crop.REGISTRY.getValue(new ResourceLocation(tag.getString("CropResource"))));
     }
 
     @Override

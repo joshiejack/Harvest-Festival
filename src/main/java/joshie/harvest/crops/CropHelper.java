@@ -1,9 +1,9 @@
 package joshie.harvest.crops;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.crops.ICropData;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
 import joshie.harvest.core.helpers.generic.ItemHelper;
+import joshie.harvest.crops.block.BlockHFCrops;
 import joshie.harvest.crops.tile.TileCrop;
 import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.state.IBlockState;
@@ -22,12 +22,12 @@ public class CropHelper {
     public static final IBlockState DRY_SOIL = Blocks.FARMLAND.getDefaultState().withProperty(BlockFarmland.MOISTURE, 0);
 
     public static IBlockState getBlockState(World world, BlockPos pos, PlantSection section, boolean withered) {
-        ICropData data = getTile(world, pos, section).getData();
+        CropData data = getTile(world, pos, section).getData();
         return data.getCrop().getStateHandler().getState(section, data.getStage(), withered);
     }
 
     public static AxisAlignedBB getCropBoundingBox(World world, BlockPos pos, PlantSection section, boolean withered) {
-        ICropData data = getTile(world, pos, section).getData();
+        CropData data = getTile(world, pos, section).getData();
         return data.getCrop().getStateHandler().getBoundingBox(section, data.getStage(), withered);
     }
 
@@ -56,5 +56,13 @@ public class CropHelper {
         }
 
         return stack != null;
+    }
+
+    public static CropData getCropDataAt(World world, BlockPos pos) {
+        PlantSection section = BlockHFCrops.getSection(world.getBlockState(pos));
+        if (section == null) return null;
+        if (section == PlantSection.BOTTOM) return ((TileCrop)world.getTileEntity(pos)).getData();
+        else if (section == PlantSection.TOP) return ((TileCrop)world.getTileEntity(pos.down())).getData();
+        else return null;
     }
 }

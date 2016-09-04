@@ -8,8 +8,7 @@ import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.item.ItemIngredients;
 import joshie.harvest.cooking.render.MappingEvent;
 import joshie.harvest.core.util.HFLoader;
-import joshie.harvest.crops.Crop;
-import joshie.harvest.crops.CropRegistry;
+import joshie.harvest.api.crops.Crop;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -111,7 +110,7 @@ public class HFIngredients {
         CookingAPI.INSTANCE.register(HFAnimals.MAYONNAISE.getStack(Size.SMALL), MAYONNAISE);
 
         //Crops
-        for (Crop crop: CropRegistry.REGISTRY) {
+        for (Crop crop: Crop.REGISTRY) {
             if (crop.getCropStack() != null) {
                 if (crop.getCropStack().getItem() == HFCrops.CROP) {
                     CookingAPI.INSTANCE.register(crop.getCropStack(), crop.getIngredient());

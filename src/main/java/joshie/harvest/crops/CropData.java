@@ -1,7 +1,6 @@
 package joshie.harvest.crops;
 
-import joshie.harvest.api.crops.ICrop;
-import joshie.harvest.api.crops.ICropData;
+import joshie.harvest.api.crops.Crop;
 import joshie.harvest.crops.block.BlockHFCrops;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -13,13 +12,13 @@ import net.minecraft.world.World;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class CropData implements ICropData {
-    private Crop crop = HFCrops.NULL_CROP; //The Crop Type of this plant
+public class CropData {
+    private Crop crop = Crop.NULL_CROP; //The Crop Type of this plant
     private int stage; //The stage it is currently at
     private int daysWithoutWater; //The number of days this crop has gone without water
 
-    public ICropData setCrop(ICrop crop, int stage) {
-        this.crop = (Crop) crop;
+    public CropData setCrop(Crop crop, int stage) {
+        this.crop = crop;
         this.stage = stage;
         return this;
     }
@@ -43,7 +42,6 @@ public class CropData implements ICropData {
         return true;
     }
 
-    @Override
     public void grow(World world, BlockPos pos) {
         //Increase the stage of this crop
         if (stage < crop.getStages()) {
@@ -83,12 +81,10 @@ public class CropData implements ICropData {
         return crop.getRegistryName();
     }
 
-    @Override
     public int getStage() {
         return stage;
     }
 
-    @Override
     @Nonnull
     public Crop getCrop() {
         return crop;
@@ -113,12 +109,12 @@ public class CropData implements ICropData {
 
     public void readFromNBT(NBTTagCompound nbt) {
         if (nbt.hasKey("CropResource")) {
-            crop = CropRegistry.REGISTRY.getValue(new ResourceLocation(nbt.getString("CropResource")));
+            crop = Crop.REGISTRY.getValue(new ResourceLocation(nbt.getString("CropResource")));
             stage = nbt.getByte("CurrentStage");
             daysWithoutWater = nbt.getShort("DaysWithoutWater");
         }
 
-        if (crop == null) crop = HFCrops.NULL_CROP;
+        if (crop == null) crop = Crop.NULL_CROP;
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {

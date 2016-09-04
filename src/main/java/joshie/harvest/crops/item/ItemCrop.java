@@ -4,8 +4,7 @@ import joshie.harvest.api.core.IShippable;
 import joshie.harvest.api.crops.ICropProvider;
 import joshie.harvest.core.base.item.ItemHFFML;
 import joshie.harvest.core.lib.CreativeSort;
-import joshie.harvest.crops.Crop;
-import joshie.harvest.crops.CropRegistry;
+import joshie.harvest.api.crops.Crop;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,7 +19,7 @@ import net.minecraft.world.World;
 
 public class ItemCrop extends ItemHFFML<ItemCrop, Crop> implements IShippable, ICropProvider {
     public ItemCrop() {
-        super(CropRegistry.REGISTRY);
+        super(Crop.REGISTRY);
     }
 
     @Override
@@ -89,6 +88,6 @@ public class ItemCrop extends ItemHFFML<ItemCrop, Crop> implements IShippable, I
 
     @Override
     public Crop getNullValue() {
-        return HFCrops.NULL_CROP;
+        return Crop.NULL_CROP;
     }
 }

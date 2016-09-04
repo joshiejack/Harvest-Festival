@@ -1,8 +1,7 @@
 package joshie.harvest.player.tracking;
 
 import joshie.harvest.core.util.holder.AbstractDataHolder;
-import joshie.harvest.crops.Crop;
-import joshie.harvest.crops.CropRegistry;
+import joshie.harvest.api.crops.Crop;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 
@@ -25,7 +24,7 @@ public class CropHarvested extends AbstractDataHolder<CropHarvested> {
     }
 
     public static CropHarvested readFromNBT(NBTTagCompound tag) {
-        Crop crop = CropRegistry.REGISTRY.getValue(new ResourceLocation(tag.getString("CropResource")));
+        Crop crop = Crop.REGISTRY.getValue(new ResourceLocation(tag.getString("CropResource")));
         int amount = tag.getInteger("SellAmount");
         return new CropHarvested(crop, amount);
     }

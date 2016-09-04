@@ -6,7 +6,6 @@ import joshie.harvest.api.crops.ICropProvider;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.base.item.ItemHFFML;
 import joshie.harvest.core.item.ItemSizeable;
-import joshie.harvest.crops.Crop;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
@@ -69,7 +68,7 @@ public class HolderRegistry<R> {
     private AbstractItemHolder getHolder(ItemStack stack) {
         if (stack.getItemDamage() == OreDictionary.WILDCARD_VALUE) return ItemHolder.of(stack.getItem());
         else if (stack.getItem() instanceof ItemSizeable) return SizeableHolder.of(HFCore.SIZEABLE.getObjectFromStack(stack));
-        else if (stack.getItem() instanceof ICropProvider) return CropHolder.of((Crop)((ICropProvider)stack.getItem()).getCrop(stack));
+        else if (stack.getItem() instanceof ICropProvider) return CropHolder.of(((ICropProvider)stack.getItem()).getCrop(stack));
         else if (stack.getItem() instanceof ItemHFFML) return FMLHolder.of(stack);
         else return ItemStackHolder.of(stack);
     }

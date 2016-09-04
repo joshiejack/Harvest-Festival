@@ -1,98 +1,114 @@
-package joshie.harvest.crops;
+package joshie.harvest.api.crops;
 
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.cooking.Ingredient;
-import joshie.harvest.api.crops.ICrop;
-import joshie.harvest.api.crops.IDropHandler;
-import joshie.harvest.api.crops.IGrowthHandler;
-import joshie.harvest.api.crops.IStateHandler;
-import joshie.harvest.core.util.Text;
-import joshie.harvest.crops.handlers.state.StateHandlerDefault;
+import joshie.harvest.api.core.IShippable;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.common.EnumPlantType;
+import net.minecraftforge.fml.common.registry.IForgeRegistry;
 import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
+import net.minecraftforge.fml.common.registry.RegistryBuilder;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Random;
 
-import static joshie.harvest.core.lib.HFModInfo.MODID;
-
-public class Crop extends IForgeRegistryEntry.Impl<Crop> implements ICrop {
+public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
+    public static final IForgeRegistry<Crop> REGISTRY = new RegistryBuilder<Crop>().setName(new ResourceLocation("harvestfestival", "crops")).setType(Crop.class).setIDRange(0, 32000).create();
+    public static final GrowthHandler SEASONAL = new GrowthHandler() {};
+    public static final Crop NULL_CROP = new Crop();
     private static final Random rand = new Random();
 
     //CropData
     private IStateHandler stateHandler;
-    private IGrowthHandler growthHandler;
+    private GrowthHandler growthHandler;
     private IDropHandler dropHandler;
+    private AnimalFoodType foodType;
+    private EnumPlantType type;
+    private Ingredient ingredient;
     private Block growsToSide;
     private boolean needsWatering;
     private boolean alternativeName;
     private boolean requiresSickle;
-    private ItemStack item;
-    private Season[] seasons;
-    private int cost;
-    private int sell;
-    private int stages;
-    private int regrow;
-    protected int year;
-    private int bag_color;
-    private int doubleStage;
-    private AnimalFoodType foodType;
-    private EnumPlantType type;
-    private Ingredient ingredient;
     private int hunger;
     private float saturation;
+    private ItemStack item;
+    private Season[] seasons;
+    private long cost;
+    private long sell;
+    private int stages;
+    private int regrow;
+    private int year;
+    private int bag_color;
+    private int doubleStage;
 
-    public Crop() {
-        this(new ResourceLocation(MODID, "null_crop"), Season.SPRING, 0, 0, 3, 0, 0, 0);
+    private Crop() {
+        this(new ResourceLocation("harvestfestival", "null_crop"), 0, 0, 3, 0);
     }
 
     /**
      * Constructor for crop
      *
-     * @param season      the season this crop grows in
+     * @param key         the registry name for this crop
      * @param cost        how much the seed costs
      * @param sell        how much this sells for
      * @param stages      how many stages this crop has
-     * @param regrow      the stage this returns to once harvested
-     * @param year        the year in which this crop can be purchased
+     * @param color       the colour of the seed bag
+     * @param seasons     the seasons this crop grows in
      */
-    public Crop(ResourceLocation key, Season season, int cost, int sell, int stages, int regrow, int year, int color) {
-        this(key, new Season[]{ season }, cost, sell, stages, regrow, year, color);
-    }
-
-    public Crop(ResourceLocation key, Season[] seasons, int cost, int sell, int stages, int regrow, int year, int color) {
+    public Crop(ResourceLocation key, long cost, long sell, int stages, int color, Season... seasons) {
         this.seasons = seasons;
         this.cost = cost;
         this.sell = sell;
         this.stages = stages;
-        this.regrow = regrow;
-        this.year = year;
+        this.regrow = 0;
+        this.year = 0;
         this.alternativeName = false;
         this.foodType = AnimalFoodType.VEGETABLE;
         this.bag_color = color;
         this.stateHandler = new StateHandlerDefault(this);
-        this.growthHandler = HFCrops.FARMLAND;
+        this.growthHandler = SEASONAL;
         this.needsWatering = true;
         this.doubleStage = Integer.MAX_VALUE;
         this.dropHandler = null;
         this.growsToSide = null;
         this.type = EnumPlantType.Crop;
         this.setRegistryName(key);
-        CropRegistry.REGISTRY.register(this);
+        REGISTRY.register(this);
     }
 
-    @Override
+    /**
+     * Set the year this crop is unlocked for purchased
+     **/
+    public Crop setYearUnlocked(int year) {
+        this.year = year;
+        return this;
+    }
+
+    /**
+     * Set the stage at which crops regrow to
+     **/
+    public Crop setRegrowStage(int regrow) {
+        this.regrow = regrow;
+        return this;
+    }
+
+    /**
+     * If the crop/seeds should have different names set this to true
+     **/
     public Crop setHasAlternativeName() {
         this.alternativeName = true;
         return this;
     }
 
-    @Override
+    /**
+     * Set the item this crop produces
+     **/
     public Crop setItem(ItemStack item) {
         this.item = item;
         if (this.item.getItem() instanceof ItemFood) {
@@ -103,31 +119,45 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements ICrop {
         return this;
     }
 
-    @Override
+    /**
+     * Set the state handler for this crop
+     **/
     public Crop setStateHandler(IStateHandler handler) {
         this.stateHandler = handler;
         return this;
     }
 
-    @Override
+    /**
+     * Make this crop require a sickle to be harvested
+     **/
     public Crop setRequiresSickle() {
         this.requiresSickle = true;
         return this;
     }
 
-    @Override
+    /**
+     * Set what this plant counts as for feeding animals
+     * @param foodType the type of food
+     **/
     public Crop setAnimalFoodType(AnimalFoodType foodType) {
         this.foodType = foodType;
         return this;
     }
 
-    @Override
+    /**
+     * Set the plant type
+     * @param plantType     the plant type of this crop
+     **/
     public Crop setPlantType(EnumPlantType plantType) {
         this.type = plantType;
         return this;
     }
 
-    @Override
+    /**
+     * Set the food stats for this crop
+     * @param hunger    how much hunger to restore
+     * @param saturation how much saturation to fill
+     **/
     public Crop setFoodStats(int hunger, float saturation) {
         this.hunger = hunger;
         this.saturation = saturation;
@@ -138,42 +168,57 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements ICrop {
         return this;
     }
 
-    @Override
+    /**
+     * Set the ingredient this crop counts as
+     **/
     public Crop setIngredient(Ingredient ingredient) {
         this.ingredient = ingredient;
         return this;
     }
 
-    @Override
+    /**
+     * Make this crop need zero water to grow
+     **/
     public Crop setNoWaterRequirements() {
         this.needsWatering = false;
         return this;
     }
 
-    @Override
-    public Crop setSoilRequirements(IGrowthHandler handler) {
+    /**
+     * Set the growth handler, to determine when this plant can grow/where
+     * @param handler   the growth handler
+     **/
+    public Crop setGrowthHandler(GrowthHandler handler) {
         this.growthHandler = handler;
         return this;
     }
 
-    @Override
+    /**
+     * Set the stage at which this plant becomes two tall
+     * @param doubleStage   the stage this plant becomes double
+     **/
     public Crop setBecomesDouble(int doubleStage) {
         this.doubleStage = doubleStage;
         return this;
     }
 
-    @Override
+    /**
+     * Set the drop handler for this crop
+     * @param handler   the drop handler
+     **/
     public Crop setDropHandler(IDropHandler handler) {
         this.dropHandler = handler;
         return this;
     }
 
-    @Override
+    /**
+     * Set the block this grows on the side of it
+     * @param block the block to grow
+     **/
     public Crop setGrowsToSide(Block block) {
         this.growsToSide = block;
         return this;
     }
-
 
     /**
      * Return true if this crop uses an item other than HFCrop item
@@ -205,6 +250,7 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements ICrop {
      * This is how much this crop well sell for at level 1.
      * If this crop cannot be sold return 0
      *
+     * @param stack the crop
      * @return the sell value in gold
      */
     public long getSellValue(ItemStack stack) {
@@ -234,33 +280,43 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements ICrop {
      *
      * @return the stage
      */
-    @Override
     public int getRegrowStage() {
         return regrow;
     }
 
-    @Override
+    /**
+     * Return true if this crop required a sickle
+     * **/
     public boolean requiresSickle() {
         return requiresSickle;
     }
 
-    @Override
+    /**
+     * Return true if this crop requires water
+     * **/
     public boolean requiresWater() {
         return needsWatering;
     }
 
-    @Override
+    /**
+     * Return true if this crop is a double crop at this stage
+     * @param stage the stage of the crop
+     * **/
     public boolean isDouble(int stage) {
         return stage == doubleStage;
     }
 
-    @Override
+    /**
+     * Return true if this crop grows to the side like pumpkins
+     * **/
     public Block growsToSide() {
         return growsToSide;
     }
 
-    @Override
-    public IGrowthHandler getGrowthHandler() {
+    /**
+     * Return the growth handler for this crop
+     * **/
+    public GrowthHandler getGrowthHandler() {
         return growthHandler;
     }
 
@@ -287,45 +343,65 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements ICrop {
         return foodType;
     }
 
-    @Override
+    /**
+     * The ingredient this crop represents
+     **/
     public Ingredient getIngredient() {
         return ingredient;
     }
 
+    /**
+     * The hunger this crop restores
+     **/
     public int getHunger() {
         return hunger;
     }
 
+    /**
+     * The saturation this crop fills
+     **/
     public float getSaturation() {
         return saturation;
     }
 
-    @Override
+    /**
+     * This crop as a seed stack
+     **/
     public ItemStack getSeedStack() {
-        return HFCrops.SEEDS.getStackFromCrop(this);
+        return HFApi.crops.getSeedStack(this);
     }
 
-    @Override
+    /**
+     *  This crop as a stack
+     **/
     public ItemStack getCropStack() {
         return item == null ? null : item.copy();
     }
 
-    @Override
+    /**
+     * What this crop drops
+     **/
     public ItemStack getHarvested() {
         return dropHandler == null ? getCropStack() : dropHandler.getDrop(rand, item.getItem());
     }
 
-    @Override
+    /**
+     * The state handler for crop
+     **/
     public IStateHandler getStateHandler() {
         return stateHandler;
     }
 
-    @Override
+    /**
+     * If the stack is this crop
+     **/
     public boolean matches(ItemStack stack) {
         return (stack.getItem() == getCropStack().getItem());
     }
 
-    @Override
+    /**
+     * The planty type of this crop
+     **/
     public EnumPlantType getPlantType() {
         return type;
     }
@@ -336,9 +412,10 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements ICrop {
      * @param isItem the item
      * @return crop name
      */
+    @SuppressWarnings("deprecation")
     public String getLocalizedName(boolean isItem) {
         String suffix = alternativeName ? ((isItem) ? ".item" : ".block") : "";
-        return Text.translate(getRegistryName().getResourceDomain(), "crop." + StringUtils.replace(getRegistryName().getResourcePath(), "_", ".") + suffix);
+        return I18n.translateToLocal((getRegistryName().getResourceDomain() + ".crop." + StringUtils.replace(getRegistryName().getResourcePath(), "_", ".") + suffix));
     }
 
     /**
@@ -346,11 +423,12 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements ICrop {
      *
      * @return seed name
      */
+    @SuppressWarnings("deprecation")
     public String getSeedsName() {
         String suffix = alternativeName ? ".block" : "";
-        String name = Text.translate(getRegistryName().getResourceDomain(), "crop." + StringUtils.replace(getRegistryName().getResourcePath(), "_", ".") + suffix);
-        String seeds = Text.translate("crop.seeds");
-        String text = Text.translate("crop.seeds.format.standard");
+        String name = I18n.translateToLocal((getRegistryName().getResourceDomain() + "crop." + StringUtils.replace(getRegistryName().getResourcePath(), "_", ".") + suffix));
+        String seeds = I18n.translateToLocal("harvestfestival.crop.seeds");
+        String text = I18n.translateToLocal("harvestfestival.crop.seeds.format.standard");
         text = StringUtils.replace(text, "%C", name);
         text = StringUtils.replace(text, "%S", seeds);
         return text;

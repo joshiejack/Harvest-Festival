@@ -1,34 +1,31 @@
 package joshie.harvest.api.crops;
 
-import joshie.harvest.api.calendar.Season;
+import net.minecraft.block.properties.PropertyInteger;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
 public interface ICropRegistry {
-    /** Registers a crop with some specific information **/
-    ICrop registerCrop(ResourceLocation resource, int cost, int sell, int stages, int regrow, int year, int color, Season... seasons);
-
-    /** Returns a crop from the resource location **/
-    ICrop getCrop(ResourceLocation resource);
-
     /** Alternative if you don't want to implement ICropProvider **/
-    void registerCropProvider(ItemStack stack, ResourceLocation crop);
+    void registerCropProvider(ItemStack stack, Crop crop);
 
     /** Return this crop this stack provides, or null if it provides none
      *  @param stack the item stack to check
      *  @return the ICrop**/
-    ICrop getCropFromStack(ItemStack stack);
+    Crop getCropFromStack(ItemStack stack);
+
+    /** Returns the crop as seeds **/
+    ItemStack getSeedStack(Crop crop);
 
     /** Fetch the crop at this location, will return null if there is no crop there
      *  @param world the world
      *  @param pos the block position
      *  @return the crop data the loation**/
-    ICropData getCropAtLocation(World world, BlockPos pos);
+    Crop getCropAtLocation(World world, BlockPos pos);
 
     /** Called to plant a crop at the location, the location should be location the crop itself
      *
@@ -37,7 +34,7 @@ public interface ICropRegistry {
      * @param pos the position you planting, this should be the position of the crop itself
      * @param theCrop the crop you are planting
      * @param stage the growth stage of the plant */
-    void plantCrop(@Nullable EntityPlayer player, World world, BlockPos pos, ICrop theCrop, int stage);
+    void plantCrop(@Nullable EntityPlayer player, World world, BlockPos pos, Crop theCrop, int stage);
 
     /** Call this to harvest a crap at the location
      *
@@ -53,4 +50,9 @@ public interface ICropRegistry {
      * @param pos the position of the soil
      * @return whether any water was used or not  */
     boolean hydrateSoil(@Nullable EntityPlayer player, World world, BlockPos pos);
+
+    /** Helper method for getting the correct state container
+     * @param stages  the maximum number of stages
+     * @return  */
+    BlockStateContainer getStateContainer(PropertyInteger stages);
 }

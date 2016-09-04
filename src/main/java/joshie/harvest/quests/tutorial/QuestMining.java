@@ -53,10 +53,13 @@ public class QuestMining extends QuestQuestion {
             //All tell the player that they should probably get a mine and a blacksmith built
             return "blacksmith." + suffix;
         } else if  (npc == TOOL_OWNER) {
-            if (quest_stage == 0) {
+            if (isCompleted) {
+                complete(player);
+                return "completed";
+            } else if (quest_stage == 0) {
                 //Danieuru thanks the player for welcoming to the town
                 //He then proceeds to ask them, if they know how to upgrade tools
-                return "question";
+                return "intro";
             } else if (quest_stage == 1) {
                 //The Blacksmith says oh well! Then let me tell you, it's a simple process
                 //As you use your tools, they will gain levels, which you can see

@@ -102,7 +102,7 @@ public class QuestUpgrade extends QuestTrade {
             //We're adding the amount that you need
             return I18n.translateToLocalFormatted("harvestfestival.quest.trade.upgrade.gold", required);
         } else if (quest.equals("material")) {
-            return I18n.translateToLocalFormatted("harvestfestival.quest.trade.upgrade.material", material.getDisplayName(), material.stackSize);
+            return I18n.translateToLocalFormatted("harvestfestival.quest.trade.upgrade.material", material.stackSize, material.getDisplayName());
         } else if (quest.equals("wait")) {
             CalendarDate today = HFApi.calendar.getDate(MCClientHelper.getWorld());
             return I18n.translateToLocalFormatted("harvestfestival.quest.trade.upgrade.wait", 3 - (getDifference(date, today)));

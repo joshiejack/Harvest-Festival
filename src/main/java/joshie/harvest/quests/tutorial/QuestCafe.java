@@ -32,7 +32,10 @@ public class QuestCafe extends QuestQuestion {
 
     @Override
     public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
-        if (quest_stage == 0) {
+        if (isCompleted) {
+            complete(player);
+            return "completed";
+        } else if (quest_stage == 0) {
             //Liara tells the player, welcome to the cafe, she tells them that she is an expert on cooking
             //She asks them if they have ever cooked before or if they know how?
             return "welcome";

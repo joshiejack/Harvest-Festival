@@ -1,4 +1,5 @@
 {
+    "parent": "block/block",
 "textures": {
     "particle": "harvestfestival:models/sprinkler",
     "texture": "harvestfestival:models/sprinkler"

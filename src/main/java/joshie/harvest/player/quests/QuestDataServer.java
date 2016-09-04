@@ -59,6 +59,7 @@ public class QuestDataServer extends QuestData {
     public void markCompleted(Quest quest) {
         Quest q = getAQuest(quest);
         if (q != null) {
+            q.isCompleted = true;
             q.claim(master.getAndCreatePlayer());
             finished.add(q);
             current.remove(q);

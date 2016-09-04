@@ -76,7 +76,10 @@ public class QuestChickenCare extends QuestQuestion {
 
     @Override
     public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
-        if (quest_stage == 0) {
+        if (isCompleted) {
+            complete(player);
+            return "completed";
+        } else if (quest_stage == 0) {
             increaseStage(player);
             //The goddess welcomes you and sees that you have a turnip
             //She thanks you for growing them for her, she explains that has a wonderful gift
@@ -137,7 +140,7 @@ public class QuestChickenCare extends QuestQuestion {
                     //Of yours properly if you wish to look after it. She also heard that yulif had a spare cow
                     //And that you should go talk to him if you want it
                     return "complete";
-                } else if (attempted && held.getItem() == Item.getItemFromBlock(Blocks.HAY_BLOCK)) {
+                } else if (attempted && held.getItem() == Item.getItemFromBlock(Blocks.CHEST)) {
                     rewardItem(player, HFAnimals.TRAY.getStackFromEnum(NEST_EMPTY));
                     takeHeldStack(player, 1);
                     //Thanks the player for the hay, and reminds them to get her an egg

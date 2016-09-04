@@ -8,7 +8,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 
 public abstract class QuestQuestion extends Quest {
-    private final Selection selection;
+    protected final Selection selection;
     protected int selected;
 
     public QuestQuestion(Selection selection) {

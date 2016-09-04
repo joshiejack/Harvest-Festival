@@ -417,7 +417,7 @@ harvestfestival.npc.jamie.name=Mayor Jeimmi
 harvestfestival.npc.abi.name=Abii
 harvestfestival.npc.tiberius.name=Tiberius
 harvestfestival.npc.jacob.name=Jakob
-harvestfestival.npc.fenn.name=Suirenji
+harvestfestival.npc.fenn.name=Fenn
 harvestfestival.npc.jim.name=Jim
 harvestfestival.npc.brandon.name=Brandon
 harvestfestival.npc.thomas.name=Tomas
@@ -573,7 +573,7 @@ harvestfestival.npc.jacob.greeting2=One day I will catch the elusive clownfish, 
 harvestfestival.npc.jacob.greeting3=There's nothing like just sitting and waiting for a fish to bite, so relaxing.
 harvestfestival.npc.jacob.greeting4=I really hope it rains soon. Or is it now?
 
-#Suirenji/Pokefenn
+#Pokefenn
 harvestfestival.npc.fenn.greeting1=One day, I'm going to grow some vines, and you're going to climb them with me!
 harvestfestival.npc.fenn.greeting2=Don't be scared of me, I may be small but I know a lot! I know all about totems.
 harvestfestival.npc.fenn.greeting3=I wish my dad wasn't so scary.
@@ -677,8 +677,9 @@ harvestfestival.marriage.unlocked=UNLOCKED
 ## Intro
 harvestfestival.quest.tutorial.intro.hello=Hello my dear, I'm not sure if I recognise you, have we met?
 harvestfestival.quest.tutorial.intro.question=[Is this your first time Playing?]
-harvestfestival.quest.tutorial.intro.yes=@Yes it is!
-harvestfestival.quest.tutorial.intro.no=@I know what I'm doing
+harvestfestival.quest.tutorial.intro.tutorial=@Yes it is!
+harvestfestival.quest.tutorial.intro.skip=@I know what I'm doing
+harvestfestival.quest.tutorial.intro.completed=Well then I must have lost my memory! Here have some flowers, hopefully they'll make your forget this ever happened...
 harvestfestival.quest.tutorial.intro.backstory=Well then, nice to meet you. I am the Harvest Goddess. [INSERT BACKSTORY HERE]. Oh, just to let you know, I will poof after a while, you can always respawn me with the goddess flower. I'll leave you one everytime I leave. I think that's all I have to tell you for now, see you later!
 
 ## Priest Blessing Quest

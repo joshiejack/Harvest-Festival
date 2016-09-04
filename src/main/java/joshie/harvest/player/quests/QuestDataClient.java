@@ -35,6 +35,7 @@ public class QuestDataClient extends QuestData {
     
     //Removes the quest from the current and available lists
     public void markCompleted(Quest quest) {
+        quest.isCompleted = true;
         if (!quest.isRepeatable()) {
             available.remove(quest);
         }

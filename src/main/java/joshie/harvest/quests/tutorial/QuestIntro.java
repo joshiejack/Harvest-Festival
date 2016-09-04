@@ -1,11 +1,8 @@
 package joshie.harvest.quests.tutorial;
 
-import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.npc.INPC;
-import joshie.harvest.buildings.BuildingImpl;
-import joshie.harvest.buildings.HFBuildings;
+import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.core.HFCore;
-import joshie.harvest.core.lib.HFQuests;
 import joshie.harvest.quests.QuestQuestion;
 import joshie.harvest.quests.TutorialSelection;
 import net.minecraft.entity.EntityLiving;
@@ -27,7 +24,10 @@ public class QuestIntro extends QuestQuestion {
     @SideOnly(Side.CLIENT)
     public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
         //The goddess says hello and asks if you are new
-        if (quest_stage == 0) return "hello";
+        if (isCompleted) {
+            complete(player);
+            return "completed";
+        } else  if (quest_stage == 0) return "hello";
         else if (quest_stage == 1) {
             //The goddess gives you a back story about the world, she then lets the player
             //know that she will despawn after a while, but will leave a goddess flower behind
@@ -39,10 +39,7 @@ public class QuestIntro extends QuestQuestion {
 
     @Override
     public void claim(EntityPlayer player) {
-        if (quest_stage == 0) { //We were not new
-            HFQuests.TUTORIAL_CARPENTER.complete(player);
-            rewardItem(player, HFBuildings.BLUEPRINTS.getStackFromObject((BuildingImpl)HFBuildings.CARPENTER));
-        } else rewardItem(player, new ItemStack(HFCore.FLOWERS, 4, 0));
+        rewardItem(player, new ItemStack(HFCore.FLOWERS, 4, 0));
     }
 
     private static class IntroSelection extends QuestSelection<QuestIntro> {

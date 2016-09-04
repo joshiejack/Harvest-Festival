@@ -7,6 +7,8 @@ import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.npc.HFNPCs;
+import joshie.harvest.quests.QuestQuestion;
+import joshie.harvest.quests.TutorialSelection;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,14 +23,20 @@ import static joshie.harvest.npc.HFNPCs.GODDESS;
 import static joshie.harvest.npc.HFNPCs.POULTRY;
 
 @HFQuest("tutorial.poultry")
-public class QuestPoultry extends Quest {
+public class QuestPoultry extends QuestQuestion {
     public QuestPoultry() {
+        super(new TutorialSelection("poultry"));
         setNPCs(GODDESS, POULTRY);
     }
 
     @Override
     public boolean canStartQuest(EntityPlayer player, Set<Quest> active, Set<Quest> finished) {
         return finished.contains(TUTORIAL_CHICKEN);
+    }
+
+    @Override
+    public Selection getSelection(INPC npc) {
+        return npc == POULTRY && quest_stage <= 0 ? selection : null;
     }
 
     @Override
@@ -42,17 +50,23 @@ public class QuestPoultry extends Quest {
             //Goddess reminds the player that you should go and build a poultry farm
             //So that you can get further chickens
             return "reminder.poultry";
-        } else if (quest_stage == 0 && npc == POULTRY) {
-            complete(player);
-
-            //The poultry owner welcomes you, tells you their name is ashlee
-            //Gives a little backstory about their life
-            //Then says it's great to be in this town
-            //Then she tells the player about breeding chickens
-            //If they buy an incubator they can place an egg in it
-            //And eventually a chick will hatch
-            //They say thanks for being the first customer and then gives them eggs, and feed
-            return "welcome";
+        } else if (npc == POULTRY) {
+            if (isCompleted) {
+                complete(player);
+                return "completed";
+            } else if (quest_stage == 0) {
+                //The poultry owner welcomes you, tells you their name is ashlee
+                return "welcome";
+            } else {
+                //Gives a little backstory about their life
+                //Then says it's great to be in this town
+                //Then she tells the player about breeding chickens
+                //If they buy an incubator they can place an egg in it
+                //And eventually a chick will hatch
+                //They say thanks for being the first customer and then gives them eggs, and feed
+                complete(player);
+                return "info";
+            }
         }
 
         return null;

@@ -13,7 +13,9 @@ import joshie.harvest.tools.ToolHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemFishingRod;
 import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
@@ -76,10 +78,13 @@ public class QuestCowCare extends QuestQuestion {
 
     @Override
     public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
-        if (quest_stage == 0) {
+        if (isCompleted) {
+            complete(player);
+            return "completed";
+        } else if (quest_stage == 0) {
             //Yulif tells you that he has a spare cow, and that he's happy to give you it
             //How then proceeds to ask if you know how to take care of cows
-            return "question";
+            return "start";
         } else if (quest_stage == 1) {
             increaseStage(player);
             //Yulif says oh ok then, then he starts to describe how to take care of cows
@@ -99,7 +104,7 @@ public class QuestCowCare extends QuestQuestion {
                     //Yulif thanks the player for the brush and then reminds them to brush
                     //the cow and feed it by hand
                     return "reminder.brush";
-                } else if (held.getItem() == Items.WHEAT) {
+                } else if (held.getItem() == Item.getItemFromBlock(Blocks.TALLGRASS)) {
                     takeHeldStack(player, 1);
                     rewardItem(player, HFCrops.GRASS.getCropStack());
                     //Yulif thanks the player for the wheat, gives fodder and thanks the player
@@ -108,7 +113,7 @@ public class QuestCowCare extends QuestQuestion {
             }
 
             //Yulif reminds the player that they should be feeding, brushing and talking to a cow
-            //He informs the player if they lost the fodder, he'll trade for some wheat
+            //He informs the player if they lost the fodder, he'll trade for some grass
             //He informs the player if they lost the brush, he'll trade for a fishing rod
             attempted = true;
             return "reminder.talk";
@@ -129,7 +134,7 @@ public class QuestCowCare extends QuestQuestion {
                     takeHeldStack(player, 1);
                     rewardItem(player, HFAnimals.TOOLS.getStackFromEnum(MILKER));
                     //Yulif thanks the player for the shears, and gives them a milk, reminding them to go milk a cow
-                    return "reminder.brush";
+                    return "reminder.milker";
                 }
             }
 

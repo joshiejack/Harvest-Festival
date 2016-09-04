@@ -37,7 +37,10 @@ public class QuestCrops extends QuestQuestion {
 
     @Override
     public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
-        if (quest_stage == 0) {
+        if (isCompleted) {
+            complete(player);
+            return "completed";
+        } else if (quest_stage == 0) {
             //Jade says hello to the player, and asks them if they know how to farm
             return "intro";
         } else if (quest_stage == 1) {

@@ -25,6 +25,7 @@ public abstract class Quest extends Impl<Quest> {
     /** DO NOT MODIFY THE ENTRIES IN THE REGISTRY, ALWAYS MAKE A COPY OF THE QUESTS **/
     public static final IForgeRegistry<Quest> REGISTRY = new RegistryBuilder<Quest>().setName(new ResourceLocation("harvestfestival", "quests")).setType(Quest.class).setIDRange(0, 32000).create();
     protected int quest_stage;
+    public boolean isCompleted;
     private INPC[] npcs;
 
     public Quest() {}
@@ -173,14 +174,16 @@ public abstract class Quest extends Impl<Quest> {
     /** Called to load data about this quest
      * @param nbt the nbt tag **/
     public void readFromNBT(NBTTagCompound nbt) {
-        quest_stage = nbt.getShort("Completed");
+        quest_stage = nbt.getShort("Stage");
+        isCompleted = nbt.getBoolean("IsCompleted");
     }
 
     /** Called to write data about this quest
      * @param nbt the nbt tag to write to
      * @return the nbt tag**/
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
-        nbt.setShort("Completed", (short) quest_stage);
+        nbt.setShort("Stage", (short) quest_stage);
+        nbt.setBoolean("IsCompleted", isCompleted);
         return nbt;
     }
 

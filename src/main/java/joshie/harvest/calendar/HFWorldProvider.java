@@ -154,7 +154,7 @@ public class HFWorldProvider extends WorldProviderSurface {
                     return false;
                 }
             } else return super.canSnowAt(pos, checkLight);
-        } else return super.canSnowAt(pos, checkLight);
+        } else return false;
     }
 
     @Override

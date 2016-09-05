@@ -33,6 +33,7 @@ public class CropData {
             if (!HFCrops.ALWAYS_GROW) {
                 if (daysWithoutWater == 0 || !crop.requiresWater()) {
                     grow(world, pos);
+                    System.out.println("Growing");
                 }
             }
         }

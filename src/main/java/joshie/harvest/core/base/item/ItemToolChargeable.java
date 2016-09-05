@@ -20,7 +20,7 @@ public class ItemToolChargeable extends ItemTool<ItemToolChargeable> {
     }
 
     protected int getMaxCharge(ItemStack stack) {
-        return getTier(stack).ordinal();
+        return getTier(stack).ordinal() - 1;
     }
 
     protected boolean canCharge(ItemStack stack) {
@@ -51,7 +51,7 @@ public class ItemToolChargeable extends ItemTool<ItemToolChargeable> {
 
     @Override
     public void onUsingTick(ItemStack stack, EntityLivingBase player, int count) {
-        if (count <= 31995 && count % 32 == 0) {
+        if (count <= 31995 && count % 24 == 0) {
             if (canCharge(stack)) {
                 increaseCharge(stack, 1);
             }
@@ -64,7 +64,9 @@ public class ItemToolChargeable extends ItemTool<ItemToolChargeable> {
 
     @Override
     public void onPlayerStoppedUsing(ItemStack stack, World world, EntityLivingBase entity, int timeLeft) {
-        int charge = (Math.min(7, Math.max(0, getCharge(stack))));
+        ToolTier tier = getTier(stack);
+        int theCharge = timeLeft <= 32000 - (tier.ordinal() * 12) ? getCharge(stack) + 1: getCharge(stack);
+        int charge = (Math.min(7, Math.max(0, Math.min(tier.ordinal(), theCharge))));
         setCharge(stack, 0); //Reset the charge
         onFinishedCharging(world, entity, getMovingObjectPositionFromPlayer(world, entity), stack, getChargeTier(stack, charge));
     }

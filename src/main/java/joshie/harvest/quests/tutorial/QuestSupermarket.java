@@ -62,6 +62,6 @@ public class QuestSupermarket extends Quest {
 
     @Override
     public void claim(EntityPlayer player) {
-        rewardItem(player, new ItemStack(HFCrops.POTATO.getCropStack().getItem(), 5, HFCrops.POTATO.getCropStack().getItemDamage()));
+        rewardItem(player, new ItemStack(HFCrops.POTATO.getSeedStack().getItem(), 5, HFCrops.POTATO.getSeedStack().getItemDamage()));
     }
 }

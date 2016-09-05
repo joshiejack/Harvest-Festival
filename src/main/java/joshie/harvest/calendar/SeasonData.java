@@ -4,6 +4,7 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weather;
 import net.minecraft.util.ResourceLocation;
 
+import java.util.EnumMap;
 import java.util.Locale;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
@@ -13,19 +14,18 @@ public class SeasonData {
     private final int skyColor;
     private final double celestialLengthFactor;
     private final float celestialAngleOffset;
-    private final double[] chances;
+    private final EnumMap<Weather, Double> chances = new EnumMap<>(Weather.class);
 
     public SeasonData(Season season, int color, double factor, float angle, double sunny, double rain, double typhoon, double snow, double blizzard) {
         this.resource = new ResourceLocation(MODID, "textures/hud/" + season.name().toLowerCase(Locale.ENGLISH) + ".png");
         this.skyColor = color;
         this.celestialLengthFactor = factor;
         this.celestialAngleOffset = angle;
-        this.chances = new double[5];
-        this.chances[0] = sunny;
-        this.chances[1] = rain;
-        this.chances[2] = typhoon;
-        this.chances[3] = snow;
-        this.chances[4] = blizzard;
+        chances.put(Weather.SUNNY, sunny);
+        chances.put(Weather.RAIN, rain);
+        chances.put(Weather.TYPHOON, typhoon);
+        chances.put(Weather.SNOW, snow);
+        chances.put(Weather.BLIZZARD, blizzard);
     }
 
     public double getCelestialLengthFactor() {
@@ -37,7 +37,7 @@ public class SeasonData {
     }
 
     public double getWeatherChance(Weather weather) {
-        return chances[weather.ordinal()];
+        return chances.get(weather);
     }
 
     public int getSkyColor() {

@@ -80,7 +80,7 @@ public class CalendarServer extends Calendar {
         for (Weather weather : Weather.values()) {
             if (!isWeatherEnabled(weather)) continue;
             double chance = data.getWeatherChance(weather);
-            if (chance > 0 && rand.nextDouble() * 100D < chance) {
+            if (chance > 0D && rand.nextDouble() * 100D < chance) {
                 return weather;
             }
         }

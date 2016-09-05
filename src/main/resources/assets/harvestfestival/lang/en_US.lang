@@ -675,36 +675,150 @@ harvestfestival.marriage.locked=LOCKED
 harvestfestival.marriage.unlocked=UNLOCKED
 
 ###Quests
-## Intro
+##Tutorial Quests
+#Intro
 harvestfestival.quest.tutorial.intro.hello=Hello my dear, I'm not sure if I recognise you, have we met?
 harvestfestival.quest.tutorial.intro.question=[Is this your first time Playing?]
 harvestfestival.quest.tutorial.intro.tutorial=@Yes it is!
 harvestfestival.quest.tutorial.intro.skip=@I know what I'm doing
 harvestfestival.quest.tutorial.intro.completed=Well then I must have lost my memory! Here have some flowers, hopefully they'll make your forget this ever happened...
-harvestfestival.quest.tutorial.intro.backstory=Well then, nice to meet you. I am the Harvest Goddess. [INSERT BACKSTORY HERE]. Oh, just to let you know, I will poof after a while, you can always respawn me with the goddess flower. I'll leave you one everytime I leave. I think that's all I have to tell you for now, see you later!
+harvestfestival.quest.tutorial.intro.backstory=Well then, nice to meet you. I am the Harvest Goddess. I'd like to tell you a little story. A long time ago, this land we live in was filled with a bustling village, the people there were removed from their homes by a crazy storm, and wiped out, now I hear that they want to return back home where they belong, but they need your help. Oh and just to let you know, I will poof after a while, you can always respawn me with the goddess flower. I'll leave you one everytime I leave. I think that's all I have to tell you for now, see you later!
 
-## Priest Blessing Quest
+#Carpenter
+harvestfestival.quest.tutorial.carpenter.welcome=Why hello my sweet, it’s nice to see you again. I’ve had a little thought about how we can get the town started. I’ve heard rumours that a fella named Yulif is an excellent carpenter, he and his sister have been looking to take on a project, and this could just be the right thing for them. Jade would be a perfect fit too as she loves nature and would be a great asset for getting started. I think we just need something to entice them, perhaps if you can fetch me a stack of logs then I have something for you that just might work.
+harvestfestival.quest.tutorial.carpenter.reminder.wood=Oh hello again, if you’ve forgotten we’re looking to bring our first villagers to town, I just need a stack of logs to help you get started.
+harvestfestival.quest.tutorial.carpenter.thanks.build=Perfect! Just what we need, thanks a bunch. I’ve got the perfect thing for you right here. This is a structure blueprint, you use them to select the area you want a building to be built! You’ll see a ghost image of a building when you have it selected, once you’ve found the spot simply right click. If Yulif hasn’t moved in yet he’ll appear and get started working on the building right away! You’ll just have to wait a little while for him to be done. Take note you can queue up blueprints, but only one can be built at a time. Oh and don’t worry if he dies from some tragic accident! He should respawn when the day passes over and get back to work immediately! I think that’s all I have to say, so I’ll leave you to get the Carpenter House built. Oh one more thing before I forget, once he’s done building Jade should move in, she normally hangs out upstairs, I’d suggest that you go and take her a flower, as she has seeds she’ll be happy to trade for them.
+harvestfestival.quest.tutorial.carpenter.reminder.carpenter=Sweety you’re supposed to be going to see Jade not me! If you haven’t yet get a Carpenter House built and visit her upstairs with a flower. If you’re in trouble and lost the blueprint, just bring me another 64 logs and I’ll give you another one.
+harvestfestival.quest.tutorial.carpenter.reminder.give=Thanks have another blueprint and go see Jade!
+harvestfestival.quest.tutorial.carpenter.reminder.flowers=Nice to meet you, I’m Jade. I’m kinda uhhh looking for a flower right now.
+harvestfestival.quest.tutorial.carpenter.thanks.flowers=Hey! Looks like you have a flower for me! The goddess told me all about you, I can’t wait to see the town grow. I think the goddess wants to thank you for helping us out, so you should go see her. But afterwards please do come back and visit me as I have something I’d love to show you!
+harvestfestival.quest.tutorial.carpenter.thanks.finish=Well done dear, this town will be built in no time with you at the helm. Getting things done will probably cost you some money though, so I’m happy to give you a starting gift of 1000 gold. I hope you spend it wisely, anyway, you should be off to see Jade again now! Thanks for the help.
+
+#Crops Tutorial
+harvestfestival.quest.tutorial.crops.intro=Hey! As promised I have something to tell you about! Crop Farming. Has anyone ever taught you before?
+harvestfestival.quest.tutorial.crops.question=Do you know how to farm crops?
+harvestfestival.quest.tutorial.crops.tutorial=@How do I farm crops?
+harvestfestival.quest.tutorial.crops.skip=@I know how
+harvestfestival.quest.tutorial.crops.completed=Well then if you know everything, please just take these items to get started. Don’t forget to take a turnip to the Harvest Goddess.
+harvestfestival.quest.tutorial.crops.start=Well then let me teach you! The very basics of crop farming is that you need to till some ground, once done, simply plant some seeds in this spot. You’ll need to make sure they are watered every day, or they will not grow, as well as making sure you have the correct crops for that season. In order to use your hoe, you simply have to right click it to till dirt in to farmland. Before you can use the watering can however you will need to fill it with water. Take these and come back to me when you have grown yourself nine Turnips. Oh, one final tip, if you want to speed up crop growth, you can sleep. Crops will grow each day at 6am, so this is the quickest way to get them to grow!
+harvestfestival.quest.tutorial.crops.reminder.turnips=Hey again. Looks like you don’t have nine turnips yet. If you’re stuck and lost your hoe, just come back to me with a stone hoe and I’ll happily trade. If you need another watering can, I can spare some for buckets. Oh and if you want one bag of turnips just bring me 10 flowers.
+harvestfestival.quest.tutorial.crops.thanks.flowers=Oh my so pretty, thanks! Here take these turnip seeds as a thank you.
+harvestfestival.quest.tutorial.crops.thanks.hoe=Perfect, here’s my hoe.
+harvestfestival.quest.tutorial.crops.thanks.bucket=Just what I’m after, you can have one of my spare watering cans.
+harvestfestival.quest.tutorial.crops.complete=Wow you have done a fantastic job growing these turnips, I am tempted to take them for myself. But you can keep them. I don’t want you to have wasted your time on me. I should probably tell you, that you can sell whatever you grow for gold. You’ll just need a shipping bin. If you want them you can buy them directly from my brother’s shop, when he’s open for business. To use them, all you have to do is right click with the item held in your hand, and they should be ready to be shipped. In the morning you’ll get gold for everything you ship. If you don’t want to ship everything by hand, just place a hopper next to the bin and it will happily insert. Profits go to whoever placed it! Oh if you need more seeds, I do have a small supply but I’m happy to trade for 10 flowers at any time. I would suggest though that you talk to my brother and get the general store built as soon as possible. The people there should be able to sell you much more variety than I could ever! Last thing, the Harvest Goddess told me she’d love it if you would go and see her with a turnip. See ya around!
+
+#Chicken Care
+harvestfestival.quest.tutorial.chicken.start=Oh my! A turnip! That is just wonderful. Looks like things are going well for you. I’ve really missed seeing such beautiful things! For really making my day, I have a gift for you, to help you further. A chicken! Oh just a question…
+harvestfestival.quest.tutorial.chicken.question=Do you know how to take care of chickens?
+harvestfestival.quest.tutorial.chicken.tutorial=@Show me please!
+harvestfestival.quest.tutorial.chicken.skip=@Give me the goods!
+harvestfestival.quest.tutorial.chicken.completed=Oh well then, that’s good. Please take this feed and a nest. You should go and visit Yulif next, I heard he has something up his sleeve too!
+harvestfestival.quest.tutorial.chicken.throw=Ahh so you don’t know? Well then first things first, you must feed your chickens! If you don’t, they will get sick and stop producing anything for you! You can feed chickens by hand or with a feeding tray. Chickens, like us need a bit of love too. To show a chicken that you love it, just make sure to pick it up every day. You can pick up chickens by right clicking them, they love it! Just right click the ground again to throw them back down. Feeding by hand also makes a chicken love you a bit more. A happier chicken will produce bigger and better eggs. Here’s some feed. Can you go feed this chicken and show it some additional love? Then come back to me.
+harvestfestival.quest.tutorial.chicken.reminder.throw=Remember? I asked you to pick up a chicken, and feed it some chicken feed. Oh, if you need more feed, just bring me some seeds. If your poor chicken has passed, just bring me a vanilla egg and I’ll happily give you a new one.
+harvestfestival.quest.tutorial.chicken.reminder.chicken=This egg is perfect, here have a new chicken.
+harvestfestival.quest.tutorial.chicken.reminder.seeds=Thanks for the seeds, have some feed.
+harvestfestival.quest.tutorial.chicken.egg=Well done. It looks like you now know how to take care of your chickens. As mentioned before, happier chickens make bigger eggs. But how do I get eggs you ask? Well my dear simply place a nest box nearby. And eventually the chicken will lay an egg. They’ll only lay one egg a day however. They won’t lay eggs unless they have been fed. Once you collected your eggs, don’t forget to ship them off for some gold. I have a nest box for you, come back and see me when you’ve got an egg from your chicken.
+harvestfestival.quest.tutorial.chicken.reminder.egg=Remember I’m after an egg from a chicken. If you lost your nest box, just ring me a chest.
+harvestfestival.quest.tutorial.chicken.reminder.nest=Perfect, take this nest box in exchange.
+harvestfestival.quest.tutorial.chicken.complete=You have done a lovely job once again! For your hard work, I’m happy to give you a rare egg! If you want to get more you’ll really have to take care of your chickens. You’re really going to make a great farmer! On that note, I heard Yulif has something for you. Oh, right if you want more chickens, make sure to order a Poultry Farm.
+
+#Cow Care
+harvestfestival.quest.tutorial.cow.start=Alright, I heard you’ve made a good start on getting this place back together. I recently ordered a new crowbar but well they must have misheard me. They sent me a blinking cow. I’m not much good at these things, so I’m happy to give er to ya. Should probably teach yer how to take of er.
+harvestfestival.quest.tutorial.cow.question=Dya know how to take care of cows?
+harvestfestival.quest.tutorial.cow.tutorial=@Give me instructions
+harvestfestival.quest.tutorial.cow.skip=@I already know
+harvestfestival.quest.tutorial.cow.completed=Is that so? Well here she is. Take these to help you out too. If you want more cows I’d suggest ya get to building an Animal Ranch.
+harvestfestival.quest.tutorial.cow.info=Is that so? Guess I better teach yer. The basics are easy, like chickens the bigger animals like to be fed and loved, but they also need to be kept clean if you want em to stay healthy. They like a bit of fodder in their stomachs, which you can feed them by hand for a bonus, or with a trough. To show yer cows some love just give them a good ol’ talking to by holding right click on them, until they show ya the love back. Do the same when brushing them, but this time with a brush in hand, to get em squeaky clean. Go and give that a go, feed the cow and give er a clean.
+harvestfestival.quest.tutorial.cow.reminder.talk=Remember I told ya to go talk to and brush a cow. If yer need some more fodder, bring me some tall grass and if yer need another brush just me a fishing rod.
+harvestfestival.quest.tutorial.cow.reminder.brush=Here take this brush.
+harvestfestival.quest.tutorial.cow.reminder.fodder=Have some more fodder.
+harvestfestival.quest.tutorial.cow.milk=Well done, looks like yer know how to keep your cows happy. Cows just like chickens will make ya a product everyday. But this time milk, of course. To get milk you’ll need to take a milker to them and hold right click until you get what you desire. Remember the friendlier you are with yer animals the bigger products they’ll give ya. Go and grab me some milk from yer cow.
+harvestfestival.quest.tutorial.cow.reminder.milker=That’s just great, been looking for these, will be really handy when building. Take this milker as a thanks.
+harvestfestival.quest.tutorial.cow.reminder.milk=Did ya forget? I asked yer to go and milk yer cow. If you need a new milker just bring me a pair of shears.
+harvestfestival.quest.tutorial.cow.complete=You’ve done a fine job there. That’s all I have to teach ya. If you want more animals I’d suggest you order yourself an Animal Ranch from me. Well see ya later.
+
+#Poultry Farm Introduction
+harvestfestival.quest.tutorial.poultry.reminder.talk=Sweety it looks you’ve had a Poultry Farm built. You should go and talk to Ashlee.
+harvestfestival.quest.tutorial.poultry.reminder.poultry=Hey my dear, don’t forget you’re going to want a Poultry Farm.
+harvestfestival.quest.tutorial.poultry.welcome=I love this place. Isn’t it wonderful, Mr Fox? I hope I get to stay here for longer. Oh, hello! Sorry I didn’t see you there, I was just ehhh. Nevermind. Anyway, welcome to my Poultry Farm! My name is Ashlee. Did you need any extra information or are you happy to go?
+harvestfestival.quest.tutorial.poultry.question=Want to know more about chickens?
+harvestfestival.quest.tutorial.poultry.tutorial=@Yes
+harvestfestival.quest.tutorial.poultry.skip=@No
+harvestfestival.quest.tutorial.poultry.completed=Thanks then, for helping me make my way to this town. Take these as a thanks.
+harvestfestival.quest.tutorial.poultry.info=Glad to hear it. You can buy chickens, nests and feed from me to help take care of your chickens. But there’s also something else you may not know about yet, that’s the incubator. With an incubator you can hatch your own chickens. You just need to place an egg inside, wait a few days and then a chick should hatch! They’ll be born with half the relationship so it’s much better than just buying more. By the way, thanks for letting me open shop here, take this as a thanks.
+
+#General Store Introduction
+harvestfestival.quest.tutorial.supermarket.reminder.talk=You should probably go and talk to Candice or Jenni, now that you have the General Store built.
+harvestfestival.quest.tutorial.supermarket.reminder.supermarket=Just a friendly reminder, if you want more seeds, go and get a General Store built!
+harvestfestival.quest.tutorial.supermarket.welcome.owner=Hey, I’m the owner of this here General Store. It’s nice to move to town. I sell all kinds of wares from seeds to chocolate. If you need anything just ask me. Opening hours are Weekdays, 09:00-17:00, well except for Wednesday when we’re closed. We’re also open for 4 hours on a Saturday from 11:00 to 15:00. It looks like you’re our first customer too, so here’s a reward!
+harvestfestival.quest.tutorial.supermarket.welcome.guest=I will surely find myself someone. Well hello there aren’t you just the cutest. I’m Candice. Jenni downstairs is the owner here, I’m just a tenant. If you need anything just go and see her everyday except Wednesday, 09:00-17:00. She also opens on Saturdays from 11:00 to 15:00. She told me to give you this.
+
+#Animal Ranch Introduction
+harvestfestival.quest.tutorial.barn.reminder.talk=Looks like yer got the Animal Ranch built ya should go and talk to Jim.
+harvestfestival.quest.tutorial.barn.reminder.barn=Remember, yer after an Animal Ranch.
+harvestfestival.quest.tutorial.barn.welcome=I’m quite glad that you’ve invited me here. I’m Jim by the way, I run the Animal Ranch. As a thanks for inviting me I have some gifts and a little bit of advice. To breed your animals just buy a Miracle Potion from me. It’ll impregnate your animals, and after a few days they’ll give birth to a baby, who’ll have half the relationship points of the parent. That’s all for now. Please do come again.
+
+#Cafe Cooking Lesson
+harvestfestival.quest.tutorial.cafe.welcome=Welcome to my Café. I am Liara the owner. Here we show a true passion for cooking and bring you the best food you can find. I’m happy to teach you how to cook if you don’t know how.
+harvestfestival.quest.tutorial.cafe.question=Do you know how to cook?
+harvestfestival.quest.tutorial.cafe.tutorial=@I do indeed
+harvestfestival.quest.tutorial.cafe.skip=@I can work it out
+harvestfestival.quest.tutorial.cafe.completed=Well that’s just awesome! I’m happy to give you these things to get started though.
+harvestfestival.quest.tutorial.cafe.explain=Well that’s just awesome! I’m happy to teach you. To get started you are going to need some sort of utensil. The most basic one would be the kitchen counter in combo with a knife. You’ll also need to know how to prepare a recipe. You can buy a bunch from me, but here’s Pickled Turnip to start with. You’ll just have to add it to your knowledge with right click. To see it, just grab yourself a Recipe Book. Select the utensil and then the recipe. You’ll then be able to see a list of items on the right hand side that you will need. If you have the ingredients and the utensil in place, clicking cook will place all the ingredients in to the utensil. It should then start cooking. Unless you’re using a counter of course! Then you’ll need to chop with a right click instead. If you need additional cookware, I’m happy to sell them to you, but they’re only available at weekends. One last thing. The recipes in the book are the very basics, you should try experimenting with adding extra ingredients, and you might be able to make a better version. Thanks for your time.
+
+#Upgrading Tools Tutorial
+harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.yulif=Ya should probably go and see the Blacksmith.
+harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.goddess=Hey sweety, I hear the Blacksmith wants to see you.
+harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.jim=Danieru told me he was interested in seeing you.
+harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.jenni=You should go and talk to Danieru.
+harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.candice=Hey there gorgeous, Danieru wanted to see you.
+harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.jade=I heard a rumour that the Blacksmith was looking to talk to you about something.
+harvestfestival.quest.tutorial.upgrading.reminder.blacksmith.brandon=I do have something I’d like to give you, but you should go and see Danieru first.
+harvestfestival.quest.tutorial.upgrading.blacksmith.yulif=Ya should probably get a Blacksmith and a Mine built.
+harvestfestival.quest.tutorial.upgrading.blacksmith.goddess=Hey darling, I recommend getting a Mine and a Blacksmith built next.
+harvestfestival.quest.tutorial.upgrading.blacksmith.jim=A Blacksmith and a Mine would be a great investment.
+harvestfestival.quest.tutorial.upgrading.blacksmith.jenni=You should build a Blacksmith and a Mine.
+harvestfestival.quest.tutorial.upgrading.blacksmith.candice=I’d love to go down deep in a mine, and work some hard metal. So perhaps you could get a Blacksmith and a Mine built for me?
+harvestfestival.quest.tutorial.upgrading.blacksmith.jade=I heard a rumour that a Blacksmith and a Miner would love to move to town.
+harvestfestival.quest.tutorial.upgrading.blacksmith.intro=If there is anywhere else I’d rather be than here, it’s in The End. Did I tell you about my adventures there. Oh wait, have we even met? I’m Danieru, the Blacksmith. Do you need any help?
+harvestfestival.quest.tutorial.upgrading.blacksmith.question=Do you know how to upgrade tools?
+harvestfestival.quest.tutorial.upgrading.blacksmith.tutorial=@I do not know anything.
+harvestfestival.quest.tutorial.upgrading.blacksmith.skip=@I know everything.
+harvestfestival.quest.tutorial.upgrading.blacksmith.completed=That’s good then. I have some ore and a hammer for you.
+harvestfestival.quest.tutorial.upgrading.blacksmith.explain=That’s good then. I’ll be happy to teach you. The first step is to get your tools to the stage where they can even be upgraded. If you notice they have a percentage bar. When this is at 100% just bring them to me. I’ll also need some ore to work with, as well as payment for my services. I’ll work on them for a few days, then you can have your tools back fully upgraded. You might be asking me how to get the materials you’ll need. Well you’ll need to head down the mine, taking with you a hammer. You can find nodes down there which you can smash with a hammer to obtain ore. Anyway that’s about it. I hear Brand the Miner has a gift for you though.
+harvestfestival.quest.tutorial.upgrading.blacksmith.complete=Ehhh hello there. I’ve just been done the mine, and well it was pretty terrible. Since you got me to this town, I may as well just give you the junk I found. Take it. I don’t want it.
+
+#Building the Goddess a Home
+harvestfestival.quest.tutorial.pond.please=You’ve done a remarkable job of bringing this town back together. I’m really happy to see it growing! I’d just love a permanent home here too. If you can build me one, then I have a reward for you.
+harvestfestival.quest.tutorial.pond.thanks=Your hard work getting this town back on its feet couldn’t be more appreciated. I couldn’t be more grateful for the home you have built me here either. To show my appreciation I’m to give you these wonderful strawberries. They’re my favourite! See you around!
+
+##Trading Quests
+# Priest Blessing Quest
 harvestfestival.quest.trade.cursed.accept=Thank you very much youngun, I can now bless your tools! It will take a little while, so come back in three days.
 harvestfestival.quest.trade.cursed.gold=Ahh I see you have a cursed tool! For a small fee of 10000 Gold I can bless it for you and remove that curse.
 harvestfestival.quest.trade.cursed.wait=It's nice to see you, the blessing of your tools is going well, it will take a little bit longer, please come back in %s days
 harvestfestival.quest.trade.cursed.done=Your %s is now ready! All blessed for you! Here take it!
 
-## Priest Repair Quests
+# Priest Repair Quests
 harvestfestival.quest.trade.bless.gold=Looks like you have a blessed tool. I can repair this for a small sum of 500 Gold.
 harvestfestival.quest.trade.bless.done=And with all the almighty power I hearby bless your %s once again and restore it's powers.
 
-##Trader Jonny Quest
+# Trader Johan Quests
 harvestfestival.quest.trade.vanilla.egg=Thank you very much for these here eggs. I will happily trade them for some from my homeland.
 harvestfestival.quest.trade.vanilla.milk=These bottles of milk sure look delicious! Take this bucket of milk as a thank you.
 harvestfestival.quest.trade.vanilla.wool=Your wool is so fine, it will make great clothes. Please take this wool, better for building with!
 
-##Test Quest
-harvestfestival.quest.test.start=Hello and Welcome to BTM, I have a very important question to ask.
-harvestfestival.quest.test.question=Which team are you?
-harvestfestival.quest.test.red=@Team Valor
-harvestfestival.quest.test.yellow=@Team Instinct
-harvestfestival.quest.test.blue=@Team Mystic
-harvestfestival.quest.test.done=Thanks for taking part in our survey.
+# Blacksmith Upgrades
+harvestfestival.quest.trade.upgrade.level=Your tool is not at 100%! Please come back when it is.
+harvestfestival.quest.trade.upgrade.gold=To upgrade this tool it will cost you %s, please come back when you have enough.
+harvestfestival.quest.trade.upgrade.material=To upgrade this tool I’m going to need %s %s.
+harvestfestival.quest.trade.upgrade.accept=This I can do, please come back in 3 days to collect your upgraded tool.
+harvestfestival.quest.trade.upgrade.done=Your %s has now been upgraded. Pleasure doing business with you.
+harvestfestival.quest.trade.upgrade.wait=Sorry to say but your tool is not quite ready, please come back in %s days.
+
+# Jade Seed Trades
+harvestfestival.quest.trade.seeds.complete.yes=Thanks for the flowers, here have a bag of seeds.
+harvestfestival.quest.trade.seeds.complete.no=I’m sorry but I don’t have any seeds to spare this time of year.
 
 ###Sounds
 harvestfestival.subtitle.fryingpan=Sizzle

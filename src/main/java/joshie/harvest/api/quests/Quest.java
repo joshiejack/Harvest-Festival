@@ -8,6 +8,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
@@ -37,12 +38,11 @@ public abstract class Quest extends Impl<Quest> {
 
     /** Called to check if this quest is able to be started, after all other checks are performed
      *
-     * @param player    the player we are checking for
      * @param active    the quests the player currently has active
      * @param finished  the quests the player has completed currently
      * @return true if they can start this quest, false otherwise
      */
-    public boolean canStartQuest(EntityPlayer player, Set<Quest> active, Set<Quest> finished) {
+    public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
         return true;
     }
 
@@ -115,7 +115,7 @@ public abstract class Quest extends Impl<Quest> {
     /** This is used when you want the quest to have options to select from
      *  You can return this based on the stage */
     @Nullable
-    public Selection getSelection(INPC npc) {
+    public Selection getSelection(EntityPlayer player, INPC npc) {
         return null;
     }
 
@@ -203,7 +203,7 @@ public abstract class Quest extends Impl<Quest> {
 
     //You need to return the events that get handled, so that they will get called
     public EventType[] getHandledEvents() { return new EventType[0]; }
-    public void onEntityInteract(EntityPlayer player, Entity target) {}
+    public void onEntityInteract(EntityPlayer player, @Nullable ItemStack held, EnumHand hand, Entity target) {}
     public void onClosedChat(EntityPlayer player, EntityLiving entity, INPC npc) { }
     public void onRightClickBlock(EntityPlayer player, BlockPos pos, EnumFacing face) {}
 

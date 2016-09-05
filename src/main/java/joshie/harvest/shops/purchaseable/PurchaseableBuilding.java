@@ -15,7 +15,7 @@ public class PurchaseableBuilding extends PurchaseableBuilder {
     private BuildingImpl building;
 
     public PurchaseableBuilding(BuildingImpl building) {
-        super(building.getCost(), building.getWoodCount(), building.getStoneCount(), building.getRegistryName().getResourceDomain());
+        super(building.getCost(), building.getWoodCount(), building.getStoneCount(), building.getRegistryName());
         this.building = building;
         this.resource = BuildingRegistry.REGISTRY.getKey(building);
     }

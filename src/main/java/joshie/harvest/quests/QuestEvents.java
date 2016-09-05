@@ -18,7 +18,7 @@ public class QuestEvents {
     public void onEntityInteract(PlayerInteractEvent.EntityInteract event) {
         Set<Quest> quests = HFApi.quests.getHandledQuests(event.getEntityPlayer(), ENTITY_INTERACT);
         for (Quest quest : quests) {
-            quest.onEntityInteract(event.getEntityPlayer(), event.getTarget());
+            quest.onEntityInteract(event.getEntityPlayer(), event.getItemStack(), event.getHand(), event.getTarget());
         }
     }
 

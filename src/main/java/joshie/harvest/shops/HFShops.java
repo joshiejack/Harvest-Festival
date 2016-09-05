@@ -7,6 +7,7 @@ import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.animals.entity.EntityHarvestSheep;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ITiered.ToolTier;
+import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.shops.IShop;
 import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.BuildingRegistry;
@@ -14,7 +15,6 @@ import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.block.BlockStorage.Storage;
 import joshie.harvest.core.util.HFLoader;
-import joshie.harvest.api.crops.Crop;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.crops.block.BlockSprinkler.Sprinkler;
 import joshie.harvest.mining.HFMining;
@@ -169,10 +169,10 @@ public class HFShops {
         CAFE = HFApi.shops.newShop(new ResourceLocation(MODID, "cafe"), HFNPCs.CAFE_OWNER);
         CAFE.addItem(0, new ItemStack(Items.POTIONITEM));
 
-        CAFE.addItem(new PurchaseableMeal(500, "salad"));
-        CAFE.addItem(new PurchaseableMeal(400, "cookies"));
-        CAFE.addItem(new PurchaseableMeal(750, "juice_pineapple"));
-        CAFE.addItem(new PurchaseableMeal(250, "corn_baked"));
+        CAFE.addItem(new PurchaseableMeal(500, new ResourceLocation(MODID, "salad")));
+        CAFE.addItem(new PurchaseableMeal(400, new ResourceLocation(MODID, "cookies")));
+        CAFE.addItem(new PurchaseableMeal(750, new ResourceLocation(MODID, "juice_pineapple")));
+        CAFE.addItem(new PurchaseableMeal(250, new ResourceLocation(MODID, "corn_baked")));
 
         //Allow the purchasing of cookware at the weekends
         CAFE.addItem(new PurchaseableWeekend(25, new ItemStack(COOKBOOK)));
@@ -185,24 +185,24 @@ public class HFShops {
         CAFE.addItem(new PurchaseableWeekend(1200, COOKWARE.getStackFromEnum(MIXER), COOKWARE.getStackFromEnum(COUNTER)));
 
         //Add recipes for purchase
-        CAFE.addItem(new PurchaseableRecipe(SPRING, MONDAY, "juice_vegetable"));
-        CAFE.addItem(new PurchaseableRecipe(SPRING, TUESDAY, "sushi"));
-        CAFE.addItem(new PurchaseableRecipe(SPRING, WEDNESDAY, "sashimi"));
-        CAFE.addItem(new PurchaseableRecipe(SPRING, THURSDAY, "sashimi_chirashi"));
-        CAFE.addItem(new PurchaseableRecipe(SPRING, FRIDAY, "cucumber_pickled"));
-        CAFE.addItem(new PurchaseableRecipe(SUMMER, SATURDAY, "juice_tomato"));
-        CAFE.addItem(new PurchaseableRecipe(SUMMER, SUNDAY, "cornflakes"));
-        CAFE.addItem(new PurchaseableRecipe(SUMMER, MONDAY, "ketchup"));
-        CAFE.addItem(new PurchaseableRecipe(SUMMER, TUESDAY, "stew_pumpkin"));
-        CAFE.addItem(new PurchaseableRecipe(SUMMER, THURSDAY, "doria"));
-        CAFE.addItem(new PurchaseableRecipe(AUTUMN, TUESDAY, "eggplant_happy"));
-        CAFE.addItem(new PurchaseableRecipe(AUTUMN, WEDNESDAY, "sandwich"));
-        CAFE.addItem(new PurchaseableRecipe(AUTUMN, SATURDAY, "spinach_boiled"));
-        CAFE.addItem(new PurchaseableRecipe(AUTUMN, SUNDAY, "riceballs_toasted"));
-        CAFE.addItem(new PurchaseableRecipe(WINTER, MONDAY, "omelet"));
-        CAFE.addItem(new PurchaseableRecipe(WINTER, TUESDAY, "egg_boiled"));
-        CAFE.addItem(new PurchaseableRecipe(WINTER, WEDNESDAY, "egg_overrice"));
-        CAFE.addItem(new PurchaseableRecipe(WINTER, FRIDAY, "pancake"));
+        CAFE.addItem(new PurchaseableRecipe(SPRING, MONDAY, new ResourceLocation(MODID, "juice_vegetable")));
+        CAFE.addItem(new PurchaseableRecipe(SPRING, TUESDAY, new ResourceLocation(MODID, "sushi")));
+        CAFE.addItem(new PurchaseableRecipe(SPRING, WEDNESDAY, new ResourceLocation(MODID, "sashimi")));
+        CAFE.addItem(new PurchaseableRecipe(SPRING, THURSDAY, new ResourceLocation(MODID, "sashimi_chirashi")));
+        CAFE.addItem(new PurchaseableRecipe(SPRING, FRIDAY, new ResourceLocation(MODID, "cucumber_pickled")));
+        CAFE.addItem(new PurchaseableRecipe(SUMMER, SATURDAY, new ResourceLocation(MODID, "juice_tomato")));
+        CAFE.addItem(new PurchaseableRecipe(SUMMER, SUNDAY, new ResourceLocation(MODID, "cornflakes")));
+        CAFE.addItem(new PurchaseableRecipe(SUMMER, MONDAY, new ResourceLocation(MODID, "ketchup")));
+        CAFE.addItem(new PurchaseableRecipe(SUMMER, TUESDAY, new ResourceLocation(MODID, "stew_pumpkin")));
+        CAFE.addItem(new PurchaseableRecipe(SUMMER, THURSDAY, new ResourceLocation(MODID, "doria")));
+        CAFE.addItem(new PurchaseableRecipe(AUTUMN, TUESDAY, new ResourceLocation(MODID, "eggplant_happy")));
+        CAFE.addItem(new PurchaseableRecipe(AUTUMN, WEDNESDAY, new ResourceLocation(MODID, "sandwich")));
+        CAFE.addItem(new PurchaseableRecipe(AUTUMN, SATURDAY, new ResourceLocation(MODID, "spinach_boiled")));
+        CAFE.addItem(new PurchaseableRecipe(AUTUMN, SUNDAY, new ResourceLocation(MODID, "riceballs_toasted")));
+        CAFE.addItem(new PurchaseableRecipe(WINTER, MONDAY, new ResourceLocation(MODID, "omelet")));
+        CAFE.addItem(new PurchaseableRecipe(WINTER, TUESDAY, new ResourceLocation(MODID, "egg_boiled")));
+        CAFE.addItem(new PurchaseableRecipe(WINTER, WEDNESDAY, new ResourceLocation(MODID, "egg_overrice")));
+        CAFE.addItem(new PurchaseableRecipe(WINTER, FRIDAY, new ResourceLocation(MODID, "pancake")));
 
         CAFE.addOpening(MONDAY, 9500, 17000).addOpening(TUESDAY, 9500, 17000).addOpening(WEDNESDAY, 9500, 17000).addOpening(THURSDAY, 9500, 17000);
         CAFE.addOpening(FRIDAY, 9500, 17000).addOpening(SATURDAY, 9500, 17000).addOpening(SUNDAY, 9500, 17000);

@@ -96,7 +96,7 @@ public class TownTrackerServer extends TownTracker {
         TownDataServer data = new TownDataServer(pos);
         creator.setSpawnHome(data); //Set the spawn town
         creator.setUniqueId(data.getID()); //Marking the builder as having the same data
-        creator.setPositionAndUpdate(pos.getX(), pos.getY() + 0.5D, pos.getZ());
+        creator.setPositionAndUpdate(pos.getX(), pos.getY() + 1.5D, pos.getZ());
         world.spawnEntityInWorld(creator); //Towns owner now spawned
         townData.add(data);
         closestCache.invalidateAll(); //Reset the cache everytime we make a new town

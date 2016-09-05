@@ -426,7 +426,7 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
     @SuppressWarnings("deprecation")
     public String getSeedsName() {
         String suffix = alternativeName ? ".block" : "";
-        String name = I18n.translateToLocal((getRegistryName().getResourceDomain() + "crop." + StringUtils.replace(getRegistryName().getResourcePath(), "_", ".") + suffix));
+        String name = I18n.translateToLocal((getRegistryName().getResourceDomain() + ".crop." + StringUtils.replace(getRegistryName().getResourcePath(), "_", ".") + suffix));
         String seeds = I18n.translateToLocal("harvestfestival.crop.seeds");
         String text = I18n.translateToLocal("harvestfestival.crop.seeds.format.standard");
         text = StringUtils.replace(text, "%C", name);

@@ -23,7 +23,7 @@ public class QuestSupermarket extends Quest {
     }
 
     @Override
-    public boolean canStartQuest(EntityPlayer player, Set<Quest> active, Set<Quest> finished) {
+    public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
         return finished.contains(TUTORIAL_CROPS);
     }
 

@@ -12,17 +12,16 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static net.minecraft.util.text.TextFormatting.WHITE;
 
 public abstract class PurchaseableFML<I extends IForgeRegistryEntry.Impl<I>> implements IPurchaseable {
     protected I item;
     private long cost;
 
-    public PurchaseableFML(long cost, String meal) {
+    public PurchaseableFML(long cost, ResourceLocation resource) {
         this.cost = cost;
-        if (!meal.equals("")) {
-            this.item = getRegistry().getValue(new ResourceLocation(MODID, meal));
+        if (resource != null) {
+            this.item = getRegistry().getValue(resource);
         }
     }
 

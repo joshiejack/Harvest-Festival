@@ -16,6 +16,8 @@ public class GuiNPCBase extends GuiBaseContainer {
     protected EntityNPC npc;
     protected EntityPlayer player;
     protected int nextGui;
+    private int inside;
+    private int outside;
 
     public GuiNPCBase(EntityNPC eNpc, EntityPlayer ePlayer, int next) {
         super(new ContainerNPCBase(eNpc, ePlayer.inventory), "chat", 0);
@@ -26,6 +28,8 @@ public class GuiNPCBase extends GuiBaseContainer {
         xSize = 256;
         ySize = 256;
         nextGui = next;
+        inside = npc.getNPC().getInsideColor();
+        outside = npc.getNPC().getOutsideColor();
     }
 
     @Override
@@ -34,9 +38,9 @@ public class GuiNPCBase extends GuiBaseContainer {
         GlStateManager.enableBlend();
         mc.renderEngine.bindTexture(chatbox);
         drawTexturedModalRect(x, y + 150, 0, 150, 256, 51);
-        ChatFontRenderer.colorise(npc.getNPC().getInsideColor());
+        ChatFontRenderer.colorise(inside);
         drawTexturedModalRect(x, y + 150, 0, 100, 256, 51);
-        ChatFontRenderer.colorise(npc.getNPC().getOutsideColor());
+        ChatFontRenderer.colorise(outside);
         drawTexturedModalRect(x, y + 150, 0, 50, 256, 51);
         GlStateManager.color(1F, 1F, 1F, 1F);
         GlStateManager.disableBlend();

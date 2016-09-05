@@ -30,12 +30,12 @@ public class QuestPoultry extends QuestQuestion {
     }
 
     @Override
-    public boolean canStartQuest(EntityPlayer player, Set<Quest> active, Set<Quest> finished) {
+    public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
         return finished.contains(TUTORIAL_CHICKEN);
     }
 
     @Override
-    public Selection getSelection(INPC npc) {
+    public Selection getSelection(EntityPlayer player, INPC npc) {
         return npc == POULTRY && quest_stage <= 0 ? selection : null;
     }
 

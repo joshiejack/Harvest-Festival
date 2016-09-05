@@ -18,7 +18,7 @@ public class Sizeable extends IForgeRegistryEntry.Impl<Sizeable>  {
     }
 
     public boolean matches(ItemStack stack) {
-        return HFCore.SIZEABLE.getObjectFromStack(stack) == this;
+        return stack.getItem() == HFCore.SIZEABLE && HFCore.SIZEABLE.getObjectFromStack(stack) == this;
     }
 
     public ItemStack getStack(Size size) {

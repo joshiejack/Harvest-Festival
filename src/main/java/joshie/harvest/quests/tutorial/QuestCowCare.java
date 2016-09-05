@@ -20,7 +20,9 @@ import net.minecraft.item.ItemFishingRod;
 import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumHand;
 
+import javax.annotation.Nullable;
 import java.util.Set;
 
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.BRUSH;
@@ -41,15 +43,17 @@ public class QuestCowCare extends QuestQuestion {
     }
 
     @Override
-    public boolean canStartQuest(EntityPlayer player, Set<Quest> active, Set<Quest> finished) {
+    public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
         return finished.contains(TUTORIAL_CHICKEN);
     }
 
     @Override
-    public void onEntityInteract(EntityPlayer player, Entity target) {
-        if (quest_stage == 2) {
+    public EventType[] getHandledEvents() { return new EventType[] { EventType.ENTITY_INTERACT }; }
+
+    @Override
+    public void onEntityInteract(EntityPlayer player, @Nullable ItemStack held, EnumHand hand, Entity target) {
+        if (quest_stage == 2 || quest_stage == 3) {
             if (target instanceof EntityHarvestCow) {
-                ItemStack held = player.getActiveItemStack();
                 if (held != null) {
                     if (!hasFed && held.isItemEqual(HFCrops.GRASS.getCropStack())) {
                         hasFed = true;
@@ -63,7 +67,6 @@ public class QuestCowCare extends QuestQuestion {
         } else if (quest_stage == 5) {
             if (target instanceof EntityHarvestCow) {
                 EntityHarvestCow cow = (EntityHarvestCow) target;
-                ItemStack held = player.getActiveItemStack();
                 if (held != null) {
                     if (!hasMilked && ToolHelper.isMilker(held)) {
                         if (cow.getData().canProduce()) {
@@ -161,7 +164,7 @@ public class QuestCowCare extends QuestQuestion {
             rewardItem(player, new ItemStack(Items.LEAD));
             rewardItem(player, new ItemStack(HFCrops.GRASS.getCropStack().getItem(), 16, HFCrops.GRASS.getCropStack().getItemDamage()));
             rewardItem(player, HFAnimals.TOOLS.getStackFromEnum(BRUSH));
-        } else if (previous == 5) {
+        } else if (previous == 4) {
             rewardItem(player, HFAnimals.TOOLS.getStackFromEnum(MILKER));
         }
     }

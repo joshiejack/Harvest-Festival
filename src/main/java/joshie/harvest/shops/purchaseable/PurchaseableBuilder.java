@@ -6,6 +6,7 @@ import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.helpers.InventoryHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IForgeRegistry;
 
@@ -14,14 +15,14 @@ public class PurchaseableBuilder extends PurchaseableFML<BuildingImpl> {
     private final int logs;
     private final int stone;
 
-    public PurchaseableBuilder(long cost, int logs, int stone, String name) {
+    public PurchaseableBuilder(long cost, int logs, int stone, ResourceLocation name) {
         super(cost, name);
         this.logs = logs;
         this.stone = stone;
     }
 
     public PurchaseableBuilder(long cost, int logs, int stone, ItemStack stack) {
-        super(cost, "");
+        super(cost, null);
         this.logs = logs;
         this.stone = stone;
         this.stack = stack;

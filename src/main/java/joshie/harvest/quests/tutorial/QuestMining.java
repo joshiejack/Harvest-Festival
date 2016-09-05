@@ -1,16 +1,16 @@
 package joshie.harvest.quests.tutorial;
 
-import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.buildings.HFBuildings;
-import joshie.harvest.town.TownHelper;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.item.ItemMaterial.Material;
 import joshie.harvest.quests.QuestQuestion;
 import joshie.harvest.quests.TutorialSelection;
 import joshie.harvest.tools.HFTools;
+import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -28,13 +28,13 @@ public class QuestMining extends QuestQuestion {
     }
 
     @Override
-    public boolean canStartQuest(EntityPlayer player, Set<Quest> active, Set<Quest> finished) {
+    public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
         return finished.contains(TUTORIAL_BARN) && finished.contains(TUTORIAL_POULTRY) && finished.contains(TUTORIAL_SUPERMARKET);
     }
 
     @Override
-    public Selection getSelection(INPC npc) {
-        return npc == TOOL_OWNER ? super.getSelection(npc) : null;
+    public Selection getSelection(EntityPlayer player, INPC npc) {
+        return npc == TOOL_OWNER ? super.getSelection(player, npc) : null;
     }
 
     @Override

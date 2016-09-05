@@ -31,7 +31,7 @@ public class GuiNPCSelect extends GuiNPCBase {
         if (selectionType == -1) selection = SHOPS;
         else {
             quest = HFTrackers.getClientPlayerTracker().getQuests().getAQuest(Quest.REGISTRY.getValues().get(selectionType));
-            selection = quest.getSelection(npc.getNPC());
+            selection = quest.getSelection(player, npc.getNPC());
         }
 
         if (selection == null || selection.getText() == null) player.closeScreen();

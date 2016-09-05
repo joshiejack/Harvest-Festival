@@ -93,11 +93,7 @@ public class ItemHoe extends ItemToolChargeable {
 
     @Override
     public void onPlayerStoppedUsing(ItemStack stack, World world, EntityLivingBase entity, int timeLeft) {
-        int charge = (Math.min(7, Math.max(0, getCharge(stack))));
-        setCharge(stack, 0); //Reset the charge
-        if (!world.isRemote) {
-            onFinishedCharging(world, entity, getMovingObjectPositionFromPlayer(world, entity), stack, ToolTier.values()[charge]);
-        }
+        super.onPlayerStoppedUsing(stack, world, entity, timeLeft);
     }
 
     @Override

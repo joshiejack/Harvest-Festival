@@ -64,11 +64,9 @@ public class ItemToolChargeable extends ItemTool<ItemToolChargeable> {
 
     @Override
     public void onPlayerStoppedUsing(ItemStack stack, World world, EntityLivingBase entity, int timeLeft) {
-        if (timeLeft <= 31973) {
-            int charge = (Math.min(7, Math.max(0, getCharge(stack))));
-            setCharge(stack, 0); //Reset the charge
-            onFinishedCharging(world, entity, getMovingObjectPositionFromPlayer(world, entity), stack, getChargeTier(stack, charge));
-        }
+        int charge = (Math.min(7, Math.max(0, getCharge(stack))));
+        setCharge(stack, 0); //Reset the charge
+        onFinishedCharging(world, entity, getMovingObjectPositionFromPlayer(world, entity), stack, getChargeTier(stack, charge));
     }
 
     protected void onFinishedCharging(World world, EntityLivingBase entity, @Nullable RayTraceResult result, ItemStack stack, ToolTier toolTier) {}

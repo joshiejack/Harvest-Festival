@@ -7,14 +7,15 @@ import joshie.harvest.api.calendar.Weekday;
 import joshie.harvest.cooking.HFCooking;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 public class PurchaseableRecipe extends PurchaseableMeal {
     private final Season season;
     private final Weekday weekday;
 
-    public PurchaseableRecipe(Season season, Weekday weekday, String recipe) {
-        super(150, recipe);
+    public PurchaseableRecipe(Season season, Weekday weekday, ResourceLocation resource) {
+        super(150, resource);
         this.season = season;
         this.weekday = weekday;
     }

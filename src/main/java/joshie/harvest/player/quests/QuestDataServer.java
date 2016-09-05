@@ -28,7 +28,7 @@ public class QuestDataServer extends QuestData {
     //Called to start a quest, is called clientside, by the startquest packet
     @Override
     public boolean startQuest(Quest q) {
-        if (current.size() < 10 || !q.isRealQuest()) {
+        if (current.size() < 100 || !q.isRealQuest()) {
             try {
                 Quest quest = q.getClass().newInstance().setRegistryName(q.getRegistryName()).setStage(0); //Set the current quest to your new
                 current.add(quest);
@@ -114,7 +114,7 @@ public class QuestDataServer extends QuestData {
             }
         }
 
-        return quest.canStartQuest(player, active, finished);
+        return quest.canStartQuest(active, finished);
     }
 
     public void readFromNBT(NBTTagCompound nbt) {

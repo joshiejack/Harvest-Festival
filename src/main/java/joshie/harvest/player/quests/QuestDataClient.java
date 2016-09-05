@@ -64,11 +64,11 @@ public class QuestDataClient extends QuestData {
     }
 
     //Returns a single lined script
-    public Quest getSelection(EntityNPC npc) {
+    public Quest getSelection(EntityPlayer player, EntityNPC npc) {
         if (current != null) {
             for (Quest q : current) {
                 if (handlesScript(q, npc.getNPC())) {
-                    if (q.getSelection(npc.getNPC()) != null) return q;
+                    if (q.getSelection(player, npc.getNPC()) != null) return q;
                 }
             }
         }
@@ -88,7 +88,7 @@ public class QuestDataClient extends QuestData {
         }
 
         //If we didn't return a current quest, search for a new one
-        if (current.size() < 10) {
+        if (current.size() < 100) {
             for (Quest q : available) {
                 if (!current.contains(q) && handlesScript(q, npc.getNPC())) {
                     try {

@@ -3,8 +3,8 @@ package joshie.harvest.quests.tutorial;
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.entity.EntityHarvestChicken;
 import joshie.harvest.animals.item.ItemAnimalTool.Tool;
-import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.lib.HFQuests;
@@ -22,8 +22,10 @@ import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 
+import javax.annotation.Nullable;
 import java.util.Set;
 
 import static joshie.harvest.animals.block.BlockTray.Tray.NEST_EMPTY;
@@ -42,21 +44,23 @@ public class QuestChickenCare extends QuestQuestion {
     }
 
     @Override
-    public boolean canStartQuest(EntityPlayer player, Set<Quest> active, Set<Quest> finished) {
-        return player.getHeldItemMainhand() != null && InventoryHelper.ITEM_STACK.matches(player.getHeldItemMainhand(), HFCrops.TURNIP.getCropStack()) && finished.contains(HFQuests.TUTORIAL_CROPS);
+    public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
+        return finished.contains(HFQuests.TUTORIAL_CROPS);
     }
 
     @Override
-    public void onEntityInteract(EntityPlayer player, Entity target) {
-        if (!hasFed && (quest_stage == 1 || quest_stage == 2)) {
+    public EventType[] getHandledEvents() { return new EventType[] { EventType.ENTITY_INTERACT, EventType.RIGHT_CLICK_BLOCK }; }
+
+    @Override
+    public void onEntityInteract(EntityPlayer player, @Nullable ItemStack held, EnumHand hand, Entity target) {
+        if (!hasFed && (quest_stage == 2 || quest_stage == 3)) {
             if (target instanceof EntityChicken) {
-                ItemStack held = player.getActiveItemStack();
-                if (held != null && !hasFed) {
-                    if (!hasFed && InventoryHelper.ITEM_STACK.matches(held, HFAnimals.TOOLS.getStackFromEnum(Tool.CHICKEN_FEED))) {
+                if (held != null) {
+                    if (InventoryHelper.ITEM_STACK.matches(held, HFAnimals.TOOLS.getStackFromEnum(Tool.CHICKEN_FEED))) {
                         hasFed = true;
                     }
 
-                    if (!player.worldObj.isRemote) increaseStage(player);
+                    increaseStage(player);
                 }
             }
         }
@@ -64,14 +68,19 @@ public class QuestChickenCare extends QuestQuestion {
 
     @Override
     public void onRightClickBlock(EntityPlayer player, BlockPos pos, EnumFacing face) {
-        if (!hasThrown && (quest_stage == 1 || quest_stage == 2)) {
+        if (!hasThrown && (quest_stage == 2 || quest_stage == 3)) {
             for (Entity entity: player.getPassengers()) {
                 if (entity instanceof EntityHarvestChicken) {
                     hasThrown = true; //You have now thrown!
-                    if (!player.worldObj.isRemote) increaseStage(player);
+                    increaseStage(player);
                 }
             }
         }
+    }
+
+    @Override
+    public Selection getSelection(EntityPlayer player, INPC npc) {
+        return quest_stage <= 0 && player.getHeldItemMainhand() != null && InventoryHelper.ITEM_STACK.matches(player.getHeldItemMainhand(), HFCrops.TURNIP.getCropStack())? selection : null;
     }
 
     @Override
@@ -79,8 +88,7 @@ public class QuestChickenCare extends QuestQuestion {
         if (isCompleted) {
             complete(player);
             return "completed";
-        } else if (quest_stage == 0) {
-            increaseStage(player);
+        } else if (quest_stage == 0 && player.getHeldItemMainhand() != null && InventoryHelper.ITEM_STACK.matches(player.getHeldItemMainhand(), HFCrops.TURNIP.getCropStack())) {
             //The goddess welcomes you and sees that you have a turnip
             //She thanks you for growing them for her, she explains that has a wonderful gift
             //One you have never seen before, She explains she has a chicken she would like to give you

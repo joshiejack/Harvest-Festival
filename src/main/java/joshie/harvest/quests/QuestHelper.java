@@ -68,7 +68,9 @@ public class QuestHelper implements IQuestHelper {
     public void rewardItem(Quest quest, EntityPlayer player, ItemStack stack) {
         if (player.worldObj.isRemote) {
             PacketHandler.sendToServer(new PacketRequestItem(quest, stack));
-        } else ItemHelper.addToPlayerInventory(player, stack);
+        }  else {
+            ItemHelper.spawnItem(player.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ, stack);
+        }
     }
 
     @Override

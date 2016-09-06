@@ -24,6 +24,8 @@ import static joshie.harvest.npc.HFNPCs.POULTRY;
 
 @HFQuest("tutorial.poultry")
 public class QuestPoultry extends QuestQuestion {
+    private static final int START = 0;
+    private static final int QUESTION = 1;
     public QuestPoultry() {
         super(new TutorialSelection("poultry"));
         setNPCs(GODDESS, POULTRY);
@@ -36,12 +38,12 @@ public class QuestPoultry extends QuestQuestion {
 
     @Override
     public Selection getSelection(EntityPlayer player, INPC npc) {
-        return npc == POULTRY && quest_stage <= 0 ? selection : null;
+        return npc == POULTRY && quest_stage <= START ? selection : null;
     }
 
     @Override
     public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
-        if (quest_stage == 0 && player.worldObj.rand.nextFloat() < 0.25F && npc == HFNPCs.GODDESS) {
+        if (quest_stage == START && player.worldObj.rand.nextFloat() < 0.25F && npc == HFNPCs.GODDESS) {
             if (TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.POULTRY_FARM)) {
                 //If the barn exists the goddess will tell the player to go and talk to ashlee
                 return "reminder.talk";
@@ -52,9 +54,8 @@ public class QuestPoultry extends QuestQuestion {
             return "reminder.poultry";
         } else if (npc == POULTRY) {
             if (isCompletedEarly) {
-                complete(player);
                 return "completed";
-            } else if (quest_stage == 0) {
+            } else if (quest_stage == START) {
                 //The poultry owner welcomes you, tells you their name is ashlee
                 return "welcome";
             } else {
@@ -64,12 +65,20 @@ public class QuestPoultry extends QuestQuestion {
                 //If they buy an incubator they can place an egg in it
                 //And eventually a chick will hatch
                 //They say thanks for being the first customer and then gives them eggs, and feed
-                complete(player);
                 return "info";
             }
         }
 
         return null;
+    }
+
+    @Override
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc) {
+        if (npc == POULTRY) {
+            if(quest_stage != START || isCompletedEarly) {
+                complete(player);
+            }
+        }
     }
 
     @Override

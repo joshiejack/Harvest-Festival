@@ -31,13 +31,19 @@ public class QuestPond extends Quest {
             //The goddess thanks you for your hard work in reestablishing the town
             //SHe is ever so grateful for her new home too, and thanks you a lot
             //She also has a reward!
-            complete(player);
             return "thanks";
         }
 
         //The goddess tells you that she is really happy with how the town is growing
         //And that she would like a permenant place too, she asks that you build her a goddess pond
         return "please";
+    }
+
+    @Override
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc) {
+        if (TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.GODDESS_POND)) {
+            complete(player);
+        }
     }
 
     @Override

@@ -15,6 +15,9 @@ import static joshie.harvest.npc.HFNPCs.GODDESS;
 
 @HFQuest("tutorial.intro")
 public class QuestIntro extends QuestQuestion {
+    private static final int HELLO = 0;
+    private static final int BACKSTORY = 1;
+
     public QuestIntro() {
         super(new TutorialSelection("intro"));
         setNPCs(GODDESS);
@@ -24,16 +27,21 @@ public class QuestIntro extends QuestQuestion {
     public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
         //The goddess says hello and asks if you are new
         if (isCompletedEarly) {
-            complete(player);
             return "completed";
-        } else  if (quest_stage == 0) return "hello";
-        else if (quest_stage == 1) {
+        } else  if (quest_stage == HELLO) return "hello";
+        else if (quest_stage == BACKSTORY) {
             //The goddess gives you a back story about the world, she then lets the player
             //know that she will despawn after a while, but will leave a goddess flower behind
             //most of the time, so that you can resummon here
-            complete(player);
             return "backstory";
         } else return null;
+    }
+
+    @Override
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc) {
+        if (quest_stage == BACKSTORY || isCompletedEarly) {
+            complete(player);
+        }
     }
 
     @Override

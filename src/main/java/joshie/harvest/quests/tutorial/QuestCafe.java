@@ -1,13 +1,13 @@
 package joshie.harvest.quests.tutorial;
 
-import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
+import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.cooking.CookingHelper;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.block.BlockCookware.Cookware;
 import joshie.harvest.cooking.item.ItemUtensil.Utensil;
-import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.quests.TutorialSelection;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,6 +20,8 @@ import static joshie.harvest.npc.HFNPCs.CAFE_OWNER;
 
 @HFQuest("tutorial.cafe")
 public class QuestCafe extends QuestQuestion {
+    private static final int WELCOME = 0;
+    private static final int TUTORIAL = 1;
     public QuestCafe() {
         super(new TutorialSelection("cafe"));
         setNPCs(CAFE_OWNER);
@@ -33,13 +35,12 @@ public class QuestCafe extends QuestQuestion {
     @Override
     public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
         if (isCompletedEarly) {
-            complete(player);
             return "completed";
-        } else if (quest_stage == 0) {
+        } else if (quest_stage == WELCOME) {
             //Liara tells the player, welcome to the cafe, she tells them that she is an expert on cooking
             //She asks them if they have ever cooked before or if they know how?
             return "welcome";
-        } else if (quest_stage == 1) {
+        } else if (quest_stage == TUTORIAL) {
             //Liara explains that to cook you will need a utensil
             //You will also need to know a recipe, she tells you that you can look up recipes
             //In the cookbook, she explains that the book will tell you
@@ -52,11 +53,17 @@ public class QuestCafe extends QuestQuestion {
             //She also explains that the recipes listed in the book are the basic
             //And that you should try adding different ingredients to make better versions
             //She thanks you for your time, and being the first customer and gives the rewards
-            complete(player);
             return "explain";
         }
 
         return null;
+    }
+
+    @Override
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc) {
+        if (isCompletedEarly || quest_stage == TUTORIAL) {
+            complete(player);
+        }
     }
 
     @Override

@@ -47,7 +47,7 @@ public class GuiNPCChat extends GuiNPCBase {
     }
 
     private boolean buildScript() {
-        String[] original = WordUtils.wrap(format(getScript()), 39).split(SystemUtils.LINE_SEPARATOR);
+        String[] original = WordUtils.wrap(format(getScript()), 40).split(SystemUtils.LINE_SEPARATOR);
         int size = original.length / MAX_LINES_PER_PAGE;
         boolean isRemainder = original.length % MAX_LINES_PER_PAGE == 0;
         if (!isRemainder) {

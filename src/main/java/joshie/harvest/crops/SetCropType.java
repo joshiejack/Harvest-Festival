@@ -38,7 +38,11 @@ public class SetCropType extends LootFunction {
     }
 
     public ItemStack random(boolean crop) {
-        if (cropsList == null) cropsList = new ArrayList<>(Crop.REGISTRY.getValues());
+        if (cropsList == null) {
+            cropsList = new ArrayList<>(Crop.REGISTRY.getValues());
+            cropsList.remove(Crop.NULL_CROP);
+        }
+
         Collections.shuffle(cropsList);
         return crop ? cropsList.get(0).getCropStack(1) : cropsList.get(0).getSeedStack(1);
     }

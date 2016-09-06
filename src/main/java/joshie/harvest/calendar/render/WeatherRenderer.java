@@ -23,7 +23,6 @@ public class WeatherRenderer extends IRenderHandler {
     public void render(float rain, WorldClient worldClient, Minecraft mc) {
         float f = mc.theWorld.getRainStrength(rain);
         EntityRenderer renderer = mc.entityRenderer;
-
         if (f > 0.0F) {
             renderer.enableLightmap();
             Entity entity = mc.getRenderViewEntity();

@@ -15,6 +15,11 @@ import javax.annotation.Nonnull;
 import static joshie.harvest.core.helpers.InventoryHelper.SearchType.*;
 
 public class InventoryHelper {
+    public static Item getHeldItem(EntityPlayer player) {
+        if (player.getHeldItemMainhand() == null) return null;
+        return player.getHeldItemMainhand().getItem();
+    }
+
     public enum SearchType {
         FLOWER, HOE, BUCKET
     }
@@ -78,13 +83,13 @@ public class InventoryHelper {
 
     @SuppressWarnings("unchecked")
     public static <S> boolean hasInInventory(EntityPlayer player, Matcher matcher, S search, int... amount) {
-        int count = amount == null ? 1 : amount[0];
+        int count = amount == null || amount.length == 0 ? 1 : amount[0];
         return getCount(player, search, matcher) >= count;
     }
 
     @SuppressWarnings("unchecked")
     public static <S> boolean takeItemsInInventory(EntityPlayer player, Matcher matcher, S search, int... amount) {
-        int count = amount == null ? 1 : amount[0];
+        int count = amount == null || amount.length == 0 ? 1 : amount[0];
         if (hasInInventory(player, matcher, search, count)) {
             takeItems(player, search, count, matcher);
             return true;
@@ -95,7 +100,7 @@ public class InventoryHelper {
 
     @SuppressWarnings("unchecked")
     public static <S> boolean isHolding(EntityPlayer player, Matcher matcher, S search, int... amount) {
-        int count = amount == null ? 1 : amount[0];
+        int count = amount == null || amount.length == 0 ? 1 : amount[0];
         ItemStack held = player.getHeldItemMainhand();
         if (held != null && matcher.matches(held, search)) {
             return held.stackSize >= count;
@@ -106,7 +111,7 @@ public class InventoryHelper {
 
     @SuppressWarnings("unchecked")
     public static <S> boolean takeItemsIfHeld(EntityPlayer player, Matcher matcher, S search, int... amount) {
-        int count = amount == null ? 1 : amount[0];
+        int count = amount == null || amount.length == 0 ? 1 : amount[0];
         if (isHolding(player, matcher, search, count)) {
             takeItems(player, search, count, matcher);
             return true;

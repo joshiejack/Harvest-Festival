@@ -83,7 +83,7 @@ public class ItemCrop extends ItemHFFML<ItemCrop, Crop> implements IShippable, I
 
     @Override
     public boolean shouldDisplayInCreative(Crop crop) {
-        return crop.getCropStack(1) != null && crop.getCropStack(1).getItem() == this;
+        return crop != Crop.NULL_CROP && crop.getCropStack(1).getItem() == this;
     }
 
     @Override

@@ -8,21 +8,17 @@ import joshie.harvest.api.quests.Quest.EventType;
 import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.ItemHelper;
-import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.util.HFApiImplementation;
 import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.player.quests.QuestData;
 import joshie.harvest.quests.packet.PacketQuestCompleteEarly;
-import joshie.harvest.quests.packet.PacketQuestDecreaseHeld;
 import joshie.harvest.quests.packet.PacketQuestIncrease;
-import joshie.harvest.quests.packet.PacketRequestEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.play.server.SPacketSetSlot;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.FakePlayer;
 
@@ -31,7 +27,6 @@ import java.util.Set;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.core.network.PacketHandler.sendToClient;
-import static joshie.harvest.core.network.PacketHandler.sendToServer;
 
 @HFApiImplementation
 public class QuestHelper implements IQuestHelper {
@@ -64,13 +59,7 @@ public class QuestHelper implements IQuestHelper {
      *****************************/
     @Override
     public void takeHeldStack(EntityPlayer player, int amount) {
-        if (player.worldObj.isRemote) {
-            player.inventory.decrStackSize(player.inventory.currentItem, amount);
-            sendToServer(new PacketQuestDecreaseHeld(amount));
-        } else {
-            player.inventory.decrStackSize(player.inventory.currentItem, amount);
-            ((EntityPlayerMP) player).connection.sendPacket(new SPacketSetSlot(-1, -1, player.getActiveItemStack()));
-        }
+        player.inventory.decrStackSize(player.inventory.currentItem, amount);
     }
 
     @Override
@@ -87,9 +76,7 @@ public class QuestHelper implements IQuestHelper {
 
     @Override
     public void rewardEntity(Quest quest, EntityPlayer player, String entity) {
-        if (player.worldObj.isRemote) {
-            PacketHandler.sendToServer(new PacketRequestEntity(quest, entity));
-        } else {
+        if (!player.worldObj.isRemote) {
             Entity theEntity = EntityList.createEntityByIDFromName(entity, player.worldObj);
             if (theEntity != null) {
                 theEntity.setPosition(player.posX, player.posY, player.posZ);
@@ -107,7 +94,7 @@ public class QuestHelper implements IQuestHelper {
     @Override
     public Set<Quest> getCurrentQuests(EntityPlayer player, EventType events) {
         if (isFakePlayer(player)) return EMPTY;
-        return HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().getHandled(events);
+        return new HashSet<>(HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().getHandled(events));
     }
 
     public static HashSet<Quest> getCurrentQuest(EntityPlayer player) {

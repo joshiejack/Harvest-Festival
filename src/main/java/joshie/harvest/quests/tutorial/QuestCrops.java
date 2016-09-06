@@ -63,20 +63,22 @@ public class QuestCrops extends QuestQuestion {
                 } else if (InventoryHelper.isHolding(player, SPECIAL, SearchType.BUCKET)) {
                     /* Jade thanks the player for the bucket and gives them a watering can */
                     return "thanks.bucket";
-                } else if (InventoryHelper.isHolding(player, ITEM_STACK, HFCrops.TURNIP.getCropStack(9), 9)) {
-                    /* Jade thanks the player for the turnips, She tells the player you know what
-                       Thanks but you can keep them, She tells the player she doesn't want you to have wasted your time
-                       to make her happy, she then informs you that you can sell your crops for money
-                       To do this you just need to get a shipping bin, you can right click to place the crops inside
-                       Or you can use a hopper if you don't feel like spending all day placing them in
-                       She explains that you can purchase shipping bins directly from yulif
-                       She also informs the player that they can come visit her anytime
-                       She will gladly give them a bag of seeds for 10 flowers
-                       She however also explains that her variety is limited, and suggests that you build a supermarket
-                       She also informs the player that the harvest goddess has heard of your great work
-                       And that she would really like to hear from you, in fact she would love to see a turnip!*/
-                    return "complete";
                 }
+            }
+
+            /* Jade thanks the player for the turnips, She tells the player you know what
+               Thanks but you can keep them, She tells the player she doesn't want you to have wasted your time
+               to make her happy, she then informs you that you can sell your crops for money
+               To do this you just need to get a shipping bin, you can right click to place the crops inside
+               Or you can use a hopper if you don't feel like spending all day placing them in
+               She explains that you can purchase shipping bins directly from yulif
+               She also informs the player that they can come visit her anytime
+               She will gladly give them a bag of seeds for 10 flowers
+               She however also explains that her variety is limited, and suggests that you build a supermarket
+               She also informs the player that the harvest goddess has heard of your great work
+               And that she would really like to hear from you, in fact she would love to see a turnip!*/
+            if (InventoryHelper.isHolding(player, ITEM_STACK, HFCrops.TURNIP.getCropStack(9), 9)) {
+                return "complete";
             }
 
             /*Jade reminds the player that to continue she is after 9 turnips
@@ -100,6 +102,10 @@ public class QuestCrops extends QuestQuestion {
             if (isCompletedEarly) complete(player);
             if (quest_stage == START) increaseStage(player);
         } else if (quest_stage == TURNIPS) {
+            if (InventoryHelper.takeItemsIfHeld(player, ITEM_STACK, HFCrops.TURNIP.getCropStack(9), 9)) {
+                complete(player);
+            }
+
             if (attempted) {
                 if (InventoryHelper.takeItemsIfHeld(player, SPECIAL, SearchType.FLOWER, 10)) {
                     rewardItem(player, HFCrops.TURNIP.getSeedStack(1));
@@ -107,8 +113,6 @@ public class QuestCrops extends QuestQuestion {
                     rewardItem(player, HFTools.HOE.getStack(BASIC));
                 } else if (InventoryHelper.takeItemsIfHeld(player, SPECIAL, SearchType.BUCKET)) {
                     rewardItem(player, HFTools.WATERING_CAN.getStack(BASIC));
-                } else if (InventoryHelper.takeItemsIfHeld(player, ITEM_STACK, HFCrops.TURNIP.getCropStack(9), 9)) {
-                    complete(player);
                 }
             }
 

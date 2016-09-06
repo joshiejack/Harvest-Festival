@@ -70,7 +70,7 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
         this.conditionals.add(new GreetingMultiple(name + ".greeting") {
             @Override
             public boolean canDisplay(EntityPlayer player) {
-                return player.worldObj.rand.nextInt(10) > 1;
+                return player.worldObj.rand.nextInt(20) > 0;
             }
 
             @Override

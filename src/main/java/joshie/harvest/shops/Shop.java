@@ -95,7 +95,7 @@ public class Shop implements IShop {
     }
 
     public String getWelcome() {
-        return Text.getRandomSpeech(resourceLocation, unlocalizedName + ".greeting", 10);
+        return Text.getRandomSpeech(null, resourceLocation, unlocalizedName + ".greeting", 10);
     }
 
     public List<IPurchaseable> getContents(@Nonnull EntityPlayer player) {

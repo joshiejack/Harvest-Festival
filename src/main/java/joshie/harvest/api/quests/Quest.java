@@ -130,30 +130,28 @@ public abstract class Quest extends Impl<Quest> {
      *  @param player       the player that completed the quest **/
     public void onQuestCompleted(EntityPlayer player) {}
 
-    /** Call to complete a quest, MUST BE CALLED ON ONE SIDE ONLY
+    /** Call to complete a quest
      * @param player    the player to complete the quest for **/
     public final void complete(EntityPlayer player) {
         HFApi.quests.completeQuest(this, player);
     }
 
-    /** Call this to reward the player with an item
-     *  MUST BE CALLED ON ONE SIDE ONLY **/
+    /** Call this to reward the player with an item **/
     public final void takeHeldStack(EntityPlayer player, int amount) {
-        HFApi.quests.takeHeldStack(player, amount);
+        player.inventory.decrStackSize(player.inventory.currentItem, amount);
     }
 
-    /** Call this to reward the player with an item
-     *  MUST BE CALLED ON ONE SIDE ONLY **/
+    /** Call this to reward the player with an item **/
     public final void rewardItem(EntityPlayer player, ItemStack stack) {
         HFApi.quests.rewardItem(this, player, stack);
     }
 
-    /** Call this to reward the player with gold, SERVER CALLS ONLINE **/
+    /** Call this to reward the player with gold **/
     public final void rewardGold(EntityPlayer player, long gold) {
         HFApi.quests.rewardGold(player, gold);
     }
 
-    /** Spawns an entity, call this on one side only **/
+    /** Spawns an entity **/
     public final void rewardEntity(EntityPlayer player, String entity) {
         HFApi.quests.rewardEntity(this, player, entity);
     }

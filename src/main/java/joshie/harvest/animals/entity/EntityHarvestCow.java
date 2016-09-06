@@ -66,9 +66,9 @@ public class EntityHarvestCow extends EntityCow implements IAnimalTracked, IMilk
     public boolean processInteract(EntityPlayer player, EnumHand hand, ItemStack stack) {
         if (stack != null) {
             if (HFApi.animals.canEat(stack, data.getType().getFoodTypes())) {
-                if (!worldObj.isRemote) {
-                    data.feed(player);
+                if (data.isHungry()) {
                     stack.splitStack(1);
+                    if (!worldObj.isRemote) data.feed(player);
                 }
 
                 return true;

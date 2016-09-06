@@ -52,10 +52,6 @@ public class NPCHelper {
     }
 
     public static int getGuiIDForNPC(NPC npc, World world, EntityPlayer player, boolean isGifting) {
-        if (isShopOpen(npc, world, player)) {
-            return GuiHandler.SHOP_WELCOME;
-        }
-
-        return isGifting ? GuiHandler.GIFT : GuiHandler.NPC;
+        return isGifting? GuiHandler.GIFT : isShopOpen(npc, world, player) ? GuiHandler.SHOP_WELCOME: GuiHandler.NPC;
     }
 }

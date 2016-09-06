@@ -42,7 +42,7 @@ public class HolderRegistry<R> {
     public boolean matches(ItemStack stack, R type) {
         Collection<AbstractItemHolder> holders = keyMap.get(stack.getItem());
         for (AbstractItemHolder holder: holders) {
-            if (holder.matches(stack) && registry.get(holder) == type) {
+            if (holder.matches(stack) && matches(registry.get(holder), type)) {
                 return true;
             }
         }

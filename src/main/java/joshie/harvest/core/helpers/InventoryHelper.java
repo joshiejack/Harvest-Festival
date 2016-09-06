@@ -1,5 +1,7 @@
 package joshie.harvest.core.helpers;
 
+import joshie.harvest.core.HFCore;
+import joshie.harvest.core.block.BlockFlower.FlowerType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -10,9 +12,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nonnull;
 
-import static joshie.harvest.core.helpers.InventoryHelper.SearchType.BUCKET;
-import static joshie.harvest.core.helpers.InventoryHelper.SearchType.FLOWER;
-import static joshie.harvest.core.helpers.InventoryHelper.SearchType.HOE;
+import static joshie.harvest.core.helpers.InventoryHelper.SearchType.*;
 
 public class InventoryHelper {
     public enum SearchType {
@@ -22,6 +22,7 @@ public class InventoryHelper {
     public static final Matcher<String> ORE_DICTIONARY = new Matcher<String>() {
         @Override
         public boolean matches(ItemStack stack, String string) {
+            if (stack == null) return false;
             return InventoryHelper.isOreName(stack, string);
         }
     };
@@ -29,6 +30,7 @@ public class InventoryHelper {
     public static final Matcher<ItemStack> ITEM_STACK = new Matcher<ItemStack>() {
         @Override
         public boolean matches(ItemStack stack, ItemStack stack2) {
+            if (stack == null) return false;
             return stack.isItemEqual(stack2);
         }
     };
@@ -36,8 +38,9 @@ public class InventoryHelper {
     public static final Matcher<SearchType> SPECIAL = new Matcher<SearchType>() {
         @Override
         public boolean matches(ItemStack stack, SearchType type) {
+            if (stack == null) return false;
             if (type.equals(FLOWER)) {
-                return stack.getItem() == Item.getItemFromBlock(Blocks.RED_FLOWER) || stack.getItem() == Item.getItemFromBlock(Blocks.YELLOW_FLOWER);
+                return stack.getItem() == Item.getItemFromBlock(Blocks.RED_FLOWER) || stack.getItem() == Item.getItemFromBlock(Blocks.YELLOW_FLOWER) || HFCore.FLOWERS.getStackFromEnum(FlowerType.GODDESS).isItemEqual(stack);
             } else if (type.equals(HOE)) {
                 return stack.getItem() instanceof ItemHoe;
             } else if (type.equals(BUCKET)) {
@@ -73,7 +76,42 @@ public class InventoryHelper {
         takeItems(player, search, amount, SPECIAL);
     }
 
-    public static <T> int getCount(EntityPlayer player, T taking, Matcher<T> matcher) {
+    @SuppressWarnings("unchecked")
+    public static <S> boolean hasInInventory(EntityPlayer player, Matcher matcher, S search, int amount) {
+        return getCount(player, search, matcher) >= amount;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <S> boolean takeItemsInInventory(EntityPlayer player, Matcher matcher, S search, int amount) {
+        if (hasInInventory(player, matcher, search, amount)) {
+            takeItems(player, search, amount, matcher);
+            return true;
+        }
+
+        return false;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <S> boolean isHolding(EntityPlayer player, Matcher matcher, S search, int amount) {
+        ItemStack held = player.getHeldItemMainhand();
+        if (held != null && matcher.matches(held, search)) {
+            return held.stackSize >= amount;
+        }
+
+        return false;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <S> boolean takeItemsIfHeld(EntityPlayer player, Matcher matcher, S search, int amount) {
+        if (isHolding(player, matcher, search, amount)) {
+            takeItems(player, search, amount, matcher);
+            return true;
+        }
+
+        return false;
+    }
+
+    private static <T> int getCount(EntityPlayer player, T taking, Matcher<T> matcher) {
         int count = 0;
         for (ItemStack item: player.inventory.mainInventory) {
             if (item == null) continue;
@@ -83,10 +121,6 @@ public class InventoryHelper {
         }
 
         return count;
-    }
-
-    public static int getCount(EntityPlayer player, SearchType search) {
-        return getCount(player, search, SPECIAL);
     }
 
     public static int getCount(EntityPlayer player, ItemStack stack) {

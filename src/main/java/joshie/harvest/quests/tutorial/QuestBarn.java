@@ -57,7 +57,7 @@ public class QuestBarn extends Quest {
     }
 
     @Override
-    public void claim(EntityPlayer player) {
+    public void onQuestCompleted(EntityPlayer player) {
         rewardItem(player, new ItemStack(HFCrops.GRASS.getCropStack().getItem(), 64, HFCrops.GRASS.getCropStack().getItemDamage()));
         rewardItem(player, HFAnimals.MILK.getStackOfSize(Size.LARGE, 3));
         rewardItem(player, HFAnimals.TROUGH.getStackFromEnum(WOOD));

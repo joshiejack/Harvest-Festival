@@ -2,13 +2,12 @@ package joshie.harvest.quests.tutorial;
 
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.HFQuest;
+import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.core.HFCore;
-import joshie.harvest.quests.QuestQuestion;
 import joshie.harvest.quests.TutorialSelection;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -24,7 +23,7 @@ public class QuestIntro extends QuestQuestion {
     @SideOnly(Side.CLIENT)
     public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
         //The goddess says hello and asks if you are new
-        if (isCompleted) {
+        if (isCompletedEarly) {
             complete(player);
             return "completed";
         } else  if (quest_stage == 0) return "hello";
@@ -38,24 +37,7 @@ public class QuestIntro extends QuestQuestion {
     }
 
     @Override
-    public void claim(EntityPlayer player) {
+    public void onQuestCompleted(EntityPlayer player) {
         rewardItem(player, new ItemStack(HFCore.FLOWERS, 4, 0));
-    }
-
-    private static class IntroSelection extends QuestSelection<QuestIntro> {
-        public IntroSelection() {
-            super("tutorial.intro.question", "tutorial.intro.yes", "tutorial.intro.no");
-        }
-
-        @Override
-        public Result onSelected(EntityPlayer player, EntityLiving entity, INPC npc, QuestIntro quest, int option) {
-            if (option == 1) { //If it's our first time, start tutorials
-                quest.increaseStage(player);
-                return Result.ALLOW;
-            } else { //If it's not then give the player the essentials to get started
-                quest.complete(player);
-                return Result.DENY;
-            }
-        }
     }
 }

@@ -16,6 +16,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 
 import java.io.IOException;
@@ -25,7 +26,6 @@ import java.util.List;
 
 public class GuiNPCShop extends GuiNPCBase {
     protected static final ResourceLocation gui_texture = new ResourceLocation(HFModInfo.MODID, "textures/gui/shop.png");
-    protected static final ResourceLocation number_texture = new ResourceLocation(HFModInfo.MODID, "lang/en_US/shops.png");
     protected static final ResourceLocation shelve_texture = new ResourceLocation(HFModInfo.MODID, "textures/gui/shop_extra.png");
     protected StatsClient stats;
     protected List<IPurchaseable> contents;
@@ -33,8 +33,8 @@ public class GuiNPCShop extends GuiNPCBase {
     protected Shop shop;
     protected int start;
 
-    public GuiNPCShop(EntityNPC npc, EntityPlayer player) {
-        super(npc, player, -1);
+    public GuiNPCShop(EntityPlayer player, EntityNPC npc, int nextGui) {
+        super(player, npc, EnumHand.MAIN_HAND, nextGui);
 
         shop = npc.getNPC().getShop();
         if (shop == null || !shop.isOpen(player.worldObj, player)) player.closeScreen();

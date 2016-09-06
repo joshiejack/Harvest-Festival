@@ -16,6 +16,8 @@ public class ScheduleJade implements ISchedule {
     public BuildingLocation getTarget(World world, EntityLiving entity, INPC npc, Season season, Weekday day, long time) {
         if (time >= 5000L && time <= 9000L) return CARPENTERDOWN;
         else if (time >= 9000L && time <= 17000L) return CARPENTERFRONT;
-        else return npc.getLocation(HOME);
+        else {
+            return npc.getLocation(HOME);
+        }
     }
 }

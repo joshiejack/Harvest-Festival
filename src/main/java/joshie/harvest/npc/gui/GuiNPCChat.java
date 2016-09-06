@@ -1,21 +1,18 @@
 package joshie.harvest.npc.gui;
 
-import joshie.harvest.HarvestFestival;
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.npc.NPCHelper;
 import joshie.harvest.core.util.Text;
+import joshie.harvest.npc.NPCHelper;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.player.stats.Stats;
-import joshie.harvest.api.quests.Quest;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.EnumHand;
 import org.apache.commons.lang3.SystemUtils;
 import org.apache.commons.lang3.text.WordUtils;
 
 import java.io.IOException;
 import java.util.Arrays;
-
-import static joshie.harvest.core.handlers.GuiHandler.NPC;
 
 /** Renders a chat script **/
 public class GuiNPCChat extends GuiNPCBase {
@@ -44,8 +41,8 @@ public class GuiNPCChat extends GuiNPCBase {
         return string.replace("%P", HFTrackers.getClientPlayerTracker().getRelationships().getLover());
     }
 
-    public GuiNPCChat(EntityNPC npc, EntityPlayer player, int nextGui) {
-        super(npc, player, nextGui);
+    public GuiNPCChat(EntityPlayer player, EntityNPC npc, EnumHand hand, int nextGui) {
+        super(player, npc, hand, nextGui);
         isScriptInit = false;
     }
 
@@ -158,18 +155,6 @@ public class GuiNPCChat extends GuiNPCBase {
             page++; //Reset the page we are currently reading
         } else {
             endChat();
-        }
-    }
-
-    @Override
-    public void endChat() {
-        player.closeScreen();
-
-        Quest selection = HFTrackers.getClientPlayerTracker().getQuests().getSelection(player, npc);
-        if (selection != null) {
-            player.openGui(HarvestFestival.instance, NPC, player.worldObj, npc.getEntityId(), 0, Quest.REGISTRY.getValues().indexOf(Quest.REGISTRY.getValue(selection.getRegistryName())));
-        } else if (nextGui != -1) {
-            player.openGui(HarvestFestival.instance, nextGui, player.worldObj, npc.getEntityId(), 0, -1);
         }
     }
 

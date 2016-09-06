@@ -7,7 +7,7 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.crops.HFCrops;
-import joshie.harvest.quests.QuestQuestion;
+import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.quests.TutorialSelection;
 import joshie.harvest.tools.ToolHelper;
 import net.minecraft.entity.Entity;
@@ -48,9 +48,6 @@ public class QuestCowCare extends QuestQuestion {
     }
 
     @Override
-    public EventType[] getHandledEvents() { return new EventType[] { EventType.ENTITY_INTERACT }; }
-
-    @Override
     public void onEntityInteract(EntityPlayer player, @Nullable ItemStack held, EnumHand hand, Entity target) {
         if (quest_stage == 2 || quest_stage == 3) {
             if (target instanceof EntityHarvestCow) {
@@ -81,7 +78,7 @@ public class QuestCowCare extends QuestQuestion {
 
     @Override
     public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
-        if (isCompleted) {
+        if (isCompletedEarly) {
             complete(player);
             return "completed";
         } else if (quest_stage == 0) {
@@ -170,7 +167,7 @@ public class QuestCowCare extends QuestQuestion {
     }
 
     @Override
-    public void claim(EntityPlayer player) {
+    public void onQuestCompleted(EntityPlayer player) {
         if (quest_stage == 0) {
             rewardEntity(player, "harvestfestival.cow");
             rewardItem(player, new ItemStack(Items.LEAD));

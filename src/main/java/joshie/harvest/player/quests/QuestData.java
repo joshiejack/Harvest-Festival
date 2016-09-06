@@ -1,6 +1,6 @@
 package joshie.harvest.player.quests;
 
-import com.google.common.collect.HashMultimap;
+import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.Quest.EventType;
 import joshie.harvest.npc.entity.EntityNPC;
@@ -11,14 +11,38 @@ import java.util.Set;
 
 public abstract class QuestData {
     protected HashSet<Quest> current = new HashSet<>(100);
-    protected HashMultimap<EventType, Quest> eventHandlers = HashMultimap.create();
 
     public HashSet<Quest> getCurrent() {
         return current;
     }
 
     public Set<Quest> getHandled(EventType events) {
-        return eventHandlers.get(events);
+        return current;
+    }
+
+    //Returns a selection maenu
+    public Quest getSelection(EntityPlayer player, EntityNPC npc) {
+        if (current != null) {
+            for (Quest q : current) {
+                if (handlesScript(q, npc.getNPC())) {
+                    if (q.getSelection(player, npc.getNPC()) != null) return q;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    protected boolean handlesScript(Quest quest, INPC npc) {
+        INPC[] npcs = quest.getNPCs();
+        if (npcs == null) return false;
+        else {
+            for (INPC n: npcs) {
+                if (n.equals(npc)) return true;
+            }
+        }
+
+        return false;
     }
 
     public Quest getAQuest(Quest quest) {

@@ -1,31 +1,22 @@
 package joshie.harvest.npc.gui;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.calendar.CalendarDate;
+import joshie.harvest.api.npc.INPC;
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.tools.ToolHelper;
 import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.tools.ToolHelper;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 
-public class ContainerNPCGift extends ContainerNPCBase {
-    //The Fridge CAN be null
-    private EntityNPC npc;
-    private EnumHand hand;
-
-    public ContainerNPCGift(EntityNPC npc, InventoryPlayer playerInventory, EnumHand hand) {
-        super(npc, playerInventory);
-        this.npc = npc;
-        this.hand = hand;
+public class ContainerNPCGift extends ContainerNPCChat {
+    public ContainerNPCGift(EntityNPC npc, EnumHand hand, int nextGui) {
+        super(npc, hand, nextGui);
     }
 
     @Override
     public void onContainerClosed(EntityPlayer player) {
-        super.onContainerClosed(player);
-
         if (!player.worldObj.isRemote) {
             if (HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().gift(player, npc.getRelatable(), 0)) {
                 ItemStack gift = player.getHeldItem(hand);

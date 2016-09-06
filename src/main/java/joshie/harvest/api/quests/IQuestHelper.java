@@ -17,6 +17,12 @@ public interface IQuestHelper {
      *  @param player   the player to complete the quest for**/
     void completeQuest(Quest quest, EntityPlayer player);
 
+    /** Completes a question quest early
+     *  @param quest    the quest
+     *  @param player   the player
+     */
+    void completeEarly(QuestQuestion quest, EntityPlayer player);
+
     /** Takes an item from a players held items,
      *  CALL ONE SIDE ONLY
      *  @param player   the player to take from
@@ -47,5 +53,5 @@ public interface IQuestHelper {
      *  If there are none, the set will be empty
      * @param player    the player
      * @param type      the event type     */
-    Set<Quest> getHandledQuests(EntityPlayer player, EventType type);
+    Set<Quest> getCurrentQuests(EntityPlayer player, EventType type);
 }

@@ -760,7 +760,7 @@ harvestfestival.quest.tutorial.barn.welcome=I’m quite glad that you’ve invit
 
 #Cafe Cooking Lesson
 harvestfestival.quest.tutorial.cafe.welcome=Welcome to my Café. I am Liara the owner. Here we show a true passion for cooking and bring you the best food you can find. I’m happy to teach you how to cook if you don’t know how.
-harvestfestival.quest.tutorial.cafe.question=Do you know how to cook?
+harvestfestival.quest.tutorial.cafe.question=Do you need to learn how to cook?
 harvestfestival.quest.tutorial.cafe.tutorial=@I do indeed
 harvestfestival.quest.tutorial.cafe.skip=@I can work it out
 harvestfestival.quest.tutorial.cafe.completed=Well that’s just awesome! I’m happy to give you these things to get started though.
@@ -780,13 +780,14 @@ harvestfestival.quest.tutorial.upgrading.blacksmith.jim=A Blacksmith and a Mine 
 harvestfestival.quest.tutorial.upgrading.blacksmith.jenni=You should build a Blacksmith and a Mine.
 harvestfestival.quest.tutorial.upgrading.blacksmith.candice=I’d love to go down deep in a mine, and work some hard metal. So perhaps you could get a Blacksmith and a Mine built for me?
 harvestfestival.quest.tutorial.upgrading.blacksmith.jade=I heard a rumour that a Blacksmith and a Miner would love to move to town.
-harvestfestival.quest.tutorial.upgrading.blacksmith.intro=If there is anywhere else I’d rather be than here, it’s in The End. Did I tell you about my adventures there. Oh wait, have we even met? I’m Danieru, the Blacksmith. Do you need any help?
-harvestfestival.quest.tutorial.upgrading.blacksmith.question=Do you know how to upgrade tools?
-harvestfestival.quest.tutorial.upgrading.blacksmith.tutorial=@I do not know anything.
-harvestfestival.quest.tutorial.upgrading.blacksmith.skip=@I know everything.
-harvestfestival.quest.tutorial.upgrading.blacksmith.completed=That’s good then. I have some ore and a hammer for you.
-harvestfestival.quest.tutorial.upgrading.blacksmith.explain=That’s good then. I’ll be happy to teach you. The first step is to get your tools to the stage where they can even be upgraded. If you notice they have a percentage bar. When this is at 100% just bring them to me. I’ll also need some ore to work with, as well as payment for my services. I’ll work on them for a few days, then you can have your tools back fully upgraded. You might be asking me how to get the materials you’ll need. Well you’ll need to head down the mine, taking with you a hammer. You can find nodes down there which you can smash with a hammer to obtain ore. Anyway that’s about it. I hear Brand the Miner has a gift for you though.
-harvestfestival.quest.tutorial.upgrading.blacksmith.complete=Ehhh hello there. I’ve just been done the mine, and well it was pretty terrible. Since you got me to this town, I may as well just give you the junk I found. Take it. I don’t want it.
+harvestfestival.quest.tutorial.upgrading.intro=If there is anywhere else I’d rather be than here, it’s in The End. Did I tell you about my adventures there. Oh wait, have we even met? I’m Danieru, the Blacksmith. Do you need any help?
+harvestfestival.quest.tutorial.upgrading.question=Do you know how to upgrade tools?
+harvestfestival.quest.tutorial.upgrading.tutorial=@I do not know anything.
+harvestfestival.quest.tutorial.upgrading.skip=@I know everything.
+harvestfestival.quest.tutorial.upgrading.completed=That’s good then. I have some ore and a hammer for you.
+harvestfestival.quest.tutorial.upgrading.explain=That’s good then. I’ll be happy to teach you. The first step is to get your tools to the stage where they can even be upgraded. If you notice they have a percentage bar. When this is at 100% just bring them to me. I’ll also need some ore to work with, as well as payment for my services. I’ll work on them for a few days, then you can have your tools back fully upgraded. You might be asking me how to get the materials you’ll need. Well you’ll need to head down the mine, taking with you a hammer. You can find nodes down there which you can smash with a hammer to obtain ore. Anyway that’s about it. I hear Brand the Miner has a gift for you though.
+harvestfestival.quest.tutorial.upgrading.reminder.visit=Remember Brandon the Miner wants to see you.
+harvestfestival.quest.tutorial.upgrading.complete=Ehhh hello there. I’ve just been down the mine, and well it was pretty terrible. Since you got me to this town, I may as well just give you the junk I found. Take it. I don’t want it.
 
 #Building the Goddess a Home
 harvestfestival.quest.tutorial.pond.please=You’ve done a remarkable job of bringing this town back together. I’m really happy to see it growing! I’d just love a permanent home here too. If you can build me one, then I have a reward for you.
@@ -819,6 +820,9 @@ harvestfestival.quest.trade.upgrade.wait=Sorry to say but your tool is not quite
 # Jade Seed Trades
 harvestfestival.quest.trade.seeds.complete.yes=Thanks for the flowers, here have a bag of seeds.
 harvestfestival.quest.trade.seeds.complete.no=I’m sorry but I don’t have any seeds to spare this time of year.
+
+# Goddess Free Carpenter
+harvestfestival.quest.trade.carpenter.thanks=Thanks sweety, I'm happy to give you another Carpenter Blueprint.
 
 ###Sounds
 harvestfestival.subtitle.fryingpan=Sizzle

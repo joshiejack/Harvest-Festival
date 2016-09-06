@@ -7,7 +7,7 @@ import joshie.harvest.cooking.CookingHelper;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.block.BlockCookware.Cookware;
 import joshie.harvest.cooking.item.ItemUtensil.Utensil;
-import joshie.harvest.quests.QuestQuestion;
+import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.quests.TutorialSelection;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -32,7 +32,7 @@ public class QuestCafe extends QuestQuestion {
 
     @Override
     public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
-        if (isCompleted) {
+        if (isCompletedEarly) {
             complete(player);
             return "completed";
         } else if (quest_stage == 0) {
@@ -52,6 +52,7 @@ public class QuestCafe extends QuestQuestion {
             //She also explains that the recipes listed in the book are the basic
             //And that you should try adding different ingredients to make better versions
             //She thanks you for your time, and being the first customer and gives the rewards
+            complete(player);
             return "explain";
         }
 
@@ -59,7 +60,7 @@ public class QuestCafe extends QuestQuestion {
     }
 
     @Override
-    public void claim(EntityPlayer player) {
+    public void onQuestCompleted(EntityPlayer player) {
         rewardItem(player, HFCooking.UTENSILS.getStackFromEnum(Utensil.KNIFE));
         rewardItem(player, HFCooking.COOKWARE.getStackFromEnum(Cookware.COUNTER));
         rewardItem(player, new ItemStack(HFCooking.COOKBOOK));

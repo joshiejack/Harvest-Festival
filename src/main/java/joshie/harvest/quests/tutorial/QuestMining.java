@@ -7,7 +7,7 @@ import joshie.harvest.api.quests.Quest;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.item.ItemMaterial.Material;
-import joshie.harvest.quests.QuestQuestion;
+import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.quests.TutorialSelection;
 import joshie.harvest.tools.HFTools;
 import joshie.harvest.town.TownHelper;
@@ -40,7 +40,7 @@ public class QuestMining extends QuestQuestion {
     @Override
     public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
         if (quest_stage == 0 && npc != TOOL_OWNER && player.worldObj.rand.nextFloat() < 0.25F) {
-            String suffix = ((joshie.harvest.npc.NPC)npc).getRegistryName().getResourceDomain();
+            String suffix = ((joshie.harvest.npc.NPC)npc).getRegistryName().getResourcePath();
             boolean blacksmith = TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.BLACKSMITH);
             //They tell the player that they should go and visit the blacksmith
             //They should all have a slight variation
@@ -53,7 +53,7 @@ public class QuestMining extends QuestQuestion {
             //All tell the player that they should probably get a mine and a blacksmith built
             return "blacksmith." + suffix;
         } else if  (npc == TOOL_OWNER) {
-            if (isCompleted) {
+            if (isCompletedEarly) {
                 complete(player);
                 return "completed";
             } else if (quest_stage == 0) {
@@ -75,12 +75,12 @@ public class QuestMining extends QuestQuestion {
                 //ore he would like to give, you should go visit him
                 increaseStage(player);
                 return "explain";
-            } else if (quest_stage == 3) {
+            } else if (quest_stage == 2) {
                 //Blacksmith reminds you to go and see the miner for some ore
                 //He also mentions that you can buy tools from him
                 return "reminder.visit";
             }
-        } else if (npc == MINER && quest_stage == 3) {
+        } else if (npc == MINER && quest_stage == 2) {
             //Brandon tells you he's just been on a recent trip down a mine
             //He then says you can have this, he then gives the player 10 copper
             complete(player);
@@ -98,7 +98,7 @@ public class QuestMining extends QuestQuestion {
     }
 
     @Override
-    public void claim(EntityPlayer player) {
+    public void onQuestCompleted(EntityPlayer player) {
         if (quest_stage == 0) {
             rewardItem(player, HFTools.HAMMER.getStack(ToolTier.BASIC));
         }

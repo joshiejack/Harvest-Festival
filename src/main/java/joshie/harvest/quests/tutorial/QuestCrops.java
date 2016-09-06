@@ -6,7 +6,7 @@ import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.helpers.InventoryHelper.SearchType;
 import joshie.harvest.crops.HFCrops;
-import joshie.harvest.quests.QuestQuestion;
+import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.quests.TutorialSelection;
 import joshie.harvest.tools.HFTools;
 import net.minecraft.entity.EntityLiving;
@@ -37,7 +37,7 @@ public class QuestCrops extends QuestQuestion {
 
     @Override
     public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
-        if (isCompleted) {
+        if (isCompletedEarly) {
             complete(player);
             return "completed";
         } else if (quest_stage == 0) {
@@ -116,7 +116,7 @@ public class QuestCrops extends QuestQuestion {
     }
 
     @Override
-    public void claim(EntityPlayer player) {
+    public void onQuestCompleted(EntityPlayer player) {
         if (quest_stage == 0) { //We were not new
             rewardItem(player, HFTools.HOE.getStack(BASIC));
             rewardItem(player, HFTools.WATERING_CAN.getStack(BASIC));

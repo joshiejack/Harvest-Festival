@@ -25,8 +25,7 @@ import java.util.Set;
 public abstract class Quest extends Impl<Quest> {
     /** DO NOT MODIFY THE ENTRIES IN THE REGISTRY, ALWAYS MAKE A COPY OF THE QUESTS **/
     public static final IForgeRegistry<Quest> REGISTRY = new RegistryBuilder<Quest>().setName(new ResourceLocation("harvestfestival", "quests")).setType(Quest.class).setIDRange(0, 32000).create();
-    protected int quest_stage;
-    public boolean isCompleted;
+    public int quest_stage;
     private INPC[] npcs;
 
     public Quest() {}
@@ -52,7 +51,8 @@ public abstract class Quest extends Impl<Quest> {
     }
 
     /** Quests that return true here, count towards the quest limit,
-     *  You should return false for very simple quests, such as the default trader ones, or the blessing of tools */
+     *  You should return false for very simple quests, such as the default trader ones, or the blessing of tools
+     *  Returning true also means a quest cannot be started if a npc is already being used in that quest line */
     public boolean isRealQuest() {
         return true;
     }
@@ -70,17 +70,11 @@ public abstract class Quest extends Impl<Quest> {
     }
 
     /**
-     * ENSURE YOU ONLY EVER CALL THIS ON ONE SIDE
-     * Use this to increase the stage
+     * Will only work when called on the SERVER side
+     * Use this to increase the stage, best place to call it is in onChatClosed
      * @param player    the player we're increasing the stage for
      **/
     public final void increaseStage(EntityPlayer player) {
-        int previous = this.quest_stage;
-        this.quest_stage++;
-        if (!player.worldObj.isRemote) {
-            onStageChanged(player, previous, quest_stage);
-        }
-
         HFApi.quests.increaseStage(this, player);
     }
 
@@ -126,6 +120,16 @@ public abstract class Quest extends Impl<Quest> {
      * @param stage         the current stage */
     public void onStageChanged(EntityPlayer player, int previous, int stage) {}
 
+    /** Called when chat closes
+     *  @param player       the player
+     *  @param entity       the npc entity
+     *  @param npc          the npc instance**/
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc) {}
+
+    /** Called when the quest is completed
+     *  @param player       the player that completed the quest **/
+    public void onQuestCompleted(EntityPlayer player) {}
+
     /** Call to complete a quest, MUST BE CALLED ON ONE SIDE ONLY
      * @param player    the player to complete the quest for **/
     public final void complete(EntityPlayer player) {
@@ -168,14 +172,10 @@ public abstract class Quest extends Impl<Quest> {
         return false;
     }
 
-    /** Called on the serverside when a quest is completed **/
-    public void claim(EntityPlayer player) {}
-
     /** Called to load data about this quest
      * @param nbt the nbt tag **/
     public void readFromNBT(NBTTagCompound nbt) {
         quest_stage = nbt.getShort("Stage");
-        isCompleted = nbt.getBoolean("IsCompleted");
     }
 
     /** Called to write data about this quest
@@ -183,7 +183,6 @@ public abstract class Quest extends Impl<Quest> {
      * @return the nbt tag**/
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         nbt.setShort("Stage", (short) quest_stage);
-        nbt.setBoolean("IsCompleted", isCompleted);
         return nbt;
     }
 
@@ -200,11 +199,8 @@ public abstract class Quest extends Impl<Quest> {
     /****
      * EVENTS - Called automatically from vanilla events or npc specific ones
      ****/
-
     //You need to return the events that get handled, so that they will get called
-    public EventType[] getHandledEvents() { return new EventType[0]; }
     public void onEntityInteract(EntityPlayer player, @Nullable ItemStack held, EnumHand hand, Entity target) {}
-    public void onClosedChat(EntityPlayer player, EntityLiving entity, INPC npc) { }
     public void onRightClickBlock(EntityPlayer player, BlockPos pos, EnumFacing face) {}
 
     public static class EventType {
@@ -247,6 +243,6 @@ public abstract class Quest extends Impl<Quest> {
          *              return DENY to close the options menu
          *              return ALLOW to open the npc chat window
          *              return DEFAULT to do nothing */
-        public abstract Result onSelected(EntityPlayer player, EntityLiving entity, INPC npc, Q quest, int option);
+        public abstract Result onSelected(EntityPlayer player, EntityLiving entity, INPC npc, @Nullable Q quest, int option);
     }
 }

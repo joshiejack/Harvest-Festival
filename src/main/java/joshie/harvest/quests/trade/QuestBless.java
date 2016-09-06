@@ -96,7 +96,7 @@ public class QuestBless extends QuestTrade {
     }
 
     @Override
-    public void claim(EntityPlayer player) {
+    public void onQuestCompleted(EntityPlayer player) {
         rewardItem(player, tool);
         spawnXP(player.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ, 5);
     }

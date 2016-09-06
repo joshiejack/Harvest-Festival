@@ -36,6 +36,6 @@ public class EntityAITalkingTo extends EntityAIBase {
 
     @Override
     public void resetTask() {
-        npc.setTalking(null);
+        //npc.setTalking(null);
     }
 }

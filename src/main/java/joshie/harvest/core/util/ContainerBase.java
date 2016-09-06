@@ -8,15 +8,11 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 
 import javax.annotation.Nullable;
 
 public class ContainerBase extends Container {
     public ContainerBase() {}
-    public ContainerBase(TileEntity tile) {
-        
-    }
 
     @Override
     public boolean canInteractWith(EntityPlayer player) {

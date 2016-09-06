@@ -9,7 +9,7 @@ import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.lib.HFQuests;
 import joshie.harvest.crops.HFCrops;
-import joshie.harvest.quests.QuestQuestion;
+import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.quests.TutorialSelection;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -49,9 +49,6 @@ public class QuestChickenCare extends QuestQuestion {
     }
 
     @Override
-    public EventType[] getHandledEvents() { return new EventType[] { EventType.ENTITY_INTERACT, EventType.RIGHT_CLICK_BLOCK }; }
-
-    @Override
     public void onEntityInteract(EntityPlayer player, @Nullable ItemStack held, EnumHand hand, Entity target) {
         if (!hasFed && (quest_stage == 2 || quest_stage == 3)) {
             if (target instanceof EntityChicken) {
@@ -85,7 +82,7 @@ public class QuestChickenCare extends QuestQuestion {
 
     @Override
     public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
-        if (isCompleted) {
+        if (isCompletedEarly) {
             complete(player);
             return "completed";
         } else if (quest_stage == 0 && player.getHeldItemMainhand() != null && InventoryHelper.ITEM_STACK.matches(player.getHeldItemMainhand(), HFCrops.TURNIP.getCropStack())) {
@@ -186,7 +183,7 @@ public class QuestChickenCare extends QuestQuestion {
     }
 
     @Override
-    public void claim(EntityPlayer player) {
+    public void onQuestCompleted(EntityPlayer player) {
         if (quest_stage == 0) {
             rewardItem(player, new ItemStack(HFAnimals.TOOLS, 16, CHICKEN_FEED.ordinal()));
             rewardItem(player, HFAnimals.TRAY.getStackFromEnum(NEST_EMPTY));

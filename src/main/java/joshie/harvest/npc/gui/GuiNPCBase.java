@@ -1,14 +1,16 @@
 package joshie.harvest.npc.gui;
 
-import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.core.lib.HFModInfo;
+import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.util.ChatFontRenderer;
 import joshie.harvest.core.util.GuiBaseContainer;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.npc.packet.PacketClose;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 
 public class GuiNPCBase extends GuiBaseContainer {
@@ -19,8 +21,8 @@ public class GuiNPCBase extends GuiBaseContainer {
     private int inside;
     private int outside;
 
-    public GuiNPCBase(EntityNPC eNpc, EntityPlayer ePlayer, int next) {
-        super(new ContainerNPCBase(eNpc, ePlayer.inventory), "chat", 0);
+    public GuiNPCBase(EntityPlayer ePlayer, EntityNPC eNpc, EnumHand hand, int next) {
+        super(new ContainerNPCChat(eNpc, hand, next), "chat", 0);
 
         hasInventory = false;
         npc = eNpc;
@@ -68,9 +70,6 @@ public class GuiNPCBase extends GuiBaseContainer {
     }
 
     public void endChat() {
-        player.closeScreen();
-        if (nextGui != -1) {
-            player.openGui(HarvestFestival.instance, nextGui, player.worldObj, npc.getEntityId(), 0, -1);
-        }
+        PacketHandler.sendToServer(new PacketClose());
     }
 }

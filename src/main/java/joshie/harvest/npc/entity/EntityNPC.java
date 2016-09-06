@@ -81,8 +81,8 @@ public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable imple
         tasks.addTask(1, new EntityAITalkingTo(this));
         tasks.addTask(1, new EntityAILookAtPlayer(this));
         tasks.addTask(4, new EntityAIOpenDoor(this, true));
-        tasks.addTask(5, new EntityAISchedule(this));
-        tasks.addTask(6, new EntityAITask(this));
+        tasks.addTask(5, new EntityAITask(this));
+        tasks.addTask(6, new EntityAISchedule(this));
         tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 3.0F, 1.0F));
         tasks.addTask(9, new EntityAIWatchClosest(this, EntityNPC.class, 5.0F, 0.02F));
         tasks.addTask(9, new EntityAIWander(this, 0.6D));

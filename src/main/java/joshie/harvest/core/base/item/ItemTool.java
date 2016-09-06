@@ -326,6 +326,9 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
     public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
         for (int i = 0; i < ToolTier.values().length; i++) {
             list.add(new ItemStack(item, 1, i));
+            ItemStack full = new ItemStack(item, 1, i);
+            full.getSubCompound("Data", true).setDouble("Level", 100D);
+            list.add(full);
         }
     }
 

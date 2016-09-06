@@ -7,7 +7,7 @@ import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.npc.HFNPCs;
-import joshie.harvest.quests.QuestQuestion;
+import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.quests.TutorialSelection;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.EntityLiving;
@@ -51,7 +51,7 @@ public class QuestPoultry extends QuestQuestion {
             //So that you can get further chickens
             return "reminder.poultry";
         } else if (npc == POULTRY) {
-            if (isCompleted) {
+            if (isCompletedEarly) {
                 complete(player);
                 return "completed";
             } else if (quest_stage == 0) {
@@ -73,7 +73,7 @@ public class QuestPoultry extends QuestQuestion {
     }
 
     @Override
-    public void claim(EntityPlayer player) {
+    public void onQuestCompleted(EntityPlayer player) {
         rewardItem(player, new ItemStack(HFAnimals.TOOLS, 64, CHICKEN_FEED.ordinal()));
         rewardItem(player, HFAnimals.EGG.getStackOfSize(Size.LARGE, 3));
         rewardItem(player, HFAnimals.TRAY.getStackFromEnum(FEEDER_EMPTY));

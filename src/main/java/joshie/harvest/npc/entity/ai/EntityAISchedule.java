@@ -19,7 +19,7 @@ public class EntityAISchedule extends EntityAIBase {
 
     public EntityAISchedule(EntityNPC npc) {
         this.npc = npc;
-        this.setMutexBits(3);
+        this.setMutexBits(5);
     }
 
     private BuildingLocation getLocation(CalendarDate date) {
@@ -33,13 +33,14 @@ public class EntityAISchedule extends EntityAIBase {
         location = getLocation(date);
         target = NPCHelper.getCoordinatesForLocation(npc, location);
         attemptTimer = 0L;
-        return target != null && npc.getDistanceSq(target) > 20D;
+        return target != null && npc.getDistanceSq(target) > 5D;
     }
 
     @Override
     public boolean continueExecuting() {
         attemptTimer++;
-        if (attemptTimer >= 2500L) {
+
+        if (attemptTimer >= 500L) {
             npc.setPositionAndUpdate(target.getX() + 0.5D, target.getY(), target.getZ() + 0.5D);
             attemptTimer = 0L;
             return false;
@@ -55,7 +56,7 @@ public class EntityAISchedule extends EntityAIBase {
         location = getLocation(date);
         target = NPCHelper.getCoordinatesForLocation(npc, location);
         if (target != null) {
-            if (attemptTimer < 2500L) {
+            if (attemptTimer < 500L) {
                 npc.getNavigator().tryMoveToXYZ((double) target.getX() + 0.5D, (double) target.getY(), (double) target.getZ() + 0.5D, 0.5D);
             } else npc.setPositionAndUpdate(target.getX() + 0.5D, target.getY(), target.getZ() + 0.5D);
 

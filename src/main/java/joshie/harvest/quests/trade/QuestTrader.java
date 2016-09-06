@@ -42,7 +42,7 @@ public class QuestTrader extends QuestTrade {
     }
 
     @Override
-    public void claim(EntityPlayer player) {
+    public void onQuestCompleted(EntityPlayer player) {
         ItemStack stack = player.getHeldItemMainhand().copy();
         takeHeldStack(player, stack.stackSize); //Take everything
         Size size = HFApi.sizeable.getSize(stack);

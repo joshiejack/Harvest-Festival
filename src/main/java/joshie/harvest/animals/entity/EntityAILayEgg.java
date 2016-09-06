@@ -17,7 +17,7 @@ public class EntityAILayEgg extends EntityAIBase {
         this.worldObj = animal.getAsEntity().worldObj;
         this.animal = animal.getAsEntity();
         this.tracked = animal;
-        this.setMutexBits(3);
+        this.setMutexBits(4);
     }
 
     @Override

@@ -1,8 +1,9 @@
 ## Design
 - Add lang for extra chatting
-- Add lang for all the quests
 - Add lang for all the recipes
 - Hovering over array of ingredients shows all of them in bar
+- Rewrite the AI
+- Cleanup Quest code
 
 ### Textures
 - New Textures for the following NPCS

@@ -32,6 +32,7 @@ public class QuestPond extends Quest {
             //The goddess thanks you for your hard work in reestablishing the town
             //SHe is ever so grateful for her new home too, and thanks you a lot
             //She also has a reward!
+            complete(player);
             return "thanks";
         }
 
@@ -41,7 +42,7 @@ public class QuestPond extends Quest {
     }
 
     @Override
-    public void claim(EntityPlayer player) {
+    public void onQuestCompleted(EntityPlayer player) {
         rewardItem(player, new ItemStack(HFCrops.STRAWBERRY.getCropStack().getItem(), 64, HFCrops.STRAWBERRY.getCropStack().getItemDamage()));
         rewardGold(player, 5000);
     }

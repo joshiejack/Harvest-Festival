@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GuiNPCBuilderShop extends GuiNPCShop {
-    public GuiNPCBuilderShop(EntityNPC npc, EntityPlayer player) {
-        super(npc, player);
+    public GuiNPCBuilderShop(EntityPlayer player, EntityNPC npc) {
+        super(player, npc, -2);
     }
 
     @Override

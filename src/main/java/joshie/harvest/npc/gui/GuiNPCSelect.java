@@ -1,17 +1,15 @@
 package joshie.harvest.npc.gui;
 
-import joshie.harvest.HarvestFestival;
-import joshie.harvest.api.npc.INPC;
-import joshie.harvest.core.handlers.GuiHandler;
-import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.lib.HFModInfo;
-import joshie.harvest.core.util.Text;
-import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.Quest.Selection;
-import net.minecraft.entity.EntityLiving;
+import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.lib.HFModInfo;
+import joshie.harvest.core.network.PacketHandler;
+import joshie.harvest.core.util.Text;
+import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.npc.packet.PacketSelect;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraftforge.fml.common.eventhandler.Event.Result;
+import net.minecraft.util.EnumHand;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -26,15 +24,15 @@ public class GuiNPCSelect extends GuiNPCBase {
     private int optionsTotal;
     private int selected;
 
-    public GuiNPCSelect(EntityNPC npc, EntityPlayer player, int next, int selectionType) {
-        super(npc, player, next);
+    public GuiNPCSelect(EntityPlayer player, EntityNPC npc, int next, int selectionType) {
+        super(player, npc, EnumHand.MAIN_HAND, next);
         if (selectionType == -1) selection = SHOPS;
         else {
             quest = HFTrackers.getClientPlayerTracker().getQuests().getAQuest(Quest.REGISTRY.getValues().get(selectionType));
-            selection = quest.getSelection(player, npc.getNPC());
+            selection = quest != null ? quest.getSelection(player, npc.getNPC()): null;
         }
 
-        if (selection == null || selection.getText() == null) player.closeScreen();
+        if (selection == null || selection.getText() == null);//player.closeScreen();
         else {
             optionsTotal = 0;
             text = Arrays.copyOf(selection.getText(), selection.getText().length);
@@ -143,26 +141,7 @@ public class GuiNPCSelect extends GuiNPCBase {
 
     @SuppressWarnings("unchecked")
     private void select() {
-        Result result = selection.onSelected(player, npc, npc.getNPC(), quest, selected);
-        if (result == Result.ALLOW) player.openGui(HarvestFestival.instance, GuiHandler.NPC, player.worldObj, npc.getEntityId(), -1, -1);
-        else if (result == Result.DENY) player.closeScreen();
+        PacketHandler.sendToServer(new PacketSelect(quest, npc, selected));
     }
 
-    private static class ShopSelection extends Selection {
-        ShopSelection() {
-            super("harvestfestival.shop.general.options", "harvestfestival.shop.general.options.shop", "harvestfestival.shop.general.options.chat");
-        }
-
-        /** Called when the option is selected **/
-        @Override
-        public Result onSelected(EntityPlayer player, EntityLiving entity, INPC npc, Quest quest, int option) {
-            if (option == 1) {
-                if (npc.isBuilder()) player.openGui(HarvestFestival.instance, GuiHandler.SHOP_BUILDER, player.worldObj, entity.getEntityId(), 0, 0);
-                else player.openGui(HarvestFestival.instance, GuiHandler.SHOP_MENU, player.worldObj, entity.getEntityId(), 0, 0);
-                return Result.DEFAULT;
-            }
-
-            return Result.ALLOW;
-        }
-    }
 }

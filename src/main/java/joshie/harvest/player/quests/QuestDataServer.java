@@ -2,8 +2,9 @@ package joshie.harvest.player.quests;
 
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.Quest;
-import joshie.harvest.api.quests.Quest.EventType;
+import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.player.PlayerTrackerServer;
+import joshie.harvest.quests.packet.PacketQuestCompleted;
 import joshie.harvest.quests.packet.PacketQuestSetAvailable;
 import joshie.harvest.quests.packet.PacketQuestSetCurrent;
 import net.minecraft.entity.player.EntityPlayer;
@@ -32,10 +33,6 @@ public class QuestDataServer extends QuestData {
             try {
                 Quest quest = q.getClass().newInstance().setRegistryName(q.getRegistryName()).setStage(0); //Set the current quest to your new
                 current.add(quest);
-                for (EventType handled: quest.getHandledEvents()) {
-                    eventHandlers.get(handled).add(quest);
-                }
-
                 syncQuest(q, master.getAndCreatePlayer());
             } catch (Exception ignored) {}
             return true;
@@ -59,14 +56,10 @@ public class QuestDataServer extends QuestData {
     public void markCompleted(Quest quest) {
         Quest q = getAQuest(quest);
         if (q != null) {
-            q.isCompleted = true;
-            q.claim(master.getAndCreatePlayer());
             finished.add(q);
             current.remove(q);
-            for (EventType handled: q.getHandledEvents()) {
-                eventHandlers.get(handled).remove(q);
-            }
-
+            q.onQuestCompleted(master.getAndCreatePlayer());
+            PacketHandler.sendToClient(new PacketQuestCompleted(q), master.getAndCreatePlayer()); //Let the client claim too
             sync(master.getAndCreatePlayer());
         }
     }
@@ -100,14 +93,16 @@ public class QuestDataServer extends QuestData {
             return false;
         }
 
-        //Loops through all the active quests, if any of the quests contain npcs that are used by this quest, we can not start it
+        //Loops through all the active quests, if any of the quests are real and contain npcs that are used by this quest, we can not start it
         INPC[] npcs = quest.getNPCs();
         if (npcs != null) {
             for (Quest a : active) {
-                for (INPC npc : npcs) {
-                    for (INPC n : a.getNPCs()) {
-                        if (n.equals(npc)) {
-                            return false;
+                if (a.isRealQuest()) {
+                    for (INPC npc : npcs) {
+                        for (INPC n : a.getNPCs()) {
+                            if (n.equals(npc)) {
+                                return false;
+                            }
                         }
                     }
                 }
@@ -127,9 +122,6 @@ public class QuestDataServer extends QuestData {
                     Quest quest = q.getClass().newInstance().setRegistryName(q.getRegistryName());
                     quest.readFromNBT(tag);
                     current.add(quest);
-                    for (EventType handled: quest.getHandledEvents()) {
-                        eventHandlers.get(handled).add(q);
-                    }
                 } catch (Exception e) {}
             }
         }

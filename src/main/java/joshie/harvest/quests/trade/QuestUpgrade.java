@@ -134,7 +134,7 @@ public class QuestUpgrade extends QuestTrade {
                 if (!hasGold) return "gold";
 
                 material = new ItemStack(HFMining.MATERIALS, getRequired(holding), getMaterial(holding));
-                boolean hasMaterial = InventoryHelper.getCount(player, material) > getRequired(holding);
+                boolean hasMaterial = InventoryHelper.getCount(player, material) >= getRequired(holding);
                 if (!hasMaterial) return "material";
 
                 //The blacksmith thanks the player for the gold, and their tool
@@ -162,6 +162,8 @@ public class QuestUpgrade extends QuestTrade {
     @Override
     public void onStageChanged(EntityPlayer player, int previous, int stage) {
         if (previous == 0) {
+            ToolTier holding = isHolding(player);
+            InventoryHelper.takeItems(player, new ItemStack(HFMining.MATERIALS, getRequired(holding), getMaterial(holding)));
             date = HFApi.calendar.getDate(player.worldObj).copy();
             ItemStack stack = player.getHeldItemMainhand().copy();
             tool = new ItemStack(stack.getItem(), 1, stack.getItemDamage() + 1);
@@ -172,7 +174,7 @@ public class QuestUpgrade extends QuestTrade {
     }
 
     @Override
-    public void claim(EntityPlayer player) {
+    public void onQuestCompleted(EntityPlayer player) {
         rewardItem(player, tool);
         spawnXP(player.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ, 5);
     }

@@ -65,4 +65,15 @@ public class CropHelper {
         else if (section == PlantSection.TOP) return ((TileCrop)world.getTileEntity(pos.down())).getData();
         else return null;
     }
+
+    public static boolean isRainingAt(World world, BlockPos pos) {
+        if (!HFApi.calendar.getWeather(world).isRain()) return false;
+        else if (!world.canSeeSky(pos)) {
+            return false;
+        } else if (world.getPrecipitationHeight(pos).getY() > pos.getY()) {
+            return false;
+        } else {
+            return world.getBiome(pos).canRain();
+        }
+    }
 }

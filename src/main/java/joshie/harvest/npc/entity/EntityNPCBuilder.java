@@ -44,14 +44,14 @@ public class EntityNPCBuilder extends EntityNPCShopkeeper {
             super.updateAITasks();
         } else {
             if (!worldObj.isRemote) {
-                if (tick % building.getTickTime() == 0) {
+                //if (tick % building.getTickTime() == 0) {
                     if (building.build(worldObj)) resetSpawnHome();
                     setTask(go.setLocation(building.next()));
                     if (building.isFinished()) {
                         ((TownDataServer)homeTown).finishBuilding(worldObj);
                         headTowards = null;
                     }
-                }
+                //}
 
                 tick++;
             }

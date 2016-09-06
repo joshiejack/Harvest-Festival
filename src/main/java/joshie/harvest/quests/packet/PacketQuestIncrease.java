@@ -10,6 +10,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 
+import static joshie.harvest.core.network.PacketHandler.sendToClient;
+
 @Packet
 public class PacketQuestIncrease extends PenguinPacket {
     private Quest quest;
@@ -43,8 +45,12 @@ public class PacketQuestIncrease extends PenguinPacket {
     public void handlePacket(EntityPlayer player) {
         Quest real = HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().getAQuest(quest);
         if (real != null) {
-            if (!player.worldObj.isRemote) real.increaseStage(player);
-            else real.readFromNBT(tag);
+            if (!player.worldObj.isRemote) {
+                int previous = real.quest_stage;
+                real.quest_stage++;
+                real.onStageChanged(player, previous, real.quest_stage);
+                sendToClient(new PacketQuestIncrease(real, real.writeToNBT(new NBTTagCompound())), player);
+            } else real.readFromNBT(tag);
         }
     }
 }

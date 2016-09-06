@@ -5,6 +5,7 @@ import joshie.harvest.api.ticking.IDailyTickableBlock;
 import joshie.harvest.api.ticking.IDailyTickableRegistry;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.util.HFApiImplementation;
+import joshie.harvest.crops.CropHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -13,9 +14,7 @@ import net.minecraft.world.World;
 
 import java.util.HashMap;
 
-import static joshie.harvest.crops.CropHelper.DRYING_SOIL;
-import static joshie.harvest.crops.CropHelper.DRY_SOIL;
-import static joshie.harvest.crops.CropHelper.WET_SOIL;
+import static joshie.harvest.crops.CropHelper.*;
 
 @HFApiImplementation
 public class HFDailyTickable implements IDailyTickableRegistry {
@@ -31,7 +30,7 @@ public class HFDailyTickable implements IDailyTickableRegistry {
 
             @Override
             public boolean newDay(World world, BlockPos pos, IBlockState state) {
-                if (state != WET_SOIL && world.isRainingAt(pos.up(2))) {
+                if (state != WET_SOIL && CropHelper.isRainingAt(world, pos.up(2))) {
                     world.setBlockState(pos, WET_SOIL, 2);
                 } else {
                     if (state == WET_SOIL) world.setBlockState(pos, DRYING_SOIL, 2);

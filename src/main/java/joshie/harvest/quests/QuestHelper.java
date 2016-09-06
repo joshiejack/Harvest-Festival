@@ -5,17 +5,17 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.IQuestHelper;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.Quest.EventType;
+import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.ItemHelper;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.util.HFApiImplementation;
-import joshie.harvest.core.util.IdiotException;
 import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.player.quests.QuestData;
+import joshie.harvest.quests.packet.PacketQuestCompleteEarly;
 import joshie.harvest.quests.packet.PacketQuestDecreaseHeld;
 import joshie.harvest.quests.packet.PacketQuestIncrease;
 import joshie.harvest.quests.packet.PacketRequestEntity;
-import joshie.harvest.quests.packet.PacketRequestItem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
@@ -45,9 +45,18 @@ public class QuestHelper implements IQuestHelper {
     }
 
     @Override
+    public void completeEarly(QuestQuestion quest, EntityPlayer player) {
+        if (!player.worldObj.isRemote) sendToClient(new PacketQuestCompleteEarly(quest), player);
+    }
+
+    @Override
     public void increaseStage(Quest quest, EntityPlayer player) {
-        if (!player.worldObj.isRemote) sendToClient(new PacketQuestIncrease(quest, quest.writeToNBT(new NBTTagCompound())), player);
-        else sendToServer(new PacketQuestIncrease(quest));
+        if (!player.worldObj.isRemote) {
+            int previous = quest.quest_stage;
+            quest.quest_stage++;
+            quest.onStageChanged(player, previous, quest.quest_stage);
+            sendToClient(new PacketQuestIncrease(quest, quest.writeToNBT(new NBTTagCompound())), player);
+        }
     }
 
     /**************************
@@ -66,18 +75,12 @@ public class QuestHelper implements IQuestHelper {
 
     @Override
     public void rewardItem(Quest quest, EntityPlayer player, ItemStack stack) {
-        if (player.worldObj.isRemote) {
-            PacketHandler.sendToServer(new PacketRequestItem(quest, stack));
-        }  else {
-            ItemHelper.spawnItem(player.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ, stack);
-        }
+        ItemHelper.addToPlayerInventory(player, stack);
     }
 
     @Override
     public void rewardGold(EntityPlayer player, long amount) {
-        if (player.worldObj.isRemote) {
-            throw new IdiotException("You shouldn't be rewarding anyone with gold client side");
-        } else {
+        if (!player.worldObj.isRemote) {
             HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getStats().addGold((EntityPlayerMP) player, amount);
         }
     }
@@ -102,7 +105,7 @@ public class QuestHelper implements IQuestHelper {
     }
 
     @Override
-    public Set<Quest> getHandledQuests(EntityPlayer player, EventType events) {
+    public Set<Quest> getCurrentQuests(EntityPlayer player, EventType events) {
         if (isFakePlayer(player)) return EMPTY;
         return HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().getHandled(events);
     }

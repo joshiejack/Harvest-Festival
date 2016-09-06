@@ -1,9 +1,8 @@
 package joshie.harvest.player.quests;
 
-import joshie.harvest.api.npc.INPC;
-import joshie.harvest.api.quests.Quest.EventType;
-import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.api.quests.Quest;
+import joshie.harvest.core.helpers.generic.MCClientHelper;
+import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.quests.packet.PacketQuestCompleted;
 import joshie.harvest.quests.packet.PacketQuestStart;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,28 +21,21 @@ public class QuestDataClient extends QuestData {
     @Override
     public void addAsCurrent(Quest quest) {
         current.add(quest);
-        for (EventType handled: quest.getHandledEvents()) {
-            eventHandlers.get(handled).add(quest);
-        }
     }
 
     @Override
     public void markCompleted(Quest quest, boolean sendPacket) {
-        markCompleted(quest);
         sendToServer(new PacketQuestCompleted(quest));
     }
     
     //Removes the quest from the current and available lists
     public void markCompleted(Quest quest) {
-        quest.isCompleted = true;
+        getAQuest(quest).onQuestCompleted(MCClientHelper.getPlayer());
         if (!quest.isRepeatable()) {
             available.remove(quest);
         }
 
         current.remove(quest);
-        for (EventType handled: quest.getHandledEvents()) {
-            eventHandlers.get(handled).remove(quest);
-        }
     }
 
     @Override
@@ -61,19 +53,6 @@ public class QuestDataClient extends QuestData {
     private String getScript(Quest quest, EntityPlayer player, EntityNPC entity) {
         String script = quest.getScript(player, entity, entity.getNPC());
         return script == null ? null : quest.getLocalized(script);
-    }
-
-    //Returns a single lined script
-    public Quest getSelection(EntityPlayer player, EntityNPC npc) {
-        if (current != null) {
-            for (Quest q : current) {
-                if (handlesScript(q, npc.getNPC())) {
-                    if (q.getSelection(player, npc.getNPC()) != null) return q;
-                }
-            }
-        }
-
-        return null;
     }
 
     @Override
@@ -94,10 +73,6 @@ public class QuestDataClient extends QuestData {
                     try {
                         Quest quest = q.getClass().newInstance().setRegistryName(q.getRegistryName()).setStage(0); //Set the current quest to your new
                         current.add(quest);
-                        for (EventType handled: quest.getHandledEvents()) {
-                            eventHandlers.get(handled).add(quest);
-                        }
-
                         sendToServer(new PacketQuestStart(q));
                         String script = getScript(q, player, npc);
                         if (script != null) return script;
@@ -109,17 +84,5 @@ public class QuestDataClient extends QuestData {
         }
 
         return null;
-    }
-
-    private boolean handlesScript(Quest quest, INPC npc) {
-        INPC[] npcs = quest.getNPCs();
-        if (npcs == null) return false;
-        else {
-            for (INPC n: npcs) {
-                if (n.equals(npc)) return true;
-            }
-        }
-
-        return false;
     }
 }

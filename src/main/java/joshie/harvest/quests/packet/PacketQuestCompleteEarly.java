@@ -1,21 +1,23 @@
 package joshie.harvest.quests.packet;
 
 import io.netty.buffer.ByteBuf;
+import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.network.Packet;
+import joshie.harvest.core.network.Packet.Side;
 import joshie.harvest.core.network.PenguinPacket;
-import joshie.harvest.api.quests.Quest;
+import joshie.harvest.api.quests.QuestQuestion;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 
-@Packet
-public class PacketQuestCompleted extends PenguinPacket {
+@Packet(Side.CLIENT)
+public class PacketQuestCompleteEarly extends PenguinPacket {
     private Quest quest;
 
-    public PacketQuestCompleted() {}
+    public PacketQuestCompleteEarly() {}
 
-    public PacketQuestCompleted(Quest quest) {
+    public PacketQuestCompleteEarly(Quest quest) {
         this.quest = quest;
     }
 
@@ -31,8 +33,9 @@ public class PacketQuestCompleted extends PenguinPacket {
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        if (player.worldObj.isRemote) {
-            HFTrackers.getClientPlayerTracker().getQuests().markCompleted(quest);
-        } else HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().markCompleted(quest, true);
+        QuestQuestion real = (QuestQuestion) HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().getAQuest(quest);
+        if (real != null) {
+            real.isCompletedEarly = true;
+        }
     }
 }

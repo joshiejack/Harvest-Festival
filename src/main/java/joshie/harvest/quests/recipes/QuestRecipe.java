@@ -42,7 +42,7 @@ public class QuestRecipe extends Quest {
     }
 
     @Override
-    public void claim(EntityPlayer player) {
+    public void onQuestCompleted(EntityPlayer player) {
         rewardItem(player, CookingHelper.getRecipe(recipe));
     }
 }

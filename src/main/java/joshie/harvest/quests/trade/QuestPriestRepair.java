@@ -61,7 +61,7 @@ public class QuestPriestRepair extends QuestTrade {
     }
 
     @Override
-    public void claim(EntityPlayer player) {
+    public void onQuestCompleted(EntityPlayer player) {
         ItemStack stack = player.getHeldItemMainhand().copy();
         ItemStack tool = new ItemStack(stack.getItem(), 1, stack.getItemDamage());
         tool.getSubCompound("Data", true).setDouble("Level", stack.getSubCompound("Data", true).getDouble("Level"));

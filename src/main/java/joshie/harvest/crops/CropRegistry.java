@@ -38,8 +38,10 @@ public class CropRegistry implements ICropRegistry {
     }
 
     @Override
-    public ItemStack getSeedStack(Crop crop) {
-        return HFCrops.SEEDS.getStackFromCrop(crop);
+    public ItemStack getSeedStack(Crop crop, int amount) {
+        ItemStack stack = HFCrops.SEEDS.getStackFromCrop(crop);
+        stack.stackSize = amount;
+        return stack;
     }
 
     @Override
@@ -49,8 +51,8 @@ public class CropRegistry implements ICropRegistry {
 
     public List<ItemStack> getStacksForCrop(Crop crop) {
         List<ItemStack> list = new ArrayList<>();
-        list.add(crop.getCropStack());
-        ItemStackHolder holder = ItemStackHolder.of(crop.getCropStack());
+        list.add(crop.getCropStack(1));
+        ItemStackHolder holder = ItemStackHolder.of(crop.getCropStack(1));
         for (Entry<ItemStackHolder, Crop> entry: providers.entrySet()) {
             if (entry.getValue().equals(crop)) {
                 for (ItemStack stack: entry.getKey().getMatchingStacks()) {

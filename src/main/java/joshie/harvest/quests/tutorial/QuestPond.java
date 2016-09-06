@@ -1,14 +1,13 @@
 package joshie.harvest.quests.tutorial;
 
-import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.buildings.HFBuildings;
-import joshie.harvest.town.TownHelper;
 import joshie.harvest.crops.HFCrops;
+import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 
 import java.util.Set;
 
@@ -43,7 +42,7 @@ public class QuestPond extends Quest {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
-        rewardItem(player, new ItemStack(HFCrops.STRAWBERRY.getCropStack().getItem(), 64, HFCrops.STRAWBERRY.getCropStack().getItemDamage()));
+        rewardItem(player, HFCrops.STRAWBERRY.getCropStack(64));
         rewardGold(player, 5000);
     }
 }

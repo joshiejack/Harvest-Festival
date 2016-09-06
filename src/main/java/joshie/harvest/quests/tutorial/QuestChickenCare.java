@@ -77,7 +77,7 @@ public class QuestChickenCare extends QuestQuestion {
 
     @Override
     public Selection getSelection(EntityPlayer player, INPC npc) {
-        return quest_stage <= 0 && player.getHeldItemMainhand() != null && InventoryHelper.ITEM_STACK.matches(player.getHeldItemMainhand(), HFCrops.TURNIP.getCropStack())? selection : null;
+        return quest_stage <= 0 && player.getHeldItemMainhand() != null && InventoryHelper.ITEM_STACK.matches(player.getHeldItemMainhand(), HFCrops.TURNIP.getCropStack(1))? selection : null;
     }
 
     @Override
@@ -85,7 +85,7 @@ public class QuestChickenCare extends QuestQuestion {
         if (isCompletedEarly) {
             complete(player);
             return "completed";
-        } else if (quest_stage == 0 && player.getHeldItemMainhand() != null && InventoryHelper.ITEM_STACK.matches(player.getHeldItemMainhand(), HFCrops.TURNIP.getCropStack())) {
+        } else if (quest_stage == 0 && player.getHeldItemMainhand() != null && InventoryHelper.ITEM_STACK.matches(player.getHeldItemMainhand(), HFCrops.TURNIP.getCropStack(1))) {
             //The goddess welcomes you and sees that you have a turnip
             //She thanks you for growing them for her, she explains that has a wonderful gift
             //One you have never seen before, She explains she has a chicken she would like to give you

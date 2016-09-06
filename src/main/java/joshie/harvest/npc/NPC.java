@@ -67,10 +67,22 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
         this.localizationKey = MODID + ".npc." + name + ".";
         this.generalLocalizationKey = MODID + ".npc.generic." + age.name().toLowerCase(Locale.ENGLISH) + ".";
         this.skin = new ResourceLocation(MODID, "textures/entity/" + name + ".png");
-        this.conditionals.add(new GreetingMultiple(name + ".greeting"));
+        this.conditionals.add(new GreetingMultiple(name + ".greeting") {
+            @Override
+            public boolean canDisplay(EntityPlayer player) {
+                return player.worldObj.rand.nextInt(10) > 1;
+            }
+
+            @Override
+            public int getPriority() {
+                return 10;
+            }
+        });
+
         this.conditionals.add(new GreetingMultiple("generic." + age.name().toLowerCase(Locale.ENGLISH) + ".greeting"));
         if (this.age != CHILD) this.conditionals.add(new GreetingMultiple("generic." + gender.name().toLowerCase(Locale.ENGLISH) + ".greeting"));
         this.conditionals.add(new GreetingSingle("generic.weather.good") {
+
             @Override
             public boolean canDisplay(EntityPlayer player) {
                 return HFApi.calendar.getWeather(player.worldObj).isSunny();
@@ -252,7 +264,7 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
 
         for (IConditionalGreeting greeting : conditionals) {
             if (greeting.canDisplay(player)) {
-                if (greeting.getMaximumAlternatives() > 1) return Text.getRandomSpeech(getRegistryName(), greeting.getUnlocalizedText(), greeting.getMaximumAlternatives());
+                if (greeting.getMaximumAlternatives() > 1) return Text.getRandomSpeech(greeting, getRegistryName(), greeting.getUnlocalizedText(), greeting.getMaximumAlternatives());
                 else return Text.localize(greeting.getUnlocalizedText());
             }
         }

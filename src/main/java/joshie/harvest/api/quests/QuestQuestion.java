@@ -53,7 +53,8 @@ public abstract class QuestQuestion extends Quest {
             if (option == 1) { //If it's our first time, start tutorials
                 quest.increaseStage(player);
             } else { //If it's not then give the player the essentials to get started
-                HFApi.quests.completeEarly(quest, player);
+                quest.isCompletedEarly = true;
+                HFApi.quests.completeEarly(quest, player); //Sync to the client
             }
 
             return Result.ALLOW;

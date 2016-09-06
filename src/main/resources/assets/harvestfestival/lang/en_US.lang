@@ -460,9 +460,12 @@ harvestfestival.npc.generic.elder.greeting1=Good day youngun, what have you been
 #Generic - Male
 harvestfestival.npc.generic.male.greeting1=Hey, how's it hanging?
 harvestfestival.npc.generic.male.greeting2=Want to have a beer?
+harvestfestival.npc.generic.male.greeting3=G'day Mate
 
 #Generic - Female
 harvestfestival.npc.generic.female.greeting1=Hello %p! I hope you're feeling well! It's such a beautiful day isn't it?
+harvestfestival.npc.generic.female.greeting2=Hi %p! How have you been?
+harvestfestival.npc.generic.female.greeting3=Bonjour!
 
 #Generic - Weather
 harvestfestival.npc.generic.weather.good=Great weather, eh?
@@ -499,16 +502,34 @@ harvestfestival.npc.generic.elder.gift.terrible=You should be caned for giving m
 harvestfestival.npc.generic.elder.gift.reject=Sorry young one, but with great respect I cannot take another gift from you today.
 
 #Goddess
-harvestfestival.npc.goddess.greeting1=Who are you, stranger?
+harvestfestival.npc.goddess.greeting1=How are you my dear?
 harvestfestival.npc.goddess.greeting2=What a great day to farm!
-harvestfestival.npc.goddess.greeting3=Do you need anything else, kid?
-harvestfestival.npc.goddess.greeting4=Don't dally around, I cannot stay for long.
-harvestfestival.npc.goddess.greeting5=What do you need?
+harvestfestival.npc.goddess.greeting3=Do you need anything else, my sweet?
+harvestfestival.npc.goddess.greeting4=Please don't take too much time, I cannot stay for very long.
+harvestfestival.npc.goddess.greeting5=What is it you need?
+harvestfestival.npc.goddess.greeting6=If you ever get lost and need another Carpenter just bring me a stack of a wood and I'll be glad to help.
+harvestfestival.npc.goddess.greeting7=Oh, it's so nice to see you again %p!
+harvestfestival.npc.goddess.greeting8=Hey my darling, how have things been?
+harvestfestival.npc.goddess.greeting9=One day I'm sure the Harvest Sprites will return, it's been ever so lonely.
+harvestfestival.npc.goddess.greeting10=I really think you should be able to farm flowers, it's just not fair.
+harvestfestival.npc.goddess.greeting11=Oh where have you been, it's lovely to see you again.
+harvestfestival.npc.goddess.greeting12=Hello %p, are things going well for you?
+harvestfestival.npc.goddess.greeting13=Nature is really beautiful isn't it?
+harvestfestival.npc.goddess.greeting14=If you ever want to give any of your friends a gift, just sneak when talking to them!
+harvestfestival.npc.goddess.greeting15=If you fancy giving me a gift, the easiest way is to just throw an item in to my pond!
+harvestfestival.npc.goddess.greeting16=I can't wait until we can check the weather forecast.
 
 #Katlin
-harvestfestival.npc.katlin.greeting1=Hello my sweet, how have you been?
+harvestfestival.npc.katlin.greeting1=How have you been?
 harvestfestival.npc.katlin.greeting2=Back in my day, oh you don't want to hear it all again. How are you today?
 harvestfestival.npc.katlin.greeting3=Youngsters these days. Oh hello.
+harvestfestival.npc.katlin.greeting4=I'm so much happier now that me and Tomas are no longer a thing.
+harvestfestival.npc.katlin.greeting5=I spend all my Sunday evenings knitting, after attending church in the morning.
+harvestfestival.npc.katlin.greeting6=Back in my day, well things were just, better.
+harvestfestival.npc.katlin.greeting7=Liara lost her parents tragically when she was young, so I've had to raise her.
+harvestfestival.npc.katlin.greeting8=Tomas was my husband for 33 years, I do miss him sometimes.
+harvestfestival.npc.katlin.greeting9=When I was a little girl, my mother used to, well I probably shouldn't say.
+harvestfestival.npc.katlin.greeting10=Someday I'll make the best blanket you've ever seen.
 
 #Danieuru/Chylex
 harvestfestival.npc.daniel.greeting1=I've always loved tinkering around since I was a child.
@@ -517,11 +538,28 @@ harvestfestival.npc.daniel.greeting3=People call me crazy around here for believ
 harvestfestival.npc.daniel.greeting4=If I could do anything other than playing with tools, I'd be a dragon slayer.
 harvestfestival.npc.daniel.greeting5=Did you know that I used to be an olympic sprinter back in my youth? I was better than everyone else in Minecraftia.
 harvestfestival.npc.daniel.greeting6=Males, Females? Don't bother me, I like them all. Variety is the spice of life.
+harvestfestival.npc.daniel.greeting7=I've really taken a shine for Jenni and Yulif lately but neither seem to be all that interested.
+harvestfestival.npc.daniel.greeting8=You can repair your tools in an anvil.
+harvestfestival.npc.daniel.greeting9=If you ever need an upgrade, just bring me a 100% tool, some gold and something to upgrade it with.
+harvestfestival.npc.daniel.greeting10=I've been to The End have you?
+harvestfestival.npc.daniel.greeting11=I became a blacksmith because I wanted to make my own tools, so I could get to the ender, it really was a life long dream.
+harvestfestival.npc.daniel.greeting12=If I could visit any country, hmm, I'd probably visit Czechia with Ashlee.
+harvestfestival.npc.daniel.greeting13=There's nothing I hate more than the ocean. I reckon it's related to my fascination with Ender.
+harvestfestival.npc.daniel.greeting14=I'm open every day of the week except for Thursdays from 10:00 to 16:00.
 
 #Cloe
 harvestfestival.npc.cloe.greeting1=A good book, makes a girl happy.
 harvestfestival.npc.cloe.greeting2=My dad, he's just too much sometimes, I can't handle the pressure.
 harvestfestival.npc.cloe.greeting3=I just don't understand girls sometimes.
+harvestfestival.npc.cloe.greeting4=Nothing I enjoy more than a scary movie!
+harvestfestival.npc.cloe.greeting5=Honestly, I'm not really sure what I want to do with my life right now.
+harvestfestival.npc.cloe.greeting6=This world is so messed up, I just don't know anymore.
+harvestfestival.npc.cloe.greeting7=I read 200 books by the time I was five.
+harvestfestival.npc.cloe.greeting8=I don't know how Abi can put up with all that cuteness, it's so fake, it drives me crazy.
+harvestfestival.npc.cloe.greeting9=We are so insignificant.
+harvestfestival.npc.cloe.greeting10=Please don't tell anyone. But I like Penguins. I know, I know.
+harvestfestival.npc.cloe.greeting11=My Uncle well he's a bit weird... He spends most of his time at his desk, just working on well, I don't know what. I think he said something about modding. Maybe one day he'll get a life.
+harvestfestival.npc.cloe.greeting12=I can't believe my mother chose Team Valor.
 
 #Liara/ApsciLiara
 harvestfestival.npc.liara.greeting1=I really love this weather, perfect time to bake a cake!
@@ -530,6 +568,15 @@ harvestfestival.npc.liara.greeting3=Are you feeling hungry? I'm always hungry, n
 harvestfestival.npc.liara.greeting4=Make sure to drop by the café on Tuesdays, there's always something special.
 harvestfestival.npc.liara.greeting5=Food makes the world go round, and it makes me giddy.
 harvestfestival.npc.liara.greeting6=There's nothing like a good ol piece of a chocolate to make a girl happy.
+harvestfestival.npc.liara.greeting7=You wouldn't believe it, but I'm really in to, well spacey stuff.
+harvestfestival.npc.liara.greeting8=If you're looking for cookware, I only sell them on Sundays.
+harvestfestival.npc.liara.greeting9=I sell different recipes each week, and season.
+harvestfestival.npc.liara.greeting10=If you didn't know, you can cook meat in the oven.
+harvestfestival.npc.liara.greeting11=If you want my advice, read the descriptions in the recipe book. Often they'll give you a little hint at what makes a recipe better.
+harvestfestival.npc.liara.greeting12=When I went to cookery school, there was this girl Pam. She really was a terrible cook.
+harvestfestival.npc.liara.greeting13=I really do miss my parents, but losing them really made me want to focus on my cooking career.
+harvestfestival.npc.liara.greeting14=I've been passionate about cooking all my life, I remember when I was ten, I was selling cupcake and making 1000 gold a week! But now I'm so glad I finally get to open my own proper business.
+harvestfestival.npc.liara.greeting15=The café is open everyday! From half past nine in the morning to five in the evening.
 
 #Jade
 harvestfestival.npc.jade.greeting1=Hey! I just love going out in to the world, watch out for the sheep though!
@@ -538,6 +585,14 @@ harvestfestival.npc.jade.greeting3=I would just love to own a farm, but my broth
 harvestfestival.npc.jade.greeting4=So many people have called me evil, but I'm a nice girl really.
 harvestfestival.npc.jade.greeting5=I wish I owned a cat, but Yulif hates them.
 harvestfestival.npc.jade.greeting6=It can get really tight in my house, not much room to move about.
+harvestfestival.npc.jade.greeting7=If you ever need more seeds, just bring me another 10 flowers.
+harvestfestival.npc.jade.greeting8=I would really like to start selling flowers, but I heard that's for a future update, whatever that means?
+harvestfestival.npc.jade.greeting9=It really is quite cramped in our home.
+harvestfestival.npc.jade.greeting10=You may have noticed some rocks, weeds and sticks laying around, you can break these for some stone or logs. You'll need to get a hammer or axe though.
+harvestfestival.npc.jade.greeting11=The heart you see when talking to some people, is how much they like you. If they like you a lot, you can get married to them!
+harvestfestival.npc.jade.greeting12=The quickest way to anyones heart is giving them gifts. In fact if you make them like you enough, they may just give you something back!
+harvestfestival.npc.jade.greeting13=Sleeping is the quickest way to grow your crops.
+harvestfestival.npc.jade.greeting14=I'm really not sure why you can't fertilise your crops. Maybe one day?
 
 #Jenni/Othlon
 harvestfestival.npc.jenni.greeting1=Hey my good friend, make sure to come to me if you need any general goods!
@@ -546,6 +601,13 @@ harvestfestival.npc.jenni.greeting3=Don't tell anybody but I'm secretly a huge f
 harvestfestival.npc.jenni.greeting4=Sometimes I wish I would open on Sundays, but then I remember how much I love a good lay in.
 harvestfestival.npc.jenni.greeting5=Granny Katlin sure makes a mean soup!
 harvestfestival.npc.jenni.greeting6=My prices are the best in the town, noone can beat ol' jenni's bargains.
+harvestfestival.npc.jenni.greeting7=I couldn't help but notice you're from Australia. Oh, you aren't? Or are you?
+harvestfestival.npc.jenni.greeting8=Heya friend, just remind you, we're open everyday except Wednesday and Sunday, from 9am to 5pm. Oh Saturdays are 11am to 3pm though.
+harvestfestival.npc.jenni.greeting9=I'd have to say this store is my greatest accomplishment I am so proud.
+harvestfestival.npc.jenni.greeting10=Candice and I used to be a lot closer, but things changed. We're still living together because I just couldn't afford the rent for this place on my own.
+harvestfestival.npc.jenni.greeting11=In my spare time I love a bit of arts and crafts.
+harvestfestival.npc.jenni.greeting12=My favourite animals are pigs, and my favourite fruit are cherries.
+harvestfestival.npc.jenni.greeting13=My supplies are pretty limited, but one day I should be able to sell you more things.
 
 #Jaimii
 harvestfestival.npc.jamie.greeting1=This is my town, and you remember that.
@@ -553,19 +615,41 @@ harvestfestival.npc.jamie.greeting2=My family has won the town elections for the
 harvestfestival.npc.jamie.greeting3=My two girls are so precious to me, if you ever hurt either of them.
 harvestfestival.npc.jamie.greeting4=It's really hard being mayor, the people just love you too much.
 harvestfestival.npc.jamie.greeting5=Heya %p, have you seen my house, it's far too small.
+harvestfestival.npc.jamie.greeting6=In the future, I'll be hosting some contests, but for now, I'm just happy to run this town.
+harvestfestival.npc.jamie.greeting7=I'm not sure who put you in charge of building this town, I would have done a much better job.
+harvestfestival.npc.jamie.greeting8=My father always told me I would amount to everything. And look at me.
+harvestfestival.npc.jamie.greeting9=I should probably tell you about how Katlin broke Tomas' heart, but well she's just cold hearted, nothing more to say.
+harvestfestival.npc.jamie.greeting10=My family has been mayor for countless generations, noone could do this job better.
+harvestfestival.npc.jamie.greeting11=I'm not sure why I have to pay for all these things for others. It's my money.
+harvestfestival.npc.jamie.greeting12=I really hope Cloe grows up. She's really making my family look bad.
 
 #Abii
 harvestfestival.npc.abi.greeting1=Ooo, so cute. What's that? OMG!
 harvestfestival.npc.abi.greeting2=Hello big person! Where've you been?
 harvestfestival.npc.abi.greeting3=I've missed you!
 harvestfestival.npc.abi.greeting4=Oh my, you're so big!
+harvestfestival.npc.abi.greeting5=My mummy is so mean. :(
+harvestfestival.npc.abi.greeting6=I want to be a princess!
+harvestfestival.npc.abi.greeting7=Fenn never notices me, I want him to love me!
+harvestfestival.npc.abi.greeting8=Daddy told me that if I'm good, I can have a pony.
+harvestfestival.npc.abi.greeting9=I love my big sister Cloe!
+harvestfestival.npc.abi.greeting10=I never want to grow up!
+harvestfestival.npc.abi.greeting11=Come play with me!
+harvestfestival.npc.abi.greeting12=I want a bunny rabbit, sooo cute.
 
 #Tiberius/WayofTime
+harvestfestival.npc.tiberius.time=Looks like you've been in this town for %s years.
 harvestfestival.npc.tiberius.greeting1=Time is a fascinating thing, one second it's going slow then the next hour it's passing by faster than light!
 harvestfestival.npc.tiberius.greeting2=When I was a child my favourite nursery rhyme was hickory dickory dock.
 harvestfestival.npc.tiberius.greeting3=What time is it?
 harvestfestival.npc.tiberius.greeting4=My favourite season is spring, as that's when a new year starts!
 harvestfestival.npc.tiberius.greeting5=I've never understood why some people are afraid of blood, I had a friend who delved in to Sanguimancy, he almost took over the world, shame he was caught redhanded before he got away with it. I guess it's just not the time for it.
+harvestfestival.npc.tiberius.greeting6=If you knew what I got up to. You would be shocked.
+harvestfestival.npc.tiberius.greeting7=I think the last time I want a|Way was when Fenn was just a baby, it's been a long time.
+harvestfestival.npc.tiberius.greeting8=Fenn can really be a lot of trouble some time. That boy needs some discipline.
+harvestfestival.npc.tiberius.greeting9=The one thing I can tell you about time, is that if you gift someone on their birthday, they will like you even more.
+harvestfestival.npc.tiberius.greeting10=How long have you been in this town?
+harvestfestival.npc.tiberius.greeting11=I think I always found the Ancient Egyptian time period to most annoying.
 
 #Jakob
 harvestfestival.npc.jacob.greeting1=Fishing is my game, Jacob is my name.
@@ -750,8 +834,8 @@ harvestfestival.quest.tutorial.poultry.info=Glad to hear it. You can buy chicken
 #General Store Introduction
 harvestfestival.quest.tutorial.supermarket.reminder.talk=You should probably go and talk to Candice or Jenni, now that you have the General Store built.
 harvestfestival.quest.tutorial.supermarket.reminder.supermarket=Just a friendly reminder, if you want more seeds, go and get a General Store built!
-harvestfestival.quest.tutorial.supermarket.welcome.owner=Hey, I’m the owner of this here General Store. It’s nice to move to town. I sell all kinds of wares from seeds to chocolate. If you need anything just ask me. Opening hours are Weekdays, 09:00-17:00, well except for Wednesday when we’re closed. We’re also open for 4 hours on a Saturday from 11:00 to 15:00. It looks like you’re our first customer too, so here’s a reward!
-harvestfestival.quest.tutorial.supermarket.welcome.guest=I will surely find myself someone. Well hello there aren’t you just the cutest. I’m Candice. Jenni downstairs is the owner here, I’m just a tenant. If you need anything just go and see her everyday except Wednesday, 09:00-17:00. She also opens on Saturdays from 11:00 to 15:00. She told me to give you this.
+harvestfestival.quest.tutorial.supermarket.welcome.owner=Hey, I’m the owner of this here General Store. It’s nice to move to town. I sell all kinds of wares from seeds to chocolate. If you need anything just ask me. Opening hours are Weekdays, 09:00-17:00, well except for Wednesday and Sunday when we’re closed. We’re also open for 4 hours on a Saturday from 11:00 to 15:00. It looks like you’re our first customer too, so here’s a reward!
+harvestfestival.quest.tutorial.supermarket.welcome.guest=I will surely find myself someone. Well hello there aren’t you just the cutest. I’m Candice. Jenni downstairs is the owner here, I’m just a tenant. If you need anything just go and see her everyday except Wednesday and Sunday, 09:00-17:00. She also opens on Saturdays from 11:00 to 15:00. She told me to give you this.
 
 #Animal Ranch Introduction
 harvestfestival.quest.tutorial.barn.reminder.talk=Looks like yer got the Animal Ranch built ya should go and talk to Jim.

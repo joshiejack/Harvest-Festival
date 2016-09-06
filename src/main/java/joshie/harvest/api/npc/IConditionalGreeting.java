@@ -1,6 +1,7 @@
 package joshie.harvest.api.npc;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.text.translation.I18n;
 
 /** This is for conditional based greetings **/
 public interface IConditionalGreeting {
@@ -19,6 +20,12 @@ public interface IConditionalGreeting {
     /** Returns the text for this conditional,
      * @return the UNLOCALIZED text **/
     String getUnlocalizedText();
+
+    /** Returns the localized name for this text
+     * @param text     the text**/
+    default String getLocalizedText(String text) {
+        return I18n.translateToLocal(text);
+    }
     
     /** Return the priority **/
     default int getPriority() {

@@ -111,9 +111,9 @@ public class HFIngredients {
 
         //Crops
         for (Crop crop: Crop.REGISTRY) {
-            if (crop.getCropStack() != null) {
-                if (crop.getCropStack().getItem() == HFCrops.CROP) {
-                    CookingAPI.INSTANCE.register(crop.getCropStack(), crop.getIngredient());
+            if (crop.getCropStack(1) != null) {
+                if (crop.getCropStack(1).getItem() == HFCrops.CROP) {
+                    CookingAPI.INSTANCE.register(crop.getCropStack(1), crop.getIngredient());
                 }
             }
         }

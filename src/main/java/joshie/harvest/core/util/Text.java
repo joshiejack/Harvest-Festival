@@ -2,6 +2,7 @@ package joshie.harvest.core.util;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
+import joshie.harvest.api.npc.IConditionalGreeting;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.util.ResourceLocation;
@@ -34,7 +35,7 @@ public class Text {
         return "en_US";
     }
 
-    public static String getRandomSpeech(final ResourceLocation resource, final String text, final int maximumAlternatives) {
+    public static String getRandomSpeech(IConditionalGreeting greeting, final ResourceLocation resource, final String text, final int maximumAlternatives) {
         int maximum = 1;
         try {
             final Triple<String, String, ResourceLocation> key = Triple.of(getLang(), text, resource);
@@ -52,7 +53,7 @@ public class Text {
         } catch (Exception e) {}
 
         int random = 1 + (maximum >= 2? rand.nextInt(maximum): 0);
-        return localize(text + random);
+        return greeting.getLocalizedText(text + random);
     }
 
     @SuppressWarnings("deprecation")

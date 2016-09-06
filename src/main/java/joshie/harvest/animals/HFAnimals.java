@@ -89,7 +89,7 @@ public class HFAnimals {
     public static void init() {
         for (Crop crop : Crop.REGISTRY.getValues()) {
             if (crop == Crop.NULL_CROP) continue;
-            animals.registerFoodAsType(crop.getCropStack(), crop.getFoodType());
+            animals.registerFoodAsType(crop.getCropStack(1), crop.getFoodType());
         }
     }
 

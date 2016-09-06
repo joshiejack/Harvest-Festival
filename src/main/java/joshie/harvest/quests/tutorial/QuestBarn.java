@@ -11,7 +11,6 @@ import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 
 import java.util.Set;
 
@@ -58,7 +57,7 @@ public class QuestBarn extends Quest {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
-        rewardItem(player, new ItemStack(HFCrops.GRASS.getCropStack().getItem(), 64, HFCrops.GRASS.getCropStack().getItemDamage()));
+        rewardItem(player, HFCrops.GRASS.getCropStack(64));
         rewardItem(player, HFAnimals.MILK.getStackOfSize(Size.LARGE, 3));
         rewardItem(player, HFAnimals.TROUGH.getStackFromEnum(WOOD));
     }

@@ -131,7 +131,7 @@ public class HFShops {
     
     private static void registerBarn() {
         BARN = HFApi.shops.newShop(new ResourceLocation(MODID, "barn"), HFNPCs.ANIMAL_OWNER);
-        BARN.addItem(20, HFCrops.GRASS.getCropStack());
+        BARN.addItem(20, HFCrops.GRASS.getCropStack(1));
         BARN.addItem(1000, HFAnimals.TOOLS.getStackFromEnum(MEDICINE));
         BARN.addItem(new PurchaseableEntity(EntityHarvestSheep.class, 4000, HFAnimals.ANIMAL.getStackFromEnum(SHEEP), true));
         BARN.addItem(new PurchaseableEntity(EntityHarvestCow.class, 5000, HFAnimals.ANIMAL.getStackFromEnum(COW), true));

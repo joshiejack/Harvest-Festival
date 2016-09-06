@@ -77,14 +77,16 @@ public class InventoryHelper {
     }
 
     @SuppressWarnings("unchecked")
-    public static <S> boolean hasInInventory(EntityPlayer player, Matcher matcher, S search, int amount) {
-        return getCount(player, search, matcher) >= amount;
+    public static <S> boolean hasInInventory(EntityPlayer player, Matcher matcher, S search, int... amount) {
+        int count = amount == null ? 1 : amount[0];
+        return getCount(player, search, matcher) >= count;
     }
 
     @SuppressWarnings("unchecked")
-    public static <S> boolean takeItemsInInventory(EntityPlayer player, Matcher matcher, S search, int amount) {
-        if (hasInInventory(player, matcher, search, amount)) {
-            takeItems(player, search, amount, matcher);
+    public static <S> boolean takeItemsInInventory(EntityPlayer player, Matcher matcher, S search, int... amount) {
+        int count = amount == null ? 1 : amount[0];
+        if (hasInInventory(player, matcher, search, count)) {
+            takeItems(player, search, count, matcher);
             return true;
         }
 
@@ -92,19 +94,21 @@ public class InventoryHelper {
     }
 
     @SuppressWarnings("unchecked")
-    public static <S> boolean isHolding(EntityPlayer player, Matcher matcher, S search, int amount) {
+    public static <S> boolean isHolding(EntityPlayer player, Matcher matcher, S search, int... amount) {
+        int count = amount == null ? 1 : amount[0];
         ItemStack held = player.getHeldItemMainhand();
         if (held != null && matcher.matches(held, search)) {
-            return held.stackSize >= amount;
+            return held.stackSize >= count;
         }
 
         return false;
     }
 
     @SuppressWarnings("unchecked")
-    public static <S> boolean takeItemsIfHeld(EntityPlayer player, Matcher matcher, S search, int amount) {
-        if (isHolding(player, matcher, search, amount)) {
-            takeItems(player, search, amount, matcher);
+    public static <S> boolean takeItemsIfHeld(EntityPlayer player, Matcher matcher, S search, int... amount) {
+        int count = amount == null ? 1 : amount[0];
+        if (isHolding(player, matcher, search, count)) {
+            takeItems(player, search, count, matcher);
             return true;
         }
 

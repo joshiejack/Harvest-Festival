@@ -12,6 +12,7 @@ import joshie.harvest.core.lib.EntityIDs;
 import joshie.harvest.core.util.HFLoader;
 import joshie.harvest.npc.entity.*;
 import joshie.harvest.npc.greeting.GreetingLocation;
+import joshie.harvest.npc.greeting.GreetingTime;
 import joshie.harvest.npc.item.ItemNPCSpawner;
 import joshie.harvest.npc.item.ItemNPCTool;
 import joshie.harvest.npc.render.NPCItemRenderer;
@@ -124,6 +125,7 @@ public class HFNPCs {
         MILKMAID.setLocation(HOME, SUPERMARKET, CANDICE_HOME).setLocation(WORK, BARN, JIM_HOME);
         POULTRY.setLocation(HOME, POULTRY_FARM, ASHLEE_HOME).setLocation(WORK, POULTRY_FARM, ASHLEE_HOME);
         TRADER.setLocation(HOME, TOWNHALL, TOWNHALL_RIGHT_WING).setLocation(WORK, SUPERMARKET, MARKET_STOREFRONT);
+        CLOCK_WORKER.addGreeting(new GreetingTime("harvestfestival.npc.tiberius.time"));
     }
 
     @SuppressWarnings("deprecation")

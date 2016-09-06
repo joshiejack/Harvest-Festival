@@ -109,7 +109,7 @@ public class HFTab extends CreativeTabs {
     public static void remap() {
         HFTab.TOWN.setStack(new ItemStack(HFBuildings.STRUCTURES, 1, 0));
         HFTab.MINING.setStack(HFMining.MATERIALS.getStackFromEnum(JUNK));
-        HFTab.FARMING.setStack(HFCrops.STRAWBERRY.getCropStack());
+        HFTab.FARMING.setStack(HFCrops.STRAWBERRY.getCropStack(1));
         HFTab.COOKING.setStack(HFApi.cooking.getMeal("salad"));
         HFTab.GATHERING.setStack(new ItemStack(HFTools.AXE, 1, 0));
     }

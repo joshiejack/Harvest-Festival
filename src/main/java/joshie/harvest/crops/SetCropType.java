@@ -40,7 +40,7 @@ public class SetCropType extends LootFunction {
     public ItemStack random(boolean crop) {
         if (cropsList == null) cropsList = new ArrayList<>(Crop.REGISTRY.getValues());
         Collections.shuffle(cropsList);
-        return crop ? cropsList.get(0).getCropStack() : cropsList.get(0).getSeedStack();
+        return crop ? cropsList.get(0).getCropStack(1) : cropsList.get(0).getSeedStack(1);
     }
 
     public static class Serializer extends LootFunction.Serializer<SetCropType> {

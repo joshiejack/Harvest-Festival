@@ -19,7 +19,7 @@ public interface ICropRegistry {
     Crop getCropFromStack(ItemStack stack);
 
     /** Returns the crop as seeds **/
-    ItemStack getSeedStack(Crop crop);
+    ItemStack getSeedStack(Crop crop, int amount);
 
     /** Fetch the crop at this location, will return null if there is no crop there
      *  @param world the world

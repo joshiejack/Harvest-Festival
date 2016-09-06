@@ -367,22 +367,24 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
     /**
      * This crop as a seed stack
      **/
-    public ItemStack getSeedStack() {
-        return HFApi.crops.getSeedStack(this);
+    public ItemStack getSeedStack(int amount) {
+        return HFApi.crops.getSeedStack(this, amount);
     }
 
     /**
      *  This crop as a stack
      **/
-    public ItemStack getCropStack() {
-        return item == null ? null : item.copy();
+    public ItemStack getCropStack(int amount) {
+        ItemStack copy = item.copy();
+        copy.stackSize = amount;
+        return copy;
     }
 
     /**
      * What this crop drops
      **/
     public ItemStack getHarvested() {
-        return dropHandler == null ? getCropStack() : dropHandler.getDrop(rand, item.getItem());
+        return dropHandler == null ? getCropStack(1) : dropHandler.getDrop(rand, item.getItem());
     }
 
     /**
@@ -396,7 +398,7 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
      * If the stack is this crop
      **/
     public boolean matches(ItemStack stack) {
-        return (stack.getItem() == getCropStack().getItem());
+        return HFApi.crops.getCropFromStack(stack) == this;
     }
 
     /**

@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 public class GiftsGoddess extends Gifts {
     @Override
     public Quality getQuality(ItemStack stack) {
-        if (stack.isItemEqual(HFCrops.STRAWBERRY.getCropStack())) {
+        if (stack.isItemEqual(HFCrops.STRAWBERRY.getCropStack(1))) {
             return Quality.AWESOME;
         }
 

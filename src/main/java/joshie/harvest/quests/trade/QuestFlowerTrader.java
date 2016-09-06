@@ -54,8 +54,8 @@ public class QuestFlowerTrader extends QuestTrade {
     public void onQuestCompleted(EntityPlayer player) {
         takeHeldStack(player, 1); //Take everything
         Season season = HFApi.calendar.getDate(player.worldObj).getSeason();
-        if (season == SPRING) rewardItem(player, HFCrops.TURNIP.getSeedStack());
-        else if (season == SUMMER) rewardItem(player, HFCrops.ONION.getSeedStack());
-        else if (season == AUTUMN) rewardItem(player, HFCrops.CARROT.getSeedStack());
+        if (season == SPRING) rewardItem(player, HFCrops.TURNIP.getSeedStack(1));
+        else if (season == SUMMER) rewardItem(player, HFCrops.ONION.getSeedStack(1));
+        else if (season == AUTUMN) rewardItem(player, HFCrops.CARROT.getSeedStack(1));
     }
 }

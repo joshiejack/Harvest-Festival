@@ -115,16 +115,14 @@ public class HFCrops {
                 }
 
                 //Register always in the ore dictionary
-                ItemStack clone = crop.getCropStack().copy();
-                clone.setItemDamage(OreDictionary.WILDCARD_VALUE);
-
+                ItemStack clone = crop.getCropStack(1);
                 String name = "crop" + WordUtils.capitalizeFully(crop.getRegistryName().getResourcePath(), '_').replace("_", "");
                 if (!isInDictionary(name, clone)) {
                     OreDictionary.registerOre(name, clone);
                 }
 
                 //Allow all crops to be throw in goddess water
-                BlockGoddessWater.VALID_ITEMS.registerItem(crop.getCropStack());
+                BlockGoddessWater.VALID_ITEMS.registerItem(crop.getCropStack(1));
             }
         }
 
@@ -141,7 +139,7 @@ public class HFCrops {
         ModelLoader.setCustomMeshDefinition(CROP, new FMLDefinition<Crop>(CROP, "crops", Crop.REGISTRY) {
             @Override
             public boolean shouldSkip(Crop crop) {
-                return super.shouldSkip(crop) || crop.getCropStack().getItem() != CROP;
+                return super.shouldSkip(crop) || crop.getCropStack(1).getItem() != CROP;
             }
         });
     }

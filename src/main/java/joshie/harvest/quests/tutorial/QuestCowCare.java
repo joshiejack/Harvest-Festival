@@ -52,7 +52,7 @@ public class QuestCowCare extends QuestQuestion {
         if (quest_stage == 2 || quest_stage == 3) {
             if (target instanceof EntityHarvestCow) {
                 if (held != null) {
-                    if (!hasFed && held.isItemEqual(HFCrops.GRASS.getCropStack())) {
+                    if (!hasFed && held.isItemEqual(HFCrops.GRASS.getCropStack(1))) {
                         hasFed = true;
                         if(!player.worldObj.isRemote) increaseStage(player);
                     } else if (!hasBrushed && ToolHelper.isBrush(held)) {
@@ -106,7 +106,7 @@ public class QuestCowCare extends QuestQuestion {
                     return "reminder.brush";
                 } else if (held.getItem() == Item.getItemFromBlock(Blocks.TALLGRASS)) {
                     takeHeldStack(player, 1);
-                    rewardItem(player, HFCrops.GRASS.getCropStack());
+                    rewardItem(player, HFCrops.GRASS.getCropStack(1));
                     //Yulif thanks the player for the wheat, gives fodder and thanks the player
                     return "reminder.fodder";
                 }
@@ -159,7 +159,7 @@ public class QuestCowCare extends QuestQuestion {
         if (previous == 1) { //Gives the player the basic tools to help them
             rewardEntity(player, "harvestfestival.cow");
             rewardItem(player, new ItemStack(Items.LEAD));
-            rewardItem(player, new ItemStack(HFCrops.GRASS.getCropStack().getItem(), 16, HFCrops.GRASS.getCropStack().getItemDamage()));
+            rewardItem(player, HFCrops.GRASS.getCropStack(16));
             rewardItem(player, HFAnimals.TOOLS.getStackFromEnum(BRUSH));
         } else if (previous == 4) {
             rewardItem(player, HFAnimals.TOOLS.getStackFromEnum(MILKER));
@@ -171,7 +171,7 @@ public class QuestCowCare extends QuestQuestion {
         if (quest_stage == 0) {
             rewardEntity(player, "harvestfestival.cow");
             rewardItem(player, new ItemStack(Items.LEAD));
-            rewardItem(player, new ItemStack(HFCrops.GRASS.getCropStack().getItem(), 16, HFCrops.GRASS.getCropStack().getItemDamage()));
+            rewardItem(player, HFCrops.GRASS.getCropStack(16));
             rewardItem(player, HFAnimals.TOOLS.getStackFromEnum(BRUSH));
             rewardItem(player, HFAnimals.TOOLS.getStackFromEnum(MILKER));
         }

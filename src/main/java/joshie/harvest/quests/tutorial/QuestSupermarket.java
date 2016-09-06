@@ -1,15 +1,14 @@
 package joshie.harvest.quests.tutorial;
 
-import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.buildings.HFBuildings;
-import joshie.harvest.town.TownHelper;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.npc.HFNPCs;
+import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 
 import java.util.Set;
 
@@ -62,6 +61,6 @@ public class QuestSupermarket extends Quest {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
-        rewardItem(player, new ItemStack(HFCrops.POTATO.getSeedStack().getItem(), 5, HFCrops.POTATO.getSeedStack().getItemDamage()));
+        rewardItem(player, HFCrops.POTATO.getSeedStack(5));
     }
 }

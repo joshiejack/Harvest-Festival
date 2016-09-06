@@ -24,7 +24,7 @@ public class PurchaseableCropSeeds implements IPurchaseable {
 
     public PurchaseableCropSeeds(Crop crop) {
         this.crop = crop;
-        this.product = crop.getSeedStack();
+        this.product = crop.getSeedStack(1);
     }
 
     private boolean isCorrectSeason(Season theSeason) {

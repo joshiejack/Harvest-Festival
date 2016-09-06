@@ -8,6 +8,7 @@ import joshie.harvest.town.TownTracker;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
@@ -19,6 +20,7 @@ import net.minecraft.world.WorldServerMulti;
 import net.minecraft.world.storage.loot.LootContext;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
 import static joshie.harvest.mining.HFMining.MINING_ID;
 import static joshie.harvest.mining.MineManager.CHUNK_BOUNDARY;
@@ -131,6 +133,10 @@ public class MiningHelper {
         BlockPos spawn = modifySpawnAndPlayerRotation(newWorld, ((MiningProvider)newWorld.provider).getSpawnCoordinateForMine(mineID, newFloor), entity);
         if (entity.timeUntilPortal == 0) {
             entity.timeUntilPortal = 100;
+            if (entity instanceof EntityPlayerMP) {
+                ReflectionHelper.setPrivateValue(EntityPlayerMP.class, (EntityPlayerMP) entity, true, "invulnerableDimensionChange", "field_184851_cj");
+            }
+
             entity.setPositionAndUpdate(spawn.getX() + 0.5D, spawn.getY() + 0.1D, spawn.getZ() + 0.5D);
         }
 

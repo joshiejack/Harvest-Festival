@@ -171,6 +171,7 @@ public class MiningChunk implements IChunkGenerator {
         for (int i = 0; i < 16; i++) {
             for (int j = 0; j < 16; j++) {
                 for (int k = 0; k < 252; k++) {
+                    //setBlockState(primer, i, 251, j, WALLS, chunkX, chunkZ);
                     setBlockState(primer, i, 251, j, WALLS, chunkX, chunkZ);
                 }
             }
@@ -274,23 +275,23 @@ public class MiningChunk implements IChunkGenerator {
             IBlockState[][] blockStateMap = new IBlockState[CHUNK_BOUNDARY * 16][CHUNK_BOUNDARY * 16];
             boolean first = true;
             rand.setSeed(mapIndex * worldObj.getSeed());
-            int startX = 50 + rand.nextInt(110);
-            int endX = 50 + rand.nextInt(110);
-            int startZ = 50 + rand.nextInt(110);
-            int endZ = 50 + rand.nextInt(110);
-            int ladderDistance = 5 + rand.nextInt(35);
-            int differenceMin = 5 + rand.nextInt(27);
-            int endDistance = (differenceMin * 4) - 1;
+            int startX = 15 + rand.nextInt(85);
+            int endX = 15 + rand.nextInt(85);
+            int startZ = 15 + rand.nextInt(85);
+            int endZ = 15 + rand.nextInt(85);
+            int ladderDistance = 5 + rand.nextInt(25);
+            int differenceMin = 5 + rand.nextInt(15);
+            int endDistance = (differenceMin * 3) - 1;
             int maxLoop = 1 + rand.nextInt(5);
-            int endChangeChanceX = 30 + rand.nextInt(21);
-            int endChangeChanceZ = 30 + rand.nextInt(21);
-            int changeMinX = 25 + rand.nextInt(56);
-            int changeMinZ = 25 + rand.nextInt(56);
-            int randXChange = 10 + rand.nextInt(71);
-            int randZChange = 10 + rand.nextInt(71);
-            int randXTime = 7 + rand.nextInt(16);
-            int randZTime = 7 + rand.nextInt(16);
-            int radius = 2 + rand.nextInt(5);
+            int endChangeChanceX = 15 + rand.nextInt(15);
+            int endChangeChanceZ = 15 + rand.nextInt(15);
+            int changeMinX = 10 + rand.nextInt(25);
+            int changeMinZ = 10 + rand.nextInt(25);
+            int randXChange = 5 + rand.nextInt(30);
+            int randZChange = 5 + rand.nextInt(30);
+            int randXTime = 7 + rand.nextInt(10);
+            int randZTime = 7 + rand.nextInt(10);
+            int radius = 1 + rand.nextInt(3);
             int oreChance = rand.nextInt(5) == 0 ? 10 + rand.nextInt(15) : 25 + rand.nextInt(25);
             for (int k = 0; k < maxLoop; k++) {
                 if (first) {

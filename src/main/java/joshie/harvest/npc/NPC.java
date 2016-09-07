@@ -15,7 +15,6 @@ import joshie.harvest.api.shops.IShop;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.core.util.Text;
 import joshie.harvest.npc.greeting.GreetingMultiple;
-import joshie.harvest.npc.greeting.GreetingSingle;
 import joshie.harvest.shops.Shop;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -31,6 +30,7 @@ import static joshie.harvest.core.lib.HFModInfo.*;
 
 public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl<NPC> implements INPC {
     private List<IConditionalGreeting> conditionals = new ArrayList<>(256);
+    private GreetingMultiple npcGreetings;
     private String generalLocalizationKey;
     private String localizationKey;
     private ResourceLocation skin;
@@ -67,35 +67,7 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
         this.localizationKey = MODID + ".npc." + name + ".";
         this.generalLocalizationKey = MODID + ".npc.generic." + age.name().toLowerCase(Locale.ENGLISH) + ".";
         this.skin = new ResourceLocation(MODID, "textures/entity/" + name + ".png");
-        this.conditionals.add(new GreetingMultiple(name + ".greeting") {
-            @Override
-            public boolean canDisplay(EntityPlayer player) {
-                return player.worldObj.rand.nextInt(20) > 0;
-            }
-
-            @Override
-            public int getPriority() {
-                return 10;
-            }
-        });
-
-        this.conditionals.add(new GreetingMultiple("generic." + age.name().toLowerCase(Locale.ENGLISH) + ".greeting"));
-        if (this.age != CHILD) this.conditionals.add(new GreetingMultiple("generic." + gender.name().toLowerCase(Locale.ENGLISH) + ".greeting"));
-        this.conditionals.add(new GreetingSingle("generic.weather.good") {
-
-            @Override
-            public boolean canDisplay(EntityPlayer player) {
-                return HFApi.calendar.getWeather(player.worldObj).isSunny();
-            }
-        });
-
-        this.conditionals.add(new GreetingSingle("generic.weather.bad") {
-            @Override
-            public boolean canDisplay(EntityPlayer player) {
-                return HFApi.calendar.getWeather(player.worldObj).isUndesirable();
-            }
-        });
-
+        this.npcGreetings = new GreetingMultiple(name + ".greeting");
         this.locations = new EnumMap<>(Location.class);
         this.setRegistryName(resource);
         this.setupGifts();
@@ -251,25 +223,15 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
 
     //Returns the script that this character should say at this point
     public String getGreeting(EntityPlayer player) {
-        if (conditionals.size() == 0) {
-            return "JOSHIE IS STOOPID AND FORGOT WELCOME LANG";
-        }
-
         Collections.shuffle(conditionals);
-        Collections.sort(conditionals, (o1, o2) -> {
-            int i1 = o1.getPriority();
-            int i2 = o2.getPriority();
-            return i1 == i2 ? 0 : i1 > i2 ? 1 : -1;
-        });
-
         for (IConditionalGreeting greeting : conditionals) {
-            if (greeting.canDisplay(player)) {
+            if (greeting.canDisplay(player) && player.worldObj.rand.nextDouble() * 100D < greeting.getDisplayChance()) {
                 if (greeting.getMaximumAlternatives() > 1) return Text.getRandomSpeech(greeting, getRegistryName(), greeting.getUnlocalizedText(), greeting.getMaximumAlternatives());
-                else return Text.localize(greeting.getUnlocalizedText());
+                else return greeting.getLocalizedText(greeting.getUnlocalizedText());
             }
         }
 
-        return "Found no greetings";
+        return Text.getRandomSpeech(npcGreetings, getRegistryName(), npcGreetings.getUnlocalizedText(), npcGreetings.getMaximumAlternatives());
     }
 
     @Override

@@ -13,6 +13,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumHand;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -29,32 +30,49 @@ public class QuestTrader extends QuestTrade {
     @SideOnly(Side.CLIENT)
     @Override
     public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
-        if (isHolding(player, HFAnimals.EGG)) {
-            complete(player);
+        if (isHoldingInEitherHand(player, HFAnimals.EGG)) {
             return "egg";
-        } else if (isHolding(player, HFAnimals.MILK)) {
-            complete(player);
+        } else if (isHoldingInEitherHand(player, HFAnimals.MILK)) {
             return "milk";
-        } else if (isHolding(player, HFAnimals.WOOL)) {
-            complete(player);
+        } else if (isHoldingInEitherHand(player, HFAnimals.WOOL)) {
             return "wool";
         } else return null;
     }
 
     @Override
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc) {
+        if (isHoldingAnyAtAll(player)) {
+            complete(player);
+        }
+    }
+
+    @Override
     public void onQuestCompleted(EntityPlayer player) {
-        ItemStack stack = player.getHeldItemMainhand().copy();
-        takeHeldStack(player, stack.stackSize); //Take everything
-        Size size = HFApi.sizeable.getSize(stack);
-        int amount = stack.stackSize;
+        EnumHand hand = isHoldingAny(player, EnumHand.MAIN_HAND) ? EnumHand.MAIN_HAND: EnumHand.OFF_HAND;
+        ItemStack held = player.getHeldItem(hand).copy(); //Ignore
+        takeHeldStack(player, held.stackSize);
+        Size size = HFApi.sizeable.getSize(held);
+        int amount = held.stackSize;
         if (size == Size.MEDIUM) amount *= 2;
         else if (size == Size.LARGE) amount *= 3;
-        Sizeable sizeable = HFCore.SIZEABLE.getObjectFromStack(stack);
+        Sizeable sizeable = HFCore.SIZEABLE.getObjectFromStack(held);
         Item item = sizeable == HFAnimals.EGG ? Items.EGG : sizeable == HFAnimals.MILK ? Items.MILK_BUCKET : WOOL;
         rewardItem(player, new ItemStack(item, amount));
     }
 
-    private boolean isHolding(EntityPlayer player, Sizeable sizeable) {
-        return player.getHeldItemMainhand() != null && sizeable.matches(player.getHeldItemMainhand());
+    private boolean isHoldingAnyAtAll(EntityPlayer player) {
+        return isHoldingAny(player, EnumHand.MAIN_HAND) || isHoldingAny(player, EnumHand.OFF_HAND);
+    }
+
+    private boolean isHoldingAny(EntityPlayer player, EnumHand hand) {
+        return isHolding(player, HFAnimals.EGG, hand) || isHolding(player, HFAnimals.MILK, hand) || isHolding(player, HFAnimals.WOOL, hand);
+    }
+    
+    private boolean isHolding(EntityPlayer player, Sizeable sizeable, EnumHand hand) {
+        return player.getHeldItem(hand) != null && sizeable.matches(player.getHeldItem(hand));
+    }
+
+    private boolean isHoldingInEitherHand(EntityPlayer player, Sizeable sizeable) {
+        return isHolding(player, sizeable, EnumHand.MAIN_HAND) || isHolding(player, sizeable, EnumHand.OFF_HAND);
     }
 }

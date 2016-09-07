@@ -442,31 +442,6 @@ harvestfestival.npc.girafi.name=Johan
 #Conversations
 #Error
 harvestfestival.npc.error=Unable to find the translation for the key: %s or the key %s
-#Generic - Children
-harvestfestival.npc.generic.child.greeting1=WOW you're really tall!
-harvestfestival.npc.generic.child.greeting2=Do you wanna play with me?
-harvestfestival.npc.generic.child.greeting3=Have you heard of Minecraft? It's my favourite game!
-harvestfestival.npc.generic.child.greeting4=Good day!
-harvestfestival.npc.generic.child.greeting5=My parents told me not to talk to strangers...!
-
-#Generic - Adults
-harvestfestival.npc.generic.adult.greeting1=What do you need? I'm here to help.
-harvestfestival.npc.generic.adult.greeting2=It's been a long time since I last saw you! How have you been?
-harvestfestival.npc.generic.adult.greeting3=What are you looking at?!
-
-#Generic - Elder
-harvestfestival.npc.generic.elder.greeting1=Good day youngun, what have you been up to?
-
-#Generic - Male
-harvestfestival.npc.generic.male.greeting1=Hey, how's it hanging?
-harvestfestival.npc.generic.male.greeting2=Want to have a beer?
-harvestfestival.npc.generic.male.greeting3=G'day Mate
-
-#Generic - Female
-harvestfestival.npc.generic.female.greeting1=Hello %p! I hope you're feeling well! It's such a beautiful day isn't it?
-harvestfestival.npc.generic.female.greeting2=Hi %p! How have you been?
-harvestfestival.npc.generic.female.greeting3=Bonjour!
-
 #Generic - Weather
 harvestfestival.npc.generic.weather.good=Great weather, eh?
 harvestfestival.npc.generic.weather.bad=What terrible weather!
@@ -530,6 +505,7 @@ harvestfestival.npc.katlin.greeting7=Liara lost her parents tragically when she 
 harvestfestival.npc.katlin.greeting8=Tomas was my husband for 33 years, I do miss him sometimes.
 harvestfestival.npc.katlin.greeting9=When I was a little girl, my mother used to, well I probably shouldn't say.
 harvestfestival.npc.katlin.greeting10=Someday I'll make the best blanket you've ever seen.
+harvestfestival.npc.katlin.greeting11Good day youngun, what have you been up to?
 
 #Danieuru/Chylex
 harvestfestival.npc.daniel.greeting1=I've always loved tinkering around since I was a child.
@@ -636,6 +612,9 @@ harvestfestival.npc.abi.greeting9=I love my big sister Cloe!
 harvestfestival.npc.abi.greeting10=I never want to grow up!
 harvestfestival.npc.abi.greeting11=Come play with me!
 harvestfestival.npc.abi.greeting12=I want a bunny rabbit, sooo cute.
+harvestfestival.npc.abi.greeting13=WOW you're really tall!
+harvestfestival.npc.abi.greeting14=Do you wanna play with me?
+harvestfestival.npc.abi.greeting15=My parents told me not to talk to strangers...!
 
 #Tiberius/WayofTime
 harvestfestival.npc.tiberius.time=Looks like you've been in this town for %s years.
@@ -661,6 +640,8 @@ harvestfestival.npc.jacob.greeting4=I really hope it rains soon. Or is it now?
 harvestfestival.npc.fenn.greeting1=One day, I'm going to grow some vines, and you're going to climb them with me!
 harvestfestival.npc.fenn.greeting2=Don't be scared of me, I may be small but I know a lot! I know all about totems.
 harvestfestival.npc.fenn.greeting3=I wish my dad wasn't so scary.
+harvestfestival.npc.fenn.greeting4.greeting3=Have you heard of Minecraft? It's my favourite game!
+harvestfestival.npc.fenn.greeting5=Good day!
 
 #Jim/SpitefulFox
 harvestfestival.npc.jim.greeting1=What's your favourite animal? Mine's the fox, the spiteful buggers.
@@ -691,6 +672,7 @@ harvestfestival.npc.candice.greeting1=Do you know what I love about milking the 
 harvestfestival.npc.candice.greeting2=Some people can just be real cows!
 harvestfestival.npc.candice.greeting3=Where the heck am I? What is this world?
 harvestfestival.npc.candice.greeting4=Come over here, I have something in my eye.
+harvestfestival.npc.candice.greeting5=Hello %p! I hope you're feeling well! You're so beautiful to do?
 
 #Yulife
 harvestfestival.npc.yulif.greeting1=Building stuff is so time consuming, when will I get a break?

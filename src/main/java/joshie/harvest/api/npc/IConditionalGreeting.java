@@ -26,9 +26,9 @@ public interface IConditionalGreeting {
     default String getLocalizedText(String text) {
         return I18n.translateToLocal(text);
     }
-    
-    /** Return the priority **/
-    default int getPriority() {
-        return 0;
+
+    /** Return the chance for this to display **/
+    default double getDisplayChance() {
+        return 5D;
     }
 }

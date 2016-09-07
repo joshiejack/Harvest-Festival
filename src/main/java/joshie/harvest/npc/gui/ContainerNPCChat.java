@@ -13,6 +13,7 @@ import java.util.Set;
 
 import static joshie.harvest.api.quests.Quest.EventType.CLOSED_CHAT;
 import static joshie.harvest.core.handlers.GuiHandler.NPC;
+import static joshie.harvest.core.handlers.GuiHandler.SHOP_OPTIONS;
 
 public class ContainerNPCChat extends ContainerBase {
     protected EntityNPC npc;
@@ -36,7 +37,7 @@ public class ContainerNPCChat extends ContainerBase {
        if (open && nextGui >= -1) {
             open = false; //To cancel out infinite loop
 
-           Quest selection = HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().getSelection(player, npc);
+            Quest selection = HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().getSelection(player, npc);
             if (selection == null && nextGui == -1) {
                 npc.setTalking(null);
                 Set<Quest> quests = HFApi.quests.getCurrentQuests(player, CLOSED_CHAT);
@@ -46,7 +47,7 @@ public class ContainerNPCChat extends ContainerBase {
             }
 
             if (!player.worldObj.isRemote) {
-                if (selection != null) {
+                if (selection != null && nextGui != SHOP_OPTIONS) {
                     player.openGui(HarvestFestival.instance, NPC, player.worldObj, npc.getEntityId(), 0, Quest.REGISTRY.getValues().indexOf(Quest.REGISTRY.getValue(selection.getRegistryName())));
                 } else if (nextGui != -1) player.openGui(HarvestFestival.instance, nextGui, player.worldObj, npc.getEntityId(), 0, -1);
             }

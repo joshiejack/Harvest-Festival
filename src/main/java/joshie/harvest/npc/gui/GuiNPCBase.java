@@ -47,7 +47,7 @@ public class GuiNPCBase extends GuiBaseContainer {
         GlStateManager.color(1F, 1F, 1F, 1F);
         GlStateManager.disableBlend();
         GlStateManager.popMatrix();
-        ChatFontRenderer.render(this, x, y, npc.getName(), npc.getNPC().getInsideColor(), npc.getNPC().getOutsideColor());
+        ChatFontRenderer.render(this, x, y, npc.getName(), inside, outside);
     }
 
     private void drawHeart(int value) {
@@ -64,6 +64,9 @@ public class GuiNPCBase extends GuiBaseContainer {
             drawHeart(HFApi.relationships.getRelationship(player, npc.getRelatable()));
         }
     }
+
+    @Override
+    public void drawDefaultBackground() {}
 
     public String getScript() {
         return "missing chat";

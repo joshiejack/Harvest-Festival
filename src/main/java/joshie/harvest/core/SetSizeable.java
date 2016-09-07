@@ -11,6 +11,7 @@ import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.conditions.LootCondition;
 import net.minecraft.world.storage.loot.functions.LootFunction;
 
+import java.util.Locale;
 import java.util.Random;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
@@ -23,7 +24,7 @@ public class SetSizeable extends LootFunction {
     public SetSizeable(LootCondition[] conditionsIn, String sizeable, String size) {
         super(conditionsIn);
         this.resource = new ResourceLocation(MODID, sizeable);
-        this.size = Size.valueOf(size);
+        this.size = Size.valueOf(size.toUpperCase(Locale.ENGLISH));
     }
 
     @Override

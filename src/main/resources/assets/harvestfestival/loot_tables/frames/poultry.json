@@ -17,7 +17,7 @@
         },
         {
           "type": "item",
-          "name": "harvestfestival:seeds",
+          "name": "harvestfestival:crops_seeds",
           "entryName": "wheat",
           "weight": 1,
           "functions": [

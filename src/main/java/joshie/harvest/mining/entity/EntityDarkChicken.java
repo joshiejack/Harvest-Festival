@@ -1,5 +1,6 @@
 package joshie.harvest.mining.entity;
 
+import joshie.harvest.mining.MiningTicker;
 import net.minecraft.block.Block;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
@@ -46,7 +47,7 @@ public class EntityDarkChicken extends EntityMob {
 
     @Override
     protected boolean isValidLightLevel() {
-        return true;
+        return MiningTicker.getFloor((int)posX >> 4, (int) posY) >= 20;
     }
 
     @Override

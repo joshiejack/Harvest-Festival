@@ -83,16 +83,16 @@ public class HFNPCs {
         PRIEST = register("thomas", MALE, ELDER, 9, SUMMER, 0x006666, 0x00B2B20);
         CLOCKMAKER_CHILD = register("fenn", MALE, CHILD, 25, SUMMER, 0x228C00, 0x003F00);
         CAFE_GRANNY = register("katlin", FEMALE, ELDER, 12, SUMMER, 0xDDDDDD, 0x777777);
-        MAYOR = register("jamie", FEMALE, ELDER, 8, SUMMER, 0xFF9326, 0xB25900);
-        BUILDER = register("yulif", MALE, ADULT, 19, SUMMER, 0x8C001A, 0x3C0000).setIsBuilder();
-        TOOL_OWNER = register("daniel", MALE, ADULT, 1, WINTER, 0xD9D916, 0x6D14C7);
+        MAYOR = register("jamie", FEMALE, ELDER, 8, SUMMER, 0xA8AC9A, 0x3B636D);
+        BUILDER = register("yulif", MALE, ADULT, 19, SUMMER, 0x313857, 0x121421).setIsBuilder();
+        TOOL_OWNER = register("daniel", MALE, ADULT, 1, WINTER, 0x613827, 0x23150E);
         DAUGHTER_2 = register("abi", FEMALE, CHILD, 27, WINTER, 0xFF99FF, 0xFF20FF);
-        CLOCK_WORKER = register("tiberius", MALE, ADULT, 15, WINTER, 0xFF4C4C, 0x700606);
+        CLOCK_WORKER = register("tiberius", MALE, ADULT, 15, WINTER, 0x305A2E, 0x142419);
         GS_OWNER = register("jenni", FEMALE, ADULT, 7, WINTER, 0x2858E0, 0x000000);
         MINER = register("brandon", MALE, ADULT, 13, AUTUMN, 0xC28D48, 0x5F5247);
         FISHERMAN = register("jacob", MALE, ADULT, 28, AUTUMN, 0x7396FF, 0x0036D9);
         MILKMAID = register("candice", FEMALE, ADULT, 5, AUTUMN, 0xF65FAB, 0xF21985);
-        POULTRY = register("ashlee", FEMALE, ADULT, 16, AUTUMN, 0xFF8000, 0x46008C);
+        POULTRY = register("ashlee", FEMALE, ADULT, 16, AUTUMN, 0xC62D2D, 0x571111);
         TRADER = register("girafi", MALE, ADULT, 2, AUTUMN,  0xFFFFFF, 0xC60C30);
     }
 
@@ -125,7 +125,7 @@ public class HFNPCs {
         MILKMAID.setLocation(HOME, SUPERMARKET, CANDICE_HOME).setLocation(WORK, BARN, JIM_HOME);
         POULTRY.setLocation(HOME, POULTRY_FARM, ASHLEE_HOME).setLocation(WORK, POULTRY_FARM, ASHLEE_HOME);
         TRADER.setLocation(HOME, TOWNHALL, TOWNHALL_RIGHT_WING).setLocation(WORK, SUPERMARKET, MARKET_STOREFRONT);
-        CLOCK_WORKER.addGreeting(new GreetingTime("harvestfestival.npc.tiberius.time"));
+        CLOCK_WORKER.addGreeting(new GreetingTime("tiberius.time"));
     }
 
     @SuppressWarnings("deprecation")

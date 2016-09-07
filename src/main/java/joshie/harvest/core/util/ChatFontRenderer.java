@@ -9,7 +9,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
 
 public class ChatFontRenderer {
-    public enum Char {
+    private enum Char {
         a('a', 2), b('b', 14), c('c', 26), d('d', 38), e('e', 50), f('f', 62, 9), g('g', 72), h('h', 84),
         i('i', 96, 6), j('j', 103, 7), k('k', 112, 11), l('l', 125, 6), m('m', 133, 14), n('n', 149),
         o('o', 161), p('p', 173), q('q', 185), r('r', 197), s('s', 209), t('t', 221, 9), u('u', 232),
@@ -46,7 +46,7 @@ public class ChatFontRenderer {
     }
 
     private static final ResourceLocation resource = new ResourceLocation(HFModInfo.MODID, "textures/gui/chattext.png");
-    private static final TCharObjectMap<Char> map = new TCharObjectHashMap<Char>();
+    private static final TCharObjectMap<Char> map = new TCharObjectHashMap<>();
 
     static {
         for (Char c : Char.values()) {

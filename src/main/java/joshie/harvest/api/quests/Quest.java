@@ -120,6 +120,12 @@ public abstract class Quest extends Impl<Quest> {
      * @param stage         the current stage */
     public void onStageChanged(EntityPlayer player, int previous, int stage) {}
 
+    /** Called when chat opens
+     *  @param player       the player
+     *  @param entity       the npc entity
+     *  @param npc          the npc instance**/
+    public void onChatOpened(EntityPlayer player, EntityLiving entity, INPC npc) {}
+
     /** Called when chat closes
      *  @param player       the player
      *  @param entity       the npc entity
@@ -130,7 +136,7 @@ public abstract class Quest extends Impl<Quest> {
      *  @param player       the player that completed the quest **/
     public void onQuestCompleted(EntityPlayer player) {}
 
-    /** Call to complete a quest
+    /** Call to complete a quest, only calls the serverside
      * @param player    the player to complete the quest for **/
     public final void complete(EntityPlayer player) {
         HFApi.quests.completeQuest(this, player);

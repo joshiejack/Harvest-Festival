@@ -36,7 +36,9 @@ public class ItemAxe extends ItemToolSmashing {
 
     @Override
     public float getStrVsBlock(ItemStack stack, IBlockState state) {
-        Material material = state.getMaterial();
-        return material != Material.WOOD && material != Material.PLANTS && material != Material.VINE ? super.getStrVsBlock(stack, state) : this.getEffiency(stack);
+        if (canUse(stack)) {
+            Material material = state.getMaterial();
+            return material != Material.WOOD && material != Material.PLANTS && material != Material.VINE ? super.getStrVsBlock(stack, state) : this.getEffiency(stack);
+        } else return 0.1F;
     }
 }

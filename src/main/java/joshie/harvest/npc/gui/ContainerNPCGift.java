@@ -11,8 +11,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 
 public class ContainerNPCGift extends ContainerNPCChat {
-    public ContainerNPCGift(EntityNPC npc, EnumHand hand, int nextGui) {
-        super(npc, hand, nextGui);
+    public ContainerNPCGift(EntityPlayer player, EntityNPC npc, EnumHand hand, int nextGui) {
+        super(player, npc, hand, nextGui);
     }
 
     @Override

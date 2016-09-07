@@ -31,15 +31,15 @@ public class GuiHandler implements IGuiHandler {
         switch (ID) {
             case NPC: {
                 EntityNPC npc = (EntityNPC) world.getEntityByID(entityID);
-                if (hand != -1) return new ContainerNPCChat(npc, EnumHand.MAIN_HAND, nextGui);
-                return new ContainerNPCChat((EntityNPC) world.getEntityByID(entityID), EnumHand.MAIN_HAND, nextGui);
+                if (hand != -1) return new ContainerNPCChat(player, npc, EnumHand.MAIN_HAND, nextGui);
+                return new ContainerNPCChat(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.MAIN_HAND, nextGui);
             }
 
-            case SHOP_WELCOME:  return new ContainerNPCChat((EntityNPC) world.getEntityByID(entityID), EnumHand.MAIN_HAND, SHOP_OPTIONS);
-            case SHOP_OPTIONS:  return new ContainerNPCChat((EntityNPC) world.getEntityByID(entityID), EnumHand.MAIN_HAND, nextGui);
+            case SHOP_WELCOME:  return new ContainerNPCChat(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.MAIN_HAND, SHOP_OPTIONS);
+            case SHOP_OPTIONS:  return new ContainerNPCChat(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.MAIN_HAND, nextGui);
             case SHOP_MENU:
             case SHOP_BUILDER:  return new ContainerNPCShop((EntityNPC) world.getEntityByID(entityID));
-            case GIFT:          return new ContainerNPCGift((EntityNPC) world.getEntityByID(entityID), EnumHand.values()[hand], -1);
+            case GIFT:          return new ContainerNPCGift(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.values()[hand], -1);
             case FRIDGE:        return new ContainerFridge(player, player.inventory, (TileFridge) world.getTileEntity(new BlockPos(entityID, nextGui, hand)));
             default:            return null;
         }

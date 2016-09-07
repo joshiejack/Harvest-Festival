@@ -21,11 +21,19 @@ public class ContainerNPCChat extends ContainerBase {
     private int nextGui = -1;
     private boolean open = false;
 
-    public ContainerNPCChat(EntityNPC npc, EnumHand hand, int nextGui) {
+    public ContainerNPCChat(EntityPlayer player, EntityNPC npc, EnumHand hand, int nextGui) {
         this.npc = npc;
         this.hand = hand;
         this.nextGui = nextGui;
         this.open = true;
+        //Call on opened
+        Quest selection = HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().getSelection(player, npc);
+        if (selection == null && nextGui == -1) {
+            Set<Quest> quests = HFApi.quests.getCurrentQuests(player, CLOSED_CHAT);
+            for (Quest quest : quests) {
+                quest.onChatOpened(player, npc, npc.getNPC());
+            }
+        }
     }
 
     @Override

@@ -4,10 +4,10 @@ import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
+import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.item.ItemMaterial.Material;
-import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.quests.TutorialSelection;
 import joshie.harvest.tools.HFTools;
 import joshie.harvest.town.TownHelper;
@@ -22,6 +22,10 @@ import static joshie.harvest.npc.HFNPCs.*;
 
 @HFQuest("tutorial.upgrading")
 public class QuestMining extends QuestQuestion {
+    private static final int BUILD = 0;
+    private static final int EXPLAIN = 1;
+    private static final int FINISH = 2;
+
     public QuestMining() {
         super(new TutorialSelection("upgrading"));
         setNPCs(BUILDER, GODDESS, ANIMAL_OWNER, GS_OWNER, SEED_OWNER, MILKMAID, TOOL_OWNER, MINER);
@@ -39,7 +43,7 @@ public class QuestMining extends QuestQuestion {
 
     @Override
     public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
-        if (quest_stage == 0 && npc != TOOL_OWNER && player.worldObj.rand.nextFloat() < 0.25F) {
+        if (quest_stage == BUILD && npc != TOOL_OWNER && player.worldObj.rand.nextFloat() < 0.25F) {
             String suffix = ((joshie.harvest.npc.NPC)npc).getRegistryName().getResourcePath();
             boolean blacksmith = TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.BLACKSMITH);
             //They tell the player that they should go and visit the blacksmith
@@ -54,13 +58,12 @@ public class QuestMining extends QuestQuestion {
             return "blacksmith." + suffix;
         } else if  (npc == TOOL_OWNER) {
             if (isCompletedEarly) {
-                complete(player);
                 return "completed";
-            } else if (quest_stage == 0) {
+            } else if (quest_stage == BUILD) {
                 //Danieuru thanks the player for welcoming to the town
                 //He then proceeds to ask them, if they know how to upgrade tools
                 return "intro";
-            } else if (quest_stage == 1) {
+            } else if (quest_stage == EXPLAIN) {
                 //The Blacksmith says oh well! Then let me tell you, it's a simple process
                 //As you use your tools, they will gain levels, which you can see
                 //When they're over 100% you can come and visit me and I will happily
@@ -73,17 +76,15 @@ public class QuestMining extends QuestQuestion {
                 //And then swing the hammer at the rocks as you fall down
                 //Anyway, I heard that the miner has just recently been mining and has some spare
                 //ore he would like to give, you should go visit him
-                increaseStage(player);
                 return "explain";
-            } else if (quest_stage == 2) {
+            } else if (quest_stage == FINISH) {
                 //Blacksmith reminds you to go and see the miner for some ore
                 //He also mentions that you can buy tools from him
                 return "reminder.visit";
             }
-        } else if (npc == MINER && quest_stage == 2) {
+        } else if (npc == MINER && quest_stage == FINISH) {
             //Brandon tells you he's just been on a recent trip down a mine
             //He then says you can have this, he then gives the player 10 copper
-            complete(player);
             return "complete";
         }
 
@@ -91,18 +92,20 @@ public class QuestMining extends QuestQuestion {
     }
 
     @Override
-    public void onStageChanged(EntityPlayer player, int previous, int stage) {
-        if (previous == 1) {
-            rewardItem(player, HFTools.HAMMER.getStack(ToolTier.BASIC));
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc) {
+        if (npc == TOOL_OWNER) {
+            if (isCompletedEarly || quest_stage == EXPLAIN) {
+                if (isCompletedEarly) complete(player);
+                else increaseStage(player);
+                rewardItem(player, HFTools.HAMMER.getStack(ToolTier.BASIC));
+            }
+        } else if (npc == MINER && quest_stage == FINISH) {
+            complete(player);
         }
     }
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
-        if (quest_stage == 0) {
-            rewardItem(player, HFTools.HAMMER.getStack(ToolTier.BASIC));
-        }
-
         rewardItem(player, new ItemStack(HFMining.MATERIALS, 10, Material.COPPER.ordinal()));
     }
 }

@@ -102,7 +102,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
         return stack.getSubCompound("Data", true).getInteger("Damage");
     }
 
-    public boolean canUseAndDamage(ItemStack stack) {
+    public boolean canUse(ItemStack stack) {
         if (getDamageForDisplay(stack) + 1 < getMaximumToolDamage(stack) || !canBeDamaged()) {
             return true;
         } else return false;
@@ -246,7 +246,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
     @Override
     public int getHarvestLevel(ItemStack stack, String toolClass) {
         if (!toolClass.equals(this.toolClass)) return 0;
-        if (!canUseAndDamage(stack)) return 0;
+        if (!canUse(stack)) return 0;
         ToolTier tier = getTier(stack);
         switch (tier) {
             case BASIC:

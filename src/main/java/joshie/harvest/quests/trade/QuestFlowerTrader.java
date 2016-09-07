@@ -1,9 +1,9 @@
 package joshie.harvest.quests.trade;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.helpers.InventoryHelper.SearchType;
@@ -11,7 +11,6 @@ import joshie.harvest.core.lib.HFQuests;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -19,10 +18,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.Set;
 
 import static joshie.harvest.api.calendar.Season.*;
+import static joshie.harvest.core.helpers.InventoryHelper.SPECIAL;
 import static joshie.harvest.npc.HFNPCs.SEED_OWNER;
 
 @HFQuest("trade.seeds")
 public class QuestFlowerTrader extends QuestTrade {
+    private Season season;
+
     public QuestFlowerTrader() {
         setNPCs(SEED_OWNER);
     }
@@ -35,11 +37,8 @@ public class QuestFlowerTrader extends QuestTrade {
     @SideOnly(Side.CLIENT)
     @Override
     public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
-        ItemStack held = player.getHeldItemMainhand();
-        if (held != null && held.stackSize >= 10 && InventoryHelper.SPECIAL.matches(held, SearchType.FLOWER)) {
-            Season season = HFApi.calendar.getSeasonAtCoordinates(entity.worldObj, new BlockPos(entity));
+        if (InventoryHelper.isHolding(player, SPECIAL, SearchType.FLOWER, 10)) {
             if (season == SPRING || season == SUMMER || season == AUTUMN) {
-                complete(player); //Complete the quest
                 //Jade informs the player that she will happily trade flowers
                 //For a bag of seeds
                 return "complete.yes";
@@ -51,11 +50,18 @@ public class QuestFlowerTrader extends QuestTrade {
     }
 
     @Override
-    public void onQuestCompleted(EntityPlayer player) {
-        takeHeldStack(player, 1); //Take everything
-        Season season = HFApi.calendar.getDate(player.worldObj).getSeason();
-        if (season == SPRING) rewardItem(player, HFCrops.TURNIP.getSeedStack(1));
-        else if (season == SUMMER) rewardItem(player, HFCrops.ONION.getSeedStack(1));
-        else if (season == AUTUMN) rewardItem(player, HFCrops.CARROT.getSeedStack(1));
+    public void onChatOpened(EntityPlayer player, EntityLiving entity, INPC npc) {
+        season = HFApi.calendar.getSeasonAtCoordinates(entity.worldObj, new BlockPos(entity));
+    }
+
+    @Override
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc) {
+        if (InventoryHelper.takeItemsIfHeld(player, SPECIAL, SearchType.FLOWER, 10)) {
+            if (season == SPRING || season == SUMMER || season == AUTUMN) {
+                if (season == SPRING) rewardItem(player, HFCrops.TURNIP.getSeedStack(1));
+                else if (season == SUMMER) rewardItem(player, HFCrops.ONION.getSeedStack(1));
+                else if (season == AUTUMN) rewardItem(player, HFCrops.CARROT.getSeedStack(1));
+            }
+        }
     }
 }

@@ -24,12 +24,15 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 import static joshie.harvest.core.helpers.generic.ItemHelper.spawnXP;
 import static joshie.harvest.npc.HFNPCs.TOOL_OWNER;
 
 
 @HFQuest("trade.upgrade")
 public class QuestUpgrade extends QuestTrade {
+    private static final int TEST = 0;
+    private CalendarDate today;
     private CalendarDate date;
     private ItemStack tool;
     private long required;
@@ -122,7 +125,7 @@ public class QuestUpgrade extends QuestTrade {
     @SideOnly(Side.CLIENT)
     @Override
     public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
-        if (quest_stage == 0) {
+        if (quest_stage == TEST) {
             ToolTier holding = isHolding(player);
             if (holding != null) {
                 //Blacksmith complains that the tool isn't even ready to be upgraded, it needs to be at 100%
@@ -134,24 +137,16 @@ public class QuestUpgrade extends QuestTrade {
                 if (!hasGold) return "gold";
 
                 material = new ItemStack(HFMining.MATERIALS, getRequired(holding), getMaterial(holding));
-                boolean hasMaterial = InventoryHelper.getCount(player, material) >= getRequired(holding);
+                boolean hasMaterial = InventoryHelper.hasInInventory(player, ITEM_STACK, material, getRequired(holding));
                 if (!hasMaterial) return "material";
 
                 //The blacksmith thanks the player for the gold, and their tool
                 //He informs them he will have it upgraded within three days
                 //So come back for it then
-                increaseStage(player);
                 return "accept";
             } else return null;
         } else {
-            CalendarDate today = HFApi.calendar.getDate(MCClientHelper.getWorld());
             if (getDifference(date, today) >= 3) {
-                complete(player);
-                player.worldObj.playSound(player, player.posX, player.posY, player.posZ, SoundEvents.BLOCK_ANVIL_HIT, SoundCategory.NEUTRAL, 0.25F, 1F);
-                for (int i = 0; i < 32; i++) {
-                    player.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, entity.posX + player.worldObj.rand.nextFloat() + player.worldObj.rand.nextFloat() - 1F, entity.posY + 0.25D + entity.worldObj.rand.nextFloat() + entity.worldObj.rand.nextFloat(), entity.posZ + player.worldObj.rand.nextFloat() + player.worldObj.rand.nextFloat() - 1F, 0, 0, 0);
-                }
-
                 return "done";
             }
 
@@ -160,16 +155,38 @@ public class QuestUpgrade extends QuestTrade {
     }
 
     @Override
-    public void onStageChanged(EntityPlayer player, int previous, int stage) {
-        if (previous == 0) {
+    public void onChatOpened(EntityPlayer player, EntityLiving entity, INPC npc) {
+        today = HFApi.calendar.getDate(player.worldObj);
+    }
+
+    @Override
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc) {
+        if (quest_stage == TEST) {
             ToolTier holding = isHolding(player);
-            InventoryHelper.takeItems(player, new ItemStack(HFMining.MATERIALS, getRequired(holding), getMaterial(holding)));
-            date = HFApi.calendar.getDate(player.worldObj).copy();
-            ItemStack stack = player.getHeldItemMainhand().copy();
-            tool = new ItemStack(stack.getItem(), 1, stack.getItemDamage() + 1);
-            ToolTier tier = ((ItemTool)stack.getItem()).getTier(stack);
-            rewardGold(player, -getCost(tier));
-            takeHeldStack(player, 1);
+            if (holding != null) {
+                if (getLevel(player) != 100D) return;
+                required = getCost(holding);
+                if (HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getGold() < required) return;
+                material = new ItemStack(HFMining.MATERIALS, getRequired(holding), getMaterial(holding));
+                if (!InventoryHelper.hasInInventory(player, ITEM_STACK, material, getRequired(holding))) return;
+                increaseStage(player);
+                //Update the internals
+                InventoryHelper.takeItems(player, new ItemStack(HFMining.MATERIALS, getRequired(holding), getMaterial(holding)));
+                date = HFApi.calendar.getDate(player.worldObj).copy();
+                ItemStack stack = player.getHeldItemMainhand().copy();
+                tool = new ItemStack(stack.getItem(), 1, stack.getItemDamage() + 1);
+                ToolTier tier = ((ItemTool)stack.getItem()).getTier(stack);
+                rewardGold(player, -getCost(tier));
+                takeHeldStack(player, 1);
+            }
+        } else {
+            if (getDifference(date, today) >= 3) {
+                complete(player);
+                player.worldObj.playSound(player, player.posX, player.posY, player.posZ, SoundEvents.BLOCK_ANVIL_HIT, SoundCategory.NEUTRAL, 0.25F, 1F);
+                for (int i = 0; i < 32; i++) {
+                    player.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, entity.posX + player.worldObj.rand.nextFloat() + player.worldObj.rand.nextFloat() - 1F, entity.posY + 0.25D + entity.worldObj.rand.nextFloat() + entity.worldObj.rand.nextFloat(), entity.posZ + player.worldObj.rand.nextFloat() + player.worldObj.rand.nextFloat() - 1F, 0, 0, 0);
+                }
+            }
         }
     }
 

@@ -61,6 +61,7 @@ public class ToolHelper {
         levelTool(stack); //Level up the tool
         if (player.capabilities.isCreativeMode || !HFTools.HF_CONSUME_HUNGER) return; //If the player is in creative don't exhaust them
         consumeHunger(player, amount);
+        stack.getSubCompound("Data", true).setInteger("Damage", stack.getSubCompound("Data", true).getInteger("Damage") + 1);
     }
 
     public static void consumeHunger(EntityPlayer player, float amount) {

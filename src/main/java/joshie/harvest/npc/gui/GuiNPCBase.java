@@ -22,7 +22,7 @@ public class GuiNPCBase extends GuiBaseContainer {
     private int outside;
 
     public GuiNPCBase(EntityPlayer ePlayer, EntityNPC eNpc, EnumHand hand, int next) {
-        super(new ContainerNPCChat(eNpc, hand, next), "chat", 0);
+        super(new ContainerNPCChat(ePlayer, eNpc, hand, next), "chat", 0);
 
         hasInventory = false;
         npc = eNpc;

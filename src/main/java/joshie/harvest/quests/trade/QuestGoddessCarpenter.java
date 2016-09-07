@@ -34,8 +34,10 @@ public class QuestGoddessCarpenter extends QuestTrade {
     }
 
     @Override
-    public void onQuestCompleted(EntityPlayer player) {
-        InventoryHelper.takeItemsIfHeld(player, ORE_DICTIONARY, "logWood", 64);
-        rewardItem(player, HFBuildings.CARPENTER.getBlueprint());
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc) {
+        if (InventoryHelper.isHolding(player, ORE_DICTIONARY, "logWood", 64)) {
+            InventoryHelper.takeItemsIfHeld(player, ORE_DICTIONARY, "logWood", 64);
+            rewardItem(player, HFBuildings.CARPENTER.getBlueprint());
+        }
     }
 }

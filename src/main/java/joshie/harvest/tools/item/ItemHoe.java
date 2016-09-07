@@ -111,13 +111,15 @@ public class ItemHoe extends ItemToolChargeable {
 
                 for (int x2 = getXMinus(tier, front, pos.getX()); x2 <= getXPlus(tier, front, pos.getX()); x2++) {
                     for (int z2 = getZMinus(tier, front, pos.getZ()); z2 <= getZPlus(tier, front, pos.getZ()); z2++) {
-                        Block block = world.getBlockState(new BlockPos(x2, pos.getY(), z2)).getBlock();
-                        if (world.isAirBlock(pos.up())) {
-                            if ((block == Blocks.GRASS || block == Blocks.DIRT)) {
-                                if (!canHoe(player, stack, world, pos)) continue;
-                                doParticles(stack, player, world, new BlockPos(x2, pos.getY(), z2));
-                                if (!world.isRemote) {
-                                    world.setBlockState(new BlockPos(x2, pos.getY(), z2), Blocks.FARMLAND.getDefaultState());
+                        if (canUse(stack)) {
+                            Block block = world.getBlockState(new BlockPos(x2, pos.getY(), z2)).getBlock();
+                            if (world.isAirBlock(pos.up())) {
+                                if ((block == Blocks.GRASS || block == Blocks.DIRT)) {
+                                    if (!canHoe(player, stack, world, pos)) continue;
+                                    doParticles(stack, player, world, new BlockPos(x2, pos.getY(), z2));
+                                    if (!world.isRemote) {
+                                        world.setBlockState(new BlockPos(x2, pos.getY(), z2), Blocks.FARMLAND.getDefaultState());
+                                    }
                                 }
                             }
                         }

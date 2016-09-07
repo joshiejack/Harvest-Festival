@@ -1,7 +1,5 @@
 package joshie.harvest.quests;
 
-import joshie.harvest.api.HFApi;
-import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.IQuestHelper;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.Quest.EventType;
@@ -10,7 +8,6 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.ItemHelper;
 import joshie.harvest.core.util.HFApiImplementation;
 import joshie.harvest.player.PlayerTrackerServer;
-import joshie.harvest.player.quests.QuestData;
 import joshie.harvest.quests.packet.PacketQuestCompleteEarly;
 import joshie.harvest.quests.packet.PacketQuestIncrease;
 import net.minecraft.entity.Entity;
@@ -36,7 +33,7 @@ public class QuestHelper implements IQuestHelper {
 
     @Override
     public void completeQuest(Quest quest, EntityPlayer player) {
-        HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().markCompleted(quest, true);
+        if (!player.worldObj.isRemote) HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().markCompleted(quest);
     }
 
     @Override
@@ -97,31 +94,12 @@ public class QuestHelper implements IQuestHelper {
         return new HashSet<>(HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().getHandled(events));
     }
 
-    public static HashSet<Quest> getCurrentQuest(EntityPlayer player) {
-        return HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().getCurrent();
-    }
-
-    public static void rewardRelations(EntityPlayer player, INPC npc, int amount) {
-        HFApi.relationships.adjustRelationship(player, npc, amount);
-    }
-
-    public static void markCompleted(EntityPlayer player, Quest quest) {
-        HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().markCompleted(quest, false);
-    }
-
     public static void markAvailable(EntityPlayer player, Quest quest) {
         HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().setAvailable(quest);
     }
 
     public static void markAsCurrent(EntityPlayer player, Quest quest) {
         HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().addAsCurrent(quest);
-    }
-
-    public static void setQuestStage(EntityPlayer player, Quest quest, int stage) {
-        QuestData stats = HFTrackers.getPlayerTrackerFromPlayer(player).getQuests();
-        int previous = stats.getAQuest(quest).getStage();
-        stats.setStage(quest, stage);
-        quest.onStageChanged(player, previous, stage);
     }
 
     public static void startQuest(EntityPlayer player, Quest quest) {

@@ -73,18 +73,20 @@ public abstract class ItemToolSmashing extends ItemTool<ItemToolSmashing> {
     public abstract void playSound(World world, BlockPos pos);
 
     public boolean onSmashed(EntityPlayer player, ItemStack stack, ToolTier tier, int harvestLevel, World world, BlockPos pos, IBlockState state) {
-        if (state.getBlock() instanceof ISmashable) {
-            int requiredLevel = state.getBlock().getHarvestLevel(state);
-            if (harvestLevel >= requiredLevel) {
-                ISmashable smashable = ((ISmashable) state.getBlock());
-                if (smashable.getToolType() == getToolType()) {
-                    if (smashable.smashBlock(player, world, pos, state, tier)) {
-                        if (!world.isRemote) {
+        if (canUse(stack)) {
+            if (state.getBlock() instanceof ISmashable) {
+                int requiredLevel = state.getBlock().getHarvestLevel(state);
+                if (harvestLevel >= requiredLevel) {
+                    ISmashable smashable = ((ISmashable) state.getBlock());
+                    if (smashable.getToolType() == getToolType()) {
+                        if (smashable.smashBlock(player, world, pos, state, tier)) {
                             ToolHelper.performTask(player, stack, getExhaustionRate(stack));
-                            onBlockDestroyed(stack, world, state, pos, player);
-                        }
+                            if (!world.isRemote) {
+                                onBlockDestroyed(stack, world, state, pos, player);
+                            }
 
-                        return true;
+                            return true;
+                        }
                     }
                 }
             }

@@ -195,7 +195,7 @@ public class ItemWateringCan extends ItemToolChargeable implements IFluidContain
             for (int y2 = pos.getY() - 1; y2 <= pos.getY(); y2++) {
                 for (int x2 = getXMinus(tier, front, pos.getX()); x2 <= getXPlus(tier, front, pos.getX()); x2++) {
                     for (int z2 = getZMinus(tier, front, pos.getZ()); z2 <= getZPlus(tier, front, pos.getZ()); z2++) {
-                        if (getCapacity(stack) > 0) {
+                        if (getCapacity(stack) > 0 && canUse(stack)) {
                             BlockPos position = new BlockPos(x2, y2, z2);
                             IBlockState state = world.getBlockState(position);
                             PlantSection section = BlockHFCrops.getSection(state);

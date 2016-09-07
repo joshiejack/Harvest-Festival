@@ -43,7 +43,7 @@ public class ItemToolChargeable extends ItemTool<ItemToolChargeable> {
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer playerIn, EnumHand hand) {
-        if (canUseAndDamage(stack)) {
+        if (canUse(stack)) {
             playerIn.setActiveHand(hand);
             return new ActionResult(EnumActionResult.SUCCESS, stack);
         } else return new ActionResult<>(EnumActionResult.PASS, stack);
@@ -58,7 +58,7 @@ public class ItemToolChargeable extends ItemTool<ItemToolChargeable> {
         }
     }
 
-    protected ToolTier getChargeTier(ItemStack stack, int charge) {
+    protected ToolTier getChargeTier(int charge) {
         return ToolTier.values()[charge];
     }
 
@@ -68,7 +68,7 @@ public class ItemToolChargeable extends ItemTool<ItemToolChargeable> {
         int theCharge = timeLeft <= 32000 - (tier.ordinal() * 12) ? getCharge(stack) + 1: getCharge(stack);
         int charge = (Math.min(7, Math.max(0, Math.min(tier.ordinal(), theCharge))));
         setCharge(stack, 0); //Reset the charge
-        onFinishedCharging(world, entity, getMovingObjectPositionFromPlayer(world, entity), stack, getChargeTier(stack, charge));
+        onFinishedCharging(world, entity, getMovingObjectPositionFromPlayer(world, entity), stack, getChargeTier(charge));
     }
 
     protected void onFinishedCharging(World world, EntityLivingBase entity, @Nullable RayTraceResult result, ItemStack stack, ToolTier toolTier) {}

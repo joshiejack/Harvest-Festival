@@ -3,7 +3,6 @@ package joshie.harvest.player.quests;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.npc.entity.EntityNPC;
-import joshie.harvest.quests.packet.PacketQuestCompleted;
 import joshie.harvest.quests.packet.PacketQuestStart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
@@ -21,11 +20,6 @@ public class QuestDataClient extends QuestData {
     @Override
     public void addAsCurrent(Quest quest) {
         current.add(quest);
-    }
-
-    @Override
-    public void markCompleted(Quest quest, boolean sendPacket) {
-        sendToServer(new PacketQuestCompleted(quest));
     }
     
     //Removes the quest from the current and available lists

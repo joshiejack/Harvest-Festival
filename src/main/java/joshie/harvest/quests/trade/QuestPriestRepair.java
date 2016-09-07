@@ -47,13 +47,7 @@ public class QuestPriestRepair extends QuestTrade {
         boolean hasGold = HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getGold() >= 500;
         boolean hasTool = isHolding(player, hoe) || isHolding(player, sickle) || isHolding(player, watering) || isHolding(player, axe) || isHolding(player, hammer);
         if (hasGold && hasTool) {
-            tool = player.getHeldItemMainhand();
-            complete(player);
-            player.worldObj.playSound(player, player.posX, player.posY, player.posZ, HFSounds.BLESS_TOOL, SoundCategory.NEUTRAL, 0.25F, 1F);
-            for (int i = 0; i < 32; i++) {
-                player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, entity.posX + player.worldObj.rand.nextFloat() + player.worldObj.rand.nextFloat() - 1F, entity.posY + 0.25D + entity.worldObj.rand.nextFloat() + entity.worldObj.rand.nextFloat(), entity.posZ + player.worldObj.rand.nextFloat() + player.worldObj.rand.nextFloat() - 1F, 0, 0, 0);
-            }
-
+            tool = player.getHeldItemMainhand(); //For translation reasons
             return "done";
         } else if (hasTool) {
             return "gold";
@@ -61,14 +55,30 @@ public class QuestPriestRepair extends QuestTrade {
     }
 
     @Override
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc) {
+        boolean hasGold = HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getGold() >= 500;
+        boolean hasTool = isHolding(player, hoe) || isHolding(player, sickle) || isHolding(player, watering) || isHolding(player, axe) || isHolding(player, hammer);
+        if (hasGold && hasTool) {
+            tool = player.getHeldItemMainhand();
+            complete(player);
+            player.worldObj.playSound(player, player.posX, player.posY, player.posZ, HFSounds.BLESS_TOOL, SoundCategory.NEUTRAL, 0.25F, 1F);
+            for (int i = 0; i < 32; i++) {
+                player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, entity.posX + player.worldObj.rand.nextFloat() + player.worldObj.rand.nextFloat() - 1F, entity.posY + 0.25D + entity.worldObj.rand.nextFloat() + entity.worldObj.rand.nextFloat(), entity.posZ + player.worldObj.rand.nextFloat() + player.worldObj.rand.nextFloat() - 1F, 0, 0, 0);
+            }
+        }
+    }
+
+    @Override
     public void onQuestCompleted(EntityPlayer player) {
-        ItemStack stack = player.getHeldItemMainhand().copy();
-        ItemStack tool = new ItemStack(stack.getItem(), 1, stack.getItemDamage());
-        tool.getSubCompound("Data", true).setDouble("Level", stack.getSubCompound("Data", true).getDouble("Level"));
-        rewardGold(player, -1000L);
-        takeHeldStack(player, 1);
-        rewardItem(player, tool);
-        spawnXP(player.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ, 5);
+        if (player.getHeldItemMainhand() != null) {
+            ItemStack stack = player.getHeldItemMainhand().copy();
+            ItemStack tool = new ItemStack(stack.getItem(), 1, stack.getItemDamage());
+            tool.getSubCompound("Data", true).setDouble("Level", stack.getSubCompound("Data", true).getDouble("Level"));
+            rewardGold(player, -500L);
+            takeHeldStack(player, 1);
+            rewardItem(player, tool);
+            spawnXP(player.worldObj, (int) player.posX, (int) player.posY, (int) player.posZ, 5);
+        }
     }
 
     private boolean isHolding(EntityPlayer player, ItemStack stack) {

@@ -42,22 +42,19 @@ public class QuestTrader extends QuestTrade {
     @Override
     public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc) {
         if (isHoldingAnyAtAll(player)) {
-            complete(player);
+            EnumHand hand = isHoldingAny(player, EnumHand.MAIN_HAND) ? EnumHand.MAIN_HAND: EnumHand.OFF_HAND;
+            if (player.getHeldItem(hand) != null) {
+                ItemStack held = player.getHeldItem(hand).copy(); //Ignore
+                takeHeldStack(player, held.stackSize);
+                Size size = HFApi.sizeable.getSize(held);
+                int amount = held.stackSize;
+                if (size == Size.MEDIUM) amount *= 2;
+                else if (size == Size.LARGE) amount *= 3;
+                Sizeable sizeable = HFCore.SIZEABLE.getObjectFromStack(held);
+                Item item = sizeable == HFAnimals.EGG ? Items.EGG : sizeable == HFAnimals.MILK ? Items.MILK_BUCKET : WOOL;
+                rewardItem(player, new ItemStack(item, amount));
+            }
         }
-    }
-
-    @Override
-    public void onQuestCompleted(EntityPlayer player) {
-        EnumHand hand = isHoldingAny(player, EnumHand.MAIN_HAND) ? EnumHand.MAIN_HAND: EnumHand.OFF_HAND;
-        ItemStack held = player.getHeldItem(hand).copy(); //Ignore
-        takeHeldStack(player, held.stackSize);
-        Size size = HFApi.sizeable.getSize(held);
-        int amount = held.stackSize;
-        if (size == Size.MEDIUM) amount *= 2;
-        else if (size == Size.LARGE) amount *= 3;
-        Sizeable sizeable = HFCore.SIZEABLE.getObjectFromStack(held);
-        Item item = sizeable == HFAnimals.EGG ? Items.EGG : sizeable == HFAnimals.MILK ? Items.MILK_BUCKET : WOOL;
-        rewardItem(player, new ItemStack(item, amount));
     }
 
     private boolean isHoldingAnyAtAll(EntityPlayer player) {
@@ -67,7 +64,7 @@ public class QuestTrader extends QuestTrade {
     private boolean isHoldingAny(EntityPlayer player, EnumHand hand) {
         return isHolding(player, HFAnimals.EGG, hand) || isHolding(player, HFAnimals.MILK, hand) || isHolding(player, HFAnimals.WOOL, hand);
     }
-    
+
     private boolean isHolding(EntityPlayer player, Sizeable sizeable, EnumHand hand) {
         return player.getHeldItem(hand) != null && sizeable.matches(player.getHeldItem(hand));
     }

@@ -1,11 +1,11 @@
 package joshie.harvest.quests.trade;
 
 import joshie.harvest.api.HFApi;
-import joshie.harvest.api.quests.HFQuest;
-import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.calendar.CalendarDate;
-import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.calendar.CalendarHelper;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.generic.MCClientHelper;
 import joshie.harvest.core.lib.HFSounds;
 import joshie.harvest.tools.HFTools;
@@ -26,11 +26,13 @@ import static joshie.harvest.npc.HFNPCs.PRIEST;
 
 @HFQuest("trade.cursed")
 public class QuestBless extends QuestTrade {
+    private static final int TEST = 0;
     private static final ItemStack hoe = HFTools.HOE.getStack(CURSED);
     private static final ItemStack sickle = HFTools.SICKLE.getStack(CURSED);
     private static final ItemStack watering = HFTools.WATERING_CAN.getStack(CURSED);
     private static final ItemStack axe = HFTools.AXE.getStack(CURSED);
     private static final ItemStack hammer = HFTools.HAMMER.getStack(CURSED);
+    private CalendarDate today;
     private CalendarDate date;
     private ItemStack tool;
 
@@ -59,24 +61,16 @@ public class QuestBless extends QuestTrade {
     @SideOnly(Side.CLIENT)
     @Override
     public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
-        if (quest_stage == 0) {
+        if (quest_stage == TEST) {
             boolean hasGold = HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getGold() >= 10000L;
             boolean hasTool = isHolding(player, hoe) || isHolding(player, sickle) || isHolding(player, watering) || isHolding(player, axe) || isHolding(player, hammer);
             if (hasGold && hasTool) {
-                increaseStage(player);
                 return "accept";
             } else if (hasTool) {
                 return "gold";
             } else return null;
         } else {
-            CalendarDate today = HFApi.calendar.getDate(MCClientHelper.getWorld());
             if (getDifference(date, today) >= 3) {
-                complete(player);
-                player.worldObj.playSound(player, player.posX, player.posY, player.posZ, HFSounds.BLESS_TOOL, SoundCategory.NEUTRAL, 0.25F, 1F);
-                for (int i = 0; i < 32; i++) {
-                    player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, entity.posX + player.worldObj.rand.nextFloat() + player.worldObj.rand.nextFloat() - 1F, entity.posY + 0.25D + entity.worldObj.rand.nextFloat() + entity.worldObj.rand.nextFloat(), entity.posZ + player.worldObj.rand.nextFloat() + player.worldObj.rand.nextFloat() - 1F, 0, 0, 0);
-                }
-
                 return "done";
             }
 
@@ -85,13 +79,32 @@ public class QuestBless extends QuestTrade {
     }
 
     @Override
-    public void onStageChanged(EntityPlayer player, int previous, int stage) {
-        if (previous == 0) {
-            date = HFApi.calendar.getDate(player.worldObj).copy();
-            ItemStack stack = player.getHeldItemMainhand().copy();
-            tool = new ItemStack(stack.getItem(), 1, stack.getItemDamage() + 1);
-            rewardGold(player, -10000L);
-            takeHeldStack(player, 1);
+    public void onChatOpened(EntityPlayer player, EntityLiving entity, INPC npc) {
+        today = HFApi.calendar.getDate(player.worldObj);
+    }
+
+    @Override
+    public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc) {
+        if (quest_stage == TEST) {
+            boolean hasGold = HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getGold() >= 10000L;
+            boolean hasTool = isHolding(player, hoe) || isHolding(player, sickle) || isHolding(player, watering) || isHolding(player, axe) || isHolding(player, hammer);
+            if (hasGold && hasTool) {
+                increaseStage(player);
+                date = HFApi.calendar.getDate(player.worldObj).copy();
+                ItemStack stack = player.getHeldItemMainhand().copy();
+                tool = new ItemStack(stack.getItem(), 1, stack.getItemDamage() + 1);
+                tool.setTagCompound(stack.getTagCompound().copy());
+                rewardGold(player, -10000L);
+                takeHeldStack(player, 1);
+            }
+        } else {
+            if (getDifference(date, today) >= 3) {
+                complete(player);
+                player.worldObj.playSound(player, player.posX, player.posY, player.posZ, HFSounds.BLESS_TOOL, SoundCategory.NEUTRAL, 0.25F, 1F);
+                for (int i = 0; i < 32; i++) {
+                    player.worldObj.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, entity.posX + player.worldObj.rand.nextFloat() + player.worldObj.rand.nextFloat() - 1F, entity.posY + 0.25D + entity.worldObj.rand.nextFloat() + entity.worldObj.rand.nextFloat(), entity.posZ + player.worldObj.rand.nextFloat() + player.worldObj.rand.nextFloat() - 1F, 0, 0, 0);
+                }
+            }
         }
     }
 

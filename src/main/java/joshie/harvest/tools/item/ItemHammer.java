@@ -5,6 +5,7 @@ import joshie.harvest.api.gathering.ISmashable.ToolType;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemToolSmashing;
 import joshie.harvest.core.lib.HFSounds;
+import joshie.harvest.tools.ToolHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -38,14 +39,19 @@ public class ItemHammer extends ItemToolSmashing {
 
     @Override
     public float getStrVsBlock(ItemStack stack, IBlockState state) {
-        Material material = state.getMaterial();
-        return material != Material.IRON && material != Material.ANVIL && material != Material.ROCK ? super.getStrVsBlock(stack, state) : this.getEffiency(stack);
+        if (canUse(stack)) {
+            Material material = state.getMaterial();
+            return material != Material.IRON && material != Material.ANVIL && material != Material.ROCK ? super.getStrVsBlock(stack, state) : this.getEffiency(stack);
+        } else return 0.1F;
     }
 
     @Override
     public boolean onSmashed(EntityPlayer player, ItemStack stack, ToolTier tier, int harvestLevel, World world, BlockPos pos, IBlockState state) {
-        if (state.getBlock() == Blocks.FARMLAND) {
-            return world.setBlockState(pos, Blocks.DIRT.getDefaultState());
+        if (canUse(stack)) {
+            if (state.getBlock() == Blocks.FARMLAND) {
+                ToolHelper.performTask(player, stack, getExhaustionRate(stack));
+                return world.setBlockState(pos, Blocks.DIRT.getDefaultState());
+            }
         }
 
         return super.onSmashed(player, stack, tier, harvestLevel, world, pos, state);

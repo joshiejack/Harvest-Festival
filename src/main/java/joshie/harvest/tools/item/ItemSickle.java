@@ -88,18 +88,20 @@ public class ItemSickle extends ItemTool<ItemHoe> implements IBreakCrops {
             //Facing North, We Want East and West to be 1, left * this.left
             for (int x2 = getXMinus(tier, front, pos.getX()); x2 <= getXPlus(tier, front, pos.getX()); x2++) {
                 for (int z2 = getZMinus(tier, front, pos.getZ()); z2 <= getZPlus(tier, front, pos.getZ()); z2++) {
-                    BlockPos newPos = new BlockPos(x2, pos.getY(), z2);
-                    Block block = world.getBlockState(newPos).getBlock();
-                    if (block instanceof BlockHFCrops) {
-                        if (!world.isRemote) {
-                            block.removedByPlayer(state, world, newPos, player, true);
-                        }
+                    if (canUse(stack)) {
+                        BlockPos newPos = new BlockPos(x2, pos.getY(), z2);
+                        Block block = world.getBlockState(newPos).getBlock();
+                        if (block instanceof BlockHFCrops) {
+                            if (!world.isRemote) {
+                                block.removedByPlayer(state, world, newPos, player, true);
+                            }
 
-                        boolean isWithered = BlockHFCrops.isWithered(world.getBlockState(newPos));
-                        IBlockState particleState = isWithered ? Blocks.TALLGRASS.getDefaultState() : Blocks.CARROTS.getDefaultState();
-                        displayParticle(world, newPos, EnumParticleTypes.BLOCK_CRACK, particleState);
-                        playSound(world, newPos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS);
-                        ToolHelper.performTask(player, stack, getExhaustionRate(stack));
+                            boolean isWithered = BlockHFCrops.isWithered(world.getBlockState(newPos));
+                            IBlockState particleState = isWithered ? Blocks.TALLGRASS.getDefaultState() : Blocks.CARROTS.getDefaultState();
+                            displayParticle(world, newPos, EnumParticleTypes.BLOCK_CRACK, particleState);
+                            playSound(world, newPos, SoundEvents.BLOCK_GRASS_BREAK, SoundCategory.BLOCKS);
+                            ToolHelper.performTask(player, stack, getExhaustionRate(stack));
+                        }
                     }
                 }
             }

@@ -106,10 +106,16 @@ public class GuiNPCBuilderShop extends GuiNPCShop {
             }
 
             index++;
-
-            if (index >= 10) {
-                break;
-            }
         }
+
+        boolean up = false;
+        boolean down = false;
+        if (mouseX >= 231 && mouseX <= 242) {
+            up = mouseY >= 66 && mouseY <= 75;
+            down = mouseY >= 231 && mouseY <= 240;
+        }
+
+        if (down && start < contents.size() - getMax()) setStart(start + getIncrease());
+        else if (up && start != 0) setStart(start - getIncrease());
     }
 }

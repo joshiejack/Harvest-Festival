@@ -1,16 +1,17 @@
 package joshie.harvest.town;
 
+import joshie.harvest.api.npc.INPC;
 import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.BuildingStage;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.NBTHelper;
-import joshie.harvest.npc.NPCHelper;
 import joshie.harvest.gathering.GatheringData;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.NPC;
+import joshie.harvest.npc.NPCHelper;
 import joshie.harvest.npc.NPCRegistry;
-import joshie.harvest.npc.entity.EntityNPCHuman;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
+import joshie.harvest.npc.entity.EntityNPCHuman;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.ResourceLocation;
@@ -31,6 +32,10 @@ public class TownDataServer extends TownData {
     public TownDataServer(BlockPos pos) {
         townCentre = pos;
         uuid = UUID.randomUUID();
+    }
+
+    public boolean isDead(INPC npc) {
+        return deadVillagers.contains(((NPC)npc).getRegistryName());
     }
 
     public void markNPCDead(ResourceLocation name) {

@@ -7,6 +7,7 @@ import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.util.Direction;
+import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import joshie.harvest.town.packet.PacketNewTown;
 import joshie.harvest.town.packet.PacketSyncTowns;
@@ -81,12 +82,14 @@ public class TownTrackerServer extends TownTracker {
     }
 
     public void createNewBuilder(BlockPos pos, TownDataServer data) {
-        World world = getWorld();
-        EntityNPCBuilder creator = new EntityNPCBuilder(world);
-        creator.setPositionAndUpdate(pos.getX(), pos.getY() + 1.5D, pos.getZ());
-        creator.setSpawnHome(data); //Set the spawn town
-        creator.setUniqueId(data.getID()); //Marking the builder as having the same data
-        world.spawnEntityInWorld(creator); //Towns owner now spawned
+        if (!data.isDead(HFNPCs.BUILDER)) {
+            World world = getWorld();
+            EntityNPCBuilder creator = new EntityNPCBuilder(world);
+            creator.setPositionAndUpdate(pos.getX(), pos.getY() + 1.5D, pos.getZ());
+            creator.setSpawnHome(data); //Set the spawn town
+            creator.setUniqueId(data.getID()); //Marking the builder as having the same data
+            world.spawnEntityInWorld(creator); //Towns owner now spawned
+        }
     }
 
     @Override

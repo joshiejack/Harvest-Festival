@@ -5,6 +5,7 @@ import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.entity.EntityHarvestChicken;
 import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.animals.entity.EntityHarvestSheep;
+import joshie.harvest.animals.item.ItemAnimalTreat.Treat;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ITiered.ToolTier;
 import joshie.harvest.api.crops.Crop;
@@ -131,6 +132,9 @@ public class HFShops {
     
     private static void registerBarn() {
         BARN = HFApi.shops.newShop(new ResourceLocation(MODID, "barn"), HFNPCs.ANIMAL_OWNER);
+        BARN.addItem(10, HFAnimals.TREATS.getStackFromEnum(Treat.GENERIC));
+        BARN.addItem(30, HFAnimals.TREATS.getStackFromEnum(Treat.COW));
+        BARN.addItem(30, HFAnimals.TREATS.getStackFromEnum(Treat.SHEEP));
         BARN.addItem(20, HFCrops.GRASS.getCropStack(1));
         BARN.addItem(1000, HFAnimals.TOOLS.getStackFromEnum(MEDICINE));
         BARN.addItem(new PurchaseableEntity(EntityHarvestSheep.class, 4000, HFAnimals.ANIMAL.getStackFromEnum(SHEEP), true));
@@ -232,6 +236,8 @@ public class HFShops {
         POULTRY.addItem(new PurchaseableEntity(EntityHarvestChicken.class, 1500, HFAnimals.ANIMAL.getStackFromEnum(CHICKEN), false));
         POULTRY.addItem(1000, HFAnimals.TOOLS.getStackFromEnum(MEDICINE));
         POULTRY.addItem(10, HFAnimals.TOOLS.getStackFromEnum(CHICKEN_FEED));
+        POULTRY.addItem(10, HFAnimals.TREATS.getStackFromEnum(Treat.GENERIC));
+        POULTRY.addItem(30, HFAnimals.TREATS.getStackFromEnum(Treat.CHICKEN));
         POULTRY.addItem(500, HFAnimals.TRAY.getStackFromEnum(NEST_EMPTY));
         POULTRY.addItem(7500, HFAnimals.SIZED.getStackFromEnum(INCUBATOR));
 

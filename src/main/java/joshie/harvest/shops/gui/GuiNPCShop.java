@@ -44,7 +44,7 @@ public class GuiNPCShop extends GuiNPCBase {
     }
 
     public void setStart(int i) {
-        start = Math.max(0, Math.min(contents.size() - 9, i));
+        start = Math.max(0, Math.min(contents.size() - getMax(), i));
     }
 
     @Override
@@ -69,7 +69,7 @@ public class GuiNPCShop extends GuiNPCBase {
         }
 
         if (start != 0) drawTexturedModalRect(x + 230, y + 45, 72 + up, 34, 14, 11);
-        if (start < contents.size() - 9) drawTexturedModalRect(x + 230, y + 210, 72 + down, 47, 14, 11);
+        if (start < contents.size() - (getMax())) drawTexturedModalRect(x + 230, y + 210, 72 + down, 47, 14, 11);
         GlStateManager.disableBlend();
         GlStateManager.popMatrix();
     }
@@ -77,7 +77,7 @@ public class GuiNPCShop extends GuiNPCBase {
     protected void drawShelves(int x, int y) {
         int index = 0;
         for (int i = start; i < contents.size(); i++) {
-            if (index > 9) break;
+            if (index > (getMax())) break;
             IPurchaseable purchaseable = contents.get(i);
             ItemStack display = purchaseable.getDisplayStack();
             long cost = purchaseable.getCost();
@@ -115,10 +115,6 @@ public class GuiNPCShop extends GuiNPCBase {
             StackHelper.drawStack(display, x99 + 36, y37 + 46, 1.4F);
 
             index++;
-
-            if (index >= 10) {
-                break;
-            }
         }
     }
 
@@ -134,8 +130,7 @@ public class GuiNPCShop extends GuiNPCBase {
     }
 
     @Override
-    public void drawForeground(int x, int y) {
-    }
+    public void drawForeground(int x, int y) {}
 
     @Override
     protected void keyTyped(char character, int key) throws IOException {
@@ -154,7 +149,7 @@ public class GuiNPCShop extends GuiNPCBase {
     protected void onMouseClick(int x, int y) {
         int index = 0;
         for (int i = start; i < contents.size(); i++) {
-            if (index > 9) break;
+            if (index > (getMax())) break;
             IPurchaseable purchaseable = contents.get(i);
             if (purchaseable.canBuy(player.worldObj, player)) {
                 int indexPercent = index % 2;
@@ -183,7 +178,7 @@ public class GuiNPCShop extends GuiNPCBase {
             down = mouseY >= 231 && mouseY <= 240;
         }
 
-        if (down && start < contents.size() - 9) setStart(start + getIncrease());
+        if (down && start < contents.size() - getMax()) setStart(start + getIncrease());
         else if (up && start != 0) setStart(start - getIncrease());
     }
 
@@ -202,6 +197,6 @@ public class GuiNPCShop extends GuiNPCBase {
     }
 
     public int getMax() {
-        return 10;
+        return 9;
     }
 }

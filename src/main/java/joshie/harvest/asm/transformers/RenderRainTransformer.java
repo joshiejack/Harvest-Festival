@@ -34,6 +34,7 @@ public class RenderRainTransformer extends AbstractASM {
                         /** Redirects addRainParticles to mine if it's raining, otherwise cancels the effect **/
                         String mc = !HFTransformer.isObfuscated ? "mc" : "field_78531_r";
                         String theWorld = !HFTransformer.isObfuscated ? "theWorld" : "field_71441_e";
+                        String random = !HFTransformer.isObfuscated? "random" : "field_78537_ab";
                         Label l0 = new Label();
                         mv.visitLabel(l0);
                         mv.visitFieldInsn(GETSTATIC, "joshie/harvest/api/HFApi", "calendar", "Ljoshie/harvest/api/calendar/CalendarManager;");
@@ -50,7 +51,7 @@ public class RenderRainTransformer extends AbstractASM {
                         mv.visitFieldInsn(GETFIELD, "net/minecraft/client/renderer/EntityRenderer", mc, "Lnet/minecraft/client/Minecraft;");
                         mv.visitVarInsn(ALOAD, 0);
                         mv.visitVarInsn(ALOAD, 0);
-                        mv.visitFieldInsn(GETFIELD, "net/minecraft/client/renderer/EntityRenderer", "random", "Ljava/util/Random;");
+                        mv.visitFieldInsn(GETFIELD, "net/minecraft/client/renderer/EntityRenderer", random, "Ljava/util/Random;");
                         mv.visitMethodInsn(INVOKESTATIC, "joshie/harvest/asm/RenderHook", "addRainParticles", "(Lnet/minecraft/client/Minecraft;Lnet/minecraft/client/renderer/EntityRenderer;Ljava/util/Random;)V", false);
                         mv.visitLabel(l1);
                         mv.visitInsn(RETURN);

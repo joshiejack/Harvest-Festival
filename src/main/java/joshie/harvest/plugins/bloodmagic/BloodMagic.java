@@ -18,8 +18,8 @@ import static joshie.harvest.api.calendar.Weekday.SATURDAY;
 import static joshie.harvest.api.calendar.Weekday.WEDNESDAY;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
-@ObjectHolder("bloodmagic")
-@HFLoader(mods = "bloodmagic")
+@ObjectHolder("BloodMagic")
+@HFLoader(mods = "BloodMagic")
 public class BloodMagic {
     public static final Item ItemSoulSnare = null;
     public static final Item ItemSoulGem = null;
@@ -39,10 +39,10 @@ public class BloodMagic {
         BLOODMAGE.addOpening(WEDNESDAY, 19000, 24000).addOpening(WEDNESDAY, 0, 5000).addOpening(SATURDAY, 18000, 24000).addOpening(SATURDAY, 0, 3500);
 
         //Make NPCs Give 0 LP
-        FMLInterModComms.sendMessage("bloodmagic", "sacrificeValue", "EntityNPCBuilder;0");
-        FMLInterModComms.sendMessage("bloodmagic", "sacrificeValue", "EntityNPCGoddess;0");
-        FMLInterModComms.sendMessage("bloodmagic", "sacrificeValue", "EntityNPCShopkeeper;0");
-        FMLInterModComms.sendMessage("bloodmagic", "sacrificeValue", "EntityNPCVillager;0");
+        FMLInterModComms.sendMessage("BloodMagic", "sacrificeValue", "EntityNPCBuilder;0");
+        FMLInterModComms.sendMessage("BloodMagic", "sacrificeValue", "EntityNPCGoddess;0");
+        FMLInterModComms.sendMessage("BloodMagic", "sacrificeValue", "EntityNPCShopkeeper;0");
+        FMLInterModComms.sendMessage("BloodMagic", "sacrificeValue", "EntityNPCVillager;0");
     }
 
     private static ItemStack getSoulGem(int amount) {

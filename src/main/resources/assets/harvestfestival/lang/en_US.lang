@@ -730,10 +730,15 @@ harvestfestival.shop.carpenter=Carpenter
 harvestfestival.shop.carpenter.greeting1=Looking for a new building, let me help you.
 harvestfestival.shop.carpenter.greeting2=I've got the best blueprints around.
 
-#Carpenter
+#Miner
 harvestfestival.shop.miner=Miners' Wares
 harvestfestival.shop.miner.greeting1=I've got some rare materials right here!
 harvestfestival.shop.miner.greeting2=Come and get your rare gems!
+
+#Carpenter
+harvestfestival.shop.bloodmage=Blood Mage
+harvestfestival.shop.bloodmage.greeting1=Welcome dear child, to the darkest of places.
+harvestfestival.shop.bloodmage.greeting2=Prepare to have your eyes blown out of their sockets from the sight of my wares.
 
 #Miscellaneous
 harvestfestival.marriage=Gift for Marriage

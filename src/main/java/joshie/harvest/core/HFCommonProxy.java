@@ -72,7 +72,7 @@ public class HFCommonProxy {
                 if (!entry.getMiddle().equals("")) {
                     String[] mods = entry.getMiddle().replace(" ", "").split(",");
                     for (String mod : mods) {
-                        if (!Loader.isModLoaded(mod)) continue triple;
+                        if (!Loader.isModLoaded(mod) || !Loader.isModLoaded(mod.toLowerCase(Locale.ENGLISH))) continue triple;
                     }
                 }
 

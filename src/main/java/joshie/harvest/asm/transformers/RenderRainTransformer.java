@@ -47,7 +47,7 @@ public class RenderRainTransformer extends AbstractASM {
                         Label l2 = new Label();
                         mv.visitLabel(l2);
                         mv.visitVarInsn(ALOAD, 0);
-                        mv.visitFieldInsn(GETFIELD, "net/minecraft/client/renderer/EntityRenderer", "mc", "Lnet/minecraft/client/Minecraft;");
+                        mv.visitFieldInsn(GETFIELD, "net/minecraft/client/renderer/EntityRenderer", mc, "Lnet/minecraft/client/Minecraft;");
                         mv.visitVarInsn(ALOAD, 0);
                         mv.visitVarInsn(ALOAD, 0);
                         mv.visitFieldInsn(GETFIELD, "net/minecraft/client/renderer/EntityRenderer", "random", "Ljava/util/Random;");

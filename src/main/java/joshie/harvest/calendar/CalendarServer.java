@@ -128,6 +128,9 @@ public class CalendarServer extends Calendar {
         stormStrength = nbt.getFloat("Storm");
         for (int i = 0; i < 7; i++) {
             forecast[i] = Weather.values()[nbt.getByte("Day" + i)];
+            if (forecast[i] == null) {
+                forecast[i] = Weather.SUNNY;
+            }
         }
     }
 

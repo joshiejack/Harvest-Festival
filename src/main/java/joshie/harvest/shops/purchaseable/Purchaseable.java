@@ -2,6 +2,7 @@ package joshie.harvest.shops.purchaseable;
 
 import joshie.harvest.api.shops.IPurchaseable;
 import joshie.harvest.core.helpers.generic.ItemHelper;
+import joshie.harvest.core.helpers.generic.MCClientHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -9,8 +10,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
-
-import static net.minecraft.util.text.TextFormatting.WHITE;
 
 public class Purchaseable implements IPurchaseable {
     protected ItemStack[] stacks;
@@ -54,7 +53,7 @@ public class Purchaseable implements IPurchaseable {
     @Override
     public void addTooltip(List<String> list) {
         for (ItemStack stack : stacks) {
-            if (stack != null) list.add(WHITE + stack.getDisplayName());
+            if (stack != null) list.addAll(stack.getTooltip(MCClientHelper.getPlayer(), false));
         }
     }
 }

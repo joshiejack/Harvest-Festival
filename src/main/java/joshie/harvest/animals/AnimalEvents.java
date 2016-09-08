@@ -50,7 +50,7 @@ public class AnimalEvents {
                 entity.dismountRidingEntity();
                 entity.rotationPitch = player.rotationPitch;
                 entity.rotationYaw = player.rotationYaw;
-                entity.moveRelative(0F, 1.0F, 1.05F);
+                entity.moveRelative(0F, 0.5F, 1.05F);
             }
         }
     }

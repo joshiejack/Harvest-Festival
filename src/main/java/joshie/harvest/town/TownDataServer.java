@@ -85,13 +85,13 @@ public class TownDataServer extends TownData {
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
         gathering.readFromNBT(nbt);
-        nbt.setTag("DeadVillagers", NBTHelper.writeResourceSet(deadVillagers));
+        deadVillagers = NBTHelper.readResourceSet(nbt.getTagList("DeadVillagers", 8));
     }
 
     @Override
     public void writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
         gathering.writeToNBT(nbt);
-        deadVillagers = NBTHelper.readResourceSet(nbt.getTagList("DeadVillagers", 8));
+        nbt.setTag("DeadVillagers", NBTHelper.writeResourceSet(deadVillagers));
     }
 }

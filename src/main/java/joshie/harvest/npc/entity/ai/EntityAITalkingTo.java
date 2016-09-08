@@ -3,7 +3,6 @@ package joshie.harvest.npc.entity.ai;
 import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.Container;
 
 public class EntityAITalkingTo extends EntityAIBase {
     private EntityNPC npc;
@@ -25,17 +24,12 @@ public class EntityAITalkingTo extends EntityAIBase {
             return false;
         } else {
             EntityPlayer entityplayer = npc.getTalkingTo();
-            return entityplayer == null ? false : (npc.getDistanceSqToEntity(entityplayer) > 16.0D ? false : entityplayer.openContainer instanceof Container);
+            return entityplayer != null && npc.getDistanceSqToEntity(entityplayer) > 16.0D && entityplayer.openContainer != null;
         }
     }
 
     @Override
     public void startExecuting() {
         npc.getNavigator().clearPathEntity();
-    }
-
-    @Override
-    public void resetTask() {
-        //npc.setTalking(null);
     }
 }

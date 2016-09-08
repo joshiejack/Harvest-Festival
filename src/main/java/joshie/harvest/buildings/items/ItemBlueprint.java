@@ -59,7 +59,7 @@ public class ItemBlueprint extends ItemHFFML<ItemBlueprint, BuildingImpl> implem
                     BlockPos pos = key.getPos();
                     if (builder != null && !TownHelper.getClosestTownToEntity(player).hasBuilding(building.getRegistryName())) {
                         if(TownHelper.<TownDataServer>getClosestTownToBlockPos(world, pos).setBuilding(world, building, pos.down(building.getOffsetY()), direction.getMirror(), direction.getRotation())) {
-                            if (!builder.isBuilding()) builder.setPosition(pos.getX(), pos.up().getY(), pos.getZ()); //Teleport the builder to the position
+                            if (builder.getBuilding() == null) builder.setPosition(pos.getX(), pos.up().getY(), pos.getZ()); //Teleport the builder to the position
                         }
                     }
                 }

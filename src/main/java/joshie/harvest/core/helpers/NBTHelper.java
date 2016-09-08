@@ -143,7 +143,8 @@ public class NBTHelper {
         }
     }
 
-    public static Set<ResourceLocation> readResourceSet(NBTTagList list) {
+    public static Set<ResourceLocation> readResourceSet(NBTTagCompound nbt, String name) {
+        NBTTagList list = nbt.getTagList(name, 8);
         Set<ResourceLocation> set = new HashSet<>();
         for (int i = 0; i < list.tagCount(); i++) {
             set.add(new ResourceLocation(list.getStringTagAt(i)));

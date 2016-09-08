@@ -57,7 +57,7 @@ public class TrackingServer extends Tracking {
     public void readFromNBT(NBTTagCompound nbt) {
         obtained = NBTHelper.readHashSet(ItemStackHolder.class, nbt.getTagList("ItemsObtained", 10));
         toBeShipped = NBTHelper.readHashSet(StackSold.class, nbt.getTagList("ToBeShipped", 10));
-        recipes = NBTHelper.readResourceSet(nbt.getTagList("Recipes", 8));
+        recipes = NBTHelper.readResourceSet(nbt, "Recipes");
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {

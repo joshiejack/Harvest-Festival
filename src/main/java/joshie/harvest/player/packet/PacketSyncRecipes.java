@@ -30,7 +30,7 @@ public class PacketSyncRecipes extends PenguinPacket {
 
     @Override
     public void fromBytes(ByteBuf buf) {
-        set = NBTHelper.readResourceSet(ByteBufUtils.readTag(buf).getTagList("Recipes", 8));
+        set = NBTHelper.readResourceSet(ByteBufUtils.readTag(buf), "Recipes");
     }
 
     @Override

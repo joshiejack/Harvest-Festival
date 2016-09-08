@@ -5,9 +5,9 @@ import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.npc.INPCRegistry;
 import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.relations.IRelatableProvider;
-import joshie.harvest.npc.NPCHelper;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.NPC;
+import joshie.harvest.npc.NPCHelper;
 import joshie.harvest.npc.NPCRegistry;
 import joshie.harvest.npc.entity.ai.*;
 import net.minecraft.entity.EntityAgeable;
@@ -31,7 +31,6 @@ import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import static joshie.harvest.core.handlers.GuiHandler.GIFT;
 
 public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEntityAdditionalSpawnData, IRelatableProvider {
-    protected AbstractTask task; //Currently executing task
     protected NPC npc;
     protected EntityNPC lover;
     protected EntityPlayer talkingTo;
@@ -50,6 +49,7 @@ public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable imple
         this.npc = npc;
         this.enablePersistence();
         setSize(0.6F, (1.8F * npc.getHeight()));
+        stepHeight = 0.75F;
     }
 
     public EntityNPC(E entity) {
@@ -65,14 +65,6 @@ public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable imple
         return npc;
     }
 
-    public AbstractTask getTask() {
-        return task;
-    }
-
-    public void setTask(AbstractTask task) {
-        this.task = task;
-    }
-
     @Override
     protected void initEntityAI() {
         ((PathNavigateGround) this.getNavigator()).setEnterDoors(true);
@@ -81,7 +73,6 @@ public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable imple
         tasks.addTask(1, new EntityAITalkingTo(this));
         tasks.addTask(1, new EntityAILookAtPlayer(this));
         tasks.addTask(4, new EntityAIOpenDoor(this, true));
-        tasks.addTask(5, new EntityAITask(this));
         tasks.addTask(6, new EntityAISchedule(this));
         tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 3.0F, 1.0F));
         tasks.addTask(9, new EntityAIWatchClosest(this, EntityNPC.class, 5.0F, 0.02F));
@@ -93,6 +84,10 @@ public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable imple
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D);
+    }
+
+    public boolean isBusy() {
+        return false;
     }
 
     public NPC getNPC() {
@@ -146,7 +141,7 @@ public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable imple
         boolean flag = held != null && held.getItem() == Items.SPAWN_EGG;
         if (!flag && isEntityAlive()) {
             if (!worldObj.isRemote) {
-                int guiID = NPCHelper.getGuiIDForNPC(npc, worldObj, player, player.isSneaking() && held != null);
+                int guiID = NPCHelper.getGuiIDForNPC(this, worldObj, player, player.isSneaking() && held != null);
                 int third = guiID == GIFT ? player.getActiveHand().ordinal() : -1;
                 player.openGui(HarvestFestival.instance, guiID, worldObj, getEntityId(), -1, third);
                 setTalking(player);

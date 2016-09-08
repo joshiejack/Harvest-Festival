@@ -3,16 +3,17 @@ package joshie.harvest.npc;
 import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.core.handlers.GuiHandler;
-import joshie.harvest.town.TownHelper;
 import joshie.harvest.npc.entity.*;
 import joshie.harvest.shops.Shop;
+import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
+
 import static joshie.harvest.api.npc.INPC.Location.HOME;
-import static joshie.harvest.api.npc.INPC.Location.WORK;
 
 public class NPCHelper {
     public static BlockPos getCoordinatesForLocation(EntityLivingBase entity, BuildingLocation location) {
@@ -23,12 +24,6 @@ public class NPCHelper {
         INPC npc = entity.getNPC();
         if (npc.getLocation(HOME) == null) return null;
         return TownHelper.getClosestTownToEntity(entity).getCoordinatesFor(npc.getLocation(HOME));
-    }
-
-    public static BlockPos getWorkForEntity(EntityNPC entity) {
-        INPC npc = entity.getNPC();
-        if (npc.getLocation(WORK) == null) return null;
-        return TownHelper.getClosestTownToEntity(entity).getCoordinatesFor(npc.getLocation(WORK));
     }
 
     @SuppressWarnings("unchecked")
@@ -42,16 +37,21 @@ public class NPCHelper {
         } else return (N) new EntityNPCVillager(world, npc);
     }
 
-    public static boolean isShopOpen(NPC npc, World world, EntityPlayer player) {
+    public static boolean isShopOpen(NPC npc, World world, @Nullable EntityPlayer player) {
         Shop shop = npc.getShop();
-        if (shop != null && shop.isOpen(world, player) && shop.getContents(player).size() > 0) {
-            return true;
+        if (shop != null && shop.isOpen(world, player)) {
+            return (player != null && shop.getContents(player).size() > 0) || player == null;
         }
 
         return false;
     }
 
-    public static int getGuiIDForNPC(NPC npc, World world, EntityPlayer player, boolean isGifting) {
-        return isGifting? GuiHandler.GIFT : isShopOpen(npc, world, player) ? GuiHandler.SHOP_WELCOME: GuiHandler.NPC;
+    public static boolean isShopPreparingToOpen(NPC npc, World world) {
+        Shop shop = npc.getShop();
+        return shop != null && shop.isPreparingToOpen(world);
+    }
+
+    public static int getGuiIDForNPC(EntityNPC npc, World world, EntityPlayer player, boolean isGifting) {
+        return isGifting? GuiHandler.GIFT : !npc.isBusy() && isShopOpen(npc.getNPC(), world, player) ? GuiHandler.SHOP_WELCOME: GuiHandler.NPC;
     }
 }

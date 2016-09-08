@@ -85,7 +85,7 @@ public class TownDataServer extends TownData {
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
         gathering.readFromNBT(nbt);
-        deadVillagers = NBTHelper.readResourceSet(nbt.getTagList("DeadVillagers", 8));
+        deadVillagers = NBTHelper.readResourceSet(nbt, "DeadVillagers");
     }
 
     @Override

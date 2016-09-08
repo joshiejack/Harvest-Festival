@@ -10,6 +10,7 @@ public class EntityAILookAtPlayer extends EntityAIWatchClosest {
     public EntityAILookAtPlayer(EntityNPC npc) {
         super(npc, EntityPlayer.class, 8.0F);
         this.npc = npc;
+        this.setMutexBits(5);
     }
 
     /**

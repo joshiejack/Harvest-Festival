@@ -1,6 +1,6 @@
 package joshie.harvest.mining.entity;
 
-import joshie.harvest.mining.MiningTicker;
+import joshie.harvest.mining.MiningHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
@@ -10,6 +10,8 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import static joshie.harvest.mining.MiningTicker.GOLD_FLOOR;
 
 public class EntityDarkSheep extends EntityMob {
     public EntityDarkSheep(World world) {
@@ -38,7 +40,7 @@ public class EntityDarkSheep extends EntityMob {
 
     @Override
     protected boolean isValidLightLevel() {
-        return MiningTicker.getFloor((int)posX >> 4, (int) posY) >= 50;
+        return MiningHelper.getFloor((int)posX >> 4, (int) posY) >= GOLD_FLOOR;
     }
 
     @Override

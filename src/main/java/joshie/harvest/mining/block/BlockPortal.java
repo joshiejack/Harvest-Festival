@@ -5,7 +5,6 @@ import joshie.harvest.core.base.block.BlockHFEnum;
 import joshie.harvest.core.helpers.WorldHelper;
 import joshie.harvest.core.util.Text;
 import joshie.harvest.mining.MiningHelper;
-import joshie.harvest.mining.MiningTicker;
 import joshie.harvest.mining.block.BlockPortal.Portal;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -133,7 +132,7 @@ public class BlockPortal extends BlockHFEnum<BlockPortal, Portal> {
     public IBlockState getActualState(IBlockState state, IBlockAccess access, BlockPos pos) {
         World world = WorldHelper.getWorld(access);
         Type type = world.provider.getDimension() == 0 ? OVERWORLD : MINE;
-        boolean internal = type == MINE && MiningTicker.getFloor(pos.getX() >> 4, pos.getY()) != 1;
+        boolean internal = type == MINE && MiningHelper.getFloor(pos.getX() >> 4, pos.getY()) != 1;
         boolean connectedUp = isSameBlock(access, pos.up());
         boolean connectedDown = isSameBlock(access, pos.down());
         boolean connectedEast = isSameBlock(access, pos.east());

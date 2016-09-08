@@ -124,7 +124,7 @@ public class MiningHelper {
 
     public static boolean teleportBetweenMine(Entity entity) {
         int mineID = MiningHelper.getMineID((int)entity.posZ >> 4); //Current Mine
-        int floor = MiningTicker.getFloor((int)entity.posX >> 4, (int) entity.posY); //Current Floor
+        int floor = getFloor((int)entity.posX >> 4, (int) entity.posY); //Current Floor
         boolean top = floor % MAX_FLOORS == 1;
         int newFloor = top ? floor - 1 : floor + 1;
         MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
@@ -142,5 +142,11 @@ public class MiningHelper {
 
         //Teleport complete
         return true;
+    }
+
+    public static int getFloor(int xPosition, int posY) {
+        int chunkIndex = (int) Math.floor(((double)xPosition) / CHUNK_BOUNDARY);
+        int floorIndex = (int) (MAX_FLOORS - Math.floor(((double)posY) / MiningTicker.FLOOR_HEIGHT));
+        return (chunkIndex * MAX_FLOORS) + floorIndex; //Floor
     }
 }

@@ -12,25 +12,21 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 import static joshie.harvest.mining.HFMining.ORE;
-import static joshie.harvest.mining.MineManager.CHUNK_BOUNDARY;
-import static joshie.harvest.mining.MiningChunk.FLOOR_HEIGHT;
 
 public class MiningTicker implements IDailyTickableBlock {
-    private static final int MYSTRIL_FLOOR = 150;
-    private static final int GOLD_FLOOR = 80;
-    private static final int SILVER_FLOOR = 40;
+    public static final int MYSTRIL_FLOOR = 150;
+    public static final int GOLD_FLOOR = 80;
+    public static final int SILVER_FLOOR = 40;
     private static final int MYSTRIL_CHANCE = MYSTRIL_FLOOR * 20;
     private static final int GOLD_CHANCE = GOLD_FLOOR * 18;
     private static final int SILVER_CHANCE = SILVER_FLOOR * 16;
     private static final int COPPER_CHANCE = 14;
 
-    public static final int MAX_FLOORS = (int) Math.floor(256D/FLOOR_HEIGHT);
-
-    public static int getFloor(int xPosition, int posY) {
-        int chunkIndex = (int) Math.floor(((double)xPosition) / CHUNK_BOUNDARY);
-        int floorIndex = (int) (MAX_FLOORS - Math.floor(((double)posY) / FLOOR_HEIGHT));
-        return (chunkIndex * MAX_FLOORS) + floorIndex; //Floor
-    }
+    private static final double WORLD_HEIGHT = 256D;
+    static final int MAX_Y = (int) WORLD_HEIGHT - 1;
+    static final int FLOOR_HEIGHT = 6;
+    static final int MAX_LOOP = (int) WORLD_HEIGHT - FLOOR_HEIGHT;
+    static final int MAX_FLOORS = (int) Math.floor(WORLD_HEIGHT/FLOOR_HEIGHT);
 
     public static IBlockState getBlockState(Random rand, int floor) {
         Ore ore = Ore.ROCK;
@@ -47,7 +43,7 @@ public class MiningTicker implements IDailyTickableBlock {
         BlockPos up = pos.up();
         IBlockState above = world.getBlockState(up);
         if (above.getBlock() == Blocks.AIR || above.getBlock() == ORE || above.getBlock() == HFCore.FLOWERS) {
-            int floor = getFloor(world.getChunkFromBlockCoords(pos).xPosition, pos.getY());
+            int floor = MiningHelper.getFloor(world.getChunkFromBlockCoords(pos).xPosition, pos.getY());
             if (world.rand.nextInt(32) == 0) world.setBlockState(up, HFCore.FLOWERS.getStateFromEnum(FlowerType.WEED));
             else world.setBlockState(up, getBlockState(world.rand, floor));
         }

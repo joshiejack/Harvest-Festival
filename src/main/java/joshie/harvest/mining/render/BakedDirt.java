@@ -194,7 +194,7 @@ public class BakedDirt extends BakedHF {
     }
 
     public enum TextureType {
-        BLANK(150), BONES1(1), BONES2(1), BONES3(1), BONES4(1), GRASS1(7), LEAVES1(4), LEAVES2(4), LEAVES3(1), LEAVES4(1),
+        BLANK(200), BONES1(1), BONES2(1), BONES3(1), BONES4(1), GRASS1(7), LEAVES1(4), LEAVES2(4), LEAVES3(1), LEAVES4(1),
         PEBBLE1(4), PEBBLE2(4), PEBBLE3(3), PEBBLE4(1), PEBBLE5(2), PEBBLE6(2), ROCK1(4), ROCK2(4);
 
         private final int weight;

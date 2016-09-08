@@ -11,13 +11,10 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Mouse;
 
 import java.awt.*;
 
-@SideOnly(Side.CLIENT)
 public class MCClientHelper {
     public static Minecraft getMinecraft() {
         return FMLClientHandler.instance().getClient();

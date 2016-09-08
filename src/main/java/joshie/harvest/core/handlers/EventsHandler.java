@@ -39,17 +39,15 @@ public class EventsHandler {
     @SubscribeEvent
     public void onTick(ServerTickEvent event) {
         if (event.phase != Phase.END) return;
-        for (World world: FMLCommonHandler.instance().getMinecraftServerInstance().worldServers) {
-            if (world != null) {
-                if (world.getWorldTime() % TICKS_PER_DAY == 1) {
-                    newDay(world); //Perform everything
-                    if (world.provider.getDimension() == 0) { //If it's the overworld, tick the player trackers and the calendar
-                        HFTrackers.<CalendarServer>getCalendar(world).newDay(world);
-                        for (PlayerTrackerServer player : HFTrackers.getPlayerTrackers()) {
-                            player.newDay();
-                        }
-                    }
-                }
+        World overworld = FMLCommonHandler.instance().getMinecraftServerInstance().worldServers[0];
+        if (overworld.getWorldTime() % TICKS_PER_DAY == 1) {
+            HFTrackers.<CalendarServer>getCalendar(overworld).newDay(overworld);
+            for (PlayerTrackerServer player : HFTrackers.getPlayerTrackers()) {
+                player.newDay();
+            }
+
+            for (World world : FMLCommonHandler.instance().getMinecraftServerInstance().worldServers) {
+                EventsHandler.newDay(world);
             }
         }
     }

@@ -18,7 +18,16 @@ public class PlaceablePainting extends PlaceableHanging {
 
     @Override
     public EntityHanging getEntityHanging(World world, BlockPos pos, EnumFacing facing) {
-        return new EntityPainting(world, pos, facing, painting);
+        EntityPainting painting = new EntityPainting(world, pos, facing);
+        for (EntityPainting.EnumArt entitypainting$enumart : EntityPainting.EnumArt.values()) {
+            if (entitypainting$enumart.title.equals(this.painting)) {
+                painting.art = entitypainting$enumart;
+                break;
+            }
+        }
+
+        painting.updateFacingWithBoundingBox(facing);
+        return painting;
     }
 
     @Override

@@ -30,8 +30,8 @@ public class HFDailyTickable implements IDailyTickableRegistry {
 
             @Override
             public boolean newDay(World world, BlockPos pos, IBlockState state) {
-                if (state != WET_SOIL && CropHelper.isRainingAt(world, pos.up(2))) {
-                    world.setBlockState(pos, WET_SOIL, 2);
+                if (CropHelper.isRainingAt(world, pos.up(2))) {
+                    if (state != WET_SOIL) world.setBlockState(pos, WET_SOIL, 2);
                 } else {
                     if (state == WET_SOIL) world.setBlockState(pos, DRYING_SOIL, 2);
                     else if (state == DRYING_SOIL) world.setBlockState(pos, DRY_SOIL, 2);

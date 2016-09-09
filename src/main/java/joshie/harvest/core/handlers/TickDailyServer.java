@@ -19,7 +19,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 public class TickDailyServer extends HFTracker {
-    private Set<Runnable> queue = new HashSet <>();
+    private Set<Runnable> queue = new HashSet<>();
     private Set<IDailyTickable> priority = new HashSet<>();
     private Set<IDailyTickable> tickables = new HashSet<>();
     private HashMap<BlockPos, IDailyTickableBlock> blockTicks = new HashMap<>();
@@ -108,6 +108,7 @@ public class TickDailyServer extends HFTracker {
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound tag) {
+        queue.forEach((r) -> r.run()); //Run the queue before saving
         NBTTagList dataList = new NBTTagList();
         for (BlockPos pos: blockTicks.keySet()) {
             NBTTagCompound data = new NBTTagCompound();

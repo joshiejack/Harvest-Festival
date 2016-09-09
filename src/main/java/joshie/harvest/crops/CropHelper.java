@@ -70,7 +70,7 @@ public class CropHelper {
 
     public static boolean isRainingAt(World world, BlockPos pos) {
         if (!HFApi.calendar.getWeather(world).isRain()) return false;
-        else if (!world.canSeeSky(pos)) {
+        else if (!world.canBlockSeeSky(pos)) {
             return false;
         } else if (world.getPrecipitationHeight(pos).getY() > pos.getY()) {
             return false;

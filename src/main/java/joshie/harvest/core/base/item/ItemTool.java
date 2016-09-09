@@ -91,7 +91,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
 
     @Override
     public double getDurabilityForDisplay(ItemStack stack)  {
-        return (double) getDamageForDisplay(stack) / (double)getMaxDamage(stack);
+        return (double) getDamageForDisplay(stack) / (double)getMaximumToolDamage(stack);
     }
 
     public boolean canBeDamaged() {
@@ -103,7 +103,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
     }
 
     public boolean canUse(ItemStack stack) {
-        if (getDamageForDisplay(stack) + 1 < getMaxDamage(stack) || !canBeDamaged()) {
+        if (getDamageForDisplay(stack) + 1 < getMaximumToolDamage(stack) || !canBeDamaged()) {
             return true;
         } else return false;
     }
@@ -189,8 +189,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
         }
     }
 
-    @Override
-    public int getMaxDamage(ItemStack stack) {
+    public int getMaximumToolDamage(ItemStack stack) {
         ToolTier tier = getTier(stack);
         switch (tier) {
             case BASIC:

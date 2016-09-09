@@ -2,7 +2,7 @@ package joshie.harvest.core.base.item;
 
 import joshie.harvest.api.gathering.ISmashable;
 import joshie.harvest.api.gathering.ISmashable.ToolType;
-import joshie.harvest.core.helpers.generic.DirectionHelper;
+import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.tools.ToolHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -99,7 +99,7 @@ public abstract class ItemToolSmashing extends ItemTool<ItemToolSmashing> {
         ToolTier tier = jump ? getTier(stack) : ToolTier.BASIC;
         int harvestLevel = getHarvestLevel(stack, "pickaxe");
         boolean smashed = false;
-        EnumFacing front = DirectionHelper.getFacingFromEntity(player);
+        EnumFacing front = EntityHelper.getFacingFromEntity(player);
         for (int x = getXMinus(tier, front, position.getX()); x <= getXPlus(tier, front, position.getX()); x++) {
             for (int z = getZMinus(tier, front, position.getZ()); z <= getZPlus(tier, front, position.getZ()); z++) {
                 BlockPos pos = new BlockPos(x, position.getY(), z);

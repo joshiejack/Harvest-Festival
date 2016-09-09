@@ -15,7 +15,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import static joshie.harvest.api.core.ITiered.ToolTier.BLESSED;
-import static joshie.harvest.core.helpers.generic.ItemHelper.spawnXP;
+import static joshie.harvest.core.helpers.SpawnItemHelper.spawnXP;
 import static joshie.harvest.npc.HFNPCs.PRIEST;
 
 

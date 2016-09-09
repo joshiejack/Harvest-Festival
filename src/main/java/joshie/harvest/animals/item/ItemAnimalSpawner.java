@@ -6,7 +6,7 @@ import joshie.harvest.animals.entity.EntityHarvestSheep;
 import joshie.harvest.animals.item.ItemAnimalSpawner.Spawner;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.core.base.item.ItemHFEnum;
-import joshie.harvest.core.helpers.UUIDHelper;
+import joshie.harvest.core.helpers.EntityHelper;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
@@ -57,7 +57,7 @@ public class ItemAnimalSpawner extends ItemHFEnum<ItemAnimalSpawner, Spawner> {
             if (entity != null) {
                 if (player.isSneaking()) entity.setGrowingAge(-24000);
                 entity.setPosition(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5);
-                ((IAnimalTracked)entity).getData().setOwner(UUIDHelper.getPlayerUUID(player));
+                ((IAnimalTracked)entity).getData().setOwner(EntityHelper.getPlayerUUID(player));
                 world.spawnEntityInWorld(entity);
             }
         }

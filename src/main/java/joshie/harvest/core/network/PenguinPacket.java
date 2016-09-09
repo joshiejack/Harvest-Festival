@@ -1,7 +1,7 @@
 package joshie.harvest.core.network;
 
 import io.netty.buffer.ByteBuf;
-import joshie.harvest.core.helpers.generic.MCClientHelper;
+import joshie.harvest.core.helpers.MCClientHelper;
 import net.minecraft.client.network.NetHandlerPlayClient;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;

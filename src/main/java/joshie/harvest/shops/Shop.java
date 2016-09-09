@@ -26,13 +26,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static joshie.harvest.core.lib.HFModInfo.MODID;
-
 public class Shop implements IShop {
     public static final IForgeRegistry<ShopEntry> REGISTRY = new RegistryBuilder<ShopEntry>().setName(new ResourceLocation("harvestfestival", "shop_items")).setType(ShopEntry.class).setIDRange(0, 100000).create();
     private List<IPurchaseable> contents = new ArrayList<>();
     private HashMultimap<EnumDifficulty, OpeningSettings> open = HashMultimap.create();
-    private final ResourceLocation resourceLocation;
+    public final ResourceLocation resourceLocation;
     public final String unlocalizedName;
     @SideOnly(Side.CLIENT)
     private IShopGuiOverlay overlay;
@@ -83,14 +81,14 @@ public class Shop implements IShop {
     public IShop addItem(IPurchaseable item) {
         if (item != null) {
             this.contents.add(item);
-            REGISTRY.register(new ShopEntry(item).setRegistryName(Shop.getRegistryName(unlocalizedName, item)));
+            REGISTRY.register(new ShopEntry(item).setRegistryName(Shop.getRegistryName(resourceLocation, item)));
         }
 
         return this;
     }
 
-    public static ResourceLocation getRegistryName(String unlocalizedName, IPurchaseable item) {
-        return new ResourceLocation(MODID, unlocalizedName.replace(".", "_") + "_" + item);
+    public static ResourceLocation getRegistryName(ResourceLocation resource, IPurchaseable item) {
+        return new ResourceLocation(resource.toString() + "_" + item.getPurchaseableID());
     }
 
     @Override

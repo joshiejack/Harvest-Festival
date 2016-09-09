@@ -2,7 +2,7 @@ package joshie.harvest.animals.packet;
 
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.animals.IAnimalTracked;
-import joshie.harvest.core.helpers.generic.MCClientHelper;
+import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.network.PenguinPacket;
 
 public abstract class AbstractSyncAnimal extends PenguinPacket {

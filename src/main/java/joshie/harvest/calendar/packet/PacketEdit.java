@@ -2,7 +2,7 @@ package joshie.harvest.calendar.packet;
 
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.calendar.render.CalendarHUD;
-import joshie.harvest.core.helpers.generic.MCClientHelper;
+import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.network.Packet;
 import joshie.harvest.core.network.Packet.Side;
 import joshie.harvest.core.network.PenguinPacket;

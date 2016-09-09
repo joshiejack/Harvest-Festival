@@ -7,7 +7,7 @@ import joshie.harvest.core.block.BlockFlower.FlowerType;
 import joshie.harvest.core.block.BlockGoddessWater;
 import joshie.harvest.core.block.BlockStorage;
 import joshie.harvest.core.handlers.GuiHandler;
-import joshie.harvest.core.helpers.generic.RegistryHelper;
+import joshie.harvest.core.helpers.RegistryHelper;
 import joshie.harvest.core.item.ItemSizeable;
 import joshie.harvest.core.render.SizeableDefinition;
 import joshie.harvest.core.tile.TileShipping;

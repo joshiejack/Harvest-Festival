@@ -2,7 +2,7 @@ package joshie.harvest.player.tracking;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.core.helpers.NBTHelper;
-import joshie.harvest.core.helpers.generic.CollectionHelper;
+import joshie.harvest.core.helpers.CollectionHelper;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.util.holder.ItemStackHolder;
 import joshie.harvest.player.PlayerTrackerServer;

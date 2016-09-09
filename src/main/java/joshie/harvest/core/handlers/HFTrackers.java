@@ -7,7 +7,7 @@ import joshie.harvest.calendar.Calendar;
 import joshie.harvest.calendar.CalendarClient;
 import joshie.harvest.calendar.CalendarData;
 import joshie.harvest.calendar.CalendarServer;
-import joshie.harvest.core.helpers.UUIDHelper;
+import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.player.PlayerTracker;
 import joshie.harvest.player.PlayerTrackerClient;
@@ -136,7 +136,7 @@ public class HFTrackers {
     }
 
     public static <P extends PlayerTracker> P getPlayerTrackerFromPlayer(EntityPlayer player) {
-        return getPlayerTracker(player.worldObj, UUIDHelper.getPlayerUUID(player));
+        return getPlayerTracker(player.worldObj, EntityHelper.getPlayerUUID(player));
     }
 
     @SuppressWarnings("unchecked")
@@ -145,6 +145,6 @@ public class HFTrackers {
     }
 
     public static void setPlayerData(EntityPlayer player, PlayerTrackerServer data) {
-        SERVER_PLAYERS.put(UUIDHelper.getPlayerUUID(player), data);
+        SERVER_PLAYERS.put(EntityHelper.getPlayerUUID(player), data);
     }
 }

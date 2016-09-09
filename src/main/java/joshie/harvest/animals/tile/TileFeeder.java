@@ -3,7 +3,7 @@ package joshie.harvest.animals.tile;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.core.base.tile.TileFillable;
-import joshie.harvest.core.helpers.generic.EntityHelper;
+import joshie.harvest.core.helpers.EntityHelper;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.item.ItemStack;
 

@@ -1,8 +1,8 @@
 package joshie.harvest.tools.item;
 
 import joshie.harvest.core.base.item.ItemToolChargeable;
+import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.tools.ToolHelper;
-import joshie.harvest.core.helpers.generic.DirectionHelper;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
@@ -101,7 +101,7 @@ public class ItemHoe extends ItemToolChargeable {
         if (result != null && entity instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) entity;
             BlockPos pos = result.getBlockPos();
-            EnumFacing front = DirectionHelper.getFacingFromEntity(player);
+            EnumFacing front = EntityHelper.getFacingFromEntity(player);
             if (!player.canPlayerEdit(pos.offset(front), front, stack)) return;
             else {
                 Block initial = world.getBlockState(pos).getBlock();

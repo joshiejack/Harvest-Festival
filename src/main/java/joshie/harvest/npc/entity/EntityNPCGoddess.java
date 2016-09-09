@@ -3,7 +3,7 @@ package joshie.harvest.npc.entity;
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.block.BlockFlower.FlowerType;
-import joshie.harvest.core.helpers.generic.ItemHelper;
+import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.core.lib.HFSounds;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.NPC;
@@ -139,7 +139,7 @@ public class EntityNPCGoddess extends EntityNPC<EntityNPCGoddess> {
 
                 if (lastTalk <= 0) {
                     if (flower) {
-                        ItemHelper.spawnByEntity(this, HFCore.FLOWERS.getStackFromEnum(FlowerType.GODDESS));
+                        SpawnItemHelper.spawnByEntity(this, HFCore.FLOWERS.getStackFromEnum(FlowerType.GODDESS));
                     }
 
                     setDead();

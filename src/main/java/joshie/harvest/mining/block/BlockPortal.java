@@ -2,7 +2,7 @@ package joshie.harvest.mining.block;
 
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.block.BlockHFEnum;
-import joshie.harvest.core.helpers.WorldHelper;
+import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.util.Text;
 import joshie.harvest.mining.MiningHelper;
 import joshie.harvest.mining.block.BlockPortal.Portal;
@@ -18,6 +18,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Locale;
 
@@ -105,7 +107,7 @@ public class BlockPortal extends BlockHFEnum<BlockPortal, Portal> {
     @Override
     public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
         if (!world.isRemote) {
-            IBlockState actual = getActualState(state, world, pos);
+            IBlockState actual = getPortalState(world, pos, state);
             if (actual.getBlock() == this) {
                 Portal portal = getEnumFromState(actual);
                 if (portal.isInternal()) {
@@ -127,18 +129,22 @@ public class BlockPortal extends BlockHFEnum<BlockPortal, Portal> {
         MINE, INTERNAL, OVERWORLD
     }
 
-    @SuppressWarnings("deprecation")
+    @SideOnly(Side.CLIENT)
     @Override
-    public IBlockState getActualState(IBlockState state, IBlockAccess access, BlockPos pos) {
-        World world = WorldHelper.getWorld(access);
+    public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos) {
+        return getPortalState(MCClientHelper.getWorld(), pos, state);
+    }
+
+    @SuppressWarnings("deprecation")
+    public IBlockState getPortalState(World world, BlockPos pos, IBlockState state) {
         Type type = world.provider.getDimension() == 0 ? OVERWORLD : MINE;
         boolean internal = type == MINE && MiningHelper.getFloor(pos.getX() >> 4, pos.getY()) != 1;
-        boolean connectedUp = isSameBlock(access, pos.up());
-        boolean connectedDown = isSameBlock(access, pos.down());
-        boolean connectedEast = isSameBlock(access, pos.east());
-        boolean connectedWest = isSameBlock(access, pos.west());
-        boolean connectedSouth = isSameBlock(access, pos.south());
-        boolean connectedNorth = isSameBlock(access, pos.north());
+        boolean connectedUp = isSameBlock(world, pos.up());
+        boolean connectedDown = isSameBlock(world, pos.down());
+        boolean connectedEast = isSameBlock(world, pos.east());
+        boolean connectedWest = isSameBlock(world, pos.west());
+        boolean connectedSouth = isSameBlock(world, pos.south());
+        boolean connectedNorth = isSameBlock(world, pos.north());
         if (connectedDown && ((!connectedEast && connectedWest) || (connectedNorth && !connectedSouth))) {
             if (connectedWest) return type == MINE ? internal ? getStateFromEnum(INTERNAL_TL_EW) : getStateFromEnum(MINE_TL_EW) : getStateFromEnum(STONE_TL_EW);
             else return type == MINE ? internal ? getStateFromEnum(INTERNAL_TL) : getStateFromEnum(MINE_TL) : getStateFromEnum(STONE_TL);

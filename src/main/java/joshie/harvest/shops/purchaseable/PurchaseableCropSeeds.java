@@ -7,7 +7,7 @@ import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.shops.IPurchaseable;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.helpers.generic.ItemHelper;
+import joshie.harvest.core.helpers.SpawnItemHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -72,7 +72,7 @@ public class PurchaseableCropSeeds implements IPurchaseable {
 
     @Override
     public boolean onPurchased(EntityPlayer player) {
-        ItemHelper.addToPlayerInventory(player, crop.getSeedStack(1).copy());
+        SpawnItemHelper.addToPlayerInventory(player, crop.getSeedStack(1).copy());
         return false;
     }
 

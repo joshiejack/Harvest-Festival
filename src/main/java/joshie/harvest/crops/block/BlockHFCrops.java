@@ -9,7 +9,6 @@ import joshie.harvest.api.crops.IBreakCrops;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
 import joshie.harvest.core.base.block.BlockHFEnum;
 import joshie.harvest.core.base.item.ItemBlockHF;
-import joshie.harvest.core.helpers.WorldHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.HFEvents;
 import joshie.harvest.crops.CropData;
@@ -237,13 +236,10 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
 
     @SuppressWarnings("deprecation")
     @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess access, BlockPos pos) {
-        World world = WorldHelper.getWorld(access);
-        if (world != null) {
-            Stage stage = getEnumFromState(state);
-            AxisAlignedBB aabb = CropHelper.getCropBoundingBox(world, pos, stage.getSection(), stage.isWithered());
-            return aabb != null ? aabb : CROP_AABB;
-        } else return CROP_AABB;
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
+        Stage stage = getEnumFromState(state);
+        AxisAlignedBB aabb = CropHelper.getCropBoundingBox(world, pos, stage.getSection(), stage.isWithered());
+        return aabb != null ? aabb : CROP_AABB;
     }
 
     @SuppressWarnings("deprecation")
@@ -262,16 +258,13 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
 
     @SuppressWarnings("deprecation")
     @Override
-    public IBlockState getActualState(IBlockState state, IBlockAccess access, BlockPos pos) {
-        World world = WorldHelper.getWorld(access);
-        if (world != null) {
-            Stage stage = getEnumFromState(state);
-            if (stage.getSection() == TOP) {
-                return CropHelper.getBlockState(world, pos.down(), stage.getSection(), stage.isWithered());
-            } else  {
-                return CropHelper.getBlockState(world, pos, stage.getSection(), stage.isWithered());
-            }
-        } else return state;
+    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
+        Stage stage = getEnumFromState(state);
+        if (stage.getSection() == TOP) {
+            return CropHelper.getBlockState(world, pos.down(), stage.getSection(), stage.isWithered());
+        } else  {
+            return CropHelper.getBlockState(world, pos, stage.getSection(), stage.isWithered());
+        }
     }
 
     @HFEvents

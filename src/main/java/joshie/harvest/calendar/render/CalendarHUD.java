@@ -5,7 +5,7 @@ import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.calendar.*;
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.helpers.generic.MCClientHelper;
+import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.HFEvents;
 import net.minecraft.client.Minecraft;

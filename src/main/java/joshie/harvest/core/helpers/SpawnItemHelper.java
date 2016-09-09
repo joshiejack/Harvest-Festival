@@ -1,4 +1,4 @@
-package joshie.harvest.core.helpers.generic;
+package joshie.harvest.core.helpers;
 
 import joshie.harvest.calendar.HFCalendar;
 import net.minecraft.entity.Entity;
@@ -8,7 +8,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class ItemHelper {
+public class SpawnItemHelper {
     public static void addToPlayerInventory(EntityPlayer player, ItemStack stack) {
         addToPlayerInventory(player, player.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ, stack);
     }
@@ -16,7 +16,7 @@ public class ItemHelper {
     public static void addToPlayerInventory(EntityPlayer player, World world, int x, int y, int z, ItemStack stack) {
         if (!player.inventory.addItemStackToInventory(stack)) {
             if (!world.isRemote) {
-                ItemHelper.spawnItem(world, x, y + 1, z, stack);
+                SpawnItemHelper.spawnItem(world, x, y + 1, z, stack);
             }
         }
     }

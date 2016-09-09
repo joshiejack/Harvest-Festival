@@ -1,7 +1,7 @@
 package joshie.harvest.core.base.block;
 
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.helpers.generic.DirectionHelper;
+import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.IFaceable;
 import net.minecraft.block.BlockHorizontal;
@@ -76,7 +76,7 @@ public abstract class BlockHFEnumRotatableTile<B extends BlockHFEnumRotatableTil
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase entity, ItemStack stack) {
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof IFaceable) {
-            ((IFaceable) tile).setFacing(DirectionHelper.getFacingFromEntity(entity));
+            ((IFaceable) tile).setFacing(EntityHelper.getFacingFromEntity(entity));
         }
     }
 

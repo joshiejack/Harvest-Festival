@@ -2,7 +2,7 @@ package joshie.harvest.shops.purchaseable;
 
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.shops.IPurchaseable;
-import joshie.harvest.core.helpers.UUIDHelper;
+import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.util.Text;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -89,7 +89,7 @@ public class PurchaseableEntity implements IPurchaseable {
                     player.worldObj.spawnEntityInWorld(theEntity);
                 } else {
                     ((EntityAnimal) theEntity).setLeashedToEntity(player, true);
-                    ((IAnimalTracked) theEntity).getData().setOwner(UUIDHelper.getPlayerUUID(player));
+                    ((IAnimalTracked) theEntity).getData().setOwner(EntityHelper.getPlayerUUID(player));
                     player.worldObj.spawnEntityInWorld(theEntity);
                 }
             }

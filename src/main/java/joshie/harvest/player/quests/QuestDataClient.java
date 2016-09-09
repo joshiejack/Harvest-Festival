@@ -1,7 +1,7 @@
 package joshie.harvest.player.quests;
 
 import joshie.harvest.api.quests.Quest;
-import joshie.harvest.core.helpers.generic.MCClientHelper;
+import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.quests.packet.PacketQuestStart;
 import net.minecraft.entity.player.EntityPlayer;

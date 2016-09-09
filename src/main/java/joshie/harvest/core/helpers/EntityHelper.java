@@ -1,26 +1,30 @@
-package joshie.harvest.core.helpers.generic;
+package joshie.harvest.core.helpers;
 
-import joshie.harvest.core.helpers.UUIDHelper;
 import joshie.harvest.core.util.HFTeleporter;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.play.server.SPacketUpdateHealth;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import net.minecraftforge.common.UsernameCache;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public class EntityHelper {
@@ -30,7 +34,7 @@ public class EntityHelper {
         for (int i = 0; i < world.loadedEntityList.size(); i++) {
             Entity entity = world.loadedEntityList.get(i);
             if (entity instanceof EntityAnimal) {
-                if (UUIDHelper.getEntityUUID(entity).equals(uuid)) {
+                if (getEntityUUID(entity).equals(uuid)) {
                     return (EntityAnimal) entity;
                 }
             }
@@ -44,7 +48,7 @@ public class EntityHelper {
         for (int i = 0; i < world.loadedEntityList.size(); i++) {
             Entity entity = world.loadedEntityList.get(i);
             if (entity instanceof EntityNPCBuilder) {
-                if (UUIDHelper.getEntityUUID(entity).equals(uuid)) {
+                if (getEntityUUID(entity).equals(uuid)) {
                     return (EntityNPCBuilder) entity;
                 }
             }
@@ -57,7 +61,7 @@ public class EntityHelper {
     public static EntityPlayerMP getPlayerFromUUID(UUID uuid) {
         //Loops through every single player
         for (EntityPlayer player : FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayerList()) {
-            if (UUIDHelper.getPlayerUUID(player).equals(uuid)) {
+            if (getPlayerUUID(player).equals(uuid)) {
                 return (EntityPlayerMP) player;
             }
         }
@@ -105,5 +109,34 @@ public class EntityHelper {
 
         entity.timeUntilPortal = entity instanceof EntityLiving ? 150 : 20;
         return true;
+    }
+
+    public static EnumFacing getFacingFromEntity(EntityLivingBase entity) {
+        int facing = MathHelper.floor_double(entity.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
+        EnumFacing dir = EnumFacing.NORTH;
+        if (facing == 0) return EnumFacing.NORTH;
+        if (facing == 1) return EnumFacing.EAST;
+        if (facing == 2) return EnumFacing.SOUTH;
+        if (facing == 3) return EnumFacing.WEST;
+        return dir;
+    }
+
+    public static UUID getLastKnownUUID(EntityPlayer player) {
+        String name = player.getGameProfile().getName();
+        for (Map.Entry<UUID, String> entry : UsernameCache.getMap().entrySet()) {
+            if (entry.getValue().equals(name)) {
+                return entry.getKey();
+            }
+        }
+
+        return getPlayerUUID(player);
+    }
+
+    public static UUID getEntityUUID(Entity entity) {
+        return entity.getPersistentID();
+    }
+
+    public static UUID getPlayerUUID(EntityPlayer player) {
+        return EntityPlayer.getUUID(player.getGameProfile());
     }
 }

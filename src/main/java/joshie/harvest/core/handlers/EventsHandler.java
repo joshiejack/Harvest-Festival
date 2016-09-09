@@ -2,7 +2,7 @@ package joshie.harvest.core.handlers;
 
 import joshie.harvest.animals.AnimalTrackerServer;
 import joshie.harvest.calendar.CalendarServer;
-import joshie.harvest.core.helpers.generic.MCServerHelper;
+import joshie.harvest.core.helpers.MCServerHelper;
 import joshie.harvest.core.util.HFEvents;
 import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.town.TownTrackerServer;

@@ -12,7 +12,7 @@ import joshie.harvest.api.animals.INest;
 import joshie.harvest.api.core.ISizeable.Size;
 import joshie.harvest.core.base.block.BlockHFEnum;
 import joshie.harvest.core.base.tile.TileFillable;
-import joshie.harvest.core.helpers.UUIDHelper;
+import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -97,7 +97,7 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
 
                     NBTTagCompound tag = drop.getSubCompound("Data", true);
                     tag.setInteger("Relationship", relationship);
-                    tag.setString("Owner", UUIDHelper.getPlayerUUID(player).toString());
+                    tag.setString("Owner", EntityHelper.getPlayerUUID(player).toString());
                     Block.spawnAsEntity(world, pos, drop);
                     world.setBlockState(pos, getStateFromEnum(NEST_EMPTY));
                 }

@@ -44,11 +44,6 @@ public class NBTHelper {
     }
 
     @SuppressWarnings("unchecked")
-    public static <H extends AbstractHolder> ArrayList<H> readList(Class<H> h, NBTTagList list) {
-        return readCollection(ArrayList.class, h, list);
-    }
-
-    @SuppressWarnings("unchecked")
     public static <H extends AbstractHolder> HashSet<H> readHashSet(Class<H> h, NBTTagList list) {
         return readCollection(HashSet.class, h, list);
     }

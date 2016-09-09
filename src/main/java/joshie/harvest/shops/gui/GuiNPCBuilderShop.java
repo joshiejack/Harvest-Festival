@@ -1,7 +1,7 @@
 package joshie.harvest.shops.gui;
 
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.helpers.generic.StackHelper;
+import joshie.harvest.core.helpers.StackHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.npc.entity.EntityNPC;
@@ -100,7 +100,7 @@ public class GuiNPCBuilderShop extends GuiNPCShop {
                 long cost = purchaseable.getCost();
                 if (HFTrackers.getClientPlayerTracker().getStats().getGold() - cost >= 0) {
                     if (mouseY >= 61 + (index * 34) && mouseY <= 93 + (index * 34) && mouseX >= 190 && mouseX <= 222) {
-                        PacketHandler.sendToServer(new PacketPurchaseItem(shop.unlocalizedName, purchaseable));
+                        PacketHandler.sendToServer(new PacketPurchaseItem(shop.resourceLocation, purchaseable));
                     }
                 }
             }

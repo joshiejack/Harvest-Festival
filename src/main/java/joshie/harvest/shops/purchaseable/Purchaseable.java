@@ -1,8 +1,8 @@
 package joshie.harvest.shops.purchaseable;
 
 import joshie.harvest.api.shops.IPurchaseable;
-import joshie.harvest.core.helpers.generic.ItemHelper;
-import joshie.harvest.core.helpers.generic.MCClientHelper;
+import joshie.harvest.core.helpers.SpawnItemHelper;
+import joshie.harvest.core.helpers.MCClientHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -28,7 +28,8 @@ public class Purchaseable implements IPurchaseable {
     }
 
     static String stackToString(ItemStack stack) {
-        String string = stack.getItem().getRegistryName().toString().replace(":", "_") + "_" + stack.getItemDamage();
+        String string = stack.getItem().getRegistryName().toString().replace(":", "_");
+        if (stack.getItemDamage() != 0) string = string + "_" + stack.getItemDamage();
         if (stack.getTagCompound() != null) string = string + "_" + stack.getTagCompound().toString();
         return string;
     }
@@ -56,7 +57,7 @@ public class Purchaseable implements IPurchaseable {
     @Override
     public boolean onPurchased(EntityPlayer player) {
         for (ItemStack product : stacks) {
-            ItemHelper.addToPlayerInventory(player, product.copy());
+            SpawnItemHelper.addToPlayerInventory(player, product.copy());
         }
 
         return false;

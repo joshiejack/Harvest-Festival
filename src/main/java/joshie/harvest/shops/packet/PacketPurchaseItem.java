@@ -11,14 +11,16 @@ import joshie.harvest.player.stats.StatsServer;
 import joshie.harvest.shops.Shop;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.util.ResourceLocation;
 
 @Packet
 public class PacketPurchaseItem extends PenguinPacket {
     private int purchaseable_id;
 
     public PacketPurchaseItem() {}
-    public PacketPurchaseItem(String unlocalizedName, IPurchaseable purchaseable) {
-        purchaseable_id = Shop.REGISTRY.getValues().indexOf(Shop.REGISTRY.getValue(Shop.getRegistryName(unlocalizedName, purchaseable)));
+    public PacketPurchaseItem(ResourceLocation resourceLocation, IPurchaseable purchaseable) {
+        ResourceLocation shop = Shop.getRegistryName(resourceLocation, purchaseable);
+        purchaseable_id = Shop.REGISTRY.getValues().indexOf(Shop.REGISTRY.getValue(shop));
     }
 
     public PacketPurchaseItem(int purchaseable_id) {

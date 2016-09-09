@@ -1,7 +1,7 @@
 package joshie.harvest.core.base.tile;
 
 import joshie.harvest.api.core.ISizeable.Size;
-import joshie.harvest.core.helpers.generic.MCServerHelper;
+import joshie.harvest.core.helpers.MCServerHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 

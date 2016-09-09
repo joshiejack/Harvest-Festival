@@ -3,7 +3,7 @@ package joshie.harvest.buildings.items;
 import joshie.harvest.buildings.items.ItemCheat.Cheat;
 import joshie.harvest.buildings.loader.CodeGeneratorBuildings;
 import joshie.harvest.core.base.item.ItemHFEnum;
-import joshie.harvest.core.helpers.generic.MCClientHelper;
+import joshie.harvest.core.helpers.ChatHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -43,12 +43,12 @@ public class ItemCheat extends ItemHFEnum<ItemCheat, Cheat> {
             if (player.isSneaking()) {
                 pos2 = pos;
                 if (world.isRemote) {
-                    MCClientHelper.addToChat("Setting Second Coordinates to " + pos2);
+                    ChatHelper.displayChat("Setting Second Coordinates to " + pos2);
                 }
             } else {
                 pos1 = pos;
                 if (world.isRemote) {
-                    MCClientHelper.addToChat("Setting First Coordinates to " + pos1);
+                    ChatHelper.displayChat("Setting First Coordinates to " + pos1);
                 }
             }
 

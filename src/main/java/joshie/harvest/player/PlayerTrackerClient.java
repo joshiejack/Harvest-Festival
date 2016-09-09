@@ -1,7 +1,7 @@
 package joshie.harvest.player;
 
-import joshie.harvest.core.helpers.UUIDHelper;
-import joshie.harvest.core.helpers.generic.MCClientHelper;
+import joshie.harvest.core.helpers.EntityHelper;
+import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.player.quests.QuestDataClient;
 import joshie.harvest.player.relationships.RelationshipDataClient;
 import joshie.harvest.player.stats.StatsClient;
@@ -26,7 +26,7 @@ public class PlayerTrackerClient extends PlayerTracker {
 
     @Override
     public UUID getUUID() {
-        return UUIDHelper.getPlayerUUID(getAndCreatePlayer());
+        return EntityHelper.getPlayerUUID(getAndCreatePlayer());
     }
 
     @Override

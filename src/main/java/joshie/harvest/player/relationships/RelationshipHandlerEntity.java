@@ -2,8 +2,7 @@ package joshie.harvest.player.relationships;
 
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.relations.IRelatableDataHandler;
-import joshie.harvest.core.helpers.UUIDHelper;
-import joshie.harvest.core.helpers.generic.EntityHelper;
+import joshie.harvest.core.helpers.EntityHelper;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumParticleTypes;
@@ -41,7 +40,7 @@ public class RelationshipHandlerEntity implements IRelatableDataHandler<IAnimalT
 
     @Override
     public void writeToNBT(IAnimalTracked tracked, NBTTagCompound tag) {
-        tag.setString("UUID", UUIDHelper.getEntityUUID(tracked.getAsEntity()).toString());
+        tag.setString("UUID", EntityHelper.getEntityUUID(tracked.getAsEntity()).toString());
         tag.setInteger("Dimension", tracked.getAsEntity().worldObj.provider.getDimension());
     }
 }

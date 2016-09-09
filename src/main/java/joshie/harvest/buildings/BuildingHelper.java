@@ -1,7 +1,7 @@
-package joshie.harvest.core.helpers.generic;
+package joshie.harvest.buildings;
 
-import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.render.BuildingKey;
+import joshie.harvest.core.helpers.EntityHelper;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -45,7 +45,7 @@ public class BuildingHelper {
             return null;
         }
 
-        EnumFacing facing = DirectionHelper.getFacingFromEntity(player).getOpposite();
+        EnumFacing facing = EntityHelper.getFacingFromEntity(player).getOpposite();
         Mirror mirror = Mirror.NONE;
         Rotation rotation = Rotation.NONE;
         if (facing == EnumFacing.NORTH) {

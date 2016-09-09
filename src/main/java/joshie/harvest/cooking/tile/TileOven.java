@@ -2,7 +2,7 @@ package joshie.harvest.cooking.tile;
 
 import joshie.harvest.api.cooking.Utensil;
 import joshie.harvest.cooking.tile.TileCooking.TileCookingTicking;
-import joshie.harvest.core.helpers.generic.ItemHelper;
+import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.core.lib.HFSounds;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -54,7 +54,7 @@ public class TileOven extends TileCookingTicking {
         if (giveTimer > 0) {
             giveTimer--;
             if (giveTimer <= 0) {
-                ItemHelper.addToPlayerInventory(givePlayer, getResult());
+                SpawnItemHelper.addToPlayerInventory(givePlayer, getResult());
                 result = null; //Clear out the result
                 givePlayer = null;
                 giveTimer = 0;

@@ -5,7 +5,7 @@ import joshie.harvest.animals.render.ModelHarvestChicken;
 import joshie.harvest.animals.render.ModelHarvestCow;
 import joshie.harvest.animals.render.ModelHarvestSheep;
 import joshie.harvest.api.HFApi;
-import joshie.harvest.core.helpers.generic.RegistryHelper;
+import joshie.harvest.core.helpers.RegistryHelper;
 import joshie.harvest.core.lib.EntityIDs;
 import joshie.harvest.core.util.HFLoader;
 import joshie.harvest.mining.block.*;
@@ -30,7 +30,7 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import static joshie.harvest.core.helpers.generic.ConfigHelper.getInteger;
+import static joshie.harvest.core.helpers.ConfigHelper.getInteger;
 import static net.minecraftforge.fml.common.registry.EntityRegistry.registerModEntity;
 
 @HFLoader

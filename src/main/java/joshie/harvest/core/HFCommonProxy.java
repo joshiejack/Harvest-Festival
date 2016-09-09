@@ -14,8 +14,8 @@ import java.io.File;
 import java.lang.reflect.Method;
 import java.util.*;
 
-import static joshie.harvest.core.helpers.generic.ConfigHelper.setCategory;
-import static joshie.harvest.core.helpers.generic.ConfigHelper.setConfig;
+import static joshie.harvest.core.helpers.ConfigHelper.setCategory;
+import static joshie.harvest.core.helpers.ConfigHelper.setConfig;
 import static joshie.harvest.core.lib.HFModInfo.MODNAME;
 
 public class HFCommonProxy {

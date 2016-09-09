@@ -3,6 +3,7 @@ package joshie.harvest.tools.item;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
 import joshie.harvest.core.base.item.ItemToolChargeable;
+import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.tools.ToolHelper;
 import joshie.harvest.crops.block.BlockHFCrops;
 import net.minecraft.block.Block;
@@ -185,7 +186,7 @@ public class ItemWateringCan extends ItemToolChargeable implements IFluidContain
         if (result != null && entity instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) entity;
             BlockPos pos = result.getBlockPos();
-            EnumFacing front = joshie.harvest.core.helpers.generic.DirectionHelper.getFacingFromEntity(entity);
+            EnumFacing front = EntityHelper.getFacingFromEntity(entity);
             Block initial = world.getBlockState(pos).getBlock();
             if ((initial != Blocks.FARMLAND) && (!(initial instanceof IPlantable))) {
                 return;

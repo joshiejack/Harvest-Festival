@@ -7,7 +7,7 @@ import joshie.harvest.cooking.CookingHelper;
 import joshie.harvest.cooking.packet.PacketSelectRecipe;
 import joshie.harvest.cooking.recipe.MealImpl;
 import joshie.harvest.core.helpers.ChatHelper;
-import joshie.harvest.core.helpers.generic.MCClientHelper;
+import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.util.Text;
 import net.minecraft.client.renderer.GlStateManager;

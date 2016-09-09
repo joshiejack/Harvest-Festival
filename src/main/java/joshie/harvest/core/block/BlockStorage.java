@@ -3,7 +3,7 @@ package joshie.harvest.core.block;
 import joshie.harvest.core.base.block.BlockHFEnumRotatableTile;
 import joshie.harvest.core.block.BlockStorage.Storage;
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.helpers.UUIDHelper;
+import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.tile.TileShipping;
 import joshie.harvest.player.PlayerTrackerServer;
@@ -86,7 +86,7 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
         super.onBlockPlacedBy(world, pos, state, entity, stack);
 
         if (entity instanceof  EntityPlayer && getEnumFromState(state) == SHIPPING) {
-            ((TileShipping)world.getTileEntity(pos)).setOwner(UUIDHelper.getPlayerUUID((EntityPlayer) entity));
+            ((TileShipping)world.getTileEntity(pos)).setOwner(EntityHelper.getPlayerUUID((EntityPlayer) entity));
         }
     }
 

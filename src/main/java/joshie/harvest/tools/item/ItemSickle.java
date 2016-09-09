@@ -1,9 +1,9 @@
 package joshie.harvest.tools.item;
 
 import joshie.harvest.api.crops.IBreakCrops;
+import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.tools.ToolHelper;
 import joshie.harvest.crops.block.BlockHFCrops;
-import joshie.harvest.core.helpers.generic.DirectionHelper;
 import joshie.harvest.core.base.item.ItemTool;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -78,7 +78,7 @@ public class ItemSickle extends ItemTool<ItemHoe> implements IBreakCrops {
     public float getStrengthVSCrops(EntityPlayer player, World world, BlockPos pos, IBlockState state, ItemStack stack) {
         if (!player.canPlayerEdit(pos, EnumFacing.DOWN, stack)) return 0F;
         else {
-            EnumFacing front = DirectionHelper.getFacingFromEntity(player);
+            EnumFacing front = EntityHelper.getFacingFromEntity(player);
             Block initial = world.getBlockState(pos).getBlock();
             if (!(initial instanceof BlockHFCrops)) {
                 return 0F;

@@ -9,9 +9,9 @@ import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-import static joshie.harvest.core.helpers.generic.ConfigHelper.getBoolean;
-import static joshie.harvest.core.helpers.generic.ConfigHelper.getInteger;
-import static joshie.harvest.core.helpers.generic.RegistryHelper.registerSounds;
+import static joshie.harvest.core.helpers.ConfigHelper.getBoolean;
+import static joshie.harvest.core.helpers.ConfigHelper.getInteger;
+import static joshie.harvest.core.helpers.RegistryHelper.registerSounds;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static net.minecraft.entity.SharedMonsterAttributes.*;
 

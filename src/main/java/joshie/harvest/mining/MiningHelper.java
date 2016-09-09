@@ -1,7 +1,7 @@
 package joshie.harvest.mining;
 
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.helpers.generic.EntityHelper;
+import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.util.Direction;
 import joshie.harvest.mining.block.BlockPortal.Portal;
 import joshie.harvest.town.TownTracker;

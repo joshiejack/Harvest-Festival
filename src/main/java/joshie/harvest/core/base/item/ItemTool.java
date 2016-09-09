@@ -363,7 +363,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
     @Override
     public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
         switch(getTier(toRepair)) {
-            case BASIC: return InventoryHelper.isOreName(repair, "stone");
+            case BASIC: return InventoryHelper.ORE_DICTIONARY.matches(repair, "stone");
             case COPPER: return InventoryHelper.ITEM_STACK.matches(repair, HFMining.MATERIALS.getStackFromEnum(Material.COPPER));
             case SILVER: return InventoryHelper.ITEM_STACK.matches(repair, HFMining.MATERIALS.getStackFromEnum(Material.SILVER));
             case GOLD: return InventoryHelper.ITEM_STACK.matches(repair, HFMining.MATERIALS.getStackFromEnum(Material.GOLD));

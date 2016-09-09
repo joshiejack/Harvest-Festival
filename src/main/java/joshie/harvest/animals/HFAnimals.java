@@ -19,7 +19,7 @@ import joshie.harvest.animals.type.AnimalChicken;
 import joshie.harvest.animals.type.AnimalCow;
 import joshie.harvest.animals.type.AnimalSheep;
 import joshie.harvest.core.handlers.SizeableRegistry;
-import joshie.harvest.core.helpers.generic.RegistryHelper;
+import joshie.harvest.core.helpers.RegistryHelper;
 import joshie.harvest.core.lib.EntityIDs;
 import joshie.harvest.core.lib.Sizeable;
 import joshie.harvest.core.util.HFLoader;
@@ -33,9 +33,9 @@ import static joshie.harvest.animals.AnimalRegistry.registerFoodsAsType;
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.CHICKEN_FEED;
 import static joshie.harvest.api.HFApi.animals;
 import static joshie.harvest.api.animals.AnimalFoodType.*;
-import static joshie.harvest.core.helpers.generic.ConfigHelper.getBoolean;
-import static joshie.harvest.core.helpers.generic.ConfigHelper.getInteger;
-import static joshie.harvest.core.helpers.generic.RegistryHelper.registerTiles;
+import static joshie.harvest.core.helpers.ConfigHelper.getBoolean;
+import static joshie.harvest.core.helpers.ConfigHelper.getInteger;
+import static joshie.harvest.core.helpers.RegistryHelper.registerTiles;
 import static net.minecraftforge.fml.common.registry.EntityRegistry.registerModEntity;
 
 @HFLoader

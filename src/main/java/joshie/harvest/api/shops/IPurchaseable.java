@@ -17,7 +17,6 @@ public interface IPurchaseable extends ISpecialPurchaseRules {
     long getCost();
 
     /** This is the itemstack that gets displayed in the shop view **/
-    @SideOnly(Side.CLIENT)
     ItemStack getDisplayStack();
     
     /** Called whenever this item is purchased
@@ -29,6 +28,7 @@ public interface IPurchaseable extends ISpecialPurchaseRules {
     @SideOnly(Side.CLIENT)
     void addTooltip(List<String> list);
 
-    /** The purchaseables id **/
+    /** The purchaseables id
+     *  This needs to be a unique string **/
     String getPurchaseableID();
 }

@@ -1,7 +1,7 @@
 package joshie.harvest.shops.purchaseable;
 
 import joshie.harvest.api.shops.IPurchaseable;
-import joshie.harvest.core.helpers.generic.ItemHelper;
+import joshie.harvest.core.helpers.SpawnItemHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
@@ -44,7 +44,7 @@ public abstract class PurchaseableFML<I extends IForgeRegistryEntry.Impl<I>> imp
 
     @Override
     public boolean onPurchased(EntityPlayer player) {
-        ItemHelper.addToPlayerInventory(player, getDisplayStack().copy());
+        SpawnItemHelper.addToPlayerInventory(player, getDisplayStack().copy());
         return false;
     }
 

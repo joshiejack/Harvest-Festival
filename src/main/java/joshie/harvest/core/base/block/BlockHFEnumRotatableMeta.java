@@ -1,7 +1,7 @@
 package joshie.harvest.core.base.block;
 
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.helpers.generic.DirectionHelper;
+import joshie.harvest.core.helpers.EntityHelper;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
@@ -69,7 +69,7 @@ public abstract class BlockHFEnumRotatableMeta<B extends BlockHFEnumRotatableMet
 
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-        EnumFacing facing = DirectionHelper.getFacingFromEntity(placer);
+        EnumFacing facing = EntityHelper.getFacingFromEntity(placer);
         world.setBlockState(pos, state.withProperty(FACING, facing));
     }
 

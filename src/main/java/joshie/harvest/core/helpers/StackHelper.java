@@ -1,6 +1,5 @@
-package joshie.harvest.core.helpers.generic;
+package joshie.harvest.core.helpers;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
@@ -44,20 +43,6 @@ public class StackHelper {
     public static ItemStack getStackFromString(String str) {
         if (str == null || str.equals("")) return null;
         return getStackFromArray(str.trim().split(" "));
-    }
-
-    public static String getStringFromObject(Object object) {
-        if (object instanceof Item) {
-            return getStringFromStack(new ItemStack((Item) object));
-        } else if (object instanceof Block) {
-            return getStringFromStack(new ItemStack((Block) object));
-        } else if (object instanceof ItemStack) {
-            return getStringFromStack((ItemStack) object);
-        } else if (object instanceof String) {
-            return (String) object;
-        } else if (object instanceof List) {
-            return getStringFromStack((ItemStack) ((List) object).get(0));
-        } else return "";
     }
 
     public static String getStringFromStack(ItemStack stack) {

@@ -9,7 +9,7 @@ import joshie.harvest.buildings.render.BuildingKey;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemHFFML;
 import joshie.harvest.town.TownHelper;
-import joshie.harvest.core.helpers.generic.BuildingHelper;
+import joshie.harvest.buildings.BuildingHelper;
 import joshie.harvest.core.util.Text;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

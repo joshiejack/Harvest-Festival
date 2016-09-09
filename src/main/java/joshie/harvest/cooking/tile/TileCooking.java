@@ -4,9 +4,9 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.IAltItem;
 import joshie.harvest.api.cooking.Utensil;
 import joshie.harvest.core.base.tile.TileFaceable;
-import joshie.harvest.core.helpers.generic.ItemHelper;
-import joshie.harvest.core.helpers.generic.MCServerHelper;
-import joshie.harvest.core.helpers.generic.StackHelper;
+import joshie.harvest.core.helpers.SpawnItemHelper;
+import joshie.harvest.core.helpers.MCServerHelper;
+import joshie.harvest.core.helpers.StackHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -68,13 +68,13 @@ public abstract class TileCooking extends TileFaceable {
 
     //reset everything ready for the next cooking batch
     public void giveToPlayer(EntityPlayer player) {
-        ItemHelper.addToPlayerInventory(player, getResult());
+        SpawnItemHelper.addToPlayerInventory(player, getResult());
         result = null; //Clear out the result
     }
 
     public void takeBackLastStack(EntityPlayer player) {
         if (ingredients.size() > 0) {
-            ItemHelper.addToPlayerInventory(player, ingredients.get(ingredients.size() - 1));
+            SpawnItemHelper.addToPlayerInventory(player, ingredients.get(ingredients.size() - 1));
             ingredients.remove(ingredients.size() - 1); //Remove the last stack
             if (worldObj.isRemote) return;
             this.last = this.ingredients.size();

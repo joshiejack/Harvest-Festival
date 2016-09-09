@@ -27,7 +27,6 @@ public class InventoryHelper {
     public static final Matcher<String> ORE_DICTIONARY = new Matcher<String>() {
         @Override
         public boolean matches(ItemStack stack, String string) {
-            if (stack == null) return false;
             return InventoryHelper.isOreName(stack, string);
         }
     };
@@ -35,7 +34,6 @@ public class InventoryHelper {
     public static final Matcher<ItemStack> ITEM_STACK = new Matcher<ItemStack>() {
         @Override
         public boolean matches(ItemStack stack, ItemStack stack2) {
-            if (stack == null) return false;
             return stack.isItemEqual(stack2);
         }
     };
@@ -43,7 +41,6 @@ public class InventoryHelper {
     public static final Matcher<SearchType> SPECIAL = new Matcher<SearchType>() {
         @Override
         public boolean matches(ItemStack stack, SearchType type) {
-            if (stack == null) return false;
             if (type.equals(FLOWER)) {
                 return stack.getItem() == Item.getItemFromBlock(Blocks.RED_FLOWER) || stack.getItem() == Item.getItemFromBlock(Blocks.YELLOW_FLOWER) || HFCore.FLOWERS.getStackFromEnum(FlowerType.GODDESS).isItemEqual(stack);
             } else if (type.equals(HOE)) {
@@ -56,7 +53,7 @@ public class InventoryHelper {
         }
     };
 
-    public static <T> void takeItems(EntityPlayer player, T taking, int amount, Matcher<T> matcher) {
+    private static <T> void takeItems(EntityPlayer player, T taking, int amount, Matcher<T> matcher) {
         int toTake = amount;
         for (int i = 0; i < player.inventory.mainInventory.length && toTake > 0; i++) {
             ItemStack stack = player.inventory.mainInventory[i];
@@ -67,18 +64,6 @@ public class InventoryHelper {
                 if (toTake <= 0) return; //No further processing neccessary
             }
         }
-    }
-
-    public static void takeItems(EntityPlayer player, ItemStack taking) {
-        takeItems(player, taking, taking.stackSize, ITEM_STACK);
-    }
-
-    public static void takeItems(EntityPlayer player, String ore, int amount) {
-        takeItems(player, ore, amount, ORE_DICTIONARY);
-    }
-
-    public static void takeItems(EntityPlayer player, SearchType search, int amount) {
-        takeItems(player, search, amount, SPECIAL);
     }
 
     @SuppressWarnings("unchecked")
@@ -132,14 +117,6 @@ public class InventoryHelper {
         return count;
     }
 
-    public static int getCount(EntityPlayer player, ItemStack stack) {
-        return getCount(player, stack, ITEM_STACK);
-    }
-    
-    public static int getCount(EntityPlayer player, String ore) {
-        return getCount(player, ore, ORE_DICTIONARY);
-    }
-    
     public static boolean isOreName(ItemStack stack, String ore) {
         int[] ids = OreDictionary.getOreIDs(stack);
         for (int i: ids) {

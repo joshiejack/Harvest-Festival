@@ -1,7 +1,7 @@
 package joshie.harvest.npc.render;
 
 import joshie.harvest.api.npc.INPCRegistry;
-import joshie.harvest.core.helpers.generic.MCClientHelper;
+import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.render.FakeEntityRenderer.EntityItemRenderer;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.NPCRegistry;

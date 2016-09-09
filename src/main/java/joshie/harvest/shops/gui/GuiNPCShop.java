@@ -3,7 +3,7 @@ package joshie.harvest.shops.gui;
 import joshie.harvest.api.shops.IPurchaseable;
 import joshie.harvest.api.shops.IShopGuiOverlay;
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.helpers.generic.StackHelper;
+import joshie.harvest.core.helpers.StackHelper;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.util.ShopFontRenderer;
@@ -162,7 +162,7 @@ public class GuiNPCShop extends GuiNPCBase {
                 if (stats.getGold() - purchaseable.getCost() >= 0) {
                     if (mouseY >= posY + 20 && mouseY <= posY + 52 && mouseX >= posX && mouseX <= posX + 32) {
                         for (int j = 0; j < (GuiScreen.isShiftKeyDown() ? 64: 1); j++) {
-                            PacketHandler.sendToServer(new PacketPurchaseItem(shop.unlocalizedName, purchaseable));
+                            PacketHandler.sendToServer(new PacketPurchaseItem(shop.resourceLocation, purchaseable));
                         }
                     }
                 }

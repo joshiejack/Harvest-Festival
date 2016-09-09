@@ -1,9 +1,8 @@
-package joshie.harvest.core.helpers.generic;
+package joshie.harvest.core.helpers;
 
 import joshie.harvest.core.util.holder.AbstractDataHolder;
 
 import java.util.Collection;
-import java.util.Map;
 
 public class CollectionHelper {
     public static <T extends AbstractDataHolder> T mergeCollection(T t, Collection<T> collection) {
@@ -19,16 +18,6 @@ public class CollectionHelper {
             }
 
             return null;
-        }
-    }
-
-    @SuppressWarnings("unchecked")
-    public static <K, V extends AbstractDataHolder> void mergeMap(K key, V value, Map<K, V> map) {
-        V existing = map.get(key);
-        if (existing == null) {
-            map.put(key, value);
-        } else {
-            existing.merge(value);
         }
     }
 }

@@ -1,7 +1,7 @@
 package joshie.harvest.player;
 
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.helpers.UUIDHelper;
+import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.util.HFEvents;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.CompressedStreamTools;
@@ -27,8 +27,8 @@ public class PlayerLoader {
     @SubscribeEvent
     public void onPlayerLoad(PlayerEvent.LoadFromFile event) {
         PlayerTrackerServer data = new PlayerTrackerServer((EntityPlayerMP)event.getEntityPlayer());
-        File file = new File(getFolder(event.getPlayerDirectory()), UUIDHelper.getPlayerUUID(event.getEntityPlayer()) + ".dat");
-        if (!file.exists()) file = new File(getFolder(event.getPlayerDirectory()), UUIDHelper.getLastKnownUUID(event.getEntityPlayer()) + ".dat");
+        File file = new File(getFolder(event.getPlayerDirectory()), EntityHelper.getPlayerUUID(event.getEntityPlayer()) + ".dat");
+        if (!file.exists()) file = new File(getFolder(event.getPlayerDirectory()), EntityHelper.getLastKnownUUID(event.getEntityPlayer()) + ".dat");
         if (file.exists()) {
             try {
                 FileInputStream fileinputstream = new FileInputStream(file);
@@ -46,7 +46,7 @@ public class PlayerLoader {
     public void onPlayerSave(PlayerEvent.SaveToFile event) {
         try {
             PlayerTrackerServer data = HFTrackers.getPlayerTrackerFromPlayer(event.getEntityPlayer());
-            File file = new File(getFolder(event.getPlayerDirectory()), UUIDHelper.getPlayerUUID(event.getEntityPlayer()) + ".dat");
+            File file = new File(getFolder(event.getPlayerDirectory()), EntityHelper.getPlayerUUID(event.getEntityPlayer()) + ".dat");
             NBTTagCompound tag = data.writeToNBT(new NBTTagCompound());
             FileOutputStream fileoutputstream = new FileOutputStream(file);
             CompressedStreamTools.writeCompressed(tag, fileoutputstream);

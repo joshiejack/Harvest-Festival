@@ -1,7 +1,6 @@
 package joshie.harvest.player;
 
-import joshie.harvest.core.helpers.UUIDHelper;
-import joshie.harvest.core.helpers.generic.EntityHelper;
+import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.player.quests.QuestDataServer;
 import joshie.harvest.player.relationships.RelationshipDataServer;
 import joshie.harvest.player.stats.StatsServer;
@@ -23,7 +22,7 @@ public class PlayerTrackerServer extends PlayerTracker {
 
     public PlayerTrackerServer(EntityPlayerMP player) {
         this.player = player;
-        uuid = UUIDHelper.getPlayerUUID(player);
+        uuid = EntityHelper.getPlayerUUID(player);
         quests = new QuestDataServer(this);
         relationships = new RelationshipDataServer();
         stats = new StatsServer();

@@ -10,6 +10,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IForgeRegistry;
 
+import static joshie.harvest.core.helpers.InventoryHelper.ORE_DICTIONARY;
+
 public class PurchaseableBuilder extends PurchaseableFML<BuildingImpl> {
     private String resource;
     private ItemStack stack;
@@ -38,10 +40,8 @@ public class PurchaseableBuilder extends PurchaseableFML<BuildingImpl> {
 
     @Override
     public boolean canBuy(World world, EntityPlayer player) {
-        int wood = InventoryHelper.getCount(player, "logWood");
-        if (wood < getLogCost()) return false;
-        int stone = InventoryHelper.getCount(player, "stone");
-        if (stone < getStoneCost()) return false;
+        if (!InventoryHelper.hasInInventory(player, ORE_DICTIONARY, "logWood", getLogCost())) return false;
+        if (!InventoryHelper.hasInInventory(player, ORE_DICTIONARY, "stone", getLogCost())) return false;
         return isPurchaseable(world, player);
     }
 
@@ -57,26 +57,8 @@ public class PurchaseableBuilder extends PurchaseableFML<BuildingImpl> {
 
     @Override
     public boolean onPurchased(EntityPlayer player) {
-        int logs = 0;
-        int stone = 0;
-
-        for (int i = 0; i < player.inventory.mainInventory.length && (logs < getLogCost() || stone < getStoneCost()); i++) {
-            ItemStack stack = player.inventory.mainInventory[i];
-            if (stack != null) {
-                if (InventoryHelper.isOreName(stack, "logWood")) {
-                    for (int j = 0; j < 64 && (logs < getLogCost()) && stack.stackSize > 0; j++) {
-                        player.inventory.decrStackSize(i, 1);
-                        logs++;
-                    }
-                } else if (InventoryHelper.isOreName(stack, "stone")) {
-                    for (int j = 0; j < 64 && (stone < getStoneCost()) && stack.stackSize > 0; j++) {
-                        player.inventory.decrStackSize(i, 1);
-                        stone++;
-                    }
-                }
-            }
-        }
-
+        InventoryHelper.takeItemsInInventory(player, ORE_DICTIONARY, "logWood", getLogCost());
+        InventoryHelper.takeItemsInInventory(player, ORE_DICTIONARY, "stone", getStoneCost());
         return super.onPurchased(player);
     }
 

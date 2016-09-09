@@ -6,7 +6,7 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.helpers.generic.MCClientHelper;
+import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.lib.HFSounds;
 import joshie.harvest.tools.HFTools;
 import net.minecraft.entity.EntityLiving;
@@ -20,7 +20,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import static joshie.harvest.api.core.ITiered.ToolTier.CURSED;
-import static joshie.harvest.core.helpers.generic.ItemHelper.spawnXP;
+import static joshie.harvest.core.helpers.SpawnItemHelper.spawnXP;
 import static joshie.harvest.npc.HFNPCs.PRIEST;
 
 

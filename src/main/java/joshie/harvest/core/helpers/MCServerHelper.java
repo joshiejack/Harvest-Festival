@@ -1,4 +1,4 @@
-package joshie.harvest.core.helpers.generic;
+package joshie.harvest.core.helpers;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;

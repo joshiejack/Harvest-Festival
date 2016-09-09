@@ -2,13 +2,13 @@ package joshie.harvest.calendar;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.SeasonProvider;
-import joshie.harvest.core.helpers.generic.ConfigHelper;
+import joshie.harvest.core.helpers.ConfigHelper;
 import joshie.harvest.core.util.HFLoader;
 import net.minecraft.world.DimensionType;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.config.Configuration;
 
-import static joshie.harvest.core.helpers.generic.ConfigHelper.*;
+import static joshie.harvest.core.helpers.ConfigHelper.*;
 import static joshie.harvest.core.lib.LoadOrder.HFCALENDAR;
 
 @HFLoader(priority = HFCALENDAR)

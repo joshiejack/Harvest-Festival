@@ -1,7 +1,7 @@
 package joshie.harvest.buildings.loader;
 
 import com.google.gson.*;
-import joshie.harvest.core.helpers.generic.StackHelper;
+import joshie.harvest.core.helpers.StackHelper;
 import net.minecraft.item.ItemStack;
 
 import java.lang.reflect.Type;

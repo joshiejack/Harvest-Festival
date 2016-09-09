@@ -1,4 +1,4 @@
-package joshie.harvest.core.helpers.generic;
+package joshie.harvest.core.helpers;
 
 import net.minecraftforge.common.config.Configuration;
 

@@ -20,8 +20,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import static joshie.harvest.cooking.item.ItemUtensil.Utensil.BLADE;
 import static joshie.harvest.cooking.item.ItemUtensil.Utensil.KNIFE;
 import static joshie.harvest.cooking.tile.TileMixer.BLADE_STACK;
-import static joshie.harvest.core.helpers.generic.RegistryHelper.registerSounds;
-import static joshie.harvest.core.helpers.generic.RegistryHelper.registerTiles;
+import static joshie.harvest.core.helpers.RegistryHelper.registerSounds;
+import static joshie.harvest.core.helpers.RegistryHelper.registerTiles;
 import static joshie.harvest.core.lib.LoadOrder.HFCOOKING;
 
 @HFLoader(priority = HFCOOKING)

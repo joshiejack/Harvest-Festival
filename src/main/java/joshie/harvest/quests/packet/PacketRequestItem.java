@@ -3,7 +3,7 @@ package joshie.harvest.quests.packet;
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.helpers.generic.ItemHelper;
+import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.core.network.Packet;
 import joshie.harvest.core.network.PenguinPacket;
 import net.minecraft.entity.player.EntityPlayer;
@@ -38,7 +38,7 @@ public class PacketRequestItem extends PenguinPacket {
     public void handlePacket(EntityPlayer player) {
         Quest real = HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().getAQuest(quest);
         if (real.canReward(stack)) {
-            ItemHelper.addToPlayerInventory(player, stack);
+            SpawnItemHelper.addToPlayerInventory(player, stack);
         }
     }
 }

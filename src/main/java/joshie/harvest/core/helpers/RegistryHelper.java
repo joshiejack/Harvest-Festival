@@ -1,4 +1,4 @@
-package joshie.harvest.core.helpers.generic;
+package joshie.harvest.core.helpers;
 
 import joshie.harvest.core.HFClientProxy;
 import joshie.harvest.core.render.FakeEntityRenderer;

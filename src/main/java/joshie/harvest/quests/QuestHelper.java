@@ -5,7 +5,7 @@ import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.Quest.EventType;
 import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.helpers.generic.ItemHelper;
+import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.core.util.HFApiImplementation;
 import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.quests.packet.PacketQuestCompleteEarly;
@@ -61,7 +61,7 @@ public class QuestHelper implements IQuestHelper {
 
     @Override
     public void rewardItem(Quest quest, EntityPlayer player, ItemStack stack) {
-        ItemHelper.addToPlayerInventory(player, stack);
+        SpawnItemHelper.addToPlayerInventory(player, stack);
     }
 
     @Override

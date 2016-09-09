@@ -46,8 +46,8 @@ import static joshie.harvest.cooking.HFCooking.*;
 import static joshie.harvest.cooking.block.BlockCookware.Cookware.*;
 import static joshie.harvest.cooking.item.ItemIngredients.Ingredient.*;
 import static joshie.harvest.cooking.item.ItemUtensil.Utensil.KNIFE;
-import static joshie.harvest.core.helpers.generic.ConfigHelper.getString;
-import static joshie.harvest.core.helpers.generic.ConfigHelper.setCategory;
+import static joshie.harvest.core.helpers.ConfigHelper.getString;
+import static joshie.harvest.core.helpers.ConfigHelper.setCategory;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.npc.item.ItemNPCTool.NPCTool.BLUE_FEATHER;
 

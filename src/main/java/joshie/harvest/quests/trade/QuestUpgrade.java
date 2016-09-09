@@ -10,7 +10,7 @@ import joshie.harvest.core.base.item.ItemTool;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.helpers.InventoryHelper;
-import joshie.harvest.core.helpers.generic.MCClientHelper;
+import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.mining.HFMining;
 import joshie.harvest.mining.item.ItemMaterial.Material;
 import net.minecraft.entity.EntityLiving;
@@ -25,7 +25,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
-import static joshie.harvest.core.helpers.generic.ItemHelper.spawnXP;
+import static joshie.harvest.core.helpers.SpawnItemHelper.spawnXP;
 import static joshie.harvest.npc.HFNPCs.TOOL_OWNER;
 
 
@@ -171,7 +171,7 @@ public class QuestUpgrade extends QuestTrade {
                 if (!InventoryHelper.hasInInventory(player, ITEM_STACK, material, getRequired(holding))) return;
                 increaseStage(player);
                 //Update the internals
-                InventoryHelper.takeItems(player, new ItemStack(HFMining.MATERIALS, getRequired(holding), getMaterial(holding)));
+                InventoryHelper.takeItemsInInventory(player, ITEM_STACK, new ItemStack(HFMining.MATERIALS, 1, getMaterial(holding)), getRequired(holding));
                 date = HFApi.calendar.getDate(player.worldObj).copy();
                 ItemStack stack = player.getHeldItemMainhand().copy();
                 tool = new ItemStack(stack.getItem(), 1, stack.getItemDamage() + 1);

@@ -11,8 +11,7 @@ import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.animals.IAnimalType;
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.helpers.UUIDHelper;
-import joshie.harvest.core.helpers.generic.EntityHelper;
+import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.player.PlayerTrackerServer;
 import net.minecraft.entity.EntityAgeable;
@@ -388,10 +387,11 @@ public class AnimalData implements IAnimalData {
         buf.writeByte(productsPerDay);
         buf.writeByte(producedProducts);
         //Leashed
-        buf.writeBoolean(getAnimal().getLeashed() || getAnimal().isRiding());
+        boolean sendUpdate = getAnimal().getLeashedToEntity() instanceof EntityPlayer || getAnimal().getRidingEntity() instanceof EntityPlayer;
+        buf.writeBoolean(sendUpdate);
         if (getAnimal().getLeashed() || getAnimal().isRiding()) {
-            String uuidString = getAnimal().getLeashed() ? UUIDHelper.getPlayerUUID((EntityPlayer) getAnimal().getLeashedToEntity()).toString() :
-                    UUIDHelper.getPlayerUUID((EntityPlayer) getAnimal().getRidingEntity()).toString();
+            String uuidString = getAnimal().getLeashed() ? EntityHelper.getPlayerUUID((EntityPlayer) getAnimal().getLeashedToEntity()).toString() :
+                    EntityHelper.getPlayerUUID((EntityPlayer) getAnimal().getRidingEntity()).toString();
             ByteBufUtils.writeUTF8String(buf, uuidString);
             buf.writeBoolean(getAnimal().getLeashed());
         }

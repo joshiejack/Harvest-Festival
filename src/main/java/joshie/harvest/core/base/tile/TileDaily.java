@@ -2,7 +2,7 @@ package joshie.harvest.core.base.tile;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.ticking.IDailyTickable;
-import joshie.harvest.core.helpers.generic.MCServerHelper;
+import joshie.harvest.core.helpers.MCServerHelper;
 
 public abstract class TileDaily extends TileHarvest implements IDailyTickable {
     @Override

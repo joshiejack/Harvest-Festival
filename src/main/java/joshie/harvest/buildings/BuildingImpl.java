@@ -8,7 +8,7 @@ import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvest.buildings.placeable.blocks.PlaceableDecorative;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.town.TownHelper;
-import joshie.harvest.core.helpers.generic.MCServerHelper;
+import joshie.harvest.core.helpers.MCServerHelper;
 import joshie.harvest.core.util.Direction;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.EntityPlayer;

@@ -87,7 +87,7 @@ public class AnimalData implements IAnimalData {
         }
 
         //Gets the adjusted relationship, 0-65k
-        int relationship = HFApi.relationships.getRelationship(owner, tracked);
+        int relationship = HFApi.relationships.getRelationship(owner, getUUID());
         double chance = (relationship / (double) HFNPCs.MAX_FRIENDSHIP) * 200;
         chance += healthiness;
         if (chance <= 1) {
@@ -216,6 +216,10 @@ public class AnimalData implements IAnimalData {
         return daysNotFed >= 0;
     }
 
+    public UUID getUUID() {
+        return EntityHelper.getEntityUUID(getAnimal());
+    }
+
     public EntityAnimal getAnimal() {
         return animal;
     }
@@ -287,7 +291,7 @@ public class AnimalData implements IAnimalData {
 
     private void affectRelationship(EntityPlayer player, int amount) {
         if (player != null) {
-            HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().affectRelationship(player, tracked, amount);
+            HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().affectRelationship(player, getUUID(), amount);
         }
     }
 
@@ -363,8 +367,8 @@ public class AnimalData implements IAnimalData {
             baby.setGrowingAge(-(24000 * HFAnimals.AGING_TIMER));
             baby.setLocationAndAngles(animal.posX, animal.posY, animal.posZ, 0.0F, 0.0F);
             ((IAnimalTracked)baby).getData().setOwner(o_uuid);
-            int parent = HFTrackers.<PlayerTrackerServer>getPlayerTracker(animal.worldObj, o_uuid).getRelationships().getRelationship(tracked);
-            HFTrackers.getPlayerTracker(animal.worldObj, o_uuid).getRelationships().copyRelationship(getOwner(), parent, ((IAnimalTracked)baby), 50D);
+            int parent = HFTrackers.<PlayerTrackerServer>getPlayerTracker(animal.worldObj, o_uuid).getRelationships().getRelationship(getUUID());
+            HFTrackers.getPlayerTracker(animal.worldObj, o_uuid).getRelationships().copyRelationship(getOwner(), parent, ((IAnimalTracked)baby).getUUID(), 50D);
         }
     }
 

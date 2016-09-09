@@ -207,12 +207,6 @@ public abstract class Quest extends Impl<Quest> {
     public void onEntityInteract(EntityPlayer player, @Nullable ItemStack held, EnumHand hand, Entity target) {}
     public void onRightClickBlock(EntityPlayer player, BlockPos pos, EnumFacing face) {}
 
-    public static class EventType {
-        public static final EventType ENTITY_INTERACT = new EventType();
-        public static final EventType CLOSED_CHAT = new EventType();
-        public static final EventType RIGHT_CLICK_BLOCK = new EventType();
-    }
-
     /** Used for selection menus **/
     public static abstract class Selection<Q extends Quest> {
         private String[] lines;

@@ -2,7 +2,6 @@ package joshie.harvest.quests;
 
 import joshie.harvest.api.quests.IQuestHelper;
 import joshie.harvest.api.quests.Quest;
-import joshie.harvest.api.quests.Quest.EventType;
 import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.SpawnItemHelper;
@@ -89,9 +88,9 @@ public class QuestHelper implements IQuestHelper {
     }
 
     @Override
-    public Set<Quest> getCurrentQuests(EntityPlayer player, EventType events) {
+    public Set<Quest> getCurrentQuests(EntityPlayer player) {
         if (isFakePlayer(player)) return EMPTY;
-        return new HashSet<>(HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().getHandled(events));
+        return new HashSet<>(HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().getCurrent());
     }
 
     public static void markAvailable(EntityPlayer player, Quest quest) {

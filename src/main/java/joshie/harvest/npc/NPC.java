@@ -1,6 +1,5 @@
 package joshie.harvest.npc;
 
-import joshie.harvest.api.HFApi;
 import joshie.harvest.api.buildings.Building;
 import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.calendar.CalendarDate;
@@ -10,7 +9,6 @@ import joshie.harvest.api.npc.INPCRegistry.Age;
 import joshie.harvest.api.npc.INPCRegistry.Gender;
 import joshie.harvest.api.npc.gift.IGiftHandler;
 import joshie.harvest.api.npc.gift.IGiftHandler.Quality;
-import joshie.harvest.api.relations.IRelatableDataHandler;
 import joshie.harvest.api.shops.IShop;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.core.util.Text;
@@ -34,6 +32,7 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
     private String generalLocalizationKey;
     private String localizationKey;
     private ResourceLocation skin;
+    private UUID uuid;
 
     private Age age;
     private Gender gender;
@@ -69,16 +68,12 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
         this.skin = new ResourceLocation(MODID, "textures/entity/" + name + ".png");
         this.npcGreetings = new GreetingMultiple(name + ".greeting");
         this.locations = new EnumMap<>(Location.class);
+        this.uuid = UUID.nameUUIDFromBytes(resource.toString().getBytes());
         this.setRegistryName(resource);
         this.setupGifts();
         this.setupSchedules();
         NPCRegistry.REGISTRY.register(this);
         MinecraftForge.EVENT_BUS.post(new NPCBuildEvent(this, this.conditionals));
-    }
-
-    @Override //IRelatable
-    public IRelatableDataHandler getDataHandler() {
-        return HFApi.relationships.getDataHandler("npc");
     }
 
     @Override
@@ -170,6 +165,10 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
     @Override
     public boolean isMarriageCandidate() {
         return age == ADULT;
+    }
+
+    public UUID getUUID() {
+        return uuid;
     }
 
     public float getHeight() {

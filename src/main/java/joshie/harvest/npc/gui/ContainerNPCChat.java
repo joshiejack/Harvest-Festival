@@ -3,6 +3,7 @@ package joshie.harvest.npc.gui;
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.quests.Quest;
+import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.util.ContainerBase;
 import joshie.harvest.npc.entity.EntityNPC;
@@ -11,7 +12,6 @@ import net.minecraft.util.EnumHand;
 
 import java.util.Set;
 
-import static joshie.harvest.api.quests.Quest.EventType.CLOSED_CHAT;
 import static joshie.harvest.core.handlers.GuiHandler.NPC;
 import static joshie.harvest.core.handlers.GuiHandler.SHOP_OPTIONS;
 
@@ -29,7 +29,7 @@ public class ContainerNPCChat extends ContainerBase {
         //Call on opened
         Quest selection = HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().getSelection(player, npc);
         if (selection == null && nextGui == -1) {
-            Set<Quest> quests = HFApi.quests.getCurrentQuests(player, CLOSED_CHAT);
+            Set<Quest> quests = HFApi.quests.getCurrentQuests(player);
             for (Quest quest : quests) {
                 quest.onChatOpened(player, npc, npc.getNPC());
             }
@@ -39,16 +39,18 @@ public class ContainerNPCChat extends ContainerBase {
     @Override
     public void onContainerClosed(EntityPlayer player) {
         if (!player.worldObj.isRemote) {
-            HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().talkTo(player, npc.getRelatable());
+            HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().talkTo(player, npc.getNPC().getUUID());
         }
 
        if (open && nextGui >= -1) {
             open = false; //To cancel out infinite loop
 
             Quest selection = HFTrackers.getPlayerTrackerFromPlayer(player).getQuests().getSelection(player, npc);
+            if (!HFApi.quests.getCurrentQuests(player).contains(selection)) selection = null;
+            if (selection instanceof QuestQuestion && ((QuestQuestion)selection).isCompletedEarly) selection = null;
             if (selection == null && nextGui == -1) {
                 npc.setTalking(null);
-                Set<Quest> quests = HFApi.quests.getCurrentQuests(player, CLOSED_CHAT);
+                Set<Quest> quests = HFApi.quests.getCurrentQuests(player);
                 for (Quest quest : quests) {
                     quest.onChatClosed(player, npc, npc.getNPC());
                 }

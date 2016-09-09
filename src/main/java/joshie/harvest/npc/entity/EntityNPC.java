@@ -3,8 +3,6 @@ package joshie.harvest.npc.entity;
 import io.netty.buffer.ByteBuf;
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.npc.INPCRegistry;
-import joshie.harvest.api.relations.IRelatable;
-import joshie.harvest.api.relations.IRelatableProvider;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.NPCHelper;
@@ -30,7 +28,7 @@ import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 
 import static joshie.harvest.core.handlers.GuiHandler.GIFT;
 
-public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEntityAdditionalSpawnData, IRelatableProvider {
+public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEntityAdditionalSpawnData {
     protected NPC npc;
     protected EntityNPC lover;
     protected EntityPlayer talkingTo;
@@ -59,11 +57,6 @@ public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable imple
     }
 
     protected abstract E getNewEntity(E entity);
-
-    @Override
-    public IRelatable getRelatable() {
-        return npc;
-    }
 
     @Override
     protected void initEntityAI() {

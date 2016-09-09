@@ -47,7 +47,7 @@ public class BlockGoddessWater extends BlockFluidClassic {
                 if (!GoddessHandler.spawnGoddess(world, entity, false, false)) {
                     if (item.getThrower() != null) {
                         EntityPlayer player = world.getPlayerEntityByName(item.getThrower());
-                        HFApi.relationships.adjustRelationship(player, HFNPCs.GODDESS, HFNPCs.GODDESS.getGiftValue(stack).getRelationPoints());
+                        HFApi.relationships.adjustRelationship(player, HFNPCs.GODDESS.getUUID(), HFNPCs.GODDESS.getGiftValue(stack).getRelationPoints());
                     }
 
                     entity.setDead();

@@ -55,7 +55,7 @@ public class TileIncubator extends TileFillableSizedFaceable {
                     baby.setGrowingAge(-(24000 * HFAnimals.AGING_TIMER));
                     if (owner != null) {
                         baby.getData().setOwner(owner);
-                        HFTrackers.getPlayerTracker(worldObj, owner).getRelationships().copyRelationship(EntityHelper.getPlayerFromUUID(owner), relationship, baby, 50D);
+                        HFTrackers.getPlayerTracker(worldObj, owner).getRelationships().copyRelationship(EntityHelper.getPlayerFromUUID(owner), relationship, EntityHelper.getEntityUUID(baby), 50D);
                     }
 
                     worldObj.spawnEntityInWorld(baby);

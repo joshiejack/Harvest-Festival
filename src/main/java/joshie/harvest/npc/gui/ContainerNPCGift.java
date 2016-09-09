@@ -2,8 +2,8 @@ package joshie.harvest.npc.gui;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
-import joshie.harvest.api.npc.INPC;
 import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.tools.ToolHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,9 +18,9 @@ public class ContainerNPCGift extends ContainerNPCChat {
     @Override
     public void onContainerClosed(EntityPlayer player) {
         if (!player.worldObj.isRemote) {
-            if (HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().gift(player, npc.getRelatable(), 0)) {
+            if (HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().gift(player, npc.getNPC().getUUID(), 0)) {
                 ItemStack gift = player.getHeldItem(hand);
-                INPC theNpc = npc.getNPC();
+                NPC theNpc = npc.getNPC();
                 int points = theNpc.getGiftValue(gift).getRelationPoints();
                 CalendarDate today = HFApi.calendar.getDate(player.worldObj);
                 if (today.isSameDay(theNpc.getBirthday())) {
@@ -28,10 +28,10 @@ public class ContainerNPCGift extends ContainerNPCChat {
                 }
 
                 if (ToolHelper.isBlueFeather(gift)) {
-                    HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().propose(player, theNpc);
+                    HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().propose(player, theNpc.getUUID());
                 }
 
-                HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().gift(player, theNpc, points);
+                HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().gift(player, theNpc.getUUID(), points);
                 player.inventory.decrStackSize(player.inventory.currentItem, 1);
             }
         }

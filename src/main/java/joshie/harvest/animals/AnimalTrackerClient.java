@@ -9,6 +9,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class AnimalTrackerClient extends AnimalTracker {
     @Override
     public void onDeath(IAnimalTracked animal) {
-        HFTrackers.getClientPlayerTracker().getRelationships().clear(animal);
+        HFTrackers.getClientPlayerTracker().getRelationships().clear(animal.getUUID());
     }
 }

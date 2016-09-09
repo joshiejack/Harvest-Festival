@@ -34,7 +34,7 @@ public abstract class BlockHFSmashable<B extends BlockHFSmashable, E extends Enu
             EntityPlayer player = harvesters.get();
             if (player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == getTool()) {
                 smashBlock(harvesters.get(), worldIn, pos, state, getTool().getTier(player.getHeldItemMainhand()));
-            }
+            } else super.dropBlockAsItemWithChance(worldIn, pos, state, chance, fortune);
         }
     }
 

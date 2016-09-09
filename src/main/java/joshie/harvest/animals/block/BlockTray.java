@@ -91,7 +91,7 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
                     ItemStack drop = nest.getDrop();
                     int relationship = 0;
                     for (EntityHarvestChicken chicken: world.getEntitiesWithinAABB(EntityHarvestChicken.class, NEST_AABB.expand(32D, 8D, 32D))) {
-                        relationship = HFApi.relationships.getRelationship(player, chicken);
+                        relationship = HFApi.relationships.getRelationship(player, chicken.getUUID());
                         break;
                     }
 
@@ -136,7 +136,7 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
         EntityPlayer player = tracked.getData().getOwner();
         if (player != null && getEnumFromState(state) == NEST_EMPTY && tracked.getData().getType().getName().equals("chicken")) {
             Size size = null;
-            int relationship = HFApi.relationships.getRelationship(player, tracked);
+            int relationship = HFApi.relationships.getRelationship(player, tracked.getUUID());
             for (Size s : Size.values()) {
                 if (relationship >= s.getRelationshipRequirement()) size = s;
             }

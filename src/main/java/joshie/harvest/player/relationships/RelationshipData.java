@@ -1,6 +1,5 @@
 package joshie.harvest.player.relationships;
 
-import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.core.util.Text;
 import joshie.harvest.npc.HFNPCs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -8,44 +7,46 @@ import net.minecraft.entity.player.EntityPlayer;
 import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
 
 public abstract class RelationshipData {
-    public void talkTo(EntityPlayer player, IRelatable relatable) {}
-    public boolean gift(EntityPlayer player, IRelatable relatable, int amount) { return false; }
-    public void affectRelationship(EntityPlayer player, IRelatable relatable, int amount) {}
-    public void copyRelationship(@Nullable EntityPlayer player, int adult, IRelatable baby, double percentage) {}
-    public void setRelationship(IRelatable relatable, int value) {}
-    public void setMarriageState(IRelatable relatable, boolean divorce) {}
+    public void talkTo(EntityPlayer player, UUID key) {}
+    public boolean gift(EntityPlayer player, UUID key, int amount) { return false; }
+    public void affectRelationship(EntityPlayer player, UUID key, int amount) {}
+    public void copyRelationship(@Nullable EntityPlayer player, int adult, UUID baby, double percentage) {}
+    public void setRelationship(UUID key, int value) {}
+    public void setMarriageState(UUID key, boolean divorce) {}
 
-    protected HashMap<IRelatable, Integer> relationships = new HashMap<>();
-    protected HashSet<IRelatable> marriedTo = new HashSet<>();
-    protected HashSet<IRelatable> gifted = new HashSet<>();
+    protected HashMap<UUID, Integer> relationships = new HashMap<>();
+    protected Set<UUID> marriedTo = new HashSet<>();
+    protected Set<UUID> gifted = new HashSet<>();
 
-    public void clear(IRelatable animal) {
-        relationships.remove(animal);
+    public void clear(UUID key) {
+        relationships.remove(key);
     }
 
-    public int getRelationship(IRelatable relatable) {
-        if (relationships.containsKey(relatable)) {
-            return relationships.get(relatable);
+    public int getRelationship(UUID key) {
+        if (relationships.containsKey(key)) {
+            return relationships.get(key);
         }
 
         //If we don't have a relationship yet, return 0
-        relationships.put(relatable, 0);
+        relationships.put(key, 0);
         return 0;
     }
 
     //If we have the npc friendship requirement and we propose then we become married, if
     //We don't they shall hate us!
-    public boolean propose(EntityPlayer player, IRelatable relatable) {
-        if (!marriedTo.contains(relatable)) {
-            int value = getRelationship(relatable);
+    public boolean propose(EntityPlayer player, UUID key) {
+        if (!marriedTo.contains(key)) {
+            int value = getRelationship(key);
             if (value >= HFNPCs.MARRIAGE_REQUIREMENT) {
-                marriedTo.add(relatable);
-                affectRelationship(player, relatable, 1000);
+                marriedTo.add(key);
+                affectRelationship(player, key, 1000);
                 return true;
             } else {
-                affectRelationship(player, relatable, -500);
+                affectRelationship(player, key, -500);
             }
         }
 
@@ -53,8 +54,8 @@ public abstract class RelationshipData {
     }
 
     public boolean isEllegibleToMarry() {
-        for (IRelatable relatable : relationships.keySet()) {
-            int value = getRelationship(relatable);
+        for (UUID key : relationships.keySet()) {
+            int value = getRelationship(key);
             if (value >= HFNPCs.MARRIAGE_REQUIREMENT) {
                 return true;
             }

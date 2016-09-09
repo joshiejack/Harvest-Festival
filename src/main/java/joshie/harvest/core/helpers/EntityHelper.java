@@ -1,7 +1,6 @@
 package joshie.harvest.core.helpers;
 
 import joshie.harvest.core.util.HFTeleporter;
-import joshie.harvest.npc.entity.EntityNPCBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
@@ -29,27 +28,12 @@ import java.util.UUID;
 
 public class EntityHelper {
     //Loops through all the animals in the specified dimension id
-    public static EntityAnimal getAnimalFromUUID(int dimension, UUID uuid) {
-        World world = MCServerHelper.getWorld(dimension);
+    public static <E extends Entity> E getAnimalFromUUID(World world, UUID uuid) {
         for (int i = 0; i < world.loadedEntityList.size(); i++) {
             Entity entity = world.loadedEntityList.get(i);
             if (entity instanceof EntityAnimal) {
                 if (getEntityUUID(entity).equals(uuid)) {
-                    return (EntityAnimal) entity;
-                }
-            }
-        }
-
-        return null;
-    }
-
-    public static EntityNPCBuilder getBuilderFromUUID(int dimension, UUID uuid) {
-        World world = MCServerHelper.getWorld(dimension);
-        for (int i = 0; i < world.loadedEntityList.size(); i++) {
-            Entity entity = world.loadedEntityList.get(i);
-            if (entity instanceof EntityNPCBuilder) {
-                if (getEntityUUID(entity).equals(uuid)) {
-                    return (EntityNPCBuilder) entity;
+                    return (E) entity;
                 }
             }
         }

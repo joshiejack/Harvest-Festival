@@ -71,7 +71,7 @@ public class EntityHarvestSheep extends EntitySheep implements IAnimalTracked {
                 playSound(s, 2F, getSoundPitch());
             }
 
-            HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().talkTo(player, this);
+            HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().talkTo(player, getUUID());
             return true;
         }
 

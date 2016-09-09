@@ -157,6 +157,25 @@ public class NBTHelper {
         return list;
     }
 
+    public static Set<UUID> readUUIDSet(NBTTagCompound nbt, String name) {
+        NBTTagList list = nbt.getTagList(name, 8);
+        Set<UUID> set = new HashSet<>();
+        for (int i = 0; i < list.tagCount(); i++) {
+            set.add(UUID.fromString(list.getStringTagAt(i)));
+        }
+
+        return set;
+    }
+
+    public static NBTTagList writeUUIDSet(Set<UUID> resources) {
+        NBTTagList list = new NBTTagList();
+        for (UUID uuid: resources) {
+            list.appendTag(new NBTTagString(uuid.toString()));
+        }
+
+        return list;
+    }
+
     public static ItemStack readItemStack(NBTTagCompound nbt) {
         Item item = Item.getByNameOrId(nbt.getString("id"));
         if (item == null) return null; //DIE!

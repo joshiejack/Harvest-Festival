@@ -1,6 +1,5 @@
 package joshie.harvest.api.quests;
 
-import joshie.harvest.api.quests.Quest.EventType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
@@ -51,7 +50,6 @@ public interface IQuestHelper {
 
     /** Returns all the quests, that need to be called for this EventType
      *  If there are none, the set will be empty
-     * @param player    the player
-     * @param type      the event type     */
-    Set<Quest> getCurrentQuests(EntityPlayer player, EventType type);
+     * @param player    the player    */
+    Set<Quest> getCurrentQuests(EntityPlayer player);
 }

@@ -1,17 +1,18 @@
 package joshie.harvest.api.npc;
 
-import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.buildings.Building;
+import joshie.harvest.api.buildings.BuildingLocation;
+import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.npc.INPCRegistry.Age;
 import joshie.harvest.api.npc.INPCRegistry.Gender;
 import joshie.harvest.api.npc.gift.IGiftHandler;
 import joshie.harvest.api.npc.gift.IGiftHandler.Quality;
-import joshie.harvest.api.relations.IRelatable;
 import joshie.harvest.api.shops.IShop;
-import joshie.harvest.api.calendar.CalendarDate;
 import net.minecraft.item.ItemStack;
 
-public interface INPC extends IRelatable {
+import java.util.UUID;
+
+public interface INPC {
     /** Assigns a shop to this NPC
      *  @param shop the shop
      *  @return the npc**/
@@ -73,6 +74,9 @@ public interface INPC extends IRelatable {
 
     /** Returns the building location for the passed in type of residence**/
     BuildingLocation getLocation(Location location);
+
+    /** Returns the unique id of this npc **/
+    UUID getUUID();
 
     /** Returns true if this npc can be married **/
     boolean isMarriageCandidate();

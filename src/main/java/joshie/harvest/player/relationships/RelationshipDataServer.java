@@ -1,8 +1,6 @@
 package joshie.harvest.player.relationships;
 
-import joshie.harvest.api.HFApi;
-import joshie.harvest.api.relations.IRelatable;
-import joshie.harvest.api.relations.IRelatableDataHandler;
+import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.player.packet.PacketSyncGifted;
@@ -16,10 +14,12 @@ import net.minecraft.nbt.NBTTagList;
 import javax.annotation.Nullable;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
 
 public class RelationshipDataServer extends RelationshipData {
-    private HashSet<IRelatable> talked = new HashSet<>();
-    private HashSet<IRelatable> temp;
+    private Set<UUID> talked = new HashSet<>();
+    private Set<UUID> temp;
 
     public void newDay() {
         talked = new HashSet<>();
@@ -28,20 +28,20 @@ public class RelationshipDataServer extends RelationshipData {
     }
 
     @Override
-    public void talkTo(EntityPlayer player, IRelatable relatable) {
-        if (!talked.contains(relatable)) {
-            affectRelationship(player, relatable, 100);
-            talked.add(relatable);
+    public void talkTo(EntityPlayer player, UUID key) {
+        if (!talked.contains(key)) {
+            affectRelationship(player, key, 100);
+            talked.add(key);
         }
     }
 
     @Override
-    public boolean gift(EntityPlayer player, IRelatable relatable, int amount) {
-        if (!gifted.contains(relatable)) {
+    public boolean gift(EntityPlayer player, UUID key, int amount) {
+        if (!gifted.contains(key)) {
             if (amount == 0) return true;
-            syncGifted((EntityPlayerMP) player, relatable, true);
-            affectRelationship(player, relatable, amount);
-            gifted.add(relatable);
+            syncGifted((EntityPlayerMP) player, key, true);
+            affectRelationship(player, key, amount);
+            gifted.add(key);
             return true;
         }
 
@@ -49,14 +49,14 @@ public class RelationshipDataServer extends RelationshipData {
     }
 
     @Override
-    public void affectRelationship(EntityPlayer player, IRelatable relatable, int amount) {
-        int newValue = Math.max(0, Math.min(HFNPCs.MARRIAGE_REQUIREMENT, getRelationship(relatable) + amount));
-        relationships.put(relatable, newValue);
-        syncRelationship((EntityPlayerMP) player, relatable, newValue, true);
+    public void affectRelationship(EntityPlayer player, UUID key, int amount) {
+        int newValue = Math.max(0, Math.min(HFNPCs.MARRIAGE_REQUIREMENT, getRelationship(key) + amount));
+        relationships.put(key, newValue);
+        syncRelationship((EntityPlayerMP) player, key, newValue, true);
     }
 
     @Override
-    public void copyRelationship(@Nullable EntityPlayer player,int adult, IRelatable baby, double percentage) {
+    public void copyRelationship(@Nullable EntityPlayer player, int adult, UUID baby, double percentage) {
         int newValue = (int)(adult * (percentage / 100D));
         relationships.put(baby, newValue);
         if (player != null) {
@@ -65,39 +65,39 @@ public class RelationshipDataServer extends RelationshipData {
     }
 
     public void sync(EntityPlayerMP player) {
-        for (IRelatable relatable : marriedTo) {
-            syncMarriage(player, relatable, true);
+        for (UUID key : marriedTo) {
+            syncMarriage(player, key, true);
         }
 
-        for (IRelatable relatable : relationships.keySet()) {
-            syncRelationship(player, relatable, relationships.get(relatable), false);
+        for (UUID key : relationships.keySet()) {
+            syncRelationship(player, key, relationships.get(key), false);
         }
 
         //
         //IF we didn't clone yesterdays, then sync the current, otherwise, destroy yesterdays after syncing
         if (temp == null) {
-            for (IRelatable relatable : gifted) {
-                syncGifted(player, relatable, true);
+            for (UUID key : gifted) {
+                syncGifted(player, key, true);
             }
         } else {
-            for (IRelatable relatable: temp) {
-                syncGifted(player, relatable, false);
+            for (UUID key: temp) {
+                syncGifted(player, key, false);
             }
 
             temp = null;
         }
     }
 
-    public void syncMarriage(EntityPlayerMP player, IRelatable relatable, boolean divorce) {
-        PacketHandler.sendToClient(new PacketSyncMarriage(relatable, divorce), player);
+    public void syncMarriage(EntityPlayerMP player, UUID key, boolean divorce) {
+        PacketHandler.sendToClient(new PacketSyncMarriage(key, divorce), player);
     }
 
-    public void syncRelationship(EntityPlayerMP player, IRelatable relatable, int value, boolean particles) {
-        PacketHandler.sendToClient(new PacketSyncRelationship(relatable, value, particles), player);
+    public void syncRelationship(EntityPlayerMP player, UUID key, int value, boolean particles) {
+        PacketHandler.sendToClient(new PacketSyncRelationship(key, value, particles), player);
     }
 
-    public void syncGifted(EntityPlayerMP player, IRelatable relatable, boolean value) {
-        PacketHandler.sendToClient(new PacketSyncGifted(relatable, value), player);
+    public void syncGifted(EntityPlayerMP player, UUID key, boolean value) {
+        PacketHandler.sendToClient(new PacketSyncGifted(key, value), player);
     }
 
     public void readFromNBT(NBTTagCompound nbt) {
@@ -105,95 +105,33 @@ public class RelationshipDataServer extends RelationshipData {
         NBTTagList relationList = nbt.getTagList("Relationships", 10);
         for (int i = 0; i < relationList.tagCount(); i++) {
             NBTTagCompound tag = relationList.getCompoundTagAt(i);
-            IRelatableDataHandler data = HFApi.relationships.getDataHandler(tag.getString("Handler"));
-            IRelatable relatable = data.readFromNBT(tag);
-            if (relatable != null) {
+            if (tag.hasKey("UUID")) {
+                UUID key = UUID.fromString(tag.getString("UUID"));
                 int value = tag.getInteger("Value");
-                relationships.put(relatable, value);
+                relationships.put(key, value);
             }
         }
 
-        //Reading Talked
-        NBTTagList talkedList = nbt.getTagList("TalkedTo", 10);
-        for (int i = 0; i < talkedList.tagCount(); i++) {
-            NBTTagCompound tag = talkedList.getCompoundTagAt(i);
-            IRelatableDataHandler data = HFApi.relationships.getDataHandler(tag.getString("Handler"));
-            IRelatable relatable = data.readFromNBT(tag);
-            if (relatable != null) talked.add(relatable);
-        }
-
-        //Reading Gifted
-        NBTTagList giftedList = nbt.getTagList("Gifted", 10);
-        for (int i = 0; i < giftedList.tagCount(); i++) {
-            NBTTagCompound tag = giftedList.getCompoundTagAt(i);
-            IRelatableDataHandler data = HFApi.relationships.getDataHandler(tag.getString("Handler"));
-            IRelatable relatable = data.readFromNBT(tag);
-            if (relatable != null) gifted.add(relatable);
-        }
-
-        //Reading Married
-        NBTTagList marriedList = nbt.getTagList("MarriedTo", 10);
-        for (int i = 0; i < marriedList.tagCount(); i++) {
-            NBTTagCompound tag = marriedList.getCompoundTagAt(i);
-            IRelatableDataHandler data = HFApi.relationships.getDataHandler(tag.getString("Handler"));
-            IRelatable relatable = data.readFromNBT(tag);
-            if (relatable != null) marriedTo.add(relatable);
-        }
+        talked = NBTHelper.readUUIDSet(nbt, "TalkedTo");
+        gifted = NBTHelper.readUUIDSet(nbt, "Gifted");
+        marriedTo = NBTHelper.readUUIDSet(nbt, "MarriedTo");
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         //Saving Relationships
         NBTTagList relationList = new NBTTagList();
-        for (Map.Entry<IRelatable, Integer> entry : relationships.entrySet()) {
+        for (Map.Entry<UUID, Integer> entry : relationships.entrySet()) {
             if (entry == null || entry.getKey() == null) continue;
             NBTTagCompound tag = new NBTTagCompound();
-            IRelatableDataHandler data = entry.getKey().getDataHandler();
-            tag.setString("Handler", data.name());
-            data.writeToNBT(entry.getKey(), tag);
+            tag.setString("UUID", entry.getKey().toString());
             tag.setInteger("Value", entry.getValue());
             relationList.appendTag(tag);
         }
 
         nbt.setTag("Relationships", relationList);
-
-        //Saving Talked List
-        NBTTagList talkedList = new NBTTagList();
-        for (IRelatable r : talked) {
-            if (r == null) continue;
-            NBTTagCompound tag = new NBTTagCompound();
-            IRelatableDataHandler data = r.getDataHandler();
-            tag.setString("Handler", data.name());
-            data.writeToNBT(r, tag);
-            talkedList.appendTag(tag);
-        }
-
-        nbt.setTag("TalkedTo", talkedList);
-
-        //Saving Gifted List
-        NBTTagList giftedList = new NBTTagList();
-        for (IRelatable r : gifted) {
-            if (r == null) continue;
-            NBTTagCompound tag = new NBTTagCompound();
-            IRelatableDataHandler data = r.getDataHandler();
-            tag.setString("Handler", data.name());
-            data.writeToNBT(r, tag);
-            giftedList.appendTag(tag);
-        }
-
-        nbt.setTag("Gifted", giftedList);
-
-        //Saving Marriages
-        NBTTagList marriedList = new NBTTagList();
-        for (IRelatable r : marriedTo) {
-            if (r == null) continue;
-            NBTTagCompound tag = new NBTTagCompound();
-            IRelatableDataHandler data = r.getDataHandler();
-            tag.setString("Handler", data.name());
-            data.writeToNBT(r, tag);
-            marriedList.appendTag(tag);
-        }
-
-        nbt.setTag("MarriedTo", marriedList);
+        nbt.setTag("TalkedTo", NBTHelper.writeUUIDSet(talked));
+        nbt.setTag("Gifted", NBTHelper.writeUUIDSet(gifted));
+        nbt.setTag("MarriedTo", NBTHelper.writeUUIDSet(marriedTo));
         return nbt;
     }
 }

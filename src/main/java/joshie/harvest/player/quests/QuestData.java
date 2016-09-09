@@ -2,21 +2,15 @@ package joshie.harvest.player.quests;
 
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.Quest;
-import joshie.harvest.api.quests.Quest.EventType;
 import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
 
 import java.util.HashSet;
-import java.util.Set;
 
 public abstract class QuestData {
     protected HashSet<Quest> current = new HashSet<>(100);
 
     public HashSet<Quest> getCurrent() {
-        return current;
-    }
-
-    public Set<Quest> getHandled(EventType events) {
         return current;
     }
 

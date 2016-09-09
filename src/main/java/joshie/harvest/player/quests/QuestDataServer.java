@@ -50,14 +50,16 @@ public class QuestDataServer extends QuestData {
     //Quests should always REMOVE from the current quests, and add to the finished quests THEMSELVES
     @Override
     public void markCompleted(Quest quest) {
-        Quest q = getAQuest(quest);
-        if (q != null) {
-            finished.add(q);
-            current.remove(q);
-            q.onQuestCompleted(master.getAndCreatePlayer());
-            PacketHandler.sendToClient(new PacketQuestCompleted(q), master.getAndCreatePlayer()); //Let the client claim too
-            sync(master.getAndCreatePlayer());
-        }
+        Quest localQuest = getAQuest(quest);
+        if (localQuest != null) {
+            finished.add(localQuest);
+            current.remove(localQuest);
+            localQuest.onQuestCompleted(master.getAndCreatePlayer());
+        } else quest.onQuestCompleted(master.getAndCreatePlayer());
+
+        //Sync everything
+        PacketHandler.sendToClient(new PacketQuestCompleted(quest), master.getAndCreatePlayer()); //Let the client claim too
+        sync(master.getAndCreatePlayer());
     }
     
     public void sync(EntityPlayerMP player) {

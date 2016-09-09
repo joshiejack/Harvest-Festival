@@ -109,8 +109,12 @@ public class QuestCarpenter extends Quest {
                 }
             }
         } else if (quest_stage == FINISHED && npc == HFNPCs.GODDESS) {
-            rewardGold(player, 1000);
             complete(player);
         }
+    }
+
+    @Override
+    public void onQuestCompleted(EntityPlayer player) {
+        rewardGold(player, 1000);
     }
 }

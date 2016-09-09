@@ -9,14 +9,11 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.util.Set;
 
-import static joshie.harvest.api.quests.Quest.EventType.ENTITY_INTERACT;
-import static joshie.harvest.api.quests.Quest.EventType.RIGHT_CLICK_BLOCK;
-
 @HFEvents
 public class QuestEvents {
     @SubscribeEvent(priority = EventPriority.HIGH)
     public void onEntityInteract(PlayerInteractEvent.EntityInteract event) {
-        Set<Quest> quests = HFApi.quests.getCurrentQuests(event.getEntityPlayer(), ENTITY_INTERACT);
+        Set<Quest> quests = HFApi.quests.getCurrentQuests(event.getEntityPlayer());
         for (Quest quest : quests) {
             quest.onEntityInteract(event.getEntityPlayer(), event.getItemStack(), event.getHand(), event.getTarget());
         }
@@ -24,7 +21,7 @@ public class QuestEvents {
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public void onRightClickGround(PlayerInteractEvent.RightClickBlock event) {
-        Set<Quest> quests = HFApi.quests.getCurrentQuests(event.getEntityPlayer(), RIGHT_CLICK_BLOCK);
+        Set<Quest> quests = HFApi.quests.getCurrentQuests(event.getEntityPlayer());
         for (Quest quest : quests) {
             quest.onRightClickBlock(event.getEntityPlayer(), event.getPos(), event.getFace());
         }

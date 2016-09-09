@@ -4,15 +4,13 @@ import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.util.HFEvents;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.Side;
-
-import java.util.List;
 
 @HFEvents
 public class AnimalEvents {
@@ -32,25 +30,34 @@ public class AnimalEvents {
     }
 
     /* When right clicking chickens, will throw any harvest chickens on your head **/
-    @HFEvents(Side.CLIENT)
+    @HFEvents
     public static class PickupChicken {
         public static boolean register() { return HFAnimals.PICKUP_CHICKENS; }
 
         @SubscribeEvent
+        public void onEntityInteract(PlayerInteractEvent.EntityInteract event) {
+            EntityPlayer player = event.getEntityPlayer();
+            if (!player.isBeingRidden()) {
+                Entity entity = event.getTarget();
+                if (entity instanceof EntityChicken) {
+                    entity.startRiding(player, true);
+                }
+            }
+        }
+
+        @SubscribeEvent
         public void onRightClickGround(PlayerInteractEvent.RightClickBlock event) {
             EntityPlayer player = event.getEntityPlayer();
-            List<Entity> passengers = event.getEntity().getPassengers();
-            for (int i = passengers.size() - 1; i >= 0; --i) {
-                Entity entity = passengers.get(i);
-                if (entity instanceof IAnimalTracked) {
-                    ((IAnimalTracked)entity).getData().dismount(player);
+            for (Entity entity: player.getPassengers()) {
+                if (entity instanceof EntityChicken) {
+                    entity.dismountRidingEntity();
+                    entity.rotationPitch = player.rotationPitch;
+                    entity.rotationYaw = player.rotationYaw;
+                    entity.moveRelative(0F, 0.5F, 1.05F);
+                    if (entity instanceof IAnimalTracked) {
+                        ((IAnimalTracked)entity).getData().dismount(player);
+                    }
                 }
-
-                entity.removePassengers();
-                entity.dismountRidingEntity();
-                entity.rotationPitch = player.rotationPitch;
-                entity.rotationYaw = player.rotationYaw;
-                entity.moveRelative(0F, 0.5F, 1.05F);
             }
         }
     }

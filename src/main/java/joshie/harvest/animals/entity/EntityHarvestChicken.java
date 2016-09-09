@@ -61,7 +61,6 @@ public class EntityHarvestChicken extends EntityChicken implements IAnimalTracke
             return false;
         }
 
-        startRiding(player);
         return true;
     }
 

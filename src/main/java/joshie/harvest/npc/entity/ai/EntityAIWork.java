@@ -13,7 +13,7 @@ public class EntityAIWork extends EntityAIBase {
 
     @Override
     public boolean shouldExecute() {
-        return npc.getNPC().getShop().isOpen(npc.worldObj, null);
+        return npc.getNPC().getShop() != null && npc.getNPC().getShop().isOpen(npc.worldObj, null);
     }
 
     @Override

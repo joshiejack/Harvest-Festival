@@ -19,12 +19,12 @@ import java.util.List;
 import static net.minecraft.util.text.TextFormatting.WHITE;
 
 public class PurchaseableCropSeeds implements IPurchaseable {
-    private ItemStack product;
+    private String resource;
     private Crop crop;
 
     public PurchaseableCropSeeds(Crop crop) {
         this.crop = crop;
-        this.product = crop.getSeedStack(1);
+        this.resource = crop.getRegistryName().toString().replace(":", "_") + "Seeds";
     }
 
     private boolean isCorrectSeason(Season theSeason) {
@@ -58,7 +58,7 @@ public class PurchaseableCropSeeds implements IPurchaseable {
 
     @Override
     public ItemStack getDisplayStack() {
-        return product;
+        return crop.getSeedStack(1);
     }
 
     @SideOnly(Side.CLIENT)
@@ -72,8 +72,12 @@ public class PurchaseableCropSeeds implements IPurchaseable {
 
     @Override
     public boolean onPurchased(EntityPlayer player) {
-        ItemHelper.addToPlayerInventory(player, product.copy());
-
+        ItemHelper.addToPlayerInventory(player, crop.getSeedStack(1).copy());
         return false;
+    }
+
+    @Override
+    public String getPurchaseableID() {
+        return resource;
     }
 }

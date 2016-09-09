@@ -11,10 +11,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import java.util.List;
+import java.util.Locale;
 
 import static net.minecraft.util.text.TextFormatting.WHITE;
 
 public class PurchaseableEntity implements IPurchaseable {
+    private String resource;
     private ItemStack product;
     private Class<? extends Entity> eClass;
     private long cost;
@@ -28,6 +30,7 @@ public class PurchaseableEntity implements IPurchaseable {
         this.eClass = clazz;
         this.cost = cost;
         this.lead = lead;
+        this.resource = clazz.getSimpleName().toLowerCase(Locale.ENGLISH);
     }
 
     @Override
@@ -93,5 +96,10 @@ public class PurchaseableEntity implements IPurchaseable {
         }
 
         return false;
+    }
+
+    @Override
+    public String getPurchaseableID() {
+        return resource;
     }
 }

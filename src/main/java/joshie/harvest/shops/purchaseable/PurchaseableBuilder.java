@@ -11,6 +11,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IForgeRegistry;
 
 public class PurchaseableBuilder extends PurchaseableFML<BuildingImpl> {
+    private String resource;
     private ItemStack stack;
     private final int logs;
     private final int stone;
@@ -19,6 +20,7 @@ public class PurchaseableBuilder extends PurchaseableFML<BuildingImpl> {
         super(cost, name);
         this.logs = logs;
         this.stone = stone;
+        this.resource = name.toString().replace(":", "_");
     }
 
     public PurchaseableBuilder(long cost, int logs, int stone, ItemStack stack) {
@@ -26,6 +28,7 @@ public class PurchaseableBuilder extends PurchaseableFML<BuildingImpl> {
         this.logs = logs;
         this.stone = stone;
         this.stack = stack;
+        this.resource = Purchaseable.stackToString(stack);
     }
 
     @Override
@@ -91,5 +94,10 @@ public class PurchaseableBuilder extends PurchaseableFML<BuildingImpl> {
 
     public String getName() {
         return stack != null ? stack.getDisplayName() : getDisplayStack().getDisplayName();
+    }
+
+    @Override
+    public String getPurchaseableID() {
+        return resource;
     }
 }

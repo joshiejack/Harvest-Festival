@@ -17,14 +17,12 @@ public class PacketPurchaseItem extends PenguinPacket {
     private int purchaseable_id;
 
     public PacketPurchaseItem() {}
-    public PacketPurchaseItem(IPurchaseable purchaseable) {
-        for (int i = 0; i < Shop.allItems.size(); i++) {
-            IPurchaseable purchase = Shop.allItems.get(i);
-            if (purchase.equals(purchaseable)) {
-                purchaseable_id = i;
-                break;
-            }
-        }
+    public PacketPurchaseItem(String unlocalizedName, IPurchaseable purchaseable) {
+        purchaseable_id = Shop.REGISTRY.getValues().indexOf(Shop.REGISTRY.getValue(Shop.getRegistryName(unlocalizedName, purchaseable)));
+    }
+
+    public PacketPurchaseItem(int purchaseable_id) {
+        this.purchaseable_id = purchaseable_id;
     }
 
     @Override
@@ -39,21 +37,21 @@ public class PacketPurchaseItem extends PenguinPacket {
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        IPurchaseable purchaseable = Shop.allItems.get(purchaseable_id);
+        IPurchaseable purchaseable = Shop.REGISTRY.getValues().get(purchaseable_id).getPurchaseable();
         if (!player.worldObj.isRemote) {
             if (purchaseable.canBuy(player.worldObj, player)) {
-                if (purchase((EntityPlayerMP)player, purchaseable, purchaseable.getCost())) {
+                if (purchase((EntityPlayerMP)player, purchaseable_id, purchaseable, purchaseable.getCost())) {
                     player.closeScreen();
                 }
             }
         } else purchaseable.onPurchased(player);
     }
 
-    private boolean purchase(EntityPlayerMP player, IPurchaseable purchaseable, long cost) {
+    private boolean purchase(EntityPlayerMP player, int purchaseable_id, IPurchaseable purchaseable, long cost) {
         StatsServer stats = HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getStats();
         if (stats.getGold() - cost >= 0) {
             stats.addGold(player, -cost);
-            PacketHandler.sendToClient(new PacketPurchaseItem(purchaseable), player); //Send the packet back
+            PacketHandler.sendToClient(new PacketPurchaseItem(purchaseable_id), player); //Send the packet back
             return purchaseable.onPurchased(player);
         }
 

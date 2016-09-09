@@ -28,4 +28,7 @@ public interface IPurchaseable extends ISpecialPurchaseRules {
     /** Display tooltip for this item **/
     @SideOnly(Side.CLIENT)
     void addTooltip(List<String> list);
+
+    /** The purchaseables id **/
+    String getPurchaseableID();
 }

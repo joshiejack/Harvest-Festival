@@ -13,11 +13,24 @@ import java.util.List;
 
 public class Purchaseable implements IPurchaseable {
     protected ItemStack[] stacks;
+    private String resource;
     private long cost;
 
     public Purchaseable(long cost, ItemStack... stacks) {
         this.cost = cost;
         this.stacks = stacks;
+        StringBuilder builder = new StringBuilder();
+        for (ItemStack stack: stacks) {
+            builder.append(stackToString(stack));
+        }
+
+        resource = builder.toString();
+    }
+
+    static String stackToString(ItemStack stack) {
+        String string = stack.getItem().getRegistryName().toString().replace(":", "_") + "_" + stack.getItemDamage();
+        if (stack.getTagCompound() != null) string = string + "_" + stack.getTagCompound().toString();
+        return string;
     }
 
     @Override
@@ -55,5 +68,10 @@ public class Purchaseable implements IPurchaseable {
         for (ItemStack stack : stacks) {
             if (stack != null) list.addAll(stack.getTooltip(MCClientHelper.getPlayer(), false));
         }
+    }
+
+    @Override
+    public String getPurchaseableID() {
+        return resource;
     }
 }

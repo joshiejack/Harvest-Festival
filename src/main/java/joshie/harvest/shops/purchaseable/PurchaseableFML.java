@@ -44,7 +44,7 @@ public abstract class PurchaseableFML<I extends IForgeRegistryEntry.Impl<I>> imp
 
     @Override
     public boolean onPurchased(EntityPlayer player) {
-        ItemHelper.addToPlayerInventory(player, getDisplayStack());
+        ItemHelper.addToPlayerInventory(player, getDisplayStack().copy());
         return false;
     }
 
@@ -52,5 +52,10 @@ public abstract class PurchaseableFML<I extends IForgeRegistryEntry.Impl<I>> imp
     @Override
     public void addTooltip(List<String> list) {
         list.add(WHITE + getDisplayStack().getDisplayName());
+    }
+
+    @Override
+    public String getPurchaseableID() {
+        return item.getRegistryName().toString().replace(":", "_");
     }
 }

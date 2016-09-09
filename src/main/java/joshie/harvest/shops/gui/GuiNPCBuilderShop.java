@@ -100,7 +100,7 @@ public class GuiNPCBuilderShop extends GuiNPCShop {
                 long cost = purchaseable.getCost();
                 if (HFTrackers.getClientPlayerTracker().getStats().getGold() - cost >= 0) {
                     if (mouseY >= 61 + (index * 34) && mouseY <= 93 + (index * 34) && mouseX >= 190 && mouseX <= 222) {
-                        PacketHandler.sendToServer(new PacketPurchaseItem(purchaseable));
+                        PacketHandler.sendToServer(new PacketPurchaseItem(shop.unlocalizedName, purchaseable));
                     }
                 }
             }

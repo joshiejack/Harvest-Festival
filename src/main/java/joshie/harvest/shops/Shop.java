@@ -14,6 +14,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.IForgeRegistry;
+import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
+import net.minecraftforge.fml.common.registry.RegistryBuilder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -23,14 +26,27 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static joshie.harvest.core.lib.HFModInfo.MODID;
+
 public class Shop implements IShop {
-    public static final List<IPurchaseable> allItems = new ArrayList<>();
+    public static final IForgeRegistry<ShopEntry> REGISTRY = new RegistryBuilder<ShopEntry>().setName(new ResourceLocation("harvestfestival", "shop_items")).setType(ShopEntry.class).setIDRange(0, 100000).create();
     private List<IPurchaseable> contents = new ArrayList<>();
     private HashMultimap<EnumDifficulty, OpeningSettings> open = HashMultimap.create();
     private final ResourceLocation resourceLocation;
-    private final String unlocalizedName;
+    public final String unlocalizedName;
     @SideOnly(Side.CLIENT)
     private IShopGuiOverlay overlay;
+
+    public static class ShopEntry extends IForgeRegistryEntry.Impl<ShopEntry> {
+        private IPurchaseable purchaseable;
+        public ShopEntry(IPurchaseable purchaseable) {
+            this.purchaseable = purchaseable;
+        }
+
+        public IPurchaseable getPurchaseable() {
+            return purchaseable;
+        }
+    }
 
     public Shop(ResourceLocation resource) {
         resourceLocation = resource;
@@ -67,10 +83,14 @@ public class Shop implements IShop {
     public IShop addItem(IPurchaseable item) {
         if (item != null) {
             this.contents.add(item);
-            allItems.add(item);
+            REGISTRY.register(new ShopEntry(item).setRegistryName(Shop.getRegistryName(unlocalizedName, item)));
         }
 
         return this;
+    }
+
+    public static ResourceLocation getRegistryName(String unlocalizedName, IPurchaseable item) {
+        return new ResourceLocation(MODID, unlocalizedName.replace(".", "_") + "_" + item);
     }
 
     @Override

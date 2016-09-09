@@ -162,7 +162,7 @@ public class GuiNPCShop extends GuiNPCBase {
                 if (stats.getGold() - purchaseable.getCost() >= 0) {
                     if (mouseY >= posY + 20 && mouseY <= posY + 52 && mouseX >= posX && mouseX <= posX + 32) {
                         for (int j = 0; j < (GuiScreen.isShiftKeyDown() ? 64: 1); j++) {
-                            PacketHandler.sendToServer(new PacketPurchaseItem(purchaseable));
+                            PacketHandler.sendToServer(new PacketPurchaseItem(shop.unlocalizedName, purchaseable));
                         }
                     }
                 }

@@ -43,8 +43,12 @@ public class ItemToolChargeable extends ItemTool<ItemToolChargeable> {
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer playerIn, EnumHand hand) {
-        if (canUse(stack)) {
+        ToolTier tier = getTier(stack);
+        if (tier != ToolTier.BASIC && canUse(stack)) {
             playerIn.setActiveHand(hand);
+            return new ActionResult(EnumActionResult.SUCCESS, stack);
+        } else if (tier == ToolTier.BASIC) {
+            onPlayerStoppedUsing(stack, world, playerIn, 32000);
             return new ActionResult(EnumActionResult.SUCCESS, stack);
         } else return new ActionResult<>(EnumActionResult.PASS, stack);
     }

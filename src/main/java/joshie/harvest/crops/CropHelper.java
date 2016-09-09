@@ -14,6 +14,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 
 import static joshie.harvest.api.crops.IStateHandler.PlantSection.BOTTOM;
 
@@ -74,7 +75,8 @@ public class CropHelper {
         } else if (world.getPrecipitationHeight(pos).getY() > pos.getY()) {
             return false;
         } else {
-            return world.getBiome(pos).canRain();
+            Biome biome = world.getBiome(pos);
+            return biome.canRain() || biome.isSnowyBiome();
         }
     }
 }

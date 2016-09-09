@@ -44,7 +44,7 @@ public class MCClientHelper {
     public static int getDimension() {
         return getWorld().provider.getDimension();
     }
-    
+
     public static TileEntity getTile(PenguinPacketLocation message) {
         return getWorld().getTileEntity(message.pos);
     }

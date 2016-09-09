@@ -105,7 +105,7 @@ public class HFAnimals {
     public static boolean OP_ANIMALS;
 
     public static void configure() {
-        CAN_SPAWN = getBoolean("Enable animal natural spawning", false);
+        CAN_SPAWN = getBoolean("Enable animal natural spawning", true);
         DISABLE_SPAWN_CHICKEN = getBoolean("Disable vanilla chickens from eggs", false);
         PICKUP_CHICKENS = getBoolean("Enable placing of chickens on your head", true);
         PREGNANCY_TIMER = getInteger("Pregnancy > Number of days", 7);

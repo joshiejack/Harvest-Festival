@@ -8,6 +8,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBucket;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumHand;
 import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nonnull;
@@ -84,25 +85,30 @@ public class InventoryHelper {
     }
 
     @SuppressWarnings("unchecked")
-    public static <S> boolean isHolding(EntityPlayer player, Matcher matcher, S search, int... amount) {
-        int count = amount == null || amount.length == 0 ? 1 : amount[0];
-        ItemStack held = player.getHeldItemMainhand();
-        if (held != null && matcher.matches(held, search)) {
-            return held.stackSize >= count;
+    public static <S> EnumHand getHandItemIsIn(EntityPlayer player, Matcher matcher, S search, int... amount) {
+        for (EnumHand hand: EnumHand.values()) {
+            int count = amount == null || amount.length == 0 ? 1 : amount[0];
+            ItemStack held = player.getHeldItem(hand);
+            if (held != null && matcher.matches(held, search)) {
+                if(held.stackSize >= count) {
+                    return hand;
+                }
+            }
         }
 
-        return false;
+        return null;
     }
 
     @SuppressWarnings("unchecked")
-    public static <S> boolean takeItemsIfHeld(EntityPlayer player, Matcher matcher, S search, int... amount) {
+    public static <S> EnumHand takeItemsIfHeld(EntityPlayer player, Matcher matcher, S search, int... amount) {
         int count = amount == null || amount.length == 0 ? 1 : amount[0];
-        if (isHolding(player, matcher, search, count)) {
+        EnumHand ret = getHandItemIsIn(player, matcher, search, count);
+        if (ret != null) {
             takeItems(player, search, count, matcher);
-            return true;
+            return ret;
         }
 
-        return false;
+        return null;
     }
 
     private static <T> int getCount(EntityPlayer player, T taking, Matcher<T> matcher) {

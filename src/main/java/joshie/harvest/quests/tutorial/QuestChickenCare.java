@@ -85,14 +85,14 @@ public class QuestChickenCare extends QuestQuestion {
 
     @Override
     public Selection getSelection(EntityPlayer player, INPC npc) {
-        return quest_stage <= 0 && player.getHeldItemMainhand() != null && InventoryHelper.isHolding(player, ITEM_STACK, HFCrops.TURNIP.getCropStack(1))? selection : null;
+        return quest_stage <= 0 && InventoryHelper.getHandItemIsIn(player, ITEM_STACK, HFCrops.TURNIP.getCropStack(1)) != null? selection : null;
     }
 
     @Override
     public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
         if (isCompletedEarly) {
             return "completed";
-        } else if (quest_stage == INTRO && InventoryHelper.isHolding(player, ITEM_STACK, HFCrops.TURNIP.getCropStack(1))) {
+        } else if (quest_stage == INTRO && InventoryHelper.getHandItemIsIn(player, ITEM_STACK, HFCrops.TURNIP.getCropStack(1)) != null) {
             /*The goddess welcomes you and sees that you have a turnip
             She thanks you for growing them for her, she explains that has a wonderful gift
             One you have never seen before, She explains she has a chicken she would like to give you
@@ -142,7 +142,7 @@ public class QuestChickenCare extends QuestQuestion {
                 Of yours properly if you wish to look after it. She also heard that yulif had a spare cow
                 And that you should go talk to him if you want it */
                 return "complete";
-            } else if (attempted && InventoryHelper.isHolding(player, ITEM_STACK, CHEST)) {
+            } else if (attempted && InventoryHelper.getHandItemIsIn(player, ITEM_STACK, CHEST) != null) {
                 //Thanks the player for the hay, and reminds them to get her an egg
                 return "reminder.nest";
             }
@@ -188,7 +188,7 @@ public class QuestChickenCare extends QuestQuestion {
             if (HFAnimals.EGG.matches(player.getHeldItemMainhand())) {
                 complete(player);
                 rewardItem(player, HFAnimals.EGG.getStack(Size.LARGE));
-            } else if (attempted && InventoryHelper.takeItemsIfHeld(player, ITEM_STACK, CHEST)) {
+            } else if (attempted && InventoryHelper.takeItemsIfHeld(player, ITEM_STACK, CHEST) != null) {
                 rewardItem(player, HFAnimals.TRAY.getStackFromEnum(NEST_EMPTY));
             }
 

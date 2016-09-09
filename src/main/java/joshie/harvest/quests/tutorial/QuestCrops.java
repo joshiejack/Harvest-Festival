@@ -54,13 +54,13 @@ public class QuestCrops extends QuestQuestion {
             return "start";
         } else if (quest_stage == TURNIPS) {
             if (attempted) {
-                if (InventoryHelper.isHolding(player, SPECIAL, SearchType.FLOWER, 10)) {
+                if (InventoryHelper.getHandItemIsIn(player, SPECIAL, SearchType.FLOWER, 10) != null) {
                     /* Jade thanks the player for the flowers, and gives them turnip seeds */
                     return "thanks.flowers";
-                } else if (InventoryHelper.isHolding(player, SPECIAL, SearchType.HOE)) {
+                } else if (InventoryHelper.getHandItemIsIn(player, SPECIAL, SearchType.HOE) != null) {
                     /* Jade thanks the player for the hoe and gives them a hf hoe */
                     return "thanks.hoe";
-                } else if (InventoryHelper.isHolding(player, SPECIAL, SearchType.BUCKET)) {
+                } else if (InventoryHelper.getHandItemIsIn(player, SPECIAL, SearchType.BUCKET) != null) {
                     /* Jade thanks the player for the bucket and gives them a watering can */
                     return "thanks.bucket";
                 }
@@ -77,7 +77,7 @@ public class QuestCrops extends QuestQuestion {
                She however also explains that her variety is limited, and suggests that you build a supermarket
                She also informs the player that the harvest goddess has heard of your great work
                And that she would really like to hear from you, in fact she would love to see a turnip!*/
-            if (InventoryHelper.isHolding(player, ITEM_STACK, HFCrops.TURNIP.getCropStack(9), 9)) {
+            if (InventoryHelper.getHandItemIsIn(player, ITEM_STACK, HFCrops.TURNIP.getCropStack(9), 9) != null) {
                 return "complete";
             }
 
@@ -102,16 +102,16 @@ public class QuestCrops extends QuestQuestion {
             if (isCompletedEarly) complete(player);
             if (quest_stage == START) increaseStage(player);
         } else if (quest_stage == TURNIPS) {
-            if (InventoryHelper.takeItemsIfHeld(player, ITEM_STACK, HFCrops.TURNIP.getCropStack(9), 9)) {
+            if (InventoryHelper.takeItemsIfHeld(player, ITEM_STACK, HFCrops.TURNIP.getCropStack(9), 9) != null) {
                 complete(player);
             }
 
             if (attempted) {
-                if (InventoryHelper.takeItemsIfHeld(player, SPECIAL, SearchType.FLOWER, 10)) {
+                if (InventoryHelper.takeItemsIfHeld(player, SPECIAL, SearchType.FLOWER, 10) != null) {
                     rewardItem(player, HFCrops.TURNIP.getSeedStack(1));
-                } else if (InventoryHelper.takeItemsIfHeld(player, SPECIAL, SearchType.HOE)) {
+                } else if (InventoryHelper.takeItemsIfHeld(player, SPECIAL, SearchType.HOE) != null) {
                     rewardItem(player, HFTools.HOE.getStack(BASIC));
-                } else if (InventoryHelper.takeItemsIfHeld(player, SPECIAL, SearchType.BUCKET)) {
+                } else if (InventoryHelper.takeItemsIfHeld(player, SPECIAL, SearchType.BUCKET) != null) {
                     rewardItem(player, HFTools.WATERING_CAN.getStack(BASIC));
                 }
             }

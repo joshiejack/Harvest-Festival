@@ -106,7 +106,7 @@ public class QuestCowCare extends QuestQuestion {
                 if (InventoryHelper.getHeldItem(player) instanceof ItemFishingRod) {
                     //Yulif thanks the player for the brush and then reminds them to brush the cow and feed it by hand
                     return "reminder.brush";
-                } else if (InventoryHelper.isHolding(player, ITEM_STACK, new ItemStack(Blocks.TALLGRASS))) {
+                } else if (InventoryHelper.getHandItemIsIn(player, ITEM_STACK, new ItemStack(Blocks.TALLGRASS)) != null) {
                     //Yulif thanks the player for the wheat, gives fodder and thanks the player
                     return "reminder.fodder";
                 }
@@ -166,7 +166,7 @@ public class QuestCowCare extends QuestQuestion {
                 if (InventoryHelper.getHeldItem(player) instanceof ItemFishingRod) {
                     takeHeldStack(player, 1);
                     rewardItem(player, HFAnimals.TOOLS.getStackFromEnum(BRUSH));
-                } else if (InventoryHelper.takeItemsIfHeld(player, ITEM_STACK, new ItemStack(Blocks.TALLGRASS))) {
+                } else if (InventoryHelper.takeItemsIfHeld(player, ITEM_STACK, new ItemStack(Blocks.TALLGRASS)) != null) {
                     rewardItem(player, HFCrops.GRASS.getCropStack(1));
                 }
             }

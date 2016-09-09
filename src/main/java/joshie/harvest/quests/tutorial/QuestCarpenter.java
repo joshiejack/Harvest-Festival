@@ -50,7 +50,7 @@ public class QuestCarpenter extends Quest {
             Will move in with yulif and she can often be found upstairs in the house, she requests that you deliver some sort of flower
             To jaded, and tells you that she carries around a bunch of seeds, but she is always on the lookout for flowers instead
             Normally she would ask for 10 flowers, but for a one off deal she is doing one flower for some seeds */
-            if (InventoryHelper.isHolding(player, ORE_DICTIONARY, "logWood", 64)) {
+            if (InventoryHelper.getHandItemIsIn(player, ORE_DICTIONARY, "logWood", 64) != null) {
                 return "thanks.build";
             }
 
@@ -61,7 +61,7 @@ public class QuestCarpenter extends Quest {
                 /*The Goddess reminds the player that she has asked you to deliver a flower to jaded, and to do so
                   You must get the carpenter house built, she says that if you lost the blueprint, then bring the goddess
                   Another 64 logs of wood, and she will happily give you a blueprint again */
-                if (attempted && InventoryHelper.isHolding(player, ORE_DICTIONARY, "logWood", 64)) {
+                if (attempted && InventoryHelper.getHandItemIsIn(player, ORE_DICTIONARY, "logWood", 64) != null) {
                     return "reminder.give";
                 } else {
                     attempted = true;
@@ -72,7 +72,7 @@ public class QuestCarpenter extends Quest {
                   She then informs you that the goddess would like to see you again
                   She has a reward, She says to come back to see her after you have
                   revisited the goddess, as she has something to show you */
-                if (InventoryHelper.isHolding(player, SPECIAL, FLOWER, 1)) {
+                if (InventoryHelper.getHandItemIsIn(player, SPECIAL, FLOWER, 1) != null) {
                     return "thanks.flowers";
                 }
 
@@ -94,17 +94,17 @@ public class QuestCarpenter extends Quest {
         if (quest_stage == WELCOME && npc == HFNPCs.GODDESS) {
             increaseStage(player);
         } else if (quest_stage == LOGS && npc == HFNPCs.GODDESS) {
-            if (InventoryHelper.takeItemsIfHeld(player, ORE_DICTIONARY, "logWood", 64)) {
+            if (InventoryHelper.takeItemsIfHeld(player, ORE_DICTIONARY, "logWood", 64) != null) {
                 rewardItem(player, HFBuildings.CARPENTER.getBlueprint());
                 increaseStage(player);
             }
         } else if (quest_stage == SEED_CHAT) {
             if (npc == HFNPCs.GODDESS) {
-                if (attempted && InventoryHelper.takeItemsIfHeld(player, ORE_DICTIONARY, "logWood", 64)) {
+                if (attempted && InventoryHelper.takeItemsIfHeld(player, ORE_DICTIONARY, "logWood", 64) != null) {
                     rewardItem(player, HFBuildings.CARPENTER.getBlueprint());
                 } else attempted = true;
             } else if (npc == HFNPCs.SEED_OWNER){
-                if (InventoryHelper.takeItemsIfHeld(player, SPECIAL, FLOWER, 1)) {
+                if (InventoryHelper.takeItemsIfHeld(player, SPECIAL, FLOWER, 1) != null) {
                     increaseStage(player);
                 }
             }

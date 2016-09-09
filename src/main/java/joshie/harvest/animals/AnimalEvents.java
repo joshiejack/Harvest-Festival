@@ -1,7 +1,9 @@
 package joshie.harvest.animals;
 
+import joshie.harvest.animals.item.ItemAnimalTool.Tool;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.util.HFEvents;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityChicken;
@@ -11,6 +13,8 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 
 @HFEvents
 public class AnimalEvents {
@@ -34,10 +38,15 @@ public class AnimalEvents {
     public static class PickupChicken {
         public static boolean register() { return HFAnimals.PICKUP_CHICKENS; }
 
+        public boolean isChickenItem(EntityPlayer player) {
+            return InventoryHelper.getHandItemIsIn(player, ITEM_STACK, HFAnimals.TOOLS.getStackFromEnum(Tool.CHICKEN_FEED)) != null ||
+                    InventoryHelper.getHandItemIsIn(player, ITEM_STACK, HFAnimals.TOOLS.getStackFromEnum(Tool.MEDICINE)) != null;
+        }
+
         @SubscribeEvent
         public void onEntityInteract(PlayerInteractEvent.EntityInteract event) {
             EntityPlayer player = event.getEntityPlayer();
-            if (!player.isBeingRidden() && player.getHeldItemMainhand() == null) {
+            if (!player.isBeingRidden() && !isChickenItem(player)) {
                 Entity entity = event.getTarget();
                 if (entity instanceof EntityChicken) {
                     entity.startRiding(player, true);

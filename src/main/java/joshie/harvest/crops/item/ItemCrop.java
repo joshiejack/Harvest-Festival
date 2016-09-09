@@ -1,11 +1,10 @@
 package joshie.harvest.crops.item;
 
 import joshie.harvest.api.core.IShippable;
+import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.crops.ICropProvider;
 import joshie.harvest.core.base.item.ItemHFFML;
 import joshie.harvest.core.lib.CreativeSort;
-import joshie.harvest.api.crops.Crop;
-import joshie.harvest.crops.HFCrops;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -29,11 +28,7 @@ public class ItemCrop extends ItemHFFML<ItemCrop, Crop> implements IShippable, I
 
     @Override
     public long getSellValue(ItemStack stack) {
-        Crop crop = getObjectFromStack(stack);
-        if (crop == HFCrops.GRASS) return 0;
-        else {
-            return crop.getSellValue(stack);
-        }
+        return getObjectFromStack(stack).getSellValue(stack);
     }
 
     @Override
@@ -68,7 +63,7 @@ public class ItemCrop extends ItemHFFML<ItemCrop, Crop> implements IShippable, I
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
-        if (player.canEat(false)) {
+        if (player.canEat(false) && getCrop(stack).getHunger() > 0) {
             player.setActiveHand(hand);
             return new ActionResult<>(EnumActionResult.SUCCESS, stack);
         } else {

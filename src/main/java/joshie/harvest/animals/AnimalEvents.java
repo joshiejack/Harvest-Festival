@@ -37,7 +37,7 @@ public class AnimalEvents {
         @SubscribeEvent
         public void onEntityInteract(PlayerInteractEvent.EntityInteract event) {
             EntityPlayer player = event.getEntityPlayer();
-            if (!player.isBeingRidden()) {
+            if (!player.isBeingRidden() && player.getHeldItemMainhand() == null) {
                 Entity entity = event.getTarget();
                 if (entity instanceof EntityChicken) {
                     entity.startRiding(player, true);

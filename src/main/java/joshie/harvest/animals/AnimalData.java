@@ -393,7 +393,7 @@ public class AnimalData implements IAnimalData {
         //Leashed
         boolean sendUpdate = getAnimal().getLeashedToEntity() instanceof EntityPlayer || getAnimal().getRidingEntity() instanceof EntityPlayer;
         buf.writeBoolean(sendUpdate);
-        if (getAnimal().getLeashed() || getAnimal().isRiding()) {
+        if (sendUpdate) {
             String uuidString = getAnimal().getLeashed() ? EntityHelper.getPlayerUUID((EntityPlayer) getAnimal().getLeashedToEntity()).toString() :
                     EntityHelper.getPlayerUUID((EntityPlayer) getAnimal().getRidingEntity()).toString();
             ByteBufUtils.writeUTF8String(buf, uuidString);

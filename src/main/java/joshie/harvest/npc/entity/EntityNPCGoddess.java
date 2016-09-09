@@ -175,6 +175,6 @@ public class EntityNPCGoddess extends EntityNPC<EntityNPCGoddess> {
             worldObj.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, posX * 0.2 * rand.nextFloat(), posY + 0.5 + 0.2 * rand.nextFloat(), posZ + 0.2 * rand.nextFloat(), 0, 0, 0);
         }
 
-        worldObj.playSound(posX, posY, posZ, HFSounds.GODDESS_SPAWN, SoundCategory.NEUTRAL, 1F, 1F, true);
+        worldObj.playSound(posX, posY, posZ, HFSounds.GODDESS_SPAWN, SoundCategory.NEUTRAL, 0.5F, 1.1F, true);
     }
 }

@@ -89,7 +89,7 @@ public class ToolHelper {
                 player.removePotionEffect(FATIGUE);
                 player.removePotionEffect(EXHAUSTION);
                 if (HFTools.RESTORE_HUNGER_ON_SLEEP) {
-                    ReflectionHelper.setPrivateValue(EntityPlayer.class, player, new FoodStats(), "foodStats");
+                    ReflectionHelper.setPrivateValue(EntityPlayer.class, player, new FoodStats(), "foodStats", "field_71100_bB");
                 }
             }
         }

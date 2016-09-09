@@ -41,7 +41,7 @@ public class PurchaseableBuilder extends PurchaseableFML<BuildingImpl> {
     @Override
     public boolean canBuy(World world, EntityPlayer player) {
         if (!InventoryHelper.hasInInventory(player, ORE_DICTIONARY, "logWood", getLogCost())) return false;
-        if (!InventoryHelper.hasInInventory(player, ORE_DICTIONARY, "stone", getLogCost())) return false;
+        if (!InventoryHelper.hasInInventory(player, ORE_DICTIONARY, "stone", getStoneCost())) return false;
         return isPurchaseable(world, player);
     }
 

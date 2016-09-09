@@ -2,11 +2,11 @@ package joshie.harvest.core.handlers;
 
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.block.BlockFlower.FlowerType;
-import joshie.harvest.npc.NPCHelper;
 import joshie.harvest.core.lib.HFSounds;
 import joshie.harvest.core.util.HFEvents;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.NPC;
+import joshie.harvest.npc.NPCHelper;
 import joshie.harvest.npc.entity.EntityNPCGoddess;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -19,6 +19,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityFlowerPot;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.item.ItemExpireEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -74,48 +75,54 @@ public class GoddessHandler {
     @SubscribeEvent
     public void onInteract(PlayerInteractEvent.RightClickBlock event) {
         if (System.currentTimeMillis() - lastGoddess >= 1000L) {
-            EntityPlayer player = event.getEntityPlayer();
             World world = event.getWorld();
+            BlockPos pos = event.getPos();
             ItemStack held = event.getItemStack();
             if (held != null && held.getItem() == Items.STICK) {
-                if (world.getBlockState(event.getPos()).getBlock() == Blocks.FLOWER_POT) {
-                    TileEntityFlowerPot tile = (TileEntityFlowerPot) world.getTileEntity(event.getPos());
-                    if (tile != null  && tile.getFlowerPotItem() != null) {
-                        Block xMinus = world.getBlockState(event.getPos().add(-1, -1, 0)).getBlock();
-                        Block xPlus = world.getBlockState(event.getPos().add(1, -1, 0)).getBlock();
-                        Block zMinus = world.getBlockState(event.getPos().add(0, -1, -1)).getBlock();
-                        Block zPlus = world.getBlockState(event.getPos().add(0, -1, 1)).getBlock();
-                        int water = 0;
-                        int flower = 0;
-
-                        if (xMinus == Blocks.WATER) water++;
-                        if (xPlus == Blocks.WATER) water++;
-                        if (zMinus == Blocks.WATER) water++;
-                        if (zPlus == Blocks.WATER) water++;
-                        xMinus = world.getBlockState(event.getPos().add(-1, 0, 0)).getBlock();
-                        xPlus = world.getBlockState(event.getPos().add(1, 0, 0)).getBlock();
-                        zMinus = world.getBlockState(event.getPos().add(0, 0, -1)).getBlock();
-                        zPlus = world.getBlockState(event.getPos().add(0, 0, 1)).getBlock();
-                        if (xMinus == Blocks.RED_FLOWER || xMinus == Blocks.DOUBLE_PLANT || xMinus == Blocks.TALLGRASS)
-                            flower++;
-                        if (xPlus == Blocks.RED_FLOWER || xPlus == Blocks.DOUBLE_PLANT || xPlus == Blocks.TALLGRASS)
-                            flower++;
-                        if (zMinus == Blocks.RED_FLOWER || zMinus == Blocks.DOUBLE_PLANT || zMinus == Blocks.TALLGRASS)
-                            flower++;
-                        if (zPlus == Blocks.RED_FLOWER || zPlus == Blocks.DOUBLE_PLANT || zPlus == Blocks.TALLGRASS)
-                            flower++;
-
-                        if (water == 2 && flower == 2) {
-                            if (!world.isRemote) {
-                                world.playEvent(2005, event.getPos(), 0);
-                                if (world.rand.nextInt(9) == 0) {
-                                    world.setBlockState(event.getPos(), HFCore.FLOWERS.getStateFromEnum(FlowerType.GODDESS));
-                                    world.playSound(null, player.posX, player.posY, player.posZ, HFSounds.GODDESS_SPAWN, SoundCategory.NEUTRAL, 1F, 1F);
-                                    lastGoddess = System.currentTimeMillis();
-                                }
-                            }
-                        }
+                if (world.getBlockState(pos).getBlock() == Blocks.FLOWER_POT) {
+                    TileEntityFlowerPot tile = (TileEntityFlowerPot) world.getTileEntity(pos);
+                    if (tile != null && tile.getFlowerPotItem() != null) {
+                        this.checkFlower(world, pos, event.getEntityPlayer(), Blocks.RED_FLOWER, Blocks.YELLOW_FLOWER, Blocks.DOUBLE_PLANT, Blocks.TALLGRASS);
                     }
+                }
+            }
+        }
+    }
+
+    private void checkFlower(World world, BlockPos pos, EntityPlayer player, Block... blocks) {
+        Block xMinus = world.getBlockState(pos.add(-1, -1, 0)).getBlock();
+        Block xPlus = world.getBlockState(pos.add(1, -1, 0)).getBlock();
+        Block zMinus = world.getBlockState(pos.add(0, -1, -1)).getBlock();
+        Block zPlus = world.getBlockState(pos.add(0, -1, 1)).getBlock();
+        int water = 0;
+        int flower = 0;
+
+        if (xMinus == Blocks.WATER) water++;
+        if (xPlus == Blocks.WATER) water++;
+        if (zMinus == Blocks.WATER) water++;
+        if (zPlus == Blocks.WATER) water++;
+        xMinus = world.getBlockState(pos.add(-1, 0, 0)).getBlock();
+        xPlus = world.getBlockState(pos.add(1, 0, 0)).getBlock();
+        zMinus = world.getBlockState(pos.add(0, 0, -1)).getBlock();
+        zPlus = world.getBlockState(pos.add(0, 0, 1)).getBlock();
+        for (Block block : blocks) {
+            if (xMinus == block)
+                flower++;
+            if (xPlus == block)
+                flower++;
+            if (zMinus == block)
+                flower++;
+            if (zPlus == block)
+                flower++;
+        }
+
+        if (water == 2 && flower == 2) {
+            if (!world.isRemote) {
+                world.playEvent(2005, pos, 0);
+                if (world.rand.nextInt(9) == 0) {
+                    world.setBlockState(pos, HFCore.FLOWERS.getStateFromEnum(FlowerType.GODDESS));
+                    world.playSound(null, player.posX, player.posY, player.posZ, HFSounds.GODDESS_SPAWN, SoundCategory.NEUTRAL, 0.5F, 1.1F);
+                    lastGoddess = System.currentTimeMillis();
                 }
             }
         }

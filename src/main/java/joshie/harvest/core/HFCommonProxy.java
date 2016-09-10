@@ -72,7 +72,7 @@ public class HFCommonProxy {
                 if (!entry.getMiddle().equals("")) {
                     String[] mods = entry.getMiddle().replace(" ", "").split(",");
                     for (String mod : mods) {
-                        if (!Loader.isModLoaded(mod) || !Loader.isModLoaded(mod.toLowerCase(Locale.ENGLISH))) continue triple;
+                        if (!isModLoaded(mod)) continue triple;
                     }
                 }
 
@@ -82,6 +82,9 @@ public class HFCommonProxy {
                 HarvestFestival.LOGGER.log(Level.ERROR, "If this a mod related class, try updating your version of that mod before reporting");
             }
         }
+    }
+    private boolean isModLoaded(String mod) {
+        return Loader.isModLoaded(mod) || Loader.isModLoaded(mod.toLowerCase(Locale.ENGLISH));
     }
 
     @SuppressWarnings("unchecked")

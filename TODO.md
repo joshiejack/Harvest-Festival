@@ -6,7 +6,6 @@
 
 ## Bugs
 - Fix spawning two yulife when you place one in a new world
-- Sleeping issues with Morpheus
 
 ## Improvements
 - Need something better for respawning a dead chicken in the chicken care quest

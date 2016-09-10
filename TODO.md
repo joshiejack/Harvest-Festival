@@ -14,7 +14,6 @@
 - Builders should build a whole door, not place it in 2 pieces
 - Grass on floor buildings when buildings are beeing built: http://prntscr.com/cfso32 , also happens with dirt etc. : http://prntscr.com/cft5vb
 - Goddess should be unpushable
-- Override vanilla weather command
 - Save the last time a mining chunk had it's blocks generated, and regenerate them
 - make brandon able to go in the mine as part of his schedule
 

@@ -26,16 +26,16 @@ public class QuestIntro extends QuestQuestion {
     }
 
     @SideOnly(Side.CLIENT)
-    public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
         //The goddess says hello and asks if you are new
         if (isCompletedEarly) {
-            return "completed";
-        } else  if (quest_stage == HELLO) return "hello";
+            return getLocalized("completed");
+        } else  if (quest_stage == HELLO) return getLocalized("hello");
         else if (quest_stage == BACKSTORY) {
             //The goddess gives you a back story about the world, she then lets the player
             //know that she will despawn after a while, but will leave a goddess flower behind
             //most of the time, so that you can resummon here
-            return "backstory";
+            return getLocalized("backstory");
         } else return null;
     }
 

@@ -1,18 +1,18 @@
 ## Lang
 - Add lang for extra chatting
 - Add lang for all the recipes
+- Add lang for all the recipe quests
 - Goddess mentions that Yulif will respawn when he dies (Not very RPG-isch)
 
 ## Bugs
 - Fix spawning two yulife when you place one in a new world
-- Fix tools not being repairable in anvil
 - Sleeping issues with Morpheus
 - Fix crops staying when farmland turned to dirt
 
 ## Improvements
 - Need something better for respawning a dead chicken in the chicken care quest
 - Builders shouldn't place blocks on a block a player stands on.
-- Builders should build a whole door, no=t place it in 2 pieces
+- Builders should build a whole door, not place it in 2 pieces
 - Grass on floor buildings when buildings are beeing built: http://prntscr.com/cfso32 , also happens with dirt etc. : http://prntscr.com/cft5vb
 - Goddess should be unpushable
 - Override vanilla weather command

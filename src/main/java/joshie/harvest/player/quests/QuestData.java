@@ -65,6 +65,5 @@ public abstract class QuestData {
     public void markCompleted(Quest quest) {}
     public void setAvailable(Quest quest) {}
     public void addAsCurrent(Quest quest) {}
-    public abstract void setStage(Quest theQuest, int stage);
     public boolean startQuest(Quest quest) { return false; }
 }

@@ -33,23 +33,23 @@ public class QuestBarn extends Quest {
     }
 
     @Override
-    public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
         if (quest_stage == START && player.worldObj.rand.nextFloat() < 0.25F && npc == HFNPCs.BUILDER) {
             if (TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.BARN)) {
                 //If the barn exists yulif will tell the player to go and talk to jim
-                return "reminder.talk";
+                return getLocalized("reminder.talk");
             }
 
             //Goddess reminds the player that you should go and build a ranch
             //So that you can get additional animals
-            return "reminder.barn";
+            return getLocalized("reminder.barn");
         } else if (quest_stage == START && npc == ANIMAL_OWNER) {
             //Jim mentions that he's happy to arrive in the town,
             //And as the first customer he has a treat
             //He then tells you quickly that you can breed larger animals
             //By using a miracle potion, they will be pregnant for a while
             //Then eventually give birth
-            return "welcome";
+            return getLocalized("welcome");
         }
 
         return null;

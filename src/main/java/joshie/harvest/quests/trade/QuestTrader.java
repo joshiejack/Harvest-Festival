@@ -29,13 +29,13 @@ public class QuestTrader extends QuestTrade {
 
     @SideOnly(Side.CLIENT)
     @Override
-    public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
         if (isHoldingInEitherHand(player, HFAnimals.EGG)) {
-            return "egg";
+            return getLocalized("egg");
         } else if (isHoldingInEitherHand(player, HFAnimals.MILK)) {
-            return "milk";
+            return getLocalized("milk");
         } else if (isHoldingInEitherHand(player, HFAnimals.WOOL)) {
-            return "wool";
+            return getLocalized("wool");
         } else return null;
     }
 

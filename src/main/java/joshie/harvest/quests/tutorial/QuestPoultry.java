@@ -42,22 +42,22 @@ public class QuestPoultry extends QuestQuestion {
     }
 
     @Override
-    public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
         if (quest_stage == START && player.worldObj.rand.nextFloat() < 0.25F && npc == HFNPCs.GODDESS) {
             if (TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.POULTRY_FARM)) {
                 //If the barn exists the goddess will tell the player to go and talk to ashlee
-                return "reminder.talk";
+                return getLocalized("reminder.talk");
             }
 
             //Goddess reminds the player that you should go and build a poultry farm
             //So that you can get further chickens
-            return "reminder.poultry";
+            return getLocalized("reminder.poultry");
         } else if (npc == POULTRY) {
             if (isCompletedEarly) {
-                return "completed";
+                return getLocalized("completed");
             } else if (quest_stage == START) {
                 //The poultry owner welcomes you, tells you their name is ashlee
-                return "welcome";
+                return getLocalized("welcome");
             } else {
                 //Gives a little backstory about their life
                 //Then says it's great to be in this town
@@ -65,7 +65,7 @@ public class QuestPoultry extends QuestQuestion {
                 //If they buy an incubator they can place an egg in it
                 //And eventually a chick will hatch
                 //They say thanks for being the first customer and then gives them eggs, and feed
-                return "info";
+                return getLocalized("info");
             }
         }
 

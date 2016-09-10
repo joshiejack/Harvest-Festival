@@ -98,7 +98,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
         return true;
     }
 
-    protected int getDamageForDisplay(ItemStack stack) {
+    public int getDamageForDisplay(ItemStack stack) {
         return stack.getSubCompound("Data", true).getInteger("Damage");
     }
 

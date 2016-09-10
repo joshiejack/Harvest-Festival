@@ -39,14 +39,6 @@ public class QuestDataServer extends QuestData {
         } else return false;
     }
 
-    @Override
-    public void setStage(Quest quest, int stage) {
-        Quest q = getAQuest(quest);
-        if (q != null) {
-            q.setStage(stage);
-        }
-    }
-
     //Quests should always REMOVE from the current quests, and add to the finished quests THEMSELVES
     @Override
     public void markCompleted(Quest quest) {

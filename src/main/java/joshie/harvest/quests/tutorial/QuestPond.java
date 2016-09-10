@@ -26,17 +26,17 @@ public class QuestPond extends Quest {
     }
 
     @Override
-    public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
         if (TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.GODDESS_POND)) {
             //The goddess thanks you for your hard work in reestablishing the town
             //SHe is ever so grateful for her new home too, and thanks you a lot
             //She also has a reward!
-            return "thanks";
+            return getLocalized("thanks");
         }
 
         //The goddess tells you that she is really happy with how the town is growing
         //And that she would like a permenant place too, she asks that you build her a goddess pond
-        return "please";
+        return getLocalized("please");
     }
 
     @Override

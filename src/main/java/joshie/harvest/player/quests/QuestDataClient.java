@@ -37,16 +37,8 @@ public class QuestDataClient extends QuestData {
         available.add(quest);
     }
 
-    //Called to change the current quests stage
-    @Override
-    public void setStage(Quest quest, int stage) {
-        Quest q = getAQuest(quest);
-        if (q != null) q.setStage(stage);
-    }
-
     private String getScript(Quest quest, EntityPlayer player, EntityNPC entity) {
-        String script = quest.getScript(player, entity, entity.getNPC());
-        return script == null ? null : quest.getLocalized(script);
+        return quest.getLocalizedScript(player, entity, entity.getNPC());
     }
 
     @Override
@@ -58,20 +50,20 @@ public class QuestDataClient extends QuestData {
                     if (script != null) return script;
                 }
             }
-        }
 
-        //If we didn't return a current quest, search for a new one
-        if (current.size() < 100) {
-            for (Quest q : available) {
-                if (!current.contains(q) && handlesScript(q, npc.getNPC())) {
-                    try {
-                        Quest quest = q.getClass().newInstance().setRegistryName(q.getRegistryName()).setStage(0); //Set the current quest to your new
-                        current.add(quest);
-                        sendToServer(new PacketQuestStart(q));
-                        String script = getScript(q, player, npc);
-                        if (script != null) return script;
-                    } catch (Exception e) {
-                        e.printStackTrace();
+            //If we didn't return a current quest, search for a new one
+            if (current.size() < 100) {
+                for (Quest q : available) {
+                    if (!current.contains(q) && handlesScript(q, npc.getNPC())) {
+                        try {
+                            Quest quest = q.getClass().newInstance().setRegistryName(q.getRegistryName()).setStage(0); //Set the current quest to your new
+                            current.add(quest);
+                            sendToServer(new PacketQuestStart(q));
+                            String script = getScript(q, player, npc);
+                            if (script != null && handlesScript(quest, npc.getNPC())) return script;
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }

@@ -885,8 +885,12 @@ harvestfestival.quest.trade.upgrade.level=Your tool is not at 100%! Please come 
 harvestfestival.quest.trade.upgrade.gold=To upgrade this tool it will cost you %s, please come back when you have enough.
 harvestfestival.quest.trade.upgrade.material=To upgrade this tool I’m going to need %s %s.
 harvestfestival.quest.trade.upgrade.accept=This I can do, please come back in 3 days to collect your upgraded tool.
-harvestfestival.quest.trade.upgrade.done=Your %s has now been upgraded. Pleasure doing business with you.
+harvestfestival.quest.trade.upgrade.done=I've finished working on your %s. Pleasure doing business with you.
 harvestfestival.quest.trade.upgrade.wait=Sorry to say but your tool is not quite ready, please come back in %s days.
+harvestfestival.quest.trade.upgrade.repair.gold=Repairing this tool will cost you %s gold. Please come when you have enough.
+harvestfestival.quest.trade.upgrade.repair.material=To repair this tool I’m going to need %s.
+harvestfestival.quest.trade.upgrade.repair.start=This I can do, please come back in a day to collect your repaired tool.
+
 
 # Jade Seed Trades
 harvestfestival.quest.trade.seeds.complete.yes=Thanks for the flowers, here have a bag of seeds.

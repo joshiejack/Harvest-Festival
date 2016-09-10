@@ -42,7 +42,7 @@ public class QuestMining extends QuestQuestion {
     }
 
     @Override
-    public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
         if (quest_stage == BUILD && npc != TOOL_OWNER && player.worldObj.rand.nextFloat() < 0.25F) {
             String suffix = ((joshie.harvest.npc.NPC)npc).getRegistryName().getResourcePath();
             boolean blacksmith = TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.BLACKSMITH);
@@ -52,17 +52,17 @@ public class QuestMining extends QuestQuestion {
             //reminder.blacksmith.yulif, reminder.blacksmith.goddess, reminder.blacksmith.jim
             //reminder.blacksmith.jenni, reminder.blacksmith.candice, reminder.blacksmith.jade
             //reminder.blacksmith.brandon
-            if (blacksmith) return "reminder.blacksmith." + suffix;
+            if (blacksmith) return getLocalized("reminder.blacksmith." + suffix);
             //Builder, Goddess, Barn Owner, General Store Owner, Seed Owner and Milkmaid
             //All tell the player that they should probably get a mine and a blacksmith built
-            return "blacksmith." + suffix;
+            return getLocalized("blacksmith." + suffix);
         } else if  (npc == TOOL_OWNER) {
             if (isCompletedEarly) {
-                return "completed";
+                return getLocalized("completed");
             } else if (quest_stage == BUILD) {
                 //Danieuru thanks the player for welcoming to the town
                 //He then proceeds to ask them, if they know how to upgrade tools
-                return "intro";
+                return getLocalized("intro");
             } else if (quest_stage == EXPLAIN) {
                 //The Blacksmith says oh well! Then let me tell you, it's a simple process
                 //As you use your tools, they will gain levels, which you can see
@@ -76,16 +76,16 @@ public class QuestMining extends QuestQuestion {
                 //And then swing the hammer at the rocks as you fall down
                 //Anyway, I heard that the miner has just recently been mining and has some spare
                 //ore he would like to give, you should go visit him
-                return "explain";
+                return getLocalized("explain");
             } else if (quest_stage == FINISH) {
                 //Blacksmith reminds you to go and see the miner for some ore
                 //He also mentions that you can buy tools from him
-                return "reminder.visit";
+                return getLocalized("reminder.visit");
             }
         } else if (npc == MINER && quest_stage == FINISH) {
             //Brandon tells you he's just been on a recent trip down a mine
             //He then says you can have this, he then gives the player 10 copper
-            return "complete";
+            return getLocalized("complete");
         }
 
         return null;

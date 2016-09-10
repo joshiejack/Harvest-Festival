@@ -85,12 +85,12 @@ public abstract class Quest extends Impl<Quest> {
         return this;
     }
 
-    /** Return the localised name of the result of getScript
+    /** Use this helper in conjunction with getLocalizedScript
      * @param quest short form name **/
     @SuppressWarnings("deprecation")
     @SideOnly(Side.CLIENT)
-    public String getLocalized(String quest) {
-        return I18n.translateToLocal(getRegistryName().getResourceDomain() + ".quest." + getRegistryName().getResourcePath() + "." + quest.replace("_", ""));
+    public String getLocalized(String quest, Object... format) {
+        return I18n.translateToLocalFormatted(getRegistryName().getResourceDomain() + ".quest." + getRegistryName().getResourcePath() + "." + quest.replace("_", ""), format);
     }
 
     /** Return the script, in a simple unlocalised form
@@ -102,7 +102,7 @@ public abstract class Quest extends Impl<Quest> {
      * @return  the script*/
     @Nullable
     @SideOnly(Side.CLIENT)
-    public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
         return null;
     }
 
@@ -160,20 +160,6 @@ public abstract class Quest extends Impl<Quest> {
     /** Spawns an entity **/
     public final void rewardEntity(EntityPlayer player, String entity) {
         HFApi.quests.rewardEntity(this, player, entity);
-    }
-
-    /** Called when attempting to spawn an entity from the client **/
-    public boolean canSpawnEntity(String entity) {
-        return false;
-    }
-
-    /** Whether this item can be rewarded or not,
-     *  You do NOT need to worry about this if you are rewarding items on the server
-     *  This is only ever called when the client requests an item
-     * @param stack the stack attempting to be rewarded
-     * @return whether this item can be rewarded **/
-    public boolean canReward(ItemStack stack) {
-        return false;
     }
 
     /** Called to load data about this quest

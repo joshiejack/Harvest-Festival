@@ -11,7 +11,7 @@ import net.minecraftforge.fml.common.eventhandler.Event.Result;
  *  At the start of the script I pretty much always do:
  *  if (isCompletedEarly) {
  *      complete(player);
- *      return "completed";
+ *      return getLocalized("completed");
  *  }                               **/
 public abstract class QuestQuestion extends Quest {
     protected final Selection selection;

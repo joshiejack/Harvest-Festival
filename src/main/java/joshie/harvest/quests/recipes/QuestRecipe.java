@@ -34,10 +34,10 @@ public class QuestRecipe extends Quest {
 
     @SideOnly(Side.CLIENT)
     @Override
-    public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
         if (HFApi.relationships.getRelationship(player, npc.getUUID()) >= relationship) {
             complete(player);
-            return "text";
+            return getLocalized("text");
         } else return null;
     }
 

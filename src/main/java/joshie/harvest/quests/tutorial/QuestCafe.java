@@ -33,13 +33,13 @@ public class QuestCafe extends QuestQuestion {
     }
 
     @Override
-    public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
         if (isCompletedEarly) {
-            return "completed";
+            return getLocalized("completed");
         } else if (quest_stage == WELCOME) {
             //Liara tells the player, welcome to the cafe, she tells them that she is an expert on cooking
             //She asks them if they have ever cooked before or if they know how?
-            return "welcome";
+            return getLocalized("welcome");
         } else if (quest_stage == TUTORIAL) {
             //Liara explains that to cook you will need a utensil
             //You will also need to know a recipe, she tells you that you can look up recipes
@@ -53,7 +53,7 @@ public class QuestCafe extends QuestQuestion {
             //She also explains that the recipes listed in the book are the basic
             //And that you should try adding different ingredients to make better versions
             //She thanks you for your time, and being the first customer and gives the rewards
-            return "explain";
+            return getLocalized("explain");
         }
 
         return null;

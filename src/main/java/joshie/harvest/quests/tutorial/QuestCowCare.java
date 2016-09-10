@@ -39,7 +39,6 @@ public class QuestCowCare extends QuestQuestion {
     private static final int ACTION2 = 3;
     private static final int MILKER = 4;
     private static final int MILKING = 5;
-    private static final int FINAL = 6;
     private boolean attempted;
     private boolean hasFed;
     private boolean hasBrushed;
@@ -69,29 +68,17 @@ public class QuestCowCare extends QuestQuestion {
                     }
                 }
             }
-        } else if (quest_stage == MILKING) {
-            if (target instanceof EntityHarvestCow) {
-                EntityHarvestCow cow = (EntityHarvestCow) target;
-                if (held != null) {
-                    if (!hasMilked && ToolHelper.isMilker(held)) {
-                        if (cow.getData().canProduce()) {
-                            hasMilked = true;
-                            increaseStage(player);
-                        }
-                    }
-                }
-            }
         }
     }
 
     @Override
-    public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
         if (isCompletedEarly) {
-            return "completed";
+            return getLocalized("completed");
         } else if (quest_stage == START) {
             /*Yulif tells you that he has a spare cow, and that he's happy to give you it
             How then proceeds to ask if you know how to take care of cows */
-            return "start";
+            return getLocalized("start");
         } else if (quest_stage == INFO) {
             /*Yulif says oh ok then, then he starts to describe how to take care of cows
             He starts off by telling you that like chickens, cows and other large animals
@@ -100,15 +87,15 @@ public class QuestCowCare extends QuestQuestion {
             He tells you to show them love simply right click them to talk to them
             He tells you to brush you simply take a brush and right click them until hearts appear
             He then informs you to go feed and brush the cow */
-            return "info";
+            return getLocalized("info");
         } else if (quest_stage == ACTION1 || quest_stage == ACTION2) {
             if (attempted) {
                 if (InventoryHelper.getHeldItem(player) instanceof ItemFishingRod) {
                     //Yulif thanks the player for the brush and then reminds them to brush the cow and feed it by hand
-                    return "reminder.brush";
+                    return getLocalized("reminder.brush");
                 } else if (InventoryHelper.getHandItemIsIn(player, ITEM_STACK, new ItemStack(Blocks.TALLGRASS)) != null) {
                     //Yulif thanks the player for the wheat, gives fodder and thanks the player
-                    return "reminder.fodder";
+                    return getLocalized("reminder.fodder");
                 }
             }
 
@@ -116,7 +103,7 @@ public class QuestCowCare extends QuestQuestion {
             He informs the player if they lost the fodder, he'll trade for some grass
             He informs the player if they lost the brush, he'll trade for a fishing rod */
             attempted = true;
-            return "reminder.talk";
+            return getLocalized("reminder.talk");
         } else if (quest_stage == MILKER) {
             /* Yulif thanks the player for taking care of the cow, he then goes on to explain
             Just like chickens cows will produce a product, milk, in order to obtain milk
@@ -125,25 +112,27 @@ public class QuestCowCare extends QuestQuestion {
             And the larger the milk they produce, normally can only milk once a day
             Yulif then asks the player to go and milk a cow */
             attempted = false;
-            return "milk";
+            return getLocalized("milk");
         } else if (quest_stage == MILKING) {
             if (attempted) {
                 if (InventoryHelper.getHeldItem(player) instanceof ItemShears) {
                     //Yulif thanks the player for the shears, and gives them a milk, reminding them to go milk a cow
-                    return "reminder.milker";
+                    return getLocalized("reminder.milker");
                 }
+            }
+
+            /* Yulif tells the player that's almost it, he then mentions that just with the chicken
+            You can autofeed larger animals with a trough, just simply place some fodder in it
+            He then mentions that the animal ranch
+            Is a great place to buy larger animals, and other things, so he suggests you build one */
+            if (InventoryHelper.getHandItemIsIn(player, ITEM_STACK, HFAnimals.MILK.getStack(Size.SMALL)) != null) {
+                return getLocalized("complete");
             }
 
             /* Yulif reminds the player that he wanted the player to milk a cow
              He informs the player if they lost the milker, he'll trade for shears */
             attempted = true;
-            return "reminder.milk";
-        } else if (quest_stage == FINAL) {
-            /* Yulif tells the player that's almost it, he then mentions that just with the chicken
-            You can autofeed larger animals with a trough, just simply place some fodder in it
-            He then mentions that the animal ranch
-            Is a great place to buy larger animals, and other things, so he suggests you build one */
-            return "complete";
+            return getLocalized("reminder.milk");
         }
 
         return null;
@@ -184,9 +173,11 @@ public class QuestCowCare extends QuestQuestion {
                 }
             }
 
+            if (InventoryHelper.getHandItemIsIn(player, ITEM_STACK, HFAnimals.MILK.getStack(Size.SMALL)) != null) {
+                complete(player);
+            }
+
             attempted = true;
-        } else if (quest_stage == FINAL) {
-            complete(player);
         }
     }
 

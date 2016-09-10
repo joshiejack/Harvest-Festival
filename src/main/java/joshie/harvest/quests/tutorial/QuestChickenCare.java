@@ -89,15 +89,15 @@ public class QuestChickenCare extends QuestQuestion {
     }
 
     @Override
-    public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
         if (isCompletedEarly) {
-            return "completed";
+            return getLocalized("completed");
         } else if (quest_stage == INTRO && InventoryHelper.getHandItemIsIn(player, ITEM_STACK, HFCrops.TURNIP.getCropStack(1)) != null) {
             /*The goddess welcomes you and sees that you have a turnip
             She thanks you for growing them for her, she explains that has a wonderful gift
             One you have never seen before, She explains she has a chicken she would like to give you
             She then proceeds to ask if you know how to care for chickens */
-            return "start";
+            return getLocalized("start");
         } else if (quest_stage == THROW) {
             /*Now that the goddess knows that you do not how to take care of chicken she starts off on a rant
             She explains that in order to care four chickens, you must feed them
@@ -108,16 +108,16 @@ public class QuestChickenCare extends QuestQuestion {
             She explains you can also make it love you when feed it by hand
             She explains that doing this will make the chicken like you more, and in doing so
             She asks the player to go feed by hand, and throw the chicken (giving the player feed) */
-            return "throw";
+            return getLocalized("throw");
         } else if (quest_stage == ACTION1 || quest_stage == ACTION2) {
             if (!attempted) {
                 if (InventoryHelper.getHeldItem(player) instanceof ItemSeeds) {
                     //Goddess thanks the player for the seeds and then gives them 1 chicken feed
-                    return "reminder.seeds";
+                    return getLocalized("reminder.seeds");
                 } else if (InventoryHelper.getHeldItem(player) instanceof ItemEgg) {
                     /*Goddess thanks the player for the egg, she then informs the player
                     That she will give them another chicken */
-                    return "reminder.chicken";
+                    return getLocalized("reminder.chicken");
                 }
             }
 
@@ -126,7 +126,7 @@ public class QuestChickenCare extends QuestQuestion {
             She also explains that she will trade a vanilla egg for a chicken if yours happens to die
             If the player gives them seeds */
             attempted = true;
-            return "reminder.throw";
+            return getLocalized("reminder.throw");
         } else if (quest_stage == EGG) {
             /*The goddess congratulates you on performing the task, she then goes on to say that
             Over time the chicken will eventually produce bigger and better eggs that you can sell for more money
@@ -134,23 +134,23 @@ public class QuestChickenCare extends QuestQuestion {
             Chickens will lay their eggs in here and you can then collect them and ship them off
             The goddess now asks the player to return when they have one egg from the special chickens */
             attempted = false;
-            return "egg";
+            return getLocalized("egg");
         } else if (quest_stage == FINAL) {
             if (HFAnimals.EGG.matches(player.getHeldItemMainhand())) {
                 /*The goddess thanks the player for their time and gives them a reward of a large egg
                 She explains this is a valuable egg from the best of chickens, you'll have to take care
                 Of yours properly if you wish to look after it. She also heard that yulif had a spare cow
                 And that you should go talk to him if you want it */
-                return "complete";
+                return getLocalized("complete");
             } else if (attempted && InventoryHelper.getHandItemIsIn(player, ITEM_STACK, CHEST) != null) {
                 //Thanks the player for the hay, and reminds them to get her an egg
-                return "reminder.nest";
+                return getLocalized("reminder.nest");
             }
 
             /*The goddess reminds you that she wants an egg from one of the special chickens
             She also tells that if you lost the nest, bring her a hay bale */
             attempted = true;
-            return "reminder.egg";
+            return getLocalized("reminder.egg");
         }
 
         return null;

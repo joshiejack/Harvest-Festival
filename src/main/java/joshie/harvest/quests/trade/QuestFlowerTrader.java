@@ -36,14 +36,14 @@ public class QuestFlowerTrader extends QuestTrade {
 
     @SideOnly(Side.CLIENT)
     @Override
-    public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
         if (InventoryHelper.getHandItemIsIn(player, SPECIAL, SearchType.FLOWER, 10) != null) {
             if (season == SPRING || season == SUMMER || season == AUTUMN) {
                 //Jade informs the player that she will happily trade flowers
                 //For a bag of seeds
-                return "complete.yes";
+                return getLocalized("complete.yes");
                 //Jade Informs the player that she doesn't have in stock this time of year
-            } else return "complete.no";
+            } else return getLocalized("complete.no");
         }
 
          return null;

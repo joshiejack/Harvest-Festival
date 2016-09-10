@@ -38,12 +38,12 @@ public class QuestCrops extends QuestQuestion {
     }
 
     @Override
-    public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
         if (isCompletedEarly) {
-            return "completed";
+            return getLocalized("completed");
         } else if (quest_stage == INTRO) {
          /* Jade says hello to the player, and asks them if they know how to farm */
-            return "intro";
+            return getLocalized("intro");
         } else if (quest_stage == START) {
          /* Jade explains farming, and how you need to hoe the ground, then plant seeds, and then water them everyday
             She asks that you take this hoe, this watering can and three turnip seeds, and return to her when you have 9 turnips
@@ -51,18 +51,18 @@ public class QuestCrops extends QuestQuestion {
             She explains that you must fill the watering can with water before you can use it
             She also explains that if you wish to speed up growth time, you can sleep, crops will grow as the day ticks over
             She also explains that crops will only grow in very specific seasons */
-            return "start";
+            return getLocalized("start");
         } else if (quest_stage == TURNIPS) {
             if (attempted) {
                 if (InventoryHelper.getHandItemIsIn(player, SPECIAL, SearchType.FLOWER, 10) != null) {
                     /* Jade thanks the player for the flowers, and gives them turnip seeds */
-                    return "thanks.flowers";
+                    return getLocalized("thanks.flowers");
                 } else if (InventoryHelper.getHandItemIsIn(player, SPECIAL, SearchType.HOE) != null) {
                     /* Jade thanks the player for the hoe and gives them a hf hoe */
-                    return "thanks.hoe";
+                    return getLocalized("thanks.hoe");
                 } else if (InventoryHelper.getHandItemIsIn(player, SPECIAL, SearchType.BUCKET) != null) {
                     /* Jade thanks the player for the bucket and gives them a watering can */
-                    return "thanks.bucket";
+                    return getLocalized("thanks.bucket");
                 }
             }
 
@@ -78,7 +78,7 @@ public class QuestCrops extends QuestQuestion {
                She also informs the player that the harvest goddess has heard of your great work
                And that she would really like to hear from you, in fact she would love to see a turnip!*/
             if (InventoryHelper.getHandItemIsIn(player, ITEM_STACK, HFCrops.TURNIP.getCropStack(9), 9) != null) {
-                return "complete";
+                return getLocalized("complete");
             }
 
             /*Jade reminds the player that to continue she is after 9 turnips
@@ -87,7 +87,7 @@ public class QuestCrops extends QuestQuestion {
             She also tells the player she will trade a watering can for a bucket
             And that she will give them a bag of turnips for 10 flowers*/
             attempted = true;
-            return "reminder.turnips";
+            return getLocalized("reminder.turnips");
         }
 
         return null;

@@ -158,11 +158,11 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
         return null;
     }
 
-    public boolean canStay(World world, IBlockState state, BlockPos pos) {
+    public boolean canStay(World world, BlockPos pos) {
         Crop crop = HFApi.crops.getCropAtLocation(world, pos);
         if (crop != null && crop.getGrowthHandler() != null) {
             IBlockState down = world.getBlockState(pos.down());
-            return down.getBlock() == this || crop.getGrowthHandler().canSustainCrop(world, pos, state, crop);
+            return down.getBlock() == this || crop.getGrowthHandler().canSustainCrop(world, pos, world.getBlockState(pos.down()), crop);
         } else return false;
     }
 
@@ -190,8 +190,8 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
     @Override
     public void neighborChanged(IBlockState state, World world, BlockPos pos, Block neighborBlock) {
         if (!world.isRemote) {
-            if (!canStay(world, state, pos)) {
-                //world.setBlockToAir(pos);
+            if (!canStay(world, pos)) {
+                world.setBlockToAir(pos);
             }
         }
     }

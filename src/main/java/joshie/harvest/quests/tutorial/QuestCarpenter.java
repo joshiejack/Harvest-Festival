@@ -35,9 +35,9 @@ public class QuestCarpenter extends Quest {
     }
 
     @Override
-    public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
         if (quest_stage == WELCOME && npc == HFNPCs.GODDESS) {
-            return "welcome";
+            return getLocalized("welcome");
         } else if (quest_stage == LOGS && npc == HFNPCs.GODDESS) {
             /*  Goddess Tells the player thank you for the logs
             She then gifts the player a blueprint tells the player that this is a blueprint
@@ -51,21 +51,21 @@ public class QuestCarpenter extends Quest {
             To jaded, and tells you that she carries around a bunch of seeds, but she is always on the lookout for flowers instead
             Normally she would ask for 10 flowers, but for a one off deal she is doing one flower for some seeds */
             if (InventoryHelper.getHandItemIsIn(player, ORE_DICTIONARY, "logWood", 64) != null) {
-                return "thanks.build";
+                return getLocalized("thanks.build");
             }
 
             /* The goddess reminds you that she wants you to give her 64 logs */
-            return "reminder.wood";
+            return getLocalized("reminder.wood");
         } else if (quest_stage == SEED_CHAT) {
             if (npc == HFNPCs.GODDESS) {
                 /*The Goddess reminds the player that she has asked you to deliver a flower to jaded, and to do so
                   You must get the carpenter house built, she says that if you lost the blueprint, then bring the goddess
                   Another 64 logs of wood, and she will happily give you a blueprint again */
                 if (attempted && InventoryHelper.getHandItemIsIn(player, ORE_DICTIONARY, "logWood", 64) != null) {
-                    return "reminder.give";
+                    return getLocalized("reminder.give");
                 } else {
                     attempted = true;
-                    return "reminder.carpenter";
+                    return getLocalized("reminder.carpenter");
                 }
             } else if (npc == HFNPCs.SEED_OWNER) {
                 /*Jade thanks you for the flowers, she then proceeds
@@ -73,16 +73,16 @@ public class QuestCarpenter extends Quest {
                   She has a reward, She says to come back to see her after you have
                   revisited the goddess, as she has something to show you */
                 if (InventoryHelper.getHandItemIsIn(player, SPECIAL, FLOWER, 1) != null) {
-                    return "thanks.flowers";
+                    return getLocalized("thanks.flowers");
                 }
 
                 /* Jade tells you that it is nice to meet you, and that she's looking for some kind of flower */
-                return "reminder.flowers";
+                return getLocalized("reminder.flowers");
             }
         } else if (quest_stage == FINISHED && npc == HFNPCs.GODDESS) {
             /* Goddess thanks the player for helping out get the town started, She explains that she understands that you'll need something
                to get started, so she gives you 1000 gold */
-            return "thanks.finish";
+            return getLocalized("thanks.finish");
         }
 
         return null;

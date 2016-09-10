@@ -6,7 +6,6 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.handlers.HFTrackers;
-import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.lib.HFSounds;
 import joshie.harvest.tools.HFTools;
 import net.minecraft.entity.EntityLiving;
@@ -15,7 +14,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -46,35 +44,24 @@ public class QuestBless extends QuestTrade {
         return (nowDays - thenDays);
     }
 
-    @SuppressWarnings("deprecation")
     @SideOnly(Side.CLIENT)
     @Override
-    public String getLocalized(String quest) {
-        if (quest.equals("wait")) {
-            CalendarDate today = HFApi.calendar.getDate(MCClientHelper.getWorld());
-            return I18n.translateToLocalFormatted("harvestfestival.quest.trade.cursed.wait", 3 - (getDifference(date, today)));
-        } else if (quest.equals("done")) {
-            return I18n.translateToLocalFormatted("harvestfestival.quest.trade.cursed.done", tool.getDisplayName());
-        } else return super.getLocalized(quest);
-    }
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
         if (quest_stage == TEST) {
             boolean hasGold = HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getGold() >= 10000L;
             boolean hasTool = isHolding(player, hoe) || isHolding(player, sickle) || isHolding(player, watering) || isHolding(player, axe) || isHolding(player, hammer);
             if (hasGold && hasTool) {
-                return "accept";
+                return getLocalized("accept");
             } else if (hasTool) {
-                return "gold";
+                return getLocalized("gold");
             } else return null;
         } else {
+            CalendarDate today = HFApi.calendar.getDate(player.worldObj);
             if (getDifference(date, today) >= 3) {
-                return "done";
+                return getLocalized("done", tool.getDisplayName());
             }
 
-            return "wait";
+            return getLocalized("wait", 3 - (getDifference(date, today)));
         }
     }
 

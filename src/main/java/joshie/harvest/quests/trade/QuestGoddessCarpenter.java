@@ -29,8 +29,8 @@ public class QuestGoddessCarpenter extends QuestTrade {
 
     @SideOnly(Side.CLIENT)
     @Override
-    public String getScript(EntityPlayer player, EntityLiving entity, INPC npc) {
-        return InventoryHelper.getHandItemIsIn(player, ORE_DICTIONARY, "logWood", 64) != null ? "thanks" : null;
+    public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
+        return InventoryHelper.getHandItemIsIn(player, ORE_DICTIONARY, "logWood", 64) != null ? getLocalized("thanks") : null;
     }
 
     @Override

@@ -5,7 +5,9 @@
 
 ## Bugs
 - Fix spawning two yulife when you place one in a new world
+- Fix tools not being repairable in anvil
 - Sleeping issues with Morpheus
+- Fix crops staying when farmland turned to dirt
 
 ## Improvements
 - Need something better for respawning a dead chicken in the chicken care quest

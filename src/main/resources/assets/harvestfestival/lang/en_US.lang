@@ -147,7 +147,7 @@ harvestfestival.meal.ketchup=Ketchup
 harvestfestival.meal.ketchup.description=Thick and rich, ketchup is one of the classic condiments. Some prefer theirs sweet, salty, or otherwise spicy.
 harvestfestival.meal.butter=Butter
 harvestfestival.meal.butter.description=Properly churned creamy milk has much of it’s fat and oils separate out into butter when blended. A common preservative helps it keep, and with flavor.
-harvestfestival.meal.fishsticks=Fish Sticks
+harvestfestival.meal.fishsticks=Fish Fingers
 harvestfestival.meal.fishsticks.description=One of the meats which responds better to mincing, minced fish can be formed into sticks or patties as a handy snack or meal.
 harvestfestival.meal.salad=Salad
 harvestfestival.meal.salad.description=Crisp and refreshing the perfect contrast to fat heavy meats. There’s so many toppings to choose from, practically a whole garden, though some prefer oil and salt.
@@ -891,13 +891,44 @@ harvestfestival.quest.trade.upgrade.repair.gold=Repairing this tool will cost yo
 harvestfestival.quest.trade.upgrade.repair.material=To repair this tool I’m going to need %s.
 harvestfestival.quest.trade.upgrade.repair.start=This I can do, please come back in a day to collect your repaired tool.
 
-
 # Jade Seed Trades
 harvestfestival.quest.trade.seeds.complete.yes=Thanks for the flowers, here have a bag of seeds.
 harvestfestival.quest.trade.seeds.complete.no=I’m sorry but I don’t have any seeds to spare this time of year.
 
 # Goddess Free Carpenter
 harvestfestival.quest.trade.carpenter.thanks=Thanks sweety, I'm happy to give you another Carpenter Blueprint.
+
+## Recipe Quests
+harvestfestival.quest.recipe.corn.baked.text=You've really made me comfortable, I'm happy to treat you to my secret recipe for Baked Corn.
+harvestfestival.quest.recipe.butter.text=I'll let you in on a little secret on what makes my tools so awesome, I coat them in a little Butter.
+harvestfestival.quest.recipe.potato.candied.text=Why sir, it has been just splending getting to know you. I am happy to share with you a family recipe.
+harvestfestival.quest.recipe.cake.chocolate.text=It's been great getting to know, really has. Now this one is a sure winner, have a slice of cake.
+harvestfestival.quest.recipe.cookies.chocolate.text=You know what makes cookies even better? A little bit of chocolate.
+harvestfestival.quest.recipe.dinnerroll.text=It's been a real pleasure getting to know. I've got a recipe for you that Fenn just loves.
+harvestfestival.quest.recipe.doughnut.text=Without a doubt you are now one of my favourite people, I've another recipe, this time it's my favourite.
+harvestfestival.quest.recipe.dumplings.text=The spirit has been kind to you. For that I would like to award you with Dumplings.
+harvestfestival.quest.recipe.fish.stew.text=Did you ever think what I do with my fish. Well I tend to have them in a stew. Here's how I do it.
+harvestfestival.quest.recipe.fishsticks.text=I like to keep things simple when I'm cooking. How about some Fish Fingers?
+harvestfestival.quest.recipe.fries.french.text=My my, we really have gotten to know each other haven't we. I've travelled many places. But I've yet to see anywhere that has such a recipe as I am about to give you.
+harvestfestival.quest.recipe.toast.french.text=Oh my dear, Getting to know you has been lovely. I've actually been practicing my cooking, and am happy to share with you the next level of toast.
+harvestfestival.quest.recipe.fish.grilled.text=Stews are nice, but when I really want to get something, I like to grill my fish, just like this.
+harvestfestival.quest.recipe.chocolate.hot.text=Thanks for spending your time getting to know me. I'm happy to give you one of my recipes I've been working on.
+harvestfestival.quest.recipe.milk.hot.text=Well then, You've really brought a shine to my life with your gorgeousness. I love my milk for sure, but even more when it's hot. Just like you!
+harvestfestival.quest.recipe.noodles.text=Ehh, I guess you're my friend now. I only really know how to make noodles though.
+harvestfestival.quest.recipe.omelet.rice.text=It seems like you've really saw past what all the others think. I can now call you a friend. And friends share Omelette Rice.
+harvestfestival.quest.recipe.pancake.savoury.text=You may like your pancakes sweet, but I've always preferred them savoury. If you don't know how to make them like that, here's a guide.
+harvestfestival.quest.recipe.juice.pineapple.text=Getting to know ya has been a sweet deal. So here.
+harvestfestival.quest.recipe.popcorn.text=Nothing I love a bit more than heading to the movies, watching the latest fox film and snacking on popcorn.
+harvestfestival.quest.recipe.porridge.text=This porridge recipe is something my mother used to make me. And now as we've grown closer, I'm happy to share it with you, my sweet.
+harvestfestival.quest.recipe.potsticker.text=For being such a wonderful friend. And staying beside me through thick and fin, I'd love to give you this gift.
+harvestfestival.quest.recipe.risotto.text=You know how I said I only know noodles. Well I've been learning now, this is what I've been practicing.
+harvestfestival.quest.recipe.salad.text=You've been a good friend, so take this.
+harvestfestival.quest.recipe.egg.scrambled.text=My mind is so confused on who to choose, you could say it's scrambled.
+harvestfestival.quest.recipe.soup.rice.text=I am obligated to give you this.
+harvestfestival.quest.recipe.stew.text=Looking after Liara was a real chore. She was a troublesome child. I couldn't find anything to calm her down. Until one day, I decided to just make a stew. And well since then she's been an angel. Perhaps sharing this recipe with others, will relax them too.
+harvestfestival.quest.recipe.milk.strawberry.text=What makes milk even nicer?
+harvestfestival.quest.recipe.toast.text=Yulif hasn't really taught me how to cook much yet. I do know how to make some toast though.
+harvestfestival.quest.recipe.latte.vegetable.text=I need to get rid of this unholy object fast. Please take it.
 
 ###Sounds
 harvestfestival.subtitle.fryingpan=Sizzle

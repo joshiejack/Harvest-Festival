@@ -1,7 +1,6 @@
 ## Lang
 - Add lang for extra chatting
 - Add lang for all the recipes
-- Add lang for all the recipe quests
 - Goddess mentions that Yulif will respawn when he dies (Not very RPG-isch)
 
 ## Bugs

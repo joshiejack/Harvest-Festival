@@ -5,6 +5,7 @@ import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.tools.ToolHelper;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockBush;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -112,13 +113,14 @@ public class ItemHoe extends ItemToolChargeable {
                 for (int x2 = getXMinus(tier, front, pos.getX()); x2 <= getXPlus(tier, front, pos.getX()); x2++) {
                     for (int z2 = getZMinus(tier, front, pos.getZ()); z2 <= getZPlus(tier, front, pos.getZ()); z2++) {
                         if (canUse(stack)) {
-                            Block block = world.getBlockState(new BlockPos(x2, pos.getY(), z2)).getBlock();
+                            BlockPos thePos = new BlockPos(x2, pos.getY(), z2);
+                            Block block = world.getBlockState(thePos).getBlock();
                             if (world.isAirBlock(pos.up())) {
                                 if ((block == Blocks.GRASS || block == Blocks.DIRT)) {
                                     if (!canHoe(player, stack, world, pos)) continue;
-                                    doParticles(stack, player, world, new BlockPos(x2, pos.getY(), z2));
+                                    doParticles(stack, player, world, thePos);
                                     if (!world.isRemote) {
-                                        world.setBlockState(new BlockPos(x2, pos.getY(), z2), Blocks.FARMLAND.getDefaultState());
+                                        world.setBlockState(thePos, Blocks.FARMLAND.getDefaultState());
                                     }
                                 }
                             }
@@ -133,5 +135,8 @@ public class ItemHoe extends ItemToolChargeable {
         displayParticle(world, pos, EnumParticleTypes.BLOCK_CRACK, Blocks.DIRT.getDefaultState());
         playSound(world, pos, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS);
         ToolHelper.performTask(player, stack, getExhaustionRate(stack));
+        if (world.getBlockState(pos.up()).getBlock() instanceof BlockBush) {
+            world.setBlockToAir(pos.up());
+        }
     }
 }

@@ -7,7 +7,6 @@
 ## Bugs
 - Fix spawning two yulife when you place one in a new world
 - Sleeping issues with Morpheus
-- Fix crops staying when farmland turned to dirt
 
 ## Improvements
 - Need something better for respawning a dead chicken in the chicken care quest
@@ -21,7 +20,6 @@
 
 ## QOL
 - Hovering over array of ingredients shows all of them in bar
-- Add ability to sleep in the day
 
 ### Textures
 - New Textures for the following NPCS

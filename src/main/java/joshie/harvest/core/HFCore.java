@@ -34,6 +34,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
+import static joshie.harvest.core.helpers.ConfigHelper.getBoolean;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.core.lib.LoadOrder.HFCORE;
 
@@ -106,5 +107,11 @@ public class HFCore {
     }
 
     //Configure
-    public static boolean DEBUG_MODE = false;
+    public static boolean DEBUG_MODE;
+    public static boolean SLEEP_ANYTIME;
+
+    public static void configure() {
+        DEBUG_MODE = getBoolean("Debug Mode", false, "Enabling this adds extra information to items, when you have f3 debug mode on");
+        SLEEP_ANYTIME = getBoolean("Sleep any time of day", true);
+    }
 }

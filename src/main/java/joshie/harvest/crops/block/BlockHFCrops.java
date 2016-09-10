@@ -162,7 +162,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
         Crop crop = HFApi.crops.getCropAtLocation(world, pos);
         if (crop != null && crop.getGrowthHandler() != null) {
             IBlockState down = world.getBlockState(pos.down());
-            return down.getBlock() == this || crop.getGrowthHandler().canSustainCrop(world, pos, world.getBlockState(pos.down()), crop);
+            return down.getBlock() == this || crop.getGrowthHandler().canSustainCrop(world, pos.down(), world.getBlockState(pos.down()), crop);
         } else return false;
     }
 

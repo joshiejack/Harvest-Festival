@@ -19,6 +19,7 @@ public class HFTransformer implements IFMLLoadingPlugin, IClassTransformer {
 
     static {
         asm.add(new BlockSnowTransformer());
+        asm.add(new PlayerWakeTransformer());
         asm.add(new RenderRainTransformer());
         asm.add(new RenderItemTransformer());
     }

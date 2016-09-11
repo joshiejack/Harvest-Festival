@@ -23,7 +23,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.network.ByteBufUtils;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -105,8 +104,8 @@ public class AnimalData implements IAnimalData {
         if (animal != null) {
             //Check if the animal is going to die
             if (hasDied) return false;
-            if (currentLifespan > type.getMaxLifespan() || healthiness <= -120) return false;
-            if (currentLifespan > type.getMinLifespan() || healthiness < 0) {
+            if (currentLifespan > type.getMaxLifespan()) return false;
+            if (currentLifespan > type.getMinLifespan()) {
                 if (rand.nextInt(getDeathChance()) == 0) {
                     hasDied = true;
                     return false;
@@ -285,7 +284,7 @@ public class AnimalData implements IAnimalData {
     public void dismount(EntityPlayer player) {
         if (!thrown) {
             thrown = true;
-            affectRelationship(player, 100);
+            getAnimal().setInLove(player);
         }
     }
 
@@ -312,6 +311,7 @@ public class AnimalData implements IAnimalData {
                 isSick = false;
             }
 
+            getAnimal().clearActivePotions();
             sendToEveryone(new PacketSyncHealthiness(animal.getEntityId(), (byte)healthiness));
             return true;
         } else return false;
@@ -390,15 +390,6 @@ public class AnimalData implements IAnimalData {
         buf.writeByte(daysNotFed);
         buf.writeByte(productsPerDay);
         buf.writeByte(producedProducts);
-        //Leashed
-        boolean sendUpdate = getAnimal().getLeashedToEntity() instanceof EntityPlayer || getAnimal().getRidingEntity() instanceof EntityPlayer;
-        buf.writeBoolean(sendUpdate);
-        if (sendUpdate) {
-            String uuidString = getAnimal().getLeashed() ? EntityHelper.getPlayerUUID((EntityPlayer) getAnimal().getLeashedToEntity()).toString() :
-                    EntityHelper.getPlayerUUID((EntityPlayer) getAnimal().getRidingEntity()).toString();
-            ByteBufUtils.writeUTF8String(buf, uuidString);
-            buf.writeBoolean(getAnimal().getLeashed());
-        }
     }
 
     @Override
@@ -407,12 +398,6 @@ public class AnimalData implements IAnimalData {
         daysNotFed = buf.readByte();
         productsPerDay = buf.readByte();
         producedProducts = buf.readByte();
-        if (buf.readBoolean()) {
-            EntityPlayer player = EntityHelper.getPlayerFromUUID(UUID.fromString(ByteBufUtils.readUTF8String(buf)));
-            if (buf.readBoolean()) { //Leashed
-                getAnimal().setLeashedToEntity(player, false);
-            } else getAnimal().startRiding(player, true);
-        }
     }
 
     @Override

@@ -16,6 +16,7 @@ public class PacketSyncHealthiness extends AbstractSyncByte {
     public void handlePacket(EntityPlayer player) {
         IAnimalTracked entity = getAnimal();
         if (entity != null) {
+            getAnimal().getAsEntity().clearActivePotions();
             AnimalData theData = (AnimalData) entity.getData();
             theData.setHealthiness(data);
         }

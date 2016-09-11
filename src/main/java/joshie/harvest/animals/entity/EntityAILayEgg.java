@@ -12,6 +12,7 @@ public class EntityAILayEgg extends EntityAIBase {
     private World worldObj;
     private EntityHarvestChicken animal;
     private IAnimalTracked tracked;
+    private int wanderTick;
 
     public EntityAILayEgg(IAnimalTracked<EntityHarvestChicken> animal) {
         this.worldObj = animal.getAsEntity().worldObj;
@@ -22,12 +23,16 @@ public class EntityAILayEgg extends EntityAIBase {
 
     @Override
     public boolean shouldExecute() {
-        return tracked.getData().canProduce();
+        if(tracked.getData().canProduce() && !tracked.getData().isHungry()) {
+            wanderTick--;
+
+            return wanderTick <= 0;
+        } else return false;
     }
 
     @Override
     public boolean continueExecuting() {
-        return tracked.getData().canProduce();
+        return wanderTick <= 0;
     }
 
     @Override
@@ -36,7 +41,14 @@ public class EntityAILayEgg extends EntityAIBase {
         IBlockState state = animal.worldObj.getBlockState(position);
         Block block = state.getBlock();
         if (block instanceof INest) {
-            ((INest) block).layEgg(tracked, worldObj, position, state);
+            if(((INest) block).layEgg(tracked, worldObj, position, state)) {
+                wanderTick = 200;
+            }
+        }
+
+        wanderTick--;
+        if (worldObj.rand.nextDouble() < 0.005D || wanderTick < Short.MIN_VALUE) {
+            wanderTick = 200;
         }
     }
 }

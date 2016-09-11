@@ -9,6 +9,7 @@ import joshie.harvest.api.crops.IBreakCrops;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
 import joshie.harvest.core.base.block.BlockHFEnum;
 import joshie.harvest.core.base.item.ItemBlockHF;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.util.HFEvents;
 import joshie.harvest.crops.CropData;
@@ -37,10 +38,12 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -50,6 +53,7 @@ import java.util.Random;
 import static joshie.harvest.api.crops.IStateHandler.PlantSection.BOTTOM;
 import static joshie.harvest.api.crops.IStateHandler.PlantSection.TOP;
 import static joshie.harvest.core.network.PacketHandler.sendRefreshPacket;
+import static joshie.harvest.crops.CropHelper.WET_SOIL;
 import static joshie.harvest.crops.CropHelper.harvestCrop;
 import static joshie.harvest.crops.block.BlockHFCrops.Stage.*;
 
@@ -267,11 +271,38 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
         }
     }
 
+    public static class RainingSoil {
+        private int existence;
+        private World world;
+        private BlockPos pos;
+
+        public RainingSoil(World world, BlockPos pos) {
+            this.world = world;
+            this.pos = pos;
+        }
+
+        @SubscribeEvent
+        public void onTick(TickEvent.WorldTickEvent event) {
+            if (event.world != world) return;
+            boolean remove = existence >= 30;
+            if (remove) {
+                world.setBlockState(pos, WET_SOIL);
+                MinecraftForge.EVENT_BUS.unregister(this);
+            }
+
+            existence++;
+        }
+    }
+
     @HFEvents
     public static class EventHandler {
-        @SubscribeEvent(priority = EventPriority.LOWEST)
+        @SubscribeEvent(priority = EventPriority.LOWEST, receiveCanceled = true)
         public void onDirtTilled(UseHoeEvent event) {
-            if (!event.getWorld().isRemote) {
+            if (!event.getWorld().isRemote && !event.isCanceled()) {
+                if (HFTrackers.getCalendar(event.getWorld()).getTodaysWeather().isRain()) {
+                    MinecraftForge.EVENT_BUS.register(new RainingSoil(event.getWorld(), event.getPos()));
+                }
+
                 HFApi.tickable.addTickable(event.getWorld(), event.getPos(), HFApi.tickable.getTickableFromBlock(Blocks.FARMLAND));
             }
         }

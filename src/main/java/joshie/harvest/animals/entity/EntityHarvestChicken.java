@@ -5,6 +5,7 @@ import io.netty.buffer.ByteBuf;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
+import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityChicken;
@@ -21,6 +22,8 @@ import java.util.Set;
 public class EntityHarvestChicken extends EntityChicken implements IAnimalTracked<EntityHarvestChicken> {
     private static final Set<Item> TEMPTATION_ITEMS = Sets.newHashSet(new Item[] {Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS});
     private final IAnimalData data;
+    private EntityPlayer toLovePlayer;
+    private int toLoveTicker;
 
     public EntityHarvestChicken(World world) {
         super(world);
@@ -67,6 +70,24 @@ public class EntityHarvestChicken extends EntityChicken implements IAnimalTracke
     @Override
     public EntityHarvestChicken createChild(EntityAgeable ageable) {
         return new EntityHarvestChicken(worldObj);
+    }
+
+    @Override
+    public void onLivingUpdate() {
+        super.onLivingUpdate();
+        if (toLovePlayer != null) {
+            if (toLoveTicker >= 0) toLoveTicker--;
+            else {
+                HFTrackers.getPlayerTrackerFromPlayer(toLovePlayer).getRelationships().affectRelationship(toLovePlayer, getUUID(), 100);
+                toLovePlayer = null;
+            }
+        }
+    }
+
+    @Override
+    public void setInLove(EntityPlayer player) {
+        toLovePlayer = player;
+        toLoveTicker = 20;
     }
 
     /*################### Data ############## */

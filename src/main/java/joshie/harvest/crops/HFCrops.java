@@ -106,6 +106,7 @@ public class HFCrops {
         registerVanillaCrop(Items.MELON, WATERMELON);
         registerVanillaCrop(Blocks.PUMPKIN, PUMPKIN);
         registerVanillaCrop(Items.NETHER_WART, NETHER_WART);
+        HFApi.shipping.registerSellable(new ItemStack(Items.POISONOUS_POTATO), 1L);
 
         //Add a new crop item for things that do not have an item yet :D
         for (Crop crop : Crop.REGISTRY.getValues()) {

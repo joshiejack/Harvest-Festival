@@ -13,6 +13,7 @@ public class EntityAIEat extends EntityAIBase {
     private World worldObj;
     private EntityAnimal animal;
     private IAnimalTracked tracked;
+    private int wanderTick;
 
     public EntityAIEat(IAnimalTracked animal) {
         this.worldObj = animal.getAsEntity().worldObj;
@@ -23,21 +24,33 @@ public class EntityAIEat extends EntityAIBase {
 
     @Override
     public boolean shouldExecute() {
-        return tracked.getData().isHungry();
+        if(tracked.getData().isHungry()) {
+            wanderTick--;
+
+            return wanderTick <= 0;
+        } else return false;
     }
 
     @Override
     public boolean continueExecuting() {
-        return tracked.getData().isHungry();
+        return wanderTick <= 0;
     }
 
     @Override
     public void updateTask() {
-        BlockPos position = new BlockPos(animal).add(worldObj.rand.nextInt(6) - 3, 0, worldObj.rand.nextInt(6) - 3);
+        BlockPos position = new BlockPos(animal).add(worldObj.rand.nextInt(8) - 4, 0, worldObj.rand.nextInt(8) - 4);
         IBlockState state = animal.worldObj.getBlockState(position);
         Block block = state.getBlock();
         if (block instanceof IAnimalFeeder) {
-            ((IAnimalFeeder) block).feedAnimal(tracked, worldObj, position, state);
+            if(((IAnimalFeeder) block).feedAnimal(tracked, worldObj, position, state)) {
+                wanderTick = 200;
+            }
+        }
+
+
+        wanderTick--;
+        if (worldObj.rand.nextDouble() < 0.005D || wanderTick < Short.MIN_VALUE) {
+            wanderTick = 200;
         }
     }
 }

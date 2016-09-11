@@ -14,6 +14,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+import static joshie.harvest.core.helpers.InventoryHelper.ITEM;
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 
 @HFEvents
@@ -39,8 +40,9 @@ public class AnimalEvents {
         public static boolean register() { return HFAnimals.PICKUP_CHICKENS; }
 
         public boolean isChickenItem(EntityPlayer player) {
-            return InventoryHelper.getHandItemIsIn(player, ITEM_STACK, HFAnimals.TOOLS.getStackFromEnum(Tool.CHICKEN_FEED)) != null ||
-                    InventoryHelper.getHandItemIsIn(player, ITEM_STACK, HFAnimals.TOOLS.getStackFromEnum(Tool.MEDICINE)) != null;
+            return  InventoryHelper.getHandItemIsIn(player, ITEM_STACK, HFAnimals.TOOLS.getStackFromEnum(Tool.CHICKEN_FEED)) != null ||
+                    InventoryHelper.getHandItemIsIn(player, ITEM_STACK, HFAnimals.TOOLS.getStackFromEnum(Tool.MEDICINE)) != null ||
+                    InventoryHelper.getHandItemIsIn(player, ITEM, HFAnimals.TREATS) != null;
         }
 
         @SubscribeEvent
@@ -62,7 +64,7 @@ public class AnimalEvents {
                     entity.dismountRidingEntity();
                     entity.rotationPitch = player.rotationPitch;
                     entity.rotationYaw = player.rotationYaw;
-                    entity.moveRelative(0F, 0.5F, 1.05F);
+                    entity.moveRelative(0F, 0.1F, 1.05F);
                     if (entity instanceof IAnimalTracked) {
                         ((IAnimalTracked)entity).getData().dismount(player);
                     }

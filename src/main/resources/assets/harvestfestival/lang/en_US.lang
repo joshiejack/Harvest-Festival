@@ -635,6 +635,7 @@ harvestfestival.npc.jacob.greeting1=Fishing is my game, Jacob is my name.
 harvestfestival.npc.jacob.greeting2=One day I will catch the elusive clownfish, I promise you!
 harvestfestival.npc.jacob.greeting3=There's nothing like just sitting and waiting for a fish to bite, so relaxing.
 harvestfestival.npc.jacob.greeting4=I really hope it rains soon. Or is it now?
+harvestfestival.npc.jacob.greeting5=I've really been wondering if I should look in to mariculture.
 
 #Pokefenn
 harvestfestival.npc.fenn.greeting1=One day, I'm going to grow some vines, and you're going to climb them with me!
@@ -642,6 +643,10 @@ harvestfestival.npc.fenn.greeting2=Don't be scared of me, I may be small but I k
 harvestfestival.npc.fenn.greeting3=I wish my dad wasn't so scary.
 harvestfestival.npc.fenn.greeting4.greeting3=Have you heard of Minecraft? It's my favourite game!
 harvestfestival.npc.fenn.greeting5=Good day!
+harvestfestival.npc.fenn.greeting6=Abi really scares me, have you met her?
+harvestfestival.npc.fenn.greeting7=I wish my dad would let me go outside more.
+harvestfestival.npc.fenn.greeting8=I want to be a herboculturistarborist a whatsit when I grow up!
+harvestfestival.npc.fenn.greeting9=My favourite pokemon is bulbasaur.
 
 #Jim/SpitefulFox
 harvestfestival.npc.jim.greeting1=What's your favourite animal? Mine's the fox, the spiteful buggers.
@@ -650,6 +655,8 @@ harvestfestival.npc.jim.greeting3=Lately I've been tweaking how much I feed my c
 harvestfestival.npc.jim.greeting4=You know, this world is ridiculous sometimes, just the otherday I saw a squirrel attack a bench.
 harvestfestival.npc.jim.greeting5=Have you ever noticed how some countries, add 'u' to all their words, It's crazy if you ask me.
 harvestfestival.npc.jim.greeting6=Life could not be better, when I'm out on the saddle.
+harvestfestival.npc.jim.greeting7=Troughs can be placed up to three in a row, cows and sheep will eat from them when they're hungry if you fill them with fodder.
+harvestfestival.npc.jim.greeting8=Did you know that large animals will ate your grass crops, even before you harvested them?
 
 #Brandon/Cricket
 harvestfestival.npc.brandon.greeting1=Whenever I'm down in the mines, I can't help but get excited when I come across some diamonds.
@@ -673,6 +680,7 @@ harvestfestival.npc.candice.greeting2=Some people can just be real cows!
 harvestfestival.npc.candice.greeting3=Where the heck am I? What is this world?
 harvestfestival.npc.candice.greeting4=Come over here, I have something in my eye.
 harvestfestival.npc.candice.greeting5=Hello %p! I hope you're feeling well! You're so beautiful to do?
+harvestfestival.npc.candice.greeting6=Hey pretty, I've got a tip for you today. You don't need to water grass, it will grow anyway!
 
 #Yulife
 harvestfestival.npc.yulif.greeting1=Building stuff is so time consuming, when will I get a break?
@@ -680,6 +688,7 @@ harvestfestival.npc.yulif.greeting2=People treat me like a slave, no rest for th
 harvestfestival.npc.yulif.greeting3=Have you seen Jim? Isn't he just?
 harvestfestival.npc.yulif.greeting4=I am tired of all this hard work, When will you appreciate my buildings?
 harvestfestival.npc.yulif.greeting5=I am tired of wandering around, I am dying right now.
+harvestfestival.npc.yulif.greeting6=If you get in my way, I can't build there.
 
 #Ashlee
 harvestfestival.npc.ashlee.greeting1=I sure love plucking chickens!
@@ -687,6 +696,7 @@ harvestfestival.npc.ashlee.greeting2=I am so tired, working with chickens is suc
 harvestfestival.npc.ashlee.greeting3=From this day forward, I hope I can sleep better.
 harvestfestival.npc.ashlee.greeting4=Most chicken handlers hate foxes, I love them. They're so furry, like me!
 harvestfestival.npc.ashlee.greeting5=Cluck, Cluck, Cluck Clucking. When will these chicks just shut the Cluck up!
+harvestfestival.npc.ashlee.greeting6=Feeding your chickens by hand will make you love them more, but it is more work.
 
 #Girafi
 harvestfestival.npc.girafi.greeting1=Why hello fellow human, I am a humble trader, if you have any eggs, milk or wool I'll happily trade my own from the vanilla world!
@@ -694,6 +704,7 @@ harvestfestival.npc.girafi.greeting2=Good day sir, I've been planning my next tr
 harvestfestival.npc.girafi.greeting3=It's most wonderful to see you again!
 harvestfestival.npc.girafi.greeting4=I could talk all day about my adventures out in the world, did I tell you about this one time that I strangled a squid and...
 harvestfestival.npc.girafi.greeting5=Hallo, hoe goes it?
+harvestfestival.npc.girafi.greeting6=Oh my, it's such a pleasure to see you once more.
 
 ###Shop greetings
 #General Store

@@ -8,6 +8,7 @@
 - Goddess should be unpushable
 - Save the last time a mining chunk had it's blocks generated, and regenerate them
 - make brandon able to go in the mine as part of his schedule
+- Make my axes need jump smash to smash, and just pick up block normally otherwise
 
 ## QOL
 - Hovering over array of ingredients shows all of them in bar

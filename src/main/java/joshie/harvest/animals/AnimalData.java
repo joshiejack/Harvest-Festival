@@ -309,9 +309,9 @@ public class AnimalData implements IAnimalData {
             healthiness += 100;
             if (healthiness >= 0) {
                 isSick = false;
+                getAnimal().clearActivePotions();
             }
 
-            getAnimal().clearActivePotions();
             sendToEveryone(new PacketSyncHealthiness(animal.getEntityId(), (byte)healthiness));
             return true;
         } else return false;

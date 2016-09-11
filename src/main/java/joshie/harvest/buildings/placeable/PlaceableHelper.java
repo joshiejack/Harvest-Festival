@@ -44,7 +44,7 @@ public class PlaceableHelper {
         } else if (block instanceof BlockVine) {
             return new PlaceableDecorative(state, x, y, z);
         }  else if (block instanceof BlockDoublePlant) {
-            return new PlaceableDoublePlant(state, x, y, z);
+            return new PlaceableDouble(state, x, y, z);
         } else if (block instanceof BlockWeb) {
             return new PlaceableWeb(state, x, y, z);
         } else if (block instanceof BlockFlowerPot) {

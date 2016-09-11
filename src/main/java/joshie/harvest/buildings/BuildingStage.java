@@ -54,6 +54,7 @@ public class BuildingStage {
         } else {
             while (index < building.getFullList().size()) {
                 Placeable block = building.getFullList().get(index);
+                if (block.isBlocked(world, block.getTransformedPosition(pos, direction))) return false; //Don't do anything while it's blocked
                 if (block.place(world, pos, direction, stage)) {
                     index++;
                     return false;

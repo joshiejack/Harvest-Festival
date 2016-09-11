@@ -949,7 +949,7 @@
       }
     },
     {
-      "type": "PlaceableDecorative",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -1608,19 +1608,6 @@
         "x": 5,
         "y": 2,
         "z": 6
-      }
-    },
-    {
-      "type": "PlaceableDecorative",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:wooden_door",
-          "meta": 8
-        },
-        "x": 6,
-        "y": 2,
-        "z": 1
       }
     },
     {

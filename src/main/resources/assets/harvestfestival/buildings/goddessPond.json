@@ -2978,7 +2978,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -4655,7 +4655,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -5890,7 +5890,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -5903,7 +5903,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -6007,7 +6007,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -8776,7 +8776,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {

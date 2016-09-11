@@ -14,6 +14,8 @@ import static net.minecraft.world.chunk.Chunk.NULL_BLOCK_STORAGE;
 
 @HFEvents
 public class FarmlandLoad {
+    public static boolean register() { return HFCrops.VALIDATE_FARMLAND; }
+
     @SubscribeEvent
     public void onChunkData(ChunkDataEvent.Load event) {
         ExtendedBlockStorage[] array = event.getChunk().getBlockStorageArray();

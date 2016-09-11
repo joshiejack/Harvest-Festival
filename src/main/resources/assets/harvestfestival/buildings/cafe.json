@@ -2341,7 +2341,7 @@
       }
     },
     {
-      "type": "PlaceableDecorative",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -2706,7 +2706,7 @@
       }
     },
     {
-      "type": "PlaceableDecorative",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -4179,19 +4179,6 @@
       }
     },
     {
-      "type": "PlaceableDecorative",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:wooden_door",
-          "meta": 8
-        },
-        "x": 3,
-        "y": 2,
-        "z": 9
-      }
-    },
-    {
       "type": "PlaceableBlock",
       "isBlock": true,
       "theData": {
@@ -4503,19 +4490,6 @@
         "x": 5,
         "y": 2,
         "z": 6
-      }
-    },
-    {
-      "type": "PlaceableDecorative",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:wooden_door",
-          "meta": 8
-        },
-        "x": 5,
-        "y": 2,
-        "z": 7
       }
     },
     {
@@ -10016,7 +9990,7 @@
       }
     },
     {
-      "type": "PlaceableDecorative",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -11589,19 +11563,6 @@
         "x": 5,
         "y": 6,
         "z": 10
-      }
-    },
-    {
-      "type": "PlaceableDecorative",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:wooden_door",
-          "meta": 8
-        },
-        "x": 5,
-        "y": 6,
-        "z": 11
       }
     },
     {

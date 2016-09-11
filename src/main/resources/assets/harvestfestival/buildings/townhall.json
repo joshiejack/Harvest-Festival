@@ -4070,7 +4070,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -4083,7 +4083,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -4096,7 +4096,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -4109,7 +4109,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -4135,7 +4135,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -4148,7 +4148,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -4161,7 +4161,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -4187,7 +4187,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -4200,7 +4200,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -4213,7 +4213,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -4239,7 +4239,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -4252,7 +4252,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -4265,7 +4265,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -4564,7 +4564,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -4824,7 +4824,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -4837,7 +4837,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -5097,7 +5097,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -5110,7 +5110,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -5381,7 +5381,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -5394,7 +5394,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -5940,7 +5940,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -6213,7 +6213,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -6226,7 +6226,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -6486,7 +6486,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -6499,7 +6499,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -6770,7 +6770,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -6783,7 +6783,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -7043,7 +7043,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -7342,7 +7342,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -7355,7 +7355,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -7368,7 +7368,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -7381,7 +7381,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -7522,7 +7522,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -7535,7 +7535,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -7548,7 +7548,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -7587,7 +7587,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -7717,7 +7717,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -7860,7 +7860,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -7938,7 +7938,7 @@
       }
     },
     {
-      "type": "PlaceableDecorative",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -8055,7 +8055,7 @@
       }
     },
     {
-      "type": "PlaceableDoublePlant",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -11565,19 +11565,6 @@
         "x": 15,
         "y": 2,
         "z": 9
-      }
-    },
-    {
-      "type": "PlaceableDecorative",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:wooden_door",
-          "meta": 8
-        },
-        "x": 15,
-        "y": 2,
-        "z": 10
       }
     },
     {
@@ -21828,7 +21815,7 @@
       }
     },
     {
-      "type": "PlaceableDecorative",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -21958,7 +21945,7 @@
       }
     },
     {
-      "type": "PlaceableDecorative",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -22361,7 +22348,7 @@
       }
     },
     {
-      "type": "PlaceableDecorative",
+      "type": "PlaceableDoubleOpposite",
       "isBlock": true,
       "theData": {
         "state": {
@@ -22413,7 +22400,7 @@
       }
     },
     {
-      "type": "PlaceableDecorative",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -22608,7 +22595,7 @@
       }
     },
     {
-      "type": "PlaceableDecorative",
+      "type": "PlaceableDouble",
       "isBlock": true,
       "theData": {
         "state": {
@@ -22686,7 +22673,7 @@
       }
     },
     {
-      "type": "PlaceableDecorative",
+      "type": "PlaceableDoubleOpposite",
       "isBlock": true,
       "theData": {
         "state": {
@@ -25302,19 +25289,6 @@
       }
     },
     {
-      "type": "PlaceableDecorative",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:wooden_door",
-          "meta": 8
-        },
-        "x": 8,
-        "y": 6,
-        "z": 5
-      }
-    },
-    {
       "type": "PlaceableBlock",
       "isBlock": true,
       "theData": {
@@ -25429,19 +25403,6 @@
         "x": 8,
         "y": 6,
         "z": 14
-      }
-    },
-    {
-      "type": "PlaceableDecorative",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:wooden_door",
-          "meta": 8
-        },
-        "x": 8,
-        "y": 6,
-        "z": 15
       }
     },
     {
@@ -25836,19 +25797,6 @@
       }
     },
     {
-      "type": "PlaceableDecorative",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:wooden_door",
-          "meta": 9
-        },
-        "x": 10,
-        "y": 6,
-        "z": 8
-      }
-    },
-    {
       "type": "PlaceableBlock",
       "isBlock": true,
       "theData": {
@@ -25907,19 +25855,6 @@
         "x": 10,
         "y": 6,
         "z": 11
-      }
-    },
-    {
-      "type": "PlaceableDecorative",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:wooden_door",
-          "meta": 8
-        },
-        "x": 10,
-        "y": 6,
-        "z": 12
       }
     },
     {
@@ -26131,19 +26066,6 @@
       }
     },
     {
-      "type": "PlaceableDecorative",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:wooden_door",
-          "meta": 8
-        },
-        "x": 11,
-        "y": 6,
-        "z": 7
-      }
-    },
-    {
       "type": "PlaceableBlock",
       "isBlock": true,
       "theData": {
@@ -26206,19 +26128,6 @@
         "x": 11,
         "y": 6,
         "z": 12
-      }
-    },
-    {
-      "type": "PlaceableDecorative",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:wooden_door",
-          "meta": 9
-        },
-        "x": 11,
-        "y": 6,
-        "z": 13
       }
     },
     {

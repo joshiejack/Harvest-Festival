@@ -38,16 +38,18 @@ public class EventsHandler {
     //Server tick for new day
     @SubscribeEvent
     public void onTick(ServerTickEvent event) {
-        if (event.phase != Phase.END) return;
-        World overworld = FMLCommonHandler.instance().getMinecraftServerInstance().worldServers[0];
-        if (overworld.getWorldTime() % TICKS_PER_DAY == 1) {
-            HFTrackers.<CalendarServer>getCalendar(overworld).newDay(overworld);
-            for (PlayerTrackerServer player : HFTrackers.getPlayerTrackers()) {
-                player.newDay();
-            }
+        if (!OfflineTickHandler.BLOCKED) {
+            if (event.phase != Phase.END) return;
+            World overworld = FMLCommonHandler.instance().getMinecraftServerInstance().worldServers[0];
+            if (overworld.getWorldTime() % TICKS_PER_DAY == 1) {
+                HFTrackers.<CalendarServer>getCalendar(overworld).newDay(overworld);
+                for (PlayerTrackerServer player : HFTrackers.getPlayerTrackers()) {
+                    player.newDay();
+                }
 
-            for (World world : FMLCommonHandler.instance().getMinecraftServerInstance().worldServers) {
-                EventsHandler.newDay(world);
+                for (World world : FMLCommonHandler.instance().getMinecraftServerInstance().worldServers) {
+                    EventsHandler.newDay(world);
+                }
             }
         }
     }

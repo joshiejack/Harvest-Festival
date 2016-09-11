@@ -38,7 +38,7 @@ public class MiningHelper {
         return null;
     }
 
-    private static boolean isSpawnable(World world, BlockPos pos) {
+    public static boolean isSpawnable(World world, BlockPos pos) {
         return world.isAirBlock(pos);
     }
 

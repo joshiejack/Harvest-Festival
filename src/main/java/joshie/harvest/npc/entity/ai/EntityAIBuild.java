@@ -1,6 +1,7 @@
 package joshie.harvest.npc.entity.ai;
 
 import joshie.harvest.buildings.BuildingStage;
+import joshie.harvest.mining.MiningHelper;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.RandomPositionGenerator;
@@ -62,6 +63,14 @@ public class EntityAIBuild extends EntityAIBase {
                     npc.finishBuilding();
                 }
             } else npc.getNavigator().tryMoveToXYZ(go.getX() + 0.5D, go.getY() + 1D, go.getZ() + 0.5D, 0.85D);
+
+            //If we're suffocating
+            if (npc.isEntityInsideOpaqueBlock()) {
+                BlockPos pos = go.add(npc.worldObj.rand.nextInt(8) - 4, npc.worldObj.rand.nextInt(3), npc.worldObj.rand.nextInt(8) - 4);
+                if (MiningHelper.isSpawnable(npc.worldObj, pos)) {
+                    npc.setPositionAndUpdate(go.getX() + 0.5D, go.getY() + 1D, go.getZ() + 0.5D);
+                }
+            }
         }
 
         buildingTimer++;

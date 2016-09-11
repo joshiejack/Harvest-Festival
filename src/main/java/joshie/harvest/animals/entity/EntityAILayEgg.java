@@ -23,7 +23,7 @@ public class EntityAILayEgg extends EntityAIBase {
 
     @Override
     public boolean shouldExecute() {
-        if(tracked.getData().canProduce() && !tracked.getData().isHungry()) {
+        if(!animal.isChild() && tracked.getData().canProduce() && !tracked.getData().isHungry()) {
             wanderTick--;
 
             return wanderTick <= 0;

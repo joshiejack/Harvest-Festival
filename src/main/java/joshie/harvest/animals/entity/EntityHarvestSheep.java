@@ -81,17 +81,19 @@ public class EntityHarvestSheep extends EntitySheep implements IAnimalTracked {
     @Override
     public List<ItemStack> onSheared(ItemStack item, net.minecraft.world.IBlockAccess world, BlockPos pos, int fortune) {
         List<ItemStack> ret = new ArrayList<>();
-        EntityPlayer player = worldObj.getClosestPlayerToEntity(this, 178D);
-        if (player != null) {
-            ItemStack product = SizeableHelper.getWool(player, this);
-            ret.add(product);
-            if (!worldObj.isRemote && !HFAnimals.OP_ANIMALS) {
-                setSheared(true);
-                data.setProduced(getData().getProductsPerDay());
-            }
+        if (!isChild()) {
+            EntityPlayer player = worldObj.getClosestPlayerToEntity(this, 178D);
+            if (player != null) {
+                ItemStack product = SizeableHelper.getWool(player, this);
+                ret.add(product);
+                if (!worldObj.isRemote && !HFAnimals.OP_ANIMALS) {
+                    setSheared(true);
+                    data.setProduced(getData().getProductsPerDay());
+                }
 
-            playSound(SoundEvents.ENTITY_SHEEP_SHEAR, 1.0F, 1.0F);
-            return ret;
+                playSound(SoundEvents.ENTITY_SHEEP_SHEAR, 1.0F, 1.0F);
+                return ret;
+            }
         }
 
         return ret;

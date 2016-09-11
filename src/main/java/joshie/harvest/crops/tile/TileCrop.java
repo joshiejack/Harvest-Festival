@@ -50,6 +50,7 @@ public class TileCrop extends TileDaily {
             NBTHelper.copyTileData(this, getWorld(), getPos(), HFCrops.CROPS.getStateFromEnum(Stage.WITHERED));
         } else sendRefreshPacket(this);
 
+
         //Mark the crop as dirty
         markDirty();
     }

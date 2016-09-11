@@ -2,7 +2,6 @@ package joshie.harvest.mining.block;
 
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.block.BlockHFEnum;
-import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.util.Text;
 import joshie.harvest.mining.MiningHelper;
 import joshie.harvest.mining.block.BlockPortal.Portal;
@@ -15,11 +14,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.ChunkCache;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Locale;
 
@@ -107,15 +105,17 @@ public class BlockPortal extends BlockHFEnum<BlockPortal, Portal> {
     @Override
     public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
         if (!world.isRemote) {
-            IBlockState actual = getPortalState(world, pos, state);
-            if (actual.getBlock() == this) {
-                Portal portal = getEnumFromState(actual);
-                if (portal.isInternal()) {
-                    MiningHelper.teleportBetweenMine(entity);
-                } else if (portal.isMine()) {
-                   MiningHelper.teleportToOverworld(entity);
-                } else {
-                   MiningHelper.teleportToMine(entity);
+            if (entity.timeUntilPortal == 0) {
+                IBlockState actual = getActualState(state, world, pos);
+                if (actual.getBlock() == this) {
+                    Portal portal = getEnumFromState(actual);
+                    if (portal.isInternal()) {
+                        MiningHelper.teleportBetweenMine(entity);
+                    } else if (portal.isMine()) {
+                        MiningHelper.teleportToOverworld(entity);
+                    } else {
+                        MiningHelper.teleportToMine(entity);
+                    }
                 }
             }
         }
@@ -129,15 +129,16 @@ public class BlockPortal extends BlockHFEnum<BlockPortal, Portal> {
         MINE, INTERNAL, OVERWORLD
     }
 
-    @SideOnly(Side.CLIENT)
-    @Override
-    public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos) {
-        return getPortalState(MCClientHelper.getWorld(), pos, state);
+    private int getDimension(IBlockAccess access) {
+        if (access instanceof World) return ((World)access).provider.getDimension();
+        else if (access instanceof ChunkCache) return ((ChunkCache)access).worldObj.provider.getDimension();
+        else return 0;
     }
 
     @SuppressWarnings("deprecation")
-    public IBlockState getPortalState(World world, BlockPos pos, IBlockState state) {
-        Type type = world.provider.getDimension() == 0 ? OVERWORLD : MINE;
+    @Override
+    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
+        Type type = getDimension(world) == 0 ? OVERWORLD : MINE;
         boolean internal = type == MINE && MiningHelper.getFloor(pos.getX() >> 4, pos.getY()) != 1;
         boolean connectedUp = isSameBlock(world, pos.up());
         boolean connectedDown = isSameBlock(world, pos.down());

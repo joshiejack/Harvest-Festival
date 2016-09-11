@@ -64,10 +64,10 @@ public class MiningHelper {
     }
 
     private static BlockPos modifySpawnAndPlayerRotation(WorldServer dim, BlockPos spawn, Entity entity) {
-        IBlockState actual = dim.getBlockState(spawn).getActualState(dim, spawn);
+        IBlockState actual = HFMining.PORTAL.getActualState(dim.getBlockState(spawn), dim, spawn);
         if (actual.getBlock() == HFMining.PORTAL) {
             Portal portal = HFMining.PORTAL.getEnumFromState(actual);
-            for (int distance = 3; distance < 7; distance++) {
+            for (int distance = 2; distance < 7; distance++) {
                 if (portal.isEW()) {
                     if (isSpawnable(dim, spawn.north(distance))) {
                         entity.rotationYaw = 180F;

@@ -47,7 +47,7 @@ public class EntityHarvestCow extends EntityCow implements IAnimalTracked, IMilk
 
     @Override
     public boolean canMilk() {
-        return data.canProduce();
+        return !isChild() && data.canProduce();
     }
 
     @Override

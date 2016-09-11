@@ -109,9 +109,11 @@ public class HFCore {
     //Configure
     public static boolean DEBUG_MODE;
     public static boolean SLEEP_ANYTIME;
+    public static boolean NO_TICK_OFFLINE;
 
     public static void configure() {
         DEBUG_MODE = getBoolean("Debug Mode", false, "Enabling this adds extra information to items, when you have f3 debug mode on");
         SLEEP_ANYTIME = getBoolean("Sleep any time of day", true);
+        NO_TICK_OFFLINE = getBoolean("Server doesn't update time when no players online", false);
     }
 }

@@ -117,7 +117,7 @@ public class ItemHoe extends ItemToolChargeable {
                             Block block = world.getBlockState(thePos).getBlock();
                             if (world.isAirBlock(pos.up())) {
                                 if ((block == Blocks.GRASS || block == Blocks.DIRT)) {
-                                    if (!canHoe(player, stack, world, pos)) continue;
+                                    if (!canHoe(player, stack, world, thePos)) continue;
                                     doParticles(stack, player, world, thePos);
                                     if (!world.isRemote) {
                                         world.setBlockState(thePos, Blocks.FARMLAND.getDefaultState());

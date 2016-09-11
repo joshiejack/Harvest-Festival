@@ -161,7 +161,7 @@ public class QuestChickenCare extends QuestQuestion {
         if (isCompletedEarly) {
             complete(player);
             rewardEntity(player, "harvestfestival.chicken");
-            rewardItem(player, new ItemStack(HFAnimals.TOOLS, 16, CHICKEN_FEED.ordinal()));
+            rewardItem(player, new ItemStack(HFAnimals.TOOLS, 64, CHICKEN_FEED.ordinal()));
             rewardItem(player, HFAnimals.TRAY.getStackFromEnum(NEST_EMPTY));
             rewardItem(player, HFAnimals.EGG.getStack(Size.LARGE));
         } else if (quest_stage == THROW) {

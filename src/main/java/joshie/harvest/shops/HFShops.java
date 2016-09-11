@@ -36,6 +36,7 @@ import org.apache.logging.log4j.Level;
 import java.util.HashMap;
 
 import static joshie.harvest.animals.block.BlockSizedStorage.SizedStorage.INCUBATOR;
+import static joshie.harvest.animals.block.BlockTray.Tray.FEEDER_EMPTY;
 import static joshie.harvest.animals.block.BlockTray.Tray.NEST_EMPTY;
 import static joshie.harvest.animals.block.BlockTrough.Trough.WOOD;
 import static joshie.harvest.animals.item.ItemAnimalSpawner.Spawner.*;
@@ -238,7 +239,8 @@ public class HFShops {
         POULTRY.addItem(10, HFAnimals.TOOLS.getStackFromEnum(CHICKEN_FEED));
         POULTRY.addItem(10, HFAnimals.TREATS.getStackFromEnum(Treat.GENERIC));
         POULTRY.addItem(30, HFAnimals.TREATS.getStackFromEnum(Treat.CHICKEN));
-        POULTRY.addItem(500, HFAnimals.TRAY.getStackFromEnum(NEST_EMPTY));
+        POULTRY.addItem(500, HFAnimals.TRAY.getStackFromEnum(FEEDER_EMPTY));
+        POULTRY.addItem(1000, HFAnimals.TRAY.getStackFromEnum(NEST_EMPTY));
         POULTRY.addItem(7500, HFAnimals.SIZED.getStackFromEnum(INCUBATOR));
 
         POULTRY.addOpening(MONDAY, 11000, 16000).addOpening(TUESDAY, 11000, 16000).addOpening(WEDNESDAY, 11000, 16000);

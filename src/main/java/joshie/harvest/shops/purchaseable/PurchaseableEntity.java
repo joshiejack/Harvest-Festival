@@ -5,9 +5,12 @@ import joshie.harvest.api.shops.IPurchaseable;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.util.Text;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.play.server.SPacketEntityAttach;
+import net.minecraft.network.play.server.SPacketSetPassengers;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -65,11 +68,11 @@ public class PurchaseableEntity implements IPurchaseable {
         } else list.add(Text.translate("check.lead"));
     }
 
-    public Entity createEntity(World world) {
-        Entity entity = null;
+    public EntityLiving createEntity(World world) {
+        EntityLiving entity = null;
         try {
             if (eClass != null) {
-                entity = eClass.getConstructor(new Class[]{World.class}).newInstance(world);
+                entity = (EntityLiving) eClass.getConstructor(new Class[]{World.class}).newInstance(world);
             }
         } catch (Exception exception) {
             exception.printStackTrace();
@@ -79,18 +82,21 @@ public class PurchaseableEntity implements IPurchaseable {
     }
 
     @Override
-    public boolean onPurchased(EntityPlayer player) {
-        if (!player.worldObj.isRemote) {
-            Entity theEntity = createEntity(player.worldObj);
+    public boolean onPurchased(EntityPlayer aPlayer) {
+        if (!aPlayer.worldObj.isRemote) {
+            EntityPlayerMP player = (EntityPlayerMP)aPlayer;
+            EntityLiving theEntity = createEntity(player.worldObj);
             if (theEntity != null) {
                 theEntity.setPosition(player.posX, player.posY, player.posZ);
                 if (!lead) {
                     theEntity.startRiding(player, true);
                     player.worldObj.spawnEntityInWorld(theEntity);
+                    player.connection.sendPacket(new SPacketSetPassengers(player));
                 } else {
-                    ((EntityAnimal) theEntity).setLeashedToEntity(player, true);
+                    theEntity.setLeashedToEntity(player, true);
                     ((IAnimalTracked) theEntity).getData().setOwner(EntityHelper.getPlayerUUID(player));
                     player.worldObj.spawnEntityInWorld(theEntity);
+                    player.connection.sendPacket(new SPacketEntityAttach(theEntity, theEntity.getLeashedToEntity()));
                 }
             }
         }

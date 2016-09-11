@@ -6,7 +6,6 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.buildings.HFBuildings;
-import joshie.harvest.crops.HFCrops;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.EntityLiving;
@@ -64,7 +63,6 @@ public class QuestBarn extends Quest {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
-        rewardItem(player, HFCrops.GRASS.getCropStack(64));
         rewardItem(player, HFAnimals.MILK.getStackOfSize(Size.LARGE, 3));
         rewardItem(player, HFAnimals.TROUGH.getStackFromEnum(WOOD));
     }

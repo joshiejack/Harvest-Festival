@@ -39,6 +39,13 @@ public class InventoryHelper {
         }
     };
 
+    public static final Matcher<Item> ITEM = new Matcher<Item>() {
+        @Override
+        public boolean matches(ItemStack stack, Item item) {
+            return stack.getItem() == item;
+        }
+    };
+
     public static final Matcher<SearchType> SPECIAL = new Matcher<SearchType>() {
         @Override
         public boolean matches(ItemStack stack, SearchType type) {

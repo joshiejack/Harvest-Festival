@@ -1,6 +1,7 @@
 package joshie.harvest.quests.tutorial;
 
 import joshie.harvest.animals.HFAnimals;
+import joshie.harvest.animals.block.BlockTrough.Trough;
 import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.animals.item.ItemAnimalTool.Tool;
 import joshie.harvest.api.core.ISizeable.Size;
@@ -148,7 +149,7 @@ public class QuestCowCare extends QuestQuestion {
 
             rewardEntity(player, "harvestfestival.cow");
             rewardItem(player, new ItemStack(Items.LEAD));
-            rewardItem(player, HFCrops.GRASS.getCropStack(16));
+            rewardItem(player, HFCrops.GRASS.getCropStack(64));
             rewardItem(player, HFAnimals.TOOLS.getStackFromEnum(BRUSH));
         } else if (quest_stage == ACTION1 || quest_stage == ACTION2) {
             if (attempted) {
@@ -183,7 +184,7 @@ public class QuestCowCare extends QuestQuestion {
 
     @Override
     public void onQuestCompleted(EntityPlayer player) {
-        rewardItem(player, HFAnimals.MILK.getStackOfSize(Size.LARGE, 1));
+        rewardItem(player, HFAnimals.TROUGH.getStackFromEnum(Trough.WOOD));
     }
 
     @Override

@@ -48,6 +48,7 @@ public class EventsHandler {
                     player.newDay();
                 }
 
+                TickDailyServer.processQueue();
                 for (World world : FMLCommonHandler.instance().getMinecraftServerInstance().worldServers) {
                     EventsHandler.newDay(world);
                 }

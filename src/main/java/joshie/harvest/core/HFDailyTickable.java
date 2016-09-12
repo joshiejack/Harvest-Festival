@@ -4,6 +4,7 @@ import joshie.harvest.api.ticking.IDailyTickable;
 import joshie.harvest.api.ticking.IDailyTickableBlock;
 import joshie.harvest.api.ticking.IDailyTickableRegistry;
 import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.handlers.TickDailyServer;
 import joshie.harvest.core.util.HFApiImplementation;
 import joshie.harvest.crops.CropHelper;
 import net.minecraft.block.Block;
@@ -51,28 +52,28 @@ public class HFDailyTickable implements IDailyTickableRegistry {
     @Override
     public void addTickable(World world, IDailyTickable tickable) {
         if (!world.isRemote) {
-            HFTrackers.getTickables(world).add(tickable);
+            TickDailyServer.addToQueue(() -> HFTrackers.getTickables(world).add(tickable));
         }
     }
 
     @Override
     public void addTickable(World world, BlockPos pos, IDailyTickableBlock tickable) {
         if (!world.isRemote) {
-            HFTrackers.getTickables(world).add(pos, tickable);
+            TickDailyServer.addToQueue(() -> HFTrackers.getTickables(world).add(pos, tickable));
         }
     }
 
     @Override
     public void removeTickable(World world, IDailyTickable tickable) {
         if (!world.isRemote) {
-            HFTrackers.getTickables(world).remove(tickable);
+            TickDailyServer.addToQueue(() -> HFTrackers.getTickables(world).remove(tickable));
         }
     }
 
     @Override
     public void removeTickable(World world, BlockPos pos) {
         if (!world.isRemote) {
-            HFTrackers.getTickables(world).remove(pos);
+            TickDailyServer.addToQueue(() -> HFTrackers.getTickables(world).remove(pos));
         }
     }
 

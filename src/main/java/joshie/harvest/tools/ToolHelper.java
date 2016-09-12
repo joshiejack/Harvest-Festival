@@ -5,6 +5,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.core.ITiered;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.core.helpers.EntityHelper;
+import joshie.harvest.core.util.HFEvents;
 import joshie.harvest.npc.HFNPCs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
@@ -13,6 +14,8 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.FoodStats;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.BRUSH;
@@ -88,10 +91,27 @@ public class ToolHelper {
                 //Remove all effects
                 player.removePotionEffect(FATIGUE);
                 player.removePotionEffect(EXHAUSTION);
-                if (HFTools.RESTORE_HUNGER_ON_SLEEP) {
-                    ReflectionHelper.setPrivateValue(EntityPlayer.class, player, new FoodStats(), "foodStats", "field_71100_bB");
+                if (HFTools.RESTORE_HUNGER_ON_FAINTING) {
+                    restoreHunger(player);
                 }
             }
         }
+    }
+
+    @HFEvents
+    public static class RestoreHungerOnSleep {
+        public static boolean register() { return HFTools.RESTORE_HUNGER_ON_SLEEP; }
+
+        @SubscribeEvent
+        public void onWakeup(PlayerWakeUpEvent event) {
+            restoreHunger(event.getEntityPlayer());
+        }
+    }
+
+    public static void restoreHunger(EntityPlayer player) {
+        ReflectionHelper.setPrivateValue(FoodStats.class, player.getFoodStats(), 20, "foodLevel", "field_75127_a");
+        ReflectionHelper.setPrivateValue(FoodStats.class, player.getFoodStats(), 5F, "foodSaturationLevel", "field_75125_b");
+        ReflectionHelper.setPrivateValue(FoodStats.class, player.getFoodStats(), 0, "foodExhaustionLevel", "field_75126_c");
+        ReflectionHelper.setPrivateValue(FoodStats.class, player.getFoodStats(), 0, "foodTimer", "field_75123_d");
     }
 }

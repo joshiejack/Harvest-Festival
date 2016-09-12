@@ -20,17 +20,20 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 public class TickDailyServer extends HFTracker {
-    private Set<Runnable> queue = new HashSet<>();
-    private Set<IDailyTickable> priority = new HashSet<>();
-    private Set<IDailyTickable> tickables = new HashSet<>();
-    private HashMap<BlockPos, IDailyTickableBlock> blockTicks = new HashMap<>();
+    private static final Set<Runnable> queue = new HashSet<>();
+    private final Set<IDailyTickable> priority = new HashSet<>();
+    private final Set<IDailyTickable> tickables = new HashSet<>();
+    private final HashMap<BlockPos, IDailyTickableBlock> blockTicks = new HashMap<>();
+
+    public static void addToQueue(Runnable runnable) {
+        queue.add(runnable);
+    }
+
+    public static void processQueue() {
+        queue.forEach((r) -> r.run());
+    }
 
     public void newDay(Phase phase) {
-        if (phase == Phase.PRE_ANIMALS) {
-            //Process the queue
-            queue.forEach((r) -> r.run());
-        }
-
         //Process high priority tickables
         processTickables(priority, phase);
 
@@ -69,25 +72,21 @@ public class TickDailyServer extends HFTracker {
     }
 
     public void add(final BlockPos pos, final IDailyTickableBlock daily) {
-        queue.add(() ->  {
-            blockTicks.put(pos, daily); HFTrackers.markDirty(getDimension());
-        });
+        blockTicks.put(pos, daily); HFTrackers.markDirty(getDimension());
     }
 
     public void remove(final BlockPos pos) {
-        queue.add(() ->  {
-            blockTicks.remove(pos); HFTrackers.markDirty(getDimension());
-        });
+        blockTicks.remove(pos); HFTrackers.markDirty(getDimension());
     }
 
     public void add(final IDailyTickable tickable) {
-        if (tickable.isPriority()) queue.add(() -> priority.add(tickable));
-        else queue.add(() -> tickables.add(tickable));
+        if (tickable.isPriority()) priority.add(tickable);
+        else tickables.add(tickable);
     }
 
     public void remove(final IDailyTickable tickable) {
-        if (tickable.isPriority()) queue.add(() -> priority.remove(tickable));
-        else queue.add(() -> tickables.remove(tickable));
+        if (tickable.isPriority()) priority.remove(tickable);
+        else tickables.remove(tickable);
     }
 
     @Override
@@ -104,7 +103,6 @@ public class TickDailyServer extends HFTracker {
     }
 
     public void readFromNBT(NBTTagCompound tag) {
-        blockTicks = new HashMap<>();
         NBTTagList dataList = tag.getTagList("Positions", 10);
         for (int j = 0; j < dataList.tagCount(); j++) {
             NBTTagCompound data = dataList.getCompoundTagAt(j);

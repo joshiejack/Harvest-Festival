@@ -65,30 +65,38 @@ public class EntityHelper {
         MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
         WorldServer oldWorld = server.worldServerForDimension(entity.getEntityWorld().provider.getDimension());
         WorldServer newWorld = server.worldServerForDimension(dimension);
-        if (entity instanceof EntityPlayer) {
-            EntityPlayerMP player = (EntityPlayerMP) entity;
-            if (!player.worldObj.isRemote) {
-                ReflectionHelper.setPrivateValue(EntityPlayerMP.class, player, true, "invulnerableDimensionChange", "field_184851_cj");
-                newWorld.getMinecraftServer().getPlayerList().transferPlayerToDimension(player, dimension, new HFTeleporter(newWorld, spawn));
-                player.setPositionAndUpdate(spawn.getX(), spawn.getY(), spawn.getZ());
-                player.worldObj.updateEntityWithOptionalForce(player, false);
-                player.connection.sendPacket(new SPacketUpdateHealth(player.getHealth(), player.getFoodStats().getFoodLevel(), player.getFoodStats().getSaturationLevel()));
+        if (oldWorld != newWorld) {
+            if (entity instanceof EntityPlayer) {
+                EntityPlayerMP player = (EntityPlayerMP) entity;
+                if (!player.worldObj.isRemote) {
+                    ReflectionHelper.setPrivateValue(EntityPlayerMP.class, player, true, "invulnerableDimensionChange", "field_184851_cj");
+                    newWorld.getMinecraftServer().getPlayerList().transferPlayerToDimension(player, dimension, new HFTeleporter(newWorld, spawn));
+                    player.setPositionAndUpdate(spawn.getX(), spawn.getY(), spawn.getZ());
+                    player.worldObj.updateEntityWithOptionalForce(player, false);
+                    player.connection.sendPacket(new SPacketUpdateHealth(player.getHealth(), player.getFoodStats().getFoodLevel(), player.getFoodStats().getSaturationLevel()));
+                }
+            } else if (!entity.worldObj.isRemote) {
+                NBTTagCompound tag = new NBTTagCompound();
+                entity.writeToNBTOptional(tag);
+                entity.setDead();
+                Entity teleportedEntity = EntityList.createEntityFromNBT(tag, newWorld);
+                if (teleportedEntity != null) {
+                    teleportedEntity.setPositionAndUpdate(spawn.getX(), spawn.getY(), spawn.getZ());
+                    teleportedEntity.forceSpawn = true;
+                    newWorld.spawnEntityInWorld(teleportedEntity);
+                    teleportedEntity.setWorld(newWorld);
+                    teleportedEntity.timeUntilPortal = teleportedEntity instanceof EntityPlayer ? 150 : 20;
+                }
+
+                oldWorld.resetUpdateEntityTick();
+                newWorld.resetUpdateEntityTick();
             }
-        } else if (!entity.worldObj.isRemote) {
-            NBTTagCompound tag = new NBTTagCompound();
-            entity.writeToNBTOptional(tag);
-            entity.setDead();
-            Entity teleportedEntity = EntityList.createEntityFromNBT(tag, newWorld);
-            if (teleportedEntity != null) {
-                teleportedEntity.setPositionAndUpdate(spawn.getX(), spawn.getY(), spawn.getZ());
-                teleportedEntity.forceSpawn = true;
-                newWorld.spawnEntityInWorld(teleportedEntity);
-                teleportedEntity.setWorld(newWorld);
-                teleportedEntity.timeUntilPortal = teleportedEntity instanceof EntityPlayer ? 150 : 20;
+        } else {
+            if (entity instanceof EntityPlayerMP) {
+                ReflectionHelper.setPrivateValue(EntityPlayerMP.class, (EntityPlayerMP) entity, true, "invulnerableDimensionChange", "field_184851_cj");
             }
 
-            oldWorld.resetUpdateEntityTick();
-            newWorld.resetUpdateEntityTick();
+            entity.setPositionAndUpdate(spawn.getX() + 0.5D, spawn.getY() + 0.1D, spawn.getZ() + 0.5D);
         }
 
         entity.timeUntilPortal = entity instanceof EntityLiving ? 150 : 20;

@@ -86,12 +86,11 @@ public class ToolEvents {
         else {
             if (event.player.isPotionActive(FATIGUE)) {
                 if (event.player.worldObj.rand.nextInt(128) == 0) {
-                    event.player.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 50, 7, true, false));
+                    event.player.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 100, 7, true, false));
                 }
             } else if (event.player.isPotionActive(EXHAUSTION)) {
                 if (event.player.worldObj.rand.nextInt(32) == 0) {
-                    event.player.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 200, 0, true, false));
-                    event.player.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 300, 1, true, false));
+                    event.player.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 300, 0, true, false));
                 }
             }
         }

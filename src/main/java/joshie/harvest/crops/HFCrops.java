@@ -130,9 +130,7 @@ public class HFCrops {
         }
 
         RegistryHelper.registerTiles(TileCrop.class, TileWithered.class, TileSprinkler.class);
-        if (DISABLE_VANILLA_MOISTURE) {
-            Blocks.FARMLAND.setTickRandomly(false);
-        }
+        if (DISABLE_VANILLA_MOISTURE) Blocks.FARMLAND.setTickRandomly(false);
     }
 
     @SideOnly(Side.CLIENT)
@@ -205,6 +203,8 @@ public class HFCrops {
     public static boolean DISABLE_VANILLA_HOE;
     public static boolean DISABLE_VANILLA_SEEDS;
     public static boolean DISABLE_VANILLA_MOISTURE;
+    public static boolean DISABLE_VILLAGER_FARMING;
+    public static boolean VANILLA_CROP_UNSELLABLE;
     public static int SPRINKLER_DRAIN_RATE;
     public static boolean VALIDATE_FARMLAND;
     private static boolean CROPS_DIE_CLIENT;
@@ -215,11 +215,13 @@ public class HFCrops {
         ALWAYS_GROW = getBoolean("Crops always grow", false, "This setting when set to true, will make crops grow based on random tick instead of day by day, Take note that this also affects the number of seeds a crop bag will plant. It will only plant 3 seeds instead of a 3x3");
         ENABLE_BONEMEAL = getBoolean("Enable bonemeal", false, "Enabling this will allow you to use bonemeal on plants to grow them.");
         SEASONAL_BONEMEAL = getBoolean("Seasonal bonemeal", true, "If you have bonemeal enabled, with this setting active, bonemeal will only work when the crop is in season");
-        DISABLE_VANILLA_SEEDS = getBoolean("Disable vanilla seeds", false, "If this is true, vanilla seeds will not plant their crops");
+        DISABLE_VANILLA_SEEDS = getBoolean("Disable vanilla seeds", true, "If this is true, vanilla seeds will not plant their crops");
         DISABLE_VANILLA_HOE = getBoolean("Disable vanilla hoes", false, "If this is true, vanilla hoes will not till dirt");
+        DISABLE_VILLAGER_FARMING = getBoolean("Disable village farming ai", true);
         DISABLE_VANILLA_MOISTURE = getBoolean("Disable vanilla moisture", true, "If this is set to true then farmland will not automatically become wet, and must be watered, it will also not automatically revert to dirt. (Basically disables random ticks for farmland)");
         SPRINKLER_DRAIN_RATE = getInteger("Sprinkler's daily consumption", 250, "This number NEEDs to be a factor of 1000, Otherwise you'll have trouble refilling the sprinkler manually. Acceptable values are: 1, 2, 4, 5, 8, 10, 20, 25, 40, 50, 100, 125, 200, 250, 500, 1000");
         VALIDATE_FARMLAND = getBoolean("Check for farmland on chunk load", true, "Disable this if you think it will help...");
+        VANILLA_CROP_UNSELLABLE = getBoolean("Drops from vanilla crops not sellable", true);
         CROPS_DIE_CLIENT = getBoolean("Integrated Server > Crops die when not having been watered", true);
         CROPS_DIE_SERVER = getBoolean("Dedicated Server > Crops die when not having been watered", false);
     }

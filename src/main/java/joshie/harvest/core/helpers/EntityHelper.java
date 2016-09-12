@@ -1,7 +1,6 @@
 package joshie.harvest.core.helpers;
 
 import joshie.harvest.core.util.HFTeleporter;
-import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
@@ -13,6 +12,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.play.server.SPacketUpdateHealth;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -57,8 +57,8 @@ public class EntityHelper {
         return player instanceof FakePlayer || player.getGameProfile().getName().equals("CoFH") || player.getGameProfile().getName().startsWith("[Thaumcraft");
     }
 
-    public static <T extends Entity> List<T> getEntities(Class<? extends T> t, World world, double size) {
-        return world.getEntitiesWithinAABB(t, Block.FULL_BLOCK_AABB.expand(size, size, size));
+    public static <T extends Entity> List<T> getEntities(Class<? extends T> t, World world, BlockPos pos, double size) {
+        return world.getEntitiesWithinAABB(t, new AxisAlignedBB(pos.getX() - 0.5F, pos.getY() - 0.5F, pos.getZ() - 0.5F, pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F).expand(size, size, size));
     }
 
     public static boolean teleport(Entity entity, int dimension, BlockPos spawn) {

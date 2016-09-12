@@ -2,6 +2,7 @@ package joshie.harvest.core.handlers;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.ticking.IDailyTickable;
+import joshie.harvest.api.ticking.IDailyTickable.Phase;
 import joshie.harvest.api.ticking.IDailyTickableBlock;
 import joshie.harvest.core.HFTracker;
 import joshie.harvest.core.helpers.NBTHelper;
@@ -24,42 +25,46 @@ public class TickDailyServer extends HFTracker {
     private Set<IDailyTickable> tickables = new HashSet<>();
     private HashMap<BlockPos, IDailyTickableBlock> blockTicks = new HashMap<>();
 
-    public void newDay() {
-        //Process the queue
-        queue.forEach((r) -> r.run());
+    public void newDay(Phase phase) {
+        if (phase == Phase.PRE_ANIMALS) {
+            //Process the queue
+            queue.forEach((r) -> r.run());
+        }
 
         //Process high priority tickables
-        processTickables(priority);
+        processTickables(priority, phase);
 
         //Tick the tickable blocks
-        Iterator<Entry<BlockPos, IDailyTickableBlock>> position = blockTicks.entrySet().iterator();
-        while(position.hasNext()) {
-            Entry<BlockPos, IDailyTickableBlock> entry = position.next();
-            BlockPos pos = entry.getKey();
-            if (pos == null) {
-                position.remove();
-            } else if (getWorld().isBlockLoaded(pos)) {
-                IBlockState state = getWorld().getBlockState(pos);
-                IDailyTickableBlock tickable = entry.getValue();
-                if (tickable != null) {
-                    if(!tickable.newDay(getWorld(), pos, state)) {
-                        position.remove();
-                    }
-                } else position.remove(); //If this block isn't daily tickable, remove it
+        if (phase == Phase.PRE_ANIMALS) {
+            Iterator<Entry<BlockPos, IDailyTickableBlock>> position = blockTicks.entrySet().iterator();
+            while (position.hasNext()) {
+                Entry<BlockPos, IDailyTickableBlock> entry = position.next();
+                BlockPos pos = entry.getKey();
+                if (pos == null) {
+                    position.remove();
+                } else if (getWorld().isBlockLoaded(pos)) {
+                    IBlockState state = getWorld().getBlockState(pos);
+                    IDailyTickableBlock tickable = entry.getValue();
+                    if (tickable != null) {
+                        if (!tickable.newDay(getWorld(), pos, state)) {
+                            position.remove();
+                        }
+                    } else position.remove(); //If this block isn't daily tickable, remove it
+                }
             }
         }
 
         //Process the other tickables
-        processTickables(tickables);
+        processTickables(tickables, phase);
     }
 
-    public void processTickables(Set<IDailyTickable> tickables) {
+    public void processTickables(Set<IDailyTickable> tickables, Phase phase) {
         Iterator<IDailyTickable> ticking = tickables.iterator();
         while (ticking.hasNext()) {
             IDailyTickable tickable = ticking.next();
             if (tickable == null || ((TileEntity)tickable).isInvalid()) {
                 ticking.remove();
-            } else tickable.newDay();
+            } else tickable.newDay(phase);
         }
     }
 

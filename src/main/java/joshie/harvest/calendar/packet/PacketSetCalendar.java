@@ -41,7 +41,7 @@ public class PacketSetCalendar extends PenguinPacket {
 
     @Override
     public void fromBytes(ByteBuf buf) {
-        daysPerSeason = HFCalendar.DAYS_PER_SEASON;
+        daysPerSeason = buf.readInt();
         weekday = Weekday.values()[buf.readByte()];
         day = buf.readInt();
         season = Season.values()[buf.readByte()];

@@ -1,6 +1,7 @@
 package joshie.harvest.core.handlers;
 
 import joshie.harvest.animals.AnimalTrackerServer;
+import joshie.harvest.api.ticking.IDailyTickable;
 import joshie.harvest.calendar.CalendarServer;
 import joshie.harvest.core.helpers.MCServerHelper;
 import joshie.harvest.core.util.HFEvents;
@@ -56,8 +57,9 @@ public class EventsHandler {
 
     //New day
     public static void newDay(final World world) {
-        HFTrackers.getTickables(world).newDay();
+        HFTrackers.getTickables(world).newDay(IDailyTickable.Phase.PRE_ANIMALS);
         HFTrackers.<AnimalTrackerServer>getAnimalTracker(world).newDay();
+        HFTrackers.getTickables(world).newDay(IDailyTickable.Phase.POST_ANIMALS);
         HFTrackers.<TownTrackerServer>getTownTracker(world).newDay();
         HFTrackers.markDirty(world);
     }

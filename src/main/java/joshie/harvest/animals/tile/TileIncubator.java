@@ -40,30 +40,32 @@ public class TileIncubator extends TileFillableSizedFaceable {
     }
 
     @Override
-    public void newDay() {
-        if (fillAmount > 0) {
-            fillAmount--;
+    public void newDay(Phase phase) {
+        if (phase == Phase.PRE_ANIMALS) {
+            if (fillAmount > 0) {
+                fillAmount--;
 
-            if (fillAmount == 0) {
-                int amount = 1;
-                if (size == Size.MEDIUM && worldObj.rand.nextInt(20) == 0) amount++;
-                if (size == Size.LARGE && worldObj.rand.nextInt(10) == 0) amount++;
-                if (size == Size.LARGE && worldObj.rand.nextInt(50) == 0) amount++;
-                for (int i = 0; i < amount; i++) {
-                    EntityHarvestChicken baby = new EntityHarvestChicken(worldObj);
-                    baby.setPositionAndUpdate(getPos().getX() + 3 * getWorld().rand.nextDouble(), getPos().getY() + getWorld().rand.nextDouble(), getPos().getZ() + 3 * getWorld().rand.nextDouble());
-                    baby.setGrowingAge(-(24000 * HFAnimals.AGING_TIMER));
-                    if (owner != null) {
-                        baby.getData().setOwner(owner);
-                        HFTrackers.getPlayerTracker(worldObj, owner).getRelationships().copyRelationship(EntityHelper.getPlayerFromUUID(owner), relationship, EntityHelper.getEntityUUID(baby), 50D);
+                if (fillAmount == 0) {
+                    int amount = 1;
+                    if (size == Size.MEDIUM && worldObj.rand.nextInt(20) == 0) amount++;
+                    if (size == Size.LARGE && worldObj.rand.nextInt(10) == 0) amount++;
+                    if (size == Size.LARGE && worldObj.rand.nextInt(50) == 0) amount++;
+                    for (int i = 0; i < amount; i++) {
+                        EntityHarvestChicken baby = new EntityHarvestChicken(worldObj);
+                        baby.setPositionAndUpdate(getPos().getX() + 3 * getWorld().rand.nextDouble(), getPos().getY() + getWorld().rand.nextDouble(), getPos().getZ() + 3 * getWorld().rand.nextDouble());
+                        baby.setGrowingAge(-(24000 * HFAnimals.AGING_TIMER));
+                        if (owner != null) {
+                            baby.getData().setOwner(owner);
+                            HFTrackers.getPlayerTracker(worldObj, owner).getRelationships().copyRelationship(EntityHelper.getPlayerFromUUID(owner), relationship, EntityHelper.getEntityUUID(baby), 50D);
+                        }
+
+                        worldObj.spawnEntityInWorld(baby);
                     }
-
-                    worldObj.spawnEntityInWorld(baby);
                 }
-            }
 
-            sendRefreshPacket(this);
-            markDirty();
+                sendRefreshPacket(this);
+                markDirty();
+            }
         }
     }
 

@@ -55,13 +55,15 @@ public class TileSprinkler extends TileDaily implements ITickable {
     }
 
     @Override
-    public void newDay() {
-        if (tank.getFluidAmount() > 1) {
-            //Reduce the amount in the tank
-            tank.drainInternal(HFCrops.SPRINKLER_DRAIN_RATE, true);
-            hydrateSoil();
-            if (tank.getFluidAmount() <= 1) {
-                PacketHandler.sendRefreshPacket(this);
+    public void newDay(Phase phase) {
+        if (phase == Phase.PRE_ANIMALS) {
+            if (tank.getFluidAmount() > 1) {
+                //Reduce the amount in the tank
+                tank.drainInternal(HFCrops.SPRINKLER_DRAIN_RATE, true);
+                hydrateSoil();
+                if (tank.getFluidAmount() <= 1) {
+                    PacketHandler.sendRefreshPacket(this);
+                }
             }
         }
     }

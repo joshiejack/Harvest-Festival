@@ -18,7 +18,7 @@ public class HFCalendar {
     private static final SeasonProvider HIDDEN = new SeasonProviderHidden();
     public static Configuration CONFIG;
     private static DimensionType SEASONS;
-    public static int DAYS_PER_SEASON;
+    public static int DAYS_PER_SEASON = 30;
     public static int DAYS_PER_SEASON_INTEGRATED;
     private static int DAYS_PER_SEASON_DEDICATED;
     public static long TICKS_PER_DAY;

@@ -22,6 +22,8 @@ public class ShippingRegistry implements IShippingRegistry {
 
     @Override
     public long getSellValue(ItemStack stack) {
+        if (stack.hasTagCompound() && stack.getTagCompound().hasKey("Unsellable")) return 0L;
+
         if (stack.getItem() instanceof IShippable) {
             return ((IShippable)stack.getItem()).getSellValue(stack);
         }
@@ -33,6 +35,6 @@ public class ShippingRegistry implements IShippingRegistry {
         }
 
         Long value = registry.getValueOf(stack);
-        return value == null ? 0 : value;
+        return value == null ? 0L : value;
     }
 }

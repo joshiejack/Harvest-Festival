@@ -17,7 +17,7 @@ import static joshie.harvest.crops.CropHelper.isWetSoil;
 public class TileCrop extends TileDaily {
     public static class TileWithered extends TileCrop {
         @Override
-        public void newDay() {}
+        public void newDay(Phase phase) {}
     }
 
     protected CropData data = new CropData();
@@ -34,27 +34,29 @@ public class TileCrop extends TileDaily {
     }
 
     @Override
-    public void newDay() {
-        //Rain and soil check
-        if (data.getCrop().requiresWater() && (CropHelper.isRainingAt(getWorld(), getPos().up()) || isWetSoil(getWorld().getBlockState(getPos().down())))) {
-            data.setHydrated(); //If today is raining, hydrate the crop automatically
-        }
-
-        //If we were unable to survive the new day, let's destroy some things
-        if (!data.newDay(getWorld(), getPos())) {
-            if (HFCrops.CROPS_SHOULD_DIE) {
-                if (data.getCrop().isDouble(data.getStage())) {
-                    getWorld().setBlockState(pos.up(), HFCrops.CROPS.getStateFromEnum(BlockHFCrops.Stage.WITHERED_DOUBLE), 2);
-                }
-
-                //Prepare to save old data
-                NBTHelper.copyTileData(this, getWorld(), getPos(), HFCrops.CROPS.getStateFromEnum(Stage.WITHERED));
+    public void newDay(Phase phase) {
+        if (phase == Phase.PRE_ANIMALS) {
+            //Rain and soil check
+            if (data.getCrop().requiresWater() && (CropHelper.isRainingAt(getWorld(), getPos().up()) || isWetSoil(getWorld().getBlockState(getPos().down())))) {
+                data.setHydrated(); //If today is raining, hydrate the crop automatically
             }
-        } else sendRefreshPacket(this);
+
+            //If we were unable to survive the new day, let's destroy some things
+            if (!data.newDay(getWorld(), getPos())) {
+                if (HFCrops.CROPS_SHOULD_DIE) {
+                    if (data.getCrop().isDouble(data.getStage())) {
+                        getWorld().setBlockState(pos.up(), HFCrops.CROPS.getStateFromEnum(BlockHFCrops.Stage.WITHERED_DOUBLE), 2);
+                    }
+
+                    //Prepare to save old data
+                    NBTHelper.copyTileData(this, getWorld(), getPos(), HFCrops.CROPS.getStateFromEnum(Stage.WITHERED));
+                }
+            } else sendRefreshPacket(this);
 
 
-        //Mark the crop as dirty
-        markDirty();
+            //Mark the crop as dirty
+            markDirty();
+        }
     }
 
     @Override

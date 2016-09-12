@@ -48,13 +48,13 @@ public class TileFeeder extends TileFillable {
     }
 
     @Override
-    public void newDay() {
-        for (EntityAnimal animal: EntityHelper.getEntities(EntityAnimal.class, getWorld(), 32D)) {
+    public void newDay(Phase phase) {
+        for (EntityAnimal animal : EntityHelper.getEntities(EntityAnimal.class, getWorld(), getPos(), 32D)) {
             if (animal instanceof IAnimalTracked) { //Feed all the local animals
                 IAnimalTracked tracked = ((IAnimalTracked) animal);
                 if (tracked.getData().isHungry() && HFApi.animals.canAnimalEatFoodType(tracked, SEED) && hasFoodAndFeed()) {
                     tracked.getData().feed(null);
-                } else break;
+                }
             }
         }
     }

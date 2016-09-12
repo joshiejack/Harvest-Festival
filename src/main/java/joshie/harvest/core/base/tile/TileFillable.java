@@ -2,6 +2,7 @@ package joshie.harvest.core.base.tile;
 
 import joshie.harvest.api.ticking.IDailyTickable;
 import joshie.harvest.core.helpers.MCServerHelper;
+import joshie.harvest.core.network.PacketHandler;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -25,6 +26,10 @@ public abstract class TileFillable extends TileDaily implements IDailyTickable {
 
     public void saveAndRefresh() {
         MCServerHelper.markForUpdate(worldObj, getPos(), 3);
+        if (!worldObj.isRemote) {
+            PacketHandler.sendRefreshPacket(this);
+        }
+
         markDirty();
     }
 

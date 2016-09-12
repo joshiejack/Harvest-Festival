@@ -164,13 +164,15 @@ public class TileTrough extends TileFillable {
     }
 
     @Override
-    public void newDay() {
-        for (EntityAnimal animal: EntityHelper.getEntities(EntityAnimal.class, getWorld(), 32D)) {
-            if (animal instanceof IAnimalTracked) { //Feed all the local animals
-                IAnimalTracked tracked = ((IAnimalTracked) animal);
-                if (tracked.getData().isHungry() && HFApi.animals.canAnimalEatFoodType(tracked, GRASS) && hasFoodAndFeed()) {
-                    tracked.getData().feed(null);
-                } else break;
+    public void newDay(Phase phase) {
+        if (getMaster() == this) {
+            for (EntityAnimal animal : EntityHelper.getEntities(EntityAnimal.class, getWorld(), getPos(), 16D)) {
+                if (animal instanceof IAnimalTracked) { //Feed all the local animals
+                    IAnimalTracked tracked = ((IAnimalTracked) animal);
+                    if (tracked.getData().isHungry() && HFApi.animals.canAnimalEatFoodType(tracked, GRASS) && hasFoodAndFeed()) {
+                        tracked.getData().feed(null);
+                    }
+                }
             }
         }
     }

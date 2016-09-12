@@ -12,7 +12,9 @@ import joshie.harvest.core.util.Direction;
 import joshie.harvest.town.packet.PacketNewBuilding;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.Mirror;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -66,6 +68,10 @@ public class TownData {
 
     public BuildingStage getCurrentlyBuilding() {
         return building.size() > 0 ? building.getFirst() : null;
+    }
+
+    public boolean isBuilding(BuildingImpl building) {
+        return this.building.contains(new BuildingStage(building, BlockPos.ORIGIN, Mirror.NONE, Rotation.NONE));
     }
     
     public void addBuilding(World world, BuildingImpl building, Direction direction, BlockPos pos) {

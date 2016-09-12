@@ -10,7 +10,9 @@ import joshie.harvest.player.PlayerTrackerServer;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -79,6 +81,28 @@ public class BlockStorage extends BlockHFEnumRotatableTile<BlockStorage, Storage
         }
 
         return false;
+    }
+
+    @Override
+    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
+        if (entity instanceof EntityItem) {
+            EntityItem item = ((EntityItem)entity);
+            if (item.getThrower() != null) {
+                EntityPlayer player = world.getPlayerEntityByName(item.getThrower());
+                ItemStack stack = item.getEntityItem();
+                long sell = shipping.getSellValue(stack);
+                if (sell > 0) {
+                    if (!world.isRemote) {
+                        HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getTracking().addForShipping(stack.copy());
+                    }
+
+                    stack.splitStack(1);
+                    if (stack.stackSize <= 0) {
+                        item.setDead();
+                    }
+                }
+            }
+        }
     }
 
     @Override

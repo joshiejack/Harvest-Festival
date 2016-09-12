@@ -55,7 +55,7 @@ public class ItemToolChargeable extends ItemTool<ItemToolChargeable> {
 
     @Override
     public void onUsingTick(ItemStack stack, EntityLivingBase player, int count) {
-        if (count <= 31995 && count % 24 == 0) {
+        if (count <= 31998 && count % 5 == 0) {
             if (canCharge(stack)) {
                 increaseCharge(stack, 1);
             }

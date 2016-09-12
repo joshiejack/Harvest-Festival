@@ -9,7 +9,9 @@ import joshie.harvest.npc.NPC;
 import joshie.harvest.town.TownData;
 import joshie.harvest.town.TownDataServer;
 import joshie.harvest.town.TownTracker;
+import net.minecraft.init.MobEffects;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -92,6 +94,12 @@ public abstract class EntityNPCHuman<E extends EntityNPCHuman> extends EntityNPC
         }
 
         super.onDeath(cause);
+    }
+
+    @Override
+    public boolean attackEntityFrom(DamageSource source, float amount) {
+        addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 100, 0, true, false));
+        return super.attackEntityFrom(source, amount);
     }
 
     @Override

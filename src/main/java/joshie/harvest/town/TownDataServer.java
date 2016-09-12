@@ -79,7 +79,7 @@ public class TownDataServer extends TownData {
                     attempts++;
                 }
 
-                entity.setPositionAndUpdate(pos.getX(), pos.getY() + 0.5, pos.getZ());
+                entity.setPositionAndUpdate(pos.getX(), pos.getY(), pos.getZ());
                 if (npc == HFNPCs.BUILDER) entity.setUniqueId(getID()); //Keep the Unique ID the same
                 world.spawnEntityInWorld(entity);
             }

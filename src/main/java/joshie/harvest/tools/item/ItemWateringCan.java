@@ -2,14 +2,14 @@ package joshie.harvest.tools.item;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
-import joshie.harvest.core.base.item.ItemToolChargeable;
+import joshie.harvest.core.HFCore;
+import joshie.harvest.core.base.item.ItemTool;
 import joshie.harvest.core.helpers.EntityHelper;
-import joshie.harvest.tools.ToolHelper;
 import joshie.harvest.crops.block.BlockHFCrops;
+import joshie.harvest.tools.ToolHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
@@ -30,8 +30,7 @@ import javax.annotation.Nullable;
 import java.util.HashSet;
 import java.util.List;
 
-//TODO: Switch to Capbility for Water Supply
-public class ItemWateringCan extends ItemToolChargeable implements IFluidContainerItem {
+public class ItemWateringCan extends ItemTool<ItemWateringCan> implements IFluidContainerItem {
     public ItemWateringCan() {
         super("watering_can", new HashSet<>());
     }
@@ -118,7 +117,7 @@ public class ItemWateringCan extends ItemToolChargeable implements IFluidContain
 
             int current_capacity = container.getTagCompound().getByte("Water");
             int max_fill_capacity = (Math.max(0, Byte.MAX_VALUE - current_capacity));
-            int amount_filled = 0;
+            int amount_filled;
             if (resource.amount >= max_fill_capacity) {
                 amount_filled = max_fill_capacity;
             } else amount_filled = resource.amount;
@@ -153,8 +152,11 @@ public class ItemWateringCan extends ItemToolChargeable implements IFluidContain
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
-        if(attemptToFill(world, player, stack))  return new ActionResult<>(EnumActionResult.SUCCESS, stack);
-        else return super.onItemRightClick(stack, world, player, hand);
+        if(attemptToFill(world, player, stack)) return new ActionResult<>(EnumActionResult.SUCCESS, stack);
+        else {
+            waterCrops(world, player, getMovingObjectPositionFromPlayer(world, player), stack, getTier(stack));
+            return new ActionResult<>(EnumActionResult.SUCCESS, stack);
+        }
     }
 
     private EnumActionResult hydrate(EntityPlayer player, ItemStack stack, World world, BlockPos pos) {
@@ -181,12 +183,10 @@ public class ItemWateringCan extends ItemToolChargeable implements IFluidContain
         return false;
     }
 
-    @Override
-    protected void onFinishedCharging(World world, EntityLivingBase entity, @Nullable RayTraceResult result, ItemStack stack, ToolTier tier) {
-        if (result != null && entity instanceof EntityPlayer) {
-            EntityPlayer player = (EntityPlayer) entity;
+    protected void waterCrops(World world, EntityPlayer player, @Nullable RayTraceResult result, ItemStack stack, ToolTier tier) {
+        if (result != null) {
             BlockPos pos = result.getBlockPos();
-            EnumFacing front = EntityHelper.getFacingFromEntity(entity);
+            EnumFacing front = EntityHelper.getFacingFromEntity(player);
             Block initial = world.getBlockState(pos).getBlock();
             if ((initial != Blocks.FARMLAND) && (!(initial instanceof IPlantable))) {
                 return;
@@ -214,8 +214,9 @@ public class ItemWateringCan extends ItemToolChargeable implements IFluidContain
     }
 
     @SideOnly(Side.CLIENT)
+    @Override
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
-        if (advanced) {
+        if (advanced && HFCore.DEBUG_MODE) {
             tooltip.add("Water: " + getCapacity(stack));
             tooltip.add("Level: " + getLevel(stack));
         }

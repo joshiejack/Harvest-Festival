@@ -1,6 +1,7 @@
 package joshie.harvest.core.base.item;
 
 import joshie.harvest.api.core.ITiered;
+import joshie.harvest.core.HFCore;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.util.ICreativeSorted;
@@ -390,8 +391,9 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
 
 
     @SideOnly(Side.CLIENT)
+    @Override
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
-        if (advanced) {
+        if (advanced && HFCore.DEBUG_MODE) {
             tooltip.add("Durability: " + getDamageForDisplay(stack));
             tooltip.add("Level: " + getLevel(stack));
         }

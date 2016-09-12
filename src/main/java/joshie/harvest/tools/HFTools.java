@@ -23,7 +23,7 @@ public class HFTools {
     //Farming Tools
     public static final ItemTool SICKLE = new ItemSickle().register("sickle");
     public static final ItemToolChargeable HOE = new ItemHoe().register("hoe");
-    public static final ItemToolChargeable WATERING_CAN = new ItemWateringCan().register("wateringcan");
+    public static final ItemWateringCan WATERING_CAN = new ItemWateringCan().register("wateringcan");
 
     //Potion Effects
     public static final Potion FATIGUE = registerPotion("fatigue", 0xD9D900, 0, 0).registerPotionAttributeModifier(MOVEMENT_SPEED, "8107BC5E-7CF8-4030-440C-514C1F160890", -0.10000000596046448D, 2);

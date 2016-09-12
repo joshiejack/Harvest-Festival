@@ -82,7 +82,6 @@ public class BuildingStage {
 
         BuildingStage that = (BuildingStage) o;
         return building != null ? building.equals(that.building) : that.building == null;
-
     }
 
     @Override

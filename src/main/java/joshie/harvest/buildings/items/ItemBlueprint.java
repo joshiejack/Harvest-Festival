@@ -1,19 +1,19 @@
 package joshie.harvest.buildings.items;
 
-import joshie.harvest.core.helpers.ChatHelper;
-import joshie.harvest.core.util.ICreativeSorted;
+import joshie.harvest.buildings.BuildingHelper;
 import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.buildings.render.BuildingKey;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemHFFML;
-import joshie.harvest.town.TownHelper;
-import joshie.harvest.buildings.BuildingHelper;
+import joshie.harvest.core.helpers.ChatHelper;
 import joshie.harvest.core.util.Direction;
+import joshie.harvest.core.util.ICreativeSorted;
 import joshie.harvest.core.util.Text;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import joshie.harvest.town.TownDataServer;
+import joshie.harvest.town.TownHelper;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -52,20 +52,23 @@ public class ItemBlueprint extends ItemHFFML<ItemBlueprint, BuildingImpl> implem
             if (!world.isRemote) TownHelper.ensureTownExists(world, raytrace.getBlockPos());
             BuildingImpl building = getObjectFromStack(stack);
             if (player.canPlayerEdit(raytrace.getBlockPos(), EnumFacing.DOWN, stack) && building != null && (building.canHaveMultiple() || !TownHelper.getClosestTownToEntity(player).hasBuilding(building.getRegistryName()))) {
-                if (!world.isRemote) {
-                    BuildingKey key = BuildingHelper.getPositioning(world, raytrace, building, player, hand);
-                    Direction direction = Direction.withMirrorAndRotation(key.getMirror(), key.getRotation());
-                    EntityNPCBuilder builder = TownHelper.<TownDataServer>getClosestTownToEntity(player).getBuilder((WorldServer) world);
-                    BlockPos pos = key.getPos();
-                    if (builder != null && !TownHelper.getClosestTownToEntity(player).hasBuilding(building.getRegistryName())) {
-                        if(TownHelper.<TownDataServer>getClosestTownToBlockPos(world, pos).setBuilding(world, building, pos.down(building.getOffsetY()), direction.getMirror(), direction.getRotation())) {
-                            if (builder.getBuilding() == null) builder.setPosition(pos.getX(), pos.up().getY(), pos.getZ()); //Teleport the builder to the position
+                BuildingKey key = BuildingHelper.getPositioning(world, raytrace, building, player, hand);
+                if (!TownHelper.getClosestTownToBlockPos(world, key.getPos()).isBuilding(building)) {
+                    if (!world.isRemote) {
+                        Direction direction = Direction.withMirrorAndRotation(key.getMirror(), key.getRotation());
+                        EntityNPCBuilder builder = TownHelper.<TownDataServer>getClosestTownToEntity(player).getBuilder((WorldServer) world);
+                        BlockPos pos = key.getPos();
+                        if (builder != null && !TownHelper.getClosestTownToEntity(player).hasBuilding(building.getRegistryName())) {
+                            if (TownHelper.<TownDataServer>getClosestTownToBlockPos(world, pos).setBuilding(world, building, pos.down(building.getOffsetY()), direction.getMirror(), direction.getRotation())) {
+                                if (builder.getBuilding() == null)
+                                    builder.setPosition(pos.getX(), pos.up().getY(), pos.getZ()); //Teleport the builder to the position
+                            }
                         }
                     }
-                }
 
-                stack.splitStack(1);
-                return new ActionResult<>(EnumActionResult.SUCCESS, stack);
+                    stack.splitStack(1);
+                    return new ActionResult<>(EnumActionResult.SUCCESS, stack);
+                } else ChatHelper.displayChat(TextFormatting.RED + Text.translate("town.failure") + " " + TextFormatting.WHITE + Text.translate("town.distance"));
             } else ChatHelper.displayChat(TextFormatting.RED + Text.translate("town.failure") + " " + TextFormatting.WHITE + Text.translate("town.distance"));
         } else if (world.isRemote) {
             ChatHelper.displayChat(TextFormatting.RED + Text.translate("town.failure") + " " + TextFormatting.WHITE + Text.translate("town.dimension"));

@@ -17,7 +17,7 @@ import java.util.Set;
 import static joshie.harvest.api.core.ITiered.ToolTier.BASIC;
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
 import static joshie.harvest.core.helpers.InventoryHelper.SPECIAL;
-import static joshie.harvest.core.lib.HFQuests.TUTORIAL_CARPENTER;
+import static joshie.harvest.quests.Quests.TUTORIAL_CARPENTER;
 import static joshie.harvest.npc.HFNPCs.SEED_OWNER;
 
 @HFQuest("tutorial.crops")

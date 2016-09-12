@@ -5,7 +5,8 @@ import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.helpers.InventoryHelper;
-import joshie.harvest.core.lib.HFQuests;
+import joshie.harvest.quests.HFQuests;
+import joshie.harvest.quests.Quests;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
@@ -24,18 +25,18 @@ public class QuestGoddessCarpenter extends QuestTrade {
 
     @Override
     public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(HFQuests.TUTORIAL_CARPENTER);
+        return finished.contains(Quests.TUTORIAL_CARPENTER);
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
-        return InventoryHelper.getHandItemIsIn(player, ORE_DICTIONARY, "logWood", 64) != null ? getLocalized("thanks") : null;
+        return InventoryHelper.hasInInventory(player, ORE_DICTIONARY, "logWood", HFQuests.LOGS_CARPENTER) ? getLocalized("thanks") : null;
     }
 
     @Override
     public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc) {
-        if (InventoryHelper.takeItemsIfHeld(player, ORE_DICTIONARY, "logWood", 64) != null) {
+        if (InventoryHelper.takeItemsInInventory(player, ORE_DICTIONARY, "logWood", HFQuests.LOGS_CARPENTER)) {
             rewardItem(player, HFBuildings.CARPENTER.getBlueprint());
         }
     }

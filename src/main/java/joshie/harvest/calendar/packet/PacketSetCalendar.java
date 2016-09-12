@@ -5,14 +5,17 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weekday;
 import joshie.harvest.api.calendar.CalendarDate;
+import joshie.harvest.calendar.HFCalendar;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.network.Packet;
+import joshie.harvest.core.network.Packet.Side;
 import joshie.harvest.core.network.PenguinPacket;
 import net.minecraft.entity.player.EntityPlayer;
 
-@Packet
+@Packet(Side.CLIENT)
 public class PacketSetCalendar extends PenguinPacket {
+    private int daysPerSeason;
     private Weekday weekday;
     private int day;
     private Season season;
@@ -20,6 +23,7 @@ public class PacketSetCalendar extends PenguinPacket {
     
     public PacketSetCalendar() {}
     public PacketSetCalendar(CalendarDate date) {
+        this.daysPerSeason = HFCalendar.DAYS_PER_SEASON;
         this.weekday = date.getWeekday();
         this.day = date.getDay();
         this.season = date.getSeason();
@@ -28,6 +32,7 @@ public class PacketSetCalendar extends PenguinPacket {
 
     @Override
     public void toBytes(ByteBuf buf) {
+        buf.writeInt(daysPerSeason);
         buf.writeByte(weekday.ordinal());
         buf.writeInt(day);
         buf.writeByte(season.ordinal());
@@ -36,6 +41,7 @@ public class PacketSetCalendar extends PenguinPacket {
 
     @Override
     public void fromBytes(ByteBuf buf) {
+        daysPerSeason = HFCalendar.DAYS_PER_SEASON;
         weekday = Weekday.values()[buf.readByte()];
         day = buf.readInt();
         season = Season.values()[buf.readByte()];
@@ -47,6 +53,7 @@ public class PacketSetCalendar extends PenguinPacket {
         CalendarDate date = HFApi.calendar.getDate(player.worldObj);
         Season previous = date.getSeason();
         date.setWeekday(weekday).setDay(day).setSeason(season).setYear(year);
+        HFCalendar.DAYS_PER_SEASON = daysPerSeason;
 
         //Refresh all Blocks in Render range
         //If the seasons are not the same, re-render the client

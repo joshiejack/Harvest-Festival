@@ -133,6 +133,9 @@ public class GuiNPCShop extends GuiNPCBase {
     public void drawForeground(int x, int y) {}
 
     @Override
+    public void drawOverlay(int x, int y) {}
+
+    @Override
     protected void keyTyped(char character, int key) throws IOException {
         if (key == 208 || character == 's') {
             setStart(start + 2);

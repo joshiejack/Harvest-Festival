@@ -6,6 +6,7 @@ import joshie.harvest.api.quests.Quest;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.npc.HFNPCs;
+import joshie.harvest.quests.HFQuests;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 
@@ -14,7 +15,7 @@ import java.util.Set;
 import static joshie.harvest.core.helpers.InventoryHelper.ORE_DICTIONARY;
 import static joshie.harvest.core.helpers.InventoryHelper.SPECIAL;
 import static joshie.harvest.core.helpers.InventoryHelper.SearchType.FLOWER;
-import static joshie.harvest.core.lib.HFQuests.TUTORIAL_INTRO;
+import static joshie.harvest.quests.Quests.TUTORIAL_INTRO;
 import static joshie.harvest.npc.HFNPCs.*;
 
 @HFQuest("tutorial.carpenter")
@@ -34,10 +35,19 @@ public class QuestCarpenter extends Quest {
         return finished.contains(TUTORIAL_INTRO);
     }
 
+    private String getWoodAmount() {
+        if (HFQuests.LOGS_CARPENTER == 24) return getLocalized("wood.dozentwo");
+        else if (HFQuests.LOGS_CARPENTER == 12) return getLocalized("wood.dozen");
+        else if (HFQuests.LOGS_CARPENTER == 64) return getLocalized("wood.stack");
+        else if (HFQuests.LOGS_CARPENTER == 32) return getLocalized("wood.stackhalf");
+        else if (HFQuests.LOGS_CARPENTER == 16) return getLocalized("wood.stackquarter");
+        else return "" + HFQuests.LOGS_CARPENTER;
+    }
+
     @Override
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
         if (quest_stage == WELCOME && npc == HFNPCs.GODDESS) {
-            return getLocalized("welcome");
+            return getLocalized("welcome", getWoodAmount());
         } else if (quest_stage == LOGS && npc == HFNPCs.GODDESS) {
             /*  Goddess Tells the player thank you for the logs
             She then gifts the player a blueprint tells the player that this is a blueprint
@@ -55,13 +65,13 @@ public class QuestCarpenter extends Quest {
             }
 
             /* The goddess reminds you that she wants you to give her 64 logs */
-            return getLocalized("reminder.wood");
+            return getLocalized("reminder.wood", getWoodAmount());
         } else if (quest_stage == SEED_CHAT) {
             if (npc == HFNPCs.GODDESS) {
                 /*The Goddess reminds the player that she has asked you to deliver a flower to jaded, and to do so
                   You must get the carpenter house built, she says that if you lost the blueprint, then bring the goddess
                   Another 64 logs of wood, and she will happily give you a blueprint again */
-                if (attempted && InventoryHelper.getHandItemIsIn(player, ORE_DICTIONARY, "logWood", 64) != null) {
+                if (attempted && InventoryHelper.getHandItemIsIn(player, ORE_DICTIONARY, "logWood", HFQuests.LOGS_CARPENTER) != null) {
                     return getLocalized("reminder.give");
                 } else {
                     attempted = true;
@@ -100,7 +110,7 @@ public class QuestCarpenter extends Quest {
             }
         } else if (quest_stage == SEED_CHAT) {
             if (npc == HFNPCs.GODDESS) {
-                if (attempted && InventoryHelper.takeItemsIfHeld(player, ORE_DICTIONARY, "logWood", 64) != null) {
+                if (attempted && InventoryHelper.takeItemsIfHeld(player, ORE_DICTIONARY, "logWood", HFQuests.LOGS_CARPENTER) != null) {
                     rewardItem(player, HFBuildings.CARPENTER.getBlueprint());
                 } else attempted = true;
             } else if (npc == HFNPCs.SEED_OWNER){

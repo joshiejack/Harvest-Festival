@@ -8,6 +8,7 @@ import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.player.stats.Stats;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.text.TextFormatting;
 import org.apache.commons.lang3.SystemUtils;
 import org.apache.commons.lang3.text.WordUtils;
 
@@ -16,8 +17,6 @@ import java.util.Arrays;
 
 /** Renders a chat script **/
 public class GuiNPCChat extends GuiNPCBase {
-    public static final String USE_OPTIONS2 = "harvestfestival.OPENOPTIONS2";
-    public static final String USE_OPTIONS3 = "harvestfestival.OPENOPTIONS3";
     private static final int MAX_LINES_PER_PAGE = 4;
     private String[][] script; //This is an array of [page][line], with line ALWAYS beign a length of MAX_LINES ^
     private int page; //Current page displayed
@@ -47,7 +46,7 @@ public class GuiNPCChat extends GuiNPCBase {
     }
 
     private boolean buildScript() {
-        String[] original = WordUtils.wrap(format(getScript()), 40).split(SystemUtils.LINE_SEPARATOR);
+        String[] original = WordUtils.wrap(format(getScript()), 44).split(SystemUtils.LINE_SEPARATOR);
         int size = original.length / MAX_LINES_PER_PAGE;
         boolean isRemainder = original.length % MAX_LINES_PER_PAGE == 0;
         if (!isRemainder) {
@@ -70,12 +69,10 @@ public class GuiNPCChat extends GuiNPCBase {
     }
 
     @Override
-    public void drawForeground(int x, int y) {
+    public void drawOverlay(int x, int y) {
         if (!isScriptInit) {
             isScriptInit = buildScript();
         }
-
-        super.drawForeground(x, y);
 
         //Cancel the drawing if the script is null
         if (script == null) {
@@ -93,7 +90,7 @@ public class GuiNPCChat extends GuiNPCBase {
         for (int i = 0; i < line; i++) {
             String text = script[page][i];
             if (text != null) {
-                fontRendererObj.drawStringWithShadow(text, 22, 157 + (i * 10), 0xFFFFFF);
+                fontRendererObj.drawString(TextFormatting.BOLD + text, 22, 157 + (i * 10), 0x452904);
             }
         }
 
@@ -121,7 +118,7 @@ public class GuiNPCChat extends GuiNPCBase {
                 }
 
                 //Draw the characters as we go.
-                fontRendererObj.drawStringWithShadow(new String(fordisplay), 22, 157 + (line * 10), 0xFFFFFF);
+                fontRendererObj.drawString(TextFormatting.BOLD + new String(fordisplay), 22, 157 + (line * 10), 0x452904);
 
                 //Now if we have completed the entire array, let's reset the position and increase the line
                 if (fordisplay.length >= todisplay.length) {
@@ -130,6 +127,8 @@ public class GuiNPCChat extends GuiNPCBase {
                 }
             } else finished = true;
         }
+
+
     }
 
     @Override

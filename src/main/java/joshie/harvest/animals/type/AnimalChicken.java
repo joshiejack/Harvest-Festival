@@ -8,6 +8,11 @@ public class AnimalChicken extends AnimalAbstract {
     }
 
     @Override
+    public boolean getsDirty() {
+        return false;
+    }
+
+    @Override
     public int getDaysBetweenProduction() {
         return 1;
     }

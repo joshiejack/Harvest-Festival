@@ -8,8 +8,10 @@ import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.util.Text;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.packet.PacketSelect;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.text.TextFormatting;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -56,28 +58,28 @@ public class GuiNPCSelect extends GuiNPCBase {
     }
 
     private String replace(String string) {
-        return string.replace("@", "     ");
+        return string.replace("@", "    ");
     }
 
     @Override
-    public void drawForeground(int x, int y) {
-        super.drawForeground(x, y);
+    public void drawOverlay(int x, int y) {
         if (text != null) {
             for (int i = 0; i < text.length; i++) {
-                fontRendererObj.drawStringWithShadow(text[i], 22, 158 + (i * 10), 0xFFFFFF);
+                fontRendererObj.drawString(TextFormatting.BOLD + text[i], 22, 158 + (i * 10), 0x452904);
             }
 
+            GlStateManager.color(1F, 1F, 1F);
             mc.renderEngine.bindTexture(HFModInfo.elements);
 
             int position = selected + optionsStart;
             if (position == 1) {
-                drawTexturedModalRect(20, 158, 0, 32, 19, 8);
+                drawTexturedModalRect(20, 159, 0, 32, 19, 8);
             } else if (position == 2) {
-                drawTexturedModalRect(20, 168, 0, 32, 19, 8);
+                drawTexturedModalRect(20, 169, 0, 32, 19, 8);
             } else if (position == 3) {
-                drawTexturedModalRect(20, 178, 0, 32, 19, 8);
+                drawTexturedModalRect(20, 179, 0, 32, 19, 8);
             } else if (position == 4) {
-                drawTexturedModalRect(20, 188, 0, 32, 19, 8);
+                drawTexturedModalRect(20, 189, 0, 32, 19, 8);
             }
         }
     }

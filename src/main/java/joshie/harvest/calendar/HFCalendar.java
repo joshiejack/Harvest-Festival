@@ -4,9 +4,11 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.SeasonProvider;
 import joshie.harvest.core.helpers.ConfigHelper;
 import joshie.harvest.core.util.HFLoader;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.DimensionType;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 
 import static joshie.harvest.core.helpers.ConfigHelper.*;
 import static joshie.harvest.core.lib.LoadOrder.HFCALENDAR;
@@ -17,6 +19,8 @@ public class HFCalendar {
     public static Configuration CONFIG;
     private static DimensionType SEASONS;
     public static int DAYS_PER_SEASON;
+    public static int DAYS_PER_SEASON_INTEGRATED;
+    private static int DAYS_PER_SEASON_DEDICATED;
     public static long TICKS_PER_DAY;
     public static boolean ENABLE_SUNNY;
     public static boolean ENABLE_RAIN;
@@ -57,7 +61,8 @@ public class HFCalendar {
     public static void configure() {
         CONFIG = ConfigHelper.getConfig();
         OVERWORLD_ID = getInteger("Overworld ID", 3);
-        DAYS_PER_SEASON = getInteger("Days per season", 30);
+        DAYS_PER_SEASON_INTEGRATED = getInteger("Integrated Server > Days per season", 30);
+        DAYS_PER_SEASON_DEDICATED = getInteger("Dedicated Server > Days per season", 365);
         TICKS_PER_DAY = getInteger("Ticks per day", 24000);
         ENABLE_SUNNY = getBoolean("Weather > Enable sunny", true);
         ENABLE_RAIN = getBoolean("Weather > Enable rain", true);
@@ -72,5 +77,12 @@ public class HFCalendar {
         Y_GOLD = getInteger("HUD > Gold Y", 0);
         ENABLE_DATE_HUD = getBoolean("HUD > Enable data", true);
         ENABLE_GOLD_HUD = getBoolean("HUD > Enable gold", true);
+    }
+
+    public static void onServerStarting() {
+        MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
+        if (server.isDedicatedServer()) {
+            DAYS_PER_SEASON = DAYS_PER_SEASON_DEDICATED;
+        } else DAYS_PER_SEASON = DAYS_PER_SEASON_INTEGRATED;
     }
 }

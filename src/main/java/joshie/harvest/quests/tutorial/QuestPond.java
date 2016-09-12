@@ -11,7 +11,7 @@ import net.minecraft.entity.player.EntityPlayer;
 
 import java.util.Set;
 
-import static joshie.harvest.core.lib.HFQuests.TUTORIAL_UPGRADING;
+import static joshie.harvest.quests.Quests.TUTORIAL_UPGRADING;
 import static joshie.harvest.npc.HFNPCs.GODDESS;
 
 @HFQuest("tutorial.pond")

@@ -9,7 +9,7 @@ import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.core.helpers.InventoryHelper;
-import joshie.harvest.core.lib.HFQuests;
+import joshie.harvest.quests.Quests;
 import joshie.harvest.crops.HFCrops;
 import joshie.harvest.quests.TutorialSelection;
 import net.minecraft.entity.Entity;
@@ -53,7 +53,7 @@ public class QuestChickenCare extends QuestQuestion {
 
     @Override
     public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(HFQuests.TUTORIAL_CROPS);
+        return finished.contains(Quests.TUTORIAL_CROPS);
     }
 
     @Override

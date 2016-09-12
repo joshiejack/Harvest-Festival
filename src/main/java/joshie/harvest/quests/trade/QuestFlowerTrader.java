@@ -7,7 +7,7 @@ import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.helpers.InventoryHelper.SearchType;
-import joshie.harvest.core.lib.HFQuests;
+import joshie.harvest.quests.Quests;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -31,7 +31,7 @@ public class QuestFlowerTrader extends QuestTrade {
 
     @Override
     public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(HFQuests.TUTORIAL_CROPS);
+        return finished.contains(Quests.TUTORIAL_CROPS);
     }
 
     @SideOnly(Side.CLIENT)

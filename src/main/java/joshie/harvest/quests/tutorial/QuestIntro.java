@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import static joshie.harvest.core.lib.HFQuests.TUTORIAL_CARPENTER;
+import static joshie.harvest.quests.Quests.TUTORIAL_CARPENTER;
 import static joshie.harvest.npc.HFNPCs.GODDESS;
 
 @HFQuest("tutorial.intro")

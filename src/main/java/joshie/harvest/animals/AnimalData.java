@@ -121,8 +121,12 @@ public class AnimalData implements IAnimalData {
 
             //Reset everything and increase where appropriate
             currentLifespan++;
+            int originalHealth = healthiness;
             healthiness -= daysNotFed;
-            cleanliness--;
+
+            if (getType().getsDirty()) {
+                cleanliness--;
+            }
 
             World world = animal.worldObj;
             boolean isOutside = world.canBlockSeeSky(new BlockPos(animal));
@@ -137,10 +141,17 @@ public class AnimalData implements IAnimalData {
                 healthiness--;
             }
 
-            if (cleanliness < 0) {
-                healthiness += cleanliness;
-            } else if (cleanliness >= 0) {
-                cleanliness = 0;
+            if (getType().getsDirty()) {
+                if (cleanliness < 0) {
+                    healthiness += cleanliness;
+                } else if (cleanliness >= 0) {
+                    cleanliness = 0;
+                }
+            }
+
+            //Add health daily for animals that are being looked after
+            if (healthiness == originalHealth && healthiness < Byte.MAX_VALUE) {
+                healthiness++;
             }
 
             daysNotFed++;
@@ -306,12 +317,9 @@ public class AnimalData implements IAnimalData {
     @Override
     public boolean heal(@Nullable EntityPlayer player) {
         if (healthiness < 27) {
-            healthiness += 100;
-            if (healthiness >= 0) {
-                isSick = false;
-                getAnimal().clearActivePotions();
-            }
-
+            healthiness = Byte.MAX_VALUE;
+            isSick = false;
+            getAnimal().clearActivePotions();
             sendToEveryone(new PacketSyncHealthiness(animal.getEntityId(), (byte)healthiness));
             return true;
         } else return false;

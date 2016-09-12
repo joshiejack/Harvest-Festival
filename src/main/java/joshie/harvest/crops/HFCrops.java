@@ -32,12 +32,14 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.storage.loot.functions.LootFunctionManager;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.EnumPlantType;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
@@ -92,7 +94,7 @@ public class HFCrops {
     public static final Crop WHEAT = registerCrop("wheat", 150L, 100L, 28, 0, 0, 0XEAC715, SPRING, SUMMER, AUTUMN).setItem(new ItemStack(Items.WHEAT)).setAnimalFoodType(AnimalFoodType.GRASS).setRequiresSickle().setStateHandler(new StateHandlerWheat());
 
     //Nether Crop
-    public static final Crop NETHER_WART = registerCrop("nether_wart", 25000L, 10L, 4, 1, 5, 0x8B0000).setItem(new ItemStack(Items.NETHER_WART)).setStateHandler(new StateHandlerNetherWart()).setPlantType(EnumPlantType.Nether).setNoWaterRequirements().setGrowthHandler(SOUL_SAND).setDropHandler(new DropHandlerNetherWart());
+    public static final Crop NETHER_WART = registerCrop("nether_wart", 25000L, 10L, 4, 1, 1, 0x8B0000).setItem(new ItemStack(Items.NETHER_WART)).setStateHandler(new StateHandlerNetherWart()).setPlantType(EnumPlantType.Nether).setNoWaterRequirements().setGrowthHandler(SOUL_SAND).setDropHandler(new DropHandlerNetherWart());
 
 
     public static void preInit() {
@@ -205,6 +207,9 @@ public class HFCrops {
     public static boolean DISABLE_VANILLA_MOISTURE;
     public static int SPRINKLER_DRAIN_RATE;
     public static boolean VALIDATE_FARMLAND;
+    private static boolean CROPS_DIE_CLIENT;
+    private static boolean CROPS_DIE_SERVER;
+    public static boolean CROPS_SHOULD_DIE;
 
     public static void configure() {
         ALWAYS_GROW = getBoolean("Crops always grow", false, "This setting when set to true, will make crops grow based on random tick instead of day by day, Take note that this also affects the number of seeds a crop bag will plant. It will only plant 3 seeds instead of a 3x3");
@@ -215,5 +220,14 @@ public class HFCrops {
         DISABLE_VANILLA_MOISTURE = getBoolean("Disable vanilla moisture", true, "If this is set to true then farmland will not automatically become wet, and must be watered, it will also not automatically revert to dirt. (Basically disables random ticks for farmland)");
         SPRINKLER_DRAIN_RATE = getInteger("Sprinkler's daily consumption", 250, "This number NEEDs to be a factor of 1000, Otherwise you'll have trouble refilling the sprinkler manually. Acceptable values are: 1, 2, 4, 5, 8, 10, 20, 25, 40, 50, 100, 125, 200, 250, 500, 1000");
         VALIDATE_FARMLAND = getBoolean("Check for farmland on chunk load", true, "Disable this if you think it will help...");
+        CROPS_DIE_CLIENT = getBoolean("Integrated Server > Crops die when not having been watered", true);
+        CROPS_DIE_SERVER = getBoolean("Dedicated Server > Crops die when not having been watered", false);
+    }
+
+    public static void onServerStarting() {
+        MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
+        if (server.isDedicatedServer()) {
+            CROPS_SHOULD_DIE = HFCrops.CROPS_DIE_SERVER;
+        } else CROPS_SHOULD_DIE = HFCrops.CROPS_DIE_CLIENT;
     }
 }

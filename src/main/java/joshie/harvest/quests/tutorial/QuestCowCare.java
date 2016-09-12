@@ -29,7 +29,7 @@ import java.util.Set;
 
 import static joshie.harvest.animals.item.ItemAnimalTool.Tool.BRUSH;
 import static joshie.harvest.core.helpers.InventoryHelper.ITEM_STACK;
-import static joshie.harvest.core.lib.HFQuests.TUTORIAL_CHICKEN;
+import static joshie.harvest.quests.Quests.TUTORIAL_CHICKEN;
 import static joshie.harvest.npc.HFNPCs.BUILDER;
 
 @HFQuest("tutorial.cow")

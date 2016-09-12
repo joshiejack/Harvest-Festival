@@ -66,6 +66,7 @@ public class HarvestFestival {
             ((ServerCommandManager) manager).registerCommand(CommandManager.INSTANCE);
         }
 
+        proxy.load("onServerStarting");
         HFTrackers.resetServer();
     }
 }

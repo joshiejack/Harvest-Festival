@@ -4,7 +4,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.cooking.CookingHelper;
-import joshie.harvest.core.lib.HFQuests;
+import joshie.harvest.quests.Quests;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
@@ -24,7 +24,7 @@ public class QuestRecipe extends Quest {
 
     @Override
     public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(HFQuests.TUTORIAL_CAFE);
+        return finished.contains(Quests.TUTORIAL_CAFE);
     }
 
     @Override

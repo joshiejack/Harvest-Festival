@@ -17,7 +17,7 @@ import net.minecraft.item.ItemStack;
 
 import java.util.Set;
 
-import static joshie.harvest.core.lib.HFQuests.*;
+import static joshie.harvest.quests.Quests.*;
 import static joshie.harvest.npc.HFNPCs.*;
 
 @HFQuest("tutorial.upgrading")

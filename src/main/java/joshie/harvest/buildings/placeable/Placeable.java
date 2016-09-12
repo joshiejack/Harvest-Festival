@@ -39,7 +39,7 @@ public abstract class Placeable {
     }
 
     private void clearBushes(World world, BlockPos pos) {
-        if (world.getBlockState(pos) instanceof BlockBush) {
+        if (world.getBlockState(pos).getBlock() instanceof BlockBush) {
             world.setBlockToAir(pos);
             world.notifyNeighborsOfStateChange(pos, Blocks.AIR);
         }

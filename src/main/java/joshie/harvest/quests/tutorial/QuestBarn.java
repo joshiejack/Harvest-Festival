@@ -14,7 +14,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import java.util.Set;
 
 import static joshie.harvest.animals.block.BlockTrough.Trough.WOOD;
-import static joshie.harvest.core.lib.HFQuests.TUTORIAL_COW;
+import static joshie.harvest.quests.Quests.TUTORIAL_COW;
 import static joshie.harvest.npc.HFNPCs.ANIMAL_OWNER;
 import static joshie.harvest.npc.HFNPCs.BUILDER;
 

@@ -12,7 +12,7 @@ import net.minecraft.entity.player.EntityPlayer;
 
 import java.util.Set;
 
-import static joshie.harvest.core.lib.HFQuests.TUTORIAL_CROPS;
+import static joshie.harvest.quests.Quests.TUTORIAL_CROPS;
 import static joshie.harvest.npc.HFNPCs.*;
 
 @HFQuest("tutorial.supermarket")

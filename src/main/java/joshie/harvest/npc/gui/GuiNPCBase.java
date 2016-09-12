@@ -13,8 +13,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 
-public class GuiNPCBase extends GuiBaseContainer {
+public abstract class GuiNPCBase extends GuiBaseContainer {
     private static final ResourceLocation chatbox = new ResourceLocation(HFModInfo.MODID, "textures/gui/chatbox.png");
+    private boolean originalFlag;
     protected EntityNPC npc;
     protected EntityPlayer player;
     protected int nextGui;
@@ -37,9 +38,9 @@ public class GuiNPCBase extends GuiBaseContainer {
     @Override
     public void drawBackground(int x, int y) {
         GlStateManager.pushMatrix();
-        GlStateManager.enableBlend();
         mc.renderEngine.bindTexture(chatbox);
         drawTexturedModalRect(x, y + 150, 0, 150, 256, 51);
+        GlStateManager.enableBlend();
         ChatFontRenderer.colorise(inside);
         drawTexturedModalRect(x, y + 150, 0, 100, 256, 51);
         ChatFontRenderer.colorise(outside);
@@ -59,11 +60,18 @@ public class GuiNPCBase extends GuiBaseContainer {
 
     @Override
     public void drawForeground(int x, int y) {
+        originalFlag = fontRendererObj.getUnicodeFlag();
+        fontRendererObj.setUnicodeFlag(true);
         mc.renderEngine.bindTexture(HFModInfo.elements);
         if (npc.getNPC().isMarriageCandidate()) {
             drawHeart(HFApi.relationships.getRelationship(player, npc.getNPC().getUUID()));
         }
+
+        drawOverlay(x, y);
+        fontRendererObj.setUnicodeFlag(originalFlag);
     }
+
+    public abstract void drawOverlay(int x, int y);
 
     @Override
     public void drawDefaultBackground() {}

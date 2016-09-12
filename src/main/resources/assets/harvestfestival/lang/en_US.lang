@@ -482,7 +482,7 @@ harvestfestival.npc.goddess.greeting2=What a great day to farm!
 harvestfestival.npc.goddess.greeting3=Do you need anything else, my sweet?
 harvestfestival.npc.goddess.greeting4=Please don't take too much time, I cannot stay for very long.
 harvestfestival.npc.goddess.greeting5=What is it you need?
-harvestfestival.npc.goddess.greeting6=If you ever get lost and need another Carpenter just bring me a stack of a wood and I'll be glad to help.
+harvestfestival.npc.goddess.greeting6=If you ever get lost and need another Carpenter just bring me more wood and I'll be glad to help.
 harvestfestival.npc.goddess.greeting7=Oh, it's so nice to see you again %p!
 harvestfestival.npc.goddess.greeting8=Hey my darling, how have things been?
 harvestfestival.npc.goddess.greeting9=One day I'm sure the Harvest Sprites will return, it's been ever so lonely.
@@ -767,8 +767,13 @@ harvestfestival.quest.tutorial.intro.completed=Well then I must have lost my mem
 harvestfestival.quest.tutorial.intro.backstory=Well then, nice to meet you. I am the Harvest Goddess. I'd like to tell you a little story. A long time ago, this land we live in was filled with a bustling village, the people there were removed from their homes by a crazy storm, and wiped out, now I hear that they want to return back home where they belong, but they need your help. Oh and just to let you know, I will poof after a while, you can always respawn me with the goddess flower. I'll leave you one everytime I leave. I think that's all I have to tell you for now, see you later!
 
 #Carpenter
-harvestfestival.quest.tutorial.carpenter.welcome=Why hello my sweet, it’s nice to see you again. I’ve had a little thought about how we can get the town started. I’ve heard rumours that a fella named Yulif is an excellent carpenter, he and his sister have been looking to take on a project, and this could just be the right thing for them. Jade would be a perfect fit too as she loves nature and would be a great asset for getting started. I think we just need something to entice them, perhaps if you can fetch me a stack of logs then I have something for you that just might work.
-harvestfestival.quest.tutorial.carpenter.reminder.wood=Oh hello again, if you’ve forgotten we’re looking to bring our first villagers to town, I just need a stack of logs to help you get started.
+harvestfestival.quest.tutorial.carpenter.wood.dozen=a dozen
+harvestfestival.quest.tutorial.carpenter.wood.dozentwo=two dozen
+harvestfestival.quest.tutorial.carpenter.wood.stack=a stack of
+harvestfestival.quest.tutorial.carpenter.wood.stackhalf=half a stack of
+harvestfestival.quest.tutorial.carpenter.wood.stackquarter=a quarter of a stack of
+harvestfestival.quest.tutorial.carpenter.welcome=Why hello my sweet, it’s nice to see you again. I’ve had a little thought about how we can get the town started. I’ve heard rumours that a fella named Yulif is an excellent carpenter, he and his sister have been looking to take on a project, and this could just be the right thing for them. Jade would be a perfect fit too as she loves nature and would be a great asset for getting started. I think we just need something to entice them, perhaps if you can fetch me %s logs then I have something for you that just might work.
+harvestfestival.quest.tutorial.carpenter.reminder.wood=Oh hello again, if you’ve forgotten we’re looking to bring our first villagers to town, I just need %s logs to help you get started.
 harvestfestival.quest.tutorial.carpenter.thanks.build=Perfect! Just what we need, thanks a bunch. I’ve got the perfect thing for you right here. This is a structure blueprint, you use them to select the area you want a building to be built! You’ll see a ghost image of a building when you have it selected, once you’ve found the spot simply right click. If Yulif hasn’t moved in yet he’ll appear and get started working on the building right away! You’ll just have to wait a little while for him to be done. Take note you can queue up blueprints, but only one can be built at a time. Oh and don’t worry if he dies from some tragic accident! He should respawn when the day passes over and get back to work immediately! I think that’s all I have to say, so I’ll leave you to get the Carpenter House built. Oh one more thing before I forget, once he’s done building Jade should move in, she normally hangs out upstairs, I’d suggest that you go and take her a flower, as she has seeds she’ll be happy to trade for them.
 harvestfestival.quest.tutorial.carpenter.reminder.carpenter=Sweety you’re supposed to be going to see Jade not me! If you haven’t yet get a Carpenter House built and visit her upstairs with a flower. If you’re in trouble and lost the blueprint, just bring me another 64 logs and I’ll give you another one.
 harvestfestival.quest.tutorial.carpenter.reminder.give=Thanks have another blueprint and go see Jade!

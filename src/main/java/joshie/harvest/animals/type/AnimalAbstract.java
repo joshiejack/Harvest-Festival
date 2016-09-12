@@ -49,4 +49,9 @@ public abstract class AnimalAbstract implements IAnimalType {
 
     @Override
     public void refreshProduct(IAnimalData data, EntityAnimal entity) {}
+
+    @Override
+    public boolean getsDirty() {
+        return true;
+    }
 }

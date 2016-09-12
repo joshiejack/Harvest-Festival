@@ -42,12 +42,14 @@ public class TileCrop extends TileDaily {
 
         //If we were unable to survive the new day, let's destroy some things
         if (!data.newDay(getWorld(), getPos())) {
-            if (data.getCrop().isDouble(data.getStage())) {
-                getWorld().setBlockState(pos.up(), HFCrops.CROPS.getStateFromEnum(BlockHFCrops.Stage.WITHERED_DOUBLE), 2);
-            }
+            if (HFCrops.CROPS_SHOULD_DIE) {
+                if (data.getCrop().isDouble(data.getStage())) {
+                    getWorld().setBlockState(pos.up(), HFCrops.CROPS.getStateFromEnum(BlockHFCrops.Stage.WITHERED_DOUBLE), 2);
+                }
 
-            //Prepare to save old data
-            NBTHelper.copyTileData(this, getWorld(), getPos(), HFCrops.CROPS.getStateFromEnum(Stage.WITHERED));
+                //Prepare to save old data
+                NBTHelper.copyTileData(this, getWorld(), getPos(), HFCrops.CROPS.getStateFromEnum(Stage.WITHERED));
+            }
         } else sendRefreshPacket(this);
 
 

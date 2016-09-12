@@ -2,9 +2,8 @@ package joshie.harvest.quests.recipes;
 
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
-import joshie.harvest.core.lib.HFQuests;
+import joshie.harvest.quests.Quests;
 import joshie.harvest.npc.HFNPCs;
-import net.minecraft.entity.player.EntityPlayer;
 
 import java.util.Set;
 
@@ -16,6 +15,6 @@ public class QuestOmeletRice extends QuestRecipe {
 
     @Override
     public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(HFQuests.RECIPE_RICE_SOUP);
+        return finished.contains(Quests.RECIPE_RICE_SOUP);
     }
 }

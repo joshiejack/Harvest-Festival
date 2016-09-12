@@ -15,7 +15,7 @@ import net.minecraft.item.ItemStack;
 
 import java.util.Set;
 
-import static joshie.harvest.core.lib.HFQuests.TUTORIAL_UPGRADING;
+import static joshie.harvest.quests.Quests.TUTORIAL_UPGRADING;
 import static joshie.harvest.npc.HFNPCs.CAFE_OWNER;
 
 @HFQuest("tutorial.cafe")

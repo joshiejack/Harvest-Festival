@@ -16,7 +16,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import java.util.Set;
 
 import static joshie.harvest.animals.block.BlockTray.Tray.FEEDER_EMPTY;
-import static joshie.harvest.core.lib.HFQuests.TUTORIAL_CHICKEN;
+import static joshie.harvest.quests.Quests.TUTORIAL_CHICKEN;
 import static joshie.harvest.npc.HFNPCs.GODDESS;
 import static joshie.harvest.npc.HFNPCs.POULTRY;
 

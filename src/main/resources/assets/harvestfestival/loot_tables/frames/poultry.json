@@ -23,7 +23,7 @@
           "functions": [
             {
               "function": "hf_set_crop",
-              "enum": "wheat"
+              "crop": "wheat"
             }
           ]
         }

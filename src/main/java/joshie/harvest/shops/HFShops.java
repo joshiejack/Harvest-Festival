@@ -48,7 +48,6 @@ import static joshie.harvest.cooking.block.BlockCookware.Cookware.*;
 import static joshie.harvest.cooking.item.ItemIngredients.Ingredient.*;
 import static joshie.harvest.cooking.item.ItemUtensil.Utensil.KNIFE;
 import static joshie.harvest.core.helpers.ConfigHelper.getString;
-import static joshie.harvest.core.helpers.ConfigHelper.setCategory;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.npc.item.ItemNPCTool.NPCTool.BLUE_FEATHER;
 
@@ -61,8 +60,6 @@ public class HFShops {
     public static IShop POULTRY;
     public static IShop SUPERMARKET;
     public static IShop MINER;
-    
-    private static HashMap<String, String> customShoppingList = new HashMap<>();
 
     public static void postInit() {
         registerBarn();
@@ -73,63 +70,6 @@ public class HFShops {
         registerSupermarket();
         registerMiner();
     }
-    
-    
-    private static void getCustomShoppingList() {
-        setCategory("shops");
-        
-        String[] shopCategories = new String[] {"BARN", "BLACKSMITH", "CAFE", "CARPENTER", "POULTRY", "SUPERMARKET", "MINER"};
-
-		for(int i = 0; i < shopCategories.length; i++) {
-	        String shopData = getString(shopCategories[i], "");
-
-	        if(shopData != null && shopData != "") {
-	        	customShoppingList.put(shopCategories[i], shopData);
-	        }
-		}
-    }
-
-    
-    private static void addCustomItemToStore(IShop shop, String shopName) {
-        if(customShoppingList.containsKey(shopName)) {
-        	String[] shopData = customShoppingList.get(shopName).split(",");
-        	
-        	HarvestFestival.LOGGER.log(Level.INFO, "Adding " + shopData.length + " entries for " + shopName);
-        	
-        	if(shopData.length == 0)
-        		return;
-
-        	for(int i = 0; i < shopData.length; i++) {
-        		String[] shopEntry = shopData[i].split(":");
-        		
-        		if(shopEntry.length >= 5) {
-		        	// minecraft:feather:meta:amount:cost
-		        	String itemName = shopEntry[0] + ":" + shopEntry[1];
-		        	int meta = Integer.parseInt(shopEntry[2]);
-		        	int amount = Integer.parseInt(shopEntry[3]);
-		        	int cost = Integer.parseInt(shopEntry[4]);
-		        	int logs = 0;
-		        	int stone = 0;
-
-		        	// make sure we have at least 1
-		        	if(amount < 1)
-		        		amount = 1;
-		        	
-		        	if(shop == CARPENTER) {
-		        		if(shopEntry.length >= 7) {
-		        			logs = Integer.parseInt(shopEntry[5]);
-			        		stone = Integer.parseInt(shopEntry[6]);
-		        		}
-		        		
-		        		shop.addItem(new PurchaseableBuilder(cost, logs, stone, new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(itemName)), amount, meta)));
-		        	} else {
-		        		shop.addItem(cost, new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(itemName)), amount, meta));
-		        	}
-        		}
-        	}
-        }
-    }
-    
     
     private static void registerBarn() {
         BARN = HFApi.shops.newShop(new ResourceLocation(MODID, "barn"), HFNPCs.ANIMAL_OWNER);
@@ -211,7 +151,7 @@ public class HFShops {
 
         CAFE.addOpening(MONDAY, 9500, 17000).addOpening(TUESDAY, 9500, 17000).addOpening(WEDNESDAY, 9500, 17000).addOpening(THURSDAY, 9500, 17000);
         CAFE.addOpening(FRIDAY, 9500, 17000).addOpening(SATURDAY, 9500, 17000).addOpening(SUNDAY, 9500, 17000);
-        
+
         addCustomItemToStore(CAFE, "CAFE");
     }
 
@@ -267,7 +207,7 @@ public class HFShops {
 
         SUPERMARKET.addOpening(MONDAY, 9000, 17000).addOpening(TUESDAY, 9000, 17000).addOpening(THURSDAY, 9000, 17000);
         SUPERMARKET.addOpening(FRIDAY, 9000, 17000).addOpening(SATURDAY, 11000, 15000);
-        
+
         addCustomItemToStore(SUPERMARKET, "SUPERMARKET");
     }
 
@@ -285,12 +225,59 @@ public class HFShops {
 
         MINER.addOpening(MONDAY, 11000, 16000).addOpening(TUESDAY, 11000, 16000).addOpening(WEDNESDAY, 11000, 16000); //You decide what time it will be open yoshie
         MINER.addOpening(THURSDAY, 11000, 16000).addOpening(FRIDAY, 11000, 16000).addOpening(SATURDAY, 11000, 16000);
-        
+
         addCustomItemToStore(MINER, "MINER");
     }
-    
-    
+
+    private static HashMap<String, String> customShoppingList = new HashMap<>();
     public static void configure() {
-    	getCustomShoppingList();
+        String[] shopCategories = new String[] { "BARN", "BLACKSMITH", "BLOODMAGE", "CAFE", "CARPENTER", "POULTRY", "SUPERMARKET", "MINER" };
+
+        for(int i = 0; i < shopCategories.length; i++) {
+            String shopData = getString(shopCategories[i], "");
+            if(shopData != null && shopData != "") {
+                customShoppingList.put(shopCategories[i], shopData);
+            }
+        }
+    }
+
+    public static void addCustomItemToStore(IShop shop, String shopName) {
+        if(customShoppingList.containsKey(shopName)) {
+            String[] shopData = customShoppingList.get(shopName).split(",");
+            if (shopData.length > 1) {
+                HarvestFestival.LOGGER.log(Level.INFO, "Adding " + (shopData.length - 1) + " entries for " + shopName);
+            }
+
+            if(shopData.length == 0)
+                return;
+
+            for(int i = 0; i < shopData.length; i++) {
+                String[] shopEntry = shopData[i].split(":");
+                if(shopEntry.length >= 5) {
+                    // minecraft:feather:meta:amount:cost
+                    String itemName = shopEntry[0] + ":" + shopEntry[1];
+                    int meta = Integer.parseInt(shopEntry[2]);
+                    int amount = Integer.parseInt(shopEntry[3]);
+                    int cost = Integer.parseInt(shopEntry[4]);
+                    int logs = 0;
+                    int stone = 0;
+
+                    // make sure we have at least 1
+                    if(amount < 1)
+                        amount = 1;
+
+                    if(shop == CARPENTER) {
+                        if(shopEntry.length >= 7) {
+                            logs = Integer.parseInt(shopEntry[5]);
+                            stone = Integer.parseInt(shopEntry[6]);
+                        }
+
+                        shop.addItem(new PurchaseableBuilder(cost, logs, stone, new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(itemName)), amount, meta)));
+                    } else {
+                        shop.addItem(cost, new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(itemName)), amount, meta));
+                    }
+                }
+            }
+        }
     }
 }

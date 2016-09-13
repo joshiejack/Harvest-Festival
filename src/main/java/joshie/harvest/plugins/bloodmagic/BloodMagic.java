@@ -17,6 +17,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import static joshie.harvest.api.calendar.Weekday.SATURDAY;
 import static joshie.harvest.api.calendar.Weekday.WEDNESDAY;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
+import static joshie.harvest.shops.HFShops.addCustomItemToStore;
 
 @ObjectHolder("BloodMagic")
 @HFLoader(mods = "BloodMagic")
@@ -37,6 +38,8 @@ public class BloodMagic {
         BLOODMAGE.addItem(1200, getSoulGem(32));
         BLOODMAGE.addItem(2000, getSoulGem(64));
         BLOODMAGE.addOpening(WEDNESDAY, 19000, 24000).addOpening(WEDNESDAY, 0, 5000).addOpening(SATURDAY, 18000, 24000).addOpening(SATURDAY, 0, 3500);
+
+        addCustomItemToStore(BLOODMAGE, "BLOODMAGE");
 
         //Make NPCs Give 0 LP
         FMLInterModComms.sendMessage("BloodMagic", "sacrificeValue", "EntityNPCBuilder;0");

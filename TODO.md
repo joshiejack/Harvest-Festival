@@ -1,15 +1,9 @@
-## Lang
+## Todo
 - Add lang for extra chatting
 - Add lang for all the recipes
+- Go through and check items are acceptable for all the quests
 - Goddess mentions that Yulif will respawn when he dies (Not very RPG-isch)
-
-## Improvements
-- Need something better for respawning a dead chicken in the chicken care quest
-- Goddess should be unpushable
-- make brandon able to go in the mine as part of his schedule
 - Make my axes need jump smash to smash, and just pick up block normally otherwise
-
-## QOL
 - Hovering over array of ingredients shows all of them in bar
 
 ### Textures
@@ -19,11 +13,6 @@
     - Jim the Barn Owner                (Based on SpitefulFox)
     - Jade the Seed Gatherer            (Based on JadedCat)
 - Better Textures for the buttons plugin
-- Redo some treats because they look trashy
 - Make fruits & veggies shiny
-- Recipe
-- Knife
-- Fix small steps 
+- Fix small steps
 - Fix UV mapping
-- Make rocks have 1 colour
-- Remove vibrant mine deco

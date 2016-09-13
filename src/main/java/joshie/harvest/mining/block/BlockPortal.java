@@ -5,6 +5,7 @@ import joshie.harvest.core.base.block.BlockHFEnum;
 import joshie.harvest.core.util.Text;
 import joshie.harvest.mining.MiningHelper;
 import joshie.harvest.mining.block.BlockPortal.Portal;
+import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -105,7 +106,7 @@ public class BlockPortal extends BlockHFEnum<BlockPortal, Portal> {
     @Override
     public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
         if (!world.isRemote) {
-            if (entity.timeUntilPortal == 0) {
+            if (entity.timeUntilPortal == 0 && !(entity instanceof EntityNPC)) {
                 IBlockState actual = getActualState(state, world, pos);
                 if (actual.getBlock() == this) {
                     Portal portal = getEnumFromState(actual);

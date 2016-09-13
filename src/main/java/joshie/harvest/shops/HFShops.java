@@ -166,8 +166,8 @@ public class HFShops {
         CARPENTER.addItem(new PurchaseableBuilder(0, 16, 0, HFCore.STORAGE.getStackFromEnum(Storage.SHIPPING)));
         CARPENTER.addItem(new PurchaseableBuilder(100, 0, 0, new ItemStack(Blocks.LOG)));
         CARPENTER.addItem(new PurchaseableBuilder(50, 0, 0, new ItemStack(Blocks.STONE)));
-        CARPENTER.addOpening(MONDAY, 11000, 16000).addOpening(TUESDAY, 11000, 16000).addOpening(WEDNESDAY, 11000, 16000);
-        CARPENTER.addOpening(THURSDAY, 11000, 16000).addOpening(FRIDAY, 11000, 16000).addOpening(SUNDAY, 11000, 16000);
+        CARPENTER.addOpening(MONDAY, 9000, 17500).addOpening(TUESDAY, 9000, 17500).addOpening(WEDNESDAY, 9000, 17500);
+        CARPENTER.addOpening(THURSDAY, 9000, 17500).addOpening(FRIDAY, 9000, 17500).addOpening(SUNDAY, 9000, 17500);
         
         addCustomItemToStore(CARPENTER, "CARPENTER");
     }
@@ -183,8 +183,8 @@ public class HFShops {
         POULTRY.addItem(1000, HFAnimals.TRAY.getStackFromEnum(NEST_EMPTY));
         POULTRY.addItem(7500, HFAnimals.SIZED.getStackFromEnum(INCUBATOR));
 
-        POULTRY.addOpening(MONDAY, 11000, 16000).addOpening(TUESDAY, 11000, 16000).addOpening(WEDNESDAY, 11000, 16000);
-        POULTRY.addOpening(THURSDAY, 11000, 16000).addOpening(FRIDAY, 11000, 16000).addOpening(SATURDAY, 11000, 16000);
+        POULTRY.addOpening(MONDAY, 5000, 11000).addOpening(TUESDAY, 5000, 11000).addOpening(WEDNESDAY, 5000, 11000);
+        POULTRY.addOpening(THURSDAY, 5000, 11000).addOpening(FRIDAY, 5000, 11000).addOpening(SATURDAY, 5000, 11000);
         
         addCustomItemToStore(POULTRY, "POULTRY");
     }

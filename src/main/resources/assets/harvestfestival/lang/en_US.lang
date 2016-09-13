@@ -553,6 +553,7 @@ harvestfestival.npc.liara.greeting12=When I went to cookery school, there was th
 harvestfestival.npc.liara.greeting13=I really do miss my parents, but losing them really made me want to focus on my cooking career.
 harvestfestival.npc.liara.greeting14=I've been passionate about cooking all my life, I remember when I was ten, I was selling cupcake and making 1000 gold a week! But now I'm so glad I finally get to open my own proper business.
 harvestfestival.npc.liara.greeting15=The café is open everyday! From half past nine in the morning to five in the evening.
+harvestfestival.npc.liara.greeting16=I'm afraid the café is only open from 9:30 until 17:00, but we're open every day of the week!
 
 #Jade
 harvestfestival.npc.jade.greeting1=Hey! I just love going out in to the world, watch out for the sheep though!
@@ -636,6 +637,8 @@ harvestfestival.npc.jacob.greeting2=One day I will catch the elusive clownfish, 
 harvestfestival.npc.jacob.greeting3=There's nothing like just sitting and waiting for a fish to bite, so relaxing.
 harvestfestival.npc.jacob.greeting4=I really hope it rains soon. Or is it now?
 harvestfestival.npc.jacob.greeting5=I've really been wondering if I should look in to mariculture.
+harvestfestival.npc.jacob.greeting6=Hey if you're looking for some fishing gear, I'm not quite ready to sell you anything.
+harvestfestival.npc.jacob.greeting7=My grandpa was a great fisherman. He's what inspired me to open my own tackle shop.
 
 #Pokefenn
 harvestfestival.npc.fenn.greeting1=One day, I'm going to grow some vines, and you're going to climb them with me!
@@ -657,6 +660,7 @@ harvestfestival.npc.jim.greeting5=Have you ever noticed how some countries, add 
 harvestfestival.npc.jim.greeting6=Life could not be better, when I'm out on the saddle.
 harvestfestival.npc.jim.greeting7=Troughs can be placed up to three in a row, cows and sheep will eat from them when they're hungry if you fill them with fodder.
 harvestfestival.npc.jim.greeting8=Did you know that large animals will ate your grass crops, even before you harvested them?
+harvestfestival.npc.jim.greeting9=If you feed your animals treats, eventually they'll make more things for you.
 
 #Brandon/Cricket
 harvestfestival.npc.brandon.greeting1=Whenever I'm down in the mines, I can't help but get excited when I come across some diamonds.
@@ -665,6 +669,7 @@ harvestfestival.npc.brandon.greeting3=What's your favourite ice cream? Mine's Va
 harvestfestival.npc.brandon.greeting4=Do you ever get tired of mining? I never do. I'm always willing to trade if you ever get tired.
 harvestfestival.npc.brandon.greeting5=I'll never understand why people are afraid of the dark. There's nothing better than mining without seeing where you are going.
 harvestfestival.npc.brandon.greeting6=The other day when I was in the mines, I heard and saw this strange fire like creature. I wonder what it was?
+harvestfestival.npc.brandon.greeting7=If you ever need some mining materials, I'm open from Monday to Saturday, 11am to 4pm.
 
 #Tomas
 harvestfestival.npc.thomas.greeting1=I will save you from your sins.
@@ -686,9 +691,10 @@ harvestfestival.npc.candice.greeting6=Hey pretty, I've got a tip for you today. 
 harvestfestival.npc.yulif.greeting1=Building stuff is so time consuming, when will I get a break?
 harvestfestival.npc.yulif.greeting2=People treat me like a slave, no rest for the builder!
 harvestfestival.npc.yulif.greeting3=Have you seen Jim? Isn't he just?
-harvestfestival.npc.yulif.greeting4=I am tired of all this hard work, When will you appreciate my buildings?
+harvestfestival.npc.yulif.greeting4=I am tired of all this hard work, When will ya appreciate my buildings?
 harvestfestival.npc.yulif.greeting5=I am tired of wandering around, I am dying right now.
-harvestfestival.npc.yulif.greeting6=If you get in my way, I can't build there.
+harvestfestival.npc.yulif.greeting6=If ya get in my way, I can't build there.
+harvestfestival.npc.yulif.greeting7=If yer looking for buildings, I'm afraid I'm only available 9am to 5:30pm, Sunday to Friday.
 
 #Ashlee
 harvestfestival.npc.ashlee.greeting1=I sure love plucking chickens!
@@ -697,6 +703,8 @@ harvestfestival.npc.ashlee.greeting3=From this day forward, I hope I can sleep b
 harvestfestival.npc.ashlee.greeting4=Most chicken handlers hate foxes, I love them. They're so furry, like me!
 harvestfestival.npc.ashlee.greeting5=Cluck, Cluck, Cluck Clucking. When will these chicks just shut the Cluck up!
 harvestfestival.npc.ashlee.greeting6=Feeding your chickens by hand will make you love them more, but it is more work.
+harvestfestival.npc.ashlee.greeting7=Chickens are happy to eat treats and chicken treats.
+harvestfestival.npc.ashlee.greeting8=If you ever need anything, just be sure to ask. But only from 5am to 11am, Monday through Saturday.
 
 #Girafi
 harvestfestival.npc.girafi.greeting1=Why hello fellow human, I am a humble trader, if you have any eggs, milk or wool I'll happily trade my own from the vanilla world!
@@ -720,36 +728,43 @@ harvestfestival.shop.general.options.chat=@Chat
 harvestfestival.shop.poultry=Poultry Farm
 harvestfestival.shop.poultry.greeting1=Chickens provide essentials for us, what can I help you with?
 harvestfestival.shop.poultry.greeting2=The Poultry Farm has been here for 300 years, what do you desire?
+harvestfestival.shop.poultry.greeting3=Welcome to Cluckety Cluck Cluck's Chicken Camp. How may I help?
 
 #Cafe
 harvestfestival.shop.cafe=Café
 harvestfestival.shop.cafe.greeting1=Food come and get it! Yes?
 harvestfestival.shop.cafe.greeting2=Serving it all up, welcome!
+harvestfestival.shop.cafe.greeting3=Dinner's Up!
 
 #Animal Ranch
 harvestfestival.shop.barn=Animal Ranch
 harvestfestival.shop.barn.greeting1=We don't just sell animals, we sell em strong!
 harvestfestival.shop.barn.greeting2=Welcome to the ranch, do you need anything?
+harvestfestival.shop.barn.greeting3=Who needs chickens? When you can have cows and sheep!
 
 #Blacksmith
 harvestfestival.shop.blacksmith=Blacksmith
 harvestfestival.shop.blacksmith.greeting1=Come one and all and see my wares!
 harvestfestival.shop.blacksmith.greeting2=Always happy to sell you some fine tools.
+harvestfestival.shop.blacksmith.greeting3=Need some tools? Step right up!
 
 #Carpenter
 harvestfestival.shop.carpenter=Carpenter
 harvestfestival.shop.carpenter.greeting1=Looking for a new building, let me help you.
 harvestfestival.shop.carpenter.greeting2=I've got the best blueprints around.
+harvestfestival.shop.carpenter.greeting3=Building the best buildings for you!
 
 #Miner
 harvestfestival.shop.miner=Miners' Wares
 harvestfestival.shop.miner.greeting1=I've got some rare materials right here!
 harvestfestival.shop.miner.greeting2=Come and get your rare gems!
+harvestfestival.shop.miner.greeting3=Minerals right here!
 
 #Carpenter
 harvestfestival.shop.bloodmage=Blood Mage
 harvestfestival.shop.bloodmage.greeting1=Welcome dear child, to the darkest of places.
 harvestfestival.shop.bloodmage.greeting2=Prepare to have your eyes blown out of their sockets from the sight of my wares.
+harvestfestival.shop.bloodmage.greeting3=In this dark and mysterious night, I am happy to please your eyes with my goods.
 
 #Miscellaneous
 harvestfestival.marriage=Gift for Marriage

@@ -11,7 +11,10 @@ public interface IDailyTickable {
         return false;
     }
 
+    /** The phases are whether this tick occurs before animals and town updates,
+     *  or if it occurs after they updated. The mine phase is used when randomly,
+     *  updating the mine, instead of when it changes over normally */
     enum Phase {
-        PRE_ANIMALS, POST_ANIMALS
+        PRE, POST, MINE
     }
 }

@@ -39,10 +39,15 @@ public class MiningTicker implements IDailyTickableBlock {
     }
 
     @Override
+    public boolean isMiningWorld() {
+        return true;
+    }
+
+    @Override
     public boolean newDay(World world, BlockPos pos, IBlockState state) {
         BlockPos up = pos.up();
         IBlockState above = world.getBlockState(up);
-        if (above.getBlock() == Blocks.AIR || above.getBlock() == ORE || above.getBlock() == HFCore.FLOWERS) {
+        if (above.getBlock() == Blocks.AIR) {
             int floor = MiningHelper.getFloor(world.getChunkFromBlockCoords(pos).xPosition, pos.getY());
             if (world.rand.nextInt(32) == 0) world.setBlockState(up, HFCore.FLOWERS.getStateFromEnum(FlowerType.WEED));
             else world.setBlockState(up, getBlockState(world.rand, floor));

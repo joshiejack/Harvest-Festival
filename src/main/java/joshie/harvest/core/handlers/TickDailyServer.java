@@ -24,6 +24,7 @@ public class TickDailyServer extends HFTracker {
     private final Set<IDailyTickable> priority = new HashSet<>();
     private final Set<IDailyTickable> tickables = new HashSet<>();
     private final HashMap<BlockPos, IDailyTickableBlock> blockTicks = new HashMap<>();
+    private long rateLimit;
 
     public static void addToQueue(Runnable runnable) {
         queue.add(runnable);
@@ -34,11 +35,16 @@ public class TickDailyServer extends HFTracker {
     }
 
     public void newDay(Phase phase) {
+        if (phase == Phase.MINE) {
+            if (System.currentTimeMillis() - rateLimit < 10000) return;
+            rateLimit = System.currentTimeMillis(); //Don't allow too man updates
+        }
+
         //Process high priority tickables
         processTickables(priority, phase);
 
         //Tick the tickable blocks
-        if (phase == Phase.PRE_ANIMALS) {
+        if (phase == Phase.PRE || phase == Phase.MINE) {
             Iterator<Entry<BlockPos, IDailyTickableBlock>> position = blockTicks.entrySet().iterator();
             while (position.hasNext()) {
                 Entry<BlockPos, IDailyTickableBlock> entry = position.next();
@@ -49,6 +55,7 @@ public class TickDailyServer extends HFTracker {
                     IBlockState state = getWorld().getBlockState(pos);
                     IDailyTickableBlock tickable = entry.getValue();
                     if (tickable != null) {
+                        if (phase == Phase.PRE || (phase == Phase.MINE && tickable.isMiningWorld()))
                         if (!tickable.newDay(getWorld(), pos, state)) {
                             position.remove();
                         }

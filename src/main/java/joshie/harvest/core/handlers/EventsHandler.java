@@ -58,10 +58,10 @@ public class EventsHandler {
 
     //New day
     public static void newDay(final World world) {
-        HFTrackers.getTickables(world).newDay(IDailyTickable.Phase.PRE_ANIMALS);
+        HFTrackers.getTickables(world).newDay(IDailyTickable.Phase.PRE);
         HFTrackers.<AnimalTrackerServer>getAnimalTracker(world).newDay();
-        HFTrackers.getTickables(world).newDay(IDailyTickable.Phase.POST_ANIMALS);
         HFTrackers.<TownTrackerServer>getTownTracker(world).newDay();
+        HFTrackers.getTickables(world).newDay(IDailyTickable.Phase.POST);
         HFTrackers.markDirty(world);
     }
 

@@ -35,7 +35,7 @@ public class TileCrop extends TileDaily {
 
     @Override
     public void newDay(Phase phase) {
-        if (phase == Phase.PRE_ANIMALS) {
+        if (phase == Phase.PRE) {
             //Rain and soil check
             if (data.getCrop().requiresWater() && (CropHelper.isRainingAt(getWorld(), getPos().up()) || isWetSoil(getWorld().getBlockState(getPos().down())))) {
                 data.setHydrated(); //If today is raining, hydrate the crop automatically

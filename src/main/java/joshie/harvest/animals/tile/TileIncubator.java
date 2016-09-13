@@ -41,7 +41,7 @@ public class TileIncubator extends TileFillableSizedFaceable {
 
     @Override
     public void newDay(Phase phase) {
-        if (phase == Phase.PRE_ANIMALS) {
+        if (phase == Phase.PRE) {
             if (fillAmount > 0) {
                 fillAmount--;
 

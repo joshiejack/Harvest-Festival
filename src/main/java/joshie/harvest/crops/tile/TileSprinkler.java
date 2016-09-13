@@ -56,7 +56,7 @@ public class TileSprinkler extends TileDaily implements ITickable {
 
     @Override
     public void newDay(Phase phase) {
-        if (phase == Phase.PRE_ANIMALS) {
+        if (phase == Phase.PRE) {
             if (tank.getFluidAmount() > 1) {
                 //Reduce the amount in the tank
                 tank.drainInternal(HFCrops.SPRINKLER_DRAIN_RATE, true);

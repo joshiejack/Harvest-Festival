@@ -6,7 +6,6 @@
 ## Improvements
 - Need something better for respawning a dead chicken in the chicken care quest
 - Goddess should be unpushable
-- Save the last time a mining chunk had it's blocks generated, and regenerate them
 - make brandon able to go in the mine as part of his schedule
 - Make my axes need jump smash to smash, and just pick up block normally otherwise
 

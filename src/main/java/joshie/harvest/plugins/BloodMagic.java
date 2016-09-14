@@ -1,4 +1,4 @@
-package joshie.harvest.plugins.bloodmagic;
+package joshie.harvest.plugins;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.shops.IShop;

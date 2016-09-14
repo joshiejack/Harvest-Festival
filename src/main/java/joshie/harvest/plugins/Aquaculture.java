@@ -1,6 +1,7 @@
-package joshie.harvest.plugins.aquaculture;
+package joshie.harvest.plugins;
 
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.cooking.Ingredient;
 import joshie.harvest.api.shops.IShop;
 import joshie.harvest.core.util.HFLoader;
 import joshie.harvest.npc.HFNPCs;
@@ -23,12 +24,16 @@ public class Aquaculture {
     public static final Item diamond_fishing_rod = null;
     public static IShop BAITSHOP;
 
+    private static boolean isFish(int damage) {
+        return damage != 19 && damage != 17 && damage != 13 && damage != 18 && damage != 14 && damage != 15 && damage != 16;
+    }
+
     @SuppressWarnings("ConstantConditions")
     public static void init() {
         HFApi.shipping.registerSellable(new ItemStack(fish, 1, 0), 200); //Bluegill
         HFApi.shipping.registerSellable(new ItemStack(fish, 1, 1), 200); //Perch
         HFApi.shipping.registerSellable(new ItemStack(fish, 1, 32), 200); //Boulti
-        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 18), 200); //Leech
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 19), 200); //Leech
         HFApi.shipping.registerSellable(new ItemStack(fish, 1, 9), 200); //Red Grouper
         HFApi.shipping.registerSellable(new ItemStack(fish, 1, 23), 350); //Arapaima
         HFApi.shipping.registerSellable(new ItemStack(fish, 1, 31), 350); //Capitaine
@@ -62,6 +67,14 @@ public class Aquaculture {
         HFApi.shipping.registerSellable(new ItemStack(fish, 1, 16), 150); //Jellyfish
         HFApi.shipping.registerSellable(new ItemStack(fish, 1, 15), 150); //Squid
         HFApi.shipping.registerSellable(new ItemStack(fish, 1, 30), 130); //Blackfish
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 37), 30); //Goldfish
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 38), 1); //Bones
+        Ingredient fishIngredient = Ingredient.INGREDIENTS.get("fish");
+        for (int i = 0; i <= 37; i++) {
+            if (isFish(i)) {
+                HFApi.cooking.register(new ItemStack(fish, 1, i), fishIngredient);
+            }
+        }
 
         BAITSHOP = HFApi.shops.newShop(new ResourceLocation(MODID, "baitshop"), HFNPCs.FISHERMAN);
         BAITSHOP.addItem(1000L, new ItemStack(fishing_rod));

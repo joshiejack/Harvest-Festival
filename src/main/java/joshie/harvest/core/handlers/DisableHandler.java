@@ -33,7 +33,7 @@ public class DisableHandler {
     /* Disables vanilla seeds from being able to be planted **/
     @HFEvents
     public static class DisableVanillaSeeds {
-        private static final Set<Item> BLACKLIST = new HashSet<>();
+        public static final Set<Item> BLACKLIST = new HashSet<>();
 
         public static boolean register() {
             if (DISABLE_VANILLA_SEEDS) {

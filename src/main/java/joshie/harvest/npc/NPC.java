@@ -4,9 +4,12 @@ import joshie.harvest.api.buildings.Building;
 import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Season;
-import joshie.harvest.api.npc.*;
+import joshie.harvest.api.npc.IConditionalGreeting;
+import joshie.harvest.api.npc.INPC;
+import joshie.harvest.api.npc.INPCRegistry;
 import joshie.harvest.api.npc.INPCRegistry.Age;
 import joshie.harvest.api.npc.INPCRegistry.Gender;
+import joshie.harvest.api.npc.ISchedule;
 import joshie.harvest.api.npc.gift.IGiftHandler;
 import joshie.harvest.api.npc.gift.IGiftHandler.Quality;
 import joshie.harvest.api.shops.IShop;
@@ -17,7 +20,6 @@ import joshie.harvest.shops.Shop;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.MinecraftForge;
 import org.apache.commons.lang3.text.WordUtils;
 
 import java.util.*;
@@ -73,7 +75,6 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
         this.setupGifts();
         this.setupSchedules();
         NPCRegistry.REGISTRY.register(this);
-        MinecraftForge.EVENT_BUS.post(new NPCBuildEvent(this, this.conditionals));
     }
 
     @Override

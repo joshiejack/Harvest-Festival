@@ -33,7 +33,7 @@ public class QuestMining extends QuestQuestion {
 
     @Override
     public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(TUTORIAL_BARN) && finished.contains(TUTORIAL_POULTRY) && finished.contains(TUTORIAL_SUPERMARKET);
+        return finished.contains(TUTORIAL_COW) && finished.contains(TUTORIAL_CHICKEN) && finished.contains(TUTORIAL_SUPERMARKET);
     }
 
     @Override

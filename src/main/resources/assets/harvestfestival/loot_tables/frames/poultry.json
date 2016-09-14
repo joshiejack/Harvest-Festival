@@ -6,14 +6,8 @@
       "entries": [
         {
           "type": "item",
-          "name": "harvestfestival:crops",
-          "weight": 5,
-          "functions": [
-            {
-              "function": "hf_set_crop",
-              "crop": "wheat"
-            }
-          ]
+          "name": "minecraft:wheat",
+          "weight": 5
         },
         {
           "type": "item",

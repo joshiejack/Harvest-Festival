@@ -45,8 +45,10 @@ public class TownTrackerServer extends TownTracker {
         UUID uuid = townIDs.inverse().get(mineID);
         if (uuid == null) return default_;
         TownData data = uuidMap.get(uuid);
-        if (data == null || !data.hasBuilding(MINE.getResource())) return default_;
-        return data.getCoordinatesFor(MINE);
+        if (data == null) return default_;
+        if (!data.hasBuilding(MINE.getResource())) return data.getTownCentre();
+        BlockPos location = data.getCoordinatesFor(MINE);
+        return location != null? location : data.getTownCentre();
     }
 
     @Override

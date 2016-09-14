@@ -1,7 +1,7 @@
 {
   "components": [
     {
-      "type": "PlaceableBlock",
+      "type": "PlaceableMoveIn",
       "isBlock": true,
       "theData": {
         "state": {
@@ -14,7 +14,7 @@
       }
     },
     {
-      "type": "PlaceableBlock",
+      "type": "PlaceableMoveIn",
       "isBlock": true,
       "theData": {
         "state": {
@@ -27,7 +27,7 @@
       }
     },
     {
-      "type": "PlaceableBlock",
+      "type": "PlaceableMoveIn",
       "isBlock": true,
       "theData": {
         "state": {
@@ -274,7 +274,7 @@
       }
     },
     {
-      "type": "PlaceableBlock",
+      "type": "PlaceableMoveIn",
       "isBlock": true,
       "theData": {
         "state": {
@@ -287,7 +287,7 @@
       }
     },
     {
-      "type": "PlaceableBlock",
+      "type": "PlaceableMoveIn",
       "isBlock": true,
       "theData": {
         "state": {
@@ -300,7 +300,7 @@
       }
     },
     {
-      "type": "PlaceableBlock",
+      "type": "PlaceableMoveIn",
       "isBlock": true,
       "theData": {
         "state": {

@@ -74,6 +74,7 @@ public class PlaceableBlock extends Placeable {
     public final boolean place (World world, BlockPos pos, Direction direction) {
         if (!prePlace(world, pos, direction)) return false;
         IBlockState state = getTransformedState(direction);
+        if (world.getBlockState(pos) == state) return false;
         boolean result = world.setBlockState(pos, state, 2);
         if (result) {
             postPlace(world, pos, direction);

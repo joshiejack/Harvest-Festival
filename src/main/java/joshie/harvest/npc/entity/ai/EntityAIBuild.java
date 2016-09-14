@@ -53,7 +53,7 @@ public class EntityAIBuild extends EntityAIBase {
                 if (vec != null) {
                     go = new BlockPos(vec);
                 }
-            }
+            } else teleportTimer = 0;
 
             //If the NPC is close the where they need to build
             if (!tooFar) {

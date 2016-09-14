@@ -4,13 +4,23 @@ import io.netty.buffer.ByteBuf;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.npc.NPCHelper;
+import joshie.harvest.npc.entity.ai.EntityAILookAtPlayer;
+import joshie.harvest.npc.entity.ai.EntityAISchedule;
+import joshie.harvest.npc.entity.ai.EntityAITalkingTo;
 import joshie.harvest.town.TownHelper;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.town.TownData;
 import joshie.harvest.town.TownDataServer;
 import joshie.harvest.town.TownTracker;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.ai.EntityAIOpenDoor;
+import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.entity.ai.EntityAIWander;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
@@ -36,6 +46,21 @@ public abstract class EntityNPCHuman<E extends EntityNPCHuman> extends EntityNPC
 
     public EntityNPCHuman(E entity) {
         super(entity);
+    }
+
+    @Override
+    protected void initEntityAI() {
+        ((PathNavigateGround) this.getNavigator()).setEnterDoors(true);
+        ((PathNavigateGround) this.getNavigator()).setBreakDoors(true);
+        tasks.addTask(0, new EntityAISwimming(this));
+        tasks.addTask(1, new EntityAITalkingTo(this));
+        tasks.addTask(1, new EntityAILookAtPlayer(this));
+        tasks.addTask(4, new EntityAIOpenDoor(this, true));
+        tasks.addTask(6, new EntityAISchedule(this));
+        tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 3.0F, 1.0F));
+        tasks.addTask(9, new EntityAIWatchClosest(this, EntityNPC.class, 5.0F, 0.02F));
+        tasks.addTask(9, new EntityAIWander(this, 0.6D));
+        tasks.addTask(10, new EntityAIWatchClosest(this, EntityLiving.class, 8.0F));
     }
 
     public BlockPos getHomeCoordinates() {

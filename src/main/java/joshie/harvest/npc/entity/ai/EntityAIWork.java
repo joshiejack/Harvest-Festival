@@ -1,10 +1,15 @@
 package joshie.harvest.npc.entity.ai;
 
+import joshie.harvest.api.npc.INPC.Location;
+import joshie.harvest.npc.NPCHelper;
 import joshie.harvest.npc.entity.EntityNPCShopkeeper;
 import net.minecraft.entity.ai.EntityAIBase;
+import net.minecraft.util.math.BlockPos;
 
 public class EntityAIWork extends EntityAIBase {
+    private BlockPos target;
     private EntityNPCShopkeeper npc;
+    private int moveTimer;
 
     public EntityAIWork(EntityNPCShopkeeper npc) {
         this.npc = npc;
@@ -13,7 +18,10 @@ public class EntityAIWork extends EntityAIBase {
 
     @Override
     public boolean shouldExecute() {
-        return npc.getNPC().getShop() != null && npc.getNPC().getShop().isOpen(npc.worldObj, null);
+        if(npc.getNPC().getShop() != null && npc.getNPC().getShop().isOpen(npc.worldObj, null)) {
+            target = NPCHelper.getCoordinatesForLocation(npc, npc.getNPC().getLocation(Location.WORK));
+            return target != null;
+        } else return false;
     }
 
     @Override
@@ -23,6 +31,16 @@ public class EntityAIWork extends EntityAIBase {
 
     @Override
     public void startExecuting() {
-        npc.getNavigator().clearPathEntity();
+        if (moveTimer %20 == 0) {
+            if (npc.getDistanceSq(target) >= 9D) {
+                npc.setPositionAndUpdate(target.getX() + 0.5D, target.getY() + 1D, target.getZ() + 0.5D);
+            }
+
+            if (npc.getDistanceSq(target) >= 8D) {
+                npc.getNavigator().tryMoveToXYZ(target.getX() + 0.5D, target.getY() + 1D, target.getZ() + 0.5D, 0.55D);
+            } else npc.getNavigator().clearPathEntity();
+        }
+
+        moveTimer++;
     }
 }

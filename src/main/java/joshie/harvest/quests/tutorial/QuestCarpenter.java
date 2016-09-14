@@ -60,7 +60,7 @@ public class QuestCarpenter extends Quest {
             Will move in with yulif and she can often be found upstairs in the house, she requests that you deliver some sort of flower
             To jaded, and tells you that she carries around a bunch of seeds, but she is always on the lookout for flowers instead
             Normally she would ask for 10 flowers, but for a one off deal she is doing one flower for some seeds */
-            if (InventoryHelper.getHandItemIsIn(player, ORE_DICTIONARY, "logWood", 64) != null) {
+            if (InventoryHelper.getHandItemIsIn(player, ORE_DICTIONARY, "logWood", HFQuests.LOGS_CARPENTER) != null) {
                 return getLocalized("thanks.build");
             }
 
@@ -104,7 +104,7 @@ public class QuestCarpenter extends Quest {
         if (quest_stage == WELCOME && npc == HFNPCs.GODDESS) {
             increaseStage(player);
         } else if (quest_stage == LOGS && npc == HFNPCs.GODDESS) {
-            if (InventoryHelper.takeItemsIfHeld(player, ORE_DICTIONARY, "logWood", 64) != null) {
+            if (InventoryHelper.takeItemsIfHeld(player, ORE_DICTIONARY, "logWood", HFQuests.LOGS_CARPENTER) != null) {
                 rewardItem(player, HFBuildings.CARPENTER.getBlueprint());
                 increaseStage(player);
             }

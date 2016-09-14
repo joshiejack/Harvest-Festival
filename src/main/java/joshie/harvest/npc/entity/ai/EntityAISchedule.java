@@ -5,7 +5,7 @@ import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.npc.NPCHelper;
-import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.npc.entity.EntityNPCHuman;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.util.math.BlockPos;
@@ -14,13 +14,14 @@ import net.minecraft.util.math.Vec3d;
 import static joshie.harvest.api.npc.INPC.Location.WORK;
 
 public class EntityAISchedule extends EntityAIBase {
-    private EntityNPC npc;
-    private long attemptTimer;
-    private BuildingLocation buildingTarget;
+    private CalendarDate date;
+    private BuildingLocation location;
     private BlockPos blockTarget;
-    private Vec3d tempTarget;
+    private EntityNPCHuman npc;
+    private int teleportTimer;
+    private int scheduleTimer;
 
-    public EntityAISchedule(EntityNPC npc) {
+    public EntityAISchedule(EntityNPCHuman npc) {
         this.npc = npc;
         this.setMutexBits(1);
     }
@@ -33,43 +34,51 @@ public class EntityAISchedule extends EntityAIBase {
 
     @Override
     public boolean shouldExecute() {
-        CalendarDate date = HFApi.calendar.getDate(npc.worldObj);
-        buildingTarget = getBuildingTarget(date);
-        blockTarget = NPCHelper.getCoordinatesForLocation(npc, buildingTarget);
-        attemptTimer = 0L;
-        return blockTarget != null && npc.getDistanceSq(blockTarget) > buildingTarget.getDistanceRequired();
+        updateTarget(); //Called here as need to check for new targets
+        return blockTarget != null && npc.getDistanceSq(blockTarget) > location.getDistanceRequired();
     }
 
     @Override
     public boolean continueExecuting() {
-        return blockTarget != null && npc.getDistanceSq(blockTarget) > buildingTarget.getDistanceRequired();
+        return blockTarget != null && npc.getDistanceSq(blockTarget) > location.getDistanceRequired();
+    }
+
+    private void updateTarget() {
+        date = HFApi.calendar.getDate(npc.worldObj);
+        location = getBuildingTarget(date);
+        blockTarget = NPCHelper.getCoordinatesForLocation(npc, location);
     }
 
     @Override
     public void updateTask() {
-        //Every 10 seconds, update our target
-        if (attemptTimer %200 == 0) {
-            BuildingLocation previous = buildingTarget;
-            CalendarDate date = HFApi.calendar.getDate(npc.worldObj);
-            buildingTarget = getBuildingTarget(date);
-            blockTarget = NPCHelper.getCoordinatesForLocation(npc, buildingTarget);
-            if (blockTarget != null) {
-                tempTarget = RandomPositionGenerator.findRandomTargetBlockTowards(npc, 5, 3, new Vec3d((double) blockTarget.getX() + 0.5D, (double) blockTarget.getY(), (double) blockTarget.getZ() + 0.5D));
+        //Update the target
+        if (scheduleTimer %200 == 0) updateTarget();
+        if (blockTarget != null) {
+            double distance = npc.getDistanceSq(blockTarget);
+            boolean tooFar = distance > location.getDistanceRequired();
+            if (scheduleTimer %15 == 0) {
+                if (tooFar) {
+                    //Teleportation
+                    if ((teleportTimer >= 60 && distance <= 64D) || teleportTimer >= 300) {
+                        teleportTimer = 0;
+                        npc.setPositionAndUpdate(blockTarget.getX() + 0.5D, blockTarget.getY() + 1D, blockTarget.getZ() + 0.5D);
+                    }
+
+                    teleportTimer++;
+
+                    //Random coordinates
+                    int move = distance >= 32 ? 8 : distance >= 100D ? 15 : 3;
+                    Vec3d vec = RandomPositionGenerator.findRandomTargetBlockTowards(npc, move, 3, new Vec3d((double) blockTarget.getX() + 0.5D, (double) blockTarget.getY() + 1D, (double) blockTarget.getZ() + 0.5D));
+                    if (vec != null) {
+                        blockTarget = new BlockPos(vec);
+                    }
+                } else teleportTimer = 0;
             }
 
-            if (!previous.equals(buildingTarget)) attemptTimer = 0; //Reset the attempt timer, if this is a new building
+            //If the NPC is close the where they need to build
+            if (tooFar) npc.getNavigator().tryMoveToXYZ(blockTarget.getX() + 0.5D, blockTarget.getY() + 1D, blockTarget.getZ() + 0.5D, 0.55D);
         }
 
-        //If our new target is valid, continue executing
-        if (tempTarget != null) {
-            if (attemptTimer < buildingTarget.getTimeToTry()) {
-                npc.getNavigator().tryMoveToXYZ(tempTarget.xCoord, tempTarget.yCoord, tempTarget.zCoord, 0.5D);
-            } else {
-                npc.setPositionAndUpdate(blockTarget.getX() + 0.5D, blockTarget.getY(), blockTarget.getZ() + 0.5D);
-                attemptTimer = 0L; //Reset the attempt time after we've reached our target
-            }
-
-            attemptTimer++;
-        }
+        scheduleTimer++;
     }
 }

@@ -1,9 +1,11 @@
 package joshie.harvest.quests;
 
+import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.quests.IQuestHelper;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.core.util.HFApiImplementation;
 import joshie.harvest.player.PlayerTrackerServer;
@@ -76,6 +78,10 @@ public class QuestHelper implements IQuestHelper {
             Entity theEntity = EntityList.createEntityByIDFromName(entity, player.worldObj);
             if (theEntity != null) {
                 theEntity.setPosition(player.posX, player.posY, player.posZ);
+                if (theEntity instanceof IAnimalTracked) {
+                    ((IAnimalTracked)theEntity).getData().setOwner(EntityHelper.getPlayerUUID(player));
+                }
+
                 player.worldObj.spawnEntityInWorld(theEntity);
             }
         }

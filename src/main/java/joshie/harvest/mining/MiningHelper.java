@@ -92,7 +92,8 @@ public class MiningHelper {
     }
 
     public static boolean teleportToMine(Entity entity) {
-        return teleportToMine(entity, HFTrackers.getTownTracker(entity.worldObj).getMineIDFromCoordinates(new BlockPos(entity)));
+        int id = HFTrackers.getTownTracker(entity.worldObj).getMineIDFromCoordinates(new BlockPos(entity));
+        return id != -1 && teleportToMine(entity, id);
     }
 
     public static boolean teleportToMine(Entity entity, int mineID) {

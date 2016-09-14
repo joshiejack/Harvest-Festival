@@ -5,16 +5,17 @@ import gnu.trove.map.hash.TIntObjectHashMap;
 import joshie.harvest.api.cooking.Utensil;
 import joshie.harvest.cooking.recipe.MealImpl;
 import joshie.harvest.core.base.FMLDefinition;
-import joshie.harvest.core.base.item.ItemHFFML;
+import joshie.harvest.core.util.IFMLItem;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.IForgeRegistry;
 
 public class MealDefinition extends FMLDefinition<MealImpl> {
     private TIntObjectMap<ModelResourceLocation> burnt = new TIntObjectHashMap<>();
 
-    public MealDefinition(ItemHFFML item, String name, IForgeRegistry<MealImpl> registry) {
+    public MealDefinition(IFMLItem item, String name, IForgeRegistry<MealImpl> registry) {
         super(item, name, registry);
     }
 
@@ -37,7 +38,7 @@ public class MealDefinition extends FMLDefinition<MealImpl> {
         for (int i = 0; i < Utensil.UTENSILS.length; i++) {
             Utensil utensil = Utensil.getUtensilFromIndex(i);
             ModelResourceLocation model = utensil.getModelForMeal();
-            ModelBakery.registerItemVariants(item, model);
+            ModelBakery.registerItemVariants((Item)item, model);
             registerBurnt(utensil.getIndex(), model);
         }
     }

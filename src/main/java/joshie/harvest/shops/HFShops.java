@@ -47,6 +47,7 @@ import static joshie.harvest.cooking.HFCooking.*;
 import static joshie.harvest.cooking.block.BlockCookware.Cookware.*;
 import static joshie.harvest.cooking.item.ItemIngredients.Ingredient.*;
 import static joshie.harvest.cooking.item.ItemUtensil.Utensil.KNIFE;
+import static joshie.harvest.core.helpers.ConfigHelper.getBoolean;
 import static joshie.harvest.core.helpers.ConfigHelper.getString;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.npc.item.ItemNPCTool.NPCTool.BLUE_FEATHER;
@@ -102,7 +103,7 @@ public class HFShops {
         BLACKSMITH.addItem(1000, HFTools.AXE.getStack(ToolTier.BASIC));
         BLACKSMITH.addItem(1000, HFTools.HAMMER.getStack(ToolTier.BASIC));
         BLACKSMITH.addItem(new PurchaseableWeekend(100, HFCore.STORAGE.getStackFromEnum(Storage.SHIPPING)));
-        BLACKSMITH.addItem(new PurchaseableWeekend(3000, HFCrops.SPRINKLER.getStackFromEnum(Sprinkler.WOOD)));
+        BLACKSMITH.addItem(new PurchaseableYearWeekend(10000, HFCrops.SPRINKLER.getStackFromEnum(Sprinkler.WOOD), 1));
 
         BLACKSMITH.addOpening(SUNDAY, 10000, 16000).addOpening(MONDAY, 10000, 16000).addOpening(TUESDAY, 10000, 16000);
         BLACKSMITH.addOpening(WEDNESDAY, 10000, 16000).addOpening(FRIDAY, 10000, 16000).addOpening(SATURDAY, 10000, 16000);
@@ -229,9 +230,11 @@ public class HFShops {
         addCustomItemToStore(MINER, "MINER");
     }
 
+    public static boolean TWENTY_FOUR_HOUR_SHOPPING;
     private static HashMap<String, String> customShoppingList = new HashMap<>();
     public static void configure() {
-        String[] shopCategories = new String[] { "BARN", "BLACKSMITH", "BLOODMAGE", "CAFE", "CARPENTER", "POULTRY", "SUPERMARKET", "MINER" };
+        TWENTY_FOUR_HOUR_SHOPPING = getBoolean("Shops are open all the time", false);
+        String[] shopCategories = new String[] { "BAITSHOP", "BARN", "BLACKSMITH", "BLOODMAGE", "CAFE", "CARPENTER", "POULTRY", "SUPERMARKET", "MINER" };
 
         for(int i = 0; i < shopCategories.length; i++) {
             String shopData = getString(shopCategories[i], "");

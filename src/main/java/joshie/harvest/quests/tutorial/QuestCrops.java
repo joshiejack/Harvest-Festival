@@ -54,7 +54,7 @@ public class QuestCrops extends QuestQuestion {
             return getLocalized("start");
         } else if (quest_stage == TURNIPS) {
             if (attempted) {
-                if (InventoryHelper.getHandItemIsIn(player, SPECIAL, SearchType.FLOWER, 10) != null) {
+                if (InventoryHelper.getHandItemIsIn(player, SPECIAL, SearchType.FLOWER, 5) != null) {
                     /* Jade thanks the player for the flowers, and gives them turnip seeds */
                     return getLocalized("thanks.flowers");
                 } else if (InventoryHelper.getHandItemIsIn(player, SPECIAL, SearchType.HOE) != null) {
@@ -107,7 +107,7 @@ public class QuestCrops extends QuestQuestion {
             }
 
             if (attempted) {
-                if (InventoryHelper.takeItemsIfHeld(player, SPECIAL, SearchType.FLOWER, 10) != null) {
+                if (InventoryHelper.takeItemsIfHeld(player, SPECIAL, SearchType.FLOWER, 5) != null) {
                     rewardItem(player, HFCrops.TURNIP.getSeedStack(1));
                 } else if (InventoryHelper.takeItemsIfHeld(player, SPECIAL, SearchType.HOE) != null) {
                     rewardItem(player, HFTools.HOE.getStack(BASIC));

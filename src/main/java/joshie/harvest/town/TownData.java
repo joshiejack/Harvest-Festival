@@ -104,6 +104,7 @@ public class TownData {
     public void newDay(World world) {}
 
     public BlockPos getCoordinatesFor(BuildingLocation location) {
+        if (buildings == null || location == null) return null;
         TownBuilding building = buildings.get(location.getResource());
         if (building == null) return null;
         return building.getRealCoordinatesFor(location.getLocation());

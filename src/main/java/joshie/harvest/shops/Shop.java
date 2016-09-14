@@ -12,7 +12,6 @@ import joshie.harvest.shops.purchaseable.Purchaseable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IForgeRegistry;
 import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
@@ -23,13 +22,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class Shop implements IShop {
     public static final IForgeRegistry<ShopEntry> REGISTRY = new RegistryBuilder<ShopEntry>().setName(new ResourceLocation("harvestfestival", "shop_items")).setType(ShopEntry.class).setIDRange(0, 100000).create();
     private List<IPurchaseable> contents = new ArrayList<>();
-    private HashMultimap<EnumDifficulty, OpeningSettings> open = HashMultimap.create();
+    private HashMultimap<Weekday, OpeningHours> open = HashMultimap.create();
     public final ResourceLocation resourceLocation;
     public final String unlocalizedName;
     @SideOnly(Side.CLIENT)
@@ -52,28 +50,8 @@ public class Shop implements IShop {
     }
 
     @Override
-    public IShop addOpening(EnumDifficulty difficulty, Weekday day, int opening, int closing) {
-        OpeningHours hours = new OpeningHours(opening, closing);
-        OpeningSettings settings = new OpeningSettings();
-        settings.opening.put(day, hours);
-        open.get(difficulty).add(settings);
-        return this;
-    }
-
-    @Override
     public IShop addOpening(Weekday day, int opening, int closing) {
-        OpeningHours hard = new OpeningHours(opening, closing);
-        OpeningHours normal = new OpeningHours(fix(opening - 3000), fix(closing + 2000));
-        OpeningHours easy = new OpeningHours(fix(opening - 4000), fix(closing + 5000));
-        OpeningSettings hSettings = new OpeningSettings();
-        OpeningSettings nSettings = new OpeningSettings();
-        OpeningSettings eSettings = new OpeningSettings();
-        hSettings.opening.put(day, hard);
-        nSettings.opening.put(day, normal);
-        eSettings.opening.put(day, easy);
-        open.get(EnumDifficulty.HARD).add(hSettings);
-        open.get(EnumDifficulty.NORMAL).add(nSettings);
-        open.get(EnumDifficulty.EASY).add(eSettings);
+        open.get(day).add(new OpeningHours(opening, closing));
         return this;
     }
 
@@ -128,32 +106,26 @@ public class Shop implements IShop {
     }
 
     public boolean isOpen(World world, @Nullable EntityPlayer player) {
-        if (world.getDifficulty() == EnumDifficulty.PEACEFUL) return true;
+        if (HFShops.TWENTY_FOUR_HOUR_SHOPPING) return true;
         Weekday day = HFApi.calendar.getDate(world).getWeekday();
-        for (OpeningSettings settings: open.get(world.getDifficulty())) {
-            OpeningHours hours = settings.opening.get(day);
-            if (hours != null) {
-                long daytime = CalendarHelper.getTime(world); //0-23999 by default
-                int scaledOpening = CalendarHelper.getScaledTime(hours.open);
-                int scaledClosing = CalendarHelper.getScaledTime(hours.close);
-                boolean isOpen = daytime >= scaledOpening && daytime <= scaledClosing;
-                if (isOpen && (player == null || getContents(player).size() > 0)) return true;
-            }
+        for (OpeningHours hours: open.get(day)) {
+            long daytime = CalendarHelper.getTime(world); //0-23999 by default
+            int scaledOpening = CalendarHelper.getScaledTime(hours.open);
+            int scaledClosing = CalendarHelper.getScaledTime(hours.close);
+            boolean isOpen = daytime >= scaledOpening && daytime <= scaledClosing;
+            if (isOpen && (player == null || getContents(player).size() > 0)) return true;
         }
 
         return false;
     }
 
     public boolean isPreparingToOpen(World world) {
-        if (world.getDifficulty() == EnumDifficulty.PEACEFUL) return false;
+        if (HFShops.TWENTY_FOUR_HOUR_SHOPPING) return false;
         Weekday day = HFApi.calendar.getDate(world).getWeekday();
-        for (OpeningSettings settings: open.get(world.getDifficulty())) {
-            OpeningHours hours = settings.opening.get(day);
-            if (hours != null) {
-                long daytime = CalendarHelper.getTime(world); //0-23999 by default
-                int hourHalfBeforeWork = fix(CalendarHelper.getScaledTime(hours.open) - 1500);
-                if(daytime >= hourHalfBeforeWork) return true;
-            }
+        for (OpeningHours hours: open.get(day)) {
+            long daytime = CalendarHelper.getTime(world); //0-23999 by default
+            int hourHalfBeforeWork = fix(CalendarHelper.getScaledTime(hours.open) - 1500);
+            if(daytime >= hourHalfBeforeWork) return true;
         }
 
         return false;
@@ -161,10 +133,6 @@ public class Shop implements IShop {
 
     private int fix(int i) {
         return Math.min(24000, Math.max(0, i));
-    }
-
-    private static class OpeningSettings {
-        private HashMap<Weekday, OpeningHours> opening = new HashMap<>();
     }
 
     /** The integers in here are as follows

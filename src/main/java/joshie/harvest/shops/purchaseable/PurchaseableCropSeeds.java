@@ -6,7 +6,6 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.shops.IPurchaseable;
 import joshie.harvest.calendar.CalendarHelper;
-import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.SpawnItemHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -37,13 +36,10 @@ public class PurchaseableCropSeeds implements IPurchaseable {
 
     @Override
     public boolean canBuy(World world, EntityPlayer player) {
-        CalendarDate playersBirthday = HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getBirthday();
         CalendarDate date = HFApi.calendar.getDate(world);
         if (!isCorrectSeason(date.getSeason())) return false;
         if (!crop.canPurchase()) return false;
-        if (CalendarHelper.getYearsPassed(playersBirthday, date) >= crop.getPurchaseYear()) {
-            return true;
-        } else return false;
+        return CalendarHelper.haveYearsPassed(world, player, crop.getPurchaseYear());
     }
 
     @Override

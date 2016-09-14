@@ -1,9 +1,10 @@
 package joshie.harvest.core.base;
 
-import joshie.harvest.core.base.item.ItemHFFML;
+import joshie.harvest.core.util.IFMLItem;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.IForgeRegistry;
@@ -19,13 +20,13 @@ public class FMLDefinition<E extends Impl<E>> implements ItemMeshDefinition {
     protected IForgeRegistry<E> registry;
     protected HashMap<E, ModelResourceLocation> models = new HashMap<>();
     protected String name;
-    protected ItemHFFML item;
+    protected IFMLItem item;
 
-    public FMLDefinition(ItemHFFML item, String name, IForgeRegistry<E> registry) {
+    public FMLDefinition(IFMLItem item, String name, IForgeRegistry<E> registry) {
         this.registry = registry;
         this.name = name;
         this.item = item;
-        ModelBakery.registerItemVariants(item);
+        ModelBakery.registerItemVariants((Item)item);
         DEFINITIONS.put(name, this);
     }
 
@@ -42,7 +43,7 @@ public class FMLDefinition<E extends Impl<E>> implements ItemMeshDefinition {
         for (E e : registry.getValues()) {
             if (shouldSkip(e)) continue; //Don't register the null
             ModelResourceLocation model = new ModelResourceLocation(new ResourceLocation(e.getRegistryName().getResourceDomain(), name + "/" + e.getRegistryName().getResourcePath()), "inventory");
-            ModelBakery.registerItemVariants(item, model);
+            ModelBakery.registerItemVariants((Item)item, model);
             models.put(e, model);
         }
     }

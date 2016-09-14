@@ -58,20 +58,7 @@ public class HFCore {
         HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 1), 120L);
         HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 2), 200L);
         HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 3), 200L);
-        HFApi.shipping.registerSellable(new ItemStack(Items.APPLE), 100L);
-        HFApi.shipping.registerSellable(new ItemStack(Items.SUGAR), 15L);
         HFApi.shipping.registerSellable(new ItemStack(Items.BREAD), 85L);
-        BlockGoddessWater.VALID_ITEMS.registerItem(new ItemStack(Items.APPLE));
-        BlockGoddessWater.VALID_ITEMS.registerItem(new ItemStack(Items.REEDS));
-        BlockGoddessWater.VALID_ITEMS.registerItem(new ItemStack(Blocks.WATERLILY));
-        BlockGoddessWater.VALID_ITEMS.registerItem(new ItemStack(Blocks.MELON_BLOCK));
-        BlockGoddessWater.VALID_ITEMS.registerItem(new ItemStack(Blocks.TALLGRASS, 1, OreDictionary.WILDCARD_VALUE));
-        BlockGoddessWater.VALID_ITEMS.registerItem(new ItemStack(Blocks.DOUBLE_PLANT, 1, OreDictionary.WILDCARD_VALUE));
-        BlockGoddessWater.VALID_ITEMS.registerItem(new ItemStack(Blocks.RED_FLOWER, 1, OreDictionary.WILDCARD_VALUE));
-        BlockGoddessWater.VALID_ITEMS.registerItem(new ItemStack(Blocks.YELLOW_FLOWER, 1, OreDictionary.WILDCARD_VALUE));
-        BlockGoddessWater.VALID_ITEMS.registerItem(new ItemStack(Blocks.VINE, 1, OreDictionary.WILDCARD_VALUE));
-        BlockGoddessWater.VALID_ITEMS.registerItem(new ItemStack(Blocks.LEAVES, 1, OreDictionary.WILDCARD_VALUE));
-        BlockGoddessWater.VALID_ITEMS.registerItem(new ItemStack(Blocks.LEAVES2, 1, OreDictionary.WILDCARD_VALUE));
     }
 
     @SideOnly(Side.CLIENT)
@@ -99,6 +86,21 @@ public class HFCore {
 
         //Register the models
         SizeableDefinition.INSTANCE.registerEverything();
+    }
+
+    public static void postInit() {
+        BlockGoddessWater.VALID_ITEMS.registerItem(new ItemStack(Items.APPLE));
+        BlockGoddessWater.VALID_ITEMS.registerItem(new ItemStack(Blocks.WATERLILY));
+        BlockGoddessWater.VALID_ITEMS.registerItem(new ItemStack(Blocks.MELON_BLOCK));
+        BlockGoddessWater.VALID_ITEMS.registerItem(new ItemStack(Blocks.TALLGRASS, 1, OreDictionary.WILDCARD_VALUE));
+        BlockGoddessWater.VALID_ITEMS.registerItem(new ItemStack(Blocks.DOUBLE_PLANT, 1, OreDictionary.WILDCARD_VALUE));
+        BlockGoddessWater.VALID_ITEMS.registerItem(new ItemStack(Blocks.RED_FLOWER, 1, OreDictionary.WILDCARD_VALUE));
+        BlockGoddessWater.VALID_ITEMS.registerItem(new ItemStack(Blocks.YELLOW_FLOWER, 1, OreDictionary.WILDCARD_VALUE));
+        BlockGoddessWater.VALID_ITEMS.registerName("treeLeaves");
+        BlockGoddessWater.VALID_ITEMS.registerName("treeSapling");
+        BlockGoddessWater.VALID_ITEMS.registerName("vine");
+        BlockGoddessWater.VALID_ITEMS.registerName("sugarcane");
+        BlockGoddessWater.VALID_ITEMS.registerName("blockCactus");
     }
 
     private static Fluid registerFluid(Fluid fluid) {

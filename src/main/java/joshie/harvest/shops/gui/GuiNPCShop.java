@@ -74,6 +74,14 @@ public class GuiNPCShop extends GuiNPCBase {
         GlStateManager.popMatrix();
     }
 
+    protected String getCostAsString(long cost) {
+        if (cost < 1000) return "" + cost;
+        long remainder = cost % 1000;
+        int decimal = remainder == 0 ? 0 : remainder % 100 == 0 ? 1: remainder %10 == 0 ? 2: 3;
+        int exp = (int) (Math.log(cost) / Math.log(1000));
+        return String.format("%." + decimal + "f%c", cost / Math.pow(1000, exp), "kMGTPE".charAt(exp-1));
+    }
+
     protected void drawShelves(int x, int y) {
         int index = 0;
         for (int i = start; i < contents.size(); i++) {
@@ -109,7 +117,7 @@ public class GuiNPCShop extends GuiNPCBase {
             mc.renderEngine.bindTexture(HFModInfo.elements);
             drawTexturedModalRect(x99 + 59, y37 + 50, 244, 0, 12, 12);
 
-            mc.fontRendererObj.drawStringWithShadow("" + cost, x99 + 73, y37 + 53, 0xC39753);
+            mc.fontRendererObj.drawStringWithShadow(getCostAsString(cost), x99 + 73, y37 + 53, 0xFFFFFF);
             GlStateManager.color(1.0F, 1.0F, 1.0F);
 
             StackHelper.drawStack(display, x99 + 36, y37 + 46, 1.4F);

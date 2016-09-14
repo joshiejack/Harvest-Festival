@@ -3,7 +3,7 @@ package joshie.harvest.cooking.item;
 import joshie.harvest.api.core.IShippable;
 import joshie.harvest.cooking.item.ItemIngredients.Ingredient;
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.base.item.ItemHFEnum;
+import joshie.harvest.core.base.item.ItemHFFoodEnum;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 
 import java.util.Locale;
 
-public class ItemIngredients extends ItemHFEnum<ItemIngredients, Ingredient> implements IShippable {
+public class ItemIngredients extends ItemHFFoodEnum<ItemIngredients, Ingredient> implements IShippable {
     public enum Ingredient implements IStringSerializable {
         BUTTER(false), KETCHUP(false), COOKIES(false), EGG_SCRAMBLED(false), SASHIMI(false),
         FLOUR, OIL, RICEBALL, SALT, CHOCOLATE;
@@ -71,16 +71,18 @@ public class ItemIngredients extends ItemHFEnum<ItemIngredients, Ingredient> imp
         return EnumAction.EAT;
     }
 
-    private int getHunger(Ingredient ingredient) {
-        switch (ingredient) {
+    @Override
+    public int getHealAmount(ItemStack stack) {
+        switch (getEnumFromStack(stack)) {
             case RICEBALL: return 1;
             case CHOCOLATE: return 3;
             default: return 0;
         }
     }
 
-    private float getSaturation(Ingredient ingredient) {
-        switch (ingredient) {
+    @Override
+    public float getSaturationModifier(ItemStack stack) {
+        switch (getEnumFromStack(stack)) {
             case RICEBALL: return 0.25F;
             case CHOCOLATE: return 0.5F;
             default: return 0F;
@@ -92,8 +94,7 @@ public class ItemIngredients extends ItemHFEnum<ItemIngredients, Ingredient> imp
         if (entityLiving instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) entityLiving;
             if (!player.capabilities.isCreativeMode) --stack.stackSize;
-            Ingredient ingredient = getEnumFromStack(stack);
-            player.getFoodStats().addStats(getHunger(ingredient), getSaturation(ingredient));
+            player.getFoodStats().addStats(getHealAmount(stack), getSaturationModifier(stack));
             world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
 
             return stack;
@@ -104,7 +105,7 @@ public class ItemIngredients extends ItemHFEnum<ItemIngredients, Ingredient> imp
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
-        if (player.canEat(false) && getHunger(getEnumFromStack(stack)) > 0) {
+        if (player.canEat(false) && getHealAmount(stack) > 0) {
             player.setActiveHand(hand);
             return new ActionResult<>(EnumActionResult.SUCCESS, stack);
         } else {

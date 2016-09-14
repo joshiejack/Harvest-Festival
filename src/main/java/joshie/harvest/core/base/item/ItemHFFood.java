@@ -6,6 +6,7 @@ import joshie.harvest.core.util.Text;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
@@ -19,12 +20,13 @@ import java.util.List;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
-public abstract class ItemHFBase<I extends ItemHFBase> extends Item {
-    public ItemHFBase() {
+public class ItemHFFood<I extends ItemHFFood> extends ItemFood {
+    public ItemHFFood() {
         this(HFTab.FARMING);
     }
 
-    public ItemHFBase(CreativeTabs tab) {
+    public ItemHFFood(CreativeTabs tab) {
+        super(0, 0F, false);
         setCreativeTab(tab);
     }
 

@@ -49,6 +49,7 @@ public abstract class GuiNPCBase extends GuiBaseContainer {
         GlStateManager.disableBlend();
         GlStateManager.popMatrix();
         ChatFontRenderer.render(this, x, y, npc.getName(), inside, outside);
+        GlStateManager.color(1F, 1F, 1F, 1F);
     }
 
     private void drawHeart(int value) {

@@ -90,7 +90,7 @@ public class GuiNPCChat extends GuiNPCBase {
         for (int i = 0; i < line; i++) {
             String text = script[page][i];
             if (text != null) {
-                fontRendererObj.drawString(TextFormatting.BOLD + text, 22, 157 + (i * 10), 0x452904);
+                fontRendererObj.drawString(TextFormatting.BOLD + text, 22, 157 + (i * 10), 0xFFFFFF);
             }
         }
 
@@ -118,7 +118,7 @@ public class GuiNPCChat extends GuiNPCBase {
                 }
 
                 //Draw the characters as we go.
-                fontRendererObj.drawString(TextFormatting.BOLD + new String(fordisplay), 22, 157 + (line * 10), 0x452904);
+                fontRendererObj.drawString(TextFormatting.BOLD + new String(fordisplay), 22, 157 + (line * 10), 0xFFFFFF);
 
                 //Now if we have completed the entire array, let's reset the position and increase the line
                 if (fordisplay.length >= todisplay.length) {

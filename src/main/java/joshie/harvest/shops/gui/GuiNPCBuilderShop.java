@@ -69,15 +69,16 @@ public class GuiNPCBuilderShop extends GuiNPCShop {
             StackHelper.drawStack(display, x + 34, y + 46 + (index * 34), 1.4F);
             mc.renderEngine.bindTexture(HFModInfo.elements);
             drawTexturedModalRect(x + 34 + 100, y + 54 + (index * 34), 244, 0, 12, 12);
-            mc.fontRendererObj.drawStringWithShadow("" + cost, x + 148, y + 57 + (index * 34), 0xC39753);
+            cost = 100000;
+            mc.fontRendererObj.drawStringWithShadow(getCostAsString(cost), x + 148, y + 57 + (index * 34), 0xC39753);
 
             //Wood
             StackHelper.drawStack(log, x + 56, y + 55 + (index * 34), 0.75F);
-            mc.fontRendererObj.drawStringWithShadow("" + purchaseable.getLogCost(), x + 69, y + 57 + (index * 34), 0xC39753);
+            mc.fontRendererObj.drawStringWithShadow(getCostAsString(purchaseable.getLogCost()), x + 69, y + 57 + (index * 34), 0xC39753);
 
             //Stone
-            StackHelper.drawStack(stone, x + 95, y + 55 + (index * 34), 0.75F);
-            mc.fontRendererObj.drawStringWithShadow("" + purchaseable.getStoneCost(), x + 108, y + 57 + (index * 34), 0xC39753);
+            StackHelper.drawStack(stone, x + 100, y + 55 + (index * 34), 0.75F);
+            mc.fontRendererObj.drawStringWithShadow(getCostAsString(purchaseable.getStoneCost()), x + 113, y + 57 + (index * 34), 0xC39753);
 
             mc.fontRendererObj.drawStringWithShadow(TextFormatting.BOLD + purchaseable.getName(), x + 60, y + 46 + (index * 34), 0xC39753);
 

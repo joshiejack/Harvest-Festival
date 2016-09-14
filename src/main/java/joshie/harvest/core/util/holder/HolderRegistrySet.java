@@ -24,6 +24,13 @@ public class HolderRegistrySet {
         setMap.get(stack.getItem()).add(holder); //Link the item to various holders
     }
 
+    public void registerName(String name) {
+        OreHolder holder = OreHolder.of(name);
+        for (ItemStack stack: holder.getMatchingStacks()) {
+            setMap.get(stack.getItem()).add(holder);
+        }
+    }
+
     public void registerMod(String mod) {
         ModHolder holder = ModHolder.of(mod);
         //Loop through every item in the registry, and associate it with this map

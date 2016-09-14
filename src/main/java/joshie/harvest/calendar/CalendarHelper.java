@@ -1,9 +1,11 @@
 package joshie.harvest.calendar;
 
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weekday;
 import joshie.harvest.core.handlers.HFTrackers;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
 import static joshie.harvest.calendar.HFCalendar.DAYS_PER_SEASON;
@@ -86,5 +88,11 @@ public class CalendarHelper {
     
     public static int getScaledTime(int time) {
         return (int) ((time / 24000D) * TICKS_PER_DAY);
+    }
+
+    public static boolean haveYearsPassed(World world, EntityPlayer player, int year) {
+        CalendarDate playersBirthday = HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getBirthday();
+        CalendarDate date = HFApi.calendar.getDate(world);
+        return getYearsPassed(playersBirthday, date) >= year;
     }
 }

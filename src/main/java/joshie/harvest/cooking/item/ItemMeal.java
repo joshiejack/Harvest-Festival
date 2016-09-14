@@ -8,7 +8,7 @@ import joshie.harvest.cooking.recipe.HFRecipes;
 import joshie.harvest.cooking.recipe.MealImpl;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.HFTab;
-import joshie.harvest.core.base.item.ItemHFFML;
+import joshie.harvest.core.base.item.ItemHFFoodFML;
 import joshie.harvest.core.util.Text;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,7 +25,7 @@ import java.util.List;
 
 import static net.minecraft.util.text.TextFormatting.DARK_GRAY;
 
-public class ItemMeal extends ItemHFFML<ItemMeal, MealImpl> implements IAltItem, IShippable {
+public class ItemMeal extends ItemHFFoodFML<ItemMeal, MealImpl> implements IAltItem, IShippable {
     public ItemMeal() {
         super(CookingAPI.REGISTRY, HFTab.COOKING);
     }
@@ -34,6 +34,16 @@ public class ItemMeal extends ItemHFFML<ItemMeal, MealImpl> implements IAltItem,
     public String getItemStackDisplayName(ItemStack stack) {
         MealImpl impl = stack.hasTagCompound() ? CookingAPI.REGISTRY.getValues().get(stack.getItemDamage()): null;
         return impl != null ? impl.getDisplayName(): DARK_GRAY + Text.localize(Utensil.getUtensilFromIndex(stack.getItemDamage()).getUnlocalizedName());
+    }
+
+    @Override
+    public int getHealAmount(ItemStack stack) {
+        return stack.hasTagCompound() ? stack.getTagCompound().getInteger("FoodLevel") : 0;
+    }
+
+    @Override
+    public float getSaturationModifier(ItemStack stack) {
+        return stack.hasTagCompound() ? stack.getTagCompound().getFloat("FoodSaturation") : 0;
     }
 
     @Override

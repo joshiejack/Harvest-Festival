@@ -3,7 +3,7 @@ package joshie.harvest.crops.item;
 import joshie.harvest.api.core.IShippable;
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.crops.ICropProvider;
-import joshie.harvest.core.base.item.ItemHFFML;
+import joshie.harvest.core.base.item.ItemHFFoodFML;
 import joshie.harvest.core.lib.CreativeSort;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,7 +16,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 
-public class ItemCrop extends ItemHFFML<ItemCrop, Crop> implements IShippable, ICropProvider {
+public class ItemCrop extends ItemHFFoodFML<ItemCrop, Crop> implements IShippable, ICropProvider {
     public ItemCrop() {
         super(Crop.REGISTRY);
     }
@@ -47,12 +47,21 @@ public class ItemCrop extends ItemHFFML<ItemCrop, Crop> implements IShippable, I
     }
 
     @Override
+    public int getHealAmount(ItemStack stack) {
+        return getCrop(stack).getHunger();
+    }
+
+    @Override
+    public float getSaturationModifier(ItemStack stack) {
+        return getCrop(stack).getSaturation();
+    }
+
+    @Override
     public ItemStack onItemUseFinish(ItemStack stack, World world, EntityLivingBase entityLiving) {
         if (entityLiving instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) entityLiving;
             if (!player.capabilities.isCreativeMode) --stack.stackSize;
-            Crop crop = getCrop(stack);
-            player.getFoodStats().addStats(crop.getHunger(), crop.getSaturation());
+            player.getFoodStats().addStats(getHealAmount(stack), getSaturationModifier(stack));
             world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
 
             return stack;

@@ -13,15 +13,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public abstract class ItemHFFML<I extends ItemHFFML, E extends Impl<E>> extends ItemHFBase<I> implements ICreativeSorted, IFMLItem {
+public abstract class ItemHFFoodFML<I extends ItemHFFoodFML, E extends Impl<E>> extends ItemHFFood<I> implements ICreativeSorted, IFMLItem {
     protected IForgeRegistry<E> registry;
-    public ItemHFFML(IForgeRegistry<E> registry) {
+    public ItemHFFoodFML(IForgeRegistry<E> registry) {
         super();
         this.registry = registry;
         setHasSubtypes(true);
     }
 
-    public ItemHFFML(IForgeRegistry<E> registry, CreativeTabs tab) {
+    public ItemHFFoodFML(IForgeRegistry<E> registry, CreativeTabs tab) {
         super(tab);
         this.registry = registry;
         setHasSubtypes(true);

@@ -31,12 +31,12 @@ public class QuestGoddessCarpenter extends QuestTrade {
     @SideOnly(Side.CLIENT)
     @Override
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
-        return InventoryHelper.hasInInventory(player, ORE_DICTIONARY, "logWood", HFQuests.LOGS_CARPENTER) ? getLocalized("thanks") : null;
+        return InventoryHelper.getHandItemIsIn(player, ORE_DICTIONARY, "logWood", HFQuests.LOGS_CARPENTER) != null ? getLocalized("thanks") : null;
     }
 
     @Override
     public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc) {
-        if (InventoryHelper.takeItemsInInventory(player, ORE_DICTIONARY, "logWood", HFQuests.LOGS_CARPENTER)) {
+        if (InventoryHelper.takeItemsIfHeld(player, ORE_DICTIONARY, "logWood", HFQuests.LOGS_CARPENTER) != null) {
             rewardItem(player, HFBuildings.CARPENTER.getBlueprint());
         }
     }

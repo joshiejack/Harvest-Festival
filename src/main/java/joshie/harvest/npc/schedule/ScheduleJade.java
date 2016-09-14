@@ -14,7 +14,7 @@ import static joshie.harvest.npc.schedule.ScheduleLocations.*;
 public class ScheduleJade implements ISchedule {
     @Override
     public BuildingLocation getTarget(World world, EntityLiving entity, INPC npc, Season season, Weekday day, long time) {
-        if (time >= 5000L && time <= 9000L) return CARPENTERDOWN;
+        if (time >= 5000L && time <= 9000L) return TOWNHALLENTRANCE;
         else if (time >= 9000L && time <= 17000L) return CARPENTERFRONT;
         else {
             return npc.getLocation(HOME);

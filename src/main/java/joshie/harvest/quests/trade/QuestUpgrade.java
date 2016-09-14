@@ -265,6 +265,7 @@ public class QuestUpgrade extends QuestTrade {
             if (held.getItem() instanceof ItemTool) {
                 ItemTool tool = ((ItemTool)held.getItem());
                 ToolTier tier = tool.getTier(held);
+                if (tool == HFTools.WATERING_CAN) return tier;
                 return isRepairable(held, tier) ? tier : null;
             }
         }

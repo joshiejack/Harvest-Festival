@@ -62,7 +62,7 @@ public abstract class GuiNPCBase extends GuiBaseContainer {
     public void drawForeground(int x, int y) {
         boolean originalFlag = fontRendererObj.getUnicodeFlag();
         fontRendererObj.setUnicodeFlag(true);
-        mc.renderEngine.bindTexture(HFModInfo.elements);
+        mc.renderEngine.bindTexture(HFModInfo.ELEMENTS);
         if (npc.getNPC().isMarriageCandidate()) {
             drawHeart(HFApi.relationships.getRelationship(player, npc.getNPC().getUUID()));
         }

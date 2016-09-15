@@ -69,7 +69,7 @@ public class GuiNPCSelect extends GuiNPCBase {
             }
 
             GlStateManager.color(1F, 1F, 1F);
-            mc.renderEngine.bindTexture(HFModInfo.elements);
+            mc.renderEngine.bindTexture(HFModInfo.ELEMENTS);
 
             int position = selected + optionsStart;
             if (position == 1) {

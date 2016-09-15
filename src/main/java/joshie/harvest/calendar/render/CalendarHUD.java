@@ -117,7 +117,7 @@ public class CalendarHUD {
                 float adjustedX = ((HFCalendar.X_GOLD / 100F) * maxWidth);
                 float adjustedY = ((HFCalendar.Y_GOLD / 100F) * maxHeight);
                 if (!HIDE_GOLD_TEXTURE) {
-                    mc.getTextureManager().bindTexture(HFModInfo.elements);
+                    mc.getTextureManager().bindTexture(HFModInfo.ELEMENTS);
                     mc.ingameGUI.drawTexturedModalRect(maxWidth - mc.fontRendererObj.getStringWidth(text) - 20 + adjustedX, 2 + adjustedY, 244, 0, 12, 12);
                 }
 

@@ -67,7 +67,7 @@ public class GuiNPCBuilderShop extends GuiNPCShop {
 
             drawTexturedModalRect(x + posX, y + posY + (index * 34), xOffset, 32, 32, 32);
             StackHelper.drawStack(display, x + 34, y + 46 + (index * 34), 1.4F);
-            mc.renderEngine.bindTexture(HFModInfo.elements);
+            mc.renderEngine.bindTexture(HFModInfo.ELEMENTS);
             drawTexturedModalRect(x + 34 + 100, y + 54 + (index * 34), 244, 0, 12, 12);
             mc.fontRendererObj.drawStringWithShadow(getCostAsString(cost), x + 148, y + 57 + (index * 34), 0xC39753);
 

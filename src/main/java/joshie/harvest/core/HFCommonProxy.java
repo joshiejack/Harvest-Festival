@@ -22,6 +22,10 @@ public class HFCommonProxy {
     private static final List<Class> LIST = new ArrayList<>();
     private static final boolean ENABLE_LOGGING = true;
 
+    public List<Class> getList() {
+        return LIST;
+    }
+
     public void setup(@Nonnull ASMDataTable table) {
         List<Triple<Integer, String, String>> unsorted = new ArrayList<>();
         Set<ASMData> datas = new HashSet<>(table.getAll(HFLoader.class.getCanonicalName()));

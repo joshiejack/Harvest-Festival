@@ -114,7 +114,7 @@ public class GuiNPCShop extends GuiNPCBase {
 
             drawTexturedModalRect(x + posX, y + posY, xOffset, 32, 32, 32);
             GlStateManager.enableBlend();
-            mc.renderEngine.bindTexture(HFModInfo.elements);
+            mc.renderEngine.bindTexture(HFModInfo.ELEMENTS);
             drawTexturedModalRect(x99 + 59, y37 + 50, 244, 0, 12, 12);
 
             mc.fontRendererObj.drawStringWithShadow(getCostAsString(cost), x99 + 73, y37 + 53, 0xFFFFFF);
@@ -132,7 +132,7 @@ public class GuiNPCShop extends GuiNPCBase {
         String formatted = String.valueOf(formatter.format(gold));
         ShopFontRenderer.render(this, x + 210, y + 16, formatted, true);
         GlStateManager.disableDepth();
-        mc.renderEngine.bindTexture(HFModInfo.elements);
+        mc.renderEngine.bindTexture(HFModInfo.ELEMENTS);
         mc.ingameGUI.drawTexturedModalRect((x + 230) - 15, y + 15, 244, 0, 12, 12);
         GlStateManager.enableDepth();
     }

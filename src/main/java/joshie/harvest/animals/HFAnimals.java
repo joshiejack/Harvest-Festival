@@ -18,13 +18,17 @@ import joshie.harvest.animals.tile.TileTrough;
 import joshie.harvest.animals.type.AnimalChicken;
 import joshie.harvest.animals.type.AnimalCow;
 import joshie.harvest.animals.type.AnimalSheep;
+import joshie.harvest.api.crops.Crop;
 import joshie.harvest.core.handlers.SizeableRegistry;
 import joshie.harvest.core.helpers.RegistryHelper;
 import joshie.harvest.core.lib.EntityIDs;
 import joshie.harvest.core.lib.Sizeable;
 import joshie.harvest.core.util.HFLoader;
-import joshie.harvest.api.crops.Crop;
+import net.minecraft.client.model.ModelChicken;
+import net.minecraft.client.model.ModelCow;
+import net.minecraft.client.model.ModelSheep2;
 import net.minecraft.init.Items;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -77,13 +81,22 @@ public class HFAnimals {
 
     @SideOnly(Side.CLIENT)
     public static void preInitClient() {
-        RenderingRegistry.registerEntityRenderingHandler(EntityHarvestCow.class, RenderHarvestCow:: new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityHarvestSheep.class, RenderHarvestSheep:: new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityHarvestChicken.class, RenderHarvestChicken:: new);
         RegistryHelper.registerEntityRenderer(ANIMAL, AnimalItemRenderer.INSTANCE);
-        AnimalItemRenderer.INSTANCE.register(Spawner.COW, "cow_adult", new ModelHarvestCow.Adult());
-        AnimalItemRenderer.INSTANCE.register(Spawner.SHEEP, "sheep_adult", new ModelHarvestSheep.Wooly());
-        AnimalItemRenderer.INSTANCE.register(Spawner.CHICKEN, "chicken_adult", new ModelHarvestChicken.Adult());
+        if (!VANILLA_MODELS) {
+            AnimalItemRenderer.INSTANCE.register(Spawner.COW, "cow_adult", new ModelHarvestCow.Adult());
+            AnimalItemRenderer.INSTANCE.register(Spawner.SHEEP, "sheep_adult", new ModelHarvestSheep.Wooly());
+            AnimalItemRenderer.INSTANCE.register(Spawner.CHICKEN, "chicken_adult", new ModelHarvestChicken.Adult());
+            RenderingRegistry.registerEntityRenderingHandler(EntityHarvestCow.class, RenderHarvestCow::new);
+            RenderingRegistry.registerEntityRenderingHandler(EntityHarvestSheep.class, RenderHarvestSheep::new);
+            RenderingRegistry.registerEntityRenderingHandler(EntityHarvestChicken.class, RenderHarvestChicken::new);
+        } else {
+            AnimalItemRenderer.INSTANCE.register(Spawner.COW, new ResourceLocation("textures/entity/cow/cow.png"), new ModelCow());
+            AnimalItemRenderer.INSTANCE.register(Spawner.SHEEP, new ResourceLocation("textures/entity/sheep/sheep.png"), new ModelSheep2());
+            AnimalItemRenderer.INSTANCE.register(Spawner.CHICKEN, new ResourceLocation("textures/entity/chicken.png"), new ModelChicken());
+            RenderingRegistry.registerEntityRenderingHandler(EntityHarvestCow.class, RenderVanillaCow::new);
+            RenderingRegistry.registerEntityRenderingHandler(EntityHarvestSheep.class, RenderVanillaSheep::new);
+            RenderingRegistry.registerEntityRenderingHandler(EntityHarvestChicken.class, RenderVanillaChicken::new);
+        }
     }
 
     public static void init() {
@@ -103,6 +116,7 @@ public class HFAnimals {
     public static int PREGNANCY_TIMER;
     public static int CHICKEN_TIMER;
     public static boolean OP_ANIMALS;
+    public static boolean VANILLA_MODELS;
 
     public static void configure() {
         CAN_SPAWN = getBoolean("Enable animal natural spawning", true);
@@ -114,5 +128,6 @@ public class HFAnimals {
         LITTER_EXTRA_CHANCE = getInteger("Pregnancy > Chance of extra birth", 4);
         AGING_TIMER = getInteger("Number of days animals take to mature", 14);
         OP_ANIMALS = getBoolean("Old Mcdonald had a farm", false);
+        VANILLA_MODELS = getBoolean("Use vanilla models for animals", false);
     }
 }

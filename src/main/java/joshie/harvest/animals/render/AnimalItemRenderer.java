@@ -5,6 +5,7 @@ import joshie.harvest.animals.item.ItemAnimalSpawner.Spawner;
 import joshie.harvest.core.render.FakeEntityRenderer.EntityItemRenderer;
 import joshie.harvest.core.render.FakeEntityRenderer.RenderPair;
 import net.minecraft.client.model.ModelBase;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -16,6 +17,12 @@ public class AnimalItemRenderer extends EntityItemRenderer {
     @SuppressWarnings("deprecation")
     public void register(Spawner spawner, String name, ModelBase model) {
         map.put(spawner.ordinal(), new RenderPair(name, model));
+        ForgeHooksClient.registerTESRItemStack(HFAnimals.ANIMAL, spawner.ordinal(), this.getClass());
+    }
+
+    @SuppressWarnings("deprecation")
+    public void register(Spawner spawner, ResourceLocation texture, ModelBase model) {
+        map.put(spawner.ordinal(), new RenderPair(texture, model));
         ForgeHooksClient.registerTESRItemStack(HFAnimals.ANIMAL, spawner.ordinal(), this.getClass());
     }
 }

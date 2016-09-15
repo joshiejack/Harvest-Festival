@@ -1,7 +1,6 @@
 ## Todo
 - Add lang for extra chatting
 - Add lang for all the recipes
-- Hovering over array of ingredients shows all of them in bar
 
 ### Textures
 - New Textures for the following NPCS

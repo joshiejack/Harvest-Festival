@@ -46,7 +46,7 @@ public final class Ingredient {
      *  You pretty much use this only on categories ingredients
      * @param ingredients    the ingredients to add*/
     public Ingredient add(Ingredient... ingredients) {
-        Collections.addAll(Arrays.asList(ingredients));
+        equivalents.addAll(Arrays.asList(ingredients));
         return this;
     }
 

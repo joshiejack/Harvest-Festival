@@ -53,6 +53,12 @@ public class FakeEntityRenderer extends TileEntitySpecialRenderer<EntityItemRend
         public ModelBase model;
         public ResourceLocation texture;
 
+        public RenderPair(ResourceLocation name, ModelBase model) {
+            this.model = model;
+            this.model.isChild = false;
+            this.texture = name;
+        }
+
         public RenderPair(String name, ModelBase model) {
             this.model = model;
             this.model.isChild = false;

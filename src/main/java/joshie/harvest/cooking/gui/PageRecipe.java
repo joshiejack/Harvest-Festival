@@ -112,8 +112,9 @@ public class PageRecipe extends Page {
         gui.drawString(190, 20, TextFormatting.BOLD + "" + TextFormatting.UNDERLINE + Text.translate("meal.recipe"));
         gui.drawBox(170, 30, 110, 1, 0xFFB0A483);
         gui.drawBox(171, 31, 110, 1, 0xFF9C8C63);
+        GlStateManager.disableDepth();
         for (CyclingStack cycling: list) {
-            cycling.render(gui);
+            cycling.render(gui, mouseX, mouseY);
         }
 
         //Cook Button
@@ -157,8 +158,8 @@ public class PageRecipe extends Page {
     public static class CyclingStack {
         private final int x;
         private final int y;
-        private final List<ItemStack> stacks;
         private final Ingredient ingredient;
+        private List<ItemStack> stacks;
         private ItemStack stack;
         private int ticker;
         private int index;
@@ -171,10 +172,8 @@ public class PageRecipe extends Page {
             this.ingredient = ingredient;
         }
 
-        public void render(GuiCookbook gui) {
+        public void render(GuiCookbook gui, int mouseX, int mouseY) {
             if (stacks.size() > 0) {
-                ticker++;
-
                 if (ticker % 128 == 0 || stack == null) {
                     stack = stacks.get(index); //Pick out the stack
                     index++;
@@ -193,8 +192,12 @@ public class PageRecipe extends Page {
                     gui.drawTexture(x + 8, y + 10, 31, 248, 10, 8);
                 } else gui.drawTexture(x + 9, y + 10, 41, 248, 7, 8);
 
+                if (mouseX >= x && mouseX <= x + 16 && mouseY >= y && mouseY < y + 16) {
+                    gui.addRunnable(() -> gui.drawIngredientTooltip(stacks, mouseX, mouseY));
+                } else ticker++;
+
                 GlStateManager.enableDepth();
-            }
+            } else stacks = CookingAPI.INSTANCE.getStacksForIngredient(ingredient);
         }
     }
 }

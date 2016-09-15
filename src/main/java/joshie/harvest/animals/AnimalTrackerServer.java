@@ -26,8 +26,8 @@ public class AnimalTrackerServer extends AnimalTracker {
     public void newDay() {
         Iterator<AnimalData> iterator = animals.iterator();
         while (iterator.hasNext()) {
-            AnimalData data = iterator.next();
-            if (!data.newDay()) { //If the new day wasn't successful, remove the animal from your memory
+            AnimalData data = iterator.next(); //Only tick animals when owner in online
+            if (data.getOwner() != null && !data.newDay()) { //If the new day wasn't successful, remove the animal from your memory
                 EntityAnimal animal = data.getAnimal();
                 iterator.remove();
                 if (animal != null) {

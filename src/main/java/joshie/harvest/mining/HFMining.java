@@ -1,7 +1,6 @@
 package joshie.harvest.mining;
 
 import joshie.harvest.HarvestFestival;
-import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.animals.render.ModelHarvestChicken;
 import joshie.harvest.animals.render.ModelHarvestCow;
 import joshie.harvest.animals.render.ModelHarvestSheep;
@@ -63,7 +62,7 @@ public class HFMining {
     public static void preInitClient() {
         ModelLoader.setCustomStateMapper(DIRT, new BakedDirt.StateMapper());
         ModelLoader.setCustomStateMapper(DIRT_DECORATIVE, new BakedDirt.StateMapper());
-        RenderingRegistry.registerEntityRenderingHandler(EntityHarvestCow.class, RenderDarkCow:: new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityDarkCow.class, RenderDarkCow:: new);
         RenderingRegistry.registerEntityRenderingHandler(EntityDarkSheep.class, RenderDarkSheep:: new);
         RenderingRegistry.registerEntityRenderingHandler(EntityDarkChicken.class, RenderDarkChicken:: new);
         RenderingRegistry.registerEntityRenderingHandler(EntityDarkChick.class, RenderDarkChick:: new);

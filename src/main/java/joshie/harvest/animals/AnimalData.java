@@ -254,7 +254,7 @@ public class AnimalData implements IAnimalData {
         EntityPlayer owner = getAndCreateOwner();
         if (owner != null) {
             if (animal.worldObj.provider.getDimension() == owner.worldObj.provider.getDimension()) {
-                if (animal.getDistanceToEntity(owner) <= 128) {
+                if (animal.getDistanceToEntity(owner) <= 178D) {
                     return owner;
                 }
             }

@@ -60,7 +60,7 @@ public class HFGuiFactory implements IModGuiFactory {
                         String categoryName = c.getSimpleName().replace("HF", "");
                         List<IConfigElement> configElements = new ConfigElement(ConfigHelper.getConfig().getCategory(categoryName)).getChildElements();
 
-                        list.add(new DummyConfigElement.DummyCategoryElement(categoryName, MODID + ".config.category." + categoryName, configElements));
+                        list.add(new DummyConfigElement.DummyCategoryElement(categoryName, MODID + ".config", configElements));
                     }
 
                 } catch (Exception ignored) {

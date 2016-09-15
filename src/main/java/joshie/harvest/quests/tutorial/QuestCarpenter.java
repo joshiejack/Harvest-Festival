@@ -4,6 +4,7 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.HFQuest;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.buildings.HFBuildings;
+import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.quests.HFQuests;
@@ -109,6 +110,7 @@ public class QuestCarpenter extends Quest {
                 increaseStage(player);
             }
         } else if (quest_stage == SEED_CHAT) {
+            player.addStat(HFAchievements.visitor);
             if (npc == HFNPCs.GODDESS) {
                 if (attempted && InventoryHelper.takeItemsIfHeld(player, ORE_DICTIONARY, "logWood", HFQuests.LOGS_CARPENTER) != null) {
                     rewardItem(player, HFBuildings.CARPENTER.getBlueprint());

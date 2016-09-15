@@ -5,6 +5,7 @@ import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.animals.IMilkable;
 import joshie.harvest.api.core.IShippable;
+import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.base.item.ItemHFEnum;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.tools.ToolHelper;
@@ -80,6 +81,7 @@ public class ItemAnimalTool extends ItemHFEnum<ItemAnimalTool, Tool> implements 
                 milkable.milk(player);
             }
 
+            player.addStat(HFAchievements.milker);
             int damage = getDamageForDisplay(held) + 1;
             if (damage >= MAX_DAMAGE) {
                 held.splitStack(1);

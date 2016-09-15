@@ -1,5 +1,10 @@
 package joshie.harvest.player;
 
+import joshie.harvest.api.HFApi;
+import joshie.harvest.api.calendar.CalendarDate;
+import joshie.harvest.api.calendar.Season;
+import joshie.harvest.calendar.CalendarHelper;
+import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.player.quests.QuestDataServer;
 import joshie.harvest.player.relationships.RelationshipDataServer;
@@ -69,8 +74,15 @@ public class PlayerTrackerServer extends PlayerTracker {
         EntityPlayerMP player = getAndCreatePlayer();
         if (player != null) {
             long gold = tracking.newDay();
+            if (gold > 0) player.addStat(HFAchievements.firstShipping);
             stats.addGold(null, gold);
+            if (stats.getGold() >= 1000000) player.addStat(HFAchievements.millionaire);
             syncPlayerStats(player); //Resync everything
+            CalendarDate today = HFApi.calendar.getDate(player.worldObj);
+            if (today.getSeason() == Season.WINTER && today.getDay() == 25) player.addStat(HFAchievements.firstChristmas);
+            if (CalendarHelper.getYearsPassed(stats.getBirthday(), today) >= 1) {
+                player.addStat(HFAchievements.birthday);
+            }
         }
     }
 

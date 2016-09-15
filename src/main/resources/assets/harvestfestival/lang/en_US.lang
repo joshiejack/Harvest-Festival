@@ -678,6 +678,7 @@ harvestfestival.npc.thomas.greeting3=Only he can save you now.
 harvestfestival.npc.thomas.greeting4=The lord's grace, is shining down upon you.
 harvestfestival.npc.thomas.greeting5=If you ever come across a cursed tool, bring it to me and I can bless it for 10000 Gold.
 harvestfestival.npc.thomas.greeting6=I can repair blessed tools for 1000 gold.
+harvestfestival.npc.thomas.greeting7=May god have mercy on you.
 
 #Candice
 harvestfestival.npc.candice.greeting1=Do you know what I love about milking the most? Sharing it with friends! Sometimes we just get it all over us. So it's nice to have a helping hand to clean up the mess.
@@ -686,6 +687,7 @@ harvestfestival.npc.candice.greeting3=Where the heck am I? What is this world?
 harvestfestival.npc.candice.greeting4=Come over here, I have something in my eye.
 harvestfestival.npc.candice.greeting5=Hello %p! I hope you're feeling well! You're so beautiful to do?
 harvestfestival.npc.candice.greeting6=Hey pretty, I've got a tip for you today. You don't need to water grass, it will grow anyway!
+harvestfestival.npc.candice.greeting7=Did you know that I normally work with Jim as a milkmaid?
 
 #Yulife
 harvestfestival.npc.yulif.greeting1=Building stuff is so time consuming, when will I get a break?
@@ -713,6 +715,7 @@ harvestfestival.npc.girafi.greeting3=It's most wonderful to see you again!
 harvestfestival.npc.girafi.greeting4=I could talk all day about my adventures out in the world, did I tell you about this one time that I strangled a squid and...
 harvestfestival.npc.girafi.greeting5=Hallo, hoe goes it?
 harvestfestival.npc.girafi.greeting6=Oh my, it's such a pleasure to see you once more.
+harvestfestival.npc.girafi.greeting7=Everyone has good days and bad days, you've just made my day great.
 
 ###Shop greetings
 #General Store

@@ -34,6 +34,7 @@ public class ItemUtensil extends ItemHFEnum<ItemUtensil, Utensil> {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack stack) {
         if (getEnumFromStack(stack) != KNIFE) {
             return super.getAttributeModifiers(slot, stack);

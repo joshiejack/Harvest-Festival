@@ -236,10 +236,10 @@ public class HFShops {
         TWENTY_FOUR_HOUR_SHOPPING = getBoolean("Shops are open all the time", false);
         String[] shopCategories = new String[] { "BAITSHOP", "BARN", "BLACKSMITH", "BLOODMAGE", "CAFE", "CARPENTER", "POULTRY", "SUPERMARKET", "MINER" };
 
-        for(int i = 0; i < shopCategories.length; i++) {
-            String shopData = getString(shopCategories[i], "");
-            if(shopData != null && shopData != "") {
-                customShoppingList.put(shopCategories[i], shopData);
+        for(String category: shopCategories) {
+            String shopData = getString(category, "");
+            if(shopData != null && !shopData.equals("")) {
+                customShoppingList.put(category, shopData);
             }
         }
     }

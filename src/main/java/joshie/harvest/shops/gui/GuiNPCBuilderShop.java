@@ -56,7 +56,7 @@ public class GuiNPCBuilderShop extends GuiNPCShop {
             int posX = 190;
 
             if (mouseY >= posY + 26 + (index * 34) && mouseY <= posY + 46 + (index * 34) && mouseX >= 34 && mouseX <= 56) {
-                List<String> list = new ArrayList<String>();
+                List<String> list = new ArrayList<>();
                 purchaseable.addTooltip(list);
                 addTooltip(list);
             }

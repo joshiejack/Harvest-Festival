@@ -87,8 +87,8 @@ public class BlockCookware extends BlockHFEnumRotatableTile<BlockCookware, Cookw
     }
 
     @Override
-    @Deprecated
     @SideOnly(Side.CLIENT)
+    @SuppressWarnings("deprecation")
     public boolean shouldSideBeRendered(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side) {
         if (getEnumFromState(state) == FRIDGE) {
             AxisAlignedBB axisalignedbb = state.getBoundingBox(world, pos);

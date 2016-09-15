@@ -2,9 +2,7 @@ package joshie.harvest.api.cooking;
 
 import net.minecraft.util.ResourceLocation;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
+import java.util.*;
 
 public final class Ingredient {
     public static final Map<String, Ingredient> INGREDIENTS = new HashMap<>();
@@ -48,10 +46,7 @@ public final class Ingredient {
      *  You pretty much use this only on categories ingredients
      * @param ingredients    the ingredients to add*/
     public Ingredient add(Ingredient... ingredients) {
-        for (Ingredient component : ingredients) {
-            equivalents.add(component);
-        }
-
+        Collections.addAll(Arrays.asList(ingredients));
         return this;
     }
 

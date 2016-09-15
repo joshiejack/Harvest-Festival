@@ -14,7 +14,6 @@ import net.minecraft.util.math.Vec3d;
 import static joshie.harvest.api.npc.INPC.Location.WORK;
 
 public class EntityAISchedule extends EntityAIBase {
-    private CalendarDate date;
     private BuildingLocation location;
     private BlockPos blockTarget;
     private EntityNPCHuman npc;
@@ -44,7 +43,7 @@ public class EntityAISchedule extends EntityAIBase {
     }
 
     private void updateTarget() {
-        date = HFApi.calendar.getDate(npc.worldObj);
+        CalendarDate date = HFApi.calendar.getDate(npc.worldObj);
         location = getBuildingTarget(date);
         blockTarget = NPCHelper.getCoordinatesForLocation(npc, location);
     }

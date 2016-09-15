@@ -11,6 +11,7 @@ public class GreetingTime extends GreetingSingle {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public String getLocalizedText(String text) {
         int years = CalendarHelper.getYearsPassed(HFTrackers.getClientPlayerTracker().getStats().getBirthday(), HFTrackers.getCalendar(MCClientHelper.getWorld()).getDate());
         return I18n.translateToLocalFormatted(text, years);

@@ -15,7 +15,6 @@ import net.minecraft.util.ResourceLocation;
 
 public abstract class GuiNPCBase extends GuiBaseContainer {
     private static final ResourceLocation chatbox = new ResourceLocation(HFModInfo.MODID, "textures/gui/chatbox.png");
-    private boolean originalFlag;
     protected EntityNPC npc;
     protected EntityPlayer player;
     protected int nextGui;
@@ -61,7 +60,7 @@ public abstract class GuiNPCBase extends GuiBaseContainer {
 
     @Override
     public void drawForeground(int x, int y) {
-        originalFlag = fontRendererObj.getUnicodeFlag();
+        boolean originalFlag = fontRendererObj.getUnicodeFlag();
         fontRendererObj.setUnicodeFlag(true);
         mc.renderEngine.bindTexture(HFModInfo.elements);
         if (npc.getNPC().isMarriageCandidate()) {

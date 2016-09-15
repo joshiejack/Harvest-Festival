@@ -35,7 +35,6 @@ import static joshie.harvest.core.network.PacketHandler.sendToEveryone;
 public class AnimalData implements IAnimalData {
     private static final Random rand = new Random();
 
-    private IAnimalTracked tracked;
     private EntityAnimal animal;
     private IAnimalType type;
 
@@ -66,8 +65,7 @@ public class AnimalData implements IAnimalData {
     private int daysPregnant;
 
     public AnimalData(IAnimalTracked animal, IAnimalType type) {
-        this.animal = (EntityAnimal) animal;
-        this.tracked = animal;
+        this.animal = animal.getAsEntity();
         this.type = type;
     }
 

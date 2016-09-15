@@ -22,26 +22,6 @@ public class HFCommonProxy {
     private static final List<Class> LIST = new ArrayList<>();
     private static final boolean ENABLE_LOGGING = true;
 
-    static {
-        //LIST.add(HFCore.class);
-        //LIST.add(HFCalendar.class);
-        //LIST.add(HFCrops.class);
-        //LIST.add(HFNPCs.class); //After Crops
-        //LIST.add(HFBuildings.class); //After NPCS
-        //LIST.add(HFTools.class); //After Most Everything
-        //LIST.add(HFCooking.class); //After Crops
-        //LIST.add(HFIngredients.class); //After Cooking
-        //LIST.add(HFRecipes.class); //After Ingredients
-        //LIST.add(HFMining.class); //After Most Everything
-        //LIST.add(HFGathering.class); //After Most Everything
-        //LIST.add(HFGifts.class); //After Every Item is loaded
-        //LIST.add(HFAnimals.class); //After Crops
-        //LIST.add(HFShops.class); //After Most Everything
-        //LIST.add(HFTab.class); //After Every Item is loaded
-        //LIST.add(HFPlugins.class); //After Every Item is loaded
-        //LIST.add(HFRecipeFixes.class); //After Every Item is loaded
-    }
-
     public void setup(@Nonnull ASMDataTable table) {
         List<Triple<Integer, String, String>> unsorted = new ArrayList<>();
         Set<ASMData> datas = new HashSet<>(table.getAll(HFLoader.class.getCanonicalName()));
@@ -111,6 +91,7 @@ public class HFCommonProxy {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public void load(String stage) {
         //Continue
         for (Class c : LIST) {

@@ -19,6 +19,7 @@ public enum Season {
     }
 
     @Nonnull
+    @SuppressWarnings("deprecation")
     public String getDisplayName() {
         return textColor + I18n.translateToLocal("harvestfestival.season." + name().toLowerCase(Locale.ENGLISH));
     }

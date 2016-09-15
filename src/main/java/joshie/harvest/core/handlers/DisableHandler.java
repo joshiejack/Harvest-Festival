@@ -108,6 +108,7 @@ public class DisableHandler {
         public static boolean register() { return DISABLE_VILLAGER_FARMING; }
 
         @SubscribeEvent
+        @SuppressWarnings("deprecation")
         public void onJoinWorld(EntityJoinWorldEvent event) {
             if (event.getEntity() instanceof EntityVillager) {
                 EntityVillager villager = (EntityVillager) event.getEntity();

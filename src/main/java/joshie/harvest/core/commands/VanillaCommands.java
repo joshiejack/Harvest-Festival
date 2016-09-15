@@ -56,7 +56,7 @@ public class VanillaCommands {
                 HFTrackers.<CalendarServer>getCalendar(server.worldServers[0]).setTodaysWeather(Weather.RAIN);
             } else {
                 if (!"thunder".equalsIgnoreCase(args[0])) {
-                    throw new WrongUsageException("commands.weather.usage", new Object[0]);
+                    throw new WrongUsageException("commands.weather.usage");
                 }
 
                 HFTrackers.<CalendarServer>getCalendar(server.worldServers[0]).setTodaysWeather(Weather.TYPHOON);
@@ -64,7 +64,7 @@ public class VanillaCommands {
 
             return true;
         } else {
-            throw new WrongUsageException("commands.weather.usage", new Object[0]);
+            throw new WrongUsageException("commands.weather.usage");
         }
     }
 }

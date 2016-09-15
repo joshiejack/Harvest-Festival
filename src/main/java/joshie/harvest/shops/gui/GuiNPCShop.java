@@ -103,7 +103,7 @@ public class GuiNPCShop extends GuiNPCBase {
             int posX = 98 + percent99;
 
             if (mouseY >= posY + 23 && mouseY <= posY + 46 && mouseX >= posX - 63 && mouseX <= posX - 41) {
-                List<String> list = new ArrayList<String>();
+                List<String> list = new ArrayList<>();
                 purchaseable.addTooltip(list);
                 addTooltip(list);
             }

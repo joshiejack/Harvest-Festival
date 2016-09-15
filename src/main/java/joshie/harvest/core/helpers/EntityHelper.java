@@ -28,6 +28,7 @@ import java.util.UUID;
 
 public class EntityHelper {
     //Loops through all the animals in the specified dimension id
+    @SuppressWarnings("unchecked")
     public static <E extends Entity> E getAnimalFromUUID(World world, UUID uuid) {
         for (int i = 0; i < world.loadedEntityList.size(); i++) {
             Entity entity = world.loadedEntityList.get(i);

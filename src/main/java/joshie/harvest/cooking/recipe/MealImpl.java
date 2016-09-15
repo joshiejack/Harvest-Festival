@@ -17,8 +17,6 @@ public class MealImpl extends IForgeRegistryEntry.Impl<MealImpl> implements Meal
     public final MealBuilder result;
     private final Ingredient[] requiredIngredients;
     private ItemStack alt = null;
-    private List<ItemStack> basic;
-    private List<ItemStack> best;
 
     //Optional Extras
     private final Utensil requiredTool;
@@ -148,7 +146,7 @@ public class MealImpl extends IForgeRegistryEntry.Impl<MealImpl> implements Meal
 
     private List<ItemStack> getIngredientsAsStacks(boolean getBest) {
         if (getBest) {
-            best = new ArrayList<>();
+            List<ItemStack> best = new ArrayList<>();
             for (Ingredient ingredient: requiredIngredients)
                 addStack(best, ingredient);
             if (optionalIngredients != null) {
@@ -158,7 +156,7 @@ public class MealImpl extends IForgeRegistryEntry.Impl<MealImpl> implements Meal
 
             return best;
         } else {
-            basic = new ArrayList<>();
+            List<ItemStack> basic = new ArrayList<>();
             for (Ingredient ingredient: requiredIngredients)
                 addStack(basic, ingredient);
             return basic;

@@ -1,6 +1,7 @@
 package joshie.harvest.mining;
 
 import joshie.harvest.HarvestFestival;
+import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.animals.render.ModelHarvestChicken;
 import joshie.harvest.animals.render.ModelHarvestCow;
 import joshie.harvest.animals.render.ModelHarvestSheep;
@@ -19,13 +20,10 @@ import joshie.harvest.mining.item.ItemMaterial;
 import joshie.harvest.mining.item.ItemMiningTool;
 import joshie.harvest.mining.loot.*;
 import joshie.harvest.mining.render.*;
-import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.storage.loot.conditions.LootConditionManager;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.DimensionManager;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -65,38 +63,10 @@ public class HFMining {
     public static void preInitClient() {
         ModelLoader.setCustomStateMapper(DIRT, new BakedDirt.StateMapper());
         ModelLoader.setCustomStateMapper(DIRT_DECORATIVE, new BakedDirt.StateMapper());
-
-        //Register the dark cow
-        RenderingRegistry.registerEntityRenderingHandler(EntityDarkCow.class, new IRenderFactory<EntityDarkCow>() {
-            @Override
-            public Render<? super EntityDarkCow> createRenderFor(RenderManager manager) {
-                return new RenderDarkMob<>(manager, new ModelHarvestCow.Adult(), "dark_cow");
-            }
-        });
-
-        //Dark Sheep
-        RenderingRegistry.registerEntityRenderingHandler(EntityDarkSheep.class, new IRenderFactory<EntityDarkSheep>() {
-            @Override
-            public Render<? super EntityDarkSheep> createRenderFor(RenderManager manager) {
-                return new RenderDarkMob<>(manager, new ModelHarvestSheep.Wooly(), "dark_sheep");
-            }
-        });
-
-        //Dark Chicken
-        RenderingRegistry.registerEntityRenderingHandler(EntityDarkChicken.class, new IRenderFactory<EntityDarkChicken>() {
-            @Override
-            public Render<? super EntityDarkChicken> createRenderFor(RenderManager manager) {
-                return new RenderDarkChicken(manager);
-            }
-        });
-
-        //Dark Chick
-        RenderingRegistry.registerEntityRenderingHandler(EntityDarkChick.class, new IRenderFactory<EntityDarkChick>() {
-            @Override
-            public Render<? super EntityDarkChick> createRenderFor(RenderManager manager) {
-                return new RenderDarkChick(manager);
-            }
-        });
+        RenderingRegistry.registerEntityRenderingHandler(EntityHarvestCow.class, RenderDarkCow:: new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityDarkSheep.class, RenderDarkSheep:: new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityDarkChicken.class, RenderDarkChicken:: new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityDarkChick.class, RenderDarkChick:: new);
 
         //Register the dark spawner
         RegistryHelper.registerEntityRenderer(DARK_SPAWNER, FakeAnimalsItemRenderer.INSTANCE);

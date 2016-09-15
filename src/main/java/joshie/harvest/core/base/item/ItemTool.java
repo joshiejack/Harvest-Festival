@@ -245,6 +245,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public int getHarvestLevel(ItemStack stack, String toolClass) {
         if (!toolClass.equals(this.toolClass)) return 0;
         if (!canUse(stack)) return 0;

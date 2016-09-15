@@ -74,7 +74,7 @@ public class BlockStone extends BlockHFEnumCube<BlockStone, Type> {
 
     @Override
     public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-        ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
+        ArrayList<ItemStack> ret = new ArrayList<>();
         if (getEnumFromState(world.getBlockState(pos)) != REAL) {
             ret.add(new ItemStack(HFMining.STONE, 1, 1));
         }

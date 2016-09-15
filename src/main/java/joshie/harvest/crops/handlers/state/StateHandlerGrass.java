@@ -10,7 +10,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import static joshie.harvest.api.crops.IStateHandler.PlantSection.BOTTOM;
 
 public class StateHandlerGrass extends StateHandlerDefault {
-    public final TIntObjectMap<AxisAlignedBB> CROP_AABB = new TIntObjectHashMap<AxisAlignedBB>();
+    public final TIntObjectMap<AxisAlignedBB> CROP_AABB = new TIntObjectHashMap<>();
 
     public StateHandlerGrass() {
         super(17);
@@ -27,7 +27,7 @@ public class StateHandlerGrass extends StateHandlerDefault {
 
     @Override
     public AxisAlignedBB getBoundingBox(PlantSection section, int stage, boolean withered) {
-        AxisAlignedBB ret = null;
+        AxisAlignedBB ret;
         if (section == BOTTOM) {
             ret = CROP_AABB.get(stage);
         } else {

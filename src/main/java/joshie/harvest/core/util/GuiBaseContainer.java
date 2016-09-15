@@ -21,7 +21,7 @@ public abstract class GuiBaseContainer extends GuiContainer {
     private static final int inventOffset = 3;
     protected int mouseX = 0;
     protected int mouseY = 0;
-    private ArrayList<String> tooltip = new ArrayList<String>();
+    private ArrayList<String> tooltip = new ArrayList<>();
     protected int mouseWheel;
 
     public GuiBaseContainer(ContainerBase container, String texture, int yOffset) {

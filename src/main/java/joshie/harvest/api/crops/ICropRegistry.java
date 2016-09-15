@@ -53,6 +53,6 @@ public interface ICropRegistry {
 
     /** Helper method for getting the correct state container
      * @param stages  the maximum number of stages
-     * @return  */
+     * @return the state container  */
     BlockStateContainer getStateContainer(PropertyInteger stages);
 }

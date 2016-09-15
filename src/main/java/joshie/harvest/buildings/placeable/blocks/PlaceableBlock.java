@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 import java.util.EnumMap;
 
 public class PlaceableBlock extends Placeable {
-    protected transient EnumMap<Direction, IBlockState> states = new EnumMap<Direction, IBlockState>(Direction.class);
+    protected transient EnumMap<Direction, IBlockState> states = new EnumMap<>(Direction.class);
     protected IBlockState state;
 
     public PlaceableBlock() {}

@@ -23,6 +23,7 @@ public interface IConditionalGreeting {
 
     /** Returns the localized name for this text
      * @param text     the text**/
+    @SuppressWarnings("deprecation")
     default String getLocalizedText(String text) {
         return I18n.translateToLocal(text);
     }

@@ -13,7 +13,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
-import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
 public abstract class TownTracker extends HFTracker {
@@ -25,9 +24,7 @@ public abstract class TownTracker extends HFTracker {
     public TownData getClosestTownToBlockPos(final BlockPos pos) {
         try {
             closestCache.cleanUp();
-            return closestCache.get(pos, new Callable<TownData>() {
-                @Override
-                public TownData call() throws Exception {
+            return closestCache.get(pos, ()-> {
                     TownData closest = null;
                     double thatTownDistance = Double.MAX_VALUE;
                     for (TownData town: townData) {
@@ -39,7 +36,6 @@ public abstract class TownTracker extends HFTracker {
                     }
 
                     return thatTownDistance > HFNPCs.TOWN_DISTANCE || closest == null ? NULL_TOWN: closest;
-                }
             });
         } catch (Exception e) { return NULL_TOWN; }
     }

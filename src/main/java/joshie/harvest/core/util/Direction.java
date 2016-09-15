@@ -23,7 +23,7 @@ public enum Direction implements IStringSerializable {
     MFB_R180(Mirror.FRONT_BACK, Rotation.CLOCKWISE_180),
     MFB_R270(Mirror.FRONT_BACK, Rotation.COUNTERCLOCKWISE_90);
 
-    public static final HashMap<Pair<Mirror, Rotation>, Direction> map = new HashMap<Pair<Mirror, Rotation>, Direction>();
+    public static final HashMap<Pair<Mirror, Rotation>, Direction> map = new HashMap<>();
     private final Mirror mirror;
     private final Rotation rotation;
 

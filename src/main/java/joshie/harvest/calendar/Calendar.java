@@ -41,6 +41,12 @@ public abstract class Calendar extends HFTracker implements SeasonProvider {
     protected float rainStrength;
     protected float stormStrength;
 
+    public Calendar() {
+        for (int i = 0; i < 7; i++) {
+            forecast[i] = Weather.SUNNY;
+        }
+    }
+
     public Weather getTodaysWeather() {
         return forecast[0] != null ? forecast[0] : SUNNY;
     }

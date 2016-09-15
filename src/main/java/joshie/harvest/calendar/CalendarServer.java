@@ -22,6 +22,8 @@ public class CalendarServer extends Calendar {
     private static final Random rand = new Random();
     private CalendarData data;
 
+    public CalendarServer() {}
+
     public void setWorld(CalendarData data, World world) {
         this.data = data;
         super.setWorld(world);

@@ -10,7 +10,6 @@ import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.core.helpers.InventoryHelper;
-import joshie.harvest.crops.HFCrops;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.quests.Quests;
 import joshie.harvest.quests.TutorialSelection;
@@ -85,7 +84,7 @@ public class QuestChickenCare extends QuestQuestion {
 
     @Override
     public Selection getSelection(EntityPlayer player, INPC npc) {
-        return quest_stage <= 0 && InventoryHelper.getHandItemIsIn(player, ITEM_STACK, HFCrops.TURNIP.getCropStack(1)) != null? selection : null;
+        return npc == POULTRY && quest_stage <= 0 ? selection : null;
     }
 
     @Override

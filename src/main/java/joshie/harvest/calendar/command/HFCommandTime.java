@@ -40,7 +40,6 @@ public class HFCommandTime extends AbstractHFCommand {
                     worldserver.setWorldTime(time);
                 }
 
-                //TODO: Make set time also add time
                 HFTrackers.<CalendarServer>getCalendar(server.worldServers[0]).recalculateAndUpdate(server.worldServers[0]);
                 return true;
             }

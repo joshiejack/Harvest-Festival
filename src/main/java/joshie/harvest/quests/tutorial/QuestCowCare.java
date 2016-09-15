@@ -73,6 +73,11 @@ public class QuestCowCare extends QuestQuestion {
     }
 
     @Override
+    public Selection getSelection(EntityPlayer player, INPC npc) {
+        return npc == ANIMAL_OWNER && quest_stage <= 0 ? selection : null;
+    }
+
+    @Override
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
         if (npc == BUILDER) {
             if (TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.BARN)) {

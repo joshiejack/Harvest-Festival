@@ -35,7 +35,7 @@ public class EntityNPCShopkeeper extends EntityNPCHuman<EntityNPCShopkeeper> {
         ((PathNavigateGround) this.getNavigator()).setBreakDoors(true);
         tasks.addTask(0, new EntityAISwimming(this));
         tasks.addTask(1, new EntityAITalkingTo(this));
-        tasks.addTask(1, new EntityAILookAtPlayer(this));
+        tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         tasks.addTask(4, new EntityAIOpenDoor(this, true));
         tasks.addTask(6, new EntityAIWork(this));
         tasks.addTask(7, new EntityAISchedule(this));

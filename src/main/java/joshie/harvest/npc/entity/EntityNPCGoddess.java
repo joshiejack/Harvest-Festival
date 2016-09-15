@@ -7,7 +7,6 @@ import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.core.lib.HFSounds;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.NPC;
-import joshie.harvest.npc.entity.ai.EntityAILookAtPlayer;
 import joshie.harvest.npc.entity.ai.EntityAISwim;
 import joshie.harvest.npc.entity.ai.EntityAITalkingTo;
 import net.minecraft.block.state.IBlockState;
@@ -68,7 +67,7 @@ public class EntityNPCGoddess extends EntityNPC<EntityNPCGoddess> {
     protected void initEntityAI() {
         tasks.addTask(0, new EntityAISwim(this));
         tasks.addTask(1, new EntityAITalkingTo(this));
-        tasks.addTask(1, new EntityAILookAtPlayer(this));
+        tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         tasks.addTask(3, new EntityAIRestrictOpenDoor(this));
         tasks.addTask(4, new EntityAIOpenDoor(this, true));
         tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 3.0F, 1.0F));

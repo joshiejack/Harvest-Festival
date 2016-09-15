@@ -13,6 +13,7 @@ import joshie.harvest.mining.item.ItemDarkSpawner.DarkSpawner;
 import joshie.harvest.mining.item.ItemMaterial.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.AchievementPage;
@@ -44,12 +45,12 @@ public class HFAchievements {
         milker = addAchievement("milker", -1, 5, HFAnimals.MILK.getStack(Size.SMALL), harvest);
         egger = addAchievement("egger", 1, 5, HFAnimals.EGG.getStack(Size.SMALL), harvest);
         firstChristmas = addAchievement("firstChristmas", 2, -3, new ItemStack(Blocks.SAPLING, 1, 1), summon);
-        birthday = addAchievement("birthday", 2, -5, new ItemStack(Blocks.CAKE), firstChristmas);
+        birthday = addAchievement("birthday", 2, -5, new ItemStack(Items.CAKE), firstChristmas);
         firstShipping = addAchievement("firstShipping", -2, 2, HFCore.STORAGE.getStackFromEnum(Storage.SHIPPING), visitor);
         millionaire = addAchievement("millionaire", -4, 2, new ItemStack(Items.GOLD_INGOT), firstShipping);
         theMine = addAchievement("theMine", 3, 0, HFMining.ORE.getStackFromEnum(Ore.ROCK), summon);
-        deathByChick = addAchievement("deathByChick", 5, 0, HFMining.DARK_SPAWNER.getStackFromEnum(DarkSpawner.CHICK), theMine);
-        mystril = addAchievement("mystril", 7, 0, HFMining.MATERIALS.getStackFromEnum(Material.MYSTRIL), theMine);
+        deathByChick = addAchievement("deathByChick", 5, -1, HFMining.DARK_SPAWNER.getStackFromEnum(DarkSpawner.CHICK), theMine);
+        mystril = addAchievement("mystril", 5, 1, HFMining.MATERIALS.getStackFromEnum(Material.MYSTRIL), theMine);
     }
 
     private static Achievement addAchievement(String name, int column, int row, ItemStack stack, Achievement parent) {

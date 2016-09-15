@@ -951,6 +951,32 @@ harvestfestival.quest.recipe.milk.strawberry.text=What makes milk even nicer?
 harvestfestival.quest.recipe.toast.text=Yulif hasn't really taught me how to cook much yet. I do know how to make some toast though.
 harvestfestival.quest.recipe.latte.vegetable.text=I need to get rid of this unholy object fast. Please take it.
 
+###Achievements
+achievement.harvestfestival.summon=Goddess' Bounty
+achievement.harvestfestival.summon.desc=Summon a goddess flower
+achievement.harvestfestival.visitor=The Beginning
+achievement.harvestfestival.visitor.desc=Talk with Jade
+achievement.harvestfestival.harvest=Turn it up!
+achievement.harvestfestival.harvest.desc=Harvest your first Turnip
+achievement.harvestfestival.milker=Dairy Milk
+achievement.harvestfestival.milker.desc=Obtain your first milk from a cow
+achievement.harvestfestival.egger=Kinder Egg
+achievement.harvestfestival.egger.desc=Obtain your first egg from a chicken
+achievement.harvestfestival.firstShipping=Ship Ahoy!
+achievement.harvestfestival.firstShipping.desc=Ship your first items
+achievement.harvestfestival.millionaire=Trump's loan
+achievement.harvestfestival.millionaire.desc=Who wants to be a millionare?
+achievement.harvestfestival.theMine=Going down
+achievement.harvestfestival.theMine.desc=Enter the mine...
+achievement.harvestfestival.deathByChick=Going down
+achievement.harvestfestival.deathByChick.desc=It's a mystery...
+achievement.harvestfestival.mystril=Shiny
+achievement.harvestfestival.mystril.desc=It's cool, it's mystril
+achievement.harvestfestival.firstChristmas=Merry Christmas!
+achievement.harvestfestival.firstChristmas.desc=Not a creature was stirring, not even a mouse
+achievement.harvestfestival.birthday=Happy Birthday!
+achievement.harvestfestival.birthday.desc=You need to get out more
+
 ###Sounds
 harvestfestival.subtitle.fryingpan=Sizzle
 harvestfestival.subtitle.counter=Chopping
@@ -966,4 +992,5 @@ harvestfestival.subtitle.blessing=Heavenly Noise
 harvestfestival.subtitle.godddess=Goddess Ding
 harvestfestival.subtitle.recipe=Recipe Learnt!
 
+#Config
 harvestfestival.config.tooltip=

@@ -11,6 +11,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.play.server.SPacketUpdateHealth;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -131,5 +132,11 @@ public class EntityHelper {
 
     public static UUID getPlayerUUID(EntityPlayer player) {
         return EntityPlayer.getUUID(player.getGameProfile());
+    }
+
+    public static EntityPlayer getPlayerFromSource(DamageSource source) {
+        if (source.getEntity() instanceof EntityPlayer) return ((EntityPlayer)source.getEntity());
+        else if (source.getSourceOfDamage() instanceof EntityPlayer) return ((EntityPlayer)source.getSourceOfDamage());
+        else return null;
     }
 }

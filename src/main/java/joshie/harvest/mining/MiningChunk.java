@@ -43,10 +43,10 @@ public class MiningChunk implements IChunkGenerator {
     protected static final List<Block> IRREPLACABLE = Lists.newArrayList();
 
     static {
-        MONSTERS.add(new Biome.SpawnListEntry(EntityDarkChick.class, 100, 3, 7));
-        MONSTERS.add(new Biome.SpawnListEntry(EntityDarkChicken.class, 50, 2, 5));
-        MONSTERS.add(new Biome.SpawnListEntry(EntityDarkSheep.class, 30, 2, 3));
-        MONSTERS.add(new Biome.SpawnListEntry(EntityDarkCow.class, 15, 1, 2));
+        MONSTERS.add(new Biome.SpawnListEntry(EntityDarkChick.class, 100, 1, 5));
+        MONSTERS.add(new Biome.SpawnListEntry(EntityDarkChicken.class, 50, 1, 3));
+        MONSTERS.add(new Biome.SpawnListEntry(EntityDarkSheep.class, 30, 1, 2));
+        MONSTERS.add(new Biome.SpawnListEntry(EntityDarkCow.class, 15, 1, 1));
         IRREPLACABLE.add(ORE.getBlock());
         IRREPLACABLE.add(HFCore.FLOWERS);
         IRREPLACABLE.add(HFMining.PORTAL);

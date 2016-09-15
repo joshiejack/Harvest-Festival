@@ -1,5 +1,6 @@
 package joshie.harvest.player.relationships;
 
+import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.npc.HFNPCs;
@@ -52,6 +53,7 @@ public class RelationshipDataServer extends RelationshipData {
     public void affectRelationship(EntityPlayer player, UUID key, int amount) {
         int newValue = Math.max(0, Math.min(HFNPCs.MARRIAGE_REQUIREMENT, getRelationship(key) + amount));
         relationships.put(key, newValue);
+        if (newValue >= 5000) player.addStat(HFAchievements.friend);
         syncRelationship((EntityPlayerMP) player, key, newValue, true);
     }
 

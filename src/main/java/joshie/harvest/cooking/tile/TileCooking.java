@@ -3,6 +3,7 @@ package joshie.harvest.cooking.tile;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.IAltItem;
 import joshie.harvest.api.cooking.Utensil;
+import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.base.tile.TileFaceable;
 import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.core.helpers.MCServerHelper;
@@ -68,7 +69,12 @@ public abstract class TileCooking extends TileFaceable {
 
     //reset everything ready for the next cooking batch
     public void giveToPlayer(EntityPlayer player) {
-        SpawnItemHelper.addToPlayerInventory(player, getResult());
+        ItemStack theItem = getResult();
+        if (theItem.hasTagCompound()) {
+            player.addStat(HFAchievements.cooking);
+        }
+
+        SpawnItemHelper.addToPlayerInventory(player, theItem);
         result = null; //Clear out the result
     }
 

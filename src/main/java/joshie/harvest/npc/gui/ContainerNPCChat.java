@@ -5,10 +5,8 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.QuestQuestion;
-import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.util.ContainerBase;
-import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumHand;
@@ -73,7 +71,6 @@ public class ContainerNPCChat extends ContainerBase {
                 }
             }
 
-           if (npc.getNPC() == HFNPCs.SEED_OWNER) player.addStat(HFAchievements.visitor);
             if (!player.worldObj.isRemote) {
                 if (selection != null && nextGui != SHOP_OPTIONS) {
                     player.openGui(HarvestFestival.instance, NPC, player.worldObj, npc.getEntityId(), 0, Quest.REGISTRY.getValues().indexOf(Quest.REGISTRY.getValue(selection.getRegistryName())));

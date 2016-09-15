@@ -1,5 +1,6 @@
 package joshie.harvest.player.relationships;
 
+import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.util.Text;
 import joshie.harvest.npc.HFNPCs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -43,6 +44,7 @@ public abstract class RelationshipData {
             int value = getRelationship(key);
             if (value >= HFNPCs.MARRIAGE_REQUIREMENT) {
                 marriedTo.add(key);
+                player.addStat(HFAchievements.marriage);
                 affectRelationship(player, key, 1000);
                 return true;
             } else {

@@ -6,6 +6,9 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.animals.IMilkable;
+import joshie.harvest.api.core.ISizeable.Size;
+import joshie.harvest.core.HFCore;
+import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.SizeableHelper;
 import net.minecraft.entity.EntityAgeable;
@@ -59,6 +62,11 @@ public class EntityHarvestCow extends EntityCow implements IAnimalTracked, IMilk
 
         if (!worldObj.isRemote && !HFAnimals.OP_ANIMALS) {
             data.setProduced(getData().getProductsPerDay());
+        }
+
+        player.addStat(HFAchievements.milker);
+        if (HFCore.SIZEABLE.getSize(product) == Size.LARGE) {
+            player.addStat(HFAchievements.milkerLarge);
         }
     }
 

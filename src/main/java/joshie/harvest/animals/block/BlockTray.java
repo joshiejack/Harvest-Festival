@@ -10,6 +10,7 @@ import joshie.harvest.api.animals.IAnimalFeeder;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.api.animals.INest;
 import joshie.harvest.api.core.ISizeable.Size;
+import joshie.harvest.core.HFCore;
 import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.base.block.BlockHFEnum;
 import joshie.harvest.core.base.tile.TileFillable;
@@ -102,6 +103,9 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
                     SpawnItemHelper.dropBlockAsItem(world, pos.getX(), pos.getY(), pos.getZ(), drop);
                     world.setBlockState(pos, getStateFromEnum(NEST_EMPTY));
                     player.addStat(HFAchievements.egger);
+                    if (HFCore.SIZEABLE.getSize(drop) == Size.LARGE) {
+                        player.addStat(HFAchievements.eggerLarge);
+                    }
                 }
 
                 return true;

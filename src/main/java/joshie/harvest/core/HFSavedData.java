@@ -11,9 +11,9 @@ import net.minecraft.world.WorldSavedData;
 public class HFSavedData extends WorldSavedData {
     public static final String DATA_NAME = HFModInfo.CAPNAME + "-Data";
 
-    private AnimalTrackerServer animals = new AnimalTrackerServer();
-    private TickDailyServer ticking = new TickDailyServer();
-    private TownTrackerServer towns = new TownTrackerServer();
+    private final AnimalTrackerServer animals = new AnimalTrackerServer();
+    private final TickDailyServer ticking = new TickDailyServer();
+    private final TownTrackerServer towns = new TownTrackerServer();
 
     public HFSavedData(String string) {
         super(string);

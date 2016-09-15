@@ -19,7 +19,7 @@ public abstract class RelationshipData {
     public void setRelationship(UUID key, int value) {}
     public void setMarriageState(UUID key, boolean divorce) {}
 
-    protected HashMap<UUID, Integer> relationships = new HashMap<>();
+    protected final HashMap<UUID, Integer> relationships = new HashMap<>();
     protected Set<UUID> marriedTo = new HashSet<>();
     protected Set<UUID> gifted = new HashSet<>();
 

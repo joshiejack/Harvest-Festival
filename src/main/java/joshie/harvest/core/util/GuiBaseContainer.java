@@ -15,13 +15,13 @@ import java.util.List;
 
 public abstract class GuiBaseContainer extends GuiContainer {
     protected boolean hasInventory;
-    private String name;
     private static ResourceLocation TEXTURE;
     private static final int nameHeight = 5;
     private static final int inventOffset = 3;
+    private final ArrayList<String> tooltip = new ArrayList<>();
+    private final String name;
     protected int mouseX = 0;
     protected int mouseY = 0;
-    private ArrayList<String> tooltip = new ArrayList<>();
     protected int mouseWheel;
 
     public GuiBaseContainer(ContainerBase container, String texture, int yOffset) {

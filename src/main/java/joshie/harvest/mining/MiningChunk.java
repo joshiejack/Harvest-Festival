@@ -31,8 +31,8 @@ import static joshie.harvest.mining.MiningTicker.MAX_LOOP;
 import static joshie.harvest.mining.MiningTicker.MAX_Y;
 
 public class MiningChunk implements IChunkGenerator {
-    private MineManager manager;
-    private Random rand;
+    private final MineManager manager;
+    private final Random rand;
     private static final IBlockState WALLS = HFMining.STONE.getDefaultState();
     private static final IBlockState FLOORS = HFMining.DIRT.getDefaultState();
     private static final IBlockState LADDER = HFMining.LADDER.getDefaultState();

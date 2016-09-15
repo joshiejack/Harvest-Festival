@@ -46,10 +46,10 @@ public class ItemToolChargeable extends ItemTool<ItemToolChargeable> {
         ToolTier tier = getTier(stack);
         if (tier != ToolTier.BASIC && canUse(stack)) {
             playerIn.setActiveHand(hand);
-            return new ActionResult(EnumActionResult.SUCCESS, stack);
+            return new ActionResult<>(EnumActionResult.SUCCESS, stack);
         } else if (tier == ToolTier.BASIC) {
             onPlayerStoppedUsing(stack, world, playerIn, 32000);
-            return new ActionResult(EnumActionResult.SUCCESS, stack);
+            return new ActionResult<>(EnumActionResult.SUCCESS, stack);
         } else return new ActionResult<>(EnumActionResult.PASS, stack);
     }
 

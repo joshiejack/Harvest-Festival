@@ -14,7 +14,7 @@ import static joshie.harvest.core.network.PacketHandler.sendToServer;
 
 @SideOnly(Side.CLIENT)
 public class QuestDataClient extends QuestData {
-    private HashSet<Quest> available = new HashSet<>();
+    private final HashSet<Quest> available = new HashSet<>();
     
     //Adds a quest to the current list
     @Override

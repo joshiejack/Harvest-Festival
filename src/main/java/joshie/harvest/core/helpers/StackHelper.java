@@ -113,8 +113,7 @@ public class StackHelper {
         Item item = Item.REGISTRY.getObject(new ResourceLocation(str));
         if (item == null) {
             try {
-                Item item1 = Item.getItemById(Integer.parseInt(str));
-                item = item1;
+                item = Item.getItemById(Integer.parseInt(str));
             } catch (NumberFormatException numberformatexception) {
             }
         }

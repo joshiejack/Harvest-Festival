@@ -11,8 +11,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class RenderHarvestAnimal<T extends EntityLiving> extends RenderLiving<T> {
-    protected ResourceLocation texture_child;
-    protected ResourceLocation texture_adult;
+    protected final ResourceLocation texture_child;
+    protected final ResourceLocation texture_adult;
 
 
     public RenderHarvestAnimal(RenderManager manager, ModelBase model, String animal) {

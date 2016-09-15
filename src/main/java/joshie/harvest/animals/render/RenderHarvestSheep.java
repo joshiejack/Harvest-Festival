@@ -9,7 +9,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class RenderHarvestSheep extends RenderHarvestAnimal<EntityHarvestSheep> {
-    private ResourceLocation texture_sheared;
+    private final ResourceLocation texture_sheared;
 
     public RenderHarvestSheep(RenderManager manager) {
         super(manager, new ModelHarvestSheep(), "sheep");

@@ -14,8 +14,8 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import javax.annotation.Nullable;
 
 public class NPCItemRenderer extends TileEntitySpecialRenderer<NPCTile> {
-    private ModelNPC modelAlex;
-    private ModelNPC modelSteve;
+    private final ModelNPC modelAlex;
+    private final ModelNPC modelSteve;
     private EntityNPC fake;
 
     public NPCItemRenderer() {

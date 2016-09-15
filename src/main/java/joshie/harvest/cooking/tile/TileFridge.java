@@ -29,7 +29,7 @@ public class TileFridge extends TileFaceable implements ITickable {
     public boolean animatingBottom;
     @SideOnly(Side.CLIENT)
     public boolean openBottom = true;
-    protected FridgeData data = new FridgeData(this);
+    protected final FridgeData data = new FridgeData(this);
 
     public static boolean isValid(ItemStack stack) {
         return stack.getItem() == HFCooking.MEAL || HFApi.cooking.isIngredient(stack) || stack.getItem() instanceof ItemFood;

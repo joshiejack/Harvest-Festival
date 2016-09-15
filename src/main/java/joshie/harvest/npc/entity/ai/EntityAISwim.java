@@ -6,8 +6,7 @@ import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.pathfinding.PathNavigateGround;
 
 public class EntityAISwim extends EntityAIBase {
-    private EntityLiving theEntity;
-    private boolean floated;
+    private final EntityLiving theEntity;
 
     public EntityAISwim(EntityLiving entitylivingIn) {
         theEntity = entitylivingIn;

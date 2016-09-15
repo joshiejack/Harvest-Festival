@@ -91,7 +91,7 @@ public class WeatherRenderer extends IRenderHandler {
                                     }
 
                                     j1 = 0;
-                                    mc.getTextureManager().bindTexture(renderer.RAIN_TEXTURES);
+                                    mc.getTextureManager().bindTexture(EntityRenderer.RAIN_TEXTURES);
                                     vertexbuffer.begin(7, DefaultVertexFormats.PARTICLE_POSITION_TEX_COLOR_LMAP);
                                 }
 

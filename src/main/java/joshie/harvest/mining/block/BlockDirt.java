@@ -36,10 +36,10 @@ import java.util.concurrent.TimeUnit;
 import static joshie.harvest.mining.block.BlockDirt.TextureStyle.*;
 
 public class BlockDirt extends BlockHFBase<BlockDirt> {
-    public static final PropertyEnum NORTH_EAST = PropertyEnum.create("ne", TextureStyle.class);
-    public static final PropertyEnum NORTH_WEST = PropertyEnum.create("nw", TextureStyle.class);
-    public static final PropertyEnum SOUTH_EAST = PropertyEnum.create("se", TextureStyle.class);
-    public static final PropertyEnum SOUTH_WEST = PropertyEnum.create("sw", TextureStyle.class);
+    public static final PropertyEnum<TextureStyle> NORTH_EAST = PropertyEnum.create("ne", TextureStyle.class);
+    public static final PropertyEnum<TextureStyle> NORTH_WEST = PropertyEnum.create("nw", TextureStyle.class);
+    public static final PropertyEnum<TextureStyle> SOUTH_EAST = PropertyEnum.create("se", TextureStyle.class);
+    public static final PropertyEnum<TextureStyle> SOUTH_WEST = PropertyEnum.create("sw", TextureStyle.class);
 
     public enum TextureStyle implements IStringSerializable {
         BLANK, INNER, VERTICAL, HORIZONTAL, OUTER;

@@ -16,7 +16,7 @@ import static net.minecraft.util.text.TextFormatting.WHITE;
 
 public abstract class PurchaseableFML<I extends IForgeRegistryEntry.Impl<I>> implements IPurchaseable {
     protected I item;
-    private long cost;
+    private final long cost;
 
     public PurchaseableFML(long cost, ResourceLocation resource) {
         this.cost = cost;

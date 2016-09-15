@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.registry.IForgeRegistry;
 import static joshie.harvest.core.helpers.InventoryHelper.ORE_DICTIONARY;
 
 public class PurchaseableBuilder extends PurchaseableFML<BuildingImpl> {
-    private String resource;
+    private final String resource;
     private ItemStack stack;
     private final int logs;
     private final int stone;

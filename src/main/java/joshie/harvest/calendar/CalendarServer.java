@@ -18,7 +18,7 @@ import static joshie.harvest.api.calendar.Season.*;
 import static joshie.harvest.calendar.HFCalendar.DAYS_PER_SEASON;
 
 public class CalendarServer extends Calendar {
-    private CalendarDate DATE = new CalendarDate(0, SPRING, 1);
+    private final CalendarDate DATE = new CalendarDate(0, SPRING, 1);
     private static final Random rand = new Random();
     private CalendarData data;
 

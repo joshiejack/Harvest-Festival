@@ -35,8 +35,8 @@ import static joshie.harvest.core.network.PacketHandler.sendToEveryone;
 public class AnimalData implements IAnimalData {
     private static final Random rand = new Random();
 
-    private EntityAnimal animal;
-    private IAnimalType type;
+    private final EntityAnimal animal;
+    private final IAnimalType type;
 
     private WeakReference<EntityPlayer> owner;
     private UUID o_uuid;

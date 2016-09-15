@@ -5,7 +5,7 @@ import joshie.harvest.npc.entity.EntityNPC;
 import net.minecraft.entity.player.EntityPlayer;
 
 public class ContainerNPCShop extends ContainerBase {
-    private EntityNPC npc;
+    private final EntityNPC npc;
 
     public ContainerNPCShop(EntityNPC npc) {
         this.npc = npc;

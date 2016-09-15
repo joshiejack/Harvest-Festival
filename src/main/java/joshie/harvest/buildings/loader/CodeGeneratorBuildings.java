@@ -6,7 +6,6 @@ import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.PlaceableHelper;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
-import joshie.harvest.core.util.IFaceable;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.NPCRegistry;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
@@ -52,7 +51,7 @@ public class CodeGeneratorBuildings {
         return (ArrayList<Entity>) world.getEntitiesWithinAABB(clazz, new AxisAlignedBB(new BlockPos(x, y, z)));
     }
 
-
+    @SuppressWarnings("unchecked")
     public void getCode(boolean air) {
         if (!world.isRemote) {
             ArrayList<Placeable> ret = new ArrayList<>();
@@ -74,14 +73,16 @@ public class CodeGeneratorBuildings {
                         Block block = state.getBlock();
                         if (block == Blocks.CHEST) {
                             TileEntityChest chest = (TileEntityChest) world.getTileEntity(new BlockPos(x1 + x, y1 + y, z1 + z));
-                            String name = chest.getName();
-                            if (name.startsWith("npc.")) {
-                                name = name.replace("npc.", "");
-                                NPC npc = NPCRegistry.REGISTRY.getValue(new ResourceLocation(name));
-                                String npcField = npc == null ? "" : npc.getRegistryName().toString();
-                                ret.add(new PlaceableNPC(name, npcField, x, y, z));
-                                ret.add(new PlaceableBlock(Blocks.AIR.getDefaultState(), x, y, z));
-                                continue;
+                            if (chest != null) {
+                                String name = chest.getName();
+                                if (name.startsWith("npc.")) {
+                                    name = name.replace("npc.", "");
+                                    NPC npc = NPCRegistry.REGISTRY.getValue(new ResourceLocation(name));
+                                    String npcField = npc == null ? "" : npc.getRegistryName().toString();
+                                    ret.add(new PlaceableNPC(name, npcField, x, y, z));
+                                    ret.add(new PlaceableBlock(Blocks.AIR.getDefaultState(), x, y, z));
+                                    continue;
+                                }
                             }
                         }
 
@@ -89,9 +90,7 @@ public class CodeGeneratorBuildings {
                             int meta = state.getBlock().getMetaFromState(state);
                             if (block == Blocks.DOUBLE_PLANT && meta >= 8) continue;
                             TileEntity tile = world.getTileEntity(position);
-                            if (tile instanceof IFaceable) {
-                                //ret.add(PlaceableHelper.getPlaceableIFaceableString((IFaceable) tile, state, new BlockPos(x, y, z)));
-                            } else if (tile instanceof TileEntitySign) {
+                            if (tile instanceof TileEntitySign) {
                                 ITextComponent[] text = ((TileEntitySign) tile).signText;
                                 if (block == Blocks.STANDING_SIGN) {
                                     ret.add(PlaceableHelper.getFloorSignString(text, state, new BlockPos(x, y, z)));

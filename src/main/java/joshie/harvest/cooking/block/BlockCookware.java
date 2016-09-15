@@ -72,7 +72,7 @@ public class BlockCookware extends BlockHFEnumRotatableTile<BlockCookware, Cookw
     @SideOnly(Side.CLIENT)
     public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer) {
         Cookware cookware = getEnumFromState(state); //Yayayayayyayayayyayyyyyyyyyyyyyyyyyyyyyyyyyyaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaayya
-        return cookware == FRIDGE_TOP ? false : cookware == MIXER? layer == BlockRenderLayer.TRANSLUCENT : layer == BlockRenderLayer.CUTOUT_MIPPED;
+        return cookware != FRIDGE_TOP && (cookware == MIXER ? layer == BlockRenderLayer.TRANSLUCENT : layer == BlockRenderLayer.CUTOUT_MIPPED);
     }
 
     @Override

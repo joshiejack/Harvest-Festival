@@ -11,11 +11,13 @@ import java.util.UUID;
 import static joshie.harvest.core.handlers.HFTrackers.getTownTracker;
 
 public class TownHelper {
+    @SuppressWarnings("unchecked")
     public static <T extends TownData> T getClosestTownToBlockPos(World world, BlockPos pos) {
         return (T) getTownTracker(world).getClosestTownToBlockPos(pos);
     }
 
     /** Called from shops **/
+    @SuppressWarnings("unchecked")
     public static <T extends TownData> T getClosestTownToEntity(EntityLivingBase entity) {
         return (T) getTownTracker(entity.worldObj).getClosestTownToBlockPos(new BlockPos(entity));
     }

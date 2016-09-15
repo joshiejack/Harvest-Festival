@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class PurchaseableWeekend extends Purchaseable {
-    private ItemStack[] required;
+    private final ItemStack[] required;
 
     public PurchaseableWeekend(long cost, ItemStack stack, ItemStack... required) {
         super(cost, stack);

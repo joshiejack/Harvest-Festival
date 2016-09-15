@@ -46,6 +46,7 @@ public class HFCore {
     public static final BlockStorage STORAGE = new BlockStorage().register("storage");
     public static final ItemSizeable SIZEABLE = new ItemSizeable().register("sizeable");
 
+    @SuppressWarnings("unchecked")
     public static void preInit() {
         NetworkRegistry.INSTANCE.registerGuiHandler(HarvestFestival.instance, new GuiHandler());
         LootFunctionManager.registerFunction(new SetEnum.Serializer());

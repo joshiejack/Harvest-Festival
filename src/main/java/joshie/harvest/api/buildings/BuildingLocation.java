@@ -4,10 +4,10 @@ import joshie.harvest.api.HFApi;
 import net.minecraft.util.ResourceLocation;
 
 public class BuildingLocation {
-    private ResourceLocation building;
-    private String location;
-    private double distance;
-    private long time;
+    private final ResourceLocation building;
+    private final String location;
+    private final double distance;
+    private final long time;
 
     public BuildingLocation(Building building, String location) {
         this.building = HFApi.buildings.getNameForBuilding(building);

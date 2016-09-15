@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class PurchaseableYearWeekend extends PurchaseableWeekend {
-    private int year;
+    private final int year;
 
     public PurchaseableYearWeekend(long cost, ItemStack stack, int year) {
         super(cost, stack);

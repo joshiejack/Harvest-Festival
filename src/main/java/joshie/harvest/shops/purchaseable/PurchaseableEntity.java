@@ -19,11 +19,11 @@ import java.util.Locale;
 import static net.minecraft.util.text.TextFormatting.WHITE;
 
 public class PurchaseableEntity implements IPurchaseable {
-    private String resource;
-    private ItemStack product;
-    private Class<? extends Entity> eClass;
-    private long cost;
-    private boolean lead;
+    private final String resource;
+    private final ItemStack product;
+    private final Class<? extends Entity> eClass;
+    private final long cost;
+    private final boolean lead;
 
     /**
      * If lead is true, entity spawns with a lead, otherwise, entity spawns mounting the player

@@ -15,7 +15,7 @@ import net.minecraft.util.text.ITextComponent;
 import java.util.HashMap;
 
 public class PlaceableHelper {
-    public static HashMap<String, PlaceableEntity> entities = new HashMap<>();
+    public static final HashMap<String, PlaceableEntity> entities = new HashMap<>();
 
     private static Placeable getPrefixString(IBlockState state, int x, int y, int z) {
         Block block = state.getBlock();

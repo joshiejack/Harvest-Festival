@@ -48,7 +48,7 @@ public class VanillaCommands {
         return false;
     }
 
-    public static boolean executeVanillaWeather(MinecraftServer server, ICommandSender sender, String[] args) throws NumberInvalidException, WrongUsageException {
+    public static boolean executeVanillaWeather(MinecraftServer server, ICommandSender sender, String[] args) throws WrongUsageException {
         if (args.length >= 1 && args.length <= 2) {
             if ("clear".equalsIgnoreCase(args[0])) {
                 HFTrackers.<CalendarServer>getCalendar(server.worldServers[0]).setTodaysWeather(Weather.SUNNY);

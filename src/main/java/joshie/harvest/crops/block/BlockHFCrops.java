@@ -273,8 +273,8 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
 
     public static class RainingSoil {
         private int existence;
-        private World world;
-        private BlockPos pos;
+        private final World world;
+        private final BlockPos pos;
 
         public RainingSoil(World world, BlockPos pos) {
             this.world = world;

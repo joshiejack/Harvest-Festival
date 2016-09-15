@@ -12,7 +12,7 @@ import java.util.Iterator;
 
 public class AnimalTrackerServer extends AnimalTracker {
     private static final DamageSource natural_causes = new DamageSource("natural").setDamageBypassesArmor();
-    private HashSet<AnimalData> animals = new HashSet<>();
+    private final HashSet<AnimalData> animals = new HashSet<>();
 
     @Override
     public void onDeath(IAnimalTracked animal) {

@@ -36,7 +36,7 @@ public class HFTrackers {
     }
 
     public static void resetServer() {
-        SERVER_WORLDS = new TIntObjectHashMap<>();
+        SERVER_WORLDS.clear();
         SERVER_CALENDAR = null;
     }
 
@@ -124,7 +124,7 @@ public class HFTrackers {
     /*####################Player Trackers#############################*/
     @SideOnly(Side.CLIENT)
     private static PlayerTracker CLIENT_PLAYER;
-    private static HashMap<UUID, PlayerTrackerServer> SERVER_PLAYERS = new HashMap<>();
+    private static final HashMap<UUID, PlayerTrackerServer> SERVER_PLAYERS = new HashMap<>();
 
     public static Collection<PlayerTrackerServer> getPlayerTrackers() {
         return SERVER_PLAYERS.values();

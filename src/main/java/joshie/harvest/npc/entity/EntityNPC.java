@@ -19,6 +19,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 
+import javax.annotation.Nullable;
+
 import static joshie.harvest.core.handlers.GuiHandler.GIFT;
 
 public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable implements IEntityAdditionalSpawnData {
@@ -90,6 +92,7 @@ public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable imple
         talkingTo = player;
     }
 
+    @Nullable
     public EntityPlayer getTalkingTo() {
         return talkingTo;
     }

@@ -16,14 +16,14 @@ import net.minecraft.nbt.NBTTagCompound;
 import java.util.UUID;
 
 public class PlayerTrackerServer extends PlayerTracker {
-    private QuestDataServer quests;
-    private RelationshipDataServer relationships;
-    private StatsServer stats;
-    protected TrackingServer tracking;
+    private final QuestDataServer quests;
+    private final RelationshipDataServer relationships;
+    private final StatsServer stats;
+    protected final TrackingServer tracking;
 
     //References to the player and uuid this refers to
     private EntityPlayerMP player; //No Direct calling, it's a cache value
-    private UUID uuid; //SHOULD NOT BE CALLED, EXCEPT BY GET AND CREATE PLAYER
+    private final UUID uuid; //SHOULD NOT BE CALLED, EXCEPT BY GET AND CREATE PLAYER
 
     public PlayerTrackerServer(EntityPlayerMP player) {
         this.player = player;

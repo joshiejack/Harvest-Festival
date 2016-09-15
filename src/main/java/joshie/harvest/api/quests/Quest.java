@@ -196,7 +196,7 @@ public abstract class Quest extends Impl<Quest> {
 
     /** Used for selection menus **/
     public static abstract class Selection<Q extends Quest> {
-        private String[] lines;
+        private final String[] lines;
 
         public Selection(String title, String line1, String line2) {
             this.lines = new String[3];

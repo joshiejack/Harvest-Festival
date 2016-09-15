@@ -7,16 +7,13 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
 public class EntityAIEat extends EntityAIBase {
-    private World worldObj;
-    private EntityAnimal animal;
-    private IAnimalTracked tracked;
+    private final EntityAnimal animal;
+    private final IAnimalTracked tracked;
     private int wanderTick;
 
     public EntityAIEat(IAnimalTracked animal) {
-        this.worldObj = animal.getAsEntity().worldObj;
         this.animal = animal.getAsEntity();
         this.tracked = animal;
         this.setMutexBits(1);
@@ -38,18 +35,18 @@ public class EntityAIEat extends EntityAIBase {
 
     @Override
     public void updateTask() {
-        BlockPos position = new BlockPos(animal).add(worldObj.rand.nextInt(8) - 4, 0, worldObj.rand.nextInt(8) - 4);
+        BlockPos position = new BlockPos(animal).add(animal.worldObj.rand.nextInt(8) - 4, 0, animal.worldObj.rand.nextInt(8) - 4);
         IBlockState state = animal.worldObj.getBlockState(position);
         Block block = state.getBlock();
         if (block instanceof IAnimalFeeder) {
-            if(((IAnimalFeeder) block).feedAnimal(tracked, worldObj, position, state)) {
+            if(((IAnimalFeeder) block).feedAnimal(tracked, animal.worldObj, position, state)) {
                 wanderTick = 200;
             }
         }
 
 
         wanderTick--;
-        if (worldObj.rand.nextDouble() < 0.005D || wanderTick < Short.MIN_VALUE) {
+        if (animal.worldObj.rand.nextDouble() < 0.005D || wanderTick < Short.MIN_VALUE) {
             wanderTick = 200;
         }
     }

@@ -10,7 +10,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class MeshIdentical implements ItemMeshDefinition {
-    private ModelResourceLocation model;
+    private final ModelResourceLocation model;
 
     public MeshIdentical(Item item) {
         model = new ModelResourceLocation(item.getRegistryName(), "inventory");

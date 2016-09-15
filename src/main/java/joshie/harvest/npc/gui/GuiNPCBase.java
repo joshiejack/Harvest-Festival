@@ -15,11 +15,11 @@ import net.minecraft.util.ResourceLocation;
 
 public abstract class GuiNPCBase extends GuiBaseContainer {
     private static final ResourceLocation chatbox = new ResourceLocation(HFModInfo.MODID, "textures/gui/chatbox.png");
-    protected EntityNPC npc;
-    protected EntityPlayer player;
-    protected int nextGui;
-    private int inside;
-    private int outside;
+    protected final EntityNPC npc;
+    protected final EntityPlayer player;
+    protected final int nextGui;
+    private final int inside;
+    private final int outside;
 
     public GuiNPCBase(EntityPlayer ePlayer, EntityNPC eNpc, EnumHand hand, int next) {
         super(new ContainerNPCChat(ePlayer, eNpc, hand, next), "chat", 0);

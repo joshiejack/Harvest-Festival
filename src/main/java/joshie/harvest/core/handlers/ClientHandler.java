@@ -8,8 +8,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class ClientHandler extends SideHandler {
-    private AnimalTrackerClient animals = new AnimalTrackerClient();
-    private TownTrackerClient town = new TownTrackerClient();
+    private final AnimalTrackerClient animals = new AnimalTrackerClient();
+    private final TownTrackerClient town = new TownTrackerClient();
 
     public ClientHandler() {}
 

@@ -72,7 +72,7 @@ public abstract class SpecialRendererCookware<T extends TileCooking> extends Til
         GlStateManager.enableBlend();
         GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 
-        if (MINECRAFT.isAmbientOcclusionEnabled())  {
+        if (Minecraft.isAmbientOcclusionEnabled())  {
             GL11.glShadeModel(GL11.GL_SMOOTH);
         } else  {
             GL11.glShadeModel(GL11.GL_FLAT);
@@ -94,7 +94,7 @@ public abstract class SpecialRendererCookware<T extends TileCooking> extends Til
         GlStateManager.enableBlend();
         GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 
-        if (MINECRAFT.isAmbientOcclusionEnabled())  {
+        if (Minecraft.isAmbientOcclusionEnabled())  {
             GL11.glShadeModel(GL11.GL_SMOOTH);
         } else  {
             GL11.glShadeModel(GL11.GL_FLAT);

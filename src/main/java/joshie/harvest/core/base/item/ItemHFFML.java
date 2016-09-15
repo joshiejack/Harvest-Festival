@@ -14,7 +14,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 
 public abstract class ItemHFFML<I extends ItemHFFML, E extends Impl<E>> extends ItemHFBase<I> implements ICreativeSorted, IFMLItem {
-    protected IForgeRegistry<E> registry;
+    protected final IForgeRegistry<E> registry;
     public ItemHFFML(IForgeRegistry<E> registry) {
         super();
         this.registry = registry;
@@ -28,6 +28,7 @@ public abstract class ItemHFFML<I extends ItemHFFML, E extends Impl<E>> extends 
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public I setUnlocalizedName(String name) {
         super.setUnlocalizedName(name);
         return (I) this;

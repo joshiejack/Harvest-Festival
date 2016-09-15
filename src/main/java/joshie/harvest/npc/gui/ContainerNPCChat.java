@@ -17,8 +17,8 @@ import static joshie.harvest.core.handlers.GuiHandler.NPC;
 import static joshie.harvest.core.handlers.GuiHandler.SHOP_OPTIONS;
 
 public class ContainerNPCChat extends ContainerBase {
-    protected EntityNPC npc;
-    protected EnumHand hand;
+    protected final EntityNPC npc;
+    protected final EnumHand hand;
     private int nextGui = -1;
     private boolean open = false;
 

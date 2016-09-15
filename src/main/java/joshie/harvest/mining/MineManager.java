@@ -9,8 +9,8 @@ import net.minecraft.util.math.BlockPos;
 
 public class MineManager  {
     public static final int CHUNK_BOUNDARY = 10;
-    private TIntObjectMap<TIntObjectMap<IBlockState[][]>> generation = new TIntObjectHashMap();
-    private TIntObjectMap<int[]> coordinates = new TIntObjectHashMap();
+    private final TIntObjectMap<TIntObjectMap<IBlockState[][]>> generation = new TIntObjectHashMap<>();
+    private final TIntObjectMap<int[]> coordinates = new TIntObjectHashMap<>();
     private TIntObjectMap<TIntObjectMap<BlockPos>> portalCoordinates = new TIntObjectHashMap<>();
 
     public boolean areCoordinatesGenerated(int mineID, int floor) {

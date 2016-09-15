@@ -36,9 +36,9 @@ public class GuiFridge extends GuiBaseContainer {
 
     /** Borrowed from Chisel and Bits **/
     public static class FridgeFont extends FontRenderer {
-        private FontRenderer original;
-        private int offsetX, offsetY;
-        private double scale;
+        private final FontRenderer original;
+        private final int offsetX, offsetY;
+        private final double scale;
 
         public FridgeFont(FontRenderer font) {
             super(Minecraft.getMinecraft().gameSettings, new ResourceLocation("textures/font/ascii.png"), Minecraft.getMinecraft().getTextureManager(), false);

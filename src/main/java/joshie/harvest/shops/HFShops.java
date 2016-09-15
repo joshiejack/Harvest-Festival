@@ -219,7 +219,7 @@ public class HFShops {
         MINER.addItem(150, HFMining.MINING_TOOL.getStackFromEnum(MiningTool.ESCAPE_ROPE));
 
         for (Type type: BlockStone.Type.values()) {
-            if (!type.isReal()) {
+            if (type.isFake()) {
                 MINER.addItem(new PurchaseableDecorative(1000, new ItemStack(HFMining.STONE, 16, type.ordinal())));
             }
         }
@@ -231,7 +231,7 @@ public class HFShops {
     }
 
     public static boolean TWENTY_FOUR_HOUR_SHOPPING;
-    private static HashMap<String, String> customShoppingList = new HashMap<>();
+    private static final HashMap<String, String> customShoppingList = new HashMap<>();
     public static void configure() {
         TWENTY_FOUR_HOUR_SHOPPING = getBoolean("Shops are open all the time", false);
         String[] shopCategories = new String[] { "BAITSHOP", "BARN", "BLACKSMITH", "BLOODMAGE", "CAFE", "CARPENTER", "POULTRY", "SUPERMARKET", "MINER" };

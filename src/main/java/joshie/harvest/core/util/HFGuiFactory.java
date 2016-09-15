@@ -12,6 +12,7 @@ import net.minecraftforge.fml.client.config.GuiConfig;
 import net.minecraftforge.fml.client.config.IConfigElement;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -21,9 +22,8 @@ import java.util.Set;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
-@HFEvents
+@HFEvents(Side.CLIENT)
 public class HFGuiFactory implements IModGuiFactory {
-
     @Override
     public void initialize(Minecraft minecraftInstance) {
     }
@@ -39,6 +39,7 @@ public class HFGuiFactory implements IModGuiFactory {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public RuntimeOptionGuiHandler getHandlerFor(RuntimeOptionCategoryElement element) {
         return null;
     }
@@ -48,6 +49,7 @@ public class HFGuiFactory implements IModGuiFactory {
             super(parentScreen, getConfigElements(), MODID, true, true, GuiConfig.getAbridgedConfigPath(ConfigHelper.getConfig().toString()));
         }
 
+        @SuppressWarnings("unchecked")
         private static List<IConfigElement> getConfigElements() {
             List<IConfigElement> list = new ArrayList<>();
 

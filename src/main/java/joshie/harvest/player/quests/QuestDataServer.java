@@ -19,9 +19,9 @@ import java.util.HashSet;
 import static joshie.harvest.core.network.PacketHandler.sendToClient;
 
 public class QuestDataServer extends QuestData {
-    private HashSet<Quest> finished = new HashSet<>();
+    private final HashSet<Quest> finished = new HashSet<>();
+    private final PlayerTrackerServer master;
 
-    public PlayerTrackerServer master;
     public QuestDataServer(PlayerTrackerServer master) {
         this.master = master;
     }

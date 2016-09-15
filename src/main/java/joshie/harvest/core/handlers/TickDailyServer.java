@@ -100,7 +100,7 @@ public class TickDailyServer extends HFTracker {
     public void setWorld(World world) {
         super.setWorld(world);
 
-        Set<BlockPos> positions = new HashSet(blockTicks.keySet());
+        Set<BlockPos> positions = new HashSet<>(blockTicks.keySet());
         for (BlockPos pos: positions) {
             IDailyTickableBlock tickable = HFApi.tickable.getTickableFromBlock(getWorld().getBlockState(pos).getBlock());
             if (tickable != null) {

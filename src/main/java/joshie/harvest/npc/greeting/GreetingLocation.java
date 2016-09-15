@@ -11,8 +11,8 @@ import net.minecraft.util.math.BlockPos;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class GreetingLocation implements IConditionalGreeting {
-    private BuildingLocation location;
-    private String text;
+    private final BuildingLocation location;
+    private final String text;
 
     public GreetingLocation(Building building, String area) {
         BuildingImpl location = (BuildingImpl) building;

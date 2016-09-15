@@ -8,7 +8,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class CalendarClient extends Calendar {
-    protected CalendarDate date = new CalendarDate(1, Season.SPRING, 1);
+    protected final CalendarDate date = new CalendarDate(1, Season.SPRING, 1);
 
     @Override
     public CalendarDate getDate() {

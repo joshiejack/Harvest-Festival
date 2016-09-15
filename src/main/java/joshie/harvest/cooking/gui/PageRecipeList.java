@@ -38,7 +38,7 @@ public class PageRecipeList extends Page {
     }
 
     private List<PageRecipe> recipes;
-    private Utensil utensil;
+    private final Utensil utensil;
 
     private PageRecipeList(Utensil utensil) {
         this.utensil = utensil;

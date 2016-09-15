@@ -34,6 +34,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import java.util.List;
 import java.util.Locale;
 
 import static joshie.harvest.animals.block.BlockTray.Tray.*;
@@ -91,11 +92,8 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
             if (nest.getDrop() != null) {
                 if (!world.isRemote) {
                     ItemStack drop = nest.getDrop();
-                    int relationship = 0;
-                    for (EntityHarvestChicken chicken: world.getEntitiesWithinAABB(EntityHarvestChicken.class, NEST_AABB.expand(32D, 8D, 32D))) {
-                        relationship = HFApi.relationships.getRelationship(player, chicken.getUUID());
-                        break;
-                    }
+                    List<EntityHarvestChicken> chickens = world.getEntitiesWithinAABB(EntityHarvestChicken.class, NEST_AABB.expand(32D, 8D, 32D));
+                    int relationship = chickens.size() > 0 ? HFApi.relationships.getRelationship(player, chickens.get(0).getUUID()): 0;
 
                     NBTTagCompound tag = drop.getSubCompound("Data", true);
                     tag.setInteger("Relationship", relationship);

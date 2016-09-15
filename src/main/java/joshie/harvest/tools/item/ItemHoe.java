@@ -76,11 +76,7 @@ public class ItemHoe extends ItemToolChargeable {
         UseHoeEvent event = new UseHoeEvent(player, stack.copy(), world, pos);
         event.setResult(Result.ALLOW); //Default to allow?
         if (MinecraftForge.EVENT_BUS.post(event)) return false;
-        if (event.getResult() != Result.DENY) {
-            return true;
-        }
-
-        return false;
+        return event.getResult() != Result.DENY;
     }
 
     @Override
@@ -93,18 +89,12 @@ public class ItemHoe extends ItemToolChargeable {
     }
 
     @Override
-    public void onPlayerStoppedUsing(ItemStack stack, World world, EntityLivingBase entity, int timeLeft) {
-        super.onPlayerStoppedUsing(stack, world, entity, timeLeft);
-    }
-
-    @Override
     protected void onFinishedCharging(World world, EntityLivingBase entity, @Nullable RayTraceResult result, ItemStack stack, ToolTier tier) {
         if (result != null && entity instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) entity;
             BlockPos pos = result.getBlockPos();
             EnumFacing front = EntityHelper.getFacingFromEntity(player);
-            if (!player.canPlayerEdit(pos.offset(front), front, stack)) return;
-            else {
+            if (player.canPlayerEdit(pos.offset(front), front, stack)) {
                 Block initial = world.getBlockState(pos).getBlock();
                 if (!(world.isAirBlock(pos.up()) && (initial == Blocks.GRASS || initial == Blocks.DIRT))) {
                     return;

@@ -15,7 +15,10 @@ public class HFGathering {
     public static final BlockRock ROCK = new BlockRock().register("rock");
     public static final BlockWood WOOD = new BlockWood().register("wood");
 
-    public static void preInit() {}
+    public static void preInit() {
+        //To init the blocks
+    }
+
     public static void init() {
         HFApi.gathering.registerGathering(WOOD.getStateFromEnum(BRANCH_SMALL), 8D);
         HFApi.gathering.registerGathering(WOOD.getStateFromEnum(BRANCH_MEDIUM), 5D);

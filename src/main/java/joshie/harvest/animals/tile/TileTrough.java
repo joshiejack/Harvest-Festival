@@ -59,8 +59,8 @@ public class TileTrough extends TileFillable {
         if (updateMasterInDirection(NORTH)) return;
         if (updateMasterInDirection(SOUTH)) return;
         if (updateMasterInDirection(EAST)) return;
-        if (updateMasterInDirection(WEST)) return;
-        else { //Make this block it's own master
+        if (!updateMasterInDirection(WEST)) {
+            //Make this block it's own master
             offsetX = 0;
             offsetZ = 0;
             size = 1;

@@ -34,7 +34,7 @@ public class RecipeStack implements RecipeHandler {
     private static class RecipeVanilla {
         public final ItemStack result;
         private final Ingredient[] requiredIngredients;
-        private Utensil requiredTool;
+        private final Utensil requiredTool;
 
         private RecipeVanilla(Utensil utensil, ItemStack result, Ingredient... ingredients) {
             this.requiredTool = utensil;

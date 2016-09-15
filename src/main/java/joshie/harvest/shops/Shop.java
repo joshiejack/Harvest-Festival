@@ -26,15 +26,15 @@ import java.util.List;
 
 public class Shop implements IShop {
     public static final IForgeRegistry<ShopEntry> REGISTRY = new RegistryBuilder<ShopEntry>().setName(new ResourceLocation("harvestfestival", "shop_items")).setType(ShopEntry.class).setIDRange(0, 100000).create();
-    private List<IPurchaseable> contents = new ArrayList<>();
-    private HashMultimap<Weekday, OpeningHours> open = HashMultimap.create();
+    private final List<IPurchaseable> contents = new ArrayList<>();
+    private final HashMultimap<Weekday, OpeningHours> open = HashMultimap.create();
     public final ResourceLocation resourceLocation;
     public final String unlocalizedName;
     @SideOnly(Side.CLIENT)
     private IShopGuiOverlay overlay;
 
     public static class ShopEntry extends IForgeRegistryEntry.Impl<ShopEntry> {
-        private IPurchaseable purchaseable;
+        private final IPurchaseable purchaseable;
         public ShopEntry(IPurchaseable purchaseable) {
             this.purchaseable = purchaseable;
         }
@@ -141,8 +141,8 @@ public class Shop implements IShop {
      * 18000 = 6PM
      * etc. */
     private static class OpeningHours {
-        private int open;
-        private int close;
+        private final int open;
+        private final int close;
 
         OpeningHours(int open, int close) {
             this.open = open;

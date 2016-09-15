@@ -14,10 +14,10 @@ import java.util.UUID;
 
 @SideOnly(Side.CLIENT)
 public class PlayerTrackerClient extends PlayerTracker {
-    private QuestDataClient quests = new QuestDataClient();
-    private RelationshipDataClient relationships = new RelationshipDataClient();
-    private StatsClient stats = new StatsClient();
-    private TrackingClient tracking = new TrackingClient();
+    private final QuestDataClient quests = new QuestDataClient();
+    private final RelationshipDataClient relationships = new RelationshipDataClient();
+    private final StatsClient stats = new StatsClient();
+    private final TrackingClient tracking = new TrackingClient();
 
     @Override
     public EntityPlayer getAndCreatePlayer() {

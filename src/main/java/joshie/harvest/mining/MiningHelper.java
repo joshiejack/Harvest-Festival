@@ -22,6 +22,8 @@ import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
+import java.util.List;
+
 import static joshie.harvest.mining.HFMining.MINING_ID;
 import static joshie.harvest.mining.MineManager.CHUNK_BOUNDARY;
 import static joshie.harvest.mining.MiningTicker.MAX_FLOORS;
@@ -31,11 +33,8 @@ public class MiningHelper {
         LootContext.Builder lootcontext$builder = new LootContext.Builder((WorldServer) world);
         lootcontext$builder.withLuck(player.getLuck() + luck);
         lootcontext$builder.withPlayer(player);
-        for (ItemStack itemstack : world.getLootTableManager().getLootTableFromLocation(loot).generateLootForPools(world.rand, lootcontext$builder.build())) {
-            return itemstack;
-        }
-
-        return null;
+        List<ItemStack> stacks = world.getLootTableManager().getLootTableFromLocation(loot).generateLootForPools(world.rand, lootcontext$builder.build());
+        return stacks.size() > 0 ? stacks.get(0) : null;
     }
 
     public static boolean isSpawnable(World world, BlockPos pos) {

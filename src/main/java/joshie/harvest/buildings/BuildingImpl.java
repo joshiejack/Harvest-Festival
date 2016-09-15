@@ -27,8 +27,8 @@ import java.util.*;
 
 public class BuildingImpl extends Impl<BuildingImpl> implements Building {
     //Components
-    private transient HashMap<String, PlaceableNPC> npc_offsets = new HashMap<>();
-    private transient ArrayList<PlaceableBlock> block_list = new ArrayList<>();
+    private final transient HashMap<String, PlaceableNPC> npc_offsets = new HashMap<>();
+    private final transient ArrayList<PlaceableBlock> block_list = new ArrayList<>();
     private transient ArrayList<Placeable> full_list = new ArrayList<>();
 
     //Costs and rules

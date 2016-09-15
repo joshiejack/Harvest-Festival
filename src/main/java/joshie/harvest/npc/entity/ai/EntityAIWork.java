@@ -7,8 +7,8 @@ import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.util.math.BlockPos;
 
 public class EntityAIWork extends EntityAIBase {
+    private final EntityNPCShopkeeper npc;
     private BlockPos target;
-    private EntityNPCShopkeeper npc;
     private int moveTimer;
 
     public EntityAIWork(EntityNPCShopkeeper npc) {

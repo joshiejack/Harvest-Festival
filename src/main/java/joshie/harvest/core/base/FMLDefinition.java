@@ -17,10 +17,10 @@ import java.util.HashMap;
 @SideOnly(Side.CLIENT)
 public class FMLDefinition<E extends Impl<E>> implements ItemMeshDefinition {
     private static final HashMap<String, FMLDefinition> DEFINITIONS = new HashMap<>();
-    protected IForgeRegistry<E> registry;
-    protected HashMap<E, ModelResourceLocation> models = new HashMap<>();
-    protected String name;
-    protected IFMLItem item;
+    protected final IForgeRegistry<E> registry;
+    protected final HashMap<E, ModelResourceLocation> models = new HashMap<>();
+    protected final String name;
+    protected final IFMLItem item;
 
     public FMLDefinition(IFMLItem item, String name, IForgeRegistry<E> registry) {
         this.registry = registry;

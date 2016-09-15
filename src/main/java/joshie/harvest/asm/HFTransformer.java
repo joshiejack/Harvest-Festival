@@ -15,7 +15,7 @@ import java.util.Map;
 @MCVersion("1.10.2")
 public class HFTransformer implements IFMLLoadingPlugin, IClassTransformer {
     public static boolean isObfuscated = false;
-    private static List<AbstractASM> asm = new ArrayList<>();
+    private static final List<AbstractASM> asm = new ArrayList<>();
 
     static {
         asm.add(new BlockSnowTransformer());

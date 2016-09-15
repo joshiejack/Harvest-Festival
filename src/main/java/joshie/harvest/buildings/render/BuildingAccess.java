@@ -17,7 +17,7 @@ import javax.annotation.Nullable;
 import java.util.HashMap;
 
 public class BuildingAccess implements IBlockAccess {
-    private HashMap<BlockPos, IBlockState> mapping = new HashMap<>();
+    private final HashMap<BlockPos, IBlockState> mapping = new HashMap<>();
 
     public BuildingAccess(BuildingImpl building, Direction direction) {
         for (PlaceableBlock block: building.getPreviewList()) {

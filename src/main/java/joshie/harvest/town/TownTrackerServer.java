@@ -72,8 +72,7 @@ public class TownTrackerServer extends TownTracker {
 
     private int matchUUIDWithMineID(UUID uuid) {
         for (int i = 0; i < 32000; i++) { //Add a mineid to uuid entry
-            if (townIDs.inverse().containsKey(i)) continue;
-            else {
+            if (!townIDs.inverse().containsKey(i)) {
                 townIDs.put(uuid, i);
                 HFTrackers.markDirty(getDimension());
                 return i;

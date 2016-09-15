@@ -14,9 +14,9 @@ import net.minecraft.util.math.Vec3d;
 import static joshie.harvest.api.npc.INPC.Location.WORK;
 
 public class EntityAISchedule extends EntityAIBase {
+    private final EntityNPCHuman npc;
     private BuildingLocation location;
     private BlockPos blockTarget;
-    private EntityNPCHuman npc;
     private int teleportTimer;
     private int scheduleTimer;
 

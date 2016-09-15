@@ -39,7 +39,7 @@ public class TileShipping extends TileFaceable {
     }
 
     /** Capabilities **/
-    private IItemHandler handler = new EmptyHandler() {
+    private final IItemHandler handler = new EmptyHandler() {
         @Override
         public int getSlots() {
             return 1;

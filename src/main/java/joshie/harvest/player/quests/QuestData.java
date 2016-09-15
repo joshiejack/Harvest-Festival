@@ -8,7 +8,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import java.util.HashSet;
 
 public abstract class QuestData {
-    protected HashSet<Quest> current = new HashSet<>(100);
+    protected final HashSet<Quest> current = new HashSet<>(100);
 
     public HashSet<Quest> getCurrent() {
         return current;

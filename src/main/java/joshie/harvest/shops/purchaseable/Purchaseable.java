@@ -12,9 +12,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 
 public class Purchaseable implements IPurchaseable {
-    protected ItemStack[] stacks;
-    private String resource;
-    private long cost;
+    protected final ItemStack[] stacks;
+    private final String resource;
+    private final long cost;
 
     public Purchaseable(long cost, ItemStack... stacks) {
         this.cost = cost;

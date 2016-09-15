@@ -20,8 +20,8 @@ import java.util.Iterator;
 
 public class TrackingServer extends Tracking {
     private HashSet<StackSold> toBeShipped = new HashSet<>(); //What needs to be sold
+    public final PlayerTrackerServer master;
 
-    public PlayerTrackerServer master;
     public TrackingServer(PlayerTrackerServer master) {
         this.master = master;
     }

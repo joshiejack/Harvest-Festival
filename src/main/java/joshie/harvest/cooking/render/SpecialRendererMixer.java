@@ -13,7 +13,7 @@ public class SpecialRendererMixer extends SpecialRendererCookware<TileMixer> {
     @Override
     protected void renderCookware(TileMixer mixer) {
         //Render the blade as an item
-        renderIngredient(mixer.BLADE_STACK, -0.38F, mixer.blade, 0F, 0F);
+        renderIngredient(TileMixer.BLADE_STACK, -0.38F, mixer.blade, 0F, 0F);
         super.renderCookware(mixer);
     }
 

@@ -26,7 +26,7 @@ import java.util.Set;
 import java.util.UUID;
 
 public class TownDataServer extends TownData {
-    public GatheringData gathering = new GatheringData();
+    public final GatheringData gathering = new GatheringData();
     private Set<ResourceLocation> deadVillagers = new HashSet<>();
 
     public TownDataServer() {}

@@ -18,8 +18,8 @@ import java.util.List;
 import static net.minecraft.util.text.TextFormatting.WHITE;
 
 public class PurchaseableCropSeeds implements IPurchaseable {
-    private String resource;
-    private Crop crop;
+    private final String resource;
+    private final Crop crop;
 
     public PurchaseableCropSeeds(Crop crop) {
         this.crop = crop;

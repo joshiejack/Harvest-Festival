@@ -50,8 +50,8 @@ public class FakeEntityRenderer extends TileEntitySpecialRenderer<EntityItemRend
     }
 
     public static class RenderPair {
-        public ModelBase model;
-        public ResourceLocation texture;
+        public final ModelBase model;
+        public final ResourceLocation texture;
 
         public RenderPair(ResourceLocation name, ModelBase model) {
             this.model = model;

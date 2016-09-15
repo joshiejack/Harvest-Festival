@@ -17,7 +17,6 @@ import static joshie.harvest.core.lib.LoadOrder.HFCALENDAR;
 public class HFCalendar {
     private static final SeasonProvider HIDDEN = new SeasonProviderHidden();
     public static Configuration CONFIG;
-    private static DimensionType SEASONS;
     public static int DAYS_PER_SEASON = 30;
     public static int DAYS_PER_SEASON_INTEGRATED;
     private static int DAYS_PER_SEASON_DEDICATED;
@@ -38,9 +37,9 @@ public class HFCalendar {
     public static int Y_GOLD;
 
     public static void preInit() {
-        SEASONS = DimensionType.register("seasons", "seasons", OVERWORLD_ID, HFWorldProvider.class, true);
+        DimensionType seasons = DimensionType.register("seasons", "seasons", OVERWORLD_ID, HFWorldProvider.class, true);
         DimensionManager.unregisterDimension(0);
-        DimensionManager.registerDimension(0, SEASONS);
+        DimensionManager.registerDimension(0, seasons);
         HFApi.calendar.registerSeasonProvider(1, HIDDEN);
         HFApi.calendar.registerSeasonProvider(-1, HIDDEN);
     }

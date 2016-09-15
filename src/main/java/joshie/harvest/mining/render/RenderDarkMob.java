@@ -8,7 +8,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
 
 public class RenderDarkMob<T extends EntityLiving> extends RenderLiving<T> {
-    protected ResourceLocation texture;
+    protected final ResourceLocation texture;
 
     public RenderDarkMob(RenderManager manager, ModelBase model, String animal) {
         super(manager, model, 1F);

@@ -14,7 +14,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 
 public abstract class ItemHFFoodFML<I extends ItemHFFoodFML, E extends Impl<E>> extends ItemHFFood<I> implements ICreativeSorted, IFMLItem {
-    protected IForgeRegistry<E> registry;
+    protected final IForgeRegistry<E> registry;
     public ItemHFFoodFML(IForgeRegistry<E> registry) {
         super();
         this.registry = registry;
@@ -28,6 +28,7 @@ public abstract class ItemHFFoodFML<I extends ItemHFFoodFML, E extends Impl<E>> 
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public I setUnlocalizedName(String name) {
         super.setUnlocalizedName(name);
         return (I) this;

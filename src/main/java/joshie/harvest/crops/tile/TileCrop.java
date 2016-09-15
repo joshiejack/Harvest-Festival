@@ -20,7 +20,7 @@ public class TileCrop extends TileDaily {
         public void newDay(Phase phase) {}
     }
 
-    protected CropData data = new CropData();
+    protected final CropData data = new CropData();
 
     //Return and create new data if it doesn't exist yet
     @Nonnull

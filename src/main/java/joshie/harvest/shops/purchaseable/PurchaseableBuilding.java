@@ -11,8 +11,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class PurchaseableBuilding extends PurchaseableBuilder {
-    private ResourceLocation resource;
-    private BuildingImpl building;
+    private final ResourceLocation resource;
+    private final BuildingImpl building;
 
     public PurchaseableBuilding(BuildingImpl building) {
         super(building.getCost(), building.getWoodCount(), building.getStoneCount(), building.getRegistryName());

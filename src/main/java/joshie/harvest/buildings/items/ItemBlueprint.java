@@ -46,7 +46,7 @@ public class ItemBlueprint extends ItemHFFML<ItemBlueprint, BuildingImpl> implem
         if (world.provider.getDimension() == 0) {
             RayTraceResult raytrace = BuildingHelper.rayTrace(player, 128, 1F);
             if (raytrace == null || raytrace.getBlockPos() == null || raytrace.sideHit != EnumFacing.UP) {
-                return new ActionResult(EnumActionResult.PASS, stack);
+                return new ActionResult<>(EnumActionResult.PASS, stack);
             }
 
             if (!world.isRemote) TownHelper.ensureTownExists(world, raytrace.getBlockPos());
@@ -74,7 +74,7 @@ public class ItemBlueprint extends ItemHFFML<ItemBlueprint, BuildingImpl> implem
             ChatHelper.displayChat(TextFormatting.RED + Text.translate("town.failure") + " " + TextFormatting.WHITE + Text.translate("town.dimension"));
         }
 
-        return new ActionResult(EnumActionResult.PASS, stack);
+        return new ActionResult<>(EnumActionResult.PASS, stack);
     }
 
     @Override

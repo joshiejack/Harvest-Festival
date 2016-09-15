@@ -37,6 +37,7 @@ public abstract class ItemHFEnum<I extends ItemHFEnum, E extends Enum<E> & IStri
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public I setUnlocalizedName(String name) {
         super.setUnlocalizedName(name);
         return (I) this;

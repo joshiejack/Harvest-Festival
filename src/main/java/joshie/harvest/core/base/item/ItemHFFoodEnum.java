@@ -37,6 +37,7 @@ public abstract class ItemHFFoodEnum<I extends ItemHFFoodEnum, E extends Enum<E>
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public I setUnlocalizedName(String name) {
         super.setUnlocalizedName(name);
         return (I) this;

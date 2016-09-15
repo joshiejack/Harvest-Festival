@@ -13,8 +13,8 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.ITextComponent;
 
 public class FridgeData implements IInventory {
-    protected ItemStack[] inventory;
-    private TileFridge tile;
+    protected final ItemStack[] inventory;
+    private final TileFridge tile;
     private int players;
 
     public FridgeData(TileFridge tile) {

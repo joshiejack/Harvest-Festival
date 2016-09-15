@@ -27,10 +27,10 @@ import java.util.List;
 public class GuiNPCShop extends GuiNPCBase {
     protected static final ResourceLocation gui_texture = new ResourceLocation(HFModInfo.MODID, "textures/gui/shop.png");
     protected static final ResourceLocation shelve_texture = new ResourceLocation(HFModInfo.MODID, "textures/gui/shop_extra.png");
-    protected StatsClient stats;
-    protected List<IPurchaseable> contents;
-    protected IShopGuiOverlay overlay;
-    protected Shop shop;
+    protected final StatsClient stats;
+    protected final List<IPurchaseable> contents;
+    protected final IShopGuiOverlay overlay;
+    protected final Shop shop;
     protected int start;
 
     public GuiNPCShop(EntityPlayer player, EntityNPC npc, int nextGui) {
@@ -126,7 +126,7 @@ public class GuiNPCShop extends GuiNPCBase {
         }
     }
 
-    private static DecimalFormat formatter = new DecimalFormat("#,###");
+    private static final DecimalFormat formatter = new DecimalFormat("#,###");
 
     private void drawCoinage(int x, int y, long gold) {
         String formatted = String.valueOf(formatter.format(gold));

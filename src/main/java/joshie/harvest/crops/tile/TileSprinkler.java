@@ -81,7 +81,7 @@ public class TileSprinkler extends TileDaily implements ITickable {
     }
 
     /** Capabilities **/
-    protected FluidTank tank = new FluidTank(Fluid.BUCKET_VOLUME) {
+    private final FluidTank tank = new FluidTank(Fluid.BUCKET_VOLUME) {
         @Override
         public boolean canFillFluidType(FluidStack fluid) {
             return fluid.getFluid() == FluidRegistry.WATER;

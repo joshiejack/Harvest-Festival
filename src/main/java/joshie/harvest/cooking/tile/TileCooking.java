@@ -34,10 +34,10 @@ public abstract class TileCooking extends TileFaceable {
     protected ItemStack result;
     private int last;
 
-    public float[] rotations = new float[20];
-    public float[] offset1 = new float[20];
-    public float[] offset2 = new float[20];
-    public float[] heightOffset = new float[20];
+    public final float[] rotations = new float[20];
+    public final float[] offset1 = new float[20];
+    public final float[] offset2 = new float[20];
+    public final float[] heightOffset = new float[20];
 
     public TileCooking() {}
 

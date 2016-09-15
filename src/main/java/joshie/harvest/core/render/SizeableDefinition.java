@@ -17,7 +17,7 @@ import java.util.Locale;
 
 public class SizeableDefinition implements ItemMeshDefinition {
     public static final SizeableDefinition INSTANCE = new SizeableDefinition();
-    protected HashMap<Sizeable, EnumMap<Size, ModelResourceLocation>> models = new HashMap<>();
+    protected final HashMap<Sizeable, EnumMap<Size, ModelResourceLocation>> models = new HashMap<>();
 
     private SizeableDefinition() {
         ModelBakery.registerItemVariants(HFCore.SIZEABLE);

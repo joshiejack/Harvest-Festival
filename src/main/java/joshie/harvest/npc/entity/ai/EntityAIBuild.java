@@ -9,7 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
 public class EntityAIBuild extends EntityAIBase {
-    private EntityNPCBuilder npc;
+    private final EntityNPCBuilder npc;
     private int teleportTimer;
     private int buildingTimer;
 

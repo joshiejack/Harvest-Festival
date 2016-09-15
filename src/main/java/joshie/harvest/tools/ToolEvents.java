@@ -82,8 +82,7 @@ public class ToolEvents {
 
     @SubscribeEvent
     public void onPlayerTick(PlayerTickEvent event) {
-        if (event.phase != Phase.END || event.player.worldObj.getTotalWorldTime() %20 != 0) return;
-        else {
+        if (event.phase == Phase.END || event.player.worldObj.getTotalWorldTime() %20 == 0) {
             if (event.player.isPotionActive(FATIGUE)) {
                 if (event.player.worldObj.rand.nextInt(128) == 0) {
                     event.player.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 100, 7, true, false));

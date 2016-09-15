@@ -24,9 +24,9 @@ public class HFDailyTickable implements IDailyTickableRegistry {
 
     private HFDailyTickable() {
         registry.put(Blocks.FARMLAND, new IDailyTickableBlock() {
-            private boolean hasCrops(World worldIn, BlockPos pos)  {
+            private boolean hasNoCrops(World worldIn, BlockPos pos)  {
                 Block block = worldIn.getBlockState(pos.up()).getBlock();
-                return block instanceof net.minecraftforge.common.IPlantable;
+                return !(block instanceof net.minecraftforge.common.IPlantable);
             }
 
             @Override
@@ -36,7 +36,7 @@ public class HFDailyTickable implements IDailyTickableRegistry {
                 } else {
                     if (state == WET_SOIL) world.setBlockState(pos, DRYING_SOIL, 2);
                     else if (state == DRYING_SOIL) world.setBlockState(pos, DRY_SOIL, 2);
-                    else if (state == DRY_SOIL && (!hasCrops(world, pos))) world.setBlockState(pos, Blocks.DIRT.getDefaultState(), 2);
+                    else if (state == DRY_SOIL && hasNoCrops(world, pos)) world.setBlockState(pos, Blocks.DIRT.getDefaultState(), 2);
                 }
 
                 return world.getBlockState(pos).getBlock() == DRY_SOIL.getBlock();

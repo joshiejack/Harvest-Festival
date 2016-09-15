@@ -57,8 +57,8 @@ public class TownData {
     public static final String GODDESS_HOME = "goddesspond";
     //END NPC NAME OF LOCATIONS **/
     
-    protected Map<ResourceLocation, TownBuilding> buildings = new HashMap<>();
-    protected LinkedList<BuildingStage> building = new LinkedList();
+    protected final Map<ResourceLocation, TownBuilding> buildings = new HashMap<>();
+    protected final LinkedList<BuildingStage> building = new LinkedList<>();
     protected BlockPos townCentre;
     protected UUID uuid;
 

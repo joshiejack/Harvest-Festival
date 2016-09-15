@@ -33,7 +33,7 @@ public class ItemBuilding extends ItemHFFML<ItemBuilding, BuildingImpl> implemen
         if (world.provider.getDimension() == 0) {
             RayTraceResult raytrace = BuildingHelper.rayTrace(player, 128, 0F);
             if (raytrace == null || raytrace.getBlockPos() == null || raytrace.sideHit != EnumFacing.UP) {
-                return new ActionResult(EnumActionResult.PASS, stack);
+                return new ActionResult<>(EnumActionResult.PASS, stack);
             }
 
             BuildingImpl building = getObjectFromStack(stack);
@@ -49,7 +49,7 @@ public class ItemBuilding extends ItemHFFML<ItemBuilding, BuildingImpl> implemen
             ChatHelper.displayChat(TextFormatting.RED + Text.translate("town.failure") + " " + TextFormatting.WHITE + Text.translate("town.dimension"));
         }
 
-        return new ActionResult(EnumActionResult.PASS, stack);
+        return new ActionResult<>(EnumActionResult.PASS, stack);
     }
 
     @Override

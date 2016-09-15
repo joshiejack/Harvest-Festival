@@ -97,6 +97,7 @@ public class HFCrops {
     public static final Crop NETHER_WART = registerCrop("nether_wart", 25000L, 10L, 4, 1, 1, 0x8B0000).setItem(new ItemStack(Items.NETHER_WART)).setStateHandler(new StateHandlerNetherWart()).setPlantType(EnumPlantType.Nether).setNoWaterRequirements().setGrowthHandler(SOUL_SAND).setDropHandler(new DropHandlerNetherWart());
 
 
+    @SuppressWarnings("unchecked")
     public static void preInit() {
         //Register the crop serializer
         LootFunctionManager.registerFunction(new SetCropType.Serializer());

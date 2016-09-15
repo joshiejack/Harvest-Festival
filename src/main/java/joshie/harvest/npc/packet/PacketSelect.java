@@ -43,6 +43,7 @@ public class PacketSelect extends PenguinPacket {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void handlePacket(EntityPlayer player) {
         Quest theQuest = null;
         Selection selection;

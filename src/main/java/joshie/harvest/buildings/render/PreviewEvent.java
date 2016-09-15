@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit;
 public class PreviewEvent {
     //Cache Values
     private static final Cache<BuildingKey, BuildingRenderer> CACHE = CacheBuilder.newBuilder().expireAfterWrite(1L, TimeUnit.MINUTES).maximumSize(128).build();
-    private BuildingVertexUploader vertexUploader = new BuildingVertexUploader();
+    private final BuildingVertexUploader vertexUploader = new BuildingVertexUploader();
     private ItemStack held; //Cache the held itemstack
     private BuildingImpl building; //Cache the building value
 

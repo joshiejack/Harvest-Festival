@@ -34,6 +34,7 @@ public class HFCooking {
     public static final ItemUtensil UTENSILS = new ItemUtensil().register("utensils");
     public static final ItemIngredients INGREDIENTS = new ItemIngredients().register("ingredients");
 
+    @SuppressWarnings("unchecked")
     public static void preInit() {
         BLADE_STACK = UTENSILS.getStackFromEnum(BLADE);
         HFApi.cooking.registerRecipeHandler(new RecipeMayo());

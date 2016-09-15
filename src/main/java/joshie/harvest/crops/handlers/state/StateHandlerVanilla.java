@@ -8,7 +8,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.AxisAlignedBB;
 
 public abstract class StateHandlerVanilla implements IStateHandler {
-    protected Block block;
+    protected final Block block;
 
     public StateHandlerVanilla(Block block) {
         this.block = block;

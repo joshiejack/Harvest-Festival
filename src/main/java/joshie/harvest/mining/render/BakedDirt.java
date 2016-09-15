@@ -36,8 +36,8 @@ import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class BakedDirt extends BakedHF {
     private final IBakedModel overlay;
-    protected List<WeightedTexture> textures;
-    private int totalWeight;
+    protected final List<WeightedTexture> textures;
+    private final int totalWeight;
 
     public BakedDirt(IBakedModel parent, IBakedModel overlay, List<WeightedTexture> overlays) {
         super(parent);
@@ -205,7 +205,7 @@ public class BakedDirt extends BakedHF {
     }
 
     private static class WeightedTexture extends WeightedRandom.Item {
-        public TextureAtlasSprite sprite;
+        public final TextureAtlasSprite sprite;
 
         public WeightedTexture(TextureAtlasSprite sprite, int weight) {
             super(weight);

@@ -104,9 +104,7 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
     }
 
     public boolean canUse(ItemStack stack) {
-        if (getDamageForDisplay(stack) + 1 < getMaximumToolDamage(stack) || !canBeDamaged()) {
-            return true;
-        } else return false;
+        return getDamageForDisplay(stack) + 1 < getMaximumToolDamage(stack) || !canBeDamaged();
     }
 
     @Override
@@ -120,11 +118,6 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
         }
 
         return true;
-    }
-
-    @Override
-    public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
-        return super.shouldCauseReequipAnimation(oldStack, newStack, slotChanged);
     }
 
     @Override

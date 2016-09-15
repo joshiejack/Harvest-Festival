@@ -15,8 +15,8 @@ import net.minecraft.util.EnumHand;
 import java.util.Locale;
 
 public class GuiNPCGift extends GuiNPCChat {
-    private ItemStack gift;
-    private Quality value;
+    private final ItemStack gift;
+    private final Quality value;
 
     public GuiNPCGift(EntityPlayer player, EntityNPC npc, EnumHand hand) {
         super(player, npc, hand, -1);

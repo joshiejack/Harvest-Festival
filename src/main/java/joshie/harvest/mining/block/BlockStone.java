@@ -35,8 +35,8 @@ public class BlockStone extends BlockHFEnumCube<BlockStone, Type> {
     public enum Type implements IStringSerializable {
         REAL, DECORATIVE_BLANK, DECORATIVE_PURPLE, DECORATIVE_SILVER, DECORATIVE_GREEN, DECORATIVE_BLUE, DECORATIVE_RED;
 
-        public boolean isReal() {
-            return this == REAL;
+        public boolean isFake() {
+            return this != REAL;
         }
 
         @Override
@@ -104,7 +104,7 @@ public class BlockStone extends BlockHFEnumCube<BlockStone, Type> {
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag) {
         int adjusted = Math.max(0, Math.min(Type.values().length, stack.getItemDamage()));
         Type type = Type.values()[adjusted];
-        if (!type.isReal()) {
+        if (type.isFake()) {
             list.add(TextFormatting.YELLOW + Text.translate("tooltip.cosmetic"));
         }
     }

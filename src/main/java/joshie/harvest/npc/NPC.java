@@ -29,26 +29,27 @@ import static joshie.harvest.api.npc.INPCRegistry.Age.CHILD;
 import static joshie.harvest.core.lib.HFModInfo.*;
 
 public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl<NPC> implements INPC {
-    private List<IConditionalGreeting> conditionals = new ArrayList<>(256);
-    private GreetingMultiple npcGreetings;
-    private String generalLocalizationKey;
-    private String localizationKey;
-    private ResourceLocation skin;
-    private UUID uuid;
+    private final List<IConditionalGreeting> conditionals = new ArrayList<>(256);
+    private final EnumMap<Location, BuildingLocation> locations;
+    private final GreetingMultiple npcGreetings;
+    private final String generalLocalizationKey;
+    private final String localizationKey;
+    private final ResourceLocation skin;
+    private final UUID uuid;
 
-    private Age age;
-    private Gender gender;
+    private final Age age;
+    private final Gender gender;
+    private final CalendarDate birthday;
+    private final int insideColor;
+    private final int outsideColor;
+
     private float height;
     private float offset;
     private IGiftHandler gifts;
     private ISchedule schedule;
     private boolean isBuilder;
     private Shop shop;
-    private CalendarDate birthday;
-    private EnumMap<Location, BuildingLocation> locations;
     private boolean doesRespawn;
-    private int insideColor;
-    private int outsideColor;
     private boolean alex;
 
     public NPC() {

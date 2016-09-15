@@ -8,7 +8,7 @@ import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
 
 public class Sizeable extends IForgeRegistryEntry.Impl<Sizeable>  {
     private final String unlocalized;
-    private long small, medium, large;
+    private final long small, medium, large;
 
     public Sizeable(String unlocalized, long small, long medium, long large) {
         this.unlocalized = unlocalized;

@@ -20,7 +20,7 @@ public class GuiCookbook extends GuiScreen {
     public static final ResourceLocation RIGHT_GUI = new ResourceLocation(HFModInfo.MODID, "textures/gui/book_cooking_right.png");
     public static final PageUtensilList MASTER = new PageUtensilList();
     public static final Set<Ingredient> ingredients = new HashSet<>();
-    private ArrayList<Runnable> runnables = new ArrayList<>();
+    private final ArrayList<Runnable> runnables = new ArrayList<>();
     private static final int imageWidth = 154;
     private static final int imageHeight = 204;
     static final int MAX_UTENSILS_DISPLAY = 5;

@@ -13,7 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.IForgeRegistry;
 
 public class MealDefinition extends FMLDefinition<MealImpl> {
-    private TIntObjectMap<ModelResourceLocation> burnt = new TIntObjectHashMap<>();
+    private final TIntObjectMap<ModelResourceLocation> burnt = new TIntObjectHashMap<>();
 
     public MealDefinition(IFMLItem item, String name, IForgeRegistry<MealImpl> registry) {
         super(item, name, registry);

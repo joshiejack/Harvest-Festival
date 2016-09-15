@@ -23,7 +23,7 @@ import java.util.Map;
 @HFEvents
 public class CommandManager extends CommandBase implements ICommand {
     public static final CommandManager INSTANCE = new CommandManager();
-    private HashMap<String, AbstractHFCommand> commands = new HashMap<>();
+    private final HashMap<String, AbstractHFCommand> commands = new HashMap<>();
 
     public void registerCommand(AbstractHFCommand command) {
         commands.put(command.getCommandName(), command);

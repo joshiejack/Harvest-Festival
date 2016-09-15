@@ -31,6 +31,7 @@ import java.util.HashSet;
 import java.util.List;
 
 //TODO: Change to capability
+@SuppressWarnings("deprecation")
 public class ItemWateringCan extends ItemTool<ItemWateringCan> implements IFluidContainerItem {
     public ItemWateringCan() {
         super("watering_can", new HashSet<>());

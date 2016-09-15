@@ -90,7 +90,8 @@ public abstract class Quest extends Impl<Quest> {
     @SuppressWarnings("deprecation")
     @SideOnly(Side.CLIENT)
     public String getLocalized(String quest, Object... format) {
-        return I18n.translateToLocalFormatted(getRegistryName().getResourceDomain() + ".quest." + getRegistryName().getResourcePath() + "." + quest.replace("_", ""), format);
+        if (format.length == 0) return I18n.translateToLocal(getRegistryName().getResourceDomain() + ".quest." + getRegistryName().getResourcePath() + "." + quest.replace("_", ""));
+        else return I18n.translateToLocalFormatted(getRegistryName().getResourceDomain() + ".quest." + getRegistryName().getResourcePath() + "." + quest.replace("_", ""), format);
     }
 
     /** Return the script, in a simple unlocalised form

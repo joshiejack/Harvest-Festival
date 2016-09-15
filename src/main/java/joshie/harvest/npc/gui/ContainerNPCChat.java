@@ -2,6 +2,7 @@ package joshie.harvest.npc.gui;
 
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.quests.Quest;
 import joshie.harvest.api.quests.QuestQuestion;
 import joshie.harvest.core.handlers.HFTrackers;
@@ -36,6 +37,18 @@ public class ContainerNPCChat extends ContainerBase {
         }
     }
 
+    private boolean handlesScript(Quest quest, INPC npc) {
+        INPC[] npcs = quest.getNPCs();
+        if (npcs == null) return false;
+        else {
+            for (INPC n: npcs) {
+                if (n.equals(npc)) return true;
+            }
+        }
+
+        return false;
+    }
+
     @Override
     public void onContainerClosed(EntityPlayer player) {
         if (!player.worldObj.isRemote) {
@@ -52,7 +65,9 @@ public class ContainerNPCChat extends ContainerBase {
                 npc.setTalking(null);
                 Set<Quest> quests = HFApi.quests.getCurrentQuests(player);
                 for (Quest quest : quests) {
-                    quest.onChatClosed(player, npc, npc.getNPC());
+                    if (handlesScript(quest, npc.getNPC())) {
+                        quest.onChatClosed(player, npc, npc.getNPC());
+                    }
                 }
             }
 

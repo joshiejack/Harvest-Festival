@@ -82,7 +82,7 @@ public class QuestCowCare extends QuestQuestion {
         if (npc == BUILDER) {
             if (TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.BARN)) {
                 //If the barn exists yulif will tell the player to go and talk to jim
-                return getLocalized("reminder.talk");
+                return getLocalized("reminder.intro");
             }
 
             //Yulif reminds the player that you should go and build a ranch

@@ -60,7 +60,7 @@ public class EntityAISchedule extends EntityAIBase {
                     //Teleportation
                     if ((teleportTimer >= 60 && distance <= 64D) || teleportTimer >= 300) {
                         teleportTimer = 0;
-                        npc.setPositionAndUpdate(blockTarget.getX() + 0.5D, blockTarget.getY() + 1D, blockTarget.getZ() + 0.5D);
+                        npc.attemptTeleport(blockTarget.getX() + 0.5D, blockTarget.getY() + 1D, blockTarget.getZ() + 0.5D);
                     }
 
                     teleportTimer++;

@@ -43,12 +43,15 @@ public class GoddessHandler {
 
     public static boolean spawnGoddess(World world, double x, double y, double z, boolean flower, boolean move) {
         List<EntityNPCGoddess> npcs = world.getEntitiesWithinAABB(EntityNPCGoddess.class, new AxisAlignedBB(x - 0.5F, y - 0.5F, z - 0.5F, x + 0.5F, y + 0.5F, z + 0.5F).expand(32D, 32D, 32D));
-        EntityNPCGoddess goddess = npcs.size() > 0 ? npcs.get(0) : NPCHelper.getEntityForNPC(world, (NPC) HFNPCs.GODDESS);
+        boolean newGoddess = npcs.size() < 1;
+        EntityNPCGoddess goddess = !newGoddess ? npcs.get(0) : NPCHelper.getEntityForNPC(world, (NPC) HFNPCs.GODDESS);
         if (flower) goddess.setFlower();
         if (move || (goddess.posX == 0 && goddess.posY == 0 && goddess.posZ == 0)) goddess.setPosition(x, y + 1, z);
-        goddess.resetSpawnHome();
-        world.spawnEntityInWorld(goddess);
-        return npcs.size() > 0 && npcs.get(0) == goddess;
+        if (newGoddess) {
+            world.spawnEntityInWorld(goddess);
+        }
+
+        return !newGoddess;
     }
 
     //Goddess flower spawns goddess

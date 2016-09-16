@@ -2,16 +2,14 @@ package joshie.harvest.buildings.render;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
+import joshie.harvest.buildings.BuildingHelper;
 import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.HFBuildings;
-import joshie.harvest.buildings.BuildingHelper;
 import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.util.HFEvents;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -33,10 +31,8 @@ public class PreviewEvent {
     private BuildingRenderer getRenderer(World world, EntityPlayerSP player) {
         if (player == null) return null;
         ItemStack stack = player.getHeldItemMainhand();
-        EnumHand hand = EnumHand.MAIN_HAND;
         if (isInvalidStack(stack)) {
             stack = player.getHeldItemOffhand();
-            hand = EnumHand.OFF_HAND;
         }
 
         if (isInvalidStack(stack)) return null;
@@ -49,11 +45,10 @@ public class PreviewEvent {
 
             //Attempt the raytrace
             RayTraceResult raytrace = BuildingHelper.rayTrace(player, 128, 0F);
-            if (raytrace == null || raytrace.getBlockPos() == null || raytrace.sideHit != EnumFacing.UP) return null;
+            if (raytrace == null || raytrace.getBlockPos() == null) return null;
             else {
-
                 try {
-                    BuildingKey key = BuildingHelper.getPositioning(world, raytrace, building, player, hand);
+                    BuildingKey key = BuildingHelper.getPositioning(stack, world, raytrace, building, player, false);
                     return CACHE.get(key, new Callable<BuildingRenderer>() {
                         @Override
                         public BuildingRenderer call() throws Exception {

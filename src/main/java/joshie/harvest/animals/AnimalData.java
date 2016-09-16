@@ -148,10 +148,11 @@ public class AnimalData implements IAnimalData {
             }
 
             //Add health daily for animals that are being looked after
-            if (healthiness == originalHealth && healthiness < Byte.MAX_VALUE) {
-                healthiness++;
+            if (healthiness == originalHealth) {
+                healthiness+= 10;
             }
 
+            healthiness = Math.min(127, Math.max(-128, healthiness));
             daysNotFed++;
             daysPassed++;
             thrown = false;

@@ -32,7 +32,7 @@ public class ItemBuilding extends ItemHFFML<ItemBuilding, BuildingImpl> implemen
     public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
         if (world.provider.getDimension() == 0) {
             RayTraceResult raytrace = BuildingHelper.rayTrace(player, 128, 0F);
-            if (raytrace == null || raytrace.getBlockPos() == null || raytrace.sideHit != EnumFacing.UP) {
+            if (raytrace == null || raytrace.getBlockPos() == null) {
                 return new ActionResult<>(EnumActionResult.PASS, stack);
             }
 
@@ -42,8 +42,8 @@ public class ItemBuilding extends ItemHFFML<ItemBuilding, BuildingImpl> implemen
                     TownHelper.ensureTownExists(world, raytrace.getBlockPos()); //Force a town to exist near where you clicked
                 }
 
-                BuildingKey key = BuildingHelper.getPositioning(world, raytrace, building, player, hand);
-                return new ActionResult<>(building.generate(world, key.getPos(), key.getMirror(), key.getRotation()), stack);
+                BuildingKey key = BuildingHelper.getPositioning(stack, world, raytrace, building, player, true);
+                if (key != null) return new ActionResult<>(building.generate(world, key.getPos(), key.getMirror(), key.getRotation()), stack);
             } else ChatHelper.displayChat(TextFormatting.RED + Text.translate("town.failure") + " " + TextFormatting.WHITE + Text.translate("town.distance"));
         } else if (world.isRemote) {
             ChatHelper.displayChat(TextFormatting.RED + Text.translate("town.failure") + " " + TextFormatting.WHITE + Text.translate("town.dimension"));

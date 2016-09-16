@@ -1,20 +1,21 @@
 package joshie.harvest.buildings;
 
 import joshie.harvest.buildings.render.BuildingKey;
+import joshie.harvest.core.helpers.ChatHelper;
 import joshie.harvest.core.helpers.EntityHelper;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
+import joshie.harvest.core.util.Text;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
-import javax.annotation.Nonnull;
+import java.util.WeakHashMap;
 
 public class BuildingHelper {
     public static Vec3d getPositionEyes(EntityPlayer player, float partialTicks) {
@@ -35,16 +36,40 @@ public class BuildingHelper {
         return player.worldObj.rayTraceBlocks(vec3d, vec3d2, false, false, true);
     }
 
-    @SuppressWarnings("deprecation")
-    @Nonnull
-    public static BuildingKey getPositioning(World world, RayTraceResult raytrace, BuildingImpl building, EntityPlayer player, EnumHand hand) {
-        BlockPos cachedBlock = raytrace.getBlockPos().offset(raytrace.sideHit);
-        cachedBlock = cachedBlock.up(building.getOffsetY());
-        IBlockState state = world.getBlockState(raytrace.getBlockPos());
-        if (state.getBlock().getMaterial(state) == Material.AIR) {
-            return null;
-        }
+    private static final WeakHashMap<EntityPlayer, BuildingKey> POSITIONS_SERVER = new WeakHashMap<>();
+    private static final WeakHashMap<EntityPlayer, ItemStack> STACKS_SERVER = new WeakHashMap<>();
+    private static BuildingKey POSITION_CLIENT;
+    private static ItemStack STACK_CLIENT;
 
+    private static void validateOrInvalidateStack(ItemStack stack, EntityPlayer player) {
+        if (player.worldObj.isRemote) {
+            if (STACK_CLIENT != stack) {
+                STACK_CLIENT = stack;
+                POSITION_CLIENT = null;
+            }
+        } else {
+            if (STACKS_SERVER.get(player) != stack) {
+                STACKS_SERVER.put(player, stack);
+                POSITIONS_SERVER.remove(player);
+            }
+        }
+    }
+
+    private static void setPositionForPlayer(EntityPlayer player, BuildingKey pos) {
+        if (player.worldObj.isRemote) POSITION_CLIENT = pos;
+        else POSITIONS_SERVER.put(player, pos);
+    }
+
+    private static BuildingKey getPositionForPlayer(EntityPlayer player) {
+        if (player.worldObj.isRemote) return POSITION_CLIENT;
+        else return POSITIONS_SERVER.get(player);
+    }
+
+    private static boolean isAir(World world, BlockPos pos) {
+        return world.isAirBlock(pos);
+    }
+
+    private static BuildingKey getCachedKey(EntityPlayer player, BlockPos pos, BuildingImpl building) {
         EnumFacing facing = EntityHelper.getFacingFromEntity(player).getOpposite();
         Mirror mirror = Mirror.NONE;
         Rotation rotation = Rotation.NONE;
@@ -60,10 +85,43 @@ public class BuildingHelper {
 
         int length = building.getLength();
         int width = building.getWidth();
-        if (facing == EnumFacing.NORTH) cachedBlock = cachedBlock.offset(facing, length).offset(EnumFacing.EAST, width);
-        else if (facing == EnumFacing.SOUTH) cachedBlock = cachedBlock.offset(facing, length).offset(EnumFacing.WEST, width);
-        else if (facing == EnumFacing.EAST) cachedBlock = cachedBlock.offset(facing, length).offset(EnumFacing.SOUTH, width);
-        else if (facing == EnumFacing.WEST) cachedBlock = cachedBlock.offset(facing, length).offset(EnumFacing.NORTH, width);
-        return BuildingKey.of(cachedBlock, mirror, rotation, building);
+        if (facing == EnumFacing.NORTH) pos = pos.offset(facing, length).offset(EnumFacing.EAST, width);
+        else if (facing == EnumFacing.SOUTH) pos = pos.offset(facing, length).offset(EnumFacing.WEST, width);
+        else if (facing == EnumFacing.EAST) pos = pos.offset(facing, length).offset(EnumFacing.SOUTH, width);
+        else if (facing == EnumFacing.WEST) pos = pos.offset(facing, length).offset(EnumFacing.NORTH, width);
+        return BuildingKey.of(pos, mirror, rotation, building);
+    }
+
+    @SuppressWarnings("deprecation")
+    public static BuildingKey getPositioning(ItemStack stack, World world, RayTraceResult raytrace, BuildingImpl building, EntityPlayer player, boolean clicked) {
+        validateOrInvalidateStack(stack, player);
+        BlockPos pos = raytrace.getBlockPos().offset(raytrace.sideHit).up(building.getOffsetY());
+        //Load the saved position
+        BuildingKey key = getPositionForPlayer(player);
+        if (key == null) {
+            if (clicked) {
+                if (!isAir(world, raytrace.getBlockPos()) && raytrace.sideHit == EnumFacing.UP) {
+                    setPositionForPlayer(player, getCachedKey(player, pos, building));
+                    if (world.isRemote) {
+                        ChatHelper.displayChat(TextFormatting.YELLOW + building.getLocalisedName() + TextFormatting.RESET + " " + Text.translate("town.preview") +  "\n-"
+                                + Text.translate("town.sneak") +" " +  TextFormatting.GREEN + "" + Text.localize("town.confirm") + "\n-"
+                                + TextFormatting.RESET + Text.translate("town.click") + " " + TextFormatting.RED + Text.localize("town.cancel"));
+                    }
+                }
+
+                return null;
+            }
+        } else {
+            if (clicked) {
+                if (!player.isSneaking() && world.isRemote) {
+                    ChatHelper.displayChat(TextFormatting.RED + building.getLocalisedName() + " " + Text.localize("town.cancelled"));
+                }
+
+                setPositionForPlayer(player, null);
+                return player.isSneaking() ? key : null;
+            }
+        }
+
+        return key == null ? raytrace.sideHit != EnumFacing.UP ? null : getCachedKey(player, pos, building) : key;
     }
 }

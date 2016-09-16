@@ -16,6 +16,10 @@ public class CalendarClient extends Calendar {
     }
 
     /* ############# Weather ################*/
+    public Weather getTomorrowsWeather() {
+        return forecast[1];
+    }
+
     public void setForecast(Weather[] forecast) {
         this.forecast = forecast;
         updateWeatherStrength();

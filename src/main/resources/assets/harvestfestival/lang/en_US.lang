@@ -492,7 +492,7 @@ harvestfestival.npc.goddess.greeting12=Hello %p, are things going well for you?
 harvestfestival.npc.goddess.greeting13=Nature is really beautiful isn't it?
 harvestfestival.npc.goddess.greeting14=If you ever want to give any of your friends a gift, just sneak when talking to them!
 harvestfestival.npc.goddess.greeting15=If you fancy giving me a gift, the easiest way is to just throw an item in to my pond!
-harvestfestival.npc.goddess.greeting16=I can't wait until we can check the weather forecast.
+harvestfestival.npc.goddess.greeting16=Hey sweety if you need to know tomorrow's weather just come and show me a compass!
 
 #Katlin
 harvestfestival.npc.katlin.greeting1=How have you been?
@@ -803,7 +803,7 @@ harvestfestival.quest.tutorial.carpenter.reminder.carpenter=Sweety you’re supp
 harvestfestival.quest.tutorial.carpenter.reminder.give=Thanks have another blueprint and go see Jade!
 harvestfestival.quest.tutorial.carpenter.reminder.flowers=Nice to meet you, I’m Jade. I’m kinda uhhh looking for a flower right now.
 harvestfestival.quest.tutorial.carpenter.thanks.flowers=Hey! Looks like you have a flower for me! The goddess told me all about you, I can’t wait to see the town grow. I think the goddess wants to thank you for helping us out, so you should go see her. But afterwards please do come back and visit me as I have something I’d love to show you!
-harvestfestival.quest.tutorial.carpenter.thanks.finish=Well done dear, this town will be built in no time with you at the helm. Getting things done will probably cost you some money though, so I’m happy to give you a starting gift of 1000 gold. I hope you spend it wisely, anyway, you should be off to see Jade again now! Thanks for the help.
+harvestfestival.quest.tutorial.carpenter.thanks.finish=Well done dear, this town will be built in no time with you at the helm. Getting things done will probably cost you some money though, so I’m happy to give you a starting gift of 1000 gold. I hope you spend it wisely, anyway, you should be off to see Jade again now! Thanks for the help. Oh and I should probably tell you, that if you can show me a compass, I'll be able to tell you the weather for tomorrow.
 
 #Crops Tutorial
 harvestfestival.quest.tutorial.crops.intro=Hey! As promised I have something to tell you about! Crop Farming. Has anyone ever taught you before?
@@ -830,7 +830,7 @@ harvestfestival.quest.tutorial.chicken.throw=Ahh so you don’t know? Well then 
 harvestfestival.quest.tutorial.chicken.reminder.throw=Remember? I asked you to pick up a chicken, and feed it some chicken feed.
 harvestfestival.quest.tutorial.chicken.egg=Well done. It looks like you now know how to take care of your chickens. As mentioned before, happier chickens make bigger eggs. But how do I get eggs you ask? Well my dear simply place a nest box nearby. And eventually the chicken will lay an egg. They’ll only lay one egg a day however. They won’t lay eggs unless they have been fed. Once you collected your eggs, don’t forget to ship them off for some gold. I have a nest box for you, come back and see me when you’ve got an egg from your chicken.
 harvestfestival.quest.tutorial.chicken.reminder.egg=Remember I’m after an egg from a chicken. If you need a new box, you can buy one from me.
-harvestfestival.quest.tutorial.chicken.complete=For your hard work, I’m happy to give you a rare egg! If you want to get more you’ll really have to take care of your chickens. Oh right, there’s also something else you may not know about yet, that’s the incubator. With an incubator you can hatch your own chickens. You just need to place an egg inside, wait a few days and then a chick should hatch! They’ll be born with half the relationship so it’s much better than just buying more. By the way, thanks for letting me open shop here.
+harvestfestival.quest.tutorial.chicken.complete=For your hard work, I’m happy to give you a rare egg! If you want to get more you’ll really have to take care of your chickens. Oh right, there’s also somethings else you may not know about yet, first thing, take your chickens inside when it's going to rain, and bring them out when it's sunny, also some else is the incubator. With an incubator you can hatch your own chickens. You just need to place an egg inside, wait a few days and then a chick should hatch! They’ll be born with half the relationship so it’s much better than just buying more. By the way, thanks for letting me open shop here.
 
 #Cow Care
 harvestfestival.quest.tutorial.cow.reminder.intro=Looks like yer got the Animal Ranch built ya should go and talk to Jim.
@@ -844,7 +844,7 @@ harvestfestival.quest.tutorial.cow.info=Is that so? Guess I better teach you the
 harvestfestival.quest.tutorial.cow.reminder.talk=Remember I advised you to go talk to as well as brush a cow.
 harvestfestival.quest.tutorial.cow.milk=Well done, looks like you know how to keep your cows happy. Cows will make you milk every day. To get milk you’ll need to take a milker to them and hold right click until you get what you desire. Remember the friendlier you are with your animals the bigger products they’ll give you. Go and bring me some milk from your cow.
 harvestfestival.quest.tutorial.cow.reminder.milk=Did you forget? I asked you to go and milk your cow.
-harvestfestival.quest.tutorial.cow.complete=You’ve done a fine job there. I have some additional advice. To breed your animals just buy a Miracle Potion from me. It’ll impregnate your animals, and after a few days they’ll give birth to a baby, who’ll have half the relationship points of the parent. That’s all for now. Please do come again.
+harvestfestival.quest.tutorial.cow.complete=You’ve done a fine job there. I have some additional advice. For one your animals like to be outside when it's sunny and inside when it's rainy. And also to breed your animals just buy a Miracle Potion from me. It’ll impregnate your animals, and after a few days they’ll give birth to a baby, who’ll have half the relationship points of the parent. That’s all for now. Please do come again.
 
 #General Store Introduction
 harvestfestival.quest.tutorial.supermarket.reminder.talk=You should probably go and talk to Candice or Jenni, now that you have the General Store built.
@@ -921,6 +921,23 @@ harvestfestival.quest.trade.seeds.complete.no=I’m sorry but I don’t have any
 
 # Goddess Free Carpenter
 harvestfestival.quest.trade.carpenter.thanks=Thanks sweety, I'm happy to give you another Carpenter Blueprint.
+
+# Goddess Compass
+harvestfestival.quest.trade.weather.sunny1=Oh sweety, tomorrow is looking like a lovely day of sunshine!
+harvestfestival.quest.trade.weather.sunny2=It will be a gloriously sunny tomorrow!
+harvestfestival.quest.trade.weather.sunny3=The sun will be shining all day tomorrow, it will be beautiful.
+harvestfestival.quest.trade.weather.rain1=It will be a wet day tomorrow, no need to water your crops!
+harvestfestival.quest.trade.weather.rain2=Clouds are looking pretty grey tomorrow, prepare for a drizzle.
+harvestfestival.quest.trade.weather.rain3=Drip, drip drop, Little April shower, is what you can expect tomorrow!
+harvestfestival.quest.trade.weather.typhoon1=Oh my tomorrow is looking dreadful, a typhoon is on it's way!
+harvestfestival.quest.trade.weather.typhoon2=It is not looking good, you should stay inside tomorrow, as a typhoon will hit.
+harvestfestival.quest.trade.weather.typhoon3=Tomorrow, is a terrible storm, a typhoon is coming to town!
+harvestfestival.quest.trade.weather.snow1=It's looking like a verryyy cold day tomorrow, better wrap up warm for the snow!
+harvestfestival.quest.trade.weather.snow2=I think tomorrow we'll all be frozen and singing, Do you wanna build a snowman?
+harvestfestival.quest.trade.weather.snow3=The weather report for tomorrow, is freezing, looks look it will snow!
+harvestfestival.quest.trade.weather.blizzard1=You might freeze tomorrow, the weather is dreadful, a blizzard is on it's way!
+harvestfestival.quest.trade.weather.blizzard2=I've heard that an Abomasnow is coming tomorrow and he's bring a blizzard with him!
+harvestfestival.quest.trade.weather.blizzard3=WOW, there's a Blizzard tomorrow, you better watch yourself.
 
 ## Recipe Quests
 harvestfestival.quest.recipe.corn.baked.text=You've really made me comfortable, I'm happy to treat you to my secret recipe for Baked Corn.

@@ -93,11 +93,10 @@ public class EntityHelper {
                 oldWorld.resetUpdateEntityTick();
                 newWorld.resetUpdateEntityTick();
             }
-        } else {
-            if (entity instanceof EntityPlayerMP) {
-                ReflectionHelper.setPrivateValue(EntityPlayerMP.class, (EntityPlayerMP) entity, true, "invulnerableDimensionChange", "field_184851_cj");
-            }
+        }
 
+        if (entity instanceof EntityPlayerMP) {
+            ReflectionHelper.setPrivateValue(EntityPlayerMP.class, (EntityPlayerMP) entity, true, "invulnerableDimensionChange", "field_184851_cj");
             entity.setPositionAndUpdate(spawn.getX() + 0.5D, spawn.getY() + 0.1D, spawn.getZ() + 0.5D);
         }
 

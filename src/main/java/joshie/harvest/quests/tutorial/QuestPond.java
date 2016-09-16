@@ -31,7 +31,7 @@ public class QuestPond extends Quest {
             //The goddess thanks you for your hard work in reestablishing the town
             //SHe is ever so grateful for her new home too, and thanks you a lot
             //She also has a reward!
-            return getLocalized("thanks");
+            return player.worldObj.rand.nextDouble() <= 0.1D ? getLocalized("thanks") : null;
         }
 
         //The goddess tells you that she is really happy with how the town is growing

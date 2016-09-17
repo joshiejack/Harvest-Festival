@@ -6,6 +6,7 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.animals.IAnimalFeeder;
 import joshie.harvest.api.animals.IAnimalTracked;
+import joshie.harvest.core.HFCore;
 import joshie.harvest.core.base.tile.TileFillable;
 import joshie.harvest.core.lib.CreativeSort;
 import joshie.harvest.core.base.block.BlockHFEnumRotatableMeta;
@@ -41,7 +42,6 @@ import static net.minecraft.util.EnumFacing.*;
 
 public class BlockTrough extends BlockHFEnumRotatableMeta<BlockTrough, Trough> implements IAnimalFeeder {
     private static final AxisAlignedBB TROUGH_AABB =  new AxisAlignedBB(0D, 0D, 0D, 1D, 0.75D, 1D);
-    private static final AxisAlignedBB TROUGH_COLLISION =  new AxisAlignedBB(0D, 0D, 0D, 1D, 1.5D, 1D);
 
     public static final PropertyEnum<Section> SECTION = PropertyEnum.create("section", Section.class);
 
@@ -85,7 +85,7 @@ public class BlockTrough extends BlockHFEnumRotatableMeta<BlockTrough, Trough> i
     @Override
     public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn) {
         if (entityIn instanceof EntityPlayer) addCollisionBoxToList(pos, entityBox, collidingBoxes, TROUGH_AABB);
-        else addCollisionBoxToList(pos, entityBox, collidingBoxes, TROUGH_COLLISION);
+        else addCollisionBoxToList(pos, entityBox, collidingBoxes, HFCore.FENCE_COLLISION);
     }
 
     @SuppressWarnings("deprecation")

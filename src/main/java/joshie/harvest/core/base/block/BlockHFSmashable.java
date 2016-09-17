@@ -1,14 +1,21 @@
 package joshie.harvest.core.base.block;
 
 import joshie.harvest.api.gathering.ISmashable;
+import joshie.harvest.core.HFCore;
 import joshie.harvest.core.base.item.ItemToolSmashing;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.List;
 
 public abstract class BlockHFSmashable<B extends BlockHFSmashable, E extends Enum<E> & IStringSerializable> extends BlockHFEnum<B, E> implements ISmashable {
     //Main Constructor
@@ -17,6 +24,13 @@ public abstract class BlockHFSmashable<B extends BlockHFSmashable, E extends Enu
     }
 
     public abstract ItemToolSmashing getTool();
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public void addCollisionBoxToList(IBlockState state, @Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull AxisAlignedBB entityBox, @Nonnull List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn) {
+        if (entityIn instanceof EntityPlayer) super.addCollisionBoxToList(state, worldIn, pos, entityBox, collidingBoxes, entityIn);
+        else addCollisionBoxToList(pos, entityBox, collidingBoxes, HFCore.FENCE_COLLISION);
+    }
 
     @Override
     public void onBlockClicked(World world, BlockPos pos, EntityPlayer player) {

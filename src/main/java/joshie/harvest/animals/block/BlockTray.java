@@ -20,6 +20,7 @@ import joshie.harvest.core.lib.CreativeSort;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -34,6 +35,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Locale;
 
@@ -76,6 +79,13 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
     @Override
     public String getToolType(Tray wood) {
         return "axe";
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public void addCollisionBoxToList(IBlockState state, @Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull AxisAlignedBB entityBox, @Nonnull List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn) {
+        if (entityIn instanceof EntityPlayer) super.addCollisionBoxToList(state, worldIn, pos, entityBox, collidingBoxes, entityIn);
+        else addCollisionBoxToList(pos, entityBox, collidingBoxes, HFCore.FENCE_COLLISION);
     }
 
     @SuppressWarnings("deprecation")

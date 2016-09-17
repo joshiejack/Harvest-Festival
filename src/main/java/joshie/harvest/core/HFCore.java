@@ -21,6 +21,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
@@ -45,6 +46,7 @@ public class HFCore {
     public static final BlockFlower FLOWERS = new BlockFlower().register("flowers");
     public static final BlockStorage STORAGE = new BlockStorage().register("storage");
     public static final ItemSizeable SIZEABLE = new ItemSizeable().register("sizeable");
+    public static final AxisAlignedBB FENCE_COLLISION =  new AxisAlignedBB(0D, 0D, 0D, 1D, 1.5D, 1D);
 
     @SuppressWarnings("unchecked")
     public static void preInit() {

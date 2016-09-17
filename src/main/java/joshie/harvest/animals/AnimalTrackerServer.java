@@ -9,10 +9,20 @@ import net.minecraft.util.DamageSource;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 public class AnimalTrackerServer extends AnimalTracker {
     private static final DamageSource natural_causes = new DamageSource("natural").setDamageBypassesArmor();
     private final HashSet<AnimalData> animals = new HashSet<>();
+    private static final Set<Runnable> queue = new HashSet<>();
+
+    public static void addToQueue(Runnable r) {
+        queue.add(r);
+    }
+
+    public static void processQueue() {
+        queue.forEach(Runnable :: run);
+    }
 
     @Override
     public void onDeath(IAnimalTracked animal) {

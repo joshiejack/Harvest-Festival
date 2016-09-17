@@ -104,8 +104,8 @@ public class BuildingHelper {
                     setPositionForPlayer(player, getCachedKey(player, pos, building));
                     if (world.isRemote) {
                         ChatHelper.displayChat(TextFormatting.YELLOW + building.getLocalisedName() + TextFormatting.RESET + " " + Text.translate("town.preview") +  "\n-"
-                                + Text.translate("town.sneak") +" " +  TextFormatting.GREEN + "" + Text.localize("town.confirm") + "\n-"
-                                + TextFormatting.RESET + Text.translate("town.click") + " " + TextFormatting.RED + Text.localize("town.cancel"));
+                                + Text.translate("town.sneak") +" " +  TextFormatting.GREEN + "" + Text.translate("town.confirm") + "\n-"
+                                + TextFormatting.RESET + Text.translate("town.click") + " " + TextFormatting.RED + Text.translate("town.cancel"));
                     }
                 }
 

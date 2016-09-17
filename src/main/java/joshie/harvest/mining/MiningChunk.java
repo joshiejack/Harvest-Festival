@@ -3,7 +3,6 @@ package joshie.harvest.mining;
 import com.google.common.collect.Lists;
 import gnu.trove.map.TIntObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
-import joshie.harvest.api.HFApi;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.mining.entity.EntityDarkChick;
 import joshie.harvest.mining.entity.EntityDarkChicken;
@@ -70,12 +69,8 @@ public class MiningChunk implements IChunkGenerator {
         } else if (state.getBlock() == ORE.getBlock()) {
             if (primer.getBlockState(x, y, z).getBlock() != Blocks.LADDER && primer.getBlockState(x, y, z).getBlock() != PORTAL.getBlock()) {
                 primer.setBlockState(x, y, z, FLOORS);
-                int realX = (chunkX * 16) + x;
-                int realZ = (chunkZ * 16) + z;
                 if (primer.getBlockState(x, y + 1, z).getBlock() != Blocks.LADDER) {
-                    HFApi.tickable.addTickable(worldObj, new BlockPos(realX, y, realZ), HFApi.tickable.getTickableFromBlock(FLOORS.getBlock()));
-                    IBlockState theState = MiningTicker.getBlockState(rand, MiningHelper.getFloor(chunkX, y));
-                    primer.setBlockState(x, y + 1, z, theState);
+                    primer.setBlockState(x, y + 1, z, MiningTicker.getBlockState(rand, MiningHelper.getFloor(chunkX, y)));
                 }
             }
         } else {
@@ -159,7 +154,7 @@ public class MiningChunk implements IChunkGenerator {
                                     setBlockState(primer, i, belowY, j, FLOORS, chunkX, chunkZ);
                                 for (int y = 1; y <= MiningTicker.FLOOR_HEIGHT; y++) {
                                     setBlockState(primer, i, belowY + y, j, theState, chunkX, chunkZ);
-                                    setBlockState(primer, i, belowY + y + 4 + 1, j, AIR, chunkX, chunkZ);
+                                    setBlockState(primer, i, belowY + y + 4, j, AIR, chunkX, chunkZ);
                                 }
                             }
                         }

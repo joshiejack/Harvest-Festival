@@ -60,6 +60,11 @@ public class HarvestFestival {
     }
 
     @EventHandler
+    public void onServerAboutToStart(FMLServerAboutToStartEvent event) {
+        HFTrackers.resetServer();
+    }
+
+    @EventHandler
     public void onServerStarting(FMLServerStartingEvent event) {
         ICommandManager manager = event.getServer().getCommandManager();
         if (manager instanceof ServerCommandManager) {
@@ -67,6 +72,5 @@ public class HarvestFestival {
         }
 
         proxy.load("onServerStarting");
-        HFTrackers.resetServer();
     }
 }

@@ -39,13 +39,11 @@ public class HFSavedData extends WorldSavedData {
 
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
-        ticking.readFromNBT(nbt.getCompoundTag("TickingDaily"));
         towns.readFromNBT(nbt.getCompoundTag("TownTracker"));
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
-        nbt.setTag("TickingDaily", ticking.writeToNBT(new NBTTagCompound()));
         nbt.setTag("TownTracker", towns.writeToNBT(new NBTTagCompound()));
         return nbt;
     }

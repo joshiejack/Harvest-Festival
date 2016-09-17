@@ -30,7 +30,7 @@ public class MiningTicker implements IDailyTickableBlock {
 
     public static IBlockState getBlockState(Random rand, int floor) {
         Ore ore = Ore.ROCK;
-        if (rand.nextInt(16) == 0) return HFCore.FLOWERS.getStateFromEnum(FlowerType.WEED);
+        if (rand.nextInt(24) == 0) return HFCore.FLOWERS.getStateFromEnum(FlowerType.WEED);
         if (floor >= MYSTRIL_FLOOR && rand.nextInt(MYSTRIL_CHANCE) <= floor) ore = Ore.MYSTRIL;
         else if (floor >= GOLD_FLOOR && rand.nextInt(GOLD_CHANCE) <= floor) ore = Ore.GOLD;
         else if (floor >= SILVER_FLOOR && rand.nextInt(SILVER_CHANCE) <= floor) ore = Ore.SILVER;

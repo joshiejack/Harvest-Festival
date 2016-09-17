@@ -23,7 +23,7 @@ public class AnimalEvents {
     public void onEntityLoaded(EntityJoinWorldEvent event) {
         Entity entity = event.getEntity();
         if (!entity.worldObj.isRemote && entity instanceof IAnimalTracked) {
-            HFTrackers.<AnimalTrackerServer>getAnimalTracker(event.getWorld()).onJoinWorld((AnimalData)((IAnimalTracked) entity).getData());
+            AnimalTrackerServer.addToQueue(() -> HFTrackers.<AnimalTrackerServer>getAnimalTracker(event.getWorld()).onJoinWorld((AnimalData)((IAnimalTracked) entity).getData()));
         }
     }
 

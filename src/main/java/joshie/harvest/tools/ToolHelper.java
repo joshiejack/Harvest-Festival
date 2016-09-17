@@ -104,7 +104,10 @@ public class ToolHelper {
 
         @SubscribeEvent
         public void onWakeup(PlayerWakeUpEvent event) {
-            restoreHunger(event.getEntityPlayer());
+            EntityPlayer player = event.getEntityPlayer();
+            if (player.isPotionActive(EXHAUSTION)) player.removePotionEffect(EXHAUSTION);
+            if (player.isPotionActive(FATIGUE)) player.removePotionEffect(FATIGUE);
+            restoreHunger(player);
         }
     }
 

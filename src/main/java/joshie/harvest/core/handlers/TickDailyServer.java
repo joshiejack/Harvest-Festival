@@ -1,17 +1,12 @@
 package joshie.harvest.core.handlers;
 
-import joshie.harvest.api.HFApi;
 import joshie.harvest.api.ticking.IDailyTickable;
 import joshie.harvest.api.ticking.IDailyTickable.Phase;
 import joshie.harvest.api.ticking.IDailyTickableBlock;
 import joshie.harvest.core.HFTracker;
-import joshie.harvest.core.helpers.NBTHelper;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -31,7 +26,7 @@ public class TickDailyServer extends HFTracker {
     }
 
     public static void processQueue() {
-        queue.forEach((r) -> r.run());
+        queue.forEach(Runnable :: run);
     }
 
     public void newDay(Phase phase) {
@@ -94,39 +89,5 @@ public class TickDailyServer extends HFTracker {
     public void remove(final IDailyTickable tickable) {
         if (tickable.isPriority()) priority.remove(tickable);
         else tickables.remove(tickable);
-    }
-
-    @Override
-    public void setWorld(World world) {
-        super.setWorld(world);
-
-        Set<BlockPos> positions = new HashSet<>(blockTicks.keySet());
-        for (BlockPos pos: positions) {
-            IDailyTickableBlock tickable = HFApi.tickable.getTickableFromBlock(getWorld().getBlockState(pos).getBlock());
-            if (tickable != null) {
-                blockTicks.put(pos, tickable); //Load in the tickables once the world is actually loaded
-            } else blockTicks.remove(pos);
-        }
-    }
-
-    public void readFromNBT(NBTTagCompound tag) {
-        NBTTagList dataList = tag.getTagList("Positions", 10);
-        for (int j = 0; j < dataList.tagCount(); j++) {
-            NBTTagCompound data = dataList.getCompoundTagAt(j);
-            blockTicks.put(NBTHelper.readBlockPos("", data), null);
-        }
-    }
-
-    public NBTTagCompound writeToNBT(NBTTagCompound tag) {
-        queue.forEach((r) -> r.run()); //Run the queue before saving
-        NBTTagList dataList = new NBTTagList();
-        for (BlockPos pos: blockTicks.keySet()) {
-            NBTTagCompound data = new NBTTagCompound();
-            NBTHelper.writeBlockPos("", data, pos);
-            dataList.appendTag(data);
-        }
-
-        tag.setTag("Positions", dataList);
-        return tag;
     }
 }

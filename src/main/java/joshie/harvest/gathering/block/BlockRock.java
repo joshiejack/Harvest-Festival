@@ -94,10 +94,10 @@ public class BlockRock extends BlockHFSmashable<BlockRock, Rock> {
         switch (getEnumFromState(state)) {
             case STONE_SMALL: return BASIC;
             case STONE_MEDIUM: return COPPER;
-            case STONE_LARGE: return GOLD;
+            case STONE_LARGE: return SILVER;
             case BOULDER_SMALL: return SILVER;
-            case BOULDER_MEDIUM: return MYSTRIL;
-            case BOULDER_LARGE: return CURSED;
+            case BOULDER_MEDIUM: return GOLD;
+            case BOULDER_LARGE: return MYSTRIL;
             default: return null;
         }
     }

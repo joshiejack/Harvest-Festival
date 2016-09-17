@@ -36,7 +36,7 @@ import java.util.Set;
 
 public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> implements ITiered, ICreativeSorted {
     private final Set<Block> effectiveBlocks;
-    private final String toolClass;
+    protected final String toolClass;
     /**
      * Create a tool
      */

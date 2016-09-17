@@ -101,10 +101,10 @@ public class BlockWood extends BlockHFSmashable<BlockWood, Wood> {
         switch (getEnumFromState(state)) {
             case BRANCH_SMALL: return BASIC;
             case BRANCH_MEDIUM: return COPPER;
-            case BRANCH_LARGE: return MYSTRIL;
+            case BRANCH_LARGE: return GOLD;
             case STUMP_SMALL: return SILVER;
             case STUMP_MEDIUM: return GOLD;
-            case STUMP_LARGE: return CURSED;
+            case STUMP_LARGE: return MYSTRIL;
             default: return null;
         }
     }

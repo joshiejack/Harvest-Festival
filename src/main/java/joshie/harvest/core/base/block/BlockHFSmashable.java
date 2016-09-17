@@ -47,8 +47,10 @@ public abstract class BlockHFSmashable<B extends BlockHFSmashable, E extends Enu
         if (!worldIn.isRemote && !worldIn.restoringBlockSnapshots)  {
             EntityPlayer player = harvesters.get();
             if (player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == getTool()) {
-                smashBlock(harvesters.get(), worldIn, pos, state, getTool().getTier(player.getHeldItemMainhand()));
-            } else super.dropBlockAsItemWithChance(worldIn, pos, state, chance, fortune);
+                if (smashBlock(harvesters.get(), worldIn, pos, state, getTool().getTier(player.getHeldItemMainhand()))) return;
+            }
+
+            super.dropBlockAsItemWithChance(worldIn, pos, state, chance, fortune);
         }
     }
 
@@ -56,17 +58,16 @@ public abstract class BlockHFSmashable<B extends BlockHFSmashable, E extends Enu
     protected int getToolLevel(E e) {
         switch (e.ordinal()) {
             case 0:
-                return 1;
             case 1:
-                return 2;
-            case 3:
-                return 3;
             case 2:
-                return 4;
+                return 1;
+            case 3:
             case 4:
-                return 5;
+                return 2;
             case 5:
-                return 6;
+            case 6:
+            case 7:
+                return 3;
             default:
                 return 0;
         }

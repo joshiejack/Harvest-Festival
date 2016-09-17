@@ -83,12 +83,8 @@ public class ToolEvents {
     @SubscribeEvent
     public void onPlayerTick(PlayerTickEvent event) {
         if (event.phase == Phase.END || event.player.worldObj.getTotalWorldTime() %20 == 0) {
-            if (event.player.isPotionActive(FATIGUE)) {
-                if (event.player.worldObj.rand.nextInt(128) == 0) {
-                    event.player.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 100, 7, true, false));
-                }
-            } else if (event.player.isPotionActive(EXHAUSTION)) {
-                if (event.player.worldObj.rand.nextInt(32) == 0) {
+            if (event.player.isPotionActive(EXHAUSTION)) {
+                if (event.player.worldObj.rand.nextInt(256) == 0) {
                     event.player.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 300, 0, true, false));
                 }
             }

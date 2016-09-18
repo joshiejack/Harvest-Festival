@@ -23,7 +23,7 @@ public interface ITiered {
     ToolTier getTier(ItemStack stack);
 
     enum ToolTier {
-        BASIC(0), COPPER(1), SILVER(2), GOLD(2), MYSTRIL(4), CURSED(5), BLESSED(5), MYTHIC(6);
+        BASIC(0), COPPER(1), SILVER(2), GOLD(3), MYSTRIL(4), CURSED(5), BLESSED(5), MYTHIC(6);
 
         private final int level;
 

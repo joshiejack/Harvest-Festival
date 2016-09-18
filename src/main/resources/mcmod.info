@@ -9,7 +9,7 @@
   "updateUrl": "",
   "authorList": ["joshie"],
   "credits": "Yulife for awesomeness, See credits.txt in jar for extra",
-  "logoFile": "",
+  "logoFile": "assets/harvestfestival/logo.png",
   "screenshots": [],
   "dependencies": []
 }

@@ -23,7 +23,17 @@ public interface ITiered {
     ToolTier getTier(ItemStack stack);
 
     enum ToolTier {
-        BASIC, COPPER, SILVER, GOLD, MYSTRIL, CURSED, BLESSED, MYTHIC;
+        BASIC(0), COPPER(1), SILVER(2), GOLD(2), MYSTRIL(4), CURSED(5), BLESSED(5), MYTHIC(6);
+
+        private final int level;
+
+        ToolTier(int level) {
+            this.level = level;
+        }
+
+        public int getToolLevel() {
+            return level;
+        }
 
         public boolean isGreaterThanOrEqualTo(ToolTier tier) {
             return this.ordinal() >= tier.ordinal() || ((tier == CURSED || tier == BLESSED) && (this == CURSED || this == BLESSED));

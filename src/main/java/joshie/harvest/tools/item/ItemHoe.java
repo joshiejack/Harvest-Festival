@@ -1,5 +1,6 @@
 package joshie.harvest.tools.item;
 
+import com.google.common.collect.Multimap;
 import joshie.harvest.core.base.item.ItemToolChargeable;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.tools.ToolHelper;
@@ -7,9 +8,12 @@ import joshie.harvest.crops.HFCrops;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
@@ -69,6 +73,18 @@ public class ItemHoe extends ItemToolChargeable {
             default:
                 return 0;
         }
+    }
+
+    @Override
+    public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack stack) {
+        Multimap<String, AttributeModifier> multimap = super.getItemAttributeModifiers(slot);
+        ToolTier tier = getTier(stack);
+        if (slot == EntityEquipmentSlot.MAINHAND) {
+            multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getAttributeUnlocalizedName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", 0.0D, 0));
+            multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getAttributeUnlocalizedName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", (double)3F + (tier.getToolLevel() - 6.0F), 0));
+        }
+
+        return multimap;
     }
 
     private boolean canHoe(EntityPlayer player, ItemStack stack, World world, BlockPos pos) {

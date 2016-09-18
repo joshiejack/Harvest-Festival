@@ -20,7 +20,7 @@ public class ItemToolChargeable extends ItemTool<ItemToolChargeable> {
     }
 
     protected int getMaxCharge(ItemStack stack) {
-        return getTier(stack).ordinal() - 1;
+        return getTier(stack).getToolLevel() - 1;
     }
 
     protected boolean canCharge(ItemStack stack) {

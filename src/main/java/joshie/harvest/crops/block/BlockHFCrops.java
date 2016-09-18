@@ -286,7 +286,10 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
             if (event.world != world) return;
             boolean remove = existence >= 30;
             if (remove) {
-                world.setBlockState(pos, WET_SOIL);
+                if (world.getBlockState(pos).getBlock() == Blocks.FARMLAND) {
+                    world.setBlockState(pos, WET_SOIL);
+                }
+                
                 MinecraftForge.EVENT_BUS.unregister(this);
             }
 

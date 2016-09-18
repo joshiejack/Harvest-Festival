@@ -24,7 +24,7 @@ public class AchievementEvents {
         } else if (InventoryHelper.ITEM_STACK.matches(stack, HFMining.MATERIALS.getStackFromEnum(Material.COPPER))) {
             player.addStat(HFAchievements.copper);
         } else if (InventoryHelper.ITEM_STACK.matches(stack, HFMining.MATERIALS.getStackFromEnum(Material.SILVER))) {
-            player.addStat(HFAchievements.summon);
+            player.addStat(HFAchievements.silver);
         } else if (InventoryHelper.ITEM_STACK.matches(stack, HFMining.MATERIALS.getStackFromEnum(Material.GOLD))) {
             player.addStat(HFAchievements.gold);
         } else if (InventoryHelper.ITEM_STACK.matches(stack, HFMining.MATERIALS.getStackFromEnum(Material.MYSTRIL))) {

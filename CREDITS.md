@@ -1,21 +1,16 @@
-# Textures
-
-## The NPCs in this mod, all use skins created by other people, for a link to their original work, please check the following
-
-(Liara) - http://www.minecraftskins.com/skin/1559940/mess-hall-cook/
-(Jenni) - http://www.minecraftskins.com/skin/163960/recette-lemongrass/
+## Textures
+# Almost there!
 (Jim) - http://www.minecraftskins.com/skin/2527949/teen-cowboy/
-(Jade) - Mix of http://www.minecraftskins.com/skin/3032752/purple-gardener/ and http://mod-minecraft.net/pink-haired-girl-skin/
 
-## The Shop GUI Uses textures from
+# The Shop GUI Uses textures from
 
 http://opengameart.org/content/rpg-tiles-cobble-stone-paths-town-objects : Credit goes to: Zabin, Daneeklu, Jetrel, Hyptosis, Redshrike, Bertram.
 http://opengameart.org/content/lpc-farming-tilesets-magic-animations-and-ui-elements: Please attribute creator as Daniel Eddeland
 
-## Other Textures
+# Other Textures
+Knife > Potato
 Milk, Watering Cans, Wool, Bush, Ores > VapourDrive
 Mine Materials > VapourDrive, Balduran (http://balduranne.deviantart.com/)
-Knife > Potato
 Dust Overlays > Balduran (http://balduranne.deviantart.com/)
 Seasons HUD > CyanideX
 

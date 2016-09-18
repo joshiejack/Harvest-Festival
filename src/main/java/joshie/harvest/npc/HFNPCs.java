@@ -77,8 +77,8 @@ public class HFNPCs {
         registerSounds("goddess", "blessing");
         GODDESS = register("goddess", FEMALE, ADULT, 8, SPRING, 0x8CEED3, 0x4EC485).setHeight(1.2F, 0.6F);
         ANIMAL_OWNER = register("jim", MALE, ADULT, 26, SPRING, 0x888888, 0x000000);
-        CAFE_OWNER = register("liara", FEMALE, ADULT, 17, SPRING, 0xA64DFF, 0x46008C);
-        SEED_OWNER = register("jade", FEMALE, ADULT, 14, SPRING, 0x9326FF, 0x46008C);
+        CAFE_OWNER = register("liara", FEMALE, ADULT, 17, SPRING, 0xBEC8EE, 0x8091D0);
+        SEED_OWNER = register("jade", FEMALE, ADULT, 14, SPRING, 0x653081, 0x361840);
         DAUGHTER_1 = register("cloe", FEMALE, ADULT, 3, SPRING, 0xFFFF99, 0xB2B200);
         PRIEST = register("thomas", MALE, ELDER, 9, SUMMER, 0x006666, 0x00B2B20);
         CLOCKMAKER_CHILD = register("fenn", MALE, CHILD, 25, SUMMER, 0x228C00, 0x003F00);
@@ -88,7 +88,7 @@ public class HFNPCs {
         TOOL_OWNER = register("daniel", MALE, ADULT, 1, WINTER, 0x613827, 0x23150E);
         DAUGHTER_2 = register("abi", FEMALE, CHILD, 27, WINTER, 0xFF99FF, 0xFF20FF);
         CLOCK_WORKER = register("tiberius", MALE, ADULT, 15, WINTER, 0x305A2E, 0x142419);
-        GS_OWNER = register("jenni", FEMALE, ADULT, 7, WINTER, 0x2858E0, 0x000000);
+        GS_OWNER = register("jenni", FEMALE, ADULT, 7, WINTER, 0xDDD0AD, 0xE79043);
         MINER = register("brandon", MALE, ADULT, 13, AUTUMN, 0xC28D48, 0x5F5247);
         FISHERMAN = register("jacob", MALE, ADULT, 28, AUTUMN, 0x7396FF, 0x0036D9);
         MILKMAID = register("candice", FEMALE, ADULT, 5, AUTUMN, 0xF65FAB, 0xF21985);

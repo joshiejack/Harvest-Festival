@@ -10,7 +10,7 @@ harvestfestival.check.head=On head after purchase.
 harvestfestival.check.lead=On lead after purchase.
 
 #Commands
-harvestfestival.commands.help.header=--- Showing hf.help page %d of %d (/hf.help <page>) ---
+hf.commands.help.header=--- Showing hf.help page %d of %d (/hf.help <page>) ---
 
 #Tooltips
 harvestfestival.tooltip.cosmetic=Cosmetic
@@ -600,7 +600,7 @@ harvestfestival.npc.jade.greeting14=I'm really not sure why you can't fertilise 
 harvestfestival.npc.jenni.greeting1=Hey my good friend, make sure to come to me if you need any general goods!
 harvestfestival.npc.jenni.greeting2=As much as I love my customers, I love my art so much more.
 harvestfestival.npc.jenni.greeting3=Don't tell anybody but I'm secretly a huge fan of Belly Dancing.
-harvestfestival.npc.jenni.greeting4=Sometimes I wish I would open on Sundays, but then I remember how much I love a good lay in.
+harvestfestival.npc.jenni.greeting4=Sometimes I wish I would open on Sundays, but then I remember how much I love a good lie in.
 harvestfestival.npc.jenni.greeting5=Granny Katlin sure makes a mean soup!
 harvestfestival.npc.jenni.greeting6=My prices are the best in the town, noone can beat ol' jenni's bargains.
 harvestfestival.npc.jenni.greeting7=I couldn't help but notice you're from Australia. Oh, you aren't? Or are you?

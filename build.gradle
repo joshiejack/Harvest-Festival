@@ -12,6 +12,7 @@ buildscript {
 }
 
 apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'maven-publish'
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
@@ -65,6 +66,23 @@ jar {
         attributes 'FMLAT': 'harvestfestival_at.cfg'
         attributes 'FMLCorePlugin': 'joshie.harvest.asm.HFTransformer'
         attributes 'FMLCorePluginContainsFMLMod': 'true'
+    }
+}
+
+publishing {
+    tasks.publish.dependsOn 'build'
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId 'Harvest-Festival'
+            artifact jar
+        }
+    }
+    repositories {
+        if (project.hasProperty('maven_repo')) {
+            maven { url maven_repo }
+        } else {
+            mavenLocal()
+        }
     }
 }
 

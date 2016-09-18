@@ -2,13 +2,13 @@
 {
   "modid": "harvestfestival",
   "name": "Harvest Festival",
-  "description": "A Mod inspired by the Harvest Moon series of games",
+  "description": "A Harvest Moon inspired mod with seasons, crops, animals, mining and town building",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "http://joshiejack.uk/harvest",
+  "url": "https://github.com/PenguinSquad/Harvest-Festival",
   "updateUrl": "",
-  "authorList": ["joshie"],
-  "credits": "Yulife for awesomeness, See credits.txt in jar for extra",
+  "authorList": ["joshie", "Yulife"],
+  "credits": "Girafi for his awesomeness. See credits.txt in jar for extra",
   "logoFile": "assets/harvestfestival/logo.png",
   "screenshots": [],
   "dependencies": []

@@ -20,6 +20,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
+import static joshie.harvest.core.helpers.ConfigHelper.setConfig;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 @HFEvents(Side.CLIENT)
@@ -77,7 +78,7 @@ public class HFGuiFactory implements IModGuiFactory {
         if (event.getModID().equalsIgnoreCase(MODID)) {
             Configuration config = ConfigHelper.getConfig();
 
-            HarvestFestival.proxy.configure(config.getConfigFile());
+            ConfigHelper.setConfig(config);
 
             if (config.hasChanged()) {
                 config.save();

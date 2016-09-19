@@ -21,7 +21,9 @@ public class AnimalTrackerServer extends AnimalTracker {
     }
 
     public static void processQueue() {
-        queue.forEach(Runnable :: run);
+        Set<Runnable> toProcess = new HashSet<>(queue);
+        queue.clear(); //Clear the old queue
+        toProcess.forEach(Runnable :: run);
     }
 
     @Override

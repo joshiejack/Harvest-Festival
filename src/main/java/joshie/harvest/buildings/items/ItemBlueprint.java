@@ -31,6 +31,8 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import static joshie.harvest.core.HFCore.DEBUG_MODE;
+
 public class ItemBlueprint extends ItemHFFML<ItemBlueprint, BuildingImpl> implements ICreativeSorted {
     public ItemBlueprint() {
         super(BuildingRegistry.REGISTRY, HFTab.TOWN);
@@ -44,38 +46,40 @@ public class ItemBlueprint extends ItemHFFML<ItemBlueprint, BuildingImpl> implem
     @Override
     public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
         if (world.provider.getDimension() == 0) {
-            RayTraceResult raytrace = BuildingHelper.rayTrace(player, 128, 1F);
+            RayTraceResult raytrace = BuildingHelper.rayTrace(player, 128, 0F);
             if (raytrace == null || raytrace.getBlockPos() == null) {
                 return new ActionResult<>(EnumActionResult.PASS, stack);
             }
 
-            if (!world.isRemote) TownHelper.ensureTownExists(world, raytrace.getBlockPos());
             BuildingImpl building = getObjectFromStack(stack);
-            if (player.canPlayerEdit(raytrace.getBlockPos(), EnumFacing.DOWN, stack) && building != null && (building.canHaveMultiple() || !TownHelper.getClosestTownToEntity(player).hasBuilding(building.getRegistryName()))) {
-                BuildingKey key = BuildingHelper.getPositioning(stack, world, raytrace, building, player, true);
-                if (key != null) {
-                    if (!TownHelper.getClosestTownToBlockPos(world, key.getPos()).isBuilding(building)) {
-                        if (!world.isRemote) {
-                            Direction direction = Direction.withMirrorAndRotation(key.getMirror(), key.getRotation());
-                            EntityNPCBuilder builder = TownHelper.<TownDataServer>getClosestTownToEntity(player).getBuilder((WorldServer) world);
-                            BlockPos pos = key.getPos();
-                            if (builder != null && !TownHelper.getClosestTownToEntity(player).hasBuilding(building.getRegistryName())) {
-                                if (TownHelper.<TownDataServer>getClosestTownToBlockPos(world, pos).setBuilding(world, building, pos.down(building.getOffsetY()), direction.getMirror(), direction.getRotation())) {
-                                    if (builder.getBuilding() == null)
-                                        builder.setPosition(pos.getX(), pos.up().getY(), pos.getZ()); //Teleport the builder to the position
+            if (building != null && (DEBUG_MODE || building.canHaveMultiple() || !TownHelper.getClosestTownToEntity(player).hasBuilding(building.getRegistryName()))) {
+                if(player.canPlayerEdit(raytrace.getBlockPos(), EnumFacing.DOWN, stack)) {
+                    if (!world.isRemote) {
+                        TownHelper.ensureTownExists(world, raytrace.getBlockPos()); //Force a town to exist near where you clicked
+                    }
+
+                    BuildingKey key = BuildingHelper.getPositioning(stack, world, raytrace, building, player, true);
+                    if (key != null) {
+                        if (!TownHelper.getClosestTownToBlockPos(world, key.getPos()).isBuilding(building)) {
+                            if (!world.isRemote) {
+                                Direction direction = Direction.withMirrorAndRotation(key.getMirror(), key.getRotation());
+                                EntityNPCBuilder builder = TownHelper.<TownDataServer>getClosestTownToEntity(player).getBuilder((WorldServer) world);
+                                BlockPos pos = key.getPos();
+                                if (builder != null && !TownHelper.getClosestTownToEntity(player).hasBuilding(building.getRegistryName())) {
+                                    if (TownHelper.<TownDataServer>getClosestTownToBlockPos(world, pos).setBuilding(world, building, pos.down(building.getOffsetY()), direction.getMirror(), direction.getRotation())) {
+                                        if (builder.getBuilding() == null)
+                                            builder.setPosition(pos.getX(), pos.up().getY(), pos.getZ()); //Teleport the builder to the position
+                                    }
                                 }
                             }
-                        }
 
-                        stack.splitStack(1);
-                        return new ActionResult<>(EnumActionResult.SUCCESS, stack);
-                    } else ChatHelper.displayChat(TextFormatting.RED + Text.translate("town.failure") + " " + TextFormatting.WHITE + Text.translate("town.distance"));
-                }
+                            stack.splitStack(1);
+                            return new ActionResult<>(EnumActionResult.SUCCESS, stack);
+                        } else ChatHelper.displayChat(TextFormatting.RED + Text.translate("town.failure") + " " + TextFormatting.WHITE + Text.translate("town.building"));
+                    }
+                } else ChatHelper.displayChat(TextFormatting.RED + Text.translate("town.failure") + " " + TextFormatting.WHITE + Text.translate("town.permission"));
             } else ChatHelper.displayChat(TextFormatting.RED + Text.translate("town.failure") + " " + TextFormatting.WHITE + Text.translate("town.distance"));
-        } else if (world.isRemote) {
-            ChatHelper.displayChat(TextFormatting.RED + Text.translate("town.failure") + " " + TextFormatting.WHITE + Text.translate("town.dimension"));
-        }
-
+        } else ChatHelper.displayChat(TextFormatting.RED + Text.translate("town.failure") + " " + TextFormatting.WHITE + Text.translate("town.dimension"));
         return new ActionResult<>(EnumActionResult.PASS, stack);
     }
 

@@ -10,7 +10,6 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.command.NumberInvalidException;
 import net.minecraft.command.WrongUsageException;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.world.WorldServer;
 
 public class VanillaCommands {
     public static boolean isHandled(String name) {
@@ -35,12 +34,8 @@ public class VanillaCommands {
                     time += CommandBase.parseInt(args[1]);
                 }
 
-                for (int i = 0; i < server.worldServers.length; ++i) {
-                    WorldServer worldserver = server.worldServers[i];
-                    worldserver.setWorldTime(time);
-                }
 
-                HFTrackers.<CalendarServer>getCalendar(server.worldServers[0]).recalculateAndUpdate(server.worldServers[0]);
+                CalendarHelper.setWorldTime(server, time);
                 return true;
             }
         }

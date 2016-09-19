@@ -1,14 +1,11 @@
 package joshie.harvest.calendar.command;
 
 import joshie.harvest.calendar.CalendarHelper;
-import joshie.harvest.calendar.CalendarServer;
 import joshie.harvest.calendar.HFCalendar;
 import joshie.harvest.core.commands.AbstractHFCommand;
 import joshie.harvest.core.commands.HFCommand;
-import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.world.WorldServer;
 
 @HFCommand
 public class HFCommandTime extends AbstractHFCommand {
@@ -19,7 +16,7 @@ public class HFCommandTime extends AbstractHFCommand {
 
     @Override
     public String getUsage() {
-        return "Usage: /hf time <set|add> <value>";
+        return "/hf time <set|add> <value>";
     }
 
     @Override
@@ -35,23 +32,13 @@ public class HFCommandTime extends AbstractHFCommand {
                     time += (parseInt(parameters[1]) - 6000L);
                 }
 
-                for (int i = 0; i < server.worldServers.length; ++i) {
-                    WorldServer worldserver = server.worldServers[i];
-                    worldserver.setWorldTime(time);
-                }
-
-                HFTrackers.<CalendarServer>getCalendar(server.worldServers[0]).recalculateAndUpdate(server.worldServers[0]);
+                CalendarHelper.setWorldTime(server, time);
                 return true;
             }
 
             if (parameters[0].equals("add")) {
                 int l = parseInt(parameters[1]);
-                for (int i = 0; i < server.worldServers.length; ++i) {
-                    WorldServer worldserver = server.worldServers[i];
-                    worldserver.setWorldTime(worldserver.getWorldTime() + l);
-                }
-
-                HFTrackers.<CalendarServer>getCalendar(server.worldServers[0]).recalculateAndUpdate(server.worldServers[0]);
+                CalendarHelper.setWorldTime(server, server.worldServers[0].getWorldTime() + l);
                 return true;
             }
         }

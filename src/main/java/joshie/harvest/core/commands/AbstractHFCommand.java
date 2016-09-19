@@ -1,5 +1,6 @@
 package joshie.harvest.core.commands;
 
+import net.minecraft.command.CommandException;
 import net.minecraft.command.CommandNotFoundException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.NumberInvalidException;
@@ -19,7 +20,7 @@ public abstract class AbstractHFCommand implements Comparable<Object> {
      * @return true if the command was executed
      * @throws CommandNotFoundException
      * @throws NumberInvalidException */
-    public abstract boolean execute(MinecraftServer server, ICommandSender sender, String[] parameters) throws CommandNotFoundException, NumberInvalidException;
+    public abstract boolean execute(MinecraftServer server, ICommandSender sender, String[] parameters) throws CommandException, CommandNotFoundException, NumberInvalidException;
 
     /** Return the permission level **/
     public CommandLevel getPermissionLevel() {

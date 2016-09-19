@@ -20,7 +20,7 @@ public class HFCommandSeason extends AbstractHFCommand {
 
     @Override
     public String getUsage() {
-        return "Usage: /hf season <spring|summer|autumn|winter>";
+        return "/hf season <spring|summer|autumn|winter>";
     }
 
     @Override
@@ -32,8 +32,7 @@ public class HFCommandSeason extends AbstractHFCommand {
                     int day = calendar.getDate().getDay();
                     int year = Math.max(1, calendar.getDate().getYear());
                     long leftover = server.worldServers[0].getWorldTime() % HFCalendar.TICKS_PER_DAY;
-                    sender.getEntityWorld().setWorldTime(CalendarHelper.getTime(day, season, year) + leftover);
-                    calendar.recalculateAndUpdate(sender.getEntityWorld());
+                    CalendarHelper.setWorldTime(server, CalendarHelper.getTime(day, season, year) + leftover);
                     return true;
                 }
             }

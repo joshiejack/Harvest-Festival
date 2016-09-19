@@ -420,8 +420,20 @@ public class MiningChunk implements IChunkGenerator {
                                             differenceX = startX > x ? startX - x : x - startX;
                                             differenceZ = startZ > z ? startZ - z : z - startZ;
                                             if ((differenceX >= ladderDistance || differenceZ >= ladderDistance) && !manager.containsCoordinatesKey(mapIndex)) {
-                                                blockStateMap[clamp(x2 + x4)][clamp(z2 + z4)] = LADDER;
-                                                manager.putCoordinates(mapIndex, new int[]{clamp(x2 + x4), clamp(z2 + z4)});
+                                                int clampedX = clamp(x2 + x4);
+                                                int clampedZ = clamp(z2 + z4);
+                                                blockStateMap[clampedX][clampedZ] = LADDER;
+                                                for (int x5 = -1; x5 <= 1; x5++) {
+                                                    for (int z5 = -1; z5<= 1; z5++) {
+                                                        int clampedX5 = clamp(clampedX + x5);
+                                                        int clampedZ5 = clamp(clampedZ + z5);
+                                                        if (blockStateMap[clampedX5][clampedZ5] != LADDER) {
+                                                            blockStateMap[clampedX5][clampedZ5] = FLOORS;
+                                                        }
+                                                    }
+                                                }
+
+                                                manager.putCoordinates(mapIndex, new int[]{ clampedX, clampedZ });
                                             }
                                         }
                                     }

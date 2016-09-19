@@ -61,7 +61,7 @@ public class CommandManager extends CommandBase implements ICommand {
 
 
     @SubscribeEvent
-    public void onCommandSend(CommandEvent event) throws CommandNotFoundException, NumberInvalidException {
+    public void onCommandSend(CommandEvent event) throws CommandException, CommandNotFoundException, NumberInvalidException {
         //Update the calendar
         if (VanillaCommands.isHandled(event.getCommand().getCommandName())) {
             String name = event.getCommand().getCommandName();
@@ -90,7 +90,7 @@ public class CommandManager extends CommandBase implements ICommand {
     }
 
     //Attempt to process the command, throw wrong usage otherwise
-    private void processCommand(CommandEvent event, AbstractHFCommand command) throws CommandNotFoundException, NumberInvalidException {
+    private void processCommand(CommandEvent event, AbstractHFCommand command) throws CommandException, CommandNotFoundException, NumberInvalidException {
         String[] args = new String[event.getParameters().length - 1];
         System.arraycopy(event.getParameters(), 1, args, 0, args.length);
         if (!command.execute(FMLCommonHandler.instance().getMinecraftServerInstance(), event.getSender(), args)) {

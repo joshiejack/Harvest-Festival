@@ -6,7 +6,9 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weekday;
 import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 
 import static joshie.harvest.calendar.HFCalendar.DAYS_PER_SEASON;
 import static joshie.harvest.calendar.HFCalendar.TICKS_PER_DAY;
@@ -94,5 +96,15 @@ public class CalendarHelper {
         CalendarDate playersBirthday = HFTrackers.getPlayerTrackerFromPlayer(player).getStats().getBirthday();
         CalendarDate date = HFApi.calendar.getDate(world);
         return getYearsPassed(playersBirthday, date) >= year;
+    }
+
+    public static void setWorldTime(MinecraftServer server, long worldTime) {
+        for (int j = 0; j < server.worldServers.length; ++j) {
+            WorldServer worldserver = server.worldServers[j];
+            worldserver.setWorldTime(worldTime);
+        }
+
+        CalendarServer calendar = HFTrackers.getCalendar(server.worldServers[0]);
+        calendar.recalculateAndUpdate(server.worldServers[0]);
     }
 }

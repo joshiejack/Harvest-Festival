@@ -21,7 +21,7 @@ public class HFCommandDay extends AbstractHFCommand {
 
     @Override
     public String getUsage() {
-        return "Usage: /hf day <value>";
+        return "/hf day <value>";
     }
 
     @Override
@@ -34,8 +34,7 @@ public class HFCommandDay extends AbstractHFCommand {
                 int year = Math.max(1, calendar.getDate().getYear());
                 long time = CalendarHelper.getTime(day, season, year);
                 long leftover = server.worldServers[0].getWorldTime() % HFCalendar.TICKS_PER_DAY;
-                sender.getEntityWorld().setWorldTime(time + leftover);
-                calendar.recalculateAndUpdate(sender.getEntityWorld());
+                CalendarHelper.setWorldTime(server, time + leftover);
                 return true;
             } catch (NumberFormatException ignored) {}
         }

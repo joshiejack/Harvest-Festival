@@ -17,7 +17,7 @@ public class HFCommandEdit extends AbstractHFCommand {
 
     @Override
     public String getUsage() {
-        return "Usage: /hf edit <gold|date>";
+        return "/hf edit <gold|date>";
     }
 
     @Override

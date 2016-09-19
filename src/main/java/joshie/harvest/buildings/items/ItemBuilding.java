@@ -37,13 +37,15 @@ public class ItemBuilding extends ItemHFFML<ItemBuilding, BuildingImpl> implemen
             }
 
             BuildingImpl building = getObjectFromStack(stack);
-            if (player.canPlayerEdit(raytrace.getBlockPos(), EnumFacing.DOWN, stack) && building != null && (DEBUG_MODE || building.canHaveMultiple() || !TownHelper.getClosestTownToEntity(player).hasBuilding(building.getRegistryName()))) {
-                if (!world.isRemote) {
-                    TownHelper.ensureTownExists(world, raytrace.getBlockPos()); //Force a town to exist near where you clicked
-                }
+            if (building != null && (DEBUG_MODE || building.canHaveMultiple() || !TownHelper.getClosestTownToEntity(player).hasBuilding(building.getRegistryName()))) {
+                if(player.canPlayerEdit(raytrace.getBlockPos(), EnumFacing.DOWN, stack)) {
+                    if (!world.isRemote) {
+                        TownHelper.ensureTownExists(world, raytrace.getBlockPos()); //Force a town to exist near where you clicked
+                    }
 
-                BuildingKey key = BuildingHelper.getPositioning(stack, world, raytrace, building, player, true);
-                if (key != null) return new ActionResult<>(building.generate(world, key.getPos(), key.getMirror(), key.getRotation()), stack);
+                    BuildingKey key = BuildingHelper.getPositioning(stack, world, raytrace, building, player, true);
+                    if (key != null) return new ActionResult<>(building.generate(world, key.getPos(), key.getMirror(), key.getRotation()), stack);
+                } else ChatHelper.displayChat(TextFormatting.RED + Text.translate("town.failure") + " " + TextFormatting.WHITE + Text.translate("town.permission"));
             } else ChatHelper.displayChat(TextFormatting.RED + Text.translate("town.failure") + " " + TextFormatting.WHITE + Text.translate("town.distance"));
         } else if (world.isRemote) {
             ChatHelper.displayChat(TextFormatting.RED + Text.translate("town.failure") + " " + TextFormatting.WHITE + Text.translate("town.dimension"));

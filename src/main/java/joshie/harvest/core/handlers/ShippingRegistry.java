@@ -21,6 +21,11 @@ public class ShippingRegistry implements IShippingRegistry {
     }
 
     @Override
+    public void registerSellable(String ore, long value) {
+        registry.registerName(ore, value);
+    }
+
+    @Override
     public long getSellValue(ItemStack stack) {
         if (stack.hasTagCompound() && stack.getTagCompound().hasKey("Unsellable")) return 0L;
 

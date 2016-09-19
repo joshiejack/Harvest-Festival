@@ -39,6 +39,15 @@ public class HolderRegistry<R> {
         registry.put(holder, r);
     }
 
+    public void registerName(String name, R r) {
+        OreHolder holder = OreHolder.of(name);
+        for (ItemStack stack: holder.getMatchingStacks()) {
+            keyMap.get(stack.getItem()).add(holder);
+        }
+
+        registry.put(holder, r);
+    }
+
     public boolean matches(ItemStack stack, R type) {
         Collection<AbstractItemHolder> holders = keyMap.get(stack.getItem());
         for (AbstractItemHolder holder: holders) {

@@ -12,7 +12,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 
 import static joshie.harvest.api.calendar.Weekday.*;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
-import static joshie.harvest.shops.HFShops.addCustomItemToStore;
 
 @ObjectHolder("Aquaculture")
 @HFLoader(mods = "Aquaculture")
@@ -82,6 +81,5 @@ public class Aquaculture {
         BAITSHOP.addItem(25000L, new ItemStack(gold_fishing_rod));
         BAITSHOP.addItem(50000L, new ItemStack(diamond_fishing_rod));
         BAITSHOP.addOpening(TUESDAY, 13000, 19000).addOpening(WEDNESDAY, 13000, 19000).addOpening(THURSDAY, 13000, 19000).addOpening(FRIDAY, 13000, 19000);
-        addCustomItemToStore(BAITSHOP, "BAITSHOP");
     }
 }

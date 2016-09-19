@@ -10,7 +10,7 @@ public abstract class BaseUndoable implements IUndoableAction {
 
     @Override
     public boolean canUndo() {
-        return false;
+        return true;
     }
 
     @Override

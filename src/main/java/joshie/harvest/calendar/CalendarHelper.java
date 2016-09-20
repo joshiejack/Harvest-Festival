@@ -10,7 +10,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 
-import static joshie.harvest.calendar.HFCalendar.DAYS_PER_SEASON;
+import static joshie.harvest.api.calendar.CalendarDate.DAYS_PER_SEASON;
 import static joshie.harvest.calendar.HFCalendar.TICKS_PER_DAY;
 
 public class CalendarHelper {
@@ -64,7 +64,7 @@ public class CalendarHelper {
 
     public static int getTotalDays(CalendarDate date) {
         int current_days = date.getDay();
-        int season_days = HFCalendar.DAYS_PER_SEASON * date.getSeason().ordinal();
+        int season_days = CalendarDate.DAYS_PER_SEASON * date.getSeason().ordinal();
         int year_days = (date.getYear() - 1) * (DAYS_PER_SEASON * 4);
         return current_days + season_days + year_days;
     }

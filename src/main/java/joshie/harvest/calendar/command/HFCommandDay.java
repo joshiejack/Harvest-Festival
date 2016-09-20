@@ -10,7 +10,7 @@ import joshie.harvest.core.handlers.HFTrackers;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
 
-import static joshie.harvest.calendar.HFCalendar.DAYS_PER_SEASON;
+import static joshie.harvest.api.calendar.CalendarDate.DAYS_PER_SEASON;
 
 @HFCommand
 public class HFCommandDay extends AbstractHFCommand {

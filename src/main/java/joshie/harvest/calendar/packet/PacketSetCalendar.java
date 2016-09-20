@@ -5,7 +5,6 @@ import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weekday;
 import joshie.harvest.api.calendar.CalendarDate;
-import joshie.harvest.calendar.HFCalendar;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.network.Packet;
@@ -23,7 +22,7 @@ public class PacketSetCalendar extends PenguinPacket {
     
     public PacketSetCalendar() {}
     public PacketSetCalendar(CalendarDate date) {
-        this.daysPerSeason = HFCalendar.DAYS_PER_SEASON;
+        this.daysPerSeason = CalendarDate.DAYS_PER_SEASON;
         this.weekday = date.getWeekday();
         this.day = date.getDay();
         this.season = date.getSeason();
@@ -53,7 +52,7 @@ public class PacketSetCalendar extends PenguinPacket {
         CalendarDate date = HFApi.calendar.getDate(player.worldObj);
         Season previous = date.getSeason();
         date.setWeekday(weekday).setDay(day).setSeason(season).setYear(year);
-        HFCalendar.DAYS_PER_SEASON = daysPerSeason;
+        CalendarDate.DAYS_PER_SEASON = daysPerSeason;
 
         //Refresh all Blocks in Render range
         //If the seasons are not the same, re-render the client

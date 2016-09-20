@@ -3,6 +3,9 @@ package joshie.harvest.api.calendar;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class CalendarDate {
+    /** This gets set by the config files,
+     *  so it won't ALWAYS be 30 */
+    public static int DAYS_PER_SEASON = 30;
     private Weekday weekday;
     private int day;
     private Season season;
@@ -23,8 +26,10 @@ public class CalendarDate {
         this.year = date.getYear();
     }
 
+    /** The day gets scaled to fit in to the 30 scale mark **/
     public boolean isSameDay(CalendarDate date) {
-        return date.getDay() == this.getDay() && date.getSeason() == this.getSeason();
+        int day = (int)Math.ceil((date.getDay() / DAYS_PER_SEASON) * 30);
+        return day == this.getDay() && date.getSeason() == this.getSeason();
     }
 
     public CalendarDate copy() {

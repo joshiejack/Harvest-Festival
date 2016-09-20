@@ -1,6 +1,7 @@
 package joshie.harvest.calendar;
 
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.SeasonProvider;
 import joshie.harvest.core.helpers.ConfigHelper;
 import joshie.harvest.core.util.HFLoader;
@@ -17,7 +18,6 @@ import static joshie.harvest.core.lib.LoadOrder.HFCALENDAR;
 public class HFCalendar {
     private static final SeasonProvider HIDDEN = new SeasonProviderHidden();
     public static Configuration CONFIG;
-    public static int DAYS_PER_SEASON = 30;
     public static int DAYS_PER_SEASON_INTEGRATED;
     private static int DAYS_PER_SEASON_DEDICATED;
     public static long TICKS_PER_DAY;
@@ -81,7 +81,7 @@ public class HFCalendar {
     public static void onServerStarting() {
         MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
         if (server.isDedicatedServer()) {
-            DAYS_PER_SEASON = DAYS_PER_SEASON_DEDICATED;
-        } else DAYS_PER_SEASON = DAYS_PER_SEASON_INTEGRATED;
+            CalendarDate.DAYS_PER_SEASON = DAYS_PER_SEASON_DEDICATED;
+        } else CalendarDate.DAYS_PER_SEASON = DAYS_PER_SEASON_INTEGRATED;
     }
 }

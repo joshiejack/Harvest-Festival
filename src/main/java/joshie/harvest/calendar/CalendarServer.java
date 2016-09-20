@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 import static joshie.harvest.api.calendar.Season.*;
-import static joshie.harvest.calendar.HFCalendar.DAYS_PER_SEASON;
+import static joshie.harvest.api.calendar.CalendarDate.DAYS_PER_SEASON;
 
 public class CalendarServer extends Calendar {
     private final CalendarDate DATE = new CalendarDate(0, SPRING, 1);

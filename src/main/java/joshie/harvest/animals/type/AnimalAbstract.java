@@ -3,7 +3,7 @@ package joshie.harvest.animals.type;
 import joshie.harvest.api.animals.AnimalFoodType;
 import joshie.harvest.api.animals.IAnimalData;
 import joshie.harvest.api.animals.IAnimalType;
-import joshie.harvest.calendar.HFCalendar;
+import joshie.harvest.api.calendar.CalendarDate;
 import net.minecraft.entity.passive.EntityAnimal;
 
 import java.util.Random;
@@ -18,8 +18,8 @@ public abstract class AnimalAbstract implements IAnimalType {
     public AnimalAbstract(String name, int min, int max, AnimalFoodType... types) {
         this.name = name;
         this.types = types;
-        this.min = min * (HFCalendar.DAYS_PER_SEASON * 4);
-        this.max = max * (HFCalendar.DAYS_PER_SEASON * 4);
+        this.min = min * (CalendarDate.DAYS_PER_SEASON * 4);
+        this.max = max * (CalendarDate.DAYS_PER_SEASON * 4);
     }
 
     @Override

@@ -697,6 +697,7 @@ harvestfestival.npc.brandon.greeting4=Do you ever get tired of mining? I never d
 harvestfestival.npc.brandon.greeting5=I'll never understand why people are afraid of the dark. There's nothing better than mining without seeing where you are going.
 harvestfestival.npc.brandon.greeting6=The other day when I was in the mines, I heard and saw this strange fire like creature. I wonder what it was?
 harvestfestival.npc.brandon.greeting7=If you ever need some mining materials, I'm open from Monday to Saturday, 11am to 4pm.
+harvestfestival.npc.brandon.greeting8=I'll let you in on a secret on how to mine more efficiently. If you jump then hit the rocks on your way down, you will smash them instantly! You'll even hit a bunch more rocks on your way down too. Oh this will also work to flatten farmland too.
 
 #Tomas
 harvestfestival.npc.thomas.greeting1=I will save you from your sins.
@@ -838,7 +839,7 @@ harvestfestival.quest.tutorial.crops.question=Do you know how to farm crops?
 harvestfestival.quest.tutorial.crops.tutorial=@How do I farm crops?
 harvestfestival.quest.tutorial.crops.skip=@I know how
 harvestfestival.quest.tutorial.crops.completed=Well then if you know everything, please just take these items to get started. Don’t forget to take a turnip to the Harvest Goddess.
-harvestfestival.quest.tutorial.crops.start=Well then let me teach you! The very basics of crop farming is that you need to till some ground, once done, simply plant some seeds in this spot. You’ll need to make sure they are watered every day, or they will not grow, as well as making sure you have the correct crops for that season. In order to use your hoe, you simply have to right click it to till dirt in to farmland. Before you can use the watering can however you will need to fill it with water. Take these and come back to me when you have grown yourself nine Turnips. Oh, one final tip, if you want to speed up crop growth, you can sleep. Crops will grow everyday, so this is the quickest way to get them to grow!
+harvestfestival.quest.tutorial.crops.start=Well then let me teach you! The very basics of crop farming is that you need to till some ground, once done, simply plant some seeds in this spot. Keep in mind that seeds plant in a 3x3 area. You’ll need to make sure those seeds watered every day, or they will not grow, as well as making sure you have the correct crops for that season. In order to use your hoe, you simply have to right click it to till dirt in to farmland. Before you can use the watering can however you will need to fill it with water. Take these and come back to me when you have grown yourself nine Turnips. Oh, one final tip, if you want to speed up crop growth, you can sleep. Crops will grow everyday, so this is the quickest way to get them to grow!
 harvestfestival.quest.tutorial.crops.reminder.turnips=Hey again. Looks like you don’t have nine turnips yet. If you’re stuck and lost your hoe, just come back to me with a stone hoe and I’ll happily trade. If you need another watering can, I can spare some for buckets. Oh and if you want one bag of turnips just bring me five flowers.
 harvestfestival.quest.tutorial.crops.thanks.flowers=Oh my so pretty, thanks! Here take these turnip seeds as a thank you.
 harvestfestival.quest.tutorial.crops.thanks.hoe=Perfect, here’s my hoe.

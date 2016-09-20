@@ -1,9 +1,5 @@
 ## Textures
-# Almost there!
-(Jim) - http://www.minecraftskins.com/skin/2527949/teen-cowboy/
-
 # The Shop GUI Uses textures from
-
 http://opengameart.org/content/rpg-tiles-cobble-stone-paths-town-objects : Credit goes to: Zabin, Daneeklu, Jetrel, Hyptosis, Redshrike, Bertram.
 http://opengameart.org/content/lpc-farming-tilesets-magic-animations-and-ui-elements: Please attribute creator as Daniel Eddeland
 

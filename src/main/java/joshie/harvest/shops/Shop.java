@@ -13,6 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.registry.IForgeRegistry;
 import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
 import net.minecraftforge.fml.common.registry.RegistryBuilder;
@@ -23,6 +24,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class Shop implements IShop {
     public static final IForgeRegistry<ShopEntry> REGISTRY = new RegistryBuilder<ShopEntry>().setName(new ResourceLocation("harvestfestival", "shop_items")).setType(ShopEntry.class).setIDRange(0, 100000).create();
@@ -66,7 +68,7 @@ public class Shop implements IShop {
     }
 
     public static ResourceLocation getRegistryName(ResourceLocation resource, IPurchaseable item) {
-        return new ResourceLocation(resource.toString() + "_" + item.getPurchaseableID());
+        return new ResourceLocation(Loader.instance().activeModContainer().getModId().toLowerCase(Locale.ENGLISH) + ":" + resource.getResourcePath() + "_" + item.getPurchaseableID());
     }
 
     @Override

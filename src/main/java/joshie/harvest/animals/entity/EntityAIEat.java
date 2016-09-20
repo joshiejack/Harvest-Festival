@@ -35,7 +35,7 @@ public class EntityAIEat extends EntityAIBase {
 
     @Override
     public void updateTask() {
-        BlockPos position = new BlockPos(animal).add(animal.worldObj.rand.nextInt(8) - 4, 0, animal.worldObj.rand.nextInt(8) - 4);
+        BlockPos position = new BlockPos(animal).add(animal.worldObj.rand.nextInt(8) - 4, animal.worldObj.rand.nextInt(3), animal.worldObj.rand.nextInt(8) - 4);
         IBlockState state = animal.worldObj.getBlockState(position);
         Block block = state.getBlock();
         if (block instanceof IAnimalFeeder) {

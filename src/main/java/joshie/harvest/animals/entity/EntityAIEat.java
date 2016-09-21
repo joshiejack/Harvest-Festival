@@ -46,7 +46,7 @@ public class EntityAIEat extends EntityAIBase {
 
 
         wanderTick--;
-        if (animal.worldObj.rand.nextDouble() < 0.005D || wanderTick < Short.MIN_VALUE) {
+        if (animal.worldObj.rand.nextDouble() < 0.005D || wanderTick < Short.MIN_VALUE || !tracked.getData().isHungry()) {
             wanderTick = 200;
         }
     }

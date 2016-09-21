@@ -1,5 +1,6 @@
 package joshie.harvest.animals.item;
 
+import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.animals.entity.EntityHarvestChicken;
 import joshie.harvest.animals.entity.EntityHarvestCow;
 import joshie.harvest.animals.entity.EntityHarvestSheep;
@@ -21,6 +22,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Locale;
 
+import static joshie.harvest.calendar.HFCalendar.TICKS_PER_DAY;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class ItemAnimalSpawner extends ItemHFEnum<ItemAnimalSpawner, Spawner> {
@@ -55,7 +57,7 @@ public class ItemAnimalSpawner extends ItemHFEnum<ItemAnimalSpawner, Spawner> {
         if (!world.isRemote) {
             EntityAgeable entity = getEntityFromEnum(world, getEnumFromStack(stack));
             if (entity != null) {
-                if (player.isSneaking()) entity.setGrowingAge(-24000);
+                if (player.isSneaking()) entity.setGrowingAge(-(int)(TICKS_PER_DAY * HFAnimals.AGING_TIMER));
                 entity.setPosition(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5);
                 ((IAnimalTracked)entity).getData().setOwner(EntityHelper.getPlayerUUID(player));
                 world.spawnEntityInWorld(entity);

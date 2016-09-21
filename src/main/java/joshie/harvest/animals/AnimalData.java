@@ -30,6 +30,7 @@ import java.lang.ref.WeakReference;
 import java.util.Random;
 import java.util.UUID;
 
+import static joshie.harvest.calendar.HFCalendar.TICKS_PER_DAY;
 import static joshie.harvest.core.network.PacketHandler.sendToEveryone;
 
 public class AnimalData implements IAnimalData {
@@ -371,7 +372,7 @@ public class AnimalData implements IAnimalData {
         //Lay that litter!
         for (int i = 0; i < count; i++) {
             EntityAgeable baby = animal.createChild(animal);
-            baby.setGrowingAge(-(24000 * HFAnimals.AGING_TIMER));
+            baby.setGrowingAge(-(int)(TICKS_PER_DAY * HFAnimals.AGING_TIMER));
             baby.setLocationAndAngles(animal.posX, animal.posY, animal.posZ, 0.0F, 0.0F);
             ((IAnimalTracked)baby).getData().setOwner(o_uuid);
             int parent = HFTrackers.<PlayerTrackerServer>getPlayerTracker(animal.worldObj, o_uuid).getRelationships().getRelationship(getUUID());

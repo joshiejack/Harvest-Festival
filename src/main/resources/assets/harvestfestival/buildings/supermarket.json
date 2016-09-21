@@ -144,7 +144,7 @@
       }
     },
     {
-      "type": "PlaceableBlock",
+      "type": "PlaceableDecorative",
       "isBlock": true,
       "theData": {
         "state": {
@@ -196,7 +196,7 @@
       }
     },
     {
-      "type": "PlaceableBlock",
+      "type": "PlaceableDecorative",
       "isBlock": true,
       "theData": {
         "state": {
@@ -209,7 +209,7 @@
       }
     },
     {
-      "type": "PlaceableBlock",
+      "type": "PlaceableDecorative",
       "isBlock": true,
       "theData": {
         "state": {
@@ -248,7 +248,7 @@
       }
     },
     {
-      "type": "PlaceableBlock",
+      "type": "PlaceableDecorative",
       "isBlock": true,
       "theData": {
         "state": {
@@ -911,7 +911,7 @@
       }
     },
     {
-      "type": "PlaceableBlock",
+      "type": "PlaceableDecorative",
       "isBlock": true,
       "theData": {
         "state": {
@@ -2734,7 +2734,7 @@
       }
     },
     {
-      "type": "PlaceableBlock",
+      "type": "PlaceableDecorative",
       "isBlock": true,
       "theData": {
         "state": {
@@ -4496,7 +4496,7 @@
       }
     },
     {
-      "type": "PlaceableBlock",
+      "type": "PlaceableDecorative",
       "isBlock": true,
       "theData": {
         "state": {
@@ -6314,7 +6314,7 @@
       }
     },
     {
-      "type": "PlaceableBlock",
+      "type": "PlaceableDecorative",
       "isBlock": true,
       "theData": {
         "state": {
@@ -8069,7 +8069,7 @@
       }
     },
     {
-      "type": "PlaceableBlock",
+      "type": "PlaceableDecorative",
       "isBlock": true,
       "theData": {
         "state": {

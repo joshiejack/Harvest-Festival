@@ -51,8 +51,9 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
         setSoundType(SoundType.STONE);
     }
 
-    @Override
     //Return 0.75F if the plant isn't withered, otherwise, unbreakable!!!
+    @Override
+    @SuppressWarnings("deprecation")
     public float getPlayerRelativeBlockHardness(IBlockState state, EntityPlayer player, World world, BlockPos pos) {
         return (player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == HFTools.HAMMER)
                 ? ((HFTools.HAMMER.getTier(player.getHeldItemMainhand()).ordinal() + 1) * 0.05F)
@@ -97,7 +98,7 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
         if (!worldIn.isRemote && !worldIn.restoringBlockSnapshots)  {
             EntityPlayer player = harvesters.get();
             if (player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == getTool()) {
-                if (smashBlock(harvesters.get(), worldIn, pos, state, getTool().getTier(player.getHeldItemMainhand()))) return;
+                smashBlock(harvesters.get(), worldIn, pos, state, getTool().getTier(player.getHeldItemMainhand()));
             }
         }
     }

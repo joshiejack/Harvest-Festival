@@ -61,7 +61,7 @@ public class CommandManager extends CommandBase implements ICommand {
 
 
     @SubscribeEvent
-    public void onCommandSend(CommandEvent event) throws CommandException, CommandNotFoundException, NumberInvalidException {
+    public void onCommandSend(CommandEvent event) throws CommandException {
         //Update the calendar
         if (VanillaCommands.isHandled(event.getCommand().getCommandName())) {
             String name = event.getCommand().getCommandName();

@@ -15,10 +15,10 @@ import static joshie.harvest.npc.schedule.ScheduleLocations.*;
 public class ScheduleFenn implements ISchedule {
     @Override
     public BuildingLocation getTarget(World world, EntityLiving entity, INPC npc, Season season, Weekday day, long time) {
-        if (time >= 8000L && time <= 10000L) return day == SUNDAY ? CHURCHINSIDE : BARNBUILDING;
-        else if (time >= 10000L && time <= 11000L) return POULTRYBUILDING;
+        if (time >= 8000L && time <= 10000L) return day == SUNDAY ? CHURCHPEWBACKLEFT : BARNDOOR;
+        else if (time >= 10000L && time <= 11000L) return POULTRYDOOR;
         else if (time >= 12000L && time <= 15000L) return TOWNHALLLEFT;
-        else if (time >= 16000L && time <= 18000L) return POND;
+        else if (time >= 16000L && time <= 18000L) return PONDLEFT;
         else return npc.getLocation(HOME);
     }
 }

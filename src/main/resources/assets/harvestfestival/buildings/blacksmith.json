@@ -235,7 +235,7 @@
       }
     },
     {
-      "type": "PlaceableDecorative",
+      "type": "PlaceableBlock",
       "isBlock": true,
       "theData": {
         "state": {
@@ -677,7 +677,7 @@
       }
     },
     {
-      "type": "PlaceableDecorative",
+      "type": "PlaceableBlock",
       "isBlock": true,
       "theData": {
         "state": {
@@ -1055,7 +1055,7 @@
       "type": "PlaceableNPC",
       "isBlock": false,
       "theData": {
-        "homeString": "blacksmithfront",
+        "homeString": "blacksmith.entrance",
         "npc": "",
         "x": 3,
         "y": 2,
@@ -1112,6 +1112,17 @@
         "x": 3,
         "y": 2,
         "z": 7
+      }
+    },
+    {
+      "type": "PlaceableNPC",
+      "isBlock": false,
+      "theData": {
+        "homeString": "daniel",
+        "npc": "harvestfestival:daniel",
+        "x": 3,
+        "y": 2,
+        "z": 8
       }
     },
     {
@@ -1193,6 +1204,45 @@
       }
     },
     {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 4,
+        "y": 2,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 4,
+        "y": 2,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 4,
+        "y": 2,
+        "z": 5
+      }
+    },
+    {
       "type": "PlaceableDecorative",
       "isBlock": true,
       "theData": {
@@ -1216,17 +1266,6 @@
         "x": 4,
         "y": 2,
         "z": 7
-      }
-    },
-    {
-      "type": "PlaceableNPC",
-      "isBlock": false,
-      "theData": {
-        "homeString": "danielhome",
-        "npc": "harvestfestival:daniel",
-        "x": 4,
-        "y": 2,
-        "z": 8
       }
     },
     {
@@ -1543,6 +1582,30 @@
       }
     },
     {
+      "type": "PlaceableNPC",
+      "isBlock": false,
+      "theData": {
+        "homeString": "blacksmith.door",
+        "npc": "",
+        "x": 8,
+        "y": 2,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 8,
+        "y": 2,
+        "z": 3
+      }
+    },
+    {
       "type": "PlaceableBlock",
       "isBlock": true,
       "theData": {
@@ -1790,6 +1853,45 @@
       }
     },
     {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 3,
+        "y": 3,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 3,
+        "y": 3,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 3,
+        "y": 3,
+        "z": 4
+      }
+    },
+    {
       "type": "PlaceableFlowerPot",
       "isBlock": true,
       "theData": {
@@ -1918,6 +2020,45 @@
         "x": 4,
         "y": 3,
         "z": 2
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 4,
+        "y": 3,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 4,
+        "y": 3,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 4,
+        "y": 3,
+        "z": 5
       }
     },
     {
@@ -2506,6 +2647,45 @@
       }
     },
     {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 3,
+        "y": 4,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 3,
+        "y": 4,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 3,
+        "y": 4,
+        "z": 4
+      }
+    },
+    {
       "type": "PlaceableDecorative",
       "isBlock": true,
       "theData": {
@@ -2634,6 +2814,19 @@
       }
     },
     {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 4,
+        "y": 4,
+        "z": 2
+      }
+    },
+    {
       "type": "PlaceableDecorative",
       "isBlock": true,
       "theData": {
@@ -2644,6 +2837,19 @@
         "x": 4,
         "y": 4,
         "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 4,
+        "y": 4,
+        "z": 4
       }
     },
     {
@@ -2928,6 +3134,45 @@
         "x": 6,
         "y": 4,
         "z": 1
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 6,
+        "y": 4,
+        "z": 2
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 6,
+        "y": 4,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 6,
+        "y": 4,
+        "z": 4
       }
     },
     {
@@ -4774,6 +5019,32 @@
         "x": 6,
         "y": 7,
         "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:stone_slab",
+          "meta": 8
+        },
+        "x": 7,
+        "y": 7,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:stone_slab",
+          "meta": 8
+        },
+        "x": 7,
+        "y": 7,
+        "z": 9
       }
     },
     {

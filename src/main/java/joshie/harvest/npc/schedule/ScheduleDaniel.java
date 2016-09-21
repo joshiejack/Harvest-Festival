@@ -15,7 +15,7 @@ public class ScheduleDaniel implements ISchedule {
     @Override
     public BuildingLocation getTarget(World world, EntityLiving entity, INPC npc, Season season, Weekday day, long time) {
         if (time >= 5000L && time <= 9000L) return CAFEFRONT;
-        else if (time >= 9000L && time <= 11000L) return BLACKSMITHFRONT;
+        else if (time >= 9000L && time <= 11000L) return GENERALBACKYARD;
         else if (time >= 15000L && time <= 19000L) return TOWNHALLENTRANCE;
         else return npc.getLocation(HOME);
     }

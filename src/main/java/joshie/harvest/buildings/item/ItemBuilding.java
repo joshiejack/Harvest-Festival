@@ -1,16 +1,16 @@
-package joshie.harvest.buildings.items;
+package joshie.harvest.buildings.item;
 
-import joshie.harvest.core.helpers.ChatHelper;
-import joshie.harvest.core.util.ICreativeSorted;
+import joshie.harvest.buildings.BuildingHelper;
 import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.buildings.render.BuildingKey;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemHFFML;
-import joshie.harvest.town.TownHelper;
-import joshie.harvest.buildings.BuildingHelper;
+import joshie.harvest.core.helpers.ChatHelper;
+import joshie.harvest.core.util.ICreativeSorted;
 import joshie.harvest.core.util.Text;
+import joshie.harvest.town.TownHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -20,8 +20,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-
-import static joshie.harvest.core.HFCore.DEBUG_MODE;
 
 public class ItemBuilding extends ItemHFFML<ItemBuilding, BuildingImpl> implements ICreativeSorted {
     public ItemBuilding() {
@@ -37,7 +35,7 @@ public class ItemBuilding extends ItemHFFML<ItemBuilding, BuildingImpl> implemen
             }
 
             BuildingImpl building = getObjectFromStack(stack);
-            if (building != null && (DEBUG_MODE || building.canHaveMultiple() || !TownHelper.getClosestTownToEntity(player).hasBuilding(building.getRegistryName()))) {
+            if (building != null) {
                 if(player.canPlayerEdit(raytrace.getBlockPos(), EnumFacing.DOWN, stack)) {
                     if (!world.isRemote) {
                         TownHelper.ensureTownExists(world, raytrace.getBlockPos()); //Force a town to exist near where you clicked

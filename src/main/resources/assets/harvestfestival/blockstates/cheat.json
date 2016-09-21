@@ -6,6 +6,8 @@
   },
   "variants": {
     "coord_setter": [{ "textures": { "layer0": "harvestfestival:items/coord_setter" }}],
-    "code_generator": [{ "textures": { "layer0": "harvestfestival:items/code_generator" }}]
+    "code_generator": [{ "textures": { "layer0": "harvestfestival:items/code_generator" }}],
+    "air_placer": [{ "textures": { "layer0": "harvestfestival:items/air_setter" }}],
+    "air_remover": [{ "textures": { "layer0": "harvestfestival:items/air_remover" }}]
   }
 }

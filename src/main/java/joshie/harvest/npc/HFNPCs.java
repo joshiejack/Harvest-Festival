@@ -76,7 +76,7 @@ public class HFNPCs {
         EntityRegistry.registerModEntity(EntityNPCGoddess.class, "goddess", EntityIDs.GODDESS, HarvestFestival.instance, 80, 3, true);
         registerSounds("goddess", "blessing");
         GODDESS = register("goddess", FEMALE, ADULT, 8, SPRING, 0x8CEED3, 0x4EC485).setHeight(1.2F, 0.6F);
-        ANIMAL_OWNER = register("jim", MALE, ADULT, 26, SPRING, 0x888888, 0x000000);
+        ANIMAL_OWNER = register("jim", MALE, ADULT, 26, SPRING, 0xDE7245, 0x722B19);
         CAFE_OWNER = register("liara", FEMALE, ADULT, 17, SPRING, 0xBEC8EE, 0x8091D0);
         SEED_OWNER = register("jade", FEMALE, ADULT, 14, SPRING, 0x653081, 0x361840);
         DAUGHTER_1 = register("cloe", FEMALE, ADULT, 3, SPRING, 0xFFFF99, 0xB2B200);
@@ -122,9 +122,9 @@ public class HFNPCs {
         GS_OWNER.setLocation(HOME, SUPERMARKET, JENNI_HOME).setLocation(WORK, SUPERMARKET, MARKET_TILL);
         MINER.setLocation(HOME, MINING_HUT, BRANDON_HOME).setLocation(WORK, MINING_HUT, MINER_GRAVEL);
         FISHERMAN.setLocation(HOME, FISHING_HUT, JACOB_HOME).addGreeting(new GreetingLocation(FISHING_HOLE, FISHING_POND));
-        MILKMAID.setLocation(HOME, SUPERMARKET, CANDICE_HOME).setLocation(WORK, BARN, JIM_HOME);
+        MILKMAID.setLocation(HOME, SUPERMARKET, CANDICE_HOME).setLocation(WORK, BARN, BARN_LEFT);
         POULTRY.setLocation(HOME, POULTRY_FARM, ASHLEE_HOME).setLocation(WORK, POULTRY_FARM, ASHLEE_HOME);
-        TRADER.setLocation(HOME, TOWNHALL, TOWNHALL_RIGHT_WING).setLocation(WORK, SUPERMARKET, MARKET_STOREFRONT);
+        TRADER.setLocation(HOME, TOWNHALL, TOWNHALL_RIGHT_WING).setLocation(WORK, SUPERMARKET, GIRAFI_HOME);
         CLOCK_WORKER.addGreeting(new GreetingTime("tiberius.time"));
     }
 

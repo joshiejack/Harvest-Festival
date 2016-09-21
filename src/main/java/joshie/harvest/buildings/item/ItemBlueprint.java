@@ -1,4 +1,4 @@
-package joshie.harvest.buildings.items;
+package joshie.harvest.buildings.item;
 
 import joshie.harvest.buildings.BuildingHelper;
 import joshie.harvest.buildings.BuildingImpl;

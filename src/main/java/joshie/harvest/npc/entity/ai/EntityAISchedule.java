@@ -66,7 +66,7 @@ public class EntityAISchedule extends EntityAIBase {
                     teleportTimer++;
 
                     //Random coordinates
-                    int move = distance >= 32 ? 8 : distance >= 100D ? 15 : 3;
+                    int move = (int) Math.min(32D, Math.max(1D, Math.ceil((distance / 4D))));
                     Vec3d vec = RandomPositionGenerator.findRandomTargetBlockTowards(npc, move, 3, new Vec3d((double) blockTarget.getX() + 0.5D, (double) blockTarget.getY() + 1D, (double) blockTarget.getZ() + 0.5D));
                     if (vec != null) {
                         blockTarget = new BlockPos(vec);

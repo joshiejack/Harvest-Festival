@@ -15,8 +15,8 @@ import static joshie.harvest.npc.schedule.ScheduleLocations.*;
 public class ScheduleCloe implements ISchedule {
     @Override
     public BuildingLocation getTarget(World world, EntityLiving entity, INPC npc, Season season, Weekday day, long time) {
-        if (time >= 7000L && time <= 10000L) return day == SUNDAY ? CHURCHINSIDE : POULTRYBUILDING;
-        else if (time >= 10000L && time <= 11000L) return BARNBUILDING;
+        if (time >= 7000L && time <= 10000L) return day == SUNDAY ? CHURCHPEWFRONTRIGHT : CAFEKITCHEN;
+        else if (time >= 10000L && time <= 11000L) return BARNRIGHT;
         else if (time >= 12000L && time <= 15000L) return TOWNHALLRIGHT;
         else return npc.getLocation(HOME);
     }

@@ -872,6 +872,17 @@
       }
     },
     {
+      "type": "PlaceableNPC",
+      "isBlock": false,
+      "theData": {
+        "homeString": "carpenter.downstairs",
+        "npc": "",
+        "x": 3,
+        "y": 1,
+        "z": 3
+      }
+    },
+    {
       "type": "PlaceableBlock",
       "isBlock": true,
       "theData": {
@@ -879,17 +890,6 @@
           "name": "minecraft:air",
           "meta": 0
         },
-        "x": 3,
-        "y": 1,
-        "z": 3
-      }
-    },
-    {
-      "type": "PlaceableItemFrame",
-      "isBlock": false,
-      "theData": {
-        "rotation": 0,
-        "facing": "SOUTH",
         "x": 3,
         "y": 1,
         "z": 3
@@ -974,11 +974,13 @@
       }
     },
     {
-      "type": "PlaceableNPC",
-      "isBlock": false,
+      "type": "PlaceableBlock",
+      "isBlock": true,
       "theData": {
-        "homeString": "yulifhome",
-        "npc": "",
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
         "x": 4,
         "y": 1,
         "z": 3
@@ -1308,6 +1310,30 @@
       }
     },
     {
+      "type": "PlaceableNPC",
+      "isBlock": false,
+      "theData": {
+        "homeString": "carpenter.door",
+        "npc": "",
+        "x": 8,
+        "y": 1,
+        "z": 0
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 8,
+        "y": 1,
+        "z": 0
+      }
+    },
+    {
       "type": "PlaceableBlock",
       "isBlock": true,
       "theData": {
@@ -1334,11 +1360,13 @@
       }
     },
     {
-      "type": "PlaceableNPC",
-      "isBlock": false,
+      "type": "PlaceableBlock",
+      "isBlock": true,
       "theData": {
-        "homeString": "carpenterfrontdoor",
-        "npc": "",
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
         "x": 8,
         "y": 1,
         "z": 3
@@ -2182,7 +2210,7 @@
       "theData": {
         "state": {
           "name": "minecraft:trapdoor",
-          "meta": 2
+          "meta": 6
         },
         "x": 2,
         "y": 3,
@@ -2454,7 +2482,7 @@
       "isBlock": true,
       "theData": {
         "state": {
-          "name": "minecraft:wooden_slab",
+          "name": "minecraft:double_wooden_slab",
           "meta": 1
         },
         "x": 5,
@@ -3118,8 +3146,21 @@
       "type": "PlaceableNPC",
       "isBlock": false,
       "theData": {
-        "homeString": "jadehome",
+        "homeString": "jade",
         "npc": "harvestfestival:jade",
+        "x": 4,
+        "y": 4,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
         "x": 4,
         "y": 4,
         "z": 3
@@ -4493,8 +4534,8 @@
       "isBlock": true,
       "theData": {
         "state": {
-          "name": "minecraft:wooden_slab",
-          "meta": 13
+          "name": "minecraft:air",
+          "meta": 0
         },
         "x": 4,
         "y": 6,

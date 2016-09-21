@@ -8,100 +8,9 @@
           "name": "minecraft:sandstone",
           "meta": 0
         },
-        "x": 2,
+        "x": 5,
         "y": 0,
-        "z": 2
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:sandstone",
-          "meta": 0
-        },
-        "x": 2,
-        "y": 0,
-        "z": 3
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:sandstone",
-          "meta": 0
-        },
-        "x": 3,
-        "y": 0,
-        "z": 2
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:sandstone",
-          "meta": 0
-        },
-        "x": 3,
-        "y": 0,
-        "z": 3
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:sandstone",
-          "meta": 0
-        },
-        "x": 3,
-        "y": 0,
-        "z": 4
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:sandstone",
-          "meta": 0
-        },
-        "x": 4,
-        "y": 0,
-        "z": 2
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:sandstone",
-          "meta": 0
-        },
-        "x": 4,
-        "y": 0,
-        "z": 3
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:sandstone",
-          "meta": 0
-        },
-        "x": 4,
-        "y": 0,
-        "z": 4
+        "z": 5
       }
     },
     {
@@ -114,7 +23,7 @@
         },
         "x": 5,
         "y": 0,
-        "z": 3
+        "z": 6
       }
     },
     {
@@ -125,138 +34,8 @@
           "name": "minecraft:sandstone",
           "meta": 0
         },
-        "x": 1,
-        "y": 1,
-        "z": 2
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:sandstone",
-          "meta": 0
-        },
-        "x": 1,
-        "y": 1,
-        "z": 3
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:sandstone",
-          "meta": 0
-        },
-        "x": 2,
-        "y": 1,
-        "z": 1
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:sand",
-          "meta": 0
-        },
-        "x": 2,
-        "y": 1,
-        "z": 2
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:sand",
-          "meta": 0
-        },
-        "x": 2,
-        "y": 1,
-        "z": 3
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:sandstone",
-          "meta": 0
-        },
-        "x": 2,
-        "y": 1,
-        "z": 4
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:sandstone",
-          "meta": 0
-        },
-        "x": 3,
-        "y": 1,
-        "z": 1
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:sand",
-          "meta": 0
-        },
-        "x": 3,
-        "y": 1,
-        "z": 2
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:sand",
-          "meta": 0
-        },
-        "x": 3,
-        "y": 1,
-        "z": 3
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:sand",
-          "meta": 0
-        },
-        "x": 3,
-        "y": 1,
-        "z": 4
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:sandstone",
-          "meta": 0
-        },
-        "x": 3,
-        "y": 1,
+        "x": 6,
+        "y": 0,
         "z": 5
       }
     },
@@ -268,9 +47,9 @@
           "name": "minecraft:sandstone",
           "meta": 0
         },
-        "x": 4,
-        "y": 1,
-        "z": 1
+        "x": 6,
+        "y": 0,
+        "z": 6
       }
     },
     {
@@ -278,12 +57,12 @@
       "isBlock": true,
       "theData": {
         "state": {
-          "name": "minecraft:sand",
+          "name": "minecraft:sandstone",
           "meta": 0
         },
-        "x": 4,
-        "y": 1,
-        "z": 2
+        "x": 6,
+        "y": 0,
+        "z": 7
       }
     },
     {
@@ -291,12 +70,12 @@
       "isBlock": true,
       "theData": {
         "state": {
-          "name": "minecraft:sand",
+          "name": "minecraft:sandstone",
           "meta": 0
         },
-        "x": 4,
-        "y": 1,
-        "z": 3
+        "x": 7,
+        "y": 0,
+        "z": 5
       }
     },
     {
@@ -304,12 +83,38 @@
       "isBlock": true,
       "theData": {
         "state": {
-          "name": "minecraft:sand",
+          "name": "minecraft:sandstone",
           "meta": 0
         },
-        "x": 4,
-        "y": 1,
-        "z": 4
+        "x": 7,
+        "y": 0,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:sandstone",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 0,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:sandstone",
+          "meta": 0
+        },
+        "x": 8,
+        "y": 0,
+        "z": 6
       }
     },
     {
@@ -333,22 +138,9 @@
           "name": "minecraft:sandstone",
           "meta": 0
         },
-        "x": 5,
+        "x": 4,
         "y": 1,
-        "z": 2
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:sand",
-          "meta": 0
-        },
-        "x": 5,
-        "y": 1,
-        "z": 3
+        "z": 6
       }
     },
     {
@@ -362,6 +154,45 @@
         "x": 5,
         "y": 1,
         "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:sand",
+          "meta": 0
+        },
+        "x": 5,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:sand",
+          "meta": 0
+        },
+        "x": 5,
+        "y": 1,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:sandstone",
+          "meta": 0
+        },
+        "x": 5,
+        "y": 1,
+        "z": 7
       }
     },
     {
@@ -374,253 +205,6 @@
         },
         "x": 6,
         "y": 1,
-        "z": 3
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:sand",
-          "meta": 0
-        },
-        "x": 1,
-        "y": 2,
-        "z": 2
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:sand",
-          "meta": 0
-        },
-        "x": 1,
-        "y": 2,
-        "z": 3
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:sand",
-          "meta": 0
-        },
-        "x": 2,
-        "y": 2,
-        "z": 1
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:water",
-          "meta": 0
-        },
-        "x": 2,
-        "y": 2,
-        "z": 2
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:water",
-          "meta": 0
-        },
-        "x": 2,
-        "y": 2,
-        "z": 3
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:sand",
-          "meta": 0
-        },
-        "x": 2,
-        "y": 2,
-        "z": 4
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:sand",
-          "meta": 0
-        },
-        "x": 3,
-        "y": 2,
-        "z": 1
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:water",
-          "meta": 0
-        },
-        "x": 3,
-        "y": 2,
-        "z": 2
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:water",
-          "meta": 0
-        },
-        "x": 3,
-        "y": 2,
-        "z": 3
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:water",
-          "meta": 0
-        },
-        "x": 3,
-        "y": 2,
-        "z": 4
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:sand",
-          "meta": 0
-        },
-        "x": 3,
-        "y": 2,
-        "z": 5
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:sand",
-          "meta": 0
-        },
-        "x": 4,
-        "y": 2,
-        "z": 1
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:water",
-          "meta": 0
-        },
-        "x": 4,
-        "y": 2,
-        "z": 2
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:water",
-          "meta": 0
-        },
-        "x": 4,
-        "y": 2,
-        "z": 3
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:water",
-          "meta": 0
-        },
-        "x": 4,
-        "y": 2,
-        "z": 4
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:sand",
-          "meta": 0
-        },
-        "x": 4,
-        "y": 2,
-        "z": 5
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:sand",
-          "meta": 0
-        },
-        "x": 5,
-        "y": 2,
-        "z": 2
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:water",
-          "meta": 0
-        },
-        "x": 5,
-        "y": 2,
-        "z": 3
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:sand",
-          "meta": 0
-        },
-        "x": 5,
-        "y": 2,
         "z": 4
       }
     },
@@ -633,8 +217,177 @@
           "meta": 0
         },
         "x": 6,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:sand",
+          "meta": 0
+        },
+        "x": 6,
+        "y": 1,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:sand",
+          "meta": 0
+        },
+        "x": 6,
+        "y": 1,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:sandstone",
+          "meta": 0
+        },
+        "x": 6,
+        "y": 1,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:sandstone",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 1,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:sand",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:sand",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 1,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:sand",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 1,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:sandstone",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 1,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:sandstone",
+          "meta": 0
+        },
+        "x": 8,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:sand",
+          "meta": 0
+        },
+        "x": 8,
+        "y": 1,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:sandstone",
+          "meta": 0
+        },
+        "x": 8,
+        "y": 1,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:sandstone",
+          "meta": 0
+        },
+        "x": 9,
+        "y": 1,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:sand",
+          "meta": 0
+        },
+        "x": 4,
         "y": 2,
-        "z": 3
+        "z": 5
       }
     },
     {
@@ -642,12 +395,12 @@
       "isBlock": true,
       "theData": {
         "state": {
-          "name": "minecraft:grass",
+          "name": "minecraft:sand",
           "meta": 0
         },
-        "x": 0,
-        "y": 3,
-        "z": 2
+        "x": 4,
+        "y": 2,
+        "z": 6
       }
     },
     {
@@ -655,51 +408,12 @@
       "isBlock": true,
       "theData": {
         "state": {
-          "name": "minecraft:grass",
+          "name": "minecraft:sand",
           "meta": 0
         },
-        "x": 0,
-        "y": 3,
-        "z": 3
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:grass",
-          "meta": 0
-        },
-        "x": 0,
-        "y": 3,
+        "x": 5,
+        "y": 2,
         "z": 4
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:grass",
-          "meta": 0
-        },
-        "x": 1,
-        "y": 3,
-        "z": 0
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:grass",
-          "meta": 0
-        },
-        "x": 1,
-        "y": 3,
-        "z": 1
       }
     },
     {
@@ -710,9 +424,9 @@
           "name": "minecraft:water",
           "meta": 0
         },
-        "x": 1,
-        "y": 3,
-        "z": 2
+        "x": 5,
+        "y": 2,
+        "z": 5
       }
     },
     {
@@ -723,7 +437,254 @@
           "name": "minecraft:water",
           "meta": 0
         },
-        "x": 1,
+        "x": 5,
+        "y": 2,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:sand",
+          "meta": 0
+        },
+        "x": 5,
+        "y": 2,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:sand",
+          "meta": 0
+        },
+        "x": 6,
+        "y": 2,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:water",
+          "meta": 0
+        },
+        "x": 6,
+        "y": 2,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:water",
+          "meta": 0
+        },
+        "x": 6,
+        "y": 2,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:water",
+          "meta": 0
+        },
+        "x": 6,
+        "y": 2,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:sand",
+          "meta": 0
+        },
+        "x": 6,
+        "y": 2,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:sand",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 2,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:water",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 2,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:water",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 2,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:water",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 2,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:sand",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 2,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:sand",
+          "meta": 0
+        },
+        "x": 8,
+        "y": 2,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:water",
+          "meta": 0
+        },
+        "x": 8,
+        "y": 2,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:sand",
+          "meta": 0
+        },
+        "x": 8,
+        "y": 2,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:sand",
+          "meta": 0
+        },
+        "x": 9,
+        "y": 2,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:grass",
+          "meta": 0
+        },
+        "x": 3,
+        "y": 3,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:grass",
+          "meta": 0
+        },
+        "x": 3,
+        "y": 3,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:grass",
+          "meta": 0
+        },
+        "x": 3,
+        "y": 3,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:grass",
+          "meta": 0
+        },
+        "x": 4,
         "y": 3,
         "z": 3
       }
@@ -736,9 +697,48 @@
           "name": "minecraft:grass",
           "meta": 0
         },
-        "x": 1,
+        "x": 4,
         "y": 3,
         "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:water",
+          "meta": 0
+        },
+        "x": 4,
+        "y": 3,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:water",
+          "meta": 0
+        },
+        "x": 4,
+        "y": 3,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:grass",
+          "meta": 0
+        },
+        "x": 4,
+        "y": 3,
+        "z": 7
       }
     },
     {
@@ -749,9 +749,9 @@
           "name": "minecraft:vine",
           "meta": 1
         },
-        "x": 1,
+        "x": 4,
         "y": 3,
-        "z": 6
+        "z": 9
       }
     },
     {
@@ -762,9 +762,22 @@
           "name": "minecraft:log",
           "meta": 1
         },
-        "x": 1,
+        "x": 4,
         "y": 3,
-        "z": 7
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:vine",
+          "meta": 4
+        },
+        "x": 4,
+        "y": 3,
+        "z": 11
       }
     },
     {
@@ -775,46 +788,7 @@
           "name": "minecraft:grass",
           "meta": 0
         },
-        "x": 2,
-        "y": 3,
-        "z": 0
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:water",
-          "meta": 0
-        },
-        "x": 2,
-        "y": 3,
-        "z": 1
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:water",
-          "meta": 0
-        },
-        "x": 2,
-        "y": 3,
-        "z": 2
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:water",
-          "meta": 0
-        },
-        "x": 2,
+        "x": 5,
         "y": 3,
         "z": 3
       }
@@ -827,9 +801,48 @@
           "name": "minecraft:water",
           "meta": 0
         },
-        "x": 2,
+        "x": 5,
         "y": 3,
         "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:water",
+          "meta": 0
+        },
+        "x": 5,
+        "y": 3,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:water",
+          "meta": 0
+        },
+        "x": 5,
+        "y": 3,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:water",
+          "meta": 0
+        },
+        "x": 5,
+        "y": 3,
+        "z": 7
       }
     },
     {
@@ -840,9 +853,9 @@
           "name": "minecraft:grass",
           "meta": 0
         },
-        "x": 2,
+        "x": 5,
         "y": 3,
-        "z": 5
+        "z": 8
       }
     },
     {
@@ -853,7 +866,254 @@
           "name": "minecraft:vine",
           "meta": 2
         },
-        "x": 2,
+        "x": 5,
+        "y": 3,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:grass",
+          "meta": 0
+        },
+        "x": 6,
+        "y": 3,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:water",
+          "meta": 0
+        },
+        "x": 6,
+        "y": 3,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:water",
+          "meta": 0
+        },
+        "x": 6,
+        "y": 3,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:water",
+          "meta": 0
+        },
+        "x": 6,
+        "y": 3,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:water",
+          "meta": 0
+        },
+        "x": 6,
+        "y": 3,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:water",
+          "meta": 0
+        },
+        "x": 6,
+        "y": 3,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:grass",
+          "meta": 0
+        },
+        "x": 6,
+        "y": 3,
+        "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:grass",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 3,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:water",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 3,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:water",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 3,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:water",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 3,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:water",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 3,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:water",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 3,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:grass",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 3,
+        "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:grass",
+          "meta": 0
+        },
+        "x": 8,
+        "y": 3,
+        "z": 3
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:grass",
+          "meta": 0
+        },
+        "x": 8,
+        "y": 3,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:water",
+          "meta": 0
+        },
+        "x": 8,
+        "y": 3,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:water",
+          "meta": 0
+        },
+        "x": 8,
+        "y": 3,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:water",
+          "meta": 0
+        },
+        "x": 8,
         "y": 3,
         "z": 7
       }
@@ -866,74 +1126,9 @@
           "name": "minecraft:grass",
           "meta": 0
         },
-        "x": 3,
+        "x": 8,
         "y": 3,
-        "z": 0
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:water",
-          "meta": 0
-        },
-        "x": 3,
-        "y": 3,
-        "z": 1
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:water",
-          "meta": 0
-        },
-        "x": 3,
-        "y": 3,
-        "z": 2
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:water",
-          "meta": 0
-        },
-        "x": 3,
-        "y": 3,
-        "z": 3
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:water",
-          "meta": 0
-        },
-        "x": 3,
-        "y": 3,
-        "z": 4
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:water",
-          "meta": 0
-        },
-        "x": 3,
-        "y": 3,
-        "z": 5
+        "z": 8
       }
     },
     {
@@ -944,7 +1139,33 @@
           "name": "minecraft:grass",
           "meta": 0
         },
-        "x": 3,
+        "x": 9,
+        "y": 3,
+        "z": 4
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:grass",
+          "meta": 0
+        },
+        "x": 9,
+        "y": 3,
+        "z": 5
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:water",
+          "meta": 0
+        },
+        "x": 9,
         "y": 3,
         "z": 6
       }
@@ -957,9 +1178,9 @@
           "name": "minecraft:grass",
           "meta": 0
         },
-        "x": 4,
+        "x": 9,
         "y": 3,
-        "z": 0
+        "z": 7
       }
     },
     {
@@ -967,12 +1188,12 @@
       "isBlock": true,
       "theData": {
         "state": {
-          "name": "minecraft:water",
+          "name": "minecraft:grass",
           "meta": 0
         },
-        "x": 4,
+        "x": 9,
         "y": 3,
-        "z": 1
+        "z": 8
       }
     },
     {
@@ -980,36 +1201,10 @@
       "isBlock": true,
       "theData": {
         "state": {
-          "name": "minecraft:water",
+          "name": "minecraft:grass",
           "meta": 0
         },
-        "x": 4,
-        "y": 3,
-        "z": 2
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:water",
-          "meta": 0
-        },
-        "x": 4,
-        "y": 3,
-        "z": 3
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:water",
-          "meta": 0
-        },
-        "x": 4,
+        "x": 10,
         "y": 3,
         "z": 4
       }
@@ -1019,10 +1214,10 @@
       "isBlock": true,
       "theData": {
         "state": {
-          "name": "minecraft:water",
+          "name": "minecraft:grass",
           "meta": 0
         },
-        "x": 4,
+        "x": 10,
         "y": 3,
         "z": 5
       }
@@ -1035,7 +1230,7 @@
           "name": "minecraft:grass",
           "meta": 0
         },
-        "x": 4,
+        "x": 10,
         "y": 3,
         "z": 6
       }
@@ -1048,9 +1243,9 @@
           "name": "minecraft:grass",
           "meta": 0
         },
-        "x": 5,
+        "x": 10,
         "y": 3,
-        "z": 0
+        "z": 7
       }
     },
     {
@@ -1061,9 +1256,20 @@
           "name": "minecraft:grass",
           "meta": 0
         },
-        "x": 5,
+        "x": 10,
         "y": 3,
-        "z": 1
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableNPC",
+      "isBlock": false,
+      "theData": {
+        "homeString": "pond.back",
+        "npc": "",
+        "x": 0,
+        "y": 4,
+        "z": 7
       }
     },
     {
@@ -1071,181 +1277,12 @@
       "isBlock": true,
       "theData": {
         "state": {
-          "name": "minecraft:water",
+          "name": "minecraft:air",
           "meta": 0
         },
-        "x": 5,
-        "y": 3,
-        "z": 2
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:water",
-          "meta": 0
-        },
-        "x": 5,
-        "y": 3,
-        "z": 3
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:water",
-          "meta": 0
-        },
-        "x": 5,
-        "y": 3,
-        "z": 4
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:grass",
-          "meta": 0
-        },
-        "x": 5,
-        "y": 3,
-        "z": 5
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:grass",
-          "meta": 0
-        },
-        "x": 6,
-        "y": 3,
-        "z": 1
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:grass",
-          "meta": 0
-        },
-        "x": 6,
-        "y": 3,
-        "z": 2
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:water",
-          "meta": 0
-        },
-        "x": 6,
-        "y": 3,
-        "z": 3
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:grass",
-          "meta": 0
-        },
-        "x": 6,
-        "y": 3,
-        "z": 4
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:grass",
-          "meta": 0
-        },
-        "x": 6,
-        "y": 3,
-        "z": 5
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:grass",
-          "meta": 0
-        },
-        "x": 7,
-        "y": 3,
-        "z": 1
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:grass",
-          "meta": 0
-        },
-        "x": 7,
-        "y": 3,
-        "z": 2
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:grass",
-          "meta": 0
-        },
-        "x": 7,
-        "y": 3,
-        "z": 3
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:grass",
-          "meta": 0
-        },
-        "x": 7,
-        "y": 3,
-        "z": 4
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:grass",
-          "meta": 0
-        },
-        "x": 7,
-        "y": 3,
-        "z": 5
+        "x": 0,
+        "y": 4,
+        "z": 7
       }
     },
     {
@@ -1256,22 +1293,22 @@
           "name": "minecraft:fence",
           "meta": 0
         },
-        "x": 0,
+        "x": 3,
         "y": 4,
-        "z": 2
+        "z": 5
       }
     },
     {
-      "type": "PlaceableBlock",
+      "type": "PlaceableDecorative",
       "isBlock": true,
       "theData": {
         "state": {
           "name": "minecraft:reeds",
           "meta": 0
         },
-        "x": 0,
+        "x": 3,
         "y": 4,
-        "z": 3
+        "z": 6
       }
     },
     {
@@ -1282,9 +1319,9 @@
           "name": "minecraft:fence",
           "meta": 0
         },
-        "x": 0,
+        "x": 3,
         "y": 4,
-        "z": 4
+        "z": 7
       }
     },
     {
@@ -1295,9 +1332,9 @@
           "name": "minecraft:tallgrass",
           "meta": 1
         },
-        "x": 1,
+        "x": 4,
         "y": 4,
-        "z": 0
+        "z": 3
       }
     },
     {
@@ -1308,35 +1345,9 @@
           "name": "minecraft:double_plant",
           "meta": 5
         },
-        "x": 1,
+        "x": 4,
         "y": 4,
-        "z": 1
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:air",
-          "meta": 0
-        },
-        "x": 1,
-        "y": 4,
-        "z": 2
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:air",
-          "meta": 0
-        },
-        "x": 1,
-        "y": 4,
-        "z": 3
+        "z": 4
       }
     },
     {
@@ -1347,9 +1358,9 @@
           "name": "minecraft:tallgrass",
           "meta": 1
         },
-        "x": 1,
+        "x": 4,
         "y": 4,
-        "z": 4
+        "z": 7
       }
     },
     {
@@ -1360,9 +1371,9 @@
           "name": "minecraft:vine",
           "meta": 1
         },
-        "x": 1,
+        "x": 4,
         "y": 4,
-        "z": 6
+        "z": 9
       }
     },
     {
@@ -1373,9 +1384,22 @@
           "name": "minecraft:log",
           "meta": 1
         },
-        "x": 1,
+        "x": 4,
         "y": 4,
-        "z": 7
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableDecorative",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:vine",
+          "meta": 4
+        },
+        "x": 4,
+        "y": 4,
+        "z": 11
       }
     },
     {
@@ -1386,61 +1410,9 @@
           "name": "minecraft:red_flower",
           "meta": 3
         },
-        "x": 2,
-        "y": 4,
-        "z": 0
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:air",
-          "meta": 0
-        },
-        "x": 2,
-        "y": 4,
-        "z": 1
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:air",
-          "meta": 0
-        },
-        "x": 2,
-        "y": 4,
-        "z": 2
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:air",
-          "meta": 0
-        },
-        "x": 2,
+        "x": 5,
         "y": 4,
         "z": 3
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:air",
-          "meta": 0
-        },
-        "x": 2,
-        "y": 4,
-        "z": 4
       }
     },
     {
@@ -1451,9 +1423,9 @@
           "name": "minecraft:double_plant",
           "meta": 3
         },
-        "x": 2,
+        "x": 5,
         "y": 4,
-        "z": 5
+        "z": 8
       }
     },
     {
@@ -1464,20 +1436,18 @@
           "name": "minecraft:vine",
           "meta": 2
         },
-        "x": 2,
+        "x": 5,
         "y": 4,
-        "z": 7
+        "z": 10
       }
     },
     {
-      "type": "PlaceableBlock",
-      "isBlock": true,
+      "type": "PlaceableNPC",
+      "isBlock": false,
       "theData": {
-        "state": {
-          "name": "minecraft:tallgrass",
-          "meta": 1
-        },
-        "x": 3,
+        "homeString": "pond.right",
+        "npc": "",
+        "x": 6,
         "y": 4,
         "z": 0
       }
@@ -1490,9 +1460,22 @@
           "name": "minecraft:air",
           "meta": 0
         },
-        "x": 3,
+        "x": 6,
         "y": 4,
-        "z": 1
+        "z": 0
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:tallgrass",
+          "meta": 1
+        },
+        "x": 6,
+        "y": 4,
+        "z": 3
       }
     },
     {
@@ -1503,46 +1486,7 @@
           "name": "minecraft:waterlily",
           "meta": 0
         },
-        "x": 3,
-        "y": 4,
-        "z": 2
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:air",
-          "meta": 0
-        },
-        "x": 3,
-        "y": 4,
-        "z": 3
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:air",
-          "meta": 0
-        },
-        "x": 3,
-        "y": 4,
-        "z": 4
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:air",
-          "meta": 0
-        },
-        "x": 3,
+        "x": 6,
         "y": 4,
         "z": 5
       }
@@ -1555,9 +1499,9 @@
           "name": "minecraft:red_flower",
           "meta": 1
         },
-        "x": 3,
+        "x": 6,
         "y": 4,
-        "z": 6
+        "z": 9
       }
     },
     {
@@ -1568,35 +1512,9 @@
           "name": "minecraft:double_plant",
           "meta": 1
         },
-        "x": 4,
+        "x": 7,
         "y": 4,
-        "z": 0
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:air",
-          "meta": 0
-        },
-        "x": 4,
-        "y": 4,
-        "z": 1
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:air",
-          "meta": 0
-        },
-        "x": 4,
-        "y": 4,
-        "z": 2
+        "z": 3
       }
     },
     {
@@ -1613,35 +1531,9 @@
           "name": "minecraft:wall_sign",
           "meta": 4
         },
-        "x": 4,
+        "x": 7,
         "y": 4,
-        "z": 3
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:air",
-          "meta": 0
-        },
-        "x": 4,
-        "y": 4,
-        "z": 4
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:air",
-          "meta": 0
-        },
-        "x": 4,
-        "y": 4,
-        "z": 5
+        "z": 6
       }
     },
     {
@@ -1652,9 +1544,9 @@
           "name": "minecraft:double_plant",
           "meta": 0
         },
-        "x": 4,
+        "x": 7,
         "y": 4,
-        "z": 6
+        "z": 9
       }
     },
     {
@@ -1665,9 +1557,9 @@
           "name": "minecraft:tallgrass",
           "meta": 1
         },
-        "x": 5,
+        "x": 8,
         "y": 4,
-        "z": 0
+        "z": 3
       }
     },
     {
@@ -1676,11 +1568,11 @@
       "theData": {
         "state": {
           "name": "minecraft:tallgrass",
-          "meta": 1
+          "meta": 2
         },
-        "x": 5,
+        "x": 8,
         "y": 4,
-        "z": 1
+        "z": 4
       }
     },
     {
@@ -1697,9 +1589,9 @@
           "name": "minecraft:wall_sign",
           "meta": 2
         },
-        "x": 5,
+        "x": 8,
         "y": 4,
-        "z": 2
+        "z": 5
       }
     },
     {
@@ -1710,9 +1602,9 @@
           "name": "minecraft:wooden_slab",
           "meta": 9
         },
-        "x": 5,
+        "x": 8,
         "y": 4,
-        "z": 3
+        "z": 6
       }
     },
     {
@@ -1729,9 +1621,9 @@
           "name": "minecraft:wall_sign",
           "meta": 3
         },
-        "x": 5,
+        "x": 8,
         "y": 4,
-        "z": 4
+        "z": 7
       }
     },
     {
@@ -1742,9 +1634,9 @@
           "name": "minecraft:red_flower",
           "meta": 6
         },
-        "x": 5,
+        "x": 8,
         "y": 4,
-        "z": 5
+        "z": 8
       }
     },
     {
@@ -1755,9 +1647,9 @@
           "name": "minecraft:tallgrass",
           "meta": 1
         },
-        "x": 6,
+        "x": 9,
         "y": 4,
-        "z": 1
+        "z": 4
       }
     },
     {
@@ -1774,9 +1666,9 @@
           "name": "minecraft:wall_sign",
           "meta": 2
         },
-        "x": 6,
+        "x": 9,
         "y": 4,
-        "z": 2
+        "z": 5
       }
     },
     {
@@ -1787,9 +1679,9 @@
           "name": "minecraft:spruce_stairs",
           "meta": 4
         },
-        "x": 6,
+        "x": 9,
         "y": 4,
-        "z": 3
+        "z": 6
       }
     },
     {
@@ -1806,9 +1698,9 @@
           "name": "minecraft:wall_sign",
           "meta": 3
         },
-        "x": 6,
+        "x": 9,
         "y": 4,
-        "z": 4
+        "z": 7
       }
     },
     {
@@ -1819,9 +1711,9 @@
           "name": "minecraft:red_flower",
           "meta": 3
         },
-        "x": 6,
+        "x": 9,
         "y": 4,
-        "z": 5
+        "z": 8
       }
     },
     {
@@ -1832,9 +1724,9 @@
           "name": "minecraft:tallgrass",
           "meta": 2
         },
-        "x": 7,
+        "x": 10,
         "y": 4,
-        "z": 1
+        "z": 4
       }
     },
     {
@@ -1845,9 +1737,9 @@
           "name": "minecraft:red_flower",
           "meta": 6
         },
-        "x": 7,
+        "x": 10,
         "y": 4,
-        "z": 2
+        "z": 5
       }
     },
     {
@@ -1858,9 +1750,9 @@
           "name": "minecraft:spruce_stairs",
           "meta": 1
         },
-        "x": 7,
+        "x": 10,
         "y": 4,
-        "z": 3
+        "z": 6
       }
     },
     {
@@ -1871,9 +1763,9 @@
           "name": "minecraft:tallgrass",
           "meta": 1
         },
-        "x": 7,
+        "x": 10,
         "y": 4,
-        "z": 4
+        "z": 7
       }
     },
     {
@@ -1884,9 +1776,33 @@
           "name": "minecraft:tallgrass",
           "meta": 2
         },
-        "x": 7,
+        "x": 10,
         "y": 4,
-        "z": 5
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableNPC",
+      "isBlock": false,
+      "theData": {
+        "homeString": "pond.left",
+        "npc": "",
+        "x": 11,
+        "y": 4,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 11,
+        "y": 4,
+        "z": 11
       }
     },
     {
@@ -1897,22 +1813,22 @@
           "name": "minecraft:fence",
           "meta": 0
         },
-        "x": 0,
+        "x": 3,
         "y": 5,
-        "z": 2
+        "z": 5
       }
     },
     {
-      "type": "PlaceableBlock",
+      "type": "PlaceableDecorative",
       "isBlock": true,
       "theData": {
         "state": {
           "name": "minecraft:reeds",
           "meta": 0
         },
-        "x": 0,
+        "x": 3,
         "y": 5,
-        "z": 3
+        "z": 6
       }
     },
     {
@@ -1923,46 +1839,7 @@
           "name": "minecraft:fence",
           "meta": 0
         },
-        "x": 0,
-        "y": 5,
-        "z": 4
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:air",
-          "meta": 0
-        },
-        "x": 1,
-        "y": 5,
-        "z": 2
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:air",
-          "meta": 0
-        },
-        "x": 1,
-        "y": 5,
-        "z": 3
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:wooden_slab",
-          "meta": 1
-        },
-        "x": 1,
+        "x": 3,
         "y": 5,
         "z": 7
       }
@@ -1972,49 +1849,23 @@
       "isBlock": true,
       "theData": {
         "state": {
-          "name": "minecraft:air",
-          "meta": 0
+          "name": "minecraft:wooden_slab",
+          "meta": 1
         },
         "x": 4,
         "y": 5,
-        "z": 2
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:air",
-          "meta": 0
-        },
-        "x": 4,
-        "y": 5,
-        "z": 3
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:air",
-          "meta": 0
-        },
-        "x": 5,
-        "y": 5,
-        "z": 2
+        "z": 10
       }
     },
     {
       "type": "PlaceableNPC",
       "isBlock": false,
       "theData": {
-        "homeString": "fishingpond",
+        "homeString": "pond.pier",
         "npc": "",
-        "x": 5,
+        "x": 8,
         "y": 5,
-        "z": 3
+        "z": 6
       }
     },
     {
@@ -2025,9 +1876,9 @@
           "name": "minecraft:air",
           "meta": 0
         },
-        "x": 5,
+        "x": 8,
         "y": 5,
-        "z": 3
+        "z": 6
       }
     },
     {
@@ -2035,24 +1886,11 @@
       "isBlock": true,
       "theData": {
         "state": {
-          "name": "minecraft:air",
-          "meta": 0
+          "name": "minecraft:wooden_slab",
+          "meta": 1
         },
-        "x": 5,
-        "y": 5,
-        "z": 4
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:air",
-          "meta": 0
-        },
-        "x": 5,
-        "y": 5,
+        "x": 3,
+        "y": 6,
         "z": 5
       }
     },
@@ -2061,38 +1899,12 @@
       "isBlock": true,
       "theData": {
         "state": {
-          "name": "minecraft:air",
-          "meta": 0
+          "name": "minecraft:wooden_slab",
+          "meta": 1
         },
-        "x": 6,
-        "y": 5,
-        "z": 2
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:air",
-          "meta": 0
-        },
-        "x": 6,
-        "y": 5,
-        "z": 3
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:air",
-          "meta": 0
-        },
-        "x": 6,
-        "y": 5,
-        "z": 4
+        "x": 3,
+        "y": 6,
+        "z": 6
       }
     },
     {
@@ -2103,61 +1915,9 @@
           "name": "minecraft:wooden_slab",
           "meta": 1
         },
-        "x": 0,
+        "x": 3,
         "y": 6,
-        "z": 2
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:wooden_slab",
-          "meta": 1
-        },
-        "x": 0,
-        "y": 6,
-        "z": 3
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:wooden_slab",
-          "meta": 1
-        },
-        "x": 0,
-        "y": 6,
-        "z": 4
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:air",
-          "meta": 0
-        },
-        "x": 5,
-        "y": 6,
-        "z": 3
-      }
-    },
-    {
-      "type": "PlaceableBlock",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:air",
-          "meta": 0
-        },
-        "x": 6,
-        "y": 6,
-        "z": 3
+        "z": 7
       }
     }
   ]

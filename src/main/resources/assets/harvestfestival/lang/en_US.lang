@@ -65,6 +65,9 @@ harvestfestival.structures.null=Invalid
 #Cheat Items (Translators don't bother tranlating these, I just use them to help with dev)
 harvestfestival.cheat.coord.setter=[BuildingGen] Coordinate Setter
 harvestfestival.cheat.code.generator=[BuildingGen] Code Generator
+harvestfestival.air=[BuildingGen] Internal Air
+harvestfestival.cheat.air.placer=[BuildingGen] Internal Air Placer
+harvestfestival.cheat.air.remover=[BuildingGen] Internal Air Remover
 
 #Crops
 harvestfestival.crop.seeds.format.standard=%C %S
@@ -686,7 +689,7 @@ harvestfestival.npc.jim.greeting4=You know, this world is ridiculous sometimes, 
 harvestfestival.npc.jim.greeting5=Have you ever noticed how some countries, add 'u' to all their words, It's crazy if you ask me.
 harvestfestival.npc.jim.greeting6=Life could not be better, when I'm out on the saddle.
 harvestfestival.npc.jim.greeting7=Troughs can be placed up to three in a row, cows and sheep will eat from them when they're hungry if you fill them with fodder.
-harvestfestival.npc.jim.greeting8=Did you know that large animals will ate your grass crops, even before you harvested them?
+harvestfestival.npc.jim.greeting8=Did you know that large animals will eat your grass crops, even before you harvested them?
 harvestfestival.npc.jim.greeting9=If you feed your animals treats, eventually they'll make more things for you.
 
 #Brandon/Cricket

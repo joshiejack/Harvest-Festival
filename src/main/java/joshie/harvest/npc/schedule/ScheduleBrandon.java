@@ -16,7 +16,7 @@ public class ScheduleBrandon implements ISchedule {
     public BuildingLocation getTarget(World world, EntityLiving entity, INPC npc, Season season, Weekday day, long time) {
         if (time >= 5000L && time <= 10000L) return MINEENTRANCE;
         else if (time >= 13000L && time <= 14000L) return MINEHUTENTRANCE;
-        else if (time >= 10000L && time <= 17000L) return GENERALFRONT;
+        else if (time >= 10000L && time <= 17000L) return BLACKSMITHDOOR;
         else return npc.getLocation(HOME);
     }
 }

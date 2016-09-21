@@ -15,8 +15,8 @@ import static joshie.harvest.npc.schedule.ScheduleLocations.*;
 public class ScheduleAshlee implements ISchedule {
     @Override
     public BuildingLocation getTarget(World world, EntityLiving entity, INPC npc, Season season, Weekday day, long time) {
-        if (time >= 5000L && time <= 7000L) return GENERALFRONT;
-        else if (time >= 7000L && time <= 9000L) return day == SUNDAY ? CHURCHFRONT : CARPENTERFRONT;
+        if (time >= 5000L && time <= 7000L) return GENERALTABLES;
+        else if (time >= 7000L && time <= 9000L) return day == SUNDAY ? CHURCH_RIGHT : CARPENTERFRONT;
         else return npc.getLocation(HOME);
     }
 }

@@ -5,6 +5,7 @@ import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.PlaceableHelper;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
+import joshie.harvest.buildings.placeable.blocks.PlaceableChest;
 import joshie.harvest.buildings.placeable.entities.PlaceableNPC;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.NPCRegistry;
@@ -12,6 +13,7 @@ import joshie.harvest.npc.entity.EntityNPCBuilder;
 import joshie.harvest.npc.entity.EntityNPCShopkeeper;
 import joshie.harvest.npc.entity.EntityNPCVillager;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockDoor;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItemFrame;
@@ -30,6 +32,8 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+
+import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class CodeGeneratorBuildings {
 
@@ -52,7 +56,7 @@ public class CodeGeneratorBuildings {
     }
 
     @SuppressWarnings("unchecked")
-    public void getCode(boolean air) {
+    public void getCode() {
         if (!world.isRemote) {
             ArrayList<Placeable> ret = new ArrayList<>();
             Set all = new HashSet();
@@ -60,7 +64,6 @@ public class CodeGeneratorBuildings {
             for (int y = 0; y <= y2 - y1; y++) {
                 for (int x = 0; x <= x2 - x1; x++) {
                     for (int z = 0; z <= z2 - z1; z++) {
-
                         Set<Entity> entityList = new HashSet<>();
                         entityList.addAll(getEntities(EntityPainting.class, x1 + x, y1 + y, z1 + z));
                         entityList.addAll(getEntities(EntityItemFrame.class, x1 + x, y1 + y, z1 + z));
@@ -77,18 +80,21 @@ public class CodeGeneratorBuildings {
                                 String name = chest.getName();
                                 if (name.startsWith("npc.")) {
                                     name = name.replace("npc.", "");
-                                    NPC npc = NPCRegistry.REGISTRY.getValue(new ResourceLocation(name));
+                                    NPC npc = NPCRegistry.REGISTRY.getValue(new ResourceLocation(MODID, name));
                                     String npcField = npc == null ? "" : npc.getRegistryName().toString();
                                     ret.add(new PlaceableNPC(name, npcField, x, y, z));
                                     ret.add(new PlaceableBlock(Blocks.AIR.getDefaultState(), x, y, z));
+                                    continue;
+                                } else if (name.startsWith("loot.")) {
+                                    ret.add(new PlaceableChest(name.replace("loot.", "chests/"), state, x, y, z));
                                     continue;
                                 }
                             }
                         }
 
-                        if ((block != Blocks.AIR || air || entityList.size() > 0) && block != Blocks.END_STONE) {
+                        if ((block != Blocks.AIR  || entityList.size() > 0) && block != Blocks.END_STONE) {
                             int meta = state.getBlock().getMetaFromState(state);
-                            if (block == Blocks.DOUBLE_PLANT && meta >= 8) continue;
+                            if ((block == Blocks.DOUBLE_PLANT || block instanceof BlockDoor) && meta >= 8) continue;
                             TileEntity tile = world.getTileEntity(position);
                             if (tile instanceof TileEntitySign) {
                                 ITextComponent[] text = ((TileEntitySign) tile).signText;
@@ -96,7 +102,7 @@ public class CodeGeneratorBuildings {
                                     ret.add(PlaceableHelper.getFloorSignString(text, state, new BlockPos(x, y, z)));
                                 } else ret.add(PlaceableHelper.getWallSignString(text, state, new BlockPos(x, y, z)));
                             } else {
-                                Placeable text = PlaceableHelper.getPlaceableBlockString(state, x, y, z);
+                                Placeable text = PlaceableHelper.getPlaceableBlockString(world, state, x, y, z);
                                 ret.add(text);
                             }
 

@@ -1,5 +1,6 @@
 package joshie.harvest.buildings.placeable;
 
+import joshie.harvest.buildings.HFBuildings;
 import joshie.harvest.buildings.placeable.blocks.*;
 import joshie.harvest.buildings.placeable.entities.PlaceableEntity;
 import joshie.harvest.buildings.placeable.entities.PlaceableItemFrame;
@@ -11,22 +12,29 @@ import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.world.World;
 
 import java.util.HashMap;
 
 public class PlaceableHelper {
     public static final HashMap<String, PlaceableEntity> entities = new HashMap<>();
 
-    private static Placeable getPrefixString(IBlockState state, int x, int y, int z) {
+    private static Placeable getPrefixString(World world, IBlockState state, int x, int y, int z) {
         Block block = state.getBlock();
-        if (block instanceof BlockTorch) {
+        if (block instanceof joshie.harvest.mining.block.BlockPortal) {
+            return new PlaceableMoveIn(state, x, y, z);
+        } else if (block == HFBuildings.AIR) {
+            return new PlaceableBlock(Blocks.AIR.getDefaultState(), x, y, z);
+        } else if (block instanceof BlockTorch) {
             return new PlaceableDecorative(state, x, y, z);
         } else if (block instanceof BlockLever) {
             return new PlaceableDecorative(state, x, y, z);
         } else if (block instanceof BlockButton) {
             return new PlaceableDecorative(state, x, y, z);
-        } else if (block instanceof BlockDoor) {
-            return new PlaceableDecorative(state, x, y, z);
+        } else if (block instanceof BlockDoor || block instanceof BlockDoublePlant) {
+            IBlockState above = world.getBlockState(new BlockPos(x, y + 1, z));
+            if (above.getBlock().getMetaFromState(above) == 9) return new PlaceableDoubleOpposite(state, x, y, z);
+            else return new PlaceableDouble(state, x, y, z);
         } else if (block instanceof BlockLilyPad) {
             return new PlaceableDecorative(state, x, y, z);
         } else if (block instanceof BlockCocoa) {
@@ -43,8 +51,6 @@ public class PlaceableHelper {
             return new PlaceableDecorative(state, x, y, z);
         } else if (block instanceof BlockVine) {
             return new PlaceableDecorative(state, x, y, z);
-        }  else if (block instanceof BlockDoublePlant) {
-            return new PlaceableDouble(state, x, y, z);
         } else if (block instanceof BlockWeb) {
             return new PlaceableWeb(state, x, y, z);
         } else if (block instanceof BlockFlowerPot) {
@@ -66,11 +72,11 @@ public class PlaceableHelper {
         return new PlaceableSign(state, pos.getX(), pos.getY(), pos.getZ(), sign);
     }
 
-    public static Placeable getPlaceableBlockString(IBlockState state, int x, int y, int z) {
+    public static Placeable getPlaceableBlockString(World world, IBlockState state, int x, int y, int z) {
         Block block = state.getBlock();
         if (block == Blocks.REEDS) return new PlaceableDecorative(state, x, y, z);
         if (block == Blocks.CAKE) return new PlaceableDecorative(state, x, y, z);
-        return getPrefixString(state, x, y, z);
+        return getPrefixString(world, state, x, y, z);
     }
 
     public static Placeable getPlaceableEntityString(Entity entity, int x, int y, int z) {

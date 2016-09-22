@@ -1,6 +1,8 @@
 package joshie.harvest.buildings.render;
 
 import joshie.harvest.buildings.BuildingImpl;
+import joshie.harvest.buildings.HFBuildings;
+import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.blocks.PlaceableBlock;
 import joshie.harvest.core.util.Direction;
 import net.minecraft.block.state.IBlockState;
@@ -8,6 +10,8 @@ import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.WorldType;
@@ -19,9 +23,22 @@ import java.util.HashMap;
 public class BuildingAccess implements IBlockAccess {
     private final HashMap<BlockPos, IBlockState> mapping = new HashMap<>();
 
-    public BuildingAccess(BuildingImpl building, Direction direction) {
-        for (PlaceableBlock block: building.getPreviewList()) {
-            mapping.put(block.transformBlockPos(direction), block.getTransformedState(direction));
+    public BuildingAccess(BuildingImpl building, Mirror mirror, Rotation rotation) {
+        Direction direction = Direction.withMirrorAndRotation(mirror, rotation);
+        if (HFBuildings.FULL_BUILDING_RENDER) {
+            for (Placeable placeable : building.getFullList()) {
+                if (placeable.getY() >= -building.getOffsetY()) {
+                    if (placeable instanceof PlaceableBlock) {
+                        PlaceableBlock block = (PlaceableBlock) placeable;
+                        if (block.getBlock() == Blocks.AIR) continue;
+                        mapping.put(block.transformBlockPos(direction), block.getTransformedState(direction));
+                    }
+                }
+            }
+        } else {
+            for (PlaceableBlock block : building.getPreviewList()) {
+                mapping.put(block.transformBlockPos(direction), block.getTransformedState(direction));
+            }
         }
     }
 

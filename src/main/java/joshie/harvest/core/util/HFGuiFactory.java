@@ -46,7 +46,7 @@ public class HFGuiFactory implements IModGuiFactory {
 
     public static class GuiHFConfig extends GuiConfig {
         public GuiHFConfig(GuiScreen parentScreen) {
-            super(parentScreen, getConfigElements(), MODID, true, true, GuiConfig.getAbridgedConfigPath(ConfigHelper.getConfig().toString()));
+            super(parentScreen, getConfigElements(), MODID, false, true, GuiConfig.getAbridgedConfigPath(ConfigHelper.getConfig().toString()));
         }
 
         @SuppressWarnings("unchecked")
@@ -79,6 +79,10 @@ public class HFGuiFactory implements IModGuiFactory {
             if (config.hasChanged()) {
                 config.save();
             }
+
+            //Reload in all the values
+            HarvestFestival.proxy.configure();
+            HFCaches.clearClient();
         }
     }
 }

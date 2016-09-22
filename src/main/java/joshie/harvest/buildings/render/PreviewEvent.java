@@ -12,23 +12,25 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
-import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 @HFEvents(Side.CLIENT)
 public class PreviewEvent {
     //Cache Values
-    private static final Cache<BuildingKey, BuildingRenderer> CACHE = CacheBuilder.newBuilder().expireAfterWrite(1L, TimeUnit.MINUTES).maximumSize(128).build();
+    public static final Cache<BuildingKey, BuildingRenderer> CACHE = CacheBuilder.newBuilder().expireAfterWrite(1L, TimeUnit.MINUTES).maximumSize(128).build();
+    public static final Cache<WorldKey, BuildingAccess> WORLD = CacheBuilder.newBuilder().maximumSize(128).build();
     private final BuildingVertexUploader vertexUploader = new BuildingVertexUploader();
     private ItemStack held; //Cache the held itemstack
     private BuildingImpl building; //Cache the building value
 
-    private BuildingRenderer getRenderer(World world, EntityPlayerSP player) {
+    private BuildingRenderer getRenderer(World world, EntityPlayerSP player) throws ExecutionException {
         if (player == null) return null;
         ItemStack stack = player.getHeldItemMainhand();
         if (isInvalidStack(stack)) {
@@ -47,17 +49,19 @@ public class PreviewEvent {
             RayTraceResult raytrace = BuildingHelper.rayTrace(player, 128, 0F);
             if (raytrace == null || raytrace.getBlockPos() == null) return null;
             else {
-                try {
-                    BuildingKey key = BuildingHelper.getPositioning(stack, world, raytrace, building, player, false);
-                    return CACHE.get(key, new Callable<BuildingRenderer>() {
-                        @Override
-                        public BuildingRenderer call() throws Exception {
-                            return new BuildingRenderer(key);
-                        }
+                BuildingKey key = BuildingHelper.getPositioning(stack, world, raytrace, building, player, false);
+                if (key != null) {
+                    return CACHE.get(key, () -> {
+                        WorldKey worldKey = WorldKey.of(key.getMirror(), key.getRotation(), key.getBuilding());
+                        IBlockAccess access = WORLD.get(worldKey, () -> new BuildingAccess(building, key.getMirror(), key.getRotation()));
+                        return new BuildingRenderer(access, key);
                     });
-                } catch (Exception e) { return null; }
+                }
             }
         }
+
+        //All else fails return null
+        return null;
     }
 
     private boolean isBuildingItem(ItemStack stack) {
@@ -68,24 +72,27 @@ public class PreviewEvent {
         return stack == null || stack.getItem() == null || !isBuildingItem(stack);
     }
 
+    private void renderRenderer(EntityPlayerSP player, BuildingRenderer renderer, float partialTick) {
+        BlockPos pos = renderer.getPos();
+        GlStateManager.pushMatrix();
+        double posX = player.prevPosX + (player.posX - player.prevPosX) * partialTick;
+        double posY = player.prevPosY + (player.posY - player.prevPosY) * partialTick;
+        double posZ = player.prevPosZ + (player.posZ - player.prevPosZ) * partialTick;
+        GlStateManager.translate(-posX, -posY, -posZ);
+        GlStateManager.translate(pos.getX(), pos.getY(), pos.getZ());
+        renderer.draw(vertexUploader);
+        GlStateManager.translate(-pos.getX(), -pos.getY(), -pos.getZ());
+        GlStateManager.translate(posX, posY, posZ);
+        GlStateManager.popMatrix();
+    }
+
     /** Borrowed from SettlerCraft by @InfinityRaider **/
     @SubscribeEvent
-    public void renderBuildingPreview(RenderWorldLastEvent event) {
+    public void renderBuildingPreview(RenderWorldLastEvent event) throws ExecutionException {
         EntityPlayerSP player = MCClientHelper.getPlayer();
         BuildingRenderer renderer = getRenderer(player.worldObj, player);
         if (renderer != null) {
-            BlockPos pos = renderer.getPos();
-            GlStateManager.pushMatrix();
-            float partialTick = event.getPartialTicks();
-            double posX = player.prevPosX + (player.posX - player.prevPosX) * partialTick;
-            double posY = player.prevPosY + (player.posY - player.prevPosY) * partialTick;
-            double posZ = player.prevPosZ + (player.posZ - player.prevPosZ) * partialTick;
-            GlStateManager.translate(-posX, -posY, -posZ);
-            GlStateManager.translate(pos.getX(), pos.getY(), pos.getZ());
-            vertexUploader.draw(renderer.getBuffer());
-            GlStateManager.translate(-pos.getX(), -pos.getY(), -pos.getZ());
-            GlStateManager.translate(posX, posY, posZ);
-            GlStateManager.popMatrix();
+            renderRenderer(player, renderer, event.getPartialTicks());
         }
     }
 }

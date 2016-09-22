@@ -1,6 +1,7 @@
 package joshie.harvest.core;
 
 import joshie.harvest.HarvestFestival;
+import joshie.harvest.core.helpers.ConfigHelper;
 import joshie.harvest.core.util.HFLoader;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Loader;
@@ -11,12 +12,11 @@ import org.apache.logging.log4j.Level;
 
 import javax.annotation.Nonnull;
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 
 import static joshie.harvest.core.helpers.ConfigHelper.setCategory;
-import static joshie.harvest.core.helpers.ConfigHelper.setConfig;
-import static joshie.harvest.core.lib.HFModInfo.MODNAME;
 
 public class HFCommonProxy {
     private static final List<Class> LIST = new ArrayList<>();
@@ -71,27 +71,28 @@ public class HFCommonProxy {
         return Loader.isModLoaded(mod) || Loader.isModLoaded(mod.toLowerCase(Locale.ENGLISH));
     }
 
+    public void setupConfig(File file) {
+        ConfigHelper.setConfig(new Configuration(file));
+    }
+
     @SuppressWarnings("unchecked")
-    public void configure(File file) {
-        Configuration config = new Configuration(file);
+    public void configure() {
+        Configuration config = ConfigHelper.getConfig();
         for (Class c : LIST) {
             try {
                 Method configure = c.getMethod("configure");
-                if (configure != null) {
-                    String name = c.getSimpleName().replace("HF", "");
-                    try {
-                        config.load();
-                        setConfig(config);
-                        setCategory(name);
-                        configure.invoke(null);
-                    } catch (Exception e) {
-                        HarvestFestival.LOGGER.log(Level.ERROR, MODNAME + " failed to load in it's " + name + " config");
-                        e.printStackTrace();
-                    } finally {
+                setCategory(c.getSimpleName().replace("HF", ""));
+                try {
+                    config.load();
+                    configure.invoke(null);
+                } catch (IllegalAccessException | InvocationTargetException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (config.hasChanged()) {
                         config.save();
                     }
                 }
-            } catch (Exception e) {}
+            } catch (NoSuchMethodException ex) { /**/ }
         }
     }
 

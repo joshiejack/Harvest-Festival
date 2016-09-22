@@ -2,7 +2,7 @@
 {
   "modid": "harvestfestival",
   "name": "Harvest Festival",
-  "description": "A Harvest Moon inspired mod with seasons, crops, animals, mining and town building",
+  "description": "A Harvest Moon inspired mod with seasons, crops, animals, mining and town building.",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "https://github.com/PenguinSquad/Harvest-Festival",

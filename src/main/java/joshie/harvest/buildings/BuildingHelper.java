@@ -114,7 +114,7 @@ public class BuildingHelper {
         } else {
             if (clicked) {
                 if (!player.isSneaking() && world.isRemote) {
-                    ChatHelper.displayChat(TextFormatting.RED + building.getLocalisedName() + " " + Text.localize("town.cancelled"));
+                    ChatHelper.displayChat(TextFormatting.RED + building.getLocalisedName() + " " + Text.translate("town.cancelled"));
                 }
 
                 setPositionForPlayer(player, null);

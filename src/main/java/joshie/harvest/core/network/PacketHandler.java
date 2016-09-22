@@ -36,6 +36,10 @@ public class PacketHandler {
         INSTANCE.sendToDimension(dimension, message);
     }
 
+    public static void sendToAllAround(IMessage packet, int dim, double x, double y, double z, int distance) {
+        INSTANCE.sendToAllAround(packet, dim, x, y, z, distance);
+    }
+
     public static void sendRefreshPacket(TileHarvest tile) {
         tile.hasChanged = true;
         Packet<?> pkt = tile.getUpdatePacket();

@@ -30,8 +30,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-import java.util.HashMap;
-
 import static joshie.harvest.animals.block.BlockSizedStorage.SizedStorage.INCUBATOR;
 import static joshie.harvest.animals.block.BlockTray.Tray.FEEDER_EMPTY;
 import static joshie.harvest.animals.block.BlockTray.Tray.NEST_EMPTY;
@@ -45,7 +43,6 @@ import static joshie.harvest.cooking.block.BlockCookware.Cookware.*;
 import static joshie.harvest.cooking.item.ItemIngredients.Ingredient.*;
 import static joshie.harvest.cooking.item.ItemUtensil.Utensil.KNIFE;
 import static joshie.harvest.core.helpers.ConfigHelper.getBoolean;
-import static joshie.harvest.core.helpers.ConfigHelper.getString;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 import static joshie.harvest.npc.item.ItemNPCTool.NPCTool.BLUE_FEATHER;
 
@@ -214,16 +211,8 @@ public class HFShops {
     }
 
     public static boolean TWENTY_FOUR_HOUR_SHOPPING;
-    private static final HashMap<String, String> customShoppingList = new HashMap<>();
+
     public static void configure() {
         TWENTY_FOUR_HOUR_SHOPPING = getBoolean("Shops are open all the time", false);
-        String[] shopCategories = new String[] { "BAITSHOP", "BARN", "BLACKSMITH", "BLOODMAGE", "CAFE", "CARPENTER", "POULTRY", "SUPERMARKET", "MINER" };
-
-        for(String category: shopCategories) {
-            String shopData = getString(category, "");
-            if(shopData != null && !shopData.equals("")) {
-                customShoppingList.put(category, shopData);
-            }
-        }
     }
 }

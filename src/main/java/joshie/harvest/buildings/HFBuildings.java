@@ -26,6 +26,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.Level;
 
+import static joshie.harvest.core.helpers.ConfigHelper.getBoolean;
 import static joshie.harvest.core.lib.LoadOrder.HFBUILDING;
 
 @HFLoader(priority = HFBUILDING)
@@ -110,5 +111,12 @@ public class HFBuildings {
         public boolean shouldSkipField(FieldAttributes field) {
             return field.getDeclaringClass().equals(Impl.class);
         }
+    }
+
+    //Configuration
+    public static boolean FULL_BUILDING_RENDER;
+
+    public static void configure() {
+        FULL_BUILDING_RENDER = getBoolean("Full Building Render", false);
     }
 }

@@ -37,8 +37,8 @@ public class PenguinNetwork {
         INSTANCE.sendToDimension(message, dimension);
     }
 
-    public void sendToAllAround(IMessage packet, int dim, double x, double y, double z) {
-        INSTANCE.sendToAllAround(packet, new TargetPoint(dim, x, y, z, 172));
+    public void sendToAllAround(IMessage packet, int dim, double x, double y, double z, int distance) {
+        INSTANCE.sendToAllAround(packet, new TargetPoint(dim, x, y, z, distance));
     }
 
     public Packet<?> getPacketFrom(IMessage packet) {

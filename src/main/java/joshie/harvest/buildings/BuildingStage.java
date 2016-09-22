@@ -29,8 +29,16 @@ public class BuildingStage {
         this.pos = pos.add(0, building.getOffsetY(), 0);
     }
 
-    public BlockPos next() {
-        return index < building.getFullList().size() ? building.getFullList().get(index).getTransformedPosition(pos, direction): pos;
+    public Placeable next() {
+        return index < building.getFullList().size() ? building.getFullList().get(index): null;
+    }
+
+    public BlockPos getPos(Placeable placeable) {
+        return placeable.getTransformedPosition(pos, direction);
+    }
+
+    public double getDistance(Placeable placeable) {
+        return placeable.getOffsetPos().getY() <= -building.getOffsetY()? 256D: 64D;
     }
 
     public boolean build(World world) {

@@ -1,6 +1,7 @@
 package joshie.harvest.npc.entity.ai;
 
 import joshie.harvest.buildings.BuildingStage;
+import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.mining.MiningHelper;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -35,14 +36,16 @@ public class EntityAIBuild extends EntityAIBase {
     public void updateTask() {
         BuildingStage building = npc.getBuilding();
         if (buildingTimer % building.getTickTime() == 0) {
-            BlockPos go = building.next();
+            Placeable placeable = building.next();
+            BlockPos go = building.getPos(placeable);
             double distance = npc.getDistanceSq(go);
-            boolean tooFar = distance >= 48D;
+            boolean tooFar = distance >= building.getDistance(placeable);
             if (tooFar) {
                 //Teleportation
-                if ((teleportTimer >= 60 && distance <= 64D) || teleportTimer >= 300) {
+                if ((teleportTimer >= 60 && distance <= 64D) || teleportTimer >= 200) {
                     teleportTimer = 0;
-                    npc.setPositionAndUpdate(go.getX() + 0.5D, go.getY() + 1D, go.getZ() + 0.5D);
+                    npc.attemptTeleport(go.getX() + 0.5D, go.getY() + 1D, go.getZ() + 0.5D);
+                    tooFar = false; //Force the placement of the block
                 }
 
                 teleportTimer++;

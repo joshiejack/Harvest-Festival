@@ -2,8 +2,8 @@ package joshie.harvest.buildings;
 
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.buildings.placeable.Placeable.ConstructionStage;
-import joshie.harvest.town.TownHelper;
 import joshie.harvest.core.util.Direction;
+import joshie.harvest.town.TownHelper;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.ResourceLocation;
@@ -41,7 +41,9 @@ public class BuildingStage {
         return placeable.getOffsetPos().getY() <= -building.getOffsetY()? 256D: 64D;
     }
 
-    public boolean build(World world) {
+    private boolean increaseIndex(World world) {
+        index++;
+
         if (index >= building.getFullList().size()) {
             if (stage == ConstructionStage.BUILD) {
                 stage = ConstructionStage.DECORATE;
@@ -59,17 +61,20 @@ public class BuildingStage {
                 TownHelper.getClosestTownToBlockPos(world, pos).addBuilding(world, building, direction, pos);
                 return true;
             }
-        } else {
-            while (index < building.getFullList().size()) {
-                Placeable block = building.getFullList().get(index);
-                if (block.isBlocked(world, block.getTransformedPosition(pos, direction))) return false; //Don't do anything while it's blocked
-                if (block.place(world, pos, direction, stage)) {
-                    index++;
-                    return false;
-                }
+        }
 
-                index++;
+        return false;
+    }
+
+    public boolean build(World world) {
+        while (index < building.getFullList().size()) {
+            Placeable block = building.getFullList().get(index);
+            if (block.isBlocked(world, block.getTransformedPosition(pos, direction))) return false; //Don't do anything while it's blocked
+            if (block.place(world, pos, direction, stage)) {
+                return increaseIndex(world);
             }
+
+            if (increaseIndex(world)) return true;
         }
 
         return false;

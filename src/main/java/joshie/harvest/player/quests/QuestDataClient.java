@@ -24,7 +24,11 @@ public class QuestDataClient extends QuestData {
     
     //Removes the quest from the current and available lists
     public void markCompleted(Quest quest) {
-        getAQuest(quest).onQuestCompleted(MCClientHelper.getPlayer());
+        Quest aQuest = getAQuest(quest);
+        if (aQuest != null) {
+            aQuest.onQuestCompleted(MCClientHelper.getPlayer());
+        }
+
         if (!quest.isRepeatable()) {
             available.remove(quest);
         }

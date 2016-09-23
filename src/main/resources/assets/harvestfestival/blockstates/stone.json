@@ -1,7 +1,7 @@
 {
   "variants": {
     "type=real": [
-      { "model": "harvestfestival:mine/mine_wall", "weight": 20 },
+      { "model": "harvestfestival:mine/mine_wall", "weight": 30 },
       { "model": "harvestfestival:mine/mine_wall1", "weight": 1 },
       { "model": "harvestfestival:mine/mine_wall2", "weight": 1 },
       { "model": "harvestfestival:mine/mine_wall3", "weight": 1 },

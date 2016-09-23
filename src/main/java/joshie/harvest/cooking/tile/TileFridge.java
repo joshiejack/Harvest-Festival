@@ -7,27 +7,17 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ITickable;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 /** Just a way to interact with the fridge inventory, the fridge inventory is global though, not stored in this block **/
 public class TileFridge extends TileFaceable implements ITickable {
     private static final float f1 = 0.025F;
-    @SideOnly(Side.CLIENT)
     public float prevLidAngleTop;
-    @SideOnly(Side.CLIENT)
     public float lidAngleTop;
-    @SideOnly(Side.CLIENT)
     public boolean animatingTop;
-    @SideOnly(Side.CLIENT)
     public boolean openTop = true;
-    @SideOnly(Side.CLIENT)
     public float prevLidAngleBottom;
-    @SideOnly(Side.CLIENT)
     public float lidAngleBottom;
-    @SideOnly(Side.CLIENT)
     public boolean animatingBottom;
-    @SideOnly(Side.CLIENT)
     public boolean openBottom = true;
     protected final FridgeData data = new FridgeData(this);
 

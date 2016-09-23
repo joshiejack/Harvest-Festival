@@ -30,7 +30,7 @@ Stage 2 (0.6.0) - Expansive Events
  -> Marketplace where Festivals take place
  -> Small Artwork for each Festival that gets drawn in the Calender/Marketplace
 
-Stage 3 (0.7.0) - Old Mcdonald 
+Stage 3 (0.7.0) - Old Mcdonald
 * Farms named and rated
 * See your farm stats
 * Upgradeable House
@@ -56,4 +56,4 @@ Stage 5 (0.9.0) - Automative
 Stage 6 (1.0.0) - Family Fun
 * Pigs, Wolves, Cats, Horse Pets
 * Rival System and Dating events
-* Offspring 
+* Offspring

@@ -2,12 +2,31 @@ package joshie.harvest.npc.render;
 
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.entity.EntityNPC.Mode;
-import net.minecraft.client.model.ModelPlayer;
+import net.minecraft.client.model.ModelBiped;
+import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.EnumHandSide;
 
-public class ModelNPC extends ModelPlayer {
+public class ModelNPC extends ModelBiped {
+    private final boolean smallArms;
+
     public ModelNPC(boolean alex) {
-        super(0, alex);
+        super(0F, 0.0F, 64, 64);
+        float modelSize = 0F;
+        smallArms = alex;
+
+        if (alex) {
+            bipedLeftArm = new ModelRenderer(this, 32, 48);
+            bipedLeftArm.addBox(-1.0F, -2.0F, -2.0F, 3, 12, 4, modelSize);
+            bipedLeftArm.setRotationPoint(5.0F, 2.5F, 0.0F);
+            bipedRightArm = new ModelRenderer(this, 40, 16);
+            bipedRightArm.addBox(-2.0F, -2.0F, -2.0F, 3, 12, 4, modelSize);
+            bipedRightArm.setRotationPoint(-5.0F, 2.5F, 0.0F);
+        } else {
+            bipedLeftArm = new ModelRenderer(this, 32, 48);
+            bipedLeftArm.addBox(-1.0F, -2.0F, -2.0F, 4, 12, 4, modelSize);
+            bipedLeftArm.setRotationPoint(5.0F, 2.0F, 0.0F);
+        }
     }
 
     @Override
@@ -21,6 +40,20 @@ public class ModelNPC extends ModelPlayer {
         if (mode == Mode.GIFT) {
             bipedRightArm.rotateAngleX = -45F;
             bipedLeftArm.rotateAngleX = -45F;
+        }
+    }
+
+    @Override
+    public void postRenderArm(float scale, EnumHandSide side) {
+        ModelRenderer modelrenderer = this.getArmForSide(side);
+
+        if (smallArms) {
+            float f = 0.5F * (float)(side == EnumHandSide.RIGHT ? 1 : -1);
+            modelrenderer.rotationPointX += f;
+            modelrenderer.postRender(scale);
+            modelrenderer.rotationPointX -= f;
+        } else {
+            modelrenderer.postRender(scale);
         }
     }
 }

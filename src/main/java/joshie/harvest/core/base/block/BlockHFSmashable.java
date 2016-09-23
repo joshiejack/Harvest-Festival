@@ -46,7 +46,7 @@ public abstract class BlockHFSmashable<B extends BlockHFSmashable, E extends Enu
     public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)  {
         if (!worldIn.isRemote && !worldIn.restoringBlockSnapshots)  {
             EntityPlayer player = harvesters.get();
-            if (player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == getTool()) {
+            if (player != null && player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == getTool()) {
                 if (smashBlock(harvesters.get(), worldIn, pos, state, getTool().getTier(player.getHeldItemMainhand()))) return;
             }
 

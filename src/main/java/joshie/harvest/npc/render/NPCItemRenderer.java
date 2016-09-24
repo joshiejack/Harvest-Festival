@@ -60,7 +60,7 @@ public class NPCItemRenderer extends TileEntitySpecialRenderer<NPCTile> {
 
         @Override
         public void setID(int id) {
-            id = Math.max(0, Math.min(NPCRegistry.REGISTRY.getValues().size(), id));
+            id = Math.max(0, Math.min(NPCRegistry.REGISTRY.getValues().size() - 1, id));
             this.npc = NPCRegistry.REGISTRY.getValues().get(id);
         }
     }

@@ -122,7 +122,7 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
     }
 
     public Crop getCropFromStack(ItemStack stack) {
-        int id = Math.max(0, Math.min(Crop.REGISTRY.getValues().size(), stack.getItemDamage()));
+        int id = Math.max(0, Math.min(Crop.REGISTRY.getValues().size() - 1, stack.getItemDamage()));
         return Crop.REGISTRY.getValues().get(id);
     }
 

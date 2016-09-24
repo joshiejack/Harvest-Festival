@@ -133,7 +133,7 @@ public class ItemMeal extends ItemHFFoodFML<ItemMeal, MealImpl> implements IAltI
 
     @Override
     public ItemStack getAlternativeWhenCooking(ItemStack stack) {
-        int id = Math.max(0, Math.min(CookingAPI.REGISTRY.getValues().size(), stack.getItemDamage()));
+        int id = Math.max(0, Math.min(CookingAPI.REGISTRY.getValues().size() - 1, stack.getItemDamage()));
         MealImpl recipe = CookingAPI.REGISTRY.getValues().get(id);
         if (recipe != null) {
             return recipe.getAlternativeItem();

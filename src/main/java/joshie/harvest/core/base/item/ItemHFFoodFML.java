@@ -38,7 +38,7 @@ public abstract class ItemHFFoodFML<I extends ItemHFFoodFML, E extends Impl<E>> 
     public abstract E getNullValue();
 
     public E getObjectFromStack(ItemStack stack) {
-        int id = Math.max(0, Math.min(registry.getValues().size(), stack.getItemDamage()));
+        int id = Math.max(0, Math.min(registry.getValues().size() - 1, stack.getItemDamage()));
         E e = registry.getValues().get(id);
         return e != null ? e: getNullValue();
     }

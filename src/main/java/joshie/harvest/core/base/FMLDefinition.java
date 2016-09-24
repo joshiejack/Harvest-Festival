@@ -50,7 +50,7 @@ public class FMLDefinition<E extends Impl<E>> implements ItemMeshDefinition {
 
     @Override
     public ModelResourceLocation getModelLocation(ItemStack stack) {
-        int id = Math.max(0, Math.min(registry.getValues().size(), stack.getItemDamage()));
+        int id = Math.max(0, Math.min(registry.getValues().size() - 1, stack.getItemDamage()));
         return models.get(registry.getValues().get(id));
     }
 }

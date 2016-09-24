@@ -31,7 +31,7 @@ public class ItemSizeable extends ItemHFFML<ItemSizeable, Sizeable> implements I
     @Override
     public Sizeable getObjectFromStack(ItemStack stack) {
         int real = (int)Math.floor(stack.getItemDamage() / 3);
-        int id = Math.max(0, Math.min(SizeableRegistry.REGISTRY.getValues().size(), real));
+        int id = Math.max(0, Math.min(SizeableRegistry.REGISTRY.getValues().size() - 1, real));
         return SizeableRegistry.REGISTRY.getValues().get(id);
     }
 

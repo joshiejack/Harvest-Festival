@@ -28,7 +28,7 @@ public class ItemRecipe extends ItemHFFML<ItemRecipe, MealImpl> implements ICrea
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        int id = Math.max(0, Math.min(CookingAPI.REGISTRY.getValues().size(), stack.getItemDamage()));
+        int id = Math.max(0, Math.min(CookingAPI.REGISTRY.getValues().size() - 1, stack.getItemDamage()));
         return Text.format(MODID + ".recipe.format", CookingAPI.REGISTRY.getValues().get(id).getDisplayName());
     }
 

@@ -115,7 +115,7 @@ public class BlockOre extends BlockHFSmashable<BlockOre, Ore> implements ISmasha
         switch (ore) {
             case ROCK: {
                 ResourceLocation loot = HFApi.calendar.getDate(world).getSeason() == Season.WINTER ? LootStrings.MINE_WINTER : LootStrings.MINE_SPRING;
-                return MiningHelper.getLoot(loot, world, player, luck);
+                return world.isRemote ? new ItemStack(this) : MiningHelper.getLoot(loot, world, player, luck);
             }
 
             case COPPER:

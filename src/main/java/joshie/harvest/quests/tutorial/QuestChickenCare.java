@@ -90,14 +90,16 @@ public class QuestChickenCare extends QuestQuestion {
     @Override
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
         if (npc == HFNPCs.GODDESS) {
-            if (TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.POULTRY_FARM)) {
-                //If the barn exists the goddess will tell the player to go and talk to ashlee
-                return getLocalized("reminder.talk");
-            }
+            if (player.worldObj.rand.nextFloat() < 0.15F) {
+                if (TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.POULTRY_FARM)) {
+                    //If the barn exists the goddess will tell the player to go and talk to ashlee
+                    return getLocalized("reminder.talk");
+                }
 
-            //Goddess reminds the player that you should go and build a poultry farm
-            //So that you can get further chickens
-            return getLocalized("reminder.poultry");
+                //Goddess reminds the player that you should go and build a poultry farm
+                //So that you can get further chickens
+                return getLocalized("reminder.poultry");
+            } else return null;
         } else if (npc == HFNPCs.POULTRY) {
             if (isCompletedEarly) {
                 return getLocalized("completed");

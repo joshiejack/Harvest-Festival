@@ -30,17 +30,19 @@ public class QuestSupermarket extends Quest {
 
     @Override
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
-        if (quest_stage == START && player.worldObj.rand.nextFloat() < 0.15F && npc == SEED_OWNER) {
-            if (TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.SUPERMARKET)) {
-                //If the supermarket exists
-                //Jade will tell you to go and talk to one of the new residents of the supermarket,
-                //She informs you that they have a gift
-                return getLocalized("reminder.talk");
-            }
+        if (quest_stage == START && npc == SEED_OWNER) {
+            if (player.worldObj.rand.nextFloat() < 0.15F) {
+                if (TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.SUPERMARKET)) {
+                    //If the supermarket exists
+                    //Jade will tell you to go and talk to one of the new residents of the supermarket,
+                    //She informs you that they have a gift
+                    return getLocalized("reminder.talk");
+                }
 
-            //Jade tells the player that they should be attempting to have a supermarket built
-            //So that they can expand collection
-            return getLocalized("reminder.supermarket");
+                //Jade tells the player that they should be attempting to have a supermarket built
+                //So that they can expand collection
+                return getLocalized("reminder.supermarket");
+            } else return null;
         } else if (quest_stage == START && (npc == GS_OWNER || npc == MILKMAID)) {
             //Jenni says hey there I'm the owner, welcome to the supermarket, here you can buy all kinds of things
             //From seeds to chocolate, If you need anything, just ask me

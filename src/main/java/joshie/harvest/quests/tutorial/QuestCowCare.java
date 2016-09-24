@@ -80,14 +80,16 @@ public class QuestCowCare extends QuestQuestion {
     @Override
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
         if (npc == BUILDER) {
-            if (TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.BARN)) {
-                //If the barn exists yulif will tell the player to go and talk to jim
-                return getLocalized("reminder.intro");
-            }
+            if (player.worldObj.rand.nextFloat() < 0.15F) {
+                if (TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.BARN)) {
+                    //If the barn exists yulif will tell the player to go and talk to jim
+                    return getLocalized("reminder.intro");
+                }
 
-            //Yulif reminds the player that you should go and build a ranch
-            //So that you can get additional animals
-            return getLocalized("reminder.barn");
+                //Yulif reminds the player that you should go and build a ranch
+                //So that you can get additional animals
+                return getLocalized("reminder.barn");
+            } else return null;
         } else if (npc == ANIMAL_OWNER) {
             if (isCompletedEarly) {
                 return getLocalized("completed");

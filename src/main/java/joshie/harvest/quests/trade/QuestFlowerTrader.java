@@ -60,7 +60,7 @@ public class QuestFlowerTrader extends QuestTrade {
             if (season == SPRING || season == SUMMER || season == AUTUMN) {
                 if (season == SPRING) rewardItem(player, HFCrops.TURNIP.getSeedStack(1));
                 else if (season == SUMMER) rewardItem(player, HFCrops.ONION.getSeedStack(1));
-                else if (season == AUTUMN) rewardItem(player, HFCrops.CARROT.getSeedStack(1));
+                else rewardItem(player, HFCrops.CARROT.getSeedStack(1));
             }
         }
     }

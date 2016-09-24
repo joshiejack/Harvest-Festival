@@ -1,6 +1,7 @@
 ##0.5.2
 * Fix Jade's demonic eyes
 * Fix the render of the mine blocks
+* Fix Jade not taking flowers in the crops tutorial
 * Fix crash when exploding gathering blocks/ores
 * Fix potential crashes with npcs models and certain mods
 * Fix potential crashes with mods that are calling out of bound ids

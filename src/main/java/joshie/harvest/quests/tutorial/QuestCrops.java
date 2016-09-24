@@ -107,7 +107,7 @@ public class QuestCrops extends QuestQuestion {
             }
 
             if (attempted) {
-                if (InventoryHelper.getHandItemIsIn(player, SPECIAL, SearchType.FLOWER, 5) != null) {
+                if (InventoryHelper.takeItemsIfHeld(player, SPECIAL, SearchType.FLOWER, 5) != null) {
                     rewardItem(player, HFCrops.TURNIP.getSeedStack(1));
                 } else if (InventoryHelper.takeItemsIfHeld(player, SPECIAL, SearchType.HOE) != null) {
                     rewardItem(player, HFTools.HOE.getStack(BASIC));

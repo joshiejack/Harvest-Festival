@@ -9,7 +9,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
 
 public class ChatFontRenderer {
-    private enum Char {
+    private enum ChatChar {
         a('a', 2), b('b', 14), c('c', 26), d('d', 38), e('e', 50), f('f', 62, 9), g('g', 72), h('h', 84),
         i('i', 96, 6), j('j', 103, 7), k('k', 112, 11), l('l', 125, 6), m('m', 133, 14), n('n', 149),
         o('o', 161), p('p', 173), q('q', 185), r('r', 197), s('s', 209), t('t', 221, 9), u('u', 232),
@@ -28,7 +28,7 @@ public class ChatFontRenderer {
         private final int yPosition2;
         private final int width;
 
-        Char(char c, int x, int y, int w) {
+        ChatChar(char c, int x, int y, int w) {
             this.character = c;
             this.xPosition = x;
             this.yPosition = y;
@@ -36,21 +36,41 @@ public class ChatFontRenderer {
             this.width = w;
         }
 
-        Char(char c, int x, int w) {
+        ChatChar(char c, int x, int w) {
             this(c, x, 2, w);
         }
 
-        Char(char c, int x) {
+        ChatChar(char c, int x) {
             this(c, x, 10);
+        }
+
+        public char getCharacter() {
+            return character;
+        }
+
+        public int getXPosition() {
+            return xPosition;
+        }
+
+        public int getYPosition() {
+            return yPosition;
+        }
+
+        public int getYPosition2() {
+            return yPosition2;
+        }
+
+        public int getWidth() {
+            return width;
         }
     }
 
     private static final ResourceLocation resource = new ResourceLocation(HFModInfo.MODID, "textures/gui/chattext.png");
-    private static final TCharObjectMap<Char> map = new TCharObjectHashMap<>();
+    private static final TCharObjectMap<ChatChar> map = new TCharObjectHashMap<>();
 
     static {
-        for (Char c : Char.values()) {
-            map.put(c.character, c);
+        for (ChatChar c : ChatChar.values()) {
+            map.put(c.getCharacter(), c);
         }
     }
 
@@ -61,26 +81,31 @@ public class ChatFontRenderer {
         GlStateManager.color(red, green, blue, 1F);
     }
 
+    private static int getWidth(char c) {
+        if (map.get(c) != null) return map.get(c).getWidth();
+        else return 10;
+    }
+
     public static void render(Gui gui, int x, int y, String text, int colorInner, int colorOuter) {
         Minecraft.getMinecraft().getTextureManager().bindTexture(resource);
         char[] characters = text.toCharArray();
         int offset = 0;
         int width = 0;
         for (char c : characters) {
-            width += map.get(c).width - 2;
+            width += getWidth(c) - 2;
         }
 
         int xOffset = 235;
         int yOffset = 134;
 
         for (char c : characters) {
-            Char cNum = map.get(c);
+            ChatChar cNum = map.get(c);
             if (cNum != null) {
                 colorise(colorInner);
-                gui.drawTexturedModalRect(x + offset - width + xOffset, y + yOffset, cNum.xPosition, cNum.yPosition, cNum.width, 19);
+                gui.drawTexturedModalRect(x + offset - width + xOffset, y + yOffset, cNum.getXPosition(), cNum.getYPosition(), cNum.getWidth(), 19);
                 colorise(colorOuter);
-                gui.drawTexturedModalRect(x + offset - width + xOffset, y + yOffset, cNum.xPosition, cNum.yPosition2, cNum.width, 19);
-                offset += cNum.width - 2;
+                gui.drawTexturedModalRect(x + offset - width + xOffset, y + yOffset, cNum.getXPosition(), cNum.getYPosition2(), cNum.getWidth(), 19);
+                offset += cNum.getWidth() - 2;
             }
         }
 

@@ -3,6 +3,7 @@ package joshie.harvest.cooking.tile;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.cooking.IAltItem;
 import joshie.harvest.api.cooking.Utensil;
+import joshie.harvest.cooking.CookingHelper.PlaceIngredientResult;
 import joshie.harvest.core.achievements.HFAchievements;
 import joshie.harvest.core.base.tile.TileFaceable;
 import joshie.harvest.core.helpers.SpawnItemHelper;
@@ -18,6 +19,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 
 import java.util.ArrayList;
+
+import static joshie.harvest.cooking.CookingHelper.PlaceIngredientResult.SUCCESS;
 
 public abstract class TileCooking extends TileFaceable {
     public abstract static class TileCookingTicking extends TileCooking implements ITickable {
@@ -51,8 +54,8 @@ public abstract class TileCooking extends TileFaceable {
         return cookTimer;
     }
 
-    public boolean hasPrerequisites() {
-        return true;
+    public PlaceIngredientResult hasPrerequisites() {
+        return SUCCESS;
     }
 
     public boolean isFinishedCooking() {
@@ -110,7 +113,7 @@ public abstract class TileCooking extends TileFaceable {
                     this.markDirty();
                 }
 
-                if (!hasPrerequisites()) {
+                if (hasPrerequisites() != SUCCESS) {
                     cooking = false;
                     this.markDirty();
                 }
@@ -121,7 +124,7 @@ public abstract class TileCooking extends TileFaceable {
     //Returns true if this was a valid ingredient to add
     public boolean addIngredient(ItemStack stack) {
         if (ingredients.size() >= 20) return false;
-        if (!hasPrerequisites()) return false;
+        if (hasPrerequisites() != SUCCESS) return false;
         if (!HFApi.cooking.isIngredient(stack)) return false;
         else {
             if (worldObj.isRemote) return true;

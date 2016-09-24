@@ -14,6 +14,7 @@ import net.minecraft.world.World;
 import java.util.HashSet;
 import java.util.Set;
 
+import static joshie.harvest.cooking.CookingHelper.PlaceIngredientResult.*;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class CookingHelper {
@@ -50,7 +51,7 @@ public class CookingHelper {
         return hasAllIngredients(recipe, ingredients);
     }
 
-    public static boolean tryPlaceIngredients(EntityPlayer player, MealImpl recipe) {
+    public static PlaceIngredientResult tryPlaceIngredients(EntityPlayer player, MealImpl recipe) {
         World world = player.worldObj;
         BlockPos pos = new BlockPos(player);
         int reach = player.capabilities.isCreativeMode ? 5 : 4;
@@ -60,14 +61,20 @@ public class CookingHelper {
                     TileEntity tile = world.getTileEntity(pos.add(x, y, z));
                     if (tile instanceof TileCooking) {
                         TileCooking cooking = (TileCooking) tile;
+                        PlaceIngredientResult result = cooking.hasPrerequisites();
+                        if (result != SUCCESS) return result;
                         if (cooking.getUtensil() == recipe.getRequiredTool() && cooking.getIngredients().size() == 0) {
-                            if (ItemCookbook.cook(cooking, player, recipe)) return true;
+                            if (ItemCookbook.cook(cooking, player, recipe)) return SUCCESS;
                         }
                     }
                 }
             }
         }
 
-        return false;
+        return FAILURE;
+    }
+
+    public enum PlaceIngredientResult {
+        SUCCESS, FAILURE, MISSING_OVEN, MISSING_COUNTER
     }
 }

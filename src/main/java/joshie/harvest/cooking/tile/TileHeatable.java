@@ -1,5 +1,6 @@
 package joshie.harvest.cooking.tile;
 
+import joshie.harvest.cooking.CookingHelper.PlaceIngredientResult;
 import joshie.harvest.cooking.tile.TileCooking.TileCookingTicking;
 import joshie.harvest.api.cooking.Utensil;
 import net.minecraft.util.EnumFacing;
@@ -31,7 +32,7 @@ public abstract class TileHeatable extends TileCookingTicking {
     }
 
     @Override
-    public boolean hasPrerequisites() {
-        return isAbove(Utensil.OVEN);
+    public PlaceIngredientResult hasPrerequisites() {
+        return isAbove(Utensil.OVEN) ? PlaceIngredientResult.SUCCESS : PlaceIngredientResult.MISSING_OVEN;
     }
 }

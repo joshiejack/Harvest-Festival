@@ -11,11 +11,6 @@ public class TilePot extends TileHeatable {
     }
 
     @Override
-    public boolean hasPrerequisites() {
-        return isAbove(Utensil.OVEN);
-    }
-
-    @Override
     public void animate() {
         super.animate();
 

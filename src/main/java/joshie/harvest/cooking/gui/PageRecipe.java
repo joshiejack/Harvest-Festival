@@ -4,6 +4,7 @@ import joshie.harvest.api.cooking.Ingredient;
 import joshie.harvest.api.cooking.Utensil;
 import joshie.harvest.cooking.CookingAPI;
 import joshie.harvest.cooking.CookingHelper;
+import joshie.harvest.cooking.CookingHelper.PlaceIngredientResult;
 import joshie.harvest.cooking.packet.PacketSelectRecipe;
 import joshie.harvest.cooking.recipe.MealImpl;
 import joshie.harvest.core.helpers.ChatHelper;
@@ -18,6 +19,7 @@ import net.minecraft.util.text.TextFormatting;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import static joshie.harvest.cooking.gui.GuiCookbook.LEFT_GUI;
 import static joshie.harvest.cooking.gui.GuiCookbook.ingredients;
@@ -130,12 +132,12 @@ public class PageRecipe extends Page {
             if (CookingHelper.hasAllIngredients(recipe, GuiCookbook.ingredients)) {
                 String utensil = TextFormatting.YELLOW + PageRecipeList.get(recipe.getRequiredTool()).getItem().getDisplayName() + TextFormatting.RESET;
                 String name = TextFormatting.YELLOW + recipe.getDisplayName() + TextFormatting.RESET;
-                if (CookingHelper.tryPlaceIngredients(MCClientHelper.getPlayer(), recipe)) {
+                PlaceIngredientResult result = CookingHelper.tryPlaceIngredients(MCClientHelper.getPlayer(), recipe);
+                if (result == PlaceIngredientResult.SUCCESS) {
                     PacketHandler.sendToServer(new PacketSelectRecipe(recipe));
                     MCClientHelper.getPlayer().closeScreen(); //Close this gui
                     ChatHelper.displayChat(TextFormatting.GREEN + Text.translate("meal.success") + TextFormatting.WHITE + " " + Text.format("harvestfestival.meal.success.description", utensil, name));
-                } else
-                    ChatHelper.displayChat(TextFormatting.RED + Text.translate("meal.failure") + TextFormatting.WHITE + " " + Text.format("harvestfestival.meal.failure.description", utensil, name));
+                } else ChatHelper.displayChat(TextFormatting.RED + Text.translate("meal." + result.name().toLowerCase(Locale.ENGLISH)) + TextFormatting.WHITE + "\n " + Text.format("harvestfestival.meal." + result.name().toLowerCase(Locale.ENGLISH) + ".description", utensil, name));
             } else ChatHelper.displayChat(TextFormatting.RED + Text.translate("meal.missing") + TextFormatting.WHITE +  " " + Text.translate("meal.missing.description"));
 
             return true;

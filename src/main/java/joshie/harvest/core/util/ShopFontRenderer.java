@@ -10,7 +10,7 @@ import net.minecraft.util.ResourceLocation;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class ShopFontRenderer {
-    private enum Char {
+    private enum ShopChar {
         a('a', 1, 194, 8), b('b', 10, 194, 9), c('c', 20, 194, 9), d('d', 30, 194, 10), e('e', 41, 194, 8), f('f', 50, 194, 8), g('g', 59, 194, 10),
         h('h', 70, 194, 10), i('i', 81, 194, 6), j('j', 88, 194, 8), k('k', 97, 194, 10), l('l', 108, 194, 5),  m('m', 114, 194, 14),
         n('n', 129, 194, 10), o('o', 140, 194, 9), p('p', 150, 194, 10), q('q', 161, 194, 10), r('r', 172, 194, 7),  s('s', 180, 194, 7),
@@ -28,21 +28,42 @@ public class ShopFontRenderer {
         private final int yPosition;
         private final int width;
 
-        Char(char c, int x, int y, int w) {
+        ShopChar(char c, int x, int y, int w) {
             this.character = c;
             this.xPosition = x;
             this.yPosition = y;
             this.width = w;
         }
+
+        public char getCharacter() {
+            return character;
+        }
+
+        public int getXPosition() {
+            return xPosition;
+        }
+
+        public int getYPosition() {
+            return yPosition;
+        }
+
+        public int getWidth() {
+            return width;
+        }
     }
 
     private static final ResourceLocation resource = new ResourceLocation(MODID, "textures/gui/shopstext.png");
-    private static final TCharObjectMap<Char> map = new TCharObjectHashMap<>();
+    private static final TCharObjectMap<ShopChar> map = new TCharObjectHashMap<>();
 
     static {
-        for (Char c : Char.values()) {
-            map.put(c.character, c);
+        for (ShopChar c : ShopChar.values()) {
+            map.put(c.getCharacter(), c);
         }
+    }
+
+    private static int getWidth(char c) {
+        if (map.get(c) != null) return map.get(c).getWidth();
+        else return 10;
     }
 
     public static void render(Gui gui, int x, int y, String text, boolean rightAligned) {
@@ -51,15 +72,15 @@ public class ShopFontRenderer {
         int offset = 0;
         int width = 0;
         for (char c : characters) {
-            width += map.get(c).width - 2;
+            width += getWidth(c) - 2;
         }
 
         if (rightAligned) offset = -width;
         for (char c : characters) {
-            Char cNum = map.get(c);
+            ShopChar cNum = map.get(c);
             if (cNum != null) {
-                gui.drawTexturedModalRect(x + offset, y, cNum.xPosition, cNum.yPosition, cNum.width, 18);
-                offset += cNum.width - 2;
+                gui.drawTexturedModalRect(x + offset, y, cNum.getXPosition(), cNum.getYPosition(), cNum.getWidth(), 18);
+                offset += cNum.getWidth() - 2;
             }
         }
 

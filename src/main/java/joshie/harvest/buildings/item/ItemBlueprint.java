@@ -4,7 +4,7 @@ import joshie.harvest.buildings.BuildingHelper;
 import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.BuildingRegistry;
 import joshie.harvest.buildings.HFBuildings;
-import joshie.harvest.buildings.render.BuildingKey;
+import joshie.harvest.buildings.render.RenderKey;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.item.ItemHFFML;
 import joshie.harvest.core.helpers.ChatHelper;
@@ -58,7 +58,7 @@ public class ItemBlueprint extends ItemHFFML<ItemBlueprint, BuildingImpl> implem
                         TownHelper.ensureTownExists(world, raytrace.getBlockPos()); //Force a town to exist near where you clicked
                     }
 
-                    BuildingKey key = BuildingHelper.getPositioning(stack, world, raytrace, building, player, true);
+                    RenderKey key = BuildingHelper.getPositioning(stack, world, raytrace, building, player, true);
                     if (key != null) {
                         if (!TownHelper.getClosestTownToBlockPos(world, key.getPos()).isBuilding(building)) {
                             if (!world.isRemote) {

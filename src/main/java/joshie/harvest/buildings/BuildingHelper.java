@@ -1,6 +1,6 @@
 package joshie.harvest.buildings;
 
-import joshie.harvest.buildings.render.BuildingKey;
+import joshie.harvest.buildings.render.RenderKey;
 import joshie.harvest.core.helpers.ChatHelper;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.util.Text;
@@ -36,9 +36,9 @@ public class BuildingHelper {
         return player.worldObj.rayTraceBlocks(vec3d, vec3d2, false, false, true);
     }
 
-    private static final WeakHashMap<EntityPlayer, BuildingKey> POSITIONS_SERVER = new WeakHashMap<>();
+    private static final WeakHashMap<EntityPlayer, RenderKey> POSITIONS_SERVER = new WeakHashMap<>();
     private static final WeakHashMap<EntityPlayer, ItemStack> STACKS_SERVER = new WeakHashMap<>();
-    private static BuildingKey POSITION_CLIENT;
+    private static RenderKey POSITION_CLIENT;
     private static ItemStack STACK_CLIENT;
 
     private static void validateOrInvalidateStack(ItemStack stack, EntityPlayer player) {
@@ -55,12 +55,12 @@ public class BuildingHelper {
         }
     }
 
-    private static void setPositionForPlayer(EntityPlayer player, BuildingKey pos) {
+    private static void setPositionForPlayer(EntityPlayer player, RenderKey pos) {
         if (player.worldObj.isRemote) POSITION_CLIENT = pos;
         else POSITIONS_SERVER.put(player, pos);
     }
 
-    private static BuildingKey getPositionForPlayer(EntityPlayer player) {
+    private static RenderKey getPositionForPlayer(EntityPlayer player) {
         if (player.worldObj.isRemote) return POSITION_CLIENT;
         else return POSITIONS_SERVER.get(player);
     }
@@ -69,7 +69,7 @@ public class BuildingHelper {
         return world.isAirBlock(pos);
     }
 
-    private static BuildingKey getCachedKey(EntityPlayer player, BlockPos pos, BuildingImpl building) {
+    private static RenderKey getCachedKey(EntityPlayer player, BlockPos pos, BuildingImpl building) {
         EnumFacing facing = EntityHelper.getFacingFromEntity(player).getOpposite();
         Mirror mirror = Mirror.NONE;
         Rotation rotation = Rotation.NONE;
@@ -89,15 +89,15 @@ public class BuildingHelper {
         else if (facing == EnumFacing.SOUTH) pos = pos.offset(facing, length).offset(EnumFacing.WEST, width);
         else if (facing == EnumFacing.EAST) pos = pos.offset(facing, length).offset(EnumFacing.SOUTH, width);
         else if (facing == EnumFacing.WEST) pos = pos.offset(facing, length).offset(EnumFacing.NORTH, width);
-        return BuildingKey.of(pos, mirror, rotation, building);
+        return RenderKey.of(mirror, rotation, building, pos);
     }
 
     @SuppressWarnings("deprecation")
-    public static BuildingKey getPositioning(ItemStack stack, World world, RayTraceResult raytrace, BuildingImpl building, EntityPlayer player, boolean clicked) {
+    public static RenderKey getPositioning(ItemStack stack, World world, RayTraceResult raytrace, BuildingImpl building, EntityPlayer player, boolean clicked) {
         validateOrInvalidateStack(stack, player);
         BlockPos pos = raytrace.getBlockPos().offset(raytrace.sideHit).up(building.getOffsetY());
         //Load the saved position
-        BuildingKey key = getPositionForPlayer(player);
+        RenderKey key = getPositionForPlayer(player);
         if (key == null) {
             if (clicked) {
                 if (!isAir(world, raytrace.getBlockPos()) && raytrace.sideHit == EnumFacing.UP) {

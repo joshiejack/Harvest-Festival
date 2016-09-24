@@ -8,6 +8,5 @@ public class HFCaches {
     @SideOnly(Side.CLIENT)
     public static void clearClient() {
         PreviewEvent.CACHE.invalidateAll();
-        PreviewEvent.WORLD.invalidateAll();
     }
 }

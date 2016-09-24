@@ -24,12 +24,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class BuildingRenderer {
     private final RegionRenderCacheBuilder renderer;
-    private final BuildingKey key;
-    private int exist;
+    private final RenderKey key;
+    private BlockPos pos;
 
-    public BuildingRenderer(IBlockAccess world, BuildingKey key) {
+    public BuildingRenderer(IBlockAccess world, RenderKey key) {
         BuildingImpl building = key.getBuilding();
         this.key = key;
+        this.pos = key.getPos();
         this.renderer = new RegionRenderCacheBuilder();
         Direction direction = Direction.withMirrorAndRotation(key.getMirror(), key.getRotation());
         for (BlockRenderLayer layer: BlockRenderLayer.values()) {
@@ -67,14 +68,9 @@ public class BuildingRenderer {
         }
     }
 
-    public BuildingRenderer start() {
-        this.exist = 2000;
+    public BuildingRenderer setPosition(BlockPos position) {
+        this.pos = position;
         return this;
-    }
-
-    public boolean remove() {
-        this.exist--;
-        return this.exist <= 0;
     }
 
     public BuildingImpl getBuilding() {
@@ -82,7 +78,7 @@ public class BuildingRenderer {
     }
 
     public BlockPos getPos() {
-        return key.getPos();
+        return this.pos;
     }
 
     public void draw(BuildingVertexUploader vertexUploader) {

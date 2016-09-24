@@ -1,11 +1,11 @@
-##0.5.2
+##0.5.3
 * Jade will now swap hoes/buckets for hoes/watering cans from after the tutorial until you complete the blacksmith tutorial
 * My tools can no longer be gifted to npcs
 * If animal spawning is disabled, the carpenter will sell beds
 * Fix jade not giving you seeds sometimes
 * Fix side related errors when displaying chat
 * Fix the builder/goddess always reminding you to build things
-* Actually fix potential crashes with mods that are calling out of bound ids?
+* Actually fix potential crashes with mods that are calling out of bound ids? We'll see...
 
 ##0.5.2
 * Fix Jade's demonic eyes

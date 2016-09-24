@@ -30,7 +30,7 @@ public class QuestSupermarket extends Quest {
 
     @Override
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
-        if (quest_stage == START && player.worldObj.rand.nextFloat() < 0.25F && npc == SEED_OWNER) {
+        if (quest_stage == START && player.worldObj.rand.nextFloat() < 0.15F && npc == SEED_OWNER) {
             if (TownHelper.getClosestTownToEntity(entity).hasBuilding(HFBuildings.SUPERMARKET)) {
                 //If the supermarket exists
                 //Jade will tell you to go and talk to one of the new residents of the supermarket,

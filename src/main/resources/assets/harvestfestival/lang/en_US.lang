@@ -489,6 +489,7 @@ harvestfestival.npc.generic.adult.gift.bad=What were you thinking? Why would I w
 harvestfestival.npc.generic.adult.gift.terrible=What on earth is wrong with you, Why would I want such a stupid gift?
 #No Thanks
 harvestfestival.npc.generic.adult.gift.reject=I really do appreciate it, but I cannot accept another gift from you today.
+harvestfestival.npc.generic.adult.gift.no=That item is far too valuable, I simply cannot accept it as a gift!
 
 #Generic Child Thanks
 harvestfestival.npc.generic.child.gift.awesome=OMG! Yes, Yes Yes, thanks you sooooooooooo much! It's amazing!
@@ -953,6 +954,11 @@ harvestfestival.quest.trade.upgrade.repair.start=This I can do, please come back
 # Jade Seed Trades
 harvestfestival.quest.trade.seeds.complete.yes=Thanks for the flowers, here have a bag of seeds.
 harvestfestival.quest.trade.seeds.complete.no=I’m sorry but I don’t have any seeds to spare this time of year.
+
+# Jade Tools Trades
+harvestfestival.quest.trade.tools.hoe=Thanks for the hoe! I have one of my own here for you.
+harvestfestival.quest.trade.tools.wateringcan=This bucket is wonderful, have another watering can!
+harvestfestival.quest.trade.tools.reminder=Just letting you know, I do have some spare watering cans and hoes if you need them. Just bring me a vanilla hoe or a bucket! And I'll happily trade.
 
 # Goddess Free Carpenter
 harvestfestival.quest.trade.carpenter.thanks=Thanks sweety, I'm happy to give you another Carpenter Blueprint.

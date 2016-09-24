@@ -47,14 +47,11 @@ public class ItemCheat extends ItemHFEnum<ItemCheat, Cheat> {
         if (damage == COORD_SETTER.ordinal()) {
             if (player.isSneaking()) {
                 pos2 = pos;
-                if (world.isRemote) {
-                    ChatHelper.displayChat("Setting Second Coordinates to " + pos2);
-                }
+                if (world.isRemote) ChatHelper.displayChat("Setting Second Coordinates to " + pos2);
             } else {
                 pos1 = pos;
-                if (world.isRemote) {
-                    ChatHelper.displayChat("Setting First Coordinates to " + pos1);
-                }
+                if (world.isRemote) ChatHelper.displayChat("Setting First Coordinates to " + pos1);
+
             }
 
             return EnumActionResult.SUCCESS;

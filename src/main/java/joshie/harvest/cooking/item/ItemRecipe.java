@@ -38,7 +38,7 @@ public class ItemRecipe extends ItemHFFML<ItemRecipe, MealImpl> implements ICrea
         if (recipe != null && HFTrackers.getPlayerTrackerFromPlayer(player).getTracking().learnRecipe(recipe)) {
             if (!player.capabilities.isCreativeMode) stack.stackSize--; //Decrease the stack
             world.playSound(player.posX, player.posY, player.posZ, HFSounds.RECIPE, SoundCategory.NEUTRAL, 0.8F, 1F, true);
-            ChatHelper.displayChat(Text.translate("meal.learnt") + " " + TextFormatting.YELLOW + recipe.getDisplayName());
+            if (world.isRemote) ChatHelper.displayChat(Text.translate("meal.learnt") + " " + TextFormatting.YELLOW + recipe.getDisplayName());
             return new ActionResult<>(EnumActionResult.SUCCESS, stack);
         }
 

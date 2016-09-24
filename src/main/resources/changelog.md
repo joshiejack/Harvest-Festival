@@ -3,6 +3,7 @@
 * My tools can no longer be gifted to npcs
 * If animal spawning is disabled, the carpenter will sell beds
 * Fix jade not giving you seeds sometimes
+* Fix side related errors when displaying chat
 
 ##0.5.2
 * Fix Jade's demonic eyes

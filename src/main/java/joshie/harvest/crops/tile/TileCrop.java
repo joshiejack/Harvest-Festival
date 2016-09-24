@@ -5,8 +5,7 @@ import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.crops.CropData;
 import joshie.harvest.crops.CropHelper;
 import joshie.harvest.crops.HFCrops;
-import joshie.harvest.crops.block.BlockHFCrops;
-import joshie.harvest.crops.block.BlockHFCrops.Stage;
+import joshie.harvest.crops.block.BlockHFCrops.CropType;
 import net.minecraft.nbt.NBTTagCompound;
 
 import javax.annotation.Nonnull;
@@ -45,11 +44,11 @@ public class TileCrop extends TileDaily {
             if (!data.newDay(getWorld(), getPos())) {
                 if (HFCrops.CROPS_SHOULD_DIE) {
                     if (data.getCrop().isDouble(data.getStage())) {
-                        getWorld().setBlockState(pos.up(), HFCrops.CROPS.getStateFromEnum(BlockHFCrops.Stage.WITHERED_DOUBLE), 2);
+                        getWorld().setBlockState(pos.up(), HFCrops.CROPS.getStateFromEnum(CropType.WITHERED_DOUBLE), 2);
                     }
 
                     //Prepare to save old data
-                    NBTHelper.copyTileData(this, getWorld(), getPos(), HFCrops.CROPS.getStateFromEnum(Stage.WITHERED));
+                    NBTHelper.copyTileData(this, getWorld(), getPos(), HFCrops.CROPS.getStateFromEnum(CropType.WITHERED));
                 }
             } else sendRefreshPacket(this);
 

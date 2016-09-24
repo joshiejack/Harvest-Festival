@@ -1,7 +1,7 @@
 package joshie.harvest.crops;
 
 import joshie.harvest.api.crops.Crop;
-import joshie.harvest.crops.block.BlockHFCrops;
+import joshie.harvest.crops.block.BlockHFCrops.CropType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -50,7 +50,7 @@ public class CropData {
 
         //If the crop has become double add in the new block
         if (crop.isDouble(stage)) {
-            world.setBlockState(pos.up(), HFCrops.CROPS.getStateFromEnum(BlockHFCrops.Stage.FRESH_DOUBLE), 2);
+            world.setBlockState(pos.up(), HFCrops.CROPS.getStateFromEnum(CropType.FRESH_DOUBLE), 2);
         }
 
         //If the crop grows a block to the side

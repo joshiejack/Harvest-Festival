@@ -24,8 +24,8 @@ import java.util.List;
 import java.util.Map.Entry;
 
 import static joshie.harvest.crops.CropHelper.*;
-import static joshie.harvest.crops.block.BlockHFCrops.Stage.FRESH;
-import static joshie.harvest.crops.block.BlockHFCrops.Stage.FRESH_DOUBLE;
+import static joshie.harvest.crops.block.BlockHFCrops.CropType.FRESH;
+import static joshie.harvest.crops.block.BlockHFCrops.CropType.FRESH_DOUBLE;
 
 @HFApiImplementation
 public class CropRegistry implements ICropRegistry {

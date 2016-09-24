@@ -15,7 +15,7 @@ import joshie.harvest.core.util.HFEvents;
 import joshie.harvest.crops.CropData;
 import joshie.harvest.crops.CropHelper;
 import joshie.harvest.crops.HFCrops;
-import joshie.harvest.crops.block.BlockHFCrops.Stage;
+import joshie.harvest.crops.block.BlockHFCrops.CropType;
 import joshie.harvest.crops.tile.TileCrop;
 import joshie.harvest.crops.tile.TileCrop.TileWithered;
 import net.minecraft.block.Block;
@@ -55,16 +55,16 @@ import static joshie.harvest.api.crops.IStateHandler.PlantSection.TOP;
 import static joshie.harvest.core.network.PacketHandler.sendRefreshPacket;
 import static joshie.harvest.crops.CropHelper.WET_SOIL;
 import static joshie.harvest.crops.CropHelper.harvestCrop;
-import static joshie.harvest.crops.block.BlockHFCrops.Stage.*;
+import static joshie.harvest.crops.block.BlockHFCrops.CropType.*;
 
-public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IPlantable, IGrowable, IAnimalFeeder {
-       public enum Stage implements IStringSerializable {
+public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements IPlantable, IGrowable, IAnimalFeeder {
+       public enum CropType implements IStringSerializable {
         FRESH(false, BOTTOM), WITHERED(false, BOTTOM), FRESH_DOUBLE(false, TOP), WITHERED_DOUBLE(true, TOP);
 
         private final boolean isWithered;
         private final PlantSection section;
 
-        Stage(boolean isWithered, PlantSection section) {
+        CropType(boolean isWithered, PlantSection section) {
             this.isWithered = isWithered;
             this.section = section;
         }
@@ -86,11 +86,17 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
     public static final AxisAlignedBB CROP_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D);
 
     public BlockHFCrops() {
-        super(Material.PLANTS, Stage.class, null);
+        super(Material.PLANTS, CropType.class, null);
         setBlockUnbreakable();
         setSoundType(SoundType.GROUND);
         setTickRandomly(HFCrops.ALWAYS_GROW);
         disableStats();
+    }
+
+    @Override
+    public int getMetaFromState(IBlockState state) {
+        if (state.getPropertyNames().contains(property)) return (state.getValue(property)).ordinal();
+        else return 0;
     }
 
     @Override
@@ -113,8 +119,8 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
         if (!world.isRemote) {
             if (HFCrops.ALWAYS_GROW) {
-                Stage stage = getEnumFromState(state);
-                if (stage == Stage.WITHERED) return; //If withered do nothing
+                CropType stage = getEnumFromState(state);
+                if (stage == CropType.WITHERED) return; //If withered do nothing
                 if (world.getLightFromNeighbors(pos.up()) >= 9) {
                     if (rand.nextInt(20) == 0) {
                         //We are Growing!
@@ -129,7 +135,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
     @Override
     //Return 0.75F if the plant isn't withered, otherwise, unbreakable!!!
     public float getPlayerRelativeBlockHardness(IBlockState state, EntityPlayer player, World world, BlockPos pos) {
-        Stage stage = getEnumFromState(state);
+        CropType stage = getEnumFromState(state);
         ItemStack held = player.getHeldItemMainhand();
         CropData data = CropHelper.getCropDataAt(world, pos);
         if (data.getCrop().growsToSide() != null && data.getStage() == data.getCrop().getStages()) {
@@ -145,7 +151,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
         if (state.getBlock() != HFCrops.CROPS) return null;
         int stage = state.getBlock().getMetaFromState(state); //Can't get the Enum from state, because this method is static.
         PlantSection section = BOTTOM;
-        if (stage == Stage.WITHERED_DOUBLE.ordinal() || stage == Stage.FRESH_DOUBLE.ordinal()) {
+        if (stage == CropType.WITHERED_DOUBLE.ordinal() || stage == CropType.FRESH_DOUBLE.ordinal()) {
             section = PlantSection.TOP;
         }
 
@@ -154,7 +160,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
 
     public static boolean isWithered(IBlockState state) {
         int stage = state.getBlock().getMetaFromState(state); //Can't get the Enum from state, because this method is static.
-        return stage == Stage.WITHERED.ordinal() || stage == Stage.WITHERED_DOUBLE.ordinal();
+        return stage == CropType.WITHERED.ordinal() || stage == CropType.WITHERED_DOUBLE.ordinal();
     }
 
     @Override
@@ -172,8 +178,8 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
 
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
-        Stage stage = getEnumFromState(state);
-        if (stage == Stage.WITHERED || stage == Stage.WITHERED_DOUBLE) return false; //If Withered with suck!
+        CropType stage = getEnumFromState(state);
+        if (stage == CropType.WITHERED || stage == CropType.WITHERED_DOUBLE) return false; //If Withered with suck!
         if (player.isSneaking()) return false;
         else {
             PlantSection section = getSection(state);
@@ -202,8 +208,8 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
 
     @Override
     public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
-        Stage stage = getEnumFromState(state);
-        if (stage == Stage.WITHERED || stage == Stage.WITHERED_DOUBLE)
+        CropType stage = getEnumFromState(state);
+        if (stage == CropType.WITHERED || stage == CropType.WITHERED_DOUBLE)
             return world.setBlockToAir(pos); //JUST KILL IT IF WITHERED
 
         PlantSection section = getSection(state);
@@ -225,15 +231,15 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
 
     @Override
     public void breakBlock(World world, BlockPos pos, IBlockState state) {
-        Stage stage = getEnumFromState(state);
-        if (stage == FRESH || stage == Stage.WITHERED) {
+        CropType stage = getEnumFromState(state);
+        if (stage == FRESH || stage == CropType.WITHERED) {
             if (world.getBlockState(pos.up()).getBlock() == this) {
-                Stage above = getEnumFromState(world.getBlockState(pos.up()));
+                CropType above = getEnumFromState(world.getBlockState(pos.up()));
                 if (above == FRESH_DOUBLE || stage == WITHERED_DOUBLE) {
                     world.setBlockToAir(pos.up());
                 }
             }
-        } else if (stage == Stage.FRESH_DOUBLE || stage == Stage.WITHERED_DOUBLE) {
+        } else if (stage == CropType.FRESH_DOUBLE || stage == CropType.WITHERED_DOUBLE) {
             world.setBlockToAir(pos.down());
         }
     }
@@ -241,7 +247,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
     @SuppressWarnings("deprecation")
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
-        Stage stage = getEnumFromState(state);
+        CropType stage = getEnumFromState(state);
         AxisAlignedBB aabb = CropHelper.getCropBoundingBox(world, pos, stage.getSection(), stage.isWithered());
         return aabb != null ? aabb : CROP_AABB;
     }
@@ -254,7 +260,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
 
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
-        if (getEnumFromState(state) == Stage.WITHERED) return new ItemStack(Blocks.DEADBUSH); //It's Dead soo???
+        if (getEnumFromState(state) == CropType.WITHERED) return new ItemStack(Blocks.DEADBUSH); //It's Dead soo???
 
         CropData data = CropHelper.getCropDataAt(world, pos);
         return HFCrops.SEEDS.getStackFromCrop(data.getCrop());
@@ -263,7 +269,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
     @SuppressWarnings("deprecation")
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
-        Stage stage = getEnumFromState(state);
+        CropType stage = getEnumFromState(state);
         if (stage.getSection() == TOP) {
             return CropHelper.getBlockState(world, pos.down(), stage.getSection(), stage.isWithered());
         } else  {
@@ -334,7 +340,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, Stage> implements IP
     //Can Apply Bonemeal (Not Fully Grown)
     @Override
     public boolean canGrow(World world, BlockPos pos, IBlockState state, boolean isClient) {
-        if (getEnumFromState(state) == Stage.WITHERED) return false; //It's dead it can't grow...
+        if (getEnumFromState(state) == CropType.WITHERED) return false; //It's dead it can't grow...
         if (HFCrops.ENABLE_BONEMEAL) {
             if (HFCrops.SEASONAL_BONEMEAL) {
                 CropData data = CropHelper.getCropDataAt(world, pos);

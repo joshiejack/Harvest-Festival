@@ -1,7 +1,5 @@
 package joshie.harvest.mining.render;
 
-import com.google.common.cache.Cache;
-import com.google.common.cache.CacheBuilder;
 import joshie.harvest.core.render.BakedHF;
 import joshie.harvest.core.util.HFEvents;
 import joshie.harvest.mining.HFMining;
@@ -30,7 +28,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.concurrent.Callable;
 
 import static joshie.harvest.core.lib.HFModInfo.MODID;
 
@@ -111,7 +108,9 @@ public class BakedDirt extends BakedHF {
 
         private boolean isValidState(String state) {
             for (String s: VALID_STATES) {
-                if (state.equals(s)) return true;
+                if (state.equalsIgnoreCase(s)) {
+                    return true;
+                }
             }
 
             return false;
@@ -121,11 +120,13 @@ public class BakedDirt extends BakedHF {
         public Map<IBlockState, ModelResourceLocation> putStateModelLocations(Block block) {
             if (block == HFMining.DIRT) {
                 mapStateModelLocations.put(new BlockStateContainer(block).getBaseState(), new ModelResourceLocation(block.getRegistryName(), "overlay"));
-                for (IBlockState iblockstate : block.getBlockState().getValidStates()) {
-                    ModelResourceLocation model = getModelResourceLocation(iblockstate);
-                    if (model != null) {
-                        mapStateModelLocations.put(iblockstate, model);
-                    }
+            }
+
+            //State > Resource
+            for (IBlockState iblockstate : block.getBlockState().getValidStates()) {
+                ModelResourceLocation model = getModelResourceLocation(iblockstate);
+                if (model != null) {
+                    mapStateModelLocations.put(iblockstate, model);
                 }
             }
 
@@ -136,7 +137,7 @@ public class BakedDirt extends BakedHF {
         protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
             String properties = this.getPropertyString(state.getProperties());
             if (!isValidState(properties)) return null;
-            return new ModelResourceLocation(Block.REGISTRY.getNameForObject(state.getBlock()), properties);
+            return new ModelResourceLocation("harvestfestival:dirt", properties);
         }
 
         @SubscribeEvent
@@ -148,48 +149,26 @@ public class BakedDirt extends BakedHF {
 
         @SubscribeEvent
         public void onBaking(ModelBakeEvent event) {
-            //Load in the overlay textures
             IRegistry<ModelResourceLocation, IBakedModel> registry = event.getModelRegistry();
-            IBakedModel overlay = registry.getObject(new ModelResourceLocation(new ResourceLocation(MODID, "dirt"), "overlay"));
-            List<WeightedTexture> list = new ArrayList<>();
-            for (TextureType type: TextureType.values()) {
+            IBakedModel overlay = registry.getObject(new ModelResourceLocation("harvestfestival:dirt", "overlay"));
+            List<WeightedTexture> overlays = new ArrayList<>();
+            for (TextureType type : TextureType.values()) {
                 TextureAtlasSprite sprite = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite("harvestfestival:blocks/mine/overlays/" + type.name().toLowerCase(Locale.ENGLISH));
-                list.add(new WeightedTexture(sprite, type.weight));
+                overlays.add(new WeightedTexture(sprite, type.weight));
             }
 
-            ResourceLocation[] resourceLocations = new ResourceLocation[] { new ResourceLocation(MODID, "dirt"), new ResourceLocation(MODID, "dirt_decorative")};
-            Cache<IBakedModel, BakedDirt> cache = CacheBuilder.newBuilder().build();
-            ResourceLocation dirt = new ResourceLocation(MODID, "dirt");
-            for (ResourceLocation resource: resourceLocations) {
-                //Change the models
-                for (BlockDirt.TextureStyle ne : TextureStyle.values()) {
-                    for (BlockDirt.TextureStyle nw : TextureStyle.values()) {
-                        for (BlockDirt.TextureStyle se : TextureStyle.values()) {
-                            for (BlockDirt.TextureStyle sw : TextureStyle.values()) {
-                                String state = String.format("ne=%s,nw=%s,se=%s,sw=%s", ne.getName(), nw.getName(), se.getName(), sw.getName());
-                                if (isValidState(state)) {
-                                    ModelResourceLocation location = getModelLocation(resource, state); //Grab the location of this model
-                                    IBakedModel original = registry.getObject(getModelLocation(dirt, state)); //Grab the normal dirt state
-                                    try {
-                                        IBakedModel clone = cache.get(original, new Callable<BakedDirt>() {
-                                            @Override
-                                            public BakedDirt call() throws Exception {
-                                                return new BakedDirt(original, overlay, list);
-                                            }
-                                        });
-
-                                        registry.putObject(location, clone);
-                                    } catch (Exception e) {}
-                                }
-                            }
+            //Change the models
+            for (BlockDirt.TextureStyle ne : TextureStyle.values()) {
+                for (BlockDirt.TextureStyle nw : TextureStyle.values()) {
+                    for (BlockDirt.TextureStyle se : TextureStyle.values()) {
+                        for (BlockDirt.TextureStyle sw : TextureStyle.values()) {
+                            String state = String.format("ne=%s,nw=%s,se=%s,sw=%s", ne.getName(), nw.getName(), se.getName(), sw.getName());
+                            IBakedModel original = registry.getObject(new ModelResourceLocation("harvestfestival:dirt",  state));
+                            registry.putObject(new ModelResourceLocation("harvestfestival:dirt",  state), new BakedDirt(original, overlay, overlays));
                         }
                     }
                 }
             }
-        }
-
-        private ModelResourceLocation getModelLocation(ResourceLocation resource, String state) {
-            return new ModelResourceLocation(resource, state);
         }
     }
 

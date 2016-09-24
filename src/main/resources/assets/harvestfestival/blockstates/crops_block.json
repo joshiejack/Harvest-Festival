@@ -1,8 +1,8 @@
 {
   "variants": {
-    "stage=fresh": { "model": "harvestfestival:tomato_stage1" },
-    "stage=withered": { "model": "harvestfestival:tomato_stage2" },
-    "stage=fresh_double": { "model": "harvestfestival:tomato_stage3" },
-    "stage=withered_double": { "model": "harvestfestival:tomato_stage4" }
+    "croptype=fresh": { "model": "harvestfestival:tomato_stage1" },
+    "croptype=withered": { "model": "harvestfestival:tomato_stage2" },
+    "croptype=fresh_double": { "model": "harvestfestival:tomato_stage3" },
+    "croptype=withered_double": { "model": "harvestfestival:tomato_stage4" }
   }
 }

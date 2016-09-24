@@ -1,7 +1,5 @@
 package joshie.harvest.mining.block;
 
-import com.google.common.cache.Cache;
-import com.google.common.cache.CacheBuilder;
 import joshie.harvest.core.HFTab;
 import joshie.harvest.core.base.block.BlockHFBase;
 import joshie.harvest.core.util.Text;
@@ -30,8 +28,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.Callable;
-import java.util.concurrent.TimeUnit;
 
 import static joshie.harvest.mining.block.BlockDirt.TextureStyle.*;
 
@@ -53,7 +49,7 @@ public class BlockDirt extends BlockHFBase<BlockDirt> {
     public BlockDirt() {
         super(Material.GROUND, HFTab.MINING);
         setSoundType(SoundType.GROUND);
-        setDefaultState(blockState.getBaseState()
+        setDefaultState(getDefaultState()
                 .withProperty(NORTH_EAST, OUTER)
                 .withProperty(NORTH_WEST, OUTER)
                 .withProperty(SOUTH_EAST, OUTER)
@@ -93,7 +89,7 @@ public class BlockDirt extends BlockHFBase<BlockDirt> {
     }
 
     private boolean isSameBlock(IBlockAccess world, BlockPos pos) {
-        return world.getBlockState(pos).getBlock().getClass() == this.getClass();
+        return world.getBlockState(pos).getBlock() == this;
     }
 
     private TextureStyle getStateFromBoolean(boolean one, boolean two, boolean three) {
@@ -112,36 +108,27 @@ public class BlockDirt extends BlockHFBase<BlockDirt> {
         return BlockRenderLayer.CUTOUT;
     }
 
-    public static final Cache<BlockPos, IBlockState> CACHE_STATE = CacheBuilder.newBuilder().expireAfterWrite(1, TimeUnit.MINUTES).maximumSize(1024).build();
-
     @SuppressWarnings("deprecation, unchecked")
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
-        try {
-            return CACHE_STATE.get(pos, new Callable<IBlockState>() {
-                @Override
-                public IBlockState call() throws Exception {
-                    boolean north = isSameBlock(world, pos.north());
-                    boolean west = isSameBlock(world, pos.west());
-                    boolean south = isSameBlock(world, pos.south());
-                    boolean east = isSameBlock(world, pos.east());
-                    boolean northEast = north && east && isSameBlock(world, pos.north().east());
-                    boolean northWest = north && west && isSameBlock(world, pos.north().west());
-                    boolean southEast = south && east && isSameBlock(world, pos.south().east());
-                    boolean southWest = south && west && isSameBlock(world, pos.south().west());
-                    TextureStyle ne = getStateFromBoolean(north, east, northEast);
-                    TextureStyle nw = getStateFromBoolean(north, west, northWest);
-                    TextureStyle se = getStateFromBoolean(south, east, southEast);
-                    TextureStyle sw = getStateFromBoolean(south, west, southWest);
-                    return state.withProperty(NORTH_EAST, ne).withProperty(NORTH_WEST, nw).withProperty(SOUTH_EAST, se).withProperty(SOUTH_WEST, sw);
-                }
-            });
-        } catch (Exception e) { return state; }
+        boolean north = isSameBlock(world, pos.north());
+        boolean west = isSameBlock(world, pos.west());
+        boolean south = isSameBlock(world, pos.south());
+        boolean east = isSameBlock(world, pos.east());
+        boolean northEast = north && east && isSameBlock(world, pos.north().east());
+        boolean northWest = north && west && isSameBlock(world, pos.north().west());
+        boolean southEast = south && east && isSameBlock(world, pos.south().east());
+        boolean southWest = south && west && isSameBlock(world, pos.south().west());
+        TextureStyle ne = getStateFromBoolean(north, east, northEast);
+        TextureStyle nw = getStateFromBoolean(north, west, northWest);
+        TextureStyle se = getStateFromBoolean(south, east, southEast);
+        TextureStyle sw = getStateFromBoolean(south, west, southWest);
+        return state.withProperty(NORTH_EAST, ne).withProperty(NORTH_WEST, nw).withProperty(SOUTH_EAST, se).withProperty(SOUTH_WEST, sw);
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public void registerModels(Item item, String name) {
-        ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(getRegistryName(), "ne=outer,nw=outer,se=outer,sw=outer"));
+        ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation("harvestfestival:dirt", "ne=outer,nw=outer,se=outer,sw=outer"));
     }
 }

@@ -38,7 +38,8 @@ public abstract class ItemHFFML<I extends ItemHFFML, E extends Impl<E>> extends 
     public abstract E getNullValue();
 
     public E getObjectFromStack(ItemStack stack) {
-        E e = registry.getValues().get(stack.getItemDamage());
+        int id = Math.max(0, Math.min(registry.getValues().size(), stack.getItemDamage()));
+        E e = registry.getValues().get(id);
         return e != null ? e: getNullValue();
     }
 

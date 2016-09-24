@@ -32,7 +32,7 @@ public class ItemMeal extends ItemHFFoodFML<ItemMeal, MealImpl> implements IAltI
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        MealImpl impl = stack.hasTagCompound() ? CookingAPI.REGISTRY.getValues().get(stack.getItemDamage()): null;
+        MealImpl impl = stack.hasTagCompound() ? CookingAPI.REGISTRY.getValues().get(Math.max(0, Math.min(CookingAPI.REGISTRY.getValues().size(), stack.getItemDamage()))): null;
         return impl != null ? impl.getDisplayName(): DARK_GRAY + Text.localize(Utensil.getUtensilFromIndex(stack.getItemDamage()).getUnlocalizedName());
     }
 
@@ -133,7 +133,8 @@ public class ItemMeal extends ItemHFFoodFML<ItemMeal, MealImpl> implements IAltI
 
     @Override
     public ItemStack getAlternativeWhenCooking(ItemStack stack) {
-        MealImpl recipe = CookingAPI.REGISTRY.getValues().get(stack.getItemDamage());
+        int id = Math.max(0, Math.min(CookingAPI.REGISTRY.getValues().size(), stack.getItemDamage()));
+        MealImpl recipe = CookingAPI.REGISTRY.getValues().get(id);
         if (recipe != null) {
             return recipe.getAlternativeItem();
         }

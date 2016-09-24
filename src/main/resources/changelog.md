@@ -1,4 +1,7 @@
 ##0.5.2
+* Fix jade not giving you seeds sometimes
+
+##0.5.2
 * Fix Jade's demonic eyes
 * Fix the render of the mine blocks
 * Fix Jade not taking flowers in the crops tutorial

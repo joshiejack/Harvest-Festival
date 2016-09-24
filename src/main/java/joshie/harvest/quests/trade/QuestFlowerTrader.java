@@ -23,8 +23,6 @@ import static joshie.harvest.npc.HFNPCs.SEED_OWNER;
 
 @HFQuest("trade.seeds")
 public class QuestFlowerTrader extends QuestTrade {
-    private Season season;
-
     public QuestFlowerTrader() {
         setNPCs(SEED_OWNER);
     }
@@ -38,6 +36,7 @@ public class QuestFlowerTrader extends QuestTrade {
     @Override
     public String getLocalizedScript(EntityPlayer player, EntityLiving entity, INPC npc) {
         if (InventoryHelper.getHandItemIsIn(player, SPECIAL, SearchType.FLOWER, 5) != null) {
+            Season season = HFApi.calendar.getSeasonAtCoordinates(player.worldObj, new BlockPos(player));
             if (season == SPRING || season == SUMMER || season == AUTUMN) {
                 //Jade informs the player that she will happily trade flowers
                 //For a bag of seeds
@@ -50,13 +49,9 @@ public class QuestFlowerTrader extends QuestTrade {
     }
 
     @Override
-    public void onChatOpened(EntityPlayer player, EntityLiving entity, INPC npc) {
-        season = HFApi.calendar.getSeasonAtCoordinates(entity.worldObj, new BlockPos(entity));
-    }
-
-    @Override
     public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc) {
         if (InventoryHelper.takeItemsIfHeld(player, SPECIAL, SearchType.FLOWER, 5) != null) {
+            Season season = HFApi.calendar.getSeasonAtCoordinates(player.worldObj, new BlockPos(player));
             if (season == SPRING || season == SUMMER || season == AUTUMN) {
                 if (season == SPRING) rewardItem(player, HFCrops.TURNIP.getSeedStack(1));
                 else if (season == SUMMER) rewardItem(player, HFCrops.ONION.getSeedStack(1));

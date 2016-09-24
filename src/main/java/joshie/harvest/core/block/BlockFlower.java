@@ -37,7 +37,7 @@ public class BlockFlower extends BlockHFEnum<BlockFlower, FlowerType> implements
 
     public BlockFlower() {
         super(Material.PLANTS, FlowerType.class, HFTab.GATHERING);
-        setSoundType(SoundType.GROUND);
+        setSoundType(SoundType.PLANT);
     }
 
     public enum FlowerType implements IStringSerializable {

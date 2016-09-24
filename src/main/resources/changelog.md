@@ -1,4 +1,7 @@
 ##0.5.2
+* Jade will now swap hoes/buckets for hoes/watering cans from after the tutorial until you complete the blacksmith tutorial
+* My tools can no longer be gifted to npcs
+* If animal spawning is disabled, the carpenter will sell beds
 * Fix jade not giving you seeds sometimes
 
 ##0.5.2

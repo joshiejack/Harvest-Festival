@@ -155,6 +155,10 @@ public class HFShops {
         CARPENTER.addItem(new PurchaseableBuilder(0, 16, 0, HFCore.STORAGE.getStackFromEnum(Storage.SHIPPING)));
         CARPENTER.addItem(new PurchaseableBuilder(100, 0, 0, new ItemStack(Blocks.LOG)));
         CARPENTER.addItem(new PurchaseableBuilder(50, 0, 0, new ItemStack(Blocks.STONE)));
+        if (!HFAnimals.CAN_SPAWN) {
+            CARPENTER.addItem(new PurchaseableBuilder(0, 3, 500, new ItemStack(Blocks.BED)));
+        }
+
         CARPENTER.addOpening(MONDAY, 9000, 17500).addOpening(TUESDAY, 9000, 17500).addOpening(WEDNESDAY, 9000, 17500);
         CARPENTER.addOpening(THURSDAY, 9000, 17500).addOpening(FRIDAY, 9000, 17500).addOpening(SUNDAY, 9000, 17500);
     }

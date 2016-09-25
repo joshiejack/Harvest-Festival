@@ -14,7 +14,7 @@ import javax.annotation.Nullable;
 
 public class CropData {
     private Crop crop = Crop.NULL_CROP; //The Crop Type of this plant
-    private int stage; //The stage it is currently at
+    private int stage = 1; //The stage it is currently at
     private int daysWithoutWater; //The number of days this crop has gone without water
 
     public CropData setCrop(Crop crop, int stage) {
@@ -82,7 +82,7 @@ public class CropData {
     }
 
     public int getStage() {
-        return stage < 1 ? 1: stage;
+        return stage;
     }
 
     @Nonnull

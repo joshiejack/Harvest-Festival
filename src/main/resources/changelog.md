@@ -1,3 +1,7 @@
+##0.5.4
+* Change flower sound to plant
+* Fix potential crash with eio
+
 ##0.5.3
 * Jade will now swap hoes/buckets for hoes/watering cans from after the tutorial until you complete the blacksmith tutorial
 * My tools can no longer be gifted to npcs

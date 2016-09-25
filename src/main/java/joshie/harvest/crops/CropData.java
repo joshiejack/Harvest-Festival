@@ -82,7 +82,7 @@ public class CropData {
     }
 
     public int getStage() {
-        return stage;
+        return stage < 1 ? 1: stage;
     }
 
     @Nonnull

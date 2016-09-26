@@ -115,7 +115,7 @@ public class BlockFlower extends BlockHFEnum<BlockFlower, FlowerType> implements
 
     @Override
     public int getEntityLifeSpan(ItemStack stack, World world) {
-        return stack.getItemDamage() == FlowerType.GODDESS.ordinal() ? 100: 6000;
+        return stack.getItemDamage() == FlowerType.GODDESS.ordinal() ? 50: 6000;
     }
 
     @Override

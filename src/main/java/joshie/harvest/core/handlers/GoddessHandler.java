@@ -2,6 +2,7 @@ package joshie.harvest.core.handlers;
 
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.achievements.HFAchievements;
+import joshie.harvest.core.block.BlockFlower;
 import joshie.harvest.core.block.BlockFlower.FlowerType;
 import joshie.harvest.core.lib.HFSounds;
 import joshie.harvest.core.util.HFEvents;
@@ -10,6 +11,7 @@ import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.NPCHelper;
 import joshie.harvest.npc.entity.EntityNPCGoddess;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockBush;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,6 +19,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityFlowerPot;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -60,14 +63,15 @@ public class GoddessHandler {
         World world = event.getEntityItem().worldObj;
         if (!world.isRemote) {
             ItemStack stack = event.getEntityItem().getEntityItem();
-            if (stack != null) {
-                if (isGoddessFlower(stack)) {
-                    if (event.getEntityItem().isInsideOfMaterial(Material.WATER)) {
-                        spawnGoddess(world, event.getEntityItem(), true, true);
-                    } else {
-                        event.setExtraLife(5900);
+            if (isGoddessFlower(stack)) {
+                if (event.getEntityItem().isInsideOfMaterial(Material.WATER)) {
+                    spawnGoddess(world, event.getEntityItem(), true, true);
+                } else {
+                    if (!stack.hasTagCompound()) {
+                        stack.setTagCompound(new NBTTagCompound());
+                        event.setExtraLife(5950);
                         event.setCanceled(true);
-                    }
+                    } else stack.setTagCompound(null);
                 }
             }
         }
@@ -86,14 +90,18 @@ public class GoddessHandler {
                 if (world.getBlockState(pos).getBlock() == Blocks.FLOWER_POT) {
                     TileEntityFlowerPot tile = (TileEntityFlowerPot) world.getTileEntity(pos);
                     if (tile != null && tile.getFlowerPotItem() != null) {
-                        this.checkFlower(world, pos, event.getEntityPlayer(), Blocks.RED_FLOWER, Blocks.YELLOW_FLOWER, Blocks.DOUBLE_PLANT, Blocks.TALLGRASS);
+                        this.checkFlower(world, pos, event.getEntityPlayer());
                     }
                 }
             }
         }
     }
 
-    private void checkFlower(World world, BlockPos pos, EntityPlayer player, Block... blocks) {
+    private boolean isFlower(Block block) {
+        return block instanceof BlockBush || block instanceof BlockFlower;
+    }
+
+    private void checkFlower(World world, BlockPos pos, EntityPlayer player) {
         Block xMinus = world.getBlockState(pos.add(-1, -1, 0)).getBlock();
         Block xPlus = world.getBlockState(pos.add(1, -1, 0)).getBlock();
         Block zMinus = world.getBlockState(pos.add(0, -1, -1)).getBlock();
@@ -109,16 +117,14 @@ public class GoddessHandler {
         xPlus = world.getBlockState(pos.add(1, 0, 0)).getBlock();
         zMinus = world.getBlockState(pos.add(0, 0, -1)).getBlock();
         zPlus = world.getBlockState(pos.add(0, 0, 1)).getBlock();
-        for (Block block : blocks) {
-            if (xMinus == block)
-                flower++;
-            if (xPlus == block)
-                flower++;
-            if (zMinus == block)
-                flower++;
-            if (zPlus == block)
-                flower++;
-        }
+        if (isFlower(xMinus))
+            flower++;
+        if (isFlower(xPlus))
+            flower++;
+        if (isFlower(zMinus))
+            flower++;
+        if (isFlower(zPlus))
+            flower++;
 
         if (water == 2 && flower == 2) {
             if (!world.isRemote) {

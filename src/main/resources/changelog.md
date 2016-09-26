@@ -1,4 +1,7 @@
 ##0.5.4
+* Make Goddess flower spawning work with a larger range of plants
+* Halve the amount of time the goddess takes to spawn from a flower
+* Fix the goddess flower never despawning if dropped on land
 * Change flower sound to plant
 * Fix potential crash with eio
 

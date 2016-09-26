@@ -16,7 +16,7 @@ import org.apache.logging.log4j.Logger;
 
 import static joshie.harvest.core.lib.HFModInfo.*;
 
-@Mod(modid = MODID, name = MODNAME, version = VERSION, guiFactory = GUI_FACTORY)
+@Mod(modid = MODID, name = MODNAME, version = VERSION, dependencies = DEPENDENCIES, guiFactory = GUI_FACTORY)
 public class HarvestFestival {
     @SidedProxy(clientSide = JAVAPATH + "core.HFClientProxy", serverSide = JAVAPATH + "core.HFCommonProxy")
     public static HFCommonProxy proxy;

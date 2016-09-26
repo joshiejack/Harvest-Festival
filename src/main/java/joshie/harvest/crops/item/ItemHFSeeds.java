@@ -17,6 +17,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -54,7 +55,10 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean debug) {
         Crop crop = getCropFromStack(stack);
-        if (crop != null) crop.getGrowthHandler().addInformation(list, crop, debug);
+        if (crop != null) {
+            if (crop.requiresSickle()) list.add(TextFormatting.ITALIC + Text.translate("crop.sickle"));
+            crop.getGrowthHandler().addInformation(list, crop, debug);
+        }
     }
 
     @Override

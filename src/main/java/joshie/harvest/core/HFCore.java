@@ -57,10 +57,10 @@ public class HFCore {
         GODDESS.setBlock(GODDESS_WATER);
 
         //Register sellables
-        HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 0), 50L);
-        HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 1), 120L);
-        HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 2), 200L);
-        HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 3), 200L);
+        HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 0), 20L);
+        HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 1), 60L);
+        HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 2), 100L);
+        HFApi.shipping.registerSellable(new ItemStack(Items.FISH, 1, 3), 100L);
         HFApi.shipping.registerSellable(new ItemStack(Items.BREAD), 85L);
     }
 

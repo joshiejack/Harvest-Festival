@@ -70,6 +70,7 @@ harvestfestival.cheat.air.placer=[BuildingGen] Internal Air Placer
 harvestfestival.cheat.air.remover=[BuildingGen] Internal Air Remover
 
 #Crops
+harvestfestival.crop.sickle=Requires Sickle
 harvestfestival.crop.seeds.format.standard=%C %S
 harvestfestival.crop.seeds.format.giant=%G %C %S
 harvestfestival.crop.seeds=Seeds
@@ -605,6 +606,7 @@ harvestfestival.npc.jade.greeting11=The heart you see when talking to some peopl
 harvestfestival.npc.jade.greeting12=The quickest way to anyones heart is giving them gifts. In fact if you make them like you enough, they may just give you something back!
 harvestfestival.npc.jade.greeting13=Sleeping is the quickest way to grow your crops.
 harvestfestival.npc.jade.greeting14=I'm really not sure why you can't fertilise your crops. Maybe one day?
+harvestfestival.npc.jade.greeting15=Remember that that grass and wheat need a sickle in order to be harvested.
 
 #Jenni/Othlon
 harvestfestival.npc.jenni.greeting1=Hey my good friend, make sure to come to me if you need any general goods!

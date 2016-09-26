@@ -117,6 +117,6 @@ public class HFBuildings {
     public static boolean FULL_BUILDING_RENDER;
 
     public static void configure() {
-        FULL_BUILDING_RENDER = getBoolean("Full Building Render", false);
+        FULL_BUILDING_RENDER = getBoolean("Full Building Render", true);
     }
 }

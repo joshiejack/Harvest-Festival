@@ -29,44 +29,44 @@ public class Aquaculture {
 
     @SuppressWarnings("ConstantConditions")
     public static void init() {
-        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 0), 200); //Bluegill
-        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 1), 200); //Perch
-        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 32), 200); //Boulti
-        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 19), 200); //Leech
-        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 9), 200); //Red Grouper
-        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 23), 350); //Arapaima
-        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 31), 350); //Capitaine
-        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 7), 350); //Carp
-        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 17), 350); //Frog
-        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 27), 350); //Halibut
-        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 13), 400); //Shark
-        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 18), 400); //Turtle
-        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 14), 400); //Whale
-        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 33), 250); //Bagrid
-        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 36), 250); //Brown Shroom
-        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 2), 250); //Gar
-        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 29), 250); //Rainbow Trout
-        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 35), 250); //Red Shroom
-        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 3), 300); //Bass
-        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 5), 300); //Brown Trout
-        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 24), 300); //Cod
-        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 4), 300); //Muskellunge
-        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 28), 300); //Pink Salmon
-        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 10), 300); //Salmon
-        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 11), 300); //Tuna
-        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 6), 330); //Catfish
-        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 12), 330); //Swordfish
-        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 22), 330); //Tambaquit
-        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 21), 230); //Electric Eel
-        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 25), 230); //Pollock
-        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 8), 50); //Blowfish
-        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 20), 50); //Piranha
-        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 34), 50); //Syndotis
-        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 26), 50); //Herring
-        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 16), 150); //Jellyfish
-        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 15), 150); //Squid
-        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 30), 130); //Blackfish
-        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 37), 30); //Goldfish
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 0), 100); //Bluegill
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 1), 100); //Perch
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 32), 100); //Boulti
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 19), 100); //Leech
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 9), 100); //Red Grouper
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 23), 170); //Arapaima
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 31), 170); //Capitaine
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 7), 170); //Carp
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 17), 170); //Frog
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 27), 170); //Halibut
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 13), 200); //Shark
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 18), 200); //Turtle
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 14), 200); //Whale
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 33), 120); //Bagrid
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 36), 120); //Brown Shroom
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 2), 120); //Gar
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 29), 120); //Rainbow Trout
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 35), 120); //Red Shroom
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 3), 150); //Bass
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 5), 150); //Brown Trout
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 24), 150); //Cod
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 4), 150); //Muskellunge
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 28), 150); //Pink Salmon
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 10), 150); //Salmon
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 11), 150); //Tuna
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 6), 160); //Catfish
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 12), 160); //Swordfish
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 22), 160); //Tambaquit
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 21), 110); //Electric Eel
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 25), 110); //Pollock
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 8), 30); //Blowfish
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 20), 30); //Piranha
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 34), 30); //Syndotis
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 26), 30); //Herring
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 16), 80); //Jellyfish
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 15), 80); //Squid
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 30), 70); //Blackfish
+        HFApi.shipping.registerSellable(new ItemStack(fish, 1, 37), 20); //Goldfish
         HFApi.shipping.registerSellable(new ItemStack(fish, 1, 38), 1); //Bones
         Ingredient fishIngredient = Ingredient.INGREDIENTS.get("fish");
         for (int i = 0; i <= 37; i++) {

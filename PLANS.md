@@ -25,10 +25,10 @@ Stage 2 (0.6.0) - Expansive Events
 * Fruit Trees
  -> Grow slowly
  -> Fruit Textures
-* Events
-* Festivals
+* Contests/Festivals
  -> Marketplace where Festivals take place
- -> Small Artwork for each Festival that gets drawn in the Calender/Marketplace
+ -> Some events take place in townhall
+ -> Small Artwork for each Festival that gets drawn in the Calendar/Marketplace
 
 Stage 3 (0.7.0) - Old Mcdonald
 * Farms named and rated
@@ -36,7 +36,9 @@ Stage 3 (0.7.0) - Old Mcdonald
 * Upgradeable House
 * Purchasable Barn and Coop
 * Mushroom House
-* Maker Shed
+* Greenhouses
+* Maker Shed [Engineer|BluSunrize]
+* Library [Librarian|SkySom]
 
 Stage 4 (0.8.0) - Special Delivery
 * Power Berries
@@ -44,7 +46,7 @@ Stage 4 (0.8.0) - Special Delivery
 * TV Shopping
  -> TV Model
  -> Small Artwork to draw onto TV Screen for each Channel with a sprite on it
-* Beekeeping
+* Beekeeping [Beekeeper|TehNut]
  -> Bee Hut Model
  -> Beekeeper NPC?
   -> Beekeeping Questline
@@ -54,6 +56,6 @@ Stage 5 (0.9.0) - Automative
 * Harvest Sprites
 
 Stage 6 (1.0.0) - Family Fun
-* Pigs, Wolves, Cats, Horse Pets
-* Rival System and Dating events
+* Pigs, Wolves, Cats, Horse Pets [Pet Shop Owner|Jared]
+* Rival System and Dating events [Witch]
 * Offspring

@@ -3,12 +3,12 @@ package joshie.harvest.shops;
 import com.google.common.collect.HashMultimap;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Weekday;
-import joshie.harvest.api.shops.IPurchaseable;
+import joshie.harvest.api.shops.IPurchasable;
 import joshie.harvest.api.shops.IShop;
 import joshie.harvest.api.shops.IShopGuiOverlay;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.util.Text;
-import joshie.harvest.shops.purchaseable.Purchaseable;
+import joshie.harvest.shops.purchasable.Purchasable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -28,7 +28,7 @@ import java.util.Locale;
 
 public class Shop implements IShop {
     public static final IForgeRegistry<ShopEntry> REGISTRY = new RegistryBuilder<ShopEntry>().setName(new ResourceLocation("harvestfestival", "shop_items")).setType(ShopEntry.class).setIDRange(0, 100000).create();
-    private final List<IPurchaseable> contents = new ArrayList<>();
+    private final List<IPurchasable> contents = new ArrayList<>();
     private final HashMultimap<Weekday, OpeningHours> open = HashMultimap.create();
     public final ResourceLocation resourceLocation;
     public final String unlocalizedName;
@@ -36,12 +36,12 @@ public class Shop implements IShop {
     private IShopGuiOverlay overlay;
 
     public static class ShopEntry extends IForgeRegistryEntry.Impl<ShopEntry> {
-        private final IPurchaseable purchaseable;
-        public ShopEntry(IPurchaseable purchaseable) {
+        private final IPurchasable purchaseable;
+        public ShopEntry(IPurchasable purchaseable) {
             this.purchaseable = purchaseable;
         }
 
-        public IPurchaseable getPurchaseable() {
+        public IPurchasable getPurchaseable() {
             return purchaseable;
         }
     }
@@ -58,7 +58,7 @@ public class Shop implements IShop {
     }
 
     @Override
-    public IShop addItem(IPurchaseable item) {
+    public IShop addItem(IPurchasable item) {
         if (item != null) {
             this.contents.add(item);
             REGISTRY.register(new ShopEntry(item).setRegistryName(Shop.getRegistryName(resourceLocation, item)));
@@ -67,13 +67,13 @@ public class Shop implements IShop {
         return this;
     }
 
-    public static ResourceLocation getRegistryName(ResourceLocation resource, IPurchaseable item) {
+    public static ResourceLocation getRegistryName(ResourceLocation resource, IPurchasable item) {
         return new ResourceLocation(Loader.instance().activeModContainer().getModId().toLowerCase(Locale.ENGLISH) + ":" + resource.getResourcePath() + "_" + item.getPurchaseableID());
     }
 
     @Override
     public IShop addItem(long cost, ItemStack... items) {
-        return addItem(new Purchaseable(cost, items));
+        return addItem(new Purchasable(cost, items));
     }
 
     @SideOnly(Side.CLIENT)
@@ -96,9 +96,9 @@ public class Shop implements IShop {
         return Text.getRandomSpeech(null, resourceLocation, unlocalizedName + ".greeting", 10);
     }
 
-    public List<IPurchaseable> getContents(@Nonnull EntityPlayer player) {
-        List<IPurchaseable> contents = new ArrayList<>();
-        for (IPurchaseable purchaseable : this.contents) {
+    public List<IPurchasable> getContents(@Nonnull EntityPlayer player) {
+        List<IPurchasable> contents = new ArrayList<>();
+        for (IPurchasable purchaseable : this.contents) {
             if (purchaseable.canList(player.worldObj, player)) {
                 contents.add(purchaseable);
             }

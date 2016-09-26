@@ -1,4 +1,4 @@
-package joshie.harvest.shops.purchaseable;
+package joshie.harvest.shops.purchasable;
 
 import joshie.harvest.cooking.CookingAPI;
 import joshie.harvest.cooking.recipe.MealImpl;
@@ -6,8 +6,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.IForgeRegistry;
 
-public class PurchaseableMeal extends PurchaseableFML<MealImpl> {
-    public PurchaseableMeal(long cost, ResourceLocation resource) {
+public class PurchasableMeal extends PurchasableFML<MealImpl> {
+    public PurchasableMeal(long cost, ResourceLocation resource) {
         super(cost, resource);
     }
 

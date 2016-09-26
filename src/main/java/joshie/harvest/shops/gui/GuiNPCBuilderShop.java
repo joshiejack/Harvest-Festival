@@ -6,7 +6,7 @@ import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.shops.packet.PacketPurchaseItem;
-import joshie.harvest.shops.purchaseable.PurchaseableBuilder;
+import joshie.harvest.shops.purchasable.PurchasableBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -39,7 +39,7 @@ public class GuiNPCBuilderShop extends GuiNPCShop {
         int index = 0;
         for (int i = start; i < contents.size(); i++) {
             if (index > 4) break;
-            PurchaseableBuilder purchaseable = (PurchaseableBuilder) contents.get(i);
+            PurchasableBuilder purchaseable = (PurchasableBuilder) contents.get(i);
             ItemStack display = purchaseable.getDisplayStack();
             long cost = purchaseable.getCost();
             mc.renderEngine.bindTexture(shelve_texture);
@@ -95,7 +95,7 @@ public class GuiNPCBuilderShop extends GuiNPCShop {
         int index = 0;
         for (int i = start; i < contents.size(); i++) {
             if (index > 4) break;
-            PurchaseableBuilder purchaseable = (PurchaseableBuilder) contents.get(i);
+            PurchasableBuilder purchaseable = (PurchasableBuilder) contents.get(i);
             if (purchaseable.canBuy(player.worldObj, player)) {
                 long cost = purchaseable.getCost();
                 if (HFTrackers.getClientPlayerTracker().getStats().getGold() - cost >= 0) {

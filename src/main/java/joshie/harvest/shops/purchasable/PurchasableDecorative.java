@@ -1,4 +1,4 @@
-package joshie.harvest.shops.purchaseable;
+package joshie.harvest.shops.purchasable;
 
 import joshie.harvest.core.util.Text;
 import net.minecraft.item.ItemStack;
@@ -7,8 +7,8 @@ import java.util.List;
 
 import static net.minecraft.util.text.TextFormatting.YELLOW;
 
-public class PurchaseableDecorative extends Purchaseable {
-    public PurchaseableDecorative(int cost, ItemStack stack) {
+public class PurchasableDecorative extends Purchasable {
+    public PurchasableDecorative(int cost, ItemStack stack) {
         super(cost, stack);
     }
 

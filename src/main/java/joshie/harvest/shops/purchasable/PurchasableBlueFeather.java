@@ -1,4 +1,4 @@
-package joshie.harvest.shops.purchaseable;
+package joshie.harvest.shops.purchasable;
 
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.util.Text;
@@ -13,8 +13,8 @@ import java.util.List;
 import static net.minecraft.util.text.TextFormatting.DARK_RED;
 import static net.minecraft.util.text.TextFormatting.GREEN;
 
-public class PurchaseableBlueFeather extends Purchaseable {    
-    public PurchaseableBlueFeather(int cost, ItemStack stack) {
+public class PurchasableBlueFeather extends Purchasable {
+    public PurchasableBlueFeather(int cost, ItemStack stack) {
         super(cost, stack);
     }
     

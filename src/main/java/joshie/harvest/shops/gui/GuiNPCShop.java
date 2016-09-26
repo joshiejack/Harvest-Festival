@@ -1,6 +1,6 @@
 package joshie.harvest.shops.gui;
 
-import joshie.harvest.api.shops.IPurchaseable;
+import joshie.harvest.api.shops.IPurchasable;
 import joshie.harvest.api.shops.IShopGuiOverlay;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.StackHelper;
@@ -28,7 +28,7 @@ public class GuiNPCShop extends GuiNPCBase {
     protected static final ResourceLocation gui_texture = new ResourceLocation(HFModInfo.MODID, "textures/gui/shop.png");
     protected static final ResourceLocation shelve_texture = new ResourceLocation(HFModInfo.MODID, "textures/gui/shop_extra.png");
     protected final StatsClient stats;
-    protected final List<IPurchaseable> contents;
+    protected final List<IPurchasable> contents;
     protected final IShopGuiOverlay overlay;
     protected final Shop shop;
     protected int start;
@@ -86,7 +86,7 @@ public class GuiNPCShop extends GuiNPCBase {
         int index = 0;
         for (int i = start; i < contents.size(); i++) {
             if (index > (getMax())) break;
-            IPurchaseable purchaseable = contents.get(i);
+            IPurchasable purchaseable = contents.get(i);
             ItemStack display = purchaseable.getDisplayStack();
             long cost = purchaseable.getCost();
             mc.renderEngine.bindTexture(shelve_texture);
@@ -161,7 +161,7 @@ public class GuiNPCShop extends GuiNPCBase {
         int index = 0;
         for (int i = start; i < contents.size(); i++) {
             if (index > (getMax())) break;
-            IPurchaseable purchaseable = contents.get(i);
+            IPurchasable purchaseable = contents.get(i);
             if (purchaseable.canBuy(player.worldObj, player)) {
                 int indexPercent = index % 2;
                 int indexDivide = index / 2;

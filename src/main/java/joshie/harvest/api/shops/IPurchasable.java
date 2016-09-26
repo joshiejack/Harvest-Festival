@@ -9,7 +9,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public interface IPurchaseable extends ISpecialPurchaseRules {
+public interface IPurchasable extends ISpecialPurchaseRules {
     /** Whether this item shows up in the shop gui for purchase **/
     boolean canList(World world, EntityPlayer player);
     

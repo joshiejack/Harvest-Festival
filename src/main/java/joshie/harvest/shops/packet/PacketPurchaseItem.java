@@ -1,7 +1,7 @@
 package joshie.harvest.shops.packet;
 
 import io.netty.buffer.ByteBuf;
-import joshie.harvest.api.shops.IPurchaseable;
+import joshie.harvest.api.shops.IPurchasable;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.network.Packet;
 import joshie.harvest.core.network.PacketHandler;
@@ -18,7 +18,7 @@ public class PacketPurchaseItem extends PenguinPacket {
     private int purchaseable_id;
 
     public PacketPurchaseItem() {}
-    public PacketPurchaseItem(ResourceLocation resourceLocation, IPurchaseable purchaseable) {
+    public PacketPurchaseItem(ResourceLocation resourceLocation, IPurchasable purchaseable) {
         ResourceLocation shop = Shop.getRegistryName(resourceLocation, purchaseable);
         purchaseable_id = Shop.REGISTRY.getValues().indexOf(Shop.REGISTRY.getValue(shop));
     }
@@ -39,7 +39,7 @@ public class PacketPurchaseItem extends PenguinPacket {
 
     @Override
     public void handlePacket(EntityPlayer player) {
-        IPurchaseable purchaseable = Shop.REGISTRY.getValues().get(purchaseable_id).getPurchaseable();
+        IPurchasable purchaseable = Shop.REGISTRY.getValues().get(purchaseable_id).getPurchaseable();
         if (!player.worldObj.isRemote) {
             if (purchaseable.canBuy(player.worldObj, player)) {
                 if (purchase((EntityPlayerMP)player, purchaseable_id, purchaseable, purchaseable.getCost())) {
@@ -49,7 +49,7 @@ public class PacketPurchaseItem extends PenguinPacket {
         } else purchaseable.onPurchased(player);
     }
 
-    private boolean purchase(EntityPlayerMP player, int purchaseable_id, IPurchaseable purchaseable, long cost) {
+    private boolean purchase(EntityPlayerMP player, int purchaseable_id, IPurchasable purchaseable, long cost) {
         StatsServer stats = HFTrackers.<PlayerTrackerServer>getPlayerTrackerFromPlayer(player).getStats();
         if (stats.getGold() - cost >= 0) {
             stats.addGold(player, -cost);

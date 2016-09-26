@@ -14,7 +14,7 @@ public interface IShop {
 
     /** Adds a new purchaseable item to the shop
      * @param item  the purchaseable **/
-    IShop addItem(IPurchaseable item);
+    IShop addItem(IPurchasable item);
 
     /** Convenience method for basic items
      *  @param      cost how much this costs in gold

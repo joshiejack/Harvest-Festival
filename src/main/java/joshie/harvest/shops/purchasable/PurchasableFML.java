@@ -1,6 +1,6 @@
-package joshie.harvest.shops.purchaseable;
+package joshie.harvest.shops.purchasable;
 
-import joshie.harvest.api.shops.IPurchaseable;
+import joshie.harvest.api.shops.IPurchasable;
 import joshie.harvest.core.helpers.SpawnItemHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -14,11 +14,11 @@ import java.util.List;
 
 import static net.minecraft.util.text.TextFormatting.WHITE;
 
-public abstract class PurchaseableFML<I extends IForgeRegistryEntry.Impl<I>> implements IPurchaseable {
+public abstract class PurchasableFML<I extends IForgeRegistryEntry.Impl<I>> implements IPurchasable {
     protected I item;
     private final long cost;
 
-    public PurchaseableFML(long cost, ResourceLocation resource) {
+    public PurchasableFML(long cost, ResourceLocation resource) {
         this.cost = cost;
         if (resource != null) {
             this.item = getRegistry().getValue(resource);

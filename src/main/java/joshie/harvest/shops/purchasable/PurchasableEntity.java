@@ -1,7 +1,7 @@
-package joshie.harvest.shops.purchaseable;
+package joshie.harvest.shops.purchasable;
 
 import joshie.harvest.api.animals.IAnimalTracked;
-import joshie.harvest.api.shops.IPurchaseable;
+import joshie.harvest.api.shops.IPurchasable;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.util.Text;
 import net.minecraft.entity.Entity;
@@ -18,7 +18,7 @@ import java.util.Locale;
 
 import static net.minecraft.util.text.TextFormatting.WHITE;
 
-public class PurchaseableEntity implements IPurchaseable {
+public class PurchasableEntity implements IPurchasable {
     private final String resource;
     private final ItemStack product;
     private final Class<? extends Entity> eClass;
@@ -28,7 +28,7 @@ public class PurchaseableEntity implements IPurchaseable {
     /**
      * If lead is true, entity spawns with a lead, otherwise, entity spawns mounting the player
      **/
-    public PurchaseableEntity(Class<? extends Entity> clazz, long cost, ItemStack render, boolean lead) {
+    public PurchasableEntity(Class<? extends Entity> clazz, long cost, ItemStack render, boolean lead) {
         this.product = render;
         this.eClass = clazz;
         this.cost = cost;

@@ -1,10 +1,10 @@
-package joshie.harvest.shops.purchaseable;
+package joshie.harvest.shops.purchasable;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.Crop;
-import joshie.harvest.api.shops.IPurchaseable;
+import joshie.harvest.api.shops.IPurchasable;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.helpers.SpawnItemHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,11 +17,11 @@ import java.util.List;
 
 import static net.minecraft.util.text.TextFormatting.WHITE;
 
-public class PurchaseableCropSeeds implements IPurchaseable {
+public class PurchasableCropSeeds implements IPurchasable {
     private final String resource;
     private final Crop crop;
 
-    public PurchaseableCropSeeds(Crop crop) {
+    public PurchasableCropSeeds(Crop crop) {
         this.crop = crop;
         this.resource = crop.getRegistryName().toString().replace(":", "_") + "Seeds";
     }

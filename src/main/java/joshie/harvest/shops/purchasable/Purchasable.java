@@ -1,6 +1,6 @@
-package joshie.harvest.shops.purchaseable;
+package joshie.harvest.shops.purchasable;
 
-import joshie.harvest.api.shops.IPurchaseable;
+import joshie.harvest.api.shops.IPurchasable;
 import joshie.harvest.core.helpers.SpawnItemHelper;
 import joshie.harvest.core.helpers.MCClientHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,12 +11,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class Purchaseable implements IPurchaseable {
+public class Purchasable implements IPurchasable {
     protected final ItemStack[] stacks;
     private final String resource;
     private final long cost;
 
-    public Purchaseable(long cost, ItemStack... stacks) {
+    public Purchasable(long cost, ItemStack... stacks) {
         this.cost = cost;
         this.stacks = stacks;
         StringBuilder builder = new StringBuilder();

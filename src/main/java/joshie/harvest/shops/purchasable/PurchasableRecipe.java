@@ -1,4 +1,4 @@
-package joshie.harvest.shops.purchaseable;
+package joshie.harvest.shops.purchasable;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
@@ -10,11 +10,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-public class PurchaseableRecipe extends PurchaseableMeal {
+public class PurchasableRecipe extends PurchasableMeal {
     private final Season season;
     private final Weekday weekday;
 
-    public PurchaseableRecipe(Season season, Weekday weekday, ResourceLocation resource) {
+    public PurchasableRecipe(Season season, Weekday weekday, ResourceLocation resource) {
         super(150, resource);
         this.season = season;
         this.weekday = weekday;

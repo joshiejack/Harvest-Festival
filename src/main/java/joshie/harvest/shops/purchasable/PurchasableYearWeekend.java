@@ -1,14 +1,14 @@
-package joshie.harvest.shops.purchaseable;
+package joshie.harvest.shops.purchasable;
 
 import joshie.harvest.calendar.CalendarHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class PurchaseableYearWeekend extends PurchaseableWeekend {
+public class PurchasableYearWeekend extends PurchasableWeekend {
     private final int year;
 
-    public PurchaseableYearWeekend(long cost, ItemStack stack, int year) {
+    public PurchasableYearWeekend(long cost, ItemStack stack, int year) {
         super(cost, stack);
         this.year = year;
     }

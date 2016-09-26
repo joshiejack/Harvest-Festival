@@ -1,4 +1,4 @@
-package joshie.harvest.shops.purchaseable;
+package joshie.harvest.shops.purchasable;
 
 import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.BuildingRegistry;
@@ -12,25 +12,25 @@ import net.minecraftforge.fml.common.registry.IForgeRegistry;
 
 import static joshie.harvest.core.helpers.InventoryHelper.ORE_DICTIONARY;
 
-public class PurchaseableBuilder extends PurchaseableFML<BuildingImpl> {
+public class PurchasableBuilder extends PurchasableFML<BuildingImpl> {
     private final String resource;
     private ItemStack stack;
     private final int logs;
     private final int stone;
 
-    public PurchaseableBuilder(long cost, int logs, int stone, ResourceLocation name) {
+    public PurchasableBuilder(long cost, int logs, int stone, ResourceLocation name) {
         super(cost, name);
         this.logs = logs;
         this.stone = stone;
         this.resource = name.toString().replace(":", "_");
     }
 
-    public PurchaseableBuilder(long cost, int logs, int stone, ItemStack stack) {
+    public PurchasableBuilder(long cost, int logs, int stone, ItemStack stack) {
         super(cost, null);
         this.logs = logs;
         this.stone = stone;
         this.stack = stack;
-        this.resource = Purchaseable.stackToString(stack);
+        this.resource = Purchasable.stackToString(stack);
     }
 
     @Override

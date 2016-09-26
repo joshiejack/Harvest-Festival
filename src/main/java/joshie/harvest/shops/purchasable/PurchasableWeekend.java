@@ -1,4 +1,4 @@
-package joshie.harvest.shops.purchaseable;
+package joshie.harvest.shops.purchasable;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.core.handlers.HFTrackers;
@@ -6,10 +6,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class PurchaseableWeekend extends Purchaseable {
+public class PurchasableWeekend extends Purchasable {
     private final ItemStack[] required;
 
-    public PurchaseableWeekend(long cost, ItemStack stack, ItemStack... required) {
+    public PurchasableWeekend(long cost, ItemStack stack, ItemStack... required) {
         super(cost, stack);
         this.required = required;
     }

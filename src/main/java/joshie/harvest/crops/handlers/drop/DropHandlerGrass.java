@@ -2,14 +2,13 @@ package joshie.harvest.crops.handlers.drop;
 
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.crops.DropHandler;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 import java.util.Random;
 
-public class DropHandlerPotato extends DropHandler {
+public class DropHandlerGrass extends DropHandler {
     @Override
     public ItemStack getDrop(Crop crop, int stage, Random rand) {
-        return stage >= crop.getStages() ? rand.nextInt(50) == 0 ? new ItemStack(Items.POISONOUS_POTATO) : new ItemStack(Items.POTATO) : null;
+        return stage >= crop.getMinimumCut() ? crop.getCropStack((int) Math.floor(stage / 2) - 2) : null;
     }
 }

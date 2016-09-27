@@ -3,16 +3,18 @@ package joshie.harvest.cooking.recipe;
 import joshie.harvest.animals.HFAnimals;
 import joshie.harvest.api.cooking.Ingredient;
 import joshie.harvest.api.core.ISizeable.Size;
+import joshie.harvest.api.crops.Crop;
 import joshie.harvest.cooking.CookingAPI;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.cooking.item.ItemIngredients;
 import joshie.harvest.cooking.render.MappingEvent;
+import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.util.HFLoader;
-import joshie.harvest.api.crops.Crop;
 import joshie.harvest.crops.HFCrops;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 import static joshie.harvest.core.lib.LoadOrder.HFINGREDIENTS;
 
@@ -101,6 +103,15 @@ public class HFIngredients {
         FISH.add(SALMON, COD);
     }
 
+    private static String getPrimaryCropName(ItemStack stack) {
+        String[] names = InventoryHelper.getOreNames(stack);
+        for (String name: names) {
+            if (name.startsWith("crop")) return name;
+        }
+
+        return null;
+    }
+
     public static void postInit() {
         //Animal Products
         CookingAPI.INSTANCE.register(new ItemStack(Items.EGG), EGG);
@@ -112,7 +123,13 @@ public class HFIngredients {
         //Crops
         for (Crop crop: Crop.REGISTRY) {
             if (crop != Crop.NULL_CROP && crop.getIngredient() != null) {
-                CookingAPI.INSTANCE.register(crop.getCropStack(1), crop.getIngredient());
+                ItemStack stack = crop.getCropStack(1);
+                String name = getPrimaryCropName(stack);
+                if (name != null) {
+                    for (ItemStack item: OreDictionary.getOres(name)) {
+                        CookingAPI.INSTANCE.register(item, crop.getIngredient());
+                    }
+                } else CookingAPI.INSTANCE.register(stack, crop.getIngredient());
             }
         }
 

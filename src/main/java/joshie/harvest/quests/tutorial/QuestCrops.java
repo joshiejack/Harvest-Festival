@@ -77,7 +77,7 @@ public class QuestCrops extends QuestQuestion {
                She however also explains that her variety is limited, and suggests that you build a supermarket
                She also informs the player that the harvest goddess has heard of your great work
                And that she would really like to hear from you, in fact she would love to see a turnip!*/
-            if (InventoryHelper.getHandItemIsIn(player, ITEM_STACK, HFCrops.TURNIP.getCropStack(9), 9) != null) {
+            if (InventoryHelper.getHandItemIsIn(player, ITEM_STACK, HFCrops.TUTORIAL.getCropStack(9), 9) != null) {
                 return getLocalized("complete");
             }
 
@@ -98,11 +98,11 @@ public class QuestCrops extends QuestQuestion {
         if (isCompletedEarly || quest_stage == START) {
             rewardItem(player, HFTools.HOE.getStack(BASIC));
             rewardItem(player, HFTools.WATERING_CAN.getStack(BASIC));
-            rewardItem(player, HFCrops.TURNIP.getSeedStack(3));
+            if (quest_stage == START) rewardItem(player, HFCrops.TUTORIAL.getSeedStack(3));
             if (isCompletedEarly) complete(player);
             if (quest_stage == START) increaseStage(player);
         } else if (quest_stage == TURNIPS) {
-            if (InventoryHelper.takeItemsIfHeld(player, ITEM_STACK, HFCrops.TURNIP.getCropStack(9), 9) != null) {
+            if (InventoryHelper.takeItemsIfHeld(player, ITEM_STACK, HFCrops.TUTORIAL.getCropStack(9), 9) != null) {
                 complete(player);
             }
 
@@ -118,5 +118,11 @@ public class QuestCrops extends QuestQuestion {
 
             attempted = true;
         }
+    }
+
+    @Override
+    public void onQuestCompleted(EntityPlayer player) {
+        rewardItem(player, HFTools.SICKLE.getStack(BASIC));
+        rewardItem(player, HFCrops.TURNIP.getSeedStack(3));
     }
 }

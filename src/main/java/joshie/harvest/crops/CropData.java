@@ -1,6 +1,7 @@
 package joshie.harvest.crops;
 
 import joshie.harvest.api.crops.Crop;
+import joshie.harvest.api.crops.IStateHandler.PlantSection;
 import joshie.harvest.crops.block.BlockHFCrops.CropType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -11,11 +12,14 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.Random;
 
 public class CropData {
+    private static final Random rand = new Random();
     private Crop crop = Crop.NULL_CROP; //The Crop Type of this plant
     private int stage = 1; //The stage it is currently at
     private int daysWithoutWater; //The number of days this crop has gone without water
+    private boolean safe;
 
     public CropData setCrop(Crop crop, int stage) {
         this.crop = crop;
@@ -49,7 +53,7 @@ public class CropData {
         }
 
         //If the crop has become double add in the new block
-        if (crop.isDouble(stage)) {
+        if (crop.isTurningToDouble(stage)) {
             world.setBlockState(pos.up(), HFCrops.CROPS.getStateFromEnum(CropType.FRESH_DOUBLE), 2);
         }
 
@@ -90,16 +94,30 @@ public class CropData {
         return crop;
     }
 
+    public boolean isClearable() {
+        if (safe) {
+            safe = false;
+            return false;
+        } else return true;
+    }
+
+    public boolean markSafe(World world, BlockPos pos, PlantSection section) {
+        this.safe = true;
+        if (section == PlantSection.BOTTOM) return world.setBlockToAir(pos.up());
+        else return world.setBlockToAir(pos);
+    }
+
     public ItemStack harvest(@Nullable EntityPlayer player, boolean doHarvest) {
         if (crop == null) return null;
-        if (stage >= crop.getStages()) {
+        if (stage >= crop.getStages() || (crop.requiresSickle() && stage >= crop.getMinimumCut())) {
+            int originalStage = stage;
             if (doHarvest) {
                 if (crop.getRegrowStage() > 0) {
                     stage = crop.getRegrowStage();
                 }
             }
 
-            return crop.getHarvested();
+            return crop.getDropHandler().getDrop(crop, originalStage, rand);
         } else return null;
     }
 

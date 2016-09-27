@@ -25,12 +25,12 @@ public class CropHelper {
 
     public static IBlockState getBlockState(IBlockAccess world, BlockPos pos, PlantSection section, boolean withered) {
         CropData data = getTile(world, pos, section).getData();
-        return data.getCrop().getStateHandler().getState(section, data.getStage(), withered);
+        return data.getCrop().getStateHandler().getState(world, pos, section, data.getStage(), withered);
     }
 
     public static AxisAlignedBB getCropBoundingBox(IBlockAccess world, BlockPos pos, PlantSection section, boolean withered) {
         CropData data = getTile(world, pos, section).getData();
-        return data.getCrop().getStateHandler().getBoundingBox(section, data.getStage(), withered);
+        return data.getCrop().getStateHandler().getBoundingBox(world, pos, section, data.getStage(), withered);
     }
 
     private static TileCrop getTile(IBlockAccess world, BlockPos pos, PlantSection section) {
@@ -60,7 +60,7 @@ public class CropHelper {
         return stack != null;
     }
 
-    public static CropData getCropDataAt(World world, BlockPos pos) {
+    public static CropData getCropDataAt(IBlockAccess world, BlockPos pos) {
         PlantSection section = BlockHFCrops.getSection(world.getBlockState(pos));
         if (section == null) return null;
         if (section == PlantSection.BOTTOM) return ((TileCrop)world.getTileEntity(pos)).getData();

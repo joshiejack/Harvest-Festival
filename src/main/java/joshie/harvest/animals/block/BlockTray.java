@@ -108,7 +108,7 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
                     NBTTagCompound tag = drop.getSubCompound("Data", true);
                     tag.setInteger("Relationship", relationship);
                     tag.setString("Owner", EntityHelper.getPlayerUUID(player).toString());
-                    SpawnItemHelper.dropBlockAsItem(world, pos.getX(), pos.getY(), pos.getZ(), drop);
+                    SpawnItemHelper.spawnItem(world, pos.getX(), pos.getY() + 1, pos.getZ(), drop);
                     world.setBlockState(pos, getStateFromEnum(NEST_EMPTY));
                     player.addStat(HFAchievements.egger);
                     if (HFCore.SIZEABLE.getSize(drop) == Size.LARGE) {

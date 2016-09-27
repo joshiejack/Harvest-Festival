@@ -142,6 +142,16 @@ public class InventoryHelper {
         return false;
     }
 
+    public static String[] getOreNames(ItemStack stack) {
+        int[] ids = OreDictionary.getOreIDs(stack);
+        String[] names = new String[ids.length];
+        for (int i = 0; i < ids.length; i++) {
+            names[i] = OreDictionary.getOreName(ids[i]);
+        }
+
+        return names;
+    }
+
     public abstract static class Matcher<T> {
         public abstract boolean matches(@Nonnull ItemStack stack, T t);
     }

@@ -43,7 +43,7 @@ public class TileCrop extends TileDaily {
             //If we were unable to survive the new day, let's destroy some things
             if (!data.newDay(getWorld(), getPos())) {
                 if (HFCrops.CROPS_SHOULD_DIE) {
-                    if (data.getCrop().isDouble(data.getStage())) {
+                    if (data.getCrop().isCurrentlyDouble(data.getStage())) {
                         getWorld().setBlockState(pos.up(), HFCrops.CROPS.getStateFromEnum(CropType.WITHERED_DOUBLE), 2);
                     }
 

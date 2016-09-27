@@ -1,9 +1,18 @@
 ##0.5.4
+* Add config option for giving the cheat buildings instead of blueprints
+* Add a hardy turnip crop, that takes three days to grow and can grow in any season (Only available in the tutorial)
+* Add tooltip to animal spawners
 * Make Goddess flower spawning work with a larger range of plants
 * Halve the amount of time the goddess takes to spawn from a flower
-* Fix the goddess flower never despawning if dropped on land
 * Change flower sound to plant
-* Fix potential crash with eio
+* Now registering all cropEggplant etc as acceptable ingredients
+* Fix the goddess flower never despawning if dropped on land
+* Fixed pumpkin/melon renders
+* Fix grass only giving one fodder
+* Fix grass being destroyed when cut
+* Fix grass being purple when it dies
+* Fix chicken eggs flying off like mad
+* Fix potential crashes when a block tries to get my crops state
 
 ##0.5.3
 * Jade will now swap hoes/buckets for hoes/watering cans from after the tutorial until you complete the blacksmith tutorial

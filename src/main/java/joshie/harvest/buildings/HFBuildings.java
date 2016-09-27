@@ -115,8 +115,10 @@ public class HFBuildings {
 
     //Configuration
     public static boolean FULL_BUILDING_RENDER;
+    public static boolean CHEAT_BUILDINGS;
 
     public static void configure() {
-        FULL_BUILDING_RENDER = getBoolean("Full Building Render", true);
+        FULL_BUILDING_RENDER = getBoolean("Use Full Building Render", true);
+        CHEAT_BUILDINGS = getBoolean("Use Cheat Buildings", false);
     }
 }

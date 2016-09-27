@@ -13,6 +13,7 @@ import joshie.harvest.core.helpers.RegistryHelper;
 import joshie.harvest.core.util.HFLoader;
 import joshie.harvest.crops.block.BlockHFCrops;
 import joshie.harvest.crops.block.BlockSprinkler;
+import joshie.harvest.crops.handlers.drop.DropHandlerGrass;
 import joshie.harvest.crops.handlers.drop.DropHandlerMelon;
 import joshie.harvest.crops.handlers.drop.DropHandlerNetherWart;
 import joshie.harvest.crops.handlers.drop.DropHandlerPotato;
@@ -24,18 +25,13 @@ import joshie.harvest.crops.tile.TileCrop;
 import joshie.harvest.crops.tile.TileCrop.TileWithered;
 import joshie.harvest.crops.tile.TileSprinkler;
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.color.IBlockColor;
-import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.storage.loot.functions.LootFunctionManager;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.EnumPlantType;
@@ -44,8 +40,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 import org.apache.commons.lang3.text.WordUtils;
-
-import javax.annotation.Nullable;
 
 import static joshie.harvest.api.animals.AnimalFoodType.FRUIT;
 import static joshie.harvest.api.calendar.Season.*;
@@ -77,9 +71,9 @@ public class HFCrops {
     public static final Crop ONION = registerCrop("onion", 150L, 80L, 8, 0, 0, 0XDCC307, SUMMER).setFoodStats(1, 0.4F).setStateHandler(new StateHandlerOnion());
     public static final Crop TOMATO = registerCrop("tomato", 200L, 60L, 10, 7, 0, 0XE60820, SUMMER).setFoodStats(3, 0.5F).setAnimalFoodType(FRUIT).setStateHandler(new StateHandlerTomato());
     public static final Crop CORN = registerCrop("corn", 300L, 100L, 15, 12, 0, 0XD4BD45, SUMMER).setFoodStats(2, 0.3F).setStateHandler(new StateHandlerCorn());
-    public static final Crop PUMPKIN = registerCrop("pumpkin", 500L, 125L, 15, 0, 1, 0XE09A39, SUMMER).setIngredient(new Ingredient("pumpkin", 2, 0.3F)).setItem(new ItemStack(Blocks.PUMPKIN)).setGrowsToSide(Blocks.PUMPKIN).setStateHandler(new StateHandlerStem(Blocks.PUMPKIN));
+    public static final Crop PUMPKIN = registerCrop("pumpkin", 500L, 125L, 15, 0, 1, 0XE09A39, SUMMER).setIngredient(new Ingredient("pumpkin", 2, 0.3F)).setItem(new ItemStack(Blocks.PUMPKIN)).setGrowsToSide(Blocks.PUMPKIN).setStateHandler(new StateHandlerPumpkin());
     public static final Crop PINEAPPLE = registerCrop("pineapple", 1000L, 500L, 21, 5, 3, 0XD7CF00, SUMMER).setFoodStats(2, 1.34F).setAnimalFoodType(FRUIT).setStateHandler(new StateHandlerPineapple());
-    public static final Crop WATERMELON = registerCrop("watermelon", 250L, 25L, 11, 0, 1, 0xc92b3e, SUMMER).setItem(new ItemStack(Items.MELON)).setAnimalFoodType(FRUIT).setDropHandler(new DropHandlerMelon()).setGrowsToSide(Blocks.MELON_BLOCK).setStateHandler(new StateHandlerStem(Blocks.MELON_BLOCK));
+    public static final Crop WATERMELON = registerCrop("watermelon", 250L, 25L, 11, 0, 1, 0xc92b3e, SUMMER).setItem(new ItemStack(Items.MELON)).setAnimalFoodType(FRUIT).setDropHandler(new DropHandlerMelon()).setGrowsToSide(Blocks.MELON_BLOCK).setStateHandler(new StateHandlerMelon());
 
     //Autumn Crops
     public static final Crop EGGPLANT = registerCrop("eggplant", 120L, 80L, 10, 7, 0, 0XA25CC4, AUTUMN).setFoodStats(3, 1.1F).setStateHandler(new StateHandlerEggplant());
@@ -90,12 +84,14 @@ public class HFCrops {
     public static final Crop BEETROOT = registerCrop("beetroot", 250L, 75L, 8, 0, 0, 0x690000, AUTUMN).setItem(new ItemStack(Items.BEETROOT)).setStateHandler(new StateHandlerSeedFood(Blocks.BEETROOTS));
 
     //Year Long Crops
-    public static final Crop GRASS = registerCrop("grass", 500L, 1L, 11, 0, 0, 0x7AC958, SPRING, SUMMER, AUTUMN).setAnimalFoodType(AnimalFoodType.GRASS).setBecomesDouble(6).setHasAlternativeName().setRequiresSickle().setNoWaterRequirements().setStateHandler(new StateHandlerGrass());
+    public static final Crop GRASS = registerCrop("grass", 500L, 1L, 11, 1, 0, 0x7AC958, SPRING, SUMMER, AUTUMN).setWitheredColor(0x7a5230).setAnimalFoodType(AnimalFoodType.GRASS).setDropHandler(new DropHandlerGrass()).setMinimumCut(6).setBecomesDouble(6).setHasAlternativeName().setRequiresSickle().setNoWaterRequirements().setStateHandler(new StateHandlerGrass());
     public static final Crop WHEAT = registerCrop("wheat", 150L, 100L, 28, 0, 0, 0XEAC715, SPRING, SUMMER, AUTUMN).setItem(new ItemStack(Items.WHEAT)).setAnimalFoodType(AnimalFoodType.GRASS).setRequiresSickle().setStateHandler(new StateHandlerWheat());
 
-    //Nether Crop
+    //Nether Crops
     public static final Crop NETHER_WART = registerCrop("nether_wart", 25000L, 10L, 4, 1, 1, 0x8B0000).setItem(new ItemStack(Items.NETHER_WART)).setStateHandler(new StateHandlerNetherWart()).setPlantType(EnumPlantType.Nether).setNoWaterRequirements().setGrowthHandler(SOUL_SAND).setDropHandler(new DropHandlerNetherWart());
 
+    //Tutorial Crop
+    public static final Crop TUTORIAL = registerCrop("tutorial_turnip", 0L, 1L, 3, 0, 0, 0xACA262, SPRING, SUMMER, AUTUMN, WINTER).setFoodStats(1, 0.1F);
 
     @SuppressWarnings("unchecked")
     public static void preInit() {
@@ -148,25 +144,20 @@ public class HFCrops {
 
     @SideOnly(Side.CLIENT)
     public static void initClient() {
-        Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new IItemColor() {
-            @Override
-            public int getColorFromItemstack(ItemStack stack, int tintIndex) {
-                Crop crop = HFCrops.SEEDS.getCropFromStack(stack);
-                return crop != null ? crop.getColor() : -1;
-            }
+        Minecraft.getMinecraft().getItemColors().registerItemColorHandler((stack, tintIndex) -> {
+            Crop crop = HFCrops.SEEDS.getCropFromStack(stack);
+            return crop != null ? crop.getColor() : -1;
         }, SEEDS);
 
-        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(new IBlockColor() {
-            @Override
-            public int colorMultiplier(IBlockState state, @Nullable IBlockAccess world, @Nullable BlockPos pos, int tintIndex) {
-                if (world != null && pos != null) {
-                    if (BlockHFCrops.isWithered(world.getBlockState(pos))) {
-                        return 0xA64DFF;
-                    }
+        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((state, world, pos, tintIndex) -> {
+            if (world != null && pos != null) {
+                if (BlockHFCrops.isWithered(world.getBlockState(pos))) {
+                    CropData data = CropHelper.getCropDataAt(world, pos);
+                    return data != null? data.getCrop().getWitheredColor() : 0xA64DFF;
                 }
-
-                return -1;
             }
+
+            return -1;
         }, CROPS);
 
         //Register the models

@@ -137,12 +137,8 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
     public float getPlayerRelativeBlockHardness(IBlockState state, EntityPlayer player, World world, BlockPos pos) {
         CropType stage = getEnumFromState(state);
         ItemStack held = player.getHeldItemMainhand();
-        CropData data = CropHelper.getCropDataAt(world, pos);
-        if (data.getCrop().growsToSide() != null && data.getStage() == data.getCrop().getStages()) {
-            return 0F; //If the crop is fully grown, and grows to the side. Make it immune to destruction.
-        }
-
         //If this crop is withered return 0
+
         if (held == null || (!(held.getItem() instanceof IBreakCrops))) return stage.isWithered() ? 0 : 0.75F;
         return ((IBreakCrops) held.getItem()).getStrengthVSCrops(player, world, pos, state, held);
     }
@@ -218,12 +214,18 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
             return super.removedByPlayer(state, world, pos, player, willHarvest);
         }
 
+
         Crop crop = data.getCrop();
+        int originalStage = data.getStage();
         boolean isSickle = player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() instanceof IBreakCrops;
         if (isSickle || !crop.requiresSickle()) {
             if (section == BOTTOM) {
                 harvestCrop(player, world, pos);
             } else harvestCrop(player, world, pos.down());
+        }
+
+        if (isSickle && crop.getMinimumCut() != 0 && crop.requiresSickle() && originalStage >= crop.getMinimumCut()) {
+            return data.markSafe(world, pos, section);
         }
 
         return world.setBlockToAir(pos);
@@ -233,14 +235,23 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
     public void breakBlock(World world, BlockPos pos, IBlockState state) {
         CropType stage = getEnumFromState(state);
         if (stage == FRESH || stage == CropType.WITHERED) {
-            if (world.getBlockState(pos.up()).getBlock() == this) {
-                CropType above = getEnumFromState(world.getBlockState(pos.up()));
-                if (above == FRESH_DOUBLE || stage == WITHERED_DOUBLE) {
-                    world.setBlockToAir(pos.up());
+            CropData data = CropHelper.getCropDataAt(world, pos);
+            if (data == null || data.isClearable()) {
+                if (world.getBlockState(pos.up()).getBlock() == this) {
+                    CropType above = getEnumFromState(world.getBlockState(pos.up()));
+                    if (above == FRESH_DOUBLE || above == WITHERED_DOUBLE) {
+                        world.setBlockToAir(pos.up());
+                    }
                 }
+            } else {
+                if (world.getBlockState(pos.up()).getBlock() == this && !data.getCrop().isCurrentlyDouble(data.getStage())) data.markSafe(world, pos.up(), PlantSection.TOP);
+                HFApi.crops.plantCrop(null, world, pos, data.getCrop(), data.getCrop().getRegrowStage());
             }
         } else if (stage == CropType.FRESH_DOUBLE || stage == CropType.WITHERED_DOUBLE) {
-            world.setBlockToAir(pos.down());
+            CropData data = CropHelper.getCropDataAt(world, pos.down());
+            if (data == null || data.isClearable()) {
+                world.setBlockToAir(pos.down());
+            }
         }
     }
 
@@ -320,7 +331,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
         public void onBlockBreak(BreakEvent event) {
             IBlockState above = event.getWorld().getBlockState(event.getPos().up());
             if (above .getBlock() == HFCrops.CROPS) {
-                event.setCanceled(true);
+                //event.setCanceled(true);
             }
         }
     }

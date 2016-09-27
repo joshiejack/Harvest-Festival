@@ -16,18 +16,16 @@ import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
 import net.minecraftforge.fml.common.registry.RegistryBuilder;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.Random;
-
 public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
     public static final IForgeRegistry<Crop> REGISTRY = new RegistryBuilder<Crop>().setName(new ResourceLocation("harvestfestival", "crops")).setType(Crop.class).setIDRange(0, 32000).create();
     public static final GrowthHandler SEASONAL = new GrowthHandler() {};
+    public static final DropHandler DROPS = new DropHandler();
     public static final Crop NULL_CROP = new Crop();
-    private static final Random rand = new Random();
 
     //CropData
     private IStateHandler stateHandler;
     private GrowthHandler growthHandler;
-    private IDropHandler dropHandler;
+    private DropHandler dropHandler;
     private AnimalFoodType foodType;
     private EnumPlantType type;
     private Ingredient ingredient;
@@ -44,8 +42,10 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
     private int stages;
     private int regrow;
     private int year;
-    private int bag_color;
+    private int bagColor;
+    private int witheredColor;
     private int doubleStage;
+    private int minCut;
 
     private Crop() {
         this(new ResourceLocation("harvestfestival", "null_crop"), 0, 0, 3, 0);
@@ -70,7 +70,8 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
         this.year = 0;
         this.alternativeName = false;
         this.foodType = AnimalFoodType.VEGETABLE;
-        this.bag_color = color;
+        this.bagColor = color;
+        this.witheredColor = 0xA64DFF;
         this.stateHandler = new StateHandlerDefault(this);
         this.growthHandler = SEASONAL;
         this.needsWatering = true;
@@ -206,7 +207,7 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
      * Set the drop handler for this crop
      * @param handler   the drop handler
      **/
-    public Crop setDropHandler(IDropHandler handler) {
+    public Crop setDropHandler(DropHandler handler) {
         this.dropHandler = handler;
         return this;
     }
@@ -217,6 +218,24 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
      **/
     public Crop setGrowsToSide(Block block) {
         this.growsToSide = block;
+        return this;
+    }
+
+    /** Sets the minimum cut
+     * Used when a crop requires the sickle,
+     *  The crop will only be destroyable/harvestable
+     *  if it's below this stage
+     */
+    public Crop setMinimumCut(int cut) {
+        this.minCut = cut;
+        return this;
+    }
+
+    /** Set the colour for this crop
+     *  to render as when withered */
+
+    public Crop setWitheredColor(int color) {
+        this.witheredColor = color;
         return this;
     }
 
@@ -284,6 +303,13 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
         return regrow;
     }
 
+    /** Used when a crop requires the sickle,
+     *  The crop will only be destroyable/harvestable
+     *  if it's below this stage */
+    public int getMinimumCut() {
+        return minCut;
+    }
+
     /**
      * Return true if this crop required a sickle
      * **/
@@ -299,11 +325,19 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
     }
 
     /**
+     * Return true if this crop is turning double crop at this stage
+     * @param stage the stage of the crop
+     * **/
+    public boolean isTurningToDouble(int stage) {
+        return stage == doubleStage;
+    }
+
+    /**
      * Return true if this crop is a double crop at this stage
      * @param stage the stage of the crop
      * **/
-    public boolean isDouble(int stage) {
-        return stage == doubleStage;
+    public boolean isCurrentlyDouble(int stage) {
+        return stage >= doubleStage;
     }
 
     /**
@@ -333,7 +367,14 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
      * Return the colour of the seed bag
      **/
     public int getColor() {
-        return bag_color;
+        return bagColor;
+    }
+
+    /**
+     * Return the colour modifier when this crop is withered
+     * **/
+    public int getWitheredColor() {
+        return witheredColor;
     }
 
     /**
@@ -383,8 +424,8 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
     /**
      * What this crop drops
      **/
-    public ItemStack getHarvested() {
-        return dropHandler == null ? getCropStack(1) : dropHandler.getDrop(rand, item.getItem());
+    public DropHandler getDropHandler() {
+        return dropHandler == null ? DROPS : dropHandler;
     }
 
     /**

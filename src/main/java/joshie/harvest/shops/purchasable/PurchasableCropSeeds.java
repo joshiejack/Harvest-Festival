@@ -6,6 +6,7 @@ import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.shops.IPurchasable;
 import joshie.harvest.calendar.CalendarHelper;
+import joshie.harvest.core.helpers.MCClientHelper;
 import joshie.harvest.core.helpers.SpawnItemHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -14,8 +15,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
-
-import static net.minecraft.util.text.TextFormatting.WHITE;
 
 public class PurchasableCropSeeds implements IPurchasable {
     private final String resource;
@@ -60,10 +59,7 @@ public class PurchasableCropSeeds implements IPurchasable {
     @SideOnly(Side.CLIENT)
     @Override
     public void addTooltip(List<String> list) {
-        list.add(WHITE + crop.getSeedsName());
-        for (Season season : crop.getSeasons()) {
-            list.add(season.getDisplayName());
-        }
+        list.addAll(getDisplayStack().getTooltip(MCClientHelper.getPlayer(), false));
     }
 
     @Override

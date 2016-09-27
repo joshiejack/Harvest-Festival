@@ -100,6 +100,7 @@ public class ItemSickle extends ItemTool<ItemHoe> implements IBreakCrops {
                 return 0F;
             }
 
+
             ToolTier tier = getTier(stack);
             //Facing North, We Want East and West to be 1, left * this.left
             for (int x2 = getXMinus(tier, front, pos.getX()); x2 <= getXPlus(tier, front, pos.getX()); x2++) {
@@ -108,7 +109,7 @@ public class ItemSickle extends ItemTool<ItemHoe> implements IBreakCrops {
                         BlockPos newPos = new BlockPos(x2, pos.getY(), z2);
                         Block block = world.getBlockState(newPos).getBlock();
                         if (block instanceof BlockHFCrops) {
-                            if (!world.isRemote) {
+                            if (!world.isRemote && (!newPos.equals(pos))) {
                                 block.removedByPlayer(state, world, newPos, player, true);
                             }
 

@@ -10,9 +10,11 @@ import joshie.harvest.tools.ToolHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
@@ -221,6 +223,18 @@ public class ItemWateringCan extends ItemTool<ItemWateringCan> implements IFluid
         if (advanced && HFCore.DEBUG_MODE) {
             tooltip.add("Water: " + getCapacity(stack));
             tooltip.add("Level: " + getLevel(stack));
+        }
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
+        for (int i = 0; i < ToolTier.values().length; i++) {
+            list.add(new ItemStack(item, 1, i));
+            ItemStack full = new ItemStack(item, 1, i);
+            full.getSubCompound("Data", true).setDouble("Level", 100D);
+            full.getTagCompound().setByte("Water", (byte)128);
+            list.add(full);
         }
     }
 }

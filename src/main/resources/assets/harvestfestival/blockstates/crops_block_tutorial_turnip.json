@@ -1,0 +1,13 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "harvestfestival:tinted_crop"
+  },
+  "variants": {
+    "stage": {
+      "1": { "textures": { "crop": "harvestfestival:blocks/crops/tutorial_turnip_1" }},
+      "2": { "textures": { "crop": "harvestfestival:blocks/crops/tutorial_turnip_2" }},
+      "3": { "textures": { "crop": "harvestfestival:blocks/crops/tutorial_turnip_3" }}
+    }
+  }
+}

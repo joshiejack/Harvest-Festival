@@ -8,6 +8,7 @@ import joshie.harvest.animals.item.ItemAnimalSpawner.Spawner;
 import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.core.base.item.ItemHFEnum;
 import joshie.harvest.core.helpers.EntityHelper;
+import joshie.harvest.core.util.Text;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,11 +16,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.List;
 import java.util.Locale;
 
 import static joshie.harvest.calendar.HFCalendar.TICKS_PER_DAY;
@@ -66,6 +69,12 @@ public class ItemAnimalSpawner extends ItemHFEnum<ItemAnimalSpawner, Spawner> {
 
         stack.splitStack(1);
         return EnumActionResult.SUCCESS;
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+            tooltip.add(TextFormatting.AQUA + Text.translate("spawner.tooltip"));
     }
 
     @SideOnly(Side.CLIENT)

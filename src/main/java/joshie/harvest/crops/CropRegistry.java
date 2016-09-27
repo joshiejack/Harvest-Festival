@@ -86,9 +86,10 @@ public class CropRegistry implements ICropRegistry {
     @Override
     public void plantCrop(@Nullable EntityPlayer player, World world, BlockPos pos, Crop theCrop, int stage) {
         world.setBlockState(pos, HFCrops.CROPS.getStateFromEnum(FRESH));
-        if (theCrop.isDouble(stage)) {
+        if (theCrop.isCurrentlyDouble(stage)) {
             world.setBlockState(pos.up(), HFCrops.CROPS.getStateFromEnum(FRESH_DOUBLE));
         }
+
 
         TileCrop tile = (TileCrop) world.getTileEntity(pos);
         tile.getData().setCrop(theCrop, stage);

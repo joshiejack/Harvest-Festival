@@ -6,6 +6,8 @@ import joshie.harvest.crops.block.BlockHFCrops;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 
 public abstract class StateHandlerVanilla implements IStateHandler {
     protected final Block block;
@@ -20,7 +22,7 @@ public abstract class StateHandlerVanilla implements IStateHandler {
     }
 
     @Override
-    public AxisAlignedBB getBoundingBox(PlantSection section, int stage, boolean withered) {
+    public AxisAlignedBB getBoundingBox(IBlockAccess world, BlockPos pos, PlantSection section, int stage, boolean withered) {
         return BlockHFCrops.CROP_AABB;
     }
 }

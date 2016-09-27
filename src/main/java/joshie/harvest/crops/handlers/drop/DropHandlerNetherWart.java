@@ -1,14 +1,15 @@
 package joshie.harvest.crops.handlers.drop;
 
-import joshie.harvest.api.crops.IDropHandler;
-import net.minecraft.item.Item;
+import joshie.harvest.api.crops.Crop;
+import joshie.harvest.api.crops.DropHandler;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 import java.util.Random;
 
-public class DropHandlerNetherWart implements IDropHandler {
+public class DropHandlerNetherWart extends DropHandler {
     @Override
-    public ItemStack getDrop(Random rand, Item item) {
-        return new ItemStack(item, 2 + rand.nextInt(3));
+    public ItemStack getDrop(Crop crop, int stage, Random rand) {
+        return stage >= crop.getStages() ? new ItemStack(Items.NETHER_WART, 2 + rand.nextInt(3)): null;
     }
 }

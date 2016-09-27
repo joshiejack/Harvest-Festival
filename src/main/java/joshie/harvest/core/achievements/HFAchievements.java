@@ -64,7 +64,7 @@ public class HFAchievements {
         friend = addAchievement("friend", 2, 3, new ItemStack(Items.COOKIE), summon);
         marriage = addAchievement("marriage", 4, 3, HFNPCs.TOOLS.getStackFromEnum(NPCTool.BLUE_FEATHER), summon);
         harvest = addAchievement("harvest", 0, 4, HFCrops.TURNIP.getCropStack(1), summon);
-        onion = addAchievement("onion", 0, 7, HFCrops.ONION.getCropStack(1), onion);
+        onion = addAchievement("onion", 0, 7, HFCrops.ONION.getCropStack(1), harvest);
         spinach = addAchievement("spinach", 0, 9, HFCrops.SPINACH.getCropStack(1), harvest);
         milker = addAchievement("milker", -2, 6, HFAnimals.MILK.getStack(Size.SMALL), harvest);
         egger = addAchievement("egger", 2, 6, HFAnimals.EGG.getStack(Size.SMALL), harvest);
@@ -84,7 +84,7 @@ public class HFAchievements {
         silver = addAchievement("silver", 9, 1, HFMining.MATERIALS.getStackFromEnum(Material.SILVER), copper);
         gold = addAchievement("gold", 11, 1, HFMining.MATERIALS.getStackFromEnum(Material.GOLD), silver);
         mystril = addAchievement("mystril", 13, 1, HFMining.MATERIALS.getStackFromEnum(Material.MYSTRIL), gold);
-        cooking = addAchievement("cooking", -2, 0, HFApi.cooking.getBestMeal("turnip_pickled"), cooking);
+        cooking = addAchievement("cooking", -2, 0, HFApi.cooking.getBestMeal("turnip_pickled"), summon);
         recipes = addAchievement("recipes", -4, 0, CookingHelper.getRecipe("turnip_pickled"), summon);
     }
 

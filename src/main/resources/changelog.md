@@ -13,6 +13,7 @@
 * Fix grass being purple when it dies
 * Fix chicken eggs flying off like mad
 * Fix potential crashes when a block tries to get my crops state
+* Fixed that a few achievements required itself to be unlocked
 
 ##0.5.3
 * Jade will now swap hoes/buckets for hoes/watering cans from after the tutorial until you complete the blacksmith tutorial

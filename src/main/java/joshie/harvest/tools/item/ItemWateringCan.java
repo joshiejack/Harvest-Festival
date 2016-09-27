@@ -233,7 +233,7 @@ public class ItemWateringCan extends ItemTool<ItemWateringCan> implements IFluid
             list.add(new ItemStack(item, 1, i));
             ItemStack full = new ItemStack(item, 1, i);
             full.getSubCompound("Data", true).setDouble("Level", 100D);
-            full.getTagCompound().setByte("Water", (byte)128);
+            fill(full, new FluidStack(FluidRegistry.WATER, 128), true);
             list.add(full);
         }
     }

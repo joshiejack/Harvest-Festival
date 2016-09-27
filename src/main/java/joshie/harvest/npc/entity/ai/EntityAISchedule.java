@@ -8,6 +8,7 @@ import joshie.harvest.npc.NPCHelper;
 import joshie.harvest.npc.entity.EntityNPCHuman;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.RandomPositionGenerator;
+import net.minecraft.pathfinding.Path;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
@@ -17,7 +18,6 @@ public class EntityAISchedule extends EntityAIBase {
     private final EntityNPCHuman npc;
     private BuildingLocation location;
     private BlockPos blockTarget;
-    private int teleportTimer;
     private int scheduleTimer;
 
     public EntityAISchedule(EntityNPCHuman npc) {
@@ -39,7 +39,7 @@ public class EntityAISchedule extends EntityAIBase {
 
     @Override
     public boolean continueExecuting() {
-        return blockTarget != null && npc.getDistanceSq(blockTarget) > location.getDistanceRequired();
+        return blockTarget != null;
     }
 
     private void updateTarget() {
@@ -50,34 +50,32 @@ public class EntityAISchedule extends EntityAIBase {
 
     @Override
     public void updateTask() {
-        //Update the target
+        scheduleTimer++;
         if (scheduleTimer %200 == 0) updateTarget();
         if (blockTarget != null) {
             double distance = npc.getDistanceSq(blockTarget);
             boolean tooFar = distance > location.getDistanceRequired();
-            if (scheduleTimer %15 == 0) {
-                if (tooFar) {
-                    //Teleportation
-                    if ((teleportTimer >= 60 && distance <= 64D) || teleportTimer >= 300) {
-                        teleportTimer = 0;
-                        npc.attemptTeleport(blockTarget.getX() + 0.5D, blockTarget.getY() + 1D, blockTarget.getZ() + 0.5D);
+            if (tooFar) {
+                if (scheduleTimer % 100 == 0) {
+                    Path path = npc.getNavigator().getPathToPos(blockTarget);
+                    if (path == null) {
+                        Vec3d vec = RandomPositionGenerator.findRandomTargetBlockTowards(npc, 32, 5, new Vec3d((double) blockTarget.getX() + 0.5D, (double) blockTarget.getY() + 1D, (double) blockTarget.getZ() + 0.5D));
+                        if (vec != null) {
+                            path = npc.getNavigator().getPathToPos(new BlockPos(vec));
+                        }
                     }
 
-                    teleportTimer++;
-
-                    //Random coordinates
-                    int move = (int) Math.min(32D, Math.max(1D, Math.ceil((distance / 4D))));
-                    Vec3d vec = RandomPositionGenerator.findRandomTargetBlockTowards(npc, move, 3, new Vec3d((double) blockTarget.getX() + 0.5D, (double) blockTarget.getY() + 1D, (double) blockTarget.getZ() + 0.5D));
-                    if (vec != null) {
-                        blockTarget = new BlockPos(vec);
+                    npc.getNavigator().setPath(path, 0.6F);
+                }
+            } else if (scheduleTimer %300 == 0) {
+                Vec3d vec = RandomPositionGenerator.findRandomTargetBlockAwayFrom(npc, (int) location.getDistanceRequired() / 2, 3, new Vec3d((double) blockTarget.getX() + 0.5D, (double) blockTarget.getY() + 1D, (double) blockTarget.getZ() + 0.5D));
+                if (vec != null) {
+                    Path path = npc.getNavigator().getPathToPos(new BlockPos(vec));
+                    if (path != null) {
+                        npc.getNavigator().setPath(path, 0.6F);
                     }
-                } else teleportTimer = 0;
+                }
             }
-
-            //If the NPC is close the where they need to build
-            if (tooFar) npc.getNavigator().tryMoveToXYZ(blockTarget.getX() + 0.5D, blockTarget.getY() + 1D, blockTarget.getZ() + 0.5D, 0.55D);
         }
-
-        scheduleTimer++;
     }
 }

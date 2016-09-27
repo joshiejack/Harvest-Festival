@@ -12,9 +12,9 @@ import joshie.harvest.town.TownDataServer;
 import joshie.harvest.town.TownHelper;
 import joshie.harvest.town.TownTracker;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIOpenDoor;
 import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
@@ -58,8 +58,14 @@ public abstract class EntityNPCHuman<E extends EntityNPCHuman> extends EntityNPC
         tasks.addTask(6, new EntityAISchedule(this));
         tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 3.0F, 1.0F));
         tasks.addTask(9, new EntityAIWatchClosest(this, EntityNPC.class, 5.0F, 0.02F));
-        tasks.addTask(9, new EntityAIWander(this, 0.6D));
+        //tasks.addTask(9, new EntityAIWander(this, 0.6D));
         tasks.addTask(10, new EntityAIWatchClosest(this, EntityLiving.class, 8.0F));
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+        getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(35.0D);
     }
 
     public BlockPos getHomeCoordinates() {

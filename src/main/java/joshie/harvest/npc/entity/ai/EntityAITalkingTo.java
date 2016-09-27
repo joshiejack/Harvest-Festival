@@ -9,7 +9,7 @@ public class EntityAITalkingTo extends EntityAIBase {
 
     public EntityAITalkingTo(EntityNPC npc) {
         this.npc = npc;
-        this.setMutexBits(5);
+        this.setMutexBits(1);
     }
 
     @Override

@@ -4,9 +4,9 @@ import joshie.harvest.api.npc.INPC;
 import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.buildings.BuildingStage;
 import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.NBTHelper;
 import joshie.harvest.gathering.GatheringData;
-import joshie.harvest.mining.MiningHelper;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.NPCHelper;
@@ -74,7 +74,7 @@ public class TownDataServer extends TownData {
                 entity.resetSpawnHome();
                 BlockPos pos = entity.getHomeCoordinates();
                 int attempts = 0;
-                while (!MiningHelper.isSpawnable(world, pos) && attempts < 64) {
+                while (!EntityHelper.isSpawnable(world, pos) && attempts < 64) {
                     pos = pos.add(world.rand.nextInt(16) - 8, world.rand.nextInt(8), world.rand.nextInt(16) - 8);
                     attempts++;
                 }

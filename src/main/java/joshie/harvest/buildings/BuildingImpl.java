@@ -39,7 +39,7 @@ public class BuildingImpl extends Impl<BuildingImpl> implements Building {
     private transient int wood = 64;
     private transient  int stone = 64;
     private transient int offsetY = -1;
-    private transient long tickTime = 20L;
+    private transient long tickTime = 15L;
     private transient int width;
     private transient int length;
     private transient boolean canHaveMultiple;

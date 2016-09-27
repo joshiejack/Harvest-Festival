@@ -1,5 +1,6 @@
 package joshie.harvest.buildings.placeable;
 
+import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.util.Direction;
 import net.minecraft.block.BlockBush;
 import net.minecraft.entity.EntityLivingBase;
@@ -35,7 +36,7 @@ public abstract class Placeable {
     }
 
     public boolean isBlocked(World world, BlockPos pos) {
-        return world.getEntitiesWithinAABB(EntityLivingBase.class, Blocks.STONE.getDefaultState().getBoundingBox(world, pos)).size() > 0;
+        return EntityHelper.getEntities(EntityLivingBase.class, world, pos, 0D, 0D).size() != 0;
     }
 
     private void clearBushes(World world, BlockPos pos) {

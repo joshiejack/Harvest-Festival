@@ -18,6 +18,8 @@ public class EntityAISchedule extends EntityAIBase {
     private final EntityNPCHuman npc;
     private BuildingLocation location;
     private BlockPos blockTarget;
+    private BlockPos prevTarget;
+    private int teleportTimer;
     private int scheduleTimer;
 
     public EntityAISchedule(EntityNPCHuman npc) {
@@ -66,6 +68,13 @@ public class EntityAISchedule extends EntityAIBase {
                     }
 
                     npc.getNavigator().setPath(path, 0.6F);
+                }
+
+                if (!blockTarget.equals(prevTarget)) teleportTimer = 0;
+                else teleportTimer++;
+                prevTarget = blockTarget;
+                if (teleportTimer >= 600) {
+                    npc.attemptTeleport(blockTarget.getX() + 0.5D, blockTarget.getY() + 1D, blockTarget.getZ() + 0.5D);
                 }
             } else if (scheduleTimer %300 == 0) {
                 Vec3d vec = RandomPositionGenerator.findRandomTargetBlockAwayFrom(npc, (int) location.getDistanceRequired() / 2, 3, new Vec3d((double) blockTarget.getX() + 0.5D, (double) blockTarget.getY() + 1D, (double) blockTarget.getZ() + 0.5D));

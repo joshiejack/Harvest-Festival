@@ -31,14 +31,12 @@ public class EntityAIWork extends EntityAIBase {
 
     @Override
     public void startExecuting() {
-        if (moveTimer %20 == 0) {
-            if (npc.getDistanceSq(target) >= 9D) {
+        if (moveTimer %200 == 0) {
+            if (npc.getDistanceSq(target) >= 10D) {
                 npc.setPositionAndUpdate(target.getX() + 0.5D, target.getY() + 1D, target.getZ() + 0.5D);
             }
 
-            if (npc.getDistanceSq(target) >= 8D) {
-                npc.getNavigator().tryMoveToXYZ(target.getX() + 0.5D, target.getY() + 1D, target.getZ() + 0.5D, 0.55D);
-            } else npc.getNavigator().clearPathEntity();
+            npc.getNavigator().clearPathEntity();
         }
 
         moveTimer++;

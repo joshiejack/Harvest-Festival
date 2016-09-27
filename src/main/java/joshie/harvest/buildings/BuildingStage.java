@@ -69,7 +69,7 @@ public class BuildingStage {
     public boolean build(World world) {
         while (index < building.getFullList().size()) {
             Placeable block = building.getFullList().get(index);
-            if (block.isBlocked(world, block.getTransformedPosition(pos, direction))) return false; //Don't do anything while it's blocked
+            //if (block.isBlocked(world, block.getTransformedPosition(pos.up(), direction))) return false; //Don't do anything while it's blocked
             if (block.place(world, pos, direction, stage)) {
                 return increaseIndex(world);
             }

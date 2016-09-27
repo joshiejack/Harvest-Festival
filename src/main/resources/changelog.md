@@ -6,6 +6,10 @@
 * Halve the amount of time the goddess takes to spawn from a flower
 * Change flower sound to plant
 * Now registering all cropEggplant etc as acceptable ingredients
+* Watering cans in creative are now filled
+* Improved npc schedule ai slightly
+* Improve builder ai slightly
+* Reduce the build time of buildings ever so slightly
 * Fix the goddess flower never despawning if dropped on land
 * Fixed pumpkin/melon renders
 * Fix grass only giving one fodder
@@ -14,6 +18,7 @@
 * Fix chicken eggs flying off like mad
 * Fix potential crashes when a block tries to get my crops state
 * Fixed that a few achievements required itself to be unlocked
+* Fixed nests always producing small eggs for loved chickens
 
 ##0.5.3
 * Jade will now swap hoes/buckets for hoes/watering cans from after the tutorial until you complete the blacksmith tutorial

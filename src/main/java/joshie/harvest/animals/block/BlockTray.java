@@ -102,7 +102,7 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
             if (nest.getDrop() != null) {
                 if (!world.isRemote) {
                     ItemStack drop = nest.getDrop();
-                    List<EntityHarvestChicken> chickens = world.getEntitiesWithinAABB(EntityHarvestChicken.class, NEST_AABB.expand(32D, 8D, 32D));
+                    List<EntityHarvestChicken> chickens = EntityHelper.getEntities(EntityHarvestChicken.class, world, pos, 32D, 8D);
                     int relationship = chickens.size() > 0 ? HFApi.relationships.getRelationship(player, chickens.get(0).getUUID()): 0;
 
                     NBTTagCompound tag = drop.getSubCompound("Data", true);

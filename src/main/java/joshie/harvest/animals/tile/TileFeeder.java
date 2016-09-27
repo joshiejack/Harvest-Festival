@@ -49,7 +49,7 @@ public class TileFeeder extends TileFillable {
 
     @Override
     public void newDay(Phase phase) {
-        for (EntityAnimal animal : EntityHelper.getEntities(EntityAnimal.class, getWorld(), getPos(), 32D)) {
+        for (EntityAnimal animal : EntityHelper.getEntities(EntityAnimal.class, getWorld(), getPos(), 32D, 5D)) {
             if (animal instanceof IAnimalTracked) { //Feed all the local animals
                 IAnimalTracked tracked = ((IAnimalTracked) animal);
                 if (tracked.getData().isHungry() && HFApi.animals.canAnimalEatFoodType(tracked, SEED) && hasFoodAndFeed()) {

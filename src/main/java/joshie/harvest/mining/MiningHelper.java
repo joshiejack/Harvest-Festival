@@ -37,10 +37,6 @@ public class MiningHelper {
         return stacks.size() > 0 ? stacks.get(0) : null;
     }
 
-    public static boolean isSpawnable(World world, BlockPos pos) {
-        return world.isAirBlock(pos);
-    }
-
     public static int getMineID(int chunkZ) {
         return (int)Math.floor(chunkZ / CHUNK_BOUNDARY);
     }
@@ -68,18 +64,18 @@ public class MiningHelper {
             Portal portal = HFMining.PORTAL.getEnumFromState(actual);
             for (int distance = 2; distance < 7; distance++) {
                 if (portal.isEW()) {
-                    if (isSpawnable(dim, spawn.north(distance))) {
+                    if (EntityHelper.isSpawnable(dim, spawn.north(distance))) {
                         entity.rotationYaw = 180F;
                         return spawn.north(distance);
-                    } else if (isSpawnable(dim, spawn.south(distance))) {
+                    } else if (EntityHelper.isSpawnable(dim, spawn.south(distance))) {
                         entity.rotationYaw = 0F;
                         return spawn.south(distance);
                     }
                 } else {
-                    if (isSpawnable(dim, spawn.east(distance))) {
+                    if (EntityHelper.isSpawnable(dim, spawn.east(distance))) {
                         entity.rotationYaw = 270F;
                         return spawn.east(distance);
-                    } else if (isSpawnable(dim, spawn.west(distance))) {
+                    } else if (EntityHelper.isSpawnable(dim, spawn.west(distance))) {
                         entity.rotationYaw = 90F;
                         return spawn.west(distance);
                     }

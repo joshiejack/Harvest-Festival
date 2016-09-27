@@ -2,15 +2,17 @@ package joshie.harvest.npc.entity.ai;
 
 import joshie.harvest.buildings.BuildingStage;
 import joshie.harvest.buildings.placeable.Placeable;
-import joshie.harvest.mining.MiningHelper;
+import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.RandomPositionGenerator;
+import net.minecraft.pathfinding.Path;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
 public class EntityAIBuild extends EntityAIBase {
     private final EntityNPCBuilder npc;
+    private int scheduleTimer;
     private int teleportTimer;
     private int buildingTimer;
 
@@ -51,27 +53,31 @@ public class EntityAIBuild extends EntityAIBase {
 
                     teleportTimer++;
 
-                    //Random coordinates
-                    int move = distance >= 100D ? 10 : 2;
-                    Vec3d vec = RandomPositionGenerator.findRandomTargetBlockTowards(npc, move, 3, new Vec3d((double) go.getX() + 0.5D, (double) go.getY() + 1D, (double) go.getZ() + 0.5D));
-                    if (vec != null) {
-                        go = new BlockPos(vec);
+                    //Update the path
+                    Path path = npc.getNavigator().getPathToPos(go);
+                    if (path == null) {
+                        Vec3d vec = RandomPositionGenerator.findRandomTargetBlockTowards(npc, 32, 5, new Vec3d((double) go.getX() + 0.5D, (double) go.getY() + 1D, (double) go.getZ() + 0.5D));
+                        if (vec != null) {
+                            path = npc.getNavigator().getPathToPos(new BlockPos(vec));
+                        }
                     }
+
+                    npc.getNavigator().setPath(path, 0.6F);
                 } else teleportTimer = 0;
 
                 //If the NPC is close the where they need to build
                 if (!tooFar) {
-                    npc.getNavigator().tryMoveToXYZ(go.getX() + 0.5D, go.getY() + 1D, go.getZ() + 0.5D, 0.65D);
+                    npc.getNavigator().setPath(npc.getNavigator().getPathToPos(go), 0.6F);
                     if (building.build(npc.worldObj)) npc.resetSpawnHome();
                     if (building.isFinished()) {
                         npc.finishBuilding();
                     }
-                } else npc.getNavigator().tryMoveToXYZ(go.getX() + 0.5D, go.getY() + 1D, go.getZ() + 0.5D, 0.85D);
+                }
 
                 //If we're suffocating
                 if (npc.isEntityInsideOpaqueBlock()) {
                     BlockPos pos = go.add(npc.worldObj.rand.nextInt(8) - 4, npc.worldObj.rand.nextInt(3), npc.worldObj.rand.nextInt(8) - 4);
-                    if (MiningHelper.isSpawnable(npc.worldObj, pos)) {
+                    if (EntityHelper.isSpawnable(npc.worldObj, pos) && EntityHelper.isSpawnable(npc.worldObj, pos.up())) {
                         npc.setPositionAndUpdate(go.getX() + 0.5D, go.getY() + 1D, go.getZ() + 0.5D);
                     }
                 }

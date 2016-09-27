@@ -1,21 +1,27 @@
 {
+  "forge_marker": 1,
+  "defaults": {
+    "model": "tinted_cross"
+  },
   "variants": {
-    "stage=1": { "model": "harvestfestival:grass_bottom1" },
-    "stage=2": { "model": "harvestfestival:grass_bottom2" },
-    "stage=3": { "model": "harvestfestival:grass_bottom3" },
-    "stage=4": { "model": "harvestfestival:grass_bottom4" },
-    "stage=5": { "model": "harvestfestival:grass_bottom5" },
-    "stage=6": { "model": "harvestfestival:grass_bottom6" },
-    "stage=7": { "model": "harvestfestival:grass_bottom7" },
-    "stage=8": { "model": "harvestfestival:grass_bottom8" },
-    "stage=9": { "model": "harvestfestival:grass_bottom9" },
-    "stage=10": { "model": "harvestfestival:grass_bottom10" },
-    "stage=11": { "model": "harvestfestival:grass_bottom11" },
-    "stage=12": { "model": "harvestfestival:grass_top1" },
-    "stage=13": { "model": "harvestfestival:grass_top2" },
-    "stage=14": { "model": "harvestfestival:grass_top3" },
-    "stage=15": { "model": "harvestfestival:grass_top4" },
-    "stage=16": { "model": "harvestfestival:grass_top5" },
-    "stage=17": { "model": "harvestfestival:grass_top6" }
+    "stage": {
+      "1": { "textures": { "cross": "harvestfestival:blocks/crops/grass_bottom_1" }},
+      "2": { "textures": { "cross": "harvestfestival:blocks/crops/grass_bottom_2" }},
+      "3": { "textures": { "cross": "harvestfestival:blocks/crops/grass_bottom_3" }},
+      "4": { "textures": { "cross": "harvestfestival:blocks/crops/grass_bottom_4" }},
+      "5": { "textures": { "cross": "harvestfestival:blocks/crops/grass_bottom_5" }},
+      "6": { "textures": { "cross": "harvestfestival:blocks/crops/grass_bottom_6" }},
+      "7": { "textures": { "cross": "harvestfestival:blocks/crops/grass_bottom_7" }},
+      "8": { "textures": { "cross": "harvestfestival:blocks/crops/grass_bottom_8" }},
+      "9": { "textures": { "cross": "harvestfestival:blocks/crops/grass_bottom_9" }},
+      "10": { "textures": { "cross": "harvestfestival:blocks/crops/grass_bottom_10" }},
+      "11": { "textures": { "cross": "harvestfestival:blocks/crops/grass_bottom_11" }},
+      "12": { "textures": { "cross": "harvestfestival:blocks/crops/grass_top_1" }},
+      "13": { "textures": { "cross": "harvestfestival:blocks/crops/grass_top_2" }},
+      "14": { "textures": { "cross": "harvestfestival:blocks/crops/grass_top_3" }},
+      "15": { "textures": { "cross": "harvestfestival:blocks/crops/grass_top_4" }},
+      "16": { "textures": { "cross": "harvestfestival:blocks/crops/grass_top_5" }},
+      "17": { "textures": { "cross": "harvestfestival:blocks/crops/grass_top_6" }}
+    }
   }
 }

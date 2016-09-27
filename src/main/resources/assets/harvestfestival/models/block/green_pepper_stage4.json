@@ -1,6 +1,0 @@
-{
-  "parent": "harvestfestival:block/tinted_crop",
-  "textures": {
-    "crop": "harvestfestival:blocks/crops/green_pepper_4"
-  }
-}

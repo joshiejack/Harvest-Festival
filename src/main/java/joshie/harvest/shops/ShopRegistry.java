@@ -11,7 +11,7 @@ import java.util.HashMap;
 @HFApiImplementation
 public class ShopRegistry implements IShopRegistry {
     public static final ShopRegistry INSTANCE = new ShopRegistry();
-    private final HashMap<ResourceLocation, IShop> shops = new HashMap<>();
+    public final HashMap<ResourceLocation, IShop> shops = new HashMap<>();
 
     private ShopRegistry() {}
 

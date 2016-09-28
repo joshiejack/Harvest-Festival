@@ -5296,6 +5296,25 @@
       }
     },
     {
+      "type": "PlaceableSign",
+      "isBlock": true,
+      "theData": {
+        "text": [
+          "Liara\u0027s Café",
+          "We\u0027re open ",
+          "every day from",
+          "9:30am to 5pm!"
+        ],
+        "state": {
+          "name": "minecraft:wall_sign",
+          "meta": 5
+        },
+        "x": 10,
+        "y": 2,
+        "z": 7
+      }
+    },
+    {
       "type": "PlaceableDecorative",
       "isBlock": true,
       "theData": {

@@ -4020,6 +4020,25 @@
       }
     },
     {
+      "type": "PlaceableSign",
+      "isBlock": true,
+      "theData": {
+        "text": [
+          "\"Miners\u0027s Wares\"",
+          "Selling goods",
+          "Monday-Saturday",
+          "11am to 4pm."
+        ],
+        "state": {
+          "name": "minecraft:wall_sign",
+          "meta": 3
+        },
+        "x": 10,
+        "y": 2,
+        "z": 9
+      }
+    },
+    {
       "type": "PlaceableDecorative",
       "isBlock": true,
       "theData": {

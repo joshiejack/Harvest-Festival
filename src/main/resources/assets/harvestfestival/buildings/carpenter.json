@@ -1984,12 +1984,18 @@
       }
     },
     {
-      "type": "PlaceableBlock",
+      "type": "PlaceableSign",
       "isBlock": true,
       "theData": {
+        "text": [
+          "Yulif\u0027s Carpentry",
+          "",
+          "09:00-17:00",
+          "Sun-Fri"
+        ],
         "state": {
-          "name": "minecraft:air",
-          "meta": 0
+          "name": "minecraft:wall_sign",
+          "meta": 5
         },
         "x": 8,
         "y": 2,

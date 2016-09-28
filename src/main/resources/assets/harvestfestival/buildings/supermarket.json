@@ -15168,12 +15168,18 @@
       }
     },
     {
-      "type": "PlaceableBlock",
+      "type": "PlaceableSign",
       "isBlock": true,
       "theData": {
+        "text": [
+          "Jenni\u0027s Bargains",
+          "Mon-Tue Thu-Fri",
+          "09:00-17:00",
+          "Sat 11:00-15:00"
+        ],
         "state": {
-          "name": "minecraft:air",
-          "meta": 0
+          "name": "minecraft:wall_sign",
+          "meta": 5
         },
         "x": 12,
         "y": 11,

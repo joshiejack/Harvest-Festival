@@ -1,8 +1,9 @@
 ##0.5.4
-* Add config option for giving the cheat buildings instead of blueprints
-* Add a hardy turnip crop, that takes three days to grow and can grow in any season (Only available in the tutorial)
-* Add tooltip to animal spawners
+* Add edconfig option for giving the cheat buildings instead of blueprints
+* Added a hardy turnip crop, that takes three days to grow and can grow in any season (Only available in the tutorial)
+* Added tooltip to animal spawners
 * Added command to dump list of shops for CraftTweaker purposes (/hf shops)
+* Added signs to buildings that display the shops opening times
 * Change the colour of leaves/grass for all seasons
 * Reverse the logic for crops being shippable. This may make existing crops unsellable.
 * Jade will trade shears for sickles, along with the buckets/hoes up until you get the blacksmith

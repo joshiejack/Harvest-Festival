@@ -3150,12 +3150,18 @@
       }
     },
     {
-      "type": "PlaceableBlock",
+      "type": "PlaceableSign",
       "isBlock": true,
       "theData": {
+        "text": [
+          "Blacksmith",
+          "",
+          "Fri-Wed",
+          "10am-4pm"
+        ],
         "state": {
-          "name": "minecraft:air",
-          "meta": 0
+          "name": "minecraft:wall_sign",
+          "meta": 5
         },
         "x": 6,
         "y": 4,

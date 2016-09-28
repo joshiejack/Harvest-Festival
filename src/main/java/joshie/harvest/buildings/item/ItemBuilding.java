@@ -21,6 +21,8 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
+import static joshie.harvest.core.HFCore.DEBUG_MODE;
+
 public class ItemBuilding extends ItemHFFML<ItemBuilding, BuildingImpl> implements ICreativeSorted {
     public ItemBuilding() {
         super(BuildingRegistry.REGISTRY, HFTab.TOWN);
@@ -35,14 +37,17 @@ public class ItemBuilding extends ItemHFFML<ItemBuilding, BuildingImpl> implemen
             }
 
             BuildingImpl building = getObjectFromStack(stack);
-            if (building != null) {
+            if (building != null && (DEBUG_MODE || building.canHaveMultiple() || !TownHelper.getClosestTownToEntity(player).hasBuilding(building.getRegistryName()))) {
                 if(player.canPlayerEdit(raytrace.getBlockPos(), EnumFacing.DOWN, stack)) {
                     if (!world.isRemote) {
                         TownHelper.ensureTownExists(world, raytrace.getBlockPos()); //Force a town to exist near where you clicked
                     }
 
                     RenderKey key = BuildingHelper.getPositioning(stack, world, raytrace, building, player, true);
-                    if (key != null) return new ActionResult<>(building.generate(world, key.getPos(), key.getMirror(), key.getRotation()), stack);
+                    if (key != null) {
+                        stack.splitStack(1);
+                        return new ActionResult<>(building.generate(world, key.getPos(), key.getMirror(), key.getRotation()), stack);
+                    }
                 } else if (world.isRemote) ChatHelper.displayChat(TextFormatting.RED + Text.translate("town.failure") + " " + TextFormatting.WHITE + Text.translate("town.permission"));
             } else if (world.isRemote) ChatHelper.displayChat(TextFormatting.RED + Text.translate("town.failure") + " " + TextFormatting.WHITE + Text.translate("town.distance"));
         } else if (world.isRemote) ChatHelper.displayChat(TextFormatting.RED + Text.translate("town.failure") + " " + TextFormatting.WHITE + Text.translate("town.dimension"));

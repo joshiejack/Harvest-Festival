@@ -4399,6 +4399,25 @@
       }
     },
     {
+      "type": "PlaceableSign",
+      "isBlock": true,
+      "theData": {
+        "text": [
+          "Foxie\u0027s Fowl",
+          "",
+          "05:00 - 11:00",
+          "Mon-Sat"
+        ],
+        "state": {
+          "name": "minecraft:wall_sign",
+          "meta": 5
+        },
+        "x": 12,
+        "y": 4,
+        "z": 4
+      }
+    },
+    {
       "type": "PlaceableDecorative",
       "isBlock": true,
       "theData": {

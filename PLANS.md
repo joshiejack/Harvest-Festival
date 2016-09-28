@@ -13,9 +13,9 @@ Stage 1 (0.5.0)
 * Add Brushes, and Talk to Animals
 * Recipe Book
 * Gathering Items
-* Jewels, Emeralds, Gems
 
 Stage 2 (0.6.0) - Expansive Events
+* Jewels, Emeralds, Gems
 * More General Items + Additional Gathering Items
 * Flower Crops
 * Jewel Rocks

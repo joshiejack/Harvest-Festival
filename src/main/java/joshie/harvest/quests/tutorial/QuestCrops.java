@@ -102,7 +102,7 @@ public class QuestCrops extends QuestQuestion {
             if (isCompletedEarly) complete(player);
             if (quest_stage == START) increaseStage(player);
         } else if (quest_stage == TURNIPS) {
-            if (InventoryHelper.takeItemsIfHeld(player, ITEM_STACK, HFCrops.TUTORIAL.getCropStack(9), 9) != null) {
+            if (InventoryHelper.getHandItemIsIn(player, ITEM_STACK, HFCrops.TUTORIAL.getCropStack(9), 9) != null) {
                 complete(player);
             }
 

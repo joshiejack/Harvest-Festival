@@ -26,8 +26,8 @@ import net.minecraftforge.fml.relauncher.Side;
 @HFEvents(Side.CLIENT)
 public class CalendarRender {
     private static final BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
-    public static final TIntIntMap grassToBlend = new TIntIntHashMap();
-    public static final TIntIntMap leavesToBlend = new TIntIntHashMap();
+    public static volatile TIntIntMap grassToBlend = new TIntIntHashMap();
+    public static volatile TIntIntMap leavesToBlend = new TIntIntHashMap();
     private static double fogStart = 1D;
     private static double fogTarget = 1D;
 

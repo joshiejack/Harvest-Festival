@@ -113,17 +113,19 @@ public class CalendarHelper {
         int ret = map.get(original);
         if (ret != map.getNoEntryValue()) return ret;
         else {
-            int size = 2;
-            int r = (original & 0xFF0000) >> 16;
-            int g = (original & 0x00FF00) >> 8;
-            int b = original & 0x0000FF;
-            r += (additional & 0xFF0000) >> 16;
-            g += (additional & 0x00FF00) >> 8;
-            b += additional & 0x0000FF;
+            try {
+                int size = 2;
+                int r = (original & 0xFF0000) >> 16;
+                int g = (original & 0x00FF00) >> 8;
+                int b = original & 0x0000FF;
+                r += (additional & 0xFF0000) >> 16;
+                g += (additional & 0x00FF00) >> 8;
+                b += additional & 0x0000FF;
 
-            int value = (r / size & 255) << 16 | (g / size & 255) << 8 | b / size & 255;
-            map.put(original, value);
-            return value;
+                int value = (r / size & 255) << 16 | (g / size & 255) << 8 | b / size & 255;
+                map.put(original, value);
+                return value;
+            } catch (IndexOutOfBoundsException exception) { return original; }
         }
     }
 }

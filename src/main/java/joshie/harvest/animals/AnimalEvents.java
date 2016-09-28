@@ -5,6 +5,7 @@ import joshie.harvest.api.animals.IAnimalTracked;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.InventoryHelper;
 import joshie.harvest.core.util.HFEvents;
+import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
@@ -56,17 +57,24 @@ public class AnimalEvents {
             }
         }
 
+        private boolean forbidsDrop(Block block) {
+            return block instanceof BlockDoor || block instanceof BlockFenceGate || block instanceof BlockTrapDoor
+                    || block instanceof BlockLever || block instanceof BlockButton;
+        }
+
         @SubscribeEvent
         public void onRightClickGround(PlayerInteractEvent.RightClickBlock event) {
             EntityPlayer player = event.getEntityPlayer();
-            for (Entity entity: player.getPassengers()) {
-                if (entity instanceof EntityChicken) {
-                    entity.dismountRidingEntity();
-                    entity.rotationPitch = player.rotationPitch;
-                    entity.rotationYaw = player.rotationYaw;
-                    entity.moveRelative(0F, 0.1F, 1.05F);
-                    if (entity instanceof IAnimalTracked) {
-                        ((IAnimalTracked)entity).getData().dismount(player);
+            if (!forbidsDrop(event.getWorld().getBlockState(event.getPos()).getBlock())) {
+                for (Entity entity : player.getPassengers()) {
+                    if (entity instanceof EntityChicken) {
+                        entity.dismountRidingEntity();
+                        entity.rotationPitch = player.rotationPitch;
+                        entity.rotationYaw = player.rotationYaw;
+                        entity.moveRelative(0F, 0.1F, 1.05F);
+                        if (entity instanceof IAnimalTracked) {
+                            ((IAnimalTracked) entity).getData().dismount(player);
+                        }
                     }
                 }
             }

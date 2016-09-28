@@ -71,14 +71,12 @@ public class VanillaCommands {
     }
 
     public static boolean executeToggleDownfall(MinecraftServer server, ICommandSender sender, String[] args) throws WrongUsageException {
-        Weather weather = HFApi.calendar.getWeather(server.worldServers[0]);
-        if (weather.isUndesirable() || weather.isSnow()) {
-            HFTrackers.<CalendarServer>getCalendar(server.worldServers[0]).setTodaysWeather(Weather.SUNNY);
-        } else if (weather.isSunny()) {
+        if (HFApi.calendar.getWeather(server.worldServers[0]).isSunny()) {
             HFTrackers.<CalendarServer>getCalendar(server.worldServers[0]).setTodaysWeather(Weather.RAIN);
+            return true;
         } else {
-            throw new WrongUsageException("commands.downfall.usage");
+            HFTrackers.<CalendarServer>getCalendar(server.worldServers[0]).setTodaysWeather(Weather.SUNNY);
+            return true;
         }
-        return true;
     }
 }

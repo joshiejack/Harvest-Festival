@@ -1,5 +1,6 @@
 package joshie.harvest.core.commands;
 
+import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.Weather;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.calendar.CalendarServer;
@@ -13,27 +14,33 @@ import net.minecraft.server.MinecraftServer;
 
 public class VanillaCommands {
     public static boolean isHandled(String name) {
-        return name.equals("time") || name.equals("weather");
+        return name.equals("time") || name.equals("weather") || name.equals("toggledownfall");
     }
 
     public static boolean executeVanillaTime(MinecraftServer server, ICommandSender sender, String[] args) throws NumberInvalidException {
         if (args.length > 1) {
             if (args[0].equals("set")) {
                 long time = CalendarHelper.getElapsedDays(server.worldServers[0].getWorldTime()) * HFCalendar.TICKS_PER_DAY;
-                if (args[1].equals("force-day")) {
-                    time = 1000;
-                } else if (args[1].equals("force-night")) {
-                    time = 13000;
-                } else if (args[1].equals("force")) {
-                    time = CommandBase.parseInt(args[1]);
-                } else if (args[1].equals("day")) {
-                    time += 3000;
-                } else if (args[1].equals("night")) {
-                    time += 18000;
-                } else {
-                    time += CommandBase.parseInt(args[1]);
+                switch (args[1]) {
+                    case "force-day":
+                        time = 1000;
+                        break;
+                    case "force-night":
+                        time = 13000;
+                        break;
+                    case "force":
+                        time = CommandBase.parseInt(args[1]);
+                        break;
+                    case "day":
+                        time += 3000;
+                        break;
+                    case "night":
+                        time += 18000;
+                        break;
+                    default:
+                        time += CommandBase.parseInt(args[1]);
+                        break;
                 }
-
 
                 CalendarHelper.setWorldTime(server, time);
                 return true;
@@ -61,5 +68,17 @@ public class VanillaCommands {
         } else {
             throw new WrongUsageException("commands.weather.usage");
         }
+    }
+
+    public static boolean executeToggleDownfall(MinecraftServer server, ICommandSender sender, String[] args) throws WrongUsageException {
+        Weather weather = HFApi.calendar.getWeather(server.worldServers[0]);
+        if (weather.isUndesirable() || weather.isSnow()) {
+            HFTrackers.<CalendarServer>getCalendar(server.worldServers[0]).setTodaysWeather(Weather.SUNNY);
+        } else if (weather.isSunny()) {
+            HFTrackers.<CalendarServer>getCalendar(server.worldServers[0]).setTodaysWeather(Weather.RAIN);
+        } else {
+            throw new WrongUsageException("commands.downfall.usage");
+        }
+        return true;
     }
 }

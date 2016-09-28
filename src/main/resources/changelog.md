@@ -31,6 +31,7 @@
 * Fixed hammers not leveling when breaking rocks normally
 * Fixed watering cans not being repairable
 * Fixed sky in custom biomes, now blending it in with my colour instead
+* Fixed toggledownfall not working with HFs weather
 
 ##0.5.3
 * Jade will now swap hoes/buckets for hoes/watering cans from after the tutorial until you complete the blacksmith tutorial

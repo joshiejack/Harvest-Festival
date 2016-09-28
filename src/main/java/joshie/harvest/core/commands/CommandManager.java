@@ -70,6 +70,8 @@ public class CommandManager extends CommandBase implements ICommand {
                     event.setCanceled(true);
                 } else if (name.equals("weather") && VanillaCommands.executeVanillaWeather(FMLCommonHandler.instance().getMinecraftServerInstance(), event.getSender(), event.getParameters())) {
                     event.setCanceled(true);
+                } else if (name.equals("toggledownfall") && VanillaCommands.executeToggleDownfall(FMLCommonHandler.instance().getMinecraftServerInstance(), event.getSender(), event.getParameters())) {
+                    event.setCanceled(true);
                 }
             } catch (Exception e) {}
         } else {

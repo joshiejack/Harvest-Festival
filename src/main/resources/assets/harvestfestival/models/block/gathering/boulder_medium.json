@@ -1,5 +1,5 @@
 {
-  "parent": "block/cube_all",
+  "parent": "harvestfestival:block/gathering/gather_all",
   "textures": {
     "particle": "harvestfestival:blocks/stone0"
   },

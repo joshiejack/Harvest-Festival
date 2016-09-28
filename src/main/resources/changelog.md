@@ -1,5 +1,5 @@
 ##0.5.4
-* Add edconfig option for giving the cheat buildings instead of blueprints
+* Added config option for giving the cheat buildings instead of blueprints
 * Added a hardy turnip crop, that takes three days to grow and can grow in any season (Only available in the tutorial)
 * Added tooltip to animal spawners
 * Added command to dump list of shops for CraftTweaker purposes (/hf shops)
@@ -36,6 +36,7 @@
 * Fixed sky in custom biomes, now blending it in with my colour instead
 * Fixed toggledownfall not working with HFs weather
 * Fixed jade taking turnips, when she says she won't
+* Fixed first- and third person render of rocks/branches
 
 ##0.5.3
 * Jade will now swap hoes/buckets for hoes/watering cans from after the tutorial until you complete the blacksmith tutorial

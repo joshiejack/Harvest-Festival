@@ -3,6 +3,7 @@ package joshie.harvest.calendar;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.calendar.Weather;
+import joshie.harvest.calendar.render.CalendarRender;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -13,6 +14,14 @@ public class CalendarClient extends Calendar {
     @Override
     public CalendarDate getDate() {
         return date;
+    }
+
+    @Override
+    public void onSeasonChanged() {
+        super.onSeasonChanged();
+        CalendarRender.grassToBlend.clear();
+        CalendarRender.leavesToBlend.clear();
+
     }
 
     /* ############# Weather ################*/

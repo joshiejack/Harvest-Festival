@@ -4,10 +4,7 @@ import joshie.harvest.core.HFCore;
 import joshie.harvest.core.block.BlockFlower.FlowerType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBucket;
-import net.minecraft.item.ItemHoe;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.util.EnumHand;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -22,7 +19,7 @@ public class InventoryHelper {
     }
 
     public enum SearchType {
-        FLOWER, HOE, BUCKET
+        FLOWER, HOE, BUCKET, SHEARS
     }
 
     public static final Matcher<String> ORE_DICTIONARY = new Matcher<String>() {
@@ -55,6 +52,8 @@ public class InventoryHelper {
                 return stack.getItem() instanceof ItemHoe;
             } else if (type.equals(BUCKET)) {
                 return stack.getItem() instanceof ItemBucket;
+            } else if (type.equals(SHEARS)) {
+                return stack.getItem() instanceof ItemShears;
             }
 
             return false;

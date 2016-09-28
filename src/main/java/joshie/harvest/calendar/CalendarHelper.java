@@ -1,5 +1,6 @@
 package joshie.harvest.calendar;
 
+import gnu.trove.map.TIntIntMap;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Season;
@@ -106,5 +107,23 @@ public class CalendarHelper {
 
         CalendarServer calendar = HFTrackers.getCalendar(server.worldServers[0]);
         calendar.recalculateAndUpdate(server.worldServers[0]);
+    }
+
+    public static int getBlendedColour(TIntIntMap map, int original, int additional) {
+        int ret = map.get(original);
+        if (ret != map.getNoEntryValue()) return ret;
+        else {
+            int size = 2;
+            int r = (original & 0xFF0000) >> 16;
+            int g = (original & 0x00FF00) >> 8;
+            int b = original & 0x0000FF;
+            r += (additional & 0xFF0000) >> 16;
+            g += (additional & 0x00FF00) >> 8;
+            b += additional & 0x0000FF;
+
+            int value = (r / size & 255) << 16 | (g / size & 255) << 8 | b / size & 255;
+            map.put(original, value);
+            return value;
+        }
     }
 }

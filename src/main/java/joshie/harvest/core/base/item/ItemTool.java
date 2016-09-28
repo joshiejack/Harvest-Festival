@@ -107,10 +107,19 @@ public abstract class ItemTool<I extends ItemTool> extends ItemHFBase<I> impleme
         return getDamageForDisplay(stack) + 1 < getMaximumToolDamage(stack) || !canBeDamaged();
     }
 
+    private boolean canLevel(ItemStack stack, IBlockState state) {
+        for (String type : getToolClasses(stack)) {
+            if (state.getBlock().isToolEffective(type, state))
+                return true;
+        }
+
+        return effectiveBlocks.contains(state.getBlock());
+    }
+
     @Override
     public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving) {
         if (canBeDamaged()) {
-            if (this.effectiveBlocks.contains(state.getBlock())) {
+            if (canLevel(stack, state)) {
                 ToolHelper.levelTool(stack);
             }
 

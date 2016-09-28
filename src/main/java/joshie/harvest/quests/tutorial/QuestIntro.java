@@ -12,8 +12,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import static joshie.harvest.quests.Quests.TUTORIAL_CARPENTER;
 import static joshie.harvest.npc.HFNPCs.GODDESS;
+import static joshie.harvest.quests.Quests.TUTORIAL_CARPENTER;
 
 @HFQuest("tutorial.intro")
 public class QuestIntro extends QuestQuestion {
@@ -41,6 +41,7 @@ public class QuestIntro extends QuestQuestion {
 
     @Override
     public void onChatClosed(EntityPlayer player, EntityLiving entity, INPC npc) {
+        if (isCompletedEarly) QuestHelper.INSTANCE.completeQuest(TUTORIAL_CARPENTER, player);
         if (quest_stage == BACKSTORY || isCompletedEarly) {
             complete(player);
         }
@@ -49,8 +50,5 @@ public class QuestIntro extends QuestQuestion {
     @Override
     public void onQuestCompleted(EntityPlayer player) {
         rewardItem(player, new ItemStack(HFCore.FLOWERS, 4, 0));
-        if (isCompletedEarly) {
-            QuestHelper.INSTANCE.completeQuest(TUTORIAL_CARPENTER, player);
-        }
     }
 }

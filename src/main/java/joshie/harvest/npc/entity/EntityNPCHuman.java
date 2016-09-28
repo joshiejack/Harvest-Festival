@@ -58,7 +58,6 @@ public abstract class EntityNPCHuman<E extends EntityNPCHuman> extends EntityNPC
         tasks.addTask(6, new EntityAISchedule(this));
         tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 3.0F, 1.0F));
         tasks.addTask(9, new EntityAIWatchClosest(this, EntityNPC.class, 5.0F, 0.02F));
-        //tasks.addTask(9, new EntityAIWander(this, 0.6D));
         tasks.addTask(10, new EntityAIWatchClosest(this, EntityLiving.class, 8.0F));
     }
 

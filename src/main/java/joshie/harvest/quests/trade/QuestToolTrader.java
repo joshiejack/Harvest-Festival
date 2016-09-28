@@ -36,6 +36,8 @@ public class QuestToolTrader extends QuestTrade {
             return getLocalized("hoe");
         } else if (InventoryHelper.getHandItemIsIn(player, SPECIAL, SearchType.BUCKET) != null) {
             return getLocalized("wateringcan");
+        } else if (InventoryHelper.getHandItemIsIn(player, SPECIAL, SearchType.SHEARS) != null) {
+            return getLocalized("sickle");
         } else if (player.worldObj.rand.nextFloat() <= 0.05F) return getLocalized("reminder");
 
          return null;
@@ -54,6 +56,8 @@ public class QuestToolTrader extends QuestTrade {
             rewardItem(player, HFTools.HOE.getStack(BASIC));
         } else if (InventoryHelper.takeItemsIfHeld(player, SPECIAL, SearchType.BUCKET) != null) {
             rewardItem(player, HFTools.WATERING_CAN.getStack(BASIC));
+        } else if (InventoryHelper.takeItemsIfHeld(player, SPECIAL, SearchType.SHEARS) != null) {
+            rewardItem(player, HFTools.SICKLE.getStack(BASIC));
         }
     }
 }

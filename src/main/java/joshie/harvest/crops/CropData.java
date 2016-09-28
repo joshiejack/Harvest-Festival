@@ -117,7 +117,13 @@ public class CropData {
                 }
             }
 
-            return crop.getDropHandler().getDrop(crop, originalStage, rand);
+            ItemStack ret = crop.getDropHandler().getDrop(crop, originalStage, rand);
+            if (ret != null && ret.getItem() != HFCrops.CROP) {
+                if (!ret.hasTagCompound()) ret.setTagCompound(new NBTTagCompound());
+                ret.getTagCompound().setBoolean("Sellable", true);
+            }
+
+            return ret;
         } else return null;
     }
 

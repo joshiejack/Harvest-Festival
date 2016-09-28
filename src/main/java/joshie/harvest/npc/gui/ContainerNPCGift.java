@@ -2,9 +2,9 @@ package joshie.harvest.npc.gui;
 
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.calendar.CalendarDate;
-import joshie.harvest.core.base.item.ItemTool;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.npc.NPC;
+import joshie.harvest.npc.NPCRegistry;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.tools.ToolHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,7 +21,7 @@ public class ContainerNPCGift extends ContainerNPCChat {
         if (!player.worldObj.isRemote) {
             if (HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().gift(player, npc.getNPC().getUUID(), 0)) {
                 ItemStack gift = player.getHeldItem(hand);
-                if (gift.getItem() instanceof ItemTool) return;
+                if (NPCRegistry.INSTANCE.getGifts().isBlacklisted(gift)) return;
 
                 NPC theNpc = npc.getNPC();
                 int points = theNpc.getGiftValue(gift).getRelationPoints();

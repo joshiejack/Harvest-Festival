@@ -2,6 +2,10 @@
 * Add config option for giving the cheat buildings instead of blueprints
 * Add a hardy turnip crop, that takes three days to grow and can grow in any season (Only available in the tutorial)
 * Add tooltip to animal spawners
+* Change the colour of leaves/grass for all seasons
+* Reverse the logic for crops being shippable. This may make existing crops unsellable.
+* Jade will trade shears for sickles, along with the buckets/hoes up until you get the blacksmith
+* Jade will no longer trade for seeds once you have the general store
 * Make Goddess flower spawning work with a larger range of plants
 * Halve the amount of time the goddess takes to spawn from a flower
 * Change flower sound to plant
@@ -10,15 +14,23 @@
 * Improved npc schedule ai slightly
 * Improve builder ai slightly
 * Reduce the build time of buildings ever so slightly
-* Fix the goddess flower never despawning if dropped on land
+* Made buildings ungiftable
+* Fixed the goddess flower never despawning if dropped on land
+* Fixed you not being able to skip the carpenter quest
 * Fixed pumpkin/melon renders
-* Fix grass only giving one fodder
-* Fix grass being destroyed when cut
-* Fix grass being purple when it dies
-* Fix chicken eggs flying off like mad
-* Fix potential crashes when a block tries to get my crops state
+* Fixed grass only giving one fodder
+* Fixed grass being destroyed when cut
+* Fixed grass being purple when it dies
+* Fixed chicken eggs flying off like mad
+* Fixed potential crashes when a block tries to get my crops state
 * Fixed that a few achievements required itself to be unlocked
 * Fixed nests always producing small eggs for loved chickens
+* Fixed cows and some other entities having transparent eyes
+* Fixed café having anvil where it shouldn't
+* Fixed the missing side and broken basement for the general store
+* Fixed hammers not leveling when breaking rocks normally
+* Fixed watering cans not being repairable
+* Fixed sky in custom biomes, now blending it in with my colour instead
 
 ##0.5.3
 * Jade will now swap hoes/buckets for hoes/watering cans from after the tutorial until you complete the blacksmith tutorial

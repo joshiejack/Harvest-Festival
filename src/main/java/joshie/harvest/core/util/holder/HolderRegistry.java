@@ -2,10 +2,13 @@ package joshie.harvest.core.util.holder;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import joshie.harvest.api.core.Mod;
+import joshie.harvest.api.core.Ore;
 import joshie.harvest.api.crops.ICropProvider;
 import joshie.harvest.core.HFCore;
 import joshie.harvest.core.base.item.ItemHFFML;
 import joshie.harvest.core.item.ItemSizeable;
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
@@ -21,31 +24,33 @@ public class HolderRegistry<R> {
         keyMap.removeAll(item);
     }
 
-    public void registerItem(ItemStack stack, R r) {
-        AbstractItemHolder holder = getHolder(stack);
-        keyMap.get(stack.getItem()).add(holder); //Link the item to various holders
-        registry.put(holder, r); //Link the holder to the actual item
+    private void registerHolder(Item item, AbstractItemHolder holder, R r) {
+        keyMap.get(item).add(holder);
+        registry.put(holder, r);
     }
 
-    public void registerMod(String mod, R r) {
-        ModHolder holder = ModHolder.of(mod);
-        //Loop through every item in the registry, and associate it with this map
-        for (Item item: Item.REGISTRY) {
-            if (item.getRegistryName().getResourceDomain().equals(mod)) {
-                keyMap.get(item).add(holder);
+    public void register(Object object, R r) {
+        if (object instanceof Item) registerHolder((Item)object, ItemHolder.of((Item)object), r);
+        if (object instanceof Block) {
+            ItemStack stack = new ItemStack((Block)object);
+            registerHolder(stack.getItem(), ItemHolder.of(stack.getItem()), r);
+        } else if (object instanceof ItemStack) {
+            registerHolder(((ItemStack)object).getItem(), getHolder((ItemStack)object), r);
+        } else if (object instanceof Mod) {
+            Mod mod = (Mod) object;
+            ModHolder holder = ModHolder.of(mod.getMod());
+            for (Item item: Item.REGISTRY) {
+                if (item.getRegistryName().getResourceDomain().equals(mod.getMod())) {
+                    registerHolder(item, holder, r);
+                }
+            }
+        } else if (object instanceof Ore) {
+            Ore ore = (Ore) object;
+            OreHolder holder = OreHolder.of(ore.getOre());
+            for (ItemStack stack: OreDictionary.getOres(ore.getOre())) {
+                registerHolder(stack.getItem(), holder, r);
             }
         }
-
-        registry.put(holder, r);
-    }
-
-    public void registerName(String name, R r) {
-        OreHolder holder = OreHolder.of(name);
-        for (ItemStack stack: holder.getMatchingStacks()) {
-            keyMap.get(stack.getItem()).add(holder);
-        }
-
-        registry.put(holder, r);
     }
 
     public boolean matches(ItemStack stack, R type) {

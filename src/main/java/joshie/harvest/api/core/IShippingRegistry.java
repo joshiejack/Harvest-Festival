@@ -11,7 +11,7 @@ public interface IShippingRegistry {
     /**  Register a sellable via ore name
     *   @param ore    The ore name
     *  @param value   the value**/
-    void registerSellable(String ore, long value);
+    void registerSellable(Ore ore, long value);
 
     /** Returns this items sell vlaue, if it's not sellable, it returns 0L **/
     long getSellValue(ItemStack stack);

@@ -27,7 +27,7 @@ public class PlaceableHelper {
             return new PlaceableBlock(Blocks.AIR.getDefaultState(), x, y, z);
         } else if (block instanceof BlockTorch) {
             return new PlaceableDecorative(state, x, y, z);
-        } else if (block instanceof BlockLever) {
+        } else if (block instanceof BlockLever || block  == Blocks.WATER) {
             return new PlaceableDecorative(state, x, y, z);
         } else if (block instanceof BlockButton) {
             return new PlaceableDecorative(state, x, y, z);

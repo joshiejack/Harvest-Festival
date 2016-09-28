@@ -105,7 +105,8 @@ public class QuestCarpenter extends Quest {
             increaseStage(player);
         } else if (quest_stage == LOGS && npc == HFNPCs.GODDESS) {
             if (InventoryHelper.takeItemsIfHeld(player, ORE_DICTIONARY, "logWood", HFQuests.LOGS_CARPENTER) != null) {
-                rewardItem(player, HFBuildings.CARPENTER.getBlueprint());
+                if (HFBuildings.CHEAT_BUILDINGS) rewardItem(player, HFBuildings.CARPENTER.getSpawner());
+                else rewardItem(player, HFBuildings.CARPENTER.getBlueprint());
                 increaseStage(player);
             }
         } else if (quest_stage == SEED_CHAT) {

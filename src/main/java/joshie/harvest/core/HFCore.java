@@ -2,6 +2,7 @@ package joshie.harvest.core;
 
 import joshie.harvest.HarvestFestival;
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.core.Ore;
 import joshie.harvest.core.block.BlockFlower;
 import joshie.harvest.core.block.BlockFlower.FlowerType;
 import joshie.harvest.core.block.BlockGoddessWater;
@@ -33,7 +34,6 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.oredict.OreDictionary;
 
 import static joshie.harvest.core.helpers.ConfigHelper.getBoolean;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
@@ -92,18 +92,18 @@ public class HFCore {
     }
 
     public static void postInit() {
-        BlockGoddessWater.VALID_ITEMS.registerItem(new ItemStack(Items.APPLE));
-        BlockGoddessWater.VALID_ITEMS.registerItem(new ItemStack(Blocks.WATERLILY));
-        BlockGoddessWater.VALID_ITEMS.registerItem(new ItemStack(Blocks.MELON_BLOCK));
-        BlockGoddessWater.VALID_ITEMS.registerItem(new ItemStack(Blocks.TALLGRASS, 1, OreDictionary.WILDCARD_VALUE));
-        BlockGoddessWater.VALID_ITEMS.registerItem(new ItemStack(Blocks.DOUBLE_PLANT, 1, OreDictionary.WILDCARD_VALUE));
-        BlockGoddessWater.VALID_ITEMS.registerItem(new ItemStack(Blocks.RED_FLOWER, 1, OreDictionary.WILDCARD_VALUE));
-        BlockGoddessWater.VALID_ITEMS.registerItem(new ItemStack(Blocks.YELLOW_FLOWER, 1, OreDictionary.WILDCARD_VALUE));
-        BlockGoddessWater.VALID_ITEMS.registerName("treeLeaves");
-        BlockGoddessWater.VALID_ITEMS.registerName("treeSapling");
-        BlockGoddessWater.VALID_ITEMS.registerName("vine");
-        BlockGoddessWater.VALID_ITEMS.registerName("sugarcane");
-        BlockGoddessWater.VALID_ITEMS.registerName("blockCactus");
+        BlockGoddessWater.VALID_ITEMS.register(Items.APPLE);
+        BlockGoddessWater.VALID_ITEMS.register(Blocks.WATERLILY);
+        BlockGoddessWater.VALID_ITEMS.register(Blocks.MELON_BLOCK);
+        BlockGoddessWater.VALID_ITEMS.register(Blocks.TALLGRASS);
+        BlockGoddessWater.VALID_ITEMS.register(Blocks.DOUBLE_PLANT);
+        BlockGoddessWater.VALID_ITEMS.register(Blocks.RED_FLOWER);
+        BlockGoddessWater.VALID_ITEMS.register(Blocks.YELLOW_FLOWER);
+        BlockGoddessWater.VALID_ITEMS.register(Ore.of("treeLeaves"));
+        BlockGoddessWater.VALID_ITEMS.register(Ore.of("treeSapling"));
+        BlockGoddessWater.VALID_ITEMS.register(Ore.of("vine"));
+        BlockGoddessWater.VALID_ITEMS.register(Ore.of("sugarcane"));
+        BlockGoddessWater.VALID_ITEMS.register(Ore.of("blockCactus"));
     }
 
     private static Fluid registerFluid(Fluid fluid) {

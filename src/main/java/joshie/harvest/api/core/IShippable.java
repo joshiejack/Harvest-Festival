@@ -4,7 +4,6 @@ import net.minecraft.item.ItemStack;
 
 /** Items that implement this interface can be shipped **/
 public interface IShippable {
-    
     /** Returns the sell value of the ItemStack passed in. 
      *  This is called when you attempt to add an item to 
      *  the shipping crate.

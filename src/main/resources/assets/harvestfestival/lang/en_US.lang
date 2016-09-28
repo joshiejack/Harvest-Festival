@@ -962,7 +962,8 @@ harvestfestival.quest.trade.seeds.complete.no=I’m sorry but I don’t have any
 # Jade Tools Trades
 harvestfestival.quest.trade.tools.hoe=Thanks for the hoe! I have one of my own here for you.
 harvestfestival.quest.trade.tools.wateringcan=This bucket is wonderful, have another watering can!
-harvestfestival.quest.trade.tools.reminder=Just letting you know, I do have some spare watering cans and hoes if you need them. Just bring me a vanilla hoe or a bucket! And I'll happily trade.
+harvestfestival.quest.trade.tools.sickle=The shears are just great, have my spare sickle!
+harvestfestival.quest.trade.tools.reminder=Just letting you know, I do have some spare watering cans, hoes and sickles if you need them. Just bring me a vanilla hoe, bucket or shears! And I'll happily trade.
 
 # Goddess Free Carpenter
 harvestfestival.quest.trade.carpenter.thanks=Thanks sweety, I'm happy to give you another Carpenter Blueprint.

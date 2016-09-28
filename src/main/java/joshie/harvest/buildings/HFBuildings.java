@@ -64,6 +64,7 @@ public class HFBuildings {
 
     //Reload the Building data at this stage
     public static void init() {
+        HFApi.npc.getGifts().addToBlacklist(STRUCTURES, BLUEPRINTS);
         for (BuildingImpl building: BuildingRegistry.REGISTRY.getValues()) {
             building.initBuilding(getBuilding(building.getRegistryName()));
         }

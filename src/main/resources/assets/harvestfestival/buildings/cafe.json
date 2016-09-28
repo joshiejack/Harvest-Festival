@@ -11378,19 +11378,6 @@
       }
     },
     {
-      "type": "PlaceableDecorative",
-      "isBlock": true,
-      "theData": {
-        "state": {
-          "name": "minecraft:anvil",
-          "meta": 1
-        },
-        "x": 4,
-        "y": 6,
-        "z": 8
-      }
-    },
-    {
       "type": "PlaceableFlowerPot",
       "isBlock": true,
       "theData": {

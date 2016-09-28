@@ -8,15 +8,19 @@ import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.MCClientHelper;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EnumSkyBlock;
+import net.minecraft.world.World;
 import net.minecraft.world.WorldProviderSurface;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.client.IRenderHandler;
+import net.minecraftforge.common.ForgeModContainer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -46,6 +50,60 @@ public class HFWorldProvider extends WorldProviderSurface {
         return HFTrackers.getCalendar(MCClientHelper.getWorld()).getDate().getSeason() == Season.SUMMER ? brightness * 1.25F : brightness;
     }
 
+    private static int skyX, skyZ;
+    private static boolean skyInit;
+    private static int skyRGBMultiplier;
+
+    public static void reset() {
+        skyX = 0;
+        skyZ = 0;
+        skyRGBMultiplier = 0;
+        skyInit = false;
+    }
+
+    public int getSkyBlendColour(World world, BlockPos center) {
+        if (center.getX() == skyX && center.getZ() == skyZ && skyInit) {
+            return skyRGBMultiplier;
+        }
+
+        skyInit = true;
+
+        GameSettings settings = Minecraft.getMinecraft().gameSettings;
+        int[] ranges = ForgeModContainer.blendRanges;
+        int distance = 0;
+        if (settings.fancyGraphics && settings.renderDistanceChunks >= 0 && settings.renderDistanceChunks < ranges.length) {
+            distance = ranges[settings.renderDistanceChunks];
+        }
+
+        int original = HFTrackers.getCalendar(MCClientHelper.getWorld()).getSeasonData().getSkyColor();
+        int r = (original & 0xFF0000) >> 16;
+        int g = (original & 0x00FF00) >> 8;
+        int b = original & 0x0000FF;
+        r += (original & 0xFF0000) >> 16;
+        g += (original & 0x00FF00) >> 8;
+        b += original & 0x0000FF;
+
+        int divider = 2;
+        for (int x = -distance; x <= distance; ++x) {
+            for (int z = -distance; z <= distance; ++z) {
+                BlockPos pos = center.add(x, 0, z);
+                Biome biome = world.getBiome(pos);
+                int colour = biome.getSkyColorByTemp(biome.getFloatTemperature(pos));
+                r += (colour & 0xFF0000) >> 16;
+                g += (colour & 0x00FF00) >> 8;
+                b += colour & 0x0000FF;
+                divider++;
+            }
+        }
+
+        int multiplier = (r / divider & 255) << 16 | (g / divider & 255) << 8 | b / divider & 255;
+
+        skyX = center.getX();
+        skyZ = center.getY();
+        skyRGBMultiplier = multiplier;
+        return skyRGBMultiplier;
+    }
+
     @SideOnly(Side.CLIENT)
     @Override
     public Vec3d getSkyColor(Entity cameraEntity, float partialTicks) {
@@ -61,7 +119,7 @@ public class HFWorldProvider extends WorldProviderSurface {
         }
 
 
-        int l = HFTrackers.getCalendar(MCClientHelper.getWorld()).getSeasonData().getSkyColor();
+        int l = getSkyBlendColour(worldObj, new BlockPos(cameraEntity));
         float f4 = (float) (l >> 16 & 255) / 255.0F;
         float f5 = (float) (l >> 8 & 255) / 255.0F;
         float f6 = (float) (l & 255) / 255.0F;

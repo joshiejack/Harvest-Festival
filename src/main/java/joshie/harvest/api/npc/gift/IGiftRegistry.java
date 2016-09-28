@@ -1,25 +1,29 @@
 package joshie.harvest.api.npc.gift;
 
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public interface IGiftRegistry {
-    /** Removes an item from the registry
-     *  Dissosciating with all things, including mods**/
-    void removeItem(Item item);
+    /** Blacklist an item, this means it cannot be gifted
+     * @param object the objects
+     *
+     *      Acceptable values are
+     *      @see net.minecraft.block.Block
+     *      @see net.minecraft.item.Item
+     *      @see net.minecraft.item.ItemStack
+     *      @see joshie.harvest.api.core.Mod
+     *      @see joshie.harvest.api.core.Ore
+     **/
+    void addToBlacklist(Object... object);
 
-    /** Assign a block, item, stack, or mod **/
-    void assignGeneric(Object object, GiftCategory... categories);
-
-    /** Register a gift type
-     *  @param stack    the itemstack, use OreDictionary.WILDCARD_VALUE if you want it to only match the item
-     *  @param categories the categories to match**/
-    void assignStack(ItemStack stack, GiftCategory... categories);
-
-    /** Register a mod id
-     *  @param mod    If you don't feel like having to register the categories for all your items, you can add a blanket category based on the mod
-     *  @param categories the categories to match**/
-    void assignMod(String mod, GiftCategory... categories);
+    /** Assign a block, item, stack, or mod
+     *      Acceptable values are
+     *      @see net.minecraft.block.Block
+     *      @see net.minecraft.item.Item
+     *      @see net.minecraft.item.ItemStack
+     *      @see joshie.harvest.api.core.Mod
+     *      @see joshie.harvest.api.core.Ore
+     **/
+    void setCategories(Object object, GiftCategory... categories);
 
     /** Returns whether this stack is of a specific GiftCategory
      *  @param categories     the categories to check

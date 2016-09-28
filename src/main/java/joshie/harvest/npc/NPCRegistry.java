@@ -4,7 +4,6 @@ import joshie.harvest.api.calendar.CalendarDate;
 import joshie.harvest.api.calendar.Season;
 import joshie.harvest.api.npc.INPC;
 import joshie.harvest.api.npc.INPCRegistry;
-import joshie.harvest.api.npc.gift.IGiftRegistry;
 import joshie.harvest.core.util.HFApiImplementation;
 import joshie.harvest.npc.gift.GiftRegistry;
 import net.minecraft.util.ResourceLocation;
@@ -15,7 +14,7 @@ import net.minecraftforge.fml.common.registry.RegistryBuilder;
 public class NPCRegistry implements INPCRegistry {
     public static final IForgeRegistry<NPC> REGISTRY = new RegistryBuilder<NPC>().setName(new ResourceLocation("harvestfestival", "npcs")).setType(NPC.class).setIDRange(0, 32000).create();
     public static final NPCRegistry INSTANCE = new NPCRegistry();
-    private final IGiftRegistry gifts = new GiftRegistry();
+    private final GiftRegistry gifts = new GiftRegistry();
 
     private NPCRegistry() {}
 
@@ -25,7 +24,7 @@ public class NPCRegistry implements INPCRegistry {
     }
 
     @Override
-    public IGiftRegistry getGifts() {
+    public GiftRegistry getGifts() {
         return gifts;
     }
 }

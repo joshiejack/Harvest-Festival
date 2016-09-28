@@ -11,14 +11,16 @@ import static joshie.harvest.core.lib.HFModInfo.MODID;
 
 public class SeasonData {
     private final ResourceLocation resource;
-    private final int skyColor;
+    private final int skyColor, grassColor, leavesColor;
     private final double celestialLengthFactor;
     private final float celestialAngleOffset;
     private final EnumMap<Weather, Double> chances = new EnumMap<>(Weather.class);
 
-    public SeasonData(Season season, int color, double factor, float angle, double sunny, double rain, double typhoon, double snow, double blizzard) {
+    public SeasonData(Season season, int skyColor, int grassColor, int leavesColor, double factor, float angle, double sunny, double rain, double typhoon, double snow, double blizzard) {
         this.resource = new ResourceLocation(MODID, "textures/hud/" + season.name().toLowerCase(Locale.ENGLISH) + ".png");
-        this.skyColor = color;
+        this.skyColor = skyColor;
+        this.grassColor = grassColor;
+        this.leavesColor = leavesColor;
         this.celestialLengthFactor = factor;
         this.celestialAngleOffset = angle;
         chances.put(Weather.SUNNY, sunny);
@@ -42,6 +44,14 @@ public class SeasonData {
 
     public int getSkyColor() {
         return skyColor;
+    }
+
+    public int getGrassColor() {
+        return grassColor;
+    }
+
+    public int getLeavesColor() {
+        return leavesColor;
     }
 
     public ResourceLocation getResource() {

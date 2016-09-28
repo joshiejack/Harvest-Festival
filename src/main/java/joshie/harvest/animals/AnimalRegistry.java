@@ -28,7 +28,7 @@ public class AnimalRegistry implements IAnimalHandler {
 
     @Override
     public void registerFoodAsType(ItemStack stack, AnimalFoodType type) {
-        registry.registerItem(stack, type);
+        registry.register(stack, type);
     }
 
     @Override

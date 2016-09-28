@@ -1,5 +1,6 @@
 package joshie.harvest.tools;
 
+import joshie.harvest.api.HFApi;
 import joshie.harvest.core.base.item.ItemTool;
 import joshie.harvest.core.base.item.ItemToolChargeable;
 import joshie.harvest.core.base.item.ItemToolSmashing;
@@ -37,6 +38,10 @@ public class HFTools {
 
     public static void preInit() {
         registerSounds("smash_rock", "smash_wood");
+    }
+
+    public static void init() {
+        HFApi.npc.getGifts().addToBlacklist(HAMMER, AXE, SICKLE, WATERING_CAN, HOE);
     }
 
     private static Potion registerPotion(String name, int color, int x, int y) {

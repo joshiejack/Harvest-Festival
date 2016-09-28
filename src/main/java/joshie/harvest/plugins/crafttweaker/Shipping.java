@@ -1,6 +1,7 @@
 package joshie.harvest.plugins.crafttweaker;
 
 import joshie.harvest.api.HFApi;
+import joshie.harvest.api.core.Ore;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IIngredient;
 import minetweaker.api.item.IItemStack;
@@ -21,12 +22,12 @@ public class Shipping {
     private static class Add extends BaseUndoable {
         private final long sellValue;
         private ItemStack stack;
-        private String ore;
+        private Ore ore;
 
         public Add(IIngredient ingredient, long sellValue) {
             this.sellValue = sellValue;
             this.stack = asStack(ingredient);
-            this.ore = asOre(ingredient);
+            this.ore = Ore.of(asOre(ingredient));
         }
 
         @Override

@@ -1,9 +1,6 @@
 package joshie.harvest.core.handlers;
 
 import joshie.harvest.core.util.HFEvents;
-import joshie.harvest.crops.HFCrops;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockCrops;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIHarvestFarmland;
 import net.minecraft.entity.ai.EntityAITasks;
@@ -11,11 +8,9 @@ import net.minecraft.entity.ai.EntityAITasks.EntityAITaskEntry;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
-import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -83,22 +78,6 @@ public class DisableHandler {
         public void onUseHoe(UseHoeEvent event) {
             if (DISABLE_VANILLA_HOE) {
                 event.setCanceled(true);
-            }
-        }
-    }
-
-    @HFEvents
-    public static class BreakBlock {
-        public static boolean register() { return VANILLA_CROP_UNSELLABLE; }
-
-        @SubscribeEvent
-        public void onHarvested(BlockEvent.HarvestDropsEvent event) {
-            Block block = event.getState().getBlock();
-            if (block != HFCrops.CROPS && block instanceof BlockCrops) {
-                for (ItemStack stack: event.getDrops()) {
-                    if (!stack.hasTagCompound()) stack.setTagCompound(new NBTTagCompound());
-                    stack.getTagCompound().setBoolean("Unsellable", true);
-                }
             }
         }
     }

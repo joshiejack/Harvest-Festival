@@ -29,7 +29,7 @@ public class QuestFlowerTrader extends QuestTrade {
 
     @Override
     public boolean canStartQuest(Set<Quest> active, Set<Quest> finished) {
-        return finished.contains(Quests.TUTORIAL_CROPS);
+        return finished.contains(Quests.TUTORIAL_CROPS) && !finished.contains(Quests.TUTORIAL_SUPERMARKET);
     }
 
     @SideOnly(Side.CLIENT)

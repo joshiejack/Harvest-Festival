@@ -122,7 +122,7 @@ public class HFCrops {
                 }
 
                 //Allow all crops to be throw in goddess water
-                BlockGoddessWater.VALID_ITEMS.registerItem(crop.getCropStack(1));
+                BlockGoddessWater.VALID_ITEMS.register(crop.getCropStack(1));
             }
         }
 

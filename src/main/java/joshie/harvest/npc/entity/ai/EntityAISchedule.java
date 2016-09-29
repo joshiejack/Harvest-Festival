@@ -74,6 +74,7 @@ public class EntityAISchedule extends EntityAIBase {
                 else teleportTimer++;
                 prevTarget = blockTarget;
                 if (teleportTimer >= 600) {
+                    teleportTimer = 0;
                     npc.attemptTeleport(blockTarget.getX() + 0.5D, blockTarget.getY() + 1D, blockTarget.getZ() + 0.5D);
                 }
             } else if (scheduleTimer %300 == 0) {

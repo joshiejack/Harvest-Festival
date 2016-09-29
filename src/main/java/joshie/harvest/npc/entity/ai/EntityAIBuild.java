@@ -12,7 +12,6 @@ import net.minecraft.util.math.Vec3d;
 
 public class EntityAIBuild extends EntityAIBase {
     private final EntityNPCBuilder npc;
-    private int scheduleTimer;
     private int teleportTimer;
     private int buildingTimer;
 

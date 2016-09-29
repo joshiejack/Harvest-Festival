@@ -56,8 +56,9 @@ public class ItemHFSeeds extends ItemSeeds implements ICreativeSorted {
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean debug) {
         Crop crop = getCropFromStack(stack);
         if (crop != null) {
-            if (crop.requiresSickle()) list.add(TextFormatting.ITALIC + Text.translate("crop.sickle"));
+            if (crop.requiresSickle()) list.add("" + TextFormatting.AQUA + TextFormatting.ITALIC + Text.translate("crop.sickle"));
             crop.getGrowthHandler().addInformation(list, crop, debug);
+            list.add(crop.getStages() + " " + Text.translate("crop.seeds.days"));
         }
     }
 

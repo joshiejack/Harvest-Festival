@@ -1,7 +1,7 @@
 package joshie.harvest.buildings.placeable.blocks;
 
-import joshie.harvest.core.util.Direction;
 import joshie.harvest.buildings.placeable.Placeable;
+import joshie.harvest.core.util.Direction;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
@@ -75,6 +75,7 @@ public class PlaceableBlock extends Placeable {
         if (!prePlace(world, pos, direction)) return false;
         IBlockState state = getTransformedState(direction);
         if (world.getBlockState(pos) == state) return false;
+        world.playEvent(null, 2001, pos, Block.getStateId(state));
         boolean result = world.setBlockState(pos, state, 2);
         if (result) {
             postPlace(world, pos, direction);

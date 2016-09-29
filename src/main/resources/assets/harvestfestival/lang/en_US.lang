@@ -75,6 +75,7 @@ harvestfestival.crop.sickle=Requires Sickle
 harvestfestival.crop.seeds.format.standard=%C %S
 harvestfestival.crop.seeds.format.giant=%G %C %S
 harvestfestival.crop.seeds=Seeds
+harvestfestival.crop.seeds.days=days
 harvestfestival.crop.seeds.useless=Bloody Useless Seeds
 harvestfestival.crop.seeds.corrupted=Corrupted Seeds, Yo!
 harvestfestival.crop.beetroot=Beetroot

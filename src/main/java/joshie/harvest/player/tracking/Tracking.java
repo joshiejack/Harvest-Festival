@@ -13,7 +13,10 @@ public class Tracking {
     protected Set<ResourceLocation> recipes = new HashSet<>(); //Recipe Learnt
 
     public boolean learnRecipe(MealImpl recipe) {
-        return recipes.add(recipe.getRegistryName());
+        if (recipe == null) {
+            recipes.clear();
+            return false;
+        } else return recipes.add(recipe.getRegistryName());
     }
 
     public void addAsObtained(ItemStack stack) {

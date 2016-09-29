@@ -4,6 +4,7 @@
 * Added tooltip to animal spawners
 * Added days to grow tooltip to seeds
 * Added command to dump list of shops for CraftTweaker purposes (/hf shops)
+* Add command that makes all recipes learnt/unlearnt
 * Added signs to buildings that display the shops opening times
 * Add sounds when builder places blocks
 * Change the colour of leaves/grass for all seasons

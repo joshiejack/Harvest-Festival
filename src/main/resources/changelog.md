@@ -21,6 +21,7 @@
 * Reduce the build time of buildings ever so slightly
 * Made buildings ungiftable
 * Clicking doors, gates, trapdoors, buttons or levers won't drop chickens
+* Yulif will now tell the player what he is building
 * Fixed the goddess flower never despawning if dropped on land
 * Fixed you not being able to skip the carpenter quest
 * Fixed pumpkin/melon renders

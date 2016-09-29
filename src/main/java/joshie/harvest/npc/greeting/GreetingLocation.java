@@ -3,8 +3,10 @@ package joshie.harvest.npc.greeting;
 import joshie.harvest.api.buildings.BuildingLocation;
 import joshie.harvest.api.buildings.Building;
 import joshie.harvest.api.npc.IConditionalGreeting;
+import joshie.harvest.api.npc.INPC;
 import joshie.harvest.buildings.BuildingImpl;
 import joshie.harvest.npc.NPCHelper;
+import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 
@@ -21,7 +23,7 @@ public class GreetingLocation implements IConditionalGreeting {
     }
 
     @Override
-    public boolean canDisplay(EntityPlayer player) {
+    public boolean canDisplay(EntityPlayer player, EntityAgeable ageable, INPC npc) {
         BlockPos target = NPCHelper.getCoordinatesForLocation(player, location);
         return target != null && player.getDistanceSq(target) < 32D;
     }
@@ -32,7 +34,7 @@ public class GreetingLocation implements IConditionalGreeting {
     }
 
     @Override
-    public String getUnlocalizedText() {
+    public String getUnlocalizedText(EntityPlayer player, EntityAgeable ageable, INPC npc) {
         return text;
     }
 }

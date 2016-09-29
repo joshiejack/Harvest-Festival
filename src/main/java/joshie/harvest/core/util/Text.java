@@ -3,8 +3,11 @@ package joshie.harvest.core.util;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import joshie.harvest.api.npc.IConditionalGreeting;
+import joshie.harvest.api.npc.INPC;
 import joshie.harvest.npc.NPC;
 import joshie.harvest.npc.entity.EntityNPC;
+import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
 import org.apache.commons.lang3.tuple.Triple;
@@ -36,7 +39,7 @@ public class Text {
         return "en_US";
     }
 
-    public static String getRandomSpeech(@Nullable IConditionalGreeting greeting, final ResourceLocation resource, final String text, final int maximumAlternatives) {
+    public static String getRandomSpeech(EntityPlayer player, EntityAgeable ageable, INPC npc, @Nullable IConditionalGreeting greeting, final ResourceLocation resource, final String text, final int maximumAlternatives) {
         int maximum = 1;
         try {
             final Triple<String, String, ResourceLocation> key = Triple.of(getLang(), text, resource);
@@ -54,7 +57,7 @@ public class Text {
         } catch (Exception e) {}
 
         int random = 1 + (maximum >= 2? rand.nextInt(maximum): 0);
-        return greeting == null ? localize(text + random): greeting.getLocalizedText(text + random);
+        return greeting == null ? localize(text + random): greeting.getLocalizedText(player, ageable, npc, text + random);
     }
 
     @SuppressWarnings("deprecation")

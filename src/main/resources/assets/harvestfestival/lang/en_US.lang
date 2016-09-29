@@ -769,7 +769,14 @@ harvestfestival.npc.yulif.greeting6=If ya get in my way, I can't build there.
 harvestfestival.npc.yulif.greeting7=If yer looking for buildings, I'm afraid I'm only available 9am to 5:30pm, Sunday to Friday.
 harvestfestival.npc.yulif.marriage.reject=Ehhh I'm not ready to get married.
 harvestfestival.npc.yulif.marriage.accept=Yer so kind, I'll be your husband.
-
+harvestfestival.npc.builder.build=Do not fret I am currently working on building the structure for the %s.
+harvestfestival.npc.builder.paint=I am currently placing up some paintings, and such for the %s.
+harvestfestival.npc.builder.decorate=Working hard, adding the finishing touches for the %s.
+harvestfestival.npc.builder.movein=Don't mind me just helping everyone move in to the %s.
+harvestfestival.npc.builder.basement.build=I may look mad but do not fear, I am currently working on the basement for the %s.
+harvestfestival.npc.builder.basement.paint=I'm placing all the paintings for the basement of the %s.
+harvestfestival.npc.builder.basement.decorate=Just adding the finishing touches to the basement of the %s.
+harvestfestival.npc.builder.basement.movein=Don't mind me just helping everyone move in to the %s.
 
 #Ashlee
 harvestfestival.npc.ashlee.greeting1=I sure love plucking chickens!

@@ -160,10 +160,10 @@ public class GuiNPCChat extends GuiNPCBase {
     @Override
     public String getScript() {
         if (NPCHelper.isShopOpen(npc.getNPC(), player.worldObj, player) && nextGui == GuiHandler.SHOP_OPTIONS) {
-            return npc.getNPC().getShop().getWelcome();
+            return npc.getNPC().getShop().getWelcome(player, npc);
         }
 
         String script = HFTrackers.getClientPlayerTracker().getQuests().getScript(player, npc);
-        return script == null ? npc.getNPC().getGreeting(player) : script;
+        return script == null ? npc.getNPC().getGreeting(player, npc) : script;
     }
 }

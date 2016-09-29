@@ -8,6 +8,7 @@ import joshie.harvest.api.shops.IShop;
 import joshie.harvest.api.shops.IShopGuiOverlay;
 import joshie.harvest.calendar.CalendarHelper;
 import joshie.harvest.core.util.Text;
+import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.shops.purchasable.Purchasable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -92,8 +93,8 @@ public class Shop implements IShop {
         return Text.localize(unlocalizedName);
     }
 
-    public String getWelcome() {
-        return Text.getRandomSpeech(null, resourceLocation, unlocalizedName + ".greeting", 10);
+    public String getWelcome(EntityPlayer player, EntityNPC npc) {
+        return Text.getRandomSpeech(player, npc, npc.getNPC(), null, resourceLocation, unlocalizedName + ".greeting", 10);
     }
 
     public List<IPurchasable> getContents(@Nonnull EntityPlayer player) {

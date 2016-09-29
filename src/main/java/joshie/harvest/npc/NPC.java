@@ -17,6 +17,7 @@ import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.core.util.Text;
 import joshie.harvest.npc.greeting.GreetingMultiple;
 import joshie.harvest.shops.Shop;
+import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -223,16 +224,16 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
     }
 
     //Returns the script that this character should say at this point
-    public String getGreeting(EntityPlayer player) {
+    public String getGreeting(EntityPlayer player, EntityAgeable entity) {
         Collections.shuffle(conditionals);
         for (IConditionalGreeting greeting : conditionals) {
-            if (greeting.canDisplay(player) && player.worldObj.rand.nextDouble() * 100D < greeting.getDisplayChance()) {
-                if (greeting.getMaximumAlternatives() > 1) return Text.getRandomSpeech(greeting, getRegistryName(), greeting.getUnlocalizedText(), greeting.getMaximumAlternatives());
-                else return greeting.getLocalizedText(greeting.getUnlocalizedText());
+            if (greeting.canDisplay(player, entity, this) && player.worldObj.rand.nextDouble() * 100D < greeting.getDisplayChance()) {
+                if (greeting.getMaximumAlternatives() > 1) return Text.getRandomSpeech(player, entity, this, greeting, getRegistryName(), greeting.getUnlocalizedText(player, entity, this), greeting.getMaximumAlternatives());
+                else return greeting.getLocalizedText(player, entity, this, greeting.getUnlocalizedText(player, entity, this));
             }
         }
 
-        return Text.getRandomSpeech(npcGreetings, getRegistryName(), npcGreetings.getUnlocalizedText(), npcGreetings.getMaximumAlternatives());
+        return Text.getRandomSpeech(player, entity, this, npcGreetings, getRegistryName(), npcGreetings.getUnlocalizedText(player, entity, this), npcGreetings.getMaximumAlternatives());
     }
 
     @Override

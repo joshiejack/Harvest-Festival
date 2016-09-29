@@ -4,6 +4,7 @@ import joshie.harvest.buildings.BuildingStage;
 import joshie.harvest.buildings.placeable.Placeable;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.pathfinding.Path;
@@ -44,7 +45,7 @@ public class EntityAIBuild extends EntityAIBase {
                 boolean tooFar = distance >= building.getDistance(placeable);
                 if (tooFar) {
                     //Teleportation
-                    if ((teleportTimer >= 60 && distance <= 64D) || teleportTimer >= 200) {
+                    if (teleportTimer >= 100 || distance >= 256D) {
                         teleportTimer = 0;
                         npc.attemptTeleport(go.getX() + 0.5D, go.getY() + 1D, go.getZ() + 0.5D);
                         tooFar = false; //Force the placement of the block
@@ -74,8 +75,8 @@ public class EntityAIBuild extends EntityAIBase {
                 }
 
                 //If we're suffocating
-                if (npc.isEntityInsideOpaqueBlock()) {
-                    BlockPos pos = go.add(npc.worldObj.rand.nextInt(8) - 4, npc.worldObj.rand.nextInt(3), npc.worldObj.rand.nextInt(8) - 4);
+                if (!npc.isInsideOfMaterial(Material.AIR)) {
+                    BlockPos pos = go.add(npc.worldObj.rand.nextInt(16) - 8, npc.worldObj.rand.nextInt(16), npc.worldObj.rand.nextInt(16) - 8);
                     if (EntityHelper.isSpawnable(npc.worldObj, pos) && EntityHelper.isSpawnable(npc.worldObj, pos.up())) {
                         npc.setPositionAndUpdate(go.getX() + 0.5D, go.getY() + 1D, go.getZ() + 0.5D);
                     }

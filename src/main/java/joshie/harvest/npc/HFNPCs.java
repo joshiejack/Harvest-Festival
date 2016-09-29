@@ -11,6 +11,7 @@ import joshie.harvest.core.base.MeshIdentical;
 import joshie.harvest.core.lib.EntityIDs;
 import joshie.harvest.core.util.HFLoader;
 import joshie.harvest.npc.entity.*;
+import joshie.harvest.npc.greeting.GreetingCarpenter;
 import joshie.harvest.npc.greeting.GreetingLocation;
 import joshie.harvest.npc.greeting.GreetingTime;
 import joshie.harvest.npc.item.ItemNPCSpawner;
@@ -115,7 +116,7 @@ public class HFNPCs {
         CLOCKMAKER_CHILD.setLocation(HOME, CLOCKMAKER, FENN_HOME);
         CAFE_GRANNY.setLocation(HOME, CAFE, KATLIN_HOME);
         MAYOR.setLocation(HOME, TOWNHALL, JAMIE_HOME).setLocation(WORK, TOWNHALL, TOWNHALL_CENTRE);
-        BUILDER.setLocation(HOME, CARPENTER, CARPENTER_DOWNSTAIRS).setLocation(WORK, CARPENTER, CARPENTER_DOOR);
+        BUILDER.setLocation(HOME, CARPENTER, CARPENTER_DOWNSTAIRS).setLocation(WORK, CARPENTER, CARPENTER_DOOR).addGreeting(new GreetingCarpenter());
         TOOL_OWNER.setLocation(HOME, BLACKSMITH, DANIEL_HOME).setLocation(WORK, BLACKSMITH, DANIEL_HOME);
         DAUGHTER_2.setLocation(HOME, TOWNHALL, ABI_HOME);
         CLOCK_WORKER.setLocation(HOME, CLOCKMAKER, TIBERIUS_HOME);

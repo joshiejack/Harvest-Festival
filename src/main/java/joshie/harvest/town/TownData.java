@@ -106,7 +106,7 @@ public class TownData {
     //END NPC NAME OF LOCATIONS **/
     
     protected final Map<ResourceLocation, TownBuilding> buildings = new HashMap<>();
-    protected final LinkedList<BuildingStage> building = new LinkedList<>();
+    protected LinkedList<BuildingStage> building = new LinkedList<>();
     protected BlockPos townCentre;
     protected UUID uuid;
 
@@ -119,6 +119,7 @@ public class TownData {
     }
 
     public boolean isBuilding(BuildingImpl building) {
+        if (building == null) return this.building.size() > 0;
         return this.building.contains(new BuildingStage(building, BlockPos.ORIGIN, Mirror.NONE, Rotation.NONE));
     }
     
@@ -231,4 +232,6 @@ public class TownData {
         uuid = UUID;
         return this;
     }
+
+
 }

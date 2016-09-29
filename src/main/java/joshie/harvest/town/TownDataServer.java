@@ -6,6 +6,7 @@ import joshie.harvest.buildings.BuildingStage;
 import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.helpers.NBTHelper;
+import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.gathering.GatheringData;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.NPC;
@@ -13,6 +14,7 @@ import joshie.harvest.npc.NPCHelper;
 import joshie.harvest.npc.NPCRegistry;
 import joshie.harvest.npc.entity.EntityNPCBuilder;
 import joshie.harvest.npc.entity.EntityNPCHuman;
+import joshie.harvest.town.packet.PacketSyncBuilding;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.ResourceLocation;
@@ -47,11 +49,16 @@ public class TownDataServer extends TownData {
         return (EntityNPCBuilder) world.getEntityFromUuid(getID());
     }
 
+    public void syncBuildings(World world) {
+        PacketHandler.sendToDimension(world.provider.getDimension(), new PacketSyncBuilding(getID(), this.building));
+    }
+
     public boolean setBuilding(World world, BuildingImpl building, BlockPos pos, Mirror mirror, Rotation rotation) {
         BuildingStage stage = new BuildingStage(building, pos, mirror, rotation);
         if (!this.building.contains(stage)) {
             this.building.addLast(stage);
             HFTrackers.markDirty(world);
+            syncBuildings(world);
             return true;
         }
 

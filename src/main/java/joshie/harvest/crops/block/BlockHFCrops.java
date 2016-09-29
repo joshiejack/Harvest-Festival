@@ -303,7 +303,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
             if (event.world != world) return;
             boolean remove = existence >= 30;
             if (remove) {
-                if (world.getBlockState(pos).getBlock() == Blocks.FARMLAND && world.canBlockSeeSky(pos)) {
+                if (world.getBlockState(pos).getBlock() == Blocks.FARMLAND) {
                     world.setBlockState(pos, WET_SOIL);
                 }
 
@@ -319,7 +319,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
         @SubscribeEvent(priority = EventPriority.LOWEST, receiveCanceled = true)
         public void onDirtTilled(UseHoeEvent event) {
             if (!event.getWorld().isRemote && !event.isCanceled()) {
-                if (HFTrackers.getCalendar(event.getWorld()).getTodaysWeather().isRain()) {
+                if (HFTrackers.getCalendar(event.getWorld()).getTodaysWeather().isRain() && CropHelper.isRainingAt(event.getWorld(), event.getPos().up(2))) {
                     MinecraftForge.EVENT_BUS.register(new RainingSoil(event.getWorld(), event.getPos()));
                 }
 

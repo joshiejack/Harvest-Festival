@@ -303,7 +303,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
             if (event.world != world) return;
             boolean remove = existence >= 30;
             if (remove) {
-                if (world.getBlockState(pos).getBlock() == Blocks.FARMLAND) {
+                if (world.getBlockState(pos).getBlock() == Blocks.FARMLAND && world.canBlockSeeSky(pos)) {
                     world.setBlockState(pos, WET_SOIL);
                 }
 

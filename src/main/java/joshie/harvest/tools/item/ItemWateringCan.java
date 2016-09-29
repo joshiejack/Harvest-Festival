@@ -230,7 +230,9 @@ public class ItemWateringCan extends ItemTool<ItemWateringCan> implements IFluid
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
         for (int i = 0; i < ToolTier.values().length; i++) {
-            list.add(new ItemStack(item, 1, i));
+            ItemStack unleveled = new ItemStack(item, 1, i);
+            fill(unleveled, new FluidStack(FluidRegistry.WATER, 128), true);
+            list.add(unleveled);
             ItemStack full = new ItemStack(item, 1, i);
             full.getSubCompound("Data", true).setDouble("Level", 100D);
             fill(full, new FluidStack(FluidRegistry.WATER, 128), true);

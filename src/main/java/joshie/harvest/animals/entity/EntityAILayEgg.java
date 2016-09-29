@@ -34,7 +34,7 @@ public class EntityAILayEgg extends EntityAIBase {
 
     @Override
     public void updateTask() {
-        BlockPos position = new BlockPos(animal).add(animal.worldObj.rand.nextInt(8) - 4, animal.worldObj.rand.nextInt(3), animal.worldObj.rand.nextInt(8) - 4);
+        BlockPos position = new BlockPos(animal).add(animal.worldObj.rand.nextInt(6) - 3, animal.worldObj.rand.nextInt(3), animal.worldObj.rand.nextInt(6) - 3);
         IBlockState state = animal.worldObj.getBlockState(position);
         Block block = state.getBlock();
         if (block instanceof INest) {
@@ -44,7 +44,7 @@ public class EntityAILayEgg extends EntityAIBase {
         }
 
         wanderTick--;
-        if (animal.worldObj.rand.nextDouble() < 0.005D || wanderTick < Short.MIN_VALUE) {
+        if (animal.worldObj.rand.nextDouble() < 0.005D || wanderTick <= Short.MIN_VALUE) {
             wanderTick = 200;
         }
     }

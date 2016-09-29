@@ -7,6 +7,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -28,7 +29,7 @@ public abstract class BlockHFSmashable<B extends BlockHFSmashable, E extends Enu
     @SuppressWarnings("deprecation")
     @Override
     public void addCollisionBoxToList(IBlockState state, @Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull AxisAlignedBB entityBox, @Nonnull List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn) {
-        if (entityIn instanceof EntityPlayer) super.addCollisionBoxToList(state, worldIn, pos, entityBox, collidingBoxes, entityIn);
+        if (entityIn instanceof EntityPlayer || entityIn instanceof EntityItem) super.addCollisionBoxToList(state, worldIn, pos, entityBox, collidingBoxes, entityIn);
         else addCollisionBoxToList(pos, entityBox, collidingBoxes, HFCore.FENCE_COLLISION);
     }
 

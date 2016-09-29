@@ -4,6 +4,8 @@ import joshie.harvest.core.base.tile.TileHarvest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.Packet;
+import net.minecraft.server.management.PlayerChunkMapEntry;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.relauncher.Side;
 
@@ -44,8 +46,16 @@ public class PacketHandler {
         tile.hasChanged = true;
         Packet<?> pkt = tile.getUpdatePacket();
         if (pkt != null) {
-            for (EntityPlayer player: tile.getWorld().playerEntities) {
-                ((EntityPlayerMP) player).connection.sendPacket(pkt);
+            WorldServer server = (WorldServer)tile.getWorld();
+            int chunkX = tile.getPos().getX() >> 4;
+            int chunkZ = tile.getPos().getZ() >> 4;
+            PlayerChunkMapEntry entry = server.getPlayerChunkMap().getEntry(chunkX, chunkZ);
+            if (entry != null) {
+                for (EntityPlayer player : tile.getWorld().playerEntities) {
+                    if (entry.containsPlayer((EntityPlayerMP) player)) {
+                        ((EntityPlayerMP) player).connection.sendPacket(pkt);
+                    }
+                }
             }
         }
 

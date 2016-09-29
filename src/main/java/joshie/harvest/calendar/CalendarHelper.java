@@ -123,9 +123,12 @@ public class CalendarHelper {
                 b += additional & 0x0000FF;
 
                 int value = (r / size & 255) << 16 | (g / size & 255) << 8 | b / size & 255;
+
                 map.put(original, value);
                 return value;
-            } catch (IndexOutOfBoundsException exception) { return original; }
+            } catch (IndexOutOfBoundsException exception) {
+                return original;
+            }
         }
     }
 }

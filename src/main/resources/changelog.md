@@ -37,6 +37,7 @@
 * Fixed toggledownfall not working with HFs weather
 * Fixed jade taking turnips, when she says she won't
 * Fixed first- and third person render of rocks/branches
+* Fixed missing localisations for proposals
 
 ##0.5.3
 * Jade will now swap hoes/buckets for hoes/watering cans from after the tutorial until you complete the blacksmith tutorial

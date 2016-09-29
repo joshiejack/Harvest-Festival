@@ -531,6 +531,8 @@ harvestfestival.npc.goddess.greeting13=Nature is really beautiful isn't it?
 harvestfestival.npc.goddess.greeting14=If you ever want to give any of your friends a gift, just sneak when talking to them!
 harvestfestival.npc.goddess.greeting15=If you fancy giving me a gift, the easiest way is to just throw an item in to my pond!
 harvestfestival.npc.goddess.greeting16=Hey sweety if you need to know tomorrow's weather just come and show me a compass!
+harvestfestival.npc.goddess.marriage.reject=Sweety, I am not willing to be your sweety.
+harvestfestival.npc.goddess.marriage.accept=Well isn't this a surprise, my sweet. I will totally marry you!
 
 #Katlin
 harvestfestival.npc.katlin.greeting1=How have you been?
@@ -560,6 +562,9 @@ harvestfestival.npc.daniel.greeting11=I became a blacksmith because I wanted to 
 harvestfestival.npc.daniel.greeting12=If I could visit any country, hmm, I'd probably visit Czechia with Ashlee.
 harvestfestival.npc.daniel.greeting13=There's nothing I hate more than the ocean. I reckon it's related to my fascination with Ender.
 harvestfestival.npc.daniel.greeting14=I'm open every day of the week except for Thursdays from 10:00 to 16:00.
+harvestfestival.npc.daniel.marriage.reject=I'd rather spend my time polishing my tools than with you.
+harvestfestival.npc.daniel.marriage.accept=My tools can wait, we must get married at once!
+
 
 #Cloe
 harvestfestival.npc.cloe.greeting1=A good book, makes a girl happy.
@@ -574,6 +579,8 @@ harvestfestival.npc.cloe.greeting9=We are so insignificant.
 harvestfestival.npc.cloe.greeting10=Please don't tell anyone. But I like Penguins. I know, I know.
 harvestfestival.npc.cloe.greeting11=My Uncle well he's a bit weird... He spends most of his time at his desk, just working on well, I don't know what. I think he said something about modding. Maybe one day he'll get a life.
 harvestfestival.npc.cloe.greeting12=I can't believe my mother chose Team Valor.
+harvestfestival.npc.cloe.marriage.reject=Why would i ever want to get married, it's a waste of time.
+harvestfestival.npc.cloe.marriage.accept=I am ready to grow up, and spend my life with you.
 
 #Liara/ApsciLiara
 harvestfestival.npc.liara.greeting1=I really love this weather, perfect time to bake a cake!
@@ -592,6 +599,8 @@ harvestfestival.npc.liara.greeting13=I really do miss my parents, but losing the
 harvestfestival.npc.liara.greeting14=I've been passionate about cooking all my life, I remember when I was ten, I was selling cupcake and making 1000 gold a week! But now I'm so glad I finally get to open my own proper business.
 harvestfestival.npc.liara.greeting15=The café is open everyday! From half past nine in the morning to five in the evening.
 harvestfestival.npc.liara.greeting16=I'm afraid the café is only open from 9:30 until 17:00, but we're open every day of the week!
+harvestfestival.npc.liara.marriage.reject=The café is my home. I do not wish to live with you.
+harvestfestival.npc.liara.marriage.accept=Thank you, I will marry you, I will cook you many meals.
 
 #Jade
 harvestfestival.npc.jade.greeting1=Hey! I just love going out in to the world, watch out for the sheep though!
@@ -609,6 +618,9 @@ harvestfestival.npc.jade.greeting12=The quickest way to anyones heart is giving 
 harvestfestival.npc.jade.greeting13=Sleeping is the quickest way to grow your crops.
 harvestfestival.npc.jade.greeting14=I'm really not sure why you can't fertilise your crops. Maybe one day?
 harvestfestival.npc.jade.greeting15=Remember that that grass and wheat need a sickle in order to be harvested.
+harvestfestival.npc.jade.marriage.reject=Marriage isn't something I'm after at this stage.
+harvestfestival.npc.jade.marriage.accept=Marriage is something I'm ready for, I accept.
+
 
 #Jenni/Othlon
 harvestfestival.npc.jenni.greeting1=Hey my good friend, make sure to come to me if you need any general goods!
@@ -624,6 +636,9 @@ harvestfestival.npc.jenni.greeting10=Candice and I used to be a lot closer, but 
 harvestfestival.npc.jenni.greeting11=In my spare time I love a bit of arts and crafts.
 harvestfestival.npc.jenni.greeting12=My favourite animals are pigs, and my favourite fruit are cherries.
 harvestfestival.npc.jenni.greeting13=My supplies are pretty limited, but one day I should be able to sell you more things.
+harvestfestival.npc.jenni.marriage.reject=We're not quite there yet.
+harvestfestival.npc.jenni.marriage.accept=My dear friend, I am now your dear wife.
+
 
 #Jaimii
 harvestfestival.npc.jamie.greeting1=This is my town, and you remember that.
@@ -669,6 +684,8 @@ harvestfestival.npc.tiberius.greeting8=Fenn can really be a lot of trouble some 
 harvestfestival.npc.tiberius.greeting9=The one thing I can tell you about time, is that if you gift someone on their birthday, they will like you even more.
 harvestfestival.npc.tiberius.greeting10=How long have you been in this town?
 harvestfestival.npc.tiberius.greeting11=I think I always found the Ancient Egyptian time period to be the most annoying.
+harvestfestival.npc.tiberius.marriage.reject=I'm not quite ready to marry yet.
+harvestfestival.npc.tiberius.marriage.accept=I am ready to become your husband.
 
 #Jakob
 harvestfestival.npc.jacob.greeting1=Fishing is my game, Jacob is my name.
@@ -678,6 +695,9 @@ harvestfestival.npc.jacob.greeting4=I really hope it rains soon. Or is it now?
 harvestfestival.npc.jacob.greeting5=I've really been wondering if I should look in to mariculture.
 harvestfestival.npc.jacob.greeting6=Hey if you're looking for some fishing gear, I'm not quite ready to sell you anything.
 harvestfestival.npc.jacob.greeting7=My grandpa was a great fisherman. He's what inspired me to open my own tackle shop.
+harvestfestival.npc.jacob.marriage.reject=I'm really looking for one of the other fish in the sea.
+harvestfestival.npc.jacob.marriage.accept=You are my starfish, I cannot wait to be your husband.
+
 
 #Pokefenn
 harvestfestival.npc.fenn.greeting1=One day, I'm going to grow some vines, and you're going to climb them with me!
@@ -700,6 +720,9 @@ harvestfestival.npc.jim.greeting6=Life could not be better, when I'm out on the 
 harvestfestival.npc.jim.greeting7=Troughs can be placed up to three in a row, cows and sheep will eat from them when they're hungry if you fill them with fodder.
 harvestfestival.npc.jim.greeting8=Did you know that large animals will eat your grass crops, even before you harvested them?
 harvestfestival.npc.jim.greeting9=If you feed your animals treats, eventually they'll make more things for you.
+harvestfestival.npc.jim.marriage.reject=I do not wish to get married.
+harvestfestival.npc.jim.marriage.accept=I have wished for this day for a long time. I will one hundred percent marry you.
+
 
 #Brandon/Cricket
 harvestfestival.npc.brandon.greeting1=Whenever I'm down in the mines, I can't help but get excited when I come across some diamonds.
@@ -710,6 +733,9 @@ harvestfestival.npc.brandon.greeting5=I'll never understand why people are afrai
 harvestfestival.npc.brandon.greeting6=The other day when I was in the mines, I heard and saw this strange fire like creature. I wonder what it was?
 harvestfestival.npc.brandon.greeting7=If you ever need some mining materials, I'm open from Monday to Saturday, 11am to 4pm.
 harvestfestival.npc.brandon.greeting8=I'll let you in on a secret on how to mine more efficiently. If you jump then hit the rocks on your way down, you will smash them instantly! You'll even hit a bunch more rocks on your way down too. Oh this will also work to flatten farmland too.
+harvestfestival.npc.brandon.marriage.reject=Do you really think I would marry someone like you?
+harvestfestival.npc.brandon.marriage.accept=I was hoping for someone better, but I'll marry you.
+
 
 #Tomas
 harvestfestival.npc.thomas.greeting1=I will save you from your sins.
@@ -728,6 +754,9 @@ harvestfestival.npc.candice.greeting4=Come over here, I have something in my eye
 harvestfestival.npc.candice.greeting5=Hello %p! I hope you're feeling well? You look so beautiful today!
 harvestfestival.npc.candice.greeting6=Hey pretty, I've got a tip for you today. You don't need to water grass, it will grow anyway!
 harvestfestival.npc.candice.greeting7=Did you know that I normally work with Jim as a milkmaid?
+harvestfestival.npc.candice.marriage.reject=No chance, I'm not looking for marriage.
+harvestfestival.npc.candice.marriage.accept=You are so perfect! We will make the greatest couple, I accept your proposal!
+
 
 #Yulife
 harvestfestival.npc.yulif.greeting1=Building stuff is so time consuming, when will I get a break?
@@ -737,6 +766,9 @@ harvestfestival.npc.yulif.greeting4=I am tired of all this hard work, When will 
 harvestfestival.npc.yulif.greeting5=I am tired of wandering around, I am dying right now.
 harvestfestival.npc.yulif.greeting6=If ya get in my way, I can't build there.
 harvestfestival.npc.yulif.greeting7=If yer looking for buildings, I'm afraid I'm only available 9am to 5:30pm, Sunday to Friday.
+harvestfestival.npc.yulif.marriage.reject=Ehhh I'm not ready to get married.
+harvestfestival.npc.yulif.marriage.accept=Yer so kind, I'll be your husband.
+
 
 #Ashlee
 harvestfestival.npc.ashlee.greeting1=I sure love plucking chickens!
@@ -747,6 +779,8 @@ harvestfestival.npc.ashlee.greeting5=Cluck, Cluck, Cluck Clucking. When will the
 harvestfestival.npc.ashlee.greeting6=Feeding your chickens by hand will make you love them more, but it is more work.
 harvestfestival.npc.ashlee.greeting7=Chickens are happy to eat treats and chicken treats.
 harvestfestival.npc.ashlee.greeting8=If you ever need anything, just be sure to ask. But only from 5am to 11am, Monday through Saturday.
+harvestfestival.npc.ashlee.marriage.reject=Why would you even consider proposing?
+harvestfestival.npc.ashlee.marriage.accept=Woah, you are the best fox ever, I will marry you.
 
 #Girafi
 harvestfestival.npc.girafi.greeting1=Why hello fellow human, I am a humble trader, if you have any eggs, milk or wool I'll happily trade my own from the vanilla world!
@@ -756,6 +790,8 @@ harvestfestival.npc.girafi.greeting4=I could talk all day about my adventures ou
 harvestfestival.npc.girafi.greeting5=Hallo, hoe goes it?
 harvestfestival.npc.girafi.greeting6=Oh my, it's such a pleasure to see you once more.
 harvestfestival.npc.girafi.greeting7=Everyone has good days and bad days, you've just made my day great.
+harvestfestival.npc.girafi.marriage.reject=It has been a pleasure to know you. But I do not feel that way about you.
+harvestfestival.npc.girafi.marriage.accept=This is just wonderful, I will gladly marry you, and whisk you away somewhere far.
 
 ###Shop greetings
 #General Store

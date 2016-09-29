@@ -21,6 +21,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -84,7 +85,7 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
     @SuppressWarnings("deprecation")
     @Override
     public void addCollisionBoxToList(IBlockState state, @Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull AxisAlignedBB entityBox, @Nonnull List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn) {
-        if (entityIn instanceof EntityPlayer) super.addCollisionBoxToList(state, worldIn, pos, entityBox, collidingBoxes, entityIn);
+        if (entityIn instanceof EntityPlayer || entityIn instanceof EntityItem) super.addCollisionBoxToList(state, worldIn, pos, entityBox, collidingBoxes, entityIn);
         else addCollisionBoxToList(pos, entityBox, collidingBoxes, HFCore.FENCE_COLLISION);
     }
 
@@ -108,7 +109,7 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
                     NBTTagCompound tag = drop.getSubCompound("Data", true);
                     tag.setInteger("Relationship", relationship);
                     tag.setString("Owner", EntityHelper.getPlayerUUID(player).toString());
-                    SpawnItemHelper.spawnItem(world, pos.getX(), pos.getY() + 1, pos.getZ(), drop);
+                    SpawnItemHelper.addToPlayerInventory(player, world, pos.getX(), pos.getY() + 1, pos.getZ(), drop);
                     world.setBlockState(pos, getStateFromEnum(NEST_EMPTY));
                     player.addStat(HFAchievements.egger);
                     if (HFCore.SIZEABLE.getSize(drop) == Size.LARGE) {
@@ -192,7 +193,7 @@ public class BlockTray extends BlockHFEnum<BlockTray, Tray> implements IAnimalFe
 
     @Override
     protected boolean shouldDisplayInCreative(Tray tray) {
-        return tray.isEmpty();
+        return true;
     }
 
     @Override

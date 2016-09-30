@@ -68,8 +68,6 @@ public class EntityNPCGoddess extends EntityNPC<EntityNPCGoddess> {
         tasks.addTask(0, new EntityAISwim(this));
         tasks.addTask(1, new EntityAITalkingTo(this));
         tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-        tasks.addTask(3, new EntityAIRestrictOpenDoor(this));
-        tasks.addTask(4, new EntityAIOpenDoor(this, true));
         tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 3.0F, 1.0F));
         tasks.addTask(10, new EntityAIWatchClosest(this, EntityLiving.class, 8.0F));
     }

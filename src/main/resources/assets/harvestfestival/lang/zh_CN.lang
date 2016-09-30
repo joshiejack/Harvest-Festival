@@ -358,10 +358,10 @@ harvestfestival.storage.shipping=出货箱
 harvestfestival.sized.incubator=孵化器
 harvestfestival.trough.wood=饲料槽
 harvestfestival.sprinkler.wood=洒水器
-harvestfestival.tray.nest.empty=鸡舍
-harvestfestival.tray.small.chicken=带有小蛋的鸡舍
-harvestfestival.tray.medium.chicken=带有中蛋的鸡舍
-harvestfestival.tray.large.chicken=带有大蛋的鸡舍
+harvestfestival.tray.nest.empty=鸡窝
+harvestfestival.tray.small.chicken=带有小蛋的鸡窝
+harvestfestival.tray.medium.chicken=带有中蛋的鸡窝
+harvestfestival.tray.large.chicken=带有大蛋的鸡窝
 harvestfestival.tray.feeder.empty=饲料盘
 harvestfestival.tray.feeder.full=带有食物的饲料盘
 
@@ -927,8 +927,8 @@ harvestfestival.quest.tutorial.chicken.completed=哦那好吧, 你知道就好. 
 harvestfestival.quest.tutorial.chicken.throw=哦那好吧, 你知道就好. 来拿着这只鸡仔, 还有这些东西开始吧.
 harvestfestival.quest.tutorial.chicken.throw=啊哈所以你不知道咯? 首先你得喂养这些鸡仔! 如果你不这样做的话, 它们就会生病并且停止产出! 你可以手动喂鸡仔或者用这个饲料槽. 鸡仔们也跟人类一样需要一点点爱护. 为了表达你的爱, 请每天都把它举高高一次. 你对着他们右键来举高高这些鸡仔, 它们可喜欢这样了! 再次右键地面把它们放回地面. 用手动给鸡仔投食也更能体现你对它们的关爱. 心情好的母鸡会产出更大品质更好的蛋. 这里有一些鸡饲料. 能麻烦你喂养一下鸡仔们, 并展现对他们的爱吗? 做完这些之后再过来找我一下.
 harvestfestival.quest.tutorial.chicken.reminder.throw=还记得吗?我让你去举高高一下鸡仔, 并且喂它一些饲料.
-harvestfestival.quest.tutorial.chicken.egg=做的好. 现在看起来你已经明白这么照顾这些母鸡了.跟之前提到的一样, 更开心的鸡更开心的蛋.但是要如何收获到这些蛋呢? 只需要放置一个鸡舍在附近. 理所当然的这些鸡就会下蛋. 它们一天只会生产一个蛋. 不过, 如果你没有喂他们吃东西的话, 他们就不会产蛋. 拿到蛋之后,别忘了把它们放到出货箱来赚钱. 我这有个鸡舍给你, 等你获得了一颗蛋之后再回来找我. 
-harvestfestival.quest.tutorial.chicken.reminder.egg=别忘了, 我还在等你给我一个蛋. 如果你需要一个新的鸡舍, 也可以从我这边买.
+harvestfestival.quest.tutorial.chicken.egg=做的好. 现在看起来你已经明白这么照顾这些母鸡了.跟之前提到的一样, 更开心的鸡更开心的蛋.但是要如何收获到这些蛋呢? 只需要放置一个鸡窝在附近. 理所当然的这些鸡就会下蛋. 它们一天只会生产一个蛋. 不过, 如果你没有喂他们吃东西的话, 他们就不会产蛋. 拿到蛋之后,别忘了把它们放到出货箱来赚钱. 我这有个鸡窝给你, 等你获得了一颗蛋之后再回来找我. 
+harvestfestival.quest.tutorial.chicken.reminder.egg=别忘了, 我还在等你给我一个蛋. 如果你需要一个新的鸡窝, 也可以从我这边买.
 harvestfestival.quest.tutorial.chicken.complete=为了奖励你的辛苦工作, 我要把这枚稀有蛋给你! 如果你想要更多稀有蛋的话, 就得好好照顾你的鸡仔们了. 啊对了, 可能还有些你不知道的事儿, 首先, 下雨的时候记得把你的鸡仔们送回养鸡场, 天气好的时候可以放他们出来玩耍, 还有个东西就是孵蛋器. 有了孵蛋器你就可以孵养自己的小鸡了. 你需要做的就是把一枚鸡蛋放入孵蛋器, 几天之后就该孵化了! 它们会生出继承双亲一半的好感度的鸡仔, 所以会比直接买的鸡仔更好培养. 顺便一提, 谢谢你帮我在这里开店.
 
 #Cow Care

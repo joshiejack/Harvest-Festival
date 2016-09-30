@@ -48,7 +48,7 @@
 * Fixed first- and third person render of rocks/branches
 * Fixed missing localisations for proposals
 * Fixed that indoor farmland was being set to wet on a rainy day
-* Fix /hf time being able to set the worlds time to negative
+* Fixed /hf time being able to set the worlds time to negative
 
 ##0.5.3
 * Jade will now swap hoes/buckets for hoes/watering cans from after the tutorial until you complete the blacksmith tutorial

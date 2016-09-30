@@ -18,11 +18,11 @@ public class ItemNPCTool extends ItemHFEnum<ItemNPCTool, NPCTool> {
         BLUE_FEATHER(true, false), NPC_KILLER(true, false), GIFT(false, true), CALENDAR(false, true), CLOCK(false, true), WEATHER(false, true);
 
         public boolean colored;
-        public boolean hidden;
+        public boolean visible;
 
         NPCTool(boolean colored, boolean hidden) {
             this.colored = colored;
-            this.hidden = hidden;
+            this.visible = !hidden;
         }
 
         @Override
@@ -43,6 +43,11 @@ public class ItemNPCTool extends ItemHFEnum<ItemNPCTool, NPCTool> {
         }
 
         return false;
+    }
+
+    @Override
+    public boolean shouldDisplayInCreative(NPCTool cheat) {
+        return cheat.visible;
     }
 
     @Override

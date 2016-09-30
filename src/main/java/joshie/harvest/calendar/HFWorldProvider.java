@@ -67,7 +67,6 @@ public class HFWorldProvider extends WorldProviderSurface {
         }
 
         skyInit = true;
-
         GameSettings settings = Minecraft.getMinecraft().gameSettings;
         int[] ranges = ForgeModContainer.blendRanges;
         int distance = 0;
@@ -82,8 +81,11 @@ public class HFWorldProvider extends WorldProviderSurface {
         r += (original & 0xFF0000) >> 16;
         g += (original & 0x00FF00) >> 8;
         b += original & 0x0000FF;
+        r += (original & 0xFF0000) >> 16;
+        g += (original & 0x00FF00) >> 8;
+        b += original & 0x0000FF;
 
-        int divider = 2;
+        int divider = 3;
         for (int x = -distance; x <= distance; ++x) {
             for (int z = -distance; z <= distance; ++z) {
                 BlockPos pos = center.add(x, 0, z);
@@ -97,7 +99,6 @@ public class HFWorldProvider extends WorldProviderSurface {
         }
 
         int multiplier = (r / divider & 255) << 16 | (g / divider & 255) << 8 | b / divider & 255;
-
         skyX = center.getX();
         skyZ = center.getY();
         skyRGBMultiplier = multiplier;

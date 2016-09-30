@@ -72,9 +72,9 @@ public class CalendarRender {
                 Weather weather = HFApi.calendar.getWeather(mc.theWorld);
                 if (k2 != l2) {
                     if (weather == Weather.BLIZZARD) {
-                        fogTarget = -200D;
+                        fogTarget = -300D;
                     } else if (weather == Weather.SNOW) {
-                        fogTarget = 0D;
+                        fogTarget = -20D;
                     } else fogTarget = 1D;
                 } else fogTarget = 1D;
 

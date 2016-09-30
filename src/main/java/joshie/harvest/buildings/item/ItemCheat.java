@@ -22,6 +22,7 @@ import java.util.Locale;
 import java.util.Set;
 
 import static joshie.harvest.buildings.item.ItemCheat.Cheat.*;
+import static joshie.harvest.core.HFCore.DEBUG_MODE;
 
 public class ItemCheat extends ItemHFEnum<ItemCheat, Cheat> {
     public enum Cheat implements IStringSerializable {
@@ -107,6 +108,11 @@ public class ItemCheat extends ItemHFEnum<ItemCheat, Cheat> {
         }
 
         return EnumActionResult.SUCCESS;
+    }
+
+    @Override
+    public boolean shouldDisplayInCreative(Cheat cheat) {
+        return DEBUG_MODE;
     }
 
     @Override

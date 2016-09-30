@@ -4,11 +4,12 @@
 * Added tooltip to animal spawners
 * Added days to grow tooltip to seeds
 * Added command to dump list of shops for CraftTweaker purposes (/hf shops)
-* Add command that makes all recipes learnt/unlearnt
+* Added command that makes all recipes learnt/unlearnt
 * Added signs to buildings that display the shops opening times
 * Added buttons to the npcs chat, that allow you to ask for opening hours, or to gift them.
 * Added sounds when builder places blocks
 * Added simplified chinese localisation (credit to Neko)
+* Added command for setting a tools level (/hf tool [player] <level>)
 * Change the colour of leaves/grass for all seasons
 * Reverse the logic for crops being shippable. This may make existing crops unsellable.
 * Jade will trade shears for sickles, along with the buckets/hoes up until you get the blacksmith
@@ -25,13 +26,14 @@
 * Clicking doors, gates, trapdoors, buttons or levers won't drop chickens
 * Yulif will now tell the player what he is building
 * Will no longer create a yulif when spawning in npcs
+* Hide [BuildingGen] items unless debug mode is on
+* Removed tools with 100% from creative
 * Fixed the goddess flower never despawning if dropped on land
 * Fixed you not being able to skip the carpenter quest
 * Fixed pumpkin/melon renders
 * Fixed grass only giving one fodder
 * Fixed grass being destroyed when cut
 * Fixed grass being purple when it dies
-* Fixed chicken eggs flying off like mad
 * Fixed potential crashes when a block tries to get my crops state
 * Fixed that a few achievements required itself to be unlocked
 * Fixed nests always producing small eggs for loved chickens

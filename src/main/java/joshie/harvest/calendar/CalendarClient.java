@@ -21,7 +21,7 @@ public class CalendarClient extends Calendar {
         super.onSeasonChanged();
         CalendarRender.grassToBlend.clear();
         CalendarRender.leavesToBlend.clear();
-
+        HFWorldProvider.reset();
     }
 
     /* ############# Weather ################*/

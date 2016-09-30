@@ -50,7 +50,7 @@ harvestfestival.town.cancel=取消
 harvestfestival.town.cancelled=已取消
 harvestfestival.structures.blueprint=图纸: %s
 harvestfestival.structures.spawn=[生成] %s
-harvestfestival.structures.barn=养鸡场
+harvestfestival.structures.barn=饲养场
 harvestfestival.structures.blacksmith=铁匠铺
 harvestfestival.structures.cafe=咖啡店
 harvestfestival.structures.carpenter=木工小屋
@@ -59,9 +59,9 @@ harvestfestival.structures.clockmaker=钟表作坊
 harvestfestival.structures.fishinghole=鱼塘
 harvestfestival.structures.fishinghut=钓鱼小屋
 harvestfestival.structures.goddesspond=瑶池
-harvestfestival.structures.mininghill=矿山
+harvestfestival.structures.mininghill=矿井
 harvestfestival.structures.mininghut=采矿小屋
-harvestfestival.structures.poultryfarm=饲养场
+harvestfestival.structures.poultryfarm=养鸡场
 harvestfestival.structures.supermarket=杂货店
 harvestfestival.structures.townhall=市政厅
 harvestfestival.structures.shipping=出货箱
@@ -75,7 +75,7 @@ harvestfestival.cheat.air.placer=[BuildingGen] Internal Air Placer
 harvestfestival.cheat.air.remover=[BuildingGen] Internal Air Remover
 
 #Crops
-harvestfestival.crop.sickle=需要使用镰刀
+harvestfestival.crop.sickle=需要使用镰刀收割
 harvestfestival.crop.seeds.format=%1s %2s
 harvestfestival.crop.seeds=种子
 harvestfestival.crop.seeds.days=天
@@ -102,7 +102,7 @@ harvestfestival.crop.turnip=芜菁
 harvestfestival.crop.watermelon=西瓜
 harvestfestival.crop.wheat=小麦
 harvestfestival.crop.nether.wart=地狱疣
-harvestfestival.crop.tutorial.turnip=Hardy Turnip
+harvestfestival.crop.tutorial.turnip=白萝卜
 
 #General Items
 harvestfestival.general.shoot.bamboo=竹笋
@@ -239,7 +239,7 @@ harvestfestival.meal.burnt.counter=失败的手工料理
 harvestfestival.meal.burnt.pot=失败的蒸煮料理
 harvestfestival.meal.burnt.frying.pan=失败的煎炒料理
 harvestfestival.meal.burnt.mixer=失败的搅拌料理
-harvestfestival.meal.burnt.oven=失败的烘烤料理
+harvestfestival.meal.burnt.oven=失败的烘焙料理
 
 #Ingredients
 harvestfestival.ingredient.butter=黄油
@@ -446,8 +446,12 @@ harvestfestival.weather.typhoon.set=将天气设置为台风天
 harvestfestival.weather.blizzard.set=将天气设置为暴雪天
 
 #NPC Tools
-harvestfestival.npctool.blue.feather=蓝羽
+harvestfestival.npctool.blue.feather=蓝色羽毛
 harvestfestival.npctool.npc.killer=大宝剑
+harvestfestival.npctool.calendar=时间计算小工具
+harvestfestival.npctool.clock=商店营业时间查询小工具
+harvestfestival.npctool.weather=天气预报
+harvestfestival.npctool.gift=送礼小工具
 
 # NPC Names
 ## NOTE FOR TRANSLATORS, READ
@@ -548,6 +552,23 @@ harvestfestival.npc.goddess.greeting15=如果你想给我送礼物, 最简单的
 harvestfestival.npc.goddess.greeting16=亲爱的, 如果你想知道明天的天气, 只要给我看看指南针就行啦!
 harvestfestival.npc.goddess.marriage.reject=亲爱的, 我还不想成为你的亲爱的.
 harvestfestival.npc.goddess.marriage.accept=这算个惊喜吗亲爱的. 今天我就嫁给你!
+
+# Goddess Weather
+harvestfestival.quest.trade.weather.sunny1=哦 宝贝儿, 明天晴空万里哦!
+harvestfestival.quest.trade.weather.sunny2=明天会是阳光充足的一天!
+harvestfestival.quest.trade.weather.sunny3=明天一整天都会沐浴在阳光之下, 真的太棒啦.
+harvestfestival.quest.trade.weather.rain1=明天会湿漉漉的 不用去给你的植物浇水了!
+harvestfestival.quest.trade.weather.rain2=明天的天空灰蒙蒙的呢, 准备好一场小雨吧.
+harvestfestival.quest.trade.weather.rain3=滴, 滴答, 四月的春雨, 还有什么比这更令人期待呢!!
+harvestfestival.quest.trade.weather.typhoon1=啊呀明天看起来真可怕, 一阵台风正在路上!
+harvestfestival.quest.trade.weather.typhoon2=看起来不太好, 明天你应该宅在屋子里, 不然可能会被台风吹飞吧.
+harvestfestival.quest.trade.weather.typhoon3=明天将会有一场暴风雨, 强烈的台风将会袭击镇子!
+harvestfestival.quest.trade.weather.snow1=明天会变的超超超超级冷, 你最好多穿点衣服以防感冒!
+harvestfestival.quest.trade.weather.snow2=我想明天可能会被冻僵, 还是你想出去堆雪人?
+harvestfestival.quest.trade.weather.snow3=接下来是明天的天气预报, 天寒地冻, 看起来又是一场大雪!
+harvestfestival.quest.trade.weather.blizzard1=明天的天气太可怕了, 一场暴风雪即将袭来!
+harvestfestival.quest.trade.weather.blizzard2=请大家准备好大师球以便捕捉自带暴风雪的暴雪王!
+harvestfestival.quest.trade.weather.blizzard3=哇, 明天有暴风雪, 照顾好自己哦.
 
 #Katlin
 harvestfestival.npc.katlin.greeting1=最近过得怎么样?
@@ -1027,23 +1048,6 @@ harvestfestival.quest.trade.tools.reminder=顺带说一下, 我有一些多余�
 
 # Goddess Free Carpenter
 harvestfestival.quest.trade.carpenter.thanks=谢谢你亲爱的, 诺, 给你另一份木匠小屋图纸
-
-# Goddess Compass
-harvestfestival.quest.trade.weather.sunny1=哦 宝贝儿, 明天晴空万里哦!
-harvestfestival.quest.trade.weather.sunny2=明天会是阳光充足的一天!
-harvestfestival.quest.trade.weather.sunny3=明天一整天都会沐浴在阳光之下, 真的太棒啦.
-harvestfestival.quest.trade.weather.rain1=明天会湿漉漉的 不用去给你的植物浇水了!
-harvestfestival.quest.trade.weather.rain2=明天的天空灰蒙蒙的呢, 准备好一场小雨吧.
-harvestfestival.quest.trade.weather.rain3=滴, 滴答, 四月的春雨, 还有什么比这更令人期待呢!!
-harvestfestival.quest.trade.weather.typhoon1=啊呀明天看起来真可怕, 一阵台风正在路上!
-harvestfestival.quest.trade.weather.typhoon2=看起来不太好, 明天你应该宅在屋子里, 不然可能会被台风吹飞吧.
-harvestfestival.quest.trade.weather.typhoon3=明天将会有一场暴风雨, 强烈的台风将会袭击镇子!
-harvestfestival.quest.trade.weather.snow1=明天会变的超超超超级冷, 你最好多穿点衣服以防感冒!
-harvestfestival.quest.trade.weather.snow2=我想明天可能会被冻僵, 还是你想出去堆雪人?
-harvestfestival.quest.trade.weather.snow3=接下来是明天的天气预报, 天寒地冻, 看起来又是一场大雪!
-harvestfestival.quest.trade.weather.blizzard1=明天的天气太可怕了, 一场暴风雪即将袭来!
-harvestfestival.quest.trade.weather.blizzard2=请大家准备好大师球以便捕捉自带暴风雪的暴雪王!
-harvestfestival.quest.trade.weather.blizzard3=哇, 明天有暴风雪, 照顾好自己哦.
 
 ## Recipe Quests
 harvestfestival.quest.recipe.corn.baked.text=你真是暖心小天使, 我现在要传授你的我秘制烤玉米食谱.

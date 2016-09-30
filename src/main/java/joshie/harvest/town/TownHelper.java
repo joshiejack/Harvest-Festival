@@ -31,7 +31,7 @@ public class TownHelper {
         TownTrackerServer tracker = HFTrackers.getTownTracker(world);
         TownData data = tracker.getClosestTownToBlockPos(pos);
         if (data == null || data == TownTracker.NULL_TOWN) {
-            data = tracker.createNewTown(pos);
+            data = tracker.createNewTown(pos, true);
             ret = false; //Returning false because we spawned a builder
         }
 
@@ -45,5 +45,14 @@ public class TownHelper {
         }
 
         return ret;
+    }
+
+    public static boolean createTownIfDoesntExist(World world, BlockPos pos) {
+        TownTrackerServer tracker = HFTrackers.getTownTracker(world);
+        TownData data = tracker.getClosestTownToBlockPos(pos);
+        if (data == null || data == TownTracker.NULL_TOWN) {
+            tracker.createNewTown(pos, false);
+            return false;
+        } else return true;
     }
 }

@@ -12308,8 +12308,8 @@
       "isBlock": true,
       "theData": {
         "state": {
-          "name": "minecraft:fence_gate",
-          "meta": 1
+          "name": "minecraft:air",
+          "meta": 0
         },
         "x": 6,
         "y": 10,
@@ -12334,8 +12334,8 @@
       "isBlock": true,
       "theData": {
         "state": {
-          "name": "minecraft:fence_gate",
-          "meta": 1
+          "name": "minecraft:air",
+          "meta": 0
         },
         "x": 6,
         "y": 10,

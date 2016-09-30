@@ -19,7 +19,7 @@ public class TownTrackerClient extends TownTracker {
     }
 
     @Override
-    public TownData createNewTown(BlockPos pos) {
+    public TownData createNewTown(BlockPos pos, boolean builder) {
         return new TownDataClient();
     }
 }

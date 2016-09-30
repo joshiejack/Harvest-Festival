@@ -100,6 +100,7 @@ public class CalendarHelper {
     }
 
     public static void setWorldTime(MinecraftServer server, long worldTime) {
+        worldTime = Math.max(0L, worldTime);
         for (int j = 0; j < server.worldServers.length; ++j) {
             WorldServer worldserver = server.worldServers[j];
             worldserver.setWorldTime(worldTime);

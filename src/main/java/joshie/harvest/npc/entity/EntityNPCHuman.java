@@ -87,7 +87,7 @@ public abstract class EntityNPCHuman<E extends EntityNPCHuman> extends EntityNPC
     }
 
     public void resetSpawnHome() {
-        TownHelper.ensureTownExists(worldObj, new BlockPos(this)); //Force a town to exist near this entity
+        TownHelper.createTownIfDoesntExist(worldObj, new BlockPos(this)); //Force a town to exist near this entity
         this.homeTown = TownHelper.getClosestTownToEntity(this);
         //A town cannot exist without a builder
         if (this.homeTown == TownTracker.NULL_TOWN) this.setDead();

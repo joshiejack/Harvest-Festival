@@ -94,14 +94,17 @@ public class TownTrackerServer extends TownTracker {
     }
 
     @Override
-    public TownData createNewTown(BlockPos pos) {
+    public TownData createNewTown(BlockPos pos, boolean builder) {
         World world = getWorld();
-        EntityNPCBuilder creator = new EntityNPCBuilder(world);
         TownDataServer data = new TownDataServer(pos);
-        creator.setSpawnHome(data); //Set the spawn town
-        creator.setUniqueId(data.getID()); //Marking the builder as having the same data
-        creator.setPositionAndUpdate(pos.getX(), pos.getY() + 1.5D, pos.getZ());
-        world.spawnEntityInWorld(creator); //Towns owner now spawned
+        if (builder) {
+            EntityNPCBuilder creator = new EntityNPCBuilder(world);
+            creator.setSpawnHome(data); //Set the spawn town
+            creator.setUniqueId(data.getID()); //Marking the builder as having the same data
+            creator.setPositionAndUpdate(pos.getX(), pos.getY() + 1.5D, pos.getZ());
+            world.spawnEntityInWorld(creator); //Towns owner now spawned
+        }
+
         townData.add(data);
         closestCache.invalidateAll(); //Reset the cache everytime we make a new town
         uuidMap.put(data.getID(), data);

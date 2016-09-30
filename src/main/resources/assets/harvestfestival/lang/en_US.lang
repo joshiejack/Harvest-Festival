@@ -483,10 +483,10 @@ harvestfestival.npc.girafi.name=Johan
 # have to do in order to complete the quest in question.
 #Key-Codes for conversations
 # %1s = Money - Player has
-# %2 = Player's Romantic Interest's name
-# %3 = Entity's Romantic Interest's name
-# %4 = Players Name
-# %5 = NPC Name
+# %2s = Player's Romantic Interest's name
+# %3s = Entity's Romantic Interest's name
+# %4s = Players Name
+# %5s = NPC Name
 #Conversations
 #Error
 harvestfestival.npc.error=Unable to find the translation for the key: %s or the key %s

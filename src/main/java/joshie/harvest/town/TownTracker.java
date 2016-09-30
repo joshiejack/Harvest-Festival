@@ -40,7 +40,7 @@ public abstract class TownTracker extends HFTracker {
         } catch (Exception e) { return NULL_TOWN; }
     }
 
-    public abstract TownData createNewTown(BlockPos blockPos);
+    public abstract TownData createNewTown(BlockPos blockPos, boolean builder);
 
     public TownData getTownByID(UUID townID) {
         TownData result = uuidMap.get(townID);

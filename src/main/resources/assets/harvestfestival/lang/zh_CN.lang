@@ -547,28 +547,27 @@ harvestfestival.npc.goddess.greeting10=我真的觉得你应该种一下花, 只
 harvestfestival.npc.goddess.greeting11=最近去哪儿啦, 再见到你太开心了.
 harvestfestival.npc.goddess.greeting12=%4, 别来无恙?
 harvestfestival.npc.goddess.greeting13=大自然真是美丽啊, 不是吗?
-harvestfestival.npc.goddess.greeting14=如果你想要给你的朋友送礼物, 只需要跟他们说话的时候鞠躬就可以了[按下潜行键]!
-harvestfestival.npc.goddess.greeting15=如果你想给我送礼物, 最简单的方法就是把东西丢进我的池塘!
-harvestfestival.npc.goddess.greeting16=亲爱的, 如果你想知道明天的天气, 只要给我看看指南针就行啦!
+harvestfestival.npc.goddess.greeting14=如果你想给我送礼物, 最简单的方法就是把东西丢进我的池塘!
+harvestfestival.npc.goddess.greeting15=亲爱的, 如果你想知道明天的天气, 只要给我看看指南针就行啦!
 harvestfestival.npc.goddess.marriage.reject=亲爱的, 我还不想成为你的亲爱的.
 harvestfestival.npc.goddess.marriage.accept=这算个惊喜吗亲爱的. 今天我就嫁给你!
 
 # Goddess Weather
-harvestfestival.quest.trade.weather.sunny1=哦 宝贝儿, 明天晴空万里哦!
-harvestfestival.quest.trade.weather.sunny2=明天会是阳光充足的一天!
-harvestfestival.quest.trade.weather.sunny3=明天一整天都会沐浴在阳光之下, 真的太棒啦.
-harvestfestival.quest.trade.weather.rain1=明天会湿漉漉的 不用去给你的植物浇水了!
-harvestfestival.quest.trade.weather.rain2=明天的天空灰蒙蒙的呢, 准备好一场小雨吧.
-harvestfestival.quest.trade.weather.rain3=滴, 滴答, 四月的春雨, 还有什么比这更令人期待呢!!
-harvestfestival.quest.trade.weather.typhoon1=啊呀明天看起来真可怕, 一阵台风正在路上!
-harvestfestival.quest.trade.weather.typhoon2=看起来不太好, 明天你应该宅在屋子里, 不然可能会被台风吹飞吧.
-harvestfestival.quest.trade.weather.typhoon3=明天将会有一场暴风雨, 强烈的台风将会袭击镇子!
-harvestfestival.quest.trade.weather.snow1=明天会变的超超超超级冷, 你最好多穿点衣服以防感冒!
-harvestfestival.quest.trade.weather.snow2=我想明天可能会被冻僵, 还是你想出去堆雪人?
-harvestfestival.quest.trade.weather.snow3=接下来是明天的天气预报, 天寒地冻, 看起来又是一场大雪!
-harvestfestival.quest.trade.weather.blizzard1=明天的天气太可怕了, 一场暴风雪即将袭来!
-harvestfestival.quest.trade.weather.blizzard2=请大家准备好大师球以便捕捉自带暴风雪的暴雪王!
-harvestfestival.quest.trade.weather.blizzard3=哇, 明天有暴风雪, 照顾好自己哦.
+harvestfestival.npc.goddess.weather.sunny1=哦 宝贝儿, 明天晴空万里哦!
+harvestfestival.npc.goddess.weather.sunny2=明天会是阳光充足的一天!
+harvestfestival.npc.goddess.weather.sunny3=明天一整天都会沐浴在阳光之下, 真的太棒啦.
+harvestfestival.npc.goddess.weather.rain1=明天会湿漉漉的 不用去给你的植物浇水了!
+harvestfestival.npc.goddess.weather.rain2=明天的天空灰蒙蒙的呢, 准备好一场小雨吧.
+harvestfestival.npc.goddess.weather.rain3=滴, 滴答, 四月的春雨, 还有什么比这更令人期待呢!!
+harvestfestival.npc.goddess.weather.typhoon1=啊呀明天看起来真可怕, 一阵台风正在路上!
+harvestfestival.npc.goddess.weather.typhoon2=看起来不太好, 明天你应该宅在屋子里, 不然可能会被台风吹飞吧.
+harvestfestival.npc.goddess.weather.typhoon3=明天将会有一场暴风雨, 强烈的台风将会袭击镇子!
+harvestfestival.npc.goddess.weather.snow1=明天会变的超超超超级冷, 你最好多穿点衣服以防感冒!
+harvestfestival.npc.goddess.weather.snow2=我想明天可能会被冻僵, 还是你想出去堆雪人?
+harvestfestival.npc.goddess.weather.snow3=接下来是明天的天气预报, 天寒地冻, 看起来又是一场大雪!
+harvestfestival.npc.goddess.weather.blizzard1=明天的天气太可怕了, 一场暴风雪即将袭来!
+harvestfestival.npc.goddess.weather.blizzard2=请大家准备好大师球以便捕捉自带暴风雪的暴雪王!
+harvestfestival.npc.goddess.weather.blizzard3=哇, 明天有暴风雪, 照顾好自己哦.
 
 #Katlin
 harvestfestival.npc.katlin.greeting1=最近过得怎么样?

@@ -30,3 +30,4 @@ Recipe Learnt: http://www.freesound.org/people/LittleRobotSoundFactory/sounds/27
 
 ##Lang
 Meal Descriptions > DivineAspect
+Simplified Chinese Translation > Neko. 一只猫neko倾情汉化 =w=

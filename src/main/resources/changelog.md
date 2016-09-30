@@ -7,7 +7,8 @@
 * Add command that makes all recipes learnt/unlearnt
 * Added signs to buildings that display the shops opening times
 * Added buttons to the npcs chat, that allow you to ask for opening hours, or to gift them.
-* Add sounds when builder places blocks
+* Added sounds when builder places blocks
+* Added simplified chinese localisation (credit to Neko)
 * Change the colour of leaves/grass for all seasons
 * Reverse the logic for crops being shippable. This may make existing crops unsellable.
 * Jade will trade shears for sickles, along with the buckets/hoes up until you get the blacksmith

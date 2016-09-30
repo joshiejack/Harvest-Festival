@@ -20,7 +20,7 @@ public class GuiNPCGift extends GuiNPCChat {
     private final Quality value;
 
     public GuiNPCGift(EntityPlayer player, EntityNPC npc, EnumHand hand) {
-        super(player, npc, hand, -1);
+        super(player, npc, hand, -1, false);
         gift = player.getHeldItem(hand).copy();
         value = npc.getNPC().getGiftValue(gift);
     }

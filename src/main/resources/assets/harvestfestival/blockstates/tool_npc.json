@@ -6,6 +6,10 @@
   },
   "variants": {
     "blue_feather": [{ "textures": { "layer0": "harvestfestival:items/feather_blue" }}],
-    "npc_killer": [{ "textures": { "layer0": "harvestfestival:items/npc_killer" }}]
+    "npc_killer": [{ "textures": { "layer0": "harvestfestival:items/npc_killer" }}],
+    "calendar": [{ "textures": { "layer0": "harvestfestival:items/calendar" }}],
+    "gift": [{ "textures": { "layer0": "harvestfestival:items/gift" }}],
+    "clock": [{ "textures": { "layer0": "harvestfestival:items/clock" }}],
+    "weather": [{ "textures": { "layer0": "harvestfestival:items/weather" }}]
   }
 }

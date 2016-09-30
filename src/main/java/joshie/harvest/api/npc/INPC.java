@@ -50,6 +50,11 @@ public interface INPC {
      * @return the npc **/
     INPC setNoRespawn();
 
+    /** Makes the npc display a specific chat
+     *  @param stack the item to use as the icon
+     *  @param infoGreeting  the greeting handler to use**/
+    INPC setHasInfo(ItemStack stack, IConditionalGreeting infoGreeting);
+
     /** Allows you to add additional greetings to npcs
      *  @param greeting the greeting type
      *  @return the npc**/

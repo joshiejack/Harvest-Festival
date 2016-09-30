@@ -35,7 +35,7 @@ public class ContainerNPCGift extends ContainerNPCChat {
                 }
 
                 HFTrackers.getPlayerTrackerFromPlayer(player).getRelationships().gift(player, theNpc.getUUID(), points);
-                player.inventory.decrStackSize(player.inventory.currentItem, 1);
+                if (gift != null) gift.splitStack(1);
             }
         }
     }

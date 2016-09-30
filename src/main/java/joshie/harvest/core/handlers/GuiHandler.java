@@ -25,16 +25,17 @@ public class GuiHandler implements IGuiHandler {
     public static final int SHOP_OPTIONS = 5;
     public static final int SHOP_WELCOME = 6;
     public static final int COOKBOOK = 7;
+    public static final int NPC_INFO = 8;
 
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int entityID, int nextGui, int hand) {
         switch (ID) {
+            case NPC_INFO:
             case NPC: {
                 EntityNPC npc = (EntityNPC) world.getEntityByID(entityID);
                 if (hand != -1) return new ContainerNPCChat(player, npc, EnumHand.MAIN_HAND, nextGui);
                 return new ContainerNPCChat(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.MAIN_HAND, nextGui);
             }
-
             case SHOP_WELCOME:  return new ContainerNPCChat(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.MAIN_HAND, SHOP_OPTIONS);
             case SHOP_OPTIONS:  return new ContainerNPCChat(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.MAIN_HAND, nextGui);
             case SHOP_MENU:
@@ -51,10 +52,14 @@ public class GuiHandler implements IGuiHandler {
             case NPC: {
                 EntityNPC npc = (EntityNPC) world.getEntityByID(entityID);
                 if (hand != -1) return new GuiNPCSelect(player, npc, nextGui, hand);
-                return new GuiNPCChat(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.MAIN_HAND, nextGui);
+                return new GuiNPCChat(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.MAIN_HAND, nextGui, false);
             }
-
-            case SHOP_WELCOME:  return new GuiNPCChat(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.MAIN_HAND, SHOP_OPTIONS);
+            case NPC_INFO: {
+                EntityNPC npc = (EntityNPC) world.getEntityByID(entityID);
+                if (hand != -1) return new GuiNPCSelect(player, npc, nextGui, hand);
+                return new GuiNPCChat(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.MAIN_HAND, nextGui, true);
+            }
+            case SHOP_WELCOME:  return new GuiNPCChat(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.MAIN_HAND, SHOP_OPTIONS, false);
             case SHOP_MENU:     return new GuiNPCShop(player, (EntityNPC) world.getEntityByID(entityID), -2);
             case SHOP_BUILDER:  return new GuiNPCBuilderShop(player, (EntityNPC) world.getEntityByID(entityID));
             case GIFT:          return new GuiNPCGift(player, (EntityNPC) world.getEntityByID(entityID), EnumHand.values()[hand]);
@@ -64,7 +69,7 @@ public class GuiHandler implements IGuiHandler {
                 EntityNPC npc = (EntityNPC) world.getEntityByID(entityID);
                 if (NPCHelper.isShopOpen(npc.getNPC(), world, player)) {
                     return new GuiNPCSelect(player, npc, nextGui, -1);
-                } else return new GuiNPCChat(player, npc, EnumHand.MAIN_HAND, nextGui);
+                } else return new GuiNPCChat(player, npc, EnumHand.MAIN_HAND, nextGui, false);
             }
 
             default:            return null;

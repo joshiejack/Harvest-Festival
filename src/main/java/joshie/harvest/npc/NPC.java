@@ -15,12 +15,16 @@ import joshie.harvest.api.npc.gift.IGiftHandler.Quality;
 import joshie.harvest.api.shops.IShop;
 import joshie.harvest.cooking.HFCooking;
 import joshie.harvest.core.util.Text;
+import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.greeting.GreetingMultiple;
+import joshie.harvest.npc.greeting.GreetingShop;
+import joshie.harvest.npc.item.ItemNPCTool.NPCTool;
 import joshie.harvest.shops.Shop;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
 import org.apache.commons.lang3.text.WordUtils;
 
 import java.util.*;
@@ -29,7 +33,7 @@ import static joshie.harvest.api.npc.INPCRegistry.Age.ADULT;
 import static joshie.harvest.api.npc.INPCRegistry.Age.CHILD;
 import static joshie.harvest.core.lib.HFModInfo.*;
 
-public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEntry.Impl<NPC> implements INPC {
+public class NPC extends IForgeRegistryEntry.Impl<NPC> implements INPC {
     private final List<IConditionalGreeting> conditionals = new ArrayList<>(256);
     private final EnumMap<Location, BuildingLocation> locations;
     private final GreetingMultiple npcGreetings;
@@ -52,6 +56,8 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
     private Shop shop;
     private boolean doesRespawn;
     private boolean alex;
+    private IConditionalGreeting infoGreeting;
+    private ItemStack hasInfo;
 
     public NPC() {
         this(new ResourceLocation(MODID, "null"), INPCRegistry.Gender.MALE, INPCRegistry.Age.ADULT, new CalendarDate(1, Season.SPRING, 1), 0, 0);
@@ -65,6 +71,7 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
         this.height = 1F;
         this.birthday = birthday;
         this.doesRespawn = true;
+        this.hasInfo = null;
         this.insideColor = insideColor;
         this.outsideColor = outsideColor;
         this.localizationKey = MODID + ".npc." + name + ".";
@@ -95,6 +102,7 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
     @Override
     public INPC setShop(IShop shop) {
         this.shop = (Shop) shop;
+        setHasInfo(HFNPCs.TOOLS.getStackFromEnum(NPCTool.CLOCK), new GreetingShop(getRegistryName()));
         return this;
     }
 
@@ -131,6 +139,13 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
     @Override
     public INPC addGreeting(IConditionalGreeting greeting) {
         this.conditionals.add(greeting);
+        return this;
+    }
+
+    @Override
+    public INPC setHasInfo(ItemStack stack, IConditionalGreeting infoGreeting) {
+        this.hasInfo =stack;
+        this.infoGreeting = infoGreeting;
         return this;
     }
 
@@ -207,6 +222,12 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
         return Text.localize(getRegistryName().getResourceDomain() + ".npc." + getRegistryName().getResourcePath() + ".name");
     }
 
+    @SuppressWarnings("unchecked")
+    public String getInfoGreeting(EntityPlayer player, EntityNPC npc) {
+        if (infoGreeting == null || !infoGreeting.canDisplay(player, npc, this)) return null;
+        return infoGreeting.getLocalizedText(player, npc, npc.getNPC(), infoGreeting.getUnlocalizedText(player, npc, npc.getNPC()));
+    }
+
     public ResourceLocation getSkin() {
         return skin;
     }
@@ -241,6 +262,10 @@ public class NPC extends net.minecraftforge.fml.common.registry.IForgeRegistryEn
         if (gifts == null) return Quality.DECENT; //Always dislike burnt food
         if (stack.getItem() == HFCooking.MEAL && !stack.hasTagCompound()) return Quality.DISLIKE;
         return gifts.getQuality(stack);
+    }
+
+    public ItemStack hasInfo() {
+        return hasInfo;
     }
 
     public ISchedule getScheduler() {

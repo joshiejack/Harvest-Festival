@@ -6,6 +6,7 @@
 * Added command to dump list of shops for CraftTweaker purposes (/hf shops)
 * Add command that makes all recipes learnt/unlearnt
 * Added signs to buildings that display the shops opening times
+* Added buttons to the npcs chat, that allow you to ask for opening hours, or to gift them.
 * Add sounds when builder places blocks
 * Change the colour of leaves/grass for all seasons
 * Reverse the logic for crops being shippable. This may make existing crops unsellable.

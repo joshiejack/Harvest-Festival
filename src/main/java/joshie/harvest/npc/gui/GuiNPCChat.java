@@ -2,14 +2,16 @@ package joshie.harvest.npc.gui;
 
 import joshie.harvest.core.handlers.GuiHandler;
 import joshie.harvest.core.handlers.HFTrackers;
+import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.util.Text;
 import joshie.harvest.npc.NPCHelper;
 import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.npc.packet.PacketGift;
+import joshie.harvest.npc.packet.PacketInfo;
 import joshie.harvest.player.stats.Stats;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.TextFormatting;
-import org.apache.commons.lang3.SystemUtils;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -24,19 +26,20 @@ public class GuiNPCChat extends GuiNPCBase {
     private double character; //A ticker, Determines what character we should be displaying
     private boolean finished; //Whether the text has finished displaying
     private boolean isScriptInit = false;
+    private boolean info = false;
 
     private String format(String string) {
         if (string == null) return "FORGOT SOME TEXT DUMBASS";
         Stats stats = HFTrackers.getClientPlayerTracker().getStats();
-        string = string.replace("<BR>", SystemUtils.LINE_SEPARATOR);
         String npcLover = npc.getLover() != null ? npc.getLover().getNPC().getLocalizedName() : Text.translate("nolover");
         String playerLover = HFTrackers.getClientPlayerTracker().getRelationships().getLover();
         return String.format(string, stats.getGold(), playerLover, npcLover, player.getDisplayNameString(), npc.getNPC().getLocalizedName());
     }
 
-    public GuiNPCChat(EntityPlayer player, EntityNPC npc, EnumHand hand, int nextGui) {
+    public GuiNPCChat(EntityPlayer player, EntityNPC npc, EnumHand hand, int nextGui, boolean info) {
         super(player, npc, hand, nextGui);
         isScriptInit = false;
+        this.info = info;
     }
 
     private boolean buildScript() {
@@ -136,7 +139,11 @@ public class GuiNPCChat extends GuiNPCBase {
 
     @Override
     protected void onMouseClick(int mouseX, int mouseY) {
-        nextChat();
+        if (isPointInRegion(242, 156, 17, 19, npcMouseX, npcMouseY))
+            PacketHandler.sendToServer(new PacketGift(npc));
+        else if (npc.getNPC().hasInfo() != null && isPointInRegion(242, 177, 17, 19, npcMouseX, npcMouseY))
+            PacketHandler.sendToServer(new PacketInfo(npc));
+        else nextChat();
     }
 
     private void nextChat() {
@@ -154,10 +161,16 @@ public class GuiNPCChat extends GuiNPCBase {
 
     @Override
     public String getScript() {
+        //Shops
         if (NPCHelper.isShopOpen(npc.getNPC(), player.worldObj, player) && nextGui == GuiHandler.SHOP_OPTIONS) {
             return npc.getNPC().getShop().getWelcome(player, npc);
         }
 
+        //Info Greeting
+        String infoGreeting = info ? npc.getNPC().getInfoGreeting(player, npc): null;
+        if (infoGreeting != null) return infoGreeting;
+
+        //Scripts
         String script = HFTrackers.getClientPlayerTracker().getQuests().getScript(player, npc);
         return script == null ? npc.getNPC().getGreeting(player, npc) : script;
     }

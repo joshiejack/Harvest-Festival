@@ -7,6 +7,8 @@ import joshie.harvest.core.lib.HFModInfo;
 import joshie.harvest.core.network.PacketHandler;
 import joshie.harvest.core.util.Text;
 import joshie.harvest.npc.entity.EntityNPC;
+import joshie.harvest.npc.packet.PacketGift;
+import joshie.harvest.npc.packet.PacketInfo;
 import joshie.harvest.npc.packet.PacketSelect;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
@@ -124,7 +126,11 @@ public class GuiNPCSelect extends GuiNPCBase {
 
     @Override
     public void onMouseClick(int mouseX, int mouseY) {
-        if (selection != null) {
+        if (isPointInRegion(242, 156, 17, 19, npcMouseX, npcMouseY))
+            PacketHandler.sendToServer(new PacketGift(npc));
+        else if (npc.getNPC().hasInfo() != null && isPointInRegion(242, 177, 17, 19, npcMouseX, npcMouseY))
+            PacketHandler.sendToServer(new PacketInfo(npc));
+        else if (selection != null) {
             if (mouseY >= 158 && mouseY <= 166 && isValidOption(0)) {
                 selected = 1;
                 select();

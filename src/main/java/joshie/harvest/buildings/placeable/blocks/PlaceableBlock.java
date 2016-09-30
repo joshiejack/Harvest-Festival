@@ -71,11 +71,11 @@ public class PlaceableBlock extends Placeable {
     }
 
     @Override
-    public final boolean place (World world, BlockPos pos, Direction direction) {
+    public final boolean place (World world, BlockPos pos, Direction direction, boolean playSound) {
         if (!prePlace(world, pos, direction)) return false;
         IBlockState state = getTransformedState(direction);
         if (world.getBlockState(pos) == state) return false;
-        world.playEvent(null, 2001, pos, Block.getStateId(state));
+        if(playSound) world.playEvent(null, 2001, pos, Block.getStateId(state));
         boolean result = world.setBlockState(pos, state, 2);
         if (result) {
             postPlace(world, pos, direction);

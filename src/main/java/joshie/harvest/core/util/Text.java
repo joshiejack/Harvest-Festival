@@ -65,6 +65,10 @@ public class Text {
         return I18n.translateToLocalFormatted(key, data);
     }
 
+    public static String formatHF(String key, Object... data) {
+        return I18n.translateToLocalFormatted(MODID + "." + key, data);
+    }
+
     @SuppressWarnings("deprecation")
     public static String localize(String key) {
         return I18n.translateToLocal(key);

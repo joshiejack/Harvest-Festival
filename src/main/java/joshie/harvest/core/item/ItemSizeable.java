@@ -13,7 +13,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 import java.util.Locale;
@@ -58,12 +57,10 @@ public class ItemSizeable extends ItemHFFML<ItemSizeable, Sizeable> implements I
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
         Size sizeof = getSize(stack);
-        String text = Text.translate("sizeable.format");
         String size = Text.translate("sizeable." + sizeof.name().toLowerCase(Locale.ENGLISH));
         String name = Text.translate("sizeable." + getObjectFromStack(stack).getUnlocalizedName());
-        text = StringUtils.replace(text, "%S", size);
-        text = StringUtils.replace(text, "%P", name);
-        return text;
+        String format = Text.translate("sizeable.format");
+        return String.format(format, size, name);
     }
 
     @Override

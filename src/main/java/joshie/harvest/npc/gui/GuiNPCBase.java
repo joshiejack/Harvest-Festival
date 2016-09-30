@@ -8,6 +8,7 @@ import joshie.harvest.core.util.GuiBaseContainer;
 import joshie.harvest.npc.HFNPCs;
 import joshie.harvest.npc.entity.EntityNPC;
 import joshie.harvest.npc.packet.PacketClose;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumHand;
@@ -32,6 +33,10 @@ public abstract class GuiNPCBase extends GuiBaseContainer {
         nextGui = next;
         inside = npc.getNPC().getInsideColor();
         outside = npc.getNPC().getOutsideColor();
+    }
+
+    public FontRenderer getFont() {
+        return fontRendererObj;
     }
 
     @Override

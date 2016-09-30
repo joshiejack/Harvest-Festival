@@ -3,8 +3,8 @@ package joshie.harvest.core.util;
 import gnu.trove.map.TCharObjectMap;
 import gnu.trove.map.hash.TCharObjectHashMap;
 import joshie.harvest.core.lib.HFModInfo;
+import joshie.harvest.npc.gui.GuiNPCBase;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
 
@@ -82,21 +82,33 @@ public class ChatFontRenderer {
     }
 
     private static int getWidth(char c) {
+        if (!map.containsKey(c)) return -1;
         if (map.get(c) != null) return map.get(c).getWidth();
         else return 10;
     }
 
-    public static void render(Gui gui, int x, int y, String text, int colorInner, int colorOuter) {
+    private static boolean renderAsVanilla(GuiNPCBase gui, String text, int x, int y, int colorInner) {
+        GlStateManager.pushMatrix();
+        float scale = 1.5F;
+        GlStateManager.scale(scale, scale, scale);
+        gui.drawString(gui.getFont(), text, (int) ((x + 235 - (gui.getFont().getStringWidth(text) * scale)) / scale), (int) ((y + 137) / scale), colorInner);
+        GlStateManager.popMatrix();
+        return false;
+    }
+
+    public static boolean render(GuiNPCBase gui, int x, int y, String text, int colorInner, int colorOuter) {
         Minecraft.getMinecraft().getTextureManager().bindTexture(resource);
         char[] characters = text.toCharArray();
         int offset = 0;
         int width = 0;
-        for (char c : characters) {
-            width += getWidth(c) - 2;
-        }
-
         int xOffset = 235;
         int yOffset = 134;
+        for (char c : characters) {
+            int extraWidth = getWidth(c) - 2;
+            if (extraWidth <= 0) {
+                return renderAsVanilla(gui, text, x, y, colorInner);
+            } else width += extraWidth;
+        }
 
         for (char c : characters) {
             ChatChar cNum = map.get(c);
@@ -110,5 +122,6 @@ public class ChatFontRenderer {
         }
 
         GlStateManager.color(1F, 1F, 1F, 1F);
+        return true;
     }
 }

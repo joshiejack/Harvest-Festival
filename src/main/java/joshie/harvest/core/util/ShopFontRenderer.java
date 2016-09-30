@@ -2,8 +2,8 @@ package joshie.harvest.core.util;
 
 import gnu.trove.map.TCharObjectMap;
 import gnu.trove.map.hash.TCharObjectHashMap;
+import joshie.harvest.npc.gui.GuiNPCBase;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
 
@@ -62,17 +62,31 @@ public class ShopFontRenderer {
     }
 
     private static int getWidth(char c) {
+        if (!map.containsKey(c)) return -1;
         if (map.get(c) != null) return map.get(c).getWidth();
         else return 10;
     }
 
-    public static void render(Gui gui, int x, int y, String text, boolean rightAligned) {
+    private static boolean renderAsVanilla(GuiNPCBase gui, String text, int x, int y) {
+        GlStateManager.pushMatrix();
+        float scale = 1.5F;
+        GlStateManager.scale(scale, scale, scale);
+        gui.drawString(gui.getFont(), text, (int) ((x) / scale), (int) ((y) / scale), 0xA18B61);
+        GlStateManager.color(1F, 1F, 1F);
+        GlStateManager.popMatrix();
+        return false;
+    }
+
+    public static boolean render(GuiNPCBase gui, int x, int y, String text, boolean rightAligned) {
         Minecraft.getMinecraft().getTextureManager().bindTexture(resource);
         char[] characters = text.toCharArray();
         int offset = 0;
         int width = 0;
         for (char c : characters) {
-            width += getWidth(c) - 2;
+            int extraWidth = getWidth(c) - 2;
+            if (extraWidth <= 0) {
+                return renderAsVanilla(gui, text, x, y);
+            } else width += extraWidth;
         }
 
         if (rightAligned) offset = -width;
@@ -85,5 +99,6 @@ public class ShopFontRenderer {
         }
 
         GlStateManager.color(1F, 1F, 1F, 1F);
+        return true;
     }
 }

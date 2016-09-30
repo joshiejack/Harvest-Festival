@@ -183,10 +183,10 @@ public class BuildingImpl extends Impl<BuildingImpl> implements Building {
     public EnumActionResult generate(World world, BlockPos pos, Mirror mirror, Rotation rotation) {
         if (!world.isRemote && full_list != null) {
             Direction direction = Direction.withMirrorAndRotation(mirror, rotation);
-            for (Placeable placeable: full_list) placeable.place(world, pos, direction, ConstructionStage.BUILD);
-            for (Placeable placeable: full_list) placeable.place(world, pos, direction, ConstructionStage.DECORATE);
-            for (Placeable placeable: full_list) placeable.place(world, pos, direction, ConstructionStage.PAINT);
-            for (Placeable placeable: full_list) placeable.place(world, pos, direction, ConstructionStage.MOVEIN);
+            for (Placeable placeable: full_list) placeable.place(world, pos, direction, ConstructionStage.BUILD, false);
+            for (Placeable placeable: full_list) placeable.place(world, pos, direction, ConstructionStage.DECORATE, false);
+            for (Placeable placeable: full_list) placeable.place(world, pos, direction, ConstructionStage.PAINT, false);
+            for (Placeable placeable: full_list) placeable.place(world, pos, direction, ConstructionStage.MOVEIN, false);
             TownHelper.getClosestTownToBlockPos(world, pos).addBuilding(world, this, direction, pos);
             MCServerHelper.markForUpdate(world, pos);
         }

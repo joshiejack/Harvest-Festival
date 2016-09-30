@@ -41,6 +41,14 @@ public class PlaceableItemFrame extends PlaceableHanging {
     @Override
     public PlaceableItemFrame getCopyFromEntity(Entity e, int x, int y, int z) {
         EntityItemFrame frame = (EntityItemFrame) e;
-        return new PlaceableItemFrame(null, frame.getDisplayedItem(), frame.getRotation(), frame.facingDirection, x, y, z);
+
+        ResourceLocation chestType = null;
+        ItemStack stack = frame.getDisplayedItem();
+        if (stack != null && stack.hasDisplayName()) {
+            chestType = new ResourceLocation("harvestfestival", "frames/" + stack.getDisplayName());
+            stack = new ItemStack(stack.getItem(), 1, stack.getItemDamage());
+        }
+
+        return new PlaceableItemFrame(chestType, stack, frame.getRotation(), frame.facingDirection, x, y, z);
     }
 }

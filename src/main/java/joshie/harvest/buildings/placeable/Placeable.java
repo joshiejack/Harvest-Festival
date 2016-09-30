@@ -46,12 +46,12 @@ public abstract class Placeable {
         }
     }
 
-    public boolean place(World world, BlockPos pos, Direction direction, ConstructionStage stage) {
+    public boolean place(World world, BlockPos pos, Direction direction, ConstructionStage stage, boolean playSound) {
         if (world.getBlockState(pos).getBlockHardness(world, pos) == -1F) return true;
         if (canPlace(stage)) {
             BlockPos transformed = getTransformedPosition(pos, direction);
             clearBushes(world, transformed.up());
-            return place(world, transformed, direction);
+            return place(world, transformed, direction, playSound);
         } else return false;
     }
 
@@ -89,7 +89,7 @@ public abstract class Placeable {
         }
     }
 
-    public boolean place (World world, BlockPos pos, Direction direction) {
+    public boolean place (World world, BlockPos pos, Direction direction, boolean playSound) {
         return false;
     }
 

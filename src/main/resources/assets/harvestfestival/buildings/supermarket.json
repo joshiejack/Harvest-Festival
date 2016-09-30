@@ -2475,6 +2475,19 @@
       "isBlock": true,
       "theData": {
         "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 2,
+        "y": 4,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
           "name": "minecraft:fence",
           "meta": 0
         },
@@ -4860,12 +4873,12 @@
       }
     },
     {
-      "type": "PlaceableDecorative",
+      "type": "PlaceableBlock",
       "isBlock": true,
       "theData": {
         "state": {
-          "name": "minecraft:vine",
-          "meta": 1
+          "name": "minecraft:air",
+          "meta": 0
         },
         "x": 5,
         "y": 5,
@@ -5026,6 +5039,19 @@
         "x": 6,
         "y": 5,
         "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 6,
+        "y": 5,
+        "z": 11
       }
     },
     {
@@ -6756,12 +6782,12 @@
       }
     },
     {
-      "type": "PlaceableDecorative",
+      "type": "PlaceableBlock",
       "isBlock": true,
       "theData": {
         "state": {
-          "name": "minecraft:vine",
-          "meta": 1
+          "name": "minecraft:air",
+          "meta": 0
         },
         "x": 5,
         "y": 6,
@@ -7546,6 +7572,19 @@
         "x": 10,
         "y": 6,
         "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 10,
+        "y": 6,
+        "z": 7
       }
     },
     {
@@ -12109,17 +12148,6 @@
       }
     },
     {
-      "type": "PlaceableNPC",
-      "isBlock": false,
-      "theData": {
-        "homeString": "",
-        "npc": "harvestfestival:yulif",
-        "x": 5,
-        "y": 10,
-        "z": 3
-      }
-    },
-    {
       "type": "PlaceableDecorative",
       "isBlock": true,
       "theData": {
@@ -13417,7 +13445,7 @@
       "theData": {
         "state": {
           "name": "minecraft:wooden_door",
-          "meta": 0
+          "meta": 4
         },
         "x": 11,
         "y": 10,
@@ -14788,6 +14816,19 @@
         "x": 10,
         "y": 11,
         "z": 2
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 10,
+        "y": 11,
+        "z": 3
       }
     },
     {
@@ -20254,6 +20295,19 @@
       "isBlock": true,
       "theData": {
         "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 9,
+        "y": 14,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
           "name": "minecraft:dark_oak_stairs",
           "meta": 2
         },
@@ -21782,6 +21836,19 @@
         },
         "x": 7,
         "y": 15,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 15,
         "z": 7
       }
     },
@@ -21790,12 +21857,25 @@
       "isBlock": false,
       "theData": {
         "chestType": "harvestfestival:frames/market_bedroom",
-        "stack": "minecraft:red_flower 7",
+        "stack": "minecraft:item_frame",
         "rotation": 0,
         "facing": "EAST",
         "x": 7,
         "y": 15,
         "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 15,
+        "z": 8
       }
     },
     {
@@ -21809,6 +21889,32 @@
         "x": 7,
         "y": 15,
         "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 15,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 15,
+        "z": 11
       }
     },
     {
@@ -21966,6 +22072,32 @@
         "x": 8,
         "y": 15,
         "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 8,
+        "y": 15,
+        "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 8,
+        "y": 15,
+        "z": 10
       }
     },
     {
@@ -22169,6 +22301,45 @@
         },
         "x": 9,
         "y": 15,
+        "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 9,
+        "y": 15,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 9,
+        "y": 15,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 9,
+        "y": 15,
         "z": 12
       }
     },
@@ -22327,6 +22498,19 @@
         "x": 10,
         "y": 15,
         "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 10,
+        "y": 15,
+        "z": 10
       }
     },
     {
@@ -23466,12 +23650,77 @@
       "isBlock": true,
       "theData": {
         "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 16,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 16,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 16,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
           "name": "minecraft:spruce_stairs",
           "meta": 5
         },
         "x": 7,
         "y": 16,
         "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 16,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 16,
+        "z": 11
       }
     },
     {
@@ -23604,6 +23853,19 @@
       }
     },
     {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 8,
+        "y": 16,
+        "z": 7
+      }
+    },
+    {
       "type": "PlaceableDecorative",
       "isBlock": true,
       "theData": {
@@ -23627,6 +23889,45 @@
         "x": 8,
         "y": 16,
         "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 8,
+        "y": 16,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 8,
+        "y": 16,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 8,
+        "y": 16,
+        "z": 12
       }
     },
     {
@@ -23747,6 +24048,19 @@
       }
     },
     {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 9,
+        "y": 16,
+        "z": 8
+      }
+    },
+    {
       "type": "PlaceableDecorative",
       "isBlock": true,
       "theData": {
@@ -23757,6 +24071,45 @@
         "x": 9,
         "y": 16,
         "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 9,
+        "y": 16,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 9,
+        "y": 16,
+        "z": 11
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 9,
+        "y": 16,
+        "z": 12
       }
     },
     {
@@ -23881,12 +24234,51 @@
       "isBlock": true,
       "theData": {
         "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 10,
+        "y": 16,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
           "name": "minecraft:spruce_stairs",
           "meta": 4
         },
         "x": 10,
         "y": 16,
         "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 10,
+        "y": 16,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 10,
+        "y": 16,
+        "z": 11
       }
     },
     {
@@ -25083,6 +25475,19 @@
       }
     },
     {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 7,
+        "y": 17,
+        "z": 7
+      }
+    },
+    {
       "type": "PlaceableDecorative",
       "isBlock": true,
       "theData": {
@@ -25277,6 +25682,19 @@
       }
     },
     {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 8,
+        "y": 17,
+        "z": 7
+      }
+    },
+    {
       "type": "PlaceableDecorative",
       "isBlock": true,
       "theData": {
@@ -25300,6 +25718,32 @@
         "x": 8,
         "y": 17,
         "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 8,
+        "y": 17,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 8,
+        "y": 17,
+        "z": 11
       }
     },
     {
@@ -25436,12 +25880,64 @@
       "isBlock": true,
       "theData": {
         "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 9,
+        "y": 17,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 9,
+        "y": 17,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
           "name": "minecraft:log",
           "meta": 5
         },
         "x": 9,
         "y": 17,
         "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 9,
+        "y": 17,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 9,
+        "y": 17,
+        "z": 11
       }
     },
     {
@@ -25572,6 +26068,19 @@
         "x": 10,
         "y": 17,
         "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 10,
+        "y": 17,
+        "z": 7
       }
     },
     {
@@ -27075,12 +27584,77 @@
       "isBlock": true,
       "theData": {
         "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 8,
+        "y": 18,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 8,
+        "y": 18,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 8,
+        "y": 18,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
           "name": "minecraft:carpet",
           "meta": 12
         },
         "x": 8,
         "y": 18,
         "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 8,
+        "y": 18,
+        "z": 10
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 8,
+        "y": 18,
+        "z": 11
       }
     },
     {
@@ -27179,12 +27753,64 @@
       "isBlock": true,
       "theData": {
         "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 9,
+        "y": 18,
+        "z": 6
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 9,
+        "y": 18,
+        "z": 7
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 9,
+        "y": 18,
+        "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
           "name": "minecraft:carpet",
           "meta": 12
         },
         "x": 9,
         "y": 18,
         "z": 9
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 9,
+        "y": 18,
+        "z": 11
       }
     },
     {
@@ -27329,6 +27955,19 @@
         "x": 10,
         "y": 18,
         "z": 8
+      }
+    },
+    {
+      "type": "PlaceableBlock",
+      "isBlock": true,
+      "theData": {
+        "state": {
+          "name": "minecraft:air",
+          "meta": 0
+        },
+        "x": 10,
+        "y": 18,
+        "z": 9
       }
     },
     {

@@ -22,7 +22,7 @@ public abstract class PlaceableEntity extends Placeable {
     public abstract Entity getEntity(World world, BlockPos pos, Direction direction);
 
     @Override
-    public boolean place (World world, BlockPos pos, Direction direction) {
+    public boolean place (World world, BlockPos pos, Direction direction, boolean playSound) {
         Entity entity = getEntity(world, pos, direction);
         if (entity == null) return false;
         return world.spawnEntityInWorld(entity);

@@ -29,15 +29,9 @@ public class GuiNPCChat extends GuiNPCBase {
         if (string == null) return "FORGOT SOME TEXT DUMBASS";
         Stats stats = HFTrackers.getClientPlayerTracker().getStats();
         string = string.replace("<BR>", SystemUtils.LINE_SEPARATOR);
-        string = string.replace("%p", player.getDisplayNameString());
-        string = string.replace("%e", npc.getNPC().getLocalizedName());
-        string = string.replace("%$", "" + stats.getGold());
-
-        if (npc.getLover() != null) {
-            string = string.replace("%E", npc.getLover().getNPC().getLocalizedName());
-        } else string = string.replace("%E", Text.translate("nolover"));
-
-        return string.replace("%P", HFTrackers.getClientPlayerTracker().getRelationships().getLover());
+        String npcLover = npc.getLover() != null ? npc.getLover().getNPC().getLocalizedName() : Text.translate("nolover");
+        String playerLover = HFTrackers.getClientPlayerTracker().getRelationships().getLover();
+        return String.format(string, stats.getGold(), playerLover, npcLover, player.getDisplayNameString(), npc.getNPC().getLocalizedName());
     }
 
     public GuiNPCChat(EntityPlayer player, EntityNPC npc, EnumHand hand, int nextGui) {

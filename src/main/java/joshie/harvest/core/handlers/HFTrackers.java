@@ -9,11 +9,13 @@ import joshie.harvest.calendar.CalendarData;
 import joshie.harvest.calendar.CalendarServer;
 import joshie.harvest.core.helpers.EntityHelper;
 import joshie.harvest.core.lib.HFModInfo;
+import joshie.harvest.mining.MineManager;
 import joshie.harvest.player.PlayerTracker;
 import joshie.harvest.player.PlayerTrackerClient;
 import joshie.harvest.player.PlayerTrackerServer;
 import joshie.harvest.town.TownTracker;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -21,6 +23,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.UUID;
+
+import static joshie.harvest.mining.HFMining.MINE_WORLD;
 
 public class HFTrackers {
     /*####################World Based Trackers##########################*/
@@ -38,6 +42,7 @@ public class HFTrackers {
     public static void resetServer() {
         SERVER_WORLDS.clear();
         SERVER_CALENDAR = null;
+        MINE_MANAGER = null;
     }
 
     @SideOnly(Side.CLIENT)
@@ -119,6 +124,30 @@ public class HFTrackers {
 
     public static void markCalendarDirty() {
         SERVER_CALENDAR.markDirty();
+    }
+
+    /*####################Mining Trackers##########################*/
+    private static final String MINING_NAME = "HF-Mine-Manager";
+    private static MineManager MINE_MANAGER;
+
+    public static MineManager getMineManager(World world) {
+        if (MINE_MANAGER == null) {
+            MINE_MANAGER = (MineManager) world.getPerWorldStorage().getOrLoadData(MineManager.class, MINING_NAME);
+            if (MINE_MANAGER == null) {
+                MINE_MANAGER = new MineManager(MINING_NAME);
+
+                //TODO: Remove this legacy loading in
+                NBTTagCompound tag = world.getWorldInfo().getDimensionData(MINE_WORLD);
+                if (tag.hasKey("MineManager") && tag.getCompoundTag("MineManager").hasKey("PortalCoordinates")) {
+                    MINE_MANAGER.readFromNBT(tag.getCompoundTag("MineManager"));
+                    MINE_MANAGER.markDirty();
+                }
+
+                world.getPerWorldStorage().setData(MINING_NAME, MINE_MANAGER);
+            }
+        }
+
+        return MINE_MANAGER;
     }
 
     /*####################Player Trackers#############################*/

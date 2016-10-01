@@ -1,3 +1,6 @@
+##0.5.6
+* Save the mine portal locations to the dimension, not level.dat
+
 ##0.5.5
 * Fixed too much winter fog showing up underground
 * Fixed how two tall crops render when breaking the bottom block

@@ -2,19 +2,39 @@ package joshie.harvest.mining;
 
 import gnu.trove.map.TIntObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
+import joshie.harvest.core.handlers.HFTrackers;
 import joshie.harvest.core.helpers.NBTHelper;
+import joshie.harvest.core.util.HFEvents;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.WorldSavedData;
 
-public class MineManager  {
+@HFEvents
+public class MineManager extends WorldSavedData {
     public static final int CHUNK_BOUNDARY = 10;
-    private final TIntObjectMap<TIntObjectMap<IBlockState[][]>> generation = new TIntObjectHashMap<>();
-    private final TIntObjectMap<int[]> coordinates = new TIntObjectHashMap<>();
+    private static final TIntObjectMap<TIntObjectMap<IBlockState[][]>> generation = new TIntObjectHashMap<>();
+    private static final TIntObjectMap<int[]> coordinates = new TIntObjectHashMap<>();
     private TIntObjectMap<TIntObjectMap<BlockPos>> portalCoordinates = new TIntObjectHashMap<>();
 
-    public boolean areCoordinatesGenerated(int mineID, int floor) {
-        return getCoordinateMap(mineID).containsKey(floor);
+    public MineManager(String string) {
+        super(string);
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound tag) {
+        portalCoordinates = NBTHelper.readPositionCollection(tag.getTagList("PortalCoordinates", 10));
+    }
+
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound tag) {
+        tag.setTag("PortalCoordinates", NBTHelper.writePositionCollection(portalCoordinates));
+        return tag;
+    }
+
+    public static boolean areCoordinatesGenerated(World world, int mineID, int floor) {
+        return HFTrackers.getMineManager(world).getCoordinateMap(mineID).containsKey(floor);
     }
 
     public BlockPos getSpawnCoordinateForMine(int mineID, int floor) {
@@ -38,39 +58,30 @@ public class MineManager  {
 
     public void setSpawnForMine(int mineID, int floor, int x, int y, int z) {
         getCoordinateMap(mineID).putIfAbsent(floor, new BlockPos(x, y, z));
+        markDirty();
     }
 
-    public TIntObjectMap<IBlockState[][]> getStateMap(int mapIndex) {
-        return generation.get(mapIndex);
+    static TIntObjectMap<IBlockState[][]> getStateMap(int mapIndex) {
+        return MineManager.generation.get(mapIndex);
     }
 
-    public void putStateMap(int mapIndex, TIntObjectMap<IBlockState[][]>  map) {
-        generation.put(mapIndex, map);
+     static void putStateMap(int mapIndex, TIntObjectMap<IBlockState[][]>  map) {
+         MineManager.generation.put(mapIndex, map);
     }
 
-    public boolean containsStateKey(int mapIndex) {
-        return generation.containsKey(mapIndex);
+    static boolean containsStateKey(int mapIndex) {
+        return MineManager.generation.containsKey(mapIndex);
     }
 
-    public boolean containsCoordinatesKey(int mapIndex) {
-        return coordinates.containsKey(mapIndex);
+    static boolean containsCoordinatesKey(int mapIndex) {
+        return MineManager.coordinates.containsKey(mapIndex);
     }
 
-    public void putCoordinates(int mapIndex, int[] coordinates) {
-        this.coordinates.put(mapIndex, coordinates);
+    static void putCoordinates(int mapIndex, int[] coordinates) {
+        MineManager.coordinates.put(mapIndex, coordinates);
     }
 
-    public int getCoordinates(int mapIndex, int position) {
-        return coordinates.get(mapIndex)[position];
-    }
-
-    public MineManager(NBTTagCompound tag) {
-        portalCoordinates = NBTHelper.readPositionCollection(tag.getTagList("PortalCoordinates", 10));
-    }
-
-    public NBTTagCompound getCompound() {
-        NBTTagCompound tag = new NBTTagCompound();
-        tag.setTag("PortalCoordinates", NBTHelper.writePositionCollection(portalCoordinates));
-        return tag;
+    static int getCoordinates(int mapIndex, int position) {
+        return MineManager.coordinates.get(mapIndex)[position];
     }
 }

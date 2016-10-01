@@ -214,7 +214,6 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
             return super.removedByPlayer(state, world, pos, player, willHarvest);
         }
 
-
         Crop crop = data.getCrop();
         int originalStage = data.getStage();
         boolean isSickle = player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() instanceof IBreakCrops;
@@ -222,6 +221,10 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
             if (section == BOTTOM) {
                 harvestCrop(player, world, pos);
             } else harvestCrop(player, world, pos.down());
+        }
+
+        if (crop.isCurrentlyDouble(data.getStage())) {
+            if (section == PlantSection.BOTTOM) CropHelper.onBottomBroken(pos.up(), getActualState(world.getBlockState(pos.up()), world, pos.up()));
         }
 
         if (isSickle && crop.getMinimumCut() != 0 && crop.requiresSickle() && originalStage >= crop.getMinimumCut()) {
@@ -272,7 +275,6 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
         if (getEnumFromState(state) == CropType.WITHERED) return new ItemStack(Blocks.DEADBUSH); //It's Dead soo???
-
         CropData data = CropHelper.getCropDataAt(world, pos);
         return HFCrops.SEEDS.getStackFromCrop(data.getCrop());
     }
@@ -281,11 +283,7 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
         CropType stage = getEnumFromState(state);
-        if (stage.getSection() == TOP) {
-            return CropHelper.getBlockState(world, pos.down(), stage.getSection(), stage.isWithered());
-        } else  {
-            return CropHelper.getBlockState(world, pos, stage.getSection(), stage.isWithered());
-        }
+        return CropHelper.getBlockState(world, pos, stage.getSection(), stage.isWithered());
     }
 
     public static class RainingSoil {

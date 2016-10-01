@@ -45,6 +45,13 @@ public class CropRegistry implements ICropRegistry {
     }
 
     @Override
+    public ItemStack getCropStack(Crop crop, int amount) {
+        ItemStack stack = HFCrops.CROP.getStackFromObject(crop);
+        stack.stackSize = amount;
+        return stack;
+    }
+
+    @Override
     public void registerCropProvider(ItemStack stack, Crop crop) {
         providers.put(ItemStackHolder.of(stack), crop);
     }
@@ -97,11 +104,11 @@ public class CropRegistry implements ICropRegistry {
     }
 
     @Override
-    public ItemStack harvestCrop(@Nullable EntityPlayer player, World world, BlockPos pos) {
+    public List<ItemStack> harvestCrop(@Nullable EntityPlayer player, World world, BlockPos pos) {
         TileCrop tile = world.getTileEntity(pos) instanceof TileCrop ? (TileCrop) world.getTileEntity(pos) : null;
         if (tile != null) {
             CropData data = tile.getData();
-            ItemStack harvest = data.harvest(player, true);
+            List<ItemStack> harvest = data.harvest(player, true);
             if (harvest != null) {
                 if (data.getCrop().getRegrowStage() <= 0) {
                     if (!world.isRemote) {

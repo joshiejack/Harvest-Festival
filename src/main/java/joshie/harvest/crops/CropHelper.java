@@ -1,5 +1,7 @@
 package joshie.harvest.crops;
 
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
 import joshie.harvest.api.HFApi;
 import joshie.harvest.api.crops.IStateHandler.PlantSection;
 import joshie.harvest.core.helpers.SpawnItemHelper;
@@ -16,15 +18,29 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 import static joshie.harvest.api.crops.IStateHandler.PlantSection.BOTTOM;
 
 public class CropHelper {
     public static final IBlockState WET_SOIL = Blocks.FARMLAND.getDefaultState().withProperty(BlockFarmland.MOISTURE, 7);
     public static final IBlockState DRYING_SOIL = Blocks.FARMLAND.getDefaultState().withProperty(BlockFarmland.MOISTURE, 3);
     public static final IBlockState DRY_SOIL = Blocks.FARMLAND.getDefaultState().withProperty(BlockFarmland.MOISTURE, 0);
+    private static final Cache<BlockPos, IBlockState> RESERVE = CacheBuilder.newBuilder().expireAfterAccess(100, TimeUnit.MILLISECONDS).maximumSize(64).build();
+
+    public static void onBottomBroken(BlockPos pos, IBlockState state) {
+        RESERVE.put(pos, state);
+    }
 
     public static IBlockState getBlockState(IBlockAccess world, BlockPos pos, PlantSection section, boolean withered) {
-        CropData data = getTile(world, pos, section).getData();
+        TileCrop crop = getTile(world, pos, section);
+        if (section == PlantSection.TOP && crop == null) {
+            IBlockState theState = RESERVE.getIfPresent(pos);
+            return theState == null ? Blocks.GRASS.getDefaultState(): theState;
+        }
+
+        CropData data = crop.getData();
         return data.getCrop().getStateHandler().getState(world, pos, section, data.getStage(), withered);
     }
 
@@ -52,12 +68,14 @@ public class CropHelper {
 
     //Harvests the crop at this location
     public static boolean harvestCrop(EntityPlayer player, World world, BlockPos pos) {
-        ItemStack stack = HFApi.crops.harvestCrop(player, world, pos);
-        if (!world.isRemote && stack != null) {
-            SpawnItemHelper.dropBlockAsItem(world, pos.getX(), pos.getY(), pos.getZ(), stack);
+        List<ItemStack> list = HFApi.crops.harvestCrop(player, world, pos);
+        if (!world.isRemote && list != null && list.size() > 0) {
+            for (ItemStack stack: list) {
+                SpawnItemHelper.dropBlockAsItem(world, pos.getX(), pos.getY(), pos.getZ(), stack);
+            }
         }
 
-        return stack != null;
+        return list != null;
     }
 
     public static CropData getCropDataAt(IBlockAccess world, BlockPos pos) {

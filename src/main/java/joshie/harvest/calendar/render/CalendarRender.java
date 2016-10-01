@@ -28,8 +28,8 @@ public class CalendarRender {
     private static final BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
     public static volatile TIntIntMap grassToBlend = new TIntIntHashMap();
     public static volatile TIntIntMap leavesToBlend = new TIntIntHashMap();
-    private static int fogStart = 1;
-    private static int fogTarget = 1;
+    private static int fogStart = 0;
+    private static int fogTarget = 0;
 
     @SubscribeEvent
     public void onRenderOverlay(RenderGameOverlayEvent.Pre event) {
@@ -80,7 +80,7 @@ public class CalendarRender {
                 if (blockpos$mutableblockpos.getY() < j2) fogTarget = 5000;
 
                 //If we're snow or resetting the target
-                if (weather.isSnow() || fogTarget != fogStart) {
+                if (weather.isSnow()) {
                     GlStateManager.setFogEnd(Math.min(event.getFarPlaneDistance(), 150F) * 0.5F);
                     GlStateManager.setFogStart((float) fogStart / 100F);
                 }

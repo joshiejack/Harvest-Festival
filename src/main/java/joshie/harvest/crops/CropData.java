@@ -12,6 +12,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Random;
 
 public class CropData {
@@ -107,7 +108,7 @@ public class CropData {
         else return world.setBlockToAir(pos);
     }
 
-    public ItemStack harvest(@Nullable EntityPlayer player, boolean doHarvest) {
+    public List<ItemStack> harvest(@Nullable EntityPlayer player, boolean doHarvest) {
         if (crop == null) return null;
         if (stage >= crop.getStages() || (crop.requiresSickle() && stage >= crop.getMinimumCut())) {
             int originalStage = stage;
@@ -117,13 +118,17 @@ public class CropData {
                 }
             }
 
-            ItemStack ret = crop.getDropHandler().getDrop(crop, originalStage, rand);
-            if (ret != null && ret.getItem() != HFCrops.CROP) {
-                if (!ret.hasTagCompound()) ret.setTagCompound(new NBTTagCompound());
-                ret.getTagCompound().setBoolean("Sellable", true);
+            List<ItemStack> list = crop.getDropHandler().getDrops(crop, originalStage, rand);
+            if (list != null) {
+                for (ItemStack ret : list) {
+                    if (ret != null && ret.getItem() != HFCrops.CROP) {
+                        if (!ret.hasTagCompound()) ret.setTagCompound(new NBTTagCompound());
+                        ret.getTagCompound().setBoolean("Sellable", true);
+                    }
+                }
             }
 
-            return ret;
+            return list;
         } else return null;
     }
 

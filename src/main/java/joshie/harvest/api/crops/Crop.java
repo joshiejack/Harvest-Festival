@@ -130,9 +130,14 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
 
     /**
      * Make this crop require a sickle to be harvested
-     **/
-    public Crop setRequiresSickle() {
+     * Sets the minimum cut
+     * Used when a crop requires the sickle,
+     *  The crop will only be destroyable/harvestable
+     *  if it's below this stage
+     */
+    public Crop setRequiresSickle(int minCut) {
         this.requiresSickle = true;
+        this.minCut = minCut;
         return this;
     }
 
@@ -218,16 +223,6 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
      **/
     public Crop setGrowsToSide(Block block) {
         this.growsToSide = block;
-        return this;
-    }
-
-    /** Sets the minimum cut
-     * Used when a crop requires the sickle,
-     *  The crop will only be destroyable/harvestable
-     *  if it's below this stage
-     */
-    public Crop setMinimumCut(int cut) {
-        this.minCut = cut;
         return this;
     }
 
@@ -416,9 +411,11 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
      *  This crop as a stack
      **/
     public ItemStack getCropStack(int amount) {
-        ItemStack copy = item.copy();
-        copy.stackSize = amount;
-        return copy;
+        if (item != null) {
+            ItemStack copy = item.copy();
+            copy.stackSize = amount;
+            return item.copy();
+        } else return HFApi.crops.getCropStack(this, amount);
     }
 
     /**

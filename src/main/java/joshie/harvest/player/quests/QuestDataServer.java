@@ -47,7 +47,10 @@ public class QuestDataServer extends QuestData {
             finished.add(localQuest);
             current.remove(localQuest);
             localQuest.onQuestCompleted(master.getAndCreatePlayer());
-        } else quest.onQuestCompleted(master.getAndCreatePlayer());
+        } else {
+            finished.add(quest);
+            quest.onQuestCompleted(master.getAndCreatePlayer());
+        }
 
         //Sync everything
         PacketHandler.sendToClient(new PacketQuestCompleted(quest), master.getAndCreatePlayer()); //Let the client claim too

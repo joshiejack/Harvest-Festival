@@ -8,7 +8,6 @@ import joshie.harvest.api.crops.Crop;
 import joshie.harvest.api.crops.GrowthHandler;
 import joshie.harvest.core.base.FMLDefinition;
 import joshie.harvest.core.base.MeshIdentical;
-import joshie.harvest.core.block.BlockGoddessWater;
 import joshie.harvest.core.helpers.RegistryHelper;
 import joshie.harvest.core.util.HFLoader;
 import joshie.harvest.crops.block.BlockHFCrops;
@@ -36,10 +35,14 @@ import net.minecraft.world.storage.loot.functions.LootFunctionManager;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 import org.apache.commons.lang3.text.WordUtils;
+
+import java.util.Iterator;
+import java.util.List;
 
 import static joshie.harvest.api.animals.AnimalFoodType.FRUIT;
 import static joshie.harvest.api.calendar.Season.*;
@@ -84,8 +87,8 @@ public class HFCrops {
     public static final Crop BEETROOT = registerCrop("beetroot", 250L, 75L, 8, 0, 0, 0x690000, AUTUMN).setItem(new ItemStack(Items.BEETROOT)).setStateHandler(new StateHandlerSeedFood(Blocks.BEETROOTS));
 
     //Year Long Crops
-    public static final Crop GRASS = registerCrop("grass", 500L, 1L, 11, 1, 0, 0x7AC958, SPRING, SUMMER, AUTUMN).setWitheredColor(0x7a5230).setAnimalFoodType(AnimalFoodType.GRASS).setDropHandler(new DropHandlerGrass()).setMinimumCut(6).setBecomesDouble(6).setHasAlternativeName().setRequiresSickle().setNoWaterRequirements().setStateHandler(new StateHandlerGrass());
-    public static final Crop WHEAT = registerCrop("wheat", 150L, 100L, 28, 0, 0, 0XEAC715, SPRING, SUMMER, AUTUMN).setItem(new ItemStack(Items.WHEAT)).setAnimalFoodType(AnimalFoodType.GRASS).setRequiresSickle().setStateHandler(new StateHandlerWheat());
+    public static final Crop GRASS = registerCrop("grass", 500L, 1L, 11, 1, 0, 0x7AC958, SPRING, SUMMER, AUTUMN).setWitheredColor(0x7a5230).setAnimalFoodType(AnimalFoodType.GRASS).setDropHandler(new DropHandlerGrass()).setBecomesDouble(6).setHasAlternativeName().setRequiresSickle(6).setNoWaterRequirements().setStateHandler(new StateHandlerGrass());
+    public static final Crop WHEAT = registerCrop("wheat", 150L, 100L, 28, 0, 0, 0XEAC715, SPRING, SUMMER, AUTUMN).setItem(new ItemStack(Items.WHEAT)).setAnimalFoodType(AnimalFoodType.GRASS).setRequiresSickle(0).setStateHandler(new StateHandlerWheat());
 
     //Nether Crops
     public static final Crop NETHER_WART = registerCrop("nether_wart", 25000L, 10L, 4, 1, 1, 0x8B0000).setItem(new ItemStack(Items.NETHER_WART)).setStateHandler(new StateHandlerNetherWart()).setPlantType(EnumPlantType.Nether).setNoWaterRequirements().setGrowthHandler(SOUL_SAND).setDropHandler(new DropHandlerNetherWart());
@@ -97,7 +100,6 @@ public class HFCrops {
     public static void preInit() {
         //Register the crop serializer
         LootFunctionManager.registerFunction(new SetCropType.Serializer());
-
         registerVanillaCrop(Items.WHEAT, WHEAT);
         registerVanillaCrop(Items.CARROT, CARROT);
         registerVanillaCrop(Items.POTATO, POTATO);
@@ -106,25 +108,6 @@ public class HFCrops {
         registerVanillaCrop(Blocks.PUMPKIN, PUMPKIN);
         registerVanillaCrop(Items.NETHER_WART, NETHER_WART);
         HFApi.shipping.registerSellable(new ItemStack(Items.POISONOUS_POTATO), 1L);
-
-        //Add a new crop item for things that do not have an item yet :D
-        for (Crop crop : Crop.REGISTRY.getValues()) {
-            if (crop != Crop.NULL_CROP) {
-                if (!crop.hasItemAssigned()) {
-                    crop.setItem(CROP.getStackFromObject(crop));
-                }
-
-                //Register always in the ore dictionary
-                ItemStack clone = crop.getCropStack(1);
-                String name = "crop" + WordUtils.capitalizeFully(crop.getRegistryName().getResourcePath(), '_').replace("_", "");
-                if (!isInDictionary(name, clone)) {
-                    OreDictionary.registerOre(name, clone);
-                }
-
-                //Allow all crops to be throw in goddess water
-                BlockGoddessWater.VALID_ITEMS.register(crop.getCropStack(1));
-            }
-        }
 
         RegistryHelper.registerTiles(TileCrop.class, TileWithered.class, TileSprinkler.class);
         if (DISABLE_VANILLA_MOISTURE) Blocks.FARMLAND.setTickRandomly(false);
@@ -162,6 +145,34 @@ public class HFCrops {
 
         //Register the models
         FMLDefinition.getDefinition("crops").registerEverything();
+    }
+
+    private static List<List<ItemStack>> idToStack = ReflectionHelper.getPrivateValue(OreDictionary.class, null, "idToStack");
+
+    public static void remap() {
+        //Remove my existing entries
+        for (int i = 0; i < idToStack.size(); i++) {
+            Iterator<ItemStack> it = idToStack.get(i).iterator();
+            while (it.hasNext()) {
+                if (it.next().getItem() == CROP) {
+                    it.remove();
+                }
+            }
+        }
+
+        OreDictionary.rebakeMap();
+
+        //Register everything
+        for (Crop crop : Crop.REGISTRY.getValues()) {
+            if (crop != Crop.NULL_CROP) {
+                //Register always in the ore dictionary
+                ItemStack clone = crop.getCropStack(1);
+                String name = "crop" + WordUtils.capitalizeFully(crop.getRegistryName().getResourcePath(), '_').replace("_", "");
+                if (!isInDictionary(name, clone)) {
+                    OreDictionary.registerOre(name, clone);
+                }
+            }
+        }
     }
 
     private static void registerVanillaCrop(Item item, Crop crop) {

@@ -1,5 +1,8 @@
 ##0.5.5
+* Added Support for IE Hemp as a test
 * Fixed too much winter fog showing up underground
+* Fixed how two tall crops render when breaking the bottom block
+* Properly fixed not being able to skip the intro quest
 * Make entities avoid water if possible
 
 ##0.5.4

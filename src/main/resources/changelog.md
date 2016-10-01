@@ -1,5 +1,6 @@
 ##0.5.5
 * Fixed too much winter fog showing up underground
+* Make entities avoid water if possible
 
 ##0.5.4
 * Added config option for giving the cheat buildings instead of blueprints

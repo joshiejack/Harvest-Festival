@@ -13,6 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
@@ -42,6 +43,7 @@ public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable imple
         this.npc = npc;
         this.enablePersistence();
         setSize(0.6F, (1.8F * npc.getHeight()));
+        setPathPriority(PathNodeType.WATER, 0.0F);
         stepHeight = 0.75F;
     }
 

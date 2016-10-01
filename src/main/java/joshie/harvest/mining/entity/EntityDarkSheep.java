@@ -9,6 +9,7 @@ import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
@@ -20,6 +21,7 @@ public class EntityDarkSheep extends EntityMob {
     public EntityDarkSheep(World world) {
         super(world);
         setSize(1.4F, 1.4F);
+        setPathPriority(PathNodeType.WATER, 0.0F);
     }
 
     @Override

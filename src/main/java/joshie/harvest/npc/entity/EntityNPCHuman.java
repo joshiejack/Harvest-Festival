@@ -49,8 +49,8 @@ public abstract class EntityNPCHuman<E extends EntityNPCHuman> extends EntityNPC
 
     @Override
     protected void initEntityAI() {
-        ((PathNavigateGround) this.getNavigator()).setEnterDoors(true);
-        ((PathNavigateGround) this.getNavigator()).setBreakDoors(true);
+        ((PathNavigateGround) getNavigator()).setEnterDoors(true);
+        ((PathNavigateGround) getNavigator()).setBreakDoors(true);
         tasks.addTask(0, new EntityAISwimming(this));
         tasks.addTask(1, new EntityAITalkingTo(this));
         tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));

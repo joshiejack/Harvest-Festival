@@ -10,7 +10,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 
 public abstract class StateHandlerVanilla implements IStateHandler {
-    protected final Block block;
+    protected Block block;
 
     public StateHandlerVanilla(Block block) {
         this.block = block;

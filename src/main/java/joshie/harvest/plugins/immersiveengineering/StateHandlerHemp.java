@@ -7,8 +7,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 
 public class StateHandlerHemp extends StateHandlerVanilla {
-    public StateHandlerHemp(Block block) {
-        super(block);
+    public StateHandlerHemp() {
+        super(null);
+    }
+
+    public void setBlock(Block block) {
+        this.block = block;
     }
 
     static int getMetaFromStage(int stage) {

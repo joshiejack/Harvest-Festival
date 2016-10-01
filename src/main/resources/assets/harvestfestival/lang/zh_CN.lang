@@ -490,11 +490,11 @@ harvestfestival.npc.girafi.name=Johan
 # but take liberty there to, just make sure the user still knows what they
 # have to do in order to complete the quest in question.
 #Key-Codes for conversations
-# %1s = Money - Player has
-# %2s = Player's Romantic Interest's name
-# %3s = Entity's Romantic Interest's name
-# %4s = Players Name
-# %5s = NPC Name
+# %1$s = Money - Player has
+# %2$s = Player's Romantic Interest's name
+# %3$s = Entity's Romantic Interest's name
+# %4$s = Players Name
+# %5$s = NPC Name
 #Conversations
 #Error
 harvestfestival.npc.error=找不到汉化关键字: %s 或者关键字 %s
@@ -540,12 +540,12 @@ harvestfestival.npc.goddess.greeting3=我能为你做点什么吗, 亲爱的?
 harvestfestival.npc.goddess.greeting4=不要花我太多时间哦, 我不能待太久.
 harvestfestival.npc.goddess.greeting5=你需要什么呢?
 harvestfestival.npc.goddess.greeting6=如果你不小心丢失了木工小屋图纸, 又想要一张新的, 只要再砍一点木头给我就行.
-harvestfestival.npc.goddess.greeting7=嗨, 我们又见面啦 %4s!
+harvestfestival.npc.goddess.greeting7=嗨, 我们又见面啦 %4$s!
 harvestfestival.npc.goddess.greeting8=亲爱的, 最近怎么样?
 harvestfestival.npc.goddess.greeting9=我保证总有一天精灵会回来的, 他们太孤单了.
 harvestfestival.npc.goddess.greeting10=我真的觉得你应该种一下花, 只种菜太不公平了.
 harvestfestival.npc.goddess.greeting11=最近去哪儿啦, 再见到你太开心了.
-harvestfestival.npc.goddess.greeting12=%4s, 别来无恙?
+harvestfestival.npc.goddess.greeting12=%4$s, 别来无恙?
 harvestfestival.npc.goddess.greeting13=大自然真是美丽啊, 不是吗?
 harvestfestival.npc.goddess.greeting14=如果你想给我送礼物, 最简单的方法就是把东西丢进我的池塘!
 harvestfestival.npc.goddess.greeting15=亲爱的, 如果你想知道明天的天气, 只要给我看看指南针就行啦!
@@ -677,7 +677,7 @@ harvestfestival.npc.jamie.greeting1=这是我的地盘, 你给我记住了.
 harvestfestival.npc.jamie.greeting2=我的家族可是在过去100年里都赢得了市长选举.
 harvestfestival.npc.jamie.greeting3=我两个女儿对我来说非常珍贵, 如果你动他们一根毫毛试试.
 harvestfestival.npc.jamie.greeting4=当市长真难,人们都太爱我了.
-harvestfestival.npc.jamie.greeting5=嗨呀 %4s, 你看到我家了吗, 真的太小了.
+harvestfestival.npc.jamie.greeting5=嗨呀 %4$s, 你看到我家了吗, 真的太小了.
 harvestfestival.npc.jamie.greeting6=不久的将来, 我一定会举办一些活动, 但是现在, 我很开心能治理小镇.
 harvestfestival.npc.jamie.greeting7=我都不知道是谁给你建造这座城市的权利, 我明明可以比你做的更好.
 harvestfestival.npc.jamie.greeting8=我父亲总是说我能做到每一件事. 果不出他所料.
@@ -780,7 +780,7 @@ harvestfestival.npc.candice.greeting1=我很爱我的工作, 并且与我的朋�
 harvestfestival.npc.candice.greeting2=有些人学牛叫能学得跟真的一样!
 harvestfestival.npc.candice.greeting3=我在哪儿? 这个世界怎么了?
 harvestfestival.npc.candice.greeting4=过来一下, 我眼睛里进沙子了.
-harvestfestival.npc.candice.greeting5=你好 %4s! 今天心情不错? 你今天看起来很漂亮!
+harvestfestival.npc.candice.greeting5=你好 %4$s! 今天心情不错? 你今天看起来很漂亮!
 harvestfestival.npc.candice.greeting6=嗨, 美人儿, 告诉你个秘密. 你不需要给草浇水, 反正不管怎样他都会长! 一般人我不告诉他.
 harvestfestival.npc.candice.greeting7=你知道我是个挤奶工而且常常和Jim一起工作吗?
 harvestfestival.npc.candice.marriage.reject=别想了, 我并不渴望婚姻.

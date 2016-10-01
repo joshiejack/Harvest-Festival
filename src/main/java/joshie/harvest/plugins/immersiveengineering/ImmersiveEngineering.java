@@ -15,7 +15,8 @@ import static joshie.harvest.core.lib.LoadOrder.HFCROPS;
 
 @HFLoader(mods = "immersiveengineering", priority = HFCROPS + 1)
 public class ImmersiveEngineering {
-    public static final Crop HEMP = new Crop(new ResourceLocation(MODID, "hemp"), 1000L, 1L, 15, 0xB57449, SPRING, SUMMER, AUTUMN)
+    private static final StateHandlerHemp STATE_HANDLER = new StateHandlerHemp();
+    public static final Crop HEMP = new Crop(new ResourceLocation(MODID, "hemp"), 1000L, 1L, 15, 0xB57449, SPRING, SUMMER, AUTUMN).setStateHandler(STATE_HANDLER)
                                         .setAnimalFoodType(null).setRequiresSickle(15).setGrowthHandler(new HempGrowthHandler()).setBecomesDouble(15).setRegrowStage(1);
 
     @ItemStackHolder(value = "immersiveengineering:material", meta = 4)
@@ -28,8 +29,8 @@ public class ImmersiveEngineering {
 
     @SuppressWarnings("ConstantConditions")
     public static void init() {
-        HEMP.setStateHandler(new StateHandlerHemp(Block.REGISTRY.getObject(new ResourceLocation("immersiveengineering", "hemp")))).setItem(hemp);
-        HEMP.setDropHandler(new DropHandlerHemp(hemp.getItem()));
+        STATE_HANDLER.setBlock(Block.REGISTRY.getObject(new ResourceLocation("immersiveengineering", "hemp")));
+        HEMP.setDropHandler(new DropHandlerHemp(hemp.getItem())).setItem(hemp);
         DisableVanillaSeeds.BLACKLIST.register(hemp_seeds);
     }
 }

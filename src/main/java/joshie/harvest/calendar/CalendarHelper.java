@@ -111,10 +111,10 @@ public class CalendarHelper {
     }
 
     public static int getBlendedColour(TIntIntMap map, int original, int additional) {
-        int ret = map.get(original);
-        if (ret != map.getNoEntryValue()) return ret;
-        else {
-            try {
+        try {
+            int ret = map.get(original);
+            if (ret != map.getNoEntryValue()) return ret;
+            else {
                 int size = 2;
                 int r = (original & 0xFF0000) >> 16;
                 int g = (original & 0x00FF00) >> 8;
@@ -124,12 +124,11 @@ public class CalendarHelper {
                 b += additional & 0x0000FF;
 
                 int value = (r / size & 255) << 16 | (g / size & 255) << 8 | b / size & 255;
-
                 map.put(original, value);
                 return value;
-            } catch (IndexOutOfBoundsException exception) {
-                return original;
             }
+        } catch (IndexOutOfBoundsException exception) {
+            return original;
         }
     }
 }

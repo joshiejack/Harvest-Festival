@@ -120,7 +120,7 @@ public class HFCrops {
         ModelLoader.setCustomMeshDefinition(CROP, new FMLDefinition<Crop>(CROP, "crops", Crop.REGISTRY) {
             @Override
             public boolean shouldSkip(Crop crop) {
-                return super.shouldSkip(crop) || crop.getCropStack(1).getItem() != CROP;
+                return super.shouldSkip(crop) || crop.getCropStack(1).getItem() != CROP || crop.skipLoadingRender();
             }
         });
     }

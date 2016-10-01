@@ -46,6 +46,7 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
     private int witheredColor;
     private int doubleStage;
     private int minCut;
+    private boolean skipRender;
 
     private Crop() {
         this(new ResourceLocation("harvestfestival", "null_crop"), 0, 0, 3, 0);
@@ -79,6 +80,7 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
         this.dropHandler = null;
         this.growsToSide = null;
         this.type = EnumPlantType.Crop;
+        this.skipRender = false;
         this.setRegistryName(key);
         REGISTRY.register(this);
     }
@@ -231,6 +233,14 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
 
     public Crop setWitheredColor(int color) {
         this.witheredColor = color;
+        return this;
+    }
+
+    /**
+     * Make this crop need zero water to grow
+     **/
+    public Crop setSkipRender() {
+        this.skipRender = true;
         return this;
     }
 
@@ -444,6 +454,11 @@ public class Crop extends IForgeRegistryEntry.Impl<Crop> implements IShippable {
      **/
     public EnumPlantType getPlantType() {
         return type;
+    }
+
+    /** Whether to skip the render loading of this crop **/
+    public boolean skipLoadingRender() {
+        return skipRender;
     }
 
     /**

@@ -1,10 +1,10 @@
 ##0.5.5
-* Added Support for IE Hemp as a test
 * Fixed too much winter fog showing up underground
 * Fixed how two tall crops render when breaking the bottom block
 * Fixed formatting errors causing crashes
 * Properly fixed not being able to skip the intro quest
 * Make entities avoid water if possible
+* Added Support for IE Hemp as a test
 
 ##0.5.4
 * Added config option for giving the cheat buildings instead of blueprints

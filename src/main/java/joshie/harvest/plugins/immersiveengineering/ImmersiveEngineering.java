@@ -8,16 +8,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry.ItemStackHolder;
 
-import static joshie.harvest.api.calendar.Season.*;
+import static joshie.harvest.api.calendar.Season.AUTUMN;
+import static joshie.harvest.api.calendar.Season.SPRING;
+import static joshie.harvest.api.calendar.Season.SUMMER;
 import static joshie.harvest.core.lib.HFModInfo.MODID;
-import static joshie.harvest.core.lib.LoadOrder.HFCROPS;
 
 
-@HFLoader(mods = "immersiveengineering", priority = HFCROPS + 1)
+@HFLoader(mods = "immersiveengineering", priority = -1)
 public class ImmersiveEngineering {
-    private static final StateHandlerHemp STATE_HANDLER = new StateHandlerHemp();
-    public static final Crop HEMP = new Crop(new ResourceLocation(MODID, "hemp"), 1000L, 1L, 15, 0xB57449, SPRING, SUMMER, AUTUMN).setStateHandler(STATE_HANDLER)
-                                        .setAnimalFoodType(null).setRequiresSickle(15).setGrowthHandler(new HempGrowthHandler()).setBecomesDouble(15).setRegrowStage(1);
+    private static StateHandlerHemp STATE_HANDLER;
+    public static Crop HEMP;
 
     @ItemStackHolder(value = "immersiveengineering:material", meta = 4)
     public static final ItemStack hemp = null;
@@ -25,7 +25,11 @@ public class ImmersiveEngineering {
     @ItemStackHolder(value = "immersiveengineering:seed")
     public static final ItemStack hemp_seeds = null;
 
-    public static void preInit() {}
+    public static void preInit() {
+        STATE_HANDLER = new StateHandlerHemp();
+        HEMP = new Crop(new ResourceLocation(MODID, "hemp"), 1000L, 1L, 15, 0xB57449, SPRING, SUMMER, AUTUMN).setStateHandler(STATE_HANDLER).setSkipRender()
+                .setAnimalFoodType(null).setRequiresSickle(15).setGrowthHandler(new HempGrowthHandler()).setBecomesDouble(15).setRegrowStage(1);
+    }
 
     @SuppressWarnings("ConstantConditions")
     public static void init() {

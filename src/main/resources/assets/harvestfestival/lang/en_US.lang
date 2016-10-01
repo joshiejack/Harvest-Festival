@@ -591,7 +591,7 @@ harvestfestival.npc.daniel.greeting5=Did you know that I used to be an olympic s
 harvestfestival.npc.daniel.greeting6=Males, Females? Don't bother me, I like them all. Variety is the spice of life.
 harvestfestival.npc.daniel.greeting7=I've really taken a shine for Jenni and Yulif lately but neither seem to be all that interested.
 harvestfestival.npc.daniel.greeting8=If you need your tools repaired, just bring me the right material and tool.
-harvestfestival.npc.daniel.greeting9=If you ever need an upgrade, just bring me a 100% tool, some gold and something to upgrade it with.
+harvestfestival.npc.daniel.greeting9=If you ever need an upgrade, just bring me a 100%% tool, some gold and something to upgrade it with.
 harvestfestival.npc.daniel.greeting10=I've been to The End have you?
 harvestfestival.npc.daniel.greeting11=I became a blacksmith because I wanted to make my own tools, so I could get to the ender, it really was a life long dream.
 harvestfestival.npc.daniel.greeting12=If I could visit any country, hmm, I'd probably visit Czechia with Ashlee.
@@ -998,7 +998,7 @@ harvestfestival.quest.tutorial.upgrading.question=Do you know how to upgrade too
 harvestfestival.quest.tutorial.upgrading.tutorial=@I do not know anything.
 harvestfestival.quest.tutorial.upgrading.skip=@I know everything.
 harvestfestival.quest.tutorial.upgrading.completed=That’s good then. I have some ore and a hammer for you.
-harvestfestival.quest.tutorial.upgrading.explain=That’s good then. I’ll be happy to teach you. The first step is to get your tools to the stage where they can even be upgraded. If you notice they have a percentage bar. When this is at 100% just bring them to me. I’ll also need some ore to work with, as well as payment for my services. I’ll work on them for a few days, then you can have your tools back fully upgraded. You might be asking me how to get the materials you’ll need. Well you’ll need to head down the mine, taking with you a hammer. You can find nodes down there which you can smash with a hammer to obtain ore. Anyway that’s about it. I hear Brandon the Miner has a gift for you though.
+harvestfestival.quest.tutorial.upgrading.explain=That’s good then. I’ll be happy to teach you. The first step is to get your tools to the stage where they can even be upgraded. If you notice they have a percentage bar. When this is at 100%% just bring them to me. I’ll also need some ore to work with, as well as payment for my services. I’ll work on them for a few days, then you can have your tools back fully upgraded. You might be asking me how to get the materials you’ll need. Well you’ll need to head down the mine, taking with you a hammer. You can find nodes down there which you can smash with a hammer to obtain ore. Anyway that’s about it. I hear Brandon the Miner has a gift for you though.
 harvestfestival.quest.tutorial.upgrading.reminder.visit=Remember Brandon the Miner wants to see you.
 harvestfestival.quest.tutorial.upgrading.complete=Ehhh hello there. I’ve just been down the mine, and well it was pretty terrible. Since you got me to this town, I may as well just give you the junk I found. Take it. I don’t want it.
 
@@ -1023,7 +1023,7 @@ harvestfestival.quest.trade.vanilla.milk=These bottles of milk sure look delicio
 harvestfestival.quest.trade.vanilla.wool=Your wool is so fine, it will make great clothes. Please take this wool, better for building with!
 
 # Blacksmith Upgrades
-harvestfestival.quest.trade.upgrade.level=Your tool is not at 100%! Please come back when it is.
+harvestfestival.quest.trade.upgrade.level=Your tool is not at 100%%! Please come back when it is.
 harvestfestival.quest.trade.upgrade.gold=To upgrade this tool it will cost you %s, please come back when you have enough.
 harvestfestival.quest.trade.upgrade.material=To upgrade this tool I’m going to need %1s %2s.
 harvestfestival.quest.trade.upgrade.accept=This I can do, please come back in 3 days to collect your upgraded tool.

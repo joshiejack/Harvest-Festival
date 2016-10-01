@@ -109,7 +109,7 @@ public class CropData {
     }
 
     public List<ItemStack> harvest(@Nullable EntityPlayer player, boolean doHarvest) {
-        if (crop == null) return null;
+        if (crop == null || crop.growsToSide() != null) return null;
         if (stage >= crop.getStages() || (crop.requiresSickle() && stage >= crop.getMinimumCut())) {
             int originalStage = stage;
             if (doHarvest) {

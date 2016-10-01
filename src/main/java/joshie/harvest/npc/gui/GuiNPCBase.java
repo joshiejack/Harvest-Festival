@@ -175,7 +175,7 @@ public abstract class GuiNPCBase extends GuiBaseContainer {
     //Tooltip
     @Override
     protected void renderToolTip(ItemStack stack, int x, int y) {
-        List<String> textLines = stack.getTooltip(this.mc.thePlayer, this.mc.gameSettings.advancedItemTooltips);
+        List<String> textLines = stack.getTooltip(this.mc.thePlayer, false);
         for (int i = 0; i < textLines.size(); ++i) {
             if (i == 0) {
                 textLines.set(i, stack.getRarity().rarityColor + textLines.get(i));

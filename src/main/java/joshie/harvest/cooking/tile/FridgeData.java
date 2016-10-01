@@ -11,6 +11,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
 
 public class FridgeData implements IInventory {
     protected final ItemStack[] inventory;
@@ -67,17 +68,17 @@ public class FridgeData implements IInventory {
 
     @Override
     public String getName() {
-        return "";
+        return joshie.harvest.core.util.Text.translate("cookware.fridge");
     }
 
     @Override
     public boolean hasCustomName() {
-        return false;
+        return true;
     }
 
     @Override
     public ITextComponent getDisplayName() {
-        return null;
+        return new TextComponentString("hi");
     }
 
     @Override

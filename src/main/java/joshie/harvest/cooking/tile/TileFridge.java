@@ -6,7 +6,11 @@ import joshie.harvest.core.base.tile.TileFaceable;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.wrapper.InvWrapper;
 
 /** Just a way to interact with the fridge inventory, the fridge inventory is global though, not stored in this block **/
 public class TileFridge extends TileFaceable implements ITickable {
@@ -20,6 +24,7 @@ public class TileFridge extends TileFaceable implements ITickable {
     public boolean animatingBottom;
     public boolean openBottom = true;
     protected final FridgeData data = new FridgeData(this);
+    protected final InvWrapper handler = new InvWrapper(data);
 
     public static boolean isValid(ItemStack stack) {
         return stack.getItem() == HFCooking.MEAL || HFApi.cooking.isIngredient(stack) || stack.getItem() instanceof ItemFood;
@@ -86,6 +91,19 @@ public class TileFridge extends TileFaceable implements ITickable {
                 }
             }
         }
+    }
+
+    @Override
+    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+        return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+            return (T) handler;
+        return super.getCapability(capability, facing);
     }
 
     @Override

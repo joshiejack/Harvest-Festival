@@ -35,7 +35,7 @@ public class HFMining {
     public static final BlockOre ORE = new BlockOre().register("ore");
     public static final BlockStone STONE = new BlockStone().register("stone");
     public static final BlockDirt DIRT = new BlockDirt().setBlockUnbreakable().register("dirt");
-    public static final BlockDirt DIRT_DECORATIVE = new BlockDirt().register("dirt_decorative");
+    public static final BlockDirt DIRT_DECORATIVE = new BlockDirt().setHardness(0.5F).register("dirt_decorative");
     public static final BlockLadder LADDER = new BlockLadder().register("ladder");
     public static final BlockPortal PORTAL = new BlockPortal().setBlockUnbreakable().register("portal");
     public static final ItemMaterial MATERIALS = new ItemMaterial().register("materials");

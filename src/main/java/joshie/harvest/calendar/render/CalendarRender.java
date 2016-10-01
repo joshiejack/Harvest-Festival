@@ -28,8 +28,8 @@ public class CalendarRender {
     private static final BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
     public static volatile TIntIntMap grassToBlend = new TIntIntHashMap();
     public static volatile TIntIntMap leavesToBlend = new TIntIntHashMap();
-    private static double fogStart = 1D;
-    private static double fogTarget = 1D;
+    private static int fogStart = 1;
+    private static int fogTarget = 1;
 
     @SubscribeEvent
     public void onRenderOverlay(RenderGameOverlayEvent.Pre event) {
@@ -47,9 +47,9 @@ public class CalendarRender {
                 //Update the fog smoothly
                 if (fogTarget != fogStart) {
                     if (fogTarget > fogStart) {
-                        fogStart += 1D;
+                        fogStart += 5;
                     } else if (fogTarget < fogStart) {
-                        fogStart -= 1D;
+                        fogStart -= 5;
                     }
                 }
 
@@ -72,20 +72,21 @@ public class CalendarRender {
                 Weather weather = HFApi.calendar.getWeather(mc.theWorld);
                 if (k2 != l2) {
                     if (weather == Weather.BLIZZARD) {
-                        fogTarget = -300D;
+                        fogTarget = -30000;
                     } else if (weather == Weather.SNOW) {
-                        fogTarget = -20D;
-                    } else fogTarget = 1D;
-                } else fogTarget = 1D;
+                        fogTarget = -2000;
+                    } else fogTarget = 100;
+                } else fogTarget = 100;
+                if (blockpos$mutableblockpos.getY() < j2) fogTarget = 5000;
 
                 //If we're snow or resetting the target
                 if (weather.isSnow() || fogTarget != fogStart) {
-                    GlStateManager.setFogEnd(Math.min(event.getFarPlaneDistance(), 192.0F) * 0.5F);
-                    GlStateManager.setFogStart((float) fogStart);
+                    GlStateManager.setFogEnd(Math.min(event.getFarPlaneDistance(), 150F) * 0.5F);
+                    GlStateManager.setFogStart((float) fogStart / 100F);
                 }
             } else {
-                fogStart = 1D;
-                fogTarget = 1D;
+                fogStart = 100;
+                fogTarget = 100;
             }
         }
     }

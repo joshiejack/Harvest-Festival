@@ -1,3 +1,6 @@
+##0.5.5
+* Fixed too much winter fog showing up underground
+
 ##0.5.4
 * Added config option for giving the cheat buildings instead of blueprints
 * Added a hardy turnip crop, that takes three days to grow and can grow in any season (Only available in the tutorial)

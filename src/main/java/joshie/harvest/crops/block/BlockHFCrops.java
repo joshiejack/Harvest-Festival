@@ -163,11 +163,16 @@ public class BlockHFCrops extends BlockHFEnum<BlockHFCrops, CropType> implements
     }
 
     public boolean canStay(World world, BlockPos pos) {
-        Crop crop = HFApi.crops.getCropAtLocation(world, pos);
-        if (crop != null && crop.getGrowthHandler() != null) {
-            IBlockState down = world.getBlockState(pos.down());
-            return down.getBlock() == this || crop.getGrowthHandler().canSustainCrop(world, pos.down(), world.getBlockState(pos.down()), crop);
-        } else return false;
+        CropData data = CropHelper.getCropDataAt(world, pos);
+        if (data != null) {
+            Crop crop = data.getCrop();
+            if (crop.getGrowthHandler() != null) {
+                IBlockState down = world.getBlockState(pos.down());
+                return down.getBlock() == this || crop.getGrowthHandler().canSustainCrop(world, pos.down(), world.getBlockState(pos.down()), crop);
+            }
+        }
+
+        return false;
     }
 
     @Override

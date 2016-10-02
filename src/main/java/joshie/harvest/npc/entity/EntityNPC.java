@@ -44,7 +44,7 @@ public abstract class EntityNPC<E extends EntityNPC> extends EntityAgeable imple
         this.enablePersistence();
         setSize(0.6F, (1.8F * npc.getHeight()));
         setPathPriority(PathNodeType.WATER, 0.0F);
-        stepHeight = 0.75F;
+        stepHeight = 1F;
     }
 
     public EntityNPC(E entity) {

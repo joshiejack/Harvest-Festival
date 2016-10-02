@@ -37,6 +37,11 @@ public class BuildingStage {
         return index < building.getFullList().size() ? building.getFullList().get(index): null;
     }
 
+    public Placeable previous() {
+        int position = index - 1;
+        return position >= 0 && position < building.getFullList().size() ? building.getFullList().get(position): null;
+    }
+
     public BuildingImpl getBuilding() {
         return building;
     }
@@ -46,6 +51,7 @@ public class BuildingStage {
     }
 
     public BlockPos getPos(Placeable placeable) {
+        if (placeable == null) return next().getTransformedPosition(pos, direction);
         return placeable.getTransformedPosition(pos, direction);
     }
 
@@ -88,21 +94,22 @@ public class BuildingStage {
             }
         }
 
-        return false;
+        return true;
     }
 
     public boolean build(World world) {
         while (index < building.getFullList().size()) {
             Placeable block = building.getFullList().get(index);
-            //if (block.isBlocked(world, block.getTransformedPosition(pos.up(), direction))) return false; //Don't do anything while it's blocked
             if (block.place(world, pos, direction, stage, true)) {
                 return increaseIndex(world);
             }
 
-            if (increaseIndex(world)) return true;
+            increaseIndex(world);
+            if (isFinished()) return true;
         }
 
-        return false;
+
+        return isFinished() || increaseIndex(world);
     }
 
     public long getTickTime() {

@@ -55,70 +55,71 @@ public class CodeGeneratorBuildings {
         return (ArrayList<Entity>) world.getEntitiesWithinAABB(clazz, new AxisAlignedBB(new BlockPos(x, y, z)));
     }
 
+    private void buildList(ArrayList<Placeable> ret, int x, int y, int z, Set<Entity> all) {
+        Set<Entity> entityList = new HashSet<>();
+        entityList.addAll(getEntities(EntityPainting.class, x1 + x, y1 + y, z1 + z));
+        entityList.addAll(getEntities(EntityItemFrame.class, x1 + x, y1 + y, z1 + z));
+        entityList.addAll(getEntities(EntityNPCVillager.class, x1 + x, y1 + y, z1 + z));
+        entityList.addAll(getEntities(EntityNPCBuilder.class, x1 + x, y1 + y, z1 + z));
+        entityList.addAll(getEntities(EntityNPCShopkeeper.class, x1 + x, y1 + y, z1 + z));
+
+        BlockPos position = new BlockPos(x1 + x, y1 + y, z1 + z);
+        IBlockState state = world.getBlockState(position);
+        Block block = state.getBlock();
+        if (block == Blocks.CHEST) {
+            TileEntityChest chest = (TileEntityChest) world.getTileEntity(new BlockPos(x1 + x, y1 + y, z1 + z));
+            if (chest != null) {
+                String name = chest.getName();
+                if (name.startsWith("npc.")) {
+                    name = name.replace("npc.", "");
+                    NPC npc = NPCRegistry.REGISTRY.getValue(new ResourceLocation(MODID, name));
+                    String npcField = npc == null ? "" : npc.getRegistryName().toString();
+                    ret.add(new PlaceableNPC(name, npcField, x, y, z));
+                    ret.add(new PlaceableBlock(Blocks.AIR.getDefaultState(), x, y, z));
+                    return;
+                } else if (name.startsWith("loot.")) {
+                    ret.add(new PlaceableChest(name.replace("loot.", "chests/"), state, x, y, z));
+                    return;
+                }
+            }
+        }
+
+        if ((block != Blocks.AIR  || entityList.size() > 0) && block != Blocks.END_STONE) {
+            int meta = state.getBlock().getMetaFromState(state);
+            if ((block == Blocks.DOUBLE_PLANT || block instanceof BlockDoor) && meta >= 8) return;
+            TileEntity tile = world.getTileEntity(position);
+            if (tile instanceof TileEntitySign) {
+                ITextComponent[] text = ((TileEntitySign) tile).signText;
+                if (block == Blocks.STANDING_SIGN) {
+                    ret.add(PlaceableHelper.getFloorSignString(text, state, new BlockPos(x, y, z)));
+                } else ret.add(PlaceableHelper.getWallSignString(text, state, new BlockPos(x, y, z)));
+            } else {
+                Placeable text = PlaceableHelper.getPlaceableBlockString(world, state, x, y, z);
+                ret.add(text);
+            }
+
+            //Entities
+            if (entityList.size() > 0) {
+                for (Entity e : entityList) {
+                    if (!all.contains(e)) {
+                        ret.add(PlaceableHelper.getPlaceableEntityString(e, x, y, z));
+                        all.add(e);
+                    }
+                }
+            }
+        }
+    }
+
     @SuppressWarnings("unchecked")
     public void getCode() {
         if (!world.isRemote) {
             ArrayList<Placeable> ret = new ArrayList<>();
-            Set all = new HashSet();
-            int i = 0;
+            Set<Entity> all = new HashSet();
             for (int y = 0; y <= y2 - y1; y++) {
                 for (int x = 0; x <= x2 - x1; x++) {
-                    for (int z = 0; z <= z2 - z1; z++) {
-                        Set<Entity> entityList = new HashSet<>();
-                        entityList.addAll(getEntities(EntityPainting.class, x1 + x, y1 + y, z1 + z));
-                        entityList.addAll(getEntities(EntityItemFrame.class, x1 + x, y1 + y, z1 + z));
-                        entityList.addAll(getEntities(EntityNPCVillager.class, x1 + x, y1 + y, z1 + z));
-                        entityList.addAll(getEntities(EntityNPCBuilder.class, x1 + x, y1 + y, z1 + z));
-                        entityList.addAll(getEntities(EntityNPCShopkeeper.class, x1 + x, y1 + y, z1 + z));
-
-                        BlockPos position = new BlockPos(x1 + x, y1 + y, z1 + z);
-                        IBlockState state = world.getBlockState(position);
-                        Block block = state.getBlock();
-                        if (block == Blocks.CHEST) {
-                            TileEntityChest chest = (TileEntityChest) world.getTileEntity(new BlockPos(x1 + x, y1 + y, z1 + z));
-                            if (chest != null) {
-                                String name = chest.getName();
-                                if (name.startsWith("npc.")) {
-                                    name = name.replace("npc.", "");
-                                    NPC npc = NPCRegistry.REGISTRY.getValue(new ResourceLocation(MODID, name));
-                                    String npcField = npc == null ? "" : npc.getRegistryName().toString();
-                                    ret.add(new PlaceableNPC(name, npcField, x, y, z));
-                                    ret.add(new PlaceableBlock(Blocks.AIR.getDefaultState(), x, y, z));
-                                    continue;
-                                } else if (name.startsWith("loot.")) {
-                                    ret.add(new PlaceableChest(name.replace("loot.", "chests/"), state, x, y, z));
-                                    continue;
-                                }
-                            }
-                        }
-
-                        if ((block != Blocks.AIR  || entityList.size() > 0) && block != Blocks.END_STONE) {
-                            int meta = state.getBlock().getMetaFromState(state);
-                            if ((block == Blocks.DOUBLE_PLANT || block instanceof BlockDoor) && meta >= 8) continue;
-                            TileEntity tile = world.getTileEntity(position);
-                            if (tile instanceof TileEntitySign) {
-                                ITextComponent[] text = ((TileEntitySign) tile).signText;
-                                if (block == Blocks.STANDING_SIGN) {
-                                    ret.add(PlaceableHelper.getFloorSignString(text, state, new BlockPos(x, y, z)));
-                                } else ret.add(PlaceableHelper.getWallSignString(text, state, new BlockPos(x, y, z)));
-                            } else {
-                                Placeable text = PlaceableHelper.getPlaceableBlockString(world, state, x, y, z);
-                                ret.add(text);
-                            }
-
-                            //Entities
-                            if (entityList.size() > 0) {
-                                for (Entity e : entityList) {
-                                    if (!all.contains(e)) {
-                                        ret.add(PlaceableHelper.getPlaceableEntityString(e, x, y, z));
-                                        all.add(e);
-                                    }
-                                }
-                            }
-
-                            i++;
-                        }
-                    }
+                    if (x % 2 == 0) {
+                        for (int z = 0; z <= z2 - z1; z++) buildList(ret, x, y, z, all);
+                    } else for (int z = z2 - z1; z >= 0; z--) buildList(ret, x, y, z, all);
                 }
             }
 
